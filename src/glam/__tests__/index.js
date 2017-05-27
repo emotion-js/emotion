@@ -3,7 +3,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import plugin from '../babel'
-import css from 'glam';
+import css from 'glam'
 
 const babel = require('babel-core')
 
@@ -40,7 +40,8 @@ describe('emotion/glam', () => {
     })
 
     test('className as expression string', () => {
-      const basic = '(<div className={`test__class\`} css={`color: brown;`} this={`hello\`}></div>)'
+      const basic =
+        '(<div className={`test__class\`} css={`color: brown;`} this={`hello\`}></div>)'
       const {code} = babel.transform(basic, {plugins: [plugin]})
       expect(code).toMatchSnapshot()
     })
@@ -60,7 +61,7 @@ describe('emotion/glam', () => {
     })
 
     test('nested', () => {
-      const props = { online: false, radius: 5 }
+      const props = {online: false, radius: 5}
 
       const tree = renderer
         .create(
@@ -68,14 +69,14 @@ describe('emotion/glam', () => {
             <p className="foo" css={`color: blue;`}>Hello</p>
             <p className="foo" css={`color: green;`}>World</p>
             <p
-              className={` ${css`
-      color: red;
-      border-radius: ${props.radius};
-      &:hover {
-        font-weight: bold;
-        color: ${props.online ? 'green' : 'gray'};
-      }
-    `}`}
+              className={css`
+                color: red;
+                border-radius: ${props.radius};
+                &:hover {
+                  font-weight: bold;
+                  color: ${props.online ? 'green' : 'gray'};
+                }
+              `}
             >
               hello world
             </p>

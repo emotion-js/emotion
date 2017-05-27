@@ -4,9 +4,7 @@ module.exports = function (babel) {
   function createClassNameAttr (expression) {
     return t.jSXAttribute(
       t.jSXIdentifier('className'),
-      t.JSXExpressionContainer(
-        expression
-      )
+      t.JSXExpressionContainer(expression)
     )
   }
 
@@ -31,25 +29,29 @@ module.exports = function (babel) {
         if (!cxs) {
           nextClassName = createClassNameAttr(cssTemplateLiteral)
         } else if (t.isJSXExpressionContainer(cxs.value)) {
-          nextClassName = createClassNameAttr(t.binaryExpression(
-            '+',
+          nextClassName = createClassNameAttr(
             t.binaryExpression(
               '+',
-              cxs.value.expression,
-              t.stringLiteral(' ')
-            ),
-            cssTemplateLiteral
-          ))
+              t.binaryExpression(
+                '+',
+                cxs.value.expression,
+                t.stringLiteral(' ')
+              ),
+              cssTemplateLiteral
+            )
+          )
         } else {
-          nextClassName = createClassNameAttr(t.binaryExpression(
-            '+',
+          nextClassName = createClassNameAttr(
             t.binaryExpression(
               '+',
-              t.stringLiteral(cxs.value.value || ''),
-              t.stringLiteral(' ')
-            ),
-            cssTemplateLiteral
-          ))
+              t.binaryExpression(
+                '+',
+                t.stringLiteral(cxs.value.value || ''),
+                t.stringLiteral(' ')
+              ),
+              cssTemplateLiteral
+            )
+          )
         }
 
         path.traverse({

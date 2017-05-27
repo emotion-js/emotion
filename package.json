@@ -12,7 +12,7 @@
     "release": "npm run test && npm version patch && npm publish && git push --tags"
   },
   "dependencies": {
-    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-syntax-jsx": "^6.18.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -30,7 +30,7 @@
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4",
-    "standard": "^10.0.2",
+    "standard": "^10.0.2"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
