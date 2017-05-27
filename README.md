@@ -31,8 +31,8 @@ const Name = ({ color, name }) => <h1 className={css`color: ${color};`}>{name}</
 ```json
 {
   "plugins": [
-    'emotion/glam',
-    'glam/babel'
+    "emotion/glam",
+    "glam/babel"
   ]
 }
 ```
