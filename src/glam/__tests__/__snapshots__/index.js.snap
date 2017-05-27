@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`emotion/glam babel basic 1`] = `"<div className={\\"a\\" + \\" \\" + css\`color: brown;\`}></div>;"`;
+
+exports[`emotion/glam babel className as expression 1`] = `"<div className={varia + \\" \\" + css\`color: brown;\`}></div>;"`;
+
+exports[`emotion/glam babel className as expression string 1`] = `"<div className={\`test__class\` + \\" \\" + css\`color: brown;\`} this={\`hello\`}></div>;"`;
+
+exports[`emotion/glam babel emptyClassName 1`] = `"<div className={\\"\\" + \\" \\" + css\`color: brown;\`}></div>;"`;
+
+exports[`emotion/glam babel no css attr 1`] = `"<div></div>;"`;
+
+exports[`emotion/glam babel noClassName 1`] = `"<div className={css\`color: brown;\`}></div>;"`;
+
+exports[`emotion/glam real basic 1`] = `
+<p
+  className="css-jk0pkr"
+>
+  hello world
+</p>
+`;
+
+exports[`emotion/glam real nested 1`] = `
+<div
+  className="a css-jf1v9l"
+>
+  <p
+    className="foo css-14jcta0"
+  >
+    Hello
+  </p>
+  <p
+    className="foo css-1fpqmhj"
+  >
+    World
+  </p>
+  <p
+    className=" css-7jbqmo vars-1mtfi0j"
+  >
+    hello world
+  </p>
+</div>
+`;

@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - "7"
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - npm install codecov
+
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
+
+cache:
+  directories:
+    - node_modules
