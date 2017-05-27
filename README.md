@@ -17,14 +17,8 @@ npm install -S emotion
 
 ## `emotion/glam`
 
-```jsx harmony
-const Name = ({ color, name }) => <h1 css={`color: ${color};`}>{name}</h1>
-```
-
-is converted to
-
-```jsx harmony
-const Name = ({ color, name }) => <h1 className={css`color: ${color};`}>{name}</h1>
+```bash
+npm install -S glam
 ```
 
 **.babelrc**
@@ -36,5 +30,17 @@ const Name = ({ color, name }) => <h1 className={css`color: ${color};`}>{name}</
   ]
 }
 ```
+
+```jsx harmony
+const Name = ({ color, name }) => <h1 css={`color: ${color};`}>{name}</h1>
+```
+
+is converted to
+
+```jsx harmony
+const Name = ({ color, name }) => <h1 className={css`color: ${color};`}>{name}</h1>
+```
+
+
 
 **Similar to importing React when using jsx, `import css from 'glam'` must be at the top of your source files.**
