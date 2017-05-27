@@ -2,7 +2,7 @@
 
 exports[`emotion/glam babel basic 1`] = `"<div className={\\"a\\" + \\" \\" + css\`color: brown;\`}></div>;"`;
 
-exports[`emotion/glam babel className as expression 1`] = `"<div className={varia + \\" \\" + css\`color: brown;\`}></div>;"`;
+exports[`emotion/glam babel className as expression 1`] = `"<div className={variable + \\" \\" + css\`color: brown;\`}></div>;"`;
 
 exports[`emotion/glam babel className as expression string 1`] = `"<div className={\`test__class\` + \\" \\" + css\`color: brown;\`} this={\`hello\`}></div>;"`;
 
@@ -20,22 +20,27 @@ exports[`emotion/glam real basic 1`] = `
 </p>
 `;
 
-exports[`emotion/glam real nested 1`] = `
+exports[`emotion/glam real kitchen sink 1`] = `
 <div
-  className="a css-jf1v9l"
+  className="css__legacy-stuff css-1170hdn vars-3hemw4 frag-14wn6p9 frag-mdk64u"
 >
+  <h1
+    className="css-wjhr0q vars-ir395p frag-2x34lo vars-1sq8117"
+  >
+    BOOM
+  </h1>
   <p
-    className="foo css-14jcta0"
+    className="test_class1 css-14jcta0"
   >
     Hello
   </p>
   <p
-    className="foo css-1fpqmhj"
+    className="test_class1 test___class45 css-1gdxe9e"
   >
     World
   </p>
   <p
-    className=" css-7jbqmo vars-1mtfi0j"
+    className="css-1g8ltio vars-bs2yjn"
   >
     hello world
   </p>

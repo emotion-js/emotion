@@ -1,9 +1,9 @@
-/* eslint-disable jsx-quotes */
+/* eslint-disable jsx-quotes,no-useless-escape */
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import plugin from '../babel'
-import css from 'glam'
+import css, {fragment} from 'glam'
 
 const babel = require('babel-core')
 
@@ -60,16 +60,53 @@ describe('emotion/glam', () => {
       expect(tree).toMatchSnapshot()
     })
 
-    test('nested', () => {
-      const props = {online: false, radius: 5}
+    test('kitchen sink', () => {
+      const props = {online: false, error: false, radius: 5}
+      const huge = 100
+      const tiny = 6
+
+      const bold = fragment` 
+        display: flex; 
+        font-weight: bold;`
+
+      const big = fragment` 
+        @apply ${bold}; 
+        font-size: ${huge}`
+
+      const small = fragment` 
+        font-size: ${tiny}`
+
+      const flexCenter = fragment`
+        display: flex;
+        justify-content: center;
+        align-items: center`
 
       const tree = renderer
         .create(
-          <div className="a" css={`color: brown;`}>
-            <p className="foo" css={`color: blue;`}>Hello</p>
-            <p className="foo" css={`color: green;`}>World</p>
+          <div
+            className="css__legacy-stuff"
+            css={`
+              @apply ${bold}
+              @apply ${flexCenter};
+             `}
+          >
+            <h1
+              css={`
+                @apply ${props.error ? big : small};
+                color: red
+              `}
+            >
+              BOOM
+            </h1>
+            <p className="test_class1" css={`color: blue;`}>Hello</p>
             <p
-              className={css`
+              className="test_class1 test___class45"
+              css={`display: inline-flex`}
+            >
+              World
+            </p>
+            <p
+              css={`
                 color: red;
                 border-radius: ${props.radius};
                 &:hover {
@@ -80,6 +117,7 @@ describe('emotion/glam', () => {
             >
               hello world
             </p>
+
           </div>
         )
         .toJSON()
