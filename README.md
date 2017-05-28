@@ -8,8 +8,8 @@
 
 
 -   [Install](#install)
--   [Glam](#https://github.com/tkh44/emotion#emotionglam)
--   [Glamor](#https://github.com/tkh44/emotion#emotionglamor)
+-   [Glam](#emotionglam)
+-   [Glamor](#emotionglamor)
 
 ## Install
 
