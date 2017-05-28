@@ -44,3 +44,31 @@ const Name = ({ color, name }) => <h1 className={css`color: ${color};`}>{name}</
 
 **Similar to importing React when using jsx, `import css from 'glam'` must be at the top of your source files.**
 
+## `emotion/glamor`
+
+```bash
+npm install -S glamor
+```
+
+**.babelrc**
+```json
+{
+  "plugins": [
+    "emotion/glamor",
+  ]
+}
+```
+
+```jsx harmony
+const Name = ({ color, name }) => <h1 css={{ color: 'red' }}>{name}</h1>
+```
+
+is converted to
+
+```jsx harmony
+const Name = ({ color, name }) => <h1 {...css({color: 'red' })}>{name}</h1>
+```
+
+
+**Similar to importing React when using jsx, `import {css} from 'glamor'` must be at the top of your source files.**
+
