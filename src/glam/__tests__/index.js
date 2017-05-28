@@ -21,6 +21,12 @@ describe('emotion/glam', () => {
       expect(code).toMatchSnapshot()
     })
 
+    // test('StringLiteral css prop value', () => {
+    //   const basic = `<div css="color: brown;"></div>`
+    //   const {code} = babel.transform(basic, {plugins: [plugin]})
+    //   expect(code).toMatchSnapshot()
+    // })
+
     test('noClassName', () => {
       const basic = '(<div css={`color: brown;`}></div>)'
       const {code} = babel.transform(basic, {plugins: [plugin]})
@@ -60,20 +66,32 @@ describe('emotion/glam', () => {
       expect(tree).toMatchSnapshot()
     })
 
+    // test('string expression', () => {
+    //   const tree = renderer
+    //     .create(
+    //       <p css={'color: red;'}>
+    //         hello world
+    //       </p>
+    //     )
+    //     .toJSON()
+    //
+    //   expect(tree).toMatchSnapshot()
+    // })
+
     test('kitchen sink', () => {
       const props = {online: false, error: false, radius: 5}
       const huge = 100
       const tiny = 6
 
-      const bold = fragment` 
-        display: flex; 
+      const bold = fragment`
+        display: flex;
         font-weight: bold;`
 
-      const big = fragment` 
-        @apply ${bold}; 
+      const big = fragment`
+        @apply ${bold};
         font-size: ${huge}`
 
-      const small = fragment` 
+      const small = fragment`
         font-size: ${tiny}`
 
       const flexCenter = fragment`

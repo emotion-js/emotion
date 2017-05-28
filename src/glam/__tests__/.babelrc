@@ -5,12 +5,7 @@
     "react"
   ],
   "plugins": [
-    [
-      "../babel.js",
-      {
-        "sync": true
-      }
-    ],
+    ["../babel.js"],
     ['glam/babel', { sync: true } ],
   ]
 }

@@ -22,10 +22,10 @@ exports[`emotion/glam real basic 1`] = `
 
 exports[`emotion/glam real kitchen sink 1`] = `
 <div
-  className="css__legacy-stuff css-1170hdn vars-3hemw4 frag-14wn6p9 frag-mdk64u"
+  className="css__legacy-stuff css-1170hdn vars-k1238z frag-15qcrjv frag-mdk64u"
 >
   <h1
-    className="css-wjhr0q vars-ir395p frag-2x34lo vars-1sq8117"
+    className="css-wjhr0q vars-11t1jtz frag-1wh34bm vars-telb2o"
   >
     BOOM
   </h1>
