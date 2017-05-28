@@ -42,5 +42,5 @@ const Name = ({ color, name }) => <h1 className={css`color: ${color};`}>{name}</
 ```
 
 
-
 **Similar to importing React when using jsx, `import css from 'glam'` must be at the top of your source files.**
+
