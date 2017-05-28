@@ -8,6 +8,8 @@ exports[`emotion/glam babel className as expression 1`] = `"<div className={vari
 
 exports[`emotion/glam babel className as expression string 1`] = `"<div className={\`test__class\` + \\" \\" + css\`color: brown;\`} this={\`hello\`}></div>;"`;
 
+exports[`emotion/glam babel css empty 1`] = `"<div className={css\`\`}></div>;"`;
+
 exports[`emotion/glam babel emptyClassName 1`] = `"<div className={\\"\\" + \\" \\" + css\`color: brown;\`}></div>;"`;
 
 exports[`emotion/glam babel no css attr 1`] = `"<div></div>;"`;

@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "1.1.0",
+  "version": "0.0.1",
   "description": "css prop for all",
   "files": [
     "src",
@@ -61,5 +61,6 @@
   },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
-  }
+  },
+  "main": "glam.js"
 }

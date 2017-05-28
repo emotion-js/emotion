@@ -21,6 +21,17 @@ describe('emotion/glam', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('css empty', () => {
+      const basic = '(<div css=""></div>)'
+      const {code} = babel.transform(basic, {plugins: [plugin]})
+      expect(code).toMatchSnapshot()
+    })
+
+    test('wrong value type', () => {
+      const basic = '(<div css={5}></div>)'
+      expect(() => babel.transform(basic, {plugins: [plugin]})).toThrow()
+    })
+
     test('StringLiteral css prop value', () => {
       const basic = `<div css="color: brown;"></div>`
       const {code} = babel.transform(basic, {plugins: [plugin]})

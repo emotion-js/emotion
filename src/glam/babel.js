@@ -41,7 +41,7 @@ module.exports = function (babel) {
           classNamesPath.container &&
           classNamesPath.container.value
 
-        if (!cssPropValue) return
+        // if (!cssPropValue) return
 
         if (t.isJSXExpressionContainer(cssPropValue)) {
           cssPropValue = cssPropValue.expression
@@ -57,15 +57,10 @@ module.exports = function (babel) {
               []
             )
           )
-        } else if (t.isJSXExpressionContainer(cssPropValue)) {
-          cssTemplateExpression = createCssTemplateExpression(
-            t.templateLiteral(
-              [t.templateElement({raw: cssPropValue.expression.value})],
-              []
-            )
-          )
         } else {
-          throw path.buildCodeFrameError('I have no idea what you gave me')
+          throw path.buildCodeFrameError(
+            'css prop value must be a string'
+          )
         }
 
         if (!classNamesValue) {
