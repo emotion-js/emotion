@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "env",
+    "stage-0",
+    "react"
+  ],
+  "plugins": [
+    ["../babel.js"],
+    ['glam/babel', { sync: true } ],
+  ]
+}
