@@ -1,50 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`emotion/glam babel StringLiteral css prop value 1`] = `"<div className={css\`color: brown;\`}></div>;"`;
+exports[`emotion/glamor babel basic 1`] = `"<div className=\\"a\\" {...css({ color: 'brown' })}></div>;"`;
 
-exports[`emotion/glam babel basic 1`] = `"<div className={\\"a\\" + \\" \\" + css\`color: brown;\`}></div>;"`;
+exports[`emotion/glamor babel className as expression 1`] = `"<div className={props.className} {...css({ color: 'brown' })}></div>;"`;
 
-exports[`emotion/glam babel className as expression 1`] = `"<div className={variable + \\" \\" + css\`color: brown;\`}></div>;"`;
+exports[`emotion/glamor babel className as expression string 1`] = `"<div className={\`test__class\`} {...css({ color: 'brown' })} this={\`hello\`}></div>;"`;
 
-exports[`emotion/glam babel className as expression string 1`] = `"<div className={\`test__class\` + \\" \\" + css\`color: brown;\`} this={\`hello\`}></div>;"`;
+exports[`emotion/glamor babel css empty 1`] = `"<div {...css({})}></div>;"`;
 
-exports[`emotion/glam babel css empty 1`] = `"<div className={css\`\`}></div>;"`;
+exports[`emotion/glamor babel emptyClassName 1`] = `"<div className=\\"\\" {...css({ color: 'brown' })}></div>;"`;
 
-exports[`emotion/glam babel emptyClassName 1`] = `"<div className={\\"\\" + \\" \\" + css\`color: brown;\`}></div>;"`;
+exports[`emotion/glamor babel no className 1`] = `"<div {...css({ color: 'brown' })}></div>;"`;
 
-exports[`emotion/glam babel no css attr 1`] = `"<div></div>;"`;
+exports[`emotion/glamor babel no css attr 1`] = `"<div></div>;"`;
 
-exports[`emotion/glam babel noClassName 1`] = `"<div className={css\`color: brown;\`}></div>;"`;
+exports[`emotion/glamor babel wrong value type 1`] = `"<div {...css(5)}></div>;"`;
 
-exports[`emotion/glam real basic 1`] = `
+exports[`emotion/glamor real basic 1`] = `
+.css-1ezp9xe,
+[data-css-1ezp9xe] {
+  color: red;
+}
+
 <p
-  className="css-jk0pkr"
+  data-css-1ezp9xe=""
 >
   hello world
 </p>
 `;
 
-exports[`emotion/glam real kitchen sink 1`] = `
+exports[`emotion/glamor real kitchen sink 1`] = `
+.css-icjsl7,
+[data-css-icjsl7] {
+  color: blue;
+}
+
+.css-gvvg5g,
+[data-css-gvvg5g] {
+  color: gray;
+}
+
+.css-16ywyew,
+[data-css-16ywyew] {
+  border: 1px solid blue;
+}
+
+.css-1cqgl9p,
+[data-css-1cqgl9p] {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@media (min-width: 420px) {
+  .css-198yaui,
+  [data-css-198yaui] {
+    font-size: 48px;
+  }
+}
+
 <div
-  className="css__legacy-stuff css-1170hdn vars-k1238z frag-15qcrjv frag-mdk64u"
+  className="css__legacy-stuff"
+  data-css-icjsl7=""
 >
   <h1
-    className="css-wjhr0q vars-11t1jtz frag-1wh34bm vars-telb2o"
+    data-css-198yaui=""
   >
     BOOM
   </h1>
   <p
-    className="test_class1 css-14jcta0"
+    className="test_class1"
+    data-css-gvvg5g=""
   >
     Hello
   </p>
   <p
-    className="test_class1 test___class45 css-1gdxe9e"
+    className="test_class1 test___class45"
+    data-css-16ywyew=""
   >
     World
   </p>
   <p
-    className="css-1g8ltio vars-bs2yjn"
+    data-css-1cqgl9p=""
   >
     hello world
   </p>
