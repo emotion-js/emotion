@@ -23,6 +23,7 @@
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "cxs": "^3.0.4",
     "glam": "^4.0.3",
     "glamor": "^2.20.25",
     "jest": "^20.0.1",

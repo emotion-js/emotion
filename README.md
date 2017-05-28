@@ -8,8 +8,9 @@
 
 
 -   [Install](#install)
--   [Glam](#emotionglam)
--   [Glamor](#emotionglamor)
+-   [glam](#emotionglam)
+-   [glamor](#emotionglamor)
+-   [cxs](#emotioncxs)
 
 ## Install
 
@@ -73,4 +74,32 @@ const Name = ({ color, name }) => <h1 {...css({color: 'red' })}>{name}</h1>
 
 
 **Similar to importing React when using jsx, `import {css} from 'glamor'` must be at the top of your source files.**
+
+## `emotion/cxs`
+
+```bash
+npm install -S cxs
+```
+
+**.babelrc**
+```json
+{
+  "plugins": [
+    "emotion/cxs",
+  ]
+}
+```
+
+```jsx harmony
+const Name = ({ color, name }) => <h1 css={{ color: 'red', background: color }}>{name}</h1>
+```
+
+is converted to
+
+```jsx harmony
+const Name = ({ color, name }) => <h1 className={cxs({color: 'red', background: color })}>{name}</h1>
+```
+
+
+**Similar to importing React when using jsx, `import cxs from 'cxs'` must be at the top of your source files.**
 

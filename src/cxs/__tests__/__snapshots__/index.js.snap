@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`emotion/cxs babel basic 1`] = `"<div className={\\"a\\" + \\" \\" + cxs({ color: 'brown' })}></div>;"`;
+
+exports[`emotion/cxs babel className as expression 1`] = `"<div className={props.className + ' ' + cxs({ color: 'brown' })}></div>;"`;
+
+exports[`emotion/cxs babel className as expression string 1`] = `"<div className={\`test__class\` + ' ' + cxs({ color: 'brown' })} this={\`hello\`}></div>;"`;
+
+exports[`emotion/cxs babel css empty 1`] = `"<div className={cxs({})}></div>;"`;
+
+exports[`emotion/cxs babel emptyClassName 1`] = `"<div className={\\"\\" + \\" \\" + cxs({ color: 'brown' })}></div>;"`;
+
+exports[`emotion/cxs babel no className 1`] = `"<div className={cxs({ color: 'brown' })}></div>;"`;
+
+exports[`emotion/cxs babel no css attr 1`] = `"<div></div>;"`;
+
+exports[`emotion/cxs babel wrong value type 1`] = `"<div className={cxs(5)}></div>;"`;
+
+exports[`emotion/cxs real basic 1`] = `
+<p
+  className="c-red"
+>
+  hello world
+</p>
+`;
+
+exports[`emotion/cxs real kitchen sink 1`] = `
+<div
+  className="css__legacy-stuff c-blue"
+>
+  <h1
+    className="_1eomoo"
+  >
+    BOOM
+  </h1>
+  <p
+    className="test_class1 c-gray"
+  >
+    Hello
+  </p>
+  <p
+    className="test_class1 test___class45 border-1px_solid_blue"
+  >
+    World
+  </p>
+  <p
+    className="d-flex"
+  >
+    hello world
+  </p>
+</div>
+`;
