@@ -21,11 +21,11 @@ describe('emotion/glam', () => {
       expect(code).toMatchSnapshot()
     })
 
-    // test('StringLiteral css prop value', () => {
-    //   const basic = `<div css="color: brown;"></div>`
-    //   const {code} = babel.transform(basic, {plugins: [plugin]})
-    //   expect(code).toMatchSnapshot()
-    // })
+    test('StringLiteral css prop value', () => {
+      const basic = `<div css="color: brown;"></div>`
+      const {code} = babel.transform(basic, {plugins: [plugin]})
+      expect(code).toMatchSnapshot()
+    })
 
     test('noClassName', () => {
       const basic = '(<div css={`color: brown;`}></div>)'

@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`emotion/glam babel StringLiteral css prop value 1`] = `"<div className={css\`color: brown;\`}></div>;"`;
+
 exports[`emotion/glam babel basic 1`] = `"<div className={\\"a\\" + \\" \\" + css\`color: brown;\`}></div>;"`;
 
 exports[`emotion/glam babel className as expression 1`] = `"<div className={variable + \\" \\" + css\`color: brown;\`}></div>;"`;

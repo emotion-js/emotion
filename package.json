@@ -12,8 +12,7 @@
     "release": "npm run test && npm version patch && npm publish && git push --tags"
   },
   "dependencies": {
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "jest-serializer-babel-ast": "^0.0.4"
+    "babel-plugin-syntax-jsx": "^6.18.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -62,10 +61,5 @@
   },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
-  },
-  "jest": {
-    "snapshotSerializers": [
-      "jest-serializer-babel-ast"
-    ]
   }
 }

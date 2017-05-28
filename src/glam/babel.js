@@ -37,7 +37,9 @@ module.exports = function (babel) {
 
         let cssPropValue = cssPath.container && cssPath.container.value
         let classNamesValue =
-          classNamesPath && classNamesPath.container && classNamesPath.container.value
+          classNamesPath &&
+          classNamesPath.container &&
+          classNamesPath.container.value
 
         if (!cssPropValue) return
 
@@ -49,7 +51,6 @@ module.exports = function (babel) {
         if (t.isTemplateLiteral(cssPropValue)) {
           cssTemplateExpression = createCssTemplateExpression(cssPropValue)
         } else if (t.isStringLiteral(cssPropValue)) {
-          cssPath.remove()
           cssTemplateExpression = createCssTemplateExpression(
             t.templateLiteral(
               [t.templateElement({raw: cssPropValue.value})],
@@ -57,7 +58,6 @@ module.exports = function (babel) {
             )
           )
         } else if (t.isJSXExpressionContainer(cssPropValue)) {
-          cssPath.remove()
           cssTemplateExpression = createCssTemplateExpression(
             t.templateLiteral(
               [t.templateElement({raw: cssPropValue.expression.value})],
@@ -65,7 +65,6 @@ module.exports = function (babel) {
             )
           )
         } else {
-          console.log(cssPropValue)
           throw path.buildCodeFrameError('I have no idea what you gave me')
         }
 
@@ -106,23 +105,6 @@ module.exports = function (babel) {
             )
           )
         }
-
-        // path.traverse({
-        //   JSXAttribute (path, state) {
-        //     const name = path.node.name.name
-        //     if (name === 'className' && nextClassName) {
-        //       path.replaceWith(nextClassName)
-        //     }
-        //
-        //     if (name === 'css') {
-        //       if (!classNames) {
-        //         path.replaceWith(nextClassName)
-        //       } else {
-        //         path.remove()
-        //       }
-        //     }
-        //   }
-        // })
       }
     }
   }
