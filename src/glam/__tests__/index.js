@@ -11,55 +11,55 @@ describe('emotion/glam', () => {
   describe('babel', () => {
     test('basic', () => {
       const basic = '(<div className="a" css={`color: brown;`}></div>)'
-      const {code} = babel.transform(basic, {plugins: [plugin]})
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
 
     test('no css attr', () => {
       const basic = '(<div></div>)'
-      const {code} = babel.transform(basic, {plugins: [plugin]})
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
 
     test('css empty', () => {
       const basic = '(<div css=""></div>)'
-      const {code} = babel.transform(basic, {plugins: [plugin]})
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
 
     test('wrong value type', () => {
       const basic = '(<div css={5}></div>)'
-      expect(() => babel.transform(basic, {plugins: [plugin]})).toThrow()
+      expect(() => babel.transform(basic, {plugins: [plugin, 'glam/babel']})).toThrow()
     })
 
     test('StringLiteral css prop value', () => {
       const basic = `<div css="color: brown;"></div>`
-      const {code} = babel.transform(basic, {plugins: [plugin]})
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
 
     test('noClassName', () => {
       const basic = '(<div css={`color: brown;`}></div>)'
-      const {code} = babel.transform(basic, {plugins: [plugin]})
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
 
     test('emptyClassName', () => {
       const basic = '(<div className="" css={`color: brown;`}></div>)'
-      const {code} = babel.transform(basic, {plugins: [plugin]})
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
 
     test('className as expression', () => {
       const basic = '(<div className={variable} css={`color: brown;`}></div>)'
-      const {code} = babel.transform(basic, {plugins: [plugin]})
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
 
     test('className as expression string', () => {
       const basic =
         '(<div className={`test__class\`} css={`color: brown;`} this={`hello\`}></div>)'
-      const {code} = babel.transform(basic, {plugins: [plugin]})
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
   })
@@ -77,17 +77,17 @@ describe('emotion/glam', () => {
       expect(tree).toMatchSnapshot()
     })
 
-    // test('string expression', () => {
-    //   const tree = renderer
-    //     .create(
-    //       <p css={'color: red;'}>
-    //         hello world
-    //       </p>
-    //     )
-    //     .toJSON()
-    //
-    //   expect(tree).toMatchSnapshot()
-    // })
+    test('string expression', () => {
+      const tree = renderer
+        .create(
+          <p css="color:red;background:blue;font-size:48px;">
+            hello world
+          </p>
+        )
+        .toJSON()
+
+      expect(tree).toMatchSnapshot()
+    })
 
     test('kitchen sink', () => {
       const props = {online: false, error: false, radius: 5}

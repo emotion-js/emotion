@@ -53,13 +53,13 @@ module.exports = function (babel) {
         } else if (t.isStringLiteral(cssPropValue)) {
           cssTemplateExpression = createCssTemplateExpression(
             t.templateLiteral(
-              [t.templateElement({raw: cssPropValue.value})],
+              [t.templateElement({raw: cssPropValue.value, cooked: cssPropValue.value })],
               []
             )
           )
         } else {
           throw path.buildCodeFrameError(
-            'css prop value must be a string'
+            `${cssPropValue.value} is not a string or template literal`
           )
         }
 
@@ -99,6 +99,11 @@ module.exports = function (babel) {
               )
             )
           )
+        }
+      },
+      JSXAttribute (path, state) {
+        if (path.node.name.name === 'css') {
+          console.log('whatup', path.node.value)
         }
       }
     }
