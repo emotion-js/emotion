@@ -53,7 +53,12 @@ module.exports = function (babel) {
         } else if (t.isStringLiteral(cssPropValue)) {
           cssTemplateExpression = createCssTemplateExpression(
             t.templateLiteral(
-              [t.templateElement({raw: cssPropValue.value, cooked: cssPropValue.value })],
+              [
+                t.templateElement({
+                  raw: cssPropValue.value,
+                  cooked: cssPropValue.value
+                })
+              ],
               []
             )
           )
