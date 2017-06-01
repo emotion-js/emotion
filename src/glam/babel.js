@@ -106,9 +106,18 @@ module.exports = function (babel) {
           )
         }
       },
-      JSXAttribute (path, state) {
-        if (path.node.name.name === 'css') {
-          console.log('whatup', path.node.value)
+      TaggedTemplateExpression (path) {
+        if (
+          t.isMemberExpression(path.node.tag) &&
+          path.node.tag.object.name === 'glam' &&
+          t.isTemplateLiteral(path.node.quasi)
+        ) {
+          path.replaceWith(
+            t.callExpression(t.identifier(path.node.tag.object.name), [
+              t.stringLiteral(path.node.tag.property.name),
+              t.taggedTemplateExpression(t.identifier('css'), path.node.quasi)
+            ])
+          )
         }
       }
     }

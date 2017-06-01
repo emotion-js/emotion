@@ -1,4 +1,4 @@
-/* eslint-disable jsx-quotes,no-useless-escape */
+/* eslint-disable jsx-quotes,no-useless-escape,no-template-curly-in-string */
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
@@ -8,7 +8,7 @@ import css, {fragment} from 'glam'
 const babel = require('babel-core')
 
 describe('emotion/glam', () => {
-  describe('babel', () => {
+  describe('babel css prop', () => {
     test('basic', () => {
       const basic = '(<div className="a" css={`color: brown;`}></div>)'
       const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
