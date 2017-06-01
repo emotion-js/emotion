@@ -33,7 +33,7 @@ npm install -S emotion glam
 import glam from 'emotion'
 
 const fontSize = 48
-const H1 = glam.h1`
+const H1 = glam('h1')`
   font-size: ${fontSize}px;
   color: 'blue';
 `
@@ -50,6 +50,34 @@ const H1 = glam('h1', css`
 function Greeting ({ name }) {
   return <H1>Hello {name}</H1> // blue, 48px text
 }
+
+/*
+<h1
+  className="css-vxb7tq vars-3na0zv"
+>
+  hello world
+</h1>
+*/
+
+// You can also pass components in
+
+const H2 = glam(H1)`
+  font-size: ${fontSize * 2/3}px;
+  color: 'red';
+`
+
+function Greeting ({ name }) {
+  return <H2>Hello {name}</H2> // blue, 48px text
+}
+
+/*
+<h1
+  className="css-vxb7tq vars-3na0zv css-13wdnau vars-nujrf4"
+>
+  hello world
+</h1>
+*/
+// results
 ```
 
 

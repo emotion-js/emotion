@@ -118,6 +118,17 @@ module.exports = function (babel) {
               t.taggedTemplateExpression(t.identifier('css'), path.node.quasi)
             ])
           )
+        } else if (
+          t.isCallExpression(path.node.tag) &&
+          path.node.tag.callee.name === 'glam' &&
+          t.isTemplateLiteral(path.node.quasi)
+        ) {
+          path.replaceWith(
+            t.callExpression(t.identifier(path.node.tag.callee.name), [
+              path.node.tag.arguments[0],
+              t.taggedTemplateExpression(t.identifier('css'), path.node.quasi)
+            ])
+          )
         }
       }
     }
