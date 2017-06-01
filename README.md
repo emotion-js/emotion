@@ -55,7 +55,7 @@ function Greeting ({ name }) {
 <h1
   className="css-vxb7tq vars-3na0zv"
 >
-  hello world
+  Hello user
 </h1>
 */
 
@@ -67,14 +67,14 @@ const H2 = glam(H1)`
 `
 
 function Greeting ({ name }) {
-  return <H2>Hello {name}</H2> // blue, 48px text
+  return <H2>Hello {name}</H2> // red, 32px text
 }
 
 /*
 <h1
   className="css-vxb7tq vars-3na0zv css-13wdnau vars-nujrf4"
 >
-  hello world
+  Hello user
 </h1>
 */
 // results
