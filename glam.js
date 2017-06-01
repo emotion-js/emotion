@@ -1,1 +1,1 @@
-module.exports = require('./src/glam/babel')
+module.exports = require('./src/babel')

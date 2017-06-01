@@ -33,4 +33,21 @@ describe('glam react', () => {
 
     expect(tree).toMatchSnapshot()
   })
+
+  test('passes props', () => {
+    const fontSize = 20
+    const H1 = glam.h1`
+      font-size: ${fontSize}px;
+    `
+
+    const tree = renderer
+      .create(
+        <H1 name={'Arrow'}>
+          hello world
+        </H1>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
 })
