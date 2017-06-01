@@ -1,6 +1,6 @@
 # emotion
 
-## 👩‍🚀 Glam + React
+## 👩‍🎤 Glam + React
 
 [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://travis-ci.org/tkh44/emotion.svg?branch=master)](https://travis-ci.org/tkh44/emotion)
@@ -73,7 +73,7 @@ function Greeting ({ name }) {
 /*
 <h1
   className="css-vxb7tq vars-3na0zv css-13wdnau vars-nujrf4"
->
+>`
   Hello user
 </h1>
 */
