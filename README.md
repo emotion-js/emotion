@@ -76,7 +76,7 @@ function Greeting ({ name }) {
 
 ### css prop
 
-When using the emotion babel plugin any `css` prop is converted to a tagged template expression and appended to any existing class names.
+When using the emotion babel plugin, any `css` prop is converted to a class name via glam and appended to any existing class names.
 
 
 ```jsx harmony
