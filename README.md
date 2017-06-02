@@ -29,12 +29,12 @@ npm install -S emotion glam
 
 ## API
 
-### glam
+### emotion
 
 ```jsx
-import glam from 'emotion'
+import { emotion } from 'emotion'
 
-const H1 = glam('h1')`
+const H1 = emotion('h1')`
   color: 'blue';
   font-size: 48px;
   transform: scale(${props => props.scale});
@@ -47,7 +47,7 @@ function Greeting ({ name }) {
 
 // You can also pass components in
 
-const H2 = glam(H1)`
+const H2 = emotion(H1)`
   font-size: ${fontSize * 2/3}px;
   color: 'red';
 `
@@ -58,7 +58,7 @@ function Greeting ({ name }) {
 
 // this works too
 
-const H3 = glam.h3`
+const H3 = emotion.h3`
   font-size: ${fontSize * 1/3}px;
   color: 'red';
 `
@@ -73,6 +73,8 @@ function Greeting ({ name }) {
 
 When using the emotion babel plugin, any `css` prop is converted to a class name via glam and appended to any existing class names.
 
+**Similar to importing React when using jsx, `import css from 'glam'` must be at the top of your source files.**
+
 
 ```jsx harmony
 const Name = ({ color, name }) => <h1 css={`color: ${color};`}>{name}</h1>
@@ -81,3 +83,4 @@ const Name = ({ color, name }) => <h1 css={`color: ${color};`}>{name}</h1>
 
 const Name = ({ color, name }) => <h1 className={css`color: ${color};`}>{name}</h1>
 ```
+

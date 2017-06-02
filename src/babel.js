@@ -22,7 +22,7 @@ module.exports = function (babel) {
           if (
             parentPath.isCallExpression() &&
             parentPath.node.callee &&
-            parentPath.node.callee.name === 'glam'
+            parentPath.node.callee.name === 'emotion'
           ) {
             path.replaceWithMultiple(t.arrayExpression(path.node.arguments))
           }
@@ -119,7 +119,7 @@ module.exports = function (babel) {
       TaggedTemplateExpression (path) {
         if (
           t.isMemberExpression(path.node.tag) &&
-          path.node.tag.object.name === 'glam' &&
+          path.node.tag.object.name === 'emotion' &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
           path.replaceWith(
@@ -130,7 +130,7 @@ module.exports = function (babel) {
           )
         } else if (
           t.isCallExpression(path.node.tag) &&
-          path.node.tag.callee.name === 'glam' &&
+          path.node.tag.callee.name === 'emotion' &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
           path.replaceWith(

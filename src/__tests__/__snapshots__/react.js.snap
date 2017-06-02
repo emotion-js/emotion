@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`glam react babel glam component basic 1`] = `"glam(\\"h1\\", ['css-8xpzga', [fontSize]]);"`;
+exports[`glam react babel glam component basic 1`] = `"emotion(\\"h1\\", ['css-8xpzga', [fontSize]]);"`;
 
-exports[`glam react babel glam component function call 1`] = `"glam(MyComponent, ['css-8xpzga', [fontSize]]);"`;
+exports[`glam react babel glam component function call 1`] = `"emotion(MyComponent, ['css-8xpzga', [fontSize]]);"`;
 
 exports[`glam react basic render 1`] = `
 <h1

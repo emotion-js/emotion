@@ -3,7 +3,7 @@ import css from 'glam'
 
 const h = React.createElement
 
-export default function glam (tag, [cls, vars]) {
+export function emotion (tag, [cls, vars]) {
   return class Target extends React.Component {
     render () {
       const finalClassName = css(

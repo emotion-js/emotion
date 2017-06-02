@@ -3,7 +3,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import css, {fragment} from 'glam'
-import glam from '../react'
+import { emotion } from '../react'
 import plugin from '../babel'
 
 const babel = require('babel-core')
@@ -11,13 +11,13 @@ const babel = require('babel-core')
 describe('glam react', () => {
   describe('babel glam component', () => {
     test('basic', () => {
-      const basic = 'glam.h1\`font-size: \$\{fontSize\}px;\`'
+      const basic = 'emotion.h1\`font-size: \$\{fontSize\}px;\`'
       const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
 
     test('function call', () => {
-      const basic = 'glam(MyComponent)\`font-size: \$\{fontSize\}px;\`'
+      const basic = 'emotion(MyComponent)\`font-size: \$\{fontSize\}px;\`'
       const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
@@ -25,7 +25,7 @@ describe('glam react', () => {
 
   test('basic render', () => {
     const fontSize = 20
-    const H1 = glam.h1`
+    const H1 = emotion.h1`
       font-size: ${fontSize}px;
     `
 
@@ -42,7 +42,7 @@ describe('glam react', () => {
 
   test('call expression', () => {
     const fontSize = 20
-    const H1 = glam('h1')`
+    const H1 = emotion('h1')`
       font-size: ${fontSize}px;
     `
 
@@ -59,11 +59,11 @@ describe('glam react', () => {
 
   test('composition', () => {
     const fontSize = 20
-    const H1 = glam('h1')`
+    const H1 = emotion('h1')`
       font-size: ${fontSize}px;
     `
 
-    const H2 = glam(H1)`font-size: ${fontSize * 2 / 3}`
+    const H2 = emotion(H1)`font-size: ${fontSize * 2 / 3}`
 
     const tree = renderer
       .create(
@@ -78,11 +78,11 @@ describe('glam react', () => {
 
   test('function in expression', () => {
     const fontSize = 20
-    const H1 = glam('h1')`
+    const H1 = emotion('h1')`
       font-size: ${fontSize}px;
     `
 
-    const H2 = glam(H1)`font-size: ${({ scale }) => fontSize * scale}`
+    const H2 = emotion(H1)`font-size: ${({ scale }) => fontSize * scale}`
 
     const tree = renderer
       .create(
