@@ -32,19 +32,11 @@ npm install -S emotion glam
 ```jsx harmony
 import glam from 'emotion'
 
-const fontSize = 48
 const H1 = glam('h1')`
-  font-size: ${fontSize}px;
+  color: 'blue';
+  font-size: 48px;
   transform: scale(${props => props.scale});
-  color: 'blue';
 `
-
-// is compiled to
-
-const H1 = glam('h1', css`
-  font-size: ${fontSize}px;
-  color: 'blue';
-`)
 
 // can be used as any other normal component
 
