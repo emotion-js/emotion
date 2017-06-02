@@ -7,8 +7,9 @@
   "main": "dist/glam.js",
   "umd:main": "dist/emotion.umd.js",
   "files": [
+    "babel.js",
     "src",
-    "glam.js"
+    "dist"
   ],
   "scripts": {
     "build": "npm-run-all clean -p rollup -p minify:* -s size",
