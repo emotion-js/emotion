@@ -27,6 +27,8 @@ npm install -S emotion glam
 }
 ```
 
+## API
+
 ### glam
 
 ```jsx
