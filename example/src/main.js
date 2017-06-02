@@ -13,9 +13,6 @@ const Input = emotion('input')`
   outline: none;
   border: none;
   border-bottom: 2px solid ${props => colors.green[props.permissionLvl]};
-  &:placeholder {
-    color: ${colors.gray[4]};
-  }
 `
 
 const LoudMessage = emotion.h1`
@@ -37,7 +34,6 @@ class Profile extends React.Component {
 
   render () {
     const {permissionLvl, name} = this.state
-
     return (
       <div css="display:flex;flex-direction:column;">
         <Input
@@ -49,7 +45,6 @@ class Profile extends React.Component {
           permissionLvl={permissionLvl}
           onChange={({target: {value}}) => this.setState(() => ({permissionLvl: value}))}
         />
-
         <Input
           type="text"
           value={name}
