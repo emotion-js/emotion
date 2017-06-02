@@ -11,10 +11,12 @@ export function emotion (tag, [cls, vars]) {
         vars.map(v => (typeof v === 'function' ? v(this.props) : v))
       )
 
-      return h(tag, {
-        ...this.props,
-        className: (this.props.className || '') + ' ' + finalClassName
-      })
+      return h(
+        tag,
+        Object.assign({}, this.props, {
+          className: (this.props.className || '') + ' ' + finalClassName
+        })
+      )
     }
   }
 }

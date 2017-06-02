@@ -1,0 +1,17 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "loose": true
+      }
+    ],
+    "stage-2",
+    "react"
+  ],
+  "plugins": [
+    'glam/babel',
+    'emotion/babel'
+  ]
+}

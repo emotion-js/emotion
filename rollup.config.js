@@ -1,7 +1,7 @@
 import fs from 'fs'
-import babel from 'rollup-plugin-babel'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
+import buble from 'rollup-plugin-buble';
 
 const pkg = JSON.parse(fs.readFileSync('./package.json'))
 
@@ -13,9 +13,7 @@ export default {
   useStrict: false,
   sourceMap: true,
   plugins: [
-    babel({
-      exclude: 'node_modules/**'
-    }),
+    buble(),
     resolve({
       jsnext: false,
       main: true,
