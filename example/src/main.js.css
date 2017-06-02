@@ -10,5 +10,11 @@
   font-size: 64px;
   font-family: sans-serif; }
 .css-1ribb0m:hover { color: var(--css-1ribb0m-1); }
+.css-1gotb0c { margin: 16px 32px;
+  color: var(--css-1gotb0c-0);
+  font-size: 64px;
+  font-family: sans-serif;
+  text-decoration: none; }
+.css-1gotb0c:hover { color: var(--css-1gotb0c-1); }
 .css-j7qwjs { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;flex-direction: column;-webkit-box-direction: normal;-webkit-box-orient: vertical;-ms-flex-direction: column;-webkit-flex-direction: column; }
 .css-xqa823 { color: var(--css-xqa823-0) }

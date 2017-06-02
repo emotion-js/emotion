@@ -21,7 +21,7 @@ npm install -S emotion glam
 ```json
 {
   "plugins": [
-    "emotion/glam",
+    "emotion/babel",
     "glam/babel"
   ]
 }

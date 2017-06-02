@@ -6,6 +6,9 @@ import {emotion} from 'emotion'
 import css from 'glam'
 import colors from 'open-color/open-color.json'
 
+
+
+
 const Input = emotion('input')`
   margin: 16px 32px;
   font-size: 2em;
@@ -26,6 +29,18 @@ const LoudMessage = emotion.h1`
   }
 `
 
+const Banner = emotion('a')`
+  margin: 16px 32px;
+  color: ${colors.green[5]};
+  font-size: 64px;
+  font-family: sans-serif;
+  text-decoration: none;
+  
+  &:hover {
+    color: ${colors.blue[5]};
+  }
+`
+
 class Profile extends React.Component {
   state = {
     name: 'Dave',
@@ -36,6 +51,9 @@ class Profile extends React.Component {
     const {permissionLvl, name} = this.state
     return (
       <div css="display:flex;flex-direction:column;">
+        <Banner href="https://github.com/tkh44/emotion">
+          emotion (github)
+        </Banner>
         <Input
           type="range"
           min={0}
