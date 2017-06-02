@@ -20,8 +20,10 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.4",
     "emotion": "^0.0.6",
+    "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.28.0",
     "standard": "^10.0.2",
+    "style-loader": "^0.18.1",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.4.5"
   },
