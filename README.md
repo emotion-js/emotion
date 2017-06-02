@@ -29,7 +29,7 @@ npm install -S emotion glam
 
 ### glam
 
-```jsx harmony
+```jsx
 import glam from 'emotion'
 
 const H1 = glam('h1')`
