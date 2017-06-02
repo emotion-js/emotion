@@ -16,6 +16,18 @@ module.exports = function (babel) {
     name: 'emotion-for-glam', // not required
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
+      CallExpression (path) {
+        if (path.node.callee.name === 'css') {
+          const parentPath = path.parentPath
+          if (
+            parentPath.isCallExpression() &&
+            parentPath.node.callee &&
+            parentPath.node.callee.name === 'glam'
+          ) {
+            path.replaceWithMultiple(t.arrayExpression(path.node.arguments))
+          }
+        }
+      },
       JSXOpeningElement (path, state) {
         let cssPath
         let classNamesPath
@@ -40,8 +52,6 @@ module.exports = function (babel) {
           classNamesPath &&
           classNamesPath.container &&
           classNamesPath.container.value
-
-        // if (!cssPropValue) return
 
         if (t.isJSXExpressionContainer(cssPropValue)) {
           cssPropValue = cssPropValue.expression
@@ -106,9 +116,29 @@ module.exports = function (babel) {
           )
         }
       },
-      JSXAttribute (path, state) {
-        if (path.node.name.name === 'css') {
-          console.log('whatup', path.node.value)
+      TaggedTemplateExpression (path) {
+        if (
+          t.isMemberExpression(path.node.tag) &&
+          path.node.tag.object.name === 'glam' &&
+          t.isTemplateLiteral(path.node.quasi)
+        ) {
+          path.replaceWith(
+            t.callExpression(t.identifier(path.node.tag.object.name), [
+              t.stringLiteral(path.node.tag.property.name),
+              t.taggedTemplateExpression(t.identifier('css'), path.node.quasi)
+            ])
+          )
+        } else if (
+          t.isCallExpression(path.node.tag) &&
+          path.node.tag.callee.name === 'glam' &&
+          t.isTemplateLiteral(path.node.quasi)
+        ) {
+          path.replaceWith(
+            t.callExpression(t.identifier(path.node.tag.callee.name), [
+              path.node.tag.arguments[0],
+              t.taggedTemplateExpression(t.identifier('css'), path.node.quasi)
+            ])
+          )
         }
       }
     }

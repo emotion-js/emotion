@@ -1,6 +1,6 @@
 # emotion
 
-#### `css` prop for all
+## 👩‍🎤 Glam + React
 
 [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://travis-ci.org/tkh44/emotion.svg?branch=master)](https://travis-ci.org/tkh44/emotion)
@@ -8,23 +8,14 @@
 
 
 -   [Install](#install)
--   [glam](#emotionglam)
--   [glamor](#emotionglamor)
--   [cxs](#emotioncxs)
+-   [Example Project](https://github.com/tkh44/emotion/tree/master/examples/glam)
 
 ## Install
 
 ```bash
-npm install -S emotion
+npm install -S emotion glam
 ```
 
-## `emotion/glam`
-
-[Example Project](https://github.com/tkh44/emotion/tree/master/examples/glam)
-
-```bash
-npm install -S glam
-```
 
 **.babelrc**
 ```json
@@ -36,72 +27,62 @@ npm install -S glam
 }
 ```
 
+### glam
+
+```jsx
+import glam from 'emotion'
+
+const H1 = glam('h1')`
+  color: 'blue';
+  font-size: 48px;
+  transform: scale(${props => props.scale});
+`
+
+// can be used as any other normal component
+
+function Greeting ({ name }) {
+  return <H1 scale={2}>Hello {name}</H1> // blue, 48px, and scaled 2x text
+}
+
+/*
+<h1
+  className="css-vxb7tq vars-3na0zv"
+>
+  Hello user
+</h1>
+*/
+
+// You can also pass components in
+
+const H2 = glam(H1)`
+  font-size: ${fontSize * 2/3}px;
+  color: 'red';
+`
+
+function Greeting ({ name }) {
+  return <H2>Hello {name}</H2> // red, 32px, and scaled 2x text
+}
+
+/*
+<h1
+  className="css-vxb7tq vars-3na0zv css-13wdnau vars-nujrf4"
+>`
+  Hello user
+</h1>
+*/
+// results
+```
+
+
+### css prop
+
+When using the emotion babel plugin, any `css` prop is converted to a class name via glam and appended to any existing class names.
+
+
 ```jsx harmony
 const Name = ({ color, name }) => <h1 css={`color: ${color};`}>{name}</h1>
-```
 
-is converted to
+// is converted to
 
-```jsx harmony
 const Name = ({ color, name }) => <h1 className={css`color: ${color};`}>{name}</h1>
 ```
-
-
-**Similar to importing React when using jsx, `import css from 'glam'` must be at the top of your source files.**
-
-## `emotion/glamor`
-
-```bash
-npm install -S glamor
-```
-
-**.babelrc**
-```json
-{
-  "plugins": [
-    "emotion/glamor",
-  ]
-}
-```
-
-```jsx harmony
-const Name = ({ color, name }) => <h1 css={{ color: 'red' }}>{name}</h1>
-```
-
-is converted to
-
-```jsx harmony
-const Name = ({ color, name }) => <h1 {...css({color: 'red' })}>{name}</h1>
-```
-
-
-**Similar to importing React when using jsx, `import {css} from 'glamor'` must be at the top of your source files.**
-
-## `emotion/cxs`
-
-```bash
-npm install -S cxs
-```
-
-**.babelrc**
-```json
-{
-  "plugins": [
-    "emotion/cxs",
-  ]
-}
-```
-
-```jsx harmony
-const Name = ({ color, name }) => <h1 css={{ color: 'red', background: color }}>{name}</h1>
-```
-
-is converted to
-
-```jsx harmony
-const Name = ({ color, name }) => <h1 className={cxs({color: 'red', background: color })}>{name}</h1>
-```
-
-
-**Similar to importing React when using jsx, `import cxs from 'cxs'` must be at the top of your source files.**
-

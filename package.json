@@ -1,38 +1,57 @@
 {
   "name": "emotion",
   "version": "0.0.6",
-  "description": "css prop for all",
+  "description": "👩‍🎤 Glam + React",
+  "jsnext:main": "dist/emotion.es.js",
+  "module": "dist/emotion.es.js",
+  "main": "dist/glam.js",
+  "umd:main": "dist/emotion.umd.js",
   "files": [
     "src",
     "glam.js"
   ],
   "scripts": {
+    "build": "npm-run-all clean -p rollup -p minify:* -s size",
+    "clean": "rimraf dist",
     "test": "standard src test && jest --coverage",
-    "test:watch": "jest --watch --coverage",
-    "release": "npm run test && npm version patch && npm publish && git push --tags"
+    "test:watch": "jest --watch",
+    "rollup": "rollup -c",
+    "minify:cjs": "uglifyjs $npm_package_main -cm toplevel -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
+    "minify:umd": "uglifyjs $npm_package_umd_main -cm -o $npm_package_umd_main -p relative --in-source-map ${npm_package_umd_main}.map --source-map ${npm_package_umd_main}.map",
+    "size": "echo \"Gzipped Size: $(strip-json-comments --no-whitespace $npm_package_main | gzip-size)\"",
+    "release": "npm run test && npm run build && npm version patch && npm publish && git push --tags"
   },
   "dependencies": {
-    "babel-plugin-syntax-jsx": "^6.18.0"
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "glam": "^4.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
-    "babel-jest": "^19.0.0",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^7.0.0",
-    "babel-preset-env": "^1.4.0",
+    "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "cxs": "^3.0.4",
-    "glam": "^4.0.3",
-    "glamor": "^2.20.25",
-    "jest": "^20.0.1",
-    "jest-glamor-react": "^1.3.0",
+    "gzip-size-cli": "^2.0.0",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "jest-glamor-react": "^1.4.0",
+    "npm-run-all": "^4.0.2",
+    "pretty-bytes-cli": "^2.0.0",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4",
-    "standard": "^10.0.2"
+    "rimraf": "^2.6.1",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "standard": "^10.0.2",
+    "strip-json-comments-cli": "^1.0.1",
+    "uglify-js": "2.8.23"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
@@ -63,6 +82,5 @@
   },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
-  },
-  "main": "glam.js"
+  }
 }
