@@ -40,19 +40,10 @@ const H1 = glam('h1')`
   transform: scale(${props => props.scale});
 `
 
-// can be used as any other normal component
-
 function Greeting ({ name }) {
   return <H1 scale={2}>Hello {name}</H1> // blue, 48px, and scaled 2x text
 }
 
-/*
-<h1
-  className="css-vxb7tq vars-3na0zv"
->
-  Hello user
-</h1>
-*/
 
 // You can also pass components in
 
@@ -65,14 +56,16 @@ function Greeting ({ name }) {
   return <H2>Hello {name}</H2> // red, 32px, and scaled 2x text
 }
 
-/*
-<h1
-  className="css-vxb7tq vars-3na0zv css-13wdnau vars-nujrf4"
->`
-  Hello user
-</h1>
-*/
-// results
+// this works too
+
+const H3 = glam.h3`
+  font-size: ${fontSize * 1/3}px;
+  color: 'red';
+`
+
+function Greeting ({ name }) {
+  return <H3>Hello {name}</H3> // red, 16px text
+}
 ```
 
 
