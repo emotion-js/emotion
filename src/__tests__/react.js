@@ -75,4 +75,23 @@ describe('glam react', () => {
 
     expect(tree).toMatchSnapshot()
   })
+
+  test('function in expression', () => {
+    const fontSize = 20
+    const H1 = glam('h1')`
+      font-size: ${fontSize}px;
+    `
+
+    const H2 = glam(H1)`font-size: ${({ scale }) => fontSize * scale}`
+
+    const tree = renderer
+      .create(
+        <H2 scale={2} className={'legacy__class'}>
+          hello world
+        </H2>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
 })

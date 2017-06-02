@@ -16,6 +16,18 @@ module.exports = function (babel) {
     name: 'emotion-for-glam', // not required
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
+      CallExpression (path) {
+        if (path.node.callee.name === 'css') {
+          const parentPath = path.parentPath
+          if (
+            parentPath.isCallExpression() &&
+            parentPath.node.callee &&
+            parentPath.node.callee.name === 'glam'
+          ) {
+            path.replaceWithMultiple(t.arrayExpression(path.node.arguments))
+          }
+        }
+      },
       JSXOpeningElement (path, state) {
         let cssPath
         let classNamesPath
@@ -40,8 +52,6 @@ module.exports = function (babel) {
           classNamesPath &&
           classNamesPath.container &&
           classNamesPath.container.value
-
-        // if (!cssPropValue) return
 
         if (t.isJSXExpressionContainer(cssPropValue)) {
           cssPropValue = cssPropValue.expression

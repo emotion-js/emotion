@@ -35,6 +35,7 @@ import glam from 'emotion'
 const fontSize = 48
 const H1 = glam('h1')`
   font-size: ${fontSize}px;
+  transform: scale(${props => props.scale});
   color: 'blue';
 `
 
@@ -48,7 +49,7 @@ const H1 = glam('h1', css`
 // can be used as any other normal component
 
 function Greeting ({ name }) {
-  return <H1>Hello {name}</H1> // blue, 48px text
+  return <H1 scale={2}>Hello {name}</H1> // blue, 48px, and scaled 2x text
 }
 
 /*
@@ -67,7 +68,7 @@ const H2 = glam(H1)`
 `
 
 function Greeting ({ name }) {
-  return <H2>Hello {name}</H2> // red, 32px text
+  return <H2>Hello {name}</H2> // red, 32px, and scaled 2x text
 }
 
 /*
