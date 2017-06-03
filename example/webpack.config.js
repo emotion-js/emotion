@@ -24,7 +24,7 @@ module.exports = env => {
   ]
 
   return {
-    devtool: PROD ? 'source-map' : 'eval-source-map',
+    devtool: PROD ? 'source-map' : 'eval',
     entry: path.resolve('src', 'main.js'),
     output: {
       path: path.resolve('build'),

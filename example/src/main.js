@@ -3,11 +3,8 @@ import './main.js.css'
 import React from 'react'
 import {render} from 'react-dom'
 import {emotion} from 'emotion'
-import css from 'glam'
+import css, {fragment} from 'glam'
 import colors from 'open-color/open-color.json'
-
-
-
 
 const Input = emotion('input')`
   margin: 16px 32px;
@@ -41,6 +38,21 @@ const Banner = emotion('a')`
   }
 `
 
+const Content = emotion('div')`
+  display: flex;
+`
+
+const flexColumn = Component => {
+  const NewComponent = emotion(Component)`
+    flex-direction: column;
+  `
+  NewComponent.displayName = `flexColumn${Component.displayName}`
+
+  return NewComponent
+}
+
+const ColumnContent = flexColumn(Content)
+
 class Profile extends React.Component {
   state = {
     name: 'Dave',
@@ -61,7 +73,8 @@ class Profile extends React.Component {
           value={permissionLvl}
           placeholder="name"
           permissionLvl={permissionLvl}
-          onChange={({target: {value}}) => this.setState(() => ({permissionLvl: value}))}
+          onChange={({target: {value}}) =>
+            this.setState(() => ({permissionLvl: value}))}
         />
         <Input
           type="text"
@@ -71,8 +84,25 @@ class Profile extends React.Component {
           onChange={({target: {value}}) => this.setState(() => ({name: value}))}
         />
         <LoudMessage permissionLvl={permissionLvl}>
-          Hello <span css={`color: ${colors.violet[permissionLvl]}`}>{name}</span>
+          Hello
+          {' '}
+          <span css={`color: ${colors.violet[permissionLvl]}`}>{name}</span>
         </LoudMessage>
+
+        <ColumnContent>
+          <div
+            css={`height: 100px; width: 100px; background-color: #20c997; margin: 8ch;`}
+          />
+          <div
+            css={`height: 100px; width: 100px; background-color: #20c997; margin: 8ch;`}
+          />
+          <div
+            css={`height: 100px; width: 100px; background-color: #20c997; margin: 8ch;`}
+          />
+          <div
+            css={`height: 100px; width: 100px; background-color: #20c997; margin: 8ch;`}
+          />
+        </ColumnContent>
       </div>
     )
   }

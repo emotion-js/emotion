@@ -16,5 +16,8 @@
   font-family: sans-serif;
   text-decoration: none; }
 .css-1gotb0c:hover { color: var(--css-1gotb0c-1); }
+.css-ov1ktg { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }
+.css-1bq6329 { flex-direction: column; -webkit-box-direction: normal; -webkit-box-orient: vertical; -ms-flex-direction: column; -webkit-flex-direction: column; }
 .css-j7qwjs { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;flex-direction: column;-webkit-box-direction: normal;-webkit-box-orient: vertical;-ms-flex-direction: column;-webkit-flex-direction: column; }
 .css-xqa823 { color: var(--css-xqa823-0) }
+.css-1l3rx1p { height: 100px; width: 100px; background-color: #20c997; margin: 8ch; }

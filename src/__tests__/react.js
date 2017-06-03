@@ -3,7 +3,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import css, {fragment} from 'glam'
-import { emotion } from '../react'
+import {emotion} from '../react'
 import plugin from '../babel'
 
 const babel = require('babel-core')
@@ -82,13 +82,52 @@ describe('glam react', () => {
       font-size: ${fontSize}px;
     `
 
-    const H2 = emotion(H1)`font-size: ${({ scale }) => fontSize * scale}`
+    const H2 = emotion(H1)`font-size: ${({scale}) => fontSize * scale}`
 
     const tree = renderer
       .create(
         <H2 scale={2} className={'legacy__class'}>
           hello world
         </H2>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('function in expression', () => {
+    const fontSize = 20
+    const Content = emotion('div')`
+      font-size: ${fontSize}px;
+    `
+
+    const flexColumn = Component => {
+      const NewComponent = emotion(Component)`
+        flex-direction: column;
+      `
+      NewComponent.displayName = `flexColumn${Component.displayName}`
+
+      return NewComponent
+    }
+
+    const ColumnContent = flexColumn(Content)
+
+    const tree = renderer
+      .create(
+        <ColumnContent>
+          <div
+            css={`height: 100px; width: 100px; background-color: #20c997; margin: 8ch;`}
+          />
+          <div
+            css={`height: 100px; width: 100px; background-color: #20c997; margin: 8ch;`}
+          />
+          <div
+            css={`height: 100px; width: 100px; background-color: #20c997; margin: 8ch;`}
+          />
+          <div
+            css={`height: 100px; width: 100px; background-color: #20c997; margin: 8ch;`}
+          />
+        </ColumnContent>
       )
       .toJSON()
 

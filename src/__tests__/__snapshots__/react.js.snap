@@ -36,3 +36,22 @@ exports[`glam react function in expression 1`] = `
   hello world
 </h1>
 `;
+
+exports[`glam react function in expression 2`] = `
+<div
+  className=" css-o7j1h0 css-13wdnau vars-nujrf4"
+>
+  <div
+    className="css-1l3rx1p"
+  />
+  <div
+    className="css-1l3rx1p"
+  />
+  <div
+    className="css-1l3rx1p"
+  />
+  <div
+    className="css-1l3rx1p"
+  />
+</div>
+`;
