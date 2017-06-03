@@ -66,6 +66,9 @@ class Profile extends React.Component {
         <Banner href="https://github.com/tkh44/emotion">
           emotion (github)
         </Banner>
+        <label css={`margin: 16px 32px 4px 32px;font-size: 24px; color: ${colors.gray[8]}; font-weight: bold; font-family: sans-serif;`}>
+          Change Color (inspect in dev tools)
+        </label>
         <Input
           type="range"
           min={0}
