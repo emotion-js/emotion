@@ -1,0 +1,15 @@
+<div css="display:flex;">
+  <b
+    css={`
+      color: ${colors.green[3]};
+		  font-size: 2em;
+		  letter-spacing: 1px;
+		  font-family: sans-serif;
+   `}
+  >
+    Hello
+  </b>
+  <input type="text" value="Hello" css={`
+    border: none;
+  `}/>
+</div>

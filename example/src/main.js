@@ -1,13 +1,14 @@
 /* eslint-disable jsx-quotes */
 import './main.js.css'
 import React from 'react'
-import {render} from 'react-dom'
+import ReactDOM from 'react-dom'
 import {emotion} from 'emotion'
-import css from 'glam'
+import Playground from 'component-playground'
 import colors from 'open-color/open-color.json'
+// eslint-disable-next-line no-unused-vars
+import css from 'glam'
 
-
-
+const componentExample = require('raw-loader!./code-blocks/basic.example')
 
 const Input = emotion('input')`
   margin: 16px 32px;
@@ -41,7 +42,7 @@ const Banner = emotion('a')`
   }
 `
 
-class Profile extends React.Component {
+class App extends React.Component {
   state = {
     name: 'Dave',
     permissionLvl: 5
@@ -51,6 +52,11 @@ class Profile extends React.Component {
     const {permissionLvl, name} = this.state
     return (
       <div css="display:flex;flex-direction:column;">
+        <Playground
+          codeText={componentExample}
+          scope={{React, ReactDOM, css, emotion, colors}}
+        />
+
         <Banner href="https://github.com/tkh44/emotion">
           emotion (github)
         </Banner>
@@ -61,7 +67,8 @@ class Profile extends React.Component {
           value={permissionLvl}
           placeholder="name"
           permissionLvl={permissionLvl}
-          onChange={({target: {value}}) => this.setState(() => ({permissionLvl: value}))}
+          onChange={({target: {value}}) =>
+            this.setState(() => ({permissionLvl: value}))}
         />
         <Input
           type="text"
@@ -71,11 +78,12 @@ class Profile extends React.Component {
           onChange={({target: {value}}) => this.setState(() => ({name: value}))}
         />
         <LoudMessage permissionLvl={permissionLvl}>
-          Hello <span css={`color: ${colors.violet[permissionLvl]}`}>{name}</span>
+          Hello
+          <span css={`color: ${colors.violet[permissionLvl]}`}>{name}</span>
         </LoudMessage>
       </div>
     )
   }
 }
 
-render(<Profile permissionLvl={6} />, document.getElementById('app'))
+ReactDOM.render(<App permissionLvl={6} />, document.getElementById('app'))
