@@ -37,7 +37,7 @@ exports[`glam react function in expression 1`] = `
 </h1>
 `;
 
-exports[`glam react function in expression 2`] = `
+exports[`glam react higher order component 1`] = `
 <div
   className=" css-o7j1h0 css-13wdnau vars-nujrf4"
 >

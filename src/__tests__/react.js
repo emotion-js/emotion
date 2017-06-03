@@ -95,7 +95,7 @@ describe('glam react', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('function in expression', () => {
+  test('higher order component', () => {
     const fontSize = 20
     const Content = emotion('div')`
       font-size: ${fontSize}px;
@@ -111,6 +111,8 @@ describe('glam react', () => {
     }
 
     const ColumnContent = flexColumn(Content)
+
+    expect(ColumnContent.displayName).toBe('flexColumnundefined')
 
     const tree = renderer
       .create(

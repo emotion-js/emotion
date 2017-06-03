@@ -17,6 +17,7 @@ module.exports = function (babel) {
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       CallExpression (path) {
+        // emotion('h1', css(css-12, [color])) -> emotion('h1', [css-12, [color]])
         if (path.node.callee.name === 'css') {
           const parentPath = path.parentPath
           if (
@@ -118,6 +119,7 @@ module.exports = function (babel) {
       },
       TaggedTemplateExpression (path) {
         if (
+          // emotion.h1`color:${color};` -> emotion('h1', css(css-12, [color]))
           t.isMemberExpression(path.node.tag) &&
           path.node.tag.object.name === 'emotion' &&
           t.isTemplateLiteral(path.node.quasi)
@@ -129,6 +131,7 @@ module.exports = function (babel) {
             ])
           )
         } else if (
+          // emotion('h1')`color:${color};` -> emotion('h1', css(css-12, [color]))
           t.isCallExpression(path.node.tag) &&
           path.node.tag.callee.name === 'emotion' &&
           t.isTemplateLiteral(path.node.quasi)
