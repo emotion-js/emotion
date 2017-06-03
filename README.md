@@ -8,7 +8,7 @@
 
 
 -   [Install](#install)
--   [Example Project](https://github.com/tkh44/emotion/tree/master/examples/glam)
+-   [Example Project](https://github.com/tkh44/emotion/tree/master/example)
 
 ## Install
 
