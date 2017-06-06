@@ -1,60 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`emotion/glam babel css prop StringLiteral css prop value 1`] = `"<div className={css('css-jf1v9l')}></div>;"`;
+exports[`emotion/babel babel css prop StringLiteral css prop value 1`] = `"<div className={css(\\"css-jf1v9l\\", [])}></div>;"`;
 
-exports[`emotion/glam babel css prop basic 1`] = `"<div className={\\"a\\" + \\" \\" + css('css-jf1v9l')}></div>;"`;
+exports[`emotion/babel babel css prop basic 1`] = `"<div className={\\"a\\" + \\" \\" + css(\\"css-jf1v9l\\", [])}></div>;"`;
 
-exports[`emotion/glam babel css prop className as expression 1`] = `"<div className={variable + \\" \\" + css('css-jf1v9l')}></div>;"`;
+exports[`emotion/babel babel css prop className as expression 1`] = `"<div className={variable + \\" \\" + css(\\"css-jf1v9l\\", [])}></div>;"`;
 
-exports[`emotion/glam babel css prop className as expression string 1`] = `"<div className={\`test__class\` + \\" \\" + css('css-jf1v9l')} this={\`hello\`}></div>;"`;
+exports[`emotion/babel babel css prop className as expression string 1`] = `"<div className={\`test__class\` + \\" \\" + css(\\"css-jf1v9l\\", [])} this={\`hello\`}></div>;"`;
 
-exports[`emotion/glam babel css prop css empty 1`] = `"<div className={css('css-0')}></div>;"`;
+exports[`emotion/babel babel css prop css empty 1`] = `"<div className={css(\\"css-0\\", [])}></div>;"`;
 
-exports[`emotion/glam babel css prop emptyClassName 1`] = `"<div className={\\"\\" + \\" \\" + css('css-jf1v9l')}></div>;"`;
+exports[`emotion/babel babel css prop emptyClassName 1`] = `"<div className={\\"\\" + \\" \\" + css(\\"css-jf1v9l\\", [])}></div>;"`;
 
-exports[`emotion/glam babel css prop no css attr 1`] = `"<div></div>;"`;
+exports[`emotion/babel babel css prop no css attr 1`] = `"<div></div>;"`;
 
-exports[`emotion/glam babel css prop noClassName 1`] = `"<div className={css('css-jf1v9l')}></div>;"`;
+exports[`emotion/babel babel css prop noClassName 1`] = `"<div className={css(\\"css-jf1v9l\\", [])}></div>;"`;
 
-exports[`emotion/glam real basic 1`] = `
-<p
-  className="css-jk0pkr"
->
-  hello world
-</p>
+exports[`emotion/babel babel emotion component attr 1`] = `
+"emotion('input', ['css-15kq7zy', [function getmargin(props) {
+     return props.margin;
+}, props => props.height * props.scale, function getwidth(props) {
+     return props.width;
+}, flex]]);"
 `;
 
-exports[`emotion/glam real kitchen sink 1`] = `
-<div
-  className="css__legacy-stuff css-1170hdn vars-k1238z frag-15qcrjv frag-mdk64u"
->
-  <h1
-    className="css-wjhr0q vars-11t1jtz frag-1wh34bm vars-telb2o"
-  >
-    BOOM
-  </h1>
-  <p
-    className="test_class1 css-14jcta0"
-  >
-    Hello
-  </p>
-  <p
-    className="test_class1 test___class45 css-1gdxe9e"
-  >
-    World
-  </p>
-  <p
-    className="css-1g8ltio vars-bs2yjn"
-  >
-    hello world
-  </p>
-</div>
-`;
+exports[`emotion/babel babel emotion component basic 1`] = `"emotion(\\"h1\\", [\\"css-8xpzga\\", [fontSize]]);"`;
 
-exports[`emotion/glam real string expression 1`] = `
-<p
-  className="css-7sqgip"
->
-  hello world
-</p>
-`;
+exports[`emotion/babel babel emotion component function call 1`] = `"emotion(MyComponent, [\\"css-8xpzga\\", [fontSize]]);"`;
