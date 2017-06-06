@@ -20,7 +20,7 @@ module.exports = function (babel) {
     let [nextQuasis, nextStubs] = quasis.reduce(
       (accum, quasi, i) => {
         const str = quasi.value.cooked
-        const regex = /attr\(([^\)]+)\)/gm
+        const regex = /attr\(([\S]+)(?:\s*(px|url|color)?)(?:,\s*([\S^)]+))?\)/gm
         let attrMatch
         let matches = []
         while ((attrMatch = regex.exec(str)) !== null) {
@@ -42,21 +42,10 @@ module.exports = function (babel) {
           const propName = match.propName
           const index = match.index
 
-          // console.log(
-          //   'css value:',
-          //   value,
-          //   'index:',
-          //   index,
-          //   'prop:',
-          //   propName,
-          //   regex.lastIndex
-          // )
-          // console.log(str)
           const preAttr = `${str.slice(cursor, index)}`
           cursor = index + value.length
           const postAttr = `${str.slice(cursor)}`
 
-          // console.log('preAttr:\n', preAttr, '\n\npostAttr\n', postAttr)
           if (preAttr) {
             accum[0].push(
               t.templateElement({raw: preAttr, cooked: preAttr}, false)
@@ -79,7 +68,9 @@ module.exports = function (babel) {
           ])
 
           const expr = t.functionExpression(
-            t.identifier(`get${propName}`),
+            t.identifier(
+              `get${propName.charAt(0).toUpperCase() + propName.slice(1)}`
+            ),
             [t.identifier('props')],
             body
           )

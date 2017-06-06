@@ -17,9 +17,9 @@ exports[`emotion/babel babel css prop no css attr 1`] = `"<div></div>;"`;
 exports[`emotion/babel babel css prop noClassName 1`] = `"<div className={css(\\"css-jf1v9l\\", [])}></div>;"`;
 
 exports[`emotion/babel babel emotion component attr 1`] = `
-"emotion('input', ['css-15kq7zy', [function getmargin(props) {
+"emotion('input', ['css-15kq7zy', [function getMargin(props) {
      return props.margin;
-}, props => props.height * props.scale, function getwidth(props) {
+}, props => props.height * props.scale, function getWidth(props) {
      return props.width;
 }, flex]]);"
 `;
