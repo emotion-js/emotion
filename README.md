@@ -73,7 +73,7 @@ function Greeting ({ name }) {
 The [attr](https://developer.mozilla.org/en-US/docs/Web/CSS/attr) CSS function is supported in
 a basic capacity. 
 
-```jsx
+```css
 /* get value from `width` prop */
 width: attr(width vw);
 
@@ -82,7 +82,9 @@ width: attr(width vw);
 
 /* fallback value if props.width is falsey */
 width: attr(width vw, 50);
+```
 
+```jsx
 const H1 = emotion.h1`
   font-size: attr(fontSize px);
   margin: attr(margin rem, 4);
