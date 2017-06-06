@@ -70,8 +70,37 @@ function Greeting ({ name }) {
 
 #### attr
 
-[MDN - attr](https://developer.mozilla.org/en-US/docs/Web/CSS/attr)
+The [attr](https://developer.mozilla.org/en-US/docs/Web/CSS/attr) CSS function is supported in
+a basic capacity. 
 
+```jsx
+/* get value from `width` prop */
+width: attr(width vw);
+
+/* specify type or unit to apply to value */
+width: attr(width vw);
+
+/* fallback value if props.width is falsey */
+width: attr(width vw, 50);
+
+const H1 = emotion('h1')`
+  font-size: attr(fontSize px);
+  margin: attr(margin rem, 4);
+  font-family: sans-serif;
+  color: ${colors.pink[5]}
+`
+
+const Title = ({ title, scale }) => {
+  return (
+    <H1 fontSize={16 * scale}>
+      {title}
+    </H1>
+  )
+}
+```
+
+##### Supported value types 
+`em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc`
 
 
 ### css prop
