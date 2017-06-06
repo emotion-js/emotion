@@ -57,12 +57,15 @@ const H1 = emotion.h1`
   font-size: attr(fontSize px);
   margin: attr(margin rem, 4);
   font-family: sans-serif;
-  color: ${colors.pink[5]}
+  color: ${colors.pink[5]};
+  @media (min-width: 680px) {
+    color: attr(desktopColor);
+  }
 `
 
-const Title = ({ title, scale }) => {
+const Title = ({title, scale}) => {
   return (
-    <H1 fontSize={16 * scale}>
+    <H1 fontSize={16 * scale} desktopColor={colors.gray[5]}>
       {title}
     </H1>
   )
@@ -82,7 +85,9 @@ class Profile extends React.Component {
           emotion (github)
         </Banner>
 
-        <label css={`margin: 16px 32px 4px 32px;font-size: 24px; color: ${colors.gray[8]}; font-weight: bold; font-family: sans-serif;`}>
+        <label
+          css={`margin: 16px 32px 4px 32px;font-size: 24px; color: ${colors.gray[8]}; font-weight: bold; font-family: sans-serif;`}
+        >
           Change Color (inspect in dev tools)
         </label>
         <Input
@@ -108,7 +113,7 @@ class Profile extends React.Component {
           {' '}
           <span css={`color: ${colors.violet[permissionLvl]}`}>{name}</span>
         </LoudMessage>
-        <Title title="I Am Styled By Attr" scale={2}/>
+        <Title title="I Am Styled By Attr" scale={2} />
         <ColumnContent>
           <div
             css={`height: 100px; width: 100px; background-color: #20c997; margin: 8ch;`}

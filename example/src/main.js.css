@@ -18,10 +18,12 @@
 .css-1gotb0c:hover { color: var(--css-1gotb0c-1); }
 .css-ov1ktg { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }
 .css-1bq6329 { flex-direction: column; -webkit-box-direction: normal; -webkit-box-orient: vertical; -ms-flex-direction: column; -webkit-flex-direction: column; }
-.css-yz6hl7 { font-size: var(--css-yz6hl7-0);
-  margin: var(--css-yz6hl7-1);
+.css-lrwui7 { font-size: var(--css-lrwui7-0);
+  margin: var(--css-lrwui7-1);
   font-family: sans-serif;
-  color: var(--css-yz6hl7-2) }
+  color: var(--css-lrwui7-2); }
+@media (min-width: 680px) {
+ .css-lrwui7 { color: var(--css-lrwui7-3); } }
 .css-j7qwjs { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;flex-direction: column;-webkit-box-direction: normal;-webkit-box-orient: vertical;-ms-flex-direction: column;-webkit-flex-direction: column; }
 .css-1cyefot { margin: 16px 32px 4px 32px;font-size: 24px; color: var(--css-1cyefot-0); font-weight: bold; font-family: sans-serif; }
 .css-xqa823 { color: var(--css-xqa823-0) }
