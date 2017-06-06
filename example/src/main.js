@@ -53,6 +53,21 @@ const flexColumn = Component => {
 
 const ColumnContent = flexColumn(Content)
 
+const H1 = emotion.h1`
+  font-size: attr(fontSize px);
+  margin: attr(margin rem, 4);
+  font-family: sans-serif;
+  color: ${colors.pink[5]}
+`
+
+const Title = ({ title, scale }) => {
+  return (
+    <H1 fontSize={16 * scale}>
+      {title}
+    </H1>
+  )
+}
+
 class Profile extends React.Component {
   state = {
     name: 'Dave',
@@ -66,6 +81,7 @@ class Profile extends React.Component {
         <Banner href="https://github.com/tkh44/emotion">
           emotion (github)
         </Banner>
+
         <label css={`margin: 16px 32px 4px 32px;font-size: 24px; color: ${colors.gray[8]}; font-weight: bold; font-family: sans-serif;`}>
           Change Color (inspect in dev tools)
         </label>
@@ -86,12 +102,13 @@ class Profile extends React.Component {
           permissionLvl={permissionLvl}
           onChange={({target: {value}}) => this.setState(() => ({name: value}))}
         />
+
         <LoudMessage permissionLvl={permissionLvl}>
           Hello
           {' '}
           <span css={`color: ${colors.violet[permissionLvl]}`}>{name}</span>
         </LoudMessage>
-
+        <Title title="I Am Styled By Attr" scale={2}/>
         <ColumnContent>
           <div
             css={`height: 100px; width: 100px; background-color: #20c997; margin: 8ch;`}

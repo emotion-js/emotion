@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`glam react attr 1`] = `
+<h1
+  className=" css-15vt02v vars-178h3yr"
+  fontSize={48}
+/>
+`;
+
 exports[`glam react basic 1`] = `
 <p
   className="css-jk0pkr"

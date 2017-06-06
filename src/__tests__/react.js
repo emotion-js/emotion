@@ -2,12 +2,10 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import css, { fragment } from 'glam'
+import css, {fragment} from 'glam'
 import {emotion} from '../react'
 
-
 describe('glam react', () => {
-
   test('basic render', () => {
     const fontSize = 20
     const H1 = emotion.h1`
@@ -19,6 +17,29 @@ describe('glam react', () => {
         <H1>
           hello world
         </H1>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('attr', () => {
+    const H1 = emotion.h1`
+      font-size: attr(fontSize);
+      margin: attr(margin rem, 4);
+    `
+
+    const Title = ({title}) => {
+      return (
+        <H1 fontSize={48}>
+          {title}
+        </H1>
+      )
+    }
+
+    const tree = renderer
+      .create(
+        <Title />
       )
       .toJSON()
 
