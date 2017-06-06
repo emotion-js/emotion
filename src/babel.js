@@ -20,18 +20,16 @@ module.exports = function (babel) {
     let [nextQuasis, nextStubs] = quasis.reduce(
       (accum, quasi, i) => {
         const str = quasi.value.cooked
-        const regex = /attr\(([\S]+)(?:\s*(px|url|color)?)(?:,\s*([\S^)]+))?\)/gm
+        const regex = /attr\(([\S]+)(?:\s*(em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc)?)(?:,\s*([\S^)]+))?\)/gm
         let attrMatch
         let matches = []
         while ((attrMatch = regex.exec(str)) !== null) {
           didFindAtLeastOneMatch = true
-          // This is necessary to avoid infinite loops with zero-width matches
-          if (attrMatch.index === regex.lastIndex) {
-            regex.lastIndex++
-          }
           matches.push({
             value: attrMatch[0],
             propName: attrMatch[1],
+            valueType: attrMatch[2],
+            defaultValue: attrMatch[3],
             index: attrMatch.index
           })
         }
@@ -40,6 +38,8 @@ module.exports = function (babel) {
           const match = matches[j]
           const value = match.value
           const propName = match.propName
+          const valueType = match.valueType
+          const defaultValue = match.defaultValue
           const index = match.index
 
           const preAttr = `${str.slice(cursor, index)}`
@@ -61,11 +61,34 @@ module.exports = function (babel) {
             )
           }
 
-          const body = t.blockStatement([
-            t.returnStatement(
-              t.memberExpression(t.identifier('props'), t.identifier(propName))
+          let createMemberExpression = () =>
+            t.memberExpression(t.identifier('props'), t.identifier(propName))
+
+          let returnValue = createMemberExpression()
+
+          if (valueType) {
+            returnValue = t.binaryExpression(
+              '+',
+              createMemberExpression(),
+              t.stringLiteral(valueType)
             )
-          ])
+          }
+
+          if (defaultValue) {
+            returnValue = t.conditionalExpression(
+              createMemberExpression(),
+              createMemberExpression(),
+              t.parenthesizedExpression(
+                t.binaryExpression(
+                  '+',
+                  t.stringLiteral(defaultValue),
+                  t.stringLiteral(valueType || '')
+                )
+              )
+            )
+          }
+
+          const body = t.blockStatement([t.returnStatement(returnValue)])
 
           const expr = t.functionExpression(
             t.identifier(

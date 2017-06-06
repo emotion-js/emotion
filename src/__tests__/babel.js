@@ -20,13 +20,60 @@ describe('emotion/babel', () => {
 
     test('attr', () => {
       const basic = `emotion('input')\`
-     margin: attr(margin);
-     color: #ffffff;
-     height: \$\{props => props.height * props.scale\};
-     width: attr(width);
-     color: blue;
-     display: \$\{flex\};
-    \``
+       margin: attr(margin);
+       color: #ffffff;
+       height: \$\{props => props.height * props.scale\};
+       width: attr(width);
+       color: blue;
+       display: \$\{flex\};
+      \``
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
+      expect(code).toMatchSnapshot()
+    })
+
+    test('attr with value type', () => {
+      const basic = `emotion('input')\`
+        margin: attr(margin px);
+      \``
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
+      expect(code).toMatchSnapshot()
+    })
+
+    test('attr with default value', () => {
+      const basic = `emotion('input')\`
+        margin: attr(margin, 16);
+      \``
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
+      expect(code).toMatchSnapshot()
+    })
+
+    test('attr with value type and default value', () => {
+      const basic = `emotion('input')\`
+        margin: attr(margin px, 16);
+      \``
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
+      expect(code).toMatchSnapshot()
+    })
+
+    test('match works on multiple', () => {
+      const basic = `emotion('input')\`
+        margin: attr(margin px, 16);
+        color: blue;
+        padding: attr(padding em, 16);
+      \``
+      const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
+      expect(code).toMatchSnapshot()
+    })
+
+    test('attr kitchen sink', () => {
+      const basic = `emotion('input')\`
+        margin: attr(margin px, 16);
+        padding: attr(padding em, 16);
+        font-size: attr(fontSize ch, 8);
+        width: attr(width %, 95);
+        height: attr(height vw, 90);
+        display: attr(display, flex);
+      \``
       const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
