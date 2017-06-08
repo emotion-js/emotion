@@ -19,7 +19,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.4",
-    "emotion": "^0.0.6",
+    "emotion": "^1.0.6",
     "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.28.0",
     "standard": "^10.0.2",
