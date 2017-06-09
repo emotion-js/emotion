@@ -36,6 +36,20 @@ exports[`emotion/babel babel emotion component attr kitchen sink 1`] = `
 }]]);"
 `;
 
+exports[`emotion/babel babel emotion component attr kitchen sink 2`] = `
+"emotion('input', ['css-1lqib20', [function getMargin(props) {
+        return props.margin ? props.margin : ('16' + 'px');
+}, function getPadding(props) {
+        return props.padding ? props.padding : ('16' + 'em');
+}, function getWidth(props) {
+        return props.width ? props.width : ('95' + '%');
+}, function getHeight(props) {
+        return props.height ? props.height : ('90' + 'vw');
+}, function getDisplay(props) {
+        return props.display ? props.display : ('flex' + '');
+}]]);"
+`;
+
 exports[`emotion/babel babel emotion component attr with default value 1`] = `
 "emotion('input', ['css-1luxokk', [function getMargin(props) {
         return props.margin ? props.margin : ('16' + '');
@@ -57,6 +71,27 @@ exports[`emotion/babel babel emotion component attr with value type and default 
 exports[`emotion/babel babel emotion component basic 1`] = `"emotion(\\"h1\\", [\\"css-8xpzga\\", [fontSize]]);"`;
 
 exports[`emotion/babel babel emotion component function call 1`] = `"emotion(MyComponent, [\\"css-8xpzga\\", [fontSize]]);"`;
+
+exports[`emotion/babel babel emotion component inline 1`] = `
+"emotion('input', ['css-1lqib20', [function getMargin(props) {
+        return props.margin ? props.margin : ('16' + 'px');
+}, function getPadding(props) {
+        return props.padding ? props.padding : ('16' + 'em');
+}, function getWidth(props) {
+        return props.width ? props.width : ('95' + '%');
+}, function getHeight(props) {
+        return props.height ? props.height : ('90' + 'vw');
+}, function getDisplay(props) {
+        return props.display ? props.display : ('flex' + '');
+}], function inlineCss(x0, x1, x2, x3, x4) {
+        return [\`.css-1lqib20 { margin: \${x0};
+        padding: \${x1};
+        font-size: attr(fontSize ch, 8);
+        width: \${x2};
+        height: \${x3};
+        display: \${x4}; }\`];
+}]);"
+`;
 
 exports[`emotion/babel babel emotion component match works on multiple 1`] = `
 "emotion('input', ['css-1j6h68f', [function getMargin(props) {

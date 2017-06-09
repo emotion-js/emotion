@@ -20,7 +20,7 @@ module.exports = function (babel) {
     let [nextQuasis, nextStubs] = quasis.reduce(
       (accum, quasi, i) => {
         const str = quasi.value.cooked
-        const regex = /attr\(([\S]+)(?:\s*(em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc)?)(?:,\s*([\S^)]+))?\)/gm
+        const regex = /attr\(([\S]+)(?:\s*(em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|%)?)(?:,\s*([\S^)]+))?\)/gm
         let attrMatch
         let matches = []
         while ((attrMatch = regex.exec(str)) !== null) {

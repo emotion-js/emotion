@@ -77,6 +77,19 @@ describe('emotion/babel', () => {
       const {code} = babel.transform(basic, {plugins: [plugin, 'glam/babel']})
       expect(code).toMatchSnapshot()
     })
+
+    test('inline', () => {
+      const basic = `emotion('input')\`
+        margin: attr(margin px, 16);
+        padding: attr(padding em, 16);
+        font-size: attr(fontSize ch, 8);
+        width: attr(width %, 95);
+        height: attr(height vw, 90);
+        display: attr(display, flex);
+      \``
+      const {code} = babel.transform(basic, {plugins: [plugin, ['glam/babel', { sync: true, inline: true }]]})
+      expect(code).toMatchSnapshot()
+    })
   })
 
   describe('babel css prop', () => {

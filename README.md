@@ -105,7 +105,7 @@ const Title = ({ title, scale }) => {
 ```
 
 ##### Supported value types 
-`em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc`
+`em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|%`
 
 
 ### css prop
