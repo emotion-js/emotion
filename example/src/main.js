@@ -80,7 +80,7 @@ class Profile extends React.Component {
   render () {
     const {permissionLvl, name} = this.state
     return (
-      <div css="display:flex;flex-direction:column;">
+      <div css={`display:flex;flex-direction:column;`}>
         <Banner href="https://github.com/tkh44/emotion">
           emotion (github)
         </Banner>

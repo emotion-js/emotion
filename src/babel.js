@@ -127,7 +127,11 @@ module.exports = function (babel) {
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       CallExpression (path) {
-        // emotion('h1', css(css-12, [color])) -> emotion('h1', [css-12, [color]])
+        // emotion("h1", ["css-8xpzga", [fontSize], function inlineCss(x0) {
+        //   return [`.css-8xpzga { font-size: ${x0}px; }`];
+        // }]);
+        // ->
+        // emotion('h1', [css-12, [color], function inlineCss(x0...){}, ...])
         if (path.node.callee.name === 'css') {
           const parentPath = path.parentPath
           if (

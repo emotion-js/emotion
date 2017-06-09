@@ -11,7 +11,7 @@
     "react"
   ],
   "plugins": [
-    ['glam/babel', { inline: true }],
-    'emotion/babel'
+    'emotion/babel',
+    ['glam/babel'],
   ]
 }
