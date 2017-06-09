@@ -43,6 +43,9 @@ module.exports = env => {
     ].concat(PROD ? new ExtractTextPlugin('styles.css') : []),
     module: {
       loaders: loaders
+    },
+    node: {
+      fs: 'empty'
     }
   }
 }
