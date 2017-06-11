@@ -1,5 +1,5 @@
 module.exports = function (babel) {
-  const {types: t} = babel
+  const { types: t } = babel
 
   function createClassNameAttr (expression) {
     return t.jSXAttribute(
@@ -48,14 +48,14 @@ module.exports = function (babel) {
 
           if (preAttr) {
             accum[0].push(
-              t.templateElement({raw: preAttr, cooked: preAttr}, false)
+              t.templateElement({ raw: preAttr, cooked: preAttr }, false)
             )
           }
 
           if (postAttr && j === matches.length - 1) {
             accum[0].push(
               t.templateElement(
-                {raw: postAttr, cooked: postAttr},
+                { raw: postAttr, cooked: postAttr },
                 i === quasis.length - 1
               )
             )
@@ -100,15 +100,13 @@ module.exports = function (babel) {
           accum[1].push(expr)
         }
 
-        if (stubs[i]) {
-          accum[1].push(stubs[i])
-        }
-
         if (matches.length === 0) {
           accum[0].push(quasi)
           if (stubs[i]) {
             accum[1].push(stubs[i])
           }
+        } else if (stubs[i]) {
+          accum[1].push(stubs[i])
         }
 
         return accum

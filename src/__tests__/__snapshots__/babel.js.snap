@@ -68,11 +68,11 @@ exports[`emotion/babel babel styled component attr with value type and default v
 }]]);"
 `;
 
-exports[`emotion/babel babel styled component basic 1`] = `"emotion.h1\`font-size: \${fontSize}px;\`;"`;
+exports[`emotion/babel babel styled component basic 1`] = `"styled('h1', ['css-1t8i2zo', [fontSize + 'px']]);"`;
 
 exports[`emotion/babel babel styled component basic inline 1`] = `"emotion.h1\`font-size: \${fontSize}px;\`;"`;
 
-exports[`emotion/babel babel styled component function call 1`] = `"emotion(MyComponent)\`font-size: \${fontSize}px;\`;"`;
+exports[`emotion/babel babel styled component function call 1`] = `"styled(MyComponent, ['css-1t8i2zo', [fontSize + 'px']]);"`;
 
 exports[`emotion/babel babel styled component inline with attr 1`] = `
 "styled('input', ['css-15e0f65', [function getMargin(props) {
@@ -104,3 +104,5 @@ exports[`emotion/babel babel styled component match works on multiple 1`] = `
         return props.padding ? props.padding : ('16' + 'em');
 }]]);"
 `;
+
+exports[`emotion/babel babel styled component no use 1`] = `"styled(\\"h1\\", [\\"css-0\\", []]);"`;
