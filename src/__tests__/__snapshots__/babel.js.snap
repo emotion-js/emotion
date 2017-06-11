@@ -6,7 +6,7 @@ exports[`emotion/babel babel css prop basic 1`] = `"<div className={\\"a\\" + \\
 
 exports[`emotion/babel babel css prop basic inline 1`] = `
 "<div className={\\"a\\" + \\" \\" + css(\\"css-jf1v9l\\", [], function inlineCss() {
-  return [];
+  return [\`.css-jf1v9l { color: brown; }\`];
 })}></div>;"
 `;
 
