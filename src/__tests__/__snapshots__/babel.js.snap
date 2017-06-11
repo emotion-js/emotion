@@ -75,23 +75,25 @@ exports[`emotion/babel babel styled component basic inline 1`] = `"emotion.h1\`f
 exports[`emotion/babel babel styled component function call 1`] = `"emotion(MyComponent)\`font-size: \${fontSize}px;\`;"`;
 
 exports[`emotion/babel babel styled component inline with attr 1`] = `
-"styled('input', ['css-1lqib20', [function getMargin(props) {
+"styled('input', ['css-15e0f65', [function getMargin(props) {
         return props.margin ? props.margin : ('16' + 'px');
 }, function getPadding(props) {
         return props.padding ? props.padding : ('16' + 'em');
+}, function getFontSize(props) {
+        return props.fontSize ? props.fontSize : ('2' + 'rem');
 }, function getWidth(props) {
         return props.width ? props.width : ('95' + '%');
 }, function getHeight(props) {
         return props.height ? props.height : ('90' + 'vw');
 }, function getDisplay(props) {
         return props.display ? props.display : ('flex' + '');
-}], function inlineCss(x0, x1, x2, x3, x4) {
-        return [\`.css-1lqib20 { margin: \${x0};
+}], function inlineCss(x0, x1, x2, x3, x4, x5) {
+        return [\`.css-15e0f65 { margin: \${x0};
         padding: \${x1};
-        font-size: attr(fontSize ch, 8);
-        width: \${x2};
-        height: \${x3};
-        display: \${x4}; }\`];
+        font-size: \${x2};
+        width: \${x3};
+        height: \${x4};
+        display: \${x5}; }\`];
 }]);"
 `;
 

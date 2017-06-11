@@ -1,7 +1,7 @@
 // `colors` come from open color
 const Header = styled('header')`
   flex: none;
-  display: flex;
+  display: attr(display, block);
   justify-content: flex-start;
   align-items: center;
   
@@ -69,7 +69,7 @@ const Box = styled.div`
 
 const App = () =>
   <Content>
-    <Header>
+    <Header display="flex">
       <Banner>
         emotion
       </Banner>

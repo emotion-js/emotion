@@ -115,7 +115,7 @@ describe('emotion/babel', () => {
       const basic = `styled('input')\`
         margin: attr(margin px, 16);
         padding: attr(padding em, 16);
-        font-size: attr(fontSize ch, 8);
+        font-size: attr(fontSize rem, 2);
         width: attr(width %, 95);
         height: attr(height vw, 90);
         display: attr(display, flex);
