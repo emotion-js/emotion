@@ -5,7 +5,7 @@ import './dracula.css'
 import React from 'react'
 import { findDOMNode, render } from 'react-dom'
 import { emotion } from 'emotion'
-import css from 'glam'
+import css, { fragment } from 'glam'
 import colors from 'open-color/open-color.json'
 import Playground from './playground'
 
@@ -42,7 +42,7 @@ class App extends React.Component {
         <Playground
           noRender={false}
           codeText={componentExample}
-          scope={{ React, css, emotion, colors, render }}
+          scope={{ React, css, fragment, emotion, colors, render }}
         />
       </div>
     )

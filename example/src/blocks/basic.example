@@ -1,3 +1,4 @@
+// `colors` come from open color
 const Header = emotion('header')`
   flex: none;
   display: flex;
@@ -9,8 +10,12 @@ const Header = emotion('header')`
   }
 `
 
-const H1 = emotion('h1')`
+const baseText = fragment`
   color: ${colors.gray[3]};
+`
+
+const H1 = emotion('h1')`
+  @apply ${baseText};
   @media(min-width: 500px) {
     color: ${colors.gray[5]};
   }
@@ -24,6 +29,7 @@ const Banner = emotion(H1)`
 `
 
 const HeaderLink = emotion('a')`
+  @apply ${baseText};
   margin-left: auto;
   text-decoration: none;
   &:hover {
@@ -38,7 +44,8 @@ const Content = emotion('div')`
   width: 100%;
 `
 
-const Input = emotion('input')` 
+const Input = emotion('input')`
+  @apply ${baseText};
   font-size: 2em;
   color: ${props => props.color};
   outline: none;
@@ -47,6 +54,16 @@ const Input = emotion('input')`
   font-family: sans-serif;
   &::placeholder {
     color: ${colors.gray[3]};
+  }
+`
+
+const Box = emotion.div`
+  border: 1px solid ${colors.gray[8]}
+  min-height: 200px;
+  margin-top: 8px;
+  background-color: ${colors.gray[1]};
+  & + & {
+    background-color: ${colors.green[0]};
   }
 `
 
@@ -67,6 +84,8 @@ const App = () =>
     <Content>
       <H1 css={`color: ${colors.gray[8]}`}>playground</H1>
       <Input color={colors.green[4]} type="text" placeholder="emotion input" />
+      <Box />
+      <Box/>
     </Content>
   </Content>
 
