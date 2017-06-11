@@ -2,10 +2,9 @@
 // https://raw.githubusercontent.com/FormidableLabs/component-playground/master/src/components/preview.jsx
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { render } from 'react-dom'
-// import ReactDOMServer from 'react-dom/server'
 import { registerPlugin, transform } from 'babel-standalone'
 import { styled } from 'emotion'
+// eslint-disable-next-line no-unused-vars
 import css from 'glam'
 
 registerPlugin('glam/babel', require('glam/babel'))
@@ -65,7 +64,10 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: ['emotion/babel', ['glam/babel', { sync: true, inline: true }]]
+          plugins: [
+            'emotion/babel',
+            ['glam/babel', { sync: true, inline: true }]
+          ]
         }
       ).code
     } else {
@@ -77,7 +79,10 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: ['emotion/babel', ['glam/babel', { sync: true, inline: true }]]
+          plugins: [
+            'emotion/babel',
+            ['glam/babel', { sync: true, inline: true }]
+          ]
         }
       ).code
     }
@@ -90,13 +95,14 @@ class Preview extends Component {
 
   _executeCode = () => {
     const mountNode = this.refs.mount
-    const { scope, noRender, previewComponent } = this.props
+    const { scope } = this.props
     const tempScope = []
 
     try {
       Object.keys(scope).forEach(s => tempScope.push(scope[s]))
       tempScope.push(mountNode)
       const compiledCode = this._compileCode()
+      // eslint-disable-next-line no-eval
       eval(compiledCode).apply(null, tempScope)
       /* eslint-enable no-eval, max-len */
 
@@ -124,7 +130,7 @@ class Preview extends Component {
     return (
       <Content css="margin: 0 8px;-webkit-overflow-scrolling: touch;overflow:auto;">
         {error !== null ? <Content>{error}</Content> : null}
-        <div ref="mount" css="width: 100%;height:100%;"/>
+        <div ref="mount" css="width: 100%;height:100%;" />
       </Content>
     )
   }

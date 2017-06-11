@@ -3,37 +3,14 @@ import './global.css'
 import './main.js.css'
 import './dracula.css'
 import React from 'react'
-import { findDOMNode, render } from 'react-dom'
+import { render } from 'react-dom'
 import { styled } from 'emotion'
 import css, { fragment } from 'glam'
 import colors from 'open-color/open-color.json'
 import Playground from './playground'
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
 const componentExample = require('raw-loader!./blocks/basic.example')
-
-const Header = styled('header')`
-  flex: none;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 1rem;
-`
-
-const Banner = styled('h1')`
-  margin: 16px 0px;
-  font-size: 2rem;
-  font-family: sans-serif;
-  text-decoration: none;
-`
-
-const HeaderLink = styled('a')`
-  color: ${colors.green[4]};
-  margin-left: auto;
-  text-decoration: none;
-  &:hover {
-    color: ${colors.green[8]};
-  }
-`
 
 class App extends React.Component {
   render () {

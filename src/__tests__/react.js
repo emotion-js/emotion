@@ -2,6 +2,7 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
+// eslint-disable-next-line no-unused-vars
 import css, {fragment} from 'glam'
 import {styled} from '../react'
 

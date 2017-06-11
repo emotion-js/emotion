@@ -1,7 +1,7 @@
 import fs from 'fs'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
-import buble from 'rollup-plugin-buble';
+import buble from 'rollup-plugin-buble'
 
 const pkg = JSON.parse(fs.readFileSync('./package.json'))
 
