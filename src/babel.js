@@ -127,17 +127,17 @@ module.exports = function (babel) {
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       CallExpression (path) {
-        // emotion("h1", ["css-8xpzga", [fontSize], function inlineCss(x0) {
+        // styled("h1", ["css-8xpzga", [fontSize], function inlineCss(x0) {
         //   return [`.css-8xpzga { font-size: ${x0}px; }`];
         // }]);
         // ->
-        // emotion('h1', [css-12, [color], function inlineCss(x0...){}, ...])
+        // styled('h1', [css-12, [color], function inlineCss(x0...){}, ...])
         if (path.node.callee.name === 'css') {
           const parentPath = path.parentPath
           if (
             parentPath.isCallExpression() &&
             parentPath.node.callee &&
-            parentPath.node.callee.name === 'emotion'
+            parentPath.node.callee.name === 'styled'
           ) {
             path.replaceWithMultiple(t.arrayExpression(path.node.arguments))
           }
@@ -233,9 +233,9 @@ module.exports = function (babel) {
       },
       TaggedTemplateExpression (path) {
         if (
-          // emotion.h1`color:${color};` -> emotion('h1', css`color:${color};`)
+          // styled.h1`color:${color};` -> styled('h1', css`color:${color};`)
           t.isMemberExpression(path.node.tag) &&
-          path.node.tag.object.name === 'emotion' &&
+          path.node.tag.object.name === 'styled' &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
           const built = findAndReplaceAttrs(path)
@@ -247,9 +247,9 @@ module.exports = function (babel) {
             ])
           )
         } else if (
-          // emotion('h1')`color:${color};` -> emotion('h1', css`color:${color};`)
+          // styled('h1')`color:${color};` -> styled('h1', css`color:${color};`)
           t.isCallExpression(path.node.tag) &&
-          path.node.tag.callee.name === 'emotion' &&
+          path.node.tag.callee.name === 'styled' &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
           const built = findAndReplaceAttrs(path)

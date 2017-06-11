@@ -3,12 +3,12 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import css, {fragment} from 'glam'
-import {emotion} from '../react'
+import {styled} from '../react'
 
 describe('glam react', () => {
   test('basic render', () => {
     const fontSize = 20
-    const H1 = emotion.h1`
+    const H1 = styled.h1`
       font-size: ${fontSize}px;
     `
 
@@ -24,7 +24,7 @@ describe('glam react', () => {
   })
 
   test('attr', () => {
-    const H1 = emotion.h1`
+    const H1 = styled.h1`
       font-size: attr(fontSize);
       margin: attr(margin rem, 4);
     `
@@ -48,7 +48,7 @@ describe('glam react', () => {
 
   test('call expression', () => {
     const fontSize = 20
-    const H1 = emotion('h1')`
+    const H1 = styled('h1')`
       font-size: ${fontSize}px;
     `
 
@@ -65,11 +65,11 @@ describe('glam react', () => {
 
   test('composition', () => {
     const fontSize = 20
-    const H1 = emotion('h1')`
+    const H1 = styled('h1')`
       font-size: ${fontSize}px;
     `
 
-    const H2 = emotion(H1)`font-size: ${fontSize * 2 / 3}`
+    const H2 = styled(H1)`font-size: ${fontSize * 2 / 3}`
 
     const tree = renderer
       .create(
@@ -84,11 +84,11 @@ describe('glam react', () => {
 
   test('function in expression', () => {
     const fontSize = 20
-    const H1 = emotion('h1')`
+    const H1 = styled('h1')`
       font-size: ${fontSize}px;
     `
 
-    const H2 = emotion(H1)`font-size: ${({scale}) => fontSize * scale}`
+    const H2 = styled(H1)`font-size: ${({scale}) => fontSize * scale}`
 
     const tree = renderer
       .create(
@@ -103,12 +103,12 @@ describe('glam react', () => {
 
   test('higher order component', () => {
     const fontSize = 20
-    const Content = emotion('div')`
+    const Content = styled('div')`
       font-size: ${fontSize}px;
     `
 
     const flexColumn = Component => {
-      const NewComponent = emotion(Component)`
+      const NewComponent = styled(Component)`
         flex-direction: column;
       `
       NewComponent.displayName = `flexColumn${Component.displayName}`

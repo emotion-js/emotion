@@ -7,10 +7,10 @@ import PropTypes from 'prop-types'
 import Editor from 'component-playground/lib/components/editor'
 import Preview from '../preview'
 import css from 'glam'
-import { emotion } from 'emotion'
+import { styled } from 'emotion'
 import colors from 'open-color'
 
-const Content = emotion('div')`
+const Content = styled('div')`
   flex: 1 1 auto;
   display: flex;
 `

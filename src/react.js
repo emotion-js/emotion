@@ -1,7 +1,7 @@
 import React from 'react'
 import magic from 'glam'
 
-export const emotion = (tag, [cls, vars = [], content]) => props =>
+export const styled = (tag, [cls, vars = [], content]) => props =>
   React.createElement(
     tag,
     Object.assign({}, props, {

@@ -5,7 +5,7 @@ import plugin from '../babel'
 const babel = require('babel-core')
 
 describe('emotion/babel', () => {
-  describe('babel emotion component', () => {
+  describe('babel styled component', () => {
     test('basic', () => {
       const basic = 'emotion.h1`font-size: ${fontSize}px;`'
       const { code } = babel.transform(basic, {
@@ -23,7 +23,7 @@ describe('emotion/babel', () => {
     })
 
     test('attr', () => {
-      const basic = `emotion('input')\`
+      const basic = `styled('input')\`
        margin: attr(margin);
        color: #ffffff;
        height: \$\{props => props.height * props.scale\};
@@ -38,7 +38,7 @@ describe('emotion/babel', () => {
     })
 
     test('attr with value type', () => {
-      const basic = `emotion('input')\`
+      const basic = `styled('input')\`
         margin: attr(margin px);
       \``
       const { code } = babel.transform(basic, {
@@ -48,7 +48,7 @@ describe('emotion/babel', () => {
     })
 
     test('attr with default value', () => {
-      const basic = `emotion('input')\`
+      const basic = `styled('input')\`
         margin: attr(margin, 16);
       \``
       const { code } = babel.transform(basic, {
@@ -58,7 +58,7 @@ describe('emotion/babel', () => {
     })
 
     test('attr with value type and default value', () => {
-      const basic = `emotion('input')\`
+      const basic = `styled('input')\`
         margin: attr(margin px, 16);
       \``
       const { code } = babel.transform(basic, {
@@ -68,7 +68,7 @@ describe('emotion/babel', () => {
     })
 
     test('match works on multiple', () => {
-      const basic = `emotion('input')\`
+      const basic = `styled('input')\`
         margin: attr(margin px, 16);
         color: blue;
         padding: attr(padding em, 16);
@@ -80,7 +80,7 @@ describe('emotion/babel', () => {
     })
 
     test('attr kitchen sink', () => {
-      const basic = `emotion('input')\`
+      const basic = `styled('input')\`
         margin: attr(margin px, 16);
         padding: attr(padding em, 16);
         font-size: attr(fontSize ch, 8);
@@ -112,7 +112,7 @@ describe('emotion/babel', () => {
     })
 
     test('inline with attr', () => {
-      const basic = `emotion('input')\`
+      const basic = `styled('input')\`
         margin: attr(margin px, 16);
         padding: attr(padding em, 16);
         font-size: attr(fontSize ch, 8);

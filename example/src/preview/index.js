@@ -5,13 +5,13 @@ import PropTypes from 'prop-types'
 import { render } from 'react-dom'
 // import ReactDOMServer from 'react-dom/server'
 import { registerPlugin, transform } from 'babel-standalone'
-import { emotion } from 'emotion'
+import { styled } from 'emotion'
 import css from 'glam'
 
 registerPlugin('glam/babel', require('glam/babel'))
 registerPlugin('emotion/babel', require('emotion/babel'))
 
-const Content = emotion('div')`
+const Content = styled('div')`
   flex: 1 1 auto;
   display: flex;
 `
