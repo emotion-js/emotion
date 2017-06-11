@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "babel-plugin-syntax-jsx": "^6.18.0",
-    "glam": "^4.0.4"
+    "glam": "^4.0.5"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
