@@ -8,3 +8,5 @@
 /es
 npm-debug.log
 .idea
+/example/build
+/example/node_modules

@@ -1,17 +1,17 @@
 import React from 'react'
-import css from 'glam'
+import magic from 'glam'
 
-export const emotion = (tag, [cls, vars = [], ...inlineVars]) => props =>
+export const emotion = (tag, [cls, vars = [], content]) => props =>
   React.createElement(
     tag,
     Object.assign({}, props, {
       className:
         (props.className || '') +
           ' ' +
-          css(
+        magic(
             cls,
             vars.map(v => (v && typeof v === 'function' ? v(props) : v)),
-            ...inlineVars
+            content
           )
     })
   )

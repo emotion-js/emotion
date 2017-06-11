@@ -108,7 +108,6 @@ describe('emotion/babel', () => {
           ]
         ]
       })
-      console.log(code)
       expect(code).toMatchSnapshot()
     })
 

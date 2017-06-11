@@ -1,0 +1,92 @@
+// `colors` come from open color
+const Header = emotion('header')`
+  flex: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+  & > a {
+    color: ${colors.green[4]};
+  }
+`
+
+const baseText = fragment`
+  color: ${colors.gray[3]};
+`
+
+const H1 = emotion('h1')`
+  @apply ${baseText};
+  @media(min-width: 500px) {
+    color: ${colors.gray[5]};
+  }
+`
+
+const Banner = emotion(H1)`
+  margin: 16px 0px;
+  font-size: 2rem;
+  font-family: sans-serif;
+  text-decoration: none;
+`
+
+const HeaderLink = emotion('a')`
+  @apply ${baseText};
+  margin-left: auto;
+  text-decoration: none;
+  &:hover {
+    color: ${colors.green[8]};
+  }
+`
+
+const Content = emotion('div')`
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column; 
+  width: 100%;
+`
+
+const Input = emotion('input')`
+  @apply ${baseText};
+  font-size: 2em;
+  color: ${props => props.color};
+  outline: none;
+  border: none;
+  border-bottom: 2px solid currentColor;
+  font-family: sans-serif;
+  &::placeholder {
+    color: ${colors.gray[3]};
+  }
+`
+
+const Box = emotion.div`
+  border: 1px solid ${colors.gray[8]}
+  min-height: 200px;
+  margin-top: 8px;
+  background-color: ${colors.gray[1]};
+  & + & {
+    background-color: ${colors.green[0]};
+  }
+`
+
+const App = () =>
+  <Content>
+    <Header>
+      <Banner>
+        emotion
+      </Banner>
+      <HeaderLink
+        href="https://github.com/tkh44/emotion"
+        target="_blank"
+        rel="nofollow"
+      >
+        github
+      </HeaderLink>
+    </Header>
+    <Content>
+      <H1 css={`color: ${colors.gray[8]}`}>playground</H1>
+      <Input color={colors.green[4]} type="text" placeholder="emotion input" />
+      <Box />
+      <Box/>
+    </Content>
+  </Content>
+
+render(<App />, mountNode)

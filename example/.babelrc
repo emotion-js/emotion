@@ -12,6 +12,6 @@
   ],
   "plugins": [
     'emotion/babel',
-    ['glam/babel'],
+    ['glam/babel', { sync: true, inline: true }],
   ]
 }
