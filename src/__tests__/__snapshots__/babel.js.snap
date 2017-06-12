@@ -28,6 +28,12 @@ exports[`emotion/babel babel css prop no css attr 1`] = `"<div></div>;"`;
 
 exports[`emotion/babel babel css prop noClassName 1`] = `"<div className={css(\\"css-jf1v9l\\", [])}></div>;"`;
 
+exports[`emotion/babel babel css prop with spread arg in jsx opening tag 1`] = `
+"<div className={\\"a\\" + \\" \\" + css(\\"css-jf1v9l\\", [], function inlineCss() {
+  return [\`.css-jf1v9l { color: brown; }\`];
+})} {...rest}></div>;"
+`;
+
 exports[`emotion/babel babel styled component attr 1`] = `
 "styled('input', ['css-14vghnb', [function getMargin(props) {
        return props.margin;

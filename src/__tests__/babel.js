@@ -168,6 +168,14 @@ describe('emotion/babel', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('with spread arg in jsx opening tag', () => {
+      const basic = '(<div className="a" css={`color: brown;`} {...rest}></div>)'
+      const {code} = babel.transform(basic, {
+        plugins: [plugin, ['glam/babel', {inline: true}]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('css empty', () => {
       const basic = '(<div css=""></div>)'
       const { code } = babel.transform(basic, {
