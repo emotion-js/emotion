@@ -32,9 +32,9 @@ npm install -S emotion glam
 ### emotion
 
 ```jsx
-import { emotion } from 'emotion'
+import { styled } from 'emotion'
 
-const H1 = emotion('h1')`
+const H1 = styled('h1')`
   color: 'blue';
   font-size: 48px;
   transform: scale(${props => props.scale});
@@ -47,7 +47,7 @@ function Greeting ({ name }) {
 
 // You can also pass components in
 
-const H2 = emotion(H1)`
+const H2 = styled(H1)`
   font-size: ${fontSize * 2/3}px;
   color: 'red';
 `
@@ -58,7 +58,7 @@ function Greeting ({ name }) {
 
 // this works too
 
-const H3 = emotion.h3`
+const H3 = styled.h3`
   font-size: ${fontSize * 1/3}px;
   color: 'red';
 `
@@ -85,7 +85,7 @@ width: attr(width vw, 50);
 ```
 
 ```jsx
-const H1 = emotion.h1`
+const H1 = styled.h1`
   font-size: attr(fontSize px);
   margin: attr(margin rem, 4);
   font-family: sans-serif;
