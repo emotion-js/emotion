@@ -146,6 +146,10 @@ module.exports = function (babel) {
         let classNamesPath
 
         path.get('attributes').forEach(openElPath => {
+          if (t.isJSXSpreadAttribute(openElPath.node)) {
+            return
+          }
+
           const attrPath = openElPath.get('name')
           const name = attrPath.node.name
 
