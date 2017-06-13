@@ -1,5 +1,6 @@
 /* eslint-disable jsx-quotes */
 // https://raw.githubusercontent.com/FormidableLabs/component-playground/master/src/components/preview.jsx
+import './index.js.css'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { registerPlugin, transform } from 'babel-standalone'

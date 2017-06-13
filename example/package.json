@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "emotion/glam example project",
   "scripts": {
-    "start": "webpack-dev-server --content-base build/ --port 3000"
+    "start": "webpack-dev-server --content-base build/ --port 3000",
+    "build": "webpack -p --env --progress production"
   },
   "dependencies": {
     "glam": "^4.0.3",
@@ -21,7 +22,7 @@
     "babel-standalone": "^6.24.2",
     "component-playground": "^2.0.0",
     "css-loader": "^0.28.4",
-    "emotion": "^1.0.6",
+    "emotion": "^2.0.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.28.0",

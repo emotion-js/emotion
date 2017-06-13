@@ -67,6 +67,57 @@ const Box = styled.div`
   }
 `
 
+const inputFrag = fragment`
+  flex: 1;
+  font-size: 2em;
+  color: ${props => props.color};
+  outline: none;
+  border: none;
+  border-bottom: 2px solid currentColor;
+  font-family: sans-serif;
+`
+
+const TextInput = styled(
+  ({ className, label, preInput, postInput, ...rest }) => {
+    return (
+      <fieldset className={className}>
+        {label}
+        <div>
+          {preInput}
+          <Input color="#495057" {...rest} />
+          {postInput}
+        </div>
+      </fieldset>
+    )
+  }
+)`
+  color: ${colors.gray[7]};
+  font-size: 20px;
+  margin: 8px 0;
+  outline: none;
+  border: none;
+  & > div { display: flex; }
+  
+  & > input {
+    @apply ${inputFrag};
+  }
+  
+  & .icon {
+    flex: none;
+    height: 40px;
+    width: 40px;
+    background: ${colors.pink[3]};
+    
+    & .pre-input {
+      margin-right: 8px;
+    }
+    
+    & .post-input {
+      margin-left: 8px;
+    }
+  }
+`
+
 const App = () =>
   <Content>
     <Header display="flex">
@@ -85,7 +136,11 @@ const App = () =>
       <H1 css={`color: ${colors.gray[8]}`}>playground</H1>
       <Input color={colors.green[4]} type="text" placeholder="styled input" />
       <Box />
-      <Box/>
+      <TextInput
+        label={<label>Input Label</label>}
+        postInput={<i className="icon post-input" />}
+      />
+      <Box />
     </Content>
   </Content>
 

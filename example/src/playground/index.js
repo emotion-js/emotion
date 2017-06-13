@@ -2,6 +2,7 @@
 // https://raw.githubusercontent.com/FormidableLabs/component-playground/master/src/components/playground.jsx
 /* eslint no-unused-vars:0 */
 // import 'babel-polyfill'
+import './index.js.css'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Editor from 'component-playground/lib/components/editor'
