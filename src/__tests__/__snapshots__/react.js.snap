@@ -2,7 +2,7 @@
 
 exports[`glam react attr 1`] = `
 <h1
-  className=" css-15vt02v vars-178h3yr"
+  className="css-15vt02v vars-178h3yr"
   fontSize={48}
 />
 `;
@@ -17,7 +17,7 @@ exports[`glam react basic 1`] = `
 
 exports[`glam react basic render 1`] = `
 <h1
-  className=" css-13wdnau vars-nujrf4"
+  className="css-13wdnau vars-nujrf4"
 >
   hello world
 </h1>
@@ -50,7 +50,7 @@ exports[`glam react function in expression 1`] = `
 
 exports[`glam react higher order component 1`] = `
 <div
-  className=" css-o7j1h0 css-13wdnau vars-nujrf4"
+  className="css-o7j1h0 css-13wdnau vars-nujrf4"
 >
   <div
     className="css-1l3rx1p"
