@@ -12,6 +12,7 @@ import Playground from './playground'
 
 const componentExample = require('raw-loader!./blocks/basic.example')
 const docMarkdown = require('raw-loader!./guides/index.md')
+const readmeMarkdown = require('raw-loader!../../README.md')
 
 class App extends React.Component {
   render () {
@@ -28,7 +29,7 @@ class App extends React.Component {
             colors,
             render,
             ReactMarkdown,
-            docMarkdown
+            docMarkdown: `${docMarkdown}\n*****\n${readmeMarkdown}`
           }}
         />
       </div>
