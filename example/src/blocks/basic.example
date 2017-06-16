@@ -1,147 +1,38 @@
-// `colors` come from open color
-const Header = styled('header')`
-  flex: none;
-  display: attr(display, block);
-  justify-content: flex-start;
-  align-items: center;
-  
-  & > a {
-    color: ${colors.green[4]};
-  }
+const Heading = styled('h1')`
+
 `
 
-const baseText = fragment`
-  color: ${colors.gray[3]};
+const Link = styled('a')`
+
 `
 
-const H1 = styled('h1')`
-  @apply ${baseText};
-  @media(min-width: 500px) {
-    color: ${colors.gray[5]};
-  }
+const Paragraph = styled('p')`
+
 `
 
-const Banner = styled(H1)`
-  margin: 16px 0px;
-  font-size: 2rem;
-  font-family: sans-serif;
-  text-decoration: none;
+const Code = styled('code')`
+
 `
 
-const HeaderLink = styled('a')`
-  @apply ${baseText};
-  margin-left: auto;
-  text-decoration: none;
-  &:hover {
-    color: ${colors.green[8]};
-  }
+const CodeBlock = styled('pre')`
+
 `
 
-const Content = styled('div')`
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column; 
-  width: 100%;
-`
-
-const Input = styled('input')`
-  @apply ${baseText};
-  font-size: 2em;
-  color: ${props => props.color};
-  outline: none;
-  border: none;
-  border-bottom: 2px solid currentColor;
-  font-family: sans-serif;
-  &::placeholder {
-    color: ${colors.gray[3]};
-  }
-`
-
-const Box = styled.div`
-  border: 1px solid ${colors.gray[8]}
-  min-height: 200px;
-  margin-top: 8px;
-  background-color: ${colors.gray[1]};
-  & + & {
-    background-color: ${colors.green[0]};
-  }
-`
-
-const inputFrag = fragment`
-  flex: 1;
-  font-size: 2em;
-  color: ${props => props.color};
-  outline: none;
-  border: none;
-  border-bottom: 2px solid currentColor;
-  font-family: sans-serif;
-`
-
-const TextInput = styled(
-  ({ className, label, preInput, postInput, ...rest }) => {
-    return (
-      <fieldset className={className}>
-        {label}
-        <div>
-          {preInput}
-          <Input color="#495057" {...rest} />
-          {postInput}
-        </div>
-      </fieldset>
-    )
-  }
-)`
-  color: ${colors.gray[7]};
-  font-size: 20px;
-  margin: 8px 0;
-  outline: none;
-  border: none;
-  & > div { display: flex; }
-  
-  & > input {
-    @apply ${inputFrag};
-  }
-  
-  & .icon {
-    flex: none;
-    height: 40px;
-    width: 40px;
-    background: ${colors.pink[3]};
-    
-    & .pre-input {
-      margin-right: 8px;
-    }
-    
-    & .post-input {
-      margin-left: 8px;
-    }
-  }
-`
-
-const App = () =>
-  <Content>
-    <Header display="flex">
-      <Banner>
-        emotion
-      </Banner>
-      <HeaderLink
-        href="https://github.com/tkh44/emotion"
-        target="_blank"
-        rel="nofollow"
-      >
-        github
-      </HeaderLink>
-    </Header>
-    <Content>
-      <H1 css={`color: ${colors.gray[8]}`}>playground</H1>
-      <Input color={colors.green[4]} type="text" placeholder="styled input" />
-      <Box />
-      <TextInput
-        label={<label>Input Label</label>}
-        postInput={<i className="icon post-input" />}
-      />
-      <Box />
-    </Content>
-  </Content>
-
-render(<App />, mountNode)
+render(
+  <ReactMarkdown
+    source={docMarkdown}
+    renderers={{
+      Heading,
+      Link,
+      Paragraph,
+      CodeBlock: props => {
+        return (
+          <CodeBlock key={props.nodeKey} className={props.className}>
+            <Code>{props.literal}</Code>
+          </CodeBlock>
+        )
+      }
+    }}
+  />,
+  mountNode
+)

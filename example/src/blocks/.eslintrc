@@ -1,0 +1,12 @@
+{
+  "globals": {
+    "React": false,
+    "css": false,
+    "fragment": false,
+    "styled": false,
+    "colors": false,
+    "render": false,
+    "ReactMarkdown": false,
+    "docMarkdown": false
+  }
+}
