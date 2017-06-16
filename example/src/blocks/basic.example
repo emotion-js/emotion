@@ -25,6 +25,7 @@ render(
       Heading,
       Link,
       Paragraph,
+      Code,
       CodeBlock: props => {
         return (
           <CodeBlock key={props.nodeKey} className={props.className}>

@@ -11,7 +11,7 @@ import colors from 'open-color/open-color.json'
 import Playground from './playground'
 
 const componentExample = require('raw-loader!./blocks/basic.example')
-const docMarkdown = require('raw-loader!../../docs/index.md')
+const docMarkdown = require('raw-loader!./guides/index.md')
 
 class App extends React.Component {
   render () {
