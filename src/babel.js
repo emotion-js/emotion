@@ -1,3 +1,59 @@
+import { inline, fragment } from './inline'
+
+function parseDynamicValues (rules, t) {
+  return rules.map(rule => {
+    const re = /xxx(\S)xxx/gm
+    let varMatch
+    let matches = []
+    while ((varMatch = re.exec(rule)) !== null) {
+      matches.push({
+        value: varMatch[0],
+        p1: varMatch[1],
+        index: varMatch.index
+      })
+    }
+
+    let cursor = 0
+    const [quasis, expressions] = matches.reduce(
+      (accum, {value, p1, index}, i) => {
+        const [quasis, expressions] = accum
+        const preMatch = rule.substring(cursor, index)
+        cursor = cursor + preMatch.length + value.length
+        if (preMatch) {
+          quasis.push(t.templateElement({raw: preMatch, cooked: preMatch}))
+        }
+
+        expressions.push(t.identifier(`x${p1}`))
+
+        if (i === matches.length - 1 && cursor <= rule.length) {
+          const postMatch = rule.substring(cursor)
+
+          quasis.push(
+            t.templateElement(
+              {
+                raw: postMatch,
+                cooked: postMatch
+              },
+              true
+            )
+          )
+        }
+        return accum
+      },
+      [[], []]
+    )
+
+    if (!matches.length) {
+      return t.templateLiteral(
+        [t.templateElement({raw: rule, cooked: rule}, true)],
+        []
+      )
+    }
+
+    return t.templateLiteral(quasis, expressions)
+  })
+}
+
 module.exports = function (babel) {
   const { types: t } = babel
 
@@ -124,23 +180,6 @@ module.exports = function (babel) {
     name: 'emotion-for-glam', // not required
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
-      CallExpression (path) {
-        // styled("h1", ["css-8xpzga", [fontSize], function inlineCss(x0) {
-        //   return [`.css-8xpzga { font-size: ${x0}px; }`];
-        // }]);
-        // ->
-        // styled('h1', [css-12, [color], function inlineCss(x0...){}, ...])
-        if (path.node.callee.name === 'css') {
-          const parentPath = path.parentPath
-          if (
-            parentPath.isCallExpression() &&
-            parentPath.node.callee &&
-            parentPath.node.callee.name === 'styled'
-          ) {
-            path.replaceWithMultiple(t.arrayExpression(path.node.arguments))
-          }
-        }
-      },
       JSXOpeningElement (path, state) {
         let cssPath
         let classNamesPath
@@ -241,6 +280,18 @@ module.exports = function (babel) {
           t.isTemplateLiteral(path.node.quasi)
         ) {
           const built = findAndReplaceAttrs(path)
+
+          let {hash, stubs, rules, name} = inline(path.hub.file.code, built)
+
+          let arrayValues = parseDynamicValues(rules, t)
+
+          const inlineExpr = t.functionExpression(
+            t.identifier('inlineCss'),
+            stubs.map((x, i) => t.identifier(`x${i}`)),
+            t.blockStatement([
+              t.returnStatement(t.arrayExpression(arrayValues))
+            ])
+          )
 
           path.replaceWith(
             t.callExpression(path.node.tag.object, [
