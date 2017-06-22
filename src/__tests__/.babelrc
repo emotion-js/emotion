@@ -6,6 +6,5 @@
   ],
   "plugins": [
     ["../babel.js"],
-    ['glam/babel', { sync: true } ],
   ]
 }

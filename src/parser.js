@@ -1,10 +1,10 @@
-import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
-// import { parse } from 'postcss'
-import postcssNested from 'styled-components/lib/vendor/postcss-nested'
-import stringify from 'styled-components/lib/vendor/postcss/stringify'
-import autoprefix from 'styled-components/lib/utils/autoprefix'
+const parse = require('styled-components/lib/vendor/postcss-safe-parser/parse')
+const postcssNested = require('styled-components/lib/vendor/postcss-nested')
+const stringify = require('styled-components/lib/vendor/postcss/stringify')
+const autoprefix = require('styled-components/lib/utils/autoprefix')
 
-export default function parser (css, options = {}) {
+
+module.exports = function parser (css, options = {}) {
   // todo - handle errors
   const root = parse(css)
   if (options.nested !== false) postcssNested(root)

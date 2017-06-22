@@ -1,7 +1,7 @@
 import React from 'react'
-import magic from 'glam'
+import magic from './index'
 
-export const styled = (tag, [cls, vars = [], content]) => props =>
+export const styled = (tag, cls, vars = [], content) => props =>
   React.createElement(
     tag,
     Object.assign({}, props, {
