@@ -81,7 +81,7 @@ export default function (babel) {
 
           let arrayValues = parseDynamicValues(rules, t)
 
-            const inlineContentExpr = t.functionExpression(
+          const inlineContentExpr = t.functionExpression(
               t.identifier('inlineCss'),
               stubs.map((x, i) => t.identifier(`x${i}`)),
               t.blockStatement([

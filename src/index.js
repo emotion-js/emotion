@@ -57,7 +57,6 @@ const fragments = {}
 
 export function fragment (frag, vars, content) {
   if (content) {
-    let fragvarcls = []
     vars = vars.map(v => (/^frag-/.exec(v) ? fragments[v] : v))
     let src = content(...vars) // return array?
     if (src.length > 1) {

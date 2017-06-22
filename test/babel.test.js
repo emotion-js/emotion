@@ -3,7 +3,6 @@
 const babel = require('babel-core')
 const plugin = require('../src/babel')
 
-
 describe('emotion/babel', () => {
   describe('babel styled component', () => {
     test('no use', () => {
