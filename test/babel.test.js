@@ -1,8 +1,8 @@
 /* eslint-disable jsx-quotes,no-useless-escape,no-template-curly-in-string */
 /* eslint-env jest */
-import plugin from '../babel'
-
 const babel = require('babel-core')
+const plugin = require('../src/babel')
+
 
 describe('emotion/babel', () => {
   describe('babel styled component', () => {

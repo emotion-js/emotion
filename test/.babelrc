@@ -1,0 +1,8 @@
+{
+  "presets": [
+    "env",
+    "stage-0",
+    "react",
+    "./babel-preset-emotion-test"
+  ]
+}

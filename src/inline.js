@@ -1,5 +1,5 @@
-const parseCSS = require('./parser')
-const hashArray = require('./hash')
+import parseCSS from './parser'
+import hashArray from './hash'
 
 function getName (str) {
   let regex = /name\s*:\s*([A-Za-z0-9\-_]+)\s*/gm
@@ -9,7 +9,7 @@ function getName (str) {
   }
 }
 
-exports.inline = function inline (code, quasi) {
+export function inline (code, quasi) {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
   let name = getName(strs.join('xxx')) || 'css'
@@ -50,7 +50,7 @@ exports.inline = function inline (code, quasi) {
   return { hash, stubs, name, rules }
 }
 
-exports.fragment = function fragment (path) {
+export function fragment (path) {
   let code = path.hub.file.code
   let strs = path.node.quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?

@@ -1,6 +1,5 @@
-const { inline, fragment } = require('./inline')
-const hashArray = require('./hash')
-const findAndReplaceAttrs = require('./attrs')
+import { fragment, inline } from './inline'
+import findAndReplaceAttrs from './attrs'
 
 function parseDynamicValues (rules, t) {
   return rules.map(rule => {
@@ -56,7 +55,7 @@ function parseDynamicValues (rules, t) {
   })
 }
 
-module.exports = function (babel) {
+export default function (babel) {
   const { types: t } = babel
 
   return {
@@ -130,6 +129,21 @@ module.exports = function (babel) {
               path.node.tag.arguments[0],
               path
             )
+          )
+        } else if (
+          t.isIdentifier(path.node.tag) &&
+          path.node.tag.name === 'fragment'
+        ) {
+          const {hash, stubs, name, rules} = fragment(path)
+          path.replaceWith(
+            t.callExpression(t.identifier('fragment'), [
+              t.stringLiteral(`${name}-${hash}`),
+              t.arrayExpression(stubs.map(i => t.identifier(i))),
+              t.arrowFunctionExpression(
+                stubs.map((x, i) => t.identifier(`x${i}`)),
+                t.arrayExpression(parseDynamicValues(rules, t))
+              )
+            ])
           )
         }
       }

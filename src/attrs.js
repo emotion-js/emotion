@@ -1,4 +1,4 @@
-module.exports = function findAndReplaceAttrs (path, t) {
+export default function findAndReplaceAttrs (path, t) {
   let quasis = path.node.quasi.quasis
   let stubs = path.node.quasi.expressions
   let didFindAtLeastOneMatch = false

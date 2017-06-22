@@ -3,8 +3,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 // eslint-disable-next-line no-unused-vars
-import css, { fragment } from '../index'
-import { styled } from '../react'
+import css, { fragment } from '../lib/index'
+import { styled } from '../lib/styled'
 
 describe('glam react', () => {
   test('basic render', () => {
@@ -83,6 +83,36 @@ describe('glam react', () => {
     const fontSize = 20
     const H1 = styled('h1')`
       font-size: ${fontSize}px;
+    `
+
+    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale}`
+
+    const tree = renderer
+      .create(
+        <H2 scale={2} className={'legacy__class'}>
+          hello world
+        </H2>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('fragments', () => {
+    const fontSize = 20
+
+    const fragA = fragment`
+      color: ${({ color }) => color};
+    `
+
+    const fragB = fragment`
+      height: ${({ height }) => height}px;
+      @apply ${fragA}
+    `
+
+    const H1 = styled('h1')`
+      font-size: ${fontSize}px;
+      @apply ${fragB}
     `
 
     const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale}`

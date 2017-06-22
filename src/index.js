@@ -35,9 +35,8 @@ export function flush () {
   sheet.inject()
 }
 
-export default function css (cls, vars, content) {
+export function css (cls, vars, content) {
   if (content) {
-    let fragvarcls = []
     // inline mode
     vars = vars.map(v => (/^frag-/.exec(v) ? fragments[v] : v))
     let src = content(...vars) // returns an array
