@@ -51,7 +51,7 @@ exports[`react function in expression 1`] = `
 
 exports[`react higher order component 1`] = `
 <div
-  className="css-o7j1h0-1qysf8c css-13wdnau-1ejkrg"
+  className="css-o7j1h0-j261yi css-13wdnau-1ejkrg"
 />
 `;
 
