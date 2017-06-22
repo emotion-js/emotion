@@ -84,4 +84,10 @@ exports[`emotion/babel babel styled component match works on multiple 1`] = `
 });"
 `;
 
+exports[`emotion/babel babel styled component no dynamic 1`] = `
+"styled(\\"h1\\", \\"css-14ksm7b\\", [], function inlineCss() {
+  return [\`.css-14ksm7b { color: blue; }\`];
+});"
+`;
+
 exports[`emotion/babel babel styled component no use 1`] = `"styled(\\"h1\\", \\"css-0\\", []);"`;

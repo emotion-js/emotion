@@ -1,9 +1,9 @@
-# emotion
+# 👩‍🎤 emotion
 
 [github](https://github.com/tkh44/emotion)
 [npm](https://npm.im/emotion)
 
-High performance, precompiled css-in-js using the css you know.
+High performance css-in-js using the css you know.
 
 
 In order to learn more about emotion lets build this guide together. By following along below, we can get this markdown looking good.

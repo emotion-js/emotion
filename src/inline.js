@@ -46,7 +46,6 @@ export function inline (code, quasi) {
       (match, p1) => `xxx${p1}xxx`
     )
   )
-
   return { hash, stubs, name, rules }
 }
 

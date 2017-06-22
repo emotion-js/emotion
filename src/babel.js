@@ -59,7 +59,7 @@ export default function (babel) {
   const { types: t } = babel
 
   return {
-    name: 'emotion-for-glam', // not required
+    name: 'emotion', // not required
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       TaggedTemplateExpression (path) {
@@ -67,7 +67,7 @@ export default function (babel) {
         // styled.h1`color:${color};`
         //
         // out:
-        // css("css-r1aqtk", [colorVar, heightVar], function inlineCss(x0, x1) {
+        // styled('h1', "css-r1aqtk", [colorVar, heightVar], function inlineCss(x0, x1) {
         //   return [`.css-r1aqtk {
         //     margin: 12px;
         //     color: ${x0};
@@ -81,27 +81,21 @@ export default function (babel) {
 
           let arrayValues = parseDynamicValues(rules, t)
 
+            const inlineContentExpr = t.functionExpression(
+              t.identifier('inlineCss'),
+              stubs.map((x, i) => t.identifier(`x${i}`)),
+              t.blockStatement([
+                t.returnStatement(t.arrayExpression(arrayValues))
+              ])
+            )
           const args = [
             tag,
             t.stringLiteral(`${name}-${hash}`),
-            t.arrayExpression(built.expressions)
+            t.arrayExpression(built.expressions),
+            inlineContentExpr
           ]
 
-          if (stubs.length) {
-            args.push(
-              t.functionExpression(
-                t.identifier('inlineCss'),
-                stubs.map((x, i) => t.identifier(`x${i}`)),
-                t.blockStatement([
-                  t.returnStatement(t.arrayExpression(arrayValues))
-                ])
-              )
-            )
-          }
-
-          return hash === 0
-            ? t.callExpression(identifier)
-            : t.callExpression(identifier, args)
+          return t.callExpression(identifier, args)
         }
 
         if (
@@ -134,7 +128,7 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fragment'
         ) {
-          const {hash, stubs, name, rules} = fragment(path)
+          const { hash, stubs, name, rules } = fragment(path)
           path.replaceWith(
             t.callExpression(t.identifier('fragment'), [
               t.stringLiteral(`${name}-${hash}`),

@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`glam react attr 1`] = `
+exports[`react attr 1`] = `
 <h1
   className="css-15vt02v-1mu1h6y"
   fontSize={48}
 />
 `;
 
-exports[`glam react basic render 1`] = `
+exports[`react basic render 1`] = `
 <h1
   className="css-13wdnau-1ejkrg"
 >
@@ -15,7 +15,7 @@ exports[`glam react basic render 1`] = `
 </h1>
 `;
 
-exports[`glam react call expression 1`] = `
+exports[`react call expression 1`] = `
 <h1
   className="legacy__class css-13wdnau-1ejkrg"
 >
@@ -23,7 +23,7 @@ exports[`glam react call expression 1`] = `
 </h1>
 `;
 
-exports[`glam react composition 1`] = `
+exports[`react composition 1`] = `
 <h1
   className="legacy__class css-vxb7tq-tlgws4 css-13wdnau-1ejkrg"
 >
@@ -31,7 +31,7 @@ exports[`glam react composition 1`] = `
 </h1>
 `;
 
-exports[`glam react fragments 1`] = `
+exports[`react fragments 1`] = `
 <h1
   className="legacy__class css-vxb7tq-1qdhtcv css-91i0rz-xcpsbd"
   scale={2}
@@ -40,7 +40,7 @@ exports[`glam react fragments 1`] = `
 </h1>
 `;
 
-exports[`glam react function in expression 1`] = `
+exports[`react function in expression 1`] = `
 <h1
   className="legacy__class css-vxb7tq-1qdhtcv css-13wdnau-1ejkrg"
   scale={2}
@@ -49,8 +49,16 @@ exports[`glam react function in expression 1`] = `
 </h1>
 `;
 
-exports[`glam react higher order component 1`] = `
+exports[`react higher order component 1`] = `
 <div
-  className="css-o7j1h0 css-13wdnau-1ejkrg"
+  className="css-o7j1h0-1qysf8c css-13wdnau-1ejkrg"
 />
+`;
+
+exports[`react no dynamic 1`] = `
+<h1
+  className="css-dae0kw-c5xhik"
+>
+  hello world
+</h1>
 `;

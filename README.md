@@ -13,7 +13,7 @@
 ## Install
 
 ```bash
-npm install -S emotion glam
+npm install -S emotion
 ```
 
 
@@ -21,8 +21,7 @@ npm install -S emotion glam
 ```json
 {
   "plugins": [
-    "emotion/babel",
-    "glam/babel"
+    "emotion/babel"
   ]
 }
 ```
@@ -106,20 +105,4 @@ const Title = ({ title, scale }) => {
 
 ##### Supported value types 
 `em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|%`
-
-
-### css prop
-
-When using the emotion babel plugin, any `css` prop is converted to a class name via glam and appended to any existing class names.
-
-**Similar to importing React when using jsx, `import css from 'glam'` must be at the top of your source files.**
-
-
-```jsx harmony
-const Name = ({ color, name }) => <h1 css={`color: ${color};`}>{name}</h1>
-
-// is converted to
-
-const Name = ({ color, name }) => <h1 className={css`color: ${color};`}>{name}</h1>
-```
 

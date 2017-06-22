@@ -54,7 +54,7 @@ const oldIE = (() => {
 function makeStyleTag () {
   let tag = document.createElement('style')
   tag.type = 'text/css'
-  tag.setAttribute('data-glam', '')
+  tag.setAttribute('data-emotion', '')
   tag.appendChild(document.createTextNode(''))
   ;(document.head || document.getElementsByTagName('head')[0]).appendChild(tag)
   return tag

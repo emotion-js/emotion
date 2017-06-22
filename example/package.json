@@ -7,7 +7,6 @@
     "build": "webpack -p --env --progress production"
   },
   "dependencies": {
-    "glam": "^4.0.3",
     "open-color": "^1.5.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

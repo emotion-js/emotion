@@ -3,10 +3,26 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 // eslint-disable-next-line no-unused-vars
-import css, { fragment } from '../lib/index'
-import { styled } from '../lib/styled'
+import css, { fragment } from '../src/index'
+import styled from '../src/styled'
 
-describe('glam react', () => {
+describe('react', () => {
+  test('no dynamic', () => {
+    const H1 = styled.h1`
+      font-size: 12px;
+    `
+
+    const tree = renderer
+      .create(
+        <H1>
+          hello world
+        </H1>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('basic render', () => {
     const fontSize = 20
     const H1 = styled.h1`
@@ -145,7 +161,7 @@ describe('glam react', () => {
 
     const ColumnContent = flexColumn(Content)
 
-    expect(ColumnContent.displayName).toBe('flexColumnundefined')
+    expect(ColumnContent.displayName).toBe('flexColumnStyled[div](css-13wdnau)')
 
     const tree = renderer.create(<ColumnContent />).toJSON()
 

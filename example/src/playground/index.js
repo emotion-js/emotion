@@ -2,18 +2,24 @@
 // https://raw.githubusercontent.com/FormidableLabs/component-playground/master/src/components/playground.jsx
 /* eslint no-unused-vars:0 */
 // import 'babel-polyfill'
-import './index.js.css'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Editor from 'component-playground/lib/components/editor'
 import Preview from '../preview'
-import css from 'glam'
-import { styled } from 'emotion'
+import styled from 'emotion/styled'
 import colors from 'open-color'
 
 const Content = styled('div')`
   flex: 1 1 auto;
   display: flex;
+  
+  & .ReactCodeMirror {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    min-width: 48vw;
+    & > div { flex: 1;
+  }
 `
 
 class ReactPlayground extends Component {
@@ -82,13 +88,6 @@ class ReactPlayground extends Component {
     return (
       <Content style={{ display: 'flex' }}>
         <Editor
-          css={`
-            flex:1;
-            display:flex;
-            flex-direction:column;
-            min-width: 48vw;
-            & > div { flex: 1; };
-          `}
           codeText={code}
           external={external}
           onChange={this._handleCodeChange}
