@@ -2,22 +2,14 @@
 
 exports[`glam react attr 1`] = `
 <h1
-  className=" css-15vt02v-1mu1h6y"
+  className="css-15vt02v-1mu1h6y"
   fontSize={48}
 />
 `;
 
-exports[`glam react basic 1`] = `
-<p
-  css="color: red;"
->
-  hello world
-</p>
-`;
-
 exports[`glam react basic render 1`] = `
 <h1
-  className=" css-13wdnau-1ejkrg"
+  className="css-13wdnau-1ejkrg"
 >
   hello world
 </h1>
@@ -50,54 +42,6 @@ exports[`glam react function in expression 1`] = `
 
 exports[`glam react higher order component 1`] = `
 <div
-  className=" css-o7j1h0 css-13wdnau-1ejkrg"
->
-  <div
-    css="height: 100px; width: 100px; background-color: #20c997; margin: 8ch;"
-  />
-  <div
-    css="height: 100px; width: 100px; background-color: #20c997; margin: 8ch;"
-  />
-  <div
-    css="height: 100px; width: 100px; background-color: #20c997; margin: 8ch;"
-  />
-  <div
-    css="height: 100px; width: 100px; background-color: #20c997; margin: 8ch;"
-  />
-</div>
-`;
-
-exports[`glam react kitchen sink 1`] = `
-<div
-  className="css__legacy-stuff css-1170hdn vars-k1238z frag-15qcrjv frag-mdk64u"
->
-  <h1
-    className="css-wjhr0q vars-11t1jtz frag-1wh34bm vars-telb2o"
-  >
-    BOOM
-  </h1>
-  <p
-    className="test_class1 css-14jcta0"
-  >
-    Hello
-  </p>
-  <p
-    className="test_class1 test___class45 css-1gdxe9e"
-  >
-    World
-  </p>
-  <p
-    className="css-1g8ltio vars-bs2yjn"
-  >
-    hello world
-  </p>
-</div>
-`;
-
-exports[`glam react string expression 1`] = `
-<p
-  css="color:red;background:blue;font-size:48px;"
->
-  hello world
-</p>
+  className="css-o7j1h0 css-13wdnau-1ejkrg"
+/>
 `;
