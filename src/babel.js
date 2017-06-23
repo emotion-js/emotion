@@ -83,6 +83,7 @@ export default function (babel) {
           const built = findAndReplaceAttrs(path, t)
 
           let { hash, stubs, rules, name } = inline(
+            path.hub.file.code,
             built,
             identifierName,
             'css'
@@ -143,6 +144,7 @@ export default function (babel) {
           path.node.tag.name === 'fragment'
         ) {
           const { hash, stubs, name, rules } = inline(
+            path.hub.file.code,
             path.node.quasi,
             undefined,
             'frag',
@@ -151,7 +153,7 @@ export default function (babel) {
           path.replaceWith(
             t.callExpression(t.identifier('fragment'), [
               t.stringLiteral(`${name}-${hash}`),
-              t.arrayExpression(stubs),
+              t.arrayExpression(stubs.map(x => t.identifier(x))),
               t.functionExpression(
                 t.identifier(''),
                 stubs.map((x, i) => t.identifier(`x${i}`)),

@@ -24,7 +24,7 @@ function getName (extracted, identifierName, fallback, prefix) {
   return parts.join('-')
 }
 
-export function inline (quasi, identifierName, fallback, prefix) {
+export function inline (code, quasi, identifierName, fallback, prefix) {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
   let name = getName(
@@ -34,7 +34,9 @@ export function inline (quasi, identifierName, fallback, prefix) {
     prefix
   )
 
-  let stubs = quasi.expressions
+  let stubs = quasi.expressions.map(x =>
+    code.substring(x.start, x.end)
+  )
 
   let src = strs
     .reduce((arr, str, i) => {
