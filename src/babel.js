@@ -138,10 +138,6 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fragment'
         ) {
-          const parent = path.findParent(p => p.isVariableDeclarator())
-          const identifierName = parent && t.isIdentifier(parent.node.id)
-            ? parent.node.id.name
-            : ''
           const { hash, name, rules } = inline(
             path.node.quasi,
             identifierName,
@@ -168,9 +164,6 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'css'
         ) {
-          const identifierName = parent && t.isIdentifier(parent.node.id)
-            ? parent.node.id.name
-            : ''
           const { hash, name, rules } = inline(
             path.node.quasi,
             identifierName,
