@@ -82,12 +82,7 @@ export default function (babel) {
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, stubs, rules, name } = inline(
-            path.hub.file.code,
-            built,
-            identifierName,
-            'css'
-          )
+          let { hash, rules, name } = inline(built, identifierName, 'css')
 
           // hash will be '0' when no styles are passed so we can just return the original tag
           if (hash === '0') {
@@ -98,7 +93,7 @@ export default function (babel) {
 
           const inlineContentExpr = t.functionExpression(
             t.identifier(''),
-            stubs.map((x, i) => t.identifier(`x${i}`)),
+            built.expressions.map((x, i) => t.identifier(`x${i}`)),
             t.blockStatement([
               t.returnStatement(t.arrayExpression(arrayValues))
             ])
@@ -143,8 +138,7 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fragment'
         ) {
-          const { hash, stubs, name, rules } = inline(
-            path.hub.file.code,
+          const { hash, name, rules } = inline(
             path.node.quasi,
             undefined,
             'frag',
@@ -153,10 +147,12 @@ export default function (babel) {
           path.replaceWith(
             t.callExpression(t.identifier('fragment'), [
               t.stringLiteral(`${name}-${hash}`),
-              t.arrayExpression(stubs.map(x => t.identifier(x))),
+              t.arrayExpression(path.node.quasi.expressions),
               t.functionExpression(
                 t.identifier(''),
-                stubs.map((x, i) => t.identifier(`x${i}`)),
+                path.node.quasi.expressions.map((x, i) =>
+                  t.identifier(`x${i}`)
+                ),
                 t.blockStatement([
                   t.returnStatement(
                     t.arrayExpression(parseDynamicValues(rules, t))

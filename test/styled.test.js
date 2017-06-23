@@ -137,7 +137,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
-  test('fragments', () => {
+  test.skip('fragments', () => {
     const fontSize = 20
 
     const fragA = fragment`
