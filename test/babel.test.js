@@ -22,7 +22,7 @@ describe('emotion/babel', () => {
     })
 
     test('basic', () => {
-      const basic = "styled.h1`font-size: ${fontSize + 'px'};`"
+      const basic = "const H1 = styled.h1`font-size: ${fontSize + 'px'};`"
       const { code } = babel.transform(basic, {
         plugins: [plugin]
       })

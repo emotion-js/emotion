@@ -61,8 +61,8 @@ exports[`emotion/babel babel styled component attr with value type and default v
 `;
 
 exports[`emotion/babel babel styled component basic 1`] = `
-"styled('h1', 'css-1t8i2zo', [fontSize + 'px'], function (x0) {
-  return [\`.css-1t8i2zo { font-size: \${x0}; }\`];
+"const H1 = styled('h1', 'H1-1t8i2zo', [fontSize + 'px'], function (x0) {
+  return [\`.H1-1t8i2zo { font-size: \${x0}; }\`];
 });"
 `;
 

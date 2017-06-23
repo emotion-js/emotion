@@ -1,4 +1,4 @@
-import { fragment, inline } from './inline'
+import { inline } from './inline'
 import findAndReplaceAttrs from './attrs'
 
 function parseDynamicValues (rules, t) {
@@ -83,9 +83,9 @@ export default function (babel) {
           const built = findAndReplaceAttrs(path, t)
 
           let { hash, stubs, rules, name } = inline(
-            path.hub.file.code,
             built,
-            identifierName
+            identifierName,
+            'css'
           )
 
           // hash will be '0' when no styles are passed so we can just return the original tag
@@ -142,11 +142,16 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fragment'
         ) {
-          const { hash, stubs, name, rules } = fragment(path)
+          const { hash, stubs, name, rules } = inline(
+            path.node.quasi,
+            undefined,
+            'frag',
+            'frag'
+          )
           path.replaceWith(
             t.callExpression(t.identifier('fragment'), [
               t.stringLiteral(`${name}-${hash}`),
-              t.arrayExpression(stubs.map(i => t.identifier(i))),
+              t.arrayExpression(stubs),
               t.functionExpression(
                 t.identifier(''),
                 stubs.map((x, i) => t.identifier(`x${i}`)),
