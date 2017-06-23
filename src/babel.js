@@ -74,20 +74,25 @@ export default function (babel) {
         //     height: ${x1}; }`];
         // });
 
+        const parent = path.findParent(p => p.isVariableDeclarator())
+        const identifierName = parent && t.isIdentifier(parent.node.id)
+          ? parent.node.id.name
+          : ''
+
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, stubs, rules, name } = inline(path.hub.file.code, built)
+          let { hash, stubs, rules, name } = inline(path.hub.file.code, built, identifierName)
 
           let arrayValues = parseDynamicValues(rules, t)
 
           const inlineContentExpr = t.functionExpression(
-              t.identifier('inlineCss'),
-              stubs.map((x, i) => t.identifier(`x${i}`)),
-              t.blockStatement([
-                t.returnStatement(t.arrayExpression(arrayValues))
-              ])
-            )
+            t.identifier('inlineCss'),
+            stubs.map((x, i) => t.identifier(`x${i}`)),
+            t.blockStatement([
+              t.returnStatement(t.arrayExpression(arrayValues))
+            ])
+          )
           const args = [
             tag,
             t.stringLiteral(`${name}-${hash}`),

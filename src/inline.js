@@ -9,10 +9,10 @@ function getName (str) {
   }
 }
 
-export function inline (code, quasi) {
+export function inline (code, quasi, identifierName) {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
-  let name = getName(strs.join('xxx')) || 'css'
+  let name = getName(strs.join('xxx')) || identifierName || 'css'
 
   let stubs = quasi.expressions.map(x => code.substring(x.start, x.end))
 
@@ -47,11 +47,11 @@ export function inline (code, quasi) {
   return { hash, stubs, name, rules }
 }
 
-export function fragment (path) {
+export function fragment (path, identifierName) {
   let code = path.hub.file.code
   let strs = path.node.quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
-  let extractedName = getName(strs.join('xxx'))
+  let extractedName = getName(strs.join('xxx')) || identifierName
   const name = typeof extractedName === 'string'
     ? 'frag-' + extractedName
     : extractedName || 'frag-'
@@ -76,13 +76,13 @@ export function fragment (path) {
     .trim()
 
   let rules = parseCSS(`.${name}-${hash} { ${src} }`)
-  rules = rules.map((rule) =>
+  rules = rules.map(rule =>
     rule.replace(
       /@apply\s+--[A-Za-z0-9-_]+-([0-9]+)/gm,
       (match, p1) => `xxx${p1}xxx`
     )
   )
-  rules = rules.map((rule) =>
+  rules = rules.map(rule =>
     rule.replace(
       /var\(--[A-Za-z0-9-_]+-([0-9]+)\)/gm,
       (match, p1) => `xxx${p1}xxx`
