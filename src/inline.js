@@ -9,28 +9,23 @@ function extractNameFromProperty (str) {
   }
 }
 
-function getName (extracted, identifierName, fallback, prefix) {
+function getName (extracted, identifierName, prefix) {
   const parts = []
-  if (prefix) {
-    parts.push(prefix)
-  }
+  parts.push(prefix)
   if (extracted) {
     parts.push(extracted)
   } else if (identifierName) {
     parts.push(identifierName)
-  } else if (fallback && prefix !== fallback) {
-    parts.push(fallback)
   }
   return parts.join('-')
 }
 
-export function inline (quasi, identifierName, fallback, prefix) {
+export function inline (quasi, identifierName, prefix) {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
   let name = getName(
     extractNameFromProperty(strs.join('xxx')),
     identifierName,
-    fallback,
     prefix
   )
 

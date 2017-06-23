@@ -92,7 +92,7 @@ export default function (babel) {
           let arrayValues = parseDynamicValues(rules, t)
 
           const inlineContentExpr = t.functionExpression(
-            t.identifier(''),
+            t.identifier('createEmotionStyledRules'),
             built.expressions.map((x, i) => t.identifier(`x${i}`)),
             t.blockStatement([
               t.returnStatement(t.arrayExpression(arrayValues))
@@ -138,10 +138,13 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fragment'
         ) {
+          const parent = path.findParent(p => p.isVariableDeclarator())
+          const identifierName = parent && t.isIdentifier(parent.node.id)
+            ? parent.node.id.name
+            : ''
           const { hash, name, rules } = inline(
             path.node.quasi,
-            undefined,
-            'frag',
+            identifierName,
             'frag'
           )
           path.replaceWith(
@@ -149,7 +152,36 @@ export default function (babel) {
               t.stringLiteral(`${name}-${hash}`),
               t.arrayExpression(path.node.quasi.expressions),
               t.functionExpression(
-                t.identifier(''),
+                t.identifier('createEmotionFragment'),
+                path.node.quasi.expressions.map((x, i) =>
+                  t.identifier(`x${i}`)
+                ),
+                t.blockStatement([
+                  t.returnStatement(
+                    t.arrayExpression(parseDynamicValues(rules, t))
+                  )
+                ])
+              )
+            ])
+          )
+        } else if (
+          t.isIdentifier(path.node.tag) &&
+          path.node.tag.name === 'css'
+        ) {
+          const identifierName = parent && t.isIdentifier(parent.node.id)
+            ? parent.node.id.name
+            : ''
+          const { hash, name, rules } = inline(
+            path.node.quasi,
+            identifierName,
+            'css'
+          )
+          path.replaceWith(
+            t.callExpression(t.identifier('css'), [
+              t.stringLiteral(`${name}-${hash}`),
+              t.arrayExpression(path.node.quasi.expressions),
+              t.functionExpression(
+                t.identifier('createEmotionRules'),
                 path.node.quasi.expressions.map((x, i) =>
                   t.identifier(`x${i}`)
                 ),
