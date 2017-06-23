@@ -82,7 +82,11 @@ export default function (babel) {
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, stubs, rules, name } = inline(path.hub.file.code, built, identifierName)
+          let { hash, stubs, rules, name } = inline(
+            path.hub.file.code,
+            built,
+            identifierName
+          )
 
           // hash will be '0' when no styles are passed so we can just return the original tag
           if (hash === '0') {
@@ -147,7 +151,9 @@ export default function (babel) {
                 t.identifier(''),
                 stubs.map((x, i) => t.identifier(`x${i}`)),
                 t.blockStatement([
-                  t.returnStatement(t.arrayExpression(parseDynamicValues(rules, t)))
+                  t.returnStatement(
+                    t.arrayExpression(parseDynamicValues(rules, t))
+                  )
                 ])
               )
             ])
