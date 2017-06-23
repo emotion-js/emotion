@@ -105,9 +105,9 @@ const frag = fragment(\\"frag-frag-zzm2ov\\", [], function createEmotionFragment
 const fragB = fragment(\\"frag-fragB-16v04hq\\", [heightVar, frag], function createEmotionFragment(x0, x1) {
         return [\`.frag-fragB-16v04hq { height: \${x0};\${x1}; }\`];
 });
-const cls2 = css(\\"css-cls2-1t4eq0g\\", [frag, fragB], function createEmotionRules(x0, x1) {
-        return [\`.css-cls2-1t4eq0g { \${x0};
-        \${x1}; 
+const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRules(x0, x1) {
+        return [\`.css-cls2-1b4c3x0 { \${x0};
+        \${x1};
         margin: 12px 48px;
         color: #ffffff; }\`];
 });"
