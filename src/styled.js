@@ -13,15 +13,16 @@ export default function (tag, cls, vars = [], content) {
       tag,
       Object.assign({}, props, {
         className: props.className
-          ? props.className +
-          ' ' +
-          className
+          ? props.className + ' ' + className
           : className
       })
     )
   }
 
-  Styled.displayName = `Styled[${typeof tag === 'string' ? tag : tag.displayName || 'Wrapped'}](${cls})`
+  const [name] = cls.split('-')
+  const debugName = name === 'css' ? '' : `.${name}`
+  const componentTag = tag.displayName || tag.name || 'Component'
+  Styled.displayName = `styled(${componentTag}${debugName})`
 
   return Styled
 }

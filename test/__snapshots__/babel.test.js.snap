@@ -90,4 +90,8 @@ exports[`emotion/babel babel styled component no dynamic 1`] = `
 });"
 `;
 
-exports[`emotion/babel babel styled component no use 1`] = `"styled(\\"h1\\", \\"css-0\\", []);"`;
+exports[`emotion/babel babel styled component no use 1`] = `
+"styled(\\"h1\\", \\"css-0\\", [], function inlineCss() {
+  return [\`.css-0 {  }\`];
+});"
+`;

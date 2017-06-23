@@ -2,11 +2,16 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
+import { matcher, serializer } from '../jest-utils'
+
 // eslint-disable-next-line no-unused-vars
 import css, { fragment } from '../src/index'
 import styled from '../src/styled'
 
-describe('react', () => {
+expect.addSnapshotSerializer(serializer)
+expect.extend(matcher)
+
+describe('styled', () => {
   test('no dynamic', () => {
     const H1 = styled.h1`
       font-size: 12px;
@@ -20,7 +25,7 @@ describe('react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('basic render', () => {
@@ -37,7 +42,25 @@ describe('react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
+  test('name', () => {
+    const fontSize = 20
+    const H1 = styled.h1`
+      name: FancyH1;
+      font-size: ${fontSize}px;
+    `
+
+    const tree = renderer
+      .create(
+        <H1>
+          hello world
+        </H1>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('attr', () => {
@@ -56,7 +79,7 @@ describe('react', () => {
 
     const tree = renderer.create(<Title />).toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('call expression', () => {
@@ -73,7 +96,7 @@ describe('react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('composition', () => {
@@ -92,7 +115,7 @@ describe('react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('function in expression', () => {
@@ -111,7 +134,7 @@ describe('react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('fragments', () => {
@@ -128,10 +151,10 @@ describe('react', () => {
 
     const H1 = styled('h1')`
       font-size: ${fontSize}px;
-      @apply ${fragB}
+      @apply ${fragB};
     `
 
-    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale}`
+    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale};`
 
     const tree = renderer
       .create(
@@ -141,7 +164,7 @@ describe('react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('higher order component', () => {
@@ -150,21 +173,28 @@ describe('react', () => {
       font-size: ${fontSize}px;
     `
 
+    const squirtleBlueBackground = fragment`
+      name: squirtle-blue-bg;
+      background-color: #7FC8D6;
+    `
+
     const flexColumn = Component => {
       const NewComponent = styled(Component)`
+        name: onyx;
+        background-color: '#343a40';
         flex-direction: column;
+        @apply ${squirtleBlueBackground};
       `
-      NewComponent.displayName = `flexColumn${Component.displayName}`
 
       return NewComponent
     }
 
     const ColumnContent = flexColumn(Content)
 
-    expect(ColumnContent.displayName).toBe('flexColumnStyled[div](css-13wdnau)')
+    // expect(ColumnContent.displayName).toMatchSnapshotWithEmotion()
 
     const tree = renderer.create(<ColumnContent />).toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 })

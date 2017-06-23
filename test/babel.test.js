@@ -13,7 +13,7 @@ describe('emotion/babel', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test.only('no dynamic', () => {
+    test('no dynamic', () => {
       const basic = 'styled.h1`color:blue;`'
       const {code} = babel.transform(basic, {
         plugins: [plugin]

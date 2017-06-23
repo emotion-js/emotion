@@ -1,13 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`react attr 1`] = `
+exports[`styled attr 1`] = `
+.css-15vt02v-1mu1h6y {
+  font-size: 48;
+  margin: 4rem;
+}
+
 <h1
   className="css-15vt02v-1mu1h6y"
   fontSize={48}
 />
 `;
 
-exports[`react basic render 1`] = `
+exports[`styled basic render 1`] = `
+.css-13wdnau-1ejkrg {
+  font-size: 20px;
+}
+
 <h1
   className="css-13wdnau-1ejkrg"
 >
@@ -15,7 +24,11 @@ exports[`react basic render 1`] = `
 </h1>
 `;
 
-exports[`react call expression 1`] = `
+exports[`styled call expression 1`] = `
+.css-13wdnau-1ejkrg {
+  font-size: 20px;
+}
+
 <h1
   className="legacy__class css-13wdnau-1ejkrg"
 >
@@ -23,7 +36,15 @@ exports[`react call expression 1`] = `
 </h1>
 `;
 
-exports[`react composition 1`] = `
+exports[`styled composition 1`] = `
+.css-13wdnau-1ejkrg {
+  font-size: 20px;
+}
+
+.css-vxb7tq-tlgws4 {
+  font-size: 13.333333333333334;
+}
+
 <h1
   className="legacy__class css-vxb7tq-tlgws4 css-13wdnau-1ejkrg"
 >
@@ -31,16 +52,34 @@ exports[`react composition 1`] = `
 </h1>
 `;
 
-exports[`react fragments 1`] = `
+exports[`styled fragments 1`] = `
+.css-1t8i2zo-1pkc20m {
+  font-size: 40;
+}
+
+.css-1qd8mfb-1iy24ha {
+  font-size: 20px;
+  height: ({ height }) => heightpx;
+  color: ({ color }) => color;
+}
+
 <h1
-  className="legacy__class css-vxb7tq-1qdhtcv css-91i0rz-xcpsbd"
+  className="legacy__class css-1t8i2zo-1pkc20m css-1qd8mfb-1iy24ha"
   scale={2}
 >
   hello world
 </h1>
 `;
 
-exports[`react function in expression 1`] = `
+exports[`styled function in expression 1`] = `
+.css-13wdnau-1ejkrg {
+  font-size: 20px;
+}
+
+.css-vxb7tq-1qdhtcv {
+  font-size: 40;
+}
+
 <h1
   className="legacy__class css-vxb7tq-1qdhtcv css-13wdnau-1ejkrg"
   scale={2}
@@ -49,13 +88,46 @@ exports[`react function in expression 1`] = `
 </h1>
 `;
 
-exports[`react higher order component 1`] = `
+exports[`styled higher order component 1`] = `
+.css-13wdnau-1ejkrg {
+  font-size: 20px;
+}
+
+.onyx-wn422p-1q77sy7 {
+  name: onyx;
+  background-color: '#343a40';
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  name: squirtle-blue-bg;
+  background-color: #7FC8D6;
+}
+
 <div
-  className="css-o7j1h0-j261yi css-13wdnau-1ejkrg"
+  className="onyx-wn422p-1q77sy7 css-13wdnau-1ejkrg"
 />
 `;
 
-exports[`react no dynamic 1`] = `
+exports[`styled name 1`] = `
+.FancyH1-1azfbv1-1vm6m3p {
+  name: FancyH1;
+  font-size: 20px;
+}
+
+<h1
+  className="FancyH1-1azfbv1-1vm6m3p"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled no dynamic 1`] = `
+.css-dae0kw-c5xhik {
+  font-size: 12px;
+}
+
 <h1
   className="css-dae0kw-c5xhik"
 >
