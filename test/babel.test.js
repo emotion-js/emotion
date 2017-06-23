@@ -7,7 +7,7 @@ describe('emotion/babel', () => {
   describe('babel styled component', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [plugin]
       })
       expect(code).toMatchSnapshot()
@@ -15,14 +15,14 @@ describe('emotion/babel', () => {
 
     test('no dynamic', () => {
       const basic = 'styled.h1`color:blue;`'
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [plugin]
       })
       expect(code).toMatchSnapshot()
     })
 
     test('basic', () => {
-      const basic = 'styled.h1`font-size: ${fontSize + \'px\'};`'
+      const basic = "styled.h1`font-size: ${fontSize + 'px'};`"
       const { code } = babel.transform(basic, {
         plugins: [plugin]
       })
@@ -30,7 +30,7 @@ describe('emotion/babel', () => {
     })
 
     test('function call', () => {
-      const basic = 'styled(MyComponent)`font-size: ${fontSize + \'px\'};`'
+      const basic = "styled(MyComponent)`font-size: ${fontSize + 'px'};`"
       const { code } = babel.transform(basic, {
         plugins: [plugin]
       })

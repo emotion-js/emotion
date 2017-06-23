@@ -24,7 +24,7 @@
     "size": "echo \"Gzipped Size: $(strip-json-comments --no-whitespace $npm_package_main | gzip-size)\"",
     "release": "npm run test && npm run build && npm run umd && npm version patch && npm publish && git push --tags",
     "lint": "standard --fix",
-    "format": "prettier-eslint --write \"src/**/*.js\""
+    "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },
   "dependencies": {
     "styled-components": "2.0.0"
