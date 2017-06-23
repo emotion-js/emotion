@@ -84,10 +84,15 @@ export default function (babel) {
 
           let { hash, stubs, rules, name } = inline(path.hub.file.code, built, identifierName)
 
+          // hash will be '0' when no styles are passed so we can just return the original tag
+          if (hash === '0') {
+            return tag
+          }
+
           let arrayValues = parseDynamicValues(rules, t)
 
           const inlineContentExpr = t.functionExpression(
-            t.identifier('inlineCss'),
+            t.identifier(''),
             stubs.map((x, i) => t.identifier(`x${i}`)),
             t.blockStatement([
               t.returnStatement(t.arrayExpression(arrayValues))
@@ -138,9 +143,12 @@ export default function (babel) {
             t.callExpression(t.identifier('fragment'), [
               t.stringLiteral(`${name}-${hash}`),
               t.arrayExpression(stubs.map(i => t.identifier(i))),
-              t.arrowFunctionExpression(
+              t.functionExpression(
+                t.identifier(''),
                 stubs.map((x, i) => t.identifier(`x${i}`)),
-                t.arrayExpression(parseDynamicValues(rules, t))
+                t.blockStatement([
+                  t.returnStatement(t.arrayExpression(parseDynamicValues(rules, t)))
+                ])
               )
             ])
           )

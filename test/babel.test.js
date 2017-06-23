@@ -37,6 +37,28 @@ describe('emotion/babel', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('basic fragment', () => {
+      const basic = `
+        const frag = fragment\`color: green\`;
+        styled.h1\`font-size: 20px; @apply \${frag};\``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('fragment kitchen sink', () => {
+      const basic = `
+        const frag = fragment\`color: green; background-color: \${backgroundColor}\`;
+        const frag1 = fragment\` width: 20px; name: some-frag-name; \`
+        const frag2 = fragment\` height: 20px; @apply \${frag1}; \`
+        styled.h1\`font-size: \${fontSize + 'px'}; name: some-name; @apply \${frag}; @apply \${frag2}\``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('attr', () => {
       const basic = `styled('input')\`
        margin: attr(margin);

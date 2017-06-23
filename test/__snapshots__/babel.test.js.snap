@@ -5,7 +5,7 @@ exports[`emotion/babel babel styled component attr 1`] = `
        return props.margin;
 }, props => props.height * props.scale, function getWidth(props) {
        return props.width;
-}, flex], function inlineCss(x0, x1, x2, x3) {
+}, flex], function (x0, x1, x2, x3) {
        return [\`.css-14vghnb { margin: \${x0};
        color: #ffffff;
        height: \${x1};
@@ -26,7 +26,7 @@ exports[`emotion/babel babel styled component attr kitchen sink 1`] = `
         return props.height ? props.height : ('90' + 'vw');
 }, function getDisplay(props) {
         return props.display ? props.display : ('flex' + '');
-}], function inlineCss(x0, x1, x2, x3, x4) {
+}], function (x0, x1, x2, x3, x4) {
         return [\`.css-1lqib20 { margin: \${x0};
         padding: \${x1};
         font-size: attr(fontSize ch, 8);
@@ -39,7 +39,7 @@ exports[`emotion/babel babel styled component attr kitchen sink 1`] = `
 exports[`emotion/babel babel styled component attr with default value 1`] = `
 "styled('input', 'css-1luxokk', [function getMargin(props) {
         return props.margin ? props.margin : ('16' + '');
-}], function inlineCss(x0) {
+}], function (x0) {
         return [\`.css-1luxokk { margin: \${x0}; }\`];
 });"
 `;
@@ -47,7 +47,7 @@ exports[`emotion/babel babel styled component attr with default value 1`] = `
 exports[`emotion/babel babel styled component attr with value type 1`] = `
 "styled('input', 'css-1luxokk', [function getMargin(props) {
         return props.margin + 'px';
-}], function inlineCss(x0) {
+}], function (x0) {
         return [\`.css-1luxokk { margin: \${x0}; }\`];
 });"
 `;
@@ -55,19 +55,45 @@ exports[`emotion/babel babel styled component attr with value type 1`] = `
 exports[`emotion/babel babel styled component attr with value type and default value 1`] = `
 "styled('input', 'css-1luxokk', [function getMargin(props) {
         return props.margin ? props.margin : ('16' + 'px');
-}], function inlineCss(x0) {
+}], function (x0) {
         return [\`.css-1luxokk { margin: \${x0}; }\`];
 });"
 `;
 
 exports[`emotion/babel babel styled component basic 1`] = `
-"styled('h1', 'css-1t8i2zo', [fontSize + 'px'], function inlineCss(x0) {
+"styled('h1', 'css-1t8i2zo', [fontSize + 'px'], function (x0) {
   return [\`.css-1t8i2zo { font-size: \${x0}; }\`];
 });"
 `;
 
+exports[`emotion/babel babel styled component basic fragment 1`] = `
+"
+const frag = fragment(\\"frag-upmkpf\\", [], function () {
+        return [\`.frag-upmkpf { color: green }\`];
+});
+styled(\\"h1\\", \\"css-u3lc8x\\", [frag], function (x0) {
+        return [\`.css-u3lc8x { font-size: 20px; \${x0}; }\`];
+});"
+`;
+
+exports[`emotion/babel babel styled component fragment kitchen sink 1`] = `
+"
+const frag = fragment('frag-10oh1gr', [backgroundColor], function (x0) {
+        return [\`.frag-10oh1gr { color: green; background-color: \${x0} }\`];
+});
+const frag1 = fragment('frag-some-frag-name-1ymjbmm', [], function () {
+        return [\`.frag-some-frag-name-1ymjbmm { width: 20px; name: some-frag-name; }\`];
+});
+const frag2 = fragment('frag-q1t5oy', [frag1], function (x0) {
+        return [\`.frag-q1t5oy { height: 20px; \${x0}; }\`];
+});
+styled('h1', 'some-name-9k8moo', [fontSize + 'px', frag, frag2], function (x0, x1, x2) {
+        return [\`.some-name-9k8moo { font-size: \${x0}; name: some-name; \${x1}; \${x2} }\`];
+});"
+`;
+
 exports[`emotion/babel babel styled component function call 1`] = `
-"styled(MyComponent, 'css-1t8i2zo', [fontSize + 'px'], function inlineCss(x0) {
+"styled(MyComponent, 'css-1t8i2zo', [fontSize + 'px'], function (x0) {
   return [\`.css-1t8i2zo { font-size: \${x0}; }\`];
 });"
 `;
@@ -77,7 +103,7 @@ exports[`emotion/babel babel styled component match works on multiple 1`] = `
         return props.margin ? props.margin : ('16' + 'px');
 }, function getPadding(props) {
         return props.padding ? props.padding : ('16' + 'em');
-}], function inlineCss(x0, x1) {
+}], function (x0, x1) {
         return [\`.css-1j6h68f { margin: \${x0};
         color: blue;
         padding: \${x1}; }\`];
@@ -85,13 +111,9 @@ exports[`emotion/babel babel styled component match works on multiple 1`] = `
 `;
 
 exports[`emotion/babel babel styled component no dynamic 1`] = `
-"styled(\\"h1\\", \\"css-14ksm7b\\", [], function inlineCss() {
+"styled(\\"h1\\", \\"css-14ksm7b\\", [], function () {
   return [\`.css-14ksm7b { color: blue; }\`];
 });"
 `;
 
-exports[`emotion/babel babel styled component no use 1`] = `
-"styled(\\"h1\\", \\"css-0\\", [], function inlineCss() {
-  return [\`.css-0 {  }\`];
-});"
-`;
+exports[`emotion/babel babel styled component no use 1`] = `"\\"h1\\";"`;

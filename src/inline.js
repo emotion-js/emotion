@@ -54,7 +54,7 @@ export function fragment (path, identifierName) {
   let extractedName = getName(strs.join('xxx')) || identifierName
   const name = typeof extractedName === 'string'
     ? 'frag-' + extractedName
-    : extractedName || 'frag-'
+    : extractedName || 'frag'
 
   let stubs = path.node.quasi.expressions.map(x =>
     code.substring(x.start, x.end)
