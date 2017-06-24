@@ -53,18 +53,18 @@ exports[`styled composition 1`] = `
 `;
 
 exports[`styled fragments 1`] = `
-.H2-1t8i2zo-1ci3vp8 {
-  font-size: 40;
+.css-H2-idm3bz-361gww {
+  font-size: 32px;
 }
 
-.H1-1qd8mfb-n3glby {
+.css-H1-1qd8mfb-1mxqzi0 {
   font-size: 20px;
-  height: ({ height }) => heightpx;
-  color: ({ color }) => color;
+  height: 64px;
+  color: blue;
 }
 
 <h1
-  className="legacy__class H2-1t8i2zo-1ci3vp8 H1-1qd8mfb-n3glby"
+  className="legacy__class css-H2-idm3bz-361gww css-H1-1qd8mfb-1mxqzi0"
   scale={2}
 >
   hello world
