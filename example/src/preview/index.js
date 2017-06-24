@@ -1,19 +1,24 @@
 /* eslint-disable jsx-quotes */
 // https://raw.githubusercontent.com/FormidableLabs/component-playground/master/src/components/preview.jsx
-import './index.js.css'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { registerPlugin, transform } from 'babel-standalone'
-import { styled } from 'emotion'
+import styled from 'emotion/styled'
 // eslint-disable-next-line no-unused-vars
-import css from 'glam'
+import { css } from 'emotion'
 
-registerPlugin('glam/babel', require('glam/babel'))
 registerPlugin('emotion/babel', require('emotion/babel'))
 
 const Content = styled('div')`
   flex: 1 1 auto;
   display: flex;
+`
+
+const PreviewWrapper = styled(Content)`
+  flex-direction: column;
+  margin: 0 8px;
+  -webkit-overflow-scrolling: touch;
+  overflow:auto;
 `
 
 class Preview extends Component {
@@ -65,10 +70,7 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [
-            'emotion/babel',
-            ['glam/babel', { sync: true, inline: true }]
-          ]
+          plugins: ['emotion/babel']
         }
       ).code
     } else {
@@ -80,10 +82,7 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [
-            'emotion/babel',
-            ['glam/babel', { sync: true, inline: true }]
-          ]
+          plugins: ['emotion/babel']
         }
       ).code
     }
@@ -129,10 +128,10 @@ class Preview extends Component {
   render () {
     const { error } = this.state
     return (
-      <Content css="margin: 0 8px;-webkit-overflow-scrolling: touch;overflow:auto;">
+      <PreviewWrapper>
         {error !== null ? <Content>{error}</Content> : null}
-        <div ref="mount" css="width: 100%;height:100%;" />
-      </Content>
+        <div ref="mount" style={{ width: '100%', height: '100%' }} />
+      </PreviewWrapper>
     )
   }
 }

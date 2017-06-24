@@ -4,10 +4,9 @@
   "description": "emotion/glam example project",
   "scripts": {
     "start": "webpack-dev-server --content-base build/ --port 3000",
-    "build": "webpack -p --env --progress production"
+    "build": "webpack -p --env production --progress"
   },
   "dependencies": {
-    "glam": "^4.0.3",
     "open-color": "^1.5.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

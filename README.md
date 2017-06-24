@@ -1,6 +1,14 @@
-# emotion
+<h1 align="center" style="color: #343a40">
+  <img src="https://cdn.rawgit.com/tkh44/smitty/master/emotion.png" alt="emotion" width="200">
+  <br>
+  emotion
+  <br>
+  <br>
+</h1>
+<p align="center" style="font-size: 1.2rem;">high performance js for your css</p>
 
-## 👩‍🎤 Glam + React
+
+
 
 [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://travis-ci.org/tkh44/emotion.svg?branch=master)](https://travis-ci.org/tkh44/emotion)
@@ -13,7 +21,7 @@
 ## Install
 
 ```bash
-npm install -S emotion glam
+npm install -S emotion
 ```
 
 
@@ -21,8 +29,7 @@ npm install -S emotion glam
 ```json
 {
   "plugins": [
-    "emotion/babel",
-    "glam/babel"
+    "emotion/babel"
   ]
 }
 ```
@@ -106,20 +113,4 @@ const Title = ({ title, scale }) => {
 
 ##### Supported value types 
 `em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|%`
-
-
-### css prop
-
-When using the emotion babel plugin, any `css` prop is converted to a class name via glam and appended to any existing class names.
-
-**Similar to importing React when using jsx, `import css from 'glam'` must be at the top of your source files.**
-
-
-```jsx harmony
-const Name = ({ color, name }) => <h1 css={`color: ${color};`}>{name}</h1>
-
-// is converted to
-
-const Name = ({ color, name }) => <h1 className={css`color: ${color};`}>{name}</h1>
-```
 

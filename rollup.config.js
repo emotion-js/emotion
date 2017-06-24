@@ -6,10 +6,10 @@ import buble from 'rollup-plugin-buble'
 const pkg = JSON.parse(fs.readFileSync('./package.json'))
 
 export default {
-  entry: 'src/react.js',
-  external: ['react', 'prop-types', 'glam'],
+  entry: 'src/styled.js',
+  external: ['react'],
   exports: 'named',
-  globals: { react: 'React', 'prop-types': 'PropTypes', glam: 'glam' },
+  globals: { react: 'React' },
   useStrict: false,
   sourceMap: true,
   plugins: [
@@ -25,8 +25,6 @@ export default {
     })
   ],
   targets: [
-    {dest: pkg.main, format: 'cjs'},
-    {dest: pkg.module, format: 'es'},
     {dest: pkg['umd:main'], format: 'umd', moduleName: pkg.name}
   ]
 }

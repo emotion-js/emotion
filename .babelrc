@@ -3,11 +3,10 @@
     [
       "env",
       {
-        "modules": false,
         "loose": true
       }
     ],
-    "stage-2",
+    "stage-0",
     "react"
   ],
   "env": {
