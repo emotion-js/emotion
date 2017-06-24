@@ -1,5 +1,5 @@
 <h1 align="center" style="color: #343a40">
-  <img src="https://cdn.rawgit.com/tkh44/smitty/master/emotion.png" alt="emotion" width="200">
+  <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" width="200">
   <br>
   emotion
   <br>
