@@ -3,7 +3,6 @@
   <br>
   emotion
   <br>
-  <br>
 </h1>
 <p align="center" style="font-size: 1.2rem;">high performance js for your css</p>
 
