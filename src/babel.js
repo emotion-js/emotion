@@ -1,4 +1,4 @@
-import { fragment, inline } from './inline'
+import { inline } from './inline'
 import findAndReplaceAttrs from './attrs'
 
 function parseDynamicValues (rules, t) {
@@ -82,13 +82,18 @@ export default function (babel) {
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, stubs, rules, name } = inline(path.hub.file.code, built, identifierName)
+          let { hash, rules, name } = inline(built, identifierName, 'css')
+
+          // hash will be '0' when no styles are passed so we can just return the original tag
+          if (hash === '0') {
+            return tag
+          }
 
           let arrayValues = parseDynamicValues(rules, t)
 
           const inlineContentExpr = t.functionExpression(
-            t.identifier('inlineCss'),
-            stubs.map((x, i) => t.identifier(`x${i}`)),
+            t.identifier('createEmotionStyledRules'),
+            built.expressions.map((x, i) => t.identifier(`x${i}`)),
             t.blockStatement([
               t.returnStatement(t.arrayExpression(arrayValues))
             ])
@@ -133,14 +138,51 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fragment'
         ) {
-          const { hash, stubs, name, rules } = fragment(path)
+          const { hash, name, rules } = inline(
+            path.node.quasi,
+            identifierName,
+            'frag'
+          )
           path.replaceWith(
             t.callExpression(t.identifier('fragment'), [
               t.stringLiteral(`${name}-${hash}`),
-              t.arrayExpression(stubs.map(i => t.identifier(i))),
-              t.arrowFunctionExpression(
-                stubs.map((x, i) => t.identifier(`x${i}`)),
-                t.arrayExpression(parseDynamicValues(rules, t))
+              t.arrayExpression(path.node.quasi.expressions),
+              t.functionExpression(
+                t.identifier('createEmotionFragment'),
+                path.node.quasi.expressions.map((x, i) =>
+                  t.identifier(`x${i}`)
+                ),
+                t.blockStatement([
+                  t.returnStatement(
+                    t.arrayExpression(parseDynamicValues(rules, t))
+                  )
+                ])
+              )
+            ])
+          )
+        } else if (
+          t.isIdentifier(path.node.tag) &&
+          path.node.tag.name === 'css'
+        ) {
+          const { hash, name, rules } = inline(
+            path.node.quasi,
+            identifierName,
+            'css'
+          )
+          path.replaceWith(
+            t.callExpression(t.identifier('css'), [
+              t.stringLiteral(`${name}-${hash}`),
+              t.arrayExpression(path.node.quasi.expressions),
+              t.functionExpression(
+                t.identifier('createEmotionRules'),
+                path.node.quasi.expressions.map((x, i) =>
+                  t.identifier(`x${i}`)
+                ),
+                t.blockStatement([
+                  t.returnStatement(
+                    t.arrayExpression(parseDynamicValues(rules, t))
+                  )
+                ])
               )
             ])
           )

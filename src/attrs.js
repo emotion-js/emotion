@@ -34,14 +34,14 @@ export default function findAndReplaceAttrs (path, t) {
 
         if (preAttr) {
           accum[0].push(
-            t.templateElement({raw: preAttr, cooked: preAttr}, false)
+            t.templateElement({ raw: preAttr, cooked: preAttr }, false)
           )
         }
 
         if (postAttr && j === matches.length - 1) {
           accum[0].push(
             t.templateElement(
-              {raw: postAttr, cooked: postAttr},
+              { raw: postAttr, cooked: postAttr },
               i === quasis.length - 1
             )
           )

@@ -1,7 +1,7 @@
 import parseCSS from './parser'
 import hashArray from './hash'
 
-function getName (str) {
+function extractNameFromProperty (str) {
   let regex = /name\s*:\s*([A-Za-z0-9\-_]+)\s*/gm
   let match = regex.exec(str)
   if (match) {
@@ -9,61 +9,30 @@ function getName (str) {
   }
 }
 
-export function inline (code, quasi, identifierName) {
-  let strs = quasi.quasis.map(x => x.value.cooked)
-  let hash = hashArray([...strs]) // todo - add current filename?
-  let name = getName(strs.join('xxx')) || identifierName || 'css'
-
-  let stubs = quasi.expressions.map(x => code.substring(x.start, x.end))
-
-  let src = strs
-    .reduce((arr, str, i) => {
-      arr.push(str)
-      if (i !== stubs.length) {
-        // todo - test for preceding @apply
-        let applyMatch = /@apply\s*$/gm.exec(str)
-        if (applyMatch) {
-          arr.push(`--${name}-${hash}-${i}`)
-        } else arr.push(`var(--${name}-${hash}-${i})`)
-      }
-      return arr
-    }, [])
-    .join('')
-    .trim()
-
-  let rules = parseCSS(`.${name}-${hash} { ${src} }`)
-  rules = rules.map(rule =>
-    rule.replace(
-      /@apply\s+--[A-Za-z0-9-_]+-([0-9]+)/gm,
-      (match, p1) => `xxx${p1}xxx`
-    )
-  )
-  rules = rules.map(rule =>
-    rule.replace(
-      /var\(--[A-Za-z0-9-_]+-([0-9]+)\)/gm,
-      (match, p1) => `xxx${p1}xxx`
-    )
-  )
-  return { hash, stubs, name, rules }
+function getName (extracted, identifierName, prefix) {
+  const parts = []
+  parts.push(prefix)
+  if (extracted) {
+    parts.push(extracted)
+  } else if (identifierName) {
+    parts.push(identifierName)
+  }
+  return parts.join('-')
 }
 
-export function fragment (path, identifierName) {
-  let code = path.hub.file.code
-  let strs = path.node.quasi.quasis.map(x => x.value.cooked)
+export function inline (quasi, identifierName, prefix) {
+  let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
-  let extractedName = getName(strs.join('xxx')) || identifierName
-  const name = typeof extractedName === 'string'
-    ? 'frag-' + extractedName
-    : extractedName || 'frag-'
-
-  let stubs = path.node.quasi.expressions.map(x =>
-    code.substring(x.start, x.end)
+  let name = getName(
+    extractNameFromProperty(strs.join('xxx')),
+    identifierName,
+    prefix
   )
 
   let src = strs
     .reduce((arr, str, i) => {
       arr.push(str)
-      if (i !== stubs.length) {
+      if (i !== quasi.expressions.length) {
         // todo - test for preceding @apply
         let applyMatch = /@apply\s*$/gm.exec(str)
         if (applyMatch) {
@@ -89,5 +58,5 @@ export function fragment (path, identifierName) {
     )
   )
 
-  return { hash, stubs, name, rules }
+  return { hash, name, rules }
 }

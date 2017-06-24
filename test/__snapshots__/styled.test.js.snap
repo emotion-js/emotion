@@ -1,52 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled attr 1`] = `
-.H1-15vt02v-m798do {
+.css-H1-15vt02v-1n5h3v0 {
   font-size: 48;
   margin: 4rem;
 }
 
 <h1
-  className="H1-15vt02v-m798do"
+  className="css-H1-15vt02v-1n5h3v0"
   fontSize={48}
 />
 `;
 
 exports[`styled basic render 1`] = `
-.H1-13wdnau-4e22ma {
+.css-H1-13wdnau-xy96vj {
   font-size: 20px;
 }
 
 <h1
-  className="H1-13wdnau-4e22ma"
+  className="css-H1-13wdnau-xy96vj"
 >
   hello world
 </h1>
 `;
 
 exports[`styled call expression 1`] = `
-.H1-13wdnau-4e22ma {
+.css-H1-13wdnau-xy96vj {
   font-size: 20px;
 }
 
 <h1
-  className="legacy__class H1-13wdnau-4e22ma"
+  className="legacy__class css-H1-13wdnau-xy96vj"
 >
   hello world
 </h1>
 `;
 
 exports[`styled composition 1`] = `
-.H1-13wdnau-4e22ma {
+.css-H1-13wdnau-xy96vj {
   font-size: 20px;
 }
 
-.H2-vxb7tq-1rf0eq4 {
+.css-H2-vxb7tq-1gn1gp5 {
   font-size: 13.333333333333334;
 }
 
 <h1
-  className="legacy__class H2-vxb7tq-1rf0eq4 H1-13wdnau-4e22ma"
+  className="legacy__class css-H2-vxb7tq-1gn1gp5 css-H1-13wdnau-xy96vj"
 >
   hello world
 </h1>
@@ -72,16 +72,16 @@ exports[`styled fragments 1`] = `
 `;
 
 exports[`styled function in expression 1`] = `
-.H1-13wdnau-4e22ma {
+.css-H1-13wdnau-xy96vj {
   font-size: 20px;
 }
 
-.H2-vxb7tq-tp299i {
+.css-H2-vxb7tq-1wx98rf {
   font-size: 40;
 }
 
 <h1
-  className="legacy__class H2-vxb7tq-tp299i H1-13wdnau-4e22ma"
+  className="legacy__class css-H2-vxb7tq-1wx98rf css-H1-13wdnau-xy96vj"
   scale={2}
 >
   hello world
@@ -89,7 +89,7 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.onyx-wn422p-1q77sy7 {
+.css-onyx-wn422p-gyln3i {
   name: onyx;
   background-color: '#343a40';
   -webkit-flex-direction: column;
@@ -101,35 +101,35 @@ exports[`styled higher order component 1`] = `
   background-color: #7FC8D6;
 }
 
-.Content-13wdnau-1jaetra {
+.css-Content-13wdnau-1z6hk6 {
   font-size: 20px;
 }
 
 <div
-  className="onyx-wn422p-1q77sy7 Content-13wdnau-1jaetra"
+  className="css-onyx-wn422p-gyln3i css-Content-13wdnau-1z6hk6"
 />
 `;
 
 exports[`styled name 1`] = `
-.FancyH1-1azfbv1-1vm6m3p {
+.css-FancyH1-1azfbv1-qrqyj0 {
   name: FancyH1;
   font-size: 20px;
 }
 
 <h1
-  className="FancyH1-1azfbv1-1vm6m3p"
+  className="css-FancyH1-1azfbv1-qrqyj0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled no dynamic 1`] = `
-.H1-dae0kw-3ik5va {
+.css-H1-dae0kw-kdrkuq {
   font-size: 12px;
 }
 
 <h1
-  className="H1-dae0kw-3ik5va"
+  className="css-H1-dae0kw-kdrkuq"
 >
   hello world
 </h1>
