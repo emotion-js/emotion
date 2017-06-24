@@ -137,15 +137,15 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
-  test.skip('fragments', () => {
+  test('fragments', () => {
     const fontSize = 20
 
     const fragA = fragment`
-      color: ${({ color }) => color};
+      color: blue;
     `
 
     const fragB = fragment`
-      height: ${({ height }) => height}px;
+      height: 64px;
       @apply ${fragA}
     `
 
@@ -154,7 +154,7 @@ describe('styled', () => {
       @apply ${fragB};
     `
 
-    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale};`
+    const H2 = styled(H1)`font-size:32px;`
 
     const tree = renderer
       .create(
