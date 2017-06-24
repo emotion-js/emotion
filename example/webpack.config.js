@@ -31,6 +31,7 @@ module.exports = env => {
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve('src', 'index.tpl.html'),
+        favicon: './favicon.ico',
         filename: 'index.html',
         inject: false
       })

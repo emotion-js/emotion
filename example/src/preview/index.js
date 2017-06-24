@@ -14,7 +14,8 @@ const Content = styled('div')`
   display: flex;
 `
 
-const Wrapper = styled(Content)`
+const PreviewWrapper = styled(Content)`
+  flex-direction: column;
   margin: 0 8px;
   -webkit-overflow-scrolling: touch;
   overflow:auto;
@@ -127,10 +128,10 @@ class Preview extends Component {
   render () {
     const { error } = this.state
     return (
-      <Wrapper>
+      <PreviewWrapper>
         {error !== null ? <Content>{error}</Content> : null}
         <div ref="mount" style={{ width: '100%', height: '100%' }} />
-      </Wrapper>
+      </PreviewWrapper>
     )
   }
 }

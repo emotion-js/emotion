@@ -13,7 +13,7 @@ const componentExample = require('raw-loader!./blocks/basic.example')
 const docMarkdown = require('raw-loader!./guides/index.md')
 const readmeMarkdown = require('raw-loader!../../README.md')
 
-const Wrapper = styled('div')`
+const PlaygroundWrapper = styled('div')`
   flex:1;
   display:flex;
   flex-direction:column;
@@ -23,7 +23,7 @@ const Wrapper = styled('div')`
 class App extends React.Component {
   render () {
     return (
-      <Wrapper>
+      <PlaygroundWrapper>
         <Playground
           noRender={false}
           codeText={componentExample}
@@ -38,7 +38,7 @@ class App extends React.Component {
             docMarkdown: `${docMarkdown}\n*****\n${readmeMarkdown}`
           }}
         />
-      </Wrapper>
+      </PlaygroundWrapper>
     )
   }
 }
