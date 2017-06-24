@@ -1,4 +1,5 @@
-import { inline } from './inline'
+import { parseKeyframe } from './parser'
+import { inline, keyframes } from './inline'
 import findAndReplaceAttrs from './attrs'
 
 function parseDynamicValues (rules, t) {
@@ -164,7 +165,7 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'css'
         ) {
-          const { hash, name, rules } = inline(
+          const {hash, name, rules} = inline(
             path.node.quasi,
             identifierName,
             'css'
@@ -186,6 +187,35 @@ export default function (babel) {
               )
             ])
           )
+        } else if (
+          t.isIdentifier(path.node.tag) &&
+          path.node.tag.name === 'keyframes'
+        ) {
+          // const {hash, name, rules} = inline(
+          //   path.node.quasi,
+          //   identifierName,
+          //   'keyframe'
+          // )
+
+          keyframes(path.node.quasi, identifierName, 'keyframes')
+
+          // path.replaceWith(
+          //   t.callExpression(t.identifier('keyframe'), [
+          //     t.stringLiteral(`${name}-${hash}`),
+          //     t.arrayExpression(path.node.quasi.expressions),
+          //     t.functionExpression(
+          //       t.identifier('createEmotionKeyframe'),
+          //       path.node.quasi.expressions.map((x, i) =>
+          //         t.identifier(`x${i}`)
+          //       ),
+          //       t.blockStatement([
+          //         t.returnStatement(
+          //           t.arrayExpression(parseDynamicValues(rules, t))
+          //         )
+          //       ])
+          //     )
+          //   ])
+          // )
         }
       }
     }

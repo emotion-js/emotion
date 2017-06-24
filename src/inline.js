@@ -1,4 +1,4 @@
-import parseCSS from './parser'
+import { parseCSS, parseKeyframe } from './parser'
 import hashArray from './hash'
 
 function extractNameFromProperty (str) {
@@ -59,4 +59,22 @@ export function inline (quasi, identifierName, prefix) {
   )
 
   return { hash, name, rules }
+}
+
+export function keyframes (quasi, identifierName, prefix) {
+  let strs = quasi.quasis.map(x => x.value.cooked)
+  let hash = hashArray([...strs]) // todo - add current filename?
+  let name = getName(
+    extractNameFromProperty(strs.join('xxx')),
+    identifierName,
+    prefix
+  )
+
+  let src = strs
+    .join('')
+    .trim()
+
+  let rules = parseKeyframe([src], name)
+
+  return {hash, name, rules}
 }

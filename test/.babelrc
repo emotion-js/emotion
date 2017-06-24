@@ -1,5 +1,6 @@
 {
   "presets": [
+    "flow",
     "env",
     "stage-0",
     "react",

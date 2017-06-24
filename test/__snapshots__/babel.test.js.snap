@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`emotion/babel babel keyframes keyframe basic 1`] = `
+"
+const rotate360 = keyframes\`
+          from {
+            transform: rotate(0deg);
+          }
+        
+          to {
+            transform: rotate(360deg);
+          }
+      \`;"
+`;
+
 exports[`emotion/babel babel styled component attr 1`] = `
 "styled('input', 'css-14vghnb', [function getMargin(props) {
        return props.margin;
