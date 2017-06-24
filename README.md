@@ -1,6 +1,12 @@
-# emotion
+<h1 align="center" style="color: #343a40">
+  <img src="https://cdn.rawgit.com/tkh44/smitty/master/emotion.png" alt="emotion" width="200">
+  <br>
+  emotion
+  <br>
+  <br>
+</h1>
+<p align="center" style="font-size: 1.2rem;">high performance js for your css</p>
 
-## 👩‍🎤 Glam + React
 
 [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://travis-ci.org/tkh44/emotion.svg?branch=master)](https://travis-ci.org/tkh44/emotion)
