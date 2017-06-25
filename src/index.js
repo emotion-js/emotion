@@ -12,10 +12,14 @@ export function flush () {
   sheet.inject()
 }
 
-export function css (cls, vars, content) {
+export function css (
+  cls: string,
+  vars: Array<string | number | (() => string | number)>,
+  content: () => mixed[]
+) {
   // inline mode
   vars = vars.map(v => (/^frag-/.exec(v) ? fragments[v] : v))
-  let src = content(...vars) // returns an array
+  let src = content(...vars)
   let hash = hashArray(src)
 
   if (!inserted[hash]) {
@@ -29,9 +33,13 @@ export function css (cls, vars, content) {
 
 const fragments = {}
 
-export function fragment (frag, vars, content) {
+export function fragment (
+  frag: string,
+  vars: Array<string | number | (() => string | number)>,
+  content: () => mixed[]
+) {
   vars = vars.map(v => (/^frag-/.exec(v) ? fragments[v] : v))
-  let src = content(...vars) // return array?
+  let src = content(...vars)
   if (src.length > 1) {
     throw new Error('what up!')
   }
@@ -43,6 +51,22 @@ export function fragment (frag, vars, content) {
     src.length - 1
   )
   return `${frag}-${hash}`
+}
+
+export function keyframes (
+  kfm: string,
+  vars: Array<string | number | (() => string | number)>,
+  content: () => mixed[]
+) {
+  let src = content(...vars)
+  let hash = hashArray(src)
+  if (!inserted[hash]) {
+    inserted[hash] = true
+    src.forEach(r => {
+      return sheet.insert(`@keyframes ${kfm}-${hash} {${r}}`)
+    })
+  }
+  return `${kfm}-${hash}`
 }
 
 export function hydrate (ids) {

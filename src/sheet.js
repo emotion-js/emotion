@@ -39,9 +39,10 @@ function sheetForTag (tag) {
   }
 }
 
-const isBrowser = typeof window !== 'undefined'
-const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV // (x => (x === 'development') || !x)(process.env.NODE_ENV)
-const isTest = process.env.NODE_ENV === 'test'
+const isBrowser: boolean = typeof window !== 'undefined'
+const isDev: boolean =
+  process.env.NODE_ENV === 'development' || !process.env.NODE_ENV // (x => (x === 'development') || !x)(process.env.NODE_ENV)
+const isTest: boolean = process.env.NODE_ENV === 'test'
 
 const oldIE = (() => {
   if (isBrowser) {
@@ -64,7 +65,7 @@ export function StyleSheet (
   {
     speedy = !isDev && !isTest,
     maxLength = isBrowser && oldIE ? 4000 : 65000
-  } = {}
+  }: { speedy: boolean, maxLength: number } = {}
 ) {
   this.isSpeedy = speedy // the big drawback here is that the css won't be editable in devtools
   this.sheet = undefined

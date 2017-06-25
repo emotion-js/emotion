@@ -86,7 +86,7 @@ class ReactPlayground extends Component {
     } = this.props
 
     return (
-      <PlaygroundContent style={{ display: 'flex' }}>
+      <Content style={{ display: 'flex' }}>
         <Editor
           codeText={code}
           external={external}
@@ -101,7 +101,7 @@ class ReactPlayground extends Component {
           noRender={noRender}
           previewComponent={previewComponent}
         />
-      </PlaygroundContent>
+      </Content>
     )
   }
 }

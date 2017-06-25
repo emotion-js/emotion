@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`keyframes renders 1`] = `
+.css-H1-o0kcx2-5hrnwy {
+  font-size: 20px;
+  -webkit-animation: animation-bounce-10a3qiv-c1ph90 2s linear infinite;
+  animation: animation-bounce-10a3qiv-c1ph90 2s linear infinite;
+}
+
+<h1
+  className="css-H1-o0kcx2-5hrnwy"
+>
+  hello world
+</h1>
+`;

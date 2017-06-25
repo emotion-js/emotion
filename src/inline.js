@@ -1,4 +1,4 @@
-import parseCSS from './parser'
+import { parseCSS } from './parser'
 import hashArray from './hash'
 
 function extractNameFromProperty (str) {
@@ -59,4 +59,20 @@ export function inline (quasi, identifierName, prefix) {
   )
 
   return { hash, name, rules }
+}
+
+export function keyframes (quasi, identifierName, prefix) {
+  let strs = quasi.quasis.map(x => x.value.cooked)
+  let hash = hashArray([...strs])
+  let name = getName(
+    extractNameFromProperty(strs.join('xxx')),
+    identifierName,
+    prefix
+  )
+
+  return {
+    hash,
+    name,
+    rules: [parseCSS(`{ ${strs.join('').trim()} }`).join('').trim()]
+  }
 }

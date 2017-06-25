@@ -7,7 +7,8 @@
       }
     ],
     "stage-0",
-    "react"
+    "react",
+    "flow"
   ],
   "env": {
     "test": {
@@ -19,7 +20,8 @@
           }
         ],
         "stage-2",
-        "react"
+        "react",
+        "flow"
       ]
     }
   }

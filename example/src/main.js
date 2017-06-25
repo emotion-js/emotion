@@ -4,7 +4,7 @@ import './dracula.css'
 import React from 'react'
 import { render } from 'react-dom'
 import styled from 'emotion/styled'
-import { css, fragment } from 'emotion'
+import { css, fragment, keyframes } from 'emotion'
 import ReactMarkdown from 'react-markdown'
 import colors from 'open-color/open-color.json'
 import Playground from './playground'
@@ -30,6 +30,7 @@ class App extends React.Component {
           scope={{
             React,
             css,
+            keyframes,
             fragment,
             styled,
             colors,

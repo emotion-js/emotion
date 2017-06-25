@@ -178,4 +178,22 @@ describe('emotion/babel', () => {
       expect(code).toMatchSnapshot()
     })
   })
+  describe('babel keyframes', () => {
+    test('keyframe basic', () => {
+      const basic = `
+        const rotate360 = keyframes\`
+          from {
+            transform: rotate(0deg);
+          }
+        
+          to {
+            transform: rotate(360deg);
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+  })
 })
