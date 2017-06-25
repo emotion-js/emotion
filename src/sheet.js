@@ -1,4 +1,3 @@
-// @flow
 /*
 
 high performance StyleSheet for css-in-js systems

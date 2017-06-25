@@ -2,6 +2,12 @@ import React from 'react'
 import { css } from './index'
 
 export default function (tag, cls, vars = [], content) {
+  if (!tag) {
+    throw new Error(
+      'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
+    )
+  }
+
   function Styled (props) {
     const className = css(
       cls,
@@ -13,7 +19,7 @@ export default function (tag, cls, vars = [], content) {
       tag,
       Object.assign({}, props, {
         className: props.className
-          ? props.className + ' ' + className
+          ? className + ' ' + props.className
           : className
       })
     )

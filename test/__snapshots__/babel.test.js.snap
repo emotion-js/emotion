@@ -2,15 +2,9 @@
 
 exports[`emotion/babel babel keyframes keyframe basic 1`] = `
 "
-const rotate360 = keyframes\`
-          from {
-            transform: rotate(0deg);
-          }
-        
-          to {
-            transform: rotate(360deg);
-          }
-      \`;"
+const rotate360 = keyframes(\\"animation-rotate360-f35ahc\\", [], function createEmotionKeyframe() {
+  return [\\"from {\\\\n    -webkit-transform: rotate(0deg);\\\\n    -ms-transform: rotate(0deg);\\\\n    transform: rotate(0deg);\\\\n} to {\\\\n    -webkit-transform: rotate(360deg);\\\\n    -ms-transform: rotate(360deg);\\\\n    transform: rotate(360deg);\\\\n}\\"];
+});"
 `;
 
 exports[`emotion/babel babel styled component attr 1`] = `

@@ -190,7 +190,7 @@ describe('emotion/babel', () => {
             transform: rotate(360deg);
           }
       \`;`
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()
