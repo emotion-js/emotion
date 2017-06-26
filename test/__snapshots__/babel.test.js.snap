@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`emotion/babel babel font-face font-face basic 1`] = `
+"
+fontFace(\\"font-face-1o0czbr\\", [], function createEmotionFontFace() {
+     return [\\"@font-face {font-family: MyHelvetica;\\\\n          src: local(\\\\\\"Helvetica Neue Bold\\\\\\"),\\\\n               local(\\\\\\"HelveticaNeue-Bold\\\\\\"),\\\\n               url(MgOpenModernaBold.ttf);\\\\n          font-weight: bold;}\\"];
+});"
+`;
+
 exports[`emotion/babel babel keyframes keyframe basic 1`] = `
 "
 const rotate360 = keyframes(\\"animation-rotate360-f35ahc\\", [], function createEmotionKeyframe() {
