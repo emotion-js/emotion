@@ -207,7 +207,7 @@ describe('emotion/babel', () => {
       })
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
-      expect(fs.writeFileSync.mock.calls).toMatchSnapshot()
+      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
     })
   })
   describe('babel css extract', () => {

@@ -204,29 +204,12 @@ const H1 = styled('h1', 'css-H1-q3ohdq', [fontSize + 'px', props => props.transl
 `;
 
 exports[`emotion/babel babel styled component extract based on props 2`] = `
-Array [
-  Array [
-    "/Users/mitchellhamilton/Projects/emotion/test/babel.test.js.css",
-    ".css-14ksm7b {
-    color: blue
-}",
-  ],
-  Array [
-    "/Users/mitchellhamilton/Projects/emotion/test/babel.test.js.css",
-    ".css-H1-1mh2el5 {
-    height: 20px
-}",
-  ],
-  Array [
-    "/Users/mitchellhamilton/Projects/emotion/test/babel.test.js.css",
-    ".css-H1-q3ohdq {
+".css-H1-q3ohdq {
     height: 20px;
     -webkit-transform: translateX(var(--css-H1-q3ohdq-1));
     -ms-transform: translateX(var(--css-H1-q3ohdq-1));
     transform: translateX(var(--css-H1-q3ohdq-1))
-}",
-  ],
-]
+}"
 `;
 
 exports[`emotion/babel babel styled component extract basic 1`] = `
