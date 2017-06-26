@@ -1,10 +1,13 @@
-# 👩‍🎤 emotion
+<h1 align="center" style="color: #343a40">
+  <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" width="200">
+  <br>
+  emotion
+  <br>
+</h1>
+<p align="center" style="font-size: 1.2rem;">high performance css-in-js</p>
 
 [github](https://github.com/tkh44/emotion)
 [npm](https://npm.im/emotion)
-
-High performance css-in-js using the css you know.
-
 
 In order to learn more about emotion lets build this guide together. By following along below, we can get this markdown looking good.
 

@@ -16,9 +16,13 @@ const Content = styled('div')`
 
 const PreviewWrapper = styled(Content)`
   flex-direction: column;
-  margin: 0 8px;
+  padding: 16px 16px;
   -webkit-overflow-scrolling: touch;
   overflow:auto;
+  
+  @media(min-width: 680px) {
+    padding: 32px 48px;
+  }
 `
 
 class Preview extends Component {
