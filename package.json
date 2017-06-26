@@ -1,11 +1,9 @@
 {
   "name": "emotion",
-  "version": "2.0.1",
+  "version": "3.0.1",
   "description": "👩‍🎤 Glam + React",
-  "jsnext:main": "dist/emotion.es.js",
   "module": "src/index.js",
   "main": "lib/index.js",
-  "umd:main": "dist/emotion.umd.js",
   "files": [
     "babel.js",
     "src",
@@ -22,7 +20,7 @@
     "minify:cjs": "uglifyjs $npm_package_main -cm toplevel -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
     "minify:umd": "uglifyjs $npm_package_umd_main -cm -o $npm_package_umd_main -p relative --in-source-map ${npm_package_umd_main}.map --source-map ${npm_package_umd_main}.map",
     "size": "echo \"Gzipped Size: $(strip-json-comments --no-whitespace $npm_package_umd_main | gzip-size)\"",
-    "release": "npm run test && npm run build && npm run umd && npm version patch && npm publish && git push --tags",
+    "release": "npm run test && npm run build && npm version patch && npm publish && git push --tags",
     "lint": "standard --fix",
     "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },

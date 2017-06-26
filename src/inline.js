@@ -76,3 +76,18 @@ export function keyframes (quasi, identifierName, prefix) {
     rules: [parseCSS(`{ ${strs.join('').trim()} }`).join('').trim()]
   }
 }
+
+export function fontFace (quasi, identifierName, prefix) {
+  let strs = quasi.quasis.map(x => x.value.cooked)
+  let hash = hashArray([...strs])
+  let name = getName(
+    extractNameFromProperty(strs.join('xxx')),
+    identifierName,
+    prefix
+  )
+  return {
+    hash,
+    name,
+    rules: [parseCSS(`@font-face {${strs.join('').trim()}}`, { nested: false }).join('').trim()]
+  }
+}

@@ -1,5 +1,5 @@
 import { parseKeyframes } from './parser'
-import { inline, keyframes } from './inline'
+import { inline, keyframes, fontFace } from './inline'
 import findAndReplaceAttrs from './attrs'
 
 function parseDynamicValues (rules, t) {
@@ -203,6 +203,33 @@ export default function (babel) {
               t.arrayExpression(path.node.quasi.expressions),
               t.functionExpression(
                 t.identifier('createEmotionKeyframe'),
+                path.node.quasi.expressions.map((x, i) =>
+                  t.identifier(`x${i}`)
+                ),
+                t.blockStatement([
+                  t.returnStatement(
+                    t.arrayExpression(rules.map(r => t.stringLiteral(r)))
+                  )
+                ])
+              )
+            ])
+          )
+        } else if (
+          t.isIdentifier(path.node.tag) &&
+          path.node.tag.name === 'fontFace'
+        ) {
+          const {hash, name, rules} = fontFace(
+            path.node.quasi,
+            identifierName,
+            'font-face'
+          )
+
+          path.replaceWith(
+            t.callExpression(t.identifier('fontFace'), [
+              t.stringLiteral(`${name}-${hash}`),
+              t.arrayExpression(path.node.quasi.expressions),
+              t.functionExpression(
+                t.identifier('createEmotionFontFace'),
                 path.node.quasi.expressions.map((x, i) =>
                   t.identifier(`x${i}`)
                 ),

@@ -196,4 +196,20 @@ describe('emotion/babel', () => {
       expect(code).toMatchSnapshot()
     })
   })
+  describe('babel font-face', () => {
+    test('font-face basic', () => {
+      const basic = `
+        fontFace\`
+          font-family: MyHelvetica;
+          src: local("Helvetica Neue Bold"),
+               local("HelveticaNeue-Bold"),
+               url(MgOpenModernaBold.ttf);
+          font-weight: bold;
+      \`;`
+      const {code} = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+  })
 })

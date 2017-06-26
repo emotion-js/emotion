@@ -69,6 +69,22 @@ export function keyframes (
   return `${kfm}-${hash}`
 }
 
+export function fontFace (
+  fontRules: string,
+  vars: Array<string | number | (() => string | number)>,
+  content: () => mixed[]
+) {
+  let src = content(...vars)
+  let hash = hashArray(src)
+  if (!inserted[hash]) {
+    inserted[hash] = true
+    src.forEach(r => {
+      return sheet.insert(r)
+    })
+  }
+  return `${fontRules}-${hash}`
+}
+
 export function hydrate (ids) {
   ids.forEach(id => (inserted[id] = true))
 }
