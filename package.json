@@ -7,7 +7,8 @@
   "files": [
     "babel.js",
     "src",
-    "dist"
+    "dist",
+    "lib"
   ],
   "scripts": {
     "build": "babel src -d lib",
@@ -25,7 +26,6 @@
     "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },
   "dependencies": {
-    "codecov": "^2.2.0",
     "styled-components": "2.0.0"
   },
   "devDependencies": {
@@ -38,9 +38,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "color-convert": "^1.9.0",
     "gzip-size-cli": "^2.0.0",
-    "has-flag": "^2.0.0",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-emotion-react": "^0.0.2",

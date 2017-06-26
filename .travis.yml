@@ -2,7 +2,6 @@ language: node_js
 
 node_js:
   - "7"
-  - "8"
 
 cache:
   directories:
@@ -10,8 +9,6 @@ cache:
 
 before_install:
   - npm install codecov
-  # Fix codecov missing deps (issue with node version 8 only)
-  - npm install -D has-flag color-convert
 
 install:
   - npm install
