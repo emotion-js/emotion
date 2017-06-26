@@ -19,7 +19,10 @@ css\`
 
 let output
 
-const cssFilename = __filename + '.css' // eslint-disable-line no-path-concat
+const filenameArr = __filename.split('.')
+filenameArr.pop()
+filenameArr.push('emotion', 'css')
+const cssFilename = filenameArr.join('.')
 
 describe('babel plugin fs', () => {
   test('creates and writes to the css file when it does not exist', () => {

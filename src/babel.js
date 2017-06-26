@@ -76,7 +76,10 @@ export default function (babel) {
         exit (path, state) {
           if (state.staticRules.length !== 0) {
             const toWrite = state.staticRules.join('\n').trim()
-            const cssFilename = path.hub.file.opts.filename + '.css'
+            const filenameArr = path.hub.file.opts.filename.split('.')
+            filenameArr.pop()
+            filenameArr.push('emotion', 'css')
+            const cssFilename = filenameArr.join('.')
             const exists = fs.existsSync(cssFilename)
             path.node.body.unshift(t.importDeclaration([], t.stringLiteral('./' + basename(cssFilename))))
             if (

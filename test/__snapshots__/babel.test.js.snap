@@ -38,7 +38,7 @@ const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRu
 `;
 
 exports[`emotion/babel babel css extract css basic 1`] = `
-"import \\"./babel.test.js.css\\";
+"import \\"./babel.test.emotion.css\\";
 
 css(\\"css-cu78iu\\", [widthVar], function createEmotionRules(x0) {
         return [\`.css-cu78iu {
@@ -63,7 +63,7 @@ exports[`emotion/babel babel css extract css basic 2`] = `
 `;
 
 exports[`emotion/babel babel css extract css kitchen sink 1`] = `
-"import \\"./babel.test.js.css\\";
+"import \\"./babel.test.emotion.css\\";
 
 const cls = css(\\"css-cls-h5t3cu\\", [margin], function createEmotionRules(x0) {
         return [\`.css-cls-h5t3cu {margin: \${x0}; }\`];
@@ -197,7 +197,7 @@ exports[`emotion/babel babel styled component basic 1`] = `
 `;
 
 exports[`emotion/babel babel styled component extract based on props 1`] = `
-"import './babel.test.js.css';
+"import './babel.test.emotion.css';
 const H1 = styled('h1', 'css-H1-q3ohdq', [fontSize + 'px', props => props.translateX], function createEmotionStyledRules(x0, x1) {
   return [\`.css-H1-q3ohdq { font-size: \${x0} }\`];
 });"
@@ -213,7 +213,7 @@ exports[`emotion/babel babel styled component extract based on props 2`] = `
 `;
 
 exports[`emotion/babel babel styled component extract basic 1`] = `
-"import './babel.test.js.css';
+"import './babel.test.emotion.css';
 const H1 = styled('h1', 'css-H1-1mh2el5', [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [\`.css-H1-1mh2el5 { font-size: \${x0} }\`];
 });"
@@ -226,7 +226,7 @@ exports[`emotion/babel babel styled component extract basic 2`] = `
 `;
 
 exports[`emotion/babel babel styled component extract no dynamic 1`] = `
-"import \\"./babel.test.js.css\\";
+"import \\"./babel.test.emotion.css\\";
 styled(\\"h1\\", \\"css-14ksm7b\\", [], function createEmotionStyledRules() {
   return [];
 });"

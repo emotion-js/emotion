@@ -17,7 +17,7 @@ exports[`babel plugin fs creates and writes to the css file when it does not exi
 `;
 
 exports[`babel plugin fs creates and writes to the css file when it does not exist 2`] = `
-"import \\"./babel-fs.test.js.css\\";
+"import \\"./babel-fs.test.emotion.css\\";
 
 css(\\"css-class-lk4ur6\\", [widthVar], function createEmotionRules(x0) {
   return [\`.css-class-lk4ur6 {
@@ -26,7 +26,7 @@ css(\\"css-class-lk4ur6\\", [widthVar], function createEmotionRules(x0) {
 `;
 
 exports[`babel plugin fs does not write to the css file when it is the same as is already written 1`] = `
-"import \\"./babel-fs.test.js.css\\";
+"import \\"./babel-fs.test.emotion.css\\";
 
 css(\\"css-class-lk4ur6\\", [widthVar], function createEmotionRules(x0) {
   return [\`.css-class-lk4ur6 {
@@ -51,7 +51,7 @@ exports[`babel plugin fs writes to the css file when it does exist  1`] = `
 `;
 
 exports[`babel plugin fs writes to the css file when it does exist  2`] = `
-"import \\"./babel-fs.test.js.css\\";
+"import \\"./babel-fs.test.emotion.css\\";
 
 css(\\"css-class-lk4ur6\\", [widthVar], function createEmotionRules(x0) {
   return [\`.css-class-lk4ur6 {
