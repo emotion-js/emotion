@@ -10,6 +10,8 @@ cache:
 
 before_install:
   - npm install codecov
+  # Fix codecov missing deps (issue with node version 8 only)
+  - npm install -D has-flag color-convert
 
 install:
   - npm install
