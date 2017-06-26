@@ -10,6 +10,10 @@ cache:
 before_install:
   - npm install codecov
 
+install:
+  - npm install
+  - npm run rollup
+
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
 
