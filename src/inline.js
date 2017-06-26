@@ -20,7 +20,7 @@ function getName (extracted, identifierName, prefix) {
   return parts.join('-')
 }
 
-export function inline (quasi, identifierName, prefix) {
+export function inline (quasi, identifierName, prefix, cssParserOptions) {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
   let name = getName(
@@ -44,14 +44,14 @@ export function inline (quasi, identifierName, prefix) {
     .join('')
     .trim()
 
-  let rules = parseCSS(`.${name}-${hash} { ${src} }`)
-  rules = rules.map(rule =>
+  let rules = parseCSS(`.${name}-${hash} { ${src} }`, cssParserOptions)
+  rules.dynamic = rules.dynamic.map(rule =>
     rule.replace(
       /@apply\s+--[A-Za-z0-9-_]+-([0-9]+)/gm,
       (match, p1) => `xxx${p1}xxx`
     )
   )
-  rules = rules.map(rule =>
+  rules.dynamic = rules.dynamic.map(rule =>
     rule.replace(
       /var\(--[A-Za-z0-9-_]+-([0-9]+)\)/gm,
       (match, p1) => `xxx${p1}xxx`
@@ -73,7 +73,7 @@ export function keyframes (quasi, identifierName, prefix) {
   return {
     hash,
     name,
-    rules: [parseCSS(`{ ${strs.join('').trim()} }`).join('').trim()]
+    rules: [parseCSS(`{ ${strs.join('').trim()} }`).dynamic.join('').trim()]
   }
 }
 
@@ -88,6 +88,6 @@ export function fontFace (quasi, identifierName, prefix) {
   return {
     hash,
     name,
-    rules: [parseCSS(`@font-face {${strs.join('').trim()}}`, { nested: false }).join('').trim()]
+    rules: [parseCSS(`@font-face {${strs.join('').trim()}}`, { nested: false }).dynamic.join('').trim()]
   }
 }

@@ -1,5 +1,5 @@
 require('babel-register')
 
 module.exports = {
-  plugins: [require('../src/babel')]
+  plugins: [[require('../src/babel'), { extract: false }]]
 }

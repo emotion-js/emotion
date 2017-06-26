@@ -15,7 +15,7 @@ export function flush () {
 export function css (
   cls: string,
   vars: Array<string | number | (() => string | number)>,
-  content: () => mixed[]
+  content: () => string[]
 ) {
   // inline mode
   vars = vars.map(v => (/^frag-/.exec(v) ? fragments[v] : v))
@@ -28,7 +28,7 @@ export function css (
       .map(r => r.replace(new RegExp(cls, 'gm'), `${cls}-${hash}`))
       .forEach(r => sheet.insert(r))
   }
-  return `${cls}-${hash}`
+  return `${cls}-${hash} ${cls}`
 }
 
 const fragments = {}
@@ -36,7 +36,7 @@ const fragments = {}
 export function fragment (
   frag: string,
   vars: Array<string | number | (() => string | number)>,
-  content: () => mixed[]
+  content: () => string[]
 ) {
   vars = vars.map(v => (/^frag-/.exec(v) ? fragments[v] : v))
   let src = content(...vars)
@@ -56,7 +56,7 @@ export function fragment (
 export function keyframes (
   kfm: string,
   vars: Array<string | number | (() => string | number)>,
-  content: () => mixed[]
+  content: () => string[]
 ) {
   let src = content(...vars)
   let hash = hashArray(src)

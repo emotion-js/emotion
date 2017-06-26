@@ -1,4 +1,6 @@
-import { parseKeyframes } from './parser'
+import fs from 'fs'
+import { basename } from 'path'
+import { touchSync } from 'touch'
 import { inline, keyframes, fontFace } from './inline'
 import findAndReplaceAttrs from './attrs'
 
@@ -63,7 +65,32 @@ export default function (babel) {
     name: 'emotion', // not required
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
-      TaggedTemplateExpression (path) {
+      Program: {
+        enter (path, state) {
+          state.canExtract = path.hub.file.opts.filename !== 'unknown' && state.opts.extract !== false
+          state.staticRules = []
+          state.insertStaticRules = function (staticRules) {
+            state.staticRules.push(...staticRules)
+          }
+        },
+        exit (path, state) {
+          if (state.staticRules.length !== 0) {
+            const toWrite = state.staticRules.join('\n').trim()
+            const cssFilename = path.hub.file.opts.filename + '.css'
+            const exists = fs.existsSync(cssFilename)
+            path.node.body.unshift(t.importDeclaration([], t.stringLiteral('./' + basename(cssFilename))))
+            if (
+            exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
+          ) {
+              if (!exists) {
+                touchSync(cssFilename)
+              }
+              fs.writeFileSync(cssFilename, toWrite)
+            }
+          }
+        }
+      },
+      TaggedTemplateExpression (path, state) {
         // in:
         // styled.h1`color:${color};`
         //
@@ -83,14 +110,18 @@ export default function (babel) {
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, rules, name } = inline(built, identifierName, 'css')
+          let { hash, rules, name } = inline(built, identifierName, 'css', {
+            extract: state.canExtract
+          })
 
           // hash will be '0' when no styles are passed so we can just return the original tag
           if (hash === '0') {
             return tag
           }
 
-          let arrayValues = parseDynamicValues(rules, t)
+          state.insertStaticRules(rules.static)
+
+          let arrayValues = parseDynamicValues(rules.dynamic, t)
 
           const inlineContentExpr = t.functionExpression(
             t.identifier('createEmotionStyledRules'),
@@ -155,7 +186,7 @@ export default function (babel) {
                 ),
                 t.blockStatement([
                   t.returnStatement(
-                    t.arrayExpression(parseDynamicValues(rules, t))
+                    t.arrayExpression(parseDynamicValues(rules.dynamic, t))
                   )
                 ])
               )
@@ -168,8 +199,10 @@ export default function (babel) {
           const { hash, name, rules } = inline(
             path.node.quasi,
             identifierName,
-            'css'
+            'css',
+            { extract: state.canExtract }
           )
+          state.insertStaticRules(rules.static)
           path.replaceWith(
             t.callExpression(t.identifier('css'), [
               t.stringLiteral(`${name}-${hash}`),
@@ -181,7 +214,7 @@ export default function (babel) {
                 ),
                 t.blockStatement([
                   t.returnStatement(
-                    t.arrayExpression(parseDynamicValues(rules, t))
+                    t.arrayExpression(parseDynamicValues(rules.dynamic, t))
                   )
                 ])
               )

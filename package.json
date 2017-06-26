@@ -25,7 +25,8 @@
     "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },
   "dependencies": {
-    "styled-components": "2.0.0"
+    "styled-components": "2.0.0",
+    "touch": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
