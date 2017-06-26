@@ -25,6 +25,6 @@ export default {
     })
   ],
   targets: [
-    {dest: pkg['umd:main'], format: 'umd', moduleName: pkg.name}
+    {dest: pkg['main'], format: 'umd', moduleName: pkg.name}
   ]
 }
