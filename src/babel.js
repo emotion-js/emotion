@@ -186,7 +186,8 @@ export default function (babel) {
           const { hash, name, rules } = inline(
             path.node.quasi,
             identifierName,
-            'frag'
+            'frag',
+            true
           )
           path.replaceWith(
             t.callExpression(t.identifier('fragment'), [
@@ -209,18 +210,20 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'css'
         ) {
-          const { hash, name, rules } = inline(
+          const { hash, name, rules, isStatic } = inline(
             path.node.quasi,
             identifierName,
             'css',
-            { extract: state.canExtract }
+            state.inline
           )
-          state.insertStaticRules(rules.static)
-          path.replaceWith(
-            t.callExpression(t.identifier('css'), [
-              t.stringLiteral(`${name}-${hash}`),
-              t.arrayExpression(path.node.quasi.expressions),
-              t.functionExpression(
+          const args = [
+            t.stringLiteral(`${name}-${hash}`),
+            t.arrayExpression(path.node.quasi.expressions)
+          ]
+          if (isStatic) {
+            state.insertStaticRules(rules)
+          } else {
+            const inlineContentExpr = t.functionExpression(
                 t.identifier('createEmotionRules'),
                 path.node.quasi.expressions.map((x, i) =>
                   t.identifier(`x${i}`)
@@ -231,7 +234,10 @@ export default function (babel) {
                   )
                 ])
               )
-            ])
+            args.push(inlineContentExpr)
+          }
+          path.replaceWith(
+            t.callExpression(t.identifier('css'), args)
           )
         } else if (
           t.isIdentifier(path.node.tag) &&

@@ -53,12 +53,14 @@ exports[`styled composition 1`] = `
 `;
 
 exports[`styled fragments 1`] = `
-.css-H1-1qd8mfb-1b7a2j {
+.css-H1-1qd8mfb-1mxqzi0 {
   font-size: 20px;
+  height: 64px;
+  color: blue;
 }
 
 <h1
-  className="css-H1-1qd8mfb-1b7a2j css-H2-idm3bz legacy__class"
+  className="css-H1-1qd8mfb-1mxqzi0 css-H2-idm3bz legacy__class"
   scale={2}
 >
   hello world
@@ -83,13 +85,14 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.css-onyx-wn422p-1kn6z3k {
+.css-onyx-wn422p-oy3rok {
   background-color: '#343a40';
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
+  background-color: #7FC8D6;
 }
 
 .vars-1x8swp {
@@ -97,7 +100,7 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="css-Content-13wdnau vars-1x8swp css-onyx-wn422p-1kn6z3k"
+  className="css-Content-13wdnau vars-1x8swp css-onyx-wn422p-oy3rok"
 />
 `;
 

@@ -55,7 +55,8 @@ export function fragment (
   if (src.length > 1) {
     throw new Error('what up!')
   }
-  return src.join('').substring(
+  src = src.join('')
+  return src.substring(
     src.indexOf('{') + 1,
     src.length - 1
   )

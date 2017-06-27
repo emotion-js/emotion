@@ -2,7 +2,7 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { readFileSync } from 'fs'
+import { basename } from 'path'
 import { matcher, serializer } from '../../jest-utils'
 
 // eslint-disable-next-line no-unused-vars
@@ -199,10 +199,10 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
   test('writes the correct css', () => {
-    const filenameArr = __filename.split('.')
+    const filenameArr = basename(__filename).split('.')
     filenameArr.pop()
     filenameArr.push('emotion', 'css')
     const cssFilename = filenameArr.join('.')
-    expect(readFileSync(cssFilename, 'utf8')).toMatchSnapshot()
+    expect(global.mockedCssImports[cssFilename]).toMatchSnapshot()
   })
 })
