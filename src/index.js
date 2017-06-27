@@ -18,10 +18,7 @@ function values (cls: string, vars: vars) {
     return varCls
   }
   let src = vars
-    .map(
-      (val: inputVar, i: number) =>
-        `--${cls}-${i}: ${val}`
-    )
+    .map((val: inputVar, i: number) => `--${cls}-${i}: ${val}`)
     .join('; ')
   sheet.insert(`.${varCls} {${src}}`)
   inserted[hash] = true
@@ -52,18 +49,11 @@ export function css (cls: string, vars: vars, content: () => string[]) {
   return cls + (vars && vars.length > 0 ? ' ' + values(cls, vars) : '')
 }
 
-export function fragment (
-  vars: vars,
-  content: () => string[]
-) {
+export function fragment (vars: vars, content: () => string[]) {
   return content(...vars)
 }
 
-export function keyframes (
-  kfm: string,
-  vars: vars,
-  content: () => string[]
-) {
+export function keyframes (kfm: string, vars: vars, content: () => string[]) {
   let src = content(...vars)
   let hash = hashArray(src)
   if (!inserted[hash]) {

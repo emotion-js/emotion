@@ -190,12 +190,13 @@ export default function (babel) {
             true
           )
           if (rules.length > 1) {
-            throw path.buildCodeFrameError('Fragments cannot have multiple selectors.')
+            throw path.buildCodeFrameError(
+              'Fragments cannot have multiple selectors.'
+            )
           }
-          const rulesWithoutSelector = rules.map((rule) => rule.substring(
-            rule.indexOf('{') + 1,
-            rule.length - 1
-          ))
+          const rulesWithoutSelector = rules.map(rule =>
+            rule.substring(rule.indexOf('{') + 1, rule.length - 1)
+          )
           const dynamicRules = parseDynamicValues(rulesWithoutSelector, t)
           path.replaceWith(
             t.callExpression(t.identifier('fragment'), [
@@ -205,11 +206,7 @@ export default function (babel) {
                 path.node.quasi.expressions.map((x, i) =>
                   t.identifier(`x${i}`)
                 ),
-                t.blockStatement([
-                  t.returnStatement(
-                    dynamicRules[0]
-                  )
-                ])
+                t.blockStatement([t.returnStatement(dynamicRules[0])])
               )
             ])
           )
@@ -231,21 +228,17 @@ export default function (babel) {
             state.insertStaticRules(rules)
           } else {
             const inlineContentExpr = t.functionExpression(
-                t.identifier('createEmotionRules'),
-                path.node.quasi.expressions.map((x, i) =>
-                  t.identifier(`x${i}`)
-                ),
-                t.blockStatement([
-                  t.returnStatement(
-                    t.arrayExpression(parseDynamicValues(rules, t))
-                  )
-                ])
-              )
+              t.identifier('createEmotionRules'),
+              path.node.quasi.expressions.map((x, i) => t.identifier(`x${i}`)),
+              t.blockStatement([
+                t.returnStatement(
+                  t.arrayExpression(parseDynamicValues(rules, t))
+                )
+              ])
+            )
             args.push(inlineContentExpr)
           }
-          path.replaceWith(
-            t.callExpression(t.identifier('css'), args)
-          )
+          path.replaceWith(t.callExpression(t.identifier('css'), args))
         } else if (
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'keyframes'
