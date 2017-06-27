@@ -27,6 +27,7 @@ const PlaygroundWrapper = styled('div')`
   display:flex;
   flex-direction:column;
   color: attr(color, #000);
+  overflow: auto;
 `
 
 class App extends React.Component {

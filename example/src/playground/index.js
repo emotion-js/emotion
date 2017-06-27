@@ -12,7 +12,7 @@ import colors from 'open-color'
 const Content = styled('div')`
   flex: 1 1 auto;
   display: flex;
-  
+  overflow: auto;
   & .ReactCodeMirror {
     flex:1;
     display:flex;
