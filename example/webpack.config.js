@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = env => {
   const PROD = env === 'production'
@@ -29,7 +30,12 @@ module.exports = env => {
       publicPath: '/'
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx']
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      mainFields: ['browser', 'main'],
+      alias: {
+        'emotion/styled': 'emotion/lib/styled',
+        'buble/dist/buble.deps': require.resolve('./src/transform.js')
+      }
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -38,7 +44,7 @@ module.exports = env => {
         filename: 'index.html',
         inject: false
       })
-    ].concat(PROD ? new ExtractTextPlugin('styles.css') : []),
+    ].concat(PROD ? new ExtractTextPlugin('styles.css') : [new BundleAnalyzerPlugin()]),
     module: {
       loaders: loaders
     },

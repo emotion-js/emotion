@@ -61,6 +61,5 @@ render(
         )
       }
     }}
-  />,
-  mountNode
+  />
 )

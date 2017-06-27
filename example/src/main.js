@@ -32,23 +32,20 @@ const PlaygroundWrapper = styled('div')`
 class App extends React.Component {
   render () {
     return (
-      <PlaygroundWrapper>
-        <Playground
-          noRender={false}
-          codeText={componentExample}
-          scope={{
-            React,
-            css,
-            keyframes,
-            fragment,
-            styled,
-            colors,
-            render,
-            ReactMarkdown,
-            docMarkdown: `${docMarkdown}\n*****\n${readmeMarkdown}`
-          }}
-        />
-      </PlaygroundWrapper>
+        <PlaygroundWrapper>
+          <Playground
+            codeText={componentExample}
+            scope={{
+              css,
+              keyframes,
+              fragment,
+              styled,
+              colors,
+              ReactMarkdown,
+              docMarkdown: `${docMarkdown}\n*****\n${readmeMarkdown}`
+            }}
+          />
+        </PlaygroundWrapper>
     )
   }
 }
