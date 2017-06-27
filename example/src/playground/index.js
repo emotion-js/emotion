@@ -65,77 +65,18 @@ const PreviewContainer = styled('div')`
 const Content = styled(LiveProvider)`
   flex: 1 1 auto;
   display: flex;
-  
-  & .ReactCodeMirror {
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    min-width: 48vw;
-    & > div { flex: 1;
-  }
 `
 
 class ReactPlayground extends Component {
-  static defaultProps = {
-    theme: 'dracula',
-    noRender: true,
-    context: {},
-    initiallyExpanded: false
-  }
-
   static propTypes = {
-    codeText: PropTypes.string.isRequired,
-    scope: PropTypes.object.isRequired,
-    collapsableCode: PropTypes.bool,
-    docClass: PropTypes.func,
-    propDescriptionMap: PropTypes.object,
-    theme: PropTypes.string,
-    selectedLines: PropTypes.array,
-    noRender: PropTypes.bool,
-    es6Console: PropTypes.bool,
-    context: PropTypes.object,
-    initiallyExpanded: PropTypes.bool,
-    previewComponent: PropTypes.node
-  }
-
-  state = {
-    code: this.props.codeText,
-    expandedCode: this.props.initiallyExpanded,
-    external: true
-  }
-
-  componentWillReceiveProps = nextProps => {
-    this.setState({
-      code: nextProps.codeText,
-      external: true
-    })
-  }
-
-  _handleCodeChange = code => {
-    this.setState({
-      code,
-      external: false
-    })
-  }
-
-  _toggleCode = () => {
-    this.setState({
-      expandedCode: !this.state.expandedCode
-    })
+    code: PropTypes.string.isRequired,
+    scope: PropTypes.object.isRequired
   }
 
   render () {
-    const { code, external, expandedCode } = this.state
     const {
-      context,
-      docClass,
-      es6Console,
-      noRender,
-      previewComponent,
-      propDescriptionMap,
-      scope,
-      selectedLines,
-      theme
+      code,
+      scope
     } = this.props
 
     return (

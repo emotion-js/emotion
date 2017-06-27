@@ -1,6 +1,6 @@
 /* eslint-disable jsx-quotes,import/no-webpack-loader-syntax */
 import './global.css'
-import './dracula.css'
+// import './dracula.css'
 import React from 'react'
 import { render } from 'react-dom'
 import styled from 'emotion/styled'
@@ -34,7 +34,7 @@ class App extends React.Component {
     return (
         <PlaygroundWrapper>
           <Playground
-            codeText={componentExample}
+            code={componentExample}
             scope={{
               css,
               keyframes,
