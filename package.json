@@ -8,7 +8,8 @@
     "babel.js",
     "src",
     "dist",
-    "lib"
+    "lib",
+    "styled.js"
   ],
   "scripts": {
     "build": "babel src -d lib",
