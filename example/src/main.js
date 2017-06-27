@@ -1,6 +1,6 @@
 /* eslint-disable jsx-quotes,import/no-webpack-loader-syntax */
 import './global.css'
-import './dracula.css'
+// import './dracula.css'
 import React from 'react'
 import { render } from 'react-dom'
 import styled from 'emotion/styled'
@@ -27,28 +27,26 @@ const PlaygroundWrapper = styled('div')`
   display:flex;
   flex-direction:column;
   color: attr(color, #000);
+  overflow: auto;
 `
 
 class App extends React.Component {
   render () {
     return (
-      <PlaygroundWrapper>
-        <Playground
-          noRender={false}
-          codeText={componentExample}
-          scope={{
-            React,
-            css,
-            keyframes,
-            fragment,
-            styled,
-            colors,
-            render,
-            ReactMarkdown,
-            docMarkdown: `${docMarkdown}\n*****\n${readmeMarkdown}`
-          }}
-        />
-      </PlaygroundWrapper>
+        <PlaygroundWrapper>
+          <Playground
+            code={componentExample}
+            scope={{
+              css,
+              keyframes,
+              fragment,
+              styled,
+              colors,
+              ReactMarkdown,
+              docMarkdown: `${docMarkdown}\n*****\n${readmeMarkdown}`
+            }}
+          />
+        </PlaygroundWrapper>
     )
   }
 }

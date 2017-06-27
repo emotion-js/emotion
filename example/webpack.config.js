@@ -29,7 +29,12 @@ module.exports = env => {
       publicPath: '/'
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx']
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      mainFields: ['browser', 'main'],
+      alias: {
+        'emotion/styled': 'emotion/lib/styled',
+        'buble/dist/buble.deps': path.resolve('src', 'transform.js')
+      }
     },
     plugins: [
       new HtmlWebpackPlugin({
