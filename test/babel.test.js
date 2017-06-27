@@ -162,7 +162,7 @@ describe('emotion/babel', () => {
       expect(code).toMatchSnapshot()
     })
   })
-  describe.only('babel styled component extract', () => {
+  describe('babel styled component extract', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
       const { code } = babel.transform(basic, {

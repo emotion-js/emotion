@@ -7,7 +7,7 @@ exports[`styled attr 1`] = `
 }
 
 <h1
-  className="css-H1-15vt02v-1n5h3v0 css-H1-15vt02v"
+  className="css-H1-15vt02v-1n5h3v0"
   fontSize={48}
 />
 `;
@@ -18,7 +18,7 @@ exports[`styled basic render 1`] = `
 }
 
 <h1
-  className="css-H1-13wdnau-xy96vj css-H1-13wdnau"
+  className="css-H1-13wdnau-xy96vj"
 >
   hello world
 </h1>
@@ -30,7 +30,7 @@ exports[`styled call expression 1`] = `
 }
 
 <h1
-  className="css-H1-13wdnau-xy96vj css-H1-13wdnau legacy__class"
+  className="css-H1-13wdnau-xy96vj legacy__class"
 >
   hello world
 </h1>
@@ -46,7 +46,7 @@ exports[`styled composition 1`] = `
 }
 
 <h1
-  className="css-H1-13wdnau-xy96vj css-H1-13wdnau css-H2-vxb7tq-1gn1gp5 css-H2-vxb7tq legacy__class"
+  className="css-H1-13wdnau-xy96vj css-H2-vxb7tq-1gn1gp5 legacy__class"
 >
   hello world
 </h1>
@@ -64,7 +64,7 @@ exports[`styled fragments 1`] = `
 }
 
 <h1
-  className="css-H1-1qd8mfb-1mxqzi0 css-H1-1qd8mfb css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
+  className="css-H1-1qd8mfb-1mxqzi0 css-H2-idm3bz-361gww legacy__class"
   scale={2}
 >
   hello world
@@ -81,7 +81,7 @@ exports[`styled function in expression 1`] = `
 }
 
 <h1
-  className="css-H1-13wdnau-xy96vj css-H1-13wdnau css-H2-vxb7tq-1wx98rf css-H2-vxb7tq legacy__class"
+  className="css-H1-13wdnau-xy96vj css-H2-vxb7tq-1wx98rf legacy__class"
   scale={2}
 >
   hello world
@@ -104,7 +104,7 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="css-Content-13wdnau-1z6hk6 css-Content-13wdnau css-onyx-wn422p-oy3rok css-onyx-wn422p"
+  className="css-Content-13wdnau-1z6hk6 css-onyx-wn422p-oy3rok"
 />
 `;
 
@@ -114,7 +114,7 @@ exports[`styled name 1`] = `
 }
 
 <h1
-  className="css-FancyH1-1azfbv1-1fzd8kz css-FancyH1-1azfbv1"
+  className="css-FancyH1-1azfbv1-1fzd8kz"
 >
   hello world
 </h1>
@@ -126,7 +126,7 @@ exports[`styled no dynamic 1`] = `
 }
 
 <h1
-  className="css-H1-dae0kw-kdrkuq css-H1-dae0kw"
+  className="css-H1-dae0kw-kdrkuq"
 >
   hello world
 </h1>

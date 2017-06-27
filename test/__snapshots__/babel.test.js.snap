@@ -38,9 +38,13 @@ const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRu
 `;
 
 exports[`emotion/babel babel css extract css basic 1`] = `
-"
-css(\\"css-cu78iu\\", [widthVar], function createEmotionRules(x0) {
-        return [\`.css-cu78iu { margin: 12px 48px;
+"import \\"./babel.test.emotion.css\\";
+
+css(\\"css-cu78iu\\", [widthVar]);"
+`;
+
+exports[`emotion/babel babel css extract css basic 2`] = `
+".css-cu78iu { margin: 12px 48px;
         color: #ffffff;
         display: -webkit-box;
         display: -moz-box;
@@ -51,31 +55,13 @@ css(\\"css-cu78iu\\", [widthVar], function createEmotionRules(x0) {
         -ms-flex: 1 0 auto;
         flex: 1 0 auto;
         color: blue;
-        width: \${x0}; }\`];
-});"
-`;
-
-exports[`emotion/babel babel css extract css basic 2`] = `
-".css-cu78iu {
-    margin: 12px 48px;
-    color: #ffffff;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex: 1 0 auto;
-    -ms-flex: 1 0 auto;
-    flex: 1 0 auto;
-    color: blue
-}"
+        width: var(--css-cu78iu-0); }"
 `;
 
 exports[`emotion/babel babel css extract css kitchen sink 1`] = `
-"
-const cls = css(\\"css-cls-h5t3cu\\", [margin], function createEmotionRules(x0) {
-        return [\`.css-cls-h5t3cu { font-size: 58pt;margin: \${x0}; }\`];
-});
+"import \\"./babel.test.emotion.css\\";
+
+const cls = css(\\"css-cls-h5t3cu\\", [margin]);
 const frag = fragment(\\"frag-frag-zzm2ov\\", [], function createEmotionFragment() {
         return [\`.frag-frag-zzm2ov { padding: 8px; }\`];
 });
@@ -90,15 +76,7 @@ const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRu
 });"
 `;
 
-exports[`emotion/babel babel css extract css kitchen sink 2`] = `
-".css-cls-h5t3cu {
-    font-size: 58pt
-}
-.css-cls2-1b4c3x0 {
-    margin: 12px 48px;
-    color: #ffffff
-}"
-`;
+exports[`emotion/babel babel css extract css kitchen sink 2`] = `".css-cls-h5t3cu { font-size: 58pt;margin: var(--css-cls-h5t3cu-0); }"`;
 
 exports[`emotion/babel babel font-face font-face basic 1`] = `
 "
@@ -208,56 +186,39 @@ exports[`emotion/babel babel styled component basic 1`] = `
 
 exports[`emotion/babel babel styled component extract based on props 1`] = `
 "import './babel.test.emotion.css';
-const H1 = styled('h1', 'css-H1-q3ohdq', [fontSize + 'px', props => props.translateX], function createEmotionStyledRules(x0, x1) {
-  return [\`.css-H1-q3ohdq { font-size: \${x0} }\`];
-});"
-`;
-
-exports[`emotion/babel babel styled component extract based on props 2`] = `
-".css-H1-q3ohdq {
-    height: 20px;
-    -webkit-transform: translateX(var(--css-H1-q3ohdq-1));
-    -ms-transform: translateX(var(--css-H1-q3ohdq-1));
-    transform: translateX(var(--css-H1-q3ohdq-1))
-}"
-`;
-
-exports[`emotion/babel babel styled component extract based on props 3`] = `
-"import './babel.test.emotion.css';
 const H1 = styled('h1', 'css-H1-q3ohdq', [fontSize + 'px', props => props.translateX]);"
 `;
 
+exports[`emotion/babel babel styled component extract based on props 2`] = `".css-H1-q3ohdq { font-size: var(--css-H1-q3ohdq-0); height: 20px; -webkit-transform: translateX(var(--css-H1-q3ohdq-1)); -ms-transform: translateX(var(--css-H1-q3ohdq-1)); transform: translateX(var(--css-H1-q3ohdq-1)) }"`;
+
 exports[`emotion/babel babel styled component extract basic 1`] = `
 "import './babel.test.emotion.css';
-const H1 = styled('h1', 'css-H1-1mh2el5', [fontSize + 'px'], function createEmotionStyledRules(x0) {
-  return [\`.css-H1-1mh2el5 { font-size: \${x0} }\`];
-});"
+const H1 = styled('h1', 'css-H1-1mh2el5', [fontSize + 'px']);"
 `;
 
-exports[`emotion/babel babel styled component extract basic 2`] = `
-".css-H1-1mh2el5 {
-    height: 20px
-}"
-`;
+exports[`emotion/babel babel styled component extract basic 2`] = `".css-H1-1mh2el5 { font-size: var(--css-H1-1mh2el5-0); height: 20px }"`;
 
 exports[`emotion/babel babel styled component extract no dynamic 1`] = `
 "import \\"./babel.test.emotion.css\\";
-styled(\\"h1\\", \\"css-14ksm7b\\", [], function createEmotionStyledRules() {
-  return [];
-});"
+styled(\\"h1\\", \\"css-14ksm7b\\", []);"
 `;
 
-exports[`emotion/babel babel styled component extract no dynamic 2`] = `
-".css-14ksm7b {
-    color: blue
-}"
-`;
+exports[`emotion/babel babel styled component extract no dynamic 2`] = `".css-14ksm7b { color: blue; }"`;
 
 exports[`emotion/babel babel styled component extract no use 1`] = `"\\"h1\\";"`;
 
 exports[`emotion/babel babel styled component extract with fragment 1`] = `
-"import './babel.test.emotion.css';
-const H1 = styled('h1', 'css-H1-q3ohdq', [fontSize + 'px', props => props.translateX]);"
+"const frag1 = fragment('frag-frag1-1ltut9y', [], function createEmotionFragment() {
+  return [\`.frag-frag1-1ltut9y { width: 20px; }\`];
+});
+const H1 = styled('h1', 'css-H1-osx1au', [fontSize + 'px', props => props.translateX, frag1], function createEmotionStyledRules(x0, x1, x2) {
+  return [\`.css-H1-osx1au { font-size: \${x0};
+        height: 20px;
+        -webkit-transform: translateX(\${x1});
+        -ms-transform: translateX(\${x1});
+        transform: translateX(\${x1});
+        \${x2} }\`];
+});"
 `;
 
 exports[`emotion/babel babel styled component extract with fragment 2`] = `".css-H1-q3ohdq { font-size: var(--css-H1-q3ohdq-0); height: 20px; -webkit-transform: translateX(var(--css-H1-q3ohdq-1)); -ms-transform: translateX(var(--css-H1-q3ohdq-1)); transform: translateX(var(--css-H1-q3ohdq-1)) }"`;
