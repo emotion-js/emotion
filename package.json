@@ -87,6 +87,12 @@
       "/dist/"
     ]
   },
+  "jest": {
+    "transform": {
+      "\\.css$": "<rootDir>/test/styleTransform.js",
+      "^.+\\.js?$": "babel-jest"
+    }
+  },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
   }

@@ -40,19 +40,10 @@ describe('parser', () => {
   test('basic', () => {
     expect(parseCSS(basicCSS)).toMatchSnapshot()
   })
-  test('basic extract', () => {
-    expect(parseCSS(basicCSS, { extract: true })).toMatchSnapshot()
-  })
   test('fancy', () => {
     expect(parseCSS(fancyCSS)).toMatchSnapshot()
   })
-  test('fancy extract', () => {
-    expect(parseCSS(fancyCSS, { extract: true })).toMatchSnapshot()
-  })
   test('static', () => {
     expect(parseCSS(staticCSS)).toMatchSnapshot()
-  })
-  test('static extract', () => {
-    expect(parseCSS(staticCSS, { extract: true })).toMatchSnapshot()
   })
 })

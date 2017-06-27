@@ -1,9 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`parser basic 1`] = `
-Object {
-  "dynamic": Array [
-    ".thing {
+Array [
+  ".thing {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -15,38 +14,12 @@ Object {
   justify-content: center;
   width: var(--css-hash-0);
 }",
-  ],
-  "static": Array [],
-}
-`;
-
-exports[`parser basic extract 1`] = `
-Object {
-  "dynamic": Array [
-    ".thing {
-  width: var(--css-hash-0);
-}",
-  ],
-  "static": Array [
-    ".thing {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    -webkit-box-pack: center;
-    justify-content: center
-}",
-  ],
-}
+]
 `;
 
 exports[`parser fancy 1`] = `
-Object {
-  "dynamic": Array [
-    ".some-selector {
+Array [
+  ".some-selector {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -58,101 +31,35 @@ Object {
   justify-content: center;
   width: var(--css-hash-0);
 }",
-    ".some-selector:hover {
+  ".some-selector:hover {
   background-color: green;
 }",
-    "@media (max-width: 500px) {
+  "@media (max-width: 500px) {
   .some-selector {
     height: var(--css-hash-1);
     position: fixed;
   }
 }",
-    "@media print {
+  "@media print {
   .some-selector {
     display: none;
   }
 }",
-    ".some-selector::before {
+  ".some-selector::before {
   color: blue;
   width: 20px;
   height: 20px;
   content: 'pseudo'
 }",
-  ],
-  "static": Array [],
-}
-`;
-
-exports[`parser fancy extract 1`] = `
-Object {
-  "dynamic": Array [
-    ".some-selector {
-  width: var(--css-hash-0);
-}",
-    "@media (max-width: 500px) {
-  .some-selector {
-    height: var(--css-hash-1);
-  }
-}",
-    "@media print {}",
-  ],
-  "static": Array [
-    ".some-selector {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    -webkit-box-pack: center;
-    justify-content: center
-}",
-    ".some-selector:hover {
-    background-color: green
-}",
-    "@media (max-width: 500px) {
-    .some-selector {
-        position: fixed
-    }
-}",
-    "@media print {
-    .some-selector {
-        display: none
-    }
-}",
-    ".some-selector::before {
-    color: blue;
-    width: 20px;
-    height: 20px;
-    content: 'pseudo'
-}",
-  ],
-}
+]
 `;
 
 exports[`parser static 1`] = `
-Object {
-  "dynamic": Array [
-    ".thing {
+Array [
+  ".thing {
   display: block;
   height: 50px;
   width: 30px
 }",
-  ],
-  "static": Array [],
-}
-`;
-
-exports[`parser static extract 1`] = `
-Object {
-  "dynamic": Array [],
-  "static": Array [
-    ".thing {
-    display: block;
-    height: 50px;
-    width: 30px
-}",
-  ],
-}
+]
 `;

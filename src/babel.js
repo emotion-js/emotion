@@ -67,7 +67,8 @@ export default function (babel) {
     visitor: {
       Program: {
         enter (path, state) {
-          state.canExtract = path.hub.file.opts.filename !== 'unknown' && state.opts.extract !== false
+          state.inline =
+            path.hub.file.opts.filename === 'unknown' || state.opts.inline
           state.staticRules = []
           state.insertStaticRules = function (staticRules) {
             state.staticRules.push(...staticRules)
@@ -81,10 +82,15 @@ export default function (babel) {
             filenameArr.push('emotion', 'css')
             const cssFilename = filenameArr.join('.')
             const exists = fs.existsSync(cssFilename)
-            path.node.body.unshift(t.importDeclaration([], t.stringLiteral('./' + basename(cssFilename))))
+            path.node.body.unshift(
+              t.importDeclaration(
+                [],
+                t.stringLiteral('./' + basename(cssFilename))
+              )
+            )
             if (
-            exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
-          ) {
+              exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
+            ) {
               if (!exists) {
                 touchSync(cssFilename)
               }
@@ -113,32 +119,36 @@ export default function (babel) {
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, rules, name } = inline(built, identifierName, 'css', {
-            extract: state.canExtract
-          })
+          let { hash, rules, name, isStatic } = inline(
+            built,
+            identifierName,
+            'css',
+            state.inline
+          )
 
           // hash will be '0' when no styles are passed so we can just return the original tag
           if (hash === '0') {
             return tag
           }
-
-          state.insertStaticRules(rules.static)
-
-          let arrayValues = parseDynamicValues(rules.dynamic, t)
-
-          const inlineContentExpr = t.functionExpression(
-            t.identifier('createEmotionStyledRules'),
-            built.expressions.map((x, i) => t.identifier(`x${i}`)),
-            t.blockStatement([
-              t.returnStatement(t.arrayExpression(arrayValues))
-            ])
-          )
           const args = [
             tag,
             t.stringLiteral(`${name}-${hash}`),
-            t.arrayExpression(built.expressions),
-            inlineContentExpr
+            t.arrayExpression(built.expressions)
           ]
+          if (isStatic) {
+            state.insertStaticRules(rules)
+          } else {
+            const inlineContentExpr = t.functionExpression(
+              t.identifier('createEmotionStyledRules'),
+              built.expressions.map((x, i) => t.identifier(`x${i}`)),
+              t.blockStatement([
+                t.returnStatement(
+                  t.arrayExpression(parseDynamicValues(rules, t))
+                )
+              ])
+            )
+            args.push(inlineContentExpr)
+          }
 
           return t.callExpression(identifier, args)
         }
@@ -189,7 +199,7 @@ export default function (babel) {
                 ),
                 t.blockStatement([
                   t.returnStatement(
-                    t.arrayExpression(parseDynamicValues(rules.dynamic, t))
+                    t.arrayExpression(parseDynamicValues(rules, t))
                   )
                 ])
               )
@@ -217,7 +227,7 @@ export default function (babel) {
                 ),
                 t.blockStatement([
                   t.returnStatement(
-                    t.arrayExpression(parseDynamicValues(rules.dynamic, t))
+                    t.arrayExpression(parseDynamicValues(rules, t))
                   )
                 ])
               )
@@ -254,7 +264,7 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fontFace'
         ) {
-          const {hash, name, rules} = fontFace(
+          const { hash, name, rules } = fontFace(
             path.node.quasi,
             identifierName,
             'font-face'

@@ -28,7 +28,7 @@ export function css (
       .map(r => r.replace(new RegExp(cls, 'gm'), `${cls}-${hash}`))
       .forEach(r => sheet.insert(r))
   }
-  return `${cls}-${hash} ${cls}`
+  return `${cls}-${hash}`
 }
 
 const fragments = {}

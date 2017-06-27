@@ -4,6 +4,6 @@
     "env",
     "stage-0",
     "react",
-    ["./babel-preset-emotion-test", { "inline": true }]
+    "../babel-preset-emotion-test"
   ]
 }

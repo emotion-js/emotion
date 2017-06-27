@@ -162,7 +162,7 @@ describe('emotion/babel', () => {
       expect(code).toMatchSnapshot()
     })
   })
-  describe('babel styled component extract', () => {
+  describe.only('babel styled component extract', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
       const { code } = babel.transform(basic, {
@@ -187,7 +187,8 @@ describe('emotion/babel', () => {
     })
 
     test('basic', () => {
-      const basic = "const H1 = styled.h1`font-size: ${fontSize + 'px'}; height: 20px`"
+      const basic =
+        "const H1 = styled.h1`font-size: ${fontSize + 'px'}; height: 20px`"
       const { code } = babel.transform(basic, {
         plugins: [plugin],
         filename: __filename,
@@ -199,7 +200,25 @@ describe('emotion/babel', () => {
     })
 
     test('based on props', () => {
-      const basic = "const H1 = styled.h1`font-size: ${fontSize + 'px'}; height: 20px; transform: translateX(${(props) => props.translateX})`"
+      const basic =
+        "const H1 = styled.h1`font-size: ${fontSize + 'px'}; height: 20px; transform: translateX(${(props) => props.translateX})`"
+      const { code } = babel.transform(basic, {
+        plugins: [plugin],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
+      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
+    })
+    test('with fragment', () => {
+      const basic = `const frag1 = fragment\` width: 20px; \`
+      const H1 = styled.h1\`
+        font-size: \${fontSize + 'px'};
+        height: 20px;
+        transform: translateX(\${(props) => props.translateX});
+        @apply \${frag1}
+      \``
       const { code } = babel.transform(basic, {
         plugins: [plugin],
         filename: __filename,
@@ -305,7 +324,7 @@ describe('emotion/babel', () => {
                url(MgOpenModernaBold.ttf);
           font-weight: bold;
       \`;`
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()

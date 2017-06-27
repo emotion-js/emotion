@@ -1,7 +1,8 @@
+// @flow
 import { parseCSS } from './parser'
 import hashArray from './hash'
 
-function extractNameFromProperty (str) {
+function extractNameFromProperty (str: string) {
   let regex = /name\s*:\s*([A-Za-z0-9\-_]+)\s*/gm
   let match = regex.exec(str)
   if (match) {
@@ -9,7 +10,11 @@ function extractNameFromProperty (str) {
   }
 }
 
-function getName (extracted, identifierName, prefix) {
+function getName (
+  extracted?: string,
+  identifierName?: string,
+  prefix: string
+): string {
   const parts = []
   parts.push(prefix)
   if (extracted) {
@@ -20,7 +25,12 @@ function getName (extracted, identifierName, prefix) {
   return parts.join('-')
 }
 
-export function inline (quasi, identifierName, prefix, cssParserOptions) {
+export function inline (
+  quasi: any,
+  identifierName?: string,
+  prefix: string,
+  inlineVars: boolean
+): { hash: string, name: string, rules: string[], isStatic: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
   let name = getName(
@@ -28,7 +38,7 @@ export function inline (quasi, identifierName, prefix, cssParserOptions) {
     identifierName,
     prefix
   )
-
+  let hasApply
   let src = strs
     .reduce((arr, str, i) => {
       arr.push(str)
@@ -36,6 +46,7 @@ export function inline (quasi, identifierName, prefix, cssParserOptions) {
         // todo - test for preceding @apply
         let applyMatch = /@apply\s*$/gm.exec(str)
         if (applyMatch) {
+          hasApply = true
           arr.push(`--${name}-${hash}-${i}`)
         } else arr.push(`var(--${name}-${hash}-${i})`)
       }
@@ -44,24 +55,32 @@ export function inline (quasi, identifierName, prefix, cssParserOptions) {
     .join('')
     .trim()
 
-  let rules = parseCSS(`.${name}-${hash} { ${src} }`, cssParserOptions)
-  rules.dynamic = rules.dynamic.map(rule =>
-    rule.replace(
-      /@apply\s+--[A-Za-z0-9-_]+-([0-9]+)/gm,
-      (match, p1) => `xxx${p1}xxx`
+  let rules = parseCSS(`.${name}-${hash} { ${src} }`)
+  if (hasApply) {
+    rules = rules.map(rule =>
+      rule.replace(
+        /@apply\s+--[A-Za-z0-9-_]+-([0-9]+)/gm,
+        (match, p1) => `xxx${p1}xxx`
+      )
     )
-  )
-  rules.dynamic = rules.dynamic.map(rule =>
-    rule.replace(
-      /var\(--[A-Za-z0-9-_]+-([0-9]+)\)/gm,
-      (match, p1) => `xxx${p1}xxx`
+  }
+  if (inlineVars || hasApply) {
+    rules = rules.map(rule =>
+      rule.replace(
+        /var\(--[A-Za-z0-9-_]+-([0-9]+)\)/gm,
+        (match, p1) => `xxx${p1}xxx`
+      )
     )
-  )
+  }
 
-  return { hash, name, rules }
+  return { hash, name, rules, isStatic: !hasApply && !inlineVars }
 }
 
-export function keyframes (quasi, identifierName, prefix) {
+export function keyframes (
+  quasi: any,
+  identifierName?: string,
+  prefix: string
+): { hash: string, name: string, rules: string[] } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs])
   let name = getName(
@@ -73,11 +92,15 @@ export function keyframes (quasi, identifierName, prefix) {
   return {
     hash,
     name,
-    rules: [parseCSS(`{ ${strs.join('').trim()} }`).dynamic.join('').trim()]
+    rules: [parseCSS(`{ ${strs.join('').trim()} }`).join('').trim()]
   }
 }
 
-export function fontFace (quasi, identifierName, prefix) {
+export function fontFace (
+  quasi: any,
+  identifierName?: string,
+  prefix: string
+): { hash: string, name: string, rules: string[] } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs])
   let name = getName(
@@ -88,6 +111,12 @@ export function fontFace (quasi, identifierName, prefix) {
   return {
     hash,
     name,
-    rules: [parseCSS(`@font-face {${strs.join('').trim()}}`, { nested: false }).dynamic.join('').trim()]
+    rules: [
+      parseCSS(`@font-face {${strs.join('').trim()}}`, {
+        nested: false
+      })
+        .join('')
+        .trim()
+    ]
   }
 }

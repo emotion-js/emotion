@@ -6,11 +6,10 @@ import autoprefix from 'styled-components/lib/utils/autoprefix'
 
 export function parseCSS (
   css: string,
-  options: { nested: boolean, extract: boolean } = {
-    nested: true,
-    extract: false
+  options: { nested: boolean } = {
+    nested: true
   }
-) {
+): string[] {
   // todo - handle errors
   const root = parse(css)
   if (options.nested !== false) postcssNested(root)
@@ -19,42 +18,8 @@ export function parseCSS (
   root.walkDecls(decl => {
     if (decl.prop === 'name') decl.remove()
   })
-  if (options.extract) {
-    const staticRoot = root.clone()
-    root.walkRules(rule => {
-      rule.walkDecls(decl => {
-        const value = decl.value
-        if (!value.startsWith('var(--css-')) {
-          decl.remove()
-        }
-      })
-      if (rule.nodes.length === 0) {
-        rule.remove()
-      }
-    })
-    staticRoot.walkRules(rule => {
-      rule.walkDecls(decl => {
-        const value = decl.value
-        if (value.startsWith('var(--css-')) {
-          decl.remove()
-        }
-      })
-      rule.walkAtRules((atRule) => {
-        if (atRule.name === 'apply') {
-          atRule.remove()
-        }
-      })
-      if (rule.nodes.length === 0) {
-        rule.remove()
-      }
-    })
-    return {
-      static: stringifyCSSRoot(staticRoot),
-      dynamic: stringifyCSSRoot(root)
-    }
-  }
 
-  return { dynamic: stringifyCSSRoot(root), static: [] }
+  return stringifyCSSRoot(root)
 }
 
 function stringifyCSSRoot (root) {
