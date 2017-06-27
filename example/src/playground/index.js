@@ -12,7 +12,7 @@ import colors from 'open-color'
 const PlaygroundContent = styled('div')`
   display: flex;
   overflow: auto;
-  margin: 16px auto;
+  margin: 0 auto 16px auto;
   padding: 16px 0;
   max-width: 560px;
   max-height: ${props => (props.maxHeight || 160) + 'px'};

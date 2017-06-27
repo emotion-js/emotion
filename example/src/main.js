@@ -5,8 +5,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import styled from 'emotion/styled'
 import { css, fragment, keyframes, fontFace } from 'emotion'
-import ReactMarkdown from 'react-markdown'
 import colors from 'open-color/open-color.json'
+import Markdown from './components/markdown'
 import Playground from './playground'
 import Logo from './components/logo'
 import logoUrl from '../../emotion.png'
@@ -30,9 +30,8 @@ fontFace`
 const PlaygroundWrapper = styled('div')`
   font-family: 'Oxygen', sans-serif;
   flex:1;
-  color: attr(color, #000);
-  background: #212529;
-  color: #ffd43b;
+  color: attr(color, #343a40);
+  background: #f8f9fa;
   
   & .inner {
     max-width: 960px;
@@ -68,6 +67,8 @@ class App extends React.Component {
             <p>high performance js for your css</p>
           </div>
 
+
+
           <Playground
             noRender={false}
             codeText={introExample}
@@ -79,6 +80,9 @@ class App extends React.Component {
             }}
           />
 
+          <Markdown markdown={require('raw-loader!./guides/install.md')}/>
+
+          <Markdown markdown={require('raw-loader!./guides/nested.md')}/>
           <Playground
             maxHeight={180}
             noRender={false}
@@ -91,6 +95,7 @@ class App extends React.Component {
             }}
           />
 
+          <Markdown markdown={require('raw-loader!./guides/media.md')}/>
           <Playground
             maxHeight={220}
             noRender={false}
@@ -103,6 +108,7 @@ class App extends React.Component {
             }}
           />
 
+          <Markdown markdown={require('raw-loader!./guides/props.md')}/>
           <Playground
             noRender={false}
             codeText={propsExample}
