@@ -1,5 +1,126 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`styled attr 1`] = `
+.vars-1sp61ak {
+  --css-H1-15vt02v-0: 48;
+  --css-H1-15vt02v-1: 4rem;
+}
+
+<h1
+  className="css-H1-15vt02v vars-1sp61ak"
+  fontSize={48}
+/>
+`;
+
+exports[`styled basic render 1`] = `
+.vars-fnvbv0 {
+  --css-H1-13wdnau-0: 20;
+}
+
+<h1
+  className="css-H1-13wdnau vars-fnvbv0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled call expression 1`] = `
+.vars-fnvbv0 {
+  --css-H1-13wdnau-0: 20;
+}
+
+<h1
+  className="css-H1-13wdnau vars-fnvbv0 legacy__class"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composition 1`] = `
+.vars-fnvbv0 {
+  --css-H1-13wdnau-0: 20;
+}
+
+.vars-b5jpwe {
+  --css-H2-vxb7tq-0: 13.333333333333334;
+}
+
+<h1
+  className="css-H1-13wdnau vars-fnvbv0 css-H2-vxb7tq vars-b5jpwe legacy__class"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled fragments 1`] = `
+.css-H1-1qd8mfb-1b7a2j {
+  font-size: 20px;
+}
+
+<h1
+  className="css-H1-1qd8mfb-1b7a2j css-H2-idm3bz legacy__class"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled function in expression 1`] = `
+.vars-fnvbv0 {
+  --css-H1-13wdnau-0: 20;
+}
+
+.vars-1d9rttq {
+  --css-H2-vxb7tq-0: 40;
+}
+
+<h1
+  className="css-H1-13wdnau vars-fnvbv0 css-H2-vxb7tq vars-1d9rttq legacy__class"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled higher order component 1`] = `
+.css-onyx-wn422p-1kn6z3k {
+  background-color: '#343a40';
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+}
+
+.vars-1x8swp {
+  --css-Content-13wdnau-0: 20;
+}
+
+<div
+  className="css-Content-13wdnau vars-1x8swp css-onyx-wn422p-1kn6z3k"
+/>
+`;
+
+exports[`styled name 1`] = `
+.vars-1ijjfy3 {
+  --css-FancyH1-1azfbv1-0: 20;
+}
+
+<h1
+  className="css-FancyH1-1azfbv1 vars-1ijjfy3"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled no dynamic 1`] = `
+<h1
+  className="css-H1-dae0kw"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled writes the correct css 1`] = `
 ".css-H1-dae0kw { font-size: 12px; }
 .css-H1-13wdnau { font-size: var(--css-H1-13wdnau-0)px; }
