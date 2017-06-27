@@ -10,8 +10,8 @@ import { css } from 'emotion'
 registerPlugin('emotion/babel', require('emotion/babel'))
 
 const Content = styled('div')`
-  flex: 1 1 auto;
   display: flex;
+  flex: 1 1 ${props => props.basis || 'auto'};
 `
 
 const PreviewWrapper = styled(Content)`
