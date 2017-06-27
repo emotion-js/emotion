@@ -12,7 +12,7 @@ expect.extend(matcher)
 
 // This does nothing
 describe.skip('font-face', () => {
-  test('adds font-face to sheet', (done) => {
+  test('adds font-face to sheet', done => {
     fontFace`
       font-family: 'Patrick Hand SC';
       font-style: normal;
