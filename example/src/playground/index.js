@@ -65,6 +65,7 @@ const PreviewContainer = styled('div')`
 const Content = styled(LiveProvider)`
   flex: 1 1 auto;
   display: flex;
+  overflow: auto;
 `
 
 class ReactPlayground extends Component {
