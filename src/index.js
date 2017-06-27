@@ -1,26 +1,32 @@
+// @flow
 import { StyleSheet } from './sheet'
 import hashArray from './hash'
 
 export const sheet = new StyleSheet()
 sheet.inject()
 
-let inserted = {}
+let inserted: { [string]: boolean | void } = {}
 
-function values (cls, vars) {
-  let hash = hashArray([cls, ...vars])
+type inputVar = string | number
+
+type vars = Array<inputVar>
+
+function values (cls: string, vars: vars) {
+  const hash = hashArray([cls, ...vars])
+  const varCls = `vars-${hash}`
   if (inserted[hash]) {
-    return `vars-${hash}`
+    return varCls
   }
   let src = vars
     .map(
-      (val, i) =>
+      (val: inputVar, i: number) =>
         `--${cls}-${i}: ${val}`
     )
     .join('; ')
-  sheet.insert(`.vars-${hash} {${src}}`)
+  sheet.insert(`.${varCls} {${src}}`)
   inserted[hash] = true
 
-  return `vars-${hash}`
+  return varCls
 }
 
 export function flush () {
@@ -29,7 +35,7 @@ export function flush () {
   sheet.inject()
 }
 
-export function css (cls, vars, content) {
+export function css (cls: string, vars: vars, content: () => string[]) {
   if (content) {
     // inline mode
     let src = content(...vars) // returns an array
@@ -47,24 +53,15 @@ export function css (cls, vars, content) {
 }
 
 export function fragment (
-  frag: string,
-  vars: Array<string | number | (() => string | number)>,
+  vars: vars,
   content: () => string[]
 ) {
-  let src = content(...vars)
-  if (src.length > 1) {
-    throw new Error('what up!')
-  }
-  src = src.join('')
-  return src.substring(
-    src.indexOf('{') + 1,
-    src.length - 1
-  )
+  return content(...vars)
 }
 
 export function keyframes (
   kfm: string,
-  vars: Array<string | number | (() => string | number)>,
+  vars: vars,
   content: () => string[]
 ) {
   let src = content(...vars)
@@ -80,8 +77,8 @@ export function keyframes (
 
 export function fontFace (
   fontRules: string,
-  vars: Array<string | number | (() => string | number)>,
-  content: () => mixed[]
+  vars: vars,
+  content: () => string[]
 ) {
   let src = content(...vars)
   let hash = hashArray(src)
@@ -94,6 +91,6 @@ export function fontFace (
   return `${fontRules}-${hash}`
 }
 
-export function hydrate (ids) {
+export function hydrate (ids: string[]) {
   ids.forEach(id => (inserted[id] = true))
 }

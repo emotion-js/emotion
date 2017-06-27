@@ -294,6 +294,26 @@ describe('emotion/babel', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
+    test('fragment with multiple selectors that should throw', () => {
+      expect(() => {
+        const basic = `
+          const frag = fragment\`
+            color: green;
+            display: none;
+            &:hover {
+              color: yellow;
+            }
+            & .wow {
+              color: purple;
+            }
+          \`;
+        `
+        babel.transform(basic, {
+          plugins: [plugin]
+        })
+      }).toThrowErrorMatchingSnapshot()
+    })
   })
 
   describe('babel keyframes', () => {

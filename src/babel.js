@@ -183,15 +183,22 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fragment'
         ) {
-          const { hash, name, rules } = inline(
+          const { rules } = inline(
             path.node.quasi,
             identifierName,
             'frag',
             true
           )
+          if (rules.length > 1) {
+            throw path.buildCodeFrameError('Fragments cannot have multiple selectors.')
+          }
+          const rulesWithoutSelector = rules.map((rule) => rule.substring(
+            rule.indexOf('{') + 1,
+            rule.length - 1
+          ))
+          const dynamicRules = parseDynamicValues(rulesWithoutSelector, t)
           path.replaceWith(
             t.callExpression(t.identifier('fragment'), [
-              t.stringLiteral(`${name}-${hash}`),
               t.arrayExpression(path.node.quasi.expressions),
               t.functionExpression(
                 t.identifier('createEmotionFragment'),
@@ -200,7 +207,7 @@ export default function (babel) {
                 ),
                 t.blockStatement([
                   t.returnStatement(
-                    t.arrayExpression(parseDynamicValues(rules, t))
+                    dynamicRules[0]
                   )
                 ])
               )
