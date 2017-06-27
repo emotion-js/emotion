@@ -11,6 +11,7 @@ registerPlugin('emotion/babel', require('emotion/babel'))
 
 const PreviewContent = styled('div')`
   display: flex;
+  flex: 1 1 ${props => props.basis || 'auto'};
 `
 
 const PreviewWrapper = styled(PreviewContent)`
@@ -74,7 +75,7 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: ['emotion/babel']
+          plugins: [['emotion/babel', { inline: true }]]
         }
       ).code
     } else {
@@ -86,7 +87,7 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: ['emotion/babel']
+          plugins: [['emotion/babel', { inline: true }]]
         }
       ).code
     }

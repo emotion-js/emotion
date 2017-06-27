@@ -11,6 +11,7 @@ import colors from 'open-color'
 
 const PlaygroundContent = styled('div')`
   display: flex;
+  overflow: auto;
   margin: 16px auto;
   padding: 16px 0;
   max-width: 560px;

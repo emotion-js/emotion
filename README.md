@@ -33,9 +33,78 @@ npm install -S emotion
 }
 ```
 
+## Extract Mode
+
+The default settings enable css extraction.
+
+This js file, `h1.js`
+
+```jsx harmony
+import styled from 'emotion/styled'
+
+const H1 = styled('h1')`
+  color: #ffd43b;
+`
+```
+
+During babel compilation emotion will create `h1.emotion.css` and add `import './h1.emotion.css'` to the top of `h1.js`
+
+```css
+.css-H1-duiy4a {
+  color: blue
+}
+```
+
+`h1.js` after babel compilation
+
+```jsx
+import './h1.emotion.css'
+import styled from 'emotion/styled'
+
+const H1 = styled('h1', 'css-H1-duiy4a')
+```
+
+**Browser Support** no ie11 support (css vars)
+
+## Inline Mode
+
+Inline mode does **not** extract css into external files.
+
+**.babelrc**
+```json
+{
+  "plugins": [
+    ["emotion/babel", { inline: true }]
+  ]
+}
+```
+
+This js file, `h1.js`
+
+```jsx
+import styled from 'emotion/styled'
+
+const H1 = styled('h1')`
+  color: #ffd43b;
+`
+```
+
+`h1.js` after babel compilation
+
+```jsx
+import './h1.emotion.css'
+import styled from 'emotion/styled'
+
+const H1 = styled('h1', 'css-H1-duiy4a', [], function createEmotionStyles() {
+  return ['.css-H1-duiy4a {color:blue}']
+})
+```
+
+**Browser Support** anything React supports
+
 ## API
 
-### emotion
+### styled
 
 ```jsx
 import { styled } from 'emotion'

@@ -1,14 +1,14 @@
 {
   "name": "emotion",
-  "version": "3.0.2",
-  "description": "👩‍🎤 Glam + React",
-  "module": "src/index.js",
+  "version": "4.0.0",
+  "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
     "babel.js",
     "src",
     "dist",
-    "lib"
+    "lib",
+    "styled.js"
   ],
   "scripts": {
     "build": "babel src -d lib",
@@ -26,7 +26,8 @@
     "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },
   "dependencies": {
-    "styled-components": "2.0.0"
+    "styled-components": "2.0.0",
+    "touch": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -86,6 +87,12 @@
     "ignore": [
       "/dist/"
     ]
+  },
+  "jest": {
+    "transform": {
+      "\\.css$": "<rootDir>/test/styleTransform.js",
+      "^.+\\.js?$": "babel-jest"
+    }
   },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"

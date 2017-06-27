@@ -1,4 +1,6 @@
-import { parseKeyframes } from './parser'
+import fs from 'fs'
+import { basename } from 'path'
+import { touchSync } from 'touch'
 import { inline, keyframes, fontFace } from './inline'
 import findAndReplaceAttrs from './attrs'
 
@@ -63,7 +65,41 @@ export default function (babel) {
     name: 'emotion', // not required
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
-      TaggedTemplateExpression (path) {
+      Program: {
+        enter (path, state) {
+          state.inline =
+            path.hub.file.opts.filename === 'unknown' || state.opts.inline
+          state.staticRules = []
+          state.insertStaticRules = function (staticRules) {
+            state.staticRules.push(...staticRules)
+          }
+        },
+        exit (path, state) {
+          if (state.staticRules.length !== 0) {
+            const toWrite = state.staticRules.join('\n').trim()
+            const filenameArr = path.hub.file.opts.filename.split('.')
+            filenameArr.pop()
+            filenameArr.push('emotion', 'css')
+            const cssFilename = filenameArr.join('.')
+            const exists = fs.existsSync(cssFilename)
+            path.node.body.unshift(
+              t.importDeclaration(
+                [],
+                t.stringLiteral('./' + basename(cssFilename))
+              )
+            )
+            if (
+              exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
+            ) {
+              if (!exists) {
+                touchSync(cssFilename)
+              }
+              fs.writeFileSync(cssFilename, toWrite)
+            }
+          }
+        }
+      },
+      TaggedTemplateExpression (path, state) {
         // in:
         // styled.h1`color:${color};`
         //
@@ -83,28 +119,36 @@ export default function (babel) {
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, rules, name } = inline(built, identifierName, 'css')
+          let { hash, rules, name, isStatic } = inline(
+            built,
+            identifierName,
+            'css',
+            state.inline
+          )
 
           // hash will be '0' when no styles are passed so we can just return the original tag
           if (hash === '0') {
             return tag
           }
-
-          let arrayValues = parseDynamicValues(rules, t)
-
-          const inlineContentExpr = t.functionExpression(
-            t.identifier('createEmotionStyledRules'),
-            built.expressions.map((x, i) => t.identifier(`x${i}`)),
-            t.blockStatement([
-              t.returnStatement(t.arrayExpression(arrayValues))
-            ])
-          )
           const args = [
             tag,
             t.stringLiteral(`${name}-${hash}`),
-            t.arrayExpression(built.expressions),
-            inlineContentExpr
+            t.arrayExpression(built.expressions)
           ]
+          if (isStatic) {
+            state.insertStaticRules(rules)
+          } else {
+            const inlineContentExpr = t.functionExpression(
+              t.identifier('createEmotionStyledRules'),
+              built.expressions.map((x, i) => t.identifier(`x${i}`)),
+              t.blockStatement([
+                t.returnStatement(
+                  t.arrayExpression(parseDynamicValues(rules, t))
+                )
+              ])
+            )
+            args.push(inlineContentExpr)
+          }
 
           return t.callExpression(identifier, args)
         }
@@ -139,25 +183,30 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fragment'
         ) {
-          const { hash, name, rules } = inline(
+          const { rules } = inline(
             path.node.quasi,
             identifierName,
-            'frag'
+            'frag',
+            true
           )
+          if (rules.length > 1) {
+            throw path.buildCodeFrameError(
+              'Fragments cannot have multiple selectors.'
+            )
+          }
+          const rulesWithoutSelector = rules.map(rule =>
+            rule.substring(rule.indexOf('{') + 1, rule.length - 1)
+          )
+          const dynamicRules = parseDynamicValues(rulesWithoutSelector, t)
           path.replaceWith(
             t.callExpression(t.identifier('fragment'), [
-              t.stringLiteral(`${name}-${hash}`),
               t.arrayExpression(path.node.quasi.expressions),
               t.functionExpression(
                 t.identifier('createEmotionFragment'),
                 path.node.quasi.expressions.map((x, i) =>
                   t.identifier(`x${i}`)
                 ),
-                t.blockStatement([
-                  t.returnStatement(
-                    t.arrayExpression(parseDynamicValues(rules, t))
-                  )
-                ])
+                t.blockStatement([t.returnStatement(dynamicRules[0])])
               )
             ])
           )
@@ -165,28 +214,31 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'css'
         ) {
-          const { hash, name, rules } = inline(
+          const { hash, name, rules, isStatic } = inline(
             path.node.quasi,
             identifierName,
-            'css'
+            'css',
+            state.inline
           )
-          path.replaceWith(
-            t.callExpression(t.identifier('css'), [
-              t.stringLiteral(`${name}-${hash}`),
-              t.arrayExpression(path.node.quasi.expressions),
-              t.functionExpression(
-                t.identifier('createEmotionRules'),
-                path.node.quasi.expressions.map((x, i) =>
-                  t.identifier(`x${i}`)
-                ),
-                t.blockStatement([
-                  t.returnStatement(
-                    t.arrayExpression(parseDynamicValues(rules, t))
-                  )
-                ])
-              )
-            ])
-          )
+          const args = [
+            t.stringLiteral(`${name}-${hash}`),
+            t.arrayExpression(path.node.quasi.expressions)
+          ]
+          if (isStatic) {
+            state.insertStaticRules(rules)
+          } else {
+            const inlineContentExpr = t.functionExpression(
+              t.identifier('createEmotionRules'),
+              path.node.quasi.expressions.map((x, i) => t.identifier(`x${i}`)),
+              t.blockStatement([
+                t.returnStatement(
+                  t.arrayExpression(parseDynamicValues(rules, t))
+                )
+              ])
+            )
+            args.push(inlineContentExpr)
+          }
+          path.replaceWith(t.callExpression(t.identifier('css'), args))
         } else if (
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'keyframes'
@@ -218,7 +270,7 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fontFace'
         ) {
-          const {hash, name, rules} = fontFace(
+          const { hash, name, rules } = fontFace(
             path.node.quasi,
             identifierName,
             'font-face'

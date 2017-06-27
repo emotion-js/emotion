@@ -1,5 +1,5 @@
 require('babel-register')
 
-module.exports = {
-  plugins: [require('../src/babel')]
+module.exports = function (context, opts) {
+  return { plugins: [[require('../src/babel'), opts]] }
 }

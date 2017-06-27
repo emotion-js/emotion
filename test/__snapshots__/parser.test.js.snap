@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parser basic 1`] = `
+Array [
+  ".thing {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: var(--css-hash-0);
+}",
+]
+`;
+
+exports[`parser fancy 1`] = `
+Array [
+  ".some-selector {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: var(--css-hash-0);
+}",
+  ".some-selector:hover {
+  background-color: green;
+}",
+  "@media (max-width: 500px) {
+  .some-selector {
+    height: var(--css-hash-1);
+    position: fixed;
+  }
+}",
+  "@media print {
+  .some-selector {
+    display: none;
+  }
+}",
+  ".some-selector::before {
+  color: blue;
+  width: 20px;
+  height: 20px;
+  content: 'pseudo'
+}",
+]
+`;
+
+exports[`parser static 1`] = `
+Array [
+  ".thing {
+  display: block;
+  height: 50px;
+  width: 30px
+}",
+]
+`;

@@ -13,7 +13,15 @@ module.exports = env => {
     },
     {
       test: /\.css$/,
-      use: [
+      use: PROD ? ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: {
+          loader: "css-loader",
+          options: {
+            sourceMap: true
+          }
+        }
+      }) : [
         'style-loader',
         { loader: 'css-loader' }
       ]
