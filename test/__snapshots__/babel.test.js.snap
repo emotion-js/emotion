@@ -1,11 +1,117 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`emotion/babel babel css css basic 1`] = `
+"
+css(\\"css-cu78iu\\", [widthVar], function createEmotionRules(x0) {
+        return [\`.css-cu78iu { margin: 12px 48px;
+        color: #ffffff;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        color: blue;
+        width: \${x0}; }\`];
+});"
+`;
+
+exports[`emotion/babel babel css css kitchen sink 1`] = `
+"
+const cls = css(\\"css-cls-h5t3cu\\", [margin], function createEmotionRules(x0) {
+        return [\`.css-cls-h5t3cu { font-size: 58pt;margin: \${x0}; }\`];
+});
+const frag = fragment([], function createEmotionFragment() {
+        return \` padding: 8px; \`;
+});
+const fragB = fragment([heightVar, frag], function createEmotionFragment(x0, x1) {
+        return \` height: \${x0};\${x1}; \`;
+});
+const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRules(x0, x1) {
+        return [\`.css-cls2-1b4c3x0 { \${x0};
+        \${x1};
+        margin: 12px 48px;
+        color: #ffffff; }\`];
+});"
+`;
+
+exports[`emotion/babel babel css extract css basic 1`] = `
+"import \\"./babel.test.emotion.css\\";
+
+css(\\"css-cu78iu\\", [widthVar]);"
+`;
+
+exports[`emotion/babel babel css extract css basic 2`] = `
+".css-cu78iu { margin: 12px 48px;
+        color: #ffffff;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        color: blue;
+        width: var(--css-cu78iu-0); }"
+`;
+
+exports[`emotion/babel babel css extract css kitchen sink 1`] = `
+"import \\"./babel.test.emotion.css\\";
+
+const cls = css(\\"css-cls-h5t3cu\\", [margin]);
+const frag = fragment([], function createEmotionFragment() {
+        return \` padding: 8px; \`;
+});
+const fragB = fragment([heightVar, frag], function createEmotionFragment(x0, x1) {
+        return \` height: \${x0};\${x1}; \`;
+});
+const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRules(x0, x1) {
+        return [\`.css-cls2-1b4c3x0 { \${x0};
+        \${x1};
+        margin: 12px 48px;
+        color: #ffffff; }\`];
+});"
+`;
+
+exports[`emotion/babel babel css extract css kitchen sink 2`] = `".css-cls-h5t3cu { font-size: 58pt;margin: var(--css-cls-h5t3cu-0); }"`;
+
 exports[`emotion/babel babel font-face font-face basic 1`] = `
 "
 fontFace(\\"font-face-1o0czbr\\", [], function createEmotionFontFace() {
      return [\\"@font-face {font-family: MyHelvetica;\\\\n          src: local(\\\\\\"Helvetica Neue Bold\\\\\\"),\\\\n               local(\\\\\\"HelveticaNeue-Bold\\\\\\"),\\\\n               url(MgOpenModernaBold.ttf);\\\\n          font-weight: bold;}\\"];
 });"
 `;
+
+exports[`emotion/babel babel fragment basic fragment 1`] = `
+"
+const frag = fragment([], function createEmotionFragment() {
+        return \` color: green \`;
+});
+styled(\\"h1\\", \\"css-u3lc8x\\", [frag], function createEmotionStyledRules(x0) {
+        return [\`.css-u3lc8x { font-size: 20px; \${x0}; }\`];
+});"
+`;
+
+exports[`emotion/babel babel fragment fragment kitchen sink 1`] = `
+"
+const frag = fragment([backgroundColor], function createEmotionFragment(x0) {
+        return \` color: green; background-color: \${x0} \`;
+});
+const frag1 = fragment([], function createEmotionFragment() {
+        return \` width: 20px; \`;
+});
+const frag2 = fragment([frag1], function createEmotionFragment(x0) {
+        return \` height: 20px; \${x0}; \`;
+});
+styled('h1', 'css-some-name-9k8moo', [fontSize + 'px', frag, frag2], function createEmotionStyledRules(x0, x1, x2) {
+        return [\`.css-some-name-9k8moo { font-size: \${x0}; \${x1}; \${x2} }\`];
+});"
+`;
+
+exports[`emotion/babel babel fragment fragment with multiple selectors that should throw 1`] = `"unknown: Fragments cannot have multiple selectors."`;
 
 exports[`emotion/babel babel keyframes keyframe basic 1`] = `
 "
@@ -80,68 +186,44 @@ exports[`emotion/babel babel styled component basic 1`] = `
 });"
 `;
 
-exports[`emotion/babel babel styled component basic fragment 1`] = `
-"
-const frag = fragment(\\"frag-frag-upmkpf\\", [], function createEmotionFragment() {
-        return [\`.frag-frag-upmkpf { color: green }\`];
+exports[`emotion/babel babel styled component extract based on props 1`] = `
+"import './babel.test.emotion.css';
+const H1 = styled('h1', 'css-H1-q3ohdq', [fontSize + 'px', props => props.translateX]);"
+`;
+
+exports[`emotion/babel babel styled component extract based on props 2`] = `".css-H1-q3ohdq { font-size: var(--css-H1-q3ohdq-0); height: 20px; -webkit-transform: translateX(var(--css-H1-q3ohdq-1)); -ms-transform: translateX(var(--css-H1-q3ohdq-1)); transform: translateX(var(--css-H1-q3ohdq-1)) }"`;
+
+exports[`emotion/babel babel styled component extract basic 1`] = `
+"import './babel.test.emotion.css';
+const H1 = styled('h1', 'css-H1-1mh2el5', [fontSize + 'px']);"
+`;
+
+exports[`emotion/babel babel styled component extract basic 2`] = `".css-H1-1mh2el5 { font-size: var(--css-H1-1mh2el5-0); height: 20px }"`;
+
+exports[`emotion/babel babel styled component extract no dynamic 1`] = `
+"import \\"./babel.test.emotion.css\\";
+styled(\\"h1\\", \\"css-14ksm7b\\", []);"
+`;
+
+exports[`emotion/babel babel styled component extract no dynamic 2`] = `".css-14ksm7b { color: blue; }"`;
+
+exports[`emotion/babel babel styled component extract no use 1`] = `"\\"h1\\";"`;
+
+exports[`emotion/babel babel styled component extract with fragment 1`] = `
+"const frag1 = fragment([], function createEmotionFragment() {
+  return \` width: 20px; \`;
 });
-styled(\\"h1\\", \\"css-u3lc8x\\", [frag], function createEmotionStyledRules(x0) {
-        return [\`.css-u3lc8x { font-size: 20px; \${x0}; }\`];
+const H1 = styled('h1', 'css-H1-osx1au', [fontSize + 'px', props => props.translateX, frag1], function createEmotionStyledRules(x0, x1, x2) {
+  return [\`.css-H1-osx1au { font-size: \${x0};
+        height: 20px;
+        -webkit-transform: translateX(\${x1});
+        -ms-transform: translateX(\${x1});
+        transform: translateX(\${x1});
+        \${x2} }\`];
 });"
 `;
 
-exports[`emotion/babel babel styled component css basic 1`] = `
-"
-css(\\"css-cu78iu\\", [widthVar], function createEmotionRules(x0) {
-        return [\`.css-cu78iu { margin: 12px 48px;
-        color: #ffffff;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex: 1 0 auto;
-        -ms-flex: 1 0 auto;
-        flex: 1 0 auto;
-        color: blue;
-        width: \${x0}; }\`];
-});"
-`;
-
-exports[`emotion/babel babel styled component css kitchen sink 1`] = `
-"
-const cls = css(\\"css-cls-h5t3cu\\", [margin], function createEmotionRules(x0) {
-        return [\`.css-cls-h5t3cu { font-size: 58pt;margin: \${x0}; }\`];
-});
-const frag = fragment(\\"frag-frag-zzm2ov\\", [], function createEmotionFragment() {
-        return [\`.frag-frag-zzm2ov { padding: 8px; }\`];
-});
-const fragB = fragment(\\"frag-fragB-16v04hq\\", [heightVar, frag], function createEmotionFragment(x0, x1) {
-        return [\`.frag-fragB-16v04hq { height: \${x0};\${x1}; }\`];
-});
-const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRules(x0, x1) {
-        return [\`.css-cls2-1b4c3x0 { \${x0};
-        \${x1};
-        margin: 12px 48px;
-        color: #ffffff; }\`];
-});"
-`;
-
-exports[`emotion/babel babel styled component fragment kitchen sink 1`] = `
-"
-const frag = fragment('frag-frag-10oh1gr', [backgroundColor], function createEmotionFragment(x0) {
-        return [\`.frag-frag-10oh1gr { color: green; background-color: \${x0} }\`];
-});
-const frag1 = fragment('frag-some-frag-name-1ymjbmm', [], function createEmotionFragment() {
-        return [\`.frag-some-frag-name-1ymjbmm { width: 20px; name: some-frag-name; }\`];
-});
-const frag2 = fragment('frag-frag2-q1t5oy', [frag1], function createEmotionFragment(x0) {
-        return [\`.frag-frag2-q1t5oy { height: 20px; \${x0}; }\`];
-});
-styled('h1', 'css-some-name-9k8moo', [fontSize + 'px', frag, frag2], function createEmotionStyledRules(x0, x1, x2) {
-        return [\`.css-some-name-9k8moo { font-size: \${x0}; name: some-name; \${x1}; \${x2} }\`];
-});"
-`;
+exports[`emotion/babel babel styled component extract with fragment 2`] = `".css-H1-q3ohdq { font-size: var(--css-H1-q3ohdq-0); height: 20px; -webkit-transform: translateX(var(--css-H1-q3ohdq-1)); -ms-transform: translateX(var(--css-H1-q3ohdq-1)); transform: translateX(var(--css-H1-q3ohdq-1)) }"`;
 
 exports[`emotion/babel babel styled component function call 1`] = `
 "styled(MyComponent, 'css-1t8i2zo', [fontSize + 'px'], function createEmotionStyledRules(x0) {

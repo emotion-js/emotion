@@ -1,6 +1,7 @@
+// @flow
 // murmurhash2 via https://gist.github.com/raycmorgan/588423
 
-export default function hashArray (arr) {
+export default function hashArray (arr: mixed[]): string {
   let str = arr.join(',')
   return murmur2(str, str.length).toString(36)
 }

@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel plugin fs creates and writes to the css file when it does not exist 1`] = `
+".css-class-lk4ur6 { margin: 12px 48px;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  color: blue;
+  width: var(--css-class-lk4ur6-0); }"
+`;
+
+exports[`babel plugin fs creates and writes to the css file when it does not exist 2`] = `
+"import \\"./babel-fs.test.emotion.css\\";
+
+css(\\"css-class-lk4ur6\\", [widthVar]);"
+`;
+
+exports[`babel plugin fs does not write to the css file when it is the same as is already written 1`] = `
+"import \\"./babel-fs.test.emotion.css\\";
+
+css(\\"css-class-lk4ur6\\", [widthVar]);"
+`;
+
+exports[`babel plugin fs writes to the css file when it does exist  1`] = `
+".css-class-lk4ur6 { margin: 12px 48px;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  color: blue;
+  width: var(--css-class-lk4ur6-0); }"
+`;
+
+exports[`babel plugin fs writes to the css file when it does exist  2`] = `
+"import \\"./babel-fs.test.emotion.css\\";
+
+css(\\"css-class-lk4ur6\\", [widthVar]);"
+`;

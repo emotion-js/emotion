@@ -89,15 +89,13 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.css-onyx-wn422p-gyln3i {
-  name: onyx;
+.css-onyx-wn422p-oy3rok {
   background-color: '#343a40';
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
-  name: squirtle-blue-bg;
   background-color: #7FC8D6;
 }
 
@@ -106,18 +104,17 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="css-Content-13wdnau-1z6hk6 css-onyx-wn422p-gyln3i"
+  className="css-Content-13wdnau-1z6hk6 css-onyx-wn422p-oy3rok"
 />
 `;
 
 exports[`styled name 1`] = `
-.css-FancyH1-1azfbv1-qrqyj0 {
-  name: FancyH1;
+.css-FancyH1-1azfbv1-1fzd8kz {
   font-size: 20px;
 }
 
 <h1
-  className="css-FancyH1-1azfbv1-qrqyj0"
+  className="css-FancyH1-1azfbv1-1fzd8kz"
 >
   hello world
 </h1>
