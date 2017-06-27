@@ -1,7 +1,7 @@
 {
   "name": "emotion",
   "version": "3.0.3",
-  "description": "👩‍🎤 Glam + React",
+  "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
     "babel.js",
