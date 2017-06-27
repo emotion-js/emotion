@@ -9,16 +9,23 @@ import Preview from '../preview'
 import styled from 'emotion/styled'
 import colors from 'open-color'
 
-const Content = styled('div')`
-  flex: 1 1 auto;
+const PlaygroundContent = styled('div')`
   display: flex;
+  margin: 16px auto;
+  padding: 16px 0;
+  max-width: 560px;
+  max-height: ${props => (props.maxHeight || 160) + 'px'};
   
   & .ReactCodeMirror {
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    min-width: 48vw;
-    & > div { flex: 1;
+    flex: 1 1 66.66%;
+    & textarea {
+      border-radius: 4px;
+    }
+    
+    .CodeMirror {
+      max-height: ${props => (props.maxHeight || 160) + 'px'};
+      border-radius: 4px;
+    }
   }
 `
 
@@ -77,6 +84,7 @@ class ReactPlayground extends Component {
       context,
       docClass,
       es6Console,
+      maxHeight,
       noRender,
       previewComponent,
       propDescriptionMap,
@@ -86,7 +94,7 @@ class ReactPlayground extends Component {
     } = this.props
 
     return (
-      <Content style={{ display: 'flex' }}>
+      <PlaygroundContent maxHeight={maxHeight}>
         <Editor
           codeText={code}
           external={external}
@@ -101,7 +109,7 @@ class ReactPlayground extends Component {
           noRender={noRender}
           previewComponent={previewComponent}
         />
-      </Content>
+      </PlaygroundContent>
     )
   }
 }

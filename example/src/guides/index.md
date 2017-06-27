@@ -61,37 +61,3 @@ const Paragraph = styled('div')`
 `
 ```
 
-#### Code Blocks
-
-These code blocks don't really stand out. Lets give them a nice background and lighten the text color a bit.
-
-👈 Find the `Code` declaration and modify it to match the example below.
-
-```jsx
-const Code = styled('code')`
-  font-family: monospace;
-  font-size: 0.75rem;
-  color: ${colors.gray[8]};
-  background-color: ${colors.gray[0]};
-  padding: 1px;
-  
-  p & {
-    font-size: 0.99rem;
-  }
-`
-```
-
-That modified the text but we still need to style the container.
-
-👈 Find the `CodeBlock` declaration and modify it to match the example below.
-
-```jsx
-const CodeBlock = styled('pre')`
-  margin: 0;
-  padding: 4px;
-  color: ${colors.gray[6]};
-  background-color: ${colors.gray[0]};
-  border-radius: attr(radius, 6px);
-`
-```
-

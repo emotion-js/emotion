@@ -15,8 +15,15 @@ module.exports = env => {
       test: /\.css$/,
       use: [
         'style-loader',
-        { loader: 'css-loader', options: { sourceMap: true } }
+        { loader: 'css-loader' }
       ]
+    },
+    {
+      test: /\.(jpg|png|svg)$/,
+      loader: 'url-loader',
+      options: {
+        limit: 25000
+      }
     }
   ]
 

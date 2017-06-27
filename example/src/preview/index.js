@@ -9,19 +9,19 @@ import { css } from 'emotion'
 
 registerPlugin('emotion/babel', require('emotion/babel'))
 
-const Content = styled('div')`
-  flex: 1 1 auto;
+const PreviewContent = styled('div')`
   display: flex;
 `
 
-const PreviewWrapper = styled(Content)`
-  flex-direction: column;
-  padding: 16px 16px;
-  -webkit-overflow-scrolling: touch;
-  overflow:auto;
+const PreviewWrapper = styled(PreviewContent)`
+  flex: 1 1 33.33%;
   
-  @media(min-width: 680px) {
-    padding: 32px 48px;
+  & .preview-display {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
 
@@ -133,8 +133,8 @@ class Preview extends Component {
     const { error } = this.state
     return (
       <PreviewWrapper>
-        {error !== null ? <Content>{error}</Content> : null}
-        <div ref="mount" style={{ width: '100%', height: '100%' }} />
+        {error !== null ? <PreviewContent>{error}</PreviewContent> : null}
+        <div ref="mount" className="preview-display"  />
       </PreviewWrapper>
     )
   }
