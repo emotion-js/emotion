@@ -92,6 +92,29 @@ describe('babel injectGlobal', () => {
       expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
       expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
     })
+    test('injectGlobal assign to variable', () => {
+      const basic = `
+        const thisWillBeUndefined = injectGlobal\`
+          body {
+            margin: 0;
+            padding: 0;
+            & > div {
+              display: none;
+            }
+          }
+          html {
+            background: green;
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
+      expect(fs.writeFileSync.mock.calls[1][1]).toMatchSnapshot()
+    })
     test('injectGlobal with interpolation', () => {
       const basic = `
         injectGlobal\`
@@ -111,7 +134,7 @@ describe('babel injectGlobal', () => {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
     })
   })
 })

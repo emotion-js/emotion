@@ -57,6 +57,24 @@ describe('fontFace babel', () => {
       expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
       expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
     })
+    test('basic assign to variable', () => {
+      const basic = `
+        const thisWillBeUndefined = fontFace\`
+          font-family: MyHelvetica;
+          src: local("Helvetica Neue Bold"),
+               local("HelveticaNeue-Bold"),
+               url(MgOpenModernaBold.ttf);
+          font-weight: bold;
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
+      expect(fs.writeFileSync.mock.calls[1][1]).toMatchSnapshot()
+    })
     test('interpolation', () => {
       const basic = `
         fontFace\`
@@ -72,7 +90,7 @@ describe('fontFace babel', () => {
         filename: __filename
       })
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
     })
   })
 })
