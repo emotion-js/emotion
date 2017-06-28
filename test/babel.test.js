@@ -272,6 +272,90 @@ describe('emotion/babel', () => {
       expect(fs.writeFileSync.mock.calls[4][1]).toMatchSnapshot()
     })
   })
+  describe('babel injectGlobal extract', () => {
+    test('injectGlobal basic', () => {
+      const basic = `
+        injectGlobal\`
+          body {
+            margin: 0;
+            padding: 0;
+            & > div {
+              display: none;
+            }
+          }
+          html {
+            background: green;
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(6)
+      expect(fs.writeFileSync.mock.calls[5][1]).toMatchSnapshot()
+    })
+    test('injectGlobal with interpolation', () => {
+      const basic = `
+        injectGlobal\`
+          body {
+            margin: 0;
+            padding: 0;
+            display: \${display};
+            & > div {
+              display: none;
+            }
+          }
+          html {
+            background: green;
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(6)
+    })
+  })
+  describe('babel font-face extract', () => {
+    test('font-face basic', () => {
+      const basic = `
+        fontFace\`
+          font-family: MyHelvetica;
+          src: local("Helvetica Neue Bold"),
+               local("HelveticaNeue-Bold"),
+               url(MgOpenModernaBold.ttf);
+          font-weight: bold;
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        filename: __filename,
+        babelrc: false
+
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(7)
+      expect(fs.writeFileSync.mock.calls[6][1]).toMatchSnapshot()
+    })
+    test('font-face with interpolation', () => {
+      const basic = `
+        fontFace\`
+          font-family: \${fontFamilyName};
+          src: local("Helvetica Neue Bold"),
+               local("HelveticaNeue-Bold"),
+               url(MgOpenModernaBold.ttf);
+          font-weight: bold;
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        babelrc: false,
+        filename: __filename
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(7)
+    })
+  })
   describe('babel fragment', () => {
     test('basic fragment', () => {
       const basic = `
@@ -334,11 +418,66 @@ describe('emotion/babel', () => {
       expect(code).toMatchSnapshot()
     })
   })
+  describe('babel injectGlobal', () => {
+    test('injectGlobal basic', () => {
+      const basic = `
+        injectGlobal\`
+          body {
+            margin: 0;
+            padding: 0;
+            & > div {
+              display: none;
+            }
+          }
+          html {
+            background: green;
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('injectGlobal with interpolation', () => {
+      const basic = `
+        injectGlobal\`
+          body {
+            margin: 0;
+            padding: 0;
+            display: \${display};
+            & > div {
+              display: none;
+            }
+          }
+          html {
+            background: green;
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+  })
   describe('babel font-face', () => {
     test('font-face basic', () => {
       const basic = `
         fontFace\`
           font-family: MyHelvetica;
+          src: local("Helvetica Neue Bold"),
+               local("HelveticaNeue-Bold"),
+               url(MgOpenModernaBold.ttf);
+          font-weight: bold;
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('font-face with interpolation', () => {
+      const basic = `
+        fontFace\`
+          font-family: \${fontFamilyName};
           src: local("Helvetica Neue Bold"),
                local("HelveticaNeue-Bold"),
                url(MgOpenModernaBold.ttf);

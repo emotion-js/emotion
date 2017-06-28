@@ -40,13 +40,7 @@ describe('keyframes', () => {
       animation: ${bounce} 2s linear infinite;
     `
 
-    const tree = renderer
-      .create(
-        <H1>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })

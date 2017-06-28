@@ -78,10 +78,46 @@ const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRu
 
 exports[`emotion/babel babel css extract css kitchen sink 2`] = `".css-cls-h5t3cu { font-size: 58pt;margin: var(--css-cls-h5t3cu-0); }"`;
 
+exports[`emotion/babel babel font-face extract font-face basic 1`] = `"import \\"./babel.test.emotion.css\\";"`;
+
+exports[`emotion/babel babel font-face extract font-face basic 2`] = `
+"@font-face {font-family: MyHelvetica;
+          src: local(\\"Helvetica Neue Bold\\"),
+               local(\\"HelveticaNeue-Bold\\"),
+               url(MgOpenModernaBold.ttf);
+          font-weight: bold;}"
+`;
+
+exports[`emotion/babel babel font-face extract font-face with interpolation 1`] = `
+"
+fontFace([fontFamilyName], function createEmotionFontFace(x0) {
+     return [\`@font-face {font-family: \${x0};
+          src: local(\\"Helvetica Neue Bold\\"),
+               local(\\"HelveticaNeue-Bold\\"),
+               url(MgOpenModernaBold.ttf);
+          font-weight: bold;}\`];
+});"
+`;
+
 exports[`emotion/babel babel font-face font-face basic 1`] = `
 "
-fontFace(\\"font-face-1o0czbr\\", [], function createEmotionFontFace() {
-     return [\\"@font-face {font-family: MyHelvetica;\\\\n          src: local(\\\\\\"Helvetica Neue Bold\\\\\\"),\\\\n               local(\\\\\\"HelveticaNeue-Bold\\\\\\"),\\\\n               url(MgOpenModernaBold.ttf);\\\\n          font-weight: bold;}\\"];
+fontFace([], function createEmotionFontFace() {
+     return [\`@font-face {font-family: MyHelvetica;
+          src: local(\\"Helvetica Neue Bold\\"),
+               local(\\"HelveticaNeue-Bold\\"),
+               url(MgOpenModernaBold.ttf);
+          font-weight: bold;}\`];
+});"
+`;
+
+exports[`emotion/babel babel font-face font-face with interpolation 1`] = `
+"
+fontFace([fontFamilyName], function createEmotionFontFace(x0) {
+     return [\`@font-face {font-family: \${x0};
+          src: local(\\"Helvetica Neue Bold\\"),
+               local(\\"HelveticaNeue-Bold\\"),
+               url(MgOpenModernaBold.ttf);
+          font-weight: bold;}\`];
 });"
 `;
 
@@ -112,6 +148,65 @@ styled('h1', 'css-some-name-9k8moo', [fontSize + 'px', frag, frag2], function cr
 `;
 
 exports[`emotion/babel babel fragment fragment with multiple selectors that should throw 1`] = `"unknown: Fragments cannot have multiple selectors."`;
+
+exports[`emotion/babel babel injectGlobal extract injectGlobal basic 1`] = `"import \\"./babel.test.emotion.css\\";"`;
+
+exports[`emotion/babel babel injectGlobal extract injectGlobal basic 2`] = `
+"body {
+            margin: 0;
+            padding: 0;
+          }
+body > div {
+            display: none;
+}
+html {
+            background: green;
+          }"
+`;
+
+exports[`emotion/babel babel injectGlobal extract injectGlobal with interpolation 1`] = `
+"
+injectGlobal([display], function createEmotionGlobal(x0) {
+  return [\`body {
+            margin: 0;
+            padding: 0;
+            display: \${x0};
+          }\`, \`body > div {
+            display: none;
+}\`, \`html {
+            background: green;
+          }\`];
+});"
+`;
+
+exports[`emotion/babel babel injectGlobal injectGlobal basic 1`] = `
+"
+injectGlobal([], function createEmotionGlobal() {
+  return [\`body {
+            margin: 0;
+            padding: 0;
+          }\`, \`body > div {
+            display: none;
+}\`, \`html {
+            background: green;
+          }\`];
+});"
+`;
+
+exports[`emotion/babel babel injectGlobal injectGlobal with interpolation 1`] = `
+"
+injectGlobal([display], function createEmotionGlobal(x0) {
+  return [\`body {
+            margin: 0;
+            padding: 0;
+            display: \${x0};
+          }\`, \`body > div {
+            display: none;
+}\`, \`html {
+            background: green;
+          }\`];
+});"
+`;
 
 exports[`emotion/babel babel keyframes keyframe basic 1`] = `
 "

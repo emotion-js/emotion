@@ -49,9 +49,20 @@ export function css (cls: string, vars: vars, content: () => string[]) {
   return cls + (vars && vars.length > 0 ? ' ' + values(cls, vars) : '')
 }
 
-export function fragment (vars: vars, content: () => string[]) {
+export function fragment (vars: vars, content: () => string) {
   return content(...vars)
 }
+
+export function injectGlobal (vars: vars, content: () => string[]) {
+  const src = content(...vars)
+  const hash = hashArray(src)
+  if (!inserted[hash]) {
+    inserted[hash] = true
+    sheet.insert(src)
+  }
+}
+
+export const fontFace = injectGlobal
 
 export function keyframes (kfm: string, vars: vars, content: () => string[]) {
   let src = content(...vars)
@@ -63,22 +74,6 @@ export function keyframes (kfm: string, vars: vars, content: () => string[]) {
     })
   }
   return `${kfm}-${hash}`
-}
-
-export function fontFace (
-  fontRules: string,
-  vars: vars,
-  content: () => string[]
-) {
-  let src = content(...vars)
-  let hash = hashArray(src)
-  if (!inserted[hash]) {
-    inserted[hash] = true
-    src.forEach(r => {
-      return sheet.insert(r)
-    })
-  }
-  return `${fontRules}-${hash}`
 }
 
 export function hydrate (ids: string[]) {

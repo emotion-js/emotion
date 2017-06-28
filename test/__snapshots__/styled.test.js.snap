@@ -10,7 +10,7 @@ exports[`styled attr 1`] = `
   className="css-H1-15vt02v-1n5h3v0"
   fontSize={48}
 />
-`;
+`
 
 exports[`styled basic render 1`] = `
 .css-H1-13wdnau-xy96vj {
@@ -22,7 +22,7 @@ exports[`styled basic render 1`] = `
 >
   hello world
 </h1>
-`;
+`
 
 exports[`styled call expression 1`] = `
 .css-H1-13wdnau-xy96vj {
@@ -34,7 +34,7 @@ exports[`styled call expression 1`] = `
 >
   hello world
 </h1>
-`;
+`
 
 exports[`styled composition 1`] = `
 .css-H1-13wdnau-xy96vj {
@@ -50,7 +50,7 @@ exports[`styled composition 1`] = `
 >
   hello world
 </h1>
-`;
+`
 
 exports[`styled fragments 1`] = `
 .css-H2-idm3bz-361gww {
@@ -69,7 +69,7 @@ exports[`styled fragments 1`] = `
 >
   hello world
 </h1>
-`;
+`
 
 exports[`styled function in expression 1`] = `
 .css-H1-13wdnau-xy96vj {
@@ -86,7 +86,7 @@ exports[`styled function in expression 1`] = `
 >
   hello world
 </h1>
-`;
+`
 
 exports[`styled higher order component 1`] = `
 .css-onyx-wn422p-oy3rok {
@@ -106,7 +106,7 @@ exports[`styled higher order component 1`] = `
 <div
   className="css-Content-13wdnau-1z6hk6 css-onyx-wn422p-oy3rok"
 />
-`;
+`
 
 exports[`styled name 1`] = `
 .css-FancyH1-1azfbv1-1fzd8kz {
@@ -118,7 +118,7 @@ exports[`styled name 1`] = `
 >
   hello world
 </h1>
-`;
+`
 
 exports[`styled no dynamic 1`] = `
 .css-H1-dae0kw-kdrkuq {
@@ -130,4 +130,4 @@ exports[`styled no dynamic 1`] = `
 >
   hello world
 </h1>
-`;
+`

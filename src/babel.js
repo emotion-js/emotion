@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
-import { inline, keyframes, fontFace } from './inline'
+import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import findAndReplaceAttrs from './attrs'
 
 function parseDynamicValues (rules, t) {
@@ -112,9 +112,8 @@ export default function (babel) {
         // });
 
         const parent = path.findParent(p => p.isVariableDeclarator())
-        const identifierName = parent && t.isIdentifier(parent.node.id)
-          ? parent.node.id.name
-          : ''
+        const identifierName =
+          parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
@@ -270,29 +269,69 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fontFace'
         ) {
-          const { hash, name, rules } = fontFace(
+          const { rules, isStatic } = fontFace(
             path.node.quasi,
-            identifierName,
-            'font-face'
+            state.inline
           )
-
-          path.replaceWith(
-            t.callExpression(t.identifier('fontFace'), [
-              t.stringLiteral(`${name}-${hash}`),
-              t.arrayExpression(path.node.quasi.expressions),
-              t.functionExpression(
-                t.identifier('createEmotionFontFace'),
-                path.node.quasi.expressions.map((x, i) =>
-                  t.identifier(`x${i}`)
-                ),
-                t.blockStatement([
-                  t.returnStatement(
-                    t.arrayExpression(rules.map(r => t.stringLiteral(r)))
-                  )
-                ])
-              )
-            ])
+          if (isStatic) {
+            state.insertStaticRules(rules)
+            if (t.isExpressionStatement(path.parent)) {
+              path.parentPath.remove()
+            } else {
+              path.replaceWith(t.identifier('undefined'))
+            }
+          } else {
+            path.replaceWith(
+              t.callExpression(t.identifier('fontFace'), [
+                t.arrayExpression(path.node.quasi.expressions),
+                t.functionExpression(
+                  t.identifier('createEmotionFontFace'),
+                  path.node.quasi.expressions.map((x, i) =>
+                    t.identifier(`x${i}`)
+                  ),
+                  t.blockStatement([
+                    t.returnStatement(
+                      t.arrayExpression(parseDynamicValues(rules, t))
+                    )
+                  ])
+                )
+              ])
+            )
+          }
+        } else if (
+          t.isIdentifier(path.node.tag) &&
+          path.node.tag.name === 'injectGlobal' &&
+          t.isTemplateLiteral(path.node.quasi)
+        ) {
+          const { isStatic, rules } = injectGlobal(
+            path.node.quasi,
+            state.inline
           )
+          if (isStatic) {
+            state.insertStaticRules(rules)
+            if (t.isExpressionStatement(path.parent)) {
+              path.parentPath.remove()
+            } else {
+              path.replaceWith(t.identifier('undefined'))
+            }
+          } else {
+            path.replaceWith(
+              t.callExpression(t.identifier('injectGlobal'), [
+                t.arrayExpression(path.node.quasi.expressions),
+                t.functionExpression(
+                  t.identifier('createEmotionGlobal'),
+                  path.node.quasi.expressions.map((x, i) =>
+                    t.identifier(`x${i}`)
+                  ),
+                  t.blockStatement([
+                    t.returnStatement(
+                      t.arrayExpression(parseDynamicValues(rules, t))
+                    )
+                  ])
+                )
+              ])
+            )
+          }
         }
       }
     }
