@@ -13,34 +13,18 @@ expect.extend(matcher)
 
 describe('styled', () => {
   test('no dynamic', () => {
-    const H1 = styled.h1`
-      font-size: 12px;
-    `
+    const H1 = styled.h1`font-size: 12px;`
 
-    const tree = renderer
-      .create(
-        <H1>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('basic render', () => {
     const fontSize = 20
-    const H1 = styled.h1`
-      font-size: ${fontSize}px;
-    `
+    const H1 = styled.h1`font-size: ${fontSize}px;`
 
-    const tree = renderer
-      .create(
-        <H1>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
@@ -52,13 +36,7 @@ describe('styled', () => {
       font-size: ${fontSize}px;
     `
 
-    const tree = renderer
-      .create(
-        <H1>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
@@ -89,11 +67,7 @@ describe('styled', () => {
     `
 
     const tree = renderer
-      .create(
-        <H1 className={'legacy__class'}>
-          hello world
-        </H1>
-      )
+      .create(<H1 className={'legacy__class'}>hello world</H1>)
       .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
@@ -108,11 +82,7 @@ describe('styled', () => {
     const H2 = styled(H1)`font-size: ${fontSize * 2 / 3}`
 
     const tree = renderer
-      .create(
-        <H2 className={'legacy__class'}>
-          hello world
-        </H2>
-      )
+      .create(<H2 className={'legacy__class'}>hello world</H2>)
       .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
@@ -198,6 +168,8 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
   test('throws if undefined is passed as the component', () => {
-    expect(() => styled(undefined)`display: flex;`).toThrowErrorMatchingSnapshot()
+    expect(
+      () => styled(undefined)`display: flex;`
+    ).toThrowErrorMatchingSnapshot()
   })
 })

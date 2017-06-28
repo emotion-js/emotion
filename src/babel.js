@@ -250,7 +250,9 @@ export default function (babel) {
           )
           const animationName = `${name}-${hash}`
           if (isStatic) {
-            state.insertStaticRules([`@keyframes ${animationName} ${rules.join('')}`])
+            state.insertStaticRules([
+              `@keyframes ${animationName} ${rules.join('')}`
+            ])
             path.replaceWith(t.stringLiteral(animationName))
           } else {
             path.replaceWith(
@@ -275,10 +277,7 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fontFace'
         ) {
-          const { rules, isStatic } = fontFace(
-            path.node.quasi,
-            state.inline
-          )
+          const { rules, isStatic } = fontFace(path.node.quasi, state.inline)
           if (isStatic) {
             state.insertStaticRules(rules)
             if (t.isExpressionStatement(path.parent)) {

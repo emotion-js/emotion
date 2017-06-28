@@ -51,7 +51,6 @@ describe('fontFace babel', () => {
         plugins: [[plugin]],
         filename: __filename,
         babelrc: false
-
       })
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
