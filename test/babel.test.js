@@ -356,6 +356,47 @@ describe('emotion/babel', () => {
       expect(fs.writeFileSync).toHaveBeenCalledTimes(7)
     })
   })
+  describe('babel keyframes extract', () => {
+    test('keyframes basic', () => {
+      const basic = `
+        const rotate360 = keyframes\`
+          from {
+            transform: rotate(0deg);
+          }
+        
+          to {
+            transform: rotate(360deg);
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        babelrc: false,
+        filename: __filename
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(8)
+      expect(fs.writeFileSync.mock.calls[7][1]).toMatchSnapshot()
+    })
+    test('keyframes with interpolation', () => {
+      const basic = `
+        const rotate360 = keyframes\`
+          from {
+            transform: rotate(0deg);
+          }
+        
+          to {
+            transform: rotate(\${endingRotation});
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        babelrc: false,
+        filename: __filename
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(8)
+    })
+  })
   describe('babel fragment', () => {
     test('basic fragment', () => {
       const basic = `

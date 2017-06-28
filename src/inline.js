@@ -86,7 +86,8 @@ export function inline (
 export function keyframes (
   quasi: any,
   identifierName?: string,
-  prefix: string
+  prefix: string,
+  inlineVars: boolean
 ): { hash: string, name: string, rules: string[] } {
   const strs = quasi.quasis.map(x => x.value.cooked)
   const hash = hashArray([...strs])
@@ -116,7 +117,7 @@ export function keyframes (
     rules = replaceVarsWithPlaceholders(rules)
     rules = replaceApplyWithPlaceholders(rules)
   }
-  return { hash, name, rules }
+  return { hash, name, rules, isStatic: !hasApplyOrVar && !inlineVars }
 }
 
 export function fontFace (

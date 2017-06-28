@@ -242,29 +242,35 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'keyframes'
         ) {
-          const { hash, name, rules } = keyframes(
+          const { hash, name, rules, isStatic } = keyframes(
             path.node.quasi,
             identifierName,
-            'animation'
+            'animation',
+            state.inline
           )
-
-          path.replaceWith(
-            t.callExpression(t.identifier('keyframes'), [
-              t.stringLiteral(`${name}-${hash}`),
-              t.arrayExpression(path.node.quasi.expressions),
-              t.functionExpression(
-                t.identifier('createEmotionKeyframes'),
-                path.node.quasi.expressions.map((x, i) =>
-                  t.identifier(`x${i}`)
-                ),
-                t.blockStatement([
-                  t.returnStatement(
-                    t.arrayExpression(parseDynamicValues(rules, t))
-                  )
-                ])
-              )
-            ])
-          )
+          const animationName = `${name}-${hash}`
+          if (isStatic) {
+            state.insertStaticRules([`@keyframes ${animationName} ${rules.join('')}`])
+            path.replaceWith(t.stringLiteral(animationName))
+          } else {
+            path.replaceWith(
+              t.callExpression(t.identifier('keyframes'), [
+                t.stringLiteral(animationName),
+                t.arrayExpression(path.node.quasi.expressions),
+                t.functionExpression(
+                  t.identifier('createEmotionKeyframes'),
+                  path.node.quasi.expressions.map((x, i) =>
+                    t.identifier(`x${i}`)
+                  ),
+                  t.blockStatement([
+                    t.returnStatement(
+                      t.arrayExpression(parseDynamicValues(rules, t))
+                    )
+                  ])
+                )
+              ])
+            )
+          }
         } else if (
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fontFace'
