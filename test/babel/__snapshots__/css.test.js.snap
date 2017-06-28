@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel css extract css basic 1`] = `
+"import \\"./css.test.emotion.css\\";
+
+css(\\"css-cu78iu\\", [widthVar]);"
+`;
+
+exports[`babel css extract css basic 2`] = `
+".css-cu78iu { margin: 12px 48px;
+        color: #ffffff;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        color: blue;
+        width: var(--css-cu78iu-0); }"
+`;
+
+exports[`babel css extract css kitchen sink 1`] = `
+"
+const frag = fragment([], function createEmotionFragment() {
+        return \` padding: 8px; \`;
+});
+const fragB = fragment([heightVar, frag], function createEmotionFragment(x0, x1) {
+        return \` height: \${x0};\${x1}; \`;
+});
+const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRules(x0, x1) {
+        return [\`.css-cls2-1b4c3x0 { \${x0};
+        \${x1};
+        margin: 12px 48px;
+        color: #ffffff; }\`];
+});"
+`;
+
+exports[`babel css inline css basic 1`] = `
+"
+css(\\"css-cu78iu\\", [widthVar], function createEmotionRules(x0) {
+        return [\`.css-cu78iu { margin: 12px 48px;
+        color: #ffffff;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        color: blue;
+        width: \${x0}; }\`];
+});"
+`;
+
+exports[`babel css inline css kitchen sink 1`] = `
+"
+const cls = css(\\"css-cls-h5t3cu\\", [margin], function createEmotionRules(x0) {
+        return [\`.css-cls-h5t3cu { font-size: 58pt;margin: \${x0}; }\`];
+});
+const frag = fragment([], function createEmotionFragment() {
+        return \` padding: 8px; \`;
+});
+const fragB = fragment([heightVar, frag], function createEmotionFragment(x0, x1) {
+        return \` height: \${x0};\${x1}; \`;
+});
+const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRules(x0, x1) {
+        return [\`.css-cls2-1b4c3x0 { \${x0};
+        \${x1};
+        margin: 12px 48px;
+        color: #ffffff; }\`];
+});"
+`;

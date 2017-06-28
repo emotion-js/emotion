@@ -1,0 +1,195 @@
+/* eslint-disable no-template-curly-in-string */
+/* eslint-env jest */
+import * as babel from 'babel-core'
+import plugin from '../../src/babel'
+import * as fs from 'fs'
+jest.mock('fs')
+
+fs.existsSync.mockReturnValue(true)
+
+describe('babel styled component', () => {
+  describe('inline', () => {
+    test('no use', () => {
+      const basic = 'styled.h1``'
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('no dynamic', () => {
+      const basic = 'styled.h1`color:blue;`'
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('basic', () => {
+      const basic = "const H1 = styled.h1`font-size: ${fontSize + 'px'};`"
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('function call', () => {
+      const basic = "styled(MyComponent)`font-size: ${fontSize + 'px'};`"
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('name is correct with no identifier', () => {
+      const basic = `
+        css\`
+        margin: 12px 48px;
+        color: #ffffff;
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('attr', () => {
+      const basic = `styled('input')\`
+       margin: attr(margin);
+       color: #ffffff;
+       height: \${props => props.height * props.scale};
+       width: attr(width);
+       color: blue;
+       display: \${flex};
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('attr with value type', () => {
+      const basic = `styled('input')\`
+        margin: attr(margin px);
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('attr with default value', () => {
+      const basic = `styled('input')\`
+        margin: attr(margin, 16);
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('attr with value type and default value', () => {
+      const basic = `styled('input')\`
+        margin: attr(margin px, 16);
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('match works on multiple', () => {
+      const basic = `styled('input')\`
+        margin: attr(margin px, 16);
+        color: blue;
+        padding: attr(padding em, 16);
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('attr kitchen sink', () => {
+      const basic = `styled('input')\`
+        margin: attr(margin px, 16);
+        padding: attr(padding em, 16);
+        font-size: attr(fontSize ch, 8);
+        width: attr(width %, 95);
+        height: attr(height vw, 90);
+        display: attr(display, flex);
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+  })
+  describe('extract', () => {
+    test('no use', () => {
+      const basic = 'styled.h1``'
+      const { code } = babel.transform(basic, {
+        plugins: [plugin],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(0)
+    })
+
+    test('no dynamic', () => {
+      const basic = 'styled.h1`color:blue;`'
+      const { code } = babel.transform(basic, {
+        plugins: [plugin],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
+      expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
+    })
+
+    test('basic', () => {
+      const basic =
+        "const H1 = styled.h1`font-size: ${fontSize + 'px'}; height: 20px`"
+      const { code } = babel.transform(basic, {
+        plugins: [plugin],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
+      expect(fs.writeFileSync.mock.calls[1][1]).toMatchSnapshot()
+    })
+
+    test('based on props', () => {
+      const basic =
+        "const H1 = styled.h1`font-size: ${fontSize + 'px'}; height: 20px; transform: translateX(${(props) => props.translateX})`"
+      const { code } = babel.transform(basic, {
+        plugins: [plugin],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
+      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
+    })
+    test('with fragment', () => {
+      const basic = `const frag1 = fragment\` width: 20px; \`
+      const H1 = styled.h1\`
+        font-size: \${fontSize + 'px'};
+        height: 20px;
+        transform: translateX(\${(props) => props.translateX});
+        @apply \${frag1}
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
+    })
+  })
+})

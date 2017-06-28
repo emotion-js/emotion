@@ -2,7 +2,7 @@
 import { transform } from 'babel-core'
 import fs from 'fs'
 import touch from 'touch'
-import emotionPlugin from '../src/babel'
+import emotionPlugin from '../../src/babel'
 
 jest.mock('fs').mock('touch')
 
