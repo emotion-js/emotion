@@ -23,8 +23,15 @@ module.exports = env => {
         }
       }) : [
         'style-loader',
-        { loader: 'css-loader', options: { sourceMap: true } }
+        { loader: 'css-loader' }
       ]
+    },
+    {
+      test: /\.(jpg|png|svg)$/,
+      loader: 'url-loader',
+      options: {
+        limit: 25000
+      }
     }
   ]
 

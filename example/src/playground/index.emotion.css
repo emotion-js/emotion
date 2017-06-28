@@ -1,0 +1,8 @@
+.css-PlaygroundContent-1qgzcfg { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+  margin: 0 auto 16px auto;
+  padding: 16px 0;
+  max-width: 560px;
+  max-height: var(--css-PlaygroundContent-1qgzcfg-0); }
+.css-PlaygroundContent-1qgzcfg .ReactCodeMirror { -webkit-flex: 1 1 66.66%; -ms-flex: 1 1 66.66%; flex: 1 1 66.66%; }
+.css-PlaygroundContent-1qgzcfg .ReactCodeMirror textarea { border-radius: 4px; }
+.css-PlaygroundContent-1qgzcfg .ReactCodeMirror .CodeMirror { height: auto; max-height: var(--css-PlaygroundContent-1qgzcfg-1); border-radius: 4px; }
