@@ -2,7 +2,7 @@
 
 exports[`server renderStatic returns static css 1`] = `
 Object {
-  "css": ".css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-Image-z4ry8g-1qx25bk { border-radius: 50%;
+  "css": ".css-unused-class-hlb84m-1kfvr9c { display: none; }.no-prefix { display: flex; justify-content: center; }.css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-Image-z4ry8g-1qx25bk { border-radius: 50%;
   height: 30;
   width: 30;
   background-color: red }.css-Image-z4ry8g-141jzk4 { border-radius: 50%;
@@ -14,12 +14,19 @@ Object {
   background-color: red }",
   "html": "<main class=\\"css-Main-ov1ktg-pvm7rn\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"1383946074\\"><img size=\\"30\\" class=\\"css-Image-z4ry8g-1qx25bk\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-z4ry8g-141jzk4\\" data-reactid=\\"3\\"/><img class=\\"css-Image-z4ry8g-jpu7qc\\" data-reactid=\\"4\\"/></main>",
   "ids": Array [
+    "1kfvr9c",
     "pvm7rn",
     "1qx25bk",
     "141jzk4",
     "jpu7qc",
   ],
   "rules": Array [
+    Object {
+      "cssText": ".css-unused-class-hlb84m-1kfvr9c { display: none; }",
+    },
+    Object {
+      "cssText": ".no-prefix { display: flex; justify-content: center; }",
+    },
     Object {
       "cssText": ".css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }",
     },
@@ -49,7 +56,7 @@ exports[`server renderStatic throws if the fn does not return anything 1`] = `"d
 
 exports[`server renderStaticOptimized returns static css 1`] = `
 Object {
-  "css": ".css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-Image-z4ry8g-1qx25bk { border-radius: 50%;
+  "css": ".no-prefix { display: flex; justify-content: center; }.css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-Image-z4ry8g-1qx25bk { border-radius: 50%;
   height: 30;
   width: 30;
   background-color: red }.css-Image-z4ry8g-141jzk4 { border-radius: 50%;
@@ -62,6 +69,9 @@ Object {
   "html": "<main class=\\"css-Main-ov1ktg-pvm7rn\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"1383946074\\"><img size=\\"30\\" class=\\"css-Image-z4ry8g-1qx25bk\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-z4ry8g-141jzk4\\" data-reactid=\\"3\\"/><img class=\\"css-Image-z4ry8g-jpu7qc\\" data-reactid=\\"4\\"/></main>",
   "ids": Array [],
   "rules": Array [
+    Object {
+      "cssText": ".no-prefix { display: flex; justify-content: center; }",
+    },
     Object {
       "cssText": ".css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }",
     },

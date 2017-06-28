@@ -5,6 +5,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import styled from '../src/styled'
+import { css, sheet } from '../src/index'
 import { renderStatic, renderStaticOptimized } from '../src/server'
 
 const color = 'red'
@@ -19,6 +20,16 @@ const Image = styled.img`
   width: attr(size px, 50px)
   background-color: ${color}
 `
+
+// this will be included in renderStatic but not in renderStaticOptimized since it's not used
+css`
+  display: none;
+  name: unused-class;
+`
+
+// this will be included in both because it doesn't have the css- prefix
+
+sheet.insert('.no-prefix { display: flex; justify-content: center; }')
 
 const Page = () => <Main><Image size={30} /><Image size={100} /><Image /></Main>
 
