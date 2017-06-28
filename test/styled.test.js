@@ -197,4 +197,7 @@ describe('styled', () => {
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
+  test('throws if undefined is passed as the component', () => {
+    expect(() => styled(undefined)`display: flex;`).toThrowErrorMatchingSnapshot()
+  })
 })
