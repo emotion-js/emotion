@@ -1,11 +1,8 @@
-/* eslint-disable jsx-quotes,no-useless-escape,no-template-curly-in-string */
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { matcher, serializer } from '../jest-utils'
-
-// eslint-disable-next-line no-unused-vars
-import css, { fragment, keyframes } from '../src/index'
+import { keyframes, sheet } from '../src/index'
 import styled from '../src/styled'
 
 expect.addSnapshotSerializer(serializer)
@@ -40,14 +37,23 @@ describe('keyframes', () => {
       animation: ${bounce} 2s linear infinite;
     `
 
-    const tree = renderer
-      .create(
-        <H1>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
+  })
+  test('keyframes with interpolation', () => {
+    const endingRotation = '360deg'
+    keyframes`
+      from {
+        transform: rotate(0deg);
+      }
+    
+      to {
+        transform: rotate(${endingRotation});
+      }
+    `
+    expect(
+      sheet.tags.map(tag => tag.textContent || '').join('')
+    ).toMatchSnapshot()
   })
 })

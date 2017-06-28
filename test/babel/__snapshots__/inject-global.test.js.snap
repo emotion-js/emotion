@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel injectGlobal extract injectGlobal assign to variable 1`] = `
+"import \\"./inject-global.test.emotion.css\\";
+
+const thisWillBeUndefined = undefined;"
+`;
+
+exports[`babel injectGlobal extract injectGlobal assign to variable 2`] = `
+"body {
+            margin: 0;
+            padding: 0;
+          }
+body > div {
+            display: none;
+}
+html {
+            background: green;
+          }"
+`;
+
+exports[`babel injectGlobal extract injectGlobal basic 1`] = `"import \\"./inject-global.test.emotion.css\\";"`;
+
+exports[`babel injectGlobal extract injectGlobal basic 2`] = `
+"body {
+            margin: 0;
+            padding: 0;
+          }
+body > div {
+            display: none;
+}
+html {
+            background: green;
+          }"
+`;
+
+exports[`babel injectGlobal extract injectGlobal with interpolation 1`] = `
+"
+injectGlobal([display], function createEmotionGlobal(x0) {
+  return [\`body {
+            margin: 0;
+            padding: 0;
+            display: \${x0};
+          }\`, \`body > div {
+            display: none;
+}\`, \`html {
+            background: green;
+          }\`];
+});"
+`;
+
+exports[`babel injectGlobal inline injectGlobal basic 1`] = `
+"
+injectGlobal([], function createEmotionGlobal() {
+  return [\`body {
+            margin: 0;
+            padding: 0;
+          }\`, \`body > div {
+            display: none;
+}\`, \`html {
+            background: green;
+          }\`];
+});"
+`;
+
+exports[`babel injectGlobal inline injectGlobal with fragment 1`] = `
+"
+injectGlobal([display, htmlStyled], function createEmotionGlobal(x0, x1) {
+  return [\`body {
+            margin: 0;
+            padding: 0;
+            display: \${x0};
+          }\`, \`body > div {
+            display: none;
+}\`, \`html {
+            \${x1}
+          }\`];
+});"
+`;
+
+exports[`babel injectGlobal inline injectGlobal with interpolation 1`] = `
+"
+injectGlobal([display], function createEmotionGlobal(x0) {
+  return [\`body {
+            margin: 0;
+            padding: 0;
+            display: \${x0};
+          }\`, \`body > div {
+            display: none;
+}\`, \`html {
+            background: green;
+          }\`];
+});"
+`;

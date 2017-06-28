@@ -4,9 +4,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
 import { matcher, serializer } from '../../jest-utils'
-
-// eslint-disable-next-line no-unused-vars
-import css, { fragment } from '../../src/index'
+import { fragment, injectGlobal } from '../../src/index'
 import styled from '../../src/styled'
 
 expect.addSnapshotSerializer(serializer)
@@ -14,34 +12,18 @@ expect.extend(matcher)
 
 describe('styled', () => {
   test('no dynamic', () => {
-    const H1 = styled.h1`
-      font-size: 12px;
-    `
+    const H1 = styled.h1`font-size: 12px;`
 
-    const tree = renderer
-      .create(
-        <H1>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('basic render', () => {
     const fontSize = 20
-    const H1 = styled.h1`
-      font-size: ${fontSize}px;
-    `
+    const H1 = styled.h1`font-size: ${fontSize}px;`
 
-    const tree = renderer
-      .create(
-        <H1>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
@@ -53,13 +35,7 @@ describe('styled', () => {
       font-size: ${fontSize}px;
     `
 
-    const tree = renderer
-      .create(
-        <H1>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
@@ -90,11 +66,7 @@ describe('styled', () => {
     `
 
     const tree = renderer
-      .create(
-        <H1 className={'legacy__class'}>
-          hello world
-        </H1>
-      )
+      .create(<H1 className={'legacy__class'}>hello world</H1>)
       .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
@@ -109,11 +81,7 @@ describe('styled', () => {
     const H2 = styled(H1)`font-size: ${fontSize * 2 / 3}`
 
     const tree = renderer
-      .create(
-        <H2 className={'legacy__class'}>
-          hello world
-        </H2>
-      )
+      .create(<H2 className={'legacy__class'}>hello world</H2>)
       .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
@@ -197,6 +165,13 @@ describe('styled', () => {
     const tree = renderer.create(<ColumnContent />).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
+  })
+  test('injectGlobal', () => {
+    injectGlobal`
+      html {
+        background: pink;
+      }
+    `
   })
   test('writes the correct css', () => {
     const filenameArr = basename(__filename).split('.')
