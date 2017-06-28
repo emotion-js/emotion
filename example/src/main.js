@@ -27,6 +27,12 @@ fontFace`
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 `
 
+const innerContent = fragment`
+  margin: 0 auto;
+  width: calc(100% - 32px);
+  max-width: 960px;
+`
+
 const PlaygroundWrapper = styled('div')`
   font-family: 'Oxygen', sans-serif;
   flex:1;
@@ -34,8 +40,11 @@ const PlaygroundWrapper = styled('div')`
   background: #f8f9fa;
   
   & .inner {
-    max-width: 960px;
-    margin: 0 auto;
+    @apply ${innerContent};
+    
+    @media (min-width: 960px) {
+      width: 100%;
+    }
   }
   
   & .header {
