@@ -137,5 +137,8 @@ exports[`styled writes the correct css 1`] = `
 .css-H1-13wdnau { font-size: var(--css-H1-13wdnau-0)px; }
 .css-H2-vxb7tq { font-size: var(--css-H2-vxb7tq-0) }
 .css-H2-idm3bz { font-size: 32px; }
-.css-Content-13wdnau { font-size: var(--css-Content-13wdnau-0)px; }"
+.css-Content-13wdnau { font-size: var(--css-Content-13wdnau-0)px; }
+html {
+        background: pink;
+      }"
 `;

@@ -44,6 +44,21 @@ injectGlobal([], function createEmotionGlobal() {
 });"
 `;
 
+exports[`babel injectGlobal inline injectGlobal with fragment 1`] = `
+"
+injectGlobal([display, htmlStyled], function createEmotionGlobal(x0, x1) {
+  return [\`body {
+            margin: 0;
+            padding: 0;
+            display: \${x0};
+          }\`, \`body > div {
+            display: none;
+}\`, \`html {
+            \${x1}
+          }\`];
+});"
+`;
+
 exports[`babel injectGlobal inline injectGlobal with interpolation 1`] = `
 "
 injectGlobal([display], function createEmotionGlobal(x0) {

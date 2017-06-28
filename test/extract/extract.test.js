@@ -4,9 +4,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
 import { matcher, serializer } from '../../jest-utils'
-
-// eslint-disable-next-line no-unused-vars
-import css, { fragment } from '../../src/index'
+import { fragment, injectGlobal } from '../../src/index'
 import styled from '../../src/styled'
 
 expect.addSnapshotSerializer(serializer)
@@ -197,6 +195,13 @@ describe('styled', () => {
     const tree = renderer.create(<ColumnContent />).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
+  })
+  test('injectGlobal', () => {
+    injectGlobal`
+      html {
+        background: pink;
+      }
+    `
   })
   test('writes the correct css', () => {
     const filenameArr = basename(__filename).split('.')

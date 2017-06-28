@@ -47,6 +47,26 @@ describe('babel injectGlobal', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('injectGlobal with fragment', () => {
+      const basic = `
+        injectGlobal\`
+          body {
+            margin: 0;
+            padding: 0;
+            display: \${display};
+            & > div {
+              display: none;
+            }
+          }
+          html {
+            @apply \${htmlStyled}
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
   describe('extract', () => {
     test('injectGlobal basic', () => {
