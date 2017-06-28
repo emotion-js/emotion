@@ -63,7 +63,6 @@ export default function (babel) {
 
   return {
     name: 'emotion', // not required
-    inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       Program: {
         enter (path, state) {
