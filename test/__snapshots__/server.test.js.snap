@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`server renderStatic returns static css 1`] = `
+Object {
+  "css": ".css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-Image-z4ry8g-1qx25bk { border-radius: 50%;
+  height: 30;
+  width: 30;
+  background-color: red }.css-Image-z4ry8g-141jzk4 { border-radius: 50%;
+  height: 100;
+  width: 100;
+  background-color: red }.css-Image-z4ry8g-jpu7qc { border-radius: 50%;
+  height: 50pxpx;
+  width: 50pxpx;
+  background-color: red }",
+  "html": "<main class=\\"css-Main-ov1ktg-pvm7rn\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"1383946074\\"><img size=\\"30\\" class=\\"css-Image-z4ry8g-1qx25bk\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-z4ry8g-141jzk4\\" data-reactid=\\"3\\"/><img class=\\"css-Image-z4ry8g-jpu7qc\\" data-reactid=\\"4\\"/></main>",
+  "ids": Array [
+    "pvm7rn",
+    "1qx25bk",
+    "141jzk4",
+    "jpu7qc",
+  ],
+  "rules": Array [
+    Object {
+      "cssText": ".css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }",
+    },
+    Object {
+      "cssText": ".css-Image-z4ry8g-1qx25bk { border-radius: 50%;
+  height: 30;
+  width: 30;
+  background-color: red }",
+    },
+    Object {
+      "cssText": ".css-Image-z4ry8g-141jzk4 { border-radius: 50%;
+  height: 100;
+  width: 100;
+  background-color: red }",
+    },
+    Object {
+      "cssText": ".css-Image-z4ry8g-jpu7qc { border-radius: 50%;
+  height: 50pxpx;
+  width: 50pxpx;
+  background-color: red }",
+    },
+  ],
+}
+`;
+
+exports[`server renderStaticOptimized returns static css 1`] = `
+Object {
+  "css": ".css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-Image-z4ry8g-1qx25bk { border-radius: 50%;
+  height: 30;
+  width: 30;
+  background-color: red }.css-Image-z4ry8g-141jzk4 { border-radius: 50%;
+  height: 100;
+  width: 100;
+  background-color: red }.css-Image-z4ry8g-jpu7qc { border-radius: 50%;
+  height: 50pxpx;
+  width: 50pxpx;
+  background-color: red }",
+  "html": "<main class=\\"css-Main-ov1ktg-pvm7rn\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"1383946074\\"><img size=\\"30\\" class=\\"css-Image-z4ry8g-1qx25bk\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-z4ry8g-141jzk4\\" data-reactid=\\"3\\"/><img class=\\"css-Image-z4ry8g-jpu7qc\\" data-reactid=\\"4\\"/></main>",
+  "ids": Array [
+    "pvm7rn",
+    "1qx25bk",
+    "141jzk4",
+    "jpu7qc",
+  ],
+  "rules": Array [
+    Object {
+      "cssText": ".css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }",
+    },
+    Object {
+      "cssText": ".css-Image-z4ry8g-1qx25bk { border-radius: 50%;
+  height: 30;
+  width: 30;
+  background-color: red }",
+    },
+    Object {
+      "cssText": ".css-Image-z4ry8g-141jzk4 { border-radius: 50%;
+  height: 100;
+  width: 100;
+  background-color: red }",
+    },
+    Object {
+      "cssText": ".css-Image-z4ry8g-jpu7qc { border-radius: 50%;
+  height: 50pxpx;
+  width: 50pxpx;
+  background-color: red }",
+    },
+  ],
+}
+`;

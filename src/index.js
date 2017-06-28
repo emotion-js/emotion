@@ -5,7 +5,7 @@ import hashArray from './hash'
 export const sheet = new StyleSheet()
 sheet.inject()
 
-let inserted: { [string]: boolean | void } = {}
+export let inserted: { [string]: boolean | void } = {}
 
 type inputVar = string | number
 
