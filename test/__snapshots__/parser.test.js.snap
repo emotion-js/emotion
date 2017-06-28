@@ -15,7 +15,7 @@ Array [
   width: var(--css-hash-0);
 }",
 ]
-`;
+`
 
 exports[`parser fancy 1`] = `
 Array [
@@ -52,7 +52,7 @@ Array [
   content: 'pseudo'
 }",
 ]
-`;
+`
 
 exports[`parser static 1`] = `
 Array [
@@ -62,4 +62,4 @@ Array [
   width: 30px
 }",
 ]
-`;
+`

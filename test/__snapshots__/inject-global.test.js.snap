@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`injectGlobal 1`] = `
+"html {
+      background: pink;
+    }body {
+      color: yellow
+       margin: 0;
+    padding: 0; 
+    }"
+`;

@@ -1,15 +1,14 @@
-/* eslint-disable jsx-quotes,no-useless-escape,no-template-curly-in-string */
+/* eslint-disable no-template-curly-in-string */
 /* eslint-env jest */
-const babel = require('babel-core')
-const plugin = require('../src/babel')
-const fs = require('fs')
-
+import * as babel from 'babel-core'
+import plugin from '../../src/babel'
+import * as fs from 'fs'
 jest.mock('fs')
 
 fs.existsSync.mockReturnValue(true)
 
-describe('emotion/babel', () => {
-  describe('babel styled component', () => {
+describe('babel styled component', () => {
+  describe('inline', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
       const { code } = babel.transform(basic, {
@@ -59,10 +58,10 @@ describe('emotion/babel', () => {
       const basic = `styled('input')\`
        margin: attr(margin);
        color: #ffffff;
-       height: \$\{props => props.height * props.scale\};
+       height: \${props => props.height * props.scale};
        width: attr(width);
        color: blue;
-       display: \$\{flex\};
+       display: \${flex};
       \``
       const { code } = babel.transform(basic, {
         plugins: [plugin]
@@ -127,42 +126,7 @@ describe('emotion/babel', () => {
       expect(code).toMatchSnapshot()
     })
   })
-  describe('babel css', () => {
-    test('css basic', () => {
-      const basic = `
-        css\`
-        margin: 12px 48px;
-        color: #ffffff;
-        display: flex;
-        flex: 1 0 auto;
-        color: blue;
-        width: \$\{widthVar\};
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('css kitchen sink', () => {
-      const basic = `
-        const cls = css\`font-size: 58pt;margin: $\{margin};\`
-        const frag = fragment\`padding: 8px;\`
-        const fragB = fragment\`height: $\{heightVar};@apply \$\{frag};\`
-        const cls2 = css\`
-        @apply $\{frag};
-        @apply $\{fragB};
-        margin: 12px 48px;
-        color: #ffffff;
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
-  })
-  describe('babel styled component extract', () => {
+  describe('extract', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
       const { code } = babel.transform(basic, {
@@ -226,128 +190,6 @@ describe('emotion/babel', () => {
       })
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
-      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
-    })
-  })
-  describe('babel css extract', () => {
-    test('css basic', () => {
-      const basic = `
-        css\`
-        margin: 12px 48px;
-        color: #ffffff;
-        display: flex;
-        flex: 1 0 auto;
-        color: blue;
-        width: \$\{widthVar\};
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(4)
-      expect(fs.writeFileSync.mock.calls[3][1]).toMatchSnapshot()
-    })
-
-    test('css kitchen sink', () => {
-      const basic = `
-        const cls = css\`font-size: 58pt;margin: $\{margin};\`
-        const frag = fragment\`padding: 8px;\`
-        const fragB = fragment\`height: $\{heightVar};@apply \$\{frag};\`
-        const cls2 = css\`
-        @apply $\{frag};
-        @apply $\{fragB};
-        margin: 12px 48px;
-        color: #ffffff;
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(5)
-      expect(fs.writeFileSync.mock.calls[4][1]).toMatchSnapshot()
-    })
-  })
-  describe('babel fragment', () => {
-    test('basic fragment', () => {
-      const basic = `
-        const frag = fragment\`color: green\`;
-        styled.h1\`font-size: 20px; @apply \${frag};\``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('fragment kitchen sink', () => {
-      const basic = `
-        const frag = fragment\`color: green; background-color: \${backgroundColor}\`;
-        const frag1 = fragment\` width: 20px; name: some-frag-name; \`
-        const frag2 = fragment\` height: 20px; @apply \${frag1}; \`
-        styled.h1\`font-size: \${fontSize + 'px'}; name: some-name; @apply \${frag}; @apply \${frag2}\``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('fragment with multiple selectors that should throw', () => {
-      expect(() => {
-        const basic = `
-          const frag = fragment\`
-            color: green;
-            display: none;
-            &:hover {
-              color: yellow;
-            }
-            & .wow {
-              color: purple;
-            }
-          \`;
-        `
-        babel.transform(basic, {
-          plugins: [plugin]
-        })
-      }).toThrowErrorMatchingSnapshot()
-    })
-  })
-
-  describe('babel keyframes', () => {
-    test('keyframe basic', () => {
-      const basic = `
-        const rotate360 = keyframes\`
-          from {
-            transform: rotate(0deg);
-          }
-        
-          to {
-            transform: rotate(360deg);
-          }
-      \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
-  })
-  describe('babel font-face', () => {
-    test('font-face basic', () => {
-      const basic = `
-        fontFace\`
-          font-family: MyHelvetica;
-          src: local("Helvetica Neue Bold"),
-               local("HelveticaNeue-Bold"),
-               url(MgOpenModernaBold.ttf);
-          font-weight: bold;
-      \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
     })
   })
 })
