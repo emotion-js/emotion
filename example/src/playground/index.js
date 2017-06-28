@@ -24,6 +24,7 @@ const PlaygroundContent = styled('div')`
     }
     
     .CodeMirror {
+      height: auto;
       max-height: ${props => (props.maxHeight || 160) + 'px'};
       border-radius: 4px;
     }
