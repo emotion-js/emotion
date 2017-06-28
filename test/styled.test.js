@@ -167,6 +167,25 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
+  test('innerRef', () => {
+    const H1 = styled.h1`
+      font-size: 12px;
+    `
+
+    const refFunction = jest.fn()
+
+    const tree = renderer
+      .create(
+        <H1 innerRef={refFunction}>
+          hello world
+        </H1>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+    expect(refFunction).toBeCalled()
+  })
+
   test('higher order component', () => {
     const fontSize = 20
     const Content = styled('div')`
