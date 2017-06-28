@@ -4,8 +4,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { registerPlugin, transform } from 'babel-standalone'
 import styled from 'emotion/styled'
-// eslint-disable-next-line no-unused-vars
-import { css } from 'emotion'
 
 registerPlugin('emotion/babel', require('emotion/babel'))
 
@@ -15,6 +13,7 @@ const PreviewContent = styled('div')`
 `
 
 const PreviewWrapper = styled(PreviewContent)`
+  position: relative;
   flex: 1 1 33.33%;
   
   & .preview-display {
@@ -24,6 +23,21 @@ const PreviewWrapper = styled(PreviewContent)`
     justify-content: center;
     align-items: center;
   }
+`
+
+const ErrorWrapper = styled(PreviewContent)`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 4px;
+  height: 100%;
+  white-space: pre;
+  color: #c92a2a;
+  background: #f8f9fa;
+  font-size: 0.65rem;
 `
 
 class Preview extends Component {
@@ -134,8 +148,8 @@ class Preview extends Component {
     const { error } = this.state
     return (
       <PreviewWrapper>
-        {error !== null ? <PreviewContent>{error}</PreviewContent> : null}
         <div ref="mount" className="preview-display"  />
+        {error !== null ? <ErrorWrapper>{error}</ErrorWrapper> : null}
       </PreviewWrapper>
     )
   }

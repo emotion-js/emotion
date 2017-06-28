@@ -5,7 +5,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import styled from 'emotion/styled'
 import { fontFace, fragment, keyframes } from 'emotion'
-import Markdown from './components/markdown'
+import Markdown from './markdown'
 import Playground from './playground'
 import logoUrl from '../../emotion.png'
 
@@ -15,7 +15,7 @@ const nestedExample = require('raw-loader!./blocks/nested.example')
 const mediaExample = require('raw-loader!./blocks/media.example')
 const pseudoExample = require('raw-loader!./blocks/pseudo.example')
 const keyframesExample = require('raw-loader!./blocks/keyframes.example')
-const fontFaceExample = require('raw-loader!./blocks/font-face.example')
+// const fontFaceExample = require('raw-loader!./blocks/font-face.example')
 // const docMarkdown = require('raw-loader!./guides/index.md')
 // const readmeMarkdown = require('raw-loader!../../README.md')
 const avatarUrl = require('./avatar.jpg')
