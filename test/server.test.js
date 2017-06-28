@@ -5,7 +5,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import styled from '../src/styled'
-import { renderStatic } from '../src/server'
+import { renderStatic, renderStaticOptimized } from '../src/server'
 
 const color = 'red'
 
@@ -27,10 +27,16 @@ describe('server', () => {
     test('returns static css', () => {
       expect(renderStatic(() => renderToString(<Page />))).toMatchSnapshot()
     })
+    test('throws if the fn does not return anything', () => {
+      expect(() => renderStatic(() => {})).toThrowErrorMatchingSnapshot()
+    })
   })
   describe('renderStaticOptimized', () => {
     test('returns static css', () => {
-      expect(renderStatic(() => renderToString(<Page />))).toMatchSnapshot()
+      expect(renderStaticOptimized(() => renderToString(<Page />))).toMatchSnapshot()
+    })
+    test('throws if the fn does not return anything', () => {
+      expect(() => renderStaticOptimized(() => {})).toThrowErrorMatchingSnapshot()
     })
   })
 })

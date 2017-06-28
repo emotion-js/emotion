@@ -45,6 +45,8 @@ Object {
 }
 `;
 
+exports[`server renderStatic throws if the fn does not return anything 1`] = `"did you forget to return from renderToString?"`;
+
 exports[`server renderStaticOptimized returns static css 1`] = `
 Object {
   "css": ".css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-Image-z4ry8g-1qx25bk { border-radius: 50%;
@@ -58,12 +60,7 @@ Object {
   width: 50pxpx;
   background-color: red }",
   "html": "<main class=\\"css-Main-ov1ktg-pvm7rn\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"1383946074\\"><img size=\\"30\\" class=\\"css-Image-z4ry8g-1qx25bk\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-z4ry8g-141jzk4\\" data-reactid=\\"3\\"/><img class=\\"css-Image-z4ry8g-jpu7qc\\" data-reactid=\\"4\\"/></main>",
-  "ids": Array [
-    "pvm7rn",
-    "1qx25bk",
-    "141jzk4",
-    "jpu7qc",
-  ],
+  "ids": Array [],
   "rules": Array [
     Object {
       "cssText": ".css-Main-ov1ktg-pvm7rn { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }",
@@ -89,3 +86,5 @@ Object {
   ],
 }
 `;
+
+exports[`server renderStaticOptimized throws if the fn does not return anything 1`] = `"did you forget to return from renderToString?"`;
