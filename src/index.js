@@ -65,15 +65,16 @@ export function injectGlobal (vars: vars, content: () => string[]) {
 export const fontFace = injectGlobal
 
 export function keyframes (kfm: string, vars: vars, content: () => string[]) {
-  let src = content(...vars)
-  let hash = hashArray(src)
+  const src = content(...vars)
+  const hash = hashArray(src)
+  const animationName = `${kfm}-${hash}`
   if (!inserted[hash]) {
     inserted[hash] = true
     src.forEach(r => {
-      return sheet.insert(`@keyframes ${kfm}-${hash} {${r}}`)
+      sheet.insert(`@keyframes ${animationName} ${r}`)
     })
   }
-  return `${kfm}-${hash}`
+  return animationName
 }
 
 export function hydrate (ids: string[]) {

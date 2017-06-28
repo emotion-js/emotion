@@ -88,19 +88,35 @@ export function keyframes (
   identifierName?: string,
   prefix: string
 ): { hash: string, name: string, rules: string[] } {
-  let strs = quasi.quasis.map(x => x.value.cooked)
-  let hash = hashArray([...strs])
-  let name = getName(
+  const strs = quasi.quasis.map(x => x.value.cooked)
+  const hash = hashArray([...strs])
+  const name = getName(
     extractNameFromProperty(strs.join('xxx')),
     identifierName,
     prefix
   )
-
-  return {
-    hash,
-    name,
-    rules: [parseCSS(`{ ${strs.join('').trim()} }`).join('').trim()]
+  let hasApplyOrVar = false
+  const src = strs
+    .reduce((arr, str, i) => {
+      arr.push(str)
+      if (i !== quasi.expressions.length) {
+        hasApplyOrVar = true
+        // todo - test for preceding @apply
+        let applyMatch = /@apply\s*$/gm.exec(str)
+        if (applyMatch) {
+          arr.push(`--name-hash-${i}`)
+        } else arr.push(`var(--name-hash-${i})`)
+      }
+      return arr
+    }, [])
+    .join('')
+    .trim()
+  let rules = parseCSS(`{ ${src} }`, { nested: false })
+  if (hasApplyOrVar) {
+    rules = replaceVarsWithPlaceholders(rules)
+    rules = replaceApplyWithPlaceholders(rules)
   }
+  return { hash, name, rules }
 }
 
 export function fontFace (

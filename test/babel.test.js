@@ -401,7 +401,7 @@ describe('emotion/babel', () => {
   })
 
   describe('babel keyframes', () => {
-    test('keyframe basic', () => {
+    test('keyframes basic', () => {
       const basic = `
         const rotate360 = keyframes\`
           from {
@@ -410,6 +410,22 @@ describe('emotion/babel', () => {
         
           to {
             transform: rotate(360deg);
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('keyframes with interpolation', () => {
+      const basic = `
+        const rotate360 = keyframes\`
+          from {
+            transform: rotate(0deg);
+          }
+        
+          to {
+            transform: rotate(\${endingRotation});
           }
       \`;`
       const { code } = babel.transform(basic, {

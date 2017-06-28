@@ -253,13 +253,13 @@ export default function (babel) {
               t.stringLiteral(`${name}-${hash}`),
               t.arrayExpression(path.node.quasi.expressions),
               t.functionExpression(
-                t.identifier('createEmotionKeyframe'),
+                t.identifier('createEmotionKeyframes'),
                 path.node.quasi.expressions.map((x, i) =>
                   t.identifier(`x${i}`)
                 ),
                 t.blockStatement([
                   t.returnStatement(
-                    t.arrayExpression(rules.map(r => t.stringLiteral(r)))
+                    t.arrayExpression(parseDynamicValues(rules, t))
                   )
                 ])
               )

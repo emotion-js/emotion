@@ -208,10 +208,37 @@ injectGlobal([display], function createEmotionGlobal(x0) {
 });"
 `;
 
-exports[`emotion/babel babel keyframes keyframe basic 1`] = `
+exports[`emotion/babel babel keyframes keyframes basic 1`] = `
 "
-const rotate360 = keyframes(\\"animation-rotate360-f35ahc\\", [], function createEmotionKeyframe() {
-  return [\\"from {\\\\n    -webkit-transform: rotate(0deg);\\\\n    -ms-transform: rotate(0deg);\\\\n    transform: rotate(0deg);\\\\n} to {\\\\n    -webkit-transform: rotate(360deg);\\\\n    -ms-transform: rotate(360deg);\\\\n    transform: rotate(360deg);\\\\n}\\"];
+const rotate360 = keyframes(\\"animation-rotate360-f35ahc\\", [], function createEmotionKeyframes() {
+  return [\`{ from {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+          }
+        
+          to {
+            -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+          } }\`];
+});"
+`;
+
+exports[`emotion/babel babel keyframes keyframes with interpolation 1`] = `
+"
+const rotate360 = keyframes(\\"animation-rotate360-9bsj7q\\", [endingRotation], function createEmotionKeyframes(x0) {
+  return [\`{ from {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+          }
+        
+          to {
+            -webkit-transform: rotate(\${x0});
+            -ms-transform: rotate(\${x0});
+            transform: rotate(\${x0});
+          } }\`];
 });"
 `;
 
