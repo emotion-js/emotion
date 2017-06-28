@@ -108,6 +108,19 @@ exports[`styled higher order component 1`] = `
 />
 `;
 
+exports[`styled innerRef 1`] = `
+.css-H1-dae0kw-kdrkuq {
+  font-size: 12px;
+}
+
+<h1
+  className="css-H1-dae0kw-kdrkuq"
+  innerRef={[Function]}
+>
+  hello world
+</h1>
+`;
+
 exports[`styled name 1`] = `
 .css-FancyH1-1azfbv1-1fzd8kz {
   font-size: 20px;

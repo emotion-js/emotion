@@ -18,6 +18,7 @@ export default function (tag, cls, vars = [], content) {
     return React.createElement(
       tag,
       Object.assign({}, props, {
+        ref: props.innerRef,
         className: props.className
           ? className + ' ' + props.className
           : className

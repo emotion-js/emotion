@@ -141,6 +141,17 @@ const H3 = styled.h3`
 function Greeting ({ name }) {
   return <H3>Hello {name}</H3> // red, 16px text
 }
+
+// You can also pass refs down using innerRef
+const H1 = styled('h1')`
+  color: 'red';
+`
+
+function Greeting ({ name }) {
+  // will turn into to <h1 className="generated-className" ref={() => console.log('hello!')}>Hello {name}</h1>
+  return <H1 innerRef={() => console.log('hello!')}>Hello {name}</H1> 
+}
+
 ```
 
 #### attr
