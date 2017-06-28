@@ -13,12 +13,12 @@ exports[`styled attr 1`] = `
 `;
 
 exports[`styled basic render 1`] = `
-.css-H1-13wdnau-xy96vj {
+.css-H1-8xpzga-1e133rd {
   font-size: 20px;
 }
 
 <h1
-  className="css-H1-13wdnau-xy96vj"
+  className="css-H1-8xpzga-1e133rd"
 >
   hello world
 </h1>
@@ -121,12 +121,12 @@ exports[`styled name 1`] = `
 `;
 
 exports[`styled no dynamic 1`] = `
-.css-H1-dae0kw-kdrkuq {
+.css-H1-ijh7uz-10q50rl {
   font-size: 12px;
 }
 
 <h1
-  className="css-H1-dae0kw-kdrkuq"
+  className="css-H1-ijh7uz-10q50rl"
 >
   hello world
 </h1>

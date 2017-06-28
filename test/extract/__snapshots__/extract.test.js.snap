@@ -13,12 +13,12 @@ exports[`styled attr 1`] = `
 `;
 
 exports[`styled basic render 1`] = `
-.vars-fnvbv0 {
-  --css-H1-13wdnau-0: 20;
+.vars-v8l2zy {
+  --css-H1-8xpzga-0: 20;
 }
 
 <h1
-  className="css-H1-13wdnau vars-fnvbv0"
+  className="css-H1-8xpzga vars-v8l2zy"
 >
   hello world
 </h1>
@@ -118,15 +118,15 @@ exports[`styled name 1`] = `
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="css-H1-dae0kw"
+  className="css-H1-ijh7uz"
 >
   hello world
 </h1>
 `;
 
 exports[`styled writes the correct css 1`] = `
-".css-H1-dae0kw { font-size: 12px; }
-.css-H1-13wdnau { font-size: var(--css-H1-13wdnau-0)px; }
+".css-H1-ijh7uz { font-size: 12px; }
+.css-H1-8xpzga { font-size: var(--css-H1-8xpzga-0)px; }
 .css-FancyH1-1azfbv1 {
       font-size: var(--css-FancyH1-1azfbv1-0)px; }
 .css-H1-15vt02v { font-size: var(--css-H1-15vt02v-0);
