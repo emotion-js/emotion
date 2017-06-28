@@ -5,7 +5,6 @@ import colors from 'open-color'
 
 const MarkdownContainer = styled('div')`
   display: flex;
-  overflow: auto;
   margin: 16px auto 0 auto; 
   max-width: 560px;
   font-family: 'Oxygen';
