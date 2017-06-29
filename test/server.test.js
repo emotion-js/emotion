@@ -10,9 +10,7 @@ import { renderStatic, renderStaticOptimized } from '../src/server'
 
 const color = 'red'
 
-const Main = styled.main`
-  display: flex;
-`
+const Main = styled.main`display: flex;`
 
 const Image = styled.img`
   border-radius: 50%;
@@ -31,7 +29,12 @@ css`
 
 sheet.insert('.no-prefix { display: flex; justify-content: center; }')
 
-const Page = () => <Main><Image size={30} /><Image size={100} /><Image /></Main>
+const Page = () =>
+  <Main>
+    <Image size={30} />
+    <Image size={100} />
+    <Image />
+  </Main>
 
 describe('server', () => {
   describe('renderStatic', () => {
@@ -44,10 +47,14 @@ describe('server', () => {
   })
   describe('renderStaticOptimized', () => {
     test('returns static css', () => {
-      expect(renderStaticOptimized(() => renderToString(<Page />))).toMatchSnapshot()
+      expect(
+        renderStaticOptimized(() => renderToString(<Page />))
+      ).toMatchSnapshot()
     })
     test('throws if the fn does not return anything', () => {
-      expect(() => renderStaticOptimized(() => {})).toThrowErrorMatchingSnapshot()
+      expect(() =>
+        renderStaticOptimized(() => {})
+      ).toThrowErrorMatchingSnapshot()
     })
   })
 })

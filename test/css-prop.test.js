@@ -14,11 +14,7 @@ describe('css prop react', () => {
   test('basic', () => {
     const fontSize = '1px'
     const tree = renderer
-      .create(
-        <p css={`color: red;font-size:${fontSize}`}>
-          hello world
-        </p>
-      )
+      .create(<p css={`color: red;font-size:${fontSize}`}>hello world</p>)
       .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
@@ -27,9 +23,7 @@ describe('css prop react', () => {
   test('string expression', () => {
     const tree = renderer
       .create(
-        <p css="color:red;background:blue;font-size:48px;">
-          hello world
-        </p>
+        <p css="color:red;background:blue;font-size:48px;">hello world</p>
       )
       .toJSON()
 
@@ -74,7 +68,9 @@ describe('css prop react', () => {
           >
             BOOM
           </h1>
-          <p className="test_class1" css={`color: blue;`}>Hello</p>
+          <p className="test_class1" css={`color: blue;`}>
+            Hello
+          </p>
           <p
             className="test_class1 test___class45"
             css={`display: inline-flex`}
@@ -93,7 +89,6 @@ describe('css prop react', () => {
           >
             hello world
           </p>
-
         </div>
       )
       .toJSON()
