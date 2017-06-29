@@ -3,6 +3,7 @@ import { basename } from 'path'
 import { touchSync } from 'touch'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import findAndReplaceAttrs from './attrs'
+import cssProps from './css-prop'
 
 function parseDynamicValues (rules, t) {
   return rules.map(rule => {
@@ -63,6 +64,7 @@ export default function (babel) {
 
   return {
     name: 'emotion', // not required
+    inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       Program: {
         enter (path, state) {
@@ -98,6 +100,9 @@ export default function (babel) {
           }
         }
       },
+      JSXOpeningElement (path, state) {
+        cssProps(path, t)
+      },
       TaggedTemplateExpression (path, state) {
         // in:
         // styled.h1`color:${color};`
@@ -111,8 +116,9 @@ export default function (babel) {
         // });
 
         const parent = path.findParent(p => p.isVariableDeclarator())
-        const identifierName =
-          parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
+        const identifierName = parent && t.isIdentifier(parent.node.id)
+          ? parent.node.id.name
+          : ''
 
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)

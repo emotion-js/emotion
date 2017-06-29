@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css prop react basic 1`] = `
+.css-tree-jk0pkr-1i6x1yh {
+  color: red;
+}
+
+<p
+  className="css-tree-jk0pkr-1i6x1yh"
+>
+  hello world
+</p>
+`;
+
+exports[`css prop react kitchen sink 1`] = `
+.css-tree-1170hdn-140nofh {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.css-tree-wjhr0q-2fv2qw {
+  font-size: 6;
+  color: red;
+}
+
+.css-tree-14jcta0-1fj87hp {
+  color: blue;
+}
+
+.css-tree-1gdxe9e-1vltlgj {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+
+.css-tree-1g8ltio-i3faqz {
+  color: red;
+  border-radius: 5;
+}
+
+.css-tree-1g8ltio-i3faqz:hover {
+  font-weight: bold;
+  color: gray;
+}
+
+<div
+  className="css__legacy-stuff css-tree-1170hdn-140nofh"
+>
+  <h1
+    className="css-tree-wjhr0q-2fv2qw"
+  >
+    BOOM
+  </h1>
+  <p
+    className="test_class1 css-tree-14jcta0-1fj87hp"
+  >
+    Hello
+  </p>
+  <p
+    className="test_class1 test___class45 css-tree-1gdxe9e-1vltlgj"
+  >
+    World
+  </p>
+  <p
+    className="css-tree-1g8ltio-i3faqz"
+  >
+    hello world
+  </p>
+</div>
+`;
+
+exports[`css prop react string expression 1`] = `
+.css-tree-7sqgip-8upfq4 {
+  color: red;
+  background: blue;
+  font-size: 48px;
+}
+
+<p
+  className="css-tree-7sqgip-8upfq4"
+>
+  hello world
+</p>
+`;
