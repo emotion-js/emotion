@@ -5,6 +5,10 @@ import PropTypes from 'prop-types'
 import { registerPlugin, transform } from 'babel-standalone'
 import styled from 'emotion/styled'
 
+const ric =
+  window.requestIdleCallback ||
+  window.requestAnimationFrame
+
 registerPlugin('emotion/babel', require('emotion/babel'))
 
 const PreviewContent = styled('div')`
@@ -134,13 +138,13 @@ class Preview extends Component {
   }
 
   componentDidMount = () => {
-    this._executeCode()
+    ric(this._executeCode)
   }
 
   componentDidUpdate = prevProps => {
     clearTimeout(this.timeoutID) //eslint-disable-line
     if (this.props.code !== prevProps.code) {
-      this._executeCode()
+      ric(this._executeCode)
     }
   }
 
@@ -148,7 +152,7 @@ class Preview extends Component {
     const { error } = this.state
     return (
       <PreviewWrapper>
-        <div ref="mount" className="preview-display"  />
+        <div ref="mount" className="preview-display" />
         {error !== null ? <ErrorWrapper>{error}</ErrorWrapper> : null}
       </PreviewWrapper>
     )
