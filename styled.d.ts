@@ -22,22 +22,22 @@ declare module "emotion" {
 }
 
 declare module "emotion/styled" {
-  import { ComponentClass, StatelessComponent } from "react";
+  import { ComponentClass, StatelessComponent, HTMLProps } from "react";
 
   type Component<P> = ComponentClass<P> | StatelessComponent<P>;
 
   export type InterpolationValue = string | number;
 
-  export type Tagged = (
+  export type Tagged<P> = (
     content: TemplateStringsArray,
     ...vars: InterpolationValue[],
-  ) => Component<any>;
+  ) => Component<P>;
 
-  export default function(tag: Component<any>): Tagged;
+  export default function<P>(tag: Component<P>): Tagged<P>;
   export default function(
     tag: keyof HTMLElementTagNameMap,
     cls?: string,
-  ): Tagged;
+  ): Tagged<HTMLProps<P>>;
 }
 
 declare module "emotion/server" {
