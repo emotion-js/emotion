@@ -1,7 +1,7 @@
 import React from 'react'
-import { css } from './index'
+import { css as magic } from './index'
 
-export default function (tag, cls, vars = [], content) {
+export function styled (tag, cls, vars = [], content) {
   if (!tag) {
     throw new Error(
       'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
@@ -9,7 +9,7 @@ export default function (tag, cls, vars = [], content) {
   }
 
   function Styled (props) {
-    const className = css(
+    const className = magic(
       cls,
       vars.map(v => (v && typeof v === 'function' ? v(props) : v)),
       content
@@ -32,4 +32,11 @@ export default function (tag, cls, vars = [], content) {
   Styled.displayName = `styled(${componentTag}${debugName})`
 
   return Styled
+}
+
+export function Style ({children, css, render}) {
+  let fn = typeof render === 'function'
+    ? render
+    : Array.isArray(children) ? children[0] : children
+  return fn(magic(css))
 }
