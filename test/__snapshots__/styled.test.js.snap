@@ -109,12 +109,12 @@ exports[`styled higher order component 1`] = `
 `;
 
 exports[`styled innerRef 1`] = `
-.css-H1-dae0kw-kdrkuq {
+.css-H1-ijh7uz-10q50rl {
   font-size: 12px;
 }
 
 <h1
-  className="css-H1-dae0kw-kdrkuq"
+  className="css-H1-ijh7uz-10q50rl"
   innerRef={[Function]}
 >
   hello world

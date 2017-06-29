@@ -9,10 +9,14 @@ const styled = (tag, cls, vars = [], content) => {
         vars.map(v => (v && typeof v === 'function' ? v(context.props) : v)),
         content
       )
-      return h(tag, {
-        ...context.data,
-        class: [context.data.class, className]
-      }, context.children)
+      return h(
+        tag,
+        {
+          ...context.data,
+          class: [context.data.class, className]
+        },
+        context.children
+      )
     }
   }
 }

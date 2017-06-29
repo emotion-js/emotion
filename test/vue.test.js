@@ -13,13 +13,16 @@ const StyledComponent = styled.div`
   position: ${inherit};
 `
 
-const BasedOnProps = styled.h1`
-  font-weight: ${(props) => props.weight}; 
-`
+const BasedOnProps = styled.h1`font-weight: ${props => props.weight};`
 
 const baseComponent = {
   render (h) {
-    return h('div', {}, [h('div'), h('div'), h('h1', {}, 'some text'), h('div')])
+    return h('div', {}, [
+      h('div'),
+      h('div'),
+      h('h1', {}, 'some text'),
+      h('div')
+    ])
   }
 }
 

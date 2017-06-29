@@ -138,18 +138,12 @@ describe('styled', () => {
   })
 
   test('innerRef', () => {
-    const H1 = styled.h1`
-      font-size: 12px;
-    `
+    const H1 = styled.h1`font-size: 12px;`
 
     const refFunction = jest.fn()
 
     const tree = renderer
-      .create(
-        <H1 innerRef={refFunction}>
-          hello world
-        </H1>
-      )
+      .create(<H1 innerRef={refFunction}>hello world</H1>)
       .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
