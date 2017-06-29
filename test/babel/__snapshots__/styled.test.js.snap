@@ -24,9 +24,7 @@ exports[`babel styled component extract no dynamic 2`] = `".css-14ksm7b { color:
 exports[`babel styled component extract no use 1`] = `"\\"h1\\";"`;
 
 exports[`babel styled component extract with fragment 1`] = `
-"const frag1 = fragment([], function createEmotionFragment() {
-  return \` width: 20px; \`;
-});
+"const frag1 = \`width: 20px;\`;
 const H1 = styled('h1', 'css-H1-osx1au', [fontSize + 'px', props => props.translateX, frag1], function createEmotionStyledRules(x0, x1, x2) {
   return [\`.css-H1-osx1au { font-size: \${x0};
         height: 20px;

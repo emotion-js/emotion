@@ -36,59 +36,51 @@ html {
 
 exports[`babel injectGlobal extract injectGlobal with interpolation 1`] = `
 "
-injectGlobal([display], function createEmotionGlobal(x0) {
-  return [\`body {
+injectGlobal([\`body {
             margin: 0;
             padding: 0;
-            display: \${x0};
+            display: \${display};
           }\`, \`body > div {
             display: none;
 }\`, \`html {
             background: green;
-          }\`];
-});"
+          }\`]);"
 `;
 
 exports[`babel injectGlobal inline injectGlobal basic 1`] = `
 "
-injectGlobal([], function createEmotionGlobal() {
-  return [\`body {
+injectGlobal([\`body {
             margin: 0;
             padding: 0;
           }\`, \`body > div {
             display: none;
 }\`, \`html {
             background: green;
-          }\`];
-});"
+          }\`]);"
 `;
 
 exports[`babel injectGlobal inline injectGlobal with fragment 1`] = `
 "
-injectGlobal([display, htmlStyled], function createEmotionGlobal(x0, x1) {
-  return [\`body {
+injectGlobal([\`body {
             margin: 0;
             padding: 0;
-            display: \${x0};
+            display: \${display};
           }\`, \`body > div {
             display: none;
 }\`, \`html {
-            \${x1}
-          }\`];
-});"
+            \${htmlStyled}
+          }\`]);"
 `;
 
 exports[`babel injectGlobal inline injectGlobal with interpolation 1`] = `
 "
-injectGlobal([display], function createEmotionGlobal(x0) {
-  return [\`body {
+injectGlobal([\`body {
             margin: 0;
             padding: 0;
-            display: \${x0};
+            display: \${display};
           }\`, \`body > div {
             display: none;
 }\`, \`html {
             background: green;
-          }\`];
-});"
+          }\`]);"
 `;

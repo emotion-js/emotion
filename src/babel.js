@@ -5,7 +5,7 @@ import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import findAndReplaceAttrs from './attrs'
 import cssProps from './css-prop'
 
-function parseDynamicValues (rules, t) {
+function parseDynamicValues (rules, t, inputExpressions) {
   return rules.map(rule => {
     const re = /xxx(\S)xxx/gm
     let varMatch
@@ -28,7 +28,7 @@ function parseDynamicValues (rules, t) {
           quasis.push(t.templateElement({ raw: preMatch, cooked: preMatch }))
         }
 
-        expressions.push(t.identifier(`x${p1}`))
+        expressions.push(inputExpressions[p1])
 
         if (i === matches.length - 1 && cursor <= rule.length) {
           const postMatch = rule.substring(cursor)
@@ -116,14 +116,13 @@ export default function (babel) {
         // });
 
         const parent = path.findParent(p => p.isVariableDeclarator())
-        const identifierName = parent && t.isIdentifier(parent.node.id)
-          ? parent.node.id.name
-          : ''
+        const identifierName =
+          parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, rules, name, isStatic } = inline(
+          let { hash, rules, name, hasVar, hasApply } = inline(
             built,
             identifierName,
             'css',
@@ -139,15 +138,18 @@ export default function (babel) {
             t.stringLiteral(`${name}-${hash}`),
             t.arrayExpression(built.expressions)
           ]
-          if (isStatic) {
+          if (!hasApply && !state.inline) {
             state.insertStaticRules(rules)
           } else {
+            const expressions = built.expressions.map((x, i) =>
+              t.identifier(`x${i}`)
+            )
             const inlineContentExpr = t.functionExpression(
               t.identifier('createEmotionStyledRules'),
-              built.expressions.map((x, i) => t.identifier(`x${i}`)),
+              expressions,
               t.blockStatement([
                 t.returnStatement(
-                  t.arrayExpression(parseDynamicValues(rules, t))
+                  t.arrayExpression(parseDynamicValues(rules, t, expressions))
                 )
               ])
             )
@@ -199,44 +201,45 @@ export default function (babel) {
             )
           }
           const rulesWithoutSelector = rules.map(rule =>
-            rule.substring(rule.indexOf('{') + 1, rule.length - 1)
+            rule.substring(rule.indexOf('{') + 1, rule.length - 1).trim()
           )
-          const dynamicRules = parseDynamicValues(rulesWithoutSelector, t)
           path.replaceWith(
-            t.callExpression(t.identifier('fragment'), [
-              t.arrayExpression(path.node.quasi.expressions),
-              t.functionExpression(
-                t.identifier('createEmotionFragment'),
-                path.node.quasi.expressions.map((x, i) =>
-                  t.identifier(`x${i}`)
-                ),
-                t.blockStatement([t.returnStatement(dynamicRules[0])])
-              )
-            ])
+            parseDynamicValues(
+              rulesWithoutSelector,
+              t,
+              path.node.quasi.expressions
+            )[0]
           )
         } else if (
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'css'
         ) {
-          const { hash, name, rules, isStatic } = inline(
+          const { hash, name, rules, hasApply, hasVar } = inline(
             path.node.quasi,
             identifierName,
             'css',
             state.inline
           )
+          const classNameStringLiteral = t.stringLiteral(`${name}-${hash}`)
           const args = [
-            t.stringLiteral(`${name}-${hash}`),
+            classNameStringLiteral,
             t.arrayExpression(path.node.quasi.expressions)
           ]
-          if (isStatic) {
+          if (!hasApply && !state.inline) {
             state.insertStaticRules(rules)
+            if (!hasVar) {
+              return path.replaceWith(classNameStringLiteral)
+            }
           } else {
+            const expressions = path.node.quasi.expressions.map((x, i) =>
+              t.identifier(`x${i}`)
+            )
             const inlineContentExpr = t.functionExpression(
               t.identifier('createEmotionRules'),
-              path.node.quasi.expressions.map((x, i) => t.identifier(`x${i}`)),
+              expressions,
               t.blockStatement([
                 t.returnStatement(
-                  t.arrayExpression(parseDynamicValues(rules, t))
+                  t.arrayExpression(parseDynamicValues(rules, t, expressions))
                 )
               ])
             )
@@ -247,14 +250,13 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'keyframes'
         ) {
-          const { hash, name, rules, isStatic } = keyframes(
+          const { hash, name, rules, hasApply, hasVar } = keyframes(
             path.node.quasi,
             identifierName,
-            'animation',
-            state.inline
+            'animation'
           )
           const animationName = `${name}-${hash}`
-          if (isStatic) {
+          if (!hasApply && !hasVar && !state.inline) {
             state.insertStaticRules([
               `@keyframes ${animationName} ${rules.join('')}`
             ])
@@ -263,17 +265,8 @@ export default function (babel) {
             path.replaceWith(
               t.callExpression(t.identifier('keyframes'), [
                 t.stringLiteral(animationName),
-                t.arrayExpression(path.node.quasi.expressions),
-                t.functionExpression(
-                  t.identifier('createEmotionKeyframes'),
-                  path.node.quasi.expressions.map((x, i) =>
-                    t.identifier(`x${i}`)
-                  ),
-                  t.blockStatement([
-                    t.returnStatement(
-                      t.arrayExpression(parseDynamicValues(rules, t))
-                    )
-                  ])
+                t.arrayExpression(
+                  parseDynamicValues(rules, t, path.node.quasi.expressions)
                 )
               ])
             )
@@ -282,8 +275,11 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fontFace'
         ) {
-          const { rules, isStatic } = fontFace(path.node.quasi, state.inline)
-          if (isStatic) {
+          const { rules, hasApply, hasVar } = fontFace(
+            path.node.quasi,
+            state.inline
+          )
+          if (!hasApply && !hasVar && !state.inline) {
             state.insertStaticRules(rules)
             if (t.isExpressionStatement(path.parent)) {
               path.parentPath.remove()
@@ -293,17 +289,8 @@ export default function (babel) {
           } else {
             path.replaceWith(
               t.callExpression(t.identifier('fontFace'), [
-                t.arrayExpression(path.node.quasi.expressions),
-                t.functionExpression(
-                  t.identifier('createEmotionFontFace'),
-                  path.node.quasi.expressions.map((x, i) =>
-                    t.identifier(`x${i}`)
-                  ),
-                  t.blockStatement([
-                    t.returnStatement(
-                      t.arrayExpression(parseDynamicValues(rules, t))
-                    )
-                  ])
+                t.arrayExpression(
+                  parseDynamicValues(rules, t, path.node.quasi.expressions)
                 )
               ])
             )
@@ -313,11 +300,8 @@ export default function (babel) {
           path.node.tag.name === 'injectGlobal' &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          const { isStatic, rules } = injectGlobal(
-            path.node.quasi,
-            state.inline
-          )
-          if (isStatic) {
+          const { rules, hasApply, hasVar } = injectGlobal(path.node.quasi)
+          if (!hasApply && !hasVar && !state.inline) {
             state.insertStaticRules(rules)
             if (t.isExpressionStatement(path.parent)) {
               path.parentPath.remove()
@@ -327,17 +311,8 @@ export default function (babel) {
           } else {
             path.replaceWith(
               t.callExpression(t.identifier('injectGlobal'), [
-                t.arrayExpression(path.node.quasi.expressions),
-                t.functionExpression(
-                  t.identifier('createEmotionGlobal'),
-                  path.node.quasi.expressions.map((x, i) =>
-                    t.identifier(`x${i}`)
-                  ),
-                  t.blockStatement([
-                    t.returnStatement(
-                      t.arrayExpression(parseDynamicValues(rules, t))
-                    )
-                  ])
+                t.arrayExpression(
+                  parseDynamicValues(rules, t, path.node.quasi.expressions)
                 )
               ])
             )

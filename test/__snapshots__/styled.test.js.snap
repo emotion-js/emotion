@@ -57,14 +57,14 @@ exports[`styled fragments 1`] = `
   font-size: 32px;
 }
 
-.css-H1-1qd8mfb-1mxqzi0 {
+.css-H1-1qd8mfb-1u8p6i5 {
   font-size: 20px;
   height: 64px;
   color: blue;
 }
 
 <h1
-  className="css-H1-1qd8mfb-1mxqzi0 css-H2-idm3bz-361gww legacy__class"
+  className="css-H1-1qd8mfb-1u8p6i5 css-H2-idm3bz-361gww legacy__class"
   scale={2}
 >
   hello world
@@ -89,7 +89,7 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.css-onyx-wn422p-oy3rok {
+.css-onyx-wn422p-10htdr6 {
   background-color: '#343a40';
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -104,17 +104,17 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="css-Content-13wdnau-1z6hk6 css-onyx-wn422p-oy3rok"
+  className="css-Content-13wdnau-1z6hk6 css-onyx-wn422p-10htdr6"
 />
 `;
 
 exports[`styled innerRef 1`] = `
-.css-H1-dae0kw-kdrkuq {
+.css-H1-ijh7uz-10q50rl {
   font-size: 12px;
 }
 
 <h1
-  className="css-H1-dae0kw-kdrkuq"
+  className="css-H1-ijh7uz-10q50rl"
   innerRef={[Function]}
 >
   hello world

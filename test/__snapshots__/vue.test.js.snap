@@ -2,7 +2,7 @@
 
 exports[`vue styled based on props 1`] = `
 "
-      <div id=\\"app\\"><h1 weight=\\"bold\\" class=\\"css-BasedOnProps-1ayt7kx-wy28h4\\"></h1></div>
+      <div id=\\"app\\"><h1 weight=\\"bold\\" class=\\"css-BasedOnProps-csm9t8-1qo3zsu\\"></h1></div>
     "
 `;
 
@@ -22,7 +22,7 @@ exports[`vue styled creates the correct styles 1`] = `
   -ms-flex-align: center;
   -webkit-box-align: center;
   align-items: center;
-  position: inherit; }.css-BasedOnProps-1ayt7kx-wy28h4 { font-weight: bold; }.css-NonHtmlComponent-15287sz-1wq2ikh { background-color: purple;
+  position: inherit; }.css-BasedOnProps-csm9t8-1qo3zsu { font-weight: bold; }.css-NonHtmlComponent-15287sz-1wq2ikh { background-color: purple;
   color: green; }"
 `;
 

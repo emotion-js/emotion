@@ -3,9 +3,11 @@
 exports[`injectGlobal 1`] = `
 "html {
       background: pink;
+    }html.active {
+      background: red;
     }body {
       color: yellow
-       margin: 0;
-    padding: 0; 
+      margin: 0;
+    padding: 0;
     }"
 `;

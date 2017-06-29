@@ -14,7 +14,7 @@ exports[`css prop react basic 1`] = `
 `;
 
 exports[`css prop react kitchen sink 1`] = `
-.css-tree-1170hdn-140nofh {
+.css-tree-1170hdn-1o62cat {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -36,7 +36,7 @@ exports[`css prop react kitchen sink 1`] = `
   align-items: center;
 }
 
-.css-tree-wjhr0q-2fv2qw {
+.css-tree-wjhr0q-imh2fa {
   font-size: 6;
   color: red;
 }
@@ -64,10 +64,10 @@ exports[`css prop react kitchen sink 1`] = `
 }
 
 <div
-  className="css__legacy-stuff css-tree-1170hdn-140nofh"
+  className="css__legacy-stuff css-tree-1170hdn-1o62cat"
 >
   <h1
-    className="css-tree-wjhr0q-2fv2qw"
+    className="css-tree-wjhr0q-imh2fa"
   >
     BOOM
   </h1>

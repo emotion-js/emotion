@@ -8,7 +8,7 @@ exports[`babel css prop StringLiteral css prop value 1`] = `
 
 exports[`babel css prop basic 1`] = `
 "import \\"./css-prop.test.emotion.css\\";
-<div className={\\"a\\" + \\" \\" + css(\\"css-jf1v9l\\", [])}></div>;"
+<div className={\\"a\\" + \\" \\" + \\"css-jf1v9l\\"}></div>;"
 `;
 
 exports[`babel css prop basic 2`] = `".css-jf1v9l { color: brown; }"`;
