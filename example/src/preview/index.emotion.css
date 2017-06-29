@@ -2,11 +2,11 @@
   -webkit-flex: 1 1 var(--css-PreviewContent-t4x8ge-0);
   -ms-flex: 1 1 var(--css-PreviewContent-t4x8ge-0);
   flex: 1 1 var(--css-PreviewContent-t4x8ge-0); }
-.css-PreviewWrapper-1a8prcy { position: relative;
-  -webkit-flex: 1 1 33.33%;
-  -ms-flex: 1 1 33.33%;
-  flex: 1 1 33.33%; }
-.css-PreviewWrapper-1a8prcy .preview-display { width: 100%; height: 100%; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-justify-content: center; -ms-flex-pack: center; -webkit-box-pack: center; justify-content: center; -webkit-align-items: center; -ms-flex-align: center; -webkit-box-align: center; align-items: center; }
+.css-PreviewWrapper-9uam35 { position: relative;
+  -webkit-flex: 1 1 30%;
+  -ms-flex: 1 1 30%;
+  flex: 1 1 30%; }
+.css-PreviewWrapper-9uam35 .preview-display { width: 100%; height: 100%; display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-justify-content: center; -ms-flex-pack: center; -webkit-box-pack: center; justify-content: center; -webkit-align-items: center; -ms-flex-align: center; -webkit-box-align: center; align-items: center; }
 .css-ErrorWrapper-1ty0yok { position: absolute;
   top: 0;
   bottom: 0;

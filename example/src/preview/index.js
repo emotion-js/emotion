@@ -18,7 +18,7 @@ const PreviewContent = styled('div')`
 
 const PreviewWrapper = styled(PreviewContent)`
   position: relative;
-  flex: 1 1 33.33%;
+  flex: 1 1 30%;
   
   & .preview-display {
     width: 100%;

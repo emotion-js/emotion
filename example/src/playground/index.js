@@ -14,17 +14,15 @@ const PlaygroundContent = styled('div')`
   margin: 0 auto 16px auto;
   padding: 16px 0;
   max-width: 560px;
-  max-height: ${props => (props.maxHeight || 160) + 'px'};
   
   & .ReactCodeMirror {
-    flex: 1 1 66.66%;
+    flex: 1 1 70%;
     & textarea {
       border-radius: 4px;
     }
     
     .CodeMirror {
       height: auto;
-      max-height: ${props => (props.maxHeight || 160) + 'px'};
       border-radius: 4px;
     }
   }
