@@ -43,12 +43,36 @@ function replaceApplyWithPlaceholders (rules: string[]): string[] {
   )
 }
 
+function createSrc (strs: string[], name: string, hash: string, expressionLength: number): { src: string, hasApply: boolean, hasVar: boolean } {
+  let hasApply = false
+  let hasVar = false
+  const src = strs
+    .reduce((arr, str, i) => {
+      arr.push(str)
+      if (i !== expressionLength) {
+        // todo - test for preceding @apply
+        let applyMatch = /@apply\s*$/gm.exec(str)
+        if (applyMatch) {
+          hasApply = true
+          arr.push(`--${name}-${hash}-${i}`)
+        } else {
+          hasVar = true
+          arr.push(`var(--${name}-${hash}-${i})`)
+        }
+      }
+      return arr
+    }, [])
+    .join('')
+    .trim()
+  return { src, hasApply, hasVar }
+}
+
 export function inline (
   quasi: any,
   identifierName?: string,
   prefix: string,
-  inlineVars: boolean
-): { hash: string, name: string, rules: string[], isStatic: boolean } {
+  inlineMode: boolean
+): { hash: string, name: string, rules: string[], hasApply: boolean, hasVar: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
   let name = getName(
@@ -56,39 +80,23 @@ export function inline (
     identifierName,
     prefix
   )
-  let hasApply
-  let src = strs
-    .reduce((arr, str, i) => {
-      arr.push(str)
-      if (i !== quasi.expressions.length) {
-        // todo - test for preceding @apply
-        let applyMatch = /@apply\s*$/gm.exec(str)
-        if (applyMatch) {
-          hasApply = true
-          arr.push(`--${name}-${hash}-${i}`)
-        } else arr.push(`var(--${name}-${hash}-${i})`)
-      }
-      return arr
-    }, [])
-    .join('')
-    .trim()
+  let {src, hasApply, hasVar} = createSrc(strs, name, hash, quasi.expressions.length)
 
   let rules = parseCSS(`.${name}-${hash} { ${src} }`)
-  if (inlineVars || hasApply) {
+  if (inlineMode || hasApply) {
     rules = replaceVarsWithPlaceholders(rules)
   }
   if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
   }
-  return { hash, name, rules, isStatic: !hasApply && !inlineVars }
+  return { hash, name, rules, hasApply, hasVar }
 }
 
 export function keyframes (
   quasi: any,
   identifierName?: string,
-  prefix: string,
-  inlineVars: boolean
-): { hash: string, name: string, rules: string[] } {
+  prefix: string
+): { hash: string, name: string, rules: string[], hasApply: boolean, hasVar: boolean } {
   const strs = quasi.quasis.map(x => x.value.cooked)
   const hash = hashArray([...strs])
   const name = getName(
@@ -96,79 +104,36 @@ export function keyframes (
     identifierName,
     prefix
   )
-  let hasApplyOrVar = false
-  const src = strs
-    .reduce((arr, str, i) => {
-      arr.push(str)
-      if (i !== quasi.expressions.length) {
-        hasApplyOrVar = true
-        // todo - test for preceding @apply
-        let applyMatch = /@apply\s*$/gm.exec(str)
-        if (applyMatch) {
-          arr.push(`--name-hash-${i}`)
-        } else arr.push(`var(--name-hash-${i})`)
-      }
-      return arr
-    }, [])
-    .join('')
-    .trim()
+  const { src, hasApply, hasVar } = createSrc(strs, name, hash, quasi.expressions.length)
   let rules = parseCSS(`{ ${src} }`, { nested: false })
-  if (hasApplyOrVar) {
-    rules = replaceVarsWithPlaceholders(rules)
+  if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
   }
-  return { hash, name, rules, isStatic: !hasApplyOrVar && !inlineVars }
+  if (hasVar) {
+    rules = replaceVarsWithPlaceholders(rules)
+  }
+  return { hash, name, rules, hasApply, hasVar }
 }
 
-export function fontFace (
-  quasi: any,
-  inlineVars: boolean
-): { rules: string[], isStatic: boolean } {
+export function fontFace (quasi: any): { rules: string[], hasApply: boolean, hasVar: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  let hasVar
-  let src = strs
-    .reduce((arr, str, i) => {
-      arr.push(str)
-      if (i !== quasi.expressions.length) {
-        hasVar = true
-        arr.push(`var(--name-hash-${i})`)
-      }
-      return arr
-    }, [])
-    .join('')
-    .trim()
+  const { src, hasApply, hasVar } = createSrc(strs, 'name', 'hash', quasi.expressions.length)
   let rules = parseCSS(`@font-face {${src}}`)
   if (hasVar) {
     rules = replaceVarsWithPlaceholders(rules)
   }
-  return { rules, isStatic: !inlineVars && !hasVar }
+  return { rules, hasApply, hasVar }
 }
 
-export function injectGlobal (
-  quasi: any,
-  inlineVars: boolean
-): { rules: string[], isStatic: boolean } {
+export function injectGlobal (quasi: any): { rules: string[], hasApply: boolean, hasVar: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  let hasApplyOrVar = false
-  let src = strs
-    .reduce((arr, str, i) => {
-      arr.push(str)
-      if (i !== quasi.expressions.length) {
-        hasApplyOrVar = true
-        // todo - test for preceding @apply
-        let applyMatch = /@apply\s*$/gm.exec(str)
-        if (applyMatch) {
-          arr.push(`--name-hash-${i}`)
-        } else arr.push(`var(--name-hash-${i})`)
-      }
-      return arr
-    }, [])
-    .join('')
-    .trim()
+  const { src, hasVar, hasApply } = createSrc(strs, 'name', 'hash', quasi.expressions.length)
   let rules = parseCSS(src)
-  if (hasApplyOrVar) {
-    rules = replaceVarsWithPlaceholders(rules)
+  if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
   }
-  return { rules, isStatic: !inlineVars && !hasApplyOrVar }
+  if (hasVar) {
+    rules = replaceVarsWithPlaceholders(rules)
+  }
+  return { rules, hasApply, hasVar }
 }

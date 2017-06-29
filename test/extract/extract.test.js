@@ -4,7 +4,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
 import { matcher, serializer } from '../../jest-utils'
-import { fragment, injectGlobal } from '../../src/index'
+import { fragment, injectGlobal, css } from '../../src/index'
 import styled from '../../src/styled'
 
 expect.addSnapshotSerializer(serializer)
@@ -172,6 +172,13 @@ describe('styled', () => {
         background: pink;
       }
     `
+  })
+  test('css', () => {
+    expect(css`
+      font-family: sans-serif;
+      color: yellow;
+      background-color: purple;
+    `)
   })
   test('writes the correct css', () => {
     const filenameArr = basename(__filename).split('.')

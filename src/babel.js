@@ -123,7 +123,7 @@ export default function (babel) {
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, rules, name, isStatic } = inline(
+          let { hash, rules, name, hasVar, hasApply } = inline(
             built,
             identifierName,
             'css',
@@ -139,7 +139,7 @@ export default function (babel) {
             t.stringLiteral(`${name}-${hash}`),
             t.arrayExpression(built.expressions)
           ]
-          if (isStatic) {
+          if (!hasApply && !state.inline) {
             state.insertStaticRules(rules)
           } else {
             const inlineContentExpr = t.functionExpression(
@@ -187,7 +187,7 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fragment'
         ) {
-          const { rules } = inline(
+          const { rules, hasApply, hasVar } = inline(
             path.node.quasi,
             identifierName,
             'frag',
@@ -199,10 +199,13 @@ export default function (babel) {
             )
           }
           const rulesWithoutSelector = rules.map(rule =>
-            rule.substring(rule.indexOf('{') + 1, rule.length - 1)
+            rule.substring(rule.indexOf('{') + 1, rule.length - 1).trim()
           )
-          const dynamicRules = parseDynamicValues(rulesWithoutSelector, t)
-          path.replaceWith(
+          if (!hasApply && !hasVar) {
+            path.replaceWith(t.stringLiteral(rulesWithoutSelector[0]))
+          } else {
+            const dynamicRules = parseDynamicValues(rulesWithoutSelector, t)
+            path.replaceWith(
             t.callExpression(t.identifier('fragment'), [
               t.arrayExpression(path.node.quasi.expressions),
               t.functionExpression(
@@ -214,22 +217,27 @@ export default function (babel) {
               )
             ])
           )
+          }
         } else if (
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'css'
         ) {
-          const { hash, name, rules, isStatic } = inline(
+          const { hash, name, rules, hasApply, hasVar } = inline(
             path.node.quasi,
             identifierName,
             'css',
             state.inline
           )
+          const classNameStringLiteral = t.stringLiteral(`${name}-${hash}`)
           const args = [
-            t.stringLiteral(`${name}-${hash}`),
+            classNameStringLiteral,
             t.arrayExpression(path.node.quasi.expressions)
           ]
-          if (isStatic) {
+          if (!hasApply && !state.inline) {
             state.insertStaticRules(rules)
+            if (!hasVar) {
+              return path.replaceWith(classNameStringLiteral)
+            }
           } else {
             const inlineContentExpr = t.functionExpression(
               t.identifier('createEmotionRules'),
@@ -247,14 +255,13 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'keyframes'
         ) {
-          const { hash, name, rules, isStatic } = keyframes(
+          const { hash, name, rules, hasApply, hasVar } = keyframes(
             path.node.quasi,
             identifierName,
-            'animation',
-            state.inline
+            'animation'
           )
           const animationName = `${name}-${hash}`
-          if (isStatic) {
+          if (!hasApply && !hasVar && !state.inline) {
             state.insertStaticRules([
               `@keyframes ${animationName} ${rules.join('')}`
             ])
@@ -282,8 +289,8 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fontFace'
         ) {
-          const { rules, isStatic } = fontFace(path.node.quasi, state.inline)
-          if (isStatic) {
+          const { rules, hasApply, hasVar } = fontFace(path.node.quasi, state.inline)
+          if (!hasApply && !hasVar && !state.inline) {
             state.insertStaticRules(rules)
             if (t.isExpressionStatement(path.parent)) {
               path.parentPath.remove()
@@ -313,11 +320,8 @@ export default function (babel) {
           path.node.tag.name === 'injectGlobal' &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          const { isStatic, rules } = injectGlobal(
-            path.node.quasi,
-            state.inline
-          )
-          if (isStatic) {
+          const { rules, hasApply, hasVar } = injectGlobal(path.node.quasi)
+          if (!hasApply && !hasVar && !state.inline) {
             state.insertStaticRules(rules)
             if (t.isExpressionStatement(path.parent)) {
               path.parentPath.remove()
