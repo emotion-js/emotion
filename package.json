@@ -61,7 +61,8 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "standard": "^10.0.2",
     "strip-json-comments-cli": "^1.0.1",
-    "uglify-js": "2.8.23"
+    "uglify-js": "2.8.23",
+    "vue": "^2.3.4"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vue styled basic 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"css-StyledComponent-1hppjzv-1aap87n\\"></div></div>
+    "
+`;
+
+exports[`vue styled creates the correct styles 1`] = `
+".css-StyledComponent-1hppjzv-1aap87n { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center; }"
+`;
+
+exports[`vue styled with class 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"some-class css-StyledComponent-1hppjzv-1aap87n\\"></div></div>
+    "
+`;
+
+exports[`vue styled with properties 1`] = `
+"
+      <div id=\\"app\\"><div aria-label=\\"label\\" class=\\"css-StyledComponent-1hppjzv-1aap87n\\"></div></div>
+    "
+`;
+
+exports[`vue styled with style 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"css-StyledComponent-1hppjzv-1aap87n\\" style=\\"display: none;\\"></div></div>
+    "
+`;
