@@ -107,10 +107,10 @@ const H1 = styled('h1', 'css-H1-duiy4a', [], function createEmotionStyles() {
 ### styled
 
 ```jsx
-import { styled } from 'emotion'
+import styled from 'emotion/styled'
 
 const H1 = styled('h1')`
-  color: 'blue';
+  color: blue;
   font-size: 48px;
   transform: scale(${props => props.scale});
 `
@@ -124,7 +124,7 @@ function Greeting ({ name }) {
 
 const H2 = styled(H1)`
   font-size: ${fontSize * 2/3}px;
-  color: 'red';
+  color: red;
 `
 
 function Greeting ({ name }) {
@@ -135,7 +135,7 @@ function Greeting ({ name }) {
 
 const H3 = styled.h3`
   font-size: ${fontSize * 1/3}px;
-  color: 'red';
+  color: red;
 `
 
 function Greeting ({ name }) {
@@ -144,7 +144,7 @@ function Greeting ({ name }) {
 
 // You can also pass refs down using innerRef
 const H1 = styled('h1')`
-  color: 'red';
+  color: red;
 `
 
 function Greeting ({ name }) {
@@ -152,6 +152,42 @@ function Greeting ({ name }) {
   return <H1 innerRef={() => console.log('hello!')}>Hello {name}</H1> 
 }
 
+```
+
+### vue styled
+
+```html
+<template>
+  <div id="app">
+    <styled-div>This should have a blue background.</styled-div>
+    <styled-component></styled-component>
+  </div>
+</template>
+
+<script>
+import BoringComponent from './components/BoringComponent'
+// Import styled from emotion/vue instead of emotion/styled
+import styled from 'emotion/vue'
+
+// You can use styled.* just like with React
+const StyledDiv = styled.div`
+  background: blue;
+`
+
+// You can also pass components in
+const StyledComponent = styled(BoringComponent)`
+  display: flex;
+  justify-content: center;
+`
+
+export default {
+  name: 'app',
+  components: {
+    'styled-div': StyledDiv,
+    'styled-component': StyledComponent
+  }
+}
+</script>
 ```
 
 #### attr
