@@ -12,6 +12,8 @@ video course helpful: http://kcd.im/pull-request
 
 Please fill out the information below to expedite the review and (hopefully)
 merge of your pull request!
+
+When you believe your code is merge ready please add the "merge me" label. 
 -->
 
 <!-- What changes are being made? (What feature/bug is being fixed here?) -->
