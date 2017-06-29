@@ -9,7 +9,8 @@
     "dist",
     "lib",
     "styled.js",
-    "server.js"
+    "server.js",
+    "vue.js"
   ],
   "scripts": {
     "build": "babel src -d lib",
