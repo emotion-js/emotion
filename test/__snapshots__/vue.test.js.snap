@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vue styled based on props 1`] = `
+"
+      <div id=\\"app\\"><h1 weight=\\"bold\\" class=\\"css-BasedOnProps-1ayt7kx-wy28h4\\"></h1></div>
+    "
+`;
+
+exports[`vue styled basic 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"css-StyledComponent-1brvt4i-ulwf5d\\"></div></div>
+    "
+`;
+
+exports[`vue styled creates the correct styles 1`] = `
+".css-StyledComponent-1brvt4i-ulwf5d { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+  position: inherit; }.css-BasedOnProps-1ayt7kx-wy28h4 { font-weight: bold; }.css-NonHtmlComponent-15287sz-1wq2ikh { background-color: purple;
+  color: green; }"
+`;
+
+exports[`vue styled custom external component 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"css-NonHtmlComponent-15287sz-1wq2ikh\\"><div></div><div></div><h1>some text</h1><div></div></div></div>
+    "
+`;
+
+exports[`vue styled with class 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"some-class css-StyledComponent-1brvt4i-ulwf5d\\"></div></div>
+    "
+`;
+
+exports[`vue styled with properties 1`] = `
+"
+      <div id=\\"app\\"><div aria-label=\\"label\\" class=\\"css-StyledComponent-1brvt4i-ulwf5d\\"></div></div>
+    "
+`;
+
+exports[`vue styled with style 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"css-StyledComponent-1brvt4i-ulwf5d\\" style=\\"display: none;\\"></div></div>
+    "
+`;
