@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel css prop StringLiteral css prop value 1`] = `
+"import \\"./css-prop.test.emotion.css\\";
+<div className={css(\\"css-jf1v9l\\", [])}></div>;"
+`;
+
+exports[`babel css prop basic 1`] = `
+"import \\"./css-prop.test.emotion.css\\";
+<div className={\\"a\\" + \\" \\" + css(\\"css-jf1v9l\\", [])}></div>;"
+`;
+
+exports[`babel css prop basic inline 1`] = `
+"<div className={\\"a\\" + \\" \\" + css(\\"css-jf1v9l\\", [], function createEmotionRules() {
+  return [\`.css-jf1v9l { color: brown; }\`];
+})}></div>;"
+`;
+
+exports[`babel css prop className as expression 1`] = `
+"import \\"./css-prop.test.emotion.css\\";
+<div className={variable + \\" \\" + css(\\"css-jf1v9l\\", [])}></div>;"
+`;
+
+exports[`babel css prop className as expression string 1`] = `
+"import \\"./css-prop.test.emotion.css\\";
+<div className={\`test__class\` + \\" \\" + css(\\"css-jf1v9l\\", [])} this={\`hello\`}></div>;"
+`;
+
+exports[`babel css prop css empty 1`] = `
+"import \\"./css-prop.test.emotion.css\\";
+<div className={css(\\"css-0\\", [])}></div>;"
+`;
+
+exports[`babel css prop dynamic inline 1`] = `
+"<div className={\\"a\\" + \\" \\" + css(\\"css-jsqoaa\\", [color], function createEmotionRules(x0) {
+  return [\`.css-jsqoaa { color: \${x0}; }\`];
+})}></div>;"
+`;
+
+exports[`babel css prop emptyClassName 1`] = `
+"import \\"./css-prop.test.emotion.css\\";
+<div className={\\"\\" + \\" \\" + css(\\"css-jf1v9l\\", [])}></div>;"
+`;
+
+exports[`babel css prop no css attr 1`] = `"<div></div>;"`;
+
+exports[`babel css prop noClassName 1`] = `
+"import \\"./css-prop.test.emotion.css\\";
+<div className={css(\\"css-jf1v9l\\", [])}></div>;"
+`;
+
+exports[`babel css prop with spread arg in jsx opening tag 1`] = `
+"<div className={\\"a\\" + \\" \\" + css(\\"css-jf1v9l\\", [], function createEmotionRules() {
+  return [\`.css-jf1v9l { color: brown; }\`];
+})} {...rest}></div>;"
+`;
