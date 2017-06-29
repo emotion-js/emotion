@@ -58,7 +58,7 @@ export function injectGlobal (vars: vars, content: () => string[]) {
   const hash = hashArray(src)
   if (!inserted[hash]) {
     inserted[hash] = true
-    sheet.insert(src)
+    src.forEach(r => sheet.insert(r))
   }
 }
 
