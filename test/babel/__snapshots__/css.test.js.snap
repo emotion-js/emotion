@@ -23,10 +23,8 @@ exports[`babel css extract css basic 2`] = `
 
 exports[`babel css extract css kitchen sink 1`] = `
 "
-const frag = \\"padding: 8px;\\";
-const fragB = fragment([heightVar, frag], function createEmotionFragment(x0, x1) {
-        return \`height: \${x0};\${x1};\`;
-});
+const frag = \`padding: 8px;\`;
+const fragB = \`height: \${heightVar};\${frag};\`;
 const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRules(x0, x1) {
         return [\`.css-cls2-1b4c3x0 { \${x0};
         \${x1};
@@ -58,10 +56,8 @@ exports[`babel css inline css kitchen sink 1`] = `
 const cls = css(\\"css-cls-h5t3cu\\", [margin], function createEmotionRules(x0) {
         return [\`.css-cls-h5t3cu { font-size: 58pt;margin: \${x0}; }\`];
 });
-const frag = \\"padding: 8px;\\";
-const fragB = fragment([heightVar, frag], function createEmotionFragment(x0, x1) {
-        return \`height: \${x0};\${x1};\`;
-});
+const frag = \`padding: 8px;\`;
+const fragB = \`height: \${heightVar};\${frag};\`;
 const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRules(x0, x1) {
         return [\`.css-cls2-1b4c3x0 { \${x0};
         \${x1};

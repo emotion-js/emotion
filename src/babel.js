@@ -5,7 +5,7 @@ import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import findAndReplaceAttrs from './attrs'
 import cssProps from './css-prop'
 
-function parseDynamicValues (rules, t) {
+function parseDynamicValues (rules, t, inputExpressions) {
   return rules.map(rule => {
     const re = /xxx(\S)xxx/gm
     let varMatch
@@ -28,7 +28,7 @@ function parseDynamicValues (rules, t) {
           quasis.push(t.templateElement({ raw: preMatch, cooked: preMatch }))
         }
 
-        expressions.push(t.identifier(`x${p1}`))
+        expressions.push(inputExpressions[p1])
 
         if (i === matches.length - 1 && cursor <= rule.length) {
           const postMatch = rule.substring(cursor)
@@ -142,12 +142,13 @@ export default function (babel) {
           if (!hasApply && !state.inline) {
             state.insertStaticRules(rules)
           } else {
+            const expressions = built.expressions.map((x, i) => t.identifier(`x${i}`))
             const inlineContentExpr = t.functionExpression(
               t.identifier('createEmotionStyledRules'),
-              built.expressions.map((x, i) => t.identifier(`x${i}`)),
+              expressions,
               t.blockStatement([
                 t.returnStatement(
-                  t.arrayExpression(parseDynamicValues(rules, t))
+                  t.arrayExpression(parseDynamicValues(rules, t, expressions))
                 )
               ])
             )
@@ -187,7 +188,7 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fragment'
         ) {
-          const { rules, hasApply, hasVar } = inline(
+          const { rules } = inline(
             path.node.quasi,
             identifierName,
             'frag',
@@ -201,23 +202,13 @@ export default function (babel) {
           const rulesWithoutSelector = rules.map(rule =>
             rule.substring(rule.indexOf('{') + 1, rule.length - 1).trim()
           )
-          if (!hasApply && !hasVar) {
-            path.replaceWith(t.stringLiteral(rulesWithoutSelector[0]))
-          } else {
-            const dynamicRules = parseDynamicValues(rulesWithoutSelector, t)
-            path.replaceWith(
-            t.callExpression(t.identifier('fragment'), [
-              t.arrayExpression(path.node.quasi.expressions),
-              t.functionExpression(
-                t.identifier('createEmotionFragment'),
-                path.node.quasi.expressions.map((x, i) =>
-                  t.identifier(`x${i}`)
-                ),
-                t.blockStatement([t.returnStatement(dynamicRules[0])])
-              )
-            ])
+          path.replaceWith(
+            parseDynamicValues(
+              rulesWithoutSelector,
+              t,
+              path.node.quasi.expressions
+            )[0]
           )
-          }
         } else if (
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'css'
@@ -239,12 +230,13 @@ export default function (babel) {
               return path.replaceWith(classNameStringLiteral)
             }
           } else {
+            const expressions = path.node.quasi.expressions.map((x, i) => t.identifier(`x${i}`))
             const inlineContentExpr = t.functionExpression(
               t.identifier('createEmotionRules'),
-              path.node.quasi.expressions.map((x, i) => t.identifier(`x${i}`)),
+              expressions,
               t.blockStatement([
                 t.returnStatement(
-                  t.arrayExpression(parseDynamicValues(rules, t))
+                  t.arrayExpression(parseDynamicValues(rules, t, expressions))
                 )
               ])
             )
@@ -270,18 +262,7 @@ export default function (babel) {
             path.replaceWith(
               t.callExpression(t.identifier('keyframes'), [
                 t.stringLiteral(animationName),
-                t.arrayExpression(path.node.quasi.expressions),
-                t.functionExpression(
-                  t.identifier('createEmotionKeyframes'),
-                  path.node.quasi.expressions.map((x, i) =>
-                    t.identifier(`x${i}`)
-                  ),
-                  t.blockStatement([
-                    t.returnStatement(
-                      t.arrayExpression(parseDynamicValues(rules, t))
-                    )
-                  ])
-                )
+                t.arrayExpression(parseDynamicValues(rules, t, path.node.quasi.expressions))
               ])
             )
           }
@@ -300,18 +281,7 @@ export default function (babel) {
           } else {
             path.replaceWith(
               t.callExpression(t.identifier('fontFace'), [
-                t.arrayExpression(path.node.quasi.expressions),
-                t.functionExpression(
-                  t.identifier('createEmotionFontFace'),
-                  path.node.quasi.expressions.map((x, i) =>
-                    t.identifier(`x${i}`)
-                  ),
-                  t.blockStatement([
-                    t.returnStatement(
-                      t.arrayExpression(parseDynamicValues(rules, t))
-                    )
-                  ])
-                )
+                t.arrayExpression(parseDynamicValues(rules, t, path.node.quasi.expressions))
               ])
             )
           }
@@ -331,18 +301,7 @@ export default function (babel) {
           } else {
             path.replaceWith(
               t.callExpression(t.identifier('injectGlobal'), [
-                t.arrayExpression(path.node.quasi.expressions),
-                t.functionExpression(
-                  t.identifier('createEmotionGlobal'),
-                  path.node.quasi.expressions.map((x, i) =>
-                    t.identifier(`x${i}`)
-                  ),
-                  t.blockStatement([
-                    t.returnStatement(
-                      t.arrayExpression(parseDynamicValues(rules, t))
-                    )
-                  ])
-                )
+                t.arrayExpression(parseDynamicValues(rules, t, path.node.quasi.expressions))
               ])
             )
           }

@@ -2,7 +2,7 @@
 
 exports[`babel fragment basic fragment 1`] = `
 "
-const frag = \\"color: green\\";
+const frag = \`color: green\`;
 styled(\\"h1\\", \\"css-u3lc8x\\", [frag], function createEmotionStyledRules(x0) {
       return [\`.css-u3lc8x { font-size: 20px; \${x0}; }\`];
 });"
@@ -10,13 +10,9 @@ styled(\\"h1\\", \\"css-u3lc8x\\", [frag], function createEmotionStyledRules(x0)
 
 exports[`babel fragment fragment kitchen sink 1`] = `
 "
-const frag = fragment([backgroundColor], function createEmotionFragment(x0) {
-      return \`color: green; background-color: \${x0}\`;
-});
-const frag1 = 'width: 20px;';
-const frag2 = fragment([frag1], function createEmotionFragment(x0) {
-      return \`height: 20px; \${x0};\`;
-});
+const frag = \`color: green; background-color: \${backgroundColor}\`;
+const frag1 = \`width: 20px;\`;
+const frag2 = \`height: 20px; \${frag1};\`;
 styled('h1', 'css-some-name-9k8moo', [fontSize + 'px', frag, frag2], function createEmotionStyledRules(x0, x1, x2) {
       return [\`.css-some-name-9k8moo { font-size: \${x0}; \${x1}; \${x2} }\`];
 });"

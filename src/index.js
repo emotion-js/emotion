@@ -49,12 +49,9 @@ export function css (cls: string, vars: vars, content: () => string[]) {
   return cls + (vars && vars.length > 0 ? ' ' + values(cls, vars) : '')
 }
 
-export function fragment (vars: vars, content: () => string) {
-  return content(...vars)
-}
+export function fragment () {}
 
-export function injectGlobal (vars: vars, content: () => string[]) {
-  const src = content(...vars)
+export function injectGlobal (src: string[]) {
   const hash = hashArray(src)
   if (!inserted[hash]) {
     inserted[hash] = true
@@ -64,8 +61,7 @@ export function injectGlobal (vars: vars, content: () => string[]) {
 
 export const fontFace = injectGlobal
 
-export function keyframes (kfm: string, vars: vars, content: () => string[]) {
-  const src = content(...vars)
+export function keyframes (kfm: string, src: string[]) {
   const hash = hashArray(src)
   const animationName = `${kfm}-${hash}`
   if (!inserted[hash]) {

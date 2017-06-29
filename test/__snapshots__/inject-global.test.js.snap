@@ -5,7 +5,7 @@ exports[`injectGlobal 1`] = `
       background: pink;
     }body {
       color: yellow
-       margin: 0;
-    padding: 0; 
+      margin: 0;
+    padding: 0;
     }"
 `;
