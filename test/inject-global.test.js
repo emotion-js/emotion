@@ -6,6 +6,9 @@ test('injectGlobal', () => {
     html {
       background: pink;
     }
+    html.active {
+      background: red;
+    }
   `
   const bodyStyles = fragment`
     margin: 0;
