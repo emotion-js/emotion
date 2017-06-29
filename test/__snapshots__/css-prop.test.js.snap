@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css prop react basic 1`] = `
-.css-tree-jk0pkr-1i6x1yh {
+.css-tree-7sri7n-1yz7ela {
   color: red;
+  font-size: 1px;
 }
 
 <p
-  className="css-tree-jk0pkr-1i6x1yh"
+  className="css-tree-7sri7n-1yz7ela"
 >
   hello world
 </p>

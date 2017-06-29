@@ -16,6 +16,8 @@ describe('babel css prop', () => {
       babelrc: false
     })
     expect(code).toMatchSnapshot()
+    expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
+    expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
   })
 
   test('basic inline', () => {
@@ -37,9 +39,7 @@ describe('babel css prop', () => {
   test('no css attr', () => {
     const basic = '(<div></div>)'
     const { code } = babel.transform(basic, {
-      plugins: [plugin],
-      filename: __filename,
-      babelrc: false
+      plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
   })
@@ -55,9 +55,7 @@ describe('babel css prop', () => {
   test('css empty', () => {
     const basic = '(<div css=""></div>)'
     const { code } = babel.transform(basic, {
-      plugins: [plugin],
-      filename: __filename,
-      babelrc: false
+      plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
   })
@@ -66,9 +64,7 @@ describe('babel css prop', () => {
     const basic = '(<div css={5}></div>)'
     expect(() =>
       babel.transform(basic, {
-        plugins: [plugin],
-        filename: __filename,
-        babelrc: false
+        plugins: [[plugin, { inline: true }]]
       })
     ).toThrow()
   })
@@ -76,9 +72,7 @@ describe('babel css prop', () => {
   test('StringLiteral css prop value', () => {
     const basic = `<div css="color: brown;"></div>`
     const { code } = babel.transform(basic, {
-      plugins: [plugin],
-      filename: __filename,
-      babelrc: false
+      plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
   })
@@ -86,9 +80,7 @@ describe('babel css prop', () => {
   test('noClassName', () => {
     const basic = '(<div css={`color: brown;`}></div>)'
     const { code } = babel.transform(basic, {
-      plugins: [plugin],
-      filename: __filename,
-      babelrc: false
+      plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
   })
@@ -96,9 +88,7 @@ describe('babel css prop', () => {
   test('emptyClassName', () => {
     const basic = '(<div className="" css={`color: brown;`}></div>)'
     const { code } = babel.transform(basic, {
-      plugins: [plugin],
-      filename: __filename,
-      babelrc: false
+      plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
   })
@@ -106,9 +96,7 @@ describe('babel css prop', () => {
   test('className as expression', () => {
     const basic = '(<div className={variable} css={`color: brown;`}></div>)'
     const { code } = babel.transform(basic, {
-      plugins: [plugin],
-      filename: __filename,
-      babelrc: false
+      plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
   })
@@ -117,9 +105,7 @@ describe('babel css prop', () => {
     const basic =
       '(<div className={`test__class`} css={`color: brown;`} this={`hello`}></div>)'
     const { code } = babel.transform(basic, {
-      plugins: [plugin],
-      filename: __filename,
-      babelrc: false
+      plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
   })

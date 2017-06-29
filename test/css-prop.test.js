@@ -12,15 +12,16 @@ expect.extend(matcher)
 
 describe('css prop react', () => {
   test('basic', () => {
+    const fontSize = '1px'
     const tree = renderer
       .create(
-        <p css={`color: red;`}>
+        <p css={`color: red;font-size:${fontSize}`}>
           hello world
         </p>
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('string expression', () => {
@@ -32,7 +33,7 @@ describe('css prop react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('kitchen sink', () => {
@@ -97,6 +98,6 @@ describe('css prop react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshot()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 })
