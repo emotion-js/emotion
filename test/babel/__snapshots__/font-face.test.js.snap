@@ -42,6 +42,16 @@ fontFace([\`@font-face {font-family: MyHelvetica;
           font-weight: bold;}\`]);"
 `;
 
+exports[`fontFace babel inline fragment 1`] = `
+"
+const frag = \`font-family: \${fontFamilyName};
+          src: local(\\"Helvetica Neue Bold\\"),
+               local(\\"HelveticaNeue-Bold\\"),
+               url(MgOpenModernaBold.ttf);
+          font-weight: bold;\`;
+fontFace([\`@font-face {\${frag}}\`]);"
+`;
+
 exports[`fontFace babel inline interpolation 1`] = `
 "
 fontFace([\`@font-face {font-family: \${fontFamilyName};
