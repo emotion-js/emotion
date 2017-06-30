@@ -30,6 +30,6 @@ export default function (tag, cls, vars = [], content) {
   const debugName = name === 'css' ? '' : `.${name}`
   const componentTag = tag.displayName || tag.name || 'Component'
   Styled.displayName = `styled(${componentTag}${debugName})`
-  Styled.className = '.' + cls
+  Styled.cls = '.' + cls
   return Styled
 }

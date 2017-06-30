@@ -41,7 +41,7 @@ exports[`styled component as selector 1`] = `
   font-size: 20px;
 }
 
-.css-Thing-1kdnbhf-rwyu9h {
+.css-Thing-1kdnbhf-384ekg {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -49,12 +49,12 @@ exports[`styled component as selector 1`] = `
   display: flex;
 }
 
-.css-Thing-1kdnbhf-rwyu9h [object Object] {
+.css-Thing-1kdnbhf-384ekg .css-H1-13wdnau {
   color: green;
 }
 
 <div
-  className="css-Thing-1kdnbhf-rwyu9h css-Thing-1kdnbhf"
+  className="css-Thing-1kdnbhf-384ekg css-Thing-1kdnbhf"
 >
   hello 
   <h1
