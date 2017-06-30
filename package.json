@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "4.1.4",
+  "version": "4.1.5",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
@@ -97,8 +97,10 @@
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
   },
-  "bundlesize": [{
-    "path": "./dist/DO-NOT-USE.min.js",
-    "threshold": "3 Kb"
-  }]
+  "bundlesize": [
+    {
+      "path": "./dist/DO-NOT-USE.min.js",
+      "threshold": "3 Kb"
+    }
+  ]
 }
