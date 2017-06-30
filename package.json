@@ -15,15 +15,15 @@
   "scripts": {
     "build": "babel src -d lib",
     "build:watch": "npm run build -- -w",
-    "umd": "npm-run-all clean -p rollup -p minify:* -s size",
+    "test:size": "npm-run-all clean rollup size",
     "clean": "rimraf dist",
-    "test": "standard src test && jest --coverage --no-cache",
+    "test": "npm-run-all -p lint:check coverage test:size",
+    "coverage": "jest --coverage --no-cache",
+    "lint:check": "standard src test",
     "test:watch": "jest --watch --no-cache",
     "rollup": "rollup -c",
-    "minify:cjs": "uglifyjs $npm_package_main -cm toplevel -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
-    "minify:umd": "uglifyjs $npm_package_umd_main -cm -o $npm_package_umd_main -p relative --in-source-map ${npm_package_umd_main}.map --source-map ${npm_package_umd_main}.map",
-    "size": "echo \"Gzipped Size: $(strip-json-comments --no-whitespace $npm_package_umd_main | gzip-size)\"",
-    "release": "npm run test && npm run build && npm version patch && npm publish && git push --tags",
+    "size": "bundlesize",
+    "release": "npm run test && npm run build && npm run rollup && npm version patch && npm publish && git push --tags",
     "lint": "standard --fix",
     "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },
@@ -37,19 +37,17 @@
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
-    "babel-loader": "^7.1.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "gzip-size-cli": "^2.0.0",
+    "bundlesize": "^0.5.7",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-emotion-react": "^0.0.2",
     "jest-glamor-react": "^1.4.0",
     "npm-run-all": "^4.0.2",
     "prettier-eslint-cli": "^4.0.3",
-    "pretty-bytes-cli": "^2.0.0",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
@@ -57,12 +55,10 @@
     "rimraf": "^2.6.1",
     "rollup": "^0.43.0",
     "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
     "standard": "^10.0.2",
-    "strip-json-comments-cli": "^1.0.1",
-    "uglify-js": "2.8.23",
     "vue": "^2.3.4"
   },
   "author": "Kye Hohenberger",
@@ -100,5 +96,9 @@
   },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
-  }
+  },
+  "bundlesize": [{
+    "path": "./dist/DO-NOT-USE.min.js",
+    "threshold": "3 Kb"
+  }]
 }
