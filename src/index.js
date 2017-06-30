@@ -44,7 +44,7 @@ export function css (cls: string, vars: vars, content: () => string[]) {
         .map(r => r.replace(new RegExp(cls, 'gm'), `${cls}-${hash}`))
         .forEach(r => sheet.insert(r))
     }
-    return `${cls}-${hash}`
+    return `${cls}-${hash} ${cls}`
   }
   return cls + (vars && vars.length > 0 ? ' ' + values(cls, vars) : '')
 }

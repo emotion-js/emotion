@@ -3,7 +3,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { matcher, serializer } from '../jest-utils'
 import { keyframes, sheet } from '../src/index'
-import styled from '../src/styled'
+import styled from '../src/react'
 
 expect.addSnapshotSerializer(serializer)
 expect.extend(matcher)

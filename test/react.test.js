@@ -6,7 +6,7 @@ import { matcher, serializer } from '../jest-utils'
 
 // eslint-disable-next-line no-unused-vars
 import css, { fragment } from '../src/index'
-import styled from '../src/styled'
+import styled from '../src/react'
 
 expect.addSnapshotSerializer(serializer)
 expect.extend(matcher)
@@ -83,6 +83,26 @@ describe('styled', () => {
 
     const tree = renderer
       .create(<H2 className={'legacy__class'}>hello world</H2>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
+  test('component as selector', () => {
+    const fontSize = 20
+    const H1 = styled.h1`
+      font-size: ${fontSize}px;
+    `
+
+    const Thing = styled.div`
+      display: flex;
+      ${H1} {
+        color: green;
+      }
+    `
+
+    const tree = renderer
+      .create(<Thing>hello <H1>This will be green</H1> world</Thing>)
       .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()

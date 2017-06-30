@@ -52,7 +52,7 @@ exports[`keyframes renders 1`] = `
 }
 
 <h1
-  className="css-H1-o0kcx2-fy8ana"
+  className="css-H1-o0kcx2-fy8ana css-H1-o0kcx2"
 >
   hello world
 </h1>

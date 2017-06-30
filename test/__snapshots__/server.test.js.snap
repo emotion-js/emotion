@@ -12,7 +12,7 @@ Object {
   height: 50pxpx;
   width: 50pxpx;
   background-color: red }",
-  "html": "<main class=\\"css-Main-17vxl0k-1g2c78b\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"52123375\\"><img size=\\"30\\" class=\\"css-Image-z4ry8g-1qx25bk\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-z4ry8g-141jzk4\\" data-reactid=\\"3\\"/><img class=\\"css-Image-z4ry8g-jpu7qc\\" data-reactid=\\"4\\"/></main>",
+  "html": "<main class=\\"css-Main-17vxl0k-1g2c78b css-Main-17vxl0k\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"-987402706\\"><img size=\\"30\\" class=\\"css-Image-z4ry8g-1qx25bk css-Image-z4ry8g\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-z4ry8g-141jzk4 css-Image-z4ry8g\\" data-reactid=\\"3\\"/><img class=\\"css-Image-z4ry8g-jpu7qc css-Image-z4ry8g\\" data-reactid=\\"4\\"/></main>",
   "ids": Array [
     "1kfvr9c",
     "1g2c78b",
@@ -66,7 +66,7 @@ Object {
   height: 50pxpx;
   width: 50pxpx;
   background-color: red }",
-  "html": "<main class=\\"css-Main-17vxl0k-1g2c78b\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"52123375\\"><img size=\\"30\\" class=\\"css-Image-z4ry8g-1qx25bk\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-z4ry8g-141jzk4\\" data-reactid=\\"3\\"/><img class=\\"css-Image-z4ry8g-jpu7qc\\" data-reactid=\\"4\\"/></main>",
+  "html": "<main class=\\"css-Main-17vxl0k-1g2c78b css-Main-17vxl0k\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"-987402706\\"><img size=\\"30\\" class=\\"css-Image-z4ry8g-1qx25bk css-Image-z4ry8g\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-z4ry8g-141jzk4 css-Image-z4ry8g\\" data-reactid=\\"3\\"/><img class=\\"css-Image-z4ry8g-jpu7qc css-Image-z4ry8g\\" data-reactid=\\"4\\"/></main>",
   "ids": Array [],
   "rules": Array [
     Object {

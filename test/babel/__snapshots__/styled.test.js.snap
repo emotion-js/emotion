@@ -133,4 +133,12 @@ exports[`babel styled component inline no dynamic 1`] = `
 });"
 `;
 
+exports[`babel styled component inline no dynamic 2`] = `
+"
+const SomeComponent = \\"div\\";
+styled(\\"h1\\", \\"css-byjn67\\", [SomeComponent], function createEmotionStyledRules(x0) {
+  return [\`.css-byjn67 { color: blue; }\`, \`.css-byjn67 \${x0} { color: green; }\`];
+});"
+`;
+
 exports[`babel styled component inline no use 1`] = `"\\"h1\\";"`;

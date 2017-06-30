@@ -11,7 +11,7 @@ export default function (tag, cls, vars = [], content) {
   function Styled (props) {
     const className = css(
       cls,
-      vars.map(v => (v && typeof v === 'function' ? v(props) : v)),
+      vars.map(v => (v && typeof v === 'function' ? v.cls || v(props) : v)),
       content
     )
 
@@ -30,6 +30,6 @@ export default function (tag, cls, vars = [], content) {
   const debugName = name === 'css' ? '' : `.${name}`
   const componentTag = tag.displayName || tag.name || 'Component'
   Styled.displayName = `styled(${componentTag}${debugName})`
-
+  Styled.className = '.' + cls
   return Styled
 }
