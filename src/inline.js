@@ -46,15 +46,14 @@ function replaceApplyWithPlaceholders (rules: string[]): string[] {
 function createSrc (
   strs: string[],
   name: string,
-  hash: string,
-  expressionLength: number
+  hash: string
 ): { src: string, hasApply: boolean, hasVar: boolean } {
   let hasApply = false
   let hasVar = false
   const src = strs
     .reduce((arr, str, i) => {
       arr.push(str)
-      if (i !== expressionLength) {
+      if (i !== strs.length - 1) {
         // todo - test for preceding @apply
         let applyMatch = /@apply\s*$/gm.exec(str)
         if (applyMatch) {
@@ -91,12 +90,7 @@ export function inline (
     identifierName,
     prefix
   )
-  let { src, hasApply, hasVar } = createSrc(
-    strs,
-    name,
-    hash,
-    quasi.expressions.length
-  )
+  let { src, hasApply, hasVar } = createSrc(strs, name, hash)
 
   let rules = parseCSS(`.${name}-${hash} { ${src} }`)
   if (inlineMode || hasApply) {
@@ -126,12 +120,7 @@ export function keyframes (
     identifierName,
     prefix
   )
-  const { src, hasApply, hasVar } = createSrc(
-    strs,
-    name,
-    hash,
-    quasi.expressions.length
-  )
+  const { src, hasApply, hasVar } = createSrc(strs, name, hash)
   let rules = parseCSS(`{ ${src} }`, { nested: false })
   if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
@@ -146,12 +135,7 @@ export function fontFace (
   quasi: any
 ): { rules: string[], hasApply: boolean, hasVar: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  const { src, hasApply, hasVar } = createSrc(
-    strs,
-    'name',
-    'hash',
-    quasi.expressions.length
-  )
+  const { src, hasApply, hasVar } = createSrc(strs, 'name', 'hash')
   let rules = parseCSS(`@font-face {${src}}`)
   if (hasVar) {
     rules = replaceVarsWithPlaceholders(rules)
@@ -163,12 +147,7 @@ export function injectGlobal (
   quasi: any
 ): { rules: string[], hasApply: boolean, hasVar: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  const { src, hasVar, hasApply } = createSrc(
-    strs,
-    'name',
-    'hash',
-    quasi.expressions.length
-  )
+  const { src, hasVar, hasApply } = createSrc(strs, 'name', 'hash')
   let rules = parseCSS(src)
   if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
