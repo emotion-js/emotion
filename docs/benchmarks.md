@@ -17,4 +17,4 @@ styled-jss|119.61|90.87|✅|☑️|https://github.com/cssinjs/styled-jss
 styled-components-v2-plugin-inline-styles|91.6|91.01|✅|✅|https://github.com/styled-components/styled-components/tree/v2
 glamorous|144.71|216.96|✅|☑️|https://github.com/paypal/glamorous
 react-jss|140.9|242.18|✅|☑️|https://github.com/cssinjs/react-jss
-styled-components-v2-plugin-decouple-cell|935.17|"2297.57"|✅||☑️https://github.com/styled-components/styled-components
+styled-components-v2-plugin-decouple-cell|935.17|2297.57|✅||☑️https://github.com/styled-components/styled-components
