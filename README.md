@@ -71,7 +71,23 @@ const H1 = styled('h1', 'css-H1-duiy4a')
 
 ## Inline Mode
 
-Inline mode does **not** extract css into external files.
+Inline mode will only extract styles with no dynamic values.
+
+Extracted:
+```jsx
+const H1 = styled('h1')`
+  color: #ffd43b;
+`
+```
+
+**Not** extracted
+```jsx
+const H1 = styled('h1')`
+  color: ${props => props.color};
+`
+```
+
+Configure babel
 
 **.babelrc**
 ```json
@@ -88,7 +104,7 @@ This js file, `h1.js`
 import styled from 'emotion/react'
 
 const H1 = styled('h1')`
-  color: #ffd43b;
+  color: ${props => props.color};
 `
 ```
 
@@ -98,8 +114,8 @@ const H1 = styled('h1')`
 import './h1.emotion.css'
 import styled from 'emotion/react'
 
-const H1 = styled('h1', 'css-H1-duiy4a', [], function createEmotionStyles() {
-  return ['.css-H1-duiy4a {color:blue}']
+const H1 = styled('h1', 'css-H1-duiy4a', [props => props.color], function createEmotionStyles(x0) {
+  return [`.css-H1-duiy4a { color:${x0} }`]
 })
 ```
 
