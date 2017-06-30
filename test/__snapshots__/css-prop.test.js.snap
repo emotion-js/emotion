@@ -7,7 +7,7 @@ exports[`css prop react basic 1`] = `
 }
 
 <p
-  className="css-tree-7sri7n-1yz7ela"
+  className="css-tree-7sri7n-1yz7ela css-tree-7sri7n"
 >
   hello world
 </p>
@@ -64,25 +64,25 @@ exports[`css prop react kitchen sink 1`] = `
 }
 
 <div
-  className="css__legacy-stuff css-tree-1170hdn-1o62cat"
+  className="css__legacy-stuff css-tree-1170hdn-1o62cat css-tree-1170hdn"
 >
   <h1
-    className="css-tree-wjhr0q-imh2fa"
+    className="css-tree-wjhr0q-imh2fa css-tree-wjhr0q"
   >
     BOOM
   </h1>
   <p
-    className="test_class1 css-tree-14jcta0-1fj87hp"
+    className="test_class1 css-tree-14jcta0-1fj87hp css-tree-14jcta0"
   >
     Hello
   </p>
   <p
-    className="test_class1 test___class45 css-tree-1gdxe9e-1vltlgj"
+    className="test_class1 test___class45 css-tree-1gdxe9e-1vltlgj css-tree-1gdxe9e"
   >
     World
   </p>
   <p
-    className="css-tree-1g8ltio-i3faqz"
+    className="css-tree-1g8ltio-i3faqz css-tree-1g8ltio"
   >
     hello world
   </p>
@@ -97,7 +97,7 @@ exports[`css prop react string expression 1`] = `
 }
 
 <p
-  className="css-tree-7sqgip-8upfq4"
+  className="css-tree-7sqgip-8upfq4 css-tree-7sqgip"
 >
   hello world
 </p>

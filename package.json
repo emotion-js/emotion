@@ -8,7 +8,7 @@
     "src",
     "dist",
     "lib",
-    "styled.js",
+    "react.js",
     "server.js",
     "vue.js"
   ],

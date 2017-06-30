@@ -41,6 +41,21 @@ describe('babel css', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('interpolation in selector', () => {
+      const basic = `
+        const cls2 = css\`
+        margin: 12px 48px;
+        color: #ffffff;
+        .\${className} {
+          display: none;
+        }
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
   describe('extract', () => {
     test('css basic', () => {
@@ -72,6 +87,25 @@ describe('babel css', () => {
         @apply \${fragB};
         margin: 12px 48px;
         color: #ffffff;
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
+    })
+
+    test('interpolation in selector', () => {
+      const basic = `
+        const cls2 = css\`
+        margin: 12px 48px;
+        color: #ffffff;
+        .\${className} {
+          display: none;
+        }
         \`
       `
       const { code } = babel.transform(basic, {

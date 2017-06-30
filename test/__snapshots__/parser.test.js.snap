@@ -1,8 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`parser basic 1`] = `
-Array [
-  ".thing {
+Object {
+  "hasOtherMatch": false,
+  "hasVar": false,
+  "rules": Array [
+    ".thing {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -14,12 +17,16 @@ Array [
   justify-content: center;
   width: var(--css-hash-0);
 }",
-]
-`
+  ],
+}
+`;
 
 exports[`parser fancy 1`] = `
-Array [
-  ".some-selector {
+Object {
+  "hasOtherMatch": false,
+  "hasVar": false,
+  "rules": Array [
+    ".some-selector {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -31,35 +38,40 @@ Array [
   justify-content: center;
   width: var(--css-hash-0);
 }",
-  ".some-selector:hover {
+    ".some-selector:hover {
   background-color: green;
 }",
-  "@media (max-width: 500px) {
+    "@media (max-width: 500px) {
   .some-selector {
     height: var(--css-hash-1);
     position: fixed;
   }
 }",
-  "@media print {
+    "@media print {
   .some-selector {
     display: none;
   }
 }",
-  ".some-selector::before {
+    ".some-selector::before {
   color: blue;
   width: 20px;
   height: 20px;
   content: 'pseudo'
 }",
-]
-`
+  ],
+}
+`;
 
 exports[`parser static 1`] = `
-Array [
-  ".thing {
+Object {
+  "hasOtherMatch": false,
+  "hasVar": false,
+  "rules": Array [
+    ".thing {
   display: block;
   height: 50px;
   width: 30px
 }",
-]
-`
+  ],
+}
+`;

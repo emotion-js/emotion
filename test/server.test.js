@@ -4,7 +4,7 @@
 /* eslint-env jest */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import styled from '../src/styled'
+import styled from '../src/react'
 import { css, sheet } from '../src/index'
 import { renderStatic, renderStaticOptimized } from '../src/server'
 

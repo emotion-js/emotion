@@ -40,7 +40,7 @@ The default settings enable css extraction.
 This js file, `h1.js`
 
 ```jsx harmony
-import styled from 'emotion/styled'
+import styled from 'emotion/react'
 
 const H1 = styled('h1')`
   color: #ffd43b;
@@ -59,7 +59,7 @@ During babel compilation emotion will create `h1.emotion.css` and add `import '.
 
 ```jsx
 import './h1.emotion.css'
-import styled from 'emotion/styled'
+import styled from 'emotion/react'
 
 const H1 = styled('h1', 'css-H1-duiy4a')
 ```
@@ -82,7 +82,7 @@ Inline mode does **not** extract css into external files.
 This js file, `h1.js`
 
 ```jsx
-import styled from 'emotion/styled'
+import styled from 'emotion/react'
 
 const H1 = styled('h1')`
   color: #ffd43b;
@@ -93,7 +93,7 @@ const H1 = styled('h1')`
 
 ```jsx
 import './h1.emotion.css'
-import styled from 'emotion/styled'
+import styled from 'emotion/react'
 
 const H1 = styled('h1', 'css-H1-duiy4a', [], function createEmotionStyles() {
   return ['.css-H1-duiy4a {color:blue}']
@@ -107,7 +107,7 @@ const H1 = styled('h1', 'css-H1-duiy4a', [], function createEmotionStyles() {
 ### styled
 
 ```jsx
-import styled from 'emotion/styled'
+import styled from 'emotion/react'
 
 const H1 = styled('h1')`
   color: blue;
@@ -188,7 +188,7 @@ function SomeComponent (props) {
 
 ```jsx
 import { fragment, css } from 'emotion'
-import styled from 'emotion/styled'
+import styled from 'emotion/react'
 
 // You can define fragments which can be reused anywhere
 const flexCenter = fragment`
@@ -305,7 +305,7 @@ hydrate(ids)
 
 <script>
 import BoringComponent from './components/BoringComponent'
-// Import styled from emotion/vue instead of emotion/styled
+// Import styled from emotion/vue instead of emotion/react
 import styled from 'emotion/vue'
 
 // You can use styled.* just like with React

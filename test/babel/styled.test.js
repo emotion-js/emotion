@@ -25,6 +25,21 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('no dynamic', () => {
+      const basic = `
+      const SomeComponent = styled.div\`\`
+      styled.h1\`
+        color:blue;
+        \${SomeComponent} {
+          color: green;
+        }
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('basic', () => {
       const basic = "const H1 = styled.h1`font-size: ${fontSize + 'px'};`"
       const { code } = babel.transform(basic, {
