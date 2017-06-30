@@ -74,7 +74,7 @@ Inline mode does **not** extract css into external files.
 ```json
 {
   "plugins": [
-    ["emotion/babel", { inline: true }]
+    ["emotion/babel", { "inline": true }]
   ]
 }
 ```
@@ -154,6 +154,145 @@ function Greeting ({ name }) {
 
 ```
 
+### css prop
+
+```jsx
+// To use the css prop you have to import css just like importing React for jsx
+import { css } from 'emotion'
+
+
+function SomeComponent (props) {
+  // Create styles as if you're calling css and the class will be applied to the component
+  return (<div css={`
+    color: blue;
+    font-size: ${props.fontSize}px;
+
+    &:hover {
+      color: green;
+    }
+
+    & .some-class {
+      font-size: 20px;
+    }
+  `}>
+    This will be blue until hovered.
+    <div className="some-class">
+      This font size will be 20px
+    </div>
+  </div>)
+}
+
+```
+
+### fragment
+
+```jsx
+import { fragment, css } from 'emotion'
+import styled from 'emotion/styled'
+
+// You can define fragments which can be reused anywhere
+const flexCenter = fragment`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+// You can use them with @apply
+const flexCenterClass = css`
+  @apply ${flexCenter};
+  flex-direction: column;
+`
+
+// You can use them with all of emotion's apis like styled
+
+const FlexCenterComponent = styled.div`
+  @apply ${flexCenter}
+`
+
+```
+
+### keyframes
+
+```jsx
+import { keyframes } from 'emotion'
+import styled from 'emotion'
+
+// This returns a animation
+const bounce = keyframes`
+  from {
+    transform: scale(1.01);
+  }
+  to {
+    transform: scale(0.99);
+  }
+`
+
+// You can use them in styled components or anything else
+const AnimatedDiv = styled.div`
+  animation: ${bounce} 0.2s infinite ease-in-out alternate;
+`
+
+
+```
+
+### fontFace
+
+```jsx
+import { fontFace } from 'emotion'
+
+fontFace`
+  font-family: 'Patrick Hand SC';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Patrick Hand SC'), local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+`
+
+```
+
+
+### Server-Side Rendering
+
+Server-Side Rendering in emotion currently only works in inline mode. It's based on [glamor's api](https://github.com/threepointone/glamor/blob/master/docs/server.md). For an example of emotion and next.js checkout the [with-emotion example in the next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
+
+#### renderStatic
+This returns an object with the properties `html`, `ids` and `css`.
+
+```jsx
+import { renderToString } from 'react-dom/server'
+import { renderStatic } from 'emotion/server'
+import App from './App'
+
+
+const { html, ids, css } = renderStatic(() => renderToString(<App/>))
+
+```
+
+#### renderStatic
+This returns an object with the properties `html`, `ids` and `css` just like `renderStatic` but it remove unused rules that were created with emotion(it still includes rules that were inserted with `injectGlobal`).
+
+```jsx
+import { renderToString } from 'react-dom/server'
+import { renderStaticOptimized } from 'emotion/server'
+import App from './App'
+
+
+const { html, ids, css } = renderStaticOptimized(() => renderToString(<App/>))
+
+```
+
+#### hydrate
+`hydrate` should be called on the client with the `ids` that `renderStatic` and `renderStaticOptimized` return. If you don't call it then emotion will reinsert all the rules.
+
+```jsx
+import { hydrate } from 'emotion'
+
+hydrate(ids)
+
+```
+
+
+
 ### vue styled
 
 ```html
@@ -190,7 +329,7 @@ export default {
 </script>
 ```
 
-#### attr
+### attr
 
 The [attr](https://developer.mozilla.org/en-US/docs/Web/CSS/attr) CSS function is supported in
 a basic capacity. 

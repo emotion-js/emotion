@@ -4,7 +4,7 @@ import './dracula.css'
 import React from 'react'
 import { render } from 'react-dom'
 import styled from 'emotion/styled'
-import { fontFace, fragment, keyframes } from 'emotion'
+import { css, fontFace, fragment, keyframes } from 'emotion'
 import Markdown from './markdown'
 import Playground from './playground'
 import logoUrl from '../../emotion.png'
@@ -16,7 +16,7 @@ const mediaExample = require('raw-loader!./blocks/media.example')
 const pseudoExample = require('raw-loader!./blocks/pseudo.example')
 const keyframesExample = require('raw-loader!./blocks/keyframes.example')
 // const fontFaceExample = require('raw-loader!./blocks/font-face.example')
-// const docMarkdown = require('raw-loader!./guides/index.md')
+// const docMarkdown = require('raw-loader!./docs/index.md')
 // const readmeMarkdown = require('raw-loader!../../README.md')
 const avatarUrl = require('./avatar.jpg')
 
@@ -88,9 +88,23 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('raw-loader!./guides/install.md')} />
+          <Markdown markdown={require('raw-loader!../../docs/install.md')} />
 
-          <Markdown markdown={require('raw-loader!./guides/nested.md')} />
+          <Markdown markdown={require('raw-loader!../../docs/css-prop.md')} />
+          <Playground
+            maxHeight={180}
+            noRender={false}
+            codeText={require('raw-loader!./blocks/css-prop.example')}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              styled,
+              render
+            }}
+          />
+
+          <Markdown markdown={require('raw-loader!../../docs/nested.md')} />
           <Playground
             maxHeight={180}
             noRender={false}
@@ -103,7 +117,7 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('raw-loader!./guides/pseudo.md')} />
+          <Markdown markdown={require('raw-loader!../../docs/pseudo.md')} />
           <Playground
             maxHeight={220}
             noRender={false}
@@ -116,7 +130,7 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('raw-loader!./guides/media.md')} />
+          <Markdown markdown={require('raw-loader!../../docs/media.md')} />
           <Playground
             maxHeight={220}
             noRender={false}
@@ -129,7 +143,7 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('raw-loader!./guides/props.md')} />
+          <Markdown markdown={require('raw-loader!../../docs/props.md')} />
           <Playground
             noRender={false}
             codeText={propsExample}
@@ -141,7 +155,7 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('raw-loader!./guides/keyframes.md')} />
+          <Markdown markdown={require('raw-loader!../../docs/keyframes.md')} />
           <Playground
             maxHeight={600}
             noRender={false}
@@ -155,19 +169,33 @@ class App extends React.Component {
             }}
           />
 
-          {/*<Markdown markdown={require('raw-loader!./guides/font-face.md')}/>*/}
-          {/*<Playground*/}
-            {/*maxHeight={600}*/}
-            {/*noRender={false}*/}
-            {/*codeText={fontFaceExample}*/}
-            {/*scope={{*/}
-              {/*avatarUrl,*/}
-              {/*React,*/}
-              {/*fontFace,*/}
-              {/*styled,*/}
-              {/*render*/}
-            {/*}}*/}
-          {/*/>*/}
+          {/* <Markdown markdown={require('raw-loader!./docs/font-face.md')}/> */}
+          {/* <Playground */}
+          {/* maxHeight={600} */}
+          {/* noRender={false} */}
+          {/* codeText={fontFaceExample} */}
+          {/* scope={{ */}
+          {/* avatarUrl, */}
+          {/* React, */}
+          {/* fontFace, */}
+          {/* styled, */}
+          {/* render */}
+          {/* }} */}
+          {/* /> */}
+
+          <Markdown markdown={require('raw-loader!../../docs/fragment.md')}/>
+          <Playground
+            maxHeight={180}
+            noRender={false}
+            codeText={require('raw-loader!./blocks/fragment.example')}
+            scope={{
+              avatarUrl,
+              React,
+              fragment,
+              styled,
+              render
+            }}
+          />
         </div>
 
       </PlaygroundWrapper>

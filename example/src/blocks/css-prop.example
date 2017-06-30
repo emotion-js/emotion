@@ -1,0 +1,27 @@
+render(
+  <div
+    css={`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 128px;
+      height: 128px;
+      background-color: #8c81d8;
+      border-radius: 4px;
+
+      img {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        transition: all 400ms ease-in-out;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    `}
+  >
+    <img src={avatarUrl} />
+  </div>,
+  mountNode
+)
