@@ -71,7 +71,12 @@ const H1 = styled('h1', 'css-H1-duiy4a')
 
 ## Inline Mode
 
-Inline mode will only extract styles with no dynamic values.
+Inline mode 
+
+- Only extracts styles **without** dynamic values. 
+- No css var requirement
+- Same speed as default mode in benchmarks
+- Works with SSR
 
 Extracted:
 ```jsx
