@@ -10,7 +10,8 @@
     "lib",
     "react.js",
     "server.js",
-    "vue.js"
+    "vue.js",
+    "dist/DO-NOT-USE.min.js"
   ],
   "scripts": {
     "build": "babel src -d lib",
