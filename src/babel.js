@@ -122,7 +122,7 @@ export default function (babel) {
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, rules, name, hasVar, hasApply } = inline(
+          let { hash, rules, name, hasOtherMatch, hasApply } = inline(
             built,
             identifierName,
             'css',
@@ -138,7 +138,7 @@ export default function (babel) {
             t.stringLiteral(`${name}-${hash}`),
             t.arrayExpression(built.expressions)
           ]
-          if (!hasApply && !state.inline) {
+          if (!hasApply && !hasOtherMatch && !state.inline) {
             state.insertStaticRules(rules)
           } else {
             const expressions = built.expressions.map((x, i) =>
@@ -214,7 +214,7 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'css'
         ) {
-          const { hash, name, rules, hasApply, hasVar } = inline(
+          const { hash, name, rules, hasApply, hasVar, hasOtherMatch } = inline(
             path.node.quasi,
             identifierName,
             'css',
@@ -225,7 +225,7 @@ export default function (babel) {
             classNameStringLiteral,
             t.arrayExpression(path.node.quasi.expressions)
           ]
-          if (!hasApply && !state.inline) {
+          if (!hasApply && !hasOtherMatch && !state.inline) {
             state.insertStaticRules(rules)
             if (!hasVar) {
               return path.replaceWith(classNameStringLiteral)
@@ -250,13 +250,13 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'keyframes'
         ) {
-          const { hash, name, rules, hasApply, hasVar } = keyframes(
+          const { hash, name, rules, hasInterpolation } = keyframes(
             path.node.quasi,
             identifierName,
             'animation'
           )
           const animationName = `${name}-${hash}`
-          if (!hasApply && !hasVar && !state.inline) {
+          if (!hasInterpolation && !state.inline) {
             state.insertStaticRules([
               `@keyframes ${animationName} ${rules.join('')}`
             ])
@@ -275,11 +275,11 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fontFace'
         ) {
-          const { rules, hasApply, hasVar } = fontFace(
+          const { rules, hasInterpolation } = fontFace(
             path.node.quasi,
             state.inline
           )
-          if (!hasApply && !hasVar && !state.inline) {
+          if (!hasInterpolation && !state.inline) {
             state.insertStaticRules(rules)
             if (t.isExpressionStatement(path.parent)) {
               path.parentPath.remove()
@@ -300,8 +300,8 @@ export default function (babel) {
           path.node.tag.name === 'injectGlobal' &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          const { rules, hasApply, hasVar } = injectGlobal(path.node.quasi)
-          if (!hasApply && !hasVar && !state.inline) {
+          const { rules, hasInterpolation } = injectGlobal(path.node.quasi)
+          if (!hasInterpolation && !state.inline) {
             state.insertStaticRules(rules)
             if (t.isExpressionStatement(path.parent)) {
               path.parentPath.remove()

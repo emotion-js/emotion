@@ -72,7 +72,8 @@ export function inline (
   name: string,
   rules: string[],
   hasApply: boolean,
-  hasVar: boolean
+  hasVar: boolean,
+  hasOtherMatch: boolean
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
@@ -93,7 +94,7 @@ export function inline (
   if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
   }
-  return { hash, name, rules, hasApply: hasApply || hasOtherMatch, hasVar }
+  return { hash, name, rules, hasApply, hasVar, hasOtherMatch }
 }
 
 export function keyframes (
@@ -104,8 +105,7 @@ export function keyframes (
   hash: string,
   name: string,
   rules: string[],
-  hasApply: boolean,
-  hasVar: boolean
+  hasInterpolation: boolean
 } {
   const strs = quasi.quasis.map(x => x.value.cooked)
   const hash = hashArray([...strs])
@@ -115,34 +115,39 @@ export function keyframes (
     prefix
   )
   const { src, hasApply, otherMatches } = createSrc(strs, name, hash)
-  let { rules, hasVar } = parseCSS(`{ ${src} }`, {
+  let { rules, hasVar, hasOtherMatch } = parseCSS(`{ ${src} }`, {
     nested: false,
     inlineMode: true,
-    otherMatches
+    otherMatches,
+    name,
+    hash
   })
   if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
   }
-  return { hash, name, rules, hasApply, hasVar }
+  return { hash, name, rules, hasInterpolation: hasVar || hasApply || hasOtherMatch }
 }
 
 export function fontFace (
   quasi: any
-): { rules: string[], hasApply: boolean, hasVar: boolean } {
+): { rules: string[], hasInterpolation: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   const { src, hasApply, otherMatches } = createSrc(strs, 'name', 'hash')
-  let { rules, hasVar } = parseCSS(`@font-face {${src}}`, { otherMatches, inlineMode: true })
-  return { rules, hasApply, hasVar }
+  let { rules, hasVar, hasOtherMatch } = parseCSS(`@font-face {${src}}`, { otherMatches, inlineMode: true, name: 'name', hash: 'hash' })
+  if (hasApply) {
+    rules = replaceApplyWithPlaceholders(rules)
+  }
+  return { rules, hasInterpolation: hasVar || hasApply || hasOtherMatch }
 }
 
 export function injectGlobal (
   quasi: any
-): { rules: string[], hasApply: boolean, hasVar: boolean } {
+): { rules: string[], hasInterpolation: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   const { src, otherMatches, hasApply } = createSrc(strs, 'name', 'hash')
-  let { rules, hasVar } = parseCSS(src, { otherMatches, inlineMode: true })
+  let { rules, hasVar, hasOtherMatch } = parseCSS(src, { otherMatches, inlineMode: true, name: 'name', hash: 'hash' })
   if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
   }
-  return { rules, hasApply, hasVar }
+  return { rules, hasInterpolation: hasVar || hasApply || hasOtherMatch }
 }

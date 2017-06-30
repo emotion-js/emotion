@@ -7,7 +7,7 @@ import autoprefix from 'styled-components/lib/utils/autoprefix'
 export function parseCSS (
   css: string,
   options: {
-    nested: boolean,
+    nested?: boolean,
     inlineMode: boolean,
     otherMatches: number,
     name: string,
@@ -19,7 +19,7 @@ export function parseCSS (
     name: 'name',
     hash: 'hash'
   }
-): { rules: string[], hasOtherMatches: boolean, hasVar: boolean } {
+): { rules: string[], hasOtherMatch: boolean, hasVar: boolean } {
   // todo - handle errors
   const root = parse(css)
   if (options.nested !== false) postcssNested(root)
