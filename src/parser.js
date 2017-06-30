@@ -6,20 +6,45 @@ import autoprefix from 'styled-components/lib/utils/autoprefix'
 
 export function parseCSS (
   css: string,
-  options: { nested: boolean } = {
-    nested: true
+  options: {
+    nested: boolean,
+    inlineMode: boolean,
+    otherMatches: number,
+    name: string,
+    hash: string
+  } = {
+    nested: true,
+    inlineMode: true,
+    otherMatches: 0,
+    name: 'name',
+    hash: 'hash'
   }
-): string[] {
+): { rules: string[], hasOtherMatches: boolean, hasVar: boolean } {
   // todo - handle errors
   const root = parse(css)
   if (options.nested !== false) postcssNested(root)
-  autoprefix(root)
+
+  let vars = 0
 
   root.walkDecls(decl => {
     if (decl.prop === 'name') decl.remove()
+    if (!options.inlineMode) {
+      const re = /xxx(\S)xxx/gm
+      const match = re.exec(decl.value)
+      if (match) {
+        vars++
+        decl.value = decl.value.replace(match[0], `var(--${options.name}-${options.hash}-${match[1]})`)
+      }
+    }
   })
 
-  return stringifyCSSRoot(root)
+  autoprefix(root)
+
+  return {
+    rules: stringifyCSSRoot(root),
+    hasOtherMatch: vars !== options.otherMatches,
+    hasVar: !!vars || !!(options.inlineMode && options.otherMatches)
+  }
 }
 
 function stringifyCSSRoot (root) {

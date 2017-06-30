@@ -25,15 +25,6 @@ function getName (
   return parts.join('-')
 }
 
-function replaceVarsWithPlaceholders (rules: string[]): string[] {
-  return rules.map(rule =>
-    rule.replace(
-      /var\(--[A-Za-z0-9-_]+-([0-9]+)\)/gm,
-      (match, p1) => `xxx${p1}xxx`
-    )
-  )
-}
-
 function replaceApplyWithPlaceholders (rules: string[]): string[] {
   return rules.map(rule =>
     rule.replace(
@@ -47,9 +38,9 @@ function createSrc (
   strs: string[],
   name: string,
   hash: string
-): { src: string, hasApply: boolean, hasVar: boolean } {
+): { src: string, hasApply: boolean, otherMatches: number } {
   let hasApply = false
-  let hasVar = false
+  let otherMatches = 0
   const src = strs
     .reduce((arr, str, i) => {
       arr.push(str)
@@ -60,15 +51,15 @@ function createSrc (
           hasApply = true
           arr.push(`--${name}-${hash}-${i}`)
         } else {
-          hasVar = true
-          arr.push(`var(--${name}-${hash}-${i})`)
+          otherMatches++
+          arr.push(`xxx${i}xxx`)
         }
       }
       return arr
     }, [])
     .join('')
     .trim()
-  return { src, hasApply, hasVar }
+  return { src, hasApply, otherMatches }
 }
 
 export function inline (
@@ -90,16 +81,19 @@ export function inline (
     identifierName,
     prefix
   )
-  let { src, hasApply, hasVar } = createSrc(strs, name, hash)
+  let { src, hasApply, otherMatches } = createSrc(strs, name, hash)
 
-  let rules = parseCSS(`.${name}-${hash} { ${src} }`)
-  if (inlineMode || hasApply) {
-    rules = replaceVarsWithPlaceholders(rules)
-  }
+  let { rules, hasVar, hasOtherMatch } = parseCSS(`.${name}-${hash} { ${src} }`, {
+    inlineMode: inlineMode || hasApply,
+    otherMatches,
+    name,
+    hash
+  })
+
   if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
   }
-  return { hash, name, rules, hasApply, hasVar }
+  return { hash, name, rules, hasApply: hasApply || hasOtherMatch, hasVar }
 }
 
 export function keyframes (
@@ -120,13 +114,14 @@ export function keyframes (
     identifierName,
     prefix
   )
-  const { src, hasApply, hasVar } = createSrc(strs, name, hash)
-  let rules = parseCSS(`{ ${src} }`, { nested: false })
+  const { src, hasApply, otherMatches } = createSrc(strs, name, hash)
+  let { rules, hasVar } = parseCSS(`{ ${src} }`, {
+    nested: false,
+    inlineMode: true,
+    otherMatches
+  })
   if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
-  }
-  if (hasVar) {
-    rules = replaceVarsWithPlaceholders(rules)
   }
   return { hash, name, rules, hasApply, hasVar }
 }
@@ -135,11 +130,8 @@ export function fontFace (
   quasi: any
 ): { rules: string[], hasApply: boolean, hasVar: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  const { src, hasApply, hasVar } = createSrc(strs, 'name', 'hash')
-  let rules = parseCSS(`@font-face {${src}}`)
-  if (hasVar) {
-    rules = replaceVarsWithPlaceholders(rules)
-  }
+  const { src, hasApply, otherMatches } = createSrc(strs, 'name', 'hash')
+  let { rules, hasVar } = parseCSS(`@font-face {${src}}`, { otherMatches, inlineMode: true })
   return { rules, hasApply, hasVar }
 }
 
@@ -147,13 +139,10 @@ export function injectGlobal (
   quasi: any
 ): { rules: string[], hasApply: boolean, hasVar: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  const { src, hasVar, hasApply } = createSrc(strs, 'name', 'hash')
-  let rules = parseCSS(src)
+  const { src, otherMatches, hasApply } = createSrc(strs, 'name', 'hash')
+  let { rules, hasVar } = parseCSS(src, { otherMatches, inlineMode: true })
   if (hasApply) {
     rules = replaceApplyWithPlaceholders(rules)
-  }
-  if (hasVar) {
-    rules = replaceVarsWithPlaceholders(rules)
   }
   return { rules, hasApply, hasVar }
 }
