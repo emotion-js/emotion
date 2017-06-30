@@ -9,20 +9,5 @@
     "stage-0",
     "react",
     "flow"
-  ],
-  "env": {
-    "test": {
-      "presets": [
-        [
-          "env",
-          {
-            "loose": true
-          }
-        ],
-        "stage-2",
-        "react",
-        "flow"
-      ]
-    }
-  }
+  ]
 }

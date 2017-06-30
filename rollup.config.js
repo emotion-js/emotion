@@ -1,19 +1,26 @@
-import fs from 'fs'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
-
-const pkg = JSON.parse(fs.readFileSync('./package.json'))
+import uglify from 'rollup-plugin-uglify'
+import pkg from './package.json'
 
 export default {
-  entry: 'src/styled.js',
+  entry: 'src/react.js',
   external: ['react'],
   exports: 'named',
   globals: { react: 'React' },
   useStrict: false,
   sourceMap: true,
   plugins: [
-    babel(),
+    babel({
+      presets: [
+        ['env', { loose: true, modules: false }],
+        'stage-0',
+        'react',
+        'flow'
+      ],
+      babelrc: false
+    }),
     resolve({
       jsnext: false,
       main: true,
@@ -22,9 +29,10 @@ export default {
     commonjs({
       ignoreGlobal: true,
       include: 'node_modules/**'
-    })
+    }),
+    uglify()
   ],
   targets: [
-    {dest: pkg['umd:main'], format: 'umd', moduleName: pkg.name}
+    { dest: './dist/DO-NOT-USE.min.js', format: 'umd', moduleName: pkg.name }
   ]
 }
