@@ -3,6 +3,7 @@
   "version": "4.1.4",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
+  "typings": "styled.d.ts",
   "files": [
     "babel.js",
     "src",
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "babel-plugin-syntax-jsx": "^6.18.0",
+    "@types/react": "^15.0.33",
     "styled-components": "2.0.0",
     "touch": "^1.0.0"
   },
