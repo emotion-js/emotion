@@ -16,9 +16,9 @@
 ![size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?label=size)
 
 
--   [Install](#install)
--   [Example Project](https://github.com/tkh44/emotion/tree/master/example)
-
+- [Install](#install)
+- [Example Project](https://github.com/tkh44/emotion/tree/master/example)
+- [Benchmarks](https://github.com/tkh44/emotion/tree/master/docs/benchmarks.md)
 
 ## Install
 
