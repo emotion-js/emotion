@@ -2,6 +2,7 @@
 
 exports[`parser basic 1`] = `
 Object {
+  "composes": 0,
   "hasOtherMatch": false,
   "hasVar": false,
   "rules": Array [
@@ -23,6 +24,7 @@ Object {
 
 exports[`parser fancy 1`] = `
 Object {
+  "composes": 0,
   "hasOtherMatch": false,
   "hasVar": false,
   "rules": Array [
@@ -64,6 +66,7 @@ Object {
 
 exports[`parser static 1`] = `
 Object {
+  "composes": 0,
   "hasOtherMatch": false,
   "hasVar": false,
   "rules": Array [

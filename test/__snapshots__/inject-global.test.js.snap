@@ -6,8 +6,8 @@ exports[`injectGlobal 1`] = `
     }html.active {
       background: red;
     }body {
-      color: yellow
+      color: yellow;
       margin: 0;
-    padding: 0;
+      padding: 0;
     }"
 `;

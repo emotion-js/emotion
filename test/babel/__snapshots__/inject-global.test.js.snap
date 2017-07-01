@@ -59,19 +59,6 @@ injectGlobal([\`body {
           }\`]);"
 `;
 
-exports[`babel injectGlobal inline injectGlobal with fragment 1`] = `
-"
-injectGlobal([\`body {
-            margin: 0;
-            padding: 0;
-            display: \${display};
-          }\`, \`body > div {
-            display: none;
-}\`, \`html {
-            \${htmlStyled}
-          }\`]);"
-`;
-
 exports[`babel injectGlobal inline injectGlobal with interpolation 1`] = `
 "
 injectGlobal([\`body {

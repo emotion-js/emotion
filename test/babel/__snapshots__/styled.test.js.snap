@@ -2,41 +2,51 @@
 
 exports[`babel styled component extract based on props 1`] = `
 "import './styled.test.emotion.css';
-const H1 = styled('h1', 'css-H1-q3ohdq', [fontSize + 'px', props => props.translateX]);"
+const H1 = styled('h1', ['css-H1-1kwokni'], [fontSize + 'px', props => props.translateX]);"
 `;
 
-exports[`babel styled component extract based on props 2`] = `".css-H1-q3ohdq { font-size: var(--css-H1-q3ohdq-0); height: 20px; -webkit-transform: translateX(var(--css-H1-q3ohdq-1)); -ms-transform: translateX(var(--css-H1-q3ohdq-1)); transform: translateX(var(--css-H1-q3ohdq-1)) }"`;
+exports[`babel styled component extract based on props 2`] = `
+".css-H1-1kwokni { font-size: var(--css-H1-1kwokni-0);
+        height: 20px;
+        -webkit-transform: translateX(var(--css-H1-1kwokni-1));
+        -ms-transform: translateX(var(--css-H1-1kwokni-1));
+        transform: translateX(var(--css-H1-1kwokni-1)); }"
+`;
 
 exports[`babel styled component extract basic 1`] = `
 "import './styled.test.emotion.css';
-const H1 = styled('h1', 'css-H1-1mh2el5', [fontSize + 'px']);"
+const H1 = styled('h1', ['css-H1-1mh2el5'], [fontSize + 'px']);"
 `;
 
 exports[`babel styled component extract basic 2`] = `".css-H1-1mh2el5 { font-size: var(--css-H1-1mh2el5-0); height: 20px }"`;
 
+exports[`babel styled component extract composes 1`] = `
+"import './styled.test.emotion.css';
+const cls1 = \`\${'css-cls1-1ltut9y'}\`;
+const H1 = styled('h1', ['css-H1-13ogl0z', cls1], [fontSize + 'px', props => props.translateX]);"
+`;
+
+exports[`babel styled component extract composes 2`] = `
+".css-cls1-1ltut9y { width: 20px; }
+.css-H1-13ogl0z {
+        font-size: var(--css-H1-13ogl0z-1);
+        height: 20px;
+        -webkit-transform: translateX(var(--css-H1-13ogl0z-2));
+        -ms-transform: translateX(var(--css-H1-13ogl0z-2));
+        transform: translateX(var(--css-H1-13ogl0z-2)); }"
+`;
+
 exports[`babel styled component extract no dynamic 1`] = `
 "import \\"./styled.test.emotion.css\\";
-styled(\\"h1\\", \\"css-14ksm7b\\", []);"
+styled(\\"h1\\", [\\"css-14ksm7b\\"], []);"
 `;
 
 exports[`babel styled component extract no dynamic 2`] = `".css-14ksm7b { color: blue; }"`;
 
 exports[`babel styled component extract no use 1`] = `"\\"h1\\";"`;
 
-exports[`babel styled component extract with fragment 1`] = `
-"const frag1 = \`width: 20px;\`;
-const H1 = styled('h1', 'css-H1-osx1au', [fontSize + 'px', props => props.translateX, frag1], function createEmotionStyledRules(x0, x1, x2) {
-  return [\`.css-H1-osx1au { font-size: \${x0};
-        height: 20px;
-        -webkit-transform: translateX(\${x1});
-        -ms-transform: translateX(\${x1});
-        transform: translateX(\${x1});
-        \${x2} }\`];
-});"
-`;
-
 exports[`babel styled component inline attr 1`] = `
-"styled('input', 'css-14vghnb', [function getMargin(props) {
+"styled('input', ['css-14vghnb'], [function getMargin(props) {
        return props.margin;
 }, props => props.height * props.scale, function getWidth(props) {
        return props.width;
@@ -51,7 +61,7 @@ exports[`babel styled component inline attr 1`] = `
 `;
 
 exports[`babel styled component inline attr kitchen sink 1`] = `
-"styled('input', 'css-1lqib20', [function getMargin(props) {
+"styled('input', ['css-1lqib20'], [function getMargin(props) {
         return props.margin ? props.margin : ('16' + 'px');
 }, function getPadding(props) {
         return props.padding ? props.padding : ('16' + 'em');
@@ -72,7 +82,7 @@ exports[`babel styled component inline attr kitchen sink 1`] = `
 `;
 
 exports[`babel styled component inline attr with default value 1`] = `
-"styled('input', 'css-1luxokk', [function getMargin(props) {
+"styled('input', ['css-1luxokk'], [function getMargin(props) {
         return props.margin ? props.margin : ('16' + '');
 }], function createEmotionStyledRules(x0) {
         return [\`.css-1luxokk { margin: \${x0}; }\`];
@@ -80,7 +90,7 @@ exports[`babel styled component inline attr with default value 1`] = `
 `;
 
 exports[`babel styled component inline attr with value type 1`] = `
-"styled('input', 'css-1luxokk', [function getMargin(props) {
+"styled('input', ['css-1luxokk'], [function getMargin(props) {
         return props.margin + 'px';
 }], function createEmotionStyledRules(x0) {
         return [\`.css-1luxokk { margin: \${x0}; }\`];
@@ -88,7 +98,7 @@ exports[`babel styled component inline attr with value type 1`] = `
 `;
 
 exports[`babel styled component inline attr with value type and default value 1`] = `
-"styled('input', 'css-1luxokk', [function getMargin(props) {
+"styled('input', ['css-1luxokk'], [function getMargin(props) {
         return props.margin ? props.margin : ('16' + 'px');
 }], function createEmotionStyledRules(x0) {
         return [\`.css-1luxokk { margin: \${x0}; }\`];
@@ -96,19 +106,19 @@ exports[`babel styled component inline attr with value type and default value 1`
 `;
 
 exports[`babel styled component inline basic 1`] = `
-"const H1 = styled('h1', 'css-H1-1t8i2zo', [fontSize + 'px'], function createEmotionStyledRules(x0) {
+"const H1 = styled('h1', ['css-H1-1t8i2zo'], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [\`.css-H1-1t8i2zo { font-size: \${x0}; }\`];
 });"
 `;
 
 exports[`babel styled component inline function call 1`] = `
-"styled(MyComponent, 'css-1t8i2zo', [fontSize + 'px'], function createEmotionStyledRules(x0) {
+"styled(MyComponent, ['css-1t8i2zo'], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [\`.css-1t8i2zo { font-size: \${x0}; }\`];
 });"
 `;
 
 exports[`babel styled component inline match works on multiple 1`] = `
-"styled('input', 'css-1j6h68f', [function getMargin(props) {
+"styled('input', ['css-1j6h68f'], [function getMargin(props) {
         return props.margin ? props.margin : ('16' + 'px');
 }, function getPadding(props) {
         return props.padding ? props.padding : ('16' + 'em');
@@ -121,24 +131,26 @@ exports[`babel styled component inline match works on multiple 1`] = `
 
 exports[`babel styled component inline name is correct with no identifier 1`] = `
 "
-css(\\"css-1cppx8p\\", [], function createEmotionRules() {
+css([\\"css-1cppx8p\\"], [], function createEmotionRules() {
         return [\`.css-1cppx8p { margin: 12px 48px;
         color: #ffffff; }\`];
 });"
 `;
 
 exports[`babel styled component inline no dynamic 1`] = `
-"styled(\\"h1\\", \\"css-14ksm7b\\", [], function createEmotionStyledRules() {
+"styled(\\"h1\\", [\\"css-14ksm7b\\"], [], function createEmotionStyledRules() {
   return [\`.css-14ksm7b { color: blue; }\`];
 });"
 `;
 
-exports[`babel styled component inline no dynamic 2`] = `
+exports[`babel styled component inline no use 1`] = `"\\"h1\\";"`;
+
+exports[`babel styled component inline styled component as selector 1`] = `
 "
-const SomeComponent = \\"div\\";
-styled(\\"h1\\", \\"css-byjn67\\", [SomeComponent], function createEmotionStyledRules(x0) {
+const SomeComponent = styled(\\"div\\", [\\"css-SomeComponent-1rk3iho\\"], [], function createEmotionStyledRules() {
+  return [\`.css-SomeComponent-1rk3iho {  }\`];
+});
+styled(\\"h1\\", [\\"css-byjn67\\"], [SomeComponent], function createEmotionStyledRules(x0) {
   return [\`.css-byjn67 { color: blue; }\`, \`.css-byjn67 \${x0} { color: green; }\`];
 });"
 `;
-
-exports[`babel styled component inline no use 1`] = `"\\"h1\\";"`;

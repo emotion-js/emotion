@@ -9,41 +9,65 @@ export function parseCSS (
   options: {
     nested?: boolean,
     inlineMode: boolean,
-    otherMatches: number,
+    matches: number,
     name: string,
-    hash: string
+    hash: string,
+    canCompose?: boolean
   } = {
     nested: true,
     inlineMode: true,
-    otherMatches: 0,
+    matches: 0,
     name: 'name',
-    hash: 'hash'
+    hash: 'hash',
+    canCompose: false
   }
-): { rules: string[], hasOtherMatch: boolean, hasVar: boolean } {
+): { rules: string[], hasOtherMatch: boolean, hasVar: boolean, composes: number } {
   // todo - handle errors
   const root = parse(css)
   if (options.nested !== false) postcssNested(root)
 
   let vars = 0
-
+  let composes = 0
   root.walkDecls(decl => {
     if (decl.prop === 'name') decl.remove()
+    if (options.canCompose) {
+      if (decl.prop === 'composes') {
+        if (decl.parent.selector !== `.${options.name}-${options.hash}`) {
+          throw new Error('composes cannot be on nested selectors')
+        }
+        if (!/xxx(\S)xxx/gm.exec(decl.value)) {
+          throw new Error('composes must be a interpolation')
+        }
+        if (decl.parent.nodes[0] !== decl) {
+          throw new Error('composes must be the first rule')
+        }
+        const numOfComposes = decl.value.match(/xxx(\S)xxx/gm).length
+        composes += numOfComposes
+        vars += numOfComposes
+        return decl.remove()
+      }
+    }
     if (!options.inlineMode) {
-      const re = /xxx(\S)xxx/gm
-      const match = re.exec(decl.value)
+      const match = /xxx(\S)xxx/gm.exec(decl.value)
       if (match) {
         vars++
-        decl.value = decl.value.replace(match[0], `var(--${options.name}-${options.hash}-${match[1]})`)
       }
     }
   })
+  if (!options.inlineMode && vars === options.matches) {
+    root.walkDecls((decl) => {
+      decl.value = decl.value.replace(/xxx(\S)xxx/gm, (match, p1) => {
+        return `var(--${options.name}-${options.hash}-${p1})`
+      })
+    })
+  }
 
   autoprefix(root)
-
   return {
     rules: stringifyCSSRoot(root),
-    hasOtherMatch: vars !== options.otherMatches,
-    hasVar: !!vars || !!(options.inlineMode && options.otherMatches)
+    hasOtherMatch: vars !== options.matches,
+    hasVar: (!!vars && vars !== composes) || !!(options.inlineMode && options.matches),
+    composes
   }
 }
 
