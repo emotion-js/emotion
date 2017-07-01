@@ -290,8 +290,8 @@ const { html, ids, css } = renderStatic(() => renderToString(<App/>))
 
 ```
 
-#### renderStatic
-This returns an object with the properties `html`, `ids` and `css` just like `renderStatic` but it remove unused rules that were created with emotion(it still includes rules that were inserted with `injectGlobal`).
+#### renderStaticOptimized
+This returns an object with the properties `html`, `ids` and `css` just like `renderStatic` but it removes unused rules that were created with emotion (it still includes rules that were inserted with `injectGlobal`).
 
 ```jsx
 import { renderToString } from 'react-dom/server'
