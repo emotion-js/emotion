@@ -1,11 +1,25 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import styled from 'emotion/styled'
+import styled from 'emotion/react'
 import colors from 'open-color'
+
+// what if css returned an object
+
+const A = css`
+  color: green;
+`
+
+// returns
+
+const ret = {
+  className: 'css-A-12345',
+  rules: [`.css-A-12345 { color:green }`],
+  toString () { return this.className }
+}
 
 const MarkdownContainer = styled('div')`
   display: flex;
-  margin: 16px auto 0 auto; 
+  margin: 16px auto 0 auto;
   max-width: 560px;
   font-family: 'Oxygen';
   

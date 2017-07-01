@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Editor from 'component-playground/lib/components/editor'
 import Preview from '../preview'
-import styled from 'emotion/styled'
+import styled from 'emotion/react'
 import colors from 'open-color'
 
 const PlaygroundContent = styled('div')`

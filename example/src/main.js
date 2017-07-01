@@ -3,7 +3,7 @@ import './global.css'
 import './dracula.css'
 import React from 'react'
 import { render } from 'react-dom'
-import styled from 'emotion/styled'
+import styled from 'emotion/react'
 import { css, fontFace, fragment, keyframes } from 'emotion'
 import Markdown from './markdown'
 import Playground from './playground'
@@ -82,6 +82,8 @@ class App extends React.Component {
             codeText={introExample}
             scope={{
               avatarUrl,
+              fragment,
+              css,
               React,
               styled,
               render
@@ -98,6 +100,7 @@ class App extends React.Component {
             scope={{
               avatarUrl,
               React,
+              fragment,
               css,
               styled,
               render
@@ -111,6 +114,8 @@ class App extends React.Component {
             codeText={nestedExample}
             scope={{
               avatarUrl,
+              fragment,
+              css,
               React,
               styled,
               render
@@ -125,6 +130,9 @@ class App extends React.Component {
             scope={{
               avatarUrl,
               React,
+              fragment,
+              css,
+              keyframes,
               styled,
               render
             }}
@@ -150,6 +158,9 @@ class App extends React.Component {
             scope={{
               avatarUrl,
               React,
+              fragment,
+              css,
+              keyframes,
               styled,
               render
             }}
@@ -163,6 +174,8 @@ class App extends React.Component {
             scope={{
               avatarUrl,
               React,
+              fragment,
+              css,
               keyframes,
               styled,
               render
@@ -183,7 +196,7 @@ class App extends React.Component {
           {/* }} */}
           {/* /> */}
 
-          <Markdown markdown={require('raw-loader!../../docs/fragment.md')}/>
+          <Markdown markdown={require('raw-loader!../../docs/fragment.md')} />
           <Playground
             maxHeight={180}
             noRender={false}
@@ -192,6 +205,8 @@ class App extends React.Component {
               avatarUrl,
               React,
               fragment,
+              css,
+              keyframes,
               styled,
               render
             }}

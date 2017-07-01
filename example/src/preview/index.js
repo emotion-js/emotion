@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { registerPlugin, transform } from 'babel-standalone'
-import styled from 'emotion/styled'
+import styled from 'emotion/react'
 
 const ric =
   window.requestIdleCallback ||
