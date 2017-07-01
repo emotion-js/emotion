@@ -32,7 +32,7 @@ export function flush () {
   sheet.inject()
 }
 
-export function css (cls: string, vars: vars, content: () => string[]) {
+export function css (classes: string[], vars: vars, content: () => string[]) {
   if (content) {
     // inline mode
     let src = content(...vars) // returns an array
@@ -41,15 +41,13 @@ export function css (cls: string, vars: vars, content: () => string[]) {
     if (!inserted[hash]) {
       inserted[hash] = true
       src
-        .map(r => r.replace(new RegExp(cls, 'gm'), `${cls}-${hash}`))
+        .map(r => r.replace(new RegExp(classes[0], 'gm'), `${classes[0]}-${hash}`))
         .forEach(r => sheet.insert(r))
     }
-    return `${cls}-${hash} ${cls}`
+    return `${classes[0]}-${hash} ${classes.join(' ')}`
   }
-  return cls + (vars && vars.length > 0 ? ' ' + values(cls, vars) : '')
+  return classes.join(' ') + (vars && vars.length > 0 ? ' ' + values(classes[0], vars) : '')
 }
-
-export function fragment () {}
 
 export function injectGlobal (src: string[]) {
   const hash = hashArray(src)

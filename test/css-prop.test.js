@@ -1,11 +1,8 @@
-/* eslint-disable jsx-quotes,no-useless-escape,no-template-curly-in-string */
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { matcher, serializer } from '../jest-utils'
-
-// eslint-disable-next-line no-unused-vars
-import { css, fragment } from '../src/index'
+import { css } from '../src/index'
 
 expect.addSnapshotSerializer(serializer)
 expect.extend(matcher)
@@ -35,18 +32,18 @@ describe('css prop react', () => {
     const huge = 100
     const tiny = 6
 
-    const bold = fragment`
+    const bold = css`
         display: flex;
         font-weight: bold;`
 
-    const big = fragment`
-        @apply ${bold};
+    const big = css`
+        composes: ${bold};
         font-size: ${huge}`
 
-    const small = fragment`
+    const small = css`
         font-size: ${tiny}`
 
-    const flexCenter = fragment`
+    const flexCenter = css`
         display: flex;
         justify-content: center;
         align-items: center`
@@ -56,13 +53,12 @@ describe('css prop react', () => {
         <div
           className="css__legacy-stuff"
           css={`
-              @apply ${bold}
-              @apply ${flexCenter};
+              composes: ${bold} ${flexCenter};
              `}
         >
           <h1
             css={`
-                @apply ${props.error ? big : small};
+                composes: ${props.error ? big : small};
                 color: red
               `}
           >

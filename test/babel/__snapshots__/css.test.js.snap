@@ -1,9 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`babel css extract composes 1`] = `
+"import './css.test.emotion.css';
+
+const cls1 = \`\${'css-cls1-1q8jsgx'}\`;
+const cls2 = css(['css-cls2-1fsihoz', ['one-class', 'another-class', cls1]], ['center']);"
+`;
+
+exports[`babel css extract composes 2`] = `
+".css-cls1-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }
+.css-cls2-1fsihoz {
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
+          -webkit-box-pack: center;
+          justify-content: center;
+          -webkit-align-items: var(--css-cls2-1fsihoz-1);
+          -ms-flex-align: var(--css-cls2-1fsihoz-1);
+          -webkit-box-align: var(--css-cls2-1fsihoz-1);
+          align-items: var(--css-cls2-1fsihoz-1) }"
+`;
+
+exports[`babel css extract composes no dynamic 1`] = `
+"import './css.test.emotion.css';
+
+const cls1 = \`\${'css-cls1-1q8jsgx'}\`;
+const cls2 = \`\${'css-cls2-m25v9m'} \${'one-class'} \${'another-class'} \${cls1}\`;"
+`;
+
+exports[`babel css extract composes no dynamic 2`] = `
+".css-cls1-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }
+.css-cls2-m25v9m {
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
+          -webkit-box-pack: center;
+          justify-content: center;
+          -webkit-align-items: center;
+          -ms-flex-align: center;
+          -webkit-box-align: center;
+          align-items: center }"
+`;
+
 exports[`babel css extract css basic 1`] = `
 "import \\"./css.test.emotion.css\\";
 
-css(\\"css-cu78iu\\", [widthVar]);"
+css([\\"css-cu78iu\\"], [widthVar]);"
 `;
 
 exports[`babel css extract css basic 2`] = `
@@ -21,29 +61,35 @@ exports[`babel css extract css basic 2`] = `
         width: var(--css-cu78iu-0); }"
 `;
 
-exports[`babel css extract css kitchen sink 1`] = `
-"
-const frag = \`padding: 8px;\`;
-const fragB = \`height: \${heightVar};\${frag};\`;
-const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRules(x0, x1) {
-        return [\`.css-cls2-1b4c3x0 { \${x0};
-        \${x1};
-        margin: 12px 48px;
-        color: #ffffff; }\`];
-});"
-`;
-
 exports[`babel css extract interpolation in selector 1`] = `
 "
-const cls2 = css(\\"css-cls2-16o34vq\\", [className], function createEmotionRules(x0) {
+const cls2 = css([\\"css-cls2-16o34vq\\"], [className], function createEmotionRules(x0) {
   return [\`.css-cls2-16o34vq { margin: 12px 48px;
         color: #ffffff; }\`, \`.css-cls2-16o34vq .\${x0} { display: none; }\`];
 });"
 `;
 
+exports[`babel css inline composes 1`] = `
+"
+const cls1 = css(['css-cls1-1q8jsgx'], [], function createEmotionRules() {
+  return [\`.css-cls1-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }\`];
+});
+const cls2 = css(['css-cls2-v9djpl', 'one-class', 'another-class', cls1], ['center'], function createEmotionRules(x0) {
+  return [\`.css-cls2-v9djpl {
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
+          -webkit-box-pack: center;
+          justify-content: center;
+          -webkit-align-items: \${x0};
+          -ms-flex-align: \${x0};
+          -webkit-box-align: \${x0};
+          align-items: \${x0} }\`];
+});"
+`;
+
 exports[`babel css inline css basic 1`] = `
 "
-css(\\"css-cu78iu\\", [widthVar], function createEmotionRules(x0) {
+css([\\"css-cu78iu\\"], [widthVar], function createEmotionRules(x0) {
         return [\`.css-cu78iu { margin: 12px 48px;
         color: #ffffff;
         display: -webkit-box;
@@ -59,25 +105,16 @@ css(\\"css-cu78iu\\", [widthVar], function createEmotionRules(x0) {
 });"
 `;
 
-exports[`babel css inline css kitchen sink 1`] = `
-"
-const cls = css(\\"css-cls-h5t3cu\\", [margin], function createEmotionRules(x0) {
-        return [\`.css-cls-h5t3cu { font-size: 58pt;margin: \${x0}; }\`];
-});
-const frag = \`padding: 8px;\`;
-const fragB = \`height: \${heightVar};\${frag};\`;
-const cls2 = css(\\"css-cls2-1b4c3x0\\", [frag, fragB], function createEmotionRules(x0, x1) {
-        return [\`.css-cls2-1b4c3x0 { \${x0};
-        \${x1};
-        margin: 12px 48px;
-        color: #ffffff; }\`];
-});"
-`;
-
 exports[`babel css inline interpolation in selector 1`] = `
 "
-const cls2 = css(\\"css-cls2-16o34vq\\", [className], function createEmotionRules(x0) {
+const cls2 = css([\\"css-cls2-16o34vq\\"], [className], function createEmotionRules(x0) {
   return [\`.css-cls2-16o34vq { margin: 12px 48px;
         color: #ffffff; }\`, \`.css-cls2-16o34vq .\${x0} { display: none; }\`];
 });"
 `;
+
+exports[`babel css inline throws correct error when composes is not the first rule 1`] = `"unknown: Error: composes must be the first rule"`;
+
+exports[`babel css inline throws correct error when composes is on a nested selector 1`] = `"unknown: Error: composes cannot be on nested selectors"`;
+
+exports[`babel css inline throws correct error when the value of composes is not an interpolation 1`] = `"unknown: Error: composes must be a interpolation"`;

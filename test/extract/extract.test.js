@@ -4,7 +4,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
 import { matcher, serializer } from '../../jest-utils'
-import { fragment, injectGlobal, css } from '../../src/index'
+import { injectGlobal, css } from '../../src/index'
 import styled from '../../src/react'
 
 expect.addSnapshotSerializer(serializer)
@@ -20,8 +20,8 @@ describe('styled', () => {
   })
 
   test('basic render', () => {
-    const fontSize = 20
-    const H1 = styled.h1`font-size: ${fontSize}px;`
+    const fontSize = '20px'
+    const H1 = styled.h1`font-size: ${fontSize};`
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
@@ -29,10 +29,10 @@ describe('styled', () => {
   })
 
   test('name', () => {
-    const fontSize = 20
+    const fontSize = '20px'
     const H1 = styled.h1`
       name: FancyH1;
-      font-size: ${fontSize}px;
+      font-size: ${fontSize};
     `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
@@ -60,9 +60,9 @@ describe('styled', () => {
   })
 
   test('call expression', () => {
-    const fontSize = 20
+    const fontSize = '20px'
     const H1 = styled('h1')`
-      font-size: ${fontSize}px;
+      font-size: ${fontSize};
     `
 
     const tree = renderer
@@ -75,10 +75,10 @@ describe('styled', () => {
   test('composition', () => {
     const fontSize = 20
     const H1 = styled('h1')`
-      font-size: ${fontSize}px;
+      font-size: ${fontSize + 'px'};
     `
 
-    const H2 = styled(H1)`font-size: ${fontSize * 2 / 3}`
+    const H2 = styled(H1)`font-size: ${fontSize * 2 / 3 + 'px'}`
 
     const tree = renderer
       .create(<H2 className={'legacy__class'}>hello world</H2>)
@@ -88,9 +88,9 @@ describe('styled', () => {
   })
 
   test('function in expression', () => {
-    const fontSize = 20
+    const fontSize = '20px'
     const H1 = styled('h1')`
-      font-size: ${fontSize}px;
+      font-size: ${fontSize};
     `
 
     const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale}`
@@ -106,21 +106,21 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
-  test('fragments', () => {
-    const fontSize = 20
+  test('composes', () => {
+    const fontSize = '20px'
 
-    const fragA = fragment`
+    const cls1 = css`
       color: blue;
     `
 
-    const fragB = fragment`
+    const cls2 = css`
+      composes: ${cls1};
       height: 64px;
-      @apply ${fragA}
     `
 
     const H1 = styled('h1')`
-      font-size: ${fontSize}px;
-      @apply ${fragB};
+      composes: ${cls2};
+      font-size: ${fontSize};
     `
 
     const H2 = styled(H1)`font-size:32px;`
@@ -137,22 +137,22 @@ describe('styled', () => {
   })
 
   test('higher order component', () => {
-    const fontSize = 20
+    const fontSize = '20px'
     const Content = styled('div')`
-      font-size: ${fontSize}px;
+      font-size: ${fontSize};
     `
 
-    const squirtleBlueBackground = fragment`
+    const squirtleBlueBackground = css`
       name: squirtle-blue-bg;
       background-color: #7FC8D6;
     `
 
     const flexColumn = Component => {
       const NewComponent = styled(Component)`
+        composes: ${squirtleBlueBackground};
         name: onyx;
         background-color: '#343a40';
         flex-direction: column;
-        @apply ${squirtleBlueBackground};
       `
 
       return NewComponent

@@ -5,11 +5,27 @@ import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import findAndReplaceAttrs from './attrs'
 import cssProps from './css-prop'
 
-function parseDynamicValues (rules, t, inputExpressions) {
+function joinExpressionsWithSpaces (expressions, t) {
+  const quasis = [t.templateElement({ cooked: '', raw: '' }, true)]
+  expressions.forEach((x, i) => {
+    if (i === expressions.length - 1) {
+      return quasis.push(t.templateElement({ cooked: '', raw: '' }, true))
+    }
+    quasis.push(t.templateElement({ cooked: ' ', raw: ' ' }, true))
+  })
+  return t.templateLiteral(
+    quasis,
+    expressions
+  )
+}
+
+function parseDynamicValues (rules, t, inputExpressions, composes = 0) {
   return rules.map(rule => {
     const re = /xxx(\S)xxx/gm
+
     let varMatch
     let matches = []
+
     while ((varMatch = re.exec(rule)) !== null) {
       matches.push({
         value: varMatch[0],
@@ -27,8 +43,7 @@ function parseDynamicValues (rules, t, inputExpressions) {
         if (preMatch) {
           quasis.push(t.templateElement({ raw: preMatch, cooked: preMatch }))
         }
-
-        expressions.push(inputExpressions[p1])
+        expressions.push(inputExpressions[p1 - composes])
 
         if (i === matches.length - 1 && cursor <= rule.length) {
           const postMatch = rule.substring(cursor)
@@ -122,7 +137,7 @@ export default function (babel) {
         function buildCallExpression (identifier, tag, path) {
           const built = findAndReplaceAttrs(path, t)
 
-          let { hash, rules, name, hasOtherMatch, hasApply } = inline(
+          let { hash, rules, name, hasOtherMatch, composes } = inline(
             built,
             identifierName,
             'css',
@@ -133,12 +148,16 @@ export default function (babel) {
           if (hash === '0') {
             return tag
           }
+          const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
+          for (var i = 0; i < composes; i++) {
+            inputClasses.push(path.node.quasi.expressions.shift())
+          }
           const args = [
             tag,
-            t.stringLiteral(`${name}-${hash}`),
+            t.arrayExpression(inputClasses),
             t.arrayExpression(built.expressions)
           ]
-          if (!hasApply && !hasOtherMatch && !state.inline) {
+          if (!hasOtherMatch && !state.inline) {
             state.insertStaticRules(rules)
           } else {
             const expressions = built.expressions.map((x, i) =>
@@ -149,7 +168,9 @@ export default function (babel) {
               expressions,
               t.blockStatement([
                 t.returnStatement(
-                  t.arrayExpression(parseDynamicValues(rules, t, expressions))
+                  t.arrayExpression(
+                    parseDynamicValues(rules, t, expressions, composes)
+                  )
                 )
               ])
             )
@@ -187,65 +208,53 @@ export default function (babel) {
           )
         } else if (
           t.isIdentifier(path.node.tag) &&
-          path.node.tag.name === 'fragment'
-        ) {
-          const { rules } = inline(
-            path.node.quasi,
-            identifierName,
-            'frag',
-            true
-          )
-          if (rules.length > 1) {
-            throw path.buildCodeFrameError(
-              'Fragments cannot have multiple selectors.'
-            )
-          }
-          const rulesWithoutSelector = rules.map(rule =>
-            rule.substring(rule.indexOf('{') + 1, rule.length - 1).trim()
-          )
-          path.replaceWith(
-            parseDynamicValues(
-              rulesWithoutSelector,
-              t,
-              path.node.quasi.expressions
-            )[0]
-          )
-        } else if (
-          t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'css'
         ) {
-          const { hash, name, rules, hasApply, hasVar, hasOtherMatch } = inline(
-            path.node.quasi,
-            identifierName,
-            'css',
-            state.inline
-          )
-          const classNameStringLiteral = t.stringLiteral(`${name}-${hash}`)
-          const args = [
-            classNameStringLiteral,
-            t.arrayExpression(path.node.quasi.expressions)
-          ]
-          if (!hasApply && !hasOtherMatch && !state.inline) {
-            state.insertStaticRules(rules)
-            if (!hasVar) {
-              return path.replaceWith(classNameStringLiteral)
+          try {
+            const {
+              hash,
+              name,
+              rules,
+              hasVar,
+              composes,
+              hasOtherMatch
+            } = inline(path.node.quasi, identifierName, 'css', state.inline)
+            const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
+            for (var i = 0; i < composes; i++) {
+              inputClasses.push(path.node.quasi.expressions.shift())
             }
-          } else {
-            const expressions = path.node.quasi.expressions.map((x, i) =>
-              t.identifier(`x${i}`)
-            )
-            const inlineContentExpr = t.functionExpression(
-              t.identifier('createEmotionRules'),
-              expressions,
-              t.blockStatement([
-                t.returnStatement(
-                  t.arrayExpression(parseDynamicValues(rules, t, expressions))
+            const args = [
+              t.arrayExpression(inputClasses),
+              t.arrayExpression(path.node.quasi.expressions)
+            ]
+            if (!hasOtherMatch && !state.inline) {
+              state.insertStaticRules(rules)
+              if (!hasVar) {
+                return path.replaceWith(
+                  joinExpressionsWithSpaces(inputClasses, t)
                 )
-              ])
-            )
-            args.push(inlineContentExpr)
+              }
+            } else {
+              const expressions = path.node.quasi.expressions.map((x, i) =>
+                t.identifier(`x${i}`)
+              )
+              const inlineContentExpr = t.functionExpression(
+                t.identifier('createEmotionRules'),
+                expressions,
+                t.blockStatement([
+                  t.returnStatement(
+                    t.arrayExpression(
+                      parseDynamicValues(rules, t, expressions, composes)
+                    )
+                  )
+                ])
+              )
+              args.push(inlineContentExpr)
+            }
+            path.replaceWith(t.callExpression(t.identifier('css'), args))
+          } catch (e) {
+            throw path.buildCodeFrameError(e)
           }
-          path.replaceWith(t.callExpression(t.identifier('css'), args))
         } else if (
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'keyframes'

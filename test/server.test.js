@@ -5,8 +5,8 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import styled from '../src/react'
-import { css, sheet } from '../src/index'
-import { renderStatic, renderStaticOptimized } from '../src/server'
+import { css, injectGlobal } from '../src/index'
+import { extractCritical } from '../src/server'
 
 const color = 'red'
 
@@ -19,7 +19,7 @@ const Image = styled.img`
   background-color: ${color}
 `
 
-// this will be included in renderStatic but not in renderStaticOptimized since it's not used
+// this will not be included since it's not used
 css`
   display: none;
   name: unused-class;
@@ -27,7 +27,12 @@ css`
 
 // this will be included in both because it doesn't have the css- prefix
 
-sheet.insert('.no-prefix { display: flex; justify-content: center; }')
+injectGlobal`
+  .no-prefix {
+    display: flex;
+    justify-content: center;
+  }
+`
 
 const Page = () =>
   <Main>
@@ -36,25 +41,10 @@ const Page = () =>
     <Image />
   </Main>
 
-describe('server', () => {
-  describe('renderStatic', () => {
-    test('returns static css', () => {
-      expect(renderStatic(() => renderToString(<Page />))).toMatchSnapshot()
-    })
-    test('throws if the fn does not return anything', () => {
-      expect(() => renderStatic(() => {})).toThrowErrorMatchingSnapshot()
-    })
-  })
-  describe('renderStaticOptimized', () => {
-    test('returns static css', () => {
-      expect(
-        renderStaticOptimized(() => renderToString(<Page />))
-      ).toMatchSnapshot()
-    })
-    test('throws if the fn does not return anything', () => {
-      expect(() =>
-        renderStaticOptimized(() => {})
-      ).toThrowErrorMatchingSnapshot()
-    })
+describe('extractCritical', () => {
+  test('returns static css', () => {
+    expect(
+      extractCritical(renderToString(<Page />))
+    ).toMatchSnapshot()
   })
 })
