@@ -208,7 +208,7 @@ function SomeComponent (props) {
 
 ### composes property
 
-The composes property is based
+The composes property is based on [css modules' composes property](https://github.com/css-modules/css-modules#composition).
 
 ```jsx
 import { fragment, css } from 'emotion'
