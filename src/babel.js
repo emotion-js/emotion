@@ -4,7 +4,7 @@ import { touchSync } from 'touch'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import findAndReplaceAttrs from './attrs'
 import cssProps from './css-prop'
-import { PLACEHOLDER_REGEX } from './utils'
+import { placeholderRegex } from './utils'
 
 function joinExpressionsWithSpaces (expressions, t) {
   const quasis = [t.templateElement({ cooked: '', raw: '' }, true)]
@@ -24,7 +24,7 @@ function parseDynamicValues (rules, t, inputExpressions, composes = 0) {
   return rules.map(rule => {
     let varMatch
     let matches = []
-    while ((varMatch = PLACEHOLDER_REGEX.exec(rule)) !== null) {
+    while ((varMatch = placeholderRegex().exec(rule)) !== null) {
       matches.push({
         value: varMatch[0],
         p1: varMatch[1],
