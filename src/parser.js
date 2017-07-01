@@ -3,7 +3,6 @@ import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
 import postcssNested from 'styled-components/lib/vendor/postcss-nested'
 import stringify from 'styled-components/lib/vendor/postcss/stringify'
 import autoprefix from 'styled-components/lib/utils/autoprefix'
-import { placeholderRegex } from './utils'
 
 export function parseCSS (
   css: string,
@@ -36,20 +35,20 @@ export function parseCSS (
         if (decl.parent.selector !== `.${options.name}-${options.hash}`) {
           throw new Error('composes cannot be on nested selectors')
         }
-        if (!placeholderRegex().exec(decl.value)) {
+        if (!/xxx(\S)xxx/gm.exec(decl.value)) {
           throw new Error('composes must be a interpolation')
         }
         if (decl.parent.nodes[0] !== decl) {
           throw new Error('composes must be the first rule')
         }
-        const numOfComposes = decl.value.match(placeholderRegex()).length
+        const numOfComposes = decl.value.match(/xxx(\S)xxx/gm).length
         composes += numOfComposes
         vars += numOfComposes
         return decl.remove()
       }
     }
     if (!options.inlineMode) {
-      const match = placeholderRegex().exec(decl.value)
+      const match = /xxx(\S)xxx/gm.exec(decl.value)
       if (match) {
         vars++
       }
@@ -57,7 +56,7 @@ export function parseCSS (
   })
   if (!options.inlineMode && vars === options.matches) {
     root.walkDecls((decl) => {
-      decl.value = decl.value.replace(placeholderRegex(), (match, p1) => {
+      decl.value = decl.value.replace(/xxx(\S)xxx/gm, (match, p1) => {
         return `var(--${options.name}-${options.hash}-${p1})`
       })
     })

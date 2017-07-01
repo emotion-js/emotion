@@ -1,7 +1,6 @@
 // @flow
 import { parseCSS } from './parser'
 import hashArray from './hash'
-import { makePlaceholder } from './utils'
 
 function extractNameFromProperty (str: string) {
   let regex = /name\s*:\s*([A-Za-z0-9\-_]+)\s*/gm
@@ -37,7 +36,7 @@ function createSrc (
       arr.push(str)
       if (i !== strs.length - 1) {
         matches++
-        arr.push(makePlaceholder(i))
+        arr.push(`xxx${i}xxx`)
       }
       return arr
     }, [])
