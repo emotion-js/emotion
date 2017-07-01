@@ -25,9 +25,9 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('no dynamic', () => {
+    test('styled component as selector', () => {
       const basic = `
-      const SomeComponent = styled.div\`\`
+      const SomeComponent = styled.div\` \`
       styled.h1\`
         color:blue;
         \${SomeComponent} {
@@ -179,8 +179,11 @@ describe('babel styled component', () => {
     })
 
     test('based on props', () => {
-      const basic =
-        "const H1 = styled.h1`font-size: ${fontSize + 'px'}; height: 20px; transform: translateX(${(props) => props.translateX})`"
+      const basic = `const H1 = styled.h1\`
+        font-size: \${fontSize + 'px'};
+        height: 20px;
+        transform: translateX(\${(props) => props.translateX});
+      \``
       const { code } = babel.transform(basic, {
         plugins: [plugin],
         filename: __filename,
@@ -190,13 +193,13 @@ describe('babel styled component', () => {
       expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
       expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
     })
-    test('with fragment', () => {
-      const basic = `const frag1 = fragment\` width: 20px; \`
+    test('composes', () => {
+      const basic = `const cls1 = css\` width: 20px; \`
       const H1 = styled.h1\`
+        composes: \${cls1};
         font-size: \${fontSize + 'px'};
         height: 20px;
         transform: translateX(\${(props) => props.translateX});
-        @apply \${frag1}
       \``
       const { code } = babel.transform(basic, {
         plugins: [plugin],
@@ -204,7 +207,8 @@ describe('babel styled component', () => {
         babelrc: false
       })
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(4)
+      expect(fs.writeFileSync.mock.calls[3][1]).toMatchSnapshot()
     })
   })
 })

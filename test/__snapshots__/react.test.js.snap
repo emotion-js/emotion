@@ -37,11 +37,11 @@ exports[`styled call expression 1`] = `
 `;
 
 exports[`styled component as selector 1`] = `
-.css-H1-13wdnau-xy96vj {
+.css-H1-rs9k70-qz486c {
   font-size: 20px;
 }
 
-.css-Thing-1kdnbhf-384ekg {
+.css-Thing-1kdnbhf-d995d2 {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -49,16 +49,16 @@ exports[`styled component as selector 1`] = `
   display: flex;
 }
 
-.css-Thing-1kdnbhf-384ekg .css-H1-13wdnau {
+.css-Thing-1kdnbhf-d995d2 .css-H1-rs9k70 {
   color: green;
 }
 
 <div
-  className="css-Thing-1kdnbhf-384ekg css-Thing-1kdnbhf"
+  className="css-Thing-1kdnbhf-d995d2 css-Thing-1kdnbhf"
 >
   hello 
   <h1
-    className="css-H1-13wdnau-xy96vj css-H1-13wdnau"
+    className="css-H1-rs9k70-qz486c css-H1-rs9k70"
   >
     This will be green
   </h1>
@@ -66,52 +66,58 @@ exports[`styled component as selector 1`] = `
 </div>
 `;
 
-exports[`styled composition 1`] = `
-.css-H1-13wdnau-xy96vj {
-  font-size: 20px;
+exports[`styled composes 1`] = `
+.css-cssA-cy897j-1p4ppuj {
+  color: blue;
 }
 
-.css-H2-vxb7tq-1gn1gp5 {
-  font-size: 13.333333333333334;
+.css-cssB-ob3sm8-fwh0v {
+  height: 64px;
 }
 
-<h1
-  className="css-H1-13wdnau-xy96vj css-H1-13wdnau css-H2-vxb7tq-1gn1gp5 css-H2-vxb7tq legacy__class"
->
-  hello world
-</h1>
-`;
-
-exports[`styled fragments 1`] = `
 .css-H2-idm3bz-361gww {
   font-size: 32px;
 }
 
-.css-H1-1qd8mfb-1u8p6i5 {
+.css-H1-zejj71-ovrrqc {
   font-size: 20px;
-  height: 64px;
-  color: blue;
 }
 
 <h1
-  className="css-H1-1qd8mfb-1u8p6i5 css-H1-1qd8mfb css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
+  className="css-H1-zejj71-ovrrqc css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-cssA-cy897j-1p4ppuj css-cssA-cy897j css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
   scale={2}
 >
   hello world
 </h1>
 `;
 
-exports[`styled function in expression 1`] = `
-.css-H1-13wdnau-xy96vj {
+exports[`styled composition 1`] = `
+.css-H2-vxb7tq-1gn1gp5 {
+  font-size: 13.333333333333334;
+}
+
+.css-H1-rs9k70-qz486c {
   font-size: 20px;
 }
 
-.css-H2-vxb7tq-1wx98rf {
-  font-size: 40;
+<h1
+  className="css-H1-rs9k70-qz486c css-H1-rs9k70 css-H2-vxb7tq-1gn1gp5 css-H2-vxb7tq legacy__class"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled function in expression 1`] = `
+.css-H1-rs9k70-qz486c {
+  font-size: 20px;
+}
+
+.css-H2-vxb7tq-1pd0qgw {
+  font-size: 40px;
 }
 
 <h1
-  className="css-H1-13wdnau-xy96vj css-H1-13wdnau css-H2-vxb7tq-1wx98rf css-H2-vxb7tq legacy__class"
+  className="css-H1-rs9k70-qz486c css-H1-rs9k70 css-H2-vxb7tq-1pd0qgw css-H2-vxb7tq legacy__class"
   scale={2}
 >
   hello world
@@ -119,14 +125,17 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.css-onyx-wn422p-10htdr6 {
+.css-squirtle-blue-bg-135ox65-8g3djl {
+  background-color: #7FC8D6;
+}
+
+.css-onyx-165zlfj-sv1xya {
   background-color: '#343a40';
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
-  background-color: #7FC8D6;
 }
 
 .css-Content-13wdnau-1z6hk6 {
@@ -134,7 +143,7 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="css-Content-13wdnau-1z6hk6 css-Content-13wdnau css-onyx-wn422p-10htdr6 css-onyx-wn422p"
+  className="css-Content-13wdnau-1z6hk6 css-Content-13wdnau css-onyx-165zlfj-sv1xya css-onyx-165zlfj css-squirtle-blue-bg-135ox65-8g3djl css-squirtle-blue-bg-135ox65"
 />
 `;
 

@@ -1,11 +1,8 @@
-/* eslint-disable jsx-quotes,no-useless-escape,no-template-curly-in-string */
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { matcher, serializer } from '../jest-utils'
-
-// eslint-disable-next-line no-unused-vars
-import css, { fragment } from '../src/index'
+import { css } from '../src/index'
 import styled from '../src/react'
 
 expect.addSnapshotSerializer(serializer)
@@ -76,7 +73,7 @@ describe('styled', () => {
   test('composition', () => {
     const fontSize = 20
     const H1 = styled('h1')`
-      font-size: ${fontSize}px;
+      font-size: ${fontSize + 'px'};
     `
 
     const H2 = styled(H1)`font-size: ${fontSize * 2 / 3}`
@@ -89,9 +86,9 @@ describe('styled', () => {
   })
 
   test('component as selector', () => {
-    const fontSize = 20
+    const fontSize = '20px'
     const H1 = styled.h1`
-      font-size: ${fontSize}px;
+      font-size: ${fontSize};
     `
 
     const Thing = styled.div`
@@ -111,10 +108,10 @@ describe('styled', () => {
   test('function in expression', () => {
     const fontSize = 20
     const H1 = styled('h1')`
-      font-size: ${fontSize}px;
+      font-size: ${fontSize + 'px'};
     `
 
-    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale}`
+    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale + 'px'}`
 
     const tree = renderer
       .create(
@@ -127,21 +124,21 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
-  test('fragments', () => {
-    const fontSize = 20
+  test('composes', () => {
+    const fontSize = '20px'
 
-    const fragA = fragment`
+    const cssA = css`
       color: blue;
     `
 
-    const fragB = fragment`
+    const cssB = css`
+      composes: ${cssA}
       height: 64px;
-      @apply ${fragA}
     `
 
     const H1 = styled('h1')`
-      font-size: ${fontSize}px;
-      @apply ${fragB};
+      composes: ${cssB}
+      font-size: ${fontSize};
     `
 
     const H2 = styled(H1)`font-size:32px;`
@@ -176,17 +173,17 @@ describe('styled', () => {
       font-size: ${fontSize}px;
     `
 
-    const squirtleBlueBackground = fragment`
+    const squirtleBlueBackground = css`
       name: squirtle-blue-bg;
       background-color: #7FC8D6;
     `
 
     const flexColumn = Component => {
       const NewComponent = styled(Component)`
+        composes: ${squirtleBlueBackground}
         name: onyx;
         background-color: '#343a40';
         flex-direction: column;
-        @apply ${squirtleBlueBackground};
       `
 
       return NewComponent

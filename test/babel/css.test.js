@@ -24,23 +24,6 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('css kitchen sink', () => {
-      const basic = `
-        const cls = css\`font-size: 58pt;margin: \${margin};\`
-        const frag = fragment\`padding: 8px;\`
-        const fragB = fragment\`height: \${heightVar};@apply \${frag};\`
-        const cls2 = css\`
-        @apply $\{frag};
-        @apply $\{fragB};
-        margin: 12px 48px;
-        color: #ffffff;
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
     test('interpolation in selector', () => {
       const basic = `
         const cls2 = css\`
@@ -55,6 +38,71 @@ describe('babel css', () => {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()
+    })
+
+    test('composes', () => {
+      const basic = `
+        const cls1 = css\`
+          display: flex;
+        \`
+        const cls2 = css\`
+          composes: \${'one-class'} \${'another-class'}\${cls1}
+          justify-content: center;
+          align-items: \${'center'}
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('throws correct error when composes is not the first rule', () => {
+      const basic = `
+        const cls1 = css\`
+          display: flex;
+        \`
+        const cls2 = css\`
+          justify-content: center;
+          composes: \${['one-class', 'another-class', cls1]}
+          align-items: \${'center'}
+        \`
+      `
+      expect(() => babel.transform(basic, {
+        plugins: [[plugin]]
+      })).toThrowErrorMatchingSnapshot()
+    })
+    test('throws correct error when the value of composes is not an interpolation', () => {
+      const basic = `
+        const cls1 = css\`
+          display: flex;
+        \`
+        const cls2 = css\`
+          composes: some-class;
+          justify-content: center;
+          align-items: \${'center'}
+        \`
+      `
+      expect(() => babel.transform(basic, {
+        plugins: [[plugin]]
+      })).toThrowErrorMatchingSnapshot()
+    })
+    test('throws correct error when composes is on a nested selector', () => {
+      const basic = `
+        const cls1 = css\`
+          display: flex;
+        \`
+        const cls2 = css\`
+          justify-content: center;
+          align-items: center;
+          .some-class {
+            composes: \${cls1}
+          }
+        \`
+      `
+      expect(() => babel.transform(basic, {
+        plugins: [[plugin]]
+      })).toThrowErrorMatchingSnapshot()
     })
   })
   describe('extract', () => {
@@ -78,26 +126,6 @@ describe('babel css', () => {
       expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
     })
 
-    test('css kitchen sink', () => {
-      const basic = `
-        const frag = fragment\`padding: 8px;\`
-        const fragB = fragment\`height: \${heightVar};@apply \${frag};\`
-        const cls2 = css\`
-        @apply \${frag};
-        @apply \${fragB};
-        margin: 12px 48px;
-        color: #ffffff;
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
-    })
-
     test('interpolation in selector', () => {
       const basic = `
         const cls2 = css\`
@@ -115,6 +143,47 @@ describe('babel css', () => {
       })
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
+    })
+
+    test('composes', () => {
+      const basic = `
+        const cls1 = css\`
+          display: flex;
+        \`
+        const cls2 = css\`
+          composes: \${['one-class', 'another-class', cls1]}
+          justify-content: center;
+          align-items: \${'center'}
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
+      expect(fs.writeFileSync.mock.calls[1][1]).toMatchSnapshot()
+    })
+    test('composes no dynamic', () => {
+      const basic = `
+        const cls1 = css\`
+          display: flex;
+        \`
+        const cls2 = css\`
+          composes: \${'one-class'} \${'another-class'}\${cls1}
+          justify-content: center;
+          align-items: center
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
+      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
     })
   })
 })

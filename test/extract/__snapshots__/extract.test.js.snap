@@ -1,83 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled attr 1`] = `
-.vars-1sp61ak {
-  --css-H1-15vt02v-0: 48;
-  --css-H1-15vt02v-1: 4rem;
+.css-H1-15vt02v-1n5h3v0 {
+  font-size: 48;
+  margin: 4rem;
 }
 
 <h1
-  className="css-H1-15vt02v vars-1sp61ak"
+  className="css-H1-15vt02v-1n5h3v0 css-H1-15vt02v"
   fontSize={48}
 />
 `;
 
 exports[`styled basic render 1`] = `
-.vars-v8l2zy {
-  --css-H1-8xpzga-0: 20;
+.vars-ch9j2 {
+  --css-H1-1t8i2zo-0: 20px;
 }
 
 <h1
-  className="css-H1-8xpzga vars-v8l2zy"
+  className="css-H1-1t8i2zo vars-ch9j2"
 >
   hello world
 </h1>
 `;
 
 exports[`styled call expression 1`] = `
-.vars-fnvbv0 {
-  --css-H1-13wdnau-0: 20;
+.vars-57j4qc {
+  --css-H1-rs9k70-0: 20px;
 }
 
 <h1
-  className="css-H1-13wdnau vars-fnvbv0 legacy__class"
+  className="css-H1-rs9k70 vars-57j4qc legacy__class"
 >
   hello world
 </h1>
 `;
 
-exports[`styled composition 1`] = `
-.vars-fnvbv0 {
-  --css-H1-13wdnau-0: 20;
-}
-
-.vars-b5jpwe {
-  --css-H2-vxb7tq-0: 13.333333333333334;
+exports[`styled composes 1`] = `
+.vars-1m8nl4c {
+  --css-H1-1pnnqpk-0: 20px;
 }
 
 <h1
-  className="css-H1-13wdnau vars-fnvbv0 css-H2-vxb7tq vars-b5jpwe legacy__class"
->
-  hello world
-</h1>
-`;
-
-exports[`styled fragments 1`] = `
-.css-H1-1qd8mfb-1u8p6i5 {
-  font-size: 20px;
-  height: 64px;
-  color: blue;
-}
-
-<h1
-  className="css-H1-1qd8mfb-1u8p6i5 css-H1-1qd8mfb css-H2-idm3bz legacy__class"
+  className="css-H1-1pnnqpk css-cls2-y5rq6p css-cls1-cy897j vars-1m8nl4c css-H2-idm3bz legacy__class"
   scale={2}
 >
   hello world
 </h1>
 `;
 
-exports[`styled function in expression 1`] = `
-.vars-fnvbv0 {
-  --css-H1-13wdnau-0: 20;
+exports[`styled composition 1`] = `
+.vars-57j4qc {
+  --css-H1-rs9k70-0: 20px;
 }
 
-.vars-1d9rttq {
-  --css-H2-vxb7tq-0: 40;
+.vars-1u8m2k4 {
+  --css-H2-vxb7tq-0: 13.333333333333334px;
 }
 
 <h1
-  className="css-H1-13wdnau vars-fnvbv0 css-H2-vxb7tq vars-1d9rttq legacy__class"
+  className="css-H1-rs9k70 vars-57j4qc css-H2-vxb7tq vars-1u8m2k4 legacy__class"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled function in expression 1`] = `
+.vars-57j4qc {
+  --css-H1-rs9k70-0: 20px;
+}
+
+.vars-6khrnp {
+  --css-H2-vxb7tq-0: NaN;
+}
+
+<h1
+  className="css-H1-rs9k70 vars-57j4qc css-H2-vxb7tq vars-6khrnp legacy__class"
   scale={2}
 >
   hello world
@@ -85,32 +83,22 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.css-onyx-wn422p-10htdr6 {
-  background-color: '#343a40';
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  flex-direction: column;
-  background-color: #7FC8D6;
-}
-
-.vars-1x8swp {
-  --css-Content-13wdnau-0: 20;
+.vars-12p149b {
+  --css-Content-rs9k70-0: 20px;
 }
 
 <div
-  className="css-Content-13wdnau vars-1x8swp css-onyx-wn422p-10htdr6 css-onyx-wn422p"
+  className="css-Content-rs9k70 vars-12p149b css-onyx-13ds1s2 css-squirtle-blue-bg-135ox65"
 />
 `;
 
 exports[`styled name 1`] = `
-.vars-1ijjfy3 {
-  --css-FancyH1-1azfbv1-0: 20;
+.vars-1vv3got {
+  --css-FancyH1-1o9p8a2-0: 20px;
 }
 
 <h1
-  className="css-FancyH1-1azfbv1 vars-1ijjfy3"
+  className="css-FancyH1-1o9p8a2 vars-1vv3got"
 >
   hello world
 </h1>
@@ -126,18 +114,30 @@ exports[`styled no dynamic 1`] = `
 
 exports[`styled writes the correct css 1`] = `
 ".css-H1-ijh7uz { font-size: 12px; }
-.css-H1-8xpzga { font-size: var(--css-H1-8xpzga-0)px; }
-.css-FancyH1-1azfbv1 {
-      font-size: var(--css-FancyH1-1azfbv1-0)px; }
-.css-H1-15vt02v { font-size: var(--css-H1-15vt02v-0);
-      margin: var(--css-H1-15vt02v-1); }
-.css-H1-13wdnau { font-size: var(--css-H1-13wdnau-0)px; }
-.css-H1-13wdnau { font-size: var(--css-H1-13wdnau-0)px; }
+.css-H1-1t8i2zo { font-size: var(--css-H1-1t8i2zo-0); }
+.css-FancyH1-1o9p8a2 {
+      font-size: var(--css-FancyH1-1o9p8a2-0); }
+.css-H1-rs9k70 { font-size: var(--css-H1-rs9k70-0); }
+.css-H1-rs9k70 { font-size: var(--css-H1-rs9k70-0); }
 .css-H2-vxb7tq { font-size: var(--css-H2-vxb7tq-0) }
-.css-H1-13wdnau { font-size: var(--css-H1-13wdnau-0)px; }
+.css-H1-rs9k70 { font-size: var(--css-H1-rs9k70-0); }
 .css-H2-vxb7tq { font-size: var(--css-H2-vxb7tq-0) }
+.css-cls1-cy897j { color: blue; }
+.css-cls2-y5rq6p {
+      height: 64px; }
+.css-H1-1pnnqpk {
+      font-size: var(--css-H1-1pnnqpk-1); }
 .css-H2-idm3bz { font-size: 32px; }
-.css-Content-13wdnau { font-size: var(--css-Content-13wdnau-0)px; }
+.css-Content-rs9k70 { font-size: var(--css-Content-rs9k70-0); }
+.css-squirtle-blue-bg-135ox65 {
+      background-color: #7FC8D6; }
+.css-onyx-13ds1s2 {
+        background-color: '#343a40';
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column; }
 html {
         background: pink;
       }

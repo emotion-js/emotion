@@ -14,13 +14,20 @@ exports[`css prop react basic 1`] = `
 `;
 
 exports[`css prop react kitchen sink 1`] = `
-.css-tree-1170hdn-1o62cat {
+.css-bold-15qcrjv-18w8kdp {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
   font-weight: bold;
+}
+
+.css-small-1wh34bm-yjtkkb {
+  font-size: 6;
+}
+
+.css-flexCenter-mdk64u-llada3 {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -36,8 +43,9 @@ exports[`css prop react kitchen sink 1`] = `
   align-items: center;
 }
 
-.css-tree-wjhr0q-imh2fa {
-  font-size: 6;
+
+
+.css-tree-17jiuxc-pi0syi {
   color: red;
 }
 
@@ -64,10 +72,10 @@ exports[`css prop react kitchen sink 1`] = `
 }
 
 <div
-  className="css__legacy-stuff css-tree-1170hdn-1o62cat css-tree-1170hdn"
+  className="css__legacy-stuff css-tree-1ii4sc4-um9pk4 css-tree-1ii4sc4 css-bold-15qcrjv-18w8kdp css-bold-15qcrjv css-flexCenter-mdk64u-llada3 css-flexCenter-mdk64u"
 >
   <h1
-    className="css-tree-wjhr0q-imh2fa css-tree-wjhr0q"
+    className="css-tree-17jiuxc-pi0syi css-tree-17jiuxc css-small-1wh34bm-yjtkkb css-small-1wh34bm"
   >
     BOOM
   </h1>

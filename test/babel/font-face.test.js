@@ -36,23 +36,6 @@ describe('fontFace babel', () => {
       })
       expect(code).toMatchSnapshot()
     })
-    test('fragment', () => {
-      const basic = `
-        const frag = fragment\`
-          font-family: \${fontFamilyName};
-          src: local("Helvetica Neue Bold"),
-               local("HelveticaNeue-Bold"),
-               url(MgOpenModernaBold.ttf);
-          font-weight: bold;
-        \`
-        fontFace\`
-          @apply \${frag}
-      \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
   })
   describe('extract', () => {
     test('basic', () => {

@@ -38,22 +38,6 @@ describe('babel keyframes', () => {
       })
       expect(code).toMatchSnapshot()
     })
-    test('keyframes with fragment', () => {
-      const basic = `
-        const rotate360 = keyframes\`
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(\${endingRotation});
-            @apply \${frag1}
-          }
-      \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
   })
   describe('extract', () => {
     test('keyframes basic', () => {

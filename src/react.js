@@ -26,10 +26,9 @@ export default function (tag, cls, vars = [], content) {
     )
   }
 
-  const [name] = cls.split('-')
-  const debugName = name === 'css' ? '' : `.${name}`
+  const name = cls[0].split('-')[1]
   const componentTag = tag.displayName || tag.name || 'Component'
-  Styled.displayName = `styled(${componentTag}${debugName})`
+  Styled.displayName = `styled(${componentTag}${name})`
   Styled.cls = '.' + cls
   return Styled
 }
