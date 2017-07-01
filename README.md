@@ -71,7 +71,7 @@ const H1 = styled('h1', 'css-H1-duiy4a')
 
 ## Inline Mode
 
-- Only extracts styles **without** dynamic values. 
+- ~~Only extracts styles **without** dynamic values.~~ (we're working on this) 
 - No css var requirement
 - Same speed as default mode in benchmarks
 - Works with SSR
@@ -206,29 +206,58 @@ function SomeComponent (props) {
 
 ```
 
-### fragment
+### composes property
+
+The composes property is based
 
 ```jsx
 import { fragment, css } from 'emotion'
 import styled from 'emotion/react'
 
-// You can define fragments which can be reused anywhere
-const flexCenter = fragment`
+// Define a class
+const flexCenter = css`
   display: flex;
   justify-content: center;
   align-items: center;
 `
 
-// You can use them with @apply
+// You can use compose them with the composes property
 const flexCenterClass = css`
-  @apply ${flexCenter};
+  composes: ${flexCenter};
   flex-direction: column;
 `
 
-// You can use them with all of emotion's apis like styled
-
+// You can also use them in styled.* and the css prop
 const FlexCenterComponent = styled.div`
-  @apply ${flexCenter}
+  composes: ${flexCenter};
+`
+
+
+const flexWrap = css`
+  flex-wrap: wrap;
+`
+
+// You can compose with use multiple classes
+const ColumnCenteredComponent = styled.div`
+  composes: ${flexCenter} ${flexWrap};
+`
+
+// You can also use composes with regular classes or classes from a css module
+const CssModuleComponent = styled.h1`
+  composes: ${'some-class'} ${styles.header};
+`
+
+// composes MUST be the first rule, e.g. this doesn't work
+const cls = css`
+  font-size: 20px;
+  composes: ${flexCenter}
+`
+
+// composes also does not work in nested selectors, e.g. this doesn't work
+const cls = css`
+  & .flex {
+      composes: ${flexCenter}
+  }
 `
 
 ```
@@ -275,36 +304,23 @@ fontFace`
 
 ### Server-Side Rendering
 
-Server-Side Rendering in emotion currently only works in inline mode. It's based on [glamor's api](https://github.com/threepointone/glamor/blob/master/docs/server.md). For an example of emotion and next.js checkout the [with-emotion example in the next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
+Server-Side Rendering in emotion currently only works in inline mode. It's similar to [glamor's api](https://github.com/threepointone/glamor/blob/master/docs/server.md). For an example of emotion and next.js checkout the [with-emotion example in the next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
 
-#### renderStatic
-This returns an object with the properties `html`, `ids` and `css`.
-
-```jsx
-import { renderToString } from 'react-dom/server'
-import { renderStatic } from 'emotion/server'
-import App from './App'
-
-
-const { html, ids, css } = renderStatic(() => renderToString(<App/>))
-
-```
-
-#### renderStatic
-This returns an object with the properties `html`, `ids` and `css` just like `renderStatic` but it remove unused rules that were created with emotion(it still includes rules that were inserted with `injectGlobal`).
+#### extractCritical
+This returns an object with the properties `html`, `ids` and `css`. It removes unused rules that were created with emotion(it still includes rules that were inserted with `injectGlobal`).
 
 ```jsx
 import { renderToString } from 'react-dom/server'
-import { renderStaticOptimized } from 'emotion/server'
+import { extractCritical } from 'emotion/server'
 import App from './App'
 
 
-const { html, ids, css } = renderStaticOptimized(() => renderToString(<App/>))
+const { html, ids, css } = extractCritical(renderToString(<App/>))
 
 ```
 
 #### hydrate
-`hydrate` should be called on the client with the `ids` that `renderStatic` and `renderStaticOptimized` return. If you don't call it then emotion will reinsert all the rules.
+`hydrate` should be called on the client with the `ids` that `extractCritical` returns. If you don't call it then emotion will reinsert all the rules.
 
 ```jsx
 import { hydrate } from 'emotion'
