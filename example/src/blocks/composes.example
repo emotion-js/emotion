@@ -1,11 +1,11 @@
-const imageBase = fragment`
+const imageBase = css`
   width: 32px;
   height: 32px;
   border-radius: 50%;
 `
 
 const Avatar = styled('img')`
-  @apply ${imageBase};
+  composes: ${imageBase};
   
   @media(min-width: 420px) {
     width: 96px;

@@ -4,7 +4,7 @@ import './dracula.css'
 import React from 'react'
 import { render } from 'react-dom'
 import styled from 'emotion/react'
-import { css, fontFace, fragment, keyframes } from 'emotion'
+import { css, fontFace, keyframes } from 'emotion'
 import Markdown from './markdown'
 import Playground from './playground'
 import logoUrl from '../../emotion.png'
@@ -28,12 +28,6 @@ fontFace`
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 `
 
-const innerContent = fragment`
-  margin: 0 auto;
-  width: calc(100% - 32px);
-  max-width: 960px;
-`
-
 const PlaygroundWrapper = styled('div')`
   font-family: 'Oxygen', sans-serif;
   flex:1;
@@ -41,7 +35,9 @@ const PlaygroundWrapper = styled('div')`
   background: #f8f9fa;
   
   & .inner {
-    @apply ${innerContent};
+    margin: 0 auto;
+    width: calc(100% - 32px);
+    max-width: 960px;
     
     @media (min-width: 960px) {
       width: 100%;
@@ -82,7 +78,6 @@ class App extends React.Component {
             codeText={introExample}
             scope={{
               avatarUrl,
-              fragment,
               css,
               React,
               styled,
@@ -100,7 +95,6 @@ class App extends React.Component {
             scope={{
               avatarUrl,
               React,
-              fragment,
               css,
               styled,
               render
@@ -114,7 +108,6 @@ class App extends React.Component {
             codeText={nestedExample}
             scope={{
               avatarUrl,
-              fragment,
               css,
               React,
               styled,
@@ -130,7 +123,6 @@ class App extends React.Component {
             scope={{
               avatarUrl,
               React,
-              fragment,
               css,
               keyframes,
               styled,
@@ -158,7 +150,6 @@ class App extends React.Component {
             scope={{
               avatarUrl,
               React,
-              fragment,
               css,
               keyframes,
               styled,
@@ -174,7 +165,6 @@ class App extends React.Component {
             scope={{
               avatarUrl,
               React,
-              fragment,
               css,
               keyframes,
               styled,
@@ -196,15 +186,14 @@ class App extends React.Component {
           {/* }} */}
           {/* /> */}
 
-          <Markdown markdown={require('raw-loader!../../docs/fragment.md')} />
+          <Markdown markdown={require('raw-loader!../../docs/composes.md')} />
           <Playground
             maxHeight={180}
             noRender={false}
-            codeText={require('raw-loader!./blocks/fragment.example')}
+            codeText={require('raw-loader!./blocks/composes.example')}
             scope={{
               avatarUrl,
               React,
-              fragment,
               css,
               keyframes,
               styled,
