@@ -3,14 +3,10 @@ const flexCenter = css`
   align-items: center;
   justify-content: center;`
 
-const box = css`
-  width: 100px;
-  height: 100px;
-`
-
 render(
   <div
-    css={[box, flexCenter, `
+    css={`
+      composes: ${flexCenter};
       width: 128px;
       height: 128px;
       background-color: #8c81d8;
@@ -26,7 +22,7 @@ render(
           transform: scale(1.2);
         }
       }
-    `]}
+    `}
   >
     <img src={avatarUrl} />
   </div>,

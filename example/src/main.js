@@ -110,19 +110,7 @@ class App extends React.Component {
 
           <Markdown markdown={require('../../docs/install.md')} />
 
-          <Markdown markdown={require('../../docs/css-prop.md')} />
-          <Playground
-            maxHeight={180}
-            noRender={false}
-            codeText={require('./blocks/css-prop.example')}
-            scope={{
-              avatarUrl,
-              React,
-              css,
-              styled,
-              render
-            }}
-          />
+
 
           <Markdown markdown={require('../../docs/nested.md')} />
           <Playground
@@ -219,6 +207,20 @@ class App extends React.Component {
               React,
               css,
               keyframes,
+              styled,
+              render
+            }}
+          />
+
+          <Markdown markdown={require('../../docs/css-prop.md')}/>
+          <Playground
+            maxHeight={180}
+            noRender={false}
+            codeText={require('./blocks/css-prop.example')}
+            scope={{
+              avatarUrl,
+              React,
+              css,
               styled,
               render
             }}
