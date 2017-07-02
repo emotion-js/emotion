@@ -13,10 +13,27 @@ module.exports = env => {
     },
     {
       test: /\.css$/,
+      exclude: /emotion\.css$/,
       use: PROD ? ExtractTextPlugin.extract({
-        fallback: "style-loader",
+        fallback: 'style-loader',
         use: {
-          loader: "css-loader",
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+            modules: true
+          }
+        }
+      }) : [
+        'style-loader',
+        { loader: 'css-loader', options: { modules: true } }
+      ]
+    },
+    {
+      test: /emotion\.css$/,
+      use: PROD ? ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: {
+          loader: 'css-loader',
           options: {
             sourceMap: true
           }
@@ -32,6 +49,10 @@ module.exports = env => {
       options: {
         limit: 25000
       }
+    },
+    {
+      loader: 'raw-loader',
+      test: /\.(example|md)$/
     }
   ]
 
