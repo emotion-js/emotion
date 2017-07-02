@@ -1,7 +1,96 @@
-.css-PlaygroundContent-2nd8uc { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+.css-dracula-uybcup .cm-s-dracula.CodeMirror, .css-dracula-uybcup .cm-s-dracula .CodeMirror-gutters {
+    background-color: #282a36 !important;
+    color: #f8f8f2 !important;
+    border: none;
+}
+.css-dracula-uybcup .cm-s-dracula .CodeMirror-gutters {
+    color: #282a36;
+}
+.css-dracula-uybcup .cm-s-dracula .CodeMirror-cursor {
+    border-left: solid thin #f8f8f2 !important;
+}
+.css-dracula-uybcup .cm-s-dracula .CodeMirror-linenumber {
+    color: #6D8A88;
+}
+.css-dracula-uybcup .cm-s-dracula .CodeMirror-selected {
+    background: rgba(255, 255, 255, 0.10);
+}
+.css-dracula-uybcup .cm-s-dracula .CodeMirror-line::selection, .css-dracula-uybcup .cm-s-dracula .CodeMirror-line > span::selection, .css-dracula-uybcup .cm-s-dracula .CodeMirror-line > span > span::selection {
+    background: rgba(255, 255, 255, 0.10);
+}
+.css-dracula-uybcup .cm-s-dracula .CodeMirror-line::-moz-selection, .css-dracula-uybcup .cm-s-dracula .CodeMirror-line > span::-moz-selection, .css-dracula-uybcup .cm-s-dracula .CodeMirror-line > span > span::-moz-selection {
+    background: rgba(255, 255, 255, 0.10);
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-comment {
+    color: #6272a4;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-string, .css-dracula-uybcup .cm-s-dracula span.cm-string-2 {
+    color: #f1fa8c;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-number {
+    color: #bd93f9;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-variable {
+    color: #50fa7b;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-variable-2 {
+    color: white;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-def {
+    color: #50fa7b;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-operator {
+    color: #ff79c6;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-keyword {
+    color: #ff79c6;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-atom {
+    color: #bd93f9;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-meta {
+    color: #f8f8f2;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-tag {
+    color: #ff79c6;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-attribute {
+    color: #50fa7b;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-qualifier {
+    color: #50fa7b;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-property {
+    color: #66d9ef;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-builtin {
+    color: #50fa7b;
+}
+.css-dracula-uybcup .cm-s-dracula span.cm-variable-3, .css-dracula-uybcup .cm-s-dracula span.cm-type {
+    color: #ffb86c;
+}
+.css-dracula-uybcup .cm-s-dracula .CodeMirror-activeline-background {
+    background: rgba(255, 255, 255, 0.1);
+}
+.css-dracula-uybcup .cm-s-dracula .CodeMirror-matchingbracket {
+    text-decoration: underline;
+    color: white !important;
+}
+.css-PlaygroundContent-1ecmb3 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
   margin: 0 auto 16px auto;
   padding: 16px 0;
   max-width: 560px; }
-.css-PlaygroundContent-2nd8uc .ReactCodeMirror { -webkit-flex: 1 1 70%; -ms-flex: 1 1 70%; flex: 1 1 70%; }
-.css-PlaygroundContent-2nd8uc .ReactCodeMirror textarea { border-radius: 4px; }
-.css-PlaygroundContent-2nd8uc .ReactCodeMirror .CodeMirror { height: auto; border-radius: 4px; }
+.css-PlaygroundContent-1ecmb3 .ReactCodeMirror {
+  -webkit-flex: 1 1 70%;
+  -ms-flex: 1 1 70%;
+  flex: 1 1 70%; }
+.css-PlaygroundContent-1ecmb3 .ReactCodeMirror textarea {
+  border-radius: 4px; }
+.css-PlaygroundContent-1ecmb3 .ReactCodeMirror .CodeMirror {
+  height: auto;
+  border-radius: 4px; }
