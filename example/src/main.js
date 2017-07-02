@@ -10,6 +10,7 @@ const introExample = require('./blocks/intro.example')
 const propsExample = require('./blocks/props.example')
 const nestedExample = require('./blocks/nested.example')
 const mediaExample = require('./blocks/media.example')
+const selectorsExample = require('./blocks/components-as-selectors.example')
 const pseudoExample = require('./blocks/pseudo.example')
 const keyframesExample = require('./blocks/keyframes.example')
 // const fontFaceExample = require('./blocks/font-face.example')
@@ -120,6 +121,21 @@ class App extends React.Component {
               avatarUrl,
               css,
               React,
+              styled,
+              render
+            }}
+          />
+
+          <Markdown markdown={require('../../docs/components-as-selectors.md')} />
+          <Playground
+            maxHeight={220}
+            noRender={false}
+            codeText={selectorsExample}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              keyframes,
               styled,
               render
             }}
