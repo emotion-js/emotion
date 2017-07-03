@@ -2,7 +2,6 @@ import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
-import findAndReplaceAttrs from './attrs'
 import cssProps from './css-prop'
 
 function joinExpressionsWithSpaces (expressions, t) {
@@ -13,10 +12,136 @@ function joinExpressionsWithSpaces (expressions, t) {
     }
     quasis.push(t.templateElement({ cooked: ' ', raw: ' ' }, true))
   })
-  return t.templateLiteral(
-    quasis,
-    expressions
-  )
+  return t.templateLiteral(quasis, expressions)
+}
+
+function parseStyledDynamicValues (rules, t, composes = 0, vars) {
+  return rules.map(rule => {
+    const re = /xxx(\S)xxx|attr\(([^,\s]+)(?:\s*([^,]*)?)(?:,\s*(\S+))?\)/gm
+    const VAR = 'VAR'
+    const ATTR = 'ATTR'
+    let match
+    const matches = []
+    while ((match = re.exec(rule)) !== null) {
+      if (match[1]) {
+        matches.push({
+          value: match[0],
+          p1: match[1],
+          index: match.index,
+          type: VAR
+        })
+      } else {
+        matches.push({
+          value: match[0],
+          propName: match[2],
+          valueType: match[3],
+          defaultValue: match[4],
+          index: match.index,
+          type: ATTR
+        })
+      }
+    }
+
+    let cursor = 0
+    const [quasis, expressions] = matches.reduce(
+      (accum, match, i) => {
+        const [quasis, expressions] = accum
+        const preMatch = rule.substring(cursor, match.index)
+        cursor = cursor + preMatch.length + match.value.length
+        if (preMatch) {
+          quasis.push(t.templateElement({ raw: preMatch, cooked: preMatch }))
+        }
+        if (match.type === VAR) {
+          expressions.push(t.identifier(`x${match.p1 - composes}`))
+        }
+        if (match.type === ATTR) {
+          const placeholderRegex = /xxx(\S)xxx/gm
+          const propNameMatch = placeholderRegex.exec(match.propName)
+          let propName = t.identifier(match.propName)
+          if (propNameMatch) {
+            const varsIndex = propNameMatch[1] - composes
+            propName = vars[varsIndex]
+          }
+
+          const valueTypeMatch = placeholderRegex.exec(match.valueType)
+          let valueType = t.stringLiteral(match.valueType || '')
+          if (valueTypeMatch) {
+            const varsIndex = valueTypeMatch[1] - composes
+            valueType = vars[varsIndex]
+          }
+
+          const defaultValueMatch = placeholderRegex.exec(match.defaultValue)
+          let defaultValue = t.stringLiteral(match.defaultValue || '')
+          if (defaultValueMatch) {
+            const varsIndex = defaultValueMatch[1] - composes
+            defaultValue = vars[varsIndex]
+          }
+
+          let createMemberExpression = () =>
+            t.memberExpression(t.identifier('props'), propName, !!propNameMatch)
+
+          let returnValue = createMemberExpression()
+
+          if (match.valueType) {
+            returnValue = t.binaryExpression(
+              '+',
+              createMemberExpression(),
+              valueType
+            )
+          }
+
+          if (match.defaultValue) {
+            returnValue = t.binaryExpression(
+              '+',
+              t.conditionalExpression(
+                createMemberExpression(),
+                createMemberExpression(),
+                defaultValue
+              ),
+              valueType
+            )
+          }
+
+          const body = t.blockStatement([t.returnStatement(returnValue)])
+
+          const expr = t.functionExpression(
+            t.identifier(
+              `get${propNameMatch ? 'Prop' : match.propName.charAt(0).toUpperCase() + match.propName.slice(1)}`
+            ),
+            [t.identifier('props')],
+            body
+          )
+          vars.push(expr)
+          expressions.push(t.identifier(`x${vars.length - 1}`))
+        }
+
+        if (i === matches.length - 1 && cursor <= rule.length) {
+          const postMatch = rule.substring(cursor)
+
+          quasis.push(
+            t.templateElement(
+              {
+                raw: postMatch,
+                cooked: postMatch
+              },
+              true
+            )
+          )
+        }
+
+        return accum
+      },
+      [[], []]
+    )
+
+    if (!matches.length) {
+      return t.templateLiteral(
+        [t.templateElement({ raw: rule, cooked: rule }, true)],
+        []
+      )
+    }
+    return t.templateLiteral(quasis, expressions)
+  })
 }
 
 function parseDynamicValues (rules, t, inputExpressions, composes = 0) {
@@ -135,10 +260,8 @@ export default function (babel) {
           parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 
         function buildCallExpression (identifier, tag, path) {
-          const built = findAndReplaceAttrs(path, t)
-
           let { hash, rules, name, hasOtherMatch, composes } = inline(
-            built,
+            path.node.quasi,
             identifierName,
             'css',
             state.inline
@@ -152,26 +275,28 @@ export default function (babel) {
           for (var i = 0; i < composes; i++) {
             inputClasses.push(path.node.quasi.expressions.shift())
           }
+
+          const vars = path.node.quasi.expressions
+
+          const dynamicValues = parseStyledDynamicValues(
+            rules,
+            t,
+            composes,
+            vars
+          )
           const args = [
             tag,
             t.arrayExpression(inputClasses),
-            t.arrayExpression(built.expressions)
+            t.arrayExpression(vars)
           ]
           if (!hasOtherMatch && !state.inline) {
             state.insertStaticRules(rules)
           } else {
-            const expressions = built.expressions.map((x, i) =>
-              t.identifier(`x${i}`)
-            )
             const inlineContentExpr = t.functionExpression(
               t.identifier('createEmotionStyledRules'),
-              expressions,
+              vars.map((x, i) => t.identifier(`x${i}`)),
               t.blockStatement([
-                t.returnStatement(
-                  t.arrayExpression(
-                    parseDynamicValues(rules, t, expressions, composes)
-                  )
-                )
+                t.returnStatement(t.arrayExpression(dynamicValues))
               ])
             )
             args.push(inlineContentExpr)
