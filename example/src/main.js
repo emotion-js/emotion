@@ -126,7 +126,7 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('../../docs/components-as-selectors.md')} />
+          <Markdown markdown={require('../../docs/styling-any-component.md')} />
           <Playground
             maxHeight={220}
             noRender={false}
