@@ -126,21 +126,6 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('../../docs/styling-any-component.md')} />
-          <Playground
-            maxHeight={220}
-            noRender={false}
-            codeText={anyComponentExample}
-            scope={{
-              avatarUrl,
-              React,
-              css,
-              keyframes,
-              styled,
-              render
-            }}
-          />
-
           <Markdown markdown={require('../../docs/pseudo.md')} />
           <Playground
             maxHeight={220}
@@ -164,6 +149,21 @@ class App extends React.Component {
             scope={{
               avatarUrl,
               React,
+              styled,
+              render
+            }}
+          />
+
+          <Markdown markdown={require('../../docs/styling-any-component.md')}/>
+          <Playground
+            maxHeight={220}
+            noRender={false}
+            codeText={anyComponentExample}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              keyframes,
               styled,
               render
             }}
