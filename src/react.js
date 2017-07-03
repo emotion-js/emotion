@@ -9,9 +9,10 @@ export default function (tag, cls, vars = [], content) {
   }
 
   function Styled (props) {
+    const getValue = v => (v && typeof v === 'function' ? v.cls || v(props) : v)
     const className = css(
       cls,
-      vars.map(v => (v && typeof v === 'function' ? v.cls || v(props) : v)),
+      vars.map(getValue),
       content
     )
 
