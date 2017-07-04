@@ -1,8 +1,8 @@
 const Avatar = styled('img')`
-    name: bob-ross-avatar;
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
+  name: bob-ross-avatar;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
 `
 
 render(<Avatar src={avatarUrl} />, mountNode)

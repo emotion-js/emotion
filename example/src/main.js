@@ -256,6 +256,21 @@ class App extends React.Component {
               render
             }}
           />
+
+          <Markdown markdown={require('../../docs/named.md')}/>
+          <Playground
+            maxHeight={220}
+            noRender={false}
+            codeText={namedExample}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              keyframes,
+              styled,
+              render
+            }}
+          />
         </div>
 
       </PlaygroundWrapper>
