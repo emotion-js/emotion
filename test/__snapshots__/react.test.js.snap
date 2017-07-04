@@ -91,6 +91,27 @@ exports[`styled composes 1`] = `
 </h1>
 `;
 
+exports[`styled composes with objects 1`] = `
+.css-cssB-ob3sm8-fwh0v {
+  height: 64px;
+}
+
+.css-H2-idm3bz-361gww {
+  font-size: 32px;
+}
+
+.css-H1-zejj71-1ym7xv {
+  font-size: 3.157334518321em;
+}
+
+<h1
+  className="css-H1-zejj71-1ym7xv css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 [object Object] css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
 exports[`styled composition 1`] = `
 .css-H2-vxb7tq-1gn1gp5 {
   font-size: 13.333333333333334;

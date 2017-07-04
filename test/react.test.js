@@ -5,6 +5,8 @@ import { matcher, serializer } from '../jest-utils'
 import { css } from '../src/index'
 import styled from '../src/react'
 
+import { lighten, hiDPI, modularScale, borderWidth } from 'polished'
+
 expect.addSnapshotSerializer(serializer)
 expect.extend(matcher)
 
@@ -139,6 +141,38 @@ describe('styled', () => {
     const H1 = styled('h1')`
       composes: ${cssB}
       font-size: ${fontSize};
+    `
+
+    const H2 = styled(H1)`font-size:32px;`
+
+    const tree = renderer
+      .create(
+        <H2 scale={2} className={'legacy__class'}>
+          hello world
+        </H2>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
+  test('composes with objects', () => {
+    const cssA = {
+      color: lighten(0.2, '#000'),
+      "font-size": modularScale(1),
+      [hiDPI(1.5)]: {
+        "font-size": modularScale(1.25)
+      }
+    }
+
+    const cssB = css`
+      composes: ${cssA}
+      height: 64px;
+    `
+
+    const H1 = styled('h1')`
+      composes: ${cssB}
+      font-size: ${modularScale(4)};
     `
 
     const H2 = styled(H1)`font-size:32px;`
