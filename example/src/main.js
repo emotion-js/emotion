@@ -228,6 +228,21 @@ class App extends React.Component {
             }}
           />
 
+          <Markdown markdown={require('../../docs/objects.md')}/>
+          <Playground
+            maxHeight={180}
+            noRender={false}
+            codeText={require('./blocks/objects.example')}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              keyframes,
+              styled,
+              render
+            }}
+          />
+
           <Markdown markdown={require('../../docs/css-prop.md')}/>
           <Playground
             maxHeight={180}

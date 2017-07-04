@@ -48,6 +48,7 @@
     "jest-emotion-react": "^0.0.2",
     "jest-glamor-react": "^1.4.0",
     "npm-run-all": "^4.0.2",
+    "polished": "^1.2.1",
     "prettier-eslint-cli": "^4.0.3",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
