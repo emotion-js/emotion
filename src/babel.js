@@ -90,31 +90,55 @@ function parseStyledDynamicValues (rules, t, composes = 0, vars) {
   })
 }
 
-function parseDynamicValues (rules, t, inputExpressions, composes = 0) {
+function parseDynamicValues (rules, t, options) {
+  if (options.composes === undefined) options.composes = 0
   return rules.map(rule => {
-    const re = /xxx(\S)xxx/gm
-
-    let varMatch
-    let matches = []
-
-    while ((varMatch = re.exec(rule)) !== null) {
-      matches.push({
-        value: varMatch[0],
-        p1: varMatch[1],
-        index: varMatch.index
-      })
+    const re = /xxx(\S)xxx|attr\(([^,\s)]+)(?:\s*([^,)]*)?)(?:,\s*(\S+))?\)/gm
+    const VAR = 'VAR'
+    const ATTR = 'ATTR'
+    let match
+    const matches = []
+    while ((match = re.exec(rule)) !== null) {
+      if (match[1]) {
+        matches.push({
+          value: match[0],
+          p1: match[1],
+          index: match.index,
+          type: VAR
+        })
+      } else {
+        matches.push({
+          value: match[0],
+          propName: match[2],
+          valueType: match[3],
+          defaultValue: match[4],
+          index: match.index,
+          type: ATTR
+        })
+      }
     }
 
     let cursor = 0
     const [quasis, expressions] = matches.reduce(
-      (accum, { value, p1, index }, i) => {
+      (accum, match, i) => {
         const [quasis, expressions] = accum
-        const preMatch = rule.substring(cursor, index)
-        cursor = cursor + preMatch.length + value.length
+        const preMatch = rule.substring(cursor, match.index)
+        cursor = cursor + preMatch.length + match.value.length
         if (preMatch) {
           quasis.push(t.templateElement({ raw: preMatch, cooked: preMatch }))
         }
-        expressions.push(inputExpressions[p1 - composes])
+        if (match.type === VAR) {
+          if (options.inputExpressions) {
+            expressions.push(options.inputExpressions[match.p1 - options.composes])
+          } else {
+            expressions.push(t.identifier(`x${match.p1 - options.composes}`))
+          }
+        }
+        if (match.type === ATTR) {
+          const expr = createAttrExpression(match, options.vars, options.composes, t)
+          options.vars.push(expr)
+          expressions.push(t.identifier(`x${options.vars.length - 1}`))
+        }
 
         if (i === matches.length - 1 && cursor <= rule.length) {
           const postMatch = rule.substring(cursor)
@@ -224,11 +248,10 @@ export default function (babel) {
 
           const vars = path.node.quasi.expressions
 
-          const dynamicValues = parseStyledDynamicValues(
+          const dynamicValues = parseDynamicValues(
             rules,
             t,
-            composes,
-            vars
+            { composes, vars }
           )
           const args = [
             tag,
@@ -315,7 +338,7 @@ export default function (babel) {
                 t.blockStatement([
                   t.returnStatement(
                     t.arrayExpression(
-                      parseDynamicValues(rules, t, expressions, composes)
+                      parseDynamicValues(rules, t, { inputExpressions: expressions, composes })
                     )
                   )
                 ])
@@ -346,7 +369,7 @@ export default function (babel) {
               t.callExpression(t.identifier('keyframes'), [
                 t.stringLiteral(animationName),
                 t.arrayExpression(
-                  parseDynamicValues(rules, t, path.node.quasi.expressions)
+                  parseDynamicValues(rules, t, { inputExpressions: path.node.quasi.expressions })
                 )
               ])
             )
@@ -370,7 +393,7 @@ export default function (babel) {
             path.replaceWith(
               t.callExpression(t.identifier('fontFace'), [
                 t.arrayExpression(
-                  parseDynamicValues(rules, t, path.node.quasi.expressions)
+                  parseDynamicValues(rules, t, {inputExpressions: path.node.quasi.expressions})
                 )
               ])
             )
@@ -392,7 +415,7 @@ export default function (babel) {
             path.replaceWith(
               t.callExpression(t.identifier('injectGlobal'), [
                 t.arrayExpression(
-                  parseDynamicValues(rules, t, path.node.quasi.expressions)
+                  parseDynamicValues(rules, t, {inputExpressions: path.node.quasi.expressions})
                 )
               ])
             )
