@@ -46,10 +46,15 @@ exports[`babel styled component extract no dynamic 2`] = `".css-14ksm7b { color:
 exports[`babel styled component extract no use 1`] = `"\\"h1\\";"`;
 
 exports[`babel styled component inline attr 1`] = `
-"styled('input', ['css-yj7w7r'], [props => props.height * props.scale, flex, function getMargin);(props) {
-       return props.margin); + (props => props.height * props.scale);
-}], function createEmotionStyledRules(x0, x1, x2) {
+"styled('input', ['css-yj7w7r'], [props => props.height * props.scale, flex, function getMargin(props) {
+       return props.margin;
+}, function getWidth(props) {
+       return props.width;
+}], function createEmotionStyledRules(x0, x1, x2, x3) {
        return [\`.css-yj7w7r { margin: \${x2};
+       color: #ffffff;
+       height: \${x0};
+       width: \${x3};
        color: blue;
        display: \${x1}; }\`];
 });"

@@ -3,6 +3,7 @@ import { basename } from 'path'
 import { touchSync } from 'touch'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import cssProps from './css-prop'
+import createAttrExpression from './attrs'
 
 function joinExpressionsWithSpaces (expressions, t) {
   const quasis = [t.templateElement({ cooked: '', raw: '' }, true)]
@@ -17,7 +18,7 @@ function joinExpressionsWithSpaces (expressions, t) {
 
 function parseStyledDynamicValues (rules, t, composes = 0, vars) {
   return rules.map(rule => {
-    const re = /xxx(\S)xxx|attr\(([^,\s]+)(?:\s*([^,]*)?)(?:,\s*(\S+))?\)/gm
+    const re = /xxx(\S)xxx|attr\(([^,\s)]+)(?:\s*([^,)]*)?)(?:,\s*(\S+))?\)/gm
     const VAR = 'VAR'
     const ATTR = 'ATTR'
     let match
@@ -55,62 +56,7 @@ function parseStyledDynamicValues (rules, t, composes = 0, vars) {
           expressions.push(t.identifier(`x${match.p1 - composes}`))
         }
         if (match.type === ATTR) {
-          const placeholderRegex = /xxx(\S)xxx/gm
-          const propNameMatch = placeholderRegex.exec(match.propName)
-          let propName = t.identifier(match.propName)
-          if (propNameMatch) {
-            const varsIndex = propNameMatch[1] - composes
-            propName = vars[varsIndex]
-          }
-
-          const valueTypeMatch = placeholderRegex.exec(match.valueType)
-          let valueType = t.stringLiteral(match.valueType || '')
-          if (valueTypeMatch) {
-            const varsIndex = valueTypeMatch[1] - composes
-            valueType = vars[varsIndex]
-          }
-
-          const defaultValueMatch = placeholderRegex.exec(match.defaultValue)
-          let defaultValue = t.stringLiteral(match.defaultValue || '')
-          if (defaultValueMatch) {
-            const varsIndex = defaultValueMatch[1] - composes
-            defaultValue = vars[varsIndex]
-          }
-
-          let createMemberExpression = () =>
-            t.memberExpression(t.identifier('props'), propName, !!propNameMatch)
-
-          let returnValue = createMemberExpression()
-
-          if (match.valueType) {
-            returnValue = t.binaryExpression(
-              '+',
-              createMemberExpression(),
-              valueType
-            )
-          }
-
-          if (match.defaultValue) {
-            returnValue = t.binaryExpression(
-              '+',
-              t.conditionalExpression(
-                createMemberExpression(),
-                createMemberExpression(),
-                defaultValue
-              ),
-              valueType
-            )
-          }
-
-          const body = t.blockStatement([t.returnStatement(returnValue)])
-
-          const expr = t.functionExpression(
-            t.identifier(
-              `get${propNameMatch ? 'Prop' : match.propName.charAt(0).toUpperCase() + match.propName.slice(1)}`
-            ),
-            [t.identifier('props')],
-            body
-          )
+          const expr = createAttrExpression(match, vars, composes, t)
           vars.push(expr)
           expressions.push(t.identifier(`x${vars.length - 1}`))
         }

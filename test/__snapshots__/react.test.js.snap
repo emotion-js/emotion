@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled attr 1`] = `
-.css-H1-15vt02v-1n5h3v0 {
+.css-H1-nt9mdf-vddukf {
   font-size: 48;
   margin: 4rem;
 }
 
 <h1
-  className="css-H1-15vt02v-1n5h3v0 css-H1-15vt02v"
+  className="css-H1-nt9mdf-vddukf css-H1-nt9mdf"
   fontSize={48}
 />
 `;
