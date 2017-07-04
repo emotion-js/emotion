@@ -100,12 +100,18 @@ exports[`styled composes with objects 1`] = `
   font-size: 32px;
 }
 
-.css-bze8n2 {
+.css-1olphq9 {
   color: #333;
+  font-size: 1.333em;
 }
 
-.css-1k70sjc {
-  font-size: 1.333em;
+.css-1olphq9 
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 1.5/1),
+only screen and (min-resolution: 144dpi),
+only screen and (min-resolution: 1.5dppx) {
+  font-size: 1.4323121856191332em;
 }
 
 .css-H1-zejj71-1ym7xv {
@@ -113,7 +119,7 @@ exports[`styled composes with objects 1`] = `
 }
 
 <h1
-  className="css-H1-zejj71-1ym7xv css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-bze8n2 css-1k70sjc css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
+  className="css-H1-zejj71-1ym7xv css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-1olphq9 css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
   scale={2}
 >
   hello world

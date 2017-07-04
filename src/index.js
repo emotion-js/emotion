@@ -1,6 +1,6 @@
 // @flow
 import { StyleSheet } from './sheet'
-import { hashArray, hashString } from './hash'
+import { hashArray, hashObject } from './hash'
 
 export const sheet = new StyleSheet()
 sheet.inject()
@@ -34,7 +34,7 @@ export function flush () {
 
 export function css (classes: string[], vars: vars, content: () => string[]) {
   if (!Array.isArray(classes)) {
-    return objStyle(classes)
+    classes = [classes]
   }
 
   const computedClassName = classes
@@ -97,60 +97,68 @@ export function hydrate (ids: string[]) {
   ids.forEach(id => (inserted[id] = true))
 }
 
-// ported from cxs-lite
-// https://github.com/jxnblk/cxs/blob/master/src/lite/index.js
+// ported from cxs-monolithic and glamor
+// https://github.com/jxnblk/cxs/blob/master/src/monolithic/index.js
 export function objStyle (style: { [string]: any }) {
-  return deconstruct(style)
+  const hash = hashObject(style)
+  const className = `css-${hash}`
+  const selector = '.' + className
+
+  if (inserted[hash]) return className
+
+  const rules = deconstruct(selector, style)
+  rules.forEach(rule => sheet.insert(rule))
+
+  inserted[hash] = true
+
+  return className
 }
 
-function deconstruct (obj, media, pseudo = '') {
-  let className = ''
+function deconstruct (selector, styles, media) {
+  const decs = []
+  const rules = []
 
-  for (let key in obj) {
-    const value = obj[key]
+  for (let key in styles) {
+    const value = styles[key]
     const type = typeof value
 
-    if (type === 'string' || type === 'number') {
-      className += ' ' + createStyle(key, value, media, pseudo)
+    if (type === 'number' || type === 'string') {
+      decs.push(createDec(key, value))
       continue
-    }
-
-    if (key.charAt(0) === ':') {
-      className += ' ' + deconstruct(value, media, pseudo + key)
+    } else if (Array.isArray(value)) {
+      value.forEach(val => {
+        decs.push(createDec(key, val))
+      })
       continue
-    }
-
-    if (key.charAt(0) === '@') {
-      className += ' ' + deconstruct(value, key, pseudo)
+    } else if (/^:/.test(key)) {
+      deconstruct(selector + key, value, media).forEach(r => rules.push(r))
       continue
-    }
-
-    if (Array.isArray(value)) {
-      for (let i = 0; i < value.length; i++) {
-        className += ' ' + createStyle(key, value[i], media, pseudo)
-      }
+    } else if (/^@media/.test(key)) {
+      deconstruct(selector, value, key).forEach(r => rules.push(r))
+      continue
+    } else {
+      deconstruct(selector + ' ' + key, value, media).forEach(r =>
+        rules.push(r)
+      )
       continue
     }
   }
 
-  return className.trim()
+  rules.unshift(createRule(selector, decs, media))
+
+  return rules
 }
 
-function createStyle (key, value, media, pseudo = ''): string {
-  const hash = hashString(key + value + (media || '') + pseudo).toString(36)
-  if (inserted[hash]) return `css-${hash}`
-
-  const className = `css-${hash}`
-  const selector = '.' + className + pseudo
-
+function createDec (key, value) {
   const prop = hyphenate(key)
   const val = addPx(key, value)
+  return prop + ':' + val
+}
 
-  const rule = selector + '{' + prop + ':' + val + '}'
-  sheet.insert(media ? media + '{' + rule + '}' : rule)
-  inserted[hash] = true
-
-  return className
+function createRule (selector, decs, media) {
+  const rule = `${selector}{${decs.join(';')}}`
+  const css = media ? `${media}{${rule}}` : rule
+  return css
 }
 
 function hyphenate (str) {
