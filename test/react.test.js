@@ -42,6 +42,7 @@ describe('styled', () => {
     const H1 = styled.h1`
       font-size: attr(fontSize);
       margin: attr(margin rem, 4);
+      position: attr(position, absolute);
     `
 
     const Title = ({ title }) => {
