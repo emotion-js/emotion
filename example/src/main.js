@@ -170,21 +170,6 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('../../docs/named.md')}/>
-          <Playground
-            maxHeight={220}
-            noRender={false}
-            codeText={namedExample}
-            scope={{
-              avatarUrl,
-              React,
-              css,
-              keyframes,
-              styled,
-              render
-            }}
-          />
-
           <Markdown markdown={require('../../docs/props.md')} />
           <Playground
             noRender={false}

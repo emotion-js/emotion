@@ -1,4 +1,4 @@
-## Debugging With Named Selectors
+## Debugging With the Name Property
 
 You can add a `name` property to your styles and emotion will attach it to the generated class name.
 
