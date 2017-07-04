@@ -156,7 +156,7 @@ export default function (babel) {
           parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 
         function buildCallExpression (identifier, tag, path) {
-          let { hash, rules, name, hasOtherMatch, composes } = inline(
+          let { hash, rules, name, hasOtherMatch, composes, hasCssFunction } = inline(
             path.node.quasi,
             identifierName,
             'css',
@@ -184,7 +184,7 @@ export default function (babel) {
             t.arrayExpression(inputClasses),
             t.arrayExpression(vars)
           ]
-          if (!hasOtherMatch && !state.inline) {
+          if (!hasOtherMatch && !state.inline && !hasCssFunction) {
             state.insertStaticRules(rules)
           } else {
             const inlineContentExpr = t.functionExpression(
