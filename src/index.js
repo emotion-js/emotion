@@ -33,22 +33,6 @@ export function flush () {
 }
 
 export function css (classes: string[], vars: vars, content: () => string[]) {
-  if (content) {
-    // inline mode
-    let src = content(...vars) // returns an array
-    let hash = hashArray(src)
-
-    if (!inserted[hash]) {
-      inserted[hash] = true
-      src
-        .map(r =>
-          r.replace(new RegExp(classes[0], 'gm'), `${classes[0]}-${hash}`)
-        )
-        .forEach(r => sheet.insert(r))
-    }
-    return `${classes[0]}-${hash} ${classes.join(' ')}`
-  }
-
   if (!Array.isArray(classes)) {
     return objStyle(classes)
   }
@@ -64,6 +48,22 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
       return out
     }, '')
     .trim()
+
+  if (content) {
+    // inline mode
+    let src = content(...vars) // returns an array
+    let hash = hashArray(src)
+
+    if (!inserted[hash]) {
+      inserted[hash] = true
+      src
+        .map(r =>
+          r.replace(new RegExp(classes[0], 'gm'), `${classes[0]}-${hash}`)
+        )
+        .forEach(r => sheet.insert(r))
+    }
+    return `${classes[0]}-${hash} ${computedClassName}`
+  }
 
   return (
     computedClassName +
