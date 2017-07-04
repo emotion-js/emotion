@@ -46,62 +46,73 @@ exports[`babel styled component extract no dynamic 2`] = `".css-14ksm7b { color:
 exports[`babel styled component extract no use 1`] = `"\\"h1\\";"`;
 
 exports[`babel styled component inline attr 1`] = `
-"styled('input', ['css-14vghnb'], [function getMargin(props) {
+"styled('input', ['css-yj7w7r'], [props => props.height * props.scale, flex, function getMargin(props) {
        return props.margin;
-}, props => props.height * props.scale, function getWidth(props) {
+}, function getWidth(props) {
        return props.width;
-}, flex], function createEmotionStyledRules(x0, x1, x2, x3) {
-       return [\`.css-14vghnb { margin: \${x0};
+}], function createEmotionStyledRules(x0, x1, x2, x3) {
+       return [\`.css-yj7w7r { margin: \${x2};
        color: #ffffff;
-       height: \${x1};
-       width: \${x2};
+       height: \${x0};
+       width: \${x3};
        color: blue;
-       display: \${x3}; }\`];
+       display: \${x1}; }\`];
 });"
 `;
 
 exports[`babel styled component inline attr kitchen sink 1`] = `
-"styled('input', ['css-1lqib20'], [function getMargin(props) {
-        return props.margin ? props.margin : ('16' + 'px');
+"styled('input', ['css-y6q35k'], [alignItemsUnit, defaultValue, thing, function getMargin(props) {
+        return (props.margin ? props.margin : '16') + 'px';
 }, function getPadding(props) {
-        return props.padding ? props.padding : ('16' + 'em');
+        return (props.padding ? props.padding : '16') + 'em';
+}, function getFontSize(props) {
+        return (props.fontSize ? props.fontSize : '8') + 'ch';
 }, function getWidth(props) {
-        return props.width ? props.width : ('95' + '%');
+        return (props.width ? props.width : '95') + '%';
 }, function getHeight(props) {
-        return props.height ? props.height : ('90' + 'vw');
+        return (props.height ? props.height : '90') + 'vw';
 }, function getDisplay(props) {
-        return props.display ? props.display : ('flex' + '');
-}], function createEmotionStyledRules(x0, x1, x2, x3, x4) {
-        return [\`.css-1lqib20 { margin: \${x0};
-        padding: \${x1};
-        font-size: attr(fontSize ch, 8);
-        width: \${x2};
-        height: \${x3};
-        display: \${x4}; }\`];
+        return (props.display ? props.display : 'flex') + '';
+}, function getAlignItems(props) {
+        return (props.alignItems ? props.alignItems : 'fallback') + alignItemsUnit;
+}, function getThing(props) {
+        return (props.thing ? props.thing : defaultValue) + 'px';
+}, function getProp(props) {
+        return props[thing] + 'px';
+}], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11) {
+        return [\`.css-y6q35k { margin: \${x3};
+        padding: \${x4};
+        font-size: \${x5};
+        width: \${x6};
+        height: \${x7};
+        display: \${x8};
+        position: \${x9};
+        position: \${x10};
+        position: \${x11}; }\`];
 });"
 `;
 
 exports[`babel styled component inline attr with default value 1`] = `
-"styled('input', ['css-1luxokk'], [function getMargin(props) {
-        return props.margin ? props.margin : ('16' + '');
+"styled('input', ['css-fj5c3o'], [function getMargin(props) {
+        return (props.margin ? props.margin : '16') + '';
 }], function createEmotionStyledRules(x0) {
-        return [\`.css-1luxokk { margin: \${x0}; }\`];
+        return [\`.css-fj5c3o { margin: \${x0}; }\`];
 });"
 `;
 
 exports[`babel styled component inline attr with value type 1`] = `
-"styled('input', ['css-1luxokk'], [function getMargin(props) {
+"styled('input', ['css-3jy6co'], [function getMargin(props) {
         return props.margin + 'px';
 }], function createEmotionStyledRules(x0) {
-        return [\`.css-1luxokk { margin: \${x0}; }\`];
+        return [\`.css-3jy6co { margin: \${x0}; }\`];
 });"
 `;
 
 exports[`babel styled component inline attr with value type and default value 1`] = `
-"styled('input', ['css-1luxokk'], [function getMargin(props) {
-        return props.margin ? props.margin : ('16' + 'px');
+"styled('input', ['css-vb5gjx'], [function getMargin(props) {
+        return (props.margin ? props.margin : '16') + 'px';
 }], function createEmotionStyledRules(x0) {
-        return [\`.css-1luxokk { margin: \${x0}; }\`];
+        return [\`.css-vb5gjx { margin: \${x0}; }\`];
 });"
 `;
 
@@ -118,12 +129,12 @@ exports[`babel styled component inline function call 1`] = `
 `;
 
 exports[`babel styled component inline match works on multiple 1`] = `
-"styled('input', ['css-1j6h68f'], [function getMargin(props) {
-        return props.margin ? props.margin : ('16' + 'px');
+"styled('input', ['css-1vvfgof'], [function getMargin(props) {
+        return (props.margin ? props.margin : '16') + 'px';
 }, function getPadding(props) {
-        return props.padding ? props.padding : ('16' + 'em');
+        return (props.padding ? props.padding : '16') + 'em';
 }], function createEmotionStyledRules(x0, x1) {
-        return [\`.css-1j6h68f { margin: \${x0};
+        return [\`.css-1vvfgof { margin: \${x0};
         color: blue;
         padding: \${x1}; }\`];
 });"

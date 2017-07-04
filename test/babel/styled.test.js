@@ -134,6 +134,9 @@ describe('babel styled component', () => {
         width: attr(width %, 95);
         height: attr(height vw, 90);
         display: attr(display, flex);
+        position: attr(alignItems \${alignItemsUnit}, fallback);
+        position: attr(thing px, \${defaultValue});
+        position: attr(\${thing} px);
       \``
       const { code } = babel.transform(basic, {
         plugins: [plugin]
