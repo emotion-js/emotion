@@ -2,8 +2,8 @@ import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
-import findAndReplaceAttrs from './attrs'
 import cssProps from './css-prop'
+import createAttrExpression from './attrs'
 
 function joinExpressionsWithSpaces (expressions, t) {
   const quasis = [t.templateElement({ cooked: '', raw: '' }, true)]
@@ -13,37 +13,58 @@ function joinExpressionsWithSpaces (expressions, t) {
     }
     quasis.push(t.templateElement({ cooked: ' ', raw: ' ' }, true))
   })
-  return t.templateLiteral(
-    quasis,
-    expressions
-  )
+  return t.templateLiteral(quasis, expressions)
 }
 
-function parseDynamicValues (rules, t, inputExpressions, composes = 0) {
+function parseDynamicValues (rules, t, options) {
+  if (options.composes === undefined) options.composes = 0
   return rules.map(rule => {
-    const re = /xxx(\S)xxx/gm
-
-    let varMatch
-    let matches = []
-
-    while ((varMatch = re.exec(rule)) !== null) {
-      matches.push({
-        value: varMatch[0],
-        p1: varMatch[1],
-        index: varMatch.index
-      })
+    const re = /xxx(\S)xxx|attr\(([^,\s)]+)(?:\s*([^,)]*)?)(?:,\s*(\S+))?\)/gm
+    const VAR = 'VAR'
+    const ATTR = 'ATTR'
+    let match
+    const matches = []
+    while ((match = re.exec(rule)) !== null) {
+      if (match[1]) {
+        matches.push({
+          value: match[0],
+          p1: match[1],
+          index: match.index,
+          type: VAR
+        })
+      } else {
+        matches.push({
+          value: match[0],
+          propName: match[2],
+          valueType: match[3],
+          defaultValue: match[4],
+          index: match.index,
+          type: ATTR
+        })
+      }
     }
 
     let cursor = 0
     const [quasis, expressions] = matches.reduce(
-      (accum, { value, p1, index }, i) => {
+      (accum, match, i) => {
         const [quasis, expressions] = accum
-        const preMatch = rule.substring(cursor, index)
-        cursor = cursor + preMatch.length + value.length
+        const preMatch = rule.substring(cursor, match.index)
+        cursor = cursor + preMatch.length + match.value.length
         if (preMatch) {
           quasis.push(t.templateElement({ raw: preMatch, cooked: preMatch }))
         }
-        expressions.push(inputExpressions[p1 - composes])
+        if (match.type === VAR) {
+          if (options.inputExpressions) {
+            expressions.push(options.inputExpressions[match.p1 - options.composes])
+          } else {
+            expressions.push(t.identifier(`x${match.p1 - options.composes}`))
+          }
+        }
+        if (match.type === ATTR) {
+          const expr = createAttrExpression(match, options.vars, options.composes, t)
+          options.vars.push(expr)
+          expressions.push(t.identifier(`x${options.vars.length - 1}`))
+        }
 
         if (i === matches.length - 1 && cursor <= rule.length) {
           const postMatch = rule.substring(cursor)
@@ -135,10 +156,8 @@ export default function (babel) {
           parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 
         function buildCallExpression (identifier, tag, path) {
-          const built = findAndReplaceAttrs(path, t)
-
           let { hash, rules, name, hasOtherMatch, composes } = inline(
-            built,
+            path.node.quasi,
             identifierName,
             'css',
             state.inline
@@ -152,26 +171,27 @@ export default function (babel) {
           for (var i = 0; i < composes; i++) {
             inputClasses.push(path.node.quasi.expressions.shift())
           }
+
+          const vars = path.node.quasi.expressions
+
+          const dynamicValues = parseDynamicValues(
+            rules,
+            t,
+            { composes, vars }
+          )
           const args = [
             tag,
             t.arrayExpression(inputClasses),
-            t.arrayExpression(built.expressions)
+            t.arrayExpression(vars)
           ]
           if (!hasOtherMatch && !state.inline) {
             state.insertStaticRules(rules)
           } else {
-            const expressions = built.expressions.map((x, i) =>
-              t.identifier(`x${i}`)
-            )
             const inlineContentExpr = t.functionExpression(
               t.identifier('createEmotionStyledRules'),
-              expressions,
+              vars.map((x, i) => t.identifier(`x${i}`)),
               t.blockStatement([
-                t.returnStatement(
-                  t.arrayExpression(
-                    parseDynamicValues(rules, t, expressions, composes)
-                  )
-                )
+                t.returnStatement(t.arrayExpression(dynamicValues))
               ])
             )
             args.push(inlineContentExpr)
@@ -244,7 +264,7 @@ export default function (babel) {
                 t.blockStatement([
                   t.returnStatement(
                     t.arrayExpression(
-                      parseDynamicValues(rules, t, expressions, composes)
+                      parseDynamicValues(rules, t, { inputExpressions: expressions, composes })
                     )
                   )
                 ])
@@ -275,7 +295,7 @@ export default function (babel) {
               t.callExpression(t.identifier('keyframes'), [
                 t.stringLiteral(animationName),
                 t.arrayExpression(
-                  parseDynamicValues(rules, t, path.node.quasi.expressions)
+                  parseDynamicValues(rules, t, { inputExpressions: path.node.quasi.expressions })
                 )
               ])
             )
@@ -299,7 +319,7 @@ export default function (babel) {
             path.replaceWith(
               t.callExpression(t.identifier('fontFace'), [
                 t.arrayExpression(
-                  parseDynamicValues(rules, t, path.node.quasi.expressions)
+                  parseDynamicValues(rules, t, {inputExpressions: path.node.quasi.expressions})
                 )
               ])
             )
@@ -321,7 +341,7 @@ export default function (babel) {
             path.replaceWith(
               t.callExpression(t.identifier('injectGlobal'), [
                 t.arrayExpression(
-                  parseDynamicValues(rules, t, path.node.quasi.expressions)
+                  parseDynamicValues(rules, t, {inputExpressions: path.node.quasi.expressions})
                 )
               ])
             )

@@ -453,7 +453,7 @@ const H1 = styled.h1`
   font-size: attr(fontSize px);
   margin: attr(margin rem, 4);
   font-family: sans-serif;
-  color: ${colors.pink[5]};
+  color: attr(color, ${colors.pink[5]});
   @media (min-width: 680px) {
     color: attr(desktopColor);
   }
@@ -467,7 +467,3 @@ const Title = ({ title, scale }) => {
   )
 }
 ```
-
-##### Supported value types 
-`em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|%`
-

@@ -12,17 +12,17 @@ Object {
     -ms-flex-pack: center;
     -webkit-box-pack: center;
     justify-content: center;
-  }.css-Main-17vxl0k-1g2c78b { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-Image-z4ry8g-1qx25bk { border-radius: 50%;
-  height: 30;
-  width: 30;
-  background-color: red }.css-Image-z4ry8g-141jzk4 { border-radius: 50%;
-  height: 100;
-  width: 100;
-  background-color: red }.css-Image-z4ry8g-jpu7qc { border-radius: 50%;
-  height: 50pxpx;
-  width: 50pxpx;
+  }.css-Main-17vxl0k-1g2c78b { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-Image-1d2rnu3-1tqe2cj { border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: red }.css-Image-1d2rnu3-1rejdxz { border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  background-color: red }.css-Image-1d2rnu3-1d9ph5s { border-radius: 50%;
+  height: 50px;
+  width: 50px;
   background-color: red }",
-  "html": "<main class=\\"css-Main-17vxl0k-1g2c78b css-Main-17vxl0k\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"-987402706\\"><img size=\\"30\\" class=\\"css-Image-z4ry8g-1qx25bk css-Image-z4ry8g\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-z4ry8g-141jzk4 css-Image-z4ry8g\\" data-reactid=\\"3\\"/><img class=\\"css-Image-z4ry8g-jpu7qc css-Image-z4ry8g\\" data-reactid=\\"4\\"/></main>",
+  "html": "<main class=\\"css-Main-17vxl0k-1g2c78b css-Main-17vxl0k\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"-2053673081\\"><img size=\\"30\\" class=\\"css-Image-1d2rnu3-1tqe2cj css-Image-1d2rnu3\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-1d2rnu3-1rejdxz css-Image-1d2rnu3\\" data-reactid=\\"3\\"/><img class=\\"css-Image-1d2rnu3-1d9ph5s css-Image-1d2rnu3\\" data-reactid=\\"4\\"/></main>",
   "ids": Array [],
   "rules": Array [
     Object {
@@ -42,21 +42,21 @@ Object {
       "cssText": ".css-Main-17vxl0k-1g2c78b { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }",
     },
     Object {
-      "cssText": ".css-Image-z4ry8g-1qx25bk { border-radius: 50%;
-  height: 30;
-  width: 30;
+      "cssText": ".css-Image-1d2rnu3-1tqe2cj { border-radius: 50%;
+  height: 30px;
+  width: 30px;
   background-color: red }",
     },
     Object {
-      "cssText": ".css-Image-z4ry8g-141jzk4 { border-radius: 50%;
-  height: 100;
-  width: 100;
+      "cssText": ".css-Image-1d2rnu3-1rejdxz { border-radius: 50%;
+  height: 100px;
+  width: 100px;
   background-color: red }",
     },
     Object {
-      "cssText": ".css-Image-z4ry8g-jpu7qc { border-radius: 50%;
-  height: 50pxpx;
-  width: 50pxpx;
+      "cssText": ".css-Image-1d2rnu3-1d9ph5s { border-radius: 50%;
+  height: 50px;
+  width: 50px;
   background-color: red }",
     },
   ],
