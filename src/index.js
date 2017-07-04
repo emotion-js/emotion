@@ -97,7 +97,7 @@ export function hydrate (ids: string[]) {
   ids.forEach(id => (inserted[id] = true))
 }
 
-// ported from cxs-monolithic and glamor
+// 🍩
 // https://github.com/jxnblk/cxs/blob/master/src/monolithic/index.js
 export function objStyle (style: { [string]: any }) {
   const hash = hashObject(style)
@@ -157,8 +157,7 @@ function createDec (key, value) {
 
 function createRule (selector, decs, media) {
   const rule = `${selector}{${decs.join(';')}}`
-  const css = media ? `${media}{${rule}}` : rule
-  return css
+  return media ? `${media}{${rule}}` : rule
 }
 
 function hyphenate (str) {

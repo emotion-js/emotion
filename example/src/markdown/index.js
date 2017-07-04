@@ -33,6 +33,11 @@ const Paragraph = styled('p')`
   padding: 2px;
   font-size: 0.85rem;
   color: ${colors.gray[8]};
+  
+  a {
+    font-size: 0.85rem;
+  }
+  
 `
 
 const Code = styled('code')`
@@ -61,6 +66,19 @@ export default ({ markdown }) => {
       <ReactMarkdown
         source={markdown}
         renderers={{
+          Heading: ({ children, level, ...rest }) => {
+            const tag = `h${level}`
+
+            if (Array.isArray(children)) {
+              if (typeof children[0] === 'string') {
+                rest.id = ('' + children[0].toLowerCase())
+                  .replace(/\s+/g, ' ')
+                  .replace(/\s/g, '-')
+              }
+            }
+
+            return React.createElement(tag, { children, ...rest })
+          },
           Link,
           Paragraph,
           Code,

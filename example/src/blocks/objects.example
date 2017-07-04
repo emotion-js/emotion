@@ -1,0 +1,21 @@
+const imageStyles = css({
+  width: 96,
+  height: 96
+})
+
+const prettyStyles = css([
+  {
+    borderRadius: '50%',
+    transition: 'transform 400ms ease-in-out',
+    ':hover': {
+      transform: 'scale(1.2)'
+    }
+  },
+  { border: '3px solid #8c81d8' }
+])
+
+const Avatar = styled('img')`
+  composes: ${prettyStyles} ${imageStyles};
+`
+
+render(<Avatar src={avatarUrl} />, mountNode)
