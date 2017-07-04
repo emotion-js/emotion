@@ -46,11 +46,12 @@ exports[`babel css extract composes with objects 1`] = `
 "import './css.test.emotion.css';
 
 const cls1 = css({ display: 'flex' });
-const cls2 = \`\${'css-cls2-krjd5b'} \${cls1}\`;"
+const cls2 = \`\${'css-cls2-k8jueb'} \${cls1}\`;"
 `;
 
 exports[`babel css extract composes with objects 2`] = `
-".css-cls2-krjd5b {
+".css-cls2-k8jueb {
+          height: 20;
           -webkit-justify-content: center;
           -ms-flex-pack: center;
           -webkit-box-pack: center;

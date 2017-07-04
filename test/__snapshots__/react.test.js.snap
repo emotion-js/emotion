@@ -100,12 +100,20 @@ exports[`styled composes with objects 1`] = `
   font-size: 32px;
 }
 
+.css-bze8n2 {
+  color: #333;
+}
+
+.css-1k70sjc {
+  font-size: 1.333em;
+}
+
 .css-H1-zejj71-1ym7xv {
   font-size: 3.157334518321em;
 }
 
 <h1
-  className="css-H1-zejj71-1ym7xv css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 [object Object] css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
+  className="css-H1-zejj71-1ym7xv css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-bze8n2 css-1k70sjc css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
   scale={2}
 >
   hello world
