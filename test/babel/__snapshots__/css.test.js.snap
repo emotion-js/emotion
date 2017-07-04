@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`babel css extract basic object support 1`] = `"css({ display: 'flex' });"`;
+
 exports[`babel css extract composes 1`] = `
 "import './css.test.emotion.css';
 
@@ -38,6 +40,21 @@ exports[`babel css extract composes no dynamic 2`] = `
           -ms-flex-align: center;
           -webkit-box-align: center;
           align-items: center }"
+`;
+
+exports[`babel css extract composes with objects 1`] = `
+"import './css.test.emotion.css';
+
+const cls1 = css({ display: 'flex' });
+const cls2 = \`\${'css-cls2-krjd5b'} \${cls1}\`;"
+`;
+
+exports[`babel css extract composes with objects 2`] = `
+".css-cls2-krjd5b {
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
+          -webkit-box-pack: center;
+          justify-content: center; }"
 `;
 
 exports[`babel css extract css basic 1`] = `
