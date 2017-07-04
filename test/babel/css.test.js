@@ -199,6 +199,7 @@ describe('babel css', () => {
         const cls1 = css({display: 'flex'})
         const cls2 = css\`
           composes: $\{cls1};
+          height: 20;
           justifyContent: center;
         \`
       `

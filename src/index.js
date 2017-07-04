@@ -53,15 +53,17 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
     return objStyle(classes)
   }
 
-  const computedClassName = classes.reduce((out: string, cls): string => {
-    if (typeof cls === 'string') {
-      out += ' ' + cls
-      return out
-    }
+  const computedClassName = classes
+    .reduce((out: string, cls): string => {
+      if (typeof cls === 'string') {
+        out += ' ' + cls
+        return out
+      }
 
-    out += ' ' + objStyle(cls)
-    return out
-  }, '').trim()
+      out += ' ' + objStyle(cls)
+      return out
+    }, '')
+    .trim()
 
   return (
     computedClassName +
@@ -140,7 +142,6 @@ function createStyle (key, value, media, pseudo = ''): string {
 
   const className = `css-${hash}`
   const selector = '.' + className + pseudo
-
 
   const prop = hyphenate(key)
   const val = addPx(key, value)
