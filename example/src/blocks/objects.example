@@ -18,4 +18,11 @@ const Avatar = styled('img')`
   composes: ${prettyStyles} ${imageStyles};
 `
 
-render(<Avatar src={avatarUrl} />, mountNode)
+const AvatarContainer = styled.div(imageStyles, {
+  borderRadius: 10,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
+}, (props) => ({ backgroundColor: props.backgroundColor }))
+
+render(<AvatarContainer backgroundColor="pink"><Avatar src={avatarUrl} /></AvatarContainer>, mountNode)

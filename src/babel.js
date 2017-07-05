@@ -55,13 +55,20 @@ function parseDynamicValues (rules, t, options) {
         }
         if (match.type === VAR) {
           if (options.inputExpressions) {
-            expressions.push(options.inputExpressions[match.p1 - options.composes])
+            expressions.push(
+              options.inputExpressions[match.p1 - options.composes]
+            )
           } else {
             expressions.push(t.identifier(`x${match.p1 - options.composes}`))
           }
         }
         if (match.type === ATTR) {
-          const expr = createAttrExpression(match, options.vars, options.composes, t)
+          const expr = createAttrExpression(
+            match,
+            options.vars,
+            options.composes,
+            t
+          )
           options.vars.push(expr)
           expressions.push(t.identifier(`x${options.vars.length - 1}`))
         }
@@ -139,6 +146,26 @@ export default function (babel) {
       JSXOpeningElement (path, state) {
         cssProps(path, t)
       },
+      CallExpression (path) {
+        if (
+          (t.isCallExpression(path.node.callee) &&
+            path.node.callee.callee.name === 'styled') ||
+          (t.isMemberExpression(path.node.callee) &&
+            t.isIdentifier(path.node.callee.object) &&
+            path.node.callee.object.name === 'styled')
+        ) {
+          const tag = t.isCallExpression(path.node.callee)
+            ? path.node.callee.arguments[0]
+            : t.stringLiteral(path.node.callee.property.name)
+          path.replaceWith(
+            t.callExpression(t.identifier('styled'), [
+              tag,
+              t.arrayExpression(path.node.arguments),
+              t.arrayExpression()
+            ])
+          )
+        }
+      },
       TaggedTemplateExpression (path, state) {
         // in:
         // styled.h1`color:${color};`
@@ -156,12 +183,14 @@ export default function (babel) {
           parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 
         function buildCallExpression (identifier, tag, path) {
-          let { hash, rules, name, hasOtherMatch, composes, hasCssFunction } = inline(
-            path.node.quasi,
-            identifierName,
-            'css',
-            state.inline
-          )
+          let {
+            hash,
+            rules,
+            name,
+            hasOtherMatch,
+            composes,
+            hasCssFunction
+          } = inline(path.node.quasi, identifierName, 'css', state.inline)
 
           // hash will be '0' when no styles are passed so we can just return the original tag
           if (hash === '0') {
@@ -174,11 +203,7 @@ export default function (babel) {
 
           const vars = path.node.quasi.expressions
 
-          const dynamicValues = parseDynamicValues(
-            rules,
-            t,
-            { composes, vars }
-          )
+          const dynamicValues = parseDynamicValues(rules, t, { composes, vars })
           const args = [
             tag,
             t.arrayExpression(inputClasses),
@@ -264,7 +289,10 @@ export default function (babel) {
                 t.blockStatement([
                   t.returnStatement(
                     t.arrayExpression(
-                      parseDynamicValues(rules, t, { inputExpressions: expressions, composes })
+                      parseDynamicValues(rules, t, {
+                        inputExpressions: expressions,
+                        composes
+                      })
                     )
                   )
                 ])
@@ -295,7 +323,9 @@ export default function (babel) {
               t.callExpression(t.identifier('keyframes'), [
                 t.stringLiteral(animationName),
                 t.arrayExpression(
-                  parseDynamicValues(rules, t, { inputExpressions: path.node.quasi.expressions })
+                  parseDynamicValues(rules, t, {
+                    inputExpressions: path.node.quasi.expressions
+                  })
                 )
               ])
             )
@@ -319,7 +349,9 @@ export default function (babel) {
             path.replaceWith(
               t.callExpression(t.identifier('fontFace'), [
                 t.arrayExpression(
-                  parseDynamicValues(rules, t, {inputExpressions: path.node.quasi.expressions})
+                  parseDynamicValues(rules, t, {
+                    inputExpressions: path.node.quasi.expressions
+                  })
                 )
               ])
             )
@@ -341,7 +373,9 @@ export default function (babel) {
             path.replaceWith(
               t.callExpression(t.identifier('injectGlobal'), [
                 t.arrayExpression(
-                  parseDynamicValues(rules, t, {inputExpressions: path.node.quasi.expressions})
+                  parseDynamicValues(rules, t, {
+                    inputExpressions: path.node.quasi.expressions
+                  })
                 )
               ])
             )
