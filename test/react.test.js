@@ -232,6 +232,39 @@ describe('styled', () => {
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
+
+  test('composes based on props', () => {
+    const cssA = css`
+      color: blue;
+    `
+
+    const cssB = css`
+      color: green;
+    `
+
+    const H1 = styled('h1')`
+      composes: ${props => props.a ? cssA : cssB}
+    `
+
+    const tree = renderer
+      .create(
+        <H1 a>
+          hello world
+        </H1>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+    const tree2 = renderer
+      .create(
+        <H1>
+          hello world
+        </H1>
+      )
+      .toJSON()
+
+    expect(tree2).toMatchSnapshotWithEmotion()
+  })
   test('throws if undefined is passed as the component', () => {
     expect(
       () => styled(undefined)`display: flex;`
