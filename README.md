@@ -76,20 +76,6 @@ const H1 = styled('h1', 'css-H1-duiy4a')
 - Same speed as default mode in benchmarks
 - Works with SSR
 
-Extracted:
-```jsx
-const H1 = styled('h1')`
-  color: #ffd43b;
-`
-```
-
-**Not** extracted
-```jsx
-const H1 = styled('h1')`
-  color: ${props => props.color};
-`
-```
-
 Configure babel
 
 **.babelrc**
