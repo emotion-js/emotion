@@ -4,7 +4,7 @@ export function extractCritical (html) {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
   let o = { html, ids: [], css: '', rules: [] }
-  let regex = /css-([a-zA-Z0-9]+)/gm
+  let regex = /css(?:[a-zA-Z0-9-]*)-([a-zA-Z0-9]+)/gm
   let match
   let ids = {}
   while ((match = regex.exec(html)) !== null) {
@@ -14,7 +14,7 @@ export function extractCritical (html) {
   }
 
   o.rules = sheet.sheet.cssRules.filter(x => {
-    let regex = /css-([a-zA-Z0-9]+)/gm
+    let regex = /css(?:[a-zA-Z0-9-]*)-([a-zA-Z0-9]+)/gm
     let match = regex.exec(x.cssText)
     if (match && ids[match[1] + '']) {
       return true
