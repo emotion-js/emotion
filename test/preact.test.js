@@ -31,13 +31,13 @@ describe('preact', () => {
     `
 
     const ColumnContent = styled(Content)`
-        composes: ${squirtleBlueBackground}
+        composes: ${squirtleBlueBackground} ${props => { console.log(props); return props.myClassName}};
         name: onyx;
         background-color: '#343a40';
         flex-direction: column;
       `
 
-    const tree = <ColumnContent><Content /></ColumnContent>
+    const tree = <ColumnContent myClassName='this-is-from-props'><Content /></ColumnContent>
 
     expect(renderToString(tree)).toMatchSnapshot()
   })

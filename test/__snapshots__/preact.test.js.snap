@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`preact kitchen sink 1`] = `"<div classname=\\"css-Content-ev34sb-1jm1rmy css-Content-ev34sb css-bithoy css-onyx-165zlfj-sv1xya css-onyx-165zlfj css-squirtle-blue-bg-jg6kps-12lsezr css-squirtle-blue-bg-jg6kps \\"><div classname=\\"css-Content-ev34sb-1jm1rmy css-Content-ev34sb css-bithoy \\"></div></div>"`;
+exports[`preact kitchen sink 1`] = `"<div classname=\\"css-Content-ev34sb-1jm1rmy css-Content-ev34sb css-bithoy css-onyx-165zlfj-sv1xya css-onyx-165zlfj css-squirtle-blue-bg-jg6kps-1vxs6l6 css-squirtle-blue-bg-jg6kps \\"><div classname=\\"css-Content-ev34sb-1jm1rmy css-Content-ev34sb css-bithoy \\"></div></div>"`;
 
 exports[`preact throws if undefined is passed as the component 1`] = `
 "You are trying to create a styled element with an undefined component.
