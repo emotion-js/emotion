@@ -59,6 +59,13 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
+  test('another attr', () => {
+    const PlaygroundWrapper = styled('div')`
+      color: attr(color, #343a40);
+    `
+    expect(renderer.create(<PlaygroundWrapper />).toJSON()).toMatchSnapshotWithEmotion()
+  })
+
   test('call expression', () => {
     const fontSize = '20px'
     const H1 = styled('h1')`
