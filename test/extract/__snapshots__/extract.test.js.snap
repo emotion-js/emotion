@@ -14,14 +14,10 @@ exports[`styled attr 1`] = `
 .css-H1-nt9mdf-vddukf {
   font-size: 48;
   margin: 4rem;
-.vars-4l3pjo {
-  --css-H1-nt9mdf-0: 48;
-  --css-H1-nt9mdf-1: 4rem;
 }
 
 <h1
   className="css-H1-nt9mdf-vddukf css-H1-nt9mdf"
-  className="css-H1-nt9mdf vars-4l3pjo"
   fontSize={48}
 />
 `;
