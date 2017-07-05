@@ -19,7 +19,7 @@ function joinExpressionsWithSpaces (expressions, t) {
 function parseDynamicValues (rules, t, options) {
   if (options.composes === undefined) options.composes = 0
   return rules.map(rule => {
-    const re = /xxx(\S)xxx|attr\(([^,\s)]+)(?:\s*([^,)]*)?)(?:,\s*(\S+))?\)/gm
+    const re = /xxx(\S+)xxx|attr\(([^,\s)]+)(?:\s*([^,)]*)?)(?:,\s*(\S+))?\)/gm
     const VAR = 'VAR'
     const ATTR = 'ATTR'
     let match
