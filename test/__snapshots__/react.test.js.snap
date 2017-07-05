@@ -25,6 +25,18 @@ exports[`styled basic render 1`] = `
 </h1>
 `;
 
+exports[`styled basic render with object as style 1`] = `
+.css-kp2uw9 {
+  font-size: 20px;
+}
+
+<h1
+  className="css-kp2uw9"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled call expression 1`] = `
 .css-H1-13wdnau-xy96vj {
   font-size: 20px;

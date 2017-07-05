@@ -243,6 +243,20 @@ class App extends React.Component {
             }}
           />
 
+          <Markdown markdown={require('../../docs/styled-with-object.md')}/>
+          <Playground
+            maxHeight={180}
+            noRender={false}
+            codeText={require('./blocks/styled-with-object.example')}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              styled,
+              render
+            }}
+          />
+
           <Markdown markdown={require('../../docs/css-prop.md')}/>
           <Playground
             maxHeight={180}

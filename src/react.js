@@ -27,7 +27,7 @@ export default function (tag, cls, vars = [], content) {
     )
   }
 
-  const name = cls[0].split('-')[1]
+  const name = typeof cls[0] === 'string' ? cls[0].split('-')[1] : ''
   const componentTag = tag.displayName || tag.name || 'Component'
   Styled.displayName = `styled(${componentTag}${name})`
   Styled.cls = '.' + cls
