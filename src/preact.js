@@ -20,9 +20,7 @@ export default function (tag, cls, vars = [], content) {
       tag,
       Object.assign({}, props, {
         ref: props.innerRef,
-        class: props.class
-          ? className + ' ' + props.class
-          : className
+        classname: `${className} ${props.classname || props.class || ''}`
       })
     )
   }

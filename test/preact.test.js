@@ -4,7 +4,7 @@
 import { h } from 'preact'
 import renderToString from 'preact-render-to-string'
 import { matcher, serializer } from '../jest-utils'
-import { css } from '../src/index'
+import { css, sheet } from '../src/index'
 import styled from '../src/preact'
 
 expect.addSnapshotSerializer(serializer)
