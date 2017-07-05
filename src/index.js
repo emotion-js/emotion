@@ -38,15 +38,8 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
   }
 
   const computedClassName = classes
-    .reduce((out: string, cls): string => {
-      if (typeof cls === 'string') {
-        out += ' ' + cls
-        return out
-      }
-
-      out += ' ' + objStyle(cls)
-      return out
-    }, '')
+    .map((cls): string => typeof cls === 'string' ? cls : objStyle(cls))
+    .join(' ')
     .trim()
 
   if (content) {
