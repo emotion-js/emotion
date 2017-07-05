@@ -21,21 +21,25 @@ export function parseCSS (
     hash: 'hash',
     canCompose: false
   }
-): { rules: string[], hasOtherMatch: boolean, hasVar: boolean, composes: number } {
+): { rules: string[], hasOtherMatch: boolean, hasVar: boolean, composes: number, hasCssFunction: boolean } {
   // todo - handle errors
   const root = parse(css)
   if (options.nested !== false) postcssNested(root)
 
   let vars = 0
   let composes = 0
+  let hasCssFunction = false
   root.walkDecls(decl => {
     if (decl.prop === 'name') decl.remove()
+    if (decl.value.match(/attr/)) {
+      hasCssFunction = true
+    }
     if (options.canCompose) {
       if (decl.prop === 'composes') {
         if (decl.parent.selector !== `.${options.name}-${options.hash}`) {
           throw new Error('composes cannot be on nested selectors')
         }
-        if (!/xxx(\S)xxx/gm.exec(decl.value)) {
+        if (!/xxx(\S+)xxx/gm.exec(decl.value)) {
           throw new Error('composes must be a interpolation')
         }
         if (decl.parent.nodes[0] !== decl) {
@@ -48,15 +52,15 @@ export function parseCSS (
       }
     }
     if (!options.inlineMode) {
-      const match = /xxx(\S)xxx/gm.exec(decl.value)
+      const match = /xxx(\S+)xxx/gm.exec(decl.value)
       if (match) {
         vars++
       }
     }
   })
-  if (!options.inlineMode && vars === options.matches) {
+  if (!options.inlineMode && vars === options.matches && !hasCssFunction) {
     root.walkDecls((decl) => {
-      decl.value = decl.value.replace(/xxx(\S)xxx/gm, (match, p1) => {
+      decl.value = decl.value.replace(/xxx(\S+)xxx/gm, (match, p1) => {
         return `var(--${options.name}-${options.hash}-${p1})`
       })
     })
@@ -67,7 +71,8 @@ export function parseCSS (
     rules: stringifyCSSRoot(root),
     hasOtherMatch: vars !== options.matches,
     hasVar: (!!vars && vars !== composes) || !!(options.inlineMode && options.matches),
-    composes
+    composes,
+    hasCssFunction
   }
 }
 

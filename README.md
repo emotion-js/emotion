@@ -76,20 +76,6 @@ const H1 = styled('h1', 'css-H1-duiy4a')
 - Same speed as default mode in benchmarks
 - Works with SSR
 
-Extracted:
-```jsx
-const H1 = styled('h1')`
-  color: #ffd43b;
-`
-```
-
-**Not** extracted
-```jsx
-const H1 = styled('h1')`
-  color: ${props => props.color};
-`
-```
-
 Configure babel
 
 **.babelrc**
@@ -125,6 +111,63 @@ const H1 = styled('h1', 'css-H1-duiy4a', [props => props.color], function create
 **Browser Support** anything React supports
 
 ## API
+
+### css
+
+`css` takes in styles and returns a class name. It is the foundation of emotion.
+
+```jsx
+import { css } from 'emotion'
+
+const flex = css`
+  display: flex;
+`
+const justifyCenter = css`
+  composes: ${flex};
+  justifyContent: center;
+`
+
+<div className={justifyCenter}>
+ Centered Content
+</div>
+```
+
+#### Objects as Styles
+
+`css` can also take an object or array of objects as a parameter. 
+This allows you to use your existing object styles in the emotion ecosystem. 
+Another great benefit is that you can now use [polished](https://polished.js.org/) with emotion.
+
+*Object styles cannot be optimized as well as template literal styles at this time. Object styles are also not autoprefixed.*
+
+```jsx harmony
+import { css } from 'emotion'
+import { lighten, modularScale } from 'polished'
+
+const cssA = {
+  color: lighten(0.2, '#000'),
+  "font-size": modularScale(1),
+  [hiDPI(1.5)]: {
+    "font-size": modularScale(1.25)
+  }
+}
+
+const cssB = css`
+  composes: ${cssA}
+  height: 64px;
+`
+
+const H1 = styled('h1')`
+  composes: ${cssB}
+  font-size: ${modularScale(4)};
+`
+
+const H2 = styled(H1)`font-size:32px;`
+
+<H2 scale={2} className={'legacy__class'}>
+  hello world
+</H2>
+```
 
 ### styled
 
@@ -173,6 +216,25 @@ function Greeting ({ name }) {
   // will turn into to <h1 className="generated-className" ref={() => console.log('hello!')}>Hello {name}</h1>
   return <H1 innerRef={() => console.log('hello!')}>Hello {name}</H1> 
 }
+
+```
+
+#### Objects as styles
+
+`styled` can also take objects or a function that returns an object. This API was inspired by [glamorous](https://github.com/paypal/glamorous).
+
+*The same caveats to using objects with css apply to this.*
+
+```jsx
+import styled from 'emotion/react'
+
+const H1 = styled.h1({
+  fontSize: 20
+}, (props) => ({ color: props.color }))
+
+const H2 = styled('h2')('some-other-class', {
+  fontSize: '40px'
+})
 
 ```
 
@@ -367,6 +429,17 @@ export default {
 </script>
 ```
 
+### Usage with CSS Modules
+
+emotion works well with CSS Modules but it requires a bit of configuration.
+
+1. In your webpack config add the exclude option with this regex `/emotion\.css$/` to your loader for css so that emotion's static css isn't imported as a CSS Module.
+2. Add another object to your `modules.use` with your css loaders but with CSS Modules disabled and set the test field to the same regex as above `/emotion\.css$/`.
+
+
+- [Example webpack config](example/webpack.config.js)
+- [Example usage of CSS Modules with emotion](example/src/markdown/index.js)
+
 ### attr
 
 The [attr](https://developer.mozilla.org/en-US/docs/Web/CSS/attr) CSS function is supported in
@@ -388,7 +461,7 @@ const H1 = styled.h1`
   font-size: attr(fontSize px);
   margin: attr(margin rem, 4);
   font-family: sans-serif;
-  color: ${colors.pink[5]};
+  color: attr(color, ${colors.pink[5]});
   @media (min-width: 680px) {
     color: attr(desktopColor);
   }
@@ -402,7 +475,3 @@ const Title = ({ title, scale }) => {
   )
 }
 ```
-
-##### Supported value types 
-`em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|%`
-

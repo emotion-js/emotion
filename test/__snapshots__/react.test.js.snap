@@ -1,13 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled attr 1`] = `
-.css-H1-15vt02v-1n5h3v0 {
+.css-H1-l44jbj-1u4tp6a {
   font-size: 48;
   margin: 4rem;
+  position: absolute;
 }
 
 <h1
-  className="css-H1-15vt02v-1n5h3v0 css-H1-15vt02v"
+  className="css-H1-l44jbj-1u4tp6a css-H1-l44jbj"
   fontSize={48}
 />
 `;
@@ -19,6 +20,18 @@ exports[`styled basic render 1`] = `
 
 <h1
   className="css-H1-8xpzga-1e133rd css-H1-8xpzga"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled basic render with object as style 1`] = `
+.css-kp2uw9 {
+  font-size: 20px;
+}
+
+<h1
+  className="css-kp2uw9"
 >
   hello world
 </h1>
@@ -85,6 +98,70 @@ exports[`styled composes 1`] = `
 
 <h1
   className="css-H1-zejj71-ovrrqc css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-cssA-cy897j-1p4ppuj css-cssA-cy897j css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes based on props 1`] = `
+.css-cssA-cy897j-1p4ppuj {
+  color: blue;
+}
+
+
+
+<h1
+  a={true}
+  className="css-H1-16dw226-196nx3w css-H1-16dw226 css-cssA-cy897j-1p4ppuj css-cssA-cy897j"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes based on props 2`] = `
+.css-cssB-7o6h5j-dcpp5a {
+  color: green;
+}
+
+
+
+<h1
+  className="css-H1-16dw226-196nx3w css-H1-16dw226 css-cssB-7o6h5j-dcpp5a css-cssB-7o6h5j"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes with objects 1`] = `
+.css-cssB-ob3sm8-fwh0v {
+  height: 64px;
+}
+
+.css-H2-idm3bz-361gww {
+  font-size: 32px;
+}
+
+.css-1olphq9 {
+  color: #333;
+  font-size: 1.333em;
+}
+
+.css-1olphq9 
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 1.5/1),
+only screen and (min-resolution: 144dpi),
+only screen and (min-resolution: 1.5dppx) {
+  font-size: 1.4323121856191332em;
+}
+
+.css-H1-zejj71-1ym7xv {
+  font-size: 3.157334518321em;
+}
+
+<h1
+  className="css-H1-zejj71-1ym7xv css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-1olphq9 css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
   scale={2}
 >
   hello world
@@ -179,6 +256,23 @@ exports[`styled no dynamic 1`] = `
 
 <h1
   className="css-H1-ijh7uz-10q50rl css-H1-ijh7uz"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled objects 1`] = `
+.css-1x9ygd3 {
+  padding: 10px;
+}
+
+.css-1fe3owl {
+  display: flex;
+}
+
+<h1
+  className="some-class css-1x9ygd3 css-1fe3owl"
+  display="flex"
 >
   hello world
 </h1>

@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "5.0.0",
+  "version": "5.1.3",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
@@ -49,6 +49,7 @@
     "jest-emotion-react": "^0.0.2",
     "jest-glamor-react": "^1.4.0",
     "npm-run-all": "^4.0.2",
+    "polished": "^1.2.1",
     "prettier-eslint-cli": "^4.0.3",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",

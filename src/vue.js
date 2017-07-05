@@ -2,11 +2,13 @@ import { css as magic } from './index'
 
 const styled = (tag, cls, vars = [], content) => {
   return {
+    cls: '.' + cls,
     functional: true,
     render (h, context) {
+      const getValue = v => (v && typeof v === 'function' ? v(context.props) : v.cls || v)
       const className = magic(
-        cls,
-        vars.map(v => (v && typeof v === 'function' ? v(context.props) : v)),
+        cls.map(getValue),
+        vars.map(getValue),
         content
       )
       return h(

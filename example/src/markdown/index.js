@@ -2,28 +2,11 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import styled from 'emotion/react'
 import colors from 'open-color'
-
-// what if css returned an object
-
-const A = css`
-  color: green;
-`
-
-// returns
-
-const ret = {
-  className: 'css-A-12345',
-  rules: [`.css-A-12345 { color:green }`],
-  toString () { return this.className }
-}
+import styles from './index.css'
 
 const MarkdownContainer = styled('div')`
-  display: flex;
-  margin: 16px auto 0 auto;
-  max-width: 560px;
-  font-family: 'Oxygen';
-  
-  & h1, h2, h3, h4, h5 {
+  composes: ${styles.markdownContainer};
+  h1, h2, h3, h4, h5 {
     margin: 16px 0 8px 0;
     letter-spacing: 1px;
   }
@@ -50,6 +33,11 @@ const Paragraph = styled('p')`
   padding: 2px;
   font-size: 0.85rem;
   color: ${colors.gray[8]};
+  
+  a {
+    font-size: 0.85rem;
+  }
+  
 `
 
 const Code = styled('code')`
@@ -78,6 +66,19 @@ export default ({ markdown }) => {
       <ReactMarkdown
         source={markdown}
         renderers={{
+          Heading: ({ children, level, ...rest }) => {
+            const tag = `h${level}`
+
+            if (Array.isArray(children)) {
+              if (typeof children[0] === 'string') {
+                rest.id = ('' + children[0].toLowerCase())
+                  .replace(/\s+/g, ' ')
+                  .replace(/\s/g, '-')
+              }
+            }
+
+            return React.createElement(tag, { children, ...rest })
+          },
           Link,
           Paragraph,
           Code,

@@ -1,5 +1,5 @@
 const Avatar = styled('div')`
-  & img {
+  img {
     width: 96px;
     height: 96px;
     border-radius: 50%;

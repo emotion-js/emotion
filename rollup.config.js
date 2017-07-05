@@ -5,7 +5,7 @@ import uglify from 'rollup-plugin-uglify'
 import pkg from './package.json'
 
 export default {
-  entry: 'src/react.js',
+  entry: 'src/index.js',
   external: ['react'],
   exports: 'named',
   globals: { react: 'React' },

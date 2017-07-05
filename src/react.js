@@ -9,9 +9,10 @@ export default function (tag, cls, vars = [], content) {
   }
 
   function Styled (props) {
+    const getValue = v => (v && typeof v === 'function' ? v.cls || v(props) : v)
     const className = css(
-      cls,
-      vars.map(v => (v && typeof v === 'function' ? v.cls || v(props) : v)),
+      cls.map(getValue),
+      vars.map(getValue),
       content
     )
 
@@ -26,7 +27,7 @@ export default function (tag, cls, vars = [], content) {
     )
   }
 
-  const name = cls[0].split('-')[1]
+  const name = typeof cls[0] === 'string' ? cls[0].split('-')[1] : ''
   const componentTag = tag.displayName || tag.name || 'Component'
   Styled.displayName = `styled(${componentTag}${name})`
   Styled.cls = '.' + cls

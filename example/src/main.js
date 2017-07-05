@@ -1,24 +1,48 @@
-/* eslint-disable jsx-quotes,import/no-webpack-loader-syntax */
-import './global.css'
-import './dracula.css'
 import React from 'react'
 import { render } from 'react-dom'
 import styled from 'emotion/react'
-import { css, fontFace, keyframes } from 'emotion'
+import { css, fontFace, keyframes, injectGlobal } from 'emotion'
 import Markdown from './markdown'
 import Playground from './playground'
 import logoUrl from '../../emotion.png'
 
-const introExample = require('raw-loader!./blocks/intro.example')
-const propsExample = require('raw-loader!./blocks/props.example')
-const nestedExample = require('raw-loader!./blocks/nested.example')
-const mediaExample = require('raw-loader!./blocks/media.example')
-const pseudoExample = require('raw-loader!./blocks/pseudo.example')
-const keyframesExample = require('raw-loader!./blocks/keyframes.example')
-// const fontFaceExample = require('raw-loader!./blocks/font-face.example')
-// const docMarkdown = require('raw-loader!./docs/index.md')
-// const readmeMarkdown = require('raw-loader!../../README.md')
+const introExample = require('./blocks/intro.example')
+const propsExample = require('./blocks/props.example')
+const nestedExample = require('./blocks/nested.example')
+const mediaExample = require('./blocks/media.example')
+const anyComponentExample = require('./blocks/styling-any-component.example')
+const namedExample = require('./blocks/named.example')
+const pseudoExample = require('./blocks/pseudo.example')
+const keyframesExample = require('./blocks/keyframes.example')
+// const fontFaceExample = require('./blocks/font-face.example')
+// const docMarkdown = require('./docs/index.md')
+// const readmeMarkdown = require('../../README.md')
 const avatarUrl = require('./avatar.jpg')
+
+injectGlobal`
+  html, body {
+    font-family: -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      "Roboto",
+      "Roboto Light",
+      "Oxygen",
+      "Ubuntu",
+      "Cantarell",
+      "Fira Sans",
+      "Droid Sans",
+      "Helvetica Neue",
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    color: #495057;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+`
 
 fontFace`
   font-family: 'Oxygen';
@@ -85,23 +109,11 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('raw-loader!../../docs/install.md')} />
+          <Markdown markdown={require('../../docs/install.md')} />
 
-          <Markdown markdown={require('raw-loader!../../docs/css-prop.md')} />
-          <Playground
-            maxHeight={180}
-            noRender={false}
-            codeText={require('raw-loader!./blocks/css-prop.example')}
-            scope={{
-              avatarUrl,
-              React,
-              css,
-              styled,
-              render
-            }}
-          />
 
-          <Markdown markdown={require('raw-loader!../../docs/nested.md')} />
+
+          <Markdown markdown={require('../../docs/nested.md')} />
           <Playground
             maxHeight={180}
             noRender={false}
@@ -115,7 +127,7 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('raw-loader!../../docs/pseudo.md')} />
+          <Markdown markdown={require('../../docs/pseudo.md')} />
           <Playground
             maxHeight={220}
             noRender={false}
@@ -130,7 +142,7 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('raw-loader!../../docs/media.md')} />
+          <Markdown markdown={require('../../docs/media.md')} />
           <Playground
             maxHeight={220}
             noRender={false}
@@ -143,7 +155,22 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('raw-loader!../../docs/props.md')} />
+          <Markdown markdown={require('../../docs/styling-any-component.md')}/>
+          <Playground
+            maxHeight={220}
+            noRender={false}
+            codeText={anyComponentExample}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              keyframes,
+              styled,
+              render
+            }}
+          />
+
+          <Markdown markdown={require('../../docs/props.md')} />
           <Playground
             noRender={false}
             codeText={propsExample}
@@ -157,7 +184,7 @@ class App extends React.Component {
             }}
           />
 
-          <Markdown markdown={require('raw-loader!../../docs/keyframes.md')} />
+          <Markdown markdown={require('../../docs/keyframes.md')} />
           <Playground
             maxHeight={600}
             noRender={false}
@@ -172,7 +199,7 @@ class App extends React.Component {
             }}
           />
 
-          {/* <Markdown markdown={require('raw-loader!./docs/font-face.md')}/> */}
+          {/* <Markdown markdown={require('./docs/font-face.md')}/> */}
           {/* <Playground */}
           {/* maxHeight={600} */}
           {/* noRender={false} */}
@@ -186,11 +213,69 @@ class App extends React.Component {
           {/* }} */}
           {/* /> */}
 
-          <Markdown markdown={require('raw-loader!../../docs/composes.md')} />
+          <Markdown markdown={require('../../docs/composes.md')} />
           <Playground
             maxHeight={180}
             noRender={false}
-            codeText={require('raw-loader!./blocks/composes.example')}
+            codeText={require('./blocks/composes.example')}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              keyframes,
+              styled,
+              render
+            }}
+          />
+
+          <Markdown markdown={require('../../docs/objects.md')}/>
+          <Playground
+            maxHeight={180}
+            noRender={false}
+            codeText={require('./blocks/objects.example')}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              keyframes,
+              styled,
+              render
+            }}
+          />
+
+          <Markdown markdown={require('../../docs/styled-with-object.md')}/>
+          <Playground
+            maxHeight={180}
+            noRender={false}
+            codeText={require('./blocks/styled-with-object.example')}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              styled,
+              render
+            }}
+          />
+
+          <Markdown markdown={require('../../docs/css-prop.md')}/>
+          <Playground
+            maxHeight={180}
+            noRender={false}
+            codeText={require('./blocks/css-prop.example')}
+            scope={{
+              avatarUrl,
+              React,
+              css,
+              styled,
+              render
+            }}
+          />
+
+          <Markdown markdown={require('../../docs/named.md')}/>
+          <Playground
+            maxHeight={220}
+            noRender={false}
+            codeText={namedExample}
             scope={{
               avatarUrl,
               React,

@@ -185,5 +185,33 @@ describe('babel css', () => {
       expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
       expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
     })
+
+    test('basic object support', () => {
+      const basic = `css({display: 'flex'})`
+      const {code} = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('composes with objects', () => {
+      const basic = `
+        const cls1 = css({display: 'flex'})
+        const cls2 = css\`
+          composes: $\{cls1};
+          height: 20;
+          justifyContent: center;
+        \`
+      `
+      const {code} = babel.transform(basic, {
+        plugins: [[plugin]],
+        filename: __filename,
+        babelrc: false
+      })
+
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(4)
+      expect(fs.writeFileSync.mock.calls[3][1]).toMatchSnapshot()
+    })
   })
 })
