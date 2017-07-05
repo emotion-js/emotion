@@ -156,6 +156,27 @@ exports[`babel styled component inline no dynamic 1`] = `
 
 exports[`babel styled component inline no use 1`] = `"\\"h1\\";"`;
 
+exports[`babel styled component inline object composes with classes 1`] = `
+"
+const H1 = styled('h1', ['some-class', props => ({
+  display: props.display
+})], []);"
+`;
+
+exports[`babel styled component inline objects based on props 1`] = `
+"
+const H1 = styled('h1', [{ padding: 10 }, props => ({
+  display: props.display
+})], []);"
+`;
+
+exports[`babel styled component inline objects fn call 1`] = `
+"
+const H1 = styled('h1', [{
+  display: 'flex'
+}], []);"
+`;
+
 exports[`babel styled component inline styled component as selector 1`] = `
 "
 const SomeComponent = styled(\\"div\\", [\\"css-SomeComponent-1rk3iho\\"], [], function createEmotionStyledRules() {
@@ -164,4 +185,11 @@ const SomeComponent = styled(\\"div\\", [\\"css-SomeComponent-1rk3iho\\"], [], f
 styled(\\"h1\\", [\\"css-byjn67\\"], [SomeComponent], function createEmotionStyledRules(x0) {
   return [\`.css-byjn67 { color: blue; }\`, \`.css-byjn67 \${x0} { color: green; }\`];
 });"
+`;
+
+exports[`babel styled component inline styled. objects 1`] = `
+"
+const H1 = styled(\\"h1\\", [{ padding: 10 }, props => ({
+  display: props.display
+})], []);"
 `;

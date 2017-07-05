@@ -249,6 +249,23 @@ exports[`styled no dynamic 1`] = `
 </h1>
 `;
 
+exports[`styled objects 1`] = `
+.css-1x9ygd3 {
+  padding: 10px;
+}
+
+.css-1fe3owl {
+  display: flex;
+}
+
+<h1
+  className="some-class css-1x9ygd3 css-1fe3owl"
+  display="flex"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled throws if undefined is passed as the component 1`] = `
 "You are trying to create a styled element with an undefined component.
 You may have forgotten to import it."
