@@ -1,8 +1,10 @@
+## Objects With styled
+
 `styled` can also take objects or a function that returns an object. This API was inspired by [glamorous](https://github.com/paypal/glamorous).
 
 *The same caveats to using objects with css apply to this.*
 
-```jsx
+```jsx harmony
 import styled from 'emotion/react'
 
 const H1 = styled.h1({
