@@ -11,7 +11,7 @@ export default function (tag, cls, vars = [], content) {
   function Styled (props) {
     const getValue = v => (v && typeof v === 'function' ? v.cls || v(props) : v)
     const className = css(
-      cls,
+      cls.map(getValue),
       vars.map(getValue),
       content
     )

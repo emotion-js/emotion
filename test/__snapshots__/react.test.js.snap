@@ -92,6 +92,35 @@ exports[`styled composes 1`] = `
 </h1>
 `;
 
+exports[`styled composes based on props 1`] = `
+.css-cssA-cy897j-1p4ppuj {
+  color: blue;
+}
+
+
+
+<h1
+  a={true}
+  className="css-H1-16dw226-196nx3w css-H1-16dw226 css-cssA-cy897j-1p4ppuj css-cssA-cy897j"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes based on props 2`] = `
+.css-cssB-7o6h5j-dcpp5a {
+  color: green;
+}
+
+
+
+<h1
+  className="css-H1-16dw226-196nx3w css-H1-16dw226 css-cssB-7o6h5j-dcpp5a css-cssB-7o6h5j"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled composes with objects 1`] = `
 .css-cssB-ob3sm8-fwh0v {
   height: 64px;
