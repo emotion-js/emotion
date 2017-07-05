@@ -31,9 +31,22 @@ const NonHtmlComponent = styled(baseComponent)`
   color: green;
 `
 
+const basedOnPropsComposes = styled.div`
+  composes: ${(props) => props.thing ? 'some-special-class' : ''}
+`
+
+const ChildSelector = styled.main`
+  color: yellow;
+  ${StyledComponent} {
+    display: none;
+  }
+`
+
 Vue.component('styled-component', StyledComponent)
 Vue.component('based-on-props', BasedOnProps)
+Vue.component('based-on-props-composes', basedOnPropsComposes)
 Vue.component('non-html-component', NonHtmlComponent)
+Vue.component('child-selector', ChildSelector)
 
 describe('vue styled', () => {
   test('basic', async () => {
@@ -101,10 +114,36 @@ describe('vue styled', () => {
     await Vue.nextTick(() => {})
     expect(document.body.innerHTML).toMatchSnapshot()
   })
+  test('based on props composes', async () => {
+    document.body.innerHTML = `
+      <div id="app">
+          <based-on-props-composes thing="true"></based-on-props-composes>
+      </div>
+    `
+    new Vue({
+      el: '#app'
+    })
+
+    await Vue.nextTick(() => {})
+    expect(document.body.innerHTML).toMatchSnapshot()
+  })
   test('custom external component', async () => {
     document.body.innerHTML = `
       <div id="app">
           <non-html-component></non-html-component>
+      </div>
+    `
+    new Vue({
+      el: '#app'
+    })
+
+    await Vue.nextTick(() => {})
+    expect(document.body.innerHTML).toMatchSnapshot()
+  })
+  test('child selector', async () => {
+    document.body.innerHTML = `
+      <div id="app">
+          <child-selector><styled-component>wow</styled-component></child-selector>
       </div>
     `
     new Vue({

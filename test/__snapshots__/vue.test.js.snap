@@ -6,9 +6,21 @@ exports[`vue styled based on props 1`] = `
     "
 `;
 
+exports[`vue styled based on props composes 1`] = `
+"
+      <div id=\\"app\\"><div thing=\\"true\\" class=\\"css-basedOnPropsComposes-17rcs0o-12iwoui css-basedOnPropsComposes-17rcs0o some-special-class\\"></div></div>
+    "
+`;
+
 exports[`vue styled basic 1`] = `
 "
       <div id=\\"app\\"><div class=\\"css-StyledComponent-1brvt4i-ulwf5d css-StyledComponent-1brvt4i\\"></div></div>
+    "
+`;
+
+exports[`vue styled child selector 1`] = `
+"
+      <div id=\\"app\\"><main class=\\"css-ChildSelector-13pvedz-1e7xvxz css-ChildSelector-13pvedz\\"><div class=\\"css-StyledComponent-1brvt4i-ulwf5d css-StyledComponent-1brvt4i\\">wow</div></main></div>
     "
 `;
 
@@ -22,8 +34,8 @@ exports[`vue styled creates the correct styles 1`] = `
   -ms-flex-align: center;
   -webkit-box-align: center;
   align-items: center;
-  position: inherit; }.css-BasedOnProps-csm9t8-1qo3zsu { font-weight: bold; }.css-NonHtmlComponent-15287sz-1wq2ikh { background-color: purple;
-  color: green; }"
+  position: inherit; }.css-BasedOnProps-csm9t8-1qo3zsu { font-weight: bold; }.css-basedOnPropsComposes-17rcs0o-12iwoui { }.css-NonHtmlComponent-15287sz-1wq2ikh { background-color: purple;
+  color: green; }.css-ChildSelector-13pvedz-1e7xvxz { color: yellow; }.css-ChildSelector-13pvedz-1e7xvxz .css-StyledComponent-1brvt4i { display: none; }"
 `;
 
 exports[`vue styled custom external component 1`] = `
