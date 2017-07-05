@@ -143,6 +143,46 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('objects fn call', () => {
+      const basic = `
+      const H1 = styled('h1')({
+        display: 'flex'
+      })`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('objects based on props', () => {
+      const basic = `
+      const H1 = styled('h1')({ padding: 10 },props => ({
+        display: props.display
+      }))`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('object composes with classes', () => {
+      const basic = `
+      const H1 = styled('h1')('some-class',props => ({
+        display: props.display
+      }))`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('styled. objects', () => {
+      const basic = `
+      const H1 = styled.h1({ padding: 10 },props => ({
+        display: props.display
+      }))`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
   describe('extract', () => {
     test('no use', () => {

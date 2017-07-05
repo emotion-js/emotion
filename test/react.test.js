@@ -265,6 +265,22 @@ describe('styled', () => {
 
     expect(tree2).toMatchSnapshotWithEmotion()
   })
+
+  test('objects', () => {
+    const H1 = styled('h1')('some-class', { padding: 10 }, props => ({
+      display: props.display
+    }))
+    const tree = renderer
+      .create(
+        <H1 display="flex">
+          hello world
+        </H1>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
   test('throws if undefined is passed as the component', () => {
     expect(
       () => styled(undefined)`display: flex;`
