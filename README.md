@@ -126,6 +126,63 @@ const H1 = styled('h1', 'css-H1-duiy4a', [props => props.color], function create
 
 ## API
 
+### css
+
+`css` takes in styles and returns a class name. It is the foundation of emotion.
+
+```jsx
+import { css } from 'emotion'
+
+const flex = css`
+  display: flex;
+`
+const justifyCenter = css`
+  composes: ${flex};
+  justifyContent: center;
+`
+
+<div className={justifyCenter}>
+ Centered Content
+</div>
+```
+
+#### Objects as Styles
+
+`css` can also take an object or array of objects as a parameter. 
+This allows you to use your existing object styles in the emotion ecosystem. 
+Another great benefit is that you can now use [polished](https://polished.js.org/) with emotion.
+
+*Object styles cannot be optimized as well as template literal styles at this time. Object styles are also not autoprefixed.*
+
+```jsx harmony
+import { css } from 'emotion'
+import { lighten, modularScale } from 'polished'
+
+const cssA = {
+  color: lighten(0.2, '#000'),
+  "font-size": modularScale(1),
+  [hiDPI(1.5)]: {
+    "font-size": modularScale(1.25)
+  }
+}
+
+const cssB = css`
+  composes: ${cssA}
+  height: 64px;
+`
+
+const H1 = styled('h1')`
+  composes: ${cssB}
+  font-size: ${modularScale(4)};
+`
+
+const H2 = styled(H1)`font-size:32px;`
+
+<H2 scale={2} className={'legacy__class'}>
+  hello world
+</H2>
+```
+
 ### styled
 
 ```jsx
@@ -176,59 +233,24 @@ function Greeting ({ name }) {
 
 ```
 
-### css
+#### Objects as styles
 
-`css` takes in styles and returns a class name. It is the foundation of emotion.
+`styled` can also take objects or a function that returns an object. This API was inspired by [glamorous](https://github.com/paypal/glamorous).
+
+*The same caveats to using objects with css apply to this.*
 
 ```jsx
-const flex = css`
-  display: flex;
-`
-const justifyCenter = css`
-  composes: ${flex};
-  justifyContent: center;
-`
+import styled from 'emotion/react'
 
-<div className={justifyCenter}>
- Centered Content
-</div>
+const H1 = styled.h1({
+  fontSize: 20
+}, (props) => ({ color: props.color }))
+
+const H2 = styled('h2')('some-other-class', {
+  fontSize: '40px'
+})
+
 ```
-
-**Objects as Styles**
-
-`css` can also take an object as a parameter. 
-This allows you to use your existing object styles in the emotion ecosystem. 
-Another great benefit is that you can now use [polished](https://polished.js.org/) with emotion!
-
-```jsx harmony
-import { css } from 'emotion'
-importimport { lighten, modularScale } from 'polished'
-
-const cssA = {
-  color: lighten(0.2, '#000'),
-  "font-size": modularScale(1),
-  [hiDPI(1.5)]: {
-    "font-size": modularScale(1.25)
-  }
-}
-
-const cssB = css`
-  composes: ${cssA}
-  height: 64px;
-`
-
-const H1 = styled('h1')`
-  composes: ${cssB}
-  font-size: ${modularScale(4)};
-`
-
-const H2 = styled(H1)`font-size:32px;`
-
-<H2 scale={2} className={'legacy__class'}>
-  hello world
-</H2>
-```
-
 
 ### css prop
 
