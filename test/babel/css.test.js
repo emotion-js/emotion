@@ -82,9 +82,11 @@ describe('babel css', () => {
           align-items: \${'center'}
         \`
       `
-      expect(() => babel.transform(basic, {
-        plugins: [[plugin]]
-      })).toThrowErrorMatchingSnapshot()
+      expect(() =>
+        babel.transform(basic, {
+          plugins: [[plugin]]
+        })
+      ).toThrowErrorMatchingSnapshot()
     })
     test('throws correct error when the value of composes is not an interpolation', () => {
       const basic = `
@@ -97,9 +99,11 @@ describe('babel css', () => {
           align-items: \${'center'}
         \`
       `
-      expect(() => babel.transform(basic, {
-        plugins: [[plugin]]
-      })).toThrowErrorMatchingSnapshot()
+      expect(() =>
+        babel.transform(basic, {
+          plugins: [[plugin]]
+        })
+      ).toThrowErrorMatchingSnapshot()
     })
     test('throws correct error when composes is on a nested selector', () => {
       const basic = `
@@ -114,9 +118,11 @@ describe('babel css', () => {
           }
         \`
       `
-      expect(() => babel.transform(basic, {
-        plugins: [[plugin]]
-      })).toThrowErrorMatchingSnapshot()
+      expect(() =>
+        babel.transform(basic, {
+          plugins: [[plugin]]
+        })
+      ).toThrowErrorMatchingSnapshot()
     })
   })
   describe('extract', () => {
@@ -202,7 +208,44 @@ describe('babel css', () => {
 
     test('basic object support', () => {
       const basic = `css({display: 'flex'})`
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('prefixed objects', () => {
+      const basic = `
+          css({
+            borderRadius: '50%',
+            transition: 'transform 400ms ease-in-out',
+            boxSizing: 'border-box',
+            display: 'flex',
+            ':hover': {
+                transform: 'scale(1.2)'
+            }
+        })
+   `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('prefixed array of objects', () => {
+      const basic = `
+          css([{
+            borderRadius: '50%',
+            boxSizing: 'border-box',
+            display: 'flex',
+            ':hover': {
+              transform: 'scale(1.2)'
+            }
+        }, {
+          transition: 'transform 400ms ease-in-out',
+        }])
+    `
+      const { code } = babel.transform(basic, {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()
@@ -217,7 +260,7 @@ describe('babel css', () => {
           justifyContent: center;
         \`
       `
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [[plugin]],
         filename: __filename,
         babelrc: false

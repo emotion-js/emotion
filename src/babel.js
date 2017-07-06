@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
+import prefixAll from 'inline-style-prefixer/static'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import cssProps from './css-prop'
 import createAttrExpression from './attrs'
@@ -102,6 +103,57 @@ function parseDynamicValues (rules, t, options) {
   })
 }
 
+function prefixAst (t, args) {
+  if (Array.isArray(args)) {
+    return args.map(element => prefixAst(t, element))
+  }
+
+  if (t.isObjectExpression(args)) {
+    let properties = []
+    args.properties.forEach(property => {
+      if (t.isObjectExpression(property.value)) {
+        const key = t.isStringLiteral(property.key)
+          ? t.stringLiteral(property.key.value)
+          : t.identifier(property.key.name)
+        return properties.push(
+          t.objectProperty(key, prefixAst(t, property.value))
+        )
+      } else {
+        const style = { [property.key.name]: property.value.value }
+        const prefixedObject = prefixAll(style)
+
+        for (var k in prefixedObject) {
+          const key = t.isStringLiteral(property.key)
+            ? t.stringLiteral(k)
+            : t.identifier(k)
+          const val = prefixedObject[k]
+          let value
+
+          if (typeof val === 'number') {
+            value = t.numericLiteral(val)
+          } else if (typeof val === 'string') {
+            value = t.stringLiteral(val)
+          } else if (Array.isArray(val)) {
+            value = t.arrayExpression(val.map(i => t.stringLiteral(i)))
+          }
+
+          properties.push(t.objectProperty(key, value))
+        }
+      }
+    })
+
+    return t.objectExpression(properties)
+  }
+
+  if (t.isArrayExpression(args)) {
+    return t.arrayExpression(prefixAst(t, args.elements))
+  }
+
+  return args
+}
+
+const visited = Symbol('visited')
+
 export default function (babel) {
   const { types: t } = babel
 
@@ -147,6 +199,9 @@ export default function (babel) {
         cssProps(path, t)
       },
       CallExpression (path) {
+        if (path[visited]) {
+          return
+        }
         if (
           (t.isCallExpression(path.node.callee) &&
             path.node.callee.callee.name === 'styled') ||
@@ -160,11 +215,26 @@ export default function (babel) {
           path.replaceWith(
             t.callExpression(t.identifier('styled'), [
               tag,
-              t.arrayExpression(path.node.arguments),
+              t.arrayExpression(prefixAst(t, path.node.arguments)),
               t.arrayExpression()
             ])
           )
         }
+
+        if (t.isCallExpression(path.node) && path.node.callee.name === 'css') {
+          const prefixedAst = prefixAst(t, path.node.arguments)
+
+          try {
+            path.replaceWith(t.callExpression(t.identifier('css'), prefixedAst))
+          } catch (e) {
+            console.log(e)
+            console.log('Before=-----')
+            console.log(path.node.arguments)
+            console.log('After=-----')
+            console.log(prefixedAst)
+          }
+        }
+        path[visited] = true
       },
       TaggedTemplateExpression (path, state) {
         // in:

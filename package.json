@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "babel-plugin-syntax-jsx": "^6.18.0",
+    "inline-style-prefixer": "^3.0.6",
     "styled-components": "2.0.0",
     "theming": "^1.0.1",
     "touch": "^1.0.0"
