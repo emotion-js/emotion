@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer'
 import { basename } from 'path'
 import { matcher, serializer } from '../../jest-utils'
 import { injectGlobal, css } from '../../src/index'
-import styled from '../../src/react'
+import styled from '../../src/react/styled'
 
 expect.addSnapshotSerializer(serializer)
 expect.extend(matcher)

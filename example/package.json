@@ -7,10 +7,13 @@
     "build": "webpack -p --env production --progress"
   },
   "dependencies": {
+    "mitt": "^1.1.2",
     "open-color": "^1.5.1",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-markdown": "^2.5.0"
+    "react-markdown": "^2.5.0",
+    "smitty": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
