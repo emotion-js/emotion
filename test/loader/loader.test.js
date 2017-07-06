@@ -41,18 +41,34 @@ const source = `
   transition: color .15s ease-in;
 }
 
+.link {
+  color: black;
+  text-decoration: none;
+  transition: color .15s ease-in;
+}
+
+.link:link,
+.link:visited {
+  color: blue;
+  transition: color .15s ease-in;
+}
+
 .link:hover {
+  color: green;
   transition: color .15s ease-in;
 }
 
 .link:active {
+  color: red;
   transition: color .15s ease-in;
 }
 
 .link:focus {
+  color: yellow;
   transition: color .15s ease-in;
   outline: 1px dotted currentColor;
 }
+
 `
 
 describe('loader', () => {

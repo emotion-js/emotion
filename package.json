@@ -31,6 +31,7 @@
   "dependencies": {
     "babel-plugin-syntax-jsx": "^6.18.0",
     "css-loader": "^0.28.4",
+    "loader-utils": "^1.1.0",
     "styled-components": "2.0.0",
     "touch": "^1.0.0"
   },

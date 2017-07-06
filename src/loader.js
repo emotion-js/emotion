@@ -33,34 +33,42 @@ module.exports = function (content) {
       query: query
     },
     function (err, { source, exports }) {
+      console.log(JSON.stringify(exports, null, 2))
+      console.log('src', source)
       let ast = postcss.parse(source)
-      let newSrc = `const css = require('emotion').css;`
-  //   ${rules
-  //       .map(rule => {
-  //         return `css\`\n${rule}\`;`
-  //       })
-  //       .join('\n\n')}
-  // `
-  //
-  //     Object.keys(exports).map((name) => {
-  //       const cls = exports[name]
-  //
-  //     })
+      let rules = ast.nodes.map(n => {
+        // console.log(JSON.stringify(n, null, 2))
+        return extract(content, n.source.start, n.source.end)
+      })
+      let newSrc = `const css = require('emotion').css;
+      
+      
+    ${rules
+        .map(rule => {
+          return `css\`\n${rule}\`;`
+        })
+        .join('\n\n')}
+  `
+      console.log(exports)
+      Object.keys(exports).map((name) => {
+        const cls = exports[name]
+        console.log(name, ':', cls)
+      })
       this.callback(err, newSrc)
     }.bind(this)
   )
-  let ast = postcss.parse(content)
-
-  let rules = ast.nodes.map(n => {
-    // console.log(JSON.stringify(n, null, 2))
-    return extract(content, n.source.start, n.source.end)
-  })
-  let newSrc = `const css = require('emotion').css;
-    ${rules
-      .map(rule => {
-        return `css\`\n${rule}\`;`
-      })
-      .join('\n\n')}
-  `
-  // return newSrc
+  // let ast = postcss.parse(content)
+  //
+  // let rules = ast.nodes.map(n => {
+  //   // console.log(JSON.stringify(n, null, 2))
+  //   return extract(content, n.source.start, n.source.end)
+  // })
+  // let newSrc = `const css = require('emotion').css;
+  //   ${rules
+  //     .map(rule => {
+  //       return `css\`\n${rule}\`;`
+  //     })
+  //     .join('\n\n')}
+  // `
+  // // return newSrc
 }
