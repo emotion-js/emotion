@@ -28,17 +28,8 @@ function runLoader (loader, input, map, addOptions, callback) {
 }
 
 const source = `
-:local(.anchor) {
-  color: blue;
-}
-:local(.link) {
-  text-decoration: none;
-  transition: color .15s ease-in;
-}
-
-:local(.link:link),
-:local(.link:visited) {
-  transition: color .15s ease-in;
+.anchor {
+ font-size: 30px;
 }
 
 .link {
@@ -75,7 +66,7 @@ describe('loader', () => {
   test('smoke', done => {
     runLoader(loader, source, undefined, '', function (err, output) {
       if (err) return done(err)
-      console.log(JSON.stringify(output, null, 2))
+      console.log(output)
       expect(output).toMatchSnapshot()
       done()
     })

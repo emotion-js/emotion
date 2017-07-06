@@ -1,6 +1,7 @@
 const postcss = require('postcss')
 var loaderUtils = require('loader-utils')
 const processCss = require('css-loader/lib/processCss')
+const postcssNested = require('styled-components/lib/vendor/postcss-nested')
 
 function toIndex (str, { line, column }) {
   let regex = /\n/gm,
@@ -24,7 +25,7 @@ module.exports = function (content) {
     content,
     null,
     {
-      mode: moduleMode ? 'local' : 'global',
+      mode: 'local',
       from: loaderUtils.getRemainingRequest(this).split('!').pop(),
       to: loaderUtils.getCurrentRequest(this).split('!').pop(),
       minimize: this.minimize,
@@ -34,23 +35,38 @@ module.exports = function (content) {
     },
     function (err, { source, exports }) {
       console.log(JSON.stringify(exports, null, 2))
-      console.log('src', source)
-      let ast = postcss.parse(source)
-      let rules = ast.nodes.map(n => {
-        // console.log(JSON.stringify(n, null, 2))
-        return extract(content, n.source.start, n.source.end)
-      })
-      let newSrc = `const css = require('emotion').css;
-      
-      
-    ${rules
-        .map(rule => {
-          return `css\`\n${rule}\`;`
+      // console.log('src', source)
+      let root = postcss.parse(source)
+      postcssNested(root)
+
+      let newSrc = `const css = require('emotion').css;`
+
+      root.walkRules(rule => {
+        let selector = rule.selector
+        let inner = ''
+        rule.walkDecls(decl => {
+          inner += extract(content, decl.source.start, decl.source.end)
         })
-        .join('\n\n')}
-  `
+
+        newSrc += '\n'
+        newSrc += `${selector} = css\`\n${inner}\`;\n\n`
+      })
+
+  //     let rules = root.nodes.map(n => {
+  //       // console.log(JSON.stringify(n, null, 2))
+  //       return extract(content, n.source.start, n.source.end)
+  //     })
+  //     let newSrc = `const css = require('emotion').css;
+  //
+  //
+  //   ${rules
+  //     .map(rule => {
+  //       return `css\`\n${rule}\`;`
+  //     })
+  //     .join('\n\n')}
+  // `
       console.log(exports)
-      Object.keys(exports).map((name) => {
+      Object.keys(exports).map(name => {
         const cls = exports[name]
         console.log(name, ':', cls)
       })
