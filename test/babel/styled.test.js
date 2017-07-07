@@ -84,6 +84,33 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('lots of attrs with interpolated values', () => {
+      const basic = `styled('input')\`
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       margin: attr(\${marginProp});
+       display: attr(\${displayProp});
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('attr with value type', () => {
       const basic = `styled('input')\`
         margin: attr(margin px);

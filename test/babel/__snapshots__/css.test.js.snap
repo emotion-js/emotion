@@ -131,6 +131,21 @@ const cls2 = css([\\"css-cls2-16o34vq\\"], [className], function createEmotionRu
 });"
 `;
 
+exports[`babel css inline lots of composes 1`] = `
+"
+const cls2 = css(['css-cls2-hal2lb', 'one-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class'], ['center'], function createEmotionRules(x0) {
+  return [\`.css-cls2-hal2lb {
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
+          -webkit-box-pack: center;
+          justify-content: center;
+          -webkit-align-items: \${x0};
+          -ms-flex-align: \${x0};
+          -webkit-box-align: \${x0};
+          align-items: \${x0} }\`];
+});"
+`;
+
 exports[`babel css inline throws correct error when composes is not the first rule 1`] = `"unknown: Error: composes must be the first rule"`;
 
 exports[`babel css inline throws correct error when composes is on a nested selector 1`] = `"unknown: Error: composes cannot be on nested selectors"`;
