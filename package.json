@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "5.1.3",
+  "version": "5.1.4",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
@@ -82,7 +82,13 @@
   ],
   "eslintConfig": {
     "extends": "standard",
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "rules": {
+      "jsx-quotes": [
+        "error",
+        "prefer-single"
+      ]
+    }
   },
   "standard": {
     "parser": "babel-eslint",

@@ -36,7 +36,13 @@
   "license": "MIT",
   "eslintConfig": {
     "extends": "standard",
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "rules": {
+      "jsx-quotes": [
+        "error",
+        "prefer-single"
+      ]
+    }
   },
   "standard": {
     "parser": "babel-eslint",
