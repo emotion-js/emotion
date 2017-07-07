@@ -17,8 +17,28 @@
 
 
 - [Install](#install)
-- [Example Project](https://github.com/tkh44/emotion/tree/master/example)
+- Demos
+  - [emotion website](https://github.com/tkh44/emotion/tree/master/example)
+  - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit)
+  - **open a PR and add yours!**
+ 
 - [Benchmarks](https://github.com/tkh44/emotion/tree/master/docs/benchmarks.md)
+
+- [Extract Mode](#extract-mode)
+- [Inline Mode](#inline-mode)
+- [API](#api)
+  - [css](#css)
+  - [composes property](#composes-property)
+  - [keyframes](#keyframes)
+  - [fontFace](#fontface)
+
+- [Server-Side Rendering](#server-side-rendering)
+  - [extractCritical](#extractCritical)
+  - [hydrate](#hydrate)
+  
+- Vue
+  - [styled](#vue-styled)
+
 
 ## Install
 
@@ -38,7 +58,11 @@ npm install -S emotion
 
 ## Extract Mode
 
-The default settings enable css extraction.
+The default settings enable css extraction. 
+
+- Extract mode requires css variables to function. If you need ie11 support use **inline mode**.
+- If you have a client side rendered app that does not need ie11 support use **extract mode**.
+- If you are SSR rendering we highly suggest using **inline mode** with `extractCritical`.
 
 This js file, `h1.js`
 
@@ -366,7 +390,7 @@ fontFace`
 
 ### Server-Side Rendering
 
-Server-Side Rendering in emotion currently only works in inline mode. It's similar to [glamor's api](https://github.com/threepointone/glamor/blob/master/docs/server.md). For an example of emotion and next.js checkout the [with-emotion example in the next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
+Server-Side Rendering in emotion currently only works in **inline mode**. It's similar to [glamor's api](https://github.com/threepointone/glamor/blob/master/docs/server.md). For an example of emotion and next.js checkout the [with-emotion example in the next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
 
 #### extractCritical
 This returns an object with the properties `html`, `ids` and `css`. It removes unused rules that were created with emotion(it still includes rules that were inserted with `injectGlobal`).
