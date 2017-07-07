@@ -39,20 +39,20 @@ export function parseCSS (
         if (decl.parent.selector !== `.${options.name}-${options.hash}`) {
           throw new Error('composes cannot be on nested selectors')
         }
-        if (!/xxx(\S+)xxx/gm.exec(decl.value)) {
+        if (!/xxx(\d+)xxx/gm.exec(decl.value)) {
           throw new Error('composes must be a interpolation')
         }
         if (decl.parent.nodes[0] !== decl) {
           throw new Error('composes must be the first rule')
         }
-        const numOfComposes = decl.value.match(/xxx(\S)xxx/gm).length
+        const numOfComposes = decl.value.match(/xxx(\d+)xxx/gm).length
         composes += numOfComposes
         vars += numOfComposes
         return decl.remove()
       }
     }
     if (!options.inlineMode) {
-      const match = /xxx(\S+)xxx/gm.exec(decl.value)
+      const match = /xxx(\d+)xxx/gm.exec(decl.value)
       if (match) {
         vars++
       }
@@ -60,7 +60,7 @@ export function parseCSS (
   })
   if (!options.inlineMode && vars === options.matches && !hasCssFunction) {
     root.walkDecls((decl) => {
-      decl.value = decl.value.replace(/xxx(\S+)xxx/gm, (match, p1) => {
+      decl.value = decl.value.replace(/xxx(\d+)xxx/gm, (match, p1) => {
         return `var(--${options.name}-${options.hash}-${p1})`
       })
     })

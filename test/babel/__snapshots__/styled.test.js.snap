@@ -128,6 +128,65 @@ exports[`babel styled component inline function call 1`] = `
 });"
 `;
 
+exports[`babel styled component inline lots of attrs with interpolated values 1`] = `
+"styled('input', ['css-1kdt7pt'], [marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, displayProp, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[marginProp];
+}, function getProp(props) {
+       return props[displayProp];
+}], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31, x32, x33, x34, x35) {
+       return [\`.css-1kdt7pt { margin: \${x18};
+       margin: \${x19};
+       margin: \${x20};
+       margin: \${x21};
+       margin: \${x22};
+       margin: \${x23};
+       margin: \${x24};
+       margin: \${x25};
+       margin: \${x26};
+       margin: \${x27};
+       margin: \${x28};
+       margin: \${x29};
+       margin: \${x30};
+       margin: \${x31};
+       margin: \${x32};
+       margin: \${x33};
+       margin: \${x34};
+       display: \${x35}; }\`];
+});"
+`;
+
 exports[`babel styled component inline match works on multiple 1`] = `
 "styled('input', ['css-1vvfgof'], [function getMargin(props) {
         return (props.margin ? props.margin : '16') + 'px';
