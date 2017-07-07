@@ -23,6 +23,17 @@ describe('css', () => {
     ).toMatchSnapshot()
   })
 
+  test('composes with undefined values', () => {
+    const cls2 = css`
+      composes: ${undefined};
+      justifyContent: center;
+    `
+    expect(cls2).toMatchSnapshot()
+    expect(
+      sheet.tags.map(tag => tag.textContent || '').join('')
+    ).toMatchSnapshot()
+  })
+
   test('composes', () => {
     const cls1 = css`
       display: flex;
