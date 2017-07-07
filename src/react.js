@@ -1,5 +1,12 @@
 import React from 'react'
 import { css } from './index'
+import { createTheming } from 'theming'
+
+const theming = createTheming('__emotion__')
+
+const { channel, withTheme, ThemeProvider } = theming
+
+export { channel, withTheme, ThemeProvider }
 
 export default function (tag, cls, vars = [], content) {
   if (!tag) {
@@ -10,11 +17,7 @@ export default function (tag, cls, vars = [], content) {
 
   function Styled (props) {
     const getValue = v => (v && typeof v === 'function' ? v.cls || v(props) : v)
-    const className = css(
-      cls.map(getValue),
-      vars.map(getValue),
-      content
-    )
+    const className = css(cls.map(getValue), vars.map(getValue), content)
 
     return React.createElement(
       tag,
@@ -31,5 +34,5 @@ export default function (tag, cls, vars = [], content) {
   const componentTag = tag.displayName || tag.name || 'Component'
   Styled.displayName = `styled(${componentTag}${name})`
   Styled.cls = '.' + cls
-  return Styled
+  return withTheme(Styled)
 }
