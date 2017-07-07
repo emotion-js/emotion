@@ -1,5 +1,5 @@
 export default function createAttrExpression (match, vars, composes, t) {
-  const placeholderRegex = /xxx(\S)xxx/gm
+  const placeholderRegex = /xxx(\d+)xxx/gm
   const propNameMatch = placeholderRegex.exec(match.propName)
   let propName = t.identifier(match.propName)
   if (propNameMatch) {

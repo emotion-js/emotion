@@ -57,6 +57,20 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('lots of composes', () => {
+      const basic = `
+        const cls2 = css\`
+          composes: \${'one-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'};
+          justify-content: center;
+          align-items: \${'center'}
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('throws correct error when composes is not the first rule', () => {
       const basic = `
         const cls1 = css\`
