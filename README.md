@@ -18,8 +18,8 @@
 
 - [Install](#install)
 - Demos
-  - [emotion website](https://github.com/tkh44/emotion/tree/master/example)
-  - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit)
+  - [emotion website](https://github.com/tkh44/emotion/tree/master/example) [[Demo Here](https://emotion.sh)]
+  - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
   - **open a PR and add yours!**
  
 - [Benchmarks](https://github.com/tkh44/emotion/tree/master/docs/benchmarks.md)
