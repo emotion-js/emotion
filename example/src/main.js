@@ -5,6 +5,7 @@ import { css, fontFace, keyframes, injectGlobal } from 'emotion'
 import Markdown from './markdown'
 import Playground from './playground'
 import logoUrl from '../../emotion.png'
+import ThemeProvider from './ThemeProvider'
 
 const introExample = require('./blocks/intro.example')
 const propsExample = require('./blocks/props.example')
@@ -83,10 +84,29 @@ const PlaygroundWrapper = styled('div')`
   }
 `
 
+const theme = {
+  breakpoints: [
+    32, 48, 64
+  ],
+  space: [
+    0, 6, 12, 18, 24
+  ],
+  fontSizes: [
+    12, 16, 18, 24, 36, 72
+  ],
+  colors: {
+    black: '#111',
+    blue: '#07c',
+  }
+}
+
 class App extends React.Component {
   render () {
     return (
       <PlaygroundWrapper>
+        <ThemeProvider theme={theme}>
+          <div>Hello</div>
+        </ThemeProvider>
         <div className="inner">
           <div className="header">
             <h1>

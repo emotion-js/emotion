@@ -1,5 +1,5 @@
 import React from 'react'
-import { css } from './index'
+import { css } from '../index'
 
 export default function (tag, cls, vars = [], content) {
   if (!tag) {

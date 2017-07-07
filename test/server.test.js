@@ -4,7 +4,7 @@
 /* eslint-env jest */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import styled from '../src/react'
+import styled from '../src/react/styled'
 import { css, injectGlobal } from '../src/index'
 import { extractCritical } from '../src/server'
 

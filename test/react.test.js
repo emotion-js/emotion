@@ -3,7 +3,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { matcher, serializer } from '../jest-utils'
 import { css } from '../src/index'
-import styled from '../src/react'
+import styled from '../src/react/styled'
 
 import { lighten, hiDPI, modularScale, borderWidth } from 'polished'
 
