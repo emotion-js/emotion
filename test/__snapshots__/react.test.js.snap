@@ -231,7 +231,6 @@ exports[`styled innerRef 1`] = `
 
 <h1
   className="css-H1-ijh7uz-10q50rl css-H1-ijh7uz"
-  innerRef={[Function]}
 >
   hello world
 </h1>

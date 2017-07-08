@@ -52,16 +52,19 @@ export default function (tag, cls, vars = [], content) {
 
       return h(
         tag,
-        Object.assign({}, omit(mergedProps, ['innerRef']), {
-          ref: mergedProps.innerRef,
-          className: mergedProps.className
-            ? className + ' ' + mergedProps.className
-            : className
-        })
+        omit(
+          Object.assign({}, mergedProps, {
+            ref: mergedProps.innerRef,
+            className: mergedProps.className
+              ? className + ' ' + mergedProps.className
+              : className
+          }),
+          ['innerRef', 'theme']
+        )
       )
     }
 
-    setTheme = theme => this.setState({theme});
+    setTheme = theme => this.setState({ theme })
   }
 
   Styled.contextTypes = {
