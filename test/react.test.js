@@ -3,7 +3,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { matcher, serializer } from '../jest-utils'
 import { css } from '../src/index'
-import styled from '../src/react'
+import styled, { ThemeProvider } from '../src/react'
 
 import { lighten, hiDPI, modularScale, borderWidth } from 'polished'
 
@@ -211,6 +211,49 @@ describe('styled', () => {
     expect(refFunction).toBeCalled()
   })
 
+  test('themes', () => {
+    const theme = {
+      white: '#f8f9fa',
+      purple: '#8c81d8',
+      gold: '#ffd43b'
+    }
+
+    const fontSize = '20px'
+
+    const cssA = css`
+      color: blue;
+    `
+
+    const cssB = css`
+      composes: ${cssA}
+      height: 64px;
+    `
+
+    const Heading = styled('span')`
+      background-color: ${p => p.theme.gold};
+    `
+
+    const H1 = styled(Heading)`
+      composes: ${cssB}
+      font-size: ${fontSize};
+      color: ${p => p.theme.purple}
+    `
+
+    const H2 = styled(H1)`font-size:32px;`
+    const refFunction = jest.fn()
+    const tree = renderer
+      .create(
+        <ThemeProvider theme={theme}>
+          <H2 scale={2} ref={refFunction}>
+            hello world
+          </H2>
+        </ThemeProvider>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
   test('higher order component', () => {
     const fontSize = 20
     const Content = styled('div')`
@@ -252,7 +295,7 @@ describe('styled', () => {
     `
 
     const H1 = styled('h1')`
-      composes: ${props => props.a ? cssA : cssB}
+      composes: ${props => (props.a ? cssA : cssB)}
     `
 
     const tree = renderer
@@ -281,7 +324,7 @@ describe('styled', () => {
     }))
     const tree = renderer
       .create(
-        <H1 display="flex">
+        <H1 display='flex'>
           hello world
         </H1>
       )
