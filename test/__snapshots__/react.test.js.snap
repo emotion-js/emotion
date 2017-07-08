@@ -231,7 +231,6 @@ exports[`styled innerRef 1`] = `
 
 <h1
   className="css-H1-ijh7uz-10q50rl css-H1-ijh7uz"
-  innerRef={[Function]}
 >
   hello world
 </h1>
@@ -276,6 +275,36 @@ exports[`styled objects 1`] = `
 >
   hello world
 </h1>
+`;
+
+exports[`styled themes 1`] = `
+.css-cssA-cy897j-1p4ppuj {
+  color: blue;
+}
+
+.css-cssB-ob3sm8-fwh0v {
+  height: 64px;
+}
+
+.css-H2-idm3bz-361gww {
+  font-size: 32px;
+}
+
+.css-H1-iwhfi5-s8bsgs {
+  font-size: 20px;
+  color: #8c81d8;
+}
+
+.css-Heading-1ybg51t-91l5qw {
+  background-color: #ffd43b;
+}
+
+<span
+  className="css-Heading-1ybg51t-91l5qw css-Heading-1ybg51t css-H1-iwhfi5-s8bsgs css-H1-iwhfi5 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-cssA-cy897j-1p4ppuj css-cssA-cy897j css-H2-idm3bz-361gww css-H2-idm3bz"
+  scale={2}
+>
+  hello world
+</span>
 `;
 
 exports[`styled throws if undefined is passed as the component 1`] = `

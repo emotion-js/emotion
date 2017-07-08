@@ -3,13 +3,13 @@
     margin: 16px 0 8px 0;
     letter-spacing: 1px;
 }
-.css-Link-d8z67w { font-size: 1rem;
+.css-Link-1ocach0 { font-size: 1rem;
   margin-left: auto;
   margin-right: 8px;
   text-decoration: none;
-  color: #8c81d8; }
-p .css-Link-d8z67w { margin: 0; }
-.css-Link-d8z67w:hover { color: #ffd43b; }
+  color: var(--css-Link-1ocach0-0); }
+p .css-Link-1ocach0 { margin: 0; }
+.css-Link-1ocach0:hover { color: var(--css-Link-1ocach0-1); }
 .css-Paragraph-60xrpl { margin: 16px 0;
   padding: 2px;
   font-size: 0.85rem;
