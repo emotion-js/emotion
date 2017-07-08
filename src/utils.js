@@ -4,8 +4,9 @@ export function omit (
   keys: Array<string>
 ) {
   let target: { [string]: any } = {}
-  for (let i in obj) {
-    if (keys.indexOf(i) >= 0) continue
+  let i: string
+  for (i in obj) {
+    if (keys.indexOf(i) !== -1) continue
     if (!Object.prototype.hasOwnProperty.call(obj, i)) continue
     target[i] = obj[i]
   }
