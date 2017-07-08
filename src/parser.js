@@ -4,6 +4,13 @@ import postcssNested from 'styled-components/lib/vendor/postcss-nested'
 import stringify from 'styled-components/lib/vendor/postcss/stringify'
 import autoprefix from 'styled-components/lib/utils/autoprefix'
 
+type CSSDecl = {
+  parent: { selector: string, nodes: Array<mixed> },
+  prop: string,
+  value: string,
+  remove: () => {}
+}
+
 export function parseCSS (
   css: string,
   options: {
@@ -21,15 +28,21 @@ export function parseCSS (
     hash: 'hash',
     canCompose: false
   }
-): { rules: string[], hasOtherMatch: boolean, hasVar: boolean, composes: number, hasCssFunction: boolean } {
+): {
+  rules: string[],
+  hasOtherMatch: boolean,
+  hasVar: boolean,
+  composes: number,
+  hasCssFunction: boolean
+} {
   // todo - handle errors
   const root = parse(css)
   if (options.nested !== false) postcssNested(root)
 
   let vars = 0
-  let composes = 0
+  let composes: number = 0
   let hasCssFunction = false
-  root.walkDecls(decl => {
+  root.walkDecls((decl: CSSDecl): void => {
     if (decl.prop === 'name') decl.remove()
     if (decl.value.match(/attr/)) {
       hasCssFunction = true
@@ -39,20 +52,22 @@ export function parseCSS (
         if (decl.parent.selector !== `.${options.name}-${options.hash}`) {
           throw new Error('composes cannot be on nested selectors')
         }
-        if (!/xxx(\S+)xxx/gm.exec(decl.value)) {
+        if (!/xxx(\d+)xxx/gm.exec(decl.value)) {
           throw new Error('composes must be a interpolation')
         }
         if (decl.parent.nodes[0] !== decl) {
           throw new Error('composes must be the first rule')
         }
-        const numOfComposes = decl.value.match(/xxx(\S)xxx/gm).length
+        const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
+        const numOfComposes: number = !composeMatches ? 0 : composeMatches.length
         composes += numOfComposes
         vars += numOfComposes
-        return decl.remove()
+        decl.remove()
+        return
       }
     }
     if (!options.inlineMode) {
-      const match = /xxx(\S+)xxx/gm.exec(decl.value)
+      const match = /xxx(\d+)xxx/gm.exec(decl.value)
       if (match) {
         vars++
       }
@@ -60,7 +75,7 @@ export function parseCSS (
   })
   if (!options.inlineMode && vars === options.matches && !hasCssFunction) {
     root.walkDecls((decl) => {
-      decl.value = decl.value.replace(/xxx(\S+)xxx/gm, (match, p1) => {
+      decl.value = decl.value.replace(/xxx(\d+)xxx/gm, (match, p1) => {
         return `var(--${options.name}-${options.hash}-${p1})`
       })
     })
@@ -70,7 +85,9 @@ export function parseCSS (
   return {
     rules: stringifyCSSRoot(root),
     hasOtherMatch: vars !== options.matches,
-    hasVar: (!!vars && vars !== composes) || !!(options.inlineMode && options.matches),
+    hasVar:
+      (!!vars && vars !== composes) ||
+        !!(options.inlineMode && options.matches),
     composes,
     hasCssFunction
   }
