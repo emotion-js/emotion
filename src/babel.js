@@ -103,64 +103,83 @@ function parseDynamicValues (rules, t, options) {
   })
 }
 
-function prefixAst (t, args) {
-  if (Array.isArray(args)) {
-    return args.map(element => prefixAst(t, element))
-  }
-
-  if (t.isObjectExpression(args)) {
-    let properties = []
-    args.properties.forEach(property => {
-      if (t.isObjectExpression(property.value)) {
-        const key = t.isStringLiteral(property.key)
-          ? t.stringLiteral(property.key.value)
-          : t.identifier(property.key.name)
-        return properties.push(
-          t.objectProperty(key, prefixAst(t, property.value))
-        )
-      } else {
-        // handle array values: { display: ['flex', 'block'] }
-        const propertyValue = t.isArrayExpression(property.value)
-          ? property.value.elements.map(element => element.value)
-          : property.value.value
-
-        const style = { [property.key.name]: propertyValue }
-        const prefixedObject = prefixAll(style)
-
-        for (var k in prefixedObject) {
-          const key = t.isStringLiteral(property.key)
-            ? t.stringLiteral(k)
-            : t.identifier(k)
-          const val = prefixedObject[k]
-          let value
-
-          if (typeof val === 'number') {
-            value = t.numericLiteral(val)
-          } else if (typeof val === 'string') {
-            value = t.stringLiteral(val)
-          } else if (Array.isArray(val)) {
-            value = t.arrayExpression(val.map(i => t.stringLiteral(i)))
-          }
-
-          properties.push(t.objectProperty(key, value))
-        }
-      }
-    })
-
-    return t.objectExpression(properties)
-  }
-
-  if (t.isArrayExpression(args)) {
-    return t.arrayExpression(prefixAst(t, args.elements))
-  }
-
-  return args
-}
-
 const visited = Symbol('visited')
 
 export default function (babel) {
   const { types: t } = babel
+
+  function isLiteral (value) {
+    return (
+      t.isStringLiteral(value) ||
+      t.isNumericLiteral(value) ||
+      t.isBooleanLiteral(value)
+    )
+  }
+
+  function prefixAst (args) {
+    if (Array.isArray(args)) {
+      return args.map(element => prefixAst(element))
+    }
+
+    if (t.isObjectExpression(args)) {
+      let properties = []
+      args.properties.forEach(property => {
+        // nested objects
+        if (t.isObjectExpression(property.value)) {
+          const key = t.isStringLiteral(property.key)
+            ? t.stringLiteral(property.key.value)
+            : t.identifier(property.key.name)
+          return properties.push(
+            t.objectProperty(key, prefixAst(property.value))
+          )
+
+          // literal value or array of literal values
+        } else if (
+          isLiteral(property.value) ||
+          (t.isArrayExpression(property.value) &&
+            property.value.elements.every(isLiteral))
+        ) {
+          // handle array values: { display: ['flex', 'block'] }
+          const propertyValue = t.isArrayExpression(property.value)
+            ? property.value.elements.map(element => element.value)
+            : property.value.value
+
+          const style = { [property.key.name]: propertyValue }
+          const prefixedObject = prefixAll(style)
+
+          for (var k in prefixedObject) {
+            const key = t.isStringLiteral(property.key)
+              ? t.stringLiteral(k)
+              : t.identifier(k)
+            const val = prefixedObject[k]
+            let value
+
+            if (typeof val === 'number') {
+              value = t.numericLiteral(val)
+            } else if (typeof val === 'string') {
+              value = t.stringLiteral(val)
+            } else if (Array.isArray(val)) {
+              value = t.arrayExpression(val.map(i => t.stringLiteral(i)))
+            }
+
+            properties.push(t.objectProperty(key, value))
+          }
+
+          // expressions
+        } else {
+          properties.push(property)
+        }
+      })
+
+      return t.objectExpression(properties)
+    }
+
+    if (t.isArrayExpression(args)) {
+      return t.arrayExpression(prefixAst(args.elements))
+    }
+
+    return args
+  }
 
   return {
     name: 'emotion', // not required
@@ -220,14 +239,14 @@ export default function (babel) {
           path.replaceWith(
             t.callExpression(t.identifier('styled'), [
               tag,
-              t.arrayExpression(prefixAst(t, path.node.arguments)),
+              t.arrayExpression(prefixAst(path.node.arguments)),
               t.arrayExpression()
             ])
           )
         }
 
         if (t.isCallExpression(path.node) && path.node.callee.name === 'css') {
-          const prefixedAst = prefixAst(t, path.node.arguments)
+          const prefixedAst = prefixAst(path.node.arguments)
           path.replaceWith(t.callExpression(t.identifier('css'), prefixedAst))
         }
         path[visited] = true

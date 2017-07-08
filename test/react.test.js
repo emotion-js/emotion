@@ -29,7 +29,8 @@ describe('styled', () => {
   })
 
   test('basic render with object as style', () => {
-    const H1 = styled.h1({ fontSize: 20 })
+    const fontSize = 20
+    const H1 = styled.h1({ fontSize })
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
@@ -311,7 +312,7 @@ describe('styled', () => {
     const H1 = styled('h1')('some-class', { padding: 10 }, props => ({
       display: props.display
     }))
-    const tree = renderer.create(<H1 display="flex">hello world</H1>).toJSON()
+    const tree = renderer.create(<H1 display='flex'>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
