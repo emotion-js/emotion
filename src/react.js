@@ -16,6 +16,10 @@ export default function (tag, cls, vars = [], content) {
   }
 
   class Styled extends Component {
+    state = {
+      theme: {}
+    }
+
     componentWillMount () {
       if (this.context[CHANNEL]) {
         this.setState({ theme: this.context[CHANNEL].getState() })
@@ -68,5 +72,5 @@ export default function (tag, cls, vars = [], content) {
   const componentTag = tag.displayName || tag.name || 'Component'
   Styled.displayName = `styled(${componentTag}${name})`
   Styled.cls = '.' + cls
-  return withTheme(Styled)
+  return Styled
 }

@@ -17,14 +17,14 @@ const Link = styled('a')`
   margin-left: auto;
   margin-right: 8px;
   text-decoration: none;
-  color: #8c81d8;
+  color: ${p => p.theme.purple};
   
   p & {
     margin: 0;
   }
   
   &:hover {
-    color: #ffd43b;
+    color: ${p => p.theme.gold};
   }
 `
 
