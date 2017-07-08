@@ -2,7 +2,7 @@
 
 exports[`babel css extract basic object support 1`] = `
 "css({
-  display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex']
+  display: ['-webkit-box', '-ms-flexbox', 'flex']
 });"
 `;
 
@@ -50,7 +50,7 @@ exports[`babel css extract composes with objects 1`] = `
 "import './css.test.emotion.css';
 
 const cls1 = css({
-  display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex']
+  display: ['-webkit-box', '-ms-flexbox', 'flex']
 });
 const cls2 = \`\${'css-cls2-k8jueb'} \${cls1}\`;"
 `;
@@ -97,16 +97,16 @@ exports[`babel css extract prefixed array of objects 1`] = `
 "
 css([{
   borderRadius: '50%',
+  WebkitBoxSizing: 'border-box',
   boxSizing: 'border-box',
-  display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+  display: ['-webkit-box', '-ms-flexbox', 'flex'],
   ':hover': {
-    transform: 'scale(1.2)',
-    WebkitTransform: 'scale(1.2)'
+    WebkitTransform: 'scale(1.2)',
+    transform: 'scale(1.2)'
   }
 }, {
-  transition: '-webkit-transform 400ms ease-in-out,transform 400ms ease-in-out',
-  WebkitTransition: '-webkit-transform 400ms ease-in-out,transform 400ms ease-in-out',
-  MozTransition: 'transform 400ms ease-in-out'
+  WebkitTransition: '-webkit-transform 400ms ease-in-out',
+  transition: ['-webkit-transform 400ms ease-in-out', 'transform 400ms ease-in-out', 'transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out']
 }]);"
 `;
 
@@ -114,14 +114,14 @@ exports[`babel css extract prefixed objects 1`] = `
 "
 css({
     borderRadius: '50%',
-    transition: '-webkit-transform 400ms ease-in-out,transform 400ms ease-in-out',
-    WebkitTransition: '-webkit-transform 400ms ease-in-out,transform 400ms ease-in-out',
-    MozTransition: 'transform 400ms ease-in-out',
+    WebkitTransition: '-webkit-transform 400ms ease-in-out',
+    transition: ['-webkit-transform 400ms ease-in-out', 'transform 400ms ease-in-out', 'transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'],
+    WebkitBoxSizing: 'border-box',
     boxSizing: 'border-box',
-    display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+    display: ['-webkit-box', '-ms-flexbox', 'flex'],
     ':hover': {
-        transform: 'scale(1.2)',
-        WebkitTransform: 'scale(1.2)'
+        WebkitTransform: 'scale(1.2)',
+        transform: 'scale(1.2)'
     }
 });"
 `;

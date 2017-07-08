@@ -29,8 +29,9 @@
     "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },
   "dependencies": {
+    "autoprefixer": "^7.1.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
-    "inline-style-prefixer": "^3.0.6",
+    "postcss-js": "^1.0.0",
     "styled-components": "2.0.0",
     "theming": "^1.0.1",
     "touch": "^1.0.0"

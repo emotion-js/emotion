@@ -225,7 +225,7 @@ const H1 = styled('h1', ['some-class', props => ({
 exports[`babel styled component inline objects based on props 1`] = `
 "
 const H1 = styled('h1', [{
-  padding: 10
+  padding: '10px'
 }, props => ({
   display: props.display
 })], []);"
@@ -234,7 +234,7 @@ const H1 = styled('h1', [{
 exports[`babel styled component inline objects fn call 1`] = `
 "
 const H1 = styled('h1', [{
-  display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex']
+  display: ['-webkit-box', '-ms-flexbox', 'flex']
 }], []);"
 `;
 
@@ -242,14 +242,14 @@ exports[`babel styled component inline objects prefixed 1`] = `
 "
 const H1 = styled('h1', [{
   borderRadius: '50%',
-  transition: '-webkit-transform 400ms ease-in-out,transform 400ms ease-in-out',
-  WebkitTransition: '-webkit-transform 400ms ease-in-out,transform 400ms ease-in-out',
-  MozTransition: 'transform 400ms ease-in-out',
+  WebkitTransition: '-webkit-transform 400ms ease-in-out',
+  transition: ['-webkit-transform 400ms ease-in-out', 'transform 400ms ease-in-out', 'transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'],
+  WebkitBoxSizing: 'border-box',
   boxSizing: 'border-box',
-  display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+  display: ['-webkit-box', '-ms-flexbox', 'flex'],
   ':hover': {
-    transform: 'scale(1.2)',
-    WebkitTransform: 'scale(1.2)'
+    WebkitTransform: 'scale(1.2)',
+    transform: 'scale(1.2)'
   }
 }, props => {
   padding: props.padding;
@@ -269,7 +269,7 @@ styled(\\"h1\\", [\\"css-byjn67\\"], [SomeComponent], function createEmotionStyl
 exports[`babel styled component inline styled. objects 1`] = `
 "
 const H1 = styled(\\"h1\\", [{
-  padding: 10
+  padding: \\"10px\\"
 }, props => ({
   display: props.display
 })], []);"
@@ -279,14 +279,14 @@ exports[`babel styled component inline styled. objects prefixed 1`] = `
 "
 const H1 = styled('h1', [{
   borderRadius: '50%',
-  transition: '-webkit-transform 400ms ease-in-out,transform 400ms ease-in-out',
-  WebkitTransition: '-webkit-transform 400ms ease-in-out,transform 400ms ease-in-out',
-  MozTransition: 'transform 400ms ease-in-out',
+  WebkitTransition: '-webkit-transform 400ms ease-in-out',
+  transition: ['-webkit-transform 400ms ease-in-out', 'transform 400ms ease-in-out', 'transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'],
+  WebkitBoxSizing: 'border-box',
   boxSizing: 'border-box',
-  display: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+  display: ['-webkit-box', '-ms-flexbox', 'flex'],
   ':hover': {
-    transform: 'scale(1.2)',
-    WebkitTransform: 'scale(1.2)'
+    WebkitTransform: 'scale(1.2)',
+    transform: 'scale(1.2)'
   }
 }, props => ({
   display: props.display

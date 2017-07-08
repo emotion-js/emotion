@@ -1,7 +1,8 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
-import prefixAll from 'inline-style-prefixer/static'
+import postcssJs from 'postcss-js'
+import autoprefixer from 'autoprefixer'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import cssProps from './css-prop'
 import createAttrExpression from './attrs'
@@ -107,6 +108,7 @@ const visited = Symbol('visited')
 
 export default function (babel) {
   const { types: t } = babel
+  const prefixer = postcssJs.sync([autoprefixer])
 
   function isLiteral (value) {
     return (
@@ -145,13 +147,13 @@ export default function (babel) {
             : property.value.value
 
           const style = { [property.key.name]: propertyValue }
-          const prefixedObject = prefixAll(style)
+          const prefixedStyle = prefixer(style)
 
-          for (var k in prefixedObject) {
+          for (var k in prefixedStyle) {
             const key = t.isStringLiteral(property.key)
               ? t.stringLiteral(k)
               : t.identifier(k)
-            const val = prefixedObject[k]
+            const val = prefixedStyle[k]
             let value
 
             if (typeof val === 'number') {
