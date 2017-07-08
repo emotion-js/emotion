@@ -119,7 +119,12 @@ function prefixAst (t, args) {
           t.objectProperty(key, prefixAst(t, property.value))
         )
       } else {
-        const style = { [property.key.name]: property.value.value }
+        // handle array values: { display: ['flex', 'block'] }
+        const propertyValue = t.isArrayExpression(property.value)
+          ? property.value.elements.map(element => element.value)
+          : property.value.value
+
+        const style = { [property.key.name]: propertyValue }
         const prefixedObject = prefixAll(style)
 
         for (var k in prefixedObject) {
@@ -223,16 +228,7 @@ export default function (babel) {
 
         if (t.isCallExpression(path.node) && path.node.callee.name === 'css') {
           const prefixedAst = prefixAst(t, path.node.arguments)
-
-          try {
-            path.replaceWith(t.callExpression(t.identifier('css'), prefixedAst))
-          } catch (e) {
-            console.log(e)
-            console.log('Before=-----')
-            console.log(path.node.arguments)
-            console.log('After=-----')
-            console.log(prefixedAst)
-          }
+          path.replaceWith(t.callExpression(t.identifier('css'), prefixedAst))
         }
         path[visited] = true
       },

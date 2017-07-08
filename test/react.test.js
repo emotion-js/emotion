@@ -29,8 +29,7 @@ describe('styled', () => {
   })
 
   test('basic render with object as style', () => {
-    const fontSize = 20
-    const H1 = styled.h1({ fontSize })
+    const H1 = styled.h1({ fontSize: 20 })
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
@@ -99,9 +98,7 @@ describe('styled', () => {
 
   test('component as selector', () => {
     const fontSize = '20px'
-    const H1 = styled.h1`
-      font-size: ${fontSize};
-    `
+    const H1 = styled.h1`font-size: ${fontSize};`
 
     const Thing = styled.div`
       display: flex;
@@ -111,7 +108,11 @@ describe('styled', () => {
     `
 
     const tree = renderer
-      .create(<Thing>hello <H1>This will be green</H1> world</Thing>)
+      .create(
+        <Thing>
+          hello <H1>This will be green</H1> world
+        </Thing>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
@@ -298,22 +299,10 @@ describe('styled', () => {
       composes: ${props => (props.a ? cssA : cssB)}
     `
 
-    const tree = renderer
-      .create(
-        <H1 a>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1 a>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
-    const tree2 = renderer
-      .create(
-        <H1>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree2 = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree2).toMatchSnapshotWithEmotion()
   })
@@ -322,13 +311,7 @@ describe('styled', () => {
     const H1 = styled('h1')('some-class', { padding: 10 }, props => ({
       display: props.display
     }))
-    const tree = renderer
-      .create(
-        <H1 display='flex'>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1 display="flex">hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
