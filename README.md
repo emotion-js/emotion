@@ -298,7 +298,7 @@ function SomeComponent (props) {
 The composes property is based on [css modules' composes property](https://github.com/css-modules/css-modules#composition).
 
 ```jsx
-import { fragment, css } from 'emotion'
+import { css } from 'emotion'
 import styled from 'emotion/react'
 
 // Define a class
