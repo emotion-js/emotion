@@ -17,7 +17,7 @@
 ![slack](https://emotion.now.sh/badge.svg)
 
 
-- [Install](#install)
+- [Install](https://github.com/tkh44/emotion/tree/master/docs/install.md)
 - Demos
   - [emotion website](https://github.com/tkh44/emotion/tree/master/example) [[Demo Here](https://emotion.sh)]
   - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
@@ -42,20 +42,7 @@
 
 
 ## Install
-
-```bash
-npm install -S emotion
-```
-
-
-**.babelrc**
-```json
-{
-  "plugins": [
-    "emotion/babel"
-  ]
-}
-```
+- [install](https://github.com/tkh44/emotion/tree/master/docs/install.md)
 
 ## Extract Mode
 
