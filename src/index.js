@@ -1,4 +1,5 @@
 // @flow
+import map from '@arr/map'
 import { StyleSheet } from './sheet'
 import { hashArray, hashObject } from './hash'
 
@@ -17,9 +18,7 @@ function values (cls: string, vars: vars) {
   if (inserted[hash]) {
     return varCls
   }
-  let src = vars
-    .map((val: inputVar, i: number) => `--${cls}-${i}: ${val}`)
-    .join('; ')
+  let src = map(vars, (val: inputVar, i: number) => `--${cls}-${i}: ${val}`).join('; ')
   sheet.insert(`.${varCls} {${src}}`)
   inserted[hash] = true
 
@@ -37,8 +36,7 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
     classes = [classes]
   }
 
-  const computedClassName = classes
-    .map((cls): string => typeof cls === 'string' ? cls : objStyle(cls))
+  const computedClassName = map(classes, (cls): string => typeof cls === 'string' ? cls : objStyle(cls))
     .join(' ')
     .trim()
 
@@ -49,10 +47,7 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
 
     if (!inserted[hash]) {
       inserted[hash] = true
-      src
-        .map(r =>
-          r.replace(new RegExp(classes[0], 'gm'), `${classes[0]}-${hash}`)
-        )
+      map(src, r => r.replace(new RegExp(classes[0], 'gm'), `${classes[0]}-${hash}`))
         .forEach(r => sheet.insert(r))
     }
     return `${classes[0]}-${hash} ${computedClassName}`

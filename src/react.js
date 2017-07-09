@@ -1,6 +1,7 @@
 import { Component, createElement as h } from 'react'
-import PropTypes from 'prop-types'
 import { createTheming } from 'theming'
+import PropTypes from 'prop-types'
+import map from '@arr/map'
 import { css } from './index'
 import { omit } from './utils'
 
@@ -48,7 +49,7 @@ export default function (tag, cls, vars = [], content) {
       const getValue = v =>
         v && typeof v === 'function' ? v.cls || v(mergedProps) : v
 
-      const className = css(cls.map(getValue), vars.map(getValue), content)
+      const className = css(map(cls, getValue), map(vars, getValue), content)
 
       return h(
         tag,
