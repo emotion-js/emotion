@@ -10,11 +10,7 @@ function extractNameFromProperty (str: string) {
   }
 }
 
-function getName (
-  extracted?: string,
-  identifierName?: string,
-  prefix: string
-): string {
+function getName (extracted?: string, identifierName?: string, prefix: string): string {
   const parts = []
   parts.push(prefix)
   if (extracted) {
@@ -25,11 +21,7 @@ function getName (
   return parts.join('-')
 }
 
-function createSrc (
-  strs: string[],
-  name: string,
-  hash: string
-): { src: string, matches: number } {
+function createSrc (strs: string[], name: string, hash: string): { src: string, matches: number } {
   let matches = 0
   const src = strs
     .reduce((arr, str, i) => {
@@ -57,30 +49,57 @@ export function inline (
   hasVar: boolean,
   hasOtherMatch: boolean,
   composes: number,
-  hasCssFunction: boolean
+  hasCssFunction: boolean,
+  staticDeclarations: string[],
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
-  let name = getName(
-    extractNameFromProperty(strs.join('xxx')),
-    identifierName,
-    prefix
-  )
+  let name = getName(extractNameFromProperty(strs.join('xxx')), identifierName, prefix)
   let { src, matches } = createSrc(strs, name, hash)
-  let {
-    rules,
-    hasVar,
-    hasOtherMatch,
-    composes,
-    hasCssFunction
-  } = parseCSS(`.${name}-${hash} { ${src} }`, {
+
+  // construct two arrays to track static and dynamic rules
+  let staticRules = []
+  let dynamicRules = []
+  // split rules by semicolon
+  src.split(';').forEach(decl => {
+    // get the value from the declaration
+    const [, val] = decl.split(':')
+    // regex to test values that match xxx0xxx placeholders
+    const customValRe = /xxx(\d+)xxx/
+    // if it doesn't match the pattern, add to static, else dynamic
+    if (!customValRe.test(val)) {
+      staticRules.push(decl)
+    } else {
+      dynamicRules.push(decl)
+    }
+  })
+  let { rules, hasVar, hasOtherMatch, composes, hasCssFunction } = parseCSS(
+    `.${name}-${hash} { ${dynamicRules.join(';')} }`,
+    {
+      inlineMode: inlineMode,
+      matches,
+      name,
+      hash,
+      canCompose: true
+    }
+  )
+  const { rules: staticDeclarations } = parseCSS(`.${name}-${hash} { ${staticRules.join(';')} }`, {
     inlineMode: inlineMode,
     matches,
     name,
     hash,
     canCompose: true
   })
-  return { hash, name, rules, hasVar, hasOtherMatch, composes, hasCssFunction }
+  return {
+    hash,
+    name,
+    rules,
+    hasVar,
+    hasOtherMatch,
+    composes,
+    hasCssFunction,
+    staticDeclarations
+  }
 }
 
 export function keyframes (
@@ -91,15 +110,11 @@ export function keyframes (
   hash: string,
   name: string,
   rules: string[],
-  hasInterpolation: boolean
+  hasInterpolation: boolean,
 } {
   const strs = quasi.quasis.map(x => x.value.cooked)
   const hash = hashArray([...strs])
-  const name = getName(
-    extractNameFromProperty(strs.join('xxx')),
-    identifierName,
-    prefix
-  )
+  const name = getName(extractNameFromProperty(strs.join('xxx')), identifierName, prefix)
   const { src, matches } = createSrc(strs, name, hash)
   let { rules, hasVar, hasOtherMatch } = parseCSS(`{ ${src} }`, {
     nested: false,
@@ -111,9 +126,7 @@ export function keyframes (
   return { hash, name, rules, hasInterpolation: hasVar || hasOtherMatch }
 }
 
-export function fontFace (
-  quasi: any
-): { rules: string[], hasInterpolation: boolean } {
+export function fontFace (quasi: any): { rules: string[], hasInterpolation: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   const { src, matches } = createSrc(strs, 'name', 'hash')
   let { rules, hasVar, hasOtherMatch } = parseCSS(`@font-face {${src}}`, {
@@ -125,9 +138,7 @@ export function fontFace (
   return { rules, hasInterpolation: hasVar || hasOtherMatch }
 }
 
-export function injectGlobal (
-  quasi: any
-): { rules: string[], hasInterpolation: boolean } {
+export function injectGlobal (quasi: any): { rules: string[], hasInterpolation: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   const { src, matches } = createSrc(strs, 'name', 'hash')
   let { rules, hasVar, hasOtherMatch } = parseCSS(src, {
