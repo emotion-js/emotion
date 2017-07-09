@@ -1,4 +1,4 @@
-### Extract Mode
+## Extract Mode
 
 The default settings enable css extraction.
 
