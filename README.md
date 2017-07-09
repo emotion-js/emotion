@@ -22,7 +22,7 @@
   - [emotion website](https://github.com/tkh44/emotion/tree/master/example) [[Demo Here](https://emotion.sh)]
   - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
   - **open a PR and add yours!**
- 
+
 - [Benchmarks](https://github.com/tkh44/emotion/tree/master/docs/benchmarks.md)
 
 - [Extract Mode](#extract-mode)
@@ -30,13 +30,13 @@
 - [API](#api)
   - [css](#css)
   - [composes property](#composes-property)
-  - [keyframes](#keyframes)
+  - [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
   - [fontFace](#fontface)
 
 - [Server-Side Rendering](#server-side-rendering)
   - [extractCritical](#extractCritical)
   - [hydrate](#hydrate)
-  
+
 - Vue
   - [styled](#vue-styled)
 
@@ -59,7 +59,7 @@ npm install -S emotion
 
 ## Extract Mode
 
-The default settings enable css extraction. 
+The default settings enable css extraction.
 
 - Extract mode requires css variables to function. If you need ie11 support use **inline mode**.
 - If you have a client side rendered app that does not need ie11 support use **extract mode**.
@@ -96,7 +96,7 @@ const H1 = styled('h1', 'css-H1-duiy4a')
 
 ## Inline Mode
 
-- ~~Only extracts styles **without** dynamic values.~~ (we're working on this) 
+- ~~Only extracts styles **without** dynamic values.~~ (we're working on this)
 - No css var requirement
 - Same speed as default mode in benchmarks
 - Works with SSR
@@ -159,8 +159,8 @@ const justifyCenter = css`
 
 #### Objects as Styles
 
-`css` can also take an object or array of objects as a parameter. 
-This allows you to use your existing object styles in the emotion ecosystem. 
+`css` can also take an object or array of objects as a parameter.
+This allows you to use your existing object styles in the emotion ecosystem.
 Another great benefit is that you can now use [polished](https://polished.js.org/) with emotion.
 
 *Object styles cannot be optimized as well as template literal styles at this time. Object styles are also not autoprefixed.*
@@ -239,7 +239,7 @@ const H1 = styled('h1')`
 
 function Greeting ({ name }) {
   // will turn into to <h1 className="generated-className" ref={() => console.log('hello!')}>Hello {name}</h1>
-  return <H1 innerRef={() => console.log('hello!')}>Hello {name}</H1> 
+  return <H1 innerRef={() => console.log('hello!')}>Hello {name}</H1>
 }
 
 ```
@@ -350,28 +350,7 @@ const cls = css`
 ```
 
 ### keyframes
-
-```jsx
-import { keyframes } from 'emotion'
-import styled from 'emotion'
-
-// This returns a animation
-const bounce = keyframes`
-  from {
-    transform: scale(1.01);
-  }
-  to {
-    transform: scale(0.99);
-  }
-`
-
-// You can use them in styled components or anything else
-const AnimatedDiv = styled.div`
-  animation: ${bounce} 0.2s infinite ease-in-out alternate;
-`
-
-
-```
+- [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
 
 ### fontFace
 
@@ -468,7 +447,7 @@ emotion works well with CSS Modules but it requires a bit of configuration.
 ### attr
 
 The [attr](https://developer.mozilla.org/en-US/docs/Web/CSS/attr) CSS function is supported in
-a basic capacity. 
+a basic capacity.
 
 ```css
 /* get value from `width` prop */
