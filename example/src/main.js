@@ -17,7 +17,7 @@ const keyframesExample = require('./blocks/keyframes.example')
 // const fontFaceExample = require('./blocks/font-face.example')
 // const docMarkdown = require('./docs/index.md')
 // const readmeMarkdown = require('../../README.md')
-const avatarUrl = require('./avatar.jpg')
+const avatarUrl = require('../../emotion.png')
 
 injectGlobal`
   html, body {
