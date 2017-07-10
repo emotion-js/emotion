@@ -102,7 +102,7 @@ class App extends React.Component {
 
                 emotion
               </h1>
-              <p>high performance js for your css</p>
+              <p>The Next Generation of CSS-in-JS</p>
             </div>
 
             <Playground
