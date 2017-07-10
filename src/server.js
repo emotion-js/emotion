@@ -1,4 +1,5 @@
 import filter from '@arr/filter'
+import forEach from '@arr/foreach'
 import { sheet, inserted } from './index'
 import { keys } from './utils'
 
@@ -20,8 +21,12 @@ export function extractCritical (html) {
     let match = RGX.exec(x.cssText)
     return match && ids[match[1] + ''] || !match || false;
   })
-  o.css = o.rules.map(x => x.cssText).join('')
+
   o.ids = filter(keys(inserted), id => !!ids[id + ''])
+
+  let css = ''
+  forEach(o.rules, x => css += x.cssText)
+  o.css = css;
 
   return o
 }
