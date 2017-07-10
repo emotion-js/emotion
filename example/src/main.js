@@ -144,7 +144,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -174,7 +175,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -188,7 +190,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -203,7 +206,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -232,7 +236,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -247,7 +252,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -262,7 +268,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -305,7 +312,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
           </div>
