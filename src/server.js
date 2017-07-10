@@ -19,7 +19,7 @@ export function extractCritical (html) {
 
   o.rules = filter(sheet.sheet.cssRules.slice(), x => {
     let match = RGX.exec(x.cssText)
-    return match && ids[match[1] + ''] || !match || false;
+    return match == null || ids[match[1] + ''] || false
   })
 
   o.ids = filter(keys(inserted), id => !!ids[id + ''])
