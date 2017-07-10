@@ -12,3 +12,14 @@ export function omit (
   }
   return target
 }
+
+export function keys (
+  obj: { [string]: any }
+) {
+  let k: string
+  let out: Array<string> = []
+  for (k in obj) {
+    out.push(k);
+  }
+  return out
+}
