@@ -55,13 +55,20 @@ function parseDynamicValues (rules, t, options) {
         }
         if (match.type === VAR) {
           if (options.inputExpressions) {
-            expressions.push(options.inputExpressions[match.p1 - options.composes])
+            expressions.push(
+              options.inputExpressions[match.p1 - options.composes]
+            )
           } else {
             expressions.push(t.identifier(`x${match.p1 - options.composes}`))
           }
         }
         if (match.type === ATTR) {
-          const expr = createAttrExpression(match, options.vars, options.composes, t)
+          const expr = createAttrExpression(
+            match,
+            options.vars,
+            options.composes,
+            t
+          )
           options.vars.push(expr)
           expressions.push(t.identifier(`x${options.vars.length - 1}`))
         }
@@ -85,7 +92,10 @@ function parseDynamicValues (rules, t, options) {
     )
 
     if (!matches.length) {
-      return t.templateLiteral([t.templateElement({ raw: rule, cooked: rule }, true)], [])
+      return t.templateLiteral(
+        [t.templateElement({ raw: rule, cooked: rule }, true)],
+        []
+      )
     }
 
     return t.templateLiteral(quasis, expressions)
@@ -101,7 +111,8 @@ export default function (babel) {
     visitor: {
       Program: {
         enter (path, state) {
-          state.inline = path.hub.file.opts.filename === 'unknown' || state.opts.inline
+          state.inline =
+            path.hub.file.opts.filename === 'unknown' || state.opts.inline
           state.staticRules = []
           state.insertStaticRules = function (staticRules) {
             state.staticRules.push(...staticRules)
@@ -115,8 +126,15 @@ export default function (babel) {
             filenameArr.push('emotion', 'css')
             const cssFilename = filenameArr.join('.')
             const exists = fs.existsSync(cssFilename)
-            path.node.body.unshift(t.importDeclaration([], t.stringLiteral('./' + basename(cssFilename))))
-            if (exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true) {
+            path.node.body.unshift(
+              t.importDeclaration(
+                [],
+                t.stringLiteral('./' + basename(cssFilename))
+              )
+            )
+            if (
+              exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
+            ) {
               if (!exists) {
                 touchSync(cssFilename)
               }
@@ -130,7 +148,8 @@ export default function (babel) {
       },
       CallExpression (path) {
         if (
-          (t.isCallExpression(path.node.callee) && path.node.callee.callee.name === 'styled') ||
+          (t.isCallExpression(path.node.callee) &&
+            path.node.callee.callee.name === 'styled') ||
           (t.isMemberExpression(path.node.callee) &&
             t.isIdentifier(path.node.callee.object) &&
             path.node.callee.object.name === 'styled')
@@ -160,15 +179,19 @@ export default function (babel) {
         // });
 
         const parent = path.findParent(p => p.isVariableDeclarator())
-        const identifierName = parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
+        const identifierName =
+          parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 
         function buildCallExpression (identifier, tag, path) {
-          let { hash, rules, name, hasOtherMatch, composes, hasCssFunction, staticDeclarations } = inline(
-            path.node.quasi,
-            identifierName,
-            'css',
-            state.inline
-          )
+          let {
+            hash,
+            rules,
+            name,
+            hasOtherMatch,
+            composes,
+            hasCssFunction,
+            staticDeclarations
+          } = inline(path.node.quasi, identifierName, 'css', state.inline)
 
           if (staticDeclarations.length > 0) {
             state.insertStaticRules(staticDeclarations)
@@ -186,14 +209,20 @@ export default function (babel) {
           const vars = path.node.quasi.expressions
 
           const dynamicValues = parseDynamicValues(rules, t, { composes, vars })
-          const args = [tag, t.arrayExpression(inputClasses), t.arrayExpression(vars)]
+          const args = [
+            tag,
+            t.arrayExpression(inputClasses),
+            t.arrayExpression(vars)
+          ]
           if (!hasOtherMatch && !state.inline && !hasCssFunction) {
             state.insertStaticRules(rules)
           } else {
             const inlineContentExpr = t.functionExpression(
               t.identifier('createEmotionStyledRules'),
               vars.map((x, i) => t.identifier(`x${i}`)),
-              t.blockStatement([t.returnStatement(t.arrayExpression(dynamicValues))])
+              t.blockStatement([
+                t.returnStatement(t.arrayExpression(dynamicValues))
+              ])
             )
             args.push(inlineContentExpr)
           }
@@ -208,7 +237,11 @@ export default function (babel) {
           t.isTemplateLiteral(path.node.quasi)
         ) {
           path.replaceWith(
-            buildCallExpression(path.node.tag.object, t.stringLiteral(path.node.tag.property.name), path)
+            buildCallExpression(
+              path.node.tag.object,
+              t.stringLiteral(path.node.tag.property.name),
+              path
+            )
           )
         } else if (
           // styled('h1')`color:${color};`
@@ -216,27 +249,45 @@ export default function (babel) {
           path.node.tag.callee.name === 'styled' &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          path.replaceWith(buildCallExpression(path.node.tag.callee, path.node.tag.arguments[0], path))
-        } else if (t.isIdentifier(path.node.tag) && path.node.tag.name === 'css') {
-          try {
-            const { hash, name, rules, hasVar, composes, hasOtherMatch } = inline(
-              path.node.quasi,
-              identifierName,
-              'css',
-              state.inline
+          path.replaceWith(
+            buildCallExpression(
+              path.node.tag.callee,
+              path.node.tag.arguments[0],
+              path
             )
+          )
+        } else if (
+          t.isIdentifier(path.node.tag) &&
+          path.node.tag.name === 'css'
+        ) {
+          try {
+            const {
+              hash,
+              name,
+              rules,
+              hasVar,
+              composes,
+              hasOtherMatch
+            } = inline(path.node.quasi, identifierName, 'css', state.inline)
             const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
             for (var i = 0; i < composes; i++) {
               inputClasses.push(path.node.quasi.expressions.shift())
             }
-            const args = [t.arrayExpression(inputClasses), t.arrayExpression(path.node.quasi.expressions)]
+            const args = [
+              t.arrayExpression(inputClasses),
+              t.arrayExpression(path.node.quasi.expressions)
+            ]
             if (!hasOtherMatch && !state.inline) {
               state.insertStaticRules(rules)
               if (!hasVar) {
-                return path.replaceWith(joinExpressionsWithSpaces(inputClasses, t))
+                return path.replaceWith(
+                  joinExpressionsWithSpaces(inputClasses, t)
+                )
               }
             } else {
-              const expressions = path.node.quasi.expressions.map((x, i) => t.identifier(`x${i}`))
+              const expressions = path.node.quasi.expressions.map((x, i) =>
+                t.identifier(`x${i}`)
+              )
               const inlineContentExpr = t.functionExpression(
                 t.identifier('createEmotionRules'),
                 expressions,
@@ -257,11 +308,20 @@ export default function (babel) {
           } catch (e) {
             throw path.buildCodeFrameError(e)
           }
-        } else if (t.isIdentifier(path.node.tag) && path.node.tag.name === 'keyframes') {
-          const { hash, name, rules, hasInterpolation } = keyframes(path.node.quasi, identifierName, 'animation')
+        } else if (
+          t.isIdentifier(path.node.tag) &&
+          path.node.tag.name === 'keyframes'
+        ) {
+          const { hash, name, rules, hasInterpolation } = keyframes(
+            path.node.quasi,
+            identifierName,
+            'animation'
+          )
           const animationName = `${name}-${hash}`
           if (!hasInterpolation && !state.inline) {
-            state.insertStaticRules([`@keyframes ${animationName} ${rules.join('')}`])
+            state.insertStaticRules([
+              `@keyframes ${animationName} ${rules.join('')}`
+            ])
             path.replaceWith(t.stringLiteral(animationName))
           } else {
             path.replaceWith(
@@ -275,8 +335,14 @@ export default function (babel) {
               ])
             )
           }
-        } else if (t.isIdentifier(path.node.tag) && path.node.tag.name === 'fontFace') {
-          const { rules, hasInterpolation } = fontFace(path.node.quasi, state.inline)
+        } else if (
+          t.isIdentifier(path.node.tag) &&
+          path.node.tag.name === 'fontFace'
+        ) {
+          const { rules, hasInterpolation } = fontFace(
+            path.node.quasi,
+            state.inline
+          )
           if (!hasInterpolation && !state.inline) {
             state.insertStaticRules(rules)
             if (t.isExpressionStatement(path.parent)) {
