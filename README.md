@@ -4,7 +4,7 @@
   emotion
   <br>
 </h1>
-<p align="center" style="font-size: 1.2rem;">high performance js for your css</p>
+<p align="center" style="font-size: 1.2rem;">The Next Generation of CSS-in-JS</p>
 
 
 
