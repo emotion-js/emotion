@@ -7,5 +7,11 @@
     "render": false,
     "ReactMarkdown": false,
     "docMarkdown": false
+  },
+  "rules": {
+    max-len: [
+      "error",
+      50
+    ]
   }
 }

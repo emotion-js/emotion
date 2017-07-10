@@ -9,4 +9,7 @@ const Avatar = styled('img')`
   }
 `
 
-render(<Avatar src={avatarUrl} rounded/>, mountNode)
+render(
+  <Avatar src={avatarUrl} rounded />,
+  mountNode
+)

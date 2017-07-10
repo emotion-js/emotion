@@ -17,7 +17,7 @@ const keyframesExample = require('./blocks/keyframes.example')
 // const fontFaceExample = require('./blocks/font-face.example')
 // const docMarkdown = require('./docs/index.md')
 // const readmeMarkdown = require('../../README.md')
-const avatarUrl = require('./avatar.jpg')
+const avatarUrl = require('../../emotion.png')
 
 injectGlobal`
   html, body {
@@ -102,7 +102,7 @@ class App extends React.Component {
 
                 emotion
               </h1>
-              <p>high performance js for your css</p>
+              <p>The Next Generation of CSS-in-JS</p>
             </div>
 
             <Playground
@@ -144,7 +144,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -174,7 +175,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -188,7 +190,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -203,7 +206,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -221,6 +225,22 @@ class App extends React.Component {
             {/* }} */}
             {/* /> */}
 
+            <Markdown markdown={require('../../docs/theming.md')}/>
+            <Playground
+              maxHeight={180}
+              noRender={false}
+              codeText={require('./blocks/theming.example')}
+              scope={{
+                avatarUrl,
+                React,
+                css,
+                keyframes,
+                styled,
+                render,
+                ThemeProvider
+              }}
+            />
+
             <Markdown markdown={require('../../docs/composes.md')} />
             <Playground
               maxHeight={180}
@@ -232,7 +252,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -247,7 +268,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
 
@@ -290,7 +312,8 @@ class App extends React.Component {
                 css,
                 keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider
               }}
             />
           </div>
