@@ -48,7 +48,7 @@ function Greeting ({ name }) {
 
 ```
 
-#### Objects as styles
+### Objects as styles
 
 `styled` can also take objects or a function that returns an object. This API was inspired by [glamorous](https://github.com/paypal/glamorous).
 
