@@ -27,6 +27,7 @@
 
 - [Extract Mode](https://github.com/tkh44/emotion/tree/master/docs/extract-mode.md)
 - [Inline Mode](https://github.com/tkh44/emotion/tree/master/docs/inline-mode.md)
+
 - [API](#api)
   - [css](https://github.com/tkh44/emotion/tree/master/docs/css.md)
   - [styled](https://github.com/tkh44/emotion/tree/master/docs/styled.md)
@@ -34,10 +35,9 @@
   - [composes property](https://github.com/tkh44/emotion/tree/master/docs/composes.md)
   - [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
   - [fontFace](https://github.com/tkh44/emotion/tree/master/docs/fontFace.md)
+  - [vue styled](https://github.com/tkh44/emotion/tree/master/docs/vue-styled.md)
 
-- Vue
-  - [styled](#vue-styled)
-
+- [Usage with CSS Modules](https://github.com/tkh44/emotion/tree/master/docs/css-modules.md)
 
 ## Install
 - [Install](https://github.com/tkh44/emotion/tree/master/docs/install.md)
@@ -61,85 +61,8 @@
   - [extractCritical](https://github.com/tkh44/emotion/tree/master/docs/ssr#extractcritical.md)
   - [hydrate](https://github.com/tkh44/emotion/tree/master/docs/ssr#hydrate.md)
 
-### vue styled
+## vue styled
+  - [styled](https://github.com/tkh44/emotion/tree/master/docs/vue-styled.md)
 
-```html
-<template>
-  <div id="app">
-    <styled-div>This should have a blue background.</styled-div>
-    <styled-component></styled-component>
-  </div>
-</template>
-
-<script>
-import BoringComponent from './components/BoringComponent'
-// Import styled from emotion/vue instead of emotion/react
-import styled from 'emotion/vue'
-
-// You can use styled.* just like with React
-const StyledDiv = styled.div`
-  background: blue;
-`
-
-// You can also pass components in
-const StyledComponent = styled(BoringComponent)`
-  display: flex;
-  justify-content: center;
-`
-
-export default {
-  name: 'app',
-  components: {
-    'styled-div': StyledDiv,
-    'styled-component': StyledComponent
-  }
-}
-</script>
-```
-
-### Usage with CSS Modules
-
-emotion works well with CSS Modules but it requires a bit of configuration.
-
-1. In your webpack config add the exclude option with this regex `/emotion\.css$/` to your loader for css so that emotion's static css isn't imported as a CSS Module.
-2. Add another object to your `modules.use` with your css loaders but with CSS Modules disabled and set the test field to the same regex as above `/emotion\.css$/`.
-
-
-- [Example webpack config](example/webpack.config.js)
-- [Example usage of CSS Modules with emotion](example/src/markdown/index.js)
-
-### attr
-
-The [attr](https://developer.mozilla.org/en-US/docs/Web/CSS/attr) CSS function is supported in
-a basic capacity.
-
-```css
-/* get value from `width` prop */
-width: attr(width vw);
-
-/* specify type or unit to apply to value */
-width: attr(width vw);
-
-/* fallback value if props.width is falsey */
-width: attr(width vw, 50);
-```
-
-```jsx
-const H1 = styled.h1`
-  font-size: attr(fontSize px);
-  margin: attr(margin rem, 4);
-  font-family: sans-serif;
-  color: attr(color, ${colors.pink[5]});
-  @media (min-width: 680px) {
-    color: attr(desktopColor);
-  }
-`
-
-const Title = ({ title, scale }) => {
-  return (
-    <H1 fontSize={16 * scale} desktopColor={colors.gray[5]}>
-      {title}
-    </H1>
-  )
-}
-```
+## Usage with CSS Modules`
+  - [css modules](https://github.com/tkh44/emotion/tree/master/docs/css-modules.md)
