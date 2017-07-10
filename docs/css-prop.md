@@ -1,4 +1,4 @@
-## CSS Prop
+## CSS prop
 
 ```jsx
 // To use the css prop you have to import css just like importing React for jsx
