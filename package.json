@@ -30,6 +30,8 @@
   },
   "dependencies": {
     "babel-plugin-syntax-jsx": "^6.18.0",
+    "css-loader": "^0.28.4",
+    "loader-utils": "^1.1.0",
     "styled-components": "2.0.0",
     "theming": "^1.0.1",
     "touch": "^1.0.0"
@@ -43,7 +45,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "bundlesize": "^0.5.7",
+    "bundlesize": "^0.6.0",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-emotion-react": "^0.0.2",
