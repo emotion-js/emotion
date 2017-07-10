@@ -34,7 +34,7 @@
   - [fontFace](#fontface)
 
 - [Server-Side Rendering](#server-side-rendering)
-  - [extractCritical](#extractCritical)
+  - [extractCritical](#extractcritical)
   - [hydrate](#hydrate)
   
 - Vue
