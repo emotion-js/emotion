@@ -1,0 +1,30 @@
+const imageBase = css`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+`
+
+const Avatar = styled('img')`
+  composes: ${imageBase};
+  
+  @media(min-width: 420px) {
+    width: 96px;
+    height: 96px;
+  }
+`
+
+const H1 = styled('h1')`
+  font-size: 48px;
+  color: ${props => props.color};
+`
+
+const H1 = styled(
+  'h1',
+  'css-H1-duiy4a',
+  [props => props.color],
+  function createEmotionStyles (x0) {
+    return [`.css-H1-duiy4a { font-size:48px; color:${x0} }`]
+  }
+)
+
+render(<Avatar src={avatarUrl} />, mountNode)

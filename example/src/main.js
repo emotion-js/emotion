@@ -221,6 +221,21 @@ class App extends React.Component {
             {/* }} */}
             {/* /> */}
 
+            <Markdown markdown={require('../../docs/theming.md')}/>
+            <Playground
+              maxHeight={180}
+              noRender={false}
+              codeText={require('./blocks/theming.example')}
+              scope={{
+                avatarUrl,
+                React,
+                css,
+                keyframes,
+                styled,
+                render
+              }}
+            />
+
             <Markdown markdown={require('../../docs/composes.md')} />
             <Playground
               maxHeight={180}
