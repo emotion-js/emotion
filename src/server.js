@@ -12,21 +12,21 @@ export function extractCritical (html) {
   let match
   let ids = {}
   while ((match = RGX.exec(html)) !== null) {
-    if (!ids[match[1] + '']) {
-      ids[match[1] + ''] = true
+    if (!ids[match[1]]) {
+      ids[match[1]] = true
     }
   }
 
   o.rules = filter(sheet.sheet.cssRules.slice(), x => {
     let match = RGX.exec(x.cssText)
-    return match == null || ids[match[1] + ''] || false
+    return match == null || ids[match[1]] || false
   })
 
-  o.ids = filter(keys(inserted), id => !!ids[id + ''])
+  o.ids = filter(keys(inserted), id => !!ids[id])
 
   let css = ''
   forEach(o.rules, x => css += x.cssText)
-  o.css = css;
+  o.css = css
 
   return o
 }
