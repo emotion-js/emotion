@@ -17,7 +17,7 @@ export function extractCritical (html) {
     }
   }
 
-  o.rules = sheet.sheet.cssRules.filter(x => {
+  o.rules = filter(sheet.sheet.cssRules.slice(), x => {
     let match = RGX.exec(x.cssText)
     return match && ids[match[1] + ''] || !match || false;
   })
