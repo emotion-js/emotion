@@ -16,14 +16,8 @@ export function extractCritical (html) {
   }
 
   o.rules = sheet.sheet.cssRules.filter(x => {
-    if (match && ids[match[1] + '']) {
-      return true
-    }
-    if (!match) {
-      return true
-    }
-    return false
     let match = RGX.exec(x.cssText)
+    return match && ids[match[1] + ''] || !match || false;
   })
   o.ids = keys(inserted).filter(id => !!ids[id + ''])
   o.css = o.rules.map(x => x.cssText).join('')
