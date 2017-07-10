@@ -1,5 +1,6 @@
-import { keys } from './utils'
+import filter from '@arr/filter'
 import { sheet, inserted } from './index'
+import { keys } from './utils'
 
 const RGX = /css(?:[a-zA-Z0-9-]*)-([a-zA-Z0-9]+)/gm
 
@@ -19,8 +20,8 @@ export function extractCritical (html) {
     let match = RGX.exec(x.cssText)
     return match && ids[match[1] + ''] || !match || false;
   })
-  o.ids = keys(inserted).filter(id => !!ids[id + ''])
   o.css = o.rules.map(x => x.cssText).join('')
+  o.ids = filter(keys(inserted), id => !!ids[id + ''])
 
   return o
 }
