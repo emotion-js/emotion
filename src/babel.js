@@ -211,7 +211,7 @@ export default function (babel) {
           ]
           if (!hasOtherMatch && !state.inline && !hasCssFunction) {
             state.insertStaticRules(rules)
-          } else {
+          } else if (rules.length !== 0) {
             const inlineContentExpr = t.functionExpression(
               t.identifier('createEmotionStyledRules'),
               vars.map((x, i) => t.identifier(`x${i}`)),
@@ -279,7 +279,7 @@ export default function (babel) {
                   joinExpressionsWithSpaces(inputClasses, t)
                 )
               }
-            } else {
+            } else if (rules.length !== 0) {
               const expressions = path.node.quasi.expressions.map((x, i) =>
                 t.identifier(`x${i}`)
               )

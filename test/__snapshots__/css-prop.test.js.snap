@@ -43,8 +43,6 @@ exports[`css prop react kitchen sink 1`] = `
   align-items: center;
 }
 
-
-
 .css-tree-17jiuxc-pi0syi {
   color: red;
 }
@@ -72,7 +70,7 @@ exports[`css prop react kitchen sink 1`] = `
 }
 
 <div
-  className="css__legacy-stuff css-tree-1ii4sc4-um9pk4 css-tree-1ii4sc4 css-bold-15qcrjv-18w8kdp css-bold-15qcrjv css-flexCenter-mdk64u-llada3 css-flexCenter-mdk64u"
+  className="css__legacy-stuff css-tree-1ii4sc4 css-bold-15qcrjv-18w8kdp css-bold-15qcrjv css-flexCenter-mdk64u-llada3 css-flexCenter-mdk64u"
 >
   <h1
     className="css-tree-17jiuxc-pi0syi css-tree-17jiuxc css-small-1wh34bm-yjtkkb css-small-1wh34bm"
