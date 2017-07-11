@@ -19,7 +19,11 @@ function values (cls: string, vars: vars) {
   if (inserted[hash]) {
     return varCls
   }
-  let src = map(vars, (val: inputVar, i: number) => `--${cls}-${i}: ${val}`).join('; ')
+  let src = ''
+  forEach(vars, (val: inputVar, i: number) => {
+    src && (src += '; ')
+    src += `--${cls}-${i}: ${val}`
+  })
   sheet.insert(`.${varCls} {${src}}`)
   inserted[hash] = true
 
