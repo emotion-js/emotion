@@ -8,10 +8,10 @@ type CSSDecl = {
   parent: { selector: string, nodes: Array<mixed> },
   prop: string,
   value: string,
-  remove: () => {}
+  remove: () => {},
 }
 
-export function parseCSS (
+export function parseCSS(
   css: string,
   options: {
     nested?: boolean,
@@ -19,21 +19,21 @@ export function parseCSS (
     matches: number,
     name: string,
     hash: string,
-    canCompose?: boolean
+    canCompose?: boolean,
   } = {
     nested: true,
     inlineMode: true,
     matches: 0,
     name: 'name',
     hash: 'hash',
-    canCompose: false
-  }
+    canCompose: false,
+  },
 ): {
   rules: string[],
   hasOtherMatch: boolean,
   hasVar: boolean,
   composes: number,
-  hasCssFunction: boolean
+  hasCssFunction: boolean,
 } {
   // todo - handle errors
   const root = parse(css)
@@ -58,10 +58,10 @@ export function parseCSS (
         if (decl.parent.nodes[0] !== decl) {
           throw new Error('composes must be the first rule')
         }
+        // Update the selector to increase specificity
+        decl.parent.selector = decl.parent.selector + decl.parent.selector
         const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
-        const numOfComposes: number = !composeMatches
-          ? 0
-          : composeMatches.length
+        const numOfComposes: number = !composeMatches ? 0 : composeMatches.length
         composes += numOfComposes
         vars += numOfComposes
         decl.remove()
@@ -93,15 +93,13 @@ export function parseCSS (
   return {
     rules: stringifyCSSRoot(root),
     hasOtherMatch: vars !== options.matches,
-    hasVar:
-      (!!vars && vars !== composes) ||
-      !!(options.inlineMode && options.matches),
+    hasVar: (!!vars && vars !== composes) || !!(options.inlineMode && options.matches),
     composes,
-    hasCssFunction
+    hasCssFunction,
   }
 }
 
-function stringifyCSSRoot (root) {
+function stringifyCSSRoot(root) {
   return root.nodes.map((node, i) => {
     let str = ''
     stringify(node, x => {
