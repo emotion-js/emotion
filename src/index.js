@@ -1,5 +1,4 @@
 // @flow
-import map from '@arr/map'
 import forEach from '@arr/foreach'
 import { StyleSheet } from './sheet'
 import { hashArray, hashObject } from './hash'
@@ -55,10 +54,9 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
     if (!inserted[hash]) {
       inserted[hash] = true
       const rgx = new RegExp(classes[0], 'gm')
-      forEach(
-        map(src, r => r.replace(rgx, `${classes[0]}-${hash}`)),
-        r => sheet.insert(r)
-      )
+      forEach(src, r => {
+        sheet.insert(r.replace(rgx, `${classes[0]}-${hash}`))
+      })
     }
     return `${classes[0]}-${hash} ${computedClassName}`
   }
