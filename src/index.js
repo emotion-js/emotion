@@ -120,23 +120,14 @@ function deconstruct (selector, styles, media) {
 
     if (type === 'number' || type === 'string') {
       decs.push(createDec(key, value))
-      continue
     } else if (Array.isArray(value)) {
-      forEach(value, val => {
-        decs.push(createDec(key, val))
-      })
-      continue
+      forEach(value, val => decs.push(createDec(key, val)))
     } else if (/^:/.test(key)) {
       forEach(deconstruct(selector + key, value, media), r => rules.push(r))
-      continue
     } else if (/^@media/.test(key)) {
       forEach(deconstruct(selector, value, key), r => rules.push(r))
-      continue
     } else {
-      forEach(deconstruct(selector + ' ' + key, value, media), r =>
-        rules.push(r)
-      )
-      continue
+      forEach(deconstruct(selector + ' ' + key, value, media), r => rules.push(r))
     }
   }
 
