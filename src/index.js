@@ -124,7 +124,7 @@ function deconstruct (selector, styles, media) {
       forEach(value, val => decs.push(createDec(key, val)))
     } else if (key.charCodeAt(0) === 58) {
       forEach(deconstruct(selector + key, value, media), r => rules.push(r))
-    } else if (/^@media/.test(key)) {
+    } else if (key.indexOf('@media') !== -1) {
       forEach(deconstruct(selector, value, key), r => rules.push(r))
     } else {
       forEach(deconstruct(selector + ' ' + key, value, media), r => rules.push(r))
