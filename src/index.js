@@ -41,9 +41,11 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
     classes = [classes]
   }
 
-  const computedClassName = map(classes, (cls): string => typeof cls === 'string' ? cls : objStyle(cls))
-    .join(' ')
-    .trim()
+  let computedClassName = ''
+  forEach(classes, (cls): string => {
+    computedClassName && (computedClassName += ' ')
+    computedClassName += typeof cls === 'string' ? cls : objStyle(cls)
+  })
 
   if (content) {
     // inline mode
@@ -82,9 +84,7 @@ export function keyframes (kfm: string, src: string[]) {
   const animationName = `${kfm}-${hash}`
   if (!inserted[hash]) {
     inserted[hash] = true
-    forEach(src, r => {
-      sheet.insert(`@keyframes ${animationName} ${r}`)
-    })
+    forEach(src, r => sheet.insert(`@keyframes ${animationName} ${r}`))
   }
   return animationName
 }
