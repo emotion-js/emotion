@@ -152,7 +152,7 @@ function hyphenate (str) {
 }
 
 function addPx (prop, value) {
-  if (typeof value !== 'number' || unitlessProps[prop] !== void 0) return value
+  if (typeof value !== 'number' || unitlessProps[prop] !== undefined) return value
   return value + 'px'
 }
 
