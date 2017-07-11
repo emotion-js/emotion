@@ -16,7 +16,8 @@
 emotion is a high performance, lightweight css-in-js library. 
 The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/glam) library and its philosophy is laid out [here](https://gist.github.com/threepointone/0ef30b196682a69327c407124f33d69a). 
 The basic idea is simple.
-You shouldn’t have to sacrifice runtime performance for good developer experience when writing CSS. emotion minimizes the runtime cost of css-in-js dramatically by parsing your styles with PostCSS during compilation instead of at runtime. 
+You shouldn’t have to sacrifice runtime performance for good developer experience when writing CSS. emotion 
+minimizes the runtime cost of css-in-js dramatically by parsing your styles with PostCSS during compilation instead of at runtime. 
 
 -- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
