@@ -238,9 +238,7 @@ const H1 = styled('h1', [{
 
 exports[`babel styled component inline styled component as selector 1`] = `
 "
-const SomeComponent = styled(\\"div\\", [\\"css-SomeComponent-1rk3iho\\"], [], function createEmotionStyledRules() {
-  return [\`.css-SomeComponent-1rk3iho {  }\`];
-});
+const SomeComponent = styled(\\"div\\", [\\"css-SomeComponent-1rk3iho\\"], []);
 styled(\\"h1\\", [\\"css-byjn67\\"], [SomeComponent], function createEmotionStyledRules(x0) {
   return [\`.css-byjn67 { color: blue; }\`, \`.css-byjn67 \${x0} { color: green; }\`];
 });"

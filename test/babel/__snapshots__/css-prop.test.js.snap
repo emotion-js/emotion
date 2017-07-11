@@ -31,11 +31,7 @@ exports[`babel css prop className as expression string 1`] = `
 })} this={\`hello\`}></div>;"
 `;
 
-exports[`babel css prop css empty 1`] = `
-"<div className={css([\\"css-0\\"], [], function createEmotionRules() {
-  return [\`.css-0 {  }\`];
-})}></div>;"
-`;
+exports[`babel css prop css empty 1`] = `"<div className={css([\\"css-0\\"], [])}></div>;"`;
 
 exports[`babel css prop dynamic inline 1`] = `
 "<div className={\\"a\\" + \\" \\" + css([\\"css-jsqoaa\\"], [color], function createEmotionRules(x0) {
