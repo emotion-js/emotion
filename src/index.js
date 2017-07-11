@@ -52,8 +52,9 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
 
     if (!inserted[hash]) {
       inserted[hash] = true
+      const rgx = new RegExp(classes[0], 'gm')
       forEach(
-        map(src, r => r.replace(new RegExp(classes[0], 'gm'), `${classes[0]}-${hash}`)),
+        map(src, r => r.replace(rgx, `${classes[0]}-${hash}`)),
         r => sheet.insert(r)
       )
     }
