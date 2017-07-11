@@ -4,4 +4,4 @@ const Avatar = styled('img')`
   border-radius: 50%;
 `
 
-render(<Avatar src={avatarUrl}/>, mountNode)
+render(<Avatar src={avatarUrl} />, mountNode)
