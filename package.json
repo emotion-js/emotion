@@ -113,7 +113,7 @@
   "bundlesize": [
     {
       "path": "./dist/DO-NOT-USE.min.js",
-      "threshold": "3 Kb"
+      "threshold": "6 Kb"
     }
   ]
 }
