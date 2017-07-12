@@ -95,11 +95,12 @@ export function parseCSS(
   if (options.extractStatic) {
     staticRoot.walkDecls((decl: CSSDecl): void => {
       if (decl.prop === 'name') decl.remove()
-      if (decl.value.startsWith(`var(--${options.name}-${options.hash}`)) decl.remove()
+      debugger
       if (decl.prop === 'composes') {
         decl.parent.selector = decl.parent.selector + decl.parent.selector
         decl.remove()
       }
+      if (/xxx(\d+)xxx/gm.exec(decl.value)) decl.remove()
     })
     staticRoot.walkRules(rule => {
       if (rule.nodes.length === 0) rule.remove()
