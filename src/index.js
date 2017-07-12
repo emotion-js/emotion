@@ -1,9 +1,12 @@
 // @flow
 import forEach from '@arr/foreach'
 import { StyleSheet } from './sheet'
-import { hashArray, hashObject } from './hash'
+import { hashString as hash, hashArray, hashObject } from './hash'
+import { createMarkupForStyles } from './glamor/CSSPropertyOperations'
+import clean from './glamor/clean.js'
 
 export const sheet = new StyleSheet()
+// 🚀
 sheet.inject()
 
 export let inserted: { [string]: boolean | void } = {}
@@ -41,9 +44,11 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
   }
 
   let computedClassName = ''
-  forEach(classes, (cls): string => {
+  forEach(classes, (cls): void => {
     computedClassName && (computedClassName += ' ')
-    computedClassName += typeof cls === 'string' ? cls : objStyle(cls)
+    computedClassName += typeof cls === 'string'
+      ? cls
+      : objStyle(cls).toString()
   })
 
   if (content) {
@@ -93,94 +98,400 @@ export function hydrate (ids: string[]) {
 
 // 🍩
 // https://github.com/jxnblk/cxs/blob/master/src/monolithic/index.js
-export function objStyle (style: { [string]: any }) {
-  const hash = hashObject(style)
-  const className = `css-${hash}`
-  const selector = '.' + className
+// export function objStyle (style: { [string]: any }) {
+//   const hash = hashObject(style)
+//   const className = `css-${hash}`
+//   const selector = '.' + className
+//
+//   if (inserted[hash]) return className
+//
+//   const rules = deconstruct(selector, style)
+//   forEach(rules, rule => sheet.insert(rule))
+//
+//   inserted[hash] = true
+//
+//   return className
+// }
 
-  if (inserted[hash]) return className
+type GlamorRule = { [string]: any }
 
-  const rules = deconstruct(selector, style)
-  forEach(rules, rule => sheet.insert(rule))
+type CSSRuleList = Array<GlamorRule>
 
-  inserted[hash] = true
-
-  return className
+type GlamorClassName = {
+  [string]: any
 }
 
-function deconstruct (selector, styles, media) {
-  const decs = []
-  const rules = []
+let cachedCss: (rules: CSSRuleList) => GlamorClassName = typeof WeakMap !==
+  'undefined'
+  ? multiIndexCache(_css)
+  : _css
 
-  for (let key in styles) {
-    const value = styles[key]
-    const type = typeof value
-
-    if (type === 'number' || type === 'string') {
-      decs.push(createDec(key, value))
-    } else if (Array.isArray(value)) {
-      forEach(value, val => decs.push(createDec(key, val)))
-    } else if (key.charCodeAt(0) === 58) {
-      forEach(deconstruct(selector + key, value, media), r => rules.push(r))
-    } else if (key.indexOf('@media') !== -1) {
-      forEach(deconstruct(selector, value, key), r => rules.push(r))
-    } else {
-      forEach(deconstruct(selector + ' ' + key, value, media), r => rules.push(r))
-    }
+export function objStyle (...rules: CSSRuleList): GlamorClassName {
+  rules = clean(rules)
+  if (!rules) {
+    return nullrule
   }
 
-  rules.unshift(createRule(selector, decs, media))
-
-  return rules
+  return cachedCss(rules)
 }
 
-function createDec (key, value) {
-  const prop = hyphenate(key)
-  const val = addPx(key, value)
-  return prop + ':' + val
+function _css (rules) {
+  let style = {}
+  build(style, { src: rules }) // mutative! but worth it.
+
+  let spec = {
+    id: hashObject(style),
+    style,
+    type: 'css'
+  }
+  return toRule(spec)
 }
 
-function createRule (selector, decs, media) {
-  const rule = `${selector}{${decs.join(';')}}`
-  return media ? `${media}{${rule}}` : rule
+// define some constants
+
+const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
+const isTest = process.env.NODE_ENV === 'test'
+
+// takes a string, converts to lowercase, strips out nonalphanumeric.
+function simple (str) {
+  return str.toLowerCase().replace(/[^a-z0-9]/g, '')
 }
 
-function hyphenate (str) {
-  return ('' + str).replace(/[A-Z]|^ms/g, '-$&').toLowerCase()
+// of shape { 'data-css-<id>': '' }
+export function isLikeRule (rule: GlamorRule) {
+  let keys = Object.keys(rule).filter(x => x !== 'toString')
+  if (keys.length !== 1) {
+    return false
+  }
+  return !!/css\-([a-zA-Z0-9]+)/.exec(keys[0])
 }
 
-function addPx (prop, value) {
-  if (typeof value !== 'number' || unitlessProps[prop] !== undefined) return value
-  return value + 'px'
+// extracts id from a { 'css-<id>': ''} like object
+export function idFor (rule: GlamorRule) {
+  let keys = Object.keys(rule).filter(x => x !== 'toString')
+  if (keys.length !== 1) throw new Error('not a rule')
+  let regex = /css\-([a-zA-Z0-9]+)/
+  let match = regex.exec(keys[0])
+  if (!match) throw new Error('not a rule')
+  return match[1]
 }
 
-const unitlessProps = {
-  animationIterationCount: 1,
-  boxFlex: 1,
-  boxFlexGroup: 1,
-  boxOrdinalGroup: 1,
-  columnCount: 1,
-  flex: 1,
-  flexGrow: 1,
-  flexPositive: 1,
-  flexShrink: 1,
-  flexNegative: 1,
-  flexOrder: 1,
-  gridRow: 1,
-  gridColumn: 1,
-  fontWeight: 1,
-  lineClamp: 1,
-  lineHeight: 1,
-  opacity: 1,
-  order: 1,
-  orphans: 1,
-  tabSize: 1,
-  widows: 1,
-  zIndex: 1,
-  zoom: 1,
-  fillOpacity: 1,
-  stopOpacity: 1,
-  strokeDashoffset: 1,
-  strokeOpacity: 1,
-  strokeWidth: 1
+function selector (id: string, path: string = '') {
+  if (!id) {
+    return path.replace(/\&/g, '')
+  }
+  if (!path) return `.css-${id}`
+
+  let x = path
+    .split(',')
+    .map(
+      x =>
+        x.indexOf('&') >= 0 ? x.replace(/\&/gm, `.css-${id}`) : `.css-${id}${x}`
+    )
+    .join(',')
+
+  return x
+}
+
+function deconstruct (style) {
+  // we can be sure it's not infinitely nested here
+  let plain, selects, medias, supports
+  Object.keys(style).forEach(key => {
+    if (key.indexOf('&') >= 0) {
+      selects = selects || {}
+      selects[key] = style[key]
+    } else if (key.indexOf('@media') === 0) {
+      medias = medias || {}
+      medias[key] = deconstruct(style[key])
+    } else if (key.indexOf('@supports') === 0) {
+      supports = supports || {}
+      supports[key] = deconstruct(style[key])
+    } else {
+      plain = plain || {}
+      plain[key] = style[key]
+    }
+  })
+  return { plain, selects, medias, supports }
+}
+
+function deconstructedStyleToCSS (id, style) {
+  let css = []
+
+  // plugins here
+  let { plain, selects, medias, supports } = style
+  if (plain) {
+    css.push(`${selector(id)}{${createMarkupForStyles(plain)}}`)
+  }
+  if (selects) {
+    Object.keys(selects).forEach((key: string) =>
+      css.push(`${selector(id, key)}{${createMarkupForStyles(selects[key])}}`)
+    )
+  }
+  if (medias) {
+    Object.keys(medias).forEach(key =>
+      css.push(`${key}{${deconstructedStyleToCSS(id, medias[key]).join('')}}`)
+    )
+  }
+  if (supports) {
+    Object.keys(supports).forEach(key =>
+      css.push(`${key}{${deconstructedStyleToCSS(id, supports[key]).join('')}}`)
+    )
+  }
+  return css
+}
+
+// and helpers to insert rules into said sheet
+function insert (spec) {
+  if (!inserted[spec.id]) {
+    inserted[spec.id] = true
+    let deconstructed = deconstruct(spec.style)
+    deconstructedStyleToCSS(spec.id, deconstructed).map(cssRule =>
+      sheet.insert(cssRule)
+    )
+  }
+}
+
+// a simple cache to store generated rules
+let registered = (sheet.registered = {})
+
+function register (spec) {
+  if (!registered[spec.id]) {
+    registered[spec.id] = spec
+  }
+}
+
+function _getRegistered (rule) {
+  if (isLikeRule(rule)) {
+    let ret = registered[idFor(rule)]
+    if (ret == null) {
+      throw new Error(
+        '[emotion] an unexpected rule cache miss occurred. This is probably a sign of multiple glamor instances in your app. See https://github.com/threepointone/glamor/issues/79'
+      )
+    }
+    return ret
+  }
+  return rule
+}
+
+// todo - perf
+let ruleCache = {}
+
+function toRule (spec) {
+  register(spec)
+  insert(spec)
+
+  if (ruleCache[spec.id]) {
+    return ruleCache[spec.id]
+  }
+
+  let ret = { [`css-${spec.id}`]: '' }
+  Object.defineProperty(ret, 'toString', {
+    enumerable: false,
+    value () {
+      return 'css-' + spec.id
+    }
+  })
+  ruleCache[spec.id] = ret
+  return ret
+}
+
+function log () {
+  // eslint-disable-line no-unused-vars
+  console.log(this) // eslint-disable-line no-console
+  return this
+}
+
+function isSelector (key) {
+  let possibles = [':', '.', '[', '>', ' '],
+    found = false,
+    ch = key.charAt(0)
+  for (let i = 0; i < possibles.length; i++) {
+    if (ch === possibles[i]) {
+      found = true
+      break
+    }
+  }
+  return found || key.indexOf('&') >= 0
+}
+
+function joinSelectors (a, b) {
+  let as = a.split(',').map(a => (!(a.indexOf('&') >= 0) ? '&' + a : a))
+  let bs = b.split(',').map(b => (!(b.indexOf('&') >= 0) ? '&' + b : b))
+
+  return bs
+    .reduce((arr, b) => arr.concat(as.map(a => b.replace(/\&/g, a))), [])
+    .join(',')
+}
+
+function joinMediaQueries (a, b) {
+  return a ? `@media ${a.substring(6)} and ${b.substring(6)}` : b
+}
+
+function isMediaQuery (key) {
+  return key.indexOf('@media') === 0
+}
+
+function isSupports (key) {
+  return key.indexOf('@supports') === 0
+}
+
+function joinSupports (a, b) {
+  return a ? `@supports ${a.substring(9)} and ${b.substring(9)}` : b
+}
+
+// flatten a nested array
+function flatten (inArr) {
+  let arr = []
+  for (let i = 0; i < inArr.length; i++) {
+    if (Array.isArray(inArr[i])) arr = arr.concat(flatten(inArr[i]))
+    else arr = arr.concat(inArr[i])
+  }
+  return arr
+}
+
+// mutable! modifies dest.
+function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
+  if (!Array.isArray(src)) {
+    src = [src]
+  }
+  src = flatten(src)
+
+  src.forEach(_src => {
+    if (isLikeRule(_src)) {
+      let reg = _getRegistered(_src)
+      if (reg.type !== 'css') {
+        throw new Error('cannot merge this rule')
+      }
+      _src = reg.style
+    }
+    _src = clean(_src)
+    if (_src && _src.composes) {
+      build(dest, { selector, mq, supp, src: _src.composes })
+    }
+    Object.keys(_src || {}).forEach(key => {
+      if (isSelector(key)) {
+        if (key === '::placeholder') {
+          build(dest, {
+            selector: joinSelectors(selector, '::-webkit-input-placeholder'),
+            mq,
+            supp,
+            src: _src[key]
+          })
+          build(dest, {
+            selector: joinSelectors(selector, '::-moz-placeholder'),
+            mq,
+            supp,
+            src: _src[key]
+          })
+          build(dest, {
+            selector: joinSelectors(selector, '::-ms-input-placeholder'),
+            mq,
+            supp,
+            src: _src[key]
+          })
+        }
+
+        build(dest, {
+          selector: joinSelectors(selector, key),
+          mq,
+          supp,
+          src: _src[key]
+        })
+      } else if (isMediaQuery(key)) {
+        build(dest, {
+          selector,
+          mq: joinMediaQueries(mq, key),
+          supp,
+          src: _src[key]
+        })
+      } else if (isSupports(key)) {
+        build(dest, {
+          selector,
+          mq,
+          supp: joinSupports(supp, key),
+          src: _src[key]
+        })
+      } else if (key === 'composes') {
+        // ignore, we already dealth with it
+      } else {
+        let _dest = dest
+        if (supp) {
+          _dest[supp] = _dest[supp] || {}
+          _dest = _dest[supp]
+        }
+        if (mq) {
+          _dest[mq] = _dest[mq] || {}
+          _dest = _dest[mq]
+        }
+        if (selector) {
+          _dest[selector] = _dest[selector] || {}
+          _dest = _dest[selector]
+        }
+
+        _dest[key] = _src[key]
+      }
+    })
+  })
+}
+
+let nullrule: GlamorClassName = {
+  // 'data-css-nil': ''
+}
+
+Object.defineProperty(nullrule, 'toString', {
+  enumerable: false,
+  value () {
+    return 'css-nil'
+  }
+})
+
+let inputCaches = typeof WeakMap !== 'undefined'
+  ? [nullrule, new WeakMap(), new WeakMap(), new WeakMap()]
+  : [nullrule]
+
+let warnedWeakMapError = false
+
+function multiIndexCache (fn) {
+  return function (args) {
+    if (inputCaches[args.length]) {
+      let coi = inputCaches[args.length]
+      let ctr = 0
+      while (ctr < args.length - 1) {
+        if (!coi.has(args[ctr])) {
+          coi.set(args[ctr], new WeakMap())
+        }
+        coi = coi.get(args[ctr])
+        ctr++
+      }
+      if (coi.has(args[args.length - 1])) {
+        let ret = coi.get(args[ctr])
+
+        if (registered[ret.toString().substring(4)]) {
+          // make sure it hasn't been flushed
+          return ret
+        }
+      }
+    }
+    let value = fn(args)
+    if (inputCaches[args.length]) {
+      let ctr = 0,
+        coi = inputCaches[args.length]
+      while (ctr < args.length - 1) {
+        coi = coi.get(args[ctr])
+        ctr++
+      }
+      try {
+        coi.set(args[ctr], value)
+      } catch (err) {
+        if (isDev && !warnedWeakMapError) {
+          warnedWeakMapError = true
+          console.warn('failed setting the WeakMap cache for args:', ...args) // eslint-disable-line no-console
+          console.warn(
+            'this should NOT happen, please file a bug on the github repo.'
+          ) // eslint-disable-line no-console
+        }
+      }
+    }
+    return value
+  }
 }

@@ -169,9 +169,9 @@ describe('styled', () => {
   test('composes with objects', () => {
     const cssA = {
       color: lighten(0.2, '#000'),
-      'font-size': modularScale(1),
-      [hiDPI(1.5)]: {
-        'font-size': modularScale(1.25)
+      'fontSize': modularScale(1),
+      [hiDPI(1.5).trim()]: {
+        fontSize: modularScale(1.25)
       }
     }
 
