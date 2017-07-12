@@ -2,7 +2,7 @@
 import { parseCSS } from './parser'
 import { hashArray } from './hash'
 
-function extractNameFromProperty (str: string) {
+function extractNameFromProperty(str: string) {
   let regex = /name\s*:\s*([A-Za-z0-9\-_]+)\s*/gm
   let match = regex.exec(str)
   if (match) {
@@ -10,11 +10,7 @@ function extractNameFromProperty (str: string) {
   }
 }
 
-function getName (
-  extracted?: string,
-  identifierName?: string,
-  prefix: string
-): string {
+function getName(extracted?: string, identifierName?: string, prefix: string): string {
   const parts = []
   parts.push(prefix)
   if (extracted) {
@@ -25,11 +21,7 @@ function getName (
   return parts.join('-')
 }
 
-function createSrc (
-  strs: string[],
-  name: string,
-  hash: string
-): { src: string, matches: number } {
+function createSrc(strs: string[], name: string, hash: string): { src: string, matches: number } {
   let matches = 0
   const src = strs
     .reduce((arr, str, i) => {
@@ -45,11 +37,12 @@ function createSrc (
   return { src, matches }
 }
 
-export function inline (
+export function inline(
   quasi: any,
   identifierName?: string,
   prefix: string,
-  inlineMode: boolean
+  inlineMode: boolean,
+  extractStatic: boolean,
 ): {
   hash: string,
   name: string,
@@ -57,84 +50,74 @@ export function inline (
   hasVar: boolean,
   hasOtherMatch: boolean,
   composes: number,
-  hasCssFunction: boolean
+  hasCssFunction: boolean,
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
-  let name = getName(
-    extractNameFromProperty(strs.join('xxx')),
-    identifierName,
-    prefix
-  )
+  let name = getName(extractNameFromProperty(strs.join('xxx')), identifierName, prefix)
   let { src, matches } = createSrc(strs, name, hash)
   let {
     rules,
     hasVar,
     hasOtherMatch,
     composes,
-    hasCssFunction
+    hasCssFunction,
+    staticRules,
   } = parseCSS(`.${name}-${hash} { ${src} }`, {
     inlineMode: inlineMode,
     matches,
     name,
     hash,
-    canCompose: true
+    canCompose: true,
+    extractStatic,
   })
-  return { hash, name, rules, hasVar, hasOtherMatch, composes, hasCssFunction }
+  return { hash, name, rules, hasVar, hasOtherMatch, composes, hasCssFunction, staticRules }
 }
 
-export function keyframes (
+export function keyframes(
   quasi: any,
   identifierName?: string,
-  prefix: string
+  prefix: string,
 ): {
   hash: string,
   name: string,
   rules: string[],
-  hasInterpolation: boolean
+  hasInterpolation: boolean,
 } {
   const strs = quasi.quasis.map(x => x.value.cooked)
   const hash = hashArray([...strs])
-  const name = getName(
-    extractNameFromProperty(strs.join('xxx')),
-    identifierName,
-    prefix
-  )
+  const name = getName(extractNameFromProperty(strs.join('xxx')), identifierName, prefix)
   const { src, matches } = createSrc(strs, name, hash)
   let { rules, hasVar, hasOtherMatch } = parseCSS(`{ ${src} }`, {
     nested: false,
     inlineMode: true,
     matches,
     name,
-    hash
+    hash,
   })
   return { hash, name, rules, hasInterpolation: hasVar || hasOtherMatch }
 }
 
-export function fontFace (
-  quasi: any
-): { rules: string[], hasInterpolation: boolean } {
+export function fontFace(quasi: any): { rules: string[], hasInterpolation: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   const { src, matches } = createSrc(strs, 'name', 'hash')
   let { rules, hasVar, hasOtherMatch } = parseCSS(`@font-face {${src}}`, {
     matches,
     inlineMode: true,
     name: 'name',
-    hash: 'hash'
+    hash: 'hash',
   })
   return { rules, hasInterpolation: hasVar || hasOtherMatch }
 }
 
-export function injectGlobal (
-  quasi: any
-): { rules: string[], hasInterpolation: boolean } {
+export function injectGlobal(quasi: any): { rules: string[], hasInterpolation: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   const { src, matches } = createSrc(strs, 'name', 'hash')
   let { rules, hasVar, hasOtherMatch } = parseCSS(src, {
     matches,
     inlineMode: true,
     name: 'name',
-    hash: 'hash'
+    hash: 'hash',
   })
   return { rules, hasInterpolation: hasVar || hasOtherMatch }
 }
