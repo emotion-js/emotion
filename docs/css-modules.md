@@ -6,8 +6,8 @@ emotion works well with CSS Modules but it requires a bit of configuration.
 2. Add another object to your `modules.use` with your css loaders but with CSS Modules disabled and set the test field to the same regex as above `/emotion\.css$/`.
 
 
-- [Example webpack config](example/webpack.config.js)
-- [Example usage of CSS Modules with emotion](example/src/markdown/index.js)
+- [Example webpack config](../example/webpack.config.js)
+- [Example usage of CSS Modules with emotion](../example/src/markdown/index.js)
 
 ### attr
 
