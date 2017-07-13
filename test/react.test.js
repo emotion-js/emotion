@@ -97,6 +97,53 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
+  test('object composition', () => {
+    const imageStyles = css({
+      width: 96,
+      height: 96
+    })
+
+    const fakeBlue = css([
+      {
+        color: "blue"
+      }
+    ]);
+
+    const red = css([
+      {
+        color: "red"
+      }
+    ]);
+
+    const blue = css([
+      red,
+      {
+        color: "blue"
+      }
+    ]);
+
+    const prettyStyles = css([
+      {
+        borderRadius: '50%',
+        transition: 'transform 400ms ease-in-out',
+        ':hover': {
+          transform: 'scale(1.2)'
+        }
+      },
+      {border: '3px solid currentColor'}
+    ])
+
+    const Avatar = styled('img')`
+      composes: ${prettyStyles} ${imageStyles} ${blue}
+    `
+
+    const tree = renderer
+      .create(<Avatar/>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
   test('component as selector', () => {
     const fontSize = '20px'
     const H1 = styled.h1`

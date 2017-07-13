@@ -9,8 +9,6 @@ export const sheet = new StyleSheet()
 // 🚀
 sheet.inject()
 
-window.sheet = sheet
-
 export let inserted: { [string]: boolean | void } = {}
 
 type inputVar = string | number

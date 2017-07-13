@@ -26,12 +26,12 @@ exports[`styled basic render 1`] = `
 `;
 
 exports[`styled basic render with object as style 1`] = `
-.css-kp2uw9 {
+.css-obj-kp2uw9 {
   font-size: 20px;
 }
 
 <h1
-  className="css-kp2uw9"
+  className=" css-obj-kp2uw9"
 >
   hello world
 </h1>
@@ -138,7 +138,7 @@ exports[`styled composes with objects 1`] = `
   font-size: 32px;
 }
 
-.css-ioza2b {
+.css-obj-ioza2b {
   color: #333;
   font-size: 1.333em;
 }
@@ -152,13 +152,13 @@ exports[`styled composes with objects 1`] = `
     only screen and (-o-min-device-pixel-ratio: 1.5/1),
     only screen and (min-resolution: 144dpi),
     only screen and (min-resolution: 1.5dppx) {
-  .css-ioza2b {
+  .css-obj-ioza2b {
     font-size: 1.4323121856191332em;
   }
 }
 
 <h1
-  className="css-H1-zejj71-1ym7xv css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-ioza2b css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
+  className="css-H1-zejj71-1ym7xv css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8  css-obj-ioza2b css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
   scale={2}
 >
   hello world
@@ -257,17 +257,33 @@ exports[`styled no dynamic 1`] = `
 </h1>
 `;
 
-exports[`styled objects 1`] = `
-.css-1x9ygd3 {
-  padding: 10px;
+exports[`styled object composition 1`] = `
+.css-obj-1vqgc1f {
+  border-radius: 50%;
+  transition: transform 400ms ease-in-out;
+  border: 3px solid currentColor;
+  width: 96px;
+  height: 96px;
+  color: blue;
 }
 
-.css-1fe3owl {
+.css-obj-1vqgc1f:hover {
+  transform: scale(1.2);
+}
+
+<img
+  className="css-Avatar-1ax1vhp    css-obj-1vqgc1f"
+/>
+`;
+
+exports[`styled objects 1`] = `
+.css-obj-1aibhc {
+  padding: 10px;
   display: flex;
 }
 
 <h1
-  className="some-class css-1x9ygd3 css-1fe3owl"
+  className="some-class   css-obj-1aibhc"
   display="flex"
 >
   hello world
