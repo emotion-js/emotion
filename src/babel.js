@@ -143,25 +143,16 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   return t.callExpression(identifier, args)
 }
 
-export function replaceStyledObjectCall (path, t) {
-  if (
-    (t.isCallExpression(path.node.callee) &&
-      path.node.callee.callee.name === 'styled') ||
-    (t.isMemberExpression(path.node.callee) &&
-      t.isIdentifier(path.node.callee.object) &&
-      path.node.callee.object.name === 'styled')
-  ) {
-    const tag = t.isCallExpression(path.node.callee)
+export function buildStyledObjectCallExpression (path, t) {
+  const tag = t.isCallExpression(path.node.callee)
       ? path.node.callee.arguments[0]
       : t.stringLiteral(path.node.callee.property.name)
-    path.replaceWith(
-      t.callExpression(t.identifier('styled'), [
-        tag,
-        t.arrayExpression(path.node.arguments),
-        t.arrayExpression()
-      ])
-    )
-  }
+  const identifier = t.isCallExpression(path.node.callee) ? path.node.callee.callee : path.node.callee.object
+  return t.callExpression(identifier, [
+    tag,
+    t.arrayExpression(path.node.arguments),
+    t.arrayExpression()
+  ])
 }
 
 export default function (babel) {
@@ -209,7 +200,15 @@ export default function (babel) {
         cssProps(path, t)
       },
       CallExpression (path) {
-        replaceStyledObjectCall(path, t)
+        if (
+          (t.isCallExpression(path.node.callee) &&
+            path.node.callee.callee.name === 'styled') ||
+          (t.isMemberExpression(path.node.callee) &&
+            t.isIdentifier(path.node.callee.object) &&
+            path.node.callee.object.name === 'styled')
+        ) {
+          path.replaceWith(buildStyledObjectCallExpression(path, t))
+        }
       },
       TaggedTemplateExpression (path, state) {
         // in:

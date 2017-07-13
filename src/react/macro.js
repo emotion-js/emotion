@@ -1,18 +1,14 @@
-import { buildStyledCallExpression } from './babel'
+import { buildStyledCallExpression } from '../babel'
 import * as t from 'babel-types'
 
 module.exports = function macro ({ references, state: babelState }) {
   const state = { ...babelState, inline: true }
-  if (references.styled) {
-    references.styled.forEach((styledReference) => {
+  if (references.default) {
+    references.default.forEach(styledReference => {
       const path = styledReference.parentPath.parentPath
-      if (
-          // styled.h1`color:${color};`
-          t.isMemberExpression(path.node.tag) &&
-          path.node.tag.object.name === 'styled' &&
-          t.isTemplateLiteral(path.node.quasi)
-        ) {
-        path.replaceWith(
+      if (t.isTemplateLiteral(path.node.quasi)) {
+        if (t.isMemberExpression(path.node.tag)) {
+          path.replaceWith(
             buildStyledCallExpression(
               path.node.tag.object,
               t.stringLiteral(path.node.tag.property.name),
@@ -21,13 +17,8 @@ module.exports = function macro ({ references, state: babelState }) {
               t
             )
           )
-      } else if (
-          // styled('h1')`color:${color};`
-          t.isCallExpression(path.node.tag) &&
-          path.node.tag.callee.name === 'styled' &&
-          t.isTemplateLiteral(path.node.quasi)
-        ) {
-        path.replaceWith(
+        } else if (t.isCallExpression(path.node.tag)) {
+          path.replaceWith(
             buildStyledCallExpression(
               path.node.tag.callee,
               path.node.tag.arguments[0],
@@ -36,6 +27,7 @@ module.exports = function macro ({ references, state: babelState }) {
               t
             )
           )
+        }
       }
     })
   }

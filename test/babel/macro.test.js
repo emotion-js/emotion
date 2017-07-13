@@ -6,7 +6,7 @@ describe('babel macro', () => {
   describe('styled', () => {
     test('tagged template literal member', () => {
       const basic = `
-        import { styled } from '../../src/macro'
+        import { styled } from '../../src/react/macro'
         const SomeComponent = styled.div\`
           display: flex;
         \`
@@ -20,7 +20,7 @@ describe('babel macro', () => {
     })
     test('tagged template literal function', () => {
       const basic = `
-        import { styled } from '../../src/macro'
+        import { styled } from '../../src/react/macro'
         const SomeComponent = styled('div')\`
           display: flex;
         \`
