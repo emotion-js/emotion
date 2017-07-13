@@ -16,6 +16,11 @@ function joinExpressionsWithSpaces (expressions, t) {
   return t.templateLiteral(quasis, expressions)
 }
 
+function getIdentifierName (path, t) {
+  const parent = path.findParent(p => p.isVariableDeclarator())
+  return parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
+}
+
 function parseDynamicValues (rules, t, options) {
   if (options.composes === undefined) options.composes = 0
   return rules.map(rule => {
@@ -102,6 +107,63 @@ function parseDynamicValues (rules, t, options) {
   })
 }
 
+export function buildStyledCallExpression (identifier, tag, path, state, t) {
+  const identifierName = getIdentifierName(path, t)
+  let { hash, rules, name, hasOtherMatch, composes, hasCssFunction } = inline(
+    path.node.quasi,
+    identifierName,
+    'css',
+    state.inline
+  )
+
+  // hash will be '0' when no styles are passed so we can just return the original tag
+  if (hash === '0') {
+    return tag
+  }
+  const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
+  for (var i = 0; i < composes; i++) {
+    inputClasses.push(path.node.quasi.expressions.shift())
+  }
+
+  const vars = path.node.quasi.expressions
+
+  const dynamicValues = parseDynamicValues(rules, t, { composes, vars })
+  const args = [tag, t.arrayExpression(inputClasses), t.arrayExpression(vars)]
+  if (!hasOtherMatch && !state.inline && !hasCssFunction) {
+    state.insertStaticRules(rules)
+  } else if (rules.length !== 0) {
+    const inlineContentExpr = t.functionExpression(
+      t.identifier('createEmotionStyledRules'),
+      vars.map((x, i) => t.identifier(`x${i}`)),
+      t.blockStatement([t.returnStatement(t.arrayExpression(dynamicValues))])
+    )
+    args.push(inlineContentExpr)
+  }
+
+  return t.callExpression(identifier, args)
+}
+
+export function replaceStyledObjectCall (path, t) {
+  if (
+    (t.isCallExpression(path.node.callee) &&
+      path.node.callee.callee.name === 'styled') ||
+    (t.isMemberExpression(path.node.callee) &&
+      t.isIdentifier(path.node.callee.object) &&
+      path.node.callee.object.name === 'styled')
+  ) {
+    const tag = t.isCallExpression(path.node.callee)
+      ? path.node.callee.arguments[0]
+      : t.stringLiteral(path.node.callee.property.name)
+    path.replaceWith(
+      t.callExpression(t.identifier('styled'), [
+        tag,
+        t.arrayExpression(path.node.arguments),
+        t.arrayExpression()
+      ])
+    )
+  }
+}
+
 export default function (babel) {
   const { types: t } = babel
 
@@ -147,24 +209,7 @@ export default function (babel) {
         cssProps(path, t)
       },
       CallExpression (path) {
-        if (
-          (t.isCallExpression(path.node.callee) &&
-            path.node.callee.callee.name === 'styled') ||
-          (t.isMemberExpression(path.node.callee) &&
-            t.isIdentifier(path.node.callee.object) &&
-            path.node.callee.object.name === 'styled')
-        ) {
-          const tag = t.isCallExpression(path.node.callee)
-            ? path.node.callee.arguments[0]
-            : t.stringLiteral(path.node.callee.property.name)
-          path.replaceWith(
-            t.callExpression(t.identifier('styled'), [
-              tag,
-              t.arrayExpression(path.node.arguments),
-              t.arrayExpression()
-            ])
-          )
-        }
+        replaceStyledObjectCall(path, t)
       },
       TaggedTemplateExpression (path, state) {
         // in:
@@ -177,54 +222,7 @@ export default function (babel) {
         //     color: ${x0};
         //     height: ${x1}; }`];
         // });
-
-        const parent = path.findParent(p => p.isVariableDeclarator())
-        const identifierName =
-          parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
-
-        function buildCallExpression (identifier, tag, path) {
-          let {
-            hash,
-            rules,
-            name,
-            hasOtherMatch,
-            composes,
-            hasCssFunction
-          } = inline(path.node.quasi, identifierName, 'css', state.inline)
-
-          // hash will be '0' when no styles are passed so we can just return the original tag
-          if (hash === '0') {
-            return tag
-          }
-          const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
-          for (var i = 0; i < composes; i++) {
-            inputClasses.push(path.node.quasi.expressions.shift())
-          }
-
-          const vars = path.node.quasi.expressions
-
-          const dynamicValues = parseDynamicValues(rules, t, { composes, vars })
-          const args = [
-            tag,
-            t.arrayExpression(inputClasses),
-            t.arrayExpression(vars)
-          ]
-          if (!hasOtherMatch && !state.inline && !hasCssFunction) {
-            state.insertStaticRules(rules)
-          } else if (rules.length !== 0) {
-            const inlineContentExpr = t.functionExpression(
-              t.identifier('createEmotionStyledRules'),
-              vars.map((x, i) => t.identifier(`x${i}`)),
-              t.blockStatement([
-                t.returnStatement(t.arrayExpression(dynamicValues))
-              ])
-            )
-            args.push(inlineContentExpr)
-          }
-
-          return t.callExpression(identifier, args)
-        }
-
+        const identifierName = getIdentifierName(path, t)
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
@@ -232,10 +230,12 @@ export default function (babel) {
           t.isTemplateLiteral(path.node.quasi)
         ) {
           path.replaceWith(
-            buildCallExpression(
+            buildStyledCallExpression(
               path.node.tag.object,
               t.stringLiteral(path.node.tag.property.name),
-              path
+              path,
+              state,
+              t
             )
           )
         } else if (
@@ -245,10 +245,12 @@ export default function (babel) {
           t.isTemplateLiteral(path.node.quasi)
         ) {
           path.replaceWith(
-            buildCallExpression(
+            buildStyledCallExpression(
               path.node.tag.callee,
               path.node.tag.arguments[0],
-              path
+              path,
+              state,
+              t
             )
           )
         } else if (

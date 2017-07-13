@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`no use 1`] = `
+"'use strict';
+
+var _marcro = require('../../src/marcro');
+
+var SomeComponent = (0, _marcro.styled)('div', ['css-SomeComponent-vyoujf'], [], function createEmotionStyledRules() {
+  return ['.css-SomeComponent-vyoujf { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }'];
+});"
+`;
