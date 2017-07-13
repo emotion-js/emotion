@@ -5,8 +5,12 @@ module.exports = function macro ({ references, state: babelState }) {
   const state = { ...babelState, inline: true }
   if (references.default) {
     references.default.forEach(styledReference => {
-      console.log(references, state)
-      const requireRuntimeNode = t.memberExpression(t.callExpression(t.identifier('require'), [t.stringLiteral('emotion/react')]), t.identifier('default'))
+      // console.log(references, state)
+      // console.og(styledReference.node.name)
+      const thing = styledReference.scope.getBinding(styledReference.node.name).path.parentPath.node.source.value
+      const wow = thing.match(/(.*)\/macro/)[1]
+      // .parent.source.value
+      const requireRuntimeNode = t.memberExpression(t.callExpression(t.identifier('require'), [t.stringLiteral(wow)]), t.identifier('default'))
       const path = styledReference.parentPath.parentPath
       if (t.isTemplateLiteral(path.node.quasi)) {
         if (t.isMemberExpression(path.node.tag)) {

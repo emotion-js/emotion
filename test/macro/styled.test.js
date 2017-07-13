@@ -1,8 +1,8 @@
 /* eslint-env jest */
-import styled from '../src/react/macro'
+import styled from '../../src/react/macro'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matcher, serializer } from '../jest-utils'
+import { matcher, serializer } from '../../jest-utils'
 
 expect.addSnapshotSerializer(serializer)
 expect.extend(matcher)
