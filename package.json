@@ -29,6 +29,7 @@
     "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },
   "dependencies": {
+    "@arr/filter": "^0.1.0",
     "@arr/foreach": "^0.1.0",
     "@arr/map": "^0.1.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
