@@ -2,14 +2,14 @@
 
 exports[`babel macro styled tagged template literal function 1`] = `
 "
-const SomeComponent = require('emotion/react')('div', ['css-SomeComponent-1q8jsgx'], [], function createEmotionStyledRules() {
+const SomeComponent = require('emotion/react').default('div', ['css-SomeComponent-1q8jsgx'], [], function createEmotionStyledRules() {
   return [\`.css-SomeComponent-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }\`];
 });"
 `;
 
 exports[`babel macro styled tagged template literal member 1`] = `
 "
-const SomeComponent = require('emotion/react')('div', ['css-SomeComponent-1q8jsgx'], [], function createEmotionStyledRules() {
+const SomeComponent = require('emotion/react').default('div', ['css-SomeComponent-1q8jsgx'], [], function createEmotionStyledRules() {
   return [\`.css-SomeComponent-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }\`];
 });"
 `;
