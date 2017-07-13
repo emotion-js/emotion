@@ -9,6 +9,8 @@ export const sheet = new StyleSheet()
 // 🚀
 sheet.inject()
 
+window.sheet = sheet
+
 export let inserted: { [string]: boolean | void } = {}
 
 type inputVar = string | number
@@ -38,18 +40,65 @@ export function flush () {
   sheet.inject()
 }
 
+// a simple cache to store generated rules
+let registered = (sheet.registered = {})
+
+function register (spec) {
+  if (!registered[spec.id]) {
+    registered[spec.id] = spec
+  }
+}
+
+function _getRegistered (rule) {
+  if (isLikeRule(rule)) {
+    let ret = registered[idFor(rule)]
+    if (ret == null) {
+      throw new Error(
+        '[emotion] an unexpected rule cache miss occurred. This is probably a sign of multiple glamor instances in your app. See https://github.com/threepointone/glamor/issues/79'
+      )
+    }
+    return ret
+  }
+  return rule
+}
+
+// The idea on how to merge object class names come from glamorous
+// 💄
+// https://github.com/paypal/glamorous/blob/master/src/get-glamor-classname.js
+function getGlamorStylesFromClassName (className) {
+  const id = className.trim().slice('css-obj-'.length)
+  if (sheet.registered[id]) {
+    return sheet.registered[id].style
+  } else {
+    return null
+  }
+}
+
 export function css (classes: string[], vars: vars, content: () => string[]) {
   if (!Array.isArray(classes)) {
     classes = [classes]
   }
 
   let computedClassName = ''
+  let objectStyles = []
   forEach(classes, (cls): void => {
     computedClassName && (computedClassName += ' ')
-    computedClassName += typeof cls === 'string'
-      ? cls
-      : objStyle(cls).toString()
+
+    if (typeof cls === 'string') {
+      if (cls.trim().indexOf('css-obj-') === 0) {
+        const glamorStylesFromClassName = getGlamorStylesFromClassName(cls)
+        objectStyles.push(glamorStylesFromClassName)
+      } else {
+        computedClassName += cls
+      }
+    } else {
+      objectStyles.push(cls)
+    }
   })
+
+  if (objectStyles.length) {
+    computedClassName += ' ' + objStyle(...objectStyles).toString()
+  }
 
   if (content) {
     // inline mode
@@ -60,7 +109,8 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
       inserted[hash] = true
       const rgx = new RegExp(classes[0], 'gm')
       forEach(src, r => {
-        sheet.insert(r.replace(rgx, `${classes[0]}-${hash}`))
+        const finalRule = r.replace(rgx, `${classes[0]}-${hash}`)
+        sheet.insert(finalRule)
       })
     }
     return `${classes[0]}-${hash} ${computedClassName}`
@@ -98,21 +148,6 @@ export function hydrate (ids: string[]) {
 
 // 🍩
 // https://github.com/jxnblk/cxs/blob/master/src/monolithic/index.js
-// export function objStyle (style: { [string]: any }) {
-//   const hash = hashObject(style)
-//   const className = `css-${hash}`
-//   const selector = '.' + className
-//
-//   if (inserted[hash]) return className
-//
-//   const rules = deconstruct(selector, style)
-//   forEach(rules, rule => sheet.insert(rule))
-//
-//   inserted[hash] = true
-//
-//   return className
-// }
-
 type GlamorRule = { [string]: any }
 
 type CSSRuleList = Array<GlamorRule>
@@ -163,14 +198,14 @@ export function isLikeRule (rule: GlamorRule) {
   if (keys.length !== 1) {
     return false
   }
-  return !!/css\-([a-zA-Z0-9]+)/.exec(keys[0])
+  return !!/css\-obj\-([a-zA-Z0-9]+)/.exec(keys[0])
 }
 
 // extracts id from a { 'css-<id>': ''} like object
 export function idFor (rule: GlamorRule) {
   let keys = Object.keys(rule).filter(x => x !== 'toString')
   if (keys.length !== 1) throw new Error('not a rule')
-  let regex = /css\-([a-zA-Z0-9]+)/
+  let regex = /css\-obj\-([a-zA-Z0-9]+)/
   let match = regex.exec(keys[0])
   if (!match) throw new Error('not a rule')
   return match[1]
@@ -180,13 +215,15 @@ function selector (id: string, path: string = '') {
   if (!id) {
     return path.replace(/\&/g, '')
   }
-  if (!path) return `.css-${id}`
+  if (!path) return `.css-obj-${id}`
 
   let x = path
     .split(',')
     .map(
       x =>
-        x.indexOf('&') >= 0 ? x.replace(/\&/gm, `.css-${id}`) : `.css-${id}${x}`
+        x.indexOf('&') >= 0
+          ? x.replace(/\&/gm, `.css-obj-${id}`)
+          : `.css-obj-${id}${x}`
     )
     .join(',')
 
@@ -251,28 +288,6 @@ function insert (spec) {
   }
 }
 
-// a simple cache to store generated rules
-let registered = (sheet.registered = {})
-
-function register (spec) {
-  if (!registered[spec.id]) {
-    registered[spec.id] = spec
-  }
-}
-
-function _getRegistered (rule) {
-  if (isLikeRule(rule)) {
-    let ret = registered[idFor(rule)]
-    if (ret == null) {
-      throw new Error(
-        '[emotion] an unexpected rule cache miss occurred. This is probably a sign of multiple glamor instances in your app. See https://github.com/threepointone/glamor/issues/79'
-      )
-    }
-    return ret
-  }
-  return rule
-}
-
 // todo - perf
 let ruleCache = {}
 
@@ -288,7 +303,7 @@ function toRule (spec) {
   Object.defineProperty(ret, 'toString', {
     enumerable: false,
     value () {
-      return 'css-' + spec.id
+      return 'css-obj-' + spec.id
     }
   })
   ruleCache[spec.id] = ret
