@@ -20,6 +20,7 @@ Object {
   width: var(--css-hash-0);
 }",
   ],
+  "staticRules": undefined,
 }
 `;
 
@@ -63,6 +64,7 @@ Object {
   content: 'pseudo'
 }",
   ],
+  "staticRules": undefined,
 }
 `;
 
@@ -79,5 +81,6 @@ Object {
   width: 30px
 }",
   ],
+  "staticRules": undefined,
 }
 `;

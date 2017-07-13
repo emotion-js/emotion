@@ -61,8 +61,6 @@ export function parseCSS(
         if (decl.parent.nodes[0] !== decl) {
           throw new Error('composes must be the first rule')
         }
-        // Update the selector to increase specificity
-        decl.parent.selector = decl.parent.selector + decl.parent.selector
         const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
         const numOfComposes: number = !composeMatches ? 0 : composeMatches.length
         composes += numOfComposes
@@ -75,6 +73,11 @@ export function parseCSS(
       const match = /xxx(\d+)xxx/gm.exec(decl.value)
       if (match) {
         vars++
+      }
+    }
+    if (options.extractStatic) {
+      if (typeof decl.value === 'string' && !/xxx(\d+)xxx/gm.exec(decl.value)) {
+        decl.remove()
       }
     }
   })
@@ -95,11 +98,7 @@ export function parseCSS(
   if (options.extractStatic) {
     staticRoot.walkDecls((decl: CSSDecl): void => {
       if (decl.prop === 'name') decl.remove()
-      debugger
-      if (decl.prop === 'composes') {
-        decl.parent.selector = decl.parent.selector + decl.parent.selector
-        decl.remove()
-      }
+      if (decl.prop === 'composes') decl.remove()
       if (/xxx(\d+)xxx/gm.exec(decl.value)) decl.remove()
     })
     staticRoot.walkRules(rule => {
@@ -108,14 +107,18 @@ export function parseCSS(
   }
 
   autoprefix(root)
-  autoprefix(staticRoot)
+  let staticRules
+  if (options.extractStatic) {
+    autoprefix(staticRoot)
+    staticRules = stringifyCSSRoot(staticRoot)
+  }
   return {
     rules: stringifyCSSRoot(root),
     hasOtherMatch: vars !== options.matches,
     hasVar: (!!vars && vars !== composes) || !!(options.inlineMode && options.matches),
     composes,
     hasCssFunction,
-    staticRules: stringifyCSSRoot(staticRoot),
+    staticRules,
   }
 }
 
