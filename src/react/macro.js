@@ -5,12 +5,13 @@ module.exports = function macro ({ references, state: babelState }) {
   const state = { ...babelState, inline: true }
   if (references.default) {
     references.default.forEach(styledReference => {
+      const requireRuntimeNode = t.callExpression(t.identifier('require'), [t.stringLiteral('emotion/react')])
       const path = styledReference.parentPath.parentPath
       if (t.isTemplateLiteral(path.node.quasi)) {
         if (t.isMemberExpression(path.node.tag)) {
           path.replaceWith(
             buildStyledCallExpression(
-              path.node.tag.object,
+              requireRuntimeNode,
               t.stringLiteral(path.node.tag.property.name),
               path,
               state,
@@ -20,7 +21,7 @@ module.exports = function macro ({ references, state: babelState }) {
         } else if (t.isCallExpression(path.node.tag)) {
           path.replaceWith(
             buildStyledCallExpression(
-              path.node.tag.callee,
+              requireRuntimeNode,
               path.node.tag.arguments[0],
               path,
               state,
