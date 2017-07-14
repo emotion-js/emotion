@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`babel macro styled object function 1`] = `
+"
+const SomeComponent = styled('div', [{
+  display: 'flex'
+}], []);"
+`;
+
+exports[`babel macro styled object member 1`] = `
+"
+const SomeComponent = styled('div', [{
+  display: 'flex'
+}], []);"
+`;
+
 exports[`babel macro styled tagged template literal function 1`] = `
 "
 const SomeComponent = require('../../src/react').default('div', ['css-SomeComponent-1q8jsgx'], [], function createEmotionStyledRules() {

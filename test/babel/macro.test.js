@@ -32,6 +32,34 @@ describe('babel macro', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('object member', () => {
+      const basic = `
+      import styled from '../../src/react/macro'
+      const SomeComponent = styled.div({
+        display: 'flex'
+      })
+    `
+      const { code } = babel.transform(basic, {
+        plugins: ['babel-macros'],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('object function', () => {
+      const basic = `
+      import styled from '../../src/react/macro'
+      const SomeComponent = styled('div')({
+        display: 'flex'
+      })
+    `
+      const { code } = babel.transform(basic, {
+        plugins: ['babel-macros'],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+    })
     test.skip('tagged template literal member require commonjs', () => {
       const basic = `
         const styled = require('../../src/react/macro')

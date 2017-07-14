@@ -1,4 +1,4 @@
-import { buildStyledCallExpression } from './babel'
+import { buildStyledCallExpression, buildStyledObjectCallExpression } from './babel'
 import { getRuntimeImportPath } from './babel-utils'
 import * as t from 'babel-types'
 
@@ -31,6 +31,8 @@ module.exports = function macro ({ references, state: babelState }) {
             )
           )
         }
+      } else if (t.isCallExpression(path)) {
+        path.replaceWith(buildStyledObjectCallExpression(path, t))
       }
     })
   }
