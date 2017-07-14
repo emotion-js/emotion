@@ -75,4 +75,43 @@ describe('babel macro', () => {
       expect(code).toMatchSnapshot()
     })
   })
+  test('injectGlobal', () => {
+    const basic = `
+    import { injectGlobal } from '../../src/macro'
+    injectGlobal\`
+      body {
+        margin: 0;
+        padding: 0;
+        & > div {
+          display: none;
+        }
+      }
+      html {
+        background: green;
+      }
+  \`;`
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
+  test('fontFace', () => {
+    const basic = `
+    import { fontFace } from '../../src/macro'
+    fontFace\`
+    font-family: MyHelvetica;
+    src: local("Helvetica Neue Bold"),
+         local("HelveticaNeue-Bold"),
+         url(MgOpenModernaBold.ttf);
+    font-weight: bold;
+    \`;`
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
 })
