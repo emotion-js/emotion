@@ -40,14 +40,16 @@ module.exports = function macro ({ references, state: babelState }) {
   if (references.css) {
     references.css.forEach((cssReference) => {
       const path = cssReference.parentPath
+      const requireRuntimeNode = t.memberExpression(
+        t.callExpression(t.identifier('require'), [
+          t.stringLiteral(getRuntimeImportPath(cssReference, t))
+        ]),
+        t.identifier('css')
+      )
       if (t.isIdentifier(path.node.tag) && t.isTemplateLiteral(path.node.quasi)) {
-        const requireRuntimeNode = t.memberExpression(
-          t.callExpression(t.identifier('require'), [
-            t.stringLiteral(getRuntimeImportPath(cssReference, t))
-          ]),
-          t.identifier('css')
-        )
         replaceCssWithCallExpression(path, requireRuntimeNode, state, t)
+      } else {
+        path.parentPath.replaceWith(requireRuntimeNode)
       }
     })
   }

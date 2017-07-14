@@ -1,0 +1,310 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled attr 1`] = `
+.css-H1-l44jbj-1u4tp6a {
+  font-size: 48;
+  margin: 4rem;
+  position: absolute;
+}
+
+<h1
+  className="css-H1-l44jbj-1u4tp6a css-H1-l44jbj"
+  fontSize={48}
+/>
+`;
+
+exports[`styled basic render 1`] = `
+.css-H1-8xpzga-1e133rd {
+  font-size: 20px;
+}
+
+<h1
+  className="css-H1-8xpzga-1e133rd css-H1-8xpzga"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled basic render with object as style 1`] = `
+.css-kp2uw9 {
+  font-size: 20px;
+}
+
+<h1
+  className="css-kp2uw9"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled call expression 1`] = `
+.css-H1-13wdnau-xy96vj {
+  font-size: 20px;
+}
+
+<h1
+  className="css-H1-13wdnau-xy96vj css-H1-13wdnau legacy__class"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled component as selector 1`] = `
+.css-H1-rs9k70-qz486c {
+  font-size: 20px;
+}
+
+.css-Thing-1kdnbhf-d995d2 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.css-Thing-1kdnbhf-d995d2 .css-H1-rs9k70 {
+  color: green;
+}
+
+<div
+  className="css-Thing-1kdnbhf-d995d2 css-Thing-1kdnbhf"
+>
+  hello 
+  <h1
+    className="css-H1-rs9k70-qz486c css-H1-rs9k70"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`styled composes 1`] = `
+.css-cssA-cy897j-1p4ppuj {
+  color: blue;
+}
+
+.css-cssB-ob3sm8-fwh0v {
+  height: 64px;
+}
+
+.css-H2-idm3bz-361gww {
+  font-size: 32px;
+}
+
+.css-H1-zejj71-ovrrqc {
+  font-size: 20px;
+}
+
+<h1
+  className="css-H1-zejj71-ovrrqc css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-cssA-cy897j-1p4ppuj css-cssA-cy897j css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes based on props 1`] = `
+.css-cssA-cy897j-1p4ppuj {
+  color: blue;
+}
+
+<h1
+  a={true}
+  className="css-H1-16dw226 css-cssA-cy897j-1p4ppuj css-cssA-cy897j"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes based on props 2`] = `
+.css-cssB-7o6h5j-dcpp5a {
+  color: green;
+}
+
+<h1
+  className="css-H1-16dw226 css-cssB-7o6h5j-dcpp5a css-cssB-7o6h5j"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes with objects 1`] = `
+.css-cssB-ob3sm8-fwh0v {
+  height: 64px;
+}
+
+.css-H2-idm3bz-361gww {
+  font-size: 32px;
+}
+
+.css-1olphq9 {
+  color: #333;
+  font-size: 1.333em;
+}
+
+.css-H1-zejj71-1ym7xv {
+  font-size: 3.157334518321em;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (min--moz-device-pixel-ratio: 1.5),
+    only screen and (-o-min-device-pixel-ratio: 1.5/1),
+    only screen and (min-resolution: 144dpi),
+    only screen and (min-resolution: 1.5dppx) {
+  .css-1olphq9 {
+    font-size: 1.4323121856191332em;
+  }
+}
+
+<h1
+  className="css-H1-zejj71-1ym7xv css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-1olphq9 css-H2-idm3bz-361gww css-H2-idm3bz legacy__class"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composition 1`] = `
+.css-H2-vxb7tq-1gn1gp5 {
+  font-size: 13.333333333333334;
+}
+
+.css-H1-rs9k70-qz486c {
+  font-size: 20px;
+}
+
+<h1
+  className="css-H1-rs9k70-qz486c css-H1-rs9k70 css-H2-vxb7tq-1gn1gp5 css-H2-vxb7tq legacy__class"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled function in expression 1`] = `
+.css-H1-rs9k70-qz486c {
+  font-size: 20px;
+}
+
+.css-H2-vxb7tq-1pd0qgw {
+  font-size: 40px;
+}
+
+<h1
+  className="css-H1-rs9k70-qz486c css-H1-rs9k70 css-H2-vxb7tq-1pd0qgw css-H2-vxb7tq legacy__class"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled higher order component 1`] = `
+.css-squirtle-blue-bg-135ox65-8g3djl {
+  background-color: #7FC8D6;
+}
+
+.css-onyx-165zlfj-sv1xya {
+  background-color: '#343a40';
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+}
+
+.css-Content-13wdnau-1z6hk6 {
+  font-size: 20px;
+}
+
+<div
+  className="css-Content-13wdnau-1z6hk6 css-Content-13wdnau css-onyx-165zlfj-sv1xya css-onyx-165zlfj css-squirtle-blue-bg-135ox65-8g3djl css-squirtle-blue-bg-135ox65"
+/>
+`;
+
+exports[`styled innerRef 1`] = `
+.css-H1-ijh7uz-10q50rl {
+  font-size: 12px;
+}
+
+<h1
+  className="css-H1-ijh7uz-10q50rl css-H1-ijh7uz"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled name 1`] = `
+.css-FancyH1-1azfbv1-1fzd8kz {
+  font-size: 20px;
+}
+
+<h1
+  className="css-FancyH1-1azfbv1-1fzd8kz css-FancyH1-1azfbv1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled no dynamic 1`] = `
+.css-H1-ijh7uz-10q50rl {
+  font-size: 12px;
+}
+
+<h1
+  className="css-H1-ijh7uz-10q50rl css-H1-ijh7uz"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled objects 1`] = `
+.css-1x9ygd3 {
+  padding: 10px;
+}
+
+.css-1fe3owl {
+  display: flex;
+}
+
+<h1
+  className="some-class css-1x9ygd3 css-1fe3owl"
+  display="flex"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled themes 1`] = `
+.css-cssA-cy897j-1p4ppuj {
+  color: blue;
+}
+
+.css-cssB-ob3sm8-fwh0v {
+  height: 64px;
+}
+
+.css-H2-idm3bz-361gww {
+  font-size: 32px;
+}
+
+.css-H1-iwhfi5-s8bsgs {
+  font-size: 20px;
+  color: #8c81d8;
+}
+
+.css-Heading-1ybg51t-91l5qw {
+  background-color: #ffd43b;
+}
+
+<span
+  className="css-Heading-1ybg51t-91l5qw css-Heading-1ybg51t css-H1-iwhfi5-s8bsgs css-H1-iwhfi5 css-cssB-ob3sm8-fwh0v css-cssB-ob3sm8 css-cssA-cy897j-1p4ppuj css-cssA-cy897j css-H2-idm3bz-361gww css-H2-idm3bz"
+  scale={2}
+>
+  hello world
+</span>
+`;
+
+exports[`styled throws if undefined is passed as the component 1`] = `
+"You are trying to create a styled element with an undefined component.
+You may have forgotten to import it."
+`;
