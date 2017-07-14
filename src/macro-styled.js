@@ -44,7 +44,7 @@ module.exports = function macro ({ references, state: babelState }) {
         (t.isCallExpression(path.node.callee) ||
         t.isIdentifier(path.node.callee.object))
       ) {
-        path.replaceWith(buildStyledObjectCallExpression(path, t))
+        path.replaceWith(buildStyledObjectCallExpression(path, requireRuntimeNode, t))
       }
     })
   }

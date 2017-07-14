@@ -2,14 +2,14 @@
 
 exports[`babel macro styled object function 1`] = `
 "
-const SomeComponent = styled('div', [{
+const SomeComponent = require('../../src/react').default('div', [{
   display: 'flex'
 }], []);"
 `;
 
 exports[`babel macro styled object member 1`] = `
 "
-const SomeComponent = styled('div', [{
+const SomeComponent = require('../../src/react').default('div', [{
   display: 'flex'
 }], []);"
 `;

@@ -139,11 +139,10 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   return t.callExpression(identifier, args)
 }
 
-export function buildStyledObjectCallExpression (path, t) {
+export function buildStyledObjectCallExpression (path, identifier, t) {
   const tag = t.isCallExpression(path.node.callee)
       ? path.node.callee.arguments[0]
       : t.stringLiteral(path.node.callee.property.name)
-  const identifier = t.isCallExpression(path.node.callee) ? path.node.callee.callee : path.node.callee.object
   return t.callExpression(identifier, [
     tag,
     t.arrayExpression(path.node.arguments),
@@ -203,7 +202,8 @@ export default function (babel) {
             t.isIdentifier(path.node.callee.object) &&
             path.node.callee.object.name === 'styled')
         ) {
-          path.replaceWith(buildStyledObjectCallExpression(path, t))
+          const identifier = t.isCallExpression(path.node.callee) ? path.node.callee.callee : path.node.callee.object
+          path.replaceWith(buildStyledObjectCallExpression(path, identifier, t))
         }
       },
       TaggedTemplateExpression (path, state) {
