@@ -189,8 +189,13 @@ export default function (babel) {
             name,
             hasOtherMatch,
             composes,
-            hasCssFunction
+            hasCssFunction,
+            staticDeclarations
           } = inline(path.node.quasi, identifierName, 'css', state.inline)
+
+          if (staticDeclarations.length > 0) {
+            state.insertStaticRules(staticDeclarations)
+          }
 
           // hash will be '0' when no styles are passed so we can just return the original tag
           if (hash === '0') {

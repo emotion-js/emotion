@@ -57,7 +57,8 @@ export function inline (
   hasVar: boolean,
   hasOtherMatch: boolean,
   composes: number,
-  hasCssFunction: boolean
+  hasCssFunction: boolean,
+  staticDeclarations: string[]
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
@@ -67,20 +68,55 @@ export function inline (
     prefix
   )
   let { src, matches } = createSrc(strs, name, hash)
+
+  // construct two arrays to track static and dynamic rules
+  let staticRules = []
+  let dynamicRules = []
+  // split rules by semicolon
+  src.split(';').forEach(decl => {
+    // get the value from the declaration
+    const [, val] = decl.split(':')
+    // regex to test values that match xxx0xxx placeholders
+    const customValRe = /xxx(\d+)xxx/
+    // if it doesn't match the pattern, add to static, else dynamic
+    if (!customValRe.test(val)) {
+      staticRules.push(decl)
+    } else {
+      dynamicRules.push(decl)
+    }
+  })
   let {
     rules,
     hasVar,
     hasOtherMatch,
     composes,
     hasCssFunction
-  } = parseCSS(`.${name}-${hash} { ${src} }`, {
+  } = parseCSS(`.${name}-${hash} { ${dynamicRules.join(';')} }`, {
     inlineMode: inlineMode,
     matches,
     name,
     hash,
     canCompose: true
   })
-  return { hash, name, rules, hasVar, hasOtherMatch, composes, hasCssFunction }
+  const {
+    rules: staticDeclarations
+  } = parseCSS(`.${name}-${hash} { ${staticRules.join(';')} }`, {
+    inlineMode: inlineMode,
+    matches,
+    name,
+    hash,
+    canCompose: true
+  })
+  return {
+    hash,
+    name,
+    rules,
+    hasVar,
+    hasOtherMatch,
+    composes,
+    hasCssFunction,
+    staticDeclarations
+  }
 }
 
 export function keyframes (
