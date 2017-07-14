@@ -39,6 +39,20 @@ require('../../src').injectGlobal([\`body {
       }\`]);"
 `;
 
+exports[`babel macro keyframes 1`] = `
+"
+const rotate360 = require('../../src').keyframes('animation-rotate360-1e2ipf5', [\`{ from {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    } }\`]);"
+`;
+
 exports[`babel macro styled object function 1`] = `
 "
 const SomeComponent = require('../../src/react').default('div', [{

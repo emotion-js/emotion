@@ -150,7 +150,7 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
   ])
 }
 
-export function replaceGlobalCallExpression (identifier, processQuasi, path, state, t) {
+export function replaceGlobalWithCallExpression (identifier, processQuasi, path, state, t) {
   const { rules, hasInterpolation } = processQuasi(path.node.quasi)
   if (!hasInterpolation && !state.inline) {
     state.insertStaticRules(rules)
@@ -220,6 +220,32 @@ export function replaceCssWithCallExpression (path, identifier, state, t) {
     path.replaceWith(t.callExpression(identifier, args))
   } catch (e) {
     throw path.buildCodeFrameError(e)
+  }
+}
+
+export function replaceKeyframesWithCallExpression (path, identifier, state, t) {
+  const { hash, name, rules, hasInterpolation } = keyframes(
+    path.node.quasi,
+    getIdentifierName(path, t),
+    'animation'
+  )
+  const animationName = `${name}-${hash}`
+  if (!hasInterpolation && !state.inline) {
+    state.insertStaticRules([
+      `@keyframes ${animationName} ${rules.join('')}`
+    ])
+    path.replaceWith(t.stringLiteral(animationName))
+  } else {
+    path.replaceWith(
+      t.callExpression(identifier, [
+        t.stringLiteral(animationName),
+        t.arrayExpression(
+          parseDynamicValues(rules, t, {
+            inputExpressions: path.node.quasi.expressions
+          })
+        )
+      ])
+    )
   }
 }
 
@@ -293,8 +319,7 @@ export default function (babel) {
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
-          path.node.tag.object.name === 'styled' &&
-          t.isTemplateLiteral(path.node.quasi)
+          path.node.tag.object.name === 'styled'
         ) {
           path.replaceWith(
             buildStyledCallExpression(
@@ -308,8 +333,7 @@ export default function (babel) {
         } else if (
           // styled('h1')`color:${color};`
           t.isCallExpression(path.node.tag) &&
-          path.node.tag.callee.name === 'styled' &&
-          t.isTemplateLiteral(path.node.quasi)
+          path.node.tag.callee.name === 'styled'
         ) {
           path.replaceWith(
             buildStyledCallExpression(
@@ -321,48 +345,16 @@ export default function (babel) {
             )
           )
         } else if (
-          t.isIdentifier(path.node.tag) &&
-          path.node.tag.name === 'css'
-        ) {
-          replaceCssWithCallExpression(path, t.identifier('css'), state, t)
-        } else if (
-          t.isIdentifier(path.node.tag) &&
-          path.node.tag.name === 'keyframes'
-        ) {
-          const { hash, name, rules, hasInterpolation } = keyframes(
-            path.node.quasi,
-            getIdentifierName(path, t),
-            'animation'
-          )
-          const animationName = `${name}-${hash}`
-          if (!hasInterpolation && !state.inline) {
-            state.insertStaticRules([
-              `@keyframes ${animationName} ${rules.join('')}`
-            ])
-            path.replaceWith(t.stringLiteral(animationName))
-          } else {
-            path.replaceWith(
-              t.callExpression(t.identifier('keyframes'), [
-                t.stringLiteral(animationName),
-                t.arrayExpression(
-                  parseDynamicValues(rules, t, {
-                    inputExpressions: path.node.quasi.expressions
-                  })
-                )
-              ])
-            )
+          t.isIdentifier(path.node.tag)) {
+          if (path.node.tag.name === 'css') {
+            replaceCssWithCallExpression(path, t.identifier('css'), state, t)
+          } else if (path.node.tag.name === 'keyframes') {
+            replaceKeyframesWithCallExpression(path, t.identifier('keyframes'), state, t)
+          } else if (path.node.tag.name === 'fontFace') {
+            replaceGlobalWithCallExpression(t.identifier('fontFace'), fontFace, path, state, t)
+          } else if (path.node.tag.name === 'injectGlobal') {
+            replaceGlobalWithCallExpression(t.identifier('injectGlobal'), injectGlobal, path, state, t)
           }
-        } else if (
-          t.isIdentifier(path.node.tag) &&
-          path.node.tag.name === 'fontFace'
-        ) {
-          replaceGlobalCallExpression(t.identifier('fontFace'), fontFace, path, state, t)
-        } else if (
-          t.isIdentifier(path.node.tag) &&
-          path.node.tag.name === 'injectGlobal' &&
-          t.isTemplateLiteral(path.node.quasi)
-        ) {
-          replaceGlobalCallExpression(t.identifier('injectGlobal'), injectGlobal, path, state, t)
         }
       }
     }

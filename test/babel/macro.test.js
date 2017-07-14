@@ -132,4 +132,22 @@ describe('babel macro', () => {
     })
     expect(code).toMatchSnapshot()
   })
+  test('keyframes', () => {
+    const basic = `
+    import { keyframes } from '../../src/macro'
+    const rotate360 = keyframes\`
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  \``
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
 })
