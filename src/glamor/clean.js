@@ -46,5 +46,9 @@ function cleanArray (rules) {
 // Takes style array or object provided by user and clears all the falsy data
 // If there is no styles left after filtration returns null
 export default function clean (input) {
+  if (typeof input === 'string') {
+   return input.trim()
+  }
+
   return Array.isArray(input) ? cleanArray(input) : cleanObject(input)
 }

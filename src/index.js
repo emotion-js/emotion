@@ -15,21 +15,42 @@ type inputVar = string | number
 
 type vars = Array<inputVar>
 
+// https://github.com/js-next/react-style/blob/master/lib/stylesToCSS.js#L74
+function replicateSelector (selector, uniqueKey, max, key) {
+  const maxLength = max || 10
+  const _key = key || ''
+  const replicatedSelector = []
+  for (let i = 0; i < maxLength; i++) {
+    let newSelector = ''
+    let j = 0
+    let l2 = i + 1
+    for (; j < l2; j++) {
+      const selectorX = j === 0 ? selector : '.' + uniqueKey
+      newSelector += selectorX + (j !== 0 ? j : '')
+    }
+    replicatedSelector[i] = newSelector + _key
+  }
+  return replicatedSelector.join(',')
+}
+
 function values (cls: string, vars: vars) {
   const hash = hashArray([cls, ...vars])
-  const varCls = `vars-${hash}`
+  console.log(hash)
+
   if (inserted[hash]) {
-    return varCls
+    return `vars-${hash} ${hash}`
   }
+  const varCls = `vars-${hash}`
   let src = ''
   forEach(vars, (val: inputVar, i: number) => {
     src && (src += '; ')
     src += `--${cls}-${i}: ${val}`
   })
-  sheet.insert(`.${varCls} {${src}}`)
+
+  sheet.insert(`.${replicateSelector(`vars-${hash}`, hash, 2)} {${src}}`)
   inserted[hash] = true
 
-  return varCls
+  return varCls + ' ' + hash
 }
 
 export function flush () {
@@ -107,11 +128,12 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
       inserted[hash] = true
       const rgx = new RegExp(classes[0], 'gm')
       forEach(src, r => {
-        const finalRule = r.replace(rgx, `${classes[0]}-${hash}`)
+        const finalRule = r.replace(rgx, replicateSelector(`${classes[0]}`, hash, 2, ''))
+        console.log(finalRule)
         sheet.insert(finalRule)
       })
     }
-    return `${classes[0]}-${hash} ${computedClassName}`
+    return `${classes[0]} ${hash} ${computedClassName}`
   }
 
   return (
@@ -250,10 +272,9 @@ function deconstruct (style) {
 }
 
 function deconstructedStyleToCSS (id, style) {
+  let { plain, selects, medias, supports } = style
   let css = []
 
-  // plugins here
-  let { plain, selects, medias, supports } = style
   if (plain) {
     css.push(`${selector(id)}{${createMarkupForStyles(plain)}}`)
   }
@@ -297,7 +318,7 @@ function toRule (spec) {
     return ruleCache[spec.id]
   }
 
-  let ret = { [`css-${spec.id}`]: '' }
+  let ret = { [`css-obj-${spec.id}`]: '' }
   Object.defineProperty(ret, 'toString', {
     enumerable: false,
     value () {

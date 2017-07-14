@@ -192,21 +192,22 @@ describe('styled', () => {
 
     const cssB = css`
       composes: ${cssA}
-      height: 64px;
+      color: red;
     `
 
-    const H1 = styled('h1')`
-      composes: ${cssB}
+    const BlueH1 = styled('h1')`
+      composes: ${cssB};
+      color: blue;
       font-size: ${fontSize};
     `
 
-    const H2 = styled(H1)`font-size:32px;`
+    const FinalH2 = styled(BlueH1)`font-size:32px;`
 
     const tree = renderer
       .create(
-        <H2 scale={2} className={'legacy__class'}>
+        <FinalH2 scale={2} className={'legacy__class'}>
           hello world
-        </H2>
+        </FinalH2>
       )
       .toJSON()
 

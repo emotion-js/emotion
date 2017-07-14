@@ -191,7 +191,7 @@ export default function (babel) {
             composes,
             hasCssFunction
           } = inline(path.node.quasi, identifierName, 'css', state.inline)
-
+          // console.log('rules', rules)
           // hash will be '0' when no styles are passed so we can just return the original tag
           if (hash === '0') {
             return tag

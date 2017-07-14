@@ -3,6 +3,25 @@ const imageStyles = css({
   height: 96
 })
 
+const fakeBlue = css([
+  {
+    color: "blue"
+  }
+]);
+
+const red = css([
+  {
+    color: "red"
+  }
+]);
+
+const blue = css([
+  red,
+  {
+    color: "blue"
+  }
+]);
+
 const prettyStyles = css([
   {
     borderRadius: '50%',
@@ -11,29 +30,14 @@ const prettyStyles = css([
       transform: 'scale(1.2)'
     }
   },
-  { border: '3px solid #8c81d8' }
+  {border: '3px solid currentColor'}
 ])
 
 const Avatar = styled('img')`
-  composes: ${prettyStyles} ${imageStyles};
+  composes: ${prettyStyles} ${imageStyles} ${blue}
 `
 
-const AvatarContainer = styled.div(
-  imageStyles,
-  {
-    borderRadius: 10,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  props => ({
-    backgroundColor: props.backgroundColor
-  })
-)
-
 render(
-  <AvatarContainer backgroundColor='pink'>
-    <Avatar src={avatarUrl} />
-  </AvatarContainer>,
+  <Avatar src={avatarUrl}/>,
   mountNode
 )

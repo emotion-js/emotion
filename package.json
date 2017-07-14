@@ -35,6 +35,7 @@
     "babel-plugin-syntax-jsx": "^6.18.0",
     "fbjs": "^0.8.12",
     "styled-components": "2.0.0",
+    "stylis": "^3.2.3",
     "theming": "^1.0.1",
     "touch": "^1.0.0"
   },

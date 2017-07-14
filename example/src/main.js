@@ -19,6 +19,7 @@ const keyframesExample = require('./blocks/keyframes.example')
 // const readmeMarkdown = require('../../README.md')
 const avatarUrl = require('../../emotion.png')
 
+
 injectGlobal`
   html, body {
     font-family: -apple-system,
@@ -89,234 +90,43 @@ const PlaygroundWrapper = styled('div')`
   }
 `
 
+const cssA = css`
+      color: green;
+    `
+
+const cssB = css`
+      composes: ${cssA}
+      color: red;
+      font-size: 48px;
+    `
+
+const BlueH1 = styled('h1')`
+  composes: ${cssB};
+  color: blue;
+`
+
+const FinalH2 = styled(BlueH1)`
+  font-size:32px;
+  color: ${p => p.block ? '#EA33C3' : '#e67700'}
+`
+
+// const Avatar = styled('div')`
+//   composes: ${prettyStyles} ${blue};
+//
+//   &:hover > ${Image} {
+//     width: 96px;
+//     height: 96px;
+//     borderRadius: 50%;
+//   }
+// `
+
 class App extends React.Component {
   render () {
     return (
       <ThemeProvider theme={theme}>
-        <PlaygroundWrapper>
+        <PlaygroundWrapper background="#f8f9fa">
 
-          <div className='inner'>
-            <div className='header'>
-              <h1>
-                <img src={logoUrl} alt='emotion' />
-
-                emotion
-              </h1>
-              <p>The Next Generation of CSS-in-JS</p>
-            </div>
-
-            <Playground
-              noRender={false}
-              codeText={introExample}
-              scope={{
-                avatarUrl,
-                css,
-                React,
-                styled,
-                render
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/install.md')} />
-
-            <Markdown markdown={require('../../docs/nested.md')} />
-            <Playground
-              maxHeight={180}
-              noRender={false}
-              codeText={nestedExample}
-              scope={{
-                avatarUrl,
-                css,
-                React,
-                styled,
-                render
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/pseudo.md')} />
-            <Playground
-              maxHeight={220}
-              noRender={false}
-              codeText={pseudoExample}
-              scope={{
-                avatarUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/media.md')} />
-            <Playground
-              maxHeight={220}
-              noRender={false}
-              codeText={mediaExample}
-              scope={{
-                avatarUrl,
-                React,
-                styled,
-                render
-              }}
-            />
-
-            <Markdown
-              markdown={require('../../docs/styling-any-component.md')}
-            />
-            <Playground
-              maxHeight={220}
-              noRender={false}
-              codeText={anyComponentExample}
-              scope={{
-                avatarUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/props.md')} />
-            <Playground
-              noRender={false}
-              codeText={propsExample}
-              scope={{
-                avatarUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/keyframes.md')} />
-            <Playground
-              maxHeight={600}
-              noRender={false}
-              codeText={keyframesExample}
-              scope={{
-                avatarUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
-              }}
-            />
-
-            {/* <Markdown markdown={require('./docs/font-face.md')}/> */}
-            {/* <Playground */}
-            {/* maxHeight={600} */}
-            {/* noRender={false} */}
-            {/* codeText={fontFaceExample} */}
-            {/* scope={{ */}
-            {/* avatarUrl, */}
-            {/* React, */}
-            {/* fontFace, */}
-            {/* styled, */}
-            {/* render */}
-            {/* }} */}
-            {/* /> */}
-
-            <Markdown markdown={require('../../docs/theming.md')}/>
-            <Playground
-              maxHeight={180}
-              noRender={false}
-              codeText={require('./blocks/theming.example')}
-              scope={{
-                avatarUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/composes.md')} />
-            <Playground
-              maxHeight={180}
-              noRender={false}
-              codeText={require('./blocks/composes.example')}
-              scope={{
-                avatarUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/objects.md')} />
-            <Playground
-              maxHeight={180}
-              noRender={false}
-              codeText={require('./blocks/objects.example')}
-              scope={{
-                avatarUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/styled-with-object.md')} />
-            <Playground
-              maxHeight={180}
-              noRender={false}
-              codeText={require('./blocks/styled-with-object.example')}
-              scope={{
-                avatarUrl,
-                React,
-                css,
-                styled,
-                render
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/css-prop.md')} />
-            <Playground
-              maxHeight={180}
-              noRender={false}
-              codeText={require('./blocks/css-prop.example')}
-              scope={{
-                avatarUrl,
-                React,
-                css,
-                styled,
-                render
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/named.md')} />
-            <Playground
-              maxHeight={220}
-              noRender={false}
-              codeText={namedExample}
-              scope={{
-                avatarUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
-              }}
-            />
-          </div>
+          <FinalH2 block>Hello</FinalH2>
 
         </PlaygroundWrapper>
       </ThemeProvider>
