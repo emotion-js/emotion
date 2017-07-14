@@ -150,6 +150,28 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
   ])
 }
 
+export function replaceGlobalCallExpression (identifier, processQuasi, path, state, t) {
+  const { rules, hasInterpolation } = processQuasi(path.node.quasi)
+  if (!hasInterpolation && !state.inline) {
+    state.insertStaticRules(rules)
+    if (t.isExpressionStatement(path.parent)) {
+      path.parentPath.remove()
+    } else {
+      path.replaceWith(t.identifier('undefined'))
+    }
+  } else {
+    path.replaceWith(
+      t.callExpression(identifier, [
+        t.arrayExpression(
+          parseDynamicValues(rules, t, {
+            inputExpressions: path.node.quasi.expressions
+          })
+        )
+      ])
+    )
+  }
+}
+
 export default function (babel) {
   const { types: t } = babel
 
@@ -217,7 +239,6 @@ export default function (babel) {
         //     color: ${x0};
         //     height: ${x1}; }`];
         // });
-        const identifierName = getIdentifierName(path, t)
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
@@ -260,7 +281,7 @@ export default function (babel) {
               hasVar,
               composes,
               hasOtherMatch
-            } = inline(path.node.quasi, identifierName, 'css', state.inline)
+            } = inline(path.node.quasi, getIdentifierName(path, t), 'css', state.inline)
             const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
             for (var i = 0; i < composes; i++) {
               inputClasses.push(path.node.quasi.expressions.shift())
@@ -306,7 +327,7 @@ export default function (babel) {
         ) {
           const { hash, name, rules, hasInterpolation } = keyframes(
             path.node.quasi,
-            identifierName,
+            getIdentifierName(path, t),
             'animation'
           )
           const animationName = `${name}-${hash}`
@@ -331,52 +352,13 @@ export default function (babel) {
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'fontFace'
         ) {
-          const { rules, hasInterpolation } = fontFace(
-            path.node.quasi,
-            state.inline
-          )
-          if (!hasInterpolation && !state.inline) {
-            state.insertStaticRules(rules)
-            if (t.isExpressionStatement(path.parent)) {
-              path.parentPath.remove()
-            } else {
-              path.replaceWith(t.identifier('undefined'))
-            }
-          } else {
-            path.replaceWith(
-              t.callExpression(t.identifier('fontFace'), [
-                t.arrayExpression(
-                  parseDynamicValues(rules, t, {
-                    inputExpressions: path.node.quasi.expressions
-                  })
-                )
-              ])
-            )
-          }
+          replaceGlobalCallExpression(t.identifier('fontFace'), fontFace, path, state, t)
         } else if (
           t.isIdentifier(path.node.tag) &&
           path.node.tag.name === 'injectGlobal' &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          const { rules, hasInterpolation } = injectGlobal(path.node.quasi)
-          if (!hasInterpolation && !state.inline) {
-            state.insertStaticRules(rules)
-            if (t.isExpressionStatement(path.parent)) {
-              path.parentPath.remove()
-            } else {
-              path.replaceWith(t.identifier('undefined'))
-            }
-          } else {
-            path.replaceWith(
-              t.callExpression(t.identifier('injectGlobal'), [
-                t.arrayExpression(
-                  parseDynamicValues(rules, t, {
-                    inputExpressions: path.node.quasi.expressions
-                  })
-                )
-              ])
-            )
-          }
+          replaceGlobalCallExpression(t.identifier('injectGlobal'), injectGlobal, path, state, t)
         }
       }
     }
