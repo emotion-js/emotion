@@ -2,6 +2,7 @@ import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
+import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
 import createAttrExpression from './attrs'
 
@@ -14,11 +15,6 @@ function joinExpressionsWithSpaces (expressions, t) {
     quasis.push(t.templateElement({ cooked: ' ', raw: ' ' }, true))
   })
   return t.templateLiteral(quasis, expressions)
-}
-
-function getIdentifierName (path, t) {
-  const parent = path.findParent(p => p.isVariableDeclarator())
-  return parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 }
 
 function parseDynamicValues (rules, t, options) {

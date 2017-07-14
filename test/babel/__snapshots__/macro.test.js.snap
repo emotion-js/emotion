@@ -13,3 +13,11 @@ const SomeComponent = require('../../src/react').default('div', ['css-SomeCompon
   return [\`.css-SomeComponent-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }\`];
 });"
 `;
+
+exports[`babel macro styled tagged template literal member require commonjs 1`] = `
+"
+const styled = require('../../src/react/macro').default;
+const SomeComponent = styled.div\`
+          display: flex;
+        \`;"
+`;
