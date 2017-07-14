@@ -114,4 +114,22 @@ describe('babel macro', () => {
     })
     expect(code).toMatchSnapshot()
   })
+  test('css', () => {
+    const basic = `
+    import { css } from '../../src/macro'
+    css\`
+      margin: 12px 48px;
+      color: #ffffff;
+      display: flex;
+      flex: 1 0 auto;
+      color: blue;
+      width: \${widthVar};
+  \``
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
 })

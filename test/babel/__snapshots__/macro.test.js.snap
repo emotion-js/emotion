@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`babel macro css 1`] = `
+"
+require('../../src').css(['css-kgvccl'], [widthVar], function createEmotionRules(x0) {
+    return [\`.css-kgvccl { margin: 12px 48px;
+      color: #ffffff;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+      flex: 1 0 auto;
+      color: blue;
+      width: \${x0}; }\`];
+});"
+`;
+
 exports[`babel macro fontFace 1`] = `
 "
 require('../../src').fontFace([\`@font-face {font-family: MyHelvetica;
