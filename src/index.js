@@ -40,10 +40,13 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
     classes = [classes]
   }
 
-  let computedClassName = ''
-  forEach(classes, (cls): string => {
-    computedClassName && (computedClassName += ' ')
-    computedClassName += typeof cls === 'string' ? cls : objStyle(cls)
+  let computedClassNames = []
+  forEach(classes, (cls): void => {
+    if (typeof cls === 'string') {
+      forEach(cls.split(' '), c => computedClassNames.push(c))
+    } else {
+      computedClassNames.push(objStyle(cls))
+    }
   })
 
   if (content) {
@@ -54,17 +57,22 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
     if (!inserted[hash]) {
       inserted[hash] = true
       const rgx = new RegExp(classes[0], 'gm')
+      const finalSelector = computedClassNames.concat([`h-${hash}`]).join('.')
+
       forEach(src, r => {
-        sheet.insert(r.replace(rgx, `${classes[0]}-${hash}`))
+        const finalRule = r.replace(rgx, finalSelector)
+        console.log(finalRule)
+        sheet.insert(finalRule)
       })
     }
-    return `${classes[0]}-${hash} ${computedClassName}`
+
+    return computedClassNames.concat([`h-${hash}`]).join(' ')
   }
 
-  return (
-    computedClassName +
-    (vars && vars.length > 0 ? ' ' + values(classes[0], vars) : '')
-  )
+  const hashClassName = ` h-${computedClassNames[0].substring(-6)} `
+
+  return computedClassNames.join(' ') +
+    hashClassName + (vars && vars.length > 0 ? ' ' + values(classes[0], vars) : '')
 }
 
 export function injectGlobal (src: string[]) {
@@ -125,7 +133,9 @@ function deconstruct (selector, styles, media) {
     } else if (key.indexOf('@media') !== -1) {
       forEach(deconstruct(selector, value, key), r => rules.push(r))
     } else {
-      forEach(deconstruct(selector + ' ' + key, value, media), r => rules.push(r))
+      forEach(deconstruct(selector + ' ' + key, value, media), r =>
+        rules.push(r)
+      )
     }
   }
 
@@ -150,7 +160,9 @@ function hyphenate (str) {
 }
 
 function addPx (prop, value) {
-  if (typeof value !== 'number' || unitlessProps[prop] !== undefined) return value
+  if (typeof value !== 'number' || unitlessProps[prop] !== undefined) {
+    return value
+  }
   return value + 'px'
 }
 

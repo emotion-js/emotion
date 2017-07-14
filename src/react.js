@@ -47,7 +47,15 @@ export default function (tag, cls, vars = [], content) {
       }
 
       const getValue = v =>
-        v && typeof v === 'function' ? v.cls || v(mergedProps) : v
+        v && typeof v === 'function'
+          ? v.cls
+            ? css(
+                map(v.spec.cls, getValue),
+                map(v.spec.vars, getValue),
+                v.spec.content
+              )
+            : v(mergedProps)
+          : v
 
       const className = css(map(cls, getValue), map(vars, getValue), content)
 
@@ -76,5 +84,10 @@ export default function (tag, cls, vars = [], content) {
   const componentTag = tag.displayName || tag.name || 'Component'
   Styled.displayName = `styled(${componentTag}${name})`
   Styled.cls = '.' + cls
+  Styled.spec = {
+    cls,
+    vars,
+    content
+  }
   return Styled
 }

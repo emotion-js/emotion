@@ -46,6 +46,7 @@ const Code = styled('code')`
   color: ${colors.gray[8]};
   background-color: ${colors.gray[1]};
   padding: 1px;
+  maxWidth: 100%;
   
   p & {
     font-size: 0.99rem;
@@ -53,11 +54,12 @@ const Code = styled('code')`
 `
 
 const CodeBlock = styled('pre')`
-  margin: 0;
+  margin: 0 auto;
   padding: 4px;
   color: ${colors.gray[6]};
   background-color: ${colors.gray[1]};
   border-radius: attr(radius, 6px);
+  maxWidth: 98%;
 `
 
 export default ({ markdown }) => {
