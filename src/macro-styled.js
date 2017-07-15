@@ -2,14 +2,14 @@ import {
   buildStyledCallExpression,
   buildStyledObjectCallExpression
 } from './babel'
-import { buildMacroRuntimeNode } from './babel-utils'
+import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 
-module.exports = function macro ({ references, state: babelState, babel: { types: t } }) {
-  const state = { ...babelState, inline: true }
+module.exports = function macro ({ references, state, babel: { types: t } }) {
+  if (!state.inline) state.inline = true
   if (references.default) {
     references.default.forEach(styledReference => {
       const path = styledReference.parentPath.parentPath
-      const runtimeNode = buildMacroRuntimeNode(styledReference, 'default', t)
+      const runtimeNode = buildMacroRuntimeNode(styledReference, state, 'default', t)
       if (t.isTemplateLiteral(path.node.quasi)) {
         if (t.isMemberExpression(path.node.tag)) {
           path.replaceWith(
@@ -40,5 +40,6 @@ module.exports = function macro ({ references, state: babelState, babel: { types
         path.replaceWith(buildStyledObjectCallExpression(path, runtimeNode, t))
       }
     })
+    addRuntimeImports(state, t)
   }
 }

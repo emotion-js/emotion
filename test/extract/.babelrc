@@ -2,8 +2,7 @@
   "presets": [
     "flow",
     "env",
-    "stage-0",
-    "react",
-    "../babel-preset-emotion-test"
-  ]
+    "react"
+  ],
+  "plugins": ["./babel-plugin-emotion-test"]
 }
