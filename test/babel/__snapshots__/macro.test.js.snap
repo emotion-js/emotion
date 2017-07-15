@@ -76,7 +76,7 @@ const rotate360 = _keyframes('animation-rotate360-1e2ipf5', [\`{ from {
 `;
 
 exports[`babel macro multiple imports 1`] = `
-"import { keyframes as _keyframes } from '../../src';
+"import { css as _css, keyframes as _keyframes } from '../../src';
 
 const rotate360 = _keyframes('animation-rotate360-1e2ipf5', [\`{ from {
       -webkit-transform: rotate(0deg);
@@ -87,7 +87,21 @@ const rotate360 = _keyframes('animation-rotate360-1e2ipf5', [\`{ from {
       -webkit-transform: rotate(360deg);
       -ms-transform: rotate(360deg);
       transform: rotate(360deg);
-    } }\`]);"
+    } }\`]);
+const thing = _css(['css-thing-dn301t'], [widthVar], function createEmotionRules(x0) {
+  return [\`.css-thing-dn301t { margin: 12px 48px;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  color: blue;
+  width: \${x0}; }\`];
+});"
 `;
 
 exports[`babel macro styled object function 1`] = `
