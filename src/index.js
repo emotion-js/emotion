@@ -15,42 +15,21 @@ type inputVar = string | number
 
 type vars = Array<inputVar>
 
-// https://github.com/js-next/react-style/blob/master/lib/stylesToCSS.js#L74
-function replicateSelector (selector, uniqueKey, max, key) {
-  const maxLength = max || 10
-  const _key = key || ''
-  const replicatedSelector = []
-  for (let i = 0; i < maxLength; i++) {
-    let newSelector = ''
-    let j = 0
-    let l2 = i + 1
-    for (; j < l2; j++) {
-      const selectorX = j === 0 ? selector : '.' + uniqueKey
-      newSelector += selectorX + (j !== 0 ? j : '')
-    }
-    replicatedSelector[i] = newSelector + _key
-  }
-  return replicatedSelector.join(',')
-}
-
 function values (cls: string, vars: vars) {
   const hash = hashArray([cls, ...vars])
-  console.log(hash)
-
-  if (inserted[hash]) {
-    return `vars-${hash} ${hash}`
-  }
   const varCls = `vars-${hash}`
+  if (inserted[hash]) {
+    return varCls
+  }
   let src = ''
   forEach(vars, (val: inputVar, i: number) => {
     src && (src += '; ')
     src += `--${cls}-${i}: ${val}`
   })
-
-  sheet.insert(`.${replicateSelector(`vars-${hash}`, hash, 2)} {${src}}`)
+  sheet.insert(`.${varCls} {${src}}`)
   inserted[hash] = true
 
-  return varCls + ' ' + hash
+  return varCls
 }
 
 export function flush () {
@@ -128,12 +107,10 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
       inserted[hash] = true
       const rgx = new RegExp(classes[0], 'gm')
       forEach(src, r => {
-        const finalRule = r.replace(rgx, replicateSelector(`${classes[0]}`, hash, 2, ''))
-        console.log(finalRule)
-        sheet.insert(finalRule)
+        sheet.insert(r.replace(rgx, `${classes[0]}-${hash}`))
       })
     }
-    return `${classes[0]} ${hash} ${computedClassName}`
+    return `${classes[0]}-${hash} ${computedClassName}`
   }
 
   return (
