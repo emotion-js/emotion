@@ -1,5 +1,5 @@
-import filter from '@arr/filter'
 import forEach from '@arr/foreach'
+import filter from '@arr/filter.mutate'
 import { sheet, inserted } from './index'
 import { keys } from './utils'
 
