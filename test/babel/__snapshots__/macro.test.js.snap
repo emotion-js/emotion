@@ -75,6 +75,21 @@ const rotate360 = _keyframes('animation-rotate360-1e2ipf5', [\`{ from {
     } }\`]);"
 `;
 
+exports[`babel macro multiple imports 1`] = `
+"import { keyframes as _keyframes } from '../../src';
+
+const rotate360 = _keyframes('animation-rotate360-1e2ipf5', [\`{ from {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    } }\`]);"
+`;
+
 exports[`babel macro styled object function 1`] = `
 "import _styled from '../../src/react';
 

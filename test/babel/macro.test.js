@@ -185,4 +185,31 @@ describe('babel macro', () => {
     })
     expect(code).toMatchSnapshot()
   })
+  test('multiple imports', () => {
+    const basic = `
+    import { keyframes, css } from '../../src/macro'
+    const rotate360 = keyframes\`
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  \`
+  const thing = css\`
+  margin: 12px 48px;
+  color: #ffffff;
+  display: flex;
+  flex: 1 0 auto;
+  color: blue;
+  width: \${widthVar};
+\`
+  `
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
 })
