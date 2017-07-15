@@ -1,7 +1,7 @@
 // @flow
 import forEach from '@arr/foreach'
 import { StyleSheet } from './sheet'
-import { hashArray, hashObject } from './hash'
+import { hashString, hashArray, hashObject } from './hash'
 
 export const sheet = new StyleSheet()
 sheet.inject()
@@ -40,29 +40,41 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
     classes = [classes]
   }
 
-  let computedClassName = ''
-  forEach(classes, (cls): string => {
-    computedClassName && (computedClassName += ' ')
-    computedClassName += typeof cls === 'string' ? cls : objStyle(cls)
+  let computedClassNames = []
+  let cursor
+  forEach(classes, (cls, i): void => {
+    if (typeof cls === 'string') {
+      forEach(cls.split(' '), c => computedClassNames.push(c))
+    } else {
+      computedClassNames.push(objStyle(cls))
+    }
   })
 
   if (content) {
     // inline mode
     let src = content(...vars) // returns an array
     let hash = hashArray(src)
+    const finalClassNames = [`${computedClassNames[0]}-${hash}`, `css-hash-${hash}`].concat(computedClassNames)
 
-    if (!inserted[hash]) {
+    if (inserted[hash] === undefined) {
       inserted[hash] = true
       const rgx = new RegExp(classes[0], 'gm')
+      const finalSelector = finalClassNames.join('.')
+
       forEach(src, r => {
-        sheet.insert(r.replace(rgx, `${classes[0]}-${hash}`))
+        const finalRule = r.replace(rgx, finalSelector)
+        sheet.insert(finalRule)
       })
     }
-    return `${classes[0]}-${hash} ${computedClassName}`
+
+    return finalClassNames.join(' ')
   }
 
+  const hashClassName = ` css-hash-${computedClassNames[0].substring(-6)} `
+
   return (
-    computedClassName +
+    computedClassNames.join(' ') +
+    hashClassName +
     (vars && vars.length > 0 ? ' ' + values(classes[0], vars) : '')
   )
 }
@@ -125,7 +137,9 @@ function deconstruct (selector, styles, media) {
     } else if (key.indexOf('@media') !== -1) {
       forEach(deconstruct(selector, value, key), r => rules.push(r))
     } else {
-      forEach(deconstruct(selector + ' ' + key, value, media), r => rules.push(r))
+      forEach(deconstruct(selector + ' ' + key, value, media), r =>
+        rules.push(r)
+      )
     }
   }
 
@@ -150,7 +164,9 @@ function hyphenate (str) {
 }
 
 function addPx (prop, value) {
-  if (typeof value !== 'number' || unitlessProps[prop] !== undefined) return value
+  if (typeof value !== 'number' || unitlessProps[prop] !== undefined) {
+    return value
+  }
   return value + 'px'
 }
 

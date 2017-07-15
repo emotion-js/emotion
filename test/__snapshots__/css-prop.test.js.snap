@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css prop react basic 1`] = `
-.css-tree-7sri7n-1yz7ela {
+.css-tree-7sri7n-1yz7ela.css-hash-1yz7ela.css-tree-7sri7n {
   color: red;
   font-size: 1px;
 }
 
 <p
-  className="css-tree-7sri7n-1yz7ela css-tree-7sri7n"
+  className="css-tree-7sri7n-1yz7ela css-hash-1yz7ela css-tree-7sri7n"
 >
   hello world
 </p>
 `;
 
 exports[`css prop react kitchen sink 1`] = `
-.css-bold-15qcrjv-18w8kdp {
+.css-bold-15qcrjv-18w8kdp.css-hash-18w8kdp.css-bold-15qcrjv {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -23,11 +23,15 @@ exports[`css prop react kitchen sink 1`] = `
   font-weight: bold;
 }
 
-.css-small-1wh34bm-yjtkkb {
+.css-big-vtv827-1i21ns0.css-hash-1i21ns0.css-big-vtv827.css-bold-15qcrjv-18w8kdp.css-hash-18w8kdp.css-bold-15qcrjv {
+  font-size: 100;
+}
+
+.css-small-1wh34bm-yjtkkb.css-hash-yjtkkb.css-small-1wh34bm {
   font-size: 6;
 }
 
-.css-flexCenter-mdk64u-llada3 {
+.css-flexCenter-mdk64u-llada3.css-hash-llada3.css-flexCenter-mdk64u {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -43,15 +47,15 @@ exports[`css prop react kitchen sink 1`] = `
   align-items: center;
 }
 
-.css-tree-17jiuxc-pi0syi {
+.css-tree-17jiuxc-pi0syi.css-hash-pi0syi.css-tree-17jiuxc.css-small-1wh34bm-yjtkkb.css-hash-yjtkkb.css-small-1wh34bm {
   color: red;
 }
 
-.css-tree-14jcta0-1fj87hp {
+.css-tree-14jcta0-1fj87hp.css-hash-1fj87hp.css-tree-14jcta0 {
   color: blue;
 }
 
-.css-tree-1gdxe9e-1vltlgj {
+.css-tree-1gdxe9e-1vltlgj.css-hash-1vltlgj.css-tree-1gdxe9e {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-inline-flexbox;
@@ -59,36 +63,36 @@ exports[`css prop react kitchen sink 1`] = `
   display: inline-flex;
 }
 
-.css-tree-1g8ltio-i3faqz {
+.css-tree-1g8ltio-i3faqz.css-hash-i3faqz.css-tree-1g8ltio {
   color: red;
   border-radius: 5;
 }
 
-.css-tree-1g8ltio-i3faqz:hover {
+.css-tree-1g8ltio-i3faqz.css-hash-i3faqz.css-tree-1g8ltio:hover {
   font-weight: bold;
   color: gray;
 }
 
 <div
-  className="css__legacy-stuff css-tree-1ii4sc4 css-bold-15qcrjv-18w8kdp css-bold-15qcrjv css-flexCenter-mdk64u-llada3 css-flexCenter-mdk64u"
+  className="css__legacy-stuff css-tree-1ii4sc4 css-bold-15qcrjv-18w8kdp css-hash-18w8kdp css-bold-15qcrjv css-flexCenter-mdk64u-llada3 css-hash-llada3 css-flexCenter-mdk64u css-hash-css-tree-1ii4sc4 "
 >
   <h1
-    className="css-tree-17jiuxc-pi0syi css-tree-17jiuxc css-small-1wh34bm-yjtkkb css-small-1wh34bm"
+    className="css-tree-17jiuxc-pi0syi css-hash-pi0syi css-tree-17jiuxc css-small-1wh34bm-yjtkkb css-hash-yjtkkb css-small-1wh34bm"
   >
     BOOM
   </h1>
   <p
-    className="test_class1 css-tree-14jcta0-1fj87hp css-tree-14jcta0"
+    className="test_class1 css-tree-14jcta0-1fj87hp css-hash-1fj87hp css-tree-14jcta0"
   >
     Hello
   </p>
   <p
-    className="test_class1 test___class45 css-tree-1gdxe9e-1vltlgj css-tree-1gdxe9e"
+    className="test_class1 test___class45 css-tree-1gdxe9e-1vltlgj css-hash-1vltlgj css-tree-1gdxe9e"
   >
     World
   </p>
   <p
-    className="css-tree-1g8ltio-i3faqz css-tree-1g8ltio"
+    className="css-tree-1g8ltio-i3faqz css-hash-i3faqz css-tree-1g8ltio"
   >
     hello world
   </p>
@@ -96,14 +100,14 @@ exports[`css prop react kitchen sink 1`] = `
 `;
 
 exports[`css prop react string expression 1`] = `
-.css-tree-7sqgip-8upfq4 {
+.css-tree-7sqgip-8upfq4.css-hash-8upfq4.css-tree-7sqgip {
   color: red;
   background: blue;
   font-size: 48px;
 }
 
 <p
-  className="css-tree-7sqgip-8upfq4 css-tree-7sqgip"
+  className="css-tree-7sqgip-8upfq4 css-hash-8upfq4 css-tree-7sqgip"
 >
   hello world
 </p>

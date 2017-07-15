@@ -60,6 +60,7 @@ function getStyles (nodeSelectors) {
   const styles = sheet.tags
     .map(tag => /* istanbul ignore next */ tag.textContent || '')
     .join('\n')
+
   const ast = css.parse(styles)
   const rules = ast.stylesheet.rules.filter(filter)
   const mediaQueries = getMediaQueries(ast, filter)
@@ -71,7 +72,11 @@ function getStyles (nodeSelectors) {
 
   function filter (rule) {
     if (rule.type === 'rule') {
-      return rule.selectors.some(selector => {
+      const mappedSelectors = rule.selectors.reduce((accum, s) => {
+        return accum.concat(s.split('.').filter(Boolean).map(s => `.${s}`))
+      }, [])
+
+      return mappedSelectors.some(selector => {
         const baseSelector = selector.split(/:| /)[0]
         return nodeSelectors.includes(baseSelector)
       })

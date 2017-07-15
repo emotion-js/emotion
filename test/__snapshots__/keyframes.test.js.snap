@@ -29,7 +29,7 @@ exports[`keyframes keyframes with interpolation 1`] = `
         -webkit-transform: translate3d(0,-4px,0);
         -ms-transform: translate3d(0,-4px,0);
         transform: translate3d(0,-4px,0);
-      } }.css-H1-o0kcx2-fy8ana { font-size: 20px;
+      } }.css-H1-o0kcx2-fy8ana.css-hash-fy8ana.css-H1-o0kcx2 { font-size: 20px;
       -webkit-animation: animation-bounce-10a3qiv-cmo0tx 2s linear infinite;
       animation: animation-bounce-10a3qiv-cmo0tx 2s linear infinite; }@keyframes animation-1fpnjxj-1mmv2re { from {
         -webkit-transform: rotate(0deg);
@@ -45,14 +45,14 @@ exports[`keyframes keyframes with interpolation 1`] = `
 `;
 
 exports[`keyframes renders 1`] = `
-.css-H1-o0kcx2-fy8ana {
+.css-H1-o0kcx2-fy8ana.css-hash-fy8ana.css-H1-o0kcx2 {
   font-size: 20px;
   -webkit-animation: animation-bounce-10a3qiv-cmo0tx 2s linear infinite;
   animation: animation-bounce-10a3qiv-cmo0tx 2s linear infinite;
 }
 
 <h1
-  className="css-H1-o0kcx2-fy8ana css-H1-o0kcx2"
+  className="css-H1-o0kcx2-fy8ana css-hash-fy8ana css-H1-o0kcx2"
 >
   hello world
 </h1>
