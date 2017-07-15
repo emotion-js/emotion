@@ -1,7 +1,7 @@
 // @flow
 import forEach from '@arr/foreach'
 import { StyleSheet } from './sheet'
-import { hashArray, hashObject } from './hash'
+import { hashString, hashArray, hashObject } from './hash'
 
 export const sheet = new StyleSheet()
 sheet.inject()
@@ -41,7 +41,8 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
   }
 
   let computedClassNames = []
-  forEach(classes, (cls): void => {
+  let cursor
+  forEach(classes, (cls, i): void => {
     if (typeof cls === 'string') {
       forEach(cls.split(' '), c => computedClassNames.push(c))
     } else {
@@ -55,7 +56,7 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
     let hash = hashArray(src)
     const finalClassNames = [`${computedClassNames[0]}-${hash}`, `css-hash-${hash}`].concat(computedClassNames)
 
-    if (!inserted[hash]) {
+    if (inserted[hash] === undefined) {
       inserted[hash] = true
       const rgx = new RegExp(classes[0], 'gm')
       const finalSelector = finalClassNames.join('.')
@@ -71,8 +72,11 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
 
   const hashClassName = ` css-hash-${computedClassNames[0].substring(-6)} `
 
-  return computedClassNames.join(' ') +
-    hashClassName + (vars && vars.length > 0 ? ' ' + values(classes[0], vars) : '')
+  return (
+    computedClassNames.join(' ') +
+    hashClassName +
+    (vars && vars.length > 0 ? ' ' + values(classes[0], vars) : '')
+  )
 }
 
 export function injectGlobal (src: string[]) {

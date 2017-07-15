@@ -67,7 +67,7 @@ export function StyleSheet (
     maxLength = isBrowser && oldIE ? 4000 : 65000
   }: { speedy: boolean, maxLength: number } = {}
 ) {
-  this.isSpeedy = speedy // the big drawback here is that the css won't be editable in devtools
+  this.isSpeedy = true // the big drawback here is that the css won't be editable in devtools
   this.sheet = undefined
   this.tags = []
   this.maxLength = maxLength
