@@ -166,6 +166,63 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
+  test('composes selectivity', () => {
+    const cssA = css`
+      color: blue;
+    `
+
+    const cssB = css`
+      composes: ${cssA}
+      color: red;
+    `
+
+    const BlueH1 = styled('h1')`
+      composes: ${cssB};
+      color: blue;
+    `
+
+    const tree = renderer
+      .create(
+        <BlueH1>
+          hello world
+        </BlueH1>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
+  test('composes works with styled component', () => {
+    const cssA = css`
+      color: blue;
+    `
+
+    const cssB = css`
+      composes: ${cssA}
+      color: red;
+    `
+
+    const BlueH1 = styled('h1')`
+      composes: ${cssB};
+      color: blue;
+    `
+
+    const RedH1 = styled('h1')`
+      composes: ${BlueH1} ${cssB};
+      color: blue;
+    `
+
+    const tree = renderer
+      .create(
+        <RedH1>
+          hello world
+        </RedH1>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
   test('composes with objects', () => {
     const cssA = {
       color: lighten(0.2, '#000'),

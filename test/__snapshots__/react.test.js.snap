@@ -117,6 +117,18 @@ exports[`styled composes based on props 1`] = `
   font-size: 20px;
 }
 
+.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: red;
+}
+
+.css-BlueH1-fygy7n-132u55z.css-hash-132u55z.css-BlueH1-fygy7n.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: blue;
+}
+
+.css-RedH1-gtxb98-p36npi.css-hash-p36npi.css-RedH1-gtxb98.css-BlueH1-fygy7n-132u55z.css-hash-132u55z.css-BlueH1-fygy7n.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: blue;
+}
+
 .css-H1-iwhfi5-s8bsgs.css-hash-s8bsgs.css-H1-iwhfi5.css-cssB-ob3sm8-fwh0v.css-hash-fwh0v.css-cssB-ob3sm8.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
   font-size: 20px;
   color: #8c81d8;
@@ -137,6 +149,34 @@ exports[`styled composes based on props 2`] = `
 
 <h1
   className="css-H1-16dw226 css-cssB-7o6h5j-dcpp5a css-hash-dcpp5a css-cssB-7o6h5j css-hash-css-H1-16dw226 "
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes selectivity 1`] = `
+.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: blue;
+}
+
+.css-cssB-ob3sm8-fwh0v.css-hash-fwh0v.css-cssB-ob3sm8.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  height: 64px;
+}
+
+.css-H1-zejj71-ovrrqc.css-hash-ovrrqc.css-H1-zejj71.css-cssB-ob3sm8-fwh0v.css-hash-fwh0v.css-cssB-ob3sm8.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  font-size: 20px;
+}
+
+.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: red;
+}
+
+.css-BlueH1-fygy7n-132u55z.css-hash-132u55z.css-BlueH1-fygy7n.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: blue;
+}
+
+<h1
+  className="css-BlueH1-fygy7n-132u55z css-hash-132u55z css-BlueH1-fygy7n css-cssB-13gnz07-j3gid7 css-hash-j3gid7 css-cssB-13gnz07 css-cssA-cy897j-1p4ppuj css-hash-1p4ppuj css-cssA-cy897j"
 >
   hello world
 </h1>
@@ -177,6 +217,38 @@ exports[`styled composes with objects 1`] = `
 <h1
   className="css-H1-zejj71-1ym7xv css-hash-1ym7xv css-H1-zejj71 css-cssB-ob3sm8-fwh0v css-hash-fwh0v css-cssB-ob3sm8 css-1olphq9 css-H2-idm3bz-361gww css-hash-361gww css-H2-idm3bz legacy__class"
   scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes works with styled component 1`] = `
+.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: blue;
+}
+
+.css-cssB-ob3sm8-fwh0v.css-hash-fwh0v.css-cssB-ob3sm8.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  height: 64px;
+}
+
+.css-H1-zejj71-ovrrqc.css-hash-ovrrqc.css-H1-zejj71.css-cssB-ob3sm8-fwh0v.css-hash-fwh0v.css-cssB-ob3sm8.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  font-size: 20px;
+}
+
+.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: red;
+}
+
+.css-BlueH1-fygy7n-132u55z.css-hash-132u55z.css-BlueH1-fygy7n.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: blue;
+}
+
+.css-RedH1-gtxb98-p36npi.css-hash-p36npi.css-RedH1-gtxb98.css-BlueH1-fygy7n-132u55z.css-hash-132u55z.css-BlueH1-fygy7n.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: blue;
+}
+
+<h1
+  className="css-RedH1-gtxb98-p36npi css-hash-p36npi css-RedH1-gtxb98 css-BlueH1-fygy7n-132u55z css-hash-132u55z css-BlueH1-fygy7n css-cssB-13gnz07-j3gid7 css-hash-j3gid7 css-cssB-13gnz07 css-cssA-cy897j-1p4ppuj css-hash-1p4ppuj css-cssA-cy897j css-cssB-13gnz07-j3gid7 css-hash-j3gid7 css-cssB-13gnz07 css-cssA-cy897j-1p4ppuj css-hash-1p4ppuj css-cssA-cy897j"
 >
   hello world
 </h1>
@@ -310,6 +382,18 @@ exports[`styled themes 1`] = `
 
 .css-H1-zejj71-ovrrqc.css-hash-ovrrqc.css-H1-zejj71.css-cssB-ob3sm8-fwh0v.css-hash-fwh0v.css-cssB-ob3sm8.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
   font-size: 20px;
+}
+
+.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: red;
+}
+
+.css-BlueH1-fygy7n-132u55z.css-hash-132u55z.css-BlueH1-fygy7n.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: blue;
+}
+
+.css-RedH1-gtxb98-p36npi.css-hash-p36npi.css-RedH1-gtxb98.css-BlueH1-fygy7n-132u55z.css-hash-132u55z.css-BlueH1-fygy7n.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j.css-cssB-13gnz07-j3gid7.css-hash-j3gid7.css-cssB-13gnz07.css-cssA-cy897j-1p4ppuj.css-hash-1p4ppuj.css-cssA-cy897j {
+  color: blue;
 }
 
 .css-H1-zejj71-1ym7xv.css-hash-1ym7xv.css-H1-zejj71.css-cssB-ob3sm8-fwh0v.css-hash-fwh0v.css-cssB-ob3sm8.css-1olphq9 {
