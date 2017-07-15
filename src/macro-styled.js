@@ -3,9 +3,8 @@ import {
   buildStyledObjectCallExpression
 } from './babel'
 import { buildMacroRuntimeNode } from './babel-utils'
-import * as t from 'babel-types'
 
-module.exports = function macro ({ references, state: babelState }) {
+module.exports = function macro ({ references, state: babelState, babel: { types: t } }) {
   const state = { ...babelState, inline: true }
   if (references.default) {
     references.default.forEach(styledReference => {

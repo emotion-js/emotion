@@ -5,9 +5,8 @@ import {
 } from './babel'
 import { buildMacroRuntimeNode } from './babel-utils'
 import { injectGlobal, fontFace } from './inline'
-import * as t from 'babel-types'
 
-module.exports = function macro ({ references, state: babelState }) {
+module.exports = function macro ({ references, state: babelState, babel: { types: t } }) {
   const state = { ...babelState, inline: true }
   if (references.injectGlobal) {
     references.injectGlobal.forEach((injectGlobalReference) => {
