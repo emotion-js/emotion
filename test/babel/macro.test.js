@@ -60,6 +60,19 @@ describe('babel macro', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('throws correct error when imported with commonjs', () => {
+      const basic = `
+      const styled = require('../../src/react/macro')
+      const SomeComponent = styled('div')\`
+        display: flex;
+      \`
+      `
+      expect(() => babel.transform(basic, {
+        plugins: ['babel-macros'],
+        filename: __filename,
+        babelrc: false
+      })).toThrowError(/the emotion macro must be imported with es modules/)
+    })
   })
   test('injectGlobal', () => {
     const basic = `

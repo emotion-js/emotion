@@ -1,5 +1,5 @@
 import { keys } from './utils'
-import forEach from '@arr/forEach'
+import forEach from '@arr/foreach'
 
 export function getIdentifierName (path, t) {
   const parent = path.findParent(p => p.isVariableDeclarator())
@@ -8,6 +8,9 @@ export function getIdentifierName (path, t) {
 
 export function getRuntimeImportPath (path, t) {
   const binding = path.scope.getBinding(path.node.name)
+  if (!t.isImportDeclaration(binding.path.parentPath)) {
+    throw binding.path.buildCodeFrameError('the emotion macro must be imported with es modules')
+  }
   const importPath = binding.path.parentPath.node.source.value
   return importPath.match(/(.*)\/macro/)[1]
 }
@@ -20,17 +23,10 @@ export function buildMacroRuntimeNode (path, state, importName, t) {
     state.emotionImports[runtimeImportPath][importName] = path.scope.generateUidIdentifier(path.node.name)
   }
   return state.emotionImports[runtimeImportPath][importName]
-  // return t.memberExpression(
-  //   t.callExpression(t.identifier('require'), [
-  //     t.stringLiteral(runtimeImportPath)
-  //   ]),
-  //   t.identifier(importName)
-  // )
 }
 
 export function addRuntimeImports (state, t) {
   if (state.emotionImports === undefined) return
-  const programPath = state.file.path
   forEach(keys(state.emotionImports), (importPath) => {
     const importSpecifiers = []
     forEach(keys(state.emotionImports[importPath]), (importName) => {
@@ -41,7 +37,7 @@ export function addRuntimeImports (state, t) {
         importSpecifiers.push(t.importSpecifier(identifier, t.identifier(importName)))
       }
     })
-    programPath.node.body.unshift(t.importDeclaration(importSpecifiers, t.stringLiteral(importPath)))
+    state.file.path.node.body.unshift(t.importDeclaration(importSpecifiers, t.stringLiteral(importPath)))
   })
   state.emotionImports = undefined
 }
