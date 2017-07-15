@@ -61,7 +61,6 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
 
       forEach(src, r => {
         const finalRule = r.replace(rgx, finalSelector)
-        console.log(finalRule)
         sheet.insert(finalRule)
       })
     }
