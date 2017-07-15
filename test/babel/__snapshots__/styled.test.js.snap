@@ -29,11 +29,11 @@ const H1 = styled('h1', ['css-H1-13ogl0z', cls1], [fontSize + 'px', props => pro
 exports[`babel styled component extract composes 2`] = `
 ".css-cls1-1ltut9y { width: 20px; }
 .css-H1-13ogl0z {
-        font-size: var(--css-H1-13ogl0z-1);
+        font-size: var(--css-H1-13ogl0z-0);
         height: 20px;
-        -webkit-transform: translateX(var(--css-H1-13ogl0z-2));
-        -ms-transform: translateX(var(--css-H1-13ogl0z-2));
-        transform: translateX(var(--css-H1-13ogl0z-2)); }"
+        -webkit-transform: translateX(var(--css-H1-13ogl0z-1));
+        -ms-transform: translateX(var(--css-H1-13ogl0z-1));
+        transform: translateX(var(--css-H1-13ogl0z-1)); }"
 `;
 
 exports[`babel styled component extract no dynamic 1`] = `

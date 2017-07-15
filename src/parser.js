@@ -79,7 +79,7 @@ export function parseCSS (
   if (!options.inlineMode && vars === options.matches && !hasCssFunction) {
     root.walkDecls(decl => {
       decl.value = decl.value.replace(/xxx(\d+)xxx/gm, (match, p1) => {
-        return `var(--${options.name}-${options.hash}-${p1})`
+        return `var(--${options.name}-${options.hash}-${p1 - composes})`
       })
     })
   }
