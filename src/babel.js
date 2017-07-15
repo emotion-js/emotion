@@ -141,8 +141,8 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
 
 export function buildStyledObjectCallExpression (path, identifier, t) {
   const tag = t.isCallExpression(path.node.callee)
-      ? path.node.callee.arguments[0]
-      : t.stringLiteral(path.node.callee.property.name)
+    ? path.node.callee.arguments[0]
+    : t.stringLiteral(path.node.callee.property.name)
   return t.callExpression(identifier, [
     tag,
     t.arrayExpression(path.node.arguments),
@@ -150,7 +150,13 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
   ])
 }
 
-export function replaceGlobalWithCallExpression (identifier, processQuasi, path, state, t) {
+export function replaceGlobalWithCallExpression (
+  identifier,
+  processQuasi,
+  path,
+  state,
+  t
+) {
   const { rules, hasInterpolation } = processQuasi(path.node.quasi)
   if (!hasInterpolation && !state.inline) {
     state.insertStaticRules(rules)
@@ -174,14 +180,12 @@ export function replaceGlobalWithCallExpression (identifier, processQuasi, path,
 
 export function replaceCssWithCallExpression (path, identifier, state, t) {
   try {
-    const {
-      hash,
-      name,
-      rules,
-      hasVar,
-      composes,
-      hasOtherMatch
-    } = inline(path.node.quasi, getIdentifierName(path, t), 'css', state.inline)
+    const { hash, name, rules, hasVar, composes, hasOtherMatch } = inline(
+      path.node.quasi,
+      getIdentifierName(path, t),
+      'css',
+      state.inline
+    )
     const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
     for (var i = 0; i < composes; i++) {
       inputClasses.push(path.node.quasi.expressions.shift())
@@ -193,9 +197,7 @@ export function replaceCssWithCallExpression (path, identifier, state, t) {
     if (!hasOtherMatch && !state.inline) {
       state.insertStaticRules(rules)
       if (!hasVar) {
-        return path.replaceWith(
-          joinExpressionsWithSpaces(inputClasses, t)
-        )
+        return path.replaceWith(joinExpressionsWithSpaces(inputClasses, t))
       }
     } else if (rules.length !== 0) {
       const expressions = path.node.quasi.expressions.map((x, i) =>
@@ -231,9 +233,7 @@ export function replaceKeyframesWithCallExpression (path, identifier, state, t) 
   )
   const animationName = `${name}-${hash}`
   if (!hasInterpolation && !state.inline) {
-    state.insertStaticRules([
-      `@keyframes ${animationName} ${rules.join('')}`
-    ])
+    state.insertStaticRules([`@keyframes ${animationName} ${rules.join('')}`])
     path.replaceWith(t.stringLiteral(animationName))
   } else {
     path.replaceWith(
@@ -301,7 +301,9 @@ export default function (babel) {
             t.isIdentifier(path.node.callee.object) &&
             path.node.callee.object.name === 'styled')
         ) {
-          const identifier = t.isCallExpression(path.node.callee) ? path.node.callee.callee : path.node.callee.object
+          const identifier = t.isCallExpression(path.node.callee)
+            ? path.node.callee.callee
+            : path.node.callee.object
           path.replaceWith(buildStyledObjectCallExpression(path, identifier, t))
         }
       },
@@ -344,16 +346,32 @@ export default function (babel) {
               t
             )
           )
-        } else if (
-          t.isIdentifier(path.node.tag)) {
+        } else if (t.isIdentifier(path.node.tag)) {
           if (path.node.tag.name === 'css') {
             replaceCssWithCallExpression(path, t.identifier('css'), state, t)
           } else if (path.node.tag.name === 'keyframes') {
-            replaceKeyframesWithCallExpression(path, t.identifier('keyframes'), state, t)
+            replaceKeyframesWithCallExpression(
+              path,
+              t.identifier('keyframes'),
+              state,
+              t
+            )
           } else if (path.node.tag.name === 'fontFace') {
-            replaceGlobalWithCallExpression(t.identifier('fontFace'), fontFace, path, state, t)
+            replaceGlobalWithCallExpression(
+              t.identifier('fontFace'),
+              fontFace,
+              path,
+              state,
+              t
+            )
           } else if (path.node.tag.name === 'injectGlobal') {
-            replaceGlobalWithCallExpression(t.identifier('injectGlobal'), injectGlobal, path, state, t)
+            replaceGlobalWithCallExpression(
+              t.identifier('injectGlobal'),
+              injectGlobal,
+              path,
+              state,
+              t
+            )
           }
         }
       }

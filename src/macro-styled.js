@@ -9,7 +9,12 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
   if (references.default) {
     references.default.forEach(styledReference => {
       const path = styledReference.parentPath.parentPath
-      const runtimeNode = buildMacroRuntimeNode(styledReference, state, 'default', t)
+      const runtimeNode = buildMacroRuntimeNode(
+        styledReference,
+        state,
+        'default',
+        t
+      )
       if (t.isTemplateLiteral(path.node.quasi)) {
         if (t.isMemberExpression(path.node.tag)) {
           path.replaceWith(
@@ -35,7 +40,7 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
       } else if (
         t.isCallExpression(path) &&
         (t.isCallExpression(path.node.callee) ||
-        t.isIdentifier(path.node.callee.object))
+          t.isIdentifier(path.node.callee.object))
       ) {
         path.replaceWith(buildStyledObjectCallExpression(path, runtimeNode, t))
       }
