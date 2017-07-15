@@ -53,11 +53,12 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
     // inline mode
     let src = content(...vars) // returns an array
     let hash = hashArray(src)
+    const finalClassNames = [`${computedClassNames[0]}-${hash}`, `css-hash-${hash}`].concat(computedClassNames)
 
     if (!inserted[hash]) {
       inserted[hash] = true
       const rgx = new RegExp(classes[0], 'gm')
-      const finalSelector = computedClassNames.concat([`h-${hash}`]).join('.')
+      const finalSelector = finalClassNames.join('.')
 
       forEach(src, r => {
         const finalRule = r.replace(rgx, finalSelector)
@@ -65,10 +66,10 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
       })
     }
 
-    return computedClassNames.concat([`h-${hash}`]).join(' ')
+    return finalClassNames.join(' ')
   }
 
-  const hashClassName = ` h-${computedClassNames[0].substring(-6)} `
+  const hashClassName = ` css-hash-${computedClassNames[0].substring(-6)} `
 
   return computedClassNames.join(' ') +
     hashClassName + (vars && vars.length > 0 ? ' ' + values(classes[0], vars) : '')

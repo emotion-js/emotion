@@ -1,23 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled another attr 1`] = `
-.css-PlaygroundWrapper-1shjoz3-tra3vx {
+.css-PlaygroundWrapper-1shjoz3-tra3vx.css-hash-tra3vx.css-PlaygroundWrapper-1shjoz3 {
   color: #343a40;
 }
 
 <div
-  className="css-PlaygroundWrapper-1shjoz3-tra3vx css-PlaygroundWrapper-1shjoz3"
+  className="css-PlaygroundWrapper-1shjoz3-tra3vx css-hash-tra3vx css-PlaygroundWrapper-1shjoz3"
 />
 `;
 
 exports[`styled attr 1`] = `
-.css-H1-nt9mdf-vddukf {
+.css-H1-nt9mdf-vddukf.css-hash-vddukf.css-H1-nt9mdf {
   font-size: 48;
   margin: 4rem;
 }
 
 <h1
-  className="css-H1-nt9mdf-vddukf css-H1-nt9mdf"
+  className="css-H1-nt9mdf-vddukf css-hash-vddukf css-H1-nt9mdf"
   fontSize={48}
 />
 `;
@@ -28,7 +28,7 @@ exports[`styled basic render 1`] = `
 }
 
 <h1
-  className="css-H1-1t8i2zo vars-ch9j2"
+  className="css-H1-1t8i2zo css-hash-css-H1-1t8i2zo  vars-ch9j2"
 >
   hello world
 </h1>
@@ -40,7 +40,7 @@ exports[`styled call expression 1`] = `
 }
 
 <h1
-  className="css-H1-rs9k70 vars-57j4qc legacy__class"
+  className="css-H1-rs9k70 css-hash-css-H1-rs9k70  vars-57j4qc legacy__class"
 >
   hello world
 </h1>
@@ -52,7 +52,7 @@ exports[`styled composes 1`] = `
 }
 
 <h1
-  className="css-H1-1pnnqpk css-cls2-y5rq6p css-cls1-cy897j vars-1m8nl4c css-H2-idm3bz legacy__class"
+  className="css-H1-1pnnqpk css-cls2-y5rq6p css-cls1-cy897j css-hash-css-H1-1pnnqpk  vars-1m8nl4c css-H2-idm3bz css-hash-css-H2-idm3bz  legacy__class"
   scale={2}
 >
   hello world
@@ -69,7 +69,7 @@ exports[`styled composition 1`] = `
 }
 
 <h1
-  className="css-H1-rs9k70 vars-57j4qc css-H2-vxb7tq vars-1u8m2k4 legacy__class"
+  className="css-H1-rs9k70 css-hash-css-H1-rs9k70  vars-57j4qc css-H2-vxb7tq css-hash-css-H2-vxb7tq  vars-1u8m2k4 legacy__class"
 >
   hello world
 </h1>
@@ -85,7 +85,7 @@ exports[`styled function in expression 1`] = `
 }
 
 <h1
-  className="css-H1-rs9k70 vars-57j4qc css-H2-vxb7tq vars-6khrnp legacy__class"
+  className="css-H1-rs9k70 css-hash-css-H1-rs9k70  vars-57j4qc css-H2-vxb7tq css-hash-css-H2-vxb7tq  vars-6khrnp legacy__class"
   scale={2}
 >
   hello world
@@ -98,7 +98,7 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="css-Content-rs9k70 vars-12p149b css-onyx-13ds1s2 css-squirtle-blue-bg-135ox65"
+  className="css-Content-rs9k70 css-hash-css-Content-rs9k70  vars-12p149b css-onyx-13ds1s2 css-squirtle-blue-bg-135ox65 css-hash-css-onyx-13ds1s2 "
 />
 `;
 
@@ -108,7 +108,7 @@ exports[`styled name 1`] = `
 }
 
 <h1
-  className="css-FancyH1-1o9p8a2 vars-1vv3got"
+  className="css-FancyH1-1o9p8a2 css-hash-css-FancyH1-1o9p8a2  vars-1vv3got"
 >
   hello world
 </h1>
@@ -116,7 +116,7 @@ exports[`styled name 1`] = `
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="css-H1-ijh7uz"
+  className="css-H1-ijh7uz css-hash-css-H1-ijh7uz "
 >
   hello world
 </h1>
