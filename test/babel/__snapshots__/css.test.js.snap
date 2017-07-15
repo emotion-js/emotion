@@ -16,10 +16,10 @@ exports[`babel css extract composes 2`] = `
           -ms-flex-pack: center;
           -webkit-box-pack: center;
           justify-content: center;
-          -webkit-align-items: var(--css-cls2-1fsihoz-1);
-          -ms-flex-align: var(--css-cls2-1fsihoz-1);
-          -webkit-box-align: var(--css-cls2-1fsihoz-1);
-          align-items: var(--css-cls2-1fsihoz-1) }"
+          -webkit-align-items: var(--css-cls2-1fsihoz-0);
+          -ms-flex-align: var(--css-cls2-1fsihoz-0);
+          -webkit-box-align: var(--css-cls2-1fsihoz-0);
+          align-items: var(--css-cls2-1fsihoz-0) }"
 `;
 
 exports[`babel css extract composes no dynamic 1`] = `
