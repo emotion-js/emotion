@@ -2,8 +2,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { matcher, serializer } from '../../jest-utils'
-import { keyframes } from '../../src/macro'
-import { sheet } from '../../src'
+import { keyframes, sheet } from '../../src/macro'
 import styled from '../../src/react/macro'
 
 expect.addSnapshotSerializer(serializer)

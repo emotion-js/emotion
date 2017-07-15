@@ -3,7 +3,7 @@ import {
   replaceCssWithCallExpression,
   replaceKeyframesWithCallExpression
 } from './babel'
-import { getRuntimeImportPath } from './babel-utils'
+import { buildMacroRuntimeNode } from './babel-utils'
 import { injectGlobal, fontFace } from './inline'
 import * as t from 'babel-types'
 
@@ -13,13 +13,7 @@ module.exports = function macro ({ references, state: babelState }) {
     references.injectGlobal.forEach((injectGlobalReference) => {
       const path = injectGlobalReference.parentPath
       if (t.isIdentifier(path.node.tag) && t.isTemplateLiteral(path.node.quasi)) {
-        const requireRuntimeNode = t.memberExpression(
-          t.callExpression(t.identifier('require'), [
-            t.stringLiteral(getRuntimeImportPath(injectGlobalReference, t))
-          ]),
-          t.identifier('injectGlobal')
-        )
-        replaceGlobalWithCallExpression(requireRuntimeNode, injectGlobal, path, state, t)
+        replaceGlobalWithCallExpression(buildMacroRuntimeNode(injectGlobalReference, 'injectGlobal', t), injectGlobal, path, state, t)
       }
     })
   }
@@ -27,29 +21,18 @@ module.exports = function macro ({ references, state: babelState }) {
     references.fontFace.forEach((fontFaceReference) => {
       const path = fontFaceReference.parentPath
       if (t.isIdentifier(path.node.tag) && t.isTemplateLiteral(path.node.quasi)) {
-        const requireRuntimeNode = t.memberExpression(
-          t.callExpression(t.identifier('require'), [
-            t.stringLiteral(getRuntimeImportPath(fontFaceReference, t))
-          ]),
-          t.identifier('fontFace')
-        )
-        replaceGlobalWithCallExpression(requireRuntimeNode, fontFace, path, state, t)
+        replaceGlobalWithCallExpression(buildMacroRuntimeNode(fontFaceReference, 'fontFace', t), fontFace, path, state, t)
       }
     })
   }
   if (references.css) {
     references.css.forEach((cssReference) => {
       const path = cssReference.parentPath
-      const requireRuntimeNode = t.memberExpression(
-        t.callExpression(t.identifier('require'), [
-          t.stringLiteral(getRuntimeImportPath(cssReference, t))
-        ]),
-        t.identifier('css')
-      )
+      const runtimeNode = buildMacroRuntimeNode(cssReference, 'css', t)
       if (t.isIdentifier(path.node.tag) && t.isTemplateLiteral(path.node.quasi)) {
-        replaceCssWithCallExpression(path, requireRuntimeNode, state, t)
+        replaceCssWithCallExpression(path, runtimeNode, state, t)
       } else {
-        path.parentPath.replaceWith(requireRuntimeNode)
+        cssReference.replaceWith(runtimeNode)
       }
     })
   }
@@ -57,14 +40,15 @@ module.exports = function macro ({ references, state: babelState }) {
     references.keyframes.forEach((keyframesReference) => {
       const path = keyframesReference.parentPath
       if (t.isIdentifier(path.node.tag) && t.isTemplateLiteral(path.node.quasi)) {
-        const requireRuntimeNode = t.memberExpression(
-          t.callExpression(t.identifier('require'), [
-            t.stringLiteral(getRuntimeImportPath(keyframesReference, t))
-          ]),
-          t.identifier('keyframes')
-        )
-        replaceKeyframesWithCallExpression(path, requireRuntimeNode, state, t)
+        replaceKeyframesWithCallExpression(path, buildMacroRuntimeNode(keyframesReference, 'keyframes', t), state, t)
       }
     })
   }
+  ['inserted', 'sheet', 'flush', 'hydrate'].forEach((identifier) => {
+    if (references[identifier]) {
+      references[identifier].forEach((reference) => {
+        reference.replaceWith(buildMacroRuntimeNode(reference, identifier, t))
+      })
+    }
+  })
 }

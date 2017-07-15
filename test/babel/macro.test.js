@@ -132,6 +132,42 @@ describe('babel macro', () => {
     })
     expect(code).toMatchSnapshot()
   })
+  test('css object', () => {
+    const basic = `
+    import { css } from '../../src/macro'
+    const cls1 = css({ display: 'flex' })
+    `
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
+  test('hydrate', () => {
+    const basic = `
+    import { hydrate } from '../../src/macro'
+    const someOtherVar = hydrate
+    `
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
+  test('flush', () => {
+    const basic = `
+    import { flush } from '../../src/macro'
+    const someOtherVar = flush
+    `
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
   test('keyframes', () => {
     const basic = `
     import { keyframes } from '../../src/macro'

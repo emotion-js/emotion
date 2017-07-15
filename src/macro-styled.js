@@ -2,26 +2,20 @@ import {
   buildStyledCallExpression,
   buildStyledObjectCallExpression
 } from './babel'
-import { getRuntimeImportPath } from './babel-utils'
+import { buildMacroRuntimeNode } from './babel-utils'
 import * as t from 'babel-types'
 
 module.exports = function macro ({ references, state: babelState }) {
   const state = { ...babelState, inline: true }
   if (references.default) {
     references.default.forEach(styledReference => {
-      const runtimeImportPath = getRuntimeImportPath(styledReference, t)
-      const requireRuntimeNode = t.memberExpression(
-        t.callExpression(t.identifier('require'), [
-          t.stringLiteral(runtimeImportPath)
-        ]),
-        t.identifier('default')
-      )
       const path = styledReference.parentPath.parentPath
+      const runtimeNode = buildMacroRuntimeNode(styledReference, 'default', t)
       if (t.isTemplateLiteral(path.node.quasi)) {
         if (t.isMemberExpression(path.node.tag)) {
           path.replaceWith(
             buildStyledCallExpression(
-              requireRuntimeNode,
+              runtimeNode,
               t.stringLiteral(path.node.tag.property.name),
               path,
               state,
@@ -31,7 +25,7 @@ module.exports = function macro ({ references, state: babelState }) {
         } else if (t.isCallExpression(path.node.tag)) {
           path.replaceWith(
             buildStyledCallExpression(
-              requireRuntimeNode,
+              runtimeNode,
               path.node.tag.arguments[0],
               path,
               state,
@@ -44,7 +38,7 @@ module.exports = function macro ({ references, state: babelState }) {
         (t.isCallExpression(path.node.callee) ||
         t.isIdentifier(path.node.callee.object))
       ) {
-        path.replaceWith(buildStyledObjectCallExpression(path, requireRuntimeNode, t))
+        path.replaceWith(buildStyledObjectCallExpression(path, runtimeNode, t))
       }
     })
   }

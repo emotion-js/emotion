@@ -18,6 +18,16 @@ require('../../src').css(['css-kgvccl'], [widthVar], function createEmotionRules
 });"
 `;
 
+exports[`babel macro css object 1`] = `
+"
+const cls1 = require('../../src').css({ display: 'flex' });"
+`;
+
+exports[`babel macro flush 1`] = `
+"
+const someOtherVar = require('../../src').flush;"
+`;
+
 exports[`babel macro fontFace 1`] = `
 "
 require('../../src').fontFace([\`@font-face {font-family: MyHelvetica;
@@ -25,6 +35,11 @@ require('../../src').fontFace([\`@font-face {font-family: MyHelvetica;
          local(\\"HelveticaNeue-Bold\\"),
          url(MgOpenModernaBold.ttf);
     font-weight: bold;}\`]);"
+`;
+
+exports[`babel macro hydrate 1`] = `
+"
+const someOtherVar = require('../../src').hydrate;"
 `;
 
 exports[`babel macro injectGlobal 1`] = `

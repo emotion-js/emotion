@@ -9,3 +9,12 @@ export function getRuntimeImportPath (path, t) {
   const thing = binding.path.parentPath.node.source.value
   return thing.match(/(.*)\/macro/)[1]
 }
+
+export function buildMacroRuntimeNode (path, nameOfImport, t) {
+  return t.memberExpression(
+    t.callExpression(t.identifier('require'), [
+      t.stringLiteral(getRuntimeImportPath(path, t))
+    ]),
+    t.identifier(nameOfImport)
+  )
+}
