@@ -3,6 +3,8 @@ import {
   buildStyledObjectCallExpression
 } from './babel'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
+import forEach from '@arr/foreach'
+import { keys } from './utils'
 
 module.exports = function macro ({ references, state, babel: { types: t } }) {
   if (!state.inline) state.inline = true
@@ -45,6 +47,15 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
         path.replaceWith(buildStyledObjectCallExpression(path, runtimeNode, t))
       }
     })
-    addRuntimeImports(state, t)
   }
+  forEach(keys(references), (referenceKey) => {
+    if (referenceKey !== 'default') {
+      references[referenceKey].forEach(reference => {
+        reference.replaceWith(
+            buildMacroRuntimeNode(reference, state, referenceKey, t)
+          )
+      })
+    }
+  })
+  addRuntimeImports(state, t)
 }

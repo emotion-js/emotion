@@ -76,7 +76,7 @@ const rotate360 = _keyframes('animation-rotate360-1e2ipf5', [\`{ from {
 `;
 
 exports[`babel macro multiple imports 1`] = `
-"import { css as _css, keyframes as _keyframes } from '../../src';
+"import { keyframes as _keyframes, css as _css } from '../../src';
 
 const rotate360 = _keyframes('animation-rotate360-1e2ipf5', [\`{ from {
       -webkit-transform: rotate(0deg);
@@ -104,6 +104,18 @@ const thing = _css(['css-thing-dn301t'], [widthVar], function createEmotionRules
 });"
 `;
 
+exports[`babel macro some import that does not exist 1`] = `
+"import { thisDoesNotExist as _thisDoesNotExist } from '../../src';
+
+const someOtherVar = _thisDoesNotExist;"
+`;
+
+exports[`babel macro some import that does not exist 2`] = `
+"
+import { thisDoesNotExist } from '../../src/macro/react';
+const someOtherVar = thisDoesNotExist;"
+`;
+
 exports[`babel macro styled object function 1`] = `
 "import _styled from '../../src/react';
 
@@ -118,6 +130,12 @@ exports[`babel macro styled object member 1`] = `
 const SomeComponent = _styled('div', [{
   display: ['-webkit-box', '-ms-flexbox', 'flex']
 }], []);"
+`;
+
+exports[`babel macro styled some import that does not exist 1`] = `
+"import { thisDoesNotExist as _thisDoesNotExist } from '../../src/react';
+
+const someOtherVar = _thisDoesNotExist;"
 `;
 
 exports[`babel macro styled tagged template literal function 1`] = `

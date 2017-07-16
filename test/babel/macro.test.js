@@ -60,6 +60,18 @@ describe('babel macro', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('some import that does not exist', () => {
+      const basic = `
+      import { thisDoesNotExist } from '../../src/react/macro'
+      const someOtherVar = thisDoesNotExist
+      `
+      const { code } = babel.transform(basic, {
+        plugins: ['babel-macros'],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+    })
     test('throws correct error when imported with commonjs', () => {
       const basic = `
       const styled = require('../../src/react/macro')
@@ -159,6 +171,18 @@ describe('babel macro', () => {
     const basic = `
     import { flush } from '../../src/macro'
     const someOtherVar = flush
+    `
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
+  test('some import that does not exist', () => {
+    const basic = `
+    import { thisDoesNotExist } from '../../src/macro'
+    const someOtherVar = thisDoesNotExist
     `
     const { code } = babel.transform(basic, {
       plugins: ['babel-macros'],
