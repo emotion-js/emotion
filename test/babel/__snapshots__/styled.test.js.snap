@@ -29,11 +29,11 @@ const H1 = styled('h1', ['css-H1-13ogl0z', cls1], [fontSize + 'px', props => pro
 exports[`babel styled component extract composes 2`] = `
 ".css-cls1-1ltut9y { width: 20px; }
 .css-H1-13ogl0z {
-        font-size: var(--css-H1-13ogl0z-1);
+        font-size: var(--css-H1-13ogl0z-0);
         height: 20px;
-        -webkit-transform: translateX(var(--css-H1-13ogl0z-2));
-        -ms-transform: translateX(var(--css-H1-13ogl0z-2));
-        transform: translateX(var(--css-H1-13ogl0z-2)); }"
+        -webkit-transform: translateX(var(--css-H1-13ogl0z-1));
+        -ms-transform: translateX(var(--css-H1-13ogl0z-1));
+        transform: translateX(var(--css-H1-13ogl0z-1)); }"
 `;
 
 exports[`babel styled component extract no dynamic 1`] = `
@@ -224,7 +224,9 @@ const H1 = styled('h1', ['some-class', props => ({
 
 exports[`babel styled component inline objects based on props 1`] = `
 "
-const H1 = styled('h1', [{ padding: 10 }, props => ({
+const H1 = styled('h1', [{
+  padding: '10px'
+}, props => ({
   display: props.display
 })], []);"
 `;
@@ -232,7 +234,25 @@ const H1 = styled('h1', [{ padding: 10 }, props => ({
 exports[`babel styled component inline objects fn call 1`] = `
 "
 const H1 = styled('h1', [{
-  display: 'flex'
+  display: ['-webkit-box', '-ms-flexbox', 'flex']
+}], []);"
+`;
+
+exports[`babel styled component inline objects prefixed 1`] = `
+"
+const H1 = styled('h1', [{
+  borderRadius: '50%',
+  WebkitTransition: '-webkit-transform 400ms ease-in-out',
+  transition: ['-webkit-transform 400ms ease-in-out', 'transform 400ms ease-in-out', 'transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'],
+  WebkitBoxSizing: 'border-box',
+  boxSizing: 'border-box',
+  display: ['-webkit-box', '-ms-flexbox', 'flex'],
+  ':hover': {
+    WebkitTransform: 'scale(1.2)',
+    transform: 'scale(1.2)'
+  }
+}, props => {
+  padding: props.padding;
 }], []);"
 `;
 
@@ -246,7 +266,27 @@ styled(\\"h1\\", [\\"css-byjn67\\"], [SomeComponent], function createEmotionStyl
 
 exports[`babel styled component inline styled. objects 1`] = `
 "
-const H1 = styled(\\"h1\\", [{ padding: 10 }, props => ({
+const H1 = styled(\\"h1\\", [{
+  padding: \\"10px\\"
+}, props => ({
+  display: props.display
+})], []);"
+`;
+
+exports[`babel styled component inline styled. objects prefixed 1`] = `
+"
+const H1 = styled('h1', [{
+  borderRadius: '50%',
+  WebkitTransition: '-webkit-transform 400ms ease-in-out',
+  transition: ['-webkit-transform 400ms ease-in-out', 'transform 400ms ease-in-out', 'transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'],
+  WebkitBoxSizing: 'border-box',
+  boxSizing: 'border-box',
+  display: ['-webkit-box', '-ms-flexbox', 'flex'],
+  ':hover': {
+    WebkitTransform: 'scale(1.2)',
+    transform: 'scale(1.2)'
+  }
+}, props => ({
   display: props.display
 })], []);"
 `;
