@@ -8,6 +8,7 @@ import { omit } from './utils'
 const theming = createTheming('__emotion__')
 const { channel: CHANNEL, withTheme, ThemeProvider } = theming
 export { CHANNEL, withTheme, ThemeProvider }
+export { flush, css, injectGlobal, fontFace, keyframes, hydrate, objStyle } from './index'
 
 export default function (tag, cls, vars = [], content) {
   if (!tag) {
