@@ -107,7 +107,7 @@ function parseDynamicValues (rules, t, options) {
 
 export function buildStyledCallExpression (identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
-  let { hash, rules, name, hasOtherMatch, composes, hasCssFunction } = inline(
+  let { hash, rules, name, hasOtherMatch, composes, hasCssFunction, prefixedObjStyles } = inline(
     path.node.quasi,
     identifierName,
     'css',

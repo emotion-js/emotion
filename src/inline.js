@@ -57,7 +57,8 @@ export function inline (
   hasVar: boolean,
   hasOtherMatch: boolean,
   composes: number,
-  hasCssFunction: boolean
+  hasCssFunction: boolean,
+  prefixedObjStyles: { [string]: any }
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs]) // todo - add current filename?
@@ -72,7 +73,8 @@ export function inline (
     hasVar,
     hasOtherMatch,
     composes,
-    hasCssFunction
+    hasCssFunction,
+    prefixedObjStyles
   } = parseCSS(`.${name}-${hash} { ${src} }`, {
     inlineMode: inlineMode,
     matches,
@@ -80,7 +82,16 @@ export function inline (
     hash,
     canCompose: true
   })
-  return { hash, name, rules, hasVar, hasOtherMatch, composes, hasCssFunction }
+  return {
+    hash,
+    name,
+    rules,
+    hasVar,
+    hasOtherMatch,
+    composes,
+    hasCssFunction,
+    prefixedObjStyles
+  }
 }
 
 export function keyframes (

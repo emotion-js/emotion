@@ -126,8 +126,6 @@ export function parseCSS (
 
   const prefixedObjStyles = prefixAll(objStyles)
 
-  console.log(JSON.stringify(prefixedObjStyles, null, 2))
-
   return {
     rules: stringifyCSSRoot(root),
     hasOtherMatch: vars !== options.matches,
