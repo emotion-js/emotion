@@ -49,7 +49,8 @@ export function inline (
   quasi: any,
   identifierName?: string,
   prefix: string,
-  inlineMode: boolean
+  inlineMode: boolean,
+  extractStatic: boolean
 ): {
   hash: string,
   name: string,
@@ -72,15 +73,26 @@ export function inline (
     hasVar,
     hasOtherMatch,
     composes,
-    hasCssFunction
+    hasCssFunction,
+    staticRules
   } = parseCSS(`.${name}-${hash} { ${src} }`, {
     inlineMode: inlineMode,
     matches,
     name,
     hash,
-    canCompose: true
+    canCompose: true,
+    extractStatic
   })
-  return { hash, name, rules, hasVar, hasOtherMatch, composes, hasCssFunction }
+  return {
+    hash,
+    name,
+    rules,
+    hasVar,
+    hasOtherMatch,
+    composes,
+    hasCssFunction,
+    staticRules
+  }
 }
 
 export function keyframes (

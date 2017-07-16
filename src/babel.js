@@ -191,6 +191,7 @@ export default function (babel) {
         enter (path, state) {
           state.inline =
             path.hub.file.opts.filename === 'unknown' || state.opts.inline
+          state.extractStaticCSS = state.opts.extractStatic
           state.staticRules = []
           state.insertStaticRules = function (staticRules) {
             state.staticRules.push(...staticRules)
@@ -276,12 +277,23 @@ export default function (babel) {
             name,
             hasOtherMatch,
             composes,
-            hasCssFunction
-          } = inline(path.node.quasi, identifierName, 'css', state.inline)
+            hasCssFunction,
+            staticRules
+          } = inline(
+            path.node.quasi,
+            identifierName,
+            'css',
+            state.inline,
+            state.extractStaticCSS
+          )
 
           // hash will be '0' when no styles are passed so we can just return the original tag
           if (hash === '0') {
             return tag
+          }
+
+          if (staticRules && staticRules.length > 0) {
+            state.insertStaticRules(staticRules)
           }
           const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
           for (var i = 0; i < composes; i++) {
@@ -349,8 +361,20 @@ export default function (babel) {
               rules,
               hasVar,
               composes,
-              hasOtherMatch
-            } = inline(path.node.quasi, identifierName, 'css', state.inline)
+              hasOtherMatch,
+              staticRules
+            } = inline(
+              path.node.quasi,
+              identifierName,
+              'css',
+              state.inline,
+              state.extractStaticCSS
+            )
+
+            if (staticRules && staticRules.length > 0) {
+              state.insertStaticRules(staticRules)
+            }
+
             const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
             for (var i = 0; i < composes; i++) {
               inputClasses.push(path.node.quasi.expressions.shift())

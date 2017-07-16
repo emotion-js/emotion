@@ -19,14 +19,16 @@ export function parseCSS (
     matches: number,
     name: string,
     hash: string,
-    canCompose?: boolean
+    canCompose?: boolean,
+    extractStatic?: boolean
   } = {
     nested: true,
     inlineMode: true,
     matches: 0,
     name: 'name',
     hash: 'hash',
-    canCompose: false
+    canCompose: false,
+    extractStatic: false
   }
 ): {
   rules: string[],
@@ -42,6 +44,7 @@ export function parseCSS (
   let vars = 0
   let composes: number = 0
   let hasCssFunction = false
+  const staticRoot = root.clone()
   root.walkDecls((decl: CSSDecl): void => {
     if (decl.prop === 'name') decl.remove()
     if (decl.value.match(/attr/)) {
@@ -74,6 +77,11 @@ export function parseCSS (
         vars++
       }
     }
+    if (options.extractStatic) {
+      if (typeof decl.value === 'string' && !/xxx(\d+)xxx/gm.exec(decl.value)) {
+        decl.remove()
+      }
+    }
   })
   if (!options.inlineMode && vars === options.matches && !hasCssFunction) {
     root.walkDecls(decl => {
@@ -89,7 +97,23 @@ export function parseCSS (
     }
   })
 
+  if (options.extractStatic) {
+    staticRoot.walkDecls((decl: CSSDecl): void => {
+      if (decl.prop === 'name') decl.remove()
+      if (decl.prop === 'composes') decl.remove()
+      if (/xxx(\d+)xxx/gm.exec(decl.value)) decl.remove()
+    })
+    staticRoot.walkRules(rule => {
+      if (rule.nodes.length === 0) rule.remove()
+    })
+  }
+
   autoprefix(root)
+  let staticRules
+  if (options.extractStatic) {
+    autoprefix(staticRoot)
+    staticRules = stringifyCSSRoot(staticRoot)
+  }
   return {
     rules: stringifyCSSRoot(root),
     hasOtherMatch: vars !== options.matches,
@@ -97,7 +121,8 @@ export function parseCSS (
       (!!vars && vars !== composes) ||
       !!(options.inlineMode && options.matches),
     composes,
-    hasCssFunction
+    hasCssFunction,
+    staticRules
   }
 }
 
