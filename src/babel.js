@@ -1,6 +1,8 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
+import postcssJs from 'postcss-js'
+import autoprefixer from 'autoprefixer'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import cssProps from './css-prop'
 import createAttrExpression from './attrs'
@@ -102,8 +104,84 @@ function parseDynamicValues (rules, t, options) {
   })
 }
 
+const visited = Symbol('visited')
+
 export default function (babel) {
   const { types: t } = babel
+  const prefixer = postcssJs.sync([autoprefixer])
+
+  function isLiteral (value) {
+    return (
+      t.isStringLiteral(value) ||
+      t.isNumericLiteral(value) ||
+      t.isBooleanLiteral(value)
+    )
+  }
+
+  function prefixAst (args) {
+    if (Array.isArray(args)) {
+      return args.map(element => prefixAst(element))
+    }
+
+    if (t.isObjectExpression(args)) {
+      let properties = []
+      args.properties.forEach(property => {
+        // nested objects
+        if (t.isObjectExpression(property.value)) {
+          const key = t.isStringLiteral(property.key)
+            ? t.stringLiteral(property.key.value)
+            : t.identifier(property.key.name)
+          return properties.push(
+            t.objectProperty(key, prefixAst(property.value))
+          )
+
+          // literal value or array of literal values
+        } else if (
+          isLiteral(property.value) ||
+          (t.isArrayExpression(property.value) &&
+            property.value.elements.every(isLiteral))
+        ) {
+          // handle array values: { display: ['flex', 'block'] }
+          const propertyValue = t.isArrayExpression(property.value)
+            ? property.value.elements.map(element => element.value)
+            : property.value.value
+
+          const style = { [property.key.name]: propertyValue }
+          const prefixedStyle = prefixer(style)
+
+          for (var k in prefixedStyle) {
+            const key = t.isStringLiteral(property.key)
+              ? t.stringLiteral(k)
+              : t.identifier(k)
+            const val = prefixedStyle[k]
+            let value
+
+            if (typeof val === 'number') {
+              value = t.numericLiteral(val)
+            } else if (typeof val === 'string') {
+              value = t.stringLiteral(val)
+            } else if (Array.isArray(val)) {
+              value = t.arrayExpression(val.map(i => t.stringLiteral(i)))
+            }
+
+            properties.push(t.objectProperty(key, value))
+          }
+
+          // expressions
+        } else {
+          properties.push(property)
+        }
+      })
+
+      return t.objectExpression(properties)
+    }
+
+    if (t.isArrayExpression(args)) {
+      return t.arrayExpression(prefixAst(args.elements))
+    }
+
+    return args
+  }
 
   return {
     name: 'emotion', // not required
@@ -147,6 +225,9 @@ export default function (babel) {
         cssProps(path, t)
       },
       CallExpression (path) {
+        if (path[visited]) {
+          return
+        }
         if (
           (t.isCallExpression(path.node.callee) &&
             path.node.callee.callee.name === 'styled') ||
@@ -160,11 +241,17 @@ export default function (babel) {
           path.replaceWith(
             t.callExpression(t.identifier('styled'), [
               tag,
-              t.arrayExpression(path.node.arguments),
+              t.arrayExpression(prefixAst(path.node.arguments)),
               t.arrayExpression()
             ])
           )
         }
+
+        if (t.isCallExpression(path.node) && path.node.callee.name === 'css') {
+          const prefixedAst = prefixAst(path.node.arguments)
+          path.replaceWith(t.callExpression(t.identifier('css'), prefixedAst))
+        }
+        path[visited] = true
       },
       TaggedTemplateExpression (path, state) {
         // in:
