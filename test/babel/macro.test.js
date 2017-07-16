@@ -72,6 +72,20 @@ describe('babel macro', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('css from react', () => {
+      const basic = `
+      import { css } from '../../src/react/macro'
+      const someCls = css\`
+        display: flex;
+      \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: ['babel-macros'],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+    })
     test('throws correct error when imported with commonjs', () => {
       const basic = `
       const styled = require('../../src/react/macro')
