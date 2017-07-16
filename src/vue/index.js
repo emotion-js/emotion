@@ -1,4 +1,4 @@
-import { css as magic } from './index'
+import { css as magic } from '../index'
 
 const styled = (tag, cls, vars = [], content) => {
   return {

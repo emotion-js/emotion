@@ -4,5 +4,5 @@
     "env",
     "react"
   ],
-  "plugins": ["../babel-plugin-emotion-test"]
+  "plugins": ["../babel-macro-register"]
 }

@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css composes 1`] = `"css-cls1-vyoujf-va5xsk css-cls1-vyoujf"`;
+
+exports[`css composes 2`] = `"css-cls2-1qb2ovg-1em6aur css-cls2-1qb2ovg css-cls1-vyoujf-va5xsk css-cls1-vyoujf"`;
+
+exports[`css composes 3`] = `
+".css-cls1-1gi569l-b877w5 { background: white;
+      color: black;
+      text-decoration: underline;
+      display: block;
+      border-radius: 3px;
+      padding: 25px;
+      width: 500px;
+      z-index: 100;
+      font-size: 18px;
+      text-align: center;
+      border: solid 1px red; }.css-15famh2{}.css-cls2-1qb2ovg-1em6aur {
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      -webkit-box-pack: center;
+      justify-content: center; }.css-cls1-vyoujf-va5xsk { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }"
+`;
+
+exports[`css composes with objects 1`] = `"css-q8izmm"`;
+
+exports[`css composes with objects 2`] = `"css-cls2-1qb2ovg-1em6aur css-cls2-1qb2ovg css-q8izmm"`;
+
+exports[`css composes with objects 3`] = `
+".css-cls1-1gi569l-b877w5 { background: white;
+      color: black;
+      text-decoration: underline;
+      display: block;
+      border-radius: 3px;
+      padding: 25px;
+      width: 500px;
+      z-index: 100;
+      font-size: 18px;
+      text-align: center;
+      border: solid 1px red; }.css-15famh2{}.css-cls2-1qb2ovg-1em6aur {
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      -webkit-box-pack: center;
+      justify-content: center; }.css-cls1-vyoujf-va5xsk { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-1fe3owl{display:flex}.css-q8izmm{display:flex;display:block;width:30px;height:calc(40vw - 50px)}.css-q8izmm:hover{color:blue}.css-q8izmm:after{content:\\" \\";color:red}@media(min-width: 420px){.css-q8izmm{color:green}}"
+`;
+
+exports[`css composes with undefined values 1`] = `"css-cls2-1qb2ovg-1em6aur css-cls2-1qb2ovg css-15famh2"`;
+
+exports[`css composes with undefined values 2`] = `
+".css-cls1-1gi569l-b877w5 { background: white;
+      color: black;
+      text-decoration: underline;
+      display: block;
+      border-radius: 3px;
+      padding: 25px;
+      width: 500px;
+      z-index: 100;
+      font-size: 18px;
+      text-align: center;
+      border: solid 1px red; }.css-15famh2{}.css-cls2-1qb2ovg-1em6aur {
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      -webkit-box-pack: center;
+      justify-content: center; }"
+`;
+
+exports[`css handles more than 10 dynamic properties 1`] = `"css-cls1-1gi569l-b877w5 css-cls1-1gi569l"`;
+
+exports[`css handles more than 10 dynamic properties 2`] = `
+".css-cls1-1gi569l-b877w5 { background: white;
+      color: black;
+      text-decoration: underline;
+      display: block;
+      border-radius: 3px;
+      padding: 25px;
+      width: 500px;
+      z-index: 100;
+      font-size: 18px;
+      text-align: center;
+      border: solid 1px red; }"
+`;
+
+exports[`css handles objects 1`] = `"css-1fe3owl"`;
