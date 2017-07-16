@@ -50,11 +50,7 @@ exports[`styled call expression 1`] = `
 `;
 
 exports[`styled component as selector 1`] = `
-.css-H1-rs9k70-qz486c {
-  font-size: 20px;
-}
-
-.css-Thing-1kdnbhf-d995d2 {
+.css-Thing-1kdnbhf-19sb43k {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -62,16 +58,20 @@ exports[`styled component as selector 1`] = `
   display: flex;
 }
 
-.css-Thing-1kdnbhf-d995d2 .css-H1-rs9k70 {
+.css-Thing-1kdnbhf-19sb43k .css-H1-1t8i2zo {
   color: green;
 }
 
+.css-H1-1t8i2zo-1c6u60b {
+  font-size: 20px;
+}
+
 <div
-  className="css-Thing-1kdnbhf-d995d2 css-Thing-1kdnbhf"
+  className="css-Thing-1kdnbhf-19sb43k css-Thing-1kdnbhf"
 >
   hello 
   <h1
-    className="css-H1-rs9k70-qz486c css-H1-rs9k70"
+    className="css-H1-1t8i2zo-1c6u60b css-H1-1t8i2zo"
   >
     This will be green
   </h1>
@@ -258,7 +258,7 @@ exports[`styled no dynamic 1`] = `
 `;
 
 exports[`styled objects 1`] = `
-.css-1x9ygd3 {
+.css-1viuxsa {
   padding: 10px;
 }
 
@@ -267,7 +267,7 @@ exports[`styled objects 1`] = `
 }
 
 <h1
-  className="some-class css-1x9ygd3 css-1fe3owl"
+  className="some-class css-1viuxsa css-1fe3owl"
   display="flex"
 >
   hello world
