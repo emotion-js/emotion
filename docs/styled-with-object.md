@@ -10,12 +10,12 @@ import styled from 'emotion/react'
 const H1 = styled.h1(
   {
     fontSize: 20
-  }, 
+  },
   (props) => ({ color: props.color })
 )
 
 const H2 = styled('h2')(
-  'some-other-class', 
+  'some-other-class',
   { fontSize: '40px' }
 )
 

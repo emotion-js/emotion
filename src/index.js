@@ -1,4 +1,5 @@
 // @flow
+import forEach from '@arr/foreach'
 import { StyleSheet } from './sheet'
 import { hashArray, hashObject } from './hash'
 
@@ -17,9 +18,11 @@ function values (cls: string, vars: vars) {
   if (inserted[hash]) {
     return varCls
   }
-  let src = vars
-    .map((val: inputVar, i: number) => `--${cls}-${i}: ${val}`)
-    .join('; ')
+  let src = ''
+  forEach(vars, (val: inputVar, i: number) => {
+    src && (src += '; ')
+    src += `--${cls}-${i}: ${val}`
+  })
   sheet.insert(`.${varCls} {${src}}`)
   inserted[hash] = true
 
@@ -37,10 +40,11 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
     classes = [classes]
   }
 
-  const computedClassName = classes
-    .map((cls): string => typeof cls === 'string' ? cls : objStyle(cls))
-    .join(' ')
-    .trim()
+  let computedClassName = ''
+  forEach(classes, (cls): string => {
+    computedClassName && (computedClassName += ' ')
+    computedClassName += typeof cls === 'string' ? cls : objStyle(cls)
+  })
 
   if (content) {
     // inline mode
@@ -49,11 +53,10 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
 
     if (!inserted[hash]) {
       inserted[hash] = true
-      src
-        .map(r =>
-          r.replace(new RegExp(classes[0], 'gm'), `${classes[0]}-${hash}`)
-        )
-        .forEach(r => sheet.insert(r))
+      const rgx = new RegExp(classes[0], 'gm')
+      forEach(src, r => {
+        sheet.insert(r.replace(rgx, `${classes[0]}-${hash}`))
+      })
     }
     return `${classes[0]}-${hash} ${computedClassName}`
   }
@@ -68,7 +71,7 @@ export function injectGlobal (src: string[]) {
   const hash = hashArray(src)
   if (!inserted[hash]) {
     inserted[hash] = true
-    src.forEach(r => sheet.insert(r))
+    forEach(src, r => sheet.insert(r))
   }
 }
 
@@ -79,15 +82,13 @@ export function keyframes (kfm: string, src: string[]) {
   const animationName = `${kfm}-${hash}`
   if (!inserted[hash]) {
     inserted[hash] = true
-    src.forEach(r => {
-      sheet.insert(`@keyframes ${animationName} ${r}`)
-    })
+    forEach(src, r => sheet.insert(`@keyframes ${animationName} ${r}`))
   }
   return animationName
 }
 
 export function hydrate (ids: string[]) {
-  ids.forEach(id => (inserted[id] = true))
+  forEach(ids, id => (inserted[id] = true))
 }
 
 // 🍩
@@ -100,7 +101,7 @@ export function objStyle (style: { [string]: any }) {
   if (inserted[hash]) return className
 
   const rules = deconstruct(selector, style)
-  rules.forEach(rule => sheet.insert(rule))
+  forEach(rules, rule => sheet.insert(rule))
 
   inserted[hash] = true
 
@@ -117,23 +118,14 @@ function deconstruct (selector, styles, media) {
 
     if (type === 'number' || type === 'string') {
       decs.push(createDec(key, value))
-      continue
     } else if (Array.isArray(value)) {
-      value.forEach(val => {
-        decs.push(createDec(key, val))
-      })
-      continue
-    } else if (/^:/.test(key)) {
-      deconstruct(selector + key, value, media).forEach(r => rules.push(r))
-      continue
-    } else if (/^@media/.test(key)) {
-      deconstruct(selector, value, key).forEach(r => rules.push(r))
-      continue
+      forEach(value, val => decs.push(createDec(key, val)))
+    } else if (key.charCodeAt(0) === 58) {
+      forEach(deconstruct(selector + key, value, media), r => rules.push(r))
+    } else if (key.indexOf('@media') !== -1) {
+      forEach(deconstruct(selector, value, key), r => rules.push(r))
     } else {
-      deconstruct(selector + ' ' + key, value, media).forEach(r =>
-        rules.push(r)
-      )
-      continue
+      forEach(deconstruct(selector + ' ' + key, value, media), r => rules.push(r))
     }
   }
 
@@ -158,7 +150,7 @@ function hyphenate (str) {
 }
 
 function addPx (prop, value) {
-  if (typeof value !== 'number' || unitlessProps[prop]) return value
+  if (typeof value !== 'number' || unitlessProps[prop] !== undefined) return value
   return value + 'px'
 }
 

@@ -109,11 +109,9 @@ exports[`styled composes based on props 1`] = `
   color: blue;
 }
 
-
-
 <h1
   a={true}
-  className="css-H1-16dw226-196nx3w css-H1-16dw226 css-cssA-cy897j-1p4ppuj css-cssA-cy897j"
+  className="css-H1-16dw226 css-cssA-cy897j-1p4ppuj css-cssA-cy897j"
 >
   hello world
 </h1>
@@ -124,10 +122,8 @@ exports[`styled composes based on props 2`] = `
   color: green;
 }
 
-
-
 <h1
-  className="css-H1-16dw226-196nx3w css-H1-16dw226 css-cssB-7o6h5j-dcpp5a css-cssB-7o6h5j"
+  className="css-H1-16dw226 css-cssB-7o6h5j-dcpp5a css-cssB-7o6h5j"
 >
   hello world
 </h1>
@@ -147,17 +143,18 @@ exports[`styled composes with objects 1`] = `
   font-size: 1.333em;
 }
 
-.css-1olphq9 
-    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 1.5/1),
-only screen and (min-resolution: 144dpi),
-only screen and (min-resolution: 1.5dppx) {
-  font-size: 1.4323121856191332em;
-}
-
 .css-H1-zejj71-1ym7xv {
   font-size: 3.157334518321em;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (min--moz-device-pixel-ratio: 1.5),
+    only screen and (-o-min-device-pixel-ratio: 1.5/1),
+    only screen and (min-resolution: 144dpi),
+    only screen and (min-resolution: 1.5dppx) {
+  .css-1olphq9 {
+    font-size: 1.4323121856191332em;
+  }
 }
 
 <h1

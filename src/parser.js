@@ -59,7 +59,9 @@ export function parseCSS (
           throw new Error('composes must be the first rule')
         }
         const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
-        const numOfComposes: number = !composeMatches ? 0 : composeMatches.length
+        const numOfComposes: number = !composeMatches
+          ? 0
+          : composeMatches.length
         composes += numOfComposes
         vars += numOfComposes
         decl.remove()
@@ -74,12 +76,18 @@ export function parseCSS (
     }
   })
   if (!options.inlineMode && vars === options.matches && !hasCssFunction) {
-    root.walkDecls((decl) => {
+    root.walkDecls(decl => {
       decl.value = decl.value.replace(/xxx(\d+)xxx/gm, (match, p1) => {
-        return `var(--${options.name}-${options.hash}-${p1})`
+        return `var(--${options.name}-${options.hash}-${p1 - composes})`
       })
     })
   }
+
+  root.walkRules(rule => {
+    if (rule.nodes.length === 0) {
+      rule.remove()
+    }
+  })
 
   autoprefix(root)
   return {
@@ -87,7 +95,7 @@ export function parseCSS (
     hasOtherMatch: vars !== options.matches,
     hasVar:
       (!!vars && vars !== composes) ||
-        !!(options.inlineMode && options.matches),
+      !!(options.inlineMode && options.matches),
     composes,
     hasCssFunction
   }

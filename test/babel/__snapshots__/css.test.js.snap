@@ -20,10 +20,10 @@ exports[`babel css extract composes 2`] = `
           -ms-flex-pack: center;
           -webkit-box-pack: center;
           justify-content: center;
-          -webkit-align-items: var(--css-cls2-1fsihoz-1);
-          -ms-flex-align: var(--css-cls2-1fsihoz-1);
-          -webkit-box-align: var(--css-cls2-1fsihoz-1);
-          align-items: var(--css-cls2-1fsihoz-1) }"
+          -webkit-align-items: var(--css-cls2-1fsihoz-0);
+          -ms-flex-align: var(--css-cls2-1fsihoz-0);
+          -webkit-box-align: var(--css-cls2-1fsihoz-0);
+          align-items: var(--css-cls2-1fsihoz-0) }"
 `;
 
 exports[`babel css extract composes no dynamic 1`] = `
@@ -182,6 +182,26 @@ const cls2 = css(['css-cls2-hal2lb', 'one-class', 'another-class', 'another-clas
           -ms-flex-align: \${x0};
           -webkit-box-align: \${x0};
           align-items: \${x0} }\`];
+});"
+`;
+
+exports[`babel css inline only composes 1`] = `
+"
+const cls1 = css(['css-cls1-1q8jsgx'], [], function createEmotionRules() {
+  return [\`.css-cls1-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }\`];
+});
+const cls2 = css(['css-cls2-64ycl', 'one-class', 'another-class', cls1], []);"
+`;
+
+exports[`babel css inline only styles on nested selector 1`] = `
+"
+const cls1 = css([\\"css-cls1-1q8jsgx\\"], [], function createEmotionRules() {
+  return [\`.css-cls1-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }\`];
+});
+const cls2 = css([\\"css-cls2-1nbi349\\"], [], function createEmotionRules() {
+  return [\`.css-cls2-1nbi349:hover {
+    background: pink;
+}\`];
 });"
 `;
 

@@ -71,6 +71,38 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('only composes', () => {
+      const basic = `
+        const cls1 = css\`
+          display: flex;
+        \`
+        const cls2 = css\`
+          composes: \${'one-class'} \${'another-class'}\${cls1}
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('only styles on nested selector', () => {
+      const basic = `
+        const cls1 = css\`
+          display: flex;
+        \`
+        const cls2 = css\`
+          &:hover {
+            background: pink;
+          }
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('throws correct error when composes is not the first rule', () => {
       const basic = `
         const cls1 = css\`

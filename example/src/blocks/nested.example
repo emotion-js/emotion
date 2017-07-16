@@ -6,4 +6,7 @@ const Avatar = styled('div')`
   }
 `
 
-render(<Avatar><img src={avatarUrl}/></Avatar>, mountNode)
+render(
+  <Avatar><img src={avatarUrl} /></Avatar>,
+  mountNode
+)
