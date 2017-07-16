@@ -110,12 +110,6 @@ exports[`babel macro some import that does not exist 1`] = `
 const someOtherVar = _thisDoesNotExist;"
 `;
 
-exports[`babel macro some import that does not exist 2`] = `
-"
-import { thisDoesNotExist } from '../../src/macro/react';
-const someOtherVar = thisDoesNotExist;"
-`;
-
 exports[`babel macro styled object function 1`] = `
 "import _styled from '../../src/react';
 
