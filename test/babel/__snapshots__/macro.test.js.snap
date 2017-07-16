@@ -108,7 +108,7 @@ exports[`babel macro styled object function 1`] = `
 "import _styled from '../../src/react';
 
 const SomeComponent = _styled('div', [{
-  display: 'flex'
+  display: ['-webkit-box', '-ms-flexbox', 'flex']
 }], []);"
 `;
 
@@ -116,7 +116,7 @@ exports[`babel macro styled object member 1`] = `
 "import _styled from '../../src/react';
 
 const SomeComponent = _styled('div', [{
-  display: 'flex'
+  display: ['-webkit-box', '-ms-flexbox', 'flex']
 }], []);"
 `;
 

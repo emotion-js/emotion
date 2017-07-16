@@ -258,7 +258,7 @@ exports[`styled no dynamic 1`] = `
 `;
 
 exports[`styled objects 1`] = `
-.css-1x9ygd3 {
+.css-1viuxsa {
   padding: 10px;
 }
 
@@ -267,7 +267,7 @@ exports[`styled objects 1`] = `
 }
 
 <h1
-  className="some-class css-1x9ygd3 css-1fe3owl"
+  className="some-class css-1viuxsa css-1fe3owl"
   display="flex"
 >
   hello world
