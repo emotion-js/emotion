@@ -36,7 +36,8 @@ export function parseCSS (
   hasOtherMatch: boolean,
   hasVar: boolean,
   composes: number,
-  hasCssFunction: boolean
+  hasCssFunction: boolean,
+  prefixedObjStyles: { [string]: any }
 } {
   // todo - handle errors
   const root = parse(css)
