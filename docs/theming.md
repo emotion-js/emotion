@@ -1,7 +1,7 @@
 ## Theming
 
 ```jsx
-import { ThemeProvider, withTheme } from 'emotion/react'
+import { ThemeProvider, withTheme } from 'emotion/react/theming'
 ```
 
 Theming is provided by the theming library. 

@@ -1,13 +1,9 @@
 import { Component, createElement as h } from 'react'
-import { createTheming } from 'theming'
 import PropTypes from 'prop-types'
 import map from '@arr/map'
-import { css } from './index'
-import { omit } from './utils'
-
-const theming = createTheming('__emotion__')
-const { channel: CHANNEL, withTheme, ThemeProvider } = theming
-export { CHANNEL, withTheme, ThemeProvider }
+import { css } from '../index'
+import { omit } from '../utils'
+import { CHANNEL } from './constants'
 
 export default function (tag, cls, vars = [], content) {
   if (!tag) {

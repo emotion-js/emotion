@@ -8,7 +8,7 @@
     "src",
     "dist",
     "lib",
-    "react.js",
+    "react",
     "server.js",
     "vue.js",
     "dist/DO-NOT-USE.min.js"
