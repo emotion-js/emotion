@@ -5,6 +5,8 @@ import { css } from '../index'
 import { omit } from '../utils'
 import { CHANNEL } from './constants'
 
+export { flush, css, injectGlobal, fontFace, keyframes, hydrate, objStyle } from '../index'
+
 export default function (tag, cls, vars = [], content) {
   if (!tag) {
     throw new Error(

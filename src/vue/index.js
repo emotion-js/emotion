@@ -1,5 +1,7 @@
 import { css as magic } from '../index'
 
+export { flush, css, injectGlobal, fontFace, keyframes, hydrate, objStyle } from '../index'
+
 const styled = (tag, cls, vars = [], content) => {
   return {
     cls: '.' + cls,
