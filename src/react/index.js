@@ -1,14 +1,11 @@
 import { Component, createElement as h } from 'react'
-import { createTheming } from 'theming'
 import PropTypes from 'prop-types'
 import map from '@arr/map'
-import { css } from './index'
-import { omit } from './utils'
+import { css } from '../index'
+import { omit } from '../utils'
+import { CHANNEL } from './constants'
 
-const theming = createTheming('__emotion__')
-const { channel: CHANNEL, withTheme, ThemeProvider } = theming
-export { CHANNEL, withTheme, ThemeProvider }
-export { flush, css, injectGlobal, fontFace, keyframes, hydrate, objStyle } from './index'
+export { flush, css, injectGlobal, fontFace, keyframes, hydrate, objStyle } from '../index'
 
 export default function (tag, cls, vars = [], content) {
   if (!tag) {

@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vue styled based on props 1`] = `
+"
+      <div id=\\"app\\"><h1 weight=\\"bold\\" class=\\"css-BasedOnProps-csm9t8-1qo3zsu css-BasedOnProps-csm9t8\\"></h1></div>
+    "
+`;
+
+exports[`vue styled based on props composes 1`] = `
+"
+      <div id=\\"app\\"><div thing=\\"true\\" class=\\"css-basedOnPropsComposes-17rcs0o some-special-class\\"></div></div>
+    "
+`;
+
+exports[`vue styled basic 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"css-StyledComponent-1brvt4i-ulwf5d css-StyledComponent-1brvt4i\\"></div></div>
+    "
+`;
+
+exports[`vue styled child selector 1`] = `
+"
+      <div id=\\"app\\"><main class=\\"css-ChildSelector-13pvedz-1e7xvxz css-ChildSelector-13pvedz\\"><div class=\\"css-StyledComponent-1brvt4i-ulwf5d css-StyledComponent-1brvt4i\\">wow</div></main></div>
+    "
+`;
+
+exports[`vue styled creates the correct styles 1`] = `
+".css-StyledComponent-1brvt4i-ulwf5d { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+  position: inherit; }.css-BasedOnProps-csm9t8-1qo3zsu { font-weight: bold; }.css-NonHtmlComponent-15287sz-1wq2ikh { background-color: purple;
+  color: green; }.css-ChildSelector-13pvedz-1e7xvxz { color: yellow; }.css-ChildSelector-13pvedz-1e7xvxz .css-StyledComponent-1brvt4i { display: none; }"
+`;
+
+exports[`vue styled custom external component 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"css-NonHtmlComponent-15287sz-1wq2ikh css-NonHtmlComponent-15287sz\\"><div></div><div></div><h1>some text</h1><div></div></div></div>
+    "
+`;
+
+exports[`vue styled with class 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"some-class css-StyledComponent-1brvt4i-ulwf5d css-StyledComponent-1brvt4i\\"></div></div>
+    "
+`;
+
+exports[`vue styled with properties 1`] = `
+"
+      <div id=\\"app\\"><div aria-label=\\"label\\" class=\\"css-StyledComponent-1brvt4i-ulwf5d css-StyledComponent-1brvt4i\\"></div></div>
+    "
+`;
+
+exports[`vue styled with style 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"css-StyledComponent-1brvt4i-ulwf5d css-StyledComponent-1brvt4i\\" style=\\"display: none;\\"></div></div>
+    "
+`;

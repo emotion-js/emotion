@@ -1,12 +1,12 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matcher, serializer } from '../jest-utils'
-import { css } from '../src/index'
-import styled from '../src/react'
-import { ThemeProvider } from '../src/react/theming'
+import { matcher, serializer } from '../../jest-utils'
+import { css } from '../../src/macro'
+import styled from '../../src/react/macro'
+import { ThemeProvider } from '../../src/react/theming'
 
-import { lighten, hiDPI, modularScale, borderWidth } from 'polished'
+import { lighten, hiDPI, modularScale } from 'polished'
 
 expect.addSnapshotSerializer(serializer)
 expect.extend(matcher)
@@ -100,7 +100,9 @@ describe('styled', () => {
 
   test('component as selector', () => {
     const fontSize = '20px'
-    const H1 = styled.h1`font-size: ${fontSize};`
+    const H1 = styled.h1`
+      font-size: ${fontSize};
+    `
 
     const Thing = styled.div`
       display: flex;
@@ -110,11 +112,7 @@ describe('styled', () => {
     `
 
     const tree = renderer
-      .create(
-        <Thing>
-          hello <H1>This will be green</H1> world
-        </Thing>
-      )
+      .create(<Thing>hello <H1>This will be green</H1> world</Thing>)
       .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
@@ -301,10 +299,22 @@ describe('styled', () => {
       composes: ${props => (props.a ? cssA : cssB)}
     `
 
-    const tree = renderer.create(<H1 a>hello world</H1>).toJSON()
+    const tree = renderer
+      .create(
+        <H1 a>
+          hello world
+        </H1>
+      )
+      .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
-    const tree2 = renderer.create(<H1>hello world</H1>).toJSON()
+    const tree2 = renderer
+      .create(
+        <H1>
+          hello world
+        </H1>
+      )
+      .toJSON()
 
     expect(tree2).toMatchSnapshotWithEmotion()
   })
@@ -313,7 +323,13 @@ describe('styled', () => {
     const H1 = styled('h1')('some-class', { padding: 10 }, props => ({
       display: props.display
     }))
-    const tree = renderer.create(<H1 display='flex'>hello world</H1>).toJSON()
+    const tree = renderer
+      .create(
+        <H1 display='flex'>
+          hello world
+        </H1>
+      )
+      .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
