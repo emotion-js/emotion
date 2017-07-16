@@ -22,9 +22,9 @@ exports[`css composes 3`] = `
       justify-content: center; }.css-cls1-vyoujf-va5xsk { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }"
 `;
 
-exports[`css composes with objects 1`] = `"css-1puxias"`;
+exports[`css composes with objects 1`] = `"css-q8izmm"`;
 
-exports[`css composes with objects 2`] = `"css-cls2-1qb2ovg-1em6aur css-cls2-1qb2ovg css-1puxias"`;
+exports[`css composes with objects 2`] = `"css-cls2-1qb2ovg-1em6aur css-cls2-1qb2ovg css-q8izmm"`;
 
 exports[`css composes with objects 3`] = `
 ".css-cls1-1gi569l-b877w5 { background: white;
@@ -41,7 +41,7 @@ exports[`css composes with objects 3`] = `
       -webkit-justify-content: center;
       -ms-flex-pack: center;
       -webkit-box-pack: center;
-      justify-content: center; }.css-cls1-vyoujf-va5xsk { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-xmm9em{display:-webkit-box;display:-ms-flexbox;display:flex}.css-1puxias{display:-webkit-box;display:-ms-flexbox;display:flex;display:block;width:30px;height:calc(40vw - 50px)}.css-1puxias:hover{color:blue}.css-1puxias:after{content:\\" \\";color:red}@media(min-width: 420px){.css-1puxias{color:green}}"
+      justify-content: center; }.css-cls1-vyoujf-va5xsk { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-1fe3owl{display:flex}.css-q8izmm{display:flex;display:block;width:30px;height:calc(40vw - 50px)}.css-q8izmm:hover{color:blue}.css-q8izmm:after{content:\\" \\";color:red}@media(min-width: 420px){.css-q8izmm{color:green}}"
 `;
 
 exports[`css composes with undefined values 1`] = `"css-cls2-1qb2ovg-1em6aur css-cls2-1qb2ovg css-15famh2"`;
@@ -80,4 +80,4 @@ exports[`css handles more than 10 dynamic properties 2`] = `
       border: solid 1px red; }"
 `;
 
-exports[`css handles objects 1`] = `"css-xmm9em"`;
+exports[`css handles objects 1`] = `"css-1fe3owl"`;

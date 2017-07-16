@@ -200,9 +200,45 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('objects prefixed', () => {
+      const basic = `
+      const H1 = styled('h1')({
+        borderRadius: '50%',
+        transition: 'transform 400ms ease-in-out',
+        boxSizing: 'border-box',
+        display: 'flex',
+        ':hover': {
+          transform: 'scale(1.2)'
+        }
+    }, props => {
+        padding: props.padding
+    })`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
     test('styled. objects', () => {
       const basic = `
       const H1 = styled.h1({ padding: 10 },props => ({
+        display: props.display
+      }))`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('styled. objects prefixed', () => {
+      const basic = `
+      const H1 = styled.h1({
+        borderRadius: '50%',
+        transition: 'transform 400ms ease-in-out',
+        boxSizing: 'border-box',
+        display: 'flex',
+        ':hover': {
+          transform: 'scale(1.2)'
+        }
+      },props => ({
         display: props.display
       }))`
       const { code } = babel.transform(basic, {

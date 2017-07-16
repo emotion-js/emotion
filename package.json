@@ -8,10 +8,11 @@
     "src",
     "dist",
     "lib",
-    "react.js",
+    "react",
     "server.js",
-    "vue.js",
-    "dist/DO-NOT-USE.min.js"
+    "vue",
+    "dist/DO-NOT-USE.min.js",
+    "macro.js"
   ],
   "scripts": {
     "build": "babel src -d lib",
@@ -29,10 +30,12 @@
     "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },
   "dependencies": {
+    "autoprefixer": "^7.1.2",
     "@arr/filter.mutate": "^1.0.0",
     "@arr/foreach": "^1.0.0",
     "@arr/map": "^1.0.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
+    "postcss-js": "^1.0.0",
     "styled-components": "2.0.0",
     "theming": "^1.0.1",
     "touch": "^1.0.0"
@@ -42,6 +45,7 @@
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
+    "babel-macros": "^0.5.2",
     "babel-preset-env": "^1.5.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",

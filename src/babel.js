@@ -1,7 +1,10 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
+import postcssJs from 'postcss-js'
+import autoprefixer from 'autoprefixer'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
+import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
 import createAttrExpression from './attrs'
 
@@ -102,6 +105,228 @@ function parseDynamicValues (rules, t, options) {
   })
 }
 
+export function buildStyledCallExpression (identifier, tag, path, state, t) {
+  const identifierName = getIdentifierName(path, t)
+  let { hash, rules, name, hasOtherMatch, composes, hasCssFunction } = inline(
+    path.node.quasi,
+    identifierName,
+    'css',
+    state.inline
+  )
+
+  // hash will be '0' when no styles are passed so we can just return the original tag
+  if (hash === '0') {
+    return tag
+  }
+  const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
+  for (var i = 0; i < composes; i++) {
+    inputClasses.push(path.node.quasi.expressions.shift())
+  }
+
+  const vars = path.node.quasi.expressions
+
+  const dynamicValues = parseDynamicValues(rules, t, { composes, vars })
+  const args = [tag, t.arrayExpression(inputClasses), t.arrayExpression(vars)]
+  if (!hasOtherMatch && !state.inline && !hasCssFunction) {
+    state.insertStaticRules(rules)
+  } else if (rules.length !== 0) {
+    const inlineContentExpr = t.functionExpression(
+      t.identifier('createEmotionStyledRules'),
+      vars.map((x, i) => t.identifier(`x${i}`)),
+      t.blockStatement([t.returnStatement(t.arrayExpression(dynamicValues))])
+    )
+    args.push(inlineContentExpr)
+  }
+
+  return t.callExpression(identifier, args)
+}
+
+export function buildStyledObjectCallExpression (path, identifier, t) {
+  const tag = t.isCallExpression(path.node.callee)
+    ? path.node.callee.arguments[0]
+    : t.stringLiteral(path.node.callee.property.name)
+  return t.callExpression(identifier, [
+    tag,
+    t.arrayExpression(prefixAst(path.node.arguments, t)),
+    t.arrayExpression()
+  ])
+}
+
+export function replaceGlobalWithCallExpression (
+  identifier,
+  processQuasi,
+  path,
+  state,
+  t
+) {
+  const { rules, hasInterpolation } = processQuasi(path.node.quasi)
+  if (!hasInterpolation && !state.inline) {
+    state.insertStaticRules(rules)
+    if (t.isExpressionStatement(path.parent)) {
+      path.parentPath.remove()
+    } else {
+      path.replaceWith(t.identifier('undefined'))
+    }
+  } else {
+    path.replaceWith(
+      t.callExpression(identifier, [
+        t.arrayExpression(
+          parseDynamicValues(rules, t, {
+            inputExpressions: path.node.quasi.expressions
+          })
+        )
+      ])
+    )
+  }
+}
+
+function prefixAst (args, t) {
+  const prefixer = postcssJs.sync([autoprefixer])
+
+  function isLiteral (value) {
+    return (
+        t.isStringLiteral(value) ||
+        t.isNumericLiteral(value) ||
+        t.isBooleanLiteral(value)
+    )
+  }
+  if (Array.isArray(args)) {
+    return args.map(element => prefixAst(element, t))
+  }
+
+  if (t.isObjectExpression(args)) {
+    let properties = []
+    args.properties.forEach(property => {
+      // nested objects
+      if (t.isObjectExpression(property.value)) {
+        const key = t.isStringLiteral(property.key)
+          ? t.stringLiteral(property.key.value)
+          : t.identifier(property.key.name)
+        return properties.push(
+          t.objectProperty(key, prefixAst(property.value, t))
+        )
+
+        // literal value or array of literal values
+      } else if (
+        isLiteral(property.value) ||
+        (t.isArrayExpression(property.value) &&
+          property.value.elements.every(isLiteral))
+      ) {
+        // handle array values: { display: ['flex', 'block'] }
+        const propertyValue = t.isArrayExpression(property.value)
+          ? property.value.elements.map(element => element.value)
+          : property.value.value
+
+        const style = { [property.key.name]: propertyValue }
+        const prefixedStyle = prefixer(style)
+
+        for (var k in prefixedStyle) {
+          const key = t.isStringLiteral(property.key)
+            ? t.stringLiteral(k)
+            : t.identifier(k)
+          const val = prefixedStyle[k]
+          let value
+
+          if (typeof val === 'number') {
+            value = t.numericLiteral(val)
+          } else if (typeof val === 'string') {
+            value = t.stringLiteral(val)
+          } else if (Array.isArray(val)) {
+            value = t.arrayExpression(val.map(i => t.stringLiteral(i)))
+          }
+
+          properties.push(t.objectProperty(key, value))
+        }
+
+        // expressions
+      } else {
+        properties.push(property)
+      }
+    })
+
+    return t.objectExpression(properties)
+  }
+
+  if (t.isArrayExpression(args)) {
+    return t.arrayExpression(prefixAst(args.elements, t))
+  }
+
+  return args
+}
+
+export function replaceCssWithCallExpression (path, identifier, state, t) {
+  try {
+    const { hash, name, rules, hasVar, composes, hasOtherMatch } = inline(
+      path.node.quasi,
+      getIdentifierName(path, t),
+      'css',
+      state.inline
+    )
+    const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
+    for (var i = 0; i < composes; i++) {
+      inputClasses.push(path.node.quasi.expressions.shift())
+    }
+    const args = [
+      t.arrayExpression(inputClasses),
+      t.arrayExpression(path.node.quasi.expressions)
+    ]
+    if (!hasOtherMatch && !state.inline) {
+      state.insertStaticRules(rules)
+      if (!hasVar) {
+        return path.replaceWith(joinExpressionsWithSpaces(inputClasses, t))
+      }
+    } else if (rules.length !== 0) {
+      const expressions = path.node.quasi.expressions.map((x, i) =>
+        t.identifier(`x${i}`)
+      )
+      const inlineContentExpr = t.functionExpression(
+        t.identifier('createEmotionRules'),
+        expressions,
+        t.blockStatement([
+          t.returnStatement(
+            t.arrayExpression(
+              parseDynamicValues(rules, t, {
+                inputExpressions: expressions,
+                composes
+              })
+            )
+          )
+        ])
+      )
+      args.push(inlineContentExpr)
+    }
+    path.replaceWith(t.callExpression(identifier, args))
+  } catch (e) {
+    throw path.buildCodeFrameError(e)
+  }
+}
+
+export function replaceKeyframesWithCallExpression (path, identifier, state, t) {
+  const { hash, name, rules, hasInterpolation } = keyframes(
+    path.node.quasi,
+    getIdentifierName(path, t),
+    'animation'
+  )
+  const animationName = `${name}-${hash}`
+  if (!hasInterpolation && !state.inline) {
+    state.insertStaticRules([`@keyframes ${animationName} ${rules.join('')}`])
+    path.replaceWith(t.stringLiteral(animationName))
+  } else {
+    path.replaceWith(
+      t.callExpression(identifier, [
+        t.stringLiteral(animationName),
+        t.arrayExpression(
+          parseDynamicValues(rules, t, {
+            inputExpressions: path.node.quasi.expressions
+          })
+        )
+      ])
+    )
+  }
+}
+
+const visited = Symbol('visited')
+
 export default function (babel) {
   const { types: t } = babel
 
@@ -147,6 +372,9 @@ export default function (babel) {
         cssProps(path, t)
       },
       CallExpression (path) {
+        if (path[visited]) {
+          return
+        }
         if (
           (t.isCallExpression(path.node.callee) &&
             path.node.callee.callee.name === 'styled') ||
@@ -154,17 +382,17 @@ export default function (babel) {
             t.isIdentifier(path.node.callee.object) &&
             path.node.callee.object.name === 'styled')
         ) {
-          const tag = t.isCallExpression(path.node.callee)
-            ? path.node.callee.arguments[0]
-            : t.stringLiteral(path.node.callee.property.name)
-          path.replaceWith(
-            t.callExpression(t.identifier('styled'), [
-              tag,
-              t.arrayExpression(path.node.arguments),
-              t.arrayExpression()
-            ])
-          )
+          const identifier = t.isCallExpression(path.node.callee)
+            ? path.node.callee.callee
+            : path.node.callee.object
+          path.replaceWith(buildStyledObjectCallExpression(path, identifier, t))
         }
+
+        if (t.isCallExpression(path.node) && path.node.callee.name === 'css') {
+          const prefixedAst = prefixAst(path.node.arguments, t)
+          path.replaceWith(t.callExpression(t.identifier('css'), prefixedAst))
+        }
+        path[visited] = true
       },
       TaggedTemplateExpression (path, state) {
         // in:
@@ -177,207 +405,59 @@ export default function (babel) {
         //     color: ${x0};
         //     height: ${x1}; }`];
         // });
-
-        const parent = path.findParent(p => p.isVariableDeclarator())
-        const identifierName =
-          parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
-
-        function buildCallExpression (identifier, tag, path) {
-          let {
-            hash,
-            rules,
-            name,
-            hasOtherMatch,
-            composes,
-            hasCssFunction
-          } = inline(path.node.quasi, identifierName, 'css', state.inline)
-
-          // hash will be '0' when no styles are passed so we can just return the original tag
-          if (hash === '0') {
-            return tag
-          }
-          const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
-          for (var i = 0; i < composes; i++) {
-            inputClasses.push(path.node.quasi.expressions.shift())
-          }
-
-          const vars = path.node.quasi.expressions
-
-          const dynamicValues = parseDynamicValues(rules, t, { composes, vars })
-          const args = [
-            tag,
-            t.arrayExpression(inputClasses),
-            t.arrayExpression(vars)
-          ]
-          if (!hasOtherMatch && !state.inline && !hasCssFunction) {
-            state.insertStaticRules(rules)
-          } else if (rules.length !== 0) {
-            const inlineContentExpr = t.functionExpression(
-              t.identifier('createEmotionStyledRules'),
-              vars.map((x, i) => t.identifier(`x${i}`)),
-              t.blockStatement([
-                t.returnStatement(t.arrayExpression(dynamicValues))
-              ])
-            )
-            args.push(inlineContentExpr)
-          }
-
-          return t.callExpression(identifier, args)
-        }
-
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
-          path.node.tag.object.name === 'styled' &&
-          t.isTemplateLiteral(path.node.quasi)
+          path.node.tag.object.name === 'styled'
         ) {
           path.replaceWith(
-            buildCallExpression(
+            buildStyledCallExpression(
               path.node.tag.object,
               t.stringLiteral(path.node.tag.property.name),
-              path
+              path,
+              state,
+              t
             )
           )
         } else if (
           // styled('h1')`color:${color};`
           t.isCallExpression(path.node.tag) &&
-          path.node.tag.callee.name === 'styled' &&
-          t.isTemplateLiteral(path.node.quasi)
+          path.node.tag.callee.name === 'styled'
         ) {
           path.replaceWith(
-            buildCallExpression(
+            buildStyledCallExpression(
               path.node.tag.callee,
               path.node.tag.arguments[0],
-              path
+              path,
+              state,
+              t
             )
           )
-        } else if (
-          t.isIdentifier(path.node.tag) &&
-          path.node.tag.name === 'css'
-        ) {
-          try {
-            const {
-              hash,
-              name,
-              rules,
-              hasVar,
-              composes,
-              hasOtherMatch
-            } = inline(path.node.quasi, identifierName, 'css', state.inline)
-            const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
-            for (var i = 0; i < composes; i++) {
-              inputClasses.push(path.node.quasi.expressions.shift())
-            }
-            const args = [
-              t.arrayExpression(inputClasses),
-              t.arrayExpression(path.node.quasi.expressions)
-            ]
-            if (!hasOtherMatch && !state.inline) {
-              state.insertStaticRules(rules)
-              if (!hasVar) {
-                return path.replaceWith(
-                  joinExpressionsWithSpaces(inputClasses, t)
-                )
-              }
-            } else if (rules.length !== 0) {
-              const expressions = path.node.quasi.expressions.map((x, i) =>
-                t.identifier(`x${i}`)
-              )
-              const inlineContentExpr = t.functionExpression(
-                t.identifier('createEmotionRules'),
-                expressions,
-                t.blockStatement([
-                  t.returnStatement(
-                    t.arrayExpression(
-                      parseDynamicValues(rules, t, {
-                        inputExpressions: expressions,
-                        composes
-                      })
-                    )
-                  )
-                ])
-              )
-              args.push(inlineContentExpr)
-            }
-            path.replaceWith(t.callExpression(t.identifier('css'), args))
-          } catch (e) {
-            throw path.buildCodeFrameError(e)
-          }
-        } else if (
-          t.isIdentifier(path.node.tag) &&
-          path.node.tag.name === 'keyframes'
-        ) {
-          const { hash, name, rules, hasInterpolation } = keyframes(
-            path.node.quasi,
-            identifierName,
-            'animation'
-          )
-          const animationName = `${name}-${hash}`
-          if (!hasInterpolation && !state.inline) {
-            state.insertStaticRules([
-              `@keyframes ${animationName} ${rules.join('')}`
-            ])
-            path.replaceWith(t.stringLiteral(animationName))
-          } else {
-            path.replaceWith(
-              t.callExpression(t.identifier('keyframes'), [
-                t.stringLiteral(animationName),
-                t.arrayExpression(
-                  parseDynamicValues(rules, t, {
-                    inputExpressions: path.node.quasi.expressions
-                  })
-                )
-              ])
+        } else if (t.isIdentifier(path.node.tag)) {
+          if (path.node.tag.name === 'css') {
+            replaceCssWithCallExpression(path, t.identifier('css'), state, t)
+          } else if (path.node.tag.name === 'keyframes') {
+            replaceKeyframesWithCallExpression(
+              path,
+              t.identifier('keyframes'),
+              state,
+              t
             )
-          }
-        } else if (
-          t.isIdentifier(path.node.tag) &&
-          path.node.tag.name === 'fontFace'
-        ) {
-          const { rules, hasInterpolation } = fontFace(
-            path.node.quasi,
-            state.inline
-          )
-          if (!hasInterpolation && !state.inline) {
-            state.insertStaticRules(rules)
-            if (t.isExpressionStatement(path.parent)) {
-              path.parentPath.remove()
-            } else {
-              path.replaceWith(t.identifier('undefined'))
-            }
-          } else {
-            path.replaceWith(
-              t.callExpression(t.identifier('fontFace'), [
-                t.arrayExpression(
-                  parseDynamicValues(rules, t, {
-                    inputExpressions: path.node.quasi.expressions
-                  })
-                )
-              ])
+          } else if (path.node.tag.name === 'fontFace') {
+            replaceGlobalWithCallExpression(
+              t.identifier('fontFace'),
+              fontFace,
+              path,
+              state,
+              t
             )
-          }
-        } else if (
-          t.isIdentifier(path.node.tag) &&
-          path.node.tag.name === 'injectGlobal' &&
-          t.isTemplateLiteral(path.node.quasi)
-        ) {
-          const { rules, hasInterpolation } = injectGlobal(path.node.quasi)
-          if (!hasInterpolation && !state.inline) {
-            state.insertStaticRules(rules)
-            if (t.isExpressionStatement(path.parent)) {
-              path.parentPath.remove()
-            } else {
-              path.replaceWith(t.identifier('undefined'))
-            }
-          } else {
-            path.replaceWith(
-              t.callExpression(t.identifier('injectGlobal'), [
-                t.arrayExpression(
-                  parseDynamicValues(rules, t, {
-                    inputExpressions: path.node.quasi.expressions
-                  })
-                )
-              ])
+          } else if (path.node.tag.name === 'injectGlobal') {
+            replaceGlobalWithCallExpression(
+              t.identifier('injectGlobal'),
+              injectGlobal,
+              path,
+              state,
+              t
             )
           }
         }

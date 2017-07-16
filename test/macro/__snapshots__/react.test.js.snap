@@ -50,7 +50,11 @@ exports[`styled call expression 1`] = `
 `;
 
 exports[`styled component as selector 1`] = `
-.css-Thing-1kdnbhf-19sb43k {
+.css-H1-rs9k70-qz486c {
+  font-size: 20px;
+}
+
+.css-Thing-1kdnbhf-d995d2 {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -58,20 +62,16 @@ exports[`styled component as selector 1`] = `
   display: flex;
 }
 
-.css-Thing-1kdnbhf-19sb43k .css-H1-1t8i2zo {
+.css-Thing-1kdnbhf-d995d2 .css-H1-rs9k70 {
   color: green;
 }
 
-.css-H1-1t8i2zo-1c6u60b {
-  font-size: 20px;
-}
-
 <div
-  className="css-Thing-1kdnbhf-19sb43k css-Thing-1kdnbhf"
+  className="css-Thing-1kdnbhf-d995d2 css-Thing-1kdnbhf"
 >
   hello 
   <h1
-    className="css-H1-1t8i2zo-1c6u60b css-H1-1t8i2zo"
+    className="css-H1-rs9k70-qz486c css-H1-rs9k70"
   >
     This will be green
   </h1>
