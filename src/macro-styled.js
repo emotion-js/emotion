@@ -2,13 +2,16 @@ import {
   buildStyledCallExpression,
   buildStyledObjectCallExpression
 } from './babel'
-import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
-import forEach from '@arr/foreach'
-import { keys } from './utils'
+import { buildMacroRuntimeNode } from './babel-utils'
+import emotionMacro from './macro'
+import { omit } from './utils'
 
-module.exports = function macro ({ references, state, babel: { types: t } }) {
+module.exports = function macro (options) {
+  const { references, state, babel: { types: t } } = options
   if (!state.inline) state.inline = true
+  let referencesWithoutDefault = references
   if (references.default) {
+    referencesWithoutDefault = omit(references, ['default'])
     references.default.forEach(styledReference => {
       const path = styledReference.parentPath.parentPath
       const runtimeNode = buildMacroRuntimeNode(
@@ -48,14 +51,5 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
       }
     })
   }
-  forEach(keys(references), (referenceKey) => {
-    if (referenceKey !== 'default') {
-      references[referenceKey].forEach(reference => {
-        reference.replaceWith(
-            buildMacroRuntimeNode(reference, state, referenceKey, t)
-          )
-      })
-    }
-  })
-  addRuntimeImports(state, t)
+  emotionMacro({ ...options, references: referencesWithoutDefault })
 }
