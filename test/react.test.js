@@ -19,9 +19,12 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
-  test('basic render', () => {
+  test.only('basic render', () => {
     const fontSize = 20
-    const H1 = styled.h1`font-size: ${fontSize}px;`
+    const H1 = styled.h1`
+      color: blue;
+      font-size: ${fontSize}px;
+    `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 

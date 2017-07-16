@@ -107,7 +107,7 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
       inserted[hash] = true
       const rgx = new RegExp(classes[0], 'gm')
       forEach(src, r => {
-        sheet.insert(r.replace(rgx, `${classes[0]}-${hash}`))
+        sheet.insert(r.replace(rgx, `${classes[0]}-${hash} ${computedClassName.trim().replace(/ /g, '.')}`))
       })
     }
     return `${classes[0]}-${hash} ${computedClassName}`
@@ -506,3 +506,4 @@ function multiIndexCache (fn) {
     return value
   }
 }
+

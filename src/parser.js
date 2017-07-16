@@ -1,5 +1,5 @@
 // @flow
-import { t } from 'babel-types'
+import camelizeStyleName from 'fbjs/lib/camelizeStyleName'
 import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
 import postcssNested from 'styled-components/lib/vendor/postcss-nested'
 import stringify from 'styled-components/lib/vendor/postcss/stringify'
@@ -43,6 +43,7 @@ export function parseCSS (
   let vars = 0
   let composes: number = 0
   let hasCssFunction = false
+
   root.walkDecls((decl: CSSDecl): void => {
     if (decl.prop === 'name') decl.remove()
     if (decl.value.match(/attr/)) {
@@ -83,12 +84,6 @@ export function parseCSS (
       })
     })
   }
-
-  root.walkRules(rule => {
-    if (rule.nodes.length === 0) {
-      rule.remove()
-    }
-  })
 
   autoprefix(root)
   return {
