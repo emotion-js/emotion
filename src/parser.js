@@ -1,9 +1,11 @@
 // @flow
 import camelizeStyleName from 'fbjs/lib/camelizeStyleName'
+import prefixAll from 'inline-style-prefixer/static'
 import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
 import postcssNested from 'styled-components/lib/vendor/postcss-nested'
 import stringify from 'styled-components/lib/vendor/postcss/stringify'
 import autoprefix from 'styled-components/lib/utils/autoprefix'
+import { objStyle } from './index'
 
 type CSSDecl = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -85,15 +87,56 @@ export function parseCSS (
     })
   }
 
-  autoprefix(root)
+  const objStyles = {}
+
+  root.walkRules((rule, i) => {
+    if (rule.nodes.length === 0) {
+      rule.remove()
+    }
+
+    // console.log(JSON.stringify(rule, null, 2))
+    const { selector } = rule
+    const style = (objStyles[selector] = objStyles[selector] || {})
+
+    rule.walkDecls((decl: CSSDecl): void => {
+      style[camelizeStyleName(decl.prop)] = decl.value
+    })
+  })
+
+  root.walkAtRules((atRule, i) => {
+    const {name, params} = atRule
+    const key = `@${name} ${params}`.trim()
+    const atRuleStyle = (objStyles[key] = objStyles[key] || {})
+
+    atRule.walkRules((rule, i) => {
+      if (rule.nodes.length === 0) {
+        rule.remove()
+      }
+
+      // console.log(JSON.stringify(rule, null, 2))
+      const {selector} = rule
+      const style = (atRuleStyle[selector] = atRuleStyle[selector] || {})
+
+      rule.walkDecls((decl: CSSDecl): void => {
+        style[camelizeStyleName(decl.prop)] = decl.value
+      })
+    })
+  })
+
+  const prefixedObjStyles = prefixAll(objStyles)
+
+  console.log(JSON.stringify(prefixedObjStyles, null, 2))
+
   return {
     rules: stringifyCSSRoot(root),
     hasOtherMatch: vars !== options.matches,
     hasVar:
       (!!vars && vars !== composes) ||
-      !!(options.inlineMode && options.matches),
+        !!(options.inlineMode && options.matches),
     composes,
-    hasCssFunction
+    hasCssFunction,
+    objStyles,
+    prefixedObjStyles
   }
 }
 

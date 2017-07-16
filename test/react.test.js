@@ -23,6 +23,7 @@ describe('styled', () => {
     const fontSize = 20
     const H1 = styled.h1`
       color: blue;
+      
       font-size: ${fontSize}px;
     `
 

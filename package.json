@@ -29,12 +29,13 @@
     "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },
   "dependencies": {
-    "autoprefixer": "^7.1.2",
     "@arr/filter.mutate": "^1.0.0",
     "@arr/foreach": "^1.0.0",
     "@arr/map": "^1.0.0",
+    "autoprefixer": "^7.1.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "fbjs": "^0.8.12",
+    "inline-style-prefixer": "^3.0.6",
     "postcss-js": "^1.0.0",
     "styled-components": "2.0.0",
     "theming": "^1.0.1",
@@ -50,6 +51,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bundlesize": "^0.5.7",
+    "caniuse-api": "^2.0.0",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-emotion-react": "^0.0.2",

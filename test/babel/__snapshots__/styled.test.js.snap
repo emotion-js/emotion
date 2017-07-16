@@ -199,6 +199,28 @@ exports[`babel styled component inline match works on multiple 1`] = `
 });"
 `;
 
+exports[`babel styled component inline media query 1`] = `
+"const H1 = styled(\\"h1\\", [\\"css-H1-162s3sk\\"], [], function createEmotionStyledRules() {
+  return [\`@media print {
+    .css-H1-162s3sk body {
+        font-size: 10pt
+    }
+}\`, \`@media screen {
+    .css-H1-162s3sk body {
+        font-size: 13px
+    }
+}\`, \`@media screen, print {
+    .css-H1-162s3sk body {
+        line-height: 1.2
+    }
+}\`, \`@media only screen   and (min-device-width: 320px)   and (max-device-width: 480px)  and (-webkit-min-device-pixel-ratio: 2) {
+    .css-H1-162s3sk body {
+        line-height: 1.4
+    }
+}\`];
+});"
+`;
+
 exports[`babel styled component inline name is correct with no identifier 1`] = `
 "
 css([\\"css-1cppx8p\\"], [], function createEmotionRules() {

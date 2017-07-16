@@ -48,6 +48,29 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('media query', () => {
+      const basic =
+        'const H1 = styled.h1`@media print {' +
+        '  font-size: 10pt' +
+        '}' +
+        '@media screen {' +
+        '  .child-selector { font-size: 13px }' +
+        '}' +
+        '@media screen, print {' +
+        '  &:hover + & { line-height: 1.2 }' +
+        '}' +
+        '@media only screen ' +
+        '  and (min-device-width: 320px) ' +
+        '  and (max-device-width: 480px)' +
+        '  and (-webkit-min-device-pixel-ratio: 2) {' +
+        '    .child-selector { line-height: 1.4 }' +
+        '}`'
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('function call', () => {
       const basic = "styled(MyComponent)`font-size: ${fontSize + 'px'};`"
       const { code } = babel.transform(basic, {
