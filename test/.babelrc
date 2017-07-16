@@ -2,7 +2,7 @@
   "presets": [
     "flow",
     "env",
-    "react",
-    ["./babel-preset-emotion-test", { "inline": true }]
-  ]
+    "react"
+  ],
+  "plugins": [["./babel-plugin-emotion-test", { "inline": true }]]
 }
