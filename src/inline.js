@@ -75,7 +75,7 @@ export function inline (
     composes,
     hasCssFunction,
     prefixedObjStyles
-  } = parseCSS(`.${name}-${hash} { ${src} }`, {
+  } = parseCSS(`${src}`, {
     inlineMode: inlineMode,
     matches,
     name,

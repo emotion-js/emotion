@@ -1,11 +1,9 @@
 // @flow
-import camelizeStyleName from 'fbjs/lib/camelizeStyleName'
-import prefixAll from 'inline-style-prefixer/static'
 import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
 import postcssNested from 'styled-components/lib/vendor/postcss-nested'
 import stringify from 'styled-components/lib/vendor/postcss/stringify'
 import autoprefix from 'styled-components/lib/utils/autoprefix'
-import { objStyle } from './index'
+import postcssJs from 'postcss-js'
 
 type CSSDecl = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -87,44 +85,8 @@ export function parseCSS (
       })
     })
   }
-
-  const objStyles = {}
-
-  root.walkRules((rule, i) => {
-    if (rule.nodes.length === 0) {
-      rule.remove()
-    }
-
-    // console.log(JSON.stringify(rule, null, 2))
-    const { selector } = rule
-    const style = (objStyles[selector] = objStyles[selector] || {})
-
-    rule.walkDecls((decl: CSSDecl): void => {
-      style[camelizeStyleName(decl.prop)] = decl.value
-    })
-  })
-
-  root.walkAtRules((atRule, i) => {
-    const {name, params} = atRule
-    const key = `@${name} ${params}`.trim()
-    const atRuleStyle = (objStyles[key] = objStyles[key] || {})
-
-    atRule.walkRules((rule, i) => {
-      if (rule.nodes.length === 0) {
-        rule.remove()
-      }
-
-      // console.log(JSON.stringify(rule, null, 2))
-      const {selector} = rule
-      const style = (atRuleStyle[selector] = atRuleStyle[selector] || {})
-
-      rule.walkDecls((decl: CSSDecl): void => {
-        style[camelizeStyleName(decl.prop)] = decl.value
-      })
-    })
-  })
-
-  const prefixedObjStyles = prefixAll(objStyles)
+  autoprefix(root)
+  const objStyles = postcssJs.objectify(root)
 
   return {
     rules: stringifyCSSRoot(root),
@@ -135,7 +97,7 @@ export function parseCSS (
     composes,
     hasCssFunction,
     objStyles,
-    prefixedObjStyles
+    prefixedObjStyles: objStyles
   }
 }
 

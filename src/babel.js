@@ -7,6 +7,7 @@ import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
 import createAttrExpression from './attrs'
+import * as babylon from 'babylon'
 
 function joinExpressionsWithSpaces (expressions, t) {
   const quasis = [t.templateElement({ cooked: '', raw: '' }, true)]
@@ -113,30 +114,34 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     'css',
     state.inline
   )
-
+  console.log(prefixedObjStyles)
+  // return path.replaceWith(t.callExpression(identifier, [
+  //   tag,
+  //   t.arrayExpression([prefixedObjStyles])
+  // ]))
   // hash will be '0' when no styles are passed so we can just return the original tag
   if (hash === '0') {
     return tag
   }
-  const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
-  for (var i = 0; i < composes; i++) {
-    inputClasses.push(path.node.quasi.expressions.shift())
-  }
+  // const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
+  // for (var i = 0; i < composes; i++) {
+  //   inputClasses.push(path.node.quasi.expressions.shift())
+  // }
 
-  const vars = path.node.quasi.expressions
-
-  const dynamicValues = parseDynamicValues(rules, t, { composes, vars })
-  const args = [tag, t.arrayExpression(inputClasses), t.arrayExpression(vars)]
-  if (!hasOtherMatch && !state.inline && !hasCssFunction) {
-    state.insertStaticRules(rules)
-  } else if (rules.length !== 0) {
-    const inlineContentExpr = t.functionExpression(
-      t.identifier('createEmotionStyledRules'),
-      vars.map((x, i) => t.identifier(`x${i}`)),
-      t.blockStatement([t.returnStatement(t.arrayExpression(dynamicValues))])
-    )
-    args.push(inlineContentExpr)
-  }
+  // const vars = path.node.quasi.expressions
+  const objectAST = babylon.parseExpression(JSON.stringify(prefixedObjStyles))
+  // const dynamicValues = parseDynamicValues(rules, t, { composes, vars })
+  const args = [tag, t.arrayExpression([objectAST]), t.arrayExpression([])]
+  // if (!hasOtherMatch && !state.inline && !hasCssFunction) {
+  //   state.insertStaticRules(rules)
+  // } else if (rules.length !== 0) {
+  //   const inlineContentExpr = t.functionExpression(
+  //     t.identifier('createEmotionStyledRules'),
+  //     vars.map((x, i) => t.identifier(`x${i}`)),
+  //     t.blockStatement([t.returnStatement(t.arrayExpression(dynamicValues))])
+  //   )
+  //   args.push(inlineContentExpr)
+  // }
 
   return t.callExpression(identifier, args)
 }
