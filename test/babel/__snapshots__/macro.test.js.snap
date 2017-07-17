@@ -110,6 +110,14 @@ exports[`babel macro some import that does not exist 1`] = `
 const someOtherVar = _thisDoesNotExist;"
 `;
 
+exports[`babel macro styled css from react 1`] = `
+"import { css as _css } from '../../src/react';
+
+const someCls = _css(['css-someCls-ymvpej'], [], function createEmotionRules() {
+  return [\`.css-someCls-ymvpej { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }\`];
+});"
+`;
+
 exports[`babel macro styled object function 1`] = `
 "import _styled from '../../src/react';
 
