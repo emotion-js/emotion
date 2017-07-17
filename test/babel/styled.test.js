@@ -48,7 +48,7 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test.only('interpolation in different places', () => {
+    test('interpolation in different places', () => {
       const basic = `
       const H1 = styled.h1\`
         font-size: \${fontSize + 'px'};

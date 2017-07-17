@@ -15,23 +15,6 @@ type inputVar = string | number
 
 type vars = Array<inputVar>
 
-function values (cls: string, vars: vars) {
-  const hash = hashArray([cls, ...vars])
-  const varCls = `vars-${hash}`
-  if (inserted[hash]) {
-    return varCls
-  }
-  let src = ''
-  forEach(vars, (val: inputVar, i: number) => {
-    src && (src += '; ')
-    src += `--${cls}-${i}: ${val}`
-  })
-  sheet.insert(`.${varCls} {${src}}`)
-  inserted[hash] = true
-
-  return varCls
-}
-
 export function flush () {
   sheet.flush()
   inserted = {}
@@ -72,7 +55,7 @@ function getGlamorStylesFromClassName (className) {
   }
 }
 
-export function css (classes: string[], vars: vars) {
+export function css (classes: any) {
   if (!Array.isArray(classes)) {
     classes = [classes]
   }
@@ -98,10 +81,7 @@ export function css (classes: string[], vars: vars) {
     computedClassName += ' ' + objStyle(...objectStyles).toString()
   }
 
-  return (
-    computedClassName +
-    (vars && vars.length > 0 ? ' ' + values(classes[0], vars) : '')
-  )
+  return computedClassName
 }
 
 export function injectGlobal (src: string[]) {
@@ -491,4 +471,3 @@ function multiIndexCache (fn) {
     return value
   }
 }
-

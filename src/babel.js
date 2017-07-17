@@ -119,11 +119,16 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     inputClasses.push(path.node.quasi.expressions.shift())
   }
 
-  inputClasses.push(createAstObj(styles, path.node.quasi.expressions, t))
+  inputClasses.push(createAstObj(styles, false, composesCount, t))
 
   const args = [
     tag,
-    t.arrayExpression(inputClasses)
+    t.arrayExpression(path.node.quasi.expressions),
+    t.functionExpression(
+      t.identifier('createEmotionStyledRules'),
+      path.node.quasi.expressions.map((x, i) => t.identifier(`x${i}`)),
+      t.blockStatement([t.returnStatement(t.arrayExpression(inputClasses))])
+    )
   ]
 
   if (state.extractStatic && isStaticBlock) {
@@ -173,7 +178,7 @@ export function replaceGlobalWithCallExpression (
 
 export function replaceCssWithCallExpression (path, identifier, state, t) {
   try {
-    const { styles, isStaticBlock } = inline(
+    const { styles, isStaticBlock, composesCount } = inline(
       path.node.quasi,
       getIdentifierName(path, t)
     )
@@ -184,11 +189,12 @@ export function replaceCssWithCallExpression (path, identifier, state, t) {
       //   return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
       // }
     }
-
-    path.replaceWith(
+    const thing = createAstObj(styles, path.node.quasi.expressions, composesCount, t)
+    console.log(thing)
+    return path.replaceWith(
       t.callExpression(identifier, [
         t.arrayExpression([
-          createAstObj(styles, path.node.quasi.expressions, t)
+          thing
         ])
       ])
     )
@@ -310,7 +316,7 @@ function getDynamicMatches (str) {
   return matches
 }
 
-function replacePlaceholdersWithExpressions (matches, str, expressions, t) {
+function replacePlaceholdersWithExpressions (matches: any[], str: string, expressions?: any[], composesCount, t) {
   const templateElements = []
   const templateExpressions = []
   let cursor = 0
@@ -327,7 +333,7 @@ function replacePlaceholdersWithExpressions (matches, str, expressions, t) {
       hasSingleInterpolation = true
     }
 
-    templateExpressions.push(t.identifier(`x${p1}`))
+    templateExpressions.push(expressions ? expressions[p1 - composesCount] : t.identifier(`x${p1 - composesCount}`))
     if (i === matches.length - 1) {
       templateElements.push(t.templateElement({ raw: str.substring(index + value.length), cooked: str.substring(index + value.length) }, true))
     }
@@ -338,13 +344,13 @@ function replacePlaceholdersWithExpressions (matches, str, expressions, t) {
   return t.templateLiteral(templateElements, templateExpressions)
 }
 
-function objKeyToAst (key, expressions, t): { computed: boolean, ast: any } {
+function objKeyToAst (key, expressions, composesCount: number, t): { computed: boolean, ast: any } {
   const matches = getDynamicMatches(key)
 
   if (matches.length) {
     return {
       computed: true,
-      ast: replacePlaceholdersWithExpressions(matches, key, expressions, t)
+      ast: replacePlaceholdersWithExpressions(matches, key, expressions, composesCount, t)
     }
   }
 
@@ -355,31 +361,31 @@ function objKeyToAst (key, expressions, t): { computed: boolean, ast: any } {
   }
 }
 
-function objValueToAst (value, expressions, t) {
+function objValueToAst (value, expressions, composesCount, t) {
   if (typeof value === 'string') {
     const matches = getDynamicMatches(value)
     if (matches.length) {
-      return replacePlaceholdersWithExpressions(matches, value, expressions, t)
+      return replacePlaceholdersWithExpressions(matches, value, expressions, composesCount, t)
     }
     return t.stringLiteral(value)
   } else if (Array.isArray(value)) {
-    return t.arrayExpression(value.map(v => objValueToAst(v, expressions, t)))
+    return t.arrayExpression(value.map(v => objValueToAst(v, expressions, composesCount, t)))
   }
 
-  return createAstObj(value, expressions, t)
+  return createAstObj(value, expressions, composesCount, t)
 }
 
-function createAstObj (obj, expressions, t) {
+function createAstObj (obj, expressions, composesCount, t) {
   // console.log(JSON.stringify(obj, null, 2))
   const props = []
 
   for (let key in obj) {
     const rawValue = obj[key]
-    const { computed, ast: keyAST } = objKeyToAst(key, expressions, t)
-    const valueAST = objValueToAst(rawValue, expressions, t)
+    const { computed, ast: keyAST } = objKeyToAst(key, expressions, composesCount, t)
+    const valueAST = objValueToAst(rawValue, expressions, composesCount, t)
     props.push(t.objectProperty(keyAST, valueAST, computed))
   }
-
+  console.log(props)
   return t.objectExpression(props)
 }
 

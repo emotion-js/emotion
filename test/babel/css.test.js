@@ -8,7 +8,7 @@ fs.existsSync.mockReturnValue(true)
 
 describe('babel css', () => {
   describe('inline', () => {
-    test('css basic', () => {
+    test.only('css basic', () => {
       const basic = `
         css\`
         margin: 12px 48px;
