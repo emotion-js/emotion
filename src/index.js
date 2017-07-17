@@ -72,7 +72,7 @@ function getGlamorStylesFromClassName (className) {
   }
 }
 
-export function css (classes: string[], vars: vars, content: () => string[]) {
+export function css (classes: string[], vars: vars) {
   if (!Array.isArray(classes)) {
     classes = [classes]
   }
@@ -96,21 +96,6 @@ export function css (classes: string[], vars: vars, content: () => string[]) {
 
   if (objectStyles.length) {
     computedClassName += ' ' + objStyle(...objectStyles).toString()
-  }
-
-  if (content) {
-    // inline mode
-    let src = content(...vars) // returns an array
-    let hash = hashArray(src)
-
-    if (!inserted[hash]) {
-      inserted[hash] = true
-      const rgx = new RegExp(classes[0], 'gm')
-      forEach(src, r => {
-        sheet.insert(r.replace(rgx, `${classes[0]}-${hash} ${computedClassName.trim().replace(/ /g, '.')}`))
-      })
-    }
-    return `${classes[0]}-${hash} ${computedClassName}`
   }
 
   return (

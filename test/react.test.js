@@ -20,7 +20,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
-  test.only('basic render', () => {
+  test('basic render', () => {
     const fontSize = 20
     const H1 = styled.h1`
       color: blue;

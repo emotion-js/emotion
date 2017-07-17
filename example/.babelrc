@@ -11,6 +11,6 @@
     "react"
   ],
   "plugins": [
-    'emotion/babel'
+    ['emotion/babel', { inline: true }]
   ]
 }

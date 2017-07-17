@@ -19,7 +19,7 @@ function joinExpressionsWithSpaces (expressions, t) {
   return t.templateLiteral(quasis, expressions)
 }
 
-function parseDynamicValues (rules, t, options) {
+function parseDynamicValues (styles, t, options) {
   if (options.composes === undefined) options.composes = 0
   return rules.map(rule => {
     const re = /xxx(\d+)xxx|attr\(([^,\s)]+)(?:\s*([^,)]*)?)(?:,\s*(\S+))?\)/gm
@@ -107,35 +107,24 @@ function parseDynamicValues (rules, t, options) {
 
 export function buildStyledCallExpression (identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
-  let { hash, rules, name, hasOtherMatch, composes, hasCssFunction, prefixedObjStyles } = inline(
-    path.node.quasi,
-    identifierName,
-    'css',
-    state.inline
-  )
+  const {
+    styles,
+    isStaticBlock
+  } = inline(path.node.quasi, identifierName, 'css', state.inline)
 
-  // hash will be '0' when no styles are passed so we can just return the original tag
-  if (hash === '0') {
-    return tag
-  }
-  const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
-  for (var i = 0; i < composes; i++) {
-    inputClasses.push(path.node.quasi.expressions.shift())
-  }
+  // console.log(JSON.stringify(styles, null, 2))
+
 
   const vars = path.node.quasi.expressions
 
-  const dynamicValues = parseDynamicValues(rules, t, { composes, vars })
-  const args = [tag, t.arrayExpression(inputClasses), t.arrayExpression(vars)]
+  const dynamicValues = parseDynamicValues(rules, t, { vars })
+  const args = [
+    tag,
+    t.arrayExpression([createAstObj(styles, t)]),
+    t.arrayExpression(vars)
+  ]
   if (!hasOtherMatch && !state.inline && !hasCssFunction) {
     state.insertStaticRules(rules)
-  } else if (rules.length !== 0) {
-    const inlineContentExpr = t.functionExpression(
-      t.identifier('createEmotionStyledRules'),
-      vars.map((x, i) => t.identifier(`x${i}`)),
-      t.blockStatement([t.returnStatement(t.arrayExpression(dynamicValues))])
-    )
-    args.push(inlineContentExpr)
   }
 
   return t.callExpression(identifier, args)
@@ -147,8 +136,7 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
     : t.stringLiteral(path.node.callee.property.name)
   return t.callExpression(identifier, [
     tag,
-    t.arrayExpression(prefixAst(path.node.arguments, t)),
-    t.arrayExpression()
+    t.arrayExpression(prefixAst(path.node.arguments, t))
   ])
 }
 
@@ -180,16 +168,76 @@ export function replaceGlobalWithCallExpression (
   }
 }
 
+export function replaceCssWithCallExpression (path, identifier, state, t) {
+  try {
+    const {
+      hash,
+      name,
+      rules,
+      hasVar,
+      composes,
+      hasOtherMatch,
+      styles
+    } = inline(path.node.quasi, getIdentifierName(path, t), 'css', state.inline)
+    const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
+    for (var i = 0; i < composes; i++) {
+      inputClasses.push(path.node.quasi.expressions.shift())
+    }
+    const args = [
+      t.arrayExpression([createAstObj(styles, t)]),
+      t.arrayExpression(path.node.quasi.expressions)
+    ]
+    if (!hasOtherMatch && !state.inline) {
+      state.insertStaticRules(rules)
+      if (!hasVar) {
+        return path.replaceWith(joinExpressionsWithSpaces(inputClasses, t))
+      }
+    } else if (rules.length !== 0) {
+      const expressions = path.node.quasi.expressions.map((x, i) =>
+        t.identifier(`x${i}`)
+      )
+    }
+    path.replaceWith(t.callExpression(identifier, args))
+  } catch (e) {
+    throw path.buildCodeFrameError(e)
+  }
+}
+
+export function replaceKeyframesWithCallExpression (path, identifier, state, t) {
+  const { hash, name, rules, hasInterpolation } = keyframes(
+    path.node.quasi,
+    getIdentifierName(path, t),
+    'animation'
+  )
+  const animationName = `${name}-${hash}`
+  if (!hasInterpolation && !state.inline) {
+    state.insertStaticRules([`@keyframes ${animationName} ${rules.join('')}`])
+    path.replaceWith(t.stringLiteral(animationName))
+  } else {
+    path.replaceWith(
+      t.callExpression(identifier, [
+        t.stringLiteral(animationName),
+        t.arrayExpression(
+          parseDynamicValues(rules, t, {
+            inputExpressions: path.node.quasi.expressions
+          })
+        )
+      ])
+    )
+  }
+}
+
 function prefixAst (args, t) {
   const prefixer = postcssJs.sync([autoprefixer])
 
   function isLiteral (value) {
     return (
-        t.isStringLiteral(value) ||
-        t.isNumericLiteral(value) ||
-        t.isBooleanLiteral(value)
+      t.isStringLiteral(value) ||
+      t.isNumericLiteral(value) ||
+      t.isBooleanLiteral(value)
     )
   }
+
   if (Array.isArray(args)) {
     return args.map(element => prefixAst(element, t))
   }
@@ -254,75 +302,37 @@ function prefixAst (args, t) {
   return args
 }
 
-export function replaceCssWithCallExpression (path, identifier, state, t) {
-  try {
-    const { hash, name, rules, hasVar, composes, hasOtherMatch } = inline(
-      path.node.quasi,
-      getIdentifierName(path, t),
-      'css',
-      state.inline
-    )
-    const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
-    for (var i = 0; i < composes; i++) {
-      inputClasses.push(path.node.quasi.expressions.shift())
-    }
-    const args = [
-      t.arrayExpression(inputClasses),
-      t.arrayExpression(path.node.quasi.expressions)
-    ]
-    if (!hasOtherMatch && !state.inline) {
-      state.insertStaticRules(rules)
-      if (!hasVar) {
-        return path.replaceWith(joinExpressionsWithSpaces(inputClasses, t))
-      }
-    } else if (rules.length !== 0) {
-      const expressions = path.node.quasi.expressions.map((x, i) =>
-        t.identifier(`x${i}`)
-      )
-      const inlineContentExpr = t.functionExpression(
-        t.identifier('createEmotionRules'),
-        expressions,
-        t.blockStatement([
-          t.returnStatement(
-            t.arrayExpression(
-              parseDynamicValues(rules, t, {
-                inputExpressions: expressions,
-                composes
-              })
-            )
-          )
-        ])
-      )
-      args.push(inlineContentExpr)
-    }
-    path.replaceWith(t.callExpression(identifier, args))
-  } catch (e) {
-    throw path.buildCodeFrameError(e)
+function objValueToAst (value, t) {
+  if (typeof value === 'string') {
+    return t.stringLiteral(value)
+  } else if (Array.isArray(value)) {
+    return t.arrayExpression(value.map(v => objValueToAst(v, t)))
   }
+
+  return createAstObj(value, t)
 }
 
-export function replaceKeyframesWithCallExpression (path, identifier, state, t) {
-  const { hash, name, rules, hasInterpolation } = keyframes(
-    path.node.quasi,
-    getIdentifierName(path, t),
-    'animation'
-  )
-  const animationName = `${name}-${hash}`
-  if (!hasInterpolation && !state.inline) {
-    state.insertStaticRules([`@keyframes ${animationName} ${rules.join('')}`])
-    path.replaceWith(t.stringLiteral(animationName))
-  } else {
-    path.replaceWith(
-      t.callExpression(identifier, [
-        t.stringLiteral(animationName),
-        t.arrayExpression(
-          parseDynamicValues(rules, t, {
-            inputExpressions: path.node.quasi.expressions
-          })
-        )
-      ])
+function createAstObj (obj, t) {
+  console.log(JSON.stringify(obj, null, 2))
+  const props = []
+  const computed = false,
+    shorthand = false,
+    decorators = []
+  for (let key in obj) {
+    const rawValue = obj[key]
+    let computedValue = objValueToAst(rawValue, t)
+    props.push(
+      t.objectProperty(
+        t.stringLiteral(key),
+        computedValue,
+        computed,
+        shorthand,
+        decorators
+      )
     )
   }
+
+  return t.objectExpression(props)
 }
 
 const visited = Symbol('visited')

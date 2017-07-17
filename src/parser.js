@@ -15,78 +15,15 @@ type CSSDecl = {
 }
 
 export function parseCSS (
-  css: string,
-  options: {
-    nested?: boolean,
-    inlineMode: boolean,
-    matches: number,
-    name: string,
-    hash: string,
-    canCompose?: boolean
-  } = {
-    nested: true,
-    inlineMode: true,
-    matches: 0,
-    name: 'name',
-    hash: 'hash',
-    canCompose: false
-  }
+  css: string
 ): {
-  rules: string[],
-  hasOtherMatch: boolean,
-  hasVar: boolean,
-  composes: number,
-  hasCssFunction: boolean,
-  prefixedObjStyles: { [string]: any }
+  isStaticBlock: boolean,
+  styles: { [string]: any }
 } {
   // todo - handle errors
   const root = parse(css)
-  if (options.nested !== false) postcssNested(root)
-
   let vars = 0
   let composes: number = 0
-  let hasCssFunction = false
-
-  root.walkDecls((decl: CSSDecl): void => {
-    if (decl.prop === 'name') decl.remove()
-    if (decl.value.match(/attr/)) {
-      hasCssFunction = true
-    }
-    if (options.canCompose) {
-      if (decl.prop === 'composes') {
-        if (decl.parent.selector !== `.${options.name}-${options.hash}`) {
-          throw new Error('composes cannot be on nested selectors')
-        }
-        if (!/xxx(\d+)xxx/gm.exec(decl.value)) {
-          throw new Error('composes must be a interpolation')
-        }
-        if (decl.parent.nodes[0] !== decl) {
-          throw new Error('composes must be the first rule')
-        }
-        const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
-        const numOfComposes: number = !composeMatches
-          ? 0
-          : composeMatches.length
-        composes += numOfComposes
-        vars += numOfComposes
-        decl.remove()
-        return
-      }
-    }
-    if (!options.inlineMode) {
-      const match = /xxx(\d+)xxx/gm.exec(decl.value)
-      if (match) {
-        vars++
-      }
-    }
-  })
-  if (!options.inlineMode && vars === options.matches && !hasCssFunction) {
-    root.walkDecls(decl => {
-      decl.value = decl.value.replace(/xxx(\d+)xxx/gm, (match, p1) => {
-        return `var(--${options.name}-${options.hash}-${p1 - composes})`
-      })
-    })
-  }
 
   const objStyles = {}
 
@@ -100,12 +37,17 @@ export function parseCSS (
     const style = (objStyles[selector] = objStyles[selector] || {})
 
     rule.walkDecls((decl: CSSDecl): void => {
+      const match = /xxx(\d+)xxx/gm.exec(decl.value)
+      if (match) {
+        vars++
+      }
+
       style[camelizeStyleName(decl.prop)] = decl.value
     })
   })
 
   root.walkAtRules((atRule, i) => {
-    const {name, params} = atRule
+    const { name, params } = atRule
     const key = `@${name} ${params}`.trim()
     const atRuleStyle = (objStyles[key] = objStyles[key] || {})
 
@@ -115,10 +57,15 @@ export function parseCSS (
       }
 
       // console.log(JSON.stringify(rule, null, 2))
-      const {selector} = rule
+      const { selector } = rule
       const style = (atRuleStyle[selector] = atRuleStyle[selector] || {})
 
       rule.walkDecls((decl: CSSDecl): void => {
+        const match = /xxx(\d+)xxx/gm.exec(decl.value)
+        if (match) {
+          vars++
+        }
+
         style[camelizeStyleName(decl.prop)] = decl.value
       })
     })
@@ -127,24 +74,7 @@ export function parseCSS (
   const prefixedObjStyles = prefixAll(objStyles)
 
   return {
-    rules: stringifyCSSRoot(root),
-    hasOtherMatch: vars !== options.matches,
-    hasVar:
-      (!!vars && vars !== composes) ||
-        !!(options.inlineMode && options.matches),
-    composes,
-    hasCssFunction,
-    objStyles,
-    prefixedObjStyles
+    styles: prefixedObjStyles,
+    isStaticBlock: vars === 0
   }
-}
-
-function stringifyCSSRoot (root) {
-  return root.nodes.map((node, i) => {
-    let str = ''
-    stringify(node, x => {
-      str += x
-    })
-    return str
-  })
 }
