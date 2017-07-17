@@ -7,12 +7,14 @@ import { CHANNEL } from './constants'
 
 export { flush, css, injectGlobal, fontFace, keyframes, hydrate, objStyle } from '../index'
 
-export default function (tag, vars, content) {
+export default function (tag, objs, vars, content) {
   if (!tag) {
     throw new Error(
       'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
     )
   }
+
+  const componentTag = tag.displayName || tag.name || 'Component'
 
   class Styled extends Component {
     state = {
@@ -48,7 +50,7 @@ export default function (tag, vars, content) {
         return v && typeof v === 'function' ? v.cls || v(mergedProps) : v
       }
 
-      const className = css(content(map(vars, getValue)))
+      const className = `${css(map(objs, getValue), map(vars, getValue), content)}`
 
       return h(
         tag,
@@ -71,9 +73,8 @@ export default function (tag, vars, content) {
     [CHANNEL]: PropTypes.object
   }
 
-  const name = typeof objs[0] === 'string' ? objs[0].split('-')[1] : ''
-  const componentTag = tag.displayName || tag.name || 'Component'
-  Styled.displayName = `styled(${componentTag}${name})`
-  Styled.cls = '.' + objs
+
+  Styled.displayName = `styled(${componentTag})`
+  Styled.cls = '.' + componentTag
   return Styled
 }

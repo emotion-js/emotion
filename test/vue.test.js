@@ -48,7 +48,7 @@ Vue.component('based-on-props-composes', basedOnPropsComposes)
 Vue.component('non-html-component', NonHtmlComponent)
 Vue.component('child-selector', ChildSelector)
 
-describe('vue styled', () => {
+describe.skip('vue styled', () => {
   test('basic', async () => {
     document.body.innerHTML = `
       <div id="app">

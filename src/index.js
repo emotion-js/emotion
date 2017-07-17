@@ -46,7 +46,7 @@ function _getRegistered (rule) {
 // The idea on how to merge object class names come from glamorous
 // 💄
 // https://github.com/paypal/glamorous/blob/master/src/get-glamor-classname.js
-function getGlamorStylesFromClassName (className) {
+function getEmotionStylesFromClassName (className) {
   const id = className.trim().slice('css-obj-'.length)
   if (sheet.registered[id]) {
     return sheet.registered[id].style
@@ -55,33 +55,52 @@ function getGlamorStylesFromClassName (className) {
   }
 }
 
-export function css (classes: any) {
-  if (!Array.isArray(classes)) {
-    classes = [classes]
-  }
-
+function buildStyles (objs) {
   let computedClassName = ''
   let objectStyles = []
-  forEach(classes, (cls): void => {
-    computedClassName && (computedClassName += ' ')
 
+  console.log(JSON.stringify(objs, null, 2))
+
+  // This needs to be moved into the core
+  forEach(objs, (cls): void => {
+    computedClassName && (computedClassName += ' ')
+    console.log('cls', cls)
     if (typeof cls === 'string') {
       if (cls.trim().indexOf('css-obj-') === 0) {
-        const glamorStylesFromClassName = getGlamorStylesFromClassName(cls)
-        objectStyles.push(glamorStylesFromClassName)
+        console.log('emotion style detected', cls)
+        const emotionStylesFromClassName = getEmotionStylesFromClassName(cls)
+        objectStyles.push(emotionStylesFromClassName)
       } else {
         computedClassName += cls
       }
+    } else if(Array.isArray(cls)) {
+      console.log('cls is an array')
     } else {
       objectStyles.push(cls)
     }
   })
 
-  if (objectStyles.length) {
-    computedClassName += ' ' + objStyle(...objectStyles).toString()
+  return { computedClassName, objectStyles }
+}
+
+export function css (objs: any, vars: Array<any>, content: () => Array<any>) {
+  if (!Array.isArray(objs)) {
+    objs = [objs]
   }
 
-  return computedClassName
+  let { computedClassName = '', objectStyles = [] } = buildStyles(objs)
+
+  if (content) {
+    objectStyles.push(content.apply(null, vars))
+  }
+
+  console.log('objectStyles', JSON.stringify(objectStyles, null, 2))
+
+  if (objectStyles.length) {
+    computedClassName += ' ' + objStyle.apply(null, objectStyles).toString()
+  }
+
+  return computedClassName.trim()
 }
 
 export function injectGlobal (src: string[]) {
@@ -110,20 +129,20 @@ export function hydrate (ids: string[]) {
 
 // 🍩
 // https://github.com/jxnblk/cxs/blob/master/src/monolithic/index.js
-type GlamorRule = { [string]: any }
+type EmotionRule = { [string]: any }
 
-type CSSRuleList = Array<GlamorRule>
+type CSSRuleList = Array<EmotionRule>
 
-type GlamorClassName = {
+type EmotionClassName = {
   [string]: any
 }
 
-let cachedCss: (rules: CSSRuleList) => GlamorClassName = typeof WeakMap !==
+let cachedCss: (rules: CSSRuleList) => EmotionClassName = typeof WeakMap !==
   'undefined'
   ? multiIndexCache(_css)
   : _css
 
-export function objStyle (...rules: CSSRuleList): GlamorClassName {
+export function objStyle (...rules: CSSRuleList): EmotionClassName {
   rules = clean(rules)
   if (!rules) {
     return nullrule
@@ -155,7 +174,7 @@ function simple (str) {
 }
 
 // of shape { 'data-css-<id>': '' }
-export function isLikeRule (rule: GlamorRule) {
+export function isLikeRule (rule: EmotionRule) {
   let keys = Object.keys(rule).filter(x => x !== 'toString')
   if (keys.length !== 1) {
     return false
@@ -164,7 +183,7 @@ export function isLikeRule (rule: GlamorRule) {
 }
 
 // extracts id from a { 'css-<id>': ''} like object
-export function idFor (rule: GlamorRule) {
+export function idFor (rule: EmotionRule) {
   let keys = Object.keys(rule).filter(x => x !== 'toString')
   if (keys.length !== 1) throw new Error('not a rule')
   let regex = /css\-obj\-([a-zA-Z0-9]+)/
@@ -410,7 +429,7 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
   })
 }
 
-let nullrule: GlamorClassName = {
+let nullrule: EmotionClassName = {
   // 'data-css-nil': ''
 }
 
