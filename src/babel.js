@@ -110,10 +110,7 @@ function parseDynamicValues (styles, t, options) {
 
 export function buildStyledCallExpression (identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
-  const { styles, isStaticBlock } = inline(
-    path.node.quasi,
-    identifierName,
-  )
+  const { styles, isStaticBlock } = inline(path.node.quasi, identifierName)
 
   console.log(JSON.stringify(styles, null, 2))
 
@@ -181,9 +178,13 @@ export function replaceCssWithCallExpression (path, identifier, state, t) {
       // }
     }
 
-    path.replaceWith(t.callExpression(identifier, [
-      t.arrayExpression([createAstObj(styles, path.node.quasi.expressions, t)])
-    ]))
+    path.replaceWith(
+      t.callExpression(identifier, [
+        t.arrayExpression([
+          createAstObj(styles, path.node.quasi.expressions, t)
+        ])
+      ])
+    )
   } catch (e) {
     throw path.buildCodeFrameError(e)
   }
@@ -335,7 +336,11 @@ function objKeyToAst (key, expressions, t): { computed: boolean, ast: any } {
     }
   }
 
-  return { computed: false, ast: t.stringLiteral(key) }
+  return {
+    computed: false,
+    composes: key === 'composes',
+    ast: t.stringLiteral(key)
+  }
 }
 
 function objValueToAst (value, expressions, t) {
@@ -355,11 +360,11 @@ function objValueToAst (value, expressions, t) {
 function createAstObj (obj, expressions, t) {
   // console.log(JSON.stringify(obj, null, 2))
   const props = []
+
   for (let key in obj) {
     const rawValue = obj[key]
     const { computed, ast: keyAST } = objKeyToAst(key, expressions, t)
     const valueAST = objValueToAst(rawValue, expressions, t)
-
     props.push(t.objectProperty(keyAST, valueAST, computed))
   }
 
