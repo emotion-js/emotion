@@ -9,7 +9,6 @@ import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
 import createAttrExpression from './attrs'
-import * as babylon from 'babylon'
 
 function joinExpressionsWithSpaces (expressions, t) {
   const quasis = [t.templateElement({ cooked: '', raw: '' }, true)]
@@ -110,13 +109,21 @@ function parseDynamicValues (styles, t, options) {
 
 export function buildStyledCallExpression (identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
-  const { styles, isStaticBlock } = inline(path.node.quasi, identifierName)
+  const { styles, isStaticBlock, composesCount } = inline(path.node.quasi, identifierName)
 
-  console.log(JSON.stringify(styles, null, 2))
+  // console.log(JSON.stringify(styles, null, 2))
+
+  const inputClasses = []
+
+  for (var i = 0; i < composesCount; i++) {
+    inputClasses.push(path.node.quasi.expressions.shift())
+  }
+
+  inputClasses.push(createAstObj(styles, path.node.quasi.expressions, t))
 
   const args = [
     tag,
-    t.arrayExpression([createAstObj(styles, path.node.quasi.expressions, t)])
+    t.arrayExpression(inputClasses)
   ]
 
   if (state.extractStatic && isStaticBlock) {
@@ -304,26 +311,31 @@ function getDynamicMatches (str) {
 }
 
 function replacePlaceholdersWithExpressions (matches, str, expressions, t) {
-  const parts = []
-
+  const templateElements = []
+  const templateExpressions = []
+  let cursor = 0
+  let hasSingleInterpolation = false
   forEach(matches, ({ value, p1, index }, i) => {
-    if (i === 0 && index !== 0) {
-      parts.push(t.stringLiteral(str.substring(0, i)))
+    const preMatch = str.substring(cursor, index)
+    cursor = cursor + preMatch.length + value.length
+    if (preMatch) {
+      templateElements.push(t.templateElement({ raw: preMatch, cooked: preMatch }))
+    } else if (i === 0) {
+      templateElements.push(t.templateElement({ raw: '', cooked: '' }))
+    }
+    if (value === str) {
+      hasSingleInterpolation = true
     }
 
-    parts.push(expressions[parseInt(p1, 10)])
-    if (
-      i === matches.length - 1 &&
-      str.substring(index + value.length).length
-    ) {
-      parts.push(t.stringLiteral(str.substring(index + value.length)))
+    templateExpressions.push(t.identifier(`x${p1}`))
+    if (i === matches.length - 1) {
+      templateElements.push(t.templateElement({ raw: str.substring(index + value.length), cooked: str.substring(index + value.length) }, true))
     }
   })
-
-  return parts.reduce((expr, part, i) => {
-    if (i === 0) return part
-    return t.binaryExpression('+', expr, part)
-  })
+  if (hasSingleInterpolation) {
+    return templateExpressions[0]
+  }
+  return t.templateLiteral(templateElements, templateExpressions)
 }
 
 function objKeyToAst (key, expressions, t): { computed: boolean, ast: any } {
@@ -351,7 +363,7 @@ function objValueToAst (value, expressions, t) {
     }
     return t.stringLiteral(value)
   } else if (Array.isArray(value)) {
-    return t.arrayExpression(value.map(v => objValueToAst(v, t)))
+    return t.arrayExpression(value.map(v => objValueToAst(v, expressions, t)))
   }
 
   return createAstObj(value, expressions, t)

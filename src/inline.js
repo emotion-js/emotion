@@ -26,7 +26,7 @@ function getName (
 }
 
 function createRawStringFromQuasi (
-  strs: string[],
+  strs: string[]
 ): { src: string, dynamicValueCount: number } {
   let dynamicValueCount = 0
   const src = strs
@@ -45,7 +45,7 @@ function createRawStringFromQuasi (
 
 export function inline (
   quasi: any,
-  identifierName?: string,
+  identifierName?: string
 ): {
   isStaticBlock: boolean,
   styles: { [string]: any },
@@ -53,7 +53,6 @@ export function inline (
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let { src } = createRawStringFromQuasi(strs)
-  console.log(src)
   return parseCSS(src)
 }
 

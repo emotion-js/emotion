@@ -48,6 +48,24 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test.only('interpolation in different places', () => {
+      const basic = `
+      const H1 = styled.h1\`
+        font-size: \${fontSize + 'px'};
+        height: 20px;
+        transform: translateX(\${(props) => props.translateX});
+        height1: \${something}wow;
+        width: w\${something}ow;
+        transform: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});        
+        transform1: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
+        transform2: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX};      
+        \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('media query', () => {
       const basic =
         'const H1 = styled.h1`@media print {' +

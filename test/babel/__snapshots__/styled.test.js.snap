@@ -128,6 +128,21 @@ exports[`babel styled component inline function call 1`] = `
 });"
 `;
 
+exports[`babel styled component inline interpolation in different places 1`] = `
+"
+const H1 = styled('h1', [{
+  'fontSize': x0,
+  'height': '20px',
+  'WebkitTransform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
+  'msTransform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
+  'transform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
+  'height1': \`\${x2}wow\`,
+  'width': \`w\${x3}ow\`,
+  'transform1': \`translateX(\${x6}) translateY(\${x7})\`,
+  'transform2': \`translateX(\${x8}) translateY(\${x9}\`
+}]);"
+`;
+
 exports[`babel styled component inline lots of attrs with interpolated values 1`] = `
 "styled('input', ['css-1kdt7pt'], [marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, displayProp, function getProp(props) {
        return props[marginProp];
@@ -230,9 +245,9 @@ css([\\"css-1cppx8p\\"], [], function createEmotionRules() {
 `;
 
 exports[`babel styled component inline no dynamic 1`] = `
-"styled(\\"h1\\", [\\"css-14ksm7b\\"], [], function createEmotionStyledRules() {
-  return [\`.css-14ksm7b { color: blue; }\`];
-});"
+"styled(\\"h1\\", [{
+  \\"color\\": \\"blue\\"
+}]);"
 `;
 
 exports[`babel styled component inline no use 1`] = `"\\"h1\\";"`;

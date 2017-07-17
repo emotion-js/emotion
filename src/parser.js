@@ -7,6 +7,7 @@ import postcssNested from 'styled-components/lib/vendor/postcss-nested'
 import stringify from 'styled-components/lib/vendor/postcss/stringify'
 import autoprefix from 'styled-components/lib/utils/autoprefix'
 import { objStyle } from './index'
+import postcssJs from 'postcss-js'
 
 type CSSDecl = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -27,51 +28,6 @@ export function parseCSS (
   let vars = 0
   let composes: number = 0
 
-  const objStyles = {}
-
-  root.walkRules((rule, i) => {
-    if (rule.nodes.length === 0) {
-      rule.remove()
-    }
-
-    const { selector } = rule
-    const style = (objStyles[selector] = objStyles[selector] || {})
-
-    rule.walkDecls((decl: CSSDecl): void => {
-      const match = /xxx(\d+)xxx/gm.exec(decl.value)
-      if (match) {
-        vars++
-      }
-
-      style[camelizeStyleName(decl.prop)] = decl.value
-    })
-  })
-
-  root.walkAtRules((atRule, i) => {
-    const { name, params } = atRule
-    const key = `@${name} ${params}`.trim()
-    const atRuleStyle = (objStyles[key] = objStyles[key] || {})
-
-    atRule.walkRules((rule, i) => {
-      if (rule.nodes.length === 0) {
-        rule.remove()
-      }
-
-      // console.log(JSON.stringify(rule, null, 2))
-      const { selector } = rule
-      const style = (atRuleStyle[selector] = atRuleStyle[selector] || {})
-
-      rule.walkDecls((decl: CSSDecl): void => {
-        const match = /xxx(\d+)xxx/gm.exec(decl.value)
-        if (match) {
-          vars++
-        }
-
-        style[camelizeStyleName(decl.prop)] = decl.value
-      })
-    })
-  })
-
   root.walkDecls((decl: CSSDecl): void => {
     if (decl.prop === 'composes') {
       if (!/xxx(\d+)xxx/gm.exec(decl.value)) {
@@ -88,11 +44,12 @@ export function parseCSS (
     }
   })
 
-  const prefixedObjStyles = prefixAll(objStyles)
-  console.log(prefixedObjStyles)
+  autoprefix(root)
+
+  const styles = postcssJs.objectify(root)
 
   return {
-    styles: prefixedObjStyles,
+    styles,
     isStaticBlock: vars === 0,
     composesCount: composes
   }
