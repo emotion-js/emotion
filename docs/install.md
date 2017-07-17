@@ -17,6 +17,24 @@ npm install -S emotion
 }
 ```
 
+**webpack.config.js**
+
+If you keep babel-loader configuration in your Webpack config, add Emotion as the first item in the plugins section:
+
+```js
+use: [
+  {
+    loader: "babel-loader",
+    options: {
+      plugins: [
+        "emotion/babel",
+        ...
+      ]
+    }
+  }
+]
+```
+
 ### Extract Mode
 
 The default settings enable css extraction.
@@ -34,6 +52,24 @@ Inline mode does **not** extract css into external files.
     ["emotion/babel", { inline: true }]
   ]
 }
+```
+
+**webpack.config.js**
+
+If you keep babel-loader configuration in your Webpack config, add Emotion as the first item in the plugins section:
+
+```js
+use: [
+  {
+    loader: "babel-loader",
+    options: {
+      plugins: [
+        ["emotion/babel", {inline: true}],
+        ...
+      ]
+    }
+  }
+]
 ```
 
 **Browser Support** anything React supports
