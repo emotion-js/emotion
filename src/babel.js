@@ -442,13 +442,20 @@ function createAstObj (obj, expressions, composesCount, t) {
 
   for (let key in obj) {
     const rawValue = obj[key]
-    const { computed, ast: keyAST } = objKeyToAst(
+    const { computed, composes, ast: keyAST } = objKeyToAst(
       key,
       expressions,
       composesCount,
       t
     )
-    const valueAST = objValueToAst(rawValue, expressions, composesCount, t)
+
+    let valueAST
+    if (composes) {
+      valueAST = t.arrayExpression(expressions.slice(0, composesCount))
+    } else {
+      valueAST = objValueToAst(rawValue, expressions, composesCount, t)
+    }
+
     props.push(t.objectProperty(keyAST, valueAST, computed))
   }
   // console.log(props)

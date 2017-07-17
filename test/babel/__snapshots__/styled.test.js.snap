@@ -307,7 +307,7 @@ const H1 = styled(\\"h1\\", [{
   padding: \\"10px\\"
 }, props => ({
   display: props.display
-})], []);"
+})]);"
 `;
 
 exports[`babel styled component inline styled. objects prefixed 1`] = `
@@ -325,5 +325,5 @@ const H1 = styled('h1', [{
   }
 }, props => ({
   display: props.display
-})], []);"
+})]);"
 `;

@@ -11,6 +11,7 @@
     "react"
   ],
   "plugins": [
-    ['emotion/babel', { inline: true }]
+    ['emotion/babel'],
+    "transform-decorators-legacy"
   ]
 }

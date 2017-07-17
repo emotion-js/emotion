@@ -51,7 +51,7 @@ function getEmotionStylesFromClassName (className) {
   if (sheet.registered[id]) {
     return sheet.registered[id].style
   } else {
-    return null
+    return []
   }
 }
 
@@ -59,7 +59,7 @@ function buildStyles (objs) {
   let computedClassName = ''
   let objectStyles = []
 
-  console.log(JSON.stringify(objs, null, 2))
+  console.log('objs', JSON.stringify(objs, null, 2))
 
   // This needs to be moved into the core
   forEach(objs, (cls): void => {
@@ -69,14 +69,15 @@ function buildStyles (objs) {
       if (cls.trim().indexOf('css-obj-') === 0) {
         console.log('emotion style detected', cls)
         const emotionStylesFromClassName = getEmotionStylesFromClassName(cls)
+        console.log('emotionStylesFromClassName', emotionStylesFromClassName)
         objectStyles.push(emotionStylesFromClassName)
       } else {
         computedClassName += cls
       }
-    } else if(Array.isArray(cls)) {
-      console.log('cls is an array')
     } else {
-      objectStyles.push(cls)
+      objectStyles.push(
+        cls
+      )
     }
   })
 
@@ -361,9 +362,15 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
     }
     _src = clean(_src)
     if (_src && _src.composes) {
+      console.log('found composes')
       build(dest, { selector, mq, supp, src: _src.composes })
     }
     Object.keys(_src || {}).forEach(key => {
+      if (key.indexOf('css') === 0) {
+        console.log('fuck')
+        key = '.' + key
+      }
+
       if (isSelector(key)) {
         if (key === '::placeholder') {
           build(dest, {
@@ -408,6 +415,7 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
         })
       } else if (key === 'composes') {
         // ignore, we already dealth with it
+        console.log('key === composes')
       } else {
         let _dest = dest
         if (supp) {
