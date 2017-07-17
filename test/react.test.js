@@ -25,7 +25,7 @@ describe('styled', () => {
     const H1 = styled.h1`
       color: blue;
       
-      font-size: ${fontSize}px;
+      font-size: ${fontSize};
     `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()

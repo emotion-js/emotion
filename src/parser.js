@@ -1,4 +1,5 @@
 // @flow
+import { t } from 'babel-types'
 import camelizeStyleName from 'fbjs/lib/camelizeStyleName'
 import prefixAll from 'inline-style-prefixer/static'
 import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
@@ -18,10 +19,11 @@ export function parseCSS (
   css: string
 ): {
   isStaticBlock: boolean,
-  styles: { [string]: any }
+  styles: { [string]: any },
+  composesCount: number
 } {
   // todo - handle errors
-  const root = parse(css)
+  let root = parse(css)
   let vars = 0
   let composes: number = 0
 
@@ -32,7 +34,6 @@ export function parseCSS (
       rule.remove()
     }
 
-    // console.log(JSON.stringify(rule, null, 2))
     const { selector } = rule
     const style = (objStyles[selector] = objStyles[selector] || {})
 
@@ -71,10 +72,28 @@ export function parseCSS (
     })
   })
 
+  root.walkDecls((decl: CSSDecl): void => {
+    if (decl.prop === 'composes') {
+      if (!/xxx(\d+)xxx/gm.exec(decl.value)) {
+        throw new Error('composes must be a interpolation')
+      }
+      if (decl.parent.nodes[0] !== decl) {
+        throw new Error('composes must be the first rule')
+      }
+      const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
+      const numOfComposes: number = !composeMatches ? 0 : composeMatches.length
+      composes += numOfComposes
+      vars += numOfComposes
+      decl.remove()
+    }
+  })
+
   const prefixedObjStyles = prefixAll(objStyles)
+  console.log(prefixedObjStyles)
 
   return {
     styles: prefixedObjStyles,
-    isStaticBlock: vars === 0
+    isStaticBlock: vars === 0,
+    composesCount: composes
   }
 }

@@ -257,6 +257,12 @@ exports[`styled no dynamic 1`] = `
 </h1>
 `;
 
+exports[`styled object composition 1`] = `
+<img
+  className=" css-nil"
+/>
+`;
+
 exports[`styled objects 1`] = `
 .css-1viuxsa {
   padding: 10px;

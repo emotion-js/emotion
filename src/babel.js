@@ -1,8 +1,10 @@
+// @flow weak
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
 import postcssJs from 'postcss-js'
 import autoprefixer from 'autoprefixer'
+import forEach from '@arr/foreach'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
@@ -108,24 +110,20 @@ function parseDynamicValues (styles, t, options) {
 
 export function buildStyledCallExpression (identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
-  const {
-    styles,
-    isStaticBlock
-  } = inline(path.node.quasi, identifierName, 'css', state.inline)
+  const { styles, isStaticBlock } = inline(
+    path.node.quasi,
+    identifierName,
+  )
 
-  // console.log(JSON.stringify(styles, null, 2))
+  console.log(JSON.stringify(styles, null, 2))
 
-
-  const vars = path.node.quasi.expressions
-
-  const dynamicValues = parseDynamicValues(rules, t, { vars })
   const args = [
     tag,
-    t.arrayExpression([createAstObj(styles, t)]),
-    t.arrayExpression(vars)
+    t.arrayExpression([createAstObj(styles, path.node.quasi.expressions, t)])
   ]
-  if (!hasOtherMatch && !state.inline && !hasCssFunction) {
-    state.insertStaticRules(rules)
+
+  if (state.extractStatic && isStaticBlock) {
+    // state.insertStaticRules(rules)
   }
 
   return t.callExpression(identifier, args)
@@ -171,34 +169,21 @@ export function replaceGlobalWithCallExpression (
 
 export function replaceCssWithCallExpression (path, identifier, state, t) {
   try {
-    const {
-      hash,
-      name,
-      rules,
-      hasVar,
-      composes,
-      hasOtherMatch,
-      styles
-    } = inline(path.node.quasi, getIdentifierName(path, t), 'css', state.inline)
-    const inputClasses = [t.stringLiteral(`${name}-${hash}`)]
-    for (var i = 0; i < composes; i++) {
-      inputClasses.push(path.node.quasi.expressions.shift())
+    const { styles, isStaticBlock } = inline(
+      path.node.quasi,
+      getIdentifierName(path, t)
+    )
+
+    if (state.extractStatic && isStaticBlock) {
+      // state.insertStaticRules(rules)
+      // if (!hasVar) {
+      //   return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
+      // }
     }
-    const args = [
-      t.arrayExpression([createAstObj(styles, t)]),
-      t.arrayExpression(path.node.quasi.expressions)
-    ]
-    if (!hasOtherMatch && !state.inline) {
-      state.insertStaticRules(rules)
-      if (!hasVar) {
-        return path.replaceWith(joinExpressionsWithSpaces(inputClasses, t))
-      }
-    } else if (rules.length !== 0) {
-      const expressions = path.node.quasi.expressions.map((x, i) =>
-        t.identifier(`x${i}`)
-      )
-    }
-    path.replaceWith(t.callExpression(identifier, args))
+
+    path.replaceWith(t.callExpression(identifier, [
+      t.arrayExpression([createAstObj(styles, path.node.quasi.expressions, t)])
+    ]))
   } catch (e) {
     throw path.buildCodeFrameError(e)
   }
@@ -303,34 +288,79 @@ function prefixAst (args, t) {
   return args
 }
 
-function objValueToAst (value, t) {
+function getDynamicMatches (str) {
+  const re = /xxx(\d+)xxx/gm
+  let match
+  const matches = []
+  while ((match = re.exec(str)) !== null) {
+    matches.push({
+      value: match[0],
+      p1: match[1],
+      index: match.index
+    })
+  }
+  return matches
+}
+
+function replacePlaceholdersWithExpressions (matches, str, expressions, t) {
+  const parts = []
+
+  forEach(matches, ({ value, p1, index }, i) => {
+    if (i === 0 && index !== 0) {
+      parts.push(t.stringLiteral(str.substring(0, i)))
+    }
+
+    parts.push(expressions[parseInt(p1, 10)])
+    if (
+      i === matches.length - 1 &&
+      str.substring(index + value.length).length
+    ) {
+      parts.push(t.stringLiteral(str.substring(index + value.length)))
+    }
+  })
+
+  return parts.reduce((expr, part, i) => {
+    if (i === 0) return part
+    return t.binaryExpression('+', expr, part)
+  })
+}
+
+function objKeyToAst (key, expressions, t): { computed: boolean, ast: any } {
+  const matches = getDynamicMatches(key)
+
+  if (matches.length) {
+    return {
+      computed: true,
+      ast: replacePlaceholdersWithExpressions(matches, key, expressions, t)
+    }
+  }
+
+  return { computed: false, ast: t.stringLiteral(key) }
+}
+
+function objValueToAst (value, expressions, t) {
   if (typeof value === 'string') {
+    const matches = getDynamicMatches(value)
+    if (matches.length) {
+      return replacePlaceholdersWithExpressions(matches, value, expressions, t)
+    }
     return t.stringLiteral(value)
   } else if (Array.isArray(value)) {
     return t.arrayExpression(value.map(v => objValueToAst(v, t)))
   }
 
-  return createAstObj(value, t)
+  return createAstObj(value, expressions, t)
 }
 
-function createAstObj (obj, t) {
-  console.log(JSON.stringify(obj, null, 2))
+function createAstObj (obj, expressions, t) {
+  // console.log(JSON.stringify(obj, null, 2))
   const props = []
-  const computed = false,
-    shorthand = false,
-    decorators = []
   for (let key in obj) {
     const rawValue = obj[key]
-    let computedValue = objValueToAst(rawValue, t)
-    props.push(
-      t.objectProperty(
-        t.stringLiteral(key),
-        computedValue,
-        computed,
-        shorthand,
-        decorators
-      )
-    )
+    const { computed, ast: keyAST } = objKeyToAst(key, expressions, t)
+    const valueAST = objValueToAst(rawValue, expressions, t)
+
+    props.push(t.objectProperty(keyAST, valueAST, computed))
   }
 
   return t.objectExpression(props)
@@ -349,7 +379,13 @@ export default function (babel) {
         enter (path, state) {
           state.inline =
             path.hub.file.opts.filename === 'unknown' || state.opts.inline
+
+          state.extractStatic =
+            path.hub.file.opts.filename !== 'unknown' ||
+            state.opts.extractStatic
+
           state.staticRules = []
+
           state.insertStaticRules = function (staticRules) {
             state.staticRules.push(...staticRules)
           }

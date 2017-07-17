@@ -25,10 +25,8 @@ function getName (
   return parts.join('-')
 }
 
-function createSrc (
+function createRawStringFromQuasi (
   strs: string[],
-  name: string,
-  hash: string
 ): { src: string, dynamicValueCount: number } {
   let dynamicValueCount = 0
   const src = strs
@@ -48,34 +46,15 @@ function createSrc (
 export function inline (
   quasi: any,
   identifierName?: string,
-  prefix: string,
-  inlineMode: boolean
 ): {
   isStaticBlock: boolean,
-  styles: { [string]: any }
+  styles: { [string]: any },
+  composesCount: number
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  let hash = hashArray([...strs]) // todo - add current filename?
-  let name = getName(
-    extractNameFromProperty(strs.join('xxx')),
-    identifierName,
-    prefix
-  )
-  let { src, dynamicValueCount } = createSrc(strs, name, hash)
-  let {
-    styles,
-    isStaticBlock
-  } = parseCSS(src)
-
-  console.log('styles', JSON.stringify(styles, null, 2))
-  console.log('isStaticBlock', isStaticBlock)
-
-  return {
-    hash,
-    name,
-    isStaticBlock,
-    styles
-  }
+  let { src } = createRawStringFromQuasi(strs)
+  console.log(src)
+  return parseCSS(src)
 }
 
 export function keyframes (
@@ -95,14 +74,8 @@ export function keyframes (
     identifierName,
     prefix
   )
-  const { src, dynamicValueCount } = createSrc(strs, name, hash)
-  let { rules, hasVar, hasOtherMatch } = parseCSS(`{ ${src} }`, {
-    nested: false,
-    inlineMode: true,
-    dynamicValueCount,
-    name,
-    hash
-  })
+  const { src, dynamicValueCount } = createRawStringFromQuasi(strs, name, hash)
+  let { rules, hasVar, hasOtherMatch } = parseCSS(`{ ${src} }`)
   return { hash, name, rules, hasInterpolation: hasVar || hasOtherMatch }
 }
 
@@ -110,7 +83,7 @@ export function fontFace (
   quasi: any
 ): { rules: string[], hasInterpolation: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  const { src, dynamicValueCount } = createSrc(strs, 'name', 'hash')
+  const { src, dynamicValueCount } = createRawStringFromQuasi(strs, 'name', 'hash')
   let { rules, hasVar, hasOtherMatch } = parseCSS(`@font-face {${src}}`, {
     dynamicValueCount: dynamicValueCount,
     inlineMode: true,
@@ -124,7 +97,7 @@ export function injectGlobal (
   quasi: any
 ): { rules: string[], hasInterpolation: boolean } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  const { src, dynamicValueCount } = createSrc(strs, 'name', 'hash')
+  const { src, dynamicValueCount } = createRawStringFromQuasi(strs, 'name', 'hash')
   let { rules, hasVar, hasOtherMatch } = parseCSS(src, {
     dynamicValueCount: dynamicValueCount,
     inlineMode: true,
