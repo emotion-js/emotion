@@ -2,8 +2,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { matcher, serializer } from '../../jest-utils'
-import { css } from '../../src/macro'
-import styled from '../../src/react/macro'
+import styled, { css } from '../../src/react/macro'
 import { ThemeProvider } from '../../src/react/theming'
 
 import { lighten, hiDPI, modularScale } from 'polished'

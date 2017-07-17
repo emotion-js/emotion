@@ -8,7 +8,7 @@ jest.mock('fs')
 fs.existsSync.mockReturnValue(true)
 
 describe('babel styled component', () => {
-  describe('inline', () => {
+  describe.only('inline', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
       const { code } = babel.transform(basic, {

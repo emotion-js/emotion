@@ -7,6 +7,7 @@ import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
 import createAttrExpression from './attrs'
+import * as babylon from 'babylon'
 
 function joinExpressionsWithSpaces (expressions, t) {
   const quasis = [t.templateElement({ cooked: '', raw: '' }, true)]

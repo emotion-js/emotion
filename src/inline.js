@@ -99,7 +99,7 @@ export function keyframes (
   let { rules, hasVar, hasOtherMatch } = parseCSS(`{ ${src} }`, {
     nested: false,
     inlineMode: true,
-    dynamicValueCount: dynamicValueCount,
+    dynamicValueCount,
     name,
     hash
   })
