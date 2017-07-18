@@ -262,7 +262,7 @@ let ruleCache = {}
 function toRule (spec) {
   register(spec)
   insert(spec)
-
+  console.log(spec)
   if (ruleCache[spec.id]) {
     return ruleCache[spec.id]
   }
@@ -353,11 +353,6 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
       build(dest, { selector, mq, supp, src: _src.composes })
     }
     Object.keys(_src || {}).forEach(key => {
-      // if (key.indexOf('css') === 0) {
-      //   console.log('fuck')
-      //   key = '.' + key
-      // }
-
       if (isSelector(key)) {
         if (key === '::placeholder') {
           build(dest, {
