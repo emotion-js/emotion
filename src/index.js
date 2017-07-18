@@ -47,7 +47,7 @@ function _getRegistered (rule) {
 // 💄
 // https://github.com/paypal/glamorous/blob/master/src/get-glamor-classname.js
 function getEmotionStylesFromClassName (className) {
-  const id = className.trim().slice('css-obj-'.length)
+  const id = className.trim().slice('css-'.length)
   if (sheet.registered[id]) {
     return sheet.registered[id].style
   } else {
@@ -59,22 +59,20 @@ function buildStyles (objs) {
   let computedClassName = ''
   let objectStyles = []
 
-  console.log('objs', JSON.stringify(objs, null, 2))
-
   // This needs to be moved into the core
   forEach(objs, (cls): void => {
     computedClassName && (computedClassName += ' ')
-    console.log('cls', cls)
     if (typeof cls === 'string') {
-      if (cls.trim().indexOf('css-obj-') === 0) {
-        console.log('emotion style detected', cls)
-        const emotionStylesFromClassName = getEmotionStylesFromClassName(cls)
-        console.log('emotionStylesFromClassName', emotionStylesFromClassName)
-        objectStyles.push(emotionStylesFromClassName)
+      if (cls.trim().indexOf('css-') === 0) {
+        objectStyles.push(getEmotionStylesFromClassName(cls))
       } else {
         computedClassName += cls
       }
     } else {
+      if (Array.isArray(cls)) {
+        console.log('cls is an array')
+      }
+      console.log('was a pure object')
       objectStyles.push(
         cls
       )
@@ -89,14 +87,7 @@ export function css (objs: any, vars: Array<any>, content: () => Array<any>) {
     objs = [objs]
   }
 
-  let { computedClassName = '', objectStyles = [] } = buildStyles(objs)
-
-  if (content) {
-    objectStyles.push(content.apply(null, vars))
-  }
-
-  console.log('objectStyles', JSON.stringify(objectStyles, null, 2))
-
+  let { computedClassName = '', objectStyles = [] } = buildStyles(content ? objs.concat(content.apply(null, vars)) : objs)
   if (objectStyles.length) {
     computedClassName += ' ' + objStyle.apply(null, objectStyles).toString()
   }
@@ -197,15 +188,15 @@ function selector (id: string, path: string = '') {
   if (!id) {
     return path.replace(/\&/g, '')
   }
-  if (!path) return `.css-obj-${id}`
+  if (!path) return `.css-${id}`
 
   let x = path
     .split(',')
     .map(
       x =>
         x.indexOf('&') >= 0
-          ? x.replace(/\&/gm, `.css-obj-${id}`)
-          : `.css-obj-${id}${x}`
+          ? x.replace(/\&/gm, `.css-${id}`)
+          : `.css-${id}${x}`
     )
     .join(',')
 
@@ -280,11 +271,11 @@ function toRule (spec) {
     return ruleCache[spec.id]
   }
 
-  let ret = { [`css-obj-${spec.id}`]: '' }
+  let ret = { [`css-${spec.id}`]: '' }
   Object.defineProperty(ret, 'toString', {
     enumerable: false,
     value () {
-      return 'css-obj-' + spec.id
+      return 'css-' + spec.id
     }
   })
   ruleCache[spec.id] = ret
@@ -366,10 +357,10 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
       build(dest, { selector, mq, supp, src: _src.composes })
     }
     Object.keys(_src || {}).forEach(key => {
-      if (key.indexOf('css') === 0) {
-        console.log('fuck')
-        key = '.' + key
-      }
+      // if (key.indexOf('css') === 0) {
+      //   console.log('fuck')
+      //   key = '.' + key
+      // }
 
       if (isSelector(key)) {
         if (key === '::placeholder') {

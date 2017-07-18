@@ -49,26 +49,6 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
-  test('attr', () => {
-    const H1 = styled.h1`
-      font-size: attr(fontSize);
-      margin: attr(margin rem, 4);
-      position: attr(position, absolute);
-    `
-
-    const Title = ({ title }) => {
-      return (
-        <H1 fontSize={48}>
-          {title}
-        </H1>
-      )
-    }
-
-    const tree = renderer.create(<Title />).toJSON()
-
-    expect(tree).toMatchSnapshotWithEmotion()
-  })
-
   test('call expression', () => {
     const fontSize = 20
     const H1 = styled('h1')`
@@ -170,7 +150,7 @@ describe('styled', () => {
     const cssA = {
       color: lighten(0.2, '#000'),
       'font-size': modularScale(1),
-      [hiDPI(1.5)]: {
+      [hiDPI(1.5).replace('\n', ' ').trim()]: {
         'font-size': modularScale(1.25)
       }
     }

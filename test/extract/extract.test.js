@@ -40,32 +40,6 @@ describe.skip('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
-  test('attr', () => {
-    const H1 = styled.h1`
-      font-size: attr(fontSize);
-      margin: attr(margin rem, 4);
-    `
-
-    const Title = ({ title }) => {
-      return (
-        <H1 fontSize={48}>
-          {title}
-        </H1>
-      )
-    }
-
-    const tree = renderer.create(<Title />).toJSON()
-
-    expect(tree).toMatchSnapshotWithEmotion()
-  })
-
-  test('another attr', () => {
-    const PlaygroundWrapper = styled('div')`
-      color: attr(color, #343a40);
-    `
-    expect(renderer.create(<PlaygroundWrapper />).toJSON()).toMatchSnapshotWithEmotion()
-  })
-
   test('call expression', () => {
     const fontSize = '20px'
     const H1 = styled('h1')`

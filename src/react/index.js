@@ -67,7 +67,7 @@ export default function (tag, objs, vars, content) {
       }
 
       const className = `${css(
-        map(objs.concat(mergedProps.className.split(' ')), getValue),
+        map(objs.concat(mergedProps.className ? mergedProps.className.split(' ') : []), getValue),
         map(vars, getValue),
         content
       )}`

@@ -14,8 +14,8 @@ const Main = styled.main`display: flex;`
 
 const Image = styled.img`
   border-radius: 50%;
-  height: attr(size px, 50)
-  width: attr(size px, 50)
+  height: 50px;
+  width: 50px;
   background-color: ${color}
 `
 

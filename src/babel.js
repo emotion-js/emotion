@@ -8,7 +8,6 @@ import forEach from '@arr/foreach'
 import { inline, keyframes, fontFace, injectGlobal } from './inline'
 import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
-import createAttrExpression from './attrs'
 
 function joinExpressionsWithSpaces (expressions, t) {
   const quasis = [t.templateElement({ cooked: '', raw: '' }, true)]

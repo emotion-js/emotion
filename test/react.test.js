@@ -24,7 +24,6 @@ describe('styled', () => {
     const fontSize = 20
     const H1 = styled.h1`
       color: blue;
-      
       font-size: ${fontSize};
     `
 
@@ -50,26 +49,6 @@ describe('styled', () => {
     `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
-
-    expect(tree).toMatchSnapshotWithEmotion()
-  })
-
-  test('attr', () => {
-    const H1 = styled.h1`
-      font-size: attr(fontSize);
-      margin: attr(margin rem, 4);
-      position: attr(position, absolute);
-    `
-
-    const Title = ({ title }) => {
-      return (
-        <H1 fontSize={48}>
-          {title}
-        </H1>
-      )
-    }
-
-    const tree = renderer.create(<Title />).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
@@ -191,6 +170,7 @@ describe('styled', () => {
   })
 
   test('composes', () => {
+    debugger;
     const fontSize = '20px'
 
     const cssA = css`
@@ -224,8 +204,8 @@ describe('styled', () => {
   test('composes with objects', () => {
     const cssA = {
       color: lighten(0.2, '#000'),
-      'fontSize': modularScale(1),
-      [hiDPI(1.5).trim()]: {
+      fontSize: modularScale(1),
+      [hiDPI(1.5).replace('\n', ' ').trim()]: {
         fontSize: modularScale(1.25)
       }
     }
