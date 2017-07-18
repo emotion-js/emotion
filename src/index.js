@@ -61,11 +61,11 @@ function buildStyles (objs) {
 
   // This needs to be moved into the core
   forEach(objs, (cls): void => {
-    computedClassName && (computedClassName += ' ')
     if (typeof cls === 'string') {
       if (cls.trim().indexOf('css-') === 0) {
         objectStyles.push(getEmotionStylesFromClassName(cls))
       } else {
+        computedClassName && (computedClassName += ' ')
         computedClassName += cls
       }
     } else {

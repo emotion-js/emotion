@@ -1,6 +1,7 @@
 import { Component, createElement as h } from 'react'
 import PropTypes from 'prop-types'
 import map from '@arr/map'
+import reduce from '@arr/reduce'
 import { css } from '../index'
 import { omit } from '../utils'
 import { CHANNEL } from './constants'
@@ -14,6 +15,12 @@ export {
   hydrate,
   objStyle
 } from '../index'
+
+class ComponentStyleSpec {
+  constructor (spec) {
+    this.spec = spec
+  }
+}
 
 export default function (tag, objs, vars, content) {
   if (!tag) {
@@ -48,7 +55,7 @@ export default function (tag, objs, vars, content) {
     }
 
     render () {
-      const { props, state } = this
+      const { props, state, context } = this
       const mergedProps = {
         ...props,
         theme: state.theme
@@ -57,13 +64,15 @@ export default function (tag, objs, vars, content) {
       const getValue = v => {
         if (v && typeof v === 'function') {
           if (v.__emotion_spec) {
-            return css(
+            const css2 = css(
               map(v.__emotion_spec.objs, getValue),
               map(v.__emotion_spec.vars, getValue),
               v.__emotion_spec.content
             )
+            console.log('computed style based on tag spec', css2)
+            return css2
           }
-          return v(mergedProps)
+          return v(mergedProps, context)
         }
 
         return v
@@ -72,24 +81,30 @@ export default function (tag, objs, vars, content) {
       let finalObjs = []
 
       if (tag.__emotion_spec) {
-        finalObjs = Array.prototype.concat.call(
+        Array.prototype.push.apply(
           finalObjs,
-          map(tag.__emotion_spec.objs, getValue),
-          tag.__emotion_spec.content(map(tag.__emotion_spec.vars, getValue))
+          reduce(
+            tag.__emotion_spec,
+            (accum, spec) => {
+              Array.prototype.push.apply(accum, spec.objs)
+              Array.prototype.push.apply(accum, spec.content(map(spec.vars, getValue)))
+              return accum
+            },
+            []
+          )
         )
       }
+
+      Array.prototype.push.apply(finalObjs, objs)
+
+      Array.prototype.push.apply(finalObjs, content(map(vars, getValue)))
 
       if (mergedProps.className) {
         Array.prototype.push.apply(finalObjs, mergedProps.className.split(' '))
       }
 
-      Array.prototype.push.apply(finalObjs, objs)
-
-      const className = css(
-        map(finalObjs, getValue),
-        map(vars, getValue),
-        content
-      )
+      console.log(finalObjs)
+      const className = css(map(finalObjs, getValue))
 
       return h(
         tag,
@@ -111,10 +126,13 @@ export default function (tag, objs, vars, content) {
   }
 
   Styled.displayName = `styled(${componentTag})`
-  Styled.__emotion_spec = {
+  const spec = {
     vars,
     content,
     objs
   }
+  Styled.__emotion_spec = tag.__emotion_spec
+    ? tag.__emotion_spec.concat(spec)
+    : [spec]
   return Styled
 }

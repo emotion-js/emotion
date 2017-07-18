@@ -33,6 +33,7 @@
     "@arr/filter.mutate": "^1.0.0",
     "@arr/foreach": "^1.0.0",
     "@arr/map": "^1.0.0",
+    "@arr/reduce": "^1.0.0",
     "autoprefixer": "^7.1.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "fbjs": "^0.8.12",
