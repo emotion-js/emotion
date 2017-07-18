@@ -146,19 +146,15 @@ const cls2 = css(['css-cls2-v9djpl', 'one-class', 'another-class', cls1], ['cent
 
 exports[`babel css inline css basic 1`] = `
 "
-css([\\"css-cu78iu\\"], [widthVar], function createEmotionRules(x0) {
-        return [\`.css-cu78iu { margin: 12px 48px;
-        color: #ffffff;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex: 1 0 auto;
-        -ms-flex: 1 0 auto;
-        flex: 1 0 auto;
-        color: blue;
-        width: \${x0}; }\`];
+css([], [widthVar], function createEmotionStyledRules(x0) {
+        return [{
+                \\"margin\\": \\"12px 48px\\",
+                \\"color\\": [\\"#ffffff\\", \\"blue\\"],
+                \\"display\\": [\\"-webkit-box\\", \\"-moz-box\\", \\"-ms-flexbox\\", \\"-webkit-flex\\", \\"flex\\"],
+                \\"flex\\": \\"1 0 auto\\",
+                \\"width\\": x0,
+                \\"WebkitFlex\\": \\"1 0 auto\\"
+        }];
 });"
 `;
 

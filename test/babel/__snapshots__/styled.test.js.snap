@@ -46,8 +46,10 @@ exports[`babel styled component extract no dynamic 2`] = `".css-14ksm7b { color:
 exports[`babel styled component extract no use 1`] = `"\\"h1\\";"`;
 
 exports[`babel styled component inline basic 1`] = `
-"const H1 = styled('h1', ['css-H1-1t8i2zo'], [fontSize + 'px'], function createEmotionStyledRules(x0) {
-  return [\`.css-H1-1t8i2zo { font-size: \${x0}; }\`];
+"const H1 = styled('h1', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
+  return [{
+    'fontSize': x0
+  }];
 });"
 `;
 
@@ -70,69 +72,82 @@ const H1 = styled('h1', [props => {
 `;
 
 exports[`babel styled component inline function call 1`] = `
-"styled(MyComponent, ['css-1t8i2zo'], [fontSize + 'px'], function createEmotionStyledRules(x0) {
-  return [\`.css-1t8i2zo { font-size: \${x0}; }\`];
+"styled(MyComponent, [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
+  return [{
+    'fontSize': x0
+  }];
 });"
 `;
 
 exports[`babel styled component inline interpolation in different places 1`] = `
 "
-const H1 = styled('h1', [{
-  'fontSize': x0,
-  'height': '20px',
-  'WebkitTransform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
-  'msTransform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
-  'transform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
-  'height1': \`\${x2}wow\`,
-  'width': \`w\${x3}ow\`,
-  'transform1': \`translateX(\${x6}) translateY(\${x7})\`,
-  'transform2': \`translateX(\${x8}) translateY(\${x9}\`
-}]);"
+const H1 = styled('h1', [], [fontSize + 'px', props => props.translateX, something, something, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9) {
+  return [{
+    'fontSize': x0,
+    'height': '20px',
+    'transform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
+    'height1': \`\${x2}wow\`,
+    'width': \`w\${x3}ow\`,
+    'transform1': \`translateX(\${x6}) translateY(\${x7})\`,
+    'transform2': \`translateX(\${x8}) translateY(\${x9}\`
+  }];
+});"
 `;
 
 exports[`babel styled component inline media query 1`] = `
-"const H1 = styled(\\"h1\\", [\\"css-H1-162s3sk\\"], [], function createEmotionStyledRules() {
-  return [\`@media print {
-    .css-H1-162s3sk body {
-        font-size: 10pt
+"const H1 = styled(\\"h1\\", [], [], function createEmotionStyledRules() {
+  return [{
+    \\"@media print\\": {
+      \\"fontSize\\": \\"10pt\\"
+    },
+    \\"@media screen\\": {
+      \\".child-selector\\": {
+        \\"fontSize\\": \\"13px\\"
+      }
+    },
+    \\"@media screen, print\\": {
+      \\"&:hover + &\\": {
+        \\"lineHeight\\": \\"1.2\\"
+      }
+    },
+    \\"@media only screen   and (min-device-width: 320px)   and (max-device-width: 480px)  and (-webkit-min-device-pixel-ratio: 2)\\": {
+      \\".child-selector\\": {
+        \\"lineHeight\\": \\"1.4\\"
+      }
     }
-}\`, \`@media screen {
-    .css-H1-162s3sk body {
-        font-size: 13px
-    }
-}\`, \`@media screen, print {
-    .css-H1-162s3sk body {
-        line-height: 1.2
-    }
-}\`, \`@media only screen   and (min-device-width: 320px)   and (max-device-width: 480px)  and (-webkit-min-device-pixel-ratio: 2) {
-    .css-H1-162s3sk body {
-        line-height: 1.4
-    }
-}\`];
+  }];
 });"
 `;
 
 exports[`babel styled component inline name is correct with no identifier 1`] = `
 "
-css([\\"css-1cppx8p\\"], [], function createEmotionRules() {
-        return [\`.css-1cppx8p { margin: 12px 48px;
-        color: #ffffff; }\`];
+css([], [], function createEmotionStyledRules() {
+        return [{
+                \\"margin\\": \\"12px 48px\\",
+                \\"color\\": \\"#ffffff\\"
+        }];
 });"
 `;
 
 exports[`babel styled component inline no dynamic 1`] = `
-"styled(\\"h1\\", [{
-  \\"color\\": \\"blue\\"
-}]);"
+"styled(\\"h1\\", [], [], function createEmotionStyledRules() {
+  return [{
+    \\"color\\": \\"blue\\"
+  }];
+});"
 `;
 
-exports[`babel styled component inline no use 1`] = `"\\"h1\\";"`;
+exports[`babel styled component inline no use 1`] = `
+"styled(\\"h1\\", [], [], function createEmotionStyledRules() {
+  return [{}];
+});"
+`;
 
 exports[`babel styled component inline object composes with classes 1`] = `
 "
 const H1 = styled('h1', ['some-class', props => ({
   display: props.display
-})], []);"
+})]);"
 `;
 
 exports[`babel styled component inline objects based on props 1`] = `
@@ -141,14 +156,14 @@ const H1 = styled('h1', [{
   padding: '10px'
 }, props => ({
   display: props.display
-})], []);"
+})]);"
 `;
 
 exports[`babel styled component inline objects fn call 1`] = `
 "
 const H1 = styled('h1', [{
   display: ['-webkit-box', '-ms-flexbox', 'flex']
-}], []);"
+}]);"
 `;
 
 exports[`babel styled component inline objects prefixed 1`] = `
@@ -166,14 +181,21 @@ const H1 = styled('h1', [{
   }
 }, props => {
   padding: props.padding;
-}], []);"
+}]);"
 `;
 
 exports[`babel styled component inline styled component as selector 1`] = `
 "
-const SomeComponent = styled(\\"div\\", [\\"css-SomeComponent-1rk3iho\\"], []);
-styled(\\"h1\\", [\\"css-byjn67\\"], [SomeComponent], function createEmotionStyledRules(x0) {
-  return [\`.css-byjn67 { color: blue; }\`, \`.css-byjn67 \${x0} { color: green; }\`];
+const SomeComponent = styled(\\"div\\", [], [], function createEmotionStyledRules() {
+  return [{}];
+});
+styled(\\"h1\\", [], [SomeComponent], function createEmotionStyledRules(x0) {
+  return [{
+    \\"color\\": \\"blue\\",
+    [\`.\${x0}\`]: {
+      \\"color\\": \\"green\\"
+    }
+  }];
 });"
 `;
 
