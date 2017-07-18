@@ -21,7 +21,7 @@ export function flush () {
   sheet.inject()
 }
 
-// a simple cache to store generated rules
+// a simple cache to store generated obj styles
 let registered = (sheet.registered = {})
 
 function register (spec) {
@@ -69,10 +69,6 @@ function buildStyles (objs) {
         computedClassName += cls
       }
     } else {
-      if (Array.isArray(cls)) {
-        console.log('cls is an array')
-      }
-      console.log('was a pure object')
       objectStyles.push(
         cls
       )

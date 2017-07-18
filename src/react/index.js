@@ -16,6 +16,7 @@ export {
 } from '../index'
 
 export default function (tag, objs, vars, content) {
+  console.log(vars)
   if (!tag) {
     throw new Error(
       'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
@@ -55,22 +56,33 @@ export default function (tag, objs, vars, content) {
       }
 
       const getValue = v => {
-        return v && typeof v === 'function'
-          ? (v.__emotion_spec &&
-              css(
-                map(v.__emotion_spec.objs, getValue),
-                map(v.__emotion_spec.vars, getValue),
-                v.__emotion_spec.content
-              )) ||
-              v(mergedProps)
-          : v
+        if (v && typeof v === 'function') {
+          if (v.__emotion_spec) {
+            return css(
+              map(v.__emotion_spec.objs, getValue),
+              map(v.__emotion_spec.vars, getValue),
+              v.__emotion_spec.content
+            )
+          }
+          console.log(JSON.stringify(v, null, 2))
+          return v(mergedProps)
+        }
+
+        return v
       }
 
-      const className = `${css(
-        map(objs.concat(mergedProps.className ? mergedProps.className.split(' ') : []), getValue),
+      const className = css(
+        map(
+          mergedProps.className
+            ? objs.concat(mergedProps.className.split(' '))
+            : objs,
+          getValue
+        ),
         map(vars, getValue),
         content
-      )}`
+      )
+
+      console.log(className)
 
       return h(
         tag,

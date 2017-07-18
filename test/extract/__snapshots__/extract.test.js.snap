@@ -1,27 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`styled another attr 1`] = `
-.css-PlaygroundWrapper-1shjoz3-tra3vx {
-  color: #343a40;
-}
-
-<div
-  className="css-PlaygroundWrapper-1shjoz3-tra3vx css-PlaygroundWrapper-1shjoz3"
-/>
-`;
-
-exports[`styled attr 1`] = `
-.css-H1-nt9mdf-vddukf {
-  font-size: 48;
-  margin: 4rem;
-}
-
-<h1
-  className="css-H1-nt9mdf-vddukf css-H1-nt9mdf"
-  fontSize={48}
-/>
-`;
-
 exports[`styled basic render 1`] = `
 .vars-ch9j2 {
   --css-H1-1t8i2zo-0: 20px;

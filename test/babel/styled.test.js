@@ -120,6 +120,7 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
     test('objects based on props', () => {
       const basic = `
       const H1 = styled('h1')({ padding: 10 },props => ({
@@ -130,6 +131,7 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
     test('object composes with classes', () => {
       const basic = `
       const H1 = styled('h1')('some-class',props => ({
@@ -140,6 +142,7 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
     test('objects prefixed', () => {
       const basic = `
       const H1 = styled('h1')({
@@ -158,6 +161,7 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
     test('styled. objects', () => {
       const basic = `
       const H1 = styled.h1({ padding: 10 },props => ({
@@ -168,7 +172,8 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
-    test('styled. objects prefixed', () => {
+
+    test('styled objects prefixed', () => {
       const basic = `
       const H1 = styled.h1({
         borderRadius: '50%',
@@ -186,7 +191,25 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
+    test('composes based on props', () => {
+      const basic = `const cls1 = css\` width: 20px; \`
+      const H1 = styled.h1\`
+        composes: $\{props => {
+        return props.a ? cssA : cssB
+      }};
+        font-size: \${fontSize + 'px'};
+        height: 20px;
+        transform: translateX(\${(props) => props.translateX});
+      \``
+      const {code} = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
+
+
   describe('extract', () => {
     test('no use', () => {
       const basic = 'styled.h1``'

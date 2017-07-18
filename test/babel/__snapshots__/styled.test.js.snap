@@ -45,80 +45,27 @@ exports[`babel styled component extract no dynamic 2`] = `".css-14ksm7b { color:
 
 exports[`babel styled component extract no use 1`] = `"\\"h1\\";"`;
 
-exports[`babel styled component inline attr 1`] = `
-"styled('input', ['css-yj7w7r'], [props => props.height * props.scale, flex, function getMargin(props) {
-       return props.margin;
-}, function getWidth(props) {
-       return props.width;
-}], function createEmotionStyledRules(x0, x1, x2, x3) {
-       return [\`.css-yj7w7r { margin: \${x2};
-       color: #ffffff;
-       height: \${x0};
-       width: \${x3};
-       color: blue;
-       display: \${x1}; }\`];
-});"
-`;
-
-exports[`babel styled component inline attr kitchen sink 1`] = `
-"styled('input', ['css-y6q35k'], [alignItemsUnit, defaultValue, thing, function getMargin(props) {
-        return (props.margin ? props.margin : '16') + 'px';
-}, function getPadding(props) {
-        return (props.padding ? props.padding : '16') + 'em';
-}, function getFontSize(props) {
-        return (props.fontSize ? props.fontSize : '8') + 'ch';
-}, function getWidth(props) {
-        return (props.width ? props.width : '95') + '%';
-}, function getHeight(props) {
-        return (props.height ? props.height : '90') + 'vw';
-}, function getDisplay(props) {
-        return (props.display ? props.display : 'flex') + '';
-}, function getAlignItems(props) {
-        return (props.alignItems ? props.alignItems : 'fallback') + alignItemsUnit;
-}, function getThing(props) {
-        return (props.thing ? props.thing : defaultValue) + 'px';
-}, function getProp(props) {
-        return props[thing] + 'px';
-}], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11) {
-        return [\`.css-y6q35k { margin: \${x3};
-        padding: \${x4};
-        font-size: \${x5};
-        width: \${x6};
-        height: \${x7};
-        display: \${x8};
-        position: \${x9};
-        position: \${x10};
-        position: \${x11}; }\`];
-});"
-`;
-
-exports[`babel styled component inline attr with default value 1`] = `
-"styled('input', ['css-fj5c3o'], [function getMargin(props) {
-        return (props.margin ? props.margin : '16') + '';
-}], function createEmotionStyledRules(x0) {
-        return [\`.css-fj5c3o { margin: \${x0}; }\`];
-});"
-`;
-
-exports[`babel styled component inline attr with value type 1`] = `
-"styled('input', ['css-3jy6co'], [function getMargin(props) {
-        return props.margin + 'px';
-}], function createEmotionStyledRules(x0) {
-        return [\`.css-3jy6co { margin: \${x0}; }\`];
-});"
-`;
-
-exports[`babel styled component inline attr with value type and default value 1`] = `
-"styled('input', ['css-vb5gjx'], [function getMargin(props) {
-        return (props.margin ? props.margin : '16') + 'px';
-}], function createEmotionStyledRules(x0) {
-        return [\`.css-vb5gjx { margin: \${x0}; }\`];
-});"
-`;
-
 exports[`babel styled component inline basic 1`] = `
 "const H1 = styled('h1', ['css-H1-1t8i2zo'], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [\`.css-H1-1t8i2zo { font-size: \${x0}; }\`];
+});"
+`;
+
+exports[`babel styled component inline composes based on props 1`] = `
+"const cls1 = css([], [], function createEmotionStyledRules() {
+  return [{
+    'width': '20px'
+  }];
+});
+const H1 = styled('h1', [props => {
+  return props.a ? cssA : cssB;
+}], [fontSize + 'px', props => props.translateX], function createEmotionStyledRules(x0, x1) {
+  return [{
+    'fontSize': x0,
+    'height': '20px',
+    'transform': \`translateX(\${x1})\`,
+    'WebkitTransform': \`translateX(\${x1})\`
+  }];
 });"
 `;
 
@@ -141,77 +88,6 @@ const H1 = styled('h1', [{
   'transform1': \`translateX(\${x6}) translateY(\${x7})\`,
   'transform2': \`translateX(\${x8}) translateY(\${x9}\`
 }]);"
-`;
-
-exports[`babel styled component inline lots of attrs with interpolated values 1`] = `
-"styled('input', ['css-1kdt7pt'], [marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, marginProp, displayProp, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[marginProp];
-}, function getProp(props) {
-       return props[displayProp];
-}], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31, x32, x33, x34, x35) {
-       return [\`.css-1kdt7pt { margin: \${x18};
-       margin: \${x19};
-       margin: \${x20};
-       margin: \${x21};
-       margin: \${x22};
-       margin: \${x23};
-       margin: \${x24};
-       margin: \${x25};
-       margin: \${x26};
-       margin: \${x27};
-       margin: \${x28};
-       margin: \${x29};
-       margin: \${x30};
-       margin: \${x31};
-       margin: \${x32};
-       margin: \${x33};
-       margin: \${x34};
-       display: \${x35}; }\`];
-});"
-`;
-
-exports[`babel styled component inline match works on multiple 1`] = `
-"styled('input', ['css-1vvfgof'], [function getMargin(props) {
-        return (props.margin ? props.margin : '16') + 'px';
-}, function getPadding(props) {
-        return (props.padding ? props.padding : '16') + 'em';
-}], function createEmotionStyledRules(x0, x1) {
-        return [\`.css-1vvfgof { margin: \${x0};
-        color: blue;
-        padding: \${x1}; }\`];
-});"
 `;
 
 exports[`babel styled component inline media query 1`] = `
@@ -301,16 +177,7 @@ styled(\\"h1\\", [\\"css-byjn67\\"], [SomeComponent], function createEmotionStyl
 });"
 `;
 
-exports[`babel styled component inline styled. objects 1`] = `
-"
-const H1 = styled(\\"h1\\", [{
-  padding: \\"10px\\"
-}, props => ({
-  display: props.display
-})]);"
-`;
-
-exports[`babel styled component inline styled. objects prefixed 1`] = `
+exports[`babel styled component inline styled objects prefixed 1`] = `
 "
 const H1 = styled('h1', [{
   borderRadius: '50%',
@@ -323,6 +190,15 @@ const H1 = styled('h1', [{
     WebkitTransform: 'scale(1.2)',
     transform: 'scale(1.2)'
   }
+}, props => ({
+  display: props.display
+})]);"
+`;
+
+exports[`babel styled component inline styled. objects 1`] = `
+"
+const H1 = styled(\\"h1\\", [{
+  padding: \\"10px\\"
 }, props => ({
   display: props.display
 })]);"

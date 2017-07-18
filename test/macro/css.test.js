@@ -1,8 +1,14 @@
 /* eslint-env jest */
 import { css } from '../../src/macro'
 import { sheet } from '../../src'
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { matcher, serializer } from '../../jest-utils'
 
-describe('css', () => {
+expect.addSnapshotSerializer(serializer)
+expect.extend(matcher)
+
+describe('css macro', () => {
   test('handles more than 10 dynamic properties', () => {
     const cls1 = css`
       background: ${'white'};
@@ -18,10 +24,8 @@ describe('css', () => {
       border: ${'solid 1px red'};
     `
 
-    expect(cls1).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls1}/>).toJSON()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('composes with undefined values', () => {
@@ -29,10 +33,8 @@ describe('css', () => {
       composes: ${undefined};
       justifyContent: center;
     `
-    expect(cls2).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls2}/>).toJSON()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('composes', () => {
@@ -43,16 +45,14 @@ describe('css', () => {
       composes: ${cls1};
       justifyContent: center;
     `
-    expect(cls1).toMatchSnapshot()
-    expect(cls2).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls2}/>).toJSON()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('handles objects', () => {
-    const cls1 = css({ display: 'flex' })
-    expect(cls1).toMatchSnapshot()
+    const cls1 = css({display: 'flex'})
+    const tree = renderer.create(<div className={cls1}/>).toJSON()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('composes with objects', () => {
@@ -74,10 +74,7 @@ describe('css', () => {
       justifyContent: center;
     `
 
-    expect(cls1).toMatchSnapshot()
-    expect(cls2).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls2}/>).toJSON()
+    expect(tree).toMatchSnapshotWithEmotion()
   })
 })

@@ -116,7 +116,7 @@ export function replaceCssWithCallExpression (path, identifier, state, t) {
     const inputClasses = []
 
     for (var i = 0; i < composesCount; i++) {
-      inputClasses.push(path.node.quasi.expressions.shift())
+      inputClasses.push(path.node.quasi.expressions[i])
     }
 
     inputClasses.push(createAstObj(styles, false, composesCount, t))
@@ -137,11 +137,11 @@ export function replaceCssWithCallExpression (path, identifier, state, t) {
     }
     return path.replaceWith(
       t.callExpression(identifier, [
-        t.arrayExpression([]),
-        t.arrayExpression(path.node.quasi.expressions),
+        t.arrayExpression(path.node.quasi.expressions.slice(0, composesCount)),
+        t.arrayExpression(path.node.quasi.expressions.slice(composesCount)),
         t.functionExpression(
           t.identifier('createEmotionStyledRules'),
-          path.node.quasi.expressions.map((x, i) => t.identifier(`x${i}`)),
+          path.node.quasi.expressions.slice(composesCount).map((x, i) => t.identifier(`x${i}`)),
           t.blockStatement([t.returnStatement(t.arrayExpression(inputClasses))])
         )
       ])
@@ -161,20 +161,20 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   // console.log(JSON.stringify(styles, null, 2))
 
   const inputClasses = []
-
+  const composeValues = []
   for (var i = 0; i < composesCount; i++) {
-    inputClasses.push(path.node.quasi.expressions.shift())
+    composeValues.push(path.node.quasi.expressions[i])
   }
 
   inputClasses.push(createAstObj(styles, false, composesCount, t))
 
   const args = [
     tag,
-    t.arrayExpression([]),
-    t.arrayExpression(path.node.quasi.expressions),
+    t.arrayExpression(path.node.quasi.expressions.slice(0, composesCount)),
+    t.arrayExpression(path.node.quasi.expressions.slice(composesCount)),
     t.functionExpression(
       t.identifier('createEmotionStyledRules'),
-      path.node.quasi.expressions.map((x, i) => t.identifier(`x${i}`)),
+      path.node.quasi.expressions.slice(composesCount).map((x, i) => t.identifier(`x${i}`)),
       t.blockStatement([t.returnStatement(t.arrayExpression(inputClasses))])
     )
   ]

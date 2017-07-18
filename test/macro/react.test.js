@@ -55,9 +55,7 @@ describe('styled', () => {
       font-size: ${fontSize}px;
     `
 
-    const tree = renderer
-      .create(<H1 className={'legacy__class'}>hello world</H1>)
-      .toJSON()
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
@@ -70,9 +68,7 @@ describe('styled', () => {
 
     const H2 = styled(H1)`font-size: ${fontSize * 2 / 3}`
 
-    const tree = renderer
-      .create(<H2 className={'legacy__class'}>hello world</H2>)
-      .toJSON()
+    const tree = renderer.create(<H2>hello world</H2>).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
@@ -107,7 +103,7 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-        <H2 scale={2} className={'legacy__class'}>
+        <H2 scale={2}>
           hello world
         </H2>
       )
@@ -137,7 +133,7 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-        <H2 scale={2} className={'legacy__class'}>
+        <H2 scale={2}>
           hello world
         </H2>
       )
@@ -169,7 +165,7 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-        <H2 scale={2} className={'legacy__class'}>
+        <H2 scale={2}>
           hello world
         </H2>
       )
@@ -241,14 +237,12 @@ describe('styled', () => {
     `
 
     const squirtleBlueBackground = css`
-      name: squirtle-blue-bg;
       background-color: #7FC8D6;
     `
 
     const flexColumn = Component => {
       const NewComponent = styled(Component)`
-        composes: ${squirtleBlueBackground}
-        name: onyx;
+        composes: ${squirtleBlueBackground};
         background-color: '#343a40';
         flex-direction: column;
       `
@@ -275,7 +269,10 @@ describe('styled', () => {
     `
 
     const H1 = styled('h1')`
-      composes: ${props => (props.a ? cssA : cssB)}
+      composes: ${props => {
+        console.log(props)
+        return props.a ? cssA : cssB
+      }};
     `
 
     const tree = renderer

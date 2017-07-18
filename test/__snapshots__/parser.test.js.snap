@@ -2,82 +2,74 @@
 
 exports[`parser basic 1`] = `
 Object {
-  "composes": 0,
-  "hasCssFunction": false,
-  "hasOtherMatch": false,
-  "hasVar": false,
-  "rules": Array [
-    ".thing {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  width: var(--css-hash-0);
-}",
-  ],
+  "composesCount": 0,
+  "isStaticBlock": true,
+  "styles": Object {
+    ".thing": Object {
+      "WebkitBoxPack": "center",
+      "WebkitJustifyContent": "center",
+      "display": Array [
+        "-webkit-box",
+        "-moz-box",
+        "-ms-flexbox",
+        "-webkit-flex",
+        "flex",
+      ],
+      "justifyContent": "center",
+      "width": "var(--css-hash-0)",
+    },
+  },
 }
 `;
 
 exports[`parser fancy 1`] = `
 Object {
-  "composes": 0,
-  "hasCssFunction": false,
-  "hasOtherMatch": false,
-  "hasVar": false,
-  "rules": Array [
-    ".some-selector {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  width: var(--css-hash-0);
-}",
-    ".some-selector:hover {
-  background-color: green;
-}",
-    "@media (max-width: 500px) {
-  .some-selector {
-    height: var(--css-hash-1);
-    position: fixed;
-  }
-}",
-    "@media print {
-  .some-selector {
-    display: none;
-  }
-}",
-    ".some-selector::before {
-  color: blue;
-  width: 20px;
-  height: 20px;
-  content: 'pseudo'
-}",
-  ],
+  "composesCount": 0,
+  "isStaticBlock": true,
+  "styles": Object {
+    ".some-selector": Object {
+      "&::before": Object {
+        "color": "blue",
+        "content": "'pseudo'",
+        "height": "20px",
+        "width": "20px",
+      },
+      "&:hover": Object {
+        "backgroundColor": "green",
+      },
+      "@media (max-width: 500px)": Object {
+        "height": "var(--css-hash-1)",
+        "position": "fixed",
+      },
+      "@media print": Object {
+        "display": "none",
+      },
+      "WebkitBoxPack": "center",
+      "WebkitJustifyContent": "center",
+      "display": Array [
+        "-webkit-box",
+        "-moz-box",
+        "-ms-flexbox",
+        "-webkit-flex",
+        "flex",
+      ],
+      "justifyContent": "center",
+      "width": "var(--css-hash-0)",
+    },
+  },
 }
 `;
 
 exports[`parser static 1`] = `
 Object {
-  "composes": 0,
-  "hasCssFunction": false,
-  "hasOtherMatch": false,
-  "hasVar": false,
-  "rules": Array [
-    ".thing {
-  display: block;
-  height: 50px;
-  width: 30px
-}",
-  ],
+  "composesCount": 0,
+  "isStaticBlock": true,
+  "styles": Object {
+    ".thing": Object {
+      "display": "block",
+      "height": "50px",
+      "width": "30px",
+    },
+  },
 }
 `;
