@@ -1,5 +1,5 @@
-const forEach = require('@arr/foreach')
-const filter = require('@arr/filter.mutate')
+import forEach from '@arr/foreach'
+import filter from '@arr/filter.mutate'
 import { sheet, inserted } from './index'
 import { keys } from './utils'
 

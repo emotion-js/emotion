@@ -5,7 +5,7 @@ import {
 } from './babel'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 import { injectGlobal, fontFace } from './inline'
-const forEach = require('@arr/foreach')
+import forEach from '@arr/foreach'
 import { keys } from './utils'
 
 module.exports = function macro ({ references, state, babel: { types: t } }) {
