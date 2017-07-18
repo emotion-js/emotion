@@ -3,7 +3,8 @@ const filter = require('@arr/filter.mutate')
 import { sheet, inserted } from './index'
 import { keys } from './utils'
 
-const RGX = /css(?:[a-zA-Z0-9-]*)-([a-zA-Z0-9]+)/gm
+const RGX = /(?:css|vars)(?:[a-zA-Z0-9-]*)-([a-zA-Z0-9]+)/gm
+const VAR_RGX = /(?:vars)(?:[a-zA-Z0-9-]*)-([a-zA-Z0-9]+)/gm
 
 export { flush, css, injectGlobal, fontFace, keyframes, hydrate, objStyle } from './index'
 
@@ -20,8 +21,18 @@ export function extractCritical (html) {
   }
 
   o.rules = filter(sheet.sheet.cssRules.slice(), x => {
-    let match = RGX.exec(x.cssText)
-    return match == null || ids[match[1]] || false
+    // check for vars match first because it is a different format
+    // e.g. .vars-176qc2r {--css-Home-1wjhkv7-0: 0; --css-Home-1wjhkv7-1: 1}
+    const varMatch = VAR_RGX.exec(x.cssText)
+
+    if (varMatch == null) {
+      // no vars, proceed with normal css check
+      const cssMatch = RGX.exec(x.cssText)
+
+      return cssMatch == null || ids[cssMatch[1]] || false
+    }
+
+    return ids[varMatch[1]] || false
   })
 
   o.ids = filter(keys(inserted), id => !!ids[id])
