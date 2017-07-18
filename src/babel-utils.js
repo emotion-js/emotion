@@ -1,5 +1,5 @@
 import { keys } from './utils'
-const forEach = require('@arr/foreach')
+import forEach from '@arr/foreach'
 
 export function getIdentifierName (path, t) {
   const parent = path.findParent(p => p.isVariableDeclarator())

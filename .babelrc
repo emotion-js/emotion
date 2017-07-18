@@ -3,10 +3,10 @@
     [
       "env",
       {
-        "loose": true
+        "loose": true,
+        "modules": false,
       }
     ],
-    "stage-0",
     "react",
     "flow"
   ]
