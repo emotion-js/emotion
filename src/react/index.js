@@ -1,7 +1,7 @@
 import { Component, createElement as h } from 'react'
 import PropTypes from 'prop-types'
 import { css } from '../index'
-import { map, omit } from '../utils'
+import { map, omit, reduce } from '../utils'
 import { CHANNEL } from './constants'
 
 export {
@@ -79,7 +79,10 @@ export default function (tag, cls, vars = [], content) {
             tag.__emotion_spec,
             (accum, spec) => {
               Array.prototype.push.apply(accum, spec.objs)
-              Array.prototype.push.apply(accum, spec.content(map(spec.vars, getValue)))
+              Array.prototype.push.apply(
+                accum,
+                spec.content(map(spec.vars, getValue))
+              )
               return accum
             },
             []
