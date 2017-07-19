@@ -109,6 +109,18 @@ describe('babel macro', () => {
         padding: 0;
         & > div {
           display: none;
+          
+          &:hover {
+            color: green;
+            
+            & span {
+              color: red;
+              
+              &:after {
+                content: "end of line"
+              }
+            }
+          }
         }
       }
       html {

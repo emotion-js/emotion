@@ -48,6 +48,18 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('nested', () => {
+      const basic = "const H1 = styled.h1`" +
+        "font-size: ${fontSize + 'px'};" +
+        "& div { color: blue;" +
+        "& span { color: red } }" +
+        "`"
+      const {code} = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('interpolation in different places', () => {
       const basic = `
       const H1 = styled.h1\`

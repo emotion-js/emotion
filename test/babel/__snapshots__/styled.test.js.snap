@@ -65,8 +65,9 @@ const H1 = styled('h1', [props => {
   return [{
     'fontSize': x0,
     'height': '20px',
-    'transform': \`translateX(\${x1})\`,
-    'WebkitTransform': \`translateX(\${x1})\`
+    'WebkitTransform': \`translateX(\${x1})\`,
+    'msTransform': \`translateX(\${x1})\`,
+    'transform': \`translateX(\${x1})\`
   }];
 });"
 `;
@@ -85,6 +86,8 @@ const H1 = styled('h1', [], [fontSize + 'px', props => props.translateX, somethi
   return [{
     'fontSize': x0,
     'height': '20px',
+    'WebkitTransform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
+    'msTransform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
     'transform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
     'height1': \`\${x2}wow\`,
     'width': \`w\${x3}ow\`,
@@ -126,6 +129,20 @@ css([], [], function createEmotionStyledRules() {
                 \\"margin\\": \\"12px 48px\\",
                 \\"color\\": \\"#ffffff\\"
         }];
+});"
+`;
+
+exports[`babel styled component inline nested 1`] = `
+"const H1 = styled('h1', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
+  return [{
+    'fontSize': x0,
+    '& div': {
+      'color': 'blue'
+    },
+    '& div span': {
+      'color': 'red'
+    }
+  }];
 });"
 `;
 

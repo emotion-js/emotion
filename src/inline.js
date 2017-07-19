@@ -95,5 +95,5 @@ export function injectGlobal (
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let { src } = createRawStringFromQuasi(strs)
-  return parseCSS(`{ ${src} }`)
+  return parseCSS(src)
 }

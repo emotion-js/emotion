@@ -38,12 +38,12 @@ exports[`styled call expression 1`] = `
 `;
 
 exports[`styled component as selector 1`] = `
-.css-1eki6f4 {
-  display: -webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;
-}
-
 .css-1ikz3g9 {
   font-size: 20px;
+}
+
+.css-1eki6f4 {
+  display: -webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;
 }
 
 <div
@@ -149,18 +149,19 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.css-14qd58u {
+.css-15zlqsx {
   font-size: 20px;
   name: onyx;
   background-color: '#343a40';
-  flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
+  flex-direction: column;
 }
 
 <div
-  className="css-14qd58u"
+  className="css-15zlqsx"
 />
 `;
 
@@ -187,6 +188,36 @@ exports[`styled name 1`] = `
 >
   hello world
 </h1>
+`;
+
+exports[`styled nested 1`] = `
+.css-1msxvyz {
+  display: -webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;
+}
+
+.css-1msxvyz div {
+  color: green;
+}
+
+.css-1msxvyz div span {
+  color: red;
+}
+
+.css-1ikz3g9 {
+  font-size: 20px;
+}
+
+<div
+  className="css-1msxvyz"
+>
+  hello 
+  <h1
+    className="css-1ikz3g9"
+  >
+    This will be green
+  </h1>
+   world
+</div>
 `;
 
 exports[`styled no dynamic 1`] = `

@@ -150,17 +150,18 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.css-87x20i {
+.css-lid1wd {
   font-size: 20px;
   background-color: '#343a40';
-  flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
+  flex-direction: column;
 }
 
 <div
-  className="css-87x20i"
+  className="css-lid1wd"
 />
 `;
 

@@ -1,13 +1,14 @@
 // @flow
 import { t } from 'babel-types'
-import prefixAll from 'inline-style-prefixer/static'
 import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
 import postcssNested from 'styled-components/lib/vendor/postcss-nested'
 import stringify from 'styled-components/lib/vendor/postcss/stringify'
-// import autoprefix from 'styled-components/lib/utils/autoprefix'
+import autoprefix from 'styled-components/lib/utils/autoprefix'
 // import camelizeStyleName from 'fbjs/lib/camelizeStyleName'
 import postcssJs from 'postcss-js'
 import { objStyle } from './index'
+
+let prefixer = postcssJs.sync([autoprefix ]);
 
 type Rule = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -34,6 +35,8 @@ export function parseCSS (
   let vars = 0
   let composes: number = 0
 
+  postcssNested(root)
+
   root.walkRules((rule: Rule) => {
     // TODO: do this everywhere except `,xxx9xxx`
     if (/\bxxx\d+xxx/.exec(rule.selector)) {
@@ -57,7 +60,7 @@ export function parseCSS (
     }
   })
 
-  const styles = prefixAll(postcssJs.objectify(root))
+  const styles = prefixer(postcssJs.objectify(root))
 
   return {
     styles,

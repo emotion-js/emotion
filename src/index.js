@@ -1,6 +1,6 @@
 // @flow
 import { StyleSheet } from './sheet'
-import { forEach, map } from './utils'
+import { forEach, map, reduce } from './utils'
 import { hashString as hash, hashArray, hashObject } from './hash'
 import { createMarkupForStyles } from './glamor/CSSPropertyOperations'
 import clean from './glamor/clean.js'
@@ -93,13 +93,15 @@ export function css (objs: any, vars: Array<any>, content: () => Array<any>) {
   return computedClassName.trim()
 }
 
-function insert (css: string) {
+function insertRawRule (css: string) {
   let spec = {
     id: hash(css, css.length),
     css,
     type: 'raw'
   }
+
   register(spec)
+
   if (!inserted[spec.id]) {
     sheet.insert(spec.css)
     inserted[spec.id] = true
@@ -111,10 +113,30 @@ export function injectGlobal (
   vars: Array<any>,
   content: () => Array<any>
 ) {
-  // ???
+  const combined = content ? objs.concat(content.apply(null, vars)) : objs
+
+  // injectGlobal is flattened by postcss
+  // if using objects we don't support nested
+  forEach(combined, obj => {
+    forEach(Object.keys(obj), selector => {
+      insertRawRule(`${selector} {${createMarkupForStyles(obj[selector])}}`)
+    })
+  })
 }
 
-export const fontFace = injectGlobal
+export function fontFace (
+  objs: Array<any>,
+  vars: Array<any>,
+  content: () => Array<any>
+) {
+  const combined = reduce(
+    content ? objs.concat(content.apply(null, vars)) : objs,
+    (accum, item, i) => Object.assign(accum, item),
+    {}
+  )
+
+  insertRawRule(`@font-face{${createMarkupForStyles(combined)}}`)
+}
 
 function insertKeyframe (spec) {
   if (!inserted[spec.id]) {

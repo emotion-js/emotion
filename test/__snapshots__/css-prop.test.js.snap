@@ -14,15 +14,17 @@ exports[`css prop react basic 1`] = `
 `;
 
 exports[`css prop react kitchen sink 1`] = `
-.css-tocw18 {
+.css-ggycvc {
   display: -webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;
   font-weight: bold;
-  justify-content: center;
-  align-items: center;
-  -webkit-box-pack: center;
   -webkit-justify-content: center;
-  -webkit-box-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
   -webkit-align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-align: center;
+  align-items: center;
 }
 
 .css-2sukuz {
@@ -34,8 +36,8 @@ exports[`css prop react kitchen sink 1`] = `
   color: blue;
 }
 
-.css-1pyxnyx {
-  display: -webkit-inline-box,-moz-inline-box,-ms-inline-flexbox,-webkit-inline-flex,inline-flex;
+.css-1gq9vfz {
+  display: -webkit-box,-moz-box,-ms-inline-flexbox,-webkit-inline-flex,inline-flex;
 }
 
 .css-c5xqxn {
@@ -49,7 +51,7 @@ exports[`css prop react kitchen sink 1`] = `
 }
 
 <div
-  className="css__legacy-stuff css-tocw18"
+  className="css__legacy-stuff css-ggycvc"
 >
   <h1
     className="css-2sukuz"
@@ -62,7 +64,7 @@ exports[`css prop react kitchen sink 1`] = `
     Hello
   </p>
   <p
-    className="test_class1 test___class45 css-1pyxnyx"
+    className="test_class1 test___class45 css-1gq9vfz"
   >
     World
   </p>

@@ -61,7 +61,7 @@ const theme = {
 const PlaygroundWrapper = styled('div')`
   font-family: 'Oxygen', sans-serif;
   flex:1;
-  color: attr(color, #343a40);
+  color: #343a40;
   background: #f8f9fa;
   
   & .inner {

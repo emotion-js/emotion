@@ -2,7 +2,6 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
-import { BabelError, prettyError, buildCodeFrameError, createErrorWithLoc } from 'babel-errors';
 import postcssJs from 'postcss-js'
 import autoprefixer from 'autoprefixer'
 import forEach from '@arr/foreach'
@@ -56,16 +55,19 @@ export function replaceCssWithCallExpression (path, identifier, state, t) {
         t.arrayExpression(path.node.quasi.expressions.slice(composesCount)),
         t.functionExpression(
           t.identifier('createEmotionStyledRules'),
-          path.node.quasi.expressions.slice(composesCount).map((x, i) => t.identifier(`x${i}`)),
+          path.node.quasi.expressions
+            .slice(composesCount)
+            .map((x, i) => t.identifier(`x${i}`)),
           t.blockStatement([t.returnStatement(t.arrayExpression(inputClasses))])
         )
       ])
     )
   } catch (e) {
-    console.log("throwing here")
+    console.log('throwing here', e)
     // let {line, column} = path.loc.start;
     // throw prettyError(createErrorWithLoc('Error at this position', line, column));
-    throw buildCodeFrameError(path, e.message || 'Error');
+    throw e
+
   }
 }
 
@@ -92,7 +94,9 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     t.arrayExpression(path.node.quasi.expressions.slice(composesCount)),
     t.functionExpression(
       t.identifier('createEmotionStyledRules'),
-      path.node.quasi.expressions.slice(composesCount).map((x, i) => t.identifier(`x${i}`)),
+      path.node.quasi.expressions
+        .slice(composesCount)
+        .map((x, i) => t.identifier(`x${i}`)),
       t.blockStatement([t.returnStatement(t.arrayExpression(inputClasses))])
     )
   ]
@@ -453,15 +457,15 @@ export default function (babel) {
             )
           } else if (path.node.tag.name === 'fontFace') {
             replaceCssWithCallExpression(
-              t.identifier('fontFace'),
               path,
+              t.identifier('fontFace'),
               state,
               t
             )
           } else if (path.node.tag.name === 'injectGlobal') {
             replaceCssWithCallExpression(
-              t.identifier('injectGlobal'),
               path,
+              t.identifier('injectGlobal'),
               state,
               t
             )

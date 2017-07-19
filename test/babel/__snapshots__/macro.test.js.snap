@@ -8,9 +8,10 @@ _css([], [widthVar], function createEmotionStyledRules(x0) {
         'margin': '12px 48px',
         'color': ['#ffffff', 'blue'],
         'display': ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+        'WebkitFlex': '1 0 auto',
+        'msFlex': '1 0 auto',
         'flex': '1 0 auto',
-        'width': x0,
-        'WebkitFlex': '1 0 auto'
+        'width': x0
     }];
 });"
 `;
@@ -52,10 +53,19 @@ _injectGlobal([], [], function createEmotionStyledRules() {
   return [{
     'body': {
       'margin': '0',
-      'padding': '0',
-      '& > div': {
-        'display': 'none'
-      }
+      'padding': '0'
+    },
+    'body > div': {
+      'display': 'none'
+    },
+    'body > div:hover': {
+      'color': 'green'
+    },
+    'body > div:hover span': {
+      'color': 'red'
+    },
+    'body > div:hover span:after': {
+      'content': '\\"end of line\\"'
     },
     'html': {
       'background': 'green'
@@ -70,12 +80,14 @@ exports[`babel macro keyframes 1`] = `
 const rotate360 = _keyframes([], [], function createEmotionStyledRules() {
   return [{
     'from': {
-      'transform': 'rotate(0deg)',
-      'WebkitTransform': 'rotate(0deg)'
+      'WebkitTransform': 'rotate(0deg)',
+      'msTransform': 'rotate(0deg)',
+      'transform': 'rotate(0deg)'
     },
     'to': {
-      'transform': 'rotate(360deg)',
-      'WebkitTransform': 'rotate(360deg)'
+      'WebkitTransform': 'rotate(360deg)',
+      'msTransform': 'rotate(360deg)',
+      'transform': 'rotate(360deg)'
     }
   }];
 });"
@@ -87,12 +99,14 @@ exports[`babel macro multiple imports 1`] = `
 const rotate360 = _keyframes([], [], function createEmotionStyledRules() {
   return [{
     'from': {
-      'transform': 'rotate(0deg)',
-      'WebkitTransform': 'rotate(0deg)'
+      'WebkitTransform': 'rotate(0deg)',
+      'msTransform': 'rotate(0deg)',
+      'transform': 'rotate(0deg)'
     },
     'to': {
-      'transform': 'rotate(360deg)',
-      'WebkitTransform': 'rotate(360deg)'
+      'WebkitTransform': 'rotate(360deg)',
+      'msTransform': 'rotate(360deg)',
+      'transform': 'rotate(360deg)'
     }
   }];
 });
@@ -101,9 +115,10 @@ const thing = _css([], [widthVar], function createEmotionStyledRules(x0) {
     'margin': '12px 48px',
     'color': ['#ffffff', 'blue'],
     'display': ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+    'WebkitFlex': '1 0 auto',
+    'msFlex': '1 0 auto',
     'flex': '1 0 auto',
-    'width': x0,
-    'WebkitFlex': '1 0 auto'
+    'width': x0
   }];
 });"
 `;

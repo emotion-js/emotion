@@ -1,57 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css composes 1`] = `
-.css-1746rll {
+.css-1cjz2s1 {
   display: -webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;
-  justify-content: center;
-  -webkit-box-pack: center;
   -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 }
 
 <div
-  className="css-1746rll"
+  className="css-1cjz2s1"
 />
 `;
 
 exports[`css composes with objects 1`] = `
-.css-v0v3tq {
+.css-xcpja8 {
   display: -webkit-box,-ms-flexbox,flex,block;
   width: 30px;
   height: calc(40vw - 50px);
-  justify-content: center;
-  -webkit-box-pack: center;
   -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 }
 
-.css-v0v3tq:hover {
+.css-xcpja8:hover {
   color: blue;
 }
 
-.css-v0v3tq:after {
+.css-xcpja8:after {
   content: " ";
   color: red;
 }
 
 @media (min-width: 420px) {
-  .css-v0v3tq {
+  .css-xcpja8 {
     color: green;
   }
 }
 
 <div
-  className="css-v0v3tq"
+  className="css-xcpja8"
 />
 `;
 
 exports[`css composes with undefined values 1`] = `
-.css-9mu7jm {
-  justify-content: center;
-  -webkit-box-pack: center;
+.css-1rsyrbq {
   -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 }
 
 <div
-  className="css-9mu7jm"
+  className="css-1rsyrbq"
 />
 `;
 

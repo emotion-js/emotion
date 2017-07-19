@@ -2,67 +2,21 @@
 
 exports[`extractCritical returns static css 1`] = `
 Object {
-  "css": ".no-prefix {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-  }.css-Main-17vxl0k-1g2c78b { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }.css-Image-1d2rnu3-1tqe2cj { border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  background-color: red }.css-Image-1d2rnu3-1rejdxz { border-radius: 50%;
-  height: 100px;
-  width: 100px;
-  background-color: red }.css-Image-1d2rnu3-1d9ph5s { border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  background-color: red }",
-  "html": "<main class=\\"css-Main-17vxl0k-1g2c78b css-Main-17vxl0k\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"-2053673081\\"><img size=\\"30\\" class=\\"css-Image-1d2rnu3-1tqe2cj css-Image-1d2rnu3\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-Image-1d2rnu3-1rejdxz css-Image-1d2rnu3\\" data-reactid=\\"3\\"/><img class=\\"css-Image-1d2rnu3-1d9ph5s css-Image-1d2rnu3\\" data-reactid=\\"4\\"/></main>",
+  "css": ".no-prefix {display:-webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;-webkit-justify-content:center;-ms-flex-pack:center;-webkit-box-pack:center;justify-content:center;}.css-1666ym{display:-webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;}.css-hp1yas{border-radius:50%;height:50px;width:50px;background-color:red;}",
+  "html": "<main class=\\"css-1666ym\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"1172063568\\"><img size=\\"30\\" class=\\"css-hp1yas\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-hp1yas\\" data-reactid=\\"3\\"/><img class=\\"css-hp1yas\\" data-reactid=\\"4\\"/></main>",
   "ids": Array [
-    "1g2c78b",
-    "1tqe2cj",
-    "1rejdxz",
-    "1d9ph5s",
+    "1666ym",
+    "hp1yas",
   ],
   "rules": Array [
     Object {
-      "cssText": ".no-prefix {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-  }",
+      "cssText": ".no-prefix {display:-webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;-webkit-justify-content:center;-ms-flex-pack:center;-webkit-box-pack:center;justify-content:center;}",
     },
     Object {
-      "cssText": ".css-Main-17vxl0k-1g2c78b { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }",
+      "cssText": ".css-1666ym{display:-webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;}",
     },
     Object {
-      "cssText": ".css-Image-1d2rnu3-1tqe2cj { border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  background-color: red }",
-    },
-    Object {
-      "cssText": ".css-Image-1d2rnu3-1rejdxz { border-radius: 50%;
-  height: 100px;
-  width: 100px;
-  background-color: red }",
-    },
-    Object {
-      "cssText": ".css-Image-1d2rnu3-1d9ph5s { border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  background-color: red }",
+      "cssText": ".css-hp1yas{border-radius:50%;height:50px;width:50px;background-color:red;}",
     },
   ],
 }

@@ -151,9 +151,10 @@ css([], [widthVar], function createEmotionStyledRules(x0) {
                 \\"margin\\": \\"12px 48px\\",
                 \\"color\\": [\\"#ffffff\\", \\"blue\\"],
                 \\"display\\": [\\"-webkit-box\\", \\"-moz-box\\", \\"-ms-flexbox\\", \\"-webkit-flex\\", \\"flex\\"],
+                \\"WebkitFlex\\": \\"1 0 auto\\",
+                \\"msFlex\\": \\"1 0 auto\\",
                 \\"flex\\": \\"1 0 auto\\",
-                \\"width\\": x0,
-                \\"WebkitFlex\\": \\"1 0 auto\\"
+                \\"width\\": x0
         }];
 });"
 `;

@@ -1,57 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css macro composes 1`] = `
-.css-1746rll {
+.css-1cjz2s1 {
   display: -webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;
-  justify-content: center;
-  -webkit-box-pack: center;
   -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 }
 
 <div
-  className="css-1746rll"
+  className="css-1cjz2s1"
 />
 `;
 
 exports[`css macro composes with objects 1`] = `
-.css-1ko8dz {
+.css-1vx1y9j {
   display: flex,block;
   width: 30px;
   height: calc(40vw - 50px);
-  justify-content: center;
-  -webkit-box-pack: center;
   -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 }
 
-.css-1ko8dz:hover {
+.css-1vx1y9j:hover {
   color: blue;
 }
 
-.css-1ko8dz:after {
+.css-1vx1y9j:after {
   content: " ";
   color: red;
 }
 
 @media (min-width: 420px) {
-  .css-1ko8dz {
+  .css-1vx1y9j {
     color: green;
   }
 }
 
 <div
-  className="css-1ko8dz"
+  className="css-1vx1y9j"
 />
 `;
 
 exports[`css macro composes with undefined values 1`] = `
-.css-9mu7jm {
-  justify-content: center;
-  -webkit-box-pack: center;
+.css-1rsyrbq {
   -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 }
 
 <div
-  className="css-9mu7jm"
+  className="css-1rsyrbq"
 />
 `;
 
