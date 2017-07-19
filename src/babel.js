@@ -2,6 +2,7 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
+import { BabelError, prettyError, buildCodeFrameError, createErrorWithLoc } from 'babel-errors';
 import postcssJs from 'postcss-js'
 import autoprefixer from 'autoprefixer'
 import forEach from '@arr/foreach'
@@ -18,92 +19,6 @@ function joinExpressionsWithSpaces (expressions, t) {
     quasis.push(t.templateElement({ cooked: ' ', raw: ' ' }, true))
   })
   return t.templateLiteral(quasis, expressions)
-}
-
-function parseDynamicValues (styles, t, options) {
-  if (options.composes === undefined) options.composes = 0
-  return rules.map(rule => {
-    const re = /xxx(\d+)xxx|attr\(([^,\s)]+)(?:\s*([^,)]*)?)(?:,\s*(\S+))?\)/gm
-    const VAR = 'VAR'
-    const ATTR = 'ATTR'
-    let match
-    const matches = []
-    while ((match = re.exec(rule)) !== null) {
-      if (match[1]) {
-        matches.push({
-          value: match[0],
-          p1: match[1],
-          index: match.index,
-          type: VAR
-        })
-      } else {
-        matches.push({
-          value: match[0],
-          propName: match[2],
-          valueType: match[3],
-          defaultValue: match[4],
-          index: match.index,
-          type: ATTR
-        })
-      }
-    }
-
-    let cursor = 0
-    const [quasis, expressions] = matches.reduce(
-      (accum, match, i) => {
-        const [quasis, expressions] = accum
-        const preMatch = rule.substring(cursor, match.index)
-        cursor = cursor + preMatch.length + match.value.length
-        if (preMatch) {
-          quasis.push(t.templateElement({ raw: preMatch, cooked: preMatch }))
-        }
-        if (match.type === VAR) {
-          if (options.inputExpressions) {
-            expressions.push(
-              options.inputExpressions[match.p1 - options.composes]
-            )
-          } else {
-            expressions.push(t.identifier(`x${match.p1 - options.composes}`))
-          }
-        }
-        if (match.type === ATTR) {
-          const expr = createAttrExpression(
-            match,
-            options.vars,
-            options.composes,
-            t
-          )
-          options.vars.push(expr)
-          expressions.push(t.identifier(`x${options.vars.length - 1}`))
-        }
-
-        if (i === matches.length - 1 && cursor <= rule.length) {
-          const postMatch = rule.substring(cursor)
-
-          quasis.push(
-            t.templateElement(
-              {
-                raw: postMatch,
-                cooked: postMatch
-              },
-              true
-            )
-          )
-        }
-        return accum
-      },
-      [[], []]
-    )
-
-    if (!matches.length) {
-      return t.templateLiteral(
-        [t.templateElement({ raw: rule, cooked: rule }, true)],
-        []
-      )
-    }
-
-    return t.templateLiteral(quasis, expressions)
-  })
 }
 
 export function replaceCssWithCallExpression (path, identifier, state, t) {
@@ -147,7 +62,10 @@ export function replaceCssWithCallExpression (path, identifier, state, t) {
       ])
     )
   } catch (e) {
-    throw path.buildCodeFrameError(e)
+    console.log("throwing here")
+    // let {line, column} = path.loc.start;
+    // throw prettyError(createErrorWithLoc('Error at this position', line, column));
+    throw buildCodeFrameError(path, e.message || 'Error');
   }
 }
 
@@ -194,58 +112,6 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
     tag,
     t.arrayExpression(prefixAst(path.node.arguments, t))
   ])
-}
-
-export function replaceGlobalWithCallExpression (
-  identifier,
-  processQuasi,
-  path,
-  state,
-  t
-) {
-  const { rules, hasInterpolation } = processQuasi(path.node.quasi)
-  if (!hasInterpolation && !state.inline) {
-    state.insertStaticRules(rules)
-    if (t.isExpressionStatement(path.parent)) {
-      path.parentPath.remove()
-    } else {
-      path.replaceWith(t.identifier('undefined'))
-    }
-  } else {
-    path.replaceWith(
-      t.callExpression(identifier, [
-        t.arrayExpression(
-          parseDynamicValues(rules, t, {
-            inputExpressions: path.node.quasi.expressions
-          })
-        )
-      ])
-    )
-  }
-}
-
-export function replaceKeyframesWithCallExpression (path, identifier, state, t) {
-  const { hash, name, rules, hasInterpolation } = keyframes(
-    path.node.quasi,
-    getIdentifierName(path, t),
-    'animation'
-  )
-  const animationName = `${name}-${hash}`
-  if (!hasInterpolation && !state.inline) {
-    state.insertStaticRules([`@keyframes ${animationName} ${rules.join('')}`])
-    path.replaceWith(t.stringLiteral(animationName))
-  } else {
-    path.replaceWith(
-      t.callExpression(identifier, [
-        t.stringLiteral(animationName),
-        t.arrayExpression(
-          parseDynamicValues(rules, t, {
-            inputExpressions: path.node.quasi.expressions
-          })
-        )
-      ])
-    )
-  }
 }
 
 function prefixAst (args, t) {
@@ -579,24 +445,22 @@ export default function (babel) {
           if (path.node.tag.name === 'css') {
             replaceCssWithCallExpression(path, t.identifier('css'), state, t)
           } else if (path.node.tag.name === 'keyframes') {
-            replaceKeyframesWithCallExpression(
+            replaceCssWithCallExpression(
               path,
               t.identifier('keyframes'),
               state,
               t
             )
           } else if (path.node.tag.name === 'fontFace') {
-            replaceGlobalWithCallExpression(
+            replaceCssWithCallExpression(
               t.identifier('fontFace'),
-              fontFace,
               path,
               state,
               t
             )
           } else if (path.node.tag.name === 'injectGlobal') {
-            replaceGlobalWithCallExpression(
+            replaceCssWithCallExpression(
               t.identifier('injectGlobal'),
-              injectGlobal,
               path,
               state,
               t

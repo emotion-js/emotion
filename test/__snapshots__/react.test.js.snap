@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled basic render 1`] = `
-.css-16m5m6t {
+.css-vrq9pr {
   color: blue;
   font-size: 20px;
 }
 
 <h1
-  className="css-16m5m6t"
+  className="css-vrq9pr"
 >
   hello world
 </h1>
@@ -31,27 +31,27 @@ exports[`styled call expression 1`] = `
 }
 
 <h1
-  className="legacy__class  css-1vj1sv9"
+  className="legacy__class css-1vj1sv9"
 >
   hello world
 </h1>
 `;
 
 exports[`styled component as selector 1`] = `
-.css-1vj1sv9 {
-  font-size: 20px;
-}
-
-.css-sgyhpk {
+.css-1eki6f4 {
   display: -webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;
 }
 
+.css-1ikz3g9 {
+  font-size: 20px;
+}
+
 <div
-  className="css-sgyhpk"
+  className="css-1eki6f4"
 >
   hello 
   <h1
-    className="css-1vj1sv9"
+    className="css-1ikz3g9"
   >
     This will be green
   </h1>
@@ -60,13 +60,13 @@ exports[`styled component as selector 1`] = `
 `;
 
 exports[`styled composes 1`] = `
-.css-z9nuho {
-  font-size: 20px;
+.css-135lost {
   color: blue;
+  font-size: 32px;
 }
 
 <h1
-  className="legacy__class     css-z9nuho"
+  className="legacy__class css-135lost"
   scale={2}
 >
   hello world
@@ -99,9 +99,9 @@ exports[`styled composes based on props 2`] = `
 `;
 
 exports[`styled composes with objects 1`] = `
-.css-3f34ux {
-  font-size: 3.157334518321em;
+.css-1at6569 {
   color: #333;
+  font-size: 32px;
   height: 64px;
 }
 
@@ -110,13 +110,13 @@ exports[`styled composes with objects 1`] = `
     only screen and (-o-min-device-pixel-ratio: 1.5/1),
     only screen and (min-resolution: 144dpi),
     only screen and (min-resolution: 1.5dppx) {
-  .css-3f34ux {
+  .css-1at6569 {
     font-size: 1.4323121856191332em;
   }
 }
 
 <h1
-  className="legacy__class     css-3f34ux"
+  className="legacy__class css-1at6569"
   scale={2}
 >
   hello world
@@ -124,24 +124,24 @@ exports[`styled composes with objects 1`] = `
 `;
 
 exports[`styled composition 1`] = `
-.css-1vj1sv9 {
-  font-size: 20px;
+.css-1lyjzdi {
+  font-size: 13.333333333333334px;
 }
 
 <h1
-  className="legacy__class    css-1vj1sv9"
+  className="legacy__class css-1lyjzdi"
 >
   hello world
 </h1>
 `;
 
 exports[`styled function in expression 1`] = `
-.css-1vj1sv9 {
-  font-size: 20px;
+.css-1lmko4z {
+  font-size: 40px;
 }
 
 <h1
-  className="legacy__class    css-1vj1sv9"
+  className="legacy__class css-1lmko4z"
   scale={2}
 >
   hello world
@@ -149,18 +149,18 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.css-dlwa03 {
+.css-14qd58u {
+  font-size: 20px;
   name: onyx;
   background-color: '#343a40';
   flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  font-size: 20px;
 }
 
 <div
-  className="css-dlwa03"
+  className="css-14qd58u"
 />
 `;
 
@@ -229,7 +229,7 @@ exports[`styled objects 1`] = `
 }
 
 <h1
-  className="some-class   css-1j0hret"
+  className="some-class css-1j0hret"
   display="flex"
 >
   hello world
@@ -237,15 +237,15 @@ exports[`styled objects 1`] = `
 `;
 
 exports[`styled themes 1`] = `
-.css-5q2sb2 {
-  font-size: 20px;
-  color: #8c81d8;
-  height: 64px;
+.css-1vectwv {
   background-color: #ffd43b;
+  color: blue;
+  height: 64px;
+  font-size: 32px;
 }
 
 <span
-  className="css-5q2sb2"
+  className="css-1vectwv"
   scale={2}
 >
   hello world

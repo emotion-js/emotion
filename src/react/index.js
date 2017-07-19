@@ -14,7 +14,7 @@ export {
   objStyle
 } from '../index'
 
-export default function (tag, cls, vars = [], content) {
+export default function (tag, objs, vars = [], content) {
   if (!tag) {
     throw new Error(
       'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
@@ -92,13 +92,14 @@ export default function (tag, cls, vars = [], content) {
 
       Array.prototype.push.apply(finalObjs, objs)
 
-      Array.prototype.push.apply(finalObjs, content(map(vars, getValue)))
+      if (content) {
+        Array.prototype.push.apply(finalObjs, content(map(vars, getValue)))
+      }
 
       if (mergedProps.className) {
         Array.prototype.push.apply(finalObjs, mergedProps.className.split(' '))
       }
 
-      console.log(finalObjs)
       const className = css(map(finalObjs, getValue))
 
       return h(

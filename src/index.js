@@ -1,16 +1,17 @@
 // @flow
 import { StyleSheet } from './sheet'
-import { hashArray, hashObject } from './hash'
-import { forEach } from './utils'
+import { forEach, map } from './utils'
 import { hashString as hash, hashArray, hashObject } from './hash'
 import { createMarkupForStyles } from './glamor/CSSPropertyOperations'
 import clean from './glamor/clean.js'
+
+const IS_DEV = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
 
 export const sheet = new StyleSheet()
 // 🚀
 sheet.inject()
 
-export let inserted: { [string]: boolean | void } = {}
+export let inserted: { [string | number]: boolean | void } = {}
 
 type inputVar = string | number
 
@@ -70,9 +71,7 @@ function buildStyles (objs) {
         computedClassName += cls
       }
     } else {
-      objectStyles.push(
-        cls
-      )
+      objectStyles.push(cls)
     }
   })
 
@@ -84,7 +83,9 @@ export function css (objs: any, vars: Array<any>, content: () => Array<any>) {
     objs = [objs]
   }
 
-  let { computedClassName = '', objectStyles = [] } = buildStyles(content ? objs.concat(content.apply(null, vars)) : objs)
+  let { computedClassName = '', objectStyles = [] } = buildStyles(
+    content ? objs.concat(content.apply(null, vars)) : objs
+  )
   if (objectStyles.length) {
     computedClassName += ' ' + objStyle.apply(null, objectStyles).toString()
   }
@@ -92,24 +93,62 @@ export function css (objs: any, vars: Array<any>, content: () => Array<any>) {
   return computedClassName.trim()
 }
 
-export function injectGlobal (src: string[]) {
-  const hash = hashArray(src)
-  if (!inserted[hash]) {
-    inserted[hash] = true
-    forEach(src, r => sheet.insert(r))
+function insert (css: string) {
+  let spec = {
+    id: hash(css, css.length),
+    css,
+    type: 'raw'
   }
+  register(spec)
+  if (!inserted[spec.id]) {
+    sheet.insert(spec.css)
+    inserted[spec.id] = true
+  }
+}
+
+export function injectGlobal (
+  objs: Array<any>,
+  vars: Array<any>,
+  content: () => Array<any>
+) {
+  // ???
 }
 
 export const fontFace = injectGlobal
 
-export function keyframes (kfm: string, src: string[]) {
-  const hash = hashArray(src)
-  const animationName = `${kfm}-${hash}`
-  if (!inserted[hash]) {
-    inserted[hash] = true
-    forEach(src, r => sheet.insert(`@keyframes ${animationName} ${r}`))
+function insertKeyframe (spec) {
+  if (!inserted[spec.id]) {
+    const inner = map(
+      Object.keys(spec.keyframes),
+      kf => `${kf} {${createMarkupForStyles(spec.keyframes[kf])}}`
+    ).join('')
+
+    forEach(['-webkit-', ''], prefix =>
+      sheet.insert(`@${prefix}keyframes ${spec.name + '_' + spec.id}{${inner}}`)
+    )
+
+    inserted[spec.id] = true
   }
-  return animationName
+}
+
+export function keyframes (
+  objs: any,
+  vars: Array<any>,
+  content: () => Array<any>
+) {
+  const [kfs] = content.apply(null, vars)
+  const name = 'animation'
+
+  let spec = {
+    id: hashObject(kfs),
+    type: 'keyframes',
+    name,
+    keyframes: kfs
+  }
+
+  register(spec)
+  insertKeyframe(spec)
+  return `${name}_${spec.id}`
 }
 
 export function hydrate (ids: string[]) {
@@ -117,7 +156,6 @@ export function hydrate (ids: string[]) {
 }
 
 // 🍩
-// https://github.com/jxnblk/cxs/blob/master/src/monolithic/index.js
 type EmotionRule = { [string]: any }
 
 type CSSRuleList = Array<EmotionRule>
@@ -131,6 +169,7 @@ let cachedCss: (rules: CSSRuleList) => EmotionClassName = typeof WeakMap !==
   ? multiIndexCache(_css)
   : _css
 
+// https://github.com/threepointone/glamor
 export function objStyle (...rules: CSSRuleList): EmotionClassName {
   rules = clean(rules)
   if (!rules) {
@@ -151,11 +190,6 @@ function _css (rules) {
   }
   return toRule(spec)
 }
-
-// define some constants
-
-const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
-const isTest = process.env.NODE_ENV === 'test'
 
 // takes a string, converts to lowercase, strips out nonalphanumeric.
 function simple (str) {
@@ -191,9 +225,7 @@ function selector (id: string, path: string = '') {
     .split(',')
     .map(
       x =>
-        x.indexOf('&') >= 0
-          ? x.replace(/\&/gm, `.css-${id}`)
-          : `.css-${id}${x}`
+        x.indexOf('&') >= 0 ? x.replace(/\&/gm, `.css-${id}`) : `.css-${id}${x}`
     )
     .join(',')
 
@@ -263,7 +295,6 @@ let ruleCache = {}
 function toRule (spec) {
   register(spec)
   insert(spec)
-  console.log(spec)
   if (ruleCache[spec.id]) {
     return ruleCache[spec.id]
   }
@@ -277,12 +308,6 @@ function toRule (spec) {
   })
   ruleCache[spec.id] = ret
   return ret
-}
-
-function log () {
-  // eslint-disable-line no-unused-vars
-  console.log(this) // eslint-disable-line no-console
-  return this
 }
 
 function isSelector (key) {
@@ -469,7 +494,7 @@ function multiIndexCache (fn) {
       try {
         coi.set(args[ctr], value)
       } catch (err) {
-        if (isDev && !warnedWeakMapError) {
+        if (IS_DEV && !warnedWeakMapError) {
           warnedWeakMapError = true
           console.warn('failed setting the WeakMap cache for args:', ...args) // eslint-disable-line no-console
           console.warn(

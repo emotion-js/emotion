@@ -96,10 +96,10 @@ describe('styled', () => {
   test('function in expression', () => {
     const fontSize = 20
     const H1 = styled('h1')`
-      font-size: ${fontSize + 'px'};
+      font-size: ${fontSize};
     `
 
-    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale + 'px'}`
+    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale};`
 
     const tree = renderer
       .create(
@@ -270,7 +270,6 @@ describe('styled', () => {
 
     const H1 = styled('h1')`
       composes: ${props => {
-        console.log(props)
         return props.a ? cssA : cssB
       }};
     `

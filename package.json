@@ -35,6 +35,7 @@
     "@arr/map": "^1.0.0",
     "@arr/reduce": "^1.0.0",
     "autoprefixer": "^7.1.2",
+    "babel-errors": "^1.1.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "fbjs": "^0.8.12",
     "inline-style-prefixer": "^3.0.6",

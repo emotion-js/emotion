@@ -61,47 +61,39 @@ export function keyframes (
   identifierName?: string,
   prefix: string
 ): {
-  hash: string,
-  name: string,
-  rules: string[],
-  hasInterpolation: boolean
+  isStaticBlock: boolean,
+  styles: { [string]: any },
+  composesCount: number
 } {
-  const strs = quasi.quasis.map(x => x.value.cooked)
-  const hash = hashArray([...strs])
-  const name = getName(
-    extractNameFromProperty(strs.join('xxx')),
-    identifierName,
-    prefix
-  )
-  const { src, dynamicValueCount } = createRawStringFromQuasi(strs, name, hash)
-  let { rules, hasVar, hasOtherMatch } = parseCSS(`{ ${src} }`)
-  return { hash, name, rules, hasInterpolation: hasVar || hasOtherMatch }
+  let strs = quasi.quasis.map(x => x.value.cooked)
+  let { src } = createRawStringFromQuasi(strs)
+  return parseCSS(`{ ${src} }`)
 }
 
 export function fontFace (
-  quasi: any
-): { rules: string[], hasInterpolation: boolean } {
+  quasi: any,
+  identifierName?: string,
+  prefix: string
+): {
+  isStaticBlock: boolean,
+  styles: { [string]: any },
+  composesCount: number
+} {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  const { src, dynamicValueCount } = createRawStringFromQuasi(strs, 'name', 'hash')
-  let { rules, hasVar, hasOtherMatch } = parseCSS(`@font-face {${src}}`, {
-    dynamicValueCount: dynamicValueCount,
-    inlineMode: true,
-    name: 'name',
-    hash: 'hash'
-  })
-  return { rules, hasInterpolation: hasVar || hasOtherMatch }
+  let { src } = createRawStringFromQuasi(strs)
+  return parseCSS(`@font-face {${src}}`)
 }
 
 export function injectGlobal (
-  quasi: any
-): { rules: string[], hasInterpolation: boolean } {
+  quasi: any,
+  identifierName?: string,
+  prefix: string
+): {
+  isStaticBlock: boolean,
+  styles: { [string]: any },
+  composesCount: number
+} {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  const { src, dynamicValueCount } = createRawStringFromQuasi(strs, 'name', 'hash')
-  let { rules, hasVar, hasOtherMatch } = parseCSS(src, {
-    dynamicValueCount: dynamicValueCount,
-    inlineMode: true,
-    name: 'name',
-    hash: 'hash'
-  })
-  return { rules, hasInterpolation: hasVar || hasOtherMatch }
+  let { src } = createRawStringFromQuasi(strs)
+  return parseCSS(`{ ${src} }`)
 }

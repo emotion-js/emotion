@@ -1,7 +1,5 @@
 import {
-  replaceGlobalWithCallExpression,
-  replaceCssWithCallExpression,
-  replaceKeyframesWithCallExpression
+  replaceCssWithCallExpression
 } from './babel'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 import { injectGlobal, fontFace } from './inline'
@@ -18,15 +16,14 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
           t.isIdentifier(path.node.tag) &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          replaceGlobalWithCallExpression(
+          replaceCssWithCallExpression(
+            path,
             buildMacroRuntimeNode(
               injectGlobalReference,
               state,
               'injectGlobal',
               t
             ),
-            injectGlobal,
-            path,
             state,
             t
           )
@@ -39,10 +36,9 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
           t.isIdentifier(path.node.tag) &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          replaceGlobalWithCallExpression(
-            buildMacroRuntimeNode(fontFaceReference, state, 'fontFace', t),
-            fontFace,
+          replaceCssWithCallExpression(
             path,
+            buildMacroRuntimeNode(fontFaceReference, state, 'fontFace', t),
             state,
             t
           )
@@ -68,7 +64,7 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
           t.isIdentifier(path.node.tag) &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          replaceKeyframesWithCallExpression(
+          replaceCssWithCallExpression(
             path,
             buildMacroRuntimeNode(keyframesReference, state, 'keyframes', t),
             state,

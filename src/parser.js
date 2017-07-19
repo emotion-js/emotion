@@ -35,7 +35,8 @@ export function parseCSS (
   let composes: number = 0
 
   root.walkRules((rule: Rule) => {
-    if (/^xxx\d+xxx/.exec(rule.selector)) {
+    // TODO: do this everywhere except `,xxx9xxx`
+    if (/\bxxx\d+xxx/.exec(rule.selector)) {
       rule.selector = `.${rule.selector}`
     }
   })

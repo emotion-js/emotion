@@ -1,58 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`keyframes keyframes with interpolation 1`] = `
-"@keyframes animation-bounce-10a3qiv-cmo0tx { from, 20%, 53%, 80%, to {
-        -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-        -webkit-transform: translate3d(0,0,0);
-        -ms-transform: translate3d(0,0,0);
-        transform: translate3d(0,0,0);
-      }
-    
-      40%, 43% {
-        -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-        animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-        -webkit-transform: translate3d(0, -30px, 0);
-        -ms-transform: translate3d(0, -30px, 0);
-        transform: translate3d(0, -30px, 0);
-      }
-    
-      70% {
-        -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-        animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-        -webkit-transform: translate3d(0, -15px, 0);
-        -ms-transform: translate3d(0, -15px, 0);
-        transform: translate3d(0, -15px, 0);
-      }
-    
-      90% {
-        -webkit-transform: translate3d(0,-4px,0);
-        -ms-transform: translate3d(0,-4px,0);
-        transform: translate3d(0,-4px,0);
-      } }.css-H1-o0kcx2-fy8ana { font-size: 20px;
-      -webkit-animation: animation-bounce-10a3qiv-cmo0tx 2s linear infinite;
-      animation: animation-bounce-10a3qiv-cmo0tx 2s linear infinite; }@keyframes animation-1fpnjxj-1mmv2re { from {
-        -webkit-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-        transform: rotate(0deg);
-      }
-    
-      to {
-        -webkit-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-        transform: rotate(360deg);
-      } }"
-`;
-
-exports[`keyframes renders 1`] = `
-.css-H1-o0kcx2-fy8ana {
-  font-size: 20px;
-  -webkit-animation: animation-bounce-10a3qiv-cmo0tx 2s linear infinite;
-  animation: animation-bounce-10a3qiv-cmo0tx 2s linear infinite;
+.css-dg8t7k {
+  animation: animation_r3plcn 2s linear infinite;
+  -webkit-animation: animation_r3plcn 2s linear infinite;
 }
 
 <h1
-  className="css-H1-o0kcx2-fy8ana css-H1-o0kcx2"
+  className="css-dg8t7k"
+>
+  hello world
+</h1>
+`;
+
+exports[`keyframes keyframes with interpolation 2`] = `"@-webkit-keyframes animation_sozpa3{from, 20%, 53%, 80%, to {animation-timing-function:cubic-bezier(0.215, 0.610, 0.355, 1.000);transform:translate3d(0,0,0);-webkit-animation-timing-function:cubic-bezier(0.215, 0.610, 0.355, 1.000);-webkit-transform:translate3d(0,0,0);}40%, 43% {animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);transform:translate3d(0, -30px, 0);-webkit-animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);-webkit-transform:translate3d(0, -30px, 0);}70% {animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);transform:translate3d(0, -15px, 0);-webkit-animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);-webkit-transform:translate3d(0, -15px, 0);}90% {transform:translate3d(0,-4px,0);-webkit-transform:translate3d(0,-4px,0);}}@keyframes animation_sozpa3{from, 20%, 53%, 80%, to {animation-timing-function:cubic-bezier(0.215, 0.610, 0.355, 1.000);transform:translate3d(0,0,0);-webkit-animation-timing-function:cubic-bezier(0.215, 0.610, 0.355, 1.000);-webkit-transform:translate3d(0,0,0);}40%, 43% {animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);transform:translate3d(0, -30px, 0);-webkit-animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);-webkit-transform:translate3d(0, -30px, 0);}70% {animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);transform:translate3d(0, -15px, 0);-webkit-animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);-webkit-transform:translate3d(0, -15px, 0);}90% {transform:translate3d(0,-4px,0);-webkit-transform:translate3d(0,-4px,0);}}.css-y1pikg{animation:animation_sozpa3 2s linear infinite;-webkit-animation:animation_sozpa3 2s linear infinite;}@-webkit-keyframes animation_r3plcn{from {transform:rotate(0deg);-webkit-transform:rotate(0deg);}to {transform:rotate(360deg);-webkit-transform:rotate(360deg);}}@keyframes animation_r3plcn{from {transform:rotate(0deg);-webkit-transform:rotate(0deg);}to {transform:rotate(360deg);-webkit-transform:rotate(360deg);}}.css-dg8t7k{animation:animation_r3plcn 2s linear infinite;-webkit-animation:animation_r3plcn 2s linear infinite;}"`;
+
+exports[`keyframes renders 1`] = `
+.css-y1pikg {
+  animation: animation_sozpa3 2s linear infinite;
+  -webkit-animation: animation_sozpa3 2s linear infinite;
+}
+
+<h1
+  className="css-y1pikg"
 >
   hello world
 </h1>
