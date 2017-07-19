@@ -1,6 +1,7 @@
 // @flow
-import forEach from '@arr/foreach'
 import { StyleSheet } from './sheet'
+import { hashArray, hashObject } from './hash'
+import { forEach } from './utils'
 import { hashString as hash, hashArray, hashObject } from './hash'
 import { createMarkupForStyles } from './glamor/CSSPropertyOperations'
 import clean from './glamor/clean.js'

@@ -1,9 +1,7 @@
 import { Component, createElement as h } from 'react'
 import PropTypes from 'prop-types'
-import map from '@arr/map'
-import reduce from '@arr/reduce'
 import { css } from '../index'
-import { omit } from '../utils'
+import { map, omit } from '../utils'
 import { CHANNEL } from './constants'
 
 export {
@@ -16,13 +14,7 @@ export {
   objStyle
 } from '../index'
 
-class ComponentStyleSpec {
-  constructor (spec) {
-    this.spec = spec
-  }
-}
-
-export default function (tag, objs, vars, content) {
+export default function (tag, cls, vars = [], content) {
   if (!tag) {
     throw new Error(
       'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
