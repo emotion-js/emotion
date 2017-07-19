@@ -1,8 +1,7 @@
 import { Component, createElement as h } from 'react'
 import PropTypes from 'prop-types'
-const map = require('@arr/map')
 import { css } from '../index'
-import { omit } from '../utils'
+import { map, omit } from '../utils'
 import { CHANNEL } from './constants'
 
 export { flush, css, injectGlobal, fontFace, keyframes, hydrate, objStyle } from '../index'

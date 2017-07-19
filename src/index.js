@@ -1,7 +1,7 @@
 // @flow
 import { StyleSheet } from './sheet'
 import { hashArray, hashObject } from './hash'
-const forEach = require('@arr/foreach')
+import { forEach } from './utils'
 
 export const sheet = new StyleSheet()
 sheet.inject()
