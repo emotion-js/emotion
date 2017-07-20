@@ -35,10 +35,9 @@ export function replaceCssWithCallExpression (
       getIdentifierName(path, t),
       'css'
     )
-    ;('foo')
     if (state.extractStatic && !path.node.quasi.expressions.length) {
       const cssText = staticCSSTextCreator(name, hash, src)
-      const { styles, staticCSSRules } = parser(cssText, true)
+      const { staticCSSRules } = parser(cssText, true)
 
       state.insertStaticRules(staticCSSRules)
       return removePath
@@ -56,7 +55,6 @@ export function replaceCssWithCallExpression (
 
     inputClasses.push(createAstObj(styles, false, composesCount, t))
 
-    const objs = path.node.quasi.expressions.slice(0, composesCount)
     const vars = path.node.quasi.expressions.slice(composesCount)
     path.replaceWith(
       t.callExpression(identifier, [
@@ -89,7 +87,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     )
 
     const cssText = `.${name}-${hash} { ${src} }`
-    const { styles, staticCSSRules } = parser(cssText, true)
+    const { staticCSSRules } = parser(cssText, true)
 
     state.insertStaticRules(staticCSSRules)
     return t.callExpression(identifier, [
@@ -98,7 +96,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     ])
   }
 
-  const { name, hash, src, parser } = inline(
+  const { src, parser } = inline(
     path.node.quasi,
     getIdentifierName(path, t),
     'css'
@@ -362,9 +360,6 @@ export default function (babel) {
     visitor: {
       Program: {
         enter (path, state) {
-          state.inline =
-            path.hub.file.opts.filename === 'unknown' || state.opts.inline
-
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
@@ -464,7 +459,7 @@ export default function (babel) {
               t.identifier('keyframes'),
               state,
               t,
-              (name, hash, src) => `@animation ${name}-${hash} { ${src} }`
+              (name, hash, src) => `@keyframes ${name}-${hash} { ${src} }`
             )
           } else if (path.node.tag.name === 'fontFace') {
             replaceCssWithCallExpression(

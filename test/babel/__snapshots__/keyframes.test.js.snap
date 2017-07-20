@@ -7,7 +7,7 @@ const rotate360 = \\"css-rotate360-f35ahc\\";"
 `;
 
 exports[`babel keyframes extract keyframes basic 2`] = `
-"@animation css-rotate360-f35ahc {
+"@keyframes css-rotate360-f35ahc {
     from {
         -webkit-transform: rotate(0deg);
         -ms-transform: rotate(0deg);

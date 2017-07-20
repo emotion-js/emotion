@@ -1,8 +1,6 @@
 import { replaceCssWithCallExpression } from './babel'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
-import { fontFace } from './inline'
-import { forEach } from './utils'
-import { keys } from './utils'
+import { forEach, keys } from './utils'
 
 module.exports = function macro ({ references, state, babel: { types: t } }) {
   if (!state.inline) state.inline = true
