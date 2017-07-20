@@ -43,8 +43,6 @@ const Page = () =>
 
 describe('extractCritical', () => {
   test('returns static css', () => {
-    expect(
-      extractCritical(renderToString(<Page />))
-    ).toMatchSnapshot()
+    expect(extractCritical(renderToString(<Page />))).toMatchSnapshot()
   })
 })

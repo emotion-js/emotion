@@ -1,35 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`babel keyframes extract keyframes basic 1`] = `
-"
-const rotate360 = keyframes([], [], function createEmotionStyledRules() {
-  return [{
-    \\"from\\": {
-      \\"WebkitTransform\\": \\"rotate(0deg)\\",
-      \\"msTransform\\": \\"rotate(0deg)\\",
-      \\"transform\\": \\"rotate(0deg)\\"
-    },
-    \\"to\\": {
-      \\"WebkitTransform\\": \\"rotate(360deg)\\",
-      \\"msTransform\\": \\"rotate(360deg)\\",
-      \\"transform\\": \\"rotate(360deg)\\"
-    }
-  }];
-});"
+"import \\"./keyframes.test.emotion.css\\";
+
+const rotate360 = \\"css-rotate360-f35ahc\\";"
 `;
 
 exports[`babel keyframes extract keyframes basic 2`] = `
-"@keyframes animation-rotate360-f35ahc { from {
-            -webkit-transform: rotate(0deg);
-            -ms-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-        
-          to {
-            -webkit-transform: rotate(360deg);
-            -ms-transform: rotate(360deg);
-            transform: rotate(360deg);
-          } }"
+"@animation css-rotate360-f35ahc {
+    from {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}"
 `;
 
 exports[`babel keyframes extract keyframes with interpolation 1`] = `

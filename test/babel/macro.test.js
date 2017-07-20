@@ -93,11 +93,13 @@ describe('babel macro', () => {
         display: flex;
       \`
       `
-      expect(() => babel.transform(basic, {
-        plugins: ['babel-macros'],
-        filename: __filename,
-        babelrc: false
-      })).toThrowError(/the emotion macro must be imported with es modules/)
+      expect(() =>
+        babel.transform(basic, {
+          plugins: ['babel-macros'],
+          filename: __filename,
+          babelrc: false
+        })
+      ).toThrowError(/the emotion macro must be imported with es modules/)
     })
   })
   test('injectGlobal', () => {

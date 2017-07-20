@@ -52,7 +52,7 @@ describe('babel keyframes', () => {
           }
       \`;`
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         babelrc: false,
         filename: __filename
       })
@@ -72,7 +72,7 @@ describe('babel keyframes', () => {
           }
       \`;`
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         babelrc: false,
         filename: __filename
       })

@@ -3,7 +3,7 @@
 exports[`parser basic 1`] = `
 Object {
   "composesCount": 0,
-  "isStaticBlock": true,
+  "staticCSSRules": Array [],
   "styles": Object {
     ".thing": Object {
       "WebkitBoxPack": "center",
@@ -26,7 +26,7 @@ Object {
 exports[`parser fancy 1`] = `
 Object {
   "composesCount": 0,
-  "isStaticBlock": true,
+  "staticCSSRules": Array [],
   "styles": Object {
     ".some-selector": Object {
       "WebkitBoxPack": "center",
@@ -69,7 +69,13 @@ Object {
 exports[`parser static 1`] = `
 Object {
   "composesCount": 0,
-  "isStaticBlock": true,
+  "staticCSSRules": Array [
+    ".thing {
+    display: block;
+    height: 50px;
+    width: 30px
+}",
+  ],
   "styles": Object {
     ".thing": Object {
       "display": "block",

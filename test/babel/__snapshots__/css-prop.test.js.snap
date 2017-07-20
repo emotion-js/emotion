@@ -9,14 +9,15 @@ exports[`babel css prop StringLiteral css prop value 1`] = `
 `;
 
 exports[`babel css prop basic 1`] = `
-"<div className={\\"a\\" + \\" \\" + css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"color\\": \\"brown\\"
-  }];
-})}></div>;"
+"import \\"./css-prop.test.emotion.css\\";
+<div className={\\"a\\" + \\" \\" + \\"css-jf1v9l\\"}></div>;"
 `;
 
-exports[`babel css prop basic 2`] = `".css-jf1v9l { color: brown; }"`;
+exports[`babel css prop basic 2`] = `
+".css-jf1v9l {
+    color: brown
+}"
+`;
 
 exports[`babel css prop basic inline 1`] = `
 "<div className={\\"a\\" + \\" \\" + css([], [], function createEmotionStyledRules() {

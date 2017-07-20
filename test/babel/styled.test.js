@@ -8,7 +8,7 @@ jest.mock('fs')
 fs.existsSync.mockReturnValue(true)
 
 describe('babel styled component', () => {
-  describe.only('inline', () => {
+  describe('inline', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
       const { code } = babel.transform(basic, {
@@ -49,12 +49,13 @@ describe('babel styled component', () => {
     })
 
     test('nested', () => {
-      const basic = "const H1 = styled.h1`" +
+      const basic =
+        'const H1 = styled.h1`' +
         "font-size: ${fontSize + 'px'};" +
-        "& div { color: blue;" +
-        "& span { color: red } }" +
-        "`"
-      const {code} = babel.transform(basic, {
+        '& div { color: blue;' +
+        '& span { color: red } }' +
+        '`'
+      const { code } = babel.transform(basic, {
         plugins: [plugin]
       })
       expect(code).toMatchSnapshot()
@@ -214,30 +215,18 @@ describe('babel styled component', () => {
         height: 20px;
         transform: translateX(\${(props) => props.translateX});
       \``
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [plugin]
       })
       expect(code).toMatchSnapshot()
     })
   })
 
-
   describe('extract', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
       const { code } = babel.transform(basic, {
-        plugins: [plugin],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(0)
-    })
-
-    test('no dynamic', () => {
-      const basic = 'styled.h1`color:blue;`'
-      const { code } = babel.transform(basic, {
-        plugins: [plugin],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
@@ -248,48 +237,16 @@ describe('babel styled component', () => {
 
     test('basic', () => {
       const basic =
-        "const H1 = styled.h1`font-size: ${fontSize + 'px'}; height: 20px`"
+        "const H1 = styled.h1`display: flex; justify-content: center; width: var(--css-hash-0); &:hover { background-color: green; } @media (max-width: 500px) { height: var(--css-hash-1); position: fixed; } @media print { display: none; } &::before { color: blue; width: 20px; height: 20px; content: 'pseudo' }`"
       const { code } = babel.transform(basic, {
-        plugins: [plugin],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
+
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
       expect(fs.writeFileSync.mock.calls[1][1]).toMatchSnapshot()
-    })
-
-    test('based on props', () => {
-      const basic = `const H1 = styled.h1\`
-        font-size: \${fontSize + 'px'};
-        height: 20px;
-        transform: translateX(\${(props) => props.translateX});
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
-      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
-    })
-    test('composes', () => {
-      const basic = `const cls1 = css\` width: 20px; \`
-      const H1 = styled.h1\`
-        composes: \${cls1};
-        font-size: \${fontSize + 'px'};
-        height: 20px;
-        transform: translateX(\${(props) => props.translateX});
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(4)
-      expect(fs.writeFileSync.mock.calls[3][1]).toMatchSnapshot()
     })
   })
 })

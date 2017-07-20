@@ -5,9 +5,7 @@ import PropTypes from 'prop-types'
 import { registerPlugin, transform } from 'babel-standalone'
 import styled from 'emotion/react'
 
-const ric =
-  window.requestIdleCallback ||
-  window.requestAnimationFrame
+const ric = window.requestIdleCallback || window.requestAnimationFrame
 
 registerPlugin('emotion/babel', require('emotion/babel'))
 

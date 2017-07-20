@@ -23,7 +23,7 @@ describe('css', () => {
       border: ${'solid 1px red'};
     `
 
-    const tree = renderer.create(<div className={cls1}/>).toJSON()
+    const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
@@ -32,7 +32,7 @@ describe('css', () => {
       composes: ${undefined};
       justifyContent: center;
     `
-    const tree = renderer.create(<div className={cls2}/>).toJSON()
+    const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
@@ -44,13 +44,13 @@ describe('css', () => {
       composes: ${cls1};
       justifyContent: center;
     `
-    const tree = renderer.create(<div className={cls2}/>).toJSON()
+    const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
   test('handles objects', () => {
     const cls1 = css({ display: 'flex' })
-    const tree = renderer.create(<div className={cls1}/>).toJSON()
+    const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
@@ -59,7 +59,7 @@ describe('css', () => {
       display: ['flex', 'block'],
       width: 30,
       height: 'calc(40vw - 50px)',
-      ':hover': {color: 'blue'},
+      ':hover': { color: 'blue' },
       ':after': {
         content: '" "',
         color: 'red'
@@ -73,7 +73,7 @@ describe('css', () => {
       justifyContent: center;
     `
 
-    const tree = renderer.create(<div className={cls2}/>).toJSON()
+    const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshotWithEmotion()
   })
 })

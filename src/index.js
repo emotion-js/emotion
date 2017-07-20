@@ -116,7 +116,7 @@ export function injectGlobal (
   const combined = content ? objs.concat(content.apply(null, vars)) : objs
 
   // injectGlobal is flattened by postcss
-  // if using objects we don't support nested
+  // we don't support nested selectors on objects
   forEach(combined, obj => {
     forEach(Object.keys(obj), selector => {
       insertRawRule(`${selector} {${createMarkupForStyles(obj[selector])}}`)
@@ -397,7 +397,6 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
     }
     _src = clean(_src)
     if (_src && _src.composes) {
-      console.log('found composes')
       build(dest, { selector, mq, supp, src: _src.composes })
     }
     Object.keys(_src || {}).forEach(key => {
@@ -445,7 +444,6 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
         })
       } else if (key === 'composes') {
         // ignore, we already dealth with it
-        console.log('key === composes')
       } else {
         let _dest = dest
         if (supp) {

@@ -56,13 +56,11 @@ export default function (tag, objs, vars = [], content) {
       const getValue = v => {
         if (v && typeof v === 'function') {
           if (v.__emotion_spec) {
-            const css2 = css(
+            return css(
               map(v.__emotion_spec.objs, getValue),
               map(v.__emotion_spec.vars, getValue),
               v.__emotion_spec.content
             )
-            console.log('computed style based on tag spec', css2)
-            return css2
           }
           return v(mergedProps, context)
         }

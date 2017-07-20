@@ -20,7 +20,9 @@ export function getRuntimeImportPath (path, t) {
 export function buildMacroRuntimeNode (path, state, importName, t) {
   const runtimeImportPath = getRuntimeImportPath(path, t)
   if (state.emotionImports === undefined) state.emotionImports = {}
-  if (state.emotionImports[runtimeImportPath] === undefined) { state.emotionImports[runtimeImportPath] = {} }
+  if (state.emotionImports[runtimeImportPath] === undefined) {
+    state.emotionImports[runtimeImportPath] = {}
+  }
   if (state.emotionImports[runtimeImportPath][importName] === undefined) {
     state.emotionImports[runtimeImportPath][
       importName

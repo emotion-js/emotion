@@ -115,22 +115,22 @@ describe('styled', () => {
 
     const fakeBlue = css([
       {
-        color: "blue"
+        color: 'blue'
       }
-    ]);
+    ])
 
     const red = css([
       {
-        color: "red"
+        color: 'red'
       }
-    ]);
+    ])
 
     const blue = css([
       red,
       {
-        color: "blue"
+        color: 'blue'
       }
-    ]);
+    ])
 
     const prettyStyles = css([
       {
@@ -140,16 +140,14 @@ describe('styled', () => {
           transform: 'scale(1.2)'
         }
       },
-      {border: '3px solid currentColor'}
+      { border: '3px solid currentColor' }
     ])
 
     const Avatar = styled('img')`
       composes: ${prettyStyles} ${imageStyles} ${blue}
     `
 
-    const tree = renderer
-      .create(<Avatar/>)
-      .toJSON()
+    const tree = renderer.create(<Avatar />).toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
   })
@@ -196,7 +194,7 @@ describe('styled', () => {
   })
 
   test('composes', () => {
-    debugger;
+    debugger
     const fontSize = '20px'
 
     const cssA = css`

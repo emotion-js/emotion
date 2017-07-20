@@ -1,41 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fontFace babel extract basic 1`] = `
-"
-fontFace([], [], function createEmotionStyledRules() {
-     return [{
-          \\"fontFamily\\": \\"MyHelvetica\\",
-          \\"src\\": \\"local(\\\\\\"Helvetica Neue Bold\\\\\\"),\\\\n               local(\\\\\\"HelveticaNeue-Bold\\\\\\"),\\\\n               url(MgOpenModernaBold.ttf)\\",
-          \\"fontWeight\\": \\"bold\\"
-     }];
-});"
-`;
+exports[`fontFace babel extract basic 1`] = `"import \\"./font-face.test.emotion.css\\";"`;
 
 exports[`fontFace babel extract basic 2`] = `
-"@font-face {font-family: MyHelvetica;
-          src: local(\\"Helvetica Neue Bold\\"),
+"@font-face {
+    font-family: MyHelvetica;
+    src: local(\\"Helvetica Neue Bold\\"),
                local(\\"HelveticaNeue-Bold\\"),
                url(MgOpenModernaBold.ttf);
-          font-weight: bold;}"
+    font-weight: bold
+}"
 `;
 
 exports[`fontFace babel extract basic assign to variable 1`] = `
-"
-const thisWillBeUndefined = fontFace([], [], function createEmotionStyledRules() {
-     return [{
-          \\"fontFamily\\": \\"MyHelvetica\\",
-          \\"src\\": \\"local(\\\\\\"Helvetica Neue Bold\\\\\\"),\\\\n               local(\\\\\\"HelveticaNeue-Bold\\\\\\"),\\\\n               url(MgOpenModernaBold.ttf)\\",
-          \\"fontWeight\\": \\"bold\\"
-     }];
-});"
+"import \\"./font-face.test.emotion.css\\";
+
+const thisWillBeUndefined;"
 `;
 
 exports[`fontFace babel extract basic assign to variable 2`] = `
-"@font-face {font-family: MyHelvetica;
-          src: local(\\"Helvetica Neue Bold\\"),
+"@font-face {
+    font-family: MyHelvetica;
+    src: local(\\"Helvetica Neue Bold\\"),
                local(\\"HelveticaNeue-Bold\\"),
                url(MgOpenModernaBold.ttf);
-          font-weight: bold;}"
+    font-weight: bold
+}"
 `;
 
 exports[`fontFace babel extract interpolation 1`] = `

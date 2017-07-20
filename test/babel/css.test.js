@@ -8,7 +8,7 @@ fs.existsSync.mockReturnValue(true)
 
 describe('babel css', () => {
   describe('inline', () => {
-    test.only('css basic', () => {
+    test('css basic', () => {
       const basic = `
         css\`
         margin: 12px 48px;
@@ -29,7 +29,7 @@ describe('babel css', () => {
         const cls2 = css\`
         margin: 12px 48px;
         color: #ffffff;
-        .\${className} {
+        \${className} {
           display: none;
         }
         \`
@@ -77,7 +77,7 @@ describe('babel css', () => {
           display: flex;
         \`
         const cls2 = css\`
-          composes: \${'one-class'} \${'another-class'}\${cls1}
+          composes: \${'one-class'} \${'another-class'}\${cls1};
         \`
       `
       const { code } = babel.transform(basic, {
@@ -137,8 +137,10 @@ describe('babel css', () => {
         })
       ).toThrowErrorMatchingSnapshot()
     })
-    test('throws correct error when composes is on a nested selector', () => {
-      const basic = `
+    test.skip(
+      'throws correct error when composes is on a nested selector',
+      () => {
+        const basic = `
         const cls1 = css\`
           display: flex;
         \`
@@ -150,12 +152,13 @@ describe('babel css', () => {
           }
         \`
       `
-      expect(() =>
-        babel.transform(basic, {
-          plugins: [[plugin]]
-        })
-      ).toThrowErrorMatchingSnapshot()
-    })
+        expect(() =>
+          babel.transform(basic, {
+            plugins: [[plugin]]
+          })
+        ).toThrowErrorMatchingSnapshot()
+      }
+    )
   })
   describe('extract', () => {
     test('css basic', () => {
@@ -166,35 +169,15 @@ describe('babel css', () => {
         display: flex;
         flex: 1 0 auto;
         color: blue;
-        width: \${widthVar};
       \``
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
       expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
-    })
-
-    test('interpolation in selector', () => {
-      const basic = `
-        const cls2 = css\`
-        margin: 12px 48px;
-        color: #ffffff;
-        .\${className} {
-          display: none;
-        }
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
     })
 
     test('composes', () => {
@@ -209,7 +192,7 @@ describe('babel css', () => {
         \`
       `
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
@@ -229,7 +212,7 @@ describe('babel css', () => {
         \`
       `
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
@@ -293,14 +276,14 @@ describe('babel css', () => {
         \`
       `
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
 
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(4)
-      expect(fs.writeFileSync.mock.calls[3][1]).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
+      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
     })
   })
 })

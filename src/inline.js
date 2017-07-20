@@ -45,55 +45,36 @@ function createRawStringFromQuasi (
 
 export function inline (
   quasi: any,
-  identifierName?: string
-): {
-  isStaticBlock: boolean,
-  styles: { [string]: any },
-  composesCount: number
-} {
-  let strs = quasi.quasis.map(x => x.value.cooked)
-  let { src } = createRawStringFromQuasi(strs)
-  return parseCSS(src)
-}
-
-export function keyframes (
-  quasi: any,
   identifierName?: string,
   prefix: string
 ): {
-  isStaticBlock: boolean,
-  styles: { [string]: any },
-  composesCount: number
+  name: string,
+  hash: string,
+  src: string,
+  parser: (
+    css: string,
+    extractStatic: boolean
+  ) => {
+    staticCSSRules: Array<string>,
+    styles: { [string]: any },
+    composesCount: number
+  }
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
+  let hash = hashArray([...strs]) // todo - add current filename?
+  let name = getName(
+    extractNameFromProperty(strs.join('xxx')),
+    identifierName,
+    prefix
+  )
   let { src } = createRawStringFromQuasi(strs)
-  return parseCSS(`{ ${src} }`)
-}
 
-export function fontFace (
-  quasi: any,
-  identifierName?: string,
-  prefix: string
-): {
-  isStaticBlock: boolean,
-  styles: { [string]: any },
-  composesCount: number
-} {
-  let strs = quasi.quasis.map(x => x.value.cooked)
-  let { src } = createRawStringFromQuasi(strs)
-  return parseCSS(`@font-face {${src}}`)
-}
-
-export function injectGlobal (
-  quasi: any,
-  identifierName?: string,
-  prefix: string
-): {
-  isStaticBlock: boolean,
-  styles: { [string]: any },
-  composesCount: number
-} {
-  let strs = quasi.quasis.map(x => x.value.cooked)
-  let { src } = createRawStringFromQuasi(strs)
-  return parseCSS(src)
+  return {
+    name,
+    hash,
+    src,
+    parser (css, extractStatic = false) {
+      return parseCSS(css, extractStatic)
+    }
+  }
 }

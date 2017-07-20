@@ -8,7 +8,7 @@ import autoprefix from 'styled-components/lib/utils/autoprefix'
 import postcssJs from 'postcss-js'
 import { objStyle } from './index'
 
-let prefixer = postcssJs.sync([autoprefix ]);
+let prefixer = postcssJs.sync([autoprefix])
 
 type Rule = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -24,9 +24,10 @@ type Decl = {
 }
 
 export function parseCSS (
-  css: string
+  css: string,
+  extractStatic: boolean
 ): {
-  isStaticBlock: boolean,
+  staticCSSRules: Array<string>,
   styles: { [string]: any },
   composesCount: number
 } {
@@ -64,8 +65,19 @@ export function parseCSS (
 
   return {
     styles,
-    isStaticBlock: vars === 0,
+    staticCSSRules: vars === 0 && extractStatic
+      ? stringifyCSSRoot(postcssJs.parse(styles))
+      : [],
     composesCount: composes
   }
 }
 
+function stringifyCSSRoot (root) {
+  return root.nodes.map((node, i) => {
+    let str = ''
+    stringify(node, x => {
+      str += x
+    })
+    return str
+  })
+}

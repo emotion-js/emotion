@@ -1,49 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`babel styled component extract based on props 1`] = `
-"import './styled.test.emotion.css';
-const H1 = styled('h1', ['css-H1-1kwokni'], [fontSize + 'px', props => props.translateX]);"
-`;
-
-exports[`babel styled component extract based on props 2`] = `
-".css-H1-1kwokni { font-size: var(--css-H1-1kwokni-0);
-        height: 20px;
-        -webkit-transform: translateX(var(--css-H1-1kwokni-1));
-        -ms-transform: translateX(var(--css-H1-1kwokni-1));
-        transform: translateX(var(--css-H1-1kwokni-1)); }"
-`;
-
 exports[`babel styled component extract basic 1`] = `
-"import './styled.test.emotion.css';
-const H1 = styled('h1', ['css-H1-1mh2el5'], [fontSize + 'px']);"
-`;
-
-exports[`babel styled component extract basic 2`] = `".css-H1-1mh2el5 { font-size: var(--css-H1-1mh2el5-0); height: 20px }"`;
-
-exports[`babel styled component extract composes 1`] = `
-"import './styled.test.emotion.css';
-const cls1 = \`\${'css-cls1-1ltut9y'}\`;
-const H1 = styled('h1', ['css-H1-13ogl0z', cls1], [fontSize + 'px', props => props.translateX]);"
-`;
-
-exports[`babel styled component extract composes 2`] = `
-".css-cls1-1ltut9y { width: 20px; }
-.css-H1-13ogl0z {
-        font-size: var(--css-H1-13ogl0z-0);
-        height: 20px;
-        -webkit-transform: translateX(var(--css-H1-13ogl0z-1));
-        -ms-transform: translateX(var(--css-H1-13ogl0z-1));
-        transform: translateX(var(--css-H1-13ogl0z-1)); }"
-`;
-
-exports[`babel styled component extract no dynamic 1`] = `
 "import \\"./styled.test.emotion.css\\";
-styled(\\"h1\\", [\\"css-14ksm7b\\"], []);"
+const H1 = styled(\\"h1\\", [\\"styled-H1-10x82eg\\"]);"
 `;
 
-exports[`babel styled component extract no dynamic 2`] = `".css-14ksm7b { color: blue; }"`;
+exports[`babel styled component extract basic 2`] = `
+".styled-H1-10x82eg {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: var(--css-hash-0)
+}
+.styled-H1-10x82eg:hover {
+    background-color: green
+}
+@media (max-width: 500px) {
+    .styled-H1-10x82eg {
+        height: var(--css-hash-1);
+        position: fixed
+    }
+}
+@media print {
+    .styled-H1-10x82eg {
+        display: none
+    }
+}
+.styled-H1-10x82eg::before {
+    color: blue;
+    width: 20px;
+    height: 20px;
+    content: 'pseudo'
+}"
+`;
 
-exports[`babel styled component extract no use 1`] = `"\\"h1\\";"`;
+exports[`babel styled component extract no use 1`] = `
+"import \\"./styled.test.emotion.css\\";
+styled(\\"h1\\", [\\"styled-0\\"]);"
+`;
+
+exports[`babel styled component extract no use 2`] = `".styled-0 {}"`;
 
 exports[`babel styled component inline basic 1`] = `
 "const H1 = styled('h1', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {

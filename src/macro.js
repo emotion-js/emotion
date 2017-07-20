@@ -1,14 +1,12 @@
-import {
-  replaceCssWithCallExpression
-} from './babel'
+import { replaceCssWithCallExpression } from './babel'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
-import { injectGlobal, fontFace } from './inline'
+import { fontFace } from './inline'
 import { forEach } from './utils'
 import { keys } from './utils'
 
 module.exports = function macro ({ references, state, babel: { types: t } }) {
   if (!state.inline) state.inline = true
-  forEach(keys(references), (referenceKey) => {
+  forEach(keys(references), referenceKey => {
     if (referenceKey === 'injectGlobal') {
       references.injectGlobal.forEach(injectGlobalReference => {
         const path = injectGlobalReference.parentPath
@@ -73,7 +71,7 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
         }
       })
     } else {
-      references[referenceKey].forEach((reference) => {
+      references[referenceKey].forEach(reference => {
         reference.replaceWith(
           buildMacroRuntimeNode(reference, state, referenceKey, t)
         )

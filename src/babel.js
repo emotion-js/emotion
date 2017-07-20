@@ -4,8 +4,9 @@ import { basename } from 'path'
 import { touchSync } from 'touch'
 import postcssJs from 'postcss-js'
 import autoprefixer from 'autoprefixer'
-import forEach from '@arr/foreach'
-import { inline, keyframes, fontFace, injectGlobal } from './inline'
+import { forEach, map } from './utils'
+import { inline } from './inline'
+import { hashArray } from './hash'
 import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
 
@@ -20,69 +21,93 @@ function joinExpressionsWithSpaces (expressions, t) {
   return t.templateLiteral(quasis, expressions)
 }
 
-export function replaceCssWithCallExpression (path, identifier, state, t) {
+export function replaceCssWithCallExpression (
+  path,
+  identifier,
+  state,
+  t,
+  staticCSSTextCreator = (name, hash, src) => `.${name}-${hash} { ${src} }`,
+  removePath = false
+) {
   try {
-    const { styles, isStaticBlock, composesCount } = inline(
+    const { name, hash, src, parser } = inline(
       path.node.quasi,
-      getIdentifierName(path, t)
+      getIdentifierName(path, t),
+      'css'
     )
+    ;('foo')
+    if (state.extractStatic && !path.node.quasi.expressions.length) {
+      const cssText = staticCSSTextCreator(name, hash, src)
+      const { styles, staticCSSRules } = parser(cssText, true)
+
+      state.insertStaticRules(staticCSSRules)
+      return removePath
+        ? path.remove()
+        : path.replaceWith(t.stringLiteral(`${name}-${hash}`))
+    }
+
+    const { styles, composesCount } = parser(src, false)
 
     const inputClasses = []
-
-    for (var i = 0; i < composesCount; i++) {
-      inputClasses.push(path.node.quasi.expressions[i])
+    const composeValues = []
+    for (let i = 0; i < composesCount; i++) {
+      composeValues.push(path.node.quasi.expressions[i])
     }
 
     inputClasses.push(createAstObj(styles, false, composesCount, t))
 
-    const thing = createAstObj(
-      styles,
-      path.node.quasi.expressions,
-      composesCount,
-      t
-    )
-
-    // console.log(thing)
-    if (state.extractStatic && isStaticBlock) {
-      // state.insertStaticRules(rules)
-      // if (!hasVar) {
-      //   return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
-      // }
-    }
-    return path.replaceWith(
+    const objs = path.node.quasi.expressions.slice(0, composesCount)
+    const vars = path.node.quasi.expressions.slice(composesCount)
+    path.replaceWith(
       t.callExpression(identifier, [
-        t.arrayExpression(path.node.quasi.expressions.slice(0, composesCount)),
-        t.arrayExpression(path.node.quasi.expressions.slice(composesCount)),
+        t.arrayExpression(composeValues),
+        t.arrayExpression(vars),
         t.functionExpression(
           t.identifier('createEmotionStyledRules'),
-          path.node.quasi.expressions
-            .slice(composesCount)
-            .map((x, i) => t.identifier(`x${i}`)),
+          vars.map((x, i) => t.identifier(`x${i}`)),
           t.blockStatement([t.returnStatement(t.arrayExpression(inputClasses))])
         )
       ])
     )
   } catch (e) {
-    console.log('throwing here', e)
-    // let {line, column} = path.loc.start;
-    // throw prettyError(createErrorWithLoc('Error at this position', line, column));
-    throw e
+    if (path) {
+      throw path.buildCodeFrameError(e)
+    }
 
+    throw e
   }
 }
 
 export function buildStyledCallExpression (identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
-  const { styles, isStaticBlock, composesCount } = inline(
+
+  if (state.extractStatic && !path.node.quasi.expressions.length) {
+    const { name, hash, src, parser } = inline(
+      path.node.quasi,
+      identifierName,
+      'styled' // we don't want these styles to be merged in css``
+    )
+
+    const cssText = `.${name}-${hash} { ${src} }`
+    const { styles, staticCSSRules } = parser(cssText, true)
+
+    state.insertStaticRules(staticCSSRules)
+    return t.callExpression(identifier, [
+      tag,
+      t.arrayExpression([t.stringLiteral(`${name}-${hash}`)])
+    ])
+  }
+
+  const { name, hash, src, parser } = inline(
     path.node.quasi,
-    identifierName
+    getIdentifierName(path, t),
+    'css'
   )
 
-  // console.log(JSON.stringify(styles, null, 2))
-
+  const { styles, composesCount } = parser(src, false)
   const inputClasses = []
   const composeValues = []
-  for (var i = 0; i < composesCount; i++) {
+  for (let i = 0; i < composesCount; i++) {
     composeValues.push(path.node.quasi.expressions[i])
   }
 
@@ -90,7 +115,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
 
   const args = [
     tag,
-    t.arrayExpression(path.node.quasi.expressions.slice(0, composesCount)),
+    t.arrayExpression(composeValues),
     t.arrayExpression(path.node.quasi.expressions.slice(composesCount)),
     t.functionExpression(
       t.identifier('createEmotionStyledRules'),
@@ -100,10 +125,6 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
       t.blockStatement([t.returnStatement(t.arrayExpression(inputClasses))])
     )
   ]
-
-  if (state.extractStatic && isStaticBlock) {
-    // state.insertStaticRules(rules)
-  }
 
   return t.callExpression(identifier, args)
 }
@@ -260,12 +281,13 @@ function objKeyToAst (
   expressions,
   composesCount: number,
   t
-): { computed: boolean, ast: any } {
+): { computed: boolean, ast: any, composes: boolean } {
   const matches = getDynamicMatches(key)
 
   if (matches.length) {
     return {
       computed: true,
+      composes: key === 'composes',
       ast: replacePlaceholdersWithExpressions(
         matches,
         key,
@@ -306,7 +328,6 @@ function objValueToAst (value, expressions, composesCount, t) {
 }
 
 function createAstObj (obj, expressions, composesCount, t) {
-  // console.log(JSON.stringify(obj, null, 2))
   const props = []
 
   for (let key in obj) {
@@ -327,7 +348,6 @@ function createAstObj (obj, expressions, composesCount, t) {
 
     props.push(t.objectProperty(keyAST, valueAST, computed))
   }
-  // console.log(props)
   return t.objectExpression(props)
 }
 
@@ -346,7 +366,7 @@ export default function (babel) {
             path.hub.file.opts.filename === 'unknown' || state.opts.inline
 
           state.extractStatic =
-            path.hub.file.opts.filename !== 'unknown' ||
+            // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
 
           state.staticRules = []
@@ -407,16 +427,6 @@ export default function (babel) {
         path[visited] = true
       },
       TaggedTemplateExpression (path, state) {
-        // in:
-        // styled.h1`color:${color};`
-        //
-        // out:
-        // styled('h1', "css-r1aqtk", [colorVar, heightVar], function inlineCss(x0, x1) {
-        //   return [`.css-r1aqtk {
-        //     margin: 12px;
-        //     color: ${x0};
-        //     height: ${x1}; }`];
-        // });
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
@@ -453,21 +463,26 @@ export default function (babel) {
               path,
               t.identifier('keyframes'),
               state,
-              t
+              t,
+              (name, hash, src) => `@animation ${name}-${hash} { ${src} }`
             )
           } else if (path.node.tag.name === 'fontFace') {
             replaceCssWithCallExpression(
               path,
               t.identifier('fontFace'),
               state,
-              t
+              t,
+              (name, hash, src) => `@font-face {${src}}`,
+              true
             )
           } else if (path.node.tag.name === 'injectGlobal') {
             replaceCssWithCallExpression(
               path,
               t.identifier('injectGlobal'),
               state,
-              t
+              t,
+              (name, hash, src) => src,
+              true
             )
           }
         }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { ThemeProvider } from 'emotion/react/theming'
-import styled, {  css, fontFace, keyframes, injectGlobal } from 'emotion/react'
+import styled, { css, fontFace, keyframes, injectGlobal } from 'emotion/react'
 import Markdown from './markdown'
 import Playground from './playground'
 import logoUrl from '../../emotion.png'
@@ -225,7 +225,7 @@ class App extends React.Component {
             {/* }} */}
             {/* /> */}
 
-            <Markdown markdown={require('../../docs/theming.md')}/>
+            <Markdown markdown={require('../../docs/theming.md')} />
             <Playground
               maxHeight={180}
               noRender={false}
