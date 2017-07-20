@@ -6,20 +6,8 @@ import postcssJs from 'postcss-js'
 import autoprefixer from 'autoprefixer'
 import { forEach, map } from './utils'
 import { inline } from './inline'
-import { hashArray } from './hash'
 import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
-
-function joinExpressionsWithSpaces (expressions, t) {
-  const quasis = [t.templateElement({ cooked: '', raw: '' }, true)]
-  expressions.forEach((x, i) => {
-    if (i === expressions.length - 1) {
-      return quasis.push(t.templateElement({ cooked: '', raw: '' }, true))
-    }
-    quasis.push(t.templateElement({ cooked: ' ', raw: ' ' }, true))
-  })
-  return t.templateLiteral(quasis, expressions)
-}
 
 export function replaceCssWithCallExpression (
   path,
