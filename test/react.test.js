@@ -152,6 +152,28 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
+  test('handles more than 10 dynamic properties', () => {
+    const H1 = styled('h1')`
+      background: ${'white'};
+      color: ${'black'};
+      text-decoration: ${'underline'};
+      display: ${'block'};
+      border-radius: ${'3px'};
+      padding: ${'25px'};
+      width: ${'500px'};
+      z-index: ${100};
+      font-size: ${'18px'};
+      text-align: ${'center'};
+      border: ${'solid 1px red'};
+    `
+
+    const tree = renderer
+      .create(<H1 className={'legacy__class'}>hello world</H1>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
   test('component as selector', () => {
     const fontSize = '20px'
     const H1 = styled.h1`font-size: ${fontSize};`

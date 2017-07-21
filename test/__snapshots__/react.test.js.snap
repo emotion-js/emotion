@@ -42,12 +42,14 @@ exports[`styled component as selector 1`] = `
   font-size: 20px;
 }
 
-.css-1d77tm {
-  display: -webkit-box,-ms-flexbox,flex;
+.css-qrvryj {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 <div
-  className="css-1d77tm"
+  className="css-qrvryj"
 >
   hello 
   <h1
@@ -148,6 +150,18 @@ exports[`styled function in expression 1`] = `
 </h1>
 `;
 
+exports[`styled handles more than 10 dynamic properties 1`] = `
+.css-1i41sa5 {
+  background: white,black,underline,block,3px,25px,500px,100,18px,center,solid 1px red;
+}
+
+<h1
+  className="legacy__class css-1i41sa5"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled higher order component 1`] = `
 .css-11fn3ay {
   font-size: 20px;
@@ -190,15 +204,17 @@ exports[`styled name 1`] = `
 `;
 
 exports[`styled nested 1`] = `
-.css-bex773 {
-  display: -webkit-box,-ms-flexbox,flex;
+.css-1fir8qd {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.css-bex773 div {
+.css-1fir8qd div {
   color: green;
 }
 
-.css-bex773 div span {
+.css-1fir8qd div span {
   color: red;
 }
 
@@ -207,7 +223,7 @@ exports[`styled nested 1`] = `
 }
 
 <div
-  className="css-bex773"
+  className="css-1fir8qd"
 >
   hello 
   <h1
@@ -232,23 +248,25 @@ exports[`styled no dynamic 1`] = `
 `;
 
 exports[`styled object composition 1`] = `
-.css-ifc29m {
+.css-xxf8x1 {
   border-radius: 50%;
   -webkit-transition: -webkit-transform 400ms ease-in-out;
-  transition: -webkit-transform 400ms ease-in-out,transform 400ms ease-in-out,transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out;
+  transition: -webkit-transform 400ms ease-in-out;
+  transition: transform 400ms ease-in-out;
+  transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out;
   border: 3px solid currentColor;
   width: 96px;
   height: 96px;
   color: blue;
 }
 
-.css-ifc29m:hover {
+.css-xxf8x1:hover {
   -webkit-transform: scale(1.2);
   transform: scale(1.2);
 }
 
 <img
-  className="css-ifc29m"
+  className="css-xxf8x1"
 />
 `;
 
