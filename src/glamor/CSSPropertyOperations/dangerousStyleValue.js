@@ -9,10 +9,9 @@
  * @providesModule dangerousStyleValue
  */
 
-import CSSProperty from './CSSProperty'
+import isUnitlessNumber from './CSSProperty'
 import warning from 'fbjs/lib/warning'
 
-let isUnitlessNumber = CSSProperty.isUnitlessNumber
 let styleWarnings = {}
 
 /**
