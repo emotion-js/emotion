@@ -1,5 +1,4 @@
 // @flow
-import { parseCSS } from './parser'
 import { hashArray } from './hash'
 
 function extractNameFromProperty (str: string) {
@@ -50,18 +49,10 @@ export function inline (
 ): {
   name: string,
   hash: string,
-  src: string,
-  parser: (
-    css: string,
-    extractStatic: boolean
-  ) => {
-    staticCSSRules: Array<string>,
-    styles: { [string]: any },
-    composesCount: number
-  }
+  src: string
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  let hash = hashArray([...strs]) // todo - add current filename?
+  let hash = hashArray([...strs])
   let name = getName(
     extractNameFromProperty(strs.join('xxx')),
     identifierName,
@@ -72,9 +63,6 @@ export function inline (
   return {
     name,
     hash,
-    src,
-    parser (css, extractStatic = false) {
-      return parseCSS(css, extractStatic)
-    }
+    src
   }
 }

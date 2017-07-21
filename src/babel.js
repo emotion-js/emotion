@@ -6,6 +6,7 @@ import postcssJs from 'postcss-js'
 import autoprefixer from 'autoprefixer'
 import { forEach, map } from './utils'
 import { inline } from './inline'
+import { parseCSS } from './parser'
 import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
 
@@ -18,7 +19,7 @@ export function replaceCssWithCallExpression (
   removePath = false
 ) {
   try {
-    const { name, hash, src, parser } = inline(
+    const { name, hash, src } = inline(
       path.node.quasi,
       getIdentifierName(path, t),
       'css'
@@ -26,6 +27,7 @@ export function replaceCssWithCallExpression (
     if (state.extractStatic && !path.node.quasi.expressions.length) {
       const cssText = staticCSSTextCreator(name, hash, src)
       const { staticCSSRules } = parser(cssText, true)
+      const { styles, staticCSSRules } = parseCSS(cssText, true)
 
       state.insertStaticRules(staticCSSRules)
       return removePath
@@ -33,7 +35,7 @@ export function replaceCssWithCallExpression (
         : path.replaceWith(t.stringLiteral(`${name}-${hash}`))
     }
 
-    const { styles, composesCount } = parser(src, false)
+    const { styles, composesCount } = parseCSS(src, false)
 
     const inputClasses = []
     const composeValues = []
@@ -68,14 +70,14 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
   if (state.extractStatic && !path.node.quasi.expressions.length) {
-    const { name, hash, src, parser } = inline(
+    const { name, hash, src } = inline(
       path.node.quasi,
       identifierName,
       'styled' // we don't want these styles to be merged in css``
     )
 
     const cssText = `.${name}-${hash} { ${src} }`
-    const { staticCSSRules } = parser(cssText, true)
+    const { staticCSSRules } = parseCSS(cssText, true)
 
     state.insertStaticRules(staticCSSRules)
     return t.callExpression(identifier, [
@@ -84,13 +86,13 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     ])
   }
 
-  const { src, parser } = inline(
+  const { src } = inline(
     path.node.quasi,
     getIdentifierName(path, t),
     'css'
   )
 
-  const { styles, composesCount } = parser(src, false)
+  const { styles, composesCount } = parseCSS(src, false)
   const inputClasses = []
   const composeValues = []
   for (let i = 0; i < composesCount; i++) {
