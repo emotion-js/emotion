@@ -10,6 +10,6 @@ const Avatar = styled('img')`
 `
 
 render(
-  <Avatar src={avatarUrl} rounded />,
+  <Avatar src={logoUrl} rounded />,
   mountNode
 )

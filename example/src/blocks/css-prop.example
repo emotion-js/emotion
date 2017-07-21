@@ -24,7 +24,7 @@ render(
       }
     `}
   >
-    <img src={avatarUrl} />
+    <img src={logoUrl} />
   </div>,
   mountNode
 )

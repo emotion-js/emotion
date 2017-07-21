@@ -38,6 +38,6 @@ const Avatar = styled('img')`
 `
 
 render(
-  <Avatar src={avatarUrl}/>,
+  <Avatar src={logoUrl}/>,
   mountNode
 )

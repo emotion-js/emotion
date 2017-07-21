@@ -14,6 +14,8 @@ export {
   objStyle
 } from '../index'
 
+const push = (obj, items) => Array.prototype.push.apply(obj, items)
+
 export default function (tag, objs, vars = [], content) {
   if (!tag) {
     throw new Error(
@@ -70,14 +72,15 @@ export default function (tag, objs, vars = [], content) {
 
       let finalObjs = []
 
+
       if (tag.__emotion_spec) {
-        Array.prototype.push.apply(
+        push(
           finalObjs,
           reduce(
             tag.__emotion_spec,
             (accum, spec) => {
-              Array.prototype.push.apply(accum, spec.objs)
-              Array.prototype.push.apply(
+              push(accum, spec.objs)
+              push(
                 accum,
                 spec.content(map(spec.vars, getValue))
               )
@@ -88,14 +91,14 @@ export default function (tag, objs, vars = [], content) {
         )
       }
 
-      Array.prototype.push.apply(finalObjs, objs)
+      push(finalObjs, objs)
 
       if (content) {
-        Array.prototype.push.apply(finalObjs, content(map(vars, getValue)))
+        push(finalObjs, content(map(vars, getValue)))
       }
 
       if (mergedProps.className) {
-        Array.prototype.push.apply(finalObjs, mergedProps.className.split(' '))
+        push(finalObjs, mergedProps.className.split(' '))
       }
 
       const className = css(map(finalObjs, getValue))

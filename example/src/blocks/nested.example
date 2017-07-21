@@ -7,6 +7,6 @@ const Avatar = styled('div')`
 `
 
 render(
-  <Avatar><img src={avatarUrl} /></Avatar>,
+  <Avatar><img src={logoUrl} /></Avatar>,
   mountNode
 )
