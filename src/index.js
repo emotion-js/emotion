@@ -177,7 +177,6 @@ export function hydrate (ids: string[]) {
   forEach(ids, id => (inserted[id] = true))
 }
 
-// 🍩
 type EmotionRule = { [string]: any }
 
 type CSSRuleList = Array<EmotionRule>
@@ -191,6 +190,7 @@ let cachedCss: (rules: CSSRuleList) => EmotionClassName = typeof WeakMap !==
   ? multiIndexCache(_css)
   : _css
 
+// 🍩
 // https://github.com/threepointone/glamor
 export function objStyle (...rules: CSSRuleList): EmotionClassName {
   rules = clean(rules)
@@ -224,14 +224,14 @@ export function isLikeRule (rule: EmotionRule) {
   if (keys.length !== 1) {
     return false
   }
-  return !!/css\-obj\-([a-zA-Z0-9]+)/.exec(keys[0])
+  return !!/css\-([a-zA-Z0-9]+)/.exec(keys[0])
 }
 
 // extracts id from a { 'css-<id>': ''} like object
 export function idFor (rule: EmotionRule) {
   let keys = Object.keys(rule).filter(x => x !== 'toString')
   if (keys.length !== 1) throw new Error('not a rule')
-  let regex = /css\-obj\-([a-zA-Z0-9]+)/
+  let regex = /css\-([a-zA-Z0-9]+)/
   let match = regex.exec(keys[0])
   if (!match) throw new Error('not a rule')
   return match[1]

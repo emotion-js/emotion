@@ -6,7 +6,7 @@ import postcssJs from 'postcss-js'
 import autoprefixer from 'autoprefixer'
 import { forEach, map } from './utils'
 import { inline } from './inline'
-import { parseCSS } from './parser'
+import { parseCSS, expandCSSFallbacks } from './parser'
 import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
 
@@ -26,8 +26,7 @@ export function replaceCssWithCallExpression (
     )
     if (state.extractStatic && !path.node.quasi.expressions.length) {
       const cssText = staticCSSTextCreator(name, hash, src)
-      const { staticCSSRules } = parser(cssText, true)
-      const { styles, staticCSSRules } = parseCSS(cssText, true)
+      const { staticCSSRules } = parseCSS(cssText, true)
 
       state.insertStaticRules(staticCSSRules)
       return removePath
@@ -166,9 +165,9 @@ function prefixAst (args, t) {
           : property.value.value
 
         const style = { [property.key.name]: propertyValue }
-        const prefixedStyle = prefixer(style)
+        const prefixedStyle = expandCSSFallbacks(prefixer(style))
 
-        for (var k in prefixedStyle) {
+        for (let k in prefixedStyle) {
           const key = t.isStringLiteral(property.key)
             ? t.stringLiteral(k)
             : t.identifier(k)

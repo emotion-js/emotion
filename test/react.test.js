@@ -158,7 +158,7 @@ describe('styled', () => {
 
     const Thing = styled.div`
       display: flex;
-      ${H1} {
+      .${H1} {
         color: green;
       }
     `

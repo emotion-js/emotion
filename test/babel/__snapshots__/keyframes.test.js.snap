@@ -7,15 +7,23 @@ const rotate360 = \\"css-rotate360-f35ahc\\";"
 `;
 
 exports[`babel keyframes extract keyframes basic 2`] = `
-"@keyframes css-rotate360-f35ahc {
+"@-webkit-keyframes css-rotate360-f35ahc {
     from {
         -webkit-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
         transform: rotate(0deg)
     }
     to {
         -webkit-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+@keyframes css-rotate360-f35ahc {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(360deg);
         transform: rotate(360deg)
     }
 }"
@@ -27,12 +35,10 @@ const rotate360 = keyframes([], [endingRotation], function createEmotionStyledRu
   return [{
     \\"from\\": {
       \\"WebkitTransform\\": \\"rotate(0deg)\\",
-      \\"msTransform\\": \\"rotate(0deg)\\",
       \\"transform\\": \\"rotate(0deg)\\"
     },
     \\"to\\": {
       \\"WebkitTransform\\": \`rotate(\${x0})\`,
-      \\"msTransform\\": \`rotate(\${x0})\`,
       \\"transform\\": \`rotate(\${x0})\`
     }
   }];
@@ -45,12 +51,10 @@ const rotate360 = keyframes([], [], function createEmotionStyledRules() {
   return [{
     \\"from\\": {
       \\"WebkitTransform\\": \\"rotate(0deg)\\",
-      \\"msTransform\\": \\"rotate(0deg)\\",
       \\"transform\\": \\"rotate(0deg)\\"
     },
     \\"to\\": {
       \\"WebkitTransform\\": \\"rotate(360deg)\\",
-      \\"msTransform\\": \\"rotate(360deg)\\",
       \\"transform\\": \\"rotate(360deg)\\"
     }
   }];
@@ -63,12 +67,10 @@ const rotate360 = keyframes([], [endingRotation], function createEmotionStyledRu
   return [{
     \\"from\\": {
       \\"WebkitTransform\\": \\"rotate(0deg)\\",
-      \\"msTransform\\": \\"rotate(0deg)\\",
       \\"transform\\": \\"rotate(0deg)\\"
     },
     \\"to\\": {
       \\"WebkitTransform\\": \`rotate(\${x0})\`,
-      \\"msTransform\\": \`rotate(\${x0})\`,
       \\"transform\\": \`rotate(\${x0})\`
     }
   }];

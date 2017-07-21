@@ -37,6 +37,7 @@
     "autoprefixer": "^7.1.2",
     "babel-errors": "^1.1.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-types": "^6.25.0",
     "fbjs": "^0.8.12",
     "inline-style-prefixer": "^3.0.6",
     "postcss-js": "^1.0.0",

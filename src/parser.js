@@ -1,14 +1,13 @@
 // @flow
-import { t } from 'babel-types'
 import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
 import postcssNested from 'styled-components/lib/vendor/postcss-nested'
 import stringify from 'styled-components/lib/vendor/postcss/stringify'
-import autoprefix from 'styled-components/lib/utils/autoprefix'
-// import camelizeStyleName from 'fbjs/lib/camelizeStyleName'
 import postcssJs from 'postcss-js'
+import autoprefixer from 'autoprefixer'
+import { processStyleName } from './glamor/CSSPropertyOperations'
 import { objStyle } from './index'
 
-let prefixer = postcssJs.sync([autoprefix])
+const prefixer = postcssJs.sync([autoprefixer])
 
 type Rule = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -38,13 +37,6 @@ export function parseCSS (
 
   postcssNested(root)
 
-  root.walkRules((rule: Rule) => {
-    // TODO: do this everywhere except `,xxx9xxx`
-    if (/\bxxx\d+xxx/.exec(rule.selector)) {
-      rule.selector = `.${rule.selector}`
-    }
-  })
-
   root.walkDecls((decl: Decl): void => {
     if (decl.prop === 'composes') {
       if (!/xxx(\d+)xxx/gm.exec(decl.value)) {
@@ -61,7 +53,7 @@ export function parseCSS (
     }
   })
 
-  const styles = prefixer(postcssJs.objectify(root))
+  const styles = expandCSSFallbacks(prefixer(postcssJs.objectify(root)))
 
   return {
     styles,
@@ -80,4 +72,20 @@ function stringifyCSSRoot (root) {
     })
     return str
   })
+}
+
+export function expandCSSFallbacks (style: { [string]: any }) {
+  let flattened = Object.keys(style).reduce((accum, key) => {
+    if (Array.isArray(style[key])) {
+      accum[key] = style[key].join(`; ${processStyleName(key)}: `)
+    } else if (Object.prototype.toString.call(style[key]) === '[object Object]') {
+      accum[key] = expandCSSFallbacks(style[key])
+    } else {
+      accum[key] = style[key];
+    }
+    return accum
+  }, {})
+  // todo -
+  // flatten arrays which haven't been flattened yet
+  return flattened
 }

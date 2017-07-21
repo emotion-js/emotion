@@ -7,14 +7,7 @@ Object {
   "styles": Object {
     ".thing": Object {
       "WebkitBoxPack": "center",
-      "WebkitJustifyContent": "center",
-      "display": Array [
-        "-webkit-box",
-        "-moz-box",
-        "-ms-flexbox",
-        "-webkit-flex",
-        "flex",
-      ],
+      "display": "-webkit-box; display: -ms-flexbox; display: flex",
       "justifyContent": "center",
       "msFlexPack": "center",
       "width": "var(--css-hash-0)",
@@ -30,14 +23,7 @@ Object {
   "styles": Object {
     ".some-selector": Object {
       "WebkitBoxPack": "center",
-      "WebkitJustifyContent": "center",
-      "display": Array [
-        "-webkit-box",
-        "-moz-box",
-        "-ms-flexbox",
-        "-webkit-flex",
-        "flex",
-      ],
+      "display": "-webkit-box; display: -ms-flexbox; display: flex",
       "justifyContent": "center",
       "msFlexPack": "center",
       "width": "var(--css-hash-0)",

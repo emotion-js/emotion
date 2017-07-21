@@ -62,7 +62,7 @@ injectGlobal([], [], function createEmotionStyledRules() {
       \\"padding\\": \\"0\\"
     },
     \\"body > div\\": {
-      \\"display\\": \\"none\\"
+      \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
     },
     \\"html\\": {
       \\"background\\": \\"green\\"

@@ -37,8 +37,8 @@ exports[`styled call expression 1`] = `
 `;
 
 exports[`styled component as selector 1`] = `
-.css-1eki6f4 {
-  display: -webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;
+.css-1d77tm {
+  display: -webkit-box,-ms-flexbox,flex;
 }
 
 .css-1ikz3g9 {
@@ -46,7 +46,7 @@ exports[`styled component as selector 1`] = `
 }
 
 <div
-  className="css-1eki6f4"
+  className="css-1d77tm"
 >
   hello 
   <h1
@@ -150,18 +150,17 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.css-lid1wd {
+.css-1nkevqp {
   font-size: 20px;
   background-color: '#343a40';
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
 <div
-  className="css-lid1wd"
+  className="css-1nkevqp"
 />
 `;
 

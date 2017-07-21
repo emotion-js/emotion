@@ -15,7 +15,7 @@ describe('babel injectGlobal', () => {
             margin: 0;
             padding: 0;
             & > div {
-              display: none;
+              display: flex;
             }
           }
           html {

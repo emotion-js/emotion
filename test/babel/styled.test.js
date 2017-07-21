@@ -30,7 +30,7 @@ describe('babel styled component', () => {
       const SomeComponent = styled.div\` \`
       styled.h1\`
         color:blue;
-        \${SomeComponent} {
+        .\${SomeComponent} {
           color: green;
         }
       \``

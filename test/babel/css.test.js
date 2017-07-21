@@ -24,6 +24,20 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('nested expanded properties', () => {
+      const basic = `
+        css\`
+        margin: 12px 48px;
+        & .div {
+          display: 'flex';
+        }
+      \``
+      const {code} = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('interpolation in selector', () => {
       const basic = `
         const cls2 = css\`
@@ -148,7 +162,7 @@ describe('babel css', () => {
           justify-content: center;
           align-items: center;
           .some-class {
-            composes: \${cls1}
+            composes: \${cls1};
           }
         \`
       `

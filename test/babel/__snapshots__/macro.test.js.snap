@@ -6,9 +6,9 @@ exports[`babel macro css 1`] = `
 _css([], [widthVar], function createEmotionStyledRules(x0) {
     return [{
         'margin': '12px 48px',
-        'color': ['#ffffff', 'blue'],
-        'display': ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
-        'WebkitFlex': '1 0 auto',
+        'color': '#ffffff; color: blue',
+        'display': '-webkit-box; display: -ms-flexbox; display: flex',
+        'WebkitBoxFlex': '1',
         'msFlex': '1 0 auto',
         'flex': '1 0 auto',
         'width': x0
@@ -81,12 +81,10 @@ const rotate360 = _keyframes([], [], function createEmotionStyledRules() {
   return [{
     'from': {
       'WebkitTransform': 'rotate(0deg)',
-      'msTransform': 'rotate(0deg)',
       'transform': 'rotate(0deg)'
     },
     'to': {
       'WebkitTransform': 'rotate(360deg)',
-      'msTransform': 'rotate(360deg)',
       'transform': 'rotate(360deg)'
     }
   }];
@@ -100,12 +98,10 @@ const rotate360 = _keyframes([], [], function createEmotionStyledRules() {
   return [{
     'from': {
       'WebkitTransform': 'rotate(0deg)',
-      'msTransform': 'rotate(0deg)',
       'transform': 'rotate(0deg)'
     },
     'to': {
       'WebkitTransform': 'rotate(360deg)',
-      'msTransform': 'rotate(360deg)',
       'transform': 'rotate(360deg)'
     }
   }];
@@ -113,9 +109,9 @@ const rotate360 = _keyframes([], [], function createEmotionStyledRules() {
 const thing = _css([], [widthVar], function createEmotionStyledRules(x0) {
   return [{
     'margin': '12px 48px',
-    'color': ['#ffffff', 'blue'],
-    'display': ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
-    'WebkitFlex': '1 0 auto',
+    'color': '#ffffff; color: blue',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex',
+    'WebkitBoxFlex': '1',
     'msFlex': '1 0 auto',
     'flex': '1 0 auto',
     'width': x0
@@ -134,7 +130,7 @@ exports[`babel macro styled css from react 1`] = `
 
 const someCls = _css([], [], function createEmotionStyledRules() {
   return [{
-    'display': ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex']
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
   }];
 });"
 `;
@@ -143,7 +139,7 @@ exports[`babel macro styled object function 1`] = `
 "import _styled from '../../src/react';
 
 const SomeComponent = _styled('div', [{
-  display: ['-webkit-box', '-ms-flexbox', 'flex']
+  display: '-webkit-box; display: -ms-flexbox; display: flex'
 }]);"
 `;
 
@@ -151,7 +147,7 @@ exports[`babel macro styled object member 1`] = `
 "import _styled from '../../src/react';
 
 const SomeComponent = _styled('div', [{
-  display: ['-webkit-box', '-ms-flexbox', 'flex']
+  display: '-webkit-box; display: -ms-flexbox; display: flex'
 }]);"
 `;
 
@@ -166,7 +162,7 @@ exports[`babel macro styled tagged template literal function 1`] = `
 
 const SomeComponent = _styled('div', [], [], function createEmotionStyledRules() {
   return [{
-    'display': ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex']
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
   }];
 });"
 `;
@@ -176,7 +172,7 @@ exports[`babel macro styled tagged template literal member 1`] = `
 
 const SomeComponent = _styled('div', [], [], function createEmotionStyledRules() {
   return [{
-    'display': ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex']
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
   }];
 });"
 `;

@@ -7,14 +7,9 @@ const H1 = styled(\\"h1\\", [\\"styled-H1-10x82eg\\"]);"
 
 exports[`babel styled component extract basic 2`] = `
 ".styled-H1-10x82eg {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
+    display: -webkit-box; display: -ms-flexbox; display: flex;
     -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     width: var(--css-hash-0)
 }
@@ -68,7 +63,6 @@ const H1 = styled('h1', [props => {
     'fontSize': x0,
     'height': '20px',
     'WebkitTransform': \`translateX(\${x1})\`,
-    'msTransform': \`translateX(\${x1})\`,
     'transform': \`translateX(\${x1})\`
   }];
 });"
@@ -88,9 +82,8 @@ const H1 = styled('h1', [], [fontSize + 'px', props => props.translateX, somethi
   return [{
     'fontSize': x0,
     'height': '20px',
-    'WebkitTransform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
-    'msTransform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
-    'transform': [\`translateX(\${x1})\`, \`translateX(\${x4}) translateY(\${x5})\`],
+    'WebkitTransform': \`translateX(\${x1}); -webkit-transform: translateX(\${x4}) translateY(\${x5})\`,
+    'transform': \`translateX(\${x1}); transform: translateX(\${x4}) translateY(\${x5})\`,
     'height1': \`\${x2}wow\`,
     'width': \`w\${x3}ow\`,
     'transform1': \`translateX(\${x6}) translateY(\${x7})\`,
@@ -181,7 +174,7 @@ const H1 = styled('h1', [{
 exports[`babel styled component inline objects fn call 1`] = `
 "
 const H1 = styled('h1', [{
-  display: ['-webkit-box', '-ms-flexbox', 'flex']
+  display: '-webkit-box; display: -ms-flexbox; display: flex'
 }]);"
 `;
 
@@ -190,10 +183,10 @@ exports[`babel styled component inline objects prefixed 1`] = `
 const H1 = styled('h1', [{
   borderRadius: '50%',
   WebkitTransition: '-webkit-transform 400ms ease-in-out',
-  transition: ['-webkit-transform 400ms ease-in-out', 'transform 400ms ease-in-out', 'transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'],
+  transition: '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
   WebkitBoxSizing: 'border-box',
   boxSizing: 'border-box',
-  display: ['-webkit-box', '-ms-flexbox', 'flex'],
+  display: '-webkit-box; display: -ms-flexbox; display: flex',
   ':hover': {
     WebkitTransform: 'scale(1.2)',
     transform: 'scale(1.2)'
@@ -223,10 +216,10 @@ exports[`babel styled component inline styled objects prefixed 1`] = `
 const H1 = styled('h1', [{
   borderRadius: '50%',
   WebkitTransition: '-webkit-transform 400ms ease-in-out',
-  transition: ['-webkit-transform 400ms ease-in-out', 'transform 400ms ease-in-out', 'transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'],
+  transition: '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
   WebkitBoxSizing: 'border-box',
   boxSizing: 'border-box',
-  display: ['-webkit-box', '-ms-flexbox', 'flex'],
+  display: '-webkit-box; display: -ms-flexbox; display: flex',
   ':hover': {
     WebkitTransform: 'scale(1.2)',
     transform: 'scale(1.2)'
