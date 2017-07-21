@@ -1,68 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css composes 1`] = `
-.css-1cjz2s1 {
-  display: -webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
+.css-w9g11r {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
 <div
-  className="css-1cjz2s1"
+  className="css-w9g11r"
 />
 `;
 
 exports[`css composes with objects 1`] = `
-.css-xcpja8 {
-  display: -webkit-box,-ms-flexbox,flex,block;
+.css-17yqurf {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  display: block;
   width: 30px;
   height: calc(40vw - 50px);
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
-.css-xcpja8:hover {
+.css-17yqurf:hover {
   color: blue;
 }
 
-.css-xcpja8:after {
+.css-17yqurf:after {
   content: " ";
   color: red;
 }
 
 @media (min-width: 420px) {
-  .css-xcpja8 {
+  .css-17yqurf {
     color: green;
   }
 }
 
 <div
-  className="css-xcpja8"
+  className="css-17yqurf"
 />
 `;
 
 exports[`css composes with undefined values 1`] = `
-.css-1rsyrbq {
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
+.css-awzhlo {
   -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
 <div
-  className="css-1rsyrbq"
+  className="css-awzhlo"
 />
 `;
 
 exports[`css handles more than 10 dynamic properties 1`] = `
-.css-550542 {
+.css-n3p8vq {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  border-right: solid blue 54px;
   background: white;
   color: black;
-  text-decoration: underline;
   display: block;
   border-radius: 3px;
   padding: 25px;
@@ -70,20 +74,21 @@ exports[`css handles more than 10 dynamic properties 1`] = `
   z-index: 100;
   font-size: 18px;
   text-align: center;
-  border: solid 1px red;
 }
 
 <div
-  className="css-550542"
+  className="css-n3p8vq"
 />
 `;
 
 exports[`css handles objects 1`] = `
-.css-xmm9em {
-  display: -webkit-box,-ms-flexbox,flex;
+.css-71uu79 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 <div
-  className="css-xmm9em"
+  className="css-71uu79"
 />
 `;

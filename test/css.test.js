@@ -10,9 +10,10 @@ expect.extend(matcher)
 describe('css', () => {
   test('handles more than 10 dynamic properties', () => {
     const cls1 = css`
+      text-decoration: ${'underline'};
+      border-right: solid blue 54px;
       background: ${'white'};
       color: ${'black'};
-      text-decoration: ${'underline'};
       display: ${'block'};
       border-radius: ${'3px'};
       padding: ${'25px'};
@@ -20,7 +21,6 @@ describe('css', () => {
       z-index: ${100};
       font-size: ${'18px'};
       text-align: ${'center'};
-      border: ${'solid 1px red'};
     `
 
     const tree = renderer.create(<div className={cls1} />).toJSON()

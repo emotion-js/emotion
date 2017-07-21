@@ -154,9 +154,10 @@ describe('styled', () => {
 
   test('handles more than 10 dynamic properties', () => {
     const H1 = styled('h1')`
+      text-decoration: ${'underline'};
+      border-right: solid blue 54px;
       background: ${'white'};
       color: ${'black'};
-      text-decoration: ${'underline'};
       display: ${'block'};
       border-radius: ${'3px'};
       padding: ${'25px'};
@@ -164,11 +165,15 @@ describe('styled', () => {
       z-index: ${100};
       font-size: ${'18px'};
       text-align: ${'center'};
-      border: ${'solid 1px red'};
+      border-left: ${p => p.theme.blue};
     `
 
     const tree = renderer
-      .create(<H1 className={'legacy__class'}>hello world</H1>)
+      .create(
+        <H1 className={'legacy__class'} theme={{ blue: 'blue' }}>
+          hello world
+        </H1>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshotWithEmotion()
