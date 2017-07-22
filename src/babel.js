@@ -92,24 +92,23 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   )
 
   const { styles, composesCount } = parseCSS(src, false)
-  const inputClasses = []
-  const composeValues = []
-  for (let i = 0; i < composesCount; i++) {
-    composeValues.push(path.node.quasi.expressions[i])
-  }
+  // const inputClasses = []
+  // const composeValues = []
+  // for (let i = 0; i < composesCount; i++) {
+  //   composeValues.push(path.node.quasi.expressions[i])
+  // }
 
-  inputClasses.push(createAstObj(styles, false, composesCount, t))
-
+  const objs = path.node.quasi.expressions.slice(0, composesCount)
+  const vars = path.node.quasi.expressions
+    .slice(composesCount)
   const args = [
     tag,
-    t.arrayExpression(composeValues),
-    t.arrayExpression(path.node.quasi.expressions.slice(composesCount)),
+    t.arrayExpression(objs),
+    t.arrayExpression(vars),
     t.functionExpression(
       t.identifier('createEmotionStyledRules'),
-      path.node.quasi.expressions
-        .slice(composesCount)
-        .map((x, i) => t.identifier(`x${i}`)),
-      t.blockStatement([t.returnStatement(t.arrayExpression(inputClasses))])
+      vars.map((x, i) => t.identifier(`x${i}`)),
+      t.blockStatement([t.returnStatement(t.arrayExpression([createAstObj(styles, false, composesCount, t)]))])
     )
   ]
 
@@ -208,10 +207,11 @@ function getDynamicMatches (str) {
   while ((match = re.exec(str)) !== null) {
     matches.push({
       value: match[0],
-      p1: match[1],
+      p1: parseInt(match[1], 10),
       index: match.index
     })
   }
+
   return matches
 }
 
@@ -222,12 +222,14 @@ function replacePlaceholdersWithExpressions (
   composesCount,
   t
 ) {
+  console.log('matches', JSON.stringify(matches, null, 2))
   const templateElements = []
   const templateExpressions = []
   let cursor = 0
   let hasSingleInterpolation = false
   forEach(matches, ({ value, p1, index }, i) => {
     const preMatch = str.substring(cursor, index)
+    console.log('value', value, 'preMatch', preMatch)
     cursor = cursor + preMatch.length + value.length
     if (preMatch) {
       templateElements.push(
@@ -257,9 +259,9 @@ function replacePlaceholdersWithExpressions (
       )
     }
   })
-  if (hasSingleInterpolation) {
-    return templateExpressions[0]
-  }
+  // if (hasSingleInterpolation) {
+  //   return templateExpressions[0]
+  // }
   return t.templateLiteral(templateElements, templateExpressions)
 }
 
@@ -306,6 +308,7 @@ function objValueToAst (value, expressions, composesCount, t) {
     }
     return t.stringLiteral(value)
   } else if (Array.isArray(value)) {
+    console.log('value is an array', value)
     return t.arrayExpression(
       value.map(v => objValueToAst(v, expressions, composesCount, t))
     )

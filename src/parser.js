@@ -55,6 +55,8 @@ export function parseCSS (
 
   const styles = expandCSSFallbacks(prefixer(postcssJs.objectify(root)))
 
+  console.log(styles)
+
   return {
     styles,
     staticCSSRules: vars === 0 && extractStatic
@@ -79,6 +81,7 @@ export function expandCSSFallbacks (style: { [string]: any }) {
     if (Array.isArray(style[key])) {
       accum[key] = style[key].join(`; ${processStyleName(key)}: `)
     } else if (Object.prototype.toString.call(style[key]) === '[object Object]') {
+      console.log('thought it was an object', key, style[key])
       accum[key] = expandCSSFallbacks(style[key])
     } else {
       accum[key] = style[key];
