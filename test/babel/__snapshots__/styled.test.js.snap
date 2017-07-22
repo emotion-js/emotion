@@ -1,16 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`babel styled component dynamic fns 1`] = `
-"const Avatar = styled('img', [], [props => props.theme.borderRadius, props => props.theme.borderColor], function createEmotionStyledRules(x0, x1) {
-  return [{
-    'width': '96px',
-    'height': '96px',
-    'borderRadius': x0,
-    'border': \`1px solid \${x1}\`
-  }];
-});"
-`;
-
 exports[`babel styled component extract basic 1`] = `
 "import \\"./styled.test.emotion.css\\";
 const H1 = styled(\\"h1\\", [\\"styled-H1-10x82eg\\"]);"
@@ -56,7 +45,7 @@ exports[`babel styled component extract no use 2`] = `".styled-0 {}"`;
 exports[`babel styled component inline basic 1`] = `
 "const H1 = styled('h1', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [{
-    'fontSize': x0
+    'fontSize': \`\${x0}\`
   }];
 });"
 `;
@@ -71,7 +60,7 @@ const H1 = styled('h1', [props => {
   return props.a ? cssA : cssB;
 }], [fontSize + 'px', props => props.translateX], function createEmotionStyledRules(x0, x1) {
   return [{
-    'fontSize': x0,
+    'fontSize': \`\${x0}\`,
     'height': '20px',
     'WebkitTransform': \`translateX(\${x1})\`,
     'transform': \`translateX(\${x1})\`
@@ -84,7 +73,7 @@ exports[`babel styled component inline dynamic fns 1`] = `
   return [{
     'width': '96px',
     'height': '96px',
-    'borderRadius': x0,
+    'borderRadius': \`\${x0}\`,
     'border': \`1px solid \${x1}\`
   }];
 });"
@@ -93,7 +82,7 @@ exports[`babel styled component inline dynamic fns 1`] = `
 exports[`babel styled component inline function call 1`] = `
 "styled(MyComponent, [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [{
-    'fontSize': x0
+    'fontSize': \`\${x0}\`
   }];
 });"
 `;
@@ -102,7 +91,7 @@ exports[`babel styled component inline interpolation in different places 1`] = `
 "
 const H1 = styled('h1', [], [fontSize + 'px', props => props.translateX, something, something, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9) {
   return [{
-    'fontSize': x0,
+    'fontSize': \`\${x0}\`,
     'height': '20px',
     'WebkitTransform': \`translateX(\${x1}); -webkit-transform: translateX(\${x4}) translateY(\${x5})\`,
     'transform': \`translateX(\${x1}); transform: translateX(\${x4}) translateY(\${x5})\`,
@@ -139,6 +128,26 @@ exports[`babel styled component inline media query 1`] = `
 });"
 `;
 
+exports[`babel styled component inline more than 10 dynamic values 1`] = `
+"const H1 = styled('h1', [], ['underline', 54, 'white', 'black', 'block', '3px', '25px', '500px', 100, '18px', 'center', p => p.theme.blue], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11) {
+      return [{
+            'WebkitTextDecoration': \`\${x0}\`,
+            'textDecoration': \`\${x0}\`,
+            'borderRight': \`solid blue \${x1}px\`,
+            'background': \`\${x2}\`,
+            'color': \`\${x3}\`,
+            'display': \`\${x4}\`,
+            'borderRadius': \`\${x5}\`,
+            'padding': \`\${x6}\`,
+            'width': \`\${x7}\`,
+            'zIndex': \`\${x8}\`,
+            'fontSize': \`\${x9}\`,
+            'textAlign': \`\${x10}\`,
+            'borderLeft': \`\${x11}\`
+      }];
+});"
+`;
+
 exports[`babel styled component inline name is correct with no identifier 1`] = `
 "
 css([], [], function createEmotionStyledRules() {
@@ -152,7 +161,7 @@ css([], [], function createEmotionStyledRules() {
 exports[`babel styled component inline nested 1`] = `
 "const H1 = styled('h1', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [{
-    'fontSize': x0,
+    'fontSize': \`\${x0}\`,
     '& div': {
       'color': 'blue'
     },

@@ -9,6 +9,7 @@ import { inline } from './inline'
 import { parseCSS, expandCSSFallbacks } from './parser'
 import { getIdentifierName } from './babel-utils'
 import cssProps from './css-prop'
+import ASTObject from './ast-object'
 
 export function replaceCssWithCallExpression (
   path,
@@ -42,7 +43,7 @@ export function replaceCssWithCallExpression (
       composeValues.push(path.node.quasi.expressions[i])
     }
 
-    inputClasses.push(createAstObj(styles, false, composesCount, t))
+    inputClasses.push(new ASTObject(styles, false, composesCount, t).toAST())
 
     const vars = path.node.quasi.expressions.slice(composesCount)
     path.replaceWith(
@@ -85,11 +86,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     ])
   }
 
-  const { src } = inline(
-    path.node.quasi,
-    getIdentifierName(path, t),
-    'css'
-  )
+  const { src } = inline(path.node.quasi, getIdentifierName(path, t), 'css')
 
   const { styles, composesCount } = parseCSS(src, false)
   // const inputClasses = []
@@ -99,8 +96,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   // }
 
   const objs = path.node.quasi.expressions.slice(0, composesCount)
-  const vars = path.node.quasi.expressions
-    .slice(composesCount)
+  const vars = path.node.quasi.expressions.slice(composesCount)
   const args = [
     tag,
     t.arrayExpression(objs),
@@ -108,7 +104,11 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     t.functionExpression(
       t.identifier('createEmotionStyledRules'),
       vars.map((x, i) => t.identifier(`x${i}`)),
-      t.blockStatement([t.returnStatement(t.arrayExpression([createAstObj(styles, false, composesCount, t)]))])
+      t.blockStatement([
+        t.returnStatement(
+          t.arrayExpression([new ASTObject(styles, false, composesCount, t).toAST()])
+        )
+      ])
     )
   ]
 
@@ -198,147 +198,6 @@ function prefixAst (args, t) {
   }
 
   return args
-}
-
-function getDynamicMatches (str) {
-  const re = /xxx(\d+)xxx/gm
-  let match
-  const matches = []
-  while ((match = re.exec(str)) !== null) {
-    matches.push({
-      value: match[0],
-      p1: parseInt(match[1], 10),
-      index: match.index
-    })
-  }
-
-  return matches
-}
-
-function replacePlaceholdersWithExpressions (
-  matches: any[],
-  str: string,
-  expressions?: any[],
-  composesCount,
-  t
-) {
-  console.log('matches', JSON.stringify(matches, null, 2))
-  const templateElements = []
-  const templateExpressions = []
-  let cursor = 0
-  let hasSingleInterpolation = false
-  forEach(matches, ({ value, p1, index }, i) => {
-    const preMatch = str.substring(cursor, index)
-    console.log('value', value, 'preMatch', preMatch)
-    cursor = cursor + preMatch.length + value.length
-    if (preMatch) {
-      templateElements.push(
-        t.templateElement({ raw: preMatch, cooked: preMatch })
-      )
-    } else if (i === 0) {
-      templateElements.push(t.templateElement({ raw: '', cooked: '' }))
-    }
-    if (value === str) {
-      hasSingleInterpolation = true
-    }
-
-    templateExpressions.push(
-      expressions
-        ? expressions[p1 - composesCount]
-        : t.identifier(`x${p1 - composesCount}`)
-    )
-    if (i === matches.length - 1) {
-      templateElements.push(
-        t.templateElement(
-          {
-            raw: str.substring(index + value.length),
-            cooked: str.substring(index + value.length)
-          },
-          true
-        )
-      )
-    }
-  })
-  // if (hasSingleInterpolation) {
-  //   return templateExpressions[0]
-  // }
-  return t.templateLiteral(templateElements, templateExpressions)
-}
-
-function objKeyToAst (
-  key,
-  expressions,
-  composesCount: number,
-  t
-): { computed: boolean, ast: any, composes: boolean } {
-  const matches = getDynamicMatches(key)
-
-  if (matches.length) {
-    return {
-      computed: true,
-      composes: key === 'composes',
-      ast: replacePlaceholdersWithExpressions(
-        matches,
-        key,
-        expressions,
-        composesCount,
-        t
-      )
-    }
-  }
-
-  return {
-    computed: false,
-    composes: key === 'composes',
-    ast: t.stringLiteral(key)
-  }
-}
-
-function objValueToAst (value, expressions, composesCount, t) {
-  if (typeof value === 'string') {
-    const matches = getDynamicMatches(value)
-    if (matches.length) {
-      return replacePlaceholdersWithExpressions(
-        matches,
-        value,
-        expressions,
-        composesCount,
-        t
-      )
-    }
-    return t.stringLiteral(value)
-  } else if (Array.isArray(value)) {
-    console.log('value is an array', value)
-    return t.arrayExpression(
-      value.map(v => objValueToAst(v, expressions, composesCount, t))
-    )
-  }
-
-  return createAstObj(value, expressions, composesCount, t)
-}
-
-function createAstObj (obj, expressions, composesCount, t) {
-  const props = []
-
-  for (let key in obj) {
-    const rawValue = obj[key]
-    const { computed, composes, ast: keyAST } = objKeyToAst(
-      key,
-      expressions,
-      composesCount,
-      t
-    )
-
-    let valueAST
-    if (composes) {
-      valueAST = t.arrayExpression(expressions.slice(0, composesCount))
-    } else {
-      valueAST = objValueToAst(rawValue, expressions, composesCount, t)
-    }
-
-    props.push(t.objectProperty(keyAST, valueAST, computed))
-  }
-  return t.objectExpression(props)
 }
 
 const visited = Symbol('visited')

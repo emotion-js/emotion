@@ -15,9 +15,9 @@ const cls2 = css([['one-class', 'another-class', cls1]], ['center'], function cr
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
     'justifyContent': 'center',
-    'WebkitBoxAlign': x0,
-    'msFlexAlign': x0,
-    'alignItems': x0
+    'WebkitBoxAlign': \`\${x0}\`,
+    'msFlexAlign': \`\${x0}\`,
+    'alignItems': \`\${x0}\`
   }];
 });"
 `;
@@ -133,9 +133,9 @@ const cls2 = css(['one-class', 'another-class', cls1], ['center'], function crea
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
     'justifyContent': 'center',
-    'WebkitBoxAlign': x0,
-    'msFlexAlign': x0,
-    'alignItems': x0
+    'WebkitBoxAlign': \`\${x0}\`,
+    'msFlexAlign': \`\${x0}\`,
+    'alignItems': \`\${x0}\`
   }];
 });"
 `;
@@ -150,7 +150,7 @@ css([], [widthVar], function createEmotionStyledRules(x0) {
                 \\"WebkitBoxFlex\\": \\"1\\",
                 \\"msFlex\\": \\"1 0 auto\\",
                 \\"flex\\": \\"1 0 auto\\",
-                \\"width\\": x0
+                \\"width\\": \`\${x0}\`
         }];
 });"
 `;
@@ -161,7 +161,7 @@ const cls2 = css([], [className], function createEmotionStyledRules(x0) {
   return [{
     \\"margin\\": \\"12px 48px\\",
     \\"color\\": \\"#ffffff\\",
-    [x0]: {
+    [\`\${x0}\`]: {
       \\"display\\": \\"none\\"
     }
   }];
@@ -175,9 +175,9 @@ const cls2 = css(['one-class', 'another-class', 'another-class', 'another-class'
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
     'justifyContent': 'center',
-    'WebkitBoxAlign': x0,
-    'msFlexAlign': x0,
-    'alignItems': x0
+    'WebkitBoxAlign': \`\${x0}\`,
+    'msFlexAlign': \`\${x0}\`,
+    'alignItems': \`\${x0}\`
   }];
 });"
 `;

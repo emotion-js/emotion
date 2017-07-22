@@ -52,7 +52,7 @@ exports[`babel css prop css empty 1`] = `
 exports[`babel css prop dynamic inline 1`] = `
 "<div className={\\"a\\" + \\" \\" + css([], [color], function createEmotionStyledRules(x0) {
   return [{
-    \\"color\\": x0
+    \\"color\\": \`\${x0}\`
   }];
 })}></div>;"
 `;

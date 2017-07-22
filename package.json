@@ -10,7 +10,6 @@
     "lib",
     "react",
     "server.js",
-    "vue",
     "dist/DO-NOT-USE.min.js",
     "macro.js"
   ],

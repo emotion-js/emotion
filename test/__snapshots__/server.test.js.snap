@@ -2,21 +2,21 @@
 
 exports[`extractCritical returns static css 1`] = `
 Object {
-  "css": ".no-prefix {display:-webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;-webkit-justify-content:center;-ms-flex-pack:center;-webkit-box-pack:center;justify-content:center;}.css-1666ym{display:-webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;}.css-hp1yas{border-radius:50%;height:50px;width:50px;background-color:red;}",
-  "html": "<main class=\\"css-1666ym\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"1172063568\\"><img size=\\"30\\" class=\\"css-hp1yas\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-hp1yas\\" data-reactid=\\"3\\"/><img class=\\"css-hp1yas\\" data-reactid=\\"4\\"/></main>",
+  "css": ".no-prefix {display:-webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}.css-71uu79{display:-webkit-box; display: -ms-flexbox; display: flex;}.css-l2qi8{border-radius:50%;height:50px;width:50px;background-color:red;}",
+  "html": "<main class=\\"css-71uu79\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"912212839\\"><img size=\\"30\\" class=\\"css-l2qi8\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-l2qi8\\" data-reactid=\\"3\\"/><img class=\\"css-l2qi8\\" data-reactid=\\"4\\"/></main>",
   "ids": Array [
-    "1666ym",
-    "hp1yas",
+    "71uu79",
+    "l2qi8",
   ],
   "rules": Array [
     Object {
-      "cssText": ".no-prefix {display:-webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;-webkit-justify-content:center;-ms-flex-pack:center;-webkit-box-pack:center;justify-content:center;}",
+      "cssText": ".no-prefix {display:-webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}",
     },
     Object {
-      "cssText": ".css-1666ym{display:-webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;}",
+      "cssText": ".css-71uu79{display:-webkit-box; display: -ms-flexbox; display: flex;}",
     },
     Object {
-      "cssText": ".css-hp1yas{border-radius:50%;height:50px;width:50px;background-color:red;}",
+      "cssText": ".css-l2qi8{border-radius:50%;height:50px;width:50px;background-color:red;}",
     },
   ],
 }

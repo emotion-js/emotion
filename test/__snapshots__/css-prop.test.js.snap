@@ -14,20 +14,20 @@ exports[`css prop react basic 1`] = `
 `;
 
 exports[`css prop react kitchen sink 1`] = `
-.css-ggycvc {
-  display: -webkit-box,-moz-box,-ms-flexbox,-webkit-flex,flex;
+.css-o2rzdt {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   font-weight: bold;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
-.css-2sukuz {
+.css-12lxyi1 {
   font-size: 6px;
   color: red;
 }
@@ -36,25 +36,27 @@ exports[`css prop react kitchen sink 1`] = `
   color: blue;
 }
 
-.css-1gq9vfz {
-  display: -webkit-box,-moz-box,-ms-inline-flexbox,-webkit-inline-flex,inline-flex;
+.css-1426hi0 {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
-.css-c5xqxn {
+.css-btxk1p {
   color: red;
   border-radius: 5px;
 }
 
-.css-c5xqxn:hover {
+.css-btxk1p:hover {
   font-weight: bold;
   color: gray;
 }
 
 <div
-  className="css__legacy-stuff css-ggycvc"
+  className="css__legacy-stuff css-o2rzdt"
 >
   <h1
-    className="css-2sukuz"
+    className="css-12lxyi1"
   >
     BOOM
   </h1>
@@ -64,12 +66,12 @@ exports[`css prop react kitchen sink 1`] = `
     Hello
   </p>
   <p
-    className="test_class1 test___class45 css-1gq9vfz"
+    className="test_class1 test___class45 css-1426hi0"
   >
     World
   </p>
   <p
-    className="css-c5xqxn"
+    className="css-btxk1p"
   >
     hello world
   </p>

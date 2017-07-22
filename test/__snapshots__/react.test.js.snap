@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled basic render 1`] = `
-.css-vrq9pr {
+.css-wwpoem {
   color: blue;
   font-size: 20px;
 }
 
 <h1
-  className="css-vrq9pr"
+  className="css-wwpoem"
 >
   hello world
 </h1>
@@ -38,7 +38,7 @@ exports[`styled call expression 1`] = `
 `;
 
 exports[`styled component as selector 1`] = `
-.css-1ikz3g9 {
+.css-1vj1sv9 {
   font-size: 20px;
 }
 
@@ -53,7 +53,7 @@ exports[`styled component as selector 1`] = `
 >
   hello 
   <h1
-    className="css-1ikz3g9"
+    className="css-1vj1sv9"
   >
     This will be green
   </h1>
@@ -126,24 +126,24 @@ exports[`styled composes with objects 1`] = `
 `;
 
 exports[`styled composition 1`] = `
-.css-1lyjzdi {
+.css-1x2u9fm {
   font-size: 13.333333333333334px;
 }
 
 <h1
-  className="legacy__class css-1lyjzdi"
+  className="legacy__class css-1x2u9fm"
 >
   hello world
 </h1>
 `;
 
 exports[`styled function in expression 1`] = `
-.css-1lmko4z {
+.css-6hsipw {
   font-size: 40px;
 }
 
 <h1
-  className="legacy__class css-1lmko4z"
+  className="legacy__class css-6hsipw"
   scale={2}
 >
   hello world
@@ -151,12 +151,24 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled handles more than 10 dynamic properties 1`] = `
-.css-1i41sa5 {
-  background: white,black,underline,block,3px,25px,500px,100,18px,center,solid 1px red;
+.css-lkeub0 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  border-right: solid blue 54px;
+  background: white;
+  color: black;
+  display: block;
+  border-radius: 3px;
+  padding: 25px;
+  width: 500px;
+  z-index: 100;
+  font-size: 18px;
+  text-align: center;
+  border-left: undefined;
 }
 
 <h1
-  className="legacy__class css-1i41sa5"
+  className="legacy__class css-lkeub0"
 >
   hello world
 </h1>
@@ -204,6 +216,10 @@ exports[`styled name 1`] = `
 `;
 
 exports[`styled nested 1`] = `
+.css-1vj1sv9 {
+  font-size: 20px;
+}
+
 .css-1fir8qd {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -218,16 +234,12 @@ exports[`styled nested 1`] = `
   color: red;
 }
 
-.css-1ikz3g9 {
-  font-size: 20px;
-}
-
 <div
   className="css-1fir8qd"
 >
   hello 
   <h1
-    className="css-1ikz3g9"
+    className="css-1vj1sv9"
   >
     This will be green
   </h1>
@@ -285,15 +297,15 @@ exports[`styled objects 1`] = `
 `;
 
 exports[`styled themes 1`] = `
-.css-1vectwv {
+.css-93wdk {
   background-color: #ffd43b;
-  color: blue;
+  color: #8c81d8;
   height: 64px;
   font-size: 32px;
 }
 
 <span
-  className="css-1vectwv"
+  className="css-93wdk"
   scale={2}
 >
   hello world

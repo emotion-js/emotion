@@ -10,7 +10,6 @@
  */
 
 import isUnitlessNumber from './CSSProperty'
-import warning from 'fbjs/lib/warning'
 
 let styleWarnings = {}
 
@@ -25,16 +24,6 @@ let styleWarnings = {}
  * @return {string} Normalized style value with dimensions applied.
  */
 function dangerousStyleValue (name, value, component) {
-  // Note that we've removed escapeTextForBrowser() calls here since the
-  // whole string will be escaped when the attribute is injected into
-  // the markup. If you provide unsafe user data here they can inject
-  // arbitrary CSS which may be problematic (I couldn't repro this):
-  // https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet
-  // http://www.thespanner.co.uk/2007/11/26/ultimate-xss-css-injection/
-  // This is not an XSS hole but instead a potential CSS injection issue
-  // which has lead to a greater discussion about how we're going to
-  // trust URLs moving forward. See #2115901
-
   let isEmpty = value == null || typeof value === 'boolean' || value === ''
   if (isEmpty) {
     return ''
@@ -50,37 +39,11 @@ function dangerousStyleValue (name, value, component) {
   }
 
   if (typeof value === 'string') {
-    if (process.env.NODE_ENV !== 'production') {
-      // Allow '0' to pass through without warning. 0 is already special and
-      // doesn't require units, so we don't need to warn about it.
-      if (component && value !== '0') {
-        let owner = component._currentElement._owner
-        let ownerName = owner ? owner.getName() : null
-        if (ownerName && !styleWarnings[ownerName]) {
-          styleWarnings[ownerName] = {}
-        }
-        let warned = false
-        if (ownerName) {
-          let warnings = styleWarnings[ownerName]
-          warned = warnings[name]
-          if (!warned) {
-            warnings[name] = true
-          }
-        }
-        if (!warned) {
-          process.env.NODE_ENV !== 'production'
-            ? warning(
-                false,
-                'a `%s` tag (owner: `%s`) was passed a numeric string value ' +
-                  'for CSS property `%s` (value: `%s`) which will be treated ' +
-                  'as a unitless number in a future version of React.',
-                component._currentElement.type,
-                ownerName || 'unknown',
-                name,
-                value
-              )
-            : void 0
-        }
+    if (component && value !== '0') {
+      let owner = component._currentElement._owner
+      let ownerName = owner ? owner.getName() : null
+      if (ownerName && !styleWarnings[ownerName]) {
+        styleWarnings[ownerName] = {}
       }
     }
     value = value.trim()

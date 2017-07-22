@@ -72,7 +72,6 @@ export default function (tag, objs, vars = [], content) {
 
       let finalObjs = []
 
-
       if (tag.__emotion_spec) {
         push(
           finalObjs,
@@ -80,10 +79,7 @@ export default function (tag, objs, vars = [], content) {
             tag.__emotion_spec,
             (accum, spec) => {
               push(accum, spec.objs)
-              push(
-                accum,
-                spec.content(map(spec.vars, getValue))
-              )
+              push(accum, spec.content.apply(null, map(spec.vars, getValue)))
               return accum
             },
             []
@@ -94,7 +90,7 @@ export default function (tag, objs, vars = [], content) {
       push(finalObjs, objs)
 
       if (content) {
-        push(finalObjs, content(map(vars, getValue)))
+        push(finalObjs, content.apply(null, map(vars, getValue)))
       }
 
       if (mergedProps.className) {

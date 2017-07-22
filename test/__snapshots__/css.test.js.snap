@@ -61,7 +61,7 @@ exports[`css composes with undefined values 1`] = `
 `;
 
 exports[`css handles more than 10 dynamic properties 1`] = `
-.css-n3p8vq {
+.css-1tjas36 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   border-right: solid blue 54px;
@@ -77,7 +77,7 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 }
 
 <div
-  className="css-n3p8vq"
+  className="css-1tjas36"
 />
 `;
 

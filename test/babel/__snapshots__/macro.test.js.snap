@@ -11,7 +11,7 @@ _css([], [widthVar], function createEmotionStyledRules(x0) {
         'WebkitBoxFlex': '1',
         'msFlex': '1 0 auto',
         'flex': '1 0 auto',
-        'width': x0
+        'width': \`\${x0}\`
     }];
 });"
 `;
@@ -114,7 +114,7 @@ const thing = _css([], [widthVar], function createEmotionStyledRules(x0) {
     'WebkitBoxFlex': '1',
     'msFlex': '1 0 auto',
     'flex': '1 0 auto',
-    'width': x0
+    'width': \`\${x0}\`
   }];
 });"
 `;

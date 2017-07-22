@@ -37,20 +37,22 @@ exports[`styled call expression 1`] = `
 `;
 
 exports[`styled component as selector 1`] = `
-.css-1d77tm {
-  display: -webkit-box,-ms-flexbox,flex;
-}
-
-.css-1ikz3g9 {
+.css-1vj1sv9 {
   font-size: 20px;
 }
 
+.css-qrvryj {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 <div
-  className="css-1d77tm"
+  className="css-qrvryj"
 >
   hello 
   <h1
-    className="css-1ikz3g9"
+    className="css-1vj1sv9"
   >
     This will be green
   </h1>
@@ -125,24 +127,24 @@ exports[`styled composes with objects 1`] = `
 `;
 
 exports[`styled composition 1`] = `
-.css-1lyjzdi {
+.css-1x2u9fm {
   font-size: 13.333333333333334px;
 }
 
 <h1
-  className="css-1lyjzdi"
+  className="css-1x2u9fm"
 >
   hello world
 </h1>
 `;
 
 exports[`styled function in expression 1`] = `
-.css-1j40edd {
+.css-1iqzzhq {
   font-size: 40px;
 }
 
 <h1
-  className="css-1j40edd"
+  className="css-1iqzzhq"
   scale={2}
 >
   hello world
@@ -216,15 +218,15 @@ exports[`styled objects 1`] = `
 `;
 
 exports[`styled themes 1`] = `
-.css-1vectwv {
+.css-93wdk {
   background-color: #ffd43b;
-  color: blue;
+  color: #8c81d8;
   height: 64px;
   font-size: 32px;
 }
 
 <span
-  className="css-1vectwv"
+  className="css-93wdk"
   scale={2}
 >
   hello world
