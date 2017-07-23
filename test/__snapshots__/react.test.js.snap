@@ -202,6 +202,58 @@ exports[`styled innerRef 1`] = `
 </h1>
 `;
 
+exports[`styled input placeholder 1`] = `
+.css-1uwopro::-webkit-input-placeholder {
+  background-color: green;
+}
+
+.css-1uwopro:-ms-input-placeholder {
+  background-color: green;
+}
+
+.css-1uwopro::-moz-placeholder {
+  background-color: green;
+}
+
+.css-1uwopro::-ms-input-placeholder {
+  background-color: green;
+}
+
+.css-1uwopro::placeholder {
+  background-color: green;
+}
+
+<input
+  className="css-1uwopro"
+>
+  hello world
+</input>
+`;
+
+exports[`styled input placeholder object 1`] = `
+.css-tkwref::-webkit-input-placeholder {
+  background-color: green;
+}
+
+.css-tkwref::-moz-placeholder {
+  background-color: green;
+}
+
+.css-tkwref::-ms-input-placeholder {
+  background-color: green;
+}
+
+.css-tkwref::placeholder {
+  background-color: green;
+}
+
+<input
+  className="css-tkwref"
+>
+  hello world
+</input>
+`;
+
 exports[`styled name 1`] = `
 .css-1i0qtj6 {
   name: FancyH1;

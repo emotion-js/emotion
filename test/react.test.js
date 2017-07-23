@@ -107,6 +107,33 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithEmotion()
   })
 
+  test('input placeholder', () => {
+    const Input = styled.input`
+      ::placeholder {
+        background-color: green;
+      }
+    `
+    const tree = renderer
+      .create(<Input>hello world</Input>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
+  test('input placeholder object', () => {
+    const Input = styled('input')({
+      '::placeholder': {
+        backgroundColor: 'green'
+      }
+    })
+
+    const tree = renderer
+      .create(<Input>hello world</Input>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithEmotion()
+  })
+
   test('object composition', () => {
     const imageStyles = css({
       width: 96,
@@ -221,7 +248,6 @@ describe('styled', () => {
   })
 
   test('composes', () => {
-    debugger
     const fontSize = '20px'
 
     const cssA = css`
