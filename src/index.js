@@ -396,27 +396,6 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
     }
     Object.keys(_src || {}).forEach(key => {
       if (isSelector(key)) {
-        if (key === '::placeholder') {
-          build(dest, {
-            selector: joinSelectors(selector, '::-webkit-input-placeholder'),
-            mq,
-            supp,
-            src: _src[key]
-          })
-          build(dest, {
-            selector: joinSelectors(selector, '::-moz-placeholder'),
-            mq,
-            supp,
-            src: _src[key]
-          })
-          build(dest, {
-            selector: joinSelectors(selector, '::-ms-input-placeholder'),
-            mq,
-            supp,
-            src: _src[key]
-          })
-        }
-
         build(dest, {
           selector: joinSelectors(selector, key),
           mq,
