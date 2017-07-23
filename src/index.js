@@ -1,7 +1,7 @@
 // @flow
 import { StyleSheet } from './sheet'
 import { forEach, map, reduce } from './utils'
-import { hashString as hash, hashArray, hashObject } from './hash'
+import { hashString as hash, hashObject } from './hash'
 import { createMarkupForStyles } from './glamor/CSSPropertyOperations'
 import clean from './glamor/clean.js'
 
@@ -213,25 +213,20 @@ function _css (rules) {
   return toRule(spec)
 }
 
-// takes a string, converts to lowercase, strips out nonalphanumeric.
-function simple (str) {
-  return str.toLowerCase().replace(/[^a-z0-9]/g, '')
-}
-
 // of shape { 'data-css-<id>': '' }
 export function isLikeRule (rule: EmotionRule) {
   let keys = Object.keys(rule).filter(x => x !== 'toString')
   if (keys.length !== 1) {
     return false
   }
-  return !!/css\-([a-zA-Z0-9]+)/.exec(keys[0])
+  return !!/css-([a-zA-Z0-9]+)/.exec(keys[0])
 }
 
 // extracts id from a { 'css-<id>': ''} like object
 export function idFor (rule: EmotionRule) {
   let keys = Object.keys(rule).filter(x => x !== 'toString')
   if (keys.length !== 1) throw new Error('not a rule')
-  let regex = /css\-([a-zA-Z0-9]+)/
+  let regex = /css-([a-zA-Z0-9]+)/
   let match = regex.exec(keys[0])
   if (!match) throw new Error('not a rule')
   return match[1]
@@ -239,7 +234,7 @@ export function idFor (rule: EmotionRule) {
 
 function selector (id: string, path: string = '') {
   if (!id) {
-    return path.replace(/\&/g, '')
+    return path.replace(/&/g, '')
   }
   if (!path) return `.css-${id}`
 
@@ -247,7 +242,7 @@ function selector (id: string, path: string = '') {
     .split(',')
     .map(
       x =>
-        x.indexOf('&') >= 0 ? x.replace(/\&/gm, `.css-${id}`) : `.css-${id}${x}`
+        x.indexOf('&') >= 0 ? x.replace(/&/gm, `.css-${id}`) : `.css-${id}${x}`
     )
     .join(',')
 
@@ -333,9 +328,9 @@ function toRule (spec) {
 }
 
 function isSelector (key) {
-  let possibles = [':', '.', '[', '>', ' '],
-    found = false,
-    ch = key.charAt(0)
+  const possibles = [':', '.', '[', '>', ' ']
+  let found = false
+  const ch = key.charAt(0)
   for (let i = 0; i < possibles.length; i++) {
     if (ch === possibles[i]) {
       found = true
@@ -350,7 +345,7 @@ function joinSelectors (a, b) {
   let bs = b.split(',').map(b => (!(b.indexOf('&') >= 0) ? '&' + b : b))
 
   return bs
-    .reduce((arr, b) => arr.concat(as.map(a => b.replace(/\&/g, a))), [])
+    .reduce((arr, b) => arr.concat(as.map(a => b.replace(/&/g, a))), [])
     .join(',')
 }
 
@@ -443,7 +438,7 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
           src: _src[key]
         })
       } else if (key === 'composes') {
-        // ignore, we already dealth with it
+        // ignore, we already dealt with it
       } else {
         let _dest = dest
         if (supp) {
