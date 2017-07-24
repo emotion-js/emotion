@@ -341,8 +341,8 @@ function isSelector (key) {
 }
 
 function joinSelectors (a, b) {
-  let as = a.split(',').map(a => (!(a.indexOf('&') >= 0) ? '&' + a : a))
-  let bs = b.split(',').map(b => (!(b.indexOf('&') >= 0) ? '&' + b : b))
+  let as = map(a.split(','), a => (!(a.indexOf('&') >= 0) ? '&' + a : a))
+  let bs = map(b.split(','), b => (!(b.indexOf('&') >= 0) ? '&' + b : b))
 
   return bs
     .reduce((arr, b) => arr.concat(as.map(a => b.replace(/&/g, a))), [])

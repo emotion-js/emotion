@@ -1,4 +1,5 @@
-import { forEach } from './utils'
+import { forEach, reduce } from './utils'
+
 export default class ASTObject {
   obj: { [string]: any }
   expressions: Array<any>
@@ -13,12 +14,12 @@ export default class ASTObject {
   }
 
   toAST () {
-    const {obj, t} = this
+    const { obj, t } = this
 
     const props = []
     for (let key in obj) {
       const rawValue = obj[key]
-      const {computed, composes, ast: keyAST} = this.objKeyToAst(key)
+      const { computed, composes, ast: keyAST } = this.objKeyToAst(key)
 
       let valueAST
       if (composes) {
@@ -34,17 +35,14 @@ export default class ASTObject {
   }
 
   objKeyToAst (key): { computed: boolean, ast: any, composes: boolean } {
-    const {t} = this
+    const { t } = this
     const matches = this.getDynamicMatches(key)
 
     if (matches.length) {
       return {
         computed: true,
         composes: key === 'composes',
-        ast: this.replacePlaceholdersWithExpressions(
-          matches,
-          key
-        )
+        ast: this.replacePlaceholdersWithExpressions(matches, key)
       }
     }
 
@@ -56,15 +54,12 @@ export default class ASTObject {
   }
 
   objValueToAst (value) {
-    const {expressions, composesCount, t} = this
+    const { expressions, composesCount, t } = this
 
     if (typeof value === 'string') {
       const matches = this.getDynamicMatches(value)
       if (matches.length) {
-        return this.replacePlaceholdersWithExpressions(
-          matches,
-          value
-        )
+        return this.replacePlaceholdersWithExpressions(matches, value)
       }
       return t.stringLiteral(value)
     } else if (Array.isArray(value)) {
@@ -92,22 +87,22 @@ export default class ASTObject {
   }
 
   replacePlaceholdersWithExpressions (matches: any[], str: string) {
-    const {expressions, composesCount, t} = this
+    const { expressions, composesCount, t } = this
 
     const templateElements = []
     const templateExpressions = []
     let cursor = 0
     // not sure how to detect when to add 'px'
     // let hasSingleInterpolation = false
-    forEach(matches, ({value, p1, index}, i) => {
+    forEach(matches, ({ value, p1, index }, i) => {
       const preMatch = str.substring(cursor, index)
       cursor = cursor + preMatch.length + value.length
       if (preMatch) {
         templateElements.push(
-          t.templateElement({raw: preMatch, cooked: preMatch})
+          t.templateElement({ raw: preMatch, cooked: preMatch })
         )
       } else if (i === 0) {
-        templateElements.push(t.templateElement({raw: '', cooked: ''}))
+        templateElements.push(t.templateElement({ raw: '', cooked: '' }))
       }
       // if (value === str) {
       // hasSingleInterpolation = true
@@ -134,5 +129,82 @@ export default class ASTObject {
     //   return templateExpressions[0]
     // }
     return t.templateLiteral(templateElements, templateExpressions)
+  }
+
+  static fromAST (astObj, t) {
+    function isLiteral (value) {
+      return (
+        t.isStringLiteral(value) ||
+        t.isNumericLiteral(value) ||
+        t.isBooleanLiteral(value)
+      )
+    }
+
+    let obj = {}
+    let expressions = []
+
+    function replaceExpressionsWithPlaceholders (thing) {
+      if (t.isArrayExpression(thing)) {
+        return thing.value.elements.map(replaceExpressionsWithPlaceholders)
+      } else if (isLiteral(thing)) {
+        return thing.value
+      } else if (t.isTemplateLiteral(thing)) {
+        const strs = thing.quasis.map(x => x.value.cooked)
+        const exprs = thing.expressions
+        const value = reduce(
+          strs,
+          (arr, str, i) => {
+            arr.push(str)
+            if (i !== strs.length - 1) {
+              expressions.push(exprs[i])
+              arr.push(`xxx${expressions.length}xxx`)
+            }
+            return arr
+          },
+          []
+        )
+          .join('')
+          .trim()
+        return value
+      }
+
+      expressions.push(thing)
+      return `xxx${expressions.length}xxx`
+    }
+
+    function toObj (astObj) {
+      astObj.properties.forEach(property => {
+        // nested objects
+        if (t.isObjectExpression(property.value)) {
+          let key
+          if (property.computed) {
+            key = replaceExpressionsWithPlaceholders(property.key)
+          } else {
+            key = t.isStringLiteral(property.key)
+              ? t.stringLiteral(property.key.value)
+              : t.identifier(property.key.name)
+          }
+
+          obj[key] = toObj(property.value)
+        } else {
+          let key
+          if (property.computed) {
+            key = replaceExpressionsWithPlaceholders(property.key)
+          } else {
+            key = property.key.name
+          }
+          obj[key] = replaceExpressionsWithPlaceholders(property.value)
+        }
+      })
+
+      return obj
+    }
+
+    return new ASTObject(
+      toObj(astObj),
+      expressions,
+      0, // composesCount: we should support this,
+      t
+    )
   }
 }

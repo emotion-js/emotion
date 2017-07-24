@@ -4,7 +4,6 @@ import { basename } from 'path'
 import { touchSync } from 'touch'
 import postcssJs from 'postcss-js'
 import autoprefixer from 'autoprefixer'
-import { forEach, map } from './utils'
 import { inline } from './inline'
 import { parseCSS, expandCSSFallbacks } from './parser'
 import { getIdentifierName } from './babel-utils'
@@ -125,8 +124,8 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
   ])
 }
 
+const prefixer = postcssJs.sync([autoprefixer])
 function prefixAst (args, t) {
-  const prefixer = postcssJs.sync([autoprefixer])
 
   function isLiteral (value) {
     return (
@@ -267,6 +266,12 @@ export default function (babel) {
         }
 
         if (t.isCallExpression(path.node) && path.node.callee.name === 'css') {
+          path.node.arguments.forEach((arg) => {
+            if (t.isObjectExpression(arg)) {
+              console.log(JSON.stringify(ASTObject.fromAST(arg, t).expressions, null, 2))
+            }
+          })
+
           const prefixedAst = prefixAst(path.node.arguments, t)
           path.replaceWith(t.callExpression(t.identifier('css'), prefixedAst))
         }
