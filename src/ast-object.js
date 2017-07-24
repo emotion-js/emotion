@@ -140,7 +140,6 @@ export default class ASTObject {
       )
     }
 
-    let obj = {}
     let expressions = []
 
     function replaceExpressionsWithPlaceholders (node) {
@@ -157,7 +156,7 @@ export default class ASTObject {
             arr.push(str)
             if (i !== strs.length - 1) {
               expressions.push(exprs[i])
-              arr.push(`xxx${expressions.length}xxx`)
+              arr.push(`xxx${expressions.length - 1}xxx`)
             }
             return arr
           },
@@ -169,30 +168,22 @@ export default class ASTObject {
       }
 
       expressions.push(node)
-      return `xxx${expressions.length}xxx`
+      return `xxx${expressions.length - 1}xxx`
     }
 
     function toObj (astObj) {
-      astObj.properties.forEach(property => {
+      let obj = {}
+      forEach(astObj.properties, property => {
         // nested objects
+        let key
+        if (property.computed) {
+          key = replaceExpressionsWithPlaceholders(property.key)
+        } else {
+          key = t.isIdentifier(property.key) ? property.key.name : property.key.value
+        }
         if (t.isObjectExpression(property.value)) {
-          let key
-          if (property.computed) {
-            key = replaceExpressionsWithPlaceholders(property.key)
-          } else {
-            key = t.isStringLiteral(property.key)
-              ? t.stringLiteral(property.key.value)
-              : t.identifier(property.key.name)
-          }
-
           obj[key] = toObj(property.value)
         } else {
-          let key
-          if (property.computed) {
-            key = replaceExpressionsWithPlaceholders(property.key)
-          } else {
-            key = property.key.name
-          }
           obj[key] = replaceExpressionsWithPlaceholders(property.value)
         }
       })

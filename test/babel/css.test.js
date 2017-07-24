@@ -177,8 +177,24 @@ describe('babel css', () => {
       const basic = `
       const cls2 = css({
         display: 'flex',
-        flex: 1
+        flex: 1,
+        alignItems: \`\${'center'}\`
       })
+    `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('array of objects', () => {
+      const basic = `
+      const cls2 = css([{
+        display: 'flex',
+        flex: 1,
+        alignItems: \`\${'center'}\`
+      }, {
+        justifyContent: 'flex-start'
+      }])
     `
       const { code } = babel.transform(basic, {
         plugins: [[plugin]]

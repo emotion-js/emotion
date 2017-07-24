@@ -2,7 +2,7 @@
 
 exports[`babel css extract basic object support 1`] = `
 "css({
-  display: '-webkit-box; display: -ms-flexbox; display: flex'
+  'display': '-webkit-box; display: -ms-flexbox; display: flex'
 });"
 `;
 
@@ -53,7 +53,7 @@ exports[`babel css extract composes no dynamic 2`] = `
 exports[`babel css extract composes with objects 1`] = `
 "
 const cls1 = css({
-  display: '-webkit-box; display: -ms-flexbox; display: flex'
+  'display': '-webkit-box; display: -ms-flexbox; display: flex'
 });
 const cls2 = /*#__PURE__*/css([cls1], [], function createEmotionStyledRules() {
   return [{
@@ -91,34 +91,51 @@ exports[`babel css extract css basic 2`] = `
 exports[`babel css extract prefixed array of objects 1`] = `
 "
 css([{
-  borderRadius: '50%',
-  WebkitBoxSizing: 'border-box',
-  boxSizing: 'border-box',
-  display: '-webkit-box; display: -ms-flexbox; display: flex',
+  'borderRadius': '50%',
+  'WebkitBoxSizing': 'border-box',
+  'boxSizing': 'border-box',
+  'display': '-webkit-box; display: -ms-flexbox; display: flex',
   ':hover': {
-    WebkitTransform: 'scale(1.2)',
-    transform: 'scale(1.2)'
+    'WebkitTransform': 'scale(1.2)',
+    'transform': 'scale(1.2)'
   }
 }, {
-  WebkitTransition: '-webkit-transform 400ms ease-in-out',
-  transition: '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'
+  'WebkitTransition': '-webkit-transform 400ms ease-in-out',
+  'transition': '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'
 }]);"
 `;
 
 exports[`babel css extract prefixed objects 1`] = `
 "
 css({
-    borderRadius: '50%',
-    WebkitTransition: '-webkit-transform 400ms ease-in-out',
-    transition: '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
-    WebkitBoxSizing: 'border-box',
-    boxSizing: 'border-box',
-    display: '-webkit-box; display: -ms-flexbox; display: flex',
+    'borderRadius': '50%',
+    'WebkitTransition': '-webkit-transform 400ms ease-in-out',
+    'transition': '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
+    'WebkitBoxSizing': 'border-box',
+    'boxSizing': 'border-box',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex',
     ':hover': {
-        WebkitTransform: 'scale(1.2)',
-        transform: 'scale(1.2)'
+        'WebkitTransform': 'scale(1.2)',
+        'transform': 'scale(1.2)'
     }
 });"
+`;
+
+exports[`babel css inline array of objects 1`] = `
+"
+const cls2 = css([{
+  'display': '-webkit-box; display: -ms-flexbox; display: flex',
+  'WebkitBoxFlex': '1',
+  'msFlex': '1',
+  'flex': '1',
+  'WebkitBoxAlign': \`\${'center'}\`,
+  'msFlexAlign': \`\${'center'}\`,
+  'alignItems': \`\${'center'}\`
+}, {
+  'WebkitBoxPack': 'start',
+  'msFlexPack': 'start',
+  'justifyContent': 'flex-start'
+}]);"
 `;
 
 exports[`babel css inline composes 1`] = `
@@ -197,10 +214,13 @@ exports[`babel css inline nested expanded properties 1`] = `
 exports[`babel css inline object with a bunch of stuff 1`] = `
 "
 const cls2 = css({
-  display: '-webkit-box; display: -ms-flexbox; display: flex',
-  WebkitBoxFlex: '1',
-  msFlex: '1',
-  flex: '1'
+  'display': '-webkit-box; display: -ms-flexbox; display: flex',
+  'WebkitBoxFlex': '1',
+  'msFlex': '1',
+  'flex': '1',
+  'WebkitBoxAlign': \`\${'center'}\`,
+  'msFlexAlign': \`\${'center'}\`,
+  'alignItems': \`\${'center'}\`
 });"
 `;
 

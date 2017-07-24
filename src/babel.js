@@ -7,6 +7,7 @@ import autoprefixer from 'autoprefixer'
 import { inline } from './inline'
 import { parseCSS, expandCSSFallbacks } from './parser'
 import { getIdentifierName } from './babel-utils'
+import { map } from './utils'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
@@ -202,6 +203,16 @@ function prefixAst (args, t) {
   return args
 }
 
+function buildProcessedStylesFromObjectAST (objectAST, t) {
+  if (t.isObjectExpression(objectAST)) {
+    const astObject = ASTObject.fromAST(objectAST, t)
+    const { styles } = parseCSS(astObject.obj, false)
+    astObject.obj = styles
+    return astObject.toAST()
+  }
+  return objectAST
+}
+
 const visited = Symbol('visited')
 
 export default function (babel) {
@@ -267,17 +278,21 @@ export default function (babel) {
             : path.node.callee.object
           path.replaceWith(buildStyledObjectCallExpression(path, identifier, t))
         }
-
-        if (t.isCallExpression(path.node) && path.node.callee.name === 'css') {
-          path.node.arguments.forEach((arg) => {
-            if (t.isObjectExpression(arg)) {
-              console.log(JSON.stringify(ASTObject.fromAST(arg, t).expressions, null, 2))
+        try {
+          if (t.isCallExpression(path.node) && path.node.callee.name === 'css' && !path.node.arguments[1]) {
+            const argWithStyles = path.node.arguments[0]
+            if (t.isObjectExpression(argWithStyles)) {
+              const styles = buildProcessedStylesFromObjectAST(argWithStyles, t)
+              path.replaceWith(t.callExpression(t.identifier('css'), [styles]))
+            } else if (t.isArrayExpression(argWithStyles)) {
+              const processedStyles = map(argWithStyles.elements, styles => buildProcessedStylesFromObjectAST(styles, t))
+              path.replaceWith(t.callExpression(t.identifier('css'), [t.arrayExpression(processedStyles)]))
             }
-          })
-
-          const prefixedAst = prefixAst(path.node.arguments, t)
-          path.replaceWith(t.callExpression(t.identifier('css'), prefixedAst))
+          }
+        } catch (e) {
+          throw path.buildCodeFrameError(e)
         }
+
         path[visited] = true
       },
       TaggedTemplateExpression (path, state) {

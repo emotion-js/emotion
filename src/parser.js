@@ -3,6 +3,7 @@ import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
 import postcssNested from 'styled-components/lib/vendor/postcss-nested'
 import stringify from 'styled-components/lib/vendor/postcss/stringify'
 import postcssJs from 'postcss-js'
+import objParse from 'postcss-js/parser'
 import autoprefixer from 'autoprefixer'
 import { processStyleName } from './glamor/CSSPropertyOperations'
 import { objStyle } from './index'
@@ -31,7 +32,12 @@ export function parseCSS (
   composesCount: number
 } {
   // todo - handle errors
-  let root = parse(css)
+  let root
+  if (typeof css === 'object') {
+    root = objParse(css)
+  } else {
+    root = parse(css)
+  }
   let vars = 0
   let composes: number = 0
 
