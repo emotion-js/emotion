@@ -148,6 +148,12 @@ function buildProcessedStylesFromObjectAST (objectAST, t) {
   return objectAST
 }
 
+export function replaceCssObjectCallExpression (path, identifier, t) {
+  const argWithStyles = path.node.arguments[0]
+  const styles = buildProcessedStylesFromObjectAST(argWithStyles, t)
+  path.replaceWith(t.callExpression(identifier, [styles]))
+}
+
 const visited = Symbol('visited')
 
 export default function (babel) {
@@ -216,15 +222,8 @@ export default function (babel) {
               buildStyledObjectCallExpression(path, identifier, t)
             )
           }
-
-          if (
-            t.isCallExpression(path.node) &&
-            path.node.callee.name === 'css' &&
-            !path.node.arguments[1]
-          ) {
-            const argWithStyles = path.node.arguments[0]
-            const styles = buildProcessedStylesFromObjectAST(argWithStyles, t)
-            path.replaceWith(t.callExpression(t.identifier('css'), [styles]))
+          if (path.node.callee.name === 'css' && !path.node.arguments[1]) {
+            replaceCssObjectCallExpression(path, t.identifier('css'), t)
           }
         } catch (e) {
           throw path.buildCodeFrameError(e)

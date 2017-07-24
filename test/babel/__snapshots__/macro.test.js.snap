@@ -19,7 +19,9 @@ exports[`babel macro css 1`] = `
 exports[`babel macro css object 1`] = `
 "import { css as _css } from '../../src';
 
-const cls1 = _css({ display: 'flex' });"
+const cls1 = _css({
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+});"
 `;
 
 exports[`babel macro flush 1`] = `

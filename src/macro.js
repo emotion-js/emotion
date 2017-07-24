@@ -1,4 +1,4 @@
-import { replaceCssWithCallExpression } from './babel'
+import { replaceCssWithCallExpression, replaceCssObjectCallExpression } from './babel'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 import { forEach, keys } from './utils'
 
@@ -53,6 +53,8 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
           t.isTemplateLiteral(path.node.quasi)
         ) {
           replaceCssWithCallExpression(path, runtimeNode, state, t)
+        } else if (!path.node.arguments[1]) {
+          replaceCssObjectCallExpression(path, runtimeNode, t)
         } else {
           cssReference.replaceWith(runtimeNode)
         }
