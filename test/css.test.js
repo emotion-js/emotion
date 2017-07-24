@@ -2,7 +2,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { matcher, serializer } from 'jest-glamor-react'
-import { sheet, css } from '../src/index'
+import { sheet, css, flush } from '../src/index'
 
 expect.addSnapshotSerializer(serializer(sheet))
 expect.extend(matcher)
@@ -87,5 +87,15 @@ describe('css', () => {
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshotWithGlamor()
+  })
+  test('flushes correctly', () => {
+    const cls1 = css`
+    display: flex;
+  `
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
+    flush()
+    const tree2 = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree2).toMatchSnapshotWithGlamor()
   })
 })

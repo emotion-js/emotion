@@ -60,6 +60,24 @@ exports[`css composes with undefined values 1`] = `
 />
 `;
 
+exports[`css flushes correctly 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css flushes correctly 2`] = `
+<div
+  className="css-71uu79"
+/>
+`;
+
 exports[`css handles more than 10 dynamic properties 1`] = `
 .glamor-0 {
   -webkit-text-decoration: underline;
