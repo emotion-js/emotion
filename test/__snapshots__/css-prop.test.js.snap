@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css prop react basic 1`] = `
-.css-xs9rh7 {
+.glamor-0 {
   color: red;
   font-size: 1px;
 }
 
 <p
-  className="css-xs9rh7"
+  className="glamor-0"
 >
   hello world
 </p>
 `;
 
 exports[`css prop react kitchen sink 1`] = `
-.css-o2rzdt {
+.glamor-4 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -27,51 +27,51 @@ exports[`css prop react kitchen sink 1`] = `
   align-items: center;
 }
 
-.css-12lxyi1 {
+.glamor-0 {
   font-size: 6px;
   color: red;
 }
 
-.css-bithoy {
+.glamor-1 {
   color: blue;
 }
 
-.css-1426hi0 {
+.glamor-2 {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-.css-btxk1p {
+.glamor-3 {
   color: red;
   border-radius: 5px;
 }
 
-.css-btxk1p:hover {
+.glamor-3:hover {
   font-weight: bold;
   color: gray;
 }
 
 <div
-  className="css__legacy-stuff css-o2rzdt"
+  className="css__legacy-stuff glamor-4"
 >
   <h1
-    className="css-12lxyi1"
+    className="glamor-0"
   >
     BOOM
   </h1>
   <p
-    className="test_class1 css-bithoy"
+    className="test_class1 glamor-1"
   >
     Hello
   </p>
   <p
-    className="test_class1 test___class45 css-1426hi0"
+    className="test_class1 test___class45 glamor-2"
   >
     World
   </p>
   <p
-    className="css-btxk1p"
+    className="glamor-3"
   >
     hello world
   </p>
@@ -79,14 +79,14 @@ exports[`css prop react kitchen sink 1`] = `
 `;
 
 exports[`css prop react string expression 1`] = `
-.css-1ylcmay {
+.glamor-0 {
   color: red;
   background: blue;
   font-size: 48px;
 }
 
 <p
-  className="css-1ylcmay"
+  className="glamor-0"
 >
   hello world
 </p>

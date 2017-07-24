@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css composes 1`] = `
-.css-w9g11r {
+.glamor-0 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,12 +11,12 @@ exports[`css composes 1`] = `
 }
 
 <div
-  className="css-w9g11r"
+  className="glamor-0"
 />
 `;
 
 exports[`css composes with objects 1`] = `
-.css-17yqurf {
+.glamor-0 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -28,40 +28,40 @@ exports[`css composes with objects 1`] = `
   justify-content: center;
 }
 
-.css-17yqurf:hover {
+.glamor-0:hover {
   color: blue;
 }
 
-.css-17yqurf:after {
+.glamor-0:after {
   content: " ";
   color: red;
 }
 
 @media (min-width: 420px) {
-  .css-17yqurf {
+  .glamor-0 {
     color: green;
   }
 }
 
 <div
-  className="css-17yqurf"
+  className="glamor-0"
 />
 `;
 
 exports[`css composes with undefined values 1`] = `
-.css-awzhlo {
+.glamor-0 {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
 }
 
 <div
-  className="css-awzhlo"
+  className="glamor-0"
 />
 `;
 
 exports[`css handles more than 10 dynamic properties 1`] = `
-.css-1tjas36 {
+.glamor-0 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   border-right: solid blue 54px;
@@ -77,18 +77,18 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 }
 
 <div
-  className="css-1tjas36"
+  className="glamor-0"
 />
 `;
 
 exports[`css handles objects 1`] = `
-.css-71uu79 {
+.glamor-0 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
 <div
-  className="css-71uu79"
+  className="glamor-0"
 />
 `;

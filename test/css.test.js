@@ -1,10 +1,10 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matcher, serializer } from '../jest-utils'
+import { matcher, serializer } from 'jest-glamor-react'
 import { sheet, css } from '../src/index'
 
-expect.addSnapshotSerializer(serializer)
+expect.addSnapshotSerializer(serializer(sheet))
 expect.extend(matcher)
 
 describe('css', () => {
@@ -24,7 +24,7 @@ describe('css', () => {
     `
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('composes with undefined values', () => {
@@ -33,7 +33,7 @@ describe('css', () => {
       justifyContent: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('composes', () => {
@@ -45,13 +45,13 @@ describe('css', () => {
       justifyContent: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('handles objects', () => {
     const cls1 = css({ display: 'flex' })
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('composes with objects', () => {
@@ -74,6 +74,6 @@ describe('css', () => {
     `
 
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 })

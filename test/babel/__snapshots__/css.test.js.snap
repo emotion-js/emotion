@@ -194,6 +194,16 @@ css([], [], function createEmotionStyledRules() {
 });"
 `;
 
+exports[`babel css inline object with a bunch of stuff 1`] = `
+"
+const cls2 = css({
+  display: '-webkit-box; display: -ms-flexbox; display: flex',
+  WebkitBoxFlex: '1',
+  msFlex: '1',
+  flex: '1'
+});"
+`;
+
 exports[`babel css inline only composes 1`] = `
 "
 const cls1 = css([], [], function createEmotionStyledRules() {

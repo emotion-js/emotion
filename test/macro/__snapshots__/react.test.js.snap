@@ -1,58 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled basic render 1`] = `
-.css-1vj1sv9 {
+.glamor-0 {
   font-size: 20px;
 }
 
 <h1
-  className="css-1vj1sv9"
+  className="glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled basic render with object as style 1`] = `
-.css-kp2uw9 {
+.glamor-0 {
   font-size: 20px;
 }
 
 <h1
-  className="css-kp2uw9"
+  className="glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled call expression 1`] = `
-.css-1vj1sv9 {
+.glamor-0 {
   font-size: 20px;
 }
 
 <h1
-  className="css-1vj1sv9"
+  className="glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled component as selector 1`] = `
-.css-1vj1sv9 {
+.glamor-0 {
   font-size: 20px;
 }
 
-.css-qrvryj {
+.glamor-1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
 <div
-  className="css-qrvryj"
+  className="glamor-1"
 >
   hello 
   <h1
-    className="css-1vj1sv9"
+    className="glamor-0"
   >
     This will be green
   </h1>
@@ -61,14 +61,14 @@ exports[`styled component as selector 1`] = `
 `;
 
 exports[`styled composes 1`] = `
-.css-1baty9 {
+.glamor-0 {
   color: blue;
   height: 64px;
   font-size: 32px;
 }
 
 <h1
-  className="css-1baty9"
+  className="glamor-0"
   scale={2}
 >
   hello world
@@ -76,32 +76,32 @@ exports[`styled composes 1`] = `
 `;
 
 exports[`styled composes based on props 1`] = `
-.css-bithoy {
+.glamor-0 {
   color: blue;
 }
 
 <h1
   a={true}
-  className="css-bithoy"
+  className="glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled composes based on props 2`] = `
-.css-45352 {
+.glamor-0 {
   color: green;
 }
 
 <h1
-  className="css-45352"
+  className="glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled composes with objects 1`] = `
-.css-k8dg7v {
+.glamor-0 {
   color: #333;
   font-size: 1.333em;
   height: 64px;
@@ -113,13 +113,13 @@ exports[`styled composes with objects 1`] = `
     only screen and (-o-min-device-pixel-ratio: 1.5/1),
     only screen and (min-resolution: 144dpi),
     only screen and (min-resolution: 1.5dppx) {
-  .css-k8dg7v {
+  .glamor-0 {
     font-size: 1.4323121856191332em;
   }
 }
 
 <h1
-  className="css-k8dg7v"
+  className="glamor-0"
   scale={2}
 >
   hello world
@@ -127,24 +127,24 @@ exports[`styled composes with objects 1`] = `
 `;
 
 exports[`styled composition 1`] = `
-.css-1x2u9fm {
+.glamor-0 {
   font-size: 13.333333333333334px;
 }
 
 <h1
-  className="css-1x2u9fm"
+  className="glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled function in expression 1`] = `
-.css-1iqzzhq {
+.glamor-0 {
   font-size: 40px;
 }
 
 <h1
-  className="css-1iqzzhq"
+  className="glamor-0"
   scale={2}
 >
   hello world
@@ -152,7 +152,7 @@ exports[`styled function in expression 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.css-1nkevqp {
+.glamor-0 {
   font-size: 20px;
   background-color: '#343a40';
   -webkit-box-orient: vertical;
@@ -162,55 +162,55 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="css-1nkevqp"
+  className="glamor-0"
 />
 `;
 
 exports[`styled innerRef 1`] = `
-.css-f8g05s {
+.glamor-0 {
   font-size: 12px;
 }
 
 <h1
-  className="css-f8g05s"
+  className="glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled name 1`] = `
-.css-1i0qtj6 {
+.glamor-0 {
   name: FancyH1;
   font-size: 20px;
 }
 
 <h1
-  className="css-1i0qtj6"
+  className="glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled no dynamic 1`] = `
-.css-f8g05s {
+.glamor-0 {
   font-size: 12px;
 }
 
 <h1
-  className="css-f8g05s"
+  className="glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled objects 1`] = `
-.css-1j0hret {
+.glamor-0 {
   padding: 10px;
   display: flex;
 }
 
 <h1
-  className="some-class css-1j0hret"
+  className="some-class glamor-0"
   display="flex"
 >
   hello world
@@ -218,7 +218,7 @@ exports[`styled objects 1`] = `
 `;
 
 exports[`styled themes 1`] = `
-.css-93wdk {
+.glamor-0 {
   background-color: #ffd43b;
   color: #8c81d8;
   height: 64px;
@@ -226,7 +226,7 @@ exports[`styled themes 1`] = `
 }
 
 <span
-  className="css-93wdk"
+  className="glamor-0"
   scale={2}
 >
   hello world

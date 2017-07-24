@@ -173,6 +173,18 @@ describe('babel css', () => {
         ).toThrowErrorMatchingSnapshot()
       }
     )
+    test('object with a bunch of stuff', () => {
+      const basic = `
+      const cls2 = css({
+        display: 'flex',
+        flex: 1
+      })
+    `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
   describe('extract', () => {
     test('css basic', () => {

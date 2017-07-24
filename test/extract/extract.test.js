@@ -3,11 +3,11 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
-import { matcher, serializer } from '../../jest-utils'
-import { injectGlobal, css } from '../../src/index'
+import { matcher, serializer } from 'jest-glamor-react'
+import { injectGlobal, css, sheet } from '../../src'
 import styled from '../../src/react'
 
-expect.addSnapshotSerializer(serializer)
+expect.addSnapshotSerializer(serializer(sheet))
 expect.extend(matcher)
 
 describe('styled', () => {
@@ -16,7 +16,7 @@ describe('styled', () => {
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('basic render nested', () => {
@@ -36,7 +36,7 @@ describe('styled', () => {
     `
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('name', () => {
@@ -48,7 +48,7 @@ describe('styled', () => {
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('injectGlobal', () => {

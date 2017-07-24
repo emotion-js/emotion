@@ -1,14 +1,11 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matcher, serializer } from '../jest-utils'
+import { matcher, serializer } from 'jest-glamor-react'
 import { keyframes, sheet } from '../src/index'
 import styled from '../src/react'
 
-expect.addSnapshotSerializer(serializer)
-expect.extend(matcher)
-
-expect.addSnapshotSerializer(serializer)
+expect.addSnapshotSerializer(serializer(sheet))
 expect.extend(matcher)
 
 describe('keyframes', () => {
@@ -41,7 +38,7 @@ describe('keyframes', () => {
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
   test('keyframes with interpolation', () => {
     const endingRotation = '360deg'
@@ -60,7 +57,7 @@ describe('keyframes', () => {
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
 
     expect(
       sheet.tags.map(tag => tag.textContent || '').join('')

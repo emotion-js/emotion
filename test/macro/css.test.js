@@ -3,9 +3,9 @@ import { css } from '../../src/macro'
 import { sheet } from '../../src'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matcher, serializer } from '../../jest-utils'
+import { matcher, serializer } from 'jest-glamor-react'
 
-expect.addSnapshotSerializer(serializer)
+expect.addSnapshotSerializer(serializer(sheet))
 expect.extend(matcher)
 
 describe('css macro', () => {
@@ -25,7 +25,7 @@ describe('css macro', () => {
     `
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('composes with undefined values', () => {
@@ -34,7 +34,7 @@ describe('css macro', () => {
       justifyContent: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('composes', () => {
@@ -46,13 +46,13 @@ describe('css macro', () => {
       justifyContent: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('handles objects', () => {
     const cls1 = css({ display: 'flex' })
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('composes with objects', () => {
@@ -75,6 +75,6 @@ describe('css macro', () => {
     `
 
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 })

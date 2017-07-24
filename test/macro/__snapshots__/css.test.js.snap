@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css macro composes 1`] = `
-.css-w9g11r {
+.glamor-0 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,12 +11,12 @@ exports[`css macro composes 1`] = `
 }
 
 <div
-  className="css-w9g11r"
+  className="glamor-0"
 />
 `;
 
 exports[`css macro composes with objects 1`] = `
-.css-d6v2z3 {
+.glamor-0 {
   display: flex,block;
   width: 30px;
   height: calc(40vw - 50px);
@@ -25,40 +25,40 @@ exports[`css macro composes with objects 1`] = `
   justify-content: center;
 }
 
-.css-d6v2z3:hover {
+.glamor-0:hover {
   color: blue;
 }
 
-.css-d6v2z3:after {
+.glamor-0:after {
   content: " ";
   color: red;
 }
 
 @media (min-width: 420px) {
-  .css-d6v2z3 {
+  .glamor-0 {
     color: green;
   }
 }
 
 <div
-  className="css-d6v2z3"
+  className="glamor-0"
 />
 `;
 
 exports[`css macro composes with undefined values 1`] = `
-.css-awzhlo {
+.glamor-0 {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
 }
 
 <div
-  className="css-awzhlo"
+  className="glamor-0"
 />
 `;
 
 exports[`css macro handles more than 10 dynamic properties 1`] = `
-.css-1fz3d5g {
+.glamor-0 {
   background: white;
   color: black;
   -webkit-text-decoration: underline;
@@ -74,16 +74,16 @@ exports[`css macro handles more than 10 dynamic properties 1`] = `
 }
 
 <div
-  className="css-1fz3d5g"
+  className="glamor-0"
 />
 `;
 
 exports[`css macro handles objects 1`] = `
-.css-1fe3owl {
+.glamor-0 {
   display: flex;
 }
 
 <div
-  className="css-1fe3owl"
+  className="glamor-0"
 />
 `;
