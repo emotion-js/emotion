@@ -185,10 +185,8 @@ type EmotionClassName = {
   [string]: any
 }
 
-let cachedCss: (rules: CSSRuleList) => EmotionClassName = typeof WeakMap !==
-  'undefined'
-  ? multiIndexCache(_css)
-  : _css
+let cachedCss: (rules: CSSRuleList) => EmotionClassName =
+  typeof WeakMap !== 'undefined' ? multiIndexCache(_css) : _css
 
 // 🍩
 // https://github.com/threepointone/glamor
@@ -450,9 +448,10 @@ Object.defineProperty(nullrule, 'toString', {
   }
 })
 
-let inputCaches = typeof WeakMap !== 'undefined'
-  ? [nullrule, new WeakMap(), new WeakMap(), new WeakMap()]
-  : [nullrule]
+let inputCaches =
+  typeof WeakMap !== 'undefined'
+    ? [nullrule, new WeakMap(), new WeakMap(), new WeakMap()]
+    : [nullrule]
 
 let warnedWeakMapError = false
 

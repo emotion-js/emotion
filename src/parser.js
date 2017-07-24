@@ -63,9 +63,10 @@ export function parseCSS (
 
   return {
     styles,
-    staticCSSRules: vars === 0 && extractStatic
-      ? stringifyCSSRoot(postcssJs.parse(styles))
-      : [],
+    staticCSSRules:
+      vars === 0 && extractStatic
+        ? stringifyCSSRoot(postcssJs.parse(styles))
+        : [],
     composesCount: composes
   }
 }

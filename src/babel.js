@@ -110,7 +110,9 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
       vars.map((x, i) => t.identifier(`x${i}`)),
       t.blockStatement([
         t.returnStatement(
-          t.arrayExpression([new ASTObject(styles, false, composesCount, t).toAST()])
+          t.arrayExpression([
+            new ASTObject(styles, false, composesCount, t).toAST()
+          ])
         )
       ])
     )
@@ -266,27 +268,40 @@ export default function (babel) {
         if (path[visited]) {
           return
         }
-        if (
-          (t.isCallExpression(path.node.callee) &&
-            path.node.callee.callee.name === 'styled') ||
-          (t.isMemberExpression(path.node.callee) &&
-            t.isIdentifier(path.node.callee.object) &&
-            path.node.callee.object.name === 'styled')
-        ) {
-          const identifier = t.isCallExpression(path.node.callee)
-            ? path.node.callee.callee
-            : path.node.callee.object
-          path.replaceWith(buildStyledObjectCallExpression(path, identifier, t))
-        }
         try {
-          if (t.isCallExpression(path.node) && path.node.callee.name === 'css' && !path.node.arguments[1]) {
+          if (
+            (t.isCallExpression(path.node.callee) &&
+              path.node.callee.callee.name === 'styled') ||
+            (t.isMemberExpression(path.node.callee) &&
+              t.isIdentifier(path.node.callee.object) &&
+              path.node.callee.object.name === 'styled')
+          ) {
+            const identifier = t.isCallExpression(path.node.callee)
+              ? path.node.callee.callee
+              : path.node.callee.object
+            path.replaceWith(
+              buildStyledObjectCallExpression(path, identifier, t)
+            )
+          }
+
+          if (
+            t.isCallExpression(path.node) &&
+            path.node.callee.name === 'css' &&
+            !path.node.arguments[1]
+          ) {
             const argWithStyles = path.node.arguments[0]
             if (t.isObjectExpression(argWithStyles)) {
               const styles = buildProcessedStylesFromObjectAST(argWithStyles, t)
               path.replaceWith(t.callExpression(t.identifier('css'), [styles]))
             } else if (t.isArrayExpression(argWithStyles)) {
-              const processedStyles = map(argWithStyles.elements, styles => buildProcessedStylesFromObjectAST(styles, t))
-              path.replaceWith(t.callExpression(t.identifier('css'), [t.arrayExpression(processedStyles)]))
+              const processedStyles = map(argWithStyles.elements, styles =>
+                buildProcessedStylesFromObjectAST(styles, t)
+              )
+              path.replaceWith(
+                t.callExpression(t.identifier('css'), [
+                  t.arrayExpression(processedStyles)
+                ])
+              )
             }
           }
         } catch (e) {

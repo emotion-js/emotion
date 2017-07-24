@@ -179,7 +179,9 @@ export default class ASTObject {
         if (property.computed) {
           key = replaceExpressionsWithPlaceholders(property.key)
         } else {
-          key = t.isIdentifier(property.key) ? property.key.name : property.key.value
+          key = t.isIdentifier(property.key)
+            ? property.key.name
+            : property.key.value
         }
         if (t.isObjectExpression(property.value)) {
           obj[key] = toObj(property.value)
