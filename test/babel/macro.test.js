@@ -207,6 +207,18 @@ describe('babel macro', () => {
     })
     expect(code).toMatchSnapshot()
   })
+  test('css call with no args', () => {
+    const basic = `
+    import { css } from '../../src/macro'
+    const cls1 = css()
+    `
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
   test('some import that does not exist', () => {
     const basic = `
     import { thisDoesNotExist } from '../../src/macro'

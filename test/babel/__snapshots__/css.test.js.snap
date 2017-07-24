@@ -94,7 +94,7 @@ css([{
   'borderRadius': '50%',
   'WebkitBoxSizing': 'border-box',
   'boxSizing': 'border-box',
-  'display': '-webkit-box; display: -ms-flexbox; display: flex',
+  [\`\${display}\`]: 'flex',
   ':hover': {
     'WebkitTransform': 'scale(1.2)',
     'transform': 'scale(1.2)'

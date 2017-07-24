@@ -16,6 +16,12 @@ exports[`babel macro css 1`] = `
 });"
 `;
 
+exports[`babel macro css call with no args 1`] = `
+"import { css as _css } from '../../src';
+
+const cls1 = _css();"
+`;
+
 exports[`babel macro css object 1`] = `
 "import { css as _css } from '../../src';
 

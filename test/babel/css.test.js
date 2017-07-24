@@ -293,8 +293,8 @@ describe('babel css', () => {
       const basic = `
           css([{
             borderRadius: '50%',
-            boxSizing: 'border-box',
-            display: 'flex',
+            boxSizing: ['border-box'],
+            [display]: 'flex',
             ':hover': {
               transform: 'scale(1.2)'
             }
