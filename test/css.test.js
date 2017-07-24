@@ -53,7 +53,8 @@ describe('css', () => {
       display: 'flex',
       color: `${'blue'}`,
       fontSize: `${'20px'}`,
-      height: `${50}`
+      height: `${50}`,
+      width: 20
     })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshotWithGlamor()

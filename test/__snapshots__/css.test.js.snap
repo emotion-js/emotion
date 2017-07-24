@@ -86,6 +86,10 @@ exports[`css handles objects 1`] = `
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  color: blue;
+  font-size: 20px;
+  height: 50px;
+  width: 20px;
 }
 
 <div

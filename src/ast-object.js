@@ -143,14 +143,14 @@ export default class ASTObject {
     let obj = {}
     let expressions = []
 
-    function replaceExpressionsWithPlaceholders (thing) {
-      if (t.isArrayExpression(thing)) {
-        return thing.value.elements.map(replaceExpressionsWithPlaceholders)
-      } else if (isLiteral(thing)) {
-        return thing.value
-      } else if (t.isTemplateLiteral(thing)) {
-        const strs = thing.quasis.map(x => x.value.cooked)
-        const exprs = thing.expressions
+    function replaceExpressionsWithPlaceholders (node) {
+      if (t.isArrayExpression(node)) {
+        return node.elements.map(replaceExpressionsWithPlaceholders)
+      } else if (isLiteral(node)) {
+        return node.value
+      } else if (t.isTemplateLiteral(node)) {
+        const strs = node.quasis.map(x => x.value.cooked)
+        const exprs = node.expressions
         const value = reduce(
           strs,
           (arr, str, i) => {
@@ -168,7 +168,7 @@ export default class ASTObject {
         return value
       }
 
-      expressions.push(thing)
+      expressions.push(node)
       return `xxx${expressions.length}xxx`
     }
 
