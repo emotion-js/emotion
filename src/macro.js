@@ -53,7 +53,7 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
           t.isTemplateLiteral(path.node.quasi)
         ) {
           replaceCssWithCallExpression(path, runtimeNode, state, t)
-        } else if (!path.node.arguments[1]) {
+        } else if (!path.node.arguments[1] && path.node.arguments[0]) {
           replaceCssObjectCallExpression(path, runtimeNode, t)
         } else {
           cssReference.replaceWith(runtimeNode)

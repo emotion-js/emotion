@@ -222,7 +222,7 @@ export default function (babel) {
               buildStyledObjectCallExpression(path, identifier, t)
             )
           }
-          if (path.node.callee.name === 'css' && !path.node.arguments[1]) {
+          if (path.node.callee.name === 'css' && !path.node.arguments[1] && path.node.arguments[0]) {
             replaceCssObjectCallExpression(path, t.identifier('css'), t)
           }
         } catch (e) {

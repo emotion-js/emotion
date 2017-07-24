@@ -77,4 +77,10 @@ describe('css macro', () => {
     const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshotWithGlamor()
   })
+  test('null rule', () => {
+    const cls1 = css()
+
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
+  })
 })

@@ -96,3 +96,9 @@ exports[`css handles objects 1`] = `
   className="glamor-0"
 />
 `;
+
+exports[`css null rule 1`] = `
+<div
+  className="css-nil"
+/>
+`;
