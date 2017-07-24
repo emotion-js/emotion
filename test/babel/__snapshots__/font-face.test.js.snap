@@ -15,7 +15,7 @@ exports[`fontFace babel extract basic 2`] = `
 exports[`fontFace babel extract basic assign to variable 1`] = `
 "import \\"./font-face.test.emotion.css\\";
 
-const thisWillBeUndefined;"
+const thisWillBeUndefined = undefined;"
 `;
 
 exports[`fontFace babel extract basic assign to variable 2`] = `

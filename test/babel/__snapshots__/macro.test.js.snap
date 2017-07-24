@@ -160,7 +160,7 @@ const someOtherVar = _thisDoesNotExist;"
 exports[`babel macro styled tagged template literal function 1`] = `
 "import _styled from '../../src/react';
 
-const SomeComponent = _styled('div', [], [], function createEmotionStyledRules() {
+const SomeComponent = /*#__PURE__*/_styled('div', [], [], function createEmotionStyledRules() {
   return [{
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
   }];
@@ -170,7 +170,7 @@ const SomeComponent = _styled('div', [], [], function createEmotionStyledRules()
 exports[`babel macro styled tagged template literal member 1`] = `
 "import _styled from '../../src/react';
 
-const SomeComponent = _styled('div', [], [], function createEmotionStyledRules() {
+const SomeComponent = /*#__PURE__*/_styled('div', [], [], function createEmotionStyledRules() {
   return [{
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
   }];

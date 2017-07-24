@@ -43,7 +43,7 @@ styled(\\"h1\\", [\\"styled-0\\"]);"
 exports[`babel styled component extract no use 2`] = `".styled-0 {}"`;
 
 exports[`babel styled component inline basic 1`] = `
-"const H1 = styled('h1', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
+"const H1 = /*#__PURE__*/styled('h1', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [{
     'fontSize': \`\${x0}\`
   }];
@@ -56,7 +56,7 @@ exports[`babel styled component inline composes based on props 1`] = `
     'width': '20px'
   }];
 });
-const H1 = styled('h1', [props => {
+const H1 = /*#__PURE__*/styled('h1', [props => {
   return props.a ? cssA : cssB;
 }], [fontSize + 'px', props => props.translateX], function createEmotionStyledRules(x0, x1) {
   return [{
@@ -69,7 +69,7 @@ const H1 = styled('h1', [props => {
 `;
 
 exports[`babel styled component inline dynamic fns 1`] = `
-"const Avatar = styled('img', [], [props => props.theme.borderRadius, props => props.theme.borderColor], function createEmotionStyledRules(x0, x1) {
+"const Avatar = /*#__PURE__*/styled('img', [], [props => props.theme.borderRadius, props => props.theme.borderColor], function createEmotionStyledRules(x0, x1) {
   return [{
     'width': '96px',
     'height': '96px',
@@ -80,7 +80,7 @@ exports[`babel styled component inline dynamic fns 1`] = `
 `;
 
 exports[`babel styled component inline function call 1`] = `
-"styled(MyComponent, [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
+"/*#__PURE__*/styled(MyComponent, [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [{
     'fontSize': \`\${x0}\`
   }];
@@ -89,7 +89,7 @@ exports[`babel styled component inline function call 1`] = `
 
 exports[`babel styled component inline interpolation in different places 1`] = `
 "
-const H1 = styled('h1', [], [fontSize + 'px', props => props.translateX, something, something, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9) {
+const H1 = /*#__PURE__*/styled('h1', [], [fontSize + 'px', props => props.translateX, something, something, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9) {
   return [{
     'fontSize': \`\${x0}\`,
     'height': '20px',
@@ -104,7 +104,7 @@ const H1 = styled('h1', [], [fontSize + 'px', props => props.translateX, somethi
 `;
 
 exports[`babel styled component inline media query 1`] = `
-"const H1 = styled(\\"h1\\", [], [], function createEmotionStyledRules() {
+"const H1 = /*#__PURE__*/styled(\\"h1\\", [], [], function createEmotionStyledRules() {
   return [{
     \\"@media print\\": {
       \\"fontSize\\": \\"10pt\\"
@@ -129,7 +129,7 @@ exports[`babel styled component inline media query 1`] = `
 `;
 
 exports[`babel styled component inline more than 10 dynamic values 1`] = `
-"const H1 = styled('h1', [], ['underline', 54, 'white', 'black', 'block', '3px', '25px', '500px', 100, '18px', 'center', p => p.theme.blue], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11) {
+"const H1 = /*#__PURE__*/styled('h1', [], ['underline', 54, 'white', 'black', 'block', '3px', '25px', '500px', 100, '18px', 'center', p => p.theme.blue], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11) {
       return [{
             'WebkitTextDecoration': \`\${x0}\`,
             'textDecoration': \`\${x0}\`,
@@ -159,7 +159,7 @@ exports[`babel styled component inline name is correct with no identifier 1`] = 
 `;
 
 exports[`babel styled component inline nested 1`] = `
-"const H1 = styled('h1', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
+"const H1 = /*#__PURE__*/styled('h1', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [{
     'fontSize': \`\${x0}\`,
     '& div': {
@@ -173,7 +173,7 @@ exports[`babel styled component inline nested 1`] = `
 `;
 
 exports[`babel styled component inline no dynamic 1`] = `
-"styled(\\"h1\\", [], [], function createEmotionStyledRules() {
+"/*#__PURE__*/styled(\\"h1\\", [], [], function createEmotionStyledRules() {
   return [{
     \\"color\\": \\"blue\\"
   }];
@@ -181,7 +181,7 @@ exports[`babel styled component inline no dynamic 1`] = `
 `;
 
 exports[`babel styled component inline no use 1`] = `
-"styled(\\"h1\\", [], [], function createEmotionStyledRules() {
+"/*#__PURE__*/styled(\\"h1\\", [], [], function createEmotionStyledRules() {
   return [{}];
 });"
 `;
@@ -229,10 +229,10 @@ const H1 = styled('h1', [{
 
 exports[`babel styled component inline styled component as selector 1`] = `
 "
-const SomeComponent = styled(\\"div\\", [], [], function createEmotionStyledRules() {
+const SomeComponent = /*#__PURE__*/styled(\\"div\\", [], [], function createEmotionStyledRules() {
   return [{}];
 });
-styled(\\"h1\\", [], [SomeComponent], function createEmotionStyledRules(x0) {
+/*#__PURE__*/styled(\\"h1\\", [], [SomeComponent], function createEmotionStyledRules(x0) {
   return [{
     \\"color\\": \\"blue\\",
     [\`.\${x0}\`]: {

@@ -3,7 +3,7 @@
 exports[`babel injectGlobal extract injectGlobal assign to variable 1`] = `
 "import \\"./inject-global.test.emotion.css\\";
 
-const thisWillBeUndefined;"
+const thisWillBeUndefined = undefined;"
 `;
 
 exports[`babel injectGlobal extract injectGlobal assign to variable 2`] = `

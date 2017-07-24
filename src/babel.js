@@ -30,25 +30,24 @@ export function replaceCssWithCallExpression (
       const { staticCSSRules } = parseCSS(cssText, true)
 
       state.insertStaticRules(staticCSSRules)
-      return removePath
-        ? path.remove()
-        : path.replaceWith(t.stringLiteral(`${name}-${hash}`))
+      if (!removePath) {
+        return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
+      }
+      if (t.isExpressionStatement(path.parent)) {
+        path.parentPath.remove()
+      } else {
+        path.replaceWith(t.identifier('undefined'))
+      }
+      return
     }
 
     const { styles, composesCount } = parseCSS(src, false)
-
-    const inputClasses = []
-    const composeValues = []
-    for (let i = 0; i < composesCount; i++) {
-      composeValues.push(path.node.quasi.expressions[i])
-    }
 
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
     }
 
-    inputClasses.push(new ASTObject(styles, false, composesCount, t).toAST())
-
+    const composeValues = path.node.quasi.expressions.slice(0, composesCount)
     const vars = path.node.quasi.expressions.slice(composesCount)
     path.replaceWith(
       t.callExpression(identifier, [
@@ -57,7 +56,13 @@ export function replaceCssWithCallExpression (
         t.functionExpression(
           t.identifier('createEmotionStyledRules'),
           vars.map((x, i) => t.identifier(`x${i}`)),
-          t.blockStatement([t.returnStatement(t.arrayExpression(inputClasses))])
+          t.blockStatement([
+            t.returnStatement(
+              t.arrayExpression([
+                new ASTObject(styles, false, composesCount, t).toAST()
+              ])
+            )
+          ])
         )
       ])
     )
@@ -90,14 +95,11 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     ])
   }
 
-  const { src } = inline(path.node.quasi, getIdentifierName(path, t), 'css')
+  const { src } = inline(path.node.quasi, identifierName, 'css')
+
+  path.addComment('leading', '#__PURE__')
 
   const { styles, composesCount } = parseCSS(src, false)
-  // const inputClasses = []
-  // const composeValues = []
-  // for (let i = 0; i < composesCount; i++) {
-  //   composeValues.push(path.node.quasi.expressions[i])
-  // }
 
   const objs = path.node.quasi.expressions.slice(0, composesCount)
   const vars = path.node.quasi.expressions.slice(composesCount)
