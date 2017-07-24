@@ -10,7 +10,7 @@ exports[`babel css extract composes 1`] = `
 "import './css.test.emotion.css';
 
 const cls1 = 'css-cls1-1q8jsgx';
-const cls2 = css([['one-class', 'another-class', cls1]], ['center'], function createEmotionStyledRules(x0) {
+const cls2 = /*#__PURE__*/css([['one-class', 'another-class', cls1]], ['center'], function createEmotionStyledRules(x0) {
   return [{
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
@@ -32,7 +32,7 @@ exports[`babel css extract composes no dynamic 1`] = `
 "import './css.test.emotion.css';
 
 const cls1 = 'css-cls1-1q8jsgx';
-const cls2 = css(['one-class', 'another-class', cls1], [], function createEmotionStyledRules() {
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], [], function createEmotionStyledRules() {
   return [{
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
@@ -55,7 +55,7 @@ exports[`babel css extract composes with objects 1`] = `
 const cls1 = css({
   display: '-webkit-box; display: -ms-flexbox; display: flex'
 });
-const cls2 = css([cls1], [], function createEmotionStyledRules() {
+const cls2 = /*#__PURE__*/css([cls1], [], function createEmotionStyledRules() {
   return [{
     'height': '20',
     'WebkitBoxPack': 'center',
@@ -123,12 +123,12 @@ css({
 
 exports[`babel css inline composes 1`] = `
 "
-const cls1 = css([], [], function createEmotionStyledRules() {
+const cls1 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
   }];
 });
-const cls2 = css(['one-class', 'another-class', cls1], ['center'], function createEmotionStyledRules(x0) {
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], function createEmotionStyledRules(x0) {
   return [{
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
@@ -142,7 +142,7 @@ const cls2 = css(['one-class', 'another-class', cls1], ['center'], function crea
 
 exports[`babel css inline css basic 1`] = `
 "
-css([], [widthVar], function createEmotionStyledRules(x0) {
+/*#__PURE__*/css([], [widthVar], function createEmotionStyledRules(x0) {
         return [{
                 \\"margin\\": \\"12px 48px\\",
                 \\"color\\": \\"#ffffff; color: blue\\",
@@ -157,7 +157,7 @@ css([], [widthVar], function createEmotionStyledRules(x0) {
 
 exports[`babel css inline interpolation in selector 1`] = `
 "
-const cls2 = css([], [className], function createEmotionStyledRules(x0) {
+const cls2 = /*#__PURE__*/css([], [className], function createEmotionStyledRules(x0) {
   return [{
     \\"margin\\": \\"12px 48px\\",
     \\"color\\": \\"#ffffff\\",
@@ -170,7 +170,7 @@ const cls2 = css([], [className], function createEmotionStyledRules(x0) {
 
 exports[`babel css inline lots of composes 1`] = `
 "
-const cls2 = css(['one-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class'], ['center'], function createEmotionStyledRules(x0) {
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class'], ['center'], function createEmotionStyledRules(x0) {
   return [{
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
@@ -184,7 +184,7 @@ const cls2 = css(['one-class', 'another-class', 'another-class', 'another-class'
 
 exports[`babel css inline nested expanded properties 1`] = `
 "
-css([], [], function createEmotionStyledRules() {
+/*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     \\"margin\\": \\"12px 48px\\",
     \\"& .div\\": {
@@ -206,24 +206,24 @@ const cls2 = css({
 
 exports[`babel css inline only composes 1`] = `
 "
-const cls1 = css([], [], function createEmotionStyledRules() {
+const cls1 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
   }];
 });
-const cls2 = css(['one-class', 'another-class', cls1], [], function createEmotionStyledRules() {
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], [], function createEmotionStyledRules() {
   return [{}];
 });"
 `;
 
 exports[`babel css inline only styles on nested selector 1`] = `
 "
-const cls1 = css([], [], function createEmotionStyledRules() {
+const cls1 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
   }];
 });
-const cls2 = css([], [], function createEmotionStyledRules() {
+const cls2 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     \\"&:hover\\": {
       \\"background\\": \\"pink\\"

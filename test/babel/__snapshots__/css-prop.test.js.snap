@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`babel css prop StringLiteral css prop value 1`] = `
-"<div className={css([], [], function createEmotionStyledRules() {
+"<div className={/*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     \\"color\\": \\"brown\\"
   }];
@@ -20,7 +20,7 @@ exports[`babel css prop basic 2`] = `
 `;
 
 exports[`babel css prop basic inline 1`] = `
-"<div className={\\"a\\" + \\" \\" + css([], [], function createEmotionStyledRules() {
+"<div className={\\"a\\" + \\" \\" + /*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     \\"color\\": \\"brown\\"
   }];
@@ -28,7 +28,7 @@ exports[`babel css prop basic inline 1`] = `
 `;
 
 exports[`babel css prop className as expression 1`] = `
-"<div className={variable + \\" \\" + css([], [], function createEmotionStyledRules() {
+"<div className={variable + \\" \\" + /*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     \\"color\\": \\"brown\\"
   }];
@@ -36,7 +36,7 @@ exports[`babel css prop className as expression 1`] = `
 `;
 
 exports[`babel css prop className as expression string 1`] = `
-"<div className={\`test__class\` + \\" \\" + css([], [], function createEmotionStyledRules() {
+"<div className={\`test__class\` + \\" \\" + /*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     \\"color\\": \\"brown\\"
   }];
@@ -44,13 +44,13 @@ exports[`babel css prop className as expression string 1`] = `
 `;
 
 exports[`babel css prop css empty 1`] = `
-"<div className={css([], [], function createEmotionStyledRules() {
+"<div className={/*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{}];
 })}></div>;"
 `;
 
 exports[`babel css prop dynamic inline 1`] = `
-"<div className={\\"a\\" + \\" \\" + css([], [color], function createEmotionStyledRules(x0) {
+"<div className={\\"a\\" + \\" \\" + /*#__PURE__*/css([], [color], function createEmotionStyledRules(x0) {
   return [{
     \\"color\\": \`\${x0}\`
   }];
@@ -58,7 +58,7 @@ exports[`babel css prop dynamic inline 1`] = `
 `;
 
 exports[`babel css prop emptyClassName 1`] = `
-"<div className={\\"\\" + \\" \\" + css([], [], function createEmotionStyledRules() {
+"<div className={\\"\\" + \\" \\" + /*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     \\"color\\": \\"brown\\"
   }];
@@ -68,7 +68,7 @@ exports[`babel css prop emptyClassName 1`] = `
 exports[`babel css prop no css attr 1`] = `"<div></div>;"`;
 
 exports[`babel css prop noClassName 1`] = `
-"<div className={css([], [], function createEmotionStyledRules() {
+"<div className={/*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     \\"color\\": \\"brown\\"
   }];
@@ -76,7 +76,7 @@ exports[`babel css prop noClassName 1`] = `
 `;
 
 exports[`babel css prop with spread arg in jsx opening tag 1`] = `
-"<div className={\\"a\\" + \\" \\" + css([], [], function createEmotionStyledRules() {
+"<div className={\\"a\\" + \\" \\" + /*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     \\"color\\": \\"brown\\"
   }];

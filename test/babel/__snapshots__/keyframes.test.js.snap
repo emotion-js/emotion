@@ -31,7 +31,7 @@ exports[`babel keyframes extract keyframes basic 2`] = `
 
 exports[`babel keyframes extract keyframes with interpolation 1`] = `
 "
-const rotate360 = keyframes([], [endingRotation], function createEmotionStyledRules(x0) {
+const rotate360 = /*#__PURE__*/keyframes([], [endingRotation], function createEmotionStyledRules(x0) {
   return [{
     \\"from\\": {
       \\"WebkitTransform\\": \\"rotate(0deg)\\",
@@ -47,7 +47,7 @@ const rotate360 = keyframes([], [endingRotation], function createEmotionStyledRu
 
 exports[`babel keyframes inline keyframes basic 1`] = `
 "
-const rotate360 = keyframes([], [], function createEmotionStyledRules() {
+const rotate360 = /*#__PURE__*/keyframes([], [], function createEmotionStyledRules() {
   return [{
     \\"from\\": {
       \\"WebkitTransform\\": \\"rotate(0deg)\\",
@@ -63,7 +63,7 @@ const rotate360 = keyframes([], [], function createEmotionStyledRules() {
 
 exports[`babel keyframes inline keyframes with interpolation 1`] = `
 "
-const rotate360 = keyframes([], [endingRotation], function createEmotionStyledRules(x0) {
+const rotate360 = /*#__PURE__*/keyframes([], [endingRotation], function createEmotionStyledRules(x0) {
   return [{
     \\"from\\": {
       \\"WebkitTransform\\": \\"rotate(0deg)\\",

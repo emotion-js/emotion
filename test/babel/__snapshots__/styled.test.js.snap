@@ -51,7 +51,7 @@ exports[`babel styled component inline basic 1`] = `
 `;
 
 exports[`babel styled component inline composes based on props 1`] = `
-"const cls1 = css([], [], function createEmotionStyledRules() {
+"const cls1 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
   return [{
     'width': '20px'
   }];
@@ -150,7 +150,7 @@ exports[`babel styled component inline more than 10 dynamic values 1`] = `
 
 exports[`babel styled component inline name is correct with no identifier 1`] = `
 "
-css([], [], function createEmotionStyledRules() {
+/*#__PURE__*/css([], [], function createEmotionStyledRules() {
         return [{
                 \\"margin\\": \\"12px 48px\\",
                 \\"color\\": \\"#ffffff\\"

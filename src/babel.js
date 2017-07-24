@@ -42,6 +42,10 @@ export function replaceCssWithCallExpression (
       composeValues.push(path.node.quasi.expressions[i])
     }
 
+    if (!removePath) {
+      path.addComment('leading', '#__PURE__')
+    }
+
     inputClasses.push(new ASTObject(styles, false, composesCount, t).toAST())
 
     const vars = path.node.quasi.expressions.slice(composesCount)
@@ -126,7 +130,6 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
 
 const prefixer = postcssJs.sync([autoprefixer])
 function prefixAst (args, t) {
-
   function isLiteral (value) {
     return (
       t.isStringLiteral(value) ||

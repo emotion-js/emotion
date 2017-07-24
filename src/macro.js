@@ -21,7 +21,9 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
               t
             ),
             state,
-            t
+            t,
+            () => {},
+            true
           )
         }
       })
@@ -36,7 +38,9 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
             path,
             buildMacroRuntimeNode(fontFaceReference, state, 'fontFace', t),
             state,
-            t
+            t,
+            () => {},
+            true
           )
         }
       })
