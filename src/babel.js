@@ -2,10 +2,8 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
-import postcssJs from 'postcss-js'
-import autoprefixer from 'autoprefixer'
 import { inline } from './inline'
-import { parseCSS, expandCSSFallbacks } from './parser'
+import { parseCSS } from './parser'
 import { getIdentifierName } from './babel-utils'
 import { map } from './utils'
 import cssProps from './css-prop'
@@ -129,82 +127,8 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
     : t.stringLiteral(path.node.callee.property.name)
   return t.callExpression(identifier, [
     tag,
-    t.arrayExpression(prefixAst(path.node.arguments, t))
+    t.arrayExpression(buildProcessedStylesFromObjectAST(path.node.arguments, t))
   ])
-}
-
-const prefixer = postcssJs.sync([autoprefixer])
-function prefixAst (args, t) {
-  function isLiteral (value) {
-    return (
-      t.isStringLiteral(value) ||
-      t.isNumericLiteral(value) ||
-      t.isBooleanLiteral(value)
-    )
-  }
-
-  if (Array.isArray(args)) {
-    return args.map(element => prefixAst(element, t))
-  }
-
-  if (t.isObjectExpression(args)) {
-    let properties = []
-    args.properties.forEach(property => {
-      // nested objects
-      if (t.isObjectExpression(property.value)) {
-        const key = t.isStringLiteral(property.key)
-          ? t.stringLiteral(property.key.value)
-          : t.identifier(property.key.name)
-        return properties.push(
-          t.objectProperty(key, prefixAst(property.value, t))
-        )
-
-        // literal value or array of literal values
-      } else if (
-        isLiteral(property.value) ||
-        (t.isArrayExpression(property.value) &&
-          property.value.elements.every(isLiteral))
-      ) {
-        // handle array values: { display: ['flex', 'block'] }
-        const propertyValue = t.isArrayExpression(property.value)
-          ? property.value.elements.map(element => element.value)
-          : property.value.value
-
-        const style = { [property.key.name]: propertyValue }
-        const prefixedStyle = expandCSSFallbacks(prefixer(style))
-
-        for (let k in prefixedStyle) {
-          const key = t.isStringLiteral(property.key)
-            ? t.stringLiteral(k)
-            : t.identifier(k)
-          const val = prefixedStyle[k]
-          let value
-
-          if (typeof val === 'number') {
-            value = t.numericLiteral(val)
-          } else if (typeof val === 'string') {
-            value = t.stringLiteral(val)
-          } else if (Array.isArray(val)) {
-            value = t.arrayExpression(val.map(i => t.stringLiteral(i)))
-          }
-
-          properties.push(t.objectProperty(key, value))
-        }
-
-        // expressions
-      } else {
-        properties.push(property)
-      }
-    })
-
-    return t.objectExpression(properties)
-  }
-
-  if (t.isArrayExpression(args)) {
-    return t.arrayExpression(prefixAst(args.elements, t))
-  }
-
-  return args
 }
 
 function buildProcessedStylesFromObjectAST (objectAST, t) {
@@ -214,6 +138,13 @@ function buildProcessedStylesFromObjectAST (objectAST, t) {
     astObject.obj = styles
     return astObject.toAST()
   }
+  if (t.isArrayExpression(objectAST)) {
+    return t.arrayExpression(buildProcessedStylesFromObjectAST(objectAST.elements, t))
+  }
+  if (Array.isArray(objectAST)) {
+    return map(objectAST, obj => buildProcessedStylesFromObjectAST(obj, t))
+  }
+
   return objectAST
 }
 
@@ -292,19 +223,8 @@ export default function (babel) {
             !path.node.arguments[1]
           ) {
             const argWithStyles = path.node.arguments[0]
-            if (t.isObjectExpression(argWithStyles)) {
-              const styles = buildProcessedStylesFromObjectAST(argWithStyles, t)
-              path.replaceWith(t.callExpression(t.identifier('css'), [styles]))
-            } else if (t.isArrayExpression(argWithStyles)) {
-              const processedStyles = map(argWithStyles.elements, styles =>
-                buildProcessedStylesFromObjectAST(styles, t)
-              )
-              path.replaceWith(
-                t.callExpression(t.identifier('css'), [
-                  t.arrayExpression(processedStyles)
-                ])
-              )
-            }
+            const styles = buildProcessedStylesFromObjectAST(argWithStyles, t)
+            path.replaceWith(t.callExpression(t.identifier('css'), [styles]))
           }
         } catch (e) {
           throw path.buildCodeFrameError(e)

@@ -196,7 +196,7 @@ const H1 = styled('h1', ['some-class', props => ({
 exports[`babel styled component inline objects based on props 1`] = `
 "
 const H1 = styled('h1', [{
-  padding: '10px'
+  'padding': '10px'
 }, props => ({
   display: props.display
 })]);"
@@ -205,22 +205,22 @@ const H1 = styled('h1', [{
 exports[`babel styled component inline objects fn call 1`] = `
 "
 const H1 = styled('h1', [{
-  display: '-webkit-box; display: -ms-flexbox; display: flex'
+  'display': '-webkit-box; display: -ms-flexbox; display: flex'
 }]);"
 `;
 
 exports[`babel styled component inline objects prefixed 1`] = `
 "
 const H1 = styled('h1', [{
-  borderRadius: '50%',
-  WebkitTransition: '-webkit-transform 400ms ease-in-out',
-  transition: '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
-  WebkitBoxSizing: 'border-box',
-  boxSizing: 'border-box',
-  display: '-webkit-box; display: -ms-flexbox; display: flex',
+  'borderRadius': '50%',
+  'WebkitTransition': '-webkit-transform 400ms ease-in-out',
+  'transition': '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
+  'WebkitBoxSizing': 'border-box',
+  'boxSizing': 'border-box',
+  'display': '-webkit-box; display: -ms-flexbox; display: flex',
   ':hover': {
-    WebkitTransform: 'scale(1.2)',
-    transform: 'scale(1.2)'
+    'WebkitTransform': 'scale(1.2)',
+    'transform': 'scale(1.2)'
   }
 }, props => {
   padding: props.padding;
@@ -245,15 +245,15 @@ const SomeComponent = /*#__PURE__*/styled(\\"div\\", [], [], function createEmot
 exports[`babel styled component inline styled objects prefixed 1`] = `
 "
 const H1 = styled('h1', [{
-  borderRadius: '50%',
-  WebkitTransition: '-webkit-transform 400ms ease-in-out',
-  transition: '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
-  WebkitBoxSizing: 'border-box',
-  boxSizing: 'border-box',
-  display: '-webkit-box; display: -ms-flexbox; display: flex',
+  'borderRadius': '50%',
+  'WebkitTransition': '-webkit-transform 400ms ease-in-out',
+  'transition': '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
+  'WebkitBoxSizing': 'border-box',
+  'boxSizing': 'border-box',
+  'display': '-webkit-box; display: -ms-flexbox; display: flex',
   ':hover': {
-    WebkitTransform: 'scale(1.2)',
-    transform: 'scale(1.2)'
+    'WebkitTransform': 'scale(1.2)',
+    'transform': 'scale(1.2)'
   }
 }, props => ({
   display: props.display
@@ -263,7 +263,7 @@ const H1 = styled('h1', [{
 exports[`babel styled component inline styled. objects 1`] = `
 "
 const H1 = styled(\\"h1\\", [{
-  padding: \\"10px\\"
+  \\"padding\\": \\"10px\\"
 }, props => ({
   display: props.display
 })]);"

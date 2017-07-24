@@ -223,6 +223,14 @@ exports[`styled input placeholder 1`] = `
 `;
 
 exports[`styled input placeholder object 1`] = `
+.glamor-0::-webkit-input-placeholder {
+  background-color: green;
+}
+
+.glamor-0:-ms-input-placeholder {
+  background-color: green;
+}
+
 .glamor-0::placeholder {
   background-color: green;
 }
