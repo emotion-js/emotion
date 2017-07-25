@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { ThemeProvider } from 'emotion/react/theming'
-import styled, {  css, fontFace, keyframes, injectGlobal } from 'emotion/react'
+import styled, { css, fontFace, keyframes, injectGlobal } from 'emotion/react'
 import Markdown from './markdown'
 import Playground from './playground'
 import logoUrl from '../../emotion.png'
@@ -60,7 +60,7 @@ const theme = {
 const PlaygroundWrapper = styled('div')`
   font-family: 'Oxygen', sans-serif;
   flex:1;
-  color: attr(color, #343a40);
+  color: #343a40;
   background: #f8f9fa;
   
   & .inner {
@@ -224,7 +224,7 @@ class App extends React.Component {
             {/* }} */}
             {/* /> */}
 
-            <Markdown markdown={require('../../docs/theming.md')}/>
+            <Markdown markdown={require('../../docs/theming.md')} />
             <Playground
               maxHeight={180}
               noRender={false}

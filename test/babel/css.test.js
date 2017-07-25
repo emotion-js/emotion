@@ -24,12 +24,26 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('nested expanded properties', () => {
+      const basic = `
+        css\`
+        margin: 12px 48px;
+        & .div {
+          display: 'flex';
+        }
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('interpolation in selector', () => {
       const basic = `
         const cls2 = css\`
         margin: 12px 48px;
         color: #ffffff;
-        .\${className} {
+        \${className} {
           display: none;
         }
         \`
@@ -77,7 +91,7 @@ describe('babel css', () => {
           display: flex;
         \`
         const cls2 = css\`
-          composes: \${'one-class'} \${'another-class'}\${cls1}
+          composes: \${'one-class'} \${'another-class'}\${cls1};
         \`
       `
       const { code } = babel.transform(basic, {
@@ -137,8 +151,10 @@ describe('babel css', () => {
         })
       ).toThrowErrorMatchingSnapshot()
     })
-    test('throws correct error when composes is on a nested selector', () => {
-      const basic = `
+    test.skip(
+      'throws correct error when composes is on a nested selector',
+      () => {
+        const basic = `
         const cls1 = css\`
           display: flex;
         \`
@@ -146,15 +162,44 @@ describe('babel css', () => {
           justify-content: center;
           align-items: center;
           .some-class {
-            composes: \${cls1}
+            composes: \${cls1};
           }
         \`
       `
-      expect(() =>
-        babel.transform(basic, {
-          plugins: [[plugin]]
-        })
-      ).toThrowErrorMatchingSnapshot()
+        expect(() =>
+          babel.transform(basic, {
+            plugins: [[plugin]]
+          })
+        ).toThrowErrorMatchingSnapshot()
+      }
+    )
+    test('object with a bunch of stuff', () => {
+      const basic = `
+      const cls2 = css({
+        display: 'flex',
+        flex: 1,
+        alignItems: \`\${'center'}\`
+      })
+    `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('array of objects', () => {
+      const basic = `
+      const cls2 = css([{
+        display: 'flex',
+        flex: 1,
+        alignItems: \`\${'center'}\`
+      }, {
+        justifyContent: 'flex-start'
+      }])
+    `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
     })
   })
   describe('extract', () => {
@@ -166,35 +211,15 @@ describe('babel css', () => {
         display: flex;
         flex: 1 0 auto;
         color: blue;
-        width: \${widthVar};
       \``
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
       expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
-    })
-
-    test('interpolation in selector', () => {
-      const basic = `
-        const cls2 = css\`
-        margin: 12px 48px;
-        color: #ffffff;
-        .\${className} {
-          display: none;
-        }
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
     })
 
     test('composes', () => {
@@ -209,7 +234,7 @@ describe('babel css', () => {
         \`
       `
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
@@ -229,7 +254,7 @@ describe('babel css', () => {
         \`
       `
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
@@ -264,12 +289,25 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('dynamic property objects', () => {
+      const basic = `
+        css({
+          fontSize: 10,
+          [\`w$\{'idth'}\`]: 20
+        })
+       `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('prefixed array of objects', () => {
       const basic = `
           css([{
             borderRadius: '50%',
-            boxSizing: 'border-box',
-            display: 'flex',
+            boxSizing: ['border-box'],
+            [display]: 'flex',
             ':hover': {
               transform: 'scale(1.2)'
             }
@@ -293,14 +331,14 @@ describe('babel css', () => {
         \`
       `
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
 
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(4)
-      expect(fs.writeFileSync.mock.calls[3][1]).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
+      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
     })
   })
 })

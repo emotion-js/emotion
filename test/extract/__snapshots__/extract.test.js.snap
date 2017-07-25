@@ -1,114 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`styled another attr 1`] = `
-.css-PlaygroundWrapper-1shjoz3-tra3vx {
-  color: #343a40;
-}
-
-<div
-  className="css-PlaygroundWrapper-1shjoz3-tra3vx css-PlaygroundWrapper-1shjoz3"
-/>
-`;
-
-exports[`styled attr 1`] = `
-.css-H1-nt9mdf-vddukf {
-  font-size: 48;
-  margin: 4rem;
-}
-
+exports[`styled basic render nested 1`] = `
 <h1
-  className="css-H1-nt9mdf-vddukf css-H1-nt9mdf"
-  fontSize={48}
-/>
-`;
-
-exports[`styled basic render 1`] = `
-.vars-ch9j2 {
-  --css-H1-1t8i2zo-0: 20px;
-}
-
-<h1
-  className="css-H1-1t8i2zo vars-ch9j2"
+  className="styled-H1-1l4sfy8"
 >
   hello world
 </h1>
-`;
-
-exports[`styled call expression 1`] = `
-.vars-57j4qc {
-  --css-H1-rs9k70-0: 20px;
-}
-
-<h1
-  className="css-H1-rs9k70 vars-57j4qc legacy__class"
->
-  hello world
-</h1>
-`;
-
-exports[`styled composes 1`] = `
-.vars-1m8nl4c {
-  --css-H1-1pnnqpk-0: 20px;
-}
-
-<h1
-  className="css-H1-1pnnqpk css-cls2-y5rq6p css-cls1-cy897j vars-1m8nl4c css-H2-idm3bz legacy__class"
-  scale={2}
->
-  hello world
-</h1>
-`;
-
-exports[`styled composition 1`] = `
-.vars-57j4qc {
-  --css-H1-rs9k70-0: 20px;
-}
-
-.vars-1u8m2k4 {
-  --css-H2-vxb7tq-0: 13.333333333333334px;
-}
-
-<h1
-  className="css-H1-rs9k70 vars-57j4qc css-H2-vxb7tq vars-1u8m2k4 legacy__class"
->
-  hello world
-</h1>
-`;
-
-exports[`styled function in expression 1`] = `
-.vars-57j4qc {
-  --css-H1-rs9k70-0: 20px;
-}
-
-.vars-6khrnp {
-  --css-H2-vxb7tq-0: NaN;
-}
-
-<h1
-  className="css-H1-rs9k70 vars-57j4qc css-H2-vxb7tq vars-6khrnp legacy__class"
-  scale={2}
->
-  hello world
-</h1>
-`;
-
-exports[`styled higher order component 1`] = `
-.vars-12p149b {
-  --css-Content-rs9k70-0: 20px;
-}
-
-<div
-  className="css-Content-rs9k70 vars-12p149b css-onyx-13ds1s2 css-squirtle-blue-bg-135ox65"
-/>
 `;
 
 exports[`styled name 1`] = `
-.vars-1vv3got {
-  --css-FancyH1-1o9p8a2-0: 20px;
-}
-
 <h1
-  className="css-FancyH1-1o9p8a2 vars-1vv3got"
+  className="styled-FancyH1-131pfth"
 >
   hello world
 </h1>
@@ -116,42 +18,38 @@ exports[`styled name 1`] = `
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="css-H1-ijh7uz"
+  className="styled-H1-ijh7uz"
 >
   hello world
 </h1>
 `;
 
 exports[`styled writes the correct css 1`] = `
-".css-H1-ijh7uz { font-size: 12px; }
-.css-H1-1t8i2zo { font-size: var(--css-H1-1t8i2zo-0); }
-.css-FancyH1-1o9p8a2 {
-      font-size: var(--css-FancyH1-1o9p8a2-0); }
-.css-H1-rs9k70 { font-size: var(--css-H1-rs9k70-0); }
-.css-H1-rs9k70 { font-size: var(--css-H1-rs9k70-0); }
-.css-H2-vxb7tq { font-size: var(--css-H2-vxb7tq-0) }
-.css-H1-rs9k70 { font-size: var(--css-H1-rs9k70-0); }
-.css-H2-vxb7tq { font-size: var(--css-H2-vxb7tq-0) }
-.css-cls1-cy897j { color: blue; }
-.css-cls2-y5rq6p {
-      height: 64px; }
-.css-H1-1pnnqpk {
-      font-size: var(--css-H1-1pnnqpk-0); }
-.css-H2-idm3bz { font-size: 32px; }
-.css-Content-rs9k70 { font-size: var(--css-Content-rs9k70-0); }
-.css-squirtle-blue-bg-135ox65 {
-      background-color: #7FC8D6; }
-.css-onyx-13ds1s2 {
-        background-color: '#343a40';
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        flex-direction: column; }
+".styled-H1-ijh7uz {
+    font-size: 12px
+}
+.styled-H1-1l4sfy8 {
+    font-size: 20px
+}
+.styled-H1-1l4sfy8 span {
+    color: blue
+}
+.styled-H1-1l4sfy8 span:hover {
+    color: green
+}
+.styled-H1-1l4sfy8 span:hover:after {
+    content: \\"after\\"
+}
+.styled-FancyH1-131pfth {
+    name: FancyH1;
+    font-size: 38px
+}
 html {
-        background: pink;
-      }
-.css-14yvnlz { font-family: sans-serif;
-      color: yellow;
-      background-color: purple; }"
+    background: pink
+}
+.css-14yvnlz {
+    font-family: sans-serif;
+    color: yellow;
+    background-color: purple
+}"
 `;

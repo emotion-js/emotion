@@ -14,7 +14,6 @@ css\`
   flex: 1 0 auto;
   color: blue;
   name: class;
-  width: \${widthVar};
 \``
 
 let output
@@ -28,7 +27,7 @@ describe('babel plugin fs', () => {
   test('creates and writes to the css file when it does not exist', () => {
     fs.existsSync.mockReturnValueOnce(false)
     const { code } = transform(basic, {
-      plugins: [emotionPlugin],
+      plugins: [[emotionPlugin, { extractStatic: true }]],
       filename: __filename,
       babelrc: false
     })
@@ -44,7 +43,7 @@ describe('babel plugin fs', () => {
     fs.existsSync.mockReturnValueOnce(true)
     fs.readFileSync.mockReturnValueOnce('')
     const { code } = transform(basic, {
-      plugins: [emotionPlugin],
+      plugins: [[emotionPlugin, { extractStatic: true }]],
       filename: __filename,
       babelrc: false
     })
@@ -59,7 +58,7 @@ describe('babel plugin fs', () => {
     fs.existsSync.mockReturnValueOnce(true)
     fs.readFileSync.mockReturnValueOnce(output)
     const { code } = transform(basic, {
-      plugins: [emotionPlugin],
+      plugins: [[emotionPlugin, { extractStatic: true }]],
       filename: __filename,
       babelrc: false
     })

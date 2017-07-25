@@ -48,7 +48,7 @@ describe('fontFace babel', () => {
           font-weight: bold;
       \`;`
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
@@ -66,7 +66,7 @@ describe('fontFace babel', () => {
           font-weight: bold;
       \`;`
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
@@ -84,7 +84,7 @@ describe('fontFace babel', () => {
           font-weight: bold;
       \`;`
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         babelrc: false,
         filename: __filename
       })

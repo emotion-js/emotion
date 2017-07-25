@@ -49,3 +49,28 @@ export function map (
 
   return out
 }
+
+export function reduce (
+  arr: Array<any>,
+  fn: (out: Array<any>, item: any, index: number, arr: Array<any>) => any,
+  val: any
+) {
+  if (arr == null) {
+    return []
+  }
+
+  let i = 0
+  let len = arr.length
+  let out = val
+
+  if (out === void 0) {
+    out = arr[0]
+    i = 1
+  }
+
+  for (; i < len; i++) {
+    out = fn(out, arr[i], i, arr)
+  }
+
+  return out
+}

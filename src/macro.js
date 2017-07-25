@@ -1,16 +1,13 @@
 import {
-  replaceGlobalWithCallExpression,
   replaceCssWithCallExpression,
-  replaceKeyframesWithCallExpression
+  replaceCssObjectCallExpression
 } from './babel'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
-import { injectGlobal, fontFace } from './inline'
-import { forEach } from './utils'
-import { keys } from './utils'
+import { forEach, keys } from './utils'
 
 module.exports = function macro ({ references, state, babel: { types: t } }) {
   if (!state.inline) state.inline = true
-  forEach(keys(references), (referenceKey) => {
+  forEach(keys(references), referenceKey => {
     if (referenceKey === 'injectGlobal') {
       references.injectGlobal.forEach(injectGlobalReference => {
         const path = injectGlobalReference.parentPath
@@ -18,17 +15,18 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
           t.isIdentifier(path.node.tag) &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          replaceGlobalWithCallExpression(
+          replaceCssWithCallExpression(
+            path,
             buildMacroRuntimeNode(
               injectGlobalReference,
               state,
               'injectGlobal',
               t
             ),
-            injectGlobal,
-            path,
             state,
-            t
+            t,
+            undefined,
+            true
           )
         }
       })
@@ -39,12 +37,13 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
           t.isIdentifier(path.node.tag) &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          replaceGlobalWithCallExpression(
-            buildMacroRuntimeNode(fontFaceReference, state, 'fontFace', t),
-            fontFace,
+          replaceCssWithCallExpression(
             path,
+            buildMacroRuntimeNode(fontFaceReference, state, 'fontFace', t),
             state,
-            t
+            t,
+            undefined,
+            true
           )
         }
       })
@@ -57,6 +56,8 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
           t.isTemplateLiteral(path.node.quasi)
         ) {
           replaceCssWithCallExpression(path, runtimeNode, state, t)
+        } else if (!path.node.arguments[1] && path.node.arguments[0]) {
+          replaceCssObjectCallExpression(path, runtimeNode, t)
         } else {
           cssReference.replaceWith(runtimeNode)
         }
@@ -68,7 +69,7 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
           t.isIdentifier(path.node.tag) &&
           t.isTemplateLiteral(path.node.quasi)
         ) {
-          replaceKeyframesWithCallExpression(
+          replaceCssWithCallExpression(
             path,
             buildMacroRuntimeNode(keyframesReference, state, 'keyframes', t),
             state,
@@ -77,7 +78,7 @@ module.exports = function macro ({ references, state, babel: { types: t } }) {
         }
       })
     } else {
-      references[referenceKey].forEach((reference) => {
+      references[referenceKey].forEach(reference => {
         reference.replaceWith(
           buildMacroRuntimeNode(reference, state, referenceKey, t)
         )

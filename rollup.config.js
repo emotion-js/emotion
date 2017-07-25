@@ -2,6 +2,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
 import uglify from 'rollup-plugin-uglify'
+import replace from 'rollup-plugin-replace'
 import pkg from './package.json'
 
 export default {
@@ -29,6 +30,9 @@ export default {
     commonjs({
       ignoreGlobal: true,
       include: 'node_modules/**'
+    }),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
     uglify()
   ],
