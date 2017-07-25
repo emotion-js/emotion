@@ -28,11 +28,7 @@ function dangerousStyleValue (name, value) {
   }
 
   let isNonNumeric = isNaN(value)
-  if (
-    isNonNumeric ||
-    value === 0 ||
-    (isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])
-  ) {
+  if (isNonNumeric || value === 0 || isUnitlessNumber[name] === 1) {
     return '' + value // cast to string
   }
 

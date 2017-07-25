@@ -161,8 +161,7 @@ export function createMarkupForStyles (styles) {
         serialized += `${styleName}:${styleValue};`
       } else {
         serialized += processStyleName(styleName) + ':'
-        serialized +=
-          dangerousStyleValue(styleName, styleValue) + ';'
+        serialized += dangerousStyleValue(styleName, styleValue) + ';'
       }
     }
   }
