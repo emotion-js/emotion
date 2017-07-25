@@ -8,7 +8,9 @@ export function hashArray (arr: string[]): string {
 
 export function hashObject (...objs: Array<{ [string]: any }>): string {
   let str = ''
-  for (let i = 0; i < objs.length; i++) {
+  let i = 0
+  let length = objs.length
+  for (; i < length; i++) {
     str += JSON.stringify(objs[i])
   }
   return hashString(str, str.length).toString(36)
