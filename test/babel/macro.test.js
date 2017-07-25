@@ -72,6 +72,20 @@ describe('babel macro', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('css from react', () => {
+      const basic = `
+      import { css } from '../../src/react/macro'
+      const someCls = css\`
+        display: flex;
+      \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: ['babel-macros'],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+    })
     test('throws correct error when imported with commonjs', () => {
       const basic = `
       const styled = require('../../src/react/macro')
@@ -79,11 +93,13 @@ describe('babel macro', () => {
         display: flex;
       \`
       `
-      expect(() => babel.transform(basic, {
-        plugins: ['babel-macros'],
-        filename: __filename,
-        babelrc: false
-      })).toThrowError(/the emotion macro must be imported with es modules/)
+      expect(() =>
+        babel.transform(basic, {
+          plugins: ['babel-macros'],
+          filename: __filename,
+          babelrc: false
+        })
+      ).toThrowError(/the emotion macro must be imported with es modules/)
     })
   })
   test('injectGlobal', () => {
@@ -95,6 +111,18 @@ describe('babel macro', () => {
         padding: 0;
         & > div {
           display: none;
+          
+          &:hover {
+            color: green;
+            
+            & span {
+              color: red;
+              
+              &:after {
+                content: "end of line"
+              }
+            }
+          }
         }
       }
       html {
@@ -171,6 +199,18 @@ describe('babel macro', () => {
     const basic = `
     import { flush } from '../../src/macro'
     const someOtherVar = flush
+    `
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
+  test('css call with no args', () => {
+    const basic = `
+    import { css } from '../../src/macro'
+    const cls1 = css()
     `
     const { code } = babel.transform(basic, {
       plugins: ['babel-macros'],

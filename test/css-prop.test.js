@@ -1,11 +1,10 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matcher, serializer } from '../jest-utils'
-import { css } from '../src/index'
+import serializer from 'jest-glamor-react'
+import { css, sheet } from '../src/index'
 
-expect.addSnapshotSerializer(serializer)
-expect.extend(matcher)
+expect.addSnapshotSerializer(serializer(sheet))
 
 describe('css prop react', () => {
   test('basic', () => {
@@ -14,17 +13,17 @@ describe('css prop react', () => {
       .create(<p css={`color: red;font-size:${fontSize}`}>hello world</p>)
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshot()
   })
 
   test('string expression', () => {
     const tree = renderer
       .create(
-        <p css="color:red;background:blue;font-size:48px;">hello world</p>
+        <p css='color:red;background:blue;font-size:48px;'>hello world</p>
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshot()
   })
 
   test('kitchen sink', () => {
@@ -51,7 +50,7 @@ describe('css prop react', () => {
     const tree = renderer
       .create(
         <div
-          className="css__legacy-stuff"
+          className='css__legacy-stuff'
           css={`
               composes: ${bold} ${flexCenter};
              `}
@@ -64,11 +63,11 @@ describe('css prop react', () => {
           >
             BOOM
           </h1>
-          <p className="test_class1" css={`color: blue;`}>
+          <p className='test_class1' css={`color: blue;`}>
             Hello
           </p>
           <p
-            className="test_class1 test___class45"
+            className='test_class1 test___class45'
             css={`display: inline-flex`}
           >
             World
@@ -89,6 +88,6 @@ describe('css prop react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithEmotion()
+    expect(tree).toMatchSnapshot()
   })
 })

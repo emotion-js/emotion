@@ -1,94 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css prop react basic 1`] = `
-.css-tree-7sri7n-1yz7ela {
+.glamor-0 {
   color: red;
   font-size: 1px;
 }
 
 <p
-  className="css-tree-7sri7n-1yz7ela css-tree-7sri7n"
+  className="glamor-0"
 >
   hello world
 </p>
 `;
 
 exports[`css prop react kitchen sink 1`] = `
-.css-bold-15qcrjv-18w8kdp {
+.glamor-4 {
   display: -webkit-box;
-  display: -moz-box;
   display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   font-weight: bold;
-}
-
-.css-small-1wh34bm-yjtkkb {
-  font-size: 6;
-}
-
-.css-flexCenter-mdk64u-llada3 {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
-.css-tree-17jiuxc-pi0syi {
+.glamor-0 {
+  font-size: 6px;
   color: red;
 }
 
-.css-tree-14jcta0-1fj87hp {
+.glamor-1 {
   color: blue;
 }
 
-.css-tree-1gdxe9e-1vltlgj {
-  display: -webkit-box;
-  display: -moz-box;
+.glamor-2 {
+  display: -webkit-inline-box;
   display: -ms-inline-flexbox;
-  display: -webkit-inline-flex;
   display: inline-flex;
 }
 
-.css-tree-1g8ltio-i3faqz {
+.glamor-3 {
   color: red;
-  border-radius: 5;
+  border-radius: 5px;
 }
 
-.css-tree-1g8ltio-i3faqz:hover {
+.glamor-3:hover {
   font-weight: bold;
   color: gray;
 }
 
 <div
-  className="css__legacy-stuff css-tree-1ii4sc4 css-bold-15qcrjv-18w8kdp css-bold-15qcrjv css-flexCenter-mdk64u-llada3 css-flexCenter-mdk64u"
+  className="css__legacy-stuff glamor-4"
 >
   <h1
-    className="css-tree-17jiuxc-pi0syi css-tree-17jiuxc css-small-1wh34bm-yjtkkb css-small-1wh34bm"
+    className="glamor-0"
   >
     BOOM
   </h1>
   <p
-    className="test_class1 css-tree-14jcta0-1fj87hp css-tree-14jcta0"
+    className="test_class1 glamor-1"
   >
     Hello
   </p>
   <p
-    className="test_class1 test___class45 css-tree-1gdxe9e-1vltlgj css-tree-1gdxe9e"
+    className="test_class1 test___class45 glamor-2"
   >
     World
   </p>
   <p
-    className="css-tree-1g8ltio-i3faqz css-tree-1g8ltio"
+    className="glamor-3"
   >
     hello world
   </p>
@@ -96,14 +79,14 @@ exports[`css prop react kitchen sink 1`] = `
 `;
 
 exports[`css prop react string expression 1`] = `
-.css-tree-7sqgip-8upfq4 {
+.glamor-0 {
   color: red;
   background: blue;
   font-size: 48px;
 }
 
 <p
-  className="css-tree-7sqgip-8upfq4 css-tree-7sqgip"
+  className="glamor-0"
 >
   hello world
 </p>

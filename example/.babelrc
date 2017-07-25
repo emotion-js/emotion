@@ -4,13 +4,16 @@
       "env",
       {
         "modules": false,
-        "loose": true
+        "loose": true,
+        "targets": {
+          "uglify": true
+        }
       }
     ],
     "stage-2",
     "react"
   ],
   "plugins": [
-    'emotion/babel'
+    ['emotion/babel']
   ]
 }

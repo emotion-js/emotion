@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "5.2.0",
+  "version": "7.0.0",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
@@ -10,7 +10,6 @@
     "lib",
     "react",
     "server.js",
-    "vue",
     "dist/DO-NOT-USE.min.js",
     "macro.js"
   ],
@@ -30,11 +29,16 @@
     "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
   },
   "dependencies": {
-    "autoprefixer": "^7.1.2",
     "@arr/filter.mutate": "^1.0.0",
     "@arr/foreach": "^1.0.0",
     "@arr/map": "^1.0.0",
+    "@arr/reduce": "^1.0.0",
+    "autoprefixer": "^7.1.2",
+    "babel-errors": "^1.1.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-types": "^6.25.0",
+    "fbjs": "^0.8.12",
+    "inline-style-prefixer": "^3.0.6",
     "postcss-js": "^1.0.0",
     "styled-components": "2.0.0",
     "theming": "^1.0.1",
@@ -51,10 +55,12 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bundlesize": "^0.5.7",
+    "caniuse-api": "^2.0.0",
+    "enzyme": "^2.9.1",
+    "enzyme-to-json": "^1.5.1",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
-    "jest-emotion-react": "^0.0.2",
-    "jest-glamor-react": "^1.4.0",
+    "jest-glamor-react": "^3.0.0",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
     "prettier-eslint-cli": "^4.0.3",
@@ -67,6 +73,7 @@
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^2.0.1",
     "standard": "^10.0.2",
     "vue": "^2.3.4"
@@ -116,7 +123,7 @@
   "bundlesize": [
     {
       "path": "./dist/DO-NOT-USE.min.js",
-      "threshold": "3 Kb"
+      "threshold": "6 Kb"
     }
   ]
 }

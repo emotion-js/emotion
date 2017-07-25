@@ -6,6 +6,7 @@ import styles from './index.css'
 
 const MarkdownContainer = styled('div')`
   composes: ${styles.markdownContainer};
+  
   h1, h2, h3, h4, h5 {
     margin: 16px 0 8px 0;
     letter-spacing: 1px;
@@ -19,7 +20,7 @@ const Link = styled('a')`
   text-decoration: none;
   color: ${p => p.theme.purple};
   
-  p & {
+  & p & {
     margin: 0;
   }
   
@@ -34,7 +35,7 @@ const Paragraph = styled('p')`
   font-size: 0.85rem;
   color: ${colors.gray[8]};
   
-  a {
+  & a {
     font-size: 0.85rem;
   }
   
@@ -47,7 +48,7 @@ const Code = styled('code')`
   background-color: ${colors.gray[1]};
   padding: 1px;
   
-  p & {
+  & p & {
     font-size: 0.99rem;
   }
 `

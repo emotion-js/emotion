@@ -1,9 +1,17 @@
-import forEach from '@arr/foreach'
-import filter from '@arr/filter.mutate'
 import { sheet, inserted } from './index'
-import { keys } from './utils'
+import { keys, forEach } from './utils'
 
 const RGX = /css(?:[a-zA-Z0-9-]*)-([a-zA-Z0-9]+)/gm
+
+export {
+  flush,
+  css,
+  injectGlobal,
+  fontFace,
+  keyframes,
+  hydrate,
+  objStyle
+} from './index'
 
 export function extractCritical (html) {
   // parse out ids from html
@@ -17,15 +25,15 @@ export function extractCritical (html) {
     }
   }
 
-  o.rules = filter(sheet.sheet.cssRules.slice(), x => {
+  o.rules = sheet.sheet.cssRules.slice().filter(x => {
     let match = RGX.exec(x.cssText)
     return match == null || ids[match[1]] || false
   })
 
-  o.ids = filter(keys(inserted), id => !!ids[id])
+  o.ids = keys(inserted).filter(id => !!ids[id])
 
   let css = ''
-  forEach(o.rules, x => css += x.cssText)
+  forEach(o.rules, x => (css += x.cssText))
   o.css = css
 
   return o

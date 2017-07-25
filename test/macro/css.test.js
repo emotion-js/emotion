@@ -1,8 +1,13 @@
 /* eslint-env jest */
 import { css } from '../../src/macro'
 import { sheet } from '../../src'
+import React from 'react'
+import renderer from 'react-test-renderer'
+import serializer from 'jest-glamor-react'
 
-describe('css', () => {
+expect.addSnapshotSerializer(serializer(sheet))
+
+describe('css macro', () => {
   test('handles more than 10 dynamic properties', () => {
     const cls1 = css`
       background: ${'white'};
@@ -18,10 +23,8 @@ describe('css', () => {
       border: ${'solid 1px red'};
     `
 
-    expect(cls1).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes with undefined values', () => {
@@ -29,10 +32,8 @@ describe('css', () => {
       composes: ${undefined};
       justifyContent: center;
     `
-    expect(cls2).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes', () => {
@@ -43,16 +44,14 @@ describe('css', () => {
       composes: ${cls1};
       justifyContent: center;
     `
-    expect(cls1).toMatchSnapshot()
-    expect(cls2).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   test('handles objects', () => {
     const cls1 = css({ display: 'flex' })
-    expect(cls1).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes with objects', () => {
@@ -60,7 +59,7 @@ describe('css', () => {
       display: ['flex', 'block'],
       width: 30,
       height: 'calc(40vw - 50px)',
-      ':hover': {color: 'blue'},
+      ':hover': { color: 'blue' },
       ':after': {
         content: '" "',
         color: 'red'
@@ -74,10 +73,13 @@ describe('css', () => {
       justifyContent: center;
     `
 
-    expect(cls1).toMatchSnapshot()
-    expect(cls2).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('null rule', () => {
+    const cls1 = css()
+
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })

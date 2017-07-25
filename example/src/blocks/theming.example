@@ -14,7 +14,7 @@ const Avatar = styled('img')`
 
 render(
   <ThemeProvider theme={theme}>
-    <Avatar src={avatarUrl} />
+    <Avatar src={logoUrl} />
   </ThemeProvider>,
   mountNode
 )

@@ -1,5 +1,4 @@
 // @flow
-import { parseCSS } from './parser'
 import { hashArray } from './hash'
 
 function extractNameFromProperty (str: string) {
@@ -25,116 +24,45 @@ function getName (
   return parts.join('-')
 }
 
-function createSrc (
-  strs: string[],
-  name: string,
-  hash: string
-): { src: string, matches: number } {
-  let matches = 0
+function createRawStringFromQuasi (
+  strs: string[]
+): { src: string, dynamicValueCount: number } {
+  let dynamicValueCount = 0
   const src = strs
     .reduce((arr, str, i) => {
       arr.push(str)
       if (i !== strs.length - 1) {
-        matches++
+        dynamicValueCount++
         arr.push(`xxx${i}xxx`)
       }
       return arr
     }, [])
     .join('')
     .trim()
-  return { src, matches }
+  return { src, dynamicValueCount }
 }
 
 export function inline (
   quasi: any,
   identifierName?: string,
-  prefix: string,
-  inlineMode: boolean
+  prefix: string
 ): {
-  hash: string,
   name: string,
-  rules: string[],
-  hasVar: boolean,
-  hasOtherMatch: boolean,
-  composes: number,
-  hasCssFunction: boolean
+  hash: string,
+  src: string
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
-  let hash = hashArray([...strs]) // todo - add current filename?
+  let hash = hashArray([...strs])
   let name = getName(
     extractNameFromProperty(strs.join('xxx')),
     identifierName,
     prefix
   )
-  let { src, matches } = createSrc(strs, name, hash)
-  let {
-    rules,
-    hasVar,
-    hasOtherMatch,
-    composes,
-    hasCssFunction
-  } = parseCSS(`.${name}-${hash} { ${src} }`, {
-    inlineMode: inlineMode,
-    matches,
+  let { src } = createRawStringFromQuasi(strs)
+
+  return {
     name,
     hash,
-    canCompose: true
-  })
-  return { hash, name, rules, hasVar, hasOtherMatch, composes, hasCssFunction }
-}
-
-export function keyframes (
-  quasi: any,
-  identifierName?: string,
-  prefix: string
-): {
-  hash: string,
-  name: string,
-  rules: string[],
-  hasInterpolation: boolean
-} {
-  const strs = quasi.quasis.map(x => x.value.cooked)
-  const hash = hashArray([...strs])
-  const name = getName(
-    extractNameFromProperty(strs.join('xxx')),
-    identifierName,
-    prefix
-  )
-  const { src, matches } = createSrc(strs, name, hash)
-  let { rules, hasVar, hasOtherMatch } = parseCSS(`{ ${src} }`, {
-    nested: false,
-    inlineMode: true,
-    matches,
-    name,
-    hash
-  })
-  return { hash, name, rules, hasInterpolation: hasVar || hasOtherMatch }
-}
-
-export function fontFace (
-  quasi: any
-): { rules: string[], hasInterpolation: boolean } {
-  let strs = quasi.quasis.map(x => x.value.cooked)
-  const { src, matches } = createSrc(strs, 'name', 'hash')
-  let { rules, hasVar, hasOtherMatch } = parseCSS(`@font-face {${src}}`, {
-    matches,
-    inlineMode: true,
-    name: 'name',
-    hash: 'hash'
-  })
-  return { rules, hasInterpolation: hasVar || hasOtherMatch }
-}
-
-export function injectGlobal (
-  quasi: any
-): { rules: string[], hasInterpolation: boolean } {
-  let strs = quasi.quasis.map(x => x.value.cooked)
-  const { src, matches } = createSrc(strs, 'name', 'hash')
-  let { rules, hasVar, hasOtherMatch } = parseCSS(src, {
-    matches,
-    inlineMode: true,
-    name: 'name',
-    hash: 'hash'
-  })
-  return { rules, hasInterpolation: hasVar || hasOtherMatch }
+    src
+  }
 }

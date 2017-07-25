@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
-import styled, { ThemeProvider } from 'emotion/react'
-import { css, fontFace, keyframes, injectGlobal } from 'emotion'
+import { ThemeProvider } from 'emotion/react/theming'
+import styled, { css, fontFace, keyframes, injectGlobal } from 'emotion/react'
 import Markdown from './markdown'
 import Playground from './playground'
 import logoUrl from '../../emotion.png'
@@ -17,7 +17,6 @@ const keyframesExample = require('./blocks/keyframes.example')
 // const fontFaceExample = require('./blocks/font-face.example')
 // const docMarkdown = require('./docs/index.md')
 // const readmeMarkdown = require('../../README.md')
-const avatarUrl = require('../../emotion.png')
 
 injectGlobal`
   html, body {
@@ -61,7 +60,7 @@ const theme = {
 const PlaygroundWrapper = styled('div')`
   font-family: 'Oxygen', sans-serif;
   flex:1;
-  color: attr(color, #343a40);
+  color: #343a40;
   background: #f8f9fa;
   
   & .inner {
@@ -109,7 +108,7 @@ class App extends React.Component {
               noRender={false}
               codeText={introExample}
               scope={{
-                avatarUrl,
+                logoUrl,
                 css,
                 React,
                 styled,
@@ -125,7 +124,7 @@ class App extends React.Component {
               noRender={false}
               codeText={nestedExample}
               scope={{
-                avatarUrl,
+                logoUrl,
                 css,
                 React,
                 styled,
@@ -139,7 +138,7 @@ class App extends React.Component {
               noRender={false}
               codeText={pseudoExample}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 css,
                 keyframes,
@@ -155,7 +154,7 @@ class App extends React.Component {
               noRender={false}
               codeText={mediaExample}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 styled,
                 render
@@ -170,7 +169,7 @@ class App extends React.Component {
               noRender={false}
               codeText={anyComponentExample}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 css,
                 keyframes,
@@ -185,7 +184,7 @@ class App extends React.Component {
               noRender={false}
               codeText={propsExample}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 css,
                 keyframes,
@@ -201,7 +200,7 @@ class App extends React.Component {
               noRender={false}
               codeText={keyframesExample}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 css,
                 keyframes,
@@ -217,7 +216,7 @@ class App extends React.Component {
             {/* noRender={false} */}
             {/* codeText={fontFaceExample} */}
             {/* scope={{ */}
-            {/* avatarUrl, */}
+            {/* logoUrl, */}
             {/* React, */}
             {/* fontFace, */}
             {/* styled, */}
@@ -225,13 +224,13 @@ class App extends React.Component {
             {/* }} */}
             {/* /> */}
 
-            <Markdown markdown={require('../../docs/theming.md')}/>
+            <Markdown markdown={require('../../docs/theming.md')} />
             <Playground
               maxHeight={180}
               noRender={false}
               codeText={require('./blocks/theming.example')}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 css,
                 keyframes,
@@ -247,7 +246,7 @@ class App extends React.Component {
               noRender={false}
               codeText={require('./blocks/composes.example')}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 css,
                 keyframes,
@@ -263,7 +262,7 @@ class App extends React.Component {
               noRender={false}
               codeText={require('./blocks/objects.example')}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 css,
                 keyframes,
@@ -279,7 +278,7 @@ class App extends React.Component {
               noRender={false}
               codeText={require('./blocks/styled-with-object.example')}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 css,
                 styled,
@@ -293,7 +292,7 @@ class App extends React.Component {
               noRender={false}
               codeText={require('./blocks/css-prop.example')}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 css,
                 styled,
@@ -307,7 +306,7 @@ class App extends React.Component {
               noRender={false}
               codeText={namedExample}
               scope={{
-                avatarUrl,
+                logoUrl,
                 React,
                 css,
                 keyframes,

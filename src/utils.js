@@ -1,8 +1,5 @@
 // @flow
-export function omit (
-  obj: { [string]: any },
-  keys: Array<string>
-) {
+export function omit (obj: { [string]: any }, keys: Array<string>) {
   let target: { [string]: any } = {}
   let i: string
   for (i in obj) {
@@ -13,13 +10,67 @@ export function omit (
   return target
 }
 
-export function keys (
-  obj: { [string]: any }
-) {
+export function keys (obj: { [string]: any }) {
   let k: string
   let out: Array<string> = []
   for (k in obj) {
-    out.push(k);
+    out.push(k)
   }
+  return out
+}
+
+export function forEach (
+  arr: Array<any>,
+  fn: (item: any, index: number, arr: Array<any>) => void
+) {
+  let i = 0
+  let len = arr.length
+
+  for (; i < len; i++) {
+    fn(arr[i], i, arr)
+  }
+}
+
+export function map (
+  arr: Array<any>,
+  fn: (item: any, index: number, arr: Array<any>) => any
+) {
+  if (arr == null) {
+    return []
+  }
+
+  let i = 0
+  let len = arr.length
+  let out = new Array(len)
+
+  for (; i < len; i++) {
+    out[i] = fn(arr[i], i, arr)
+  }
+
+  return out
+}
+
+export function reduce (
+  arr: Array<any>,
+  fn: (out: Array<any>, item: any, index: number, arr: Array<any>) => any,
+  val: any
+) {
+  if (arr == null) {
+    return []
+  }
+
+  let i = 0
+  let len = arr.length
+  let out = val
+
+  if (out === void 0) {
+    out = arr[0]
+    i = 1
+  }
+
+  for (; i < len; i++) {
+    out = fn(out, arr[i], i, arr)
+  }
+
   return out
 }

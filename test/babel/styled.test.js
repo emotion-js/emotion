@@ -25,12 +25,52 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('dynamic fns', () => {
+      const basic = `const Avatar = styled('img')\`
+        width: 96px;
+        height: 96px;
+
+        border-radius: $\{props =>
+          props.theme.borderRadius};
+
+        border: 1px solid $\{props =>
+          props.theme.borderColor};
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+
+      expect(code).toMatchSnapshot()
+    })
+
+    test('more than 10 dynamic values', () => {
+      const basic = `const H1 = styled('h1')\`
+      text-decoration: $\{'underline'};
+      border-right: solid blue $\{54}px;
+      background: $\{'white'};
+      color: $\{'black'};
+      display: $\{'block'};
+      border-radius: $\{'3px'};
+      padding: $\{'25px'};
+      width: $\{'500px'};
+      z-index: $\{100};
+      font-size: $\{'18px'};
+      text-align: $\{'center'};
+      border-left: $\{p => p.theme.blue};
+    \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+
+      expect(code).toMatchSnapshot()
+    })
+
     test('styled component as selector', () => {
       const basic = `
       const SomeComponent = styled.div\` \`
       styled.h1\`
         color:blue;
-        \${SomeComponent} {
+        .\${SomeComponent} {
           color: green;
         }
       \``
@@ -42,6 +82,60 @@ describe('babel styled component', () => {
 
     test('basic', () => {
       const basic = "const H1 = styled.h1`font-size: ${fontSize + 'px'};`"
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('nested', () => {
+      const basic =
+        'const H1 = styled.h1`' +
+        "font-size: ${fontSize + 'px'};" +
+        '& div { color: blue;' +
+        '& span { color: red } }' +
+        '`'
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('interpolation in different places', () => {
+      const basic = `
+      const H1 = styled.h1\`
+        font-size: \${fontSize + 'px'};
+        height: 20px;
+        transform: translateX(\${(props) => props.translateX});
+        height1: \${something}wow;
+        width: w\${something}ow;
+        transform: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
+        transform1: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
+        transform2: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX};
+        \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('media query', () => {
+      const basic =
+        'const H1 = styled.h1`@media print {' +
+        '  font-size: 10pt' +
+        '}' +
+        '@media screen {' +
+        '  .child-selector { font-size: 13px }' +
+        '}' +
+        '@media screen, print {' +
+        '  &:hover + & { line-height: 1.2 }' +
+        '}' +
+        '@media only screen ' +
+        '  and (min-device-width: 320px) ' +
+        '  and (max-device-width: 480px)' +
+        '  and (-webkit-min-device-pixel-ratio: 2) {' +
+        '    .child-selector { line-height: 1.4 }' +
+        '}`'
       const { code } = babel.transform(basic, {
         plugins: [plugin]
       })
@@ -69,107 +163,6 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('attr', () => {
-      const basic = `styled('input')\`
-       margin: attr(margin);
-       color: #ffffff;
-       height: \${props => props.height * props.scale};
-       width: attr(width);
-       color: blue;
-       display: \${flex};
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('lots of attrs with interpolated values', () => {
-      const basic = `styled('input')\`
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       margin: attr(\${marginProp});
-       display: attr(\${displayProp});
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('attr with value type', () => {
-      const basic = `styled('input')\`
-        margin: attr(margin px);
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('attr with default value', () => {
-      const basic = `styled('input')\`
-        margin: attr(margin, 16);
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('attr with value type and default value', () => {
-      const basic = `styled('input')\`
-        margin: attr(margin px, 16);
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('match works on multiple', () => {
-      const basic = `styled('input')\`
-        margin: attr(margin px, 16);
-        color: blue;
-        padding: attr(padding em, 16);
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('attr kitchen sink', () => {
-      const basic = `styled('input')\`
-        margin: attr(margin px, 16);
-        padding: attr(padding em, 16);
-        font-size: attr(fontSize ch, 8);
-        width: attr(width %, 95);
-        height: attr(height vw, 90);
-        display: attr(display, flex);
-        position: attr(alignItems \${alignItemsUnit}, fallback);
-        position: attr(thing px, \${defaultValue});
-        position: attr(\${thing} px);
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
-      expect(code).toMatchSnapshot()
-    })
     test('objects fn call', () => {
       const basic = `
       const H1 = styled('h1')({
@@ -180,6 +173,7 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
     test('objects based on props', () => {
       const basic = `
       const H1 = styled('h1')({ padding: 10 },props => ({
@@ -190,6 +184,7 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
     test('object composes with classes', () => {
       const basic = `
       const H1 = styled('h1')('some-class',props => ({
@@ -200,6 +195,7 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
     test('objects prefixed', () => {
       const basic = `
       const H1 = styled('h1')({
@@ -218,6 +214,7 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
     test('styled. objects', () => {
       const basic = `
       const H1 = styled.h1({ padding: 10 },props => ({
@@ -228,7 +225,8 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
-    test('styled. objects prefixed', () => {
+
+    test('styled objects prefixed', () => {
       const basic = `
       const H1 = styled.h1({
         borderRadius: '50%',
@@ -246,23 +244,29 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
+    test('composes based on props', () => {
+      const basic = `const cls1 = css\` width: 20px; \`
+      const H1 = styled.h1\`
+        composes: $\{props => {
+        return props.a ? cssA : cssB
+      }};
+        font-size: \${fontSize + 'px'};
+        height: 20px;
+        transform: translateX(\${(props) => props.translateX});
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
+
   describe('extract', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
       const { code } = babel.transform(basic, {
-        plugins: [plugin],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(0)
-    })
-
-    test('no dynamic', () => {
-      const basic = 'styled.h1`color:blue;`'
-      const { code } = babel.transform(basic, {
-        plugins: [plugin],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
@@ -273,48 +277,16 @@ describe('babel styled component', () => {
 
     test('basic', () => {
       const basic =
-        "const H1 = styled.h1`font-size: ${fontSize + 'px'}; height: 20px`"
+        "const H1 = styled.h1`display: flex; justify-content: center; width: var(--css-hash-0); &:hover { background-color: green; } @media (max-width: 500px) { height: var(--css-hash-1); position: fixed; } @media print { display: none; } &::before { color: blue; width: 20px; height: 20px; content: 'pseudo' }`"
       const { code } = babel.transform(basic, {
-        plugins: [plugin],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
+
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
       expect(fs.writeFileSync.mock.calls[1][1]).toMatchSnapshot()
-    })
-
-    test('based on props', () => {
-      const basic = `const H1 = styled.h1\`
-        font-size: \${fontSize + 'px'};
-        height: 20px;
-        transform: translateX(\${(props) => props.translateX});
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
-      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
-    })
-    test('composes', () => {
-      const basic = `const cls1 = css\` width: 20px; \`
-      const H1 = styled.h1\`
-        composes: \${cls1};
-        font-size: \${fontSize + 'px'};
-        height: 20px;
-        transform: translateX(\${(props) => props.translateX});
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(4)
-      expect(fs.writeFileSync.mock.calls[3][1]).toMatchSnapshot()
     })
   })
 })

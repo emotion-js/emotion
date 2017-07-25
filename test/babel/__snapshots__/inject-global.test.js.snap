@@ -8,66 +8,84 @@ const thisWillBeUndefined = undefined;"
 
 exports[`babel injectGlobal extract injectGlobal assign to variable 2`] = `
 "body {
-            margin: 0;
-            padding: 0;
-          }
+    margin: 0;
+    padding: 0
+}
 body > div {
-            display: none;
+    display: none
 }
 html {
-            background: green;
-          }"
+    background: green
+}"
 `;
 
 exports[`babel injectGlobal extract injectGlobal basic 1`] = `"import \\"./inject-global.test.emotion.css\\";"`;
 
 exports[`babel injectGlobal extract injectGlobal basic 2`] = `
 "body {
-            margin: 0;
-            padding: 0;
-          }
+    margin: 0;
+    padding: 0
+}
 body > div {
-            display: none;
+    display: none
 }
 html {
-            background: green;
-          }"
+    background: green
+}"
 `;
 
 exports[`babel injectGlobal extract injectGlobal with interpolation 1`] = `
 "
-injectGlobal([\`body {
-            margin: 0;
-            padding: 0;
-            display: \${display};
-          }\`, \`body > div {
-            display: none;
-}\`, \`html {
-            background: green;
-          }\`]);"
+injectGlobal([], [display], function createEmotionStyledRules(x0) {
+  return [{
+    \\"body\\": {
+      \\"margin\\": \\"0\\",
+      \\"padding\\": \\"0\\",
+      \\"display\\": \`\${x0}\`
+    },
+    \\"body > div\\": {
+      \\"display\\": \\"none\\"
+    },
+    \\"html\\": {
+      \\"background\\": \\"green\\"
+    }
+  }];
+});"
 `;
 
 exports[`babel injectGlobal inline injectGlobal basic 1`] = `
 "
-injectGlobal([\`body {
-            margin: 0;
-            padding: 0;
-          }\`, \`body > div {
-            display: none;
-}\`, \`html {
-            background: green;
-          }\`]);"
+injectGlobal([], [], function createEmotionStyledRules() {
+  return [{
+    \\"body\\": {
+      \\"margin\\": \\"0\\",
+      \\"padding\\": \\"0\\"
+    },
+    \\"body > div\\": {
+      \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
+    },
+    \\"html\\": {
+      \\"background\\": \\"green\\"
+    }
+  }];
+});"
 `;
 
 exports[`babel injectGlobal inline injectGlobal with interpolation 1`] = `
 "
-injectGlobal([\`body {
-            margin: 0;
-            padding: 0;
-            display: \${display};
-          }\`, \`body > div {
-            display: none;
-}\`, \`html {
-            background: green;
-          }\`]);"
+injectGlobal([], [display], function createEmotionStyledRules(x0) {
+  return [{
+    \\"body\\": {
+      \\"margin\\": \\"0\\",
+      \\"padding\\": \\"0\\",
+      \\"display\\": \`\${x0}\`
+    },
+    \\"body > div\\": {
+      \\"display\\": \\"none\\"
+    },
+    \\"html\\": {
+      \\"background\\": \\"green\\"
+    }
+  }];
+});"
 `;
