@@ -3,7 +3,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
-import serializer from 'jest-glamor-react';
+import serializer from 'jest-glamor-react'
 import { injectGlobal, css, sheet } from '../../src'
 import styled from '../../src/react'
 

@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react';
+import serializer from 'jest-glamor-react'
 import { keyframes, sheet } from '../../src/macro'
 import styled from '../../src/react/macro'
 

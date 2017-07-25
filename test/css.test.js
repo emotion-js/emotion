@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react';
+import serializer from 'jest-glamor-react'
 import { sheet, css, flush } from '../src/index'
 
 expect.addSnapshotSerializer(serializer(sheet))

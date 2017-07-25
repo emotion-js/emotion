@@ -3,7 +3,7 @@ import { css } from '../../src/macro'
 import { sheet } from '../../src'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react';
+import serializer from 'jest-glamor-react'
 
 expect.addSnapshotSerializer(serializer(sheet))
 
