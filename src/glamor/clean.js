@@ -1,10 +1,12 @@
+import { keys, forEach } from '../utils'
+
 // Returns true for null, false, undefined and {}
 function isFalsy (value) {
   return (
     value === null ||
     value === undefined ||
     value === false ||
-    (typeof value === 'object' && Object.keys(value).length === 0)
+    (typeof value === 'object' && keys(value).length === 0)
   )
 }
 
@@ -13,25 +15,23 @@ function cleanObject (object) {
   if (typeof object !== 'object') return object
 
   let acc = {}
-  let keys = Object.keys(object)
   let hasFalsy = false
-  for (let i = 0; i < keys.length; i++) {
-    let value = object[keys[i]]
+  forEach(keys(object), (value) => {
     const filteredValue = clean(value)
     if (filteredValue === null || filteredValue !== value) {
       hasFalsy = true
     }
     if (filteredValue !== null) {
-      acc[keys[i]] = filteredValue
+      acc[value] = filteredValue
     }
-  }
-  return Object.keys(acc).length === 0 ? null : hasFalsy ? acc : object
+  })
+  return keys(acc).length === 0 ? null : hasFalsy ? acc : object
 }
 
 function cleanArray (rules) {
   let hasFalsy = false
   const filtered = []
-  rules.forEach(rule => {
+  forEach(rules, rule => {
     const filteredRule = clean(rule)
     if (filteredRule === null || filteredRule !== rule) {
       hasFalsy = true
