@@ -3,12 +3,11 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
-import { matcher, serializer } from 'jest-glamor-react'
+import serializer from 'jest-glamor-react';
 import { injectGlobal, css, sheet } from '../../src'
 import styled from '../../src/react'
 
 expect.addSnapshotSerializer(serializer(sheet))
-expect.extend(matcher)
 
 describe('styled', () => {
   test('no dynamic', () => {
@@ -16,7 +15,7 @@ describe('styled', () => {
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('basic render nested', () => {
@@ -36,7 +35,7 @@ describe('styled', () => {
     `
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('name', () => {
@@ -48,7 +47,7 @@ describe('styled', () => {
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('injectGlobal', () => {

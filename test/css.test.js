@@ -1,11 +1,10 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matcher, serializer } from 'jest-glamor-react'
+import serializer from 'jest-glamor-react';
 import { sheet, css, flush } from '../src/index'
 
 expect.addSnapshotSerializer(serializer(sheet))
-expect.extend(matcher)
 
 describe('css', () => {
   test('handles more than 10 dynamic properties', () => {
@@ -24,7 +23,7 @@ describe('css', () => {
     `
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes with undefined values', () => {
@@ -33,7 +32,7 @@ describe('css', () => {
       justifyContent: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes', () => {
@@ -45,7 +44,7 @@ describe('css', () => {
       justifyContent: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('handles objects', () => {
@@ -57,7 +56,7 @@ describe('css', () => {
       width: 20
     })
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('computed key is only dynamic', () => {
@@ -66,7 +65,7 @@ describe('css', () => {
       [`w${'idth'}`]: 20
     })
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes with objects', () => {
@@ -89,22 +88,22 @@ describe('css', () => {
     `
 
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
   test('null rule', () => {
     const cls1 = css()
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
   test('flushes correctly', () => {
     const cls1 = css`
     display: flex;
   `
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
     flush()
     const tree2 = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree2).toMatchSnapshotWithGlamor()
+    expect(tree2).toMatchSnapshot()
   })
 })

@@ -3,10 +3,9 @@ import { css } from '../../src/macro'
 import { sheet } from '../../src'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matcher, serializer } from 'jest-glamor-react'
+import serializer from 'jest-glamor-react';
 
 expect.addSnapshotSerializer(serializer(sheet))
-expect.extend(matcher)
 
 describe('css macro', () => {
   test('handles more than 10 dynamic properties', () => {
@@ -25,7 +24,7 @@ describe('css macro', () => {
     `
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes with undefined values', () => {
@@ -34,7 +33,7 @@ describe('css macro', () => {
       justifyContent: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes', () => {
@@ -46,13 +45,13 @@ describe('css macro', () => {
       justifyContent: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('handles objects', () => {
     const cls1 = css({ display: 'flex' })
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes with objects', () => {
@@ -75,12 +74,12 @@ describe('css macro', () => {
     `
 
     const tree = renderer.create(<div className={cls2} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
   test('null rule', () => {
     const cls1 = css()
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 })
