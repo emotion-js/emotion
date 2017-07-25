@@ -1,4 +1,7 @@
-import { replaceCssWithCallExpression, replaceCssObjectCallExpression } from './babel'
+import {
+  replaceCssWithCallExpression,
+  replaceCssObjectCallExpression
+} from './babel'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 import { forEach, keys } from './utils'
 

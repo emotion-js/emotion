@@ -5,6 +5,8 @@ import { matcher, serializer } from 'jest-glamor-react'
 import { css, sheet } from '../src/index'
 import styled from '../src/react'
 import { ThemeProvider } from '../src/react/theming'
+import { mount } from 'enzyme'
+import enzymeToJson from 'enzyme-to-json'
 
 import { lighten, hiDPI, modularScale } from 'polished'
 
@@ -427,6 +429,18 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithGlamor()
   })
 
+  test('change theme', () => {
+    const Div = styled.div`
+      color: ${props => props.theme.primary}
+    `
+    const TestComponent = (props) => (<ThemeProvider theme={props.theme}>{props.renderChild ? <Div>this will be green then pink</Div> : null}</ThemeProvider>)
+    const wrapper = mount(<TestComponent renderChild theme={{ primary: 'green' }} />)
+    expect(enzymeToJson(wrapper)).toMatchSnapshotWithGlamor()
+    wrapper.setProps({ theme: { primary: 'pink' } })
+    expect(enzymeToJson(wrapper)).toMatchSnapshotWithGlamor()
+    wrapper.setProps({ renderChild: false })
+    expect(enzymeToJson(wrapper)).toMatchSnapshotWithGlamor()
+  })
   test('throws if undefined is passed as the component', () => {
     expect(
       () => styled(undefined)`display: flex;`

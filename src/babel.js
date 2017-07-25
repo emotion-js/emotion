@@ -139,7 +139,9 @@ function buildProcessedStylesFromObjectAST (objectAST, t) {
     return astObject.toAST()
   }
   if (t.isArrayExpression(objectAST)) {
-    return t.arrayExpression(buildProcessedStylesFromObjectAST(objectAST.elements, t))
+    return t.arrayExpression(
+      buildProcessedStylesFromObjectAST(objectAST.elements, t)
+    )
   }
   if (Array.isArray(objectAST)) {
     return map(objectAST, obj => buildProcessedStylesFromObjectAST(obj, t))
@@ -222,7 +224,11 @@ export default function (babel) {
               buildStyledObjectCallExpression(path, identifier, t)
             )
           }
-          if (path.node.callee.name === 'css' && !path.node.arguments[1] && path.node.arguments[0]) {
+          if (
+            path.node.callee.name === 'css' &&
+            !path.node.arguments[1] &&
+            path.node.arguments[0]
+          ) {
             replaceCssObjectCallExpression(path, t.identifier('css'), t)
           }
         } catch (e) {

@@ -56,6 +56,8 @@
     "babel-preset-stage-0": "^6.24.1",
     "bundlesize": "^0.5.7",
     "caniuse-api": "^2.0.0",
+    "enzyme": "^2.9.1",
+    "enzyme-to-json": "^1.5.1",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-glamor-react": "^2.0.0",
