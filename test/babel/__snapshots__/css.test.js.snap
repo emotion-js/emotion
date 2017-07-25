@@ -88,6 +88,14 @@ exports[`babel css extract css basic 2`] = `
 }"
 `;
 
+exports[`babel css extract dynamic property objects 1`] = `
+"
+css({
+  'fontSize': '10px',
+  [\`w\${'idth'}\`]: '20px'
+});"
+`;
+
 exports[`babel css extract prefixed array of objects 1`] = `
 "
 css([{

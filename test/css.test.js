@@ -60,6 +60,15 @@ describe('css', () => {
     expect(tree).toMatchSnapshotWithGlamor()
   })
 
+  test('computed key is only dynamic', () => {
+    const cls1 = css({
+      fontSize: 10,
+      [`w${'idth'}`]: 20
+    })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
+  })
+
   test('composes with objects', () => {
     const cls1 = css({
       display: ['flex', 'block'],

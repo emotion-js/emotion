@@ -32,7 +32,7 @@ describe('babel css', () => {
           display: 'flex';
         }
       \``
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()
@@ -283,6 +283,19 @@ describe('babel css', () => {
             }
         })
    `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('dynamic property objects', () => {
+      const basic = `
+        css({
+          fontSize: 10,
+          [\`w$\{'idth'}\`]: 20
+        })
+       `
       const { code } = babel.transform(basic, {
         plugins: [[plugin]]
       })

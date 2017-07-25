@@ -150,7 +150,7 @@ export default class ASTObject {
       } else if (t.isTemplateLiteral(node)) {
         const strs = node.quasis.map(x => x.value.cooked)
         const exprs = node.expressions
-        const value = reduce(
+        return reduce(
           strs,
           (arr, str, i) => {
             arr.push(str)
@@ -164,7 +164,6 @@ export default class ASTObject {
         )
           .join('')
           .trim()
-        return value
       }
 
       expressions.push(node)
@@ -173,6 +172,7 @@ export default class ASTObject {
 
     function toObj (astObj) {
       let obj = {}
+
       forEach(astObj.properties, property => {
         // nested objects
         let key
@@ -193,8 +193,9 @@ export default class ASTObject {
       return obj
     }
 
+    const obj = toObj(astObj)
     return new ASTObject(
-      toObj(astObj),
+      obj,
       expressions,
       0, // composesCount: we should support this,
       t
