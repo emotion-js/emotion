@@ -12,9 +12,9 @@ function cleanObject (object) {
   if (isFalsy(object)) return null
   if (typeof object !== 'object') return object
 
-  let acc = {},
-    keys = Object.keys(object),
-    hasFalsy = false
+  let acc = {}
+  let keys = Object.keys(object)
+  let hasFalsy = false
   for (let i = 0; i < keys.length; i++) {
     let value = object[keys[i]]
     const filteredValue = clean(value)

@@ -145,7 +145,7 @@ if (process.env.NODE_ENV !== 'production') {
    * @return {?string}
    */
 
-export function createMarkupForStyles (styles, component) {
+export function createMarkupForStyles (styles) {
   let serialized = ''
   for (let styleName in styles) {
     const isCustomProp = styleName.indexOf('--') === 0
@@ -154,7 +154,7 @@ export function createMarkupForStyles (styles, component) {
     }
     let styleValue = styles[styleName]
     if (process.env.NODE_ENV !== 'production' && !isCustomProp) {
-      warnValidStyle(styleName, styleValue, component)
+      warnValidStyle(styleName, styleValue)
     }
     if (styleValue != null) {
       if (isCustomProp) {
@@ -162,7 +162,7 @@ export function createMarkupForStyles (styles, component) {
       } else {
         serialized += processStyleName(styleName) + ':'
         serialized +=
-          dangerousStyleValue(styleName, styleValue, component) + ';'
+          dangerousStyleValue(styleName, styleValue) + ';'
       }
     }
   }
