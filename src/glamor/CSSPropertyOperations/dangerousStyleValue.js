@@ -11,8 +11,6 @@
 
 import isUnitlessNumber from './CSSProperty'
 
-let styleWarnings = {}
-
 /**
  * Convert a value into the proper css writable value. The style name `name`
  * should be logical (no hyphens), as specified
@@ -23,29 +21,18 @@ let styleWarnings = {}
  * @param {ReactDOMComponent} component
  * @return {string} Normalized style value with dimensions applied.
  */
-function dangerousStyleValue (name, value, component) {
+function dangerousStyleValue (name, value) {
   let isEmpty = value == null || typeof value === 'boolean' || value === ''
   if (isEmpty) {
     return ''
   }
 
   let isNonNumeric = isNaN(value)
-  if (
-    isNonNumeric ||
-    value === 0 ||
-    (isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])
-  ) {
+  if (isNonNumeric || value === 0 || isUnitlessNumber[name] === 1) {
     return '' + value // cast to string
   }
 
   if (typeof value === 'string') {
-    if (component && value !== '0') {
-      let owner = component._currentElement._owner
-      let ownerName = owner ? owner.getName() : null
-      if (ownerName && !styleWarnings[ownerName]) {
-        styleWarnings[ownerName] = {}
-      }
-    }
     value = value.trim()
   }
   return value + 'px'
