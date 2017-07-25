@@ -3,11 +3,13 @@
 exports[`fontFace babel extract basic 1`] = `"import \\"./font-face.test.emotion.css\\";"`;
 
 exports[`fontFace babel extract basic 2`] = `
-"@font-face {font-family: MyHelvetica;
-          src: local(\\"Helvetica Neue Bold\\"),
+"@font-face {
+    font-family: MyHelvetica;
+    src: local(\\"Helvetica Neue Bold\\"),
                local(\\"HelveticaNeue-Bold\\"),
                url(MgOpenModernaBold.ttf);
-          font-weight: bold;}"
+    font-weight: bold
+}"
 `;
 
 exports[`fontFace babel extract basic assign to variable 1`] = `
@@ -17,36 +19,44 @@ const thisWillBeUndefined = undefined;"
 `;
 
 exports[`fontFace babel extract basic assign to variable 2`] = `
-"@font-face {font-family: MyHelvetica;
-          src: local(\\"Helvetica Neue Bold\\"),
+"@font-face {
+    font-family: MyHelvetica;
+    src: local(\\"Helvetica Neue Bold\\"),
                local(\\"HelveticaNeue-Bold\\"),
                url(MgOpenModernaBold.ttf);
-          font-weight: bold;}"
+    font-weight: bold
+}"
 `;
 
 exports[`fontFace babel extract interpolation 1`] = `
 "
-fontFace([\`@font-face {font-family: \${fontFamilyName};
-          src: local(\\"Helvetica Neue Bold\\"),
-               local(\\"HelveticaNeue-Bold\\"),
-               url(MgOpenModernaBold.ttf);
-          font-weight: bold;}\`]);"
+fontFace([], [fontFamilyName], function createEmotionStyledRules(x0) {
+     return [{
+          \\"fontFamily\\": \`\${x0}\`,
+          \\"src\\": \\"local(\\\\\\"Helvetica Neue Bold\\\\\\"),\\\\n               local(\\\\\\"HelveticaNeue-Bold\\\\\\"),\\\\n               url(MgOpenModernaBold.ttf)\\",
+          \\"fontWeight\\": \\"bold\\"
+     }];
+});"
 `;
 
 exports[`fontFace babel inline basic 1`] = `
 "
-fontFace([\`@font-face {font-family: MyHelvetica;
-          src: local(\\"Helvetica Neue Bold\\"),
-               local(\\"HelveticaNeue-Bold\\"),
-               url(MgOpenModernaBold.ttf);
-          font-weight: bold;}\`]);"
+fontFace([], [], function createEmotionStyledRules() {
+     return [{
+          \\"fontFamily\\": \\"MyHelvetica\\",
+          \\"src\\": \\"local(\\\\\\"Helvetica Neue Bold\\\\\\"),\\\\n               local(\\\\\\"HelveticaNeue-Bold\\\\\\"),\\\\n               url(MgOpenModernaBold.ttf)\\",
+          \\"fontWeight\\": \\"bold\\"
+     }];
+});"
 `;
 
 exports[`fontFace babel inline interpolation 1`] = `
 "
-fontFace([\`@font-face {font-family: \${fontFamilyName};
-          src: local(\\"Helvetica Neue Bold\\"),
-               local(\\"HelveticaNeue-Bold\\"),
-               url(MgOpenModernaBold.ttf);
-          font-weight: bold;}\`]);"
+fontFace([], [fontFamilyName], function createEmotionStyledRules(x0) {
+     return [{
+          \\"fontFamily\\": \`\${x0}\`,
+          \\"src\\": \\"local(\\\\\\"Helvetica Neue Bold\\\\\\"),\\\\n               local(\\\\\\"HelveticaNeue-Bold\\\\\\"),\\\\n               url(MgOpenModernaBold.ttf)\\",
+          \\"fontWeight\\": \\"bold\\"
+     }];
+});"
 `;

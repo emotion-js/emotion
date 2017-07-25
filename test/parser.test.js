@@ -44,6 +44,6 @@ describe('parser', () => {
     expect(parseCSS(fancyCSS)).toMatchSnapshot()
   })
   test('static', () => {
-    expect(parseCSS(staticCSS)).toMatchSnapshot()
+    expect(parseCSS(staticCSS, true)).toMatchSnapshot()
   })
 })

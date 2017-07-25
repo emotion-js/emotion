@@ -11,7 +11,7 @@ describe('babel css prop', () => {
   test('basic', () => {
     const basic = '(<div className="a" css={`color: brown;`}></div>)'
     const { code } = babel.transform(basic, {
-      plugins: [plugin],
+      plugins: [[plugin, { extractStatic: true }]],
       filename: __filename,
       babelrc: false
     })
@@ -23,7 +23,7 @@ describe('babel css prop', () => {
   test('basic inline', () => {
     const basic = '(<div className="a" css={`color: brown;`}></div>)'
     const { code } = babel.transform(basic, {
-      plugins: [[plugin, { inline: true }]]
+      plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
   })
@@ -31,7 +31,7 @@ describe('babel css prop', () => {
   test('dynamic inline', () => {
     const basic = `(<div className="a" css={\`color: $\{color};\`}></div>)`
     const { code } = babel.transform(basic, {
-      plugins: [[plugin, { inline: true }]]
+      plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
   })
@@ -47,7 +47,7 @@ describe('babel css prop', () => {
   test('with spread arg in jsx opening tag', () => {
     const basic = '(<div className="a" css={`color: brown;`} {...rest}></div>)'
     const { code } = babel.transform(basic, {
-      plugins: [[plugin, { inline: true }]]
+      plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
   })
@@ -64,7 +64,7 @@ describe('babel css prop', () => {
     const basic = '(<div css={5}></div>)'
     expect(() =>
       babel.transform(basic, {
-        plugins: [[plugin, { inline: true }]]
+        plugins: [plugin]
       })
     ).toThrow()
   })

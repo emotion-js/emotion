@@ -1,33 +1,21 @@
 // @flow
 import { StyleSheet } from './sheet'
-import { hashArray, hashObject } from './hash'
-import { forEach } from './utils'
+import { forEach, map, reduce } from './utils'
+import { hashString as hash, hashObject } from './hash'
+import { createMarkupForStyles } from './glamor/CSSPropertyOperations'
+import clean from './glamor/clean.js'
+
+const IS_DEV = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
 
 export const sheet = new StyleSheet()
+// 🚀
 sheet.inject()
 
-export let inserted: { [string]: boolean | void } = {}
+export let inserted: { [string | number]: boolean | void } = {}
 
 type inputVar = string | number
 
 type vars = Array<inputVar>
-
-function values (cls: string, vars: vars) {
-  const hash = hashArray([cls, ...vars])
-  const varCls = `vars-${hash}`
-  if (inserted[hash]) {
-    return varCls
-  }
-  let src = ''
-  forEach(vars, (val: inputVar, i: number) => {
-    src && (src += '; ')
-    src += `--${cls}-${i}: ${val}`
-  })
-  sheet.insert(`.${varCls} {${src}}`)
-  inserted[hash] = true
-
-  return varCls
-}
 
 export function flush () {
   sheet.flush()
@@ -35,152 +23,479 @@ export function flush () {
   sheet.inject()
 }
 
-export function css (classes: string[], vars: vars, content: () => string[]) {
-  if (!Array.isArray(classes)) {
-    classes = [classes]
-  }
+// a simple cache to store generated obj styles
+let registered = (sheet.registered = {})
 
+function register (spec) {
+  if (!registered[spec.id]) {
+    registered[spec.id] = spec
+  }
+}
+
+function _getRegistered (rule) {
+  if (isLikeRule(rule)) {
+    let ret = registered[idFor(rule)]
+    if (ret == null) {
+      throw new Error(
+        '[emotion] an unexpected rule cache miss occurred. This is probably a sign of multiple glamor instances in your app. See https://github.com/threepointone/glamor/issues/79'
+      )
+    }
+    return ret
+  }
+  return rule
+}
+
+// The idea on how to merge object class names come from glamorous
+// 💄
+// https://github.com/paypal/glamorous/blob/master/src/get-glamor-classname.js
+function getEmotionStylesFromClassName (className) {
+  const id = className.trim().slice('css-'.length)
+  if (sheet.registered[id]) {
+    return sheet.registered[id].style
+  } else {
+    return []
+  }
+}
+
+function buildStyles (objs) {
   let computedClassName = ''
-  forEach(classes, (cls): string => {
-    computedClassName && (computedClassName += ' ')
-    computedClassName += typeof cls === 'string' ? cls : objStyle(cls)
+  let objectStyles = []
+
+  // This needs to be moved into the core
+  forEach(objs, (cls): void => {
+    if (typeof cls === 'string') {
+      if (cls.trim().indexOf('css-') === 0) {
+        objectStyles.push(getEmotionStylesFromClassName(cls))
+      } else {
+        computedClassName && (computedClassName += ' ')
+        computedClassName += cls
+      }
+    } else {
+      objectStyles.push(cls)
+    }
   })
 
-  if (content) {
-    // inline mode
-    let src = content(...vars) // returns an array
-    let hash = hashArray(src)
+  return { computedClassName, objectStyles }
+}
 
-    if (!inserted[hash]) {
-      inserted[hash] = true
-      const rgx = new RegExp(classes[0], 'gm')
-      forEach(src, r => {
-        sheet.insert(r.replace(rgx, `${classes[0]}-${hash}`))
-      })
-    }
-    return `${classes[0]}-${hash} ${computedClassName}`
+export function css (objs: any, vars: Array<any>, content: () => Array<any>) {
+  if (!Array.isArray(objs)) {
+    objs = [objs]
   }
 
-  return (
-    computedClassName +
-    (vars && vars.length > 0 ? ' ' + values(classes[0], vars) : '')
+  let { computedClassName = '', objectStyles = [] } = buildStyles(
+    content ? objs.concat(content.apply(null, vars)) : objs
   )
+  if (objectStyles.length) {
+    computedClassName += ' ' + objStyle.apply(null, objectStyles).toString()
+  }
+
+  return computedClassName.trim()
 }
 
-export function injectGlobal (src: string[]) {
-  const hash = hashArray(src)
-  if (!inserted[hash]) {
-    inserted[hash] = true
-    forEach(src, r => sheet.insert(r))
+function insertRawRule (css: string) {
+  let spec = {
+    id: hash(css, css.length),
+    css,
+    type: 'raw'
+  }
+
+  register(spec)
+
+  if (!inserted[spec.id]) {
+    sheet.insert(spec.css)
+    inserted[spec.id] = true
   }
 }
 
-export const fontFace = injectGlobal
+export function injectGlobal (
+  objs: Array<any>,
+  vars: Array<any>,
+  content: () => Array<any>
+) {
+  const combined = content ? objs.concat(content.apply(null, vars)) : objs
 
-export function keyframes (kfm: string, src: string[]) {
-  const hash = hashArray(src)
-  const animationName = `${kfm}-${hash}`
-  if (!inserted[hash]) {
-    inserted[hash] = true
-    forEach(src, r => sheet.insert(`@keyframes ${animationName} ${r}`))
+  // injectGlobal is flattened by postcss
+  // we don't support nested selectors on objects
+  forEach(combined, obj => {
+    forEach(Object.keys(obj), selector => {
+      insertRawRule(`${selector} {${createMarkupForStyles(obj[selector])}}`)
+    })
+  })
+}
+
+export function fontFace (
+  objs: Array<any>,
+  vars: Array<any>,
+  content: () => Array<any>
+) {
+  const combined = reduce(
+    content ? objs.concat(content.apply(null, vars)) : objs,
+    (accum, item, i) => Object.assign(accum, item),
+    {}
+  )
+
+  insertRawRule(`@font-face{${createMarkupForStyles(combined)}}`)
+}
+
+function insertKeyframe (spec) {
+  if (!inserted[spec.id]) {
+    const inner = map(
+      Object.keys(spec.keyframes),
+      kf => `${kf} {${createMarkupForStyles(spec.keyframes[kf])}}`
+    ).join('')
+
+    forEach(['-webkit-', ''], prefix =>
+      sheet.insert(`@${prefix}keyframes ${spec.name + '_' + spec.id}{${inner}}`)
+    )
+
+    inserted[spec.id] = true
   }
-  return animationName
+}
+
+export function keyframes (
+  objs: any,
+  vars: Array<any>,
+  content: () => Array<any>
+) {
+  const [kfs] = content.apply(null, vars)
+  const name = 'animation'
+
+  let spec = {
+    id: hashObject(kfs),
+    type: 'keyframes',
+    name,
+    keyframes: kfs
+  }
+
+  register(spec)
+  insertKeyframe(spec)
+  return `${name}_${spec.id}`
 }
 
 export function hydrate (ids: string[]) {
   forEach(ids, id => (inserted[id] = true))
 }
 
-// 🍩
-// https://github.com/jxnblk/cxs/blob/master/src/monolithic/index.js
-export function objStyle (style: { [string]: any }) {
-  const hash = hashObject(style)
-  const className = `css-${hash}`
-  const selector = '.' + className
+type EmotionRule = { [string]: any }
 
-  if (inserted[hash]) return className
+type CSSRuleList = Array<EmotionRule>
 
-  const rules = deconstruct(selector, style)
-  forEach(rules, rule => sheet.insert(rule))
-
-  inserted[hash] = true
-
-  return className
+type EmotionClassName = {
+  [string]: any
 }
 
-function deconstruct (selector, styles, media) {
-  const decs = []
-  const rules = []
+let cachedCss: (rules: CSSRuleList) => EmotionClassName =
+  typeof WeakMap !== 'undefined' ? multiIndexCache(_css) : _css
 
-  for (let key in styles) {
-    const value = styles[key]
-    const type = typeof value
-
-    if (type === 'number' || type === 'string') {
-      decs.push(createDec(key, value))
-    } else if (Array.isArray(value)) {
-      forEach(value, val => decs.push(createDec(key, val)))
-    } else if (key.charCodeAt(0) === 58) {
-      forEach(deconstruct(selector + key, value, media), r => rules.push(r))
-    } else if (key.indexOf('@media') !== -1) {
-      forEach(deconstruct(selector, value, key), r => rules.push(r))
-    } else {
-      forEach(deconstruct(selector + ' ' + key, value, media), r => rules.push(r))
-    }
+// 🍩
+// https://github.com/threepointone/glamor
+export function objStyle (...rules: CSSRuleList): EmotionClassName {
+  rules = clean(rules)
+  if (!rules) {
+    return nullrule
   }
 
-  rules.unshift(createRule(selector, decs, media))
-
-  return rules
+  return cachedCss(rules)
 }
 
-function createDec (key, value) {
-  const prop = hyphenate(key)
-  const val = addPx(key, value)
-  return prop + ':' + val
+function _css (rules) {
+  let style = {}
+  build(style, { src: rules }) // mutative! but worth it.
+
+  let spec = {
+    id: hashObject(style),
+    style,
+    type: 'css'
+  }
+  return toRule(spec)
 }
 
-function createRule (selector, decs, media) {
-  const rule = `${selector}{${decs.join(';')}}`
-  return media ? `${media}{${rule}}` : rule
+// of shape { 'data-css-<id>': '' }
+export function isLikeRule (rule: EmotionRule) {
+  let keys = Object.keys(rule).filter(x => x !== 'toString')
+  if (keys.length !== 1) {
+    return false
+  }
+  return !!/css-([a-zA-Z0-9]+)/.exec(keys[0])
 }
 
-function hyphenate (str) {
-  return ('' + str).replace(/[A-Z]|^ms/g, '-$&').toLowerCase()
+// extracts id from a { 'css-<id>': ''} like object
+export function idFor (rule: EmotionRule) {
+  let keys = Object.keys(rule).filter(x => x !== 'toString')
+  if (keys.length !== 1) throw new Error('not a rule')
+  let regex = /css-([a-zA-Z0-9]+)/
+  let match = regex.exec(keys[0])
+  if (!match) throw new Error('not a rule')
+  return match[1]
 }
 
-function addPx (prop, value) {
-  if (typeof value !== 'number' || unitlessProps[prop] !== undefined) return value
-  return value + 'px'
+function selector (id: string, path: string = '') {
+  if (!id) {
+    return path.replace(/&/g, '')
+  }
+  if (!path) return `.css-${id}`
+
+  let x = path
+    .split(',')
+    .map(
+      x =>
+        x.indexOf('&') >= 0 ? x.replace(/&/gm, `.css-${id}`) : `.css-${id}${x}`
+    )
+    .join(',')
+
+  return x
 }
 
-const unitlessProps = {
-  animationIterationCount: 1,
-  boxFlex: 1,
-  boxFlexGroup: 1,
-  boxOrdinalGroup: 1,
-  columnCount: 1,
-  flex: 1,
-  flexGrow: 1,
-  flexPositive: 1,
-  flexShrink: 1,
-  flexNegative: 1,
-  flexOrder: 1,
-  gridRow: 1,
-  gridColumn: 1,
-  fontWeight: 1,
-  lineClamp: 1,
-  lineHeight: 1,
-  opacity: 1,
-  order: 1,
-  orphans: 1,
-  tabSize: 1,
-  widows: 1,
-  zIndex: 1,
-  zoom: 1,
-  fillOpacity: 1,
-  stopOpacity: 1,
-  strokeDashoffset: 1,
-  strokeOpacity: 1,
-  strokeWidth: 1
+function deconstruct (style) {
+  // we can be sure it's not infinitely nested here
+  let plain, selects, medias, supports
+  Object.keys(style).forEach(key => {
+    if (key.indexOf('&') >= 0) {
+      selects = selects || {}
+      selects[key] = style[key]
+    } else if (key.indexOf('@media') === 0) {
+      medias = medias || {}
+      medias[key] = deconstruct(style[key])
+    } else if (key.indexOf('@supports') === 0) {
+      supports = supports || {}
+      supports[key] = deconstruct(style[key])
+    } else {
+      plain = plain || {}
+      plain[key] = style[key]
+    }
+  })
+  return { plain, selects, medias, supports }
+}
+
+function deconstructedStyleToCSS (id, style) {
+  let { plain, selects, medias, supports } = style
+  let css = []
+
+  if (plain) {
+    css.push(`${selector(id)}{${createMarkupForStyles(plain)}}`)
+  }
+  if (selects) {
+    Object.keys(selects).forEach((key: string) =>
+      css.push(`${selector(id, key)}{${createMarkupForStyles(selects[key])}}`)
+    )
+  }
+  if (medias) {
+    Object.keys(medias).forEach(key =>
+      css.push(`${key}{${deconstructedStyleToCSS(id, medias[key]).join('')}}`)
+    )
+  }
+  if (supports) {
+    Object.keys(supports).forEach(key =>
+      css.push(`${key}{${deconstructedStyleToCSS(id, supports[key]).join('')}}`)
+    )
+  }
+  return css
+}
+
+// and helpers to insert rules into said sheet
+function insert (spec) {
+  if (!inserted[spec.id]) {
+    inserted[spec.id] = true
+    let deconstructed = deconstruct(spec.style)
+    deconstructedStyleToCSS(spec.id, deconstructed).map(cssRule =>
+      sheet.insert(cssRule)
+    )
+  }
+}
+
+// todo - perf
+let ruleCache = {}
+
+function toRule (spec) {
+  register(spec)
+  insert(spec)
+  if (ruleCache[spec.id]) {
+    return ruleCache[spec.id]
+  }
+
+  let ret = { [`css-${spec.id}`]: '' }
+  Object.defineProperty(ret, 'toString', {
+    enumerable: false,
+    value () {
+      return 'css-' + spec.id
+    }
+  })
+  ruleCache[spec.id] = ret
+  return ret
+}
+
+function isSelector (key) {
+  const possibles = [':', '.', '[', '>', ' ']
+  let found = false
+  const ch = key.charAt(0)
+  for (let i = 0; i < possibles.length; i++) {
+    if (ch === possibles[i]) {
+      found = true
+      break
+    }
+  }
+  return found || key.indexOf('&') >= 0
+}
+
+function joinSelectors (a, b) {
+  let as = map(a.split(','), a => (!(a.indexOf('&') >= 0) ? '&' + a : a))
+  let bs = map(b.split(','), b => (!(b.indexOf('&') >= 0) ? '&' + b : b))
+
+  return bs
+    .reduce((arr, b) => arr.concat(as.map(a => b.replace(/&/g, a))), [])
+    .join(',')
+}
+
+function joinMediaQueries (a, b) {
+  return a ? `@media ${a.substring(6)} and ${b.substring(6)}` : b
+}
+
+function isMediaQuery (key) {
+  return key.indexOf('@media') === 0
+}
+
+function isSupports (key) {
+  return key.indexOf('@supports') === 0
+}
+
+function joinSupports (a, b) {
+  return a ? `@supports ${a.substring(9)} and ${b.substring(9)}` : b
+}
+
+// flatten a nested array
+function flatten (inArr) {
+  let arr = []
+  for (let i = 0; i < inArr.length; i++) {
+    if (Array.isArray(inArr[i])) arr = arr.concat(flatten(inArr[i]))
+    else arr = arr.concat(inArr[i])
+  }
+  return arr
+}
+
+// mutable! modifies dest.
+function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
+  if (!Array.isArray(src)) {
+    src = [src]
+  }
+  src = flatten(src)
+
+  src.forEach(_src => {
+    if (isLikeRule(_src)) {
+      let reg = _getRegistered(_src)
+      if (reg.type !== 'css') {
+        throw new Error('cannot merge this rule')
+      }
+      _src = reg.style
+    }
+    _src = clean(_src)
+    if (_src && _src.composes) {
+      build(dest, { selector, mq, supp, src: _src.composes })
+    }
+    Object.keys(_src || {}).forEach(key => {
+      if (isSelector(key)) {
+        build(dest, {
+          selector: joinSelectors(selector, key),
+          mq,
+          supp,
+          src: _src[key]
+        })
+      } else if (isMediaQuery(key)) {
+        build(dest, {
+          selector,
+          mq: joinMediaQueries(mq, key),
+          supp,
+          src: _src[key]
+        })
+      } else if (isSupports(key)) {
+        build(dest, {
+          selector,
+          mq,
+          supp: joinSupports(supp, key),
+          src: _src[key]
+        })
+      } else if (key === 'composes') {
+        // ignore, we already dealt with it
+      } else {
+        let _dest = dest
+        if (supp) {
+          _dest[supp] = _dest[supp] || {}
+          _dest = _dest[supp]
+        }
+        if (mq) {
+          _dest[mq] = _dest[mq] || {}
+          _dest = _dest[mq]
+        }
+        if (selector) {
+          _dest[selector] = _dest[selector] || {}
+          _dest = _dest[selector]
+        }
+
+        _dest[key] = _src[key]
+      }
+    })
+  })
+}
+
+let nullrule: EmotionClassName = {
+  // 'data-css-nil': ''
+}
+
+Object.defineProperty(nullrule, 'toString', {
+  enumerable: false,
+  value () {
+    return 'css-nil'
+  }
+})
+
+let inputCaches =
+  typeof WeakMap !== 'undefined'
+    ? [nullrule, new WeakMap(), new WeakMap(), new WeakMap()]
+    : [nullrule]
+
+let warnedWeakMapError = false
+
+function multiIndexCache (fn) {
+  return function (args) {
+    if (inputCaches[args.length]) {
+      let coi = inputCaches[args.length]
+      let ctr = 0
+      while (ctr < args.length - 1) {
+        if (!coi.has(args[ctr])) {
+          coi.set(args[ctr], new WeakMap())
+        }
+        coi = coi.get(args[ctr])
+        ctr++
+      }
+      if (coi.has(args[args.length - 1])) {
+        let ret = coi.get(args[ctr])
+
+        if (registered[ret.toString().substring(4)]) {
+          // make sure it hasn't been flushed
+          return ret
+        }
+      }
+    }
+    let value = fn(args)
+    if (inputCaches[args.length]) {
+      let ctr = 0,
+        coi = inputCaches[args.length]
+      while (ctr < args.length - 1) {
+        coi = coi.get(args[ctr])
+        ctr++
+      }
+      try {
+        coi.set(args[ctr], value)
+      } catch (err) {
+        if (IS_DEV && !warnedWeakMapError) {
+          warnedWeakMapError = true
+          console.warn('failed setting the WeakMap cache for args:', ...args) // eslint-disable-line no-console
+          console.warn(
+            'this should NOT happen, please file a bug on the github repo.'
+          ) // eslint-disable-line no-console
+        }
+      }
+    }
+    return value
+  }
 }

@@ -15,7 +15,7 @@ describe('babel injectGlobal', () => {
             margin: 0;
             padding: 0;
             & > div {
-              display: none;
+              display: flex;
             }
           }
           html {
@@ -64,10 +64,11 @@ describe('babel injectGlobal', () => {
           }
       \`;`
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
+
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
       expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
@@ -87,7 +88,7 @@ describe('babel injectGlobal', () => {
           }
       \`;`
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]],
+        plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
         babelrc: false
       })
@@ -111,7 +112,9 @@ describe('babel injectGlobal', () => {
           }
       \`;`
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
+        plugins: [[plugin, { extractStatic: true }]],
+        filename: __filename,
+        babelrc: false
       })
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(2)

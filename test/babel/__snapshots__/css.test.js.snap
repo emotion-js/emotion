@@ -2,206 +2,261 @@
 
 exports[`babel css extract basic object support 1`] = `
 "css({
-  display: ['-webkit-box', '-ms-flexbox', 'flex']
+  'display': '-webkit-box; display: -ms-flexbox; display: flex'
 });"
 `;
 
 exports[`babel css extract composes 1`] = `
 "import './css.test.emotion.css';
 
-const cls1 = \`\${'css-cls1-1q8jsgx'}\`;
-const cls2 = css(['css-cls2-1fsihoz', ['one-class', 'another-class', cls1]], ['center']);"
+const cls1 = 'css-cls1-1q8jsgx';
+const cls2 = /*#__PURE__*/css([['one-class', 'another-class', cls1]], ['center'], function createEmotionStyledRules(x0) {
+  return [{
+    'WebkitBoxPack': 'center',
+    'msFlexPack': 'center',
+    'justifyContent': 'center',
+    'WebkitBoxAlign': \`\${x0}\`,
+    'msFlexAlign': \`\${x0}\`,
+    'alignItems': \`\${x0}\`
+  }];
+});"
 `;
 
 exports[`babel css extract composes 2`] = `
-".css-cls1-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }
-.css-cls2-1fsihoz {
-          -webkit-justify-content: center;
-          -ms-flex-pack: center;
-          -webkit-box-pack: center;
-          justify-content: center;
-          -webkit-align-items: var(--css-cls2-1fsihoz-0);
-          -ms-flex-align: var(--css-cls2-1fsihoz-0);
-          -webkit-box-align: var(--css-cls2-1fsihoz-0);
-          align-items: var(--css-cls2-1fsihoz-0) }"
+".css-cls1-1q8jsgx {
+    display: -webkit-box; display: -ms-flexbox; display: flex
+}"
 `;
 
 exports[`babel css extract composes no dynamic 1`] = `
 "import './css.test.emotion.css';
 
-const cls1 = \`\${'css-cls1-1q8jsgx'}\`;
-const cls2 = \`\${'css-cls2-m25v9m'} \${'one-class'} \${'another-class'} \${cls1}\`;"
+const cls1 = 'css-cls1-1q8jsgx';
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], [], function createEmotionStyledRules() {
+  return [{
+    'WebkitBoxPack': 'center',
+    'msFlexPack': 'center',
+    'justifyContent': 'center',
+    'WebkitBoxAlign': 'center',
+    'msFlexAlign': 'center',
+    'alignItems': 'center'
+  }];
+});"
 `;
 
 exports[`babel css extract composes no dynamic 2`] = `
-".css-cls1-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }
-.css-cls2-m25v9m {
-          -webkit-justify-content: center;
-          -ms-flex-pack: center;
-          -webkit-box-pack: center;
-          justify-content: center;
-          -webkit-align-items: center;
-          -ms-flex-align: center;
-          -webkit-box-align: center;
-          align-items: center }"
+".css-cls1-1q8jsgx {
+    display: -webkit-box; display: -ms-flexbox; display: flex
+}"
 `;
 
 exports[`babel css extract composes with objects 1`] = `
-"import './css.test.emotion.css';
-
+"
 const cls1 = css({
-  display: ['-webkit-box', '-ms-flexbox', 'flex']
+  'display': '-webkit-box; display: -ms-flexbox; display: flex'
 });
-const cls2 = \`\${'css-cls2-k8jueb'} \${cls1}\`;"
+const cls2 = /*#__PURE__*/css([cls1], [], function createEmotionStyledRules() {
+  return [{
+    'height': '20',
+    'WebkitBoxPack': 'center',
+    'msFlexPack': 'center',
+    'justifyContent': 'center'
+  }];
+});"
 `;
 
 exports[`babel css extract composes with objects 2`] = `
-".css-cls2-k8jueb {
-          height: 20;
-          -webkit-justify-content: center;
-          -ms-flex-pack: center;
-          -webkit-box-pack: center;
-          justify-content: center; }"
+".css-cls1-1q8jsgx {
+    display: -webkit-box; display: -ms-flexbox; display: flex
+}"
 `;
 
 exports[`babel css extract css basic 1`] = `
 "import \\"./css.test.emotion.css\\";
 
-css([\\"css-cu78iu\\"], [widthVar]);"
+\\"css-153l48f\\";"
 `;
 
 exports[`babel css extract css basic 2`] = `
-".css-cu78iu { margin: 12px 48px;
-        color: #ffffff;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex: 1 0 auto;
-        -ms-flex: 1 0 auto;
-        flex: 1 0 auto;
-        color: blue;
-        width: var(--css-cu78iu-0); }"
+".css-153l48f {
+    margin: 12px 48px;
+    color: #ffffff; color: blue;
+    display: -webkit-box; display: -ms-flexbox; display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto
+}"
 `;
 
-exports[`babel css extract interpolation in selector 1`] = `
+exports[`babel css extract dynamic property objects 1`] = `
 "
-const cls2 = css([\\"css-cls2-16o34vq\\"], [className], function createEmotionRules(x0) {
-  return [\`.css-cls2-16o34vq { margin: 12px 48px;
-        color: #ffffff; }\`, \`.css-cls2-16o34vq .\${x0} { display: none; }\`];
+css({
+  'fontSize': '10px',
+  [\`w\${'idth'}\`]: '20px'
 });"
 `;
 
 exports[`babel css extract prefixed array of objects 1`] = `
 "
 css([{
-  borderRadius: '50%',
-  WebkitBoxSizing: 'border-box',
-  boxSizing: 'border-box',
-  display: ['-webkit-box', '-ms-flexbox', 'flex'],
+  'borderRadius': '50%',
+  'WebkitBoxSizing': 'border-box',
+  'boxSizing': 'border-box',
+  [\`\${display}\`]: 'flex',
   ':hover': {
-    WebkitTransform: 'scale(1.2)',
-    transform: 'scale(1.2)'
+    'WebkitTransform': 'scale(1.2)',
+    'transform': 'scale(1.2)'
   }
 }, {
-  WebkitTransition: '-webkit-transform 400ms ease-in-out',
-  transition: ['-webkit-transform 400ms ease-in-out', 'transform 400ms ease-in-out', 'transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out']
+  'WebkitTransition': '-webkit-transform 400ms ease-in-out',
+  'transition': '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'
 }]);"
 `;
 
 exports[`babel css extract prefixed objects 1`] = `
 "
 css({
-    borderRadius: '50%',
-    WebkitTransition: '-webkit-transform 400ms ease-in-out',
-    transition: ['-webkit-transform 400ms ease-in-out', 'transform 400ms ease-in-out', 'transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'],
-    WebkitBoxSizing: 'border-box',
-    boxSizing: 'border-box',
-    display: ['-webkit-box', '-ms-flexbox', 'flex'],
+    'borderRadius': '50%',
+    'WebkitTransition': '-webkit-transform 400ms ease-in-out',
+    'transition': '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
+    'WebkitBoxSizing': 'border-box',
+    'boxSizing': 'border-box',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex',
     ':hover': {
-        WebkitTransform: 'scale(1.2)',
-        transform: 'scale(1.2)'
+        'WebkitTransform': 'scale(1.2)',
+        'transform': 'scale(1.2)'
     }
 });"
 `;
 
+exports[`babel css inline array of objects 1`] = `
+"
+const cls2 = css([{
+  'display': '-webkit-box; display: -ms-flexbox; display: flex',
+  'WebkitBoxFlex': '1',
+  'msFlex': '1',
+  'flex': '1',
+  'WebkitBoxAlign': \`\${'center'}\`,
+  'msFlexAlign': \`\${'center'}\`,
+  'alignItems': \`\${'center'}\`
+}, {
+  'WebkitBoxPack': 'start',
+  'msFlexPack': 'start',
+  'justifyContent': 'flex-start'
+}]);"
+`;
+
 exports[`babel css inline composes 1`] = `
 "
-const cls1 = css(['css-cls1-1q8jsgx'], [], function createEmotionRules() {
-  return [\`.css-cls1-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }\`];
+const cls1 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  }];
 });
-const cls2 = css(['css-cls2-v9djpl', 'one-class', 'another-class', cls1], ['center'], function createEmotionRules(x0) {
-  return [\`.css-cls2-v9djpl {
-          -webkit-justify-content: center;
-          -ms-flex-pack: center;
-          -webkit-box-pack: center;
-          justify-content: center;
-          -webkit-align-items: \${x0};
-          -ms-flex-align: \${x0};
-          -webkit-box-align: \${x0};
-          align-items: \${x0} }\`];
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], function createEmotionStyledRules(x0) {
+  return [{
+    'WebkitBoxPack': 'center',
+    'msFlexPack': 'center',
+    'justifyContent': 'center',
+    'WebkitBoxAlign': \`\${x0}\`,
+    'msFlexAlign': \`\${x0}\`,
+    'alignItems': \`\${x0}\`
+  }];
 });"
 `;
 
 exports[`babel css inline css basic 1`] = `
 "
-css([\\"css-cu78iu\\"], [widthVar], function createEmotionRules(x0) {
-        return [\`.css-cu78iu { margin: 12px 48px;
-        color: #ffffff;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex: 1 0 auto;
-        -ms-flex: 1 0 auto;
-        flex: 1 0 auto;
-        color: blue;
-        width: \${x0}; }\`];
+/*#__PURE__*/css([], [widthVar], function createEmotionStyledRules(x0) {
+        return [{
+                \\"margin\\": \\"12px 48px\\",
+                \\"color\\": \\"#ffffff; color: blue\\",
+                \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\",
+                \\"WebkitBoxFlex\\": \\"1\\",
+                \\"msFlex\\": \\"1 0 auto\\",
+                \\"flex\\": \\"1 0 auto\\",
+                \\"width\\": \`\${x0}\`
+        }];
 });"
 `;
 
 exports[`babel css inline interpolation in selector 1`] = `
 "
-const cls2 = css([\\"css-cls2-16o34vq\\"], [className], function createEmotionRules(x0) {
-  return [\`.css-cls2-16o34vq { margin: 12px 48px;
-        color: #ffffff; }\`, \`.css-cls2-16o34vq .\${x0} { display: none; }\`];
+const cls2 = /*#__PURE__*/css([], [className], function createEmotionStyledRules(x0) {
+  return [{
+    \\"margin\\": \\"12px 48px\\",
+    \\"color\\": \\"#ffffff\\",
+    [\`\${x0}\`]: {
+      \\"display\\": \\"none\\"
+    }
+  }];
 });"
 `;
 
 exports[`babel css inline lots of composes 1`] = `
 "
-const cls2 = css(['css-cls2-hal2lb', 'one-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class'], ['center'], function createEmotionRules(x0) {
-  return [\`.css-cls2-hal2lb {
-          -webkit-justify-content: center;
-          -ms-flex-pack: center;
-          -webkit-box-pack: center;
-          justify-content: center;
-          -webkit-align-items: \${x0};
-          -ms-flex-align: \${x0};
-          -webkit-box-align: \${x0};
-          align-items: \${x0} }\`];
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class'], ['center'], function createEmotionStyledRules(x0) {
+  return [{
+    'WebkitBoxPack': 'center',
+    'msFlexPack': 'center',
+    'justifyContent': 'center',
+    'WebkitBoxAlign': \`\${x0}\`,
+    'msFlexAlign': \`\${x0}\`,
+    'alignItems': \`\${x0}\`
+  }];
+});"
+`;
+
+exports[`babel css inline nested expanded properties 1`] = `
+"
+/*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"margin\\": \\"12px 48px\\",
+    \\"& .div\\": {
+      \\"display\\": \\"'flex'\\"
+    }
+  }];
+});"
+`;
+
+exports[`babel css inline object with a bunch of stuff 1`] = `
+"
+const cls2 = css({
+  'display': '-webkit-box; display: -ms-flexbox; display: flex',
+  'WebkitBoxFlex': '1',
+  'msFlex': '1',
+  'flex': '1',
+  'WebkitBoxAlign': \`\${'center'}\`,
+  'msFlexAlign': \`\${'center'}\`,
+  'alignItems': \`\${'center'}\`
 });"
 `;
 
 exports[`babel css inline only composes 1`] = `
 "
-const cls1 = css(['css-cls1-1q8jsgx'], [], function createEmotionRules() {
-  return [\`.css-cls1-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }\`];
+const cls1 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  }];
 });
-const cls2 = css(['css-cls2-64ycl', 'one-class', 'another-class', cls1], []);"
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], [], function createEmotionStyledRules() {
+  return [{}];
+});"
 `;
 
 exports[`babel css inline only styles on nested selector 1`] = `
 "
-const cls1 = css([\\"css-cls1-1q8jsgx\\"], [], function createEmotionRules() {
-  return [\`.css-cls1-1q8jsgx { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; }\`];
+const cls1 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
+  }];
 });
-const cls2 = css([\\"css-cls2-1nbi349\\"], [], function createEmotionRules() {
-  return [\`.css-cls2-1nbi349:hover {
-    background: pink;
-}\`];
+const cls2 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"&:hover\\": {
+      \\"background\\": \\"pink\\"
+    }
+  }];
 });"
 `;
 

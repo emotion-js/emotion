@@ -1,12 +1,19 @@
 /* eslint-env jest */
-import { sheet, css } from '../src/index'
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { matcher, serializer } from 'jest-glamor-react'
+import { sheet, css, flush } from '../src/index'
+
+expect.addSnapshotSerializer(serializer(sheet))
+expect.extend(matcher)
 
 describe('css', () => {
   test('handles more than 10 dynamic properties', () => {
     const cls1 = css`
+      text-decoration: ${'underline'};
+      border-right: solid blue 54px;
       background: ${'white'};
       color: ${'black'};
-      text-decoration: ${'underline'};
       display: ${'block'};
       border-radius: ${'3px'};
       padding: ${'25px'};
@@ -14,13 +21,10 @@ describe('css', () => {
       z-index: ${100};
       font-size: ${'18px'};
       text-align: ${'center'};
-      border: ${'solid 1px red'};
     `
 
-    expect(cls1).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('composes with undefined values', () => {
@@ -28,10 +32,8 @@ describe('css', () => {
       composes: ${undefined};
       justifyContent: center;
     `
-    expect(cls2).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('composes', () => {
@@ -42,16 +44,29 @@ describe('css', () => {
       composes: ${cls1};
       justifyContent: center;
     `
-    expect(cls1).toMatchSnapshot()
-    expect(cls2).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('handles objects', () => {
-    const cls1 = css({ display: 'flex' })
-    expect(cls1).toMatchSnapshot()
+    const cls1 = css({
+      display: 'flex',
+      color: `${'blue'}`,
+      fontSize: `${'20px'}`,
+      height: `${50}`,
+      width: 20
+    })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
+  })
+
+  test('computed key is only dynamic', () => {
+    const cls1 = css({
+      fontSize: 10,
+      [`w${'idth'}`]: 20
+    })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
   })
 
   test('composes with objects', () => {
@@ -59,7 +74,7 @@ describe('css', () => {
       display: ['flex', 'block'],
       width: 30,
       height: 'calc(40vw - 50px)',
-      ':hover': {color: 'blue'},
+      ':hover': { color: 'blue' },
       ':after': {
         content: '" "',
         color: 'red'
@@ -73,10 +88,23 @@ describe('css', () => {
       justifyContent: center;
     `
 
-    expect(cls1).toMatchSnapshot()
-    expect(cls2).toMatchSnapshot()
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    const tree = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
+  })
+  test('null rule', () => {
+    const cls1 = css()
+
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
+  })
+  test('flushes correctly', () => {
+    const cls1 = css`
+    display: flex;
+  `
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshotWithGlamor()
+    flush()
+    const tree2 = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree2).toMatchSnapshotWithGlamor()
   })
 })

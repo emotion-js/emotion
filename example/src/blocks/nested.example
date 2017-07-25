@@ -1,5 +1,5 @@
 const Avatar = styled('div')`
-  img {
+  & img {
     width: 96px;
     height: 96px;
     border-radius: 50%;
@@ -7,6 +7,6 @@ const Avatar = styled('div')`
 `
 
 render(
-  <Avatar><img src={avatarUrl} /></Avatar>,
+  <Avatar><img src={logoUrl} /></Avatar>,
   mountNode
 )
