@@ -60,7 +60,7 @@
     "enzyme-to-json": "^1.5.1",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
-    "jest-glamor-react": "^2.0.0",
+    "jest-glamor-react": "^3.0.0",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
     "prettier-eslint-cli": "^4.0.3",

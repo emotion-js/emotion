@@ -1,11 +1,10 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matcher, serializer } from 'jest-glamor-react'
+import serializer from 'jest-glamor-react'
 import { css, sheet } from '../src/index'
 
 expect.addSnapshotSerializer(serializer(sheet))
-expect.extend(matcher)
 
 describe('css prop react', () => {
   test('basic', () => {
@@ -14,7 +13,7 @@ describe('css prop react', () => {
       .create(<p css={`color: red;font-size:${fontSize}`}>hello world</p>)
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('string expression', () => {
@@ -24,7 +23,7 @@ describe('css prop react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('kitchen sink', () => {
@@ -89,6 +88,6 @@ describe('css prop react', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 })
