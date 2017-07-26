@@ -77,16 +77,6 @@ exports[`css computed key is only dynamic 1`] = `
 />
 `;
 
-exports[`css empty value 1`] = `
-.glamor-0 {
-  display: null;
-}
-
-<div
-  className="glamor-0"
-/>
-`;
-
 exports[`css flushes correctly 1`] = `
 .glamor-0 {
   display: -webkit-box;
