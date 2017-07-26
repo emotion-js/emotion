@@ -22,6 +22,8 @@ styleSheet.flush()
 
 */
 
+import { forEach } from './utils'
+
 function last (arr) {
   return arr[arr.length - 1]
 }
@@ -157,7 +159,7 @@ Object.assign(StyleSheet.prototype, {
   },
   flush () {
     if (isBrowser) {
-      this.tags.forEach(tag => tag.parentNode.removeChild(tag))
+      forEach(this.tags, tag => tag.parentNode.removeChild(tag))
       this.tags = []
       this.sheet = null
       this.ctr = 0
@@ -173,7 +175,7 @@ Object.assign(StyleSheet.prototype, {
       return this.sheet.cssRules
     }
     let arr = []
-    this.tags.forEach(tag =>
+    forEach(this.tags, tag =>
       arr.splice(arr.length, 0, ...Array.from(sheetForTag(tag).cssRules))
     )
     return arr

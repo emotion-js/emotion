@@ -90,6 +90,40 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('@supports', () => {
+    const cls1 = css`
+      @supports (display: grid) {
+        display: grid;
+      }
+    `
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('nested at rules', () => {
+    const cls1 = css`
+    @supports (display: grid) {
+      display: grid;
+      @supports (display: flex) {
+        display: flex;
+      }
+    }
+    @media (min-width: 420px) {
+      color: pink;
+      @media (max-width: 500px) {
+        color: hotpink;
+      }
+    }
+  `
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('nested array', () => {
+    const cls1 = css([[{
+      display: 'flex'
+    }]])
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
   test('null rule', () => {
     const cls1 = css()
 
@@ -105,5 +139,8 @@ describe('css', () => {
     flush()
     const tree2 = renderer.create(<div className={cls1} />).toJSON()
     expect(tree2).toMatchSnapshot()
+  })
+  test('sheet.rules', () => {
+    expect(sheet.rules()).toMatchSnapshot()
   })
 })

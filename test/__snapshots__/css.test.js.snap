@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`css @supports 1`] = `
+<div
+  className="css-1u5pet7"
+/>
+`;
+
 exports[`css composes 1`] = `
 .glamor-0 {
   display: -webkit-box;
@@ -71,6 +77,16 @@ exports[`css computed key is only dynamic 1`] = `
 />
 `;
 
+exports[`css empty value 1`] = `
+.glamor-0 {
+  display: null;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css flushes correctly 1`] = `
 .glamor-0 {
   display: -webkit-box;
@@ -126,8 +142,40 @@ exports[`css handles objects 1`] = `
 />
 `;
 
+exports[`css nested array 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css nested at rules 1`] = `
+@media (min-width: 420px) {
+  .glamor-0 {
+    color: pink;
+  }
+}
+
+@media (min-width: 420px) and  (max-width: 500px) {
+  .glamor-0 {
+    color: hotpink;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css null rule 1`] = `
 <div
   className="css-nil"
 />
 `;
+
+exports[`css sheet.rules 1`] = `Array []`;

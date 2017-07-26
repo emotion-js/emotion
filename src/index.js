@@ -1,6 +1,6 @@
 // @flow
 import { StyleSheet } from './sheet'
-import { forEach, map, reduce } from './utils'
+import { forEach, map, reduce, keys } from './utils'
 import { hashString as hash, hashObject } from './hash'
 import { createMarkupForStyles } from './glamor/CSSPropertyOperations'
 import clean from './glamor/clean.js'
@@ -118,7 +118,7 @@ export function injectGlobal (
   // injectGlobal is flattened by postcss
   // we don't support nested selectors on objects
   forEach(combined, obj => {
-    forEach(Object.keys(obj), selector => {
+    forEach(keys(obj), selector => {
       insertRawRule(`${selector} {${createMarkupForStyles(obj[selector])}}`)
     })
   })
@@ -141,7 +141,7 @@ export function fontFace (
 function insertKeyframe (spec) {
   if (!inserted[spec.id]) {
     const inner = map(
-      Object.keys(spec.keyframes),
+      keys(spec.keyframes),
       kf => `${kf} {${createMarkupForStyles(spec.keyframes[kf])}}`
     ).join('')
 
@@ -213,19 +213,19 @@ function _css (rules) {
 
 // of shape { 'data-css-<id>': '' }
 export function isLikeRule (rule: EmotionRule) {
-  let keys = Object.keys(rule).filter(x => x !== 'toString')
-  if (keys.length !== 1) {
+  let ruleKeys = keys(rule).filter(x => x !== 'toString')
+  if (ruleKeys.length !== 1) {
     return false
   }
-  return !!/css-([a-zA-Z0-9]+)/.exec(keys[0])
+  return !!/css-([a-zA-Z0-9]+)/.exec(ruleKeys[0])
 }
 
 // extracts id from a { 'css-<id>': ''} like object
 export function idFor (rule: EmotionRule) {
-  let keys = Object.keys(rule).filter(x => x !== 'toString')
-  if (keys.length !== 1) throw new Error('not a rule')
+  let ruleKeys = keys(rule).filter(x => x !== 'toString')
+  if (ruleKeys.length !== 1) throw new Error('not a rule')
   let regex = /css-([a-zA-Z0-9]+)/
-  let match = regex.exec(keys[0])
+  let match = regex.exec(ruleKeys[0])
   if (!match) throw new Error('not a rule')
   return match[1]
 }
@@ -236,13 +236,11 @@ function selector (id: string, path: string = '') {
   }
   if (!path) return `.css-${id}`
 
-  let x = path
-    .split(',')
-    .map(
-      x =>
-        x.indexOf('&') >= 0 ? x.replace(/&/gm, `.css-${id}`) : `.css-${id}${x}`
-    )
-    .join(',')
+  let x = map(
+    path.split(','),
+    x =>
+      x.indexOf('&') >= 0 ? x.replace(/&/gm, `.css-${id}`) : `.css-${id}${x}`
+  ).join(',')
 
   return x
 }
@@ -250,7 +248,7 @@ function selector (id: string, path: string = '') {
 function deconstruct (style) {
   // we can be sure it's not infinitely nested here
   let plain, selects, medias, supports
-  Object.keys(style).forEach(key => {
+  forEach(keys(style), key => {
     if (key.indexOf('&') >= 0) {
       selects = selects || {}
       selects[key] = style[key]
@@ -276,17 +274,17 @@ function deconstructedStyleToCSS (id, style) {
     css.push(`${selector(id)}{${createMarkupForStyles(plain)}}`)
   }
   if (selects) {
-    Object.keys(selects).forEach((key: string) =>
+    forEach(keys(selects), (key: string) =>
       css.push(`${selector(id, key)}{${createMarkupForStyles(selects[key])}}`)
     )
   }
   if (medias) {
-    Object.keys(medias).forEach(key =>
+    forEach(keys(medias), key =>
       css.push(`${key}{${deconstructedStyleToCSS(id, medias[key]).join('')}}`)
     )
   }
   if (supports) {
-    Object.keys(supports).forEach(key =>
+    forEach(keys(supports), key =>
       css.push(`${key}{${deconstructedStyleToCSS(id, supports[key]).join('')}}`)
     )
   }
@@ -298,7 +296,7 @@ function insert (spec) {
   if (!inserted[spec.id]) {
     inserted[spec.id] = true
     let deconstructed = deconstruct(spec.style)
-    deconstructedStyleToCSS(spec.id, deconstructed).map(cssRule =>
+    map(deconstructedStyleToCSS(spec.id, deconstructed), cssRule =>
       sheet.insert(cssRule)
     )
   }
@@ -342,9 +340,11 @@ function joinSelectors (a, b) {
   let as = map(a.split(','), a => (!(a.indexOf('&') >= 0) ? '&' + a : a))
   let bs = map(b.split(','), b => (!(b.indexOf('&') >= 0) ? '&' + b : b))
 
-  return bs
-    .reduce((arr, b) => arr.concat(as.map(a => b.replace(/&/g, a))), [])
-    .join(',')
+  return reduce(
+    bs,
+    (arr, b) => arr.concat(map(as, a => b.replace(/&/g, a))),
+    []
+  ).join(',')
 }
 
 function joinMediaQueries (a, b) {
@@ -380,7 +380,7 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
   }
   src = flatten(src)
 
-  src.forEach(_src => {
+  forEach(src, _src => {
     if (isLikeRule(_src)) {
       let reg = _getRegistered(_src)
       if (reg.type !== 'css') {
@@ -392,7 +392,7 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
     if (_src && _src.composes) {
       build(dest, { selector, mq, supp, src: _src.composes })
     }
-    Object.keys(_src || {}).forEach(key => {
+    forEach(keys(_src || {}), key => {
       if (isSelector(key)) {
         build(dest, {
           selector: joinSelectors(selector, key),
