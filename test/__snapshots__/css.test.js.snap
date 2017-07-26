@@ -77,6 +77,17 @@ exports[`css computed key is only dynamic 1`] = `
 />
 `;
 
+exports[`css css variables 1`] = `
+.glamor-0 {
+  --some-var: 1px;
+  width: var(--some-var);
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css flushes correctly 1`] = `
 .glamor-0 {
   display: -webkit-box;

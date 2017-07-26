@@ -130,6 +130,14 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('css variables', () => {
+    const cls1 = css`
+      --some-var: 1px;
+      width: var(--some-var);
+    `
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
   test('flushes correctly', () => {
     const cls1 = css`
     display: flex;
