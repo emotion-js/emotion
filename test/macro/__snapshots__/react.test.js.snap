@@ -103,9 +103,8 @@ exports[`styled composes based on props 2`] = `
 exports[`styled composes with objects 1`] = `
 .glamor-0 {
   color: #333;
-  font-size: 1.333em;
-  height: 64px;
   font-size: 32px;
+  height: 64px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),

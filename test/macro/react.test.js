@@ -145,9 +145,9 @@ describe('styled', () => {
   test('composes with objects', () => {
     const cssA = {
       color: lighten(0.2, '#000'),
-      'font-size': modularScale(1),
+      fontSize: modularScale(1),
       [hiDPI(1.5).replace('\n', ' ').trim()]: {
-        'font-size': modularScale(1.25)
+        fontSize: modularScale(1.25)
       }
     }
 
@@ -157,7 +157,7 @@ describe('styled', () => {
     `
 
     const H1 = styled('h1')`
-      composes: ${cssB}
+      composes: ${cssB};
       font-size: ${modularScale(4)};
     `
 
