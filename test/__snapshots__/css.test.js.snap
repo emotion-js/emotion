@@ -178,5 +178,3 @@ exports[`css null rule 1`] = `
   className="css-nil"
 />
 `;
-
-exports[`css sheet.rules 1`] = `Array []`;

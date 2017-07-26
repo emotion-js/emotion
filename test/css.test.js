@@ -148,7 +148,4 @@ describe('css', () => {
     const tree2 = renderer.create(<div className={cls1} />).toJSON()
     expect(tree2).toMatchSnapshot()
   })
-  test('sheet.rules', () => {
-    expect(sheet.rules()).toMatchSnapshot()
-  })
 })
