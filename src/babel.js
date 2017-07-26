@@ -134,7 +134,7 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
 function buildProcessedStylesFromObjectAST (objectAST, t) {
   if (t.isObjectExpression(objectAST)) {
     const astObject = ASTObject.fromAST(objectAST, t)
-    const { styles } = parseCSS(astObject.obj, false)
+    const { styles } = parseCSS(astObject.toObj(), false)
     astObject.obj = styles
     return astObject.toAST()
   }

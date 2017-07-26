@@ -1,5 +1,7 @@
 import { forEach, reduce } from './utils'
 
+const SPREAD = Symbol('SPREAD')
+
 export default class ASTObject {
   obj: { [string]: any }
   expressions: Array<any>
@@ -11,27 +13,6 @@ export default class ASTObject {
     this.expressions = expressions
     this.composesCount = composesCount
     this.t = t
-  }
-
-  toAST () {
-    const { obj, t } = this
-
-    const props = []
-    for (let key in obj) {
-      const rawValue = obj[key]
-      const { computed, composes, ast: keyAST } = this.objKeyToAst(key)
-
-      let valueAST
-      if (composes) {
-        // valueAST = t.arrayExpression(expressions.slice(0, composesCount))
-        continue
-      } else {
-        valueAST = this.objValueToAst(rawValue)
-      }
-
-      props.push(t.objectProperty(keyAST, valueAST, computed))
-    }
-    return t.objectExpression(props)
   }
 
   objKeyToAst (key): { computed: boolean, ast: any, composes: boolean } {
@@ -131,6 +112,56 @@ export default class ASTObject {
     return t.templateLiteral(templateElements, templateExpressions)
   }
 
+  toAST () {
+    const {obj, t} = this
+
+    const props = []
+    for (let key in obj) {
+      const rawValue = obj[key]
+      const {computed, composes, ast: keyAST} = this.objKeyToAst(key)
+
+      let valueAST
+      if (composes) {
+        // valueAST = t.arrayExpression(expressions.slice(0, composesCount))
+        continue
+      } else {
+        valueAST = this.objValueToAst(rawValue)
+      }
+
+      props.push(t.objectProperty(keyAST, valueAST, computed))
+    }
+    if (obj[SPREAD]) {
+      console.log('obj[SPREAD]', obj[SPREAD])
+    }
+    Array.prototype.push.apply(props, obj[SPREAD])
+
+    return t.objectExpression(props)
+  }
+
+  toObj () {
+    const {obj, t} = this
+    const out = {}
+
+    if (obj[SPREAD]) {
+      console.log('obj[SPREAD]', obj[SPREAD])
+    }
+
+    for (let key in obj) {
+      const rawValue = obj[key]
+      switch (key) {
+        case 'composes':
+          out[key] = rawValue
+          console.log(key, rawValue)
+        default:
+          out[key] = rawValue
+      }
+
+    }
+
+
+    return out
+  }
+
   static fromAST (astObj, t) {
     function isLiteral (value) {
       return (
@@ -170,30 +201,41 @@ export default class ASTObject {
       return `xxx${expressions.length - 1}xxx`
     }
 
-    function toObj (astObj) {
+    function convertAstToObj (astObj) {
       let obj = {}
+      let spreadProperties: Array<any> = []
 
       forEach(astObj.properties, property => {
-        // nested objects
         let key
-        if (property.computed) {
+        if (t.isSpreadProperty(property)) {
+          return spreadProperties.push({ property, index: expressions.push(property.argument) - 1})
+        } else if (property.computed) {
           key = replaceExpressionsWithPlaceholders(property.key)
         } else {
           key = t.isIdentifier(property.key)
             ? property.key.name
             : property.key.value
         }
+
+        // nested objects
         if (t.isObjectExpression(property.value)) {
-          obj[key] = toObj(property.value)
+          obj[key] = convertAstToObj(property.value)
         } else {
           obj[key] = replaceExpressionsWithPlaceholders(property.value)
+        }
+      })
+
+      Object.defineProperty(obj, SPREAD, {
+        enumerable: false,
+        get () {
+          return spreadProperties
         }
       })
 
       return obj
     }
 
-    const obj = toObj(astObj)
+    const obj = convertAstToObj(astObj)
     return new ASTObject(
       obj,
       expressions,

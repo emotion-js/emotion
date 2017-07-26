@@ -76,7 +76,7 @@ describe('styled', () => {
       display: flex;
       & div {
         color: green;
-        
+
         & span {
           color: red;
         }
@@ -115,9 +115,7 @@ describe('styled', () => {
         background-color: green;
       }
     `
-    const tree = renderer
-      .create(<Input>hello world</Input>)
-      .toJSON()
+    const tree = renderer.create(<Input>hello world</Input>).toJSON()
 
     expect(tree).toMatchSnapshotWithGlamor()
   })
@@ -129,9 +127,7 @@ describe('styled', () => {
       }
     })
 
-    const tree = renderer
-      .create(<Input>hello world</Input>)
-      .toJSON()
+    const tree = renderer.create(<Input>hello world</Input>).toJSON()
 
     expect(tree).toMatchSnapshotWithGlamor()
   })
@@ -429,12 +425,25 @@ describe('styled', () => {
     expect(tree).toMatchSnapshotWithGlamor()
   })
 
+  test('objects with spread properties', () => {
+    const defaultText = { fontSize: 20 }
+    const Figure = styled.figure({
+      ...defaultText
+    })
+    const tree = renderer.create(<Figure>hello world</Figure>).toJSON()
+
+    expect(tree).toMatchSnapshotWithGlamor()
+  })
+
   test('change theme', () => {
-    const Div = styled.div`
-      color: ${props => props.theme.primary}
-    `
-    const TestComponent = (props) => (<ThemeProvider theme={props.theme}>{props.renderChild ? <Div>this will be green then pink</Div> : null}</ThemeProvider>)
-    const wrapper = mount(<TestComponent renderChild theme={{ primary: 'green' }} />)
+    const Div = styled.div`color: ${props => props.theme.primary};`
+    const TestComponent = props =>
+      <ThemeProvider theme={props.theme}>
+        {props.renderChild ? <Div>this will be green then pink</Div> : null}
+      </ThemeProvider>
+    const wrapper = mount(
+      <TestComponent renderChild theme={{ primary: 'green' }} />
+    )
     expect(enzymeToJson(wrapper)).toMatchSnapshotWithGlamor()
     wrapper.setProps({ theme: { primary: 'pink' } })
     expect(enzymeToJson(wrapper)).toMatchSnapshotWithGlamor()

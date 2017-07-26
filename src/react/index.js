@@ -93,11 +93,19 @@ export default function (tag, objs, vars = [], content) {
         push(finalObjs, content.apply(null, map(vars, getValue)))
       }
 
+      // console.log('mergedProps.className', mergedProps.className)
       if (mergedProps.className) {
         push(finalObjs, mergedProps.className.split(' '))
       }
 
-      const className = css(map(finalObjs, getValue))
+      if (mergedProps.css) {
+        push(finalObjs, mergedProps.css)
+      }
+
+      const args = map(finalObjs, getValue)
+      // console.log('css args:', args)
+      const className = css(args)
+      // console.log('class name', className)
 
       return h(
         tag,
@@ -129,3 +137,8 @@ export default function (tag, objs, vars = [], content) {
     : [spec]
   return Styled
 }
+
+
+const Box = styled('div')`
+  background-color: var(--main-bg-color);
+`

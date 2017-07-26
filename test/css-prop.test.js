@@ -27,6 +27,15 @@ describe('css prop react', () => {
     expect(tree).toMatchSnapshotWithGlamor()
   })
 
+  test('objects', () => {
+    const fontSize = '1px'
+    const tree = renderer
+      .create(<p css={{ color: 'red', fontSize }}>hello world</p>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshotWithGlamor()
+  })
+
   test('kitchen sink', () => {
     const props = { online: false, error: false, radius: 5 }
     const huge = 100
