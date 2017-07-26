@@ -75,7 +75,7 @@ describe('styled', () => {
       display: flex;
       & div {
         color: green;
-        
+
         & span {
           color: red;
         }
@@ -444,5 +444,14 @@ describe('styled', () => {
     expect(
       () => styled(undefined)`display: flex;`
     ).toThrowErrorMatchingSnapshot()
+  })
+
+  test('merges in `class` attribute', () => {
+    const H1 = styled('h1')`
+      color: red;
+    `
+    const tree = renderer.create(<H1 class='some_other_class'>Hello</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
   })
 })

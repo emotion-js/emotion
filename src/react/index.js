@@ -97,6 +97,11 @@ export default function (tag, objs, vars = [], content) {
         push(finalObjs, mergedProps.className.split(' '))
       }
 
+      // Support Preact "class" prop
+      if (mergedProps.class) {
+        push(finalObjs, mergedProps.class.split(' '))
+      }
+
       const className = css(map(finalObjs, getValue))
 
       return h(
