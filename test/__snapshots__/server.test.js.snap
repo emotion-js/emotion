@@ -21,3 +21,21 @@ Object {
   ],
 }
 `;
+
+exports[`extractCritical returns static css 2`] = `
+Object {
+  "css": ".no-prefix {display:-webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}.css-71uu79{display:-webkit-box; display: -ms-flexbox; display: flex;}",
+  "html": "<main class=\\"css-71uu79\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"-1826086624\\"><div data-reactid=\\"2\\">Hello</div></main>",
+  "ids": Array [
+    "71uu79",
+  ],
+  "rules": Array [
+    Object {
+      "cssText": ".no-prefix {display:-webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}",
+    },
+    Object {
+      "cssText": ".css-71uu79{display:-webkit-box; display: -ms-flexbox; display: flex;}",
+    },
+  ],
+}
+`;
