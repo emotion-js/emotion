@@ -215,16 +215,18 @@ export function idFor (rule: EmotionRule) {
   return match[1]
 }
 
+const parentSelectorRegex = /&/gm
+
 function selector (id: string, path: string = '') {
   if (!id) {
-    return path.replace(/&/g, '')
+    return path.replace(parentSelectorRegex, '')
   }
   if (!path) return `.css-${id}`
 
   let x = map(
     path.split(','),
     x =>
-      x.indexOf('&') >= 0 ? x.replace(/&/gm, `.css-${id}`) : `.css-${id}${x}`
+      x.indexOf('&') >= 0 ? x.replace(parentSelectorRegex, `.css-${id}`) : `.css-${id}${x}`
   ).join(',')
 
   return x
