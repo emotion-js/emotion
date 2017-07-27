@@ -332,7 +332,7 @@ function joinSelectors (a, b) {
 
   return reduce(
     bs,
-    (arr, b) => arr.concat(map(as, a => b.replace(/&/g, a))),
+    (arr, b) => arr.concat(map(as, a => b.replace(parentSelectorRegex, a))),
     []
   ).join(',')
 }
