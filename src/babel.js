@@ -135,8 +135,7 @@ function buildProcessedStylesFromObjectAST (objectAST, t) {
   if (t.isObjectExpression(objectAST)) {
     const astObject = ASTObject.fromAST(objectAST, t)
     const { styles } = parseCSS(astObject.toObj(), false)
-    astObject.obj = styles
-    return astObject.toAST()
+    return astObject.merge(styles).toAST()
   }
   if (t.isArrayExpression(objectAST)) {
     return t.arrayExpression(

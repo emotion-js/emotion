@@ -269,6 +269,83 @@ const H1 = styled(\\"h1\\", [{
 })]);"
 `;
 
+exports[`babel styled component inline styled. objects with a mul spread property 1`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText)]);"
+`;
+
+exports[`babel styled component inline styled. objects with a mulipl spread property 1`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText)]);"
+`;
+
+exports[`babel styled component inline styled. objects with a multiple spread propert 1`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText, defaultFigure)]);"
+`;
+
+exports[`babel styled component inline styled. objects with a multiple spread properties 1`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText, defaultFigure)]);"
+`;
+
+exports[`babel styled component inline styled. objects with a multiple spread properties and  1`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText, defaultFigure)]);"
+`;
+
+exports[`babel styled component inline styled. objects with a multiple spread properties and other 1`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText, defaultFigure)]);"
+`;
+
+exports[`babel styled component inline styled. objects with a multiple spread properties and other keys 1`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText, defaultFigure)]);"
+`;
+
+exports[`babel styled component inline styled. objects with a multiple spread property 1`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText)]);"
+`;
+
+exports[`babel styled component inline styled. objects with a multiple spread property 2`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText, defaultFigure)]);"
+`;
+
+exports[`babel styled component inline styled. objects with a single spread property 1`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText)]);"
+`;
+
+exports[`babel styled component inline styled. objects with a single spread property 2`] = `
+"var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+const defaultText = { fontSize: 20 };
+const Figure = styled(\\"figure\\", [_extends({}, defaultText)]);"
+`;
+
 exports[`babel styled component inline styled. objects with spread property 1`] = `
 "var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 

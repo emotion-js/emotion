@@ -32,7 +32,7 @@ describe('css prop react', () => {
       .create(<p css={{ color: 'red', fontSize }}>hello world</p>)
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('kitchen sink', () => {

@@ -252,7 +252,7 @@ describe('styled', () => {
 
     const ColumnContent = flexColumn(Content)
 
-    // expect(ColumnContent.displayName).toMatchSnapshotWithGlamor()
+    // expect(ColumnContent.displayName).toMatchSnapshot()()
 
     const tree = renderer.create(<ColumnContent />).toJSON()
 

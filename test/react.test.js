@@ -391,7 +391,7 @@ describe('styled', () => {
 
     const ColumnContent = flexColumn(Content)
 
-    // expect(ColumnContent.displayName).toMatchSnapshotWithGlamor()
+    // expect(ColumnContent.displayName).toMatchSnapshot()()
 
     const tree = renderer.create(<ColumnContent />).toJSON()
 
@@ -435,7 +435,7 @@ describe('styled', () => {
     })
     const tree = renderer.create(<Figure>hello world</Figure>).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('change theme', () => {

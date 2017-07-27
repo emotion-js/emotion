@@ -39,6 +39,7 @@
     "babel-types": "^6.25.0",
     "fbjs": "^0.8.12",
     "inline-style-prefixer": "^3.0.6",
+    "lodash": "^4.17.4",
     "postcss-js": "^1.0.0",
     "styled-components": "2.0.0",
     "theming": "^1.0.1",
