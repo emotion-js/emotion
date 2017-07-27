@@ -354,7 +354,7 @@ function joinSupports (a, b) {
 // flatten a nested array
 function flatten (inArr) {
   let arr = []
-  forEach(inArr, (val) => {
+  forEach(inArr, val => {
     if (Array.isArray(val)) arr = arr.concat(flatten(val))
     else arr = arr.concat(val)
   })
