@@ -102,10 +102,11 @@ export default function (tag, objs, vars = [], content) {
       return h(
         tag,
         omit(
-          Object.assign({}, mergedProps, {
+          {
+            ...mergedProps
             ref: mergedProps.innerRef,
             className
-          }),
+          },
           ['innerRef', 'theme']
         )
       )
