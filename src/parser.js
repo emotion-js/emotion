@@ -1,14 +1,14 @@
 // @flow
-import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
-import postcssNested from 'styled-components/lib/vendor/postcss-nested'
-import stringify from 'styled-components/lib/vendor/postcss/stringify'
+import parse from 'postcss-safe-parser'
+import postcssNested from 'postcss-nested'
+import stringify from 'postcss/lib/stringify'
 import postcssJs from 'postcss-js'
 import objParse from 'postcss-js/parser'
 import autoprefixer from 'autoprefixer'
 import { processStyleName } from './glamor/CSSPropertyOperations'
 import { objStyle } from './index'
 
-const prefixer = postcssJs.sync([autoprefixer])
+const prefixer = postcssJs.sync([autoprefixer, postcssNested])
 
 type Rule = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -40,8 +40,6 @@ export function parseCSS (
   }
   let vars = 0
   let composes: number = 0
-
-  postcssNested(root)
 
   root.walkDecls((decl: Decl): void => {
     if (decl.prop === 'composes') {
