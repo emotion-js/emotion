@@ -66,6 +66,30 @@ exports[`css composes with undefined values 1`] = `
 />
 `;
 
+exports[`css composition stuff 1`] = `
+.glamor-0 {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css composition stuff 2`] = `
+.glamor-0 {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css computed key is only dynamic 1`] = `
 .glamor-0 {
   font-size: 10px;

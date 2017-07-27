@@ -45,27 +45,15 @@ function _getRegistered (rule) {
   return rule
 }
 
-// The idea on how to merge object class names come from glamorous
-// 💄
-// https://github.com/paypal/glamorous/blob/master/src/get-glamor-classname.js
-function getEmotionStylesFromClassName (className) {
-  const id = className.trim().slice('css-'.length)
-  if (sheet.registered[id]) {
-    return sheet.registered[id].style
-  } else {
-    return []
-  }
-}
-
 function buildStyles (objs) {
   let computedClassName = ''
   let objectStyles = []
-
   // This needs to be moved into the core
   forEach(objs, (cls): void => {
     if (typeof cls === 'string') {
-      if (cls.trim().indexOf('css-') === 0) {
-        objectStyles.push(getEmotionStylesFromClassName(cls))
+      const match = emotionClassRegex.exec(cls)
+      if (match) {
+        objectStyles.push(ruleCache[match[1]])
       } else {
         computedClassName && (computedClassName += ' ')
         computedClassName += cls
@@ -181,16 +169,12 @@ type EmotionRule = { [string]: any }
 
 type CSSRuleList = Array<EmotionRule>
 
-type EmotionClassName = {
-  [string]: any
-}
-
-let cachedCss: (rules: CSSRuleList) => EmotionClassName =
+let cachedCss: (rules: CSSRuleList) => EmotionRule =
   typeof WeakMap !== 'undefined' ? multiIndexCache(_css) : _css
 
 // 🍩
 // https://github.com/threepointone/glamor
-export function objStyle (...rules: CSSRuleList): EmotionClassName {
+export function objStyle (...rules: CSSRuleList): EmotionRule {
   rules = clean(rules)
   if (!rules) {
     return nullrule
@@ -211,21 +195,22 @@ function _css (rules) {
   return toRule(spec)
 }
 
+const emotionClassRegex = /css-([a-zA-Z0-9]+)/
+
 // of shape { 'data-css-<id>': '' }
 export function isLikeRule (rule: EmotionRule) {
   let ruleKeys = keys(rule).filter(x => x !== 'toString')
   if (ruleKeys.length !== 1) {
     return false
   }
-  return !!/css-([a-zA-Z0-9]+)/.exec(ruleKeys[0])
+  return !!emotionClassRegex.exec(ruleKeys[0])
 }
 
 // extracts id from a { 'css-<id>': ''} like object
 export function idFor (rule: EmotionRule) {
   let ruleKeys = keys(rule).filter(x => x !== 'toString')
   if (ruleKeys.length !== 1) throw new Error('not a rule')
-  let regex = /css-([a-zA-Z0-9]+)/
-  let match = regex.exec(ruleKeys[0])
+  let match = emotionClassRegex.exec(ruleKeys[0])
   if (!match) throw new Error('not a rule')
   return match[1]
 }
@@ -247,7 +232,10 @@ function selector (id: string, path: string = '') {
 
 function deconstruct (style) {
   // we can be sure it's not infinitely nested here
-  let plain, selects, medias, supports
+  let plain
+  let selects
+  let medias
+  let supports
   forEach(keys(style), key => {
     if (key.indexOf('&') >= 0) {
       selects = selects || {}
@@ -366,10 +354,11 @@ function joinSupports (a, b) {
 // flatten a nested array
 function flatten (inArr) {
   let arr = []
-  for (let i = 0; i < inArr.length; i++) {
-    if (Array.isArray(inArr[i])) arr = arr.concat(flatten(inArr[i]))
-    else arr = arr.concat(inArr[i])
-  }
+  forEach(inArr, (val) => {
+    if (Array.isArray(val)) arr = arr.concat(flatten(val))
+    else arr = arr.concat(val)
+  })
+
   return arr
 }
 

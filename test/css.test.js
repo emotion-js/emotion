@@ -124,6 +124,16 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('composition stuff', () => {
+    const cls1 = css({
+      justifyContent: 'center'
+    })
+    const cls2 = css([cls1])
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+    const tree2 = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree2).toMatchSnapshot()
+  })
   test('null rule', () => {
     const cls1 = css()
 
