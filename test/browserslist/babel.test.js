@@ -10,7 +10,8 @@ describe('babel css', () => {
         display: flex;
       \``
       const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
+        plugins: [[plugin]],
+        filename: __filename
       })
       expect(code).toMatchSnapshot()
     })
