@@ -138,7 +138,3 @@ export default function (tag, objs, vars = [], content) {
   return Styled
 }
 
-
-const Box = styled('div')`
-  background-color: var(--main-bg-color);
-`
