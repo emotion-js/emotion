@@ -9,15 +9,15 @@
  * @providesModule CSSPropertyOperations
  */
 
-import camelizeStyleName from 'fbjs/lib/camelizeStyleName'
 import dangerousStyleValue from './dangerousStyleValue'
 import hyphenateStyleName from 'fbjs/lib/hyphenateStyleName'
 import memoizeStringOnly from 'fbjs/lib/memoizeStringOnly'
-import warning from 'fbjs/lib/warning'
 
 export const processStyleName = memoizeStringOnly(hyphenateStyleName)
 
 if (process.env.NODE_ENV !== 'production') {
+  const warning = require('fbjs/lib/warning')
+  const camelizeStyleName = require('fbjs/lib/camelizeStyleName')
   // 'msTransform' is correct, but the other prefixes should be capitalized
   let badVendoredStyleNamePattern = /^(?:webkit|moz|o)[A-Z]/
 
