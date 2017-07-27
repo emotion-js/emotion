@@ -199,7 +199,7 @@ const emotionClassRegex = /css-([a-zA-Z0-9]+)/
 
 // of shape { 'data-css-<id>': '' }
 export function isLikeRule (rule: EmotionRule) {
-  let ruleKeys = keys(rule).filter(x => x !== 'toString')
+  const ruleKeys = keys(rule)
   if (ruleKeys.length !== 1) {
     return false
   }
@@ -208,7 +208,7 @@ export function isLikeRule (rule: EmotionRule) {
 
 // extracts id from a { 'css-<id>': ''} like object
 export function idFor (rule: EmotionRule) {
-  let ruleKeys = keys(rule).filter(x => x !== 'toString')
+  const ruleKeys = keys(rule)
   if (ruleKeys.length !== 1) throw new Error('not a rule')
   let match = emotionClassRegex.exec(ruleKeys[0])
   if (!match) throw new Error('not a rule')
