@@ -103,7 +103,7 @@ export default function (tag, objs, vars = [], content) {
         tag,
         omit(
           {
-            ...mergedProps
+            ...mergedProps,
             ref: mergedProps.innerRef,
             className
           },
