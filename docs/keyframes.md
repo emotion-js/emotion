@@ -5,7 +5,7 @@ The `keyframes` function takes in the css keyframes definition and returns the a
 
 ```jsx
 import { keyframes, css } from 'emotion'
-import styled from 'emotion'
+import styled from 'emotion/react'
 
 const bounceHeight = 30;
 
