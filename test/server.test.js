@@ -16,7 +16,7 @@ const Image = styled.img`
   border-radius: 50%;
   height: 50px;
   width: 50px;
-  background-color: ${color}
+  background-color: ${color};
 `
 
 // this will not be included since it's not used
@@ -34,15 +34,21 @@ injectGlobal`
   }
 `
 
-const Page = () =>
+const Page1 = () =>
   <Main>
     <Image size={30} />
     <Image size={100} />
     <Image />
   </Main>
 
+const Page2 = () =>
+  <Main>
+    <div>Hello</div>
+  </Main>
+
 describe('extractCritical', () => {
   test('returns static css', () => {
-    expect(extractCritical(renderToString(<Page />))).toMatchSnapshot()
+    expect(extractCritical(renderToString(<Page1 />))).toMatchSnapshot()
+    expect(extractCritical(renderToString(<Page2 />))).toMatchSnapshot()
   })
 })

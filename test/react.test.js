@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matcher, serializer } from 'jest-glamor-react'
+import serializer from 'jest-glamor-react'
 import { css, sheet } from '../src/index'
 import styled from '../src/react'
 import { ThemeProvider } from '../src/react/theming'
@@ -11,7 +11,6 @@ import enzymeToJson from 'enzyme-to-json'
 import { lighten, hiDPI, modularScale } from 'polished'
 
 expect.addSnapshotSerializer(serializer(sheet))
-expect.extend(matcher)
 
 describe('styled', () => {
   test('no dynamic', () => {
@@ -19,7 +18,7 @@ describe('styled', () => {
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('basic render', () => {
@@ -31,7 +30,7 @@ describe('styled', () => {
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('basic render with object as style', () => {
@@ -40,7 +39,7 @@ describe('styled', () => {
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('name', () => {
@@ -52,7 +51,7 @@ describe('styled', () => {
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('call expression', () => {
@@ -65,7 +64,7 @@ describe('styled', () => {
       .create(<H1 className={'legacy__class'}>hello world</H1>)
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('nested', () => {
@@ -76,7 +75,7 @@ describe('styled', () => {
       display: flex;
       & div {
         color: green;
-
+        
         & span {
           color: red;
         }
@@ -91,7 +90,7 @@ describe('styled', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composition', () => {
@@ -106,7 +105,7 @@ describe('styled', () => {
       .create(<H2 className={'legacy__class'}>hello world</H2>)
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('input placeholder', () => {
@@ -115,9 +114,11 @@ describe('styled', () => {
         background-color: green;
       }
     `
-    const tree = renderer.create(<Input>hello world</Input>).toJSON()
+    const tree = renderer
+      .create(<Input>hello world</Input>)
+      .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('input placeholder object', () => {
@@ -127,9 +128,11 @@ describe('styled', () => {
       }
     })
 
-    const tree = renderer.create(<Input>hello world</Input>).toJSON()
+    const tree = renderer
+      .create(<Input>hello world</Input>)
+      .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('object composition', () => {
@@ -174,7 +177,7 @@ describe('styled', () => {
 
     const tree = renderer.create(<Avatar />).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('handles more than 10 dynamic properties', () => {
@@ -201,7 +204,7 @@ describe('styled', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('component as selector', () => {
@@ -223,7 +226,7 @@ describe('styled', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('function in expression', () => {
@@ -242,7 +245,7 @@ describe('styled', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes', () => {
@@ -273,7 +276,7 @@ describe('styled', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes with objects', () => {
@@ -305,7 +308,7 @@ describe('styled', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('innerRef', () => {
@@ -317,7 +320,7 @@ describe('styled', () => {
       .create(<H1 innerRef={refFunction}>hello world</H1>)
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
     expect(refFunction).toBeCalled()
   })
 
@@ -361,7 +364,7 @@ describe('styled', () => {
       )
       .toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('higher order component', () => {
@@ -392,7 +395,7 @@ describe('styled', () => {
 
     const tree = renderer.create(<ColumnContent />).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('composes based on props', () => {
@@ -410,10 +413,10 @@ describe('styled', () => {
 
     const tree = renderer.create(<H1 a>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
     const tree2 = renderer.create(<H1>hello world</H1>).toJSON()
 
-    expect(tree2).toMatchSnapshotWithGlamor()
+    expect(tree2).toMatchSnapshot()
   })
 
   test('objects', () => {
@@ -422,7 +425,7 @@ describe('styled', () => {
     }))
     const tree = renderer.create(<H1 display='flex'>hello world</H1>).toJSON()
 
-    expect(tree).toMatchSnapshotWithGlamor()
+    expect(tree).toMatchSnapshot()
   })
 
   test('objects with spread properties', () => {
@@ -444,11 +447,11 @@ describe('styled', () => {
     const wrapper = mount(
       <TestComponent renderChild theme={{ primary: 'green' }} />
     )
-    expect(enzymeToJson(wrapper)).toMatchSnapshotWithGlamor()
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ theme: { primary: 'pink' } })
-    expect(enzymeToJson(wrapper)).toMatchSnapshotWithGlamor()
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ renderChild: false })
-    expect(enzymeToJson(wrapper)).toMatchSnapshotWithGlamor()
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
   test('throws if undefined is passed as the component', () => {
     expect(
