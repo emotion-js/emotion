@@ -11,7 +11,8 @@ describe('babel css', () => {
       \``
       const { code } = babel.transform(basic, {
         plugins: [[plugin]],
-        filename: __filename
+        filename: __filename,
+        babelrc: false
       })
       expect(code).toMatchSnapshot()
     })

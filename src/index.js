@@ -1,21 +1,15 @@
 // @flow
 import { StyleSheet } from './sheet'
-import { forEach, map, reduce } from './utils'
+import { forEach, map, reduce, keys, assign } from './utils'
 import { hashString as hash, hashObject } from './hash'
 import { createMarkupForStyles } from './glamor/CSSPropertyOperations'
 import clean from './glamor/clean.js'
-
-const IS_DEV = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
 
 export const sheet = new StyleSheet()
 // 🚀
 sheet.inject()
 
 export let inserted: { [string | number]: boolean | void } = {}
-
-type inputVar = string | number
-
-type vars = Array<inputVar>
 
 export function flush () {
   sheet.flush()
@@ -45,27 +39,15 @@ function _getRegistered (rule) {
   return rule
 }
 
-// The idea on how to merge object class names come from glamorous
-// 💄
-// https://github.com/paypal/glamorous/blob/master/src/get-glamor-classname.js
-function getEmotionStylesFromClassName (className) {
-  const id = className.trim().slice('css-'.length)
-  if (sheet.registered[id]) {
-    return sheet.registered[id].style
-  } else {
-    return []
-  }
-}
-
 function buildStyles (objs) {
   let computedClassName = ''
   let objectStyles = []
-
   // This needs to be moved into the core
   forEach(objs, (cls): void => {
     if (typeof cls === 'string') {
-      if (cls.trim().indexOf('css-') === 0) {
-        objectStyles.push(getEmotionStylesFromClassName(cls))
+      const match = emotionClassRegex.exec(cls)
+      if (match) {
+        objectStyles.push(ruleCache[match[1]])
       } else {
         computedClassName && (computedClassName += ' ')
         computedClassName += cls
@@ -118,7 +100,7 @@ export function injectGlobal (
   // injectGlobal is flattened by postcss
   // we don't support nested selectors on objects
   forEach(combined, obj => {
-    forEach(Object.keys(obj), selector => {
+    forEach(keys(obj), selector => {
       insertRawRule(`${selector} {${createMarkupForStyles(obj[selector])}}`)
     })
   })
@@ -131,7 +113,7 @@ export function fontFace (
 ) {
   const combined = reduce(
     content ? objs.concat(content.apply(null, vars)) : objs,
-    (accum, item, i) => Object.assign(accum, item),
+    (accum, item, i) => assign(accum, item),
     {}
   )
 
@@ -141,7 +123,7 @@ export function fontFace (
 function insertKeyframe (spec) {
   if (!inserted[spec.id]) {
     const inner = map(
-      Object.keys(spec.keyframes),
+      keys(spec.keyframes),
       kf => `${kf} {${createMarkupForStyles(spec.keyframes[kf])}}`
     ).join('')
 
@@ -181,16 +163,12 @@ type EmotionRule = { [string]: any }
 
 type CSSRuleList = Array<EmotionRule>
 
-type EmotionClassName = {
-  [string]: any
-}
-
-let cachedCss: (rules: CSSRuleList) => EmotionClassName =
+let cachedCss: (rules: CSSRuleList) => EmotionRule =
   typeof WeakMap !== 'undefined' ? multiIndexCache(_css) : _css
 
 // 🍩
 // https://github.com/threepointone/glamor
-export function objStyle (...rules: CSSRuleList): EmotionClassName {
+export function objStyle (...rules: CSSRuleList): EmotionRule {
   rules = clean(rules)
   if (!rules) {
     return nullrule
@@ -211,46 +189,52 @@ function _css (rules) {
   return toRule(spec)
 }
 
+const emotionClassRegex = /css-([a-zA-Z0-9]+)/
+
 // of shape { 'data-css-<id>': '' }
 export function isLikeRule (rule: EmotionRule) {
-  let keys = Object.keys(rule).filter(x => x !== 'toString')
-  if (keys.length !== 1) {
+  const ruleKeys = keys(rule)
+  if (ruleKeys.length !== 1) {
     return false
   }
-  return !!/css-([a-zA-Z0-9]+)/.exec(keys[0])
+  return !!emotionClassRegex.exec(ruleKeys[0])
 }
 
 // extracts id from a { 'css-<id>': ''} like object
 export function idFor (rule: EmotionRule) {
-  let keys = Object.keys(rule).filter(x => x !== 'toString')
-  if (keys.length !== 1) throw new Error('not a rule')
-  let regex = /css-([a-zA-Z0-9]+)/
-  let match = regex.exec(keys[0])
+  const ruleKeys = keys(rule)
+  if (ruleKeys.length !== 1) throw new Error('not a rule')
+  let match = emotionClassRegex.exec(ruleKeys[0])
   if (!match) throw new Error('not a rule')
   return match[1]
 }
 
+const parentSelectorRegex = /&/gm
+
 function selector (id: string, path: string = '') {
   if (!id) {
-    return path.replace(/&/g, '')
+    return path.replace(parentSelectorRegex, '')
   }
   if (!path) return `.css-${id}`
 
-  let x = path
-    .split(',')
-    .map(
-      x =>
-        x.indexOf('&') >= 0 ? x.replace(/&/gm, `.css-${id}`) : `.css-${id}${x}`
-    )
-    .join(',')
+  let x = map(
+    path.split(','),
+    x =>
+      x.indexOf('&') >= 0
+        ? x.replace(parentSelectorRegex, `.css-${id}`)
+        : `.css-${id}${x}`
+  ).join(',')
 
   return x
 }
 
 function deconstruct (style) {
   // we can be sure it's not infinitely nested here
-  let plain, selects, medias, supports
-  Object.keys(style).forEach(key => {
+  let plain
+  let selects
+  let medias
+  let supports
+  forEach(keys(style), key => {
     if (key.indexOf('&') >= 0) {
       selects = selects || {}
       selects[key] = style[key]
@@ -276,17 +260,17 @@ function deconstructedStyleToCSS (id, style) {
     css.push(`${selector(id)}{${createMarkupForStyles(plain)}}`)
   }
   if (selects) {
-    Object.keys(selects).forEach((key: string) =>
+    forEach(keys(selects), (key: string) =>
       css.push(`${selector(id, key)}{${createMarkupForStyles(selects[key])}}`)
     )
   }
   if (medias) {
-    Object.keys(medias).forEach(key =>
+    forEach(keys(medias), key =>
       css.push(`${key}{${deconstructedStyleToCSS(id, medias[key]).join('')}}`)
     )
   }
   if (supports) {
-    Object.keys(supports).forEach(key =>
+    forEach(keys(supports), key =>
       css.push(`${key}{${deconstructedStyleToCSS(id, supports[key]).join('')}}`)
     )
   }
@@ -298,7 +282,7 @@ function insert (spec) {
   if (!inserted[spec.id]) {
     inserted[spec.id] = true
     let deconstructed = deconstruct(spec.style)
-    deconstructedStyleToCSS(spec.id, deconstructed).map(cssRule =>
+    map(deconstructedStyleToCSS(spec.id, deconstructed), cssRule =>
       sheet.insert(cssRule)
     )
   }
@@ -342,9 +326,11 @@ function joinSelectors (a, b) {
   let as = map(a.split(','), a => (!(a.indexOf('&') >= 0) ? '&' + a : a))
   let bs = map(b.split(','), b => (!(b.indexOf('&') >= 0) ? '&' + b : b))
 
-  return bs
-    .reduce((arr, b) => arr.concat(as.map(a => b.replace(/&/g, a))), [])
-    .join(',')
+  return reduce(
+    bs,
+    (arr, b) => arr.concat(map(as, a => b.replace(parentSelectorRegex, a))),
+    []
+  ).join(',')
 }
 
 function joinMediaQueries (a, b) {
@@ -366,10 +352,11 @@ function joinSupports (a, b) {
 // flatten a nested array
 function flatten (inArr) {
   let arr = []
-  for (let i = 0; i < inArr.length; i++) {
-    if (Array.isArray(inArr[i])) arr = arr.concat(flatten(inArr[i]))
-    else arr = arr.concat(inArr[i])
-  }
+  forEach(inArr, val => {
+    if (Array.isArray(val)) arr = arr.concat(flatten(val))
+    else arr = arr.concat(val)
+  })
+
   return arr
 }
 
@@ -380,7 +367,7 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
   }
   src = flatten(src)
 
-  src.forEach(_src => {
+  forEach(src, _src => {
     if (isLikeRule(_src)) {
       let reg = _getRegistered(_src)
       if (reg.type !== 'css') {
@@ -392,7 +379,7 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
     if (_src && _src.composes) {
       build(dest, { selector, mq, supp, src: _src.composes })
     }
-    Object.keys(_src || {}).forEach(key => {
+    forEach(keys(_src || {}), key => {
       if (isSelector(key)) {
         build(dest, {
           selector: joinSelectors(selector, key),
@@ -478,8 +465,8 @@ function multiIndexCache (fn) {
     }
     let value = fn(args)
     if (inputCaches[args.length]) {
-      let ctr = 0,
-        coi = inputCaches[args.length]
+      let ctr = 0
+      let coi = inputCaches[args.length]
       while (ctr < args.length - 1) {
         coi = coi.get(args[ctr])
         ctr++
@@ -487,7 +474,10 @@ function multiIndexCache (fn) {
       try {
         coi.set(args[ctr], value)
       } catch (err) {
-        if (IS_DEV && !warnedWeakMapError) {
+        if (
+          (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) &&
+          !warnedWeakMapError
+        ) {
           warnedWeakMapError = true
           console.warn('failed setting the WeakMap cache for args:', ...args) // eslint-disable-line no-console
           console.warn(

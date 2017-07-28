@@ -1,9 +1,8 @@
 // @flow
 import parse from 'postcss-safe-parser'
 import postcssNested from 'postcss-nested'
-import stringify from 'postcss/lib/stringify'
 import postcssJs from 'postcss-js'
-import objParse from './obj-parse'
+import objParse from 'postcss-js/parser'
 import autoprefixer from 'autoprefixer'
 import { processStyleName } from './glamor/CSSPropertyOperations'
 
@@ -70,13 +69,7 @@ export function parseCSS (
 }
 
 function stringifyCSSRoot (root) {
-  return root.nodes.map((node, i) => {
-    let str = ''
-    stringify(node, x => {
-      str += x
-    })
-    return str
-  })
+  return root.nodes.map(node => node.toString())
 }
 
 export function expandCSSFallbacks (style: { [string]: any }) {
