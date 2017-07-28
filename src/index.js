@@ -1,6 +1,6 @@
 // @flow
 import { StyleSheet } from './sheet'
-import { forEach, map, reduce, keys } from './utils'
+import { forEach, map, reduce, keys, assign } from './utils'
 import { hashString as hash, hashObject } from './hash'
 import { createMarkupForStyles } from './glamor/CSSPropertyOperations'
 import clean from './glamor/clean.js'
@@ -10,10 +10,6 @@ export const sheet = new StyleSheet()
 sheet.inject()
 
 export let inserted: { [string | number]: boolean | void } = {}
-
-type inputVar = string | number
-
-type vars = Array<inputVar>
 
 export function flush () {
   sheet.flush()
@@ -117,7 +113,7 @@ export function fontFace (
 ) {
   const combined = reduce(
     content ? objs.concat(content.apply(null, vars)) : objs,
-    (accum, item, i) => Object.assign(accum, item),
+    (accum, item, i) => assign(accum, item),
     {}
   )
 
@@ -224,7 +220,9 @@ function selector (id: string, path: string = '') {
   let x = map(
     path.split(','),
     x =>
-      x.indexOf('&') >= 0 ? x.replace(parentSelectorRegex, `.css-${id}`) : `.css-${id}${x}`
+      x.indexOf('&') >= 0
+        ? x.replace(parentSelectorRegex, `.css-${id}`)
+        : `.css-${id}${x}`
   ).join(',')
 
   return x
@@ -467,8 +465,8 @@ function multiIndexCache (fn) {
     }
     let value = fn(args)
     if (inputCaches[args.length]) {
-      let ctr = 0,
-        coi = inputCaches[args.length]
+      let ctr = 0
+      let coi = inputCaches[args.length]
       while (ctr < args.length - 1) {
         coi = coi.get(args[ctr])
         ctr++
@@ -476,7 +474,10 @@ function multiIndexCache (fn) {
       try {
         coi.set(args[ctr], value)
       } catch (err) {
-        if ((process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) && !warnedWeakMapError) {
+        if (
+          (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) &&
+          !warnedWeakMapError
+        ) {
           warnedWeakMapError = true
           console.warn('failed setting the WeakMap cache for args:', ...args) // eslint-disable-line no-console
           console.warn(

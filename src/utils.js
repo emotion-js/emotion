@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 export function omit (obj: { [string]: any }, keys: Array<string>) {
   let target: { [string]: any } = {}
   let i: string
@@ -74,3 +74,19 @@ export function reduce (
 
   return out
 }
+
+export const assign: any =
+  Object.assign ||
+  function (target) {
+    let i = 1
+    let length = arguments.length
+    for (;i < length; i++) {
+      var source = arguments[i]
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key]
+        }
+      }
+    }
+    return target
+  }

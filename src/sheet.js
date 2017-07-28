@@ -64,10 +64,12 @@ function makeStyleTag () {
 }
 
 export class StyleSheet {
-  constructor ({
-    speedy = !isDev && !isTest,
-    maxLength = isBrowser && oldIE ? 4000 : 65000
-  }: { speedy: boolean, maxLength: number } = {}) {
+  constructor (
+    {
+      speedy = !isDev && !isTest,
+      maxLength = isBrowser && oldIE ? 4000 : 65000
+    }: { speedy: boolean, maxLength: number } = {}
+  ) {
     this.isSpeedy = speedy // the big drawback here is that the css won't be editable in devtools
     this.sheet = undefined
     this.tags = []
