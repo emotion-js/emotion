@@ -79,7 +79,7 @@ let prefixes = ['Webkit', 'ms', 'Moz', 'O']
 
 // Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
 // infinite loop, because it iterates over the newly added props too.
-keys(isUnitlessNumber).forEach(function (prop) {
+forEach(keys(isUnitlessNumber), function (prop) {
   forEach(prefixes, function (prefix) {
     isUnitlessNumber[prefixKey(prefix, prop)] = 1
   })

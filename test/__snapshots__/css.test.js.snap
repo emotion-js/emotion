@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`css @supports 1`] = `
+@supports (display: grid) {
+  .glamor-0 {
+    display: grid;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css composes 1`] = `
 .glamor-0 {
   display: -webkit-box;
@@ -60,10 +72,45 @@ exports[`css composes with undefined values 1`] = `
 />
 `;
 
+exports[`css composition stuff 1`] = `
+.glamor-0 {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css composition stuff 2`] = `
+.glamor-0 {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css computed key is only dynamic 1`] = `
 .glamor-0 {
   font-size: 10px;
   width: 20px;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css css variables 1`] = `
+.glamor-0 {
+  --some-var: 1px;
+  width: var(--some-var);
 }
 
 <div
@@ -119,6 +166,50 @@ exports[`css handles objects 1`] = `
   font-size: 20px;
   height: 50px;
   width: 20px;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css nested array 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css nested at rules 1`] = `
+@media (min-width: 420px) {
+  .glamor-0 {
+    color: pink;
+  }
+}
+
+@media (min-width: 420px) and  (max-width: 500px) {
+  .glamor-0 {
+    color: hotpink;
+  }
+}
+
+@supports (display: grid) {
+  .glamor-0 {
+    display: grid;
+  }
+}
+
+@supports (display: grid) and  ((display: -webkit-box) or (display: flex)) {
+  .glamor-0 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 <div

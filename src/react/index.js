@@ -1,7 +1,7 @@
 import { Component, createElement as h } from 'react'
 import PropTypes from 'prop-types'
 import { css } from '../index'
-import { map, omit, reduce } from '../utils'
+import { map, omit, reduce, assign } from '../utils'
 import { CHANNEL } from './constants'
 
 export {
@@ -50,10 +50,9 @@ export default function (tag, objs, vars = [], content) {
 
     render () {
       const { props, state, context } = this
-      const mergedProps = {
-        ...props,
+      const mergedProps = assign({}, props, {
         theme: state.theme
-      }
+      })
 
       const getValue = v => {
         if (v && typeof v === 'function') {
@@ -102,11 +101,10 @@ export default function (tag, objs, vars = [], content) {
       return h(
         tag,
         omit(
-          {
-            ...mergedProps,
+          assign({}, mergedProps, {
             ref: mergedProps.innerRef,
             className
-          },
+          }),
           ['innerRef', 'theme']
         )
       )
