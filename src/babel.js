@@ -3,7 +3,7 @@ import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
 import { inline } from './inline'
-import { expandCSSFallbacks, prefixer, parseCSS } from './parser'
+import { parseCSS } from './parser'
 import { getIdentifierName } from './babel-utils'
 import { map } from './utils'
 import cssProps from './css-prop'
@@ -13,6 +13,10 @@ function getFilename (path) {
   return path.hub.file.opts.filename === 'unknown'
     ? ''
     : path.hub.file.opts.filename
+}
+
+function getFilename (path) {
+  return path.hub.file.opts.filename === 'unknown' ? '' : path.hub.file.opts.filename
 }
 
 export function replaceCssWithCallExpression (

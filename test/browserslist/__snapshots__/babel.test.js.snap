@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`babel css inline css basic 1`] = `
-"\\"use strict\\";
-
+"
 /*#__PURE__*/css([], [], function createEmotionStyledRules() {
         return [{
                 \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
