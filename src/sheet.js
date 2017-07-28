@@ -63,23 +63,20 @@ function makeStyleTag () {
   return tag
 }
 
-export function StyleSheet (
-  {
+export class StyleSheet {
+  constructor ({
     speedy = !isDev && !isTest,
     maxLength = isBrowser && oldIE ? 4000 : 65000
-  }: { speedy: boolean, maxLength: number } = {}
-) {
-  this.isSpeedy = speedy // the big drawback here is that the css won't be editable in devtools
-  this.sheet = undefined
-  this.tags = []
-  this.maxLength = maxLength
-  this.ctr = 0
-}
-
-Object.assign(StyleSheet.prototype, {
+  }: { speedy: boolean, maxLength: number } = {}) {
+    this.isSpeedy = speedy // the big drawback here is that the css won't be editable in devtools
+    this.sheet = undefined
+    this.tags = []
+    this.maxLength = maxLength
+    this.ctr = 0
+  }
   getSheet () {
     return sheetForTag(last(this.tags))
-  },
+  }
   inject () {
     if (this.injected) {
       throw new Error('already injected!')
@@ -98,14 +95,14 @@ Object.assign(StyleSheet.prototype, {
       }
     }
     this.injected = true
-  },
+  }
   speedy (bool) {
     if (this.ctr !== 0) {
       // cannot change speedy mode after inserting any rule to sheet. Either call speedy(${bool}) earlier in your app, or call flush() before speedy(${bool})
       throw new Error(`cannot change speedy now`)
     }
     this.isSpeedy = !!bool
-  },
+  }
   _insert (rule) {
     // this weirdness for perf, and chrome's weird bug
     // https://stackoverflow.com/questions/20007992/chrome-suddenly-stopped-accepting-insertrule
@@ -121,7 +118,7 @@ Object.assign(StyleSheet.prototype, {
         console.warn('illegal rule', rule) // eslint-disable-line no-console
       }
     }
-  },
+  }
   insert (rule) {
     if (isBrowser) {
       // this is the ultrafast version, works across browsers
@@ -152,11 +149,11 @@ Object.assign(StyleSheet.prototype, {
       this.tags.push(makeStyleTag())
     }
     return this.ctr - 1
-  },
+  }
   delete (index) {
     // we insert a blank rule when 'deleting' so previously returned indexes remain stable
     return this.replace(index, '')
-  },
+  }
   flush () {
     if (isBrowser) {
       forEach(this.tags, tag => tag.parentNode.removeChild(tag))
@@ -169,7 +166,7 @@ Object.assign(StyleSheet.prototype, {
       this.sheet.cssRules = []
     }
     this.injected = false
-  },
+  }
   rules () {
     if (!isBrowser) {
       return this.sheet.cssRules
@@ -180,4 +177,4 @@ Object.assign(StyleSheet.prototype, {
     )
     return arr
   }
-})
+}
