@@ -40,7 +40,8 @@
     "fbjs": "^0.8.12",
     "inline-style-prefixer": "^3.0.6",
     "postcss-js": "^1.0.0",
-    "styled-components": "2.0.0",
+    "postcss-nested": "^2.1.0",
+    "postcss-safe-parser": "^3.0.1",
     "theming": "^1.0.1",
     "touch": "^1.0.0"
   },
