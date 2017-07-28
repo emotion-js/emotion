@@ -1,4 +1,6 @@
 // @flow
+import * as t from 'babel-types'
+import postcss from 'postcss'
 import parse from 'postcss-safe-parser'
 import postcssNested from 'postcss-nested'
 import stringify from 'postcss/lib/stringify'
@@ -7,9 +9,7 @@ import camelcase from 'camelcase-css'
 import objParse from './obj-parse'
 import autoprefixer from 'autoprefixer'
 import { processStyleName } from './glamor/CSSPropertyOperations'
-import { objStyle } from './index'
-
-const prefixer = postcssJs.sync([autoprefixer, postcssNested])
+import { SPREAD } from './ast-object'
 
 type Rule = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -24,6 +24,26 @@ type Decl = {
   remove: () => {}
 }
 
+function processResult (result) {
+  if (console && console.warn) {
+    result.warnings().forEach(function (warn) {
+      const source = warn.plugin || 'PostCSS'
+      console.warn(source + ': ' + warn.text)
+    })
+  }
+  return postcssJs.parse(result.root)
+}
+
+function postcssSync (plugins) {
+  const processor = postcss(plugins)
+  return function (input) {
+    const result = processor.process(input, { parser: postcssJs.parse })
+    return processResult(result)
+  }
+}
+
+const prefixer = postcssSync([autoprefixer, postcssNested])
+
 export function parseCSS (
   css: string,
   extractStatic: boolean,
@@ -37,7 +57,7 @@ export function parseCSS (
   let root
   if (typeof css === 'object') {
     // console.log(css.props)
-    root = objParse(css.props, { from: filename })
+    root = objParse(css, { from: filename })
   } else {
     root = parse(css, { from: filename })
   }
@@ -66,7 +86,8 @@ export function parseCSS (
     }
   })
 
-  const styles = expandCSSFallbacks(prefixer(process(root)))
+  const styles = expandCSSFallbacks(prefixer(processNode(root)))
+  console.log('STYLES', JSON.stringify(styles.nodes, null, 2))
 
   return {
     styles,
@@ -79,14 +100,20 @@ export function parseCSS (
 }
 
 function atRule (node) {
+  if (t.isSpreadProperty(node.__spread_property)) {
+    console.log('gotcha bitch')
+
+    return node.__spread_property
+  }
+
   if (typeof node.nodes === 'undefined') {
     return true
   } else {
-    return process(node)
+    return processNode(node)
   }
 }
 
-function process (node) {
+function processNode (node) {
   let name
   const result = {}
   node.each(function (child) {
@@ -127,7 +154,7 @@ function process (node) {
       }
     }
   })
-
+  console.log('result', result)
   return result
 }
 
@@ -143,11 +170,17 @@ function stringifyCSSRoot (root) {
 
 export function expandCSSFallbacks (style: { [string]: any }) {
   let flattened = Object.keys(style).reduce((accum, key) => {
+    console.log(key)
+    if (key === '@spread') {
+      console.log(style[key][SPREAD])
+      console.log(style[key].__spread_property)
+    }
     if (Array.isArray(style[key])) {
       accum[key] = style[key].join(`; ${processStyleName(key)}: `)
     } else if (
       Object.prototype.toString.call(style[key]) === '[object Object]'
     ) {
+      // console.log(style[key])
       accum[key] = expandCSSFallbacks(style[key])
     } else {
       accum[key] = style[key]

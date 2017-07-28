@@ -1,7 +1,7 @@
 import { find, merge } from 'lodash'
 import { forEach, map, reduce } from './utils'
 
-const SPREAD = Symbol('SPREAD')
+export const SPREAD = Symbol('SPREAD')
 
 type ObjectProperty = {
   property: any,
@@ -47,7 +47,6 @@ export default class ASTObject {
 
   objValueToAst (value) {
     const { composesCount, t } = this
-
     if (typeof value === 'string') {
       const matches = this.getDynamicMatches(value)
       if (matches.length) {
@@ -131,26 +130,47 @@ export default class ASTObject {
 
   toAST (props = this.props) {
     return this.t.objectExpression(
-      props.map(
-        ({ property, key, value, computed: isComputedProperty, spread }) => {
-          if (spread) {
-            return property
-          }
-
-          if (key && key.indexOf('@spread') === 0) {
-            console.log('look here')
-            const value = parseInt((key.split('@spread')[1] || '0').trim(), 10)
-            console.log(value)
-            console.log(this.props[value])
-            return
-          }
-
-          const { computed, ast: keyAST } = this.objKeyToAst(key)
-          const valueAST = this.objValueToAst(value)
-
-          return this.t.objectProperty(keyAST, valueAST, computed)
+      props.map(prop => {
+        if (this.t.isObjectProperty(prop)) {
+          return prop
         }
-      )
+
+        // console.log(JSON.stringify(prop, null, 2))
+
+        const {
+          property,
+          key,
+          value,
+          computed: isComputedProperty,
+          spread
+        } = prop
+
+        if (spread) {
+          return property
+        }
+
+        // console.log(key, ':', JSON.stringify(value, null, 2))
+        if (value && value.property) {
+          console.trace()
+        }
+
+        if (key && key.indexOf('@spread') === 0) {
+          // console.log('look here')
+          const index = parseInt((key.split('@spread')[1] || '0').trim(), 10)
+          // console.log(value)
+          // console.log(this.props[index])
+          // if (this.props[index]) {
+          //   console.log('found you')
+          //   return this.props
+          // }
+          return
+        }
+
+        const { computed, ast: keyAST } = this.objKeyToAst(key)
+        const valueAST = this.objValueToAst(value)
+
+        return this.t.objectProperty(keyAST, valueAST, computed)
+      })
     )
   }
 
@@ -177,6 +197,14 @@ export default class ASTObject {
   }
 
   merge (next) {
+    console.log('next', JSON.stringify(next, null, 2))
+    console.log(next.__spread_property)
+    console.log(next[SPREAD])
+    Object.keys(next).forEach((key) => {
+      if (key.indexOf('@spread') === 0 && typeof next[key] !== 'boolean') {
+        console.log(Object.keys(next[key]).forEach(k => console.log(next[key][k])))
+      }
+    })
     merge(this.props, ASTObject.fromJS(next).props)
     return this
   }
@@ -184,6 +212,7 @@ export default class ASTObject {
   static fromJS (jsObj, composesCount, t) {
     const props = new PropertyList()
     for (let key in jsObj) {
+      // console.log(key)
       if (jsObj.hasOwnProperty(key)) {
         let value
         if (Object.prototype.toString.call(jsObj[key]) === '[object Object]') {

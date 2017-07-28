@@ -23,6 +23,9 @@ export function forEach (
   arr: Array<any>,
   fn: (item: any, index: number, arr: Array<any>) => void
 ) {
+  if (!arr) {
+    console.trace()
+  }
   let i = 0
   let len = arr.length
 
