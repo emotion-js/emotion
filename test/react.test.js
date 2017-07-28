@@ -391,7 +391,7 @@ describe('styled', () => {
 
     const ColumnContent = flexColumn(Content)
 
-    // expect(ColumnContent.displayName).toMatchSnapshotWithGlamor()
+    // expect(ColumnContent.displayName).toMatchSnapshot()()
 
     const tree = renderer.create(<ColumnContent />).toJSON()
 
@@ -428,12 +428,25 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('objects with spread properties', () => {
+    const defaultText = { fontSize: 20 }
+    const Figure = styled.figure({
+      ...defaultText
+    })
+    const tree = renderer.create(<Figure>hello world</Figure>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('change theme', () => {
-    const Div = styled.div`
-      color: ${props => props.theme.primary}
-    `
-    const TestComponent = (props) => (<ThemeProvider theme={props.theme}>{props.renderChild ? <Div>this will be green then pink</Div> : null}</ThemeProvider>)
-    const wrapper = mount(<TestComponent renderChild theme={{ primary: 'green' }} />)
+    const Div = styled.div`color: ${props => props.theme.primary};`
+    const TestComponent = props =>
+      <ThemeProvider theme={props.theme}>
+        {props.renderChild ? <Div>this will be green then pink</Div> : null}
+      </ThemeProvider>
+    const wrapper = mount(
+      <TestComponent renderChild theme={{ primary: 'green' }} />
+    )
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ theme: { primary: 'pink' } })
     expect(enzymeToJson(wrapper)).toMatchSnapshot()

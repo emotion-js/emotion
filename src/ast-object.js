@@ -1,37 +1,29 @@
-import { forEach, reduce } from './utils'
+import { find, merge } from 'lodash'
+import { forEach, map, reduce } from './utils'
+
+export const SPREAD = Symbol('SPREAD')
+
+type ObjectProperty = {
+  property: any,
+  key?: string,
+  value?: string,
+  computed?: boolean,
+  spread?: boolean
+}
+
+class PropertyList extends Array {}
 
 export default class ASTObject {
-  obj: { [string]: any }
+  props: PropertyList<ObjectProperty>
   expressions: Array<any>
   composesCount: number
   t: any
 
-  constructor (obj, expressions, composesCount, t) {
-    this.obj = obj
-    this.expressions = expressions
+  constructor (props, expressions, composesCount, t) {
+    this.props = props
+    this.expressions = expressions || []
     this.composesCount = composesCount
     this.t = t
-  }
-
-  toAST () {
-    const { obj, t } = this
-
-    const props = []
-    for (let key in obj) {
-      const rawValue = obj[key]
-      const { computed, composes, ast: keyAST } = this.objKeyToAst(key)
-
-      let valueAST
-      if (composes) {
-        // valueAST = t.arrayExpression(expressions.slice(0, composesCount))
-        continue
-      } else {
-        valueAST = this.objValueToAst(rawValue)
-      }
-
-      props.push(t.objectProperty(keyAST, valueAST, computed))
-    }
-    return t.objectExpression(props)
   }
 
   objKeyToAst (key): { computed: boolean, ast: any, composes: boolean } {
@@ -54,21 +46,26 @@ export default class ASTObject {
   }
 
   objValueToAst (value) {
-    const { expressions, composesCount, t } = this
-
+    const { composesCount, t } = this
     if (typeof value === 'string') {
       const matches = this.getDynamicMatches(value)
       if (matches.length) {
         return this.replacePlaceholdersWithExpressions(matches, value)
       }
       return t.stringLiteral(value)
+    } else if (typeof value === 'number') {
+      return t.numericLiteral(value)
     } else if (Array.isArray(value)) {
       // should never hit here
+
+      if (value[0] && (value[0].key || value[0].value || value[0].spread)) {
+        return this.toAST(value)
+      }
+
       return t.arrayExpression(value.map(v => this.objValueToAst(v)))
     }
 
-    const obj = new this.constructor(value, expressions, composesCount, t)
-    return obj.toAST()
+    return ASTObject.fromJS(value, composesCount, t).toAST()
   }
 
   getDynamicMatches (str) {
@@ -109,7 +106,7 @@ export default class ASTObject {
       // }
 
       templateExpressions.push(
-        expressions
+        expressions.length
           ? expressions[p1 - composesCount]
           : t.identifier(`x${p1 - composesCount}`)
       )
@@ -129,6 +126,114 @@ export default class ASTObject {
     //   return templateExpressions[0]
     // }
     return t.templateLiteral(templateElements, templateExpressions)
+  }
+
+  toAST (props = this.props) {
+    return this.t.objectExpression(
+      props.map(prop => {
+        if (this.t.isObjectProperty(prop)) {
+          return prop
+        }
+
+        // console.log(JSON.stringify(prop, null, 2))
+
+        const {
+          property,
+          key,
+          value,
+          computed: isComputedProperty,
+          spread
+        } = prop
+
+        if (spread) {
+          return property
+        }
+
+        // console.log(key, ':', JSON.stringify(value, null, 2))
+        if (value && value.property) {
+          console.trace()
+        }
+
+        if (key && key.indexOf('@spread') === 0) {
+          // console.log('look here')
+          const index = parseInt((key.split('@spread')[1] || '0').trim(), 10)
+          // console.log(value)
+          // console.log(this.props[index])
+          // if (this.props[index]) {
+          //   console.log('found you')
+          //   return this.props
+          // }
+          return
+        }
+
+        const { computed, ast: keyAST } = this.objKeyToAst(key)
+        const valueAST = this.objValueToAst(value)
+
+        return this.t.objectProperty(keyAST, valueAST, computed)
+      })
+    )
+  }
+
+  toJS (props = this.props) {
+    return props.reduce(
+      (
+        accum,
+        { property, key, value, computed: isComputedProperty, spread }
+      ) => {
+        if (spread) {
+          return accum
+        }
+
+        if (value instanceof PropertyList) {
+          console.log('found PropertyList')
+          accum[key] = this.toJS(value)
+        }
+
+        accum[key] = value
+        return accum
+      },
+      {}
+    )
+  }
+
+  merge (next) {
+    console.log('next', JSON.stringify(next, null, 2))
+    console.log(next.__spread_property)
+    console.log(next[SPREAD])
+    Object.keys(next).forEach((key) => {
+      if (key.indexOf('@spread') === 0 && typeof next[key] !== 'boolean') {
+        console.log(Object.keys(next[key]).forEach(k => console.log(next[key][k])))
+      }
+    })
+    merge(this.props, ASTObject.fromJS(next).props)
+    return this
+  }
+
+  static fromJS (jsObj, composesCount, t) {
+    const props = new PropertyList()
+    for (let key in jsObj) {
+      // console.log(key)
+      if (jsObj.hasOwnProperty(key)) {
+        let value
+        if (Object.prototype.toString.call(jsObj[key]) === '[object Object]') {
+          // console.log("what the fuck", jsObj[key])
+          // value = ASTObject.fromJS(jsObj[key], composesCount, t)
+          value = jsObj[key]
+        } else {
+          value = jsObj[key]
+        }
+
+        props.push({
+          key: key,
+          value: value,
+          computed: false,
+          spread: false,
+          property: null
+        })
+      }
+    }
+
+    return new ASTObject(props, [], composesCount, t)
   }
 
   static fromAST (astObj, t) {
@@ -170,12 +275,22 @@ export default class ASTObject {
       return `xxx${expressions.length - 1}xxx`
     }
 
-    function toObj (astObj) {
-      let obj = {}
+    function convertAstToObj (astObj) {
+      const props = new PropertyList()
 
-      forEach(astObj.properties, property => {
-        // nested objects
+      forEach(astObj.properties, (property, i) => {
         let key
+        if (t.isSpreadProperty(property)) {
+          props.push({
+            key: null,
+            value: null,
+            computed: false,
+            spread: true,
+            property
+          })
+          return
+        }
+
         if (property.computed) {
           key = replaceExpressionsWithPlaceholders(property.key)
         } else {
@@ -183,19 +298,32 @@ export default class ASTObject {
             ? property.key.name
             : property.key.value
         }
+
+        // nested objects
         if (t.isObjectExpression(property.value)) {
-          obj[key] = toObj(property.value)
+          props.push({
+            key,
+            value: convertAstToObj(property.value),
+            computed: property.computed,
+            spread: false,
+            property
+          })
         } else {
-          obj[key] = replaceExpressionsWithPlaceholders(property.value)
+          props.push({
+            key,
+            value: replaceExpressionsWithPlaceholders(property.value),
+            computed: property.computed,
+            spread: false,
+            property
+          })
         }
       })
-
-      return obj
+      return props
     }
 
-    const obj = toObj(astObj)
+    const objectProperties = convertAstToObj(astObj)
     return new ASTObject(
-      obj,
+      objectProperties,
       expressions,
       0, // composesCount: we should support this,
       t
