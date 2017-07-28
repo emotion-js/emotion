@@ -6,9 +6,8 @@ import postcssJs from 'postcss-js'
 import objParse from './obj-parse'
 import autoprefixer from 'autoprefixer'
 import { processStyleName } from './glamor/CSSPropertyOperations'
-import { objStyle } from './index'
 
-const prefixer = postcssJs.sync([autoprefixer, postcssNested])
+export const prefixer = postcssJs.sync([autoprefixer, postcssNested])
 
 type Rule = {
   parent: { selector: string, nodes: Array<mixed> },

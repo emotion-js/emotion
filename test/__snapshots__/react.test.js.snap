@@ -14,12 +14,8 @@ exports[`styled basic render 1`] = `
 `;
 
 exports[`styled basic render with object as style 1`] = `
-.glamor-0 {
-  font-size: 20px;
-}
-
 <h1
-  className="glamor-0"
+  className="css-nil"
 >
   hello world
 </h1>
@@ -304,14 +300,6 @@ exports[`styled input placeholder 1`] = `
 `;
 
 exports[`styled input placeholder object 1`] = `
-.glamor-0::-webkit-input-placeholder {
-  background-color: green;
-}
-
-.glamor-0:-ms-input-placeholder {
-  background-color: green;
-}
-
 .glamor-0::placeholder {
   background-color: green;
 }
@@ -415,6 +403,18 @@ exports[`styled objects 1`] = `
 >
   hello world
 </h1>
+`;
+
+exports[`styled objects with spread properties 1`] = `
+.glamor-0 {
+  font-size: 20px;
+}
+
+<figure
+  className="glamor-0"
+>
+  hello world
+</figure>
 `;
 
 exports[`styled themes 1`] = `

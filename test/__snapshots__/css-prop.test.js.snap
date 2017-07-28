@@ -78,6 +78,18 @@ exports[`css prop react kitchen sink 1`] = `
 </div>
 `;
 
+exports[`css prop react objects 1`] = `
+.glamor-0 {
+  undefined: red;
+}
+
+<p
+  className="glamor-0"
+>
+  hello world
+</p>
+`;
+
 exports[`css prop react string expression 1`] = `
 .glamor-0 {
   color: red;

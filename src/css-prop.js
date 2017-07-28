@@ -45,9 +45,9 @@ export default function (path, t) {
       )
     )
   } else {
-    throw path.buildCodeFrameError(
-      `${cssPropValue.value} is not a string or template literal`
-    )
+    cssTemplateExpression = t.callExpression(t.identifier('css'), [
+      cssPropValue
+    ])
   }
 
   if (!classNamesValue) {
