@@ -5,8 +5,6 @@ import { hashString as hash, hashObject } from './hash'
 import { createMarkupForStyles } from './glamor/CSSPropertyOperations'
 import clean from './glamor/clean.js'
 
-const IS_DEV = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV
-
 export const sheet = new StyleSheet()
 // 🚀
 sheet.inject()
@@ -478,7 +476,7 @@ function multiIndexCache (fn) {
       try {
         coi.set(args[ctr], value)
       } catch (err) {
-        if (IS_DEV && !warnedWeakMapError) {
+        if ((process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) && !warnedWeakMapError) {
           warnedWeakMapError = true
           console.warn('failed setting the WeakMap cache for args:', ...args) // eslint-disable-line no-console
           console.warn(
