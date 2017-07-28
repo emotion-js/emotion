@@ -61,7 +61,7 @@ export function replaceCssWithCallExpression (
           t.blockStatement([
             t.returnStatement(
               t.arrayExpression([
-                new ASTObject(styles, false, composesCount, t).toAST()
+                ASTObject.fromJS(styles, composesCount, t).toAST()
               ])
             )
           ])
@@ -105,6 +105,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
 
   const objs = path.node.quasi.expressions.slice(0, composesCount)
   const vars = path.node.quasi.expressions.slice(composesCount)
+  const obj = ASTObject.fromJS(styles, composesCount, t)
   const args = [
     tag,
     t.arrayExpression(objs),
@@ -115,7 +116,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
       t.blockStatement([
         t.returnStatement(
           t.arrayExpression([
-            new ASTObject(styles, false, composesCount, t).toAST()
+            obj.toAST()
           ])
         )
       ])
@@ -138,7 +139,7 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
 function buildProcessedStylesFromObjectAST (objectAST, path, t) {
   if (t.isObjectExpression(objectAST)) {
     const astObject = ASTObject.fromAST(objectAST, t)
-    const { styles } = parseCSS(astObject.toObj(), false, getFilename(path))
+    const { styles } = parseCSS(astObject, false, getFilename(path))
     return astObject.merge(styles).toAST()
   }
   if (t.isArrayExpression(objectAST)) {
