@@ -21,7 +21,9 @@ describe('babel styled component', () => {
     test('no dynamic', () => {
       const basic = 'styled.h1`color:blue;`'
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
       expect(code).toMatchSnapshot()
     })
@@ -38,7 +40,9 @@ describe('babel styled component', () => {
           props.theme.borderColor};
       \``
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
 
       expect(code).toMatchSnapshot()
@@ -60,7 +64,9 @@ describe('babel styled component', () => {
       border-left: $\{p => p.theme.blue};
     \``
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
 
       expect(code).toMatchSnapshot()
@@ -71,12 +77,14 @@ describe('babel styled component', () => {
       const SomeComponent = styled.div\` \`
       styled.h1\`
         color:blue;
-        .\${SomeComponent} {
+        \${SomeComponent} {
           color: green;
         }
       \``
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
       expect(code).toMatchSnapshot()
     })

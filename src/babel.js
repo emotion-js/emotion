@@ -80,6 +80,9 @@ export function replaceCssWithCallExpression (
   }
 }
 
+// babel-plugin-styled-components
+// https://github.com/styled-components/babel-plugin-styled-components/blob/37a13e9c21c52148ce6e403100df54c0b1561a88/src/visitors/displayNameAndId.js#L49-L93
+
 const findModuleRoot = (filename) => {
   if (!filename || filename === 'unknown') {
     return null
@@ -131,7 +134,7 @@ const getNextId = (state) => {
 
 const getComponentId = (state) => {
   // Prefix the identifier with a character because CSS classes cannot start with a number
-  return `${hashArray([getFileHash(state)]).replace(/^(\d)/, 'e$1')}${getNextId(state)}`
+  return `${getFileHash(state).replace(/^(\d)/, 'e$1')}${getNextId(state)}`
 }
 
 export function buildStyledCallExpression (identifier, tag, path, state, t) {

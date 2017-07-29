@@ -6,7 +6,7 @@ exports[`styled basic render 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1djsizu1 glamor-0"
 >
   hello world
 </h1>
@@ -14,7 +14,7 @@ exports[`styled basic render 1`] = `
 
 exports[`styled basic render with object as style 1`] = `
 <h1
-  className="css-nil"
+  className="e1djsizu2 css-nil"
 >
   hello world
 </h1>
@@ -26,7 +26,7 @@ exports[`styled call expression 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1djsizu4 glamor-0"
 >
   hello world
 </h1>
@@ -44,11 +44,11 @@ exports[`styled component as selector 1`] = `
 }
 
 <div
-  className="glamor-1"
+  className="e1djsizu8 glamor-1"
 >
   hello 
   <h1
-    className="glamor-0"
+    className="e1djsizu7 glamor-0"
   >
     This will be green
   </h1>
@@ -64,7 +64,7 @@ exports[`styled composes 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1djsizu12 glamor-0"
   scale={2}
 >
   hello world
@@ -78,7 +78,7 @@ exports[`styled composes based on props 1`] = `
 
 <h1
   a={true}
-  className="glamor-0"
+  className="e1djsizu21 glamor-0"
 >
   hello world
 </h1>
@@ -90,7 +90,7 @@ exports[`styled composes based on props 2`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1djsizu21 glamor-0"
 >
   hello world
 </h1>
@@ -115,7 +115,7 @@ exports[`styled composes with objects 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1djsizu14 glamor-0"
   scale={2}
 >
   hello world
@@ -128,7 +128,7 @@ exports[`styled composition 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1djsizu6 glamor-0"
 >
   hello world
 </h1>
@@ -140,7 +140,7 @@ exports[`styled function in expression 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1djsizu10 glamor-0"
   scale={2}
 >
   hello world
@@ -158,7 +158,7 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="e1djsizu20 glamor-0"
 />
 `;
 
@@ -168,7 +168,7 @@ exports[`styled innerRef 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1djsizu15 glamor-0"
 >
   hello world
 </h1>
@@ -181,7 +181,7 @@ exports[`styled name 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1djsizu3 glamor-0"
 >
   hello world
 </h1>
@@ -193,7 +193,7 @@ exports[`styled no dynamic 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1djsizu0 glamor-0"
 >
   hello world
 </h1>
@@ -206,7 +206,7 @@ exports[`styled objects 1`] = `
 }
 
 <h1
-  className="some-class glamor-0"
+  className="some-class e1djsizu22 glamor-0"
   display="flex"
 >
   hello world
@@ -222,7 +222,7 @@ exports[`styled themes 1`] = `
 }
 
 <span
-  className="glamor-0"
+  className="e1djsizu18 glamor-0"
   scale={2}
 >
   hello world

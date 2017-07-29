@@ -7,7 +7,7 @@ exports[`styled basic render 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1g5wfzh1 glamor-0"
 >
   hello world
 </h1>
@@ -15,7 +15,7 @@ exports[`styled basic render 1`] = `
 
 exports[`styled basic render with object as style 1`] = `
 <h1
-  className="css-nil"
+  className="e1g5wfzh2 css-nil"
 >
   hello world
 </h1>
@@ -27,7 +27,7 @@ exports[`styled call expression 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="e1g5wfzh4 legacy__class glamor-0"
 >
   hello world
 </h1>
@@ -55,7 +55,7 @@ exports[`styled change theme 1`] = `
   >
     <styled(Component)>
       <div
-        className="glamor-0"
+        className="e1g5wfzh35 glamor-0"
       >
         this will be green then pink
       </div>
@@ -86,7 +86,7 @@ exports[`styled change theme 2`] = `
   >
     <styled(Component)>
       <div
-        className="glamor-0"
+        className="e1g5wfzh35 glamor-0"
       >
         this will be green then pink
       </div>
@@ -125,12 +125,46 @@ exports[`styled component as selector 1`] = `
   display: flex;
 }
 
+.glamor-1 .e1g5wfzh13 {
+  color: green;
+}
+
 <div
-  className="glamor-1"
+  className="e1g5wfzh14 glamor-1"
 >
   hello 
   <h1
-    className="glamor-0"
+    className="e1g5wfzh13 glamor-0"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`styled component as selector function interpolation 1`] = `
+.glamor-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-1 .e1g5wfzh15 {
+  color: green;
+}
+
+.glamor-0 {
+  font-size: 20px;
+}
+
+<div
+  className="e1g5wfzh16 glamor-1"
+  fontSize={10}
+>
+  hello 
+  <h1
+    className="e1g5wfzh15 glamor-0"
+    fontSize={20}
   >
     This will be green
   </h1>
@@ -145,7 +179,7 @@ exports[`styled composes 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="e1g5wfzh20 legacy__class glamor-0"
   scale={2}
 >
   hello world
@@ -159,7 +193,7 @@ exports[`styled composes based on props 1`] = `
 
 <h1
   a={true}
-  className="glamor-0"
+  className="e1g5wfzh29 glamor-0"
 >
   hello world
 </h1>
@@ -171,7 +205,7 @@ exports[`styled composes based on props 2`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1g5wfzh29 glamor-0"
 >
   hello world
 </h1>
@@ -195,7 +229,7 @@ exports[`styled composes with objects 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="e1g5wfzh22 legacy__class glamor-0"
   scale={2}
 >
   hello world
@@ -214,7 +248,7 @@ exports[`styled composing components 1`] = `
 }
 
 <button
-  className="glamor-0"
+  className="e1g5wfzh34 glamor-0"
 >
   hello world
 </button>
@@ -226,7 +260,7 @@ exports[`styled composition 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="e1g5wfzh8 legacy__class glamor-0"
 >
   hello world
 </h1>
@@ -238,7 +272,7 @@ exports[`styled function in expression 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="e1g5wfzh18 legacy__class glamor-0"
   scale={2}
 >
   hello world
@@ -263,7 +297,7 @@ exports[`styled handles more than 10 dynamic properties 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="e1g5wfzh12 legacy__class glamor-0"
 >
   hello world
 </h1>
@@ -281,7 +315,7 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="e1g5wfzh28 glamor-0"
 />
 `;
 
@@ -291,7 +325,7 @@ exports[`styled innerRef 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1g5wfzh23 glamor-0"
 >
   hello world
 </h1>
@@ -311,7 +345,7 @@ exports[`styled input placeholder 1`] = `
 }
 
 <input
-  className="glamor-0"
+  className="e1g5wfzh9 glamor-0"
 >
   hello world
 </input>
@@ -323,7 +357,7 @@ exports[`styled input placeholder object 1`] = `
 }
 
 <input
-  className="glamor-0"
+  className="e1g5wfzh10 glamor-0"
 >
   hello world
 </input>
@@ -336,7 +370,7 @@ exports[`styled name 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1g5wfzh3 glamor-0"
 >
   hello world
 </h1>
@@ -362,11 +396,11 @@ exports[`styled nested 1`] = `
 }
 
 <div
-  className="glamor-1"
+  className="e1g5wfzh6 glamor-1"
 >
   hello 
   <h1
-    className="glamor-0"
+    className="e1g5wfzh5 glamor-0"
   >
     This will be green
   </h1>
@@ -380,7 +414,7 @@ exports[`styled no dynamic 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="e1g5wfzh0 glamor-0"
 >
   hello world
 </h1>
@@ -405,7 +439,7 @@ exports[`styled object composition 1`] = `
 }
 
 <img
-  className="glamor-0"
+  className="e1g5wfzh11 glamor-0"
 />
 `;
 
@@ -416,7 +450,7 @@ exports[`styled objects 1`] = `
 }
 
 <h1
-  className="some-class glamor-0"
+  className="some-class e1g5wfzh30 glamor-0"
   display="flex"
 >
   hello world
@@ -429,7 +463,7 @@ exports[`styled objects with spread properties 1`] = `
 }
 
 <figure
-  className="glamor-0"
+  className="e1g5wfzh31 glamor-0"
 >
   hello world
 </figure>
@@ -444,7 +478,7 @@ exports[`styled themes 1`] = `
 }
 
 <span
-  className="glamor-0"
+  className="e1g5wfzh26 glamor-0"
   scale={2}
 >
   hello world

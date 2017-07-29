@@ -56,12 +56,8 @@ export default function (tag, cls, objs, vars = [], content) {
 
       const getValue = v => {
         if (v && typeof v === 'function') {
-          if (v.__emotion_spec) {
-            return css(
-              map(v.__emotion_spec.objs, getValue),
-              map(v.__emotion_spec.vars, getValue),
-              v.__emotion_spec.content
-            )
+          if (v.__emotion_class) {
+            return `& .${v.__emotion_class}`
           }
           return v(mergedProps, context)
         }
@@ -91,6 +87,8 @@ export default function (tag, cls, objs, vars = [], content) {
       }
 
       push(finalObjs, objs)
+
+      push(finalObjs, [cls])
 
       if (content) {
         push(finalObjs, content.apply(null, map(vars, getValue)))
@@ -131,5 +129,6 @@ export default function (tag, cls, objs, vars = [], content) {
   Styled.__emotion_spec = tag.__emotion_spec
     ? tag.__emotion_spec.concat(spec)
     : [spec]
+  Styled.__emotion_class = cls
   return Styled
 }
