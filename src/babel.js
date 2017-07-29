@@ -1,11 +1,12 @@
 // @flow weak
 import fs from 'fs'
-import { basename } from 'path'
+import { basename, dirname, join as pathJoin, sep as pathSep, relative } from 'path'
 import { touchSync } from 'touch'
 import { inline } from './inline'
 import { parseCSS } from './parser'
 import { getIdentifierName } from './babel-utils'
 import { map } from './utils'
+import { hashArray } from './hash'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
@@ -77,6 +78,53 @@ export function replaceCssWithCallExpression (
 
     throw e
   }
+}
+
+const findModuleRoot = (filename) => {
+  if (!filename || filename === 'unknown') {
+    return null
+  }
+  let dir = dirname(filename)
+  if (fs.existsSync(pathJoin(dir, 'package.json'))) {
+    return dir
+  } else if (dir !== filename) {
+    return findModuleRoot(dir)
+  } else {
+    return null
+  }
+}
+
+const FILE_HASH = 'emotion-file-hash'
+const COMPONENT_POSITION = 'emotion-component-position'
+
+const getFileHash = (state) => {
+  const { file } = state
+  // hash calculation is costly due to fs operations, so we'll cache it per file.
+  if (file.get(FILE_HASH)) {
+    return file.get(FILE_HASH)
+  }
+  const filename = file.opts.filename
+  // find module root directory
+  const moduleRoot = findModuleRoot(filename)
+  const filePath = moduleRoot && relative(moduleRoot, filename).replace(pathSep, '/')
+  const packageJsonPath = pathJoin(moduleRoot, 'package.json')
+  const moduleName = moduleRoot && JSON.parse(fs.readFileSync(pathJoin(moduleRoot, 'package.json'))).name
+  const code = file.code
+
+  const fileHash = hashArray([moduleName, filePath, code])
+  file.set(FILE_HASH, fileHash)
+  return fileHash
+}
+
+const getNextId = (state) => {
+  const id = state.file.get(COMPONENT_POSITION) || 0
+  state.file.set(COMPONENT_POSITION, id + 1)
+  return id
+}
+
+const getComponentId = (state) => {
+  // Prefix the identifier with a character because CSS classes cannot start with a number
+  return `${getFileHash(state).replace(/^(\d)/, 'e$1')}-${getNextId(state)}`
 }
 
 export function buildStyledCallExpression (identifier, tag, path, state, t) {
