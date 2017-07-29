@@ -107,7 +107,6 @@ const getFileHash = (state) => {
   // find module root directory
   const moduleRoot = findModuleRoot(filename)
   const filePath = moduleRoot && relative(moduleRoot, filename).replace(pathSep, '/')
-  const packageJsonPath = pathJoin(moduleRoot, 'package.json')
   const moduleName = moduleRoot && JSON.parse(fs.readFileSync(pathJoin(moduleRoot, 'package.json'))).name
   const code = file.code
 
