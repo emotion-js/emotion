@@ -8,7 +8,7 @@ module.exports = env => {
   var loaders = [
     {
       test: /\.jsx?$/,
-      include: [/src/, /autoprefixer/, /chalk/],
+      include: [/src/, /autoprefixer/, /chalk/, /ansi-styles/, /postcss-nested/],
       loader: 'babel-loader'
     },
     {
