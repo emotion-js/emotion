@@ -15,10 +15,6 @@ function getFilename (path) {
     : path.hub.file.opts.filename
 }
 
-function getFilename (path) {
-  return path.hub.file.opts.filename === 'unknown' ? '' : path.hub.file.opts.filename
-}
-
 export function replaceCssWithCallExpression (
   path,
   identifier,
@@ -137,7 +133,9 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
     : t.stringLiteral(path.node.callee.property.name)
   return t.callExpression(identifier, [
     tag,
-    t.arrayExpression(buildProcessedStylesFromObjectAST(path.node.arguments, path, t))
+    t.arrayExpression(
+      buildProcessedStylesFromObjectAST(path.node.arguments, path, t)
+    )
   ])
 }
 
@@ -151,7 +149,9 @@ function buildProcessedStylesFromObjectAST (objectAST, path, t) {
     )
   }
   if (Array.isArray(objectAST)) {
-    return map(objectAST, obj => buildProcessedStylesFromObjectAST(obj, path, t))
+    return map(objectAST, obj =>
+      buildProcessedStylesFromObjectAST(obj, path, t)
+    )
   }
 
   return objectAST
@@ -210,7 +210,12 @@ export default function (babel) {
           if (state.cssPropIdentifier) {
             path.node.body.unshift(
               t.importDeclaration(
-                [t.importSpecifier(state.cssPropIdentifier, t.identifier('css'))],
+                [
+                  t.importSpecifier(
+                    state.cssPropIdentifier,
+                    t.identifier('css')
+                  )
+                ],
                 t.stringLiteral('emotion')
               )
             )
@@ -310,8 +315,16 @@ export default function (babel) {
               (name, hash, src) => src,
               true
             )
-          } else if (state.cssPropIdentifier && path.node.tag === state.cssPropIdentifier) {
-            replaceCssWithCallExpression(path, state.cssPropIdentifier, state, t)
+          } else if (
+            state.cssPropIdentifier &&
+            path.node.tag === state.cssPropIdentifier
+          ) {
+            replaceCssWithCallExpression(
+              path,
+              state.cssPropIdentifier,
+              state,
+              t
+            )
           }
         }
       }

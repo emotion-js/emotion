@@ -9,18 +9,6 @@ exports[`babel css prop StringLiteral css prop value 1`] = `
 })}></div>;"
 `;
 
-exports[`babel css prop basic 1`] = `
-"import { css as _css } from \\"emotion\\";
-import \\"./css-prop.test.emotion.css\\";
-<div className={\\"a\\" + \\" \\" + \\"css-jf1v9l\\"}></div>;"
-`;
-
-exports[`babel css prop basic 2`] = `
-".css-jf1v9l {
-    color: brown
-}"
-`;
-
 exports[`babel css prop basic inline 1`] = `
 "import { css as _css } from \\"emotion\\";
 <div className={\\"a\\" + \\" \\" + /*#__PURE__*/_css([], [], function createEmotionStyledRules() {
@@ -28,6 +16,23 @@ exports[`babel css prop basic inline 1`] = `
     \\"color\\": \\"brown\\"
   }];
 })}></div>;"
+`;
+
+exports[`babel css prop basic object 1`] = `
+"import { css as _css } from \\"emotion\\";
+<div className={\\"a\\" + \\" \\" + _css({ color: 'brown' })}></div>;"
+`;
+
+exports[`babel css prop basic with extractStatic 1`] = `
+"import { css as _css } from \\"emotion\\";
+import \\"./css-prop.test.emotion.css\\";
+<div className={\\"a\\" + \\" \\" + \\"css-jf1v9l\\"}></div>;"
+`;
+
+exports[`babel css prop basic with extractStatic 2`] = `
+".css-jf1v9l {
+    color: brown
+}"
 `;
 
 exports[`babel css prop className as expression 1`] = `

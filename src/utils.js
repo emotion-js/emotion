@@ -80,7 +80,7 @@ export const assign: any =
   function (target) {
     let i = 1
     let length = arguments.length
-    for (;i < length; i++) {
+    for (; i < length; i++) {
       var source = arguments[i]
       for (var key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
