@@ -202,6 +202,24 @@ exports[`styled composes with objects 1`] = `
 </h1>
 `;
 
+exports[`styled composing components 1`] = `
+.glamor-0 {
+  color: green;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<button
+  className="glamor-0"
+>
+  hello world
+</button>
+`;
+
 exports[`styled composition 1`] = `
 .glamor-0 {
   font-size: 13.333333333333334px;
