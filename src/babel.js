@@ -10,7 +10,9 @@ import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
 function getFilename (path) {
-  return path.hub.file.opts.filename === 'unknown' ? '' : path.hub.file.opts.filename
+  return path.hub.file.opts.filename === 'unknown'
+    ? ''
+    : path.hub.file.opts.filename
 }
 
 export function replaceCssWithCallExpression (
@@ -61,7 +63,7 @@ export function replaceCssWithCallExpression (
           t.blockStatement([
             t.returnStatement(
               t.arrayExpression([
-                new ASTObject(styles, false, composesCount, t).toAST()
+                ASTObject.fromJS(styles, composesCount, t).toAST()
               ])
             )
           ])
@@ -115,7 +117,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
       t.blockStatement([
         t.returnStatement(
           t.arrayExpression([
-            new ASTObject(styles, false, composesCount, t).toAST()
+            ASTObject.fromJS(styles, composesCount, t).toAST()
           ])
         )
       ])
@@ -131,16 +133,15 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
     : t.stringLiteral(path.node.callee.property.name)
   return t.callExpression(identifier, [
     tag,
-    t.arrayExpression(buildProcessedStylesFromObjectAST(path.node.arguments, path, t))
+    t.arrayExpression(
+      buildProcessedStylesFromObjectAST(path.node.arguments, path, t)
+    )
   ])
 }
 
 function buildProcessedStylesFromObjectAST (objectAST, path, t) {
   if (t.isObjectExpression(objectAST)) {
-    const astObject = ASTObject.fromAST(objectAST, t)
-    const { styles } = parseCSS(astObject.obj, false, getFilename(path))
-    astObject.obj = styles
-    return astObject.toAST()
+    return ASTObject.fromAST(objectAST, t).toAST()
   }
   if (t.isArrayExpression(objectAST)) {
     return t.arrayExpression(
@@ -148,7 +149,9 @@ function buildProcessedStylesFromObjectAST (objectAST, path, t) {
     )
   }
   if (Array.isArray(objectAST)) {
-    return map(objectAST, obj => buildProcessedStylesFromObjectAST(obj, path, t))
+    return map(objectAST, obj =>
+      buildProcessedStylesFromObjectAST(obj, path, t)
+    )
   }
 
   return objectAST
@@ -207,7 +210,12 @@ export default function (babel) {
           if (state.cssPropIdentifier) {
             path.node.body.unshift(
               t.importDeclaration(
-                [t.importSpecifier(state.cssPropIdentifier, t.identifier('css'))],
+                [
+                  t.importSpecifier(
+                    state.cssPropIdentifier,
+                    t.identifier('css')
+                  )
+                ],
                 t.stringLiteral('emotion')
               )
             )
@@ -307,8 +315,16 @@ export default function (babel) {
               (name, hash, src) => src,
               true
             )
-          } else if (state.cssPropIdentifier && path.node.tag === state.cssPropIdentifier) {
-            replaceCssWithCallExpression(path, state.cssPropIdentifier, state, t)
+          } else if (
+            state.cssPropIdentifier &&
+            path.node.tag === state.cssPropIdentifier
+          ) {
+            replaceCssWithCallExpression(
+              path,
+              state.cssPropIdentifier,
+              state,
+              t
+            )
           }
         }
       }

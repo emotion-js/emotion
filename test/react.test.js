@@ -428,6 +428,16 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('objects with spread properties', () => {
+    const defaultText = { fontSize: 20 }
+    const Figure = styled.figure({
+      ...defaultText
+    })
+    const tree = renderer.create(<Figure>hello world</Figure>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('change theme', () => {
     const Div = styled.div`
       color: ${props => props.theme.primary}
