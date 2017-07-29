@@ -92,7 +92,7 @@ exports[`babel css extract dynamic property objects 1`] = `
 "
 css({
   'fontSize': '10px',
-  [\`w\${'idth'}\`]: '20px'
+  [\`w\${'idth'}\`]: 20
 });"
 `;
 
@@ -136,8 +136,6 @@ const cls2 = css([{
   'WebkitBoxFlex': '1',
   'msFlex': '1',
   'flex': '1',
-  'WebkitBoxAlign': \`\${'center'}\`,
-  'msFlexAlign': \`\${'center'}\`,
   'alignItems': \`\${'center'}\`
 }, {
   'WebkitBoxPack': 'start',
@@ -226,8 +224,6 @@ const cls2 = css({
   'WebkitBoxFlex': '1',
   'msFlex': '1',
   'flex': '1',
-  'WebkitBoxAlign': \`\${'center'}\`,
-  'msFlexAlign': \`\${'center'}\`,
   'alignItems': \`\${'center'}\`
 });"
 `;

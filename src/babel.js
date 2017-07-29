@@ -9,6 +9,12 @@ import { map } from './utils'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
+function getFilename (path) {
+  return path.hub.file.opts.filename === 'unknown'
+    ? ''
+    : path.hub.file.opts.filename
+}
+
 export function replaceCssWithCallExpression (
   path,
   identifier,
@@ -25,7 +31,7 @@ export function replaceCssWithCallExpression (
     )
     if (state.extractStatic && !path.node.quasi.expressions.length) {
       const cssText = staticCSSTextCreator(name, hash, src)
-      const { staticCSSRules } = parseCSS(cssText, true)
+      const { staticCSSRules } = parseCSS(cssText, true, getFilename(path))
 
       state.insertStaticRules(staticCSSRules)
       if (!removePath) {
@@ -39,7 +45,7 @@ export function replaceCssWithCallExpression (
       return
     }
 
-    const { styles, composesCount } = parseCSS(src, false)
+    const { styles, composesCount } = parseCSS(src, false, getFilename(path))
 
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
@@ -57,7 +63,7 @@ export function replaceCssWithCallExpression (
           t.blockStatement([
             t.returnStatement(
               t.arrayExpression([
-                new ASTObject(styles, false, composesCount, t).toAST()
+                ASTObject.fromJS(styles, composesCount, t).toAST()
               ])
             )
           ])
@@ -84,7 +90,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     )
 
     const cssText = `.${name}-${hash} { ${src} }`
-    const { staticCSSRules } = parseCSS(cssText, true)
+    const { staticCSSRules } = parseCSS(cssText, true, getFilename(path))
 
     state.insertStaticRules(staticCSSRules)
     return t.callExpression(identifier, [
@@ -97,7 +103,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
 
   path.addComment('leading', '#__PURE__')
 
-  const { styles, composesCount } = parseCSS(src, false)
+  const { styles, composesCount } = parseCSS(src, false, getFilename(path))
 
   const objs = path.node.quasi.expressions.slice(0, composesCount)
   const vars = path.node.quasi.expressions.slice(composesCount)
@@ -111,7 +117,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
       t.blockStatement([
         t.returnStatement(
           t.arrayExpression([
-            new ASTObject(styles, false, composesCount, t).toAST()
+            ASTObject.fromJS(styles, composesCount, t).toAST()
           ])
         )
       ])
@@ -127,24 +133,25 @@ export function buildStyledObjectCallExpression (path, identifier, t) {
     : t.stringLiteral(path.node.callee.property.name)
   return t.callExpression(identifier, [
     tag,
-    t.arrayExpression(buildProcessedStylesFromObjectAST(path.node.arguments, t))
+    t.arrayExpression(
+      buildProcessedStylesFromObjectAST(path.node.arguments, path, t)
+    )
   ])
 }
 
-function buildProcessedStylesFromObjectAST (objectAST, t) {
+function buildProcessedStylesFromObjectAST (objectAST, path, t) {
   if (t.isObjectExpression(objectAST)) {
-    const astObject = ASTObject.fromAST(objectAST, t)
-    const { styles } = parseCSS(astObject.obj, false)
-    astObject.obj = styles
-    return astObject.toAST()
+    return ASTObject.fromAST(objectAST, t).toAST()
   }
   if (t.isArrayExpression(objectAST)) {
     return t.arrayExpression(
-      buildProcessedStylesFromObjectAST(objectAST.elements, t)
+      buildProcessedStylesFromObjectAST(objectAST.elements, path, t)
     )
   }
   if (Array.isArray(objectAST)) {
-    return map(objectAST, obj => buildProcessedStylesFromObjectAST(obj, t))
+    return map(objectAST, obj =>
+      buildProcessedStylesFromObjectAST(obj, path, t)
+    )
   }
 
   return objectAST
@@ -152,7 +159,7 @@ function buildProcessedStylesFromObjectAST (objectAST, t) {
 
 export function replaceCssObjectCallExpression (path, identifier, t) {
   const argWithStyles = path.node.arguments[0]
-  const styles = buildProcessedStylesFromObjectAST(argWithStyles, t)
+  const styles = buildProcessedStylesFromObjectAST(argWithStyles, path, t)
   path.replaceWith(t.callExpression(identifier, [styles]))
 }
 
@@ -200,10 +207,23 @@ export default function (babel) {
               fs.writeFileSync(cssFilename, toWrite)
             }
           }
+          if (state.cssPropIdentifier) {
+            path.node.body.unshift(
+              t.importDeclaration(
+                [
+                  t.importSpecifier(
+                    state.cssPropIdentifier,
+                    t.identifier('css')
+                  )
+                ],
+                t.stringLiteral('emotion')
+              )
+            )
+          }
         }
       },
       JSXOpeningElement (path, state) {
-        cssProps(path, t)
+        cssProps(path, state, t)
       },
       CallExpression (path) {
         if (path[visited]) {
@@ -294,6 +314,16 @@ export default function (babel) {
               t,
               (name, hash, src) => src,
               true
+            )
+          } else if (
+            state.cssPropIdentifier &&
+            path.node.tag === state.cssPropIdentifier
+          ) {
+            replaceCssWithCallExpression(
+              path,
+              state.cssPropIdentifier,
+              state,
+              t
             )
           }
         }

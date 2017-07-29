@@ -1,14 +1,12 @@
 // @flow
-import parse from 'styled-components/lib/vendor/postcss-safe-parser/parse'
-import postcssNested from 'styled-components/lib/vendor/postcss-nested'
-import stringify from 'styled-components/lib/vendor/postcss/stringify'
+import parse from 'postcss-safe-parser'
+import postcssNested from 'postcss-nested'
 import postcssJs from 'postcss-js'
 import objParse from 'postcss-js/parser'
 import autoprefixer from 'autoprefixer'
 import { processStyleName } from './glamor/CSSPropertyOperations'
-import { objStyle } from './index'
 
-const prefixer = postcssJs.sync([autoprefixer])
+export const prefixer = postcssJs.sync([autoprefixer, postcssNested])
 
 type Rule = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -25,7 +23,8 @@ type Decl = {
 
 export function parseCSS (
   css: string,
-  extractStatic: boolean
+  extractStatic: boolean,
+  filename: string
 ): {
   staticCSSRules: Array<string>,
   styles: { [string]: any },
@@ -34,14 +33,12 @@ export function parseCSS (
   // todo - handle errors
   let root
   if (typeof css === 'object') {
-    root = objParse(css)
+    root = objParse(css, { from: filename })
   } else {
-    root = parse(css)
+    root = parse(css, { from: filename })
   }
   let vars = 0
   let composes: number = 0
-
-  postcssNested(root)
 
   root.walkDecls((decl: Decl): void => {
     if (decl.prop === 'composes') {
@@ -72,13 +69,7 @@ export function parseCSS (
 }
 
 function stringifyCSSRoot (root) {
-  return root.nodes.map((node, i) => {
-    let str = ''
-    stringify(node, x => {
-      str += x
-    })
-    return str
-  })
+  return root.nodes.map(node => node.toString())
 }
 
 export function expandCSSFallbacks (style: { [string]: any }) {

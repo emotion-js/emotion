@@ -8,7 +8,7 @@ jest.mock('fs')
 fs.existsSync.mockReturnValue(true)
 
 describe('babel css prop', () => {
-  test('basic', () => {
+  test('basic with extractStatic', () => {
     const basic = '(<div className="a" css={`color: brown;`}></div>)'
     const { code } = babel.transform(basic, {
       plugins: [[plugin, { extractStatic: true }]],
@@ -23,6 +23,14 @@ describe('babel css prop', () => {
   test('basic inline', () => {
     const basic = '(<div className="a" css={`color: brown;`}></div>)'
     const { code } = babel.transform(basic, {
+      plugins: [plugin]
+    })
+    expect(code).toMatchSnapshot()
+  })
+
+  test('basic object', () => {
+    const basic = '(<div className="a" css={{ color: \'brown\' }}></div>)'
+    const {code} = babel.transform(basic, {
       plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
@@ -58,15 +66,6 @@ describe('babel css prop', () => {
       plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
-  })
-
-  test('wrong value type', () => {
-    const basic = '(<div css={5}></div>)'
-    expect(() =>
-      babel.transform(basic, {
-        plugins: [plugin]
-      })
-    ).toThrow()
   })
 
   test('StringLiteral css prop value', () => {
@@ -106,6 +105,15 @@ describe('babel css prop', () => {
       '(<div className={`test__class`} css={`color: brown;`} this={`hello`}></div>)'
     const { code } = babel.transform(basic, {
       plugins: [plugin]
+    })
+    expect(code).toMatchSnapshot()
+  })
+
+  test('no import css prop', () => {
+    const basic =
+    '(<div className={`test__class`} css={`color: brown;`}></div>)'
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { autoImportCssProp: false }]]
     })
     expect(code).toMatchSnapshot()
   })

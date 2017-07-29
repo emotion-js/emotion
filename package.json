@@ -40,7 +40,8 @@
     "fbjs": "^0.8.12",
     "inline-style-prefixer": "^3.0.6",
     "postcss-js": "^1.0.0",
-    "styled-components": "2.0.0",
+    "postcss-nested": "^2.1.0",
+    "postcss-safe-parser": "^3.0.1",
     "theming": "^1.0.1",
     "touch": "^1.0.0"
   },
@@ -60,7 +61,7 @@
     "enzyme-to-json": "^1.5.1",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
-    "jest-glamor-react": "^3.0.0",
+    "jest-glamor-react": "^3.1.0",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
     "prettier-eslint-cli": "^4.0.3",
@@ -115,6 +116,10 @@
     "transform": {
       "\\.css$": "<rootDir>/test/styleTransform.js",
       "^.+\\.js?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^emotion$": "<rootDir>/src",
+      "^emotion\/react$": "<rootDir>/src/react"
     }
   },
   "bugs": {

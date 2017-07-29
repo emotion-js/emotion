@@ -90,9 +90,61 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('@supports', () => {
+    const cls1 = css`
+      @supports (display: grid) {
+        display: grid;
+      }
+    `
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('nested at rules', () => {
+    const cls1 = css`
+    @supports (display: grid) {
+      display: grid;
+      @supports (display: flex) {
+        display: flex;
+      }
+    }
+    @media (min-width: 420px) {
+      color: pink;
+      @media (max-width: 500px) {
+        color: hotpink;
+      }
+    }
+  `
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('nested array', () => {
+    const cls1 = css([[{
+      display: 'flex'
+    }]])
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('composition stuff', () => {
+    const cls1 = css({
+      justifyContent: 'center'
+    })
+    const cls2 = css([cls1])
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+    const tree2 = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree2).toMatchSnapshot()
+  })
   test('null rule', () => {
     const cls1 = css()
 
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('css variables', () => {
+    const cls1 = css`
+      --some-var: 1px;
+      width: var(--some-var);
+    `
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })

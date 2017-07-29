@@ -1,7 +1,7 @@
 import { Component, createElement as h } from 'react'
 import PropTypes from 'prop-types'
 import { css } from '../index'
-import { map, omit, reduce } from '../utils'
+import { map, omit, reduce, assign } from '../utils'
 import { CHANNEL } from './constants'
 
 export {
@@ -50,10 +50,9 @@ export default function (tag, objs, vars = [], content) {
 
     render () {
       const { props, state, context } = this
-      const mergedProps = {
-        ...props,
+      const mergedProps = assign({}, props, {
         theme: state.theme
-      }
+      })
 
       const getValue = v => {
         if (v && typeof v === 'function') {
@@ -69,6 +68,7 @@ export default function (tag, objs, vars = [], content) {
 
         return v
       }
+      let localTag = tag
 
       let finalObjs = []
 
@@ -79,12 +79,15 @@ export default function (tag, objs, vars = [], content) {
             tag.__emotion_spec,
             (accum, spec) => {
               push(accum, spec.objs)
-              push(accum, spec.content.apply(null, map(spec.vars, getValue)))
+              if (spec.content) {
+                push(accum, spec.content.apply(null, map(spec.vars, getValue)))
+              }
               return accum
             },
             []
           )
         )
+        localTag = tag.__emotion_spec[0].tag
       }
 
       push(finalObjs, objs)
@@ -100,13 +103,12 @@ export default function (tag, objs, vars = [], content) {
       const className = css(map(finalObjs, getValue))
 
       return h(
-        tag,
+        localTag,
         omit(
-          {
-            ...mergedProps,
+          assign({}, mergedProps, {
             ref: mergedProps.innerRef,
             className
-          },
+          }),
           ['innerRef', 'theme']
         )
       )
@@ -123,7 +125,8 @@ export default function (tag, objs, vars = [], content) {
   const spec = {
     vars,
     content,
-    objs
+    objs,
+    tag
   }
   Styled.__emotion_spec = tag.__emotion_spec
     ? tag.__emotion_spec.concat(spec)
