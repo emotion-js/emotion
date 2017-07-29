@@ -2,6 +2,7 @@
 /* eslint-env jest */
 import * as babel from 'babel-core'
 import plugin from '../../src/babel'
+import stage2 from 'babel-plugin-transform-object-rest-spread'
 import * as fs from 'fs'
 jest.mock('fs')
 
@@ -222,6 +223,46 @@ describe('babel styled component', () => {
       }))`
       const { code } = babel.transform(basic, {
         plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('styled. objects with a single spread property', () => {
+      const basic = `
+      const defaultText = { fontSize: 20 }
+      const Figure = styled.figure({
+        ...defaultText
+      })`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin, stage2]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('styled. objects with a multiple spread properties', () => {
+      const basic = `
+      const defaultText = { fontSize: 20 }
+      const Figure = styled.figure({
+        ...defaultText,
+        ...defaultFigure
+      })`
+      const {code} = babel.transform(basic, {
+        plugins: [plugin, stage2]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('styled. objects with a multiple spread properties and other keys', () => {
+      const basic = `
+      const defaultText = { fontSize: 20 }
+      const Figure = styled.figure({
+        ...defaultText,
+        fontSize: '20px',
+        ...defaultFigure,
+        ...defaultText2
+      })`
+      const {code} = babel.transform(basic, {
+        plugins: [plugin, stage2]
       })
       expect(code).toMatchSnapshot()
     })

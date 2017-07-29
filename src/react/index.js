@@ -68,6 +68,7 @@ export default function (tag, objs, vars = [], content) {
 
         return v
       }
+      let localTag = tag
 
       let finalObjs = []
 
@@ -78,12 +79,15 @@ export default function (tag, objs, vars = [], content) {
             tag.__emotion_spec,
             (accum, spec) => {
               push(accum, spec.objs)
-              push(accum, spec.content.apply(null, map(spec.vars, getValue)))
+              if (spec.content) {
+                push(accum, spec.content.apply(null, map(spec.vars, getValue)))
+              }
               return accum
             },
             []
           )
         )
+        localTag = tag.__emotion_spec[0].tag
       }
 
       push(finalObjs, objs)
@@ -99,7 +103,7 @@ export default function (tag, objs, vars = [], content) {
       const className = css(map(finalObjs, getValue))
 
       return h(
-        tag,
+        localTag,
         omit(
           assign({}, mergedProps, {
             ref: mergedProps.innerRef,
@@ -121,7 +125,8 @@ export default function (tag, objs, vars = [], content) {
   const spec = {
     vars,
     content,
-    objs
+    objs,
+    tag
   }
   Styled.__emotion_spec = tag.__emotion_spec
     ? tag.__emotion_spec.concat(spec)
