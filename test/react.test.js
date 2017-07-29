@@ -438,6 +438,23 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('composing components', () => {
+    const Button = styled.button`
+       color: green;
+    `
+    const OtherButton = styled(Button)`
+      display: none;
+    `
+
+    const AnotherButton = styled(OtherButton)`
+      display: flex;
+      justify-content: center;
+    `
+    const tree = renderer.create(<AnotherButton>hello world</AnotherButton>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('change theme', () => {
     const Div = styled.div`
       color: ${props => props.theme.primary}
