@@ -146,7 +146,7 @@ const someCls = /*#__PURE__*/_css([], [], function createEmotionStyledRules() {
 exports[`babel macro styled object function 1`] = `
 "import _styled from '../../src/react';
 
-const SomeComponent = _styled('div', [{
+const SomeComponent = _styled('div', 'w9dlhc0', [{
   'display': '-webkit-box; display: -ms-flexbox; display: flex'
 }]);"
 `;
@@ -154,7 +154,7 @@ const SomeComponent = _styled('div', [{
 exports[`babel macro styled object member 1`] = `
 "import _styled from '../../src/react';
 
-const SomeComponent = _styled('div', [{
+const SomeComponent = _styled('div', 'wl1l2w0', [{
   'display': '-webkit-box; display: -ms-flexbox; display: flex'
 }]);"
 `;
@@ -168,7 +168,7 @@ const someOtherVar = _thisDoesNotExist;"
 exports[`babel macro styled tagged template literal function 1`] = `
 "import _styled from '../../src/react';
 
-const SomeComponent = /*#__PURE__*/_styled('div', [], [], function createEmotionStyledRules() {
+const SomeComponent = /*#__PURE__*/_styled('div', 'e1j3b0ov0', [], [], function createEmotionStyledRules() {
   return [{
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
   }];
@@ -178,7 +178,7 @@ const SomeComponent = /*#__PURE__*/_styled('div', [], [], function createEmotion
 exports[`babel macro styled tagged template literal member 1`] = `
 "import _styled from '../../src/react';
 
-const SomeComponent = /*#__PURE__*/_styled('div', [], [], function createEmotionStyledRules() {
+const SomeComponent = /*#__PURE__*/_styled('div', 'sp3ye40', [], [], function createEmotionStyledRules() {
   return [{
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
   }];

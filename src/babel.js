@@ -107,7 +107,15 @@ const getFileHash = (state) => {
   // find module root directory
   const moduleRoot = findModuleRoot(filename)
   const filePath = moduleRoot && relative(moduleRoot, filename).replace(pathSep, '/')
-  const moduleName = moduleRoot && JSON.parse(fs.readFileSync(pathJoin(moduleRoot, 'package.json'))).name
+  let moduleName = ''
+  if (moduleRoot) {
+    const packageJsonString = fs.readFileSync(pathJoin(moduleRoot, 'package.json'))
+    if (packageJsonString) {
+      try {
+        moduleName = JSON.parse(packageJsonString).name
+      } catch (e) {}
+    }
+  }
   const code = file.code
 
   const fileHash = hashArray([moduleName, filePath, code])
@@ -123,7 +131,7 @@ const getNextId = (state) => {
 
 const getComponentId = (state) => {
   // Prefix the identifier with a character because CSS classes cannot start with a number
-  return `${getFileHash(state).replace(/^(\d)/, 'e$1')}-${getNextId(state)}`
+  return `${hashArray([getFileHash(state)]).replace(/^(\d)/, 'e$1')}${getNextId(state)}`
 }
 
 export function buildStyledCallExpression (identifier, tag, path, state, t) {
@@ -142,6 +150,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     state.insertStaticRules(staticCSSRules)
     return t.callExpression(identifier, [
       tag,
+      t.stringLiteral(getComponentId(state)),
       t.arrayExpression([t.stringLiteral(`${name}-${hash}`)])
     ])
   }
@@ -156,6 +165,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   const vars = path.node.quasi.expressions.slice(composesCount)
   const args = [
     tag,
+    t.stringLiteral(getComponentId(state)),
     t.arrayExpression(objs),
     t.arrayExpression(vars),
     t.functionExpression(
@@ -174,12 +184,13 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   return t.callExpression(identifier, args)
 }
 
-export function buildStyledObjectCallExpression (path, identifier, t) {
+export function buildStyledObjectCallExpression (path, state, identifier, t) {
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
   return t.callExpression(identifier, [
     tag,
+    t.stringLiteral(getComponentId(state)),
     t.arrayExpression(
       buildProcessedStylesFromObjectAST(path.node.arguments, path, t)
     )
@@ -272,7 +283,7 @@ export default function (babel) {
       JSXOpeningElement (path, state) {
         cssProps(path, state, t)
       },
-      CallExpression (path) {
+      CallExpression (path, state) {
         if (path[visited]) {
           return
         }
@@ -288,7 +299,7 @@ export default function (babel) {
               ? path.node.callee.callee
               : path.node.callee.object
             path.replaceWith(
-              buildStyledObjectCallExpression(path, identifier, t)
+              buildStyledObjectCallExpression(path, state, identifier, t)
             )
           }
           if (

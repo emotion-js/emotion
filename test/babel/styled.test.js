@@ -151,19 +151,6 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('name is correct with no identifier', () => {
-      const basic = `
-        css\`
-        margin: 12px 48px;
-        color: #ffffff;
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
     test('objects fn call', () => {
       const basic = `
       const H1 = styled('h1')({
