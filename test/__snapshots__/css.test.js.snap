@@ -1,14 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css @supports 1`] = `
-@supports (display: grid) {
-  .glamor-0 {
-    display: grid;
-  }
-}
-
 <div
-  className="glamor-0"
+  className="css-1u5pet7"
 />
 `;
 
@@ -195,20 +189,6 @@ exports[`css nested at rules 1`] = `
 @media (min-width: 420px) and  (max-width: 500px) {
   .glamor-0 {
     color: hotpink;
-  }
-}
-
-@supports (display: grid) {
-  .glamor-0 {
-    display: grid;
-  }
-}
-
-@supports (display: grid) and  ((display: -webkit-box) or (display: flex)) {
-  .glamor-0 {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
   }
 }
 

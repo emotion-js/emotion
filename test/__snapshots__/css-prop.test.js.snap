@@ -80,7 +80,8 @@ exports[`css prop react kitchen sink 1`] = `
 
 exports[`css prop react objects 1`] = `
 .glamor-0 {
-  undefined: red;
+  color: red;
+  font-size: 1px;
 }
 
 <p
