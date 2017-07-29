@@ -91,7 +91,7 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [['emotion/babel', { inline: true }]]
+          plugins: [['emotion/babel', { inline: true, autoImportCssProp: false }]]
         }
       ).code
     } else {
@@ -103,7 +103,7 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [['emotion/babel', { inline: true }]]
+          plugins: [['emotion/babel', { inline: true, autoImportCssProp: false }]]
         }
       ).code
     }

@@ -116,6 +116,10 @@
     "transform": {
       "\\.css$": "<rootDir>/test/styleTransform.js",
       "^.+\\.js?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^emotion$": "<rootDir>/src",
+      "^emotion\/react$": "<rootDir>/src/react"
     }
   },
   "bugs": {

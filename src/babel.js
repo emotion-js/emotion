@@ -204,10 +204,18 @@ export default function (babel) {
               fs.writeFileSync(cssFilename, toWrite)
             }
           }
+          if (state.cssPropIdentifier) {
+            path.node.body.unshift(
+              t.importDeclaration(
+                [t.importSpecifier(state.cssPropIdentifier, t.identifier('css'))],
+                t.stringLiteral('emotion')
+              )
+            )
+          }
         }
       },
       JSXOpeningElement (path, state) {
-        cssProps(path, t)
+        cssProps(path, state, t)
       },
       CallExpression (path) {
         if (path[visited]) {
@@ -299,6 +307,8 @@ export default function (babel) {
               (name, hash, src) => src,
               true
             )
+          } else if (state.cssPropIdentifier && path.node.tag === state.cssPropIdentifier) {
+            replaceCssWithCallExpression(path, state.cssPropIdentifier, state, t)
           }
         }
       }

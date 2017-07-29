@@ -109,4 +109,13 @@ describe('babel css prop', () => {
     })
     expect(code).toMatchSnapshot()
   })
+
+  test('no import css prop', () => {
+    const basic =
+    '(<div className={`test__class`} css={`color: brown;`}></div>)'
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { autoImportCssProp: false }]]
+    })
+    expect(code).toMatchSnapshot()
+  })
 })
