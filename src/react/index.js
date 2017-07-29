@@ -78,7 +78,9 @@ export default function (tag, objs, vars = [], content) {
             tag.__emotion_spec,
             (accum, spec) => {
               push(accum, spec.objs)
-              push(accum, spec.content.apply(null, map(spec.vars, getValue)))
+              if (spec.content) {
+                push(accum, spec.content.apply(null, map(spec.vars, getValue)))
+              }
               return accum
             },
             []
