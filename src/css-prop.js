@@ -1,4 +1,4 @@
-export default function (path, t) {
+export default function (path, state, t) {
   let cssPath
   let classNamesPath
 
@@ -91,6 +91,13 @@ export default function (path, t) {
   }
 
   function createCssTemplateExpression (templateLiteral) {
-    return t.taggedTemplateExpression(t.identifier('css'), templateLiteral)
+    let identifier = t.identifier('css')
+    if (state.opts.autoImportCssProp !== false) {
+      if (!state.cssPropIdentifier) {
+        state.cssPropIdentifier = path.scope.generateUidIdentifier('css')
+      }
+      identifier = state.cssPropIdentifier
+    }
+    return t.taggedTemplateExpression(identifier, templateLiteral)
   }
 }
