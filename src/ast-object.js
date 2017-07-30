@@ -241,12 +241,9 @@ export default class ASTObject {
   static fromJS (jsObj, composesCount, t) {
     const props = []
     for (let key in jsObj) {
-      // console.log(key)
       if (jsObj.hasOwnProperty(key)) {
         let value
         if (Object.prototype.toString.call(jsObj[key]) === '[object Object]') {
-          // console.log("what the fuck", jsObj[key])
-          // value = ASTObject.fromJS(jsObj[key], composesCount, t)
           value = jsObj[key]
         } else {
           value = jsObj[key]
@@ -319,10 +316,6 @@ export default class ASTObject {
             property
           })
           return
-        }
-
-        if (property.shorthand) {
-          return property
         }
 
         if (property.computed) {
