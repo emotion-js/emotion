@@ -25,8 +25,37 @@ function prefixAst (args, t) {
             ? t.stringLiteral(property.key.value)
             : t.identifier(property.key.name)
 
+        const prefixedPseudoSelectors = {
+          '::placeholder': [
+            '::-webkit-input-placeholder',
+            '::-moz-placeholder',
+            ':-ms-input-placeholder'
+          ],
+          ':fullscreen': [
+            ':-webkit-full-screen',
+            ':-moz-full-screen',
+            ':-ms-fullscreen'
+          ]
+        }
+
+        const prefixedValue = prefixAst(property.value, t)
+
+        if (!property.computed) {
+          if (prefixedPseudoSelectors[key.value]) {
+            forEach(prefixedPseudoSelectors[key.value], prefixedKey => {
+              properties.push(
+                t.objectProperty(
+                  t.stringLiteral(prefixedKey),
+                  prefixedValue,
+                  false
+                )
+              )
+            })
+          }
+        }
+
         return properties.push(
-          t.objectProperty(key, prefixAst(property.value, t), property.computed)
+          t.objectProperty(key, prefixedValue, property.computed)
         )
 
         // literal value or array of literal values
@@ -205,8 +234,6 @@ export default class ASTObject {
           return prop
         }
 
-        // console.log(JSON.stringify(prop, null, 2))
-
         const { property, key, value, spread, shorthand } = prop
 
         if (spread || shorthand) {
@@ -241,12 +268,9 @@ export default class ASTObject {
   static fromJS (jsObj, composesCount, t) {
     const props = []
     for (let key in jsObj) {
-      // console.log(key)
       if (jsObj.hasOwnProperty(key)) {
         let value
         if (Object.prototype.toString.call(jsObj[key]) === '[object Object]') {
-          // console.log("what the fuck", jsObj[key])
-          // value = ASTObject.fromJS(jsObj[key], composesCount, t)
           value = jsObj[key]
         } else {
           value = jsObj[key]
@@ -319,10 +343,6 @@ export default class ASTObject {
             property
           })
           return
-        }
-
-        if (property.shorthand) {
-          return property
         }
 
         if (property.computed) {

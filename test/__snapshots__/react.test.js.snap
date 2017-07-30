@@ -14,8 +14,12 @@ exports[`styled basic render 1`] = `
 `;
 
 exports[`styled basic render with object as style 1`] = `
+.glamor-1 {
+  font-size: 20px;
+}
+
 <h1
-  className="css-1g5wfzh2 css-nil"
+  className="glamor-0 glamor-1"
 >
   hello world
 </h1>
@@ -143,6 +147,10 @@ exports[`styled component as selector 1`] = `
 `;
 
 exports[`styled component as selector function interpolation 1`] = `
+.glamor-1 {
+  font-size: 20px;
+}
+
 .glamor-3 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -151,10 +159,6 @@ exports[`styled component as selector function interpolation 1`] = `
 
 .glamor-3 .glamor-0 {
   color: green;
-}
-
-.glamor-1 {
-  font-size: 20px;
 }
 
 <div
@@ -352,6 +356,18 @@ exports[`styled input placeholder 1`] = `
 `;
 
 exports[`styled input placeholder object 1`] = `
+.glamor-1::-webkit-input-placeholder {
+  background-color: green;
+}
+
+.glamor-1::-moz-placeholder {
+  background-color: green;
+}
+
+.glamor-1:-ms-input-placeholder {
+  background-color: green;
+}
+
 .glamor-1::placeholder {
   background-color: green;
 }

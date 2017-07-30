@@ -2,7 +2,7 @@
 /* eslint-env jest */
 import * as babel from 'babel-core'
 import plugin from '../../src/babel'
-import stage2 from 'babel-plugin-transform-object-rest-spread'
+import stage2 from 'babel-plugin-syntax-object-rest-spread'
 import * as fs from 'fs'
 jest.mock('fs')
 
@@ -175,6 +175,15 @@ describe('babel styled component', () => {
       const H1 = styled('h1')({ padding: 10 },props => ({
         display: props.display
       }))`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('shorthand property', () => {
+      const basic = `const H1 = styled.h1({ fontSize })`
+
       const { code } = babel.transform(basic, {
         plugins: [plugin]
       })
