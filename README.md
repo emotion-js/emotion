@@ -1,9 +1,8 @@
-<h1 align="center" style="color: #343a40">
-  <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" width="200">
-  <br>
-  emotion
-  <br>
-</h1>
+<p align="center" style="color: #343a40">
+  <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" height="200" width="200">
+  <h1>emotion</h1>
+  <hr />
+</p>
 <p align="center" style="font-size: 1.2rem;">The Next Generation of CSS-in-JS</p>
 
 [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
