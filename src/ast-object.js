@@ -20,13 +20,28 @@ function prefixAst (args, t) {
       // nested objects
       if (t.isObjectExpression(property.value)) {
         const key = property.computed
-          ? property.key
-          : t.isStringLiteral(property.key)
-            ? t.stringLiteral(property.key.value)
-            : t.identifier(property.key.name)
+        ? property.key
+        : t.isStringLiteral(property.key)
+          ? t.stringLiteral(property.key.value)
+          : t.identifier(property.key.name)
+
+        const prefixedPseudoSelectors = {
+          '::placeholder': ['::-webkit-input-placeholder', '::-moz-placeholder', ':-ms-input-placeholder'],
+          ':fullscreen': [':-webkit-full-screen', ':-moz-full-screen', ':-ms-fullscreen']
+        }
+
+        const prefixedValue = prefixAst(property.value, t)
+
+        if (!property.computed) {
+          if (prefixedPseudoSelectors[key.value]) {
+            forEach(prefixedPseudoSelectors[key.value], (prefixedKey) => {
+              properties.push(t.objectProperty(t.stringLiteral(prefixedKey), prefixedValue, false))
+            })
+          }
+        }
 
         return properties.push(
-          t.objectProperty(key, prefixAst(property.value, t), property.computed)
+          t.objectProperty(key, prefixedValue, property.computed)
         )
 
         // literal value or array of literal values
