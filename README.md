@@ -1,9 +1,7 @@
-<h1 align="center" style="color: #343a40">
-  <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" width="200">
-  <br>
-  emotion
-  <br>
-</h1>
+<p align="center" style="color: #343a40">
+  <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" height="200" width="200">
+  <h1 align="center">emotion</h1>
+</p>
 <p align="center" style="font-size: 1.2rem;">The Next Generation of CSS-in-JS</p>
 
 [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
@@ -11,7 +9,7 @@
 [![codecov](https://codecov.io/gh/tkh44/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/tkh44/emotion)
 ![gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?compression=gzip&label=gzip%20size)
 ![size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?label=size)
-[![slack](https://emotion.now.sh/badge.svg)](https://slack.emotion.sh/)
+[![slack](https://emotion.now.sh/badge.svg)](http://slack.emotion.sh/)
 
 emotion is a high performance, lightweight css-in-js library. 
 The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/glam) library and its philosophy is laid out [here](https://gist.github.com/threepointone/0ef30b196682a69327c407124f33d69a). 
