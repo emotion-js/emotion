@@ -13,8 +13,12 @@ exports[`styled basic render 1`] = `
 `;
 
 exports[`styled basic render with object as style 1`] = `
+.glamor-0 {
+  font-size: 20px;
+}
+
 <h1
-  className="css-nil"
+  className="glamor-0"
 >
   hello world
 </h1>
