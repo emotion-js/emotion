@@ -129,6 +129,86 @@ css({
 });"
 `;
 
+exports[`babel css inline ::placeholder 1`] = `
+"
+const cls1 = css({
+  '::-webkit-input-placeholder': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  '::-moz-placeholder': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  ':-ms-input-placeholder': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  '::placeholder': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  }
+});
+const cls2 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    '::-webkit-input-placeholder': {
+      'color': 'green',
+      'display': '-webkit-box; display: flex'
+    },
+    ':-ms-input-placeholder': {
+      'color': 'green',
+      'display': '-ms-flexbox; display: flex'
+    },
+    '::placeholder': {
+      'color': 'green',
+      'display': '-webkit-box; display: -ms-flexbox; display: flex'
+    }
+  }];
+});"
+`;
+
+exports[`babel css inline :fullscreen 1`] = `
+"
+const cls1 = css({
+  ':-webkit-full-screen': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  ':-moz-full-screen': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  ':-ms-fullscreen': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  ':fullscreen': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  }
+});
+const cls2 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    ':-webkit-full-screen': {
+      'color': 'green',
+      'display': '-webkit-box; display: flex'
+    },
+    ':-moz-full-screen': {
+      'color': 'green',
+      'display': 'flex'
+    },
+    ':-ms-fullscreen': {
+      'color': 'green',
+      'display': '-ms-flexbox; display: flex'
+    },
+    ':fullscreen': {
+      'color': 'green',
+      'display': '-webkit-box; display: -ms-flexbox; display: flex'
+    }
+  }];
+});"
+`;
+
 exports[`babel css inline array of objects 1`] = `
 "
 const cls2 = css([{

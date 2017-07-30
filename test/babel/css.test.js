@@ -85,6 +85,46 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('::placeholder', () => {
+      const basic = `
+        const cls1 = css({
+          '::placeholder': {
+            color: 'green',
+            display: 'flex'
+          }
+        })
+        const cls2 = css\`
+          ::placeholder {
+            color: green;
+            display: flex;
+          }
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test(':fullscreen', () => {
+      const basic = `
+      const cls1 = css({
+        ':fullscreen': {
+          color: 'green',
+          display: 'flex'
+        }
+      })
+      const cls2 = css\`
+        :fullscreen {
+          color: green;
+          display: flex;
+        }
+      \`
+    `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
     test('only composes', () => {
       const basic = `
         const cls1 = css\`
