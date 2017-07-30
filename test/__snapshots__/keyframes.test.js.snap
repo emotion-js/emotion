@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`keyframes keyframes with interpolation 1`] = `
-.glamor-0 {
+.glamor-1 {
   -webkit-animation: animation_1cnjdtk 2s linear infinite;
   animation: animation_1cnjdtk 2s linear infinite;
 }
 
 <h1
-  className="e1fa77741 glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </h1>
@@ -16,13 +16,13 @@ exports[`keyframes keyframes with interpolation 1`] = `
 exports[`keyframes keyframes with interpolation 2`] = `"@-webkit-keyframes animation_7jdctn{from, 20%, 53%, 80%, to {-webkit-animation-timing-function:cubic-bezier(0.215, 0.610, 0.355, 1.000);animation-timing-function:cubic-bezier(0.215, 0.610, 0.355, 1.000);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%, 43% {-webkit-animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);-webkit-transform:translate3d(0, -30px, 0);transform:translate3d(0, -30px, 0);}70% {-webkit-animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);-webkit-transform:translate3d(0, -15px, 0);transform:translate3d(0, -15px, 0);}90% {-webkit-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}@keyframes animation_7jdctn{from, 20%, 53%, 80%, to {-webkit-animation-timing-function:cubic-bezier(0.215, 0.610, 0.355, 1.000);animation-timing-function:cubic-bezier(0.215, 0.610, 0.355, 1.000);-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%, 43% {-webkit-animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);-webkit-transform:translate3d(0, -30px, 0);transform:translate3d(0, -30px, 0);}70% {-webkit-animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);animation-timing-function:cubic-bezier(0.755, 0.050, 0.855, 0.060);-webkit-transform:translate3d(0, -15px, 0);transform:translate3d(0, -15px, 0);}90% {-webkit-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}.css-1m1x9re{-webkit-animation:animation_7jdctn 2s linear infinite;animation:animation_7jdctn 2s linear infinite;}@-webkit-keyframes animation_1cnjdtk{from {-webkit-transform:rotate(0deg);transform:rotate(0deg);}to {-webkit-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes animation_1cnjdtk{from {-webkit-transform:rotate(0deg);transform:rotate(0deg);}to {-webkit-transform:rotate(360deg);transform:rotate(360deg);}}.css-1nja0ph{-webkit-animation:animation_1cnjdtk 2s linear infinite;animation:animation_1cnjdtk 2s linear infinite;}"`;
 
 exports[`keyframes renders 1`] = `
-.glamor-0 {
+.glamor-1 {
   -webkit-animation: animation_7jdctn 2s linear infinite;
   animation: animation_7jdctn 2s linear infinite;
 }
 
 <h1
-  className="e1fa77740 glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </h1>

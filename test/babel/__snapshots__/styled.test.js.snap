@@ -2,7 +2,7 @@
 
 exports[`babel styled component extract basic 1`] = `
 "import \\"./styled.test.emotion.css\\";
-const H1 = styled(\\"h1\\", \\"e1qcxcvu0\\", [\\"styled-H1-10x82eg\\"]);"
+const H1 = styled(\\"h1\\", \\"css-1qcxcvu0\\", [\\"styled-H1-10x82eg\\"]);"
 `;
 
 exports[`babel styled component extract basic 2`] = `
@@ -37,13 +37,13 @@ exports[`babel styled component extract basic 2`] = `
 
 exports[`babel styled component extract no use 1`] = `
 "import \\"./styled.test.emotion.css\\";
-styled(\\"h1\\", \\"yoisj70\\", [\\"styled-0\\"]);"
+styled(\\"h1\\", \\"css-yoisj70\\", [\\"styled-0\\"]);"
 `;
 
 exports[`babel styled component extract no use 2`] = `".styled-0 {}"`;
 
 exports[`babel styled component inline basic 1`] = `
-"const H1 = /*#__PURE__*/styled('h1', 'uutogn0', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
+"const H1 = /*#__PURE__*/styled('h1', 'css-uutogn0', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [{
     'fontSize': \`\${x0}\`
   }];
@@ -56,7 +56,7 @@ exports[`babel styled component inline composes based on props 1`] = `
     'width': '20px'
   }];
 });
-const H1 = /*#__PURE__*/styled('h1', 'gzpfex0', [props => {
+const H1 = /*#__PURE__*/styled('h1', 'css-gzpfex0', [props => {
   return props.a ? cssA : cssB;
 }], [fontSize + 'px', props => props.translateX], function createEmotionStyledRules(x0, x1) {
   return [{
@@ -69,7 +69,7 @@ const H1 = /*#__PURE__*/styled('h1', 'gzpfex0', [props => {
 `;
 
 exports[`babel styled component inline dynamic fns 1`] = `
-"const Avatar = /*#__PURE__*/styled('img', 't98w700', [], [props => props.theme.borderRadius, props => props.theme.borderColor], function createEmotionStyledRules(x0, x1) {
+"const Avatar = /*#__PURE__*/styled('img', 'css-t98w700', [], [props => props.theme.borderRadius, props => props.theme.borderColor], function createEmotionStyledRules(x0, x1) {
   return [{
     'width': '96px',
     'height': '96px',
@@ -80,7 +80,7 @@ exports[`babel styled component inline dynamic fns 1`] = `
 `;
 
 exports[`babel styled component inline function call 1`] = `
-"/*#__PURE__*/styled(MyComponent, 'e1gd4urc0', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
+"/*#__PURE__*/styled(MyComponent, 'css-1gd4urc0', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [{
     'fontSize': \`\${x0}\`
   }];
@@ -89,7 +89,7 @@ exports[`babel styled component inline function call 1`] = `
 
 exports[`babel styled component inline interpolation in different places 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1', 'e1kajwdu0', [], [fontSize + 'px', props => props.translateX, something, something, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9) {
+const H1 = /*#__PURE__*/styled('h1', 'css-1kajwdu0', [], [fontSize + 'px', props => props.translateX, something, something, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9) {
   return [{
     'fontSize': \`\${x0}\`,
     'height': '20px',
@@ -104,7 +104,7 @@ const H1 = /*#__PURE__*/styled('h1', 'e1kajwdu0', [], [fontSize + 'px', props =>
 `;
 
 exports[`babel styled component inline media query 1`] = `
-"const H1 = /*#__PURE__*/styled(\\"h1\\", \\"bom4yv0\\", [], [], function createEmotionStyledRules() {
+"const H1 = /*#__PURE__*/styled(\\"h1\\", \\"css-bom4yv0\\", [], [], function createEmotionStyledRules() {
   return [{
     \\"@media print\\": {
       \\"fontSize\\": \\"10pt\\"
@@ -129,7 +129,7 @@ exports[`babel styled component inline media query 1`] = `
 `;
 
 exports[`babel styled component inline more than 10 dynamic values 1`] = `
-"const H1 = /*#__PURE__*/styled('h1', 'kzo7z60', [], ['underline', 54, 'white', 'black', 'block', '3px', '25px', '500px', 100, '18px', 'center', p => p.theme.blue], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11) {
+"const H1 = /*#__PURE__*/styled('h1', 'css-kzo7z60', [], ['underline', 54, 'white', 'black', 'block', '3px', '25px', '500px', 100, '18px', 'center', p => p.theme.blue], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11) {
       return [{
             'WebkitTextDecoration': \`\${x0}\`,
             'textDecoration': \`\${x0}\`,
@@ -149,7 +149,7 @@ exports[`babel styled component inline more than 10 dynamic values 1`] = `
 `;
 
 exports[`babel styled component inline nested 1`] = `
-"const H1 = /*#__PURE__*/styled('h1', 'e17vfrab0', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
+"const H1 = /*#__PURE__*/styled('h1', 'css-17vfrab0', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
   return [{
     'fontSize': \`\${x0}\`,
     '& div': {
@@ -163,7 +163,7 @@ exports[`babel styled component inline nested 1`] = `
 `;
 
 exports[`babel styled component inline no dynamic 1`] = `
-"/*#__PURE__*/styled(\\"h1\\", \\"e1cds4610\\", [], [], function createEmotionStyledRules() {
+"/*#__PURE__*/styled(\\"h1\\", \\"css-1cds4610\\", [], [], function createEmotionStyledRules() {
   return [{
     \\"color\\": \\"blue\\"
   }];
@@ -171,21 +171,21 @@ exports[`babel styled component inline no dynamic 1`] = `
 `;
 
 exports[`babel styled component inline no use 1`] = `
-"/*#__PURE__*/styled(\\"h1\\", \\"kmoct0\\", [], [], function createEmotionStyledRules() {
+"/*#__PURE__*/styled(\\"h1\\", \\"css-kmoct0\\", [], [], function createEmotionStyledRules() {
   return [{}];
 });"
 `;
 
 exports[`babel styled component inline object composes with classes 1`] = `
 "
-const H1 = styled('h1', 'lkmdj60', ['some-class', props => ({
+const H1 = styled('h1', 'css-lkmdj60', ['some-class', props => ({
   display: props.display
 })]);"
 `;
 
 exports[`babel styled component inline objects based on props 1`] = `
 "
-const H1 = styled('h1', 'b0u92b0', [{
+const H1 = styled('h1', 'css-b0u92b0', [{
   'padding': '10px'
 }, props => ({
   display: props.display
@@ -194,14 +194,14 @@ const H1 = styled('h1', 'b0u92b0', [{
 
 exports[`babel styled component inline objects fn call 1`] = `
 "
-const H1 = styled('h1', 'ihhgvu0', [{
+const H1 = styled('h1', 'css-ihhgvu0', [{
   'display': '-webkit-box; display: -ms-flexbox; display: flex'
 }]);"
 `;
 
 exports[`babel styled component inline objects prefixed 1`] = `
 "
-const H1 = styled('h1', 'e13vphhj0', [{
+const H1 = styled('h1', 'css-13vphhj0', [{
   'borderRadius': '50%',
   'WebkitTransition': '-webkit-transform 400ms ease-in-out',
   'transition': '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
@@ -219,10 +219,10 @@ const H1 = styled('h1', 'e13vphhj0', [{
 
 exports[`babel styled component inline styled component as selector 1`] = `
 "
-const SomeComponent = /*#__PURE__*/styled(\\"div\\", \\"e1jq2uck0\\", [], [], function createEmotionStyledRules() {
+const SomeComponent = /*#__PURE__*/styled(\\"div\\", \\"css-1jq2uck0\\", [], [], function createEmotionStyledRules() {
   return [{}];
 });
-/*#__PURE__*/styled(\\"h1\\", \\"e1jq2uck1\\", [], [SomeComponent], function createEmotionStyledRules(x0) {
+/*#__PURE__*/styled(\\"h1\\", \\"css-1jq2uck1\\", [], [SomeComponent], function createEmotionStyledRules(x0) {
   return [{
     \\"color\\": \\"blue\\",
     [\`\${x0}\`]: {
@@ -234,7 +234,7 @@ const SomeComponent = /*#__PURE__*/styled(\\"div\\", \\"e1jq2uck0\\", [], [], fu
 
 exports[`babel styled component inline styled objects prefixed 1`] = `
 "
-const H1 = styled('h1', 'e3mpmja0', [{
+const H1 = styled('h1', 'css-3mpmja0', [{
   'borderRadius': '50%',
   'WebkitTransition': '-webkit-transform 400ms ease-in-out',
   'transition': '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
@@ -252,7 +252,7 @@ const H1 = styled('h1', 'e3mpmja0', [{
 
 exports[`babel styled component inline styled. objects 1`] = `
 "
-const H1 = styled(\\"h1\\", \\"hqyr220\\", [{
+const H1 = styled(\\"h1\\", \\"css-hqyr220\\", [{
   \\"padding\\": \\"10px\\"
 }, props => ({
   display: props.display
@@ -263,14 +263,14 @@ exports[`babel styled component inline styled. objects with a multiple spread pr
 "var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 const defaultText = { fontSize: 20 };
-const Figure = styled(\\"figure\\", \\"e1f2fuyv0\\", [_extends({}, defaultText, defaultFigure)]);"
+const Figure = styled(\\"figure\\", \\"css-1f2fuyv0\\", [_extends({}, defaultText, defaultFigure)]);"
 `;
 
 exports[`babel styled component inline styled. objects with a multiple spread properties and other keys 1`] = `
 "var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 const defaultText = { fontSize: 20 };
-const Figure = styled('figure', 'lb5dzq0', [_extends({}, defaultText, {
+const Figure = styled('figure', 'css-lb5dzq0', [_extends({}, defaultText, {
   'fontSize': '20px'
 }, defaultFigure, defaultText2)]);"
 `;
@@ -279,5 +279,5 @@ exports[`babel styled component inline styled. objects with a single spread prop
 "var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 const defaultText = { fontSize: 20 };
-const Figure = styled(\\"figure\\", \\"e1mp0w960\\", [_extends({}, defaultText)]);"
+const Figure = styled(\\"figure\\", \\"css-1mp0w960\\", [_extends({}, defaultText)]);"
 `;

@@ -15,14 +15,14 @@ exports[`prefixing css 1`] = `
 `;
 
 exports[`prefixing styled 1`] = `
-.glamor-0 {
+.glamor-1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
 <div
-  className="e1q5zpw60 glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </div>

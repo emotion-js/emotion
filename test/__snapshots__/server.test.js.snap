@@ -3,7 +3,7 @@
 exports[`extractCritical returns static css 1`] = `
 Object {
   "css": ".no-prefix {display:-webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}.css-71uu79{display:-webkit-box; display: -ms-flexbox; display: flex;}.css-l2qi8{border-radius:50%;height:50px;width:50px;background-color:red;}",
-  "html": "<main class=\\"e13bzyir0 css-71uu79\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"-41398130\\"><img size=\\"30\\" class=\\"e13bzyir1 css-l2qi8\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"e13bzyir1 css-l2qi8\\" data-reactid=\\"3\\"/><img class=\\"e13bzyir1 css-l2qi8\\" data-reactid=\\"4\\"/></main>",
+  "html": "<main class=\\"css-13bzyir0 css-71uu79\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"452416722\\"><img size=\\"30\\" class=\\"css-13bzyir1 css-l2qi8\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"css-13bzyir1 css-l2qi8\\" data-reactid=\\"3\\"/><img class=\\"css-13bzyir1 css-l2qi8\\" data-reactid=\\"4\\"/></main>",
   "ids": Array [
     "71uu79",
     "l2qi8",
@@ -25,7 +25,7 @@ Object {
 exports[`extractCritical returns static css 2`] = `
 Object {
   "css": ".no-prefix {display:-webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}.css-71uu79{display:-webkit-box; display: -ms-flexbox; display: flex;}",
-  "html": "<main class=\\"e13bzyir0 css-71uu79\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"-263183255\\"><div data-reactid=\\"2\\">Hello</div></main>",
+  "html": "<main class=\\"css-13bzyir0 css-71uu79\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"1740055930\\"><div data-reactid=\\"2\\">Hello</div></main>",
   "ids": Array [
     "71uu79",
   ],

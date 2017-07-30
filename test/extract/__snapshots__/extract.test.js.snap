@@ -2,7 +2,7 @@
 
 exports[`styled basic render nested 1`] = `
 <h1
-  className="styled-H1-1l4sfy8 d5wsk51"
+  className="styled-H1-1l4sfy8 css-d5wsk51"
 >
   hello world
 </h1>
@@ -10,7 +10,7 @@ exports[`styled basic render nested 1`] = `
 
 exports[`styled name 1`] = `
 <h1
-  className="styled-FancyH1-131pfth d5wsk52"
+  className="styled-FancyH1-131pfth css-d5wsk52"
 >
   hello world
 </h1>
@@ -18,7 +18,7 @@ exports[`styled name 1`] = `
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="styled-H1-ijh7uz d5wsk50"
+  className="styled-H1-ijh7uz css-d5wsk50"
 >
   hello world
 </h1>
