@@ -205,8 +205,6 @@ export default class ASTObject {
           return prop
         }
 
-        // console.log(JSON.stringify(prop, null, 2))
-
         const { property, key, value, spread, shorthand } = prop
 
         if (spread || shorthand) {
