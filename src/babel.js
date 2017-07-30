@@ -133,8 +133,9 @@ const getNextId = (state) => {
 }
 
 const getComponentId = (state) => {
-  // Prefix the identifier with a character because CSS classes cannot start with a number
-  return `${getFileHash(state).replace(/^(\d)/, 'e$1')}${getNextId(state)}`
+  // Prefix the identifier with css- because CSS classes cannot start with a number
+  // Also in snapshots with jest-glamor-react the hash will be replaced with an index
+  return `css-${getFileHash(state)}${getNextId(state)}`
 }
 
 export function buildStyledCallExpression (identifier, tag, path, state, t) {
