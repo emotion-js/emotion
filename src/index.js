@@ -46,7 +46,7 @@ function buildStyles (objs) {
   forEach(objs, (cls): void => {
     if (typeof cls === 'string') {
       const match = emotionClassRegex.exec(cls)
-      if (match) {
+      if (match !== null && ruleCache[match[1]] !== undefined) {
         objectStyles.push(ruleCache[match[1]])
       } else {
         computedClassName && (computedClassName += ' ')

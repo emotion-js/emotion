@@ -47,7 +47,7 @@ module.exports = function macro (options) {
         (t.isCallExpression(path.node.callee) ||
           t.isIdentifier(path.node.callee.object))
       ) {
-        path.replaceWith(buildStyledObjectCallExpression(path, runtimeNode, t))
+        path.replaceWith(buildStyledObjectCallExpression(path, state, runtimeNode, t))
       }
     })
   }
