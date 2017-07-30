@@ -1,6 +1,12 @@
 // @flow weak
 import fs from 'fs'
-import { basename, dirname, join as pathJoin, sep as pathSep, relative } from 'path'
+import {
+  basename,
+  dirname,
+  join as pathJoin,
+  sep as pathSep,
+  relative
+} from 'path'
 import { touchSync } from 'touch'
 import { inline } from './inline'
 import { parseCSS } from './parser'
@@ -83,7 +89,7 @@ export function replaceCssWithCallExpression (
 // babel-plugin-styled-components
 // https://github.com/styled-components/babel-plugin-styled-components/blob/37a13e9c21c52148ce6e403100df54c0b1561a88/src/visitors/displayNameAndId.js#L49-L93
 
-const findModuleRoot = (filename) => {
+const findModuleRoot = filename => {
   if (!filename || filename === 'unknown') {
     return null
   }
@@ -100,7 +106,7 @@ const findModuleRoot = (filename) => {
 const FILE_HASH = 'emotion-file-hash'
 const COMPONENT_POSITION = 'emotion-component-position'
 
-const getFileHash = (state) => {
+const getFileHash = state => {
   const { file } = state
   // hash calculation is costly due to fs operations, so we'll cache it per file.
   if (file.get(FILE_HASH)) {
@@ -109,10 +115,13 @@ const getFileHash = (state) => {
   const filename = file.opts.filename
   // find module root directory
   const moduleRoot = findModuleRoot(filename)
-  const filePath = moduleRoot && relative(moduleRoot, filename).replace(pathSep, '/')
+  const filePath =
+    moduleRoot && relative(moduleRoot, filename).replace(pathSep, '/')
   let moduleName = ''
   if (moduleRoot) {
-    const packageJsonString = fs.readFileSync(pathJoin(moduleRoot, 'package.json'))
+    const packageJsonString = fs.readFileSync(
+      pathJoin(moduleRoot, 'package.json')
+    )
     if (packageJsonString) {
       try {
         moduleName = JSON.parse(packageJsonString).name
@@ -126,13 +135,13 @@ const getFileHash = (state) => {
   return fileHash
 }
 
-const getNextId = (state) => {
+const getNextId = state => {
   const id = state.file.get(COMPONENT_POSITION) || 0
   state.file.set(COMPONENT_POSITION, id + 1)
   return id
 }
 
-const getComponentId = (state) => {
+const getComponentId = state => {
   // Prefix the identifier with css- because CSS classes cannot start with a number
   // Also in snapshots with jest-glamor-react the hash will be replaced with an index
   return `css-${getFileHash(state)}${getNextId(state)}`
