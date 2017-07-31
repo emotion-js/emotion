@@ -258,6 +258,25 @@ exports[`babel css inline css basic 1`] = `
 });"
 `;
 
+exports[`babel css inline css random expression 1`] = `
+"
+/*#__PURE__*/css([], [/*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"fontSize\\": \\"32px\\"
+  }];
+})], function createEmotionStyledRules(x0) {
+  return [{
+    \\"margin\\": \\"12px 48px\\",
+    [\`\${x0}\`]: \\"\\",
+    \\"color\\": \\"#ffffff\\",
+    \\"@media (min-width: 420px)\\": {
+      \\"width\\": \\"96px\\",
+      \\"height\\": \\"96px\\"
+    }
+  }];
+});"
+`;
+
 exports[`babel css inline interpolation in selector 1`] = `
 "
 const cls2 = /*#__PURE__*/css([], [className], function createEmotionStyledRules(x0) {

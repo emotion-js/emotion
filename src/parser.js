@@ -1,5 +1,5 @@
 // @flow
-import parse from 'postcss-safe-parser'
+import SafeParser from 'postcss-safe-parser/lib/safe-parser'
 import postcssNested from 'postcss-nested'
 import postcssJs from 'postcss-js'
 import objParse from 'postcss-js/parser'
@@ -35,7 +35,7 @@ export function parseCSS (
   if (typeof css === 'object') {
     root = objParse(css, { from: filename })
   } else {
-    root = parse(css, { from: filename })
+    root = safeParse(css, { from: filename })
   }
   let vars = 0
   let composes: number = 0
@@ -56,7 +56,7 @@ export function parseCSS (
     }
   })
 
-  const styles = expandCSSFallbacks(prefixer(postcssJs.objectify(root)))
+  const styles = expandCSSFallbacks(prefixer(objectifyPostcssRules(root)))
 
   return {
     styles,
@@ -88,4 +88,89 @@ export function expandCSSFallbacks (style: { [string]: any }) {
   // todo -
   // flatten arrays which haven't been flattened yet
   return flattened
+}
+
+var camelcase = require('camelcase-css')
+
+function atRule (node) {
+  if (typeof node.nodes === 'undefined') {
+    return true
+  } else {
+    return objectifyPostcssRules(node)
+  }
+}
+
+// postcss -> js obj
+function objectifyPostcssRules (node) {
+  const result = [{}]
+  let name
+  let cursor = 0
+  node.each(function (child) {
+    var rules = {}
+    // console.log(JSON.stringify(child, null, 2))
+    node.each(function (rule) {
+      if (rule.type !== 'rule') {
+      } else if (rules[rule.selector]) {
+        // console.log(rules[rule.selector])
+        if (rules[rule.selector].append) {
+          rules[rule.selector].append(rule.nodes)
+          rule.remove()
+        }
+      } else {
+        rules[rule.selector] = rule
+      }
+    })
+
+    if (child.type === 'atrule') {
+      name = '@' + child.name
+
+      if (child.params) name += ' ' + child.params
+      if (typeof result[cursor][name] === 'undefined') {
+        result[cursor][name] = atRule(child)
+      } else if (Array.isArray(result[cursor][name])) {
+        result[cursor][name].push(atRule(child))
+      } else {
+        result[cursor][name] = [result[cursor][name], atRule(child)]
+      }
+    } else if (child.type === 'rule') {
+      result[cursor][child.selector] = objectifyPostcssRules(child)
+    } else if (child.type === 'decl') {
+      name = camelcase(child.prop)
+      child.value = child.important ? child.value + ' !important' : child.value
+      if (typeof result[cursor][name] === 'undefined') {
+        result[cursor][name] = child.value
+      } else if (Array.isArray(result[cursor][name])) {
+        result[cursor][name].push(child.value)
+      } else {
+        result[cursor][name] = [result[cursor][name], child.value]
+      }
+    }
+  })
+  return result[0]
+}
+
+// Parser
+
+import Input from 'postcss/lib/input'
+
+export function safeParse (css, opts) {
+  let input = new Input(css, opts)
+
+  let parser = new EmotionSafeParser(input)
+  parser.parse()
+
+  return parser.root
+}
+
+export class EmotionSafeParser extends SafeParser {
+  unknownWord (tokens) {
+    if (tokens[0][0] === 'word') {
+      if (/xxx(\d+)xxx/gm.exec(tokens[0][1])) {
+        this.decl(tokens)
+        return
+      }
+    }
+
+    this.spaces += tokens.map(i => i[1]).join('')
+  }
 }

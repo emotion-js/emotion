@@ -35,6 +35,19 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('random expression', () => {
+    const cls2 = css`
+    margin: 12px 48px;
+        ${css`font-size: 32px`};
+        color: #ffffff;
+        @media(min-width: 420px) {
+          width: 96px;
+          height: 96px;
+        }`
+    const tree = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('composes', () => {
     const cls1 = css`
       display: flex;
@@ -118,9 +131,13 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('nested array', () => {
-    const cls1 = css([[{
-      display: 'flex'
-    }]])
+    const cls1 = css([
+      [
+        {
+          display: 'flex'
+        }
+      ]
+    ])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })

@@ -222,3 +222,22 @@ exports[`css null rule 1`] = `
   className="css-nil"
 />
 `;
+
+exports[`css random expression 1`] = `
+.glamor-0 {
+  margin: 12px 48px;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+@media (min-width: 420px) {
+  .glamor-0 {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;

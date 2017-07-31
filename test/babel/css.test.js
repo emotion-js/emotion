@@ -24,6 +24,23 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('css random expression', () => {
+      const basic = `
+        css\`
+        margin: 12px 48px;
+        \${css\`font-size: 32px\`};
+        color: #ffffff;
+        @media(min-width: 420px) {
+          width: 96px;
+          height: 96px;
+        }
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('nested expanded properties', () => {
       const basic = `
         css\`

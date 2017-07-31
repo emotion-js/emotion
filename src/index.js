@@ -244,6 +244,8 @@ function deconstruct (style) {
     } else if (key.indexOf('@supports') === 0) {
       supports = supports || {}
       supports[key] = deconstruct(style[key])
+    } else if (key.indexOf('css-') === 0) {
+      plain = { ...plain, ...style[key]}
     } else {
       plain = plain || {}
       plain[key] = style[key]
@@ -366,7 +368,6 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
     src = [src]
   }
   src = flatten(src)
-
   forEach(src, _src => {
     if (isLikeRule(_src)) {
       let reg = _getRegistered(_src)
@@ -380,7 +381,10 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
       build(dest, { selector, mq, supp, src: _src.composes })
     }
     forEach(keys(_src || {}), key => {
-      if (isSelector(key)) {
+      if (key.indexOf('css-') === 0) {
+        let _dest = dest
+        _dest[key] = registered[key.split('css-')[1]].style
+      } else if (isSelector(key)) {
         build(dest, {
           selector: joinSelectors(selector, key),
           mq,
