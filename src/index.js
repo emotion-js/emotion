@@ -240,12 +240,19 @@ function deconstruct (style) {
       selects[key] = style[key]
     } else if (key.indexOf('@media') === 0) {
       medias = medias || {}
-      medias[key] = deconstruct(style[key])
+      const result = deconstruct(style[key])
+      console.log('result', result)
+      medias[key] = result
     } else if (key.indexOf('@supports') === 0) {
       supports = supports || {}
       supports[key] = deconstruct(style[key])
     } else if (key.indexOf('css-') === 0) {
-      plain = { ...plain, ...style[key]}
+      console.log('key', key)
+      console.log('style', style)
+      console.log('plain', plain)
+      console.log('medias', medias)
+      plain = plain || {}
+      plain = { ...plain, ...style[key] }
     } else {
       plain = plain || {}
       plain[key] = style[key]

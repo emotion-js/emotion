@@ -26,15 +26,22 @@ describe('babel css', () => {
 
     test('css random expression', () => {
       const basic = `
-        css\`
+        const cls2 = css\`
         margin: 12px 48px;
-        \${css\`font-size: 32px\`};
-        color: #ffffff;
-        @media(min-width: 420px) {
-          width: 96px;
-          height: 96px;
+        \${css\`
+          font-size: 32px\`};
+                  color: #ffffff;
+        & .profile {
+          \${css\`color: green;\`}
         }
-      \``
+        @media(min-width: 420px) {
+          font-size: 48px;
+          \${css\`
+          width: 96px;
+          height: 96px;\`};
+          color: blue;
+          }\`
+      `
       const { code } = babel.transform(basic, {
         plugins: [[plugin]]
       })

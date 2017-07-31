@@ -164,6 +164,7 @@ export function safeParse (css, opts) {
 
 export class EmotionSafeParser extends SafeParser {
   unknownWord (tokens) {
+    console.log(tokens)
     if (tokens[0][0] === 'word') {
       if (/xxx(\d+)xxx/gm.exec(tokens[0][1])) {
         this.decl(tokens)
