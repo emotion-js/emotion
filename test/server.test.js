@@ -51,6 +51,7 @@ const getComponents = () => {
   `
 
   const Main = styled.main`
+    composes: ${hoverStyles};
     display: flex;
   `
 
