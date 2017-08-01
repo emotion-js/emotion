@@ -20,9 +20,9 @@ html {
 `;
 
 exports[`babel injectGlobal extract injectGlobal basic 1`] = `
-"import \\"./inject-global.test.emotion.css\\";"
+"import \\"./inject-global.test.emotion.css\\";
 
-undefined;
+undefined;"
 `;
 
 exports[`babel injectGlobal extract injectGlobal basic 2`] = `
