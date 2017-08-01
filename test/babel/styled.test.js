@@ -91,12 +91,13 @@ describe('babel styled component', () => {
 
     test('random expressions', () => {
       const basic = `
+        const a = () => css\`font-size: 1rem\`
         styled.h1\`
           margin: 12px 48px;
           \${css\`font-size: 32px\`};
           color: #ffffff;
           & .profile {
-            \${props => props.prop && css\`font-size: 1rem\`}
+            \${props => props.prop && a()}
           }
         \`
       `

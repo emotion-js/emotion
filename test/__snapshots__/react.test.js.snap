@@ -488,7 +488,10 @@ exports[`styled objects with spread properties 1`] = `
 exports[`styled random expressions 1`] = `
 .glamor-1 {
   font-size: 1rem;
-  height: 40vh;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
   color: green;
 }
 

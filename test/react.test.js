@@ -75,7 +75,7 @@ describe('styled', () => {
       display: flex;
       & div {
         color: green;
-        
+
         & span {
           color: red;
         }
@@ -94,14 +94,26 @@ describe('styled', () => {
   })
 
   test('random expressions', () => {
+    const margin = (t, r, b, l) => {
+      return (props) => css`
+        margin-top: ${t}
+        margin-right: ${r}
+        margin-bottom: ${b}
+        margin-left: ${l}
+      `
+    }
     const H1 = styled('h1')`
       ${props => props.prop && css`font-size: 1rem`};
-      ${css`height: 40vh;`};
+      ${margin(0, 'auto', 0, 'auto')};
       color: green;
     `
 
     const tree = renderer
-      .create(<H1 className={'legacy__class'} prop>hello world</H1>)
+      .create(
+        <H1 className={'legacy__class'} prop>
+          hello world
+        </H1>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -141,9 +153,7 @@ describe('styled', () => {
         background-color: green;
       }
     `
-    const tree = renderer
-      .create(<Input>hello world</Input>)
-      .toJSON()
+    const tree = renderer.create(<Input>hello world</Input>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -155,9 +165,7 @@ describe('styled', () => {
       }
     })
 
-    const tree = renderer
-      .create(<Input>hello world</Input>)
-      .toJSON()
+    const tree = renderer.create(<Input>hello world</Input>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -487,9 +495,7 @@ describe('styled', () => {
   })
 
   test('composing components', () => {
-    const Button = styled.button`
-       color: green;
-    `
+    const Button = styled.button`color: green;`
     const OtherButton = styled(Button)`
       display: none;
     `
@@ -498,17 +504,22 @@ describe('styled', () => {
       display: flex;
       justify-content: center;
     `
-    const tree = renderer.create(<AnotherButton>hello world</AnotherButton>).toJSON()
+    const tree = renderer
+      .create(<AnotherButton>hello world</AnotherButton>)
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
   test('change theme', () => {
-    const Div = styled.div`
-      color: ${props => props.theme.primary}
-    `
-    const TestComponent = (props) => (<ThemeProvider theme={props.theme}>{props.renderChild ? <Div>this will be green then pink</Div> : null}</ThemeProvider>)
-    const wrapper = mount(<TestComponent renderChild theme={{ primary: 'green' }} />)
+    const Div = styled.div`color: ${props => props.theme.primary};`
+    const TestComponent = props =>
+      <ThemeProvider theme={props.theme}>
+        {props.renderChild ? <Div>this will be green then pink</Div> : null}
+      </ThemeProvider>
+    const wrapper = mount(
+      <TestComponent renderChild theme={{ primary: 'green' }} />
+    )
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ theme: { primary: 'pink' } })
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
