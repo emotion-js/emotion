@@ -40,7 +40,19 @@ const getComponents = () => {
     }
   `
 
-  const Main = styled.main`display: flex;`
+  const hoverStyles = css`
+    color: hotpink;
+    &:hover {
+      color: white;
+      background-color: lightgray;
+      border-color: aqua;
+      box-shadow: -15px -15px 0 0 aqua, -30px -30px 0 0 cornflowerblue;
+    }
+  `
+
+  const Main = styled.main`
+    display: flex;
+  `
 
   const Image = styled.img`
     animation: ${bounce};
