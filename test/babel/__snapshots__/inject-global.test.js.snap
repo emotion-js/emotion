@@ -19,7 +19,11 @@ html {
 }"
 `;
 
-exports[`babel injectGlobal extract injectGlobal basic 1`] = `"import \\"./inject-global.test.emotion.css\\";"`;
+exports[`babel injectGlobal extract injectGlobal basic 1`] = `
+"import \\"./inject-global.test.emotion.css\\";
+
+undefined;"
+`;
 
 exports[`babel injectGlobal extract injectGlobal basic 2`] = `
 "body {
