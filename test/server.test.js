@@ -20,6 +20,7 @@ const Image = styled.img`
 `
 
 // this will not be included since it's not used
+
 css`
   display: none;
   name: unused-class;
@@ -31,6 +32,9 @@ injectGlobal`
   .no-prefix {
     display: flex;
     justify-content: center;
+  }
+  .should-be-included {
+    content: 'css-foo matches regex and this rule is swallowed (current bug)'
   }
 `
 
@@ -50,5 +54,13 @@ describe('extractCritical', () => {
   test('returns static css', () => {
     expect(extractCritical(renderToString(<Page1 />))).toMatchSnapshot()
     expect(extractCritical(renderToString(<Page2 />))).toMatchSnapshot()
+  })
+
+  test('returns only css for ids included in page', () => {
+    expect(extractCritical('').css).toMatchSnapshot()
+  })
+
+  test('does not strip valid rules', () => {
+    expect(extractCritical('').css).toMatch(/should-be-included/)
   })
 })

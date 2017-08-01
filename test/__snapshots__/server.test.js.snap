@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`extractCritical returns only css for ids included in page 1`] = `
+".no-prefix {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+  }"
+`;
+
 exports[`extractCritical returns static css 1`] = `
 Object {
   "css": ".no-prefix {display:-webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}.css-71uu79{display:-webkit-box; display: -ms-flexbox; display: flex;}.css-l2qi8{border-radius:50%;height:50px;width:50px;background-color:red;}",
