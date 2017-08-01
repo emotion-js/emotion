@@ -217,6 +217,28 @@ const H1 = styled('h1', 'css-13vphhj0', [{
 }]);"
 `;
 
+exports[`babel styled component inline random expressions 1`] = `
+"
+/*#__PURE__*/styled(\\"h1\\", \\"css-11ezyjd0\\", [], [/*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"fontSize\\": \\"32px\\"
+  }];
+}), props => props.prop && /*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"fontSize\\": \\"1rem\\"
+  }];
+})], function createEmotionStyledRules(x0, x1) {
+  return [{
+    \\"margin\\": \\"12px 48px\\",
+    [\`\${x0}\`]: \\"fragment\\",
+    \\"color\\": \\"#ffffff\\",
+    \\"& .profile\\": {
+      [\`\${x1}\`]: \\"fragment\\"
+    }
+  }];
+});"
+`;
+
 exports[`babel styled component inline shorthand property 1`] = `
 "const H1 = styled(\\"h1\\", \\"css-1o8pmqr0\\", [{
   \\"fontSize\\": \`\${fontSize}\`

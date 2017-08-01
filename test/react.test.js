@@ -93,6 +93,33 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('random expressions', () => {
+    const H1 = styled('h1')`
+      ${props => props.prop && css`font-size: 1rem`};
+      ${css`height: 40vh;`};
+      color: green;
+    `
+
+    const tree = renderer
+      .create(<H1 className={'legacy__class'} prop>hello world</H1>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('random expressions undefined return', () => {
+    const H1 = styled('h1')`
+      ${props => props.prop && css`font-size: 1rem`};
+      color: green;
+    `
+
+    const tree = renderer
+      .create(<H1 className={'legacy__class'}>hello world</H1>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('composition', () => {
     const fontSize = 20
     const H1 = styled('h1')`

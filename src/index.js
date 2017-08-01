@@ -234,27 +234,25 @@ function deconstruct (style) {
   let selects
   let medias
   let supports
+
   forEach(keys(style), key => {
     if (key.indexOf('&') >= 0) {
       selects = selects || {}
       selects[key] = style[key]
     } else if (key.indexOf('@media') === 0) {
       medias = medias || {}
-      const result = deconstruct(style[key])
-      console.log('result', result)
-      medias[key] = result
+      medias[key] = deconstruct(style[key])
     } else if (key.indexOf('@supports') === 0) {
       supports = supports || {}
       supports[key] = deconstruct(style[key])
     } else if (key.indexOf('css-') === 0) {
-      console.log('key', key)
-      console.log('style', style)
-      console.log('plain', plain)
-      console.log('medias', medias)
+      // replace fragments
       plain = plain || {}
-      plain = { ...plain, ...style[key] }
+      const registeredStyles = registered[key.split('css-')[1]].style
+      assign(plain, registeredStyles)
     } else {
       plain = plain || {}
+
       plain[key] = style[key]
     }
   })
@@ -370,7 +368,20 @@ function flatten (inArr) {
 }
 
 // mutable! modifies dest.
-function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
+function build (
+  dest,
+  {
+    selector = '',
+    mq = '',
+    supp = '',
+    src = [{}]
+  }: {
+    selector?: string,
+    mq?: string,
+    supp?: string,
+    src: Array<{ [string]: any }>
+  }
+) {
   if (!Array.isArray(src)) {
     src = [src]
   }
@@ -387,11 +398,13 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
     if (_src && _src.composes) {
       build(dest, { selector, mq, supp, src: _src.composes })
     }
+
     forEach(keys(_src || {}), key => {
-      if (key.indexOf('css-') === 0) {
-        let _dest = dest
-        _dest[key] = registered[key.split('css-')[1]].style
-      } else if (isSelector(key)) {
+      if (key === 'undefined') {
+        // drop undefined fragment results
+        return
+      }
+      if (isSelector(key)) {
         build(dest, {
           selector: joinSelectors(selector, key),
           mq,
@@ -435,7 +448,7 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
   })
 }
 
-let nullrule: EmotionClassName = {
+let nullrule: EmotionRule = {
   // 'data-css-nil': ''
 }
 

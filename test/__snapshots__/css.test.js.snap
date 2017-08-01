@@ -225,15 +225,16 @@ exports[`css null rule 1`] = `
 
 exports[`css random expression 1`] = `
 .glamor-0 {
-  margin: 12px 48px;
-  font-size: 32px;
-  color: #ffffff;
+  font-size: 20px;
+  background: green;
 }
 
 @media (min-width: 420px) {
   .glamor-0 {
+    color: blue;
     width: 96px;
     height: 96px;
+    line-height: 40px;
   }
 }
 

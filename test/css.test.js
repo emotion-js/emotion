@@ -37,19 +37,14 @@ describe('css', () => {
 
   test('random expression', () => {
     const cls2 = css`
-        margin: 12px 48px;
-        ${css`font-size: 32px`};
-        color: #ffffff;
-        & .profile {
-          ${css`color: green;`}
-        }
-        @media(min-width: 420px) {
-          font-size: 48px;
-          ${css`
-            width: 96px;
-            height: 96px;`};
-          color: blue;
-    }`
+      font-size: 20px;
+      @media(min-width: 420px) {
+        color: blue;
+        ${css`width: 96px; height: 96px;`};
+        line-height: 40px;
+      }
+      background: green;
+    `
     const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshot()
   })

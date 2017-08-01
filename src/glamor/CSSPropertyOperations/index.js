@@ -151,13 +151,6 @@ if (process.env.NODE_ENV !== 'production') {
 export function createMarkupForStyles (styles) {
   let serialized = ''
   for (let styleName in styles) {
-    // console.log(styleName)
-    // if (styleName.indexOf('css-') === 0) {
-    //   console.log(styles[styleName])
-    //   serialized += createMarkupForStyles(styles[styleName])
-    //   continue
-    // }
-
     const isCustomProp = styleName.indexOf('--') === 0
     if (!styles.hasOwnProperty(styleName)) {
       continue
