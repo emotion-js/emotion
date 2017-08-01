@@ -44,11 +44,9 @@ export function replaceCssWithCallExpression (
       if (!removePath) {
         return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
       }
-      if (t.isExpressionStatement(path.parent)) {
-        path.parentPath.remove()
-      } else {
-        path.replaceWith(t.identifier('undefined'))
-      }
+
+      path.replaceWith(t.identifier('undefined'))
+
       return
     }
 
