@@ -77,7 +77,7 @@ export function css (objs: any, vars: Array<any>, content: () => Array<any>) {
 
 function insertRawRule (css: string) {
   let spec = {
-    id: hash(css, css.length),
+    id: hash(css),
     css,
     type: 'raw'
   }
