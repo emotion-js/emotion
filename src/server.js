@@ -26,13 +26,18 @@ export function extractCritical (html) {
   }
 
   o.rules = sheet.sheet.cssRules.slice().filter(x => {
+    RGX.lastIndex = 0
     let match = RGX.exec(x.cssText)
     const ret = match == null || ids[match[1]] || false
-    RGX.lastIndex = 0
     return ret
   })
 
-  o.ids = keys(inserted).filter(id => !!ids[id])
+  o.ids = keys(inserted).filter(
+    id =>
+      !!ids[id] ||
+      sheet.registered[id].type === 'raw' ||
+      sheet.registered[id].type === 'keyframes'
+  )
 
   let css = ''
   forEach(o.rules, x => (css += x.cssText))
