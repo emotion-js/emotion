@@ -32,7 +32,12 @@ export function extractCritical (html) {
     return ret
   })
 
-  o.ids = keys(inserted).filter(id => !!ids[id] || sheet.registered[id].type === 'raw' || sheet.registered[id].type === 'keyframes')
+  o.ids = keys(inserted).filter(
+    id =>
+      !!ids[id] ||
+      sheet.registered[id].type === 'raw' ||
+      sheet.registered[id].type === 'keyframes'
+  )
 
   let css = ''
   forEach(o.rules, x => (css += x.cssText))
