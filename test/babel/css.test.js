@@ -212,10 +212,8 @@ describe('babel css', () => {
         })
       ).toThrowErrorMatchingSnapshot()
     })
-    test.skip(
-      'throws correct error when composes is on a nested selector',
-      () => {
-        const basic = `
+    test('throws correct error when composes is on a nested selector', () => {
+      const basic = `
         const cls1 = css\`
           display: flex;
         \`
@@ -227,13 +225,12 @@ describe('babel css', () => {
           }
         \`
       `
-        expect(() =>
-          babel.transform(basic, {
-            plugins: [[plugin]]
-          })
-        ).toThrowErrorMatchingSnapshot()
-      }
-    )
+      expect(() =>
+        babel.transform(basic, {
+          plugins: [[plugin]]
+        })
+      ).toThrowErrorMatchingSnapshot()
+    })
     test('object with a bunch of stuff', () => {
       const basic = `
       const cls2 = css({

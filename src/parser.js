@@ -44,6 +44,9 @@ export function parseCSS (
       if (decl.parent.nodes[0] !== decl) {
         throw new Error('composes must be the first rule')
       }
+      if (decl.parent.type !== 'root') {
+        throw new Error('composes cannot be on nested selectors')
+      }
       const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
       const numOfComposes: number = !composeMatches ? 0 : composeMatches.length
       composes += numOfComposes

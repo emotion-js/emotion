@@ -83,7 +83,7 @@ describe('styled', () => {
 
   test('random expressions', () => {
     const margin = (t, r, b, l) => {
-      return (props) => css`
+      return props => css`
         margin-top: ${t};
         margin-right: ${r};
         margin-bottom: ${b};
@@ -122,7 +122,7 @@ describe('styled', () => {
 
   test('random object expression', () => {
     const margin = (t, r, b, l) => {
-      return (props) => ({
+      return props => ({
         marginTop: t,
         marginRight: r,
         marginBottom: b,

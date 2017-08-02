@@ -75,9 +75,7 @@ describe('styled', () => {
 
   test('component as selector', () => {
     const fontSize = '20px'
-    const H1 = styled.h1`
-      font-size: ${fontSize};
-    `
+    const H1 = styled.h1`font-size: ${fontSize};`
 
     const Thing = styled.div`
       display: flex;
@@ -87,7 +85,11 @@ describe('styled', () => {
     `
 
     const tree = renderer
-      .create(<Thing>hello <H1>This will be green</H1> world</Thing>)
+      .create(
+        <Thing>
+          hello <H1>This will be green</H1> world
+        </Thing>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -101,13 +103,7 @@ describe('styled', () => {
 
     const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale};`
 
-    const tree = renderer
-      .create(
-        <H2 scale={2}>
-          hello world
-        </H2>
-      )
-      .toJSON()
+    const tree = renderer.create(<H2 scale={2}>hello world</H2>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -131,13 +127,7 @@ describe('styled', () => {
 
     const H2 = styled(H1)`font-size:32px;`
 
-    const tree = renderer
-      .create(
-        <H2 scale={2}>
-          hello world
-        </H2>
-      )
-      .toJSON()
+    const tree = renderer.create(<H2 scale={2}>hello world</H2>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -163,13 +153,7 @@ describe('styled', () => {
 
     const H2 = styled(H1)`font-size:32px;`
 
-    const tree = renderer
-      .create(
-        <H2 scale={2}>
-          hello world
-        </H2>
-      )
-      .toJSON()
+    const tree = renderer.create(<H2 scale={2}>hello world</H2>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -274,22 +258,10 @@ describe('styled', () => {
       }};
     `
 
-    const tree = renderer
-      .create(
-        <H1 a>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1 a>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshot()
-    const tree2 = renderer
-      .create(
-        <H1>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree2 = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree2).toMatchSnapshot()
   })
@@ -298,13 +270,7 @@ describe('styled', () => {
     const H1 = styled('h1')('some-class', { padding: 10 }, props => ({
       display: props.display
     }))
-    const tree = renderer
-      .create(
-        <H1 display='flex'>
-          hello world
-        </H1>
-      )
-      .toJSON()
+    const tree = renderer.create(<H1 display='flex'>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
