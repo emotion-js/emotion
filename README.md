@@ -27,8 +27,7 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
 
 - [Benchmarks](https://github.com/tkh44/emotion/tree/master/docs/benchmarks.md)
 
-- [Extract Mode](https://github.com/tkh44/emotion/tree/master/docs/extract-mode.md)
-- [Inline Mode](https://github.com/tkh44/emotion/tree/master/docs/inline-mode.md)
+- [Extract Static](https://github.com/tkh44/emotion/tree/master/docs/extract-static.md)
 
 - API
   - [css](https://github.com/tkh44/emotion/tree/master/docs/css.md)
