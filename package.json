@@ -14,7 +14,7 @@
     "macro.js"
   ],
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "rimraf lib && babel src -d lib",
     "build:watch": "npm run build -- -w",
     "test:size": "npm-run-all clean rollup size",
     "clean": "rimraf dist",
