@@ -57,9 +57,8 @@ function prefixAst (args, t) {
         return properties.push(
           t.objectProperty(key, prefixedValue, property.computed)
         )
-
-        // literal value or array of literal values
       } else if (
+        // literal value or array of literal values
         isLiteral(property.value) ||
         (t.isArrayExpression(property.value) &&
           property.value.elements.every(isLiteral))
@@ -140,7 +139,7 @@ export default class ASTObject {
     return {
       computed: false,
       composes: key === 'composes',
-      ast: t.stringLiteral(key)
+      ast: t.stringLiteral(key === 'cssFloat' ? 'float' : key)
     }
   }
 
