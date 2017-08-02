@@ -19,7 +19,7 @@
     "test:size": "npm-run-all clean rollup size",
     "clean": "rimraf dist",
     "test": "npm-run-all -p lint:check coverage test:size",
-    "coverage": "jest --coverage --no-cache",
+    "coverage": "jest --coverage --no-cache --ci --runInBand",
     "lint:check": "standard src test",
     "test:watch": "jest --watch --no-cache",
     "rollup": "rollup -c",
