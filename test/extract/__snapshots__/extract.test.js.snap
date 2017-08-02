@@ -2,7 +2,7 @@
 
 exports[`styled basic render nested 1`] = `
 <h1
-  className="styled-H1-1l4sfy8 css-d5wsk51"
+  className="styled-H1-1f87tx4 css-dabj7x1"
 >
   hello world
 </h1>
@@ -10,7 +10,7 @@ exports[`styled basic render nested 1`] = `
 
 exports[`styled name 1`] = `
 <h1
-  className="styled-FancyH1-131pfth css-d5wsk52"
+  className="styled-FancyH1-131pfth css-dabj7x2"
 >
   hello world
 </h1>
@@ -18,7 +18,7 @@ exports[`styled name 1`] = `
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="styled-H1-ijh7uz css-d5wsk50"
+  className="styled-H1-ijh7uz css-dabj7x0"
 >
   hello world
 </h1>
@@ -28,16 +28,16 @@ exports[`styled writes the correct css 1`] = `
 ".styled-H1-ijh7uz {
     font-size: 12px
 }
-.styled-H1-1l4sfy8 {
+.styled-H1-1f87tx4 {
     font-size: 20px
 }
-.styled-H1-1l4sfy8 span {
+.styled-H1-1f87tx4 span {
     color: blue
 }
-.styled-H1-1l4sfy8 span:hover {
+.styled-H1-1f87tx4 span:hover {
     color: green
 }
-.styled-H1-1l4sfy8 span:hover:after {
+.styled-H1-1f87tx4 span:hover:after {
     content: \\"after\\"
 }
 .styled-FancyH1-131pfth {
