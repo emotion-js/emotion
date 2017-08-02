@@ -64,7 +64,7 @@ exports[`babel css prop dynamic inline 1`] = `
 "import { css as _css } from \\"emotion\\";
 <div className={\\"a\\" + \\" \\" + /*#__PURE__*/_css([], [color], function createEmotionStyledRules(x0) {
   return [{
-    \\"color\\": \`\${x0}\`
+    \\"color\\": x0
   }];
 })}></div>;"
 `;

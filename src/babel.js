@@ -44,10 +44,7 @@ export function replaceCssWithCallExpression (
       if (!removePath) {
         return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
       }
-
-      path.replaceWith(t.identifier('undefined'))
-
-      return
+      return path.replaceWith(t.identifier('undefined'))
     }
 
     const { styles, composesCount } = parseCSS(src, false, getFilename(path))

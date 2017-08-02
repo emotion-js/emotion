@@ -1,7 +1,7 @@
 // @flow
 import Input from 'postcss/lib/input'
 import Declaration from 'postcss/lib/declaration'
-import SafeParser from 'postcss-safe-parser/lib/safe-parser'
+import Parser from 'postcss/lib/parser'
 import postcssNested from 'postcss-nested'
 import postcssJs from 'postcss-js'
 import objParse from 'postcss-js/parser'
@@ -31,7 +31,7 @@ export function parseCSS (
   if (typeof css === 'object') {
     root = objParse(css, { from: filename })
   } else {
-    root = safeParse(css, { from: filename })
+    root = parse(css, { from: filename })
   }
   let vars = 0
   let composes: number = 0
@@ -43,6 +43,9 @@ export function parseCSS (
       }
       if (decl.parent.nodes[0] !== decl) {
         throw new Error('composes must be the first rule')
+      }
+      if (decl.parent.type !== 'root') {
+        throw new Error('composes cannot be on nested selectors')
       }
       const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
       const numOfComposes: number = !composeMatches ? 0 : composeMatches.length
@@ -87,22 +90,23 @@ export function expandCSSFallbacks (style: { [string]: any }) {
 }
 
 // Parser
-export function safeParse (css, opts) {
+export function parse (css, opts) {
   let input = new Input(css, opts)
 
-  let parser = new EmotionSafeParser(input)
+  let parser = new EmotionParser(input)
   parser.parse()
 
   return parser.root
 }
 
-export class EmotionSafeParser extends SafeParser {
+export class EmotionParser extends Parser {
   unknownWord (tokens: Array<Array<any>>) {
     if (tokens[0][0] === 'word') {
-      if (/xxx(\d+)xxx/gm.exec(tokens[0][1])) {
+      const match = /xxx(\d+)xxx/gm.exec(tokens[0][1])
+      if (match) {
         this.init(
           new Declaration(
-            { prop: tokens[0][1], value: 'fragment' },
+            { prop: `$${match[1]}`, value: tokens[0][1] },
             tokens[0][2],
             tokens[0][3]
           )

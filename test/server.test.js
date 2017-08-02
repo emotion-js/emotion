@@ -5,7 +5,15 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import styled from '../src/react'
-import { css, injectGlobal, keyframes, flush, hydrate, fontFace, sheet } from '../src/index'
+import {
+  css,
+  injectGlobal,
+  keyframes,
+  flush,
+  hydrate,
+  fontFace,
+  sheet
+} from '../src/index'
 import { extractCritical } from '../src/server'
 
 const getComponents = () => {

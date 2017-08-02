@@ -23,10 +23,10 @@ describe('styled', () => {
       font-size: 20px;
       & span {
         color: blue;
-        
+
         &:hover {
           color: green;
-          
+
           &:after {
             content: "after";
           }

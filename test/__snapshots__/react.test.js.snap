@@ -297,7 +297,6 @@ exports[`styled handles more than 10 dynamic properties 1`] = `
   z-index: 100;
   font-size: 18px;
   text-align: center;
-  border-left: undefined;
 }
 
 <h1
@@ -310,7 +309,6 @@ exports[`styled handles more than 10 dynamic properties 1`] = `
 exports[`styled higher order component 1`] = `
 .glamor-1 {
   font-size: 20px;
-  name: onyx;
   background-color: '#343a40';
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -377,19 +375,6 @@ exports[`styled input placeholder object 1`] = `
 >
   hello world
 </input>
-`;
-
-exports[`styled name 1`] = `
-.glamor-1 {
-  name: FancyH1;
-  font-size: 20px;
-}
-
-<h1
-  className="glamor-0 glamor-1"
->
-  hello world
-</h1>
 `;
 
 exports[`styled nested 1`] = `
@@ -488,9 +473,9 @@ exports[`styled objects with spread properties 1`] = `
 exports[`styled random expressions 1`] = `
 .glamor-1 {
   font-size: 1rem;
-  margin-top: 0px;
+  margin-top: 0;
   margin-right: auto;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-left: auto;
   color: green;
 }
@@ -510,6 +495,25 @@ exports[`styled random expressions undefined return 1`] = `
 
 <h1
   className="glamor-0 legacy__class glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled random object expression 1`] = `
+.glamor-1 {
+  background-color: hotpink;
+  font-size: 1rem;
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  color: green;
+}
+
+<h1
+  className="glamor-0 legacy__class glamor-1"
+  prop={true}
 >
   hello world
 </h1>

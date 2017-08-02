@@ -45,7 +45,7 @@ injectGlobal([], [display], function createEmotionStyledRules(x0) {
     \\"body\\": {
       \\"margin\\": \\"0\\",
       \\"padding\\": \\"0\\",
-      \\"display\\": \`\${x0}\`
+      \\"display\\": x0
     },
     \\"body > div\\": {
       \\"display\\": \\"none\\"
@@ -82,7 +82,7 @@ injectGlobal([], [display], function createEmotionStyledRules(x0) {
     \\"body\\": {
       \\"margin\\": \\"0\\",
       \\"padding\\": \\"0\\",
-      \\"display\\": \`\${x0}\`
+      \\"display\\": x0
     },
     \\"body > div\\": {
       \\"display\\": \\"none\\"
