@@ -1,5 +1,7 @@
 // @flow
-import parse from 'postcss-safe-parser'
+import Input from 'postcss/lib/input'
+import Declaration from 'postcss/lib/declaration'
+import SafeParser from 'postcss-safe-parser/lib/safe-parser'
 import postcssNested from 'postcss-nested'
 import postcssJs from 'postcss-js'
 import objParse from 'postcss-js/parser'
@@ -7,12 +9,6 @@ import autoprefixer from 'autoprefixer'
 import { processStyleName } from './glamor/CSSPropertyOperations'
 
 export const prefixer = postcssJs.sync([autoprefixer, postcssNested])
-
-type Rule = {
-  parent: { selector: string, nodes: Array<mixed> },
-  selector: string,
-  remove: () => {}
-}
 
 type Decl = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -35,7 +31,7 @@ export function parseCSS (
   if (typeof css === 'object') {
     root = objParse(css, { from: filename })
   } else {
-    root = parse(css, { from: filename })
+    root = safeParse(css, { from: filename })
   }
   let vars = 0
   let composes: number = 0
@@ -88,4 +84,32 @@ export function expandCSSFallbacks (style: { [string]: any }) {
   // todo -
   // flatten arrays which haven't been flattened yet
   return flattened
+}
+
+// Parser
+export function safeParse (css, opts) {
+  let input = new Input(css, opts)
+
+  let parser = new EmotionSafeParser(input)
+  parser.parse()
+
+  return parser.root
+}
+
+export class EmotionSafeParser extends SafeParser {
+  unknownWord (tokens: Array<Array<any>>) {
+    if (tokens[0][0] === 'word') {
+      if (/xxx(\d+)xxx/gm.exec(tokens[0][1])) {
+        this.init(
+          new Declaration(
+            { prop: tokens[0][1], value: 'fragment' },
+            tokens[0][2],
+            tokens[0][3]
+          )
+        )
+        return
+      }
+    }
+    this.spaces += tokens.map(i => i[1]).join('')
+  }
 }

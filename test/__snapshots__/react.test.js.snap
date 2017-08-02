@@ -485,6 +485,36 @@ exports[`styled objects with spread properties 1`] = `
 </figure>
 `;
 
+exports[`styled random expressions 1`] = `
+.glamor-1 {
+  font-size: 1rem;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  color: green;
+}
+
+<h1
+  className="glamor-0 legacy__class glamor-1"
+  prop={true}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled random expressions undefined return 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<h1
+  className="glamor-0 legacy__class glamor-1"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled themes 1`] = `
 .glamor-1 {
   background-color: #ffd43b;

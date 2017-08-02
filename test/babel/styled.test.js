@@ -89,6 +89,26 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('random expressions', () => {
+      const basic = `
+        const a = () => css\`font-size: 1rem\`
+        styled.h1\`
+          margin: 12px 48px;
+          \${css\`font-size: 32px\`};
+          color: #ffffff;
+          & .profile {
+            \${props => props.prop && a()}
+          }
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('basic', () => {
       const basic = "const H1 = styled.h1`font-size: ${fontSize + 'px'};`"
       const { code } = babel.transform(basic, {
@@ -250,7 +270,7 @@ describe('babel styled component', () => {
         ...defaultText,
         ...defaultFigure
       })`
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [plugin, stage2]
       })
       expect(code).toMatchSnapshot()
@@ -265,7 +285,7 @@ describe('babel styled component', () => {
         ...defaultFigure,
         ...defaultText2
       })`
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [plugin, stage2]
       })
       expect(code).toMatchSnapshot()

@@ -234,18 +234,25 @@ function deconstruct (style) {
   let selects
   let medias
   let supports
+
   forEach(keys(style), key => {
     if (key.indexOf('&') >= 0) {
       selects = selects || {}
-      selects[key] = style[key]
+      selects[key] = deconstruct(style[key]).plain
     } else if (key.indexOf('@media') === 0) {
       medias = medias || {}
       medias[key] = deconstruct(style[key])
     } else if (key.indexOf('@supports') === 0) {
       supports = supports || {}
       supports[key] = deconstruct(style[key])
+    } else if (key.indexOf('css-') === 0) {
+      // replace fragments
+      plain = plain || {}
+      const registeredStyles = registered[key.split('css-')[1]].style
+      assign(plain, registeredStyles)
     } else {
       plain = plain || {}
+
       plain[key] = style[key]
     }
   })
@@ -361,12 +368,24 @@ function flatten (inArr) {
 }
 
 // mutable! modifies dest.
-function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
+function build (
+  dest,
+  {
+    selector = '',
+    mq = '',
+    supp = '',
+    src = [{}]
+  }: {
+    selector?: string,
+    mq?: string,
+    supp?: string,
+    src: Array<{ [string]: any }>
+  }
+) {
   if (!Array.isArray(src)) {
     src = [src]
   }
   src = flatten(src)
-
   forEach(src, _src => {
     if (isLikeRule(_src)) {
       let reg = _getRegistered(_src)
@@ -379,7 +398,12 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
     if (_src && _src.composes) {
       build(dest, { selector, mq, supp, src: _src.composes })
     }
+
     forEach(keys(_src || {}), key => {
+      if (key === 'undefined') {
+        // drop undefined fragment results
+        return
+      }
       if (isSelector(key)) {
         build(dest, {
           selector: joinSelectors(selector, key),
@@ -424,7 +448,7 @@ function build (dest, { selector = '', mq = '', supp = '', src = {} }) {
   })
 }
 
-let nullrule: EmotionClassName = {
+let nullrule: EmotionRule = {
   // 'data-css-nil': ''
 }
 
