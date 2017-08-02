@@ -92,7 +92,7 @@ exports[`babel css extract dynamic property objects 1`] = `
 "
 css({
   'fontSize': '10px',
-  [\`w\${'idth'}\`]: '20px'
+  [\`w\${'idth'}\`]: 20
 });"
 `;
 
@@ -129,6 +129,86 @@ css({
 });"
 `;
 
+exports[`babel css inline ::placeholder 1`] = `
+"
+const cls1 = css({
+  '::-webkit-input-placeholder': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  '::-moz-placeholder': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  ':-ms-input-placeholder': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  '::placeholder': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  }
+});
+const cls2 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    '::-webkit-input-placeholder': {
+      'color': 'green',
+      'display': '-webkit-box; display: flex'
+    },
+    ':-ms-input-placeholder': {
+      'color': 'green',
+      'display': '-ms-flexbox; display: flex'
+    },
+    '::placeholder': {
+      'color': 'green',
+      'display': '-webkit-box; display: -ms-flexbox; display: flex'
+    }
+  }];
+});"
+`;
+
+exports[`babel css inline :fullscreen 1`] = `
+"
+const cls1 = css({
+  ':-webkit-full-screen': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  ':-moz-full-screen': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  ':-ms-fullscreen': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  },
+  ':fullscreen': {
+    'color': 'green',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+  }
+});
+const cls2 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    ':-webkit-full-screen': {
+      'color': 'green',
+      'display': '-webkit-box; display: flex'
+    },
+    ':-moz-full-screen': {
+      'color': 'green',
+      'display': 'flex'
+    },
+    ':-ms-fullscreen': {
+      'color': 'green',
+      'display': '-ms-flexbox; display: flex'
+    },
+    ':fullscreen': {
+      'color': 'green',
+      'display': '-webkit-box; display: -ms-flexbox; display: flex'
+    }
+  }];
+});"
+`;
+
 exports[`babel css inline array of objects 1`] = `
 "
 const cls2 = css([{
@@ -136,8 +216,6 @@ const cls2 = css([{
   'WebkitBoxFlex': '1',
   'msFlex': '1',
   'flex': '1',
-  'WebkitBoxAlign': \`\${'center'}\`,
-  'msFlexAlign': \`\${'center'}\`,
   'alignItems': \`\${'center'}\`
 }, {
   'WebkitBoxPack': 'start',
@@ -168,15 +246,37 @@ const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], 
 exports[`babel css inline css basic 1`] = `
 "
 /*#__PURE__*/css([], [widthVar], function createEmotionStyledRules(x0) {
-        return [{
-                \\"margin\\": \\"12px 48px\\",
-                \\"color\\": \\"#ffffff; color: blue\\",
-                \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\",
-                \\"WebkitBoxFlex\\": \\"1\\",
-                \\"msFlex\\": \\"1 0 auto\\",
-                \\"flex\\": \\"1 0 auto\\",
-                \\"width\\": \`\${x0}\`
-        }];
+  return [{
+    \\"margin\\": \\"12px 48px\\",
+    \\"color\\": \\"#ffffff; color: blue\\",
+    \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\",
+    \\"WebkitBoxFlex\\": \\"1\\",
+    \\"msFlex\\": \\"1 0 auto\\",
+    \\"flex\\": \\"1 0 auto\\",
+    \\"@media (min-width: 420px)\\": {
+      \\"lineHeight\\": \\"40px\\"
+    },
+    \\"width\\": \`\${x0}\`
+  }];
+});"
+`;
+
+exports[`babel css inline css random expression 1`] = `
+"/*#__PURE__*/css([], [/*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"width\\": \\"96px\\",
+    \\"height\\": \\"96px\\"
+  }];
+})], function createEmotionStyledRules(x0) {
+  return [{
+    \\"fontSize\\": \\"20px\\",
+    \\"@media (min-width: 420px)\\": {
+      \\"color\\": \\"blue\\",
+      [\`\${x0}\`]: \\"fragment\\",
+      \\"lineHeight\\": \\"26px\\"
+    },
+    \\"background\\": \\"green\\"
+  }];
 });"
 `;
 
@@ -226,8 +326,6 @@ const cls2 = css({
   'WebkitBoxFlex': '1',
   'msFlex': '1',
   'flex': '1',
-  'WebkitBoxAlign': \`\${'center'}\`,
-  'msFlexAlign': \`\${'center'}\`,
   'alignItems': \`\${'center'}\`
 });"
 `;

@@ -93,6 +93,45 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('random expressions', () => {
+    const margin = (t, r, b, l) => {
+      return (props) => css`
+        margin-top: ${t}
+        margin-right: ${r}
+        margin-bottom: ${b}
+        margin-left: ${l}
+      `
+    }
+    const H1 = styled('h1')`
+      ${props => props.prop && css`font-size: 1rem`};
+      ${margin(0, 'auto', 0, 'auto')};
+      color: green;
+    `
+
+    const tree = renderer
+      .create(
+        <H1 className={'legacy__class'} prop>
+          hello world
+        </H1>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('random expressions undefined return', () => {
+    const H1 = styled('h1')`
+      ${props => props.prop && css`font-size: 1rem`};
+      color: green;
+    `
+
+    const tree = renderer
+      .create(<H1 className={'legacy__class'}>hello world</H1>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('composition', () => {
     const fontSize = 20
     const H1 = styled('h1')`
@@ -114,9 +153,7 @@ describe('styled', () => {
         background-color: green;
       }
     `
-    const tree = renderer
-      .create(<Input>hello world</Input>)
-      .toJSON()
+    const tree = renderer.create(<Input>hello world</Input>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -128,9 +165,7 @@ describe('styled', () => {
       }
     })
 
-    const tree = renderer
-      .create(<Input>hello world</Input>)
-      .toJSON()
+    const tree = renderer.create(<Input>hello world</Input>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -213,7 +248,7 @@ describe('styled', () => {
 
     const Thing = styled.div`
       display: flex;
-      .${H1} {
+      ${H1} {
         color: green;
       }
     `
@@ -222,6 +257,27 @@ describe('styled', () => {
       .create(
         <Thing>
           hello <H1>This will be green</H1> world
+        </Thing>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('component as selector function interpolation', () => {
+    const H1 = styled.h1`font-size: ${props => props.fontSize};`
+
+    const Thing = styled.div`
+      display: flex;
+      ${H1} {
+        color: green;
+      }
+    `
+
+    const tree = renderer
+      .create(
+        <Thing fontSize={10}>
+          hello <H1 fontSize={20}>This will be green</H1> world
         </Thing>
       )
       .toJSON()
@@ -428,12 +484,42 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('change theme', () => {
-    const Div = styled.div`
-      color: ${props => props.theme.primary}
+  test('objects with spread properties', () => {
+    const defaultText = { fontSize: 20 }
+    const Figure = styled.figure({
+      ...defaultText
+    })
+    const tree = renderer.create(<Figure>hello world</Figure>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('composing components', () => {
+    const Button = styled.button`color: green;`
+    const OtherButton = styled(Button)`
+      display: none;
     `
-    const TestComponent = (props) => (<ThemeProvider theme={props.theme}>{props.renderChild ? <Div>this will be green then pink</Div> : null}</ThemeProvider>)
-    const wrapper = mount(<TestComponent renderChild theme={{ primary: 'green' }} />)
+
+    const AnotherButton = styled(OtherButton)`
+      display: flex;
+      justify-content: center;
+    `
+    const tree = renderer
+      .create(<AnotherButton>hello world</AnotherButton>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('change theme', () => {
+    const Div = styled.div`color: ${props => props.theme.primary};`
+    const TestComponent = props =>
+      <ThemeProvider theme={props.theme}>
+        {props.renderChild ? <Div>this will be green then pink</Div> : null}
+      </ThemeProvider>
+    const wrapper = mount(
+      <TestComponent renderChild theme={{ primary: 'green' }} />
+    )
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ theme: { primary: 'pink' } })
     expect(enzymeToJson(wrapper)).toMatchSnapshot()

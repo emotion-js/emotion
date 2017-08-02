@@ -16,8 +16,28 @@ describe('babel css', () => {
         display: flex;
         flex: 1 0 auto;
         color: blue;
+        @media(min-width: 420px) {
+          line-height: 40px;
+        }
         width: \${widthVar};
       \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('css random expression', () => {
+      const basic = `css\`
+        font-size: 20px;
+        @media(min-width: 420px) {
+          color: blue;
+          \${css\`width: 96px; height: 96px;\`};
+          line-height: 26px;
+        }
+        background: green;
+      \`
+      `
       const { code } = babel.transform(basic, {
         plugins: [[plugin]]
       })
@@ -85,6 +105,46 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('::placeholder', () => {
+      const basic = `
+        const cls1 = css({
+          '::placeholder': {
+            color: 'green',
+            display: 'flex'
+          }
+        })
+        const cls2 = css\`
+          ::placeholder {
+            color: green;
+            display: flex;
+          }
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test(':fullscreen', () => {
+      const basic = `
+      const cls1 = css({
+        ':fullscreen': {
+          color: 'green',
+          display: 'flex'
+        }
+      })
+      const cls2 = css\`
+        :fullscreen {
+          color: green;
+          display: flex;
+        }
+      \`
+    `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
     test('only composes', () => {
       const basic = `
         const cls1 = css\`

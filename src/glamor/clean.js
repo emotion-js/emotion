@@ -16,7 +16,7 @@ function cleanObject (object) {
 
   let acc = {}
   let hasFalsy = false
-  forEach(keys(object), (value) => {
+  forEach(keys(object), value => {
     const filteredValue = clean(value)
     if (filteredValue === null || filteredValue !== value) {
       hasFalsy = true

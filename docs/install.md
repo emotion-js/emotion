@@ -17,24 +17,3 @@ npm install -S emotion
 }
 ```
 
-### Extract Mode
-
-The default settings enable css extraction.
-
-**Browser Support** no ie11 support (css vars)
-
-### Inline Mode
-
-Inline mode does **not** extract css into external files.
-
-**.babelrc**
-```json
-{
-  "plugins": [
-    ["emotion/babel", { inline: true }]
-  ]
-}
-```
-
-**Browser Support** anything React supports
-

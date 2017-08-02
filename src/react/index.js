@@ -1,7 +1,7 @@
 import { Component, createElement as h } from 'react'
 import PropTypes from 'prop-types'
 import { css } from '../index'
-import { map, omit, reduce } from '../utils'
+import { map, omit, reduce, assign } from '../utils'
 import { CHANNEL } from './constants'
 
 export {
@@ -16,7 +16,7 @@ export {
 
 const push = (obj, items) => Array.prototype.push.apply(obj, items)
 
-export default function (tag, objs, vars = [], content) {
+export default function (tag, cls, objs, vars = [], content) {
   if (!tag) {
     throw new Error(
       'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
@@ -50,25 +50,21 @@ export default function (tag, objs, vars = [], content) {
 
     render () {
       const { props, state, context } = this
-      const mergedProps = {
-        ...props,
+      const mergedProps = assign({}, props, {
         theme: state.theme
-      }
+      })
 
       const getValue = v => {
         if (v && typeof v === 'function') {
-          if (v.__emotion_spec) {
-            return css(
-              map(v.__emotion_spec.objs, getValue),
-              map(v.__emotion_spec.vars, getValue),
-              v.__emotion_spec.content
-            )
+          if (v.__emotion_class) {
+            return `& .${v.__emotion_class}`
           }
           return v(mergedProps, context)
         }
 
         return v
       }
+      let localTag = tag
 
       let finalObjs = []
 
@@ -79,15 +75,20 @@ export default function (tag, objs, vars = [], content) {
             tag.__emotion_spec,
             (accum, spec) => {
               push(accum, spec.objs)
-              push(accum, spec.content.apply(null, map(spec.vars, getValue)))
+              if (spec.content) {
+                push(accum, spec.content.apply(null, map(spec.vars, getValue)))
+              }
               return accum
             },
             []
           )
         )
+        localTag = tag.__emotion_spec[0].tag
       }
 
       push(finalObjs, objs)
+
+      push(finalObjs, [cls])
 
       if (content) {
         push(finalObjs, content.apply(null, map(vars, getValue)))
@@ -105,9 +106,9 @@ export default function (tag, objs, vars = [], content) {
       const className = css(map(finalObjs, getValue))
 
       return h(
-        tag,
+        localTag,
         omit(
-          Object.assign({}, mergedProps, {
+          assign({}, mergedProps, {
             ref: mergedProps.innerRef,
             className
           }),
@@ -127,10 +128,12 @@ export default function (tag, objs, vars = [], content) {
   const spec = {
     vars,
     content,
-    objs
+    objs,
+    tag
   }
   Styled.__emotion_spec = tag.__emotion_spec
     ? tag.__emotion_spec.concat(spec)
     : [spec]
+  Styled.__emotion_class = cls
   return Styled
 }

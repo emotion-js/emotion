@@ -1,4 +1,4 @@
-export default function (path, t) {
+export default function (path, state, t) {
   let cssPath
   let classNamesPath
 
@@ -45,9 +45,7 @@ export default function (path, t) {
       )
     )
   } else {
-    throw path.buildCodeFrameError(
-      `${cssPropValue.value} is not a string or template literal`
-    )
+    cssTemplateExpression = t.callExpression(getCssIdentifer(), [cssPropValue])
   }
 
   if (!classNamesValue) {
@@ -90,7 +88,17 @@ export default function (path, t) {
     )
   }
 
+  function getCssIdentifer () {
+    if (state.opts.autoImportCssProp !== false) {
+      if (!state.cssPropIdentifier) {
+        state.cssPropIdentifier = path.scope.generateUidIdentifier('css')
+      }
+      return state.cssPropIdentifier
+    } else {
+      return t.identifier('css')
+    }
+  }
   function createCssTemplateExpression (templateLiteral) {
-    return t.taggedTemplateExpression(t.identifier('css'), templateLiteral)
+    return t.taggedTemplateExpression(getCssIdentifer(), templateLiteral)
   }
 }

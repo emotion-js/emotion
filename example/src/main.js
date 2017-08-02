@@ -11,7 +11,6 @@ const propsExample = require('./blocks/props.example')
 const nestedExample = require('./blocks/nested.example')
 const mediaExample = require('./blocks/media.example')
 const anyComponentExample = require('./blocks/styling-any-component.example')
-const namedExample = require('./blocks/named.example')
 const pseudoExample = require('./blocks/pseudo.example')
 const keyframesExample = require('./blocks/keyframes.example')
 // const fontFaceExample = require('./blocks/font-face.example')
@@ -57,6 +56,15 @@ const theme = {
   gold: '#ffd43b'
 }
 
+const margin = (t, r, b, l) => {
+  return () => css`
+    margin-top: ${t}
+    margin-right: ${r}
+    margin-bottom: ${b}
+    margin-left: ${l}
+  `
+}
+
 const PlaygroundWrapper = styled('div')`
   font-family: 'Oxygen', sans-serif;
   flex:1;
@@ -64,7 +72,7 @@ const PlaygroundWrapper = styled('div')`
   background: #f8f9fa;
   
   & .inner {
-    margin: 0 auto;
+    ${margin(0, 'auto', 0, 'auto')};
     width: calc(100% - 32px);
     max-width: 960px;
     
@@ -297,22 +305,6 @@ class App extends React.Component {
                 css,
                 styled,
                 render
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/named.md')} />
-            <Playground
-              maxHeight={220}
-              noRender={false}
-              codeText={namedExample}
-              scope={{
-                logoUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
               }}
             />
           </div>

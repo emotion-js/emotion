@@ -1,37 +1,128 @@
+import { expandCSSFallbacks, prefixer } from './parser'
 import { forEach, reduce } from './utils'
 
+function prefixAst (args, t) {
+  function isLiteral (value) {
+    return (
+      t.isStringLiteral(value) ||
+      t.isNumericLiteral(value) ||
+      t.isBooleanLiteral(value)
+    )
+  }
+
+  if (Array.isArray(args)) {
+    return args.map(element => prefixAst(element, t))
+  }
+
+  if (t.isObjectExpression(args)) {
+    let properties = []
+    args.properties.forEach(property => {
+      // nested objects
+      if (t.isObjectExpression(property.value)) {
+        const key = property.computed
+          ? property.key
+          : t.isStringLiteral(property.key)
+            ? t.stringLiteral(property.key.value)
+            : t.identifier(property.key.name)
+
+        const prefixedPseudoSelectors = {
+          '::placeholder': [
+            '::-webkit-input-placeholder',
+            '::-moz-placeholder',
+            ':-ms-input-placeholder'
+          ],
+          ':fullscreen': [
+            ':-webkit-full-screen',
+            ':-moz-full-screen',
+            ':-ms-fullscreen'
+          ]
+        }
+
+        const prefixedValue = prefixAst(property.value, t)
+
+        if (!property.computed) {
+          if (prefixedPseudoSelectors[key.value]) {
+            forEach(prefixedPseudoSelectors[key.value], prefixedKey => {
+              properties.push(
+                t.objectProperty(
+                  t.stringLiteral(prefixedKey),
+                  prefixedValue,
+                  false
+                )
+              )
+            })
+          }
+        }
+
+        return properties.push(
+          t.objectProperty(key, prefixedValue, property.computed)
+        )
+
+        // literal value or array of literal values
+      } else if (
+        isLiteral(property.value) ||
+        (t.isArrayExpression(property.value) &&
+          property.value.elements.every(isLiteral))
+      ) {
+        // bail on computed properties
+        if (property.computed) {
+          properties.push(property)
+          return
+        }
+
+        // handle array values: { display: ['flex', 'block'] }
+        const propertyValue = t.isArrayExpression(property.value)
+          ? property.value.elements.map(element => element.value)
+          : property.value.value
+
+        const style = { [property.key.name]: propertyValue }
+        const prefixedStyle = expandCSSFallbacks(prefixer(style))
+
+        for (let k in prefixedStyle) {
+          const key = t.isStringLiteral(property.key)
+            ? t.stringLiteral(k)
+            : t.identifier(k)
+          const val = prefixedStyle[k]
+          let value
+
+          if (typeof val === 'number') {
+            value = t.numericLiteral(val)
+          } else if (typeof val === 'string') {
+            value = t.stringLiteral(val)
+          } else if (Array.isArray(val)) {
+            value = t.arrayExpression(val.map(i => t.stringLiteral(i)))
+          }
+
+          properties.push(t.objectProperty(key, value))
+        }
+
+        // expressions
+      } else {
+        properties.push(property)
+      }
+    })
+
+    return t.objectExpression(properties)
+  }
+
+  if (t.isArrayExpression(args)) {
+    return t.arrayExpression(prefixAst(args.elements, t))
+  }
+
+  return args
+}
+
 export default class ASTObject {
-  obj: { [string]: any }
+  props: Array<any>
   expressions: Array<any>
   composesCount: number
   t: any
 
-  constructor (obj, expressions, composesCount, t) {
-    this.obj = obj
-    this.expressions = expressions
+  constructor (props, expressions, composesCount, t) {
+    this.props = props
+    this.expressions = expressions || []
     this.composesCount = composesCount
     this.t = t
-  }
-
-  toAST () {
-    const { obj, t } = this
-
-    const props = []
-    for (let key in obj) {
-      const rawValue = obj[key]
-      const { computed, composes, ast: keyAST } = this.objKeyToAst(key)
-
-      let valueAST
-      if (composes) {
-        // valueAST = t.arrayExpression(expressions.slice(0, composesCount))
-        continue
-      } else {
-        valueAST = this.objValueToAst(rawValue)
-      }
-
-      props.push(t.objectProperty(keyAST, valueAST, computed))
-    }
-    return t.objectExpression(props)
   }
 
   objKeyToAst (key): { computed: boolean, ast: any, composes: boolean } {
@@ -54,21 +145,26 @@ export default class ASTObject {
   }
 
   objValueToAst (value) {
-    const { expressions, composesCount, t } = this
-
+    const { composesCount, t } = this
     if (typeof value === 'string') {
       const matches = this.getDynamicMatches(value)
       if (matches.length) {
         return this.replacePlaceholdersWithExpressions(matches, value)
       }
       return t.stringLiteral(value)
+    } else if (typeof value === 'number') {
+      return t.numericLiteral(value)
     } else if (Array.isArray(value)) {
       // should never hit here
+
+      if (value[0] && (value[0].key || value[0].value || value[0].spread)) {
+        return this.toAST(value)
+      }
+
       return t.arrayExpression(value.map(v => this.objValueToAst(v)))
     }
 
-    const obj = new this.constructor(value, expressions, composesCount, t)
-    return obj.toAST()
+    return ASTObject.fromJS(value, composesCount, t).toAST()
   }
 
   getDynamicMatches (str) {
@@ -109,7 +205,7 @@ export default class ASTObject {
       // }
 
       templateExpressions.push(
-        expressions
+        expressions.length
           ? expressions[p1 - composesCount]
           : t.identifier(`x${p1 - composesCount}`)
       )
@@ -129,6 +225,68 @@ export default class ASTObject {
     //   return templateExpressions[0]
     // }
     return t.templateLiteral(templateElements, templateExpressions)
+  }
+
+  toAST (props = this.props) {
+    return this.t.objectExpression(
+      props.map(prop => {
+        if (this.t.isObjectProperty(prop)) {
+          return prop
+        }
+
+        const { property, key, value, spread, shorthand } = prop
+
+        if (spread || shorthand) {
+          return property
+        }
+
+        const { computed, ast: keyAST } = this.objKeyToAst(key)
+        const valueAST = this.objValueToAst(value)
+
+        return this.t.objectProperty(keyAST, valueAST, computed)
+      })
+    )
+  }
+
+  toJS (props = this.props) {
+    return props.reduce(
+      (
+        accum,
+        { property, key, value, computed: isComputedProperty, spread }
+      ) => {
+        if (spread) {
+          return accum
+        }
+
+        accum[key] = value
+        return accum
+      },
+      {}
+    )
+  }
+
+  static fromJS (jsObj, composesCount, t) {
+    const props = []
+    for (let key in jsObj) {
+      if (jsObj.hasOwnProperty(key)) {
+        let value
+        if (Object.prototype.toString.call(jsObj[key]) === '[object Object]') {
+          value = jsObj[key]
+        } else {
+          value = jsObj[key]
+        }
+
+        props.push({
+          key: key,
+          value: value,
+          computed: false,
+          spread: false,
+          property: null
+        })
+      }
+    }
+
+    return new ASTObject(props, [], composesCount, t)
   }
 
   static fromAST (astObj, t) {
@@ -170,12 +328,23 @@ export default class ASTObject {
       return `xxx${expressions.length - 1}xxx`
     }
 
-    function toObj (astObj) {
-      let obj = {}
+    function convertAstToObj (astObj) {
+      const props = []
 
-      forEach(astObj.properties, property => {
-        // nested objects
+      forEach(astObj.properties, (property, i) => {
         let key
+        if (t.isSpreadProperty(property)) {
+          props.push({
+            key: null,
+            value: null,
+            computed: false,
+            shorthand: false,
+            spread: true,
+            property
+          })
+          return
+        }
+
         if (property.computed) {
           key = replaceExpressionsWithPlaceholders(property.key)
         } else {
@@ -183,19 +352,34 @@ export default class ASTObject {
             ? property.key.name
             : property.key.value
         }
+
+        // nested objects
         if (t.isObjectExpression(property.value)) {
-          obj[key] = toObj(property.value)
+          props.push({
+            key,
+            value: convertAstToObj(property.value),
+            computed: property.computed,
+            spread: false,
+            shorthand: false,
+            property
+          })
         } else {
-          obj[key] = replaceExpressionsWithPlaceholders(property.value)
+          props.push({
+            key,
+            value: replaceExpressionsWithPlaceholders(property.value),
+            computed: property.computed,
+            spread: false,
+            shorthand: false,
+            property
+          })
         }
       })
-
-      return obj
+      return props
     }
 
-    const obj = toObj(astObj)
+    const objectProperties = convertAstToObj(prefixAst(astObj, t))
     return new ASTObject(
-      obj,
+      objectProperties,
       expressions,
       0, // composesCount: we should support this,
       t

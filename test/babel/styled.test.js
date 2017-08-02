@@ -2,6 +2,7 @@
 /* eslint-env jest */
 import * as babel from 'babel-core'
 import plugin from '../../src/babel'
+import stage2 from 'babel-plugin-syntax-object-rest-spread'
 import * as fs from 'fs'
 jest.mock('fs')
 
@@ -20,7 +21,9 @@ describe('babel styled component', () => {
     test('no dynamic', () => {
       const basic = 'styled.h1`color:blue;`'
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
       expect(code).toMatchSnapshot()
     })
@@ -37,7 +40,9 @@ describe('babel styled component', () => {
           props.theme.borderColor};
       \``
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
 
       expect(code).toMatchSnapshot()
@@ -59,7 +64,9 @@ describe('babel styled component', () => {
       border-left: $\{p => p.theme.blue};
     \``
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
 
       expect(code).toMatchSnapshot()
@@ -70,12 +77,34 @@ describe('babel styled component', () => {
       const SomeComponent = styled.div\` \`
       styled.h1\`
         color:blue;
-        .\${SomeComponent} {
+        \${SomeComponent} {
           color: green;
         }
       \``
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('random expressions', () => {
+      const basic = `
+        const a = () => css\`font-size: 1rem\`
+        styled.h1\`
+          margin: 12px 48px;
+          \${css\`font-size: 32px\`};
+          color: #ffffff;
+          & .profile {
+            \${props => props.prop && a()}
+          }
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
       expect(code).toMatchSnapshot()
     })
@@ -150,19 +179,6 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('name is correct with no identifier', () => {
-      const basic = `
-        css\`
-        margin: 12px 48px;
-        color: #ffffff;
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
     test('objects fn call', () => {
       const basic = `
       const H1 = styled('h1')({
@@ -179,6 +195,15 @@ describe('babel styled component', () => {
       const H1 = styled('h1')({ padding: 10 },props => ({
         display: props.display
       }))`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('shorthand property', () => {
+      const basic = `const H1 = styled.h1({ fontSize })`
+
       const { code } = babel.transform(basic, {
         plugins: [plugin]
       })
@@ -222,6 +247,46 @@ describe('babel styled component', () => {
       }))`
       const { code } = babel.transform(basic, {
         plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('styled. objects with a single spread property', () => {
+      const basic = `
+      const defaultText = { fontSize: 20 }
+      const Figure = styled.figure({
+        ...defaultText
+      })`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin, stage2]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('styled. objects with a multiple spread properties', () => {
+      const basic = `
+      const defaultText = { fontSize: 20 }
+      const Figure = styled.figure({
+        ...defaultText,
+        ...defaultFigure
+      })`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin, stage2]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('styled. objects with a multiple spread properties and other keys', () => {
+      const basic = `
+      const defaultText = { fontSize: 20 }
+      const Figure = styled.figure({
+        ...defaultText,
+        fontSize: '20px',
+        ...defaultFigure,
+        ...defaultText2
+      })`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin, stage2]
       })
       expect(code).toMatchSnapshot()
     })

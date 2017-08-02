@@ -3,7 +3,7 @@
 
 export function hashArray (arr: string[]): string {
   let str = arr.join(',')
-  return hashString(str, str.length).toString(36)
+  return hashString(str)
 }
 
 export function hashObject (...objs: Array<{ [string]: any }>): string {
@@ -11,10 +11,14 @@ export function hashObject (...objs: Array<{ [string]: any }>): string {
   for (let i = 0; i < objs.length; i++) {
     str += JSON.stringify(objs[i])
   }
-  return hashString(str, str.length).toString(36)
+  return hashString(str)
 }
 
-export function hashString (str: string, seed: number) {
+export function hashString (str: string) {
+  return hash(str, str.length).toString(36)
+}
+
+function hash (str: string, seed: number) {
   let m = 0x5bd1e995
   let r = 24
   let h = seed ^ str.length

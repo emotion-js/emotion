@@ -10,10 +10,13 @@
  */
 
 import dangerousStyleValue from './dangerousStyleValue'
-import hyphenateStyleName from 'fbjs/lib/hyphenateStyleName'
 import memoizeStringOnly from 'fbjs/lib/memoizeStringOnly'
 
-export const processStyleName = memoizeStringOnly(hyphenateStyleName)
+const hyphenateRegex = /[A-Z]|^ms/g
+
+export const processStyleName = memoizeStringOnly(styleName =>
+  styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+)
 
 if (process.env.NODE_ENV !== 'production') {
   const warning = require('fbjs/lib/warning')
