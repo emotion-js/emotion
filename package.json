@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "7.0.5",
+  "version": "7.0.6",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
