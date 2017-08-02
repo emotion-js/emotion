@@ -38,7 +38,6 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
   - [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
   - [fontFace](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
   - [injectGlobal](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
-  - [vue styled](https://github.com/tkh44/emotion/tree/master/docs/vue-styled.md)
 
 - [Usage with CSS Modules](https://github.com/tkh44/emotion/tree/master/docs/css-modules.md)
 - [Usage with babel-macros](https://github.com/tkh44/emotion/tree/master/docs/babel-macros.md)
