@@ -218,7 +218,7 @@ exports[`styled objects 1`] = `
 `;
 
 exports[`styled themes 1`] = `
-.glamor-1 {
+.glamor-3 {
   background-color: #ffd43b;
   color: #8c81d8;
   height: 64px;
@@ -226,7 +226,7 @@ exports[`styled themes 1`] = `
 }
 
 <span
-  className="glamor-0 glamor-1"
+  className="glamor-0 glamor-1 glamor-2 glamor-3"
   scale={2}
 >
   hello world

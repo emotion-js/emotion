@@ -57,13 +57,21 @@ exports[`styled change theme 1`] = `
       }
     }
   >
-    <styled(Component)>
-      <div
-        className="glamor-0 glamor-1"
+    <WithTheme(styled(Component))>
+      <styled(Component)
+        theme={
+          Object {
+            "primary": "green",
+          }
+        }
       >
-        this will be green then pink
-      </div>
-    </styled(Component)>
+        <div
+          className="glamor-0 glamor-1"
+        >
+          this will be green then pink
+        </div>
+      </styled(Component)>
+    </WithTheme(styled(Component))>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -88,13 +96,21 @@ exports[`styled change theme 2`] = `
       }
     }
   >
-    <styled(Component)>
-      <div
-        className="glamor-0 glamor-1"
+    <WithTheme(styled(Component))>
+      <styled(Component)
+        theme={
+          Object {
+            "primary": "pink",
+          }
+        }
       >
-        this will be green then pink
-      </div>
-    </styled(Component)>
+        <div
+          className="glamor-0 glamor-1"
+        >
+          this will be green then pink
+        </div>
+      </styled(Component)>
+    </WithTheme(styled(Component))>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -297,6 +313,7 @@ exports[`styled handles more than 10 dynamic properties 1`] = `
   z-index: 100;
   font-size: 18px;
   text-align: center;
+  border-left: blue;
 }
 
 <h1
@@ -520,7 +537,7 @@ exports[`styled random object expression 1`] = `
 `;
 
 exports[`styled themes 1`] = `
-.glamor-1 {
+.glamor-3 {
   background-color: #ffd43b;
   color: #8c81d8;
   height: 64px;
@@ -528,7 +545,7 @@ exports[`styled themes 1`] = `
 }
 
 <span
-  className="glamor-0 glamor-1"
+  className="glamor-0 glamor-1 glamor-2 glamor-3"
   scale={2}
 >
   hello world
