@@ -120,12 +120,12 @@ describe('styled', () => {
     `
 
     const cssB = css`
-      composes: ${cssA}
+      composes: ${cssA};
       height: 64px;
     `
 
     const H1 = styled('h1')`
-      composes: ${cssB}
+      composes: ${cssB};
       font-size: ${fontSize};
     `
 
@@ -152,12 +152,12 @@ describe('styled', () => {
     }
 
     const cssB = css`
-      composes: ${cssA}
+      composes: ${cssA};
       height: 64px;
     `
 
     const H1 = styled('h1')`
-      composes: ${cssB}
+      composes: ${cssB};
       font-size: ${modularScale(4)};
     `
 
@@ -201,7 +201,7 @@ describe('styled', () => {
     `
 
     const cssB = css`
-      composes: ${cssA}
+      composes: ${cssA};
       height: 64px;
     `
 
@@ -210,9 +210,9 @@ describe('styled', () => {
     `
 
     const H1 = styled(Heading)`
-      composes: ${cssB}
+      composes: ${cssB};
       font-size: ${fontSize};
-      color: ${p => p.theme.purple}
+      color: ${p => p.theme.purple};
     `
 
     const H2 = styled(H1)`font-size:32px;`

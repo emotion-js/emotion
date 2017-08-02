@@ -10,14 +10,14 @@ exports[`babel css extract composes 1`] = `
 "import './css.test.emotion.css';
 
 const cls1 = 'css-cls1-1q8jsgx';
-const cls2 = /*#__PURE__*/css([['one-class', 'another-class', cls1]], ['center'], function createEmotionStyledRules(x0) {
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], function createEmotionStyledRules(x0) {
   return [{
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
     'justifyContent': 'center',
-    'WebkitBoxAlign': \`\${x0}\`,
-    'msFlexAlign': \`\${x0}\`,
-    'alignItems': \`\${x0}\`
+    'WebkitBoxAlign': x0,
+    'msFlexAlign': x0,
+    'alignItems': x0
   }];
 });"
 `;
@@ -102,7 +102,7 @@ css([{
   'borderRadius': '50%',
   'WebkitBoxSizing': 'border-box',
   'boxSizing': 'border-box',
-  [\`\${display}\`]: 'flex',
+  [display]: 'flex',
   ':hover': {
     'WebkitTransform': 'scale(1.2)',
     'transform': 'scale(1.2)'
@@ -216,7 +216,7 @@ const cls2 = css([{
   'WebkitBoxFlex': '1',
   'msFlex': '1',
   'flex': '1',
-  'alignItems': \`\${'center'}\`
+  'alignItems': 'center'
 }, {
   'WebkitBoxPack': 'start',
   'msFlexPack': 'start',
@@ -236,9 +236,9 @@ const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], 
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
     'justifyContent': 'center',
-    'WebkitBoxAlign': \`\${x0}\`,
-    'msFlexAlign': \`\${x0}\`,
-    'alignItems': \`\${x0}\`
+    'WebkitBoxAlign': x0,
+    'msFlexAlign': x0,
+    'alignItems': x0
   }];
 });"
 `;
@@ -256,7 +256,7 @@ exports[`babel css inline css basic 1`] = `
     \\"@media (min-width: 420px)\\": {
       \\"lineHeight\\": \\"40px\\"
     },
-    \\"width\\": \`\${x0}\`
+    \\"width\\": x0
   }];
 });"
 `;
@@ -267,15 +267,16 @@ exports[`babel css inline css random expression 1`] = `
     \\"width\\": \\"96px\\",
     \\"height\\": \\"96px\\"
   }];
-})], function createEmotionStyledRules(x0) {
+}), { backgroundColor: \\"hotpink\\" }], function createEmotionStyledRules(x0, x1) {
   return [{
     \\"fontSize\\": \\"20px\\",
     \\"@media (min-width: 420px)\\": {
       \\"color\\": \\"blue\\",
-      [\`\${x0}\`]: \\"fragment\\",
+      \\"$0\\": x0,
       \\"lineHeight\\": \\"26px\\"
     },
-    \\"background\\": \\"green\\"
+    \\"background\\": \\"green\\",
+    \\"$1\\": x1
   }];
 });"
 `;
@@ -286,7 +287,7 @@ const cls2 = /*#__PURE__*/css([], [className], function createEmotionStyledRules
   return [{
     \\"margin\\": \\"12px 48px\\",
     \\"color\\": \\"#ffffff\\",
-    [\`\${x0}\`]: {
+    [x0]: {
       \\"display\\": \\"none\\"
     }
   }];
@@ -300,9 +301,9 @@ const cls2 = /*#__PURE__*/css(['one-class', 'another-class', 'another-class', 'a
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
     'justifyContent': 'center',
-    'WebkitBoxAlign': \`\${x0}\`,
-    'msFlexAlign': \`\${x0}\`,
-    'alignItems': \`\${x0}\`
+    'WebkitBoxAlign': x0,
+    'msFlexAlign': x0,
+    'alignItems': x0
   }];
 });"
 `;
@@ -326,7 +327,7 @@ const cls2 = css({
   'WebkitBoxFlex': '1',
   'msFlex': '1',
   'flex': '1',
-  'alignItems': \`\${'center'}\`
+  'alignItems': 'center'
 });"
 `;
 

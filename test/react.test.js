@@ -42,18 +42,6 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('name', () => {
-    const fontSize = 20
-    const H1 = styled.h1`
-      name: FancyH1;
-      font-size: ${fontSize}px;
-    `
-
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
-
-    expect(tree).toMatchSnapshot()
-  })
-
   test('call expression', () => {
     const fontSize = 20
     const H1 = styled('h1')`
@@ -96,10 +84,10 @@ describe('styled', () => {
   test('random expressions', () => {
     const margin = (t, r, b, l) => {
       return (props) => css`
-        margin-top: ${t}
-        margin-right: ${r}
-        margin-bottom: ${b}
-        margin-left: ${l}
+        margin-top: ${t};
+        margin-right: ${r};
+        margin-bottom: ${b};
+        margin-left: ${l};
       `
     }
     const H1 = styled('h1')`
@@ -127,6 +115,33 @@ describe('styled', () => {
 
     const tree = renderer
       .create(<H1 className={'legacy__class'}>hello world</H1>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('random object expression', () => {
+    const margin = (t, r, b, l) => {
+      return (props) => ({
+        marginTop: t,
+        marginRight: r,
+        marginBottom: b,
+        marginLeft: l
+      })
+    }
+    const H1 = styled.h1`
+      background-color: hotpink;
+      ${props => props.prop && { fontSize: '1rem' }};
+      ${margin(0, 'auto', 0, 'auto')};
+      color: green;
+    `
+
+    const tree = renderer
+      .create(
+        <H1 className={'legacy__class'} prop>
+          hello world
+        </H1>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -207,7 +222,7 @@ describe('styled', () => {
     ])
 
     const Avatar = styled('img')`
-      composes: ${prettyStyles} ${imageStyles} ${blue}
+      composes: ${prettyStyles} ${imageStyles} ${blue};
     `
 
     const tree = renderer.create(<Avatar />).toJSON()
@@ -312,7 +327,7 @@ describe('styled', () => {
     `
 
     const cssB = css`
-      composes: ${cssA}
+      composes: ${cssA};
       color: red;
     `
 
@@ -345,12 +360,12 @@ describe('styled', () => {
     }
 
     const cssB = css`
-      composes: ${cssA}
+      composes: ${cssA};
       height: 64px;
     `
 
     const H1 = styled('h1')`
-      composes: ${cssB}
+      composes: ${cssB};
       font-size: ${modularScale(4)};
     `
 
@@ -394,7 +409,7 @@ describe('styled', () => {
     `
 
     const cssB = css`
-      composes: ${cssA}
+      composes: ${cssA};
       height: 64px;
     `
 
@@ -403,9 +418,9 @@ describe('styled', () => {
     `
 
     const H1 = styled(Heading)`
-      composes: ${cssB}
+      composes: ${cssB};
       font-size: ${fontSize};
-      color: ${p => p.theme.purple}
+      color: ${p => p.theme.purple};
     `
 
     const H2 = styled(H1)`font-size:32px;`
@@ -430,14 +445,12 @@ describe('styled', () => {
     `
 
     const squirtleBlueBackground = css`
-      name: squirtle-blue-bg;
       background-color: #7FC8D6;
     `
 
     const flexColumn = Component => {
       const NewComponent = styled(Component)`
-        composes: ${squirtleBlueBackground}
-        name: onyx;
+        composes: ${squirtleBlueBackground};
         background-color: '#343a40';
         flex-direction: column;
       `
@@ -464,7 +477,7 @@ describe('styled', () => {
     `
 
     const H1 = styled('h1')`
-      composes: ${props => (props.a ? cssA : cssB)}
+      composes: ${props => (props.a ? cssA : cssB)};
     `
 
     const tree = renderer.create(<H1 a>hello world</H1>).toJSON()

@@ -189,7 +189,7 @@ export default class ASTObject {
     const templateExpressions = []
     let cursor = 0
     // not sure how to detect when to add 'px'
-    // let hasSingleInterpolation = false
+    let hasSingleInterpolation = false
     forEach(matches, ({ value, p1, index }, i) => {
       const preMatch = str.substring(cursor, index)
       cursor = cursor + preMatch.length + value.length
@@ -200,9 +200,9 @@ export default class ASTObject {
       } else if (i === 0) {
         templateElements.push(t.templateElement({ raw: '', cooked: '' }))
       }
-      // if (value === str) {
-      // hasSingleInterpolation = true
-      // }
+      if (value === str) {
+        hasSingleInterpolation = true
+      }
 
       templateExpressions.push(
         expressions.length
@@ -221,9 +221,9 @@ export default class ASTObject {
         )
       }
     })
-    // if (hasSingleInterpolation) {
-    //   return templateExpressions[0]
-    // }
+    if (hasSingleInterpolation) {
+      return templateExpressions[0]
+    }
     return t.templateLiteral(templateElements, templateExpressions)
   }
 

@@ -245,11 +245,23 @@ function deconstruct (style) {
     } else if (key.indexOf('@supports') === 0) {
       supports = supports || {}
       supports[key] = deconstruct(style[key])
-    } else if (key.indexOf('css-') === 0) {
-      // replace fragments
+    } else if (key.indexOf('$') === 0) {
+      const fragment = style[key]
       plain = plain || {}
-      const registeredStyles = registered[key.split('css-')[1]].style
-      assign(plain, registeredStyles)
+
+      if (typeof fragment === 'object') {
+        assign(plain, fragment)
+      } else if (typeof fragment === 'string') {
+        const match = emotionClassRegex.exec(fragment)
+        if (match !== null && registered[match[1]]) {
+          // replace fragments
+          const reg = registered[match[1]]
+          if (reg.type !== 'css') {
+            throw new Error('cannot merge this rule')
+          }
+          assign(plain, reg.style)
+        }
+      }
     } else {
       plain = plain || {}
 
@@ -400,10 +412,6 @@ function build (
     }
 
     forEach(keys(_src || {}), key => {
-      if (key === 'undefined') {
-        // drop undefined fragment results
-        return
-      }
       if (isSelector(key)) {
         build(dest, {
           selector: joinSelectors(selector, key),
