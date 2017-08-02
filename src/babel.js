@@ -1,11 +1,18 @@
 // @flow weak
 import fs from 'fs'
-import { basename } from 'path'
+import {
+  basename,
+  dirname,
+  join as pathJoin,
+  sep as pathSep,
+  relative
+} from 'path'
 import { touchSync } from 'touch'
 import { inline } from './inline'
 import { parseCSS } from './parser'
 import { getIdentifierName } from './babel-utils'
 import { map } from './utils'
+import { hashArray } from './hash'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
@@ -37,11 +44,9 @@ export function replaceCssWithCallExpression (
       if (!removePath) {
         return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
       }
-      if (t.isExpressionStatement(path.parent)) {
-        path.parentPath.remove()
-      } else {
-        path.replaceWith(t.identifier('undefined'))
-      }
+
+      path.replaceWith(t.identifier('undefined'))
+
       return
     }
 
@@ -79,6 +84,67 @@ export function replaceCssWithCallExpression (
   }
 }
 
+// babel-plugin-styled-components
+// https://github.com/styled-components/babel-plugin-styled-components/blob/37a13e9c21c52148ce6e403100df54c0b1561a88/src/visitors/displayNameAndId.js#L49-L93
+
+const findModuleRoot = filename => {
+  if (!filename || filename === 'unknown') {
+    return null
+  }
+  let dir = dirname(filename)
+  if (fs.existsSync(pathJoin(dir, 'package.json'))) {
+    return dir
+  } else if (dir !== filename) {
+    return findModuleRoot(dir)
+  } else {
+    return null
+  }
+}
+
+const FILE_HASH = 'emotion-file-hash'
+const COMPONENT_POSITION = 'emotion-component-position'
+
+const getFileHash = state => {
+  const { file } = state
+  // hash calculation is costly due to fs operations, so we'll cache it per file.
+  if (file.get(FILE_HASH)) {
+    return file.get(FILE_HASH)
+  }
+  const filename = file.opts.filename
+  // find module root directory
+  const moduleRoot = findModuleRoot(filename)
+  const filePath =
+    moduleRoot && relative(moduleRoot, filename).replace(pathSep, '/')
+  let moduleName = ''
+  if (moduleRoot) {
+    const packageJsonString = fs.readFileSync(
+      pathJoin(moduleRoot, 'package.json')
+    )
+    if (packageJsonString) {
+      try {
+        moduleName = JSON.parse(packageJsonString).name
+      } catch (e) {}
+    }
+  }
+  const code = file.code
+
+  const fileHash = hashArray([moduleName, filePath, code])
+  file.set(FILE_HASH, fileHash)
+  return fileHash
+}
+
+const getNextId = state => {
+  const id = state.file.get(COMPONENT_POSITION) || 0
+  state.file.set(COMPONENT_POSITION, id + 1)
+  return id
+}
+
+const getComponentId = state => {
+  // Prefix the identifier with css- because CSS classes cannot start with a number
+  // Also in snapshots with jest-glamor-react the hash will be replaced with an index
+  return `css-${getFileHash(state)}${getNextId(state)}`
+}
+
 export function buildStyledCallExpression (identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
@@ -95,6 +161,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
     state.insertStaticRules(staticCSSRules)
     return t.callExpression(identifier, [
       tag,
+      t.stringLiteral(getComponentId(state)),
       t.arrayExpression([t.stringLiteral(`${name}-${hash}`)])
     ])
   }
@@ -109,6 +176,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   const vars = path.node.quasi.expressions.slice(composesCount)
   const args = [
     tag,
+    t.stringLiteral(getComponentId(state)),
     t.arrayExpression(objs),
     t.arrayExpression(vars),
     t.functionExpression(
@@ -127,12 +195,13 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   return t.callExpression(identifier, args)
 }
 
-export function buildStyledObjectCallExpression (path, identifier, t) {
+export function buildStyledObjectCallExpression (path, state, identifier, t) {
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
   return t.callExpression(identifier, [
     tag,
+    t.stringLiteral(getComponentId(state)),
     t.arrayExpression(
       buildProcessedStylesFromObjectAST(path.node.arguments, path, t)
     )
@@ -225,7 +294,7 @@ export default function (babel) {
       JSXOpeningElement (path, state) {
         cssProps(path, state, t)
       },
-      CallExpression (path) {
+      CallExpression (path, state) {
         if (path[visited]) {
           return
         }
@@ -241,7 +310,7 @@ export default function (babel) {
               ? path.node.callee.callee
               : path.node.callee.object
             path.replaceWith(
-              buildStyledObjectCallExpression(path, identifier, t)
+              buildStyledObjectCallExpression(path, state, identifier, t)
             )
           }
           if (

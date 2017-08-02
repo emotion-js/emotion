@@ -2,7 +2,7 @@
 /* eslint-env jest */
 import * as babel from 'babel-core'
 import plugin from '../../src/babel'
-import stage2 from 'babel-plugin-transform-object-rest-spread'
+import stage2 from 'babel-plugin-syntax-object-rest-spread'
 import * as fs from 'fs'
 jest.mock('fs')
 
@@ -21,7 +21,9 @@ describe('babel styled component', () => {
     test('no dynamic', () => {
       const basic = 'styled.h1`color:blue;`'
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
       expect(code).toMatchSnapshot()
     })
@@ -38,7 +40,9 @@ describe('babel styled component', () => {
           props.theme.borderColor};
       \``
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
 
       expect(code).toMatchSnapshot()
@@ -60,7 +64,9 @@ describe('babel styled component', () => {
       border-left: $\{p => p.theme.blue};
     \``
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
 
       expect(code).toMatchSnapshot()
@@ -71,12 +77,14 @@ describe('babel styled component', () => {
       const SomeComponent = styled.div\` \`
       styled.h1\`
         color:blue;
-        .\${SomeComponent} {
+        \${SomeComponent} {
           color: green;
         }
       \``
       const { code } = babel.transform(basic, {
-        plugins: [plugin]
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
       })
       expect(code).toMatchSnapshot()
     })
@@ -151,19 +159,6 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('name is correct with no identifier', () => {
-      const basic = `
-        css\`
-        margin: 12px 48px;
-        color: #ffffff;
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
     test('objects fn call', () => {
       const basic = `
       const H1 = styled('h1')({
@@ -180,6 +175,15 @@ describe('babel styled component', () => {
       const H1 = styled('h1')({ padding: 10 },props => ({
         display: props.display
       }))`
+      const { code } = babel.transform(basic, {
+        plugins: [plugin]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('shorthand property', () => {
+      const basic = `const H1 = styled.h1({ fontSize })`
+
       const { code } = babel.transform(basic, {
         plugins: [plugin]
       })

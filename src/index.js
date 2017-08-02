@@ -46,7 +46,7 @@ function buildStyles (objs) {
   forEach(objs, (cls): void => {
     if (typeof cls === 'string') {
       const match = emotionClassRegex.exec(cls)
-      if (match) {
+      if (match !== null && ruleCache[match[1]] !== undefined) {
         objectStyles.push(ruleCache[match[1]])
       } else {
         computedClassName && (computedClassName += ' ')
@@ -77,7 +77,7 @@ export function css (objs: any, vars: Array<any>, content: () => Array<any>) {
 
 function insertRawRule (css: string) {
   let spec = {
-    id: hash(css, css.length),
+    id: hash(css),
     css,
     type: 'raw'
   }

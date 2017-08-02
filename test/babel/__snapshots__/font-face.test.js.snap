@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fontFace babel extract basic 1`] = `"import \\"./font-face.test.emotion.css\\";"`;
+exports[`fontFace babel extract basic 1`] = `
+"import \\"./font-face.test.emotion.css\\";
+
+undefined;"
+`;
 
 exports[`fontFace babel extract basic 2`] = `
 "@font-face {

@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "7.0.1",
+  "version": "7.0.4",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
@@ -119,7 +119,7 @@
     },
     "moduleNameMapper": {
       "^emotion$": "<rootDir>/src",
-      "^emotion\/react$": "<rootDir>/src/react"
+      "^emotion/react$": "<rootDir>/src/react"
     }
   },
   "bugs": {
