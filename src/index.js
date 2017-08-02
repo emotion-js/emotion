@@ -238,7 +238,7 @@ function deconstruct (style) {
   forEach(keys(style), key => {
     if (key.indexOf('&') >= 0) {
       selects = selects || {}
-      selects[key] = style[key]
+      selects[key] = deconstruct(style[key]).plain
     } else if (key.indexOf('@media') === 0) {
       medias = medias || {}
       medias[key] = deconstruct(style[key])
