@@ -8,7 +8,7 @@ module.exports = env => {
   var loaders = [
     {
       test: /\.jsx?$/,
-      include: [/src/, /autoprefixer/, /chalk/, /ansi-styles/, /postcss-nested/],
+      include: [/src/, /autoprefixer/, /chalk/, /ansi-styles/, /postcss-nested/, /caniuse-lite/],
       loader: 'babel-loader'
     },
     {
@@ -63,7 +63,8 @@ module.exports = env => {
       publicPath: '/'
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx']
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      symlinks: false
     },
     plugins: [
       new HtmlWebpackPlugin({

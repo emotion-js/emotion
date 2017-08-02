@@ -246,15 +246,37 @@ const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], 
 exports[`babel css inline css basic 1`] = `
 "
 /*#__PURE__*/css([], [widthVar], function createEmotionStyledRules(x0) {
-        return [{
-                \\"margin\\": \\"12px 48px\\",
-                \\"color\\": \\"#ffffff; color: blue\\",
-                \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\",
-                \\"WebkitBoxFlex\\": \\"1\\",
-                \\"msFlex\\": \\"1 0 auto\\",
-                \\"flex\\": \\"1 0 auto\\",
-                \\"width\\": \`\${x0}\`
-        }];
+  return [{
+    \\"margin\\": \\"12px 48px\\",
+    \\"color\\": \\"#ffffff; color: blue\\",
+    \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\",
+    \\"WebkitBoxFlex\\": \\"1\\",
+    \\"msFlex\\": \\"1 0 auto\\",
+    \\"flex\\": \\"1 0 auto\\",
+    \\"@media (min-width: 420px)\\": {
+      \\"lineHeight\\": \\"40px\\"
+    },
+    \\"width\\": \`\${x0}\`
+  }];
+});"
+`;
+
+exports[`babel css inline css random expression 1`] = `
+"/*#__PURE__*/css([], [/*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"width\\": \\"96px\\",
+    \\"height\\": \\"96px\\"
+  }];
+})], function createEmotionStyledRules(x0) {
+  return [{
+    \\"fontSize\\": \\"20px\\",
+    \\"@media (min-width: 420px)\\": {
+      \\"color\\": \\"blue\\",
+      [\`\${x0}\`]: \\"fragment\\",
+      \\"lineHeight\\": \\"26px\\"
+    },
+    \\"background\\": \\"green\\"
+  }];
 });"
 `;
 
