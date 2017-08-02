@@ -379,6 +379,19 @@ exports[`styled input placeholder object 1`] = `
 </input>
 `;
 
+exports[`styled merges in \`class\` attribute 1`] = `
+.glamor-0 {
+  color: red;
+}
+
+<h1
+  class="some_other_class"
+  className="some_other_class glamor-0"
+>
+  Hello
+</h1>
+`;
+
 exports[`styled name 1`] = `
 .glamor-1 {
   name: FancyH1;
