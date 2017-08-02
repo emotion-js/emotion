@@ -249,9 +249,7 @@ function deconstruct (style) {
       const fragment = style[key]
       plain = plain || {}
 
-      if (typeof fragment === 'object') {
-        assign(plain, fragment)
-      } else if (typeof fragment === 'string') {
+      if (typeof fragment === 'string') {
         const match = emotionClassRegex.exec(fragment)
         if (match !== null && registered[match[1]]) {
           // replace fragments
@@ -261,6 +259,9 @@ function deconstruct (style) {
           }
           assign(plain, reg.style)
         }
+      } else {
+        // what about arrays?
+        assign(plain, fragment)
       }
     } else {
       plain = plain || {}
