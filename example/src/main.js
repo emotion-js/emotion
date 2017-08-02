@@ -11,7 +11,6 @@ const propsExample = require('./blocks/props.example')
 const nestedExample = require('./blocks/nested.example')
 const mediaExample = require('./blocks/media.example')
 const anyComponentExample = require('./blocks/styling-any-component.example')
-const namedExample = require('./blocks/named.example')
 const pseudoExample = require('./blocks/pseudo.example')
 const keyframesExample = require('./blocks/keyframes.example')
 // const fontFaceExample = require('./blocks/font-face.example')
@@ -306,22 +305,6 @@ class App extends React.Component {
                 css,
                 styled,
                 render
-              }}
-            />
-
-            <Markdown markdown={require('../../docs/named.md')} />
-            <Playground
-              maxHeight={220}
-              noRender={false}
-              codeText={namedExample}
-              scope={{
-                logoUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
               }}
             />
           </div>
