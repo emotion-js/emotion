@@ -323,6 +323,7 @@ exports[`babel css inline nested expanded properties 1`] = `
 exports[`babel css inline object with a bunch of stuff 1`] = `
 "
 const cls2 = css({
+  'float': 'left',
   'display': '-webkit-box; display: -ms-flexbox; display: flex',
   'WebkitBoxFlex': '1',
   'msFlex': '1',

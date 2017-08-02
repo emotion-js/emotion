@@ -159,6 +159,7 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 
 exports[`css handles objects 1`] = `
 .glamor-0 {
+  float: left;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

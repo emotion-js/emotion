@@ -63,6 +63,7 @@ describe('css', () => {
 
   test('handles objects', () => {
     const cls1 = css({
+      float: 'left',
       display: 'flex',
       color: `${'blue'}`,
       fontSize: `${'20px'}`,

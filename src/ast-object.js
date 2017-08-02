@@ -57,9 +57,8 @@ function prefixAst (args, t) {
         return properties.push(
           t.objectProperty(key, prefixedValue, property.computed)
         )
-
-        // literal value or array of literal values
       } else if (
+        // literal value or array of literal values
         isLiteral(property.value) ||
         (t.isArrayExpression(property.value) &&
           property.value.elements.every(isLiteral))
@@ -79,9 +78,13 @@ function prefixAst (args, t) {
         const prefixedStyle = expandCSSFallbacks(prefixer(style))
 
         for (let k in prefixedStyle) {
-          const key = t.isStringLiteral(property.key)
-            ? t.stringLiteral(k)
-            : t.identifier(k)
+          // https://github.com/stevenvachon/camelcase-css/blob/master/index.js#L16
+          const prefixedKey = k === 'cssFloat' ? 'float' : k
+
+          let key = t.isStringLiteral(property.key)
+            ? t.stringLiteral(prefixedKey)
+            : t.identifier(prefixedKey)
+
           const val = prefixedStyle[k]
           let value
 

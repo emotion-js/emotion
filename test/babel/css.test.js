@@ -234,6 +234,7 @@ describe('babel css', () => {
     test('object with a bunch of stuff', () => {
       const basic = `
       const cls2 = css({
+        float: 'left',
         display: 'flex',
         flex: 1,
         alignItems: \`\${'center'}\`
