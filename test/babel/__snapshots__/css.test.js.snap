@@ -281,6 +281,15 @@ exports[`babel css inline css random expression 1`] = `
 });"
 `;
 
+exports[`babel css inline css with float property 1`] = `
+"
+/*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"float\\": \\"left\\"
+  }];
+});"
+`;
+
 exports[`babel css inline interpolation in selector 1`] = `
 "
 const cls2 = /*#__PURE__*/css([], [className], function createEmotionStyledRules(x0) {

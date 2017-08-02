@@ -14,7 +14,7 @@ expect.addSnapshotSerializer(serializer(sheet))
 
 describe('styled', () => {
   test('no dynamic', () => {
-    const H1 = styled.h1`font-size: 12px;`
+    const H1 = styled.h1`float: left;`
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 

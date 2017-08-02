@@ -411,7 +411,7 @@ exports[`styled nested 1`] = `
 
 exports[`styled no dynamic 1`] = `
 .glamor-1 {
-  font-size: 12px;
+  float: left;
 }
 
 <h1

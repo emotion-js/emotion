@@ -27,6 +27,17 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('css with float property', () => {
+      const basic = `
+        css\`
+          float: left;
+      \``
+      const {code} = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('css random expression', () => {
       const basic = `css\`
         font-size: 20px;

@@ -78,13 +78,9 @@ function prefixAst (args, t) {
         const prefixedStyle = expandCSSFallbacks(prefixer(style))
 
         for (let k in prefixedStyle) {
-          // https://github.com/stevenvachon/camelcase-css/blob/master/index.js#L16
-          const prefixedKey = k === 'cssFloat' ? 'float' : k
-
-          let key = t.isStringLiteral(property.key)
-            ? t.stringLiteral(prefixedKey)
-            : t.identifier(prefixedKey)
-
+          const key = t.isStringLiteral(property.key)
+            ? t.stringLiteral(k)
+            : t.identifier(k)
           const val = prefixedStyle[k]
           let value
 
@@ -143,7 +139,7 @@ export default class ASTObject {
     return {
       computed: false,
       composes: key === 'composes',
-      ast: t.stringLiteral(key)
+      ast: t.stringLiteral(key === 'cssFloat' ? 'float' : key)
     }
   }
 

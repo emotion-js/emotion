@@ -118,6 +118,16 @@ exports[`css css variables 1`] = `
 />
 `;
 
+exports[`css float property 1`] = `
+.glamor-0 {
+  float: left;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css flushes correctly 1`] = `
 .glamor-0 {
   display: -webkit-box;

@@ -7,6 +7,15 @@ import { sheet, css, flush } from '../src/index'
 expect.addSnapshotSerializer(serializer(sheet))
 
 describe('css', () => {
+  test('float property', () => {
+    const cls1 = css`
+      float: left
+    `
+
+    const tree = renderer.create(<div className={cls1}/>).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('handles more than 10 dynamic properties', () => {
     const cls1 = css`
       text-decoration: ${'underline'};
