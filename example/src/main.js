@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { ThemeProvider } from 'emotion/react/theming'
+import { ThemeProvider, withTheme } from 'theming'
 import styled, { css, fontFace, keyframes, injectGlobal } from 'emotion/react'
 import Markdown from './markdown'
 import Playground from './playground'
@@ -58,10 +58,10 @@ const theme = {
 
 const margin = (t, r, b, l) => {
   return () => css`
-    margin-top: ${t}
-    margin-right: ${r}
-    margin-bottom: ${b}
-    margin-left: ${l}
+    margin-top: ${t};
+    margin-right: ${r};
+    margin-bottom: ${b};
+    margin-left: ${l};
   `
 }
 
@@ -101,12 +101,10 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <PlaygroundWrapper>
-
           <div className='inner'>
             <div className='header'>
               <h1>
                 <img src={logoUrl} alt='emotion' />
-
                 emotion
               </h1>
               <p>The Next Generation of CSS-in-JS</p>
@@ -117,10 +115,13 @@ class App extends React.Component {
               codeText={introExample}
               scope={{
                 logoUrl,
-                css,
                 React,
+                css,
+                keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -133,10 +134,13 @@ class App extends React.Component {
               codeText={nestedExample}
               scope={{
                 logoUrl,
-                css,
                 React,
+                css,
+                keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -152,7 +156,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -183,7 +188,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -198,7 +204,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -214,37 +221,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
-              }}
-            />
-
-            {/* <Markdown markdown={require('./docs/font-face.md')}/> */}
-            {/* <Playground */}
-            {/* maxHeight={600} */}
-            {/* noRender={false} */}
-            {/* codeText={fontFaceExample} */}
-            {/* scope={{ */}
-            {/* logoUrl, */}
-            {/* React, */}
-            {/* fontFace, */}
-            {/* styled, */}
-            {/* render */}
-            {/* }} */}
-            {/* /> */}
-
-            <Markdown markdown={require('../../docs/theming.md')} />
-            <Playground
-              maxHeight={180}
-              noRender={false}
-              codeText={require('./blocks/theming.example')}
-              scope={{
-                logoUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -260,7 +238,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -276,7 +255,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -307,8 +287,24 @@ class App extends React.Component {
                 render
               }}
             />
-          </div>
 
+            <Markdown markdown={require('../../docs/theming.md')}/>
+            <Playground
+              maxHeight={180}
+              noRender={false}
+              codeText={require('./blocks/theming.example')}
+              scope={{
+                logoUrl,
+                React,
+                css,
+                keyframes,
+                styled,
+                render,
+                ThemeProvider,
+                withTheme
+              }}
+            />
+          </div>
         </PlaygroundWrapper>
       </ThemeProvider>
     )

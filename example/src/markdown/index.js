@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
+import { withTheme } from 'theming'
 import styled from 'emotion/react'
 import colors from 'open-color'
 import styles from './index.css'
@@ -13,7 +14,7 @@ const MarkdownContainer = styled('div')`
   }
 `
 
-const Link = styled('a')`
+const Link = withTheme(styled('a')`
   font-size: 1rem;
   margin-left: auto;
   margin-right: 8px;
@@ -27,7 +28,7 @@ const Link = styled('a')`
   &:hover {
     color: ${p => p.theme.gold};
   }
-`
+`)
 
 const Paragraph = styled('p')`
   margin: 16px 0;

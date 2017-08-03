@@ -1,9 +1,33 @@
 ## Theming
 
-```jsx
-import { ThemeProvider, withTheme } from 'emotion/react/theming'
+Themes are provided by the library [theming](https://github.com/iamstarkov/theming).
+
+#### Install [theming](https://github.com/iamstarkov/theming)
+
+
+```bash
+npm install -S theming
 ```
 
-Theming is provided by the theming library. 
-The api is laid out in detail [here](https://github.com/iamstarkov/theming/blob/master/README.md#api).
-Whenever you provide a theme to `ThemeProvider` any styled component has access to those styles via `props.theme`. It does not matter how nested your component is inside `ThemeProvider`, you still have access to `props.theme`.
+Add `ThemeProvider` to the top level of your app and whenever you need the theme prop wrap your component in `withTheme`. The api is laid out in detail [here](https://github.com/iamstarkov/theming/blob/master/README.md#api).
+
+```jsx
+import { ThemeProvider, withTheme } from 'theming'
+
+const H1 = withTheme(styled(Heading)`
+  color: ${p => p.theme.purple};
+`)
+
+
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <H1 scale={2} ref={refFunction}>
+      emotion
+    </H1>
+  </ThemeProvider>
+)
+```
+
+
+
+
