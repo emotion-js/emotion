@@ -48,6 +48,7 @@ export default function (tag, cls, objs, vars = [], content) {
             if (spec.content) {
               push(accum, spec.content.apply(null, map(spec.vars, getValue)))
             }
+            push(accum, [spec.cls])
             return accum
           },
           []
@@ -87,7 +88,8 @@ export default function (tag, cls, objs, vars = [], content) {
     vars,
     content,
     objs,
-    tag
+    tag,
+    cls
   }
   Styled.__emotion_spec = tag.__emotion_spec
     ? tag.__emotion_spec.concat(spec)

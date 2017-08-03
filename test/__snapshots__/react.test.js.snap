@@ -193,13 +193,13 @@ exports[`styled component as selector function interpolation 1`] = `
 `;
 
 exports[`styled composes 1`] = `
-.glamor-1 {
+.glamor-2 {
   color: blue;
   font-size: 32px;
 }
 
 <h1
-  className="glamor-0 legacy__class glamor-1"
+  className="glamor-0 glamor-1 legacy__class glamor-2"
   scale={2}
 >
   hello world
@@ -232,7 +232,7 @@ exports[`styled composes based on props 2`] = `
 `;
 
 exports[`styled composes with objects 1`] = `
-.glamor-1 {
+.glamor-2 {
   color: #333;
   font-size: 32px;
   height: 64px;
@@ -243,13 +243,13 @@ exports[`styled composes with objects 1`] = `
     only screen and (-o-min-device-pixel-ratio: 1.5/1),
     only screen and (min-resolution: 144dpi),
     only screen and (min-resolution: 1.5dppx) {
-  .glamor-1 {
+  .glamor-2 {
     font-size: 1.4323121856191332em;
   }
 }
 
 <h1
-  className="glamor-0 legacy__class glamor-1"
+  className="glamor-0 glamor-1 legacy__class glamor-2"
   scale={2}
 >
   hello world
@@ -257,7 +257,7 @@ exports[`styled composes with objects 1`] = `
 `;
 
 exports[`styled composing components 1`] = `
-.glamor-1 {
+.glamor-3 {
   color: green;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -268,31 +268,31 @@ exports[`styled composing components 1`] = `
 }
 
 <button
-  className="glamor-0 glamor-1"
+  className="glamor-0 glamor-1 glamor-2 glamor-3"
 >
   hello world
 </button>
 `;
 
 exports[`styled composition 1`] = `
-.glamor-1 {
+.glamor-2 {
   font-size: 13.333333333333334px;
 }
 
 <h1
-  className="glamor-0 legacy__class glamor-1"
+  className="glamor-0 glamor-1 legacy__class glamor-2"
 >
   hello world
 </h1>
 `;
 
 exports[`styled function in expression 1`] = `
-.glamor-1 {
+.glamor-2 {
   font-size: 40px;
 }
 
 <h1
-  className="glamor-0 legacy__class glamor-1"
+  className="glamor-0 glamor-1 legacy__class glamor-2"
   scale={2}
 >
   hello world
@@ -324,7 +324,7 @@ exports[`styled handles more than 10 dynamic properties 1`] = `
 `;
 
 exports[`styled higher order component 1`] = `
-.glamor-1 {
+.glamor-2 {
   font-size: 20px;
   background-color: '#343a40';
   -webkit-box-orient: vertical;
@@ -334,7 +334,7 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="glamor-0 glamor-1"
+  className="glamor-0 glamor-1 glamor-2"
 />
 `;
 
