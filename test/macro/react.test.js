@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
 import { css, sheet } from '../../src/macro'
 import styled from '../../src/react/macro'
-import { ThemeProvider } from '../../src/react/theming'
+import { ThemeProvider, withTheme } from 'theming'
 
 import { lighten, hiDPI, modularScale } from 'polished'
 
@@ -189,15 +189,15 @@ describe('styled', () => {
       height: 64px;
     `
 
-    const Heading = styled('span')`
+    const Heading = withTheme(styled('span')`
       background-color: ${p => p.theme.gold};
-    `
+    `)
 
-    const H1 = styled(Heading)`
+    const H1 = withTheme(styled(Heading)`
       composes: ${cssB};
       font-size: ${fontSize};
       color: ${p => p.theme.purple};
-    `
+    `)
 
     const H2 = styled(H1)`font-size:32px;`
     const refFunction = jest.fn()

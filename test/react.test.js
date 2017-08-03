@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
 import { css, sheet } from '../src/index'
 import styled from '../src/react'
-import { ThemeProvider } from '../src/react/theming'
+import { ThemeProvider, withTheme } from 'theming'
 import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
@@ -413,18 +413,20 @@ describe('styled', () => {
       height: 64px;
     `
 
-    const Heading = styled('span')`
+    const Heading = withTheme(styled('span')`
       background-color: ${p => p.theme.gold};
-    `
+    `)
 
-    const H1 = styled(Heading)`
+    const H1 = withTheme(styled(Heading)`
       composes: ${cssB};
       font-size: ${fontSize};
       color: ${p => p.theme.purple};
-    `
+    `)
 
     const H2 = styled(H1)`font-size:32px;`
+
     const refFunction = jest.fn()
+
     const tree = renderer
       .create(
         <ThemeProvider theme={theme}>
@@ -525,7 +527,7 @@ describe('styled', () => {
   })
 
   test('change theme', () => {
-    const Div = styled.div`color: ${props => props.theme.primary};`
+    const Div = withTheme(styled.div`color: ${props => props.theme.primary};`)
     const TestComponent = props =>
       <ThemeProvider theme={props.theme}>
         {props.renderChild ? <Div>this will be green then pink</Div> : null}
