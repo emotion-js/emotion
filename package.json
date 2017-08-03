@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "7.0.6",
+  "version": "7.0.7",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
@@ -14,12 +14,12 @@
     "macro.js"
   ],
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "rimraf lib && babel src -d lib",
     "build:watch": "npm run build -- -w",
     "test:size": "npm-run-all clean rollup size",
     "clean": "rimraf dist",
     "test": "npm-run-all -p lint:check coverage test:size",
-    "coverage": "jest --coverage --no-cache",
+    "coverage": "jest --coverage --no-cache --ci --runInBand",
     "lint:check": "standard src test",
     "test:watch": "jest --watch --no-cache",
     "rollup": "rollup -c",
