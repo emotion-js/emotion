@@ -677,3 +677,26 @@ exports[`styled throws if undefined is passed as the component 1`] = `
 "You are trying to create a styled element with an undefined component.
 You may have forgotten to import it."
 `;
+
+exports[`styled withComponent will replace tags but keep styling classes 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<article>
+  <Styled>
+    <h1
+      className="glamor-0 glamor-1"
+    >
+      My Title
+    </h1>
+  </Styled>
+  <Styled>
+    <h2
+      className="glamor-2 glamor-1"
+    >
+      My Subtitle
+    </h2>
+  </Styled>
+</article>
+`;

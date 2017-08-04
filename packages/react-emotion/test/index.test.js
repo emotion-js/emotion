@@ -644,4 +644,17 @@ describe('styled', () => {
       () => styled(undefined)`display: flex;`
     ).toThrowErrorMatchingSnapshot()
   })
+  test('withComponent will replace tags but keep styling classes', () => {
+    const Title = styled('h1')`color: green;`
+    const Subtitle = Title.withComponent('h2')
+
+    const wrapper = mount(
+      <article>
+        <Title>My Title</Title>
+        <Subtitle>My Subtitle</Subtitle>
+      </article>
+    )
+
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
 })

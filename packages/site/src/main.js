@@ -17,6 +17,7 @@ const propsExample = require('./blocks/props.example')
 const nestedExample = require('./blocks/nested.example')
 const mediaExample = require('./blocks/media.example')
 const anyComponentExample = require('./blocks/styling-any-component.example')
+const withComponentExample = require('./blocks/styled-with-component.example')
 const pseudoExample = require('./blocks/pseudo.example')
 const keyframesExample = require('./blocks/keyframes.example')
 
@@ -150,6 +151,15 @@ class App extends React.Component {
             <Playground
               maxHeight={220}
               codeText={anyComponentExample}
+              scope={scope}
+            />
+
+            <Markdown
+              markdown={require('../../../docs/styled-with-component.md')}
+            />
+            <Playground
+              maxHeight={220}
+              codeText={withComponentExample}
               scope={scope}
             />
 
