@@ -543,6 +543,7 @@ describe('styled', () => {
   })
   test('prop filtering', () => {
     const Link = styled.a`color: green;`
+    const rest = { m: [3], pt: [4] }
 
     const tree = renderer
       .create(
@@ -557,6 +558,7 @@ describe('styled', () => {
           aria-label='some label'
           data-wow='value'
           href='link'
+          {...rest}
         >
           hello world
         </Link>
