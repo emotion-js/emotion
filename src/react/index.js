@@ -27,7 +27,10 @@ export default function (tag, cls, objs, vars = [], content) {
   }
 
   const componentTag = tag.displayName || tag.name || 'Component'
-  const omitFn = typeof tag === 'string' ? testOmitPropsOnStringTag : testOmitPropsOnComponent
+  const omitFn =
+    typeof tag === 'string'
+      ? testOmitPropsOnStringTag
+      : testOmitPropsOnComponent
   function Styled (props, context) {
     const getValue = v => {
       if (v && typeof v === 'function') {
@@ -83,7 +86,7 @@ export default function (tag, cls, objs, vars = [], content) {
           ref: props.innerRef,
           className
         }),
-       omitFn
+        omitFn
       )
     )
   }

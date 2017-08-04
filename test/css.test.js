@@ -12,7 +12,7 @@ describe('css', () => {
       float: left
     `
 
-    const tree = renderer.create(<div className={cls1}/>).toJSON()
+    const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 

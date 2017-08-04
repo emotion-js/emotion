@@ -32,7 +32,7 @@ describe('babel css', () => {
         css\`
           float: left;
       \``
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()

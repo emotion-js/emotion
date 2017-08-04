@@ -192,7 +192,8 @@ const props = {
   security: true,
   // IE-only attribute that controls focus behavior
   unselectable: true
-
 }
 
-module.exports = `^((${Object.keys(props).join('|')})|(on[A-Z].*)|((data|aria)-.*))$`
+module.exports = `^((${Object.keys(props).join(
+  '|'
+)})|(on[A-Z].*)|((data|aria)-.*))$`

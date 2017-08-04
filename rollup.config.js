@@ -5,8 +5,12 @@ import uglify from 'rollup-plugin-uglify'
 import replace from 'rollup-plugin-replace'
 import pkg from './package.json'
 
-const importPath = process.env.IMPORT === 'react' ? 'src/react/index.js' : './src/index.js'
-const outputPath = process.env.IMPORT === 'react' ? './dist/DO-NOT-USE-react.min.js' : './dist/DO-NOT-USE.min.js'
+const importPath =
+  process.env.IMPORT === 'react' ? 'src/react/index.js' : './src/index.js'
+const outputPath =
+  process.env.IMPORT === 'react'
+    ? './dist/DO-NOT-USE-react.min.js'
+    : './dist/DO-NOT-USE.min.js'
 
 export default {
   entry: importPath,
@@ -40,7 +44,5 @@ export default {
     }),
     uglify()
   ],
-  targets: [
-    { dest: outputPath, format: 'umd', moduleName: pkg.name }
-  ]
+  targets: [{ dest: outputPath, format: 'umd', moduleName: pkg.name }]
 }
