@@ -179,12 +179,10 @@ exports[`styled component as selector function interpolation 1`] = `
 
 <div
   className="glamor-2 glamor-3"
-  fontSize={10}
 >
   hello 
   <h1
     className="glamor-0 glamor-1"
-    fontSize={20}
   >
     This will be green
   </h1>
@@ -468,7 +466,6 @@ exports[`styled objects 1`] = `
 
 <h1
   className="some-class glamor-0 glamor-1"
-  display="flex"
 >
   hello world
 </h1>
@@ -543,7 +540,6 @@ exports[`styled themes 1`] = `
 
 <span
   className="glamor-0 glamor-1 glamor-2 glamor-3"
-  scale={2}
 >
   hello world
 </span>
