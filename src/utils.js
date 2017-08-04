@@ -1,9 +1,12 @@
 // @flow weak
-export function omit (obj: { [string]: any }, keys: Array<string>) {
+export function omit (
+  obj: { [string]: any },
+  testFn: (key: string, obj: any) => boolean
+) {
   let target: { [string]: any } = {}
   let i: string
   for (i in obj) {
-    if (keys.indexOf(i) !== -1) continue
+    if (!testFn(i, obj)) continue
     if (!Object.prototype.hasOwnProperty.call(obj, i)) continue
     target[i] = obj[i]
   }

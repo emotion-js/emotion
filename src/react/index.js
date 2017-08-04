@@ -1,6 +1,7 @@
 import { createElement as h } from 'react'
 import { css } from '../index'
-import { map, omit, reduce, assign } from '../utils'
+import { map, reduce, assign, omit } from '../utils'
+import propsRegexString from /* preval */ './props'
 
 export {
   flush,
@@ -14,6 +15,10 @@ export {
 
 const push = (obj, items) => Array.prototype.push.apply(obj, items)
 
+const reactPropsRegex = new RegExp(propsRegexString)
+const testOmitPropsOnStringTag = key => reactPropsRegex.test(key)
+const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
+
 export default function (tag, cls, objs, vars = [], content) {
   if (!tag) {
     throw new Error(
@@ -22,7 +27,10 @@ export default function (tag, cls, objs, vars = [], content) {
   }
 
   const componentTag = tag.displayName || tag.name || 'Component'
-
+  const omitFn =
+    typeof tag === 'string'
+      ? testOmitPropsOnStringTag
+      : testOmitPropsOnComponent
   function Styled (props, context) {
     const getValue = v => {
       if (v && typeof v === 'function') {
@@ -48,7 +56,7 @@ export default function (tag, cls, objs, vars = [], content) {
             if (spec.content) {
               push(accum, spec.content.apply(null, map(spec.vars, getValue)))
             }
-            push(accum, [spec.cls])
+            accum.push(spec.cls)
             return accum
           },
           []
@@ -59,7 +67,7 @@ export default function (tag, cls, objs, vars = [], content) {
 
     push(finalObjs, objs)
 
-    push(finalObjs, [cls])
+    finalObjs.push(cls)
 
     if (content) {
       push(finalObjs, content.apply(null, map(vars, getValue)))
@@ -78,7 +86,7 @@ export default function (tag, cls, objs, vars = [], content) {
           ref: props.innerRef,
           className
         }),
-        ['innerRef', 'theme']
+        omitFn
       )
     )
   }

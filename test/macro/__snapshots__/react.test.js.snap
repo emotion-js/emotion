@@ -81,7 +81,6 @@ exports[`styled composes based on props 1`] = `
 }
 
 <h1
-  a={true}
   className="glamor-0 glamor-1"
 >
   hello world
@@ -211,7 +210,6 @@ exports[`styled objects 1`] = `
 
 <h1
   className="some-class glamor-0 glamor-1"
-  display="flex"
 >
   hello world
 </h1>
@@ -227,7 +225,6 @@ exports[`styled themes 1`] = `
 
 <span
   className="glamor-0 glamor-1 glamor-2 glamor-3"
-  scale={2}
 >
   hello world
 </span>

@@ -11,7 +11,7 @@ module.exports = function macro (options) {
   if (!state.inline) state.inline = true
   let referencesWithoutDefault = references
   if (references.default) {
-    referencesWithoutDefault = omit(references, ['default'])
+    referencesWithoutDefault = omit(references, key => key !== 'default')
     references.default.forEach(styledReference => {
       const path = styledReference.parentPath.parentPath
       const runtimeNode = buildMacroRuntimeNode(

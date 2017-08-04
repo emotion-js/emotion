@@ -558,6 +558,56 @@ describe('styled', () => {
     wrapper.setProps({ renderChild: false })
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
+  test('prop filtering', () => {
+    const Link = styled.a`color: green;`
+    const rest = { m: [3], pt: [4] }
+
+    const tree = renderer
+      .create(
+        <Link
+          a
+          b
+          wow
+          prop
+          filtering
+          is
+          cool
+          aria-label='some label'
+          data-wow='value'
+          href='link'
+          {...rest}
+        >
+          hello world
+        </Link>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+  test('no prop filtering on non string tags', () => {
+    const Link = styled(props => <a {...props} />)`color: green;`
+
+    const tree = renderer
+      .create(
+        <Link
+          a
+          b
+          wow
+          prop
+          filtering
+          is
+          cool
+          aria-label='some label'
+          data-wow='value'
+          href='link'
+        >
+          hello world
+        </Link>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
   test('throws if undefined is passed as the component', () => {
     expect(
       () => styled(undefined)`display: flex;`

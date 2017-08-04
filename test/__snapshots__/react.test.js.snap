@@ -191,12 +191,10 @@ exports[`styled component as selector function interpolation 1`] = `
 
 <div
   className="glamor-2 glamor-3"
-  fontSize={10}
 >
   hello 
   <h1
     className="glamor-0 glamor-1"
-    fontSize={20}
   >
     This will be green
   </h1>
@@ -224,7 +222,6 @@ exports[`styled composes based on props 1`] = `
 }
 
 <h1
-  a={true}
   className="glamor-0 glamor-1"
 >
   hello world
@@ -450,6 +447,28 @@ exports[`styled no dynamic 1`] = `
 </h1>
 `;
 
+exports[`styled no prop filtering on non string tags 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<a
+  a={true}
+  aria-label="some label"
+  b={true}
+  className="glamor-0 glamor-1"
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+>
+  hello world
+</a>
+`;
+
 exports[`styled object composition 1`] = `
 .glamor-1 {
   border-radius: 50%;
@@ -481,7 +500,6 @@ exports[`styled objects 1`] = `
 
 <h1
   className="some-class glamor-0 glamor-1"
-  display="flex"
 >
   hello world
 </h1>
@@ -497,6 +515,22 @@ exports[`styled objects with spread properties 1`] = `
 >
   hello world
 </figure>
+`;
+
+exports[`styled prop filtering 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<a
+  aria-label="some label"
+  className="glamor-0 glamor-1"
+  data-wow="value"
+  href="link"
+  is={true}
+>
+  hello world
+</a>
 `;
 
 exports[`styled random expressions 1`] = `
@@ -523,7 +557,6 @@ exports[`styled random expressions 1`] = `
 
 <h1
   className="glamor-0 legacy__class glamor-1"
-  prop={true}
 >
   hello world
 </h1>
@@ -554,7 +587,6 @@ exports[`styled random object expression 1`] = `
 
 <h1
   className="glamor-0 legacy__class glamor-1"
-  prop={true}
 >
   hello world
 </h1>
@@ -570,7 +602,6 @@ exports[`styled themes 1`] = `
 
 <span
   className="glamor-0 glamor-1 glamor-2 glamor-3"
-  scale={2}
 >
   hello world
 </span>
