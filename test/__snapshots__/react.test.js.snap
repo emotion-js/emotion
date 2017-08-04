@@ -6,6 +6,18 @@ exports[`styled basic render 1`] = `
   font-size: 20px;
 }
 
+@media (min-width: 420px) {
+  .glamor-1 {
+    color: blue;
+  }
+}
+
+@media (min-width: 420px) and  (min-width: 520px) {
+  .glamor-1 {
+    color: green;
+  }
+}
+
 <h1
   className="glamor-0 glamor-1"
 >
@@ -529,6 +541,18 @@ exports[`styled random expressions 1`] = `
   margin-bottom: 0;
   margin-left: auto;
   color: green;
+}
+
+@media (min-width: 420px) {
+  .glamor-1 {
+    color: blue;
+  }
+}
+
+@media (min-width: 420px) and  (min-width: 520px) {
+  .glamor-1 {
+    color: green;
+  }
 }
 
 <h1

@@ -245,24 +245,6 @@ function deconstruct (style) {
     } else if (key.indexOf('@supports') === 0) {
       supports = supports || {}
       supports[key] = deconstruct(style[key])
-    } else if (key.indexOf('$') === 0) {
-      const fragment = style[key]
-      plain = plain || {}
-
-      if (typeof fragment === 'string') {
-        const match = emotionClassRegex.exec(fragment)
-        if (match !== null && registered[match[1]]) {
-          // replace fragments
-          const reg = registered[match[1]]
-          if (reg.type !== 'css') {
-            throw new Error('cannot merge this rule')
-          }
-          assign(plain, reg.style)
-        }
-      } else {
-        // what about arrays?
-        assign(plain, fragment)
-      }
     } else {
       plain = plain || {}
 
@@ -327,6 +309,10 @@ function toRule (spec) {
   })
   ruleCache[spec.id] = ret
   return ret
+}
+
+function isFragment (key) {
+  return key.indexOf('$') === 0;
 }
 
 function isSelector (key) {
@@ -413,7 +399,33 @@ function build (
     }
 
     forEach(keys(_src || {}), key => {
-      if (isSelector(key)) {
+      // replace fragments
+      if (isFragment(key)) {
+        const fragment = _src[key]
+
+        if (typeof fragment === 'string') {
+          const match = emotionClassRegex.exec(fragment)
+          if (match !== null && registered[match[1]]) {
+            const reg = registered[match[1]]
+            if (reg.type !== 'css') {
+              throw new Error('cannot merge this rule')
+            }
+            build(dest, {
+              selector,
+              mq,
+              supp,
+              src: reg.style
+            })
+          }
+        } else {
+          build(dest, {
+            selector,
+            mq,
+            supp,
+            src: fragment
+          })
+        }
+      } else if (isSelector(key)) {
         build(dest, {
           selector: joinSelectors(selector, key),
           mq,
