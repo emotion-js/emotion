@@ -212,7 +212,6 @@ exports[`styled composes based on props 1`] = `
 }
 
 <h1
-  a={true}
   className="glamor-0 glamor-1"
 >
   hello world
@@ -499,7 +498,6 @@ exports[`styled random expressions 1`] = `
 
 <h1
   className="glamor-0 legacy__class glamor-1"
-  prop={true}
 >
   hello world
 </h1>
@@ -530,7 +528,6 @@ exports[`styled random object expression 1`] = `
 
 <h1
   className="glamor-0 legacy__class glamor-1"
-  prop={true}
 >
   hello world
 </h1>
