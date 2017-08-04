@@ -435,6 +435,28 @@ exports[`styled no dynamic 1`] = `
 </h1>
 `;
 
+exports[`styled no prop filtering on non string tags 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<a
+  a={true}
+  aria-label="some label"
+  b={true}
+  className="glamor-0 glamor-1"
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+>
+  hello world
+</a>
+`;
+
 exports[`styled object composition 1`] = `
 .glamor-1 {
   border-radius: 50%;
@@ -481,6 +503,22 @@ exports[`styled objects with spread properties 1`] = `
 >
   hello world
 </figure>
+`;
+
+exports[`styled prop filtering 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<a
+  aria-label="some label"
+  className="glamor-0 glamor-1"
+  data-wow="value"
+  href="link"
+  is={true}
+>
+  hello world
+</a>
 `;
 
 exports[`styled random expressions 1`] = `
