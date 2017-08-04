@@ -26,6 +26,12 @@ describe('styled', () => {
     const H1 = styled.h1`
       color: blue;
       font-size: ${fontSize};
+      @media (min-width: 420px) {
+        color: blue;
+        @media (min-width: 520px) {
+          color: green;
+        }
+      }
     `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
@@ -90,7 +96,18 @@ describe('styled', () => {
         margin-left: ${l};
       `
     }
+
+    const mq = css`
+      @media(min-width: 420px) {
+        color: blue;
+        @media(min-width: 520px) {
+          color: green;
+        }
+      }
+    `
+
     const H1 = styled('h1')`
+      ${mq};
       ${props => props.prop && css`font-size: 1rem`};
       ${margin(0, 'auto', 0, 'auto')};
       color: green;
