@@ -24,7 +24,7 @@ const props = {
   allowTransparency: true,
   alt: true,
   // specifies target context for links with `preload` type
-  as: true,
+  // as: true,
   async: true,
   autoComplete: true,
   // autoFocus is polyfilled/normalized by AutoFocusUtils
@@ -34,7 +34,7 @@ const props = {
   cellPadding: true,
   cellSpacing: true,
   charSet: true,
-  challenge: true,
+  // challenge: true,
   checked: true,
   cite: true,
   classID: true,
@@ -84,7 +84,7 @@ const props = {
   list: true,
   loop: true,
   low: true,
-  manifest: true,
+  // manifest: true,
   marginHeight: true,
   marginWidth: true,
   max: true,
