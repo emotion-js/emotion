@@ -69,7 +69,6 @@ exports[`styled composes 1`] = `
 
 <h1
   className="glamor-0 glamor-1 glamor-2"
-  scale={2}
 >
   hello world
 </h1>
@@ -119,7 +118,6 @@ exports[`styled composes with objects 1`] = `
 
 <h1
   className="glamor-0 glamor-1 glamor-2"
-  scale={2}
 >
   hello world
 </h1>
@@ -144,7 +142,6 @@ exports[`styled function in expression 1`] = `
 
 <h1
   className="glamor-0 glamor-1 glamor-2"
-  scale={2}
 >
   hello world
 </h1>

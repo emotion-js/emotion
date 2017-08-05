@@ -547,23 +547,6 @@ exports[`styled prop filtering on composed styled components that are string tag
 </a>
 `;
 
-exports[`styled prop filtering on styled components that are string tags 1`] = `
-.glamor-2 {
-  background-color: hotpink;
-  color: green;
-}
-
-<a
-  aria-label="some label"
-  className="glamor-0 glamor-1 glamor-2"
-  data-wow="value"
-  href="link"
-  is={true}
->
-  hello world
-</a>
-`;
-
 exports[`styled random expressions 1`] = `
 .glamor-1 {
   font-size: 1rem;
