@@ -42,3 +42,6 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
 
 - [Usage with CSS Modules](https://github.com/tkh44/emotion/tree/master/docs/css-modules.md)
 - [Usage with babel-macros](https://github.com/tkh44/emotion/tree/master/docs/babel-macros.md)
+
+- Ecosystem
+  - [emotion-vue](https://github.com/egoist/emotion-vue)
