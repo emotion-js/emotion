@@ -24,11 +24,11 @@ styleSheet.flush()
 
 import { forEach } from './utils'
 
-function last (arr) {
+function last(arr) {
   return arr[arr.length - 1]
 }
 
-function sheetForTag (tag) {
+function sheetForTag(tag) {
   if (tag.sheet) {
     return tag.sheet
   }
@@ -54,7 +54,7 @@ const oldIE = (() => {
   }
 })()
 
-function makeStyleTag () {
+function makeStyleTag() {
   let tag = document.createElement('style')
   tag.type = 'text/css'
   tag.setAttribute('data-emotion', '')
@@ -64,7 +64,7 @@ function makeStyleTag () {
 }
 
 export class StyleSheet {
-  constructor (
+  constructor(
     {
       speedy = !isDev && !isTest,
       maxLength = isBrowser && oldIE ? 4000 : 65000
@@ -76,10 +76,10 @@ export class StyleSheet {
     this.maxLength = maxLength
     this.ctr = 0
   }
-  getSheet () {
+  getSheet() {
     return sheetForTag(last(this.tags))
   }
-  inject () {
+  inject() {
     if (this.injected) {
       throw new Error('already injected!')
     }
@@ -98,14 +98,14 @@ export class StyleSheet {
     }
     this.injected = true
   }
-  speedy (bool) {
+  speedy(bool) {
     if (this.ctr !== 0) {
       // cannot change speedy mode after inserting any rule to sheet. Either call speedy(${bool}) earlier in your app, or call flush() before speedy(${bool})
       throw new Error(`cannot change speedy now`)
     }
     this.isSpeedy = !!bool
   }
-  _insert (rule) {
+  _insert(rule) {
     // this weirdness for perf, and chrome's weird bug
     // https://stackoverflow.com/questions/20007992/chrome-suddenly-stopped-accepting-insertrule
     try {
@@ -121,7 +121,7 @@ export class StyleSheet {
       }
     }
   }
-  insert (rule) {
+  insert(rule) {
     if (isBrowser) {
       // this is the ultrafast version, works across browsers
       if (this.isSpeedy && this.getSheet().insertRule) {
@@ -152,11 +152,11 @@ export class StyleSheet {
     }
     return this.ctr - 1
   }
-  delete (index) {
+  delete(index) {
     // we insert a blank rule when 'deleting' so previously returned indexes remain stable
     return this.replace(index, '')
   }
-  flush () {
+  flush() {
     if (isBrowser) {
       forEach(this.tags, tag => tag.parentNode.removeChild(tag))
       this.tags = []
@@ -169,7 +169,7 @@ export class StyleSheet {
     }
     this.injected = false
   }
-  rules () {
+  rules() {
     if (!isBrowser) {
       return this.sheet.cssRules
     }

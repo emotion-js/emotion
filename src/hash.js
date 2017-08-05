@@ -1,12 +1,12 @@
 // @flow
 // murmurhash2 via https://gist.github.com/raycmorgan/588423
 
-export function hashArray (arr: string[]): string {
+export function hashArray(arr: string[]): string {
   let str = arr.join(',')
   return hashString(str)
 }
 
-export function hashObject (...objs: Array<{ [string]: any }>): string {
+export function hashObject(...objs: Array<{ [string]: any }>): string {
   let str = ''
   for (let i = 0; i < objs.length; i++) {
     str += JSON.stringify(objs[i])
@@ -14,11 +14,11 @@ export function hashObject (...objs: Array<{ [string]: any }>): string {
   return hashString(str)
 }
 
-export function hashString (str: string) {
+export function hashString(str: string) {
   return hash(str, str.length).toString(36)
 }
 
-function hash (str: string, seed: number) {
+function hash(str: string, seed: number) {
   let m = 0x5bd1e995
   let r = 24
   let h = seed ^ str.length
@@ -64,7 +64,7 @@ function hash (str: string, seed: number) {
   return h >>> 0
 }
 
-function UInt32 (str, pos) {
+function UInt32(str, pos) {
   return (
     str.charCodeAt(pos++) +
     (str.charCodeAt(pos++) << 8) +
@@ -73,11 +73,11 @@ function UInt32 (str, pos) {
   )
 }
 
-function UInt16 (str, pos) {
+function UInt16(str, pos) {
   return str.charCodeAt(pos++) + (str.charCodeAt(pos++) << 8)
 }
 
-function Umul32 (n, m) {
+function Umul32(n, m) {
   n = n | 0
   m = m | 0
   let nlo = n & 0xffff

@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
@@ -19,7 +18,7 @@ describe('css prop react', () => {
   test('string expression', () => {
     const tree = renderer
       .create(
-        <p css='color:red;background:blue;font-size:48px;'>hello world</p>
+        <p css="color:red;background:blue;font-size:48px;">hello world</p>
       )
       .toJSON()
 
@@ -59,7 +58,7 @@ describe('css prop react', () => {
     const tree = renderer
       .create(
         <div
-          className='css__legacy-stuff'
+          className="css__legacy-stuff"
           css={`
               composes: ${bold} ${flexCenter};
              `}
@@ -72,11 +71,11 @@ describe('css prop react', () => {
           >
             BOOM
           </h1>
-          <p className='test_class1' css={`color: blue;`}>
+          <p className="test_class1" css={`color: blue;`}>
             Hello
           </p>
           <p
-            className='test_class1 test___class45'
+            className="test_class1 test___class45"
             css={`display: inline-flex`}
           >
             World

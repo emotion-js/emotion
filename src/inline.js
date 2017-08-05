@@ -1,7 +1,7 @@
 // @flow
 import { hashArray } from './hash'
 
-function extractNameFromProperty (str: string) {
+function extractNameFromProperty(str: string) {
   let regex = /name\s*:\s*([A-Za-z0-9\-_]+)\s*/gm
   let match = regex.exec(str)
   if (match) {
@@ -9,7 +9,7 @@ function extractNameFromProperty (str: string) {
   }
 }
 
-function getName (
+function getName(
   extracted?: string,
   identifierName?: string,
   prefix: string
@@ -24,7 +24,7 @@ function getName (
   return parts.join('-')
 }
 
-function createRawStringFromQuasi (
+function createRawStringFromQuasi(
   strs: string[]
 ): { src: string, dynamicValueCount: number } {
   let dynamicValueCount = 0
@@ -42,7 +42,7 @@ function createRawStringFromQuasi (
   return { src, dynamicValueCount }
 }
 
-export function inline (
+export function inline(
   quasi: any,
   identifierName?: string,
   prefix: string

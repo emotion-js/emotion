@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
   let warnedStyleValues = {}
   let warnedForNaNValue = false
 
-  let warnHyphenatedStyleName = function (name, owner) {
+  let warnHyphenatedStyleName = function(name, owner) {
     if (warnedStyleNames.hasOwnProperty(name) && warnedStyleNames[name]) {
       return
     }
@@ -48,7 +48,7 @@ if (process.env.NODE_ENV !== 'production') {
       : void 0
   }
 
-  let warnBadVendoredStyleName = function (name, owner) {
+  let warnBadVendoredStyleName = function(name, owner) {
     if (warnedStyleNames.hasOwnProperty(name) && warnedStyleNames[name]) {
       return
     }
@@ -65,7 +65,7 @@ if (process.env.NODE_ENV !== 'production') {
       : void 0
   }
 
-  let warnStyleValueWithSemicolon = function (name, value, owner) {
+  let warnStyleValueWithSemicolon = function(name, value, owner) {
     if (warnedStyleValues.hasOwnProperty(value) && warnedStyleValues[value]) {
       return
     }
@@ -83,7 +83,7 @@ if (process.env.NODE_ENV !== 'production') {
       : void 0
   }
 
-  let warnStyleValueIsNaN = function (name, value, owner) {
+  let warnStyleValueIsNaN = function(name, value, owner) {
     if (warnedForNaNValue) {
       return
     }
@@ -99,7 +99,7 @@ if (process.env.NODE_ENV !== 'production') {
       : void 0
   }
 
-  let checkRenderMessage = function (owner) {
+  let checkRenderMessage = function(owner) {
     if (owner) {
       let name = owner.getName()
       if (name) {
@@ -114,7 +114,7 @@ if (process.env.NODE_ENV !== 'production') {
    * @param {*} value
    * @param {ReactDOMComponent} component
    */
-  var warnValidStyle = function (name, value, component) {
+  var warnValidStyle = function(name, value, component) {
     // eslint-disable-line no-var
     let owner
     if (component) {
@@ -148,7 +148,7 @@ if (process.env.NODE_ENV !== 'production') {
    * @return {?string}
    */
 
-export function createMarkupForStyles (styles) {
+export function createMarkupForStyles(styles) {
   let serialized = ''
   for (let styleName in styles) {
     const isCustomProp = styleName.indexOf('--') === 0

@@ -11,7 +11,7 @@ sheet.inject()
 
 export let inserted: { [string | number]: boolean | void } = {}
 
-export function flush () {
+export function flush() {
   sheet.flush()
   inserted = {}
   sheet.inject()
@@ -20,13 +20,13 @@ export function flush () {
 // a simple cache to store generated obj styles
 let registered = (sheet.registered = {})
 
-function register (spec) {
+function register(spec) {
   if (!registered[spec.id]) {
     registered[spec.id] = spec
   }
 }
 
-function _getRegistered (rule) {
+function _getRegistered(rule) {
   if (isLikeRule(rule)) {
     let ret = registered[idFor(rule)]
     if (ret == null) {
@@ -39,7 +39,7 @@ function _getRegistered (rule) {
   return rule
 }
 
-function buildStyles (objs) {
+function buildStyles(objs) {
   let computedClassName = ''
   let objectStyles = []
   // This needs to be moved into the core
@@ -60,7 +60,7 @@ function buildStyles (objs) {
   return { computedClassName, objectStyles }
 }
 
-export function css (objs: any, vars: Array<any>, content: () => Array<any>) {
+export function css(objs: any, vars: Array<any>, content: () => Array<any>) {
   if (!Array.isArray(objs)) {
     objs = [objs]
   }
@@ -75,7 +75,7 @@ export function css (objs: any, vars: Array<any>, content: () => Array<any>) {
   return computedClassName.trim()
 }
 
-function insertRawRule (css: string) {
+function insertRawRule(css: string) {
   let spec = {
     id: hash(css),
     css,
@@ -90,7 +90,7 @@ function insertRawRule (css: string) {
   }
 }
 
-export function injectGlobal (
+export function injectGlobal(
   objs: Array<any>,
   vars: Array<any>,
   content: () => Array<any>
@@ -106,7 +106,7 @@ export function injectGlobal (
   })
 }
 
-export function fontFace (
+export function fontFace(
   objs: Array<any>,
   vars: Array<any>,
   content: () => Array<any>
@@ -120,7 +120,7 @@ export function fontFace (
   insertRawRule(`@font-face{${createMarkupForStyles(combined)}}`)
 }
 
-function insertKeyframe (spec) {
+function insertKeyframe(spec) {
   if (!inserted[spec.id]) {
     const inner = map(
       keys(spec.keyframes),
@@ -135,7 +135,7 @@ function insertKeyframe (spec) {
   }
 }
 
-export function keyframes (
+export function keyframes(
   objs: any,
   vars: Array<any>,
   content: () => Array<any>
@@ -155,7 +155,7 @@ export function keyframes (
   return `${name}_${spec.id}`
 }
 
-export function hydrate (ids: string[]) {
+export function hydrate(ids: string[]) {
   forEach(ids, id => (inserted[id] = true))
 }
 
@@ -168,7 +168,7 @@ let cachedCss: (rules: CSSRuleList) => EmotionRule =
 
 // 🍩
 // https://github.com/threepointone/glamor
-export function objStyle (...rules: CSSRuleList): EmotionRule {
+export function objStyle(...rules: CSSRuleList): EmotionRule {
   rules = clean(rules)
   if (!rules) {
     return nullrule
@@ -177,7 +177,7 @@ export function objStyle (...rules: CSSRuleList): EmotionRule {
   return cachedCss(rules)
 }
 
-function _css (rules) {
+function _css(rules) {
   let style = {}
   build(style, { src: rules }) // mutative! but worth it.
 
@@ -192,7 +192,7 @@ function _css (rules) {
 const emotionClassRegex = /css-([a-zA-Z0-9]+)/
 
 // of shape { 'data-css-<id>': '' }
-export function isLikeRule (rule: EmotionRule) {
+export function isLikeRule(rule: EmotionRule) {
   const ruleKeys = keys(rule)
   if (ruleKeys.length !== 1) {
     return false
@@ -201,7 +201,7 @@ export function isLikeRule (rule: EmotionRule) {
 }
 
 // extracts id from a { 'css-<id>': ''} like object
-export function idFor (rule: EmotionRule) {
+export function idFor(rule: EmotionRule) {
   const ruleKeys = keys(rule)
   if (ruleKeys.length !== 1) throw new Error('not a rule')
   let match = emotionClassRegex.exec(ruleKeys[0])
@@ -211,7 +211,7 @@ export function idFor (rule: EmotionRule) {
 
 const parentSelectorRegex = /&/gm
 
-function selector (id: string, path: string = '') {
+function selector(id: string, path: string = '') {
   if (!id) {
     return path.replace(parentSelectorRegex, '')
   }
@@ -228,7 +228,7 @@ function selector (id: string, path: string = '') {
   return x
 }
 
-function deconstruct (style) {
+function deconstruct(style) {
   // we can be sure it's not infinitely nested here
   let plain
   let selects
@@ -254,7 +254,7 @@ function deconstruct (style) {
   return { plain, selects, medias, supports }
 }
 
-function deconstructedStyleToCSS (id, style) {
+function deconstructedStyleToCSS(id, style) {
   let { plain, selects, medias, supports } = style
   let css = []
 
@@ -280,7 +280,7 @@ function deconstructedStyleToCSS (id, style) {
 }
 
 // and helpers to insert rules into said sheet
-function insert (spec) {
+function insert(spec) {
   if (!inserted[spec.id]) {
     inserted[spec.id] = true
     let deconstructed = deconstruct(spec.style)
@@ -293,7 +293,7 @@ function insert (spec) {
 // todo - perf
 let ruleCache = {}
 
-function toRule (spec) {
+function toRule(spec) {
   register(spec)
   insert(spec)
   if (ruleCache[spec.id]) {
@@ -303,7 +303,7 @@ function toRule (spec) {
   let ret = { [`css-${spec.id}`]: '' }
   Object.defineProperty(ret, 'toString', {
     enumerable: false,
-    value () {
+    value() {
       return 'css-' + spec.id
     }
   })
@@ -311,11 +311,11 @@ function toRule (spec) {
   return ret
 }
 
-function isFragment (key) {
-  return key.indexOf('$') === 0;
+function isFragment(key) {
+  return key.indexOf('$') === 0
 }
 
-function isSelector (key) {
+function isSelector(key) {
   const possibles = [':', '.', '[', '>', ' ']
   let found = false
   const ch = key.charAt(0)
@@ -328,7 +328,7 @@ function isSelector (key) {
   return found || key.indexOf('&') >= 0
 }
 
-function joinSelectors (a, b) {
+function joinSelectors(a, b) {
   let as = map(a.split(','), a => (!(a.indexOf('&') >= 0) ? '&' + a : a))
   let bs = map(b.split(','), b => (!(b.indexOf('&') >= 0) ? '&' + b : b))
 
@@ -339,24 +339,24 @@ function joinSelectors (a, b) {
   ).join(',')
 }
 
-function joinMediaQueries (a, b) {
+function joinMediaQueries(a, b) {
   return a ? `@media ${a.substring(6)} and ${b.substring(6)}` : b
 }
 
-function isMediaQuery (key) {
+function isMediaQuery(key) {
   return key.indexOf('@media') === 0
 }
 
-function isSupports (key) {
+function isSupports(key) {
   return key.indexOf('@supports') === 0
 }
 
-function joinSupports (a, b) {
+function joinSupports(a, b) {
   return a ? `@supports ${a.substring(9)} and ${b.substring(9)}` : b
 }
 
 // flatten a nested array
-function flatten (inArr) {
+function flatten(inArr) {
   let arr = []
   forEach(inArr, val => {
     if (Array.isArray(val)) arr = arr.concat(flatten(val))
@@ -367,7 +367,7 @@ function flatten (inArr) {
 }
 
 // mutable! modifies dest.
-function build (
+function build(
   dest,
   {
     selector = '',
@@ -475,7 +475,7 @@ let nullrule: EmotionRule = {
 
 Object.defineProperty(nullrule, 'toString', {
   enumerable: false,
-  value () {
+  value() {
     return 'css-nil'
   }
 })
@@ -487,8 +487,8 @@ let inputCaches =
 
 let warnedWeakMapError = false
 
-function multiIndexCache (fn) {
-  return function (args) {
+function multiIndexCache(fn) {
+  return function(args) {
     if (inputCaches[args.length]) {
       let coi = inputCaches[args.length]
       let ctr = 0

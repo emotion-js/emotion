@@ -2,43 +2,52 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const cssModulesExtractConfig = {
+  fallback: 'style-loader',
+  use: {
+    loader: 'css-loader',
+    options: {
+      sourceMap: true,
+      modules: true
+    }
+  }
+}
+const emotionCssExtractConfig = {
+  fallback: 'style-loader',
+  use: {
+    loader: 'css-loader',
+    options: {
+      sourceMap: true
+    }
+  }
+}
 module.exports = env => {
   const PROD = env === 'production'
 
   var loaders = [
     {
       test: /\.jsx?$/,
-      include: [/src/, /autoprefixer/, /chalk/, /ansi-styles/, /postcss-nested/, /caniuse-lite/],
+      include: [
+        /src/,
+        /autoprefixer/,
+        /chalk/,
+        /ansi-styles/,
+        /postcss-nested/,
+        /caniuse-lite/
+      ],
       loader: 'babel-loader'
     },
     {
       test: /\.css$/,
       exclude: /emotion\.css$/,
       use: PROD
-        ? ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              modules: true
-            }
-          }
-        })
+        ? ExtractTextPlugin.extract(cssModulesExtractConfig)
         : ['style-loader', { loader: 'css-loader', options: { modules: true } }]
     },
     {
       test: /emotion\.css$/,
       use: PROD
-        ? ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
-          }
-        })
+        ? ExtractTextPlugin.extract(emotionCssExtractConfig)
         : ['style-loader', { loader: 'css-loader' }]
     },
     {

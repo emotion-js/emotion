@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import { injectGlobal } from '../../src/macro'
 import { sheet } from '../../src/index'
 

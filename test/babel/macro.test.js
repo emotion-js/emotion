@@ -1,5 +1,3 @@
-/* eslint-disable no-template-curly-in-string */
-/* eslint-env jest */
 import * as babel from 'babel-core'
 
 describe('babel macro', () => {

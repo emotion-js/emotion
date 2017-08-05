@@ -97,14 +97,14 @@ const PlaygroundWrapper = styled('div')`
 `
 
 class App extends React.Component {
-  render () {
+  render() {
     return (
       <ThemeProvider theme={theme}>
         <PlaygroundWrapper>
-          <div className='inner'>
-            <div className='header'>
+          <div className="inner">
+            <div className="header">
               <h1>
-                <img src={logoUrl} alt='emotion' />
+                <img src={logoUrl} alt="emotion" />
                 emotion
               </h1>
               <p>The Next Generation of CSS-in-JS</p>
@@ -288,7 +288,7 @@ class App extends React.Component {
               }}
             />
 
-            <Markdown markdown={require('../../docs/theming.md')}/>
+            <Markdown markdown={require('../../docs/theming.md')} />
             <Playground
               maxHeight={180}
               noRender={false}

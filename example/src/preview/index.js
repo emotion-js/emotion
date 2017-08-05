@@ -91,7 +91,9 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [['emotion/babel', { inline: true, autoImportCssProp: false }]]
+          plugins: [
+            ['emotion/babel', { inline: true, autoImportCssProp: false }]
+          ]
         }
       ).code
     } else {
@@ -103,7 +105,9 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [['emotion/babel', { inline: true, autoImportCssProp: false }]]
+          plugins: [
+            ['emotion/babel', { inline: true, autoImportCssProp: false }]
+          ]
         }
       ).code
     }
@@ -146,12 +150,16 @@ class Preview extends Component {
     }
   }
 
-  render () {
+  render() {
     const { error } = this.state
     return (
       <PreviewWrapper>
         <div ref="mount" className="preview-display" />
-        {error !== null ? <ErrorWrapper>{error}</ErrorWrapper> : null}
+        {error !== null
+          ? <ErrorWrapper>
+              {error}
+            </ErrorWrapper>
+          : null}
       </PreviewWrapper>
     )
   }

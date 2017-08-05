@@ -21,7 +21,7 @@ import isUnitlessNumber from './CSSProperty'
  * @param {ReactDOMComponent} component
  * @return {string} Normalized style value with dimensions applied.
  */
-function dangerousStyleValue (name, value) {
+function dangerousStyleValue(name, value) {
   let isEmpty = value == null || typeof value === 'boolean' || value === ''
   if (isEmpty) {
     return ''
