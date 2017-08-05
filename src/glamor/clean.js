@@ -40,7 +40,7 @@ function cleanArray(rules) {
       filtered.push(filteredRule)
     }
   })
-  return filtered.length == 0 ? null : hasFalsy ? filtered : rules
+  return filtered.length === 0 ? null : hasFalsy ? filtered : rules
 }
 
 // Takes style array or object provided by user and clears all the falsy data
