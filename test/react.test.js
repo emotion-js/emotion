@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
@@ -208,7 +207,7 @@ describe('styled', () => {
       height: 96
     })
 
-    const fakeBlue = css([
+    css([
       {
         color: 'blue'
       }
@@ -511,7 +510,7 @@ describe('styled', () => {
     const H1 = styled('h1')('some-class', { padding: 10 }, props => ({
       display: props.display
     }))
-    const tree = renderer.create(<H1 display='flex'>hello world</H1>).toJSON()
+    const tree = renderer.create(<H1 display="flex">hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -572,9 +571,9 @@ describe('styled', () => {
           filtering
           is
           cool
-          aria-label='some label'
-          data-wow='value'
-          href='link'
+          aria-label="some label"
+          data-wow="value"
+          href="link"
           {...rest}
         >
           hello world
@@ -597,9 +596,9 @@ describe('styled', () => {
           filtering
           is
           cool
-          aria-label='some label'
-          data-wow='value'
-          href='link'
+          aria-label="some label"
+          data-wow="value"
+          href="link"
         >
           hello world
         </Link>

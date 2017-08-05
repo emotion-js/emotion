@@ -67,7 +67,7 @@ let isUnitlessNumber = {
  * @return {string} style name prefixed with `prefix`, properly camelCased, eg:
  * WebkitTransitionDuration
  */
-function prefixKey (prefix, key) {
+function prefixKey(prefix, key) {
   return prefix + key.charAt(0).toUpperCase() + key.substring(1)
 }
 
@@ -79,8 +79,8 @@ let prefixes = ['Webkit', 'ms', 'Moz', 'O']
 
 // Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
 // infinite loop, because it iterates over the newly added props too.
-forEach(keys(isUnitlessNumber), function (prop) {
-  forEach(prefixes, function (prefix) {
+forEach(keys(isUnitlessNumber), function(prop) {
+  forEach(prefixes, function(prefix) {
     isUnitlessNumber[prefixKey(prefix, prop)] = 1
   })
 })

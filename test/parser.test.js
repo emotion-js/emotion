@@ -1,5 +1,3 @@
-/* eslint-env jest */
-
 import { parseCSS } from '../src/parser'
 
 const basicCSS = `.thing {

@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import { injectGlobal, sheet } from '../src/index'
 
 test('injectGlobal', () => {

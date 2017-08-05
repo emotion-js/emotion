@@ -88,13 +88,14 @@ export default ({ markdown }) => {
           CodeBlock: props => {
             return (
               <CodeBlock key={props.nodeKey} className={props.className}>
-                <Code>{props.literal}</Code>
+                <Code>
+                  {props.literal}
+                </Code>
               </CodeBlock>
             )
           }
         }}
       />
-
     </MarkdownContainer>
   )
 }

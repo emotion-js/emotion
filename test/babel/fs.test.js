@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import { transform } from 'babel-core'
 import fs from 'fs'
 import touch from 'touch'

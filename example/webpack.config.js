@@ -8,7 +8,14 @@ module.exports = env => {
   var loaders = [
     {
       test: /\.jsx?$/,
-      include: [/src/, /autoprefixer/, /chalk/, /ansi-styles/, /postcss-nested/, /caniuse-lite/],
+      include: [
+        /src/,
+        /autoprefixer/,
+        /chalk/,
+        /ansi-styles/,
+        /postcss-nested/,
+        /caniuse-lite/
+      ],
       loader: 'babel-loader'
     },
     {
@@ -16,29 +23,29 @@ module.exports = env => {
       exclude: /emotion\.css$/,
       use: PROD
         ? ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              modules: true
+            fallback: 'style-loader',
+            use: {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
             }
-          }
-        })
+          })
         : ['style-loader', { loader: 'css-loader', options: { modules: true } }]
     },
     {
       test: /emotion\.css$/,
       use: PROD
         ? ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
+            fallback: 'style-loader',
+            use: {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                modules: true
+              }
             }
-          }
-        })
+          })
         : ['style-loader', { loader: 'css-loader' }]
     },
     {

@@ -1,5 +1,3 @@
-/* eslint-disable jsx-quotes,no-useless-escape,no-template-curly-in-string */
-/* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
@@ -39,12 +37,10 @@ describe('styled', () => {
   })
 
   test('name', () => {
-    const fontSize = '20px'
     const H1 = styled.h1`
       name: FancyH1;
       font-size: 38px;
     `
-
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshot()

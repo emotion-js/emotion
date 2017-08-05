@@ -17,7 +17,7 @@ type Decl = {
   remove: () => {}
 }
 
-export function parseCSS (
+export function parseCSS(
   css: string,
   extractStatic: boolean,
   filename: string
@@ -67,11 +67,11 @@ export function parseCSS (
   }
 }
 
-function stringifyCSSRoot (root) {
+function stringifyCSSRoot(root) {
   return root.nodes.map(node => node.toString())
 }
 
-export function expandCSSFallbacks (style: { [string]: any }) {
+export function expandCSSFallbacks(style: { [string]: any }) {
   let flattened = Object.keys(style).reduce((accum, key) => {
     if (Array.isArray(style[key])) {
       accum[key] = style[key].join(`; ${processStyleName(key)}: `)
@@ -90,7 +90,7 @@ export function expandCSSFallbacks (style: { [string]: any }) {
 }
 
 // Parser
-export function parse (css, opts) {
+export function parse(css, opts) {
   let input = new Input(css, opts)
 
   let parser = new EmotionParser(input)
@@ -100,7 +100,7 @@ export function parse (css, opts) {
 }
 
 export class EmotionParser extends Parser {
-  unknownWord (tokens: Array<Array<any>>) {
+  unknownWord(tokens: Array<Array<any>>) {
     if (tokens[0][0] === 'word') {
       const match = /xxx(\d+)xxx/gm.exec(tokens[0][1])
       if (match) {

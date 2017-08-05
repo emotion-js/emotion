@@ -19,7 +19,7 @@ const reactPropsRegex = new RegExp(propsRegexString)
 const testOmitPropsOnStringTag = key => reactPropsRegex.test(key)
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
 
-export default function (tag, cls, objs, vars = [], content) {
+export default function(tag, cls, objs, vars = [], content) {
   if (!tag) {
     throw new Error(
       'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
@@ -31,7 +31,7 @@ export default function (tag, cls, objs, vars = [], content) {
     typeof tag === 'string'
       ? testOmitPropsOnStringTag
       : testOmitPropsOnComponent
-  function Styled (props, context) {
+  function Styled(props, context) {
     const getValue = v => {
       if (v && typeof v === 'function') {
         if (v.__emotion_class) {

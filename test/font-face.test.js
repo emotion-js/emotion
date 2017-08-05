@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import { sheet, fontFace } from '../src/index'
 
 describe('font-face', () => {

@@ -19,13 +19,12 @@
     "clean": "rimraf dist",
     "test": "npm-run-all -p lint:check coverage test:size",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
-    "lint:check": "standard src test",
+    "lint:check": "eslint .",
     "test:watch": "jest --watch --no-cache",
     "rollup": "rollup -c && IMPORT=react rollup -c",
     "size": "bundlesize",
     "release": "npm run test && npm run build && npm run rollup && npm version patch && npm publish && git push --tags",
-    "lint": "standard --fix",
-    "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@arr/filter.mutate": "^1.0.0",
@@ -53,6 +52,17 @@
     "bundlesize": "^0.5.7",
     "enzyme": "^2.9.1",
     "enzyme-to-json": "^1.5.1",
+    "eslint": "^4.3.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard-react": "^5.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-standard": "^3.0.1",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-glamor-react": "^3.1.0",
@@ -70,7 +80,6 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^2.0.1",
-    "standard": "^10.0.2",
     "theming": "^1.1.0"
   },
   "author": "Kye Hohenberger",
@@ -91,20 +100,29 @@
     "css-in-js"
   ],
   "eslintConfig": {
-    "extends": "standard",
+    "extends": [
+      "standard",
+      "standard-react",
+      "prettier",
+      "prettier/react"
+    ],
+    "plugins": [
+      "prettier"
+    ],
     "parser": "babel-eslint",
     "rules": {
-      "jsx-quotes": [
+      "prettier/prettier": [
         "error",
-        "prefer-single"
-      ]
+        {
+          "singleQuote": true,
+          "semi": false
+        }
+      ],
+      "react/prop-types": 0,
+      "react/no-unused-prop-types": 0,
+      "standard/computed-property-even-spacing": 0,
+      "no-template-curly-in-string": 0
     }
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "ignore": [
-      "/dist/"
-    ]
   },
   "jest": {
     "transform": {

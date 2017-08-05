@@ -184,7 +184,7 @@ class ReactPlayground extends Component {
     })
   }
 
-  render () {
+  render() {
     const { code, external, expandedCode } = this.state
     const {
       context,

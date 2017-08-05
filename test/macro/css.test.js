@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import { css } from '../../src/macro'
 import { sheet } from '../../src'
 import React from 'react'

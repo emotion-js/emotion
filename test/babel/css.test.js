@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import * as babel from 'babel-core'
 import plugin from '../../src/babel'
 import * as fs from 'fs'

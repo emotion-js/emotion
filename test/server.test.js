@@ -1,7 +1,6 @@
 /**
  * @jest-environment node
 */
-/* eslint-env jest */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import styled from '../src/react'
@@ -74,7 +73,6 @@ const getComponents = () => {
   // this will not be included since it's not used
   css`
     display: none;
-    name: unused-class;
   `
 
   // this will be included in both because it doesn't have the css- prefix

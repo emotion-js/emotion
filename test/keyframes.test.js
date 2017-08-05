@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
@@ -9,7 +8,6 @@ expect.addSnapshotSerializer(serializer(sheet))
 
 describe('keyframes', () => {
   test('renders', () => {
-    const fontSize = 20
     const bounce = keyframes`
       from, 20%, 53%, 80%, to {
         animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);

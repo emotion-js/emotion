@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'

@@ -16,13 +16,13 @@ import { hashArray } from './hash'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
-function getFilename (path) {
+function getFilename(path) {
   return path.hub.file.opts.filename === 'unknown'
     ? ''
     : path.hub.file.opts.filename
 }
 
-export function replaceCssWithCallExpression (
+export function replaceCssWithCallExpression(
   path,
   identifier,
   state,
@@ -142,7 +142,7 @@ const getComponentId = state => {
   return `css-${getFileHash(state)}${getNextId(state)}`
 }
 
-export function buildStyledCallExpression (identifier, tag, path, state, t) {
+export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
   if (state.extractStatic && !path.node.quasi.expressions.length) {
@@ -192,7 +192,7 @@ export function buildStyledCallExpression (identifier, tag, path, state, t) {
   return t.callExpression(identifier, args)
 }
 
-export function buildStyledObjectCallExpression (path, state, identifier, t) {
+export function buildStyledObjectCallExpression(path, state, identifier, t) {
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
@@ -205,7 +205,7 @@ export function buildStyledObjectCallExpression (path, state, identifier, t) {
   ])
 }
 
-function buildProcessedStylesFromObjectAST (objectAST, path, t) {
+function buildProcessedStylesFromObjectAST(objectAST, path, t) {
   if (t.isObjectExpression(objectAST)) {
     return ASTObject.fromAST(objectAST, t).toAST()
   }
@@ -223,7 +223,7 @@ function buildProcessedStylesFromObjectAST (objectAST, path, t) {
   return objectAST
 }
 
-export function replaceCssObjectCallExpression (path, identifier, t) {
+export function replaceCssObjectCallExpression(path, identifier, t) {
   const argWithStyles = path.node.arguments[0]
   const styles = buildProcessedStylesFromObjectAST(argWithStyles, path, t)
   path.replaceWith(t.callExpression(identifier, [styles]))
@@ -231,7 +231,7 @@ export function replaceCssObjectCallExpression (path, identifier, t) {
 
 const visited = Symbol('visited')
 
-export default function (babel) {
+export default function(babel) {
   const { types: t } = babel
 
   return {
@@ -239,18 +239,18 @@ export default function (babel) {
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       Program: {
-        enter (path, state) {
+        enter(path, state) {
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
 
           state.staticRules = []
 
-          state.insertStaticRules = function (staticRules) {
+          state.insertStaticRules = function(staticRules) {
             state.staticRules.push(...staticRules)
           }
         },
-        exit (path, state) {
+        exit(path, state) {
           if (state.staticRules.length !== 0) {
             const toWrite = state.staticRules.join('\n').trim()
             const filenameArr = path.hub.file.opts.filename.split('.')
@@ -288,10 +288,10 @@ export default function (babel) {
           }
         }
       },
-      JSXOpeningElement (path, state) {
+      JSXOpeningElement(path, state) {
         cssProps(path, state, t)
       },
-      CallExpression (path, state) {
+      CallExpression(path, state) {
         if (path[visited]) {
           return
         }
@@ -323,7 +323,7 @@ export default function (babel) {
 
         path[visited] = true
       },
-      TaggedTemplateExpression (path, state) {
+      TaggedTemplateExpression(path, state) {
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&

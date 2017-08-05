@@ -1,8 +1,8 @@
 import { expandCSSFallbacks, prefixer } from './parser'
 import { forEach, reduce } from './utils'
 
-function prefixAst (args, t) {
-  function isLiteral (value) {
+function prefixAst(args, t) {
+  function isLiteral(value) {
     return (
       t.isStringLiteral(value) ||
       t.isNumericLiteral(value) ||
@@ -117,14 +117,14 @@ export default class ASTObject {
   composesCount: number
   t: any
 
-  constructor (props, expressions, composesCount, t) {
+  constructor(props, expressions, composesCount, t) {
     this.props = props
     this.expressions = expressions || []
     this.composesCount = composesCount
     this.t = t
   }
 
-  objKeyToAst (key): { computed: boolean, ast: any, composes: boolean } {
+  objKeyToAst(key): { computed: boolean, ast: any, composes: boolean } {
     const { t } = this
     const matches = this.getDynamicMatches(key)
 
@@ -143,7 +143,7 @@ export default class ASTObject {
     }
   }
 
-  objValueToAst (value) {
+  objValueToAst(value) {
     const { composesCount, t } = this
     if (typeof value === 'string') {
       const matches = this.getDynamicMatches(value)
@@ -166,7 +166,7 @@ export default class ASTObject {
     return ASTObject.fromJS(value, composesCount, t).toAST()
   }
 
-  getDynamicMatches (str) {
+  getDynamicMatches(str) {
     const re = /xxx(\d+)xxx/gm
     let match
     const matches = []
@@ -181,7 +181,7 @@ export default class ASTObject {
     return matches
   }
 
-  replacePlaceholdersWithExpressions (matches: any[], str: string) {
+  replacePlaceholdersWithExpressions(matches: any[], str: string) {
     const { expressions, composesCount, t } = this
 
     const templateElements = []
@@ -226,7 +226,7 @@ export default class ASTObject {
     return t.templateLiteral(templateElements, templateExpressions)
   }
 
-  toAST (props = this.props) {
+  toAST(props = this.props) {
     return this.t.objectExpression(
       props.map(prop => {
         if (this.t.isObjectProperty(prop)) {
@@ -247,7 +247,7 @@ export default class ASTObject {
     )
   }
 
-  toJS (props = this.props) {
+  toJS(props = this.props) {
     return props.reduce(
       (
         accum,
@@ -264,7 +264,7 @@ export default class ASTObject {
     )
   }
 
-  static fromJS (jsObj, composesCount, t) {
+  static fromJS(jsObj, composesCount, t) {
     const props = []
     for (let key in jsObj) {
       if (jsObj.hasOwnProperty(key)) {
@@ -288,8 +288,8 @@ export default class ASTObject {
     return new ASTObject(props, [], composesCount, t)
   }
 
-  static fromAST (astObj, t) {
-    function isLiteral (value) {
+  static fromAST(astObj, t) {
+    function isLiteral(value) {
       return (
         t.isStringLiteral(value) ||
         t.isNumericLiteral(value) ||
@@ -299,7 +299,7 @@ export default class ASTObject {
 
     let expressions = []
 
-    function replaceExpressionsWithPlaceholders (node) {
+    function replaceExpressionsWithPlaceholders(node) {
       if (t.isArrayExpression(node)) {
         return node.elements.map(replaceExpressionsWithPlaceholders)
       } else if (isLiteral(node)) {
@@ -327,7 +327,7 @@ export default class ASTObject {
       return `xxx${expressions.length - 1}xxx`
     }
 
-    function convertAstToObj (astObj) {
+    function convertAstToObj(astObj) {
       const props = []
 
       forEach(astObj.properties, (property, i) => {
