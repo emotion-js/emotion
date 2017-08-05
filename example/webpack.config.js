@@ -2,25 +2,6 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const cssModulesExtractConfig = {
-  fallback: 'style-loader',
-  use: {
-    loader: 'css-loader',
-    options: {
-      sourceMap: true,
-      modules: true
-    }
-  }
-}
-const emotionCssExtractConfig = {
-  fallback: 'style-loader',
-  use: {
-    loader: 'css-loader',
-    options: {
-      sourceMap: true
-    }
-  }
-}
 module.exports = env => {
   const PROD = env === 'production'
 
@@ -41,13 +22,30 @@ module.exports = env => {
       test: /\.css$/,
       exclude: /emotion\.css$/,
       use: PROD
-        ? ExtractTextPlugin.extract(cssModulesExtractConfig)
+        ? ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          })
         : ['style-loader', { loader: 'css-loader', options: { modules: true } }]
     },
     {
       test: /emotion\.css$/,
       use: PROD
-        ? ExtractTextPlugin.extract(emotionCssExtractConfig)
+        ? ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                modules: true
+              }
+            }
+          })
         : ['style-loader', { loader: 'css-loader' }]
     },
     {
