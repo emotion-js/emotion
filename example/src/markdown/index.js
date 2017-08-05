@@ -68,18 +68,19 @@ export default ({ markdown }) => {
       <ReactMarkdown
         source={markdown}
         renderers={{
-          Heading: ({ children, level, ...rest }) => {
+          Heading: ({ children, level }) => {
             const tag = `h${level}`
+            let id
 
             if (Array.isArray(children)) {
               if (typeof children[0] === 'string') {
-                rest.id = ('' + children[0].toLowerCase())
+                id = ('' + children[0].toLowerCase())
                   .replace(/\s+/g, ' ')
                   .replace(/\s/g, '-')
               }
             }
 
-            return React.createElement(tag, { children, ...rest })
+            return React.createElement(tag, { children, id })
           },
           Link,
           Paragraph,
