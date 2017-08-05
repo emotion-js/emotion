@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "7.0.10",
+  "version": "7.0.11",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
@@ -34,6 +34,7 @@
     "autoprefixer": "^7.1.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "fbjs": "^0.8.12",
+    "postcss": "^6.0.8",
     "postcss-js": "^1.0.0",
     "postcss-nested": "^2.1.0",
     "touch": "^1.0.0"
