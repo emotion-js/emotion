@@ -27,14 +27,25 @@ export default function(tag, cls, objs, vars = [], content) {
   }
 
   const componentTag = tag.displayName || tag.name || 'Component'
+  const spec = {
+    vars,
+    content,
+    objs,
+    tag,
+    cls
+  }
+  const newSpec =
+    tag.__emotion_spec !== undefined ? tag.__emotion_spec.concat(spec) : [spec]
+  const localTag = newSpec[0].tag
+
   const omitFn =
-    typeof tag === 'string'
+    typeof localTag === 'string'
       ? testOmitPropsOnStringTag
       : testOmitPropsOnComponent
   function Styled(props, context) {
     const getValue = v => {
       if (v && typeof v === 'function') {
-        if (v.__emotion_class) {
+        if (v.__emotion_class !== undefined) {
           return `& .${v.__emotion_class}`
         }
         return v(props, context)
@@ -42,36 +53,24 @@ export default function(tag, cls, objs, vars = [], content) {
 
       return v
     }
-    let localTag = tag
 
     let finalObjs = []
 
-    if (tag.__emotion_spec) {
-      push(
-        finalObjs,
-        reduce(
-          tag.__emotion_spec,
-          (accum, spec) => {
-            push(accum, spec.objs)
-            if (spec.content) {
-              push(accum, spec.content.apply(null, map(spec.vars, getValue)))
-            }
-            accum.push(spec.cls)
-            return accum
-          },
-          []
-        )
+    push(
+      finalObjs,
+      reduce(
+        newSpec,
+        (accum, spec) => {
+          push(accum, spec.objs)
+          if (spec.content) {
+            push(accum, spec.content.apply(null, map(spec.vars, getValue)))
+          }
+          accum.push(spec.cls)
+          return accum
+        },
+        []
       )
-      localTag = tag.__emotion_spec[0].tag
-    }
-
-    push(finalObjs, objs)
-
-    finalObjs.push(cls)
-
-    if (content) {
-      push(finalObjs, content.apply(null, map(vars, getValue)))
-    }
+    )
 
     if (props.className) {
       push(finalObjs, props.className.split(' '))
@@ -92,16 +91,7 @@ export default function(tag, cls, objs, vars = [], content) {
   }
 
   Styled.displayName = `styled(${componentTag})`
-  const spec = {
-    vars,
-    content,
-    objs,
-    tag,
-    cls
-  }
-  Styled.__emotion_spec = tag.__emotion_spec
-    ? tag.__emotion_spec.concat(spec)
-    : [spec]
+  Styled.__emotion_spec = newSpec
   Styled.__emotion_class = cls
   return Styled
 }

@@ -210,7 +210,6 @@ exports[`styled composes 1`] = `
 
 <h1
   className="glamor-0 glamor-1 legacy__class glamor-2"
-  scale={2}
 >
   hello world
 </h1>
@@ -259,7 +258,6 @@ exports[`styled composes with objects 1`] = `
 
 <h1
   className="glamor-0 glamor-1 legacy__class glamor-2"
-  scale={2}
 >
   hello world
 </h1>
@@ -302,7 +300,6 @@ exports[`styled function in expression 1`] = `
 
 <h1
   className="glamor-0 glamor-1 legacy__class glamor-2"
-  scale={2}
 >
   hello world
 </h1>
@@ -525,6 +522,23 @@ exports[`styled prop filtering 1`] = `
 <a
   aria-label="some label"
   className="glamor-0 glamor-1"
+  data-wow="value"
+  href="link"
+  is={true}
+>
+  hello world
+</a>
+`;
+
+exports[`styled prop filtering on composed styled components that are string tags 1`] = `
+.glamor-2 {
+  background-color: hotpink;
+  color: green;
+}
+
+<a
+  aria-label="some label"
+  className="glamor-0 glamor-1 glamor-2"
   data-wow="value"
   href="link"
   is={true}

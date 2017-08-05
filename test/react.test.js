@@ -607,6 +607,31 @@ describe('styled', () => {
 
     expect(tree).toMatchSnapshot()
   })
+  test('prop filtering on composed styled components that are string tags', () => {
+    const BaseLink = styled.a`background-color: hotpink;`
+    const Link = styled(BaseLink)`color: green;`
+
+    const tree = renderer
+      .create(
+        <Link
+          a
+          b
+          wow
+          prop
+          filtering
+          is
+          cool
+          aria-label="some label"
+          data-wow="value"
+          href="link"
+        >
+          hello world
+        </Link>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
   test('throws if undefined is passed as the component', () => {
     expect(
       () => styled(undefined)`display: flex;`
