@@ -180,11 +180,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
       t.identifier('createEmotionStyledRules'),
       vars.map((x, i) => t.identifier(`x${i}`)),
       t.blockStatement([
-        t.returnStatement(
-          t.arrayExpression([
-            ASTObject.fromJS(styles, composesCount, t).toAST()
-          ])
-        )
+        t.returnStatement(ASTObject.fromJS(styles, composesCount, t).toAST())
       ])
     )
   ]

@@ -169,9 +169,9 @@ exports[`babel macro styled tagged template literal function 1`] = `
 "import _styled from '../../src/react';
 
 const SomeComponent = /*#__PURE__*/_styled('div', 'css-kctxs00', [], [], function createEmotionStyledRules() {
-  return [{
+  return {
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  }];
+  };
 });"
 `;
 
@@ -179,8 +179,8 @@ exports[`babel macro styled tagged template literal member 1`] = `
 "import _styled from '../../src/react';
 
 const SomeComponent = /*#__PURE__*/_styled('div', 'css-1mkpack0', [], [], function createEmotionStyledRules() {
-  return [{
+  return {
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  }];
+  };
 });"
 `;
