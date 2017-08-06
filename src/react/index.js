@@ -63,7 +63,7 @@ export default function(tag, cls, objs, vars = [], content) {
         (accum, spec) => {
           push(accum, spec.objs)
           if (spec.content) {
-            push(accum, spec.content.apply(null, map(spec.vars, getValue)))
+            accum.push(spec.content.apply(null, map(spec.vars, getValue)))
           }
           accum.push(spec.cls)
           return accum
