@@ -17,8 +17,6 @@ exports[`css composes 1`] = `
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -35,8 +33,6 @@ exports[`css composes with objects 1`] = `
   display: block;
   width: 30px;
   height: calc(40vw - 50px);
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -62,8 +58,6 @@ exports[`css composes with objects 1`] = `
 
 exports[`css composes with undefined values 1`] = `
 .glamor-0 {
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 

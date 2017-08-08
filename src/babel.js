@@ -16,7 +16,7 @@ import { hashArray } from './hash'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
-function getFilename(path) {
+export function getFilename(path) {
   return path.hub.file.opts.filename === 'unknown'
     ? ''
     : path.hub.file.opts.filename
@@ -203,7 +203,7 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
 
 function buildProcessedStylesFromObjectAST(objectAST, path, t) {
   if (t.isObjectExpression(objectAST)) {
-    return ASTObject.fromAST(objectAST, t).toAST()
+    return ASTObject.fromAST(objectAST, t, path).toAST()
   }
   if (t.isArrayExpression(objectAST)) {
     return t.arrayExpression(

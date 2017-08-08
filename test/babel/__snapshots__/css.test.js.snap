@@ -58,8 +58,6 @@ const cls1 = css({
 const cls2 = /*#__PURE__*/css([cls1], [], function createEmotionStyledRules() {
   return [{
     'height': '20',
-    'WebkitBoxPack': 'center',
-    'msFlexPack': 'center',
     'justifyContent': 'center'
   }];
 });"

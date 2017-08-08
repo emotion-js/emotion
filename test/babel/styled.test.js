@@ -5,6 +5,7 @@ import * as fs from 'fs'
 jest.mock('fs')
 
 fs.existsSync.mockReturnValue(true)
+fs.statSync.mockReturnValue({ isFile: () => false })
 
 describe('babel styled component', () => {
   describe('inline', () => {
