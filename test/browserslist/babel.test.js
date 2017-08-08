@@ -15,5 +15,17 @@ describe('babel css', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('css object', () => {
+      const basic = `
+        css({
+          display: 'flex'
+        })`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
 })

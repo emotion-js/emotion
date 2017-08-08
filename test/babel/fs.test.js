@@ -4,6 +4,7 @@ import touch from 'touch'
 import emotionPlugin from '../../src/babel'
 
 jest.mock('fs').mock('touch')
+fs.statSync.mockReturnValue({ isFile: () => false })
 
 const basic = `
 css\`

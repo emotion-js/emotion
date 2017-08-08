@@ -1,7 +1,10 @@
+import postcssJs from 'postcss-js'
+import Input from 'postcss/lib/input'
 import { expandCSSFallbacks, prefixer } from './parser'
 import { forEach, reduce } from './utils'
+import { getFilename } from './babel'
 
-function prefixAst(args, t) {
+function prefixAst(args, t, path) {
   function isLiteral(value) {
     return (
       t.isStringLiteral(value) ||
@@ -11,7 +14,7 @@ function prefixAst(args, t) {
   }
 
   if (Array.isArray(args)) {
-    return args.map(element => prefixAst(element, t))
+    return args.map(element => prefixAst(element, t, path))
   }
 
   if (t.isObjectExpression(args)) {
@@ -38,7 +41,7 @@ function prefixAst(args, t) {
           ]
         }
 
-        const prefixedValue = prefixAst(property.value, t)
+        const prefixedValue = prefixAst(property.value, t, path)
 
         if (!property.computed) {
           if (prefixedPseudoSelectors[key.value]) {
@@ -75,7 +78,12 @@ function prefixAst(args, t) {
           : property.value.value
 
         const style = { [property.key.name]: propertyValue }
-        const prefixedStyle = expandCSSFallbacks(prefixer(style))
+        const parsedStyle = postcssJs.parse(style)
+        parsedStyle.source = {}
+        parsedStyle.source.input = new Input(parsedStyle.toString(), {
+          from: getFilename(path)
+        })
+        const prefixedStyle = expandCSSFallbacks(prefixer(parsedStyle))
 
         for (let k in prefixedStyle) {
           const key = t.isStringLiteral(property.key)
@@ -105,7 +113,7 @@ function prefixAst(args, t) {
   }
 
   if (t.isArrayExpression(args)) {
-    return t.arrayExpression(prefixAst(args.elements, t))
+    return t.arrayExpression(prefixAst(args.elements, t, path))
   }
 
   return args
@@ -288,7 +296,7 @@ export default class ASTObject {
     return new ASTObject(props, [], composesCount, t)
   }
 
-  static fromAST(astObj, t) {
+  static fromAST(astObj, t, path) {
     function isLiteral(value) {
       return (
         t.isStringLiteral(value) ||
@@ -376,7 +384,7 @@ export default class ASTObject {
       return props
     }
 
-    const objectProperties = convertAstToObj(prefixAst(astObj, t))
+    const objectProperties = convertAstToObj(prefixAst(astObj, t, path))
     return new ASTObject(
       objectProperties,
       expressions,

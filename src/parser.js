@@ -55,7 +55,7 @@ export function parseCSS(
     }
   })
 
-  const styles = expandCSSFallbacks(prefixer(postcssJs.objectify(root)))
+  const styles = expandCSSFallbacks(prefixer(root))
 
   return {
     styles,
