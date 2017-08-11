@@ -8,7 +8,7 @@ import {
   relative
 } from 'path'
 import { touchSync } from 'touch'
-import { inline } from './inline'
+import { inline, getName } from './inline'
 import { parseCSS } from './parser'
 import { getIdentifierName } from './babel-utils'
 import { map } from './utils'
@@ -136,10 +136,10 @@ const getNextId = state => {
   return id
 }
 
-const getComponentId = state => {
+const getComponentId = (state, prefix: string = 'css') => {
   // Prefix the identifier with css- because CSS classes cannot start with a number
   // Also in snapshots with jest-glamor-react the hash will be replaced with an index
-  return `css-${getFileHash(state)}${getNextId(state)}`
+  return `${prefix}-${getFileHash(state)}${getNextId(state)}`
 }
 
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
@@ -158,12 +158,12 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     state.insertStaticRules(staticCSSRules)
     return t.callExpression(identifier, [
       tag,
-      t.stringLiteral(getComponentId(state)),
+      t.stringLiteral(getComponentId(state, name)),
       t.arrayExpression([t.stringLiteral(`${name}-${hash}`)])
     ])
   }
 
-  const { src } = inline(path.node.quasi, identifierName, 'css')
+  const { src, name } = inline(path.node.quasi, identifierName, 'css')
 
   path.addComment('leading', '#__PURE__')
 
@@ -173,7 +173,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const vars = path.node.quasi.expressions.slice(composesCount)
   const args = [
     tag,
-    t.stringLiteral(getComponentId(state)),
+    t.stringLiteral(getComponentId(state, name)),
     t.arrayExpression(objs),
     t.arrayExpression(vars),
     t.functionExpression(
@@ -194,7 +194,9 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
     : t.stringLiteral(path.node.callee.property.name)
   return t.callExpression(identifier, [
     tag,
-    t.stringLiteral(getComponentId(state)),
+    t.stringLiteral(
+      getComponentId(state, getName(getIdentifierName(path, t), 'css'))
+    ),
     t.arrayExpression(
       buildProcessedStylesFromObjectAST(path.node.arguments, path, t)
     )

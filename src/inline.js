@@ -1,24 +1,10 @@
 // @flow
 import { hashArray } from './hash'
 
-function extractNameFromProperty(str: string) {
-  let regex = /name\s*:\s*([A-Za-z0-9\-_]+)\s*/gm
-  let match = regex.exec(str)
-  if (match) {
-    return match[1]
-  }
-}
-
-function getName(
-  extracted?: string,
-  identifierName?: string,
-  prefix: string
-): string {
+export function getName(identifierName?: string, prefix: string): string {
   const parts = []
   parts.push(prefix)
-  if (extracted) {
-    parts.push(extracted)
-  } else if (identifierName) {
+  if (identifierName) {
     parts.push(identifierName)
   }
   return parts.join('-')
@@ -53,11 +39,7 @@ export function inline(
 } {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs])
-  let name = getName(
-    extractNameFromProperty(strs.join('xxx')),
-    identifierName,
-    prefix
-  )
+  let name = getName(identifierName, prefix)
   let { src } = createRawStringFromQuasi(strs)
 
   return {
