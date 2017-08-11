@@ -1,5 +1,3 @@
-/* eslint-env jest */
-
 import { parseCSS } from '../src/parser'
 
 const basicCSS = `.thing {
@@ -26,13 +24,13 @@ const fancyCSS = `.some-selector {
     color: blue;
     width: 20px;
     height: 20px;
-    content: 'pseudo'
+    content: 'pseudo';
   }
 }`
 
 const staticCSS = `.thing {
   display: block;
-  height: 50px
+  height: 50px;
   width: 30px;
 }`
 

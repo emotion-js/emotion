@@ -1,5 +1,3 @@
-/* eslint-disable no-template-curly-in-string */
-/* eslint-env jest */
 import * as babel from 'babel-core'
 import plugin from '../../src/babel'
 import stage2 from 'babel-plugin-syntax-object-rest-spread'
@@ -7,6 +5,7 @@ import * as fs from 'fs'
 jest.mock('fs')
 
 fs.existsSync.mockReturnValue(true)
+fs.statSync.mockReturnValue({ isFile: () => false })
 
 describe('babel styled component', () => {
   describe('inline', () => {
@@ -89,6 +88,27 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('random expressions', () => {
+      const basic = `
+        const a = () => css\`font-size: 1rem\`
+        styled.h1\`
+          margin: 12px 48px;
+          \${css\`font-size: 32px\`};
+          color: #ffffff;
+          & .profile {
+            \${props => props.prop && a()}
+          }
+          \${{ backgroundColor: "hotpink" }};
+        \`
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('basic', () => {
       const basic = "const H1 = styled.h1`font-size: ${fontSize + 'px'};`"
       const { code } = babel.transform(basic, {
@@ -120,7 +140,7 @@ describe('babel styled component', () => {
         width: w\${something}ow;
         transform: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
         transform1: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
-        transform2: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX};
+        transform2: translateX(\${(props) => props.translateX}) \${(props) => props.translateX};
         \``
       const { code } = babel.transform(basic, {
         plugins: [plugin]
@@ -250,7 +270,7 @@ describe('babel styled component', () => {
         ...defaultText,
         ...defaultFigure
       })`
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [plugin, stage2]
       })
       expect(code).toMatchSnapshot()
@@ -265,7 +285,7 @@ describe('babel styled component', () => {
         ...defaultFigure,
         ...defaultText2
       })`
-      const {code} = babel.transform(basic, {
+      const { code } = babel.transform(basic, {
         plugins: [plugin, stage2]
       })
       expect(code).toMatchSnapshot()

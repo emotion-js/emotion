@@ -1,16 +1,19 @@
 // @flow weak
-export function omit (obj: { [string]: any }, keys: Array<string>) {
+export function omit(
+  obj: { [string]: any },
+  testFn: (key: string, obj: any) => boolean
+) {
   let target: { [string]: any } = {}
   let i: string
   for (i in obj) {
-    if (keys.indexOf(i) !== -1) continue
+    if (!testFn(i, obj)) continue
     if (!Object.prototype.hasOwnProperty.call(obj, i)) continue
     target[i] = obj[i]
   }
   return target
 }
 
-export function keys (obj: { [string]: any }) {
+export function keys(obj: { [string]: any }) {
   let k: string
   let out: Array<string> = []
   for (k in obj) {
@@ -19,7 +22,7 @@ export function keys (obj: { [string]: any }) {
   return out
 }
 
-export function forEach (
+export function forEach(
   arr: Array<any>,
   fn: (item: any, index: number, arr: Array<any>) => void
 ) {
@@ -31,7 +34,7 @@ export function forEach (
   }
 }
 
-export function map (
+export function map(
   arr: Array<any>,
   fn: (item: any, index: number, arr: Array<any>) => any
 ) {
@@ -50,7 +53,7 @@ export function map (
   return out
 }
 
-export function reduce (
+export function reduce(
   arr: Array<any>,
   fn: (out: Array<any>, item: any, index: number, arr: Array<any>) => any,
   val: any
@@ -77,7 +80,7 @@ export function reduce (
 
 export const assign: any =
   Object.assign ||
-  function (target) {
+  function(target) {
     let i = 1
     let length = arguments.length
     for (; i < length; i++) {

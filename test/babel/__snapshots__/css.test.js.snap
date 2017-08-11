@@ -10,14 +10,14 @@ exports[`babel css extract composes 1`] = `
 "import './css.test.emotion.css';
 
 const cls1 = 'css-cls1-1q8jsgx';
-const cls2 = /*#__PURE__*/css([['one-class', 'another-class', cls1]], ['center'], function createEmotionStyledRules(x0) {
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], function createEmotionStyledRules(x0) {
   return [{
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
     'justifyContent': 'center',
-    'WebkitBoxAlign': \`\${x0}\`,
-    'msFlexAlign': \`\${x0}\`,
-    'alignItems': \`\${x0}\`
+    'WebkitBoxAlign': x0,
+    'msFlexAlign': x0,
+    'alignItems': x0
   }];
 });"
 `;
@@ -58,8 +58,6 @@ const cls1 = css({
 const cls2 = /*#__PURE__*/css([cls1], [], function createEmotionStyledRules() {
   return [{
     'height': '20',
-    'WebkitBoxPack': 'center',
-    'msFlexPack': 'center',
     'justifyContent': 'center'
   }];
 });"
@@ -102,7 +100,7 @@ css([{
   'borderRadius': '50%',
   'WebkitBoxSizing': 'border-box',
   'boxSizing': 'border-box',
-  [\`\${display}\`]: 'flex',
+  [display]: 'flex',
   ':hover': {
     'WebkitTransform': 'scale(1.2)',
     'transform': 'scale(1.2)'
@@ -216,7 +214,7 @@ const cls2 = css([{
   'WebkitBoxFlex': '1',
   'msFlex': '1',
   'flex': '1',
-  'alignItems': \`\${'center'}\`
+  'alignItems': 'center'
 }, {
   'WebkitBoxPack': 'start',
   'msFlexPack': 'start',
@@ -236,9 +234,9 @@ const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], 
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
     'justifyContent': 'center',
-    'WebkitBoxAlign': \`\${x0}\`,
-    'msFlexAlign': \`\${x0}\`,
-    'alignItems': \`\${x0}\`
+    'WebkitBoxAlign': x0,
+    'msFlexAlign': x0,
+    'alignItems': x0
   }];
 });"
 `;
@@ -246,15 +244,47 @@ const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], 
 exports[`babel css inline css basic 1`] = `
 "
 /*#__PURE__*/css([], [widthVar], function createEmotionStyledRules(x0) {
-        return [{
-                \\"margin\\": \\"12px 48px\\",
-                \\"color\\": \\"#ffffff; color: blue\\",
-                \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\",
-                \\"WebkitBoxFlex\\": \\"1\\",
-                \\"msFlex\\": \\"1 0 auto\\",
-                \\"flex\\": \\"1 0 auto\\",
-                \\"width\\": \`\${x0}\`
-        }];
+  return [{
+    \\"margin\\": \\"12px 48px\\",
+    \\"color\\": \\"#ffffff; color: blue\\",
+    \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\",
+    \\"WebkitBoxFlex\\": \\"1\\",
+    \\"msFlex\\": \\"1 0 auto\\",
+    \\"flex\\": \\"1 0 auto\\",
+    \\"@media (min-width: 420px)\\": {
+      \\"lineHeight\\": \\"40px\\"
+    },
+    \\"width\\": x0
+  }];
+});"
+`;
+
+exports[`babel css inline css random expression 1`] = `
+"/*#__PURE__*/css([], [/*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"width\\": \\"96px\\",
+    \\"height\\": \\"96px\\"
+  }];
+}), { backgroundColor: \\"hotpink\\" }], function createEmotionStyledRules(x0, x1) {
+  return [{
+    \\"fontSize\\": \\"20px\\",
+    \\"@media (min-width: 420px)\\": {
+      \\"color\\": \\"blue\\",
+      \\"$0\\": x0,
+      \\"lineHeight\\": \\"26px\\"
+    },
+    \\"background\\": \\"green\\",
+    \\"$1\\": x1
+  }];
+});"
+`;
+
+exports[`babel css inline css with float property 1`] = `
+"
+/*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"float\\": \\"left\\"
+  }];
 });"
 `;
 
@@ -264,7 +294,7 @@ const cls2 = /*#__PURE__*/css([], [className], function createEmotionStyledRules
   return [{
     \\"margin\\": \\"12px 48px\\",
     \\"color\\": \\"#ffffff\\",
-    [\`\${x0}\`]: {
+    [x0]: {
       \\"display\\": \\"none\\"
     }
   }];
@@ -278,9 +308,9 @@ const cls2 = /*#__PURE__*/css(['one-class', 'another-class', 'another-class', 'a
     'WebkitBoxPack': 'center',
     'msFlexPack': 'center',
     'justifyContent': 'center',
-    'WebkitBoxAlign': \`\${x0}\`,
-    'msFlexAlign': \`\${x0}\`,
-    'alignItems': \`\${x0}\`
+    'WebkitBoxAlign': x0,
+    'msFlexAlign': x0,
+    'alignItems': x0
   }];
 });"
 `;
@@ -300,11 +330,12 @@ exports[`babel css inline nested expanded properties 1`] = `
 exports[`babel css inline object with a bunch of stuff 1`] = `
 "
 const cls2 = css({
+  'float': 'left',
   'display': '-webkit-box; display: -ms-flexbox; display: flex',
   'WebkitBoxFlex': '1',
   'msFlex': '1',
   'flex': '1',
-  'alignItems': \`\${'center'}\`
+  'alignItems': 'center'
 });"
 `;
 

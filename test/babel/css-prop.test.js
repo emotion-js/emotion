@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import * as babel from 'babel-core'
 import plugin from '../../src/babel'
 import * as fs from 'fs'
@@ -6,6 +5,7 @@ import * as fs from 'fs'
 jest.mock('fs')
 
 fs.existsSync.mockReturnValue(true)
+fs.statSync.mockReturnValue({ isFile: () => false })
 
 describe('babel css prop', () => {
   test('basic with extractStatic', () => {
@@ -30,7 +30,7 @@ describe('babel css prop', () => {
 
   test('basic object', () => {
     const basic = '(<div className="a" css={{ color: \'brown\' }}></div>)'
-    const {code} = babel.transform(basic, {
+    const { code } = babel.transform(basic, {
       plugins: [plugin]
     })
     expect(code).toMatchSnapshot()
@@ -111,7 +111,7 @@ describe('babel css prop', () => {
 
   test('no import css prop', () => {
     const basic =
-    '(<div className={`test__class`} css={`color: brown;`}></div>)'
+      '(<div className={`test__class`} css={`color: brown;`}></div>)'
     const { code } = babel.transform(basic, {
       plugins: [[plugin, { autoImportCssProp: false }]]
     })

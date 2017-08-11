@@ -1,10 +1,10 @@
-/* eslint-env jest */
 import * as babel from 'babel-core'
 import plugin from '../../src/babel'
 import * as fs from 'fs'
 jest.mock('fs')
 
 fs.existsSync.mockReturnValue(true)
+fs.statSync.mockReturnValue({ isFile: () => false })
 
 describe('babel css', () => {
   describe('inline', () => {
@@ -16,8 +16,40 @@ describe('babel css', () => {
         display: flex;
         flex: 1 0 auto;
         color: blue;
+        @media(min-width: 420px) {
+          line-height: 40px;
+        }
         width: \${widthVar};
       \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('css with float property', () => {
+      const basic = `
+        css\`
+          float: left;
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('css random expression', () => {
+      const basic = `css\`
+        font-size: 20px;
+        @media(min-width: 420px) {
+          color: blue;
+          \${css\`width: 96px; height: 96px;\`};
+          line-height: 26px;
+        }
+        background: green;
+        \${{ backgroundColor: "hotpink" }};        
+      \`
+      `
       const { code } = babel.transform(basic, {
         plugins: [[plugin]]
       })
@@ -60,7 +92,7 @@ describe('babel css', () => {
           display: flex;
         \`
         const cls2 = css\`
-          composes: \${'one-class'} \${'another-class'}\${cls1}
+          composes: \${'one-class'} \${'another-class'}\${cls1};
           justify-content: center;
           align-items: \${'center'}
         \`
@@ -164,7 +196,7 @@ describe('babel css', () => {
         \`
         const cls2 = css\`
           justify-content: center;
-          composes: \${['one-class', 'another-class', cls1]}
+          composes: \${'one-class'} \${'another-class'}\${cls1};
           align-items: \${'center'}
         \`
       `
@@ -191,10 +223,8 @@ describe('babel css', () => {
         })
       ).toThrowErrorMatchingSnapshot()
     })
-    test.skip(
-      'throws correct error when composes is on a nested selector',
-      () => {
-        const basic = `
+    test('throws correct error when composes is on a nested selector', () => {
+      const basic = `
         const cls1 = css\`
           display: flex;
         \`
@@ -206,16 +236,16 @@ describe('babel css', () => {
           }
         \`
       `
-        expect(() =>
-          babel.transform(basic, {
-            plugins: [[plugin]]
-          })
-        ).toThrowErrorMatchingSnapshot()
-      }
-    )
+      expect(() =>
+        babel.transform(basic, {
+          plugins: [[plugin]]
+        })
+      ).toThrowErrorMatchingSnapshot()
+    })
     test('object with a bunch of stuff', () => {
       const basic = `
       const cls2 = css({
+        float: 'left',
         display: 'flex',
         flex: 1,
         alignItems: \`\${'center'}\`
@@ -268,7 +298,7 @@ describe('babel css', () => {
           display: flex;
         \`
         const cls2 = css\`
-          composes: \${['one-class', 'another-class', cls1]}
+          composes: \${'one-class'}\${'another-class'}\${cls1};
           justify-content: center;
           align-items: \${'center'}
         \`
@@ -288,7 +318,7 @@ describe('babel css', () => {
           display: flex;
         \`
         const cls2 = css\`
-          composes: \${'one-class'} \${'another-class'}\${cls1}
+          composes: \${'one-class'} \${'another-class'}\${cls1};
           justify-content: center;
           align-items: center
         \`

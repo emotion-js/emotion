@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
@@ -9,7 +8,6 @@ expect.addSnapshotSerializer(serializer(sheet))
 
 describe('keyframes - macro', () => {
   test('renders', () => {
-    const fontSize = 20
     const bounce = keyframes`
       from, 20%, 53%, 80%, to {
         animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -31,9 +29,7 @@ describe('keyframes - macro', () => {
       }
     `
 
-    const H1 = styled.h1`
-      animation: ${bounce} 2s linear infinite;
-    `
+    const H1 = styled.h1`animation: ${bounce} 2s linear infinite;`
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 

@@ -1,8 +1,7 @@
-import { Component, createElement as h } from 'react'
-import PropTypes from 'prop-types'
+import { createElement as h } from 'react'
 import { css } from '../index'
-import { map, omit, reduce, assign } from '../utils'
-import { CHANNEL } from './constants'
+import { map, reduce, assign, omit } from '../utils'
+import propsRegexString from /* preval */ './props'
 
 export {
   flush,
@@ -16,7 +15,11 @@ export {
 
 const push = (obj, items) => Array.prototype.push.apply(obj, items)
 
-export default function (tag, cls, objs, vars = [], content) {
+const reactPropsRegex = new RegExp(propsRegexString)
+const testOmitPropsOnStringTag = key => reactPropsRegex.test(key)
+const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
+
+export default function(tag, cls, objs, vars = [], content) {
   if (!tag) {
     throw new Error(
       'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
@@ -24,111 +27,71 @@ export default function (tag, cls, objs, vars = [], content) {
   }
 
   const componentTag = tag.displayName || tag.name || 'Component'
-
-  class Styled extends Component {
-    state = {
-      theme: {}
-    }
-
-    componentWillMount () {
-      if (this.context[CHANNEL]) {
-        this.setState({ theme: this.context[CHANNEL].getState() })
-      }
-    }
-
-    componentDidMount () {
-      if (this.context[CHANNEL]) {
-        this.unsubscribe = this.context[CHANNEL].subscribe(this.setTheme)
-      }
-    }
-
-    componentWillUnmount () {
-      if (typeof this.unsubscribe === 'function') {
-        this.unsubscribe()
-      }
-    }
-
-    render () {
-      const { props, state, context } = this
-      const mergedProps = assign({}, props, {
-        theme: state.theme
-      })
-
-      const getValue = v => {
-        if (v && typeof v === 'function') {
-          if (v.__emotion_class) {
-            return `& .${v.__emotion_class}`
-          }
-          return v(mergedProps, context)
-        }
-
-        return v
-      }
-      let localTag = tag
-
-      let finalObjs = []
-
-      if (tag.__emotion_spec) {
-        push(
-          finalObjs,
-          reduce(
-            tag.__emotion_spec,
-            (accum, spec) => {
-              push(accum, spec.objs)
-              if (spec.content) {
-                push(accum, spec.content.apply(null, map(spec.vars, getValue)))
-              }
-              return accum
-            },
-            []
-          )
-        )
-        localTag = tag.__emotion_spec[0].tag
-      }
-
-      push(finalObjs, objs)
-
-      push(finalObjs, [cls])
-
-      if (content) {
-        push(finalObjs, content.apply(null, map(vars, getValue)))
-      }
-
-      if (mergedProps.className) {
-        push(finalObjs, mergedProps.className.split(' '))
-      }
-
-      const className = css(map(finalObjs, getValue))
-
-      return h(
-        localTag,
-        omit(
-          assign({}, mergedProps, {
-            ref: mergedProps.innerRef,
-            className
-          }),
-          ['innerRef', 'theme']
-        )
-      )
-    }
-
-    setTheme = theme => this.setState({ theme })
-  }
-
-  Styled.contextTypes = {
-    [CHANNEL]: PropTypes.object
-  }
-
-  Styled.displayName = `styled(${componentTag})`
   const spec = {
     vars,
     content,
     objs,
-    tag
+    tag,
+    cls
   }
-  Styled.__emotion_spec = tag.__emotion_spec
-    ? tag.__emotion_spec.concat(spec)
-    : [spec]
+  const newSpec =
+    tag.__emotion_spec !== undefined ? tag.__emotion_spec.concat(spec) : [spec]
+  const localTag = newSpec[0].tag
+
+  const omitFn =
+    typeof localTag === 'string'
+      ? testOmitPropsOnStringTag
+      : testOmitPropsOnComponent
+  function Styled(props, context) {
+    const getValue = v => {
+      if (v && typeof v === 'function') {
+        if (v.__emotion_class !== undefined) {
+          return `& .${v.__emotion_class}`
+        }
+        return v(props, context)
+      }
+
+      return v
+    }
+
+    let finalObjs = []
+
+    push(
+      finalObjs,
+      reduce(
+        newSpec,
+        (accum, spec) => {
+          push(accum, spec.objs)
+          if (spec.content) {
+            accum.push(spec.content.apply(null, map(spec.vars, getValue)))
+          }
+          accum.push(spec.cls)
+          return accum
+        },
+        []
+      )
+    )
+
+    if (props.className) {
+      push(finalObjs, props.className.split(' '))
+    }
+
+    const className = css(map(finalObjs, getValue))
+
+    return h(
+      localTag,
+      omit(
+        assign({}, props, {
+          ref: props.innerRef,
+          className
+        }),
+        omitFn
+      )
+    )
+  }
+
+  Styled.displayName = `styled(${componentTag})`
+  Styled.__emotion_spec = newSpec
   Styled.__emotion_class = cls
   return Styled
 }

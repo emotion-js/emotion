@@ -1,7 +1,7 @@
 import { keys, forEach } from '../utils'
 
 // Returns true for null, false, undefined and {}
-function isFalsy (value) {
+function isFalsy(value) {
   return (
     value === null ||
     value === undefined ||
@@ -10,7 +10,7 @@ function isFalsy (value) {
   )
 }
 
-function cleanObject (object) {
+function cleanObject(object) {
   if (isFalsy(object)) return null
   if (typeof object !== 'object') return object
 
@@ -28,7 +28,7 @@ function cleanObject (object) {
   return keys(acc).length === 0 ? null : hasFalsy ? acc : object
 }
 
-function cleanArray (rules) {
+function cleanArray(rules) {
   let hasFalsy = false
   const filtered = []
   forEach(rules, rule => {
@@ -40,12 +40,12 @@ function cleanArray (rules) {
       filtered.push(filteredRule)
     }
   })
-  return filtered.length == 0 ? null : hasFalsy ? filtered : rules
+  return filtered.length === 0 ? null : hasFalsy ? filtered : rules
 }
 
 // Takes style array or object provided by user and clears all the falsy data
 // If there is no styles left after filtration returns null
-export default function clean (input) {
+export default function clean(input) {
   if (typeof input === 'string') {
     return input.trim()
   }

@@ -4,7 +4,14 @@ exports[`babel css inline css basic 1`] = `
 "
 /*#__PURE__*/css([], [], function createEmotionStyledRules() {
         return [{
-                \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
+                \\"display\\": \\"flex\\"
         }];
+});"
+`;
+
+exports[`babel css inline css object 1`] = `
+"
+css({
+  'display': 'flex'
 });"
 `;

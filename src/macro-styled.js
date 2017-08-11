@@ -6,12 +6,12 @@ import { buildMacroRuntimeNode } from './babel-utils'
 import emotionMacro from './macro'
 import { omit } from './utils'
 
-module.exports = function macro (options) {
+module.exports = function macro(options) {
   const { references, state, babel: { types: t } } = options
   if (!state.inline) state.inline = true
   let referencesWithoutDefault = references
   if (references.default) {
-    referencesWithoutDefault = omit(references, ['default'])
+    referencesWithoutDefault = omit(references, key => key !== 'default')
     references.default.forEach(styledReference => {
       const path = styledReference.parentPath.parentPath
       const runtimeNode = buildMacroRuntimeNode(

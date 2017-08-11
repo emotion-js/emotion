@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
@@ -7,6 +6,15 @@ import { sheet, css, flush } from '../src/index'
 expect.addSnapshotSerializer(serializer(sheet))
 
 describe('css', () => {
+  test('float property', () => {
+    const cls1 = css`
+      float: left
+    `
+
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('handles more than 10 dynamic properties', () => {
     const cls1 = css`
       text-decoration: ${'underline'};
@@ -35,6 +43,20 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('random expression', () => {
+    const cls2 = css`
+      font-size: 20px;
+      @media(min-width: 420px) {
+        color: blue;
+        ${css`width: 96px; height: 96px;`};
+        line-height: 40px;
+      }
+      background: green;
+    `
+    const tree = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('composes', () => {
     const cls1 = css`
       display: flex;
@@ -49,6 +71,7 @@ describe('css', () => {
 
   test('handles objects', () => {
     const cls1 = css({
+      float: 'left',
       display: 'flex',
       color: `${'blue'}`,
       fontSize: `${'20px'}`,
@@ -118,9 +141,13 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('nested array', () => {
-    const cls1 = css([[{
-      display: 'flex'
-    }]])
+    const cls1 = css([
+      [
+        {
+          display: 'flex'
+        }
+      ]
+    ])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })

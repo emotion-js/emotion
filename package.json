@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "7.0.4",
+  "version": "7.0.12",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
   "files": [
@@ -10,23 +10,21 @@
     "lib",
     "react",
     "server.js",
-    "dist/DO-NOT-USE.min.js",
     "macro.js"
   ],
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "rimraf lib && babel src -d lib",
     "build:watch": "npm run build -- -w",
     "test:size": "npm-run-all clean rollup size",
     "clean": "rimraf dist",
     "test": "npm-run-all -p lint:check coverage test:size",
-    "coverage": "jest --coverage --no-cache",
-    "lint:check": "standard src test",
+    "coverage": "jest --coverage --no-cache --ci --runInBand",
+    "lint:check": "eslint .",
     "test:watch": "jest --watch --no-cache",
-    "rollup": "rollup -c",
+    "rollup": "rollup -c && IMPORT=react rollup -c",
     "size": "bundlesize",
     "release": "npm run test && npm run build && npm run rollup && npm version patch && npm publish && git push --tags",
-    "lint": "standard --fix",
-    "format": "prettier-eslint --write \"src/**/*.js\" \"test/**/*.js\" \"example/**/*.js\" \"jest-utils/**/*.js\""
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@arr/filter.mutate": "^1.0.0",
@@ -34,15 +32,11 @@
     "@arr/map": "^1.0.0",
     "@arr/reduce": "^1.0.0",
     "autoprefixer": "^7.1.2",
-    "babel-errors": "^1.1.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-types": "^6.25.0",
     "fbjs": "^0.8.12",
-    "inline-style-prefixer": "^3.0.6",
+    "postcss": "^6.0.8",
     "postcss-js": "^1.0.0",
     "postcss-nested": "^2.1.0",
-    "postcss-safe-parser": "^3.0.1",
-    "theming": "^1.0.1",
     "touch": "^1.0.0"
   },
   "devDependencies": {
@@ -51,14 +45,25 @@
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
     "babel-macros": "^0.5.2",
+    "babel-plugin-preval": "^1.4.2",
     "babel-preset-env": "^1.5.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bundlesize": "^0.5.7",
-    "caniuse-api": "^2.0.0",
     "enzyme": "^2.9.1",
     "enzyme-to-json": "^1.5.1",
+    "eslint": "^4.3.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard-react": "^5.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-standard": "^3.0.1",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-glamor-react": "^3.1.0",
@@ -76,8 +81,7 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^2.0.1",
-    "standard": "^10.0.2",
-    "vue": "^2.3.4"
+    "theming": "^1.1.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
@@ -97,20 +101,29 @@
     "css-in-js"
   ],
   "eslintConfig": {
-    "extends": "standard",
+    "extends": [
+      "standard",
+      "standard-react",
+      "prettier",
+      "prettier/react"
+    ],
+    "plugins": [
+      "prettier"
+    ],
     "parser": "babel-eslint",
     "rules": {
-      "jsx-quotes": [
+      "prettier/prettier": [
         "error",
-        "prefer-single"
-      ]
+        {
+          "singleQuote": true,
+          "semi": false
+        }
+      ],
+      "react/prop-types": 0,
+      "react/no-unused-prop-types": 0,
+      "standard/computed-property-even-spacing": 0,
+      "no-template-curly-in-string": 0
     }
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "ignore": [
-      "/dist/"
-    ]
   },
   "jest": {
     "transform": {
@@ -128,6 +141,10 @@
   "bundlesize": [
     {
       "path": "./dist/DO-NOT-USE.min.js",
+      "threshold": "5 Kb"
+    },
+    {
+      "path": "./dist/DO-NOT-USE-react.min.js",
       "threshold": "6 Kb"
     }
   ]

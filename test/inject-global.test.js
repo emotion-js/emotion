@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import { injectGlobal, sheet } from '../src/index'
 
 test('injectGlobal', () => {
@@ -14,7 +13,7 @@ test('injectGlobal', () => {
   const color = 'yellow'
   injectGlobal`
     body {
-      color: ${color}
+      color: ${color};
       margin: 0;
       padding: 0;
     }

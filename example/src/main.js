@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { ThemeProvider } from 'emotion/react/theming'
+import { ThemeProvider, withTheme } from 'theming'
 import styled, { css, fontFace, keyframes, injectGlobal } from 'emotion/react'
 import Markdown from './markdown'
 import Playground from './playground'
@@ -11,7 +11,6 @@ const propsExample = require('./blocks/props.example')
 const nestedExample = require('./blocks/nested.example')
 const mediaExample = require('./blocks/media.example')
 const anyComponentExample = require('./blocks/styling-any-component.example')
-const namedExample = require('./blocks/named.example')
 const pseudoExample = require('./blocks/pseudo.example')
 const keyframesExample = require('./blocks/keyframes.example')
 // const fontFaceExample = require('./blocks/font-face.example')
@@ -57,6 +56,15 @@ const theme = {
   gold: '#ffd43b'
 }
 
+const margin = (t, r, b, l) => {
+  return () => css`
+    margin-top: ${t};
+    margin-right: ${r};
+    margin-bottom: ${b};
+    margin-left: ${l};
+  `
+}
+
 const PlaygroundWrapper = styled('div')`
   font-family: 'Oxygen', sans-serif;
   flex:1;
@@ -64,7 +72,7 @@ const PlaygroundWrapper = styled('div')`
   background: #f8f9fa;
   
   & .inner {
-    margin: 0 auto;
+    ${margin(0, 'auto', 0, 'auto')};
     width: calc(100% - 32px);
     max-width: 960px;
     
@@ -89,16 +97,14 @@ const PlaygroundWrapper = styled('div')`
 `
 
 class App extends React.Component {
-  render () {
+  render() {
     return (
       <ThemeProvider theme={theme}>
         <PlaygroundWrapper>
-
-          <div className='inner'>
-            <div className='header'>
+          <div className="inner">
+            <div className="header">
               <h1>
-                <img src={logoUrl} alt='emotion' />
-
+                <img src={logoUrl} alt="emotion" />
                 emotion
               </h1>
               <p>The Next Generation of CSS-in-JS</p>
@@ -109,10 +115,13 @@ class App extends React.Component {
               codeText={introExample}
               scope={{
                 logoUrl,
-                css,
                 React,
+                css,
+                keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -125,10 +134,13 @@ class App extends React.Component {
               codeText={nestedExample}
               scope={{
                 logoUrl,
-                css,
                 React,
+                css,
+                keyframes,
                 styled,
-                render
+                render,
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -144,7 +156,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -175,7 +188,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -190,7 +204,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -206,37 +221,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
-              }}
-            />
-
-            {/* <Markdown markdown={require('./docs/font-face.md')}/> */}
-            {/* <Playground */}
-            {/* maxHeight={600} */}
-            {/* noRender={false} */}
-            {/* codeText={fontFaceExample} */}
-            {/* scope={{ */}
-            {/* logoUrl, */}
-            {/* React, */}
-            {/* fontFace, */}
-            {/* styled, */}
-            {/* render */}
-            {/* }} */}
-            {/* /> */}
-
-            <Markdown markdown={require('../../docs/theming.md')} />
-            <Playground
-              maxHeight={180}
-              noRender={false}
-              codeText={require('./blocks/theming.example')}
-              scope={{
-                logoUrl,
-                React,
-                css,
-                keyframes,
-                styled,
-                render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -252,7 +238,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -268,7 +255,8 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
 
@@ -300,11 +288,11 @@ class App extends React.Component {
               }}
             />
 
-            <Markdown markdown={require('../../docs/named.md')} />
+            <Markdown markdown={require('../../docs/theming.md')} />
             <Playground
-              maxHeight={220}
+              maxHeight={180}
               noRender={false}
-              codeText={namedExample}
+              codeText={require('./blocks/theming.example')}
               scope={{
                 logoUrl,
                 React,
@@ -312,11 +300,11 @@ class App extends React.Component {
                 keyframes,
                 styled,
                 render,
-                ThemeProvider
+                ThemeProvider,
+                withTheme
               }}
             />
           </div>
-
         </PlaygroundWrapper>
       </ThemeProvider>
     )

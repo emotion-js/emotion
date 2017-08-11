@@ -1,10 +1,10 @@
-/* eslint-env jest */
 import * as babel from 'babel-core'
 import plugin from '../../src/babel'
 import * as fs from 'fs'
 jest.mock('fs')
 
 fs.existsSync.mockReturnValue(true)
+fs.statSync.mockReturnValue({ isFile: () => false })
 
 describe('fontFace babel', () => {
   describe('inline', () => {

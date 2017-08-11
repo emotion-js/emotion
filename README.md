@@ -7,8 +7,10 @@
 [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://travis-ci.org/tkh44/emotion.svg?branch=master)](https://travis-ci.org/tkh44/emotion)
 [![codecov](https://codecov.io/gh/tkh44/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/tkh44/emotion)
-![gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?compression=gzip&label=gzip%20size)
-![size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?label=size)
+![core gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?compression=gzip&label=core%20gzip%20size)
+![core size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?label=core%20size)
+![react gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE-react.min.js?compression=gzip&label=react%20gzip%20size)
+![react size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE-react.min.js?label=react%20size)
 [![slack](https://emotion.now.sh/badge.svg)](http://slack.emotion.sh/)
 
 emotion is a high performance, lightweight css-in-js library. 
@@ -27,8 +29,7 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
 
 - [Benchmarks](https://github.com/tkh44/emotion/tree/master/docs/benchmarks.md)
 
-- [Extract Mode](https://github.com/tkh44/emotion/tree/master/docs/extract-mode.md)
-- [Inline Mode](https://github.com/tkh44/emotion/tree/master/docs/inline-mode.md)
+- [Extract Static](https://github.com/tkh44/emotion/tree/master/docs/extract-static.md)
 
 - API
   - [css](https://github.com/tkh44/emotion/tree/master/docs/css.md)
@@ -38,7 +39,9 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
   - [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
   - [fontFace](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
   - [injectGlobal](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
-  - [vue styled](https://github.com/tkh44/emotion/tree/master/docs/vue-styled.md)
 
 - [Usage with CSS Modules](https://github.com/tkh44/emotion/tree/master/docs/css-modules.md)
 - [Usage with babel-macros](https://github.com/tkh44/emotion/tree/master/docs/babel-macros.md)
+
+- Ecosystem
+  - [emotion-vue](https://github.com/egoist/emotion-vue)

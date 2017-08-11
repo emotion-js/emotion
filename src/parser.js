@@ -1,5 +1,7 @@
 // @flow
-import parse from 'postcss-safe-parser'
+import Input from 'postcss/lib/input'
+import Declaration from 'postcss/lib/declaration'
+import Parser from 'postcss/lib/parser'
 import postcssNested from 'postcss-nested'
 import postcssJs from 'postcss-js'
 import objParse from 'postcss-js/parser'
@@ -8,12 +10,6 @@ import { processStyleName } from './glamor/CSSPropertyOperations'
 
 export const prefixer = postcssJs.sync([autoprefixer, postcssNested])
 
-type Rule = {
-  parent: { selector: string, nodes: Array<mixed> },
-  selector: string,
-  remove: () => {}
-}
-
 type Decl = {
   parent: { selector: string, nodes: Array<mixed> },
   prop: string,
@@ -21,7 +17,7 @@ type Decl = {
   remove: () => {}
 }
 
-export function parseCSS (
+export function parseCSS(
   css: string,
   extractStatic: boolean,
   filename: string
@@ -48,6 +44,9 @@ export function parseCSS (
       if (decl.parent.nodes[0] !== decl) {
         throw new Error('composes must be the first rule')
       }
+      if (decl.parent.type !== 'root') {
+        throw new Error('composes cannot be on nested selectors')
+      }
       const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
       const numOfComposes: number = !composeMatches ? 0 : composeMatches.length
       composes += numOfComposes
@@ -56,7 +55,7 @@ export function parseCSS (
     }
   })
 
-  const styles = expandCSSFallbacks(prefixer(postcssJs.objectify(root)))
+  const styles = expandCSSFallbacks(prefixer(root))
 
   return {
     styles,
@@ -68,11 +67,11 @@ export function parseCSS (
   }
 }
 
-function stringifyCSSRoot (root) {
+function stringifyCSSRoot(root) {
   return root.nodes.map(node => node.toString())
 }
 
-export function expandCSSFallbacks (style: { [string]: any }) {
+export function expandCSSFallbacks(style: { [string]: any }) {
   let flattened = Object.keys(style).reduce((accum, key) => {
     if (Array.isArray(style[key])) {
       accum[key] = style[key].join(`; ${processStyleName(key)}: `)
@@ -88,4 +87,33 @@ export function expandCSSFallbacks (style: { [string]: any }) {
   // todo -
   // flatten arrays which haven't been flattened yet
   return flattened
+}
+
+// Parser
+export function parse(css, opts) {
+  let input = new Input(css, opts)
+
+  let parser = new EmotionParser(input)
+  parser.parse()
+
+  return parser.root
+}
+
+export class EmotionParser extends Parser {
+  unknownWord(tokens: Array<Array<any>>) {
+    if (tokens[0][0] === 'word') {
+      const match = /xxx(\d+)xxx/gm.exec(tokens[0][1])
+      if (match) {
+        this.init(
+          new Declaration(
+            { prop: `$${match[1]}`, value: tokens[0][1] },
+            tokens[0][2],
+            tokens[0][3]
+          )
+        )
+        return
+      }
+    }
+    this.spaces += tokens.map(i => i[1]).join('')
+  }
 }

@@ -11,7 +11,7 @@ export {
   objStyle
 } from './index'
 
-export function extractCritical (html) {
+export function extractCritical(html) {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
   const RGX = /css(?:[a-zA-Z0-9-]*)-([a-zA-Z0-9]+)/gm

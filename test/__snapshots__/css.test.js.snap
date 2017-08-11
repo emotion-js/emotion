@@ -17,8 +17,6 @@ exports[`css composes 1`] = `
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -35,8 +33,6 @@ exports[`css composes with objects 1`] = `
   display: block;
   width: 30px;
   height: calc(40vw - 50px);
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -62,8 +58,6 @@ exports[`css composes with objects 1`] = `
 
 exports[`css composes with undefined values 1`] = `
 .glamor-0 {
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -118,6 +112,16 @@ exports[`css css variables 1`] = `
 />
 `;
 
+exports[`css float property 1`] = `
+.glamor-0 {
+  float: left;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css flushes correctly 1`] = `
 .glamor-0 {
   display: -webkit-box;
@@ -159,6 +163,7 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 
 exports[`css handles objects 1`] = `
 .glamor-0 {
+  float: left;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -220,5 +225,25 @@ exports[`css nested at rules 1`] = `
 exports[`css null rule 1`] = `
 <div
   className="css-nil"
+/>
+`;
+
+exports[`css random expression 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  background: green;
+}
+
+@media (min-width: 420px) {
+  .glamor-0 {
+    color: blue;
+    width: 96px;
+    height: 96px;
+    line-height: 40px;
+  }
+}
+
+<div
+  className="glamor-0"
 />
 `;

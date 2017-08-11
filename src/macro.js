@@ -5,7 +5,7 @@ import {
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 import { forEach, keys } from './utils'
 
-module.exports = function macro ({ references, state, babel: { types: t } }) {
+module.exports = function macro({ references, state, babel: { types: t } }) {
   if (!state.inline) state.inline = true
   forEach(keys(references), referenceKey => {
     if (referenceKey === 'injectGlobal') {

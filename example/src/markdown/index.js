@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
+import { withTheme } from 'theming'
 import styled from 'emotion/react'
 import colors from 'open-color'
 import styles from './index.css'
@@ -13,7 +14,7 @@ const MarkdownContainer = styled('div')`
   }
 `
 
-const Link = styled('a')`
+const Link = withTheme(styled('a')`
   font-size: 1rem;
   margin-left: auto;
   margin-right: 8px;
@@ -27,7 +28,7 @@ const Link = styled('a')`
   &:hover {
     color: ${p => p.theme.gold};
   }
-`
+`)
 
 const Paragraph = styled('p')`
   margin: 16px 0;
@@ -67,18 +68,19 @@ export default ({ markdown }) => {
       <ReactMarkdown
         source={markdown}
         renderers={{
-          Heading: ({ children, level, ...rest }) => {
+          Heading: ({ children, level }) => {
             const tag = `h${level}`
+            let id
 
             if (Array.isArray(children)) {
               if (typeof children[0] === 'string') {
-                rest.id = ('' + children[0].toLowerCase())
+                id = ('' + children[0].toLowerCase())
                   .replace(/\s+/g, ' ')
                   .replace(/\s/g, '-')
               }
             }
 
-            return React.createElement(tag, { children, ...rest })
+            return React.createElement(tag, { children, id })
           },
           Link,
           Paragraph,
@@ -86,13 +88,14 @@ export default ({ markdown }) => {
           CodeBlock: props => {
             return (
               <CodeBlock key={props.nodeKey} className={props.className}>
-                <Code>{props.literal}</Code>
+                <Code>
+                  {props.literal}
+                </Code>
               </CodeBlock>
             )
           }
         }}
       />
-
     </MarkdownContainer>
   )
 }

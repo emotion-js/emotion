@@ -44,9 +44,9 @@ exports[`babel styled component extract no use 2`] = `".styled-0 {}"`;
 
 exports[`babel styled component inline basic 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', 'css-uutogn0', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
-  return [{
-    'fontSize': \`\${x0}\`
-  }];
+  return {
+    'fontSize': x0
+  };
 });"
 `;
 
@@ -59,53 +59,53 @@ exports[`babel styled component inline composes based on props 1`] = `
 const H1 = /*#__PURE__*/styled('h1', 'css-gzpfex0', [props => {
   return props.a ? cssA : cssB;
 }], [fontSize + 'px', props => props.translateX], function createEmotionStyledRules(x0, x1) {
-  return [{
-    'fontSize': \`\${x0}\`,
+  return {
+    'fontSize': x0,
     'height': '20px',
     'WebkitTransform': \`translateX(\${x1})\`,
     'transform': \`translateX(\${x1})\`
-  }];
+  };
 });"
 `;
 
 exports[`babel styled component inline dynamic fns 1`] = `
 "const Avatar = /*#__PURE__*/styled('img', 'css-t98w700', [], [props => props.theme.borderRadius, props => props.theme.borderColor], function createEmotionStyledRules(x0, x1) {
-  return [{
+  return {
     'width': '96px',
     'height': '96px',
-    'borderRadius': \`\${x0}\`,
+    'borderRadius': x0,
     'border': \`1px solid \${x1}\`
-  }];
+  };
 });"
 `;
 
 exports[`babel styled component inline function call 1`] = `
 "/*#__PURE__*/styled(MyComponent, 'css-1gd4urc0', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
-  return [{
-    'fontSize': \`\${x0}\`
-  }];
+  return {
+    'fontSize': x0
+  };
 });"
 `;
 
 exports[`babel styled component inline interpolation in different places 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1', 'css-1kajwdu0', [], [fontSize + 'px', props => props.translateX, something, something, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9) {
-  return [{
-    'fontSize': \`\${x0}\`,
+const H1 = /*#__PURE__*/styled('h1', 'css-16hd4av0', [], [fontSize + 'px', props => props.translateX, something, something, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX, props => props.translateX], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9) {
+  return {
+    'fontSize': x0,
     'height': '20px',
     'WebkitTransform': \`translateX(\${x1}); -webkit-transform: translateX(\${x4}) translateY(\${x5})\`,
     'transform': \`translateX(\${x1}); transform: translateX(\${x4}) translateY(\${x5})\`,
     'height1': \`\${x2}wow\`,
     'width': \`w\${x3}ow\`,
     'transform1': \`translateX(\${x6}) translateY(\${x7})\`,
-    'transform2': \`translateX(\${x8}) translateY(\${x9}\`
-  }];
+    'transform2': \`translateX(\${x8}) \${x9}\`
+  };
 });"
 `;
 
 exports[`babel styled component inline media query 1`] = `
 "const H1 = /*#__PURE__*/styled(\\"h1\\", \\"css-bom4yv0\\", [], [], function createEmotionStyledRules() {
-  return [{
+  return {
     \\"@media print\\": {
       \\"fontSize\\": \\"10pt\\"
     },
@@ -124,55 +124,55 @@ exports[`babel styled component inline media query 1`] = `
         \\"lineHeight\\": \\"1.4\\"
       }
     }
-  }];
+  };
 });"
 `;
 
 exports[`babel styled component inline more than 10 dynamic values 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', 'css-kzo7z60', [], ['underline', 54, 'white', 'black', 'block', '3px', '25px', '500px', 100, '18px', 'center', p => p.theme.blue], function createEmotionStyledRules(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11) {
-      return [{
-            'WebkitTextDecoration': \`\${x0}\`,
-            'textDecoration': \`\${x0}\`,
+      return {
+            'WebkitTextDecoration': x0,
+            'textDecoration': x0,
             'borderRight': \`solid blue \${x1}px\`,
-            'background': \`\${x2}\`,
-            'color': \`\${x3}\`,
-            'display': \`\${x4}\`,
-            'borderRadius': \`\${x5}\`,
-            'padding': \`\${x6}\`,
-            'width': \`\${x7}\`,
-            'zIndex': \`\${x8}\`,
-            'fontSize': \`\${x9}\`,
-            'textAlign': \`\${x10}\`,
-            'borderLeft': \`\${x11}\`
-      }];
+            'background': x2,
+            'color': x3,
+            'display': x4,
+            'borderRadius': x5,
+            'padding': x6,
+            'width': x7,
+            'zIndex': x8,
+            'fontSize': x9,
+            'textAlign': x10,
+            'borderLeft': x11
+      };
 });"
 `;
 
 exports[`babel styled component inline nested 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', 'css-17vfrab0', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {
-  return [{
-    'fontSize': \`\${x0}\`,
+  return {
+    'fontSize': x0,
     '& div': {
       'color': 'blue'
     },
     '& div span': {
       'color': 'red'
     }
-  }];
+  };
 });"
 `;
 
 exports[`babel styled component inline no dynamic 1`] = `
 "/*#__PURE__*/styled(\\"h1\\", \\"css-1cds4610\\", [], [], function createEmotionStyledRules() {
-  return [{
+  return {
     \\"color\\": \\"blue\\"
-  }];
+  };
 });"
 `;
 
 exports[`babel styled component inline no use 1`] = `
 "/*#__PURE__*/styled(\\"h1\\", \\"css-kmoct0\\", [], [], function createEmotionStyledRules() {
-  return [{}];
+  return {};
 });"
 `;
 
@@ -217,24 +217,48 @@ const H1 = styled('h1', 'css-13vphhj0', [{
 }]);"
 `;
 
+exports[`babel styled component inline random expressions 1`] = `
+"
+const a = () => /*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"fontSize\\": \\"1rem\\"
+  }];
+});
+/*#__PURE__*/styled(\\"h1\\", \\"css-1evx9zo0\\", [], [/*#__PURE__*/css([], [], function createEmotionStyledRules() {
+  return [{
+    \\"fontSize\\": \\"32px\\"
+  }];
+}), props => props.prop && a(), { backgroundColor: \\"hotpink\\" }], function createEmotionStyledRules(x0, x1, x2) {
+  return {
+    \\"margin\\": \\"12px 48px\\",
+    \\"$0\\": x0,
+    \\"color\\": \\"#ffffff\\",
+    \\"& .profile\\": {
+      \\"$1\\": x1
+    },
+    \\"$2\\": x2
+  };
+});"
+`;
+
 exports[`babel styled component inline shorthand property 1`] = `
 "const H1 = styled(\\"h1\\", \\"css-1o8pmqr0\\", [{
-  \\"fontSize\\": \`\${fontSize}\`
+  \\"fontSize\\": fontSize
 }]);"
 `;
 
 exports[`babel styled component inline styled component as selector 1`] = `
 "
 const SomeComponent = /*#__PURE__*/styled(\\"div\\", \\"css-1jq2uck0\\", [], [], function createEmotionStyledRules() {
-  return [{}];
+  return {};
 });
 /*#__PURE__*/styled(\\"h1\\", \\"css-1jq2uck1\\", [], [SomeComponent], function createEmotionStyledRules(x0) {
-  return [{
+  return {
     \\"color\\": \\"blue\\",
-    [\`\${x0}\`]: {
+    [x0]: {
       \\"color\\": \\"green\\"
     }
-  }];
+  };
 });"
 `;
 

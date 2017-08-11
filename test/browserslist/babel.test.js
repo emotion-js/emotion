@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import * as babel from 'babel-core'
 import plugin from '../../src/babel'
 
@@ -9,6 +8,18 @@ describe('babel css', () => {
         css\`
         display: flex;
       \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('css object', () => {
+      const basic = `
+        css({
+          display: 'flex'
+        })`
       const { code } = babel.transform(basic, {
         plugins: [[plugin]],
         filename: __filename,

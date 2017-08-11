@@ -1,12 +1,11 @@
-import { keys } from './utils'
-import { forEach } from './utils'
+import { keys, forEach } from './utils'
 
-export function getIdentifierName (path, t) {
+export function getIdentifierName(path, t) {
   const parent = path.findParent(p => p.isVariableDeclarator())
   return parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 }
 
-export function getRuntimeImportPath (path, t) {
+export function getRuntimeImportPath(path, t) {
   const binding = path.scope.getBinding(path.node.name)
   if (!t.isImportDeclaration(binding.path.parentPath)) {
     throw binding.path.buildCodeFrameError(
@@ -17,7 +16,7 @@ export function getRuntimeImportPath (path, t) {
   return importPath.match(/(.*)\/macro/)[1]
 }
 
-export function buildMacroRuntimeNode (path, state, importName, t) {
+export function buildMacroRuntimeNode(path, state, importName, t) {
   const runtimeImportPath = getRuntimeImportPath(path, t)
   if (state.emotionImports === undefined) state.emotionImports = {}
   if (state.emotionImports[runtimeImportPath] === undefined) {
@@ -31,7 +30,7 @@ export function buildMacroRuntimeNode (path, state, importName, t) {
   return state.emotionImports[runtimeImportPath][importName]
 }
 
-export function addRuntimeImports (state, t) {
+export function addRuntimeImports(state, t) {
   if (state.emotionImports === undefined) return
   forEach(keys(state.emotionImports), importPath => {
     const importSpecifiers = []

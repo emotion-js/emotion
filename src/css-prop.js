@@ -1,4 +1,4 @@
-export default function (path, state, t) {
+export default function(path, state, t) {
   let cssPath
   let classNamesPath
 
@@ -77,18 +77,18 @@ export default function (path, state, t) {
     )
   }
 
-  function add (a, b) {
+  function add(a, b) {
     return t.binaryExpression('+', a, b)
   }
 
-  function createClassNameAttr (expression) {
+  function createClassNameAttr(expression) {
     return t.jSXAttribute(
       t.jSXIdentifier('className'),
       t.JSXExpressionContainer(expression)
     )
   }
 
-  function getCssIdentifer () {
+  function getCssIdentifer() {
     if (state.opts.autoImportCssProp !== false) {
       if (!state.cssPropIdentifier) {
         state.cssPropIdentifier = path.scope.generateUidIdentifier('css')
@@ -98,7 +98,7 @@ export default function (path, state, t) {
       return t.identifier('css')
     }
   }
-  function createCssTemplateExpression (templateLiteral) {
+  function createCssTemplateExpression(templateLiteral) {
     return t.taggedTemplateExpression(getCssIdentifer(), templateLiteral)
   }
 }

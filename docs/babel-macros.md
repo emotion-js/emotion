@@ -5,7 +5,6 @@ Instead of using the emotion's babel plugin, you can use emotion with [`babel-ma
 ```jsx
 import styled from 'emotion/react/macro'
 import { css, keyframes, fontFace, injectGlobal, flush, hydrate } from 'emotion/macro'
-import vueStyled from 'emotion/vue/macro'
 ```
 
 For some context, check out this [issue](https://github.com/facebookincubator/create-react-app/issues/2730).

@@ -1,10 +1,10 @@
-/* eslint-env jest */
 import { transform } from 'babel-core'
 import fs from 'fs'
 import touch from 'touch'
 import emotionPlugin from '../../src/babel'
 
 jest.mock('fs').mock('touch')
+fs.statSync.mockReturnValue({ isFile: () => false })
 
 const basic = `
 css\`

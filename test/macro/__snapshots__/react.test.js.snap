@@ -61,15 +61,14 @@ exports[`styled component as selector 1`] = `
 `;
 
 exports[`styled composes 1`] = `
-.glamor-1 {
+.glamor-2 {
   color: blue;
   height: 64px;
   font-size: 32px;
 }
 
 <h1
-  className="glamor-0 glamor-1"
-  scale={2}
+  className="glamor-0 glamor-1 glamor-2"
 >
   hello world
 </h1>
@@ -81,7 +80,6 @@ exports[`styled composes based on props 1`] = `
 }
 
 <h1
-  a={true}
   className="glamor-0 glamor-1"
 >
   hello world
@@ -101,7 +99,7 @@ exports[`styled composes based on props 2`] = `
 `;
 
 exports[`styled composes with objects 1`] = `
-.glamor-1 {
+.glamor-2 {
   color: #333;
   font-size: 1.333em;
   height: 64px;
@@ -113,46 +111,44 @@ exports[`styled composes with objects 1`] = `
     only screen and (-o-min-device-pixel-ratio: 1.5/1),
     only screen and (min-resolution: 144dpi),
     only screen and (min-resolution: 1.5dppx) {
-  .glamor-1 {
+  .glamor-2 {
     font-size: 1.4323121856191332em;
   }
 }
 
 <h1
-  className="glamor-0 glamor-1"
-  scale={2}
+  className="glamor-0 glamor-1 glamor-2"
 >
   hello world
 </h1>
 `;
 
 exports[`styled composition 1`] = `
-.glamor-1 {
+.glamor-2 {
   font-size: 13.333333333333334px;
 }
 
 <h1
-  className="glamor-0 glamor-1"
+  className="glamor-0 glamor-1 glamor-2"
 >
   hello world
 </h1>
 `;
 
 exports[`styled function in expression 1`] = `
-.glamor-1 {
+.glamor-2 {
   font-size: 40px;
 }
 
 <h1
-  className="glamor-0 glamor-1"
-  scale={2}
+  className="glamor-0 glamor-1 glamor-2"
 >
   hello world
 </h1>
 `;
 
 exports[`styled higher order component 1`] = `
-.glamor-1 {
+.glamor-2 {
   font-size: 20px;
   background-color: '#343a40';
   -webkit-box-orient: vertical;
@@ -162,26 +158,13 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="glamor-0 glamor-1"
+  className="glamor-0 glamor-1 glamor-2"
 />
 `;
 
 exports[`styled innerRef 1`] = `
 .glamor-1 {
   font-size: 12px;
-}
-
-<h1
-  className="glamor-0 glamor-1"
->
-  hello world
-</h1>
-`;
-
-exports[`styled name 1`] = `
-.glamor-1 {
-  name: FancyH1;
-  font-size: 20px;
 }
 
 <h1
@@ -211,14 +194,13 @@ exports[`styled objects 1`] = `
 
 <h1
   className="some-class glamor-0 glamor-1"
-  display="flex"
 >
   hello world
 </h1>
 `;
 
 exports[`styled themes 1`] = `
-.glamor-1 {
+.glamor-3 {
   background-color: #ffd43b;
   color: #8c81d8;
   height: 64px;
@@ -226,8 +208,7 @@ exports[`styled themes 1`] = `
 }
 
 <span
-  className="glamor-0 glamor-1"
-  scale={2}
+  className="glamor-0 glamor-1 glamor-2 glamor-3"
 >
   hello world
 </span>
