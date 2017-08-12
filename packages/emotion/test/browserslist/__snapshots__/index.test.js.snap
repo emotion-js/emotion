@@ -29,8 +29,14 @@ exports[`prefixing object 1`] = `
 `;
 
 exports[`prefixing styled 1`] = `
+.glamor-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 <div
-  className="css-Div-1n0tspq0 css-71uu79"
+  className="glamor-0 glamor-1"
 >
   hello world
 </div>
