@@ -1,5 +1,5 @@
 {
-  "name": "emotion",
+  "private": true,
   "version": "7.0.13",
   "description": "high performance css-in-js",
   "main": "lib/index.js",
@@ -13,7 +13,6 @@
     "macro.js"
   ],
   "scripts": {
-    "build": "rimraf lib && babel src -d lib",
     "build:watch": "npm run build -- -w",
     "test:size": "npm-run-all clean rollup size",
     "clean": "rimraf dist",
@@ -67,6 +66,8 @@
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-glamor-react": "^3.1.0",
+    "lerna": "^2.0.0",
+    "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
     "prettier-eslint-cli": "^4.0.3",
@@ -123,16 +124,31 @@
       "react/no-unused-prop-types": 0,
       "standard/computed-property-even-spacing": 0,
       "no-template-curly-in-string": 0
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.test.js"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "jest": {
     "transform": {
-      "\\.css$": "<rootDir>/test/styleTransform.js",
+      "\\.css$": "<rootDir>/styleTransform.js",
       "^.+\\.js?$": "babel-jest"
     },
     "moduleNameMapper": {
-      "^emotion$": "<rootDir>/src",
-      "^emotion/react$": "<rootDir>/src/react"
+      "^emotion$": "<rootDir>/packages/emotion/src",
+      "^emotion-react$": "<rootDir>/packages/emotion-react/src",
+      "^emotion-utils$": "<rootDir>/packages/emotion-utils/src",
+      "^emotion-server$": "<rootDir>/packages/emotion-server/src",
+      "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src",
+      "^emotion/macro": "<rootDir>/packages/babel-plugin-emotion/src/macro",
+      "^emotion-react/macro": "<rootDir>/packages/babel-plugin-emotion/src/macro-styled"
     }
   },
   "bugs": {
@@ -147,5 +163,14 @@
       "path": "./dist/DO-NOT-USE-react.min.js",
       "threshold": "6 Kb"
     }
-  ]
+  ],
+  "_moduleAliases": {
+    "emotion": "./packages/emotion/src",
+    "emotion-react": "./packages/emotion-react/src",
+    "emotion-utils": "./packages/emotion-utils/src",
+    "emotion-server": "./packages/emotion-server/src",
+    "babel-plugin-emotion/lib": "./packages/babel-plugin-emotion/src",
+    "emotion/macro": "./packages/babel-plugin-emotion/src/macro",
+    "emotion-react/macro": "./packages/babel-plugin-emotion/src/macro-styled"
+  }
 }

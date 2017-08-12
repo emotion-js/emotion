@@ -10,5 +10,16 @@
     "react",
     "flow"
   ],
-  "plugins": ["babel-plugin-preval"]
+  "plugins": ["babel-plugin-preval"],
+  "env": {
+    "test": {
+      "presets": [
+        "flow",
+        "env",
+        "react",
+        "stage-2"
+      ],
+      "plugins": [["./babel-plugin-emotion-test", { "inline": true }], "babel-plugin-preval", "./babel-macros-register"]    
+    }
+  }
 }

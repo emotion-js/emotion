@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "name": "babel-plugin-emotion",
+  "version": "7.0.13",
+  "description": "The Next Generation of CSS-in-JS ",
+  "main": "lib/index.js",
+  "files": ["src", "lib"],
+  "scripts": {
+    "build": "rimraf lib && babel src -d lib",
+    "build:watch": "npm run build -- -w",
+    "clean:lib": "rimraf lib"   
+  },
+  "dependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "postcss": "^6.0.8",
+    "postcss-js": "^1.0.0",
+    "postcss-nested": "^2.1.0",
+    "touch": "^1.0.0",
+    "emotion-utils": "7.0.13"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "rimraf": "^2.6.1"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://github.com/tkh44/emotion#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkh44/emotion.git"
+  },
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/tkh44/emotion/issues"
+  }
+}

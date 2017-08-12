@@ -1,0 +1,82 @@
+{
+  "private": true,
+  "name": "emotion-react",
+  "version": "7.0.13",
+  "description": "The Next Generation of CSS-in-JS",
+  "main": "lib/index.js",
+  "files": [
+    "babel.js",
+    "src",
+    "dist",
+    "lib",
+    "react",
+    "server.js",
+    "macro.js"
+  ],
+  "scripts": {
+    "build": "rimraf lib && babel src -d lib",
+    "clean:lib": "rimraf lib",
+    "build:watch": "npm run build -- -w",
+    "test:size": "npm-run-all clean rollup size",
+    "clean": "rimraf dist",
+    "test": "npm-run-all -p lint:check coverage test:size",
+    "coverage": "jest --coverage --no-cache --ci --runInBand",
+    "lint:check": "eslint .",
+    "test:watch": "jest --watch --no-cache",
+    "rollup": "rollup -c && IMPORT=react rollup -c",
+    "size": "bundlesize",
+    "release": "npm run test && npm run build && npm run rollup && npm version patch && npm publish && git push --tags",
+    "lint": "eslint . --fix"
+  },
+  "dependencies": {
+    "emotion-utils": "7.0.13",
+    "emotion": "7.0.13"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-macros": "^0.5.2",
+    "babel-plugin-preval": "^1.4.2",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^2.9.1",
+    "enzyme-to-json": "^1.5.1",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "jest-glamor-react": "^3.1.0",
+    "npm-run-all": "^4.0.2",
+    "polished": "^1.2.1",
+    "prettier-eslint-cli": "^4.0.3",
+    "react": "^15.5.4",
+    "react-addons-test-utils": "^15.5.1",
+    "react-dom": "^15.5.4",
+    "react-test-renderer": "^15.6.1",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.43.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-uglify": "^2.0.1",
+    "theming": "^1.1.0"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://github.com/tkh44/emotion#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkh44/emotion.git"
+  },
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/tkh44/emotion/issues"
+  }
+}

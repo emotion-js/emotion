@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css prop react basic 1`] = `
+<p
+  className="css-xs9rh7"
+>
+  hello world
+</p>
+`;
+
+exports[`css prop react kitchen sink 1`] = `
+.glamor-5 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bold;
+}
+
+.glamor-0 {
+  font-size: 6px;
+}
+
+.glamor-6 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div
+  className="css__legacy-stuff glamor-5 glamor-6 glamor-7"
+>
+  <h1
+    className="glamor-0 glamor-1"
+  >
+    BOOM
+  </h1>
+  <p
+    className="test_class1 glamor-2"
+  >
+    Hello
+  </p>
+  <p
+    className="test_class1 test___class45 glamor-3"
+  >
+    World
+  </p>
+  <p
+    className="glamor-4"
+  >
+    hello world
+  </p>
+</div>
+`;
+
+exports[`css prop react objects 1`] = `
+<p
+  className="css-xs9rh7"
+>
+  hello world
+</p>
+`;
+
+exports[`css prop react string expression 1`] = `
+<p
+  className="css-1ylcmay"
+>
+  hello world
+</p>
+`;
