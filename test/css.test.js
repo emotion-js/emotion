@@ -164,13 +164,19 @@ describe('css', () => {
   test('nested selector without parent declaration', () => {
     const cls1 = css`
       color: blue;
-    `;
+    `
     const cls2 = css`
       & .${cls1} {
         color: red;
       }
-    `;
-    const tree = renderer.create(<div className={cls2}><div className={cls1}></div></div>).toJSON()
+    `
+    const tree = renderer
+      .create(
+        <div className={cls2}>
+          <div className={cls1} />
+        </div>
+      )
+      .toJSON()
     expect(tree).toMatchSnapshot()
   })
   test('null rule', () => {
