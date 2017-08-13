@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`babel macro css 1`] = `
-"import { css as _css } from '../../src';
+"import { css as _css } from '../src';
 
 /*#__PURE__*/_css([], [widthVar], function createEmotionStyledRules(x0) {
     return [{
@@ -17,13 +17,13 @@ exports[`babel macro css 1`] = `
 `;
 
 exports[`babel macro css call with no args 1`] = `
-"import { css as _css } from '../../src';
+"import { css as _css } from '../src';
 
 const cls1 = _css();"
 `;
 
 exports[`babel macro css object 1`] = `
-"import { css as _css } from '../../src';
+"import { css as _css } from '../src';
 
 const cls1 = _css({
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
@@ -31,13 +31,13 @@ const cls1 = _css({
 `;
 
 exports[`babel macro flush 1`] = `
-"import { flush as _flush } from '../../src';
+"import { flush as _flush } from '../src';
 
 const someOtherVar = _flush;"
 `;
 
 exports[`babel macro fontFace 1`] = `
-"import { fontFace as _fontFace } from '../../src';
+"import { fontFace as _fontFace } from '../src';
 
 _fontFace([], [], function createEmotionStyledRules() {
      return [{
@@ -49,13 +49,13 @@ _fontFace([], [], function createEmotionStyledRules() {
 `;
 
 exports[`babel macro hydrate 1`] = `
-"import { hydrate as _hydrate } from '../../src';
+"import { hydrate as _hydrate } from '../src';
 
 const someOtherVar = _hydrate;"
 `;
 
 exports[`babel macro injectGlobal 1`] = `
-"import { injectGlobal as _injectGlobal } from '../../src';
+"import { injectGlobal as _injectGlobal } from '../src';
 
 _injectGlobal([], [], function createEmotionStyledRules() {
   return [{
@@ -83,7 +83,7 @@ _injectGlobal([], [], function createEmotionStyledRules() {
 `;
 
 exports[`babel macro keyframes 1`] = `
-"import { keyframes as _keyframes } from '../../src';
+"import { keyframes as _keyframes } from '../src';
 
 const rotate360 = /*#__PURE__*/_keyframes([], [], function createEmotionStyledRules() {
   return [{
@@ -100,7 +100,7 @@ const rotate360 = /*#__PURE__*/_keyframes([], [], function createEmotionStyledRu
 `;
 
 exports[`babel macro multiple imports 1`] = `
-"import { keyframes as _keyframes, css as _css } from '../../src';
+"import { keyframes as _keyframes, css as _css } from '../src';
 
 const rotate360 = /*#__PURE__*/_keyframes([], [], function createEmotionStyledRules() {
   return [{
@@ -128,13 +128,13 @@ const thing = /*#__PURE__*/_css([], [widthVar], function createEmotionStyledRule
 `;
 
 exports[`babel macro some import that does not exist 1`] = `
-"import { thisDoesNotExist as _thisDoesNotExist } from '../../src';
+"import { thisDoesNotExist as _thisDoesNotExist } from '../src';
 
 const someOtherVar = _thisDoesNotExist;"
 `;
 
 exports[`babel macro styled css from react 1`] = `
-"import { css as _css } from '../../src/react';
+"import { css as _css } from './styled';
 
 const someCls = /*#__PURE__*/_css([], [], function createEmotionStyledRules() {
   return [{
@@ -144,31 +144,31 @@ const someCls = /*#__PURE__*/_css([], [], function createEmotionStyledRules() {
 `;
 
 exports[`babel macro styled object function 1`] = `
-"import _styled from '../../src/react';
+"import _styled from './styled';
 
-const SomeComponent = _styled('div', 'css-SomeComponent-1qt67l90', [{
+const SomeComponent = _styled('div', 'css-SomeComponent-bd6d1z0', [{
   'display': '-webkit-box; display: -ms-flexbox; display: flex'
 }]);"
 `;
 
 exports[`babel macro styled object member 1`] = `
-"import _styled from '../../src/react';
+"import _styled from './styled';
 
-const SomeComponent = _styled('div', 'css-SomeComponent-7m1noz0', [{
+const SomeComponent = _styled('div', 'css-SomeComponent-157yx80', [{
   'display': '-webkit-box; display: -ms-flexbox; display: flex'
 }]);"
 `;
 
 exports[`babel macro styled some import that does not exist 1`] = `
-"import { thisDoesNotExist as _thisDoesNotExist } from '../../src/react';
+"import { thisDoesNotExist as _thisDoesNotExist } from './styled';
 
 const someOtherVar = _thisDoesNotExist;"
 `;
 
 exports[`babel macro styled tagged template literal function 1`] = `
-"import _styled from '../../src/react';
+"import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', 'css-SomeComponent-kctxs00', [], [], function createEmotionStyledRules() {
+const SomeComponent = /*#__PURE__*/_styled('div', 'css-SomeComponent-1po9r1n0', [], [], function createEmotionStyledRules() {
   return {
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
   };
@@ -176,9 +176,9 @@ const SomeComponent = /*#__PURE__*/_styled('div', 'css-SomeComponent-kctxs00', [
 `;
 
 exports[`babel macro styled tagged template literal member 1`] = `
-"import _styled from '../../src/react';
+"import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', 'css-SomeComponent-1mkpack0', [], [], function createEmotionStyledRules() {
+const SomeComponent = /*#__PURE__*/_styled('div', 'css-SomeComponent-u780mp0', [], [], function createEmotionStyledRules() {
   return {
     'display': '-webkit-box; display: -ms-flexbox; display: flex'
   };
