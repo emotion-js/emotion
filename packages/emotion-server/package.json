@@ -6,9 +6,9 @@
   "main": "lib/index.js",
   "files": ["src", "lib"],
   "scripts": {
-    "build": "rimraf lib && babel src -d lib",
-    "build:watch": "npm run build -- -w",
-    "clean:lib": "rimraf lib"    
+    "build": "npm-run-all clean babel",
+    "babel": "babel src -d lib",    
+    "clean": "rimraf lib"    
   },
   "dependencies": {
     "emotion-utils": "7.0.13",
@@ -16,7 +16,9 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "npm-run-all": "^4.0.2",    
+    "emotion-react": "7.0.13"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

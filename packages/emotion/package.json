@@ -3,21 +3,17 @@
   "name": "emotion",
   "version": "7.0.13",
   "description": "The Next Generation of CSS-in-JS",
-  "main": "lib/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
   "files": [
-    "babel.js",
     "src",
     "dist",
-    "lib",
-    "react",
-    "server.js",
     "macro.js"
   ],
   "scripts": {
-    "build": "rimraf lib && babel src -d lib",
-    "build:watch": "npm run build -- -w",
-    "clean:lib": "rimraf lib",    
-    "rollup": "rollup -c && IMPORT=react rollup -c"
+    "build": "npm-run-all clean rollup",
+    "clean": "rimraf dist",
+    "rollup": "rollup -c"
   },
   "dependencies": {
     "emotion-utils": "7.0.13"
@@ -25,7 +21,8 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "rimraf": "^2.6.1",
-    "rollup": "^0.43.0"
+    "rollup": "^0.43.0",
+    "npm-run-all": "^4.0.2"    
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -43,5 +40,14 @@
   ],
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
+  },
+  "_moduleAliases": {
+    "emotion": "./src",
+    "emotion-react": "../emotion-react/src",
+    "emotion-utils": "../emotion-utils/src",
+    "emotion-server": "../emotion-server/src",
+    "babel-plugin-emotion/lib/macro": "../babel-plugin-emotion/src/macro",
+    "emotion/macro": "../babel-plugin-emotion/src/macro",
+    "emotion-react/macro": "../babel-plugin-emotion/src/macro-styled"
   }
 }

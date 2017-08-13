@@ -23,7 +23,8 @@
     "rollup": "rollup -c && IMPORT=react rollup -c",
     "size": "bundlesize",
     "release": "npm run test && npm run build && npm run rollup && npm version patch && npm publish && git push --tags",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "bootstrap": "lerna bootstrap"
   },
   "dependencies": {
     "@arr/filter.mutate": "^1.0.0",
@@ -146,9 +147,7 @@
       "^emotion-react$": "<rootDir>/packages/emotion-react/src",
       "^emotion-utils$": "<rootDir>/packages/emotion-utils/src",
       "^emotion-server$": "<rootDir>/packages/emotion-server/src",
-      "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src",
-      "^emotion/macro": "<rootDir>/packages/babel-plugin-emotion/src/macro",
-      "^emotion-react/macro": "<rootDir>/packages/babel-plugin-emotion/src/macro-styled"
+      "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
     }
   },
   "bugs": {
@@ -156,11 +155,11 @@
   },
   "bundlesize": [
     {
-      "path": "./dist/DO-NOT-USE.min.js",
+      "path": "./packages/emotion/DO-NOT-USE.min.js",
       "threshold": "5 Kb"
     },
     {
-      "path": "./dist/DO-NOT-USE-react.min.js",
+      "path": "./packages/emotion-react/DO-NOT-USE.min.js",
       "threshold": "6 Kb"
     }
   ],
@@ -169,7 +168,7 @@
     "emotion-react": "./packages/emotion-react/src",
     "emotion-utils": "./packages/emotion-utils/src",
     "emotion-server": "./packages/emotion-server/src",
-    "babel-plugin-emotion/lib": "./packages/babel-plugin-emotion/src",
+    "babel-plugin-emotion/lib/macro": "./packages/babel-plugin-emotion/src/macro",
     "emotion/macro": "./packages/babel-plugin-emotion/src/macro",
     "emotion-react/macro": "./packages/babel-plugin-emotion/src/macro-styled"
   }

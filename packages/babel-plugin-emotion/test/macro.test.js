@@ -4,7 +4,7 @@ describe('babel macro', () => {
   describe('styled', () => {
     test('tagged template literal member', () => {
       const basic = `
-        import styled from '../../src/react/macro'
+        import styled from 'emotion-react/macro'
         const SomeComponent = styled.div\`
           display: flex;
         \`
@@ -18,7 +18,7 @@ describe('babel macro', () => {
     })
     test('tagged template literal function', () => {
       const basic = `
-        import styled from '../../src/react/macro'
+        import styled from 'emotion-react/macro'
         const SomeComponent = styled('div')\`
           display: flex;
         \`
@@ -32,7 +32,7 @@ describe('babel macro', () => {
     })
     test('object member', () => {
       const basic = `
-      import styled from '../../src/react/macro'
+      import styled from 'emotion-react/macro'
       const SomeComponent = styled.div({
         display: 'flex'
       })
@@ -46,7 +46,7 @@ describe('babel macro', () => {
     })
     test('object function', () => {
       const basic = `
-      import styled from '../../src/react/macro'
+      import styled from 'emotion-react/macro'
       const SomeComponent = styled('div')({
         display: 'flex'
       })
@@ -60,7 +60,7 @@ describe('babel macro', () => {
     })
     test('some import that does not exist', () => {
       const basic = `
-      import { thisDoesNotExist } from '../../src/react/macro'
+      import { thisDoesNotExist } from 'emotion-react/macro'
       const someOtherVar = thisDoesNotExist
       `
       const { code } = babel.transform(basic, {
@@ -72,7 +72,7 @@ describe('babel macro', () => {
     })
     test('css from react', () => {
       const basic = `
-      import { css } from '../../src/react/macro'
+      import { css } from 'emotion-react/macro'
       const someCls = css\`
         display: flex;
       \`
@@ -86,7 +86,7 @@ describe('babel macro', () => {
     })
     test('throws correct error when imported with commonjs', () => {
       const basic = `
-      const styled = require('../../src/react/macro')
+      const styled = require('emotion-react/macro')
       const SomeComponent = styled('div')\`
         display: flex;
       \`
@@ -102,7 +102,7 @@ describe('babel macro', () => {
   })
   test('injectGlobal', () => {
     const basic = `
-    import { injectGlobal } from '../../src/macro'
+    import { injectGlobal } from 'emotion/macro'
     injectGlobal\`
       body {
         margin: 0;
@@ -136,7 +136,7 @@ describe('babel macro', () => {
   })
   test('fontFace', () => {
     const basic = `
-    import { fontFace } from '../../src/macro'
+    import { fontFace } from 'emotion/macro'
     fontFace\`
     font-family: MyHelvetica;
     src: local("Helvetica Neue Bold"),
@@ -153,7 +153,7 @@ describe('babel macro', () => {
   })
   test('css', () => {
     const basic = `
-    import { css } from '../../src/macro'
+    import { css } from 'emotion/macro'
     css\`
       margin: 12px 48px;
       color: #ffffff;
@@ -171,7 +171,7 @@ describe('babel macro', () => {
   })
   test('css object', () => {
     const basic = `
-    import { css } from '../../src/macro'
+    import { css } from 'emotion/macro'
     const cls1 = css({ display: 'flex' })
     `
     const { code } = babel.transform(basic, {
@@ -183,7 +183,7 @@ describe('babel macro', () => {
   })
   test('hydrate', () => {
     const basic = `
-    import { hydrate } from '../../src/macro'
+    import { hydrate } from 'emotion/macro'
     const someOtherVar = hydrate
     `
     const { code } = babel.transform(basic, {
@@ -195,7 +195,7 @@ describe('babel macro', () => {
   })
   test('flush', () => {
     const basic = `
-    import { flush } from '../../src/macro'
+    import { flush } from 'emotion/macro'
     const someOtherVar = flush
     `
     const { code } = babel.transform(basic, {
@@ -207,7 +207,7 @@ describe('babel macro', () => {
   })
   test('css call with no args', () => {
     const basic = `
-    import { css } from '../../src/macro'
+    import { css } from 'emotion/macro'
     const cls1 = css()
     `
     const { code } = babel.transform(basic, {
@@ -219,7 +219,7 @@ describe('babel macro', () => {
   })
   test('some import that does not exist', () => {
     const basic = `
-    import { thisDoesNotExist } from '../../src/macro'
+    import { thisDoesNotExist } from 'emotion/macro'
     const someOtherVar = thisDoesNotExist
     `
     const { code } = babel.transform(basic, {
@@ -231,7 +231,7 @@ describe('babel macro', () => {
   })
   test('keyframes', () => {
     const basic = `
-    import { keyframes } from '../../src/macro'
+    import { keyframes } from 'emotion/macro'
     const rotate360 = keyframes\`
     from {
       transform: rotate(0deg);
@@ -249,7 +249,7 @@ describe('babel macro', () => {
   })
   test('multiple imports', () => {
     const basic = `
-    import { keyframes, css } from '../../src/macro'
+    import { keyframes, css } from 'emotion/macro'
     const rotate360 = keyframes\`
     from {
       transform: rotate(0deg);

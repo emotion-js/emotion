@@ -10,6 +10,9 @@ cache:
 before_install:
   - npm install codecov
 
+before_script:
+  - npm run bootstrap
+
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
 
