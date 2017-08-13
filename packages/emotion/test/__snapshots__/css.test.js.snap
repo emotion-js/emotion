@@ -222,6 +222,24 @@ exports[`css nested at rules 1`] = `
 />
 `;
 
+exports[`css nested selector without parent declaration 1`] = `
+.glamor-0 {
+  color: blue;
+}
+
+.glamor-1 .glamor-0 {
+  color: red;
+}
+
+<div
+  className="glamor-1"
+>
+  <div
+    className="glamor-0"
+  />
+</div>
+`;
+
 exports[`css null rule 1`] = `
 <div
   className="css-nil"

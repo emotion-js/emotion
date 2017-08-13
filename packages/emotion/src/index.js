@@ -196,9 +196,9 @@ function _css(rules) {
   return toRule(spec)
 }
 
-const emotionClassRegex = /css-([a-zA-Z0-9]+)/
+const emotionClassRegex = /^css-([a-zA-Z0-9]+)/
 
-// of shape { 'data-css-<id>': '' }
+// of shape { 'css-<id>': '' }
 export function isLikeRule(rule: EmotionRule) {
   const ruleKeys = keys(rule)
   if (ruleKeys.length !== 1) {
