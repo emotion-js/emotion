@@ -2,7 +2,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
 import { css, sheet } from 'emotion/macro'
-import styled from 'emotion-react/macro'
+import styled from 'react-emotion/macro'
 import { ThemeProvider, withTheme } from 'theming'
 
 import { lighten, hiDPI, modularScale } from 'polished'

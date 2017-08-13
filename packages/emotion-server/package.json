@@ -18,7 +18,7 @@
     "babel-cli": "^6.24.1",
     "rimraf": "^2.6.1",
     "npm-run-all": "^4.0.2",    
-    "emotion-react": "7.0.13"
+    "react-emotion": "7.0.13"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

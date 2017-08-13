@@ -41,14 +41,5 @@
   ],
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
-  },
-  "_moduleAliases": {
-    "emotion": "./src",
-    "emotion-react": "../emotion-react/src",
-    "emotion-utils": "../emotion-utils/src",
-    "emotion-server": "../emotion-server/src",
-    "babel-plugin-emotion/lib/macro": "../babel-plugin-emotion/src/macro",
-    "emotion/macro": "../babel-plugin-emotion/src/macro",
-    "emotion-react/macro": "../babel-plugin-emotion/src/macro-styled"
   }
 }

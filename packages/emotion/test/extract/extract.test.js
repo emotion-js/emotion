@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer'
 import { basename } from 'path'
 import serializer from 'jest-glamor-react'
 import { injectGlobal, css, sheet } from 'emotion'
-import styled from 'emotion-react'
+import styled from 'react-emotion'
 
 expect.addSnapshotSerializer(serializer(sheet))
 

@@ -125,7 +125,7 @@
     },
     "moduleNameMapper": {
       "^emotion$": "<rootDir>/packages/emotion/src",
-      "^emotion-react$": "<rootDir>/packages/emotion-react/src",
+      "^react-emotion$": "<rootDir>/packages/react-emotion/src",
       "^emotion-utils$": "<rootDir>/packages/emotion-utils/src",
       "^emotion-server$": "<rootDir>/packages/emotion-server/src",
       "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
@@ -143,14 +143,5 @@
       "path": "./packages/emotion-react/dist/DO-NOT-USE.min.js",
       "threshold": "6 Kb"
     }
-  ],
-  "_moduleAliases": {
-    "emotion": "./packages/emotion/src",
-    "emotion-react": "./packages/emotion-react/src",
-    "emotion-utils": "./packages/emotion-utils/src",
-    "emotion-server": "./packages/emotion-server/src",
-    "babel-plugin-emotion/lib/macro": "./packages/babel-plugin-emotion/src/macro",
-    "emotion/macro": "./packages/babel-plugin-emotion/src/macro",
-    "emotion-react/macro": "./packages/babel-plugin-emotion/src/macro-styled"
-  }
+  ]
 }

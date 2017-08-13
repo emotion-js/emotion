@@ -2,7 +2,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
 import { css, sheet } from 'emotion'
-import styled from 'emotion-react'
+import styled from 'react-emotion'
 
 expect.addSnapshotSerializer(serializer(sheet))
 

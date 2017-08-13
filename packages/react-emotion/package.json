@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "emotion-react",
+  "name": "react-emotion",
   "version": "7.0.13",
   "description": "The Next Generation of CSS-in-JS",
   "main": "dist/index.cjs.js",
