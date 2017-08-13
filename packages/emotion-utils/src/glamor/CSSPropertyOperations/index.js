@@ -11,7 +11,17 @@
  * @providesModule CSSPropertyOperations
  */
 import dangerousStyleValue from './dangerousStyleValue'
-import memoizeStringOnly from 'fbjs/lib/memoizeStringOnly'
+
+
+function memoizeStringOnly<T>(callback: (s: string) => T): (s: string) => T {
+  const cache = {};
+  return function(string) {
+    if (!cache.hasOwnProperty(string)) {
+      cache[string] = callback.call(this, string);
+    }
+    return cache[string];
+  };
+}
 
 const hyphenateRegex = /[A-Z]|^ms/g
 

@@ -1,8 +1,14 @@
+import resolve from 'rollup-plugin-node-resolve'
+import uglify from 'rollup-plugin-uglify'
+import replace from 'rollup-plugin-replace'
 import babel from 'rollup-plugin-babel'
+import alias from 'rollup-plugin-alias'
+import path from 'path'
+import pkg from './package.json'
 
 const config = {
   entry: './src/index.js',
-  external: ['react', 'emotion-utils'],
+  external: ['emotion-utils'],
   exports: 'named',
   sourceMap: true,
   plugins: [
@@ -20,6 +26,23 @@ const config = {
   targets: [
     { dest: './dist/index.cjs.js', format: 'cjs' },
     { dest: './dist/index.es.js', format: 'es' }
+  ]
+}
+
+if (process.env.UMD) {
+  config.external = []
+  config.plugins.push(
+    resolve(),
+    alias({
+      'emotion-utils': path.resolve(__dirname, '../emotion-utils/src/index.js')
+    }),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    uglify()
+  )
+  config.targets = [
+    { dest: './dist/DO-NOT-USE.min.js', format: 'umd', moduleName: pkg.name }
   ]
 }
 

@@ -7,9 +7,10 @@
   "module": "dist/index.es.js",
   "files": ["src", "dist"],
   "scripts": {
-    "build": "npm-run-all clean rollup",
+    "build": "npm-run-all clean rollup rollup:umd",
     "clean": "rimraf dist",
-    "rollup": "rollup -c"
+    "rollup": "rollup -c",
+    "rollup:umd": "UMD=true rollup -c"
   },
   "dependencies": {
     "emotion-utils": "7.0.13",
