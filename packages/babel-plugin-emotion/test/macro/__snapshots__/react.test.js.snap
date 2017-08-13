@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled basic render 1`] = `
+.glamor-1 {
+  font-size: 20px;
+}
+
+<h1
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled basic render with object as style 1`] = `
+.glamor-1 {
+  font-size: 20px;
+}
+
+<h1
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled call expression 1`] = `
+.glamor-1 {
+  font-size: 20px;
+}
+
+<h1
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled component as selector 1`] = `
+.glamor-1 {
+  font-size: 20px;
+}
+
+.glamor-3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-2 glamor-3"
+>
+  hello 
+  <h1
+    className="glamor-0 glamor-1"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`styled composes 1`] = `
+.glamor-2 {
+  color: blue;
+  height: 64px;
+  font-size: 32px;
+}
+
+<h1
+  className="glamor-0 glamor-1 glamor-2"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes based on props 1`] = `
+.glamor-1 {
+  color: blue;
+}
+
+<h1
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes based on props 2`] = `
+.glamor-1 {
+  color: green;
+}
+
+<h1
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composes with objects 1`] = `
+.glamor-2 {
+  color: #333;
+  font-size: 1.333em;
+  height: 64px;
+  font-size: 32px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (min--moz-device-pixel-ratio: 1.5),
+    only screen and (-o-min-device-pixel-ratio: 1.5/1),
+    only screen and (min-resolution: 144dpi),
+    only screen and (min-resolution: 1.5dppx) {
+  .glamor-2 {
+    font-size: 1.4323121856191332em;
+  }
+}
+
+<h1
+  className="glamor-0 glamor-1 glamor-2"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composition 1`] = `
+.glamor-2 {
+  font-size: 13.333333333333334px;
+}
+
+<h1
+  className="glamor-0 glamor-1 glamor-2"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled function in expression 1`] = `
+.glamor-2 {
+  font-size: 40px;
+}
+
+<h1
+  className="glamor-0 glamor-1 glamor-2"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled higher order component 1`] = `
+.glamor-2 {
+  font-size: 20px;
+  background-color: '#343a40';
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  className="glamor-0 glamor-1 glamor-2"
+/>
+`;
+
+exports[`styled innerRef 1`] = `
+.glamor-1 {
+  font-size: 12px;
+}
+
+<h1
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled no dynamic 1`] = `
+.glamor-1 {
+  font-size: 12px;
+}
+
+<h1
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled objects 1`] = `
+.glamor-1 {
+  padding: 10px;
+  display: flex;
+}
+
+<h1
+  className="some-class glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled themes 1`] = `
+.glamor-3 {
+  background-color: #ffd43b;
+  color: #8c81d8;
+  height: 64px;
+  font-size: 32px;
+}
+
+<span
+  className="glamor-0 glamor-1 glamor-2 glamor-3"
+>
+  hello world
+</span>
+`;
+
+exports[`styled throws if undefined is passed as the component 1`] = `
+"You are trying to create a styled element with an undefined component.
+You may have forgotten to import it."
+`;

@@ -66,6 +66,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
+    "jest-environment-node-debug": "^2.0.0",
     "jest-glamor-react": "^3.1.0",
     "lerna": "^2.0.0",
     "module-alias": "^2.0.1",

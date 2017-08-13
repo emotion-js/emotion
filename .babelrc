@@ -19,7 +19,7 @@
         "react",
         "stage-2"
       ],
-      "plugins": [["./babel-plugin-emotion-test", { "inline": true }], "babel-plugin-preval", "./babel-macros-register"]    
+      "plugins": ["./babel-plugin-emotion-test", "preval"]    
     }
   }
 }
