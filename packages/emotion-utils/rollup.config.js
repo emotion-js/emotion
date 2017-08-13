@@ -1,6 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
+import pkg from './package.json'
 
 export default {
   entry: './src/index.js',
@@ -28,7 +29,7 @@ export default {
     })
   ],
   targets: [
-    { dest: './dist/index.cjs.js', format: 'cjs' },
-    { dest: './dist/index.es.js', format: 'es' }
+    { dest: pkg.main, format: 'cjs' },
+    { dest: pkg.module, format: 'es' }
   ]
 }

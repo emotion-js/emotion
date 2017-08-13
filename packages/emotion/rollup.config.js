@@ -24,8 +24,8 @@ const config = {
     })
   ],
   targets: [
-    { dest: './dist/index.cjs.js', format: 'cjs' },
-    { dest: './dist/index.es.js', format: 'es' }
+    { dest: pkg.main, format: 'cjs' },
+    { dest: pkg.module, format: 'es' }
   ]
 }
 
