@@ -3,22 +3,19 @@
   "name": "emotion-utils",
   "version": "7.0.13",
   "description": "The Next Generation of CSS-in-JS",
-  "main": "lib/index.js",
-  "files": ["src", "dist"],
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
-    "build": "rimraf lib && babel src -d lib",
-    "build:watch": "npm run build -- -w",
+    "build": "npm-run-all clean rollup",
     "clean": "rimraf dist",
-    "clean:lib": "rimraf lib",    
-    "rollup": "rollup -c && IMPORT=react rollup -c"
+    "rollup": "rollup -c"
   },
   "dependencies": {
     "fbjs": "^0.8.12"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.43.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
@@ -36,5 +33,9 @@
   ],
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.1",
+    "rollup": "^0.47.2"
   }
 }
