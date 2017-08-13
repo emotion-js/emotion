@@ -12,15 +12,14 @@
  */
 import dangerousStyleValue from './dangerousStyleValue'
 
-
 function memoizeStringOnly<T>(callback: (s: string) => T): (s: string) => T {
-  const cache = {};
+  const cache = {}
   return function(string) {
     if (!cache.hasOwnProperty(string)) {
-      cache[string] = callback.call(this, string);
+      cache[string] = callback.call(this, string)
     }
-    return cache[string];
-  };
+    return cache[string]
+  }
 }
 
 const hyphenateRegex = /[A-Z]|^ms/g
