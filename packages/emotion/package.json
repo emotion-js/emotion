@@ -17,7 +17,10 @@
     "rollup:umd": "UMD=true rollup -c"
   },
   "dependencies": {
-    "emotion-utils": "7.0.13"
+    "emotion-utils": "7.0.13",
+    "babel-plugin-emotion": "7.0.13",
+    "emotion-server": "7.0.13",
+    "react-emotion": "7.0.13"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
