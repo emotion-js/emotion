@@ -2,8 +2,6 @@
 
 exports[`prefixing css 1`] = `
 .glamor-0 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -16,8 +14,6 @@ exports[`prefixing css 1`] = `
 
 exports[`prefixing object 1`] = `
 .glamor-0 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -30,8 +26,6 @@ exports[`prefixing object 1`] = `
 
 exports[`prefixing styled 1`] = `
 .glamor-1 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
