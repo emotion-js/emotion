@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "babel-plugin-emotion",
   "version": "7.0.13",
   "description": "The Next Generation of CSS-in-JS ",

@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "emotion",
   "version": "7.0.13",
   "description": "The Next Generation of CSS-in-JS",
@@ -8,7 +7,10 @@
   "files": [
     "src",
     "dist",
-    "macro.js"
+    "macro.js",
+    "react",
+    "server.js",
+    "babel.js"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup rollup:umd",
