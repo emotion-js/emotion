@@ -10,7 +10,7 @@ Configure babel
 ```json
 {
   "plugins": [
-    ["emotion/babel", { "extractStatic": true }]
+    ["emotion", { "extractStatic": true }]
   ]
 }
 ```
@@ -18,7 +18,7 @@ Configure babel
 This js file, `h1.js`
 
 ```jsx harmony
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 const H1 = styled('h1')`
   color: #ffd43b;
@@ -38,7 +38,7 @@ During babel compilation emotion will create `h1.emotion.css` and add `import '.
 
 ```jsx
 import './h1.emotion.css'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 const H1 = styled('h1', 'css-duiy4a')
 ```
