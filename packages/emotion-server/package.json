@@ -1,0 +1,39 @@
+{
+  "name": "emotion-server",
+  "version": "7.0.13",
+  "description": "The Next Generation of CSS-in-JS",
+  "main": "lib/index.js",
+  "files": ["src", "lib"],
+  "scripts": {
+    "build": "npm-run-all clean babel",
+    "babel": "babel src -d lib",    
+    "clean": "rimraf lib"    
+  },
+  "dependencies": {
+    "emotion-utils": "7.0.13",
+    "emotion": "7.0.13"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "rimraf": "^2.6.1",
+    "npm-run-all": "^4.0.2",    
+    "react-emotion": "7.0.13"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkh44/emotion.git"
+  },
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/tkh44/emotion/issues"
+  }
+}
