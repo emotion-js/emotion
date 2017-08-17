@@ -8,7 +8,9 @@ import objParse from 'postcss-js/parser'
 import autoprefixer from 'autoprefixer'
 import { processStyleName } from 'emotion-utils'
 
-export const prefixer = postcssJs.sync([autoprefixer, postcssNested])
+export const staticProcessor = postcssJs.sync([autoprefixer, postcssNested])
+
+export const processor = postcssJs.sync([autoprefixer])
 
 type Decl = {
   parent: { selector: string, nodes: Array<mixed> },
@@ -55,7 +57,9 @@ export function parseCSS(
     }
   })
 
-  const styles = expandCSSFallbacks(prefixer(root))
+  const styles = expandCSSFallbacks(
+    extractStatic ? staticProcessor(root) : processor(root)
+  )
 
   return {
     styles,

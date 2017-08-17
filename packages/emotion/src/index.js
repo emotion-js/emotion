@@ -103,13 +103,10 @@ export function injectGlobal(
   content: () => Array<any>
 ) {
   const combined = content ? objs.concat(content.apply(null, vars)) : objs
-
-  // injectGlobal is flattened by postcss
-  // we don't support nested selectors on objects
-  forEach(combined, obj => {
-    forEach(keys(obj), selector => {
-      insertRawRule(`${selector} {${createMarkupForStyles(obj[selector])}}`)
-    })
+  const style = {}
+  build(style, { src: combined })
+  forEach(deconstructedStyleToCSS('', deconstruct(style)), rule => {
+    insertRawRule(rule)
   })
 }
 
@@ -218,18 +215,18 @@ export function idFor(rule: EmotionRule) {
 
 const parentSelectorRegex = /&/gm
 
-function selector(id: string, path: string = '') {
-  if (!id) {
+function selector(parentSelector: string, path: string = '') {
+  if (!parentSelector) {
     return path.replace(parentSelectorRegex, '')
   }
-  if (!path) return `.css-${id}`
+  if (!path) return parentSelector
 
   let x = map(
     path.split(','),
     x =>
       x.indexOf('&') >= 0
-        ? x.replace(parentSelectorRegex, `.css-${id}`)
-        : `.css-${id}${x}`
+        ? x.replace(parentSelectorRegex, parentSelector)
+        : parentSelector + x
   ).join(',')
 
   return x
@@ -291,7 +288,7 @@ function insert(spec) {
   if (!inserted[spec.id]) {
     inserted[spec.id] = true
     let deconstructed = deconstruct(spec.style)
-    map(deconstructedStyleToCSS(spec.id, deconstructed), cssRule =>
+    map(deconstructedStyleToCSS(`.css-${spec.id}`, deconstructed), cssRule =>
       sheet.insert(cssRule)
     )
   }
@@ -322,17 +319,8 @@ function isFragment(key) {
   return key.indexOf('$') === 0
 }
 
-function isSelector(key) {
-  const possibles = [':', '.', '[', '>', ' ']
-  let found = false
-  const ch = key.charAt(0)
-  for (let i = 0; i < possibles.length; i++) {
-    if (ch === possibles[i]) {
-      found = true
-      break
-    }
-  }
-  return found || key.indexOf('&') >= 0
+function isSelector(val) {
+  return typeof val === 'object'
 }
 
 function joinSelectors(a, b) {
@@ -432,13 +420,6 @@ function build(
             src: fragment
           })
         }
-      } else if (isSelector(key)) {
-        build(dest, {
-          selector: joinSelectors(selector, key),
-          mq,
-          supp,
-          src: _src[key]
-        })
       } else if (isMediaQuery(key)) {
         build(dest, {
           selector,
@@ -455,6 +436,13 @@ function build(
         })
       } else if (key === 'composes') {
         // ignore, we already dealt with it
+      } else if (isSelector(_src[key])) {
+        build(dest, {
+          selector: joinSelectors(selector, key),
+          mq,
+          supp,
+          src: _src[key]
+        })
       } else {
         let _dest = dest
         if (supp) {

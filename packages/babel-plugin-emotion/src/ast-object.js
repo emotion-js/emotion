@@ -1,6 +1,6 @@
 import postcssJs from 'postcss-js'
 import Input from 'postcss/lib/input'
-import { expandCSSFallbacks, prefixer } from './parser'
+import { expandCSSFallbacks, processor } from './parser'
 import { forEach, reduce } from 'emotion-utils'
 import { getFilename } from './index'
 
@@ -83,7 +83,7 @@ function prefixAst(args, t, path) {
         parsedStyle.source.input = new Input(parsedStyle.toString(), {
           from: getFilename(path)
         })
-        const prefixedStyle = expandCSSFallbacks(prefixer(parsedStyle))
+        const prefixedStyle = expandCSSFallbacks(processor(parsedStyle))
 
         for (let k in prefixedStyle) {
           const key = t.isStringLiteral(property.key)
