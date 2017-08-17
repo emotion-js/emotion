@@ -45,10 +45,10 @@ injectGlobal([], [display], function createEmotionStyledRules(x0) {
     \\"body\\": {
       \\"margin\\": \\"0\\",
       \\"padding\\": \\"0\\",
-      \\"display\\": x0
-    },
-    \\"body > div\\": {
-      \\"display\\": \\"none\\"
+      \\"display\\": x0,
+      \\"& > div\\": {
+        \\"display\\": \\"none\\"
+      }
     },
     \\"html\\": {
       \\"background\\": \\"green\\"
@@ -63,10 +63,10 @@ injectGlobal([], [], function createEmotionStyledRules() {
   return [{
     \\"body\\": {
       \\"margin\\": \\"0\\",
-      \\"padding\\": \\"0\\"
-    },
-    \\"body > div\\": {
-      \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
+      \\"padding\\": \\"0\\",
+      \\"& > div\\": {
+        \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
+      }
     },
     \\"html\\": {
       \\"background\\": \\"green\\"
@@ -82,10 +82,10 @@ injectGlobal([], [display], function createEmotionStyledRules(x0) {
     \\"body\\": {
       \\"margin\\": \\"0\\",
       \\"padding\\": \\"0\\",
-      \\"display\\": x0
-    },
-    \\"body > div\\": {
-      \\"display\\": \\"none\\"
+      \\"display\\": x0,
+      \\"& > div\\": {
+        \\"display\\": \\"none\\"
+      }
     },
     \\"html\\": {
       \\"background\\": \\"green\\"

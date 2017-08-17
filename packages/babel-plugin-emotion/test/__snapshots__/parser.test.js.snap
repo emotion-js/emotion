@@ -22,31 +22,27 @@ Object {
   "staticCSSRules": Array [],
   "styles": Object {
     ".some-selector": Object {
+      "&::before": Object {
+        "color": "blue",
+        "content": "'pseudo'",
+        "height": "20px",
+        "width": "20px",
+      },
+      "&:hover": Object {
+        "backgroundColor": "green",
+      },
+      "@media (max-width: 500px)": Object {
+        "height": "var(--css-hash-1)",
+        "position": "fixed",
+      },
+      "@media print": Object {
+        "display": "none",
+      },
       "WebkitBoxPack": "center",
       "display": "-webkit-box; display: -ms-flexbox; display: flex",
       "justifyContent": "center",
       "msFlexPack": "center",
       "width": "var(--css-hash-0)",
-    },
-    ".some-selector::before": Object {
-      "color": "blue",
-      "content": "'pseudo'",
-      "height": "20px",
-      "width": "20px",
-    },
-    ".some-selector:hover": Object {
-      "backgroundColor": "green",
-    },
-    "@media (max-width: 500px)": Object {
-      ".some-selector": Object {
-        "height": "var(--css-hash-1)",
-        "position": "fixed",
-      },
-    },
-    "@media print": Object {
-      ".some-selector": Object {
-        "display": "none",
-      },
     },
   },
 }

@@ -178,6 +178,40 @@ exports[`css handles objects 1`] = `
 />
 `;
 
+exports[`css nested 1`] = `
+.glamor-0 {
+  color: yellow;
+}
+
+.glamor-0 .some-class {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-0 .some-class .some-other-class {
+  background-color: hotpink;
+}
+
+@media (max-width: 600px) {
+  .glamor-0 .some-class {
+    background-color: pink;
+  }
+}
+
+<div
+  className="glamor-0"
+>
+  <div
+    className="some-class"
+  >
+    <div
+      className="some-other-class"
+    />
+  </div>
+</div>
+`;
+
 exports[`css nested array 1`] = `
 .glamor-0 {
   display: -webkit-box;

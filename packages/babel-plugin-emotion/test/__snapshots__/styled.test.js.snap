@@ -153,10 +153,10 @@ exports[`babel styled component inline nested 1`] = `
   return {
     'fontSize': x0,
     '& div': {
-      'color': 'blue'
-    },
-    '& div span': {
-      'color': 'red'
+      'color': 'blue',
+      '& span': {
+        'color': 'red'
+      }
     }
   };
 });"
