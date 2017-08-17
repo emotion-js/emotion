@@ -1,6 +1,6 @@
 {
   "name": "emotion-utils",
-  "version": "7.0.13",
+  "version": "7.1.0",
   "description": "The Next Generation of CSS-in-JS",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -34,8 +34,8 @@
     "url": "https://github.com/tkh44/emotion/issues"
   },
   "devDependencies": {
+    "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
-    "npm-run-all": "^4.0.2",    
     "rollup": "^0.47.2"
   }
 }
