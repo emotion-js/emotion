@@ -61,19 +61,19 @@ _injectGlobal([], [], function createEmotionStyledRules() {
   return [{
     'body': {
       'margin': '0',
-      'padding': '0'
-    },
-    'body > div': {
-      'display': 'none'
-    },
-    'body > div:hover': {
-      'color': 'green'
-    },
-    'body > div:hover span': {
-      'color': 'red'
-    },
-    'body > div:hover span:after': {
-      'content': '\\"end of line\\"'
+      'padding': '0',
+      '& > div': {
+        'display': 'none',
+        '&:hover': {
+          'color': 'green',
+          '& span': {
+            'color': 'red',
+            '&:after': {
+              'content': '\\"end of line\\"'
+            }
+          }
+        }
+      }
     },
     'html': {
       'background': 'green'

@@ -151,6 +151,33 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('nested', () => {
+    const cls1 = css`
+      color: yellow;
+      & .some-class {
+        display: flex;
+        & .some-other-class {
+          background-color: hotpink;
+        }
+        @media (max-width: 600px) {
+          background-color: pink;
+        }
+      }
+      &.another-class {
+        display: flex;
+      }
+    `
+    const tree = renderer
+      .create(
+        <div className={cls1}>
+          <div className="some-class">
+            <div className="some-other-class" />
+          </div>
+        </div>
+      )
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
   test('composition stuff', () => {
     const cls1 = css({
       justifyContent: 'center'
