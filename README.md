@@ -9,8 +9,8 @@
 [![codecov](https://codecov.io/gh/tkh44/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/tkh44/emotion)
 ![core gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?compression=gzip&label=core%20gzip%20size)
 ![core size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?label=core%20size)
-![react gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE-react.min.js?compression=gzip&label=react%20gzip%20size)
-![react size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE-react.min.js?label=react%20size)
+![react gzip size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/DO-NOT-USE.min.js?compression=gzip&label=react%20gzip%20size)
+![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/DO-NOT-USE.min.js?label=react%20size)
 [![slack](https://emotion.now.sh/badge.svg)](http://slack.emotion.sh/)
 
 emotion is a high performance, lightweight css-in-js library. 
