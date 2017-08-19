@@ -6,7 +6,8 @@
   "module": "dist/index.es.js",
   "files": [
     "src",
-    "dist"
+    "dist",
+    "macro.js"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup rollup:umd",
