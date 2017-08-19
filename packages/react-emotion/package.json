@@ -1,6 +1,6 @@
 {
   "name": "react-emotion",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "description": "The Next Generation of CSS-in-JS",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "babel-plugin-emotion": "^7.1.0",
-    "emotion": "^7.1.0",
+    "emotion": "^7.1.1",
     "emotion-utils": "^7.1.0"
   },
   "devDependencies": {
