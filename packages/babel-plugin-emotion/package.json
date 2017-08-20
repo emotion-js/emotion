@@ -31,7 +31,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tkh44/emotion.git"
+    "url": "https://github.com/tkh44/emotion/tree/master/packages/babel-plugin-emotion"
   },
   "keywords": [
     "styles",
