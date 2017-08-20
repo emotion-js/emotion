@@ -20,7 +20,7 @@ export default {
     }),
     alias({
       react: 'preact'
-    }),
+    })
   ],
   targets: [
     { dest: pkg.main, format: 'cjs' },
