@@ -18,4 +18,4 @@ npm install --save react-emotion babel-plugin-emotion
 
 ### Preact
 
-If you're using [Preact](https://github.com/developit/preact) instead of [React](https://github.com/facebook/react), install [`preact-emotion`](./preact.md) instead! The babel setup remains the same.
+If you're using [Preact](https://github.com/developit/preact) instead of [React](https://github.com/facebook/react), install [`preact-emotion`](./preact.md). The babel setup remains the same.
