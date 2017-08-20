@@ -1,0 +1,44 @@
+{
+  "name": "preact-emotion",
+  "version": "7.1.1",
+  "description": "The Next Generation of CSS-in-JS",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "dist",
+    "macro.js"
+  ],
+  "scripts": {
+    "build": "npm-run-all clean rollup",
+    "clean": "rimraf dist",
+    "rollup": "rollup -c"
+  },
+  "dependencies": {
+    "babel-plugin-emotion": "^7.1.0",
+    "emotion": "^7.1.1",
+    "emotion-utils": "^7.1.0"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.43.0"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://github.com/tkh44/emotion#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkh44/emotion.git"
+  },
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "preact",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/tkh44/emotion/issues"
+  }
+}
