@@ -4,7 +4,7 @@
 ## Install
 
 ```bash
-npm install --save react-emotion babel-plugin-emotion
+npm install --save emotion react-emotion babel-plugin-emotion
 ```
 
 **.babelrc**
