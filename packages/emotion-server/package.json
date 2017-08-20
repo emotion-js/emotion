@@ -1,6 +1,6 @@
 {
   "name": "emotion-server",
-  "version": "7.1.1",
+  "version": "7.2.0",
   "description": "The Next Generation of CSS-in-JS",
   "main": "lib/index.js",
   "files": [
@@ -13,13 +13,13 @@
     "clean": "rimraf lib"
   },
   "dependencies": {
-    "emotion": "^7.1.1",
+    "emotion": "^7.2.0",
     "emotion-utils": "^7.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "npm-run-all": "^4.0.2",
-    "react-emotion": "^7.1.1",
+    "react-emotion": "^7.2.0",
     "rimraf": "^2.6.1"
   },
   "author": "Kye Hohenberger",
