@@ -48,6 +48,31 @@ export default function(tag, cls, objs, vars = [], content) {
       return v
     }
 
+    if (FAST_PATH) {
+      return h(
+        localTag,
+        omit(
+          assign({}, props, {
+            ref: props.innerRef,
+            className: objs[0],
+            style: assign(
+              {},
+              props.style,
+              reduce(
+                map(vars, getValue),
+                (accum, value, i) => {
+                  accum[`${objs[0]}-${i}`] = value
+                  return accum
+                },
+                {}
+              )
+            )
+          }),
+          omitFn
+        )
+      )
+    }
+
     let finalObjs = []
 
     push(
@@ -75,30 +100,10 @@ export default function(tag, cls, objs, vars = [], content) {
     return h(
       localTag,
       omit(
-        assign(
-          {},
-          props,
-          {
-            ref: props.innerRef,
-            className
-          },
-          FAST_PATH && {
-            style: assign(
-              {},
-              props.style,
-              FAST_PATH
-                ? reduce(
-                    map(vars, getValue),
-                    (accum, value, i) => {
-                      accum[`${objs[0]}-${i}`] = value
-                      return accum
-                    },
-                    {}
-                  )
-                : null
-            )
-          }
-        ),
+        assign({}, props, {
+          ref: props.innerRef,
+          className
+        }),
         omitFn
       )
     )
