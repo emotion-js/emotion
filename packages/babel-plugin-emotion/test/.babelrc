@@ -3,7 +3,8 @@
     [
       "env",
       {
-        "loose": true
+        "loose": true,
+        "exclude": ["transform-es2015-typeof-symbol"]        
       }
     ],
     "stage-0",

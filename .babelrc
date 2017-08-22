@@ -3,7 +3,8 @@
     [
       "env",
       {
-        "loose": true
+        "loose": true,
+        "exclude": ["transform-es2015-typeof-symbol"]        
       }
     ],
     "stage-0",
@@ -15,7 +16,13 @@
     "test": {
       "presets": [
         "flow",
-        "env",
+        [
+          "env",
+          {
+            "loose": true,
+            "exclude": ["transform-es2015-typeof-symbol"]
+          }
+        ],
         "react",
         "stage-2"
       ],
