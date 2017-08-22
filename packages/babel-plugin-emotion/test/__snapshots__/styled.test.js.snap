@@ -2,7 +2,7 @@
 
 exports[`babel styled component extract basic 1`] = `
 "import \\"./styled.test.emotion.css\\";
-const H1 = styled(\\"h1\\", \\"styled-H1-1qcxcvu0\\", [\\"styled-H1-10x82eg\\"]);"
+const H1 = styled(\\"h1\\", \\"styled-H1-1qcxcvu0\\", [\\"styled-H1-10x82eg\\"], []);"
 `;
 
 exports[`babel styled component extract basic 2`] = `
@@ -37,10 +37,45 @@ exports[`babel styled component extract basic 2`] = `
 
 exports[`babel styled component extract no use 1`] = `
 "import \\"./styled.test.emotion.css\\";
-styled(\\"h1\\", \\"styled-yoisj70\\", [\\"styled-0\\"]);"
+styled(\\"h1\\", \\"styled-yoisj70\\", [\\"styled-0\\"], []);"
 `;
 
 exports[`babel styled component extract no use 2`] = `".styled-0 {}"`;
+
+exports[`babel styled component extract with interpolation 1`] = `
+"import \\"./styled.test.emotion.css\\";
+const H1 = styled(\\"h1\\", \\"styled-H1-i6cu680\\", [\\"styled-H1-9acweo\\"], [p => p.justify]);"
+`;
+
+exports[`babel styled component extract with interpolation 2`] = `
+".styled-H1-9acweo {
+    display: -webkit-box; display: -ms-flexbox; display: flex;
+    -webkit-box-pack: var(--styled-H1-9acweo-0);
+    -ms-flex-pack: var(--styled-H1-9acweo-0);
+    justify-content: var(--styled-H1-9acweo-0);
+    width: var(--css-hash-0)
+}
+.styled-H1-9acweo:hover {
+    background-color: green
+}
+@media (max-width: 500px) {
+    .styled-H1-9acweo {
+        height: var(--css-hash-1);
+        position: fixed
+    }
+}
+@media print {
+    .styled-H1-9acweo {
+        display: none
+    }
+}
+.styled-H1-9acweo::before {
+    color: blue;
+    width: 20px;
+    height: 20px;
+    content: 'pseudo'
+}"
+`;
 
 exports[`babel styled component inline basic 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', 'css-H1-uutogn0', [], [fontSize + 'px'], function createEmotionStyledRules(x0) {

@@ -35,7 +35,7 @@ export function parseCSS(
   } else {
     root = parse(css, { from: filename })
   }
-  let vars = 0
+
   let composes: number = 0
 
   root.walkDecls((decl: Decl): void => {
@@ -52,7 +52,6 @@ export function parseCSS(
       const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
       const numOfComposes: number = !composeMatches ? 0 : composeMatches.length
       composes += numOfComposes
-      vars += numOfComposes
       decl.remove()
     }
   })
@@ -63,10 +62,9 @@ export function parseCSS(
 
   return {
     styles,
-    staticCSSRules:
-      vars === 0 && extractStatic
-        ? stringifyCSSRoot(postcssJs.parse(styles))
-        : [],
+    staticCSSRules: extractStatic
+      ? stringifyCSSRoot(postcssJs.parse(styles))
+      : [],
     composesCount: composes
   }
 }

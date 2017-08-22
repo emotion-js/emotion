@@ -36,6 +36,14 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('with expressions', () => {
+    const H1 = styled.h1`font-size: ${p => p.fontSize};`
+
+    const tree = renderer.create(<H1 fontSize={24}>hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('name', () => {
     const H1 = styled.h1`
       name: FancyH1;

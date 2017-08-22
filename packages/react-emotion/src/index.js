@@ -11,12 +11,19 @@ const reactPropsRegex = new RegExp(propsRegexString)
 const testOmitPropsOnStringTag = key => reactPropsRegex.test(key)
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
 
+let css45 = (c, v = []) => ({
+  className: c,
+  style: v.reduce((o, v, i) => ((o[`--${c}-${i}`] = v), o), {})
+})
+
 export default function(tag, cls, objs, vars = [], content) {
   if (!tag) {
     throw new Error(
       'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
     )
   }
+
+  const FAST_PATH = vars && vars.length && !content
 
   const componentTag = tag.displayName || tag.name || 'Component'
   const spec = {
@@ -73,10 +80,30 @@ export default function(tag, cls, objs, vars = [], content) {
     return h(
       localTag,
       omit(
-        assign({}, props, {
-          ref: props.innerRef,
-          className
-        }),
+        assign(
+          {},
+          props,
+          {
+            ref: props.innerRef,
+            className
+          },
+          FAST_PATH && {
+            style: assign(
+              {},
+              props.style,
+              FAST_PATH
+                ? reduce(
+                    map(vars, getValue),
+                    (accum, value, i) => {
+                      accum[`${objs[0]}-${i}`] = value
+                      return accum
+                    },
+                    {}
+                  )
+                : null
+            )
+          }
+        ),
         omitFn
       )
     )

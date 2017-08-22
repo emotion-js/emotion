@@ -2,27 +2,40 @@
 
 exports[`styled basic render nested 1`] = `
 <h1
-  className="styled-H1-1f87tx4 styled-H1-1sjwp4j1"
+  className="styled-H1-1f87tx4 styled-H1-r6dkuc1"
 >
   hello world
 </h1>
-`;
+`
 
 exports[`styled name 1`] = `
 <h1
-  className="styled-H1-131pfth styled-H1-1sjwp4j2"
+  className="styled-H1-131pfth styled-H1-r6dkuc3"
 >
   hello world
 </h1>
-`;
+`
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="styled-H1-ijh7uz styled-H1-1sjwp4j0"
+  className="styled-H1-ijh7uz styled-H1-r6dkuc0"
 >
   hello world
 </h1>
-`;
+`
+
+exports[`styled with expressions 1`] = `
+<h1
+  className="styled-H1-1t8i2zo styled-H1-r6dkuc2"
+  style={
+    Object {
+      "styled-H1-1t8i2zo-0": 24,
+    }
+  }
+>
+  hello world
+</h1>
+`
 
 exports[`styled writes the correct css 1`] = `
 ".styled-H1-ijh7uz {
@@ -40,6 +53,9 @@ exports[`styled writes the correct css 1`] = `
 .styled-H1-1f87tx4 span:hover:after {
     content: \\"after\\"
 }
+.styled-H1-1t8i2zo {
+    font-size: var(--styled-H1-1t8i2zo-0)
+}
 .styled-H1-131pfth {
     name: FancyH1;
     font-size: 38px
@@ -52,4 +68,4 @@ html {
     color: yellow;
     background-color: purple
 }"
-`;
+`
