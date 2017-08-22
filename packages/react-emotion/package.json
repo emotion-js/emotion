@@ -28,10 +28,7 @@
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tkh44/emotion/tree/master/packages/react-emotion"
-  },
+  "repository": "https://github.com/tkh44/emotion/tree/master/packages/react-emotion",
   "keywords": [
     "styles",
     "emotion",

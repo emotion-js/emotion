@@ -33,10 +33,7 @@
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tkh44/emotion/tree/master/packages/emotion"
-  },
+  "repository": "https://github.com/tkh44/emotion/tree/master/packages/emotion",
   "keywords": [
     "styles",
     "emotion",
