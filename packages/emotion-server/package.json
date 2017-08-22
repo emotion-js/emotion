@@ -1,7 +1,7 @@
 {
   "name": "emotion-server",
   "version": "7.2.0",
-  "description": "The Next Generation of CSS-in-JS",
+  "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
   "main": "lib/index.js",
   "files": [
     "src",
@@ -25,16 +25,15 @@
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tkh44/emotion.git"
-  },
+  "repository": "https://github.com/tkh44/emotion/tree/master/packages/emotion-server",
   "keywords": [
     "styles",
     "emotion",
     "react",
     "css",
-    "css-in-js"
+    "css-in-js",
+    "ssr",
+    "server-side-rendering"
   ],
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"

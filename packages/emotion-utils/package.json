@@ -1,7 +1,7 @@
 {
   "name": "emotion-utils",
   "version": "7.1.0",
-  "description": "The Next Generation of CSS-in-JS",
+  "description": "Shared utilities used by emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "files": [
@@ -19,10 +19,7 @@
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tkh44/emotion.git"
-  },
+  "repository": "https://github.com/tkh44/emotion/tree/master/packages/emotion-utils",
   "keywords": [
     "styles",
     "emotion",

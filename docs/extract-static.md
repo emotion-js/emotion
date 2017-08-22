@@ -2,7 +2,19 @@
 
 Extract styles with no interpolations into external css files.
 
+
 **does NOT work with object styles**
+
+**If you want to use dynamic values you must use css variables.**
+
+```javascript
+const Button = styled('button')`
+  background-color: --bg;
+  padding: 10px;
+`
+<Button style={{ '--bg': props.success ? '#8BC34A' : '#2395f3' }}/>
+```
+
 
 Configure babel
 

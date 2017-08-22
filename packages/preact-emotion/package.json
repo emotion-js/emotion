@@ -1,7 +1,7 @@
 {
   "name": "preact-emotion",
   "version": "7.2.0",
-  "description": "The Next Generation of CSS-in-JS",
+  "description": "The Next Generation of CSS-in-JS, for Preact projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "files": [
@@ -27,10 +27,7 @@
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tkh44/emotion.git"
-  },
+  "repository": "https://github.com/tkh44/emotion/tree/master/packages/preact-emotion",
   "keywords": [
     "styles",
     "emotion",
