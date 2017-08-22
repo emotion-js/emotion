@@ -11,11 +11,6 @@ const reactPropsRegex = new RegExp(propsRegexString)
 const testOmitPropsOnStringTag = key => reactPropsRegex.test(key)
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
 
-let css45 = (c, v = []) => ({
-  className: c,
-  style: v.reduce((o, v, i) => ((o[`--${c}-${i}`] = v), o), {})
-})
-
 export default function(tag, cls, objs, vars = [], content) {
   if (!tag) {
     throw new Error(
