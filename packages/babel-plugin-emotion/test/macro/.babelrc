@@ -1,0 +1,14 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "loose": true
+      }
+    ],
+    "stage-0",
+    "react",
+    "flow"
+  ],
+  "plugins": ["preval", "./babel-macros-register"]
+}

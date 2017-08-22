@@ -5,7 +5,7 @@
 *The same caveats to using objects with css apply to this.*
 
 ```jsx harmony
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 const H1 = styled.h1(
   {

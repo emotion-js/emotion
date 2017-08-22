@@ -2,7 +2,19 @@
 
 Extract styles with no interpolations into external css files.
 
+
 **does NOT work with object styles**
+
+**If you want to use dynamic values you must use css variables.**
+
+```javascript
+const Button = styled('button')`
+  background-color: --bg;
+  padding: 10px;
+`
+<Button style={{ '--bg': props.success ? '#8BC34A' : '#2395f3' }}/>
+```
+
 
 Configure babel
 
@@ -10,7 +22,7 @@ Configure babel
 ```json
 {
   "plugins": [
-    ["emotion/babel", { "extractStatic": true }]
+    ["emotion", { "extractStatic": true }]
   ]
 }
 ```
@@ -18,7 +30,7 @@ Configure babel
 This js file, `h1.js`
 
 ```jsx harmony
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 const H1 = styled('h1')`
   color: #ffd43b;
@@ -38,7 +50,7 @@ During babel compilation emotion will create `h1.emotion.css` and add `import '.
 
 ```jsx
 import './h1.emotion.css'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 const H1 = styled('h1', 'css-duiy4a')
 ```

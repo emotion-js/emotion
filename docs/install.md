@@ -12,7 +12,7 @@ npm install -S emotion
 ```json
 {
   "plugins": [
-    "emotion/babel"
+    "emotion"
   ]
 }
 ```

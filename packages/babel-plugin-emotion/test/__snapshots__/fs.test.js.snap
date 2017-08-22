@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel plugin fs creates and writes to the css file when it does not exist 1`] = `
+".css-1yfv4zm {
+    margin: 12px 48px;
+    color: #ffffff; color: blue;
+    display: -webkit-box; display: -ms-flexbox; display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    name: class
+}"
+`;
+
+exports[`babel plugin fs creates and writes to the css file when it does not exist 2`] = `
+"import \\"./fs.test.emotion.css\\";
+
+\\"css-1yfv4zm\\";"
+`;
+
+exports[`babel plugin fs does not write to the css file when it is the same as is already written 1`] = `
+"import \\"./fs.test.emotion.css\\";
+
+\\"css-1yfv4zm\\";"
+`;
+
+exports[`babel plugin fs writes to the css file when it does exist  1`] = `
+".css-1yfv4zm {
+    margin: 12px 48px;
+    color: #ffffff; color: blue;
+    display: -webkit-box; display: -ms-flexbox; display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    name: class
+}"
+`;
+
+exports[`babel plugin fs writes to the css file when it does exist  2`] = `
+"import \\"./fs.test.emotion.css\\";
+
+\\"css-1yfv4zm\\";"
+`;
