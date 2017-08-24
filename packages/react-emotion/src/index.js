@@ -18,8 +18,6 @@ export default function(tag, cls, objs, vars = [], content) {
     )
   }
 
-  const EXTRACTED_DYNAMIC = vars && vars.length && !content
-
   const componentTag = tag.displayName || tag.name || 'Component'
   const spec = {
     vars,
