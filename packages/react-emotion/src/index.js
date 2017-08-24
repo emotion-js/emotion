@@ -1,5 +1,5 @@
 import { createElement as h } from 'react'
-import { css } from 'emotion'
+import { css, customProperties } from 'emotion'
 import { map, reduce, assign, omit } from 'emotion-utils'
 import propsRegexString from /* preval */ './props'
 
@@ -18,7 +18,7 @@ export default function(tag, cls, objs, vars = [], content) {
     )
   }
 
-  const FAST_PATH = vars && vars.length && !content
+  const EXTRACTED_DYNAMIC = vars && vars.length && !content
 
   const componentTag = tag.displayName || tag.name || 'Component'
   const spec = {
@@ -48,31 +48,6 @@ export default function(tag, cls, objs, vars = [], content) {
       return v
     }
 
-    if (FAST_PATH) {
-      return h(
-        localTag,
-        omit(
-          assign({}, props, {
-            ref: props.innerRef,
-            className: objs[0],
-            style: assign(
-              {},
-              props.style,
-              reduce(
-                map(vars, getValue),
-                (accum, value, i) => {
-                  accum[`${objs[0]}-${i}`] = value
-                  return accum
-                },
-                {}
-              )
-            )
-          }),
-          omitFn
-        )
-      )
-    }
-
     let finalObjs = []
 
     push(
@@ -83,6 +58,10 @@ export default function(tag, cls, objs, vars = [], content) {
           push(accum, spec.objs)
           if (spec.content) {
             accum.push(spec.content.apply(null, map(spec.vars, getValue)))
+          } else if (spec.vars.length) {
+            // Dynamic properties for extracted css will have variables
+            // but no content function
+            accum.push(customProperties(spec.objs[0], map(spec.vars, getValue)))
           }
           accum.push(spec.cls)
           return accum

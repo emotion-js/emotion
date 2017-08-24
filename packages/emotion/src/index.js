@@ -9,6 +9,7 @@ import {
   clean,
   createMarkupForStyles,
   hashString as hash,
+  hashArray,
   hashObject
 } from 'emotion-utils'
 
@@ -82,7 +83,38 @@ export function css(objs: any, vars: Array<any>, content: () => Array<any>) {
   return computedClassName.trim()
 }
 
-function insertRawRule(css: string) {
+type inputVar = string | number
+
+export function customProperties(baseClassName: string, vars: Array<inputVar>) {
+  const hash = hashArray([baseClassName, ...vars])
+  const varCls = `css-vars-${hash}`
+  if (inserted[hash]) {
+    return varCls
+  }
+
+  let src = ''
+  forEach(vars, (val: inputVar, i: number) => {
+    src && (src += '; ')
+    src += `--${baseClassName}-${i}: ${val}`
+  })
+
+  let spec = {
+    id: hash,
+    css: `.${varCls} {${src}}`,
+    type: 'raw'
+  }
+
+  register(spec)
+
+  if (!inserted[spec.id]) {
+    sheet.insert(spec.css)
+    inserted[spec.id] = true
+  }
+
+  return varCls
+}
+
+export function insertRawRule(css: string) {
   let spec = {
     id: hash(css),
     css,

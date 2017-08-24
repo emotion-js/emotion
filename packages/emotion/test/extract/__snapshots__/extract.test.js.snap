@@ -6,7 +6,7 @@ exports[`styled basic render nested 1`] = `
 >
   hello world
 </h1>
-`
+`;
 
 exports[`styled name 1`] = `
 <h1
@@ -14,7 +14,7 @@ exports[`styled name 1`] = `
 >
   hello world
 </h1>
-`
+`;
 
 exports[`styled no dynamic 1`] = `
 <h1
@@ -22,20 +22,19 @@ exports[`styled no dynamic 1`] = `
 >
   hello world
 </h1>
-`
+`;
 
 exports[`styled with expressions 1`] = `
+.glamor-0 {
+  --styled-H1-1t8i2zo-0: 24;
+}
+
 <h1
-  className="styled-H1-1t8i2zo styled-H1-r6dkuc2"
-  style={
-    Object {
-      "styled-H1-1t8i2zo-0": 24,
-    }
-  }
+  className="styled-H1-1t8i2zo glamor-0 styled-H1-r6dkuc2"
 >
   hello world
 </h1>
-`
+`;
 
 exports[`styled writes the correct css 1`] = `
 ".styled-H1-ijh7uz {
@@ -68,4 +67,4 @@ html {
     color: yellow;
     background-color: purple
 }"
-`
+`;
