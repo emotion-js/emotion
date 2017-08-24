@@ -329,7 +329,7 @@ describe('babel styled component', () => {
 
   describe('extract', () => {
     afterEach(() => {
-      fs.writeFileSync.clearMock()
+      fs.writeFileSync.mockClear()
     })
     test('no use', () => {
       const basic = 'styled.h1``'
@@ -407,6 +407,82 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
       expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
+    })
+
+    test('with lots of interpolations', () => {
+      const basic = `const H1 = styled.h1\`
+        display: flex;
+        justify-content: \${p => p.justify} \${'something'};
+        width: var(--css-hash-0);
+        &:hover {
+          background-color: green;
+        }
+        @media (max-width: 500px) {
+          height: var(--css-hash-1);
+          position: \${'fixed'};
+        }
+        @media print {
+          display: none;
+        }
+        &::before {
+          color: blue;
+          width: 20px;
+          height: 20px;
+          content: 'pseudo';
+        }
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { extractStatic: true }]],
+        filename: __filename,
+        babelrc: false
+      })
+
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
+      expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
+    })
+    test('with composes', () => {
+      const basic = `const H1 = styled.h1\`
+        composes: \${something};
+        display: flex;
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { extractStatic: true }]],
+        filename: __filename,
+        babelrc: false
+      })
+
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).not.toHaveBeenCalled()
+    })
+    test('with random interpolation', () => {
+      const basic = `const H1 = styled.h1\`
+        \${something};
+        display: flex;
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { extractStatic: true }]],
+        filename: __filename,
+        babelrc: false
+      })
+
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).not.toHaveBeenCalled()
+    })
+    test('with selector interpolation', () => {
+      const basic = `const H1 = styled.h1\`
+        \${something} {
+          display: flex;
+        }
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { extractStatic: true }]],
+        filename: __filename,
+        babelrc: false
+      })
+
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).not.toHaveBeenCalled()
     })
   })
 })

@@ -2,32 +2,32 @@
 
 exports[`babel styled component extract basic 1`] = `
 "import \\"./styled.test.emotion.css\\";
-const H1 = styled(\\"h1\\", \\"styled-H1-1qcxcvu0\\", [\\"styled-H1-10x82eg\\"], []);"
+const H1 = styled(\\"h1\\", \\"styled-H1-1wk00ht0\\", [\\"styled-H1-xlr0g1\\"], []);"
 `;
 
 exports[`babel styled component extract basic 2`] = `
-".styled-H1-10x82eg {
+".styled-H1-xlr0g1 {
     display: -webkit-box; display: -ms-flexbox; display: flex;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
     width: var(--css-hash-0)
 }
-.styled-H1-10x82eg:hover {
+.styled-H1-xlr0g1:hover {
     background-color: green
 }
 @media (max-width: 500px) {
-    .styled-H1-10x82eg {
+    .styled-H1-xlr0g1 {
         height: var(--css-hash-1);
         position: fixed
     }
 }
 @media print {
-    .styled-H1-10x82eg {
+    .styled-H1-xlr0g1 {
         display: none
     }
 }
-.styled-H1-10x82eg::before {
+.styled-H1-xlr0g1::before {
     color: blue;
     width: 20px;
     height: 20px;
@@ -42,39 +42,101 @@ styled(\\"h1\\", \\"styled-yoisj70\\", [\\"styled-0\\"], []);"
 
 exports[`babel styled component extract no use 2`] = `".styled-0 {}"`;
 
+exports[`babel styled component extract with composes 1`] = `
+"const H1 = /*#__PURE__*/styled(\\"h1\\", \\"css-H1-14eg5ys0\\", [something], [], function createEmotionStyledRules() {
+        return {
+                \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
+        };
+});"
+`;
+
 exports[`babel styled component extract with interpolation 1`] = `
 "import \\"./styled.test.emotion.css\\";
-const H1 = styled(\\"h1\\", \\"styled-H1-i6cu680\\", [\\"styled-H1-9acweo\\"], [p => p.justify]);"
+const H1 = styled(\\"h1\\", \\"styled-H1-j7p59z0\\", [\\"styled-H1-chhlbr\\"], [p => p.justify]);"
 `;
 
 exports[`babel styled component extract with interpolation 2`] = `
-".styled-H1-9acweo {
+".styled-H1-chhlbr {
     display: -webkit-box; display: -ms-flexbox; display: flex;
-    -webkit-box-pack: var(--styled-H1-9acweo-0);
-    -ms-flex-pack: var(--styled-H1-9acweo-0);
-    justify-content: var(--styled-H1-9acweo-0);
+    -webkit-box-pack: var(--styled-H1-chhlbr-0);
+    -ms-flex-pack: var(--styled-H1-chhlbr-0);
+    justify-content: var(--styled-H1-chhlbr-0);
     width: var(--css-hash-0)
 }
-.styled-H1-9acweo:hover {
+.styled-H1-chhlbr:hover {
     background-color: green
 }
 @media (max-width: 500px) {
-    .styled-H1-9acweo {
+    .styled-H1-chhlbr {
         height: var(--css-hash-1);
         position: fixed
     }
 }
 @media print {
-    .styled-H1-9acweo {
+    .styled-H1-chhlbr {
         display: none
     }
 }
-.styled-H1-9acweo::before {
+.styled-H1-chhlbr::before {
     color: blue;
     width: 20px;
     height: 20px;
     content: 'pseudo'
 }"
+`;
+
+exports[`babel styled component extract with lots of interpolations 1`] = `
+"import './styled.test.emotion.css';
+const H1 = styled('h1', 'styled-H1-16fsv4k0', ['styled-H1-1ghdihd'], [p => p.justify, 'something', 'fixed']);"
+`;
+
+exports[`babel styled component extract with lots of interpolations 2`] = `
+".styled-H1-1ghdihd {
+    display: -webkit-box; display: -ms-flexbox; display: flex;
+    -webkit-box-pack: var(--styled-H1-1ghdihd-0) var(--styled-H1-1ghdihd-1);
+    -ms-flex-pack: var(--styled-H1-1ghdihd-0) var(--styled-H1-1ghdihd-1);
+    justify-content: var(--styled-H1-1ghdihd-0) var(--styled-H1-1ghdihd-1);
+    width: var(--css-hash-0)
+}
+.styled-H1-1ghdihd:hover {
+    background-color: green
+}
+@media (max-width: 500px) {
+    .styled-H1-1ghdihd {
+        height: var(--css-hash-1);
+        position: var(--styled-H1-1ghdihd-2)
+    }
+}
+@media print {
+    .styled-H1-1ghdihd {
+        display: none
+    }
+}
+.styled-H1-1ghdihd::before {
+    color: blue;
+    width: 20px;
+    height: 20px;
+    content: 'pseudo'
+}"
+`;
+
+exports[`babel styled component extract with random interpolation 1`] = `
+"const H1 = /*#__PURE__*/styled(\\"h1\\", \\"css-H1-1v04vms0\\", [], [something], function createEmotionStyledRules(x0) {
+        return {
+                \\"$0\\": x0,
+                \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
+        };
+});"
+`;
+
+exports[`babel styled component extract with selector interpolation 1`] = `
+"const H1 = /*#__PURE__*/styled(\\"h1\\", \\"css-H1-mse9rr0\\", [], [something], function createEmotionStyledRules(x0) {
+  return {
+    [x0]: {
+      \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
+    }
+  };
+});"
 `;
 
 exports[`babel styled component inline basic 1`] = `

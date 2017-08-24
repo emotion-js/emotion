@@ -152,7 +152,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     )
 
     const cssText = `.${name}-${hash} { ${src} }`
-    const { staticCSSRules, composesCount } = parseCSS(
+    const { staticCSSRules, varCount } = parseCSS(
       cssText,
       true,
       getFilename(path)
@@ -161,24 +161,25 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     // Help Needed:
     // We should read the browser preferences for postcss
     // and turn this on only if css vars are supported in their browser targets.
-    const objs = path.node.quasi.expressions.slice(0, composesCount)
 
-    if (objs.length) {
-      throw new Error('Cannot use composes in extractStatic mode.')
-    }
+    let canUseCssVariables = true
 
-    const vars = path.node.quasi.expressions.slice(composesCount)
-    state.insertStaticRules(
-      staticCSSRules.map(ruleText =>
-        ruleText.replace(/xxx(\d+)xxx/gm, `var(--${name}-${hash}-$1)`)
+    if (
+      (varCount === path.node.quasi.expressions.length && canUseCssVariables) ||
+      path.node.quasi.expressions.length === 0
+    ) {
+      state.insertStaticRules(
+        staticCSSRules.map(ruleText =>
+          ruleText.replace(/xxx(\d+)xxx/gm, `var(--${name}-${hash}-$1)`)
+        )
       )
-    )
-    return t.callExpression(identifier, [
-      tag,
-      t.stringLiteral(getComponentId(state, name)),
-      t.arrayExpression([t.stringLiteral(`${name}-${hash}`)]),
-      t.arrayExpression(vars)
-    ])
+      return t.callExpression(identifier, [
+        tag,
+        t.stringLiteral(getComponentId(state, name)),
+        t.arrayExpression([t.stringLiteral(`${name}-${hash}`)]),
+        t.arrayExpression(path.node.quasi.expressions)
+      ])
+    }
   }
 
   const { src, name } = inline(path.node.quasi, identifierName, 'css')

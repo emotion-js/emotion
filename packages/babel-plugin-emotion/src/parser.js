@@ -37,22 +37,31 @@ export function parseCSS(
   }
 
   let composes: number = 0
-
+  let varCount = 0
   root.walkDecls((decl: Decl): void => {
     if (decl.prop === 'composes') {
-      if (!/xxx(\d+)xxx/gm.exec(decl.value)) {
-        throw new Error('composes must be a interpolation')
+      if (!extractStatic) {
+        if (!/xxx(\d+)xxx/gm.exec(decl.value)) {
+          throw new Error('composes must be a interpolation')
+        }
+        if (decl.parent.nodes[0] !== decl) {
+          throw new Error('composes must be the first rule')
+        }
+        if (decl.parent.type !== 'root') {
+          throw new Error('composes cannot be on nested selectors')
+        }
+        const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
+        const numOfComposes: number = !composeMatches
+          ? 0
+          : composeMatches.length
+        composes += numOfComposes
+        decl.remove()
       }
-      if (decl.parent.nodes[0] !== decl) {
-        throw new Error('composes must be the first rule')
+    } else {
+      const match = decl.value.match(/xxx(?:\d+)xxx/gm)
+      if (match && decl.prop[0] !== '$') {
+        varCount += match.length
       }
-      if (decl.parent.type !== 'root') {
-        throw new Error('composes cannot be on nested selectors')
-      }
-      const composeMatches = decl.value.match(/xxx(\d+)xxx/gm)
-      const numOfComposes: number = !composeMatches ? 0 : composeMatches.length
-      composes += numOfComposes
-      decl.remove()
     }
   })
 
@@ -65,7 +74,8 @@ export function parseCSS(
     staticCSSRules: extractStatic
       ? stringifyCSSRoot(postcssJs.parse(styles))
       : [],
-    composesCount: composes
+    composesCount: composes,
+    varCount
   }
 }
 
