@@ -4,7 +4,8 @@ import replace from 'rollup-plugin-replace'
 import babel from 'rollup-plugin-babel'
 import alias from 'rollup-plugin-alias'
 import path from 'path'
-import pkg from './package.json'
+
+const pkg = require(path.resolve(process.cwd(), './package.json'))
 
 const config = {
   entry: './src/index.js',
@@ -12,9 +13,17 @@ const config = {
   exports: 'named',
   sourceMap: true,
   plugins: [
+    resolve(),
     babel({
       presets: [
-        ['env', { loose: true, modules: false }],
+        [
+          'env',
+          {
+            loose: true,
+            modules: false,
+            exclude: ['transform-es2015-typeof-symbol']
+          }
+        ],
         'stage-0',
         'react',
         'flow'
@@ -33,10 +42,12 @@ if (process.env.UMD) {
   config.external = ['react']
   config.globals = { react: 'React' }
   config.plugins.push(
-    resolve(),
     alias({
-      emotion: path.resolve(__dirname, '../emotion/src/index.js'),
-      'emotion-utils': path.resolve(__dirname, '../emotion-utils/src/index.js')
+      emotion: path.resolve(__dirname, './packages/emotion/src/index.js'),
+      'emotion-utils': path.resolve(
+        __dirname,
+        './packages/emotion-utils/src/index.js'
+      )
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production')
@@ -44,8 +55,18 @@ if (process.env.UMD) {
     uglify()
   )
   config.targets = [
-    { dest: './dist/DO-NOT-USE.min.js', format: 'umd', moduleName: pkg.name }
+    {
+      dest: './dist/DO-NOT-USE.min.js',
+      format: 'umd',
+      moduleName: pkg.name
+    }
   ]
+}
+
+if (pkg.name === 'preact-emotion') {
+  config.entry = '../react-emotion/src/index.js'
+  config.external = ['preact', 'emotion-utils', 'emotion']
+  config.plugins.unshift(alias({ react: 'preact' }))
 }
 
 export default config

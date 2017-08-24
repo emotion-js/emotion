@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm-run-all clean rollup",
     "clean": "rimraf dist",
-    "rollup": "rollup -c"
+    "rollup": "rollup -c ../../rollup.config.js"
   },
   "dependencies": {
     "fbjs": "^0.8.12"
