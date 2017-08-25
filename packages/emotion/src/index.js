@@ -163,7 +163,7 @@ export function hydrate(ids: string[]) {
   forEach(ids, id => (inserted[id] = true))
 }
 
-type EmotionRule = { [string]: any }
+type EmotionRule = { emotionClass: string }
 
 type CSSRuleList = Array<EmotionRule>
 
@@ -197,18 +197,13 @@ const emotionClassRegex = /^css-([a-zA-Z0-9]+)/
 
 // of shape { 'css-<id>': '' }
 export function isLikeRule(rule: EmotionRule) {
-  const ruleKeys = keys(rule)
-  if (ruleKeys.length !== 1) {
-    return false
-  }
-  return !!emotionClassRegex.exec(ruleKeys[0])
+  return rule.emotionClass !== undefined
 }
 
 // extracts id from a { 'css-<id>': ''} like object
 export function idFor(rule: EmotionRule) {
-  const ruleKeys = keys(rule)
-  if (ruleKeys.length !== 1) throw new Error('not a rule')
-  let match = emotionClassRegex.exec(ruleKeys[0])
+  if (rule.emotionClass === undefined) throw new Error('not a rule')
+  let match = emotionClassRegex.exec(rule.emotionClass)
   if (!match) throw new Error('not a rule')
   return match[1]
 }
@@ -303,12 +298,12 @@ function toRule(spec) {
   if (ruleCache[spec.id]) {
     return ruleCache[spec.id]
   }
-
-  let ret = { [`css-${spec.id}`]: '' }
+  const className = `css-${spec.id}`
+  let ret = { emotionClass: className }
   Object.defineProperty(ret, 'toString', {
     enumerable: false,
     value() {
-      return 'css-' + spec.id
+       return className
     }
   })
   ruleCache[spec.id] = ret
