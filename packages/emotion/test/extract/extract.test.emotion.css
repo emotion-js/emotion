@@ -23,23 +23,12 @@
 html {
     background: pink
 }
-body {
-    margin: 0;
-    padding: 0;
-    display: var(--css-cls-y4yfy5-0)
-}
-body > div {
-    display: none
-}
-html {
-    background: green
-}
 .css-14yvnlz {
     font-family: sans-serif;
     color: yellow;
     background-color: purple
 }
-.css-cls-um1go4 {
-    color: var(--css-cls-um1go4-0);
-    height: var(--css-cls-um1go4-1)
+.vars-cls-um1go4 {
+    color: var(--vars-cls-um1go4-0);
+    height: var(--vars-cls-um1go4-1)
 }

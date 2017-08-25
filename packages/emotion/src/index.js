@@ -69,14 +69,15 @@ function buildStyles(objs) {
 }
 
 export function css(objs: any, vars: Array<any>, content: () => Array<any>) {
+  if (content === undefined && vars !== undefined) {
+    return `${customProperties(objs[0], vars)} ${objs[0]}`
+  }
   if (!Array.isArray(objs)) {
     objs = [objs]
   }
 
   let { computedClassName = '', objectStyles = [] } = buildStyles(
-    content
-      ? objs.concat(content.apply(null, vars))
-      : vars && vars.length ? [customProperties(objs[0], vars)] : objs
+    content ? objs.concat(content.apply(null, vars)) : objs
   )
   if (objectStyles.length) {
     computedClassName += ' ' + objStyle.apply(null, objectStyles).toString()
@@ -99,13 +100,12 @@ export function customProperties(
 
   let src = ''
   forEach(vars, (val: inputVar, i: number) => {
-    src && (src += '; ')
-    src += `--${baseClassName}-${i}: ${val}`
+    src += `--${baseClassName}-${i}:${val};`
   })
 
   let spec = {
     id: hash,
-    css: `.${varCls} {${src}}`,
+    css: `.${varCls}{${src}}`,
     type: 'raw'
   }
 

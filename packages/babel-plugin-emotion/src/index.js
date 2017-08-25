@@ -30,49 +30,60 @@ export function replaceCssWithCallExpression(
   removePath = false
 ) {
   try {
-    const { name, hash, src } = inline(
-      path.node.quasi,
-      getIdentifierName(path, t),
-      'css'
-    )
+    const identifierName = getIdentifierName(path, t)
+    const { name, hash, src } = inline(path.node.quasi, identifierName, 'css')
     if (state.extractStatic) {
-      const cssText = staticCSSTextCreator(name, hash, src)
-      const { staticCSSRules, composesCount } = parseCSS(
-        cssText,
-        true,
-        getFilename(path)
-      )
-
-      state.insertStaticRules(
-        staticCSSRules.map(ruleText =>
-          ruleText.replace(/xxx(\d+)xxx/gm, `var(--${name}-${hash}-$1)`)
+      if (
+        // we should probably change this
+        staticCSSTextCreator('css', 'hash', 'thing') === '.css-hash { thing }'
+      ) {
+        const { name, hash, src } = inline(
+          path.node.quasi,
+          identifierName,
+          'vars' // we don't want these styles to be merged in css``
         )
-      )
 
-      if (path.node.quasi.expressions.length) {
-        if (!removePath) {
+        const cssText = `.${name}-${hash} { ${src} }`
+        const { staticCSSRules, varCount } = parseCSS(
+          cssText,
+          true,
+          getFilename(path)
+        )
+
+        // Help Needed:
+        // We should read the browser preferences for postcss
+        // and turn this on only if css vars are supported in their browser targets.
+        let canUseCssVariables = true
+
+        if (
+          varCount === path.node.quasi.expressions.length &&
+          canUseCssVariables &&
+          path.node.quasi.expressions.length !== 0
+        ) {
           path.addComment('leading', '#__PURE__')
+          state.insertStaticRules(
+            staticCSSRules.map(ruleText =>
+              ruleText.replace(/xxx(\d+)xxx/gm, `var(--${name}-${hash}-$1)`)
+            )
+          )
+          return path.replaceWith(
+            t.callExpression(identifier, [
+              t.arrayExpression([t.stringLiteral(`${name}-${hash}`)]),
+              t.arrayExpression(path.node.quasi.expressions)
+            ])
+          )
         }
-
-        const composeValues = path.node.quasi.expressions.slice(
-          0,
-          composesCount
-        )
-        const vars = path.node.quasi.expressions.slice(composesCount)
-        return path.replaceWith(
-          t.callExpression(identifier, [
-            t.arrayExpression(
-              [t.stringLiteral(`${name}-${hash}`)].concat(composeValues)
-            ),
-            t.arrayExpression(vars)
-          ])
-        )
       }
+      if (path.node.quasi.expressions.length === 0) {
+        const cssText = staticCSSTextCreator(name, hash, src)
+        const { staticCSSRules } = parseCSS(cssText, true, getFilename(path))
 
-      if (!removePath) {
-        return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
+        state.insertStaticRules(staticCSSRules)
+        if (!removePath) {
+          return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
+        }
+        return path.replaceWith(t.identifier('undefined'))
       }
-      return path.replaceWith(t.identifier('undefined'))
     }
 
     const { styles, composesCount } = parseCSS(src, false, getFilename(path))

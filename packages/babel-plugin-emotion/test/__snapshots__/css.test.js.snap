@@ -32,7 +32,16 @@ exports[`babel css extract composes no dynamic 1`] = `
 "import './css.test.emotion.css';
 
 const cls1 = 'css-cls1-1q8jsgx';
-const cls2 = /*#__PURE__*/css(['css-cls2-1k023jk'], ['one-class', 'another-class', cls1]);"
+const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], [], function createEmotionStyledRules() {
+  return [{
+    'WebkitBoxPack': 'center',
+    'msFlexPack': 'center',
+    'justifyContent': 'center',
+    'WebkitBoxAlign': 'center',
+    'msFlexAlign': 'center',
+    'alignItems': 'center'
+  }];
+});"
 `;
 
 exports[`babel css extract composes no dynamic 2`] = `
@@ -54,12 +63,6 @@ const cls2 = /*#__PURE__*/css([cls1], [], function createEmotionStyledRules() {
 });"
 `;
 
-exports[`babel css extract composes with objects 2`] = `
-".css-cls1-1q8jsgx {
-    display: -webkit-box; display: -ms-flexbox; display: flex
-}"
-`;
-
 exports[`babel css extract css basic 1`] = `
 "import \\"./css.test.emotion.css\\";
 
@@ -77,26 +80,16 @@ exports[`babel css extract css basic 2`] = `
 }"
 `;
 
-exports[`babel css extract css basic 3`] = `
-"import \\"./css.test.emotion.css\\";
-
-\\"css-153l48f\\";"
-`;
-
 exports[`babel css extract css with dynamic values 1`] = `
 "import \\"./css.test.emotion.css\\";
 
-\\"css-64popv\\";"
+/*#__PURE__*/css([\\"vars-bnojx5\\"], [color]);"
 `;
 
 exports[`babel css extract css with dynamic values 2`] = `
-".css-153l48f {
+".vars-bnojx5 {
     margin: 12px 48px;
-    color: #ffffff; color: blue;
-    display: -webkit-box; display: -ms-flexbox; display: flex;
-    -webkit-box-flex: 1;
-    -ms-flex: 1 0 auto;
-    flex: 1 0 auto
+    color: var(--vars-bnojx5-0)
 }"
 `;
 

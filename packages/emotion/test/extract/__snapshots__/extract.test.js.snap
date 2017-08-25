@@ -2,7 +2,7 @@
 
 exports[`styled basic render nested 1`] = `
 <h1
-  className="styled-H1-1f87tx4 styled-H1-18m5vl01"
+  className="styled-H1-1f87tx4 styled-H1-58vywm1"
 >
   hello world
 </h1>
@@ -10,12 +10,12 @@ exports[`styled basic render nested 1`] = `
 
 exports[`styled css with dynamic values 1`] = `
 .glamor-0 {
-  color: yellow;
-  height: 15px;
+  --vars-cls-um1go4-0: yellow;
+  --vars-cls-um1go4-1: 15rem;
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 vars-cls-um1go4"
 >
   hello world
 </h1>
@@ -31,7 +31,7 @@ exports[`styled injectGlobal with dynamic values 1`] = `
 
 exports[`styled name 1`] = `
 <h1
-  className="styled-H1-131pfth styled-H1-18m5vl03"
+  className="styled-H1-131pfth styled-H1-58vywm3"
 >
   hello world
 </h1>
@@ -51,7 +51,7 @@ exports[`styled with expressions 1`] = `
 }
 
 <h1
-  className="styled-H1-1t8i2zo glamor-0 styled-H1-18m5vl02"
+  className="styled-H1-1t8i2zo glamor-0 styled-H1-58vywm2"
 >
   hello world
 </h1>
@@ -87,5 +87,9 @@ html {
     font-family: sans-serif;
     color: yellow;
     background-color: purple
+}
+.vars-cls-um1go4 {
+    color: var(--vars-cls-um1go4-0);
+    height: var(--vars-cls-um1go4-1)
 }"
 `;
