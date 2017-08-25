@@ -57,7 +57,9 @@ export function replaceCssWithCallExpression(
         const vars = path.node.quasi.expressions.slice(composesCount)
         return path.replaceWith(
           t.callExpression(identifier, [
-            t.arrayExpression(composeValues),
+            t.arrayExpression(
+              [t.stringLiteral(`${name}-${hash}`)].concat(composeValues)
+            ),
             t.arrayExpression(vars)
           ])
         )
