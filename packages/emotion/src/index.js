@@ -303,7 +303,7 @@ function toRule(spec) {
   Object.defineProperty(ret, 'toString', {
     enumerable: false,
     value() {
-       return className
+      return className
     }
   })
   ruleCache[spec.id] = ret
