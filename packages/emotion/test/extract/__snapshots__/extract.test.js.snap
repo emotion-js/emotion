@@ -8,6 +8,27 @@ exports[`styled basic render nested 1`] = `
 </h1>
 `;
 
+exports[`styled css with dynamic values 1`] = `
+.glamor-0 {
+  color: yellow;
+  height: 15px;
+}
+
+<h1
+  className="glamor-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled injectGlobal with dynamic values 1`] = `
+<h1
+  className={undefined}
+>
+  hello world
+</h1>
+`;
+
 exports[`styled name 1`] = `
 <h1
   className="styled-H1-131pfth styled-H1-r6dkuc3"

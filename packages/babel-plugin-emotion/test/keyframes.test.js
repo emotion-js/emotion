@@ -77,7 +77,8 @@ describe('babel keyframes', () => {
         filename: __filename
       })
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
+      expect(fs.writeFileSync.mock.calls[1][1]).toMatchSnapshot()
     })
   })
 })

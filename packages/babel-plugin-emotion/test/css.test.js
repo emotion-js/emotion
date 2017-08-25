@@ -292,6 +292,23 @@ describe('babel css', () => {
       expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
     })
 
+    test('css with dynamic values', () => {
+      const color = '#ffffff'
+      const basic = `
+        css\`
+        margin: 12px 48px;
+        color: ${color};
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { extractStatic: true }]],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
+      expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
+    })
+
     test('composes', () => {
       const basic = `
         const cls1 = css\`

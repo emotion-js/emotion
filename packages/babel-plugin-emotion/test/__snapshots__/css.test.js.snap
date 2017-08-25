@@ -86,6 +86,29 @@ exports[`babel css extract css basic 2`] = `
 }"
 `;
 
+exports[`babel css extract css basic 3`] = `
+"import \\"./css.test.emotion.css\\";
+
+\\"css-153l48f\\";"
+`;
+
+exports[`babel css extract css with dynamic values 1`] = `
+"import \\"./css.test.emotion.css\\";
+
+\\"css-64popv\\";"
+`;
+
+exports[`babel css extract css with dynamic values 2`] = `
+".css-153l48f {
+    margin: 12px 48px;
+    color: #ffffff; color: blue;
+    display: -webkit-box; display: -ms-flexbox; display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto
+}"
+`;
+
 exports[`babel css extract dynamic property objects 1`] = `
 "
 css({

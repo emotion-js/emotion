@@ -74,7 +74,9 @@ export function css(objs: any, vars: Array<any>, content: () => Array<any>) {
   }
 
   let { computedClassName = '', objectStyles = [] } = buildStyles(
-    content ? objs.concat(content.apply(null, vars)) : objs
+    content
+      ? objs.concat(content.apply(null, vars))
+      : vars && vars.length ? [customProperties(objs[0], vars)] : objs
   )
   if (objectStyles.length) {
     computedClassName += ' ' + objStyle.apply(null, objectStyles).toString()
@@ -85,7 +87,10 @@ export function css(objs: any, vars: Array<any>, content: () => Array<any>) {
 
 type inputVar = string | number
 
-export function customProperties(baseClassName: string, vars: Array<inputVar>) {
+export function customProperties(
+  baseClassName: string,
+  vars: Array<inputVar>
+): string {
   const hash = hashArray([baseClassName, ...vars])
   const varCls = `css-vars-${hash}`
   if (inserted[hash]) {

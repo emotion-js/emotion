@@ -35,11 +35,34 @@ export function replaceCssWithCallExpression(
       getIdentifierName(path, t),
       'css'
     )
-    if (state.extractStatic && !path.node.quasi.expressions.length) {
+    if (state.extractStatic) {
       const cssText = staticCSSTextCreator(name, hash, src)
-      const { staticCSSRules } = parseCSS(cssText, true, getFilename(path))
+      const { staticCSSRules, composesCount } = parseCSS(
+        cssText,
+        true,
+        getFilename(path)
+      )
 
-      state.insertStaticRules(staticCSSRules)
+      state.insertStaticRules(
+        staticCSSRules.map(ruleText =>
+          ruleText.replace(/xxx(\d+)xxx/gm, `var(--${name}-${hash}-$1)`)
+        )
+      )
+
+      if (path.node.quasi.expressions.length) {
+        const composeValues = path.node.quasi.expressions.slice(
+          0,
+          composesCount
+        )
+        const vars = path.node.quasi.expressions.slice(composesCount)
+        return path.replaceWith(
+          t.callExpression(identifier, [
+            t.arrayExpression(composeValues),
+            t.arrayExpression(vars)
+          ])
+        )
+      }
+
       if (!removePath) {
         return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
       }
