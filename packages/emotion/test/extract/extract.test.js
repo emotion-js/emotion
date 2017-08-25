@@ -65,17 +65,17 @@ describe('styled', () => {
   test('injectGlobal with dynamic values', () => {
     const display = 'flex'
     const cls = injectGlobal`
-          body {
-            margin: 0;
-            padding: 0;
-            display: ${display};
-            & > div {
-              display: none;
-            }
+        body {
+          margin: 0;
+          padding: 0;
+          display: ${display};
+          & > div {
+            display: none;
           }
-          html {
-            background: green;
-          }
+        }
+        html {
+          background: green;
+        }
       `
 
     const tree = renderer.create(<h1 className={cls}>hello world</h1>).toJSON()

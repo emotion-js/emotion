@@ -50,6 +50,10 @@ export function replaceCssWithCallExpression(
       )
 
       if (path.node.quasi.expressions.length) {
+        if (!removePath) {
+          path.addComment('leading', '#__PURE__')
+        }
+
         const composeValues = path.node.quasi.expressions.slice(
           0,
           composesCount

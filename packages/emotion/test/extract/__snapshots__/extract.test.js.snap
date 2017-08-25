@@ -2,7 +2,7 @@
 
 exports[`styled basic render nested 1`] = `
 <h1
-  className="styled-H1-1f87tx4 styled-H1-r6dkuc1"
+  className="styled-H1-1f87tx4 styled-H1-18m5vl01"
 >
   hello world
 </h1>
@@ -31,7 +31,7 @@ exports[`styled injectGlobal with dynamic values 1`] = `
 
 exports[`styled name 1`] = `
 <h1
-  className="styled-H1-131pfth styled-H1-r6dkuc3"
+  className="styled-H1-131pfth styled-H1-18m5vl03"
 >
   hello world
 </h1>
@@ -39,7 +39,7 @@ exports[`styled name 1`] = `
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="styled-H1-ijh7uz styled-H1-r6dkuc0"
+  className="styled-H1-ijh7uz styled-H1-58vywm0"
 >
   hello world
 </h1>
@@ -51,7 +51,7 @@ exports[`styled with expressions 1`] = `
 }
 
 <h1
-  className="styled-H1-1t8i2zo glamor-0 styled-H1-r6dkuc2"
+  className="styled-H1-1t8i2zo glamor-0 styled-H1-18m5vl02"
 >
   hello world
 </h1>

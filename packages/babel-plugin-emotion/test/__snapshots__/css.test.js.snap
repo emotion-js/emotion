@@ -32,16 +32,7 @@ exports[`babel css extract composes no dynamic 1`] = `
 "import './css.test.emotion.css';
 
 const cls1 = 'css-cls1-1q8jsgx';
-const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], [], function createEmotionStyledRules() {
-  return [{
-    'WebkitBoxPack': 'center',
-    'msFlexPack': 'center',
-    'justifyContent': 'center',
-    'WebkitBoxAlign': 'center',
-    'msFlexAlign': 'center',
-    'alignItems': 'center'
-  }];
-});"
+const cls2 = /*#__PURE__*/css(['css-cls2-1k023jk'], ['one-class', 'another-class', cls1]);"
 `;
 
 exports[`babel css extract composes no dynamic 2`] = `
