@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - "7"
+  - "8"
 
 cache:
   directories:
@@ -9,6 +9,9 @@ cache:
 
 before_install:
   - npm install codecov
+
+before_script:
+  - npm run bootstrap
 
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov

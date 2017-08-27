@@ -13,4 +13,4 @@ const Avatar = styled('img')`
   }
 `
 
-render(<Avatar src={avatarUrl} />, mountNode)
+render(<Avatar src={logoUrl} />, mountNode)

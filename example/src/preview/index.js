@@ -5,9 +5,7 @@ import PropTypes from 'prop-types'
 import { registerPlugin, transform } from 'babel-standalone'
 import styled from 'emotion/react'
 
-const ric =
-  window.requestIdleCallback ||
-  window.requestAnimationFrame
+const ric = window.requestIdleCallback || window.requestAnimationFrame
 
 registerPlugin('emotion/babel', require('emotion/babel'))
 
@@ -93,7 +91,9 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [['emotion/babel', { inline: true }]]
+          plugins: [
+            ['emotion/babel', { inline: true, autoImportCssProp: false }]
+          ]
         }
       ).code
     } else {
@@ -105,7 +105,9 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [['emotion/babel', { inline: true }]]
+          plugins: [
+            ['emotion/babel', { inline: true, autoImportCssProp: false }]
+          ]
         }
       ).code
     }
@@ -148,12 +150,16 @@ class Preview extends Component {
     }
   }
 
-  render () {
+  render() {
     const { error } = this.state
     return (
       <PreviewWrapper>
         <div ref="mount" className="preview-display" />
-        {error !== null ? <ErrorWrapper>{error}</ErrorWrapper> : null}
+        {error !== null
+          ? <ErrorWrapper>
+              {error}
+            </ErrorWrapper>
+          : null}
       </PreviewWrapper>
     )
   }

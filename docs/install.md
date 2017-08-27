@@ -13,7 +13,7 @@ npm install -S emotion
 ```json
 {
   "plugins": [
-    "emotion/babel"
+    "emotion"
   ]
 }
 ```
@@ -74,4 +74,3 @@ use: [
 ```
 
 **Browser Support** anything React supports
-

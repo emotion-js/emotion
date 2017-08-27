@@ -1,7 +1,7 @@
 ## Styled
 
 ```jsx
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 const H1 = styled('h1')`
   color: blue;
@@ -55,7 +55,7 @@ function Greeting ({ name }) {
 *The same caveats to using objects with css apply to this.*
 
 ```jsx
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 const H1 = styled.h1({
   fontSize: 20

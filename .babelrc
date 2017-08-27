@@ -3,11 +3,30 @@
     [
       "env",
       {
-        "loose": true
+        "loose": true,
+        "exclude": ["transform-es2015-typeof-symbol"]        
       }
     ],
     "stage-0",
     "react",
     "flow"
-  ]
+  ],
+  "plugins": ["babel-plugin-preval"],
+  "env": {
+    "test": {
+      "presets": [
+        "flow",
+        [
+          "env",
+          {
+            "loose": true,
+            "exclude": ["transform-es2015-typeof-symbol"]
+          }
+        ],
+        "react",
+        "stage-2"
+      ],
+      "plugins": ["./babel-plugin-emotion-test", "preval"]    
+    }
+  }
 }

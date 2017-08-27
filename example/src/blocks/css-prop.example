@@ -12,7 +12,7 @@ render(
       background-color: #8c81d8;
       border-radius: 4px;
 
-      img {
+      & img {
         width: 96px;
         height: 96px;
         border-radius: 50%;
@@ -24,7 +24,7 @@ render(
       }
     `}
   >
-    <img src={avatarUrl} />
+    <img src={logoUrl} />
   </div>,
   mountNode
 )

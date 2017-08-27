@@ -1,9 +1,6 @@
 ## CSS prop
 
 ```jsx
-// To use the css prop you have to import css just like importing React for jsx
-import { css } from 'emotion'
-
 
 function SomeComponent (props) {
   // Create styles as if you're calling css and the class will be applied to the component
