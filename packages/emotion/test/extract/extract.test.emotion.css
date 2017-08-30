@@ -13,6 +13,9 @@
 .styled-H1-1f87tx4 span:hover:after {
     content: "after"
 }
+.styled-H1-1t8i2zo {
+    font-size: var(--styled-H1-1t8i2zo-0)
+}
 .styled-H1-131pfth {
     name: FancyH1;
     font-size: 38px
@@ -24,4 +27,8 @@ html {
     font-family: sans-serif;
     color: yellow;
     background-color: purple
+}
+.vars-cls-um1go4 {
+    color: var(--vars-cls-um1go4-0);
+    height: var(--vars-cls-um1go4-1)
 }

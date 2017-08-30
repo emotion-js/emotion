@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extractCritical returns static css 1`] = `Object {}`;
+
+exports[`extractCritical returns static css 2`] = `
+Object {
+  "css": ".css-vars-1py8q97{--styled-Image-157rves-0:css-bounce-h7fy2z;--styled-Image-157rves-1:red;}",
+  "html": "<main class=\\"styled-Main-noat5a styled-Main-qn7rd00\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"797540537\\"><img size=\\"30\\" class=\\"styled-Image-157rves css-vars-1py8q97 styled-Image-qn7rd01\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"styled-Image-157rves css-vars-1py8q97 styled-Image-qn7rd01\\" data-reactid=\\"3\\"/><img class=\\"styled-Image-157rves css-vars-1py8q97 styled-Image-qn7rd01\\" data-reactid=\\"4\\"/></main>",
+  "ids": Array [
+    "1py8q97",
+  ],
+  "rules": Array [
+    Object {
+      "cssText": ".css-vars-1py8q97{--styled-Image-157rves-0:css-bounce-h7fy2z;--styled-Image-157rves-1:red;}",
+    },
+  ],
+}
+`;
+
+exports[`extractCritical returns static css 3`] = `
+Object {
+  "css": "",
+  "html": "<main class=\\"styled-Main-noat5a styled-Main-qn7rd00\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"834153348\\"><div data-reactid=\\"2\\">Hello</div></main>",
+  "ids": Array [
+    "1py8q97",
+  ],
+  "rules": Array [],
+}
+`;
+
+exports[`hydration only rules that are not in the critical css are inserted 1`] = `
+Object {
+  "css": ".css-vars-1py8q97{--styled-Image-157rves-0:css-bounce-h7fy2z;--styled-Image-157rves-1:red;}",
+  "html": "<main class=\\"styled-Main-noat5a styled-Main-qn7rd00\\" data-reactroot=\\"\\" data-reactid=\\"1\\" data-react-checksum=\\"797540537\\"><img size=\\"30\\" class=\\"styled-Image-157rves css-vars-1py8q97 styled-Image-qn7rd01\\" data-reactid=\\"2\\"/><img size=\\"100\\" class=\\"styled-Image-157rves css-vars-1py8q97 styled-Image-qn7rd01\\" data-reactid=\\"3\\"/><img class=\\"styled-Image-157rves css-vars-1py8q97 styled-Image-qn7rd01\\" data-reactid=\\"4\\"/></main>",
+  "ids": Array [
+    "1py8q97",
+  ],
+  "rules": Array [
+    Object {
+      "cssText": ".css-vars-1py8q97{--styled-Image-157rves-0:css-bounce-h7fy2z;--styled-Image-157rves-1:red;}",
+    },
+  ],
+}
+`;
+
+exports[`hydration only rules that are not in the critical css are inserted 2`] = `Array []`;

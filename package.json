@@ -51,7 +51,7 @@
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
-    "prettier-eslint-cli": "^4.0.3",
+    "prettier-eslint-cli": "^4.2.1",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",

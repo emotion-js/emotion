@@ -273,6 +273,9 @@ describe('babel css', () => {
     })
   })
   describe('extract', () => {
+    afterEach(() => {
+      fs.writeFileSync.mockClear()
+    })
     test('css basic', () => {
       const basic = `
         css\`
@@ -288,7 +291,23 @@ describe('babel css', () => {
         babelrc: false
       })
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
+      expect(fs.writeFileSync).toHaveBeenCalled()
+      expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
+    })
+
+    test('css with dynamic values', () => {
+      const basic = `
+        css\`
+        margin: 12px 48px;
+        color: \${color};
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { extractStatic: true }]],
+        filename: __filename,
+        babelrc: false
+      })
+      expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalled()
       expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
     })
 
@@ -309,8 +328,8 @@ describe('babel css', () => {
         babelrc: false
       })
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
-      expect(fs.writeFileSync.mock.calls[1][1]).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalled()
+      expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
     })
     test('composes no dynamic', () => {
       const basic = `
@@ -329,8 +348,8 @@ describe('babel css', () => {
         babelrc: false
       })
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
-      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
+      expect(fs.writeFileSync).toHaveBeenCalled()
+      expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
     })
 
     test('basic object support', () => {
@@ -339,6 +358,7 @@ describe('babel css', () => {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).not.toHaveBeenCalled()
     })
 
     test('prefixed objects', () => {
@@ -357,6 +377,7 @@ describe('babel css', () => {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).not.toHaveBeenCalled()
     })
 
     test('dynamic property objects', () => {
@@ -370,6 +391,7 @@ describe('babel css', () => {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).not.toHaveBeenCalled()
     })
 
     test('prefixed array of objects', () => {
@@ -389,6 +411,7 @@ describe('babel css', () => {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()
+      expect(fs.writeFileSync).not.toHaveBeenCalled()
     })
 
     test('composes with objects', () => {
@@ -407,8 +430,7 @@ describe('babel css', () => {
       })
 
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
-      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
+      expect(fs.writeFileSync).not.toHaveBeenCalled()
     })
   })
 })

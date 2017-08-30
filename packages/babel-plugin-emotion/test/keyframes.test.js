@@ -40,6 +40,9 @@ describe('babel keyframes', () => {
     })
   })
   describe('extract', () => {
+    afterEach(() => {
+      fs.writeFileSync.mockClear()
+    })
     test('keyframes basic', () => {
       const basic = `
         const rotate360 = keyframes\`
@@ -77,7 +80,7 @@ describe('babel keyframes', () => {
         filename: __filename
       })
       expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
+      expect(fs.writeFileSync).not.toHaveBeenCalled()
     })
   })
 })

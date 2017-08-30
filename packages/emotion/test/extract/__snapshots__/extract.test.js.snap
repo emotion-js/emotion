@@ -2,7 +2,28 @@
 
 exports[`styled basic render nested 1`] = `
 <h1
-  className="styled-H1-1f87tx4 styled-H1-1sjwp4j1"
+  className="styled-H1-1f87tx4 styled-H1-58vywm1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled css with dynamic values 1`] = `
+.glamor-0 {
+  --vars-cls-um1go4-0: yellow;
+  --vars-cls-um1go4-1: 15rem;
+}
+
+<h1
+  className="glamor-0 vars-cls-um1go4"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled injectGlobal with dynamic values 1`] = `
+<h1
+  className={undefined}
 >
   hello world
 </h1>
@@ -10,7 +31,7 @@ exports[`styled basic render nested 1`] = `
 
 exports[`styled name 1`] = `
 <h1
-  className="styled-H1-131pfth styled-H1-1sjwp4j2"
+  className="styled-H1-131pfth styled-H1-58vywm3"
 >
   hello world
 </h1>
@@ -18,7 +39,19 @@ exports[`styled name 1`] = `
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="styled-H1-ijh7uz styled-H1-1sjwp4j0"
+  className="styled-H1-ijh7uz styled-H1-58vywm0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled with expressions 1`] = `
+.glamor-0 {
+  --styled-H1-1t8i2zo-0: 24;
+}
+
+<h1
+  className="styled-H1-1t8i2zo glamor-0 styled-H1-58vywm2"
 >
   hello world
 </h1>
@@ -40,6 +73,9 @@ exports[`styled writes the correct css 1`] = `
 .styled-H1-1f87tx4 span:hover:after {
     content: \\"after\\"
 }
+.styled-H1-1t8i2zo {
+    font-size: var(--styled-H1-1t8i2zo-0)
+}
 .styled-H1-131pfth {
     name: FancyH1;
     font-size: 38px
@@ -51,5 +87,9 @@ html {
     font-family: sans-serif;
     color: yellow;
     background-color: purple
+}
+.vars-cls-um1go4 {
+    color: var(--vars-cls-um1go4-0);
+    height: var(--vars-cls-um1go4-1)
 }"
 `;
