@@ -26,7 +26,7 @@ describe('styled', () => {
           color: green;
 
           &:after {
-            content: "after";
+            content: 'after';
           }
         }
       }

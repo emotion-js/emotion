@@ -35,9 +35,7 @@ describe('css macro', () => {
   })
 
   test('composes', () => {
-    const cls1 = css`
-      display: flex;
-    `
+    const cls1 = css`display: flex;`
     const cls2 = css`
       composes: ${cls1};
       justifyContent: center;

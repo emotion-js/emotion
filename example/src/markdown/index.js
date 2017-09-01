@@ -7,8 +7,12 @@ import styles from './index.css'
 
 const MarkdownContainer = styled('div')`
   composes: ${styles.markdownContainer};
-  
-  h1, h2, h3, h4, h5 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     margin: 16px 0 8px 0;
     letter-spacing: 1px;
   }
@@ -20,11 +24,11 @@ const Link = withTheme(styled('a')`
   margin-right: 8px;
   text-decoration: none;
   color: ${p => p.theme.purple};
-  
+
   & p & {
     margin: 0;
   }
-  
+
   &:hover {
     color: ${p => p.theme.gold};
   }
@@ -35,11 +39,10 @@ const Paragraph = styled('p')`
   padding: 2px;
   font-size: 0.85rem;
   color: ${colors.gray[8]};
-  
+
   & a {
     font-size: 0.85rem;
   }
-  
 `
 
 const Code = styled('code')`
@@ -48,7 +51,7 @@ const Code = styled('code')`
   color: ${colors.gray[8]};
   background-color: ${colors.gray[1]};
   padding: 1px;
-  
+
   & p & {
     font-size: 0.99rem;
   }
@@ -88,9 +91,7 @@ export default ({ markdown }) => {
           CodeBlock: props => {
             return (
               <CodeBlock key={props.nodeKey} className={props.className}>
-                <Code>
-                  {props.literal}
-                </Code>
+                <Code>{props.literal}</Code>
               </CodeBlock>
             )
           }

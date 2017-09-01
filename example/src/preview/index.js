@@ -17,7 +17,7 @@ const PreviewContent = styled('div')`
 const PreviewWrapper = styled(PreviewContent)`
   position: relative;
   flex: 1 1 30%;
-  
+
   & .preview-display {
     width: 100%;
     height: 100%;
@@ -155,11 +155,7 @@ class Preview extends Component {
     return (
       <PreviewWrapper>
         <div ref="mount" className="preview-display" />
-        {error !== null
-          ? <ErrorWrapper>
-              {error}
-            </ErrorWrapper>
-          : null}
+        {error !== null ? <ErrorWrapper>{error}</ErrorWrapper> : null}
       </PreviewWrapper>
     )
   }

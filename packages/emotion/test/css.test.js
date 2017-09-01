@@ -7,9 +7,7 @@ expect.addSnapshotSerializer(serializer(sheet))
 
 describe('css', () => {
   test('float property', () => {
-    const cls1 = css`
-      float: left
-    `
+    const cls1 = css`float: left;`
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -46,9 +44,12 @@ describe('css', () => {
   test('random expression', () => {
     const cls2 = css`
       font-size: 20px;
-      @media(min-width: 420px) {
+      @media (min-width: 420px) {
         color: blue;
-        ${css`width: 96px; height: 96px;`};
+        ${css`
+          width: 96px;
+          height: 96px;
+        `};
         line-height: 40px;
       }
       background: green;
@@ -58,9 +59,7 @@ describe('css', () => {
   })
 
   test('composes', () => {
-    const cls1 = css`
-      display: flex;
-    `
+    const cls1 = css`display: flex;`
     const cls2 = css`
       composes: ${cls1};
       justifyContent: center;
@@ -114,29 +113,25 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('@supports', () => {
-    const cls1 = css`
-      @supports (display: grid) {
-        display: grid;
-      }
-    `
+    const cls1 = css`@supports (display: grid) {display: grid;}`
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
   test('nested at rules', () => {
     const cls1 = css`
-    @supports (display: grid) {
-      display: grid;
-      @supports (display: flex) {
-        display: flex;
+      @supports (display: grid) {
+        display: grid;
+        @supports (display: flex) {
+          display: flex;
+        }
       }
-    }
-    @media (min-width: 420px) {
-      color: pink;
-      @media (max-width: 500px) {
-        color: hotpink;
+      @media (min-width: 420px) {
+        color: pink;
+        @media (max-width: 500px) {
+          color: hotpink;
+        }
       }
-    }
-  `
+    `
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -189,9 +184,7 @@ describe('css', () => {
     expect(tree2).toMatchSnapshot()
   })
   test('nested selector without parent declaration', () => {
-    const cls1 = css`
-      color: blue;
-    `
+    const cls1 = css`color: blue;`
     const cls2 = css`
       & .${cls1} {
         color: red;
@@ -221,9 +214,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('flushes correctly', () => {
-    const cls1 = css`
-    display: flex;
-  `
+    const cls1 = css`display: flex;`
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
     flush()
