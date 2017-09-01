@@ -84,17 +84,19 @@ const getComponents = () => {
     }
   `
 
-  const Page1 = () =>
+  const Page1 = () => (
     <Main>
       <Image size={30} />
       <Image size={100} />
       <Image />
     </Main>
+  )
 
-  const Page2 = () =>
+  const Page2 = () => (
     <Main>
       <div>Hello</div>
     </Main>
+  )
   return { Page1, Page2 }
 }
 

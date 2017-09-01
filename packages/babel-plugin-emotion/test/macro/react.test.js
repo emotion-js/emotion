@@ -38,9 +38,7 @@ describe('styled', () => {
 
   test('call expression', () => {
     const fontSize = 20
-    const H1 = styled('h1')`
-      font-size: ${fontSize}px;
-    `
+    const H1 = styled('h1')`font-size: ${fontSize}px;`
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
@@ -49,11 +47,9 @@ describe('styled', () => {
 
   test('composition', () => {
     const fontSize = 20
-    const H1 = styled('h1')`
-      font-size: ${fontSize + 'px'};
-    `
+    const H1 = styled('h1')`font-size: ${fontSize + 'px'};`
 
-    const H2 = styled(H1)`font-size: ${fontSize * 2 / 3}`
+    const H2 = styled(H1)`font-size: ${fontSize * 2 / 3};`
 
     const tree = renderer.create(<H2>hello world</H2>).toJSON()
 
@@ -84,9 +80,7 @@ describe('styled', () => {
 
   test('function in expression', () => {
     const fontSize = 20
-    const H1 = styled('h1')`
-      font-size: ${fontSize};
-    `
+    const H1 = styled('h1')`font-size: ${fontSize};`
 
     const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale};`
 
@@ -98,9 +92,7 @@ describe('styled', () => {
   test('composes', () => {
     const fontSize = '20px'
 
-    const cssA = css`
-      color: blue;
-    `
+    const cssA = css`color: blue;`
 
     const cssB = css`
       composes: ${cssA};
@@ -112,7 +104,7 @@ describe('styled', () => {
       font-size: ${fontSize};
     `
 
-    const H2 = styled(H1)`font-size:32px;`
+    const H2 = styled(H1)`font-size: 32px;`
 
     const tree = renderer.create(<H2 scale={2}>hello world</H2>).toJSON()
 
@@ -123,7 +115,9 @@ describe('styled', () => {
     const cssA = {
       color: lighten(0.2, '#000'),
       'font-size': modularScale(1),
-      [hiDPI(1.5).replace('\n', ' ').trim()]: {
+      [hiDPI(1.5)
+        .replace('\n', ' ')
+        .trim()]: {
         'font-size': modularScale(1.25)
       }
     }
@@ -138,7 +132,7 @@ describe('styled', () => {
       font-size: ${modularScale(4)};
     `
 
-    const H2 = styled(H1)`font-size:32px;`
+    const H2 = styled(H1)`font-size: 32px;`
 
     const tree = renderer.create(<H2 scale={2}>hello world</H2>).toJSON()
 
@@ -167,9 +161,7 @@ describe('styled', () => {
 
     const fontSize = '20px'
 
-    const cssA = css`
-      color: blue;
-    `
+    const cssA = css`color: blue;`
 
     const cssB = css`
       composes: ${cssA};
@@ -186,7 +178,7 @@ describe('styled', () => {
       color: ${p => p.theme.purple};
     `)
 
-    const H2 = styled(H1)`font-size:32px;`
+    const H2 = styled(H1)`font-size: 32px;`
     const refFunction = jest.fn()
     const tree = renderer
       .create(
@@ -203,13 +195,9 @@ describe('styled', () => {
 
   test('higher order component', () => {
     const fontSize = 20
-    const Content = styled('div')`
-      font-size: ${fontSize}px;
-    `
+    const Content = styled('div')`font-size: ${fontSize}px;`
 
-    const squirtleBlueBackground = css`
-      background-color: #7FC8D6;
-    `
+    const squirtleBlueBackground = css`background-color: #7fc8d6;`
 
     const flexColumn = Component => {
       const NewComponent = styled(Component)`
@@ -231,13 +219,9 @@ describe('styled', () => {
   })
 
   test('composes based on props', () => {
-    const cssA = css`
-      color: blue;
-    `
+    const cssA = css`color: blue;`
 
-    const cssB = css`
-      color: green;
-    `
+    const cssB = css`color: green;`
 
     const H1 = styled('h1')`
       composes: ${props => {

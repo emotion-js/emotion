@@ -49,9 +49,7 @@ describe('styled', () => {
 
   test('call expression', () => {
     const fontSize = 20
-    const H1 = styled('h1')`
-      font-size: ${fontSize}px;
-    `
+    const H1 = styled('h1')`font-size: ${fontSize}px;`
 
     const tree = renderer
       .create(<H1 className={'legacy__class'}>hello world</H1>)
@@ -97,9 +95,9 @@ describe('styled', () => {
     }
 
     const mq = css`
-      @media(min-width: 420px) {
+      @media (min-width: 420px) {
         color: blue;
-        @media(min-width: 520px) {
+        @media (min-width: 520px) {
           color: green;
         }
       }
@@ -107,7 +105,7 @@ describe('styled', () => {
 
     const H1 = styled('h1')`
       ${mq};
-      ${props => props.prop && css`font-size: 1rem`};
+      ${props => props.prop && css`font-size: 1rem;`};
       ${margin(0, 'auto', 0, 'auto')};
       color: green;
     `
@@ -125,7 +123,7 @@ describe('styled', () => {
 
   test('random expressions undefined return', () => {
     const H1 = styled('h1')`
-      ${props => props.prop && css`font-size: 1rem`};
+      ${props => props.prop && css`font-size: 1rem;`};
       color: green;
     `
 
@@ -165,11 +163,9 @@ describe('styled', () => {
 
   test('composition', () => {
     const fontSize = 20
-    const H1 = styled('h1')`
-      font-size: ${fontSize + 'px'};
-    `
+    const H1 = styled('h1')`font-size: ${fontSize + 'px'};`
 
-    const H2 = styled(H1)`font-size: ${fontSize * 2 / 3}`
+    const H2 = styled(H1)`font-size: ${fontSize * 2 / 3};`
 
     const tree = renderer
       .create(<H2 className={'legacy__class'}>hello world</H2>)
@@ -318,11 +314,9 @@ describe('styled', () => {
 
   test('function in expression', () => {
     const fontSize = 20
-    const H1 = styled('h1')`
-      font-size: ${fontSize + 'px'};
-    `
+    const H1 = styled('h1')`font-size: ${fontSize + 'px'};`
 
-    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale + 'px'}`
+    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale + 'px'};`
 
     const tree = renderer
       .create(
@@ -338,9 +332,7 @@ describe('styled', () => {
   test('composes', () => {
     const fontSize = '20px'
 
-    const cssA = css`
-      color: blue;
-    `
+    const cssA = css`color: blue;`
 
     const cssB = css`
       composes: ${cssA};
@@ -353,7 +345,7 @@ describe('styled', () => {
       font-size: ${fontSize};
     `
 
-    const FinalH2 = styled(BlueH1)`font-size:32px;`
+    const FinalH2 = styled(BlueH1)`font-size: 32px;`
 
     const tree = renderer
       .create(
@@ -370,7 +362,9 @@ describe('styled', () => {
     const cssA = {
       color: lighten(0.2, '#000'),
       fontSize: modularScale(1),
-      [hiDPI(1.5).replace('\n', ' ').trim()]: {
+      [hiDPI(1.5)
+        .replace('\n', ' ')
+        .trim()]: {
         fontSize: modularScale(1.25)
       }
     }
@@ -385,7 +379,7 @@ describe('styled', () => {
       font-size: ${modularScale(4)};
     `
 
-    const H2 = styled(H1)`font-size:32px;`
+    const H2 = styled(H1)`font-size: 32px;`
 
     const tree = renderer
       .create(
@@ -420,9 +414,7 @@ describe('styled', () => {
 
     const fontSize = '20px'
 
-    const cssA = css`
-      color: blue;
-    `
+    const cssA = css`color: blue;`
 
     const cssB = css`
       composes: ${cssA};
@@ -439,7 +431,7 @@ describe('styled', () => {
       color: ${p => p.theme.purple};
     `)
 
-    const H2 = styled(H1)`font-size:32px;`
+    const H2 = styled(H1)`font-size: 32px;`
 
     const refFunction = jest.fn()
 
@@ -458,13 +450,9 @@ describe('styled', () => {
 
   test('higher order component', () => {
     const fontSize = 20
-    const Content = styled('div')`
-      font-size: ${fontSize}px;
-    `
+    const Content = styled('div')`font-size: ${fontSize}px;`
 
-    const squirtleBlueBackground = css`
-      background-color: #7FC8D6;
-    `
+    const squirtleBlueBackground = css`background-color: #7fc8d6;`
 
     const flexColumn = Component => {
       const NewComponent = styled(Component)`
@@ -486,17 +474,11 @@ describe('styled', () => {
   })
 
   test('composes based on props', () => {
-    const cssA = css`
-      color: blue;
-    `
+    const cssA = css`color: blue;`
 
-    const cssB = css`
-      color: green;
-    `
+    const cssB = css`color: green;`
 
-    const H1 = styled('h1')`
-      composes: ${props => (props.a ? cssA : cssB)};
-    `
+    const H1 = styled('h1')`composes: ${props => (props.a ? cssA : cssB)};`
 
     const tree = renderer.create(<H1 a>hello world</H1>).toJSON()
 
@@ -527,9 +509,7 @@ describe('styled', () => {
 
   test('composing components', () => {
     const Button = styled.button`color: green;`
-    const OtherButton = styled(Button)`
-      display: none;
-    `
+    const OtherButton = styled(Button)`display: none;`
 
     const AnotherButton = styled(OtherButton)`
       display: flex;
@@ -544,10 +524,11 @@ describe('styled', () => {
 
   test('change theme', () => {
     const Div = withTheme(styled.div`color: ${props => props.theme.primary};`)
-    const TestComponent = props =>
+    const TestComponent = props => (
       <ThemeProvider theme={props.theme}>
         {props.renderChild ? <Div>this will be green then pink</Div> : null}
       </ThemeProvider>
+    )
     const wrapper = mount(
       <TestComponent renderChild theme={{ primary: 'green' }} />
     )

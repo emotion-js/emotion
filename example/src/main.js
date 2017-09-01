@@ -67,27 +67,27 @@ const margin = (t, r, b, l) => {
 
 const PlaygroundWrapper = styled('div')`
   font-family: 'Oxygen', sans-serif;
-  flex:1;
+  flex: 1;
   color: #343a40;
   background: #f8f9fa;
-  
+
   & .inner {
     ${margin(0, 'auto', 0, 'auto')};
     width: calc(100% - 32px);
     max-width: 960px;
-    
+
     @media (min-width: 960px) {
       width: 100%;
     }
   }
-  
+
   & .header {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    
+
     & img {
       display: block;
       width: 128px;

@@ -14,9 +14,7 @@ describe('prefixing', () => {
     expect(tree).toMatchSnapshot()
   })
   test('css', () => {
-    const cls1 = css`
-      display: flex;
-    `
+    const cls1 = css`display: flex;`
     const tree = renderer
       .create(<div className={cls1}>hello world</div>)
       .toJSON()
