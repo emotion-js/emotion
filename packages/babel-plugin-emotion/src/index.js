@@ -228,13 +228,50 @@ export function replaceCssObjectCallExpression(path, identifier, t) {
 
 const visited = Symbol('visited')
 
+const parseImports = (node, currentNames) => {
+  const names = Object.assign({}, currentNames)
+  const imports = node.specifiers.filter(
+    specifier =>
+      specifier.type === 'ImportDefaultSpecifier' ||
+      specifier.type === 'ImportSpecifier'
+  )
+
+  imports.forEach(singleImport => {
+    if (singleImport.imported) {
+      // Is helper method
+      names[singleImport.imported.name] = singleImport.local.name
+    } else {
+      // Is default import
+      names.default = singleImport.local.name
+    }
+  })
+
+  return names
+}
 export default function(babel) {
   const { types: t } = babel
+
+  let importedNames = {
+    default: 'styled',
+    css: 'css',
+    keyframes: 'keyframes',
+    injectGlobal: 'injectGlobal'
+  }
 
   return {
     name: 'emotion', // not required
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
+      ImportDeclaration: {
+        enter({ node }) {
+          if (node.source.value === 'emotion') {
+            importedNames = {
+              ...importedNames,
+              ...parseImports(node)
+            }
+          }
+        }
+      },
       Program: {
         enter(path, state) {
           state.extractStatic =
@@ -295,10 +332,10 @@ export default function(babel) {
         try {
           if (
             (t.isCallExpression(path.node.callee) &&
-              path.node.callee.callee.name === 'styled') ||
+              path.node.callee.callee.name === importedNames.default) ||
             (t.isMemberExpression(path.node.callee) &&
               t.isIdentifier(path.node.callee.object) &&
-              path.node.callee.object.name === 'styled')
+              path.node.callee.object.name === importedNames.default)
           ) {
             const identifier = t.isCallExpression(path.node.callee)
               ? path.node.callee.callee
@@ -324,8 +361,9 @@ export default function(babel) {
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
-          path.node.tag.object.name === 'styled'
+          path.node.tag.object.name === importedNames.default
         ) {
+          console.log('TaggedTemplateExpression', importedNames.default)
           path.replaceWith(
             buildStyledCallExpression(
               path.node.tag.object,
@@ -338,8 +376,9 @@ export default function(babel) {
         } else if (
           // styled('h1')`color:${color};`
           t.isCallExpression(path.node.tag) &&
-          path.node.tag.callee.name === 'styled'
+          path.node.tag.callee.name === importedNames.default
         ) {
+          console.log('isCallExpression', importedNames.default)
           path.replaceWith(
             buildStyledCallExpression(
               path.node.tag.callee,
