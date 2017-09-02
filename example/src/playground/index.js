@@ -11,7 +11,8 @@ import styled from 'emotion/react'
 import colors from 'open-color'
 
 const dracula = css`
-  & .cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {
+  & .cm-s-dracula.CodeMirror,
+  .cm-s-dracula .CodeMirror-gutters {
     background-color: #282a36 !important;
     color: #f8f8f2 !important;
     border: none;
@@ -26,26 +27,31 @@ const dracula = css`
   }
 
   & .cm-s-dracula .CodeMirror-linenumber {
-    color: #6D8A88;
+    color: #6d8a88;
   }
 
   & .cm-s-dracula .CodeMirror-selected {
-    background: rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.1);
   }
 
-  & .cm-s-dracula .CodeMirror-line::selection, .cm-s-dracula .CodeMirror-line > span::selection, .cm-s-dracula .CodeMirror-line > span > span::selection {
-    background: rgba(255, 255, 255, 0.10);
+  & .cm-s-dracula .CodeMirror-line::selection,
+  .cm-s-dracula .CodeMirror-line > span::selection,
+  .cm-s-dracula .CodeMirror-line > span > span::selection {
+    background: rgba(255, 255, 255, 0.1);
   }
 
-  & .cm-s-dracula .CodeMirror-line::-moz-selection, .cm-s-dracula .CodeMirror-line > span::-moz-selection, .cm-s-dracula .CodeMirror-line > span > span::-moz-selection {
-    background: rgba(255, 255, 255, 0.10);
+  & .cm-s-dracula .CodeMirror-line::-moz-selection,
+  .cm-s-dracula .CodeMirror-line > span::-moz-selection,
+  .cm-s-dracula .CodeMirror-line > span > span::-moz-selection {
+    background: rgba(255, 255, 255, 0.1);
   }
 
   & .cm-s-dracula span.cm-comment {
     color: #6272a4;
   }
 
-  & .cm-s-dracula span.cm-string, .cm-s-dracula span.cm-string-2 {
+  & .cm-s-dracula span.cm-string,
+  .cm-s-dracula span.cm-string-2 {
     color: #f1fa8c;
   }
 
@@ -101,7 +107,8 @@ const dracula = css`
     color: #50fa7b;
   }
 
-  & .cm-s-dracula span.cm-variable-3, .cm-s-dracula span.cm-type {
+  & .cm-s-dracula span.cm-variable-3,
+  .cm-s-dracula span.cm-type {
     color: #ffb86c;
   }
 
@@ -121,13 +128,13 @@ const PlaygroundContent = styled('div')`
   margin: 0 auto 16px auto;
   padding: 16px 0;
   max-width: 560px;
-  
+
   & .ReactCodeMirror {
     flex: 1 1 70%;
     & textarea {
       border-radius: 4px;
     }
-    
+
     & .CodeMirror {
       height: auto;
       border-radius: 4px;

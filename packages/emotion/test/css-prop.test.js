@@ -40,20 +40,22 @@ describe('css prop react', () => {
     const tiny = 6
 
     const bold = css`
-        display: flex;
-        font-weight: bold;`
+      display: flex;
+      font-weight: bold;
+    `
 
     const big = css`
-        composes: ${bold};
-        font-size: ${huge}`
+      composes: ${bold};
+      font-size: ${huge};
+    `
 
-    const small = css`
-        font-size: ${tiny}`
+    const small = css`font-size: ${tiny};`
 
     const flexCenter = css`
-        display: flex;
-        justify-content: center;
-        align-items: center`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    `
 
     const tree = renderer
       .create(
