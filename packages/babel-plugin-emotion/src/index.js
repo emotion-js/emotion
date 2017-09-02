@@ -248,32 +248,24 @@ const parseImports = (node, currentNames) => {
 
   return names
 }
+
+const defaultImportedNames = {
+  default: 'styled',
+  css: 'css',
+  keyframes: 'keyframes',
+  injectGlobal: 'injectGlobal'
+}
+
 export default function(babel) {
   const { types: t } = babel
-
-  let importedNames = {
-    default: 'styled',
-    css: 'css',
-    keyframes: 'keyframes',
-    injectGlobal: 'injectGlobal'
-  }
 
   return {
     name: 'emotion', // not required
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
-      ImportDeclaration: {
-        enter({ node }) {
-          if (node.source.value === 'emotion') {
-            importedNames = {
-              ...importedNames,
-              ...parseImports(node)
-            }
-          }
-        }
-      },
       Program: {
         enter(path, state) {
+          state.importedNames = defaultImportedNames
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
@@ -322,6 +314,17 @@ export default function(babel) {
           }
         }
       },
+      ImportDeclaration: {
+        enter({ node }, state) {
+          if (node.source.value.indexOf('emotion') !== -1) {
+            state.importedNames = {
+              ...defaultImportedNames, // defaults
+              ...parseImports(node), // dynamic imports
+              ...state.opts.importedNames // babel opts
+            }
+          }
+        }
+      },
       JSXOpeningElement(path, state) {
         cssProps(path, state, t)
       },
@@ -332,10 +335,10 @@ export default function(babel) {
         try {
           if (
             (t.isCallExpression(path.node.callee) &&
-              path.node.callee.callee.name === importedNames.default) ||
+              path.node.callee.callee.name === state.importedNames.default) ||
             (t.isMemberExpression(path.node.callee) &&
               t.isIdentifier(path.node.callee.object) &&
-              path.node.callee.object.name === importedNames.default)
+              path.node.callee.object.name === state.importedNames.default)
           ) {
             const identifier = t.isCallExpression(path.node.callee)
               ? path.node.callee.callee
@@ -361,9 +364,8 @@ export default function(babel) {
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
-          path.node.tag.object.name === importedNames.default
+          path.node.tag.object.name === state.importedNames.default
         ) {
-          console.log('TaggedTemplateExpression', importedNames.default)
           path.replaceWith(
             buildStyledCallExpression(
               path.node.tag.object,
@@ -376,9 +378,8 @@ export default function(babel) {
         } else if (
           // styled('h1')`color:${color};`
           t.isCallExpression(path.node.tag) &&
-          path.node.tag.callee.name === importedNames.default
+          path.node.tag.callee.name === state.importedNames.default
         ) {
-          console.log('isCallExpression', importedNames.default)
           path.replaceWith(
             buildStyledCallExpression(
               path.node.tag.callee,
