@@ -1,0 +1,55 @@
+{
+  "name": "emotion-theming",
+  "version": "1.0.0",
+  "description": "A CSS-in-JS theming solution, forked from iamstarkov/theming.",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "run-s clean babel:*",
+    "babel:cjs": "cross-env BABEL_ENV=cjs babel src -d dist/cjs",
+    "babel:esm": "cross-env BABEL_ENV=esm babel src -d dist/esm"
+  },
+  "repository": "https://github.com/tkh44/emotion",
+  "keywords": [
+    "react",
+    "theme",
+    "theming",
+    "emotion",
+    "cssinjs",
+    "css-in-js"
+  ],
+  "author": "Vladimir Starkov <iamstarkov@gmail.com> (https://iamstarkov.com)",
+  "contributors": [
+    "Evan Scott <probablyup@gmail.com> (https://github.com/probablyup)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tkh44/emotion/issues"
+  },
+  "homepage": "https://github.com/tkh44/emotion#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "cross-env": "^5.0.1",
+    "npm-run-all": "^4.0.2",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-test-renderer": "^15.5.4",
+    "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "brcast": "^2.0.0",
+    "hoist-non-react-statics": "^2.3.0",
+    "is-function": "^1.0.1",
+    "is-plain-object": "^2.0.1"
+  },
+  "peerDependencies": {
+    "prop-types": ">= 15",
+    "react": ">= 15"
+  }
+}
