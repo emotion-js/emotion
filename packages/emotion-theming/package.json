@@ -14,7 +14,7 @@
     "babel:cjs": "cross-env BABEL_ENV=cjs babel src -d dist/cjs",
     "babel:esm": "cross-env BABEL_ENV=esm babel src -d dist/esm"
   },
-  "repository": "https://github.com/tkh44/emotion",
+  "repository": "https://github.com/emotion-js/emotion",
   "keywords": [
     "react",
     "theme",
@@ -29,9 +29,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tkh44/emotion/issues"
+    "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "homepage": "https://github.com/tkh44/emotion#readme",
+  "homepage": "https://github.com/emotion-js/emotion#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "cross-env": "^5.0.1",
