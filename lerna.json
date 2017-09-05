@@ -4,7 +4,7 @@
     "packages/*"
   ],
   "changelog": {
-    "repo": "tkh44/emotion",
+    "repo": "emotion-js/emotion",
     "labels": {
       "Tag: Breaking Change": ":boom: Breaking Change",
       "Tag: Enhancement": ":rocket: Enhancement",
