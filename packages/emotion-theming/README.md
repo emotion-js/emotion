@@ -36,7 +36,7 @@ Theming is accomplished by placing a special higher-order component (HOC), `Them
 
 Here is a complete example for a typical React + Emotion app (information about each piece of the theming API is listed afterward):
 
-```js
+```jsx
 /** child.js */
 import React from 'react';
 import styled from 'react-emotion';
@@ -143,7 +143,7 @@ const Text = withTheme(styled.div`
 
 A function that wraps a given component in a specialized higher-order component. This "receiver" provides the current theme as a "prop" to the wrapped child and listens for changes. If the theme is updated, the child component will be re-rendered accordingly.
 
-```js
+```jsx
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withTheme } from 'emotion-theming';
@@ -187,7 +187,7 @@ console.log(channel); '__THEMING__';
 
 An advanced helper to hook theming into any React component.
 
-```js
+```jsx
 import { themeListener } from 'theming';
 
 function CustomWithTheme(Component) {
