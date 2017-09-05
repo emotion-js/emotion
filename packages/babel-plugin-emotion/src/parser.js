@@ -94,7 +94,7 @@ export function expandCSSFallbacks(style: { [string]: any }) {
 }
 
 // Parser
-export function parse(css, opts) {
+export function parse(css: string, opts: Object) {
   let input = new Input(css, opts)
 
   let parser = new EmotionParser(input)
