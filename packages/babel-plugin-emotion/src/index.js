@@ -113,12 +113,12 @@ const getFileHash = state => {
     moduleRoot && relative(moduleRoot, filename).replace(pathSep, '/')
   let moduleName = ''
   if (moduleRoot) {
-    const packageJsonString = fs.readFileSync(
+    const packageJsonContent = fs.readFileSync(
       pathJoin(moduleRoot, 'package.json')
     )
-    if (packageJsonString) {
+    if (packageJsonContent) {
       try {
-        moduleName = JSON.parse(packageJsonString).name
+        moduleName = JSON.parse(packageJsonContent.toString()).name
       } catch (e) {}
     }
   }
