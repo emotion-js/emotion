@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-emotion",
-  "version": "7.2.1",
+  "version": "7.2.2",
   "description": "A recommended babel preprocessing plugin for emotion, the The Next Generation of CSS-in-JS.",
   "main": "lib/index.js",
   "files": [
@@ -15,7 +15,7 @@
   "dependencies": {
     "autoprefixer": "^7.1.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
-    "emotion-utils": "^7.2.1",
+    "emotion-utils": "^7.2.2",
     "postcss": "^6.0.9",
     "postcss-js": "^1.0.0",
     "postcss-nested": "^2.1.1",
