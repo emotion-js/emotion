@@ -13,6 +13,24 @@ export function omit(
   return target
 }
 
+export function omitAssign(
+  testFn: (key: string, obj: any) => boolean,
+  target: { [string]: any }
+) {
+  let i = 2
+  let length = arguments.length
+  for (; i < length; i++) {
+    let source = arguments[i]
+    let key
+    for (key in source) {
+      if (testFn(key)) {
+        target[key] = source[key]
+      }
+    }
+  }
+  return target
+}
+
 export function keys(obj: { [string]: any }) {
   let k: string
   let out: Array<string> = []
@@ -94,6 +112,5 @@ export const assign: any =
     return target
   }
 
-export * from './hash'
-export { default as clean } from './glamor/clean'
-export * from './glamor/CSSPropertyOperations'
+export { hashString } from './hash'
+export { default as Stylis } from './stylis'
