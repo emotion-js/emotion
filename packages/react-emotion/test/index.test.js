@@ -618,4 +618,41 @@ describe('styled', () => {
       () => styled(undefined)`display: flex;`
     ).toThrowErrorMatchingSnapshot()
   })
+
+  test('custom html tag', () => {
+    const Button = styled('button')`color: green;`
+
+    const tree = renderer
+      .create(
+        <Button as="a" href="https://emotion.sh">
+          emotion.sh
+        </Button>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('custom component', () => {
+    const Button = styled('button')`color: green;`
+    const CustomComponent = styled('span')`color: red;`
+
+    const tree = renderer
+      .create(
+        <Button as={CustomComponent} onClick={() => {}}>
+          emotion.sh
+        </Button>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('fallback to localTag is as prop is falsy', () => {
+    const Button = styled('button')`color: green;`
+
+    const tree = renderer.create(<Button as={null}>emotion.sh</Button>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
 })
