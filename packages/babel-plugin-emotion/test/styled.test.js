@@ -370,7 +370,7 @@ describe('babel styled component', () => {
     test('config rename', () => {
       const basic = 'what.h1`color:blue;`'
       const { code } = babel.transform(basic, {
-        plugins: [[plugin, { importedNames: { default: 'what' } }]],
+        plugins: [[plugin, { importedNames: { styled: 'what' } }]],
         babelrc: false,
         filename: __filename
       })

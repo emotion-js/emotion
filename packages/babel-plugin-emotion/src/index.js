@@ -242,7 +242,7 @@ const parseImports = (node, currentNames) => {
       names[singleImport.imported.name] = singleImport.local.name
     } else {
       // Is default import
-      names.default = singleImport.local.name
+      names.styled = singleImport.local.name
     }
   })
 
@@ -250,7 +250,7 @@ const parseImports = (node, currentNames) => {
 }
 
 const defaultImportedNames = {
-  default: 'styled',
+  styled: 'styled',
   css: 'css',
   keyframes: 'keyframes',
   injectGlobal: 'injectGlobal'
@@ -338,10 +338,10 @@ export default function(babel) {
         try {
           if (
             (t.isCallExpression(path.node.callee) &&
-              path.node.callee.callee.name === state.importedNames.default) ||
+              path.node.callee.callee.name === state.importedNames.styled) ||
             (t.isMemberExpression(path.node.callee) &&
               t.isIdentifier(path.node.callee.object) &&
-              path.node.callee.object.name === state.importedNames.default)
+              path.node.callee.object.name === state.importedNames.styled)
           ) {
             const identifier = t.isCallExpression(path.node.callee)
               ? path.node.callee.callee
@@ -371,7 +371,7 @@ export default function(babel) {
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
-          path.node.tag.object.name === state.importedNames.default
+          path.node.tag.object.name === state.importedNames.styled
         ) {
           path.replaceWith(
             buildStyledCallExpression(
@@ -385,7 +385,7 @@ export default function(babel) {
         } else if (
           // styled('h1')`color:${color};`
           t.isCallExpression(path.node.tag) &&
-          path.node.tag.callee.name === state.importedNames.default
+          path.node.tag.callee.name === state.importedNames.styled
         ) {
           path.replaceWith(
             buildStyledCallExpression(
