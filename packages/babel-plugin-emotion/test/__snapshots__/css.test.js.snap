@@ -94,6 +94,12 @@ css({
 });"
 `;
 
+exports[`babel css extract dynamically renamed-import: basic object support 1`] = `
+"import { css as cows } from 'emotion';cows({
+  'display': '-webkit-box; display: -ms-flexbox; display: flex'
+});"
+`;
+
 exports[`babel css extract prefixed array of objects 1`] = `
 "
 css([{
@@ -279,6 +285,25 @@ exports[`babel css inline css basic 2`] = `
       \\"lineHeight\\": \\"40px\\"
     },
     \\"width\\": x0
+  }];
+});"
+`;
+
+exports[`babel css inline css basic 3`] = `
+"
+import { css as cows } from 'emotion';
+/*#__PURE__*/cows([], [widthVar], function createEmotionStyledRules(x0) {
+  return [{
+    'margin': '12px 48px',
+    'color': '#ffffff; color: blue',
+    'display': '-webkit-box; display: -ms-flexbox; display: flex',
+    'WebkitBoxFlex': '1',
+    'msFlex': '1 0 auto',
+    'flex': '1 0 auto',
+    '@media (min-width: 420px)': {
+      'lineHeight': '40px'
+    },
+    'width': x0
   }];
 });"
 `;
