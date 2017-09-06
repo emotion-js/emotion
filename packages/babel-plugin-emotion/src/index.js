@@ -228,32 +228,9 @@ export function replaceCssObjectCallExpression(path, identifier, t) {
 
 const visited = Symbol('visited')
 
-const parseImports = (node, currentNames) => {
-  const names = Object.assign({}, currentNames)
-  const imports = node.specifiers.filter(
-    specifier =>
-      specifier.type === 'ImportDefaultSpecifier' ||
-      specifier.type === 'ImportSpecifier'
-  )
-
-  imports.forEach(singleImport => {
-    if (singleImport.imported) {
-      // Is helper method
-      names[singleImport.imported.name] = singleImport.local.name
-    } else {
-      // Is default import
-      names.styled = singleImport.local.name
-    }
-  })
-
-  return names
-}
-
 const defaultImportedNames = {
   styled: 'styled',
-  css: 'css',
-  keyframes: 'keyframes',
-  injectGlobal: 'injectGlobal'
+  css: 'css'
 }
 
 export default function(babel) {
@@ -267,8 +244,28 @@ export default function(babel) {
         enter(path, state) {
           state.importedNames = {
             ...defaultImportedNames,
-            ...state.opts.importedNames // babel opts
+            ...state.opts.importedNames
           }
+          state.file.metadata.modules.imports.forEach(
+            ({ source, imported, specifiers }) => {
+              if (source.indexOf('emotion') !== -1) {
+                const importedNames = specifiers
+                  .filter(v => ['default', 'css'].includes(v.imported))
+                  .reduce(
+                    (acc, { imported, local }) => ({
+                      ...acc,
+                      [imported === 'default' ? 'styled' : imported]: local
+                    }),
+                    defaultImportedNames
+                  )
+                state.importedNames = {
+                  ...importedNames,
+                  ...state.opts.importedNames
+                }
+              }
+            }
+          )
+
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
@@ -314,17 +311,6 @@ export default function(babel) {
                 t.stringLiteral('emotion')
               )
             )
-          }
-        }
-      },
-      ImportDeclaration: {
-        enter({ node }, state) {
-          if (node.source.value.indexOf('emotion') !== -1) {
-            state.importedNames = {
-              ...defaultImportedNames, // defaults
-              ...parseImports(node), // dynamic imports
-              ...state.opts.importedNames // babel opts
-            }
           }
         }
       },
