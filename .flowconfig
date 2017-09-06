@@ -5,3 +5,4 @@
 [libs]
 
 [options]
+module.name_mapper='^\(emotion-utils\)$' -> '<PROJECT_ROOT>/packages/\1/src'
