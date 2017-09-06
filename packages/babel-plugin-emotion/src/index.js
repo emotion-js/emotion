@@ -265,7 +265,10 @@ export default function(babel) {
     visitor: {
       Program: {
         enter(path, state) {
-          state.importedNames = defaultImportedNames
+          state.importedNames = {
+            ...defaultImportedNames,
+            ...state.opts.importedNames // babel opts
+          }
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
@@ -348,11 +351,15 @@ export default function(babel) {
             )
           }
           if (
-            path.node.callee.name === 'css' &&
+            path.node.callee.name === state.importedNames.css &&
             !path.node.arguments[1] &&
             path.node.arguments[0]
           ) {
-            replaceCssObjectCallExpression(path, t.identifier('css'), t)
+            replaceCssObjectCallExpression(
+              path,
+              t.identifier(state.importedNames.css),
+              t
+            )
           }
         } catch (e) {
           throw path.buildCodeFrameError(e)
@@ -390,8 +397,13 @@ export default function(babel) {
             )
           )
         } else if (t.isIdentifier(path.node.tag)) {
-          if (path.node.tag.name === 'css') {
-            replaceCssWithCallExpression(path, t.identifier('css'), state, t)
+          if (path.node.tag.name === state.importedNames.css) {
+            replaceCssWithCallExpression(
+              path,
+              t.identifier(state.importedNames.css),
+              state,
+              t
+            )
           } else if (path.node.tag.name === 'keyframes') {
             replaceCssWithCallExpression(
               path,

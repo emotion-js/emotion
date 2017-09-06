@@ -27,6 +27,25 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
+    test('css basic', () => {
+      const basic = `
+        cows\`
+        margin: 12px 48px;
+        color: #ffffff;
+        display: flex;
+        flex: 1 0 auto;
+        color: blue;
+        @media(min-width: 420px) {
+          line-height: 40px;
+        }
+        width: \${widthVar};
+      \``
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { importedNames: { css: 'cows' } }]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
     test('css with float property', () => {
       const basic = `
         css\`
@@ -47,7 +66,7 @@ describe('babel css', () => {
           line-height: 26px;
         }
         background: green;
-        \${{ backgroundColor: "hotpink" }};        
+        \${{ backgroundColor: "hotpink" }};
       \`
       `
       const { code } = babel.transform(basic, {
@@ -337,6 +356,14 @@ describe('babel css', () => {
       const basic = `css({display: 'flex'})`
       const { code } = babel.transform(basic, {
         plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+
+    test('renamed-import: basic object support', () => {
+      const basic = `cows({display: 'flex'})`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { importedNames: { css: 'cows' } }]]
       })
       expect(code).toMatchSnapshot()
     })

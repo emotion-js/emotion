@@ -367,5 +367,14 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('config rename', () => {
+      const basic = 'what.h1`color:blue;`'
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { importedNames: { default: 'what' } }]],
+        babelrc: false,
+        filename: __filename
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
 })
