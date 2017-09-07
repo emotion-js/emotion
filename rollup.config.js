@@ -3,6 +3,7 @@ import uglify from 'rollup-plugin-uglify'
 import replace from 'rollup-plugin-replace'
 import babel from 'rollup-plugin-babel'
 import alias from 'rollup-plugin-alias'
+import cjs from 'rollup-plugin-commonjs'
 import path from 'path'
 
 const pkg = require(path.resolve(process.cwd(), './package.json'))
@@ -28,7 +29,10 @@ const config = {
         'react',
         'flow'
       ],
-      plugins: ['babel-plugin-preval'],
+      plugins: [
+        'preval',
+        'external-helpers'
+      ],
       babelrc: false
     })
   ],
@@ -61,6 +65,10 @@ if (process.env.UMD) {
       moduleName: pkg.name
     }
   ]
+}
+
+if (pkg.name === 'emotion-theming') {
+  config.plugins.push(cjs())
 }
 
 if (pkg.name === 'preact-emotion') {

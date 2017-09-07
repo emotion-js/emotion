@@ -1,10 +1,9 @@
 import { mount } from 'enzyme'
-import isFunction from 'is-function'
-import isPlainObject from 'is-plain-object'
 import React from 'react'
 
 import { Trap, Pure, Comp, getInterceptor, getChannel } from './test-helpers'
 import { channel, createTheming, ThemeProvider, withTheme } from '../src/index'
+import { isFunction, isPlainObject } from '../src/utils'
 
 test(`createTheming should be a function`, () => {
   const actual = isFunction(createTheming)

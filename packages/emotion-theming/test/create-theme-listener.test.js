@@ -1,11 +1,11 @@
 import createBroadcast from 'brcast'
 import { mount } from 'enzyme'
-import isPlainObject from 'is-plain-object'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import CHANNEL from '../src/channel'
 import createThemeListener from '../src/create-theme-listener'
+import { isPlainObject } from '../src/utils'
 import { getChannel, Pure, mountOptions, getInterceptor } from './test-helpers'
 
 test(`createThemeListener should be a function`, () => {

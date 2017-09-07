@@ -2,17 +2,17 @@
   "name": "emotion-theming",
   "version": "1.0.0",
   "description": "A CSS-in-JS theming solution, forked from iamstarkov/theming.",
-  "main": "dist/cjs",
-  "module": "dist/esm",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
   "files": [
     "src",
     "dist"
   ],
   "scripts": {
+    "build": "npm-run-all clean rollup rollup:umd",
     "clean": "rimraf dist",
-    "build": "run-s clean babel:*",
-    "babel:cjs": "cross-env BABEL_ENV=cjs babel src -d dist/cjs",
-    "babel:esm": "cross-env BABEL_ENV=esm babel src -d dist/esm"
+    "rollup": "rollup -c ../../rollup.config.js",
+    "rollup:umd": "UMD=true rollup -c ../../rollup.config.js"
   },
   "repository": "https://github.com/emotion-js/emotion",
   "keywords": [
@@ -34,13 +34,13 @@
   "homepage": "https://github.com/emotion-js/emotion#readme",
   "devDependencies": {
     "cross-env": "^5.0.1",
-    "prop-types": "^15.5.8"
+    "prop-types": "^15.5.8",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.43.0"
   },
   "dependencies": {
     "brcast": "^2.0.0",
-    "hoist-non-react-statics": "^2.3.0",
-    "is-function": "^1.0.1",
-    "is-plain-object": "^2.0.1"
+    "hoist-non-react-statics": "^2.3.0"
   },
   "peerDependencies": {
     "prop-types": ">= 15",

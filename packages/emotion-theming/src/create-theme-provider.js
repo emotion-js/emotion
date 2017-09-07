@@ -1,10 +1,9 @@
 import createBroadcast from 'brcast'
 import PropTypes from 'prop-types'
-import isFunction from 'is-function'
-import isPlainObject from 'is-plain-object'
 import React from 'react'
 
 import channel from './channel'
+import { isFunction, isPlainObject } from './utils'
 
 /**
  * Provide a theme to an entire react component tree via context

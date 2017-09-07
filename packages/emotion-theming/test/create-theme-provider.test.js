@@ -1,10 +1,10 @@
 import createBroadcast from 'brcast'
 import { mount } from 'enzyme'
-import isFunction from 'is-function'
 import React, { Component } from 'react'
 
 import createThemeProvider from '../src/create-theme-provider'
 import channel from '../src/channel'
+import { isFunction } from '../src/utils'
 
 import {
   getChannel,
