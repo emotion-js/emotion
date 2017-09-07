@@ -127,6 +127,7 @@
       "^react-emotion$": "<rootDir>/packages/react-emotion/src",
       "^emotion-utils$": "<rootDir>/packages/emotion-utils/src",
       "^emotion-server$": "<rootDir>/packages/emotion-server/src",
+      "^emotion-theming$": "<rootDir>/packages/emotion-theming/src",
       "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
     }
   },
