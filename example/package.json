@@ -24,12 +24,12 @@
     "component-playground": "^2.0.0",
     "css-loader": "^0.28.4",
     "emotion": "^7.0.10",
+    "emotion-theming": "^1.0.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.28.0",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.18.1",
-    "theming": "^1.1.0",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.4.5"
   },

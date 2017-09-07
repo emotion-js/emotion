@@ -8,7 +8,7 @@
     "clean": "lerna run clean --parallel",
     "test": "npm-run-all -p lint:check coverage test:size",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
-    "lint:check": "eslint . --fix",
+    "lint:check": "eslint .",
     "test:watch": "jest --watch --no-cache",
     "rollup": "lerna run rollup --parallel",
     "rollup:umd": "lerna run rollup:umd --parallel",
@@ -63,8 +63,7 @@
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
-    "rollup-plugin-uglify": "^2.0.1",
-    "theming": "^1.1.0"
+    "rollup-plugin-uglify": "^2.0.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",

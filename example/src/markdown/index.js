@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { withTheme } from 'theming'
+import { withTheme } from 'emotion-theming'
 import styled from 'emotion/react'
 import colors from 'open-color'
 import styles from './index.css'

@@ -178,7 +178,7 @@ The theming package uses this string as the React context key by default.
 If you wish to build your own components on top of this library, it is recommended to import the context key from this package instead of hardcoding its value.
 
 ```js
-import { channel } from 'theming';
+import { channel } from 'emotion-theming';
 
 console.log(channel); '__THEMING__';
 ```
@@ -188,7 +188,7 @@ console.log(channel); '__THEMING__';
 An advanced helper to hook theming into any React component.
 
 ```jsx
-import { themeListener } from 'theming';
+import { themeListener } from 'emotion-theming';
 
 function CustomWithTheme(Component) {
   return class CustomWithTheme extends React.Component {

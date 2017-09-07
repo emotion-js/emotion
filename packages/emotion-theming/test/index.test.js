@@ -1,5 +1,6 @@
 import { mount } from 'enzyme'
 import React from 'react'
+import styled from 'react-emotion'
 
 import { Trap, Pure, Comp, getInterceptor, getChannel } from './test-helpers'
 import { channel, createTheming, ThemeProvider, withTheme } from '../src/index'
@@ -137,4 +138,26 @@ test('Theming, updates and PureComponent', () => {
   wrapper.setProps({ theme: update })
 
   expect(actual()).toEqual(expected)
+})
+
+test('emotion integration test', () => {
+  const theme = { bg: 'green', color: 'red' }
+
+  const Component = styled.div`color: ${p => p.theme.color};`
+  const ThemedComponent = withTheme(Component)
+
+  const ReStyledComponent = styled(ThemedComponent)`
+    background-color: ${p => p.theme.bg};
+  `
+  const ReThemedComponent = withTheme(ReStyledComponent)
+
+  const FinalComponent = styled(ReThemedComponent)`border: 1px solid blue;`
+
+  const wrapper = mount(
+    <ThemeProvider theme={theme}>
+      <FinalComponent />
+    </ThemeProvider>
+  )
+
+  expect(wrapper.find(ReStyledComponent).props()).toHaveProperty('theme', theme)
 })

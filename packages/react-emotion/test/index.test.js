@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
 import { css, sheet } from 'emotion'
 import styled from 'react-emotion'
-import { ThemeProvider, withTheme } from 'theming'
+import { ThemeProvider, withTheme } from 'emotion-theming'
 import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 

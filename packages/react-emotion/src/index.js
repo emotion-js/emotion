@@ -1,6 +1,7 @@
-import { createElement as h } from 'react'
 import { css } from 'emotion'
 import { map, reduce, assign, omit } from 'emotion-utils'
+import { createElement as h } from 'react'
+
 import propsRegexString from /* preval */ './props'
 
 export * from 'emotion'
@@ -85,5 +86,6 @@ export default function(tag, cls, objs, vars = [], content) {
   Styled.displayName = `styled(${componentTag})`
   Styled.__emotion_spec = newSpec
   Styled.__emotion_class = cls
+
   return Styled
 }

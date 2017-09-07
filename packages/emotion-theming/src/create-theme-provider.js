@@ -59,7 +59,7 @@ export default function createThemeProvider(CHANNEL = channel) {
     }
 
     getChildContext() {
-      return { [CHANNEL]: this.broadcast }
+      return { ...this.context, [CHANNEL]: this.broadcast }
     }
 
     componentDidMount() {

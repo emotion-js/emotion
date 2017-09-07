@@ -29,12 +29,10 @@ const config = {
         'react',
         'flow'
       ],
-      plugins: [
-        'preval',
-        'external-helpers'
-      ],
+      plugins: ['preval', 'external-helpers'],
       babelrc: false
-    })
+    }),
+    cjs()
   ],
   targets: [
     { dest: pkg.main, format: 'cjs' },
@@ -65,10 +63,6 @@ if (process.env.UMD) {
       moduleName: pkg.name
     }
   ]
-}
-
-if (pkg.name === 'emotion-theming') {
-  config.plugins.push(cjs())
 }
 
 if (pkg.name === 'preact-emotion') {

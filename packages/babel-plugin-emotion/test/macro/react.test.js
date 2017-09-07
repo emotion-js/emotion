@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
 import { css, sheet } from 'emotion/macro'
 import styled from 'react-emotion/macro'
-import { ThemeProvider, withTheme } from 'theming'
+import { ThemeProvider, withTheme } from 'emotion-theming'
 
 import { lighten, hiDPI, modularScale } from 'polished'
 
@@ -167,7 +167,6 @@ describe('styled', () => {
       composes: ${cssA};
       height: 64px;
     `
-
     const Heading = withTheme(styled('span')`
       background-color: ${p => p.theme.gold};
     `)
@@ -179,13 +178,10 @@ describe('styled', () => {
     `)
 
     const H2 = styled(H1)`font-size: 32px;`
-    const refFunction = jest.fn()
     const tree = renderer
       .create(
         <ThemeProvider theme={theme}>
-          <H2 scale={2} ref={refFunction}>
-            hello world
-          </H2>
+          <H2 scale={2}>hello world</H2>
         </ThemeProvider>
       )
       .toJSON()
