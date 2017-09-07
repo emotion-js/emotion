@@ -33,14 +33,8 @@
   },
   "homepage": "https://github.com/emotion-js/emotion#readme",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
     "cross-env": "^5.0.1",
-    "npm-run-all": "^4.0.2",
-    "prop-types": "^15.5.8",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-test-renderer": "^15.5.4",
-    "rimraf": "^2.6.1"
+    "prop-types": "^15.5.8"
   },
   "dependencies": {
     "brcast": "^2.0.0",
