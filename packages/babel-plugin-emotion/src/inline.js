@@ -1,5 +1,5 @@
 // @flow
-import { hashArray } from 'emotion-utils'
+import { hashArray } from './index'
 
 export function getName(identifierName?: string, prefix: string): string {
   const parts = []

@@ -9,9 +9,8 @@ import {
 } from 'path'
 import { touchSync } from 'touch'
 import { inline, getName } from './inline'
-import { parseCSS } from './parser'
 import { getIdentifierName } from './babel-utils'
-import { hashArray, map } from 'emotion-utils'
+import { hashString, map, Stylis } from 'emotion-utils'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
@@ -20,6 +19,13 @@ export function getFilename(path) {
     ? ''
     : path.hub.file.opts.filename
 }
+
+export function hashArray(arr) {
+  return hashString(arr.join(''))
+}
+
+const dynamicStylis = new Stylis({ prefix: false })
+// const staticStylis = new Stylis()
 
 export function replaceCssWithCallExpression(
   path,
@@ -46,30 +52,20 @@ export function replaceCssWithCallExpression(
       return path.replaceWith(t.identifier('undefined'))
     }
 
-    const { styles, composesCount } = parseCSS(src, false, getFilename(path))
-
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
     }
+    const newStyles = dynamicStylis('&', src).replace(/&{([^}]*)}/g, '$1')
 
-    const composeValues = path.node.quasi.expressions.slice(0, composesCount)
-    const vars = path.node.quasi.expressions.slice(composesCount)
     path.replaceWith(
-      t.callExpression(identifier, [
-        t.arrayExpression(composeValues),
-        t.arrayExpression(vars),
-        t.functionExpression(
-          t.identifier('createEmotionStyledRules'),
-          vars.map((x, i) => t.identifier(`x${i}`)),
-          t.blockStatement([
-            t.returnStatement(
-              t.arrayExpression([
-                ASTObject.fromJS(styles, composesCount, t).toAST()
-              ])
-            )
-          ])
-        )
-      ])
+      t.taggedTemplateExpression(
+        identifier,
+        ASTObject.fromString(
+          newStyles,
+          path.node.quasi.expressions,
+          t
+        ).toTemplateLiteral()
+      )
     )
   } catch (e) {
     if (path) {
@@ -191,15 +187,19 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
-  return t.callExpression(identifier, [
-    tag,
-    t.stringLiteral(
-      getComponentId(state, getName(getIdentifierName(path, t), 'css'))
-    ),
-    t.arrayExpression(
-      buildProcessedStylesFromObjectAST(path.node.arguments, path, t)
-    )
-  ])
+  return t.callExpression(
+    t.callExpression(identifier, [
+      tag,
+      t.objectExpression(
+        t.objectProperty(
+          t.identifier('id'),
+          t.stringLiteral(
+            getComponentId(state, getName(getIdentifierName(path, t), 'css'))
+          )
+        )
+      )
+    ])[path.node.arguments]
+  )
 }
 
 function buildProcessedStylesFromObjectAST(objectAST, path, t) {

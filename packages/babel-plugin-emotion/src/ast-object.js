@@ -1,123 +1,4 @@
-import postcssJs from 'postcss-js'
-import Input from 'postcss/lib/input'
-import { expandCSSFallbacks, processor } from './parser'
 import { forEach, reduce } from 'emotion-utils'
-import { getFilename } from './index'
-
-function prefixAst(args, t, path) {
-  function isLiteral(value) {
-    return (
-      t.isStringLiteral(value) ||
-      t.isNumericLiteral(value) ||
-      t.isBooleanLiteral(value)
-    )
-  }
-
-  if (Array.isArray(args)) {
-    return args.map(element => prefixAst(element, t, path))
-  }
-
-  if (t.isObjectExpression(args)) {
-    let properties = []
-    args.properties.forEach(property => {
-      // nested objects
-      if (t.isObjectExpression(property.value)) {
-        const key = property.computed
-          ? property.key
-          : t.isStringLiteral(property.key)
-            ? t.stringLiteral(property.key.value)
-            : t.identifier(property.key.name)
-
-        const prefixedPseudoSelectors = {
-          '::placeholder': [
-            '::-webkit-input-placeholder',
-            '::-moz-placeholder',
-            ':-ms-input-placeholder'
-          ],
-          ':fullscreen': [
-            ':-webkit-full-screen',
-            ':-moz-full-screen',
-            ':-ms-fullscreen'
-          ]
-        }
-
-        const prefixedValue = prefixAst(property.value, t, path)
-
-        if (!property.computed) {
-          if (prefixedPseudoSelectors[key.value]) {
-            forEach(prefixedPseudoSelectors[key.value], prefixedKey => {
-              properties.push(
-                t.objectProperty(
-                  t.stringLiteral(prefixedKey),
-                  prefixedValue,
-                  false
-                )
-              )
-            })
-          }
-        }
-
-        return properties.push(
-          t.objectProperty(key, prefixedValue, property.computed)
-        )
-      } else if (
-        // literal value or array of literal values
-        isLiteral(property.value) ||
-        (t.isArrayExpression(property.value) &&
-          property.value.elements.every(isLiteral))
-      ) {
-        // bail on computed properties
-        if (property.computed) {
-          properties.push(property)
-          return
-        }
-
-        // handle array values: { display: ['flex', 'block'] }
-        const propertyValue = t.isArrayExpression(property.value)
-          ? property.value.elements.map(element => element.value)
-          : property.value.value
-
-        const style = { [property.key.name]: propertyValue }
-        const parsedStyle = postcssJs.parse(style)
-        parsedStyle.source = {}
-        parsedStyle.source.input = new Input(parsedStyle.toString(), {
-          from: getFilename(path)
-        })
-        const prefixedStyle = expandCSSFallbacks(processor(parsedStyle))
-
-        for (let k in prefixedStyle) {
-          const key = t.isStringLiteral(property.key)
-            ? t.stringLiteral(k)
-            : t.identifier(k)
-          const val = prefixedStyle[k]
-          let value
-
-          if (typeof val === 'number') {
-            value = t.numericLiteral(val)
-          } else if (typeof val === 'string') {
-            value = t.stringLiteral(val)
-          } else if (Array.isArray(val)) {
-            value = t.arrayExpression(val.map(i => t.stringLiteral(i)))
-          }
-
-          properties.push(t.objectProperty(key, value))
-        }
-
-        // expressions
-      } else {
-        properties.push(property)
-      }
-    })
-
-    return t.objectExpression(properties)
-  }
-
-  if (t.isArrayExpression(args)) {
-    return t.arrayExpression(prefixAst(args.elements, t, path))
-  }
-
-  return args
-}
 
 export default class ASTObject {
   props: Array<any>
@@ -390,6 +271,17 @@ export default class ASTObject {
       expressions,
       0, // composesCount: we should support this,
       t
+    )
+  }
+  static fromString(src, expressions, t) {
+    const astObject = new ASTObject(undefined, expressions, 0, t)
+    astObject.stringSrc = src
+    return astObject
+  }
+  toTemplateLiteral() {
+    return this.replacePlaceholdersWithExpressions(
+      this.getDynamicMatches(this.stringSrc),
+      this.stringSrc
     )
   }
 }
