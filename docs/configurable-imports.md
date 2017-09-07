@@ -1,12 +1,13 @@
 # Configurable Imports
 
-If you are using ES Module imports (`import styled from 'emotion'`)
-the emotion babel plugin can handle two types of import renaming.
+If you are using ES Module imports (`import styled from
+'react-emotion'`) the emotion babel plugin can handle two types of
+import renaming.
 
 ## Dynamic
 
 ```js
-import something, { css as cows } from 'emotion';
+import something, { css as cows } from 'react-emotion';
 
 const classes = cows`
   color: red;
@@ -39,7 +40,7 @@ styled-jsx application. When compiling the following file with emotion
 and styled-jsx.
 
 ```js
-import styled, { css } from "emotion";
+import styled from "react-emotion";
 
 export default () => (
   <div>
@@ -61,7 +62,7 @@ outputs.
 ```js
 import _JSXStyle from "styled-jsx/style";
 import { css as _css } from "emotion";
-import styled, { css } from "emotion";
+import styled from "react-emotion";
 
 export default (() => <div data-jsx={2648947580}>
     <p data-jsx={2648947580}>only this paragraph will get the style :)</p>
@@ -91,7 +92,7 @@ We can avoid re-compiling the `css` props from styled-jsx.
 
 ```js
 import _JSXStyle from "styled-jsx/style";
-import styled, { css } from "emotion";
+import styled, { css } from "react-emotion";
 
 export default (() => <div data-jsx={2648947580}>
     <p data-jsx={2648947580}>only this paragraph will get the style :)</p>
