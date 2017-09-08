@@ -4,8 +4,11 @@ import {
 } from './index'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 import { forEach, keys } from 'emotion-utils'
+import { createMacro } from 'babel-macros'
 
-module.exports = function macro({ references, state, babel: { types: t } }) {
+module.exports = createMacro(macro)
+
+function macro({ references, state, babel: { types: t } }) {
   if (!state.inline) state.inline = true
   forEach(keys(references), referenceKey => {
     if (referenceKey === 'injectGlobal') {
