@@ -5,8 +5,11 @@ import {
 import { buildMacroRuntimeNode } from './babel-utils'
 import emotionMacro from './macro'
 import { omit } from 'emotion-utils'
+import { createMacro } from 'babel-macros'
 
-module.exports = function macro(options) {
+module.exports = createMacro(macro)
+
+function macro(options) {
   const { references, state, babel: { types: t } } = options
   if (!state.inline) state.inline = true
   let referencesWithoutDefault = references
