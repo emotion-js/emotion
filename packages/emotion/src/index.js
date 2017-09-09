@@ -1,6 +1,5 @@
-import hashString from './hash'
+import { hashString, Stylis } from 'emotion-utils'
 import StyleSheet from './sheet'
-import Stylis from './stylis'
 
 const stylis = new Stylis()
 const registerCacheStylis = new Stylis()
