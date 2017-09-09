@@ -25,7 +25,7 @@ export function hashArray(arr) {
 }
 
 const dynamicStylis = new Stylis({ prefix: false })
-// const staticStylis = new Stylis()
+const staticStylis = new Stylis()
 
 export function replaceCssWithCallExpression(
   path,
@@ -42,10 +42,8 @@ export function replaceCssWithCallExpression(
       'css'
     )
     if (state.extractStatic && !path.node.quasi.expressions.length) {
-      const cssText = staticCSSTextCreator(name, hash, src)
-      const { staticCSSRules } = parseCSS(cssText, true, getFilename(path))
-
-      state.insertStaticRules(staticCSSRules)
+      const staticCSSRules = staticStylis(`.${name}-${hash}`, src)
+      state.insertStaticRules([staticCSSRules])
       if (!removePath) {
         return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
       }
@@ -147,10 +145,9 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
       'styled' // we don't want these styles to be merged in css``
     )
 
-    const cssText = `.${name}-${hash} { ${src} }`
-    const { staticCSSRules } = parseCSS(cssText, true, getFilename(path))
+    const staticCSSRules = staticStylis(`.${name}-${hash}`, src)
 
-    state.insertStaticRules(staticCSSRules)
+    state.insertStaticRules([staticCSSRules])
     return t.callExpression(identifier, [
       tag,
       t.stringLiteral(getComponentId(state, name)),
@@ -162,15 +159,9 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
 
   path.addComment('leading', '#__PURE__')
 
-  const { styles, composesCount } = parseCSS(src, false, getFilename(path))
-
-  const objs = path.node.quasi.expressions.slice(0, composesCount)
-  const vars = path.node.quasi.expressions.slice(composesCount)
   const args = [
     tag,
     t.stringLiteral(getComponentId(state, name)),
-    t.arrayExpression(objs),
-    t.arrayExpression(vars),
     t.functionExpression(
       t.identifier('createEmotionStyledRules'),
       vars.map((x, i) => t.identifier(`x${i}`)),
@@ -290,7 +281,6 @@ export default function(babel) {
       },
       CallExpression(path, state) {
         if (path[visited]) {
-          return
         }
         try {
           if (

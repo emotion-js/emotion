@@ -63,7 +63,7 @@ function makeStyleTag() {
   return tag
 }
 
-export class StyleSheet {
+export default class StyleSheet {
   constructor(
     {
       speedy = !isDev && !isTest,

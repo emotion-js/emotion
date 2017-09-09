@@ -1,13 +1,28 @@
 import { createElement } from 'react'
 import { css } from 'emotion'
-import { omitAssign } from 'emotion-utils'
 import propsRegexString from /* preval */ './props'
 
-export * from 'emotion'
+export * from 'new-css-in-js'
 
 const reactPropsRegex = new RegExp(propsRegexString)
+
 const testOmitPropsOnStringTag = key => reactPropsRegex.test(key)
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
+
+const omitAssign = function(testFn, target) {
+  let i = 2
+  let length = arguments.length
+  for (; i < length; i++) {
+    let source = arguments[i]
+    let key
+    for (key in source) {
+      if (testFn(key)) {
+        target[key] = source[key]
+      }
+    }
+  }
+  return target
+}
 
 export default function(tag) {
   return (initialStrings, ...initialInterpolations) => {
@@ -26,19 +41,33 @@ export default function(tag) {
         ? tag.__emotion_interp.concat([';'], initialInterpolations)
         : initialInterpolations
     const Styled = (props, context) => {
-      let className = css(
-        strings,
-        ...interpolations.map(v => {
+      let className = ''
+      let classInterpolations = ''
+      if (props.className) {
+        const classes = props.className.split(' ')
+        classes.forEach(splitClass => {
+          if (splitClass.indexOf('css-') === 0) {
+            classInterpolations += `${splitClass};`
+          } else {
+            className += `${splitClass} `
+          }
+        })
+      }
+      let newInterpolations = interpolations
+      let newStrings = strings
+      if (classInterpolations) {
+        newInterpolations = newInterpolations.concat([''])
+        newStrings = newStrings.concat([classInterpolations])
+      }
+      className += css(
+        newStrings,
+        ...newInterpolations.map(v => {
           if (typeof v === 'function') {
             return v(props, context)
           }
           return v
         })
       )
-      if (props.className) {
-        className += ` ${props.className}`
-      }
-
       return createElement(
         baseTag,
         omitAssign(omitFn, {}, props, { className, ref: props.innerRef })
@@ -47,10 +76,6 @@ export default function(tag) {
     Styled.__emotion_strings = strings
     Styled.__emotion_interp = interpolations
     Styled.__emotion_base = baseTag
-    Styled.displayName = `styled(${baseTag.displayName ||
-      baseTag.name ||
-      'Component'})`
-
     return Styled
   }
 }

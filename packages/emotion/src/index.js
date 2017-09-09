@@ -1,7 +1,9 @@
-import { hashString, Stylis } from 'emotion-utils'
+import hashString from './hash'
 import StyleSheet from './sheet'
+import Stylis from './stylis'
 
 const stylis = new Stylis()
+const registerCacheStylis = new Stylis()
 
 export const sheet = new StyleSheet()
 
@@ -11,12 +13,14 @@ export const registered = {}
 
 export const inserted = {}
 
-function plugin(context, content, selector, parent) {
+function compositionPlugin(context, content, selector, parent) {
+  if (context === 1) {
+    return registered[content]
+  }
+}
+
+function insertionPlugin(context, content, selector, parent) {
   switch (context) {
-    // on property declaration
-    case 1:
-      return registered[content]
-    // after a selector block
     case 2: {
       if (parent.length !== 0 && parent[0] === selector[0]) {
         break
@@ -28,7 +32,8 @@ function plugin(context, content, selector, parent) {
   }
 }
 
-stylis.use(plugin)
+stylis.use([compositionPlugin, insertionPlugin])
+registerCacheStylis.use(compositionPlugin)
 
 const hyphenateRegex = /[A-Z]|^ms/g
 
@@ -46,6 +51,13 @@ function handleInterpolation(interpolation) {
   if (typeof interpolation === 'object') {
     return createStringFromObject(interpolation)
   }
+  if (
+    interpolation === undefined ||
+    interpolation === null ||
+    interpolation === false
+  )
+    return ''
+
   return interpolation
 }
 
@@ -71,24 +83,34 @@ function createStringFromObject(obj) {
 }
 
 function createStyles(strings, ...interpolations) {
-  let styles = strings[0]
+  let stringMode = true
+  let styles = ''
+  if (typeof strings[0] !== 'string') {
+    stringMode = false
+    styles = handleInterpolation(strings)
+  } else {
+    styles = strings[0]
+  }
   interpolations.forEach((interpolation, i) => {
-    if (typeof interpolation === 'string') {
-      styles += interpolation
-    } else if (typeof interpolation === 'object') {
-      styles += createStringFromObject(interpolation)
+    styles += handleInterpolation(interpolation)
+    if (stringMode === true) {
+      styles += strings[i + 1]
     }
-    styles += strings[i + 1]
   })
   return styles
 }
+
+const andReplaceRegex = /&{([^}]*)}/g
 
 export function css(...args) {
   const styles = createStyles(...args)
   const hash = hashString(styles)
   const cls = `css-${hash}`
   if (registered[cls] === undefined) {
-    registered[cls] = styles
+    registered[cls] = registerCacheStylis('&', styles).replace(
+      andReplaceRegex,
+      '$1'
+    )
   }
   if (inserted[cls] === undefined) {
     stylis(`.${cls}`, styles)
