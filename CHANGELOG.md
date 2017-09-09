@@ -1,11 +1,25 @@
-## Unreleased (2017-08-22)
+## v7.2.1 (2017-09-05)
+
+#### :memo: Documentation
+* [#198](https://github.com/emotion-js/emotion/pull/198) add docs for using withProps from recompose. ([@divyagnan](https://github.com/divyagnan))
 
 #### :house: Internal
+* Other
+  * [#294](https://github.com/emotion-js/emotion/pull/294) Add module name mapping for emotion-utils to .flowconfig. ([@bigslycat](https://github.com/bigslycat))
+* `babel-plugin-emotion`
+  * [#293](https://github.com/emotion-js/emotion/pull/293) Fix flowtype errors in babel-plugin-emotion. ([@bigslycat](https://github.com/bigslycat))
+* `babel-plugin-emotion`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`
+  * [#280](https://github.com/emotion-js/emotion/pull/280) Change rollup config. ([@mitchellhamilton](https://github.com/mitchellhamilton))
 * `babel-plugin-emotion`, `emotion-server`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`
-  * [#276](https://github.com/tkh44/emotion/pull/276) chore: update packages to deeplink into their respective directories. ([@probablyup](https://github.com/probablyup))
+  * [#276](https://github.com/emotion-js/emotion/pull/276) chore: update packages to deeplink into their respective directories. ([@probablyup](https://github.com/probablyup))
 
-#### Committers: 3
+#### Committers: 6
+- Christopher Biscardi ([ChristopherBiscardi](https://github.com/ChristopherBiscardi))
+- Divyagnan Kandala ([divyagnan](https://github.com/divyagnan))
 - Evan Scott ([probablyup](https://github.com/probablyup))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Pavel ([bigslycat](https://github.com/bigslycat))
+- Siddharth Kshetrapal ([siddharthkp](https://github.com/siddharthkp))
 
 
 ## v7.2.0 (2017-08-20)
