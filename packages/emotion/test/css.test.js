@@ -6,7 +6,7 @@ import { sheet, css, flush } from 'emotion'
 expect.addSnapshotSerializer(serializer(sheet))
 
 describe('css', () => {
-  test.only('float property', () => {
+  test('float property', () => {
     const cls1 = css`float: left;`
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
