@@ -2,7 +2,7 @@ import { createElement } from 'react'
 import { css } from 'emotion'
 import propsRegexString from /* preval */ './props'
 
-export * from 'new-css-in-js'
+export * from 'emotion'
 
 const reactPropsRegex = new RegExp(propsRegexString)
 
