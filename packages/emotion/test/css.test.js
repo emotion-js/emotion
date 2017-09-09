@@ -6,7 +6,7 @@ import { sheet, css, flush } from 'emotion'
 expect.addSnapshotSerializer(serializer(sheet))
 
 describe('css', () => {
-  test('float property', () => {
+  test.only('float property', () => {
     const cls1 = css`float: left;`
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
@@ -32,9 +32,9 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('composes with undefined values', () => {
+  test('random interpolation with undefined values', () => {
     const cls2 = css`
-      composes: ${undefined};
+      ${undefined};
       justifyContent: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()

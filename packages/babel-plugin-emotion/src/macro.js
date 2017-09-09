@@ -1,7 +1,4 @@
-import {
-  replaceCssWithCallExpression,
-  replaceCssObjectCallExpression
-} from './index'
+import { replaceCssWithCallExpression } from './index'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 import { forEach, keys } from 'emotion-utils'
 import { createMacro } from 'babel-macros'
@@ -59,8 +56,6 @@ function macro({ references, state, babel: { types: t } }) {
           t.isTemplateLiteral(path.node.quasi)
         ) {
           replaceCssWithCallExpression(path, runtimeNode, state, t)
-        } else if (!path.node.arguments[1] && path.node.arguments[0]) {
-          replaceCssObjectCallExpression(path, runtimeNode, t)
         } else {
           cssReference.replaceWith(runtimeNode)
         }

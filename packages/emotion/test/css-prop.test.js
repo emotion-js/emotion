@@ -45,7 +45,7 @@ describe('css prop react', () => {
     `
 
     const big = css`
-      composes: ${bold};
+      ${bold};
       font-size: ${huge};
     `
 
@@ -62,12 +62,12 @@ describe('css prop react', () => {
         <div
           className="css__legacy-stuff"
           css={`
-              composes: ${bold} ${flexCenter};
+              ${bold}; ${flexCenter};
              `}
         >
           <h1
             css={`
-                composes: ${props.error ? big : small};
+                ${props.error ? big : small};
                 color: red
               `}
           >

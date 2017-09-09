@@ -299,3 +299,16 @@ exports[`css random expression 1`] = `
   className="glamor-0"
 />
 `;
+
+exports[`css random interpolation with undefined values 1`] = `
+.glamor-0 {
+  -webkit-box-packjustifyContent: center;
+  -webkit-justifyContent: center;
+  -ms-flex-packjustifyContent: center;
+  justifyContent: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;

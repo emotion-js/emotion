@@ -32,8 +32,10 @@ export function replaceCssWithCallExpression(
   identifier,
   state,
   t,
-  staticCSSTextCreator = (name, hash, src) => `.${name}-${hash} { ${src} }`,
-  removePath = false
+  staticCSSSrcCreator = src => src,
+  removePath = false,
+  dynamicSelector = '&',
+  staticCSSSelectorCreator = (name, hash) => `.${name}-${hash}`
 ) {
   try {
     const { name, hash, src } = inline(
@@ -42,7 +44,10 @@ export function replaceCssWithCallExpression(
       'css'
     )
     if (state.extractStatic && !path.node.quasi.expressions.length) {
-      const staticCSSRules = staticStylis(`.${name}-${hash}`, src)
+      const staticCSSRules = staticStylis(
+        staticCSSSelectorCreator(name, hash),
+        staticCSSSrcCreator(src)
+      )
       state.insertStaticRules([staticCSSRules])
       if (!removePath) {
         return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
@@ -58,7 +63,7 @@ export function replaceCssWithCallExpression(
     path.replaceWith(
       t.taggedTemplateExpression(
         identifier,
-        ASTObject.fromString(
+        new ASTObject(
           newStyles,
           path.node.quasi.expressions,
           t
@@ -66,9 +71,9 @@ export function replaceCssWithCallExpression(
       )
     )
   } catch (e) {
-    if (path) {
-      throw path.buildCodeFrameError(e)
-    }
+    // if (path) {
+    //   throw path.buildCodeFrameError(e)
+    // }
 
     throw e
   }
@@ -138,40 +143,43 @@ const getComponentId = (state, prefix: string = 'css') => {
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
-  if (state.extractStatic && !path.node.quasi.expressions.length) {
-    const { name, hash, src } = inline(
-      path.node.quasi,
-      identifierName,
-      'styled' // we don't want these styles to be merged in css``
-    )
+  // if (state.extractStatic && !path.node.quasi.expressions.length) {
+  //   const { name, hash, src } = inline(
+  //     path.node.quasi,
+  //     identifierName,
+  //     'styled' // we don't want these styles to be merged in css``
+  //   )
 
-    const staticCSSRules = staticStylis(`.${name}-${hash}`, src)
+  //   const staticCSSRules = staticStylis(`.${name}-${hash}`, src)
 
-    state.insertStaticRules([staticCSSRules])
-    return t.callExpression(identifier, [
-      tag,
-      t.stringLiteral(getComponentId(state, name)),
-      t.arrayExpression([t.stringLiteral(`${name}-${hash}`)])
-    ])
-  }
+  //   state.insertStaticRules([staticCSSRules])
+  //   return t.callExpression(identifier, [
+  //     tag,
+  //     t.stringLiteral(getComponentId(state, name)),
+  //     t.arrayExpression([t.stringLiteral(`${name}-${hash}`)])
+  //   ])
+  // }
 
-  const { src, name } = inline(path.node.quasi, identifierName, 'css')
+  const { src } = inline(path.node.quasi, identifierName, 'css')
+
+  const newStyles = dynamicStylis('&', src).replace(/&{([^}]*)}/g, '$1')
 
   path.addComment('leading', '#__PURE__')
 
-  const args = [
-    tag,
-    t.stringLiteral(getComponentId(state, name)),
-    t.functionExpression(
-      t.identifier('createEmotionStyledRules'),
-      vars.map((x, i) => t.identifier(`x${i}`)),
-      t.blockStatement([
-        t.returnStatement(ASTObject.fromJS(styles, composesCount, t).toAST())
+  return t.taggedTemplateExpression(
+    t.callExpression(identifier, [
+      tag,
+      t.objectExpression([
+        t.objectProperty(
+          t.identifier('id'),
+          t.stringLiteral(
+            getComponentId(state, getName(getIdentifierName(path, t), 'css'))
+          )
+        )
       ])
-    )
-  ]
-
-  return t.callExpression(identifier, args)
+    ]),
+    new ASTObject(newStyles, path.node.quasi.expressions, t).toTemplateLiteral()
+  )
 }
 
 export function buildStyledObjectCallExpression(path, state, identifier, t) {
@@ -181,40 +189,16 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
   return t.callExpression(
     t.callExpression(identifier, [
       tag,
-      t.objectExpression(
+      t.objectExpression([
         t.objectProperty(
           t.identifier('id'),
           t.stringLiteral(
             getComponentId(state, getName(getIdentifierName(path, t), 'css'))
           )
         )
-      )
+      ])
     ])[path.node.arguments]
   )
-}
-
-function buildProcessedStylesFromObjectAST(objectAST, path, t) {
-  if (t.isObjectExpression(objectAST)) {
-    return ASTObject.fromAST(objectAST, t, path).toAST()
-  }
-  if (t.isArrayExpression(objectAST)) {
-    return t.arrayExpression(
-      buildProcessedStylesFromObjectAST(objectAST.elements, path, t)
-    )
-  }
-  if (Array.isArray(objectAST)) {
-    return map(objectAST, obj =>
-      buildProcessedStylesFromObjectAST(obj, path, t)
-    )
-  }
-
-  return objectAST
-}
-
-export function replaceCssObjectCallExpression(path, identifier, t) {
-  const argWithStyles = path.node.arguments[0]
-  const styles = buildProcessedStylesFromObjectAST(argWithStyles, path, t)
-  path.replaceWith(t.callExpression(identifier, [styles]))
 }
 
 const visited = Symbol('visited')
@@ -281,6 +265,7 @@ export default function(babel) {
       },
       CallExpression(path, state) {
         if (path[visited]) {
+          return
         }
         try {
           if (
@@ -297,13 +282,6 @@ export default function(babel) {
               buildStyledObjectCallExpression(path, state, identifier, t)
             )
           }
-          if (
-            path.node.callee.name === 'css' &&
-            !path.node.arguments[1] &&
-            path.node.arguments[0]
-          ) {
-            replaceCssObjectCallExpression(path, t.identifier('css'), t)
-          }
         } catch (e) {
           throw path.buildCodeFrameError(e)
         }
@@ -311,6 +289,10 @@ export default function(babel) {
         path[visited] = true
       },
       TaggedTemplateExpression(path, state) {
+        if (path[visited]) {
+          return
+        }
+        path[visited] = true
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
@@ -340,12 +322,16 @@ export default function(babel) {
             )
           )
         } else if (t.isIdentifier(path.node.tag)) {
-          if (path.node.tag.name === 'css') {
-            replaceCssWithCallExpression(path, t.identifier('css'), state, t)
+          if (
+            path.node.tag.name === 'css' ||
+            (state.cssPropIdentifier &&
+              path.node.tag === state.cssPropIdentifier)
+          ) {
+            replaceCssWithCallExpression(path, path.node.tag, state, t)
           } else if (path.node.tag.name === 'keyframes') {
             replaceCssWithCallExpression(
               path,
-              t.identifier('keyframes'),
+              path.node.tag,
               state,
               t,
               (name, hash, src) => `@keyframes ${name}-${hash} { ${src} }`
@@ -353,7 +339,7 @@ export default function(babel) {
           } else if (path.node.tag.name === 'fontFace') {
             replaceCssWithCallExpression(
               path,
-              t.identifier('fontFace'),
+              path.node.tag,
               state,
               t,
               (name, hash, src) => `@font-face {${src}}`,
@@ -362,21 +348,13 @@ export default function(babel) {
           } else if (path.node.tag.name === 'injectGlobal') {
             replaceCssWithCallExpression(
               path,
-              t.identifier('injectGlobal'),
+              path.node.tag,
               state,
               t,
-              (name, hash, src) => src,
-              true
-            )
-          } else if (
-            state.cssPropIdentifier &&
-            path.node.tag === state.cssPropIdentifier
-          ) {
-            replaceCssWithCallExpression(
-              path,
-              state.cssPropIdentifier,
-              state,
-              t
+              undefined,
+              true,
+              '',
+              () => ''
             )
           }
         }
