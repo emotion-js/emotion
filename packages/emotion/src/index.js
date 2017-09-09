@@ -1,4 +1,4 @@
-import { hashString, Stylis } from 'emotion-utils'
+import { hashString, Stylis, memoize } from 'emotion-utils'
 import StyleSheet from './sheet'
 
 export const sheet = new StyleSheet()
@@ -41,8 +41,6 @@ function insertionPlugin(context, content, selector, parent) {
 stylis.use([compositionPlugin, insertionPlugin])
 registerCacheStylis.use(compositionPlugin)
 
-const hyphenateRegex = /[A-Z]|^ms/g
-
 function flatten(inArr) {
   let arr = []
   inArr.forEach(val => {
@@ -67,6 +65,12 @@ function handleInterpolation(interpolation) {
   return interpolation
 }
 
+const hyphenateRegex = /[A-Z]|^ms/g
+
+const processStyleName = memoize(styleName =>
+  styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+)
+
 function createStringFromObject(obj) {
   let string = ''
 
@@ -77,9 +81,7 @@ function createStringFromObject(obj) {
   } else {
     Object.keys(obj).forEach(key => {
       if (typeof obj[key] === 'string') {
-        string += `${key.replace(hyphenateRegex, '-$&').toLowerCase()}:${obj[
-          key
-        ]};`
+        string += `${processStyleName(key)}:${obj[key]};`
       } else {
         string += `${key}{${createStringFromObject(obj[key])}}`
       }

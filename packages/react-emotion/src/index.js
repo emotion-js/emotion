@@ -1,4 +1,5 @@
 import { createElement } from 'react'
+import { memoize } from 'emotion-utils'
 import { css } from 'emotion'
 import propsRegexString from /* preval */ './props'
 
@@ -6,7 +7,7 @@ export * from 'emotion'
 
 const reactPropsRegex = new RegExp(propsRegexString)
 
-const testOmitPropsOnStringTag = key => reactPropsRegex.test(key)
+const testOmitPropsOnStringTag = memoize(key => reactPropsRegex.test(key))
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
 
 const omitAssign = function(testFn, target) {
