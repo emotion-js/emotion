@@ -1,16 +1,23 @@
 import { hashString, Stylis } from 'emotion-utils'
 import StyleSheet from './sheet'
 
+export const sheet = new StyleSheet()
+// 🚀
+sheet.inject()
+
 const stylis = new Stylis()
 const registerCacheStylis = new Stylis()
 
-export const sheet = new StyleSheet()
+export let registered = {}
 
-sheet.inject()
+export let inserted = {}
 
-export const registered = {}
-
-export const inserted = {}
+export function flush() {
+  sheet.flush()
+  inserted = {}
+  registered = {}
+  sheet.inject()
+}
 
 function compositionPlugin(context, content, selector, parent) {
   if (context === 1) {
