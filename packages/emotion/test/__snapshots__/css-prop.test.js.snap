@@ -16,19 +16,26 @@ exports[`css prop react basic 1`] = `
 exports[`css prop react kitchen sink 1`] = `
 .glamor-4 {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   font-weight: bold;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
+  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
 
 .glamor-0 {
-  font-size: 6px;
+  font-size: 6;
   color: red;
 }
 
@@ -38,18 +45,19 @@ exports[`css prop react kitchen sink 1`] = `
 
 .glamor-2 {
   display: -webkit-inline-box;
+  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-}
-
-.glamor-3 {
-  color: red;
-  border-radius: 5px;
 }
 
 .glamor-3:hover {
   font-weight: bold;
   color: gray;
+}
+
+.glamor-3 {
+  color: red;
+  border-radius: 5;
 }
 
 <div
