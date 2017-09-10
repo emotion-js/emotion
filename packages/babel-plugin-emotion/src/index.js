@@ -200,7 +200,8 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
           )
         )
       ])
-    ])[path.node.arguments]
+    ]),
+    path.node.arguments
   )
 }
 
