@@ -41,7 +41,12 @@ function insertionPlugin(context, content, selector, parent) {
 }
 
 function keyframeInsertionPlugin(context, content, selector) {
-  if (context === 3) sheet.insert(`${selector[0]}{${content}}`)
+  if (context === 3) {
+    sheet.insert(
+      `${selector[0].replace('keyframes', '-webkit-keyframes')}{${content}}`
+    )
+    sheet.insert(`${selector[0]}{${content}}`)
+  }
 }
 
 stylis.use([compositionPlugin, insertionPlugin])
