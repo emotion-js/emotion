@@ -56,19 +56,10 @@ exports[`css composes with objects 1`] = `
 />
 `;
 
-exports[`css composes with undefined values 1`] = `
-.glamor-0 {
-  justify-content: center;
-}
-
-<div
-  className="glamor-0"
-/>
-`;
-
 exports[`css composition stuff 1`] = `
 .glamor-0 {
   -webkit-box-pack: center;
+  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
 }
@@ -81,6 +72,7 @@ exports[`css composition stuff 1`] = `
 exports[`css composition stuff 2`] = `
 .glamor-0 {
   -webkit-box-pack: center;
+  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
 }
@@ -142,7 +134,6 @@ exports[`css flushes correctly 2`] = `
 
 exports[`css handles more than 10 dynamic properties 1`] = `
 .glamor-0 {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
   border-right: solid blue 54px;
   background: white;
@@ -286,7 +277,7 @@ exports[`css random expression 1`] = `
   background: green;
 }
 
-@media (min-width: 420px) {
+@media (min-width:420px) {
   .glamor-0 {
     color: blue;
     width: 96px;
