@@ -1,15 +1,12 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react'
-import { css, sheet } from 'emotion'
+import { css } from 'emotion'
 import styled from 'react-emotion'
 import { ThemeProvider, withTheme } from 'theming'
 import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
 import { lighten, hiDPI, modularScale } from 'polished'
-
-expect.addSnapshotSerializer(serializer(sheet))
 
 describe('styled', () => {
   test('no dynamic', () => {

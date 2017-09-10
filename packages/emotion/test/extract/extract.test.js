@@ -1,11 +1,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
-import serializer from 'jest-glamor-react'
-import { injectGlobal, css, sheet } from 'emotion'
+import { injectGlobal, css } from 'emotion'
 import styled from 'react-emotion'
-
-expect.addSnapshotSerializer(serializer(sheet))
 
 describe('styled', () => {
   test('no dynamic', () => {

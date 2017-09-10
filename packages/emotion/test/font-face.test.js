@@ -1,7 +1,4 @@
-import prettyCSS from './pretty-css'
 import { sheet, fontFace, flush } from 'emotion'
-
-expect.addSnapshotSerializer(prettyCSS)
 
 describe('font-face', () => {
   afterEach(() => {

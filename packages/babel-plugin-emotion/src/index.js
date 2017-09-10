@@ -24,8 +24,8 @@ export function hashArray(arr) {
   return hashString(arr.join(''))
 }
 
-const dynamicStylis = new Stylis({ prefix: false })
-const staticStylis = new Stylis()
+const dynamicStylis = new Stylis({ prefix: false, keyframe: false })
+const staticStylis = new Stylis({ keyframe: false })
 
 export function replaceCssWithCallExpression(
   path,
@@ -46,7 +46,7 @@ export function replaceCssWithCallExpression(
     if (state.extractStatic && !path.node.quasi.expressions.length) {
       const staticCSSRules = staticStylis(
         staticCSSSelectorCreator(name, hash),
-        staticCSSSrcCreator(src)
+        staticCSSSrcCreator(src, name, hash)
       )
       state.insertStaticRules([staticCSSRules])
       if (!removePath) {
@@ -58,7 +58,10 @@ export function replaceCssWithCallExpression(
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
     }
-    const newStyles = dynamicStylis('&', src).replace(/&{([^}]*)}/g, '$1')
+    const newStyles = dynamicStylis(dynamicSelector, src).replace(
+      /&{([^}]*)}/g,
+      '$1'
+    )
 
     path.replaceWith(
       t.taggedTemplateExpression(
@@ -334,7 +337,10 @@ export default function(babel) {
               path.node.tag,
               state,
               t,
-              (name, hash, src) => `@keyframes ${name}-${hash} { ${src} }`
+              (src, name, hash) => `@keyframes ${name}-${hash} { ${src} }`,
+              false,
+              '',
+              () => ''
             )
           } else if (path.node.tag.name === 'fontFace') {
             replaceCssWithCallExpression(
@@ -342,7 +348,7 @@ export default function(babel) {
               path.node.tag,
               state,
               t,
-              (name, hash, src) => `@font-face {${src}}`,
+              (src, name, hash) => `@font-face {${src}}`,
               true
             )
           } else if (path.node.tag.name === 'injectGlobal') {

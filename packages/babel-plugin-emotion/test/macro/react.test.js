@@ -1,13 +1,10 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react'
-import { css, sheet } from 'emotion/macro'
+import { css } from 'emotion/macro'
 import styled from 'react-emotion/macro'
 import { ThemeProvider, withTheme } from 'theming'
 
 import { lighten, hiDPI, modularScale } from 'polished'
-
-expect.addSnapshotSerializer(serializer(sheet))
 
 describe('styled', () => {
   test('no dynamic', () => {

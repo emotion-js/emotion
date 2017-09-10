@@ -1,9 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react'
-import { sheet, css, flush } from 'emotion'
-
-expect.addSnapshotSerializer(serializer(sheet))
+import { css, flush } from 'emotion'
 
 describe('css', () => {
   test('float property', () => {

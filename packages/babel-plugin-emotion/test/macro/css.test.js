@@ -1,9 +1,6 @@
-import { css, sheet } from 'emotion/macro'
+import { css } from 'emotion/macro'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react'
-
-expect.addSnapshotSerializer(serializer(sheet))
 
 describe('css macro', () => {
   test('handles more than 10 dynamic properties', () => {

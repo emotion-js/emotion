@@ -120,7 +120,7 @@
   },
   "jest": {
     "transform": {
-      "\\.css$": "<rootDir>/styleTransform.js",
+      "\\.css$": "<rootDir>/test/styleTransform.js",
       "^.+\\.js?$": "babel-jest"
     },
     "moduleNameMapper": {
@@ -129,7 +129,8 @@
       "^emotion-utils$": "<rootDir>/packages/emotion-utils/src",
       "^emotion-server$": "<rootDir>/packages/emotion-server/src",
       "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
-    }
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js" 
   },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
