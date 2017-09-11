@@ -38,12 +38,12 @@ exports[`styled basic render with object as style 1`] = `
 `;
 
 exports[`styled call expression 1`] = `
-.glamor-0 {
+.glamor-1 {
   font-size: 20px;
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="glamor-0 legacy__class glamor-1"
 >
   hello world
 </h1>
@@ -175,18 +175,19 @@ exports[`styled component as selector 1`] = `
 `;
 
 exports[`styled component as selector function interpolation 1`] = `
-.glamor-1 {
-  font-size: 20px;
+.glamor-3 .glamor-0 {
+  color: green;
 }
 
 .glamor-3 {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.glamor-3 .glamor-0 {
-  color: green;
+.glamor-1 {
+  font-size: 20;
 }
 
 <div
@@ -200,19 +201,6 @@ exports[`styled component as selector function interpolation 1`] = `
   </h1>
    world
 </div>
-`;
-
-exports[`styled composes 1`] = `
-.glamor-2 {
-  color: blue;
-  font-size: 32px;
-}
-
-<h1
-  className="glamor-0 glamor-1 legacy__class glamor-2"
->
-  hello world
-</h1>
 `;
 
 exports[`styled composes based on props 1`] = `
@@ -282,24 +270,45 @@ exports[`styled composing components 1`] = `
 `;
 
 exports[`styled composition 1`] = `
-.glamor-2 {
-  font-size: 13.333333333333334px;
+.glamor-1 {
+  color: blue;
+  color: red;
+  color: blue;
+  font-size: 20px;
+  font-size: 32px;
 }
 
 <h1
-  className="glamor-0 glamor-1 legacy__class glamor-2"
+  className="glamor-0 legacy__class glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composition 2`] = `
+.glamor-1 {
+  color: blue;
+  color: red;
+  color: blue;
+  font-size: 20px;
+  font-size: 32px;
+}
+
+<h1
+  className="glamor-0 legacy__class glamor-1"
 >
   hello world
 </h1>
 `;
 
 exports[`styled function in expression 1`] = `
-.glamor-2 {
+.glamor-1 {
+  font-size: 20px;
   font-size: 40px;
 }
 
 <h1
-  className="glamor-0 glamor-1 legacy__class glamor-2"
+  className="glamor-0 legacy__class glamor-1"
 >
   hello world
 </h1>
@@ -401,31 +410,31 @@ exports[`styled input placeholder object 1`] = `
 `;
 
 exports[`styled nested 1`] = `
-.glamor-1 div {
+.glamor-1 {
+  font-size: 20px;
+}
+
+.glamor-3 div {
   color: green;
 }
 
-.glamor-1 div span {
+.glamor-3 div span {
   color: red;
 }
 
-.glamor-1 {
+.glamor-3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.glamor-0 {
-  font-size: 20px;
-}
-
 <div
-  className="glamor-1"
+  className="glamor-2 glamor-3"
 >
   hello 
   <h1
-    className="glamor-0"
+    className="glamor-0 glamor-1"
   >
     This will be green
   </h1>
@@ -434,12 +443,12 @@ exports[`styled nested 1`] = `
 `;
 
 exports[`styled no dynamic 1`] = `
-.glamor-0 {
+.glamor-1 {
   float: left;
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </h1>
@@ -465,6 +474,25 @@ exports[`styled no prop filtering on non string tags 1`] = `
 >
   hello world
 </a>
+`;
+
+exports[`styled object as style 1`] = `
+.glamor-1 {
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<h1
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
 `;
 
 exports[`styled object composition 1`] = `

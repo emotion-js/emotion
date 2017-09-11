@@ -48,7 +48,8 @@ export default function(tag, options) {
       tag.__emotion_interp !== undefined
         ? tag.__emotion_interp.concat([';'], initialInterpolations)
         : initialInterpolations
-    const stringMode = typeof initialStrings[0] === 'string'
+    const stringMode =
+      initialStrings !== undefined && initialStrings.raw !== undefined
     const Styled = (props, context) => {
       const getValue = v => {
         if (typeof v === 'function') {
@@ -83,6 +84,8 @@ export default function(tag, options) {
       }
       if (stringMode === false) {
         newStrings = getValue(newStrings)
+      } else {
+        newStrings.raw = newStrings
       }
       className += css(newStrings, ...newInterpolations.map(getValue))
 
