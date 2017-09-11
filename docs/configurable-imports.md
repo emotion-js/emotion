@@ -32,6 +32,10 @@ a prop other than `css` for processing.
 }
 ```
 
+Beware that if you use the babel configuration, you must import as the
+same name. In the previous example, we would have to `import { css as
+cows } from 'emotion';` then use `cows` to construct the template
+literals. 
 
 # Use Case
 
@@ -40,7 +44,7 @@ styled-jsx application. When compiling the following file with emotion
 and styled-jsx.
 
 ```js
-import styled from "react-emotion";
+import styled, { css } from "react-emotion";
 
 export default () => (
   <div>
@@ -61,8 +65,7 @@ outputs.
 
 ```js
 import _JSXStyle from "styled-jsx/style";
-import { css as _css } from "emotion";
-import styled from "react-emotion";
+import styled, { css } from "react-emotion";
 
 export default (() => <div data-jsx={2648947580}>
     <p data-jsx={2648947580}>only this paragraph will get the style :)</p>
@@ -88,11 +91,12 @@ By adding the babel opt config rename as such.
 }
 ```
 
-We can avoid re-compiling the `css` props from styled-jsx.
+We can avoid re-compiling the `css` props and instead use `cows` for
+our template literals, etc.
 
 ```js
 import _JSXStyle from "styled-jsx/style";
-import styled, { css } from "react-emotion";
+import styled, { css as cows } from "react-emotion";
 
 export default (() => <div data-jsx={2648947580}>
     <p data-jsx={2648947580}>only this paragraph will get the style :)</p>
@@ -100,3 +104,4 @@ export default (() => <div data-jsx={2648947580}>
     <_JSXStyle styleId={2648947580} css={"p[data-jsx=\"2648947580\"]{color:red}"} />
   </div>);
 ```
+
