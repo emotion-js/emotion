@@ -38,12 +38,12 @@ exports[`styled basic render with object as style 1`] = `
 `;
 
 exports[`styled call expression 1`] = `
-.glamor-1 {
+.glamor-0 {
   font-size: 20px;
 }
 
 <h1
-  className="glamor-0 legacy__class glamor-1"
+  className="legacy__class glamor-0"
 >
   hello world
 </h1>
@@ -401,30 +401,31 @@ exports[`styled input placeholder object 1`] = `
 `;
 
 exports[`styled nested 1`] = `
-.glamor-1 {
-  font-size: 20px;
+.glamor-1 div {
+  color: green;
 }
 
-.glamor-3 {
+.glamor-1 div span {
+  color: red;
+}
+
+.glamor-1 {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.glamor-3 div {
-  color: green;
-}
-
-.glamor-3 div span {
-  color: red;
+.glamor-0 {
+  font-size: 20px;
 }
 
 <div
-  className="glamor-2 glamor-3"
+  className="glamor-1"
 >
   hello 
   <h1
-    className="glamor-0 glamor-1"
+    className="glamor-0"
   >
     This will be green
   </h1>
@@ -433,12 +434,12 @@ exports[`styled nested 1`] = `
 `;
 
 exports[`styled no dynamic 1`] = `
-.glamor-1 {
+.glamor-0 {
   float: left;
 }
 
 <h1
-  className="glamor-0 glamor-1"
+  className="glamor-0"
 >
   hello world
 </h1>
