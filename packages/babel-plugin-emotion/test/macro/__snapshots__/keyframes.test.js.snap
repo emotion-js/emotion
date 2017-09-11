@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`keyframes - macro keyframes with interpolation 1`] = `
-.glamor-0 {
+.glamor-1 {
   -webkit-animation: animation-1q8eu9e 2s linear infinite;
   animation: animation-1q8eu9e 2s linear infinite;
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </h1>
@@ -49,13 +49,13 @@ exports[`keyframes - macro keyframes with interpolation 2`] = `
 `;
 
 exports[`keyframes - macro renders 1`] = `
-.glamor-0 {
+.glamor-1 {
   -webkit-animation: animation-16qlhaj 2s linear infinite;
   animation: animation-16qlhaj 2s linear infinite;
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </h1>
