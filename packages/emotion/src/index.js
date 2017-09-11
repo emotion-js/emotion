@@ -1,4 +1,4 @@
-import { hashString, Stylis, memoize } from 'emotion-utils'
+import { hashString, Stylis, memoize, unitless } from 'emotion-utils'
 import StyleSheet from './sheet'
 
 export const sheet = new StyleSheet()
@@ -83,6 +83,16 @@ const processStyleName = memoize(styleName =>
   styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
+const processStyleValue = (key, value) => {
+  if (value === undefined || value === null || typeof value === 'boolean')
+    return ''
+
+  if (unitless[key] !== 1 && !isNaN(value) && value !== 0) {
+    return value + 'px'
+  }
+  return value
+}
+
 function createStringFromObject(obj) {
   let string = ''
 
@@ -92,8 +102,11 @@ function createStringFromObject(obj) {
     })
   } else {
     Object.keys(obj).forEach(key => {
-      if (typeof obj[key] === 'string') {
-        string += `${processStyleName(key)}:${obj[key]};`
+      if (typeof obj[key] !== 'object') {
+        string += `${processStyleName(key)}:${processStyleValue(
+          key,
+          obj[key]
+        )};`
       } else {
         string += `${key}{${createStringFromObject(obj[key])}}`
       }
