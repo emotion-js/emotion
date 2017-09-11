@@ -122,7 +122,9 @@ function isLastCharDot(string) {
 function createStyles(strings, ...interpolations) {
   let stringMode = true
   let styles = ''
-  if (typeof strings[0] !== 'string') {
+  // probably need a better way to see if something is a tagged template literal
+  // can't use .raw since it should work with the loose version
+  if (typeof strings[0] !== 'string' || registered[strings[0]] !== undefined) {
     stringMode = false
     styles = handleInterpolation(strings, false)
   } else {
