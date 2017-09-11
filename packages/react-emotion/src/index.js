@@ -25,9 +25,14 @@ const omitAssign = function(testFn, target) {
   return target
 }
 
-export default function(tag) {
-  const baseTag = tag.__emotion_base || tag
+let componentIdIndex = 0
 
+export default function(tag, options) {
+  const baseTag = tag.__emotion_base || tag
+  const componentId =
+    options !== undefined && options.id !== undefined
+      ? options.id
+      : 'css-' + (componentIdIndex++).toString(36)
   const omitFn =
     typeof baseTag === 'string'
       ? testOmitPropsOnStringTag
@@ -43,10 +48,17 @@ export default function(tag) {
       tag.__emotion_interp !== undefined
         ? tag.__emotion_interp.concat([';'], initialInterpolations)
         : initialInterpolations
-
+    const stringMode = typeof initialStrings[0] === 'string'
     const Styled = (props, context) => {
-      let className = ''
-      let classInterpolations = ''
+      const getValue = v => {
+        if (typeof v === 'function') {
+          if (v.__emotion_class !== undefined) return `.${v.__emotion_class}`
+          return v(props, context)
+        }
+        return v
+      }
+      let className = `${componentId} `
+      let classInterpolations = '\n'
 
       if (props.className) {
         const classes = props.className.split(' ')
@@ -61,20 +73,18 @@ export default function(tag) {
 
       let newInterpolations = interpolations
       let newStrings = strings
-      if (classInterpolations) {
-        newInterpolations = newInterpolations.concat([''])
-        newStrings = newStrings.concat([classInterpolations])
+      if (classInterpolations !== '\n') {
+        if (stringMode) {
+          newInterpolations = newInterpolations.concat([''])
+          newStrings = newStrings.concat([classInterpolations])
+        } else {
+          newInterpolations = newInterpolations.concat(classInterpolations)
+        }
       }
-
-      className += css(
-        newStrings,
-        ...newInterpolations.map(v => {
-          if (typeof v === 'function') {
-            return v(props, context)
-          }
-          return v
-        })
-      )
+      if (stringMode === false) {
+        newStrings = getValue(newStrings)
+      }
+      className += css(newStrings, ...newInterpolations.map(getValue))
 
       return createElement(
         baseTag,
@@ -84,6 +94,7 @@ export default function(tag) {
     Styled.__emotion_strings = strings
     Styled.__emotion_interp = interpolations
     Styled.__emotion_base = baseTag
+    Styled.__emotion_class = componentId
     return Styled
   }
 }
