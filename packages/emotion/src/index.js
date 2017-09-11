@@ -7,7 +7,6 @@ sheet.inject()
 const stylisOptions = { keyframe: false }
 
 const stylis = new Stylis(stylisOptions)
-const shadowStylis = new Stylis(stylisOptions)
 const keyframeStylis = new Stylis(stylisOptions)
 
 export let registered = {}
@@ -19,12 +18,6 @@ export function flush() {
   inserted = {}
   registered = {}
   sheet.inject()
-}
-
-function compositionPlugin(context, content, selector, parent) {
-  if (context === 1) {
-    return registered[content]
-  }
 }
 
 function insertionPlugin(context, content, selector, parent) {
@@ -49,8 +42,7 @@ function keyframeInsertionPlugin(context, content, selector) {
   }
 }
 
-stylis.use([compositionPlugin, insertionPlugin])
-shadowStylis.use(compositionPlugin)
+stylis.use(insertionPlugin)
 keyframeStylis.use(keyframeInsertionPlugin)
 
 function flatten(inArr) {
@@ -63,7 +55,10 @@ function flatten(inArr) {
   return arr
 }
 
-function handleInterpolation(interpolation) {
+function handleInterpolation(
+  interpolation: any,
+  couldBeSelectorInterpolation: boolean
+) {
   if (typeof interpolation === 'object') {
     return createStringFromObject(interpolation)
   }
@@ -73,7 +68,12 @@ function handleInterpolation(interpolation) {
     interpolation === false
   )
     return ''
-
+  if (
+    couldBeSelectorInterpolation === false &&
+    registered[interpolation] !== undefined
+  ) {
+    return registered[interpolation]
+  }
   return interpolation
 }
 
@@ -98,7 +98,7 @@ function createStringFromObject(obj) {
 
   if (Array.isArray(obj)) {
     flatten(obj).forEach(interpolation => {
-      string += handleInterpolation(interpolation)
+      string += handleInterpolation(interpolation, false)
     })
   } else {
     Object.keys(obj).forEach(key => {
@@ -115,17 +115,21 @@ function createStringFromObject(obj) {
   return string
 }
 
+function isLastCharDot(string) {
+  return string.charCodeAt(string.length - 1) === 46 // .
+}
+
 function createStyles(strings, ...interpolations) {
   let stringMode = true
   let styles = ''
   if (typeof strings[0] !== 'string') {
     stringMode = false
-    styles = handleInterpolation(strings)
+    styles = handleInterpolation(strings, false)
   } else {
     styles = strings[0]
   }
   interpolations.forEach((interpolation, i) => {
-    styles += handleInterpolation(interpolation)
+    styles += handleInterpolation(interpolation, isLastCharDot(styles))
     if (stringMode === true) {
       styles += strings[i + 1]
     }
@@ -133,14 +137,12 @@ function createStyles(strings, ...interpolations) {
   return styles
 }
 
-const andReplaceRegex = /&{([^}]*)}/g
-
 export function css(...args) {
   const styles = createStyles(...args)
   const hash = hashString(styles)
   const cls = `css-${hash}`
   if (registered[cls] === undefined) {
-    registered[cls] = shadowStylis('&', styles).replace(andReplaceRegex, '$1')
+    registered[cls] = styles
   }
   if (inserted[cls] === undefined) {
     stylis(`.${cls}`, styles)
@@ -178,6 +180,6 @@ export function fontFace(...args) {
   const styles = createStyles(...args)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
-    sheet.insert(shadowStylis('', `@font-face {${styles}}`))
+    sheet.insert(`@font-face {${styles}}`)
   }
 }
