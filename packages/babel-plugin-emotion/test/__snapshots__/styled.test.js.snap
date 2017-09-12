@@ -317,3 +317,19 @@ const Figure = styled(\\"figure\\", \\"css-Figure-1mp0w960\\", [{
   ...defaultText
 }]);"
 `;
+
+exports[`babel styled component renamed import: inline config rename 1`] = `
+"/*#__PURE__*/what(\\"h1\\", \\"css-1jhrj9p0\\", [], [], function createEmotionStyledRules() {
+  return {
+    \\"color\\": \\"blue\\"
+  };
+});"
+`;
+
+exports[`babel styled component renamed import: inline variable import: no dynamic 1`] = `
+"import what from 'emotion'; /*#__PURE__*/what('h1', 'css-nl5a7v0', [], [], function createEmotionStyledRules() {
+  return {
+    'color': 'blue'
+  };
+});"
+`;
