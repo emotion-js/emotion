@@ -24,8 +24,9 @@ export function extractCritical(html) {
     return ret
   })
 
-  o.ids = keys(inserted).filter(id => !!ids[id] || !registered[id])
-
+  o.ids = keys(inserted).filter(id => {
+    return !!ids[id] || !registered[`css-${id}`]
+  })
   let css = ''
   forEach(o.rules, x => (css += x.cssText))
   o.css = css
