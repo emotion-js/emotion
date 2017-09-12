@@ -144,9 +144,9 @@ export function css(...args) {
   if (registered[cls] === undefined) {
     registered[cls] = styles
   }
-  if (inserted[cls] === undefined) {
+  if (inserted[hash] === undefined) {
     stylis(`.${cls}`, styles)
-    inserted[cls] = true
+    inserted[hash] = true
   }
   return cls
 }
@@ -172,6 +172,7 @@ export function keyframes(...args) {
   const name = `animation-${hash}`
   if (inserted[hash] === undefined) {
     keyframeStylis('', `@keyframes ${name}{${styles}}`)
+    inserted[hash] = true
   }
   return name
 }
@@ -180,6 +181,7 @@ export function fontFace(...args) {
   const styles = createStyles(...args)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
-    sheet.insert(`@font-face {${styles}}`)
+    sheet.insert(`@font-face{${styles}}`)
+    inserted[hash] = true
   }
 }
