@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { css } from 'emotion'
+import { css, sheet } from 'emotion'
 import styled from 'react-emotion'
 import { ThemeProvider, withTheme } from 'theming'
 import { mount } from 'enzyme'
@@ -376,7 +376,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('composes with objects', () => {
+  test('composition with objects', () => {
     const cssA = {
       color: lighten(0.2, '#000'),
       fontSize: modularScale(1),
@@ -388,12 +388,12 @@ describe('styled', () => {
     }
 
     const cssB = css`
-      composes: ${cssA};
+      ${cssA};
       height: 64px;
     `
 
     const H1 = styled('h1')`
-      composes: ${cssB};
+      ${cssB};
       font-size: ${modularScale(4)};
     `
 
@@ -439,9 +439,7 @@ describe('styled', () => {
       height: 64px;
     `
 
-    const Heading = withTheme(styled('span')`
-      background-color: ${p => p.theme.gold};
-    `)
+    const Heading = styled('span')`background-color: ${p => p.theme.gold};`
 
     const H1 = withTheme(styled(Heading)`
       ${cssB};
@@ -469,7 +467,7 @@ describe('styled', () => {
 
     const flexColumn = Component => {
       const NewComponent = styled(Component)`
-        composes: ${squirtleBlueBackground};
+        ${squirtleBlueBackground};
         background-color: '#343a40';
         flex-direction: column;
       `
@@ -479,19 +477,17 @@ describe('styled', () => {
 
     const ColumnContent = flexColumn(Content)
 
-    // expect(ColumnContent.displayName).toMatchSnapshotWithGlamor()
-
     const tree = renderer.create(<ColumnContent />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
-  test('composes based on props', () => {
+  test('composition based on props', () => {
     const cssA = css`color: blue;`
 
     const cssB = css`color: green;`
 
-    const H1 = styled('h1')`composes: ${props => (props.a ? cssA : cssB)};`
+    const H1 = styled('h1')`${props => (props.a ? cssA : cssB)};`
 
     const tree = renderer.create(<H1 a>hello world</H1>).toJSON()
 
@@ -502,7 +498,7 @@ describe('styled', () => {
   })
 
   test('objects', () => {
-    const H1 = styled('h1')('some-class', { padding: 10 }, props => ({
+    const H1 = styled('h1')({ padding: 10 }, props => ({
       display: props.display
     }))
     const tree = renderer.create(<H1 display="flex">hello world</H1>).toJSON()

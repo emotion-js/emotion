@@ -1,6 +1,6 @@
 import { createElement } from 'react'
 import { memoize } from 'emotion-utils'
-import { css } from 'emotion'
+import { css, registered } from 'emotion'
 import propsRegexString from /* preval */ './props'
 
 export * from 'emotion'
@@ -40,6 +40,10 @@ export default function(tag, options) {
     options !== undefined && options.id !== undefined
       ? options.id
       : 'css-' + (componentIdIndex++).toString(36)
+  const componentIdClassName =
+    tag.__emotion_classes === undefined
+      ? componentId
+      : `${tag.__emotion_classes} ${componentId}`
   const omitFn =
     typeof baseTag === 'string'
       ? testOmitPropsOnStringTag
@@ -65,30 +69,23 @@ export default function(tag, options) {
         }
         return v
       }
-      let className = `${componentId} `
-      let classInterpolations = '\n'
+      let className = `${componentIdClassName} `
+      let classInterpolations = []
 
       if (props.className) {
         const classes = props.className.split(' ')
         classes.forEach(splitClass => {
-          if (splitClass.indexOf('css-') === 0) {
-            classInterpolations += `${splitClass};`
+          if (registered[splitClass] !== undefined) {
+            classInterpolations.push(splitClass)
           } else {
             className += `${splitClass} `
           }
         })
       }
 
-      let newInterpolations = interpolations
+      let newInterpolations = interpolations.concat(classInterpolations)
       let newStrings = strings
-      if (classInterpolations !== '\n') {
-        if (stringMode) {
-          newInterpolations = newInterpolations.concat([''])
-          newStrings = newStrings.concat([classInterpolations])
-        } else {
-          newInterpolations = newInterpolations.concat(classInterpolations)
-        }
-      }
+
       if (stringMode === false) {
         newStrings = getValue(newStrings)
       } else {
@@ -107,6 +104,7 @@ export default function(tag, options) {
     Styled.__emotion_interp = interpolations
     Styled.__emotion_base = baseTag
     Styled.__emotion_class = componentId
+    Styled.__emotion_classes = componentId
     return Styled
   }
 }
