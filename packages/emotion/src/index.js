@@ -131,7 +131,7 @@ function createStyles(strings, ...interpolations) {
   }
   interpolations.forEach((interpolation, i) => {
     styles += handleInterpolation(interpolation, isLastCharDot(styles))
-    if (stringMode === true) {
+    if (stringMode === true && strings[i + 1] !== undefined) {
       styles += strings[i + 1]
     }
   })
