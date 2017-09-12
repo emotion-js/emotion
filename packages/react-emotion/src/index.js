@@ -85,7 +85,9 @@ export default function(tag, options) {
       if (stringMode === false) {
         newStrings = getValue(newStrings)
       } else {
-        newStrings.raw = newStrings
+        if (newStrings.raw === undefined) {
+          newStrings.raw = newStrings
+        }
       }
       className += css(newStrings, ...newInterpolations.map(getValue))
 
