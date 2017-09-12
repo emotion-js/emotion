@@ -13,7 +13,7 @@ exports[`font-face adds font-face to sheet 1`] = `
 exports[`font-face adds font-face to sheet with interpolation 1`] = `
 "@font-face {
   font-family: MyHelvetica;
-  src: local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);
+  src: local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);
   font-weight: bold;
 }"
 `;
