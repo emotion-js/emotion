@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { css, sheet } from 'emotion'
+import { css } from 'emotion'
 import styled from 'react-emotion'
 import { ThemeProvider, withTheme } from 'theming'
 import { mount } from 'enzyme'
@@ -622,7 +622,7 @@ describe('styled', () => {
 
     expect(tree).toMatchSnapshot()
   })
-  test.skip('throws if undefined is passed as the component', () => {
+  test('throws if undefined is passed as the component', () => {
     expect(
       () => styled(undefined)`display: flex;`
     ).toThrowErrorMatchingSnapshot()
