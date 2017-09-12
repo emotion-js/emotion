@@ -213,7 +213,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test.skip('object composition', () => {
+  test('object composition', () => {
     const imageStyles = css({
       width: 96,
       height: 96
@@ -241,10 +241,10 @@ describe('styled', () => {
     const prettyStyles = css([
       {
         borderRadius: '50%',
-        transition: 'transform 400ms ease-in-out'
-        // ':hover': {
-        //   transform: 'scale(1.2)'
-        // }
+        transition: 'transform 400ms ease-in-out',
+        ':hover': {
+          transform: 'scale(1.2)'
+        }
       },
       { border: '3px solid currentColor' }
     ])

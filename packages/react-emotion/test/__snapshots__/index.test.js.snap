@@ -494,21 +494,22 @@ exports[`styled object as style 1`] = `
 `;
 
 exports[`styled object composition 1`] = `
+.glamor-1:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
 .glamor-1 {
   border-radius: 50%;
   -webkit-transition: -webkit-transform 400ms ease-in-out;
-  transition: -webkit-transform 400ms ease-in-out;
+  -webkit-transition: transform 400ms ease-in-out;
   transition: transform 400ms ease-in-out;
-  transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out;
   border: 3px solid currentColor;
   width: 96px;
   height: 96px;
+  color: red;
   color: blue;
-}
-
-.glamor-1:hover {
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
 }
 
 <img
