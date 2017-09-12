@@ -64,6 +64,23 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('object composition', () => {
+    const H1 = styled.h1(props => ({
+      fontSize: props.fontSize
+    }))
+    const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
+
+    const tree = renderer
+      .create(
+        <H2 fontSize={20} flex={1}>
+          hello world
+        </H2>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('call expression', () => {
     const fontSize = 20
     const H1 = styled('h1')`font-size: ${fontSize}px;`
