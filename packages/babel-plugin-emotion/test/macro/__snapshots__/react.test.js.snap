@@ -2,7 +2,20 @@
 
 exports[`styled basic render 1`] = `
 .glamor-1 {
+  color: blue;
   font-size: 20px;
+}
+
+@media (min-width: 420px) {
+  .glamor-1 {
+    color: blue;
+  }
+}
+
+@media (min-width: 420px) and  (min-width: 520px) {
+  .glamor-1 {
+    color: green;
+  }
 }
 
 <h1
@@ -30,10 +43,107 @@ exports[`styled call expression 1`] = `
 }
 
 <h1
-  className="glamor-0 glamor-1"
+  className="glamor-0 legacy__class glamor-1"
 >
   hello world
 </h1>
+`;
+
+exports[`styled change theme 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<TestComponent
+  renderChild={true}
+  theme={
+    Object {
+      "primary": "green",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "primary": "green",
+      }
+    }
+  >
+    <WithTheme(Styled)>
+      <Styled
+        theme={
+          Object {
+            "primary": "green",
+          }
+        }
+      >
+        <div
+          className="glamor-0 glamor-1"
+        >
+          this will be green then pink
+        </div>
+      </Styled>
+    </WithTheme(Styled)>
+  </ThemeProvider>
+</TestComponent>
+`;
+
+exports[`styled change theme 2`] = `
+.glamor-1 {
+  color: pink;
+}
+
+<TestComponent
+  renderChild={true}
+  theme={
+    Object {
+      "primary": "pink",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "primary": "pink",
+      }
+    }
+  >
+    <WithTheme(Styled)>
+      <Styled
+        theme={
+          Object {
+            "primary": "pink",
+          }
+        }
+      >
+        <div
+          className="glamor-0 glamor-1"
+        >
+          this will be green then pink
+        </div>
+      </Styled>
+    </WithTheme(Styled)>
+  </ThemeProvider>
+</TestComponent>
+`;
+
+exports[`styled change theme 3`] = `
+<TestComponent
+  renderChild={false}
+  theme={
+    Object {
+      "primary": "pink",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "primary": "pink",
+      }
+    }
+  />
+</TestComponent>
 `;
 
 exports[`styled component as selector 1`] = `
@@ -41,8 +151,13 @@ exports[`styled component as selector 1`] = `
   font-size: 20px;
 }
 
+.glamor-3 .glamor-0 {
+  color: green;
+}
+
 .glamor-3 {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -60,21 +175,86 @@ exports[`styled component as selector 1`] = `
 </div>
 `;
 
-exports[`styled composes 1`] = `
+exports[`styled component as selector function interpolation 1`] = `
+.glamor-3 .glamor-0 {
+  color: green;
+}
+
+.glamor-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-1 {
+  font-size: 20;
+}
+
+<div
+  className="glamor-2 glamor-3"
+>
+  hello 
+  <h1
+    className="glamor-0 glamor-1"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`styled composing components 1`] = `
 .glamor-2 {
-  color: blue;
-  height: 64px;
-  font-size: 32px;
+  color: green;
+  display: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<button
+  className="glamor-0 glamor-1 glamor-2"
+>
+  hello world
+</button>
+`;
+
+exports[`styled composition 1`] = `
+.glamor-2 {
+  font-size: 20px;
+  font-size: 13.333333333333334px;
 }
 
 <h1
-  className="glamor-0 glamor-1 glamor-2"
+  className="glamor-0 glamor-1 legacy__class glamor-2"
 >
   hello world
 </h1>
 `;
 
-exports[`styled composes based on props 1`] = `
+exports[`styled composition 2`] = `
+.glamor-2 {
+  color: blue;
+  color: red;
+  color: blue;
+  font-size: 20px;
+  font-size: 32px;
+}
+
+<h1
+  className="glamor-0 glamor-1 legacy__class glamor-2"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composition based on props 1`] = `
 .glamor-1 {
   color: blue;
 }
@@ -86,7 +266,7 @@ exports[`styled composes based on props 1`] = `
 </h1>
 `;
 
-exports[`styled composes based on props 2`] = `
+exports[`styled composition based on props 2`] = `
 .glamor-1 {
   color: green;
 }
@@ -98,38 +278,23 @@ exports[`styled composes based on props 2`] = `
 </h1>
 `;
 
-exports[`styled composes with objects 1`] = `
+exports[`styled composition with objects 1`] = `
 .glamor-2 {
   color: #333;
   font-size: 1.333em;
   height: 64px;
+  font-size: 3.157334518321em;
   font-size: 32px;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-    only screen and (min--moz-device-pixel-ratio: 1.5),
-    only screen and (-o-min-device-pixel-ratio: 1.5/1),
-    only screen and (min-resolution: 144dpi),
-    only screen and (min-resolution: 1.5dppx) {
+@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
   .glamor-2 {
     font-size: 1.4323121856191332em;
   }
 }
 
 <h1
-  className="glamor-0 glamor-1 glamor-2"
->
-  hello world
-</h1>
-`;
-
-exports[`styled composition 1`] = `
-.glamor-2 {
-  font-size: 13.333333333333334px;
-}
-
-<h1
-  className="glamor-0 glamor-1 glamor-2"
+  className="glamor-0 glamor-1 legacy__class glamor-2"
 >
   hello world
 </h1>
@@ -137,11 +302,35 @@ exports[`styled composition 1`] = `
 
 exports[`styled function in expression 1`] = `
 .glamor-2 {
+  font-size: 20px;
   font-size: 40px;
 }
 
 <h1
-  className="glamor-0 glamor-1 glamor-2"
+  className="glamor-0 glamor-1 legacy__class glamor-2"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled handles more than 10 dynamic properties 1`] = `
+.glamor-1 {
+  text-decoration: underline;
+  border-right: solid blue 54px;
+  background: white;
+  color: black;
+  display: block;
+  border-radius: 3px;
+  padding: 25px;
+  width: 500px;
+  z-index: 100;
+  font-size: 18px;
+  text-align: center;
+  border-left: blue;
+}
+
+<h1
+  className="glamor-0 legacy__class glamor-1"
 >
   hello world
 </h1>
@@ -150,9 +339,9 @@ exports[`styled function in expression 1`] = `
 exports[`styled higher order component 1`] = `
 .glamor-2 {
   font-size: 20px;
+  background-color: #7fc8d6;
   background-color: '#343a40';
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
 }
@@ -174,9 +363,86 @@ exports[`styled innerRef 1`] = `
 </h1>
 `;
 
+exports[`styled input placeholder 1`] = `
+.glamor-1::-webkit-input-placeholder {
+  background-color: green;
+}
+
+.glamor-1:-ms-input-placeholder {
+  background-color: green;
+}
+
+.glamor-1::placeholder {
+  background-color: green;
+}
+
+<input
+  className="glamor-0 glamor-1"
+>
+  hello world
+</input>
+`;
+
+exports[`styled input placeholder object 1`] = `
+.glamor-1::-webkit-input-placeholder {
+  background-color: green;
+}
+
+.glamor-1::-moz-placeholder {
+  background-color: green;
+}
+
+.glamor-1:-ms-input-placeholder {
+  background-color: green;
+}
+
+.glamor-1::placeholder {
+  background-color: green;
+}
+
+<input
+  className="glamor-0 glamor-1"
+>
+  hello world
+</input>
+`;
+
+exports[`styled nested 1`] = `
+.glamor-1 {
+  font-size: 20px;
+}
+
+.glamor-3 div {
+  color: green;
+}
+
+.glamor-3 div span {
+  color: red;
+}
+
+.glamor-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-2 glamor-3"
+>
+  hello 
+  <h1
+    className="glamor-0 glamor-1"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
 exports[`styled no dynamic 1`] = `
 .glamor-1 {
-  font-size: 12px;
+  float: left;
 }
 
 <h1
@@ -186,14 +452,186 @@ exports[`styled no dynamic 1`] = `
 </h1>
 `;
 
-exports[`styled objects 1`] = `
+exports[`styled no prop filtering on non string tags 1`] = `
 .glamor-1 {
-  padding: 10px;
+  color: green;
+}
+
+<a
+  a={true}
+  aria-label="some label"
+  b={true}
+  className="glamor-0 glamor-1"
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+>
+  hello world
+</a>
+`;
+
+exports[`styled object as style 1`] = `
+.glamor-1 {
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
 <h1
-  className="some-class glamor-0 glamor-1"
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled object composition 1`] = `
+.glamor-1:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.glamor-1 {
+  border-radius: 50%;
+  -webkit-transition: -webkit-transform 400ms ease-in-out;
+  -webkit-transition: transform 400ms ease-in-out;
+  transition: transform 400ms ease-in-out;
+  border: 3px solid currentColor;
+  width: 96px;
+  height: 96px;
+  color: red;
+  color: blue;
+}
+
+<img
+  className="glamor-0 glamor-1"
+/>
+`;
+
+exports[`styled objects 1`] = `
+.glamor-1 {
+  padding: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<h1
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled objects with spread properties 1`] = `
+.glamor-1 {
+  font-size: 20px;
+}
+
+<figure
+  className="glamor-0 glamor-1"
+>
+  hello world
+</figure>
+`;
+
+exports[`styled prop filtering 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<a
+  aria-label="some label"
+  className="glamor-0 glamor-1"
+  data-wow="value"
+  href="link"
+  is={true}
+>
+  hello world
+</a>
+`;
+
+exports[`styled prop filtering on composed styled components that are string tags 1`] = `
+.glamor-2 {
+  background-color: hotpink;
+  color: green;
+}
+
+<a
+  aria-label="some label"
+  className="glamor-0 glamor-1 glamor-2"
+  data-wow="value"
+  href="link"
+  is={true}
+>
+  hello world
+</a>
+`;
+
+exports[`styled random expressions 1`] = `
+.glamor-1 {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  color: green;
+}
+
+@media (min-width: 420px) {
+  .glamor-1 {
+    color: blue;
+  }
+}
+
+@media (min-width: 420px) and  (min-width: 520px) {
+  .glamor-1 {
+    color: green;
+  }
+}
+
+<h1
+  className="glamor-0 legacy__class glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled random expressions undefined return 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<h1
+  className="glamor-0 legacy__class glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled random object expression 1`] = `
+.glamor-1 {
+  background-color: hotpink;
+  font-size: 1rem;
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  color: green;
+}
+
+<h1
+  className="glamor-0 legacy__class glamor-1"
 >
   hello world
 </h1>
@@ -202,8 +640,10 @@ exports[`styled objects 1`] = `
 exports[`styled themes 1`] = `
 .glamor-3 {
   background-color: #ffd43b;
-  color: #8c81d8;
+  color: blue;
   height: 64px;
+  font-size: 20px;
+  color: #8c81d8;
   font-size: 32px;
 }
 
