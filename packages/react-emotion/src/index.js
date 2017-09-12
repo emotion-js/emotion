@@ -28,6 +28,13 @@ const omitAssign = function(testFn, target) {
 let componentIdIndex = 0
 
 export default function(tag, options) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (tag === undefined) {
+      throw new Error(
+        'You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.'
+      )
+    }
+  }
   const baseTag = tag.__emotion_base || tag
   const componentId =
     options !== undefined && options.id !== undefined
