@@ -12,6 +12,12 @@ exports[`babel macro css call with no args 1`] = `
 const cls1 = _css();"
 `;
 
+exports[`babel macro css inside of css 1`] = `
+"import { css as _css } from '../src';
+
+const cls2 = /*#__PURE__*/_css\`font-size:20px;background:green;@media (min-width:420px){color:blue;\${/*#__PURE__*/_css\`width:96px;height:96px;\`};line-height:40px;}\`;"
+`;
+
 exports[`babel macro css object 1`] = `
 "import { css as _css } from '../src';
 

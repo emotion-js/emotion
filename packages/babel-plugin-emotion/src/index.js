@@ -10,7 +10,7 @@ import {
 import { touchSync } from 'touch'
 import { inline, getName } from './inline'
 import { getIdentifierName } from './babel-utils'
-import { hashString, map, Stylis } from 'emotion-utils'
+import { hashString, Stylis } from 'emotion-utils'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
@@ -62,17 +62,12 @@ export function replaceCssWithCallExpression(
       /&{([^}]*)}/g,
       '$1'
     )
-
-    path.replaceWith(
-      t.taggedTemplateExpression(
-        identifier,
-        new ASTObject(
-          newStyles,
-          path.node.quasi.expressions,
-          t
-        ).toTemplateLiteral()
-      )
-    )
+    path.node.quasi = new ASTObject(
+      newStyles,
+      path.node.quasi.expressions,
+      t
+    ).toTemplateLiteral()
+    path.node.tag = identifier
   } catch (e) {
     // if (path) {
     //   throw path.buildCodeFrameError(e)

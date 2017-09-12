@@ -298,7 +298,7 @@ exports[`css nested selector without parent declaration 1`] = `
 
 exports[`css null rule 1`] = `
 <div
-  className="css-nil"
+  className="css-0"
 />
 `;
 
@@ -324,10 +324,10 @@ exports[`css random expression 1`] = `
 
 exports[`css random interpolation with undefined values 1`] = `
 .glamor-0 {
-  -webkit-box-packjustifyContent: center;
-  -webkit-justifyContent: center;
-  -ms-flex-packjustifyContent: center;
-  justifyContent: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 <div

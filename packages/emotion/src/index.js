@@ -120,6 +120,7 @@ function isLastCharDot(string) {
 }
 
 function createStyles(strings, ...interpolations) {
+  if (strings === undefined) return ''
   let stringMode = true
   let styles = ''
   if (strings !== undefined && strings.raw === undefined) {
