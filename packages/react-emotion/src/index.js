@@ -1,3 +1,4 @@
+/* global codegen */
 import { createElement as h } from 'react'
 import { css } from 'emotion'
 import { map, reduce, assign, omit } from 'emotion-utils'
