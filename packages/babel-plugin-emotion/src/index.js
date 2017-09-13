@@ -69,9 +69,9 @@ export function replaceCssWithCallExpression(
     ).toTemplateLiteral()
     path.node.tag = identifier
   } catch (e) {
-    // if (path) {
-    //   throw path.buildCodeFrameError(e)
-    // }
+    if (path) {
+      throw path.buildCodeFrameError(e)
+    }
 
     throw e
   }
@@ -141,22 +141,32 @@ const getComponentId = (state, prefix: string = 'css') => {
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
-  // if (state.extractStatic && !path.node.quasi.expressions.length) {
-  //   const { name, hash, src } = inline(
-  //     path.node.quasi,
-  //     identifierName,
-  //     'styled' // we don't want these styles to be merged in css``
-  //   )
+  if (state.extractStatic && !path.node.quasi.expressions.length) {
+    const { hash, src } = inline(
+      path.node.quasi,
+      identifierName,
+      'styled' // we don't want these styles to be merged in css``
+    )
+    const staticClassName = `css-${hash}`
+    const staticCSSRules = staticStylis(`.${staticClassName}`, src)
 
-  //   const staticCSSRules = staticStylis(`.${name}-${hash}`, src)
-
-  //   state.insertStaticRules([staticCSSRules])
-  //   return t.callExpression(identifier, [
-  //     tag,
-  //     t.stringLiteral(getComponentId(state, name)),
-  //     t.arrayExpression([t.stringLiteral(`${name}-${hash}`)])
-  //   ])
-  // }
+    state.insertStaticRules([staticCSSRules])
+    return t.callExpression(
+      t.callExpression(identifier, [
+        tag,
+        t.objectExpression([
+          t.objectProperty(
+            t.identifier('id'),
+            t.stringLiteral(
+              getComponentId(state, getName(getIdentifierName(path, t), 'css'))
+            )
+          ),
+          t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName))
+        ])
+      ]),
+      []
+    )
+  }
 
   const { src } = inline(path.node.quasi, identifierName, 'css')
 
