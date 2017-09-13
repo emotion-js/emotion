@@ -205,7 +205,7 @@ exports[`styled component as selector function interpolation 1`] = `
 `;
 
 exports[`styled composing components 1`] = `
-.glamor-2 {
+.glamor-3 {
   color: green;
   display: none;
   display: -webkit-box;
@@ -219,7 +219,7 @@ exports[`styled composing components 1`] = `
 }
 
 <button
-  className="glamor-0 glamor-1 glamor-2"
+  className="glamor-0 glamor-1 glamor-2 glamor-3"
 >
   hello world
 </button>

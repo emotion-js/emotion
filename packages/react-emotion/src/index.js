@@ -103,7 +103,7 @@ export default function(tag, options) {
     Styled.__emotion_interp = interpolations
     Styled.__emotion_base = baseTag
     Styled.__emotion_class = componentId
-    Styled.__emotion_classes = componentId
+    Styled.__emotion_classes = componentIdClassName
     return Styled
   }
 }
