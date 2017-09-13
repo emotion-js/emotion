@@ -355,3 +355,26 @@ describe('babel styled component', () => {
     })
   })
 })
+
+describe('babel styled component', () => {
+  describe('renamed import: inline', () => {
+    test('variable import: no dynamic', () => {
+      const basic = "import what from 'emotion'; what.h1`color:blue;`"
+      const { code } = babel.transform(basic, {
+        plugins: [plugin],
+        babelrc: false,
+        filename: __filename
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('config rename', () => {
+      const basic = 'what.h1`color:blue;`'
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { importedNames: { styled: 'what' } }]],
+        babelrc: false,
+        filename: __filename
+      })
+      expect(code).toMatchSnapshot()
+    })
+  })
+})
