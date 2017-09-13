@@ -351,18 +351,11 @@ export default function(babel) {
           )
         } else if (t.isIdentifier(path.node.tag)) {
           if (
-            path.node.tag.name === 'css' ||
+            path.node.tag.name === state.importedNames.css ||
             (state.cssPropIdentifier &&
               path.node.tag === state.cssPropIdentifier)
           ) {
             replaceCssWithCallExpression(path, path.node.tag, state, t)
-          if (path.node.tag.name === state.importedNames.css) {
-            replaceCssWithCallExpression(
-              path,
-              t.identifier(state.importedNames.css),
-              state,
-              t
-            )
           } else if (path.node.tag.name === 'keyframes') {
             replaceCssWithCallExpression(
               path,

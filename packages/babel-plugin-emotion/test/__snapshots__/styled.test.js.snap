@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`babel styled component extract basic 1`] = `
-"import \\"./styled.test.emotion.css\\";
-const H1 = styled(\\"h1\\", \\"styled-H1-1qcxcvu0\\", [\\"styled-H1-10x82eg\\"]);"
+"const H1 = /*#__PURE__*/styled(\\"h1\\", {
+  id: \\"css-H1-1unzkfz0\\"
+})\`display:flex;justify-content:center;width:var(--css-hash-0);&:hover{background-color:green;}@media (max-width:500px){height:var(--css-hash-1);position:fixed;}@media print{display:none;}&::before{color:blue;width:20px;height:20px;content:'pseudo';}\`;"
 `;
 
 exports[`babel styled component extract basic 2`] = `
@@ -36,8 +37,9 @@ exports[`babel styled component extract basic 2`] = `
 `;
 
 exports[`babel styled component extract no use 1`] = `
-"import \\"./styled.test.emotion.css\\";
-styled(\\"h1\\", \\"styled-yoisj70\\", [\\"styled-0\\"]);"
+"/*#__PURE__*/styled(\\"h1\\", {
+  id: \\"css-744r8q0\\"
+})\`\`;"
 `;
 
 exports[`babel styled component extract no use 2`] = `".styled-0 {}"`;
@@ -77,28 +79,9 @@ const H1 = /*#__PURE__*/styled('h1', {
 `;
 
 exports[`babel styled component inline media query 1`] = `
-"const H1 = /*#__PURE__*/styled(\\"h1\\", \\"css-H1-bom4yv0\\", [], [], function createEmotionStyledRules() {
-  return {
-    \\"@media print\\": {
-      \\"fontSize\\": \\"10pt\\"
-    },
-    \\"@media screen\\": {
-      \\".child-selector\\": {
-        \\"fontSize\\": \\"13px\\"
-      }
-    },
-    \\"@media screen, print\\": {
-      \\"&:hover + &\\": {
-        \\"lineHeight\\": \\"1.2\\"
-      }
-    },
-    \\"@media only screen   and (min-device-width: 320px)   and (max-device-width: 480px)  and (-webkit-min-device-pixel-ratio: 2)\\": {
-      \\".child-selector\\": {
-        \\"lineHeight\\": \\"1.4\\"
-      }
-    }
-  };
-});"
+"const H1 = /*#__PURE__*/styled(\\"h1\\", {
+  id: \\"css-H1-d788gw0\\"
+})\`@media print{font-size:10pt;}@media screen{& .child-selector{font-size:13px;}}@media screen,print{&:hover + line-height:1.2;}@media only screen and (min-device-width:320px) and (max-device-width:480px) and (-webkit-min-device-pixel-ratio:2){& .child-selector{line-height:1.4;}}\`;"
 `;
 
 exports[`babel styled component inline more than 10 dynamic values 1`] = `
@@ -245,17 +228,13 @@ const Figure = styled(\\"figure\\", {
 `;
 
 exports[`babel styled component renamed import: inline config rename 1`] = `
-"/*#__PURE__*/what(\\"h1\\", \\"css-1jhrj9p0\\", [], [], function createEmotionStyledRules() {
-  return {
-    \\"color\\": \\"blue\\"
-  };
-});"
+"/*#__PURE__*/what(\\"h1\\", {
+  id: \\"css-1ml3uv60\\"
+})\`color:blue;\`;"
 `;
 
 exports[`babel styled component renamed import: inline variable import: no dynamic 1`] = `
-"import what from 'emotion'; /*#__PURE__*/what('h1', 'css-nl5a7v0', [], [], function createEmotionStyledRules() {
-  return {
-    'color': 'blue'
-  };
-});"
+"import what from 'emotion'; /*#__PURE__*/what('h1', {
+  id: 'css-c0c3us0'
+})\`color:blue;\`;"
 `;
