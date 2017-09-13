@@ -28,7 +28,7 @@ const config = {
         'react',
         'flow'
       ],
-      plugins: ['babel-plugin-preval'],
+      plugins: ['codegen'],
       babelrc: false
     })
   ],

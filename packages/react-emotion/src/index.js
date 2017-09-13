@@ -1,13 +1,13 @@
+/* global codegen */
 import { createElement as h } from 'react'
 import { css } from 'emotion'
 import { map, reduce, assign, omit } from 'emotion-utils'
-import propsRegexString from /* preval */ './props'
 
 export * from 'emotion'
 
 const push = (obj, items) => Array.prototype.push.apply(obj, items)
 
-const reactPropsRegex = new RegExp(propsRegexString)
+const reactPropsRegex = codegen.require('./props')
 const testOmitPropsOnStringTag = key => reactPropsRegex.test(key)
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
 

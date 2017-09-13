@@ -24,7 +24,7 @@
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
     "babel-macros": "^1.0.2",
-    "babel-plugin-preval": "^1.4.2",
+    "babel-plugin-codegen": "^1.2.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
