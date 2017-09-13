@@ -1,3 +1,21 @@
+## v7.3.0 (2017-09-13)
+
+#### :rocket: Enhancement
+* `babel-plugin-emotion`
+  * [#290](https://github.com/emotion-js/emotion/pull/290) Configurable imports. ([@ChristopherBiscardi](https://github.com/ChristopherBiscardi))
+
+#### :house: Internal
+* `babel-plugin-emotion`, `emotion`, `react-emotion`
+  * [#304](https://github.com/emotion-js/emotion/pull/304) Use babel-plugin-codegen to generate props regex. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `babel-plugin-emotion`
+  * [#298](https://github.com/emotion-js/emotion/pull/298) upgrade to babel-macros 1.0.0. ([@kentcdodds](https://github.com/kentcdodds))
+
+#### Committers: 3
+- Christopher Biscardi ([ChristopherBiscardi](https://github.com/ChristopherBiscardi))
+- Kent C. Dodds ([kentcdodds](https://github.com/kentcdodds))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v7.2.1 (2017-09-05)
 
 #### :memo: Documentation
