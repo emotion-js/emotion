@@ -1,4 +1,5 @@
 import { keys, forEach } from 'emotion-utils'
+import { hashArray } from './index'
 
 export function getIdentifierName(path, t) {
   const parent = path.findParent(p => p.isVariableDeclarator())
@@ -49,4 +50,31 @@ export function addRuntimeImports(state, t) {
     )
   })
   state.emotionImports = undefined
+}
+export function getName(identifierName?: string, prefix: string): string {
+  const parts = []
+  parts.push(prefix)
+  if (identifierName) {
+    parts.push(identifierName)
+  }
+  return parts.join('-')
+}
+
+export function createRawStringFromTemplateLiteral(quasi: {
+  quasis: Array<{ value: { cooked: string } }>
+}): { src: string, dynamicValueCount: number } {
+  let strs = quasi.quasis.map(x => x.value.cooked)
+  let hash = hashArray([...strs])
+
+  const src = strs
+    .reduce((arr, str, i) => {
+      arr.push(str)
+      if (i !== strs.length - 1) {
+        arr.push(`xxx${i}xxx`)
+      }
+      return arr
+    }, [])
+    .join('')
+    .trim()
+  return { src, hash }
 }

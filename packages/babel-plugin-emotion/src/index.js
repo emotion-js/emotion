@@ -8,8 +8,11 @@ import {
   relative
 } from 'path'
 import { touchSync } from 'touch'
-import { inline, getName } from './inline'
-import { getIdentifierName } from './babel-utils'
+import {
+  getIdentifierName,
+  getName,
+  createRawStringFromTemplateLiteral
+} from './babel-utils'
 import { hashString, Stylis } from 'emotion-utils'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
@@ -38,11 +41,9 @@ export function replaceCssWithCallExpression(
   staticCSSSelectorCreator = (name, hash) => `.${name}-${hash}`
 ) {
   try {
-    const { name, hash, src } = inline(
-      path.node.quasi,
-      getIdentifierName(path, t),
-      'css'
-    )
+    const { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
+    const name = getName(getIdentifierName(path, t), 'css')
+
     if (state.extractStatic && !path.node.quasi.expressions.length) {
       const staticCSSRules = staticStylis(
         staticCSSSelectorCreator(name, hash),
@@ -142,7 +143,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
   if (state.extractStatic && !path.node.quasi.expressions.length) {
-    const { hash, src } = inline(
+    const { hash, src } = createRawStringFromTemplateLiteral(
       path.node.quasi,
       identifierName,
       'styled' // we don't want these styles to be merged in css``
@@ -168,7 +169,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     )
   }
 
-  const { src } = inline(path.node.quasi, identifierName, 'css')
+  const { src } = createRawStringFromTemplateLiteral(path.node.quasi)
 
   const newStyles = dynamicStylis('&', src).replace(/&{([^}]*)}/g, '$1')
 
