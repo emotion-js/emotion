@@ -117,4 +117,12 @@ describe('babel css prop', () => {
     })
     expect(code).toMatchSnapshot()
   })
+
+  test('redefined-import: basic inline', () => {
+    const basic = '(<div className="a" cows={`color: brown;`}></div>)'
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { importedNames: { css: 'cows' } }]]
+    })
+    expect(code).toMatchSnapshot()
+  })
 })

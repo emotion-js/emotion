@@ -57,6 +57,15 @@ exports[`babel css prop noClassName 1`] = `
 <div className={/*#__PURE__*/_css\`color:brown;\`}></div>;"
 `;
 
+exports[`babel css prop redefined-import: basic inline 1`] = `
+"import { css as _cows } from \\"emotion\\";
+<div className={\\"a\\" + \\" \\" + /*#__PURE__*/_cows([], [], function createEmotionStyledRules() {
+  return [{
+    \\"color\\": \\"brown\\"
+  }];
+})}></div>;"
+`;
+
 exports[`babel css prop with spread arg in jsx opening tag 1`] = `
 "import { css as _css } from \\"emotion\\";
 <div className={\\"a\\" + \\" \\" + /*#__PURE__*/_css\`color:brown;\`} {...rest}></div>;"

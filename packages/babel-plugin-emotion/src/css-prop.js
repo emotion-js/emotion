@@ -10,7 +10,7 @@ export default function(path, state, t) {
     const attrPath = openElPath.get('name')
     const name = attrPath.node.name
 
-    if (name === 'css') {
+    if (name === state.importedNames.css) {
       cssPath = attrPath
     }
 
@@ -91,11 +91,13 @@ export default function(path, state, t) {
   function getCssIdentifer() {
     if (state.opts.autoImportCssProp !== false) {
       if (!state.cssPropIdentifier) {
-        state.cssPropIdentifier = path.scope.generateUidIdentifier('css')
+        state.cssPropIdentifier = path.scope.generateUidIdentifier(
+          state.importedNames.css
+        )
       }
       return state.cssPropIdentifier
     } else {
-      return t.identifier('css')
+      return t.identifier(state.importedNames.css)
     }
   }
   function createCssTemplateExpression(templateLiteral) {

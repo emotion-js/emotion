@@ -202,6 +202,11 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
 
 const visited = Symbol('visited')
 
+const defaultImportedNames = {
+  styled: 'styled',
+  css: 'css'
+}
+
 export default function(babel) {
   const { types: t } = babel
 
@@ -211,6 +216,30 @@ export default function(babel) {
     visitor: {
       Program: {
         enter(path, state) {
+          state.importedNames = {
+            ...defaultImportedNames,
+            ...state.opts.importedNames
+          }
+          state.file.metadata.modules.imports.forEach(
+            ({ source, imported, specifiers }) => {
+              if (source.indexOf('emotion') !== -1) {
+                const importedNames = specifiers
+                  .filter(v => ['default', 'css'].includes(v.imported))
+                  .reduce(
+                    (acc, { imported, local }) => ({
+                      ...acc,
+                      [imported === 'default' ? 'styled' : imported]: local
+                    }),
+                    defaultImportedNames
+                  )
+                state.importedNames = {
+                  ...importedNames,
+                  ...state.opts.importedNames
+                }
+              }
+            }
+          )
+
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
@@ -269,10 +298,10 @@ export default function(babel) {
         try {
           if (
             (t.isCallExpression(path.node.callee) &&
-              path.node.callee.callee.name === 'styled') ||
+              path.node.callee.callee.name === state.importedNames.styled) ||
             (t.isMemberExpression(path.node.callee) &&
               t.isIdentifier(path.node.callee.object) &&
-              path.node.callee.object.name === 'styled')
+              path.node.callee.object.name === state.importedNames.styled)
           ) {
             const identifier = t.isCallExpression(path.node.callee)
               ? path.node.callee.callee
@@ -295,7 +324,7 @@ export default function(babel) {
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
-          path.node.tag.object.name === 'styled'
+          path.node.tag.object.name === state.importedNames.styled
         ) {
           path.replaceWith(
             buildStyledCallExpression(
@@ -309,7 +338,7 @@ export default function(babel) {
         } else if (
           // styled('h1')`color:${color};`
           t.isCallExpression(path.node.tag) &&
-          path.node.tag.callee.name === 'styled'
+          path.node.tag.callee.name === state.importedNames.styled
         ) {
           path.replaceWith(
             buildStyledCallExpression(
@@ -327,6 +356,13 @@ export default function(babel) {
               path.node.tag === state.cssPropIdentifier)
           ) {
             replaceCssWithCallExpression(path, path.node.tag, state, t)
+          if (path.node.tag.name === state.importedNames.css) {
+            replaceCssWithCallExpression(
+              path,
+              t.identifier(state.importedNames.css),
+              state,
+              t
+            )
           } else if (path.node.tag.name === 'keyframes') {
             replaceCssWithCallExpression(
               path,
