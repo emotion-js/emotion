@@ -11,7 +11,7 @@
     "react",
     "flow"
   ],
-  "plugins": ["babel-plugin-preval"],
+  "plugins": ["codegen"],
   "env": {
     "test": {
       "presets": [
@@ -26,7 +26,7 @@
         "react",
         "stage-2"
       ],
-      "plugins": ["./babel-plugin-emotion-test", "preval"]    
+      "plugins": ["./babel-plugin-emotion-test", "codegen"]
     }
   }
 }

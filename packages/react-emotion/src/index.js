@@ -1,12 +1,11 @@
+/* global codegen */
 import { createElement } from 'react'
 import { memoize } from 'emotion-utils'
 import { css, registered } from 'emotion'
-import propsRegexString from /* preval */ './props'
 
 export * from 'emotion'
 
-const reactPropsRegex = new RegExp(propsRegexString)
-
+const reactPropsRegex = codegen.require('./props')
 const testOmitPropsOnStringTag = memoize(key => reactPropsRegex.test(key))
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
 
