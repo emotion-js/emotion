@@ -152,10 +152,6 @@ export default class StyleSheet {
     }
     return this.ctr - 1
   }
-  delete(index) {
-    // we insert a blank rule when 'deleting' so previously returned indexes remain stable
-    return this.replace(index, '')
-  }
   flush() {
     if (isBrowser) {
       forEach(this.tags, tag => tag.parentNode.removeChild(tag))
