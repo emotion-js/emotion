@@ -21,6 +21,37 @@ exports[`babel injectGlobal extract injectGlobal with interpolation 1`] = `
 injectGlobal\`body{margin:0;padding:0;display:\${display};}body > div{display:none;}html{background:green;}\`;"
 `;
 
+exports[`babel injectGlobal inline dynamic change import 1`] = `
+"
+import { injectGlobal as inject } from 'emotion';
+inject([], [], function createEmotionStyledRules() {
+  return [{
+    'body': {
+      'margin': '0',
+      'padding': '0',
+      '& > div': {
+        'display': '-webkit-box; display: -ms-flexbox; display: flex'
+      }
+    },
+    'html': {
+      'background': 'green'
+    }
+  }];
+});
+injectGlobal\`
+        body {
+          margin: 0;
+          padding: 0;
+          & > div {
+            display: flex;
+          }
+        }
+        html {
+          background: green;
+        }
+      \`;"
+`;
+
 exports[`babel injectGlobal inline injectGlobal basic 1`] = `
 "
 injectGlobal\`body{margin:0;padding:0;}body > div{display:flex;}html{background:green;}\`;"
@@ -29,4 +60,34 @@ injectGlobal\`body{margin:0;padding:0;}body > div{display:flex;}html{background:
 exports[`babel injectGlobal inline injectGlobal with interpolation 1`] = `
 "
 injectGlobal\`body{margin:0;padding:0;display:\${display};}body > div{display:none;}html{background:green;}\`;"
+`;
+
+exports[`babel injectGlobal inline static change import 1`] = `
+"
+inject([], [], function createEmotionStyledRules() {
+  return [{
+    \\"body\\": {
+      \\"margin\\": \\"0\\",
+      \\"padding\\": \\"0\\",
+      \\"& > div\\": {
+        \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
+      }
+    },
+    \\"html\\": {
+      \\"background\\": \\"green\\"
+    }
+  }];
+});
+injectGlobal\`
+        body {
+          margin: 0;
+          padding: 0;
+          & > div {
+            display: flex;
+          }
+        }
+        html {
+          background: green;
+        }
+      \`;"
 `;

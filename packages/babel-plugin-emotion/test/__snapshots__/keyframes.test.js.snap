@@ -22,3 +22,52 @@ exports[`babel keyframes inline keyframes with interpolation 1`] = `
 "
 const rotate360 = /*#__PURE__*/keyframes\`from{transform:rotate(0deg);}to{transform:rotate(\${endingRotation});}\`;"
 `;
+
+exports[`babel keyframes inline static change import 1`] = `
+"
+const rotate360 = /*#__PURE__*/frames([], [], function createEmotionStyledRules() {
+  return [{
+    \\"from\\": {
+      \\"WebkitTransform\\": \\"rotate(0deg)\\",
+      \\"transform\\": \\"rotate(0deg)\\"
+    },
+    \\"to\\": {
+      \\"WebkitTransform\\": \\"rotate(360deg)\\",
+      \\"transform\\": \\"rotate(360deg)\\"
+    }
+  }];
+});
+const rotate3601 = keyframes\`
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+      \`;"
+`;
+
+exports[`babel keyframes inline static change import 2`] = `
+"
+import { keyframes as frames } from 'emotion';
+const rotate360 = /*#__PURE__*/frames([], [], function createEmotionStyledRules() {
+  return [{
+    'from': {
+      'WebkitTransform': 'rotate(0deg)',
+      'transform': 'rotate(0deg)'
+    },
+    'to': {
+      'WebkitTransform': 'rotate(360deg)',
+      'transform': 'rotate(360deg)'
+    }
+  }];
+});
+const rotate3601 = keyframes\`
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+      \`;"
+`;

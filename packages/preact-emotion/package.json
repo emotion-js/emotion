@@ -1,6 +1,6 @@
 {
   "name": "preact-emotion",
-  "version": "7.2.2",
+  "version": "7.3.2",
   "description": "The Next Generation of CSS-in-JS, for Preact projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -14,13 +14,13 @@
     "rollup": "rollup -c ../../rollup.config.js"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^7.2.2",
-    "emotion": "^7.2.2",
-    "emotion-utils": "^7.2.2"
+    "babel-plugin-emotion": "^7.3.2",
+    "emotion": "^7.3.2",
+    "emotion-utils": "^7.3.1"
   },
   "devDependencies": {
     "npm-run-all": "^4.0.2",
-    "react-emotion": "^7.2.2",
+    "react-emotion": "^7.3.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.43.0"
   },
