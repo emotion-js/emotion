@@ -1,6 +1,6 @@
 {
   "name": "react-emotion",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "The Next Generation of CSS-in-JS, for React projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -16,8 +16,8 @@
     "rollup:umd": "UMD=true rollup -c ../../rollup.config.js"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^7.3.1",
-    "emotion": "^7.3.1",
+    "babel-plugin-emotion": "^7.3.2",
+    "emotion": "^7.3.2",
     "emotion-utils": "^7.3.1"
   },
   "devDependencies": {
