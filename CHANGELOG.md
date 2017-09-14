@@ -1,3 +1,13 @@
+## v7.3.2 (2017-09-14)
+
+#### :rocket: Enhancement
+* `babel-plugin-emotion`
+  * [#306](https://github.com/emotion-js/emotion/pull/306) Allow all imports to be configurable. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v7.3.0 (2017-09-13)
 
 #### :rocket: Enhancement
