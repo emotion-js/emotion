@@ -38,6 +38,53 @@ describe('babel keyframes', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('static change import', () => {
+      const basic = `
+        const rotate360 = frames\`
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+      \`;
+        const rotate3601 = keyframes\`
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { importedNames: { keyframes: 'frames' } }]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('static change import', () => {
+      const basic = `
+        import { keyframes as frames } from 'emotion'
+        const rotate360 = frames\`
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+      \`;
+        const rotate3601 = keyframes\`
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
   describe('extract', () => {
     test('keyframes basic', () => {
