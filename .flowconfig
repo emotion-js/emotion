@@ -1,24 +1,8 @@
 [ignore]
-<PROJECT_ROOT>/node_modules/[^s].*
-<PROJECT_ROOT>/node_modules/s[^t].*
-<PROJECT_ROOT>/node_modules/st[^y].*
-<PROJECT_ROOT>/node_modules/sty[^l].*
-<PROJECT_ROOT>/node_modules/styl[^e].*
-<PROJECT_ROOT>/node_modules/style[^d].*
-<PROJECT_ROOT>/node_modules/styled[^\-].*
-<PROJECT_ROOT>/node_modules/styled-[^c].*
-<PROJECT_ROOT>/node_modules/styled-c[^o].*
-<PROJECT_ROOT>/node_modules/styled-co[^m].*
-<PROJECT_ROOT>/node_modules/styled-com[^p].*
-<PROJECT_ROOT>/node_modules/styled-comp[^o].*
-<PROJECT_ROOT>/node_modules/styled-compo[^n].*
-<PROJECT_ROOT>/node_modules/styled-compon[^e].*
-<PROJECT_ROOT>/node_modules/styled-compone[^n].*
-<PROJECT_ROOT>/node_modules/styled-componen[^t].*
-<PROJECT_ROOT>/node_modules/styled-component[^s].*
-<PROJECT_ROOT>/node_modules/styled-components.+
+
 [include]
 
 [libs]
 
 [options]
+module.name_mapper='^\(emotion-utils\)$' -> '<PROJECT_ROOT>/packages/\1/src'

@@ -4,37 +4,18 @@
 ## Install
 
 ```bash
-npm install -S emotion
+npm install --save emotion react-emotion babel-plugin-emotion
 ```
-
 
 **.babelrc**
 ```json
 {
   "plugins": [
-    "emotion/babel"
+    "emotion"
   ]
 }
 ```
 
-### Extract Mode
+### Preact
 
-The default settings enable css extraction.
-
-**Browser Support** no ie11 support (css vars)
-
-### Inline Mode
-
-Inline mode does **not** extract css into external files.
-
-**.babelrc**
-```json
-{
-  "plugins": [
-    ["emotion/babel", { inline: true }]
-  ]
-}
-```
-
-**Browser Support** anything React supports
-
+If you're using [Preact](https://github.com/developit/preact) instead of [React](https://github.com/facebook/react), install [`preact-emotion`](./preact.md). The babel setup remains the same.

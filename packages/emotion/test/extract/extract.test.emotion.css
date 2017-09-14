@@ -1,0 +1,27 @@
+.styled-H1-ijh7uz {
+    font-size: 12px
+}
+.styled-H1-s9f816 {
+    font-size: 20px
+}
+.styled-H1-s9f816 span {
+    color: blue
+}
+.styled-H1-s9f816 span:hover {
+    color: green
+}
+.styled-H1-s9f816 span:hover:after {
+    content: 'after'
+}
+.styled-H1-131pfth {
+    name: FancyH1;
+    font-size: 38px
+}
+html {
+    background: pink
+}
+.css-14yvnlz {
+    font-family: sans-serif;
+    color: yellow;
+    background-color: purple
+}

@@ -17,7 +17,7 @@ const PreviewContent = styled('div')`
 const PreviewWrapper = styled(PreviewContent)`
   position: relative;
   flex: 1 1 30%;
-  
+
   & .preview-display {
     width: 100%;
     height: 100%;
@@ -91,7 +91,9 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [['emotion/babel', { inline: true }]]
+          plugins: [
+            ['emotion/babel', { inline: true, autoImportCssProp: false }]
+          ]
         }
       ).code
     } else {
@@ -103,7 +105,9 @@ class Preview extends Component {
       `,
         {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [['emotion/babel', { inline: true }]]
+          plugins: [
+            ['emotion/babel', { inline: true, autoImportCssProp: false }]
+          ]
         }
       ).code
     }
@@ -146,7 +150,7 @@ class Preview extends Component {
     }
   }
 
-  render () {
+  render() {
     const { error } = this.state
     return (
       <PreviewWrapper>

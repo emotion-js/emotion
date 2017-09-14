@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`prefixing css 1`] = `
+.glamor-0 {
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+>
+  hello world
+</div>
+`;
+
+exports[`prefixing object 1`] = `
+.glamor-0 {
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+>
+  hello world
+</div>
+`;
+
+exports[`prefixing styled 1`] = `
+.glamor-1 {
+  display: flex;
+}
+
+<div
+  className="glamor-0 glamor-1"
+>
+  hello world
+</div>
+`;

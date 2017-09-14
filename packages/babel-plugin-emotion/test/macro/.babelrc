@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "loose": true,
+        "exclude": ["transform-es2015-typeof-symbol"]        
+      }
+    ],
+    "stage-0",
+    "react",
+    "flow"
+  ],
+  "plugins": ["codegen", "./babel-macros-register"]
+}

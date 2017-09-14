@@ -7,7 +7,7 @@ This returns an object with the properties `html`, `ids` and `css`. It removes u
 
 ```jsx
 import { renderToString } from 'react-dom/server'
-import { extractCritical } from 'emotion/server'
+import { extractCritical } from 'emotion-server'
 import App from './App'
 
 

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`injectGlobal basic 1`] = `
+"html {
+  background: pink;
+}
+
+html.active {
+  background: red;
+}"
+`;
+
+exports[`injectGlobal interpolated value 1`] = `
+"body {
+  color: yellow;
+  margin: 0px;
+  padding: 0px;
+}"
+`;
+
+exports[`injectGlobal nested interpolated media query 1`] = `
+"@media (max-width: 600px) {
+  body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}"
+`;
+
+exports[`injectGlobal random interpolation 1`] = `
+".css-71uu79 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}"
+`;

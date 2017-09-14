@@ -4,7 +4,7 @@ The composes property is based on [css modules' composes property](https://githu
 
 ```jsx
 import { css } from 'emotion'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 // Define a class
 const flexCenter = css`

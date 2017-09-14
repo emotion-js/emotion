@@ -1,0 +1,42 @@
+{
+  "name": "react-emotion",
+  "version": "7.3.2",
+  "description": "The Next Generation of CSS-in-JS, for React projects.",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "src",
+    "dist",
+    "macro.js"
+  ],
+  "scripts": {
+    "build": "npm-run-all clean rollup rollup:umd",
+    "clean": "rimraf dist",
+    "rollup": "rollup -c ../../rollup.config.js",
+    "rollup:umd": "UMD=true rollup -c ../../rollup.config.js"
+  },
+  "dependencies": {
+    "babel-plugin-emotion": "^7.3.2",
+    "emotion": "^7.3.2",
+    "emotion-utils": "^7.3.1"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.43.0"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://github.com/tkh44/emotion#readme",
+  "license": "MIT",
+  "repository": "https://github.com/tkh44/emotion/tree/master/packages/react-emotion",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/tkh44/emotion/issues"
+  }
+}
