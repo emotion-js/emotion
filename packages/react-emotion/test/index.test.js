@@ -64,7 +64,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('object composition', () => {
+  test('glamorous style api & composition', () => {
     const H1 = styled.h1(props => ({
       fontSize: props.fontSize
     }))

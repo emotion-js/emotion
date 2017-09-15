@@ -39,10 +39,12 @@ export default function(tag, options) {
     options !== undefined && options.id !== undefined
       ? options.id
       : 'css-' + (componentIdIndex++).toString(36)
+
   const componentIdClassName =
     tag.__emotion_classes === undefined
       ? componentId
       : `${tag.__emotion_classes} ${componentId}`
+
   const omitFn =
     typeof baseTag === 'string'
       ? testOmitPropsOnStringTag
@@ -58,8 +60,10 @@ export default function(tag, options) {
       tag.__emotion_interp !== undefined
         ? tag.__emotion_interp.concat([';'], initialInterpolations)
         : initialInterpolations
+
     const stringMode =
       initialStrings !== undefined && initialStrings.raw !== undefined
+
     const Styled = (props, context) => {
       const getValue = v => {
         if (typeof v === 'function') {
@@ -68,6 +72,7 @@ export default function(tag, options) {
         }
         return v
       }
+
       let className = `${componentIdClassName} `
       let classInterpolations = []
 
@@ -99,11 +104,13 @@ export default function(tag, options) {
         omitAssign(omitFn, {}, props, { className, ref: props.innerRef })
       )
     }
+
     Styled.__emotion_strings = strings
     Styled.__emotion_interp = interpolations
     Styled.__emotion_base = baseTag
     Styled.__emotion_class = componentId
     Styled.__emotion_classes = componentIdClassName
+
     return Styled
   }
 }
