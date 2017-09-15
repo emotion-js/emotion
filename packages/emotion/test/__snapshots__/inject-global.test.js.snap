@@ -19,9 +19,10 @@ exports[`injectGlobal interpolated value 1`] = `
 `;
 
 exports[`injectGlobal nested interpolated media query 1`] = `
-"@media (max-width: 600px) {
+"@media (max-width:600px) {
   body {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
   }

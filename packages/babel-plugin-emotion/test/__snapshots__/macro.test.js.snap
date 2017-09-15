@@ -15,7 +15,7 @@ const cls1 = _css();"
 exports[`babel macro css inside of css 1`] = `
 "import { css as _css } from '../src';
 
-const cls2 = /*#__PURE__*/_css\`font-size:20px;background:green;@media (min-width:420px){color:blue;\${/*#__PURE__*/_css\`width:96px;height:96px;\`};line-height:40px;}\`;"
+const cls2 = /*#__PURE__*/_css\`font-size:20px;@media (min-width:420px){color:blue;\${/*#__PURE__*/_css\`width:96px;height:96px;\`};line-height:40px;}background:green;\`;"
 `;
 
 exports[`babel macro css object 1`] = `
@@ -33,7 +33,7 @@ const someOtherVar = _flush;"
 exports[`babel macro fontFace 1`] = `
 "import { fontFace as _fontFace } from '../src';
 
-_fontFace\`font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;\`;"
+_fontFace\`font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\`;"
 `;
 
 exports[`babel macro hydrate 1`] = `
@@ -45,7 +45,7 @@ const someOtherVar = _hydrate;"
 exports[`babel macro injectGlobal 1`] = `
 "import { injectGlobal as _injectGlobal } from '../src';
 
-_injectGlobal\`& body{margin:0;padding:0;}& body > div{display:none;}& body > div:hover{color:green;}& body > div:hover span{color:red;}& body > div:hover span:after{content:\\"end of line\\";}& html{background:green;}\`;"
+_injectGlobal\`body{margin:0;padding:0;& > div{display:none;&:hover{color:green;& span{color:red;&:after{content:\\"end of line\\"}}}}}html{background:green;}\`;"
 `;
 
 exports[`babel macro keyframes 1`] = `

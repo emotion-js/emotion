@@ -11,7 +11,8 @@ import { touchSync } from 'touch'
 import {
   getIdentifierName,
   getName,
-  createRawStringFromTemplateLiteral
+  createRawStringFromTemplateLiteral,
+  minify
 } from './babel-utils'
 import { hashString, Stylis } from 'emotion-utils'
 import cssProps from './css-prop'
@@ -27,7 +28,6 @@ export function hashArray(arr) {
   return hashString(arr.join(''))
 }
 
-const dynamicStylis = new Stylis({ prefix: false, keyframe: false })
 const staticStylis = new Stylis({ keyframe: false })
 
 export function replaceCssWithCallExpression(
@@ -37,7 +37,6 @@ export function replaceCssWithCallExpression(
   t,
   staticCSSSrcCreator = src => src,
   removePath = false,
-  dynamicSelector = '&',
   staticCSSSelectorCreator = (name, hash) => `.${name}-${hash}`
 ) {
   try {
@@ -59,12 +58,8 @@ export function replaceCssWithCallExpression(
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
     }
-    const newStyles = dynamicStylis(dynamicSelector, src).replace(
-      /&{([^}]*)}/g,
-      '$1'
-    )
     path.node.quasi = new ASTObject(
-      newStyles,
+      minify(src),
       path.node.quasi.expressions,
       t
     ).toTemplateLiteral()
@@ -171,8 +166,6 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
 
   const { src } = createRawStringFromTemplateLiteral(path.node.quasi)
 
-  const newStyles = dynamicStylis('&', src).replace(/&{([^}]*)}/g, '$1')
-
   path.addComment('leading', '#__PURE__')
 
   return t.taggedTemplateExpression(
@@ -187,7 +180,11 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
         )
       ])
     ]),
-    new ASTObject(newStyles, path.node.quasi.expressions, t).toTemplateLiteral()
+    new ASTObject(
+      minify(src),
+      path.node.quasi.expressions,
+      t
+    ).toTemplateLiteral()
   )
 }
 
@@ -386,7 +383,6 @@ export default function(babel) {
               t,
               (src, name, hash) => `@keyframes ${name}-${hash} { ${src} }`,
               false,
-              '',
               () => ''
             )
           } else if (path.node.tag.name === state.importedNames.fontFace) {
@@ -406,7 +402,6 @@ export default function(babel) {
               t,
               undefined,
               true,
-              '',
               () => ''
             )
           }

@@ -57,7 +57,7 @@ const H1 = /*#__PURE__*/styled('h1', {
 exports[`babel styled component inline media query 1`] = `
 "const H1 = /*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-H1-d788gw0\\"
-})\`@media print{font-size:10pt;}@media screen{& .child-selector{font-size:13px;}}@media screen,print{&:hover + line-height:1.2;}@media only screen and (min-device-width:320px) and (max-device-width:480px) and (-webkit-min-device-pixel-ratio:2){& .child-selector{line-height:1.4;}}\`;"
+})\`@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\`;"
 `;
 
 exports[`babel styled component inline more than 10 dynamic values 1`] = `
@@ -69,7 +69,7 @@ exports[`babel styled component inline more than 10 dynamic values 1`] = `
 exports[`babel styled component inline nested 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', {
   id: 'css-H1-uhwmvd0'
-})\`font-size:\${fontSize + 'px'};& div{color:blue;}& div span{color:red;}\`;"
+})\`font-size:\${fontSize + 'px'};& div{color:blue;& span{color:red}}\`;"
 `;
 
 exports[`babel styled component inline no dynamic 1`] = `
@@ -121,10 +121,10 @@ const H1 = styled('h1', {
 
 exports[`babel styled component inline random expressions 1`] = `
 "
-const a = () => /*#__PURE__*/css\`font-size:1rem;\`;
+const a = () => /*#__PURE__*/css\`font-size:1rem\`;
 /*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-19hcrvw0\\"
-})\`margin:12px 48px;\${/*#__PURE__*/css\`font-size:32px;\`};color:#ffffff;\${{ backgroundColor: \\"hotpink\\" }};& .profile{\${props => props.prop && a()};}\`;"
+})\`margin:12px 48px;\${/*#__PURE__*/css\`font-size:32px\`};color:#ffffff;& .profile{\${props => props.prop && a()}}\${{ backgroundColor: \\"hotpink\\" }};\`;"
 `;
 
 exports[`babel styled component inline shorthand property 1`] = `
@@ -140,7 +140,7 @@ const SomeComponent = /*#__PURE__*/styled(\\"div\\", {
 })\`\`;
 /*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-srvsnn1\\"
-})\`color:blue;& \${SomeComponent}{color:green;}\`;"
+})\`color:blue;\${SomeComponent}{color:green;}\`;"
 `;
 
 exports[`babel styled component inline styled objects prefixed 1`] = `

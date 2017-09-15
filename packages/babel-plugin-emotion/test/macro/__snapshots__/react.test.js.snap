@@ -412,12 +412,12 @@ exports[`styled nested 1`] = `
   font-size: 20px;
 }
 
-.glamor-3 div {
-  color: green;
-}
-
 .glamor-3 div span {
   color: red;
+}
+
+.glamor-3 div {
+  color: green;
 }
 
 .glamor-3 {
