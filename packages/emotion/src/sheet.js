@@ -24,10 +24,6 @@ styleSheet.flush()
 
 import { forEach } from 'emotion-utils'
 
-function last(arr) {
-  return arr[arr.length - 1]
-}
-
 function sheetForTag(tag) {
   if (tag.sheet) {
     return tag.sheet
@@ -58,9 +54,6 @@ export default class StyleSheet {
     this.tags = []
     this.ctr = 0
   }
-  getSheet() {
-    return sheetForTag(last(this.tags))
-  }
   inject() {
     if (this.injected) {
       throw new Error('already injected!')
@@ -82,38 +75,28 @@ export default class StyleSheet {
     }
     this.isSpeedy = !!bool
   }
-  _insert(rule) {
-    // this weirdness for perf, and chrome's weird bug
-    // https://stackoverflow.com/questions/20007992/chrome-suddenly-stopped-accepting-insertrule
-    try {
-      let sheet = this.getSheet()
-      sheet.insertRule(
-        rule,
-        rule.indexOf('@import') !== -1 ? 0 : sheet.cssRules.length
-      )
-    } catch (e) {
-      if (process.env.NODE_ENV !== 'production') {
-        // might need beter dx for this
-        console.warn('illegal rule', rule) // eslint-disable-line no-console
-      }
-    }
-  }
   insert(rule) {
     if (isBrowser) {
+      const tag = this.tags[this.tags.length - 1]
+      const sheet = sheetForTag(tag)
       // this is the ultrafast version, works across browsers
-      if (this.isSpeedy && this.getSheet().insertRule) {
-        this._insert(rule)
+      if (this.isSpeedy && sheet.insertRule) {
+        // this weirdness for perf, and chrome's weird bug
+        // https://stackoverflow.com/questions/20007992/chrome-suddenly-stopped-accepting-insertrule
+        try {
+          sheet.insertRule(rule, sheet.cssRules.length)
+        } catch (e) {
+          if (process.env.NODE_ENV !== 'production') {
+            // might need beter dx for this
+            console.warn('illegal rule', rule) // eslint-disable-line no-console
+          }
+        }
       } else {
         // more browser weirdness. I don't even know
         // else if(this.tags.length > 0 && this.tags::last().styleSheet) {
         //   this.tags::last().styleSheet.cssText+= rule
         // }
-        if (rule.indexOf('@import') !== -1) {
-          const tag = last(this.tags)
-          tag.insertBefore(document.createTextNode(rule), tag.firstChild)
-        } else {
-          last(this.tags).appendChild(document.createTextNode(rule))
-        }
+        tag.appendChild(document.createTextNode(rule))
       }
     } else {
       // enough 'spec compliance' to be able to extract the rules later
