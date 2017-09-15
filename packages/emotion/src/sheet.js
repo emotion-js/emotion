@@ -43,14 +43,6 @@ function sheetForTag(tag) {
 
 const isBrowser: boolean = typeof window !== 'undefined'
 
-const oldIE = (() => {
-  if (isBrowser) {
-    let div = document.createElement('div')
-    div.innerHTML = '<!--[if lt IE 10]><i></i><![endif]-->'
-    return div.getElementsByTagName('i').length === 1
-  }
-})()
-
 function makeStyleTag() {
   let tag = document.createElement('style')
   tag.type = 'text/css'
@@ -64,7 +56,6 @@ export default class StyleSheet {
   constructor() {
     this.isSpeedy = process.env.NODE_ENV === 'production' // the big drawback here is that the css won't be editable in devtools
     this.tags = []
-    this.maxLength = oldIE ? 4000 : 65000
     this.ctr = 0
   }
   getSheet() {
@@ -138,7 +129,7 @@ export default class StyleSheet {
     }
 
     this.ctr++
-    if (isBrowser && this.ctr % this.maxLength === 0) {
+    if (isBrowser && this.ctr % 65000 === 0) {
       this.tags.push(makeStyleTag())
     }
     return this.ctr - 1
