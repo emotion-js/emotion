@@ -70,12 +70,7 @@ export default class StyleSheet {
     } else {
       // server side 'polyfill'. just enough behavior to be useful.
       this.sheet = {
-        cssRules: [],
-        insertRule: rule => {
-          // enough 'spec compliance' to be able to extract the rules later
-          // in other words, just the cssText field
-          this.sheet.cssRules.push({ cssText: rule })
-        }
+        cssRules: []
       }
     }
     this.injected = true
@@ -121,11 +116,9 @@ export default class StyleSheet {
         }
       }
     } else {
-      // server side is pretty simple
-      this.sheet.insertRule(
-        rule,
-        rule.indexOf('@import') !== -1 ? 0 : this.sheet.cssRules.length
-      )
+      // enough 'spec compliance' to be able to extract the rules later
+      // in other words, just the cssText field
+      this.sheet.cssRules.push({ cssText: rule })
     }
 
     this.ctr++
@@ -138,7 +131,6 @@ export default class StyleSheet {
     if (isBrowser) {
       forEach(this.tags, tag => tag.parentNode.removeChild(tag))
       this.tags = []
-      this.sheet = null
       this.ctr = 0
       // todo - look for remnants in document.styleSheets
     } else {
