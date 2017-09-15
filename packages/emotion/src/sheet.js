@@ -42,9 +42,6 @@ function sheetForTag(tag) {
 }
 
 const isBrowser: boolean = typeof window !== 'undefined'
-const isDev: boolean =
-  process.env.NODE_ENV === 'development' || !process.env.NODE_ENV // (x => (x === 'development') || !x)(process.env.NODE_ENV)
-const isTest: boolean = process.env.NODE_ENV === 'test'
 
 const oldIE = (() => {
   if (isBrowser) {
@@ -64,16 +61,10 @@ function makeStyleTag() {
 }
 
 export default class StyleSheet {
-  constructor(
-    {
-      speedy = !isDev && !isTest,
-      maxLength = isBrowser && oldIE ? 4000 : 65000
-    }: { speedy: boolean, maxLength: number } = {}
-  ) {
-    this.isSpeedy = speedy // the big drawback here is that the css won't be editable in devtools
-    this.sheet = undefined
+  constructor() {
+    this.isSpeedy = process.env.NODE_ENV === 'production' // the big drawback here is that the css won't be editable in devtools
     this.tags = []
-    this.maxLength = maxLength
+    this.maxLength = oldIE ? 4000 : 65000
     this.ctr = 0
   }
   getSheet() {
@@ -115,7 +106,7 @@ export default class StyleSheet {
         rule.indexOf('@import') !== -1 ? 0 : sheet.cssRules.length
       )
     } catch (e) {
-      if (isDev) {
+      if (process.env.NODE_ENV !== 'production') {
         // might need beter dx for this
         console.warn('illegal rule', rule) // eslint-disable-line no-console
       }
