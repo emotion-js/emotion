@@ -2,15 +2,7 @@
 
 exports[`styled basic render nested 1`] = `
 <h1
-  className="styled-H1-s9f816 styled-H1-4svmq01"
->
-  hello world
-</h1>
-`;
-
-exports[`styled name 1`] = `
-<h1
-  className="styled-H1-131pfth styled-H1-4svmq02"
+  className="css-H1-qh9dq71 css-s9f816"
 >
   hello world
 </h1>
@@ -18,38 +10,15 @@ exports[`styled name 1`] = `
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="styled-H1-ijh7uz styled-H1-4svmq00"
+  className="css-H1-qh9dq70 css-ijh7uz"
 >
   hello world
 </h1>
 `;
 
 exports[`styled writes the correct css 1`] = `
-".styled-H1-ijh7uz {
-    font-size: 12px
-}
-.styled-H1-s9f816 {
-    font-size: 20px
-}
-.styled-H1-s9f816 span {
-    color: blue
-}
-.styled-H1-s9f816 span:hover {
-    color: green
-}
-.styled-H1-s9f816 span:hover:after {
-    content: 'after'
-}
-.styled-H1-131pfth {
-    name: FancyH1;
-    font-size: 38px
-}
-html {
-    background: pink
-}
-.css-14yvnlz {
-    font-family: sans-serif;
-    color: yellow;
-    background-color: purple
-}"
+".css-ijh7uz{font-size:12px;}
+.css-s9f816{font-size:20px;}.css-s9f816 span{color:blue;}.css-s9f816 span:hover{color:green;}.css-s9f816 span:hover:after{content:'after';}
+html{background:pink;}
+.css-14yvnlz{font-family:sans-serif;color:yellow;background-color:purple;}"
 `;

@@ -26,7 +26,7 @@ const omitAssign = function(testFn, target) {
 
 let componentIdIndex = 0
 
-export default function(tag, options) {
+export default function(tag, options: { e: string, id: string }) {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
       throw new Error(
@@ -34,11 +34,17 @@ export default function(tag, options) {
       )
     }
   }
-  const baseTag = tag.__emotion_base || tag
-  const componentId =
-    options !== undefined && options.id !== undefined
-      ? options.id
-      : 'css-' + (componentIdIndex++).toString(36)
+  let componentId
+  let staticClassName = false
+  if (options !== undefined) {
+    componentId = options.id
+    if (options.e !== undefined) {
+      staticClassName = options.e
+    }
+  } else {
+    componentId = 'css-' + (componentIdIndex++).toString(36)
+  }
+  const baseTag = staticClassName === false ? tag.__emotion_base || tag : tag
 
   const componentIdClassName =
     tag.__emotion_classes === undefined
@@ -53,13 +59,15 @@ export default function(tag, options) {
   return (strings, ...interpolations) => {
     const stringMode = strings !== undefined && strings.raw !== undefined
     let styles = tag.__emotion_styles || []
-    if (stringMode) {
-      styles = interpolations.reduce(
-        (array, interp, i) => array.concat(interp, strings[i + 1]),
-        styles.concat(strings[0])
-      )
-    } else {
-      styles = styles.concat(strings, interpolations)
+    if (staticClassName !== false) {
+      if (stringMode) {
+        styles = interpolations.reduce(
+          (array, interp, i) => array.concat(interp, strings[i + 1]),
+          styles.concat(strings[0])
+        )
+      } else {
+        styles = styles.concat(strings, interpolations)
+      }
     }
 
     const Styled = (props, context) => {
@@ -74,7 +82,7 @@ export default function(tag, options) {
       let className = `${componentIdClassName} `
       let classInterpolations = []
 
-      if (props.className) {
+      if (props.className && staticClassName === false) {
         const classes = props.className.split(' ')
         classes.forEach(splitClass => {
           if (registered[splitClass] !== undefined) {
@@ -85,7 +93,11 @@ export default function(tag, options) {
         })
       }
 
-      className += css(...map(styles, getValue), ...classInterpolations)
+      if (staticClassName === false) {
+        className += css(...map(styles, getValue), ...classInterpolations)
+      } else {
+        className += staticClassName
+      }
 
       return createElement(
         baseTag,

@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
-import { injectGlobal, css } from 'emotion'
+import { injectGlobal, css, sheet } from 'emotion'
 import styled from 'react-emotion'
 
 describe('styled', () => {
@@ -27,16 +27,6 @@ describe('styled', () => {
           }
         }
       }
-    `
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
-
-    expect(tree).toMatchSnapshot()
-  })
-
-  test('name', () => {
-    const H1 = styled.h1`
-      name: FancyH1;
-      font-size: 38px;
     `
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
