@@ -22,8 +22,6 @@ styleSheet.flush()
 
 */
 
-import { forEach } from 'emotion-utils'
-
 function sheetForTag(tag) {
   if (tag.sheet) {
     return tag.sheet
@@ -112,7 +110,7 @@ export default class StyleSheet {
   }
   flush() {
     if (isBrowser) {
-      forEach(this.tags, tag => tag.parentNode.removeChild(tag))
+      this.tags.forEach(tag => tag.parentNode.removeChild(tag))
       this.tags = []
       this.ctr = 0
       // todo - look for remnants in document.styleSheets
@@ -127,7 +125,7 @@ export default class StyleSheet {
       return this.sheet.cssRules
     }
     let arr = []
-    forEach(this.tags, tag =>
+    this.tags.forEach(tag =>
       arr.splice(arr.length, 0, ...Array.from(sheetForTag(tag).cssRules))
     )
     return arr

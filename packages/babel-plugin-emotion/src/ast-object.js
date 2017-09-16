@@ -1,5 +1,3 @@
-import { forEach } from 'emotion-utils'
-
 export default class ASTObject {
   props: Array<any>
   expressions: Array<any>
@@ -37,7 +35,7 @@ export default class ASTObject {
     const templateElements = []
     const templateExpressions = []
     let cursor = 0
-    forEach(matches, ({ value, p1, index }, i) => {
+    matches.forEach(({ value, p1, index }, i) => {
       const preMatch = str.substring(cursor, index)
       cursor = cursor + preMatch.length + value.length
       if (preMatch) {

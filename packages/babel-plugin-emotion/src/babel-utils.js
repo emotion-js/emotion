@@ -1,4 +1,3 @@
-import { keys, forEach } from 'emotion-utils'
 import { hashArray } from './index'
 
 export function getIdentifierName(path, t) {
@@ -33,9 +32,9 @@ export function buildMacroRuntimeNode(path, state, importName, t) {
 
 export function addRuntimeImports(state, t) {
   if (state.emotionImports === undefined) return
-  forEach(keys(state.emotionImports), importPath => {
+  Object.keys(state.emotionImports).forEach(importPath => {
     const importSpecifiers = []
-    forEach(keys(state.emotionImports[importPath]), importName => {
+    Object.keys(state.emotionImports[importPath]).forEach(importName => {
       const identifier = state.emotionImports[importPath][importName]
       if (importName === 'default') {
         importSpecifiers.push(t.importDefaultSpecifier(identifier))

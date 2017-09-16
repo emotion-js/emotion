@@ -1,5 +1,4 @@
 import { sheet, inserted, registered } from 'emotion'
-import { keys, forEach } from 'emotion-utils'
 
 export * from 'emotion'
 
@@ -24,11 +23,13 @@ export function extractCritical(html) {
     return ret
   })
 
-  o.ids = keys(inserted).filter(id => {
+  o.ids = Object.keys(inserted).filter(id => {
     return !!ids[id] || !registered[`css-${id}`]
   })
+
   let css = ''
-  forEach(o.rules, x => (css += x.cssText))
+
+  o.rules.forEach(x => (css += x.cssText))
   o.css = css
 
   return o
