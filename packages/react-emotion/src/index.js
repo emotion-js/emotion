@@ -1,6 +1,6 @@
 /* global codegen */
 import { createElement } from 'react'
-import { memoize, map } from 'emotion-utils'
+import { memoize } from 'emotion-utils'
 import { css, registered } from 'emotion'
 
 export * from 'emotion'
@@ -97,7 +97,7 @@ export default function(tag, options: { e: string, id: string }) {
         }
       }
       if (staticClassName === false) {
-        className += css(...map(styles, getValue), ...classInterpolations)
+        className += css(...styles.map(getValue), ...classInterpolations)
       } else {
         className += staticClassName
       }
