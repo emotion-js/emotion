@@ -104,7 +104,7 @@ exports[`babel macro styled tagged template literal function 1`] = `
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
   id: 'css-SomeComponent-1sczqp40'
-})\`display:flex;\`;"
+})('display:flex;');"
 `;
 
 exports[`babel macro styled tagged template literal member 1`] = `
@@ -112,5 +112,5 @@ exports[`babel macro styled tagged template literal member 1`] = `
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
   id: 'css-SomeComponent-1rq85zx0'
-})\`display:flex;\`;"
+})('display:flex;');"
 `;

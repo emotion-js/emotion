@@ -23,65 +23,65 @@ exports[`babel styled component extract no use 2`] = `""`;
 exports[`babel styled component inline basic 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', {
   id: 'css-H1-j3tbw30'
-})\`font-size:\${fontSize + 'px'};\`;"
+})('font-size:', fontSize + 'px', ';');"
 `;
 
 exports[`babel styled component inline composition based on props 1`] = `
 "const cls1 = /*#__PURE__*/css\`width:20px;\`;
 const H1 = /*#__PURE__*/styled('h1', {
   id: 'css-H1-o65wtz0'
-})\`\${props => {
+})(props => {
   return props.a ? cssA : cssB;
-}};font-size:\${fontSize + 'px'};height:20px;transform:translateX(\${props => props.translateX});\`;"
+}, ';font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');');"
 `;
 
 exports[`babel styled component inline dynamic fns 1`] = `
 "const Avatar = /*#__PURE__*/styled('img', {
   id: 'css-Avatar-1hdggep0'
-})\`width:96px;height:96px;border-radius:\${props => props.theme.borderRadius};border:1px solid \${props => props.theme.borderColor};\`;"
+})('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';');"
 `;
 
 exports[`babel styled component inline function call 1`] = `
 "/*#__PURE__*/styled(MyComponent, {
   id: 'css-10ih2xj0'
-})\`font-size:\${fontSize + 'px'};\`;"
+})('font-size:', fontSize + 'px', ';');"
 `;
 
 exports[`babel styled component inline interpolation in different places 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
   id: 'css-H1-1l6gcxd0'
-})\`font-size:\${fontSize + 'px'};height:20px;transform:translateX(\${props => props.translateX});height1:\${something}wow;width:w\${something}ow;transform:translateX(\${props => props.translateX}) translateY(\${props => props.translateX});transform1:translateX(\${props => props.translateX}) translateY(\${props => props.translateX});transform2:translateX(\${props => props.translateX}) \${props => props.translateX};\`;"
+})('font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');height1:', something, 'wow;width:w', something, 'ow;transform:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform1:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform2:translateX(', props => props.translateX, ') ', props => props.translateX, ';');"
 `;
 
 exports[`babel styled component inline media query 1`] = `
 "const H1 = /*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-H1-d788gw0\\"
-})\`@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\`;"
+})(\\"@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\\");"
 `;
 
 exports[`babel styled component inline more than 10 dynamic values 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', {
       id: 'css-H1-1u8bj9j0'
-})\`text-decoration:\${'underline'};border-right:solid blue \${54}px;background:\${'white'};color:\${'black'};display:\${'block'};border-radius:\${'3px'};padding:\${'25px'};width:\${'500px'};z-index:\${100};font-size:\${'18px'};text-align:\${'center'};border-left:\${p => p.theme.blue};\`;"
+})('text-decoration:', 'underline', ';border-right:solid blue ', 54, 'px;background:', 'white', ';color:', 'black', ';display:', 'block', ';border-radius:', '3px', ';padding:', '25px', ';width:', '500px', ';z-index:', 100, ';font-size:', '18px', ';text-align:', 'center', ';border-left:', p => p.theme.blue, ';');"
 `;
 
 exports[`babel styled component inline nested 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', {
   id: 'css-H1-uhwmvd0'
-})\`font-size:\${fontSize + 'px'};& div{color:blue;& span{color:red}}\`;"
+})('font-size:', fontSize + 'px', ';& div{color:blue;& span{color:red}}');"
 `;
 
 exports[`babel styled component inline no dynamic 1`] = `
 "/*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-1aigf8e0\\"
-})\`color:blue;\`;"
+})(\\"color:blue;\\");"
 `;
 
 exports[`babel styled component inline no use 1`] = `
 "/*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-19mybzz0\\"
-})\`\`;"
+})();"
 `;
 
 exports[`babel styled component inline objects based on props 1`] = `
@@ -124,7 +124,7 @@ exports[`babel styled component inline random expressions 1`] = `
 const a = () => /*#__PURE__*/css\`font-size:1rem\`;
 /*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-19hcrvw0\\"
-})\`margin:12px 48px;\${/*#__PURE__*/css\`font-size:32px\`};color:#ffffff;& .profile{\${props => props.prop && a()}}\${{ backgroundColor: \\"hotpink\\" }};\`;"
+})(\\"margin:12px 48px;\\", /*#__PURE__*/css\`font-size:32px\`, \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"
 `;
 
 exports[`babel styled component inline shorthand property 1`] = `
@@ -137,10 +137,10 @@ exports[`babel styled component inline styled component as selector 1`] = `
 "
 const SomeComponent = /*#__PURE__*/styled(\\"div\\", {
   id: \\"css-SomeComponent-srvsnn0\\"
-})\`\`;
+})();
 /*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-srvsnn1\\"
-})\`color:blue;\${SomeComponent}{color:green;}\`;"
+})(\\"color:blue;\\", SomeComponent, \\"{color:green;}\\");"
 `;
 
 exports[`babel styled component inline styled objects prefixed 1`] = `
@@ -206,11 +206,11 @@ const Figure = styled(\\"figure\\", {
 exports[`babel styled component renamed import: inline config rename 1`] = `
 "/*#__PURE__*/what(\\"h1\\", {
   id: \\"css-1ml3uv60\\"
-})\`color:blue;\`;"
+})(\\"color:blue;\\");"
 `;
 
 exports[`babel styled component renamed import: inline variable import: no dynamic 1`] = `
 "import what from 'emotion'; /*#__PURE__*/what('h1', {
   id: 'css-c0c3us0'
-})\`color:blue;\`;"
+})('color:blue;');"
 `;
