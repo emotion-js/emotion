@@ -59,7 +59,7 @@ export default function(tag, options: { e: string, id: string }) {
   return (strings, ...interpolations) => {
     const stringMode = strings !== undefined && strings.raw !== undefined
     let styles = tag.__emotion_styles || []
-    if (staticClassName !== false) {
+    if (staticClassName === false) {
       if (stringMode) {
         styles = interpolations.reduce(
           (array, interp, i) => array.concat(interp, strings[i + 1]),
@@ -82,17 +82,20 @@ export default function(tag, options: { e: string, id: string }) {
       let className = `${componentIdClassName} `
       let classInterpolations = []
 
-      if (props.className && staticClassName === false) {
-        const classes = props.className.split(' ')
-        classes.forEach(splitClass => {
-          if (registered[splitClass] !== undefined) {
-            classInterpolations.push(splitClass)
-          } else {
-            className += `${splitClass} `
-          }
-        })
+      if (props.className) {
+        if (staticClassName === false) {
+          const classes = props.className.split(' ')
+          classes.forEach(splitClass => {
+            if (registered[splitClass] !== undefined) {
+              classInterpolations.push(splitClass)
+            } else {
+              className += `${splitClass} `
+            }
+          })
+        } else {
+          className += `${props.className} `
+        }
       }
-
       if (staticClassName === false) {
         className += css(...map(styles, getValue), ...classInterpolations)
       } else {
