@@ -48,6 +48,6 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new webpack.optimize.UglifyJsPlugin(),
-    new HTMLWebpackPlugin()
+    new HTMLWebpackPlugin({ template: path.join(__dirname, './index.html') })
   ]
 }

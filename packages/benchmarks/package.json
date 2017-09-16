@@ -36,8 +36,8 @@
     "webpack-bundle-analyzer": "^2.9.0"
   },
   "scripts": {
-    "build": "webpack",
-    "benchmark": "npm run build && node run-headless.js"
+    "build:benchmark": "webpack",
+    "benchmark": "npm run build:benchmark && node run-headless.js"
   },
   "version": "0.0.1-12"
 }
