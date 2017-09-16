@@ -44,7 +44,7 @@ function makeStyleTag() {
   tag.type = 'text/css'
   tag.setAttribute('data-emotion', '')
   tag.appendChild(document.createTextNode(''))
-  ;(document.head || document.getElementsByTagName('head')[0]).appendChild(tag)
+  document.head.appendChild(tag)
   return tag
 }
 
