@@ -79,6 +79,20 @@ export function createRawStringFromTemplateLiteral(quasi: {
   return { src, hash }
 }
 
+export function omit(
+  obj: { [string]: any },
+  testFn: (key: string, obj: any) => boolean
+) {
+  let target: { [string]: any } = {}
+  let i: string
+  for (i in obj) {
+    if (!testFn(i, obj)) continue
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue
+    target[i] = obj[i]
+  }
+  return target
+}
+
 // babel-plugin-styled-components
 // https://github.com/styled-components/babel-plugin-styled-components/blob/8d44acc36f067d60d4e09f9c22ff89695bc332d2/src/minify/index.js
 

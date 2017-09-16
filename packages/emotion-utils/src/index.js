@@ -1,17 +1,4 @@
 // @flow weak
-export function omit(
-  obj: { [string]: any },
-  testFn: (key: string, obj: any) => boolean
-) {
-  let target: { [string]: any } = {}
-  let i: string
-  for (i in obj) {
-    if (!testFn(i, obj)) continue
-    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue
-    target[i] = obj[i]
-  }
-  return target
-}
 export function memoize(fn) {
   const cache = {}
   return arg => {
