@@ -1,6 +1,6 @@
 /* global codegen */
 import { createElement } from 'react'
-import { memoize } from 'emotion-utils'
+import { memoize, map } from 'emotion-utils'
 import { css, registered } from 'emotion'
 
 export * from 'emotion'
@@ -50,19 +50,17 @@ export default function(tag, options) {
       ? testOmitPropsOnStringTag
       : testOmitPropsOnComponent
 
-  return (initialStrings, ...initialInterpolations) => {
-    const strings =
-      tag.__emotion_strings !== undefined
-        ? tag.__emotion_strings.concat(initialStrings)
-        : initialStrings
-
-    const interpolations =
-      tag.__emotion_interp !== undefined
-        ? tag.__emotion_interp.concat([';'], initialInterpolations)
-        : initialInterpolations
-
-    const stringMode =
-      initialStrings !== undefined && initialStrings.raw !== undefined
+  return (strings, ...interpolations) => {
+    const stringMode = strings !== undefined && strings.raw !== undefined
+    let styles = tag.__emotion_styles || []
+    if (stringMode) {
+      styles = interpolations.reduce(
+        (array, interp, i) => array.concat(interp, strings[i + 1]),
+        styles.concat(strings[0])
+      )
+    } else {
+      styles = styles.concat(strings, interpolations)
+    }
 
     const Styled = (props, context) => {
       const getValue = v => {
@@ -87,17 +85,7 @@ export default function(tag, options) {
         })
       }
 
-      let newInterpolations = interpolations.concat(classInterpolations)
-      let newStrings = strings
-
-      if (stringMode === false) {
-        newStrings = getValue(newStrings)
-      } else {
-        if (newStrings.raw === undefined) {
-          newStrings.raw = newStrings
-        }
-      }
-      className += css(newStrings, ...newInterpolations.map(getValue))
+      className += css(...map(styles, getValue), ...classInterpolations)
 
       return createElement(
         baseTag,
@@ -105,8 +93,7 @@ export default function(tag, options) {
       )
     }
 
-    Styled.__emotion_strings = strings
-    Styled.__emotion_interp = interpolations
+    Styled.__emotion_styles = styles
     Styled.__emotion_base = baseTag
     Styled.__emotion_class = componentId
     Styled.__emotion_classes = componentIdClassName
