@@ -1,0 +1,42 @@
+{
+  "name": "benchmarks",
+  "private": true,
+  "dependencies": {
+    "aphrodite": "^1.2.3",
+    "classnames": "^2.2.5",
+    "emotion": "latest",
+    "glamor": "^2.20.37",
+    "glamorous": "^4.1.0",
+    "marky": "^1.2.0",
+    "new-css-in-js": "^0.0.1-12",
+    "postcss": "^6.0.8",
+    "radium": "^0.19.1",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "react-jss": "^7.0.1",
+    "react-new-css-in-js": "^0.0.1-12",
+    "react-primitives": "^0.4.3",
+    "reactxp": "0.34.3",
+    "styled-components": "latest",
+    "styletron-client": "^2.5.7",
+    "styletron-utils": "^2.5.4"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.1",
+    "babel-macros": "^1.0.2",
+    "cli-chart": "^0.3.1",
+    "css-loader": "^0.28.4",
+    "puppeteer": "^0.10.1",
+    "pwmetrics": "^3.1.2",
+    "react-addons-perf": "^15.6.0-rc.1",
+    "serve": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.4.1",
+    "webpack-bundle-analyzer": "^2.9.0"
+  },
+  "scripts": {
+    "build": "webpack",
+    "benchmark": "npm run build && node run-headless.js"
+  },
+  "version": "0.0.1-12"
+}
