@@ -8,7 +8,7 @@ const path = require('path')
 async function run() {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
-  await page.goto(`file://${path.resolve(__dirname, './index.html')}`)
+  await page.goto(`file://${path.resolve(__dirname, './dist/index.html')}`)
 
   const results = []
   let done = false
