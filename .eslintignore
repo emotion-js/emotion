@@ -3,3 +3,5 @@ dist/
 coverage/
 node_modules/
 stylis.js
+/demo/dist
+/example/build
