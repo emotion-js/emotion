@@ -6,7 +6,7 @@
     "build": "lerna run build --parallel",
     "test:size": "npm-run-all clean rollup:umd size",
     "clean": "lerna run clean --parallel",
-    "test": "npm-run-all -p lint:check coverage test:size",
+    "test": "npm-run-all -p lint:check coverage test:size && npm run benchmark",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
     "lint:check": "eslint . --ignore-path .gitignore",
     "test:watch": "jest --watch --no-cache",
@@ -15,7 +15,8 @@
     "size": "bundlesize",
     "release": "npm run test && npm run build && lerna publish && git push --tags",
     "lint": "eslint . --fix --ignore-path .gitignore",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "benchmark": "npm run build && lerna exec --scope benchmarks npm run benchmark"    
   },
   "dependencies": {},
   "devDependencies": {
