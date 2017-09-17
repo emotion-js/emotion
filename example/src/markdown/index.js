@@ -6,7 +6,7 @@ import colors from 'open-color'
 import styles from './index.css'
 
 const MarkdownContainer = styled('div')`
-  composes: ${styles.markdownContainer};
+  ${styles.markdownContainer};
 
   h1,
   h2,
