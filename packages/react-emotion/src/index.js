@@ -1,7 +1,7 @@
 /* global codegen */
 import { createElement } from 'react'
 import { memoize } from 'emotion-utils'
-import { css, registered } from 'emotion'
+import { css, getRegisteredStyles } from 'emotion'
 
 export * from 'emotion'
 
@@ -84,14 +84,7 @@ export default function(tag, options: { e: string, id: string }) {
 
       if (props.className) {
         if (staticClassName === false) {
-          const classes = props.className.split(' ')
-          classes.forEach(splitClass => {
-            if (registered[splitClass] !== undefined) {
-              classInterpolations.push(splitClass)
-            } else {
-              className += `${splitClass} `
-            }
-          })
+          className += getRegisteredStyles(classInterpolations, props.className)
         } else {
           className += `${props.className} `
         }

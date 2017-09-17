@@ -188,3 +188,27 @@ export function fontFace(...args) {
     inserted[hash] = true
   }
 }
+
+export function getRegisteredStyles(registeredStyles, classNames) {
+  let rawClassName = ''
+
+  classNames.split(' ').forEach(className => {
+    if (registered[className] !== undefined) {
+      registeredStyles.push(className)
+    } else {
+      rawClassName += `${className} `
+    }
+  })
+  return rawClassName
+}
+
+export function merge(className) {
+  const registeredStyles = []
+
+  const rawClassName = getRegisteredStyles(registeredStyles, className)
+
+  if (registeredStyles.length < 2) {
+    return className
+  }
+  return rawClassName + css(...registeredStyles)
+}
