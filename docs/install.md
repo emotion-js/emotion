@@ -18,7 +18,7 @@ npm install --save emotion react-emotion babel-plugin-emotion
 
 **Notes:**
 - Make sure `"emotion"` is the first plugin.
-- If you are using Babel's env option in your `.babelrc` file ensure that emotion is first in every enviorment's list of plugins.
+- If you are using Babel's env option in your `.babelrc` file ensure that emotion is first in every environment's list of plugins.
   ```json
   {
     "env": {
