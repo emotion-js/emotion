@@ -47,6 +47,69 @@ describe('babel injectGlobal', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('static change import', () => {
+      const basic = `
+        inject\`
+          body {
+            margin: 0;
+            padding: 0;
+            & > div {
+              display: flex;
+            }
+          }
+          html {
+            background: green;
+          }
+      \`;
+      injectGlobal\`
+        body {
+          margin: 0;
+          padding: 0;
+          & > div {
+            display: flex;
+          }
+        }
+        html {
+          background: green;
+        }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { importedNames: { injectGlobal: 'inject' } }]]
+      })
+      expect(code).toMatchSnapshot()
+    })
+    test('dynamic change import', () => {
+      const basic = `
+        import { injectGlobal as inject } from 'emotion'
+        inject\`
+          body {
+            margin: 0;
+            padding: 0;
+            & > div {
+              display: flex;
+            }
+          }
+          html {
+            background: green;
+          }
+      \`;
+      injectGlobal\`
+        body {
+          margin: 0;
+          padding: 0;
+          & > div {
+            display: flex;
+          }
+        }
+        html {
+          background: green;
+        }
+      \`;`
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
   describe('extract', () => {
     test('injectGlobal basic', () => {

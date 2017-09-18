@@ -11,5 +11,5 @@
     "react",
     "flow"
   ],
-  "plugins": ["preval", "./babel-macros-register"]
+  "plugins": ["codegen", "./babel-macros-register"]
 }

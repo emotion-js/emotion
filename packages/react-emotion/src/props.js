@@ -194,6 +194,6 @@ const props = {
   unselectable: true
 }
 
-module.exports = `^((${Object.keys(props).join(
+module.exports = `/^((${Object.keys(props).join(
   '|'
-)})|(on[A-Z].*)|((data|aria)-.*))$`
+)})|(on[A-Z].*)|((data|aria)-.*))$/`

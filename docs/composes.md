@@ -48,8 +48,27 @@ const cls = css`
 // composes also does not work in nested selectors, e.g. this doesn't work
 const cls = css`
   & .flex {
-      composes: ${flexCenter}
+      composes: ${flexCenter};
   }
+`
+
+// ... instead, you should use this pattern for the nested styles or pseudoselectors
+const flexCenter = css`
+  & .flex {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+`
+const redHover = css`
+  &:hover {
+      color: red;
+  }
+`
+
+// ... and this class will compose both the pseudo and nested selector styles
+const cls = css`
+  composes: ${flexCenter} ${redHover};
 `
 
 ```

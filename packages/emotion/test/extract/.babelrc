@@ -4,5 +4,5 @@
     "env",
     "react"
   ],
-  "plugins": [["../../../../babel-plugin-emotion-test", {"extractStatic": true}], "babel-plugin-preval"]
+  "plugins": [["../../../../babel-plugin-emotion-test", {"extractStatic": true}], "codegen"]
 }

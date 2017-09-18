@@ -29,7 +29,7 @@ const config = {
         'react',
         'flow'
       ],
-      plugins: ['preval', 'external-helpers'],
+      plugins: ['codegen', 'external-helpers'],
       babelrc: false
     }),
     cjs()

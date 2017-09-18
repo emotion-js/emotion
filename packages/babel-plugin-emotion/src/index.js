@@ -230,7 +230,10 @@ const visited = Symbol('visited')
 
 const defaultImportedNames = {
   styled: 'styled',
-  css: 'css'
+  css: 'css',
+  keyframes: 'keyframes',
+  injectGlobal: 'injectGlobal',
+  fontFace: 'fontFace'
 }
 
 export default function(babel) {
@@ -250,7 +253,16 @@ export default function(babel) {
             ({ source, imported, specifiers }) => {
               if (source.indexOf('emotion') !== -1) {
                 const importedNames = specifiers
-                  .filter(v => ['default', 'css'].includes(v.imported))
+                  .filter(
+                    v =>
+                      [
+                        'default',
+                        'css',
+                        'keyframes',
+                        'injectGlobal',
+                        'fontFace'
+                      ].indexOf(v.imported) !== -1
+                  )
                   .reduce(
                     (acc, { imported, local }) => ({
                       ...acc,
@@ -383,48 +395,36 @@ export default function(babel) {
             )
           )
         } else if (t.isIdentifier(path.node.tag)) {
-          if (path.node.tag.name === state.importedNames.css) {
+          if (
+            path.node.tag.name === state.importedNames.css ||
+            path.node.tag === state.cssPropIdentifier
+          ) {
+            replaceCssWithCallExpression(path, path.node.tag, state, t)
+          } else if (path.node.tag.name === state.importedNames.keyframes) {
             replaceCssWithCallExpression(
               path,
-              t.identifier(state.importedNames.css),
-              state,
-              t
-            )
-          } else if (path.node.tag.name === 'keyframes') {
-            replaceCssWithCallExpression(
-              path,
-              t.identifier('keyframes'),
+              path.node.tag,
               state,
               t,
               (name, hash, src) => `@keyframes ${name}-${hash} { ${src} }`
             )
-          } else if (path.node.tag.name === 'fontFace') {
+          } else if (path.node.tag.name === state.importedNames.fontFace) {
             replaceCssWithCallExpression(
               path,
-              t.identifier('fontFace'),
+              path.node.tag,
               state,
               t,
               (name, hash, src) => `@font-face {${src}}`,
               true
             )
-          } else if (path.node.tag.name === 'injectGlobal') {
+          } else if (path.node.tag.name === state.importedNames.injectGlobal) {
             replaceCssWithCallExpression(
               path,
-              t.identifier('injectGlobal'),
+              path.node.tag,
               state,
               t,
               (name, hash, src) => src,
               true
-            )
-          } else if (
-            state.cssPropIdentifier &&
-            path.node.tag === state.cssPropIdentifier
-          ) {
-            replaceCssWithCallExpression(
-              path,
-              state.cssPropIdentifier,
-              state,
-              t
             )
           }
         }
