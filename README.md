@@ -35,7 +35,7 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
   - [css](https://github.com/tkh44/emotion/tree/master/docs/css.md)
   - [styled](https://github.com/tkh44/emotion/tree/master/docs/styled.md)
   - [css prop](https://github.com/tkh44/emotion/tree/master/docs/css-prop.md)
-  - [composes property](https://github.com/tkh44/emotion/tree/master/docs/composes.md)
+  - [composition](https://github.com/tkh44/emotion/tree/master/docs/composition.md)
   - [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
   - [fontFace](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
   - [injectGlobal](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)

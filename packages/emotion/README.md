@@ -35,7 +35,7 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
   - [css](https://github.com/tkh44/emotion/tree/master/docs/css.md)
   - [styled](https://github.com/tkh44/emotion/tree/master/docs/styled.md)
   - [css prop](https://github.com/tkh44/emotion/tree/master/docs/css-prop.md)
-  - [composes property](https://github.com/tkh44/emotion/tree/master/docs/composes.md)
+  - [composition](https://github.com/tkh44/emotion/tree/master/docs/composition.md)
   - [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
   - [fontFace](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
   - [injectGlobal](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
@@ -46,3 +46,7 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
 
 - Ecosystem
   - [emotion-vue](https://github.com/egoist/emotion-vue)
+
+---
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion.svg' /></a>
