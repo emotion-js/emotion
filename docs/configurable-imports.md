@@ -7,9 +7,9 @@ import renaming.
 ## Dynamic
 
 ```js
-import something, { css as cows } from 'react-emotion';
+import something, { css as ecss } from 'react-emotion';
 
-const classes = cows`
+const classes = ecss`
   color: red;
 `
 
@@ -27,14 +27,14 @@ a prop other than `css` for processing.
 ```js
 {
   "plugins": [
-    ["emotion", { "importedNames": { "css": 'cows' }}]
+    ["emotion", { "importedNames": { "css": "ecss" }}]
   ]
 }
 ```
 
 Beware that if you use the babel configuration, you must import as the
 same name. In the previous example, we would have to `import { css as
-cows } from 'emotion';` then use `cows` to construct the template
+ecss } from 'emotion';` then use `ecss` to construct the template
 literals. 
 
 # Use Case
@@ -86,17 +86,17 @@ By adding the babel opt config rename as such.
 {
   "plugins": [
     "styled-jsx/babel",
-    ["emotion", { "importedNames": { "css": 'cows' }}]
+    ["emotion", { "importedNames": { "css": "ecss" }}]
   ]
 }
 ```
 
-We can avoid re-compiling the `css` props and instead use `cows` for
+We can avoid re-compiling the `css` props and instead use `ecss` for
 our template literals, etc.
 
 ```js
 import _JSXStyle from "styled-jsx/style";
-import styled, { css as cows } from "react-emotion";
+import styled, { css as ecss } from "react-emotion";
 
 export default (() => <div data-jsx={2648947580}>
     <p data-jsx={2648947580}>only this paragraph will get the style :)</p>
