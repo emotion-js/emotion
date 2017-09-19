@@ -16,6 +16,20 @@ npm install --save emotion react-emotion babel-plugin-emotion
 }
 ```
 
+**Notes:**
+- Make sure `"emotion"` is the first plugin.
+- If you are using Babel's env option in your `.babelrc` file ensure that emotion is first in every environment's list of plugins.
+  ```json
+  {
+    "env": {
+      "production": {
+        "plugins": ["emotion", "transform-react-constant-elements"]
+      }
+    },
+    "plugins": ["emotion"]
+  }
+  ```
+
 ### Preact
 
 If you're using [Preact](https://github.com/developit/preact) instead of [React](https://github.com/facebook/react), install [`preact-emotion`](./preact.md). The babel setup remains the same.
