@@ -19,7 +19,7 @@ const flexCenterClass = css`
   flex-direction: column;
 `
 
-// You can also use it in styled and the css prop too
+// You can also use it in styled and the css prop
 const FlexCenterComponent = styled.div`
   ${flexCenter};
 `
