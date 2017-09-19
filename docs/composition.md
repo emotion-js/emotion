@@ -2,7 +2,7 @@
 
 `css` can be used in emotion to build styles that can compose with other styles.
 
-```jsx
+```javascript
 import { css } from 'emotion'
 import styled from 'react-emotion'
 
@@ -26,24 +26,24 @@ const FlexCenterComponent = styled.div`
 
 
 const flexWrap = props => css`
-  flex-wrap: ${props.wrap};
+  flex-wrap: ${props.wrap ? 'wrap' : 'nowrap'};
 `
 
-// You can compose with use multiple classes
+// You can compose with multiple classes
 const ColumnCenteredComponent = styled.div`
   ${flexCenter};
   ${flexWrap};
 `
 
-// composition can get very powerful because the styles are expanded where you interpolate
-// for example, this class still has flex-direction: column; since
-// the style is interpolated after the flex-direction: row;
+// Composition can be very powerful. For example, styles are expanded where you interpolate,
+// so the following class has flex-direction: column because ${flexCenter} is interpolated
+// after flex-direction: row
 const stillColumn = css`
   flex-direction: row;
   ${flexCenter}
 `
 
-// you can compose styles in nested selectors too
+// Nested composing is supported
 const cls = css`
   & .flex {
       ${flexCenter};
