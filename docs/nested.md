@@ -8,13 +8,13 @@ import { css } from 'emotion';
 const paragraph = css`
   color: gray;
 
-  & a {
+  a {
     border-bottom: 1px solid currentColor;
   }
 `;
 ```
 
-For now, the `&` before the selector is required. You can also select the current class nested in another element:
+You can use `&` to select the current class nested in another element:
 
 ```jsx
 const paragraph = css`
@@ -26,7 +26,7 @@ const paragraph = css`
 `;
 ```
 
-To nest a class selector using the class generated with `css`, simply interpolate it:
+To nest a class selector using the class generated with `css` you can interpolate it but be aware than emotion merges styles from `css` together when composing so that class name may not always be there:
 
 ```jsx
 const link = css`
@@ -36,18 +36,18 @@ const link = css`
 const paragraph = css`
   color: gray;
 
-  & .${link} {
+  .${link} {
     border-bottom: 1px solid currentColor;
   }
 `;
 ```
 
-The result of `css` is a class name _without_ the dot (`.`), so we prepended it.
+The result of `css` is a class name _without_ the dot (`.`), so we prepended it. 
 
-Similarly, in React you can nest component selectors using interpolation:
+Components created with styled can be interpolated in another component's styles to target that component
 
 ```jsx
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 
 const Link = styled.a`
   color: hotpink;
@@ -61,5 +61,3 @@ const Paragraph = styled.p`
   }
 `
 ```
-
-Only in the case of component selectors you should omit the `&`.
