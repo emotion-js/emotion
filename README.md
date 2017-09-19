@@ -40,7 +40,6 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
   - [fontFace](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
   - [injectGlobal](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
 
-- [Usage with CSS Modules](https://github.com/tkh44/emotion/tree/master/docs/css-modules.md)
 - [Usage with babel-macros](https://github.com/tkh44/emotion/tree/master/docs/babel-macros.md)
 - [Usage with Preact](https://github.com/tkh44/emotion/tree/master/docs/preact.md)
 
