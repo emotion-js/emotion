@@ -293,6 +293,44 @@ exports[`styled composition 1`] = `
 </h1>
 `;
 
+exports[`styled custom component 1`] = `
+.glamor-2 {
+  color: green;
+}
+
+<span
+  className="glamor-0 glamor-1 glamor-2"
+  onClick={[Function]}
+>
+  emotion.sh
+</span>
+`;
+
+exports[`styled custom html tag 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<a
+  className="glamor-0 glamor-1"
+  href="https://emotion.sh"
+>
+  emotion.sh
+</a>
+`;
+
+exports[`styled fallback to localTag is as prop is falsy 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<button
+  className="glamor-0 glamor-1"
+>
+  emotion.sh
+</button>
+`;
+
 exports[`styled function in expression 1`] = `
 .glamor-2 {
   font-size: 40px;

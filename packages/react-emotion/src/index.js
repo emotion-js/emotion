@@ -30,10 +30,6 @@ export default function(tag, cls, objs, vars = [], content) {
     tag.__emotion_spec !== undefined ? tag.__emotion_spec.concat(spec) : [spec]
   const localTag = newSpec[0].tag
 
-  const omitFn =
-    typeof localTag === 'string'
-      ? testOmitPropsOnStringTag
-      : testOmitPropsOnComponent
   function Styled(props, context) {
     const getValue = v => {
       if (v && typeof v === 'function') {
@@ -70,8 +66,13 @@ export default function(tag, cls, objs, vars = [], content) {
 
     const className = css(map(finalObjs, getValue))
 
+    const omitFn =
+      typeof localTag === 'string'
+        ? testOmitPropsOnStringTag
+        : testOmitPropsOnComponent
+
     return h(
-      localTag,
+      props.as || localTag,
       omit(
         assign({}, props, {
           ref: props.innerRef,
