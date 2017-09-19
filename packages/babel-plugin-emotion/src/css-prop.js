@@ -47,8 +47,11 @@ export default function(path, state, t) {
   } else {
     cssTemplateExpression = t.callExpression(getCssIdentifer(), [cssPropValue])
   }
-
-  if (!classNamesValue) {
+  if (
+    !classNamesValue ||
+    (t.isStringLiteral(classNamesValue) && !classNamesValue.value)
+  ) {
+    if (classNamesPath) classNamesPath.parentPath.remove()
     cssPath.parentPath.replaceWith(createClassNameAttr(cssTemplateExpression))
     return
   }
@@ -57,21 +60,20 @@ export default function(path, state, t) {
   if (t.isJSXExpressionContainer(classNamesValue)) {
     classNamesPath.parentPath.replaceWith(
       createClassNameAttr(
-        add(
-          add(classNamesValue.expression, t.stringLiteral(' ')),
-          cssTemplateExpression
-        )
+        t.callExpression(getMergeIdentifier(), [
+          add(
+            cssTemplateExpression,
+            add(t.stringLiteral(' '), classNamesValue.expression)
+          )
+        ])
       )
     )
   } else {
     classNamesPath.parentPath.replaceWith(
       createClassNameAttr(
         add(
-          add(
-            t.stringLiteral(classNamesValue.value || ''),
-            t.stringLiteral(' ')
-          ),
-          cssTemplateExpression
+          cssTemplateExpression,
+          t.stringLiteral(` ${classNamesValue.value || ''}`)
         )
       )
     )
@@ -91,13 +93,24 @@ export default function(path, state, t) {
   function getCssIdentifer() {
     if (state.opts.autoImportCssProp !== false) {
       if (!state.cssPropIdentifier) {
-        state.cssPropIdentifier = path.scope.generateUidIdentifier(
-          state.importedNames.css
-        )
+        state.cssPropIdentifier = path.hub.file.addImport('emotion', 'css')
       }
       return state.cssPropIdentifier
     } else {
       return t.identifier(state.importedNames.css)
+    }
+  }
+  function getMergeIdentifier() {
+    if (state.opts.autoImportCssProp !== false) {
+      if (!state.cssPropMergeIdentifier) {
+        state.cssPropMergeIdentifier = path.hub.file.addImport(
+          'emotion',
+          'merge'
+        )
+      }
+      return state.cssPropMergeIdentifier
+    } else {
+      return t.identifier(state.importedNames.merge)
     }
   }
   function createCssTemplateExpression(templateLiteral) {

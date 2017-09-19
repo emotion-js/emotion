@@ -61,7 +61,7 @@ exports[`css prop react kitchen sink 1`] = `
 }
 
 <div
-  className="css__legacy-stuff glamor-4"
+  className="glamor-4 css__legacy-stuff"
 >
   <h1
     className="glamor-0"
@@ -69,12 +69,12 @@ exports[`css prop react kitchen sink 1`] = `
     BOOM
   </h1>
   <p
-    className="test_class1 glamor-1"
+    className="glamor-1 test_class1"
   >
     Hello
   </p>
   <p
-    className="test_class1 test___class45 glamor-2"
+    className="glamor-2 test_class1 test___class45"
   >
     World
   </p>

@@ -228,7 +228,8 @@ const defaultImportedNames = {
   css: 'css',
   keyframes: 'keyframes',
   injectGlobal: 'injectGlobal',
-  fontFace: 'fontFace'
+  fontFace: 'fontFace',
+  merge: 'merge'
 }
 
 export default function(babel) {
@@ -255,7 +256,8 @@ export default function(babel) {
                         'css',
                         'keyframes',
                         'injectGlobal',
-                        'fontFace'
+                        'fontFace',
+                        'merge'
                       ].indexOf(v.imported) !== -1
                   )
                   .reduce(
@@ -305,19 +307,6 @@ export default function(babel) {
               }
               fs.writeFileSync(cssFilename, toWrite)
             }
-          }
-          if (state.cssPropIdentifier) {
-            path.node.body.unshift(
-              t.importDeclaration(
-                [
-                  t.importSpecifier(
-                    state.cssPropIdentifier,
-                    t.identifier('css')
-                  )
-                ],
-                t.stringLiteral('emotion')
-              )
-            )
           }
         }
       },
