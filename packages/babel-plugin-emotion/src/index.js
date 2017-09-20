@@ -18,12 +18,6 @@ import { hashString, Stylis } from 'emotion-utils'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
-export function getFilename(path) {
-  return path.hub.file.opts.filename === 'unknown'
-    ? ''
-    : path.hub.file.opts.filename
-}
-
 export function hashArray(arr) {
   return hashString(arr.join(''))
 }
