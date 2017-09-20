@@ -1,6 +1,6 @@
 ## v8.0.0-0 (2017-09-14)
 
-(This is WIP changelog)
+(This is a WIP changelog)
 
 #### :boom: Breaking Change
 - composes is gone and replaced with random interpolations ([there's a codemod](https://github.com/emotion-js/emotion-composes-codemod))
