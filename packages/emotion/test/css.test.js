@@ -89,6 +89,18 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('handles array of objects', () => {
+    const cls1 = css([
+      {
+        height: 50,
+        width: 20
+      },
+      null
+    ])
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('computed key is only dynamic', () => {
     const cls1 = css({
       fontSize: 10,
