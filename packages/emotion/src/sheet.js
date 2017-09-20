@@ -120,14 +120,4 @@ export default class StyleSheet {
     }
     this.injected = false
   }
-  rules() {
-    if (!isBrowser) {
-      return this.sheet.cssRules
-    }
-    let arr = []
-    this.tags.forEach(tag =>
-      arr.splice(arr.length, 0, ...Array.from(sheetForTag(tag).cssRules))
-    )
-    return arr
-  }
 }
