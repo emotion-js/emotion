@@ -20,21 +20,6 @@ module.exports = env => {
     },
     {
       test: /\.css$/,
-      exclude: /emotion\.css$/,
-      use: PROD
-        ? ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true
-              }
-            }
-          })
-        : ['style-loader', { loader: 'css-loader', options: { modules: true } }]
-    },
-    {
-      test: /emotion\.css$/,
       use: PROD
         ? ExtractTextPlugin.extract({
             fallback: 'style-loader',

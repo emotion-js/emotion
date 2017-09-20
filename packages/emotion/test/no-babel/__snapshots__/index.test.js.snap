@@ -1,0 +1,255 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css @supports 1`] = `
+@supports (display:grid) {
+  .glamor-0 {
+    display: grid;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css component as selector 1`] = `
+.glamor-3 .glamor-0 {
+  color: green;
+}
+
+.glamor-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-1 {
+  font-size: 20px;
+}
+
+<div
+  className="glamor-2 glamor-3"
+>
+  hello 
+  <h1
+    className="glamor-0 glamor-1"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`css composition 1`] = `
+.glamor-0:hover {
+  color: hotpink;
+}
+
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css composition stuff 1`] = `
+.glamor-0 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css composition stuff 2`] = `
+.glamor-0 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css composition with objects 1`] = `
+.glamor-0:hover {
+  color: blue;
+}
+
+.glamor-0:after {
+  content: " ";
+  color: red;
+}
+
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 30px;
+  height: calc(40vw - 50px);
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+@media (min-width:420px) {
+  .glamor-0 {
+    color: green;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css function in expression 1`] = `
+.glamor-2 {
+  font-size: 20px;
+  font-size: 40px;
+}
+
+<h1
+  className="glamor-0 glamor-1 legacy__class glamor-2"
+>
+  hello world
+</h1>
+`;
+
+exports[`css glamorous style api & composition 1`] = `
+.glamor-2 {
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<h1
+  className="glamor-0 glamor-1 glamor-2"
+>
+  hello world
+</h1>
+`;
+
+exports[`css handles objects 1`] = `
+.glamor-0 {
+  float: left;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: blue;
+  font-size: 20px;
+  height: 50px;
+  width: 20px;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css nested array 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css no dynamic 1`] = `
+.glamor-1 {
+  float: left;
+}
+
+<h1
+  className="glamor-0 glamor-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`css null rule 1`] = `
+<div
+  className="css-0"
+/>
+`;
+
+exports[`css object as style 1`] = `
+.glamor-0yodimz {
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<h1
+  className="glamor-0 glamor-0yodimz"
+>
+  hello world
+</h1>
+`;
+
+exports[`css random expression 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  background: green;
+}
+
+@media (min-width:420px) {
+  .glamor-0 {
+    color: blue;
+    width: 96px;
+    height: 96px;
+    line-height: 40px;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css random expressions undefined return 1`] = `
+.glamor-1 {
+  color: green;
+}
+
+<h1
+  className="glamor-0 legacy__class glamor-1"
+>
+  hello world
+</h1>
+`;

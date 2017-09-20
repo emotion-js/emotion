@@ -123,7 +123,7 @@ const dracula = css`
 `
 
 const PlaygroundContent = styled('div')`
-  composes: ${dracula};
+  ${dracula};
   display: flex;
   margin: 0 auto 16px auto;
   padding: 16px 0;

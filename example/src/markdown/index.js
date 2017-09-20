@@ -3,11 +3,12 @@ import ReactMarkdown from 'react-markdown'
 import { withTheme } from 'emotion-theming'
 import styled from 'emotion/react'
 import colors from 'open-color'
-import styles from './index.css'
 
 const MarkdownContainer = styled('div')`
-  composes: ${styles.markdownContainer};
-
+  display: flex;
+  margin: 16px auto 0 auto;
+  max-width: 560px;
+  font-family: 'Oxygen';
   h1,
   h2,
   h3,

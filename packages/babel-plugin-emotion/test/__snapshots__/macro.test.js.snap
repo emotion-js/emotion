@@ -3,17 +3,7 @@
 exports[`babel macro css 1`] = `
 "import { css as _css } from '../src';
 
-/*#__PURE__*/_css([], [widthVar], function createEmotionStyledRules(x0) {
-    return [{
-        'margin': '12px 48px',
-        'color': '#ffffff; color: blue',
-        'display': '-webkit-box; display: -ms-flexbox; display: flex',
-        'WebkitBoxFlex': '1',
-        'msFlex': '1 0 auto',
-        'flex': '1 0 auto',
-        'width': x0
-    }];
-});"
+/*#__PURE__*/_css\`margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:\${widthVar};\`;"
 `;
 
 exports[`babel macro css call with no args 1`] = `
@@ -22,12 +12,16 @@ exports[`babel macro css call with no args 1`] = `
 const cls1 = _css();"
 `;
 
+exports[`babel macro css inside of css 1`] = `
+"import { css as _css } from '../src';
+
+const cls2 = /*#__PURE__*/_css\`font-size:20px;@media (min-width:420px){color:blue;\${/*#__PURE__*/_css\`width:96px;height:96px;\`};line-height:40px;}background:green;\`;"
+`;
+
 exports[`babel macro css object 1`] = `
 "import { css as _css } from '../src';
 
-const cls1 = _css({
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-});"
+const cls1 = _css({ display: 'flex' });"
 `;
 
 exports[`babel macro flush 1`] = `
@@ -39,13 +33,7 @@ const someOtherVar = _flush;"
 exports[`babel macro fontFace 1`] = `
 "import { fontFace as _fontFace } from '../src';
 
-_fontFace([], [], function createEmotionStyledRules() {
-     return [{
-          'fontFamily': 'MyHelvetica',
-          'src': 'local(\\"Helvetica Neue Bold\\"),\\\\n         local(\\"HelveticaNeue-Bold\\"),\\\\n         url(MgOpenModernaBold.ttf)',
-          'fontWeight': 'bold'
-     }];
-});"
+_fontFace\`font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\`;"
 `;
 
 exports[`babel macro hydrate 1`] = `
@@ -57,74 +45,20 @@ const someOtherVar = _hydrate;"
 exports[`babel macro injectGlobal 1`] = `
 "import { injectGlobal as _injectGlobal } from '../src';
 
-_injectGlobal([], [], function createEmotionStyledRules() {
-  return [{
-    'body': {
-      'margin': '0',
-      'padding': '0',
-      '& > div': {
-        'display': 'none',
-        '&:hover': {
-          'color': 'green',
-          '& span': {
-            'color': 'red',
-            '&:after': {
-              'content': '\\"end of line\\"'
-            }
-          }
-        }
-      }
-    },
-    'html': {
-      'background': 'green'
-    }
-  }];
-});"
+_injectGlobal\`body{margin:0;padding:0;& > div{display:none;&:hover{color:green;& span{color:red;&:after{content:\\"end of line\\"}}}}}html{background:green;}\`;"
 `;
 
 exports[`babel macro keyframes 1`] = `
 "import { keyframes as _keyframes } from '../src';
 
-const rotate360 = /*#__PURE__*/_keyframes([], [], function createEmotionStyledRules() {
-  return [{
-    'from': {
-      'WebkitTransform': 'rotate(0deg)',
-      'transform': 'rotate(0deg)'
-    },
-    'to': {
-      'WebkitTransform': 'rotate(360deg)',
-      'transform': 'rotate(360deg)'
-    }
-  }];
-});"
+const rotate360 = /*#__PURE__*/_keyframes\`from{transform:rotate(0deg);}to{transform:rotate(360deg);}\`;"
 `;
 
 exports[`babel macro multiple imports 1`] = `
 "import { keyframes as _keyframes, css as _css } from '../src';
 
-const rotate360 = /*#__PURE__*/_keyframes([], [], function createEmotionStyledRules() {
-  return [{
-    'from': {
-      'WebkitTransform': 'rotate(0deg)',
-      'transform': 'rotate(0deg)'
-    },
-    'to': {
-      'WebkitTransform': 'rotate(360deg)',
-      'transform': 'rotate(360deg)'
-    }
-  }];
-});
-const thing = /*#__PURE__*/_css([], [widthVar], function createEmotionStyledRules(x0) {
-  return [{
-    'margin': '12px 48px',
-    'color': '#ffffff; color: blue',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex',
-    'WebkitBoxFlex': '1',
-    'msFlex': '1 0 auto',
-    'flex': '1 0 auto',
-    'width': x0
-  }];
-});"
+const rotate360 = /*#__PURE__*/_keyframes\`from{transform:rotate(0deg);}to{transform:rotate(360deg);}\`;
+const thing = /*#__PURE__*/_css\`margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:\${widthVar};\`;"
 `;
 
 exports[`babel macro some import that does not exist 1`] = `
@@ -136,27 +70,27 @@ const someOtherVar = _thisDoesNotExist;"
 exports[`babel macro styled css from react 1`] = `
 "import { css as _css } from './styled';
 
-const someCls = /*#__PURE__*/_css([], [], function createEmotionStyledRules() {
-  return [{
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  }];
-});"
+const someCls = /*#__PURE__*/_css\`display:flex;\`;"
 `;
 
 exports[`babel macro styled object function 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = _styled('div', 'css-SomeComponent-bd6d1z0', [{
-  'display': '-webkit-box; display: -ms-flexbox; display: flex'
-}]);"
+const SomeComponent = _styled('div', {
+  id: 'css-SomeComponent-1f75k080'
+})({
+  display: 'flex'
+});"
 `;
 
 exports[`babel macro styled object member 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = _styled('div', 'css-SomeComponent-157yx80', [{
-  'display': '-webkit-box; display: -ms-flexbox; display: flex'
-}]);"
+const SomeComponent = _styled('div', {
+  id: 'css-SomeComponent-1jnr57b0'
+})({
+  display: 'flex'
+});"
 `;
 
 exports[`babel macro styled some import that does not exist 1`] = `
@@ -168,19 +102,15 @@ const someOtherVar = _thisDoesNotExist;"
 exports[`babel macro styled tagged template literal function 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', 'css-SomeComponent-1po9r1n0', [], [], function createEmotionStyledRules() {
-  return {
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  };
-});"
+const SomeComponent = /*#__PURE__*/_styled('div', {
+  id: 'css-SomeComponent-1sczqp40'
+})('display:flex;');"
 `;
 
 exports[`babel macro styled tagged template literal member 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', 'css-SomeComponent-u780mp0', [], [], function createEmotionStyledRules() {
-  return {
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  };
-});"
+const SomeComponent = /*#__PURE__*/_styled('div', {
+  id: 'css-SomeComponent-1rq85zx0'
+})('display:flex;');"
 `;

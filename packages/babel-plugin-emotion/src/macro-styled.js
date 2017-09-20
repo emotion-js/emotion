@@ -2,9 +2,8 @@ import {
   buildStyledCallExpression,
   buildStyledObjectCallExpression
 } from './index'
-import { buildMacroRuntimeNode } from './babel-utils'
+import { buildMacroRuntimeNode, omit } from './babel-utils'
 import emotionMacro from './macro'
-import { omit } from 'emotion-utils'
 import { createMacro } from 'babel-macros'
 
 module.exports = createMacro(macro)

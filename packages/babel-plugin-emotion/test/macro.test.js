@@ -217,6 +217,29 @@ describe('babel macro', () => {
     })
     expect(code).toMatchSnapshot()
   })
+  test('css inside of css', () => {
+    const basic = `
+    import { css } from '../src/macro'
+    const cls2 = css\`
+      font-size: 20px;
+      @media (min-width: 420px) {
+        color: blue;
+        \${css\`
+          width: 96px;
+          height: 96px;
+        \`};
+        line-height: 40px;
+      }
+      background: green;
+    \`
+    `
+    const { code } = babel.transform(basic, {
+      plugins: ['babel-macros'],
+      filename: __filename,
+      babelrc: false
+    })
+    expect(code).toMatchSnapshot()
+  })
   test('some import that does not exist', () => {
     const basic = `
     import { thisDoesNotExist } from '../src/macro'

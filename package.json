@@ -8,13 +8,13 @@
     "clean": "lerna run clean --parallel",
     "test": "npm-run-all -p lint:check coverage test:size",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
-    "lint:check": "eslint . --ignore-path .gitignore",
+    "lint:check": "eslint .",
     "test:watch": "jest --watch --no-cache",
     "rollup": "lerna run rollup --parallel",
     "rollup:umd": "lerna run rollup:umd --parallel",
     "size": "bundlesize",
     "release": "npm run test && npm run build && lerna publish && git push --tags",
-    "lint": "eslint . --fix --ignore-path .gitignore",
+    "lint": "eslint . --fix",
     "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
@@ -119,7 +119,7 @@
   },
   "jest": {
     "transform": {
-      "\\.css$": "<rootDir>/styleTransform.js",
+      "\\.css$": "<rootDir>/test/styleTransform.js",
       "^.+\\.js?$": "babel-jest"
     },
     "moduleNameMapper": {
@@ -129,7 +129,9 @@
       "^emotion-server$": "<rootDir>/packages/emotion-server/src",
       "^emotion-theming$": "<rootDir>/packages/emotion-theming/src",
       "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
-    }
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
+    "coveragePathIgnorePatterns": ["<rootDir>/packages/emotion-utils/src/stylis.js"]
   },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
@@ -137,11 +139,11 @@
   "bundlesize": [
     {
       "path": "./packages/emotion/dist/DO-NOT-USE.min.js",
-      "threshold": "5 Kb"
+      "threshold": "6 Kb"
     },
     {
       "path": "./packages/react-emotion/dist/DO-NOT-USE.min.js",
-      "threshold": "6 Kb"
+      "threshold": "7 Kb"
     }
   ]
 }

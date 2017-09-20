@@ -1,10 +1,34 @@
 ## Objects as Styles
 
-`css` can also take an object or an array of objects as a parameter.
+`css` can also take an object or array of objects as a parameter.
 This allows you to use your existing object styles in the emotion ecosystem.
+Another great benefit is that you can now use [polished](https://polished.js.org/) with emotion.
 
-Another great benefit is that you can now use [polished](https://polished.js.org/) with emotion and styles are prefixed automatically at build time via [postcss](https://github.com/postcss/postcss-js) and [autoprefixer](https://github.com/postcss/autoprefixer/)!
+```jsx harmony
+import { css } from 'emotion'
+import { lighten, modularScale } from 'polished'
 
-`styled` can also take objects or functions that return objects as parameters.
+const cssA = {
+  color: lighten(0.2, '#000'),
+  "font-size": modularScale(1),
+  [hiDPI(1.5)]: {
+    "font-size": modularScale(1.25)
+  }
+}
 
-*Object styles cannot be optimized as well as template literal styles at this time. Object styles are also not autoprefixed.*
+const cssB = css`
+  ${cssA};
+  height: 64px;
+`
+
+const H1 = styled('h1')`
+  ${cssB};
+  font-size: ${modularScale(4)};
+`
+
+const H2 = styled(H1)`font-size:32px;`
+
+<H2 scale={2} className={'legacy__class'}>
+  hello world
+</H2>
+```

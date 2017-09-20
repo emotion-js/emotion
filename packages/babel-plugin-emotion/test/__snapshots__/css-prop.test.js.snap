@@ -2,115 +2,69 @@
 
 exports[`babel css prop StringLiteral css prop value 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"color\\": \\"brown\\"
-  }];
-})}></div>;"
+<div className={/*#__PURE__*/_css\`color:brown;\`}></div>;"
 `;
 
 exports[`babel css prop basic inline 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={\\"a\\" + \\" \\" + /*#__PURE__*/_css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"color\\": \\"brown\\"
-  }];
-})}></div>;"
+<div className={/*#__PURE__*/_css\`color:brown;\` + \\" a\\"}></div>;"
 `;
 
 exports[`babel css prop basic object 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={\\"a\\" + \\" \\" + _css({ color: 'brown' })}></div>;"
+<div className={_css({ color: 'brown' }) + \\" a\\"}></div>;"
 `;
 
 exports[`babel css prop basic with extractStatic 1`] = `
 "import { css as _css } from \\"emotion\\";
 import \\"./css-prop.test.emotion.css\\";
-<div className={\\"a\\" + \\" \\" + \\"css-jf1v9l\\"}></div>;"
+<div className={\\"css-jf1v9l\\" + \\" a\\"}></div>;"
 `;
 
-exports[`babel css prop basic with extractStatic 2`] = `
-".css-jf1v9l {
-    color: brown
-}"
-`;
+exports[`babel css prop basic with extractStatic 2`] = `".css-jf1v9l{color:brown;}"`;
 
 exports[`babel css prop className as expression 1`] = `
-"import { css as _css } from \\"emotion\\";
-<div className={variable + \\" \\" + /*#__PURE__*/_css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"color\\": \\"brown\\"
-  }];
-})}></div>;"
+"import { merge as _merge } from \\"emotion\\";
+import { css as _css } from \\"emotion\\";
+<div className={_merge( /*#__PURE__*/_css\`color:brown;\` + (\\" \\" + variable))}></div>;"
 `;
 
 exports[`babel css prop className as expression string 1`] = `
-"import { css as _css } from \\"emotion\\";
-<div className={\`test__class\` + \\" \\" + /*#__PURE__*/_css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"color\\": \\"brown\\"
-  }];
-})} this={\`hello\`}></div>;"
+"import { merge as _merge } from \\"emotion\\";
+import { css as _css } from \\"emotion\\";
+<div className={_merge( /*#__PURE__*/_css\`color:brown;\` + (\\" \\" + \`test__class\`))} this={\`hello\`}></div>;"
 `;
 
 exports[`babel css prop css empty 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css([], [], function createEmotionStyledRules() {
-  return [{}];
-})}></div>;"
+<div className={/*#__PURE__*/_css\`\`}></div>;"
 `;
 
 exports[`babel css prop dynamic inline 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={\\"a\\" + \\" \\" + /*#__PURE__*/_css([], [color], function createEmotionStyledRules(x0) {
-  return [{
-    \\"color\\": x0
-  }];
-})}></div>;"
+<div className={/*#__PURE__*/_css\`color:\${color};\` + \\" a\\"}></div>;"
 `;
 
 exports[`babel css prop emptyClassName 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={\\"\\" + \\" \\" + /*#__PURE__*/_css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"color\\": \\"brown\\"
-  }];
-})}></div>;"
+<div className={/*#__PURE__*/_css\`color:brown;\`}></div>;"
 `;
 
 exports[`babel css prop no css attr 1`] = `"<div></div>;"`;
 
-exports[`babel css prop no import css prop 1`] = `
-"<div className={\`test__class\` + \\" \\" + /*#__PURE__*/css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"color\\": \\"brown\\"
-  }];
-})}></div>;"
-`;
+exports[`babel css prop no import css prop 1`] = `"<div className={merge( /*#__PURE__*/css\`color:brown;\` + (\\" \\" + \`test__class\`))}></div>;"`;
 
 exports[`babel css prop noClassName 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"color\\": \\"brown\\"
-  }];
-})}></div>;"
+<div className={/*#__PURE__*/_css\`color:brown;\`}></div>;"
 `;
 
 exports[`babel css prop redefined-import: basic inline 1`] = `
-"import { css as _cows } from \\"emotion\\";
-<div className={\\"a\\" + \\" \\" + /*#__PURE__*/_cows([], [], function createEmotionStyledRules() {
-  return [{
-    \\"color\\": \\"brown\\"
-  }];
-})}></div>;"
+"import { css as _css } from \\"emotion\\";
+<div className={/*#__PURE__*/_css\`color:brown;\` + \\" a\\"}></div>;"
 `;
 
 exports[`babel css prop with spread arg in jsx opening tag 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={\\"a\\" + \\" \\" + /*#__PURE__*/_css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"color\\": \\"brown\\"
-  }];
-})} {...rest}></div>;"
+<div className={/*#__PURE__*/_css\`color:brown;\` + \\" a\\"} {...rest}></div>;"
 `;

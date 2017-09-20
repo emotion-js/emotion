@@ -210,17 +210,6 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('object composes with classes', () => {
-      const basic = `
-      const H1 = styled('h1')('some-class',props => ({
-        display: props.display
-      }))`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
     test('objects prefixed', () => {
       const basic = `
       const H1 = styled('h1')({
@@ -310,10 +299,10 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('composes based on props', () => {
+    test('composition based on props', () => {
       const basic = `const cls1 = css\` width: 20px; \`
       const H1 = styled.h1\`
-        composes: $\{props => {
+        $\{props => {
         return props.a ? cssA : cssB
       }};
         font-size: \${fontSize + 'px'};

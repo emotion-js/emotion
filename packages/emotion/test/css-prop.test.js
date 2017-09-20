@@ -1,9 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react'
-import { css, sheet } from 'emotion'
-
-expect.addSnapshotSerializer(serializer(sheet))
+import { css } from 'emotion'
 
 describe('css prop react', () => {
   test('basic', () => {
@@ -45,7 +42,7 @@ describe('css prop react', () => {
     `
 
     const big = css`
-      composes: ${bold};
+      ${bold};
       font-size: ${huge};
     `
 
@@ -62,12 +59,12 @@ describe('css prop react', () => {
         <div
           className="css__legacy-stuff"
           css={`
-              composes: ${bold} ${flexCenter};
+              ${bold}; ${flexCenter};
              `}
         >
           <h1
             css={`
-                composes: ${props.error ? big : small};
+                ${props.error ? big : small};
                 color: red
               `}
           >
@@ -98,6 +95,13 @@ describe('css prop react', () => {
       )
       .toJSON()
 
+    expect(tree).toMatchSnapshot()
+  })
+  test('specificity with composition', () => {
+    const flex = css`display: flex;`
+    const tree = renderer
+      .create(<div className={flex} css={`display: block;`} />)
+      .toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

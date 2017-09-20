@@ -8,69 +8,56 @@ import {
   relative
 } from 'path'
 import { touchSync } from 'touch'
-import { inline, getName } from './inline'
-import { parseCSS } from './parser'
-import { getIdentifierName } from './babel-utils'
-import { hashArray, map } from 'emotion-utils'
+import {
+  getIdentifierName,
+  getName,
+  createRawStringFromTemplateLiteral,
+  minify
+} from './babel-utils'
+import { hashString, Stylis } from 'emotion-utils'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
-export function getFilename(path) {
-  return path.hub.file.opts.filename === 'unknown'
-    ? ''
-    : path.hub.file.opts.filename
+export function hashArray(arr) {
+  return hashString(arr.join(''))
 }
+
+const staticStylis = new Stylis({ keyframe: false })
 
 export function replaceCssWithCallExpression(
   path,
   identifier,
   state,
   t,
-  staticCSSTextCreator = (name, hash, src) => `.${name}-${hash} { ${src} }`,
-  removePath = false
+  staticCSSSrcCreator = src => src,
+  removePath = false,
+  staticCSSSelectorCreator = (name, hash) => `.${name}-${hash}`
 ) {
   try {
-    const { name, hash, src } = inline(
-      path.node.quasi,
-      getIdentifierName(path, t),
-      'css'
-    )
-    if (state.extractStatic && !path.node.quasi.expressions.length) {
-      const cssText = staticCSSTextCreator(name, hash, src)
-      const { staticCSSRules } = parseCSS(cssText, true, getFilename(path))
+    const { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
+    const name = getName(getIdentifierName(path, t), 'css')
 
-      state.insertStaticRules(staticCSSRules)
+    if (state.extractStatic && !path.node.quasi.expressions.length) {
+      const staticCSSRules = staticStylis(
+        staticCSSSelectorCreator(name, hash),
+        staticCSSSrcCreator(src, name, hash)
+      )
+      state.insertStaticRules([staticCSSRules])
       if (!removePath) {
         return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
       }
       return path.replaceWith(t.identifier('undefined'))
     }
 
-    const { styles, composesCount } = parseCSS(src, false, getFilename(path))
-
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
     }
-
-    const composeValues = path.node.quasi.expressions.slice(0, composesCount)
-    const vars = path.node.quasi.expressions.slice(composesCount)
-    path.replaceWith(
-      t.callExpression(identifier, [
-        t.arrayExpression(composeValues),
-        t.arrayExpression(vars),
-        t.functionExpression(
-          t.identifier('createEmotionStyledRules'),
-          vars.map((x, i) => t.identifier(`x${i}`)),
-          t.blockStatement([
-            t.returnStatement(
-              t.arrayExpression([
-                ASTObject.fromJS(styles, composesCount, t).toAST()
-              ])
-            )
-          ])
-        )
-      ])
-    )
+    path.node.quasi = new ASTObject(
+      minify(src),
+      path.node.quasi.expressions,
+      t
+    ).toTemplateLiteral()
+    path.node.tag = identifier
   } catch (e) {
     if (path) {
       throw path.buildCodeFrameError(e)
@@ -141,89 +128,91 @@ const getComponentId = (state, prefix: string = 'css') => {
   return `${prefix}-${getFileHash(state)}${getNextId(state)}`
 }
 
+const interleave = (strings, interpolations) =>
+  interpolations.reduce(
+    (array, interp, i) => array.concat(interp, strings[i + 1]),
+    [strings[0]]
+  )
+
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
   if (state.extractStatic && !path.node.quasi.expressions.length) {
-    const { name, hash, src } = inline(
+    const { hash, src } = createRawStringFromTemplateLiteral(
       path.node.quasi,
       identifierName,
       'styled' // we don't want these styles to be merged in css``
     )
+    const staticClassName = `css-${hash}`
+    const staticCSSRules = staticStylis(`.${staticClassName}`, src)
 
-    const cssText = `.${name}-${hash} { ${src} }`
-    const { staticCSSRules } = parseCSS(cssText, true, getFilename(path))
-
-    state.insertStaticRules(staticCSSRules)
-    return t.callExpression(identifier, [
-      tag,
-      t.stringLiteral(getComponentId(state, name)),
-      t.arrayExpression([t.stringLiteral(`${name}-${hash}`)])
-    ])
+    state.insertStaticRules([staticCSSRules])
+    return t.callExpression(
+      t.callExpression(identifier, [
+        tag,
+        t.objectExpression([
+          t.objectProperty(
+            t.identifier('id'),
+            t.stringLiteral(
+              getComponentId(state, getName(getIdentifierName(path, t), 'css'))
+            )
+          ),
+          t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName))
+        ])
+      ]),
+      []
+    )
   }
 
-  const { src, name } = inline(path.node.quasi, identifierName, 'css')
+  const { src } = createRawStringFromTemplateLiteral(path.node.quasi)
 
   path.addComment('leading', '#__PURE__')
 
-  const { styles, composesCount } = parseCSS(src, false, getFilename(path))
+  const templateLiteral = new ASTObject(
+    minify(src),
+    path.node.quasi.expressions,
+    t
+  ).toTemplateLiteral()
 
-  const objs = path.node.quasi.expressions.slice(0, composesCount)
-  const vars = path.node.quasi.expressions.slice(composesCount)
-  const args = [
-    tag,
-    t.stringLiteral(getComponentId(state, name)),
-    t.arrayExpression(objs),
-    t.arrayExpression(vars),
-    t.functionExpression(
-      t.identifier('createEmotionStyledRules'),
-      vars.map((x, i) => t.identifier(`x${i}`)),
-      t.blockStatement([
-        t.returnStatement(ASTObject.fromJS(styles, composesCount, t).toAST())
+  const values = interleave(
+    templateLiteral.quasis.map(node => t.stringLiteral(node.value.cooked)),
+    path.node.quasi.expressions
+  ).filter(node => node.value !== '')
+
+  return t.callExpression(
+    t.callExpression(identifier, [
+      tag,
+      t.objectExpression([
+        t.objectProperty(
+          t.identifier('id'),
+          t.stringLiteral(
+            getComponentId(state, getName(getIdentifierName(path, t), 'css'))
+          )
+        )
       ])
-    )
-  ]
-
-  return t.callExpression(identifier, args)
+    ]),
+    values
+  )
 }
 
 export function buildStyledObjectCallExpression(path, state, identifier, t) {
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
-  return t.callExpression(identifier, [
-    tag,
-    t.stringLiteral(
-      getComponentId(state, getName(getIdentifierName(path, t), 'css'))
-    ),
-    t.arrayExpression(
-      buildProcessedStylesFromObjectAST(path.node.arguments, path, t)
-    )
-  ])
-}
-
-function buildProcessedStylesFromObjectAST(objectAST, path, t) {
-  if (t.isObjectExpression(objectAST)) {
-    return ASTObject.fromAST(objectAST, t, path).toAST()
-  }
-  if (t.isArrayExpression(objectAST)) {
-    return t.arrayExpression(
-      buildProcessedStylesFromObjectAST(objectAST.elements, path, t)
-    )
-  }
-  if (Array.isArray(objectAST)) {
-    return map(objectAST, obj =>
-      buildProcessedStylesFromObjectAST(obj, path, t)
-    )
-  }
-
-  return objectAST
-}
-
-export function replaceCssObjectCallExpression(path, identifier, t) {
-  const argWithStyles = path.node.arguments[0]
-  const styles = buildProcessedStylesFromObjectAST(argWithStyles, path, t)
-  path.replaceWith(t.callExpression(identifier, [styles]))
+  return t.callExpression(
+    t.callExpression(identifier, [
+      tag,
+      t.objectExpression([
+        t.objectProperty(
+          t.identifier('id'),
+          t.stringLiteral(
+            getComponentId(state, getName(getIdentifierName(path, t), 'css'))
+          )
+        )
+      ])
+    ]),
+    path.node.arguments
+  )
 }
 
 const visited = Symbol('visited')
@@ -233,7 +222,8 @@ const defaultImportedNames = {
   css: 'css',
   keyframes: 'keyframes',
   injectGlobal: 'injectGlobal',
-  fontFace: 'fontFace'
+  fontFace: 'fontFace',
+  merge: 'merge'
 }
 
 export default function(babel) {
@@ -260,7 +250,8 @@ export default function(babel) {
                         'css',
                         'keyframes',
                         'injectGlobal',
-                        'fontFace'
+                        'fontFace',
+                        'merge'
                       ].indexOf(v.imported) !== -1
                   )
                   .reduce(
@@ -311,19 +302,6 @@ export default function(babel) {
               fs.writeFileSync(cssFilename, toWrite)
             }
           }
-          if (state.cssPropIdentifier) {
-            path.node.body.unshift(
-              t.importDeclaration(
-                [
-                  t.importSpecifier(
-                    state.cssPropIdentifier,
-                    t.identifier('css')
-                  )
-                ],
-                t.stringLiteral('emotion')
-              )
-            )
-          }
         }
       },
       JSXOpeningElement(path, state) {
@@ -348,17 +326,6 @@ export default function(babel) {
               buildStyledObjectCallExpression(path, state, identifier, t)
             )
           }
-          if (
-            path.node.callee.name === state.importedNames.css &&
-            !path.node.arguments[1] &&
-            path.node.arguments[0]
-          ) {
-            replaceCssObjectCallExpression(
-              path,
-              t.identifier(state.importedNames.css),
-              t
-            )
-          }
         } catch (e) {
           throw path.buildCodeFrameError(e)
         }
@@ -366,6 +333,10 @@ export default function(babel) {
         path[visited] = true
       },
       TaggedTemplateExpression(path, state) {
+        if (path[visited]) {
+          return
+        }
+        path[visited] = true
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
@@ -406,7 +377,9 @@ export default function(babel) {
               path.node.tag,
               state,
               t,
-              (name, hash, src) => `@keyframes ${name}-${hash} { ${src} }`
+              (src, name, hash) => `@keyframes ${name}-${hash} { ${src} }`,
+              false,
+              () => ''
             )
           } else if (path.node.tag.name === state.importedNames.fontFace) {
             replaceCssWithCallExpression(
@@ -414,7 +387,7 @@ export default function(babel) {
               path.node.tag,
               state,
               t,
-              (name, hash, src) => `@font-face {${src}}`,
+              (src, name, hash) => `@font-face {${src}}`,
               true
             )
           } else if (path.node.tag.name === state.importedNames.injectGlobal) {
@@ -423,8 +396,9 @@ export default function(babel) {
               path.node.tag,
               state,
               t,
-              (name, hash, src) => src,
-              true
+              undefined,
+              true,
+              () => ''
             )
           }
         }

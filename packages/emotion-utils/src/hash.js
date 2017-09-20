@@ -1,19 +1,6 @@
 // @flow
 // murmurhash2 via https://gist.github.com/raycmorgan/588423
 
-export function hashArray(arr: string[]): string {
-  let str = arr.join(',')
-  return hashString(str)
-}
-
-export function hashObject(...objs: Array<{ [string]: any }>): string {
-  let str = ''
-  for (let i = 0; i < objs.length; i++) {
-    str += JSON.stringify(objs[i])
-  }
-  return hashString(str)
-}
-
 export function hashString(str: string) {
   return hash(str, str.length).toString(36)
 }

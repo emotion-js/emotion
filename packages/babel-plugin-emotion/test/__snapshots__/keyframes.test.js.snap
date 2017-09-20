@@ -6,91 +6,26 @@ exports[`babel keyframes extract keyframes basic 1`] = `
 const rotate360 = \\"css-rotate360-f35ahc\\";"
 `;
 
-exports[`babel keyframes extract keyframes basic 2`] = `
-"@-webkit-keyframes css-rotate360-f35ahc {
-    from {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg)
-    }
-}
-@keyframes css-rotate360-f35ahc {
-    from {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg)
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg)
-    }
-}"
-`;
+exports[`babel keyframes extract keyframes basic 2`] = `"@-webkit-keyframes css-rotate360-f35ahc{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes css-rotate360-f35ahc{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}"`;
 
 exports[`babel keyframes extract keyframes with interpolation 1`] = `
 "
-const rotate360 = /*#__PURE__*/keyframes([], [endingRotation], function createEmotionStyledRules(x0) {
-  return [{
-    \\"from\\": {
-      \\"WebkitTransform\\": \\"rotate(0deg)\\",
-      \\"transform\\": \\"rotate(0deg)\\"
-    },
-    \\"to\\": {
-      \\"WebkitTransform\\": \`rotate(\${x0})\`,
-      \\"transform\\": \`rotate(\${x0})\`
-    }
-  }];
-});"
+const rotate360 = /*#__PURE__*/keyframes\`from{transform:rotate(0deg);}to{transform:rotate(\${endingRotation});}\`;"
 `;
 
 exports[`babel keyframes inline keyframes basic 1`] = `
 "
-const rotate360 = /*#__PURE__*/keyframes([], [], function createEmotionStyledRules() {
-  return [{
-    \\"from\\": {
-      \\"WebkitTransform\\": \\"rotate(0deg)\\",
-      \\"transform\\": \\"rotate(0deg)\\"
-    },
-    \\"to\\": {
-      \\"WebkitTransform\\": \\"rotate(360deg)\\",
-      \\"transform\\": \\"rotate(360deg)\\"
-    }
-  }];
-});"
+const rotate360 = /*#__PURE__*/keyframes\`from{transform:rotate(0deg);}to{transform:rotate(360deg);}\`;"
 `;
 
 exports[`babel keyframes inline keyframes with interpolation 1`] = `
 "
-const rotate360 = /*#__PURE__*/keyframes([], [endingRotation], function createEmotionStyledRules(x0) {
-  return [{
-    \\"from\\": {
-      \\"WebkitTransform\\": \\"rotate(0deg)\\",
-      \\"transform\\": \\"rotate(0deg)\\"
-    },
-    \\"to\\": {
-      \\"WebkitTransform\\": \`rotate(\${x0})\`,
-      \\"transform\\": \`rotate(\${x0})\`
-    }
-  }];
-});"
+const rotate360 = /*#__PURE__*/keyframes\`from{transform:rotate(0deg);}to{transform:rotate(\${endingRotation});}\`;"
 `;
 
 exports[`babel keyframes inline static change import 1`] = `
 "
-const rotate360 = /*#__PURE__*/frames([], [], function createEmotionStyledRules() {
-  return [{
-    \\"from\\": {
-      \\"WebkitTransform\\": \\"rotate(0deg)\\",
-      \\"transform\\": \\"rotate(0deg)\\"
-    },
-    \\"to\\": {
-      \\"WebkitTransform\\": \\"rotate(360deg)\\",
-      \\"transform\\": \\"rotate(360deg)\\"
-    }
-  }];
-});
+const rotate360 = /*#__PURE__*/frames\`from{transform:rotate(0deg);}to{transform:rotate(360deg);}\`;
 const rotate3601 = keyframes\`
           from {
             transform: rotate(0deg);
@@ -104,18 +39,7 @@ const rotate3601 = keyframes\`
 exports[`babel keyframes inline static change import 2`] = `
 "
 import { keyframes as frames } from 'emotion';
-const rotate360 = /*#__PURE__*/frames([], [], function createEmotionStyledRules() {
-  return [{
-    'from': {
-      'WebkitTransform': 'rotate(0deg)',
-      'transform': 'rotate(0deg)'
-    },
-    'to': {
-      'WebkitTransform': 'rotate(360deg)',
-      'transform': 'rotate(360deg)'
-    }
-  }];
-});
+const rotate360 = /*#__PURE__*/frames\`from{transform:rotate(0deg);}to{transform:rotate(360deg);}\`;
 const rotate3601 = keyframes\`
           from {
             transform: rotate(0deg);
