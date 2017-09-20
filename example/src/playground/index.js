@@ -122,13 +122,8 @@ const dracula = css`
   }
 `
 
-const PlaygroundContent = styled('div')`
+export const editorStyles = css`
   ${dracula};
-  display: flex;
-  margin: 0 auto 16px auto;
-  padding: 16px 0;
-  max-width: 560px;
-
   & .ReactCodeMirror {
     flex: 1 1 70%;
     & textarea {
@@ -140,6 +135,14 @@ const PlaygroundContent = styled('div')`
       border-radius: 4px;
     }
   }
+`
+
+const PlaygroundContent = styled('div')`
+  ${editorStyles};
+  display: flex;
+  margin: 0 auto 16px auto;
+  padding: 16px 0;
+  max-width: 560px;
 `
 
 class ReactPlayground extends Component {
