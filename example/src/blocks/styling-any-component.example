@@ -1,10 +1,9 @@
-const Image = ({ className, src }) =>
-  <img src={src} className={className} />
+const Image = ({ className, src }) => <img src={src} className={className} />
 
 const Avatar = styled(Image)`
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
 `
 
-render(<Avatar src={logoUrl} />, mountNode)
+render(<Avatar src={logoUrl} />)

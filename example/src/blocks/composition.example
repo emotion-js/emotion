@@ -5,12 +5,12 @@ const imageBase = css`
 `
 
 const Avatar = styled('img')`
-  composes: ${imageBase};
-  
-  @media(min-width: 420px) {
+  ${imageBase};
+
+  @media (min-width: 420px) {
     width: 96px;
     height: 96px;
   }
 `
 
-render(<Avatar src={logoUrl} />, mountNode)
+render(<Avatar src={logoUrl} />)

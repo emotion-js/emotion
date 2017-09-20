@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import Editor from 'component-playground/lib/components/editor'
 import Preview from '../preview'
 import { css } from 'emotion'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 import colors from 'open-color'
 
 const dracula = css`
@@ -166,14 +166,14 @@ class ReactPlayground extends Component {
   }
 
   state = {
-    code: this.props.codeText,
+    code: this.props.codeText.trim(),
     expandedCode: this.props.initiallyExpanded,
     external: true
   }
 
   componentWillReceiveProps = nextProps => {
     this.setState({
-      code: nextProps.codeText,
+      code: nextProps.codeText.trim(),
       external: true
     })
   }

@@ -14,4 +14,4 @@ const Name = styled('h1')`
   color: #ffd43b;
 `
 
-render(<Name>emotion</Name>, mountNode)
+render(<Name>emotion</Name>)

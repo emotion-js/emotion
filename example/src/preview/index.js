@@ -1,13 +1,14 @@
-/* eslint-disable jsx-quotes */
 // https://raw.githubusercontent.com/FormidableLabs/component-playground/master/src/components/preview.jsx
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { registerPlugin, transform } from 'babel-standalone'
-import styled from 'emotion/react'
+import { render as ReactDOMRender } from 'react-dom'
+import styled from 'react-emotion'
 
 const ric = window.requestIdleCallback || window.requestAnimationFrame
 
-registerPlugin('emotion/babel', require('emotion/babel'))
+registerPlugin('babel-plugin-emotion', require('babel-plugin-emotion'))
 
 const PreviewContent = styled('div')`
   display: flex;
@@ -17,7 +18,6 @@ const PreviewContent = styled('div')`
 const PreviewWrapper = styled(PreviewContent)`
   position: relative;
   flex: 1 1 30%;
-
   & .preview-display {
     width: 100%;
     height: 100%;
@@ -60,57 +60,13 @@ class Preview extends Component {
   }
 
   _compileCode = () => {
-    const { code, context, noRender, scope } = this.props
-    const generateContextTypes = c => {
-      return `{ ${Object.keys(c)
-        .map(val => `${val}: React.PropTypes.any.isRequired`)
-        .join(', ')} }`
-    }
-
-    if (noRender) {
-      return transform(
-        `
-        ((${Object.keys(scope).join(', ')}, mountNode) => {
-          class Comp extends React.Component {
-
-            getChildContext() {
-              return ${JSON.stringify(context)};
-            }
-
-            render() {
-              return (
-                ${code}
-              );
-            }
-          }
-
-          Comp.childContextTypes = ${generateContextTypes(context)};
-
-          return Comp;
-        });
-      `,
-        {
-          presets: ['es2015', 'react', 'stage-1'],
-          plugins: [
-            ['emotion/babel', { inline: true, autoImportCssProp: false }]
-          ]
-        }
-      ).code
-    } else {
-      return transform(
-        `
-        ((${Object.keys(scope).join(',')}, mountNode) => {
-          ${code}
-        });
-      `,
-        {
-          presets: ['es2015', 'react', 'stage-1'],
-          plugins: [
-            ['emotion/babel', { inline: true, autoImportCssProp: false }]
-          ]
-        }
-      ).code
-    }
+    const { code, scope } = this.props
+    return `(function (${Object.keys(scope).join(',')}, render) {
+      ${transform(code, {
+        presets: ['es2015', 'react', 'stage-1'],
+        plugins: [['babel-plugin-emotion', { autoImportCssProp: false }]]
+      }).code}
+    })`
   }
 
   _setTimeout = (...args) => {
@@ -125,7 +81,7 @@ class Preview extends Component {
 
     try {
       Object.keys(scope).forEach(s => tempScope.push(scope[s]))
-      tempScope.push(mountNode)
+      tempScope.push(comp => ReactDOMRender(comp, mountNode))
       const compiledCode = this._compileCode()
       // eslint-disable-next-line no-eval
       eval(compiledCode).apply(null, tempScope)

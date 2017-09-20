@@ -5,7 +5,4 @@ const Avatar = styled('img')`
   border-radius: 50%;
 `
 
-render(
-  <Avatar src={logoUrl} />,
-  mountNode
-)
+render(<Avatar src={logoUrl} />)
