@@ -1,4 +1,4 @@
-import { keys, forEach } from 'emotion-utils'
+import { hashArray } from './index'
 
 export function getIdentifierName(path, t) {
   const parent = path.findParent(p => p.isVariableDeclarator())
@@ -32,9 +32,9 @@ export function buildMacroRuntimeNode(path, state, importName, t) {
 
 export function addRuntimeImports(state, t) {
   if (state.emotionImports === undefined) return
-  forEach(keys(state.emotionImports), importPath => {
+  Object.keys(state.emotionImports).forEach(importPath => {
     const importSpecifiers = []
-    forEach(keys(state.emotionImports[importPath]), importName => {
+    Object.keys(state.emotionImports[importPath]).forEach(importName => {
       const identifier = state.emotionImports[importPath][importName]
       if (importName === 'default') {
         importSpecifiers.push(t.importDefaultSpecifier(identifier))
@@ -50,3 +50,70 @@ export function addRuntimeImports(state, t) {
   })
   state.emotionImports = undefined
 }
+export function getName(identifierName?: string, prefix: string): string {
+  const parts = []
+  parts.push(prefix)
+  if (identifierName) {
+    parts.push(identifierName)
+  }
+  return parts.join('-')
+}
+
+export function createRawStringFromTemplateLiteral(quasi: {
+  quasis: Array<{ value: { cooked: string } }>
+}): { src: string, dynamicValueCount: number } {
+  let strs = quasi.quasis.map(x => x.value.cooked)
+  let hash = hashArray([...strs])
+
+  const src = strs
+    .reduce((arr, str, i) => {
+      arr.push(str)
+      if (i !== strs.length - 1) {
+        arr.push(`xxx${i}xxx`)
+      }
+      return arr
+    }, [])
+    .join('')
+    .trim()
+  return { src, hash }
+}
+
+export function omit(
+  obj: { [string]: any },
+  testFn: (key: string, obj: any) => boolean
+) {
+  let target: { [string]: any } = {}
+  let i: string
+  for (i in obj) {
+    if (!testFn(i, obj)) continue
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue
+    target[i] = obj[i]
+  }
+  return target
+}
+
+// babel-plugin-styled-components
+// https://github.com/styled-components/babel-plugin-styled-components/blob/8d44acc36f067d60d4e09f9c22ff89695bc332d2/src/minify/index.js
+
+const symbolRegex = /(\s*[;:{},]\s*)/g
+
+// Counts occurences of substr inside str
+const countOccurences = (str, substr) => str.split(substr).length - 1
+
+export const minify = code =>
+  code.split(symbolRegex).reduce((str, fragment, index) => {
+    // Even-indices are non-symbol fragments
+    if (index % 2 === 0) {
+      return str + fragment
+    }
+
+    // Only manipulate symbols outside of strings
+    if (
+      countOccurences(str, "'") % 2 === 0 &&
+      countOccurences(str, '"') % 2 === 0
+    ) {
+      return str + fragment.trim()
+    }
+
+    return str + fragment
+  }, '')

@@ -16,19 +16,26 @@ exports[`css prop react basic 1`] = `
 exports[`css prop react kitchen sink 1`] = `
 .glamor-4 {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   font-weight: bold;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
+  -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
 
 .glamor-0 {
-  font-size: 6px;
+  font-size: 6;
   color: red;
 }
 
@@ -38,13 +45,9 @@ exports[`css prop react kitchen sink 1`] = `
 
 .glamor-2 {
   display: -webkit-inline-box;
+  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-}
-
-.glamor-3 {
-  color: red;
-  border-radius: 5px;
 }
 
 .glamor-3:hover {
@@ -52,8 +55,13 @@ exports[`css prop react kitchen sink 1`] = `
   color: gray;
 }
 
+.glamor-3 {
+  color: red;
+  border-radius: 5;
+}
+
 <div
-  className="css__legacy-stuff glamor-4"
+  className="glamor-4 css__legacy-stuff"
 >
   <h1
     className="glamor-0"
@@ -61,12 +69,12 @@ exports[`css prop react kitchen sink 1`] = `
     BOOM
   </h1>
   <p
-    className="test_class1 glamor-1"
+    className="glamor-1 test_class1"
   >
     Hello
   </p>
   <p
-    className="test_class1 test___class45 glamor-2"
+    className="glamor-2 test_class1 test___class45"
   >
     World
   </p>
@@ -89,6 +97,20 @@ exports[`css prop react objects 1`] = `
 >
   hello world
 </p>
+`;
+
+exports[`css prop react specificity with composition 1`] = `
+.glamor-0 {
+  display: block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
 `;
 
 exports[`css prop react string expression 1`] = `

@@ -13,15 +13,16 @@ html.active {
 exports[`injectGlobal interpolated value 1`] = `
 "body {
   color: yellow;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }"
 `;
 
 exports[`injectGlobal nested interpolated media query 1`] = `
-"@media (max-width: 600px) {
+"@media (max-width:600px) {
   body {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
   }
@@ -29,14 +30,16 @@ exports[`injectGlobal nested interpolated media query 1`] = `
 `;
 
 exports[`injectGlobal random interpolation 1`] = `
-".css-71uu79 {
+".css-k008qs {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
 body {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }"

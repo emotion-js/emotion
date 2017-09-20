@@ -1,73 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`babel css extract basic object support 1`] = `
-"css({
-  'display': '-webkit-box; display: -ms-flexbox; display: flex'
-});"
-`;
-
-exports[`babel css extract composes 1`] = `
-"import './css.test.emotion.css';
-
-const cls1 = 'css-cls1-1q8jsgx';
-const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], function createEmotionStyledRules(x0) {
-  return [{
-    'WebkitBoxPack': 'center',
-    'msFlexPack': 'center',
-    'justifyContent': 'center',
-    'WebkitBoxAlign': x0,
-    'msFlexAlign': x0,
-    'alignItems': x0
-  }];
-});"
-`;
-
-exports[`babel css extract composes 2`] = `
-".css-cls1-1q8jsgx {
-    display: -webkit-box; display: -ms-flexbox; display: flex
-}"
-`;
-
-exports[`babel css extract composes no dynamic 1`] = `
-"import './css.test.emotion.css';
-
-const cls1 = 'css-cls1-1q8jsgx';
-const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], [], function createEmotionStyledRules() {
-  return [{
-    'WebkitBoxPack': 'center',
-    'msFlexPack': 'center',
-    'justifyContent': 'center',
-    'WebkitBoxAlign': 'center',
-    'msFlexAlign': 'center',
-    'alignItems': 'center'
-  }];
-});"
-`;
-
-exports[`babel css extract composes no dynamic 2`] = `
-".css-cls1-1q8jsgx {
-    display: -webkit-box; display: -ms-flexbox; display: flex
-}"
-`;
-
-exports[`babel css extract composes with objects 1`] = `
-"
-const cls1 = css({
-  'display': '-webkit-box; display: -ms-flexbox; display: flex'
-});
-const cls2 = /*#__PURE__*/css([cls1], [], function createEmotionStyledRules() {
-  return [{
-    'height': '20',
-    'justifyContent': 'center'
-  }];
-});"
-`;
-
-exports[`babel css extract composes with objects 2`] = `
-".css-cls1-1q8jsgx {
-    display: -webkit-box; display: -ms-flexbox; display: flex
-}"
-`;
+exports[`babel css extract basic object support 1`] = `"css({ display: 'flex' });"`;
 
 exports[`babel css extract css basic 1`] = `
 "import \\"./css.test.emotion.css\\";
@@ -75,349 +8,116 @@ exports[`babel css extract css basic 1`] = `
 \\"css-153l48f\\";"
 `;
 
-exports[`babel css extract css basic 2`] = `
-".css-153l48f {
-    margin: 12px 48px;
-    color: #ffffff; color: blue;
-    display: -webkit-box; display: -ms-flexbox; display: flex;
-    -webkit-box-flex: 1;
-    -ms-flex: 1 0 auto;
-    flex: 1 0 auto
-}"
-`;
+exports[`babel css extract css basic 2`] = `".css-153l48f{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;}"`;
 
 exports[`babel css extract dynamic property objects 1`] = `
 "
 css({
-  'fontSize': '10px',
+  fontSize: 10,
   [\`w\${'idth'}\`]: 20
 });"
 `;
 
-exports[`babel css extract dynamically renamed-import: basic object support 1`] = `
-"import { css as cows } from 'emotion';cows({
-  'display': '-webkit-box; display: -ms-flexbox; display: flex'
-});"
-`;
+exports[`babel css extract dynamically renamed-import: basic object support 1`] = `"import { css as cows } from 'emotion';cows({ display: 'flex' });"`;
 
-exports[`babel css extract prefixed array of objects 1`] = `
-"
-css([{
-  'borderRadius': '50%',
-  'WebkitBoxSizing': 'border-box',
-  'boxSizing': 'border-box',
-  [display]: 'flex',
-  ':hover': {
-    'WebkitTransform': 'scale(1.2)',
-    'transform': 'scale(1.2)'
-  }
-}, {
-  'WebkitTransition': '-webkit-transform 400ms ease-in-out',
-  'transition': '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out'
-}]);"
-`;
-
-exports[`babel css extract prefixed objects 1`] = `
+exports[`babel css extract objects 1`] = `
 "
 css({
-    'borderRadius': '50%',
-    'WebkitTransition': '-webkit-transform 400ms ease-in-out',
-    'transition': '-webkit-transform 400ms ease-in-out; transition: transform 400ms ease-in-out; transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out',
-    'WebkitBoxSizing': 'border-box',
-    'boxSizing': 'border-box',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex',
+    borderRadius: '50%',
+    transition: 'transform 400ms ease-in-out',
+    boxSizing: 'border-box',
+    display: 'flex',
     ':hover': {
-        'WebkitTransform': 'scale(1.2)',
-        'transform': 'scale(1.2)'
+        transform: 'scale(1.2)'
     }
 });"
 `;
 
-exports[`babel css extract renamed-import: basic object support 1`] = `
-"cows({
-  'display': '-webkit-box; display: -ms-flexbox; display: flex'
-});"
-`;
+exports[`babel css extract renamed-import: basic object support 1`] = `"cows({ display: 'flex' });"`;
 
 exports[`babel css inline ::placeholder 1`] = `
 "
 const cls1 = css({
-  '::-webkit-input-placeholder': {
-    'color': 'green',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  },
-  '::-moz-placeholder': {
-    'color': 'green',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  },
-  ':-ms-input-placeholder': {
-    'color': 'green',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  },
   '::placeholder': {
-    'color': 'green',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+    color: 'green',
+    display: 'flex'
   }
 });
-const cls2 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
-  return [{
-    '::-webkit-input-placeholder': {
-      'color': 'green',
-      'display': '-webkit-box; display: flex'
-    },
-    ':-ms-input-placeholder': {
-      'color': 'green',
-      'display': '-ms-flexbox; display: flex'
-    },
-    '::placeholder': {
-      'color': 'green',
-      'display': '-webkit-box; display: -ms-flexbox; display: flex'
-    }
-  }];
-});"
+const cls2 = /*#__PURE__*/css\`::placeholder{color:green;display:flex;}\`;"
 `;
 
 exports[`babel css inline :fullscreen 1`] = `
 "
 const cls1 = css({
-  ':-webkit-full-screen': {
-    'color': 'green',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  },
-  ':-moz-full-screen': {
-    'color': 'green',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  },
-  ':-ms-fullscreen': {
-    'color': 'green',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  },
   ':fullscreen': {
-    'color': 'green',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
+    color: 'green',
+    display: 'flex'
   }
 });
-const cls2 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
-  return [{
-    ':-webkit-full-screen': {
-      'color': 'green',
-      'display': '-webkit-box; display: flex'
-    },
-    ':-moz-full-screen': {
-      'color': 'green',
-      'display': 'flex'
-    },
-    ':-ms-fullscreen': {
-      'color': 'green',
-      'display': '-ms-flexbox; display: flex'
-    },
-    ':fullscreen': {
-      'color': 'green',
-      'display': '-webkit-box; display: -ms-flexbox; display: flex'
-    }
-  }];
-});"
+const cls2 = /*#__PURE__*/css\`:fullscreen{color:green;display:flex;}\`;"
 `;
 
 exports[`babel css inline array of objects 1`] = `
 "
 const cls2 = css([{
-  'display': '-webkit-box; display: -ms-flexbox; display: flex',
-  'WebkitBoxFlex': '1',
-  'msFlex': '1',
-  'flex': '1',
-  'alignItems': 'center'
+  display: 'flex',
+  flex: 1,
+  alignItems: \`\${'center'}\`
 }, {
-  'WebkitBoxPack': 'start',
-  'msFlexPack': 'start',
-  'justifyContent': 'flex-start'
+  justifyContent: 'flex-start'
 }]);"
-`;
-
-exports[`babel css inline composes 1`] = `
-"
-const cls1 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
-  return [{
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  }];
-});
-const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], ['center'], function createEmotionStyledRules(x0) {
-  return [{
-    'WebkitBoxPack': 'center',
-    'msFlexPack': 'center',
-    'justifyContent': 'center',
-    'WebkitBoxAlign': x0,
-    'msFlexAlign': x0,
-    'alignItems': x0
-  }];
-});"
 `;
 
 exports[`babel css inline css basic 1`] = `
 "
-/*#__PURE__*/css([], [widthVar], function createEmotionStyledRules(x0) {
-  return [{
-    \\"margin\\": \\"12px 48px\\",
-    \\"color\\": \\"#ffffff; color: blue\\",
-    \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\",
-    \\"WebkitBoxFlex\\": \\"1\\",
-    \\"msFlex\\": \\"1 0 auto\\",
-    \\"flex\\": \\"1 0 auto\\",
-    \\"@media (min-width: 420px)\\": {
-      \\"lineHeight\\": \\"40px\\"
-    },
-    \\"width\\": x0
-  }];
-});"
+/*#__PURE__*/css\`margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\${widthVar};\`;"
 `;
 
 exports[`babel css inline css basic 2`] = `
 "
-/*#__PURE__*/cows([], [widthVar], function createEmotionStyledRules(x0) {
-  return [{
-    \\"margin\\": \\"12px 48px\\",
-    \\"color\\": \\"#ffffff; color: blue\\",
-    \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\",
-    \\"WebkitBoxFlex\\": \\"1\\",
-    \\"msFlex\\": \\"1 0 auto\\",
-    \\"flex\\": \\"1 0 auto\\",
-    \\"@media (min-width: 420px)\\": {
-      \\"lineHeight\\": \\"40px\\"
-    },
-    \\"width\\": x0
-  }];
-});"
+/*#__PURE__*/cows\`margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\${widthVar};\`;"
 `;
 
-exports[`babel css inline css basic 3`] = `
+exports[`babel css inline css basic as cows 1`] = `
 "
 import { css as cows } from 'emotion';
-/*#__PURE__*/cows([], [widthVar], function createEmotionStyledRules(x0) {
-  return [{
-    'margin': '12px 48px',
-    'color': '#ffffff; color: blue',
-    'display': '-webkit-box; display: -ms-flexbox; display: flex',
-    'WebkitBoxFlex': '1',
-    'msFlex': '1 0 auto',
-    'flex': '1 0 auto',
-    '@media (min-width: 420px)': {
-      'lineHeight': '40px'
-    },
-    'width': x0
-  }];
-});"
+/*#__PURE__*/cows\`margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\${widthVar};\`;"
 `;
 
-exports[`babel css inline css random expression 1`] = `
-"/*#__PURE__*/css([], [/*#__PURE__*/css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"width\\": \\"96px\\",
-    \\"height\\": \\"96px\\"
-  }];
-}), { backgroundColor: \\"hotpink\\" }], function createEmotionStyledRules(x0, x1) {
-  return [{
-    \\"fontSize\\": \\"20px\\",
-    \\"@media (min-width: 420px)\\": {
-      \\"color\\": \\"blue\\",
-      \\"$0\\": x0,
-      \\"lineHeight\\": \\"26px\\"
-    },
-    \\"background\\": \\"green\\",
-    \\"$1\\": x1
-  }];
-});"
-`;
+exports[`babel css inline css random expression 1`] = `"/*#__PURE__*/css\`font-size:20px;@media(min-width:420px){color:blue;\${/*#__PURE__*/css\`width:96px;height:96px;\`};line-height:26px;}background:green;\${{ backgroundColor: \\"hotpink\\" }};\`;"`;
 
 exports[`babel css inline css with float property 1`] = `
 "
-/*#__PURE__*/css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"float\\": \\"left\\"
-  }];
-});"
+/*#__PURE__*/css\`float:left;\`;"
 `;
 
 exports[`babel css inline interpolation in selector 1`] = `
 "
-const cls2 = /*#__PURE__*/css([], [className], function createEmotionStyledRules(x0) {
-  return [{
-    \\"margin\\": \\"12px 48px\\",
-    \\"color\\": \\"#ffffff\\",
-    [x0]: {
-      \\"display\\": \\"none\\"
-    }
-  }];
-});"
-`;
-
-exports[`babel css inline lots of composes 1`] = `
-"
-const cls2 = /*#__PURE__*/css(['one-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class', 'another-class'], ['center'], function createEmotionStyledRules(x0) {
-  return [{
-    'WebkitBoxPack': 'center',
-    'msFlexPack': 'center',
-    'justifyContent': 'center',
-    'WebkitBoxAlign': x0,
-    'msFlexAlign': x0,
-    'alignItems': x0
-  }];
-});"
+const cls2 = /*#__PURE__*/css\`margin:12px 48px;color:#ffffff;\${className}{display:none;}\`;"
 `;
 
 exports[`babel css inline nested expanded properties 1`] = `
 "
-/*#__PURE__*/css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"margin\\": \\"12px 48px\\",
-    \\"& .div\\": {
-      \\"display\\": \\"'flex'\\"
-    }
-  }];
-});"
+/*#__PURE__*/css\`margin:12px 48px;& .div{display:flex;}\`;"
 `;
 
 exports[`babel css inline object with a bunch of stuff 1`] = `
 "
 const cls2 = css({
-  'float': 'left',
-  'display': '-webkit-box; display: -ms-flexbox; display: flex',
-  'WebkitBoxFlex': '1',
-  'msFlex': '1',
-  'flex': '1',
-  'alignItems': 'center'
-});"
-`;
-
-exports[`babel css inline only composes 1`] = `
-"
-const cls1 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
-  return [{
-    'display': '-webkit-box; display: -ms-flexbox; display: flex'
-  }];
-});
-const cls2 = /*#__PURE__*/css(['one-class', 'another-class', cls1], [], function createEmotionStyledRules() {
-  return [{}];
+  float: 'left',
+  display: 'flex',
+  flex: 1,
+  alignItems: \`\${'center'}\`
 });"
 `;
 
 exports[`babel css inline only styles on nested selector 1`] = `
 "
-const cls1 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"display\\": \\"-webkit-box; display: -ms-flexbox; display: flex\\"
-  }];
-});
-const cls2 = /*#__PURE__*/css([], [], function createEmotionStyledRules() {
-  return [{
-    \\"&:hover\\": {
-      \\"background\\": \\"pink\\"
-    }
-  }];
-});"
+const cls1 = /*#__PURE__*/css\`display:flex;\`;
+const cls2 = /*#__PURE__*/css\`&:hover{background:pink;}\`;"
 `;
 
-exports[`babel css inline throws correct error when composes is not the first rule 1`] = `"unknown: Error: composes must be the first rule"`;
-
-exports[`babel css inline throws correct error when composes is on a nested selector 1`] = `"unknown: Error: composes cannot be on nested selectors"`;
-
-exports[`babel css inline throws correct error when the value of composes is not an interpolation 1`] = `"unknown: Error: composes must be a interpolation"`;
+exports[`babel css inline symbols inside of "" 1`] = `
+"
+const cls = /*#__PURE__*/css\`content:\\"  {  }  \\"\`;"
+`;

@@ -1,7 +1,4 @@
-import prettyCSS from './pretty-css'
 import { injectGlobal, sheet, flush, css } from 'emotion'
-
-expect.addSnapshotSerializer(prettyCSS)
 
 describe('injectGlobal', () => {
   afterEach(() => {
