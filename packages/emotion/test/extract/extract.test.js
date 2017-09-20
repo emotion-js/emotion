@@ -33,6 +33,15 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('className prop on styled', () => {
+    const H1 = styled.h1`font-size: 20px;`
+    const tree = renderer
+      .create(<H1 className="some-class">hello world</H1>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('injectGlobal', () => {
     injectGlobal`
       html {
