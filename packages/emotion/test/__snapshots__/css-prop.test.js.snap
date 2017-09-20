@@ -99,6 +99,20 @@ exports[`css prop react objects 1`] = `
 </p>
 `;
 
+exports[`css prop react specificity with composition 1`] = `
+.glamor-0 {
+  display: block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css prop react string expression 1`] = `
 .glamor-0 {
   color: red;

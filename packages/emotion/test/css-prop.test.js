@@ -97,4 +97,11 @@ describe('css prop react', () => {
 
     expect(tree).toMatchSnapshot()
   })
+  test('specificity with composition', () => {
+    const flex = css`display: flex;`
+    const tree = renderer
+      .create(<div className={flex} css={`display: block;`} />)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })
