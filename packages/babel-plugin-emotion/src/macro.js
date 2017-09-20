@@ -70,11 +70,7 @@ function macro({ references, state, babel: { types: t } }) {
             path,
             buildMacroRuntimeNode(keyframesReference, state, 'keyframes', t),
             state,
-            t,
-            (src, name, hash) => `@keyframes ${name}-${hash} { ${src} }`,
-            false,
-            '',
-            () => ''
+            t
           )
         }
       })
