@@ -1,22 +1,12 @@
-// import aphrodite from './src/aphrodite'
 import cssModules from './src/css-modules'
 import emotion from './src/emotion'
 import emotionCSS from './src/emotion-css'
-import emotionObjStyle from './src/emotion-obj-style'
+import emotionObj from './src/emotion-obj'
 import glamor from './src/glamor'
 import glamorous from './src/glamorous'
-import newCssInJs from './src/new-css-in-js'
-// import jss from './src/jss'
-// import radium from './src/radium'
-// import reactNative from './src/react-native'
-// import reactNativeStyleSheet from './src/react-native-stylesheet'
 import styledComponents from './src/styled-components'
-// import styledComponentsPrimitives from './src/styled-components-primitives'
-// import styletron from './src/styletron'
-// import xp from './src/reactxp'
 
 import renderDeepTree from './tests/renderDeepTree'
-// import renderTweet from './tests/renderTweet'
 import renderWideTree from './tests/renderWideTree'
 
 const allTests = {
@@ -28,9 +18,9 @@ const allTests = {
     () => renderDeepTree('emotionCSS', emotionCSS),
     () => renderWideTree('emotionCSS', emotionCSS)
   ],
-  emotionObjStyle: [
-    () => renderDeepTree('emotionObjStyle', emotionObjStyle),
-    () => renderWideTree('emotionObjStyle', emotionObjStyle)
+  emotionObj: [
+    () => renderDeepTree('emotionObj', emotionObj),
+    () => renderWideTree('emotionObj', emotionObj)
   ],
   glamor: [
     () => renderDeepTree('glamor', glamor),
@@ -43,10 +33,6 @@ const allTests = {
   'styled-components': [
     () => renderDeepTree('styled-components', styledComponents),
     () => renderWideTree('styled-components', styledComponents)
-  ],
-  'new-css-in-js': [
-    () => renderDeepTree('new-css-in-js', newCssInJs),
-    () => renderWideTree('new-css-in-js', newCssInJs)
   ],
   'css-modules': [
     () => renderDeepTree('css-modules', cssModules),
@@ -87,8 +73,9 @@ if (window.location.hash) {
       }
     })
 } else {
-  tests.push(...allTests['new-css-in-js'])
   tests.push(...allTests.emotion)
+  tests.push(...allTests.emotionObj)
+  tests.push(...allTests.emotionCSS)
   tests.push(...allTests['css-modules'])
   tests.push(...allTests.glamorous)
   tests.push(...allTests['styled-components'])
