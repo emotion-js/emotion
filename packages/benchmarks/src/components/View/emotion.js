@@ -1,4 +1,4 @@
-import styled from 'emotion/react/macro'
+import styled from 'react-emotion/macro'
 
 const View = styled('div')`
   align-items: stretch;

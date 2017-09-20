@@ -1,15 +1,6 @@
-/* eslint-disable react/prop-types */
-import { objStyle } from 'emotion'
-import React from 'react'
+import styled from 'react-emotion/macro'
 
-class View extends React.Component {
-  render() {
-    const { style, ...other } = this.props
-    return <div {...other} className={objStyle(viewStyle, ...style)} />
-  }
-}
-
-const viewStyle = {
+const View = styled.div({
   alignItems: 'stretch',
   borderWidth: 0,
   borderStyle: 'solid',
@@ -24,6 +15,6 @@ const viewStyle = {
   // fix flexbox bugs
   minHeight: 0,
   minWidth: 0
-}
+})
 
 export default View

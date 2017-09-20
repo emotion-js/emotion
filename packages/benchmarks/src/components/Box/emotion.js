@@ -1,5 +1,5 @@
 import styled from 'emotion/react/macro'
-// import View from '../View/emotion'
+import View from '../View/emotion'
 
 const getColor = color => {
   switch (color) {
@@ -20,25 +20,7 @@ const getColor = color => {
   }
 }
 
-const viewStyles = {
-  alignItems: 'stretch',
-  borderWidth: 0,
-  borderStyle: 'solid',
-  boxSizing: 'border-box',
-  display: 'flex',
-  flexBasis: 'auto',
-  flexDirection: 'column',
-  flexShrink: 0,
-  margin: 0,
-  padding: 0,
-  position: 'relative',
-  // fix flexbox bugs
-  minHeight: 0,
-  minWidth: 0
-}
-
-const Box = styled('div')`
-  ${viewStyles};
+const Box = styled(View)`
   flex-direction: ${props => (props.layout === 'column' ? 'column' : 'row')};
   padding: ${props => (props.outer ? '4px' : '0')};
   height: ${props => (props.fixed ? '20px' : 'auto')};
