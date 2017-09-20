@@ -132,6 +132,19 @@ exports[`css css variables 1`] = `
 />
 `;
 
+exports[`css falsy property value in object 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css float property 1`] = `
 .glamor-0 {
   float: left;
@@ -328,6 +341,20 @@ exports[`css random interpolation with undefined values 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css registered styles as nested selector value in object 1`] = `
+.glamor-0:hover {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: hotpink;
 }
 
 <div

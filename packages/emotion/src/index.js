@@ -103,10 +103,14 @@ function createStringFromObject(obj) {
   } else {
     Object.keys(obj).forEach(key => {
       if (typeof obj[key] !== 'object') {
-        string += `${processStyleName(key)}:${processStyleValue(
-          key,
-          obj[key]
-        )};`
+        if (registered[obj[key]] !== undefined) {
+          string += `${key}{${registered[obj[key]]}}`
+        } else {
+          string += `${processStyleName(key)}:${processStyleValue(
+            key,
+            obj[key]
+          )};`
+        }
       } else {
         string += `${key}{${createStringFromObject(obj[key])}}`
       }

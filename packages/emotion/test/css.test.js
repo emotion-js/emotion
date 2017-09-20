@@ -181,6 +181,17 @@ describe('css', () => {
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('falsy property value in object', () => {
+    const cls = css({ display: 'flex', backgroundColor: undefined })
+    const tree = renderer.create(<div className={cls} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('registered styles as nested selector value in object', () => {
+    const cls = css({ display: 'flex', backgroundColor: 'hotpink' })
+    const cls1 = css({ ':hover': cls })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
   test('composition stuff', () => {
     const cls1 = css({
       justifyContent: 'center'
