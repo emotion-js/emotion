@@ -1,12 +1,13 @@
 const flexCenter = css`
   display: flex;
   align-items: center;
-  justify-content: center;`
+  justify-content: center;
+`
 
 render(
   <div
     css={`
-      composes: ${flexCenter};
+      ${flexCenter};
       width: 128px;
       height: 128px;
       background-color: #8c81d8;
@@ -25,6 +26,5 @@ render(
     `}
   >
     <img src={logoUrl} />
-  </div>,
-  mountNode
+  </div>
 )

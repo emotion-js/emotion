@@ -1,10 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`css macro composes 1`] = `
+exports[`css @supports 1`] = `
+@supports (display:grid) {
+  .glamor-0 {
+    display: grid;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css auto px 1`] = `
 .glamor-0 {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: 10px;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css composition 1`] = `
+.glamor-0:hover {
+  color: hotpink;
+}
+
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -13,17 +50,33 @@ exports[`css macro composes 1`] = `
 />
 `;
 
-exports[`css macro composes with objects 1`] = `
+exports[`css composition stuff 1`] = `
 .glamor-0 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  display: block;
-  width: 30px;
-  height: calc(40vw - 50px);
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css composition stuff 2`] = `
+.glamor-0 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css composition with objects 1`] = `
 .glamor-0:hover {
   color: blue;
 }
@@ -33,7 +86,20 @@ exports[`css macro composes with objects 1`] = `
   color: red;
 }
 
-@media (min-width: 420px) {
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 30px;
+  height: calc(40vw - 50px);
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+@media (min-width:420px) {
   .glamor-0 {
     color: green;
   }
@@ -44,9 +110,10 @@ exports[`css macro composes with objects 1`] = `
 />
 `;
 
-exports[`css macro composes with undefined values 1`] = `
+exports[`css computed key is only dynamic 1`] = `
 .glamor-0 {
-  justify-content: center;
+  font-size: 10px;
+  width: 20px;
 }
 
 <div
@@ -54,20 +121,10 @@ exports[`css macro composes with undefined values 1`] = `
 />
 `;
 
-exports[`css macro handles more than 10 dynamic properties 1`] = `
+exports[`css css variables 1`] = `
 .glamor-0 {
-  background: white;
-  color: black;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  display: block;
-  border-radius: 3px;
-  padding: 25px;
-  width: 500px;
-  z-index: 100;
-  font-size: 18px;
-  text-align: center;
-  border: solid 1px red;
+  --some-var: 1px;
+  width: var(--some-var);
 }
 
 <div
@@ -75,9 +132,20 @@ exports[`css macro handles more than 10 dynamic properties 1`] = `
 />
 `;
 
-exports[`css macro handles objects 1`] = `
+exports[`css float property 1`] = `
+.glamor-0 {
+  float: left;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css flushes correctly 1`] = `
 .glamor-0 {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -87,8 +155,188 @@ exports[`css macro handles objects 1`] = `
 />
 `;
 
-exports[`css macro null rule 1`] = `
+exports[`css flushes correctly 2`] = `
 <div
-  className="css-nil"
+  className="css-k008qs"
+/>
+`;
+
+exports[`css handles more than 10 dynamic properties 1`] = `
+.glamor-0 {
+  text-decoration: underline;
+  border-right: solid blue 54px;
+  background: white;
+  color: black;
+  display: block;
+  border-radius: 3px;
+  padding: 25px;
+  width: 500px;
+  z-index: 100;
+  font-size: 18px;
+  text-align: center;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css handles objects 1`] = `
+.glamor-0 {
+  float: left;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: blue;
+  font-size: 20px;
+  height: 50px;
+  width: 20px;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css nested 1`] = `
+.glamor-0 .some-class {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-0 .some-class .some-other-class {
+  background-color: hotpink;
+}
+
+.glamor-0 .some-class {
+  background-color: pink;
+}
+
+.glamor-0 {
+  color: yellow;
+}
+
+@media (max-width:600px) {
+  .glamor-0 .some-class {
+    background-color: pink;
+  }
+}
+
+<div
+  className="glamor-0"
+>
+  <div
+    className="some-class"
+  >
+    <div
+      className="some-other-class"
+    />
+  </div>
+</div>
+`;
+
+exports[`css nested array 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css nested at rules 1`] = `
+@supports (display:flex) {
+  .glamor-0 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@supports (display:grid) {
+  .glamor-0 {
+    display: grid;
+  }
+}
+
+@media (max-width:500px) {
+  .glamor-0 {
+    color: hotpink;
+  }
+}
+
+@media (min-width:420px) {
+  .glamor-0 {
+    color: pink;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css nested selector without parent declaration 1`] = `
+.glamor-0 {
+  color: blue;
+}
+
+.glamor-1 .glamor-0 {
+  color: red;
+}
+
+<div
+  className="glamor-1"
+>
+  <div
+    className="glamor-0"
+  />
+</div>
+`;
+
+exports[`css null rule 1`] = `
+<div
+  className="css-0"
+/>
+`;
+
+exports[`css random expression 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  background: green;
+}
+
+@media (min-width:420px) {
+  .glamor-0 {
+    color: blue;
+    width: 96px;
+    height: 96px;
+    line-height: 40px;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css random interpolation with undefined values 1`] = `
+.glamor-0 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="glamor-0"
 />
 `;

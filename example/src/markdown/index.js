@@ -1,13 +1,16 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { withTheme } from 'theming'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 import colors from 'open-color'
-import styles from './index.css'
+import Editor from 'component-playground/lib/components/editor'
+import { editorStyles } from '../playground'
 
 const MarkdownContainer = styled('div')`
-  composes: ${styles.markdownContainer};
-
+  display: flex;
+  margin: 16px auto 0 auto;
+  max-width: 560px;
+  font-family: 'Oxygen';
   h1,
   h2,
   h3,
@@ -89,6 +92,18 @@ export default ({ markdown }) => {
           Paragraph,
           Code,
           CodeBlock: props => {
+            if (['js', 'javascript', 'jsx'].indexOf(props.language) !== -1) {
+              return (
+                <div className={editorStyles}>
+                  <Editor
+                    key={props.nodeKey}
+                    readOnly
+                    theme="dracula"
+                    codeText={props.literal}
+                  />
+                </div>
+              )
+            }
             return (
               <CodeBlock key={props.nodeKey} className={props.className}>
                 <Code>{props.literal}</Code>

@@ -9,7 +9,7 @@ const flex = css`
   display: flex;
 `
 const justifyCenter = css`
-  composes: ${flex};
+  ${flex};
   justifyContent: center;
 `
 
@@ -24,8 +24,6 @@ const justifyCenter = css`
 This allows you to use your existing object styles in the emotion ecosystem.
 Another great benefit is that you can now use [polished](https://polished.js.org/) with emotion.
 
-*Object styles cannot be optimized as well as template literal styles at this time. Object styles are also not autoprefixed.*
-
 ```jsx harmony
 import { css } from 'emotion'
 import { lighten, modularScale } from 'polished'
@@ -39,12 +37,12 @@ const cssA = {
 }
 
 const cssB = css`
-  composes: ${cssA}
+  ${cssA};
   height: 64px;
 `
 
 const H1 = styled('h1')`
-  composes: ${cssB}
+  ${cssB};
   font-size: ${modularScale(4)};
 `
 

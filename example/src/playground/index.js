@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import Editor from 'component-playground/lib/components/editor'
 import Preview from '../preview'
 import { css } from 'emotion'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 import colors from 'open-color'
 
 const dracula = css`
@@ -122,13 +122,8 @@ const dracula = css`
   }
 `
 
-const PlaygroundContent = styled('div')`
-  composes: ${dracula};
-  display: flex;
-  margin: 0 auto 16px auto;
-  padding: 16px 0;
-  max-width: 560px;
-
+export const editorStyles = css`
+  ${dracula};
   & .ReactCodeMirror {
     flex: 1 1 70%;
     & textarea {
@@ -140,6 +135,14 @@ const PlaygroundContent = styled('div')`
       border-radius: 4px;
     }
   }
+`
+
+const PlaygroundContent = styled('div')`
+  ${editorStyles};
+  display: flex;
+  margin: 0 auto 16px auto;
+  padding: 16px 0;
+  max-width: 560px;
 `
 
 class ReactPlayground extends Component {
@@ -166,14 +169,14 @@ class ReactPlayground extends Component {
   }
 
   state = {
-    code: this.props.codeText,
+    code: this.props.codeText.trim(),
     expandedCode: this.props.initiallyExpanded,
     external: true
   }
 
   componentWillReceiveProps = nextProps => {
     this.setState({
-      code: nextProps.codeText,
+      code: nextProps.codeText.trim(),
       external: true
     })
   }

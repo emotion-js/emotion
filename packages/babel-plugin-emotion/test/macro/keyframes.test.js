@@ -1,12 +1,12 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react'
-import { keyframes, sheet } from 'emotion/macro'
+import { keyframes, sheet, flush } from 'emotion/macro'
 import styled from 'react-emotion/macro'
 
-expect.addSnapshotSerializer(serializer(sheet))
-
 describe('keyframes - macro', () => {
+  afterEach(() => {
+    flush()
+  })
   test('renders', () => {
     const bounce = keyframes`
       from, 20%, 53%, 80%, to {
@@ -34,6 +34,7 @@ describe('keyframes - macro', () => {
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshot()
+    expect(sheet).toMatchSnapshot()
   })
   test('keyframes with interpolation', () => {
     const endingRotation = '360deg'
@@ -54,8 +55,6 @@ describe('keyframes - macro', () => {
 
     expect(tree).toMatchSnapshot()
 
-    expect(
-      sheet.tags.map(tag => tag.textContent || '').join('')
-    ).toMatchSnapshot()
+    expect(sheet).toMatchSnapshot()
   })
 })

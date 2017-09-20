@@ -1,5 +1,7 @@
 ## Styled
 
+The babel plugin is required in order to use the `styled` api. The installation documentation can be found [here](https://github.com/emotion-js/emotion/blob/master/docs/install.md).
+
 ```jsx
 import styled from 'react-emotion'
 
@@ -45,24 +47,5 @@ function Greeting ({ name }) {
   // will turn into to <h1 className="generated-className" ref={() => console.log('hello!')}>Hello {name}</h1>
   return <H1 innerRef={() => console.log('hello!')}>Hello {name}</H1>
 }
-
-```
-
-### Objects as styles
-
-`styled` can also take objects or a function that returns an object. This API was inspired by [glamorous](https://github.com/paypal/glamorous).
-
-*The same caveats to using objects with css apply to this.*
-
-```jsx
-import styled from 'react-emotion'
-
-const H1 = styled.h1({
-  fontSize: 20
-}, (props) => ({ color: props.color }))
-
-const H2 = styled('h2')('some-other-class', {
-  fontSize: '40px'
-})
 
 ```

@@ -1,11 +1,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { basename } from 'path'
-import serializer from 'jest-glamor-react'
-import { injectGlobal, css, sheet } from 'emotion'
+import { injectGlobal, css } from 'emotion'
 import styled from 'react-emotion'
-
-expect.addSnapshotSerializer(serializer(sheet))
 
 describe('styled', () => {
   test('no dynamic', () => {
@@ -36,12 +33,11 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('name', () => {
-    const H1 = styled.h1`
-      name: FancyH1;
-      font-size: 38px;
-    `
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+  test('className prop on styled', () => {
+    const H1 = styled.h1`font-size: 20px;`
+    const tree = renderer
+      .create(<H1 className="some-class">hello world</H1>)
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
   })

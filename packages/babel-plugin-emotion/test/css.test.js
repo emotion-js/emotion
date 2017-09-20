@@ -46,7 +46,7 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('css basic', () => {
+    test('css basic as cows', () => {
       const basic = `
         import { css as cows } from 'emotion';
         cows\`
@@ -100,7 +100,7 @@ describe('babel css', () => {
         css\`
         margin: 12px 48px;
         & .div {
-          display: 'flex';
+          display: flex;
         }
       \``
       const { code } = babel.transform(basic, {
@@ -117,37 +117,6 @@ describe('babel css', () => {
         \${className} {
           display: none;
         }
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('composes', () => {
-      const basic = `
-        const cls1 = css\`
-          display: flex;
-        \`
-        const cls2 = css\`
-          composes: \${'one-class'} \${'another-class'}\${cls1};
-          justify-content: center;
-          align-items: \${'center'}
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('lots of composes', () => {
-      const basic = `
-        const cls2 = css\`
-          composes: \${'one-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'} \${'another-class'};
-          justify-content: center;
-          align-items: \${'center'}
         \`
       `
       const { code } = babel.transform(basic, {
@@ -196,20 +165,6 @@ describe('babel css', () => {
       })
       expect(code).toMatchSnapshot()
     })
-    test('only composes', () => {
-      const basic = `
-        const cls1 = css\`
-          display: flex;
-        \`
-        const cls2 = css\`
-          composes: \${'one-class'} \${'another-class'}\${cls1};
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
 
     test('only styles on nested selector', () => {
       const basic = `
@@ -228,59 +183,6 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('throws correct error when composes is not the first rule', () => {
-      const basic = `
-        const cls1 = css\`
-          display: flex;
-        \`
-        const cls2 = css\`
-          justify-content: center;
-          composes: \${'one-class'} \${'another-class'}\${cls1};
-          align-items: \${'center'}
-        \`
-      `
-      expect(() =>
-        babel.transform(basic, {
-          plugins: [[plugin]]
-        })
-      ).toThrowErrorMatchingSnapshot()
-    })
-    test('throws correct error when the value of composes is not an interpolation', () => {
-      const basic = `
-        const cls1 = css\`
-          display: flex;
-        \`
-        const cls2 = css\`
-          composes: some-class;
-          justify-content: center;
-          align-items: \${'center'}
-        \`
-      `
-      expect(() =>
-        babel.transform(basic, {
-          plugins: [[plugin]]
-        })
-      ).toThrowErrorMatchingSnapshot()
-    })
-    test('throws correct error when composes is on a nested selector', () => {
-      const basic = `
-        const cls1 = css\`
-          display: flex;
-        \`
-        const cls2 = css\`
-          justify-content: center;
-          align-items: center;
-          .some-class {
-            composes: \${cls1};
-          }
-        \`
-      `
-      expect(() =>
-        babel.transform(basic, {
-          plugins: [[plugin]]
-        })
-      ).toThrowErrorMatchingSnapshot()
-    })
     test('object with a bunch of stuff', () => {
       const basic = `
       const cls2 = css({
@@ -310,6 +212,15 @@ describe('babel css', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('symbols inside of ""', () => {
+      const basic = `
+      const cls = css\`content:  "  {  }  "\`
+    `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
   describe('extract', () => {
     test('css basic', () => {
@@ -329,47 +240,6 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
       expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
       expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
-    })
-
-    test('composes', () => {
-      const basic = `
-        const cls1 = css\`
-          display: flex;
-        \`
-        const cls2 = css\`
-          composes: \${'one-class'}\${'another-class'}\${cls1};
-          justify-content: center;
-          align-items: \${'center'}
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin, { extractStatic: true }]],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
-      expect(fs.writeFileSync.mock.calls[1][1]).toMatchSnapshot()
-    })
-    test('composes no dynamic', () => {
-      const basic = `
-        const cls1 = css\`
-          display: flex;
-        \`
-        const cls2 = css\`
-          composes: \${'one-class'} \${'another-class'}\${cls1};
-          justify-content: center;
-          align-items: center
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin, { extractStatic: true }]],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
-      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
     })
 
     test('basic object support', () => {
@@ -396,7 +266,7 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('prefixed objects', () => {
+    test('objects', () => {
       const basic = `
           css({
             borderRadius: '50%',
@@ -425,45 +295,6 @@ describe('babel css', () => {
         plugins: [[plugin]]
       })
       expect(code).toMatchSnapshot()
-    })
-
-    test('prefixed array of objects', () => {
-      const basic = `
-          css([{
-            borderRadius: '50%',
-            boxSizing: ['border-box'],
-            [display]: 'flex',
-            ':hover': {
-              transform: 'scale(1.2)'
-            }
-        }, {
-          transition: 'transform 400ms ease-in-out',
-        }])
-    `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
-      expect(code).toMatchSnapshot()
-    })
-
-    test('composes with objects', () => {
-      const basic = `
-        const cls1 = css({display: 'flex'})
-        const cls2 = css\`
-          composes: $\{cls1};
-          height: 20;
-          justifyContent: center;
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin, { extractStatic: true }]],
-        filename: __filename,
-        babelrc: false
-      })
-
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(3)
-      expect(fs.writeFileSync.mock.calls[2][1]).toMatchSnapshot()
     })
   })
 })

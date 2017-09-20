@@ -1,9 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react'
-import { sheet, css, flush } from 'emotion'
-
-expect.addSnapshotSerializer(serializer(sheet))
+import { css, flush } from 'emotion'
 
 describe('css', () => {
   test('float property', () => {
@@ -32,10 +29,16 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('composes with undefined values', () => {
+  test('auto px', () => {
+    const cls1 = css({ display: 'flex', flex: 1, fontSize: 10 })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('random interpolation with undefined values', () => {
     const cls2 = css`
-      composes: ${undefined};
-      justifyContent: center;
+      ${undefined};
+      justify-content: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -58,11 +61,16 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('composes', () => {
-    const cls1 = css`display: flex;`
+  test('composition', () => {
+    const cls1 = css`
+      display: flex;
+      &:hover {
+        color: hotpink;
+      }
+    `
     const cls2 = css`
-      composes: ${cls1};
-      justifyContent: center;
+      ${cls1};
+      justify-content: center;
     `
     const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -74,9 +82,21 @@ describe('css', () => {
       display: 'flex',
       color: `${'blue'}`,
       fontSize: `${'20px'}`,
-      height: `${50}`,
+      height: 50,
       width: 20
     })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('handles array of objects', () => {
+    const cls1 = css([
+      {
+        height: 50,
+        width: 20
+      },
+      null
+    ])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -90,12 +110,12 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('composes with objects', () => {
+  test('composition with objects', () => {
     const cls1 = css({
-      display: ['flex', 'block'],
+      display: 'flex',
       width: 30,
       height: 'calc(40vw - 50px)',
-      ':hover': { color: 'blue' },
+      '&:hover': { color: 'blue' },
       ':after': {
         content: '" "',
         color: 'red'
@@ -105,8 +125,8 @@ describe('css', () => {
       }
     })
     const cls2 = css`
-      composes: ${cls1};
-      justifyContent: center;
+      ${cls1};
+      justify-content: center;
     `
 
     const tree = renderer.create(<div className={cls2} />).toJSON()
@@ -117,7 +137,7 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
-  test('nested at rules', () => {
+  test.skip('nested at rules', () => {
     const cls1 = css`
       @supports (display: grid) {
         display: grid;
@@ -146,7 +166,7 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
-  test('nested', () => {
+  test.skip('nested', () => {
     const cls1 = css`
       color: yellow;
       & .some-class {
@@ -171,6 +191,17 @@ describe('css', () => {
         </div>
       )
       .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('falsy property value in object', () => {
+    const cls = css({ display: 'flex', backgroundColor: undefined })
+    const tree = renderer.create(<div className={cls} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('registered styles as nested selector value in object', () => {
+    const cls = css({ display: 'flex', backgroundColor: 'hotpink' })
+    const cls1 = css({ ':hover': cls })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
   test('composition stuff', () => {

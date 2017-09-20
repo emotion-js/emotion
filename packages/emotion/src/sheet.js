@@ -22,12 +22,6 @@ styleSheet.flush()
 
 */
 
-import { forEach } from 'emotion-utils'
-
-function last(arr) {
-  return arr[arr.length - 1]
-}
-
 function sheetForTag(tag) {
   if (tag.sheet) {
     return tag.sheet
@@ -42,42 +36,21 @@ function sheetForTag(tag) {
 }
 
 const isBrowser: boolean = typeof window !== 'undefined'
-const isDev: boolean =
-  process.env.NODE_ENV === 'development' || !process.env.NODE_ENV // (x => (x === 'development') || !x)(process.env.NODE_ENV)
-const isTest: boolean = process.env.NODE_ENV === 'test'
-
-const oldIE = (() => {
-  if (isBrowser) {
-    let div = document.createElement('div')
-    div.innerHTML = '<!--[if lt IE 10]><i></i><![endif]-->'
-    return div.getElementsByTagName('i').length === 1
-  }
-})()
 
 function makeStyleTag() {
   let tag = document.createElement('style')
   tag.type = 'text/css'
   tag.setAttribute('data-emotion', '')
   tag.appendChild(document.createTextNode(''))
-  ;(document.head || document.getElementsByTagName('head')[0]).appendChild(tag)
+  document.head.appendChild(tag)
   return tag
 }
 
-export class StyleSheet {
-  constructor(
-    {
-      speedy = !isDev && !isTest,
-      maxLength = isBrowser && oldIE ? 4000 : 65000
-    }: { speedy: boolean, maxLength: number } = {}
-  ) {
-    this.isSpeedy = speedy // the big drawback here is that the css won't be editable in devtools
-    this.sheet = undefined
+export default class StyleSheet {
+  constructor() {
+    this.isSpeedy = process.env.NODE_ENV === 'production' // the big drawback here is that the css won't be editable in devtools
     this.tags = []
-    this.maxLength = maxLength
     this.ctr = 0
-  }
-  getSheet() {
-    return sheetForTag(last(this.tags))
   }
   inject() {
     if (this.injected) {
@@ -88,12 +61,7 @@ export class StyleSheet {
     } else {
       // server side 'polyfill'. just enough behavior to be useful.
       this.sheet = {
-        cssRules: [],
-        insertRule: rule => {
-          // enough 'spec compliance' to be able to extract the rules later
-          // in other words, just the cssText field
-          this.sheet.cssRules.push({ cssText: rule })
-        }
+        cssRules: []
       }
     }
     this.injected = true
@@ -105,62 +73,45 @@ export class StyleSheet {
     }
     this.isSpeedy = !!bool
   }
-  _insert(rule) {
-    // this weirdness for perf, and chrome's weird bug
-    // https://stackoverflow.com/questions/20007992/chrome-suddenly-stopped-accepting-insertrule
-    try {
-      let sheet = this.getSheet()
-      sheet.insertRule(
-        rule,
-        rule.indexOf('@import') !== -1 ? 0 : sheet.cssRules.length
-      )
-    } catch (e) {
-      if (isDev) {
-        // might need beter dx for this
-        console.warn('illegal rule', rule) // eslint-disable-line no-console
-      }
-    }
-  }
   insert(rule) {
     if (isBrowser) {
+      const tag = this.tags[this.tags.length - 1]
+      const sheet = sheetForTag(tag)
       // this is the ultrafast version, works across browsers
-      if (this.isSpeedy && this.getSheet().insertRule) {
-        this._insert(rule)
+      if (this.isSpeedy && sheet.insertRule) {
+        // this weirdness for perf, and chrome's weird bug
+        // https://stackoverflow.com/questions/20007992/chrome-suddenly-stopped-accepting-insertrule
+        try {
+          sheet.insertRule(rule, sheet.cssRules.length)
+        } catch (e) {
+          if (process.env.NODE_ENV !== 'production') {
+            // might need beter dx for this
+            console.warn('illegal rule', rule) // eslint-disable-line no-console
+          }
+        }
       } else {
         // more browser weirdness. I don't even know
         // else if(this.tags.length > 0 && this.tags::last().styleSheet) {
         //   this.tags::last().styleSheet.cssText+= rule
         // }
-        if (rule.indexOf('@import') !== -1) {
-          const tag = last(this.tags)
-          tag.insertBefore(document.createTextNode(rule), tag.firstChild)
-        } else {
-          last(this.tags).appendChild(document.createTextNode(rule))
-        }
+        tag.appendChild(document.createTextNode(rule))
       }
     } else {
-      // server side is pretty simple
-      this.sheet.insertRule(
-        rule,
-        rule.indexOf('@import') !== -1 ? 0 : this.sheet.cssRules.length
-      )
+      // enough 'spec compliance' to be able to extract the rules later
+      // in other words, just the cssText field
+      this.sheet.cssRules.push({ cssText: rule })
     }
 
     this.ctr++
-    if (isBrowser && this.ctr % this.maxLength === 0) {
+    if (isBrowser && this.ctr % 65000 === 0) {
       this.tags.push(makeStyleTag())
     }
     return this.ctr - 1
   }
-  delete(index) {
-    // we insert a blank rule when 'deleting' so previously returned indexes remain stable
-    return this.replace(index, '')
-  }
   flush() {
     if (isBrowser) {
-      forEach(this.tags, tag => tag.parentNode.removeChild(tag))
+      this.tags.forEach(tag => tag.parentNode.removeChild(tag))
       this.tags = []
-      this.sheet = null
       this.ctr = 0
       // todo - look for remnants in document.styleSheets
     } else {
@@ -168,15 +119,5 @@ export class StyleSheet {
       this.sheet.cssRules = []
     }
     this.injected = false
-  }
-  rules() {
-    if (!isBrowser) {
-      return this.sheet.cssRules
-    }
-    let arr = []
-    forEach(this.tags, tag =>
-      arr.splice(arr.length, 0, ...Array.from(sheetForTag(tag).cssRules))
-    )
-    return arr
   }
 }

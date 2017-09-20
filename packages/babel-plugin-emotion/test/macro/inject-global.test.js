@@ -18,7 +18,5 @@ test('injectGlobal', () => {
       padding: 0;
     }
   `
-  expect(
-    sheet.tags.map(tag => tag.textContent || '').join('')
-  ).toMatchSnapshot()
+  expect(sheet).toMatchSnapshot()
 })

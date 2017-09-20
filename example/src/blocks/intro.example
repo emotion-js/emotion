@@ -1,7 +1,7 @@
-const Avatar = styled('img')`
+const Avatar = styled.img`
   width: 96px;
   height: 96px;
   border-radius: 50%;
 `
 
-render(<Avatar src={logoUrl} />, mountNode)
+render(<Avatar src={logoUrl} />)
