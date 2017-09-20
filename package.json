@@ -130,7 +130,8 @@
       "^emotion-server$": "<rootDir>/packages/emotion-server/src",
       "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
     },
-    "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js" 
+    "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
+    "coveragePathIgnorePatterns": ["<rootDir>/packages/emotion-utils/src/stylis.js"]
   },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
