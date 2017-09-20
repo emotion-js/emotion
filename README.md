@@ -11,7 +11,7 @@
 ![core size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?label=core%20size)
 ![react gzip size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/DO-NOT-USE.min.js?compression=gzip&label=react%20gzip%20size)
 ![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/DO-NOT-USE.min.js?label=react%20size)
-[![slack](https://emotion.now.sh/badge.svg)](http://slack.emotion.sh/)
+[![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
 
 emotion is a high performance, lightweight css-in-js library. 
 The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/glam) library and its philosophy is laid out [here](https://gist.github.com/threepointone/0ef30b196682a69327c407124f33d69a). 
