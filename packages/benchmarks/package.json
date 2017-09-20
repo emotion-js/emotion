@@ -2,24 +2,15 @@
   "name": "benchmarks",
   "private": true,
   "dependencies": {
-    "aphrodite": "^1.2.3",
     "classnames": "^2.2.5",
     "emotion": "latest",
     "glamor": "^2.20.37",
     "glamorous": "^4.1.0",
     "marky": "^1.2.0",
-    "new-css-in-js": "^0.0.1-12",
     "postcss": "^6.0.8",
-    "radium": "^0.19.1",
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "react-jss": "^7.0.1",
-    "react-new-css-in-js": "^0.0.1-12",
-    "react-primitives": "^0.4.3",
-    "reactxp": "0.34.3",
-    "styled-components": "latest",
-    "styletron-client": "^2.5.7",
-    "styletron-utils": "^2.5.4"
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
     "babel-loader": "^7.1.1",
