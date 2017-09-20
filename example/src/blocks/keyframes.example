@@ -24,7 +24,4 @@ const Avatar = styled('img')`
   transform-origin: center bottom;
 `
 
-render(
-  <Avatar src={logoUrl} rounded />,
-  mountNode
-)
+render(<Avatar src={logoUrl} rounded />)

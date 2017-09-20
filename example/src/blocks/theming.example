@@ -6,15 +6,12 @@ const theme = {
 const Avatar = withTheme(styled('img')`
   width: 96px;
   height: 96px;
-  border-radius: ${props =>
-    props.theme.borderRadius};
-  border: 1px solid ${props =>
-    props.theme.borderColor};
+  border-radius: ${props => props.theme.borderRadius};
+  border: 1px solid ${props => props.theme.borderColor};
 `)
 
 render(
   <ThemeProvider theme={theme}>
     <Avatar src={logoUrl} />
-  </ThemeProvider>,
-  mountNode
+  </ThemeProvider>
 )

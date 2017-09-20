@@ -1,3 +1,26 @@
+## v8.0.0-0 (2017-09-14)
+
+(This is a WIP changelog)
+
+#### :boom: Breaking Change
+- composes is gone and replaced with random interpolations ([there's a codemod](https://github.com/emotion-js/emotion-composes-codemod))
+- Nested class selectors default to `& .class` instead of `&.class` if the `&` is omitted
+
+#### :rocket: Enhancement
+- Better performance
+
+#### :bug: Bug Fix
+- All edge cases with prefixing are gone
+- css prop specificity (#308)
+
+#### :house: Internal
+- Don't convert tagged template literals to objects
+
+#### Committers: 2
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v7.3.2 (2017-09-14)
 
 #### :rocket: Enhancement

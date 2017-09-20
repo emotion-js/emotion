@@ -5,22 +5,22 @@ const imageStyles = css({
 
 const fakeBlue = css([
   {
-    color: "blue"
+    color: 'blue'
   }
-]);
+])
 
 const red = css([
   {
-    color: "red"
+    color: 'red'
   }
-]);
+])
 
 const blue = css([
   red,
   {
-    color: "blue"
+    color: 'blue'
   }
-]);
+])
 
 const prettyStyles = css([
   {
@@ -30,14 +30,13 @@ const prettyStyles = css([
       transform: 'scale(1.2)'
     }
   },
-  {border: '3px solid currentColor'}
+  { border: '3px solid currentColor' }
 ])
 
 const Avatar = styled('img')`
-  composes: ${prettyStyles} ${imageStyles} ${blue}
+  ${prettyStyles};
+  ${imageStyles};
+  ${blue};
 `
 
-render(
-  <Avatar src={logoUrl}/>,
-  mountNode
-)
+render(<Avatar src={logoUrl} />)

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { withTheme } from 'emotion-theming'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 import colors from 'open-color'
 
 const MarkdownContainer = styled('div')`
