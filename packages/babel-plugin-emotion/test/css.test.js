@@ -212,6 +212,15 @@ describe('babel css', () => {
       })
       expect(code).toMatchSnapshot()
     })
+    test('symbols inside of ""', () => {
+      const basic = `
+      const cls = css\`content:  "  {  }  "\`
+    `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin]]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
   describe('extract', () => {
     test('css basic', () => {

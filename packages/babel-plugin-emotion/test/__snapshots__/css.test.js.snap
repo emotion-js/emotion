@@ -116,3 +116,8 @@ exports[`babel css inline only styles on nested selector 1`] = `
 const cls1 = /*#__PURE__*/css\`display:flex;\`;
 const cls2 = /*#__PURE__*/css\`&:hover{background:pink;}\`;"
 `;
+
+exports[`babel css inline symbols inside of "" 1`] = `
+"
+const cls = /*#__PURE__*/css\`content:\\"  {  }  \\"\`;"
+`;
