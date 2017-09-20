@@ -59,15 +59,18 @@ function handleInterpolation(
   interpolation: any,
   couldBeSelectorInterpolation: boolean
 ) {
-  if (typeof interpolation === 'object') {
-    return createStringFromObject(interpolation)
-  }
   if (
     interpolation === undefined ||
     interpolation === null ||
     interpolation === false
-  )
+  ) {
     return ''
+  }
+
+  if (typeof interpolation === 'object') {
+    return createStringFromObject(interpolation)
+  }
+
   if (
     couldBeSelectorInterpolation === false &&
     registered[interpolation] !== undefined
