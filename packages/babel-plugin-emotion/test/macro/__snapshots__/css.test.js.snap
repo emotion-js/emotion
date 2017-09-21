@@ -200,19 +200,15 @@ exports[`css handles objects 1`] = `
 `;
 
 exports[`css nested 1`] = `
-.glamor-0 .some-class {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .glamor-0 .some-class .some-other-class {
   background-color: hotpink;
 }
 
 .glamor-0 .some-class {
-  background-color: pink;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .glamor-0 {
