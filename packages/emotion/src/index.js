@@ -31,7 +31,7 @@ function insertionPlugin(context, content, selector, parent) {
     case 2: {
       if (rule !== '') sheet.insert(rule)
       rule = `${selector.join(',')}{${content}}`
-      return
+      break
     }
     // after an at rule block
     case 3: // eslint-disable-line no-fallthrough
