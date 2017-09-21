@@ -132,6 +132,21 @@ exports[`css css variables 1`] = `
 />
 `;
 
+exports[`css explicit & 1`] = `
+<div
+  className="css-16ooeb3 another-class"
+/>
+`;
+
+exports[`css explicit & 2`] = `
+".css-16ooeb3.another-class {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}"
+`;
+
 exports[`css falsy property value in object 1`] = `
 .glamor-0 {
   display: -webkit-box;
@@ -223,19 +238,46 @@ exports[`css handles objects 1`] = `
 />
 `;
 
+exports[`css media query specificity 1`] = `
+"@media (min-width:420px) {
+  .css-mfslnr {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.css-mfslnr {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}"
+`;
+
+exports[`css media query specificity 2`] = `
+.glamor-0 {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+@media (min-width:420px) {
+  .glamor-0 {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css nested 1`] = `
 .glamor-0 .some-class .some-other-class {
   background-color: hotpink;
 }
 
 .glamor-0 .some-class {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.glamor-0 .another-class {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

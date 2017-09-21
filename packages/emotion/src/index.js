@@ -20,23 +20,23 @@ export function flush() {
   sheet.inject()
 }
 
-let thing = ''
+let rule = ''
 
 function insertionPlugin(context, content, selector, parent) {
   switch (context) {
     case -2:
-      if (thing !== '') sheet.insert(thing)
-      thing = ''
+      if (rule !== '') sheet.insert(rule)
+      rule = ''
       break
     case 2: {
-      if (thing !== '') sheet.insert(thing)
-      thing = `${selector.join(',')}{${content}}`
+      if (rule !== '') sheet.insert(rule)
+      rule = `${selector.join(',')}{${content}}`
       return
     }
     // after an at rule block
     case 3: // eslint-disable-line no-fallthrough
       sheet.insert(`${selector.join(',')}{${content}}`)
-      thing = ''
+      rule = ''
   }
 }
 
