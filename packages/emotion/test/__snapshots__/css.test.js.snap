@@ -202,21 +202,9 @@ exports[`css handles array of objects 1`] = `
 
 exports[`css handles media query merges 1`] = `
 .glamor-0 {
+  color: darkslateblue;
   color: red;
   color: purple;
-  color: darkslateblue;
-}
-
-@media (min-width:640px) {
-  .glamor-0 {
-    color: blue;
-  }
-}
-
-@media (min-width:640px) {
-  .glamor-0 {
-    color: aquamarine;
-  }
 }
 
 @media (min-width:420px) {
@@ -234,6 +222,18 @@ exports[`css handles media query merges 1`] = `
 @media (min-width:960px) {
   .glamor-0 {
     color: burlywood;
+  }
+}
+
+@media (min-width:640px) {
+  .glamor-0 {
+    color: blue;
+  }
+}
+
+@media (min-width:640px) {
+  .glamor-0 {
+    color: aquamarine;
   }
 }
 

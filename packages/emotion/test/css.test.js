@@ -123,7 +123,6 @@ describe('css', () => {
     ]
 
     const cls1 = css([
-      buttonCSS,
       {
         color: 'darkslateblue',
         [mq[0]]: {
@@ -135,7 +134,8 @@ describe('css', () => {
         [mq[2]]: {
           color: 'burlywood'
         }
-      }
+      },
+      buttonCSS
     ])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
