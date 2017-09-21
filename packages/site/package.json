@@ -11,7 +11,8 @@
     "open-color": "^1.5.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-markdown": "^2.5.0"
+    "react-markdown": "^2.5.0",
+    "emotion": "^8.0.2-1"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
@@ -24,7 +25,6 @@
     "babel-standalone": "^6.24.2",
     "component-playground": "^2.0.0",
     "css-loader": "^0.28.4",
-    "emotion": "^8.0.0-0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.28.0",
