@@ -51,8 +51,11 @@ function insertionPlugin(context, content, selectors, parent) {
           queue.unshift(rule)
         }
       }
+
+      const joinedParents = parent.join(',')
       const joinedSelectors = selectors.join(',')
-      isRootSelector = parent.join(',') === joinedSelectors
+
+      isRootSelector = joinedParents === joinedSelectors || joinedParents === ''
       rule = rule = `${joinedSelectors}{${content}}`
       break
     }
