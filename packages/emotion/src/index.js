@@ -55,7 +55,7 @@ function insertionPlugin(context, content, selectors, parent) {
       const joinedSelectors = selectors.join(',')
 
       isRootSelector = parent.join(',') === joinedSelectors || parent[0] === ''
-      rule = rule = `${joinedSelectors}{${content}}`
+      rule = `${joinedSelectors}{${content}}`
       break
     }
     // after an at rule block
