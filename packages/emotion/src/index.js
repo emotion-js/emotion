@@ -4,7 +4,7 @@ import StyleSheet from './sheet'
 export const sheet = new StyleSheet()
 // 🚀
 sheet.inject()
-const stylisOptions = { keyframe: false }
+const stylisOptions = { keyframe: false, cascade: true }
 
 const stylis = new Stylis(stylisOptions)
 const keyframeStylis = new Stylis(stylisOptions)

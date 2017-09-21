@@ -138,6 +138,7 @@ describe('css', () => {
       buttonCSS
     ])
     const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(sheet).toMatchSnapshot()
     expect(tree).toMatchSnapshot()
   })
 

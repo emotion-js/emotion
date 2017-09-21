@@ -37,10 +37,10 @@ function sheetForTag(tag) {
 
 const isBrowser: boolean = typeof window !== 'undefined'
 
-function makeStyleTag() {
+function makeStyleTag(id = '') {
   let tag = document.createElement('style')
   tag.type = 'text/css'
-  tag.setAttribute('data-emotion', '')
+  tag.setAttribute('data-emotion', id)
   tag.appendChild(document.createTextNode(''))
   document.head.appendChild(tag)
   return tag
@@ -73,27 +73,23 @@ export default class StyleSheet {
     }
     this.isSpeedy = !!bool
   }
-  insert(rule) {
+  insert(rule, id = '') {
     if (isBrowser) {
-      const tag = this.tags[this.tags.length - 1]
-      const sheet = sheetForTag(tag)
       // this is the ultrafast version, works across browsers
-      if (this.isSpeedy && sheet.insertRule) {
-        // this weirdness for perf, and chrome's weird bug
-        // https://stackoverflow.com/questions/20007992/chrome-suddenly-stopped-accepting-insertrule
+      if (this.isSpeedy) {
+        const tag = this.tags[this.tags.length - 1]
+        const sheet = sheetForTag(tag)
+
         try {
           sheet.insertRule(rule, sheet.cssRules.length)
         } catch (e) {
           if (process.env.NODE_ENV !== 'production') {
-            // might need beter dx for this
             console.warn('illegal rule', rule) // eslint-disable-line no-console
           }
         }
       } else {
-        // more browser weirdness. I don't even know
-        // else if(this.tags.length > 0 && this.tags::last().styleSheet) {
-        //   this.tags::last().styleSheet.cssText+= rule
-        // }
+        this.tags.push(makeStyleTag(id))
+        const tag = this.tags[this.tags.length - 1]
         tag.appendChild(document.createTextNode(rule))
       }
     } else {
