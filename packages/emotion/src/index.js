@@ -52,10 +52,9 @@ function insertionPlugin(context, content, selectors, parent) {
         }
       }
 
-      const joinedParents = parent.join(',')
       const joinedSelectors = selectors.join(',')
 
-      isRootSelector = joinedParents === joinedSelectors || joinedParents === ''
+      isRootSelector = parent.join(',') === joinedSelectors || parent[0] === ''
       rule = rule = `${joinedSelectors}{${content}}`
       break
     }
