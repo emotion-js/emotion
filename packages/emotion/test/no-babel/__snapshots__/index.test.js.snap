@@ -13,15 +13,15 @@ exports[`css @supports 1`] = `
 `;
 
 exports[`css component as selector 1`] = `
-.glamor-3 .glamor-0 {
-  color: green;
-}
-
 .glamor-3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+
+.glamor-3 .glamor-0 {
+  color: green;
 }
 
 .glamor-1 {
@@ -42,10 +42,6 @@ exports[`css component as selector 1`] = `
 `;
 
 exports[`css composition 1`] = `
-.glamor-0:hover {
-  color: hotpink;
-}
-
 .glamor-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -55,6 +51,10 @@ exports[`css composition 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+.glamor-0:hover {
+  color: hotpink;
 }
 
 <div
@@ -89,15 +89,6 @@ exports[`css composition stuff 2`] = `
 `;
 
 exports[`css composition with objects 1`] = `
-.glamor-0:hover {
-  color: blue;
-}
-
-.glamor-0:after {
-  content: " ";
-  color: red;
-}
-
 .glamor-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -109,6 +100,15 @@ exports[`css composition with objects 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+.glamor-0:after {
+  content: " ";
+  color: red;
+}
+
+.glamor-0:hover {
+  color: blue;
 }
 
 @media (min-width:420px) {

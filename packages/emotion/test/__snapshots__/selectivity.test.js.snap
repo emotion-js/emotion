@@ -1,14 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css complex nested media queries 1`] = `
-.glamor-0 h1 {
-  font-size: 1.1rem;
-}
-
-.glamor-0 h1 {
-  font-size: 1.4rem;
-}
-
 @media (max-width:600px) {
   .glamor-0 h1 {
     font-size: 1.4rem;
@@ -43,10 +35,6 @@ exports[`css complex nested styles 1`] = `
   color: burlywood;
 }
 
-.glamor-0:hover .name:focus {
-  color: rebeccapurple;
-}
-
 @media (min-width:420px) {
   .glamor-0:hover .name:focus {
     color: rebeccapurple;
@@ -63,26 +51,6 @@ exports[`css handles media query merges 1`] = `
   color: darkslateblue;
   color: red;
   color: purple;
-}
-
-.glamor-0 {
-  color: amethyst;
-}
-
-.glamor-0 {
-  color: rebeccapurple;
-}
-
-.glamor-0 {
-  color: burlywood;
-}
-
-.glamor-0 {
-  color: blue;
-}
-
-.glamor-0 {
-  color: aquamarine;
 }
 
 @media (min-width:420px) {
@@ -137,22 +105,10 @@ exports[`css selectivity sheet 1`] = `
   color: burlywood;
 }
 
-.css-s7aswl:hover .name:focus {
-  color: rebeccapurple;
-}
-
 @media (min-width:420px) {
   .css-s7aswl:hover .name:focus {
     color: rebeccapurple;
   }
-}
-
-.css-acogag h1 {
-  font-size: 1.1rem;
-}
-
-.css-acogag h1 {
-  font-size: 1.4rem;
 }
 
 @media (max-width:600px) {
@@ -173,18 +129,10 @@ exports[`css selectivity sheet 1`] = `
   color: purple;
 }
 
-.css-yno01n {
-  color: amethyst;
-}
-
 @media (min-width:420px) {
   .css-yno01n {
     color: amethyst;
   }
-}
-
-.css-yno01n {
-  color: rebeccapurple;
 }
 
 @media (min-width:640px) {
@@ -193,28 +141,16 @@ exports[`css selectivity sheet 1`] = `
   }
 }
 
-.css-yno01n {
-  color: burlywood;
-}
-
 @media (min-width:960px) {
   .css-yno01n {
     color: burlywood;
   }
 }
 
-.css-yno01n {
-  color: blue;
-}
-
 @media (min-width:640px) {
   .css-yno01n {
     color: blue;
   }
-}
-
-.css-yno01n {
-  color: aquamarine;
 }
 
 @media (min-width:640px) {
