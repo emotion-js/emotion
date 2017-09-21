@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
-    "emotion": "latest",
+    "emotion": "^8.0.2-0",
+    "react-emotion": "^8.0.2-0",    
     "glamor": "^2.20.37",
     "glamorous": "^4.1.0",
     "marky": "^1.2.0",
