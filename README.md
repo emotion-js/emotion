@@ -23,7 +23,7 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
 
 - [Install](https://github.com/tkh44/emotion/tree/master/docs/install.md)
 - Demos
-  - [emotion website](https://github.com/tkh44/emotion/tree/master/example) [[Demo Here](https://emotion.sh)]
+  - [emotion website](https://github.com/tkh44/emotion/tree/master/packages/site) [[Demo Here](https://emotion.sh)]
   - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
   - **open a PR and add yours!**
 
