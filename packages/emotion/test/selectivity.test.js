@@ -3,11 +3,6 @@ import renderer from 'react-test-renderer'
 import { css, sheet } from 'emotion'
 
 describe('css', () => {
-  afterEach(() => {
-    sheet.flush()
-    sheet.inject()
-  })
-
   test('complex nested styles', () => {
     const mq = [
       '@media(min-width: 420px)',
@@ -32,7 +27,25 @@ describe('css', () => {
     })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
-    expect(sheet).toMatchSnapshot()
+  })
+
+  test('complex nested media queries', () => {
+    const cls1 = css`
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 1.4rem;
+        }
+      }
+
+      @media (max-width: 400px), (max-height: 420px) {
+        h1 {
+          font-size: 1.1rem;
+        }
+      }
+    `
+
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   test('handles media query merges', () => {
@@ -73,6 +86,9 @@ describe('css', () => {
     ])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
+  })
+
+  test('selectivity sheet', () => {
     expect(sheet).toMatchSnapshot()
   })
 })
