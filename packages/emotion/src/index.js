@@ -26,15 +26,7 @@ let queue = []
 
 const insertRule = sheet.insert.bind(sheet)
 
-function insertionPlugin(
-  context,
-  content,
-  selectors,
-  parent,
-  line,
-  column,
-  length
-) {
+function insertionPlugin(context, content, selectors, parent) {
   switch (context) {
     case -2: {
       if (rule !== '') {
