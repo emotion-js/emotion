@@ -8,19 +8,23 @@ import styledComponents from './src/styled-components'
 
 import renderDeepTree from './tests/renderDeepTree'
 import renderWideTree from './tests/renderWideTree'
+import renderWithFlush from './tests/renderDeepWithFlush'
 
 const allTests = {
   emotion: [
     () => renderDeepTree('emotion', emotion),
-    () => renderWideTree('emotion', emotion)
+    () => renderWideTree('emotion', emotion),
+    () => renderWithFlush('emotion', emotion)
   ],
   emotionCSS: [
     () => renderDeepTree('emotionCSS', emotionCSS),
-    () => renderWideTree('emotionCSS', emotionCSS)
+    () => renderWideTree('emotionCSS', emotionCSS),
+    () => renderWithFlush('emotionCSS', emotionCSS)
   ],
   emotionObj: [
     () => renderDeepTree('emotionObj', emotionObj),
-    () => renderWideTree('emotionObj', emotionObj)
+    () => renderWideTree('emotionObj', emotionObj),
+    () => renderWithFlush('emotionObj', emotionObj)
   ],
   glamor: [
     () => renderDeepTree('glamor', glamor),

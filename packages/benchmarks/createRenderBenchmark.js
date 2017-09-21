@@ -1,4 +1,5 @@
 import benchmark from './benchmark'
+import { flush as emotionFlush } from 'emotion'
 import ReactDOM from 'react-dom'
 
 const node = document.querySelector('.root')
@@ -7,10 +8,12 @@ const createRenderBenchmark = ({
   description,
   getElement,
   name,
-  runs
+  runs,
+  flush
 }) => () => {
   const setup = () => {}
   const teardown = () => {
+    if (flush === true) emotionFlush()
     ReactDOM.unmountComponentAtNode(node)
   }
 
