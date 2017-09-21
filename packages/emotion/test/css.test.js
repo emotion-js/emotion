@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { css, flush } from 'emotion'
+import { css, flush, sheet } from 'emotion'
 
 describe('css', () => {
   test('float property', () => {
@@ -166,7 +166,7 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
-  test.skip('nested', () => {
+  test('nested', () => {
     const cls1 = css`
       color: yellow;
       & .some-class {
@@ -177,9 +177,6 @@ describe('css', () => {
         @media (max-width: 600px) {
           background-color: pink;
         }
-      }
-      &.another-class {
-        display: flex;
       }
     `
     const tree = renderer
@@ -192,6 +189,20 @@ describe('css', () => {
       )
       .toJSON()
     expect(tree).toMatchSnapshot()
+  })
+  test('explicit &', () => {
+    flush()
+    const cls1 = css`
+      &.another-class {
+        display: flex;
+      }
+    `
+    const tree = renderer
+      .create(<div className={`${cls1} another-class`} />)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+    expect(sheet).toMatchSnapshot()
+    flush()
   })
   test('falsy property value in object', () => {
     const cls = css({ display: 'flex', backgroundColor: undefined })
@@ -251,5 +262,23 @@ describe('css', () => {
     flush()
     const tree2 = renderer.create(<div className={cls1} />).toJSON()
     expect(tree2).toMatchSnapshot()
+  })
+  test.skip('media query specificity', () => {
+    flush()
+    const cls = css`
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+
+      @media (min-width: 420px) {
+        width: 96px;
+        height: 96px;
+      }
+    `
+
+    const tree = renderer.create(<div className={cls} />).toJSON()
+    expect(sheet).toMatchSnapshot()
+    expect(tree).toMatchSnapshot()
+    flush()
   })
 })

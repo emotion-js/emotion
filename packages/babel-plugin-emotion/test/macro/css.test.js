@@ -154,7 +154,7 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
-  test.skip('nested', () => {
+  test('nested', () => {
     const cls1 = css`
       color: yellow;
       & .some-class {
@@ -165,9 +165,6 @@ describe('css', () => {
         @media (max-width: 600px) {
           background-color: pink;
         }
-      }
-      &.another-class {
-        display: flex;
       }
     `
     const tree = renderer
