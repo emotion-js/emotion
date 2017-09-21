@@ -10,6 +10,7 @@
   "scripts": {
     "build": "npm-run-all clean babel",
     "babel": "babel src -d lib",
+    "watch": "babel src -d lib --watch",
     "clean": "rimraf lib"
   },
   "dependencies": {

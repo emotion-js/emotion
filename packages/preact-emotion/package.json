@@ -11,6 +11,7 @@
   "scripts": {
     "build": "npm-run-all clean rollup",
     "clean": "rimraf dist",
+    "watch": "rollup -c ../../rollup.config.js --watch",    
     "rollup": "rollup -c ../../rollup.config.js"
   },
   "dependencies": {

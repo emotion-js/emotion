@@ -16,7 +16,8 @@
     "release": "npm run test && npm run build && lerna publish && git push --tags",
     "lint": "eslint . --fix",
     "start:site": "lerna exec --scope emotion-example-project npm run start",
-    "build:site": "lerna exec --scope emotion-example-project npm run build",    
+    "build:site": "lerna exec --scope emotion-example-project npm run build",
+    "watch": "lerna run --parallel watch",
     "bootstrap": "lerna bootstrap"
   },
   "dependencies": {},
@@ -66,6 +67,7 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^2.0.1",
+    "rollup-watch": "^4.3.1",
     "theming": "^1.1.0"
   },
   "author": "Kye Hohenberger",
@@ -133,7 +135,9 @@
       "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
-    "coveragePathIgnorePatterns": ["<rootDir>/packages/emotion-utils/src/stylis.js"]
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/packages/emotion-utils/src/stylis.js"
+    ]
   },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
