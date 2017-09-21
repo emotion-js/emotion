@@ -25,7 +25,7 @@ function insertRule(rule) {
 }
 
 let rule = ''
-let atRuleQueue = new Set()
+const atRuleQueue = new Set()
 
 function insertionPlugin(context, content, selector, parent) {
   switch (context) {
@@ -33,7 +33,7 @@ function insertionPlugin(context, content, selector, parent) {
       if (rule !== '') insertRule(rule)
       rule = ''
       atRuleQueue.forEach(insertRule)
-      atRuleQueue = new Set()
+      atRuleQueue.clear()
       break
     case 2: {
       if (rule !== '') insertRule(rule)
