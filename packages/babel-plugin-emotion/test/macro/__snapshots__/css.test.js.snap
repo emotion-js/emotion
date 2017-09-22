@@ -30,10 +30,6 @@ exports[`css auto px 1`] = `
 `;
 
 exports[`css composition 1`] = `
-.glamor-0:hover {
-  color: hotpink;
-}
-
 .glamor-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -43,6 +39,10 @@ exports[`css composition 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+.glamor-0:hover {
+  color: hotpink;
 }
 
 <div
@@ -77,15 +77,6 @@ exports[`css composition stuff 2`] = `
 `;
 
 exports[`css composition with objects 1`] = `
-.glamor-0:hover {
-  color: blue;
-}
-
-.glamor-0:after {
-  content: " ";
-  color: red;
-}
-
 .glamor-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -97,6 +88,15 @@ exports[`css composition with objects 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+.glamor-0:after {
+  content: " ";
+  color: red;
+}
+
+.glamor-0:hover {
+  color: blue;
 }
 
 @media (min-width:420px) {
@@ -200,8 +200,8 @@ exports[`css handles objects 1`] = `
 `;
 
 exports[`css nested 1`] = `
-.glamor-0 .some-class .some-other-class {
-  background-color: hotpink;
+.glamor-0 {
+  color: yellow;
 }
 
 .glamor-0 .some-class {
@@ -211,8 +211,8 @@ exports[`css nested 1`] = `
   display: flex;
 }
 
-.glamor-0 {
-  color: yellow;
+.glamor-0 .some-class .some-other-class {
+  background-color: hotpink;
 }
 
 @media (max-width:600px) {

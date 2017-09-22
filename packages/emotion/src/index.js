@@ -21,21 +21,46 @@ export function flush() {
 }
 
 let rule = ''
+let isRootSelector = false
+let queue = []
 
-function insertionPlugin(context, content, selector, parent) {
+const insertRule = sheet.insert.bind(sheet)
+
+function insertionPlugin(context, content, selectors, parent) {
   switch (context) {
-    case -2:
-      if (rule !== '') sheet.insert(rule)
-      rule = ''
+    case -2: {
+      if (rule !== '') {
+        if (isRootSelector === true) {
+          queue.push(rule)
+        } else {
+          queue.unshift(rule)
+        }
+        rule = ''
+      }
+
+      queue.forEach(insertRule)
+      queue = []
       break
+    }
+
     case 2: {
-      if (rule !== '') sheet.insert(rule)
-      rule = `${selector.join(',')}{${content}}`
+      if (rule !== '') {
+        if (isRootSelector === true) {
+          queue.push(rule)
+        } else {
+          queue.unshift(rule)
+        }
+      }
+
+      const joinedSelectors = selectors.join(',')
+
+      isRootSelector = parent.join(',') === joinedSelectors || parent[0] === ''
+      rule = `${joinedSelectors}{${content}}`
       break
     }
     // after an at rule block
     case 3: // eslint-disable-line no-fallthrough
-      sheet.insert(`${selector.join(',')}{${content}}`)
+      queue.push(`${selectors.join(',')}{${content}}`)
       rule = ''
   }
 }

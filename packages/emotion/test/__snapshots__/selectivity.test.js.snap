@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css complex nested media queries 1`] = `
+@media (max-width:600px) {
+  .glamor-0 h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width:400px),(max-height:420px) {
+  .glamor-0 h1 {
+    font-size: 1.1rem;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css complex nested styles 1`] = `
+.glamor-0 {
+  color: blue;
+}
+
+.glamor-0:hover {
+  color: green;
+}
+
+.glamor-0:hover .name {
+  color: amethyst;
+}
+
+.glamor-0:hover .name:focus {
+  color: burlywood;
+}
+
+@media (min-width:420px) {
+  .glamor-0:hover .name:focus {
+    color: rebeccapurple;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css handles media query merges 1`] = `
+.glamor-0 {
+  color: darkslateblue;
+  color: red;
+  color: purple;
+}
+
+@media (min-width:420px) {
+  .glamor-0 {
+    color: amethyst;
+  }
+}
+
+@media (min-width:640px) {
+  .glamor-0 {
+    color: rebeccapurple;
+  }
+}
+
+@media (min-width:960px) {
+  .glamor-0 {
+    color: burlywood;
+  }
+}
+
+@media (min-width:640px) {
+  .glamor-0 {
+    color: blue;
+  }
+}
+
+@media (min-width:640px) {
+  .glamor-0 {
+    color: aquamarine;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css selectivity sheet 1`] = `
+".css-s7aswl {
+  color: blue;
+}
+
+.css-s7aswl:hover {
+  color: green;
+}
+
+.css-s7aswl:hover .name {
+  color: amethyst;
+}
+
+.css-s7aswl:hover .name:focus {
+  color: burlywood;
+}
+
+@media (min-width:420px) {
+  .css-s7aswl:hover .name:focus {
+    color: rebeccapurple;
+  }
+}
+
+@media (max-width:600px) {
+  .css-acogag h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width:400px),(max-height:420px) {
+  .css-acogag h1 {
+    font-size: 1.1rem;
+  }
+}
+
+.css-yno01n {
+  color: darkslateblue;
+  color: red;
+  color: purple;
+}
+
+@media (min-width:420px) {
+  .css-yno01n {
+    color: amethyst;
+  }
+}
+
+@media (min-width:640px) {
+  .css-yno01n {
+    color: rebeccapurple;
+  }
+}
+
+@media (min-width:960px) {
+  .css-yno01n {
+    color: burlywood;
+  }
+}
+
+@media (min-width:640px) {
+  .css-yno01n {
+    color: blue;
+  }
+}
+
+@media (min-width:640px) {
+  .css-yno01n {
+    color: aquamarine;
+  }
+}"
+`;
