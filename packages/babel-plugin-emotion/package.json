@@ -14,13 +14,9 @@
     "clean": "rimraf lib"
   },
   "dependencies": {
-    "autoprefixer": "^7.1.2",
     "babel-macros": "^1.0.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "emotion-utils": "^8.0.2-2",
-    "postcss": "^6.0.9",
-    "postcss-js": "^1.0.0",
-    "postcss-nested": "^2.1.1",
     "touch": "^1.0.0"
   },
   "devDependencies": {

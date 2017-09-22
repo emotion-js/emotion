@@ -15,9 +15,11 @@
     "rollup": "rollup -c ../../rollup.config.js"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^8.0.2-2",
-    "emotion": "^8.0.2-2",
     "emotion-utils": "^8.0.2-2"
+  },
+  "peerDependencies": {
+    "babel-plugin-emotion": "^8.0.2-2",
+    "emotion": "^8.0.2-2"
   },
   "devDependencies": {
     "npm-run-all": "^4.0.2",
