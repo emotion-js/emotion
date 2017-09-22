@@ -6,8 +6,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Editor from 'component-playground/lib/components/editor'
 import Preview from '../preview'
-import { css } from 'emotion'
-import styled from 'react-emotion'
+import styled, { css } from 'react-emotion'
 import colors from 'open-color'
 
 const dracula = css`

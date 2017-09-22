@@ -7,7 +7,7 @@ import styled, {
   keyframes,
   injectGlobal,
   merge
-} from 'emotion/react'
+} from 'react-emotion'
 import Markdown from './markdown'
 import Playground from './playground'
 import logoUrl from '../../../emotion.png'

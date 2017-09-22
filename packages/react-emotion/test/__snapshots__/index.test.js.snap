@@ -151,15 +151,15 @@ exports[`styled component as selector 1`] = `
   font-size: 20px;
 }
 
-.glamor-3 .glamor-0 {
-  color: green;
-}
-
 .glamor-3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+
+.glamor-3 .glamor-0 {
+  color: green;
 }
 
 <div
@@ -176,15 +176,15 @@ exports[`styled component as selector 1`] = `
 `;
 
 exports[`styled component as selector function interpolation 1`] = `
-.glamor-3 .glamor-0 {
-  color: green;
-}
-
 .glamor-3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+
+.glamor-3 .glamor-0 {
+  color: green;
 }
 
 .glamor-1 {
@@ -431,19 +431,19 @@ exports[`styled nested 1`] = `
   font-size: 20px;
 }
 
-.glamor-3 div span {
-  color: red;
+.glamor-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .glamor-3 div {
   color: green;
 }
 
-.glamor-3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+.glamor-3 div span {
+  color: red;
 }
 
 <div
@@ -513,12 +513,6 @@ exports[`styled object as style 1`] = `
 `;
 
 exports[`styled object composition 1`] = `
-.glamor-1:hover {
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-}
-
 .glamor-1 {
   border-radius: 50%;
   -webkit-transition: -webkit-transform 400ms ease-in-out;
@@ -529,6 +523,12 @@ exports[`styled object composition 1`] = `
   height: 96px;
   color: red;
   color: blue;
+}
+
+.glamor-1:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 <img

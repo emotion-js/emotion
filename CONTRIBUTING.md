@@ -5,6 +5,7 @@
 ## Installation
 
 - Running `npm install` in the module's root directory will install everything you need for development.
+- Run `lerna bootstrap` in the module's root directory
 
 ## Running Tests
 
