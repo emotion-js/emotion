@@ -14,8 +14,10 @@
     "clean": "rimraf lib"
   },
   "dependencies": {
-    "emotion": "^8.0.2-2",
     "emotion-utils": "^8.0.2-2"
+  },
+  "peerDependencies": {
+    "emotion": "^8.0.2-2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

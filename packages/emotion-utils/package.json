@@ -14,9 +14,6 @@
     "watch": "rollup -c ../../rollup.config.js --watch",
     "rollup": "rollup -c ../../rollup.config.js"
   },
-  "dependencies": {
-    "fbjs": "^0.8.12"
-  },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
   "license": "MIT",
