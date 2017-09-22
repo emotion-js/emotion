@@ -23,7 +23,7 @@ styleSheet.flush()
 */
 
 function sheetForTag(tag) {
-  if (tag && tag.sheet) {
+  if (tag.sheet) {
     return tag.sheet
   }
 
