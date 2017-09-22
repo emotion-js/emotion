@@ -42,9 +42,9 @@ function insertionPlugin(
     }
 
     case 2: {
-      const joinedSelectors = selectors.join(',')
-      const rule = `${joinedSelectors}{${content}}`
       if (id === 0) {
+        const joinedSelectors = selectors.join(',')
+        const rule = `${joinedSelectors}{${content}}`
         if (parent.join(',') === joinedSelectors || parent[0] === '') {
           queue.push(rule)
         } else {
