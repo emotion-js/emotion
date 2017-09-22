@@ -1,8 +1,7 @@
-import React from 'react'
-import renderer from 'react-test-renderer'
-import { css, sheet } from 'emotion'
+import { css, sheet, flush } from 'emotion'
 
 describe('css', () => {
+  afterEach(() => flush())
   test('complex nested styles', () => {
     const mq = [
       '@media(min-width: 420px)',
@@ -10,7 +9,7 @@ describe('css', () => {
       '@media(min-width: 960px)'
     ]
 
-    const cls1 = css({
+    css({
       color: 'blue',
       '&:hover': {
         '& .name': {
@@ -25,12 +24,11 @@ describe('css', () => {
         color: 'green'
       }
     })
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    expect(sheet).toMatchSnapshot()
   })
 
   test('complex nested media queries', () => {
-    const cls1 = css`
+    css`
       @media (max-width: 600px) {
         h1 {
           font-size: 1.4rem;
@@ -44,8 +42,7 @@ describe('css', () => {
       }
     `
 
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    expect(sheet).toMatchSnapshot()
   })
 
   test('handles media query merges', () => {
@@ -68,8 +65,7 @@ describe('css', () => {
         }
       }
     ]
-
-    const cls1 = css([
+    css([
       {
         color: 'darkslateblue',
         [mq[0]]: {
@@ -84,11 +80,48 @@ describe('css', () => {
       },
       buttonCSS
     ])
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    expect(sheet).toMatchSnapshot()
   })
+  test('media queries with multiple nested selectors', () => {
+    css`
+      color: blue;
 
-  test('selectivity sheet', () => {
+      @media (max-width: 400px) {
+        color: green;
+        h1 {
+          color: red;
+        }
+        span {
+          color: red;
+        }
+      }
+    `
+
+    expect(sheet).toMatchSnapshot()
+  })
+  test('media query with nested selector without declarations on root', () => {
+    css`
+      @media (max-width: 400px) {
+        color: green;
+        span {
+          color: red;
+        }
+      }
+    `
+    expect(sheet).toMatchSnapshot()
+  })
+  test('media query with nested selector with nested selector on root', () => {
+    css`
+      span {
+        color: blue;
+      }
+      @media (max-width: 400px) {
+        color: green;
+        span {
+          color: red;
+        }
+      }
+    `
     expect(sheet).toMatchSnapshot()
   })
 })
