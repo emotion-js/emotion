@@ -1,6 +1,6 @@
 {
   "name": "emotion-utils",
-  "version": "8.0.1-0",
+  "version": "8.0.2-2",
   "description": "Shared utilities used by emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm-run-all clean rollup",
     "clean": "rimraf dist",
-    "watch": "rollup -c ../../rollup.config.js --watch",    
+    "watch": "rollup -c ../../rollup.config.js --watch",
     "rollup": "rollup -c ../../rollup.config.js"
   },
   "dependencies": {

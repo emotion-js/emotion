@@ -1,18 +1,18 @@
 {
   "name": "emotion-example-project",
   "private": true,
-  "version": "1.0.0",
+  "version": "8.0.2-2",
   "description": "emotion example project",
   "scripts": {
     "start": "webpack-dev-server --content-base build/ --port 3000",
     "build": "webpack -p --env production --progress"
   },
   "dependencies": {
+    "emotion": "^8.0.2-2",
     "open-color": "^1.5.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-markdown": "^2.5.0",
-    "emotion": "^8.0.2-1"
+    "react-markdown": "^2.5.0"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
