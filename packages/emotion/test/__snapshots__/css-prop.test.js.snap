@@ -86,6 +86,16 @@ exports[`css prop react kitchen sink 1`] = `
 </div>
 `;
 
+exports[`css prop react merging regular classes 1`] = `
+.glamor-0 {
+  display: block;
+}
+
+<div
+  className="glamor-0 some-class"
+/>
+`;
+
 exports[`css prop react objects 1`] = `
 .glamor-0 {
   color: red;
