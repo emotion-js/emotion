@@ -1,7 +1,7 @@
 {
   "name": "emotion-example-project",
   "private": true,
-  "version": "8.0.2-3",
+  "version": "8.0.2-4",
   "description": "emotion example project",
   "scripts": {
     "start:site": "webpack-dev-server --content-base build/ --port 3000",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "babel-plugin-emotion": "^8.0.2-3",
-    "emotion": "^8.0.2-3",
+    "emotion": "^8.0.2-4",
     "open-color": "^1.5.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
