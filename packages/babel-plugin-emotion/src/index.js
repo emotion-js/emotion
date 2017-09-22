@@ -53,7 +53,6 @@ let offset
 // https://github.com/zeit/styled-jsx/blob/160643ec6b6a5ad5d51f33591a61ac49ba88dff8/src/lib/style-transform.js#L24
 function sourceMapsPlugin(...args) {
   const [context, , , , line, column, length] = args
-
   // Pre-processed, init source map
   if (context === -1 && generator !== undefined) {
     generator.addMapping({
@@ -125,15 +124,12 @@ export function replaceCssWithCallExpression(
     }
 
     const gen = makeSourceMapGenerator(state.file)
+    filename = state.file.opts.sourceFileName
+    offset = path.get('loc').node.start
+
     const finalSrc = sourceMapStylis('', src)
     path.node.quasi = new ASTObject(
-      minify(
-        addSourceMaps(
-          finalSrc,
-          gen,
-          state.file.opts.sourceFileName
-        )
-      ),
+      minify(addSourceMaps(finalSrc, gen, state.file.opts.sourceFileName)),
       path.node.quasi.expressions,
       t
     ).toTemplateLiteral()
@@ -248,15 +244,11 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
 
   path.addComment('leading', '#__PURE__')
   const gen = makeSourceMapGenerator(state.file)
+  filename = state.file.opts.sourceFileName
+  offset = path.get('loc').node.start
   const finalSrc = sourceMapStylis('', src)
   const templateLiteral = new ASTObject(
-    minify(
-      addSourceMaps(
-        finalSrc,
-        gen,
-        state.file.opts.sourceFileName
-      )
-    ),
+    minify(addSourceMaps(finalSrc, gen, state.file.opts.sourceFileName)),
     path.node.quasi.expressions,
     t
   ).toTemplateLiteral()
