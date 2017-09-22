@@ -20,7 +20,10 @@
     "watch": "lerna run --parallel watch",
     "bootstrap": "lerna bootstrap"
   },
-  "dependencies": {},
+  "dependencies": {
+    "convert-source-map": "^1.5.0",
+    "source-map": "^0.5.7"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",

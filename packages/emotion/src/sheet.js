@@ -90,6 +90,7 @@ export default class StyleSheet {
       } else {
         this.tags.push(makeStyleTag(id))
         const tag = this.tags[this.tags.length - 1]
+        console.log(rule)
         tag.appendChild(document.createTextNode(rule))
       }
     } else {
