@@ -1,5 +1,8 @@
 import { SourceMapGenerator } from 'source-map'
 import convert from 'convert-source-map'
+import { Stylis } from 'emotion-utils'
+
+const sourceMapStylis = new Stylis({ keyframe: false })
 
 export const makeSourceMapGenerator = file => {
   const filename = file.opts.sourceFileName
@@ -15,7 +18,7 @@ export const makeSourceMapGenerator = file => {
 export const addSourceMaps = (code, generator, filename) =>
   [
     code,
-    convert.fromObject(generator).toComment({multiline: true}),
+    convert.fromObject(generator).toComment({ multiline: true }),
     `/*@ sourceURL=${filename} */`
   ].join('\n')
 
@@ -24,7 +27,7 @@ let filename
 let offset
 
 // https://github.com/zeit/styled-jsx/blob/160643ec6b6a5ad5d51f33591a61ac49ba88dff8/src/lib/style-transform.js#L24
-export function sourceMapsPlugin (...args) {
+export function sourceMapsPlugin(...args) {
   const [context, , , , line, column, length] = args
   // Pre-processed, init source map
   if (context === -1 && generator !== undefined) {
@@ -63,4 +66,11 @@ export function sourceMapsPlugin (...args) {
       }
     })
   }
+}
+
+sourceMapStylis.use(sourceMapsPlugin)
+
+export function buildSourceMaps(css, meta) {
+  ;({ generator, filename, offset } = meta)
+  return sourceMapStylis('', css)
 }

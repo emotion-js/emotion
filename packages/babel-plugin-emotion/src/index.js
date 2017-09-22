@@ -15,9 +15,12 @@ import {
   minify
 } from './babel-utils'
 
-
 import { hashString, Stylis } from 'emotion-utils'
-import { sourceMapsPlugin, makeSourceMapGenerator, addSourceMaps } from './source-maps'
+import {
+  buildSourceMaps,
+  makeSourceMapGenerator,
+  addSourceMaps
+} from './source-map'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
@@ -26,11 +29,6 @@ export function hashArray(arr) {
 }
 
 const staticStylis = new Stylis({ keyframe: false })
-const sourceMapStylis = new Stylis({ keyframe: false })
-
-
-
-sourceMapStylis.use(sourceMapsPlugin)
 
 export function replaceCssWithCallExpression(
   path,
@@ -60,17 +58,24 @@ export function replaceCssWithCallExpression(
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
     }
+    if (state.opts.sourceMap === true) {
+      const generator = makeSourceMapGenerator(state.file)
+      const filename = state.file.opts.sourceFileName
+      const offset = path.get('loc').node.start
+      const finalSrc = buildSourceMaps(src, { filename, offset, generator })
+      path.node.quasi = new ASTObject(
+        minify(addSourceMaps(finalSrc, generator, filename)),
+        path.node.quasi.expressions,
+        t
+      ).toTemplateLiteral()
+    } else {
+      path.node.quasi = new ASTObject(
+        minify(src),
+        path.node.quasi.expressions,
+        t
+      ).toTemplateLiteral()
+    }
 
-    const gen = makeSourceMapGenerator(state.file)
-    filename = state.file.opts.sourceFileName
-    offset = path.get('loc').node.start
-
-    const finalSrc = sourceMapStylis('', src)
-    path.node.quasi = new ASTObject(
-      minify(addSourceMaps(finalSrc, gen, state.file.opts.sourceFileName)),
-      path.node.quasi.expressions,
-      t
-    ).toTemplateLiteral()
     path.node.tag = identifier
   } catch (e) {
     if (path) {
@@ -181,15 +186,25 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const { src } = createRawStringFromTemplateLiteral(path.node.quasi)
 
   path.addComment('leading', '#__PURE__')
-  const gen = makeSourceMapGenerator(state.file)
-  filename = state.file.opts.sourceFileName
-  offset = path.get('loc').node.start
-  const finalSrc = sourceMapStylis('', src)
-  const templateLiteral = new ASTObject(
-    minify(addSourceMaps(finalSrc, gen, state.file.opts.sourceFileName)),
-    path.node.quasi.expressions,
-    t
-  ).toTemplateLiteral()
+
+  let templateLiteral
+  if (state.opts.sourceMap === true) {
+    const generator = makeSourceMapGenerator(state.file)
+    const filename = state.file.opts.sourceFileName
+    const offset = path.get('loc').node.start
+    const finalSrc = buildSourceMaps(src, { filename, offset, generator })
+    templateLiteral = new ASTObject(
+      minify(addSourceMaps(finalSrc, generator, filename)),
+      path.node.quasi.expressions,
+      t
+    ).toTemplateLiteral()
+  } else {
+    templateLiteral = new ASTObject(
+      minify(src),
+      path.node.quasi.expressions,
+      t
+    ).toTemplateLiteral()
+  }
 
   const values = interleave(
     templateLiteral.quasis.map(node => t.stringLiteral(node.value.cooked)),

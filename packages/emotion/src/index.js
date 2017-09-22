@@ -20,9 +20,12 @@ export function flush() {
   sheet.inject()
 }
 
+let currentSourceMap = ''
 let queue = []
 
-const insertRule = sheet.insert.bind(sheet)
+function insertRule(rule) {
+  sheet.insert(rule, currentSourceMap)
+}
 
 function insertionPlugin(
   context,
@@ -170,7 +173,25 @@ function createStyles(strings, ...interpolations) {
       styles += strings[i + 1]
     }
   })
+
   return styles
+}
+
+function identityParser(selector, styles) {
+  return styles
+}
+
+function buildAndInsertStyles(selector, styles, parser) {
+  if (process.env.NODE_ENV === 'production') {
+    parser(selector, styles)
+  } else {
+    const index = styles.indexOf('/*# sourceMappingURL')
+    if (index > -1) {
+      currentSourceMap = styles.substr(index)
+    }
+    parser(selector, styles)
+    currentSourceMap = ''
+  }
 }
 
 export function css(...args) {
@@ -181,8 +202,7 @@ export function css(...args) {
     registered[cls] = styles
   }
   if (inserted[hash] === undefined) {
-    console.log('Styles in', styles)
-    stylis(`.${cls}`, styles)
+    buildAndInsertStyles(`.${cls}`, styles, stylis)
     inserted[hash] = true
   }
   return cls
@@ -192,15 +212,9 @@ export function injectGlobal(...args) {
   const styles = createStyles(...args)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
-    stylis('', styles)
+    buildAndInsertStyles(``, styles, stylis)
     inserted[hash] = true
   }
-}
-
-export function hydrate(ids) {
-  ids.forEach(id => {
-    inserted[id] = true
-  })
 }
 
 export function keyframes(...args) {
@@ -208,7 +222,7 @@ export function keyframes(...args) {
   const hash = hashString(styles)
   const name = `animation-${hash}`
   if (inserted[hash] === undefined) {
-    keyframeStylis('', `@keyframes ${name}{${styles}}`)
+    buildAndInsertStyles('', `@keyframes ${name}{${styles}}`, keyframeStylis)
     inserted[hash] = true
   }
   return name
@@ -219,6 +233,7 @@ export function fontFace(...args) {
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
     sheet.insert(`@font-face{${styles}}`)
+    buildAndInsertStyles('', `@font-face{${styles}}`, identityParser)
     inserted[hash] = true
   }
 }
@@ -245,4 +260,10 @@ export function merge(className) {
     return className
   }
   return rawClassName + css(...registeredStyles)
+}
+
+export function hydrate(ids) {
+  ids.forEach(id => {
+    inserted[id] = true
+  })
 }
