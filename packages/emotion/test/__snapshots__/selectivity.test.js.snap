@@ -96,26 +96,6 @@ exports[`css media queries with multiple nested selectors 1`] = `
 }"
 `;
 
-exports[`css media queries with nested selectors 1`] = `
-".css-17riori {
-  color: blue;
-}
-
-@media (max-width:400px) {
-  .css-17riori {
-    color: green;
-  }
-
-  .css-17riori h1 {
-    color: red;
-  }
-
-  .css-17riori span {
-    color: red;
-  }
-}"
-`;
-
 exports[`css media query with nested selector with nested selector on root 1`] = `
 ".css-1ssiu3j span {
   color: blue;
@@ -133,18 +113,6 @@ exports[`css media query with nested selector with nested selector on root 1`] =
 `;
 
 exports[`css media query with nested selector without declarations on root 1`] = `
-"@media (max-width:400px) {
-  .css-18muius {
-    color: green;
-  }
-
-  .css-18muius span {
-    color: red;
-  }
-}"
-`;
-
-exports[`css nested media query without declarations on root 1`] = `
 "@media (max-width:400px) {
   .css-18muius {
     color: green;
