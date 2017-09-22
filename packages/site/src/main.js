@@ -110,11 +110,6 @@ const PlaygroundWrapper = styled('div')`
   }
 `
 
-const myObjectEmotionClassName = css({
-  color: 'midnightblue',
-  backgroundColor: 'lightsteelblue'
-})
-
 class App extends React.Component {
   render() {
     return (
@@ -122,9 +117,6 @@ class App extends React.Component {
         <PlaygroundWrapper>
           <div className="inner">
             <div className="header">
-              <h2 className={myObjectEmotionClassName}>
-                This is an object style test
-              </h2>
               <h1>
                 <img src={logoUrl} alt="emotion" />
                 emotion
