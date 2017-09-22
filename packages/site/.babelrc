@@ -14,7 +14,7 @@
     "react"
   ],
   "plugins": [
-    ['emotion/babel'],
+    "emotion",
     "transform-class-properties"
   ]
 }
