@@ -239,17 +239,17 @@ exports[`css handles objects 1`] = `
 `;
 
 exports[`css media query specificity 1`] = `
-"@media (min-width:420px) {
+".css-mfslnr {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+@media (min-width:420px) {
   .css-mfslnr {
     width: 96px;
     height: 96px;
   }
-}
-
-.css-mfslnr {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
 }"
 `;
 
