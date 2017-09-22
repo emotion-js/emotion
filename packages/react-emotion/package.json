@@ -14,7 +14,7 @@
     "clean": "rimraf dist",
     "rollup": "rollup -c ../../rollup.config.js",
     "watch": "rollup -c ../../rollup.config.js --watch",
-    "rollup:umd": "UMD=true rollup -c ../../rollup.config.js"
+    "rollup:umd": "cross-env UMD=true rollup -c ../../rollup.config.js"
   },
   "dependencies": {
     "babel-plugin-emotion": "^8.0.2-3",
@@ -24,6 +24,7 @@
     "emotion": "^8.0.2-2"
   },
   "devDependencies": {
+    "cross-env": "^5.0.5",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.43.0"
