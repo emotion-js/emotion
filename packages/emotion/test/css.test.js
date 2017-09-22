@@ -263,7 +263,7 @@ describe('css', () => {
     const tree2 = renderer.create(<div className={cls1} />).toJSON()
     expect(tree2).toMatchSnapshot()
   })
-  test.skip('media query specificity', () => {
+  test('media query specificity', () => {
     flush()
     const cls = css`
       width: 32px;

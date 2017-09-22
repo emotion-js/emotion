@@ -1,3 +1,13 @@
+## v8.0.2-4 (2017-09-22)
+
+#### :bug: Bug Fix
+* `emotion`
+  * [#324](https://github.com/emotion-js/emotion/pull/324) Fix multiple nested selectors in media queries. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v8.0.2-3 (2017-09-22)
 
 #### :boom: Breaking Change
