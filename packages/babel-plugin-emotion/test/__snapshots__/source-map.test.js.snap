@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`source maps css source map 1`] = `
+"\\"use strict\\";
+
+var _templateObject = _taggedTemplateLiteralLoose([\\"{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;width:\\", \\";}@media(min-width:420px){{line-height:40px;}}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ1EsQUFDa0IsQUFNVSxpQkFMTCxBQU1kLGNBTGEsMEVBQ0Msc0RBQ0gsV0FJRyxjQUFDIiwiZmlsZSI6ImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbiAgICAgICAgY3NzYFxuICAgICAgICBtYXJnaW46IDEycHggNDhweDtcbiAgICAgICAgY29sb3I6ICNmZmZmZmY7XG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgIGZsZXg6IDEgMCBhdXRvO1xuICAgICAgICBjb2xvcjogYmx1ZTtcbiAgICAgICAgQG1lZGlhKG1pbi13aWR0aDogNDIwcHgpIHtcbiAgICAgICAgICBsaW5lLWhlaWdodDogNDBweDtcbiAgICAgICAgfVxuICAgICAgICB3aWR0aDogJHt3aWR0aFZhcn07XG4gICAgICBgIl19 */\\\\n/*@ sourceURL=css.source-map.test.js */\\"], [\\"{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;width:\\", \\";}@media(min-width:420px){{line-height:40px;}}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ1EsQUFDa0IsQUFNVSxpQkFMTCxBQU1kLGNBTGEsMEVBQ0Msc0RBQ0gsV0FJRyxjQUFDIiwiZmlsZSI6ImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbiAgICAgICAgY3NzYFxuICAgICAgICBtYXJnaW46IDEycHggNDhweDtcbiAgICAgICAgY29sb3I6ICNmZmZmZmY7XG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgIGZsZXg6IDEgMCBhdXRvO1xuICAgICAgICBjb2xvcjogYmx1ZTtcbiAgICAgICAgQG1lZGlhKG1pbi13aWR0aDogNDIwcHgpIHtcbiAgICAgICAgICBsaW5lLWhlaWdodDogNDBweDtcbiAgICAgICAgfVxuICAgICAgICB3aWR0aDogJHt3aWR0aFZhcn07XG4gICAgICBgIl19 */\\\\n/*@ sourceURL=css.source-map.test.js */\\"]);
+
+function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
+
+/*#__PURE__*/css(_templateObject, widthVar);"
+`;
+
+exports[`source maps styled source map 1`] = `
+"'use strict';
+
+var Avatar = /*#__PURE__*/styled('img', {
+  id: 'css-Avatar-1xslkpx0'
+})('{width:96px;height:96px;border-radius:', function (props) {
+  return props.theme.borderRadius;
+}, ';border:1px solid ', function (props) {
+  return props.theme.borderColor;
+}, ';}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQWUsQUFDWSxXQUNTLFlBRVUsc0JBRUcseUJBQUMiLCJmaWxlIjoic3R5bGVkLnNvdXJjZS1tYXAudGVzdC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IEF2YXRhciA9IHN0eWxlZCgnaW1nJylgXG4gICAgICAgIHdpZHRoOiA5NnB4O1xuICAgICAgICBoZWlnaHQ6IDk2cHg7XG5cbiAgICAgICAgYm9yZGVyLXJhZGl1czogJHtwcm9wcyA9PlxuICAgICAgICAgIHByb3BzLnRoZW1lLmJvcmRlclJhZGl1c307XG5cbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgJHtwcm9wcyA9PlxuICAgICAgICAgIHByb3BzLnRoZW1lLmJvcmRlckNvbG9yfTtcbiAgICAgIGAiXX0= */\\\\n/*@ sourceURL=styled.source-map.test.js */');"
+`;
