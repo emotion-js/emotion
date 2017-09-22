@@ -4,7 +4,7 @@ import StyleSheet from './sheet'
 export const sheet = new StyleSheet()
 // 🚀
 sheet.inject()
-const stylisOptions = { keyframe: false, cascade: true }
+const stylisOptions = { keyframe: false, cascade: true, compress: false }
 
 const stylis = new Stylis(stylisOptions)
 const keyframeStylis = new Stylis(stylisOptions)
@@ -187,6 +187,7 @@ export function css(...args) {
     registered[cls] = styles
   }
   if (inserted[hash] === undefined) {
+    console.log('Styles in', styles)
     stylis(`.${cls}`, styles)
     inserted[hash] = true
   }
