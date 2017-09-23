@@ -33,4 +33,10 @@ describe('sheet', () => {
     expect(sheet.tags).toMatchSnapshot()
     expect(sheet.tags.length).toBe(0)
   })
+
+  test('throws', () => {
+    const spy = jest.spyOn(global.console, 'warn')
+    sheet.insert('.asdfasdf4###112121211{')
+    expect(spy).toHaveBeenCalled()
+  })
 })
