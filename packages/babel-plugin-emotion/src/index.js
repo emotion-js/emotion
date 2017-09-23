@@ -315,11 +315,19 @@ export default function(babel) {
           return
         }
         try {
-          if (path.node.callee.name === state.importedNames.css) {
-            if (state.opts.sourceMap === true && path.node.loc !== undefined) {
-              path.node.arguments.push(
-                t.stringLiteral(addSourceMaps(path.node.loc.start, state))
-              )
+          if (
+            t.isIdentifier(path.node.callee) &&
+            state.opts.sourceMap === true &&
+            path.node.loc !== undefined
+          ) {
+            switch (path.node.callee.name) {
+              case state.importedNames.css:
+              case state.importedNames.keyframes:
+              case state.importedNames.injectGlobal:
+              case state.importedNames.fontFace:
+                path.node.arguments.push(
+                  t.stringLiteral(addSourceMaps(path.node.loc.start, state))
+                )
             }
           }
 
