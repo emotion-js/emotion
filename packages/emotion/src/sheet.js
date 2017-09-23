@@ -36,7 +36,6 @@ function sheetForTag(tag) {
 }
 
 const isBrowser: boolean = typeof window !== 'undefined'
-console.log(isBrowser)
 
 function makeStyleTag(id = '') {
   let tag = document.createElement('style')
