@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "npm-run-all": "^4.0.2",
+    "emotion": "^8.0.2-2",    
     "rimraf": "^2.6.1",
     "rollup": "^0.43.0"
   },
