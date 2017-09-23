@@ -4,9 +4,13 @@ import StyleSheet from './sheet'
 export const sheet = new StyleSheet()
 // 🚀
 sheet.inject()
-const stylisOptions = { keyframe: false, compress: false }
+const stylisOptions = { keyframe: false }
 
-const stylis = new Stylis(stylisOptions)
+if (process.env.NODE_ENV !== 'production') {
+  stylisOptions.compress = false
+}
+
+let stylis = new Stylis(stylisOptions)
 
 export let registered = {}
 
@@ -199,15 +203,15 @@ function createStyles(strings, ...interpolations) {
 }
 
 const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
-function buildAndInsertStyles(selector, styles, parser) {
-  if (process.env.NODE_ENV === 'production') {
-    parser(selector, styles)
-  } else {
+
+if (process.env.NODE_ENV !== 'production') {
+  const oldStylis = stylis
+  stylis = (selector, styles) => {
     const result = sourceMapRegEx.exec(styles)
     currentSourceMap = currentSourceMap.length
       ? currentSourceMap
       : result ? result[0] : ''
-    parser(selector, styles)
+    oldStylis(selector, styles)
     currentSourceMap = ''
   }
 }
@@ -220,7 +224,7 @@ export function css(...args) {
     registered[cls] = styles
   }
   if (inserted[hash] === undefined) {
-    buildAndInsertStyles(`.${cls}`, styles, stylis)
+    stylis(`.${cls}`, styles)
     inserted[hash] = true
   }
   return cls
@@ -230,7 +234,7 @@ export function injectGlobal(...args) {
   const styles = createStyles(...args)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
-    buildAndInsertStyles(``, styles, stylis)
+    stylis('', styles)
     inserted[hash] = true
   }
 }
@@ -240,7 +244,7 @@ export function keyframes(...args) {
   const hash = hashString(styles)
   const name = `animation-${hash}`
   if (inserted[hash] === undefined) {
-    buildAndInsertStyles('', `@keyframes ${name}{${styles}}`, stylis)
+    stylis('', `@keyframes ${name}{${styles}}`)
     inserted[hash] = true
   }
   return name
@@ -250,7 +254,7 @@ export function fontFace(...args) {
   const styles = createStyles(...args)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
-    buildAndInsertStyles('', `@font-face{${styles}}`, stylis)
+    stylis('', `@font-face{${styles}}`)
     inserted[hash] = true
   }
 }

@@ -73,7 +73,7 @@ export default class StyleSheet {
     }
     this.isSpeedy = !!bool
   }
-  insert(rule, sourceMap = '') {
+  insert(rule, sourceMap) {
     if (isBrowser) {
       // this is the ultrafast version, works across browsers
       if (this.isSpeedy) {
@@ -90,7 +90,7 @@ export default class StyleSheet {
       } else {
         const tag = makeStyleTag()
         this.tags.push(tag)
-        tag.appendChild(document.createTextNode(rule + sourceMap))
+        tag.appendChild(document.createTextNode(rule + sourceMap || ''))
       }
     } else {
       // enough 'spec compliance' to be able to extract the rules later
