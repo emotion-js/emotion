@@ -36,6 +36,7 @@ function sheetForTag(tag) {
 }
 
 const isBrowser: boolean = typeof window !== 'undefined'
+console.log(isBrowser)
 
 function makeStyleTag(id = '') {
   let tag = document.createElement('style')
@@ -90,7 +91,7 @@ export default class StyleSheet {
       } else {
         const tag = makeStyleTag()
         this.tags.push(tag)
-        tag.appendChild(document.createTextNode(rule + sourceMap || ''))
+        tag.appendChild(document.createTextNode(rule + (sourceMap || '')))
       }
     } else {
       // enough 'spec compliance' to be able to extract the rules later
