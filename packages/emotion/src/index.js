@@ -202,9 +202,8 @@ function createStyles(strings, ...interpolations) {
   return styles
 }
 
-const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
-
 if (process.env.NODE_ENV !== 'production') {
+  const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
   const oldStylis = stylis
   stylis = (selector, styles) => {
     const result = sourceMapRegEx.exec(styles)
