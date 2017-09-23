@@ -1,30 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`source maps css nesting source map 1`] = `
-"'use strict';
-
-var _focus;
-
-css({
-  color: 'blue',
-  '&:hover': {
-    '& .name': {
-      color: 'amethyst',
-      '&:focus': (_focus = {
-        color: 'burlywood'
-      }, _focus[mq[0]] = {
-        color: 'rebeccapurple'
-      }, _focus)
-    },
-    color: 'green'
-  }
-});"
-`;
-
 exports[`source maps css source map 1`] = `
 "\\"use strict\\";
 
-var _templateObject = _taggedTemplateLiteralLoose([\\"{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;width:\\", \\";}@media(min-width:420px){{line-height:40px;}}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ1EsQUFDa0IsQUFNVSxpQkFMTCxBQU1kLGNBTGEsMEVBQ0Msc0RBQ0gsV0FJRyxjQUFDIiwiZmlsZSI6ImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbiAgICAgICAgY3NzYFxuICAgICAgICBtYXJnaW46IDEycHggNDhweDtcbiAgICAgICAgY29sb3I6ICNmZmZmZmY7XG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgIGZsZXg6IDEgMCBhdXRvO1xuICAgICAgICBjb2xvcjogYmx1ZTtcbiAgICAgICAgQG1lZGlhKG1pbi13aWR0aDogNDIwcHgpIHtcbiAgICAgICAgICBsaW5lLWhlaWdodDogNDBweDtcbiAgICAgICAgfVxuICAgICAgICB3aWR0aDogJHt3aWR0aFZhcn07XG4gICAgICBgIl19 */\\\\n/*@ sourceURL=css.source-map.test.js */\\"], [\\"{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;width:\\", \\";}@media(min-width:420px){{line-height:40px;}}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ1EsQUFDa0IsQUFNVSxpQkFMTCxBQU1kLGNBTGEsMEVBQ0Msc0RBQ0gsV0FJRyxjQUFDIiwiZmlsZSI6ImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbiAgICAgICAgY3NzYFxuICAgICAgICBtYXJnaW46IDEycHggNDhweDtcbiAgICAgICAgY29sb3I6ICNmZmZmZmY7XG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgIGZsZXg6IDEgMCBhdXRvO1xuICAgICAgICBjb2xvcjogYmx1ZTtcbiAgICAgICAgQG1lZGlhKG1pbi13aWR0aDogNDIwcHgpIHtcbiAgICAgICAgICBsaW5lLWhlaWdodDogNDBweDtcbiAgICAgICAgfVxuICAgICAgICB3aWR0aDogJHt3aWR0aFZhcn07XG4gICAgICBgIl19 */\\\\n/*@ sourceURL=css.source-map.test.js */\\"]);
+var _templateObject = _taggedTemplateLiteralLoose([\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", \\";/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ1EiLCJmaWxlIjoiY3NzLnNvdXJjZS1tYXAudGVzdC5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuICAgICAgICBjc3NgXG4gICAgICAgIG1hcmdpbjogMTJweCA0OHB4O1xuICAgICAgICBjb2xvcjogI2ZmZmZmZjtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgZmxleDogMSAwIGF1dG87XG4gICAgICAgIGNvbG9yOiBibHVlO1xuICAgICAgICBAbWVkaWEobWluLXdpZHRoOiA0MjBweCkge1xuICAgICAgICAgIGxpbmUtaGVpZ2h0OiA0MHB4O1xuICAgICAgICB9XG4gICAgICAgIHdpZHRoOiAke3dpZHRoVmFyfTtcbiAgICAgIGAiXX0= */\\\\n/*@ sourceURL=css.source-map.test.js */\\"], [\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", \\";/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ1EiLCJmaWxlIjoiY3NzLnNvdXJjZS1tYXAudGVzdC5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuICAgICAgICBjc3NgXG4gICAgICAgIG1hcmdpbjogMTJweCA0OHB4O1xuICAgICAgICBjb2xvcjogI2ZmZmZmZjtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgZmxleDogMSAwIGF1dG87XG4gICAgICAgIGNvbG9yOiBibHVlO1xuICAgICAgICBAbWVkaWEobWluLXdpZHRoOiA0MjBweCkge1xuICAgICAgICAgIGxpbmUtaGVpZ2h0OiA0MHB4O1xuICAgICAgICB9XG4gICAgICAgIHdpZHRoOiAke3dpZHRoVmFyfTtcbiAgICAgIGAiXX0= */\\\\n/*@ sourceURL=css.source-map.test.js */\\"]);
 
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
@@ -32,8 +11,13 @@ function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return s
 `;
 
 exports[`source maps fontFace source map 1`] = `
-"
-fontFace\`font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\`;"
+"\\"use strict\\";
+
+var _templateObject = _taggedTemplateLiteralLoose([\\"font-family:MyHelvetica;src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvbnRGYWNlLnNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDTSIsImZpbGUiOiJmb250RmFjZS5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbiAgICAgIGZvbnRGYWNlYFxuICAgICAgICBmb250LWZhbWlseTogTXlIZWx2ZXRpY2E7XG4gICAgICAgIHNyYzogbG9jYWwoXCJIZWx2ZXRpY2EgTmV1ZSBCb2xkXCIpLFxuICAgICAgICAgICAgIGxvY2FsKFwiSGVsdmV0aWNhTmV1ZS1Cb2xkXCIpLFxuICAgICAgICAgICAgIHVybChNZ09wZW5Nb2Rlcm5hQm9sZC50dGYpO1xuICAgICAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBgOyJdfQ== */\\\\n/*@ sourceURL=fontFace.source-map.test.js */\\"], [\\"font-family:MyHelvetica;src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvbnRGYWNlLnNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDTSIsImZpbGUiOiJmb250RmFjZS5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbiAgICAgIGZvbnRGYWNlYFxuICAgICAgICBmb250LWZhbWlseTogTXlIZWx2ZXRpY2E7XG4gICAgICAgIHNyYzogbG9jYWwoXCJIZWx2ZXRpY2EgTmV1ZSBCb2xkXCIpLFxuICAgICAgICAgICAgIGxvY2FsKFwiSGVsdmV0aWNhTmV1ZS1Cb2xkXCIpLFxuICAgICAgICAgICAgIHVybChNZ09wZW5Nb2Rlcm5hQm9sZC50dGYpO1xuICAgICAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBgOyJdfQ== */\\\\n/*@ sourceURL=fontFace.source-map.test.js */\\"]);
+
+function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
+
+fontFace(_templateObject);"
 `;
 
 exports[`source maps styled object styles source map 1`] = `
@@ -57,7 +41,7 @@ styled('div', {
     color: 'green'
   }
 }, {
-  __emotion-source-map: '\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNNIiwiZmlsZSI6ImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICBzdHlsZWQoJ2RpdicpKHtcbiAgICAgICAgY29sb3I6ICdibHVlJyxcbiAgICAgICAgJyY6aG92ZXInOiB7XG4gICAgICAgICAgJyYgLm5hbWUnOiB7XG4gICAgICAgICAgICBjb2xvcjogJ2FtZXRoeXN0JyxcbiAgICAgICAgICAgICcmOmZvY3VzJzoge1xuICAgICAgICAgICAgICBjb2xvcjogJ2J1cmx5d29vZCcsXG4gICAgICAgICAgICAgIFttcVswXV06IHtcbiAgICAgICAgICAgICAgICBjb2xvcjogJ3JlYmVjY2FwdXJwbGUnXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICB9LFxuICAgICAgICAgIGNvbG9yOiAnZ3JlZW4nXG4gICAgICAgIH1cbiAgICAgIH0pXG4gICAgIl19 */\\\\n/*@ sourceURL=css-nested.source-map.test.js */'
+  __emotion_source_map: '\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNNIiwiZmlsZSI6ImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICBzdHlsZWQoJ2RpdicpKHtcbiAgICAgICAgY29sb3I6ICdibHVlJyxcbiAgICAgICAgJyY6aG92ZXInOiB7XG4gICAgICAgICAgJyYgLm5hbWUnOiB7XG4gICAgICAgICAgICBjb2xvcjogJ2FtZXRoeXN0JyxcbiAgICAgICAgICAgICcmOmZvY3VzJzoge1xuICAgICAgICAgICAgICBjb2xvcjogJ2J1cmx5d29vZCcsXG4gICAgICAgICAgICAgIFttcVswXV06IHtcbiAgICAgICAgICAgICAgICBjb2xvcjogJ3JlYmVjY2FwdXJwbGUnXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICB9LFxuICAgICAgICAgIGNvbG9yOiAnZ3JlZW4nXG4gICAgICAgIH1cbiAgICAgIH0pXG4gICAgIl19 */\\\\n/*@ sourceURL=css-nested.source-map.test.js */'
 });"
 `;
 
@@ -66,9 +50,9 @@ exports[`source maps styled source map 1`] = `
 
 var Avatar = /*#__PURE__*/styled('img', {
   id: 'css-Avatar-1xslkpx0'
-})('{width:96px;height:96px;border-radius:', function (props) {
+})('width:96px;height:96px;border-radius:', function (props) {
   return props.theme.borderRadius;
 }, ';border:1px solid ', function (props) {
   return props.theme.borderColor;
-}, ';}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQWUsQUFDWSxXQUNTLFlBRVUsc0JBRUcseUJBQUMiLCJmaWxlIjoic3R5bGVkLnNvdXJjZS1tYXAudGVzdC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IEF2YXRhciA9IHN0eWxlZCgnaW1nJylgXG4gICAgICAgIHdpZHRoOiA5NnB4O1xuICAgICAgICBoZWlnaHQ6IDk2cHg7XG5cbiAgICAgICAgYm9yZGVyLXJhZGl1czogJHtwcm9wcyA9PlxuICAgICAgICAgIHByb3BzLnRoZW1lLmJvcmRlclJhZGl1c307XG5cbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgJHtwcm9wcyA9PlxuICAgICAgICAgIHByb3BzLnRoZW1lLmJvcmRlckNvbG9yfTtcbiAgICAgIGAiXX0= */\\\\n/*@ sourceURL=styled.source-map.test.js */');"
+}, ';/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQWUiLCJmaWxlIjoic3R5bGVkLnNvdXJjZS1tYXAudGVzdC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IEF2YXRhciA9IHN0eWxlZCgnaW1nJylgXG4gICAgICAgIHdpZHRoOiA5NnB4O1xuICAgICAgICBoZWlnaHQ6IDk2cHg7XG5cbiAgICAgICAgYm9yZGVyLXJhZGl1czogJHtwcm9wcyA9PlxuICAgICAgICAgIHByb3BzLnRoZW1lLmJvcmRlclJhZGl1c307XG5cbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgJHtwcm9wcyA9PlxuICAgICAgICAgIHByb3BzLnRoZW1lLmJvcmRlckNvbG9yfTtcbiAgICAgIGAiXX0= */\\\\n/*@ sourceURL=styled.source-map.test.js */');"
 `;
