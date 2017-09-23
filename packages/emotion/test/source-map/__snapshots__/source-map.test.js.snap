@@ -23,7 +23,7 @@ exports[`css source-map nested media queries 1`] = `
 `;
 
 exports[`css source-map nested styles 1`] = `
-".css-axrct4 {
+".css-d367bo {
   color: blue;
 }
 
@@ -31,7 +31,7 @@ exports[`css source-map nested styles 1`] = `
 
 /*@ sourceURL=source-map.test.js */
 
-.css-axrct4:hover {
+.css-d367bo:hover {
   color: green;
 }
 
@@ -39,7 +39,7 @@ exports[`css source-map nested styles 1`] = `
 
 /*@ sourceURL=source-map.test.js */
 
-.css-axrct4:hover .name {
+.css-d367bo:hover .name {
   color: amethyst;
 }
 
@@ -47,7 +47,7 @@ exports[`css source-map nested styles 1`] = `
 
 /*@ sourceURL=source-map.test.js */
 
-.css-axrct4:hover .name:focus {
+.css-d367bo:hover .name:focus {
   color: burlywood;
 }
 
@@ -56,7 +56,7 @@ exports[`css source-map nested styles 1`] = `
 /*@ sourceURL=source-map.test.js */
 
 @media (min-width:420px) {
-  .css-axrct4:hover .name:focus {
+  .css-d367bo:hover .name:focus {
     color: rebeccapurple;
   }
 }

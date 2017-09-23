@@ -12,10 +12,18 @@ export function makeSourceMapGenerator(file) {
   return generator
 }
 
-export function addSourceMaps(code, generator, filename) {
+export function addSourceMaps(offset, state) {
+  const generator = makeSourceMapGenerator(state.file)
+  generator.addMapping({
+    generated: {
+      line: 1,
+      column: 0
+    },
+    source: state.file.opts.sourceFileName,
+    original: offset
+  })
   return [
-    code,
     convert.fromObject(generator).toComment({ multiline: true }),
-    `/*@ sourceURL=${filename} */`
+    `/*@ sourceURL=${state.file.opts.sourceFileName} */`
   ].join('\n')
 }

@@ -16,7 +16,7 @@ import {
 } from './babel-utils'
 
 import { hashString, Stylis } from 'emotion-utils'
-import { makeSourceMapGenerator, addSourceMaps } from './source-map'
+import { addSourceMaps } from './source-map'
 
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
@@ -56,20 +56,8 @@ export function replaceCssWithCallExpression(
       path.addComment('leading', '#__PURE__')
     }
     if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
-      const generator = makeSourceMapGenerator(state.file)
-      const filename = state.file.opts.sourceFileName
-      const offset = path.node.quasi.loc.start
-      generator.addMapping({
-        generated: {
-          line: 1,
-          column: 0
-        },
-        source: filename,
-        original: offset
-      })
-
       path.node.quasi = new ASTObject(
-        minify(addSourceMaps(src, generator, filename)),
+        minify(src + addSourceMaps(path.node.quasi.loc.start, state)),
         path.node.quasi.expressions,
         t
       ).toTemplateLiteral()
@@ -194,21 +182,8 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
 
   let templateLiteral
   if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
-    const generator = makeSourceMapGenerator(state.file)
-    const filename = state.file.opts.sourceFileName
-    const offset = path.node.quasi.loc.start
-
-    generator.addMapping({
-      generated: {
-        line: 1,
-        column: 0
-      },
-      source: filename,
-      original: offset
-    })
-
     templateLiteral = new ASTObject(
-      minify(addSourceMaps(src, generator, filename)),
+      minify(src + addSourceMaps(path.node.quasi.loc.start, state)),
       path.node.quasi.expressions,
       t
     ).toTemplateLiteral()
@@ -248,20 +223,7 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
 
   let args = path.node.arguments
   if (state.opts.sourceMap === true && path.node.loc !== undefined) {
-    const generator = makeSourceMapGenerator(state.file)
-    const filename = state.file.opts.sourceFileName
-    const offset = path.node.loc.start
-
-    generator.addMapping({
-      generated: {
-        line: 1,
-        column: 0
-      },
-      source: filename,
-      original: offset
-    })
-
-    args.push(t.stringLiteral(addSourceMaps('', generator, filename)))
+    args.push(t.stringLiteral(addSourceMaps(path.node.loc.start, state)))
   }
 
   return t.callExpression(
@@ -379,21 +341,9 @@ export default function(babel) {
         try {
           if (path.node.callee.name === state.importedNames.css) {
             if (state.opts.sourceMap === true && path.node.loc !== undefined) {
-              let args = path.node.arguments
-              const generator = makeSourceMapGenerator(state.file)
-              const filename = state.file.opts.sourceFileName
-              const offset = path.node.loc.start
-
-              generator.addMapping({
-                generated: {
-                  line: 1,
-                  column: 0
-                },
-                source: filename,
-                original: offset
-              })
-
-              args.push(t.stringLiteral(addSourceMaps('', generator, filename)))
+              path.node.arguments.push(
+                t.stringLiteral(addSourceMaps(path.node.loc.start, state))
+              )
             }
           }
 
