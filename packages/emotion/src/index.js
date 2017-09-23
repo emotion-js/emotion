@@ -20,23 +20,42 @@ export function flush() {
   sheet.inject()
 }
 
-let rule = ''
+let queue = []
 
-function insertionPlugin(context, content, selector, parent) {
+const insertRule = sheet.insert.bind(sheet)
+
+function insertionPlugin(
+  context,
+  content,
+  selectors,
+  parent,
+  line,
+  column,
+  length,
+  id
+) {
   switch (context) {
-    case -2:
-      if (rule !== '') sheet.insert(rule)
-      rule = ''
+    case -2: {
+      queue.forEach(insertRule)
+      queue = []
       break
+    }
+
     case 2: {
-      if (rule !== '') sheet.insert(rule)
-      rule = `${selector.join(',')}{${content}}`
+      if (id === 0) {
+        const joinedSelectors = selectors.join(',')
+        const rule = `${joinedSelectors}{${content}}`
+        if (parent.join(',') === joinedSelectors || parent[0] === '') {
+          queue.push(rule)
+        } else {
+          queue.unshift(rule)
+        }
+      }
       break
     }
     // after an at rule block
-    case 3: // eslint-disable-line no-fallthrough
-      sheet.insert(`${selector.join(',')}{${content}}`)
-      rule = ''
+    case 3:
+      queue.push(`${selectors.join(',')}{${content}}`)
   }
 }
 

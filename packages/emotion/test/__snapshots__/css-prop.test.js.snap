@@ -50,14 +50,14 @@ exports[`css prop react kitchen sink 1`] = `
   display: inline-flex;
 }
 
-.glamor-3:hover {
-  font-weight: bold;
-  color: gray;
-}
-
 .glamor-3 {
   color: red;
   border-radius: 5;
+}
+
+.glamor-3:hover {
+  font-weight: bold;
+  color: gray;
 }
 
 <div
@@ -84,6 +84,16 @@ exports[`css prop react kitchen sink 1`] = `
     hello world
   </p>
 </div>
+`;
+
+exports[`css prop react merging regular classes 1`] = `
+.glamor-0 {
+  display: block;
+}
+
+<div
+  className="glamor-0 some-class"
+/>
 `;
 
 exports[`css prop react objects 1`] = `

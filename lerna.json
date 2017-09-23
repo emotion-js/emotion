@@ -1,5 +1,5 @@
 {
-  "lerna": "2.0.0",
+  "lerna": "2.2.0",
   "packages": [
     "packages/*"
   ],
@@ -13,5 +13,5 @@
       "Tag: Internal": ":house: Internal"
     }
   },
-  "version": "8.0.2-1"
+  "version": "8.0.2-4"
 }

@@ -1,6 +1,6 @@
 {
   "name": "react-emotion",
-  "version": "8.0.2-1",
+  "version": "8.0.2-3",
   "description": "The Next Generation of CSS-in-JS, for React projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -13,12 +13,15 @@
     "build": "npm-run-all clean rollup rollup:umd",
     "clean": "rimraf dist",
     "rollup": "rollup -c ../../rollup.config.js",
+    "watch": "rollup -c ../../rollup.config.js --watch",
     "rollup:umd": "UMD=true rollup -c ../../rollup.config.js"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^8.0.2-1",
-    "emotion": "^8.0.2-1",
-    "emotion-utils": "^8.0.1-0"
+    "babel-plugin-emotion": "^8.0.2-3",
+    "emotion-utils": "^8.0.2-3"
+  },
+  "peerDependencies": {
+    "emotion": "^8.0.2-2"
   },
   "devDependencies": {
     "npm-run-all": "^4.0.2",
