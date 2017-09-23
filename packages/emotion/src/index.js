@@ -154,11 +154,6 @@ function createStringFromObject(obj) {
     })
   } else {
     Object.keys(obj).forEach(key => {
-      if (key === '__emotion_source_map') {
-        currentSourceMap = obj[key]
-        return
-      }
-
       if (typeof obj[key] !== 'object') {
         if (registered[obj[key]] !== undefined) {
           string += `${key}{${registered[obj[key]]}}`

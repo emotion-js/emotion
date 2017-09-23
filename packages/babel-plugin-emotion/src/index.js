@@ -261,14 +261,7 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
       original: offset
     })
 
-    args.push(
-      t.objectExpression([
-        t.objectProperty(
-          t.identifier('__emotion_source_map'),
-          t.stringLiteral(addSourceMaps('', generator, filename))
-        )
-      ])
-    )
+    args.push(t.stringLiteral(addSourceMaps('', generator, filename)))
   }
 
   return t.callExpression(
@@ -400,14 +393,7 @@ export default function(babel) {
                 original: offset
               })
 
-              args.push(
-                t.objectExpression([
-                  t.objectProperty(
-                    t.identifier('__emotion_source_map'),
-                    t.stringLiteral(addSourceMaps('', generator, filename))
-                  )
-                ])
-              )
+              args.push(t.stringLiteral(addSourceMaps('', generator, filename)))
             }
           }
 
