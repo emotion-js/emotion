@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer')
-const Chart = require('pwmetrics/lib/chart/chart')
+const Table = require('cli-table')
 const path = require('path')
 
 // need to add a timeout if it never completes
@@ -13,25 +13,15 @@ async function run() {
   const results = []
   let done = false
   page.on('console', result => {
-    console.log(result)
     if (result && result.name) {
+      console.log(`${result.name}: Mean ${result.mean}ms`)
       results.push(result)
       if (done) {
         browser.close()
-        const chart = new Chart({
-          xlabel: 'Time (ms)',
-          direction: 'x',
-          lmargin: 18
-        })
-        results.forEach(result => {
-          chart.addBar({
-            size: result.mean,
-            label: /\[(.*)\]/.exec(result.name)[1],
-            barLabel: `${result.mean}ms ${/(.*)\[/.exec(result.name)[1]}`,
-            color: result.name.indexOf('Deep') ? 'red' : 'cyan'
-          })
-        })
-        chart.draw()
+        const table = new Table()
+        table.push(['Benchmark', 'Mean (ms)'])
+        table.push(...results.map(res => [res.name, res.mean]))
+        console.log(table.toString())
       }
     }
     if (result === 'done') {
