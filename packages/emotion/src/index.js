@@ -198,13 +198,11 @@ function createStyles(strings, ...interpolations) {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
+  const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\/\s+\/\*@\ssourceURL=\S+\s+\*\//
   const oldStylis = stylis
   stylis = (selector, styles) => {
     const result = sourceMapRegEx.exec(styles)
-    currentSourceMap = currentSourceMap.length
-      ? currentSourceMap
-      : result ? result[0] : ''
+    currentSourceMap = result ? result[0] : ''
     oldStylis(selector, styles)
     currentSourceMap = ''
   }
