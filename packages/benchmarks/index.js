@@ -8,23 +8,19 @@ import styledComponents from './src/styled-components'
 
 import renderDeepTree from './tests/renderDeepTree'
 import renderWideTree from './tests/renderWideTree'
-import renderWithFlush from './tests/renderWithFlush'
 
 const allTests = {
   emotion: [
     () => renderDeepTree('emotion', emotion),
-    () => renderWideTree('emotion', emotion),
-    () => renderWithFlush('emotion', emotion)
+    () => renderWideTree('emotion', emotion)
   ],
   emotionCSS: [
     () => renderDeepTree('emotionCSS', emotionCSS),
-    () => renderWideTree('emotionCSS', emotionCSS),
-    () => renderWithFlush('emotionCSS', emotionCSS)
+    () => renderWideTree('emotionCSS', emotionCSS)
   ],
   emotionObj: [
     () => renderDeepTree('emotionObj', emotionObj),
-    () => renderWideTree('emotionObj', emotionObj),
-    () => renderWithFlush('emotionObj', emotionObj)
+    () => renderWideTree('emotionObj', emotionObj)
   ],
   glamor: [
     () => renderDeepTree('glamor', glamor),
@@ -43,25 +39,6 @@ const allTests = {
     () => renderWideTree('css-modules', cssModules)
   ]
 }
-
-// const coreTests = [
-// () => renderTweet('emotion', emotion),
-// () => renderDeepTree('emotionCSS', emotionCSS),
-// () => renderWideTree('emotionCSS', emotionCSS),
-// () => renderDeepTree('emotionObjStyle', emotionObjStyle),
-// () => renderWideTree('emotionObjStyle', emotionObjStyle),
-// () => renderTweet('react-native-web', reactNative),
-// () => renderDeepTree('css-modules', cssModules),
-// () => renderWideTree('css-modules', cssModules),
-// () => renderTweet('react-native-web/stylesheet', reactNativeStyleSheet),
-// () => renderDeepTree('react-native-web/stylesheet', reactNativeStyleSheet),
-// () => renderWideTree('react-native-web/stylesheet', reactNativeStyleSheet),
-// () => renderDeepTree('react-native-web', reactNative),
-// () => renderWideTree('react-native-web', reactNative)
-// () => renderTweet('glamor', glamor),
-// () => renderTweet('glamorous', glamorous),
-// () => renderTweet('styled-components', styledComponents),
-// ]
 
 const tests = []
 
