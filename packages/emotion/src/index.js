@@ -7,7 +7,6 @@ sheet.inject()
 const stylisOptions = { keyframe: false }
 
 const stylis = new Stylis(stylisOptions)
-const keyframeStylis = new Stylis(stylisOptions)
 
 export let registered = {}
 
@@ -54,22 +53,39 @@ function insertionPlugin(
       break
     }
     // after an at rule block
-    case 3:
-      queue.push(`${selectors.join(',')}{${content}}`)
-  }
-}
-
-function keyframeInsertionPlugin(context, content, selector) {
-  if (context === 3) {
-    sheet.insert(
-      `${selector[0].replace('keyframes', '-webkit-keyframes')}{${content}}`
-    )
-    sheet.insert(`${selector[0]}{${content}}`)
+    case 3: {
+      let chars = selectors.join('')
+      const second = chars.charCodeAt(1)
+      let child = content
+      switch (second) {
+        // s upports
+        case 115:
+        // d ocument
+        // eslint-disable-next-line no-fallthrough
+        case 100:
+        // m edia
+        // eslint-disable-next-line no-fallthrough
+        case 109: {
+          queue.push(chars + '{' + child + '}')
+          break
+        }
+        // k eyframes
+        case 107: {
+          chars = chars.substring(1)
+          child = chars + '{' + child + '}'
+          queue.push('@-webkit-' + child)
+          queue.push('@' + child)
+          break
+        }
+        default: {
+          queue.push(chars + child)
+        }
+      }
+    }
   }
 }
 
 stylis.use(insertionPlugin)
-keyframeStylis.use(keyframeInsertionPlugin)
 
 function flatten(inArr) {
   let arr = []
@@ -207,7 +223,7 @@ export function keyframes(...args) {
   const hash = hashString(styles)
   const name = `animation-${hash}`
   if (inserted[hash] === undefined) {
-    keyframeStylis('', `@keyframes ${name}{${styles}}`)
+    stylis('', `@keyframes ${name}{${styles}}`)
     inserted[hash] = true
   }
   return name
@@ -217,7 +233,7 @@ export function fontFace(...args) {
   const styles = createStyles(...args)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
-    sheet.insert(`@font-face{${styles}}`)
+    stylis('', `@font-face{${styles}}`)
     inserted[hash] = true
   }
 }
