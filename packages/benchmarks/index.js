@@ -8,7 +8,7 @@ import styledComponents from './src/styled-components'
 
 import renderDeepTree from './tests/renderDeepTree'
 import renderWideTree from './tests/renderWideTree'
-import renderWithFlush from './tests/renderDeepWithFlush'
+import renderWithFlush from './tests/renderWithFlush'
 
 const allTests = {
   emotion: [
