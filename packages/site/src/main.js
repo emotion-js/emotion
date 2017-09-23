@@ -109,6 +109,20 @@ const headerClassName = css({
   }
 })
 
+const docs = [
+  'nested',
+  'pseudo',
+  'media',
+  'styling-any-component',
+  'props',
+  'keyframes',
+  'composition',
+  'objects',
+  'styled-with-object',
+  'css-prop',
+  'theming'
+]
+
 class App extends React.Component {
   render() {
     return (
@@ -126,78 +140,16 @@ class App extends React.Component {
 
             <Markdown markdown={require('../../../docs/install.md')} />
 
-            <Markdown markdown={require('../../../docs/nested.md')} />
-            <Playground
-              maxHeight={180}
-              codeText={nestedExample}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/pseudo.md')} />
-            <Playground
-              maxHeight={220}
-              codeText={pseudoExample}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/media.md')} />
-            <Playground maxHeight={220} codeText={mediaExample} scope={scope} />
-
-            <Markdown
-              markdown={require('../../../docs/styling-any-component.md')}
-            />
-            <Playground
-              maxHeight={220}
-              codeText={anyComponentExample}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/props.md')} />
-            <Playground codeText={propsExample} scope={scope} />
-
-            <Markdown markdown={require('../../../docs/keyframes.md')} />
-            <Playground
-              maxHeight={600}
-              codeText={keyframesExample}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/composition.md')} />
-            <Playground
-              maxHeight={180}
-              codeText={require('./blocks/composition.example')}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/objects.md')} />
-            <Playground
-              maxHeight={180}
-              codeText={require('./blocks/objects.example')}
-              scope={scope}
-            />
-
-            <Markdown
-              markdown={require('../../../docs/styled-with-object.md')}
-            />
-            <Playground
-              maxHeight={180}
-              codeText={require('./blocks/styled-with-object.example')}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/css-prop.md')} />
-            <Playground
-              maxHeight={180}
-              codeText={require('./blocks/css-prop.example')}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/theming.md')} />
-            <Playground
-              maxHeight={180}
-              codeText={require('./blocks/theming.example')}
-              scope={scope}
-            />
+            {docs.map(doc => {
+              return [
+                <Markdown markdown={require(`../../../docs/${doc}.md`)} />,
+                <Playground
+                  name={doc}
+                  codeText={require(`./blocks/${doc}.example`)}
+                  scope={scope}
+                />
+              ]
+            })}
           </div>
         </PlaygroundWrapper>
       </ThemeProvider>
