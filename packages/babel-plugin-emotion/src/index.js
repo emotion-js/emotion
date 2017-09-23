@@ -16,11 +16,8 @@ import {
 } from './babel-utils'
 
 import { hashString, Stylis } from 'emotion-utils'
-import {
-  buildSourceMaps,
-  makeSourceMapGenerator,
-  addSourceMaps
-} from './source-map'
+import { makeSourceMapGenerator, addSourceMaps } from './source-map'
+
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
@@ -62,9 +59,17 @@ export function replaceCssWithCallExpression(
       const generator = makeSourceMapGenerator(state.file)
       const filename = state.file.opts.sourceFileName
       const offset = path.get('loc').node.start
-      const finalSrc = buildSourceMaps(src, { filename, offset, generator })
+      generator.addMapping({
+        generated: {
+          line: 1,
+          column: 0
+        },
+        source: filename,
+        original: offset
+      })
+
       path.node.quasi = new ASTObject(
-        minify(addSourceMaps(finalSrc, generator, filename)),
+        minify(addSourceMaps(src, generator, filename)),
         path.node.quasi.expressions,
         t
       ).toTemplateLiteral()
@@ -192,9 +197,18 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     const generator = makeSourceMapGenerator(state.file)
     const filename = state.file.opts.sourceFileName
     const offset = path.get('loc').node.start
-    const finalSrc = buildSourceMaps(src, { filename, offset, generator })
+
+    generator.addMapping({
+      generated: {
+        line: 1,
+        column: 0
+      },
+      source: filename,
+      original: offset
+    })
+
     templateLiteral = new ASTObject(
-      minify(addSourceMaps(finalSrc, generator, filename)),
+      minify(addSourceMaps(src, generator, filename)),
       path.node.quasi.expressions,
       t
     ).toTemplateLiteral()
@@ -231,6 +245,32 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
+
+  let args = path.node.arguments
+  if (state.opts.sourceMap === true) {
+    const generator = makeSourceMapGenerator(state.file)
+    const filename = state.file.opts.sourceFileName
+    const offset = path.get('loc').node.start
+
+    generator.addMapping({
+      generated: {
+        line: 1,
+        column: 0
+      },
+      source: filename,
+      original: offset
+    })
+
+    args.push(
+      t.objectExpression([
+        t.objectProperty(
+          t.identifier('__emotion_source_map'),
+          t.stringLiteral(addSourceMaps('', generator, filename))
+        )
+      ])
+    )
+  }
+
   return t.callExpression(
     t.callExpression(identifier, [
       tag,
@@ -243,7 +283,7 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
         )
       ])
     ]),
-    path.node.arguments
+    args
   )
 }
 
@@ -344,6 +384,33 @@ export default function(babel) {
           return
         }
         try {
+          if (path.node.callee.name === state.importedNames.css) {
+            if (state.opts.sourceMap === true) {
+              let args = path.node.arguments
+              const generator = makeSourceMapGenerator(state.file)
+              const filename = state.file.opts.sourceFileName
+              const offset = path.get('loc').node.start
+
+              generator.addMapping({
+                generated: {
+                  line: 1,
+                  column: 0
+                },
+                source: filename,
+                original: offset
+              })
+
+              args.push(
+                t.objectExpression([
+                  t.objectProperty(
+                    t.identifier('__emotion_source_map'),
+                    t.stringLiteral(addSourceMaps('', generator, filename))
+                  )
+                ])
+              )
+            }
+          }
+
           if (
             (t.isCallExpression(path.node.callee) &&
               path.node.callee.callee.name === state.importedNames.styled) ||

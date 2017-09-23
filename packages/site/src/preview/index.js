@@ -64,7 +64,12 @@ class Preview extends Component {
     return `(function (${Object.keys(scope).join(',')}, render) {
       ${transform(code, {
         presets: ['es2015', 'react', 'stage-1'],
-        plugins: [['babel-plugin-emotion', { autoImportCssProp: false }]]
+        plugins: [
+          [
+            'babel-plugin-emotion',
+            { autoImportCssProp: false, sourceMap: true }
+          ]
+        ]
       }).code}
     })`
   }

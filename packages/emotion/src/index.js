@@ -4,7 +4,7 @@ import StyleSheet from './sheet'
 export const sheet = new StyleSheet()
 // 🚀
 sheet.inject()
-const stylisOptions = { keyframe: false, cascade: true, compress: false }
+const stylisOptions = { keyframe: false, compress: false }
 
 const stylis = new Stylis(stylisOptions)
 const keyframeStylis = new Stylis(stylisOptions)
@@ -134,6 +134,11 @@ function createStringFromObject(obj) {
     })
   } else {
     Object.keys(obj).forEach(key => {
+      if (key === '__emotion_source_map') {
+        currentSourceMap = obj[key]
+        return
+      }
+
       if (typeof obj[key] !== 'object') {
         if (registered[obj[key]] !== undefined) {
           string += `${key}{${registered[obj[key]]}}`
@@ -181,14 +186,15 @@ function identityParser(selector, styles) {
   return styles
 }
 
+const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
 function buildAndInsertStyles(selector, styles, parser) {
   if (process.env.NODE_ENV === 'production') {
     parser(selector, styles)
   } else {
-    const index = styles.indexOf('/*# sourceMappingURL')
-    if (index > -1) {
-      currentSourceMap = styles.substr(index)
-    }
+    const result = sourceMapRegEx.exec(styles)
+    currentSourceMap = currentSourceMap.length
+      ? currentSourceMap
+      : result ? result[0] : ''
     parser(selector, styles)
     currentSourceMap = ''
   }

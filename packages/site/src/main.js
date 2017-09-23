@@ -94,21 +94,20 @@ const PlaygroundWrapper = styled('div')`
       width: 100%;
     }
   }
-
-  & .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-
-    & img {
-      display: block;
-      width: 128px;
-      height: 128px;
-    }
-  }
 `
+
+const headerClassName = css({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  '& img': {
+    display: 'block',
+    width: 128,
+    height: 128
+  }
+})
 
 class App extends React.Component {
   render() {
@@ -116,7 +115,7 @@ class App extends React.Component {
       <ThemeProvider theme={theme}>
         <PlaygroundWrapper>
           <div className="inner">
-            <div className="header">
+            <div className={headerClassName}>
               <h1>
                 <img src={logoUrl} alt="emotion" />
                 emotion

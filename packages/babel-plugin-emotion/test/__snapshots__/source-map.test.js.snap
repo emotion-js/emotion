@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`source maps css nesting source map 1`] = `
+"'use strict';
+
+var _focus;
+
+css({
+  color: 'blue',
+  '&:hover': {
+    '& .name': {
+      color: 'amethyst',
+      '&:focus': (_focus = {
+        color: 'burlywood'
+      }, _focus[mq[0]] = {
+        color: 'rebeccapurple'
+      }, _focus)
+    },
+    color: 'green'
+  }
+});"
+`;
+
 exports[`source maps css source map 1`] = `
 "\\"use strict\\";
 
@@ -8,6 +29,36 @@ var _templateObject = _taggedTemplateLiteralLoose([\\"{margin:12px 48px;color:#f
 function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
 
 /*#__PURE__*/css(_templateObject, widthVar);"
+`;
+
+exports[`source maps fontFace source map 1`] = `
+"
+fontFace\`font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\`;"
+`;
+
+exports[`source maps styled object styles source map 1`] = `
+"'use strict';
+
+var _focus;
+
+styled('div', {
+  id: 'css-139b3nl0'
+})({
+  color: 'blue',
+  '&:hover': {
+    '& .name': {
+      color: 'amethyst',
+      '&:focus': (_focus = {
+        color: 'burlywood'
+      }, _focus[mq[0]] = {
+        color: 'rebeccapurple'
+      }, _focus)
+    },
+    color: 'green'
+  }
+}, {
+  __emotion-source-map: '\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNNIiwiZmlsZSI6ImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICBzdHlsZWQoJ2RpdicpKHtcbiAgICAgICAgY29sb3I6ICdibHVlJyxcbiAgICAgICAgJyY6aG92ZXInOiB7XG4gICAgICAgICAgJyYgLm5hbWUnOiB7XG4gICAgICAgICAgICBjb2xvcjogJ2FtZXRoeXN0JyxcbiAgICAgICAgICAgICcmOmZvY3VzJzoge1xuICAgICAgICAgICAgICBjb2xvcjogJ2J1cmx5d29vZCcsXG4gICAgICAgICAgICAgIFttcVswXV06IHtcbiAgICAgICAgICAgICAgICBjb2xvcjogJ3JlYmVjY2FwdXJwbGUnXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICB9LFxuICAgICAgICAgIGNvbG9yOiAnZ3JlZW4nXG4gICAgICAgIH1cbiAgICAgIH0pXG4gICAgIl19 */\\\\n/*@ sourceURL=css-nested.source-map.test.js */'
+});"
 `;
 
 exports[`source maps styled source map 1`] = `
