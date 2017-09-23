@@ -1,13 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`sheet cssRules 1`] = `
-Array [
-  Object {
-    "cssText": ".foo { color: blue; }",
-  },
-]
-`;
-
 exports[`sheet flush 1`] = `Array []`;
 
 exports[`sheet tags 1`] = `
