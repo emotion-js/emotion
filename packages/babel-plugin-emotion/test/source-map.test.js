@@ -16,6 +16,7 @@ describe('source maps', () => {
         width: \${widthVar};
       \``
     const { code } = babel.transform(basic, {
+      babelrc: false,
       plugins: [[plugin, { sourceMap: true }]],
       filename: 'css.source-map.test.js'
     })
@@ -40,6 +41,7 @@ describe('source maps', () => {
       })
     `
     const { code } = babel.transform(basic, {
+      babelrc: false,
       plugins: [[plugin, { sourceMap: true }]],
       filename: 'css-nested.source-map.test.js'
     })
@@ -59,6 +61,7 @@ describe('source maps', () => {
       \``
 
     const { code } = babel.transform(basic, {
+      babelrc: false,
       plugins: [[plugin, { sourceMap: true }]],
       filename: 'styled.source-map.test.js'
     })
@@ -77,8 +80,38 @@ describe('source maps', () => {
     \`;`
 
     const { code } = babel.transform(basic, {
+      babelrc: false,
       plugins: [[plugin, { sourceMap: true }]],
       filename: 'fontFace.source-map.test.js'
+    })
+    expect(code).toMatchSnapshot()
+  })
+  test('css prop', () => {
+    const basic = `
+    <div
+      css={\`
+        width: 128px;
+        height: 128px;
+        background-color: #8c81d8;
+        border-radius: 4px;
+  
+        & img {
+          width: 96px;
+          height: 96px;
+          border-radius: 50%;
+          transition: all 400ms ease-in-out;
+  
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      \`}
+    />
+  `
+    const { code } = babel.transform(basic, {
+      babelrc: false,
+      plugins: [[plugin, { sourceMap: true }]],
+      filename: 'site.source-map.test.js'
     })
     expect(code).toMatchSnapshot()
   })

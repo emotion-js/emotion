@@ -55,10 +55,10 @@ export function replaceCssWithCallExpression(
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
     }
-    if (state.opts.sourceMap === true) {
+    if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
       const generator = makeSourceMapGenerator(state.file)
       const filename = state.file.opts.sourceFileName
-      const offset = path.get('loc').node.start
+      const offset = path.node.quasi.loc.start
       generator.addMapping({
         generated: {
           line: 1,
@@ -193,10 +193,10 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   path.addComment('leading', '#__PURE__')
 
   let templateLiteral
-  if (state.opts.sourceMap === true) {
+  if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
     const generator = makeSourceMapGenerator(state.file)
     const filename = state.file.opts.sourceFileName
-    const offset = path.get('loc').node.start
+    const offset = path.node.quasi.loc.start
 
     generator.addMapping({
       generated: {
@@ -247,10 +247,10 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
     : t.stringLiteral(path.node.callee.property.name)
 
   let args = path.node.arguments
-  if (state.opts.sourceMap === true) {
+  if (state.opts.sourceMap === true && path.node.loc !== undefined) {
     const generator = makeSourceMapGenerator(state.file)
     const filename = state.file.opts.sourceFileName
-    const offset = path.get('loc').node.start
+    const offset = path.node.loc.start
 
     generator.addMapping({
       generated: {
@@ -378,11 +378,11 @@ export default function(babel) {
         }
         try {
           if (path.node.callee.name === state.importedNames.css) {
-            if (state.opts.sourceMap === true) {
+            if (state.opts.sourceMap === true && path.node.loc !== undefined) {
               let args = path.node.arguments
               const generator = makeSourceMapGenerator(state.file)
               const filename = state.file.opts.sourceFileName
-              const offset = path.get('loc').node.start
+              const offset = path.node.loc.start
 
               generator.addMapping({
                 generated: {
