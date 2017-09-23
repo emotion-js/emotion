@@ -5,10 +5,9 @@ import { createMacro } from 'babel-macros'
 module.exports = createMacro(macro)
 
 function macro({ references, state, babel: { types: t } }) {
-  if (!state.inline) state.inline = true
   Object.keys(references).forEach(referenceKey => {
     if (referenceKey === 'injectGlobal') {
-      references.injectGlobal.forEach(injectGlobalReference => {
+      references.injectGlobal.reverse().forEach(injectGlobalReference => {
         const path = injectGlobalReference.parentPath
         if (
           t.isIdentifier(path.node.tag) &&
@@ -30,7 +29,7 @@ function macro({ references, state, babel: { types: t } }) {
         }
       })
     } else if (referenceKey === 'fontFace') {
-      references.fontFace.forEach(fontFaceReference => {
+      references.fontFace.reverse().forEach(fontFaceReference => {
         const path = fontFaceReference.parentPath
         if (
           t.isIdentifier(path.node.tag) &&
@@ -47,7 +46,7 @@ function macro({ references, state, babel: { types: t } }) {
         }
       })
     } else if (referenceKey === 'css') {
-      references.css.forEach(cssReference => {
+      references.css.reverse().forEach(cssReference => {
         const path = cssReference.parentPath
         const runtimeNode = buildMacroRuntimeNode(cssReference, state, 'css', t)
         if (
@@ -60,7 +59,7 @@ function macro({ references, state, babel: { types: t } }) {
         }
       })
     } else if (referenceKey === 'keyframes') {
-      references.keyframes.forEach(keyframesReference => {
+      references.keyframes.reverse().forEach(keyframesReference => {
         const path = keyframesReference.parentPath
         if (
           t.isIdentifier(path.node.tag) &&

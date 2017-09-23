@@ -27,7 +27,7 @@ exports[`babel styled component inline basic 1`] = `
 `;
 
 exports[`babel styled component inline composition based on props 1`] = `
-"const cls1 = /*#__PURE__*/css\`width:20px;\`;
+"const cls1 = /*#__PURE__*/css('width:20px;');
 const H1 = /*#__PURE__*/styled('h1', {
   id: 'css-H1-o65wtz0'
 })(props => {
@@ -121,10 +121,10 @@ const H1 = styled('h1', {
 
 exports[`babel styled component inline random expressions 1`] = `
 "
-const a = () => /*#__PURE__*/css\`font-size:1rem\`;
+const a = () => /*#__PURE__*/css(\\"font-size:1rem\\");
 /*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-19hcrvw0\\"
-})(\\"margin:12px 48px;\\", /*#__PURE__*/css\`font-size:32px\`, \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"
+})(\\"margin:12px 48px;\\", /*#__PURE__*/css(\\"font-size:32px\\"), \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"
 `;
 
 exports[`babel styled component inline shorthand property 1`] = `

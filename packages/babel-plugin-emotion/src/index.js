@@ -37,7 +37,7 @@ export function replaceCssWithCallExpression(
   staticCSSSelectorCreator = (name, hash) => `.${name}-${hash}`
 ) {
   try {
-    const { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
+    let { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
     const name = getName(getIdentifierName(path, t), 'css')
 
     if (state.extractStatic && !path.node.quasi.expressions.length) {
@@ -56,20 +56,19 @@ export function replaceCssWithCallExpression(
       path.addComment('leading', '#__PURE__')
     }
     if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
-      path.node.quasi = new ASTObject(
-        minify(src + addSourceMaps(path.node.quasi.loc.start, state)),
-        path.node.quasi.expressions,
-        t
-      ).toTemplateLiteral()
-    } else {
-      path.node.quasi = new ASTObject(
-        minify(src),
-        path.node.quasi.expressions,
-        t
-      ).toTemplateLiteral()
+      src = src + addSourceMaps(path.node.quasi.loc.start, state)
     }
 
-    path.node.tag = identifier
+    return path.replaceWith(
+      t.callExpression(
+        identifier,
+        new ASTObject(
+          minify(src),
+          path.node.quasi.expressions,
+          t
+        ).toExpressions()
+      )
+    )
   } catch (e) {
     if (path) {
       throw path.buildCodeFrameError(e)
@@ -140,12 +139,6 @@ const getComponentId = (state, prefix: string = 'css') => {
   return `${prefix}-${getFileHash(state)}${getNextId(state)}`
 }
 
-const interleave = (strings, interpolations) =>
-  interpolations.reduce(
-    (array, interp, i) => array.concat(interp, strings[i + 1]),
-    [strings[0]]
-  )
-
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
@@ -176,30 +169,13 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     )
   }
 
-  const { src } = createRawStringFromTemplateLiteral(path.node.quasi)
+  let { src } = createRawStringFromTemplateLiteral(path.node.quasi)
 
   path.addComment('leading', '#__PURE__')
 
-  let templateLiteral
   if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
-    templateLiteral = new ASTObject(
-      minify(src + addSourceMaps(path.node.quasi.loc.start, state)),
-      path.node.quasi.expressions,
-      t
-    ).toTemplateLiteral()
-  } else {
-    templateLiteral = new ASTObject(
-      minify(src),
-      path.node.quasi.expressions,
-      t
-    ).toTemplateLiteral()
+    src = src + addSourceMaps(path.node.quasi.loc.start, state)
   }
-
-  const values = interleave(
-    templateLiteral.quasis.map(node => t.stringLiteral(node.value.cooked)),
-    path.node.quasi.expressions
-  ).filter(node => node.value !== '')
-
   return t.callExpression(
     t.callExpression(identifier, [
       tag,
@@ -212,7 +188,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
         )
       ])
     ]),
-    values
+    new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
 

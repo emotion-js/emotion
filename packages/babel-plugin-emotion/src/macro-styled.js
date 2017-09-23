@@ -10,11 +10,10 @@ module.exports = createMacro(macro)
 
 function macro(options) {
   const { references, state, babel: { types: t } } = options
-  if (!state.inline) state.inline = true
   let referencesWithoutDefault = references
   if (references.default) {
     referencesWithoutDefault = omit(references, key => key !== 'default')
-    references.default.forEach(styledReference => {
+    references.default.reverse().forEach(styledReference => {
       const path = styledReference.parentPath.parentPath
       const runtimeNode = buildMacroRuntimeNode(
         styledReference,

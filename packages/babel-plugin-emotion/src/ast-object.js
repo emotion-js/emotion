@@ -1,3 +1,9 @@
+const interleave = (strings, interpolations) =>
+  interpolations.reduce(
+    (array, interp, i) => array.concat(interp, strings[i + 1]),
+    [strings[0]]
+  )
+
 export default class ASTObject {
   props: Array<any>
   expressions: Array<any>
@@ -27,41 +33,35 @@ export default class ASTObject {
   replacePlaceholdersWithExpressions(matches: any[], str: string) {
     const { expressions, t } = this
     if (expressions.length === 0) {
-      return t.templateLiteral(
-        [t.templateElement({ cooked: str, raw: str })],
-        []
-      )
+      if (str === '') {
+        return []
+      }
+      return [t.stringLiteral(str)]
     }
-    const templateElements = []
-    const templateExpressions = []
+    const strings = []
+    const finalExpressions = []
     let cursor = 0
+
     matches.forEach(({ value, p1, index }, i) => {
       const preMatch = str.substring(cursor, index)
       cursor = cursor + preMatch.length + value.length
       if (preMatch) {
-        templateElements.push(
-          t.templateElement({ raw: preMatch, cooked: preMatch })
-        )
+        strings.push(t.stringLiteral(preMatch))
       } else if (i === 0) {
-        templateElements.push(t.templateElement({ raw: '', cooked: '' }))
+        strings.push(t.stringLiteral(''))
       }
 
-      templateExpressions.push(expressions[p1])
+      finalExpressions.push(expressions[p1])
       if (i === matches.length - 1) {
-        templateElements.push(
-          t.templateElement(
-            {
-              raw: str.substring(index + value.length),
-              cooked: str.substring(index + value.length)
-            },
-            true
-          )
-        )
+        strings.push(t.stringLiteral(str.substring(index + value.length)))
       }
     })
-    return t.templateLiteral(templateElements, templateExpressions)
+
+    return interleave(strings, finalExpressions).filter(
+      node => node.value !== ''
+    )
   }
-  toTemplateLiteral() {
+  toExpressions() {
     return this.replacePlaceholdersWithExpressions(
       this.getDynamicMatches(this.stringSrc),
       this.stringSrc
