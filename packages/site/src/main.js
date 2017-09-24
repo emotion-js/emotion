@@ -120,7 +120,8 @@ const docs = [
   'objects',
   'styled-with-object',
   'css-prop',
-  'theming'
+  'theming',
+  'source-maps'
 ]
 
 class App extends React.Component {
