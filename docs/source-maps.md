@@ -4,7 +4,7 @@
 
 emotion supports source maps for styles authored in javascript. 
 
-[gif]
+![source-map-demo](https://user-images.githubusercontent.com/662750/30778580-78fbeae4-a096-11e7-82e1-120b6984e875.gif)
 
 Required For Source Maps:
 1. `babel-plugin-emotion` must be in your Babel setup. [[documentation]](https://github.com/emotion-js/emotion/blob/master/docs/install.md)
@@ -20,7 +20,7 @@ Required For Source Maps:
 ```json
 {
   "plugins": [
-    ["emotion", { sourceMap: true }]
+    ["emotion", { "sourceMap": true }]
   ]
 }
 ```
@@ -34,10 +34,10 @@ Use [Babel's `env` property](https://babeljs.io/docs/usage/babelrc/#env-option) 
 {
   "env": {
     "production": {
-      "plugins": [["emotion", { sourceMap: false }]]
+      "plugins": [["emotion", { "sourceMap": false }]]
     },
     "development": {
-      "plugins": [["emotion", { sourceMap: true }]]
+      "plugins": [["emotion", { "sourceMap": true }]]
     }
   }
 }
