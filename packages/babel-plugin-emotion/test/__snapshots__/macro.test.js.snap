@@ -9,7 +9,7 @@ exports[`babel macro css 1`] = `
 exports[`babel macro css call with no args 1`] = `
 "import { css as _css } from '../src';
 
-const cls1 = _css();"
+const cls1 = /*#__PURE__*/_css();"
 `;
 
 exports[`babel macro css inside of css 1`] = `
@@ -21,7 +21,7 @@ const cls2 = /*#__PURE__*/_css('font-size:20px;@media (min-width:420px){color:bl
 exports[`babel macro css object 1`] = `
 "import { css as _css } from '../src';
 
-const cls1 = _css({ display: 'flex' });"
+const cls1 = /*#__PURE__*/_css({ display: 'flex' });"
 `;
 
 exports[`babel macro flush 1`] = `
