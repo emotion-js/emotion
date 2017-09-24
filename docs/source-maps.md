@@ -4,7 +4,11 @@
 
 emotion supports source maps for styles authored in javascript. 
 
+<div style='max-height: 480px;'>
+
 ![source-map-demo](https://user-images.githubusercontent.com/662750/30778580-78fbeae4-a096-11e7-82e1-120b6984e875.gif)
+
+</div>
 
 Required For Source Maps:
 1. `babel-plugin-emotion` must be in your Babel setup. [[documentation]](https://github.com/emotion-js/emotion/blob/master/docs/install.md)
