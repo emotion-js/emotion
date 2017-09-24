@@ -26,3 +26,4 @@ after_success:
 cache:
   directories:
     - node_modules
+    - packages/site/node_modules
