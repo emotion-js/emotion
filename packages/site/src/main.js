@@ -136,7 +136,9 @@ class App extends React.Component {
                 <img src={logoUrl} alt="emotion" />
                 emotion
               </h1>
-              <p css={{ fontSize: '1.5em' }}>The Next Generation of CSS-in-JS</p>
+              <p css={{ fontSize: '1.5em' }}>
+                The Next Generation of CSS-in-JS
+              </p>
             </div>
             <Playground codeText={introExample} scope={scope} />
 
