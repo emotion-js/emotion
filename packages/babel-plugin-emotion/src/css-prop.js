@@ -1,3 +1,5 @@
+import { addSourceMaps } from './source-map'
+
 export default function(path, state, t) {
   let cssPath
   let classNamesPath
@@ -45,7 +47,13 @@ export default function(path, state, t) {
       )
     )
   } else {
-    cssTemplateExpression = t.callExpression(getCssIdentifer(), [cssPropValue])
+    const args = state.opts.sourceMap
+      ? [
+          cssPropValue,
+          t.stringLiteral(addSourceMaps(path.node.loc.start, state))
+        ]
+      : [cssPropValue]
+    cssTemplateExpression = t.callExpression(getCssIdentifer(), args)
   }
   if (
     !classNamesValue ||
