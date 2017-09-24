@@ -55,8 +55,7 @@ module.exports = env => {
       publicPath: '/'
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx'],
-      symlinks: false
+      extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
     plugins: [
       new HtmlWebpackPlugin({

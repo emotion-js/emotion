@@ -72,7 +72,8 @@ export default function(path, state, t) {
           add(
             cssTemplateExpression,
             add(t.stringLiteral(' '), classNamesValue.expression)
-          )
+          ),
+          t.stringLiteral(addSourceMaps(cssPath.node.loc.start, state))
         ])
       )
     )

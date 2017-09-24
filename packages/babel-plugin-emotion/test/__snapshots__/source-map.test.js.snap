@@ -6,6 +6,15 @@ exports[`source maps css prop 1`] = `
 <div className={/*#__PURE__*/_css(\\"width:128px;height:128px;background-color:#8c81d8;border-radius:4px;& img{width:96px;height:96px;border-radius:50%;transition:all 400ms ease-in-out;&:hover{transform:scale(1.2);}}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVXIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgPGRpdlxuICAgICAgY3NzPXtgXG4gICAgICAgIHdpZHRoOiAxMjhweDtcbiAgICAgICAgaGVpZ2h0OiAxMjhweDtcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzhjODFkODtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICBcbiAgICAgICAgJiBpbWcge1xuICAgICAgICAgIHdpZHRoOiA5NnB4O1xuICAgICAgICAgIGhlaWdodDogOTZweDtcbiAgICAgICAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgICAgICAgdHJhbnNpdGlvbjogYWxsIDQwMG1zIGVhc2UtaW4tb3V0O1xuICBcbiAgICAgICAgICAmOmhvdmVyIHtcbiAgICAgICAgICAgIHRyYW5zZm9ybTogc2NhbGUoMS4yKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIGB9XG4gICAgLz5cbiAgIl19 */\\\\n/*@ sourceURL=site.source-map.test.js */\\")} />;"
 `;
 
+exports[`source maps css prop with merge 1`] = `
+"import { merge as _merge } from 'emotion';
+import { css as _css } from 'emotion';
+
+<div className={_merge(_css({
+  color: 'plum'
+}, '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17c29tZUNsYXNzTmFtZX1cbiAgICAgICAgY3NzPXt7XG4gICAgICAgICAgY29sb3I6ICdwbHVtJ1xuICAgICAgICB9fVxuICAgICAgLz5cbiAgICAiXX0= */\\\\n/*@ sourceURL=site.source-map.test.js */') + (' ' + someClassName), '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17c29tZUNsYXNzTmFtZX1cbiAgICAgICAgY3NzPXt7XG4gICAgICAgICAgY29sb3I6ICdwbHVtJ1xuICAgICAgICB9fVxuICAgICAgLz5cbiAgICAiXX0= */\\\\n/*@ sourceURL=site.source-map.test.js */')} />;"
+`;
+
 exports[`source maps css prop with objects 1`] = `
 "import { css as _css } from 'emotion';
 

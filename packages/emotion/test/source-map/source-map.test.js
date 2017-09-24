@@ -1,3 +1,5 @@
+import React from 'react'
+import renderer from 'react-test-renderer'
 import { css, sheet, flush } from 'emotion'
 
 describe('css', () => {
@@ -42,6 +44,15 @@ describe('css', () => {
       }
     `
 
+    expect(sheet).toMatchSnapshot()
+  })
+  test('css prop with merge', () => {
+    const tree = renderer
+      .create(
+        <div className={css({ display: 'flex' })} css={{ display: 'block' }} />
+      )
+      .toJSON()
+    expect(tree).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
   })
 })

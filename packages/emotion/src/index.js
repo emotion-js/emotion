@@ -264,7 +264,7 @@ export function getRegisteredStyles(registeredStyles, classNames) {
   return rawClassName
 }
 
-export function merge(className) {
+export function merge(className, sourceMap) {
   const registeredStyles = []
 
   const rawClassName = getRegisteredStyles(registeredStyles, className)
@@ -272,7 +272,7 @@ export function merge(className) {
   if (registeredStyles.length < 2) {
     return className
   }
-  return rawClassName + css(...registeredStyles)
+  return rawClassName + css(registeredStyles, sourceMap)
 }
 
 export function hydrate(ids) {
