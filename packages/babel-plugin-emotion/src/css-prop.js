@@ -50,7 +50,7 @@ export default function(path, state, t) {
     const args = state.opts.sourceMap
       ? [
           cssPropValue,
-          t.stringLiteral(addSourceMaps(path.node.loc.start, state))
+          t.stringLiteral(addSourceMaps(cssPath.node.loc.start, state))
         ]
       : [cssPropValue]
     cssTemplateExpression = t.callExpression(getCssIdentifer(), args)

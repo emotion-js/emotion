@@ -11,7 +11,7 @@ exports[`source maps css prop with objects 1`] = `
 
 <div className={_css({
   color: 'plum'
-})} />;"
+}, '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGNvbG9yOiAncGx1bSdcbiAgICAgICAgfX1cbiAgICAgIC8+XG4gICAgIl19 */\\\\n/*@ sourceURL=site.source-map.test.js */')} />;"
 `;
 
 exports[`source maps css source map 1`] = `
