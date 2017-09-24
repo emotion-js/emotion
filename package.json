@@ -15,7 +15,7 @@
     "size": "bundlesize",
     "release": "npm run test && npm run build && lerna publish && git push --tags",
     "lint": "eslint . --fix",
-    "benchmark": "npm run rollup && lerna exec --scope benchmarks npm run benchmark",    
+    "benchmark": "npm run build && lerna exec --scope benchmarks npm run benchmark",    
     "start:site": "lerna exec --scope emotion-example-project npm run start:site",
     "build:site": "lerna exec --scope emotion-example-project npm run build:site",
     "watch": "lerna run --parallel watch",
