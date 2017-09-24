@@ -110,18 +110,19 @@ const headerClassName = css({
 })
 
 const docs = [
-  'nested',
-  'pseudo',
-  'media',
-  'styling-any-component',
-  'props',
-  'keyframes',
-  'composition',
-  'objects',
-  'styled-with-object',
-  'css-prop',
-  'theming',
-  'source-maps'
+  { name: 'install', hasCodeExample: false },
+  { name: 'nested', hasCodeExample: true },
+  { name: 'pseudo', hasCodeExample: true },
+  { name: 'media', hasCodeExample: true },
+  { name: 'styling-any-component', hasCodeExample: true },
+  { name: 'props', hasCodeExample: true },
+  { name: 'keyframes', hasCodeExample: true },
+  { name: 'composition', hasCodeExample: true },
+  { name: 'objects', hasCodeExample: true },
+  { name: 'styled-with-object', hasCodeExample: true },
+  { name: 'css-prop', hasCodeExample: true },
+  { name: 'theming', hasCodeExample: true },
+  { name: 'source-maps', hasCodeExample: false }
 ]
 
 class App extends React.Component {
@@ -139,16 +140,16 @@ class App extends React.Component {
             </div>
             <Playground codeText={introExample} scope={scope} />
 
-            <Markdown markdown={require('../../../docs/install.md')} />
-
             {docs.map(doc => {
               return [
-                <Markdown markdown={require(`../../../docs/${doc}.md`)} />,
-                <Playground
-                  name={doc}
-                  codeText={require(`./blocks/${doc}.example`)}
-                  scope={scope}
-                />
+                <Markdown markdown={require(`../../../docs/${doc.name}.md`)} />,
+                doc.hasCodeExample && (
+                  <Playground
+                    name={doc}
+                    codeText={require(`./blocks/${doc.name}.example`)}
+                    scope={scope}
+                  />
+                )
               ]
             })}
           </div>
