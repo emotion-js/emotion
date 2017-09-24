@@ -66,16 +66,19 @@ export default function(path, state, t) {
 
   cssPath.parentPath.remove()
   if (t.isJSXExpressionContainer(classNamesValue)) {
-    classNamesPath.parentPath.replaceWith(
-      createClassNameAttr(
-        t.callExpression(getMergeIdentifier(), [
-          add(
-            cssTemplateExpression,
-            add(t.stringLiteral(' '), classNamesValue.expression)
-          ),
-          t.stringLiteral(addSourceMaps(cssPath.node.loc.start, state))
-        ])
+    const args = [
+      add(
+        cssTemplateExpression,
+        add(t.stringLiteral(' '), classNamesValue.expression)
       )
+    ]
+
+    if (state.opts.sourceMap) {
+      args.push(t.stringLiteral(addSourceMaps(cssPath.node.loc.start, state)))
+    }
+
+    classNamesPath.parentPath.replaceWith(
+      createClassNameAttr(t.callExpression(getMergeIdentifier(), args))
     )
   } else {
     classNamesPath.parentPath.replaceWith(
