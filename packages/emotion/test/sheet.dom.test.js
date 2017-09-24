@@ -39,4 +39,10 @@ describe('sheet', () => {
     sheet.insert('.asdfasdf4###112121211{')
     expect(spy).toHaveBeenCalled()
   })
+
+  test('inject method throws if the sheet is already injected', () => {
+    expect(() => {
+      sheet.inject()
+    }).toThrowErrorMatchingSnapshot()
+  })
 })

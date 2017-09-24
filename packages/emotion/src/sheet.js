@@ -60,9 +60,7 @@ export default class StyleSheet {
       this.tags[0] = makeStyleTag()
     } else {
       // server side 'polyfill'. just enough behavior to be useful.
-      this.sheet = {
-        cssRules: []
-      }
+      this.sheet = []
     }
     this.injected = true
   }
@@ -92,17 +90,15 @@ export default class StyleSheet {
         this.tags.push(tag)
         tag.appendChild(document.createTextNode(rule + (sourceMap || '')))
       }
+      this.ctr++
+      if (this.ctr % 65000 === 0) {
+        this.tags.push(makeStyleTag())
+      }
     } else {
       // enough 'spec compliance' to be able to extract the rules later
-      // in other words, just the cssText field
-      this.sheet.cssRules.push({ cssText: rule })
+      // in other words, just the rule
+      this.sheet.push(rule)
     }
-
-    this.ctr++
-    if (isBrowser && this.ctr % 65000 === 0) {
-      this.tags.push(makeStyleTag())
-    }
-    return this.ctr - 1
   }
   flush() {
     if (isBrowser) {
@@ -112,7 +108,7 @@ export default class StyleSheet {
       // todo - look for remnants in document.styleSheets
     } else {
       // simpler on server
-      this.sheet.cssRules = []
+      this.sheet = []
     }
     this.injected = false
   }

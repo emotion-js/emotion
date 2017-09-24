@@ -116,6 +116,6 @@ describe('hydration', () => {
     hydrate(ids)
     const { Page1: NewPage1 } = getComponents()
     renderToString(<NewPage1 />)
-    expect(sheet.sheet.cssRules).toMatchSnapshot()
+    expect(sheet.sheet).toMatchSnapshot()
   })
 })

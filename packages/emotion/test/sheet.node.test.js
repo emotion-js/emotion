@@ -16,14 +16,14 @@ describe('sheet', () => {
   test('cssRules', () => {
     const rule = '.foo { color: blue; }'
     sheet.insert(rule)
-    expect(sheet.sheet.cssRules).toMatchSnapshot()
-    expect(sheet.sheet.cssRules[0].cssText).toBe(rule)
+    expect(sheet.sheet).toMatchSnapshot()
+    expect(sheet.sheet[0]).toBe(rule)
   })
 
   test('flush', () => {
     sheet.insert('.foo { color: blue; }')
     sheet.flush()
-    expect(sheet.sheet.cssRules).toMatchSnapshot()
-    expect(sheet.sheet.cssRules.length).toBe(0)
+    expect(sheet.sheet).toMatchSnapshot()
+    expect(sheet.sheet.length).toBe(0)
   })
 })

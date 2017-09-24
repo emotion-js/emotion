@@ -2,9 +2,7 @@
 
 exports[`sheet cssRules 1`] = `
 Array [
-  Object {
-    "cssText": ".foo { color: blue; }",
-  },
+  ".foo { color: blue; }",
 ]
 `;
 
