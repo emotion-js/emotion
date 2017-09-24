@@ -86,7 +86,7 @@ exports[`babel styled component inline no use 1`] = `
 
 exports[`babel styled component inline objects based on props 1`] = `
 "
-const H1 = styled('h1', {
+const H1 = /*#__PURE__*/styled('h1', {
   id: 'css-H1-1pvkcq50'
 })({ padding: 10 }, props => ({
   display: props.display
@@ -95,7 +95,7 @@ const H1 = styled('h1', {
 
 exports[`babel styled component inline objects fn call 1`] = `
 "
-const H1 = styled('h1', {
+const H1 = /*#__PURE__*/styled('h1', {
   id: 'css-H1-1cjglvf0'
 })({
   display: 'flex'
@@ -104,7 +104,7 @@ const H1 = styled('h1', {
 
 exports[`babel styled component inline objects prefixed 1`] = `
 "
-const H1 = styled('h1', {
+const H1 = /*#__PURE__*/styled('h1', {
   id: 'css-H1-u6tsls0'
 })({
   borderRadius: '50%',
@@ -128,7 +128,7 @@ const a = () => /*#__PURE__*/css(\\"font-size:1rem\\");
 `;
 
 exports[`babel styled component inline shorthand property 1`] = `
-"const H1 = styled(\\"h1\\", {
+"const H1 = /*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-H1-1nz5j750\\"
 })({ fontSize });"
 `;
@@ -145,7 +145,7 @@ const SomeComponent = /*#__PURE__*/styled(\\"div\\", {
 
 exports[`babel styled component inline styled objects prefixed 1`] = `
 "
-const H1 = styled('h1', {
+const H1 = /*#__PURE__*/styled('h1', {
   id: 'css-H1-m5op4z0'
 })({
   borderRadius: '50%',
@@ -162,7 +162,7 @@ const H1 = styled('h1', {
 
 exports[`babel styled component inline styled. objects 1`] = `
 "
-const H1 = styled(\\"h1\\", {
+const H1 = /*#__PURE__*/styled(\\"h1\\", {
   id: \\"css-H1-bgkltw0\\"
 })({ padding: 10 }, props => ({
   display: props.display
@@ -172,7 +172,7 @@ const H1 = styled(\\"h1\\", {
 exports[`babel styled component inline styled. objects with a multiple spread properties 1`] = `
 "
 const defaultText = { fontSize: 20 };
-const Figure = styled(\\"figure\\", {
+const Figure = /*#__PURE__*/styled(\\"figure\\", {
   id: \\"css-Figure-1nehw3m0\\"
 })({
   ...defaultText,
@@ -183,7 +183,7 @@ const Figure = styled(\\"figure\\", {
 exports[`babel styled component inline styled. objects with a multiple spread properties and other keys 1`] = `
 "
 const defaultText = { fontSize: 20 };
-const Figure = styled('figure', {
+const Figure = /*#__PURE__*/styled('figure', {
   id: 'css-Figure-s2tr6d0'
 })({
   ...defaultText,
@@ -196,7 +196,7 @@ const Figure = styled('figure', {
 exports[`babel styled component inline styled. objects with a single spread property 1`] = `
 "
 const defaultText = { fontSize: 20 };
-const Figure = styled(\\"figure\\", {
+const Figure = /*#__PURE__*/styled(\\"figure\\", {
   id: \\"css-Figure-fiu9tt0\\"
 })({
   ...defaultText

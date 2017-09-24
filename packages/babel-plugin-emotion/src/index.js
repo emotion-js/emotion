@@ -201,6 +201,7 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
   if (state.opts.sourceMap === true && path.node.loc !== undefined) {
     args.push(t.stringLiteral(addSourceMaps(path.node.loc.start, state)))
   }
+  path.addComment('leading', '#__PURE__')
 
   return t.callExpression(
     t.callExpression(identifier, [
@@ -315,19 +316,23 @@ export default function(babel) {
           return
         }
         try {
-          if (
-            t.isIdentifier(path.node.callee) &&
-            state.opts.sourceMap === true &&
-            path.node.loc !== undefined
-          ) {
+          if (t.isIdentifier(path.node.callee)) {
             switch (path.node.callee.name) {
               case state.importedNames.css:
-              case state.importedNames.keyframes:
+              case state.importedNames.keyframes: {
+                path.addComment('leading', '#__PURE__')
+              }
+              // eslint-disable-next-line no-fallthrough
               case state.importedNames.injectGlobal:
               case state.importedNames.fontFace:
-                path.node.arguments.push(
-                  t.stringLiteral(addSourceMaps(path.node.loc.start, state))
-                )
+                if (
+                  state.opts.sourceMap === true &&
+                  path.node.loc !== undefined
+                ) {
+                  path.node.arguments.push(
+                    t.stringLiteral(addSourceMaps(path.node.loc.start, state))
+                  )
+                }
             }
           }
 

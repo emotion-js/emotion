@@ -76,7 +76,7 @@ const someCls = /*#__PURE__*/_css('display:flex;');"
 exports[`babel macro styled object function 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = _styled('div', {
+const SomeComponent = /*#__PURE__*/_styled('div', {
   id: 'css-SomeComponent-1f75k080'
 })({
   display: 'flex'
@@ -86,7 +86,7 @@ const SomeComponent = _styled('div', {
 exports[`babel macro styled object member 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = _styled('div', {
+const SomeComponent = /*#__PURE__*/_styled('div', {
   id: 'css-SomeComponent-1jnr57b0'
 })({
   display: 'flex'

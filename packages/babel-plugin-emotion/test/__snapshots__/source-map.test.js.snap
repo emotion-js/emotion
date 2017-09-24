@@ -18,7 +18,7 @@ fontFace(\\"font-family:MyHelvetica;src:local(\\\\\\"Helvetica Neue Bold\\\\\\")
 
 exports[`source maps styled object styles source map 1`] = `
 "
-styled('div', {
+/*#__PURE__*/styled('div', {
   id: 'css-139b3nl0'
 })({
   color: 'blue',
