@@ -21,7 +21,6 @@
     "watch": "lerna run --parallel watch",
     "bootstrap": "lerna bootstrap"
   },
-  "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",

@@ -14,7 +14,10 @@ import {
   createRawStringFromTemplateLiteral,
   minify
 } from './babel-utils'
+
 import { hashString, Stylis } from 'emotion-utils'
+import { addSourceMaps } from './source-map'
+
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
@@ -34,7 +37,7 @@ export function replaceCssWithCallExpression(
   staticCSSSelectorCreator = (name, hash) => `.${name}-${hash}`
 ) {
   try {
-    const { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
+    let { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
     const name = getName(getIdentifierName(path, t), 'css')
 
     if (state.extractStatic && !path.node.quasi.expressions.length) {
@@ -52,12 +55,20 @@ export function replaceCssWithCallExpression(
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
     }
-    path.node.quasi = new ASTObject(
-      minify(src),
-      path.node.quasi.expressions,
-      t
-    ).toTemplateLiteral()
-    path.node.tag = identifier
+    if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
+      src = src + addSourceMaps(path.node.quasi.loc.start, state)
+    }
+
+    return path.replaceWith(
+      t.callExpression(
+        identifier,
+        new ASTObject(
+          minify(src),
+          path.node.quasi.expressions,
+          t
+        ).toExpressions()
+      )
+    )
   } catch (e) {
     if (path) {
       throw path.buildCodeFrameError(e)
@@ -128,12 +139,6 @@ const getComponentId = (state, prefix: string = 'css') => {
   return `${prefix}-${getFileHash(state)}${getNextId(state)}`
 }
 
-const interleave = (strings, interpolations) =>
-  interpolations.reduce(
-    (array, interp, i) => array.concat(interp, strings[i + 1]),
-    [strings[0]]
-  )
-
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
@@ -164,21 +169,13 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     )
   }
 
-  const { src } = createRawStringFromTemplateLiteral(path.node.quasi)
+  let { src } = createRawStringFromTemplateLiteral(path.node.quasi)
 
   path.addComment('leading', '#__PURE__')
 
-  const templateLiteral = new ASTObject(
-    minify(src),
-    path.node.quasi.expressions,
-    t
-  ).toTemplateLiteral()
-
-  const values = interleave(
-    templateLiteral.quasis.map(node => t.stringLiteral(node.value.cooked)),
-    path.node.quasi.expressions
-  ).filter(node => node.value !== '')
-
+  if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
+    src = src + addSourceMaps(path.node.quasi.loc.start, state)
+  }
   return t.callExpression(
     t.callExpression(identifier, [
       tag,
@@ -191,7 +188,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
         )
       ])
     ]),
-    values
+    new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
 
@@ -199,6 +196,13 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
+
+  let args = path.node.arguments
+  if (state.opts.sourceMap === true && path.node.loc !== undefined) {
+    args.push(t.stringLiteral(addSourceMaps(path.node.loc.start, state)))
+  }
+  path.addComment('leading', '#__PURE__')
+
   return t.callExpression(
     t.callExpression(identifier, [
       tag,
@@ -211,7 +215,7 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
         )
       ])
     ]),
-    path.node.arguments
+    args
   )
 }
 
@@ -312,6 +316,26 @@ export default function(babel) {
           return
         }
         try {
+          if (t.isIdentifier(path.node.callee)) {
+            switch (path.node.callee.name) {
+              case state.importedNames.css:
+              case state.importedNames.keyframes: {
+                path.addComment('leading', '#__PURE__')
+              }
+              // eslint-disable-next-line no-fallthrough
+              case state.importedNames.injectGlobal:
+              case state.importedNames.fontFace:
+                if (
+                  state.opts.sourceMap === true &&
+                  path.node.loc !== undefined
+                ) {
+                  path.node.arguments.push(
+                    t.stringLiteral(addSourceMaps(path.node.loc.start, state))
+                  )
+                }
+            }
+          }
+
           if (
             (t.isCallExpression(path.node.callee) &&
               path.node.callee.callee.name === state.importedNames.styled) ||

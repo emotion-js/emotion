@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`source maps css prop 1`] = `
+"import { css as _css } from \\"emotion\\";
+
+<div className={/*#__PURE__*/_css(\\"width:128px;height:128px;background-color:#8c81d8;border-radius:4px;& img{width:96px;height:96px;border-radius:50%;transition:all 400ms ease-in-out;&:hover{transform:scale(1.2);}}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVXIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgPGRpdlxuICAgICAgY3NzPXtgXG4gICAgICAgIHdpZHRoOiAxMjhweDtcbiAgICAgICAgaGVpZ2h0OiAxMjhweDtcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzhjODFkODtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICBcbiAgICAgICAgJiBpbWcge1xuICAgICAgICAgIHdpZHRoOiA5NnB4O1xuICAgICAgICAgIGhlaWdodDogOTZweDtcbiAgICAgICAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgICAgICAgdHJhbnNpdGlvbjogYWxsIDQwMG1zIGVhc2UtaW4tb3V0O1xuICBcbiAgICAgICAgICAmOmhvdmVyIHtcbiAgICAgICAgICAgIHRyYW5zZm9ybTogc2NhbGUoMS4yKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIGB9XG4gICAgLz5cbiAgIl19 */\\\\n/*@ sourceURL=site.source-map.test.js */\\")} />;"
+`;
+
+exports[`source maps css source map 1`] = `
+"
+/*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ1ciLCJmaWxlIjoiY3NzLnNvdXJjZS1tYXAudGVzdC5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuICAgICAgICBjc3NgXG4gICAgICAgIG1hcmdpbjogMTJweCA0OHB4O1xuICAgICAgICBjb2xvcjogI2ZmZmZmZjtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgZmxleDogMSAwIGF1dG87XG4gICAgICAgIGNvbG9yOiBibHVlO1xuICAgICAgICBAbWVkaWEobWluLXdpZHRoOiA0MjBweCkge1xuICAgICAgICAgIGxpbmUtaGVpZ2h0OiA0MHB4O1xuICAgICAgICB9XG4gICAgICAgIHdpZHRoOiAke3dpZHRoVmFyfTtcbiAgICAgIGAiXX0= */\\\\n/*@ sourceURL=css.source-map.test.js */\\");"
+`;
+
+exports[`source maps fontFace source map 1`] = `
+"
+fontFace(\\"font-family:MyHelvetica;src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvbnRGYWNlLnNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDYyIsImZpbGUiOiJmb250RmFjZS5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbiAgICAgIGZvbnRGYWNlYFxuICAgICAgICBmb250LWZhbWlseTogTXlIZWx2ZXRpY2E7XG4gICAgICAgIHNyYzogbG9jYWwoXCJIZWx2ZXRpY2EgTmV1ZSBCb2xkXCIpLFxuICAgICAgICAgICAgIGxvY2FsKFwiSGVsdmV0aWNhTmV1ZS1Cb2xkXCIpLFxuICAgICAgICAgICAgIHVybChNZ09wZW5Nb2Rlcm5hQm9sZC50dGYpO1xuICAgICAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBgOyJdfQ== */\\\\n/*@ sourceURL=fontFace.source-map.test.js */\\");"
+`;
+
+exports[`source maps styled object styles source map 1`] = `
+"
+/*#__PURE__*/styled('div', {
+  id: 'css-139b3nl0'
+})({
+  color: 'blue',
+  '&:hover': {
+    '& .name': {
+      color: 'amethyst',
+      '&:focus': {
+        color: 'burlywood',
+        [mq[0]]: {
+          color: 'rebeccapurple'
+        }
+      }
+    },
+    color: 'green'
+  }
+}, '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNNIiwiZmlsZSI6ImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICBzdHlsZWQoJ2RpdicpKHtcbiAgICAgICAgY29sb3I6ICdibHVlJyxcbiAgICAgICAgJyY6aG92ZXInOiB7XG4gICAgICAgICAgJyYgLm5hbWUnOiB7XG4gICAgICAgICAgICBjb2xvcjogJ2FtZXRoeXN0JyxcbiAgICAgICAgICAgICcmOmZvY3VzJzoge1xuICAgICAgICAgICAgICBjb2xvcjogJ2J1cmx5d29vZCcsXG4gICAgICAgICAgICAgIFttcVswXV06IHtcbiAgICAgICAgICAgICAgICBjb2xvcjogJ3JlYmVjY2FwdXJwbGUnXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICB9LFxuICAgICAgICAgIGNvbG9yOiAnZ3JlZW4nXG4gICAgICAgIH1cbiAgICAgIH0pXG4gICAgIl19 */\\\\n/*@ sourceURL=css-nested.source-map.test.js */');"
+`;
+
+exports[`source maps styled source map 1`] = `
+"const Avatar = /*#__PURE__*/styled('img', {
+  id: 'css-Avatar-1xslkpx0'
+})('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQTRCIiwiZmlsZSI6InN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBBdmF0YXIgPSBzdHlsZWQoJ2ltZycpYFxuICAgICAgICB3aWR0aDogOTZweDtcbiAgICAgICAgaGVpZ2h0OiA5NnB4O1xuXG4gICAgICAgIGJvcmRlci1yYWRpdXM6ICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJSYWRpdXN9O1xuXG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJDb2xvcn07XG4gICAgICBgIl19 */\\\\n/*@ sourceURL=styled.source-map.test.js */');"
+`;

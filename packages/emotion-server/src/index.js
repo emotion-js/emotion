@@ -16,9 +16,9 @@ export function extractCritical(html) {
     }
   }
 
-  o.rules = sheet.sheet.cssRules.slice().filter(x => {
+  o.rules = sheet.sheet.slice().filter(x => {
     RGX.lastIndex = 0
-    let match = RGX.exec(x.cssText)
+    let match = RGX.exec(x)
     const ret = match == null || ids[match[1]] || false
     return ret
   })
@@ -27,10 +27,7 @@ export function extractCritical(html) {
     return !!ids[id] || !registered[`css-${id}`]
   })
 
-  let css = ''
-
-  o.rules.forEach(x => (css += x.cssText))
-  o.css = css
+  o.css = o.rules.join('')
 
   return o
 }
