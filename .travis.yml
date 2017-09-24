@@ -3,9 +3,16 @@ language: node_js
 node_js:
   - "8"
 
+env:
+  matrix:
+    - NPM_SCRIPT=benchmark
+    - NPM_SCRIPT=test
+
 cache:
   directories:
     - node_modules
+
+script: npm run $NPM_SCRIPT
 
 before_install:
   - npm install codecov
