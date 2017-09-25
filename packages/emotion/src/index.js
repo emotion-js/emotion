@@ -162,7 +162,12 @@ function createStringFromObject(obj) {
             styleValue = ''
           }
 
-          if (unitless[key] !== 1 && !isNaN(styleValue) && styleValue !== 0) {
+          if (
+            unitless[key] !== 1 &&
+            !isNaN(styleValue) &&
+            styleValue !== 0 &&
+            styleValue !== ''
+          ) {
             styleValue += 'px'
           }
           string += `${processStyleName(key)}:${styleValue};`
