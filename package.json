@@ -6,7 +6,7 @@
     "build": "lerna run build --parallel",
     "test:size": "npm-run-all clean rollup:umd size",
     "clean": "lerna run clean --parallel",
-    "test": "npm-run-all -p lint:check coverage test:size",
+    "test": "npm-run-all -p lint:check coverage test:size && npm run benchmark",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
     "lint:check": "eslint .",
     "test:watch": "jest --watch --no-cache",
