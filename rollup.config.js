@@ -56,7 +56,7 @@ if (process.env.UMD) {
   )
   config.targets = [
     {
-      dest: './dist/DO-NOT-USE.min.js',
+      dest: './dist/emotion.umd.min.js',
       format: 'umd',
       moduleName: pkg.name
     }
