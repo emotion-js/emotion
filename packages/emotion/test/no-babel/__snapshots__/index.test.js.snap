@@ -12,35 +12,6 @@ exports[`css @supports 1`] = `
 />
 `;
 
-exports[`css component as selector 1`] = `
-.glamor-3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.glamor-3 .glamor-0 {
-  color: green;
-}
-
-.glamor-1 {
-  font-size: 20px;
-}
-
-<div
-  className="glamor-2 glamor-3"
->
-  hello 
-  <h1
-    className="glamor-0 glamor-1"
-  >
-    This will be green
-  </h1>
-   world
-</div>
-`;
-
 exports[`css composition 1`] = `
 .glamor-0 {
   display: -webkit-box;
@@ -123,20 +94,20 @@ exports[`css composition with objects 1`] = `
 `;
 
 exports[`css function in expression 1`] = `
-.glamor-2 {
+.glamor-0 {
   font-size: 20px;
   font-size: 40px;
 }
 
 <h1
-  className="glamor-0 glamor-1 legacy__class glamor-2"
+  className="legacy__class glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`css glamorous style api & composition 1`] = `
-.glamor-2 {
+.glamor-0 {
   font-size: 20px;
   -webkit-flex: 1;
   -ms-flex: 1;
@@ -148,7 +119,7 @@ exports[`css glamorous style api & composition 1`] = `
 }
 
 <h1
-  className="glamor-0 glamor-1 glamor-2"
+  className="glamor-0"
 >
   hello world
 </h1>
@@ -186,12 +157,12 @@ exports[`css nested array 1`] = `
 `;
 
 exports[`css no dynamic 1`] = `
-.glamor-1 {
+.glamor-0 {
   float: left;
 }
 
 <h1
-  className="glamor-0 glamor-1"
+  className="glamor-0"
 >
   hello world
 </h1>
@@ -204,7 +175,7 @@ exports[`css null rule 1`] = `
 `;
 
 exports[`css object as style 1`] = `
-.glamor-0yodimz {
+.glamor-0 {
   font-size: 20px;
   -webkit-flex: 1;
   -ms-flex: 1;
@@ -216,7 +187,7 @@ exports[`css object as style 1`] = `
 }
 
 <h1
-  className="glamor-0 glamor-0yodimz"
+  className="glamor-0"
 >
   hello world
 </h1>
@@ -243,12 +214,12 @@ exports[`css random expression 1`] = `
 `;
 
 exports[`css random expressions undefined return 1`] = `
-.glamor-1 {
+.glamor-0 {
   color: green;
 }
 
 <h1
-  className="glamor-0 legacy__class glamor-1"
+  className="legacy__class glamor-0"
 >
   hello world
 </h1>
