@@ -281,4 +281,13 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
     flush()
   })
+  test('weakmap', () => {
+    const styles = { display: 'flex' }
+    const cls1 = css(styles)
+    const cls2 = css(styles)
+    const tree1 = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree1).toMatchSnapshot()
+    const tree2 = renderer.create(<div className={cls2} />).toJSON()
+    expect(tree2).toMatchSnapshot()
+  })
 })

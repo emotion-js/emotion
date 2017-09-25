@@ -6,8 +6,11 @@ export const sheet = new StyleSheet()
 sheet.inject()
 const stylisOptions = { keyframe: false }
 
-const stylis = new Stylis(stylisOptions)
-const keyframeStylis = new Stylis(stylisOptions)
+if (process.env.NODE_ENV !== 'production') {
+  stylisOptions.compress = false
+}
+
+let stylis = new Stylis(stylisOptions)
 
 export let registered = {}
 
@@ -20,9 +23,12 @@ export function flush() {
   sheet.inject()
 }
 
+let currentSourceMap = ''
 let queue = []
 
-const insertRule = sheet.insert.bind(sheet)
+function insertRule(rule) {
+  sheet.insert(rule, currentSourceMap)
+}
 
 function insertionPlugin(
   context,
@@ -54,22 +60,39 @@ function insertionPlugin(
       break
     }
     // after an at rule block
-    case 3:
-      queue.push(`${selectors.join(',')}{${content}}`)
-  }
-}
-
-function keyframeInsertionPlugin(context, content, selector) {
-  if (context === 3) {
-    sheet.insert(
-      `${selector[0].replace('keyframes', '-webkit-keyframes')}{${content}}`
-    )
-    sheet.insert(`${selector[0]}{${content}}`)
+    case 3: {
+      let chars = selectors.join('')
+      const second = chars.charCodeAt(1)
+      let child = content
+      switch (second) {
+        // s upports
+        case 115:
+        // d ocument
+        // eslint-disable-next-line no-fallthrough
+        case 100:
+        // m edia
+        // eslint-disable-next-line no-fallthrough
+        case 109: {
+          queue.push(chars + '{' + child + '}')
+          break
+        }
+        // k eyframes
+        case 107: {
+          chars = chars.substring(1)
+          child = chars + '{' + child + '}'
+          queue.push('@-webkit-' + child)
+          queue.push('@' + child)
+          break
+        }
+        default: {
+          queue.push(chars + child)
+        }
+      }
+    }
   }
 }
 
 stylis.use(insertionPlugin)
-keyframeStylis.use(keyframeInsertionPlugin)
 
 function flatten(inArr) {
   let arr = []
@@ -122,7 +145,25 @@ const processStyleValue = (key, value) => {
   return value
 }
 
-function createStringFromObject(obj) {
+function createCache(fn) {
+  const cache = new WeakMap()
+
+  return arg => {
+    if (cache.has(arg)) {
+      return cache.get(arg)
+    }
+    const result = fn(arg)
+    cache.set(arg, result)
+    return result
+  }
+}
+
+const createStringFromObject =
+  typeof WeakMap === 'undefined'
+    ? _createStringFromObject
+    : createCache(_createStringFromObject)
+
+function _createStringFromObject(obj) {
   let string = ''
 
   if (Array.isArray(obj)) {
@@ -170,7 +211,19 @@ function createStyles(strings, ...interpolations) {
       styles += strings[i + 1]
     }
   })
+
   return styles
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\/\s+\/\*@\ssourceURL=\S+\s+\*\//
+  const oldStylis = stylis
+  stylis = (selector, styles) => {
+    const result = sourceMapRegEx.exec(styles)
+    currentSourceMap = result ? result[0] : ''
+    oldStylis(selector, styles)
+    currentSourceMap = ''
+  }
 }
 
 export function css(...args) {
@@ -196,18 +249,12 @@ export function injectGlobal(...args) {
   }
 }
 
-export function hydrate(ids) {
-  ids.forEach(id => {
-    inserted[id] = true
-  })
-}
-
 export function keyframes(...args) {
   const styles = createStyles(...args)
   const hash = hashString(styles)
   const name = `animation-${hash}`
   if (inserted[hash] === undefined) {
-    keyframeStylis('', `@keyframes ${name}{${styles}}`)
+    stylis('', `@keyframes ${name}{${styles}}`)
     inserted[hash] = true
   }
   return name
@@ -217,7 +264,7 @@ export function fontFace(...args) {
   const styles = createStyles(...args)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
-    sheet.insert(`@font-face{${styles}}`)
+    stylis('', `@font-face{${styles}}`)
     inserted[hash] = true
   }
 }
@@ -235,7 +282,7 @@ export function getRegisteredStyles(registeredStyles, classNames) {
   return rawClassName
 }
 
-export function merge(className) {
+export function merge(className, sourceMap) {
   const registeredStyles = []
 
   const rawClassName = getRegisteredStyles(registeredStyles, className)
@@ -243,5 +290,11 @@ export function merge(className) {
   if (registeredStyles.length < 2) {
     return className
   }
-  return rawClassName + css(...registeredStyles)
+  return rawClassName + css(registeredStyles, sourceMap)
+}
+
+export function hydrate(ids) {
+  ids.forEach(id => {
+    inserted[id] = true
+  })
 }

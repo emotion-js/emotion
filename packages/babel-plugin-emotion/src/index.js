@@ -1,12 +1,6 @@
 // @flow weak
 import fs from 'fs'
-import {
-  basename,
-  dirname,
-  join as pathJoin,
-  sep as pathSep,
-  relative
-} from 'path'
+import { basename } from 'path'
 import { touchSync } from 'touch'
 import {
   getIdentifierName,
@@ -14,7 +8,10 @@ import {
   createRawStringFromTemplateLiteral,
   minify
 } from './babel-utils'
+
 import { hashString, Stylis } from 'emotion-utils'
+import { addSourceMaps } from './source-map'
+
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
@@ -34,7 +31,7 @@ export function replaceCssWithCallExpression(
   staticCSSSelectorCreator = (name, hash) => `.${name}-${hash}`
 ) {
   try {
-    const { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
+    let { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
     const name = getName(getIdentifierName(path, t), 'css')
 
     if (state.extractStatic && !path.node.quasi.expressions.length) {
@@ -52,12 +49,20 @@ export function replaceCssWithCallExpression(
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
     }
-    path.node.quasi = new ASTObject(
-      minify(src),
-      path.node.quasi.expressions,
-      t
-    ).toTemplateLiteral()
-    path.node.tag = identifier
+    if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
+      src += addSourceMaps(path.node.quasi.loc.start, state)
+    }
+
+    return path.replaceWith(
+      t.callExpression(
+        identifier,
+        new ASTObject(
+          minify(src),
+          path.node.quasi.expressions,
+          t
+        ).toExpressions()
+      )
+    )
   } catch (e) {
     if (path) {
       throw path.buildCodeFrameError(e)
@@ -66,73 +71,6 @@ export function replaceCssWithCallExpression(
     throw e
   }
 }
-
-// babel-plugin-styled-components
-// https://github.com/styled-components/babel-plugin-styled-components/blob/37a13e9c21c52148ce6e403100df54c0b1561a88/src/visitors/displayNameAndId.js#L49-L93
-
-const findModuleRoot = filename => {
-  if (!filename || filename === 'unknown') {
-    return null
-  }
-  let dir = dirname(filename)
-  if (fs.existsSync(pathJoin(dir, 'package.json'))) {
-    return dir
-  } else if (dir !== filename) {
-    return findModuleRoot(dir)
-  } else {
-    return null
-  }
-}
-
-const FILE_HASH = 'emotion-file-hash'
-const COMPONENT_POSITION = 'emotion-component-position'
-
-const getFileHash = state => {
-  const { file } = state
-  // hash calculation is costly due to fs operations, so we'll cache it per file.
-  if (file.get(FILE_HASH)) {
-    return file.get(FILE_HASH)
-  }
-  const filename = file.opts.filename
-  // find module root directory
-  const moduleRoot = findModuleRoot(filename)
-  const filePath =
-    moduleRoot && relative(moduleRoot, filename).replace(pathSep, '/')
-  let moduleName = ''
-  if (moduleRoot) {
-    const packageJsonContent = fs.readFileSync(
-      pathJoin(moduleRoot, 'package.json')
-    )
-    if (packageJsonContent) {
-      try {
-        moduleName = JSON.parse(packageJsonContent.toString()).name
-      } catch (e) {}
-    }
-  }
-  const code = file.code
-
-  const fileHash = hashArray([moduleName, filePath, code])
-  file.set(FILE_HASH, fileHash)
-  return fileHash
-}
-
-const getNextId = state => {
-  const id = state.file.get(COMPONENT_POSITION) || 0
-  state.file.set(COMPONENT_POSITION, id + 1)
-  return id
-}
-
-const getComponentId = (state, prefix: string = 'css') => {
-  // Prefix the identifier with css- because CSS classes cannot start with a number
-  // Also in snapshots with jest-glamor-react the hash will be replaced with an index
-  return `${prefix}-${getFileHash(state)}${getNextId(state)}`
-}
-
-const interleave = (strings, interpolations) =>
-  interpolations.reduce(
-    (array, interp, i) => array.concat(interp, strings[i + 1]),
-    [strings[0]]
-  )
 
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
@@ -151,12 +89,6 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
       t.callExpression(identifier, [
         tag,
         t.objectExpression([
-          t.objectProperty(
-            t.identifier('id'),
-            t.stringLiteral(
-              getComponentId(state, getName(getIdentifierName(path, t), 'css'))
-            )
-          ),
           t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName))
         ])
       ]),
@@ -164,34 +96,16 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     )
   }
 
-  const { src } = createRawStringFromTemplateLiteral(path.node.quasi)
+  let { src } = createRawStringFromTemplateLiteral(path.node.quasi)
 
   path.addComment('leading', '#__PURE__')
 
-  const templateLiteral = new ASTObject(
-    minify(src),
-    path.node.quasi.expressions,
-    t
-  ).toTemplateLiteral()
-
-  const values = interleave(
-    templateLiteral.quasis.map(node => t.stringLiteral(node.value.cooked)),
-    path.node.quasi.expressions
-  ).filter(node => node.value !== '')
-
+  if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
+    src += addSourceMaps(path.node.quasi.loc.start, state)
+  }
   return t.callExpression(
-    t.callExpression(identifier, [
-      tag,
-      t.objectExpression([
-        t.objectProperty(
-          t.identifier('id'),
-          t.stringLiteral(
-            getComponentId(state, getName(getIdentifierName(path, t), 'css'))
-          )
-        )
-      ])
-    ]),
-    values
+    t.callExpression(identifier, [tag]),
+    new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
 
@@ -199,20 +113,14 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
-  return t.callExpression(
-    t.callExpression(identifier, [
-      tag,
-      t.objectExpression([
-        t.objectProperty(
-          t.identifier('id'),
-          t.stringLiteral(
-            getComponentId(state, getName(getIdentifierName(path, t), 'css'))
-          )
-        )
-      ])
-    ]),
-    path.node.arguments
-  )
+
+  let args = path.node.arguments
+  if (state.opts.sourceMap === true && path.node.loc !== undefined) {
+    args.push(t.stringLiteral(addSourceMaps(path.node.loc.start, state)))
+  }
+  path.addComment('leading', '#__PURE__')
+
+  return t.callExpression(t.callExpression(identifier, [tag]), args)
 }
 
 const visited = Symbol('visited')
@@ -312,6 +220,26 @@ export default function(babel) {
           return
         }
         try {
+          if (t.isIdentifier(path.node.callee)) {
+            switch (path.node.callee.name) {
+              case state.importedNames.css:
+              case state.importedNames.keyframes: {
+                path.addComment('leading', '#__PURE__')
+              }
+              // eslint-disable-next-line no-fallthrough
+              case state.importedNames.injectGlobal:
+              case state.importedNames.fontFace:
+                if (
+                  state.opts.sourceMap === true &&
+                  path.node.loc !== undefined
+                ) {
+                  path.node.arguments.push(
+                    t.stringLiteral(addSourceMaps(path.node.loc.start, state))
+                  )
+                }
+            }
+          }
+
           if (
             (t.isCallExpression(path.node.callee) &&
               path.node.callee.callee.name === state.importedNames.styled) ||
