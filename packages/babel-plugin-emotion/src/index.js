@@ -50,7 +50,7 @@ export function replaceCssWithCallExpression(
       path.addComment('leading', '#__PURE__')
     }
     if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
-      src = src + addSourceMaps(path.node.quasi.loc.start, state)
+      src += addSourceMaps(path.node.quasi.loc.start, state)
     }
 
     return path.replaceWith(
@@ -101,7 +101,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   path.addComment('leading', '#__PURE__')
 
   if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
-    src = src + addSourceMaps(path.node.quasi.loc.start, state)
+    src += addSourceMaps(path.node.quasi.loc.start, state)
   }
   return t.callExpression(
     t.callExpression(identifier, [tag]),

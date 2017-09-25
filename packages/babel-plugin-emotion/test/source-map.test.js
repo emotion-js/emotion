@@ -86,6 +86,7 @@ describe('source maps', () => {
     })
     expect(code).toMatchSnapshot()
   })
+
   test('css prop', () => {
     const basic = `
     <div
@@ -108,6 +109,39 @@ describe('source maps', () => {
       \`}
     />
   `
+    const { code } = babel.transform(basic, {
+      babelrc: false,
+      plugins: [[plugin, { sourceMap: true }]],
+      filename: 'site.source-map.test.js'
+    })
+    expect(code).toMatchSnapshot()
+  })
+
+  test('css prop with objects', () => {
+    const basic = `
+      <div
+        css={{
+          color: 'plum'
+        }}
+      />
+    `
+    const { code } = babel.transform(basic, {
+      babelrc: false,
+      plugins: [[plugin, { sourceMap: true }]],
+      filename: 'site.source-map.test.js'
+    })
+    expect(code).toMatchSnapshot()
+  })
+
+  test('css prop with merge', () => {
+    const basic = `
+      <div
+        className={someClassName}
+        css={{
+          color: 'plum'
+        }}
+      />
+    `
     const { code } = babel.transform(basic, {
       babelrc: false,
       plugins: [[plugin, { sourceMap: true }]],
