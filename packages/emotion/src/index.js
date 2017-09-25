@@ -157,7 +157,7 @@ function createStringFromObject(obj) {
           if (
             styleValue === undefined ||
             styleValue === null ||
-            typeof fakeValue === 'boolean'
+            typeof styleValue === 'boolean'
           ) {
             styleValue = ''
           }
@@ -165,7 +165,7 @@ function createStringFromObject(obj) {
           if (unitless[key] !== 1 && !isNaN(styleValue) && styleValue !== 0) {
             styleValue += 'px'
           }
-          string += `${processStyleName(key)}:${styleValue}};`
+          string += `${processStyleName(key)}:${styleValue};`
         }
       } else {
         string += `${key}{${createStringFromObject(obj[key])}}`
