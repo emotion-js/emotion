@@ -160,13 +160,10 @@ function createStringFromObject(obj) {
             typeof styleValue === 'boolean'
           ) {
             styleValue = ''
-          }
-
-          if (
+          } else if (
             unitless[key] !== 1 &&
             !isNaN(styleValue) &&
-            styleValue !== 0 &&
-            styleValue !== ''
+            styleValue !== 0
           ) {
             styleValue += 'px'
           }
