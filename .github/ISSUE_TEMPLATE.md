@@ -20,17 +20,29 @@ Relevant code.
 
 ```
 
+
 What you did:
 
 
 
 What happened:
 
-<!-- Please provide the full error message/screenshots/anything -->
+<!-- 
+Please provide the full error message/screenshots/anything
+ 
+If possible, please fork this sandbox and add a repoduction of your issue.
+https://codesandbox.io/s/pk1qjqpw67 
+-->
 
 Reproduction:
 
 
+<!--
+Does it seem like the issue is only happening to you?
+
+If this is the case, your best hope of a solution will be to
+create a github repo that we can download and tinker with. 
+-->
 Problem description:
 
 
