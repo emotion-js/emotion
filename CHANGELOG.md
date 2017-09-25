@@ -1,3 +1,48 @@
+## v8.0.2-6 (2017-09-25)
+
+#### :boom: Breaking Change
+* `babel-plugin-emotion`, `emotion-server`, `emotion`, `react-emotion`
+  * [#334](https://github.com/emotion-js/emotion/pull/334) Remove component selectors. ([@tkh44](https://github.com/tkh44))
+
+#### :rocket: Enhancement
+* `react-emotion`, `site`
+  * [#232](https://github.com/emotion-js/emotion/pull/232) Allow Styled tags to be updated via withComponent. ([@ifyoumakeit](https://github.com/ifyoumakeit))
+* `emotion`
+  * [#335](https://github.com/emotion-js/emotion/pull/335) Add a WeakMap cache to createStringFromObject. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `babel-plugin-emotion`, `emotion`, `site`
+  * [#332](https://github.com/emotion-js/emotion/pull/332) Add support for object arguments in css prop with source maps. ([@tkh44](https://github.com/tkh44))
+
+#### :house: Internal
+* `emotion`
+  * [#339](https://github.com/emotion-js/emotion/pull/339) Don't abstract WeakMap cache. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* Other
+  * [#333](https://github.com/emotion-js/emotion/pull/333) Run benchmarks and tests in parallel and cache packages node_modules. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 3
+- Dave Garwacke ([ifyoumakeit](https://github.com/ifyoumakeit))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
+## v8.0.2-5 (2017-09-24)
+
+#### :rocket: Enhancement
+* `babel-plugin-emotion`, `emotion-server`, `emotion`, `site`
+  * [#320](https://github.com/emotion-js/emotion/pull/320) Add Source Maps 🗺 . ([@tkh44](https://github.com/tkh44))
+
+#### :bug: Bug Fix
+* `emotion`
+  * [#326](https://github.com/emotion-js/emotion/pull/326) At rule fixes. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :house: Internal
+* `benchmarks`
+  * [#328](https://github.com/emotion-js/emotion/pull/328) Benchmarks on Travis. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 2
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v8.0.2-4 (2017-09-22)
 
 #### :bug: Bug Fix
