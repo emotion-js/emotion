@@ -2,7 +2,7 @@
 
 exports[`styled basic render nested 1`] = `
 <h1
-  className="css-s9f816"
+  className="css-wtnkt4"
 >
   hello world
 </h1>
@@ -10,7 +10,7 @@ exports[`styled basic render nested 1`] = `
 
 exports[`styled className prop on styled 1`] = `
 <h1
-  className="some-class css-dhnrtm"
+  className="some-class css-1ussw39"
 >
   hello world
 </h1>
@@ -18,16 +18,16 @@ exports[`styled className prop on styled 1`] = `
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="css-ijh7uz"
+  className="css-1ksfqms"
 >
   hello world
 </h1>
 `;
 
 exports[`styled writes the correct css 1`] = `
-".css-ijh7uz{font-size:12px;}
-.css-s9f816{font-size:20px;}.css-s9f816 span{color:blue;}.css-s9f816 span:hover{color:green;}.css-s9f816 span:hover:after{content:'after';}
-.css-dhnrtm{font-size:20px;}
+".css-1ksfqms{font-size:12px;}
+.css-wtnkt4{font-size:20px;}.css-wtnkt4 span{color:blue;}.css-wtnkt4 span:hover{color:green;}.css-wtnkt4 span:hover:after{content:'after';}
+.css-1ussw39{font-size:20px;}
 html{background:pink;}
-.css-14yvnlz{font-family:sans-serif;color:yellow;background-color:purple;}"
+.css-1qm9j1o{font-family:sans-serif;color:yellow;background-color:purple;}"
 `;

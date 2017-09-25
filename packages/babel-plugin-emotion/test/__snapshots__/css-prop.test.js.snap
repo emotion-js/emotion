@@ -18,10 +18,10 @@ exports[`babel css prop basic object 1`] = `
 exports[`babel css prop basic with extractStatic 1`] = `
 "import { css as _css } from \\"emotion\\";
 import \\"./css-prop.test.emotion.css\\";
-<div className={\\"css-jf1v9l\\" + \\" a\\"}></div>;"
+<div className={\\"css-jk1t8f\\" + \\" a\\"}></div>;"
 `;
 
-exports[`babel css prop basic with extractStatic 2`] = `".css-jf1v9l{color:brown;}"`;
+exports[`babel css prop basic with extractStatic 2`] = `".css-jk1t8f{color:brown;}"`;
 
 exports[`babel css prop className as expression 1`] = `
 "import { merge as _merge } from \\"emotion\\";

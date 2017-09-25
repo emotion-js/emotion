@@ -2,111 +2,111 @@
 
 exports[`css complex nested media queries 1`] = `
 "@media (max-width:600px) {
-  .css-acogag h1 {
+  .css-7nssx9 h1 {
     font-size: 1.4rem;
   }
 }
 
 @media (max-width:400px),(max-height:420px) {
-  .css-acogag h1 {
+  .css-7nssx9 h1 {
     font-size: 1.1rem;
   }
 }"
 `;
 
 exports[`css complex nested styles 1`] = `
-".css-s7aswl {
+".css-2ec8pa {
   color: blue;
 }
 
-.css-s7aswl:hover {
+.css-2ec8pa:hover {
   color: green;
 }
 
-.css-s7aswl:hover .name {
+.css-2ec8pa:hover .name {
   color: amethyst;
 }
 
-.css-s7aswl:hover .name:focus {
+.css-2ec8pa:hover .name:focus {
   color: burlywood;
 }
 
 @media (min-width:420px) {
-  .css-s7aswl:hover .name:focus {
+  .css-2ec8pa:hover .name:focus {
     color: rebeccapurple;
   }
 }"
 `;
 
 exports[`css handles media query merges 1`] = `
-".css-yno01n {
+".css-1texorz {
   color: darkslateblue;
   color: red;
   color: purple;
 }
 
 @media (min-width:420px) {
-  .css-yno01n {
+  .css-1texorz {
     color: amethyst;
   }
 }
 
 @media (min-width:640px) {
-  .css-yno01n {
+  .css-1texorz {
     color: rebeccapurple;
   }
 }
 
 @media (min-width:960px) {
-  .css-yno01n {
+  .css-1texorz {
     color: burlywood;
   }
 }
 
 @media (min-width:640px) {
-  .css-yno01n {
+  .css-1texorz {
     color: blue;
   }
 }
 
 @media (min-width:640px) {
-  .css-yno01n {
+  .css-1texorz {
     color: aquamarine;
   }
 }"
 `;
 
 exports[`css media queries with multiple nested selectors 1`] = `
-".css-17riori {
+".css-1bzb13j {
   color: blue;
 }
 
 @media (max-width:400px) {
-  .css-17riori {
+  .css-1bzb13j {
     color: green;
   }
 
-  .css-17riori h1 {
+  .css-1bzb13j h1 {
     color: red;
   }
 
-  .css-17riori span {
+  .css-1bzb13j span {
     color: red;
   }
 }"
 `;
 
 exports[`css media query with nested selector with nested selector on root 1`] = `
-".css-1ssiu3j span {
+".css-1lvhdf9 span {
   color: blue;
 }
 
 @media (max-width:400px) {
-  .css-1ssiu3j {
+  .css-1lvhdf9 {
     color: green;
   }
 
-  .css-1ssiu3j span {
+  .css-1lvhdf9 span {
     color: red;
   }
 }"
@@ -114,11 +114,11 @@ exports[`css media query with nested selector with nested selector on root 1`] =
 
 exports[`css media query with nested selector without declarations on root 1`] = `
 "@media (max-width:400px) {
-  .css-18muius {
+  .css-1vnjskd {
     color: green;
   }
 
-  .css-18muius span {
+  .css-1vnjskd span {
     color: red;
   }
 }"

@@ -2,8 +2,8 @@
 
 exports[`keyframes - macro keyframes with interpolation 1`] = `
 .glamor-0 {
-  -webkit-animation: animation-1q8eu9e 2s linear infinite;
-  animation: animation-1q8eu9e 2s linear infinite;
+  -webkit-animation: animation-qyaey5 2s linear infinite;
+  animation: animation-qyaey5 2s linear infinite;
 }
 
 <h1
@@ -14,7 +14,7 @@ exports[`keyframes - macro keyframes with interpolation 1`] = `
 `;
 
 exports[`keyframes - macro keyframes with interpolation 2`] = `
-"@-webkit-keyframes animation-1q8eu9e {
+"@-webkit-keyframes animation-qyaey5 {
   from {
     -webkit-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
@@ -28,7 +28,7 @@ exports[`keyframes - macro keyframes with interpolation 2`] = `
   }
 }
 
-@keyframes animation-1q8eu9e {
+@keyframes animation-qyaey5 {
   from {
     -webkit-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
@@ -42,16 +42,16 @@ exports[`keyframes - macro keyframes with interpolation 2`] = `
   }
 }
 
-.css-l8b5qg {
-  -webkit-animation: animation-1q8eu9e 2s linear infinite;
-  animation: animation-1q8eu9e 2s linear infinite;
+.css-mxg6dn {
+  -webkit-animation: animation-qyaey5 2s linear infinite;
+  animation: animation-qyaey5 2s linear infinite;
 }"
 `;
 
 exports[`keyframes - macro renders 1`] = `
 .glamor-0 {
-  -webkit-animation: animation-16qlhaj 2s linear infinite;
-  animation: animation-16qlhaj 2s linear infinite;
+  -webkit-animation: animation-qx4yjh 2s linear infinite;
+  animation: animation-qx4yjh 2s linear infinite;
 }
 
 <h1
@@ -62,7 +62,7 @@ exports[`keyframes - macro renders 1`] = `
 `;
 
 exports[`keyframes - macro renders 2`] = `
-"@-webkit-keyframes animation-16qlhaj {
+"@-webkit-keyframes animation-qx4yjh {
   from, 20%, 53%, 80%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
     animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
@@ -94,7 +94,7 @@ exports[`keyframes - macro renders 2`] = `
   }
 }
 
-@keyframes animation-16qlhaj {
+@keyframes animation-qx4yjh {
   from, 20%, 53%, 80%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
     animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
@@ -126,8 +126,8 @@ exports[`keyframes - macro renders 2`] = `
   }
 }
 
-.css-1qpx6jr {
-  -webkit-animation: animation-16qlhaj 2s linear infinite;
-  animation: animation-16qlhaj 2s linear infinite;
+.css-1wtfl3h {
+  -webkit-animation: animation-qx4yjh 2s linear infinite;
+  animation: animation-qx4yjh 2s linear infinite;
 }"
 `;
