@@ -24,7 +24,6 @@ const omitAssign = function(testFn, target) {
   return target
 }
 
-
 const createStyled = (tag, options: { e: string }) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
