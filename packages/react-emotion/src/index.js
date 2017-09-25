@@ -24,7 +24,7 @@ const omitAssign = function(testFn, target) {
   return target
 }
 
-export default function(tag, options: { e: string }) {
+const createStyled = (tag, options: { e: string }) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
       throw new Error(
@@ -90,6 +90,12 @@ export default function(tag, options: { e: string }) {
     Styled.__emotion_styles = styles
     Styled.__emotion_base = baseTag
 
+    Styled.withComponent = nextTag => {
+      return createStyled(nextTag, options)(styles)
+    }
+
     return Styled
   }
 }
+
+export default createStyled
