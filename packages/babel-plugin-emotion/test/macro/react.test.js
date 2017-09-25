@@ -287,28 +287,6 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('component as selector', () => {
-    const fontSize = '20px'
-    const H1 = styled.h1`font-size: ${fontSize};`
-
-    const Thing = styled.div`
-      display: flex;
-      ${H1} {
-        color: green;
-      }
-    `
-
-    const tree = renderer
-      .create(
-        <Thing>
-          hello <H1>This will be green</H1> world
-        </Thing>
-      )
-      .toJSON()
-
-    expect(tree).toMatchSnapshot()
-  })
-
   test('component as selector function interpolation', () => {
     const H1 = styled.h1`font-size: ${props => props.fontSize};`
 

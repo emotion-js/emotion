@@ -146,35 +146,6 @@ exports[`styled change theme 3`] = `
 </TestComponent>
 `;
 
-exports[`styled component as selector 1`] = `
-.glamor-1 {
-  font-size: 20px;
-}
-
-.glamor-3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.glamor-3 .glamor-0 {
-  color: green;
-}
-
-<div
-  className="glamor-2 glamor-3"
->
-  hello 
-  <h1
-    className="glamor-0 glamor-1"
-  >
-    This will be green
-  </h1>
-   world
-</div>
-`;
-
 exports[`styled component as selector function interpolation 1`] = `
 .glamor-3 {
   display: -webkit-box;
