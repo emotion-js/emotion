@@ -59,6 +59,7 @@ if (window.location.hash) {
   tests.push(...allTests.emotionCSS)
   tests.push(...allTests['css-modules'])
   tests.push(...allTests.glamorous)
+  tests.push(...allTests.glamor)
   tests.push(...allTests['styled-components'])
 }
 

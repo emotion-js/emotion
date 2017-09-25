@@ -13,13 +13,6 @@ import Playground from './playground'
 import logoUrl from '../../../emotion.png'
 
 const introExample = require('./blocks/intro.example')
-const propsExample = require('./blocks/props.example')
-const nestedExample = require('./blocks/nested.example')
-const mediaExample = require('./blocks/media.example')
-const anyComponentExample = require('./blocks/styling-any-component.example')
-const withComponentExample = require('./blocks/styled-with-component.example')
-const pseudoExample = require('./blocks/pseudo.example')
-const keyframesExample = require('./blocks/keyframes.example')
 
 const scope = {
   logoUrl,
@@ -95,21 +88,37 @@ const PlaygroundWrapper = styled('div')`
       width: 100%;
     }
   }
-
-  & .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-
-    & img {
-      display: block;
-      width: 128px;
-      height: 128px;
-    }
-  }
 `
+
+const headerClassName = css({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  '& img': {
+    display: 'block',
+    width: 128,
+    height: 128
+  }
+})
+
+const docs = [
+  { name: 'install', hasCodeExample: false },
+  { name: 'nested', hasCodeExample: true },
+  { name: 'pseudo', hasCodeExample: true },
+  { name: 'media', hasCodeExample: true },
+  { name: 'styling-any-component', hasCodeExample: true },
+  { name: 'styled-with-component', hasCodeExample: true },
+  { name: 'props', hasCodeExample: true },
+  { name: 'keyframes', hasCodeExample: true },
+  { name: 'composition', hasCodeExample: true },
+  { name: 'objects', hasCodeExample: true },
+  { name: 'styled-with-object', hasCodeExample: true },
+  { name: 'css-prop', hasCodeExample: true },
+  { name: 'theming', hasCodeExample: true },
+  { name: 'source-maps', hasCodeExample: false }
+]
 
 class App extends React.Component {
   render() {
@@ -117,98 +126,29 @@ class App extends React.Component {
       <ThemeProvider theme={theme}>
         <PlaygroundWrapper>
           <div className="inner">
-            <div className="header">
+            <div className={headerClassName}>
               <h1>
                 <img src={logoUrl} alt="emotion" />
                 emotion
               </h1>
-              <p>The Next Generation of CSS-in-JS</p>
+              <p css={{ fontSize: '1.5em' }}>
+                The Next Generation of CSS-in-JS
+              </p>
             </div>
             <Playground codeText={introExample} scope={scope} />
 
-            <Markdown markdown={require('../../../docs/install.md')} />
-
-            <Markdown markdown={require('../../../docs/nested.md')} />
-            <Playground
-              maxHeight={180}
-              codeText={nestedExample}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/pseudo.md')} />
-            <Playground
-              maxHeight={220}
-              codeText={pseudoExample}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/media.md')} />
-            <Playground maxHeight={220} codeText={mediaExample} scope={scope} />
-
-            <Markdown
-              markdown={require('../../../docs/styling-any-component.md')}
-            />
-            <Playground
-              maxHeight={220}
-              codeText={anyComponentExample}
-              scope={scope}
-            />
-
-            <Markdown
-              markdown={require('../../../docs/styled-with-component.md')}
-            />
-            <Playground
-              maxHeight={220}
-              codeText={withComponentExample}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/props.md')} />
-            <Playground codeText={propsExample} scope={scope} />
-
-            <Markdown markdown={require('../../../docs/keyframes.md')} />
-            <Playground
-              maxHeight={600}
-              codeText={keyframesExample}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/composition.md')} />
-            <Playground
-              maxHeight={180}
-              codeText={require('./blocks/composition.example')}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/objects.md')} />
-            <Playground
-              maxHeight={180}
-              codeText={require('./blocks/objects.example')}
-              scope={scope}
-            />
-
-            <Markdown
-              markdown={require('../../../docs/styled-with-object.md')}
-            />
-            <Playground
-              maxHeight={180}
-              codeText={require('./blocks/styled-with-object.example')}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/css-prop.md')} />
-            <Playground
-              maxHeight={180}
-              codeText={require('./blocks/css-prop.example')}
-              scope={scope}
-            />
-
-            <Markdown markdown={require('../../../docs/theming.md')} />
-            <Playground
-              maxHeight={180}
-              codeText={require('./blocks/theming.example')}
-              scope={scope}
-            />
+            {docs.map(doc => {
+              return [
+                <Markdown markdown={require(`../../../docs/${doc.name}.md`)} />,
+                doc.hasCodeExample && (
+                  <Playground
+                    name={doc}
+                    codeText={require(`./blocks/${doc.name}.example`)}
+                    scope={scope}
+                  />
+                )
+              ]
+            })}
           </div>
         </PlaygroundWrapper>
       </ThemeProvider>

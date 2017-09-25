@@ -47,7 +47,7 @@ module.exports = env => {
   ]
 
   return {
-    devtool: PROD ? 'source-map' : 'eval',
+    devtool: 'source-map',
     entry: path.resolve('src', 'main.js'),
     output: {
       path: path.resolve('build'),
@@ -55,8 +55,7 @@ module.exports = env => {
       publicPath: '/'
     },
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx'],
-      symlinks: false
+      extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
     plugins: [
       new HtmlWebpackPlugin({

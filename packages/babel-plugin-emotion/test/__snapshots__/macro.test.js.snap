@@ -3,25 +3,25 @@
 exports[`babel macro css 1`] = `
 "import { css as _css } from '../src';
 
-/*#__PURE__*/_css\`margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:\${widthVar};\`;"
+/*#__PURE__*/_css('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:', widthVar, ';');"
 `;
 
 exports[`babel macro css call with no args 1`] = `
 "import { css as _css } from '../src';
 
-const cls1 = _css();"
+const cls1 = /*#__PURE__*/_css();"
 `;
 
 exports[`babel macro css inside of css 1`] = `
 "import { css as _css } from '../src';
 
-const cls2 = /*#__PURE__*/_css\`font-size:20px;@media (min-width:420px){color:blue;\${/*#__PURE__*/_css\`width:96px;height:96px;\`};line-height:40px;}background:green;\`;"
+const cls2 = /*#__PURE__*/_css('font-size:20px;@media (min-width:420px){color:blue;', /*#__PURE__*/_css('width:96px;height:96px;'), ';line-height:40px;}background:green;');"
 `;
 
 exports[`babel macro css object 1`] = `
 "import { css as _css } from '../src';
 
-const cls1 = _css({ display: 'flex' });"
+const cls1 = /*#__PURE__*/_css({ display: 'flex' });"
 `;
 
 exports[`babel macro flush 1`] = `
@@ -33,7 +33,7 @@ const someOtherVar = _flush;"
 exports[`babel macro fontFace 1`] = `
 "import { fontFace as _fontFace } from '../src';
 
-_fontFace\`font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\`;"
+_fontFace('font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;');"
 `;
 
 exports[`babel macro hydrate 1`] = `
@@ -45,20 +45,20 @@ const someOtherVar = _hydrate;"
 exports[`babel macro injectGlobal 1`] = `
 "import { injectGlobal as _injectGlobal } from '../src';
 
-_injectGlobal\`body{margin:0;padding:0;& > div{display:none;&:hover{color:green;& span{color:red;&:after{content:\\"end of line\\"}}}}}html{background:green;}\`;"
+_injectGlobal('body{margin:0;padding:0;& > div{display:none;&:hover{color:green;& span{color:red;&:after{content:\\"end of line\\"}}}}}html{background:green;}');"
 `;
 
 exports[`babel macro keyframes 1`] = `
 "import { keyframes as _keyframes } from '../src';
 
-const rotate360 = /*#__PURE__*/_keyframes\`from{transform:rotate(0deg);}to{transform:rotate(360deg);}\`;"
+const rotate360 = /*#__PURE__*/_keyframes('from{transform:rotate(0deg);}to{transform:rotate(360deg);}');"
 `;
 
 exports[`babel macro multiple imports 1`] = `
 "import { keyframes as _keyframes, css as _css } from '../src';
 
-const rotate360 = /*#__PURE__*/_keyframes\`from{transform:rotate(0deg);}to{transform:rotate(360deg);}\`;
-const thing = /*#__PURE__*/_css\`margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:\${widthVar};\`;"
+const rotate360 = /*#__PURE__*/_keyframes('from{transform:rotate(0deg);}to{transform:rotate(360deg);}');
+const thing = /*#__PURE__*/_css('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:', widthVar, ';');"
 `;
 
 exports[`babel macro some import that does not exist 1`] = `
@@ -70,15 +70,13 @@ const someOtherVar = _thisDoesNotExist;"
 exports[`babel macro styled css from react 1`] = `
 "import { css as _css } from './styled';
 
-const someCls = /*#__PURE__*/_css\`display:flex;\`;"
+const someCls = /*#__PURE__*/_css('display:flex;');"
 `;
 
 exports[`babel macro styled object function 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = _styled('div', {
-  id: 'css-SomeComponent-1f75k080'
-})({
+const SomeComponent = /*#__PURE__*/_styled('div')({
   display: 'flex'
 });"
 `;
@@ -86,9 +84,7 @@ const SomeComponent = _styled('div', {
 exports[`babel macro styled object member 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = _styled('div', {
-  id: 'css-SomeComponent-1jnr57b0'
-})({
+const SomeComponent = /*#__PURE__*/_styled('div')({
   display: 'flex'
 });"
 `;
@@ -102,15 +98,11 @@ const someOtherVar = _thisDoesNotExist;"
 exports[`babel macro styled tagged template literal function 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
-  id: 'css-SomeComponent-1sczqp40'
-})('display:flex;');"
+const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;');"
 `;
 
 exports[`babel macro styled tagged template literal member 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
-  id: 'css-SomeComponent-1rq85zx0'
-})('display:flex;');"
+const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;');"
 `;

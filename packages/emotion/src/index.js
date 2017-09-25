@@ -6,7 +6,11 @@ export const sheet = new StyleSheet()
 sheet.inject()
 const stylisOptions = { keyframe: false }
 
-const stylis = new Stylis(stylisOptions)
+if (process.env.NODE_ENV !== 'production') {
+  stylisOptions.compress = false
+}
+
+let stylis = new Stylis(stylisOptions)
 
 export let registered = {}
 
@@ -19,9 +23,12 @@ export function flush() {
   sheet.inject()
 }
 
+let currentSourceMap = ''
 let queue = []
 
-const insertRule = sheet.insert.bind(sheet)
+function insertRule(rule) {
+  sheet.insert(rule, currentSourceMap)
+}
 
 function insertionPlugin(
   context,
@@ -186,7 +193,19 @@ function createStyles(strings, ...interpolations) {
       styles += strings[i + 1]
     }
   })
+
   return styles
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\/\s+\/\*@\ssourceURL=\S+\s+\*\//
+  const oldStylis = stylis
+  stylis = (selector, styles) => {
+    const result = sourceMapRegEx.exec(styles)
+    currentSourceMap = result ? result[0] : ''
+    oldStylis(selector, styles)
+    currentSourceMap = ''
+  }
 }
 
 export function css(...args) {
@@ -210,12 +229,6 @@ export function injectGlobal(...args) {
     stylis('', styles)
     inserted[hash] = true
   }
-}
-
-export function hydrate(ids) {
-  ids.forEach(id => {
-    inserted[id] = true
-  })
 }
 
 export function keyframes(...args) {
@@ -251,7 +264,7 @@ export function getRegisteredStyles(registeredStyles, classNames) {
   return rawClassName
 }
 
-export function merge(className) {
+export function merge(className, sourceMap) {
   const registeredStyles = []
 
   const rawClassName = getRegisteredStyles(registeredStyles, className)
@@ -259,5 +272,11 @@ export function merge(className) {
   if (registeredStyles.length < 2) {
     return className
   }
-  return rawClassName + css(...registeredStyles)
+  return rawClassName + css(registeredStyles, sourceMap)
+}
+
+export function hydrate(ids) {
+  ids.forEach(id => {
+    inserted[id] = true
+  })
 }

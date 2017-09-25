@@ -91,6 +91,16 @@ export default ({ markdown }) => {
           Link,
           Paragraph,
           Code,
+          Image: props => {
+            return (
+              <img
+                css={`max-width: 560px;`}
+                key={props.nodeKey}
+                src={props.src}
+                alt={props.alt}
+              />
+            )
+          },
           CodeBlock: props => {
             if (['js', 'javascript', 'jsx'].indexOf(props.language) !== -1) {
               return (

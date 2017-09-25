@@ -14,7 +14,7 @@
     "react"
   ],
   "plugins": [
-    "emotion",
+    ["emotion", { "sourceMap": true }],
     "transform-class-properties"
   ]
 }

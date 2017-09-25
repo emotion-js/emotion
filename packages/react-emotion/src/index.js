@@ -24,9 +24,8 @@ const omitAssign = function(testFn, target) {
   return target
 }
 
-let componentIdIndex = 0
 
-const createStyled = (tag, options: { e: string, id: string }) => {
+const createStyled = (tag, options: { e: string }) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
       throw new Error(
@@ -34,22 +33,11 @@ const createStyled = (tag, options: { e: string, id: string }) => {
       )
     }
   }
-  let componentId
   let staticClassName = false
-  if (options !== undefined) {
-    componentId = options.id
-    if (options.e !== undefined) {
-      staticClassName = options.e
-    }
-  } else {
-    componentId = 'css-' + (componentIdIndex++).toString(36)
+  if (options !== undefined && options.e !== undefined) {
+    staticClassName = options.e
   }
   const baseTag = staticClassName === false ? tag.__emotion_base || tag : tag
-
-  const componentIdClassName =
-    tag.__emotion_classes === undefined
-      ? componentId
-      : `${tag.__emotion_classes} ${componentId}`
 
   const omitFn =
     typeof baseTag === 'string'
@@ -73,13 +61,12 @@ const createStyled = (tag, options: { e: string, id: string }) => {
     const Styled = (props, context) => {
       const getValue = v => {
         if (typeof v === 'function') {
-          if (v.__emotion_class !== undefined) return `.${v.__emotion_class}`
           return v(props, context)
         }
         return v
       }
 
-      let className = `${componentIdClassName} `
+      let className = ''
       let classInterpolations = []
 
       if (props.className) {
@@ -103,8 +90,6 @@ const createStyled = (tag, options: { e: string, id: string }) => {
 
     Styled.__emotion_styles = styles
     Styled.__emotion_base = baseTag
-    Styled.__emotion_class = componentId
-    Styled.__emotion_classes = componentIdClassName
 
     Styled.withComponent = nextTag => {
       return createStyled({
