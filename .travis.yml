@@ -3,9 +3,16 @@ language: node_js
 node_js:
   - "8"
 
+env:
+  matrix:
+    - NPM_SCRIPT=benchmark
+    - NPM_SCRIPT=test
+
 cache:
   directories:
     - node_modules
+
+script: npm run $NPM_SCRIPT
 
 before_install:
   - npm install codecov
@@ -19,3 +26,11 @@ after_success:
 cache:
   directories:
     - node_modules
+    - packages/site/node_modules
+    - packages/react-emotion/node_modules
+    - packages/preact-emotion/node_modules
+    - packages/babel-plugin-emotion/node_modules
+    - packages/emotion-utils/node_modules
+    - packages/benchmarks/node_modules
+    - packages/emotion-server/node_modules
+    - packages/emotion/node_modules
