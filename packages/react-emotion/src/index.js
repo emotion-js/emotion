@@ -60,7 +60,6 @@ export default function(tag, options: { e: string }) {
     const Styled = (props, context) => {
       const getValue = v => {
         if (typeof v === 'function') {
-          if (v.__emotion_class !== undefined) return `.${v.__emotion_class}`
           return v(props, context)
         }
         return v
