@@ -91,10 +91,7 @@ const createStyled = (tag, options: { e: string }) => {
     Styled.__emotion_base = baseTag
 
     Styled.withComponent = nextTag => {
-      return createStyled({
-        __emotion_base: nextTag,
-        __emotion_styles: styles
-      })()
+      return createStyled(nextTag, options)(styles)
     }
 
     return Styled
