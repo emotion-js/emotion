@@ -94,16 +94,6 @@ function insertionPlugin(
 
 stylis.use(insertionPlugin)
 
-function flatten(inArr) {
-  let arr = []
-  inArr.forEach(val => {
-    if (Array.isArray(val)) arr = arr.concat(flatten(val))
-    else arr = arr.concat(val)
-  })
-
-  return arr
-}
-
 function handleInterpolation(
   interpolation: any,
   couldBeSelectorInterpolation: boolean
@@ -154,7 +144,7 @@ function createStringFromObject(obj) {
   let string = ''
 
   if (Array.isArray(obj)) {
-    flatten(obj).forEach(interpolation => {
+    obj.forEach(interpolation => {
       string += handleInterpolation(interpolation, false)
     })
   } else {
