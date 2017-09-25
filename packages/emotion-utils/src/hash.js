@@ -2,7 +2,7 @@
 // murmurhash2 via https://gist.github.com/raycmorgan/588423
 
 export function hashString(str: string) {
-  return hash(str, str.length).toString(36)
+  return hash(str)
 }
 
 function hash(str: string) {
