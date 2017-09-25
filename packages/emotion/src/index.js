@@ -145,7 +145,12 @@ const processStyleValue = (key, value) => {
   return value
 }
 
+const objectToStringCache = new WeakMap()
+
 function createStringFromObject(obj) {
+  if (objectToStringCache.has(obj)) {
+    return objectToStringCache.get(obj)
+  }
   let string = ''
 
   if (Array.isArray(obj)) {
@@ -168,6 +173,7 @@ function createStringFromObject(obj) {
       }
     })
   }
+  objectToStringCache.set(obj, string)
   return string
 }
 
