@@ -135,6 +135,16 @@ const processStyleName = memoize(styleName =>
   styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
+const processStyleValue = (key, value) => {
+  if (value === undefined || value === null || typeof value === 'boolean')
+    return ''
+
+  if (unitless[key] !== 1 && !isNaN(value) && value !== 0) {
+    return value + 'px'
+  }
+  return value
+}
+
 const objectToStringCache = new WeakMap()
 
 function createStringFromObject(obj) {
@@ -153,21 +163,10 @@ function createStringFromObject(obj) {
         if (registered[obj[key]] !== undefined) {
           string += `${key}{${registered[obj[key]]}}`
         } else {
-          let styleValue = obj[key]
-          if (
-            styleValue === undefined ||
-            styleValue === null ||
-            typeof styleValue === 'boolean'
-          ) {
-            styleValue = ''
-          } else if (
-            unitless[key] !== 1 &&
-            !isNaN(styleValue) &&
-            styleValue !== 0
-          ) {
-            styleValue += 'px'
-          }
-          string += `${processStyleName(key)}:${styleValue};`
+          string += `${processStyleName(key)}:${processStyleValue(
+            key,
+            obj[key]
+          )};`
         }
       } else {
         string += `${key}{${createStringFromObject(obj[key])}}`
