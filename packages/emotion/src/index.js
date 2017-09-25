@@ -145,24 +145,6 @@ const processStyleValue = (key, value) => {
   return value
 }
 
-function createCache(fn) {
-  const cache = new WeakMap()
-
-  return arg => {
-    if (cache.has(arg)) {
-      return cache.get(arg)
-    }
-    const result = fn(arg)
-    cache.set(arg, result)
-    return result
-  }
-}
-
-const createStringFromObject =
-  typeof WeakMap === 'undefined'
-    ? _createStringFromObject
-    : createCache(_createStringFromObject)
-
 function _createStringFromObject(obj) {
   let string = ''
 
@@ -188,6 +170,22 @@ function _createStringFromObject(obj) {
   }
   return string
 }
+
+const objectToStringCache = new WeakMap()
+
+function _createStringFromObjectCached(arg) {
+  if (objectToStringCache.has(arg)) {
+    return objectToStringCache.get(arg)
+  }
+  const result = _createStringFromObject(arg)
+  objectToStringCache.set(arg, result)
+  return result
+}
+
+const createStringFromObject =
+  typeof WeakMap === 'undefined'
+    ? _createStringFromObject
+    : _createStringFromObjectCached
 
 function isLastCharDot(string) {
   return string.charCodeAt(string.length - 1) === 46 // .
