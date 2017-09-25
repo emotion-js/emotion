@@ -621,21 +621,21 @@ You may have forgotten to import it."
 `;
 
 exports[`styled withComponent will replace tags but keep styling classes 1`] = `
-.glamor-1 {
+.glamor-0 {
   color: green;
 }
 
 <article>
   <Styled>
     <h1
-      className="glamor-0 glamor-1"
+      className="glamor-0"
     >
       My Title
     </h1>
   </Styled>
   <Styled>
     <h2
-      className="glamor-2 glamor-1"
+      className="glamor-0"
     >
       My Subtitle
     </h2>
