@@ -76,9 +76,7 @@ const someCls = /*#__PURE__*/_css('display:flex;');"
 exports[`babel macro styled object function 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
-  id: 'css-SomeComponent-1f75k080'
-})({
+const SomeComponent = /*#__PURE__*/_styled('div')({
   display: 'flex'
 });"
 `;
@@ -86,9 +84,7 @@ const SomeComponent = /*#__PURE__*/_styled('div', {
 exports[`babel macro styled object member 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
-  id: 'css-SomeComponent-1jnr57b0'
-})({
+const SomeComponent = /*#__PURE__*/_styled('div')({
   display: 'flex'
 });"
 `;
@@ -102,15 +98,11 @@ const someOtherVar = _thisDoesNotExist;"
 exports[`babel macro styled tagged template literal function 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
-  id: 'css-SomeComponent-1sczqp40'
-})('display:flex;');"
+const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;');"
 `;
 
 exports[`babel macro styled tagged template literal member 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
-  id: 'css-SomeComponent-1rq85zx0'
-})('display:flex;');"
+const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;');"
 `;
