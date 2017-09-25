@@ -71,23 +71,6 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('styled component as selector', () => {
-      const basic = `
-      const SomeComponent = styled.div\` \`
-      styled.h1\`
-        color:blue;
-        \${SomeComponent} {
-          color: green;
-        }
-      \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin],
-        babelrc: false,
-        filename: __filename
-      })
-      expect(code).toMatchSnapshot()
-    })
-
     test('random expressions', () => {
       const basic = `
         const a = () => css\`font-size: 1rem\`

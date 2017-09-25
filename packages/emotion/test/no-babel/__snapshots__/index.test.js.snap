@@ -12,35 +12,6 @@ exports[`css @supports 1`] = `
 />
 `;
 
-exports[`css component as selector 1`] = `
-.glamor-3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.glamor-3 .glamor-0 {
-  color: green;
-}
-
-.glamor-1 {
-  font-size: 20px;
-}
-
-<div
-  className="glamor-2 glamor-3"
->
-  hello 
-  <h1
-    className="glamor-0 glamor-1"
-  >
-    This will be green
-  </h1>
-   world
-</div>
-`;
-
 exports[`css composition 1`] = `
 .glamor-0 {
   display: -webkit-box;

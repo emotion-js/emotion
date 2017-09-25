@@ -133,16 +133,6 @@ exports[`babel styled component inline shorthand property 1`] = `
 })({ fontSize });"
 `;
 
-exports[`babel styled component inline styled component as selector 1`] = `
-"
-const SomeComponent = /*#__PURE__*/styled(\\"div\\", {
-  id: \\"css-SomeComponent-srvsnn0\\"
-})();
-/*#__PURE__*/styled(\\"h1\\", {
-  id: \\"css-srvsnn1\\"
-})(\\"color:blue;\\", SomeComponent, \\"{color:green;}\\");"
-`;
-
 exports[`babel styled component inline styled objects prefixed 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
