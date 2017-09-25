@@ -145,25 +145,12 @@ const processStyleValue = (key, value) => {
   return value
 }
 
-function createCache(fn) {
-  const cache = new WeakMap()
+const objectToStringCache = new WeakMap()
 
-  return arg => {
-    if (cache.has(arg)) {
-      return cache.get(arg)
-    }
-    const result = fn(arg)
-    cache.set(arg, result)
-    return result
+function createStringFromObject(obj) {
+  if (objectToStringCache.has(obj)) {
+    return objectToStringCache.get(obj)
   }
-}
-
-const createStringFromObject =
-  typeof WeakMap === 'undefined'
-    ? _createStringFromObject
-    : createCache(_createStringFromObject)
-
-function _createStringFromObject(obj) {
   let string = ''
 
   if (Array.isArray(obj)) {
@@ -186,6 +173,8 @@ function _createStringFromObject(obj) {
       }
     })
   }
+  objectToStringCache.set(obj, string)
+
   return string
 }
 
