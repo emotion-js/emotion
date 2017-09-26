@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { LiveEditor, LivePreview, LiveProvider, withLive } from 'react-live/lib'
 import styled, { css, keyframes, merge } from 'react-emotion'
 import Box from '../components/Box'
+import colors from 'open-color'
 
 const code = `const SomeComponent = styled.div\`
   background-color: hotpink;
@@ -17,7 +18,7 @@ const scope = {
 }
 
 const Error = styled.pre`
-  background-color: #d21f1f;
+  background-color: ${colors.red[8]};
   overflow: auto;
   padding: 16px;
   height: 100%;
