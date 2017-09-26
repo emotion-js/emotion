@@ -32,7 +32,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
   return new Promise((resolve, reject) => {
-    const blogPostTemplate = require.resolve(`src/templates/doc.js`)
+    const blogPostTemplate = require.resolve(`./src/templates/doc.js`)
     graphql(
       `
         {
