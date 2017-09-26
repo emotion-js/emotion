@@ -16,7 +16,7 @@ const externalStylisPlugins = []
 
 const use = stylis.use
 
-export const usePlugin = plugin => {
+export const useStylisPlugin = plugin => {
   externalStylisPlugins.push(plugin)
   use(null)(externalStylisPlugins)(insertionPlugin)
 }

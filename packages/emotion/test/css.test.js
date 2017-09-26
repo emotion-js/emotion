@@ -1,9 +1,9 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { css, flush, sheet, usePlugin } from 'emotion'
+import { css, flush, sheet, useStylisPlugin } from 'emotion'
 import { transform } from 'cssjanus'
 
-usePlugin(function(context, content) {
+useStylisPlugin(function(context, content) {
   if (context === 2) {
     return transform(content)
   }
