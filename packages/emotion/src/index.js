@@ -117,7 +117,7 @@ function handleInterpolation(
   }
 
   if (typeof interpolation === 'function') {
-    return interpolation()
+    return handleInterpolation(interpolation())
   }
 
   if (typeof interpolation === 'object') {

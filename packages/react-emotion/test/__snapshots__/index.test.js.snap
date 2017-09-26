@@ -318,7 +318,7 @@ exports[`styled inline function return value is a function 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="glamor-0"
 >
   hello world
 </h1>
