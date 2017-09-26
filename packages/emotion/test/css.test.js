@@ -290,11 +290,4 @@ describe('css', () => {
     const tree2 = renderer.create(<div className={cls2} />).toJSON()
     expect(tree2).toMatchSnapshot()
   })
-
-  test('return function in interpolation', () => {
-    const cls1 = css`color: ${() => 'blue'};`
-
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
 })
