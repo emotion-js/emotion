@@ -4,8 +4,8 @@
   "description": "emotion site",
   "version": "1.0.0",
   "dependencies": {
-    "babel-standalone": "^6.26.0",
     "babel-plugin-emotion": "^8.0.2-7",
+    "babel-standalone": "^6.26.0",
     "dom-iterator": "^0.3.0",
     "emotion": "^8.0.2-7",
     "emotion-server": "^8.0.2-7",
@@ -19,6 +19,7 @@
     "react-dom": "^15.6.1",
     "react-emotion": "^8.0.2-7",
     "react-live": "^1.7.1",
+    "slash": "^1.0.0",
     "styled-system": "^1.0.0-15"
   },
   "keywords": [

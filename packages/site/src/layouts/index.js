@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 import Link from '../components/Link'
 import { fontFace, injectGlobal } from 'react-emotion'
 import Box from '../components/Box'
+import prismStyles from 'react-live/lib/constants/css'
 import Helmet from 'react-helmet'
+
+injectGlobal(
+  prismStyles.replace('prism-code', 'prism-code,pre[class*="language-"]')
+)
 
 injectGlobal`
 html, body, #___gatsby, #___gatsby > div {

@@ -37,7 +37,7 @@ const Preview = withLive(
 export default class Try extends Component {
   render() {
     return (
-      <LiveProvider noInline scope={scope} code={code}>
+      <LiveProvider noInline scope={scope} code={code} mountStylesheet={false}>
         <Box
           display="flex"
           direction={['column', 'row']}
