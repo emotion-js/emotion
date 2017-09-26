@@ -4,7 +4,7 @@ You can pass additional props to your components using recompose's `withProps` h
 
 **[`withProps` documentation](https://github.com/acdlite/recompose/blob/master/docs/API.md#withprops)**
 
-```js
+```jsx
 import withProps from 'recompose/withProps'
 
 const RedPasswordInput = withProps({ type: 'password' })(styled('input')`

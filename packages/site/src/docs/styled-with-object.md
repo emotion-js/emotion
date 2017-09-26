@@ -2,7 +2,7 @@
 
 `styled` can also take objects or a function that returns an object. This API was inspired by [glamorous](https://github.com/paypal/glamorous).
 
-```jsx harmony
+```jsx
 import styled from 'react-emotion'
 
 const H1 = styled.h1(

@@ -4,7 +4,7 @@
 This allows you to use your existing object styles in the emotion ecosystem.
 Another great benefit is that you can now use [polished](https://polished.js.org/) with emotion.
 
-```jsx harmony
+```jsx
 import { css } from 'emotion'
 import { lighten, modularScale } from 'polished'
 

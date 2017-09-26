@@ -1,5 +1,4 @@
 const path = require('path')
-const slash = require(`slash`)
 
 exports.modifyBabelrc = ({ babelrc }) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -33,7 +32,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
   return new Promise((resolve, reject) => {
-    const blogPostTemplate = path.resolve(`src/templates/doc.js`)
+    const blogPostTemplate = require.resolve(`src/templates/doc.js`)
     graphql(
       `
         {
@@ -52,13 +51,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       if (result.errors) {
         console.log(result.errors)
       }
-
-      // Create blog posts pages.
-      console.log(result)
       result.data.allMarkdownRemark.edges.forEach(edge => {
         createPage({
-          path: `docs/${edge.node.fields.slug}`, // required
-          component: slash(blogPostTemplate),
+          path: `docs/${edge.node.fields.slug}`,
+          component: blogPostTemplate,
           context: {
             slug: edge.node.fields.slug
           }
@@ -79,7 +75,6 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
     typeof node.slug === `undefined`
   ) {
     const fileNode = getNode(node.parent)
-    console.log(fileNode)
     createNodeField({
       node,
       name: `slug`,

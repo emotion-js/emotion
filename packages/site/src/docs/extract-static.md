@@ -29,7 +29,7 @@ Configure babel
 
 This js file, `h1.js`
 
-```jsx harmony
+```jsx
 import styled from 'react-emotion'
 
 const H1 = styled('h1')`

@@ -6,7 +6,7 @@ import renaming.
 
 ## Dynamic
 
-```js
+```jsx
 import something, { css as emotion } from 'react-emotion';
 
 const classes = emotion`
@@ -24,7 +24,7 @@ The emotion babel plugin can also handle using babel options to handle
 processing via the `importedNames` key. This is useful for targetting
 a prop other than `css` for processing.
 
-```js
+```json
 {
   "plugins": [
     ["emotion", { "importedNames": { "css": "emotion" }}]
@@ -43,7 +43,7 @@ One use case for this functionality is to migrate incrementally from a
 styled-jsx application. When compiling the following file with emotion
 and styled-jsx.
 
-```js
+```jsx
 import styled, { css } from "react-emotion";
 
 export default () => (
@@ -63,7 +63,7 @@ export default () => (
 The old combination would conflict on the `css` prop that styled-jsx
 outputs.
 
-```js
+```jsx
 import _JSXStyle from "styled-jsx/style";
 import styled, { css } from "react-emotion";
 
@@ -82,7 +82,7 @@ export default (() => <div data-jsx={2648947580}>
 
 By adding the babel opt config rename as such.
 
-```js
+```json
 {
   "plugins": [
     "styled-jsx/babel",
@@ -94,7 +94,7 @@ By adding the babel opt config rename as such.
 We can avoid re-compiling the `css` props and instead use `emotion` for
 our template literals, etc.
 
-```js
+```jsx
 import _JSXStyle from "styled-jsx/style";
 import styled, { css as emotion } from "react-emotion";
 

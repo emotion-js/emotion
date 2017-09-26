@@ -35,6 +35,9 @@ html, body, #___gatsby, #___gatsby > div {
   -webkit-font-smoothing: antialiased;
   background-color: #f8f9fa;
 }
+pre[class*="language-"] {
+  border-radius: 8px;  
+}
 `
 
 fontFace`

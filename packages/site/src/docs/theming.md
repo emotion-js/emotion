@@ -19,7 +19,7 @@ const H1 = withTheme(styled(Heading)`
 
 const App = () => (
   <ThemeProvider theme={theme}>
-    <H1 scale={2} ref={refFunction}>
+    <H1 scale={2}>
       emotion
     </H1>
   </ThemeProvider>

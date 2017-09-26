@@ -1,21 +1,20 @@
 import React from 'react'
 
-class BlogPostRoute extends React.Component {
+class DocRoute extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
-    console.log(post)
+    const doc = this.props.data.markdownRemark
     return (
       <div>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} className="post" />
+        <div dangerouslySetInnerHTML={{ __html: doc.html }} />
       </div>
     )
   }
 }
 
-export default BlogPostRoute
+export default DocRoute
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query DocBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
     }

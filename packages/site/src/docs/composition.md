@@ -2,7 +2,7 @@
 
 `css` can be used in emotion to build styles that can compose with other styles.
 
-```javascript
+```jsx
 import { css } from 'emotion'
 import styled from 'react-emotion'
 
