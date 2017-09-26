@@ -1,6 +1,6 @@
 {
   "name": "emotion-utils",
-  "version": "8.0.2-3",
+  "version": "8.0.2-7",
   "description": "Shared utilities used by emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
