@@ -312,6 +312,18 @@ exports[`styled higher order component 1`] = `
 />
 `;
 
+exports[`styled inline function return value is a function 1`] = `
+.glamor-0 {
+  font-size: 20px;
+}
+
+<h1
+  className="legacy__class glamor-0"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled innerRef 1`] = `
 .glamor-0 {
   font-size: 12px;

@@ -116,6 +116,10 @@ function handleInterpolation(
     return ''
   }
 
+  if (typeof interpolation === 'function') {
+    return interpolation()
+  }
+
   if (typeof interpolation === 'object') {
     return createStringFromObject(interpolation)
   }
