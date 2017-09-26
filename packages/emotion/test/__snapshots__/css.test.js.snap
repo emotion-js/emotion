@@ -162,7 +162,7 @@ exports[`css falsy property value in object 1`] = `
 
 exports[`css float property 1`] = `
 .glamor-0 {
-  float: left;
+  float: right;
 }
 
 <div
@@ -203,7 +203,7 @@ exports[`css handles array of objects 1`] = `
 exports[`css handles more than 10 dynamic properties 1`] = `
 .glamor-0 {
   text-decoration: underline;
-  border-right: solid blue 54px;
+  border-left: solid blue 54px;
   background: white;
   color: black;
   display: block;
@@ -222,7 +222,7 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 
 exports[`css handles objects 1`] = `
 .glamor-0 {
-  float: left;
+  float: right;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
