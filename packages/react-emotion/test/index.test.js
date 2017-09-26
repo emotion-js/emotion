@@ -82,7 +82,7 @@ describe('styled', () => {
   })
 
   test('inline function return value is a function', () => {
-    const fontSize = () => 20;
+    const fontSize = () => 20
     const H1 = styled('h1')`font-size: ${() => fontSize}px;`
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
