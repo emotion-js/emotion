@@ -1,3 +1,17 @@
+## v8.0.2-7 (2017-09-25)
+
+#### :rocket: Enhancement
+* `emotion`, `react-emotion`
+  * [#346](https://github.com/emotion-js/emotion/pull/346) Allow interpolation return value to be a function. . ([@tkh44](https://github.com/tkh44))
+  * [#327](https://github.com/emotion-js/emotion/pull/327) Use cross-env to pass env vars across platforms. ([@apostolos](https://github.com/apostolos))
+
+#### :memo: Documentation
+* [#345](https://github.com/emotion-js/emotion/pull/345) Add /docs folder README and CodeSandbox.io links. ([@tkh44](https://github.com/tkh44))
+
+#### Committers: 2
+- Apostolos Tsakpinis ([apostolos](https://github.com/apostolos))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+
 ## v8.0.2-6 (2017-09-25)
 
 #### :boom: Breaking Change
