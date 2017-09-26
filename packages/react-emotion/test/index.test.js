@@ -614,4 +614,17 @@ describe('styled', () => {
 
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
+  test('withComponent with function interpolation', () => {
+    const Title = styled('h1')`color: ${props => props.color || 'green'};`
+    const Subtitle = Title.withComponent('h2')
+
+    const wrapper = mount(
+      <article>
+        <Title>My Title</Title>
+        <Subtitle color="hotpink">My Subtitle</Subtitle>
+      </article>
+    )
+
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
 })
