@@ -3,13 +3,13 @@ const path = require('path')
 exports.modifyBabelrc = ({ babelrc }) => {
   if (process.env.NODE_ENV !== 'production') {
     return {
-      plugins: [[require(`babel-plugin-emotion`), { sourceMap: true }]].concat(
-        babelrc.plugins
-      )
+      plugins: [
+        [require.resolve(`babel-plugin-emotion`), { sourceMap: true }]
+      ].concat(babelrc.plugins)
     }
   }
   return {
-    plugins: [require(`babel-plugin-emotion`)].concat(babelrc.plugins)
+    plugins: [require.resolve(`babel-plugin-emotion`)].concat(babelrc.plugins)
   }
 }
 exports.modifyWebpackConfig = ({ config }) => {
