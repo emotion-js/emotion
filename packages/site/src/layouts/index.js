@@ -51,7 +51,7 @@ fontFace`
 const StyledLink = Box.withComponent(Link)
 
 const Header = () => (
-  <Box bg="#d36ac2" p={1}>
+  <Box bg="#9932CC" p={1}>
     <Box display="flex" flex={1} justify="space-between">
       <Box flex={1}>
         <h1 css={`margin: 0;`}>
