@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-plugin-emotion": "^8.0.2-7",    
     "emotion": "^8.0.2-7",
     "npm-run-all": "^4.0.2",
     "react-emotion": "^8.0.2-7",

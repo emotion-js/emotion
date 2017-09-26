@@ -16,7 +16,10 @@ exports.modifyWebpackConfig = ({ config }) => {
   config.merge({
     resolve: {
       alias: {
-        'buble/dist/buble.deps': path.join(__dirname, './src/utils/transform')
+        'buble/dist/buble.deps': path.join(__dirname, './src/utils/transform'),
+        // used by a dependency of react-live
+        xor$: 'component-xor',
+        props$: 'component-props'
       }
     },
     node: {
