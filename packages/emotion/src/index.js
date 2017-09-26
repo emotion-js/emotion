@@ -12,6 +12,15 @@ if (process.env.NODE_ENV !== 'production') {
 
 let stylis = new Stylis(stylisOptions)
 
+const externalStylisPlugins = []
+
+const use = stylis.use
+
+export const usePlugin = plugin => {
+  externalStylisPlugins.push(plugin)
+  use(null)(externalStylisPlugins)(insertionPlugin)
+}
+
 export let registered = {}
 
 export let inserted = {}
