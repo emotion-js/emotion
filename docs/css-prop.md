@@ -24,3 +24,7 @@ function SomeComponent (props) {
 }
 
 ```
+
+**Notes:**
+- This feature requires the `"emotion"` babel plugin.
+- CSS props are not compatible with babel's `"transform-react-inline-elements"` plugin. If you include it in your `.babelrc`, no transformation will take place and your styles will silently fail.
