@@ -8,3 +8,5 @@ node_modules/
 packages/site/build
 package-lock.json
 yarn.lock
+.cache/
+public/

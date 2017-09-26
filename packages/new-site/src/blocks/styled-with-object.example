@@ -1,0 +1,7 @@
+const Avatar = styled('img')({
+  width: 96,
+  height: 96,
+  borderRadius: '50%'
+})
+
+render(<Avatar src={logoUrl} />)

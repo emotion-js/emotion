@@ -1,0 +1,13 @@
+const Avatar = styled('div')`
+  & img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+  }
+`
+
+render(
+  <Avatar>
+    <img src={logoUrl} />
+  </Avatar>
+)
