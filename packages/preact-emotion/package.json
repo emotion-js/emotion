@@ -1,6 +1,6 @@
 {
   "name": "preact-emotion",
-  "version": "8.0.2-7",
+  "version": "8.0.2-8",
   "description": "The Next Generation of CSS-in-JS, for Preact projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -19,12 +19,12 @@
     "emotion-utils": "^8.0.2-7"
   },
   "peerDependencies": {
-    "emotion": "^8.0.2-7"
+    "emotion": "^8.0.2-8"
   },
   "devDependencies": {
-    "emotion": "^8.0.2-7",
+    "emotion": "^8.0.2-8",
     "npm-run-all": "^4.0.2",
-    "react-emotion": "^8.0.2-7",
+    "react-emotion": "^8.0.2-8",
     "rimraf": "^2.6.1",
     "rollup": "^0.43.0"
   },
