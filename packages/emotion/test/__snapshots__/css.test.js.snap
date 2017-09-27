@@ -29,6 +29,19 @@ exports[`css auto px 1`] = `
 />
 `;
 
+exports[`css boolean as value 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css composition 1`] = `
 .glamor-0 {
   display: -webkit-box;
@@ -153,6 +166,16 @@ exports[`css falsy property value in object 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css falsy value in nested selector on object 1`] = `
+.glamor-0:hover {
+  color: hotpink;
 }
 
 <div

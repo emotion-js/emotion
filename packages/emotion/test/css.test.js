@@ -36,6 +36,25 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('falsy value in nested selector on object', () => {
+    const cls1 = css({
+      ':hover': {
+        display: null,
+        color: 'hotpink'
+      }
+    })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('boolean as value', () => {
+    const cls1 = css({
+      display: 'flex',
+      color: false,
+      backgroundColor: true
+    })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
   test('auto px', () => {
     const cls1 = css({ display: 'flex', flex: 1, fontSize: 10 })
     const tree = renderer.create(<div className={cls1} />).toJSON()
