@@ -40,8 +40,7 @@
     "rollup": "^0.43.0"
   },
   "dependencies": {
-    "brcast": "^2.0.0",
-    "hoist-non-react-statics": "^2.3.0"
+    "brcast": "^2.0.0"
   },
   "peerDependencies": {
     "prop-types": ">= 15",
