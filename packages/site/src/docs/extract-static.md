@@ -1,4 +1,6 @@
-## Extract Static
+---
+title: "Extract Static"
+---
 
 Extract styles with no interpolations into external css files.
 

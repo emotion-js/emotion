@@ -1,4 +1,6 @@
-## Composition
+---
+title: "Composition"
+---
 
 `css` can be used in emotion to build styles that can compose with other styles.
 

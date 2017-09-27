@@ -1,3 +1,8 @@
+---
+title: "Objects as styles"
+---
+
+
 ## Objects as Styles
 
 `css` can also take an object or array of objects as a parameter.

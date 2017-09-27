@@ -1,4 +1,6 @@
-# Configurable Imports
+---
+title: "Configurable Imports"
+---
 
 If you are using ES Module imports (`import styled from
 'react-emotion'`) the emotion babel plugin can handle two types of

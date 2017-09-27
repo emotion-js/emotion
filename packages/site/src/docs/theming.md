@@ -1,4 +1,6 @@
-## Theming
+---
+title: "Theming"
+---
 
 Themes are provided by the library [theming](https://github.com/iamstarkov/theming).
 

@@ -1,4 +1,6 @@
-## Usage with Preact
+---
+title: "Usage with Preact"
+---
 
 emotion only uses `createElement` from React so we can support Preact with an alias. Import `preact-emotion` instead of `react-emotion` and use it the same way you would with React.
 

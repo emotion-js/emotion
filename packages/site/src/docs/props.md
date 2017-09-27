@@ -1,1 +1,3 @@
-## Dynamic Props
+---
+title: "Dynamic Props"
+---

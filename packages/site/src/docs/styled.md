@@ -1,6 +1,6 @@
-## Styled
-
-The babel plugin is required in order to use the `styled` api. The installation documentation can be found [here](https://github.com/emotion-js/emotion/blob/master/docs/install.md).
+---
+title: "styled"
+---
 
 ```jsx
 import styled from 'react-emotion'

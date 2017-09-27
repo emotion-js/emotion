@@ -5,6 +5,7 @@ import { fontFace, injectGlobal } from 'react-emotion'
 import Box from '../components/Box'
 import prismStyles from 'react-live/lib/constants/css'
 import Helmet from 'react-helmet'
+import 'normalize.css/normalize.css'
 
 injectGlobal(
   prismStyles.replace('prism-code', 'prism-code,pre[class*="language-"]')

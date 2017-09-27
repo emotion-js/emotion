@@ -1,4 +1,6 @@
-## Source Maps
+---
+title: "Source Maps"
+---
 
 **babel plugin required**
 
