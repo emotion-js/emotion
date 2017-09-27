@@ -281,6 +281,14 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  test('null value', () => {
+    const cls1 = css(null)
+    const cls2 = css`${() => null};`
+    expect(renderer.create(<div className={cls1} />).toJSON()).toMatchSnapshot()
+    expect(renderer.create(<div className={cls2} />).toJSON()).toMatchSnapshot()
+  })
+
   test('flushes correctly', () => {
     const cls1 = css`display: flex;`
     const tree = renderer.create(<div className={cls1} />).toJSON()

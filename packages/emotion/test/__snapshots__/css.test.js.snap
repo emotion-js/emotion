@@ -399,6 +399,18 @@ exports[`css null rule 1`] = `
 />
 `;
 
+exports[`css null value 1`] = `
+<div
+  className="css-0"
+/>
+`;
+
+exports[`css null value 2`] = `
+<div
+  className="css-0"
+/>
+`;
+
 exports[`css random expression 1`] = `
 .glamor-0 {
   font-size: 20px;

@@ -35,6 +35,24 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('null interpolation value', () => {
+    const fontSize = 20
+    const H1 = styled.h1`
+      color: blue;
+      font-size: ${fontSize};
+      @media (min-width: 420px) {
+        color: blue;
+        @media (min-width: 520px) {
+          color: green;
+        }
+      }
+    `
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('basic render with object as style', () => {
     const fontSize = 20
     const H1 = styled.h1({ fontSize })
