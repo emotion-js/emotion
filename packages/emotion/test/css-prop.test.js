@@ -36,63 +36,45 @@ describe('css prop react', () => {
     const huge = 100
     const tiny = 6
 
-    const bold = css`
-      display: flex;
-      font-weight: bold;
-    `
+    const bold = css`display: flex;
+      font-weight: bold;`
 
-    const big = css`
-      ${bold};
-      font-size: ${huge};
-    `
+    const big = css`${bold};
+      font-size: ${huge};`
 
     const small = css`font-size: ${tiny};`
 
-    const flexCenter = css`
-      display: flex;
+    const flexCenter = css`display: flex;
       justify-content: center;
-      align-items: center;
-    `
+      align-items: center;`
 
     const tree = renderer
-      .create(
-        <div
-          className="css__legacy-stuff"
-          css={`
+      .create(<div className="css__legacy-stuff" css={`
               ${bold}; ${flexCenter};
-             `}
-        >
-          <h1
-            css={`
+             `}>
+          <h1 css={`
                 ${props.error ? big : small};
                 color: red
-              `}
-          >
+              `}>
             BOOM
           </h1>
           <p className="test_class1" css={`color: blue;`}>
             Hello
           </p>
-          <p
-            className="test_class1 test___class45"
-            css={`display: inline-flex`}
-          >
+          <p className="test_class1 test___class45" css={`display: inline-flex`}>
             World
           </p>
-          <p
-            css={`
+          <p css={`
                 color: red;
                 border-radius: ${props.radius};
                 &:hover {
                   font-weight: bold;
                   color: ${props.online ? 'green' : 'gray'};
                 }
-              `}
-          >
+              `}>
             hello world
           </p>
-        </div>
-      )
+        </div>)
       .toJSON()
 
     expect(tree).toMatchSnapshot()

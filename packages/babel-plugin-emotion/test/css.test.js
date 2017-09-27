@@ -21,9 +21,7 @@ describe('babel css', () => {
         }
         width: \${widthVar};
       \``
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -60,9 +58,7 @@ describe('babel css', () => {
         }
         width: \${widthVar};
       \``
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -71,9 +67,7 @@ describe('babel css', () => {
         css\`
           float: left;
       \``
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -89,9 +83,7 @@ describe('babel css', () => {
         \${{ backgroundColor: "hotpink" }};
       \`
       `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -103,9 +95,7 @@ describe('babel css', () => {
           display: flex;
         }
       \``
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -119,9 +109,7 @@ describe('babel css', () => {
         }
         \`
       `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -140,9 +128,7 @@ describe('babel css', () => {
           }
         \`
       `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
     test(':fullscreen', () => {
@@ -160,9 +146,7 @@ describe('babel css', () => {
         }
       \`
     `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -177,9 +161,7 @@ describe('babel css', () => {
           }
         \`
       `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -192,9 +174,7 @@ describe('babel css', () => {
         alignItems: \`\${'center'}\`
       })
     `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
     test('array of objects', () => {
@@ -207,18 +187,14 @@ describe('babel css', () => {
         justifyContent: 'flex-start'
       }])
     `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
     test('symbols inside of ""', () => {
       const basic = `
       const cls = css\`content:  "  {  }  "\`
     `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
   })
@@ -244,9 +220,7 @@ describe('babel css', () => {
 
     test('basic object support', () => {
       const basic = `css({display: 'flex'})`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -260,9 +234,7 @@ describe('babel css', () => {
 
     test('dynamically renamed-import: basic object support', () => {
       const basic = `import { css as cows } from 'emotion'; cows({display: 'flex'})`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -278,9 +250,7 @@ describe('babel css', () => {
             }
         })
    `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
 
@@ -291,9 +261,7 @@ describe('babel css', () => {
           [\`w$\{'idth'}\`]: 20
         })
        `
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
   })

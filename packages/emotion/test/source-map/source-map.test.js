@@ -5,11 +5,7 @@ import { css, sheet, flush } from 'emotion'
 describe('css', () => {
   afterEach(() => flush())
   test('source-map nested styles', () => {
-    const mq = [
-      '@media(min-width: 420px)',
-      '@media(min-width: 640px)',
-      '@media(min-width: 960px)'
-    ]
+    const mq = ['@media(min-width: 420px)', '@media(min-width: 640px)', '@media(min-width: 960px)']
 
     css({
       color: 'blue',
@@ -30,19 +26,13 @@ describe('css', () => {
   })
 
   test('source-map nested media queries', () => {
-    css`
-      @media (max-width: 600px) {
-        h1 {
+    css`@media (max-width: 600px) {h1 {
           font-size: 1.4rem;
-        }
-      }
+        }}
 
-      @media (max-width: 400px), (max-height: 420px) {
-        h1 {
+      @media (max-width: 400px), (max-height: 420px) {h1 {
           font-size: 1.1rem;
-        }
-      }
-    `
+        }}`
 
     expect(sheet).toMatchSnapshot()
   })
