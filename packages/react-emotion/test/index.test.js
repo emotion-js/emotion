@@ -35,6 +35,24 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('null interpolation value', () => {
+    const fontSize = 20
+    const H1 = styled.h1`
+      color: blue;
+      font-size: ${fontSize};
+      @media (min-width: 420px) {
+        color: blue;
+        @media (min-width: 520px) {
+          color: green;
+        }
+      }
+    `
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('basic render with object as style', () => {
     const fontSize = 20
     const H1 = styled.h1({ fontSize })
@@ -77,6 +95,15 @@ describe('styled', () => {
         </H2>
       )
       .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('inline function return value is a function', () => {
+    const fontSize = () => 20
+    const H1 = styled('h1')`font-size: ${() => fontSize}px;`
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -298,49 +325,6 @@ describe('styled', () => {
         <H1 className={'legacy__class'} theme={{ blue: 'blue' }}>
           hello world
         </H1>
-      )
-      .toJSON()
-
-    expect(tree).toMatchSnapshot()
-  })
-
-  test('component as selector', () => {
-    const fontSize = '20px'
-    const H1 = styled.h1`font-size: ${fontSize};`
-
-    const Thing = styled.div`
-      display: flex;
-      ${H1} {
-        color: green;
-      }
-    `
-
-    const tree = renderer
-      .create(
-        <Thing>
-          hello <H1>This will be green</H1> world
-        </Thing>
-      )
-      .toJSON()
-
-    expect(tree).toMatchSnapshot()
-  })
-
-  test('component as selector function interpolation', () => {
-    const H1 = styled.h1`font-size: ${props => props.fontSize};`
-
-    const Thing = styled.div`
-      display: flex;
-      ${H1} {
-        color: green;
-      }
-    `
-
-    const tree = renderer
-      .create(
-        <Thing fontSize={10}>
-          hello <H1 fontSize={20}>This will be green</H1> world
-        </Thing>
       )
       .toJSON()
 
@@ -643,5 +627,31 @@ describe('styled', () => {
     expect(
       () => styled(undefined)`display: flex;`
     ).toThrowErrorMatchingSnapshot()
+  })
+  test('withComponent will replace tags but keep styling classes', () => {
+    const Title = styled('h1')`color: green;`
+    const Subtitle = Title.withComponent('h2')
+
+    const wrapper = mount(
+      <article>
+        <Title>My Title</Title>
+        <Subtitle>My Subtitle</Subtitle>
+      </article>
+    )
+
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+  test('withComponent with function interpolation', () => {
+    const Title = styled('h1')`color: ${props => props.color || 'green'};`
+    const Subtitle = Title.withComponent('h2')
+
+    const wrapper = mount(
+      <article>
+        <Title>My Title</Title>
+        <Subtitle color="hotpink">My Subtitle</Subtitle>
+      </article>
+    )
+
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
 })

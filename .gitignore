@@ -5,7 +5,7 @@ lib/
 node_modules/
 *.log
 .idea
-/example/build
+packages/site/build
 package-lock.json
 yarn.lock
 .DS_Store

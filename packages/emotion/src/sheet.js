@@ -60,9 +60,7 @@ export default class StyleSheet {
       this.tags[0] = makeStyleTag()
     } else {
       // server side 'polyfill'. just enough behavior to be useful.
-      this.sheet = {
-        cssRules: []
-      }
+      this.sheet = []
     }
     this.injected = true
   }
@@ -73,40 +71,34 @@ export default class StyleSheet {
     }
     this.isSpeedy = !!bool
   }
-  insert(rule) {
+  insert(rule, sourceMap) {
     if (isBrowser) {
-      const tag = this.tags[this.tags.length - 1]
-      const sheet = sheetForTag(tag)
       // this is the ultrafast version, works across browsers
-      if (this.isSpeedy && sheet.insertRule) {
-        // this weirdness for perf, and chrome's weird bug
-        // https://stackoverflow.com/questions/20007992/chrome-suddenly-stopped-accepting-insertrule
+      if (this.isSpeedy) {
+        const tag = this.tags[this.tags.length - 1]
+        const sheet = sheetForTag(tag)
+
         try {
           sheet.insertRule(rule, sheet.cssRules.length)
         } catch (e) {
           if (process.env.NODE_ENV !== 'production') {
-            // might need beter dx for this
             console.warn('illegal rule', rule) // eslint-disable-line no-console
           }
         }
       } else {
-        // more browser weirdness. I don't even know
-        // else if(this.tags.length > 0 && this.tags::last().styleSheet) {
-        //   this.tags::last().styleSheet.cssText+= rule
-        // }
-        tag.appendChild(document.createTextNode(rule))
+        const tag = makeStyleTag()
+        this.tags.push(tag)
+        tag.appendChild(document.createTextNode(rule + (sourceMap || '')))
+      }
+      this.ctr++
+      if (this.ctr % 65000 === 0) {
+        this.tags.push(makeStyleTag())
       }
     } else {
       // enough 'spec compliance' to be able to extract the rules later
-      // in other words, just the cssText field
-      this.sheet.cssRules.push({ cssText: rule })
+      // in other words, just the rule
+      this.sheet.push(rule)
     }
-
-    this.ctr++
-    if (isBrowser && this.ctr % 65000 === 0) {
-      this.tags.push(makeStyleTag())
-    }
-    return this.ctr - 1
   }
   flush() {
     if (isBrowser) {
@@ -116,7 +108,7 @@ export default class StyleSheet {
       // todo - look for remnants in document.styleSheets
     } else {
       // simpler on server
-      this.sheet.cssRules = []
+      this.sheet = []
     }
     this.injected = false
   }

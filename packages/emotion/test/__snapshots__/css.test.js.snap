@@ -29,11 +29,20 @@ exports[`css auto px 1`] = `
 />
 `;
 
-exports[`css composition 1`] = `
-.glamor-0:hover {
-  color: hotpink;
+exports[`css boolean as value 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css composition 1`] = `
 .glamor-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -43,6 +52,10 @@ exports[`css composition 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+.glamor-0:hover {
+  color: hotpink;
 }
 
 <div
@@ -77,15 +90,6 @@ exports[`css composition stuff 2`] = `
 `;
 
 exports[`css composition with objects 1`] = `
-.glamor-0:hover {
-  color: blue;
-}
-
-.glamor-0:after {
-  content: " ";
-  color: red;
-}
-
 .glamor-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -97,6 +101,15 @@ exports[`css composition with objects 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+.glamor-0:after {
+  content: " ";
+  color: red;
+}
+
+.glamor-0:hover {
+  color: blue;
 }
 
 @media (min-width:420px) {
@@ -132,6 +145,21 @@ exports[`css css variables 1`] = `
 />
 `;
 
+exports[`css explicit & 1`] = `
+<div
+  className="css-16ooeb3 another-class"
+/>
+`;
+
+exports[`css explicit & 2`] = `
+".css-16ooeb3.another-class {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}"
+`;
+
 exports[`css falsy property value in object 1`] = `
 .glamor-0 {
   display: -webkit-box;
@@ -145,9 +173,19 @@ exports[`css falsy property value in object 1`] = `
 />
 `;
 
+exports[`css falsy value in nested selector on object 1`] = `
+.glamor-0:hover {
+  color: hotpink;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css float property 1`] = `
 .glamor-0 {
-  float: left;
+  float: right;
 }
 
 <div
@@ -174,10 +212,21 @@ exports[`css flushes correctly 2`] = `
 />
 `;
 
+exports[`css handles array of objects 1`] = `
+.glamor-0 {
+  height: 50px;
+  width: 20px;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css handles more than 10 dynamic properties 1`] = `
 .glamor-0 {
   text-decoration: underline;
-  border-right: solid blue 54px;
+  border-left: solid blue 54px;
   background: white;
   color: black;
   display: block;
@@ -196,7 +245,7 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 
 exports[`css handles objects 1`] = `
 .glamor-0 {
-  float: left;
+  float: right;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -212,6 +261,40 @@ exports[`css handles objects 1`] = `
 />
 `;
 
+exports[`css media query specificity 1`] = `
+".css-mfslnr {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+@media (min-width:420px) {
+  .css-mfslnr {
+    width: 96px;
+    height: 96px;
+  }
+}"
+`;
+
+exports[`css media query specificity 2`] = `
+.glamor-0 {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+@media (min-width:420px) {
+  .glamor-0 {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css nested 1`] = `
 .glamor-0 {
   color: yellow;
@@ -219,6 +302,7 @@ exports[`css nested 1`] = `
 
 .glamor-0 .some-class {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -227,7 +311,7 @@ exports[`css nested 1`] = `
   background-color: hotpink;
 }
 
-@media (max-width: 600px) {
+@media (max-width:600px) {
   .glamor-0 .some-class {
     background-color: pink;
   }
@@ -315,6 +399,18 @@ exports[`css null rule 1`] = `
 />
 `;
 
+exports[`css null value 1`] = `
+<div
+  className="css-0"
+/>
+`;
+
+exports[`css null value 2`] = `
+<div
+  className="css-1xdhyk6"
+/>
+`;
+
 exports[`css random expression 1`] = `
 .glamor-0 {
   font-size: 20px;
@@ -355,6 +451,42 @@ exports[`css registered styles as nested selector value in object 1`] = `
   display: -ms-flexbox;
   display: flex;
   background-color: hotpink;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css return function in interpolation 1`] = `
+.glamor-0 {
+  color: blue;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css weakmap 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css weakmap 2`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 <div

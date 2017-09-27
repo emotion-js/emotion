@@ -1,0 +1,35 @@
+{
+  "name": "benchmarks",
+  "private": true,
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "emotion": "^8.0.2-9",
+    "glamor": "^2.20.37",
+    "glamorous": "^4.1.0",
+    "marky": "^1.2.0",
+    "postcss": "^6.0.8",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "react-emotion": "^8.0.2-9",
+    "styled-components": "^2.1.2"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.1",
+    "babel-macros": "^1.0.2",
+    "cli-chart": "^0.3.1",
+    "cli-table": "^0.3.1",
+    "css-loader": "^0.28.4",
+    "html-webpack-plugin": "^2.30.1",
+    "puppeteer": "^0.10.1",
+    "react-addons-perf": "^15.6.0-rc.1",
+    "serve": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.4.1",
+    "webpack-bundle-analyzer": "^2.9.0"
+  },
+  "scripts": {
+    "build:benchmark": "webpack",
+    "benchmark": "npm run build:benchmark && node run-headless.js"
+  },
+  "version": "8.0.2-9"
+}

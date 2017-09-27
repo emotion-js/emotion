@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sheet flush 1`] = `Array []`;
+
+exports[`sheet inject method throws if the sheet is already injected 1`] = `"already injected!"`;
+
+exports[`sheet tags 1`] = `
+Array [
+  <style
+    type="text/css"
+    data-emotion=""
+>
+    
+</style>,
+]
+`;

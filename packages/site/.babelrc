@@ -1,0 +1,20 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "loose": true,
+        "targets": {
+          "uglify": true
+        }
+      }
+    ],
+    "stage-0",
+    "react"
+  ],
+  "plugins": [
+    ["emotion", { "sourceMap": true }],
+    "transform-class-properties"
+  ]
+}

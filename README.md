@@ -11,7 +11,7 @@
 ![core size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?label=core%20size)
 ![react gzip size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/DO-NOT-USE.min.js?compression=gzip&label=react%20gzip%20size)
 ![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/DO-NOT-USE.min.js?label=react%20size)
-[![slack](https://emotion.now.sh/badge.svg)](http://slack.emotion.sh/)
+[![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
 
 emotion is a high performance, lightweight css-in-js library. 
 The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/glam) library and its philosophy is laid out [here](https://gist.github.com/threepointone/0ef30b196682a69327c407124f33d69a). 
@@ -21,29 +21,21 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
 
 -- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
-- [Install](https://github.com/tkh44/emotion/tree/master/docs/install.md)
-- Demos
-  - [emotion website](https://github.com/tkh44/emotion/tree/master/example) [[Demo Here](https://emotion.sh)]
+---
+
+### [Install](https://github.com/tkh44/emotion/tree/master/docs/install.md)
+
+### Demos
+  
+  - [Code Sandbox](https://codesandbox.io/s/pk1qjqpw67)
+  - [emotion website](https://github.com/tkh44/emotion/tree/master/packages/site) [[Demo Here](https://emotion.sh)]
   - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
   - **open a PR and add yours!**
 
-- [Benchmarks](https://github.com/tkh44/emotion/tree/master/docs/benchmarks.md)
+### [Documentation](https://github.com/tkh44/emotion/tree/master/docs)
 
-- [Extract Static](https://github.com/tkh44/emotion/tree/master/docs/extract-static.md)
-
-- API
-  - [css](https://github.com/tkh44/emotion/tree/master/docs/css.md)
-  - [styled](https://github.com/tkh44/emotion/tree/master/docs/styled.md)
-  - [css prop](https://github.com/tkh44/emotion/tree/master/docs/css-prop.md)
-  - [composition](https://github.com/tkh44/emotion/tree/master/docs/composition.md)
-  - [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
-  - [fontFace](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
-  - [injectGlobal](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
-
-- [Usage with babel-macros](https://github.com/tkh44/emotion/tree/master/docs/babel-macros.md)
-- [Usage with Preact](https://github.com/tkh44/emotion/tree/master/docs/preact.md)
-
-- Ecosystem
+### Ecosystem
+  
   - [emotion-vue](https://github.com/egoist/emotion-vue)
 
 ---

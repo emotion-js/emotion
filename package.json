@@ -6,7 +6,7 @@
     "build": "lerna run build --parallel",
     "test:size": "npm-run-all clean rollup:umd size",
     "clean": "lerna run clean --parallel",
-    "test": "npm-run-all -p lint:check coverage test:size",
+    "test": "npm-run-all -p lint:check coverage test:size && npm run benchmark",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
     "lint:check": "eslint .",
     "test:watch": "jest --watch --no-cache",
@@ -15,6 +15,10 @@
     "size": "bundlesize",
     "release": "npm run test && npm run build && lerna publish && git push --tags",
     "lint": "eslint . --fix",
+    "benchmark": "npm run build && lerna exec --scope benchmarks npm run benchmark",
+    "start:site": "lerna exec --scope emotion-example-project npm run start:site",
+    "build:site": "lerna exec --scope emotion-example-project npm run build:site",
+    "watch": "lerna run --parallel watch",
     "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
@@ -31,6 +35,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "bundlesize": "^0.13.2",
     "css": "^2.2.1",
+    "cssjanus": "^1.2.0",
     "enzyme": "^2.9.1",
     "enzyme-to-json": "^1.5.1",
     "eslint": "^4.5.0",
@@ -47,10 +52,11 @@
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-glamor-react": "^3.1.0",
-    "lerna": "^2.1.2",
+    "lerna": "^2.2.0",
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
+    "prettier": "^1.7.0",
     "prettier-eslint-cli": "^4.0.3",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
@@ -63,7 +69,8 @@
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
-    "rollup-plugin-uglify": "^2.0.1"
+    "rollup-plugin-uglify": "^2.0.1",
+    "rollup-watch": "^4.3.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
@@ -131,7 +138,9 @@
       "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
-    "coveragePathIgnorePatterns": ["<rootDir>/packages/emotion-utils/src/stylis.js"]
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/packages/emotion-utils/src/stylis.js"
+    ]
   },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
