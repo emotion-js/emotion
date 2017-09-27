@@ -69,21 +69,13 @@ exports[`styled change theme 1`] = `
       }
     }
   >
-    <WithTheme(Styled)>
-      <Styled
-        theme={
-          Object {
-            "primary": "green",
-          }
-        }
+    <Styled>
+      <div
+        className="glamor-0"
       >
-        <div
-          className="glamor-0"
-        >
-          this will be green then pink
-        </div>
-      </Styled>
-    </WithTheme(Styled)>
+        this will be green then pink
+      </div>
+    </Styled>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -108,21 +100,13 @@ exports[`styled change theme 2`] = `
       }
     }
   >
-    <WithTheme(Styled)>
-      <Styled
-        theme={
-          Object {
-            "primary": "pink",
-          }
-        }
+    <Styled>
+      <div
+        className="glamor-0"
       >
-        <div
-          className="glamor-0"
-        >
-          this will be green then pink
-        </div>
-      </Styled>
-    </WithTheme(Styled)>
+        this will be green then pink
+      </div>
+    </Styled>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -708,4 +692,89 @@ exports[`styled withComponent with function interpolation 1`] = `
     </h2>
   </Styled>
 </article>
+`;
+
+exports[`styled withTheme 1`] = `
+<TestComponent
+  renderChild={true}
+  theme={
+    Object {
+      "primary": "green",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "primary": "green",
+      }
+    }
+  >
+    <WithTheme(Component)>
+      <Component
+        theme={
+          Object {
+            "primary": "green",
+          }
+        }
+      >
+        <pre>
+          {"primary":"green"}
+        </pre>
+      </Component>
+    </WithTheme(Component)>
+  </ThemeProvider>
+</TestComponent>
+`;
+
+exports[`styled withTheme 2`] = `
+<TestComponent
+  renderChild={true}
+  theme={
+    Object {
+      "primary": "pink",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "primary": "pink",
+      }
+    }
+  >
+    <WithTheme(Component)>
+      <Component
+        theme={
+          Object {
+            "primary": "pink",
+          }
+        }
+      >
+        <pre>
+          {"primary":"pink"}
+        </pre>
+      </Component>
+    </WithTheme(Component)>
+  </ThemeProvider>
+</TestComponent>
+`;
+
+exports[`styled withTheme 3`] = `
+<TestComponent
+  renderChild={false}
+  theme={
+    Object {
+      "primary": "pink",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "primary": "pink",
+      }
+    }
+  />
+</TestComponent>
 `;
