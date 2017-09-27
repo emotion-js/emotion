@@ -39,6 +39,9 @@ html, body, #___gatsby, #___gatsby > div {
 pre[class*="language-"] {
   border-radius: 8px;  
 }
+* {
+  box-sizing: border-box;
+}
 `
 
 fontFace`
@@ -98,13 +101,7 @@ const Header = () => (
 
 const TemplateWrapper = ({ children }) => (
   <Box flex={1}>
-    <Helmet
-      title="emotion"
-      meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' }
-      ]}
-    />
+    <Helmet title="emotion" />
     <Header />
     <Box m={3}>{children()}</Box>
   </Box>

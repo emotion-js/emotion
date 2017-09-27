@@ -4,14 +4,14 @@ import styled, { css, keyframes, merge } from 'react-emotion'
 import Box from '../components/Box'
 import colors from 'open-color'
 
-const scope = {
+export const scope = {
   css,
   keyframes,
   styled,
   merge
 }
 
-const Error = styled.pre`
+export const Error = styled.pre`
   background-color: ${colors.red[8]};
   overflow: auto;
   padding: 16px;
@@ -20,7 +20,7 @@ const Error = styled.pre`
   margin: 0;
 `
 
-const Preview = withLive(
+export const Preview = withLive(
   ({ live, ...props }) =>
     live.error ? (
       <Error {...props}>{live.error}</Error>
