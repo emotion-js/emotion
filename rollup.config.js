@@ -10,7 +10,7 @@ const pkg = require(path.resolve(process.cwd(), './package.json'))
 
 const config = {
   entry: './src/index.js',
-  external: ['react', 'emotion', 'emotion-utils'],
+  external: ['react', 'emotion', 'emotion-utils', 'prop-types'],
   exports: 'named',
   sourceMap: true,
   plugins: [
@@ -41,8 +41,8 @@ const config = {
 }
 
 if (process.env.UMD) {
-  config.external = ['react']
-  config.globals = { react: 'React' }
+  config.external = ['react', 'prop-types']
+  config.globals = { react: 'React', 'prop-types': 'PropTypes' }
   config.plugins.push(
     alias({
       emotion: path.resolve(__dirname, './packages/emotion/src/index.js'),

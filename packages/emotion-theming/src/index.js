@@ -15,11 +15,3 @@ export function createTheming(customChannel = defaultChannel) {
     themeListener: createThemeListener(customChannel)
   }
 }
-
-export default {
-  channel: defaultChannel,
-  withTheme,
-  ThemeProvider,
-  themeListener,
-  createTheming
-}

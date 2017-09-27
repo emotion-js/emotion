@@ -3,13 +3,14 @@ import { createElement, Component } from 'react'
 import { memoize } from 'emotion-utils'
 import PropTypes from 'prop-types'
 import { css, getRegisteredStyles } from 'emotion'
-import { channel as CHANNEL } from 'emotion-theming'
+import CHANNEL from '../../emotion-theming/src/channel'
 
 export * from 'emotion'
 
 const reactPropsRegex = codegen.require('./props')
 const testOmitPropsOnStringTag = memoize(key => reactPropsRegex.test(key))
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
+const testAlwaysTrue = () => true
 
 const omitAssign = function(testFn, target) {
   let i = 2
@@ -83,10 +84,9 @@ const createStyled = (tag, options: { e: string }) => {
         const { props, state, context } = this
         let mergedProps = props
         if (state && state.theme) {
-          mergedProps = {
-            ...props,
+          mergedProps = omitAssign(testAlwaysTrue, {}, props, {
             theme: state.theme || {}
-          }
+          })
         }
 
         const getValue = v => {
