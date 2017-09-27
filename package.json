@@ -152,7 +152,7 @@
     },
     {
       "path": "./packages/react-emotion/dist/DO-NOT-USE.min.js",
-      "threshold": "7 Kb"
+      "threshold": "8 Kb"
     }
   ]
 }
