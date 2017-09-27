@@ -120,7 +120,7 @@ function handleInterpolation(
   if (
     interpolation === undefined ||
     interpolation === null ||
-    interpolation === false
+    typeof value === 'boolean'
   ) {
     return ''
   }
@@ -182,7 +182,7 @@ function createStringFromObject(obj) {
           )};`
         }
       } else {
-        string += `${key}{${createStringFromObject(obj[key])}}`
+        string += `${key}{${handleInterpolation(obj[key])}}`
       }
     })
   }
