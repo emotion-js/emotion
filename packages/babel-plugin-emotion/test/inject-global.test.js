@@ -22,9 +22,7 @@ describe('babel injectGlobal', () => {
             background: green;
           }
       \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
     test('injectGlobal with interpolation', () => {
@@ -42,9 +40,7 @@ describe('babel injectGlobal', () => {
             background: green;
           }
       \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
     test('static change import', () => {
@@ -105,9 +101,7 @@ describe('babel injectGlobal', () => {
           background: green;
         }
       \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
   })

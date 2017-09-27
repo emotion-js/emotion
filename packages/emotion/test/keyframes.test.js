@@ -39,8 +39,7 @@ describe('keyframes', () => {
   test('keyframes with interpolation', () => {
     const endingRotation = '360deg'
 
-    const H1 = styled.h1`
-      animation: ${keyframes`
+    const H1 = styled.h1`animation: ${keyframes`
       from {
         transform: rotate(0deg);
       }
@@ -48,8 +47,7 @@ describe('keyframes', () => {
       to {
         transform: rotate(${endingRotation});
       }
-    `} 2s linear infinite;
-    `
+    `} 2s linear infinite;`
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
