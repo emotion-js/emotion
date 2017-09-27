@@ -67,8 +67,7 @@ class IndexPage extends React.Component {
     console.error(error)
   }
   render() {
-    const { props } = this
-    const avatar = props.data.imageSharp.responsiveResolution
+    const avatar = this.props.data.imageSharp.responsiveResolution
 
     return (
       <LiveProvider
