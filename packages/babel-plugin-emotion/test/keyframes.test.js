@@ -18,9 +18,7 @@ describe('babel keyframes', () => {
             transform: rotate(360deg);
           }
       \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
     test('keyframes with interpolation', () => {
@@ -33,9 +31,7 @@ describe('babel keyframes', () => {
             transform: rotate(\${endingRotation});
           }
       \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
     test('static change import', () => {
@@ -80,9 +76,7 @@ describe('babel keyframes', () => {
             transform: rotate(360deg);
           }
       \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
   })

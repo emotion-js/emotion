@@ -11,9 +11,7 @@ describe('babel styled component', () => {
   describe('inline', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -94,22 +92,13 @@ describe('babel styled component', () => {
 
     test('basic', () => {
       const basic = "const H1 = styled.h1`font-size: ${fontSize + 'px'};`"
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
     test('nested', () => {
-      const basic =
-        'const H1 = styled.h1`' +
-        "font-size: ${fontSize + 'px'};" +
-        '& div { color: blue;' +
-        '& span { color: red } }' +
-        '`'
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const basic = 'const H1 = styled.h1`' + "font-size: ${fontSize + 'px'};" + '& div { color: blue;' + '& span { color: red } }' + '`'
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -125,40 +114,19 @@ describe('babel styled component', () => {
         transform1: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
         transform2: translateX(\${(props) => props.translateX}) \${(props) => props.translateX};
         \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
     test('media query', () => {
-      const basic =
-        'const H1 = styled.h1`@media print {' +
-        '  font-size: 10pt' +
-        '}' +
-        '@media screen {' +
-        '  .child-selector { font-size: 13px }' +
-        '}' +
-        '@media screen, print {' +
-        '  &:hover + & { line-height: 1.2 }' +
-        '}' +
-        '@media only screen ' +
-        '  and (min-device-width: 320px) ' +
-        '  and (max-device-width: 480px)' +
-        '  and (-webkit-min-device-pixel-ratio: 2) {' +
-        '    .child-selector { line-height: 1.4 }' +
-        '}`'
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const basic = 'const H1 = styled.h1`@media print {' + '  font-size: 10pt' + '}' + '@media screen {' + '  .child-selector { font-size: 13px }' + '}' + '@media screen, print {' + '  &:hover + & { line-height: 1.2 }' + '}' + '@media only screen ' + '  and (min-device-width: 320px) ' + '  and (max-device-width: 480px)' + '  and (-webkit-min-device-pixel-ratio: 2) {' + '    .child-selector { line-height: 1.4 }' + '}`'
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
     test('function call', () => {
       const basic = "styled(MyComponent)`font-size: ${fontSize + 'px'};`"
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -167,9 +135,7 @@ describe('babel styled component', () => {
       const H1 = styled('h1')({
         display: 'flex'
       })`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -178,18 +144,14 @@ describe('babel styled component', () => {
       const H1 = styled('h1')({ padding: 10 },props => ({
         display: props.display
       }))`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
     test('shorthand property', () => {
       const basic = `const H1 = styled.h1({ fontSize })`
 
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -206,9 +168,7 @@ describe('babel styled component', () => {
     }, props => {
         padding: props.padding
     })`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -217,9 +177,7 @@ describe('babel styled component', () => {
       const H1 = styled.h1({ padding: 10 },props => ({
         display: props.display
       }))`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -229,9 +187,7 @@ describe('babel styled component', () => {
       const Figure = styled.figure({
         ...defaultText
       })`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin, stage2]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin, stage2] })
       expect(code).toMatchSnapshot()
     })
 
@@ -242,9 +198,7 @@ describe('babel styled component', () => {
         ...defaultText,
         ...defaultFigure
       })`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin, stage2]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin, stage2] })
       expect(code).toMatchSnapshot()
     })
 
@@ -257,9 +211,7 @@ describe('babel styled component', () => {
         ...defaultFigure,
         ...defaultText2
       })`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin, stage2]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin, stage2] })
       expect(code).toMatchSnapshot()
     })
 
@@ -276,9 +228,7 @@ describe('babel styled component', () => {
       },props => ({
         display: props.display
       }))`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -292,9 +242,7 @@ describe('babel styled component', () => {
         height: 20px;
         transform: translateX(\${(props) => props.translateX});
       \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
   })
@@ -313,8 +261,7 @@ describe('babel styled component', () => {
     })
 
     test('basic', () => {
-      const basic =
-        "const H1 = styled.h1`display: flex; justify-content: center; width: var(--css-hash-0); &:hover { background-color: green; } @media (max-width: 500px) { height: var(--css-hash-1); position: fixed; } @media print { display: none; } &::before { color: blue; width: 20px; height: 20px; content: 'pseudo' }`"
+      const basic = "const H1 = styled.h1`display: flex; justify-content: center; width: var(--css-hash-0); &:hover { background-color: green; } @media (max-width: 500px) { height: var(--css-hash-1); position: fixed; } @media print { display: none; } &::before { color: blue; width: 20px; height: 20px; content: 'pseudo' }`"
       const { code } = babel.transform(basic, {
         plugins: [[plugin, { extractStatic: true }]],
         filename: __filename,
