@@ -1,0 +1,49 @@
+{
+  "name": "emotion-theming",
+  "version": "1.0.0",
+  "description": "A CSS-in-JS theming solution, inspired by styled-components",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm-run-all clean rollup rollup:umd",
+    "clean": "rimraf dist",
+    "rollup": "rollup -c ../../rollup.config.js",
+    "watch": "rollup -c ../../rollup.config.js --watch",
+    "rollup:umd": "cross-env UMD=true rollup -c ../../rollup.config.js"
+  },
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-theming",
+  "keywords": [
+    "react",
+    "theme",
+    "theming",
+    "emotion",
+    "cssinjs",
+    "css-in-js"
+  ],
+  "author": "styled-components team",
+  "contributors": [
+    "Evan Scott <probablyup@gmail.com> (https://github.com/probablyup)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
+  },
+  "homepage": "https://github.com/emotion-js/emotion#readme",
+  "devDependencies": {
+    "cross-env": "^5.0.1",
+    "prop-types": "^15.5.8",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.43.0"
+  },
+  "dependencies": {
+    "hoist-non-react-statics": "^2.3.1"
+  },
+  "peerDependencies": {
+    "prop-types": ">= 15",
+    "react": ">= 15"
+  }
+}

@@ -2,7 +2,8 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { ThemeProvider, withTheme } from 'theming'
+import { ThemeProvider } from 'emotion-theming'
+import hoistNonReactStatics from 'hoist-non-react-statics'
 import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
@@ -418,11 +419,11 @@ describe('styled', () => {
 
     const Heading = styled('span')`background-color: ${p => p.theme.gold};`
 
-    const H1 = withTheme(styled(Heading)`
+    const H1 = styled(Heading)`
       ${cssB};
       font-size: ${fontSize};
       color: ${p => p.theme.purple};
-    `)
+    `
 
     const H2 = styled(H1)`font-size: 32px;`
 
@@ -507,7 +508,7 @@ describe('styled', () => {
   })
 
   test('change theme', () => {
-    const Div = withTheme(styled.div`color: ${props => props.theme.primary};`)
+    const Div = styled.div`color: ${props => props.theme.primary};`
     const TestComponent = props => (
       <ThemeProvider theme={props.theme}>
         {props.renderChild ? <Div>this will be green then pink</Div> : null}
@@ -522,6 +523,41 @@ describe('styled', () => {
     wrapper.setProps({ renderChild: false })
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
+
+  test('theming', () => {
+    const Div = styled.div`color: ${props => props.theme.color};`
+    const TestComponent = props => (
+      <ThemeProvider theme={props.theme}>
+        {props.renderChild ? <Div>this will be green then pink</Div> : null}
+      </ThemeProvider>
+    )
+    const wrapper = mount(
+      <TestComponent renderChild theme={{ primary: 'green' }} />
+    )
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ theme: { primary: 'pink' } })
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ renderChild: false })
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+
+  test('with higher order component that hoists statics', () => {
+    const superImportantValue = 'hotpink'
+    const hoc = BaseComponent => {
+      const NewComponent = props => (
+        <BaseComponent someProp={superImportantValue} {...props} />
+      )
+      return hoistNonReactStatics(NewComponent, BaseComponent)
+    }
+    const SomeComponent = hoc(styled.div`
+      display: flex;
+      color: ${props => props.someProp};
+    `)
+    const FinalComponent = styled(SomeComponent)`padding: 8px;`
+    const tree = renderer.create(<FinalComponent />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('prop filtering', () => {
     const Link = styled.a`color: green;`
     const rest = { m: [3], pt: [4] }
