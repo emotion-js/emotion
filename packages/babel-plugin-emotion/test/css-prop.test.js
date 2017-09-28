@@ -81,13 +81,15 @@ describe('babel css prop', () => {
   })
 
   test('className as expression string', () => {
-    const basic = '(<div className={`test__class`} css={`color: brown;`} this={`hello`}></div>)'
+    const basic =
+      '(<div className={`test__class`} css={`color: brown;`} this={`hello`}></div>)'
     const { code } = babel.transform(basic, { plugins: [plugin] })
     expect(code).toMatchSnapshot()
   })
 
   test('no import css prop', () => {
-    const basic = '(<div className={`test__class`} css={`color: brown;`}></div>)'
+    const basic =
+      '(<div className={`test__class`} css={`color: brown;`}></div>)'
     const { code } = babel.transform(basic, {
       plugins: [[plugin, { autoImportCssProp: false }]]
     })

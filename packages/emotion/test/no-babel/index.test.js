@@ -5,23 +5,33 @@ import styled from 'react-emotion'
 
 describe('css', () => {
   test('random expression', () => {
-    const cls2 = css`font-size: 20px;
-      @media (min-width: 420px) {color: blue;
-        ${css`width: 96px;
-          height: 96px;`};
-        line-height: 40px;}
-      background: green;`
+    const cls2 = css`
+      font-size: 20px;
+      @media (min-width: 420px) {
+        color: blue;
+        ${css`
+          width: 96px;
+          height: 96px;
+        `};
+        line-height: 40px;
+      }
+      background: green;
+    `
     const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test('composition', () => {
-    const cls1 = css`display: flex;
+    const cls1 = css`
+      display: flex;
       &:hover {
         color: hotpink;
-      }`
-    const cls2 = css`${cls1};
-      justify-content: center;`
+      }
+    `
+    const cls2 = css`
+      ${cls1};
+      justify-content: center;
+    `
     const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -53,8 +63,10 @@ describe('css', () => {
         color: 'green'
       }
     })
-    const cls2 = css`${cls1};
-      justify-content: center;`
+    const cls2 = css`
+      ${cls1};
+      justify-content: center;
+    `
 
     const tree = renderer.create(<div className={cls2} />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -100,9 +112,11 @@ describe('css', () => {
     )
 
     const tree = renderer
-      .create(<H1 fontSize={20} flex={1}>
+      .create(
+        <H1 fontSize={20} flex={1}>
           hello world
-        </H1>)
+        </H1>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -112,16 +126,20 @@ describe('css', () => {
     const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
 
     const tree = renderer
-      .create(<H2 fontSize={20} flex={1}>
+      .create(
+        <H2 fontSize={20} flex={1}>
           hello world
-        </H2>)
+        </H2>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
   test('random expressions undefined return', () => {
-    const H1 = styled('h1')`${props => props.prop && css`font-size: 1rem;`};
-      color: green;`
+    const H1 = styled('h1')`
+      ${props => props.prop && css`font-size: 1rem;`};
+      color: green;
+    `
 
     const tree = renderer
       .create(<H1 className={'legacy__class'}>hello world</H1>)
@@ -137,9 +155,11 @@ describe('css', () => {
     const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale + 'px'};`
 
     const tree = renderer
-      .create(<H2 scale={2} className={'legacy__class'}>
+      .create(
+        <H2 scale={2} className={'legacy__class'}>
           hello world
-        </H2>)
+        </H2>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
