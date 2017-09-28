@@ -1,116 +1,197 @@
-import React from 'react'
-import { shallow, render } from 'enzyme'
-import { ThemeProvider, channel, contextTypes } from 'emotion-theming'
+import createBroadcast from '../src/create-broadcast'
+import { mount } from 'enzyme'
+import React, { Component } from 'react'
 
-describe('ThemeProvider', () => {
-  it('should not throw an error when no children are passed', () => {
-    const result = shallow(<ThemeProvider theme={{}} />)
-    expect(result.html()).toEqual(null)
-  })
+import { channel, ThemeProvider } from 'emotion-theming'
+import {
+  getChannel,
+  Trap,
+  Pure,
+  getInterceptor,
+  mountOptions
+} from './test-helpers'
 
-  it("should accept a theme prop that's a plain object", () => {
-    shallow(<ThemeProvider theme={{ main: 'black' }} />)
-  })
+test(`createThemeProvider's result should be a React Component`, () => {
+  const actual = Component.isPrototypeOf(ThemeProvider)
+  expect(actual).toBe(true)
+})
 
-  it('should render its child', () => {
-    const child = <p>Child!</p>
-    const renderedComp = shallow(
-      <ThemeProvider theme={{ main: 'black' }}>{child}</ThemeProvider>
-    )
-    expect(renderedComp.contains(child)).toEqual(true)
-  })
+test(`ThemeProvider should use the default channel`, () => {
+  const actual = getChannel(ThemeProvider)
+  const expected = channel
+  expect(actual).toBe(expected)
+})
 
-  it('should merge its theme with an outer theme', done => {
-    const outerTheme = { main: 'black' }
-    const innerTheme = { secondary: 'black' }
-    // Setup Child
-    class Child extends React.Component {
-      componentWillMount() {
-        this.context[channel].subscribe(theme => {
-          expect(theme).toEqual({ ...outerTheme, ...innerTheme })
-          done()
-        })
-      }
-      render() {
-        return null
-      }
-    }
-    Child.contextTypes = contextTypes
+test(`ThemeProvider should unsubscribe on unmounting`, () => {
+  const theme = { themed: true }
+  const broadcast = createBroadcast(theme)
+  const unsubscribe = jest.spyOn(broadcast, 'unsubscribe')
 
-    render(
-      <ThemeProvider theme={outerTheme}>
-        <ThemeProvider theme={innerTheme}>
-          <Child />
-        </ThemeProvider>
+  const wrapper = mount(
+    <ThemeProvider theme={theme} />,
+    mountOptions(broadcast)
+  )
+
+  expect(unsubscribe).not.toHaveBeenCalled()
+
+  wrapper.unmount()
+
+  expect(unsubscribe).toHaveBeenCalled()
+})
+
+test(`ThemeProvider should throw if theme is not a plain object`, () => {
+  jest.spyOn(console, 'error').mockImplementation(() => {})
+
+  expect(() => mount(<ThemeProvider theme={false} />)).toThrow()
+  expect(console.error).toHaveBeenCalled()
+})
+
+test(`ThemeProvider should throw if theme as a function does not return a plain object`, () => {
+  jest.spyOn(console, 'error').mockImplementation(() => {})
+
+  const theme = { themed: true }
+  const incorrectAugment = () => false
+
+  expect(() => {
+    mount(
+      <ThemeProvider theme={theme}>
+        <ThemeProvider theme={incorrectAugment} />
       </ThemeProvider>
     )
-  })
+  }).toThrow()
 
-  it('should merge its theme with multiple outer themes', done => {
-    const outerestTheme = { main: 'black' }
-    const outerTheme = { main: 'blue' }
-    const innerTheme = { secondary: 'black' }
-    // Setup Child
-    class Child extends React.Component {
-      componentWillMount() {
-        this.context[channel].subscribe(theme => {
-          expect(theme).toEqual({
-            ...outerestTheme,
-            ...outerTheme,
-            ...innerTheme
-          })
-          done()
-        })
-      }
-      render() {
-        return null
-      }
-    }
-    Child.contextTypes = contextTypes
+  expect(console.error).toHaveBeenCalled()
+})
 
-    render(
-      <ThemeProvider theme={outerestTheme}>
-        <ThemeProvider theme={outerTheme}>
-          <ThemeProvider theme={innerTheme}>
-            <Child />
-          </ThemeProvider>
-        </ThemeProvider>
-      </ThemeProvider>
-    )
-  })
+test(`ThemeProvider should pass a theme`, () => {
+  const theme = { themed: true }
+  const actual = getInterceptor()
+  const expected = theme
 
-  it('should be able to render two independent themes', done => {
-    const themes = {
-      one: { main: 'black', secondary: 'red' },
-      two: { main: 'blue', other: 'green' }
-    }
-    let childRendered = 0
-    // Setup Child
-    class Child extends React.Component {
-      componentWillMount() {
-        this.context[channel].subscribe(theme => {
-          expect(theme).toEqual(themes[this.props.shouldHaveTheme])
-          childRendered++
-          if (childRendered === Object.keys(themes).length) {
-            done()
-          }
-        })
-      }
-      render() {
-        return null
-      }
-    }
-    Child.contextTypes = contextTypes
+  mount(
+    <ThemeProvider theme={theme}>
+      <Trap.Context intercept={actual} />
+    </ThemeProvider>
+  )
 
-    render(
+  expect(actual()).toEqual(expected)
+})
+
+test(`ThemeProvider should pass theme instance, if it is not nested`, () => {
+  const theme = { themed: true }
+  const actual = getInterceptor()
+  const expected = theme
+
+  mount(
+    <ThemeProvider theme={theme}>
+      <Trap.Context intercept={actual} />
+    </ThemeProvider>
+  )
+
+  expect(actual()).toBe(expected)
+})
+
+test(`ThemeProvider should pass a theme deep down into tree`, () => {
+  const theme = { themed: true }
+  const actual = getInterceptor()
+  const expected = theme
+
+  mount(
+    <ThemeProvider theme={theme}>
       <div>
-        <ThemeProvider theme={themes.one}>
-          <Child shouldHaveTheme="one" />
-        </ThemeProvider>
-        <ThemeProvider theme={themes.two}>
-          <Child shouldHaveTheme="two" />
-        </ThemeProvider>
+        <div>
+          <Trap.Context intercept={actual} />
+        </div>
       </div>
-    )
-  })
+    </ThemeProvider>
+  )
+
+  expect(actual()).toEqual(expected)
+})
+
+test(`ThemeProvider should pass a theme through PureComponent`, () => {
+  const theme = { themed: true }
+  const actual = getInterceptor()
+  const expected = theme
+
+  mount(
+    <ThemeProvider theme={expected}>
+      <Pure>
+        <Trap.Context intercept={actual} />
+      </Pure>
+    </ThemeProvider>
+  )
+
+  expect(actual()).toEqual(expected)
+})
+
+test(`ThemeProvider should merge themes`, () => {
+  const theme = { themed: true }
+  const patch = { merged: true }
+  const actual = getInterceptor()
+  const expected = { themed: true, merged: true }
+
+  mount(
+    <ThemeProvider theme={theme}>
+      <ThemeProvider theme={patch}>
+        <Trap.Context intercept={actual} />
+      </ThemeProvider>
+    </ThemeProvider>
+  )
+
+  expect(actual()).toEqual(expected)
+})
+
+test(`ThemeProvider should augmented themes if theme is provided as a function`, () => {
+  const theme = { themed: true }
+  const augment = outerTheme =>
+    Object.assign({}, outerTheme, { augmented: true })
+  const actual = getInterceptor()
+  const expected = { themed: true, augmented: true }
+
+  mount(
+    <ThemeProvider theme={theme}>
+      <ThemeProvider theme={augment}>
+        <Trap.Context intercept={actual} />
+      </ThemeProvider>
+    </ThemeProvider>
+  )
+
+  expect(actual()).toEqual(expected)
+})
+
+test(`ThemeProvider propagates theme updates`, () => {
+  const theme = { themed: true }
+  const update = { updated: true }
+  const actual = getInterceptor()
+  const expected = update
+
+  const wrapper = mount(
+    <ThemeProvider theme={theme}>
+      <Trap.Context intercept={actual} />
+    </ThemeProvider>
+  )
+
+  wrapper.setProps({ theme: expected })
+
+  expect(actual()).toEqual(expected)
+})
+
+test('ThemeProvider propagates theme updates even through PureComponent', () => {
+  const theme = { themed: true }
+  const update = { updated: true }
+  const actual = getInterceptor()
+  const expected = update
+
+  const wrapper = mount(
+    <ThemeProvider theme={theme}>
+      <Pure>
+        <Trap.Context intercept={actual} />
+      </Pure>
+    </ThemeProvider>
+  )
+
+  wrapper.setProps({ theme: expected })
+
+  expect(actual()).toEqual(expected)
 })
