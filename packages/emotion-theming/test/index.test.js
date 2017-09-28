@@ -111,6 +111,33 @@ test('Theming, updates and PureComponent', () => {
   expect(actual()).toEqual(expected)
 })
 
+test('updating theme after a listener unsubscribed', () => {
+  const theme = { theme: 'something' }
+  const updated = { theme: 'something different' }
+  const ComponentWithTheme = withTheme(() => null)
+  const SomeComponent = props => (
+    <ThemeProvider theme={props.theme}>
+      <div>
+        <ComponentWithTheme />
+
+        {props.renderThing && <ComponentWithTheme />}
+      </div>
+    </ThemeProvider>
+  )
+
+  const wrapper = mount(<SomeComponent theme={theme} renderThing />)
+
+  expect(enyzmeToJSON(wrapper)).toMatchSnapshot()
+
+  wrapper.setProps({ renderThing: false })
+
+  expect(enyzmeToJSON(wrapper)).toMatchSnapshot()
+
+  wrapper.setProps({ theme: updated })
+
+  expect(enyzmeToJSON(wrapper)).toMatchSnapshot()
+})
+
 test('emotion integration test', () => {
   const theme = { bg: 'green', color: 'red' }
 
