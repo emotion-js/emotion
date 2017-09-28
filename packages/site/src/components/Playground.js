@@ -3,6 +3,7 @@ import { LiveEditor, LivePreview, LiveProvider, withLive } from 'react-live/lib'
 import styled, { css, keyframes, merge } from 'react-emotion'
 import Box from '../components/Box'
 import colors from 'open-color'
+import '../utils/hightlight-css'
 
 export const scope = {
   css,
