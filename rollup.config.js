@@ -10,7 +10,13 @@ const pkg = require(path.resolve(process.cwd(), './package.json'))
 
 const config = {
   entry: './src/index.js',
-  external: ['react', 'emotion', 'emotion-utils', 'prop-types'],
+  external: [
+    'react',
+    'emotion',
+    'emotion-utils',
+    'prop-types',
+    'hoist-non-react-statics'
+  ],
   exports: 'named',
   sourceMap: true,
   plugins: [
