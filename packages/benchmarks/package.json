@@ -2,6 +2,7 @@
   "name": "benchmarks",
   "private": true,
   "dependencies": {
+    "apollo-fetch": "^0.6.0",
     "classnames": "^2.2.5",
     "emotion": "^8.0.2-9",
     "glamor": "^2.20.37",
