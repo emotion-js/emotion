@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { ThemeProvider, withTheme } from 'theming'
+import { ThemeProvider, withTheme } from 'emotion-theming'
 import styled, {
   css,
   fontFace,
