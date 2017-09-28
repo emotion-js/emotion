@@ -28,7 +28,7 @@ export function getInterceptor(initialState) {
   }
 }
 
-export const Comp = props => <div {...props} />
+export const StatelessComp = props => <div {...props} />
 
 export class Pure extends PureComponent {
   static propTypes = {

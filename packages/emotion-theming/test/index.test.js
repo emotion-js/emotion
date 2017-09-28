@@ -3,14 +3,20 @@ import enyzmeToJSON from 'enzyme-to-json'
 import React from 'react'
 import styled from 'react-emotion'
 
-import { Trap, Pure, Comp, getInterceptor, getChannel } from './test-helpers'
+import {
+  Trap,
+  Pure,
+  StatelessComp,
+  getInterceptor,
+  getChannel
+} from './test-helpers'
 import { channel, ThemeProvider, withTheme } from '../src/index'
 
 test(`theming default channel`, () => {
   const defaultChannel = channel
   const actual = {
     themeProviderChannel: getChannel(ThemeProvider),
-    withThemeChannel: getChannel(withTheme(Comp))
+    withThemeChannel: getChannel(withTheme(StatelessComp))
   }
   const expected = {
     themeProviderChannel: defaultChannel,

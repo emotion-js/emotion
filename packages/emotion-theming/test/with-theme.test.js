@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { channel, withTheme } from 'emotion-theming'
 import {
   getChannel,
-  Comp,
+  StatelessComp,
   Pure,
   Trap,
   mountOptions,
@@ -12,22 +12,21 @@ import {
 } from './test-helpers'
 
 test(`withTheme(Comp) result instance should be a React Component`, () => {
-  const actual = Component.isPrototypeOf(withTheme(Comp))
+  const actual = Component.isPrototypeOf(withTheme(StatelessComp))
   expect(actual).toBe(true)
 })
 
 test(`withTheme(Comp)'s should use the default channel`, () => {
-  const actual = getChannel(withTheme(Comp))
+  const actual = getChannel(withTheme(StatelessComp))
   const expected = channel
   expect(actual).toBe(expected)
 })
 
 test(`withTheme(Comp) should include wrapped stateless component's name in the displayName`, () => {
-  const StatelessComp = (...props) => <div {...props} />
   const ThemedComp = withTheme(StatelessComp)
   const theme = { themed: true }
   const broadcast = createBroadcast(theme)
-  const wrapper = shallow(
+  const wrapper = mount(
     <div>
       <ThemedComp />
     </div>,
