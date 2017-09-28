@@ -1,8 +1,6 @@
 const { createApolloFetch } = require('apollo-fetch')
 
-const {
-  GRAPH_TOKEN
-} = process.env
+const { GRAPH_TOKEN } = process.env
 
 const client = createApolloFetch({
   uri: 'https://api.graph.cool/simple/v1/cj83urcdm0u420180bqw9w4mu'

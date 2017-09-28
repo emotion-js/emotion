@@ -13,7 +13,7 @@ const allTests = {
   emotion: [
     () => renderDeepTree('emotion', emotion),
     () => renderWideTree('emotion', emotion)
-  ],
+  ]
   // emotionCSS: [
   //   () => renderDeepTree('emotionCSS', emotionCSS),
   //   () => renderWideTree('emotionCSS', emotionCSS)
