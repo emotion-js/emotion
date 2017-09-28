@@ -553,7 +553,8 @@ describe('styled', () => {
       display: flex;
       color: ${props => props.someProp};
     `)
-    const tree = renderer.create(<SomeComponent />).toJSON()
+    const FinalComponent = styled(SomeComponent)`padding: 8px;`
+    const tree = renderer.create(<FinalComponent />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
