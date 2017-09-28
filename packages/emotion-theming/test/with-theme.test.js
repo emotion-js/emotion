@@ -1,11 +1,7 @@
-import createBroadcast from 'brcast'
+import createBroadcast from '../src/create-broadcast'
 import { mount, shallow } from 'enzyme'
 import React, { Component } from 'react'
-
-import createWithTheme from '../src/create-with-theme'
-import channel from '../src/channel'
-import { isFunction } from '../src/utils'
-
+import { channel, withTheme } from 'emotion-theming'
 import {
   getChannel,
   Comp,
@@ -15,40 +11,18 @@ import {
   getInterceptor
 } from './test-helpers'
 
-test(`createWithTheme should be a function`, () => {
-  const actual = isFunction(createWithTheme)
-  expect(actual).toBe(true)
-})
-
-test(`createWithTheme's result should be a function`, () => {
-  const withTheme = createWithTheme()
-  const actual = isFunction(withTheme)
-  expect(actual).toBe(true)
-})
-
 test(`withTheme(Comp) result instance should be a React Component`, () => {
-  const withTheme = createWithTheme()
   const actual = Component.isPrototypeOf(withTheme(Comp))
   expect(actual).toBe(true)
 })
 
 test(`withTheme(Comp)'s should use the default channel`, () => {
-  const withTheme = createWithTheme()
   const actual = getChannel(withTheme(Comp))
   const expected = channel
   expect(actual).toBe(expected)
 })
 
-test(`withTheme(Comp) should work with a custom channel`, () => {
-  const custom = '__CUSTOM__'
-  const withTheme = createWithTheme(custom)
-  const actual = getChannel(withTheme(Comp))
-  const expected = custom
-  expect(actual).toBe(expected)
-})
-
 test(`withTheme(Comp) should include wrapped stateless component's name in the displayName`, () => {
-  const withTheme = createWithTheme()
   const StatelessComp = (...props) => <div {...props} />
   const ThemedComp = withTheme(StatelessComp)
   const theme = { themed: true }
@@ -66,7 +40,6 @@ test(`withTheme(Comp) should include wrapped stateless component's name in the d
 })
 
 test(`withTheme(Comp) should include wrapped stateful component's name in the displayName`, () => {
-  const withTheme = createWithTheme()
   class StatefullComp extends Component {
     render() {
       return <div {...this.props} />
@@ -88,29 +61,26 @@ test(`withTheme(Comp) should include wrapped stateful component's name in the di
 })
 
 test(`withTheme(Comp) should unsubscribe on unmount`, () => {
-  const withTheme = createWithTheme()
   const theme = { themed: true }
   const ComponentWithTheme = withTheme(Trap.Prop)
   const broadcast = createBroadcast(theme)
-  const unsubscribed = getInterceptor(false)
+  const unsubscribe = jest.spyOn(broadcast, 'unsubscribe')
 
   const wrapper = mount(
     <ComponentWithTheme intercept={() => {}} />,
     mountOptions(broadcast)
   )
-  wrapper.instance().unsubscribe = () => unsubscribed(true)
 
-  expect(unsubscribed()).toBe(false)
+  expect(unsubscribe).not.toHaveBeenCalled()
 
   wrapper.unmount()
 
-  expect(unsubscribed()).toBe(true)
+  expect(unsubscribe).toHaveBeenCalled()
 })
 
 test(`withTheme(Comp) should throw if used without appropriate context`, () => {
   jest.spyOn(console, 'error').mockImplementation(() => {})
 
-  const withTheme = createWithTheme()
   const ComponentWithTheme = withTheme(Trap.Prop)
 
   expect(() => mount(<ComponentWithTheme intercept={() => {}} />)).toThrow()
@@ -118,7 +88,6 @@ test(`withTheme(Comp) should throw if used without appropriate context`, () => {
 })
 
 test(`withTheme(Comp) should receive the theme`, () => {
-  const withTheme = createWithTheme()
   const theme = { themed: true }
   const actual = getInterceptor()
   const expected = theme
@@ -132,7 +101,6 @@ test(`withTheme(Comp) should receive the theme`, () => {
 })
 
 test(`withTheme(Comp) should receive a theme deep down into the tree`, () => {
-  const withTheme = createWithTheme()
   const theme = { themed: true }
   const actual = getInterceptor()
   const expected = theme
@@ -153,7 +121,6 @@ test(`withTheme(Comp) should receive a theme deep down into the tree`, () => {
 })
 
 test(`withTheme(Comp) receives theme through PureComponent`, () => {
-  const withTheme = createWithTheme()
   const theme = { themed: true }
   const actual = getInterceptor()
   const expected = theme
@@ -172,7 +139,6 @@ test(`withTheme(Comp) receives theme through PureComponent`, () => {
 })
 
 test(`withTheme(Comp) receives theme updates`, () => {
-  const withTheme = createWithTheme()
   const theme = { themed: true }
   const update = { updated: true }
   const actual = getInterceptor()
@@ -183,13 +149,12 @@ test(`withTheme(Comp) receives theme updates`, () => {
 
   mount(<ComponentWithTheme intercept={actual} />, mountOptions(broadcast))
 
-  broadcast.setState(update)
+  broadcast.publish(update)
 
   expect(actual()).toEqual(expected)
 })
 
 test(`withTheme(Comp) receives theme updates even through PureComponent`, () => {
-  const withTheme = createWithTheme()
   const theme = { themed: true }
   const update = { updated: true }
   const actual = getInterceptor()
@@ -205,14 +170,12 @@ test(`withTheme(Comp) receives theme updates even through PureComponent`, () => 
     mountOptions(broadcast)
   )
 
-  broadcast.setState(update)
+  broadcast.publish(update)
 
   expect(actual()).toEqual(expected)
 })
 
 test(`withTheme(Comp) hoists non-react static class properties`, () => {
-  const withTheme = createWithTheme()
-
   class ExampleComponent extends Component {
     static displayName = 'foo'
     static someSpecialStatic = 'bar'

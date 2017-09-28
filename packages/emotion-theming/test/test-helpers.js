@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component, PureComponent } from 'react'
 
-import channel from '../src/channel'
+import { channel } from '../src/utils'
 
 export const getContextTypes = C => C.contextTypes
 export const getChannel = C => Object.keys(getContextTypes(C))[0]
@@ -11,7 +11,10 @@ export const mountOptions = broadcast => ({
     [channel]: PropTypes.object.isRequired
   },
   context: {
-    [channel]: broadcast
+    [channel]: {
+      subscribe: broadcast.subscribe,
+      unsubscribe: broadcast.unsubscribe
+    }
   }
 })
 
@@ -63,16 +66,9 @@ export class ContextTrap extends Component {
   static contextTypes = {
     [channel]: PropTypes.object.isRequired
   }
-  constructor(props, context) {
-    super(props, context)
-    this.broadcast = this.context[channel]
-    if (this.broadcast) {
-      this.props.intercept(this.broadcast.getState())
-    }
-  }
-  componentDidMount() {
-    if (this.broadcast) {
-      this.unsubscribe = this.broadcast.subscribe(this.props.intercept)
+  componentWillMount() {
+    if (this.context[channel]) {
+      this.unsubscribe = this.context[channel].subscribe(this.props.intercept)
     }
   }
   // eslint-disable-next-line

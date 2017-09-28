@@ -1,55 +1,20 @@
 import { mount } from 'enzyme'
+import enyzmeToJSON from 'enzyme-to-json'
 import React from 'react'
 import styled from 'react-emotion'
 
 import { Trap, Pure, Comp, getInterceptor, getChannel } from './test-helpers'
-import { channel, createTheming, ThemeProvider, withTheme } from '../src/index'
-import { isFunction, isPlainObject } from '../src/utils'
-
-test(`createTheming should be a function`, () => {
-  const actual = isFunction(createTheming)
-  expect(actual).toBe(true)
-})
-
-test(`createTheming() result should be an object`, () => {
-  const theming = createTheming()
-  const actual = isPlainObject(theming)
-  expect(actual).toBe(true)
-})
-
-test(`createTheming()'s creates all expected keys`, () => {
-  const theming = createTheming()
-  const actual = Object.keys(theming)
-  const expected = ['channel', 'withTheme', 'ThemeProvider', 'themeListener']
-
-  expect(actual).toEqual(expected)
-})
+import { channel, ThemeProvider, withTheme } from '../src/index'
 
 test(`theming default channel`, () => {
   const defaultChannel = channel
-  const theming = createTheming()
   const actual = {
-    themeProviderChannel: getChannel(theming.ThemeProvider),
-    withThemeChannel: getChannel(theming.withTheme(Comp))
+    themeProviderChannel: getChannel(ThemeProvider),
+    withThemeChannel: getChannel(withTheme(Comp))
   }
   const expected = {
     themeProviderChannel: defaultChannel,
     withThemeChannel: defaultChannel
-  }
-
-  expect(actual).toEqual(expected)
-})
-
-test(`theming custom channel`, () => {
-  const customChannel = '__CUSTOM__'
-  const theming = createTheming(customChannel)
-  const actual = {
-    themeProviderChannel: getChannel(theming.ThemeProvider),
-    withThemeChannel: getChannel(theming.withTheme(Comp))
-  }
-  const expected = {
-    themeProviderChannel: customChannel,
-    withThemeChannel: customChannel
   }
 
   expect(actual).toEqual(expected)
@@ -143,14 +108,11 @@ test('Theming, updates and PureComponent', () => {
 test('emotion integration test', () => {
   const theme = { bg: 'green', color: 'red' }
 
-  const Component = styled.div`color: ${p => p.theme.color};`
-  const ThemedComponent = withTheme(Component)
+  const ThemedComponent = styled.div`color: ${p => p.theme.color};`
 
-  const ReStyledComponent = styled(ThemedComponent)`
+  const ReThemedComponent = styled(ThemedComponent)`
     background-color: ${p => p.theme.bg};
   `
-  const ReThemedComponent = withTheme(ReStyledComponent)
-
   const FinalComponent = styled(ReThemedComponent)`border: 1px solid blue;`
 
   const wrapper = mount(
@@ -159,5 +121,5 @@ test('emotion integration test', () => {
     </ThemeProvider>
   )
 
-  expect(wrapper.find(ReStyledComponent).props()).toHaveProperty('theme', theme)
+  expect(enyzmeToJSON(wrapper)).toMatchSnapshot()
 })

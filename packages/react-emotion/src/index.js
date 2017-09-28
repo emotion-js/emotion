@@ -1,9 +1,8 @@
 /* global codegen */
 import { createElement, Component } from 'react'
 import { memoize } from 'emotion-utils'
-import PropTypes from 'prop-types'
 import { css, getRegisteredStyles } from 'emotion'
-import CHANNEL from '../../emotion-theming/src/channel'
+import { channel, contextTypes } from '../../emotion-theming/src/utils'
 
 export * from 'emotion'
 
@@ -39,7 +38,9 @@ const createStyled = (tag, options: { e: string }) => {
   if (options !== undefined && options.e !== undefined) {
     staticClassName = options.e
   }
-  const baseTag = staticClassName === false ? tag.__emotion_base || tag : tag
+  const isReal = tag.__emotion_real === tag
+  const baseTag =
+    staticClassName === false ? (isReal && tag.__emotion_base) || tag : tag
 
   const omitFn =
     typeof baseTag === 'string'
@@ -48,7 +49,7 @@ const createStyled = (tag, options: { e: string }) => {
 
   return (strings, ...interpolations) => {
     const stringMode = strings !== undefined && strings.raw !== undefined
-    let styles = tag.__emotion_styles || []
+    let styles = (isReal && tag.__emotion_styles) || []
     if (staticClassName === false) {
       if (stringMode) {
         styles = interpolations.reduce(
@@ -62,20 +63,14 @@ const createStyled = (tag, options: { e: string }) => {
 
     class Styled extends Component {
       componentWillMount() {
-        if (this.context[CHANNEL]) {
-          this.setState({ theme: this.context[CHANNEL].getState() })
-        }
-      }
-
-      componentDidMount() {
-        if (this.context[CHANNEL]) {
-          this.unsubscribe = this.context[CHANNEL].subscribe(this.setTheme)
+        if (this.context[channel] !== undefined) {
+          this.unsubscribe = this.context[channel].subscribe(this.setTheme)
         }
       }
 
       componentWillUnmount() {
-        if (typeof this.unsubscribe === 'function') {
-          this.unsubscribe()
+        if (this.unsubscribe !== undefined) {
+          this.context[channel].unsubscribe(this.unsubscribe)
         }
       }
       setTheme = theme => this.setState({ theme })
@@ -121,10 +116,11 @@ const createStyled = (tag, options: { e: string }) => {
         )
       }
     }
-    Styled.contextTypes = { [CHANNEL]: PropTypes.object }
+    Styled.contextTypes = contextTypes
 
     Styled.__emotion_styles = styles
     Styled.__emotion_base = baseTag
+    Styled.__emotion_real = Styled
 
     Styled.withComponent = nextTag => {
       return createStyled(nextTag, options)(styles)

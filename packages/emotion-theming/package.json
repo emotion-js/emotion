@@ -1,7 +1,7 @@
 {
   "name": "emotion-theming",
   "version": "1.0.0",
-  "description": "A CSS-in-JS theming solution, forked from iamstarkov/theming.",
+  "description": "A CSS-in-JS theming solution, inspired by styled-components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "files": [
@@ -15,7 +15,7 @@
     "watch": "rollup -c ../../rollup.config.js --watch",
     "rollup:umd": "cross-env UMD=true rollup -c ../../rollup.config.js"
   },
-  "repository": "https://github.com/emotion-js/emotion",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-theming",
   "keywords": [
     "react",
     "theme",
@@ -24,7 +24,7 @@
     "cssinjs",
     "css-in-js"
   ],
-  "author": "Vladimir Starkov <iamstarkov@gmail.com> (https://iamstarkov.com)",
+  "author": "styled-components team",
   "contributors": [
     "Evan Scott <probablyup@gmail.com> (https://github.com/probablyup)"
   ],
@@ -40,7 +40,7 @@
     "rollup": "^0.43.0"
   },
   "dependencies": {
-    "brcast": "^2.0.0"
+    "hoist-non-react-statics": "^2.3.1"
   },
   "peerDependencies": {
     "prop-types": ">= 15",

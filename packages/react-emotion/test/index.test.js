@@ -2,7 +2,8 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { ThemeProvider, withTheme } from 'emotion-theming'
+import { ThemeProvider } from 'emotion-theming'
+import hoistNonReactStatics from 'hoist-non-react-statics'
 import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
@@ -523,8 +524,8 @@ describe('styled', () => {
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
 
-  test('withTheme', () => {
-    const Div = withTheme(props => <pre>{JSON.stringify(props.theme)}</pre>)
+  test('theming', () => {
+    const Div = styled.div`color: ${props => props.theme.color};`
     const TestComponent = props => (
       <ThemeProvider theme={props.theme}>
         {props.renderChild ? <Div>this will be green then pink</Div> : null}
@@ -538,6 +539,22 @@ describe('styled', () => {
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ renderChild: false })
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+
+  test('with higher order component that hoists statics', () => {
+    const superImportantValue = 'hotpink'
+    const hoc = BaseComponent => {
+      const NewComponent = props => (
+        <BaseComponent someProp={superImportantValue} {...props} />
+      )
+      return hoistNonReactStatics(NewComponent, BaseComponent)
+    }
+    const SomeComponent = hoc(styled.div`
+      display: flex;
+      color: ${props => props.someProp};
+    `)
+    const tree = renderer.create(<SomeComponent />).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   test('prop filtering', () => {

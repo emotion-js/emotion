@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`emotion integration test 1`] = `
+.glamor-0 {
+  color: red;
+  background-color: green;
+  border: 1px solid blue;
+}
+
+<ThemeProvider
+  theme={
+    Object {
+      "bg": "green",
+      "color": "red",
+    }
+  }
+>
+  <Styled>
+    <div
+      className="glamor-0"
+    />
+  </Styled>
+</ThemeProvider>
+`;

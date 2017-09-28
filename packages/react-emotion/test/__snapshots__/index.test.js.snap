@@ -636,9 +636,96 @@ exports[`styled themes 1`] = `
 </span>
 `;
 
+exports[`styled theming 1`] = `
+<TestComponent
+  renderChild={true}
+  theme={
+    Object {
+      "primary": "green",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "primary": "green",
+      }
+    }
+  >
+    <Styled>
+      <div
+        className="css-olgnlr"
+      >
+        this will be green then pink
+      </div>
+    </Styled>
+  </ThemeProvider>
+</TestComponent>
+`;
+
+exports[`styled theming 2`] = `
+<TestComponent
+  renderChild={true}
+  theme={
+    Object {
+      "primary": "pink",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "primary": "pink",
+      }
+    }
+  >
+    <Styled>
+      <div
+        className="css-olgnlr"
+      >
+        this will be green then pink
+      </div>
+    </Styled>
+  </ThemeProvider>
+</TestComponent>
+`;
+
+exports[`styled theming 3`] = `
+<TestComponent
+  renderChild={false}
+  theme={
+    Object {
+      "primary": "pink",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "primary": "pink",
+      }
+    }
+  />
+</TestComponent>
+`;
+
 exports[`styled throws if undefined is passed as the component 1`] = `
 "You are trying to create a styled element with an undefined component.
 You may have forgotten to import it."
+`;
+
+exports[`styled with higher order component that hoists statics 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: hotpink;
+}
+
+<div
+  className="glamor-0"
+/>
 `;
 
 exports[`styled withComponent will replace tags but keep styling classes 1`] = `
@@ -692,89 +779,4 @@ exports[`styled withComponent with function interpolation 1`] = `
     </h2>
   </Styled>
 </article>
-`;
-
-exports[`styled withTheme 1`] = `
-<TestComponent
-  renderChild={true}
-  theme={
-    Object {
-      "primary": "green",
-    }
-  }
->
-  <ThemeProvider
-    theme={
-      Object {
-        "primary": "green",
-      }
-    }
-  >
-    <WithTheme(Component)>
-      <Component
-        theme={
-          Object {
-            "primary": "green",
-          }
-        }
-      >
-        <pre>
-          {"primary":"green"}
-        </pre>
-      </Component>
-    </WithTheme(Component)>
-  </ThemeProvider>
-</TestComponent>
-`;
-
-exports[`styled withTheme 2`] = `
-<TestComponent
-  renderChild={true}
-  theme={
-    Object {
-      "primary": "pink",
-    }
-  }
->
-  <ThemeProvider
-    theme={
-      Object {
-        "primary": "pink",
-      }
-    }
-  >
-    <WithTheme(Component)>
-      <Component
-        theme={
-          Object {
-            "primary": "pink",
-          }
-        }
-      >
-        <pre>
-          {"primary":"pink"}
-        </pre>
-      </Component>
-    </WithTheme(Component)>
-  </ThemeProvider>
-</TestComponent>
-`;
-
-exports[`styled withTheme 3`] = `
-<TestComponent
-  renderChild={false}
-  theme={
-    Object {
-      "primary": "pink",
-    }
-  }
->
-  <ThemeProvider
-    theme={
-      Object {
-        "primary": "pink",
-      }
-    }
-  />
-</TestComponent>
 `;
