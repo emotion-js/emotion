@@ -13,31 +13,31 @@ const allTests = {
   emotion: [
     () => renderDeepTree('emotion', emotion),
     () => renderWideTree('emotion', emotion)
+  ],
+  emotionCSS: [
+    () => renderDeepTree('emotionCSS', emotionCSS),
+    () => renderWideTree('emotionCSS', emotionCSS)
+  ],
+  emotionObj: [
+    () => renderDeepTree('emotionObj', emotionObj),
+    () => renderWideTree('emotionObj', emotionObj)
+  ],
+  glamor: [
+    () => renderDeepTree('glamor', glamor),
+    () => renderWideTree('glamor', glamor)
+  ],
+  glamorous: [
+    () => renderDeepTree('glamorous', glamorous),
+    () => renderWideTree('glamorous', glamorous)
+  ],
+  'styled-components': [
+    () => renderDeepTree('styled-components', styledComponents),
+    () => renderWideTree('styled-components', styledComponents)
+  ],
+  'css-modules': [
+    () => renderDeepTree('css-modules', cssModules),
+    () => renderWideTree('css-modules', cssModules)
   ]
-  // emotionCSS: [
-  //   () => renderDeepTree('emotionCSS', emotionCSS),
-  //   () => renderWideTree('emotionCSS', emotionCSS)
-  // ],
-  // emotionObj: [
-  //   () => renderDeepTree('emotionObj', emotionObj),
-  //   () => renderWideTree('emotionObj', emotionObj)
-  // ],
-  // glamor: [
-  //   () => renderDeepTree('glamor', glamor),
-  //   () => renderWideTree('glamor', glamor)
-  // ],
-  // glamorous: [
-  //   () => renderDeepTree('glamorous', glamorous),
-  //   () => renderWideTree('glamorous', glamorous)
-  // ],
-  // 'styled-components': [
-  //   () => renderDeepTree('styled-components', styledComponents),
-  //   () => renderWideTree('styled-components', styledComponents)
-  // ],
-  // 'css-modules': [
-  //   () => renderDeepTree('css-modules', cssModules),
-  //   () => renderWideTree('css-modules', cssModules)
-  // ]
 }
 
 const tests = []
@@ -55,12 +55,12 @@ if (window.location.hash) {
     })
 } else {
   tests.push(...allTests.emotion)
-  // tests.push(...allTests.emotionObj)
-  // tests.push(...allTests.emotionCSS)
-  // tests.push(...allTests['css-modules'])
-  // tests.push(...allTests.glamorous)
-  // tests.push(...allTests.glamor)
-  // tests.push(...allTests['styled-components'])
+  tests.push(...allTests.emotionObj)
+  tests.push(...allTests.emotionCSS)
+  tests.push(...allTests['css-modules'])
+  tests.push(...allTests.glamorous)
+  tests.push(...allTests.glamor)
+  tests.push(...allTests['styled-components'])
 }
 
 tests.push(() => () => Promise.resolve(console.log('done')))

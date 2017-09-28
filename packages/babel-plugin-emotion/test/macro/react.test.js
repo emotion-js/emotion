@@ -19,10 +19,16 @@ describe('styled', () => {
 
   test.skip('basic render', () => {
     const fontSize = 20
-    const H1 = styled.h1`color: blue;
+    const H1 = styled.h1`
+      color: blue;
       font-size: ${fontSize};
-      @media (min-width: 420px) {color: blue;
-        @media (min-width: 520px) {color: green;}}`
+      @media (min-width: 420px) {
+        color: blue;
+        @media (min-width: 520px) {
+          color: green;
+        }
+      }
+    `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
@@ -48,9 +54,11 @@ describe('styled', () => {
     )
 
     const tree = renderer
-      .create(<H1 fontSize={20} flex={1}>
+      .create(
+        <H1 fontSize={20} flex={1}>
           hello world
-        </H1>)
+        </H1>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -71,19 +79,23 @@ describe('styled', () => {
     const fontSize = '20px'
     const H1 = styled.h1`font-size: ${fontSize};`
 
-    const Thing = styled.div`display: flex;
+    const Thing = styled.div`
+      display: flex;
       & div {
         color: green;
 
         & span {
           color: red;
         }
-      }`
+      }
+    `
 
     const tree = renderer
-      .create(<Thing>
+      .create(
+        <Thing>
           hello <H1>This will be green</H1> world
-        </Thing>)
+        </Thing>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -91,32 +103,46 @@ describe('styled', () => {
 
   test.skip('random expressions', () => {
     const margin = (t, r, b, l) => {
-      return props => css`margin-top: ${t};
+      return props => css`
+        margin-top: ${t};
         margin-right: ${r};
         margin-bottom: ${b};
-        margin-left: ${l};`
+        margin-left: ${l};
+      `
     }
 
-    const mq = css`@media (min-width: 420px) {color: blue;
-        @media (min-width: 520px) {color: green;}}`
+    const mq = css`
+      @media (min-width: 420px) {
+        color: blue;
+        @media (min-width: 520px) {
+          color: green;
+        }
+      }
+    `
 
-    const H1 = styled('h1')`${mq};
+    const H1 = styled('h1')`
+      ${mq};
       ${props => props.prop && css`font-size: 1rem;`};
       ${margin(0, 'auto', 0, 'auto')};
-      color: green;`
+      color: green;
+    `
 
     const tree = renderer
-      .create(<H1 className={'legacy__class'} prop>
+      .create(
+        <H1 className={'legacy__class'} prop>
           hello world
-        </H1>)
+        </H1>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
   test('random expressions undefined return', () => {
-    const H1 = styled('h1')`${props => props.prop && css`font-size: 1rem;`};
-      color: green;`
+    const H1 = styled('h1')`
+      ${props => props.prop && css`font-size: 1rem;`};
+      color: green;
+    `
 
     const tree = renderer
       .create(<H1 className={'legacy__class'}>hello world</H1>)
@@ -127,17 +153,26 @@ describe('styled', () => {
 
   test('random object expression', () => {
     const margin = (t, r, b, l) => {
-      return props => ({ marginTop: t, marginRight: r, marginBottom: b, marginLeft: l })
+      return props => ({
+        marginTop: t,
+        marginRight: r,
+        marginBottom: b,
+        marginLeft: l
+      })
     }
-    const H1 = styled.h1`background-color: hotpink;
+    const H1 = styled.h1`
+      background-color: hotpink;
       ${props => props.prop && { fontSize: '1rem' }};
       ${margin(0, 'auto', 0, 'auto')};
-      color: green;`
+      color: green;
+    `
 
     const tree = renderer
-      .create(<H1 className={'legacy__class'} prop>
+      .create(
+        <H1 className={'legacy__class'} prop>
           hello world
-        </H1>)
+        </H1>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -156,9 +191,11 @@ describe('styled', () => {
   })
 
   test.skip('input placeholder', () => {
-    const Input = styled.input`::placeholder {
+    const Input = styled.input`
+      ::placeholder {
         background-color: green;
-      }`
+      }
+    `
     const tree = renderer.create(<Input>hello world</Input>).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -196,9 +233,11 @@ describe('styled', () => {
       { border: '3px solid currentColor' }
     ])
 
-    const Avatar = styled('img')`${prettyStyles};
+    const Avatar = styled('img')`
+      ${prettyStyles};
       ${imageStyles};
-      ${blue};`
+      ${blue};
+    `
 
     const tree = renderer.create(<Avatar />).toJSON()
 
@@ -206,7 +245,8 @@ describe('styled', () => {
   })
 
   test('handles more than 10 dynamic properties', () => {
-    const H1 = styled('h1')`text-decoration: ${'underline'};
+    const H1 = styled('h1')`
+      text-decoration: ${'underline'};
       border-right: solid blue 54px;
       background: ${'white'};
       color: ${'black'};
@@ -217,12 +257,15 @@ describe('styled', () => {
       z-index: ${100};
       font-size: ${'18px'};
       text-align: ${'center'};
-      border-left: ${p => p.theme.blue};`
+      border-left: ${p => p.theme.blue};
+    `
 
     const tree = renderer
-      .create(<H1 className={'legacy__class'} theme={{ blue: 'blue' }}>
+      .create(
+        <H1 className={'legacy__class'} theme={{ blue: 'blue' }}>
           hello world
-        </H1>)
+        </H1>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -235,9 +278,11 @@ describe('styled', () => {
     const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale + 'px'};`
 
     const tree = renderer
-      .create(<H2 scale={2} className={'legacy__class'}>
+      .create(
+        <H2 scale={2} className={'legacy__class'}>
           hello world
-        </H2>)
+        </H2>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -248,41 +293,57 @@ describe('styled', () => {
 
     const cssA = css`color: blue;`
 
-    const cssB = css`${cssA};
-      color: red;`
+    const cssB = css`
+      ${cssA};
+      color: red;
+    `
 
-    const BlueH1 = styled('h1')`${cssB};
+    const BlueH1 = styled('h1')`
+      ${cssB};
       color: blue;
-      font-size: ${fontSize};`
+      font-size: ${fontSize};
+    `
 
     const FinalH2 = styled(BlueH1)`font-size: 32px;`
 
     const tree = renderer
-      .create(<FinalH2 scale={2} className={'legacy__class'}>
+      .create(
+        <FinalH2 scale={2} className={'legacy__class'}>
           hello world
-        </FinalH2>)
+        </FinalH2>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
   test('composition with objects', () => {
-    const cssA = { color: lighten(0.2, '#000'), fontSize: modularScale(1), [hiDPI(1.5)
+    const cssA = {
+      color: lighten(0.2, '#000'),
+      fontSize: modularScale(1),
+      [hiDPI(1.5)
         .replace('\n', ' ')
-        .trim()]: { fontSize: modularScale(1.25) } }
+        .trim()]: { fontSize: modularScale(1.25) }
+    }
 
-    const cssB = css`${cssA};
-      height: 64px;`
+    const cssB = css`
+      ${cssA};
+      height: 64px;
+    `
 
-    const H1 = styled('h1')`${cssB};
-      font-size: ${modularScale(4)};`
+    const H1 = styled('h1')`
+      ${cssB};
+      font-size: ${modularScale(4)};
+    `
 
     const H2 = styled(H1)`font-size: 32px;`
 
     const tree = renderer
-      .create(<H2 scale={2} className={'legacy__class'}>
+      .create(
+        <H2 scale={2} className={'legacy__class'}>
           hello world
-        </H2>)
+        </H2>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -308,21 +369,27 @@ describe('styled', () => {
 
     const cssA = css`color: blue;`
 
-    const cssB = css`${cssA};
-      height: 64px;`
+    const cssB = css`
+      ${cssA};
+      height: 64px;
+    `
 
     const Heading = styled('span')`background-color: ${p => p.theme.gold};`
 
-    const H1 = withTheme(styled(Heading)`${cssB};
+    const H1 = withTheme(styled(Heading)`
+      ${cssB};
       font-size: ${fontSize};
-      color: ${p => p.theme.purple};`)
+      color: ${p => p.theme.purple};
+    `)
 
     const H2 = styled(H1)`font-size: 32px;`
 
     const tree = renderer
-      .create(<ThemeProvider theme={theme}>
+      .create(
+        <ThemeProvider theme={theme}>
           <H2>hello world</H2>
-        </ThemeProvider>)
+        </ThemeProvider>
+      )
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -334,9 +401,11 @@ describe('styled', () => {
     const squirtleBlueBackground = css`background-color: #7fc8d6;`
 
     const flexColumn = Component => {
-      const NewComponent = styled(Component)`${squirtleBlueBackground};
+      const NewComponent = styled(Component)`
+        ${squirtleBlueBackground};
         background-color: '#343a40';
-        flex-direction: column;`
+        flex-direction: column;
+      `
 
       return NewComponent
     }
@@ -384,8 +453,10 @@ describe('styled', () => {
     const Button = styled.button`color: green;`
     const OtherButton = styled(Button)`display: none;`
 
-    const AnotherButton = styled(OtherButton)`display: flex;
-      justify-content: center;`
+    const AnotherButton = styled(OtherButton)`
+      display: flex;
+      justify-content: center;
+    `
     const tree = renderer
       .create(<AnotherButton>hello world</AnotherButton>)
       .toJSON()
@@ -395,10 +466,14 @@ describe('styled', () => {
 
   test('change theme', () => {
     const Div = withTheme(styled.div`color: ${props => props.theme.primary};`)
-    const TestComponent = props => <ThemeProvider theme={props.theme}>
+    const TestComponent = props => (
+      <ThemeProvider theme={props.theme}>
         {props.renderChild ? <Div>this will be green then pink</Div> : null}
       </ThemeProvider>
-    const wrapper = mount(<TestComponent renderChild theme={{ primary: 'green' }} />)
+    )
+    const wrapper = mount(
+      <TestComponent renderChild theme={{ primary: 'green' }} />
+    )
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
     wrapper.setProps({ theme: { primary: 'pink' } })
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
@@ -410,9 +485,23 @@ describe('styled', () => {
     const rest = { m: [3], pt: [4] }
 
     const tree = renderer
-      .create(<Link a b wow prop filtering is cool aria-label="some label" data-wow="value" href="link" {...rest}>
+      .create(
+        <Link
+          a
+          b
+          wow
+          prop
+          filtering
+          is
+          cool
+          aria-label="some label"
+          data-wow="value"
+          href="link"
+          {...rest}
+        >
           hello world
-        </Link>)
+        </Link>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -421,9 +510,22 @@ describe('styled', () => {
     const Link = styled(props => <a {...props} />)`color: green;`
 
     const tree = renderer
-      .create(<Link a b wow prop filtering is cool aria-label="some label" data-wow="value" href="link">
+      .create(
+        <Link
+          a
+          b
+          wow
+          prop
+          filtering
+          is
+          cool
+          aria-label="some label"
+          data-wow="value"
+          href="link"
+        >
           hello world
-        </Link>)
+        </Link>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -433,14 +535,29 @@ describe('styled', () => {
     const Link = styled(BaseLink)`color: green;`
 
     const tree = renderer
-      .create(<Link a b wow prop filtering is cool aria-label="some label" data-wow="value" href="link">
+      .create(
+        <Link
+          a
+          b
+          wow
+          prop
+          filtering
+          is
+          cool
+          aria-label="some label"
+          data-wow="value"
+          href="link"
+        >
           hello world
-        </Link>)
+        </Link>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
   test('throws if undefined is passed as the component', () => {
-    expect(() => styled(undefined)`display: flex;`).toThrowErrorMatchingSnapshot()
+    expect(
+      () => styled(undefined)`display: flex;`
+    ).toThrowErrorMatchingSnapshot()
   })
 })

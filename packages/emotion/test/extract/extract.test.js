@@ -14,7 +14,8 @@ describe('styled', () => {
   })
 
   test('basic render nested', () => {
-    const H1 = styled.h1`font-size: 20px;
+    const H1 = styled.h1`
+      font-size: 20px;
       & span {
         color: blue;
 
@@ -25,7 +26,8 @@ describe('styled', () => {
             content: 'after';
           }
         }
-      }`
+      }
+    `
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -48,9 +50,11 @@ describe('styled', () => {
     `
   })
   test('css', () => {
-    expect(css`font-family: sans-serif;
+    expect(css`
+      font-family: sans-serif;
       color: yellow;
-      background-color: purple;`)
+      background-color: purple;
+    `)
   })
   test('writes the correct css', () => {
     const filenameArr = basename(__filename).split('.')
