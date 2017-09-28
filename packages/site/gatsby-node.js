@@ -1,25 +1,5 @@
 const path = require('path')
 
-exports.modifyBabelrc = ({ babelrc }) => {
-  if (process.env.NODE_ENV !== 'production') {
-    return {
-      plugins: [
-        [
-          require.resolve(`babel-plugin-emotion`),
-          { sourceMap: true, importedNames: { styled: 'styled' } }
-        ]
-      ].concat(babelrc.plugins)
-    }
-  }
-  return {
-    plugins: [
-      [
-        require.resolve(`babel-plugin-emotion`),
-        { importedNames: { styled: 'styled' } }
-      ]
-    ].concat(babelrc.plugins)
-  }
-}
 exports.modifyWebpackConfig = ({ config }) => {
   config.merge({
     resolve: {
