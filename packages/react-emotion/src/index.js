@@ -80,7 +80,7 @@ const createStyled = (tag, options: { e: string }) => {
       render() {
         const { props, state, context } = this
         let mergedProps = props
-        if (state && state.theme) {
+        if (state !== null && state.theme) {
           mergedProps = omitAssign(testAlwaysTrue, {}, props, {
             theme: state.theme || {}
           })

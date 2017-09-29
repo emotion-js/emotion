@@ -198,7 +198,7 @@ function isLastCharDot(string) {
 function createStyles(strings, ...interpolations) {
   let stringMode = true
   let styles = ''
-  if (strings == null || strings === undefined || strings.raw === undefined) {
+  if (strings === null || strings === undefined || strings.raw === undefined) {
     stringMode = false
     styles = handleInterpolation(strings, false)
   } else {
