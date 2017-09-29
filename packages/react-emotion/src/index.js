@@ -6,6 +6,10 @@ import { channel, contextTypes } from '../../emotion-theming/src/utils'
 
 export * from 'emotion'
 
+function setTheme(theme) {
+  this.setState({ theme })
+}
+
 const reactPropsRegex = codegen.require('./props')
 const testOmitPropsOnStringTag = memoize(key => reactPropsRegex.test(key))
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
@@ -64,7 +68,9 @@ const createStyled = (tag, options: { e: string }) => {
     class Styled extends Component {
       componentWillMount() {
         if (this.context[channel] !== undefined) {
-          this.unsubscribe = this.context[channel].subscribe(this.setTheme)
+          this.unsubscribe = this.context[channel].subscribe(
+            setTheme.bind(this)
+          )
         }
       }
 
@@ -73,7 +79,6 @@ const createStyled = (tag, options: { e: string }) => {
           this.context[channel].unsubscribe(this.unsubscribe)
         }
       }
-      setTheme = theme => this.setState({ theme })
 
       render() {
         const { props, state, context } = this
@@ -117,7 +122,6 @@ const createStyled = (tag, options: { e: string }) => {
       }
     }
     Styled.contextTypes = contextTypes
-
     Styled.__emotion_styles = styles
     Styled.__emotion_base = baseTag
     Styled.__emotion_real = Styled
