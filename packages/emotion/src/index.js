@@ -120,8 +120,7 @@ function handleInterpolation(
   if (
     interpolation === undefined ||
     interpolation === null ||
-    typeof interpolation === 'boolean' ||
-    typeof value === 'boolean'
+    typeof interpolation === 'boolean'
   ) {
     return ''
   }
