@@ -4,14 +4,14 @@
   "dependencies": {
     "apollo-fetch": "^0.6.0",
     "classnames": "^2.2.5",
-    "emotion": "^8.0.2-10",
+    "emotion": "^8.0.2-11",
     "glamor": "^2.20.37",
     "glamorous": "^4.1.0",
     "marky": "^1.2.0",
     "postcss": "^6.0.8",
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "react-emotion": "^8.0.2-10",
+    "react-emotion": "^8.0.2-11",
     "styled-components": "^2.1.2"
   },
   "devDependencies": {
@@ -32,5 +32,5 @@
     "build:benchmark": "webpack",
     "benchmark": "npm run build:benchmark && node run-headless.js"
   },
-  "version": "8.0.2-10"
+  "version": "8.0.2-11"
 }
