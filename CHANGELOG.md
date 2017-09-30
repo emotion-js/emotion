@@ -1,3 +1,22 @@
+## v8.0.2-11 (2017-09-30)
+
+#### :rocket: Enhancement
+* `babel-plugin-emotion`, `emotion-theming`, `react-emotion`
+  * [#361](https://github.com/emotion-js/emotion/pull/361) Add more context to the styled component displayName. ([@tkh44](https://github.com/tkh44))
+
+#### :bug: Bug Fix
+* `emotion`
+  * [#360](https://github.com/emotion-js/emotion/pull/360) Handle boolean values. ([@tkh44](https://github.com/tkh44))
+
+#### :house: Internal
+* `emotion`, `react-emotion`
+  * [#359](https://github.com/emotion-js/emotion/pull/359) Hoist some functions in react-emotion. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 2
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v8.0.2-10 (2017-09-29)
 
 #### :rocket: Enhancement
