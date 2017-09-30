@@ -15,11 +15,11 @@ exports[`emotion integration test 1`] = `
     }
   }
 >
-  <Styled>
+  <Styled(div)>
     <div
       className="glamor-0"
     />
-  </Styled>
+  </Styled(div)>
 </ThemeProvider>
 `;
 

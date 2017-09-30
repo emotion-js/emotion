@@ -116,11 +116,16 @@ const createStyled = (tag, options: { e: string }) => {
         )
       }
     }
+
     Styled.contextTypes = contextTypes
 
     Styled.__emotion_styles = styles
     Styled.__emotion_base = baseTag
     Styled.__emotion_real = Styled
+
+    Styled.displayName = `Styled(${typeof baseTag === 'string'
+      ? baseTag
+      : baseTag.displayName || 'Component'})`
 
     Styled.withComponent = nextTag => {
       return createStyled(nextTag, options)(styles)
