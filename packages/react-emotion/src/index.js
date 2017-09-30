@@ -77,19 +77,12 @@ const createStyled = (tag, options: { e: string }) => {
 
     class Styled extends Component {
       render() {
-        const { props, state, context } = this
-        let mergedProps = props
+        const { props, state } = this
+        this.mergedProps = props
         if (state !== null && state.theme) {
-          mergedProps = omitAssign(testAlwaysTrue, {}, props, {
+          this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
             theme: state.theme || {}
           })
-        }
-
-        const getValue = v => {
-          if (typeof v === 'function') {
-            return v(mergedProps, context)
-          }
-          return v
         }
 
         let className = ''
@@ -106,7 +99,7 @@ const createStyled = (tag, options: { e: string }) => {
           }
         }
         if (staticClassName === false) {
-          className += css(...styles.map(getValue), ...classInterpolations)
+          className += css.apply(this, styles.concat(classInterpolations))
         } else {
           className += staticClassName
         }

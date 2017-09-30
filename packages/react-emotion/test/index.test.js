@@ -674,4 +674,12 @@ describe('styled', () => {
     const wrapper = mount(<StyledComponent />)
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
+  test('function that function returns gets called with props', () => {
+    const SomeComponent = styled.div`
+      color: ${() => props => props.color};
+      background-color: yellow;
+    `
+    const tree = renderer.create(<SomeComponent color="hotpink" />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })
