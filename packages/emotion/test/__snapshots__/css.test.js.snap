@@ -12,6 +12,19 @@ exports[`css @supports 1`] = `
 />
 `;
 
+exports[`css array with explicit false 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css auto px 1`] = `
 .glamor-0 {
   display: -webkit-box;
