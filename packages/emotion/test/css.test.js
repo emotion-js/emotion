@@ -181,6 +181,12 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('array with explicit true', () => {
+    const cls1 = css([[{ display: 'flex' }], true])
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('nested', () => {
     const cls1 = css`
       color: yellow;
