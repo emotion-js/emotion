@@ -4,7 +4,7 @@ import { css } from 'emotion'
 import styled from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'
-import { mount, render } from 'enzyme'
+import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
 import { lighten, hiDPI, modularScale } from 'polished'
