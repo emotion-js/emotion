@@ -125,7 +125,7 @@ const createStyled = (tag, options: { e: string }) => {
 
     Styled.displayName = `Styled(${typeof baseTag === 'string'
       ? baseTag
-      : baseTag.displayName || 'Component'})`
+      : baseTag.displayName || baseTag.name || 'Component'})`
 
     Styled.withComponent = nextTag => {
       return createStyled(nextTag, options)(styles)

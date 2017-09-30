@@ -4,7 +4,7 @@ import { css } from 'emotion'
 import styled from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'
-import { mount } from 'enzyme'
+import { mount, render } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
 import { lighten, hiDPI, modularScale } from 'polished'
@@ -662,6 +662,16 @@ describe('styled', () => {
       </article>
     )
 
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+  test('name with class component', () => {
+    class SomeComponent extends React.Component {
+      render() {
+        return <div className={this.props.className} />
+      }
+    }
+    const StyledComponent = styled(SomeComponent)`color: hotpink;`
+    const wrapper = mount(<StyledComponent />)
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
 })

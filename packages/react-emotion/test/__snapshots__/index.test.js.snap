@@ -364,6 +364,22 @@ exports[`styled input placeholder object 1`] = `
 </input>
 `;
 
+exports[`styled name with class component 1`] = `
+.glamor-0 {
+  color: hotpink;
+}
+
+<Styled(SomeComponent)>
+  <SomeComponent
+    className="glamor-0"
+  >
+    <div
+      className="glamor-0"
+    />
+  </SomeComponent>
+</Styled(SomeComponent)>
+`;
+
 exports[`styled nested 1`] = `
 .glamor-0 {
   font-size: 20px;
