@@ -1,3 +1,13 @@
+## v8.0.2-12 (2017-10-01)
+
+#### :rocket: Enhancement
+* `emotion`, `react-emotion`
+  * [#363](https://github.com/emotion-js/emotion/pull/363) Recursively call functions in styled with props. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v8.0.2-11 (2017-09-30)
 
 #### :rocket: Enhancement
