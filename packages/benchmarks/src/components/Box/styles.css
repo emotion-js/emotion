@@ -34,3 +34,9 @@
   width: 20px;
   height: 20px;
 }
+
+@media (min-width: 420px) {
+  .outer {
+    padding: 8px;
+  }
+}
