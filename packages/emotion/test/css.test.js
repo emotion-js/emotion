@@ -168,6 +168,25 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  test('explicit false', () => {
+    const cls1 = css(false)
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('array with explicit false', () => {
+    const cls1 = css([[{ display: 'flex' }], false])
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('array with explicit true', () => {
+    const cls1 = css([[{ display: 'flex' }], true])
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('nested', () => {
     const cls1 = css`
       color: yellow;
