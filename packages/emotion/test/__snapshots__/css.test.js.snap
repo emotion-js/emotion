@@ -173,6 +173,12 @@ exports[`css explicit & 2`] = `
 }"
 `;
 
+exports[`css explicit false 1`] = `
+<div
+  className="css-0"
+/>
+`;
+
 exports[`css falsy property value in object 1`] = `
 .glamor-0 {
   display: -webkit-box;
