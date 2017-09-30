@@ -124,6 +124,10 @@ const createStyled = (tag, options: { e: string }) => {
     Styled.__emotion_base = baseTag
     Styled.__emotion_real = Styled
 
+    Styled.displayName = `Styled(${typeof baseTag === 'string'
+      ? baseTag
+      : baseTag.displayName || baseTag.name || 'Component'})`
+
     Styled.withComponent = nextTag => {
       return createStyled(nextTag, options)(styles)
     }

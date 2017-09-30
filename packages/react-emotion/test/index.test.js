@@ -664,4 +664,14 @@ describe('styled', () => {
 
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
+  test('name with class component', () => {
+    class SomeComponent extends React.Component {
+      render() {
+        return <div className={this.props.className} />
+      }
+    }
+    const StyledComponent = styled(SomeComponent)`color: hotpink;`
+    const wrapper = mount(<StyledComponent />)
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
 })

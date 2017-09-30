@@ -69,13 +69,13 @@ exports[`styled change theme 1`] = `
       }
     }
   >
-    <Styled>
+    <Styled(div)>
       <div
         className="glamor-0"
       >
         this will be green then pink
       </div>
-    </Styled>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -100,13 +100,13 @@ exports[`styled change theme 2`] = `
       }
     }
   >
-    <Styled>
+    <Styled(div)>
       <div
         className="glamor-0"
       >
         this will be green then pink
       </div>
-    </Styled>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -362,6 +362,22 @@ exports[`styled input placeholder object 1`] = `
 >
   hello world
 </input>
+`;
+
+exports[`styled name with class component 1`] = `
+.glamor-0 {
+  color: hotpink;
+}
+
+<Styled(SomeComponent)>
+  <SomeComponent
+    className="glamor-0"
+  >
+    <div
+      className="glamor-0"
+    />
+  </SomeComponent>
+</Styled(SomeComponent)>
 `;
 
 exports[`styled nested 1`] = `
@@ -652,13 +668,13 @@ exports[`styled theming 1`] = `
       }
     }
   >
-    <Styled>
+    <Styled(div)>
       <div
         className="css-olgnlr"
       >
         this will be green then pink
       </div>
-    </Styled>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -679,13 +695,13 @@ exports[`styled theming 2`] = `
       }
     }
   >
-    <Styled>
+    <Styled(div)>
       <div
         className="css-olgnlr"
       >
         this will be green then pink
       </div>
-    </Styled>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -735,20 +751,20 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 }
 
 <article>
-  <Styled>
+  <Styled(h1)>
     <h1
       className="glamor-0"
     >
       My Title
     </h1>
-  </Styled>
-  <Styled>
+  </Styled(h1)>
+  <Styled(h2)>
     <h2
       className="glamor-0"
     >
       My Subtitle
     </h2>
-  </Styled>
+  </Styled(h2)>
 </article>
 `;
 
@@ -762,14 +778,14 @@ exports[`styled withComponent with function interpolation 1`] = `
 }
 
 <article>
-  <Styled>
+  <Styled(h1)>
     <h1
       className="glamor-0"
     >
       My Title
     </h1>
-  </Styled>
-  <Styled
+  </Styled(h1)>
+  <Styled(h2)
     color="hotpink"
   >
     <h2
@@ -778,6 +794,6 @@ exports[`styled withComponent with function interpolation 1`] = `
     >
       My Subtitle
     </h2>
-  </Styled>
+  </Styled(h2)>
 </article>
 `;
