@@ -63,16 +63,15 @@ const createStyled = (tag, options: { e: string }) => {
       : testOmitPropsOnComponent
 
   return (strings, ...interpolations) => {
-    const stringMode = strings !== undefined && strings.raw !== undefined
     let styles = (isReal && tag.__emotion_styles) || []
     if (staticClassName === false) {
-      if (stringMode) {
+      if (strings == null || strings.raw === undefined) {
+        styles = styles.concat(strings, interpolations)
+      } else {
         styles = interpolations.reduce(
           (array, interp, i) => array.concat(interp, strings[i + 1]),
           styles.concat(strings[0])
         )
-      } else {
-        styles = styles.concat(strings, interpolations)
       }
     }
 
