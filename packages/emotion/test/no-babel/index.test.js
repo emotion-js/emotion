@@ -77,20 +77,12 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('nested array', () => {
-    const cls1 = css([
-      [
-        {
-          display: 'flex'
-        }
-      ]
-    ])
+    const cls1 = css([[{ display: 'flex' }]])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
   test('composition stuff', () => {
-    const cls1 = css({
-      justifyContent: 'center'
-    })
+    const cls1 = css({ justifyContent: 'center' })
     const cls2 = css([cls1])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -130,9 +122,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('glamorous style api & composition', () => {
-    const H1 = styled('h1')(props => ({
-      fontSize: props.fontSize
-    }))
+    const H1 = styled('h1')(props => ({ fontSize: props.fontSize }))
     const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
 
     const tree = renderer

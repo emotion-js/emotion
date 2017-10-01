@@ -120,17 +120,23 @@ function handleInterpolation(
   if (
     interpolation === undefined ||
     interpolation === null ||
-    typeof value === 'boolean'
+    typeof interpolation === 'boolean'
   ) {
     return ''
   }
 
   if (typeof interpolation === 'function') {
-    return handleInterpolation(interpolation())
+    return handleInterpolation.call(
+      this,
+      this === undefined
+        ? interpolation()
+        : interpolation(this.mergedProps, this.context),
+      couldBeSelectorInterpolation
+    )
   }
 
   if (typeof interpolation === 'object') {
-    return createStringFromObject(interpolation)
+    return createStringFromObject.call(this, interpolation)
   }
 
   if (
@@ -167,11 +173,11 @@ function createStringFromObject(obj) {
   let string = ''
 
   if (Array.isArray(obj)) {
-    flatten(obj).forEach(interpolation => {
-      string += handleInterpolation(interpolation, false)
-    })
+    flatten(obj).forEach(function(interpolation) {
+      string += handleInterpolation.call(this, interpolation, false)
+    }, this)
   } else {
-    Object.keys(obj).forEach(key => {
+    Object.keys(obj).forEach(function(key) {
       if (typeof obj[key] !== 'object') {
         if (registered[obj[key]] !== undefined) {
           string += `${key}{${registered[obj[key]]}}`
@@ -182,9 +188,9 @@ function createStringFromObject(obj) {
           )};`
         }
       } else {
-        string += `${key}{${handleInterpolation(obj[key])}}`
+        string += `${key}{${handleInterpolation.call(this, obj[key], false)}}`
       }
-    })
+    }, this)
   }
   objectToStringCache.set(obj, string)
 
@@ -198,21 +204,23 @@ function isLastCharDot(string) {
 function createStyles(strings, ...interpolations) {
   let stringMode = true
   let styles = ''
-  if (
-    (strings !== undefined && strings.raw === undefined) ||
-    strings === undefined
-  ) {
+  if (strings == null || strings.raw === undefined) {
     stringMode = false
-    styles = handleInterpolation(strings, false)
+    styles = handleInterpolation.call(this, strings, false)
   } else {
     styles = strings[0]
   }
-  interpolations.forEach((interpolation, i) => {
-    styles += handleInterpolation(interpolation, isLastCharDot(styles))
+
+  interpolations.forEach(function(interpolation, i) {
+    styles += handleInterpolation.call(
+      this,
+      interpolation,
+      isLastCharDot(styles)
+    )
     if (stringMode === true && strings[i + 1] !== undefined) {
       styles += strings[i + 1]
     }
-  })
+  }, this)
 
   return styles
 }
@@ -228,8 +236,8 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-export function css(...args) {
-  const styles = createStyles(...args)
+export function css() {
+  const styles = createStyles.apply(this, arguments)
   const hash = hashString(styles)
   const cls = `css-${hash}`
   if (registered[cls] === undefined) {

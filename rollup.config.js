@@ -3,13 +3,20 @@ import uglify from 'rollup-plugin-uglify'
 import replace from 'rollup-plugin-replace'
 import babel from 'rollup-plugin-babel'
 import alias from 'rollup-plugin-alias'
+import cjs from 'rollup-plugin-commonjs'
 import path from 'path'
 
 const pkg = require(path.resolve(process.cwd(), './package.json'))
 
 const config = {
   entry: './src/index.js',
-  external: ['react', 'emotion', 'emotion-utils'],
+  external: [
+    'react',
+    'emotion',
+    'emotion-utils',
+    'prop-types',
+    'hoist-non-react-statics'
+  ],
   exports: 'named',
   sourceMap: true,
   plugins: [
@@ -28,9 +35,10 @@ const config = {
         'react',
         'flow'
       ],
-      plugins: ['codegen'],
+      plugins: ['codegen', 'external-helpers'],
       babelrc: false
-    })
+    }),
+    cjs()
   ],
   targets: [
     { dest: pkg.main, format: 'cjs' },
@@ -39,8 +47,8 @@ const config = {
 }
 
 if (process.env.UMD) {
-  config.external = ['react']
-  config.globals = { react: 'React' }
+  config.external = ['react', 'prop-types']
+  config.globals = { react: 'React', 'prop-types': 'PropTypes' }
   config.plugins.push(
     alias({
       emotion: path.resolve(__dirname, './packages/emotion/src/index.js'),

@@ -52,18 +52,8 @@ describe('css', () => {
       '@media(min-width: 960px)'
     ]
     const buttonCSS = [
-      {
-        color: 'red',
-        [mq[1]]: {
-          color: 'blue'
-        }
-      },
-      {
-        color: 'purple',
-        [mq[1]]: {
-          color: 'aquamarine'
-        }
-      }
+      { color: 'red', [mq[1]]: { color: 'blue' } },
+      { color: 'purple', [mq[1]]: { color: 'aquamarine' } }
     ]
     css([
       {

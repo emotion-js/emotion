@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`emotion integration test 1`] = `
+.glamor-0 {
+  color: red;
+  background-color: green;
+  border: 1px solid blue;
+}
+
+<ThemeProvider
+  theme={
+    Object {
+      "bg": "green",
+      "color": "red",
+    }
+  }
+>
+  <Styled(div)>
+    <div
+      className="glamor-0"
+    />
+  </Styled(div)>
+</ThemeProvider>
+`;
+
+exports[`updating theme after a listener unsubscribed 1`] = `
+<SomeComponent
+  renderThing={true}
+  theme={
+    Object {
+      "theme": "something",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "theme": "something",
+      }
+    }
+  >
+    <div>
+      <WithTheme(Component)>
+        <Component
+          theme={
+            Object {
+              "theme": "something",
+            }
+          }
+        />
+      </WithTheme(Component)>
+      <WithTheme(Component)>
+        <Component
+          theme={
+            Object {
+              "theme": "something",
+            }
+          }
+        />
+      </WithTheme(Component)>
+    </div>
+  </ThemeProvider>
+</SomeComponent>
+`;
+
+exports[`updating theme after a listener unsubscribed 2`] = `
+<SomeComponent
+  renderThing={false}
+  theme={
+    Object {
+      "theme": "something",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "theme": "something",
+      }
+    }
+  >
+    <div>
+      <WithTheme(Component)>
+        <Component
+          theme={
+            Object {
+              "theme": "something",
+            }
+          }
+        />
+      </WithTheme(Component)>
+    </div>
+  </ThemeProvider>
+</SomeComponent>
+`;
+
+exports[`updating theme after a listener unsubscribed 3`] = `
+<SomeComponent
+  renderThing={false}
+  theme={
+    Object {
+      "theme": "something different",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "theme": "something different",
+      }
+    }
+  >
+    <div>
+      <WithTheme(Component)>
+        <Component
+          theme={
+            Object {
+              "theme": "something different",
+            }
+          }
+        />
+      </WithTheme(Component)>
+    </div>
+  </ThemeProvider>
+</SomeComponent>
+`;

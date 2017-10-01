@@ -8,5 +8,9 @@ node_modules/
 packages/site/build
 package-lock.json
 yarn.lock
+<<<<<<< HEAD
 .cache/
 public/
+=======
+.DS_Store
+>>>>>>> master

@@ -4,11 +4,11 @@
   "description": "emotion site",
   "version": "8.0.2-8",
   "dependencies": {
-    "babel-plugin-emotion": "^8.0.2-7",
+    "babel-plugin-emotion": "^8.0.2-11",
     "babel-standalone": "^6.26.0",
     "dom-iterator": "^0.3.0",
-    "emotion": "^8.0.2-8",
-    "emotion-server": "^8.0.2-8",
+    "emotion": "^8.0.2-12",
+    "emotion-server": "^8.0.2-12",
     "gatsby": "^1.9.42",
     "gatsby-link": "^1.6.15",
     "gatsby-plugin-emotion": "^1.1.8",
@@ -23,9 +23,9 @@
     "open-color": "^1.5.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-emotion": "^8.0.2-8",
+    "react-emotion": "^8.0.2-12",
     "react-live": "^1.7.1",
-    "styled-system": "^1.0.0-15"
+    "styled-system": "^1.0.2"
   },
   "keywords": [
     "gatsby"

@@ -12,6 +12,32 @@ exports[`css @supports 1`] = `
 />
 `;
 
+exports[`css array with explicit false 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css array with explicit true 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css auto px 1`] = `
 .glamor-0 {
   display: -webkit-box;
@@ -158,6 +184,12 @@ exports[`css explicit & 2`] = `
   display: -ms-flexbox;
   display: flex;
 }"
+`;
+
+exports[`css explicit false 1`] = `
+<div
+  className="css-0"
+/>
 `;
 
 exports[`css falsy property value in object 1`] = `
@@ -396,6 +428,18 @@ exports[`css nested selector without parent declaration 1`] = `
 exports[`css null rule 1`] = `
 <div
   className="css-0"
+/>
+`;
+
+exports[`css null value 1`] = `
+<div
+  className="css-0"
+/>
+`;
+
+exports[`css null value 2`] = `
+<div
+  className="css-1xdhyk6"
 />
 `;
 
