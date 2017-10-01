@@ -1,6 +1,6 @@
 {
   "name": "emotion-server",
-  "version": "8.0.2-12",
+  "version": "8.0.2-13",
   "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
   "main": "lib/index.js",
   "files": [
@@ -23,7 +23,7 @@
     "babel-cli": "^6.24.1",
     "emotion": "^8.0.2-12",
     "npm-run-all": "^4.0.2",
-    "react-emotion": "^8.0.2-12",
+    "react-emotion": "^8.0.2-13",
     "rimraf": "^2.6.1"
   },
   "author": "Kye Hohenberger",
