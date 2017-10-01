@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 import Box from '../components/Box'
 import { LiveEditor, withLive, LiveProvider } from 'react-live/lib'
 import GatsbyLink from 'gatsby-link'
 import { scope, Error } from '../components/Playground'
-import colors from 'open-color'
+import { colors, constants } from '../utils/style'
 
 const Title = Box.withComponent('h1')
 const Paragraph = Box.withComponent('p')
 
-const code = `const Link = styled.a\`
+const stringCode = `const Link = styled.a\`
   display: inline-block;
   border-radius: 8px;
   padding: 32px;
@@ -23,21 +23,48 @@ const code = `const Link = styled.a\`
   \`}
 \``
 
+const objectCode = `const Link = styled.a(props => ({
+  display: 'inline-block',
+  borderRadius: 8,
+  padding: 32,
+  margin: 32,
+  width: '12rem',
+  background: props.primary
+    ? 'darkturquoise'
+    : 'darkorchid',
+  color: 'white',
+  textDecoration: 'none'
+}))
+`
 let Link
-
-const Preview = withLive(({ live: { element: BaseLink } }) => {
+const Preview = withLive(({ live: { element: BaseLink, onError, error } }) => {
   try {
     Link = BaseLink.props.component.withComponent(GatsbyLink)
   } catch (e) {}
   return (
     <Box fontSize={2}>
-      <Link to="/docs/install">Install</Link>
-      <Link to="/docs" primary>
-        Getting Started
-      </Link>
+      <ErrorBoundary onError={onError} error={error}>
+        <Link to="/docs/install">Install</Link>
+        <Link to="/docs" primary>
+          Getting Started
+        </Link>
+      </ErrorBoundary>
     </Box>
   )
 })
+
+class ErrorBoundary extends Component {
+  state = { error: false }
+  componentDidCatch(err) {
+    this.props.onError(err)
+  }
+  render() {
+    if (this.props.error) {
+      return null
+    }
+    return this.props.children
+  }
+}
 
 const LiveError = withLive(
   props =>
@@ -53,26 +80,36 @@ const transform = code => `${code}\nrender(<div component={Link} />);`
 const scroll = css`overflow: scroll;`
 const textCenter = css`text-align: center;`
 
-// make this a radio later or something
 const SelectButton = styled.button`
   text-align: center;
   flex: 1;
-  border: 0;
   color: white;
-  background-color: ${colors.violet[8]};
+  padding: ${constants.space[1]}px;
+  background-color: ${props => (props.active ? colors.violet[8] : '#1d1f21')};
+  border: 0 solid ${colors.violet[8]};
+  border-bottom-width: 4px;
+  :hover {
+    background-color: ${props =>
+      props.active ? colors.violet[9] : colors.violet[7]};
+  }
 `
 
 class IndexPage extends React.Component {
   componentDidCatch(error) {
     console.error(error)
   }
+  state = { mode: 'string', stringCode, objectCode }
   render() {
     const avatar = this.props.data.imageSharp.responsiveResolution
 
     return (
       <LiveProvider
         scope={scope}
-        code={code}
+        code={
+          this.state.mode === 'object'
+            ? this.state.objectCode
+            : this.state.stringCode
+        }
         noInline
         transformCode={transform}
         mountStylesheet={false}
@@ -104,11 +141,31 @@ class IndexPage extends React.Component {
                 borderRadius: 8
               }}
             >
-              <Box bg={colors.gray[3]} css={{ height: 20 }} display="flex">
-                <SelectButton>String</SelectButton>
-                <SelectButton>Object</SelectButton>
+              <Box bg={colors.gray[3]} display="flex">
+                <SelectButton
+                  active={this.state.mode === 'string'}
+                  onClick={() => {
+                    this.setState({ mode: 'string' })
+                  }}
+                >
+                  String
+                </SelectButton>
+                <SelectButton
+                  active={this.state.mode === 'object'}
+                  onClick={() => {
+                    this.setState({ mode: 'object' })
+                  }}
+                >
+                  Object
+                </SelectButton>
               </Box>
-              <LiveEditor css={scroll} />
+              <LiveEditor
+                onChange={code => {
+                  this.setState({ objectCode: code })
+                }}
+                css={scroll}
+              />
+
               <LiveError css={scroll} />
             </div>
           </Box>

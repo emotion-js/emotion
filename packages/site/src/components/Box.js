@@ -1,8 +1,14 @@
 import styled from 'react-emotion'
-import { space, width, fontSize, color, responsiveStyle } from 'styled-system'
+import {
+  space,
+  width,
+  fontSize,
+  color,
+  responsiveStyle,
+  flex
+} from 'styled-system'
 
 export const display = responsiveStyle('display')
-export const flex = responsiveStyle('flex')
 export const order = responsiveStyle('order')
 const wrap = responsiveStyle('flexWrap', 'wrap', 'wrap')
 const direction = responsiveStyle('flexDirection', 'direction')
