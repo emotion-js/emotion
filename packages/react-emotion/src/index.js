@@ -78,12 +78,9 @@ const createStyled = (tag, options: { e: string }) => {
     class Styled extends Component {
       render() {
         const { props, state } = this
-        this.mergedProps = props
-        if (state !== null && state.theme) {
-          this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
-            theme: state.theme || {}
-          })
-        }
+        this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
+          theme: (state !== null && state.theme) || props.theme || {}
+        })
 
         let className = ''
         let classInterpolations = []

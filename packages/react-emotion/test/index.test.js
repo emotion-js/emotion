@@ -682,4 +682,22 @@ describe('styled', () => {
     const tree = renderer.create(<SomeComponent color="hotpink" />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('theme prop exists without ThemeProvider', () => {
+    const SomeComponent = styled.div`
+      color: ${props => props.theme.color || 'green'};
+      background-color: yellow;
+    `
+    const tree = renderer.create(<SomeComponent />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('theme prop exists without ThemeProvider with a theme prop on the component', () => {
+    const SomeComponent = styled.div`
+      color: ${props => props.theme.color || 'green'};
+      background-color: yellow;
+    `
+    const tree = renderer
+      .create(<SomeComponent theme={{ color: 'hotpink' }} />)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })
