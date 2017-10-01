@@ -11,7 +11,7 @@
     "postcss": "^6.0.8",
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "react-emotion": "^8.0.2-12",
+    "react-emotion": "^8.0.2-13",
     "styled-components": "^2.1.2"
   },
   "devDependencies": {
@@ -32,5 +32,5 @@
     "build:benchmark": "webpack",
     "benchmark": "npm run build:benchmark && node run-headless.js"
   },
-  "version": "8.0.2-12"
+  "version": "8.0.2-13"
 }

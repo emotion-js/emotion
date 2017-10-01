@@ -1,6 +1,6 @@
 {
   "name": "react-emotion",
-  "version": "8.0.2-12",
+  "version": "8.0.2-13",
   "description": "The Next Generation of CSS-in-JS, for React projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",

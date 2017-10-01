@@ -647,6 +647,28 @@ exports[`styled random object expression 1`] = `
 </h1>
 `;
 
+exports[`styled theme prop exists without ThemeProvider 1`] = `
+.glamor-0 {
+  color: green;
+  background-color: yellow;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`styled theme prop exists without ThemeProvider with a theme prop on the component 1`] = `
+.glamor-0 {
+  color: hotpink;
+  background-color: yellow;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`styled themes 1`] = `
 .glamor-0 {
   background-color: #ffd43b;
