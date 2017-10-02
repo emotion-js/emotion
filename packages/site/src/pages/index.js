@@ -161,7 +161,7 @@ class IndexPage extends React.Component {
               </Box>
               <LiveEditor
                 onChange={code => {
-                  this.setState({ objectCode: code })
+                  this.setState({ [`${this.state.mode}Code`]: code })
                 }}
                 css={scroll}
               />
