@@ -1,4 +1,5 @@
 const path = require('path')
+global.Babel = require('babel-standalone')
 
 exports.modifyWebpackConfig = ({ config }) => {
   config.merge({

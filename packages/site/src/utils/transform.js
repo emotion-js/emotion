@@ -1,7 +1,7 @@
-import { transform as _transform, registerPlugin } from 'babel-standalone'
+/* global Babel */
 import babelPluginEmotion from 'babel-plugin-emotion'
 
-registerPlugin('babel-plugin-emotion', babelPluginEmotion)
+Babel.registerPlugin('babel-plugin-emotion', babelPluginEmotion)
 
 const options = {
   presets: ['es2015', 'react', 'stage-1'],
@@ -9,7 +9,7 @@ const options = {
 }
 module.exports = {
   transform(code) {
-    const transformed = _transform(code, options)
+    const transformed = Babel.transform(code, options)
     return transformed
   }
 }
