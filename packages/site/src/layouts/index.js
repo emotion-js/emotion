@@ -107,7 +107,7 @@ const TemplateWrapper = ({ children }) => (
   <Box flex={1}>
     <Helmet title="emotion" />
     <Header />
-    <Box m={3}>{children()}</Box>
+    <Box m={[1, 2]}>{children()}</Box>
   </Box>
 )
 

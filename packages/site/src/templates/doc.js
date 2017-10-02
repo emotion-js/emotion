@@ -6,7 +6,10 @@ import colors from 'open-color'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
 
-const Title = styled.h1`font-size: ${constants.fontSizes[6]}px;`
+const Title = styled.h1`
+  font-size: ${constants.fontSizes[6]}px;
+  margin-top: 0;
+`
 
 const styles = css`
   p {
@@ -18,7 +21,7 @@ const styles = css`
   h2,
   h3,
   h4 {
-    margin: 1.414rem 0 0.5rem;
+    margin: 0.75rem 0 0.5rem;
     font-weight: inherit;
     line-height: 1.42;
   }
@@ -99,6 +102,24 @@ const styles = css`
   }
 `
 
+const containerCls = css`
+  display: grid;
+  grid-template-columns: auto minmax(25%, 1fr);
+  grid-template-rows: auto minmax(min-content, 1fr) auto;
+`
+
+const sidebarCls = css`
+  grid-column: 1;
+  grid-row: 1;
+`
+
+const contentCls = css`
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  margin-left: ${constants.space[2]}px;
+`
+
 const docs = [
   { name: 'install', hasCodeExample: false },
   { name: 'nested', hasCodeExample: true },
@@ -127,18 +148,25 @@ class DocRoute extends React.Component {
     )
     const docContext = docs[documentContextIndex]
     return (
-      <div className={styles}>
-        <Title>{doc.frontmatter.title}</Title>
-        {docContext &&
-          docContext.hasCodeExample === true && (
-            <Box mb={constants.space[3]}>
-              <Playground
-                code={require(`!raw-loader!../blocks/${docContext.name}.example`)}
-              />
-            </Box>
-          )}
-        <div dangerouslySetInnerHTML={{ __html: doc.html }} />
-      </div>
+      <Box flex={1} className={containerCls}>
+        <Box className={sidebarCls}>
+          {docs.map(ctx => {
+            return <Box key={ctx.name}>{ctx.name}</Box>
+          })}
+        </Box>
+        <Box className={contentCls}>
+          <Title>{doc.frontmatter.title}</Title>
+          {docContext &&
+            docContext.hasCodeExample === true && (
+              <Box mb={constants.space[3]}>
+                <Playground
+                  code={require(`!raw-loader!../blocks/${docContext.name}.example`)}
+                />
+              </Box>
+            )}
+          <div className={styles} dangerouslySetInnerHTML={{ __html: doc.html }} />
+        </Box>
+      </Box>
     )
   }
 }
