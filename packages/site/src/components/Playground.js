@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import { LiveEditor, LivePreview, LiveProvider, withLive } from 'react-live/lib'
 import styled, { css, keyframes, merge } from 'react-emotion'
+import { ThemeProvider, withTheme } from 'emotion-theming'
 import Box from '../components/Box'
 import colors from 'open-color'
 import '../utils/highlight-css'
+import logoUrl from '../assets/logo.png'
 
 export const scope = {
+  logoUrl,
+  // React,
   css,
   keyframes,
   styled,
+  // ThemeProvider,
+  // withTheme,
   merge
 }
 
@@ -26,7 +32,17 @@ export const Preview = withLive(
     live.error ? (
       <Error {...props}>{live.error}</Error>
     ) : (
-      <LivePreview css={{ overflow: 'auto', padding: 8 }} />
+      <LivePreview
+        css={{
+          flex: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'auto',
+          padding: 8,
+          minHeight: '100%'
+        }}
+      />
     )
 )
 
@@ -61,6 +77,9 @@ export default class Playground extends Component {
           </Box>
           <Box
             flex={1}
+            display="flex"
+            justify="center"
+            align="center"
             css={{
               overflow: 'hidden',
               minHeight: '100%'
