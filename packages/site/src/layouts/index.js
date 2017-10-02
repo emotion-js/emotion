@@ -37,7 +37,11 @@ html, body, #___gatsby, #___gatsby > div {
   background-color: #f8f9fa;
 }
 pre[class*="language-"] {
-  border-radius: 8px;  
+  border-radius: 8px;
+  overflow: scroll; 
+}
+.gatsy-highlight {
+  overflow: hidden;
 }
 * {
   box-sizing: border-box;
