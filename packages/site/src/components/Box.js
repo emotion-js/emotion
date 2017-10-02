@@ -16,6 +16,24 @@ const align = responsiveStyle('alignItems', 'align')
 const justify = responsiveStyle('justifyContent', 'justify')
 const column = props => (props.column ? 'flex-direction:column;' : null)
 
+/**
+ * This is an optimized version of
+ *
+ * export default styled.div`
+ *   ${display};
+ *   ${space};
+ *   ${width};
+ *   ${fontSize};
+ *   ${color};
+ *   ${flex};
+ *   ${order};
+ *   ${wrap};
+ *   ${column};
+ *   ${direction};
+ *   ${align};
+ *   ${justify};
+ * `
+ */
 export default styled.div(
   undefined,
   display,
