@@ -204,6 +204,8 @@ function isLastCharDot(string) {
 function createStyles(strings, ...interpolations) {
   let stringMode = true
   let styles = ''
+  let meta = {}
+
   if (strings == null || strings.raw === undefined) {
     stringMode = false
     styles = handleInterpolation.call(this, strings, false)
@@ -212,6 +214,12 @@ function createStyles(strings, ...interpolations) {
   }
 
   interpolations.forEach(function(interpolation, i) {
+    if (typeof interpolation === 'object' && 'meta' in interpolation) {
+      console.log(JSON.stringify(interpolation, null, 2))
+      meta = interpolation.meta
+      return
+    }
+
     styles += handleInterpolation.call(
       this,
       interpolation,
@@ -222,7 +230,7 @@ function createStyles(strings, ...interpolations) {
     }
   }, this)
 
-  return styles
+  return { styles, meta }
 }
 
 if (process.env.NODE_ENV !== 'production') {
@@ -237,9 +245,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export function css() {
-  const styles = createStyles.apply(this, arguments)
+  const { styles, meta } = createStyles.apply(this, arguments)
   const hash = hashString(styles)
-  const cls = `css-${hash}`
+  const cls =
+    meta.identifierName !== undefined
+      ? `css-${hash}-${meta.identifierName}`
+      : `css-${hash}`
+
   if (registered[cls] === undefined) {
     registered[cls] = styles
   }

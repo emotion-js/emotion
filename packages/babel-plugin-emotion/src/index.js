@@ -103,8 +103,40 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
     src += addSourceMaps(path.node.quasi.loc.start, state)
   }
+
+  console.log(path.node.quasi.loc.start)
   return t.callExpression(
-    t.callExpression(identifier, [tag]),
+    t.callExpression(identifier, [
+      tag,
+      t.objectExpression([
+        t.objectProperty(
+          t.identifier('meta'),
+          t.objectExpression([
+            t.objectProperty(
+              t.identifier('identifierName'),
+              t.stringLiteral(identifierName)
+            ),
+            t.objectProperty(
+              t.identifier('location'),
+              t.objectExpression([
+                t.objectProperty(
+                  t.identifier('filename'),
+                  t.stringLiteral(state.file.opts.sourceFileName)
+                ),
+                t.objectProperty(
+                  t.identifier('line'),
+                  t.numericLiteral(path.node.quasi.loc.start.line)
+                ),
+                t.objectProperty(
+                  t.identifier('column'),
+                  t.numericLiteral(path.node.quasi.loc.start.column)
+                )
+              ])
+            )
+          ])
+        )
+      ])
+    ]),
     new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }

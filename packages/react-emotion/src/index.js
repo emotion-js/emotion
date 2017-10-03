@@ -41,7 +41,15 @@ const omitAssign = function(testFn, target) {
   return target
 }
 
-const createStyled = (tag, options: { e: string }) => {
+const createStyled = (
+  tag,
+  options: {
+    meta: {
+      identifierName: string,
+      location: { filename: string, line: number, column: number }
+    }
+  }
+) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
       throw new Error(
@@ -96,7 +104,7 @@ const createStyled = (tag, options: { e: string }) => {
           }
         }
         if (staticClassName === false) {
-          className += css.apply(this, styles.concat(classInterpolations))
+          className += css.apply(this, styles.concat(classInterpolations, options))
         } else {
           className += staticClassName
         }
