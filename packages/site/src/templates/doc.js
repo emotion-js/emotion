@@ -103,17 +103,6 @@ const styles = css`
   }
 `
 
-const containerCls = css`
-  display: grid;
-  grid-template-columns: auto minmax(25%, 1fr);
-  grid-template-rows: auto minmax(min-content, 1fr) auto;
-`
-
-const sidebarCls = css`
-  grid-column: 1;
-  grid-row: 1;
-`
-
 const contentCls = css`
   grid-column: 2;
   grid-row: 1;
@@ -142,32 +131,19 @@ const docs = [
 class DocRoute extends React.Component {
   render() {
     const { data } = this.props
-    const { doc, allCodeExample, allFile } = data
+    const { doc, allCodeExample } = data
     return (
-      <Box flex={1} className={containerCls}>
-        <Box className={sidebarCls}>
-          {allFile.edges.map(({ node }) => {
-            return (
-              <Box key={node.name}>
-                <Link to={`/docs/${node.name}`}>
-                  {node.childMarkdownRemark.frontmatter.title || node.name}
-                </Link>
-              </Box>
-            )
-          })}
-        </Box>
-        <Box className={contentCls}>
-          <Title>{doc.frontmatter.title}</Title>
-          {allCodeExample && (
-            <Box mb={constants.space[3]}>
-              <Playground code={allCodeExample.edges[0].node.content} />
-            </Box>
-          )}
-          <div
-            className={styles}
-            dangerouslySetInnerHTML={{ __html: doc.html }}
-          />
-        </Box>
+      <Box className={contentCls}>
+        <Title>{doc.frontmatter.title}</Title>
+        {allCodeExample && (
+          <Box mb={constants.space[3]}>
+            <Playground code={allCodeExample.edges[0].node.content} />
+          </Box>
+        )}
+        <div
+          className={styles}
+          dangerouslySetInnerHTML={{ __html: doc.html }}
+        />
       </Box>
     )
   }
@@ -187,18 +163,6 @@ export const pageQuery = graphql`
       edges {
         node {
           content
-        }
-      }
-    }
-    allFile(filter: { extension: { eq: "md" } }) {
-      edges {
-        node {
-          name
-          childMarkdownRemark {
-            frontmatter {
-              title
-            }
-          }
         }
       }
     }
