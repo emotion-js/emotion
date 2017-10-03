@@ -1,4 +1,6 @@
 const path = require('path')
+const crypto = require(`crypto`)
+
 global.Babel = require('babel-standalone')
 
 exports.modifyWebpackConfig = ({ config }) => {
@@ -56,8 +58,17 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 }
 
 // Add custom url pathname for blog posts.
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  const { createNodeField } = boundActionCreators
+exports.onCreateNode = async ({
+  node,
+  boundActionCreators,
+  getNode,
+  loadNodeContent
+}) => {
+  const {
+    createNodeField,
+    createNode,
+    createParentChildLink
+  } = boundActionCreators
 
   if (
     node.internal.type === `MarkdownRemark` &&
@@ -69,5 +80,27 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
       name: `slug`,
       value: fileNode.name
     })
+  } else if (node.internal.type === 'File' && node.extension === 'example') {
+    const content = await loadNodeContent(node)
+
+    const contentDigest = crypto
+      .createHash(`md5`)
+      .update(JSON.stringify(content))
+      .digest(`hex`)
+
+    const codeExampleNode = {
+      id: `${node.id} >>> CodeExample`,
+      children: [],
+      parent: node.id,
+      content,
+      name: node.name,
+      internal: {
+        content,
+        contentDigest,
+        type: `CodeExample`
+      }
+    }
+    createNode(codeExampleNode)
+    createParentChildLink({ parent: node, child: codeExampleNode })
   }
 }

@@ -121,50 +121,45 @@ const contentCls = css`
 `
 
 const docs = [
-  { name: 'install', hasCodeExample: false },
-  { name: 'nested', hasCodeExample: true },
-  { name: 'pseudo', hasCodeExample: true },
-  { name: 'media', hasCodeExample: true },
-  { name: 'styling-any-component', hasCodeExample: true },
-  { name: 'styled-with-component', hasCodeExample: true },
-  { name: 'props', hasCodeExample: true },
-  { name: 'keyframes', hasCodeExample: true },
-  { name: 'composition', hasCodeExample: true },
-  { name: 'objects', hasCodeExample: true },
-  { name: 'styled-with-object', hasCodeExample: true },
-  { name: 'css-prop', hasCodeExample: true },
-  { name: 'theming', hasCodeExample: true },
-  { name: 'source-maps', hasCodeExample: false },
-  { name: 'inject-global', hasCodeExample: false }
+  'install',
+  'nested',
+  'pseudo',
+  'media',
+  'styling-any-component',
+  'styled-with-component',
+  'props',
+  'keyframes',
+  'composition',
+  'objects',
+  'styled-with-object',
+  'css-prop',
+  'theming',
+  'source-maps',
+  'inject-global'
 ]
 
 class DocRoute extends React.Component {
   render() {
-    const { data, pathContext } = this.props
-    const { markdownRemark: doc } = data
-    console.log(this.props)
-    const documentContextIndex = docs.findIndex(
-      ({ name }) => name === pathContext.slug
-    )
-    const docContext = docs[documentContextIndex]
+    const { data } = this.props
+    const { markdownRemark: doc, codeExample } = data
     return (
       <Box flex={1} className={containerCls}>
         <Box className={sidebarCls}>
-          {docs.map(ctx => {
-            return <Box key={ctx.name}>{ctx.name}</Box>
+          {docs.map(name => {
+            return <Box key={name}>{name}</Box>
           })}
         </Box>
         <Box className={contentCls}>
           <Title>{doc.frontmatter.title}</Title>
-          {docContext &&
-            docContext.hasCodeExample === true && (
-              <Box mb={constants.space[3]}>
-                <Playground
-                  code={require(`!raw-loader!../blocks/${docContext.name}.example`)}
-                />
-              </Box>
-            )}
-          <div className={styles} dangerouslySetInnerHTML={{ __html: doc.html }} />
+          {codeExample && (
+            <Box mb={constants.space[3]}>
+              <Playground code={codeExample.content} />
+            </Box>
+          )}
+          <div
+            className={styles}
+            dangerouslySetInnerHTML={{ __html: doc.html }}
+          />
         </Box>
       </Box>
     )
@@ -180,6 +175,9 @@ export const pageQuery = graphql`
       frontmatter {
         title
       }
+    }
+    codeExample(name: { eq: $slug }) {
+      content
     }
   }
 `
