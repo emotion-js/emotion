@@ -15,7 +15,7 @@ Add `ThemeProvider` to the top level of your app and access the theme with `prop
 import styled from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 
-const H1 = styled(Heading)`
+const H1 = styled.h1`
   color: ${p => p.theme.purple};
 `
 
