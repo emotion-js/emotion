@@ -2,8 +2,6 @@ import React from 'react'
 import styled, { css } from 'react-emotion'
 import { constants } from 'styled-system'
 import colors from 'open-color'
-
-import Link from '../components/Link'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
 
