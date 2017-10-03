@@ -141,7 +141,7 @@ const docs = [
 class DocRoute extends React.Component {
   render() {
     const { data } = this.props
-    const { markdownRemark: doc, codeExample } = data
+    const { doc, codeExample } = data
     return (
       <Box flex={1} className={containerCls}>
         <Box className={sidebarCls}>
@@ -170,7 +170,7 @@ export default DocRoute
 
 export const pageQuery = graphql`
   query DocBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    doc: markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         title
