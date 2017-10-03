@@ -1,5 +1,5 @@
-require('react-live')
 require('prismjs/components/prism-css')
+require('prismjs/components/prism-jsx')
 
 global.Prism.languages.insertBefore('jsx', 'template-string', {
   'styled-template-string': {

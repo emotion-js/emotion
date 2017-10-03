@@ -141,7 +141,8 @@ const docs = [
 class DocRoute extends React.Component {
   render() {
     const { data } = this.props
-    const { doc, codeExample } = data
+    const { doc, allCodeExample } = data
+
     return (
       <Box flex={1} className={containerCls}>
         <Box className={sidebarCls}>
@@ -151,9 +152,9 @@ class DocRoute extends React.Component {
         </Box>
         <Box className={contentCls}>
           <Title>{doc.frontmatter.title}</Title>
-          {codeExample && (
+          {allCodeExample && (
             <Box mb={constants.space[3]}>
-              <Playground code={codeExample.content} />
+              <Playground code={allCodeExample.edges[0].node.content} />
             </Box>
           )}
           <div
@@ -176,8 +177,12 @@ export const pageQuery = graphql`
         title
       }
     }
-    codeExample(name: { eq: $slug }) {
-      content
+    allCodeExample(filter: { name: { eq: $slug } }) {
+      edges {
+        node {
+          content
+        }
+      }
     }
   }
 `
