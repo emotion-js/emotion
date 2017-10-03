@@ -3,6 +3,7 @@ import styled, { css } from 'react-emotion'
 import { constants } from 'styled-system'
 import colors from 'open-color'
 
+import Link from '../components/Link'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
 
@@ -141,13 +142,18 @@ const docs = [
 class DocRoute extends React.Component {
   render() {
     const { data } = this.props
-    const { doc, allCodeExample } = data
-
+    const { doc, allCodeExample, allFile } = data
     return (
       <Box flex={1} className={containerCls}>
         <Box className={sidebarCls}>
-          {docs.map(name => {
-            return <Box key={name}>{name}</Box>
+          {allFile.edges.map(({ node }) => {
+            return (
+              <Box key={node.name}>
+                <Link to={`/docs/${node.name}`}>
+                  {node.childMarkdownRemark.frontmatter.title || node.name}
+                </Link>
+              </Box>
+            )
           })}
         </Box>
         <Box className={contentCls}>
@@ -181,6 +187,18 @@ export const pageQuery = graphql`
       edges {
         node {
           content
+        }
+      }
+    }
+    allFile(filter: { extension: { eq: "md" } }) {
+      edges {
+        node {
+          name
+          childMarkdownRemark {
+            frontmatter {
+              title
+            }
+          }
         }
       }
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { LiveEditor, LivePreview, LiveProvider, withLive } from 'react-live/lib'
-import styled, { css, keyframes, merge } from 'react-emotion'
+import styled, { css, keyframes, merge, fontFace } from 'react-emotion'
 import { ThemeProvider, withTheme } from 'emotion-theming'
 import Box from '../components/Box'
 import colors from 'open-color'
@@ -9,12 +9,12 @@ import logoUrl from '../assets/logo.png'
 
 export const scope = {
   logoUrl,
-  // React,
   css,
   keyframes,
   styled,
-  // ThemeProvider,
-  // withTheme,
+  ThemeProvider,
+  withTheme,
+  fontFace,
   merge
 }
 
