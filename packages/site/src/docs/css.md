@@ -15,7 +15,7 @@ const flex = css`
 `
 const justifyCenter = css`
   ${flex};
-  justifyContent: center;
+  justify-content: center;
 `
 
 <div className={justifyCenter}>
