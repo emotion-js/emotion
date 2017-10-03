@@ -110,24 +110,6 @@ const contentCls = css`
   margin-left: ${constants.space[2]}px;
 `
 
-const docs = [
-  'install',
-  'nested',
-  'pseudo',
-  'media',
-  'styling-any-component',
-  'styled-with-component',
-  'props',
-  'keyframes',
-  'composition',
-  'objects',
-  'styled-with-object',
-  'css-prop',
-  'theming',
-  'source-maps',
-  'inject-global'
-]
-
 class DocRoute extends React.Component {
   render() {
     const { data } = this.props
