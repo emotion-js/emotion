@@ -32,7 +32,8 @@ export function replaceCssWithCallExpression(
 ) {
   try {
     let { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
-    const name = getName(getIdentifierName(path, t), 'css')
+    const identifierName = getIdentifierName(path, t)
+    const name = getName(identifierName, 'css')
 
     if (state.extractStatic && !path.node.quasi.expressions.length) {
       const staticCSSRules = staticStylis(
@@ -56,11 +57,38 @@ export function replaceCssWithCallExpression(
     return path.replaceWith(
       t.callExpression(
         identifier,
-        new ASTObject(
-          minify(src),
-          path.node.quasi.expressions,
-          t
-        ).toExpressions()
+        new ASTObject(minify(src), path.node.quasi.expressions, t)
+          .toExpressions()
+          .concat(
+            t.objectExpression([
+              t.objectProperty(
+                t.identifier('meta'),
+                t.objectExpression([
+                  t.objectProperty(
+                    t.identifier('identifierName'),
+                    t.stringLiteral(identifierName.trim())
+                  ),
+                  t.objectProperty(
+                    t.identifier('location'),
+                    t.objectExpression([
+                      t.objectProperty(
+                        t.identifier('filename'),
+                        t.stringLiteral(state.file.opts.sourceFileName)
+                      ),
+                      t.objectProperty(
+                        t.identifier('line'),
+                        t.numericLiteral(path.node.quasi.loc.start.line)
+                      ),
+                      t.objectProperty(
+                        t.identifier('column'),
+                        t.numericLiteral(path.node.quasi.loc.start.column)
+                      )
+                    ])
+                  )
+                ])
+              )
+            ])
+          )
       )
     )
   } catch (e) {
@@ -104,40 +132,40 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     src += addSourceMaps(path.node.quasi.loc.start, state)
   }
 
-  console.log(path.node.quasi.loc.start)
   return t.callExpression(
-    t.callExpression(identifier, [
-      tag,
-      t.objectExpression([
-        t.objectProperty(
-          t.identifier('meta'),
-          t.objectExpression([
-            t.objectProperty(
-              t.identifier('identifierName'),
-              t.stringLiteral(identifierName)
-            ),
-            t.objectProperty(
-              t.identifier('location'),
-              t.objectExpression([
-                t.objectProperty(
-                  t.identifier('filename'),
-                  t.stringLiteral(state.file.opts.sourceFileName)
-                ),
-                t.objectProperty(
-                  t.identifier('line'),
-                  t.numericLiteral(path.node.quasi.loc.start.line)
-                ),
-                t.objectProperty(
-                  t.identifier('column'),
-                  t.numericLiteral(path.node.quasi.loc.start.column)
-                )
-              ])
-            )
-          ])
-        )
-      ])
-    ]),
-    new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
+    t.callExpression(identifier, [tag]),
+    new ASTObject(minify(src), path.node.quasi.expressions, t)
+      .toExpressions()
+      .concat(
+        t.objectExpression([
+          t.objectProperty(
+            t.identifier('meta'),
+            t.objectExpression([
+              t.objectProperty(
+                t.identifier('identifierName'),
+                t.stringLiteral(identifierName.trim())
+              ),
+              t.objectProperty(
+                t.identifier('location'),
+                t.objectExpression([
+                  t.objectProperty(
+                    t.identifier('filename'),
+                    t.stringLiteral(state.file.opts.sourceFileName)
+                  ),
+                  t.objectProperty(
+                    t.identifier('line'),
+                    t.numericLiteral(path.node.quasi.loc.start.line)
+                  ),
+                  t.objectProperty(
+                    t.identifier('column'),
+                    t.numericLiteral(path.node.quasi.loc.start.column)
+                  )
+                ])
+              )
+            ])
+          )
+        ])
+      )
   )
 }
 

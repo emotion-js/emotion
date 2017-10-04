@@ -143,7 +143,7 @@ function handleInterpolation(
     couldBeSelectorInterpolation === false &&
     registered[interpolation] !== undefined
   ) {
-    return registered[interpolation]
+    return registered[interpolation].styles
   }
   return interpolation
 }
@@ -180,7 +180,7 @@ function createStringFromObject(obj) {
     Object.keys(obj).forEach(function(key) {
       if (typeof obj[key] !== 'object') {
         if (registered[obj[key]] !== undefined) {
-          string += `${key}{${registered[obj[key]]}}`
+          string += `${key}{${registered[obj[key]].styles}}`
         } else {
           string += `${processStyleName(key)}:${processStyleValue(
             key,
@@ -215,7 +215,6 @@ function createStyles(strings, ...interpolations) {
 
   interpolations.forEach(function(interpolation, i) {
     if (typeof interpolation === 'object' && 'meta' in interpolation) {
-      console.log(JSON.stringify(interpolation, null, 2))
       meta = interpolation.meta
       return
     }
@@ -253,7 +252,7 @@ export function css() {
       : `css-${hash}`
 
   if (registered[cls] === undefined) {
-    registered[cls] = styles
+    registered[cls] = { styles, meta }
   }
   if (inserted[hash] === undefined) {
     stylis(`.${cls}`, styles)
@@ -262,19 +261,14 @@ export function css() {
   return cls
 }
 
-export function injectGlobal(...args) {
-  const styles = createStyles(...args)
-  const hash = hashString(styles)
-  if (inserted[hash] === undefined) {
-    stylis('', styles)
-    inserted[hash] = true
-  }
-}
-
 export function keyframes(...args) {
-  const styles = createStyles(...args)
+  const { styles, meta } = createStyles.apply(this, arguments)
   const hash = hashString(styles)
-  const name = `animation-${hash}`
+  const name =
+    meta.identifierName !== undefined
+      ? `animation-${hash}-${meta.identifierName}`
+      : `animation-${hash}`
+
   if (inserted[hash] === undefined) {
     stylis('', `@keyframes ${name}{${styles}}`)
     inserted[hash] = true
@@ -282,8 +276,17 @@ export function keyframes(...args) {
   return name
 }
 
+export function injectGlobal(...args) {
+  const { styles } = createStyles.apply(this, arguments)
+  const hash = hashString(styles)
+  if (inserted[hash] === undefined) {
+    stylis('', styles)
+    inserted[hash] = true
+  }
+}
+
 export function fontFace(...args) {
-  const styles = createStyles(...args)
+  const { styles } = createStyles.apply(this, arguments)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
     stylis('', `@font-face{${styles}}`)
