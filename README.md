@@ -1,3 +1,5 @@
+### All documentation on master is for version 8. The documentation for version 7 is located under the [`v7.3.2` tag](https://github.com/emotion-js/emotion/tree/v7.3.2).
+
 <p align="center" style="color: #343a40">
   <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" height="200" width="200">
   <h1 align="center">emotion</h1>
