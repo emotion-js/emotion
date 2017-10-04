@@ -3,11 +3,7 @@
 exports[`babel macro css 1`] = `
 "import { css as _css } from '../src';
 
-/*#__PURE__*/_css('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:', widthVar, ';', {
-    meta: {
-        identifierName: ''
-    }
-});"
+/*#__PURE__*/_css('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:', widthVar, ';');"
 `;
 
 exports[`babel macro css call with no args 1`] = `
@@ -45,11 +41,7 @@ const someOtherVar = _flush;"
 exports[`babel macro fontFace 1`] = `
 "import { fontFace as _fontFace } from '../src';
 
-_fontFace('font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;', {
-     meta: {
-          identifierName: ''
-     }
-});"
+_fontFace('font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;');"
 `;
 
 exports[`babel macro hydrate 1`] = `
@@ -61,11 +53,7 @@ const someOtherVar = _hydrate;"
 exports[`babel macro injectGlobal 1`] = `
 "import { injectGlobal as _injectGlobal } from '../src';
 
-_injectGlobal('body{margin:0;padding:0;& > div{display:none;&:hover{color:green;& span{color:red;&:after{content:\\"end of line\\"}}}}}html{background:green;}', {
-  meta: {
-    identifierName: ''
-  }
-});"
+_injectGlobal('body{margin:0;padding:0;& > div{display:none;&:hover{color:green;& span{color:red;&:after{content:\\"end of line\\"}}}}}html{background:green;}');"
 `;
 
 exports[`babel macro keyframes 1`] = `

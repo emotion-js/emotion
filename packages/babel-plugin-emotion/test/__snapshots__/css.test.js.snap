@@ -78,51 +78,25 @@ const cls2 = /*#__PURE__*/css([{
 
 exports[`babel css inline css basic 1`] = `
 "
-/*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\", {
-  meta: {
-    identifierName: \\"\\"
-  }
-});"
+/*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
 `;
 
 exports[`babel css inline css basic 2`] = `
 "
-/*#__PURE__*/cows(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\", {
-  meta: {
-    identifierName: \\"\\"
-  }
-});"
+/*#__PURE__*/cows(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
 `;
 
 exports[`babel css inline css basic as cows 1`] = `
 "
 import { css as cows } from 'emotion';
-/*#__PURE__*/cows('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:', widthVar, ';', {
-  meta: {
-    identifierName: ''
-  }
-});"
+/*#__PURE__*/cows('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:', widthVar, ';');"
 `;
 
-exports[`babel css inline css random expression 1`] = `
-"/*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\", {
-  meta: {
-    identifierName: \\"\\"
-  }
-}), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\", {
-  meta: {
-    identifierName: \\"\\"
-  }
-});"
-`;
+exports[`babel css inline css random expression 1`] = `"/*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"`;
 
 exports[`babel css inline css with float property 1`] = `
 "
-/*#__PURE__*/css(\\"float:left;\\", {
-  meta: {
-    identifierName: \\"\\"
-  }
-});"
+/*#__PURE__*/css(\\"float:left;\\");"
 `;
 
 exports[`babel css inline interpolation in selector 1`] = `
@@ -136,11 +110,7 @@ const cls2 = /*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;\\", className, 
 
 exports[`babel css inline nested expanded properties 1`] = `
 "
-/*#__PURE__*/css(\\"margin:12px 48px;& .div{display:flex;}\\", {
-  meta: {
-    identifierName: \\"\\"
-  }
-});"
+/*#__PURE__*/css(\\"margin:12px 48px;& .div{display:flex;}\\");"
 `;
 
 exports[`babel css inline object with a bunch of stuff 1`] = `

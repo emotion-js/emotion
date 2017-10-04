@@ -103,4 +103,38 @@ describe('babel css prop', () => {
     })
     expect(code).toMatchSnapshot()
   })
+
+  test('id in stateless functional component', () => {
+    const basic = `
+      const SFC = () => {
+        return <div css={\`color: brown;\`}>Hello</div>
+      }
+    `
+    const { code } = babel.transform(basic, { plugins: [plugin] })
+    expect(code).toMatchSnapshot()
+  })
+
+  test('id in class component', () => {
+    const basic = `
+      class ClsComp extends React.Component {
+        render() {
+          return <div css="foo">Hello</div>
+        }
+      }
+    `
+    const { code } = babel.transform(basic, { plugins: [plugin] })
+    expect(code).toMatchSnapshot()
+  })
+
+  test('id in higher order component', () => {
+    const basic = `
+      const foo = (W) => class extends Component {
+        render() {
+          return <div css={\`color: brown;\`}>Hello</div>
+        }
+      }
+    `
+    const { code } = babel.transform(basic, { plugins: [plugin] })
+    expect(code).toMatchSnapshot()
+  })
 })

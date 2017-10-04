@@ -142,11 +142,7 @@ const a = () => /*#__PURE__*/css(\\"font-size:1rem\\", {
     identifierName: \\"a\\"
   }
 });
-/*#__PURE__*/styled(\\"h1\\")(\\"margin:12px 48px;\\", /*#__PURE__*/css(\\"font-size:32px\\", {
-  meta: {
-    identifierName: \\"\\"
-  }
-}), \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\", {
+/*#__PURE__*/styled(\\"h1\\")(\\"margin:12px 48px;\\", /*#__PURE__*/css(\\"font-size:32px\\"), \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\", {
   meta: {
     identifierName: \\"\\"
   }

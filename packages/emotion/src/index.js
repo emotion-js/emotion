@@ -330,8 +330,7 @@ export function merge(className, sourceMap) {
   if (registeredStyles.length < 2) {
     return className
   }
-  const what = rawClassName + css(registeredStyles, sourceMap).split(' ')[0]
-  console.log(what)
+  const what = rawClassName + css(registeredStyles, sourceMap)
   return what
 }
 

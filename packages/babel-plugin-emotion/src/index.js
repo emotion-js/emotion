@@ -60,17 +60,21 @@ export function replaceCssWithCallExpression(
         new ASTObject(minify(src), path.node.quasi.expressions, t)
           .toExpressions()
           .concat(
-            t.objectExpression([
-              t.objectProperty(
-                t.identifier('meta'),
-                t.objectExpression([
-                  t.objectProperty(
-                    t.identifier('identifierName'),
-                    t.stringLiteral(identifierName.trim())
-                  )
-                ])
-              )
-            ])
+            identifierName
+              ? [
+                  t.objectExpression([
+                    t.objectProperty(
+                      t.identifier('meta'),
+                      t.objectExpression([
+                        t.objectProperty(
+                          t.identifier('identifierName'),
+                          t.stringLiteral(identifierName.trim())
+                        )
+                      ])
+                    )
+                  ])
+                ]
+              : []
           )
       )
     )
