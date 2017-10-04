@@ -67,23 +67,6 @@ export function replaceCssWithCallExpression(
                   t.objectProperty(
                     t.identifier('identifierName'),
                     t.stringLiteral(identifierName.trim())
-                  ),
-                  t.objectProperty(
-                    t.identifier('location'),
-                    t.objectExpression([
-                      t.objectProperty(
-                        t.identifier('filename'),
-                        t.stringLiteral(state.file.opts.sourceFileName)
-                      ),
-                      t.objectProperty(
-                        t.identifier('line'),
-                        t.numericLiteral(path.node.quasi.loc.start.line)
-                      ),
-                      t.objectProperty(
-                        t.identifier('column'),
-                        t.numericLiteral(path.node.quasi.loc.start.column)
-                      )
-                    ])
                   )
                 ])
               )
@@ -144,23 +127,6 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
               t.objectProperty(
                 t.identifier('identifierName'),
                 t.stringLiteral(identifierName.trim())
-              ),
-              t.objectProperty(
-                t.identifier('location'),
-                t.objectExpression([
-                  t.objectProperty(
-                    t.identifier('filename'),
-                    t.stringLiteral(state.file.opts.sourceFileName)
-                  ),
-                  t.objectProperty(
-                    t.identifier('line'),
-                    t.numericLiteral(path.node.quasi.loc.start.line)
-                  ),
-                  t.objectProperty(
-                    t.identifier('column'),
-                    t.numericLiteral(path.node.quasi.loc.start.column)
-                  )
-                ])
               )
             ])
           )

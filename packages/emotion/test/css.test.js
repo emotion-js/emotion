@@ -78,7 +78,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('composition', () => {
+  test('simple composition', () => {
     const cls1 = css`
       display: flex;
       &:hover {

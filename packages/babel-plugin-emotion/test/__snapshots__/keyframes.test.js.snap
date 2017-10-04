@@ -12,12 +12,7 @@ exports[`babel keyframes extract keyframes with interpolation 1`] = `
 "
 const rotate360 = /*#__PURE__*/keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\", {
   meta: {
-    identifierName: \\"rotate360\\",
-    location: {
-      filename: \\"keyframes.test.js\\",
-      line: 2,
-      column: 35
-    }
+    identifierName: \\"rotate360\\"
   }
 });"
 `;
@@ -26,12 +21,7 @@ exports[`babel keyframes inline keyframes basic 1`] = `
 "
 const rotate360 = /*#__PURE__*/keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\", {
   meta: {
-    identifierName: \\"rotate360\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 2,
-      column: 35
-    }
+    identifierName: \\"rotate360\\"
   }
 });"
 `;
@@ -40,12 +30,7 @@ exports[`babel keyframes inline keyframes with interpolation 1`] = `
 "
 const rotate360 = /*#__PURE__*/keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\", {
   meta: {
-    identifierName: \\"rotate360\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 2,
-      column: 35
-    }
+    identifierName: \\"rotate360\\"
   }
 });"
 `;
@@ -54,12 +39,7 @@ exports[`babel keyframes inline static change import 1`] = `
 "
 const rotate360 = /*#__PURE__*/frames(\\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\", {
   meta: {
-    identifierName: \\"rotate360\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 2,
-      column: 32
-    }
+    identifierName: \\"rotate360\\"
   }
 });
 const rotate3601 = keyframes\`
@@ -77,12 +57,7 @@ exports[`babel keyframes inline static change import 2`] = `
 import { keyframes as frames } from 'emotion';
 const rotate360 = /*#__PURE__*/frames('from{transform:rotate(0deg);}to{transform:rotate(360deg);}', {
   meta: {
-    identifierName: 'rotate360',
-    location: {
-      filename: 'unknown',
-      line: 3,
-      column: 32
-    }
+    identifierName: 'rotate360'
   }
 });
 const rotate3601 = keyframes\`

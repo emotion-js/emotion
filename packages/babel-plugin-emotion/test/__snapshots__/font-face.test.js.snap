@@ -20,12 +20,7 @@ exports[`fontFace babel extract interpolation 1`] = `
 "
 fontFace(\\"font-family:\\", fontFamilyName, \\";src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\\", {
      meta: {
-          identifierName: \\"\\",
-          location: {
-               filename: \\"font-face.test.js\\",
-               line: 2,
-               column: 16
-          }
+          identifierName: \\"\\"
      }
 });"
 `;
@@ -34,12 +29,7 @@ exports[`fontFace babel inline basic 1`] = `
 "
 fontFace(\\"font-family:MyHelvetica;src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\\", {
      meta: {
-          identifierName: \\"\\",
-          location: {
-               filename: \\"unknown\\",
-               line: 2,
-               column: 16
-          }
+          identifierName: \\"\\"
      }
 });"
 `;
@@ -49,12 +39,7 @@ exports[`fontFace babel inline dynamic change import 1`] = `
 import { fontFace as f } from 'emotion';
 f('font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;', {
   meta: {
-    identifierName: '',
-    location: {
-      filename: 'unknown',
-      line: 3,
-      column: 9
-    }
+    identifierName: ''
   }
 });
 fontFace\`
@@ -70,12 +55,7 @@ exports[`fontFace babel inline interpolation 1`] = `
 "
 fontFace(\\"font-family:\\", fontFamilyName, \\";src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\\", {
      meta: {
-          identifierName: \\"\\",
-          location: {
-               filename: \\"unknown\\",
-               line: 2,
-               column: 16
-          }
+          identifierName: \\"\\"
      }
 });"
 `;
@@ -84,12 +64,7 @@ exports[`fontFace babel inline static change import 1`] = `
 "
 f(\\"font-family:MyHelvetica;src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\\", {
   meta: {
-    identifierName: \\"\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 2,
-      column: 9
-    }
+    identifierName: \\"\\"
   }
 });
 fontFace\`

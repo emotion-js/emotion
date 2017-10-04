@@ -8,7 +8,7 @@ exports[`css @supports 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 cls1"
 />
 `;
 
@@ -46,11 +46,18 @@ exports[`css composition 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 cls2"
 />
 `;
 
 exports[`css composition stuff 1`] = `
+.glamor-0 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
 .glamor-0 {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -64,6 +71,13 @@ exports[`css composition stuff 1`] = `
 `;
 
 exports[`css composition stuff 2`] = `
+.glamor-0 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
 .glamor-0 {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -106,7 +120,7 @@ exports[`css composition with objects 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 cls2"
 />
 `;
 
@@ -128,7 +142,7 @@ exports[`css css variables 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 cls1"
 />
 `;
 
@@ -138,7 +152,7 @@ exports[`css float property 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 cls1"
 />
 `;
 
@@ -150,14 +164,21 @@ exports[`css flushes correctly 1`] = `
   display: flex;
 }
 
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 <div
-  className="glamor-0"
+  className="glamor-0 cls1"
 />
 `;
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-k008qs"
+  className="css-k008qs cls1"
 />
 `;
 
@@ -177,7 +198,7 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 cls1"
 />
 `;
 
@@ -222,7 +243,7 @@ exports[`css nested 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 cls1"
 >
   <div
     className="some-class"
@@ -285,15 +306,15 @@ exports[`css nested selector without parent declaration 1`] = `
   color: blue;
 }
 
-.glamor-1 .glamor-0 {
+.glamor-1 .glamor-0 cls1 {
   color: red;
 }
 
 <div
-  className="glamor-1"
+  className="glamor-1 cls2"
 >
   <div
-    className="glamor-0"
+    className="glamor-0 cls1"
   />
 </div>
 `;
@@ -320,7 +341,7 @@ exports[`css random expression 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 cls2"
 />
 `;
 
@@ -333,6 +354,6 @@ exports[`css random interpolation with undefined values 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 cls2"
 />
 `;

@@ -2,19 +2,18 @@
 
 exports[`babel css prop StringLiteral css prop value 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
+<div className={/*#__PURE__*/_css(\\"color:brown;\\", {
+  meta: {
+    identifierName: \\"\\"
+  }
+})}></div>;"
 `;
 
 exports[`babel css prop basic inline 1`] = `
 "import { css as _css } from \\"emotion\\";
 <div className={/*#__PURE__*/_css(\\"color:brown;\\", {
   meta: {
-    identifierName: \\"\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 1,
-      column: 25
-    }
+    identifierName: \\"\\"
   }
 }) + \\" a\\"}></div>;"
 `;
@@ -37,12 +36,7 @@ exports[`babel css prop className as expression 1`] = `
 import { css as _css } from \\"emotion\\";
 <div className={_merge( /*#__PURE__*/_css(\\"color:brown;\\", {
   meta: {
-    identifierName: \\"\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 1,
-      column: 32
-    }
+    identifierName: \\"\\"
   }
 }) + (\\" \\" + variable))}></div>;"
 `;
@@ -52,31 +46,25 @@ exports[`babel css prop className as expression string 1`] = `
 import { css as _css } from \\"emotion\\";
 <div className={_merge( /*#__PURE__*/_css(\\"color:brown;\\", {
   meta: {
-    identifierName: \\"\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 1,
-      column: 37
-    }
+    identifierName: \\"\\"
   }
 }) + (\\" \\" + \`test__class\`))} this={\`hello\`}></div>;"
 `;
 
 exports[`babel css prop css empty 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css()}></div>;"
+<div className={/*#__PURE__*/_css({
+  meta: {
+    identifierName: \\"\\"
+  }
+})}></div>;"
 `;
 
 exports[`babel css prop dynamic inline 1`] = `
 "import { css as _css } from \\"emotion\\";
 <div className={/*#__PURE__*/_css(\\"color:\\", color, \\";\\", {
   meta: {
-    identifierName: \\"\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 1,
-      column: 25
-    }
+    identifierName: \\"\\"
   }
 }) + \\" a\\"}></div>;"
 `;
@@ -85,12 +73,7 @@ exports[`babel css prop emptyClassName 1`] = `
 "import { css as _css } from \\"emotion\\";
 <div className={/*#__PURE__*/_css(\\"color:brown;\\", {
   meta: {
-    identifierName: \\"\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 1,
-      column: 24
-    }
+    identifierName: \\"\\"
   }
 })}></div>;"
 `;
@@ -100,12 +83,7 @@ exports[`babel css prop no css attr 1`] = `"<div></div>;"`;
 exports[`babel css prop no import css prop 1`] = `
 "<div className={merge( /*#__PURE__*/css(\\"color:brown;\\", {
   meta: {
-    identifierName: \\"\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 1,
-      column: 37
-    }
+    identifierName: \\"\\"
   }
 }) + (\\" \\" + \`test__class\`))}></div>;"
 `;
@@ -114,12 +92,7 @@ exports[`babel css prop noClassName 1`] = `
 "import { css as _css } from \\"emotion\\";
 <div className={/*#__PURE__*/_css(\\"color:brown;\\", {
   meta: {
-    identifierName: \\"\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 1,
-      column: 11
-    }
+    identifierName: \\"\\"
   }
 })}></div>;"
 `;
@@ -128,12 +101,7 @@ exports[`babel css prop redefined-import: basic inline 1`] = `
 "import { css as _css } from \\"emotion\\";
 <div className={/*#__PURE__*/_css(\\"color:brown;\\", {
   meta: {
-    identifierName: \\"\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 1,
-      column: 26
-    }
+    identifierName: \\"\\"
   }
 }) + \\" a\\"}></div>;"
 `;
@@ -142,12 +110,7 @@ exports[`babel css prop with spread arg in jsx opening tag 1`] = `
 "import { css as _css } from \\"emotion\\";
 <div className={/*#__PURE__*/_css(\\"color:brown;\\", {
   meta: {
-    identifierName: \\"\\",
-    location: {
-      filename: \\"unknown\\",
-      line: 1,
-      column: 25
-    }
+    identifierName: \\"\\"
   }
 }) + \\" a\\"} {...rest}></div>;"
 `;

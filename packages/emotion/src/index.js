@@ -113,6 +113,19 @@ function flatten(inArr) {
   return arr
 }
 
+const cssRegex = /css-[A-Za-z0-9]+/
+
+function getRegisteredStylesFromString(interpolation: any) {
+  if (typeof interpolation === 'string') {
+    const matches = cssRegex.exec(interpolation)
+    if (matches != null && matches[0] !== undefined) {
+      return registered[matches[0]]
+    }
+  }
+
+  return registered[interpolation]
+}
+
 function handleInterpolation(
   interpolation: any,
   couldBeSelectorInterpolation: boolean
@@ -141,10 +154,11 @@ function handleInterpolation(
 
   if (
     couldBeSelectorInterpolation === false &&
-    registered[interpolation] !== undefined
+    getRegisteredStylesFromString(interpolation) !== undefined
   ) {
-    return registered[interpolation].styles
+    return getRegisteredStylesFromString(interpolation)
   }
+
   return interpolation
 }
 
@@ -180,7 +194,7 @@ function createStringFromObject(obj) {
     Object.keys(obj).forEach(function(key) {
       if (typeof obj[key] !== 'object') {
         if (registered[obj[key]] !== undefined) {
-          string += `${key}{${registered[obj[key]].styles}}`
+          string += `${key}{${getRegisteredStylesFromString(obj[key])}}`
         } else {
           string += `${processStyleName(key)}:${processStyleValue(
             key,
@@ -248,13 +262,15 @@ export function css() {
   const hash = hashString(styles)
   const cls = `css-${hash}`
 
-  if (registered[cls] === undefined) {
-    registered[cls] = { styles, meta }
+  if (getRegisteredStylesFromString(cls) === undefined) {
+    registered[cls] = styles
   }
+
   if (inserted[cls] === undefined) {
     stylis(`.${cls}`, styles)
-    inserted[cls] = true
+    inserted[hash] = true
   }
+
   return meta.identifierName !== undefined
     ? `${cls} ${meta.identifierName}`
     : cls
@@ -314,7 +330,9 @@ export function merge(className, sourceMap) {
   if (registeredStyles.length < 2) {
     return className
   }
-  return rawClassName + css(registeredStyles, sourceMap)
+  const what = rawClassName + css(registeredStyles, sourceMap).split(' ')[0]
+  console.log(what)
+  return what
 }
 
 export function hydrate(ids) {

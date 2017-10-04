@@ -7,7 +7,7 @@ exports[`css prop react basic 1`] = `
 }
 
 <p
-  className="glamor-0"
+  className="glamor-0 tree"
 >
   hello world
 </p>
@@ -61,25 +61,25 @@ exports[`css prop react kitchen sink 1`] = `
 }
 
 <div
-  className="glamor-4 css__legacy-stuff"
+  className="glamor-4 tree css__legacy-stuff"
 >
   <h1
-    className="glamor-0"
+    className="glamor-0 tree"
   >
     BOOM
   </h1>
   <p
-    className="glamor-1 test_class1"
+    className="glamor-1 tree test_class1"
   >
     Hello
   </p>
   <p
-    className="glamor-2 test_class1 test___class45"
+    className="glamor-2 tree test_class1 test___class45"
   >
     World
   </p>
   <p
-    className="glamor-3"
+    className="glamor-3 tree"
   >
     hello world
   </p>
@@ -91,8 +91,12 @@ exports[`css prop react merging regular classes 1`] = `
   display: block;
 }
 
+.glamor-0 {
+  display: block;
+}
+
 <div
-  className="glamor-0 some-class"
+  className="glamor-0 tree some-class"
 />
 `;
 
@@ -119,7 +123,7 @@ exports[`css prop react specificity with composition 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="tree flex glamor-0"
 />
 `;
 
@@ -131,7 +135,7 @@ exports[`css prop react string expression 1`] = `
 }
 
 <p
-  className="glamor-0"
+  className="glamor-0 tree"
 >
   hello world
 </p>

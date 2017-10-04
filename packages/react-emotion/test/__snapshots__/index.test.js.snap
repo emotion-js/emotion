@@ -42,14 +42,26 @@ exports[`styled call expression 1`] = `
   font-size: 20px;
 }
 
+.glamor-0 {
+  font-size: 20px;
+}
+
+.glamor-0 {
+  font-size: 20px;
+}
+
 <div
-  className="glamor-0"
+  className="glamor-0 Div"
 >
   hello world
 </div>
 `;
 
 exports[`styled change theme 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 .glamor-0 {
   color: green;
 }
@@ -71,7 +83,7 @@ exports[`styled change theme 1`] = `
   >
     <Styled(div)>
       <div
-        className="glamor-0"
+        className="glamor-0 Div"
       >
         this will be green then pink
       </div>
@@ -102,7 +114,7 @@ exports[`styled change theme 2`] = `
   >
     <Styled(div)>
       <div
-        className="glamor-0"
+        className="glamor-0 Div"
       >
         this will be green then pink
       </div>
@@ -145,7 +157,7 @@ exports[`styled composing components 1`] = `
 }
 
 <button
-  className="glamor-0"
+  className="glamor-0 AnotherButton"
 >
   hello world
 </button>
@@ -158,7 +170,7 @@ exports[`styled composition 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class glamor-0 H2"
 >
   hello world
 </h1>
@@ -174,7 +186,7 @@ exports[`styled composition 2`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class glamor-0 FinalH2"
 >
   hello world
 </h1>
@@ -186,7 +198,7 @@ exports[`styled composition based on props 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 H1"
 >
   hello world
 </h1>
@@ -198,7 +210,7 @@ exports[`styled composition based on props 2`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 H1"
 >
   hello world
 </h1>
@@ -220,7 +232,7 @@ exports[`styled composition with objects 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class glamor-0 H2"
 >
   hello world
 </h1>
@@ -233,7 +245,7 @@ exports[`styled function in expression 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class glamor-0 H2"
 >
   hello world
 </h1>
@@ -246,12 +258,23 @@ exports[`styled function that function returns gets called with props 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 SomeComponent"
   color="hotpink"
 />
 `;
 
 exports[`styled glamorous style api & composition 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .glamor-0 {
   font-size: 20px;
   -webkit-flex: 1;
@@ -287,7 +310,7 @@ exports[`styled handles more than 10 dynamic properties 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class glamor-0 H1"
 >
   hello world
 </h1>
@@ -304,7 +327,7 @@ exports[`styled higher order component 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 NewComponent"
 />
 `;
 
@@ -313,8 +336,12 @@ exports[`styled inline function return value is a function 1`] = `
   font-size: 20px;
 }
 
+.glamor-0 {
+  font-size: 20px;
+}
+
 <h1
-  className="glamor-0"
+  className="glamor-0 Blue"
 >
   hello world
 </h1>
@@ -326,7 +353,7 @@ exports[`styled innerRef 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 H1"
 >
   hello world
 </h1>
@@ -381,18 +408,30 @@ exports[`styled name with class component 1`] = `
   color: hotpink;
 }
 
+.glamor-0 {
+  color: hotpink;
+}
+
 <Styled(SomeComponent)>
   <SomeComponent
-    className="glamor-0"
+    className="glamor-0 StyledComponent"
   >
     <div
-      className="glamor-0"
+      className="glamor-0 StyledComponent"
     />
   </SomeComponent>
 </Styled(SomeComponent)>
 `;
 
 exports[`styled nested 1`] = `
+.glamor-0 {
+  font-size: 20px;
+}
+
+.glamor-0 {
+  font-size: 20px;
+}
+
 .glamor-0 {
   font-size: 20px;
 }
@@ -412,12 +451,16 @@ exports[`styled nested 1`] = `
   color: red;
 }
 
+.glamor-0 {
+  font-size: 20px;
+}
+
 <div
-  className="glamor-1"
+  className="glamor-1 Thing"
 >
   hello 
   <h1
-    className="glamor-0"
+    className="glamor-0 H1"
   >
     This will be green
   </h1>
@@ -431,7 +474,7 @@ exports[`styled no dynamic 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 H1"
 >
   hello world
 </h1>
@@ -442,11 +485,23 @@ exports[`styled no prop filtering on non string tags 1`] = `
   color: green;
 }
 
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
 <a
   a={true}
   aria-label="some label"
   b={true}
-  className="glamor-0"
+  className="glamor-0 Link"
   cool={true}
   data-wow="value"
   filtering={true}
@@ -478,7 +533,7 @@ exports[`styled null interpolation value 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 H1"
 >
   hello world
 </h1>
@@ -523,7 +578,7 @@ exports[`styled object composition 1`] = `
 }
 
 <img
-  className="glamor-0"
+  className="glamor-0 Avatar"
 />
 `;
 
@@ -548,6 +603,22 @@ exports[`styled objects with spread properties 1`] = `
   font-size: 20px;
 }
 
+.glamor-0 {
+  font-size: 20px;
+}
+
+.glamor-0 {
+  font-size: 20px;
+}
+
+.glamor-0 {
+  font-size: 20px;
+}
+
+.glamor-0 {
+  font-size: 20px;
+}
+
 <figure
   className="glamor-0"
 >
@@ -560,9 +631,17 @@ exports[`styled prop filtering 1`] = `
   color: green;
 }
 
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
 <a
   aria-label="some label"
-  className="glamor-0"
+  className="glamor-0 Link"
   data-wow="value"
   href="link"
   is={true}
@@ -579,7 +658,7 @@ exports[`styled prop filtering on composed styled components that are string tag
 
 <a
   aria-label="some label"
-  className="glamor-0"
+  className="glamor-0 Link"
   data-wow="value"
   href="link"
   is={true}
@@ -623,7 +702,7 @@ exports[`styled random expressions undefined return 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class glamor-0 H1"
 >
   hello world
 </h1>
@@ -641,7 +720,7 @@ exports[`styled random object expression 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class glamor-0 H1"
 >
   hello world
 </h1>
@@ -654,7 +733,7 @@ exports[`styled theme prop exists without ThemeProvider 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 SomeComponent"
 />
 `;
 
@@ -664,8 +743,13 @@ exports[`styled theme prop exists without ThemeProvider with a theme prop on the
   background-color: yellow;
 }
 
+.glamor-0 {
+  color: hotpink;
+  background-color: yellow;
+}
+
 <div
-  className="glamor-0"
+  className="glamor-0 SomeComponent"
 />
 `;
 
@@ -680,7 +764,7 @@ exports[`styled themes 1`] = `
 }
 
 <span
-  className="glamor-0"
+  className="glamor-0 H2"
 >
   hello world
 </span>
@@ -704,7 +788,7 @@ exports[`styled theming 1`] = `
   >
     <Styled(div)>
       <div
-        className="css-olgnlr"
+        className="css-olgnlr Div"
       >
         this will be green then pink
       </div>
@@ -731,7 +815,7 @@ exports[`styled theming 2`] = `
   >
     <Styled(div)>
       <div
-        className="css-olgnlr"
+        className="css-olgnlr Div"
       >
         this will be green then pink
       </div>
@@ -775,7 +859,7 @@ exports[`styled with higher order component that hoists statics 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="FinalComponent glamor-0 SomeComponent"
 />
 `;
 
@@ -784,17 +868,37 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
   color: green;
 }
 
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
 <article>
   <Styled(h1)>
     <h1
-      className="glamor-0"
+      className="glamor-0 Title"
     >
       My Title
     </h1>
   </Styled(h1)>
   <Styled(h2)>
     <h2
-      className="glamor-0"
+      className="glamor-0 Title"
     >
       My Subtitle
     </h2>
@@ -807,6 +911,30 @@ exports[`styled withComponent with function interpolation 1`] = `
   color: green;
 }
 
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
+.glamor-0 {
+  color: green;
+}
+
 .glamor-1 {
   color: hotpink;
 }
@@ -814,7 +942,7 @@ exports[`styled withComponent with function interpolation 1`] = `
 <article>
   <Styled(h1)>
     <h1
-      className="glamor-0"
+      className="glamor-0 Title"
     >
       My Title
     </h1>
@@ -823,7 +951,7 @@ exports[`styled withComponent with function interpolation 1`] = `
     color="hotpink"
   >
     <h2
-      className="glamor-1"
+      className="glamor-1 Title"
       color="hotpink"
     >
       My Subtitle
