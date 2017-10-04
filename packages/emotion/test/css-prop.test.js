@@ -111,4 +111,38 @@ describe('css prop react', () => {
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  test('css correctly adds the id', () => {
+    const SFC = () => {
+      return <div css={`display: block;`}>Hello</div>
+    }
+
+    class ClsComp extends React.Component {
+      render() {
+        return <div css={`display: block;`}>Hello</div>
+      }
+    }
+
+    const hoc = W =>
+      class extends React.Component {
+        render() {
+          return (
+            <div css={`display: block;`}>
+              <W {...this.props} />
+            </div>
+          )
+        }
+      }
+
+    const Wrapped = hoc(ClsComp)
+
+    const sfcTree = renderer.create(<SFC>Hello</SFC>).toJSON()
+    expect(sfcTree).toMatchSnapshot()
+
+    const clsCompTree = renderer.create(<ClsComp>Hello</ClsComp>).toJSON()
+    expect(clsCompTree).toMatchSnapshot()
+
+    const hocTree = renderer.create(<Wrapped>Hello</Wrapped>).toJSON()
+    expect(hocTree).toMatchSnapshot()
+  })
 })
