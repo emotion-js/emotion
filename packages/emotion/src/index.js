@@ -246,22 +246,21 @@ if (process.env.NODE_ENV !== 'production') {
 export function css() {
   const { styles, meta } = createStyles.apply(this, arguments)
   const hash = hashString(styles)
-  const cls =
-    meta.identifierName !== undefined
-      ? `css-${hash}-${meta.identifierName}`
-      : `css-${hash}`
+  const cls = `css-${hash}`
 
   if (registered[cls] === undefined) {
     registered[cls] = { styles, meta }
   }
-  if (inserted[hash] === undefined) {
+  if (inserted[cls] === undefined) {
     stylis(`.${cls}`, styles)
-    inserted[hash] = true
+    inserted[cls] = true
   }
-  return cls
+  return meta.identifierName !== undefined
+    ? `${cls} ${meta.identifierName}`
+    : cls
 }
 
-export function keyframes(...args) {
+export function keyframes() {
   const { styles, meta } = createStyles.apply(this, arguments)
   const hash = hashString(styles)
   const name =
@@ -276,7 +275,7 @@ export function keyframes(...args) {
   return name
 }
 
-export function injectGlobal(...args) {
+export function injectGlobal() {
   const { styles } = createStyles.apply(this, arguments)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
@@ -285,7 +284,7 @@ export function injectGlobal(...args) {
   }
 }
 
-export function fontFace(...args) {
+export function fontFace() {
   const { styles } = createStyles.apply(this, arguments)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {

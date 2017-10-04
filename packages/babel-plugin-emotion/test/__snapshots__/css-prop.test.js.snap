@@ -7,7 +7,16 @@ exports[`babel css prop StringLiteral css prop value 1`] = `
 
 exports[`babel css prop basic inline 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css(\\"color:brown;\\") + \\" a\\"}></div>;"
+<div className={/*#__PURE__*/_css(\\"color:brown;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 25
+    }
+  }
+}) + \\" a\\"}></div>;"
 `;
 
 exports[`babel css prop basic object 1`] = `
@@ -26,13 +35,31 @@ exports[`babel css prop basic with extractStatic 2`] = `".css-jf1v9l{color:brown
 exports[`babel css prop className as expression 1`] = `
 "import { merge as _merge } from \\"emotion\\";
 import { css as _css } from \\"emotion\\";
-<div className={_merge( /*#__PURE__*/_css(\\"color:brown;\\") + (\\" \\" + variable))}></div>;"
+<div className={_merge( /*#__PURE__*/_css(\\"color:brown;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 32
+    }
+  }
+}) + (\\" \\" + variable))}></div>;"
 `;
 
 exports[`babel css prop className as expression string 1`] = `
 "import { merge as _merge } from \\"emotion\\";
 import { css as _css } from \\"emotion\\";
-<div className={_merge( /*#__PURE__*/_css(\\"color:brown;\\") + (\\" \\" + \`test__class\`))} this={\`hello\`}></div>;"
+<div className={_merge( /*#__PURE__*/_css(\\"color:brown;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 37
+    }
+  }
+}) + (\\" \\" + \`test__class\`))} this={\`hello\`}></div>;"
 `;
 
 exports[`babel css prop css empty 1`] = `
@@ -42,29 +69,85 @@ exports[`babel css prop css empty 1`] = `
 
 exports[`babel css prop dynamic inline 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css(\\"color:\\", color, \\";\\") + \\" a\\"}></div>;"
+<div className={/*#__PURE__*/_css(\\"color:\\", color, \\";\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 25
+    }
+  }
+}) + \\" a\\"}></div>;"
 `;
 
 exports[`babel css prop emptyClassName 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
+<div className={/*#__PURE__*/_css(\\"color:brown;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 24
+    }
+  }
+})}></div>;"
 `;
 
 exports[`babel css prop no css attr 1`] = `"<div></div>;"`;
 
-exports[`babel css prop no import css prop 1`] = `"<div className={merge( /*#__PURE__*/css(\\"color:brown;\\") + (\\" \\" + \`test__class\`))}></div>;"`;
+exports[`babel css prop no import css prop 1`] = `
+"<div className={merge( /*#__PURE__*/css(\\"color:brown;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 37
+    }
+  }
+}) + (\\" \\" + \`test__class\`))}></div>;"
+`;
 
 exports[`babel css prop noClassName 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
+<div className={/*#__PURE__*/_css(\\"color:brown;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 11
+    }
+  }
+})}></div>;"
 `;
 
 exports[`babel css prop redefined-import: basic inline 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css(\\"color:brown;\\") + \\" a\\"}></div>;"
+<div className={/*#__PURE__*/_css(\\"color:brown;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 26
+    }
+  }
+}) + \\" a\\"}></div>;"
 `;
 
 exports[`babel css prop with spread arg in jsx opening tag 1`] = `
 "import { css as _css } from \\"emotion\\";
-<div className={/*#__PURE__*/_css(\\"color:brown;\\") + \\" a\\"} {...rest}></div>;"
+<div className={/*#__PURE__*/_css(\\"color:brown;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 25
+    }
+  }
+}) + \\" a\\"} {...rest}></div>;"
 `;

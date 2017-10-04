@@ -24,6 +24,7 @@ function componentWillUnmount() {
 const reactPropsRegex = codegen.require('./props')
 const testOmitPropsOnStringTag = memoize(key => reactPropsRegex.test(key))
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
+const testAlwaysTrue = () => true
 
 const omitAssign = function(testFn, target) {
   let i = 2
@@ -77,7 +78,7 @@ const createStyled = (tag, options: { e: string }) => {
     class Styled extends Component {
       render() {
         const { props, state } = this
-        this.mergedProps = Object.assign({}, props, {
+        this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
           theme: (state !== null && state.theme) || props.theme || {}
         })
 
@@ -95,10 +96,7 @@ const createStyled = (tag, options: { e: string }) => {
           }
         }
         if (staticClassName === false) {
-          className += css.apply(
-            this,
-            styles.concat(classInterpolations, options)
-          )
+          className += css.apply(this, styles.concat(classInterpolations))
         } else {
           className += staticClassName
         }

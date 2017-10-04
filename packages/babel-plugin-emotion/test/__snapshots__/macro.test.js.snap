@@ -179,7 +179,7 @@ const someOtherVar = _thisDoesNotExist;"
 exports[`babel macro styled tagged template literal function 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
+const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;', {
   meta: {
     identifierName: 'SomeComponent',
     location: {
@@ -188,13 +188,13 @@ const SomeComponent = /*#__PURE__*/_styled('div', {
       column: 43
     }
   }
-})('display:flex;');"
+});"
 `;
 
 exports[`babel macro styled tagged template literal member 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
+const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;', {
   meta: {
     identifierName: 'SomeComponent',
     location: {
@@ -203,5 +203,5 @@ const SomeComponent = /*#__PURE__*/_styled('div', {
       column: 40
     }
   }
-})('display:flex;');"
+});"
 `;

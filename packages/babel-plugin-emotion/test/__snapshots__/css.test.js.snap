@@ -43,7 +43,16 @@ const cls1 = /*#__PURE__*/css({
     display: 'flex'
   }
 });
-const cls2 = /*#__PURE__*/css('::placeholder{color:green;display:flex;}');"
+const cls2 = /*#__PURE__*/css('::placeholder{color:green;display:flex;}', {
+  meta: {
+    identifierName: 'cls2',
+    location: {
+      filename: 'unknown',
+      line: 8,
+      column: 24
+    }
+  }
+});"
 `;
 
 exports[`babel css inline :fullscreen 1`] = `
@@ -54,7 +63,16 @@ const cls1 = /*#__PURE__*/css({
     display: 'flex'
   }
 });
-const cls2 = /*#__PURE__*/css(':fullscreen{color:green;display:flex;}');"
+const cls2 = /*#__PURE__*/css(':fullscreen{color:green;display:flex;}', {
+  meta: {
+    identifierName: 'cls2',
+    location: {
+      filename: 'unknown',
+      line: 8,
+      column: 22
+    }
+  }
+});"
 `;
 
 exports[`babel css inline array of objects 1`] = `
@@ -70,35 +88,109 @@ const cls2 = /*#__PURE__*/css([{
 
 exports[`babel css inline css basic 1`] = `
 "
-/*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
+/*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 2,
+      column: 11
+    }
+  }
+});"
 `;
 
 exports[`babel css inline css basic 2`] = `
 "
-/*#__PURE__*/cows(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
+/*#__PURE__*/cows(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 2,
+      column: 12
+    }
+  }
+});"
 `;
 
 exports[`babel css inline css basic as cows 1`] = `
 "
 import { css as cows } from 'emotion';
-/*#__PURE__*/cows('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:', widthVar, ';');"
+/*#__PURE__*/cows('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:', widthVar, ';', {
+  meta: {
+    identifierName: '',
+    location: {
+      filename: 'unknown',
+      line: 3,
+      column: 12
+    }
+  }
+});"
 `;
 
-exports[`babel css inline css random expression 1`] = `"/*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"`;
+exports[`babel css inline css random expression 1`] = `
+"/*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 5,
+      column: 15
+    }
+  }
+}), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 3
+    }
+  }
+});"
+`;
 
 exports[`babel css inline css with float property 1`] = `
 "
-/*#__PURE__*/css(\\"float:left;\\");"
+/*#__PURE__*/css(\\"float:left;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 2,
+      column: 11
+    }
+  }
+});"
 `;
 
 exports[`babel css inline interpolation in selector 1`] = `
 "
-const cls2 = /*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;\\", className, \\"{display:none;}\\");"
+const cls2 = /*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;\\", className, \\"{display:none;}\\", {
+  meta: {
+    identifierName: \\"cls2\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 2,
+      column: 24
+    }
+  }
+});"
 `;
 
 exports[`babel css inline nested expanded properties 1`] = `
 "
-/*#__PURE__*/css(\\"margin:12px 48px;& .div{display:flex;}\\");"
+/*#__PURE__*/css(\\"margin:12px 48px;& .div{display:flex;}\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 2,
+      column: 11
+    }
+  }
+});"
 `;
 
 exports[`babel css inline object with a bunch of stuff 1`] = `
@@ -113,11 +205,38 @@ const cls2 = /*#__PURE__*/css({
 
 exports[`babel css inline only styles on nested selector 1`] = `
 "
-const cls1 = /*#__PURE__*/css(\\"display:flex;\\");
-const cls2 = /*#__PURE__*/css(\\"&:hover{background:pink;}\\");"
+const cls1 = /*#__PURE__*/css(\\"display:flex;\\", {
+  meta: {
+    identifierName: \\"cls1\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 2,
+      column: 24
+    }
+  }
+});
+const cls2 = /*#__PURE__*/css(\\"&:hover{background:pink;}\\", {
+  meta: {
+    identifierName: \\"cls2\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 5,
+      column: 24
+    }
+  }
+});"
 `;
 
 exports[`babel css inline symbols inside of "" 1`] = `
 "
-const cls = /*#__PURE__*/css(\\"content:\\\\\\"  {  }  \\\\\\"\\");"
+const cls = /*#__PURE__*/css(\\"content:\\\\\\"  {  }  \\\\\\"\\", {
+      meta: {
+            identifierName: \\"cls\\",
+            location: {
+                  filename: \\"unknown\\",
+                  line: 2,
+                  column: 21
+            }
+      }
+});"
 `;

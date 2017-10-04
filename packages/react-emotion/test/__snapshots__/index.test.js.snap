@@ -42,11 +42,11 @@ exports[`styled call expression 1`] = `
   font-size: 20px;
 }
 
-<h1
-  className="legacy__class glamor-0"
+<div
+  className="glamor-0"
 >
   hello world
-</h1>
+</div>
 `;
 
 exports[`styled change theme 1`] = `

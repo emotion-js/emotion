@@ -18,33 +18,148 @@ styled(\\"h1\\", {
 
 exports[`babel styled component extract no use 2`] = `""`;
 
-exports[`babel styled component inline basic 1`] = `"const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';');"`;
-
-exports[`babel styled component inline composition based on props 1`] = `
-"const cls1 = /*#__PURE__*/css('width:20px;');
-const H1 = /*#__PURE__*/styled('h1')(props => {
-  return props.a ? cssA : cssB;
-}, ';font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');');"
+exports[`babel styled component inline basic 1`] = `
+"const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';', {
+  meta: {
+    identifierName: 'H1',
+    location: {
+      filename: 'unknown',
+      line: 1,
+      column: 20
+    }
+  }
+});"
 `;
 
-exports[`babel styled component inline dynamic fns 1`] = `"const Avatar = /*#__PURE__*/styled('img')('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';');"`;
+exports[`babel styled component inline composition based on props 1`] = `
+"const cls1 = /*#__PURE__*/css('width:20px;', {
+  meta: {
+    identifierName: 'cls1',
+    location: {
+      filename: 'unknown',
+      line: 1,
+      column: 16
+    }
+  }
+});
+const H1 = /*#__PURE__*/styled('h1')(props => {
+  return props.a ? cssA : cssB;
+}, ';font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');', {
+  meta: {
+    identifierName: 'H1',
+    location: {
+      filename: 'unknown',
+      line: 2,
+      column: 26
+    }
+  }
+});"
+`;
 
-exports[`babel styled component inline function call 1`] = `"/*#__PURE__*/styled(MyComponent)('font-size:', fontSize + 'px', ';');"`;
+exports[`babel styled component inline dynamic fns 1`] = `
+"const Avatar = /*#__PURE__*/styled('img')('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';', {
+  meta: {
+    identifierName: 'Avatar',
+    location: {
+      filename: 'styled.test.js',
+      line: 1,
+      column: 28
+    }
+  }
+});"
+`;
+
+exports[`babel styled component inline function call 1`] = `
+"/*#__PURE__*/styled(MyComponent)('font-size:', fontSize + 'px', ';', {
+  meta: {
+    identifierName: '',
+    location: {
+      filename: 'unknown',
+      line: 1,
+      column: 19
+    }
+  }
+});"
+`;
 
 exports[`babel styled component inline interpolation in different places 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');height1:', something, 'wow;width:w', something, 'ow;transform:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform1:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform2:translateX(', props => props.translateX, ') ', props => props.translateX, ';');"
+const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');height1:', something, 'wow;width:w', something, 'ow;transform:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform1:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform2:translateX(', props => props.translateX, ') ', props => props.translateX, ';', {
+  meta: {
+    identifierName: 'H1',
+    location: {
+      filename: 'unknown',
+      line: 2,
+      column: 26
+    }
+  }
+});"
 `;
 
-exports[`babel styled component inline media query 1`] = `"const H1 = /*#__PURE__*/styled(\\"h1\\")(\\"@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\\");"`;
+exports[`babel styled component inline media query 1`] = `
+"const H1 = /*#__PURE__*/styled(\\"h1\\")(\\"@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\\", {
+  meta: {
+    identifierName: \\"H1\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 20
+    }
+  }
+});"
+`;
 
-exports[`babel styled component inline more than 10 dynamic values 1`] = `"const H1 = /*#__PURE__*/styled('h1')('text-decoration:', 'underline', ';border-right:solid blue ', 54, 'px;background:', 'white', ';color:', 'black', ';display:', 'block', ';border-radius:', '3px', ';padding:', '25px', ';width:', '500px', ';z-index:', 100, ';font-size:', '18px', ';text-align:', 'center', ';border-left:', p => p.theme.blue, ';');"`;
+exports[`babel styled component inline more than 10 dynamic values 1`] = `
+"const H1 = /*#__PURE__*/styled('h1')('text-decoration:', 'underline', ';border-right:solid blue ', 54, 'px;background:', 'white', ';color:', 'black', ';display:', 'block', ';border-radius:', '3px', ';padding:', '25px', ';width:', '500px', ';z-index:', 100, ';font-size:', '18px', ';text-align:', 'center', ';border-left:', p => p.theme.blue, ';', {
+      meta: {
+            identifierName: 'H1',
+            location: {
+                  filename: 'styled.test.js',
+                  line: 1,
+                  column: 23
+            }
+      }
+});"
+`;
 
-exports[`babel styled component inline nested 1`] = `"const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';& div{color:blue;& span{color:red}}');"`;
+exports[`babel styled component inline nested 1`] = `
+"const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';& div{color:blue;& span{color:red}}', {
+  meta: {
+    identifierName: 'H1',
+    location: {
+      filename: 'unknown',
+      line: 1,
+      column: 20
+    }
+  }
+});"
+`;
 
-exports[`babel styled component inline no dynamic 1`] = `"/*#__PURE__*/styled(\\"h1\\")(\\"color:blue;\\");"`;
+exports[`babel styled component inline no dynamic 1`] = `
+"/*#__PURE__*/styled(\\"h1\\")(\\"color:blue;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"styled.test.js\\",
+      line: 1,
+      column: 9
+    }
+  }
+});"
+`;
 
-exports[`babel styled component inline no use 1`] = `"/*#__PURE__*/styled(\\"h1\\")();"`;
+exports[`babel styled component inline no use 1`] = `
+"/*#__PURE__*/styled(\\"h1\\")({
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"unknown\\",
+      line: 1,
+      column: 9
+    }
+  }
+});"
+`;
 
 exports[`babel styled component inline objects based on props 1`] = `
 "
@@ -77,8 +192,35 @@ const H1 = /*#__PURE__*/styled('h1')({
 
 exports[`babel styled component inline random expressions 1`] = `
 "
-const a = () => /*#__PURE__*/css(\\"font-size:1rem\\");
-/*#__PURE__*/styled(\\"h1\\")(\\"margin:12px 48px;\\", /*#__PURE__*/css(\\"font-size:32px\\"), \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"
+const a = () => /*#__PURE__*/css(\\"font-size:1rem\\", {
+  meta: {
+    identifierName: \\"a\\",
+    location: {
+      filename: \\"styled.test.js\\",
+      line: 2,
+      column: 27
+    }
+  }
+});
+/*#__PURE__*/styled(\\"h1\\")(\\"margin:12px 48px;\\", /*#__PURE__*/css(\\"font-size:32px\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"styled.test.js\\",
+      line: 5,
+      column: 15
+    }
+  }
+}), \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"styled.test.js\\",
+      line: 3,
+      column: 17
+    }
+  }
+});"
 `;
 
 exports[`babel styled component inline shorthand property 1`] = `"const H1 = /*#__PURE__*/styled(\\"h1\\")({ fontSize });"`;
@@ -133,6 +275,28 @@ const Figure = /*#__PURE__*/styled(\\"figure\\")({
 });"
 `;
 
-exports[`babel styled component renamed import: inline config rename 1`] = `"/*#__PURE__*/what(\\"h1\\")(\\"color:blue;\\");"`;
+exports[`babel styled component renamed import: inline config rename 1`] = `
+"/*#__PURE__*/what(\\"h1\\")(\\"color:blue;\\", {
+  meta: {
+    identifierName: \\"\\",
+    location: {
+      filename: \\"styled.test.js\\",
+      line: 1,
+      column: 7
+    }
+  }
+});"
+`;
 
-exports[`babel styled component renamed import: inline variable import: no dynamic 1`] = `"import what from 'emotion'; /*#__PURE__*/what('h1')('color:blue;');"`;
+exports[`babel styled component renamed import: inline variable import: no dynamic 1`] = `
+"import what from 'emotion'; /*#__PURE__*/what('h1')('color:blue;', {
+  meta: {
+    identifierName: '',
+    location: {
+      filename: 'styled.test.js',
+      line: 1,
+      column: 35
+    }
+  }
+});"
+`;
