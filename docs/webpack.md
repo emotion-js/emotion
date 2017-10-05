@@ -1,6 +1,3 @@
-[github](https://github.com/emotion-js/emotion)
-[npm](https://npm.im/emotion)
-
 ## Usage with Webpack
 
 #### Bundling [extracted CSS](https://github.com/emotion-js/emotion/blob/master/docs/extract-static.md)
