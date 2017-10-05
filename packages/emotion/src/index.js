@@ -34,69 +34,173 @@ export function flush() {
 
 let currentSourceMap = ''
 let queue = []
+let orphans = {}
 
-function insertRule(rule) {
-  sheet.insert(rule, currentSourceMap)
+function insertNode(node) {
+  console.log('node', node)
+  if (node.children) {
+    // console.log('children', node.children)
+  }
+  // sheet.insert(rule, currentSourceMap)
+}
+
+function Node(id, name, value, rule, parent, ruleText) {
+  this.name = name
+  this.value = value
+  this.rule = rule
+  this.parent = parent
+  this.id = id
+  this.ruleText = ruleText
+  this.children = []
 }
 
 function insertionPlugin(
   context,
   content,
   selectors,
-  parent,
+  parents,
   line,
   column,
   length,
   id
 ) {
+  let index, name, value, node, type, deli, size
+  let rule = selectors.join(',')
+  let parent = parents.join(',')
   switch (context) {
-    case -2: {
-      queue.forEach(insertRule)
+    case -1: {
       queue = []
       break
     }
 
-    case 2: {
-      if (id === 0) {
-        const joinedSelectors = selectors.join(',')
-        const rule = `${joinedSelectors}{${content}}`
-        if (parent.join(',') === joinedSelectors || parent[0] === '') {
-          queue.push(rule)
-        } else {
-          queue.unshift(rule)
+    case -2: {
+      // console.log('queue', queue.reverse())
+      queue.forEach((styleNode) => {
+        console.log(styleNode.name)
+        insertNode(styleNode)
+        if (orphans[styleNode.name]) {
+          orphans[styleNode.name].forEach((orphanNode) => {
+            insertNode(orphanNode)
+            if (orphans[orphanNode.name]) {
+              orphans[orphanNode.name].forEach(insertNode)
+            }
+          })
         }
+      })
+
+      break
+    }
+
+    case 1:
+      // content.charCodeAt(0) !== 64
+      //   ? ((deli = ':'), (type = 'decl'))
+      //   : ((deli = ' '), (rule = null), (type = '@at-rule'))
+      // if (content.charCodeAt(0) === 64) {
+      //   deli = ' '
+      //   rule = null
+      //   type = '@at-rule'
+      //
+      //   index = content.indexOf(deli)
+      //   name = content.substring(0, index)
+      //   value = content.substring(index + 1).trim()
+      //   node = new Node(
+      //     id,
+      //     name,
+      //     value,
+      //     type,
+      //     rule,
+      //     parent,
+      //     `${rule || ''}{${content}}`
+      //   )
+      //
+      //   queue.push(node)
+      // }
+
+      break
+
+    case 2: {
+      // console.log('id', id)
+      console.log('parent', parent)
+      // console.log('selectors', selectors)
+      // console.log('joined selectors', rule)
+      // console.log('content', content)
+      console.log(`${rule}{${content}}`)
+
+      node = new Node(
+        id,
+        rule,
+        selectors,
+        'rule',
+        parent,
+        `${rule}{${content}}`
+      )
+
+      if (parent) {
+        if (!orphans[parent]) {
+          orphans[parent] = []
+        }
+        orphans[parent].push(node)
+        console.log('orphans[parent]', orphans[parent])
+      } else {
+        queue.push(node)
       }
+
+      // if (id === 0) {
+      //   const out = `${rule}{${content}}`
+      //   const joinedParents = parent.join(',')
+      //   if (joinedParents === out || parent[0] === '') {
+      //     queue.push(out)
+      //   } else {
+      //     queue.unshift(out)
+      //   }
+      // }
       break
     }
     // after an at rule block
     case 3: {
-      let chars = selectors.join('')
-      const second = chars.charCodeAt(1)
-      let child = content
-      switch (second) {
-        // s upports
-        case 115:
-        // d ocument
-        // eslint-disable-next-line no-fallthrough
-        case 100:
-        // m edia
-        // eslint-disable-next-line no-fallthrough
-        case 109: {
-          queue.push(chars + '{' + child + '}')
-          break
-        }
-        // k eyframes
-        case 107: {
-          chars = chars.substring(1)
-          child = chars + '{' + child + '}'
-          queue.push('@-webkit-' + child)
-          queue.push('@' + child)
-          break
-        }
-        default: {
-          queue.push(chars + child)
-        }
-      }
+      node = new Node(
+        id,
+        rule,
+        selectors,
+        '@at-rule',
+        parent,
+        `${rule}{${content}}`
+      )
+      console.log('queue after at rule', queue)
+      size = queue.length
+      while (size--)
+        if (queue[size].id === id) node.children.push(queue.splice(size, 1)[0])
+
+      queue.push(node)
+      break
+
+      // let chars = selectors.join('')
+      // const second = chars.charCodeAt(1)
+      // let child = content
+      // switch (second) {
+      //   // s upports
+      //   case 115:
+      //   // d ocument
+      //   // eslint-disable-next-line no-fallthrough
+      //   case 100:
+      //   // m edia
+      //   // eslint-disable-next-line no-fallthrough
+      //   case 109: {
+      //     queue.push(chars + '{' + child + '}')
+      //     break
+      //   }
+      //   // k eyframes
+      //   case 107: {
+      //     chars = chars.substring(1)
+      //     child = chars + '{' + child + '}'
+      //     queue.push('@-webkit-' + child)
+      //     queue.push('@' + child)
+      //     break
+      //   }
+      //   default: {
+      //     queue.push(chars + child)
+      //   }
+      // }
     }
   }
 }
@@ -238,8 +342,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function css() {
   const styles = createStyles.apply(this, arguments)
+  console.log(styles)
   const hash = hashString(styles)
   const cls = `css-${hash}`
+  console.log(cls)
   if (registered[cls] === undefined) {
     registered[cls] = styles
   }
