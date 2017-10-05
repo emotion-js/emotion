@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from '../components/Link'
-import { fontFace, injectGlobal } from 'react-emotion'
+import styled, { fontFace, injectGlobal } from 'react-emotion'
 import Box from '../components/Box'
 import prismStyles from 'react-live/lib/constants/css'
 import Helmet from 'react-helmet'
@@ -13,7 +13,7 @@ injectGlobal(
 )
 
 injectGlobal`
-html, body, #___gatsby, #___gatsby > div {
+html, body, #___gatsby {
   font-family: -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
@@ -29,7 +29,7 @@ html, body, #___gatsby, #___gatsby > div {
     "Apple Color Emoji",
     "Segoe UI Emoji",
     "Segoe UI Symbol";
-  color: #495057;
+  color: #FFFEFF;
   width: 100%;
   height: 100%;
   padding: 0;
@@ -59,8 +59,21 @@ fontFace`
 
 const StyledLink = Box.withComponent(Link)
 
-const Header = () => (
-  <Box bg="#9932CC" p={1}>
+const Header = ({ isHome }) => (
+  <Box
+    bg="#1e2029"
+    p={1}
+    css={
+      !isHome && {
+        borderTop: 'none',
+        borderRight: 'none',
+        borderBottom: '4px solid',
+        borderLeft: 'none',
+        borderImage: 'linear-gradient(to left, #46c9e5 0%, #d26ac2 100%) 1',
+        transition: 'all 200ms ease'
+      }
+    }
+  >
     <Box display="flex" flex={1} justify="space-between">
       <Box flex={1}>
         <h1 css={`margin: 0;`}>
@@ -69,6 +82,7 @@ const Header = () => (
             color="white"
             p={1}
             css={{
+              textDecoration: 'none',
               fontFamily: "'Oxygen', sans-serif"
             }}
           >
@@ -104,25 +118,54 @@ const Header = () => (
   </Box>
 )
 
-const BaseWrapper = props => (
-  <Box flex={1}>
-    <Helmet title="emotion" />
-    <Header />
-    <Box m={[1, 2]}>{props.children}</Box>
-  </Box>
-)
+const OuterGradientContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  min-height: 100%;
+  padding: ${p => p.padding || '0'};
+  background: linear-gradient(to bottom, #46c9e5 0%, #d26ac2 100%);
+  transition: padding 200ms ease;
+`
+
+const BodyInner = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  color: ${p => p.color};
+  background: ${p => p.bg};
+  border-radius: 2px;
+`
+
+const BaseWrapper = props => {
+  const isHome = props.location.pathname === '/'
+  return (
+    <OuterGradientContainer padding={isHome ? '1vw' : '0'}>
+      <BodyInner
+        bg={isHome ? '#1e2029' : '#FFFEFF'}
+        color={isHome ? '#FFFEFF' : '#1e2029'}
+      >
+        <Helmet title="emotion" />
+        <Header isHome={isHome} />
+        <Box m={[1, 2]}>{props.children}</Box>
+      </BodyInner>
+    </OuterGradientContainer>
+  )
+}
 
 const TemplateWrapper = props => {
+  console.log(props.location.pathname)
   if (props.location.pathname.match(/\/docs\/.+/)) {
     return (
-      <BaseWrapper>
+      <BaseWrapper location={props.location}>
         <DocWrapper sidebarNodes={props.data.allFile.edges}>
           {props.children()}
         </DocWrapper>
       </BaseWrapper>
     )
   }
-  return <BaseWrapper>{props.children()}</BaseWrapper>
+  return <BaseWrapper location={props.location}>{props.children()}</BaseWrapper>
 }
 
 TemplateWrapper.propTypes = {
