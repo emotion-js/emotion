@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from '../components/Link'
-import styled, { fontFace, injectGlobal } from 'react-emotion'
+import styled, { fontFace, injectGlobal, css } from 'react-emotion'
 import Box from '../components/Box'
 import prismStyles from 'react-live/lib/constants/css'
 import Helmet from 'react-helmet'
 import 'normalize.css/normalize.css'
 import DocWrapper from '../components/DocWrapper'
+import { colors, constants } from '../utils/style'
 
 injectGlobal(
   prismStyles.replace('prism-code', 'prism-code,pre[class*="language-"]')
@@ -35,8 +36,9 @@ html, body, #___gatsby {
   padding: 0;
   margin: 0;
   -webkit-font-smoothing: antialiased;
-  background-color: #f8f9fa;
+  
 }
+
 pre[class*="language-"] {
   border-radius: 8px;
   overflow: scroll; 
@@ -57,19 +59,47 @@ fontFace`
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 `
 
-const StyledLink = Box.withComponent(Link)
+const StyledLink = styled(Box)`
+  color: white;
+  padding: ${constants.space[1]}px;
+  font-size: ${constants.fontSizes[3]}px;
+  text-decoration: none;
+  font-weight: 300;
+  ${props =>
+    !props.hideUnderline &&
+    css`
+      &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        margin-top: 4px;
+        height: 4px;
+        transition: transform 250ms ease;
+        transform: scaleX(0);
+        background-color: hotpink;
+      }
+      &.active::after,
+      &:hover::after {
+        transform: scaleX(1);
+      }
+    `};
+`.withComponent(Link)
+
+StyledLink.defaultProps = {
+  activeClassName: 'active'
+}
 
 const Header = ({ isHome }) => (
   <Box
-    bg="#1e2029"
-    p={1}
+    bg={colors.dark}
+    p={2}
     css={
       !isHome && {
         borderTop: 'none',
         borderRight: 'none',
         borderBottom: '4px solid',
         borderLeft: 'none',
-        borderImage: 'linear-gradient(to left, #46c9e5 0%, #d26ac2 100%) 1',
+        borderImage: `linear-gradient(to left, ${colors.blue} 0%, ${colors.pink} 100%) 1`,
         transition: 'all 200ms ease'
       }
     }
@@ -79,8 +109,7 @@ const Header = ({ isHome }) => (
         <h1 css={`margin: 0;`}>
           <StyledLink
             to="/"
-            color="white"
-            p={1}
+            hideUnderline
             css={{
               textDecoration: 'none',
               fontFamily: "'Oxygen', sans-serif"
@@ -91,28 +120,12 @@ const Header = ({ isHome }) => (
         </h1>
       </Box>
       <Box flex={1} display="flex" justify="flex-end" css={`overflow: auto;`}>
-        <StyledLink p={1} color="white" fontSize={3} to="/try">
-          Try
-        </StyledLink>
-        <StyledLink p={1} color="white" fontSize={3} to="/docs">
-          Documentation
-        </StyledLink>
-        <StyledLink
-          p={1}
-          color="white"
-          fontSize={3}
-          to="https://github.com/emotion-js/emotion"
-        >
+        <StyledLink to="/try">Try</StyledLink>
+        <StyledLink to="/docs">Documentation</StyledLink>
+        <StyledLink to="https://github.com/emotion-js/emotion">
           GitHub
         </StyledLink>
-        <StyledLink
-          p={1}
-          color="white"
-          fontSize={3}
-          to="https://emotion.now.sh"
-        >
-          Slack
-        </StyledLink>
+        <StyledLink to="https://emotion.now.sh">Slack</StyledLink>
       </Box>
     </Box>
   </Box>
@@ -125,7 +138,11 @@ const OuterGradientContainer = styled.div`
   width: 100%;
   min-height: 100%;
   padding: ${p => p.padding || '0'};
-  background: linear-gradient(to bottom, #46c9e5 0%, #d26ac2 100%);
+  background: linear-gradient(
+    to bottom,
+    ${colors.blue} 0%,
+    ${colors.pink} 100%
+  );
   transition: padding 200ms ease;
 `
 
@@ -148,14 +165,13 @@ const BaseWrapper = props => {
       >
         <Helmet title="emotion" />
         <Header isHome={isHome} />
-        <Box m={[1, 2]}>{props.children}</Box>
+        {props.children}
       </BodyInner>
     </OuterGradientContainer>
   )
 }
 
 const TemplateWrapper = props => {
-  console.log(props.location.pathname)
   if (props.location.pathname.match(/\/docs\/.+/)) {
     return (
       <BaseWrapper location={props.location}>
@@ -165,7 +181,11 @@ const TemplateWrapper = props => {
       </BaseWrapper>
     )
   }
-  return <BaseWrapper location={props.location}>{props.children()}</BaseWrapper>
+  return (
+    <BaseWrapper location={props.location}>
+      <Box m={[1, 2]}>{props.children()}</Box>
+    </BaseWrapper>
+  )
 }
 
 TemplateWrapper.propTypes = {

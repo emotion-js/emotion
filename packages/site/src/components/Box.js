@@ -35,7 +35,6 @@ const column = props => (props.column ? 'flex-direction:column;' : null)
  * `
  */
 export default styled.div(
-  undefined,
   display,
   space,
   width,

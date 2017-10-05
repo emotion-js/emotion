@@ -71,15 +71,17 @@ const styles = css`
     margin: 0 auto;
   }
 
-  a,
-  a:visited {
-    color: ${colors.grape[8]};
-  }
-
   a:hover,
   a:focus,
   a:active {
-    color: ${colors.grape[6]};
+    background-color: #f5d0f0;
+  }
+
+  a,
+  a:visited {
+    background-color: #faebf8;
+    color: inherit;
+    text-decoration: none;
   }
 
   blockquote {

@@ -4,7 +4,7 @@ import Box from '../components/Box'
 import { LiveEditor, withLive, LiveProvider } from 'react-live/lib'
 import GatsbyLink from 'gatsby-link'
 import { scope, Error } from '../components/Playground'
-import { colors, constants } from '../utils/style'
+import { openColors, colors, constants } from '../utils/style'
 
 const Title = Box.withComponent('h1')
 const Paragraph = Box.withComponent('p')
@@ -44,8 +44,10 @@ const Preview = withLive(({ live: { element: BaseLink, onError, error } }) => {
   return (
     <Box fontSize={2}>
       <ErrorBoundary onError={onError} error={error}>
-        <Link to="/docs/install">Install</Link>
-        <Link to="/docs" primary>
+        <Link className={textCenter} to="/docs/install">
+          Install
+        </Link>
+        <Link className={textCenter} to="/docs" primary>
           Getting Started
         </Link>
       </ErrorBoundary>
@@ -81,17 +83,12 @@ const scroll = css`overflow: scroll;`
 const textCenter = css`text-align: center;`
 
 const SelectButton = styled.button`
-  text-align: center;
+  ${textCenter};
   flex: 1;
-  color: white;
+  color: ${props => (props.active ? '#fff' : '#8d8e95')};
   padding: ${constants.space[1]}px;
-  background-color: ${props => (props.active ? colors.violet[8] : '#1d1f21')};
-  border: 0 solid ${colors.violet[8]};
-  border-bottom-width: 4px;
-  :hover {
-    background-color: ${props =>
-      props.active ? colors.violet[9] : colors.violet[7]};
-  }
+  background-color: ${props => (props.active ? '#2e313a' : '#21242b')};
+  border: 0;
 `
 
 class IndexPage extends React.Component {
@@ -113,35 +110,57 @@ class IndexPage extends React.Component {
         noInline
         transformCode={transform}
         mountStylesheet={false}
+        css={{ height: '100%', display: 'flex' }}
       >
-        <div>
-          <Box display="flex" justify="center" align="center">
-            <img
-              width="200px"
-              height="200px"
-              alt="Emotion Avatar"
-              src={avatar.src}
-              srcSet={avatar.srcSet}
-            />
+        <Box
+          bg={colors.dark}
+          display="flex"
+          flex={1}
+          direction={['column', 'column', 'row']}
+        >
+          <Box flex={1.5} display="flex" justify="center" align="center">
+            <Box color="white" flex={1} css={{ maxWidth: 600 }}>
+              <Box>
+                <img
+                  width="100px"
+                  height="100px"
+                  alt="Emotion Avatar"
+                  src={avatar.src}
+                  srcSet={avatar.srcSet}
+                />
+                <Title
+                  display="inline-block"
+                  fontSize={8}
+                  m={0}
+                  className={css`font-weight: 300;`}
+                >
+                  emotion
+                </Title>
+                <Paragraph fontSize={4}>
+                  The Next Generation of CSS-in-JS
+                </Paragraph>
+                <Paragraph css={{ fontWeight: 300 }} fontSize={2}>
+                  {/* just putting this here until we write an up to date intro */}
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Pellentesque condimentum urna imperdiet lectus convallis, quis
+                  cursus nunc euismod. Sed at ornare mauris. Maecenas et orci
+                  sed dolor commodo semper. Vestibulum mauris nibh, posuere a
+                  ornare nec, rhoncus a magna. Sed non felis et lectus luctus
+                  blandit nec lacinia quam.
+                </Paragraph>
+                <Preview />
+              </Box>
+            </Box>
           </Box>
-          <Title fontSize={8} mb={2} mt={0} css={textCenter}>
-            emotion
-          </Title>
-          <Paragraph css={textCenter} fontSize={4}>
-            The Next Generation of CSS-in-JS
-          </Paragraph>
-          <div css={textCenter}>
-            <Preview />
-          </div>
-          <Box display="flex" justify="center" align="center">
+
+          <Box flex={1} display="flex" justify="center" align="center">
             <div
               css={{
                 width: 448,
-                overflow: 'hidden',
-                borderRadius: 8
+                overflow: 'hidden'
               }}
             >
-              <Box bg={colors.gray[3]} display="flex">
+              <Box bg={openColors.gray[3]} display="flex">
                 <SelectButton
                   active={this.state.mode === 'string'}
                   onClick={() => {
@@ -169,7 +188,7 @@ class IndexPage extends React.Component {
               <LiveError css={scroll} />
             </div>
           </Box>
-        </div>
+        </Box>
       </LiveProvider>
     )
   }
