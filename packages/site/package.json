@@ -1,7 +1,7 @@
 {
   "name": "emotion-example-project",
   "private": true,
-  "version": "8.0.2-13",
+  "version": "8.0.2",
   "description": "emotion example project",
   "scripts": {
     "start:site": "webpack-dev-server --content-base build/ --port 3000",
@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "babel-plugin-emotion": "^8.0.2-11",
-    "emotion": "^8.0.2-12",
+    "emotion": "^8.0.2",
     "open-color": "^1.5.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-emotion": "^8.0.2-13",
+    "react-emotion": "^8.0.2",
     "react-markdown": "^2.5.0"
   },
   "devDependencies": {
@@ -27,7 +27,7 @@
     "babel-standalone": "^6.24.2",
     "component-playground": "^2.0.0",
     "css-loader": "^0.28.4",
-    "emotion-theming": "^8.0.2-11",
+    "emotion-theming": "^8.0.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.28.0",
