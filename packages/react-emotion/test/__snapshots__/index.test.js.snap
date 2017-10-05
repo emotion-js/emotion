@@ -204,6 +204,35 @@ exports[`styled composition based on props 2`] = `
 </h1>
 `;
 
+exports[`styled composition of nested pseudo selectors 1`] = `
+.glamor-0 {
+  font-size: 2rem;
+  padding: 16px;
+}
+
+.glamor-0:hover {
+  color: pink;
+}
+
+.glamor-0:hover:active {
+  color: purple;
+}
+
+.glamor-0:hover {
+  color: blue;
+}
+
+.glamor-0:hover:active {
+  color: red;
+}
+
+<button
+  className="glamor-0"
+>
+  Should be purple
+</button>
+`;
+
 exports[`styled composition with objects 1`] = `
 .glamor-0 {
   color: #333;
