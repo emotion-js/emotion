@@ -10,32 +10,31 @@ const Title = Box.withComponent('h1')
 const Paragraph = Box.withComponent('p')
 
 const stringCode = `const Link = styled.a\`
-  display: inline-block;
-  border-radius: 8px;
-  padding: 32px;
-  margin: 32px;
-  width: 12rem;
-  background: darkorchid;
-  text-decoration: none;
-  color: white;
-  \${props => props.primary && css\`
-    background-color: darkturquoise;
-  \`}
+display: inline-block;
+border-radius: 8px;
+padding: 16px;
+margin: 16px;
+width: 12rem;
+background: \${props =>
+  props.primary &&
+  'linear-gradient(90deg, #D26AC2, #46C9E5)'};
+text-decoration: none;
+color: \${props =>
+  props.primary ? '#1D2029' : '#D26AC2'};
 \``
 
 const objectCode = `const Link = styled.a(props => ({
   display: 'inline-block',
   borderRadius: 8,
-  padding: 32,
-  margin: 32,
+  padding: 16,
+  margin: 16,
   width: '12rem',
-  background: props.primary
-    ? 'darkturquoise'
-    : 'darkorchid',
-  color: 'white',
+  background:
+    props.primary &&
+    'linear-gradient(90deg, #D26AC2, #46C9E5)',
+  color: props.primary ? '#1D2029' : '#D26AC2',
   textDecoration: 'none'
-}))
-`
+}))`
 let Link
 const Preview = withLive(({ live: { element: BaseLink, onError, error } }) => {
   try {
@@ -44,10 +43,15 @@ const Preview = withLive(({ live: { element: BaseLink, onError, error } }) => {
   return (
     <Box fontSize={2}>
       <ErrorBoundary onError={onError} error={error}>
-        <Link className={textCenter} to="/docs/install">
+        <Link
+          css={`font-weight: 800;`}
+          className={textCenter}
+          to="/docs/install"
+          primary
+        >
           Install
         </Link>
-        <Link className={textCenter} to="/docs" primary>
+        <Link className={textCenter} to="/docs">
           Getting Started
         </Link>
       </ErrorBoundary>
