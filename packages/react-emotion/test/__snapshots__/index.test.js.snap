@@ -211,19 +211,19 @@ exports[`styled composition of nested pseudo selectors 1`] = `
 }
 
 .glamor-0:hover {
-  color: pink;
-}
-
-.glamor-0:hover:active {
-  color: purple;
-}
-
-.glamor-0:hover {
   color: blue;
 }
 
 .glamor-0:hover:active {
   color: red;
+}
+
+.glamor-0:hover {
+  color: pink;
+}
+
+.glamor-0:hover:active {
+  color: purple;
 }
 
 <button
@@ -444,7 +444,7 @@ exports[`styled nested 1`] = `
 <div
   className="glamor-1"
 >
-  hello 
+  hello
   <h1
     className="glamor-0"
   >
