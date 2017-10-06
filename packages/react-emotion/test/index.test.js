@@ -475,6 +475,43 @@ describe('styled', () => {
     expect(tree2).toMatchSnapshot()
   })
 
+  test('composition of nested pseudo selectors', () => {
+    const defaultLinkStyles = {
+      '&:hover': {
+        color: 'blue',
+        '&:active': {
+          color: 'red'
+        }
+      }
+    }
+
+    const buttonStyles = () => ({
+      ...defaultLinkStyles,
+      fontSize: '2rem',
+      padding: 16
+    })
+
+    const Button = styled('button')(buttonStyles)
+
+    const tree = renderer
+      .create(
+        <Button
+          className={css({
+            '&:hover': {
+              color: 'pink',
+              '&:active': {
+                color: 'purple'
+              }
+            }
+          })}
+        >
+          Should be purple
+        </Button>
+      )
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('objects', () => {
     const H1 = styled('h1')({ padding: 10 }, props => ({
       display: props.display

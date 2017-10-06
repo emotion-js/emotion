@@ -32,18 +32,19 @@ export function flush() {
   sheet.inject()
 }
 
-let currentSourceMap = ''
-let queue = []
-
 function insertRule(rule) {
   sheet.insert(rule, currentSourceMap)
 }
+
+let currentSourceMap = ''
+let queue = []
+let parentQueue = []
 
 function insertionPlugin(
   context,
   content,
   selectors,
-  parent,
+  parents,
   line,
   column,
   length,
@@ -53,23 +54,30 @@ function insertionPlugin(
     case -2: {
       queue.forEach(insertRule)
       queue = []
+      parentQueue = []
       break
     }
 
     case 2: {
       if (id === 0) {
-        const joinedSelectors = selectors.join(',')
-        const rule = `${joinedSelectors}{${content}}`
-        if (parent.join(',') === joinedSelectors || parent[0] === '') {
-          queue.push(rule)
-        } else {
-          queue.unshift(rule)
+        const selector = selectors.join(',')
+        let parent = parents.join(',')
+        const rule = `${selector}{${content}}`
+        let index = parentQueue.lastIndexOf(selector)
+        if (index === -1) {
+          index = parentQueue.length
         }
+        if (parents.length === 0) {
+          index = 0
+        }
+        queue.splice(index, 0, rule)
+        parentQueue.splice(index, 0, parent)
       }
       break
     }
     // after an at rule block
     case 3: {
+      parentQueue.push(undefined)
       let chars = selectors.join('')
       const second = chars.charCodeAt(1)
       let child = content
