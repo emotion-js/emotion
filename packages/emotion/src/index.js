@@ -34,24 +34,44 @@ export function flush() {
 
 let currentSourceMap = ''
 let queue = []
-let orphans = {}
+let orphans = Object.create({})
 
 function insertNode(node) {
   console.log('node', node)
-  if (node.children) {
-    // console.log('children', node.children)
-  }
-  // sheet.insert(rule, currentSourceMap)
+  sheet.insert(node.ruleText, currentSourceMap)
 }
 
-function Node(id, name, value, rule, parent, ruleText) {
-  this.name = name
-  this.value = value
-  this.rule = rule
-  this.parent = parent
+function Node(id, selector, parent, ruleText) {
   this.id = id
+  this.selector = selector
+  this.parent = parent
   this.ruleText = ruleText
   this.children = []
+}
+
+function dive(node) {
+  insertNode(node)
+  if (node.children) {
+    node.children.forEach(dive)
+  }
+}
+
+function buildTree(node, parent) {
+  console.log(node);
+
+  if (parent) {
+    if (!orphans[parent]) {
+      orphans[parent] = []
+    }
+    orphans[parent].push(node)
+  } else {
+    queue.push(node);
+  }
+
+  if (orphans[node.selector] !== undefined) {
+    orphans[node.selector].forEach(n => node.children.push(n))
+    orphans[node.selector] = undefined
+  }
 }
 
 function insertionPlugin(
@@ -64,143 +84,65 @@ function insertionPlugin(
   length,
   id
 ) {
-  let index, name, value, node, type, deli, size
+  let node
   let rule = selectors.join(',')
   let parent = parents.join(',')
   switch (context) {
-    case -1: {
-      queue = []
-      break
-    }
-
     case -2: {
-      // console.log('queue', queue.reverse())
-      queue.forEach((styleNode) => {
-        console.log(styleNode.name)
-        insertNode(styleNode)
-        if (orphans[styleNode.name]) {
-          orphans[styleNode.name].forEach((orphanNode) => {
-            insertNode(orphanNode)
-            if (orphans[orphanNode.name]) {
-              orphans[orphanNode.name].forEach(insertNode)
-            }
-          })
+      queue.forEach(dive)
+      Object.keys(orphans).forEach(select => {
+        if (orphans[select]) {
+          orphans[select].forEach(dive)
         }
       })
+      queue = []
+      orphans = Object.create({})
 
       break
     }
 
-    case 1:
-      // content.charCodeAt(0) !== 64
-      //   ? ((deli = ':'), (type = 'decl'))
-      //   : ((deli = ' '), (rule = null), (type = '@at-rule'))
-      // if (content.charCodeAt(0) === 64) {
-      //   deli = ' '
-      //   rule = null
-      //   type = '@at-rule'
-      //
-      //   index = content.indexOf(deli)
-      //   name = content.substring(0, index)
-      //   value = content.substring(index + 1).trim()
-      //   node = new Node(
-      //     id,
-      //     name,
-      //     value,
-      //     type,
-      //     rule,
-      //     parent,
-      //     `${rule || ''}{${content}}`
-      //   )
-      //
-      //   queue.push(node)
-      // }
-
-      break
-
     case 2: {
-      // console.log('id', id)
-      console.log('parent', parent)
-      // console.log('selectors', selectors)
-      // console.log('joined selectors', rule)
-      // console.log('content', content)
-      console.log(`${rule}{${content}}`)
-
-      node = new Node(
-        id,
-        rule,
-        selectors,
-        'rule',
-        parent,
-        `${rule}{${content}}`
-      )
-
-      if (parent) {
-        if (!orphans[parent]) {
-          orphans[parent] = []
-        }
-        orphans[parent].push(node)
-        console.log('orphans[parent]', orphans[parent])
-      } else {
-        queue.push(node)
+      if (id !== 0) {
+        break
       }
-
-      // if (id === 0) {
-      //   const out = `${rule}{${content}}`
-      //   const joinedParents = parent.join(',')
-      //   if (joinedParents === out || parent[0] === '') {
-      //     queue.push(out)
-      //   } else {
-      //     queue.unshift(out)
-      //   }
-      // }
+      node = new Node(id, rule, parent, `${rule}{${content}}`)
+      buildTree(node, parent)
       break
     }
     // after an at rule block
     case 3: {
-      node = new Node(
-        id,
-        rule,
-        selectors,
-        '@at-rule',
-        parent,
-        `${rule}{${content}}`
-      )
-      console.log('queue after at rule', queue)
-      size = queue.length
-      while (size--)
-        if (queue[size].id === id) node.children.push(queue.splice(size, 1)[0])
-
-      queue.push(node)
-      break
-
-      // let chars = selectors.join('')
-      // const second = chars.charCodeAt(1)
-      // let child = content
-      // switch (second) {
-      //   // s upports
-      //   case 115:
-      //   // d ocument
-      //   // eslint-disable-next-line no-fallthrough
-      //   case 100:
-      //   // m edia
-      //   // eslint-disable-next-line no-fallthrough
-      //   case 109: {
-      //     queue.push(chars + '{' + child + '}')
-      //     break
-      //   }
-      //   // k eyframes
-      //   case 107: {
-      //     chars = chars.substring(1)
-      //     child = chars + '{' + child + '}'
-      //     queue.push('@-webkit-' + child)
-      //     queue.push('@' + child)
-      //     break
-      //   }
-      //   default: {
-      //     queue.push(chars + child)
-      //   }
-      // }
+      let chars = selectors.join('')
+      const second = chars.charCodeAt(1)
+      let child = content
+      switch (second) {
+        // s upports
+        case 115:
+        // d ocument
+        // eslint-disable-next-line no-fallthrough
+        case 100:
+        // m edia
+        // eslint-disable-next-line no-fallthrough
+        case 109: {
+          node = new Node(id, rule, parent, chars + '{' + child + '}')
+          buildTree(node, parent)
+          break
+        }
+        // k eyframes
+        case 107: {
+          chars = chars.substring(1)
+          child = chars + '{' + child + '}'
+          node = new Node(id, rule, parent, '@-webkit-' + child)
+          buildTree(node, parent)
+          node = new Node(id, rule, parent, '@' + child)
+          buildTree(node, parent)
+          break
+        }
+        default: {
+          node = new Node(id, rule, parent, chars + child)
+          buildTree(node, parent)
+          break
+        }
+      }
     }
   }
 }
