@@ -1,6 +1,13 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { css, flush, sheet } from 'emotion'
+import { css, flush, sheet, useStylisPlugin } from 'emotion'
+import { transform } from 'cssjanus'
+
+useStylisPlugin(function(context, content) {
+  if (context === 2) {
+    return transform(content)
+  }
+})
 
 describe('css', () => {
   test('float property', () => {
@@ -29,6 +36,16 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('falsy value in nested selector on object', () => {
+    const cls1 = css({ ':hover': { display: null, color: 'hotpink' } })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('boolean as value', () => {
+    const cls1 = css({ display: 'flex', color: false, backgroundColor: true })
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
   test('auto px', () => {
     const cls1 = css({ display: 'flex', flex: 1, fontSize: 10 })
     const tree = renderer.create(<div className={cls1} />).toJSON()
@@ -90,22 +107,13 @@ describe('css', () => {
   })
 
   test('handles array of objects', () => {
-    const cls1 = css([
-      {
-        height: 50,
-        width: 20
-      },
-      null
-    ])
+    const cls1 = css([{ height: 50, width: 20 }, null])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test('computed key is only dynamic', () => {
-    const cls1 = css({
-      fontSize: 10,
-      [`w${'idth'}`]: 20
-    })
+    const cls1 = css({ fontSize: 10, [`w${'idth'}`]: 20 })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -156,16 +164,29 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('nested array', () => {
-    const cls1 = css([
-      [
-        {
-          display: 'flex'
-        }
-      ]
-    ])
+    const cls1 = css([[{ display: 'flex' }]])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  test('explicit false', () => {
+    const cls1 = css(false)
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('array with explicit false', () => {
+    const cls1 = css([[{ display: 'flex' }], false])
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('array with explicit true', () => {
+    const cls1 = css([[{ display: 'flex' }], true])
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('nested', () => {
     const cls1 = css`
       color: yellow;
@@ -216,9 +237,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('composition stuff', () => {
-    const cls1 = css({
-      justifyContent: 'center'
-    })
+    const cls1 = css({ justifyContent: 'center' })
     const cls2 = css([cls1])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -255,6 +274,14 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  test('null value', () => {
+    const cls1 = css(null)
+    const cls2 = css`${() => null};`
+    expect(renderer.create(<div className={cls1} />).toJSON()).toMatchSnapshot()
+    expect(renderer.create(<div className={cls2} />).toJSON()).toMatchSnapshot()
+  })
+
   test('flushes correctly', () => {
     const cls1 = css`display: flex;`
     const tree = renderer.create(<div className={cls1} />).toJSON()
@@ -289,5 +316,12 @@ describe('css', () => {
     expect(tree1).toMatchSnapshot()
     const tree2 = renderer.create(<div className={cls2} />).toJSON()
     expect(tree2).toMatchSnapshot()
+  })
+
+  test('return function in interpolation', () => {
+    const cls1 = css`color: ${() => 'blue'};`
+
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })

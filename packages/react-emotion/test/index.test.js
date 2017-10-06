@@ -2,7 +2,8 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { ThemeProvider, withTheme } from 'theming'
+import { ThemeProvider } from 'emotion-theming'
+import hoistNonReactStatics from 'hoist-non-react-statics'
 import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
@@ -18,6 +19,24 @@ describe('styled', () => {
   })
 
   test.skip('basic render', () => {
+    const fontSize = 20
+    const H1 = styled.h1`
+      color: blue;
+      font-size: ${fontSize};
+      @media (min-width: 420px) {
+        color: blue;
+        @media (min-width: 520px) {
+          color: green;
+        }
+      }
+    `
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('null interpolation value', () => {
     const fontSize = 20
     const H1 = styled.h1`
       color: blue;
@@ -65,9 +84,7 @@ describe('styled', () => {
   })
 
   test('glamorous style api & composition', () => {
-    const H1 = styled.h1(props => ({
-      fontSize: props.fontSize
-    }))
+    const H1 = styled.h1(props => ({ fontSize: props.fontSize }))
     const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
 
     const tree = renderer
@@ -77,6 +94,15 @@ describe('styled', () => {
         </H2>
       )
       .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('inline function return value is a function', () => {
+    const fontSize = () => 20
+    const H1 = styled('h1')`font-size: ${() => fontSize}px;`
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -231,29 +257,13 @@ describe('styled', () => {
   })
 
   test('object composition', () => {
-    const imageStyles = css({
-      width: 96,
-      height: 96
-    })
+    const imageStyles = css({ width: 96, height: 96 })
 
-    css([
-      {
-        color: 'blue'
-      }
-    ])
+    css([{ color: 'blue' }])
 
-    const red = css([
-      {
-        color: 'red'
-      }
-    ])
+    const red = css([{ color: 'red' }])
 
-    const blue = css([
-      red,
-      {
-        color: 'blue'
-      }
-    ])
+    const blue = css([red, { color: 'blue' }])
 
     const prettyStyles = css([
       {
@@ -356,9 +366,7 @@ describe('styled', () => {
       fontSize: modularScale(1),
       [hiDPI(1.5)
         .replace('\n', ' ')
-        .trim()]: {
-        fontSize: modularScale(1.25)
-      }
+        .trim()]: { fontSize: modularScale(1.25) }
     }
 
     const cssB = css`
@@ -398,11 +406,7 @@ describe('styled', () => {
   })
 
   test('themes', () => {
-    const theme = {
-      white: '#f8f9fa',
-      purple: '#8c81d8',
-      gold: '#ffd43b'
-    }
+    const theme = { white: '#f8f9fa', purple: '#8c81d8', gold: '#ffd43b' }
 
     const fontSize = '20px'
 
@@ -415,11 +419,11 @@ describe('styled', () => {
 
     const Heading = styled('span')`background-color: ${p => p.theme.gold};`
 
-    const H1 = withTheme(styled(Heading)`
+    const H1 = styled(Heading)`
       ${cssB};
       font-size: ${fontSize};
       color: ${p => p.theme.purple};
-    `)
+    `
 
     const H2 = styled(H1)`font-size: 32px;`
 
@@ -482,9 +486,7 @@ describe('styled', () => {
 
   test('objects with spread properties', () => {
     const defaultText = { fontSize: 20 }
-    const Figure = styled.figure({
-      ...defaultText
-    })
+    const Figure = styled.figure({ ...defaultText })
     const tree = renderer.create(<Figure>hello world</Figure>).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -506,7 +508,7 @@ describe('styled', () => {
   })
 
   test('change theme', () => {
-    const Div = withTheme(styled.div`color: ${props => props.theme.primary};`)
+    const Div = styled.div`color: ${props => props.theme.primary};`
     const TestComponent = props => (
       <ThemeProvider theme={props.theme}>
         {props.renderChild ? <Div>this will be green then pink</Div> : null}
@@ -521,6 +523,41 @@ describe('styled', () => {
     wrapper.setProps({ renderChild: false })
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
+
+  test('theming', () => {
+    const Div = styled.div`color: ${props => props.theme.color};`
+    const TestComponent = props => (
+      <ThemeProvider theme={props.theme}>
+        {props.renderChild ? <Div>this will be green then pink</Div> : null}
+      </ThemeProvider>
+    )
+    const wrapper = mount(
+      <TestComponent renderChild theme={{ primary: 'green' }} />
+    )
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ theme: { primary: 'pink' } })
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+    wrapper.setProps({ renderChild: false })
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+
+  test('with higher order component that hoists statics', () => {
+    const superImportantValue = 'hotpink'
+    const hoc = BaseComponent => {
+      const NewComponent = props => (
+        <BaseComponent someProp={superImportantValue} {...props} />
+      )
+      return hoistNonReactStatics(NewComponent, BaseComponent)
+    }
+    const SomeComponent = hoc(styled.div`
+      display: flex;
+      color: ${props => props.someProp};
+    `)
+    const FinalComponent = styled(SomeComponent)`padding: 8px;`
+    const tree = renderer.create(<FinalComponent />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('prop filtering', () => {
     const Link = styled.a`color: green;`
     const rest = { m: [3], pt: [4] }
@@ -600,5 +637,67 @@ describe('styled', () => {
     expect(
       () => styled(undefined)`display: flex;`
     ).toThrowErrorMatchingSnapshot()
+  })
+  test('withComponent will replace tags but keep styling classes', () => {
+    const Title = styled('h1')`color: green;`
+    const Subtitle = Title.withComponent('h2')
+
+    const wrapper = mount(
+      <article>
+        <Title>My Title</Title>
+        <Subtitle>My Subtitle</Subtitle>
+      </article>
+    )
+
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+  test('withComponent with function interpolation', () => {
+    const Title = styled('h1')`color: ${props => props.color || 'green'};`
+    const Subtitle = Title.withComponent('h2')
+
+    const wrapper = mount(
+      <article>
+        <Title>My Title</Title>
+        <Subtitle color="hotpink">My Subtitle</Subtitle>
+      </article>
+    )
+
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+  test('name with class component', () => {
+    class SomeComponent extends React.Component {
+      render() {
+        return <div className={this.props.className} />
+      }
+    }
+    const StyledComponent = styled(SomeComponent)`color: hotpink;`
+    const wrapper = mount(<StyledComponent />)
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+  test('function that function returns gets called with props', () => {
+    const SomeComponent = styled.div`
+      color: ${() => props => props.color};
+      background-color: yellow;
+    `
+    const tree = renderer.create(<SomeComponent color="hotpink" />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('theme prop exists without ThemeProvider', () => {
+    const SomeComponent = styled.div`
+      color: ${props => props.theme.color || 'green'};
+      background-color: yellow;
+    `
+    const tree = renderer.create(<SomeComponent />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('theme prop exists without ThemeProvider with a theme prop on the component', () => {
+    const SomeComponent = styled.div`
+      color: ${props => props.theme.color || 'green'};
+      background-color: yellow;
+    `
+    const tree = renderer
+      .create(<SomeComponent theme={{ color: 'hotpink' }} />)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })

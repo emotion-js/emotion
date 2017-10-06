@@ -43,21 +43,3 @@ const paragraph = css`
 ```
 
 The result of `css` is a class name _without_ the dot (`.`), so we prepended it. 
-
-Components created with styled can be interpolated in another component's styles to target that component
-
-```jsx
-import styled from 'react-emotion';
-
-const Link = styled.a`
-  color: hotpink;
-`;
-
-const Paragraph = styled.p`
-  color: gray;
-
-  ${Link} {
-    border-bottom: 1px solid currentColor;
-  }
-`
-```

@@ -35,12 +35,10 @@ function sheetForTag(tag) {
   }
 }
 
-const isBrowser: boolean = typeof window !== 'undefined'
-
-function makeStyleTag(id = '') {
+function makeStyleTag() {
   let tag = document.createElement('style')
   tag.type = 'text/css'
-  tag.setAttribute('data-emotion', id)
+  tag.setAttribute('data-emotion', '')
   tag.appendChild(document.createTextNode(''))
   document.head.appendChild(tag)
   return tag
@@ -48,6 +46,7 @@ function makeStyleTag(id = '') {
 
 export default class StyleSheet {
   constructor() {
+    this.isBrowser = typeof window !== 'undefined'
     this.isSpeedy = process.env.NODE_ENV === 'production' // the big drawback here is that the css won't be editable in devtools
     this.tags = []
     this.ctr = 0
@@ -56,7 +55,7 @@ export default class StyleSheet {
     if (this.injected) {
       throw new Error('already injected!')
     }
-    if (isBrowser) {
+    if (this.isBrowser) {
       this.tags[0] = makeStyleTag()
     } else {
       // server side 'polyfill'. just enough behavior to be useful.
@@ -72,7 +71,7 @@ export default class StyleSheet {
     this.isSpeedy = !!bool
   }
   insert(rule, sourceMap) {
-    if (isBrowser) {
+    if (this.isBrowser) {
       // this is the ultrafast version, works across browsers
       if (this.isSpeedy) {
         const tag = this.tags[this.tags.length - 1]
@@ -101,7 +100,7 @@ export default class StyleSheet {
     }
   }
   flush() {
-    if (isBrowser) {
+    if (this.isBrowser) {
       this.tags.forEach(tag => tag.parentNode.removeChild(tag))
       this.tags = []
       this.ctr = 0

@@ -17,9 +17,7 @@ describe('fontFace babel', () => {
                url(MgOpenModernaBold.ttf);
           font-weight: bold;
       \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
     test('interpolation', () => {
@@ -31,9 +29,7 @@ describe('fontFace babel', () => {
                url(MgOpenModernaBold.ttf);
           font-weight: bold;
       \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
     test('static change import', () => {
@@ -74,9 +70,7 @@ describe('fontFace babel', () => {
               url(MgOpenModernaBold.ttf);
           font-weight: bold;
       \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin]]
-      })
+      const { code } = babel.transform(basic, { plugins: [[plugin]] })
       expect(code).toMatchSnapshot()
     })
   })

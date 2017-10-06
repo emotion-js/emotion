@@ -90,10 +90,7 @@ describe('css', () => {
   })
 
   test('computed key is only dynamic', () => {
-    const cls1 = css({
-      fontSize: 10,
-      [`w${'idth'}`]: 20
-    })
+    const cls1 = css({ fontSize: 10, [`w${'idth'}`]: 20 })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -144,13 +141,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('nested array', () => {
-    const cls1 = css([
-      [
-        {
-          display: 'flex'
-        }
-      ]
-    ])
+    const cls1 = css([[{ display: 'flex' }]])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -179,9 +170,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('composition stuff', () => {
-    const cls1 = css({
-      justifyContent: 'center'
-    })
+    const cls1 = css({ justifyContent: 'center' })
     const cls2 = css([cls1])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()

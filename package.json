@@ -28,12 +28,14 @@
     "babel-jest": "^20.0.3",
     "babel-macros": "^1.0.2",
     "babel-plugin-codegen": "^1.2.0",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bundlesize": "^0.13.2",
     "css": "^2.2.1",
+    "cssjanus": "^1.2.0",
     "enzyme": "^2.9.1",
     "enzyme-to-json": "^1.5.1",
     "eslint": "^4.5.0",
@@ -47,6 +49,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
+    "hoist-non-react-statics": "^2.3.1",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jest-glamor-react": "^3.1.0",
@@ -68,8 +71,7 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^2.0.1",
-    "rollup-watch": "^4.3.1",
-    "theming": "^1.1.0"
+    "rollup-watch": "^4.3.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
@@ -133,6 +135,7 @@
       "^react-emotion$": "<rootDir>/packages/react-emotion/src",
       "^emotion-utils$": "<rootDir>/packages/emotion-utils/src",
       "^emotion-server$": "<rootDir>/packages/emotion-server/src",
+      "^emotion-theming$": "<rootDir>/packages/emotion-theming/src",
       "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
@@ -150,7 +153,7 @@
     },
     {
       "path": "./packages/react-emotion/dist/emotion.umd.min.js",
-      "threshold": "7 Kb"
+      "threshold": "8 Kb"
     }
   ]
 }

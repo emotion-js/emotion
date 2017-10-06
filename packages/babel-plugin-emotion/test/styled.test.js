@@ -11,9 +11,7 @@ describe('babel styled component', () => {
   describe('inline', () => {
     test('no use', () => {
       const basic = 'styled.h1``'
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -94,9 +92,7 @@ describe('babel styled component', () => {
 
     test('basic', () => {
       const basic = "const H1 = styled.h1`font-size: ${fontSize + 'px'};`"
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -107,9 +103,7 @@ describe('babel styled component', () => {
         '& div { color: blue;' +
         '& span { color: red } }' +
         '`'
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -125,9 +119,7 @@ describe('babel styled component', () => {
         transform1: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
         transform2: translateX(\${(props) => props.translateX}) \${(props) => props.translateX};
         \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -148,17 +140,13 @@ describe('babel styled component', () => {
         '  and (-webkit-min-device-pixel-ratio: 2) {' +
         '    .child-selector { line-height: 1.4 }' +
         '}`'
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
     test('function call', () => {
       const basic = "styled(MyComponent)`font-size: ${fontSize + 'px'};`"
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -167,9 +155,7 @@ describe('babel styled component', () => {
       const H1 = styled('h1')({
         display: 'flex'
       })`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -178,18 +164,14 @@ describe('babel styled component', () => {
       const H1 = styled('h1')({ padding: 10 },props => ({
         display: props.display
       }))`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
     test('shorthand property', () => {
       const basic = `const H1 = styled.h1({ fontSize })`
 
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -206,9 +188,7 @@ describe('babel styled component', () => {
     }, props => {
         padding: props.padding
     })`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -217,9 +197,7 @@ describe('babel styled component', () => {
       const H1 = styled.h1({ padding: 10 },props => ({
         display: props.display
       }))`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -229,9 +207,7 @@ describe('babel styled component', () => {
       const Figure = styled.figure({
         ...defaultText
       })`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin, stage2]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin, stage2] })
       expect(code).toMatchSnapshot()
     })
 
@@ -242,9 +218,7 @@ describe('babel styled component', () => {
         ...defaultText,
         ...defaultFigure
       })`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin, stage2]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin, stage2] })
       expect(code).toMatchSnapshot()
     })
 
@@ -257,9 +231,7 @@ describe('babel styled component', () => {
         ...defaultFigure,
         ...defaultText2
       })`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin, stage2]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin, stage2] })
       expect(code).toMatchSnapshot()
     })
 
@@ -276,9 +248,7 @@ describe('babel styled component', () => {
       },props => ({
         display: props.display
       }))`
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
 
@@ -292,9 +262,7 @@ describe('babel styled component', () => {
         height: 20px;
         transform: translateX(\${(props) => props.translateX});
       \``
-      const { code } = babel.transform(basic, {
-        plugins: [plugin]
-      })
+      const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
   })

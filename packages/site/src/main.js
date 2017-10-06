@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { ThemeProvider, withTheme } from 'theming'
+import { ThemeProvider, withTheme } from 'emotion-theming'
 import styled, {
   css,
   fontFace,
@@ -13,12 +13,6 @@ import Playground from './playground'
 import logoUrl from '../../../emotion.png'
 
 const introExample = require('./blocks/intro.example')
-// const propsExample = require('./blocks/props.example')
-// const nestedExample = require('./blocks/nested.example')
-// const mediaExample = require('./blocks/media.example')
-// const anyComponentExample = require('./blocks/styling-any-component.example')
-// const pseudoExample = require('./blocks/pseudo.example')
-// const keyframesExample = require('./blocks/keyframes.example')
 
 const scope = {
   logoUrl,
@@ -115,6 +109,7 @@ const docs = [
   { name: 'pseudo', hasCodeExample: true },
   { name: 'media', hasCodeExample: true },
   { name: 'styling-any-component', hasCodeExample: true },
+  { name: 'styled-with-component', hasCodeExample: true },
   { name: 'props', hasCodeExample: true },
   { name: 'keyframes', hasCodeExample: true },
   { name: 'composition', hasCodeExample: true },
