@@ -118,7 +118,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test.only('composition with objects', () => {
+  test('composition with objects', () => {
     const cls1 = css({
       display: 'flex',
       width: 30,
