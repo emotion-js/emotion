@@ -37,7 +37,6 @@ let queue = []
 let orphans = Object.create({})
 
 function insertNode(node) {
-  console.log('node', node)
   sheet.insert(node.ruleText, currentSourceMap)
 }
 
@@ -57,15 +56,13 @@ function dive(node) {
 }
 
 function buildTree(node, parent) {
-  console.log(node);
-
   if (parent) {
     if (!orphans[parent]) {
       orphans[parent] = []
     }
     orphans[parent].push(node)
   } else {
-    queue.push(node);
+    queue.push(node)
   }
 
   if (orphans[node.selector] !== undefined) {
@@ -284,10 +281,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function css() {
   const styles = createStyles.apply(this, arguments)
-  console.log(styles)
+
   const hash = hashString(styles)
   const cls = `css-${hash}`
-  console.log(cls)
+
   if (registered[cls] === undefined) {
     registered[cls] = styles
   }
