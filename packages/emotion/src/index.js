@@ -109,6 +109,7 @@ function insertionPlugin(
         }
         default: {
           queue.push(chars + child)
+          break
         }
       }
     }
@@ -252,8 +253,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function css() {
   const styles = createStyles.apply(this, arguments)
+
   const hash = hashString(styles)
   const cls = `css-${hash}`
+
   if (registered[cls] === undefined) {
     registered[cls] = styles
   }
