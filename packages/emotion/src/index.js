@@ -34,16 +34,14 @@ export function flush() {
 
 let currentSourceMap = ''
 let queue = []
-let orphans = Object.create({})
+let orphans = {}
 
 function insertNode(node) {
   sheet.insert(node.ruleText, currentSourceMap)
 }
 
-function Node(id, selector, parent, ruleText) {
-  this.id = id
+function Node(selector, ruleText) {
   this.selector = selector
-  this.parent = parent
   this.ruleText = ruleText
   this.children = []
 }
@@ -93,7 +91,7 @@ function insertionPlugin(
         }
       })
       queue = []
-      orphans = Object.create({})
+      orphans = {}
 
       break
     }
@@ -102,7 +100,7 @@ function insertionPlugin(
       if (id !== 0) {
         break
       }
-      node = new Node(id, rule, parent, `${rule}{${content}}`)
+      node = new Node(rule, `${rule}{${content}}`)
       buildTree(node, parent)
       break
     }
@@ -120,7 +118,7 @@ function insertionPlugin(
         // m edia
         // eslint-disable-next-line no-fallthrough
         case 109: {
-          node = new Node(id, rule, parent, chars + '{' + child + '}')
+          node = new Node(rule, chars + '{' + child + '}')
           buildTree(node, parent)
           break
         }
@@ -128,14 +126,14 @@ function insertionPlugin(
         case 107: {
           chars = chars.substring(1)
           child = chars + '{' + child + '}'
-          node = new Node(id, rule, parent, '@-webkit-' + child)
+          node = new Node(rule, '@-webkit-' + child)
           buildTree(node, parent)
-          node = new Node(id, rule, parent, '@' + child)
+          node = new Node(rule, '@' + child)
           buildTree(node, parent)
           break
         }
         default: {
-          node = new Node(id, rule, parent, chars + child)
+          node = new Node(rule, chars + child)
           buildTree(node, parent)
           break
         }
