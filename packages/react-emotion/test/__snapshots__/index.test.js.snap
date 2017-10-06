@@ -214,12 +214,12 @@ exports[`styled composition of nested pseudo selectors 1`] = `
   color: blue;
 }
 
-.glamor-0:hover {
-  color: pink;
-}
-
 .glamor-0:hover:active {
   color: red;
+}
+
+.glamor-0:hover {
+  color: pink;
 }
 
 .glamor-0:hover:active {

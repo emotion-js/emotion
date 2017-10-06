@@ -77,7 +77,7 @@ function insertionPlugin(
     }
     // after an at rule block
     case 3: {
-      parentQueue.push(undefined)
+      parentQueue.push(parents.join(','))
       let chars = selectors.join('')
       const second = chars.charCodeAt(1)
       let child = content

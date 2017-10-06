@@ -501,6 +501,9 @@ describe('styled', () => {
               color: 'pink',
               '&:active': {
                 color: 'purple'
+              },
+              '&.some-class': {
+                color: 'yellow'
               }
             }
           })}
