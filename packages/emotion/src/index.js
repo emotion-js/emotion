@@ -63,9 +63,16 @@ function insertionPlugin(
         const selector = selectors.join(',')
         let parent = parents.join(',')
         const rule = `${selector}{${content}}`
-        let index = parentQueue.lastIndexOf(selector)
+        let index = parentQueue.indexOf(selector)
         if (index === -1) {
           index = parentQueue.length
+        } else {
+          let length = queue.length
+          while (length--) {
+            if (parentQueue[length] === selector) {
+              parentQueue[length] = undefined
+            }
+          }
         }
         if (parents.length === 0) {
           index = 0
@@ -77,7 +84,8 @@ function insertionPlugin(
     }
     // after an at rule block
     case 3: {
-      parentQueue.push(parents.join(','))
+      let parent = parents.join(',')
+      parentQueue.push(parent)
       let chars = selectors.join('')
       const second = chars.charCodeAt(1)
       let child = content
@@ -99,6 +107,7 @@ function insertionPlugin(
           child = chars + '{' + child + '}'
           queue.push('@-webkit-' + child)
           queue.push('@' + child)
+          parentQueue.push(parent)
           break
         }
         default: {
