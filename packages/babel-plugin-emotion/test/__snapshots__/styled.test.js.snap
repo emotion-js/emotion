@@ -3,11 +3,11 @@
 exports[`babel styled component extract basic 1`] = `
 "import \\"./styled.test.emotion.css\\";
 const H1 = styled(\\"h1\\", {
-  e: \\"css-10x82eg\\"
+  e: \\"css-1cab7uf\\"
 })();"
 `;
 
-exports[`babel styled component extract basic 2`] = `".css-10x82eg{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;width:var(--css-hash-0);}.css-10x82eg:hover{background-color:green;}@media (max-width:500px){.css-10x82eg{height:var(--css-hash-1);position:fixed;}}@media print{.css-10x82eg{display:none;}}.css-10x82eg::before{color:blue;width:20px;height:20px;content:'pseudo';}"`;
+exports[`babel styled component extract basic 2`] = `".css-1cab7uf{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;width:var(--css-hash-0);}.css-1cab7uf:hover{background-color:green;}@media (max-width:500px){.css-1cab7uf{height:var(--css-hash-1);position:fixed;}}@media print{.css-1cab7uf{display:none;}}.css-1cab7uf::before{color:blue;width:20px;height:20px;content:'pseudo';}"`;
 
 exports[`babel styled component extract no use 1`] = `
 "import \\"./styled.test.emotion.css\\";

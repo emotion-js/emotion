@@ -3,10 +3,10 @@
 exports[`babel keyframes extract keyframes basic 1`] = `
 "import \\"./keyframes.test.emotion.css\\";
 
-const rotate360 = \\"css-rotate360-f35ahc\\";"
+const rotate360 = \\"css-rotate360-g7mydp\\";"
 `;
 
-exports[`babel keyframes extract keyframes basic 2`] = `"@-webkit-keyframes css-rotate360-f35ahc{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes css-rotate360-f35ahc{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}"`;
+exports[`babel keyframes extract keyframes basic 2`] = `"@-webkit-keyframes css-rotate360-g7mydp{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes css-rotate360-g7mydp{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}"`;
 
 exports[`babel keyframes extract keyframes with interpolation 1`] = `
 "

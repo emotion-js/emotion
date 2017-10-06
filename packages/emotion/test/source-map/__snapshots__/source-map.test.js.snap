@@ -15,7 +15,7 @@ exports[`css css prop with merge 1`] = `
 `;
 
 exports[`css css prop with merge 2`] = `
-".css-vu31jw {
+".css-16btltt {
   display: block;
 }
 
@@ -23,7 +23,7 @@ exports[`css css prop with merge 2`] = `
 
 /*@ sourceURL=source-map.test.js */
 
-.css-1oku62j {
+.css-1iti83q {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -34,7 +34,7 @@ exports[`css css prop with merge 2`] = `
 
 /*@ sourceURL=source-map.test.js */
 
-.css-bknqjd {
+.css-oa7f78 {
   display: block;
   display: -webkit-box;
   display: -webkit-flex;
@@ -49,7 +49,7 @@ exports[`css css prop with merge 2`] = `
 
 exports[`css source-map nested media queries 1`] = `
 "@media (max-width:600px) {
-  .css-y6g9n2 h1 {
+  .css-4i80ni h1 {
     font-size: 1.4rem;
   }
 }
@@ -59,7 +59,7 @@ exports[`css source-map nested media queries 1`] = `
 /*@ sourceURL=source-map.test.js */
 
 @media (max-width:400px),(max-height:420px) {
-  .css-y6g9n2 h1 {
+  .css-4i80ni h1 {
     font-size: 1.1rem;
   }
 }
@@ -70,7 +70,7 @@ exports[`css source-map nested media queries 1`] = `
 `;
 
 exports[`css source-map nested styles 1`] = `
-".css-1mpbtmb {
+".css-184wiqx {
   color: blue;
 }
 
@@ -78,7 +78,7 @@ exports[`css source-map nested styles 1`] = `
 
 /*@ sourceURL=source-map.test.js */
 
-.css-1mpbtmb:hover {
+.css-184wiqx:hover {
   color: green;
 }
 
@@ -86,7 +86,7 @@ exports[`css source-map nested styles 1`] = `
 
 /*@ sourceURL=source-map.test.js */
 
-.css-1mpbtmb:hover .name {
+.css-184wiqx:hover .name {
   color: amethyst;
 }
 
@@ -94,7 +94,7 @@ exports[`css source-map nested styles 1`] = `
 
 /*@ sourceURL=source-map.test.js */
 
-.css-1mpbtmb:hover .name:focus {
+.css-184wiqx:hover .name:focus {
   color: burlywood;
 }
 
@@ -103,7 +103,7 @@ exports[`css source-map nested styles 1`] = `
 /*@ sourceURL=source-map.test.js */
 
 @media (min-width:420px) {
-  .css-1mpbtmb:hover .name:focus {
+  .css-184wiqx:hover .name:focus {
     color: rebeccapurple;
   }
 }

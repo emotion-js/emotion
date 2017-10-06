@@ -173,12 +173,12 @@ exports[`css css variables 1`] = `
 
 exports[`css explicit & 1`] = `
 <div
-  className="css-16ooeb3 another-class"
+  className="css-1pw2q0f another-class"
 />
 `;
 
 exports[`css explicit & 2`] = `
-".css-16ooeb3.another-class {
+".css-1pw2q0f.another-class {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -240,7 +240,7 @@ exports[`css flushes correctly 1`] = `
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-k008qs"
+  className="css-78u8jt"
 />
 `;
 
@@ -294,14 +294,14 @@ exports[`css handles objects 1`] = `
 `;
 
 exports[`css media query specificity 1`] = `
-".css-mfslnr {
+".css-1vll8nv {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
 
 @media (min-width:420px) {
-  .css-mfslnr {
+  .css-1vll8nv {
     width: 96px;
     height: 96px;
   }

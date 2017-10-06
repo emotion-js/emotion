@@ -5,10 +5,10 @@ exports[`babel css extract basic object support 1`] = `"/*#__PURE__*/css({ displ
 exports[`babel css extract css basic 1`] = `
 "import \\"./css.test.emotion.css\\";
 
-\\"css-153l48f\\";"
+\\"css-gj2524\\";"
 `;
 
-exports[`babel css extract css basic 2`] = `".css-153l48f{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;}"`;
+exports[`babel css extract css basic 2`] = `".css-gj2524{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;}"`;
 
 exports[`babel css extract dynamic property objects 1`] = `
 "
