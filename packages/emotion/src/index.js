@@ -74,9 +74,6 @@ function insertionPlugin(
             }
           }
         }
-        if (parents.length === 0) {
-          index = 0
-        }
         queue.splice(index, 0, rule)
         parentQueue.splice(index, 0, parent)
       }
