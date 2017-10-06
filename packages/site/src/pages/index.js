@@ -11,9 +11,9 @@ const Paragraph = Box.withComponent('p')
 
 const stringCode = `const Link = styled.a\`
 display: inline-block;
-border-radius: 8px;
+border-radius: 5px;
 padding: 16px;
-margin: 16px;
+margin: 1rem 0;
 width: 12rem;
 background: \${props =>
   props.primary &&
@@ -21,13 +21,17 @@ background: \${props =>
 text-decoration: none;
 color: \${props =>
   props.primary ? '#1D2029' : '#D26AC2'};
+  
+&:hover {
+   opacity: 0.95;
+ }
 \``
 
 const objectCode = `const Link = styled.a(props => ({
   display: 'inline-block',
-  borderRadius: 8,
+  borderRadius: 5,
   padding: 16,
-  margin: 16,
+  margin: '1rem 0',
   width: '12rem',
   background:
     props.primary &&
@@ -51,7 +55,7 @@ const Preview = withLive(({ live: { element: BaseLink, onError, error } }) => {
         >
           Install
         </Link>
-        <Link className={textCenter} to="/docs">
+        <Link css={`margin-left: 20px;`} className={textCenter} to="/docs">
           Getting Started
         </Link>
       </ErrorBoundary>
@@ -134,16 +138,22 @@ class IndexPage extends React.Component {
                 />
                 <Title
                   display="inline-block"
-                  fontSize={8}
-                  m={0}
-                  className={css`font-weight: 300;`}
+                  fontSize={'1.6rem'}
+                  m={'0 0 0 0.4rem'}
+                  className={css`font-weight: 700;`}
                 >
                   emotion
                 </Title>
-                <Paragraph fontSize={4}>
+                <Paragraph
+                  css={{ fontWeight: 700, margin: '1em 0 0.5em 0' }}
+                  fontSize={5}
+                >
                   The Next Generation of CSS-in-JS
                 </Paragraph>
-                <Paragraph css={{ fontWeight: 300 }} fontSize={2}>
+                <Paragraph
+                  css={{ fontWeight: 300, lineHeight: '1.5rem' }}
+                  fontSize={'1.15rem'}
+                >
                   {/* just putting this here until we write an up to date intro */}
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Pellentesque condimentum urna imperdiet lectus convallis, quis
