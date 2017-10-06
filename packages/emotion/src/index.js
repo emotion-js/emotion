@@ -32,42 +32,13 @@ export function flush() {
   sheet.inject()
 }
 
+function insertRule(rule) {
+  sheet.insert(rule, currentSourceMap)
+}
+
 let currentSourceMap = ''
 let queue = []
-let orphans = {}
-
-function insertNode(node) {
-  sheet.insert(node.ruleText, currentSourceMap)
-}
-
-function Node(selector, ruleText) {
-  this.selector = selector
-  this.ruleText = ruleText
-  this.children = []
-}
-
-function dive(node) {
-  insertNode(node)
-  if (node.children) {
-    node.children.forEach(dive)
-  }
-}
-
-function buildTree(node, parent) {
-  if (parent) {
-    if (!orphans[parent]) {
-      orphans[parent] = []
-    }
-    orphans[parent].push(node)
-  } else {
-    queue.push(node)
-  }
-
-  if (orphans[node.selector] !== undefined) {
-    orphans[node.selector].forEach(n => node.children.push(n))
-    orphans[node.selector] = undefined
-  }
-}
+let parentQueue = []
 
 function insertionPlugin(
   context,
@@ -79,33 +50,39 @@ function insertionPlugin(
   length,
   id
 ) {
-  let node
-  let rule = selectors.join(',')
-  let parent = parents.join(',')
   switch (context) {
     case -2: {
-      queue.forEach(dive)
-      Object.keys(orphans).forEach(select => {
-        if (orphans[select]) {
-          orphans[select].forEach(dive)
-        }
-      })
+      queue.forEach(insertRule)
       queue = []
-      orphans = {}
-
+      parentQueue = []
       break
     }
 
     case 2: {
-      if (id !== 0) {
-        break
+      if (id === 0) {
+        const selector = selectors.join(',')
+        let parent = parents.join(',')
+        const rule = `${selector}{${content}}`
+        let index = parentQueue.indexOf(selector)
+        if (index === -1) {
+          index = parentQueue.length
+        } else {
+          let length = queue.length
+          while (length--) {
+            if (parentQueue[length] === selector) {
+              parentQueue[length] = undefined
+            }
+          }
+        }
+        queue.splice(index, 0, rule)
+        parentQueue.splice(index, 0, parent)
       }
-      node = new Node(rule, `${rule}{${content}}`)
-      buildTree(node, parent)
       break
     }
     // after an at rule block
     case 3: {
+      let parent = parents.join(',')
+      parentQueue.push(parent)
       let chars = selectors.join('')
       const second = chars.charCodeAt(1)
       let child = content
@@ -118,23 +95,20 @@ function insertionPlugin(
         // m edia
         // eslint-disable-next-line no-fallthrough
         case 109: {
-          node = new Node(rule, chars + '{' + child + '}')
-          buildTree(node, parent)
+          queue.push(chars + '{' + child + '}')
           break
         }
         // k eyframes
         case 107: {
           chars = chars.substring(1)
           child = chars + '{' + child + '}'
-          node = new Node(rule, '@-webkit-' + child)
-          buildTree(node, parent)
-          node = new Node(rule, '@' + child)
-          buildTree(node, parent)
+          queue.push('@-webkit-' + child)
+          queue.push('@' + child)
+          parentQueue.push(parent)
           break
         }
         default: {
-          node = new Node(rule, chars + child)
-          buildTree(node, parent)
+          queue.push(chars + child)
           break
         }
       }

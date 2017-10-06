@@ -226,6 +226,10 @@ exports[`styled composition of nested pseudo selectors 1`] = `
   color: purple;
 }
 
+.glamor-0:hover.some-class {
+  color: yellow;
+}
+
 <button
   className="glamor-0"
 >
