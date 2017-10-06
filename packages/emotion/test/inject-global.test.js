@@ -37,7 +37,9 @@ describe('injectGlobal', () => {
     expect(sheet).toMatchSnapshot()
   })
   test('random interpolation', () => {
-    const cls = css`display: flex;`
+    const cls = css`
+      display: flex;
+    `
     injectGlobal`
       body {
         ${cls};
