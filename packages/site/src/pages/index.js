@@ -55,10 +55,7 @@ const Preview = withLive(({ live: { element: BaseLink, onError, error } }) => {
         >
           Install
         </Link>
-        <Link 
-          css={`margin-left: 20px;`}
-          className={textCenter} 
-          to="/docs">
+        <Link css={`margin-left: 20px;`} className={textCenter} to="/docs">
           Getting Started
         </Link>
       </ErrorBoundary>
@@ -90,8 +87,12 @@ const LiveError = withLive(
 
 const transform = code => `${code}\nrender(<div component={Link} />);`
 
-const scroll = css`overflow: scroll;`
-const textCenter = css`text-align: center;`
+const scroll = css`
+  overflow: scroll;
+`
+const textCenter = css`
+  text-align: center;
+`
 
 const SelectButton = styled.button`
   ${textCenter};
@@ -141,16 +142,24 @@ class IndexPage extends React.Component {
                 />
                 <Title
                   display="inline-block"
-                  fontSize={"1.6rem"}
-                  m={"0 0 0 0.4rem"}
-                  className={css`font-weight: 700;`}
+                  fontSize={'1.6rem'}
+                  m={'0 0 0 0.4rem'}
+                  className={css`
+                    font-weight: 700;
+                  `}
                 >
                   emotion
                 </Title>
-                <Paragraph css={{ fontWeight: 700, margin: "1em 0 0.5em 0" }} fontSize={5}>
+                <Paragraph
+                  css={{ fontWeight: 700, margin: '1em 0 0.5em 0' }}
+                  fontSize={5}
+                >
                   The Next Generation of CSS-in-JS
                 </Paragraph>
-                <Paragraph css={{ fontWeight: 300, lineHeight: "1.5rem"  }} fontSize={"1.15rem"}>
+                <Paragraph
+                  css={{ fontWeight: 300, lineHeight: '1.5rem' }}
+                  fontSize={'1.15rem'}
+                >
                   {/* just putting this here until we write an up to date intro */}
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Pellentesque condimentum urna imperdiet lectus convallis, quis
