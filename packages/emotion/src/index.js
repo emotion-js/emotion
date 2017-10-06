@@ -34,38 +34,74 @@ export function flush() {
 
 let currentSourceMap = ''
 let queue = []
+let orphans = {}
 
-function insertRule(rule) {
-  sheet.insert(rule, currentSourceMap)
+function insertNode(node) {
+  sheet.insert(node.ruleText, currentSourceMap)
+}
+
+function Node(selector, ruleText) {
+  this.selector = selector
+  this.ruleText = ruleText
+  this.children = []
+}
+
+function dive(node) {
+  insertNode(node)
+  if (node.children) {
+    node.children.forEach(dive)
+  }
+}
+
+function buildTree(node, parent) {
+  if (parent) {
+    if (!orphans[parent]) {
+      orphans[parent] = []
+    }
+    orphans[parent].push(node)
+  } else {
+    queue.push(node)
+  }
+
+  if (orphans[node.selector] !== undefined) {
+    orphans[node.selector].forEach(n => node.children.push(n))
+    orphans[node.selector] = undefined
+  }
 }
 
 function insertionPlugin(
   context,
   content,
   selectors,
-  parent,
+  parents,
   line,
   column,
   length,
   id
 ) {
+  let node
+  let rule = selectors.join(',')
+  let parent = parents.join(',')
   switch (context) {
     case -2: {
-      queue.forEach(insertRule)
+      queue.forEach(dive)
+      Object.keys(orphans).forEach(select => {
+        if (orphans[select]) {
+          orphans[select].forEach(dive)
+        }
+      })
       queue = []
+      orphans = {}
+
       break
     }
 
     case 2: {
-      if (id === 0) {
-        const joinedSelectors = selectors.join(',')
-        const rule = `${joinedSelectors}{${content}}`
-        if (parent.join(',') === joinedSelectors || parent[0] === '') {
-          queue.push(rule)
-        } else {
-          queue.unshift(rule)
-        }
+      if (id !== 0) {
+        break
       }
+      node = new Node(rule, `${rule}{${content}}`)
+      buildTree(node, parent)
       break
     }
     // after an at rule block
@@ -82,19 +118,24 @@ function insertionPlugin(
         // m edia
         // eslint-disable-next-line no-fallthrough
         case 109: {
-          queue.push(chars + '{' + child + '}')
+          node = new Node(rule, chars + '{' + child + '}')
+          buildTree(node, parent)
           break
         }
         // k eyframes
         case 107: {
           chars = chars.substring(1)
           child = chars + '{' + child + '}'
-          queue.push('@-webkit-' + child)
-          queue.push('@' + child)
+          node = new Node(rule, '@-webkit-' + child)
+          buildTree(node, parent)
+          node = new Node(rule, '@' + child)
+          buildTree(node, parent)
           break
         }
         default: {
-          queue.push(chars + child)
+          node = new Node(rule, chars + child)
+          buildTree(node, parent)
+          break
         }
       }
     }
@@ -238,8 +279,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function css() {
   const styles = createStyles.apply(this, arguments)
+
   const hash = hashString(styles)
   const cls = `css-${hash}`
+
   if (registered[cls] === undefined) {
     registered[cls] = styles
   }
