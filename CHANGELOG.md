@@ -1,3 +1,13 @@
+## v8.0.4 (2017-10-07)
+
+#### :house: Internal
+* `emotion`, `react-emotion`
+  * [#387](https://github.com/emotion-js/emotion/pull/387) Insert nested selectors differently. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v8.0.3 (2017-10-06)
 
 #### :rocket: Enhancement
