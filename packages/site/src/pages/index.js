@@ -10,21 +10,20 @@ const Title = Box.withComponent('h1')
 const Paragraph = Box.withComponent('p')
 
 const stringCode = `const Link = styled.a\`
-display: inline-block;
-border-radius: 5px;
-padding: 16px;
-margin: 1rem 0;
-width: 12rem;
-background: \${props =>
-  props.primary &&
-  'linear-gradient(90deg, #D26AC2, #46C9E5)'};
-text-decoration: none;
-color: \${props =>
-  props.primary ? '#1D2029' : '#D26AC2'};
-  
-&:hover {
-   opacity: 0.95;
- }
+  display: inline-block;
+  border-radius: 5px;
+  padding: 16px;
+  margin: 1rem 0;
+  width: 12rem;
+  background: \${props =>
+    props.primary &&
+    'linear-gradient(90deg, #D26AC2, #46C9E5)'};
+  text-decoration: none;
+  color: \${props =>
+    props.primary ? '#1D2029' : '#D26AC2'};
+  &:hover {
+    opacity: 0.95;
+  }
 \``
 
 const objectCode = `const Link = styled.a(props => ({
@@ -39,6 +38,7 @@ const objectCode = `const Link = styled.a(props => ({
   color: props.primary ? '#1D2029' : '#D26AC2',
   textDecoration: 'none'
 }))`
+
 let Link
 const Preview = withLive(({ live: { element: BaseLink, onError, error } }) => {
   try {
