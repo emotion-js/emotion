@@ -36,7 +36,10 @@ const objectCode = `const Link = styled.a(props => ({
     props.primary &&
     'linear-gradient(90deg, #D26AC2, #46C9E5)',
   color: props.primary ? '#1D2029' : '#D26AC2',
-  textDecoration: 'none'
+  textDecoration: 'none',
+  '&:hover': {
+    opacity: '0.95'
+  }
 }))`
 
 let Link
