@@ -83,13 +83,13 @@ const StyledLink = styled(Box)`
         transform: scaleX(1);
       }
     `};
-`.withComponent(Link)
+`.withComponent(({ hideUnderline, ...props }) => <Link {...props} />)
 
 StyledLink.defaultProps = {
   activeClassName: 'active'
 }
 
-const Header = ({ isHome }) => (
+const Header = ({ isHome, avatar }) => (
   <Box
     bg={colors.dark}
     p={2}
@@ -105,15 +105,32 @@ const Header = ({ isHome }) => (
     }
   >
     <Box display="flex" flex={1} justify="space-between">
-      <Box flex={1}>
-        <h1 css={`margin: 0;`}>
+      <Box
+        flex={1}
+        display="flex"
+        css={{
+          opacity: isHome ? 0 : 1,
+          transition: 'opacity 200ms ease',
+          fontFamily: "'Oxygen', sans-serif"
+        }}
+        align="center"
+      >
+        <img
+          css={{ display: 'inline-block', margin: 0, padding: 0 }}
+          height="36px"
+          width="36px"
+          src={avatar.src}
+          srcSet={avatar.srcSet}
+        />
+
+        <h1 css={{ margin: 0, padding: 0, display: 'flex' }}>
           <StyledLink
             to="/"
-            hideUnderline
             css={{
-              textDecoration: 'none',
-              fontFamily: "'Oxygen', sans-serif"
+              flex: 1,
+              margin: 0
             }}
+            hideUnderline
           >
             emotion
           </StyledLink>
@@ -164,7 +181,7 @@ const BaseWrapper = props => {
         color={isHome ? '#FFFEFF' : '#1e2029'}
       >
         <Helmet title="emotion" />
-        <Header isHome={isHome} />
+        <Header avatar={props.avatar} isHome={isHome} />
         {props.children}
       </BodyInner>
     </OuterGradientContainer>
@@ -174,7 +191,10 @@ const BaseWrapper = props => {
 const TemplateWrapper = props => {
   if (props.location.pathname.match(/\/docs\/.+/)) {
     return (
-      <BaseWrapper location={props.location}>
+      <BaseWrapper
+        avatar={props.data.avatar.responsiveResolution}
+        location={props.location}
+      >
         <DocWrapper sidebarNodes={props.data.allFile.edges}>
           {props.children()}
         </DocWrapper>
@@ -182,7 +202,10 @@ const TemplateWrapper = props => {
     )
   }
   return (
-    <BaseWrapper location={props.location}>
+    <BaseWrapper
+      avatar={props.data.avatar.responsiveResolution}
+      location={props.location}
+    >
       <Box m={[1, 2]}>{props.children()}</Box>
     </BaseWrapper>
   )
@@ -204,6 +227,12 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+    avatar: imageSharp {
+      responsiveResolution(width: 36, height: 36) {
+        src
+        srcSet
       }
     }
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled, { css } from 'react-emotion'
 import Box from '../components/Box'
 import { LiveEditor, withLive, LiveProvider } from 'react-live/lib'
-import GatsbyLink from 'gatsby-link'
+import _GatsbyLink from 'gatsby-link'
 import { scope, Error } from '../components/Playground'
 import { openColors, colors, constants } from '../utils/style'
 
@@ -41,6 +41,8 @@ const objectCode = `const Link = styled.a(props => ({
     opacity: '0.95'
   }
 }))`
+
+const GatsbyLink = ({ primary, ...props }) => <_GatsbyLink {...props} />
 
 let Link
 const Preview = withLive(({ live: { element: BaseLink, onError, error } }) => {
