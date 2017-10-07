@@ -87,8 +87,12 @@ const LiveError = withLive(
 
 const transform = code => `${code}\nrender(<div component={Link} />);`
 
-const scroll = css`overflow: scroll;`
-const textCenter = css`text-align: center;`
+const scroll = css`
+  overflow: scroll;
+`
+const textCenter = css`
+  text-align: center;
+`
 
 const SelectButton = styled.button`
   ${textCenter};
@@ -140,7 +144,9 @@ class IndexPage extends React.Component {
                   display="inline-block"
                   fontSize={'1.6rem'}
                   m={'0 0 0 0.4rem'}
-                  className={css`font-weight: 700;`}
+                  className={css`
+                    font-weight: 700;
+                  `}
                 >
                   emotion
                 </Title>
