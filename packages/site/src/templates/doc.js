@@ -1,12 +1,12 @@
 import React from 'react'
 import styled, { css } from 'react-emotion'
-import { constants } from 'styled-system'
-import colors from 'open-color'
+import { constants, openColors } from '../utils/style'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
 
 const Title = styled.h1`
-  font-size: ${constants.fontSizes[6]}px;
+  font-size: ${constants.fontSizes[8]}px;
+  font-weight: 500;
   margin-top: 0;
 `
 
@@ -71,12 +71,6 @@ const styles = css`
     margin: 0 auto;
   }
 
-  a:hover,
-  a:focus,
-  a:active {
-    background-color: #f5d0f0;
-  }
-
   a,
   a:visited {
     background-color: #faebf8;
@@ -84,9 +78,15 @@ const styles = css`
     text-decoration: none;
   }
 
+  a:hover,
+  a:focus,
+  a:active {
+    background-color: #f5d0f0;
+  }
+
   blockquote {
     margin: 0;
-    border-left: 5px solid ${colors.gray[5]};
+    border-left: 5px solid ${openColors.gray[5]};
     font-style: italic;
     padding: 1.33em;
     text-align: left;
@@ -99,7 +99,7 @@ const styles = css`
   }
 
   p {
-    color: ${colors.gray[8]};
+    color: ${openColors.gray[8]};
   }
 `
 
@@ -117,6 +117,15 @@ class DocRoute extends React.Component {
     return (
       <Box className={contentCls}>
         <Title>{doc.frontmatter.title}</Title>
+        <Box pb={3} className={styles}>
+          {/* The URL below should change when this is on master */}
+          <a
+            href={`https://github.com/emotion-js/emotion/edit/gatsby/packages/site/src/docs/${this
+              .props.pathContext.slug}.md`}
+          >
+            Edit this page
+          </a>
+        </Box>
         {allCodeExample && (
           <Box mb={constants.space[3]}>
             <Playground code={allCodeExample.edges[0].node.content} />
