@@ -72,7 +72,11 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('@supports', () => {
-    const cls1 = css`@supports (display: grid) {display: grid;}`
+    const cls1 = css`
+      @supports (display: grid) {
+        display: grid;
+      }
+    `
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -96,7 +100,9 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('no dynamic', () => {
-    const H1 = styled('h1')`float: left;`
+    const H1 = styled('h1')`
+      float: left;
+    `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
@@ -137,7 +143,11 @@ describe('css', () => {
   })
   test('random expressions undefined return', () => {
     const H1 = styled('h1')`
-      ${props => props.prop && css`font-size: 1rem;`};
+      ${props =>
+        props.prop &&
+        css`
+          font-size: 1rem;
+        `};
       color: green;
     `
 
@@ -150,9 +160,13 @@ describe('css', () => {
 
   test('function in expression', () => {
     const fontSize = 20
-    const H1 = styled('h1')`font-size: ${fontSize + 'px'};`
+    const H1 = styled('h1')`
+      font-size: ${fontSize + 'px'};
+    `
 
-    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale + 'px'};`
+    const H2 = styled(H1)`
+      font-size: ${({ scale }) => fontSize * scale + 'px'};
+    `
 
     const tree = renderer
       .create(

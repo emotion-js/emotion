@@ -32,18 +32,19 @@ export function flush() {
   sheet.inject()
 }
 
-let currentSourceMap = ''
-let queue = []
-
 function insertRule(rule) {
   sheet.insert(rule, currentSourceMap)
 }
+
+let currentSourceMap = ''
+let queue = []
+let parentQueue = []
 
 function insertionPlugin(
   context,
   content,
   selectors,
-  parent,
+  parents,
   line,
   column,
   length,
@@ -53,23 +54,35 @@ function insertionPlugin(
     case -2: {
       queue.forEach(insertRule)
       queue = []
+      parentQueue = []
       break
     }
 
     case 2: {
       if (id === 0) {
-        const joinedSelectors = selectors.join(',')
-        const rule = `${joinedSelectors}{${content}}`
-        if (parent.join(',') === joinedSelectors || parent[0] === '') {
-          queue.push(rule)
+        const selector = selectors.join(',')
+        let parent = parents.join(',')
+        const rule = `${selector}{${content}}`
+        let index = parentQueue.indexOf(selector)
+        if (index === -1) {
+          index = parentQueue.length
         } else {
-          queue.unshift(rule)
+          let length = queue.length
+          while (length--) {
+            if (parentQueue[length] === selector) {
+              parentQueue[length] = undefined
+            }
+          }
         }
+        queue.splice(index, 0, rule)
+        parentQueue.splice(index, 0, parent)
       }
       break
     }
     // after an at rule block
     case 3: {
+      let parent = parents.join(',')
+      parentQueue.push(parent)
       let chars = selectors.join('')
       const second = chars.charCodeAt(1)
       let child = content
@@ -91,10 +104,12 @@ function insertionPlugin(
           child = chars + '{' + child + '}'
           queue.push('@-webkit-' + child)
           queue.push('@' + child)
+          parentQueue.push(parent)
           break
         }
         default: {
           queue.push(chars + child)
+          break
         }
       }
     }
@@ -238,8 +253,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function css() {
   const styles = createStyles.apply(this, arguments)
+
   const hash = hashString(styles)
   const cls = `css-${hash}`
+
   if (registered[cls] === undefined) {
     registered[cls] = styles
   }

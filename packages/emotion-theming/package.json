@@ -1,6 +1,6 @@
 {
   "name": "emotion-theming",
-  "version": "8.0.2-11",
+  "version": "8.0.4",
   "description": "A CSS-in-JS theming solution, inspired by styled-components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
