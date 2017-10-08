@@ -244,7 +244,7 @@ export function hydrate(ids) {
   })
 }
 
-export function flush () {
+export function flush() {
   sheet.flush()
   inserted = {}
   registered = {}
