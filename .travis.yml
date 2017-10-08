@@ -29,3 +29,4 @@ cache:
     - packages/benchmarks/node_modules
     - packages/emotion-server/node_modules
     - packages/emotion/node_modules
+    - packages/stylis-plugin-emotion/node_modules
