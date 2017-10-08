@@ -34,6 +34,8 @@
     "url": "https://github.com/tkh44/emotion/issues"
   },
   "devDependencies": {
+    "emotion": "^8.0.4",
+    "emotion-utils": "^8.0.2-7",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.47.2"
