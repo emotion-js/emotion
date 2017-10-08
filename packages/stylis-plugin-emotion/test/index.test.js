@@ -214,6 +214,11 @@ const specs = [
   {
     name: 'nesting @media multiple levels',
     sample: 'div {@media {a {color:red;@media {h1 {color:red;}}}}}'
+  },
+  {
+    name: 'complex nested selector',
+    sample:
+      '&:hover{color:blue;&:active{color:red;}}font-size:2rem;padding:16px;&:hover{color:pink;&:active{color:purple;}&.some-class{color:yellow;}}'
   }
 ]
 

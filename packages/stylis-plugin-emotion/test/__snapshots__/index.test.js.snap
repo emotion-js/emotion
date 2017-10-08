@@ -183,6 +183,19 @@ exports[`comments 1`] = `""`;
 
 exports[`comments 2`] = `Array []`;
 
+exports[`complex nested selector 1`] = `".css-47{font-size:2rem;padding:16px;}.css-47:hover{color:blue;}.css-47:hover:active{color:red;}.css-47:hover{color:pink;}.css-47:hover:active{color:purple;}.css-47:hover.some-class{color:yellow;}"`;
+
+exports[`complex nested selector 2`] = `
+Array [
+  ".css-47{font-size:2rem;padding:16px;}",
+  ".css-47:hover{color:blue;}",
+  ".css-47:hover:active{color:red;}",
+  ".css-47:hover{color:pink;}",
+  ".css-47:hover:active{color:purple;}",
+  ".css-47:hover.some-class{color:yellow;}",
+]
+`;
+
 exports[`edge cases 1`] = `"@media (min-width:537px){.css-33{border-bottom:4px solid red;}}.css-33::-webkit-input-placeholder{color:pink;}.css-33::-moz-placeholder{color:pink;}.css-33:-ms-input-placeholder{color:pink;}.css-33::placeholder{color:pink;}.css-33 .a{color:'red';}.css-33 .b{color:\\"red\\";}.css-33 .a{color:red;}.css-33 [role=button]{color:red;}.css-33 .b{padding:30 3;}"`;
 
 exports[`edge cases 2`] = `
