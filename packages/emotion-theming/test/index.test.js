@@ -141,12 +141,16 @@ test('updating theme after a listener unsubscribed', () => {
 test('emotion integration test', () => {
   const theme = { bg: 'green', color: 'red' }
 
-  const ThemedComponent = styled.div`color: ${p => p.theme.color};`
+  const ThemedComponent = styled.div`
+    color: ${p => p.theme.color};
+  `
 
   const ReThemedComponent = styled(ThemedComponent)`
     background-color: ${p => p.theme.bg};
   `
-  const FinalComponent = styled(ReThemedComponent)`border: 1px solid blue;`
+  const FinalComponent = styled(ReThemedComponent)`
+    border: 1px solid blue;
+  `
 
   const wrapper = mount(
     <ThemeProvider theme={theme}>

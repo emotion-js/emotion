@@ -1,6 +1,5 @@
-import { sheet } from 'emotion'
 import { Stylis } from 'emotion-utils'
-import stylisPluginEmotion from 'stylis-plugin-emotion'
+import stylisPluginEmotion from '../src/index'
 
 const specs = [
   {

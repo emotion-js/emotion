@@ -4,7 +4,9 @@ import { css, flush } from 'emotion/macro'
 
 describe('css', () => {
   test('float property', () => {
-    const cls1 = css`float: left;`
+    const cls1 = css`
+      float: left;
+    `
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -118,7 +120,11 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('@supports', () => {
-    const cls1 = css`@supports (display: grid) {display: grid;}`
+    const cls1 = css`
+      @supports (display: grid) {
+        display: grid;
+      }
+    `
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -178,7 +184,9 @@ describe('css', () => {
     expect(tree2).toMatchSnapshot()
   })
   test('nested selector without parent declaration', () => {
-    const cls1 = css`color: blue;`
+    const cls1 = css`
+      color: blue;
+    `
     const cls2 = css`
       & .${cls1} {
         color: red;
@@ -208,7 +216,9 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('flushes correctly', () => {
-    const cls1 = css`display: flex;`
+    const cls1 = css`
+      display: flex;
+    `
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
     flush()

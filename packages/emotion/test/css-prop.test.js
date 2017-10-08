@@ -46,7 +46,9 @@ describe('css prop react', () => {
       font-size: ${huge};
     `
 
-    const small = css`font-size: ${tiny};`
+    const small = css`
+      font-size: ${tiny};
+    `
 
     const flexCenter = css`
       display: flex;
@@ -98,7 +100,9 @@ describe('css prop react', () => {
     expect(tree).toMatchSnapshot()
   })
   test('specificity with composition', () => {
-    const flex = css`display: flex;`
+    const flex = css`
+      display: flex;
+    `
     const tree = renderer
       .create(<div className={flex} css={`display: block;`} />)
       .toJSON()
