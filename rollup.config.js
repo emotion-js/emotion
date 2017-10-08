@@ -15,7 +15,8 @@ const config = {
     'emotion',
     'emotion-utils',
     'prop-types',
-    'hoist-non-react-statics'
+    'hoist-non-react-statics',
+    'stylis-plugin-emotion'
   ],
   exports: 'named',
   sourceMap: true,
@@ -55,6 +56,10 @@ if (process.env.UMD) {
       'emotion-utils': path.resolve(
         __dirname,
         './packages/emotion-utils/src/index.js'
+      ),
+      'stylis-plugin-emotion': path.resolve(
+        __dirname,
+        './packages/stylis-plugin-emotion/src/index.js'
       )
     }),
     replace({

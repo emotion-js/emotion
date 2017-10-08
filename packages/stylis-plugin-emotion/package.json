@@ -1,0 +1,43 @@
+{
+  "name": "stylis-plugin-emotion",
+  "version": "8.0.5",
+  "description": "stylis plugin to insert parsed rules via insertRule",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm-run-all clean rollup",
+    "clean": "rimraf dist",
+    "watch": "rollup -c ../../rollup.config.js --watch",
+    "rollup": "rollup -c ../../rollup.config.js"
+  },
+  "author": "Mitchell Hamilton",
+  "homepage": "https://github.com/emotion-js/emotion#readme",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/stylis-plugin-emotion",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js",
+    "insertRule",
+    "stylis",
+    "plugin",
+    "insert rule",
+    "stylesheet"
+  ],
+  "bugs": {
+    "url": "https://github.com/tkh44/emotion/issues"
+  },
+  "devDependencies": {
+    "emotion": "^8.0.5",
+    "emotion-utils": "^8.0.2-7",
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.47.2"
+  }
+}
