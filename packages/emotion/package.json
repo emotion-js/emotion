@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "babel-plugin-emotion": "^8.0.4",
-    "emotion-utils": "^8.0.2-7"
+    "emotion-utils": "^8.0.2-7",
+    "stylis-plugin-emotion": "^8.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
