@@ -89,63 +89,71 @@ StyledLink.defaultProps = {
   activeClassName: 'active'
 }
 
-const Header = ({ isHome, avatar }) => (
-  <Box
-    bg={colors.dark}
-    p={2}
-    css={
-      !isHome && {
-        borderTop: 'none',
-        borderRight: 'none',
-        borderBottom: '4px solid',
-        borderLeft: 'none',
-        borderImage: `linear-gradient(to left, ${colors.blue} 0%, ${colors.pink} 100%) 1`,
-        transition: 'all 200ms ease'
-      }
-    }
-  >
-    <Box display="flex" flex={1} justify="space-between">
-      <Box
-        flex={1}
-        display="flex"
-        css={{
-          opacity: isHome ? 0 : 1,
-          transition: 'opacity 200ms ease',
-          fontFamily: "'Oxygen', sans-serif"
-        }}
-        align="center"
-      >
-        <img
-          css={{ display: 'inline-block', margin: 0, padding: 0 }}
-          height="36px"
-          width="36px"
-          src={avatar.src}
-          srcSet={avatar.srcSet}
-        />
+const Children = ({ children }) => children
 
-        <h1 css={{ margin: 0, padding: 0, display: 'flex' }}>
-          <StyledLink
-            to="/"
-            css={{
-              flex: 1,
-              margin: 0
-            }}
-            hideUnderline
-          >
-            emotion
+const Header = ({ isHome, avatar }) => (
+  <Children>
+    <Box
+      bg={colors.dark}
+      p={2}
+      css={{
+        transition: 'all 200ms ease'
+      }}
+    >
+      <Box display="flex" flex={1} justify="space-between">
+        <Box
+          flex={1}
+          display="flex"
+          css={{
+            opacity: isHome ? 0 : 1,
+            transition: 'opacity 200ms ease',
+            fontFamily: "'Oxygen', sans-serif"
+          }}
+          align="center"
+        >
+          <img
+            css={{ display: 'inline-block', margin: 0, padding: 0 }}
+            height="36px"
+            width="36px"
+            src={avatar.src}
+            srcSet={avatar.srcSet}
+          />
+
+          <h1 css={{ margin: 0, padding: 0, display: 'flex' }}>
+            <StyledLink
+              to="/"
+              css={{
+                flex: 1,
+                margin: 0
+              }}
+              hideUnderline
+            >
+              emotion
+            </StyledLink>
+          </h1>
+        </Box>
+        <Box flex={1} display="flex" justify="flex-end" css={`overflow: auto;`}>
+          <StyledLink to="/try">Try</StyledLink>
+          <StyledLink to="/docs">Documentation</StyledLink>
+          <StyledLink to="https://github.com/emotion-js/emotion">
+            GitHub
           </StyledLink>
-        </h1>
-      </Box>
-      <Box flex={1} display="flex" justify="flex-end" css={`overflow: auto;`}>
-        <StyledLink to="/try">Try</StyledLink>
-        <StyledLink to="/docs">Documentation</StyledLink>
-        <StyledLink to="https://github.com/emotion-js/emotion">
-          GitHub
-        </StyledLink>
-        <StyledLink to="https://emotion.now.sh">Slack</StyledLink>
+          <StyledLink to="https://emotion.now.sh">Slack</StyledLink>
+        </Box>
       </Box>
     </Box>
-  </Box>
+    <span
+      css={{
+        height: 4,
+        transition: !isHome && 'transform 400ms ease',
+        transitionDelay: '100ms',
+        transformOrigin: 'left',
+        transform: `scaleX(${isHome ? 0 : 1})`,
+        background:
+          !isHome && `linear-gradient(90deg, ${colors.pink}, ${colors.blue})`
+      }}
+    />
+  </Children>
 )
 
 const OuterGradientContainer = styled.div`
