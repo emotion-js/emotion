@@ -30,6 +30,8 @@ export function getInterceptor(initialState) {
 
 export const StatelessComp = props => <div {...props} />
 
+StatelessComp.displayName = 'StatelessComp'
+
 export class Pure extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired

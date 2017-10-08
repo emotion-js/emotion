@@ -204,6 +204,39 @@ exports[`styled composition based on props 2`] = `
 </h1>
 `;
 
+exports[`styled composition of nested pseudo selectors 1`] = `
+.glamor-0 {
+  font-size: 2rem;
+  padding: 16px;
+}
+
+.glamor-0:hover {
+  color: blue;
+}
+
+.glamor-0:hover:active {
+  color: red;
+}
+
+.glamor-0:hover {
+  color: pink;
+}
+
+.glamor-0:hover:active {
+  color: purple;
+}
+
+.glamor-0:hover.some-class {
+  color: yellow;
+}
+
+<button
+  className="glamor-0"
+>
+  Should be purple
+</button>
+`;
+
 exports[`styled composition with objects 1`] = `
 .glamor-0 {
   color: #333;
@@ -645,6 +678,28 @@ exports[`styled random object expression 1`] = `
 >
   hello world
 </h1>
+`;
+
+exports[`styled theme prop exists without ThemeProvider 1`] = `
+.glamor-0 {
+  color: green;
+  background-color: yellow;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`styled theme prop exists without ThemeProvider with a theme prop on the component 1`] = `
+.glamor-0 {
+  color: hotpink;
+  background-color: yellow;
+}
+
+<div
+  className="glamor-0"
+/>
 `;
 
 exports[`styled themes 1`] = `
