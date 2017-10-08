@@ -6,6 +6,8 @@ By diffing the serialized value of your React tree Jest can show you what change
 
 By default snapshots with emotion show generated class names. Adding [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) allows you to output the actual styles being applied. 
 
+<img height="360px" src="https://user-images.githubusercontent.com/514026/31314015-02b79ca6-abc3-11e7-8f70-1edb31c7f43b.jpg"/>
+
 
 ### Installation
 
