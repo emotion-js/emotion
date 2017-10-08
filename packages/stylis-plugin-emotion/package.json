@@ -1,6 +1,6 @@
 {
   "name": "stylis-plugin-emotion",
-  "version": "8.0.4",
+  "version": "8.0.5",
   "description": "stylis plugin to insert parsed rules via insertRule",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -34,7 +34,7 @@
     "url": "https://github.com/tkh44/emotion/issues"
   },
   "devDependencies": {
-    "emotion": "^8.0.4",
+    "emotion": "^8.0.5",
     "emotion-utils": "^8.0.2-7",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
