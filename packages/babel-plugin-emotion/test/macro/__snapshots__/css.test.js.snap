@@ -144,13 +144,13 @@ exports[`css float property 1`] = `
 
 exports[`css flushes correctly 1`] = `
 <div
-  className="css-cls1-k008qs"
+  className="css-k008qs-cls1"
 />
 `;
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-cls1-k008qs"
+  className="css-k008qs-cls1"
 />
 `;
 

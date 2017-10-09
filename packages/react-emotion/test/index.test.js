@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import styled, { css } from 'react-emotion'
+import styled, { css, flush } from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { mount } from 'enzyme'
@@ -9,6 +9,7 @@ import enzymeToJson from 'enzyme-to-json'
 import { lighten, hiDPI, modularScale } from 'polished'
 
 describe('styled', () => {
+  beforeEach(() => flush())
   test('no dynamic', () => {
     const H1 = styled.h1`
       float: left;

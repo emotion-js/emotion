@@ -75,6 +75,19 @@ const createStyled = (tag, options: { e: string }) => {
       }
     }
 
+    const lastInterpolation = interpolations[interpolations.length - 1]
+    const identifierName =
+      typeof lastInterpolation === 'object' && 'meta' in lastInterpolation
+        ? lastInterpolation.meta.identifierName
+        : undefined
+
+    const innerName =
+      identifierName !== undefined
+        ? identifierName
+        : typeof baseTag === 'string'
+          ? baseTag
+          : baseTag.displayName || baseTag.name || 'Component'
+
     class Styled extends Component {
       render() {
         const { props, state } = this
@@ -109,14 +122,11 @@ const createStyled = (tag, options: { e: string }) => {
     }
     Styled.prototype.componentWillMount = componentWillMount
     Styled.prototype.componentWillUnmount = componentWillUnmount
+    Styled.displayName = `Styled(${innerName})`
     Styled.contextTypes = contextTypes
     Styled.__emotion_styles = styles
     Styled.__emotion_base = baseTag
     Styled.__emotion_real = Styled
-
-    Styled.displayName = `Styled(${typeof baseTag === 'string'
-      ? baseTag
-      : baseTag.displayName || baseTag.name || 'Component'})`
 
     Styled.withComponent = nextTag => {
       return createStyled(nextTag, options)(styles)

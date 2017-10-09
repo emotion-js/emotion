@@ -15,7 +15,7 @@ exports[`css prop react basic 1`] = `
 
 exports[`css prop react css correctly adds the id 1`] = `
 <div
-  className="css-SFC-13o7eu2"
+  className="css-13o7eu2-SFC"
 >
   Hello
 </div>
@@ -23,7 +23,7 @@ exports[`css prop react css correctly adds the id 1`] = `
 
 exports[`css prop react css correctly adds the id 2`] = `
 <div
-  className="css-ClsComp-13o7eu2"
+  className="css-13o7eu2-ClsComp"
 >
   Hello
 </div>
@@ -31,10 +31,10 @@ exports[`css prop react css correctly adds the id 2`] = `
 
 exports[`css prop react css correctly adds the id 3`] = `
 <div
-  className="css-hoc-13o7eu2"
+  className="css-13o7eu2-hoc"
 >
   <div
-    className="css-ClsComp-13o7eu2"
+    className="css-13o7eu2-ClsComp"
   >
     Hello
   </div>

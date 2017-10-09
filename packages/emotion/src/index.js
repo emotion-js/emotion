@@ -48,7 +48,7 @@ function flatten(inArr) {
 
 const cssRegex = /css-[A-Za-z0-9]+-[A-Za-z0-9]+/
 
-function getRegisteredStylesFromString(interpolation: any) {
+function getRegisteredStylesFromInterpolation(interpolation: any) {
   if (typeof interpolation === 'string') {
     const matches = cssRegex.exec(interpolation)
     if (matches != null && matches[0] !== undefined) {
@@ -85,7 +85,7 @@ function handleInterpolation(
     return createStringFromObject.call(this, interpolation)
   }
 
-  const registeredStyles = getRegisteredStylesFromString(interpolation)
+  const registeredStyles = getRegisteredStylesFromInterpolation(interpolation)
   if (
     couldBeSelectorInterpolation === false &&
     registeredStyles !== undefined
@@ -128,7 +128,7 @@ function createStringFromObject(obj) {
     Object.keys(obj).forEach(function(key) {
       if (typeof obj[key] !== 'object') {
         if (registered[obj[key]] !== undefined) {
-          string += `${key}{${getRegisteredStylesFromString(obj[key])}}`
+          string += `${key}{${getRegisteredStylesFromInterpolation(obj[key])}}`
         } else {
           string += `${processStyleName(key)}:${processStyleValue(
             key,
@@ -199,7 +199,7 @@ export function css() {
       ? `css-${hash}-${meta.identifierName}`
       : `css-${hash}`
 
-  if (getRegisteredStylesFromString(selector) === undefined) {
+  if (getRegisteredStylesFromInterpolation(selector) === undefined) {
     registered[selector] = styles
   }
 
@@ -249,7 +249,6 @@ export function getRegisteredStyles(registeredStyles, classNames) {
 
   classNames.split(' ').forEach(className => {
     if (registered[className] !== undefined) {
-      console.log('className', className)
       registeredStyles.push(className)
     } else {
       rawClassName += `${className} `

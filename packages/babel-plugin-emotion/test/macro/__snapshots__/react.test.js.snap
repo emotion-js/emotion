@@ -39,7 +39,7 @@ exports[`styled basic render with object as style 1`] = `
 
 exports[`styled call expression 1`] = `
 <h1
-  className="legacy__class css-H1-bk9fzy"
+  className="legacy__class css-bk9fzy-H1"
 >
   hello world
 </h1>
@@ -61,13 +61,13 @@ exports[`styled change theme 1`] = `
       }
     }
   >
-    <Styled(div)>
+    <Styled(Div)>
       <div
-        className="css-Div-bjcoli"
+        className="css-bjcoli-Div"
       >
         this will be green then pink
       </div>
-    </Styled(div)>
+    </Styled(Div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -92,13 +92,13 @@ exports[`styled change theme 2`] = `
       }
     }
   >
-    <Styled(div)>
+    <Styled(Div)>
       <div
         className="glamor-0"
       >
         this will be green then pink
       </div>
-    </Styled(div)>
+    </Styled(Div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -290,7 +290,7 @@ exports[`styled higher order component 1`] = `
 
 exports[`styled inline function return value is a function 1`] = `
 <h1
-  className="css-H1-bk9fzy"
+  className="css-bk9fzy-H1"
 >
   hello world
 </h1>
@@ -398,7 +398,7 @@ exports[`styled no prop filtering on non string tags 1`] = `
   a={true}
   aria-label="some label"
   b={true}
-  className="css-Link-bjcoli"
+  className="css-bjcoli-Link"
   cool={true}
   data-wow="value"
   filtering={true}
@@ -510,7 +510,7 @@ exports[`styled objects with spread properties 1`] = `
 exports[`styled prop filtering 1`] = `
 <a
   aria-label="some label"
-  className="css-Link-bjcoli"
+  className="css-bjcoli-Link"
   data-wow="value"
   href="link"
   is={true}
@@ -628,13 +628,13 @@ exports[`styled theming 1`] = `
       }
     }
   >
-    <Styled(div)>
+    <Styled(Div)>
       <div
-        className="css-Div-olgnlr"
+        className="css-olgnlr-Div"
       >
         this will be green then pink
       </div>
-    </Styled(div)>
+    </Styled(Div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -655,13 +655,13 @@ exports[`styled theming 2`] = `
       }
     }
   >
-    <Styled(div)>
+    <Styled(Div)>
       <div
-        className="css-Div-olgnlr"
+        className="css-olgnlr-Div"
       >
         this will be green then pink
       </div>
-    </Styled(div)>
+    </Styled(Div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -706,16 +706,16 @@ exports[`styled with higher order component that hoists statics 1`] = `
 
 exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 <article>
-  <Styled(h1)>
+  <Styled(Title)>
     <h1
-      className="css-Title-bjcoli"
+      className="css-bjcoli-Title"
     >
       My Title
     </h1>
-  </Styled(h1)>
+  </Styled(Title)>
   <Styled(h2)>
     <h2
-      className="css-Title-bjcoli"
+      className="css-bjcoli-Title"
     >
       My Subtitle
     </h2>
@@ -729,13 +729,13 @@ exports[`styled withComponent with function interpolation 1`] = `
 }
 
 <article>
-  <Styled(h1)>
+  <Styled(Title)>
     <h1
       className="glamor-0"
     >
       My Title
     </h1>
-  </Styled(h1)>
+  </Styled(Title)>
   <Styled(h2)
     color="hotpink"
   >
