@@ -38,14 +38,22 @@ exports[`styled basic render with object as style 1`] = `
 `;
 
 exports[`styled call expression 1`] = `
+.glamor-0 {
+  font-size: 20px;
+}
+
 <div
-  className="css-Div-bk9fzy"
+  className="glamor-0"
 >
   hello world
 </div>
 `;
 
 exports[`styled change theme 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 <TestComponent
   renderChild={true}
   theme={
@@ -63,7 +71,7 @@ exports[`styled change theme 1`] = `
   >
     <Styled(div)>
       <div
-        className="css-Div-bjcoli"
+        className="glamor-0"
       >
         this will be green then pink
       </div>
@@ -334,8 +342,12 @@ exports[`styled higher order component 1`] = `
 `;
 
 exports[`styled inline function return value is a function 1`] = `
+.glamor-0 {
+  font-size: 20px;
+}
+
 <h1
-  className="css-Blue-bk9fzy"
+  className="glamor-0"
 >
   hello world
 </h1>
@@ -398,12 +410,16 @@ exports[`styled input placeholder object 1`] = `
 `;
 
 exports[`styled name with class component 1`] = `
+.glamor-0 {
+  color: hotpink;
+}
+
 <Styled(SomeComponent)>
   <SomeComponent
-    className="css-StyledComponent-1lrxbo5"
+    className="glamor-0"
   >
     <div
-      className="css-StyledComponent-1lrxbo5"
+      className="glamor-0"
     />
   </SomeComponent>
 </Styled(SomeComponent)>
@@ -423,6 +439,10 @@ exports[`styled nested 1`] = `
 
 .glamor-1 div span {
   color: red;
+}
+
+.glamor-0 {
+  font-size: 20px;
 }
 
 <div
@@ -451,11 +471,15 @@ exports[`styled no dynamic 1`] = `
 `;
 
 exports[`styled no prop filtering on non string tags 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 <a
   a={true}
   aria-label="some label"
   b={true}
-  className="css-Link-bjcoli"
+  className="glamor-0"
   cool={true}
   data-wow="value"
   filtering={true}
@@ -565,9 +589,13 @@ exports[`styled objects with spread properties 1`] = `
 `;
 
 exports[`styled prop filtering 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 <a
   aria-label="some label"
-  className="css-Link-bjcoli"
+  className="glamor-0"
   data-wow="value"
   href="link"
   is={true}
@@ -785,17 +813,21 @@ exports[`styled with higher order component that hoists statics 1`] = `
 `;
 
 exports[`styled withComponent will replace tags but keep styling classes 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 <article>
   <Styled(h1)>
     <h1
-      className="css-Title-bjcoli"
+      className="glamor-0"
     >
       My Title
     </h1>
   </Styled(h1)>
   <Styled(h2)>
     <h2
-      className="css-Title-bjcoli"
+      className="glamor-0"
     >
       My Subtitle
     </h2>
@@ -804,6 +836,10 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 `;
 
 exports[`styled withComponent with function interpolation 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 .glamor-1 {
   color: hotpink;
 }

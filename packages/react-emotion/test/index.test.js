@@ -478,7 +478,9 @@ describe('styled', () => {
       font-size: ${fontSize}px;
     `
 
-    const squirtleBlueBackground = css`background-color: #7fc8d6;`
+    const squirtleBlueBackground = css`
+      background-color: #7fc8d6;
+    `
 
     const flexColumn = Component => {
       const NewComponent = styled(Component)`

@@ -85,11 +85,12 @@ function handleInterpolation(
     return createStringFromObject.call(this, interpolation)
   }
 
+  const registeredStyles = getRegisteredStylesFromString(interpolation)
   if (
     couldBeSelectorInterpolation === false &&
-    getRegisteredStylesFromString(interpolation) !== undefined
+    registeredStyles !== undefined
   ) {
-    return getRegisteredStylesFromString(interpolation)
+    return registeredStyles
   }
 
   return interpolation
@@ -195,7 +196,7 @@ export function css() {
   const hash = hashString(styles)
   const selector =
     meta.identifierName !== undefined
-      ? `css-${meta.identifierName}-${hash}`
+      ? `css-${hash}-${meta.identifierName}`
       : `css-${hash}`
 
   if (getRegisteredStylesFromString(selector) === undefined) {
@@ -248,6 +249,7 @@ export function getRegisteredStyles(registeredStyles, classNames) {
 
   classNames.split(' ').forEach(className => {
     if (registered[className] !== undefined) {
+      console.log('className', className)
       registeredStyles.push(className)
     } else {
       rawClassName += `${className} `
