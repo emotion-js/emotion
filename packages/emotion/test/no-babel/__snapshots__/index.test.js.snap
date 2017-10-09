@@ -87,13 +87,13 @@ exports[`css composition with objects 1`] = `
   justify-content: center;
 }
 
+.glamor-0:hover {
+  color: blue;
+}
+
 .glamor-0:after {
   content: " ";
   color: red;
-}
-
-.glamor-0:hover {
-  color: blue;
 }
 
 @media (min-width:420px) {

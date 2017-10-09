@@ -10,7 +10,9 @@ import { lighten, hiDPI, modularScale } from 'polished'
 
 describe('styled', () => {
   test('no dynamic', () => {
-    const H1 = styled.h1`float: left;`
+    const H1 = styled.h1`
+      float: left;
+    `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
@@ -99,7 +101,9 @@ describe('styled', () => {
 
   test('inline function return value is a function', () => {
     const fontSize = () => 20
-    const Blue = styled('h1')`font-size: ${() => fontSize}px;`
+    const Blue = styled('h1')`
+      font-size: ${() => fontSize}px;
+    `
 
     const tree = renderer.create(<Blue>hello world</Blue>).toJSON()
 
@@ -108,7 +112,9 @@ describe('styled', () => {
 
   test('call expression', () => {
     const fontSize = 20
-    const Div = styled('div')`font-size: ${fontSize}px;`
+    const Div = styled('div')`
+      font-size: ${fontSize}px;
+    `
 
     const tree = renderer.create(<Div>hello world</Div>).toJSON()
 
@@ -117,7 +123,9 @@ describe('styled', () => {
 
   test('nested', () => {
     const fontSize = '20px'
-    const H1 = styled.h1`font-size: ${fontSize};`
+    const H1 = styled.h1`
+      font-size: ${fontSize};
+    `
 
     const Thing = styled.div`
       display: flex;
@@ -162,7 +170,11 @@ describe('styled', () => {
 
     const H1 = styled('h1')`
       ${mq};
-      ${props => props.prop && css`font-size: 1rem;`};
+      ${props =>
+        props.prop &&
+        css`
+          font-size: 1rem;
+        `};
       ${margin(0, 'auto', 0, 'auto')};
       color: green;
     `
@@ -180,7 +192,11 @@ describe('styled', () => {
 
   test('random expressions undefined return', () => {
     const H1 = styled('h1')`
-      ${props => props.prop && css`font-size: 1rem;`};
+      ${props =>
+        props.prop &&
+        css`
+          font-size: 1rem;
+        `};
       color: green;
     `
 
@@ -220,9 +236,13 @@ describe('styled', () => {
 
   test('composition', () => {
     const fontSize = 20
-    const H1 = styled('h1')`font-size: ${fontSize + 'px'};`
+    const H1 = styled('h1')`
+      font-size: ${fontSize + 'px'};
+    `
 
-    const H2 = styled(H1)`font-size: ${fontSize * 2 / 3 + 'px'};`
+    const H2 = styled(H1)`
+      font-size: ${fontSize * 2 / 3 + 'px'};
+    `
 
     const tree = renderer
       .create(<H2 className={'legacy__class'}>hello world</H2>)
@@ -313,9 +333,13 @@ describe('styled', () => {
 
   test('function in expression', () => {
     const fontSize = 20
-    const H1 = styled('h1')`font-size: ${fontSize + 'px'};`
+    const H1 = styled('h1')`
+      font-size: ${fontSize + 'px'};
+    `
 
-    const H2 = styled(H1)`font-size: ${({ scale }) => fontSize * scale + 'px'};`
+    const H2 = styled(H1)`
+      font-size: ${({ scale }) => fontSize * scale + 'px'};
+    `
 
     const tree = renderer
       .create(
@@ -331,7 +355,9 @@ describe('styled', () => {
   test('composition', () => {
     const fontSize = '20px'
 
-    const cssA = css`color: blue;`
+    const cssA = css`
+      color: blue;
+    `
 
     const cssB = css`
       ${cssA};
@@ -344,7 +370,9 @@ describe('styled', () => {
       font-size: ${fontSize};
     `
 
-    const FinalH2 = styled(BlueH1)`font-size: 32px;`
+    const FinalH2 = styled(BlueH1)`
+      font-size: 32px;
+    `
 
     const tree = renderer
       .create(
@@ -376,7 +404,9 @@ describe('styled', () => {
       font-size: ${modularScale(4)};
     `
 
-    const H2 = styled(H1)`font-size: 32px;`
+    const H2 = styled(H1)`
+      font-size: 32px;
+    `
 
     const tree = renderer
       .create(
@@ -390,7 +420,9 @@ describe('styled', () => {
   })
 
   test('innerRef', () => {
-    const H1 = styled.h1`font-size: 12px;`
+    const H1 = styled.h1`
+      font-size: 12px;
+    `
 
     const refFunction = jest.fn()
 
@@ -407,14 +439,18 @@ describe('styled', () => {
 
     const fontSize = '20px'
 
-    const cssA = css`color: blue;`
+    const cssA = css`
+      color: blue;
+    `
 
     const cssB = css`
       ${cssA};
       height: 64px;
     `
 
-    const Heading = styled('span')`background-color: ${p => p.theme.gold};`
+    const Heading = styled('span')`
+      background-color: ${p => p.theme.gold};
+    `
 
     const H1 = styled(Heading)`
       ${cssB};
@@ -422,7 +458,9 @@ describe('styled', () => {
       color: ${p => p.theme.purple};
     `
 
-    const H2 = styled(H1)`font-size: 32px;`
+    const H2 = styled(H1)`
+      font-size: 32px;
+    `
 
     const tree = renderer
       .create(
@@ -436,7 +474,9 @@ describe('styled', () => {
 
   test('higher order component', () => {
     const fontSize = 20
-    const Content = styled('div')`font-size: ${fontSize}px;`
+    const Content = styled('div')`
+      font-size: ${fontSize}px;
+    `
 
     const squirtleBlueBackground = css`background-color: #7fc8d6;`
 
@@ -458,11 +498,17 @@ describe('styled', () => {
   })
 
   test('composition based on props', () => {
-    const cssA = css`color: blue;`
+    const cssA = css`
+      color: blue;
+    `
 
-    const cssB = css`color: green;`
+    const cssB = css`
+      color: green;
+    `
 
-    const H1 = styled('h1')`${props => (props.a ? cssA : cssB)};`
+    const H1 = styled('h1')`
+      ${props => (props.a ? cssA : cssB)};
+    `
 
     const tree = renderer.create(<H1 a>hello world</H1>).toJSON()
 
@@ -470,6 +516,46 @@ describe('styled', () => {
     const tree2 = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree2).toMatchSnapshot()
+  })
+
+  test('composition of nested pseudo selectors', () => {
+    const defaultLinkStyles = {
+      '&:hover': {
+        color: 'blue',
+        '&:active': {
+          color: 'red'
+        }
+      }
+    }
+
+    const buttonStyles = () => ({
+      ...defaultLinkStyles,
+      fontSize: '2rem',
+      padding: 16
+    })
+
+    const Button = styled('button')(buttonStyles)
+
+    const tree = renderer
+      .create(
+        <Button
+          className={css({
+            '&:hover': {
+              color: 'pink',
+              '&:active': {
+                color: 'purple'
+              },
+              '&.some-class': {
+                color: 'yellow'
+              }
+            }
+          })}
+        >
+          Should be purple
+        </Button>
+      )
+      .toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   test('objects', () => {
@@ -490,8 +576,12 @@ describe('styled', () => {
   })
 
   test('composing components', () => {
-    const Button = styled.button`color: green;`
-    const OtherButton = styled(Button)`display: none;`
+    const Button = styled.button`
+      color: green;
+    `
+    const OtherButton = styled(Button)`
+      display: none;
+    `
 
     const AnotherButton = styled(OtherButton)`
       display: flex;
@@ -505,7 +595,9 @@ describe('styled', () => {
   })
 
   test('change theme', () => {
-    const Div = styled.div`color: ${props => props.theme.primary};`
+    const Div = styled.div`
+      color: ${props => props.theme.primary};
+    `
     const TestComponent = props => (
       <ThemeProvider theme={props.theme}>
         {props.renderChild ? <Div>this will be green then pink</Div> : null}
@@ -522,7 +614,9 @@ describe('styled', () => {
   })
 
   test('theming', () => {
-    const Div = styled.div`color: ${props => props.theme.color};`
+    const Div = styled.div`
+      color: ${props => props.theme.color};
+    `
     const TestComponent = props => (
       <ThemeProvider theme={props.theme}>
         {props.renderChild ? <Div>this will be green then pink</Div> : null}
@@ -550,13 +644,17 @@ describe('styled', () => {
       display: flex;
       color: ${props => props.someProp};
     `)
-    const FinalComponent = styled(SomeComponent)`padding: 8px;`
+    const FinalComponent = styled(SomeComponent)`
+      padding: 8px;
+    `
     const tree = renderer.create(<FinalComponent />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test('prop filtering', () => {
-    const Link = styled.a`color: green;`
+    const Link = styled.a`
+      color: green;
+    `
     const rest = { m: [3], pt: [4] }
 
     const tree = renderer
@@ -582,7 +680,9 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
   test('no prop filtering on non string tags', () => {
-    const Link = styled(props => <a {...props} />)`color: green;`
+    const Link = styled(props => <a {...props} />)`
+      color: green;
+    `
 
     const tree = renderer
       .create(
@@ -606,8 +706,12 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
   test('prop filtering on composed styled components that are string tags', () => {
-    const BaseLink = styled.a`background-color: hotpink;`
-    const Link = styled(BaseLink)`color: green;`
+    const BaseLink = styled.a`
+      background-color: hotpink;
+    `
+    const Link = styled(BaseLink)`
+      color: green;
+    `
 
     const tree = renderer
       .create(
@@ -632,11 +736,16 @@ describe('styled', () => {
   })
   test('throws if undefined is passed as the component', () => {
     expect(
-      () => styled(undefined)`display: flex;`
+      () =>
+        styled(undefined)`
+          display: flex;
+        `
     ).toThrowErrorMatchingSnapshot()
   })
   test('withComponent will replace tags but keep styling classes', () => {
-    const Title = styled('h1')`color: green;`
+    const Title = styled('h1')`
+      color: green;
+    `
     const Subtitle = Title.withComponent('h2')
 
     const wrapper = mount(
@@ -649,7 +758,9 @@ describe('styled', () => {
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
   test('withComponent with function interpolation', () => {
-    const Title = styled('h1')`color: ${props => props.color || 'green'};`
+    const Title = styled('h1')`
+      color: ${props => props.color || 'green'};
+    `
     const Subtitle = Title.withComponent('h2')
 
     const wrapper = mount(
@@ -667,7 +778,9 @@ describe('styled', () => {
         return <div className={this.props.className} />
       }
     }
-    const StyledComponent = styled(SomeComponent)`color: hotpink;`
+    const StyledComponent = styled(SomeComponent)`
+      color: hotpink;
+    `
     const wrapper = mount(<StyledComponent />)
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })

@@ -1,0 +1,7 @@
+comment: # https://docs.codecov.io/docs/pull-request-comments
+  layout: "files"
+  behavior: once
+  require_changes: true   # if true: only post the comment if coverage changes
+  require_base: no        # [yes :: must have a base report to post]
+  require_head: yes       # [yes :: must have a head report to post]
+  branches: null

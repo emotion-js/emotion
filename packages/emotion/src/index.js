@@ -1,4 +1,5 @@
 import { hashString, Stylis, memoize, unitless } from 'emotion-utils'
+import stylisPluginEmotion from 'stylis-plugin-emotion'
 import StyleSheet from './sheet'
 
 export const sheet = new StyleSheet()
@@ -16,6 +17,12 @@ const externalStylisPlugins = []
 
 const use = stylis.use
 
+function insertRule(rule) {
+  sheet.insert(rule, currentSourceMap)
+}
+
+const insertionPlugin = stylisPluginEmotion(insertRule)
+
 export const useStylisPlugin = plugin => {
   externalStylisPlugins.push(plugin)
   use(null)(externalStylisPlugins)(insertionPlugin)
@@ -25,81 +32,7 @@ export let registered = {}
 
 export let inserted = {}
 
-export function flush() {
-  sheet.flush()
-  inserted = {}
-  registered = {}
-  sheet.inject()
-}
-
 let currentSourceMap = ''
-let queue = []
-
-function insertRule(rule) {
-  sheet.insert(rule, currentSourceMap)
-}
-
-function insertionPlugin(
-  context,
-  content,
-  selectors,
-  parent,
-  line,
-  column,
-  length,
-  id
-) {
-  switch (context) {
-    case -2: {
-      queue.forEach(insertRule)
-      queue = []
-      break
-    }
-
-    case 2: {
-      if (id === 0) {
-        const joinedSelectors = selectors.join(',')
-        const rule = `${joinedSelectors}{${content}}`
-        if (parent.join(',') === joinedSelectors || parent[0] === '') {
-          queue.push(rule)
-        } else {
-          queue.unshift(rule)
-        }
-      }
-      break
-    }
-    // after an at rule block
-    case 3: {
-      let chars = selectors.join('')
-      const second = chars.charCodeAt(1)
-      let child = content
-      switch (second) {
-        // s upports
-        case 115:
-        // d ocument
-        // eslint-disable-next-line no-fallthrough
-        case 100:
-        // m edia
-        // eslint-disable-next-line no-fallthrough
-        case 109: {
-          queue.push(chars + '{' + child + '}')
-          break
-        }
-        // k eyframes
-        case 107: {
-          chars = chars.substring(1)
-          child = chars + '{' + child + '}'
-          queue.push('@-webkit-' + child)
-          queue.push('@' + child)
-          break
-        }
-        default: {
-          queue.push(chars + child)
-        }
-      }
-    }
-  }
-}
 
 stylis.use(insertionPlugin)
 
@@ -262,6 +195,8 @@ export function css() {
   const hash = hashString(styles)
   const cls = `css-${hash}`
 
+  if (registered[cls] === undefined) {
+
   if (getRegisteredStylesFromString(cls) === undefined) {
     registered[cls] = styles
   }
@@ -330,12 +265,18 @@ export function merge(className, sourceMap) {
   if (registeredStyles.length < 2) {
     return className
   }
-  const what = rawClassName + css(registeredStyles, sourceMap)
-  return what
+  return rawClassName + css(registeredStyles, sourceMap)
 }
 
 export function hydrate(ids) {
   ids.forEach(id => {
     inserted[id] = true
   })
+}
+
+export function flush() {
+  sheet.flush()
+  inserted = {}
+  registered = {}
+  sheet.inject()
 }

@@ -1,3 +1,68 @@
+## v8.0.5 (2017-10-07)
+
+#### :memo: Documentation
+* [#390](https://github.com/emotion-js/emotion/pull/390)  jest-glamor-react docs. ([@greggb](https://github.com/greggb))
+
+#### :house: Internal
+* `emotion`, `stylis-plugin-emotion`
+  * [#391](https://github.com/emotion-js/emotion/pull/391) Extract insertion plugin into stylis-plugin-emotion. ([@tkh44](https://github.com/tkh44))
+
+#### Committers: 2
+- Gregg Brewster ([greggb](https://github.com/greggb))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+
+
+## v8.0.4 (2017-10-07)
+
+#### :house: Internal
+* `emotion`, `react-emotion`
+  * [#387](https://github.com/emotion-js/emotion/pull/387) Insert nested selectors differently. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
+## v8.0.3 (2017-10-06)
+
+#### :rocket: Enhancement
+* `emotion`
+  * [#377](https://github.com/emotion-js/emotion/pull/377) Add isBrowser as a property of sheet so that it can be manually set.. ([@tkh44](https://github.com/tkh44))
+
+#### :bug: Bug Fix
+* `babel-plugin-emotion`, `emotion`, `react-emotion`
+  * [#386](https://github.com/emotion-js/emotion/pull/386) Insertion plugin with tree. ([@tkh44](https://github.com/tkh44))
+
+#### :memo: Documentation
+* [#380](https://github.com/emotion-js/emotion/pull/380) Create webpack.md. ([@greggb](https://github.com/greggb))
+
+#### :house: Internal
+* [#371](https://github.com/emotion-js/emotion/pull/371) Add codecov.yml. ([@tkh44](https://github.com/tkh44))
+
+#### Committers: 2
+- Gregg Brewster ([greggb](https://github.com/greggb))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+
+
+## v8.0.2 (2017-10-01)
+
+#### :bug: Bug Fix
+* `react-emotion`
+  * [#364](https://github.com/emotion-js/emotion/pull/364) Make the theme prop always exist. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
+## v8.0.2-13 (2017-10-01)
+
+#### :bug: Bug Fix
+* `react-emotion`
+  * [#364](https://github.com/emotion-js/emotion/pull/364) Make the theme prop always exist. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v8.0.2-12 (2017-10-01)
 
 #### :rocket: Enhancement

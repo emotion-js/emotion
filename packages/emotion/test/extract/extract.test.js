@@ -6,7 +6,9 @@ import styled from 'react-emotion'
 
 describe('styled', () => {
   test('no dynamic', () => {
-    const H1 = styled.h1`font-size: 12px;`
+    const H1 = styled.h1`
+      font-size: 12px;
+    `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
@@ -34,7 +36,9 @@ describe('styled', () => {
   })
 
   test('className prop on styled', () => {
-    const H1 = styled.h1`font-size: 20px;`
+    const H1 = styled.h1`
+      font-size: 20px;
+    `
     const tree = renderer
       .create(<H1 className="some-class">hello world</H1>)
       .toJSON()
