@@ -195,13 +195,11 @@ export function css() {
   const hash = hashString(styles)
   const cls = `css-${hash}`
 
-  if (registered[cls] === undefined) {
-
   if (getRegisteredStylesFromString(cls) === undefined) {
     registered[cls] = styles
   }
 
-  if (inserted[cls] === undefined) {
+  if (inserted[hash] === undefined) {
     stylis(`.${cls}`, styles)
     inserted[hash] = true
   }

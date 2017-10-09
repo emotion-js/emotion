@@ -42,14 +42,6 @@ exports[`styled call expression 1`] = `
   font-size: 20px;
 }
 
-.glamor-0 {
-  font-size: 20px;
-}
-
-.glamor-0 {
-  font-size: 20px;
-}
-
 <h1
   className="legacy__class glamor-0 H1"
 >
@@ -58,10 +50,6 @@ exports[`styled call expression 1`] = `
 `;
 
 exports[`styled change theme 1`] = `
-.glamor-0 {
-  color: green;
-}
-
 .glamor-0 {
   color: green;
 }
@@ -263,17 +251,6 @@ exports[`styled glamorous style api & composition 1`] = `
   display: flex;
 }
 
-.glamor-0 {
-  font-size: 20px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 <h1
   className="glamor-0"
 >
@@ -320,10 +297,6 @@ exports[`styled higher order component 1`] = `
 `;
 
 exports[`styled inline function return value is a function 1`] = `
-.glamor-0 {
-  font-size: 20px;
-}
-
 .glamor-0 {
   font-size: 20px;
 }
@@ -396,14 +369,6 @@ exports[`styled nested 1`] = `
   font-size: 20px;
 }
 
-.glamor-0 {
-  font-size: 20px;
-}
-
-.glamor-0 {
-  font-size: 20px;
-}
-
 .glamor-1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -417,10 +382,6 @@ exports[`styled nested 1`] = `
 
 .glamor-1 div span {
   color: red;
-}
-
-.glamor-0 {
-  font-size: 20px;
 }
 
 <div
@@ -449,18 +410,6 @@ exports[`styled no dynamic 1`] = `
 `;
 
 exports[`styled no prop filtering on non string tags 1`] = `
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
 .glamor-0 {
   color: green;
 }
@@ -571,22 +520,6 @@ exports[`styled objects with spread properties 1`] = `
   font-size: 20px;
 }
 
-.glamor-0 {
-  font-size: 20px;
-}
-
-.glamor-0 {
-  font-size: 20px;
-}
-
-.glamor-0 {
-  font-size: 20px;
-}
-
-.glamor-0 {
-  font-size: 20px;
-}
-
 <figure
   className="glamor-0"
 >
@@ -595,14 +528,6 @@ exports[`styled objects with spread properties 1`] = `
 `;
 
 exports[`styled prop filtering 1`] = `
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
 .glamor-0 {
   color: green;
 }
@@ -808,26 +733,6 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
   color: green;
 }
 
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
 <article>
   <Styled(h1)>
     <h1
@@ -847,30 +752,6 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 `;
 
 exports[`styled withComponent with function interpolation 1`] = `
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
-.glamor-0 {
-  color: green;
-}
-
 .glamor-0 {
   color: green;
 }

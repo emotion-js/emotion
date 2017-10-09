@@ -30,10 +30,6 @@ exports[`css prop react css correctly adds the id 2`] = `
   display: block;
 }
 
-.glamor-0 {
-  display: block;
-}
-
 <div
   className="glamor-0 ClsComp"
 >
@@ -42,18 +38,6 @@ exports[`css prop react css correctly adds the id 2`] = `
 `;
 
 exports[`css prop react css correctly adds the id 3`] = `
-.glamor-0 {
-  display: block;
-}
-
-.glamor-0 {
-  display: block;
-}
-
-.glamor-0 {
-  display: block;
-}
-
 .glamor-0 {
   display: block;
 }
@@ -143,10 +127,6 @@ exports[`css prop react kitchen sink 1`] = `
 `;
 
 exports[`css prop react merging regular classes 1`] = `
-.glamor-0 {
-  display: block;
-}
-
 .glamor-0 {
   display: block;
 }

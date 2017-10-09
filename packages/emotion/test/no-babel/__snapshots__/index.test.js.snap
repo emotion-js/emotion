@@ -41,26 +41,12 @@ exports[`css composition stuff 1`] = `
   justify-content: center;
 }
 
-.glamor-0 {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
 <div
   className="glamor-0"
 />
 `;
 
 exports[`css composition stuff 2`] = `
-.glamor-0 {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
 .glamor-0 {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -121,17 +107,6 @@ exports[`css function in expression 1`] = `
 `;
 
 exports[`css glamorous style api & composition 1`] = `
-.glamor-0 {
-  font-size: 20px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .glamor-0 {
   font-size: 20px;
   -webkit-flex: 1;
