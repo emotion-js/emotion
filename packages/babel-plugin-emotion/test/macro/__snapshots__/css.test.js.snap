@@ -8,7 +8,7 @@ exports[`css @supports 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 />
 `;
 
@@ -46,7 +46,7 @@ exports[`css composition 1`] = `
 }
 
 <div
-  className="glamor-0 cls2"
+  className="glamor-0"
 />
 `;
 
@@ -106,7 +106,7 @@ exports[`css composition with objects 1`] = `
 }
 
 <div
-  className="glamor-0 cls2"
+  className="glamor-0"
 />
 `;
 
@@ -128,7 +128,7 @@ exports[`css css variables 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 />
 `;
 
@@ -138,26 +138,19 @@ exports[`css float property 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 />
 `;
 
 exports[`css flushes correctly 1`] = `
-.glamor-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 <div
-  className="glamor-0 cls1"
+  className="css-cls1-k008qs"
 />
 `;
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-k008qs cls1"
+  className="css-cls1-k008qs"
 />
 `;
 
@@ -177,7 +170,7 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 />
 `;
 
@@ -222,7 +215,7 @@ exports[`css nested 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 >
   <div
     className="some-class"
@@ -285,15 +278,15 @@ exports[`css nested selector without parent declaration 1`] = `
   color: blue;
 }
 
-.glamor-1 .glamor-0 cls1 {
+.glamor-1 .glamor-0 {
   color: red;
 }
 
 <div
-  className="glamor-1 cls2"
+  className="glamor-1"
 >
   <div
-    className="glamor-0 cls1"
+    className="glamor-0"
   />
 </div>
 `;
@@ -320,7 +313,7 @@ exports[`css random expression 1`] = `
 }
 
 <div
-  className="glamor-0 cls2"
+  className="glamor-0"
 />
 `;
 
@@ -333,6 +326,6 @@ exports[`css random interpolation with undefined values 1`] = `
 }
 
 <div
-  className="glamor-0 cls2"
+  className="glamor-0"
 />
 `;

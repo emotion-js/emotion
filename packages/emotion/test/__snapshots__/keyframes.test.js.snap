@@ -7,7 +7,7 @@ exports[`keyframes keyframes with interpolation 1`] = `
 }
 
 <h1
-  className="glamor-0 H1"
+  className="glamor-0"
 >
   hello world
 </h1>
@@ -42,7 +42,7 @@ exports[`keyframes keyframes with interpolation 2`] = `
   }
 }
 
-.css-86jnvr {
+.css-H1-86jnvr {
   -webkit-animation: animation-1q8eu9e-H1 2s linear infinite;
   animation: animation-1q8eu9e-H1 2s linear infinite;
 }"
@@ -55,7 +55,7 @@ exports[`keyframes renders 1`] = `
 }
 
 <h1
-  className="glamor-0 H1"
+  className="glamor-0"
 >
   hello world
 </h1>
@@ -126,7 +126,7 @@ exports[`keyframes renders 2`] = `
   }
 }
 
-.css-1w60uf6 {
+.css-H1-1w60uf6 {
   -webkit-animation: animation-16qlhaj-bounce 2s linear infinite;
   animation: animation-16qlhaj-bounce 2s linear infinite;
 }"

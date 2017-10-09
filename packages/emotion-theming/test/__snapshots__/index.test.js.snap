@@ -17,7 +17,7 @@ exports[`emotion integration test 1`] = `
 >
   <Styled(div)>
     <div
-      className="glamor-0 FinalComponent"
+      className="glamor-0"
     />
   </Styled(div)>
 </ThemeProvider>

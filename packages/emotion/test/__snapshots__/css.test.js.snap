@@ -8,7 +8,7 @@ exports[`css @supports 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 />
 `;
 
@@ -124,7 +124,7 @@ exports[`css composition with objects 1`] = `
 }
 
 <div
-  className="glamor-0 cls2"
+  className="glamor-0"
 />
 `;
 
@@ -146,18 +146,18 @@ exports[`css css variables 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 />
 `;
 
 exports[`css explicit & 1`] = `
 <div
-  className="css-16ooeb3 cls1 another-class"
+  className="css-cls1-16ooeb3 another-class"
 />
 `;
 
 exports[`css explicit & 2`] = `
-".css-16ooeb3.another-class {
+".css-cls1-16ooeb3.another-class {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -200,7 +200,7 @@ exports[`css float property 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 />
 `;
 
@@ -213,13 +213,13 @@ exports[`css flushes correctly 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 />
 `;
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-k008qs cls1"
+  className="css-cls1-k008qs"
 />
 `;
 
@@ -250,7 +250,7 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 />
 `;
 
@@ -273,14 +273,14 @@ exports[`css handles objects 1`] = `
 `;
 
 exports[`css media query specificity 1`] = `
-".css-mfslnr {
+".css-cls-mfslnr {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
 
 @media (min-width:420px) {
-  .css-mfslnr {
+  .css-cls-mfslnr {
     width: 96px;
     height: 96px;
   }
@@ -302,7 +302,7 @@ exports[`css media query specificity 2`] = `
 }
 
 <div
-  className="glamor-0 cls"
+  className="glamor-0"
 />
 `;
 
@@ -329,7 +329,7 @@ exports[`css nested 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 >
   <div
     className="some-class"
@@ -391,15 +391,15 @@ exports[`css nested selector without parent declaration 1`] = `
   color: blue;
 }
 
-.glamor-1 .glamor-0 cls1 {
+.glamor-1 .glamor-0 {
   color: red;
 }
 
 <div
-  className="glamor-1 cls2"
+  className="glamor-1"
 >
   <div
-    className="glamor-0 cls1"
+    className="glamor-0"
   />
 </div>
 `;
@@ -418,7 +418,7 @@ exports[`css null value 1`] = `
 
 exports[`css null value 2`] = `
 <div
-  className="css-1xdhyk6 cls2"
+  className="css-cls2-1xdhyk6"
 />
 `;
 
@@ -438,7 +438,7 @@ exports[`css random expression 1`] = `
 }
 
 <div
-  className="glamor-0 cls2"
+  className="glamor-0"
 />
 `;
 
@@ -451,7 +451,7 @@ exports[`css random interpolation with undefined values 1`] = `
 }
 
 <div
-  className="glamor-0 cls2"
+  className="glamor-0"
 />
 `;
 
@@ -475,7 +475,7 @@ exports[`css return function in interpolation 1`] = `
 }
 
 <div
-  className="glamor-0 cls1"
+  className="glamor-0"
 />
 `;
 
@@ -496,7 +496,7 @@ exports[`css simple composition 1`] = `
 }
 
 <div
-  className="glamor-0 cls2"
+  className="glamor-0"
 />
 `;
 

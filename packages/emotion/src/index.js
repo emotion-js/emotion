@@ -46,7 +46,7 @@ function flatten(inArr) {
   return arr
 }
 
-const cssRegex = /css-[A-Za-z0-9]+/
+const cssRegex = /css-[A-Za-z0-9]+-[A-Za-z0-9]+/
 
 function getRegisteredStylesFromString(interpolation: any) {
   if (typeof interpolation === 'string') {
@@ -193,20 +193,21 @@ if (process.env.NODE_ENV !== 'production') {
 export function css() {
   const { styles, meta } = createStyles.apply(this, arguments)
   const hash = hashString(styles)
-  const cls = `css-${hash}`
+  const selector =
+    meta.identifierName !== undefined
+      ? `css-${meta.identifierName}-${hash}`
+      : `css-${hash}`
 
-  if (getRegisteredStylesFromString(cls) === undefined) {
-    registered[cls] = styles
+  if (getRegisteredStylesFromString(selector) === undefined) {
+    registered[selector] = styles
   }
 
   if (inserted[hash] === undefined) {
-    stylis(`.${cls}`, styles)
+    stylis(`.${selector}`, styles)
     inserted[hash] = true
   }
 
-  return meta.identifierName !== undefined
-    ? `${cls} ${meta.identifierName}`
-    : cls
+  return selector
 }
 
 export function keyframes() {
