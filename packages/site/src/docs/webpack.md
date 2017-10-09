@@ -1,4 +1,6 @@
-## Usage with Webpack
+---
+title: "Usage with Webpack"
+---
 
 #### Bundling [extracted CSS](https://github.com/emotion-js/emotion/blob/master/docs/extract-static.md)
 

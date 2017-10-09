@@ -1,4 +1,6 @@
-## Snapshot Testing
+---
+title: "Snapshot Testing"
+---
 
 Adding [snapshot tests with Jest](https://facebook.github.io/jest/docs/en/snapshot-testing.html) is a great way to help avoid unintended changes to your app's UI.
 
