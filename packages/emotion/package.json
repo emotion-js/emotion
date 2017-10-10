@@ -4,16 +4,20 @@
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
+  "types": "typings/emotion.d.ts",
   "files": [
     "src",
     "dist",
     "macro.js",
     "react",
     "server.js",
-    "babel.js"
+    "babel.js",
+    "typings"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup rollup:umd",
+    "test:typescript": "tsc --noEmit -p typescript_tests/tsconfig.json",
+    "pretest:typescript": "npm run build",
     "clean": "rimraf dist",
     "rollup": "rollup -c ../../rollup.config.js",
     "watch": "rollup -c ../../rollup.config.js --watch",
@@ -30,7 +34,8 @@
     "cross-env": "^5.0.5",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
-    "rollup": "^0.43.0"
+    "rollup": "^0.43.0",
+    "typescript": "^2.0.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
