@@ -427,11 +427,11 @@ Array [
 ]
 `;
 
-exports[`vendor prefixing IV 1`] = `".css-25{-webkit-text-size-adjust:none;text-size-adjust:none;text-decoration:none;-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-fill:red;fill:red;position:-webkit-sticky;position:sticky;-webkit-mask-image:-webkit-linear-gradient(#fff);mask-image:linear-gradient(#fff);-webkit-mask-image:none;mask-image:none;}"`;
+exports[`vendor prefixing IV 1`] = `".css-25{-webkit-text-size-adjust:none;text-size-adjust:none;text-decoration:none;-webkit-filter:grayscale(100%);filter:grayscale(100%);fill:red;position:-webkit-sticky;position:sticky;-webkit-mask-image:linear-gradient(#fff);mask-image:linear-gradient(#fff);-webkit-mask-image:none;mask-image:none;}"`;
 
 exports[`vendor prefixing IV 2`] = `
 Array [
-  ".css-25{-webkit-text-size-adjust:none;text-size-adjust:none;text-decoration:none;-webkit-filter:grayscale(100%);filter:grayscale(100%);-webkit-fill:red;fill:red;position:-webkit-sticky;position:sticky;-webkit-mask-image:-webkit-linear-gradient(#fff);mask-image:linear-gradient(#fff);-webkit-mask-image:none;mask-image:none;}",
+  ".css-25{-webkit-text-size-adjust:none;text-size-adjust:none;text-decoration:none;-webkit-filter:grayscale(100%);filter:grayscale(100%);fill:red;position:-webkit-sticky;position:sticky;-webkit-mask-image:linear-gradient(#fff);mask-image:linear-gradient(#fff);-webkit-mask-image:none;mask-image:none;}",
 ]
 `;
 
@@ -443,11 +443,11 @@ Array [
 ]
 `;
 
-exports[`vendor prefixing VI 1`] = `".css-27{clip-path:none;-webkit-mask-image:none;mask-image:none;}"`;
+exports[`vendor prefixing VI 1`] = `".css-27{-webkit-clip-path:none;clip-path:none;-webkit-mask-image:none;mask-image:none;}"`;
 
 exports[`vendor prefixing VI 2`] = `
 Array [
-  ".css-27{clip-path:none;-webkit-mask-image:none;mask-image:none;}",
+  ".css-27{-webkit-clip-path:none;clip-path:none;-webkit-mask-image:none;mask-image:none;}",
 ]
 `;
 
