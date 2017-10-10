@@ -1,3 +1,17 @@
+## v8.0.5 (2017-10-07)
+
+#### :memo: Documentation
+* [#390](https://github.com/emotion-js/emotion/pull/390)  jest-glamor-react docs. ([@greggb](https://github.com/greggb))
+
+#### :house: Internal
+* `emotion`, `stylis-plugin-emotion`
+  * [#391](https://github.com/emotion-js/emotion/pull/391) Extract insertion plugin into stylis-plugin-emotion. ([@tkh44](https://github.com/tkh44))
+
+#### Committers: 2
+- Gregg Brewster ([greggb](https://github.com/greggb))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+
+
 ## v8.0.4 (2017-10-07)
 
 #### :house: Internal
