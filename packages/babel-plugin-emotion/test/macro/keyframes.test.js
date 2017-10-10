@@ -29,7 +29,9 @@ describe('keyframes - macro', () => {
       }
     `
 
-    const H1 = styled.h1`animation: ${bounce} 2s linear infinite;`
+    const H1 = styled.h1`
+      animation: ${bounce} 2s linear infinite;
+    `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 

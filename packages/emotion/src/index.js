@@ -1,7 +1,9 @@
 import { hashString, Stylis, memoize, unitless } from 'emotion-utils'
+import stylisPluginEmotion from 'stylis-plugin-emotion'
 import StyleSheet from './sheet'
 
 export const sheet = new StyleSheet()
+
 // 🚀
 sheet.inject()
 const stylisOptions = { keyframe: false }
@@ -16,6 +18,12 @@ const externalStylisPlugins = []
 
 const use = stylis.use
 
+function insertRule(rule) {
+  sheet.insert(rule, currentSourceMap)
+}
+
+const insertionPlugin = stylisPluginEmotion(insertRule)
+
 export const useStylisPlugin = plugin => {
   externalStylisPlugins.push(plugin)
   use(null)(externalStylisPlugins)(insertionPlugin)
@@ -25,127 +33,37 @@ export let registered = {}
 
 export let inserted = {}
 
-export function flush() {
-  sheet.flush()
-  inserted = {}
-  registered = {}
-  sheet.inject()
-}
-
 let currentSourceMap = ''
-let queue = []
-
-function insertRule(rule) {
-  sheet.insert(rule, currentSourceMap)
-}
-
-function insertionPlugin(
-  context,
-  content,
-  selectors,
-  parent,
-  line,
-  column,
-  length,
-  id
-) {
-  switch (context) {
-    case -2: {
-      queue.forEach(insertRule)
-      queue = []
-      break
-    }
-
-    case 2: {
-      if (id === 0) {
-        const joinedSelectors = selectors.join(',')
-        const rule = `${joinedSelectors}{${content}}`
-        if (parent.join(',') === joinedSelectors || parent[0] === '') {
-          queue.push(rule)
-        } else {
-          queue.unshift(rule)
-        }
-      }
-      break
-    }
-    // after an at rule block
-    case 3: {
-      let chars = selectors.join('')
-      const second = chars.charCodeAt(1)
-      let child = content
-      switch (second) {
-        // s upports
-        case 115:
-        // d ocument
-        // eslint-disable-next-line no-fallthrough
-        case 100:
-        // m edia
-        // eslint-disable-next-line no-fallthrough
-        case 109: {
-          queue.push(chars + '{' + child + '}')
-          break
-        }
-        // k eyframes
-        case 107: {
-          chars = chars.substring(1)
-          child = chars + '{' + child + '}'
-          queue.push('@-webkit-' + child)
-          queue.push('@' + child)
-          break
-        }
-        default: {
-          queue.push(chars + child)
-        }
-      }
-    }
-  }
-}
 
 stylis.use(insertionPlugin)
-
-function flatten(inArr) {
-  let arr = []
-  inArr.forEach(val => {
-    if (Array.isArray(val)) arr = arr.concat(flatten(val))
-    else arr = arr.concat(val)
-  })
-
-  return arr
-}
 
 function handleInterpolation(
   interpolation: any,
   couldBeSelectorInterpolation: boolean
 ) {
-  if (
-    interpolation === undefined ||
-    interpolation === null ||
-    typeof interpolation === 'boolean'
-  ) {
+  if (interpolation == null) {
     return ''
   }
 
-  if (typeof interpolation === 'function') {
-    return handleInterpolation.call(
-      this,
-      this === undefined
-        ? interpolation()
-        : interpolation(this.mergedProps, this.context),
-      couldBeSelectorInterpolation
-    )
+  switch (typeof interpolation) {
+    case 'boolean':
+      return ''
+    case 'function':
+      return handleInterpolation.call(
+        this,
+        this === undefined
+          ? interpolation()
+          : interpolation(this.mergedProps, this.context),
+        couldBeSelectorInterpolation
+      )
+    case 'object':
+      return createStringFromObject.call(this, interpolation)
+    default:
+      const cached = registered[interpolation]
+      return couldBeSelectorInterpolation === false && cached !== undefined
+        ? cached
+        : interpolation
   }
-
-  if (typeof interpolation === 'object') {
-    return createStringFromObject.call(this, interpolation)
-  }
-
-  if (
-    couldBeSelectorInterpolation === false &&
-    registered[interpolation] !== undefined
-  ) {
-    return registered[interpolation]
-  }
-  return interpolation
 }
 
 const hyphenateRegex = /[A-Z]|^ms/g
@@ -173,7 +91,7 @@ function createStringFromObject(obj) {
   let string = ''
 
   if (Array.isArray(obj)) {
-    flatten(obj).forEach(function(interpolation) {
+    obj.forEach(function(interpolation) {
       string += handleInterpolation.call(this, interpolation, false)
     }, this)
   } else {
@@ -238,8 +156,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function css() {
   const styles = createStyles.apply(this, arguments)
+
   const hash = hashString(styles)
   const cls = `css-${hash}`
+
   if (registered[cls] === undefined) {
     registered[cls] = styles
   }
@@ -307,4 +227,11 @@ export function hydrate(ids) {
   ids.forEach(id => {
     inserted[id] = true
   })
+}
+
+export function flush() {
+  sheet.flush()
+  inserted = {}
+  registered = {}
+  sheet.inject()
 }

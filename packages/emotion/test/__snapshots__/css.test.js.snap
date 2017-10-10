@@ -129,13 +129,13 @@ exports[`css composition with objects 1`] = `
   justify-content: center;
 }
 
+.glamor-0:hover {
+  color: blue;
+}
+
 .glamor-0:after {
   content: " ";
   color: red;
-}
-
-.glamor-0:hover {
-  color: blue;
 }
 
 @media (min-width:420px) {
@@ -364,10 +364,20 @@ exports[`css nested 1`] = `
 
 exports[`css nested array 1`] = `
 .glamor-0 {
+  display: inline;
+  display: inline-block;
+  display: block;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  display: table;
+  color: darkorchid;
+  font-size: 16px;
+}
+
+.glamor-0:after {
+  background-color: aquamarine;
 }
 
 <div
