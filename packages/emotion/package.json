@@ -11,7 +11,8 @@
     "macro.js",
     "react",
     "server.js",
-    "babel.js"
+    "babel.js",
+    "typings"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup rollup:umd",
