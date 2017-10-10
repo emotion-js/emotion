@@ -41,35 +41,29 @@ function handleInterpolation(
   interpolation: any,
   couldBeSelectorInterpolation: boolean
 ) {
-  if (
-    interpolation === undefined ||
-    interpolation === null ||
-    typeof interpolation === 'boolean'
-  ) {
+  if (interpolation == null) {
     return ''
   }
 
-  if (typeof interpolation === 'function') {
-    return handleInterpolation.call(
-      this,
-      this === undefined
-        ? interpolation()
-        : interpolation(this.mergedProps, this.context),
-      couldBeSelectorInterpolation
-    )
+  switch (typeof interpolation) {
+    case 'boolean':
+      return ''
+    case 'function':
+      return handleInterpolation.call(
+        this,
+        this === undefined
+          ? interpolation()
+          : interpolation(this.mergedProps, this.context),
+        couldBeSelectorInterpolation
+      )
+    case 'object':
+      return createStringFromObject.call(this, interpolation)
+    default:
+      const cached = registered[interpolation]
+      return couldBeSelectorInterpolation === false && cached !== undefined
+        ? cached
+        : interpolation
   }
-
-  if (typeof interpolation === 'object') {
-    return createStringFromObject.call(this, interpolation)
-  }
-
-  if (
-    couldBeSelectorInterpolation === false &&
-    registered[interpolation] !== undefined
-  ) {
-    return registered[interpolation]
-  }
-  return interpolation
 }
 
 const hyphenateRegex = /[A-Z]|^ms/g
