@@ -3,6 +3,7 @@ import stylisPluginEmotion from 'stylis-plugin-emotion'
 import StyleSheet from './sheet'
 
 export const sheet = new StyleSheet()
+
 // 🚀
 sheet.inject()
 const stylisOptions = { keyframe: false }
@@ -35,16 +36,6 @@ export let inserted = {}
 let currentSourceMap = ''
 
 stylis.use(insertionPlugin)
-
-function flatten(inArr) {
-  let arr = []
-  inArr.forEach(val => {
-    if (Array.isArray(val)) arr = arr.concat(flatten(val))
-    else arr = arr.concat(val)
-  })
-
-  return arr
-}
 
 function handleInterpolation(
   interpolation: any,
@@ -106,7 +97,7 @@ function createStringFromObject(obj) {
   let string = ''
 
   if (Array.isArray(obj)) {
-    flatten(obj).forEach(function(interpolation) {
+    obj.forEach(function(interpolation) {
       string += handleInterpolation.call(this, interpolation, false)
     }, this)
   } else {
