@@ -1,6 +1,10 @@
 import React from 'react'
 import { css } from 'emotion'
-import { interpolateYlOrRd } from 'd3-scale-chromatic'
+import {
+  interpolatePurples,
+  interpolateBuPu,
+  interpolateRdPu
+} from 'd3-scale-chromatic'
 
 // import createRenderBenchmark from '../createRenderBenchmark'
 
@@ -26,7 +30,9 @@ class Dot extends React.Component {
           borderWidth: `0 ${s / 2}px ${s / 2}px ${s / 2}px`,
           borderColor: `transparent transparent ${props.color} transparent`
         })}
-      />
+      >
+        {props.children}
+      </div>
     )
   }
 }
@@ -39,12 +45,25 @@ export default function SierpinskiTriangle({
   renderCount = 0
 }) {
   if (s <= targetSize) {
+    let fn
+    switch (depth) {
+      case 1:
+        fn = interpolatePurples
+        break
+      case 2:
+        fn = interpolateBuPu
+        break
+      case 3:
+      default:
+        fn = interpolateRdPu
+    }
+
     return (
       <Dot
         x={x - targetSize / 2}
         y={y - targetSize / 2}
         size={targetSize}
-        color={interpolateYlOrRd(renderCount / 20)}
+        color={fn(renderCount / 20)}
       />
     )
   }
@@ -57,7 +76,7 @@ export default function SierpinskiTriangle({
       x={x}
       y={y - s / 2}
       s={s}
-      depth={depth + 1}
+      depth={1}
       renderCount={renderCount}
     />,
     <SierpinskiTriangle
@@ -65,7 +84,7 @@ export default function SierpinskiTriangle({
       x={x - s}
       y={y + s / 2}
       s={s}
-      depth={depth + 1}
+      depth={2}
       renderCount={renderCount}
     />,
     <SierpinskiTriangle
@@ -73,7 +92,7 @@ export default function SierpinskiTriangle({
       x={x + s}
       y={y + s / 2}
       s={s}
-      depth={depth + 1}
+      depth={3}
       renderCount={renderCount}
     />
   ]
