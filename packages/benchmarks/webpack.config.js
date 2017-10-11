@@ -7,7 +7,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   // context: __dirname,
   // devtool: 'eval',
-  entry: './index',
+  entry: ['babel-polyfill', './index'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'performance.bundle.js'
@@ -31,7 +31,11 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             babelrc: false,
-            presets: [['env', { modules: false }], 'react', 'stage-0'],
+            presets: [
+              ['env', { modules: false, useBuiltIns: true, "debug": true }],
+              'react',
+              'stage-0'
+            ],
             plugins: ['babel-macros'],
             cacheDirectory: true
           }
