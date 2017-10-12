@@ -157,5 +157,8 @@
       "path": "./packages/react-emotion/dist/DO-NOT-USE.min.js",
       "threshold": "8 Kb"
     }
-  ]
+  ],
+  "dependencies": {
+    "touch": "^3.1.0"
+  }
 }

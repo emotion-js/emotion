@@ -226,12 +226,10 @@ export default function(babel) {
             ) {
               if (!exists) {
                 if (state.outputDir) {
-                  console.log('making directory', dirPath)
                   mkdirp.sync(dirPath)
                 }
                 touchSync(cssFilename)
               }
-              console.log('writeFileSync', cssFilename)
               fs.writeFileSync(cssFilename, toWrite)
             }
           }
