@@ -2,6 +2,7 @@
 import fs from 'fs'
 import nodePath from 'path'
 import findRoot from 'find-root'
+import mkdirp from 'mkdirp'
 import { touchSync } from 'touch'
 import { addSideEffect } from '@babel/helper-module-imports'
 import {
@@ -441,6 +442,8 @@ export default function(babel: Babel) {
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
 
+          state.outputDir = state.opts.outputDir
+
           state.staticRules = []
 
           state.insertStaticRules = function(staticRules) {
@@ -450,16 +453,33 @@ export default function(babel: Babel) {
         exit(path: BabelPath, state: EmotionBabelPluginPass) {
           if (state.staticRules.length !== 0) {
             const toWrite = state.staticRules.join('\n').trim()
-            const filenameArr = path.hub.file.opts.filename.split('.')
+            let filenameArr = path.hub.file.opts.filename
+
+            if (state.outputDir) {
+              filenameArr = nodePath.join(
+                state.outputDir,
+                path.hub.file.opts.sourceFileName
+              )
+            }
+
+            filenameArr = filenameArr.split('.')
+
             filenameArr.pop()
             filenameArr.push('emotion', 'css')
+
             const cssFilename = filenameArr.join('.')
+            const baseCssName = nodePath.basename(cssFilename)
+            const dirPath = cssFilename.replace(baseCssName, '')
+
             const exists = fs.existsSync(cssFilename)
             addSideEffect(path, './' + nodePath.basename(cssFilename))
             if (
               exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
             ) {
               if (!exists) {
+                if (state.outputDir) {
+                  mkdirp.sync(dirPath)
+                }
                 touchSync(cssFilename)
               }
               fs.writeFileSync(cssFilename, toWrite)

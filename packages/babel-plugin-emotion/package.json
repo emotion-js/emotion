@@ -20,6 +20,7 @@
     "convert-source-map": "^1.5.0",
     "emotion-utils": "^9.0.1",
     "find-root": "^1.1.0",
+    "mkdirp": "^0.5.1",
     "source-map": "^0.5.7",
     "touch": "^1.0.0"
   },
