@@ -223,6 +223,43 @@ export function merge(className, sourceMap) {
   return rawClassName + css(registeredStyles, sourceMap)
 }
 
+function objToStr(obj) {
+  let cls = ''
+  if (Array.isArray(obj)) return Array.prototype.concat.apply([], obj).join(' ')
+  Object.keys(obj).forEach(
+    k => (typeof obj[k] === 'object' ? objToStr(obj[k]) : obj[k] ? k : '')
+  )
+
+  return cls
+}
+
+export const cx = (...cls) =>
+  merge(
+    cls.reduce((str, className, i) => {
+      if (className == null) {
+        return str
+      }
+
+      let next = str ? str + ' ' : str
+      switch (typeof className) {
+        case 'function':
+          next += className()
+          break
+        case 'object':
+          next += objToStr(className)
+          break
+        case 'number':
+          next += parseInt(className, 10)
+          break
+        case 'string':
+        default:
+          next += className.toString()
+          break
+      }
+      return next
+    }, '')
+  )
+
 export function hydrate(ids) {
   ids.forEach(id => {
     inserted[id] = true
