@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { css } from 'emotion'
+// import { css } from 'emotion'
+import styled from 'react-emotion/macro'
 
 import { fmt, standardDeviation, mean, median } from './benchmark'
 
@@ -17,6 +18,17 @@ import { fmt, standardDeviation, mean, median } from './benchmark'
 import SierpinskiTriangle from './tests/renderSierpinskiTriangle'
 
 const runs = Array.from({ length: 20 }, (x, i) => i)
+
+const Wrapper = styled('div')`
+  position: absolute;
+  transform-origin: 0 0;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: #eee;
+  transform: scale(0.33);
+`
 
 class Speedometer extends React.Component {
   state = { renderCount: -1 }
@@ -54,25 +66,14 @@ class Speedometer extends React.Component {
 
   render() {
     return (
-      <div
-        className={css({
-          position: 'absolute',
-          transformOrigin: '0 0',
-          left: '50%',
-          top: '50%',
-          width: '10px',
-          height: '10px',
-          background: '#eee',
-          transform: 'scale(0.5)'
-        })}
-      >
+      <Wrapper>
         <SierpinskiTriangle
           x={0}
           y={0}
           s={1000}
           renderCount={this.state.renderCount}
         />
-      </div>
+      </Wrapper>
     )
   }
 }
