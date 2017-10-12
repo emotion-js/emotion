@@ -20,7 +20,8 @@
     "convert-source-map": "^1.5.0",
     "emotion-utils": "^8.0.2-7",
     "mkdirp": "^0.5.1",
-    "source-map": "^0.5.7"
+    "source-map": "^0.5.7",
+    "touch": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
