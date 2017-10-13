@@ -15,12 +15,10 @@ export function extractCritical(html) {
       ids[match[1]] = true
     }
   }
-
-  o.rules = sheet.sheet.slice().filter(x => {
-    RGX.lastIndex = 0
-    let match = RGX.exec(x)
-    const ret = match == null || ids[match[1]] || false
-    return ret
+  
+  o.rules = sheet.sheet.filter(x => {
+    const match = x.match(RGX)
+    return !match || ids[match[0]]
   })
 
   o.ids = Object.keys(inserted).filter(id => {
