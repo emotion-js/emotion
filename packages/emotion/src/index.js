@@ -223,35 +223,46 @@ export function merge(className, sourceMap) {
   return rawClassName + css(registeredStyles, sourceMap)
 }
 
-export const cx = (...classNames) =>
-  merge(
-    classNames.reduce((str, cls, i) => {
-      if (cls == null) return str
+function classnames() {
+  let len = arguments.length
+  let i = 0
+  let cls = ''
+  for (; i < len; i++) {
+    let arg = arguments[i]
 
-      let next = str ? str + ' ' : str
-      switch (typeof cls) {
-        case 'boolean':
-          return str
-        case 'function':
-          next += cx(cls())
-          break
-        case 'object':
-          if (Array.isArray(cls)) {
-            next += cx.apply(null, cls)
-          } else {
-            for (let k in cls) {
-              if (next) next += ' '
-              next += cls.hasOwnProperty(k) && cls[k] ? k : ''
+    if (arg == null) continue
+    let next = (cls && cls + ' ') || cls
+
+    switch (typeof arg) {
+      case 'boolean':
+        break
+      case 'function':
+        cls = next + classnames(arg())
+        break
+      case 'object': {
+        if (Array.isArray(arg)) {
+          cls = next + classnames.apply(null, arg)
+        } else {
+          for (const k in arg) {
+            if (arg[k]) {
+              cls && (cls += ' ')
+              cls += k
             }
           }
-          break
-        default:
-          next += cls
-          break
+        }
+        break
       }
-      return next
-    }, '')
-  ).trim()
+      default: {
+        cls = next + arg
+      }
+    }
+  }
+  return cls
+}
+
+export function cx(...classNames) {
+  return merge(classnames(...classNames))
+}
 
 export function hydrate(ids) {
   ids.forEach(id => {
