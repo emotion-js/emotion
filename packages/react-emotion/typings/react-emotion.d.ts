@@ -29,7 +29,7 @@ export interface StyledComponent<Props, Theme, IntrinsicProps>
   withComponent<Tag extends keyof JSX.IntrinsicElements>(tag: Tag):
     StyledComponent<Props, Theme, JSX.IntrinsicElements[Tag]>
 
-  withComponent(component: Component<Props & IntrinsicProps>):
+  withComponent(component: Component<Props>):
     StyledComponent<Props, Theme, {}>
 
   displayName: string
