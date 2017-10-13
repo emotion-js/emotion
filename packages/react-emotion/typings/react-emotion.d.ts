@@ -1,6 +1,8 @@
 import { StatelessComponent, Component as ClassComponent, CSSProperties } from 'react'
 import { Interpolation as EmotionInterpolation } from 'emotion'
 
+export * from 'emotion'
+
 export type InterpolationFn<Props = {}> =
   (props: Props) =>
     | EmotionInterpolation

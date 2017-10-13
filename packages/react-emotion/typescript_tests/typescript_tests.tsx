@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { ThemedReactEmotionInterface } from '../';
+import styled, { flush, ThemedReactEmotionInterface } from '../';
 
 let Component;
 let mount;
@@ -125,3 +125,9 @@ mount = <Link href="#" bgColor="red" />;
 
 let Button = Component.withComponent('button');
 mount = <Button type="submit" bgColor="red" />;
+
+/*
+ * Can use emotion helpers importing from react-emotion
+ */
+
+flush();
