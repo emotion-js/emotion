@@ -40,7 +40,7 @@ describe('cx', () => {
     `
 
     const tree = renderer
-      .create(<div className={cx(cls1, cls2, 'modal', 'XxX420_no_scopeXxX')} />)
+      .create(<div className={cx(cls1, cls2, 'modal', 'profile')} />)
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -75,9 +75,42 @@ describe('cx', () => {
             { [cls1]: foo },
             { [cls2]: bar },
             () => 'modal',
-            'XxX420_no_scopeXxX',
-            [cls3, cls4]
+            'profile',
+            [[cls3, [cls4]]]
           )}
+        />
+      )
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('fun fun functions', () => {
+    const cls1 = css`
+      font-size: 20px;
+      background: green;
+    `
+    const cls2 = css`
+      font-size: 20px;
+      background: blue;
+    `
+
+    const cls3 = css`
+      font-size: 20px;
+      background: darkorange;
+    `
+
+    const cls4 = css`
+      font-size: 20px;
+      background: darkgreen;
+    `
+
+    const tree = renderer
+      .create(
+        <div
+          className={cx(() => () => [
+            () => [cls1, false && cls2, 'modal'],
+            () => [() => [cls3, () => ({ [cls4]: true }), 'profile']]
+          ])}
         />
       )
       .toJSON()

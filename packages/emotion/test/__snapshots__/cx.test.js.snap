@@ -11,7 +11,22 @@ exports[`cx all types 1`] = `
 }
 
 <div
-  className=" modal XxX420_no_scopeXxX glamor-0"
+  className="modal profile glamor-0"
+/>
+`;
+
+exports[`cx fun fun functions 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  background: green;
+  font-size: 20px;
+  background: darkorange;
+  font-size: 20px;
+  background: darkgreen;
+}
+
+<div
+  className="modal profile glamor-0"
 />
 `;
 
@@ -48,6 +63,6 @@ exports[`cx merge 4 1`] = `
 }
 
 <div
-  className="modal XxX420_no_scopeXxX glamor-0"
+  className="modal profile glamor-0"
 />
 `;

@@ -223,51 +223,35 @@ export function merge(className, sourceMap) {
   return rawClassName + css(registeredStyles, sourceMap)
 }
 
-function objToStr(obj) {
-  let cls = ''
-  if (Array.isArray(obj))
-    return Array.prototype.concat
-      .apply([], obj)
-      .filter(Boolean)
-      .join(' ')
-  Object.keys(obj).forEach(k => {
-    if (cls) {
-      cls += ' '
-    }
-    cls += typeof obj[k] === 'object' ? objToStr(obj[k]) : obj[k] ? k : ''
-  })
-
-  return cls
-}
-
-export const cx = (...cls) =>
+export const cx = (...classNames) =>
   merge(
-    cls
-      .reduce((str, className, i) => {
-        if (className == null) {
-          return str
-        }
+    classNames.reduce((str, cls, i) => {
+      if (cls == null) return str
 
-        let next = str ? str + ' ' : str
-        switch (typeof className) {
-          case 'function':
-            next += className()
-            break
-          case 'object':
-            next += objToStr(className)
-            break
-          case 'number':
-            next += parseInt(className, 10)
-            break
-          case 'string':
-          default:
-            next += className.toString()
-            break
-        }
-        return next
-      }, '')
-      .trim()
-  )
+      let next = str ? str + ' ' : str
+      switch (typeof cls) {
+        case 'boolean':
+          return str
+        case 'function':
+          next += cx(cls())
+          break
+        case 'object':
+          if (Array.isArray(cls)) {
+            next += cx.apply(null, cls)
+          } else {
+            for (let k in cls) {
+              if (next) next += ' '
+              next += cls.hasOwnProperty(k) && cls[k] ? k : ''
+            }
+          }
+          break
+        default:
+          next += cls
+          break
+      }
+      return next
+    }, '')
+  ).trim()
 
 export function hydrate(ids) {
   ids.forEach(id => {
