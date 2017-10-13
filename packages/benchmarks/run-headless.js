@@ -2,15 +2,6 @@ const puppeteer = require('puppeteer')
 const Table = require('cli-table')
 const path = require('path')
 
-const sendResult = require('./send-results')
-
-const {
-  TRAVIS_BRANCH = 'test',
-  TRAVIS_COMMIT = 'test',
-  TRAVIS_COMMIT_MESSAGE = 'test',
-  TRAVIS_PULL_REQUEST = 'test'
-} = process.env
-
 // need to add a timeout if it never completes
 // needs error handling
 
@@ -26,22 +17,22 @@ async function run() {
       console.log(`${result.name}: Mean ${result.mean}ms`)
       results.push(result)
       if (done) {
-        try {
-          await sendResult({
-            branch: TRAVIS_BRANCH,
-            commit: TRAVIS_COMMIT,
-            commitMessage: TRAVIS_COMMIT_MESSAGE,
-            pr: TRAVIS_PULL_REQUEST,
-            results: results.map(r => ({
-              name: r.name,
-              duration: parseInt(r.mean, 10),
-              type: r.name.toLowerCase().includes('deep') ? 'DEEP' : 'WIDE'
-            }))
-          })
-        } catch (e) {
-          console.log('graphql failed')
-          console.log(e.message)
-        }
+        // try {
+        //   await sendResult({
+        //     branch: TRAVIS_BRANCH,
+        //     commit: TRAVIS_COMMIT,
+        //     commitMessage: TRAVIS_COMMIT_MESSAGE,
+        //     pr: TRAVIS_PULL_REQUEST,
+        //     results: results.map(r => ({
+        //       name: r.name,
+        //       duration: parseInt(r.mean, 10),
+        //       type: r.name.toLowerCase().includes('deep') ? 'DEEP' : 'WIDE'
+        //     }))
+        //   })
+        // } catch (e) {
+        //   console.log('graphql failed')
+        //   console.log(e.message)
+        // }
 
         const table = new Table()
         table.push(['Benchmark', 'Mean (ms)'])
