@@ -32,7 +32,7 @@ module.exports = {
           options: {
             babelrc: false,
             presets: [
-              ['env', { modules: false, useBuiltIns: true, "debug": true }],
+              ['env', { modules: false, useBuiltIns: true, debug: true }],
               'react',
               'stage-0'
             ],

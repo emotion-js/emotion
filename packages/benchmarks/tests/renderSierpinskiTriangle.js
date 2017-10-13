@@ -1,114 +1,79 @@
 import React from 'react'
-import { css } from 'emotion'
-import styled from 'react-emotion/macro'
-import {
-  interpolatePurples,
-  interpolateBuPu,
-  interpolateRdPu
-} from 'd3-scale-chromatic'
+import ReactDOM from 'react-dom'
+import SierpinskiTriangle from '../src/components/SierpinskiTriangle'
+import { fmt, standardDeviation, mean, median } from '../benchmark'
 
-// import createRenderBenchmark from '../createRenderBenchmark'
+const node = document.querySelector('.root')
 
-let targetSize = 25
+let runs = 20
 
-const Dot = styled('div')`
-  position: absolute;
-  text-align: center;
-  cursor: pointer;
-  width: 0;
-  height: 0;
-  left: ${p => p.x + 'px'};
-  top: ${p => p.y + 'px'};
-  border-style: solid;
-  border-width: ${({ size: s }) => `0 ${s / 2}px ${s / 2}px ${s / 2}px`};
-  border-color: ${({ color }) =>
-    `transparent transparent ${color} transparent`};
-`
+class Speedometer extends React.Component {
+  state = { renderCount: -1 }
 
-// class Dot extends React.Component {
-//   render() {
-//     let props = this.props
-//     let s = props.size
-//     return (
-//       <div
-//         className={css({
-//           position: 'absolute',
-//           textAlign: 'center',
-//           cursor: 'pointer',
-//           width: 0,
-//           height: 0,
-//           left: props.x + 'px',
-//           top: props.y + 'px',
-//           borderStyle: 'solid',
-//
-//           borderTop: 'none',
-//           borderWidth: `0 ${s / 2}px ${s / 2}px ${s / 2}px`,
-//           borderColor: `transparent transparent ${props.color} transparent`
-//         })}
-//       >
-//         {props.children}
-//       </div>
-//     )
-//   }
-// }
-
-export default function SierpinskiTriangle({
-  x,
-  y,
-  s,
-  depth = 0,
-  renderCount = 0
-}) {
-  if (s <= targetSize) {
-    let fn
-    switch (depth) {
-      case 1:
-        fn = interpolatePurples
-        break
-      case 2:
-        fn = interpolateBuPu
-        break
-      case 3:
-      default:
-        fn = interpolateRdPu
+  async componentDidMount() {
+    const durations = []
+    while (runs--) {
+      const then = window.performance.now()
+      await new Promise(resolve => {
+        this.raf = window.requestAnimationFrame(() => {
+          this.setState({ renderCount: this.state.renderCount + 1 }, () => {
+            const now = window.performance.now()
+            durations.push(now - then)
+            resolve()
+          })
+        })
+      })
     }
+    runs = 20
+    const stdDev = standardDeviation(durations)
+    const formattedMean = fmt(mean(durations))
+    const formattedMedian = fmt(median(durations))
+    const formattedStdDev = fmt(stdDev)
 
+    console.log({
+      name: this.props.name,
+      description: this.props.description,
+      mean: formattedMean,
+      median: formattedMedian,
+      stdDev: formattedStdDev,
+      durations
+    })
+    this.props.onComplete()
+  }
+  componentWillUnmount() {
+    window.cancelAnimationFrame(this.raf)
+  }
+  render() {
     return (
-      <Dot
-        x={x - targetSize / 2}
-        y={y - targetSize / 2}
-        size={targetSize}
-        color={fn(renderCount / 20)}
-      />
+      <this.props.Wrapper>
+        <SierpinskiTriangle
+          x={0}
+          y={0}
+          s={1000}
+          Dot={this.props.Dot}
+          renderCount={this.state.renderCount}
+        />
+      </this.props.Wrapper>
     )
   }
-
-  s /= 2
-
-  return [
-    <SierpinskiTriangle
-      key={1}
-      x={x}
-      y={y - s / 2}
-      s={s}
-      depth={1}
-      renderCount={renderCount}
-    />,
-    <SierpinskiTriangle
-      key={2}
-      x={x - s}
-      y={y + s / 2}
-      s={s}
-      depth={2}
-      renderCount={renderCount}
-    />,
-    <SierpinskiTriangle
-      key={3}
-      x={x + s}
-      y={y + s / 2}
-      s={s}
-      depth={3}
-      renderCount={renderCount}
-    />
-  ]
 }
+
+const renderSierpinskiTriangle = (name, { Dot, Wrapper }) => () => {
+  return new Promise(resolve => {
+    ReactDOM.render(
+      <Speedometer
+        Dot={Dot}
+        Wrapper={Wrapper}
+        onComplete={() => {
+          ReactDOM.unmountComponentAtNode(node)
+          resolve()
+        }}
+        name={`triangle [${name}]`}
+        description="push dynamic styles"
+      />,
+      node
+    )
+  })
+}
+
+export default renderSierpinskiTriangle
