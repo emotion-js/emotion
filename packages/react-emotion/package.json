@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "npm-run-all clean rollup rollup:umd",
-    "test:typescript": "tsc --noEmit -p --jsx typescript_tests/tsconfig.json",
+    "test:typescript": "tsc --noEmit -p typescript_tests/tsconfig.json",
     "pretest:typescript": "npm run build",
     "clean": "rimraf dist",
     "rollup": "rollup -c ../../rollup.config.js",
