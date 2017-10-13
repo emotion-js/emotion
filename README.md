@@ -42,8 +42,9 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
   - [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
 
 ### In the Wild
-[healthline.com](https://www.healthline.com/health/body-aches)
-[vault.crucible.gg](http://vault.crucible.gg/)
+
+  - [healthline.com](https://www.healthline.com/health/body-aches)
+  - [vault.crucible.gg](http://vault.crucible.gg/)
 
 ---
 
