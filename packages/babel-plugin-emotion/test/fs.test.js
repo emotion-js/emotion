@@ -38,7 +38,7 @@ describe('babel plugin fs', () => {
       babelrc: false
     })
     expect(fs.existsSync).toBeCalledWith(cssFilename)
-    expect(mkdirp.sync).not.toBeCalledWith()
+    expect(mkdirp.sync).not.toBeCalled()
     expect(touch.sync).toBeCalledWith(cssFilename)
     expect(fs.writeFileSync).toHaveBeenCalled()
     expect(fs.writeFileSync.mock.calls[0][0]).toBe(cssFilename)
