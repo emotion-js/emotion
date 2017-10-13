@@ -1,13 +1,18 @@
 import { StatelessComponent, Component as ClassComponent, CSSProperties } from 'react'
 import { Interpolation as EmotionInterpolation } from 'emotion'
 
-export type InterpolationFn<Props = {}> = (
-  props: Props
-) => EmotionInterpolation
+export type InterpolationFn<Props = {}> =
+  (props: Props) =>
+    | EmotionInterpolation
+    | InterpolationFn<Props>
 
-export type Interpolation<Props = {}> =
+export type InterpolationTypes<Props = {}> =
   | InterpolationFn<Props>
   | EmotionInterpolation
+
+export type Interpolation<Props = {}> =
+  | InterpolationTypes<Props>
+  | InterpolationTypes<Props>[]
 
 export interface Options {
   string?: string,
