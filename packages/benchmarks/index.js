@@ -25,6 +25,7 @@ const allTests = {
     () => renderWideTree('emotionObj', emotionObj)
   ],
   glamor: [
+    () => renderSierpinskiTriangle('glamor', glamor),
     () => renderDeepTree('glamor', glamor),
     () => renderWideTree('glamor', glamor)
   ],

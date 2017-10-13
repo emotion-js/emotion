@@ -68,7 +68,7 @@ const renderSierpinskiTriangle = (name, { Dot, Wrapper }) => () => {
           ReactDOM.unmountComponentAtNode(node)
           resolve()
         }}
-        name={`triangle [${name}]`}
+        name={`Triangle [${name}]`}
         description="push dynamic styles"
       />,
       node
