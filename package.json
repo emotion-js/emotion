@@ -151,7 +151,7 @@
   "bundlesize": [
     {
       "path": "./packages/emotion/dist/DO-NOT-USE.min.js",
-      "threshold": "6 Kb"
+      "threshold": "6.25 Kb"
     },
     {
       "path": "./packages/react-emotion/dist/DO-NOT-USE.min.js",
