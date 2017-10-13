@@ -41,7 +41,7 @@ export interface StyledComponent<Props, Theme, IntrinsicProps>
 
 export type ObjectStyleAttributes =
   | CSSProperties
-  | { [key: string]: number | string | ObjectStyleAttributes }
+  | { [key: string]: ObjectStyleAttributes }
 
 export interface CreateStyled<Props, Theme, IntrinsicProps> {
   // overload for template string as styles
@@ -87,7 +87,7 @@ export interface ThemedReactEmotionInterface<Theme> extends ShorthandsFactories<
   ): CreateStyled<Props, Theme, JSX.IntrinsicElements[Tag]>
 
   // overload for component
-  <Props = {}>(
+  <Props>(
     component: Component<Props>,
     options?: Options,
   ): CreateStyled<Props, Theme, {}>

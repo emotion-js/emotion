@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '../';
+import styled, { ThemedReactEmotionInterface } from '../';
 
 let Component;
 let mount;
@@ -8,10 +8,10 @@ let mount;
  * Inference HTML Tag Props
  */
 Component = styled.div({ color: 'red' });
-mount = <Component onClick={(event) => event} />;
+mount = <Component onClick={event => event} />;
 
 Component = styled('div')({ color: 'red' });
-mount = <Component onClick={(event) => event} />;
+mount = <Component onClick={event => event} />;
 
 Component = styled.div`color: red;`;
 mount = <Component onClick={(e) => e} />;
@@ -60,19 +60,50 @@ mount = <Component lookColor="red" />;
  * With other components
  */
 type AnotherCustomProps = { customProp: string }
-type SFCComponentProps = { className?: string, foo: 'bar' }
+type SFCComponentProps = { className?: string, foo: string }
+
 const SFCComponent: React.StatelessComponent<SFCComponentProps> = props => (
-  <div className={props.className}>{props.children}</div>
+  <div className={props.className}>{props.children} {props.foo}</div>
 )
 
 // infer SFCComponentProps
-Component = styled(SFCComponent)({ 
-  color: 'red',
-})
+Component = styled(SFCComponent)({ color: 'red' })
 mount = <Component foo="bar" />
 
-// do not infer SFCComponentProps, need to pass
+// infer SFCComponentProps
+Component = styled(SFCComponent)`color: red`;
+mount = <Component foo="bar" />
+
+// do not infer SFCComponentProps with pass CustomProps, need to pass both
 Component = styled<AnotherCustomProps & SFCComponentProps>(SFCComponent)({ 
   color: 'red',
-})
+}, props => ({
+  background: props.customProp,
+}))
 mount = <Component customProp="red" foo="bar" /> 
+
+// do not infer SFCComponentProps with pass CustomProps, need to pass both
+Component = styled<AnotherCustomProps & SFCComponentProps>(SFCComponent)`
+  color: red;
+  background: ${props => props.customProp};
+`;
+mount = <Component customProp="red" foo="bar" /> 
+
+
+/*
+ * With explicit theme
+ */
+
+type Theme = {
+  color: {
+    primary: string,
+    secondary: string,
+  }
+}
+
+const _styled = styled as ThemedReactEmotionInterface<Theme>
+
+Component = _styled.div`
+  color: ${props => props.theme.color.primary}
+`
+mount = <Component onClick={event => event} />
