@@ -57,12 +57,12 @@ if (window.location.hash) {
     })
 } else {
   tests.push(...allTests.emotion)
-  // tests.push(...allTests.emotionObj)
-  // tests.push(...allTests.emotionCSS)
-  // tests.push(...allTests['css-modules'])
-  // tests.push(...allTests.glamorous)
-  // tests.push(...allTests.glamor)
-  // tests.push(...allTests['styled-components'])
+  tests.push(...allTests.emotionObj)
+  tests.push(...allTests.emotionCSS)
+  tests.push(...allTests['css-modules'])
+  tests.push(...allTests.glamorous)
+  tests.push(...allTests.glamor)
+  tests.push(...allTests['styled-components'])
 }
 
 tests.push(() => () => Promise.resolve(console.log('done')))
