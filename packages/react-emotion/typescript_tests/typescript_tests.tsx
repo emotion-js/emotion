@@ -59,35 +59,35 @@ mount = <Component lookColor="red" />;
 /*
  * With other components
  */
-type AnotherCustomProps = { customProp: string }
-type SFCComponentProps = { className?: string, foo: string }
+type CustomProps2 = { customProp: string };
+type SFCComponentProps = { className?: string, foo: string };
 
 const SFCComponent: React.StatelessComponent<SFCComponentProps> = props => (
   <div className={props.className}>{props.children} {props.foo}</div>
-)
+);
 
 // infer SFCComponentProps
-Component = styled(SFCComponent)({ color: 'red' })
-mount = <Component foo="bar" />
+Component = styled(SFCComponent)({ color: 'red' });
+mount = <Component foo="bar" />;
 
 // infer SFCComponentProps
 Component = styled(SFCComponent)`color: red`;
-mount = <Component foo="bar" />
+mount = <Component foo="bar" />;
 
 // do not infer SFCComponentProps with pass CustomProps, need to pass both
-Component = styled<AnotherCustomProps & SFCComponentProps>(SFCComponent)({ 
+Component = styled<CustomProps2 & SFCComponentProps>(SFCComponent)({ 
   color: 'red',
 }, props => ({
   background: props.customProp,
-}))
-mount = <Component customProp="red" foo="bar" /> 
+}));
+mount = <Component customProp="red" foo="bar" />;
 
 // do not infer SFCComponentProps with pass CustomProps, need to pass both
-Component = styled<AnotherCustomProps & SFCComponentProps>(SFCComponent)`
+Component = styled<CustomProps2 & SFCComponentProps>(SFCComponent)`
   color: red;
   background: ${props => props.customProp};
 `;
-mount = <Component customProp="red" foo="bar" /> 
+mount = <Component customProp="red" foo="bar" />;
 
 
 /*
@@ -99,11 +99,29 @@ type Theme = {
     primary: string,
     secondary: string,
   }
-}
+};
 
-const _styled = styled as ThemedReactEmotionInterface<Theme>
+const _styled = styled as ThemedReactEmotionInterface<Theme>;
 
 Component = _styled.div`
   color: ${props => props.theme.color.primary}
-`
-mount = <Component onClick={event => event} />
+`;
+mount = <Component onClick={event => event} />;
+
+/*
+ * withComponent
+ */
+
+type CustomProps3 = {
+  bgColor: string,
+};
+
+Component = styled.div<CustomProps3>(props => ({
+  bgColor: props.bgColor,
+}));
+
+let Link = Component.withComponent('a');
+mount = <Link href="#" bgColor="red" />;
+
+let Button = Component.withComponent('button');
+mount = <Button type="submit" bgColor="red" />;
