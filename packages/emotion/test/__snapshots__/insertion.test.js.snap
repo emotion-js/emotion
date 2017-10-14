@@ -57,7 +57,7 @@ Array [
 exports[`@supports 1`] = `
 Array [
   "@supports (display:block){.css-11{color:red;display:none;}.css-11 h1{color:red;}.css-11 h1 h2{color:blue;}}",
-  "@supports (-webkit-appearance:none)or(-moz-appearance:none)or(appearance:none){.css-11{color:red;}}",
+  "@supports (-webkit-appearance:none) or (-moz-appearance:none) or (appearance:none){.css-11{color:red;}}",
 ]
 `;
 
