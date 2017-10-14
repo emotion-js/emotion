@@ -8,6 +8,7 @@ import Helmet from 'react-helmet'
 import 'normalize.css/normalize.css'
 import DocWrapper from '../components/DocWrapper'
 import { colors, constants } from '../utils/style'
+import Image from 'gatsby-image'
 
 injectGlobal(
   prismStyles.replace('prism-code', 'prism-code,pre[class*="language-"]')
@@ -111,12 +112,11 @@ const Header = ({ isHome, avatar }) => (
           }}
           align="center"
         >
-          <img
+          <Image
             css={{ display: 'inline-block', margin: 0, padding: 0 }}
             height="36px"
             width="36px"
-            src={avatar.src}
-            srcSet={avatar.srcSet}
+            resolutions={avatar}
           />
 
           <h1 css={{ margin: 0, padding: 0, display: 'flex' }}>
@@ -200,7 +200,7 @@ const TemplateWrapper = props => {
   if (props.location.pathname.match(/\/docs\/.+/)) {
     return (
       <BaseWrapper
-        avatar={props.data.avatar.responsiveResolution}
+        avatar={props.data.avatar.resolutions}
         location={props.location}
       >
         <DocWrapper sidebarNodes={props.data.allFile.edges}>
@@ -211,7 +211,7 @@ const TemplateWrapper = props => {
   }
   return (
     <BaseWrapper
-      avatar={props.data.avatar.responsiveResolution}
+      avatar={props.data.avatar.resolutions}
       location={props.location}
     >
       <Box m={[1, 2]}>{props.children()}</Box>
@@ -238,9 +238,8 @@ export const pageQuery = graphql`
       }
     }
     avatar: imageSharp {
-      responsiveResolution(width: 36, height: 36) {
-        src
-        srcSet
+      resolutions(width: 36, height: 36) {
+        ...GatsbyImageSharpResolutions
       }
     }
   }

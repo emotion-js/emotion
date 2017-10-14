@@ -5,6 +5,7 @@ import { LiveEditor, withLive, LiveProvider } from 'react-live/lib'
 import _GatsbyLink from 'gatsby-link'
 import { scope, Error } from '../components/Playground'
 import { openColors, colors, constants } from '../utils/style'
+import Image from 'gatsby-image'
 
 const Title = Box.withComponent('h1')
 const Paragraph = Box.withComponent('p')
@@ -114,8 +115,6 @@ class IndexPage extends React.Component {
   }
   state = { mode: 'string', stringCode, objectCode }
   render() {
-    const avatar = this.props.data.imageSharp.responsiveResolution
-
     return (
       <LiveProvider
         scope={scope}
@@ -138,13 +137,12 @@ class IndexPage extends React.Component {
           <Box flex={1.5} display="flex" justify="center" align="center">
             <Box color="white" flex={1} css={{ maxWidth: 600 }}>
               <Box>
-                <img
-                  width="100px"
-                  height="100px"
-                  alt="Emotion Avatar"
-                  src={avatar.src}
-                  srcSet={avatar.srcSet}
-                />
+                <div css={{ display: 'inline-block' }}>
+                  <Image
+                    alt="Emotion Avatar"
+                    resolutions={this.props.data.imageSharp.resolutions}
+                  />
+                </div>
                 <Title
                   display="inline-block"
                   fontSize={'1.6rem'}
@@ -222,9 +220,8 @@ class IndexPage extends React.Component {
 export const pageQuery = graphql`
   query EmotionAvatar {
     imageSharp {
-      responsiveResolution(width: 200, height: 200) {
-        src
-        srcSet
+      resolutions(width: 100, height: 100) {
+        ...GatsbyImageSharpResolutions
       }
     }
   }

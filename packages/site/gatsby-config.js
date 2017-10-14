@@ -26,7 +26,18 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: ['gatsby-remark-prismjs']
+        plugins: [
+          'gatsby-remark-prismjs',
+          'gatsby-remark-autolink-headers',
+          'gatsby-remark-smartypants',
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+              linkImagesToOriginal: false
+            }
+          }
+        ]
       }
     },
     `gatsby-plugin-react-helmet`,

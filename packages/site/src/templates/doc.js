@@ -84,6 +84,10 @@ const styles = css`
     background-color: #f5d0f0;
   }
 
+  a.anchor {
+    background-color: initial;
+  }
+
   blockquote {
     margin: 0;
     border-left: 5px solid ${openColors.gray[5]};
