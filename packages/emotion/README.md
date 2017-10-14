@@ -34,13 +34,13 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
 - API
   - [css](https://github.com/tkh44/emotion/tree/master/docs/css.md)
   - [styled](https://github.com/tkh44/emotion/tree/master/docs/styled.md)
-  - [css prop](https://github.com/tkh44/emotion/tree/master/docs/css-prop.md)
+  - [css prop](https://github.com/tkh44/emotion/tree/master/docs/css#CSS-Prop.md)
   - [composition](https://github.com/tkh44/emotion/tree/master/docs/composition.md)
   - [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
   - [fontFace](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
   - [injectGlobal](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
 
-- [Usage with babel-macros](https://github.com/tkh44/emotion/tree/master/docs/babel-macros.md)
+- [Usage with babel-macros](https://github.com/tkh44/emotion/tree/master/docs/babel.md#usage-with-babel-macros)
 - [Usage with Preact](https://github.com/tkh44/emotion/tree/master/docs/preact.md)
 
 - Ecosystem

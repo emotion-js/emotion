@@ -1,7 +1,5 @@
 ## Styled
 
-The babel plugin is required in order to use the `styled` api. The installation documentation can be found [here](https://github.com/emotion-js/emotion/blob/master/docs/install.md).
-
 ```jsx
 import styled from 'react-emotion'
 
@@ -27,16 +25,6 @@ function Greeting ({ name }) {
   return <H2>Hello {name}</H2> // red, 32px, and scaled 2x text
 }
 
-// this works too
-
-const H3 = styled.h3`
-  font-size: ${fontSize * 1/3}px;
-  color: red;
-`
-
-function Greeting ({ name }) {
-  return <H3>Hello {name}</H3> // red, 16px text
-}
 
 // You can also pass refs down using innerRef
 const H1 = styled('h1')`
@@ -47,5 +35,21 @@ function Greeting ({ name }) {
   // will turn into to <h1 className="generated-className" ref={() => console.log('hello!')}>Hello {name}</h1>
   return <H1 innerRef={() => console.log('hello!')}>Hello {name}</H1>
 }
+
+```
+## With Babel Plugin
+The installation documentation can be found [here](https://github.com/emotion-js/emotion/blob/master/docs/install.md).
+
+```jsx
+import styled from 'react-emotion'
+
+const H3 = styled.h3`
+  font-size: ${fontSize * 1/3}px;
+  color: red;
+`
+function Greeting ({ name }) {
+  return <H3>Hello {name}</H3>
+}
+
 
 ```
