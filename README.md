@@ -67,15 +67,15 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 -- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
 ### API Usage
-- Styling components with [styled](docs/styled.md)
+- Styling components with [`styled`](docs/styled.md)
 
 - Create composable styles with [`css` classes and props](docs/css.md)
 
-  - [composition](https://github.com/tkh44/emotion/tree/master/docs/composition.md)
+  - [`composition`](https://github.com/tkh44/emotion/tree/master/docs/composition.md)
 
-- [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
-- [fontFace](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
-- [injectGlobal](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
+- [`keyframes`](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
+- [`fontFace`](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
+- [`injectGlobal`](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
 
 ### More about emotion
 
