@@ -1,4 +1,3 @@
-### All documentation on master is for version 8. The documentation for version 7 is located under the [`v7.3.2` tag](https://github.com/emotion-js/emotion/tree/v7.3.2).
 
 <p align="center" style="color: #343a40">
   <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" height="200" width="200">
@@ -16,25 +15,69 @@
 [![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
 
 emotion is a high performance, lightweight css-in-js library. 
-The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/glam) library and its philosophy is laid out [here](https://gist.github.com/threepointone/0ef30b196682a69327c407124f33d69a). 
-The basic idea is simple.
 You shouldn’t have to sacrifice runtime performance for good developer experience when writing CSS. emotion 
 minimizes the runtime cost of css-in-js dramatically by parsing your styles with PostCSS during compilation instead of at runtime. 
 
+---
+### Quick Start
+```bash
+npm install --save emotion 
+```
+
+```javascript
+import { css } from 'emotion';
+const myStyle = css`
+  color: rebeccapurple;
+`;
+
+const app = document.getElementById('root');
+app.classList.add(myStyle);
+```
+### React with optional Babel plugin
+```bash
+npm install --save emotion react-emotion babel-plugin-emotion
+```
+_note: use `preact-emotion` in place of `react-emotion` if using Preact_
+
+```javascript
+import styled, { css } from 'react-emotion';
+const Container = styled('div')`
+  background: #333;
+`;
+const myStyle = css`
+  color: rebeccapurple;
+`;
+
+<Container>
+  <p className={myStyle}>Hello World</p>
+</Container>
+
+```
+**.babelrc** _note: add emotion as the first plugin in the list_
+```json
+{
+  "plugins": [
+    "emotion"
+  ]
+}
+```
+[Demo Code Sandbox](https://codesandbox.io/s/pk1qjqpw67)
+
+The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/glam) library and its philosophy is laid out [here](https://gist.github.com/threepointone/0ef30b196682a69327c407124f33d69a). 
+The basic idea is simple.
+
 -- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
----
+### Examples
 
-### [Install](https://github.com/tkh44/emotion/tree/master/docs/install.md)
-
-### Demos
-  
-  - [Code Sandbox](https://codesandbox.io/s/pk1qjqpw67)
   - [emotion website](https://github.com/tkh44/emotion/tree/master/packages/site) [[Demo Here](https://emotion.sh)]
   - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
   - **open a PR and add yours!**
 
-### [Documentation](https://github.com/tkh44/emotion/tree/master/docs)
+### Usage
+(API with links here [Documentation](https://github.com/tkh44/emotion/tree/master/docs))
+
+[_Version 7 documentation is here-](https://github.com/emotion-js/emotion/tree/v7.3.2)
 
 ### Ecosystem
   
