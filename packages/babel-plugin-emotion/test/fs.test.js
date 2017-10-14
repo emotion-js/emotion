@@ -1,9 +1,15 @@
 import { transform } from 'babel-core'
 import fs from 'fs'
+// import { basename } from 'path'
+import mkdirp from 'mkdirp'
 import touch from 'touch'
 import plugin from 'babel-plugin-emotion'
 
-jest.mock('fs').mock('touch')
+jest
+  .mock('fs')
+  .mock('mkdirp')
+  .mock('touch')
+
 fs.statSync.mockReturnValue({ isFile: () => false })
 
 const basic = `
@@ -32,6 +38,7 @@ describe('babel plugin fs', () => {
       babelrc: false
     })
     expect(fs.existsSync).toBeCalledWith(cssFilename)
+    expect(mkdirp.sync).not.toBeCalled()
     expect(touch.sync).toBeCalledWith(cssFilename)
     expect(fs.writeFileSync).toHaveBeenCalled()
     expect(fs.writeFileSync.mock.calls[0][0]).toBe(cssFilename)
@@ -39,6 +46,26 @@ describe('babel plugin fs', () => {
     output = fs.writeFileSync.mock.calls[0][1]
     expect(code).toMatchSnapshot()
   })
+
+  // test('creates and writes to the custom output dir when it does not exist', () => {
+  //   const ABSOLUTE_PATH = '/some/absolute/path/'
+  //   fs.existsSync.mockReturnValueOnce(false)
+  //   const { code } = transform(basic, {
+  //     plugins: [[plugin, { extractStatic: true, outputDir: ABSOLUTE_PATH }]],
+  //     filename: __filename,
+  //     babelrc: false
+  //   })
+
+  //   const newFilePath = `${ABSOLUTE_PATH}${basename(cssFilename)}`
+  //   expect(fs.existsSync).toBeCalledWith(newFilePath)
+  //   expect(mkdirp.sync).toBeCalledWith(ABSOLUTE_PATH)
+  //   expect(touch.sync).toBeCalledWith(newFilePath)
+  //   expect(fs.writeFileSync).toHaveBeenCalled()
+  //   expect(fs.writeFileSync.mock.calls[0][0]).toBe(newFilePath)
+  //   expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
+  //   expect(code).toMatchSnapshot()
+  // })
+
   test('writes to the css file when it does exist ', () => {
     fs.existsSync.mockReturnValueOnce(true)
     fs.readFileSync.mockReturnValueOnce('')
