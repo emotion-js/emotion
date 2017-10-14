@@ -20,34 +20,13 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test.skip('basic render', () => {
+  test('basic render', () => {
     const fontSize = 20
     const H1 = styled.h1`
       color: blue;
-      font-size: ${fontSize};
+      font-size: ${fontSize + 'px'};
       @media (min-width: 420px) {
         color: blue;
-        @media (min-width: 520px) {
-          color: green;
-        }
-      }
-    `
-
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
-
-    expect(tree).toMatchSnapshot()
-  })
-
-  test('null interpolation value', () => {
-    const fontSize = 20
-    const H1 = styled.h1`
-      color: blue;
-      font-size: ${fontSize};
-      @media (min-width: 420px) {
-        color: blue;
-        @media (min-width: 520px) {
-          color: green;
-        }
       }
     `
 
@@ -253,7 +232,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test.skip('input placeholder', () => {
+  test('input placeholder', () => {
     const Input = styled.input`
       ::placeholder {
         background-color: green;
@@ -264,7 +243,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test.skip('input placeholder object', () => {
+  test('input placeholder object', () => {
     const Input = styled('input')({
       '::placeholder': {
         backgroundColor: 'green'
@@ -523,6 +502,46 @@ describe('styled', () => {
     expect(tree2).toMatchSnapshot()
   })
 
+  test('composition of nested pseudo selectors', () => {
+    const defaultLinkStyles = {
+      '&:hover': {
+        color: 'blue',
+        '&:active': {
+          color: 'red'
+        }
+      }
+    }
+
+    const buttonStyles = () => ({
+      ...defaultLinkStyles,
+      fontSize: '2rem',
+      padding: 16
+    })
+
+    const Button = styled('button')(buttonStyles)
+
+    const tree = renderer
+      .create(
+        <Button
+          className={css({
+            '&:hover': {
+              color: 'pink',
+              '&:active': {
+                color: 'purple'
+              },
+              '&.some-class': {
+                color: 'yellow'
+              }
+            }
+          })}
+        >
+          Should be purple
+        </Button>
+      )
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('objects', () => {
     const H1 = styled('h1')({ padding: 10 }, props => ({
       display: props.display
@@ -609,7 +628,10 @@ describe('styled', () => {
       display: flex;
       color: ${props => props.someProp};
     `)
-    const tree = renderer.create(<SomeComponent />).toJSON()
+    const FinalComponent = styled(SomeComponent)`
+      padding: 8px;
+    `
+    const tree = renderer.create(<FinalComponent />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
@@ -733,5 +755,43 @@ describe('styled', () => {
     )
 
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+  test('name with class component', () => {
+    class SomeComponent extends React.Component {
+      render() {
+        return <div className={this.props.className} />
+      }
+    }
+    const StyledComponent = styled(SomeComponent)`
+      color: hotpink;
+    `
+    const wrapper = mount(<StyledComponent />)
+    expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+  test('function that function returns gets called with props', () => {
+    const SomeComponent = styled.div`
+      color: ${() => props => props.color};
+      background-color: yellow;
+    `
+    const tree = renderer.create(<SomeComponent color="hotpink" />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('theme prop exists without ThemeProvider', () => {
+    const SomeComponent = styled.div`
+      color: ${props => props.theme.color || 'green'};
+      background-color: yellow;
+    `
+    const tree = renderer.create(<SomeComponent />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('theme prop exists without ThemeProvider with a theme prop on the component', () => {
+    const SomeComponent = styled.div`
+      color: ${props => props.theme.color || 'green'};
+      background-color: yellow;
+    `
+    const tree = renderer
+      .create(<SomeComponent theme={{ color: 'hotpink' }} />)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })
