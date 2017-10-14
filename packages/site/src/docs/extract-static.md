@@ -20,6 +20,10 @@ const Button = styled('button')`
 
 Configure babel
 
+```bash
+npm install babel-plugin-emotion -D
+```
+
 **.babelrc**
 ```json
 {

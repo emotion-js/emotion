@@ -8,9 +8,11 @@ import styledComponents from './src/styled-components'
 
 import renderDeepTree from './tests/renderDeepTree'
 import renderWideTree from './tests/renderWideTree'
+import renderSierpinskiTriangle from './tests/renderSierpinskiTriangle'
 
 const allTests = {
   emotion: [
+    () => renderSierpinskiTriangle('emotion', emotion),
     () => renderDeepTree('emotion', emotion),
     () => renderWideTree('emotion', emotion)
   ],
@@ -23,6 +25,7 @@ const allTests = {
     () => renderWideTree('emotionObj', emotionObj)
   ],
   glamor: [
+    () => renderSierpinskiTriangle('glamor', glamor),
     () => renderDeepTree('glamor', glamor),
     () => renderWideTree('glamor', glamor)
   ],

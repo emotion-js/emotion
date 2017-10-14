@@ -1,8 +1,9 @@
 import { hashString, Stylis, memoize, unitless } from 'emotion-utils'
-import stylisPluginEmotion from 'stylis-plugin-emotion'
+import stylisRuleSheet from 'stylis-rule-sheet'
 import StyleSheet from './sheet'
 
 export const sheet = new StyleSheet()
+
 // 🚀
 sheet.inject()
 const stylisOptions = { keyframe: false }
@@ -21,7 +22,7 @@ function insertRule(rule) {
   sheet.insert(rule, currentSourceMap)
 }
 
-const insertionPlugin = stylisPluginEmotion(insertRule)
+const insertionPlugin = stylisRuleSheet(insertRule)
 
 export const useStylisPlugin = plugin => {
   externalStylisPlugins.push(plugin)
@@ -36,49 +37,33 @@ let currentSourceMap = ''
 
 stylis.use(insertionPlugin)
 
-function flatten(inArr) {
-  let arr = []
-  inArr.forEach(val => {
-    if (Array.isArray(val)) arr = arr.concat(flatten(val))
-    else arr = arr.concat(val)
-  })
-
-  return arr
-}
-
 function handleInterpolation(
   interpolation: any,
   couldBeSelectorInterpolation: boolean
 ) {
-  if (
-    interpolation === undefined ||
-    interpolation === null ||
-    typeof interpolation === 'boolean'
-  ) {
+  if (interpolation == null) {
     return ''
   }
 
-  if (typeof interpolation === 'function') {
-    return handleInterpolation.call(
-      this,
-      this === undefined
-        ? interpolation()
-        : interpolation(this.mergedProps, this.context),
-      couldBeSelectorInterpolation
-    )
+  switch (typeof interpolation) {
+    case 'boolean':
+      return ''
+    case 'function':
+      return handleInterpolation.call(
+        this,
+        this === undefined
+          ? interpolation()
+          : interpolation(this.mergedProps, this.context),
+        couldBeSelectorInterpolation
+      )
+    case 'object':
+      return createStringFromObject.call(this, interpolation)
+    default:
+      const cached = registered[interpolation]
+      return couldBeSelectorInterpolation === false && cached !== undefined
+        ? cached
+        : interpolation
   }
-
-  if (typeof interpolation === 'object') {
-    return createStringFromObject.call(this, interpolation)
-  }
-
-  if (
-    couldBeSelectorInterpolation === false &&
-    registered[interpolation] !== undefined
-  ) {
-    return registered[interpolation]
-  }
-  return interpolation
 }
 
 const hyphenateRegex = /[A-Z]|^ms/g
@@ -106,7 +91,7 @@ function createStringFromObject(obj) {
   let string = ''
 
   if (Array.isArray(obj)) {
-    flatten(obj).forEach(function(interpolation) {
+    obj.forEach(function(interpolation) {
       string += handleInterpolation.call(this, interpolation, false)
     }, this)
   } else {
