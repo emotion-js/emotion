@@ -69,7 +69,7 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 ### API Usage
 - Styling components with [styled](docs/styled.md)
 
-- Create composable styles with [`css` classes and props] (docs/css.md)
+- Create composable styles with [`css` classes and props](docs/css.md)
 
   - [composition](https://github.com/tkh44/emotion/tree/master/docs/composition.md)
 
