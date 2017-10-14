@@ -18,6 +18,7 @@ emotion is a high performance, lightweight css-in-js library. emotion minimizes 
 
 ---
 ### Quick Start
+Get up and running with a single import.
 ```bash
 npm install --save emotion 
 ```
@@ -26,7 +27,7 @@ npm install --save emotion
 import { css } from 'emotion';
 const myStyle = css`
   color: rebeccapurple;
-`;
+`
 
 const app = document.getElementById('root');
 app.classList.add(myStyle);
@@ -41,10 +42,10 @@ _note: use `preact-emotion` in place of `react-emotion` if using [Preact](https:
 import styled, { css } from 'react-emotion';
 const Container = styled('div')`
   background: #333;
-`;
+`
 const myStyle = css`
   color: rebeccapurple;
-`;
+`
 const app = () => (
 <Container>
   <p className={myStyle}>Hello World</p>
