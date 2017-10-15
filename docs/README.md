@@ -10,7 +10,6 @@
 - [Pseudo Selectors ](https://github.com/emotion-js/emotion/tree/master/docs/pseudo.md)
 - [Media Queries](https://github.com/emotion-js/emotion/tree/master/docs/media.md)
 - [Composition](https://github.com/emotion-js/emotion/tree/master/docs/composition.md)
-- [Styling Any Component](https://github.com/emotion-js/emotion/tree/master/docs/styling-any-component.md)
 - [`styled.withComponent`](https://github.com/emotion-js/emotion/tree/master/docs/styled-with-component.md)
 - [Dynamic Props For `styled` Components](https://github.com/emotion-js/emotion/tree/master/docs/props.md)
 - [Using Javascript Objects for Styles](https://github.com/emotion-js/emotion/tree/master/docs/objects.md)

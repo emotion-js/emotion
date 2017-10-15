@@ -25,21 +25,22 @@ npm install --save emotion
 
 ```javascript
 import { css } from 'emotion';
+
+const app = document.getElementById('root');
 const myStyle = css`
   color: rebeccapurple;
 `
-
-const app = document.getElementById('root');
 app.classList.add(myStyle);
 ```
-### React with [optional Babel plugin](docs/babel.md)
+### React with [Optional Babel Plugin](docs/babel.md)
 ```bash
 npm install --save emotion react-emotion babel-plugin-emotion
 ```
-_note: use `preact-emotion` in place of `react-emotion` if using [Preact](https://github.com/developit/preact)_
+_Note: use `preact-emotion` in place of `react-emotion` if using [Preact](https://github.com/developit/preact)_
 
 ```javascript
 import styled, { css } from 'react-emotion';
+
 const Container = styled('div')`
   background: #333;
 `
