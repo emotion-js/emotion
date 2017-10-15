@@ -2,18 +2,7 @@
 
 The Babel Plugin is highly recommended, but not required in version 8 and above.
 
-## Install
-```bash
-npm install --save-dev babel-plugin-emotion
-```
-**.babelrc** _note: add emotion as the first plugin in the list_
-```json
-{
-  "plugins": [
-    "emotion"
-  ]
-}
-```
+See the [installation instructions](install.md).
 
 ### Features which are enabled with the babel plugin
 
