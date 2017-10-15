@@ -68,7 +68,8 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 
 -- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
-### API Usage
+### Documentation
+#### API
 - Styling components with [`styled`](docs/styled.md)
 
 - Create composable styles with [`css` classes and props](docs/css.md)
@@ -79,18 +80,15 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 - [`fontFace`](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
 - [`injectGlobal`](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
 
-### More about emotion
-
- - [More Docs](https://github.com/emotion-js/emotion/tree/master/docs)
-
-- [Version 7 documentation](https://github.com/emotion-js/emotion/tree/v7.3.2)
-
-#### Ecosystem
+#### Doc files
+- [All docs](https://github.com/emotion-js/emotion/tree/master/docs)
+- [Version 7 docs](https://github.com/emotion-js/emotion/tree/v7.3.2)
+### Ecosystem
   
   - [emotion-vue](https://github.com/egoist/emotion-vue)
   - [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
 
-#### In the Wild
+### In the Wild
 
   - [healthline.com](https://www.healthline.com/health/body-aches)
   - [vault.crucible.gg](http://vault.crucible.gg/)
