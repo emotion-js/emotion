@@ -37,8 +37,9 @@ function Greeting ({ name }) {
 }
 
 ```
-## With Babel Plugin
-The installation documentation can be found [here](https://github.com/emotion-js/emotion/blob/master/docs/install.md).
+## Shorthand Style
+###### [requires babel plugin](babel.md)
+The installation documentation can be found [here](install.md).
 
 ```jsx
 import styled from 'react-emotion'
