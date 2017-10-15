@@ -1,4 +1,5 @@
 ## Extract Static
+###### [requires babel plugin](babel.md)
 
 Extract styles with no interpolations into external css files.
 
