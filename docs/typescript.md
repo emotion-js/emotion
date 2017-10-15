@@ -1,6 +1,6 @@
 ## TypeScript
 
-Emotion includes TypeScript definitions for `styled` components. The definitions include type inferences for both html elements and React components.
+Emotion includes TypeScript definitions for `styled` components that include type inferences for both html elements as well as React components.
 
 ### html elements
 
