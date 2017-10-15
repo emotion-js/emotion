@@ -58,7 +58,7 @@ const app = () => (
 
 ### Examples
 
-  - [emotion website](https://github.com/emotion-js/emotion/tree/master/packages/site) [[Demo Here](https://emotion.sh)]
+  - [emotion website](packages/site) [[Demo Here](https://emotion.sh)]
   - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
   - **open a PR and add yours!**
 
@@ -74,14 +74,14 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 
 - Create composable styles with [`css` classes and props](docs/css.md)
 
-  - [`composition`](https://github.com/tkh44/emotion/tree/master/docs/composition.md)
+  - [`composition`](docs/composition.md)
 
-- [`keyframes`](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
-- [`fontFace`](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
-- [`injectGlobal`](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
+- [`keyframes`](docs/keyframes.md)
+- [`fontFace`](docs/font-face.md)
+- [`injectGlobal`](docs/inject-global.md)
 
 #### Doc files
-- [All docs](https://github.com/emotion-js/emotion/tree/master/docs)
+- [All docs](docs/)
 - [Version 7 docs](https://github.com/emotion-js/emotion/tree/v7.3.2)
 ### Ecosystem
   
