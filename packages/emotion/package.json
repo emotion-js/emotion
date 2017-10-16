@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "8.0.5",
+  "version": "8.0.6",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -24,9 +24,10 @@
     "rollup:umd": "cross-env UMD=true rollup -c ../../rollup.config.js"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^8.0.4",
-    "emotion-utils": "^8.0.2-7",
-    "stylis-plugin-emotion": "^8.0.5"
+    "babel-plugin-emotion": "^8.0.6",
+    "emotion-utils": "^8.0.6",
+    "stylis": "^3.3.2",
+    "stylis-rule-sheet": "^0.0.5"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

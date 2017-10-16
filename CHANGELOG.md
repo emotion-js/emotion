@@ -1,3 +1,22 @@
+## v8.0.6 (2017-10-14)
+
+#### :rocket: Enhancement
+* `emotion`
+  * [#379](https://github.com/emotion-js/emotion/pull/379) Added TypeScript types and tests for the emotion package.. ([@cameron-martin](https://github.com/cameron-martin))
+
+#### :house: Internal
+* `babel-plugin-emotion`, `emotion`, `react-emotion`, `stylis-plugin-emotion`
+  * [#406](https://github.com/emotion-js/emotion/pull/406) Remove stylis-plugin-emotion and use stylis-rule-sheet. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `emotion`
+  * [#392](https://github.com/emotion-js/emotion/pull/392) Remove flatten. ([@tkh44](https://github.com/tkh44))
+
+#### Committers: 4
+- Cameron Martin ([cameron-martin](https://github.com/cameron-martin))
+- Hosmel Quintana ([hosmelq](https://github.com/hosmelq))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v8.0.5 (2017-10-07)
 
 #### :memo: Documentation

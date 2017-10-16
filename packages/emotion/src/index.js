@@ -1,5 +1,5 @@
 import { hashString, Stylis, memoize, unitless } from 'emotion-utils'
-import stylisPluginEmotion from 'stylis-plugin-emotion'
+import stylisRuleSheet from 'stylis-rule-sheet'
 import StyleSheet from './sheet'
 
 export const sheet = new StyleSheet()
@@ -22,7 +22,7 @@ function insertRule(rule) {
   sheet.insert(rule, currentSourceMap)
 }
 
-const insertionPlugin = stylisPluginEmotion(insertRule)
+const insertionPlugin = stylisRuleSheet(insertRule)
 
 export const useStylisPlugin = plugin => {
   externalStylisPlugins.push(plugin)

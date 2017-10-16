@@ -1,6 +1,6 @@
 import * as marky from 'marky'
 
-const fmt = time => Math.round(time * 100) / 100
+export const fmt = time => Math.round(time * 100) / 100
 
 const measure = (name, fn) => {
   marky.mark(name)
@@ -9,12 +9,12 @@ const measure = (name, fn) => {
   return performanceMeasure.duration
 }
 
-const mean = values => {
+export const mean = values => {
   const sum = values.reduce((sum, value) => sum + value, 0)
   return sum / values.length
 }
 
-const median = values => {
+export const median = values => {
   if (!Array.isArray(values)) {
     return 0
   }
@@ -26,7 +26,7 @@ const median = values => {
   return (numbers[(numbers.length - 1) >> 1] + numbers[numbers.length >> 1]) / 2
 }
 
-const standardDeviation = values => {
+export const standardDeviation = values => {
   const avg = mean(values)
 
   const squareDiffs = values.map(value => {

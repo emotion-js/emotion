@@ -9,3 +9,5 @@ packages/site/build
 package-lock.json
 yarn.lock
 .DS_Store
+.cache
+public/

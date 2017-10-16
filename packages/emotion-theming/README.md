@@ -44,12 +44,12 @@ import styled from 'react-emotion';
 const Container = styled.div`
   background: whitesmoke;
   height: 100vh;
-`;
+`
 
 const Headline = styled.h1`
   color: ${props => props.theme.color};
   font: 20px/1.5 sans-serif;
-`;
+`
 
 export default Page extends React.Component {
   render() {
@@ -135,7 +135,7 @@ class Container extends React.Component {
 const Text = styled.div`
   background-color: ${props => props.theme.backgroundColor};  // will be green
   color: ${props => props.theme.color};                       // will be blue
-`;
+`
 ```
 
 
