@@ -1,6 +1,9 @@
 ## Extract Static
+###### [requires babel plugin](babel.md)
 
 Extract styles with no interpolations into external css files.
+
+While there are some beneficial use cases for `extractStatic`, emotion's inherent performance since version 8 makes the added complexity of this feature somewhat disadvantageous.
 
 
 **does NOT work with object styles**
@@ -17,6 +20,10 @@ const Button = styled('button')`
 
 
 Configure babel
+
+```bash
+npm install babel-plugin-emotion -D
+```
 
 **.babelrc**
 ```json

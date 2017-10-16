@@ -138,8 +138,7 @@
       "^emotion-utils$": "<rootDir>/packages/emotion-utils/src",
       "^emotion-server$": "<rootDir>/packages/emotion-server/src",
       "^emotion-theming$": "<rootDir>/packages/emotion-theming/src",
-      "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src",
-      "^stylis-plugin-emotion": "<rootDir>/packages/stylis-plugin-emotion/src"
+      "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
     "coveragePathIgnorePatterns": [
