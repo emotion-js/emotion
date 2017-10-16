@@ -78,7 +78,7 @@ The div will now have a **green** background even though `cls2` was inserted **a
 }
 ```
 
-##### Combining emotion generated class names
+##### Combining both emotion generated class names and custom class names.
 
 ```jsx harmony
 const cls1 = css`
@@ -130,6 +130,6 @@ Output:
 
 ```jsx harmony
 <div
-  className="modal profile glamor-0"
+  className="modal profile css-i43k4"
 />
 ```
