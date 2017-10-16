@@ -17,6 +17,11 @@
 emotion is a high performance, lightweight css-in-js library. emotion minimizes the runtime cost of css-in-js by parsing your styles at build time and utilizing [insertRule](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/insertRule) on the client.
 
 ---
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion.svg' /></a>
+
+---
+
 ### Quick Start
 Get up and running with a single import.
 ```bash
@@ -95,6 +100,4 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
   - [saldotuc.com](https://saldotuc.com)
   - [gatsbythemes.com](https://gatsbythemes.com/)
 
----
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion.svg' /></a>
