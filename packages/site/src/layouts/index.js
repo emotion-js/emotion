@@ -156,13 +156,12 @@ const Header = ({ isHome, avatar }) => (
   </Children>
 )
 
-const OuterGradientContainer = styled.div`
+const OuterGradientContainer = styled(Box)`
   display: flex;
   flex-direction: column;
   flex: 1;
   width: 100%;
   min-height: 100%;
-  padding: ${p => p.padding || '0'};
   background: linear-gradient(
     to bottom,
     ${colors.blue} 0%,
@@ -183,7 +182,7 @@ const BodyInner = styled.div`
 const BaseWrapper = props => {
   const isHome = props.location.pathname === '/'
   return (
-    <OuterGradientContainer padding={isHome ? '1vw' : '0'}>
+    <OuterGradientContainer p={isHome ? [1, 2] : 0}>
       <BodyInner
         bg={isHome ? '#1e2029' : '#FFFEFF'}
         color={isHome ? '#FFFEFF' : '#1e2029'}
