@@ -1,35 +1,53 @@
-[github](https://github.com/tkh44/emotion)
-[npm](https://npm.im/emotion)
-
 ## Install
 
 ```bash
 npm install --save emotion react-emotion babel-plugin-emotion
 ```
 
-**.babelrc**
+All `emotion` APIs are available from the `react-emotion` package.
+
+```javascript
+import styled, { css, injectGlobal } from 'react-emotion';
+```
+
+### .babelrc
+
+[More information on the babel plugin](babel.md)
+
+_`"emotion"` must be the **first plugin** in your babel config `plugins` list._
+
+Takes optional configs:
+- [extractStatic](babel.md#Static-Extraction) _{boolean}_
+- [sourceMap](babel.md#Static-Extraction) _{boolean}_
 ```json
 {
   "plugins": [
-    "emotion"
+    ["emotion"]
   ]
 }
 ```
-
-**Notes:**
-- Make sure `"emotion"` is the first plugin.
-- If you are using Babel's env option in your `.babelrc` file, ensure that emotion is first in every environment's list of plugins.
+If using Babel's env option emotion must also be first for each environment.
   ```json
   {
     "env": {
       "production": {
-        "plugins": ["emotion", "some-other-plugin"]
+        "plugins": [
+          "emotion", 
+          [...all other babel plugins...]
+        ]
       }
     },
     "plugins": ["emotion"]
   }
   ```
+###  Preact
 
-### Preact
+Import `preact-emotion` instead of `react-emotion` and use it the same way you would with React.
 
-If you're using [Preact](https://github.com/developit/preact) instead of [React](https://github.com/facebook/react), install [`preact-emotion`](./preact.md). The babel setup remains the same.
+```jsx
+import styled from 'preact-emotion'
+
+const SomeComponent = styled.div`
+  display: flex;
+`
+```
