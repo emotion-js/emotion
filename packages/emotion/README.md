@@ -21,6 +21,13 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
 
 -- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
+
+---
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion.svg' /></a>
+
+---
+
 - [Install](https://github.com/emotion-js/emotion/tree/master/docs/install.md)
 - Demos
   - [emotion website](https://github.com/emotion-js/emotion/tree/master/packages/site) [[Demo Here](https://emotion.sh)]
@@ -46,6 +53,3 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
 - Ecosystem
   - [emotion-vue](https://github.com/egoist/emotion-vue)
 
----
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion.svg' /></a>
