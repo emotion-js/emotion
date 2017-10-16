@@ -21,3 +21,4 @@
 - [Extracting Static Styles](https://github.com/emotion-js/emotion/tree/master/docs/extract-static.md)
 - [Using `withProps` To Attach Props](https://github.com/emotion-js/emotion/tree/master/docs/with-props.md) (styled-components `.attrs` api)
 - [Usage with babel-macros](https://github.com/emotion-js/emotion/tree/master/docs/babel.md#usage-with-babel-macros)
+- [TypeScript](https://github.com/emotion-js/emotion/tree/master/docs/typescript.md)
