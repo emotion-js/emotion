@@ -1,34 +1,40 @@
 {
   "name": "react-emotion",
-  "version": "8.0.5",
+  "version": "8.0.7",
   "description": "The Next Generation of CSS-in-JS, for React projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
+  "types": "typings/react-emotion.d.ts",
   "files": [
     "src",
     "dist",
-    "macro.js"
+    "macro.js",
+    "typings"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup rollup:umd",
+    "test:typescript": "tsc --noEmit -p typescript_tests/tsconfig.json",
+    "pretest:typescript": "npm run build",
     "clean": "rimraf dist",
     "rollup": "rollup -c ../../rollup.config.js",
     "watch": "rollup -c ../../rollup.config.js --watch",
     "rollup:umd": "cross-env UMD=true rollup -c ../../rollup.config.js"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^8.0.4",
-    "emotion-utils": "^8.0.2-7"
+    "babel-plugin-emotion": "^8.0.6",
+    "emotion-utils": "^8.0.6"
   },
   "peerDependencies": {
-    "emotion": "^8.0.5"
+    "emotion": "^8.0.7"
   },
   "devDependencies": {
+    "@types/react": "^16.0.10",
     "cross-env": "^5.0.5",
-    "emotion": "^8.0.5",
+    "emotion": "^8.0.7",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
-    "rollup": "^0.43.0"
+    "rollup": "^0.43.0",
+    "typescript": "^2.0.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",

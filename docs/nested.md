@@ -11,7 +11,7 @@ const paragraph = css`
   a {
     border-bottom: 1px solid currentColor;
   }
-`;
+`
 ```
 
 You can use `&` to select the current class nested in another element:
@@ -23,7 +23,7 @@ const paragraph = css`
   header & {
     color: black;
   }
-`;
+`
 ```
 
 To nest a class selector using the class generated with `css` you can interpolate it but be aware than emotion merges styles from `css` together when composing so that class name may not always be there:
@@ -31,7 +31,7 @@ To nest a class selector using the class generated with `css` you can interpolat
 ```jsx
 const link = css`
   color: hotpink;
-`;
+`
 
 const paragraph = css`
   color: gray;
@@ -39,7 +39,7 @@ const paragraph = css`
   .${link} {
     border-bottom: 1px solid currentColor;
   }
-`;
+`
 ```
 
 The result of `css` is a class name _without_ the dot (`.`), so we prepended it. 

@@ -16,7 +16,7 @@ const config = {
     'emotion-utils',
     'prop-types',
     'hoist-non-react-statics',
-    'stylis-plugin-emotion'
+    'stylis-rule-sheet'
   ],
   exports: 'named',
   sourceMap: true,
@@ -56,10 +56,6 @@ if (process.env.UMD) {
       'emotion-utils': path.resolve(
         __dirname,
         './packages/emotion-utils/src/index.js'
-      ),
-      'stylis-plugin-emotion': path.resolve(
-        __dirname,
-        './packages/stylis-plugin-emotion/src/index.js'
       )
     }),
     replace({
@@ -69,7 +65,7 @@ if (process.env.UMD) {
   )
   config.targets = [
     {
-      dest: './dist/DO-NOT-USE.min.js',
+      dest: './dist/emotion.umd.min.js',
       format: 'umd',
       moduleName: pkg.name
     }

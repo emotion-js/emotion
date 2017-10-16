@@ -1,3 +1,43 @@
+## v8.0.7 (2017-10-16)
+
+#### :rocket: Enhancement
+* `emotion`
+  * [#338](https://github.com/emotion-js/emotion/pull/338) change "DO-NOT-USE" to "emotion.umd" in umd file names. ([@tkh44](https://github.com/tkh44))
+* `react-emotion`
+  * [#398](https://github.com/emotion-js/emotion/pull/398) Add types to react-emotion. ([@renatorib](https://github.com/renatorib))
+
+#### :memo: Documentation
+* `emotion-theming`, `emotion`
+  * [#408](https://github.com/emotion-js/emotion/pull/408) readme and doc consolidation updates. ([@greggb](https://github.com/greggb))
+* Other
+  * [#407](https://github.com/emotion-js/emotion/pull/407) Clarify Babel plugin usage in install docs. ([@wKovacs64](https://github.com/wKovacs64))
+
+#### Committers: 5
+- Gregg Brewster ([greggb](https://github.com/greggb))
+- Justin Hall ([wKovacs64](https://github.com/wKovacs64))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Renato Ribeiro ([renatorib](https://github.com/renatorib))
+
+## v8.0.6 (2017-10-14)
+
+#### :rocket: Enhancement
+* `emotion`
+  * [#379](https://github.com/emotion-js/emotion/pull/379) Added TypeScript types and tests for the emotion package.. ([@cameron-martin](https://github.com/cameron-martin))
+
+#### :house: Internal
+* `babel-plugin-emotion`, `emotion`, `react-emotion`, `stylis-plugin-emotion`
+  * [#406](https://github.com/emotion-js/emotion/pull/406) Remove stylis-plugin-emotion and use stylis-rule-sheet. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `emotion`
+  * [#392](https://github.com/emotion-js/emotion/pull/392) Remove flatten. ([@tkh44](https://github.com/tkh44))
+
+#### Committers: 4
+- Cameron Martin ([cameron-martin](https://github.com/cameron-martin))
+- Hosmel Quintana ([hosmelq](https://github.com/hosmelq))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v8.0.5 (2017-10-07)
 
 #### :memo: Documentation

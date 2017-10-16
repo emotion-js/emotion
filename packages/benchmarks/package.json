@@ -4,19 +4,21 @@
   "dependencies": {
     "apollo-fetch": "^0.6.0",
     "classnames": "^2.2.5",
-    "emotion": "^8.0.5",
+    "d3-scale-chromatic": "^1.1.1",
+    "emotion": "^8.0.7",
     "glamor": "^2.20.37",
     "glamorous": "^4.1.0",
     "marky": "^1.2.0",
     "postcss": "^6.0.8",
-    "react": "15.6.1",
-    "react-dom": "15.6.1",
-    "react-emotion": "^8.0.5",
-    "styled-components": "^2.1.2"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-emotion": "^8.0.7",
+    "styled-components": "^2.2.1"
   },
   "devDependencies": {
     "babel-loader": "^7.1.1",
     "babel-macros": "^1.0.2",
+    "babel-polyfill": "^6.26.0",
     "cli-chart": "^0.3.1",
     "cli-table": "^0.3.1",
     "css-loader": "^0.28.4",
@@ -32,5 +34,5 @@
     "build:benchmark": "webpack",
     "benchmark": "npm run build:benchmark && node run-headless.js"
   },
-  "version": "8.0.5"
+  "version": "8.0.7"
 }
