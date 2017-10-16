@@ -81,6 +81,8 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 
   - [`composition`](docs/composition.md)
 
+- Combine styles and class names with [`cx`](docs/cx.md)
+
 - [`keyframes`](docs/keyframes.md)
 - [`fontFace`](docs/font-face.md)
 - [`injectGlobal`](docs/inject-global.md)
