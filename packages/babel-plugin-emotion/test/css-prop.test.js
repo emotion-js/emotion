@@ -103,4 +103,12 @@ describe('babel css prop', () => {
     })
     expect(code).toMatchSnapshot()
   })
+
+  test('hoisting', () => {
+    const basic =
+      'const Profile = () => ' +
+      '(<div className="a" css={{ color: \'brown\' }}></div>)'
+    const { code } = babel.transform(basic, { plugins: [plugin] })
+    expect(code).toMatchSnapshot()
+  })
 })

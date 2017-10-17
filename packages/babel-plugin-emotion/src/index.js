@@ -26,8 +26,10 @@ export function hoistPureArgs(path) {
 
   if (args && Array.isArray(args)) {
     args.forEach(arg => {
-      if (!arg.isTemplateLiteral() && arg.isPure()) {
-        console.log('hoisting')
+      if (arg.isPure()) {
+        if (arg.node.name && arg.parentPath.scope.hasBinding(arg.node.name)) {
+          return
+        }
         arg.hoist()
       }
     })
@@ -76,6 +78,8 @@ export function replaceCssWithCallExpression(
         ).toExpressions()
       )
     )
+
+    hoistPureArgs(path)
     return
   } catch (e) {
     if (path) {
@@ -228,6 +232,16 @@ export default function(babel) {
       },
       JSXOpeningElement(path, state) {
         cssProps(path, state, t)
+        path.traverse({
+          CallExpression(callExprPath) {
+            if (
+              callExprPath.node.callee.name === state.importedNames.css ||
+              callExprPath.node.callee.name === `_${state.importedNames.css}`
+            ) {
+              hoistPureArgs(callExprPath)
+            }
+          }
+        })
       },
       CallExpression(path, state) {
         if (path[visited]) {
@@ -271,7 +285,7 @@ export default function(babel) {
         } catch (e) {
           throw path.buildCodeFrameError(e)
         }
-        hoistPureArgs(path)
+
         path[visited] = true
       },
       TaggedTemplateExpression(path, state) {
@@ -344,8 +358,6 @@ export default function(babel) {
             )
           }
         }
-
-        hoistPureArgs(path)
       }
     }
   }
