@@ -11,3 +11,5 @@ yarn.lock
 .cache/
 public/
 .DS_Store
+.cache
+public/

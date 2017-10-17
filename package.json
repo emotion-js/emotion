@@ -150,11 +150,11 @@
   },
   "bundlesize": [
     {
-      "path": "./packages/emotion/dist/DO-NOT-USE.min.js",
-      "threshold": "6 Kb"
+      "path": "./packages/emotion/dist/emotion.umd.min.js",
+      "threshold": "6.25 Kb"
     },
     {
-      "path": "./packages/react-emotion/dist/DO-NOT-USE.min.js",
+      "path": "./packages/react-emotion/dist/emotion.umd.min.js",
       "threshold": "8 Kb"
     }
   ]

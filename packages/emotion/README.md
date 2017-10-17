@@ -7,10 +7,10 @@
 [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://travis-ci.org/emotion-js/emotion.svg?branch=master)](https://travis-ci.org/emotion-js/emotion)
 [![codecov](https://codecov.io/gh/emotion-js/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/emotion-js/emotion)
-![core gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?compression=gzip&label=core%20gzip%20size)
-![core size](http://img.badgesize.io/https://unpkg.com/emotion/dist/DO-NOT-USE.min.js?label=core%20size)
-![react gzip size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/DO-NOT-USE.min.js?compression=gzip&label=react%20gzip%20size)
-![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/DO-NOT-USE.min.js?label=react%20size)
+![core gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/emotion.umd.min.js?compression=gzip&label=core%20gzip%20size)
+![core size](http://img.badgesize.io/https://unpkg.com/emotion/dist/emotion.umd.min.js?label=core%20size)
+![react gzip size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?compression=gzip&label=react%20gzip%20size)
+![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?label=react%20size)
 [![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
 
 emotion is a high performance, lightweight css-in-js library. 
@@ -21,31 +21,35 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
 
 -- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
-- [Install](https://github.com/tkh44/emotion/tree/master/docs/install.md)
-- Demos
-  - [emotion website](https://github.com/tkh44/emotion/tree/master/packages/site) [[Demo Here](https://emotion.sh)]
-  - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
-  - **open a PR and add yours!**
-
-- [Benchmarks](https://github.com/tkh44/emotion/tree/master/docs/benchmarks.md)
-
-- [Extract Static](https://github.com/tkh44/emotion/tree/master/docs/extract-static.md)
-
-- API
-  - [css](https://github.com/tkh44/emotion/tree/master/docs/css.md)
-  - [styled](https://github.com/tkh44/emotion/tree/master/docs/styled.md)
-  - [css prop](https://github.com/tkh44/emotion/tree/master/docs/css-prop.md)
-  - [composition](https://github.com/tkh44/emotion/tree/master/docs/composition.md)
-  - [keyframes](https://github.com/tkh44/emotion/tree/master/docs/keyframes.md)
-  - [fontFace](https://github.com/tkh44/emotion/tree/master/docs/font-face.md)
-  - [injectGlobal](https://github.com/tkh44/emotion/tree/master/docs/inject-global.md)
-
-- [Usage with babel-macros](https://github.com/tkh44/emotion/tree/master/docs/babel-macros.md)
-- [Usage with Preact](https://github.com/tkh44/emotion/tree/master/docs/preact.md)
-
-- Ecosystem
-  - [emotion-vue](https://github.com/egoist/emotion-vue)
 
 ---
 
 <a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion.svg' /></a>
+
+---
+
+- [Install](https://github.com/emotion-js/emotion/tree/master/docs/install.md)
+- Demos
+  - [emotion website](https://github.com/emotion-js/emotion/tree/master/packages/site) [[Demo Here](https://emotion.sh)]
+  - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
+  - **open a PR and add yours!**
+
+- [Benchmarks](https://github.com/emotion-js/emotion/tree/master/docs/benchmarks.md)
+
+- [Extract Static](https://github.com/emotion-js/emotion/tree/master/docs/extract-static.md)
+
+- API
+  - [css](https://github.com/emotion-js/emotion/tree/master/docs/css.md)
+  - [styled](https://github.com/emotion-js/emotion/tree/master/docs/styled.md)
+  - [css prop](https://github.com/emotion-js/emotion/tree/master/docs/css#CSS-Prop.md)
+  - [composition](https://github.com/emotion-js/emotion/tree/master/docs/composition.md)
+  - [keyframes](https://github.com/emotion-js/emotion/tree/master/docs/keyframes.md)
+  - [fontFace](https://github.com/emotion-js/emotion/tree/master/docs/font-face.md)
+  - [injectGlobal](https://github.com/emotion-js/emotion/tree/master/docs/inject-global.md)
+
+- [Usage with babel-macros](https://github.com/emotion-js/emotion/tree/master/docs/babel.md#usage-with-babel-macros)
+- [Usage with Preact](https://github.com/emotion-js/emotion/tree/master/docs/preact.md)
+
+- Ecosystem
+  - [emotion-vue](https://github.com/egoist/emotion-vue)
+
