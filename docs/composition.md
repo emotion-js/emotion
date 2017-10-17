@@ -36,11 +36,11 @@ const ColumnCenteredComponent = styled.div`
 `
 
 // Composition can be very powerful. For example, styles are expanded where you interpolate,
-// so the following class has flex-direction: column because ${flexCenter} is interpolated
+// so the following class has flex-direction: column because ${flexCenterClass} is interpolated
 // after flex-direction: row
 const stillColumn = css`
   flex-direction: row;
-  ${flexCenter}
+  ${flexCenterClass}
 `
 
 // Nested composing is supported
