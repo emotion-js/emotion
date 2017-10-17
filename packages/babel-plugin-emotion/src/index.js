@@ -21,6 +21,19 @@ export function hashArray(arr) {
 
 const staticStylis = new Stylis({ keyframe: false })
 
+export function hoistPureArgs(path) {
+  const args = path.get('arguments')
+
+  if (args && Array.isArray(args)) {
+    args.forEach(arg => {
+      if (!arg.isTemplateLiteral() && arg.isPure()) {
+        console.log('hoisting')
+        arg.hoist()
+      }
+    })
+  }
+}
+
 export function replaceCssWithCallExpression(
   path,
   identifier,
@@ -53,7 +66,7 @@ export function replaceCssWithCallExpression(
       src += addSourceMaps(path.node.quasi.loc.start, state)
     }
 
-    return path.replaceWith(
+    path.replaceWith(
       t.callExpression(
         identifier,
         new ASTObject(
@@ -63,6 +76,7 @@ export function replaceCssWithCallExpression(
         ).toExpressions()
       )
     )
+    return
   } catch (e) {
     if (path) {
       throw path.buildCodeFrameError(e)
@@ -257,7 +271,7 @@ export default function(babel) {
         } catch (e) {
           throw path.buildCodeFrameError(e)
         }
-
+        hoistPureArgs(path)
         path[visited] = true
       },
       TaggedTemplateExpression(path, state) {
@@ -330,6 +344,8 @@ export default function(babel) {
             )
           }
         }
+
+        hoistPureArgs(path)
       }
     }
   }
