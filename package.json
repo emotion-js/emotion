@@ -145,6 +145,9 @@
       "<rootDir>/packages/emotion-utils/src/stylis.js"
     ]
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
   },
