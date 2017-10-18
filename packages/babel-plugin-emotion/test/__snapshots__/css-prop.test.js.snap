@@ -50,10 +50,19 @@ exports[`babel css prop emptyClassName 1`] = `
 <div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
 `;
 
-exports[`babel css prop hoisting 1`] = `
+exports[`babel css prop hoisting object styles 1`] = `
 "import { css as _css } from \\"emotion\\";
 var _ref = { color: 'brown' };
 const Profile = () => <div className={_css(_ref) + \\" a\\"}></div>;"
+`;
+
+exports[`babel css prop hoisting string styles 1`] = `
+"import { css as _css } from \\"emotion\\";
+var _ref = \\"color:\\";
+const Profile = () => {
+  const color = \\"blue\\";
+  <div className={/*#__PURE__*/_css(_ref, color)}></div>;
+};"
 `;
 
 exports[`babel css prop no css attr 1`] = `"<div></div>;"`;
