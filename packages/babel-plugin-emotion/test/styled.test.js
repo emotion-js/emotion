@@ -284,7 +284,7 @@ describe('babel styled component', () => {
           )
         }
       `
-      const { code } = babel.transform(basic, { plugins: [plugin] })
+      const { code } = babel.transform(basic, { plugins: [[plugin, { hoist: true }]] })
       expect(code).toMatchSnapshot()
     })
   })

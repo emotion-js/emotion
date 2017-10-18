@@ -76,7 +76,10 @@ export function replaceCssWithCallExpression(
       )
     )
 
-    hoistPureArgs(path)
+    if (state.opts.hoist) {
+      hoistPureArgs(path)
+    }
+
     return
   } catch (e) {
     if (path) {
@@ -229,16 +232,18 @@ export default function(babel) {
       },
       JSXOpeningElement(path, state) {
         cssProps(path, state, t)
-        path.traverse({
-          CallExpression(callExprPath) {
-            if (
-              callExprPath.node.callee.name === state.importedNames.css ||
-              callExprPath.node.callee.name === `_${state.importedNames.css}`
-            ) {
-              hoistPureArgs(callExprPath)
+        if (state.opts.hoist) {
+          path.traverse({
+            CallExpression(callExprPath) {
+              if (
+                callExprPath.node.callee.name === state.importedNames.css ||
+                callExprPath.node.callee.name === `_${state.importedNames.css}`
+              ) {
+                hoistPureArgs(callExprPath)
+              }
             }
-          }
-        })
+          })
+        }
       },
       CallExpression(path, state) {
         if (path[visited]) {
@@ -278,7 +283,10 @@ export default function(babel) {
             path.replaceWith(
               buildStyledObjectCallExpression(path, state, identifier, t)
             )
-            hoistPureArgs(path)
+
+            if (state.opts.hoist) {
+              hoistPureArgs(path)
+            }
           }
         } catch (e) {
           throw path.buildCodeFrameError(e)

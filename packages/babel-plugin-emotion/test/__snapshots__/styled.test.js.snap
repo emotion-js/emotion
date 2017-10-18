@@ -95,9 +95,8 @@ const H1 = /*#__PURE__*/styled('h1')({
 `;
 
 exports[`babel styled component inline random expressions 1`] = `
-"var _ref = \\"font-size:1rem\\";
-
-const a = () => /*#__PURE__*/css(_ref);
+"
+const a = () => /*#__PURE__*/css(\\"font-size:1rem\\");
 /*#__PURE__*/styled(\\"h1\\")(\\"margin:12px 48px;\\", /*#__PURE__*/css(\\"font-size:32px\\"), \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"
 `;
 
