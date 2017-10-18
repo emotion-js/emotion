@@ -108,7 +108,9 @@ describe('babel css prop', () => {
     const basic =
       'const Profile = () => ' +
       '(<div className="a" css={{ color: \'brown\' }}></div>)'
-    const { code } = babel.transform(basic, { plugins: [[plugin, { hoist: true }]] })
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { hoist: true }]]
+    })
     expect(code).toMatchSnapshot()
   })
 
@@ -118,7 +120,9 @@ describe('babel css prop', () => {
       'const color = "blue";\n' +
       '(<div css={`color: ${color}`}></div>)' +
       '\n}'
-    const { code } = babel.transform(basic, { plugins: [[plugin, { hoist: true }]] })
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { hoist: true }]]
+    })
     expect(code).toMatchSnapshot()
   })
 })
