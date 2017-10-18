@@ -26,10 +26,7 @@ export function hoistPureArgs(path) {
 
   if (args && Array.isArray(args)) {
     args.forEach(arg => {
-      if (arg.isPure()) {
-        if (arg.node.name && arg.parentPath.scope.hasBinding(arg.node.name)) {
-          return
-        }
+      if (!arg.isIdentifier() && arg.isPure()) {
         arg.hoist()
       }
     })
