@@ -24,6 +24,18 @@ When enabled, navigate directly to the style declaration in your javascript file
 ### css as Prop
 Convenient helper for calling `css` and appending the generated className during compile time.
 
+| Feature/Syntax           | Plugin Required | Plugin NOT Required |
+|--------------------------|-----------------|---------------------|
+| `css\`\``                  |                 | ✅                   |
+| `css(...)`               |                 | ✅                   |
+| `styled('div')\`\`` syntax |                 | ✅                   |
+| `styled.div\`\`` syntax    | ✅               |                     |
+| Minification             | ✅               |                     |
+| Dead Code Elimination    | ✅               |                     |
+| Static Extraction        | ✅               |                     |
+| Source Maps              | ✅               |                     |
+| `css` as Prop            | ✅               |                     |
+
 ## Example
 
 **In**
