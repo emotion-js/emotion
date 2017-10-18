@@ -113,9 +113,11 @@ describe('babel css prop', () => {
   })
 
   test('hoisting string styles', () => {
-    const basic = 'const Profile = () => {' +
+    const basic =
+      'const Profile = () => {' +
       'const color = "blue";\n' +
-      '(<div css={`color: ${color}`}></div>)' + '\n}'
+      '(<div css={`color: ${color}`}></div>)' +
+      '\n}'
     const { code } = babel.transform(basic, { plugins: [plugin] })
     expect(code).toMatchSnapshot()
   })
