@@ -1,12 +1,10 @@
 # babel-plugin-emotion
 
-> Babel plugin for the minification and optimization of emotion styles.
+> Babel plugin for the minification and optimization of [emotion](https://github.com/emotion-js/emotion) styles.
 
 The Babel Plugin is highly recommended, but not required in version 8 and above.
 
-See the [installation instructions](install.md).
-
-### Features which are enabled with the babel plugin
+## Features which are enabled with the babel plugin
 
 ### styled.element Syntax
 `styled('div')` will work without the plugin
