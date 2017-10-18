@@ -31,6 +31,13 @@ exports[`babel styled component inline dynamic fns 1`] = `"const Avatar = /*#__P
 
 exports[`babel styled component inline function call 1`] = `"/*#__PURE__*/styled(MyComponent)('font-size:', fontSize + 'px', ';');"`;
 
+exports[`babel styled component inline hoisting 1`] = `
+"
+const Profile = () => {
+  const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');height1:', something, 'wow;width:w', something, 'ow;transform:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform1:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform2:translateX(', props => props.translateX, ') ', props => props.translateX, ';');
+};"
+`;
+
 exports[`babel styled component inline interpolation in different places 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');height1:', something, 'wow;width:w', something, 'ow;transform:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform1:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform2:translateX(', props => props.translateX, ') ', props => props.translateX, ';');"

@@ -265,6 +265,28 @@ describe('babel styled component', () => {
       const { code } = babel.transform(basic, { plugins: [plugin] })
       expect(code).toMatchSnapshot()
     })
+
+    test('hoisting', () => {
+      const basic = `
+        const Profile = () => {
+          const H1 = styled.h1({
+            borderRadius: '50%',
+            transition: 'transform 400ms ease-in-out',
+            boxSizing: 'border-box',
+            display: 'flex',
+            ':hover': {
+              transform: 'scale(1.2)'
+            }
+          },props => ({
+            display: props.display
+          }),
+            [{ color: 'blue' }]
+          )
+        }
+      `
+      const { code } = babel.transform(basic, { plugins: [plugin] })
+      expect(code).toMatchSnapshot()
+    })
   })
 
   describe('extract', () => {

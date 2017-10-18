@@ -278,6 +278,7 @@ export default function(babel) {
             path.replaceWith(
               buildStyledObjectCallExpression(path, state, identifier, t)
             )
+            hoistPureArgs(path)
           }
         } catch (e) {
           throw path.buildCodeFrameError(e)
