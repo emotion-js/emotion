@@ -77,7 +77,7 @@ With options:
 
 Recommended Setup 
 
-Use [Babel's `env` property](https://babeljs.io/docs/usage/babelrc/#env-option) and only set source maps in your development environment.
+Use [Babel's `env` property](https://babeljs.io/docs/usage/babelrc/#env-option)
 
 **.babelrc**
 ```json
