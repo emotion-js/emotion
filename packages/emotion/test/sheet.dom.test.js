@@ -45,4 +45,13 @@ describe('sheet', () => {
       sheet.inject()
     }).toThrowErrorMatchingSnapshot()
   })
+
+  test('nonce', () => {
+    sheet.flush()
+    const el = document.createElement('style')
+    el.setAttribute('nonce', '123456')
+    document.head.appendChild(el)
+    sheet.inject()
+    expect(sheet.tags).toMatchSnapshot()
+  })
 })
