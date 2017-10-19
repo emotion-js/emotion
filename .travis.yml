@@ -8,11 +8,11 @@ script: npm run test
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH="$HOME/.yarn/bin:$PATH"
-  - yarn add codecov --ignore-workspace-root-check
 
 install: yarn
 
 before_script:
+  - yarn add codecov --ignore-workspace-root-check
   - npm run bootstrap
 
 after_success:
