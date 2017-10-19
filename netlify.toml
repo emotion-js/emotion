@@ -1,3 +1,3 @@
 [build]
-  command = "curl -o- -L https://yarnpkg.com/install.sh | bash && export PATH=\"$HOME/.yarn/bin:$PATH\" && yarn && npm run bootstrap && npm run build && npm run build:site"
+  command = "rm -rf /opt/buildhome/.yarn && curl -o- -L https://yarnpkg.com/install.sh | bash && export PATH=\"$HOME/.yarn/bin:$PATH\" && yarn && npm run bootstrap && npm run build && npm run build:site"
   publish = "packages/site/build"
