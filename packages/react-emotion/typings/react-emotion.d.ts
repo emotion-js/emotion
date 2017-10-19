@@ -1,4 +1,4 @@
-import { StatelessComponent, Component as ClassComponent, CSSProperties } from 'react'
+import { StatelessComponent, ComponentClass, CSSProperties } from 'react'
 import { Interpolation as EmotionInterpolation } from 'emotion'
 
 export * from 'emotion'
@@ -21,7 +21,7 @@ export interface Options {
 }
 
 type Component<Props> =
-  | ClassComponent<Props>
+  | ComponentClass<Props>
   | StatelessComponent<Props>
 
 export type ThemedProps<Props, Theme> = Props & {
@@ -30,7 +30,7 @@ export type ThemedProps<Props, Theme> = Props & {
 
 export interface StyledComponent<Props, Theme, IntrinsicProps>
   extends
-    ClassComponent<Props & IntrinsicProps>,
+    ComponentClass<Props & IntrinsicProps>,
     StatelessComponent<Props & IntrinsicProps>
 {
   withComponent<Tag extends keyof JSX.IntrinsicElements>(tag: Tag):
