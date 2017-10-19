@@ -12,7 +12,6 @@ before_install:
 install: yarn
 
 before_script:
-  - yarn add codecov --ignore-workspace-root-check
   - npm run bootstrap
 
 after_success:
