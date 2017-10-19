@@ -8,6 +8,7 @@ exports[`sheet nonce 1`] = `
 Array [
   <style
     nonce="123456"
+    data-emotion=""
 />,
 ]
 `;

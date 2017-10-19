@@ -57,7 +57,7 @@ export default class StyleSheet {
     }
     if (this.isBrowser) {
       // If an existing style tag with a nonce attribute is present, use that before attempting to create a new tag.
-      const tagWithNonce = document.querySelector('style[nonce]')
+      const tagWithNonce = document.querySelector('style[nonce][data-emotion]')
       this.tags[0] = tagWithNonce !== null ? tagWithNonce : makeStyleTag()
     } else {
       // server side 'polyfill'. just enough behavior to be useful.
