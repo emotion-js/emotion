@@ -89,7 +89,7 @@ type ShorthandsFactories<Theme> = {
 export interface ThemedReactEmotionInterface<Theme> extends ShorthandsFactories<Theme> {
   // overload for dom tag
   <Props, Tag extends keyof JSX.IntrinsicElements>(
-    tag: Tag | Component<Props>,
+    tag: Tag,
     options?: Options,
   ): CreateStyled<Props, Theme, JSX.IntrinsicElements[Tag]>
 
