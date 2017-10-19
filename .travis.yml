@@ -10,6 +10,8 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
   - npm install codecov
 
+install: yarn
+
 before_script:
   - npm run bootstrap
 
