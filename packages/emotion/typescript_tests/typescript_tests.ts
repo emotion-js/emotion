@@ -5,7 +5,8 @@ import {
   flush,
   css,
   fontFace,
-  hydrate
+  hydrate,
+  cx
 } from '../';
 
 sheet.speedy(true);
@@ -69,5 +70,10 @@ injectGlobal`
     font-face: 'Foo';
   }
 `;
+
+const cxResult: string = cx(() => () => [
+  () => [className, false && className2, 'modal'],
+  () => [() => [className, () => ({ [className2]: true }), 'profile']]
+]);
 
 hydrate(['css-123', 'css-456']);
