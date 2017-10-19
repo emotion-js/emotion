@@ -45,3 +45,9 @@ export function getRegisteredStyles(registeredStyles: string[], classNames: stri
 export function cx(...interpolations: Interpolation[]): string;
 
 export function hydrate(ids: string[]): void;
+
+declare module 'react' {
+  interface HTMLAttributes<T> {
+    css?: Interpolation;
+  }
+}
