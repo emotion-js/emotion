@@ -199,9 +199,8 @@ export function fontFace(...args) {
   }
 }
 
-export function getRegisteredStyles(classNames) {
+export function getRegisteredStyles(registeredStyles, classNames) {
   let rawClassName = ''
-  let registeredStyles = []
 
   classNames.split(' ').forEach(className => {
     if (registered[className] !== undefined) {
@@ -210,11 +209,13 @@ export function getRegisteredStyles(classNames) {
       rawClassName += `${className} `
     }
   })
-  return { registeredStyles, rawClassName }
+  return rawClassName
 }
 
 export function merge(className, sourceMap) {
-  const { registeredStyles, rawClassName } = getRegisteredStyles(className)
+  const registeredStyles = []
+
+  const rawClassName = getRegisteredStyles(registeredStyles, className)
 
   if (registeredStyles.length < 2) {
     return className
