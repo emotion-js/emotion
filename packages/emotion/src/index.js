@@ -37,7 +37,7 @@ let currentSourceMap = ''
 
 stylis.use(insertionPlugin)
 
-function handleInterpolation(
+export function handleInterpolation(
   interpolation: any,
   couldBeSelectorInterpolation: boolean
 ) {
@@ -66,13 +66,13 @@ function handleInterpolation(
   }
 }
 
-const hyphenateRegex = /[A-Z]|^ms/g
+export const hyphenateRegex = /[A-Z]|^ms/g
 
-const processStyleName = memoize(styleName =>
+export const processStyleName = memoize(styleName =>
   styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
-const processStyleValue = (key, value) => {
+export const processStyleValue = (key, value) => {
   if (value === undefined || value === null || typeof value === 'boolean')
     return ''
 
@@ -82,9 +82,9 @@ const processStyleValue = (key, value) => {
   return value
 }
 
-const objectToStringCache = new WeakMap()
+export const objectToStringCache = new WeakMap()
 
-function createStringFromObject(obj) {
+export function createStringFromObject(obj) {
   if (objectToStringCache.has(obj)) {
     return objectToStringCache.get(obj)
   }
@@ -115,11 +115,11 @@ function createStringFromObject(obj) {
   return string
 }
 
-function isLastCharDot(string) {
+export function isLastCharDot(string) {
   return string.charCodeAt(string.length - 1) === 46 // .
 }
 
-function createStyles(strings, ...interpolations) {
+export function createStyles(strings, ...interpolations) {
   let stringMode = true
   let styles = ''
   if (strings == null || strings.raw === undefined) {
@@ -223,7 +223,7 @@ export function merge(className, sourceMap) {
   return rawClassName + css(registeredStyles, sourceMap)
 }
 
-function classnames() {
+export function classnames() {
   let len = arguments.length
   let i = 0
   let cls = ''
