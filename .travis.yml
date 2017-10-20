@@ -3,14 +3,13 @@ language: node_js
 node_js:
   - "8"
 
-cache:
-  directories:
-    - node_modules
-
 script: npm run test
 
 before_install:
-  - npm install codecov
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
+install: yarn install --frozen-lockfile
 
 before_script:
   - npm run bootstrap
@@ -19,13 +18,6 @@ after_success:
   - cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
 
 cache:
+  yarn: true
   directories:
     - node_modules
-    - packages/site/node_modules
-    - packages/react-emotion/node_modules
-    - packages/preact-emotion/node_modules
-    - packages/babel-plugin-emotion/node_modules
-    - packages/emotion-utils/node_modules
-    - packages/benchmarks/node_modules
-    - packages/emotion-server/node_modules
-    - packages/emotion/node_modules

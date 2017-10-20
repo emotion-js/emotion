@@ -36,6 +36,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bundlesize": "^0.13.2",
+    "codecov": "^2.3.1",
     "css": "^2.2.1",
     "cssjanus": "^1.2.0",
     "enzyme": "^2.9.1",
@@ -145,6 +146,9 @@
       "<rootDir>/packages/emotion-utils/src/stylis.js"
     ]
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
   },
