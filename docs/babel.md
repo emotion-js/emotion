@@ -33,4 +33,4 @@ import styled from 'react-emotion/macro'
 import { css, keyframes, fontFace, injectGlobal, flush, hydrate } from 'emotion/macro'
 ```
 
-For some context, check out this [issue](https://github.com/facebookincubator/create-react-app/issues/2730).
+[create-react-app issue discussing macros](https://github.com/facebookincubator/create-react-app/issues/2730).

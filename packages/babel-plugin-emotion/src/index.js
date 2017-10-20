@@ -21,6 +21,18 @@ export function hashArray(arr) {
 
 const staticStylis = new Stylis({ keyframe: false })
 
+export function hoistPureArgs(path) {
+  const args = path.get('arguments')
+
+  if (args && Array.isArray(args)) {
+    args.forEach(arg => {
+      if (!arg.isIdentifier() && arg.isPure()) {
+        arg.hoist()
+      }
+    })
+  }
+}
+
 export function replaceCssWithCallExpression(
   path,
   identifier,
@@ -53,7 +65,7 @@ export function replaceCssWithCallExpression(
       src += addSourceMaps(path.node.quasi.loc.start, state)
     }
 
-    return path.replaceWith(
+    path.replaceWith(
       t.callExpression(
         identifier,
         new ASTObject(
@@ -63,6 +75,12 @@ export function replaceCssWithCallExpression(
         ).toExpressions()
       )
     )
+
+    if (state.opts.hoist) {
+      hoistPureArgs(path)
+    }
+
+    return
   } catch (e) {
     if (path) {
       throw path.buildCodeFrameError(e)
@@ -214,6 +232,18 @@ export default function(babel) {
       },
       JSXOpeningElement(path, state) {
         cssProps(path, state, t)
+        if (state.opts.hoist) {
+          path.traverse({
+            CallExpression(callExprPath) {
+              if (
+                callExprPath.node.callee.name === state.importedNames.css ||
+                callExprPath.node.callee.name === `_${state.importedNames.css}`
+              ) {
+                hoistPureArgs(callExprPath)
+              }
+            }
+          })
+        }
       },
       CallExpression(path, state) {
         if (path[visited]) {
@@ -253,6 +283,10 @@ export default function(babel) {
             path.replaceWith(
               buildStyledObjectCallExpression(path, state, identifier, t)
             )
+
+            if (state.opts.hoist) {
+              hoistPureArgs(path)
+            }
           }
         } catch (e) {
           throw path.buildCodeFrameError(e)

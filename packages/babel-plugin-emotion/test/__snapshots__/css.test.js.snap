@@ -91,6 +91,39 @@ exports[`babel css inline css with float property 1`] = `
 /*#__PURE__*/css(\\"float:left;\\");"
 `;
 
+exports[`babel css inline hoisting 1`] = `
+"var _ref = \\"font-size:20px;@media(min-width:420px){color:blue;\\";
+var _ref2 = \\";line-height:26px;}background:green;\\";
+var _ref3 = { backgroundColor: \\"hotpink\\" };
+var _ref4 = \\";\\";
+var _ref5 = \\"width:96px;height:96px;\\";
+var _ref6 = { color: 'blue' };
+var _ref7 = \\"display:flex;&:hover{color:hotpink;}\\";
+var _ref8 = \\";\\";
+var _ref9 = \\";\\";
+
+var _ref10 = () => ({ color: \\"darkorchid\\" });
+
+var _ref11 = \\";\\";
+var _ref12 = \\";\\";
+var _ref13 = \\";\\";
+var _ref14 = \\"height:420px;width:\\";
+
+function test() {
+  const cls1 = /*#__PURE__*/css(_ref, /*#__PURE__*/css(_ref5), _ref2, _ref3, _ref4);
+
+  const cls2 = /*#__PURE__*/css(_ref6);
+
+  const cls3 = /*#__PURE__*/css(_ref7);
+  function inner() {
+    const styles = { color: \\"darkorchid\\" };
+    const color = 'aquamarine';
+
+    const cls4 = /*#__PURE__*/css(cls3, _ref8, cls1, _ref9, _ref10, _ref11, () => ({ color }), _ref12, /*#__PURE__*/css(_ref14, styles), _ref13);
+  }
+}"
+`;
+
 exports[`babel css inline interpolation in selector 1`] = `
 "
 const cls2 = /*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;\\", className, \\"{display:none;}\\");"

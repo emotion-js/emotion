@@ -66,6 +66,8 @@ const SFCComponent: React.StatelessComponent<SFCComponentProps> = props => (
   <div className={props.className}>{props.children} {props.foo}</div>
 );
 
+declare class MyClassC extends React.Component<CustomProps2> { };
+
 // infer SFCComponentProps
 Component = styled(SFCComponent)({ color: 'red' });
 mount = <Component foo="bar" />;
@@ -73,6 +75,9 @@ mount = <Component foo="bar" />;
 // infer SFCComponentProps
 Component = styled(SFCComponent)`color: red`;
 mount = <Component foo="bar" />;
+
+Component = styled(MyClassC) ``;
+mount = <Component customProp="abc" />;
 
 // do not infer SFCComponentProps with pass CustomProps, need to pass both
 Component = styled<CustomProps2 & SFCComponentProps>(SFCComponent)({ 
