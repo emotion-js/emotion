@@ -8,6 +8,7 @@ import {
   hydrate,
   cx
 } from '../';
+import React from 'react';
 
 sheet.speedy(true);
 sheet.inject();
@@ -77,3 +78,10 @@ const cxResult: string = cx(() => () => [
 ]);
 
 hydrate(['css-123', 'css-456']);
+
+/*
+ * Can use css prop, transpiled by babel plugin
+ */
+
+<div css={`color: red;`} />;
+<div css={{ color: 'red' }} />;
