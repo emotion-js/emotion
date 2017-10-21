@@ -1,22 +1,24 @@
 ## Prerequisites
 
-[Node.js](http://nodejs.org/) >= v7 must be installed.
+- [Node.js](http://nodejs.org/) >= v7 must be installed.
+
+- [Yarn](https://yarnpkg.com/en/docs/install)
 
 ## Installation
 
-- Running `npm install` in the module's root directory will install everything you need for development.
+- Running `yarn` in the module's root directory will install everything you need for development.
 - Run `lerna bootstrap` in the module's root directory
 
 ## Running Tests
 
-- `npm test` will run the tests once.
+- `yarn test` will run the tests once.
 
-- `npm run test:coverage` will run the tests and produce a coverage report in `coverage/`.
+- `yarn test:coverage` will run the tests and produce a coverage report in `coverage/`.
 
-- `npm run test:watch` will run the tests on every change.
+- `yarn test:watch` will run the tests on every change.
 
 ## Building
 
-- `npm run build` will build the module for publishing to npm.
+- `yarn build` will build the module for publishing to npm.
 
-- `npm run clean` will delete built resources.
+- `yarn clean` will delete built resources.

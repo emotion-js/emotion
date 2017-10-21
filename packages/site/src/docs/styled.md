@@ -90,3 +90,9 @@ const H2 = styled(H1)(
 
 ```
 This API was inspired by [glamorous](https://github.com/paypal/glamorous).
+
+### withConfig is not a function error
+
+This error is caused by using the shorthand syntax for styled such as `styled.div` without the Babel plugin.
+
+- [babel-plugin-emotion documentation](https://github.com/emotion-js/emotion/blob/master/docs/babel.md)

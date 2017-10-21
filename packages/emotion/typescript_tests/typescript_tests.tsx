@@ -5,8 +5,10 @@ import {
   flush,
   css,
   fontFace,
-  hydrate
+  hydrate,
+  cx
 } from '../';
+import React from 'react';
 
 sheet.speedy(true);
 sheet.inject();
@@ -70,4 +72,16 @@ injectGlobal`
   }
 `;
 
+const cxResult: string = cx(() => () => [
+  () => [className, false && className2, 'modal'],
+  () => [() => [className, () => ({ [className2]: true }), 'profile']]
+]);
+
 hydrate(['css-123', 'css-456']);
+
+/*
+ * Can use css prop, transpiled by babel plugin
+ */
+
+<div css={`color: red;`} />;
+<div css={{ color: 'red' }} />;
