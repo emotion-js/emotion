@@ -2,7 +2,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { sheet, flush } from 'emotion'
 
-import facepaint from '../src/index'
+import facepaint from 'facepaint'
 
 const mq = facepaint([
   '@media(min-width: 420px)',

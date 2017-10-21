@@ -1,6 +1,3 @@
-/* eslint-disable no-param-reassign */
-import { css } from 'emotion'
-
 export default breakpoints => {
   const mq = [''].concat(breakpoints)
   function flatten(obj) {
@@ -16,7 +13,7 @@ export default breakpoints => {
           }
         })
       } else if (typeof obj[key] === 'object') {
-        slots[key] = css(flatten(obj[key]))
+        slots[key] = flatten(obj[key])
       } else {
         slots[key] = obj[key]
       }

@@ -175,7 +175,30 @@ exports[`facepaint multiple 3`] = `
 exports[`facepaint nested 1`] = `
 Array [
   Object {
-    "& .foo": "css-183j8zy",
+    "& .foo": Object {
+      "& img": Object {
+        "@media(min-width: 1120px)": Object {
+          "height": 25,
+        },
+        "@media(min-width: 420px)": Object {
+          "height": 15,
+        },
+        "@media(min-width: 920px)": Object {
+          "height": 20,
+        },
+        "height": 10,
+      },
+      "@media(min-width: 1120px)": Object {
+        "color": "darkorchid",
+      },
+      "@media(min-width: 420px)": Object {
+        "color": "green",
+      },
+      "@media(min-width: 920px)": Object {
+        "color": "blue",
+      },
+      "color": "red",
+    },
     "@media(min-width: 1120px)": Object {
       "width": "100%",
     },
@@ -270,73 +293,7 @@ exports[`facepaint nested 2`] = `
 `;
 
 exports[`facepaint nested 3`] = `
-".css-14z9fgz {
-  height: 10px;
-}
-
-@media (min-width:420px) {
-  .css-14z9fgz {
-    height: 15px;
-  }
-}
-
-@media (min-width:920px) {
-  .css-14z9fgz {
-    height: 20px;
-  }
-}
-
-@media (min-width:1120px) {
-  .css-14z9fgz {
-    height: 25px;
-  }
-}
-
-.css-183j8zy {
-  color: red;
-}
-
-@media (min-width:420px) {
-  .css-183j8zy {
-    color: green;
-  }
-}
-
-@media (min-width:920px) {
-  .css-183j8zy {
-    color: blue;
-  }
-}
-
-@media (min-width:1120px) {
-  .css-183j8zy {
-    color: darkorchid;
-  }
-}
-
-.css-183j8zy img {
-  height: 10px;
-}
-
-@media (min-width:420px) {
-  .css-183j8zy img {
-    height: 15px;
-  }
-}
-
-@media (min-width:920px) {
-  .css-183j8zy img {
-    height: 20px;
-  }
-}
-
-@media (min-width:1120px) {
-  .css-183j8zy img {
-    height: 25px;
-  }
-}
-
-.css-1ohjc6h {
+".css-1ohjc6h {
   width: 25%;
 }
 
