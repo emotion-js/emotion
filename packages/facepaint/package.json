@@ -1,0 +1,44 @@
+{
+  "name": "facepaint",
+  "version": "8.0.8",
+  "description": "Responsive style values for emotion",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "typings/emotion.d.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm-run-all clean rollup rollup:umd",
+    "clean": "rimraf dist",
+    "rollup": "rollup -c ../../rollup.config.js",
+    "watch": "rollup -c ../../rollup.config.js --watch",
+    "rollup:umd": "cross-env UMD=true rollup -c ../../rollup.config.js"
+  },
+  "peerDependencies": {
+    "emotion": "^8.0.8"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-define": "^1.3.0",
+    "cross-env": "^5.0.5",
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.43.0"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": "https://github.com/tkh44/emotion/tree/master/packages/facepaint",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/tkh44/emotion/issues"
+  }
+}
