@@ -12,7 +12,7 @@ While there are some beneficial use cases for `extractStatic`, emotion's inheren
 
 ```javascript
 const Button = styled('button')`
-  background-color: --bg;
+  background-color: var(--bg);
   padding: 10px;
 `
 <Button style={{ '--bg': props.success ? '#8BC34A' : '#2395f3' }}/>
