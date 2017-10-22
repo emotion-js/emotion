@@ -22,8 +22,5 @@ export function addSourceMaps(offset, state) {
     source: state.file.opts.sourceFileName,
     original: offset
   })
-  return [
-    convert.fromObject(generator).toComment({ multiline: true }),
-    `/*@ sourceURL=${state.file.opts.sourceFileName} */`
-  ].join('\n')
+  return convert.fromObject(generator).toComment({ multiline: true })
 }
