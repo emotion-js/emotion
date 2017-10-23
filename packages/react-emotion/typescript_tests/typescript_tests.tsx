@@ -136,3 +136,19 @@ mount = <Button type="submit" bgColor="red" />;
  */
 
 flush();
+
+/**
+ * innerRef
+ */
+
+Component = styled('div')``;
+mount = <Component innerRef={(element: HTMLDivElement) => {}} />;
+
+Component = styled.div``;
+mount = <Component innerRef={(element: HTMLDivElement) => {}} />;
+
+Component = styled.div({});
+mount = <Component innerRef={(element: HTMLDivElement) => {}} />;
+
+Component = Component.withComponent('input');
+mount = <Component innerRef={(element: HTMLInputElement) => {}} />;
