@@ -28,13 +28,17 @@ export type ThemedProps<Props, Theme> = Props & {
   theme: Theme,
 }
 
+type ElementProps<Tag extends keyof JSX.IntrinsicElements> =
+  & JSX.IntrinsicElements[Tag]
+  & { innerRef?: JSX.IntrinsicElements[Tag]['ref'] }
+
 export interface StyledComponent<Props, Theme, IntrinsicProps>
   extends
     ComponentClass<Props & IntrinsicProps>,
     StatelessComponent<Props & IntrinsicProps>
 {
   withComponent<Tag extends keyof JSX.IntrinsicElements>(tag: Tag):
-    StyledComponent<Props, Theme, JSX.IntrinsicElements[Tag]>
+    StyledComponent<Props, Theme, ElementProps<Tag>>
 
   withComponent(component: Component<Props>):
     StyledComponent<Props, Theme, {}>
@@ -74,7 +78,7 @@ type ShorthandsFactories<Theme> = {
     <Props = {}>(
       strings: TemplateStringsArray,
       ...vars: Interpolation<ThemedProps<Props & JSX.IntrinsicElements[Tag], Theme>>[],
-    ): StyledComponent<Props, Theme, JSX.IntrinsicElements[Tag]>
+    ): StyledComponent<Props, Theme, ElementProps<Tag>>
   
     // overload for object as styles
     <Props = {}>(
@@ -82,7 +86,7 @@ type ShorthandsFactories<Theme> = {
         | ObjectStyleAttributes
         | ((props: ThemedProps<Props & JSX.IntrinsicElements[Tag], Theme>) => ObjectStyleAttributes)
       )[]
-    ): StyledComponent<Props, Theme, JSX.IntrinsicElements[Tag]>
+    ): StyledComponent<Props, Theme, ElementProps<Tag>>
   };
 };
 
@@ -91,7 +95,7 @@ export interface ThemedReactEmotionInterface<Theme> extends ShorthandsFactories<
   <Props, Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: Options,
-  ): CreateStyled<Props, Theme, JSX.IntrinsicElements[Tag]>
+  ): CreateStyled<Props, Theme, ElementProps<Tag>>
 
   // overload for component
   <Props>(

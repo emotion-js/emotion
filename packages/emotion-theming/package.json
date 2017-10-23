@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/emotion-js/emotion#readme",
   "devDependencies": {
-    "@types/react": "^16.0.14",
+    "@types/react": "16.0.16",
     "cross-env": "^5.0.1",
     "prop-types": "^15.5.8",
     "rimraf": "^2.6.1",

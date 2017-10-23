@@ -28,7 +28,7 @@
     "emotion": "^8.0.8"
   },
   "devDependencies": {
-    "@types/react": "^16.0.10",
+    "@types/react": "16.0.16",
     "cross-env": "^5.0.5",
     "emotion": "^8.0.8",
     "npm-run-all": "^4.0.2",
