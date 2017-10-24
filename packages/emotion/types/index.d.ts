@@ -1,19 +1,16 @@
-export type Interpolation = string | number | boolean | null | undefined | _Interpolation1 | _Interpolation2 | _Interpolation3;
+// TypeScript Version: 2.2
+export type Interpolation = string | number | boolean | null | undefined | _Interpolation1 | _Interpolation2 | (() => Interpolation);
 
 // HACK: See https://github.com/Microsoft/TypeScript/issues/3496#issuecomment-128553540
-interface _Interpolation1 extends Record<string, Interpolation> {}
-interface _Interpolation2 extends Array<Interpolation> {}
-interface _Interpolation3 {
-  (): Interpolation;
-}
+export interface _Interpolation1 extends Record<string, Interpolation> {}
+export interface _Interpolation2 extends Array<Interpolation> {}
 
 export type CreateStyles<TRet> = ((...values: Interpolation[]) => TRet)
   & ((strings: TemplateStringsArray, ...vars: Interpolation[]) => TRet);
 
-export interface StylisUse {
-  // TODO: Make this more precise than just Function
-  (plugin: Function | Function[] | null): StylisUse;
-}
+// TODO: Make this more precise than just Function
+// tslint:disable-next-line:ban-types
+export type StylisUse = (plugin: Function | Function[] | null) => StylisUse;
 
 export interface StyleSheet {
   inject(): void;

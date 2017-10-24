@@ -1,73 +1,74 @@
-import { StatelessComponent, ComponentClass, CSSProperties } from 'react'
-import { Interpolation as EmotionInterpolation } from 'emotion'
+// TypeScript Version: 2.3
+// tslint:disable-next-line:no-implicit-dependencies
+import { StatelessComponent, ComponentClass, CSSProperties } from 'react';
+import { Interpolation as EmotionInterpolation } from 'emotion';
 
-export * from 'emotion'
+export * from 'emotion';
 
 export type InterpolationFn<Props = {}> =
   (props: Props) =>
     | EmotionInterpolation
-    | InterpolationFn<Props>
+    | InterpolationFn<Props>;
 
 export type InterpolationTypes<Props = {}> =
   | InterpolationFn<Props>
-  | EmotionInterpolation
+  | EmotionInterpolation;
 
 export type Interpolation<Props = {}> =
   | InterpolationTypes<Props>
-  | InterpolationTypes<Props>[]
+  | Array<InterpolationTypes<Props>>;
 
 export interface Options {
-  string?: string,
+  string?: string;
 }
 
 type Component<Props> =
   | ComponentClass<Props>
-  | StatelessComponent<Props>
+  | StatelessComponent<Props>;
 
 export type ThemedProps<Props, Theme> = Props & {
   theme: Theme,
-}
+};
 
 type ElementProps<Tag extends keyof JSX.IntrinsicElements> =
   & JSX.IntrinsicElements[Tag]
-  & { innerRef?: JSX.IntrinsicElements[Tag]['ref'] }
+  & { innerRef?: JSX.IntrinsicElements[Tag]['ref'] };
 
 export interface StyledComponent<Props, Theme, IntrinsicProps>
   extends
     ComponentClass<Props & IntrinsicProps>,
-    StatelessComponent<Props & IntrinsicProps>
-{
+    StatelessComponent<Props & IntrinsicProps> {
   withComponent<Tag extends keyof JSX.IntrinsicElements>(tag: Tag):
-    StyledComponent<Props, Theme, ElementProps<Tag>>
+    StyledComponent<Props, Theme, ElementProps<Tag>>;
 
   withComponent(component: Component<Props>):
-    StyledComponent<Props, Theme, {}>
+    StyledComponent<Props, Theme, {}>;
 
-  displayName: string
+  displayName: string;
 
-  __emotion_styles: string[]
-  __emotion_base: string | Component<Props & IntrinsicProps>
-  __emotion_real: ThemedReactEmotionInterface<Theme>
+  __emotion_styles: string[];
+  __emotion_base: string | Component<Props & IntrinsicProps>;
+  __emotion_real: ThemedReactEmotionInterface<Theme>;
 }
 
 export type ObjectStyleAttributes =
   | CSSProperties
-  | { [key: string]: ObjectStyleAttributes }
+  | { [key: string]: ObjectStyleAttributes };
 
 export interface CreateStyled<Props, Theme, IntrinsicProps> {
   // overload for template string as styles
   (
     strings: TemplateStringsArray,
-    ...vars: Interpolation<ThemedProps<Props & IntrinsicProps, Theme>>[],
-  ): StyledComponent<Props, Theme, IntrinsicProps>
+    ...vars: Array<Interpolation<ThemedProps<Props & IntrinsicProps, Theme>>>,
+  ): StyledComponent<Props, Theme, IntrinsicProps>;
 
   // overload for object as styles
   (
-    ...styles: (
+    ...styles: Array<
       | ObjectStyleAttributes
       | ((props: ThemedProps<Props & IntrinsicProps, Theme>) => ObjectStyleAttributes)
-    )[]
-  ): StyledComponent<Props, Theme, IntrinsicProps>
+    >
+  ): StyledComponent<Props, Theme, IntrinsicProps>;
 }
 
 // TODO: find a way to reuse CreateStyled here
@@ -77,15 +78,15 @@ type ShorthandsFactories<Theme> = {
     // overload for template string as styles
     <Props = {}>(
       strings: TemplateStringsArray,
-      ...vars: Interpolation<ThemedProps<Props & JSX.IntrinsicElements[Tag], Theme>>[],
+      ...vars: Array<Interpolation<ThemedProps<Props & JSX.IntrinsicElements[Tag], Theme>>>,
     ): StyledComponent<Props, Theme, ElementProps<Tag>>
-  
+
     // overload for object as styles
     <Props = {}>(
-      ...styles: (
+      ...styles: Array<
         | ObjectStyleAttributes
         | ((props: ThemedProps<Props & JSX.IntrinsicElements[Tag], Theme>) => ObjectStyleAttributes)
-      )[]
+      >
     ): StyledComponent<Props, Theme, ElementProps<Tag>>
   };
 };
@@ -95,20 +96,19 @@ export interface ThemedReactEmotionInterface<Theme> extends ShorthandsFactories<
   <Props, Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: Options,
-  ): CreateStyled<Props, Theme, ElementProps<Tag>>
+    // tslint:disable-next-line:no-unnecessary-generics
+  ): CreateStyled<Props, Theme, ElementProps<Tag>>;
 
   // overload for component
   <Props>(
     component: Component<Props>,
     options?: Options,
-  ): CreateStyled<Props, Theme, {}>
+  ): CreateStyled<Props, Theme, {}>;
 }
 
 export interface ThemedReactEmotionModule<Theme> {
-  default: ThemedReactEmotionInterface<Theme>
+  default: ThemedReactEmotionInterface<Theme>;
 }
 
-declare const styled: ThemedReactEmotionInterface<any>
-export default styled
-
-
+declare const styled: ThemedReactEmotionInterface<any>;
+export default styled;

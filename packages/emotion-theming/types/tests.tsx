@@ -1,5 +1,6 @@
 import React from 'react';
 import * as emotionTheming from '../';
+// tslint:disable-next-line:no-duplicate-imports
 import { ThemeProvider, withTheme, EmotionThemingModule } from '../';
 
 const theme = { primary: "green", secondary: "white" };
@@ -9,7 +10,7 @@ declare class CompC extends React.Component<{ prop: boolean }> { }
 /**
  * Theme Provider with no type
  */
-<ThemeProvider theme={theme} />; 
+<ThemeProvider theme={theme} />;
 <ThemeProvider theme={() => theme} />;
 
 /**
@@ -21,7 +22,7 @@ const ThemedSFC = withTheme(CompSFC);
 
 const ThemedComp = withTheme(CompC);
 <ThemedComp theme={theme} prop />;
-<ThemedComp prop />
+<ThemedComp prop />;
 
 const { ThemeProvider: TypedThemeProvider, withTheme: typedWithTheme } = emotionTheming as EmotionThemingModule<typeof theme>;
 
@@ -31,7 +32,7 @@ const { ThemeProvider: TypedThemeProvider, withTheme: typedWithTheme } = emotion
 
 const TypedThemedSFC = typedWithTheme(ThemedSFC);
 <TypedThemedSFC prop />;
-<TypedThemedSFC theme={theme} prop/>
+<TypedThemedSFC theme={theme} prop/>;
 
 const TypedCompSFC = typedWithTheme(CompSFC);
 <TypedCompSFC prop />;
