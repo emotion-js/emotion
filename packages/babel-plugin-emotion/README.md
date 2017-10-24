@@ -163,7 +163,7 @@ This option enables the following:
 
 ### `extractStatic`
 
-`boolean`, defaults to
+`boolean`, defaults to `false`.
 
 This option enables the following:
 
