@@ -100,10 +100,11 @@ export interface ThemedReactEmotionInterface<Theme> extends ShorthandsFactories<
   ): CreateStyled<Props, Theme, ElementProps<Tag>>;
 
   // overload for component
-  <Props>(
+  <Props, CustomProps>(
     component: Component<Props>,
     options?: Options,
-  ): CreateStyled<Props, Theme, {}>;
+    // tslint:disable-next-line:no-unnecessary-generics
+  ): CreateStyled<Props & CustomProps, Theme, {}>;
 }
 
 export interface ThemedReactEmotionModule<Theme> {

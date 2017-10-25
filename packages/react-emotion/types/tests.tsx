@@ -81,7 +81,7 @@ Component = styled(MyClassC) ``;
 mount = <Component customProp="abc" />;
 
 // do not infer SFCComponentProps with pass CustomProps, need to pass both
-Component = styled<CustomProps2 & SFCComponentProps>(SFCComponent)({
+Component = styled<SFCComponentProps, CustomProps2>(SFCComponent)({
   color: 'red',
 }, props => ({
   background: props.customProp,
@@ -89,7 +89,7 @@ Component = styled<CustomProps2 & SFCComponentProps>(SFCComponent)({
 mount = <Component customProp="red" foo="bar" />;
 
 // do not infer SFCComponentProps with pass CustomProps, need to pass both
-Component = styled<CustomProps2 & SFCComponentProps>(SFCComponent)`
+Component = styled<SFCComponentProps, CustomProps2>(SFCComponent)`
   color: red;
   background: ${props => props.customProp};
 `;
