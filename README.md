@@ -92,6 +92,7 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 - [Version 7 docs](https://github.com/emotion-js/emotion/tree/v7.3.2)
 ### Ecosystem
   
+  - [facepaint](https://github.com/emotion-js/facepaint)
   - [emotion-vue](https://github.com/egoist/emotion-vue)
   - [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
   - [ShevyJS](https://github.com/kyleshevlin/shevyjs)
