@@ -96,6 +96,7 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
   - [emotion-vue](https://github.com/egoist/emotion-vue)
   - [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
   - [ShevyJS](https://github.com/kyleshevlin/shevyjs)
+  - [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
 
 ### In the Wild
 
