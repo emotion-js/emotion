@@ -19,7 +19,7 @@ render(<Avatar src={logoUrl} rounded />)
 
 [Demo](https://stackblitz.com/edit/react-wudbyn)
 
-```js
+```jsx
 const breakpoints = {
   // Numerical values will result in a min-width query
   small: 576,
@@ -51,7 +51,7 @@ export const queries = Object.keys(breakpoints).reduce((accumulator, label) => {
 }, {});
 ```
 
-```js
+```jsx
 import { queries } from './mediaQueries.js`;
 
 const paragraph = css`
