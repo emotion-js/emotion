@@ -165,35 +165,95 @@ export default function(babel) {
             ...defaultImportedNames,
             ...state.opts.importedNames
           }
-          state.file.metadata.modules.imports.forEach(
-            ({ source, imported, specifiers }) => {
-              if (source.indexOf('emotion') !== -1) {
-                const importedNames = specifiers
-                  .filter(
-                    v =>
-                      [
-                        'default',
-                        'css',
-                        'keyframes',
-                        'injectGlobal',
-                        'fontFace',
-                        'merge'
-                      ].indexOf(v.imported) !== -1
-                  )
-                  .reduce(
-                    (acc, { imported, local }) => ({
-                      ...acc,
-                      [imported === 'default' ? 'styled' : imported]: local
-                    }),
-                    defaultImportedNames
-                  )
-                state.importedNames = {
-                  ...importedNames,
-                  ...state.opts.importedNames
+
+          const imports = []
+
+          let isModule = false
+
+          for (const node of path.node.body) {
+            if (t.isModuleDeclaration(node)) {
+              isModule = true
+              break
+            }
+          }
+
+          if (isModule) {
+            path.traverse({
+              ImportDeclaration: {
+                exit(path) {
+                  const { node } = path
+
+                  const imported = []
+                  const specifiers = []
+
+                  imports.push({
+                    source: node.source.value,
+                    imported,
+                    specifiers
+                  })
+
+                  for (const specifier of path.get('specifiers')) {
+                    const local = specifier.node.local.name
+
+                    if (specifier.isImportDefaultSpecifier()) {
+                      imported.push('default')
+                      specifiers.push({
+                        kind: 'named',
+                        imported: 'default',
+                        local
+                      })
+                    }
+
+                    if (specifier.isImportSpecifier()) {
+                      const importedName = specifier.node.imported.name
+                      imported.push(importedName)
+                      specifiers.push({
+                        kind: 'named',
+                        imported: importedName,
+                        local
+                      })
+                    }
+
+                    if (specifier.isImportNamespaceSpecifier()) {
+                      imported.push('*')
+                      specifiers.push({
+                        kind: 'namespace',
+                        local
+                      })
+                    }
+                  }
                 }
               }
+            })
+          }
+
+          imports.forEach(({ source, imported, specifiers }) => {
+            if (source.indexOf('emotion') !== -1) {
+              const importedNames = specifiers
+                .filter(
+                  v =>
+                    [
+                      'default',
+                      'css',
+                      'keyframes',
+                      'injectGlobal',
+                      'fontFace',
+                      'merge'
+                    ].indexOf(v.imported) !== -1
+                )
+                .reduce(
+                  (acc, { imported, local }) => ({
+                    ...acc,
+                    [imported === 'default' ? 'styled' : imported]: local
+                  }),
+                  defaultImportedNames
+                )
+              state.importedNames = {
+                ...importedNames,
+                ...state.opts.importedNames
+              }
             }
-          )
+          })
 
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
