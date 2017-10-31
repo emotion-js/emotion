@@ -1,4 +1,4 @@
-import { createInline, createExtract } from './util'
+import { createInlineTests, createExtractTests } from './util'
 
 const inline = {
   'css basic': {
@@ -244,7 +244,7 @@ const inline = {
      `
   }
 }
-createInline('babel css inline', inline)
+createInlineTests('babel css inline', inline)
 
 const extract = {
   'babel css extract basic': {
@@ -259,4 +259,4 @@ const extract = {
   }
 }
 
-createExtract('babel css extract', extract)
+createExtractTests('babel css extract', extract)

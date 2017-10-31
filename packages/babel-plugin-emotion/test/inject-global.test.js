@@ -1,6 +1,6 @@
-import { createInline, createExtract } from './util'
+import { createInlineTests, createExtractTests } from './util'
 
-const inline = {
+const cases = {
   'injectGlobal basic': {
     code: `
       injectGlobal\`
@@ -30,7 +30,8 @@ const inline = {
         html {
           background: green;
         }
-    \`;`
+    \`;`,
+    extract: false
   },
   'static change import': {
     code: `
@@ -91,56 +92,6 @@ const inline = {
   }
 }
 
-createInline('injectGlobal', inline)
+createInlineTests('injectGlobal', cases)
 
-const extract = {
-  'injectGlobal basic': {
-    code: `
-      injectGlobal\`
-        body {
-          margin: 0;
-          padding: 0;
-          & > div {
-            display: none;
-          }
-        }
-        html {
-          background: green;
-        }
-    \`;`
-  },
-  'injectGlobal assign to variable': {
-    code: `
-      const thisWillBeUndefined = injectGlobal\`
-        body {
-          margin: 0;
-          padding: 0;
-          & > div {
-            display: none;
-          }
-        }
-        html {
-          background: green;
-        }
-    \`;`
-  },
-  'injectGlobal with interpolation': {
-    code: `
-      injectGlobal\`
-        body {
-          margin: 0;
-          padding: 0;
-          display: \${display};
-          & > div {
-            display: none;
-          }
-        }
-        html {
-          background: green;
-        }
-    \`;`,
-    extract: false
-  }
-}
-
-createExtract('injectGlobal', extract)
+createExtractTests('injectGlobal extract', cases)

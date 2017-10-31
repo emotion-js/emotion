@@ -1,6 +1,6 @@
-import { createInline, createExtract } from './util'
+import { createInlineTests, createExtractTests } from './util'
 
-const inline = {
+const cases = {
   'no use': {
     code: 'styled.h1``'
   },
@@ -19,7 +19,8 @@ const inline = {
 
       border: 1px solid $\{props =>
         props.theme.borderColor};
-    \``
+    \``,
+    extract: false
   },
 
   'more than 10 dynamic values': {
@@ -36,7 +37,8 @@ const inline = {
     font-size: $\{'18px'};
     text-align: $\{'center'};
     border-left: $\{p => p.theme.blue};
-  \``
+  \``,
+    extract: false
   },
 
   'random expressions': {
@@ -55,7 +57,8 @@ const inline = {
   },
 
   basic: {
-    code: "const H1 = styled.h1`font-size: ${fontSize + 'px'};`"
+    code: "const H1 = styled.h1`font-size: ${fontSize + 'px'};`",
+    extract: false
   },
 
   nested: {
@@ -64,7 +67,8 @@ const inline = {
       "font-size: ${fontSize + 'px'};" +
       '& div { color: blue;' +
       '& span { color: red } }' +
-      '`'
+      '`',
+    extract: false
   },
 
   'interpolation in different places': {
@@ -78,7 +82,8 @@ const inline = {
       transform: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
       transform1: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
       transform2: translateX(\${(props) => props.translateX}) \${(props) => props.translateX};
-      \``
+      \``,
+    extract: false
   },
 
   'media query': {
@@ -101,25 +106,29 @@ const inline = {
   },
 
   'function call': {
-    code: "styled(MyComponent)`font-size: ${fontSize + 'px'};`"
+    code: "styled(MyComponent)`font-size: ${fontSize + 'px'};`",
+    extract: false
   },
 
   'objects fn call': {
     code: `
     const H1 = styled('h1')({
       display: 'flex'
-    })`
+    })`,
+    extract: false
   },
 
   'objects based on props': {
     code: `
     const H1 = styled('h1')({ padding: 10 },props => ({
       display: props.display
-    }))`
+    }))`,
+    extract: false
   },
 
   'shorthand property': {
-    code: `const H1 = styled.h1({ fontSize })`
+    code: `const H1 = styled.h1({ fontSize })`,
+    extract: false
   },
 
   'objects prefixed': {
@@ -134,14 +143,16 @@ const inline = {
       }
   }, props => {
       padding: props.padding
-  })`
+  })`,
+    extract: false
   },
 
   'styled. objects': {
     code: `
     const H1 = styled.h1({ padding: 10 },props => ({
       display: props.display
-    }))`
+    }))`,
+    extract: false
   },
 
   'styled. objects with a single spread property': {
@@ -149,7 +160,8 @@ const inline = {
     const defaultText = { fontSize: 20 }
     const Figure = styled.figure({
       ...defaultText
-    })`
+    })`,
+    extract: false
   },
 
   'styled. objects with a multiple spread properties': {
@@ -158,7 +170,8 @@ const inline = {
     const Figure = styled.figure({
       ...defaultText,
       ...defaultFigure
-    })`
+    })`,
+    extract: false
   },
 
   'styled. objects with a multiple spread properties and other keys': {
@@ -169,7 +182,8 @@ const inline = {
       fontSize: '20px',
       ...defaultFigure,
       ...defaultText2
-    })`
+    })`,
+    extract: false
   },
 
   'styled objects prefixed': {
@@ -184,7 +198,8 @@ const inline = {
       }
     },props => ({
       display: props.display
-    }))`
+    }))`,
+    extract: false
   },
 
   'composition based on props': {
@@ -217,6 +232,7 @@ const inline = {
         )
       }
     `,
+    extract: false,
 
     opts: { hoist: true }
   },
@@ -231,17 +247,6 @@ const inline = {
   }
 }
 
-createInline('styled inline', inline)
+createInlineTests('styled inline', cases)
 
-const extract = {
-  'no use': {
-    code: 'styled.h1``'
-  },
-
-  basic: {
-    code:
-      "const H1 = styled.h1`display: flex; justify-content: center; width: var(--css-hash-0); &:hover { background-color: green; } @media (max-width: 500px) { height: var(--css-hash-1); position: fixed; } @media print { display: none; } &::before { color: blue; width: 20px; height: 20px; content: 'pseudo' }`"
-  }
-}
-
-createExtract('styled extract', extract)
+createExtractTests('styled extract', cases)

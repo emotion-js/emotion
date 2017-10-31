@@ -1,4 +1,4 @@
-import { createInline, createExtract } from './util'
+import { createInlineTests, createExtractTests } from './util'
 
 const inline = {
   'basic inline': {
@@ -75,7 +75,7 @@ const inline = {
   }
 }
 
-createInline('babel css prop inline', inline)
+createInlineTests('babel css prop inline', inline)
 
 const extract = {
   'basic with extractStatic': {
@@ -83,4 +83,4 @@ const extract = {
   }
 }
 
-createExtract('babel css prop extract', extract)
+createExtractTests('babel css prop extract', extract)

@@ -13,6 +13,7 @@ fs.existsSync.mockReturnValue(true)
 fs.statSync.mockReturnValue({ isFile: () => false })
 
 const createInlineTester = transform => opts => {
+  if (!opts.opts) opts.opts = {}
   expect(
     transform(opts.code, {
       plugins: [
@@ -30,7 +31,7 @@ const createInlineTester = transform => opts => {
   ).toMatchSnapshot()
 }
 
-export const createInline = (title, cases) => {
+export const createInlineTests = (title, cases) => {
   describe(title, () => {
     makeCases('babel 6', createInlineTester(babel6Transform), cases)
     makeCases('babel 7', createInlineTester(babel7Transform), cases)
@@ -41,6 +42,7 @@ const createExtractTester = transform => opts => {
   fs.writeFileSync.mockClear()
   let extract = true
   if (opts.extract === false) extract = false
+  if (!opts.opts) opts.opts = {}
   const { code } = transform(opts.code, {
     plugins: [
       stage2,
@@ -59,7 +61,7 @@ const createExtractTester = transform => opts => {
     expect(
       code +
         '\n\n\n' +
-        fs.writeFileSync.mock.calls[0][0] +
+        basename(fs.writeFileSync.mock.calls[0][0]) +
         '\n' +
         fs.writeFileSync.mock.calls[0][1]
     ).toMatchSnapshot()
@@ -69,9 +71,34 @@ const createExtractTester = transform => opts => {
   }
 }
 
-export const createExtract = (title, cases) => {
+export const createExtractTests = (title, cases) => {
   describe(title, () => {
     makeCases('babel 6', createExtractTester(babel6Transform), cases)
     makeCases('babel 7', createExtractTester(babel7Transform), cases)
+  })
+}
+
+const createMacroTester = transform => opts => {
+  if (!opts.opts) opts.opts = {}
+  expect(
+    transform(opts.code, {
+      plugins: [
+        [
+          require('babel-macros'),
+          {
+            filename: opts.filename || __filename,
+            babelrc: false,
+            ...opts.opts
+          }
+        ]
+      ]
+    }).code
+  ).toMatchSnapshot()
+}
+
+export const createMacroTests = (title, cases) => {
+  describe(title, () => {
+    makeCases('babel 6', createMacroTester(babel6Transform), cases)
+    makeCases('babel 7', createMacroTester(babel7Transform), cases)
   })
 }

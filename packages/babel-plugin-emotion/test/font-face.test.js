@@ -1,4 +1,4 @@
-import { createInline, createExtract } from './util'
+import { createInlineTests, createExtractTests } from './util'
 
 const inline = {
   basic: {
@@ -62,7 +62,7 @@ const inline = {
     \`;`
   }
 }
-createInline('fontFace', inline)
+createInlineTests('fontFace', inline)
 
 const extract = {
   basic: {
@@ -100,4 +100,4 @@ const extract = {
   }
 }
 
-createExtract('fontFace extract', extract)
+createExtractTests('fontFace extract', extract)

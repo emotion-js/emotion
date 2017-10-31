@@ -18,37 +18,12 @@ injectGlobal\`
     \`;"
 `;
 
-exports[`injectGlobal babel 6 injectGlobal assign to variable 1`] = `
-"import \\"./emotion.css\\";
-
-const thisWillBeUndefined = undefined;
-
-
-emotion.css
-body{margin:0;padding:0;}body > div{display:none;}html{background:green;}"
-`;
-
 exports[`injectGlobal babel 6 injectGlobal basic 1`] = `
 "
 injectGlobal(\\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\");"
 `;
 
-exports[`injectGlobal babel 6 injectGlobal basic 2`] = `
-"import \\"./emotion.css\\";
-
-undefined;
-
-
-emotion.css
-body{margin:0;padding:0;}body > div{display:none;}html{background:green;}"
-`;
-
 exports[`injectGlobal babel 6 injectGlobal with interpolation 1`] = `
-"
-injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"
-`;
-
-exports[`injectGlobal babel 6 injectGlobal with interpolation 2`] = `
 "
 injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"
 `;
@@ -87,29 +62,9 @@ injectGlobal\`
     \`;"
 `;
 
-exports[`injectGlobal babel 7 injectGlobal assign to variable 1`] = `
-"import \\"./emotion.css\\";
-const thisWillBeUndefined = undefined;
-
-
-emotion.css
-body{margin:0;padding:0;}body > div{display:none;}html{background:green;}"
-`;
-
 exports[`injectGlobal babel 7 injectGlobal basic 1`] = `"injectGlobal(\\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\");"`;
 
-exports[`injectGlobal babel 7 injectGlobal basic 2`] = `
-"import \\"./emotion.css\\";
-undefined;
-
-
-emotion.css
-body{margin:0;padding:0;}body > div{display:none;}html{background:green;}"
-`;
-
 exports[`injectGlobal babel 7 injectGlobal with interpolation 1`] = `"injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"`;
-
-exports[`injectGlobal babel 7 injectGlobal with interpolation 2`] = `"injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"`;
 
 exports[`injectGlobal babel 7 static change import 1`] = `
 "inject(\\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\");
@@ -125,4 +80,118 @@ injectGlobal\`
         background: green;
       }
     \`;"
+`;
+
+exports[`injectGlobal extract babel 6 dynamic change import 1`] = `
+"import './emotion.css';
+
+import { injectGlobal as inject } from 'emotion';
+undefined;
+injectGlobal\`
+      body {
+        margin: 0;
+        padding: 0;
+        & > div {
+          display: flex;
+        }
+      }
+      html {
+        background: green;
+      }
+    \`;
+
+
+emotion.css
+body{margin:0;padding:0;}body > div{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}html{background:green;}"
+`;
+
+exports[`injectGlobal extract babel 6 injectGlobal basic 1`] = `
+"import \\"./emotion.css\\";
+
+undefined;
+
+
+emotion.css
+body{margin:0;padding:0;}body > div{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}html{background:green;}"
+`;
+
+exports[`injectGlobal extract babel 6 injectGlobal with interpolation 1`] = `
+"
+injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"
+`;
+
+exports[`injectGlobal extract babel 6 static change import 1`] = `
+"import \\"./emotion.css\\";
+
+undefined;
+injectGlobal\`
+      body {
+        margin: 0;
+        padding: 0;
+        & > div {
+          display: flex;
+        }
+      }
+      html {
+        background: green;
+      }
+    \`;
+
+
+emotion.css
+body{margin:0;padding:0;}body > div{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}html{background:green;}"
+`;
+
+exports[`injectGlobal extract babel 7 dynamic change import 1`] = `
+"import \\"./emotion.css\\";
+import { injectGlobal as inject } from 'emotion';
+undefined;
+injectGlobal\`
+      body {
+        margin: 0;
+        padding: 0;
+        & > div {
+          display: flex;
+        }
+      }
+      html {
+        background: green;
+      }
+    \`;
+
+
+emotion.css
+body{margin:0;padding:0;}body > div{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}html{background:green;}"
+`;
+
+exports[`injectGlobal extract babel 7 injectGlobal basic 1`] = `
+"import \\"./emotion.css\\";
+undefined;
+
+
+emotion.css
+body{margin:0;padding:0;}body > div{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}html{background:green;}"
+`;
+
+exports[`injectGlobal extract babel 7 injectGlobal with interpolation 1`] = `"injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"`;
+
+exports[`injectGlobal extract babel 7 static change import 1`] = `
+"import \\"./emotion.css\\";
+undefined;
+injectGlobal\`
+      body {
+        margin: 0;
+        padding: 0;
+        & > div {
+          display: flex;
+        }
+      }
+      html {
+        background: green;
+      }
+    \`;
+
+
+emotion.css
+body{margin:0;padding:0;}body > div{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}html{background:green;}"
 `;

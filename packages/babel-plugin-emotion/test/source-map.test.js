@@ -1,6 +1,6 @@
-import { createInline } from './util'
+import { createInlineTests } from './util'
 
-const inline = {
+const cases = {
   'css source map': {
     code: `
         css\`
@@ -120,8 +120,8 @@ const inline = {
   }
 }
 
-for (const thing in inline) {
-  inline[thing].opts = { sourceMap: true }
+for (const thing in cases) {
+  cases[thing].opts = { sourceMap: true }
 }
 
-createInline('source map', inline)
+createInlineTests('source map', cases)
