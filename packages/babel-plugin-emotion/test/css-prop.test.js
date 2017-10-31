@@ -1,12 +1,4 @@
-import * as babel from 'babel-core'
-import plugin from 'babel-plugin-emotion'
-import { createInline } from './util'
-import * as fs from 'fs'
-
-jest.mock('fs')
-
-fs.existsSync.mockReturnValue(true)
-fs.statSync.mockReturnValue({ isFile: () => false })
+import { createInline, createExtract } from './util'
 
 const inline = {
   'basic inline': {
@@ -83,18 +75,12 @@ const inline = {
   }
 }
 
-createInline('babel css prop', inline)
+createInline('babel css prop inline', inline)
 
-describe('babel css prop', () => {
-  test('basic with extractStatic', () => {
-    const basic = '(<div className="a" css={`color: brown;`}></div>)'
-    const { code } = babel.transform(basic, {
-      plugins: [[plugin, { extractStatic: true }]],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-    expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
-    expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
-  })
-})
+const extract = {
+  'basic with extractStatic': {
+    code: '(<div className="a" css={`color: brown;`}></div>)'
+  }
+}
+
+createExtract('babel css prop extract', extract)

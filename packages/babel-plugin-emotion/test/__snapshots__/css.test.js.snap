@@ -1,6 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`babel css babel 6 ::placeholder 1`] = `
+exports[`babel css extract babel 6 babel css extract basic 1`] = `
+"import \\"./emotion.css\\";
+
+\\"css-5bxlk\\";
+
+
+emotion.css
+.css-5bxlk{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;}"
+`;
+
+exports[`babel css extract babel 7 babel css extract basic 1`] = `
+"import \\"./emotion.css\\";
+\\"css-5bxlk\\";
+
+
+emotion.css
+.css-5bxlk{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;}"
+`;
+
+exports[`babel css inline babel 6 ::placeholder 1`] = `
 "
 const cls1 = /*#__PURE__*/css({
   '::placeholder': {
@@ -11,7 +30,7 @@ const cls1 = /*#__PURE__*/css({
 const cls2 = /*#__PURE__*/css('::placeholder{color:green;display:flex;}');"
 `;
 
-exports[`babel css babel 6 :fullscreen 1`] = `
+exports[`babel css inline babel 6 :fullscreen 1`] = `
 "
 const cls1 = /*#__PURE__*/css({
   ':fullscreen': {
@@ -22,7 +41,7 @@ const cls1 = /*#__PURE__*/css({
 const cls2 = /*#__PURE__*/css(':fullscreen{color:green;display:flex;}');"
 `;
 
-exports[`babel css babel 6 array of objects 1`] = `
+exports[`babel css inline babel 6 array of objects 1`] = `
 "
 const cls2 = /*#__PURE__*/css([{
   display: 'flex',
@@ -33,32 +52,32 @@ const cls2 = /*#__PURE__*/css([{
 }]);"
 `;
 
-exports[`babel css babel 6 basic object support 1`] = `"/*#__PURE__*/css({ display: 'flex' });"`;
+exports[`babel css inline babel 6 basic object support 1`] = `"/*#__PURE__*/css({ display: 'flex' });"`;
 
-exports[`babel css babel 6 css basic 1`] = `
+exports[`babel css inline babel 6 css basic 1`] = `
 "
 /*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
 `;
 
-exports[`babel css babel 6 css basic as cows 1`] = `
+exports[`babel css inline babel 6 css basic as cows 1`] = `
 "
 import { css as cows } from 'emotion';
 /*#__PURE__*/cows('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:', widthVar, ';');"
 `;
 
-exports[`babel css babel 6 css basic renamed as option 1`] = `
+exports[`babel css inline babel 6 css basic renamed as option 1`] = `
 "
 /*#__PURE__*/cows(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
 `;
 
-exports[`babel css babel 6 css random expression 1`] = `"/*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"`;
+exports[`babel css inline babel 6 css random expression 1`] = `"/*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"`;
 
-exports[`babel css babel 6 css with float property 1`] = `
+exports[`babel css inline babel 6 css with float property 1`] = `
 "
 /*#__PURE__*/css(\\"float:left;\\");"
 `;
 
-exports[`babel css babel 6 dynamic property objects 1`] = `
+exports[`babel css inline babel 6 dynamic property objects 1`] = `
 "
 /*#__PURE__*/css({
   fontSize: 10,
@@ -66,9 +85,9 @@ exports[`babel css babel 6 dynamic property objects 1`] = `
 });"
 `;
 
-exports[`babel css babel 6 dynamically renamed-import: basic object support 1`] = `"import { css as cows } from 'emotion'; /*#__PURE__*/cows({ display: 'flex' });"`;
+exports[`babel css inline babel 6 dynamically renamed-import: basic object support 1`] = `"import { css as cows } from 'emotion'; /*#__PURE__*/cows({ display: 'flex' });"`;
 
-exports[`babel css babel 6 hoisting 1`] = `
+exports[`babel css inline babel 6 hoisting 1`] = `
 "var _ref = \\"font-size:20px;@media(min-width:420px){color:blue;\\";
 var _ref2 = \\";line-height:26px;}background:green;\\";
 var _ref3 = { backgroundColor: \\"hotpink\\" };
@@ -101,17 +120,17 @@ function test() {
 }"
 `;
 
-exports[`babel css babel 6 interpolation in selector 1`] = `
+exports[`babel css inline babel 6 interpolation in selector 1`] = `
 "
 const cls2 = /*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;\\", className, \\"{display:none;}\\");"
 `;
 
-exports[`babel css babel 6 nested expanded properties 1`] = `
+exports[`babel css inline babel 6 nested expanded properties 1`] = `
 "
 /*#__PURE__*/css(\\"margin:12px 48px;& .div{display:flex;}\\");"
 `;
 
-exports[`babel css babel 6 object with a bunch of stuff 1`] = `
+exports[`babel css inline babel 6 object with a bunch of stuff 1`] = `
 "
 const cls2 = /*#__PURE__*/css({
   float: 'left',
@@ -121,7 +140,7 @@ const cls2 = /*#__PURE__*/css({
 });"
 `;
 
-exports[`babel css babel 6 objects 1`] = `
+exports[`babel css inline babel 6 objects 1`] = `
 "
 /*#__PURE__*/css({
     borderRadius: '50%',
@@ -134,20 +153,20 @@ exports[`babel css babel 6 objects 1`] = `
 });"
 `;
 
-exports[`babel css babel 6 only styles on nested selector 1`] = `
+exports[`babel css inline babel 6 only styles on nested selector 1`] = `
 "
 const cls1 = /*#__PURE__*/css(\\"display:flex;\\");
 const cls2 = /*#__PURE__*/css(\\"&:hover{background:pink;}\\");"
 `;
 
-exports[`babel css babel 6 renamed-import: basic object support 1`] = `"/*#__PURE__*/cows({ display: 'flex' });"`;
+exports[`babel css inline babel 6 renamed-import: basic object support 1`] = `"/*#__PURE__*/cows({ display: 'flex' });"`;
 
-exports[`babel css babel 6 symbols inside of "" 1`] = `
+exports[`babel css inline babel 6 symbols inside of "" 1`] = `
 "
 const cls = /*#__PURE__*/css(\\"content:\\\\\\"  {  }  \\\\\\"\\");"
 `;
 
-exports[`babel css babel 7 ::placeholder 1`] = `
+exports[`babel css inline babel 7 ::placeholder 1`] = `
 "const cls1 =
 /*#__PURE__*/
 css({
@@ -161,7 +180,7 @@ const cls2 =
 css(\\"::placeholder{color:green;display:flex;}\\");"
 `;
 
-exports[`babel css babel 7 :fullscreen 1`] = `
+exports[`babel css inline babel 7 :fullscreen 1`] = `
 "const cls1 =
 /*#__PURE__*/
 css({
@@ -175,7 +194,7 @@ const cls2 =
 css(\\":fullscreen{color:green;display:flex;}\\");"
 `;
 
-exports[`babel css babel 7 array of objects 1`] = `
+exports[`babel css inline babel 7 array of objects 1`] = `
 "const cls2 =
 /*#__PURE__*/
 css([{
@@ -187,31 +206,31 @@ css([{
 }]);"
 `;
 
-exports[`babel css babel 7 basic object support 1`] = `
+exports[`babel css inline babel 7 basic object support 1`] = `
 "/*#__PURE__*/
 css({
   display: 'flex'
 });"
 `;
 
-exports[`babel css babel 7 css basic 1`] = `
+exports[`babel css inline babel 7 css basic 1`] = `
 "/*#__PURE__*/
 css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
 `;
 
-exports[`babel css babel 7 css basic as cows 1`] = `
+exports[`babel css inline babel 7 css basic as cows 1`] = `
 "import { css as cows } from 'emotion';
 
 /*#__PURE__*/
 cows(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
 `;
 
-exports[`babel css babel 7 css basic renamed as option 1`] = `
+exports[`babel css inline babel 7 css basic renamed as option 1`] = `
 "/*#__PURE__*/
 cows(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
 `;
 
-exports[`babel css babel 7 css random expression 1`] = `
+exports[`babel css inline babel 7 css random expression 1`] = `
 "/*#__PURE__*/
 css(\\"font-size:20px;@media(min-width:420px){color:blue;\\",
 /*#__PURE__*/
@@ -220,12 +239,12 @@ css(\\"width:96px;height:96px;\\"), \\";line-height:26px;}background:green;\\", 
 }, \\";\\");"
 `;
 
-exports[`babel css babel 7 css with float property 1`] = `
+exports[`babel css inline babel 7 css with float property 1`] = `
 "/*#__PURE__*/
 css(\\"float:left;\\");"
 `;
 
-exports[`babel css babel 7 dynamic property objects 1`] = `
+exports[`babel css inline babel 7 dynamic property objects 1`] = `
 "/*#__PURE__*/
 css({
   fontSize: 10,
@@ -233,7 +252,7 @@ css({
 });"
 `;
 
-exports[`babel css babel 7 dynamically renamed-import: basic object support 1`] = `
+exports[`babel css inline babel 7 dynamically renamed-import: basic object support 1`] = `
 "import { css as cows } from 'emotion';
 
 /*#__PURE__*/
@@ -242,7 +261,7 @@ cows({
 });"
 `;
 
-exports[`babel css babel 7 hoisting 1`] = `
+exports[`babel css inline babel 7 hoisting 1`] = `
 "var _ref = \\"font-size:20px;@media(min-width:420px){color:blue;\\";
 var _ref2 = \\";line-height:26px;}background:green;\\";
 var _ref3 = {
@@ -295,18 +314,18 @@ function test() {
 }"
 `;
 
-exports[`babel css babel 7 interpolation in selector 1`] = `
+exports[`babel css inline babel 7 interpolation in selector 1`] = `
 "const cls2 =
 /*#__PURE__*/
 css(\\"margin:12px 48px;color:#ffffff;\\", className, \\"{display:none;}\\");"
 `;
 
-exports[`babel css babel 7 nested expanded properties 1`] = `
+exports[`babel css inline babel 7 nested expanded properties 1`] = `
 "/*#__PURE__*/
 css(\\"margin:12px 48px;& .div{display:flex;}\\");"
 `;
 
-exports[`babel css babel 7 object with a bunch of stuff 1`] = `
+exports[`babel css inline babel 7 object with a bunch of stuff 1`] = `
 "const cls2 =
 /*#__PURE__*/
 css({
@@ -317,7 +336,7 @@ css({
 });"
 `;
 
-exports[`babel css babel 7 objects 1`] = `
+exports[`babel css inline babel 7 objects 1`] = `
 "/*#__PURE__*/
 css({
   borderRadius: '50%',
@@ -330,7 +349,7 @@ css({
 });"
 `;
 
-exports[`babel css babel 7 only styles on nested selector 1`] = `
+exports[`babel css inline babel 7 only styles on nested selector 1`] = `
 "const cls1 =
 /*#__PURE__*/
 css(\\"display:flex;\\");
@@ -339,23 +358,15 @@ const cls2 =
 css(\\"&:hover{background:pink;}\\");"
 `;
 
-exports[`babel css babel 7 renamed-import: basic object support 1`] = `
+exports[`babel css inline babel 7 renamed-import: basic object support 1`] = `
 "/*#__PURE__*/
 cows({
   display: 'flex'
 });"
 `;
 
-exports[`babel css babel 7 symbols inside of "" 1`] = `
+exports[`babel css inline babel 7 symbols inside of "" 1`] = `
 "const cls =
 /*#__PURE__*/
 css(\\"content:\\\\\\"  {  }  \\\\\\"\\");"
 `;
-
-exports[`babel css extract basic 1`] = `
-"import \\"./css.test.emotion.css\\";
-
-\\"css-1ylewj5\\";"
-`;
-
-exports[`babel css extract basic 2`] = `".css-1ylewj5{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;}"`;

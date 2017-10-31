@@ -62,23 +62,47 @@ fontFace\`
     \`;"
 `;
 
-exports[`fontFace babel extract basic 1`] = `
-"import \\"./font-face.test.emotion.css\\";
+exports[`fontFace extract babel 6 basic 1`] = `
+"import \\"./emotion.css\\";
 
-undefined;"
+undefined;
+
+
+emotion.css
+@font-face{font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;}"
 `;
 
-exports[`fontFace babel extract basic 2`] = `"@font-face{font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;}"`;
+exports[`fontFace extract babel 6 basic assign to variable 1`] = `
+"import \\"./emotion.css\\";
 
-exports[`fontFace babel extract basic assign to variable 1`] = `
-"import \\"./font-face.test.emotion.css\\";
+const thisWillBeUndefined = undefined;
 
-const thisWillBeUndefined = undefined;"
+
+emotion.css
+@font-face{font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;}"
 `;
 
-exports[`fontFace babel extract basic assign to variable 2`] = `"@font-face{font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;}"`;
-
-exports[`fontFace babel extract interpolation 1`] = `
+exports[`fontFace extract babel 6 interpolation 1`] = `
 "
 fontFace(\\"font-family:\\", fontFamilyName, \\";src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\\");"
 `;
+
+exports[`fontFace extract babel 7 basic 1`] = `
+"import \\"./emotion.css\\";
+undefined;
+
+
+emotion.css
+@font-face{font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;}"
+`;
+
+exports[`fontFace extract babel 7 basic assign to variable 1`] = `
+"import \\"./emotion.css\\";
+const thisWillBeUndefined = undefined;
+
+
+emotion.css
+@font-face{font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;}"
+`;
+
+exports[`fontFace extract babel 7 interpolation 1`] = `"fontFace(\\"font-family:\\", fontFamilyName, \\";src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\\");"`;

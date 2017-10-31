@@ -1,39 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`babel styled component extract basic 1`] = `
-"import \\"./styled.test.emotion.css\\";
+exports[`styled extract babel 6 basic 1`] = `
+"import \\"./emotion.css\\";
 const H1 = styled(\\"h1\\", {
   e: \\"css-10x82eg\\"
-})();"
+})();
+
+
+emotion.css
+.css-10x82eg{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;width:var(--css-hash-0);}.css-10x82eg:hover{background-color:green;}@media (max-width:500px){.css-10x82eg{height:var(--css-hash-1);position:fixed;}}@media print{.css-10x82eg{display:none;}}.css-10x82eg::before{color:blue;width:20px;height:20px;content:'pseudo';}"
 `;
 
-exports[`babel styled component extract basic 2`] = `".css-10x82eg{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;width:var(--css-hash-0);}.css-10x82eg:hover{background-color:green;}@media (max-width:500px){.css-10x82eg{height:var(--css-hash-1);position:fixed;}}@media print{.css-10x82eg{display:none;}}.css-10x82eg::before{color:blue;width:20px;height:20px;content:'pseudo';}"`;
-
-exports[`babel styled component extract no use 1`] = `
-"import \\"./styled.test.emotion.css\\";
+exports[`styled extract babel 6 no use 1`] = `
+"import \\"./emotion.css\\";
 styled(\\"h1\\", {
   e: \\"css-0\\"
-})();"
+})();
+
+
+emotion.css
+"
 `;
 
-exports[`babel styled component extract no use 2`] = `""`;
+exports[`styled extract babel 7 basic 1`] = `
+"import \\"./emotion.css\\";
+const H1 = styled(\\"h1\\", {
+  e: \\"css-10x82eg\\"
+})();
 
-exports[`inline babel 6 basic 1`] = `"const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';');"`;
 
-exports[`inline babel 6 composition based on props 1`] = `
+emotion.css
+.css-10x82eg{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;width:var(--css-hash-0);}.css-10x82eg:hover{background-color:green;}@media (max-width:500px){.css-10x82eg{height:var(--css-hash-1);position:fixed;}}@media print{.css-10x82eg{display:none;}}.css-10x82eg::before{color:blue;width:20px;height:20px;content:'pseudo';}"
+`;
+
+exports[`styled extract babel 7 no use 1`] = `
+"import \\"./emotion.css\\";
+styled(\\"h1\\", {
+  e: \\"css-0\\"
+})();
+
+
+emotion.css
+"
+`;
+
+exports[`styled inline babel 6 basic 1`] = `"const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';');"`;
+
+exports[`styled inline babel 6 composition based on props 1`] = `
 "const cls1 = /*#__PURE__*/css('width:20px;');
 const H1 = /*#__PURE__*/styled('h1')(props => {
   return props.a ? cssA : cssB;
 }, ';font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');');"
 `;
 
-exports[`inline babel 6 config rename 1`] = `"/*#__PURE__*/what(\\"h1\\")(\\"color:blue;\\");"`;
+exports[`styled inline babel 6 config rename 1`] = `"/*#__PURE__*/what(\\"h1\\")(\\"color:blue;\\");"`;
 
-exports[`inline babel 6 dynamic fns 1`] = `"const Avatar = /*#__PURE__*/styled('img')('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';');"`;
+exports[`styled inline babel 6 dynamic fns 1`] = `"const Avatar = /*#__PURE__*/styled('img')('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';');"`;
 
-exports[`inline babel 6 function call 1`] = `"/*#__PURE__*/styled(MyComponent)('font-size:', fontSize + 'px', ';');"`;
+exports[`styled inline babel 6 function call 1`] = `"/*#__PURE__*/styled(MyComponent)('font-size:', fontSize + 'px', ';');"`;
 
-exports[`inline babel 6 hoisting 1`] = `
+exports[`styled inline babel 6 hoisting 1`] = `
 "var _ref = {
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
@@ -52,36 +78,36 @@ const Profile = () => {
 };"
 `;
 
-exports[`inline babel 6 interpolation in different places 1`] = `
+exports[`styled inline babel 6 interpolation in different places 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');height1:', something, 'wow;width:w', something, 'ow;transform:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform1:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform2:translateX(', props => props.translateX, ') ', props => props.translateX, ';');"
 `;
 
-exports[`inline babel 6 media query 1`] = `"const H1 = /*#__PURE__*/styled(\\"h1\\")(\\"@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\\");"`;
+exports[`styled inline babel 6 media query 1`] = `"const H1 = /*#__PURE__*/styled(\\"h1\\")(\\"@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\\");"`;
 
-exports[`inline babel 6 more than 10 dynamic values 1`] = `"const H1 = /*#__PURE__*/styled('h1')('text-decoration:', 'underline', ';border-right:solid blue ', 54, 'px;background:', 'white', ';color:', 'black', ';display:', 'block', ';border-radius:', '3px', ';padding:', '25px', ';width:', '500px', ';z-index:', 100, ';font-size:', '18px', ';text-align:', 'center', ';border-left:', p => p.theme.blue, ';');"`;
+exports[`styled inline babel 6 more than 10 dynamic values 1`] = `"const H1 = /*#__PURE__*/styled('h1')('text-decoration:', 'underline', ';border-right:solid blue ', 54, 'px;background:', 'white', ';color:', 'black', ';display:', 'block', ';border-radius:', '3px', ';padding:', '25px', ';width:', '500px', ';z-index:', 100, ';font-size:', '18px', ';text-align:', 'center', ';border-left:', p => p.theme.blue, ';');"`;
 
-exports[`inline babel 6 nested 1`] = `"const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';& div{color:blue;& span{color:red}}');"`;
+exports[`styled inline babel 6 nested 1`] = `"const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';& div{color:blue;& span{color:red}}');"`;
 
-exports[`inline babel 6 no dynamic 1`] = `"/*#__PURE__*/styled(\\"h1\\")(\\"color:blue;\\");"`;
+exports[`styled inline babel 6 no dynamic 1`] = `"/*#__PURE__*/styled(\\"h1\\")(\\"color:blue;\\");"`;
 
-exports[`inline babel 6 no use 1`] = `"/*#__PURE__*/styled(\\"h1\\")();"`;
+exports[`styled inline babel 6 no use 1`] = `"/*#__PURE__*/styled(\\"h1\\")();"`;
 
-exports[`inline babel 6 objects based on props 1`] = `
+exports[`styled inline babel 6 objects based on props 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1')({ padding: 10 }, props => ({
   display: props.display
 }));"
 `;
 
-exports[`inline babel 6 objects fn call 1`] = `
+exports[`styled inline babel 6 objects fn call 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1')({
   display: 'flex'
 });"
 `;
 
-exports[`inline babel 6 objects prefixed 1`] = `
+exports[`styled inline babel 6 objects prefixed 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1')({
     borderRadius: '50%',
@@ -96,15 +122,15 @@ const H1 = /*#__PURE__*/styled('h1')({
 });"
 `;
 
-exports[`inline babel 6 random expressions 1`] = `
+exports[`styled inline babel 6 random expressions 1`] = `
 "
 const a = () => /*#__PURE__*/css(\\"font-size:1rem\\");
 /*#__PURE__*/styled(\\"h1\\")(\\"margin:12px 48px;\\", /*#__PURE__*/css(\\"font-size:32px\\"), \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"
 `;
 
-exports[`inline babel 6 shorthand property 1`] = `"const H1 = /*#__PURE__*/styled(\\"h1\\")({ fontSize });"`;
+exports[`styled inline babel 6 shorthand property 1`] = `"const H1 = /*#__PURE__*/styled(\\"h1\\")({ fontSize });"`;
 
-exports[`inline babel 6 styled objects prefixed 1`] = `
+exports[`styled inline babel 6 styled objects prefixed 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1')({
   borderRadius: '50%',
@@ -119,14 +145,14 @@ const H1 = /*#__PURE__*/styled('h1')({
 }));"
 `;
 
-exports[`inline babel 6 styled. objects 1`] = `
+exports[`styled inline babel 6 styled. objects 1`] = `
 "
 const H1 = /*#__PURE__*/styled(\\"h1\\")({ padding: 10 }, props => ({
   display: props.display
 }));"
 `;
 
-exports[`inline babel 6 styled. objects with a multiple spread properties 1`] = `
+exports[`styled inline babel 6 styled. objects with a multiple spread properties 1`] = `
 "
 const defaultText = { fontSize: 20 };
 const Figure = /*#__PURE__*/styled(\\"figure\\")({
@@ -135,7 +161,7 @@ const Figure = /*#__PURE__*/styled(\\"figure\\")({
 });"
 `;
 
-exports[`inline babel 6 styled. objects with a multiple spread properties and other keys 1`] = `
+exports[`styled inline babel 6 styled. objects with a multiple spread properties and other keys 1`] = `
 "
 const defaultText = { fontSize: 20 };
 const Figure = /*#__PURE__*/styled('figure')({
@@ -146,7 +172,7 @@ const Figure = /*#__PURE__*/styled('figure')({
 });"
 `;
 
-exports[`inline babel 6 styled. objects with a single spread property 1`] = `
+exports[`styled inline babel 6 styled. objects with a single spread property 1`] = `
 "
 const defaultText = { fontSize: 20 };
 const Figure = /*#__PURE__*/styled(\\"figure\\")({
@@ -154,15 +180,15 @@ const Figure = /*#__PURE__*/styled(\\"figure\\")({
 });"
 `;
 
-exports[`inline babel 6 variable import: no dynamic 1`] = `"import what from 'emotion'; /*#__PURE__*/what('h1')('color:blue;');"`;
+exports[`styled inline babel 6 variable import: no dynamic 1`] = `"import what from 'emotion'; /*#__PURE__*/what('h1')('color:blue;');"`;
 
-exports[`inline babel 7 basic 1`] = `
+exports[`styled inline babel 7 basic 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\")(\\"font-size:\\", fontSize + 'px', \\";\\");"
 `;
 
-exports[`inline babel 7 composition based on props 1`] = `
+exports[`styled inline babel 7 composition based on props 1`] = `
 "const cls1 =
 /*#__PURE__*/
 css(\\"width:20px;\\");
@@ -173,23 +199,23 @@ styled(\\"h1\\")(props => {
 }, \\";font-size:\\", fontSize + 'px', \\";height:20px;transform:translateX(\\", props => props.translateX, \\");\\");"
 `;
 
-exports[`inline babel 7 config rename 1`] = `
+exports[`styled inline babel 7 config rename 1`] = `
 "/*#__PURE__*/
 what(\\"h1\\")(\\"color:blue;\\");"
 `;
 
-exports[`inline babel 7 dynamic fns 1`] = `
+exports[`styled inline babel 7 dynamic fns 1`] = `
 "const Avatar =
 /*#__PURE__*/
 styled('img')(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";\\");"
 `;
 
-exports[`inline babel 7 function call 1`] = `
+exports[`styled inline babel 7 function call 1`] = `
 "/*#__PURE__*/
 styled(MyComponent)(\\"font-size:\\", fontSize + 'px', \\";\\");"
 `;
 
-exports[`inline babel 7 hoisting 1`] = `
+exports[`styled inline babel 7 hoisting 1`] = `
 "var _ref = {
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
@@ -212,41 +238,41 @@ const Profile = () => {
 };"
 `;
 
-exports[`inline babel 7 interpolation in different places 1`] = `
+exports[`styled inline babel 7 interpolation in different places 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\")(\\"font-size:\\", fontSize + 'px', \\";height:20px;transform:translateX(\\", props => props.translateX, \\");height1:\\", something, \\"wow;width:w\\", something, \\"ow;transform:translateX(\\", props => props.translateX, \\") translateY(\\", props => props.translateX, \\");transform1:translateX(\\", props => props.translateX, \\") translateY(\\", props => props.translateX, \\");transform2:translateX(\\", props => props.translateX, \\") \\", props => props.translateX, \\";\\");"
 `;
 
-exports[`inline babel 7 media query 1`] = `
+exports[`styled inline babel 7 media query 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\")(\\"@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\\");"
 `;
 
-exports[`inline babel 7 more than 10 dynamic values 1`] = `
+exports[`styled inline babel 7 more than 10 dynamic values 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1')(\\"text-decoration:\\", 'underline', \\";border-right:solid blue \\", 54, \\"px;background:\\", 'white', \\";color:\\", 'black', \\";display:\\", 'block', \\";border-radius:\\", '3px', \\";padding:\\", '25px', \\";width:\\", '500px', \\";z-index:\\", 100, \\";font-size:\\", '18px', \\";text-align:\\", 'center', \\";border-left:\\", p => p.theme.blue, \\";\\");"
 `;
 
-exports[`inline babel 7 nested 1`] = `
+exports[`styled inline babel 7 nested 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\")(\\"font-size:\\", fontSize + 'px', \\";& div{color:blue;& span{color:red}}\\");"
 `;
 
-exports[`inline babel 7 no dynamic 1`] = `
+exports[`styled inline babel 7 no dynamic 1`] = `
 "/*#__PURE__*/
 styled(\\"h1\\")(\\"color:blue;\\");"
 `;
 
-exports[`inline babel 7 no use 1`] = `
+exports[`styled inline babel 7 no use 1`] = `
 "/*#__PURE__*/
 styled(\\"h1\\")();"
 `;
 
-exports[`inline babel 7 objects based on props 1`] = `
+exports[`styled inline babel 7 objects based on props 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1')({
@@ -256,7 +282,7 @@ styled('h1')({
 }));"
 `;
 
-exports[`inline babel 7 objects fn call 1`] = `
+exports[`styled inline babel 7 objects fn call 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1')({
@@ -264,7 +290,7 @@ styled('h1')({
 });"
 `;
 
-exports[`inline babel 7 objects prefixed 1`] = `
+exports[`styled inline babel 7 objects prefixed 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1')({
@@ -280,7 +306,7 @@ styled('h1')({
 });"
 `;
 
-exports[`inline babel 7 random expressions 1`] = `
+exports[`styled inline babel 7 random expressions 1`] = `
 "const a = () =>
 /*#__PURE__*/
 css(\\"font-size:1rem\\");
@@ -293,7 +319,7 @@ css(\\"font-size:32px\\"), \\";color:#ffffff;& .profile{\\", props => props.prop
 }, \\";\\");"
 `;
 
-exports[`inline babel 7 shorthand property 1`] = `
+exports[`styled inline babel 7 shorthand property 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\")({
@@ -301,7 +327,7 @@ styled(\\"h1\\")({
 });"
 `;
 
-exports[`inline babel 7 styled objects prefixed 1`] = `
+exports[`styled inline babel 7 styled objects prefixed 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\")({
@@ -317,7 +343,7 @@ styled(\\"h1\\")({
 }));"
 `;
 
-exports[`inline babel 7 styled. objects 1`] = `
+exports[`styled inline babel 7 styled. objects 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\")({
@@ -327,7 +353,7 @@ styled(\\"h1\\")({
 }));"
 `;
 
-exports[`inline babel 7 styled. objects with a multiple spread properties 1`] = `
+exports[`styled inline babel 7 styled. objects with a multiple spread properties 1`] = `
 "const defaultText = {
   fontSize: 20
 };
@@ -338,7 +364,7 @@ styled(\\"figure\\")({ ...defaultText,
 });"
 `;
 
-exports[`inline babel 7 styled. objects with a multiple spread properties and other keys 1`] = `
+exports[`styled inline babel 7 styled. objects with a multiple spread properties and other keys 1`] = `
 "const defaultText = {
   fontSize: 20
 };
@@ -351,7 +377,7 @@ styled(\\"figure\\")({ ...defaultText,
 });"
 `;
 
-exports[`inline babel 7 styled. objects with a single spread property 1`] = `
+exports[`styled inline babel 7 styled. objects with a single spread property 1`] = `
 "const defaultText = {
   fontSize: 20
 };
@@ -361,7 +387,7 @@ styled(\\"figure\\")({ ...defaultText
 });"
 `;
 
-exports[`inline babel 7 variable import: no dynamic 1`] = `
+exports[`styled inline babel 7 variable import: no dynamic 1`] = `
 "import what from 'emotion';
 
 /*#__PURE__*/

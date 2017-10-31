@@ -1,11 +1,4 @@
-import * as babel from 'babel-core'
-import plugin from 'babel-plugin-emotion'
-import * as fs from 'fs'
-import { createInline } from './util'
-jest.mock('fs')
-
-fs.existsSync.mockReturnValue(true)
-fs.statSync.mockReturnValue({ isFile: () => false })
+import { createInline, createExtract } from './util'
 
 const inline = {
   'no use': {
@@ -238,34 +231,17 @@ const inline = {
   }
 }
 
-createInline('inline', inline)
+createInline('styled inline', inline)
 
-describe('babel styled component', () => {
-  describe('extract', () => {
-    test('no use', () => {
-      const basic = 'styled.h1``'
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin, { extractStatic: true }]],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
-      expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
-    })
+const extract = {
+  'no use': {
+    code: 'styled.h1``'
+  },
 
-    test('basic', () => {
-      const basic =
-        "const H1 = styled.h1`display: flex; justify-content: center; width: var(--css-hash-0); &:hover { background-color: green; } @media (max-width: 500px) { height: var(--css-hash-1); position: fixed; } @media print { display: none; } &::before { color: blue; width: 20px; height: 20px; content: 'pseudo' }`"
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin, { extractStatic: true }]],
-        filename: __filename,
-        babelrc: false
-      })
+  basic: {
+    code:
+      "const H1 = styled.h1`display: flex; justify-content: center; width: var(--css-hash-0); &:hover { background-color: green; } @media (max-width: 500px) { height: var(--css-hash-1); position: fixed; } @media print { display: none; } &::before { color: blue; width: 20px; height: 20px; content: 'pseudo' }`"
+  }
+}
 
-      expect(code).toMatchSnapshot()
-      expect(fs.writeFileSync).toHaveBeenCalledTimes(2)
-      expect(fs.writeFileSync.mock.calls[1][1]).toMatchSnapshot()
-    })
-  })
-})
+createExtract('styled extract', extract)
