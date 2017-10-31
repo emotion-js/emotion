@@ -1,63 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`babel css prop StringLiteral css prop value 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 StringLiteral css prop value 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 <div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
 `;
 
-exports[`babel css prop basic inline 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 basic inline 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 <div className={/*#__PURE__*/_css(\\"color:brown;\\") + \\" a\\"}></div>;"
 `;
 
-exports[`babel css prop basic object 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 basic object 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 <div className={_css({ color: 'brown' }) + \\" a\\"}></div>;"
 `;
 
-exports[`babel css prop basic with extractStatic 1`] = `
-"import { css as _css } from \\"emotion\\";
-import \\"./css-prop.test.emotion.css\\";
-<div className={\\"css-jf1v9l\\" + \\" a\\"}></div>;"
-`;
+exports[`babel css prop babel 6 className as expression 1`] = `
+"var _merge = require(\\"emotion\\").merge;
 
-exports[`babel css prop basic with extractStatic 2`] = `".css-jf1v9l{color:brown;}"`;
+var _css = require(\\"emotion\\").css;
 
-exports[`babel css prop className as expression 1`] = `
-"import { merge as _merge } from \\"emotion\\";
-import { css as _css } from \\"emotion\\";
 <div className={_merge( /*#__PURE__*/_css(\\"color:brown;\\") + (\\" \\" + variable))}></div>;"
 `;
 
-exports[`babel css prop className as expression string 1`] = `
-"import { merge as _merge } from \\"emotion\\";
-import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 className as expression string 1`] = `
+"var _merge = require(\\"emotion\\").merge;
+
+var _css = require(\\"emotion\\").css;
+
 <div className={_merge( /*#__PURE__*/_css(\\"color:brown;\\") + (\\" \\" + \`test__class\`))} this={\`hello\`}></div>;"
 `;
 
-exports[`babel css prop css empty 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 css empty 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 <div className={/*#__PURE__*/_css()}></div>;"
 `;
 
-exports[`babel css prop dynamic inline 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 dynamic inline 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 <div className={/*#__PURE__*/_css(\\"color:\\", color, \\";\\") + \\" a\\"}></div>;"
 `;
 
-exports[`babel css prop emptyClassName 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 emptyClassName 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 <div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
 `;
 
-exports[`babel css prop hoisting object styles 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 hoisting object styles 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 var _ref = { color: 'brown' };
 const Profile = () => <div className={_css(_ref) + \\" a\\"}></div>;"
 `;
 
-exports[`babel css prop hoisting string styles 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 hoisting string styles 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 var _ref = \\"color:\\";
 const Profile = () => {
   const color = \\"blue\\";
@@ -65,21 +69,156 @@ const Profile = () => {
 };"
 `;
 
-exports[`babel css prop no css attr 1`] = `"<div></div>;"`;
+exports[`babel css prop babel 6 no css attr 1`] = `"<div></div>;"`;
 
-exports[`babel css prop no import css prop 1`] = `"<div className={merge( /*#__PURE__*/css(\\"color:brown;\\") + (\\" \\" + \`test__class\`))}></div>;"`;
+exports[`babel css prop babel 6 no import css prop 1`] = `"<div className={merge( /*#__PURE__*/css(\\"color:brown;\\") + (\\" \\" + \`test__class\`))}></div>;"`;
 
-exports[`babel css prop noClassName 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 noClassName 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 <div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
 `;
 
-exports[`babel css prop redefined-import: basic inline 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 redefined-import: basic inline 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 <div className={/*#__PURE__*/_css(\\"color:brown;\\") + \\" a\\"}></div>;"
 `;
 
-exports[`babel css prop with spread arg in jsx opening tag 1`] = `
-"import { css as _css } from \\"emotion\\";
+exports[`babel css prop babel 6 with spread arg in jsx opening tag 1`] = `
+"var _css = require(\\"emotion\\").css;
+
 <div className={/*#__PURE__*/_css(\\"color:brown;\\") + \\" a\\"} {...rest}></div>;"
 `;
+
+exports[`babel css prop babel 7 StringLiteral css prop value 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+<div className={
+/*#__PURE__*/
+_css(\\"color:brown;\\")}></div>;"
+`;
+
+exports[`babel css prop babel 7 basic inline 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+<div className={
+/*#__PURE__*/
+_css(\\"color:brown;\\") + \\" a\\"}></div>;"
+`;
+
+exports[`babel css prop babel 7 basic object 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+<div className={_css({
+  color: 'brown'
+}) + \\" a\\"}></div>;"
+`;
+
+exports[`babel css prop babel 7 className as expression 1`] = `
+"var _merge = require(\\"emotion\\").merge;
+
+var _css = require(\\"emotion\\").css;
+
+<div className={_merge(
+/*#__PURE__*/
+_css(\\"color:brown;\\") + (\\" \\" + variable))}></div>;"
+`;
+
+exports[`babel css prop babel 7 className as expression string 1`] = `
+"var _merge = require(\\"emotion\\").merge;
+
+var _css = require(\\"emotion\\").css;
+
+<div className={_merge(
+/*#__PURE__*/
+_css(\\"color:brown;\\") + (\\" \\" + \`test__class\`))} this={\`hello\`}></div>;"
+`;
+
+exports[`babel css prop babel 7 css empty 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+<div className={
+/*#__PURE__*/
+_css()}></div>;"
+`;
+
+exports[`babel css prop babel 7 dynamic inline 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+<div className={
+/*#__PURE__*/
+_css(\\"color:\\", color, \\";\\") + \\" a\\"}></div>;"
+`;
+
+exports[`babel css prop babel 7 emptyClassName 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+<div className={
+/*#__PURE__*/
+_css(\\"color:brown;\\")}></div>;"
+`;
+
+exports[`babel css prop babel 7 hoisting object styles 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+var _ref = {
+  color: 'brown'
+};
+
+const Profile = () => <div className={_css(_ref) + \\" a\\"}></div>;"
+`;
+
+exports[`babel css prop babel 7 hoisting string styles 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+var _ref = \\"color:\\";
+
+const Profile = () => {
+  const color = \\"blue\\";
+  <div className={
+  /*#__PURE__*/
+  _css(_ref, color)}></div>;
+};"
+`;
+
+exports[`babel css prop babel 7 no css attr 1`] = `"<div></div>;"`;
+
+exports[`babel css prop babel 7 no import css prop 1`] = `
+"<div className={merge(
+/*#__PURE__*/
+css(\\"color:brown;\\") + (\\" \\" + \`test__class\`))}></div>;"
+`;
+
+exports[`babel css prop babel 7 noClassName 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+<div className={
+/*#__PURE__*/
+_css(\\"color:brown;\\")}></div>;"
+`;
+
+exports[`babel css prop babel 7 redefined-import: basic inline 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+<div className={
+/*#__PURE__*/
+_css(\\"color:brown;\\") + \\" a\\"}></div>;"
+`;
+
+exports[`babel css prop babel 7 with spread arg in jsx opening tag 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+<div className={
+/*#__PURE__*/
+_css(\\"color:brown;\\") + \\" a\\"} {...rest}></div>;"
+`;
+
+exports[`babel css prop basic with extractStatic 1`] = `
+"var _css = require(\\"emotion\\").css;
+
+import \\"./css-prop.test.emotion.css\\";
+<div className={\\"css-jf1v9l\\" + \\" a\\"}></div>;"
+`;
+
+exports[`babel css prop basic with extractStatic 2`] = `".css-jf1v9l{color:brown;}"`;

@@ -21,47 +21,84 @@ exports[`babel injectGlobal extract injectGlobal with interpolation 1`] = `
 injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"
 `;
 
-exports[`babel injectGlobal inline dynamic change import 1`] = `
+exports[`injectGlobal babel 6 dynamic change import 1`] = `
 "
 import { injectGlobal as inject } from 'emotion';
 inject('body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}');
 injectGlobal\`
-        body {
-          margin: 0;
-          padding: 0;
-          & > div {
-            display: flex;
-          }
+      body {
+        margin: 0;
+        padding: 0;
+        & > div {
+          display: flex;
         }
-        html {
-          background: green;
-        }
-      \`;"
+      }
+      html {
+        background: green;
+      }
+    \`;"
 `;
 
-exports[`babel injectGlobal inline injectGlobal basic 1`] = `
+exports[`injectGlobal babel 6 injectGlobal basic 1`] = `
 "
 injectGlobal(\\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\");"
 `;
 
-exports[`babel injectGlobal inline injectGlobal with interpolation 1`] = `
+exports[`injectGlobal babel 6 injectGlobal with interpolation 1`] = `
 "
 injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"
 `;
 
-exports[`babel injectGlobal inline static change import 1`] = `
+exports[`injectGlobal babel 6 static change import 1`] = `
 "
 inject(\\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\");
 injectGlobal\`
-        body {
-          margin: 0;
-          padding: 0;
-          & > div {
-            display: flex;
-          }
+      body {
+        margin: 0;
+        padding: 0;
+        & > div {
+          display: flex;
         }
-        html {
-          background: green;
+      }
+      html {
+        background: green;
+      }
+    \`;"
+`;
+
+exports[`injectGlobal babel 7 dynamic change import 1`] = `
+"import { injectGlobal as inject } from 'emotion';
+inject(\\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\");
+injectGlobal\`
+      body {
+        margin: 0;
+        padding: 0;
+        & > div {
+          display: flex;
         }
-      \`;"
+      }
+      html {
+        background: green;
+      }
+    \`;"
+`;
+
+exports[`injectGlobal babel 7 injectGlobal basic 1`] = `"injectGlobal(\\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\");"`;
+
+exports[`injectGlobal babel 7 injectGlobal with interpolation 1`] = `"injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"`;
+
+exports[`injectGlobal babel 7 static change import 1`] = `
+"inject(\\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\");
+injectGlobal\`
+      body {
+        margin: 0;
+        padding: 0;
+        & > div {
+          display: flex;
+        }
+      }
+      html {
+        background: green;
+      }
+    \`;"
 `;

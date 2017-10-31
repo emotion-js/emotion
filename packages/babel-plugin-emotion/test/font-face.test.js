@@ -1,79 +1,77 @@
 import * as babel from 'babel-core'
 import plugin from 'babel-plugin-emotion'
 import * as fs from 'fs'
+import { createInline } from './util'
 jest.mock('fs')
 
 fs.existsSync.mockReturnValue(true)
 fs.statSync.mockReturnValue({ isFile: () => false })
 
+const inline = {
+  basic: {
+    code: `
+      fontFace\`
+        font-family: MyHelvetica;
+        src: local("Helvetica Neue Bold"),
+             local("HelveticaNeue-Bold"),
+             url(MgOpenModernaBold.ttf);
+        font-weight: bold;
+    \`;`
+  },
+
+  interpolation: {
+    code: `
+      fontFace\`
+        font-family: \${fontFamilyName};
+        src: local("Helvetica Neue Bold"),
+             local("HelveticaNeue-Bold"),
+             url(MgOpenModernaBold.ttf);
+        font-weight: bold;
+    \`;`
+  },
+
+  'static change import': {
+    code: `
+      f\`
+        font-family: MyHelvetica;
+        src: local("Helvetica Neue Bold"),
+             local("HelveticaNeue-Bold"),
+             url(MgOpenModernaBold.ttf);
+        font-weight: bold;
+    \`;
+      fontFace\`
+        font-family: MyHelvetica;
+        src: local("Helvetica Neue Bold"),
+            local("HelveticaNeue-Bold"),
+            url(MgOpenModernaBold.ttf);
+        font-weight: bold;
+    \`;`,
+
+    opts: { importedNames: { fontFace: 'f' } }
+  },
+
+  'dynamic change import': {
+    code: `
+      import { fontFace as f } from 'emotion';
+      f\`
+        font-family: MyHelvetica;
+        src: local("Helvetica Neue Bold"),
+             local("HelveticaNeue-Bold"),
+             url(MgOpenModernaBold.ttf);
+        font-weight: bold;
+    \`;
+      fontFace\`
+        font-family: MyHelvetica;
+        src: local("Helvetica Neue Bold"),
+            local("HelveticaNeue-Bold"),
+            url(MgOpenModernaBold.ttf);
+        font-weight: bold;
+    \`;`
+  }
+}
+createInline('fontFace', inline)
+
 describe('fontFace babel', () => {
-  describe('inline', () => {
-    test('basic', () => {
-      const basic = `
-        fontFace\`
-          font-family: MyHelvetica;
-          src: local("Helvetica Neue Bold"),
-               local("HelveticaNeue-Bold"),
-               url(MgOpenModernaBold.ttf);
-          font-weight: bold;
-      \`;`
-      const { code } = babel.transform(basic, { plugins: [[plugin]] })
-      expect(code).toMatchSnapshot()
-    })
-    test('interpolation', () => {
-      const basic = `
-        fontFace\`
-          font-family: \${fontFamilyName};
-          src: local("Helvetica Neue Bold"),
-               local("HelveticaNeue-Bold"),
-               url(MgOpenModernaBold.ttf);
-          font-weight: bold;
-      \`;`
-      const { code } = babel.transform(basic, { plugins: [[plugin]] })
-      expect(code).toMatchSnapshot()
-    })
-    test('static change import', () => {
-      const basic = `
-        f\`
-          font-family: MyHelvetica;
-          src: local("Helvetica Neue Bold"),
-               local("HelveticaNeue-Bold"),
-               url(MgOpenModernaBold.ttf);
-          font-weight: bold;
-      \`;
-        fontFace\`
-          font-family: MyHelvetica;
-          src: local("Helvetica Neue Bold"),
-              local("HelveticaNeue-Bold"),
-              url(MgOpenModernaBold.ttf);
-          font-weight: bold;
-      \`;`
-      const { code } = babel.transform(basic, {
-        plugins: [[plugin, { importedNames: { fontFace: 'f' } }]]
-      })
-      expect(code).toMatchSnapshot()
-    })
-    test('dynamic change import', () => {
-      const basic = `
-        import { fontFace as f } from 'emotion';
-        f\`
-          font-family: MyHelvetica;
-          src: local("Helvetica Neue Bold"),
-               local("HelveticaNeue-Bold"),
-               url(MgOpenModernaBold.ttf);
-          font-weight: bold;
-      \`;
-        fontFace\`
-          font-family: MyHelvetica;
-          src: local("Helvetica Neue Bold"),
-              local("HelveticaNeue-Bold"),
-              url(MgOpenModernaBold.ttf);
-          font-weight: bold;
-      \`;`
-      const { code } = babel.transform(basic, { plugins: [[plugin]] })
-      expect(code).toMatchSnapshot()
-    })
-  })
   describe('extract', () => {
     test('basic', () => {
       const basic = `
