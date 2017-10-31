@@ -13,7 +13,7 @@ const createInlineTester = transform => opts => {
         [
           plugin,
           {
-            filename: __filename,
+            filename: opts.filename || __filename,
             babelrc: false,
             ...opts.opts
           }
