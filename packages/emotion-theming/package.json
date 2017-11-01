@@ -4,15 +4,14 @@
   "description": "A CSS-in-JS theming solution, inspired by styled-components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
-  "types": "typings/emotion-theming.d.ts",
+  "types": "types/index.d.ts",
   "files": [
     "src",
     "dist"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup rollup:umd",
-    "test:typescript": "tsc --noEmit -p typescript_tests/tsconfig.json",
-    "pretest:typescript": "npm run build",
+    "test:typescript": "dtslint types",
     "clean": "rimraf dist",
     "rollup": "rollup -c ../../rollup.config.js",
     "watch": "rollup -c ../../rollup.config.js --watch",
@@ -39,10 +38,10 @@
   "devDependencies": {
     "@types/react": "16.0.16",
     "cross-env": "^5.0.1",
+    "dtslint": "^0.2.0",
     "prop-types": "^15.5.8",
     "rimraf": "^2.6.1",
-    "rollup": "^0.43.0",
-    "typescript": "^2.5.3"
+    "rollup": "^0.43.0"
   },
   "dependencies": {
     "hoist-non-react-statics": "^2.3.1"
