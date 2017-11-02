@@ -289,6 +289,30 @@ describe('babel styled component', () => {
       })
       expect(code).toMatchSnapshot()
     })
+
+    test('meta', () => {
+      const basic = `
+        const Profile = () => {
+          const H1 = styled.h1({
+            borderRadius: '50%',
+            transition: 'transform 400ms ease-in-out',
+            boxSizing: 'border-box',
+            display: 'flex',
+            ':hover': {
+              transform: 'scale(1.2)'
+            }
+          },props => ({
+            display: props.display
+          }),
+            css([{ color: 'blue' }])
+          )
+        }
+      `
+      const { code } = babel.transform(basic, {
+        plugins: [[plugin, { meta: true }]]
+      })
+      expect(code).toMatchSnapshot()
+    })
   })
 
   describe('extract', () => {

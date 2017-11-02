@@ -57,6 +57,23 @@ const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';height:20p
 
 exports[`babel styled component inline media query 1`] = `"const H1 = /*#__PURE__*/styled(\\"h1\\")(\\"@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\\", {});"`;
 
+exports[`babel styled component inline meta 1`] = `
+"
+const Profile = () => {
+  const H1 = /*#__PURE__*/styled('h1')({
+    borderRadius: '50%',
+    transition: 'transform 400ms ease-in-out',
+    boxSizing: 'border-box',
+    display: 'flex',
+    ':hover': {
+      transform: 'scale(1.2)'
+    }
+  }, props => ({
+    display: props.display
+  }), /*#__PURE__*/css([{ color: 'blue' }]));
+};"
+`;
+
 exports[`babel styled component inline more than 10 dynamic values 1`] = `"const H1 = /*#__PURE__*/styled('h1')('text-decoration:', 'underline', ';border-right:solid blue ', 54, 'px;background:', 'white', ';color:', 'black', ';display:', 'block', ';border-radius:', '3px', ';padding:', '25px', ';width:', '500px', ';z-index:', 100, ';font-size:', '18px', ';text-align:', 'center', ';border-left:', p => p.theme.blue, ';', {});"`;
 
 exports[`babel styled component inline nested 1`] = `"const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';& div{color:blue;& span{color:red}}', {});"`;

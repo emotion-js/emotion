@@ -110,7 +110,9 @@ describe('babel css prop', () => {
         return <div css={\`color: brown;\`}>Hello</div>
       }
     `
-    const { code } = babel.transform(basic, { plugins: [plugin] })
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { meta: true }]]
+    })
     expect(code).toMatchSnapshot()
   })
 
@@ -122,7 +124,9 @@ describe('babel css prop', () => {
         }
       }
     `
-    const { code } = babel.transform(basic, { plugins: [plugin] })
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { meta: true }]]
+    })
     expect(code).toMatchSnapshot()
   })
 
@@ -134,7 +138,9 @@ describe('babel css prop', () => {
         }
       }
     `
-    const { code } = babel.transform(basic, { plugins: [plugin] })
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { meta: true }]]
+    })
     expect(code).toMatchSnapshot()
   })
 
@@ -142,8 +148,8 @@ describe('babel css prop', () => {
     const basic =
       'const Profile = () => ' +
       '(<div className="a" css={{ color: \'brown\' }}></div>)'
-    const {code} = babel.transform(basic, {
-      plugins: [[plugin, {hoist: true}]]
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { hoist: true }]]
     })
     expect(code).toMatchSnapshot()
   })
@@ -154,8 +160,8 @@ describe('babel css prop', () => {
       'const color = "blue";\n' +
       '(<div css={`color: ${color}`}></div>)' +
       '\n}'
-    const {code} = babel.transform(basic, {
-      plugins: [[plugin, {hoist: true}]]
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { hoist: true }]]
     })
     expect(code).toMatchSnapshot()
   })
