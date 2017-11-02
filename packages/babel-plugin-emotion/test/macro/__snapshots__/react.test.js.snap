@@ -32,14 +32,22 @@ exports[`styled basic render with object as style 1`] = `
 `;
 
 exports[`styled call expression 1`] = `
+.glamor-0 {
+  font-size: 20px;
+}
+
 <h1
-  className="legacy__class css-bk9fzy-H1"
+  className="legacy__class glamor-0"
 >
   hello world
 </h1>
 `;
 
 exports[`styled change theme 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 <TestComponent
   renderChild={true}
   theme={
@@ -55,13 +63,13 @@ exports[`styled change theme 1`] = `
       }
     }
   >
-    <Styled(Div)>
+    <Styled(div)>
       <div
-        className="css-bjcoli-Div"
+        className="glamor-0"
       >
         this will be green then pink
       </div>
-    </Styled(Div)>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -86,13 +94,13 @@ exports[`styled change theme 2`] = `
       }
     }
   >
-    <Styled(Div)>
+    <Styled(div)>
       <div
         className="glamor-0"
       >
         this will be green then pink
       </div>
-    </Styled(Div)>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -328,8 +336,12 @@ exports[`styled higher order component 1`] = `
 `;
 
 exports[`styled inline function return value is a function 1`] = `
+.glamor-0 {
+  font-size: 20px;
+}
+
 <h1
-  className="css-bk9fzy-H1"
+  className="glamor-0"
 >
   hello world
 </h1>
@@ -412,6 +424,10 @@ exports[`styled name with class component 1`] = `
 `;
 
 exports[`styled nested 1`] = `
+.glamor-0 {
+  font-size: 20px;
+}
+
 .glamor-1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -453,11 +469,15 @@ exports[`styled no dynamic 1`] = `
 `;
 
 exports[`styled no prop filtering on non string tags 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 <a
   a={true}
   aria-label="some label"
   b={true}
-  className="css-bjcoli-Link"
+  className="glamor-0"
   cool={true}
   data-wow="value"
   filtering={true}
@@ -542,9 +562,13 @@ exports[`styled objects with spread properties 1`] = `
 `;
 
 exports[`styled prop filtering 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 <a
   aria-label="some label"
-  className="css-bjcoli-Link"
+  className="glamor-0"
   data-wow="value"
   href="link"
   is={true}
@@ -684,13 +708,13 @@ exports[`styled theming 1`] = `
       }
     }
   >
-    <Styled(Div)>
+    <Styled(div)>
       <div
-        className="css-olgnlr-Div"
+        className="css-olgnlr"
       >
         this will be green then pink
       </div>
-    </Styled(Div)>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -711,13 +735,13 @@ exports[`styled theming 2`] = `
       }
     }
   >
-    <Styled(Div)>
+    <Styled(div)>
       <div
-        className="css-olgnlr-Div"
+        className="css-olgnlr"
       >
         this will be green then pink
       </div>
-    </Styled(Div)>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -762,17 +786,21 @@ exports[`styled with higher order component that hoists statics 1`] = `
 `;
 
 exports[`styled withComponent will replace tags but keep styling classes 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 <article>
-  <Styled(Title)>
+  <Styled(h1)>
     <h1
-      className="css-bjcoli-Title"
+      className="glamor-0"
     >
       My Title
     </h1>
-  </Styled(Title)>
+  </Styled(h1)>
   <Styled(h2)>
     <h2
-      className="css-bjcoli-Title"
+      className="glamor-0"
     >
       My Subtitle
     </h2>
@@ -781,18 +809,22 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 `;
 
 exports[`styled withComponent with function interpolation 1`] = `
+.glamor-0 {
+  color: green;
+}
+
 .glamor-1 {
   color: hotpink;
 }
 
 <article>
-  <Styled(Title)>
+  <Styled(h1)>
     <h1
       className="glamor-0"
     >
       My Title
     </h1>
-  </Styled(Title)>
+  </Styled(h1)>
   <Styled(h2)
     color="hotpink"
   >

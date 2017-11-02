@@ -39,7 +39,7 @@ stylis.use(insertionPlugin)
 
 const cssRegex = /css-[A-Za-z0-9]+-[A-Za-z0-9]+/
 
-function getRegisteredStylesFromInterpolation (interpolation: any) {
+function getRegisteredStylesFromInterpolation(interpolation: any) {
   if (typeof interpolation === 'string') {
     const matches = cssRegex.exec(interpolation)
     if (matches != null && matches[0] !== undefined) {
@@ -219,7 +219,7 @@ export function injectGlobal() {
 }
 
 export function fontFace(...args) {
-  const {styles} = createStyles(...args)
+  const { styles } = createStyles(...args)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
     stylis('', `@font-face{${styles}}`)

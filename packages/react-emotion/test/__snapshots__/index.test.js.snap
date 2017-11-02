@@ -63,13 +63,13 @@ exports[`styled change theme 1`] = `
       }
     }
   >
-    <Styled(Div)>
+    <Styled(div)>
       <div
         className="glamor-0"
       >
         this will be green then pink
       </div>
-    </Styled(Div)>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -94,13 +94,13 @@ exports[`styled change theme 2`] = `
       }
     }
   >
-    <Styled(Div)>
+    <Styled(div)>
       <div
         className="glamor-0"
       >
         this will be green then pink
       </div>
-    </Styled(Div)>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -412,7 +412,7 @@ exports[`styled name with class component 1`] = `
   color: hotpink;
 }
 
-<Styled(StyledComponent)>
+<Styled(SomeComponent)>
   <SomeComponent
     className="glamor-0"
   >
@@ -420,7 +420,7 @@ exports[`styled name with class component 1`] = `
       className="glamor-0"
     />
   </SomeComponent>
-</Styled(StyledComponent)>
+</Styled(SomeComponent)>
 `;
 
 exports[`styled nested 1`] = `
@@ -708,13 +708,13 @@ exports[`styled theming 1`] = `
       }
     }
   >
-    <Styled(Div)>
+    <Styled(div)>
       <div
-        className="css-olgnlr-Div"
+        className="css-olgnlr"
       >
         this will be green then pink
       </div>
-    </Styled(Div)>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -735,13 +735,13 @@ exports[`styled theming 2`] = `
       }
     }
   >
-    <Styled(Div)>
+    <Styled(div)>
       <div
-        className="css-olgnlr-Div"
+        className="css-olgnlr"
       >
         this will be green then pink
       </div>
-    </Styled(Div)>
+    </Styled(div)>
   </ThemeProvider>
 </TestComponent>
 `;
@@ -791,13 +791,13 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 }
 
 <article>
-  <Styled(Title)>
+  <Styled(h1)>
     <h1
       className="glamor-0"
     >
       My Title
     </h1>
-  </Styled(Title)>
+  </Styled(h1)>
   <Styled(h2)>
     <h2
       className="glamor-0"
@@ -818,13 +818,13 @@ exports[`styled withComponent with function interpolation 1`] = `
 }
 
 <article>
-  <Styled(Title)>
+  <Styled(h1)>
     <h1
       className="glamor-0"
     >
       My Title
     </h1>
-  </Styled(Title)>
+  </Styled(h1)>
   <Styled(h2)
     color="hotpink"
   >

@@ -43,11 +43,7 @@ const cls1 = /*#__PURE__*/css({
     display: 'flex'
   }
 });
-const cls2 = /*#__PURE__*/css('::placeholder{color:green;display:flex;}', {
-  meta: {
-    identifierName: 'cls2'
-  }
-});"
+const cls2 = /*#__PURE__*/css('::placeholder{color:green;display:flex;}');"
 `;
 
 exports[`babel css inline :fullscreen 1`] = `
@@ -58,11 +54,7 @@ const cls1 = /*#__PURE__*/css({
     display: 'flex'
   }
 });
-const cls2 = /*#__PURE__*/css(':fullscreen{color:green;display:flex;}', {
-  meta: {
-    identifierName: 'cls2'
-  }
-});"
+const cls2 = /*#__PURE__*/css(':fullscreen{color:green;display:flex;}');"
 `;
 
 exports[`babel css inline array of objects 1`] = `
@@ -134,11 +126,7 @@ function test() {
 
 exports[`babel css inline interpolation in selector 1`] = `
 "
-const cls2 = /*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;\\", className, \\"{display:none;}\\", {
-  meta: {
-    identifierName: \\"cls2\\"
-  }
-});"
+const cls2 = /*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;\\", className, \\"{display:none;}\\");"
 `;
 
 exports[`babel css inline nested expanded properties 1`] = `
@@ -158,23 +146,11 @@ const cls2 = /*#__PURE__*/css({
 
 exports[`babel css inline only styles on nested selector 1`] = `
 "
-const cls1 = /*#__PURE__*/css(\\"display:flex;\\", {
-  meta: {
-    identifierName: \\"cls1\\"
-  }
-});
-const cls2 = /*#__PURE__*/css(\\"&:hover{background:pink;}\\", {
-  meta: {
-    identifierName: \\"cls2\\"
-  }
-});"
+const cls1 = /*#__PURE__*/css(\\"display:flex;\\");
+const cls2 = /*#__PURE__*/css(\\"&:hover{background:pink;}\\");"
 `;
 
 exports[`babel css inline symbols inside of "" 1`] = `
 "
-const cls = /*#__PURE__*/css(\\"content:\\\\\\"  {  }  \\\\\\"\\", {
-      meta: {
-            identifierName: \\"cls\\"
-      }
-});"
+const cls = /*#__PURE__*/css(\\"content:\\\\\\"  {  }  \\\\\\"\\");"
 `;

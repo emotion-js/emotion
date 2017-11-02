@@ -143,14 +143,21 @@ exports[`css float property 1`] = `
 `;
 
 exports[`css flushes correctly 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 <div
-  className="css-k008qs-cls1"
+  className="glamor-0"
 />
 `;
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-k008qs-cls1"
+  className="css-k008qs"
 />
 `;
 
