@@ -67,7 +67,7 @@ const cls2 = css`
 <div className={cx(cls2, cls1)} /> // <-- arguments reversed
 ```
 
-The div will now have a **green** background even though `cls2` was inserted **after** `cls1`.
+The div will now have a **green** background even though `cls2` was inserted into the stylesheet **after** `cls1`.
 
 ```css
 .css-54321 {

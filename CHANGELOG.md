@@ -36,6 +36,19 @@
 - Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
 - Ruslan Vasiliev ([ervasive](https://github.com/ervasive))
 
+## v8.0.8 (2017-10-16)
+
+#### :rocket: Enhancement
+* `emotion`
+  * [#397](https://github.com/emotion-js/emotion/pull/397) Add a basic cx api so that users can merge emotion and custom classes. ([@tkh44](https://github.com/tkh44))
+
+#### :memo: Documentation
+* [#410](https://github.com/emotion-js/emotion/pull/410) added gatsbythemes.com to the list In The Wild in the README. ([@saschajullmann](https://github.com/saschajullmann))
+
+#### Committers: 2
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Sascha Jullmann ([saschajullmann](https://github.com/saschajullmann))
+
 
 ## v8.0.7 (2017-10-16)
 

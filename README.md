@@ -14,7 +14,7 @@
 ![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?label=react%20size)
 [![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
 
-emotion is a high performance, lightweight css-in-js library. emotion minimizes the runtime cost of css-in-js by parsing your styles at build time and utilizing [insertRule](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/insertRule) on the client.
+emotion is a high performance, lightweight css-in-js library that supports both string and object based styles.
 
 ---
 
@@ -73,7 +73,8 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 
 -- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
-### Documentation
+### [Documentation](docs/)
+
 #### API
 - Styling components with [`styled`](docs/styled.md)
 
@@ -90,10 +91,14 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 #### Doc files
 - [All docs](docs/)
 - [Version 7 docs](https://github.com/emotion-js/emotion/tree/v7.3.2)
+
 ### Ecosystem
   
+  - [facepaint](https://github.com/emotion-js/facepaint)
   - [emotion-vue](https://github.com/egoist/emotion-vue)
   - [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
+  - [ShevyJS](https://github.com/kyleshevlin/shevyjs)
+  - [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
 
 ### In the Wild
 
@@ -101,5 +106,6 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
   - [vault.crucible.gg](http://vault.crucible.gg/)
   - [saldotuc.com](https://saldotuc.com)
   - [gatsbythemes.com](https://gatsbythemes.com/)
+  - [blazity.com](https://blazity.com/)
 
 
