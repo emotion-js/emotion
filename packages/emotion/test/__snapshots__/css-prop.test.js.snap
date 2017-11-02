@@ -13,46 +13,6 @@ exports[`css prop react basic 1`] = `
 </p>
 `;
 
-exports[`css prop react css correctly adds the id 1`] = `
-.glamor-0 {
-  display: block;
-}
-
-<div
-  className="glamor-0"
->
-  Hello
-</div>
-`;
-
-exports[`css prop react css correctly adds the id 2`] = `
-.glamor-0 {
-  display: block;
-}
-
-<div
-  className="glamor-0"
->
-  Hello
-</div>
-`;
-
-exports[`css prop react css correctly adds the id 3`] = `
-.glamor-0 {
-  display: block;
-}
-
-<div
-  className="glamor-0"
->
-  <div
-    className="glamor-0"
-  >
-    Hello
-  </div>
-</div>
-`;
-
 exports[`css prop react kitchen sink 1`] = `
 .glamor-4 {
   display: -webkit-box;
