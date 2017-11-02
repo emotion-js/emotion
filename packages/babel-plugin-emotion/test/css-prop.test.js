@@ -137,4 +137,26 @@ describe('babel css prop', () => {
     const { code } = babel.transform(basic, { plugins: [plugin] })
     expect(code).toMatchSnapshot()
   })
+
+  test('hoisting object styles', () => {
+    const basic =
+      'const Profile = () => ' +
+      '(<div className="a" css={{ color: \'brown\' }}></div>)'
+    const {code} = babel.transform(basic, {
+      plugins: [[plugin, {hoist: true}]]
+    })
+    expect(code).toMatchSnapshot()
+  })
+
+  test('hoisting string styles', () => {
+    const basic =
+      'const Profile = () => {' +
+      'const color = "blue";\n' +
+      '(<div css={`color: ${color}`}></div>)' +
+      '\n}'
+    const {code} = babel.transform(basic, {
+      plugins: [[plugin, {hoist: true}]]
+    })
+    expect(code).toMatchSnapshot()
+  })
 })

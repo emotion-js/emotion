@@ -6,7 +6,7 @@
 </h1>
 <p align="center" style="font-size: 1.2rem;">high performance css-in-js</p>
 
-[github](https://github.com/tkh44/emotion)
+[github](https://github.com/emotion-js/emotion)
 [npm](https://npm.im/emotion)
 
 In order to learn more about emotion lets build this guide together. By following along below, we can get this markdown looking good.

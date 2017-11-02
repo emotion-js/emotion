@@ -1,3 +1,96 @@
+## v8.0.9 (2017-10-23)
+
+#### :rocket: Enhancement
+* `react-emotion`
+  * [#426](https://github.com/emotion-js/emotion/pull/426) Added TypeScript definitions for innerRef. ([@cameron-martin](https://github.com/cameron-martin))
+* `emotion`
+  * [#416](https://github.com/emotion-js/emotion/pull/416) Added TypeScript definitions for css prop. ([@cameron-martin](https://github.com/cameron-martin))
+* `babel-plugin-emotion`, `benchmarks`
+  * [#414](https://github.com/emotion-js/emotion/pull/414) Automatic hoisting. ([@tkh44](https://github.com/tkh44))
+
+#### :bug: Bug Fix
+* `babel-plugin-emotion`, `emotion`
+  * [#428](https://github.com/emotion-js/emotion/pull/428) Fix editing styles in devtools with source maps. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :memo: Documentation
+* [#423](https://github.com/emotion-js/emotion/pull/423) Fix incorrect usage of css variable in docs. ([@ekeric13](https://github.com/ekeric13))
+* [#413](https://github.com/emotion-js/emotion/pull/413) Fix a typo in docs on composition. ([@ervasive](https://github.com/ervasive))
+* [#412](https://github.com/emotion-js/emotion/pull/412) Remove dead links. ([@greggb](https://github.com/greggb))
+
+#### :house: Internal
+* `babel-plugin-emotion`, `benchmarks`, `emotion-server`, `emotion-theming`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`, `site`
+  * [#415](https://github.com/emotion-js/emotion/pull/415) Use yarn workspaces. ([@tkh44](https://github.com/tkh44))
+* `react-emotion`
+  * [#420](https://github.com/emotion-js/emotion/pull/420) Fix component type in TS typings. ([@asvetliakov](https://github.com/asvetliakov))
+* `emotion-theming`, `react-emotion`
+  * [#419](https://github.com/emotion-js/emotion/pull/419) Typescript typings: Added emotion-theming typings and fixed react-emotion typings. ([@asvetliakov](https://github.com/asvetliakov))
+* `emotion`
+  * [#417](https://github.com/emotion-js/emotion/pull/417) Added TypeScript definitions for the newly-added cx function.. ([@cameron-martin](https://github.com/cameron-martin))
+
+#### Committers: 7
+- Alexey Svetliakov ([asvetliakov](https://github.com/asvetliakov))
+- Cameron Martin ([cameron-martin](https://github.com/cameron-martin))
+- Eric Kennedy ([ekeric13](https://github.com/ekeric13))
+- Gregg Brewster ([greggb](https://github.com/greggb))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Ruslan Vasiliev ([ervasive](https://github.com/ervasive))
+
+## v8.0.8 (2017-10-16)
+
+#### :rocket: Enhancement
+* `emotion`
+  * [#397](https://github.com/emotion-js/emotion/pull/397) Add a basic cx api so that users can merge emotion and custom classes. ([@tkh44](https://github.com/tkh44))
+
+#### :memo: Documentation
+* [#410](https://github.com/emotion-js/emotion/pull/410) added gatsbythemes.com to the list In The Wild in the README. ([@saschajullmann](https://github.com/saschajullmann))
+
+#### Committers: 2
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Sascha Jullmann ([saschajullmann](https://github.com/saschajullmann))
+
+
+## v8.0.7 (2017-10-16)
+
+#### :rocket: Enhancement
+* `emotion`
+  * [#338](https://github.com/emotion-js/emotion/pull/338) change "DO-NOT-USE" to "emotion.umd" in umd file names. ([@tkh44](https://github.com/tkh44))
+* `react-emotion`
+  * [#398](https://github.com/emotion-js/emotion/pull/398) Add types to react-emotion. ([@renatorib](https://github.com/renatorib))
+
+#### :memo: Documentation
+* `emotion-theming`, `emotion`
+  * [#408](https://github.com/emotion-js/emotion/pull/408) readme and doc consolidation updates. ([@greggb](https://github.com/greggb))
+* Other
+  * [#407](https://github.com/emotion-js/emotion/pull/407) Clarify Babel plugin usage in install docs. ([@wKovacs64](https://github.com/wKovacs64))
+
+#### Committers: 5
+- Gregg Brewster ([greggb](https://github.com/greggb))
+- Justin Hall ([wKovacs64](https://github.com/wKovacs64))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Renato Ribeiro ([renatorib](https://github.com/renatorib))
+
+
+## v8.0.6 (2017-10-14)
+
+#### :rocket: Enhancement
+* `emotion`
+  * [#379](https://github.com/emotion-js/emotion/pull/379) Added TypeScript types and tests for the emotion package.. ([@cameron-martin](https://github.com/cameron-martin))
+
+#### :house: Internal
+* `babel-plugin-emotion`, `emotion`, `react-emotion`, `stylis-plugin-emotion`
+  * [#406](https://github.com/emotion-js/emotion/pull/406) Remove stylis-plugin-emotion and use stylis-rule-sheet. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `emotion`
+  * [#392](https://github.com/emotion-js/emotion/pull/392) Remove flatten. ([@tkh44](https://github.com/tkh44))
+
+#### Committers: 4
+- Cameron Martin ([cameron-martin](https://github.com/cameron-martin))
+- Hosmel Quintana ([hosmelq](https://github.com/hosmelq))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v8.0.5 (2017-10-07)
 
 #### :memo: Documentation

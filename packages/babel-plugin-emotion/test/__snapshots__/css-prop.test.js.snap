@@ -50,43 +50,18 @@ exports[`babel css prop emptyClassName 1`] = `
 <div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
 `;
 
-exports[`babel css prop id in class component 1`] = `
+exports[`babel css prop hoisting object styles 1`] = `
 "import { css as _css } from \\"emotion\\";
-
-class ClsComp extends React.Component {
-  render() {
-    return <div className={/*#__PURE__*/_css(\\"foo\\", {
-      meta: {
-        identifierName: \\"ClsComp\\"
-      }
-    })}>Hello</div>;
-  }
-}"
+var _ref = { color: 'brown' };
+const Profile = () => <div className={_css(_ref) + \\" a\\"}></div>;"
 `;
 
-exports[`babel css prop id in higher order component 1`] = `
+exports[`babel css prop hoisting string styles 1`] = `
 "import { css as _css } from \\"emotion\\";
-
-const foo = W => class extends Component {
-  render() {
-    return <div className={/*#__PURE__*/_css(\\"color:brown;\\", {
-      meta: {
-        identifierName: \\"foo(Component)\\"
-      }
-    })}>Hello</div>;
-  }
-};"
-`;
-
-exports[`babel css prop id in stateless functional component 1`] = `
-"import { css as _css } from \\"emotion\\";
-
-const SFC = () => {
-  return <div className={/*#__PURE__*/_css(\\"color:brown;\\", {
-    meta: {
-      identifierName: \\"SFC\\"
-    }
-  })}>Hello</div>;
+var _ref = \\"color:\\";
+const Profile = () => {
+  const color = \\"blue\\";
+  <div className={/*#__PURE__*/_css(_ref, color)}></div>;
 };"
 `;
 

@@ -57,6 +57,25 @@ exports[`babel styled component inline function call 1`] = `
 });"
 `;
 
+exports[`babel styled component inline hoisting 1`] = `
+"var _ref = {
+  borderRadius: '50%',
+  transition: 'transform 400ms ease-in-out',
+  boxSizing: 'border-box',
+  display: 'flex',
+  ':hover': {
+    transform: 'scale(1.2)'
+  }
+};
+var _ref2 = [{ color: 'blue' }];
+
+const Profile = () => {
+  const H1 = /*#__PURE__*/styled('h1')(_ref, props => ({
+    display: props.display
+  }), _ref2);
+};"
+`;
+
 exports[`babel styled component inline interpolation in different places 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');height1:', something, 'wow;width:w', something, 'ow;transform:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform1:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform2:translateX(', props => props.translateX, ') ', props => props.translateX, ';', {

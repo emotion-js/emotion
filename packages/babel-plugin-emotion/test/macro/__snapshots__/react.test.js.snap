@@ -1,25 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled basic render 1`] = `
-.glamor-1 {
+.glamor-0 {
   color: blue;
   font-size: 20px;
 }
 
-@media (min-width: 420px) {
-  .glamor-1 {
+@media (min-width:420px) {
+  .glamor-0 {
     color: blue;
   }
 }
 
-@media (min-width: 420px) and  (min-width: 520px) {
-  .glamor-1 {
-    color: green;
-  }
-}
-
 <h1
-  className="glamor-0 glamor-1"
+  className="glamor-0"
 >
   hello world
 </h1>
@@ -196,6 +190,39 @@ exports[`styled composition based on props 2`] = `
 </h1>
 `;
 
+exports[`styled composition of nested pseudo selectors 1`] = `
+.glamor-0 {
+  font-size: 2rem;
+  padding: 16px;
+}
+
+.glamor-0:hover {
+  color: blue;
+}
+
+.glamor-0:hover:active {
+  color: red;
+}
+
+.glamor-0:hover {
+  color: pink;
+}
+
+.glamor-0:hover:active {
+  color: purple;
+}
+
+.glamor-0:hover.some-class {
+  color: yellow;
+}
+
+<button
+  className="glamor-0"
+>
+  Should be purple
+</button>
+`;
+
 exports[`styled composition with objects 1`] = `
 .glamor-0 {
   color: #333;
@@ -229,6 +256,18 @@ exports[`styled function in expression 1`] = `
 >
   hello world
 </h1>
+`;
+
+exports[`styled function that function returns gets called with props 1`] = `
+.glamor-0 {
+  color: hotpink;
+  background-color: yellow;
+}
+
+<div
+  className="glamor-0"
+  color="hotpink"
+/>
 `;
 
 exports[`styled glamorous style api & composition 1`] = `
@@ -309,47 +348,67 @@ exports[`styled innerRef 1`] = `
 `;
 
 exports[`styled input placeholder 1`] = `
-.glamor-1::-webkit-input-placeholder {
+.glamor-0::-webkit-input-placeholder {
   background-color: green;
 }
 
-.glamor-1:-ms-input-placeholder {
+.glamor-0::-moz-placeholder {
   background-color: green;
 }
 
-.glamor-1::placeholder {
+.glamor-0:-ms-input-placeholder {
+  background-color: green;
+}
+
+.glamor-0::placeholder {
   background-color: green;
 }
 
 <input
-  className="glamor-0 glamor-1"
+  className="glamor-0"
 >
   hello world
 </input>
 `;
 
 exports[`styled input placeholder object 1`] = `
-.glamor-1::-webkit-input-placeholder {
+.glamor-0::-webkit-input-placeholder {
   background-color: green;
 }
 
-.glamor-1::-moz-placeholder {
+.glamor-0::-moz-placeholder {
   background-color: green;
 }
 
-.glamor-1:-ms-input-placeholder {
+.glamor-0:-ms-input-placeholder {
   background-color: green;
 }
 
-.glamor-1::placeholder {
+.glamor-0::placeholder {
   background-color: green;
 }
 
 <input
-  className="glamor-0 glamor-1"
+  className="glamor-0"
 >
   hello world
 </input>
+`;
+
+exports[`styled name with class component 1`] = `
+.glamor-0 {
+  color: hotpink;
+}
+
+<Styled(SomeComponent)>
+  <SomeComponent
+    className="glamor-0"
+  >
+    <div
+      className="glamor-0"
+    />
+  </SomeComponent>
+</Styled(SomeComponent)>
 `;
 
 exports[`styled nested 1`] = `
@@ -409,31 +468,6 @@ exports[`styled no prop filtering on non string tags 1`] = `
 >
   hello world
 </a>
-`;
-
-exports[`styled null interpolation value 1`] = `
-.glamor-0 {
-  color: blue;
-  font-size: 20;
-}
-
-@media (min-width:520px) {
-  .glamor-0 {
-    color: green;
-  }
-}
-
-@media (min-width:420px) {
-  .glamor-0 {
-    color: blue;
-  }
-}
-
-<h1
-  className="glamor-0"
->
-  hello world
-</h1>
 `;
 
 exports[`styled object as style 1`] = `
@@ -595,6 +629,28 @@ exports[`styled random object expression 1`] = `
 </h1>
 `;
 
+exports[`styled theme prop exists without ThemeProvider 1`] = `
+.glamor-0 {
+  color: green;
+  background-color: yellow;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`styled theme prop exists without ThemeProvider with a theme prop on the component 1`] = `
+.glamor-0 {
+  color: hotpink;
+  background-color: yellow;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`styled themes 1`] = `
 .glamor-0 {
   background-color: #ffd43b;
@@ -697,6 +753,7 @@ exports[`styled with higher order component that hoists statics 1`] = `
   display: -ms-flexbox;
   display: flex;
   color: hotpink;
+  padding: 8px;
 }
 
 <div

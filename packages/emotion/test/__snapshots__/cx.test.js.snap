@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cx all types 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  background: green;
+  font-size: 20px;
+  background: darkorange;
+  font-size: 20px;
+  background: darkgreen;
+}
+
+<div
+  className="modal profile glamor-0"
+/>
+`;
+
+exports[`cx fun fun functions 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  background: green;
+  font-size: 20px;
+  background: darkorange;
+  font-size: 20px;
+  background: darkgreen;
+}
+
+<div
+  className="modal profile glamor-0"
+/>
+`;
+
+exports[`cx merge 2 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  background: green;
+}
+
+<div
+  className="glamor-0 modal"
+/>
+`;
+
+exports[`cx merge 3 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  background: green;
+  font-size: 20px;
+  background: blue;
+}
+
+<div
+  className="modal glamor-0"
+/>
+`;
+
+exports[`cx merge 4 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  background: green;
+  font-size: 20px;
+  background: blue;
+}
+
+<div
+  className="modal profile glamor-0"
+/>
+`;

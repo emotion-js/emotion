@@ -1,0 +1,14 @@
+{
+  "presets": [
+    "flow",
+    "env",
+    "react"
+  ],
+  "plugins": [
+    [
+      "transform-define",
+      {
+        "process.env.NODE_ENV": "production"
+      }
+    ], ["../../../../babel-plugin-emotion-test"], "codegen"]
+}

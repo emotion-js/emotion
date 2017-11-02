@@ -35,7 +35,9 @@ async function run() {
             results: results.map(r => ({
               name: r.name,
               duration: parseInt(r.mean, 10),
-              type: r.name.toLowerCase().includes('deep') ? 'DEEP' : 'WIDE'
+              type: r.name.toLowerCase().includes('deep')
+                ? 'DEEP'
+                : r.name.toLowerCase().includes('wide') ? 'WIDE' : 'TRIANGLE'
             }))
           })
         } catch (e) {

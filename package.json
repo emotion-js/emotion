@@ -6,7 +6,8 @@
     "build": "lerna run build --parallel",
     "test:size": "npm-run-all clean rollup:umd size",
     "clean": "lerna run clean --parallel",
-    "test": "npm-run-all -p lint:check coverage test:size && npm run benchmark",
+    "test": "npm-run-all -p lint:check coverage test:size test:typescript && npm run benchmark",
+    "test:typescript": "lerna run test:typescript --parallel",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
     "lint:check": "eslint .",
     "test:watch": "jest --watch --no-cache",
@@ -29,11 +30,13 @@
     "babel-macros": "^1.0.2",
     "babel-plugin-codegen": "^1.2.0",
     "babel-plugin-external-helpers": "^6.22.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bundlesize": "^0.13.2",
+    "codecov": "^2.3.1",
     "css": "^2.2.1",
     "cssjanus": "^1.2.0",
     "enzyme": "^2.9.1",
@@ -136,24 +139,26 @@
       "^emotion-utils$": "<rootDir>/packages/emotion-utils/src",
       "^emotion-server$": "<rootDir>/packages/emotion-server/src",
       "^emotion-theming$": "<rootDir>/packages/emotion-theming/src",
-      "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src",
-      "^stylis-plugin-emotion": "<rootDir>/packages/stylis-plugin-emotion/src"
+      "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
     "coveragePathIgnorePatterns": [
       "<rootDir>/packages/emotion-utils/src/stylis.js"
     ]
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
   },
   "bundlesize": [
     {
-      "path": "./packages/emotion/dist/DO-NOT-USE.min.js",
-      "threshold": "6 Kb"
+      "path": "./packages/emotion/dist/emotion.umd.min.js",
+      "threshold": "6.25 Kb"
     },
     {
-      "path": "./packages/react-emotion/dist/DO-NOT-USE.min.js",
+      "path": "./packages/react-emotion/dist/emotion.umd.min.js",
       "threshold": "8 Kb"
     }
   ]

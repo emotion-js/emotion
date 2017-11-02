@@ -170,7 +170,26 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('nested array', () => {
-    const cls1 = css([[{ display: 'flex' }]])
+    const cls1 = css([
+      [{ display: 'inline' }],
+      [{ display: 'inline-block' }],
+      [
+        { display: 'block' },
+        [
+          { display: 'flex' },
+          [
+            { display: 'table' },
+            { color: 'darkorchid' },
+            [
+              {
+                fontSize: 16
+              },
+              [{ '&:after': { backgroundColor: 'aquamarine' } }]
+            ]
+          ]
+        ]
+      ]
+    ])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })

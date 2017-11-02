@@ -20,34 +20,13 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test.skip('basic render', () => {
+  test('basic render', () => {
     const fontSize = 20
     const H1 = styled.h1`
       color: blue;
-      font-size: ${fontSize};
+      font-size: ${fontSize + 'px'};
       @media (min-width: 420px) {
         color: blue;
-        @media (min-width: 520px) {
-          color: green;
-        }
-      }
-    `
-
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
-
-    expect(tree).toMatchSnapshot()
-  })
-
-  test('null interpolation value', () => {
-    const fontSize = 20
-    const H1 = styled.h1`
-      color: blue;
-      font-size: ${fontSize};
-      @media (min-width: 420px) {
-        color: blue;
-        @media (min-width: 520px) {
-          color: green;
-        }
       }
     `
 
@@ -251,7 +230,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test.skip('input placeholder', () => {
+  test('input placeholder', () => {
     const Input = styled.input`
       ::placeholder {
         background-color: green;
@@ -262,7 +241,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test.skip('input placeholder object', () => {
+  test('input placeholder object', () => {
     const Input = styled('input')({
       '::placeholder': {
         backgroundColor: 'green'

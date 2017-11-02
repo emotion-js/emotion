@@ -1,8 +1,9 @@
 import { hashString, Stylis, memoize, unitless } from 'emotion-utils'
-import stylisPluginEmotion from 'stylis-plugin-emotion'
+import stylisRuleSheet from 'stylis-rule-sheet'
 import StyleSheet from './sheet'
 
 export const sheet = new StyleSheet()
+
 // 🚀
 sheet.inject()
 const stylisOptions = { keyframe: false }
@@ -21,7 +22,7 @@ function insertRule(rule) {
   sheet.insert(rule, currentSourceMap)
 }
 
-const insertionPlugin = stylisPluginEmotion(insertRule)
+const insertionPlugin = stylisRuleSheet(insertRule)
 
 export const useStylisPlugin = plugin => {
   externalStylisPlugins.push(plugin)
@@ -36,19 +37,9 @@ let currentSourceMap = ''
 
 stylis.use(insertionPlugin)
 
-function flatten(inArr) {
-  let arr = []
-  inArr.forEach(val => {
-    if (Array.isArray(val)) arr = arr.concat(flatten(val))
-    else arr = arr.concat(val)
-  })
-
-  return arr
-}
-
 const cssRegex = /css-[A-Za-z0-9]+-[A-Za-z0-9]+/
 
-function getRegisteredStylesFromInterpolation(interpolation: any) {
+function getRegisteredStylesFromInterpolation (interpolation: any) {
   if (typeof interpolation === 'string') {
     const matches = cssRegex.exec(interpolation)
     if (matches != null && matches[0] !== undefined) {
@@ -63,37 +54,29 @@ function handleInterpolation(
   interpolation: any,
   couldBeSelectorInterpolation: boolean
 ) {
-  if (
-    interpolation === undefined ||
-    interpolation === null ||
-    typeof interpolation === 'boolean'
-  ) {
+  if (interpolation == null) {
     return ''
   }
 
-  if (typeof interpolation === 'function') {
-    return handleInterpolation.call(
-      this,
-      this === undefined
-        ? interpolation()
-        : interpolation(this.mergedProps, this.context),
-      couldBeSelectorInterpolation
-    )
+  switch (typeof interpolation) {
+    case 'boolean':
+      return ''
+    case 'function':
+      return handleInterpolation.call(
+        this,
+        this === undefined
+          ? interpolation()
+          : interpolation(this.mergedProps, this.context),
+        couldBeSelectorInterpolation
+      )
+    case 'object':
+      return createStringFromObject.call(this, interpolation)
+    default:
+      const cached = getRegisteredStylesFromInterpolation(interpolation)
+      return couldBeSelectorInterpolation === false && cached !== undefined
+        ? cached
+        : interpolation
   }
-
-  if (typeof interpolation === 'object') {
-    return createStringFromObject.call(this, interpolation)
-  }
-
-  const registeredStyles = getRegisteredStylesFromInterpolation(interpolation)
-  if (
-    couldBeSelectorInterpolation === false &&
-    registeredStyles !== undefined
-  ) {
-    return registeredStyles
-  }
-
-  return interpolation
 }
 
 const hyphenateRegex = /[A-Z]|^ms/g
@@ -121,7 +104,7 @@ function createStringFromObject(obj) {
   let string = ''
 
   if (Array.isArray(obj)) {
-    flatten(obj).forEach(function(interpolation) {
+    obj.forEach(function(interpolation) {
       string += handleInterpolation.call(this, interpolation, false)
     }, this)
   } else {
@@ -181,7 +164,7 @@ function createStyles(strings, ...interpolations) {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\/\s+\/\*@\ssourceURL=\S+\s+\*\//
+  const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
   const oldStylis = stylis
   stylis = (selector, styles) => {
     const result = sourceMapRegEx.exec(styles)
@@ -235,8 +218,8 @@ export function injectGlobal() {
   }
 }
 
-export function fontFace() {
-  const { styles } = createStyles.apply(this, arguments)
+export function fontFace(...args) {
+  const {styles} = createStyles(...args)
   const hash = hashString(styles)
   if (inserted[hash] === undefined) {
     stylis('', `@font-face{${styles}}`)
@@ -266,6 +249,47 @@ export function merge(className, sourceMap) {
     return className
   }
   return rawClassName + css(registeredStyles, sourceMap)
+}
+
+function classnames() {
+  let len = arguments.length
+  let i = 0
+  let cls = ''
+  for (; i < len; i++) {
+    let arg = arguments[i]
+
+    if (arg == null) continue
+    let next = (cls && cls + ' ') || cls
+
+    switch (typeof arg) {
+      case 'boolean':
+        break
+      case 'function':
+        cls = next + classnames(arg())
+        break
+      case 'object': {
+        if (Array.isArray(arg)) {
+          cls = next + classnames.apply(null, arg)
+        } else {
+          for (const k in arg) {
+            if (arg[k]) {
+              cls && (cls += ' ')
+              cls += k
+            }
+          }
+        }
+        break
+      }
+      default: {
+        cls = next + arg
+      }
+    }
+  }
+  return cls
+}
+
+export function cx(...classNames) {
+  return merge(classnames(...classNames))
 }
 
 export function hydrate(ids) {
