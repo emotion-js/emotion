@@ -73,7 +73,8 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 
 -- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
-### Documentation
+### [Documentation](docs/)
+
 #### API
 - Styling components with [`styled`](docs/styled.md)
 
@@ -90,6 +91,7 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 #### Doc files
 - [All docs](docs/)
 - [Version 7 docs](https://github.com/emotion-js/emotion/tree/v7.3.2)
+
 ### Ecosystem
   
   - [facepaint](https://github.com/emotion-js/facepaint)
