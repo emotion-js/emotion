@@ -16,7 +16,7 @@ describe('meta', () => {
     const tree = renderer
       .create(
         <div className={cls2}>
-          <div className={cls1}/>
+          <div className={cls1} />
         </div>
       )
       .toJSON()
