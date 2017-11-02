@@ -81,6 +81,8 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 - Create composable styles with [`css` classes and props](docs/css.md)
 
   - [`composition`](docs/composition.md)
+  
+- [Object styles](docs/object-styles.md)
 
 - Combine styles and class names with [`cx`](docs/cx.md)
 
