@@ -14,7 +14,7 @@
 ![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?label=react%20size)
 [![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
 
-emotion is a high performance, lightweight css-in-js library. emotion minimizes the runtime cost of css-in-js by parsing your styles at build time and utilizing [insertRule](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/insertRule) on the client.
+emotion is a high performance, lightweight css-in-js library that supports both string and object based styles.
 
 ---
 
