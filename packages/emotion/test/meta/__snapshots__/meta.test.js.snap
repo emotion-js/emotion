@@ -19,11 +19,11 @@ exports[`meta css generated class name should have the correct id 1`] = `
 `;
 
 exports[`meta css generated class name should have the correct id 2`] = `
-".css-zws6ur-cls1 {
+".css-1staf2a-cls1 {
   color: blue;
 }
 
-.css-vimg7i-cls2 .css-zws6ur-cls1 {
+.css-14o1mnu-cls2 .css-1staf2a-cls1 {
   color: red;
 }"
 `;
@@ -76,18 +76,18 @@ exports[`meta css prop correctly adds the id 3`] = `
 `;
 
 exports[`meta css prop correctly adds the id 4`] = `
-".css-n6m5d9-SFC {
+".css-1bl9k6-SFC {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.css-1vtlegb-ClsComp {
+.css-ptjj1k-ClsComp {
   display: grid;
 }
 
-.css-t4svsx-hoc {
+.css-c6rdfv-hoc {
   display: block;
 }"
 `;
