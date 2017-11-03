@@ -5,7 +5,7 @@ export * from 'emotion'
 export function extractCritical(html) {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
-  const RGX = /css(?:[a-zA-Z0-9-]*)-([a-zA-Z0-9]+)/gm
+  const RGX = /css-([a-zA-Z0-9]+)/gm
 
   let o = { html, ids: [], css: '', rules: [] }
   let match
