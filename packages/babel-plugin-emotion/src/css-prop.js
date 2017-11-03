@@ -1,4 +1,4 @@
-import { addNamed } from 'babel-helper-module-imports'
+import { addNamed } from '@babel/helper-module-imports'
 import { addSourceMaps } from './source-map'
 
 export default function(path, state, t) {
