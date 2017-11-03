@@ -63,22 +63,22 @@ fontFace\`
 `;
 
 exports[`fontFace extract babel 6 basic 1`] = `
-"import \\"./emotion.css\\";
+"require(\\"./emotion.emotion.css\\");
 
 undefined;
 
 
-emotion.css
+emotion.emotion.css
 @font-face{font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;}"
 `;
 
 exports[`fontFace extract babel 6 basic assign to variable 1`] = `
-"import \\"./emotion.css\\";
+"require(\\"./emotion.emotion.css\\");
 
 const thisWillBeUndefined = undefined;
 
 
-emotion.css
+emotion.emotion.css
 @font-face{font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;}"
 `;
 
@@ -88,20 +88,22 @@ fontFace(\\"font-family:\\", fontFamilyName, \\";src:local(\\\\\\"Helvetica Neue
 `;
 
 exports[`fontFace extract babel 7 basic 1`] = `
-"import \\"./emotion.css\\";
+"require(\\"./emotion.emotion.css\\");
+
 undefined;
 
 
-emotion.css
+emotion.emotion.css
 @font-face{font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;}"
 `;
 
 exports[`fontFace extract babel 7 basic assign to variable 1`] = `
-"import \\"./emotion.css\\";
+"require(\\"./emotion.emotion.css\\");
+
 const thisWillBeUndefined = undefined;
 
 
-emotion.css
+emotion.emotion.css
 @font-face{font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"), local(\\"HelveticaNeue-Bold\\"), url(MgOpenModernaBold.ttf);font-weight:bold;}"
 `;
 

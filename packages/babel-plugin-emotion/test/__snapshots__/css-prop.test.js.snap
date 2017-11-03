@@ -1,24 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`babel css prop extract babel 6 basic with extractStatic 1`] = `
-"var _css = require(\\"emotion\\").css;
+"require(\\"./emotion.emotion.css\\");
 
-import \\"./emotion.css\\";
+var _css = require(\\"emotion\\").css;
+
 <div className={\\"css-jf1v9l\\" + \\" a\\"}></div>;
 
 
-emotion.css
+emotion.emotion.css
 .css-jf1v9l{color:brown;}"
 `;
 
 exports[`babel css prop extract babel 7 basic with extractStatic 1`] = `
-"var _css = require(\\"emotion\\").css;
+"require(\\"./emotion.emotion.css\\");
 
-import \\"./emotion.css\\";
+var _css = require(\\"emotion\\").css;
+
 <div className={\\"css-jf1v9l\\" + \\" a\\"}></div>;
 
 
-emotion.css
+emotion.emotion.css
 .css-jf1v9l{color:brown;}"
 `;
 

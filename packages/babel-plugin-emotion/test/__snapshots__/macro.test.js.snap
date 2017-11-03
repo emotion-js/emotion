@@ -1,158 +1,239 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`macro babel 6 css 1`] = `
-"'use strict';
+"import { css as _css } from '../src';
 
-var _src = require('../src');
-
-/*#__PURE__*/(0, _src.css)('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:', widthVar, ';');"
+/*#__PURE__*/_css('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:', widthVar, ';');"
 `;
 
 exports[`macro babel 6 css call with no args 1`] = `
-"'use strict';
+"import { css as _css } from '../src';
 
-var _src = require('../src');
-
-var cls1 = /*#__PURE__*/(0, _src.css)();"
+const cls1 = /*#__PURE__*/_css();"
 `;
 
 exports[`macro babel 6 css inside of css 1`] = `
-"'use strict';
+"import { css as _css } from '../src';
 
-var _src = require('../src');
-
-var cls2 = /*#__PURE__*/(0, _src.css)('font-size:20px;@media (min-width:420px){color:blue;', /*#__PURE__*/(0, _src.css)('width:96px;height:96px;'), ';line-height:40px;}background:green;');"
+const cls2 = /*#__PURE__*/_css('font-size:20px;@media (min-width:420px){color:blue;', /*#__PURE__*/_css('width:96px;height:96px;'), ';line-height:40px;}background:green;');"
 `;
 
 exports[`macro babel 6 css object 1`] = `
-"'use strict';
+"import { css as _css } from '../src';
 
-var _src = require('../src');
-
-var cls1 = /*#__PURE__*/(0, _src.css)({ display: 'flex' });"
+const cls1 = /*#__PURE__*/_css({ display: 'flex' });"
 `;
 
 exports[`macro babel 6 flush 1`] = `
-"'use strict';
+"import { flush as _flush } from '../src';
 
-var _src = require('../src');
-
-var someOtherVar = _src.flush;"
+const someOtherVar = _flush;"
 `;
 
 exports[`macro babel 6 fontFace 1`] = `
-"'use strict';
+"import { fontFace as _fontFace } from '../src';
 
-var _src = require('../src');
-
-(0, _src.fontFace)('font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;');"
+_fontFace('font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;');"
 `;
 
 exports[`macro babel 6 hydrate 1`] = `
-"'use strict';
+"import { hydrate as _hydrate } from '../src';
 
-var _src = require('../src');
-
-var someOtherVar = _src.hydrate;"
+const someOtherVar = _hydrate;"
 `;
 
 exports[`macro babel 6 injectGlobal 1`] = `
-"'use strict';
+"import { injectGlobal as _injectGlobal } from '../src';
 
-var _src = require('../src');
-
-(0, _src.injectGlobal)('body{margin:0;padding:0;& > div{display:none;&:hover{color:green;& span{color:red;&:after{content:\\"end of line\\"}}}}}html{background:green;}');"
+_injectGlobal('body{margin:0;padding:0;& > div{display:none;&:hover{color:green;& span{color:red;&:after{content:\\"end of line\\"}}}}}html{background:green;}');"
 `;
 
 exports[`macro babel 6 keyframes 1`] = `
-"'use strict';
+"import { keyframes as _keyframes } from '../src';
 
-var _src = require('../src');
-
-var rotate360 = /*#__PURE__*/(0, _src.keyframes)('from{transform:rotate(0deg);}to{transform:rotate(360deg);}');"
+const rotate360 = /*#__PURE__*/_keyframes('from{transform:rotate(0deg);}to{transform:rotate(360deg);}');"
 `;
 
 exports[`macro babel 6 multiple imports 1`] = `
-"'use strict';
+"import { keyframes as _keyframes, css as _css } from '../src';
 
-var _src = require('../src');
-
-var rotate360 = /*#__PURE__*/(0, _src.keyframes)('from{transform:rotate(0deg);}to{transform:rotate(360deg);}');
-var thing = /*#__PURE__*/(0, _src.css)('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:', widthVar, ';');"
+const rotate360 = /*#__PURE__*/_keyframes('from{transform:rotate(0deg);}to{transform:rotate(360deg);}');
+const thing = /*#__PURE__*/_css('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:', widthVar, ';');"
 `;
 
 exports[`macro babel 6 some import that does not exist 1`] = `
-"'use strict';
+"import { thisDoesNotExist as _thisDoesNotExist } from '../src';
 
-var _src = require('../src');
+const someOtherVar = _thisDoesNotExist;"
+`;
 
-var someOtherVar = _src.thisDoesNotExist;"
+exports[`macro babel 7 css 1`] = `
+"import { css as _css } from \\"../src\\";
+
+/*#__PURE__*/
+_css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:\\", widthVar, \\";\\");"
+`;
+
+exports[`macro babel 7 css call with no args 1`] = `
+"import { css as _css } from \\"../src\\";
+
+const cls1 =
+/*#__PURE__*/
+_css();"
+`;
+
+exports[`macro babel 7 css inside of css 1`] = `
+"import { css as _css } from \\"../src\\";
+
+const cls2 =
+/*#__PURE__*/
+_css(\\"font-size:20px;@media (min-width:420px){color:blue;\\",
+/*#__PURE__*/
+_css(\\"width:96px;height:96px;\\"), \\";line-height:40px;}background:green;\\");"
+`;
+
+exports[`macro babel 7 css object 1`] = `
+"import { css as _css } from \\"../src\\";
+
+const cls1 =
+/*#__PURE__*/
+_css({
+  display: 'flex'
+});"
+`;
+
+exports[`macro babel 7 flush 1`] = `
+"import { flush as _flush } from \\"../src\\";
+const someOtherVar = _flush;"
+`;
+
+exports[`macro babel 7 fontFace 1`] = `
+"import { fontFace as _fontFace } from \\"../src\\";
+
+_fontFace(\\"font-family:MyHelvetica;src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\\");"
+`;
+
+exports[`macro babel 7 hydrate 1`] = `
+"import { hydrate as _hydrate } from \\"../src\\";
+const someOtherVar = _hydrate;"
+`;
+
+exports[`macro babel 7 injectGlobal 1`] = `
+"import { injectGlobal as _injectGlobal } from \\"../src\\";
+
+_injectGlobal(\\"body{margin:0;padding:0;& > div{display:none;&:hover{color:green;& span{color:red;&:after{content:\\\\\\"end of line\\\\\\"}}}}}html{background:green;}\\");"
+`;
+
+exports[`macro babel 7 keyframes 1`] = `
+"import { keyframes as _keyframes } from \\"../src\\";
+
+const rotate360 =
+/*#__PURE__*/
+_keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\");"
+`;
+
+exports[`macro babel 7 multiple imports 1`] = `
+"import { keyframes as _keyframes, css as _css } from \\"../src\\";
+
+const rotate360 =
+/*#__PURE__*/
+_keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\");
+
+const thing =
+/*#__PURE__*/
+_css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;width:\\", widthVar, \\";\\");"
+`;
+
+exports[`macro babel 7 some import that does not exist 1`] = `
+"import { thisDoesNotExist as _thisDoesNotExist } from \\"../src\\";
+const someOtherVar = _thisDoesNotExist;"
 `;
 
 exports[`styled macro babel 6 css from react 1`] = `
-"'use strict';
+"import { css as _css } from './styled';
 
-var _styled = require('./styled');
-
-var someCls = /*#__PURE__*/(0, _styled.css)('display:flex;');"
+const someCls = /*#__PURE__*/_css('display:flex;');"
 `;
 
 exports[`styled macro babel 6 object function 1`] = `
-"'use strict';
+"import _styled from './styled';
 
-var _styled2 = require('./styled');
-
-var _styled3 = _interopRequireDefault(_styled2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var SomeComponent = /*#__PURE__*/(0, _styled3.default)('div')({
+const SomeComponent = /*#__PURE__*/_styled('div')({
   display: 'flex'
 });"
 `;
 
 exports[`styled macro babel 6 object member 1`] = `
-"'use strict';
+"import _styled from './styled';
 
-var _styled2 = require('./styled');
-
-var _styled3 = _interopRequireDefault(_styled2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var SomeComponent = /*#__PURE__*/(0, _styled3.default)('div')({
+const SomeComponent = /*#__PURE__*/_styled('div')({
   display: 'flex'
 });"
 `;
 
 exports[`styled macro babel 6 some import that does not exist 1`] = `
-"'use strict';
+"import { thisDoesNotExist as _thisDoesNotExist } from './styled';
 
-var _styled = require('./styled');
-
-var someOtherVar = _styled.thisDoesNotExist;"
+const someOtherVar = _thisDoesNotExist;"
 `;
 
 exports[`styled macro babel 6 tagged template literal function 1`] = `
-"'use strict';
+"import _styled from './styled';
 
-var _styled2 = require('./styled');
-
-var _styled3 = _interopRequireDefault(_styled2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var SomeComponent = /*#__PURE__*/(0, _styled3.default)('div')('display:flex;');"
+const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;');"
 `;
 
 exports[`styled macro babel 6 tagged template literal member 1`] = `
-"'use strict';
+"import _styled from './styled';
 
-var _styled2 = require('./styled');
+const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;');"
+`;
 
-var _styled3 = _interopRequireDefault(_styled2);
+exports[`styled macro babel 7 css from react 1`] = `
+"import { css as _css } from \\"./styled\\";
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const someCls =
+/*#__PURE__*/
+_css(\\"display:flex;\\");"
+`;
 
-var SomeComponent = /*#__PURE__*/(0, _styled3.default)('div')('display:flex;');"
+exports[`styled macro babel 7 object function 1`] = `
+"import _styled from \\"./styled\\";
+
+const SomeComponent =
+/*#__PURE__*/
+_styled('div')({
+  display: 'flex'
+});"
+`;
+
+exports[`styled macro babel 7 object member 1`] = `
+"import _styled from \\"./styled\\";
+
+const SomeComponent =
+/*#__PURE__*/
+_styled(\\"div\\")({
+  display: 'flex'
+});"
+`;
+
+exports[`styled macro babel 7 some import that does not exist 1`] = `
+"import { thisDoesNotExist as _thisDoesNotExist } from \\"./styled\\";
+const someOtherVar = _thisDoesNotExist;"
+`;
+
+exports[`styled macro babel 7 tagged template literal function 1`] = `
+"import _styled from \\"./styled\\";
+
+const SomeComponent =
+/*#__PURE__*/
+_styled('div')(\\"display:flex;\\");"
+`;
+
+exports[`styled macro babel 7 tagged template literal member 1`] = `
+"import _styled from \\"./styled\\";
+
+const SomeComponent =
+/*#__PURE__*/
+_styled(\\"div\\")(\\"display:flex;\\");"
 `;

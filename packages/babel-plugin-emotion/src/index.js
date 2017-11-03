@@ -2,6 +2,7 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
+import { addSideEffect } from '@babel/helper-module-imports'
 import {
   getIdentifierName,
   getName,
@@ -273,12 +274,7 @@ export default function(babel) {
             filenameArr.push('emotion', 'css')
             const cssFilename = filenameArr.join('.')
             const exists = fs.existsSync(cssFilename)
-            path.node.body.unshift(
-              t.importDeclaration(
-                [],
-                t.stringLiteral('./' + basename(cssFilename))
-              )
-            )
+            addSideEffect(path, './' + basename(cssFilename))
             if (
               exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
             ) {

@@ -21,12 +21,12 @@ const createInlineTester = transform => opts => {
         [
           plugin,
           {
-            filename: opts.filename || __filename,
-            babelrc: false,
             ...opts.opts
           }
         ]
-      ]
+      ],
+      filename: opts.filename || 'emotion.js',
+      babelrc: false
     }).code
   ).toMatchSnapshot()
 }
@@ -49,13 +49,13 @@ const createExtractTester = transform => opts => {
       [
         plugin,
         {
-          filename: opts.filename || __filename,
-          babelrc: false,
           extractStatic: true,
           ...opts.opts
         }
       ]
-    ]
+    ],
+    filename: opts.filename || 'emotion.js',
+    babelrc: false
   })
   if (extract) {
     expect(
@@ -86,11 +86,11 @@ const createMacroTester = transform => opts => {
         [
           require('babel-macros'),
           {
-            babelrc: false,
             ...opts.opts
           }
         ]
       ],
+      babelrc: false,
       filename: opts.filename || __filename
     }).code
   ).toMatchSnapshot()

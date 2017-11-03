@@ -79,7 +79,7 @@ const rotate3601 = keyframes\`
 `;
 
 exports[`keyframes extract babel 6 dynamic change import 1`] = `
-"import './emotion.css';
+"import './emotion.emotion.css';
 
 import { keyframes as frames } from 'emotion';
 const rotate360 = 'css-rotate360-bhsghd';
@@ -93,17 +93,17 @@ const rotate3601 = keyframes\`
     \`;
 
 
-emotion.css
+emotion.emotion.css
 @-webkit-keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}"
 `;
 
 exports[`keyframes extract babel 6 keyframes basic 1`] = `
-"import \\"./emotion.css\\";
+"require(\\"./emotion.emotion.css\\");
 
 const rotate360 = \\"css-rotate360-bhsghd\\";
 
 
-emotion.css
+emotion.emotion.css
 @-webkit-keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}"
 `;
 
@@ -113,7 +113,7 @@ const rotate360 = /*#__PURE__*/keyframes(\\"from{transform:rotate(0deg);}to{tran
 `;
 
 exports[`keyframes extract babel 6 static change import 1`] = `
-"import \\"./emotion.css\\";
+"require(\\"./emotion.emotion.css\\");
 
 const rotate360 = \\"css-rotate360-bhsghd\\";
 const rotate3601 = keyframes\`
@@ -126,12 +126,12 @@ const rotate3601 = keyframes\`
     \`;
 
 
-emotion.css
+emotion.emotion.css
 @-webkit-keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}"
 `;
 
 exports[`keyframes extract babel 7 dynamic change import 1`] = `
-"import \\"./emotion.css\\";
+"import \\"./emotion.emotion.css\\";
 import { keyframes as frames } from 'emotion';
 const rotate360 = \\"css-rotate360-bhsghd\\";
 const rotate3601 = keyframes\`
@@ -144,16 +144,17 @@ const rotate3601 = keyframes\`
     \`;
 
 
-emotion.css
+emotion.emotion.css
 @-webkit-keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}"
 `;
 
 exports[`keyframes extract babel 7 keyframes basic 1`] = `
-"import \\"./emotion.css\\";
+"require(\\"./emotion.emotion.css\\");
+
 const rotate360 = \\"css-rotate360-bhsghd\\";
 
 
-emotion.css
+emotion.emotion.css
 @-webkit-keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}"
 `;
 
@@ -164,7 +165,8 @@ keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotatio
 `;
 
 exports[`keyframes extract babel 7 static change import 1`] = `
-"import \\"./emotion.css\\";
+"require(\\"./emotion.emotion.css\\");
+
 const rotate360 = \\"css-rotate360-bhsghd\\";
 const rotate3601 = keyframes\`
         from {
@@ -176,6 +178,6 @@ const rotate3601 = keyframes\`
     \`;
 
 
-emotion.css
+emotion.emotion.css
 @-webkit-keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes css-rotate360-bhsghd{from{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg);}}"
 `;
