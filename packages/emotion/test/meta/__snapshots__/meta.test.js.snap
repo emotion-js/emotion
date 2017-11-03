@@ -19,11 +19,11 @@ exports[`meta css generated class name should have the correct id 1`] = `
 `;
 
 exports[`meta css generated class name should have the correct id 2`] = `
-".css-14ksm7b-cls1 {
+".css-zws6ur-cls1 {
   color: blue;
 }
 
-.css-8oeh3r-cls2 .css-14ksm7b-cls1 {
+.css-vimg7i-cls2 .css-zws6ur-cls1 {
   color: red;
 }"
 `;
@@ -76,18 +76,43 @@ exports[`meta css prop correctly adds the id 3`] = `
 `;
 
 exports[`meta css prop correctly adds the id 4`] = `
-".css-k008qs-SFC {
+".css-n6m5d9-SFC {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.css-lgj0h8-ClsComp {
+.css-1vtlegb-ClsComp {
   display: grid;
 }
 
-.css-13o7eu2-hoc {
+.css-t4svsx-hoc {
   display: block;
 }"
+`;
+
+exports[`meta multiple classes with the same styles 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div>
+  <div
+    className="glamor-0"
+  />
+  <div
+    className="glamor-1"
+  />
+</div>
 `;

@@ -37,19 +37,6 @@ let currentSourceMap = ''
 
 stylis.use(insertionPlugin)
 
-const cssRegex = /css-[A-Za-z0-9]+-[A-Za-z0-9]+/
-
-function getRegisteredStylesFromInterpolation(interpolation: any) {
-  if (typeof interpolation === 'string') {
-    const matches = cssRegex.exec(interpolation)
-    if (matches != null && matches[0] !== undefined) {
-      return registered[matches[0]]
-    }
-  }
-
-  return registered[interpolation]
-}
-
 function handleInterpolation(
   interpolation: any,
   couldBeSelectorInterpolation: boolean
@@ -72,7 +59,7 @@ function handleInterpolation(
     case 'object':
       return createStringFromObject.call(this, interpolation)
     default:
-      const cached = getRegisteredStylesFromInterpolation(interpolation)
+      const cached = registered[interpolation]
       return couldBeSelectorInterpolation === false && cached !== undefined
         ? cached
         : interpolation
@@ -111,7 +98,7 @@ function createStringFromObject(obj) {
     Object.keys(obj).forEach(function(key) {
       if (typeof obj[key] !== 'object') {
         if (registered[obj[key]] !== undefined) {
-          string += `${key}{${getRegisteredStylesFromInterpolation(obj[key])}}`
+          string += `${key}{${registered[obj[key]]}}`
         } else {
           string += `${processStyleName(key)}:${processStyleValue(
             key,
@@ -176,13 +163,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function css() {
   const { styles, meta } = createStyles.apply(this, arguments)
-  const hash = hashString(styles)
+  const hash = hashString(styles + (meta.identifierName || ''))
   const selector =
     meta.identifierName !== undefined
       ? `css-${hash}-${meta.identifierName}`
       : `css-${hash}`
 
-  if (getRegisteredStylesFromInterpolation(selector) === undefined) {
+  if (registered[selector] === undefined) {
     registered[selector] = styles
   }
 
@@ -196,7 +183,7 @@ export function css() {
 
 export function keyframes() {
   const { styles, meta } = createStyles.apply(this, arguments)
-  const hash = hashString(styles)
+  const hash = hashString(styles + (meta.identifierName || ''))
   const name =
     meta.identifierName !== undefined
       ? `animation-${hash}-${meta.identifierName}`

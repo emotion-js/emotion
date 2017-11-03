@@ -59,4 +59,21 @@ describe('meta', () => {
 
     expect(sheet).toMatchSnapshot()
   })
+  test('multiple classes with the same styles', () => {
+    const cls1 = css`
+      display: flex;
+    `
+    const cls2 = css`
+      display: flex;
+    `
+    const tree = renderer
+      .create(
+        <div>
+          <div className={cls1} />
+          <div className={cls2} />
+        </div>
+      )
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })
