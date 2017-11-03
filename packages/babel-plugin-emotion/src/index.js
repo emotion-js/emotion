@@ -124,7 +124,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
     src += addSourceMaps(path.node.quasi.loc.start, state)
   }
-  console.log(state.opts.autoLabel, identifierName)
+
   return t.callExpression(
     t.callExpression(
       identifier,

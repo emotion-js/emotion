@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`styled with meta composition 1`] = `
+exports[`styled with autoLabel composition 1`] = `
 .glamor-0 {
   color: blue;
   color: red;
@@ -16,7 +16,7 @@ exports[`styled with meta composition 1`] = `
 </h1>
 `;
 
-exports[`styled with meta composition 2`] = `
+exports[`styled with autoLabel composition 2`] = `
 ".css-1nvqkkc-cssA {
   color: blue;
 }
@@ -35,7 +35,7 @@ exports[`styled with meta composition 2`] = `
 }"
 `;
 
-exports[`styled with meta composition with objects 1`] = `
+exports[`styled with autoLabel composition with objects 1`] = `
 .glamor-0 {
   color: #333;
   font-size: 1.333em;
@@ -57,7 +57,7 @@ exports[`styled with meta composition with objects 1`] = `
 </h1>
 `;
 
-exports[`styled with meta composition with objects 2`] = `
+exports[`styled with autoLabel composition with objects 2`] = `
 ".css-10adwdu-cssB {
   color: #333;
   font-size: 1.333em;
@@ -85,7 +85,7 @@ exports[`styled with meta composition with objects 2`] = `
 }"
 `;
 
-exports[`styled with meta higher order component 1`] = `
+exports[`styled with autoLabel higher order component 1`] = `
 .glamor-0 {
   font-size: 20px;
   background-color: #7fc8d6;
@@ -100,7 +100,7 @@ exports[`styled with meta higher order component 1`] = `
 />
 `;
 
-exports[`styled with meta higher order component 2`] = `
+exports[`styled with autoLabel higher order component 2`] = `
 ".css-l19ikj-squirtleBlueBackground {
   background-color: #7fc8d6;
 }
