@@ -12,7 +12,7 @@
     "react",
     "server.js",
     "babel.js",
-    "typings"
+    "types"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup rollup:umd",
