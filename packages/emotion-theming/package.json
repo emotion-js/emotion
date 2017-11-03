@@ -7,7 +7,8 @@
   "types": "types/index.d.ts",
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup rollup:umd",
