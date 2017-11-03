@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-implicit-dependencies
 import React from 'react';
 import styled, { flush, ThemedReactEmotionInterface } from '../';
 
@@ -28,7 +29,7 @@ mount = <Component href="#" />;
 /*
  * Passing custom props
  */
-type CustomProps = { lookColor: string };
+interface CustomProps { lookColor: string; }
 
 Component = styled.div<CustomProps>(
   { color: 'blue' },
@@ -53,20 +54,20 @@ const anotherColor = 'blue';
 Component = styled<CustomProps, 'div'>('div')`
   background: ${props => props.lookColor};
   color: ${anotherColor};
-`
+`;
 mount = <Component lookColor="red" />;
 
 /*
  * With other components
  */
-type CustomProps2 = { customProp: string };
-type SFCComponentProps = { className?: string, foo: string };
+interface CustomProps2 { customProp: string; }
+interface SFCComponentProps { className?: string; foo: string; }
 
 const SFCComponent: React.StatelessComponent<SFCComponentProps> = props => (
   <div className={props.className}>{props.children} {props.foo}</div>
 );
 
-declare class MyClassC extends React.Component<CustomProps2> { };
+declare class MyClassC extends React.Component<CustomProps2> { }
 
 // infer SFCComponentProps
 Component = styled(SFCComponent)({ color: 'red' });
@@ -80,7 +81,7 @@ Component = styled(MyClassC) ``;
 mount = <Component customProp="abc" />;
 
 // do not infer SFCComponentProps with pass CustomProps, need to pass both
-Component = styled<CustomProps2 & SFCComponentProps>(SFCComponent)({ 
+Component = styled<SFCComponentProps, CustomProps2>(SFCComponent)({
   color: 'red',
 }, props => ({
   background: props.customProp,
@@ -88,23 +89,22 @@ Component = styled<CustomProps2 & SFCComponentProps>(SFCComponent)({
 mount = <Component customProp="red" foo="bar" />;
 
 // do not infer SFCComponentProps with pass CustomProps, need to pass both
-Component = styled<CustomProps2 & SFCComponentProps>(SFCComponent)`
+Component = styled<SFCComponentProps, CustomProps2>(SFCComponent)`
   color: red;
   background: ${props => props.customProp};
 `;
 mount = <Component customProp="red" foo="bar" />;
 
-
 /*
  * With explicit theme
  */
 
-type Theme = {
+interface Theme {
   color: {
-    primary: string,
-    secondary: string,
-  }
-};
+    primary: string;
+    secondary: string;
+  };
+}
 
 const _styled = styled as ThemedReactEmotionInterface<Theme>;
 
@@ -117,18 +117,18 @@ mount = <Component onClick={event => event} />;
  * withComponent
  */
 
-type CustomProps3 = {
-  bgColor: string,
-};
+interface CustomProps3 {
+  bgColor: string;
+}
 
 Component = styled.div<CustomProps3>(props => ({
   bgColor: props.bgColor,
 }));
 
-let Link = Component.withComponent('a');
+const Link = Component.withComponent('a');
 mount = <Link href="#" bgColor="red" />;
 
-let Button = Component.withComponent('button');
+const Button = Component.withComponent('button');
 mount = <Button type="submit" bgColor="red" />;
 
 /*
