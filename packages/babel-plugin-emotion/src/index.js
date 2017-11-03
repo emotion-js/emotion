@@ -126,14 +126,21 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   }
 
   return t.callExpression(
-    t.callExpression(identifier, [tag]),
-    new ASTObject(minify(src), path.node.quasi.expressions, t)
-      .toExpressions()
-      .concat(
-        state.opts.meta && identifierName
-          ? [t.stringLiteral(`label:${identifierName.trim()};`)]
-          : []
-      )
+    t.callExpression(
+      identifier,
+      state.opts.meta && identifierName
+        ? [
+            tag,
+            t.objectExpression([
+              t.objectProperty(
+                t.identifier('label'),
+                t.stringLiteral(identifierName.trim())
+              )
+            ])
+          ]
+        : [tag]
+    ),
+    new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
 

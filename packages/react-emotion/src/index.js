@@ -41,7 +41,7 @@ const omitAssign = function(testFn, target) {
   return target
 }
 
-const createStyled = (tag, options: { e: string }) => {
+const createStyled = (tag, options: { e: string, label: string }) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
       throw new Error(
@@ -49,13 +49,15 @@ const createStyled = (tag, options: { e: string }) => {
       )
     }
   }
-  let staticClassName = false
-  if (options !== undefined && options.e !== undefined) {
+  let staticClassName
+  let identifierName
+  if (options !== undefined) {
     staticClassName = options.e
+    identifierName = options.label
   }
   const isReal = tag.__emotion_real === tag
   const baseTag =
-    staticClassName === false ? (isReal && tag.__emotion_base) || tag : tag
+    staticClassName === undefined ? (isReal && tag.__emotion_base) || tag : tag
 
   const omitFn =
     typeof baseTag === 'string'
@@ -64,7 +66,10 @@ const createStyled = (tag, options: { e: string }) => {
 
   return (strings, ...interpolations) => {
     let styles = (isReal && tag.__emotion_styles) || []
-    if (staticClassName === false) {
+    if (identifierName !== undefined) {
+      styles = styles.concat(`label:${identifierName};`)
+    }
+    if (staticClassName === undefined) {
       if (strings == null || strings.raw === undefined) {
         styles = styles.concat(strings, interpolations)
       } else {
@@ -74,19 +79,6 @@ const createStyled = (tag, options: { e: string }) => {
         )
       }
     }
-
-    const lastInterpolation = interpolations[interpolations.length - 1]
-    const identifierName =
-      typeof lastInterpolation === 'object' && 'meta' in lastInterpolation
-        ? lastInterpolation.meta.identifierName
-        : undefined
-
-    const innerName =
-      identifierName !== undefined
-        ? identifierName
-        : typeof baseTag === 'string'
-          ? baseTag
-          : baseTag.displayName || baseTag.name || 'Component'
 
     class Styled extends Component {
       render() {
@@ -99,7 +91,7 @@ const createStyled = (tag, options: { e: string }) => {
         let classInterpolations = []
 
         if (props.className) {
-          if (staticClassName === false) {
+          if (staticClassName === undefined) {
             className += getRegisteredStyles(
               classInterpolations,
               props.className
@@ -108,7 +100,7 @@ const createStyled = (tag, options: { e: string }) => {
             className += `${props.className} `
           }
         }
-        if (staticClassName === false) {
+        if (staticClassName === undefined) {
           className += css.apply(this, styles.concat(classInterpolations))
         } else {
           className += staticClassName
@@ -122,7 +114,13 @@ const createStyled = (tag, options: { e: string }) => {
     }
     Styled.prototype.componentWillMount = componentWillMount
     Styled.prototype.componentWillUnmount = componentWillUnmount
-    Styled.displayName = `Styled(${innerName})`
+    Styled.displayName =
+      identifierName !== undefined
+        ? identifierName
+        : `Styled(${typeof baseTag === 'string'
+            ? baseTag
+            : baseTag.displayName || baseTag.name || 'Component'})`
+
     Styled.contextTypes = contextTypes
     Styled.__emotion_styles = styles
     Styled.__emotion_base = baseTag
