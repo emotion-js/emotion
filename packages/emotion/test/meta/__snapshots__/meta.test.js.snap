@@ -92,6 +92,22 @@ exports[`meta css prop correctly adds the id 4`] = `
 }"
 `;
 
+exports[`meta manually use label property 1`] = `
+.glamor-0 {
+  color: blue;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`meta manually use label property 2`] = `
+".css-1sy7nqn-wow-cls1 {
+  color: blue;
+}"
+`;
+
 exports[`meta multiple classes with the same styles 1`] = `
 .glamor-0 {
   display: -webkit-box;

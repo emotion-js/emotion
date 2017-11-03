@@ -272,6 +272,22 @@ exports[`css handles objects 1`] = `
 />
 `;
 
+exports[`css manually use label property 1`] = `
+.glamor-0 {
+  color: hotpink;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css manually use label property 2`] = `
+".css-1qqiudg-wow {
+  color: hotpink;
+}"
+`;
+
 exports[`css media query specificity 1`] = `
 ".css-mfslnr {
   width: 32px;

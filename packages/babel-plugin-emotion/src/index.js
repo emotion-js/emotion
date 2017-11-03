@@ -73,19 +73,7 @@ export function replaceCssWithCallExpression(
           .toExpressions()
           .concat(
             state.opts.meta && identifierName
-              ? [
-                  t.objectExpression([
-                    t.objectProperty(
-                      t.identifier('meta'),
-                      t.objectExpression([
-                        t.objectProperty(
-                          t.identifier('identifierName'),
-                          t.stringLiteral(identifierName.trim())
-                        )
-                      ])
-                    )
-                  ])
-                ]
+              ? [t.stringLiteral(`label:${identifierName.trim()};`)]
               : []
           )
       )
@@ -138,26 +126,21 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   }
 
   return t.callExpression(
-    t.callExpression(identifier, [tag]),
-    new ASTObject(minify(src), path.node.quasi.expressions, t)
-      .toExpressions()
-      .concat(
-        t.objectExpression(
-          state.opts.meta
-            ? [
-                t.objectProperty(
-                  t.identifier('meta'),
-                  t.objectExpression([
-                    t.objectProperty(
-                      t.identifier('identifierName'),
-                      t.stringLiteral(identifierName.trim())
-                    )
-                  ])
-                )
-              ]
-            : []
-        )
-      )
+    t.callExpression(
+      identifier,
+      state.opts.meta && identifierName
+        ? [
+            tag,
+            t.objectExpression([
+              t.objectProperty(
+                t.identifier('label'),
+                t.stringLiteral(identifierName.trim())
+              )
+            ])
+          ]
+        : [tag]
+    ),
+    new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
 

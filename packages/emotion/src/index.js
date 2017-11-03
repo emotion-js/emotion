@@ -122,6 +122,8 @@ function isLastCharDot(string) {
 let hash
 let name
 
+const labelPattern = /label:\s*([^\s;\n]+)\s*[;\n]/g
+
 function createStyles(strings, ...interpolations) {
   let stringMode = true
   let styles = ''
@@ -135,11 +137,6 @@ function createStyles(strings, ...interpolations) {
   }
 
   interpolations.forEach(function(interpolation, i) {
-    if (typeof interpolation === 'object' && 'meta' in interpolation) {
-      identifierName = `-${interpolation.meta.identifierName}`
-      return
-    }
-
     styles += handleInterpolation.call(
       this,
       interpolation,
@@ -149,6 +146,10 @@ function createStyles(strings, ...interpolations) {
       styles += strings[i + 1]
     }
   }, this)
+  styles = styles.replace(labelPattern, (match, p1) => {
+    identifierName += `-${p1}`
+    return ''
+  })
   hash = hashString(styles + identifierName)
   name = hash + identifierName
   return styles

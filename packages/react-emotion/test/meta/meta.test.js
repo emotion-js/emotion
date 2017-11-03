@@ -102,4 +102,10 @@ describe('styled with meta', () => {
     expect(tree).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
   })
+  test('displayName', () => {
+    const SomeComponent = styled.div`
+      color: hotpink;
+    `
+    expect(SomeComponent.displayName).toBe('SomeComponent')
+  })
 })

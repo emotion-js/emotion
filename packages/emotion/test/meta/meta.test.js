@@ -76,4 +76,13 @@ describe('meta', () => {
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('manually use label property', () => {
+    const cls1 = css`
+      color: blue;
+      label: wow;
+    `
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+    expect(sheet).toMatchSnapshot()
+  })
 })
