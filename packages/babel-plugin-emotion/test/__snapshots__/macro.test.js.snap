@@ -98,11 +98,11 @@ const someOtherVar = _thisDoesNotExist;"
 exports[`babel macro styled tagged template literal function 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;', {});"
+const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;');"
 `;
 
 exports[`babel macro styled tagged template literal member 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;', {});"
+const SomeComponent = /*#__PURE__*/_styled('div')('display:flex;');"
 `;
