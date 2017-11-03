@@ -9,7 +9,7 @@
     "src",
     "dist",
     "macro.js",
-    "typings"
+    "types"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup rollup:umd",
