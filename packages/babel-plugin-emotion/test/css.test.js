@@ -240,7 +240,7 @@ describe('babel css', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('meta', () => {
+    test('autoLabel', () => {
       const basic = `
         function test () {
           const cls1 = css\`
@@ -277,7 +277,7 @@ describe('babel css', () => {
         }
       `
       const { code } = babel.transform(basic, {
-        plugins: [[plugin, { meta: true }]]
+        plugins: [[plugin, { autoLabel: true }]]
       })
       expect(code).toMatchSnapshot()
     })

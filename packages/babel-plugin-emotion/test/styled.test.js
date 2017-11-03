@@ -290,7 +290,7 @@ describe('babel styled component', () => {
       expect(code).toMatchSnapshot()
     })
 
-    test('meta', () => {
+    test('autoLabel object styles', () => {
       const basic = `
         const Profile = () => {
           const H1 = styled.h1({
@@ -301,18 +301,30 @@ describe('babel styled component', () => {
             ':hover': {
               transform: 'scale(1.2)'
             }
-          },props => ({
-            display: props.display
-          }),
-            css([{ color: 'blue' }])
-          )
+          })
         }
       `
       const { code } = babel.transform(basic, {
-        plugins: [[plugin, { meta: true }]]
+        plugins: [[plugin, { autoLabel: true }]]
       })
       expect(code).toMatchSnapshot()
     })
+  })
+
+  test('autoLabel string styles', () => {
+    const basic = `
+        const Profile = () => {
+          const ProfileH1 = styled('h1')\`
+            color: blue;
+          \`
+          
+          return <H1>Hello</H1>
+        }
+      `
+    const { code } = babel.transform(basic, {
+      plugins: [[plugin, { autoLabel: true }]]
+    })
+    expect(code).toMatchSnapshot()
   })
 
   describe('extract', () => {

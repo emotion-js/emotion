@@ -104,19 +104,19 @@ describe('babel css prop', () => {
     expect(code).toMatchSnapshot()
   })
 
-  test('id in stateless functional component', () => {
+  test('label in stateless functional component', () => {
     const basic = `
       const SFC = () => {
         return <div css={\`color: brown;\`}>Hello</div>
       }
     `
     const { code } = babel.transform(basic, {
-      plugins: [[plugin, { meta: true }]]
+      plugins: [[plugin, { autoLabel: true }]]
     })
     expect(code).toMatchSnapshot()
   })
 
-  test('id in class component', () => {
+  test('label in class component', () => {
     const basic = `
       class ClsComp extends React.Component {
         render() {
@@ -125,12 +125,12 @@ describe('babel css prop', () => {
       }
     `
     const { code } = babel.transform(basic, {
-      plugins: [[plugin, { meta: true }]]
+      plugins: [[plugin, { autoLabel: true }]]
     })
     expect(code).toMatchSnapshot()
   })
 
-  test('id in higher order component', () => {
+  test('label in higher order component', () => {
     const basic = `
       const foo = (W) => class extends Component {
         render() {
@@ -139,7 +139,7 @@ describe('babel css prop', () => {
       }
     `
     const { code } = babel.transform(basic, {
-      plugins: [[plugin, { meta: true }]]
+      plugins: [[plugin, { autoLabel: true }]]
     })
     expect(code).toMatchSnapshot()
   })

@@ -65,7 +65,7 @@ const Profile = () => {
 };"
 `;
 
-exports[`babel css prop id in class component 1`] = `
+exports[`babel css prop label in class component 1`] = `
 "import { css as _css } from \\"emotion\\";
 
 class ClsComp extends React.Component {
@@ -75,7 +75,7 @@ class ClsComp extends React.Component {
 }"
 `;
 
-exports[`babel css prop id in higher order component 1`] = `
+exports[`babel css prop label in higher order component 1`] = `
 "import { css as _css } from \\"emotion\\";
 
 const foo = W => class extends Component {
@@ -85,7 +85,7 @@ const foo = W => class extends Component {
 };"
 `;
 
-exports[`babel css prop id in stateless functional component 1`] = `
+exports[`babel css prop label in stateless functional component 1`] = `
 "import { css as _css } from \\"emotion\\";
 
 const SFC = () => {

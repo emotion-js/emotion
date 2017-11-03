@@ -4,7 +4,7 @@ import styled, { css, flush, sheet } from 'react-emotion'
 
 import { hiDPI, lighten, modularScale } from 'polished'
 
-describe('styled with meta', () => {
+describe('styled with autoLabel', () => {
   beforeEach(() => flush())
   test('composition', () => {
     const fontSize = '20px'
