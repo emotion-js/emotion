@@ -26,7 +26,7 @@ exports[`styled with meta composition 2`] = `
   color: red;
 }
 
-.css-1ncw0w-BlueH1-FinalH2 {
+.css-1256c8o-FinalH2 {
   color: blue;
   color: red;
   color: blue;
@@ -70,7 +70,7 @@ exports[`styled with meta composition with objects 2`] = `
   }
 }
 
-.css-13djram-H1-H2 {
+.css-xl6vy9-H2 {
   color: #333;
   font-size: 1.333em;
   height: 64px;
@@ -79,7 +79,7 @@ exports[`styled with meta composition with objects 2`] = `
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
-  .css-13djram-H1-H2 {
+  .css-xl6vy9-H2 {
     font-size: 1.4323121856191332em;
   }
 }"
@@ -105,7 +105,7 @@ exports[`styled with meta higher order component 2`] = `
   background-color: #7fc8d6;
 }
 
-.css-t14qr0-Content-NewComponent {
+.css-14bf0fx-NewComponent {
   font-size: 20px;
   background-color: #7fc8d6;
   background-color: '#343a40';
