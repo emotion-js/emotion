@@ -86,12 +86,12 @@ const createMacroTester = transform => opts => {
         [
           require('babel-macros'),
           {
-            filename: opts.filename || __filename,
             babelrc: false,
             ...opts.opts
           }
         ]
-      ]
+      ],
+      filename: opts.filename || __filename
     }).code
   ).toMatchSnapshot()
 }

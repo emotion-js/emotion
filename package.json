@@ -27,7 +27,7 @@
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
-    "babel-macros": "^1.0.2",
+    "babel-macros": "^1.2.0",
     "babel-plugin-codegen": "^1.2.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-polyfill": "^6.26.0",
