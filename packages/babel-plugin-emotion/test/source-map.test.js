@@ -117,6 +117,9 @@ const cases = {
     `,
 
     filename: 'site.source-map.test.js'
+  },
+  'css object': {
+    code: `css({color: 'hotpink'})`
   }
 }
 

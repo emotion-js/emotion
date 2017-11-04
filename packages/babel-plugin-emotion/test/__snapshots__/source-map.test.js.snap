@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`source map babel 6 css object 1`] = `"/*#__PURE__*/css({ color: 'hotpink' }, '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVtb3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiZW1vdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImNzcyh7Y29sb3I6ICdob3RwaW5rJ30pIl19 */');"`;
+
 exports[`source map babel 6 css prop 1`] = `
 "var _css = require(\\"emotion\\").css;
 
@@ -54,6 +56,13 @@ exports[`source map babel 6 styled object styles source map 1`] = `
 `;
 
 exports[`source map babel 6 styled source map 1`] = `"const Avatar = /*#__PURE__*/styled('img')('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQTRCIiwiZmlsZSI6InN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBBdmF0YXIgPSBzdHlsZWQoJ2ltZycpYFxuICAgICAgICB3aWR0aDogOTZweDtcbiAgICAgICAgaGVpZ2h0OiA5NnB4O1xuXG4gICAgICAgIGJvcmRlci1yYWRpdXM6ICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJSYWRpdXN9O1xuXG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJDb2xvcn07XG4gICAgICBgIl19 */');"`;
+
+exports[`source map babel 7 css object 1`] = `
+"/*#__PURE__*/
+css({
+  color: 'hotpink'
+}, \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVtb3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiZW1vdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImNzcyh7Y29sb3I6ICdob3RwaW5rJ30pIl19 */\\");"
+`;
 
 exports[`source map babel 7 css prop 1`] = `
 "var _css = require(\\"emotion\\").css;

@@ -214,14 +214,6 @@ export default function(babel) {
                         local
                       })
                     }
-
-                    if (specifier.isImportNamespaceSpecifier()) {
-                      imported.push('*')
-                      specifiers.push({
-                        kind: 'namespace',
-                        local
-                      })
-                    }
                   }
                 }
               }
@@ -293,7 +285,7 @@ export default function(babel) {
             CallExpression(callExprPath) {
               if (
                 callExprPath.node.callee.name === state.importedNames.css ||
-                callExprPath.node.callee.name === `_${state.importedNames.css}`
+                callExprPath.node.callee === state.cssPropIdentifier
               ) {
                 hoistPureArgs(callExprPath)
               }
