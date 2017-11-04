@@ -68,27 +68,6 @@ exports[`css boolean as value 1`] = `
 />
 `;
 
-exports[`css composition 1`] = `
-.glamor-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.glamor-0:hover {
-  color: hotpink;
-}
-
-<div
-  className="glamor-0"
-/>
-`;
-
 exports[`css composition stuff 1`] = `
 .glamor-0 {
   -webkit-box-pack: center;
@@ -291,6 +270,22 @@ exports[`css handles objects 1`] = `
 <div
   className="glamor-0"
 />
+`;
+
+exports[`css manually use label property 1`] = `
+.glamor-0 {
+  color: hotpink;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css manually use label property 2`] = `
+".css-1qqiudg-wow {
+  color: hotpink;
+}"
 `;
 
 exports[`css media query specificity 1`] = `
@@ -503,6 +498,27 @@ exports[`css registered styles as nested selector value in object 1`] = `
 exports[`css return function in interpolation 1`] = `
 .glamor-0 {
   color: blue;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css simple composition 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.glamor-0:hover {
+  color: hotpink;
 }
 
 <div

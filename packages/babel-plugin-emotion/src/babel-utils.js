@@ -1,8 +1,23 @@
 import { hashArray } from './index'
 
-export function getIdentifierName(path, t) {
+function getDeclaratorName(path, t) {
   const parent = path.findParent(p => p.isVariableDeclarator())
   return parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
+}
+
+export function getIdentifierName(path, t) {
+  const classParent = path.findParent(p => t.isClass(p))
+  if (classParent && classParent.node.id) {
+    return t.isIdentifier(classParent.node.id) ? classParent.node.id.name : ''
+  } else if (
+    classParent &&
+    classParent.node.superClass &&
+    classParent.node.superClass.name
+  ) {
+    return `${getDeclaratorName(path, t)}(${classParent.node.superClass.name})`
+  }
+
+  return getDeclaratorName(path, t)
 }
 
 export function getRuntimeImportPath(path, t) {

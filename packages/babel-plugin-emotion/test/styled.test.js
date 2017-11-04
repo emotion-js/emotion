@@ -244,6 +244,36 @@ const cases = {
   'config rename': {
     code: 'what.h1`color:blue;`',
     opts: { importedNames: { styled: 'what' } }
+  },
+  'autoLabel object styles': {
+    code: `
+      const Profile = () => {
+        const H1 = styled.h1({
+          borderRadius: '50%',
+          transition: 'transform 400ms ease-in-out',
+          boxSizing: 'border-box',
+          display: 'flex',
+          ':hover': {
+            transform: 'scale(1.2)'
+          }
+        })
+      }
+    `,
+    opts: { autoLabel: true },
+    extract: false
+  },
+
+  'autoLabel string styles': {
+    code: `
+        const Profile = () => {
+          const ProfileH1 = styled('h1')\`
+            color: blue;
+          \`
+          
+          return <H1>Hello</H1>
+        }
+      `,
+    opts: { autoLabel: true }
   }
 }
 

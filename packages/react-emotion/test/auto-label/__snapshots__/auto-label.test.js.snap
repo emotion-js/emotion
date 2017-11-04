@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled with autoLabel composition 1`] = `
+.glamor-0 {
+  color: blue;
+  color: red;
+  color: blue;
+  font-size: 20px;
+  font-size: 32px;
+}
+
+<h1
+  className="legacy__class glamor-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled with autoLabel composition 2`] = `
+".css-1nvqkkc-cssA {
+  color: blue;
+}
+
+.css-1xoijq0-cssB {
+  color: blue;
+  color: red;
+}
+
+.css-1ncw0w-BlueH1-FinalH2 {
+  color: blue;
+  color: red;
+  color: blue;
+  font-size: 20px;
+  font-size: 32px;
+}"
+`;
+
+exports[`styled with autoLabel composition with objects 1`] = `
+.glamor-0 {
+  color: #333;
+  font-size: 1.333em;
+  height: 64px;
+  font-size: 3.157334518321em;
+  font-size: 32px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
+  .glamor-0 {
+    font-size: 1.4323121856191332em;
+  }
+}
+
+<h1
+  className="legacy__class glamor-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled with autoLabel composition with objects 2`] = `
+".css-10adwdu-cssB {
+  color: #333;
+  font-size: 1.333em;
+  height: 64px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
+  .css-10adwdu-cssB {
+    font-size: 1.4323121856191332em;
+  }
+}
+
+.css-13djram-H1-H2 {
+  color: #333;
+  font-size: 1.333em;
+  height: 64px;
+  font-size: 3.157334518321em;
+  font-size: 32px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
+  .css-13djram-H1-H2 {
+    font-size: 1.4323121856191332em;
+  }
+}"
+`;
+
+exports[`styled with autoLabel higher order component 1`] = `
+.glamor-0 {
+  font-size: 20px;
+  background-color: #7fc8d6;
+  background-color: '#343a40';
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`styled with autoLabel higher order component 2`] = `
+".css-l19ikj-squirtleBlueBackground {
+  background-color: #7fc8d6;
+}
+
+.css-t14qr0-Content-NewComponent {
+  font-size: 20px;
+  background-color: #7fc8d6;
+  background-color: '#343a40';
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}"
+`;

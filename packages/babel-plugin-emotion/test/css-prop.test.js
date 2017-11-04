@@ -72,6 +72,36 @@ const inline = {
       '\n}',
 
     opts: { hoist: true }
+  },
+  'label in stateless functional component': {
+    code: `
+      const SFC = () => {
+        return <div css={\`color: brown;\`}>Hello</div>
+      }
+    `,
+    opts: { autoLabel: true }
+  },
+
+  'label in class component': {
+    code: `
+      class ClsComp extends React.Component {
+        render() {
+          return <div css="foo">Hello</div>
+        }
+      }
+    `,
+    opts: { autoLabel: true }
+  },
+
+  'label in higher order component': {
+    code: `
+      const foo = (W) => class extends Component {
+        render() {
+          return <div css={\`color: brown;\`}>Hello</div>
+        }
+      }
+    `,
+    opts: { autoLabel: true }
   }
 }
 

@@ -119,9 +119,16 @@ function isLastCharDot(string) {
   return string.charCodeAt(string.length - 1) === 46 // .
 }
 
+let hash
+let name
+
+const labelPattern = /label:\s*([^\s;\n]+)\s*[;\n]/g
+
 function createStyles(strings, ...interpolations) {
   let stringMode = true
   let styles = ''
+  let identifierName = ''
+
   if (strings == null || strings.raw === undefined) {
     stringMode = false
     styles = handleInterpolation.call(this, strings, false)
@@ -139,7 +146,12 @@ function createStyles(strings, ...interpolations) {
       styles += strings[i + 1]
     }
   }, this)
-
+  styles = styles.replace(labelPattern, (match, p1) => {
+    identifierName += `-${p1}`
+    return ''
+  })
+  hash = hashString(styles + identifierName)
+  name = hash + identifierName
   return styles
 }
 
@@ -156,43 +168,41 @@ if (process.env.NODE_ENV !== 'production') {
 
 export function css() {
   const styles = createStyles.apply(this, arguments)
+  const selector = `css-${name}`
 
-  const hash = hashString(styles)
-  const cls = `css-${hash}`
-
-  if (registered[cls] === undefined) {
-    registered[cls] = styles
+  if (registered[selector] === undefined) {
+    registered[selector] = styles
   }
+
   if (inserted[hash] === undefined) {
-    stylis(`.${cls}`, styles)
+    stylis(`.${selector}`, styles)
     inserted[hash] = true
   }
-  return cls
+
+  return selector
 }
 
-export function injectGlobal(...args) {
-  const styles = createStyles(...args)
-  const hash = hashString(styles)
+export function keyframes() {
+  const styles = createStyles.apply(this, arguments)
+  const animation = `animation-${name}`
+
+  if (inserted[hash] === undefined) {
+    stylis('', `@keyframes ${animation}{${styles}}`)
+    inserted[hash] = true
+  }
+  return animation
+}
+
+export function injectGlobal() {
+  const styles = createStyles.apply(this, arguments)
   if (inserted[hash] === undefined) {
     stylis('', styles)
     inserted[hash] = true
   }
 }
 
-export function keyframes(...args) {
-  const styles = createStyles(...args)
-  const hash = hashString(styles)
-  const name = `animation-${hash}`
-  if (inserted[hash] === undefined) {
-    stylis('', `@keyframes ${name}{${styles}}`)
-    inserted[hash] = true
-  }
-  return name
-}
-
 export function fontFace(...args) {
   const styles = createStyles(...args)
-  const hash = hashString(styles)
   if (inserted[hash] === undefined) {
     stylis('', `@font-face{${styles}}`)
     inserted[hash] = true

@@ -53,6 +53,24 @@ const cls2 = /*#__PURE__*/css([{
 }]);"
 `;
 
+exports[`babel css inline babel 6 autoLabel 1`] = `
+"
+function test() {
+  const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\", \\"label:cls1;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\", \\"label:cls1;\\");
+
+  const cls2 = /*#__PURE__*/css({ color: 'blue' }, \\"label:cls2;\\");
+  const cls4 = /*#__PURE__*/css({ color: \\"hotpink\\" }, \\"label:cls4;\\");
+
+  const cls3 = /*#__PURE__*/css(\\"display:flex;&:hover{color:hotpink;}\\", \\"label:cls3;\\");
+  function inner() {
+    const styles = { color: \\"darkorchid\\" };
+    const color = 'aquamarine';
+
+    const cls4 = /*#__PURE__*/css(cls3, \\";\\", cls1, \\";\\", () => ({ color: \\"darkorchid\\" }), \\";\\", () => ({ color }), \\";\\", /*#__PURE__*/css(\\"height:420px;width:\\", styles, \\"label:cls4;\\"), \\";\\", \\"label:cls4;\\");
+  }
+}"
+`;
+
 exports[`babel css inline babel 6 basic object support 1`] = `"/*#__PURE__*/css({ display: 'flex' });"`;
 
 exports[`babel css inline babel 6 css basic 1`] = `
@@ -205,6 +223,47 @@ css([{
 }, {
   justifyContent: 'flex-start'
 }]);"
+`;
+
+exports[`babel css inline babel 7 autoLabel 1`] = `
+"function test() {
+  const cls1 =
+  /*#__PURE__*/
+  css(\\"font-size:20px;@media(min-width:420px){color:blue;\\",
+  /*#__PURE__*/
+  css(\\"width:96px;height:96px;\\", \\"label:cls1;\\"), \\";line-height:26px;}background:green;\\", {
+    backgroundColor: \\"hotpink\\"
+  }, \\";\\", \\"label:cls1;\\");
+  const cls2 =
+  /*#__PURE__*/
+  css({
+    color: 'blue'
+  }, \\"label:cls2;\\");
+  const cls4 =
+  /*#__PURE__*/
+  css({
+    color: \\"hotpink\\"
+  }, \\"label:cls4;\\");
+  const cls3 =
+  /*#__PURE__*/
+  css(\\"display:flex;&:hover{color:hotpink;}\\", \\"label:cls3;\\");
+
+  function inner() {
+    const styles = {
+      color: \\"darkorchid\\"
+    };
+    const color = 'aquamarine';
+    const cls4 =
+    /*#__PURE__*/
+    css(cls3, \\";\\", cls1, \\";\\", () => ({
+      color: \\"darkorchid\\"
+    }), \\";\\", () => ({
+      color
+    }), \\";\\",
+    /*#__PURE__*/
+    css(\\"height:420px;width:\\", styles, \\"label:cls4;\\"), \\";\\", \\"label:cls4;\\");
+  }
+}"
 `;
 
 exports[`babel css inline babel 7 basic object support 1`] = `
