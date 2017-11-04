@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`meta css generated class name should have the correct id 1`] = `
+.glamor-0 {
+  color: blue;
+}
+
+.glamor-1 .glamor-0 {
+  color: red;
+}
+
+<div
+  className="glamor-1"
+>
+  <div
+    className="glamor-0"
+  />
+</div>
+`;
+
+exports[`meta css generated class name should have the correct id 2`] = `
+".css-1staf2a-cls1 {
+  color: blue;
+}
+
+.css-14o1mnu-cls2 .css-1staf2a-cls1 {
+  color: red;
+}"
+`;
+
+exports[`meta css prop correctly adds the id 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="glamor-0"
+>
+  Hello
+</div>
+`;
+
+exports[`meta css prop correctly adds the id 2`] = `
+.glamor-0 {
+  display: grid;
+}
+
+<div
+  className="glamor-0"
+>
+  Hello
+</div>
+`;
+
+exports[`meta css prop correctly adds the id 3`] = `
+.glamor-0 {
+  display: grid;
+}
+
+.glamor-1 {
+  display: block;
+}
+
+<div
+  className="glamor-1"
+>
+  <div
+    className="glamor-0"
+  >
+    Hello
+  </div>
+</div>
+`;
+
+exports[`meta css prop correctly adds the id 4`] = `
+".css-1bl9k6-SFC {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.css-ptjj1k-ClsComp {
+  display: grid;
+}
+
+.css-c6rdfv-hoc {
+  display: block;
+}"
+`;
+
+exports[`meta manually use label property 1`] = `
+.glamor-0 {
+  color: blue;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`meta manually use label property 2`] = `
+".css-1sy7nqn-wow-cls1 {
+  color: blue;
+}"
+`;
+
+exports[`meta multiple classes with the same styles 1`] = `
+.glamor-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div>
+  <div
+    className="glamor-0"
+  />
+  <div
+    className="glamor-1"
+  />
+</div>
+`;

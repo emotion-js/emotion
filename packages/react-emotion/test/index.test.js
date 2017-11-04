@@ -1,7 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { css } from 'emotion'
-import styled from 'react-emotion'
+import styled, { css, flush } from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { mount } from 'enzyme'
@@ -10,6 +9,7 @@ import enzymeToJson from 'enzyme-to-json'
 import { lighten, hiDPI, modularScale } from 'polished'
 
 describe('styled', () => {
+  beforeEach(() => flush())
   test('no dynamic', () => {
     const H1 = styled.h1`
       float: left;
@@ -81,24 +81,22 @@ describe('styled', () => {
 
   test('inline function return value is a function', () => {
     const fontSize = () => 20
-    const H1 = styled('h1')`
+    const Blue = styled('h1')`
       font-size: ${() => fontSize}px;
     `
 
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    const tree = renderer.create(<Blue>hello world</Blue>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
   test('call expression', () => {
     const fontSize = 20
-    const H1 = styled('h1')`
+    const Div = styled('div')`
       font-size: ${fontSize}px;
     `
 
-    const tree = renderer
-      .create(<H1 className={'legacy__class'}>hello world</H1>)
-      .toJSON()
+    const tree = renderer.create(<Div>hello world</Div>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })

@@ -1,128 +1,116 @@
-import * as babel from 'babel-core'
-import plugin from 'babel-plugin-emotion'
-import * as fs from 'fs'
+import { createInlineTests, createExtractTests } from './util'
 
-jest.mock('fs')
+const inline = {
+  'basic inline': {
+    code: '(<div className="a" css={`color: brown;`}></div>)'
+  },
 
-fs.existsSync.mockReturnValue(true)
-fs.statSync.mockReturnValue({ isFile: () => false })
+  'basic object': {
+    code: '(<div className="a" css={{ color: \'brown\' }}></div>)'
+  },
 
-describe('babel css prop', () => {
-  test('basic with extractStatic', () => {
-    const basic = '(<div className="a" css={`color: brown;`}></div>)'
-    const { code } = babel.transform(basic, {
-      plugins: [[plugin, { extractStatic: true }]],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-    expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
-    expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
-  })
+  'dynamic inline': {
+    code: `(<div className="a" css={\`color: $\{color};\`}></div>)`
+  },
 
-  test('basic inline', () => {
-    const basic = '(<div className="a" css={`color: brown;`}></div>)'
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
+  'no css attr': {
+    code: '(<div></div>)'
+  },
 
-  test('basic object', () => {
-    const basic = '(<div className="a" css={{ color: \'brown\' }}></div>)'
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
+  'with spread arg in jsx opening tag': {
+    code: '(<div className="a" css={`color: brown;`} {...rest}></div>)'
+  },
 
-  test('dynamic inline', () => {
-    const basic = `(<div className="a" css={\`color: $\{color};\`}></div>)`
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
+  'css empty': {
+    code: '(<div css=""></div>)'
+  },
 
-  test('no css attr', () => {
-    const basic = '(<div></div>)'
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
+  'StringLiteral css prop value': {
+    code: `<div css="color: brown;"></div>`
+  },
 
-  test('with spread arg in jsx opening tag', () => {
-    const basic = '(<div className="a" css={`color: brown;`} {...rest}></div>)'
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
+  noClassName: {
+    code: '(<div css={`color: brown;`}></div>)'
+  },
 
-  test('css empty', () => {
-    const basic = '(<div css=""></div>)'
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
+  emptyClassName: {
+    code: '(<div className="" css={`color: brown;`}></div>)'
+  },
 
-  test('StringLiteral css prop value', () => {
-    const basic = `<div css="color: brown;"></div>`
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
+  'className as expression': {
+    code: '(<div className={variable} css={`color: brown;`}></div>)'
+  },
 
-  test('noClassName', () => {
-    const basic = '(<div css={`color: brown;`}></div>)'
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
-
-  test('emptyClassName', () => {
-    const basic = '(<div className="" css={`color: brown;`}></div>)'
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
-
-  test('className as expression', () => {
-    const basic = '(<div className={variable} css={`color: brown;`}></div>)'
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
-
-  test('className as expression string', () => {
-    const basic =
+  'className as expression string': {
+    code:
       '(<div className={`test__class`} css={`color: brown;`} this={`hello`}></div>)'
-    const { code } = babel.transform(basic, { plugins: [plugin] })
-    expect(code).toMatchSnapshot()
-  })
+  },
 
-  test('no import css prop', () => {
-    const basic =
-      '(<div className={`test__class`} css={`color: brown;`}></div>)'
-    const { code } = babel.transform(basic, {
-      plugins: [[plugin, { autoImportCssProp: false }]]
-    })
-    expect(code).toMatchSnapshot()
-  })
+  'no import css prop': {
+    code: '(<div className={`test__class`} css={`color: brown;`}></div>)',
+    opts: { autoImportCssProp: false }
+  },
 
-  test('redefined-import: basic inline', () => {
-    const basic = '(<div className="a" cows={`color: brown;`}></div>)'
-    const { code } = babel.transform(basic, {
-      plugins: [[plugin, { importedNames: { css: 'cows' } }]]
-    })
-    expect(code).toMatchSnapshot()
-  })
+  'redefined-import: basic inline': {
+    code: '(<div className="a" cows={`color: brown;`}></div>)',
+    opts: { importedNames: { css: 'cows' } }
+  },
 
-  test('hoisting object styles', () => {
-    const basic =
+  'hoisting object styles': {
+    code:
       'const Profile = () => ' +
-      '(<div className="a" css={{ color: \'brown\' }}></div>)'
-    const { code } = babel.transform(basic, {
-      plugins: [[plugin, { hoist: true }]]
-    })
-    expect(code).toMatchSnapshot()
-  })
+      '(<div className="a" css={{ color: \'brown\' }}></div>)',
 
-  test('hoisting string styles', () => {
-    const basic =
+    opts: { hoist: true }
+  },
+
+  'hoisting string styles': {
+    code:
       'const Profile = () => {' +
       'const color = "blue";\n' +
       '(<div css={`color: ${color}`}></div>)' +
-      '\n}'
-    const { code } = babel.transform(basic, {
-      plugins: [[plugin, { hoist: true }]]
-    })
-    expect(code).toMatchSnapshot()
-  })
-})
+      '\n}',
+
+    opts: { hoist: true }
+  },
+  'label in stateless functional component': {
+    code: `
+      const SFC = () => {
+        return <div css={\`color: brown;\`}>Hello</div>
+      }
+    `,
+    opts: { autoLabel: true }
+  },
+
+  'label in class component': {
+    code: `
+      class ClsComp extends React.Component {
+        render() {
+          return <div css="foo">Hello</div>
+        }
+      }
+    `,
+    opts: { autoLabel: true }
+  },
+
+  'label in higher order component': {
+    code: `
+      const foo = (W) => class extends Component {
+        render() {
+          return <div css={\`color: brown;\`}>Hello</div>
+        }
+      }
+    `,
+    opts: { autoLabel: true }
+  }
+}
+
+createInlineTests('babel css prop inline', inline)
+
+const extract = {
+  'basic with extractStatic': {
+    code: '(<div className="a" css={`color: brown;`}></div>)'
+  }
+}
+
+createExtractTests('babel css prop extract', extract)

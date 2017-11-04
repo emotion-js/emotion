@@ -36,11 +36,11 @@ exports[`styled call expression 1`] = `
   font-size: 20px;
 }
 
-<h1
-  className="legacy__class glamor-0"
+<div
+  className="glamor-0"
 >
   hello world
-</h1>
+</div>
 `;
 
 exports[`styled change theme 1`] = `
@@ -424,10 +424,6 @@ exports[`styled name with class component 1`] = `
 `;
 
 exports[`styled nested 1`] = `
-.glamor-0 {
-  font-size: 20px;
-}
-
 .glamor-1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -441,6 +437,10 @@ exports[`styled nested 1`] = `
 
 .glamor-1 div span {
   color: red;
+}
+
+.glamor-0 {
+  font-size: 20px;
 }
 
 <div
@@ -614,35 +614,6 @@ exports[`styled prop filtering on composed styled components that are string tag
 >
   hello world
 </a>
-`;
-
-exports[`styled random expressions 1`] = `
-.glamor-1 {
-  font-size: 1rem;
-  margin-top: 0;
-  margin-right: auto;
-  margin-bottom: 0;
-  margin-left: auto;
-  color: green;
-}
-
-@media (min-width: 420px) {
-  .glamor-1 {
-    color: blue;
-  }
-}
-
-@media (min-width: 420px) and  (min-width: 520px) {
-  .glamor-1 {
-    color: green;
-  }
-}
-
-<h1
-  className="glamor-0 legacy__class glamor-1"
->
-  hello world
-</h1>
 `;
 
 exports[`styled random expressions undefined return 1`] = `
