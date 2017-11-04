@@ -44,7 +44,8 @@ export function replaceCssWithCallExpression(
 ) {
   try {
     let { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
-    const name = getName(getIdentifierName(path, t), 'css')
+    const identifierName = getIdentifierName(path, t)
+    const name = getName(identifierName, 'css')
 
     if (state.extractStatic && !path.node.quasi.expressions.length) {
       const staticCSSRules = staticStylis(
@@ -68,11 +69,13 @@ export function replaceCssWithCallExpression(
     path.replaceWith(
       t.callExpression(
         identifier,
-        new ASTObject(
-          minify(src),
-          path.node.quasi.expressions,
-          t
-        ).toExpressions()
+        new ASTObject(minify(src), path.node.quasi.expressions, t)
+          .toExpressions()
+          .concat(
+            state.opts.autoLabel && identifierName
+              ? [t.stringLiteral(`label:${identifierName.trim()};`)]
+              : []
+          )
       )
     )
 
@@ -121,13 +124,28 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
     src += addSourceMaps(path.node.quasi.loc.start, state)
   }
+
   return t.callExpression(
-    t.callExpression(identifier, [tag]),
+    t.callExpression(
+      identifier,
+      state.opts.autoLabel && identifierName
+        ? [
+            tag,
+            t.objectExpression([
+              t.objectProperty(
+                t.identifier('label'),
+                t.stringLiteral(identifierName.trim())
+              )
+            ])
+          ]
+        : [tag]
+    ),
     new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
 
 export function buildStyledObjectCallExpression(path, state, identifier, t) {
+  const identifierName = getIdentifierName(path, t)
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
@@ -136,9 +154,26 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
   if (state.opts.sourceMap === true && path.node.loc !== undefined) {
     args.push(t.stringLiteral(addSourceMaps(path.node.loc.start, state)))
   }
+
   path.addComment('leading', '#__PURE__')
 
-  return t.callExpression(t.callExpression(identifier, [tag]), args)
+  return t.callExpression(
+    t.callExpression(
+      identifier,
+      state.opts.autoLabel && identifierName
+        ? [
+            tag,
+            t.objectExpression([
+              t.objectProperty(
+                t.identifier('label'),
+                t.stringLiteral(identifierName.trim())
+              )
+            ])
+          ]
+        : [tag]
+    ),
+    args
+  )
 }
 
 const visited = Symbol('visited')
@@ -255,6 +290,14 @@ export default function(babel) {
               case state.importedNames.css:
               case state.importedNames.keyframes: {
                 path.addComment('leading', '#__PURE__')
+                if (state.opts.autoLabel) {
+                  const identifierName = getIdentifierName(path, t)
+                  if (identifierName) {
+                    path.node.arguments.push(
+                      t.stringLiteral(`label:${identifierName.trim()};`)
+                    )
+                  }
+                }
               }
               // eslint-disable-next-line no-fallthrough
               case state.importedNames.injectGlobal:

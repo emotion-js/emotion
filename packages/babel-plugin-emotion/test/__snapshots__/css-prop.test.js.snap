@@ -65,6 +65,34 @@ const Profile = () => {
 };"
 `;
 
+exports[`babel css prop label in class component 1`] = `
+"import { css as _css } from \\"emotion\\";
+
+class ClsComp extends React.Component {
+  render() {
+    return <div className={/*#__PURE__*/_css(\\"foo\\", \\"label:ClsComp;\\")}>Hello</div>;
+  }
+}"
+`;
+
+exports[`babel css prop label in higher order component 1`] = `
+"import { css as _css } from \\"emotion\\";
+
+const foo = W => class extends Component {
+  render() {
+    return <div className={/*#__PURE__*/_css(\\"color:brown;\\", \\"label:foo(Component);\\")}>Hello</div>;
+  }
+};"
+`;
+
+exports[`babel css prop label in stateless functional component 1`] = `
+"import { css as _css } from \\"emotion\\";
+
+const SFC = () => {
+  return <div className={/*#__PURE__*/_css(\\"color:brown;\\", \\"label:SFC;\\")}>Hello</div>;
+};"
+`;
+
 exports[`babel css prop no css attr 1`] = `"<div></div>;"`;
 
 exports[`babel css prop no import css prop 1`] = `"<div className={merge( /*#__PURE__*/css(\\"color:brown;\\") + (\\" \\" + \`test__class\`))}></div>;"`;

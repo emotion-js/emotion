@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`babel styled component autoLabel string styles 1`] = `
+"
+const Profile = () => {
+  const ProfileH1 = /*#__PURE__*/styled('h1', {
+    label: 'ProfileH1'
+  })('color:blue;');
+
+  return <H1>Hello</H1>;
+};"
+`;
+
 exports[`babel styled component extract basic 1`] = `
 "import \\"./styled.test.emotion.css\\";
 const H1 = styled(\\"h1\\", {
@@ -17,6 +28,23 @@ styled(\\"h1\\", {
 `;
 
 exports[`babel styled component extract no use 2`] = `""`;
+
+exports[`babel styled component inline autoLabel object styles 1`] = `
+"
+const Profile = () => {
+  const H1 = /*#__PURE__*/styled('h1', {
+    label: 'H1'
+  })({
+    borderRadius: '50%',
+    transition: 'transform 400ms ease-in-out',
+    boxSizing: 'border-box',
+    display: 'flex',
+    ':hover': {
+      transform: 'scale(1.2)'
+    }
+  });
+};"
+`;
 
 exports[`babel styled component inline basic 1`] = `"const H1 = /*#__PURE__*/styled('h1')('font-size:', fontSize + 'px', ';');"`;
 
