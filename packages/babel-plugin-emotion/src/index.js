@@ -290,6 +290,14 @@ export default function(babel) {
               case state.importedNames.css:
               case state.importedNames.keyframes: {
                 path.addComment('leading', '#__PURE__')
+                if (state.opts.autoLabel) {
+                  const identifierName = getIdentifierName(path, t)
+                  if (identifierName) {
+                    path.node.arguments.push(
+                      t.stringLiteral(`label:${identifierName.trim()};`)
+                    )
+                  }
+                }
               }
               // eslint-disable-next-line no-fallthrough
               case state.importedNames.injectGlobal:

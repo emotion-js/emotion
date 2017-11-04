@@ -255,6 +255,7 @@ describe('babel css', () => {
           \`
         
           const cls2 = css\`\${{color: 'blue'}}\` 
+          const cls4 = css({color: "hotpink"})
         
           const cls3 = css\`
             display: flex;
