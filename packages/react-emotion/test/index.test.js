@@ -691,7 +691,7 @@ describe('styled', () => {
   })
 
   test('no prop filtering on string tags started with upper case', () => {
-    const Link = styled("SomeCustomLink")`
+    const Link = styled('SomeCustomLink')`
       color: green;
     `
 
@@ -715,7 +715,7 @@ describe('styled', () => {
       .toJSON()
 
     expect(tree).toMatchSnapshot()
-  });
+  })
 
   test('prop filtering on composed styled components that are string tags', () => {
     const BaseLink = styled.a`
