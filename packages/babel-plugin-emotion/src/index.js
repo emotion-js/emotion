@@ -2,6 +2,7 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
+import { addSideEffect } from '@babel/helper-module-imports'
 import {
   getIdentifierName,
   getName,
@@ -200,35 +201,87 @@ export default function(babel) {
             ...defaultImportedNames,
             ...state.opts.importedNames
           }
-          state.file.metadata.modules.imports.forEach(
-            ({ source, imported, specifiers }) => {
-              if (source.indexOf('emotion') !== -1) {
-                const importedNames = specifiers
-                  .filter(
-                    v =>
-                      [
-                        'default',
-                        'css',
-                        'keyframes',
-                        'injectGlobal',
-                        'fontFace',
-                        'merge'
-                      ].indexOf(v.imported) !== -1
-                  )
-                  .reduce(
-                    (acc, { imported, local }) => ({
-                      ...acc,
-                      [imported === 'default' ? 'styled' : imported]: local
-                    }),
-                    defaultImportedNames
-                  )
-                state.importedNames = {
-                  ...importedNames,
-                  ...state.opts.importedNames
+
+          const imports = []
+
+          let isModule = false
+
+          for (const node of path.node.body) {
+            if (t.isModuleDeclaration(node)) {
+              isModule = true
+              break
+            }
+          }
+
+          if (isModule) {
+            path.traverse({
+              ImportDeclaration: {
+                exit(path) {
+                  const { node } = path
+
+                  const imported = []
+                  const specifiers = []
+
+                  imports.push({
+                    source: node.source.value,
+                    imported,
+                    specifiers
+                  })
+
+                  for (const specifier of path.get('specifiers')) {
+                    const local = specifier.node.local.name
+
+                    if (specifier.isImportDefaultSpecifier()) {
+                      imported.push('default')
+                      specifiers.push({
+                        kind: 'named',
+                        imported: 'default',
+                        local
+                      })
+                    }
+
+                    if (specifier.isImportSpecifier()) {
+                      const importedName = specifier.node.imported.name
+                      imported.push(importedName)
+                      specifiers.push({
+                        kind: 'named',
+                        imported: importedName,
+                        local
+                      })
+                    }
+                  }
                 }
               }
+            })
+          }
+
+          imports.forEach(({ source, imported, specifiers }) => {
+            if (source.indexOf('emotion') !== -1) {
+              const importedNames = specifiers
+                .filter(
+                  v =>
+                    [
+                      'default',
+                      'css',
+                      'keyframes',
+                      'injectGlobal',
+                      'fontFace',
+                      'merge'
+                    ].indexOf(v.imported) !== -1
+                )
+                .reduce(
+                  (acc, { imported, local }) => ({
+                    ...acc,
+                    [imported === 'default' ? 'styled' : imported]: local
+                  }),
+                  defaultImportedNames
+                )
+              state.importedNames = {
+                ...importedNames,
+                ...state.opts.importedNames
+              }
             }
-          )
+          })
 
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
@@ -248,12 +301,7 @@ export default function(babel) {
             filenameArr.push('emotion', 'css')
             const cssFilename = filenameArr.join('.')
             const exists = fs.existsSync(cssFilename)
-            path.node.body.unshift(
-              t.importDeclaration(
-                [],
-                t.stringLiteral('./' + basename(cssFilename))
-              )
-            )
+            addSideEffect(path, './' + basename(cssFilename))
             if (
               exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
             ) {
@@ -272,7 +320,7 @@ export default function(babel) {
             CallExpression(callExprPath) {
               if (
                 callExprPath.node.callee.name === state.importedNames.css ||
-                callExprPath.node.callee.name === `_${state.importedNames.css}`
+                callExprPath.node.callee === state.cssPropIdentifier
               ) {
                 hoistPureArgs(callExprPath)
               }

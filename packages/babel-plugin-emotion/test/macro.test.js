@@ -1,107 +1,70 @@
-import * as babel from 'babel-core'
+import * as babel6 from 'babel-core'
+import * as babel7 from '@babel/core'
+import { createMacroTests } from './util'
 
-describe('babel macro', () => {
-  describe('styled', () => {
-    test('tagged template literal member', () => {
-      const basic = `
-        import styled from './styled/macro'
-        const SomeComponent = styled.div\`
-          display: flex;
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: ['babel-macros'],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-    })
-    test('tagged template literal function', () => {
-      const basic = `
-        import styled from './styled/macro'
-        const SomeComponent = styled('div')\`
-          display: flex;
-        \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: ['babel-macros'],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-    })
-    test('object member', () => {
-      const basic = `
+const styledCases = {
+  'tagged template literal member': {
+    code: `
       import styled from './styled/macro'
-      const SomeComponent = styled.div({
-        display: 'flex'
-      })
-    `
-      const { code } = babel.transform(basic, {
-        plugins: ['babel-macros'],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-    })
-    test('object function', () => {
-      const basic = `
-      import styled from './styled/macro'
-      const SomeComponent = styled('div')({
-        display: 'flex'
-      })
-    `
-      const { code } = babel.transform(basic, {
-        plugins: ['babel-macros'],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-    })
-    test('some import that does not exist', () => {
-      const basic = `
-      import { thisDoesNotExist } from './styled/macro'
-      const someOtherVar = thisDoesNotExist
-      `
-      const { code } = babel.transform(basic, {
-        plugins: ['babel-macros'],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-    })
-    test('css from react', () => {
-      const basic = `
-      import { css } from './styled/macro'
-      const someCls = css\`
+      const SomeComponent = styled.div\`
         display: flex;
       \`
-      `
-      const { code } = babel.transform(basic, {
-        plugins: ['babel-macros'],
-        filename: __filename,
-        babelrc: false
-      })
-      expect(code).toMatchSnapshot()
-    })
-    test('throws correct error when imported with commonjs', () => {
-      const basic = `
-      const styled = require('./styled/macro')
+    `
+  },
+
+  'tagged template literal function': {
+    code: `
+      import styled from './styled/macro'
       const SomeComponent = styled('div')\`
         display: flex;
       \`
-      `
-      expect(() =>
-        babel.transform(basic, {
-          plugins: ['babel-macros'],
-          filename: __filename,
-          babelrc: false
-        })
-      ).toThrowError(/the emotion macro must be imported with es modules/)
+    `
+  },
+
+  'object member': {
+    code: `
+    import styled from './styled/macro'
+    const SomeComponent = styled.div({
+      display: 'flex'
     })
-  })
-  test('injectGlobal', () => {
-    const basic = `
+  `
+  },
+
+  'object function': {
+    code: `
+    import styled from './styled/macro'
+    const SomeComponent = styled('div')({
+      display: 'flex'
+    })
+  `
+  },
+
+  'some import that does not exist': {
+    code: `
+    import { thisDoesNotExist } from './styled/macro'
+    const someOtherVar = thisDoesNotExist
+    `
+  },
+
+  'css from react': {
+    code: `
+    import { css } from './styled/macro'
+    const someCls = css\`
+      display: flex;
+    \`
+    `
+  }
+}
+
+for (const thing in styledCases) {
+  styledCases[thing].filename = __filename
+}
+
+createMacroTests('styled macro', styledCases)
+
+const cases = {
+  injectGlobal: {
+    code: `
     import { injectGlobal } from '../src/macro'
     injectGlobal\`
       body {
@@ -127,15 +90,10 @@ describe('babel macro', () => {
         background: green;
       }
   \`;`
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('fontFace', () => {
-    const basic = `
+  },
+
+  fontFace: {
+    code: `
     import { fontFace } from '../src/macro'
     fontFace\`
     font-family: MyHelvetica;
@@ -144,15 +102,10 @@ describe('babel macro', () => {
          url(MgOpenModernaBold.ttf);
     font-weight: bold;
     \`;`
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('css', () => {
-    const basic = `
+  },
+
+  css: {
+    code: `
     import { css } from '../src/macro'
     css\`
       margin: 12px 48px;
@@ -162,63 +115,38 @@ describe('babel macro', () => {
       color: blue;
       width: \${widthVar};
   \``
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('css object', () => {
-    const basic = `
+  },
+
+  'css object': {
+    code: `
     import { css } from '../src/macro'
     const cls1 = css({ display: 'flex' })
     `
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('hydrate', () => {
-    const basic = `
+  },
+
+  hydrate: {
+    code: `
     import { hydrate } from '../src/macro'
     const someOtherVar = hydrate
     `
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('flush', () => {
-    const basic = `
+  },
+
+  flush: {
+    code: `
     import { flush } from '../src/macro'
     const someOtherVar = flush
     `
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('css call with no args', () => {
-    const basic = `
+  },
+
+  'css call with no args': {
+    code: `
     import { css } from '../src/macro'
     const cls1 = css()
     `
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('css inside of css', () => {
-    const basic = `
+  },
+
+  'css inside of css': {
+    code: `
     import { css } from '../src/macro'
     const cls2 = css\`
       font-size: 20px;
@@ -233,27 +161,17 @@ describe('babel macro', () => {
       background: green;
     \`
     `
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('some import that does not exist', () => {
-    const basic = `
+  },
+
+  'some import that does not exist': {
+    code: `
     import { thisDoesNotExist } from '../src/macro'
     const someOtherVar = thisDoesNotExist
     `
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('keyframes', () => {
-    const basic = `
+  },
+
+  keyframes: {
+    code: `
     import { keyframes } from '../src/macro'
     const rotate360 = keyframes\`
     from {
@@ -263,15 +181,10 @@ describe('babel macro', () => {
       transform: rotate(360deg);
     }
   \``
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('multiple imports', () => {
-    const basic = `
+  },
+
+  'multiple imports': {
+    code: `
     import { keyframes, css } from '../src/macro'
     const rotate360 = keyframes\`
     from {
@@ -290,11 +203,44 @@ describe('babel macro', () => {
   width: \${widthVar};
 \`
   `
-    const { code } = babel.transform(basic, {
-      plugins: ['babel-macros'],
-      filename: __filename,
-      babelrc: false
-    })
-    expect(code).toMatchSnapshot()
+  }
+}
+
+for (const thing in cases) {
+  cases[thing].filename = __filename
+}
+
+createMacroTests('macro', cases)
+
+describe('styled macro', () => {
+  test('babel 6 throws correct error when imported with commonjs', () => {
+    const basic = `
+      const styled = require('./styled/macro')
+      const SomeComponent = styled('div')\`
+        display: flex;
+      \`
+      `
+    expect(() =>
+      babel6.transform(basic, {
+        plugins: [require('babel-macros')],
+        filename: __filename,
+        babelrc: false
+      })
+    ).toThrowError(/the emotion macro must be imported with es modules/)
+  })
+  test('babel 7 throws correct error when imported with commonjs', () => {
+    const basic = `
+      const styled = require('./styled/macro')
+      const SomeComponent = styled('div')\`
+        display: flex;
+      \`
+      `
+    expect(() =>
+      babel7.transform(basic, {
+        plugins: ['module:babel-macros'],
+        filename: __filename,
+        babelrc: false
+      })
+    ).toThrowError(/the emotion macro must be imported with es modules/)
   })
 })

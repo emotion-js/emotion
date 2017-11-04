@@ -1,9 +1,8 @@
-import * as babel from 'babel-core'
-import plugin from 'babel-plugin-emotion'
+import { createInlineTests } from './util'
 
-describe('source maps', () => {
-  test('css source map', () => {
-    const basic = `
+const cases = {
+  'css source map': {
+    code: `
         css\`
         margin: 12px 48px;
         color: #ffffff;
@@ -14,16 +13,13 @@ describe('source maps', () => {
           line-height: 40px;
         }
         width: \${widthVar};
-      \``
-    const { code } = babel.transform(basic, {
-      babelrc: false,
-      plugins: [[plugin, { sourceMap: true }]],
-      filename: 'css.source-map.test.js'
-    })
-    expect(code).toMatchSnapshot()
-  })
-  test('styled object styles source map', () => {
-    const basic = `
+      \``,
+
+    filename: 'css.source-map.test.js'
+  },
+
+  'styled object styles source map': {
+    code: `
       styled('div')({
         color: 'blue',
         '&:hover': {
@@ -39,17 +35,13 @@ describe('source maps', () => {
           color: 'green'
         }
       })
-    `
-    const { code } = babel.transform(basic, {
-      babelrc: false,
-      plugins: [[plugin, { sourceMap: true }]],
-      filename: 'css-nested.source-map.test.js'
-    })
-    expect(code).toMatchSnapshot()
-  })
+    `,
 
-  test('styled source map', () => {
-    const basic = `const Avatar = styled('img')\`
+    filename: 'css-nested.source-map.test.js'
+  },
+
+  'styled source map': {
+    code: `const Avatar = styled('img')\`
         width: 96px;
         height: 96px;
 
@@ -58,37 +50,26 @@ describe('source maps', () => {
 
         border: 1px solid $\{props =>
           props.theme.borderColor};
-      \``
+      \``,
 
-    const { code } = babel.transform(basic, {
-      babelrc: false,
-      plugins: [[plugin, { sourceMap: true }]],
-      filename: 'styled.source-map.test.js'
-    })
+    filename: 'styled.source-map.test.js'
+  },
 
-    expect(code).toMatchSnapshot()
-  })
-
-  test('fontFace source map', () => {
-    const basic = `
+  'fontFace source map': {
+    code: `
       fontFace\`
         font-family: MyHelvetica;
         src: local("Helvetica Neue Bold"),
              local("HelveticaNeue-Bold"),
              url(MgOpenModernaBold.ttf);
         font-weight: bold;
-    \`;`
+    \`;`,
 
-    const { code } = babel.transform(basic, {
-      babelrc: false,
-      plugins: [[plugin, { sourceMap: true }]],
-      filename: 'fontFace.source-map.test.js'
-    })
-    expect(code).toMatchSnapshot()
-  })
+    filename: 'fontFace.source-map.test.js'
+  },
 
-  test('css prop', () => {
-    const basic = `
+  'css prop': {
+    code: `
     <div
       css={\`
         width: 128px;
@@ -108,45 +89,42 @@ describe('source maps', () => {
         }
       \`}
     />
-  `
-    const { code } = babel.transform(basic, {
-      babelrc: false,
-      plugins: [[plugin, { sourceMap: true }]],
-      filename: 'site.source-map.test.js'
-    })
-    expect(code).toMatchSnapshot()
-  })
+  `,
 
-  test('css prop with objects', () => {
-    const basic = `
+    filename: 'site.source-map.test.js'
+  },
+
+  'css prop with objects': {
+    code: `
       <div
         css={{
           color: 'plum'
         }}
       />
-    `
-    const { code } = babel.transform(basic, {
-      babelrc: false,
-      plugins: [[plugin, { sourceMap: true }]],
-      filename: 'site.source-map.test.js'
-    })
-    expect(code).toMatchSnapshot()
-  })
+    `,
 
-  test('css prop with merge', () => {
-    const basic = `
+    filename: 'site.source-map.test.js'
+  },
+
+  'css prop with merge': {
+    code: `
       <div
         className={someClassName}
         css={{
           color: 'plum'
         }}
       />
-    `
-    const { code } = babel.transform(basic, {
-      babelrc: false,
-      plugins: [[plugin, { sourceMap: true }]],
-      filename: 'site.source-map.test.js'
-    })
-    expect(code).toMatchSnapshot()
-  })
-})
+    `,
+
+    filename: 'site.source-map.test.js'
+  },
+  'css object': {
+    code: `css({color: 'hotpink'})`
+  }
+}
+
+for (const thing in cases) {
+  cases[thing].opts = { sourceMap: true }
+}
+
+createInlineTests('source map', cases)

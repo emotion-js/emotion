@@ -1,3 +1,4 @@
+import { addNamed } from '@babel/helper-module-imports'
 import { addSourceMaps } from './source-map'
 
 export default function(path, state, t) {
@@ -105,7 +106,7 @@ export default function(path, state, t) {
   function getCssIdentifer() {
     if (state.opts.autoImportCssProp !== false) {
       if (!state.cssPropIdentifier) {
-        state.cssPropIdentifier = path.hub.file.addImport('emotion', 'css')
+        state.cssPropIdentifier = addNamed(path, 'css', 'emotion')
       }
       return state.cssPropIdentifier
     } else {
@@ -115,10 +116,7 @@ export default function(path, state, t) {
   function getMergeIdentifier() {
     if (state.opts.autoImportCssProp !== false) {
       if (!state.cssPropMergeIdentifier) {
-        state.cssPropMergeIdentifier = path.hub.file.addImport(
-          'emotion',
-          'merge'
-        )
+        state.cssPropMergeIdentifier = addNamed(path, 'merge', 'emotion')
       }
       return state.cssPropMergeIdentifier
     } else {
