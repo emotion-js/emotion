@@ -1,5 +1,6 @@
-## cx
-
+---
+title: "cx"
+---
 `cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames).
 `cx` is useful when combining multiple class names, even class names from your stylesheets and emotion generated class names.
 

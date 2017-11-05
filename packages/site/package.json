@@ -13,6 +13,7 @@
     "gatsby": "^1.9.100",
     "gatsby-image": "^1.0.14",
     "gatsby-link": "^1.6.23",
+    "gatsby-plugin-catch-links": "^1.0.9",
     "gatsby-plugin-emotion": "^1.1.8",
     "gatsby-plugin-netlify": "^1.0.6",
     "gatsby-plugin-react-helmet": "^1.0.8",

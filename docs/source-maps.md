@@ -2,7 +2,9 @@
 title: "Source Maps"
 ---
 
-**babel plugin required**
+> **Note:**
+> 
+> `babel-plugin-emotion` is required for source maps
 
 emotion supports source maps for styles authored in javascript. 
 
@@ -13,14 +15,18 @@ emotion supports source maps for styles authored in javascript.
 </div>
 
 Required For Source Maps:
-1. `babel-plugin-emotion` must be in your Babel setup. [[documentation]](https://github.com/emotion-js/emotion/blob/master/docs/install.md)
+1. `babel-plugin-emotion` must be in your Babel setup. [[documentation]](./install.md)
 2. `process.env.NODE_ENV` must be any value except `"production"`
 
 --- 
 
-**We do not advise using sourceMaps in production. The source maps can add significant size to your bundle.**
 
-**Babel setup**
+> **Note:**
+> 
+> We do not advise using sourceMaps in production. The source maps can add significant size to your bundle.
+
+
+## Basic Babel setup
 
 **.babelrc**
 ```json
@@ -31,9 +37,9 @@ Required For Source Maps:
 }
 ```
 
-**Recommended Setup** 
+## Recommended Setup
 
-Use [Babel's `env` property](https://babeljs.io/docs/usage/babelrc/#env-option) and only set source maps in your development environment.
+Use [Babel's `env` property](https://babeljs.io/docs/usage/babelrc/#env-option) and only use source maps in your development environment.
 
 **.babelrc**
 ```json

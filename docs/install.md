@@ -1,7 +1,6 @@
 ---
 title: "Install"
 ---
-
 ```bash
 npm install --save emotion react-emotion babel-plugin-emotion
 ```

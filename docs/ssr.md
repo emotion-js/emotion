@@ -1,7 +1,6 @@
 ---
-title: "Server-side Rendering"
+title: "Server Side Rendering"
 ---
-
 Server-Side Rendering in emotion currently does not work with `extractStatic`. It's similar to [glamor's api](https://github.com/threepointone/glamor/blob/master/docs/server.md). For an example of emotion and next.js checkout the [with-emotion example in the next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
 
 ### extractCritical

@@ -6,17 +6,18 @@ import { constants } from '../utils/style'
 
 const containerCls = css`
   display: grid;
-  grid-template-columns: auto minmax(25%, 1fr);
+  grid-template-columns: minmax(25%, 1fr) auto;
   grid-template-rows: auto minmax(min-content, 1fr) auto;
 `
 
 const sidebarCls = css`
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 1;
 `
 
 export default props => (
   <Box flex={1} className={containerCls}>
+    <Box p={4}>{props.children}</Box>
     <Box bg="#f5f5f5" p={3} className={sidebarCls}>
       {props.sidebarNodes.map(({ node }) => {
         return (
@@ -50,7 +51,5 @@ export default props => (
         )
       })}
     </Box>
-
-    <Box p={4}>{props.children}</Box>
   </Box>
 )

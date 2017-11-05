@@ -2,9 +2,6 @@
 title: "Font Face"
 ---
 
-
-## Font Face
-
 ```jsx
 import { fontFace } from 'emotion'
 

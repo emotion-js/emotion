@@ -1,10 +1,9 @@
 ---
 title: "Composition"
 ---
-
 `css` can be used in emotion to build styles that can compose with other styles.
 
-```jsx
+```javascript
 import { css } from 'emotion'
 import styled from 'react-emotion'
 

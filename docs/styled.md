@@ -1,7 +1,6 @@
 ---
 title: "styled"
 ---
-
 `styled` accepts styles as a template literal, object, or function that returns an object.
 
 ### Styling elements and components
@@ -44,7 +43,7 @@ const Sidebar = Content.withComponent('aside')
 
 ```
 
-### Pass refs down using innerRef
+### pass refs down using innerRef
 
 ```jsx
 const H1 = styled('h1')`
@@ -57,9 +56,14 @@ function Greeting ({ name }) {
 }
 
 ```
-## Shorthand Style
-###### [requires babel plugin](babel.md)
-The installation documentation can be found [here](install.md).
+### Shorthand Style
+
+Instead of using the function call syntax(`styled('div')`), you can use create components by using a property, where the property refers to an HTML tag(`styled.div`).
+
+> **Note:**
+> 
+> `babel-plugin-emotion` is required for the styled shorthand
+
 
 ```jsx
 import styled from 'react-emotion'
@@ -93,6 +97,4 @@ This API was inspired by [glamorous](https://github.com/paypal/glamorous).
 
 ### withConfig is not a function error
 
-This error is caused by using the shorthand syntax for styled such as `styled.div` without the Babel plugin.
-
-- [babel-plugin-emotion documentation](https://github.com/emotion-js/emotion/blob/master/docs/babel.md)
+This error is caused by using the shorthand syntax for styled such as `styled.div` without the Babel plugin. To fix this, [install `babel-plugin-emotion`](./babel)

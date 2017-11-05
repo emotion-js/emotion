@@ -7,7 +7,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'docs',
-        path: `${__dirname}/src/docs`
+        path: `${__dirname}/../../docs`
       }
     },
     {
@@ -45,6 +45,7 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-next',
-    'gatsby-plugin-netlify'
+    'gatsby-plugin-netlify',
+    'gatsby-plugin-catch-links'
   ]
 }

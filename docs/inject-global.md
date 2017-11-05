@@ -1,7 +1,6 @@
 ---
 title: "Global Style Injection"
 ---
-
 ```jsx
 import { injectGlobal } from 'emotion'
 

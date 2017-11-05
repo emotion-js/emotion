@@ -2,7 +2,11 @@
 title: "Usage with Webpack"
 ---
 
-#### Bundling [extracted CSS](https://github.com/emotion-js/emotion/blob/master/docs/extract-static.md)
+> **Note:**
+> 
+> This is only required if you use extractStatic
+
+#### Bundling [extracted CSS](./extract-static)
 
 ```javascript
 {

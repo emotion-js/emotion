@@ -1,5 +1,6 @@
-## Object Styles
-
+---
+title: "Object Styles"
+---
 Writing styles with objects is a powerful pattern built directly into the core of emotion.
 
 ### Examples 

@@ -1,5 +1,6 @@
-# Media Queries
-
+---
+title: "Media Queries"
+---
 ```jsx
 const Avatar = styled('img')`
   width: 32px;

@@ -1,10 +1,9 @@
-## Usage with Babel
+---
+title: "Babel Plugin"
+---
+`babel-plugin-emotion` is highly recommended, but not required in version 8 and above. See the [installation instructions](./install).
 
-The Babel Plugin is highly recommended, but not required in version 8 and above.
-
-See the [installation instructions](install.md).
-
-### Features which are enabled with the babel plugin
+## Features which are enabled with the babel plugin
 
 ### styled.element Syntax
 `styled('div')` will work without the plugin

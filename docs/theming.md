@@ -1,7 +1,6 @@
 ---
 title: "Theming"
 ---
-
 Themes are provided by the library [`emotion-theming`](https://github.com/emotion-js/emotion/tree/master/packages/emotion-theming).
 
 
@@ -15,7 +14,7 @@ Add `ThemeProvider` to the top level of your app and access the theme with `prop
 import styled from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 
-const H1 = styled.h1`
+const H1 = styled(Heading)`
   color: ${p => p.theme.purple};
 `
 

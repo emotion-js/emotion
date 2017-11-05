@@ -38,7 +38,7 @@ npm install babel-plugin-emotion -D
 
 This js file, `h1.js`
 
-```jsx
+```jsx harmony
 import styled from 'react-emotion'
 
 const H1 = styled('h1')`
