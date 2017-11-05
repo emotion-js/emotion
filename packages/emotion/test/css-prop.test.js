@@ -108,6 +108,7 @@ describe('css prop react', () => {
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
+
   test('merging regular classes', () => {
     const someClass = 'some-class'
     const tree = renderer

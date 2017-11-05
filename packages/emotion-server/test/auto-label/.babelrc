@@ -1,0 +1,8 @@
+{
+  "presets": [
+    "flow",
+    "env",
+    "react"
+  ],
+  "plugins": [["../../../../babel-plugin-emotion-test", {"autoLabel": true}], "codegen"]
+}

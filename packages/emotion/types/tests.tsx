@@ -8,6 +8,7 @@ import {
   hydrate,
   cx
 } from '../';
+// tslint:disable-next-line:no-implicit-dependencies
 import React from 'react';
 
 sheet.speedy(true);
@@ -50,7 +51,7 @@ css([
     { position: false },
     { width: 100 }
   ]
-])
+]);
 
 css(
   { display: 'none' },

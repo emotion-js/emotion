@@ -2,6 +2,7 @@
 import fs from 'fs'
 import { basename } from 'path'
 import { touchSync } from 'touch'
+import { addSideEffect } from '@babel/helper-module-imports'
 import {
   getIdentifierName,
   getName,
@@ -44,7 +45,8 @@ export function replaceCssWithCallExpression(
 ) {
   try {
     let { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
-    const name = getName(getIdentifierName(path, t), 'css')
+    const identifierName = getIdentifierName(path, t)
+    const name = getName(identifierName, 'css')
 
     if (state.extractStatic && !path.node.quasi.expressions.length) {
       const staticCSSRules = staticStylis(
@@ -68,11 +70,13 @@ export function replaceCssWithCallExpression(
     path.replaceWith(
       t.callExpression(
         identifier,
-        new ASTObject(
-          minify(src),
-          path.node.quasi.expressions,
-          t
-        ).toExpressions()
+        new ASTObject(minify(src), path.node.quasi.expressions, t)
+          .toExpressions()
+          .concat(
+            state.opts.autoLabel && identifierName
+              ? [t.stringLiteral(`label:${identifierName.trim()};`)]
+              : []
+          )
       )
     )
 
@@ -121,13 +125,28 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
     src += addSourceMaps(path.node.quasi.loc.start, state)
   }
+
   return t.callExpression(
-    t.callExpression(identifier, [tag]),
+    t.callExpression(
+      identifier,
+      state.opts.autoLabel && identifierName
+        ? [
+            tag,
+            t.objectExpression([
+              t.objectProperty(
+                t.identifier('label'),
+                t.stringLiteral(identifierName.trim())
+              )
+            ])
+          ]
+        : [tag]
+    ),
     new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
 
 export function buildStyledObjectCallExpression(path, state, identifier, t) {
+  const identifierName = getIdentifierName(path, t)
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
@@ -136,9 +155,26 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
   if (state.opts.sourceMap === true && path.node.loc !== undefined) {
     args.push(t.stringLiteral(addSourceMaps(path.node.loc.start, state)))
   }
+
   path.addComment('leading', '#__PURE__')
 
-  return t.callExpression(t.callExpression(identifier, [tag]), args)
+  return t.callExpression(
+    t.callExpression(
+      identifier,
+      state.opts.autoLabel && identifierName
+        ? [
+            tag,
+            t.objectExpression([
+              t.objectProperty(
+                t.identifier('label'),
+                t.stringLiteral(identifierName.trim())
+              )
+            ])
+          ]
+        : [tag]
+    ),
+    args
+  )
 }
 
 const visited = Symbol('visited')
@@ -165,35 +201,87 @@ export default function(babel) {
             ...defaultImportedNames,
             ...state.opts.importedNames
           }
-          state.file.metadata.modules.imports.forEach(
-            ({ source, imported, specifiers }) => {
-              if (source.indexOf('emotion') !== -1) {
-                const importedNames = specifiers
-                  .filter(
-                    v =>
-                      [
-                        'default',
-                        'css',
-                        'keyframes',
-                        'injectGlobal',
-                        'fontFace',
-                        'merge'
-                      ].indexOf(v.imported) !== -1
-                  )
-                  .reduce(
-                    (acc, { imported, local }) => ({
-                      ...acc,
-                      [imported === 'default' ? 'styled' : imported]: local
-                    }),
-                    defaultImportedNames
-                  )
-                state.importedNames = {
-                  ...importedNames,
-                  ...state.opts.importedNames
+
+          const imports = []
+
+          let isModule = false
+
+          for (const node of path.node.body) {
+            if (t.isModuleDeclaration(node)) {
+              isModule = true
+              break
+            }
+          }
+
+          if (isModule) {
+            path.traverse({
+              ImportDeclaration: {
+                exit(path) {
+                  const { node } = path
+
+                  const imported = []
+                  const specifiers = []
+
+                  imports.push({
+                    source: node.source.value,
+                    imported,
+                    specifiers
+                  })
+
+                  for (const specifier of path.get('specifiers')) {
+                    const local = specifier.node.local.name
+
+                    if (specifier.isImportDefaultSpecifier()) {
+                      imported.push('default')
+                      specifiers.push({
+                        kind: 'named',
+                        imported: 'default',
+                        local
+                      })
+                    }
+
+                    if (specifier.isImportSpecifier()) {
+                      const importedName = specifier.node.imported.name
+                      imported.push(importedName)
+                      specifiers.push({
+                        kind: 'named',
+                        imported: importedName,
+                        local
+                      })
+                    }
+                  }
                 }
               }
+            })
+          }
+
+          imports.forEach(({ source, imported, specifiers }) => {
+            if (source.indexOf('emotion') !== -1) {
+              const importedNames = specifiers
+                .filter(
+                  v =>
+                    [
+                      'default',
+                      'css',
+                      'keyframes',
+                      'injectGlobal',
+                      'fontFace',
+                      'merge'
+                    ].indexOf(v.imported) !== -1
+                )
+                .reduce(
+                  (acc, { imported, local }) => ({
+                    ...acc,
+                    [imported === 'default' ? 'styled' : imported]: local
+                  }),
+                  defaultImportedNames
+                )
+              state.importedNames = {
+                ...importedNames,
+                ...state.opts.importedNames
+              }
             }
-          )
+          })
 
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
@@ -213,12 +301,7 @@ export default function(babel) {
             filenameArr.push('emotion', 'css')
             const cssFilename = filenameArr.join('.')
             const exists = fs.existsSync(cssFilename)
-            path.node.body.unshift(
-              t.importDeclaration(
-                [],
-                t.stringLiteral('./' + basename(cssFilename))
-              )
-            )
+            addSideEffect(path, './' + basename(cssFilename))
             if (
               exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
             ) {
@@ -237,7 +320,7 @@ export default function(babel) {
             CallExpression(callExprPath) {
               if (
                 callExprPath.node.callee.name === state.importedNames.css ||
-                callExprPath.node.callee.name === `_${state.importedNames.css}`
+                callExprPath.node.callee === state.cssPropIdentifier
               ) {
                 hoistPureArgs(callExprPath)
               }
@@ -255,6 +338,14 @@ export default function(babel) {
               case state.importedNames.css:
               case state.importedNames.keyframes: {
                 path.addComment('leading', '#__PURE__')
+                if (state.opts.autoLabel) {
+                  const identifierName = getIdentifierName(path, t)
+                  if (identifierName) {
+                    path.node.arguments.push(
+                      t.stringLiteral(`label:${identifierName.trim()};`)
+                    )
+                  }
+                }
               }
               // eslint-disable-next-line no-fallthrough
               case state.importedNames.injectGlobal:
