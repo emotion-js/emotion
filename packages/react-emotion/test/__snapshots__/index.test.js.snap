@@ -490,6 +490,28 @@ exports[`styled no prop filtering on non string tags 1`] = `
 </a>
 `;
 
+exports[`styled no prop filtering on string tags started with upper case 1`] = `
+.glamor-0 {
+  color: green;
+}
+
+<SomeCustomLink
+  a={true}
+  aria-label="some label"
+  b={true}
+  className="glamor-0"
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+>
+  hello world
+</SomeCustomLink>
+`;
+
 exports[`styled object as style 1`] = `
 .glamor-0 {
   font-size: 20px;

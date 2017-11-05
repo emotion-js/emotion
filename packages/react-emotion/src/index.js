@@ -60,7 +60,8 @@ const createStyled = (tag, options: { e: string, label: string }) => {
     staticClassName === undefined ? (isReal && tag.__emotion_base) || tag : tag
 
   const omitFn =
-    typeof baseTag === 'string'
+    typeof baseTag === 'string' &&
+    baseTag.charAt(0) === baseTag.charAt(0).toLowerCase()
       ? testOmitPropsOnStringTag
       : testOmitPropsOnComponent
 
