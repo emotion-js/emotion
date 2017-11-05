@@ -1,3 +1,8 @@
 [build]
-  command = "rm -rf /opt/buildhome/.yarn && curl -o- -L https://yarnpkg.com/install.sh | bash && export PATH=\"$HOME/.yarn/bin:$PATH\" && yarn && npm run bootstrap && npm run build && npm run build:site"
+  command = "yarn && npm run bootstrap && npm run build && npm run build:site"
   publish = "packages/site/public"
+
+[build.environment]
+  NODE_VERSION = "8"
+  YARN_VERSION = "1.2.1"
+  YARN_FLAGS = "--pure-lockfile"
