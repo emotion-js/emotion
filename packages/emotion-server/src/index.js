@@ -1,4 +1,4 @@
-import { sheet, inserted, registered } from 'emotion'
+import { inserted, registered } from 'emotion'
 
 export * from 'emotion'
 
@@ -16,17 +16,11 @@ export function extractCritical(html) {
     }
   }
 
-  o.rules = sheet.sheet.slice().filter(x => {
-    RGX.lastIndex = 0
-    let match = RGX.exec(x)
-    const ret = match == null || ids[match[1]] || false
-    return ret
-  })
-
   o.ids = Object.keys(inserted).filter(id => {
     return ids[id] === true || registered[`css-${id}`] === undefined
   })
 
+  o.rules = o.ids.map(key => inserted[key])
   o.css = o.rules.join('')
 
   return o
