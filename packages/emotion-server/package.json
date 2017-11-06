@@ -14,7 +14,10 @@
     "clean": "rimraf lib"
   },
   "dependencies": {
-    "emotion-utils": "^8.0.9"
+    "emotion-utils": "^8.0.9",
+    "html-tokenize": "^2.0.0",
+    "multipipe": "^1.0.2",
+    "through": "^2.3.8"
   },
   "peerDependencies": {
     "emotion": "^8.0.9"
