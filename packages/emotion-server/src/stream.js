@@ -13,14 +13,14 @@ export default function extractCriticalToNodeStream() {
       if (type === 'open') {
         let css = ''
         let ids = {}
-
+        // are we sure it's safe to assume globals are only inserted before render?
         if (globalInserted === false) {
-          Object.keys(inserted)
-            .filter(id => registered[`css-${id}`] === undefined)
-            .forEach(id => {
+          Object.keys(inserted).forEach(id => {
+            if (registered[`css-${id}`] === undefined) {
               ids[id] = true
               css += inserted[id]
-            })
+            }
+          })
           globalInserted = true
         }
 
