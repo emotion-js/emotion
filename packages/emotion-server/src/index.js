@@ -24,10 +24,12 @@ export function extractCritical(html) {
   })
 
   o.ids = Object.keys(inserted).filter(id => {
-    return !!ids[id] || !registered[`css-${id}`]
+    return ids[id] === true || registered[`css-${id}`] === undefined
   })
 
   o.css = o.rules.join('')
 
   return o
 }
+
+export { default as extractCriticalToNodeStream } from './stream'

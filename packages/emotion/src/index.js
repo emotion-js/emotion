@@ -18,7 +18,10 @@ const externalStylisPlugins = []
 
 const use = stylis.use
 
+let current
+
 function insertRule(rule) {
+  current += rule
   sheet.insert(rule, currentSourceMap)
 }
 
@@ -166,47 +169,40 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
+function insert(scope, styles) {
+  if (inserted[hash] === undefined) {
+    current = ''
+    stylis(scope, styles)
+    inserted[hash] = current
+  }
+}
+
 export function css() {
   const styles = createStyles.apply(this, arguments)
   const selector = `css-${name}`
-
   if (registered[selector] === undefined) {
     registered[selector] = styles
   }
-
-  if (inserted[hash] === undefined) {
-    stylis(`.${selector}`, styles)
-    inserted[hash] = true
-  }
-
+  insert(`.${selector}`, styles)
   return selector
 }
 
 export function keyframes() {
   const styles = createStyles.apply(this, arguments)
   const animation = `animation-${name}`
+  insert('', `@keyframes ${animation}{${styles}}`)
 
-  if (inserted[hash] === undefined) {
-    stylis('', `@keyframes ${animation}{${styles}}`)
-    inserted[hash] = true
-  }
   return animation
 }
 
 export function injectGlobal() {
   const styles = createStyles.apply(this, arguments)
-  if (inserted[hash] === undefined) {
-    stylis('', styles)
-    inserted[hash] = true
-  }
+  insert('', styles)
 }
 
 export function fontFace(...args) {
   const styles = createStyles(...args)
-  if (inserted[hash] === undefined) {
-    stylis('', `@font-face{${styles}}`)
-    inserted[hash] = true
-  }
+  insert('', `@font-face{${styles}}`)
 }
 
 export function getRegisteredStyles(registeredStyles, classNames) {
@@ -275,6 +271,19 @@ export function cx(...classNames) {
 }
 
 export function hydrate(ids) {
+  if (ids === undefined) {
+    let chunks = Array.from(document.querySelectorAll('[data-emotion-chunk]'))
+    chunks.forEach(node => {
+      document.head.appendChild(node)
+      node
+        .getAttribute('data-emotion-chunk')
+        .split(' ')
+        .forEach(id => {
+          inserted[id] = true
+        })
+    })
+    return
+  }
   ids.forEach(id => {
     inserted[id] = true
   })
