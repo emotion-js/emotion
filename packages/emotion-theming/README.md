@@ -176,7 +176,7 @@ If you wish to build your own components on top of this library, it is recommend
 ```js
 import { channel } from 'emotion-theming';
 
-console.log(channe;); '__EMOTION_THEMING__';
+console.log(channel); '__EMOTION_THEMING__';
 ```
 
 ## Credits
