@@ -5,7 +5,7 @@ export * from 'emotion'
 export function extractCritical(html) {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
-  const RGX = /css-([a-zA-Z0-9-]+)/gm
+  const RGX = /css-([a-zA-Z0-9]+)/gm
 
   let o = { html, ids: [], css: '' }
   let match
@@ -17,10 +17,7 @@ export function extractCritical(html) {
   }
 
   o.ids = Object.keys(inserted).filter(id => {
-    if (
-      ids[names[id]] === true ||
-      registered[`css-${names[id]}`] === undefined
-    ) {
+    if (ids[id] === true || registered[`css-${names[id]}`] === undefined) {
       if (inserted[id] === true) {
         throw new Error('Cannot server render hydrated rule')
       }
