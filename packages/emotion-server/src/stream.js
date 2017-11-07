@@ -8,7 +8,8 @@ export default function renderStylesToNodeStream() {
   const tokenStream = tokenize()
 
   const inlineStream = through(
-    function write([type, data]) {
+    function write(thing) {
+      let [type, data] = thing
       if (type === 'open') {
         let css = ''
         let ids = {}

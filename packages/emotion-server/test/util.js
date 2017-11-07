@@ -1,22 +1,9 @@
-/**
- * @jest-environment node
-*/
 import React from 'react'
-import { renderToString } from 'react-dom/server'
 import styled from 'react-emotion'
-import {
-  css,
-  injectGlobal,
-  keyframes,
-  flush,
-  hydrate,
-  fontFace,
-  sheet
-} from 'emotion'
-import { extractCritical } from 'emotion-server'
-import { prettyifyCritical } from '../util'
+import { css, injectGlobal, keyframes, fontFace } from 'emotion'
+import { parse, stringify } from 'css'
 
-const getComponents = () => {
+export const getComponents = () => {
   const color = 'red'
 
   fontFace`
@@ -101,26 +88,6 @@ const getComponents = () => {
   return { Page1, Page2 }
 }
 
-describe('extractCritical', () => {
-  test('returns static css', () => {
-    const { Page1, Page2 } = getComponents()
-    expect(
-      prettyifyCritical(extractCritical(renderToString(<Page1 />)))
-    ).toMatchSnapshot()
-    expect(
-      prettyifyCritical(extractCritical(renderToString(<Page2 />)))
-    ).toMatchSnapshot()
-  })
-})
-describe('hydration', () => {
-  test('only rules that are not in the critical css are inserted', () => {
-    const { Page1 } = getComponents()
-    const { html, ids, css } = extractCritical(renderToString(<Page1 />))
-    expect(prettyifyCritical({ html, css, ids })).toMatchSnapshot()
-    flush()
-    hydrate(ids)
-    const { Page1: NewPage1 } = getComponents()
-    renderToString(<NewPage1 />)
-    expect(sheet.sheet).toMatchSnapshot()
-  })
-})
+export const prettyifyCritical = ({ html, css, ids }) => {
+  return { css: stringify(parse(css)), ids, html }
+}

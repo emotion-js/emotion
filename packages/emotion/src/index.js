@@ -36,6 +36,8 @@ export let registered = {}
 
 export let inserted = {}
 
+export let names = {}
+
 let currentSourceMap = ''
 
 stylis.use(insertionPlugin)
@@ -173,6 +175,7 @@ function insert(scope, styles) {
   if (inserted[hash] === undefined) {
     current = ''
     stylis(scope, styles)
+    names[hash] = name
     inserted[hash] = current
   }
 }
@@ -293,5 +296,6 @@ export function flush() {
   sheet.flush()
   inserted = {}
   registered = {}
+  names = {}
   sheet.inject()
 }
