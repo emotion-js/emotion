@@ -3,6 +3,8 @@ import tokenize from 'html-tokenize'
 import pipe from 'multipipe'
 import { inserted, registered, names } from 'emotion'
 
+let o
+
 export default function renderStylesToNodeStream() {
   let insed = {}
   const tokenStream = tokenize()
@@ -26,7 +28,8 @@ export default function renderStylesToNodeStream() {
           if (
             insed[id] === undefined &&
             (ids[names[id]] === true ||
-              registered[`css-${names[id]}`] === undefined)
+              (registered[`css-${names[id]}`] === undefined &&
+                (ids[id] = true)))
           ) {
             insed[id] = true
             css += inserted[id]

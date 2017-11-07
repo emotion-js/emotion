@@ -9,7 +9,7 @@ import App from './streaming-component'
 
 describe('streaming SSR', () => {
   test('stream', cb => {
-    const stream = renderToNodeStream(<App count={20} />).pipe(
+    const stream = renderToNodeStream(<App count={600} />).pipe(
       renderStylesToNodeStream()
     )
     let thing = ''

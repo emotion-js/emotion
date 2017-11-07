@@ -277,7 +277,7 @@ export function hydrate(ids) {
   if (ids === undefined) {
     let chunks = Array.from(document.querySelectorAll('[data-emotion-chunk]'))
     chunks.forEach(node => {
-      document.head.appendChild(node)
+      document.head.insertBefore(node, sheet.sheet.tags[0])
       node
         .getAttribute('data-emotion-chunk')
         .split(' ')
