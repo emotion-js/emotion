@@ -3,43 +3,39 @@ import tokenize from 'html-tokenize'
 import pipe from 'multipipe'
 import { inserted, registered } from 'emotion'
 
-export default function extractCriticalToNodeStream() {
+export default function renderStylesToNodeStream() {
   let insed = {}
   const tokenStream = tokenize()
-  let globalInserted = false
 
   const inlineStream = through(
     function write([type, data]) {
       if (type === 'open') {
         let css = ''
         let ids = {}
-        // are we sure it's safe to assume globals are only inserted before render?
-        if (globalInserted === false) {
-          Object.keys(inserted).forEach(id => {
-            if (registered[`css-${id}`] === undefined) {
-              ids[id] = true
-              css += inserted[id]
-            }
-          })
-          globalInserted = true
-        }
 
         let match
         let fragment = data.toString()
         let regex = /css-([a-zA-Z0-9]+)/gm
         while ((match = regex.exec(fragment)) !== null) {
           if (insed[match[1]] === undefined) {
-            ids[match[1]] = insed[match[1]] = true
+            ids[match[1]] = true
           }
         }
-        const keys = Object.keys(ids)
-        keys.forEach(id => {
-          css += inserted[id]
+        Object.keys(inserted).forEach(id => {
+          if (
+            insed[id] === undefined &&
+            (registered[`css-${id}`] === undefined || ids[id] === true)
+          ) {
+            insed[match[1]] = true
+            css += inserted[id]
+          }
         })
 
         if (css !== '') {
           this.queue(
-            `<style data-emotion-chunk="${keys.join(' ')}">${css}</style>`
+            `<style data-emotion-chunk="${Object.keys(ids).join(
+              ' '
+            )}">${css}</style>`
           )
         }
       }

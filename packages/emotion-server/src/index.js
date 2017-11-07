@@ -18,6 +18,9 @@ export function extractCritical(html) {
 
   o.ids = Object.keys(inserted).filter(id => {
     if (ids[id] === true || registered[`css-${id}`] === undefined) {
+      if (inserted[id] === true) {
+        throw new Error('Cannot server render hydrated rule')
+      }
       o.css += inserted[id]
       return true
     }
@@ -26,4 +29,4 @@ export function extractCritical(html) {
   return o
 }
 
-export { default as extractCriticalToNodeStream } from './stream'
+export { default as renderStylesToNodeStream } from './stream'
