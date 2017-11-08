@@ -60,9 +60,8 @@ describe('hydration', () => {
     global.window = window
     jest.resetModules()
     emotion = require('emotion')
-    expect(emotion.inserted).toEqual({})
+    expect(emotion.registered).toEqual({})
 
-    emotion.hydrate()
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)
     expect(getInjectedRules(emotion)).toMatchSnapshot()

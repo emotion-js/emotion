@@ -273,20 +273,20 @@ export function cx(...classNames) {
   return merge(classnames(...classNames))
 }
 
+if (typeof window !== 'undefined') {
+  let chunks = Array.from(document.querySelectorAll('[data-emotion-chunk]'))
+  chunks.forEach(node => {
+    document.head.insertBefore(node, sheet.tags[0])
+    node
+      .getAttribute('data-emotion-chunk')
+      .split(' ')
+      .forEach(id => {
+        inserted[id] = true
+      })
+  })
+}
+
 export function hydrate(ids) {
-  if (ids === undefined) {
-    let chunks = Array.from(document.querySelectorAll('[data-emotion-chunk]'))
-    chunks.forEach(node => {
-      document.head.insertBefore(node, sheet.tags[0])
-      node
-        .getAttribute('data-emotion-chunk')
-        .split(' ')
-        .forEach(id => {
-          inserted[id] = true
-        })
-    })
-    return
-  }
   ids.forEach(id => {
     inserted[id] = true
   })

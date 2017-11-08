@@ -78,9 +78,8 @@ describe('hydration', () => {
     emotion = require('emotion')
     emotionServer = require('emotion-server')
     reactEmotion = require('react-emotion')
-    expect(emotion.inserted).toEqual({})
+    expect(emotion.registered).toEqual({})
 
-    emotion.hydrate()
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)
     expect(getInjectedRules(emotion)).toMatchSnapshot()
