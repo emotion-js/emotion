@@ -11,7 +11,7 @@ export function extractCritical(html) {
   let match
   let ids = {}
   while ((match = RGX.exec(html)) !== null) {
-    if (match !== null && ids[match[1]] === undefined) {
+    if (ids[match[1]] === undefined) {
       ids[match[1]] = true
     }
   }
@@ -28,5 +28,7 @@ export function extractCritical(html) {
 
   return o
 }
+
+export { default as renderStylesToString } from './inline'
 
 export { default as renderStylesToNodeStream } from './stream'

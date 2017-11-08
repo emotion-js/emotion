@@ -1,9 +1,11 @@
+/* eslint-env jest */
 import React from 'react'
-import styled from 'react-emotion'
-import { css, injectGlobal, keyframes, fontFace } from 'emotion'
 import { parse, stringify } from 'css'
 
-export const getComponents = () => {
+export const getComponents = (
+  { fontFace, injectGlobal, keyframes, css },
+  { default: styled }
+) => {
   const color = 'red'
 
   fontFace`
@@ -88,6 +90,53 @@ export const getComponents = () => {
   return { Page1, Page2 }
 }
 
+const maxColors = Math.pow(16, 6)
+
+export const createBigComponent = ({ injectGlobal, css }) => {
+  const BigComponent = ({ count }) => {
+    if (count === 0) return null
+    injectGlobal`
+    .some-global-${count} {
+      padding: 0;
+      margin: ${count};
+    }`
+    return (
+      <div
+        className={css({
+          color:
+            '#' +
+            Math.round(1 / count * maxColors)
+              .toString(16)
+              .padStart(6, '0')
+        })}
+      >
+        woah there
+        <span>hello world</span>
+        <BigComponent count={count - 1} />
+      </div>
+    )
+  }
+  return BigComponent
+}
+
 export const prettyifyCritical = ({ html, css, ids }) => {
   return { css: stringify(parse(css)), ids, html }
 }
+
+export const getCssFromChunks = document => {
+  const chunks = Array.from(
+    document.head.querySelectorAll('[data-emotion-chunk]')
+  )
+  expect(document.body.querySelector('[data-emotion-chunk]')).toBeNull()
+  return stringify(parse(chunks.map(chunk => chunk.textContent || '').join('')))
+}
+
+export const getInjectedRules = ({ inserted }) =>
+  stringify(
+    parse(
+      Object.keys(inserted)
+        .filter(hash => inserted[hash] !== true)
+        .map(hash => inserted[hash])
+        .join('')
+    )
+  )

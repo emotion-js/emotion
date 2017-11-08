@@ -14,7 +14,6 @@ function toTag(ids, thing) {
     }
     return true
   })
-
   return `<style data-emotion-chunk="${idHydration.substring(
     1
   )}">${styles}</style>`

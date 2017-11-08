@@ -3,8 +3,6 @@ import tokenize from 'html-tokenize'
 import pipe from 'multipipe'
 import { inserted, registered, names } from 'emotion'
 
-let o
-
 export default function renderStylesToNodeStream() {
   let insed = {}
   const tokenStream = tokenize()
@@ -18,7 +16,7 @@ export default function renderStylesToNodeStream() {
 
         let match
         let fragment = data.toString()
-        let regex = /css-([a-zA-Z0-9-]+)/gm
+        let regex = /css-([a-zA-Z0-9]+)/gm
         while ((match = regex.exec(fragment)) !== null) {
           if (match !== null && insed[match[1]] === undefined) {
             ids[match[1]] = true
@@ -27,7 +25,7 @@ export default function renderStylesToNodeStream() {
         Object.keys(inserted).forEach(id => {
           if (
             insed[id] === undefined &&
-            (ids[names[id]] === true ||
+            (ids[id] === true ||
               (registered[`css-${names[id]}`] === undefined &&
                 (ids[id] = true)))
           ) {

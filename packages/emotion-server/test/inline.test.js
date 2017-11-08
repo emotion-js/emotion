@@ -2,7 +2,7 @@
  * @jest-environment node
 */
 import React from 'react'
-import { renderToNodeStream, renderToString } from 'react-dom/server'
+import { renderToString } from 'react-dom/server'
 import {
   getComponents,
   getInjectedRules,
@@ -11,47 +11,31 @@ import {
 } from './util'
 import { JSDOM } from 'jsdom'
 
-const renderToStringWithStream = (element, { renderStylesToNodeStream }) =>
-  new Promise((resolve, reject) => {
-    const stream = renderToNodeStream(element).pipe(renderStylesToNodeStream())
-    let html = ''
-    stream.on('data', data => {
-      html += data.toString()
-    })
-    stream.on('end', () => {
-      resolve(html)
-    })
-    stream.on('error', error => {
-      reject(error)
-    })
-  })
-
 let emotion
 let emotionServer
 let reactEmotion
 
-describe('renderStylesToNodeStream', () => {
+describe('renderStylesToString', () => {
   beforeEach(() => {
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
     reactEmotion = require('react-emotion')
   })
-  test('renders styles with ids', async () => {
+  test('renders styles with ids', () => {
     const { Page1, Page2 } = getComponents(emotion, reactEmotion)
     expect(
-      await renderToStringWithStream(<Page1 />, emotionServer)
+      emotionServer.renderStylesToString(renderToString(<Page1 />))
     ).toMatchSnapshot()
     expect(
-      await renderToStringWithStream(<Page2 />, emotionServer)
+      emotionServer.renderStylesToString(renderToString(<Page2 />))
     ).toMatchSnapshot()
   })
-  test('renders large recursive component', async () => {
+  test('renders large recursive component', () => {
     const BigComponent = createBigComponent(emotion)
     expect(
-      await renderToStringWithStream(
-        <BigComponent count={200} />,
-        emotionServer
+      emotionServer.renderStylesToString(
+        renderToString(<BigComponent count={200} />)
       )
     ).toMatchSnapshot()
   })
@@ -67,17 +51,15 @@ describe('hydration', () => {
     emotionServer = require('emotion-server')
     reactEmotion = require('react-emotion')
   })
-  test('only inserts rules that are not in the critical css', async () => {
+  test('only inserts rules that are not in the critical css', () => {
     const { Page1 } = getComponents(emotion, reactEmotion)
-    const html = await renderToStringWithStream(<Page1 />, emotionServer)
+    const html = emotionServer.renderStylesToString(renderToString(<Page1 />))
     expect(html).toMatchSnapshot()
     const { window } = new JSDOM(html)
     global.document = window.document
     global.window = window
     jest.resetModules()
     emotion = require('emotion')
-    emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
     expect(emotion.inserted).toEqual({})
 
     emotion.hydrate()
