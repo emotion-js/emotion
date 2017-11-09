@@ -69,8 +69,8 @@ export default function(path, state, t) {
   if (t.isJSXExpressionContainer(classNamesValue)) {
     const args = [
       add(
-        cssTemplateExpression,
-        add(t.stringLiteral(' '), classNamesValue.expression)
+        add(classNamesValue.expression, t.stringLiteral(' ')),
+        cssTemplateExpression
       )
     ]
 
@@ -85,8 +85,10 @@ export default function(path, state, t) {
     classNamesPath.parentPath.replaceWith(
       createClassNameAttr(
         add(
-          cssTemplateExpression,
-          t.stringLiteral(` ${classNamesValue.value || ''}`)
+          t.stringLiteral(
+            `${classNamesValue.value ? classNamesValue.value + ' ' : ''}`
+          ),
+          cssTemplateExpression
         )
       )
     )
