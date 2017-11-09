@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "babel-plugin-emotion": "^8.0.12",
+    "emotion-theming": "^8.0.12",
     "emotion-utils": "^8.0.12"
   },
   "peerDependencies": {

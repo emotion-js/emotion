@@ -2,9 +2,10 @@
 import { createElement, Component } from 'react'
 import { memoize, STYLES_KEY, TARGET_KEY } from 'emotion-utils'
 import { css, getRegisteredStyles } from 'emotion'
-import { channel, contextTypes } from '../../emotion-theming/src/utils'
+import { channel, contextTypes } from 'emotion-theming'
 
 export * from 'emotion'
+export * from 'emotion-theming'
 
 function setTheme(theme) {
   this.setState({ theme })

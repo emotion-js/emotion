@@ -8,7 +8,7 @@ const withTheme = Component => {
   class WithTheme extends React.Component {
     componentWillMount() {
       const themeContext = this.context[channel]
-      if (themeContext === undefined) {
+      if (process.env.NODE_ENV !== 'production' && themeContext === undefined) {
         // eslint-disable-next-line no-console
         console.error(
           '[withTheme] Please use ThemeProvider to be able to use withTheme'

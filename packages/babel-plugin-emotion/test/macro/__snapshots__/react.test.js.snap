@@ -600,35 +600,6 @@ exports[`styled prop filtering on composed styled components that are string tag
 </a>
 `;
 
-exports[`styled random expressions 1`] = `
-.glamor-1 {
-  font-size: 1rem;
-  margin-top: 0;
-  margin-right: auto;
-  margin-bottom: 0;
-  margin-left: auto;
-  color: green;
-}
-
-@media (min-width: 420px) {
-  .glamor-1 {
-    color: blue;
-  }
-}
-
-@media (min-width: 420px) and  (min-width: 520px) {
-  .glamor-1 {
-    color: green;
-  }
-}
-
-<h1
-  className="glamor-0 legacy__class glamor-1"
->
-  hello world
-</h1>
-`;
-
 exports[`styled random expressions undefined return 1`] = `
 .glamor-0 {
   color: green;
