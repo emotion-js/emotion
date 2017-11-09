@@ -61,7 +61,7 @@ exports[`css prop react kitchen sink 1`] = `
 }
 
 <div
-  className="glamor-4 css__legacy-stuff"
+  className="css__legacy-stuff glamor-4"
 >
   <h1
     className="glamor-0"
@@ -69,12 +69,12 @@ exports[`css prop react kitchen sink 1`] = `
     BOOM
   </h1>
   <p
-    className="glamor-1 test_class1"
+    className="test_class1 glamor-1"
   >
     Hello
   </p>
   <p
-    className="glamor-2 test_class1 test___class45"
+    className="test_class1 test___class45 glamor-2"
   >
     World
   </p>
@@ -92,7 +92,7 @@ exports[`css prop react merging regular classes 1`] = `
 }
 
 <div
-  className="glamor-0 some-class"
+  className="some-class glamor-0"
 />
 `;
 
@@ -111,11 +111,11 @@ exports[`css prop react objects 1`] = `
 
 exports[`css prop react specificity with composition 1`] = `
 .glamor-0 {
-  display: block;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  display: block;
 }
 
 <div
