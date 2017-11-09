@@ -1,7 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import styled, { css, flush } from 'react-emotion'
-import { ThemeProvider } from 'emotion-theming'
+import styled, { css, flush, ThemeProvider } from 'react-emotion'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
