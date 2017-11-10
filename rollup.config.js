@@ -9,7 +9,7 @@ import path from 'path'
 const pkg = require(path.resolve(process.cwd(), './package.json'))
 
 const config = {
-  entry: './src/index.js',
+  input: './src/index.js',
   external: [
     'react',
     'emotion',
@@ -19,7 +19,7 @@ const config = {
     'stylis-rule-sheet'
   ],
   exports: 'named',
-  sourceMap: true,
+  sourcemap: true,
   plugins: [
     resolve(),
     babel({
@@ -41,9 +41,9 @@ const config = {
     }),
     cjs()
   ],
-  targets: [
-    { dest: pkg.main, format: 'cjs' },
-    { dest: pkg.module, format: 'es' }
+  output: [
+    { file: pkg.main, format: 'cjs' },
+    { file: pkg.module, format: 'es' }
   ]
 }
 
@@ -63,17 +63,17 @@ if (process.env.UMD) {
     }),
     uglify()
   )
-  config.targets = [
+  config.output = [
     {
-      dest: './dist/emotion.umd.min.js',
+      file: './dist/emotion.umd.min.js',
       format: 'umd',
-      moduleName: pkg.name
+      name: pkg.name
     }
   ]
 }
 
 if (pkg.name === 'preact-emotion') {
-  config.entry = '../react-emotion/src/index.js'
+  config.input = '../react-emotion/src/index.js'
   config.external = ['preact', 'emotion-utils', 'emotion']
   config.plugins.unshift(alias({ react: 'preact' }))
 }

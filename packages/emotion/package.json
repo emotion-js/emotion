@@ -36,7 +36,7 @@
     "dtslint": "^0.2.0",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
-    "rollup": "^0.43.0"
+    "rollup": "^0.51.3"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
