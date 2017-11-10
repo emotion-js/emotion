@@ -22,5 +22,5 @@ export function addSourceMaps(offset, state) {
     source: state.file.opts.sourceFileName,
     original: offset
   })
-  return convert.fromObject(generator).toComment({ multiline: true })
+  return '\n' + convert.fromObject(generator).toComment({ multiline: true })
 }
