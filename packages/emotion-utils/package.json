@@ -31,6 +31,6 @@
   "devDependencies": {
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
-    "rollup": "^0.47.2"
+    "rollup": "^0.51.3"
   }
 }
