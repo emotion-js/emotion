@@ -55,4 +55,9 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
   })
+  test('css without newline or semicolon', () => {
+    // eslint-disable-next-line
+    const cls = css`color: hotpink`
+    expect(sheet).toMatchSnapshot()
+  })
 })
