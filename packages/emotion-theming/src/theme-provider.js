@@ -4,7 +4,6 @@
 import React, { Component } from 'react'
 import createBroadcast from './create-broadcast'
 import { channel, contextTypes } from './utils'
-import { contentType } from '../../../../../Library/Caches/typescript/2.6/node_modules/@types/mime-types'
 
 const isPlainObject = test =>
   Object.prototype.toString.call(test) === '[object Object]'
