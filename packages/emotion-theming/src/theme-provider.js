@@ -70,8 +70,7 @@ class ThemeProvider extends Component {
 
     return { ...this.outerTheme, ...theme }
   }
-  static contextTypes = contextTypes
-  static childContextTypes = contextTypes
+
   render() {
     if (!this.props.children) {
       return null
@@ -79,5 +78,8 @@ class ThemeProvider extends Component {
     return React.Children.only(this.props.children)
   }
 }
+
+ThemeProvider.childContextTypes = contextTypes
+ThemeProvider.contextTypes = contextTypes
 
 export default ThemeProvider
