@@ -25,18 +25,18 @@ const config = {
     babel({
       presets: [
         [
-          'env',
+          '@babel/env',
           {
             loose: true,
             modules: false,
-            exclude: ['transform-es2015-typeof-symbol']
+            exclude: ['transform-typeof-symbol']
           }
         ],
-        'stage-0',
-        'react',
-        'flow'
+        '@babel/stage-0',
+        '@babel/react',
+        '@babel/flow'
       ],
-      plugins: ['codegen', 'external-helpers'],
+      plugins: ['codegen'],
       babelrc: false
     }),
     cjs()

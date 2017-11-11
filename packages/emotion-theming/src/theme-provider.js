@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import createBroadcast from './create-broadcast'
 import { channel, contextTypes } from './utils'
+import { contentType } from '../../../../../Library/Caches/typescript/2.6/node_modules/@types/mime-types'
 
 const isPlainObject = test =>
   Object.prototype.toString.call(test) === '[object Object]'
@@ -70,7 +71,8 @@ class ThemeProvider extends Component {
 
     return { ...this.outerTheme, ...theme }
   }
-
+  static contextTypes = contextTypes
+  static childContextTypes = contextTypes
   render() {
     if (!this.props.children) {
       return null
@@ -78,8 +80,5 @@ class ThemeProvider extends Component {
     return React.Children.only(this.props.children)
   }
 }
-
-ThemeProvider.childContextTypes = contextTypes
-ThemeProvider.contextTypes = contextTypes
 
 export default ThemeProvider
