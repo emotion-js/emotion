@@ -10,7 +10,7 @@ import {
   getInterceptor,
   getChannel
 } from './test-helpers'
-import { channel, ThemeProvider, withTheme } from '../src/index'
+import { channel, ThemeProvider, withTheme } from 'emotion-theming'
 
 test(`theming default channel`, () => {
   const defaultChannel = channel
