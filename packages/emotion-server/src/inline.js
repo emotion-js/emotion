@@ -1,4 +1,4 @@
-import { inserted, registered, names } from 'emotion'
+import { inserted, registered } from 'emotion'
 
 function toTag(ids, thing) {
   let idhash = ids.reduce((o, x) => {
@@ -8,7 +8,7 @@ function toTag(ids, thing) {
   let styles = ''
   let idHydration = ''
   thing.keys = thing.keys.filter(id => {
-    if (idhash[names[id]] !== undefined) {
+    if (idhash[id] !== undefined) {
       styles += inserted[id]
       idHydration += ` ${id}`
     }
@@ -31,7 +31,7 @@ export default function inline(html) {
   let globalStyles = ''
   let globalIds = ''
   keys = keys.filter(id => {
-    if (registered[`css-${names[id]}`] === undefined) {
+    if (registered[`css-${id}`] === undefined) {
       globalStyles += inserted[id]
       globalIds += ` ${id}`
       return false

@@ -110,11 +110,11 @@ Object {
 }",
   "html": "<main class=\\"css-19m49uk-Main\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-1m3qzmz-Image\\"/><img size=\\"100\\" class=\\"css-1m3qzmz-Image\\"/><img class=\\"css-1m3qzmz-Image\\"/></main>",
   "ids": Array [
-    "j3c2ih",
-    "1fps0gg",
-    "1teldhi",
-    "19m49uk",
-    "1m3qzmz",
+    "j3c2ih-getComponents",
+    "1fps0gg-bounce",
+    "1teldhi-getComponents",
+    "19m49uk-Main",
+    "1m3qzmz-Image",
   ],
 }
 `;
@@ -220,10 +220,10 @@ Object {
 }",
   "html": "<main class=\\"css-19m49uk-Main\\" data-reactroot=\\"\\"><div>Hello</div></main>",
   "ids": Array [
-    "j3c2ih",
-    "1fps0gg",
-    "1teldhi",
-    "19m49uk",
+    "j3c2ih-getComponents",
+    "1fps0gg-bounce",
+    "1teldhi-getComponents",
+    "19m49uk-Main",
   ],
 }
 `;
@@ -338,11 +338,11 @@ Object {
 }",
   "html": "<main class=\\"css-19m49uk-Main\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-1m3qzmz-Image\\"/><img size=\\"100\\" class=\\"css-1m3qzmz-Image\\"/><img class=\\"css-1m3qzmz-Image\\"/></main>",
   "ids": Array [
-    "j3c2ih",
-    "1fps0gg",
-    "1teldhi",
-    "19m49uk",
-    "1m3qzmz",
+    "j3c2ih-getComponents",
+    "1fps0gg-bounce",
+    "1teldhi-getComponents",
+    "19m49uk-Main",
+    "1m3qzmz-Image",
   ],
 }
 `;

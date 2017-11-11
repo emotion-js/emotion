@@ -36,8 +36,6 @@ export let registered = {}
 
 export let inserted = {}
 
-export let names = {}
-
 let currentSourceMap = ''
 
 stylis.use(insertionPlugin)
@@ -124,7 +122,6 @@ function isLastCharDot(string) {
   return string.charCodeAt(string.length - 1) === 46 // .
 }
 
-let hash
 let name
 
 const labelPattern = /label:\s*([^\s;\n]+)\s*[;\n]/g
@@ -155,8 +152,7 @@ function createStyles(strings, ...interpolations) {
     identifierName += `-${p1}`
     return ''
   })
-  hash = hashString(styles + identifierName)
-  name = hash + identifierName
+  name = hashString(styles + identifierName) + identifierName
   return styles
 }
 
@@ -172,11 +168,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 function insert(scope, styles) {
-  if (inserted[hash] === undefined) {
+  if (inserted[name] === undefined) {
     current = ''
     stylis(scope, styles)
-    names[hash] = name
-    inserted[hash] = current
+    inserted[name] = current
   }
 }
 
@@ -296,6 +291,5 @@ export function flush() {
   sheet.flush()
   inserted = {}
   registered = {}
-  names = {}
   sheet.inject()
 }
