@@ -21,6 +21,7 @@ const config = {
   exports: 'named',
   sourcemap: true,
   plugins: [
+    cjs({ exclude: ['**/src/**'] }),
     resolve(),
     babel({
       presets: [
@@ -38,8 +39,7 @@ const config = {
       ],
       plugins: ['codegen'],
       babelrc: false
-    }),
-    cjs()
+    })
   ],
   output: [
     { file: pkg.main, format: 'cjs' },
