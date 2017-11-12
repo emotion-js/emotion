@@ -19,6 +19,17 @@
 
 ## Install
 
+Theming functionality is available directly via `react-emotion` and `preact-emotion`.
+
+```js
+// react
+import styled, { channel, ThemeProvider, withTheme } from 'react-emotion'
+
+// preact
+import styled, { channel, ThemeProvider, withTheme } from 'preact-emotion'
+```
+
+However, if you'd like to use the functionality separately for some reason, the imports are available from `emotion-theming`.
 
 ```bash
 # add --save if using npm@4 or lower
@@ -26,6 +37,10 @@ npm i emotion-theming
 
 # or
 yarn add emotion-theming
+```
+
+```js
+import { channel, ThemeProvider, withTheme } from 'emotion-theming'
 ```
 
 ## Usage
@@ -66,7 +81,7 @@ export default Page extends React.Component {
 /** parent.js */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from 'react-emotion';
 
 import Page from './child.js';
 
@@ -104,7 +119,7 @@ A React component that passes the theme object down the component tree via [cont
 ```jsx
 import React from 'react';
 import styled from 'react-emotion'
-import { ThemeProvider, withTheme } from 'emotion-theming';
+import { ThemeProvider, withTheme } from 'react-emotion';
 
 // object-style theme
 
@@ -146,7 +161,7 @@ A higher-order component that provides the current theme as a prop to the wrappe
 ```jsx
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withTheme } from 'emotion-theming';
+import { withTheme } from 'react-emotion;
 
 class TellMeTheColor extends React.Component {
   render() {
@@ -169,12 +184,12 @@ const TellMeTheColorWithTheme = withTheme(TellMeTheColor);
 
 ### channel: String
 
-The emotion-theming package uses this string as the React context key by default.
+Emotion's theming functionality uses this string as the React context key by default.
 
 If you wish to build your own components on top of this library, it is recommended to import the context key from this package instead of hardcoding its value.
 
 ```js
-import { channel } from 'emotion-theming';
+import { channel } from 'react-emotion';
 
 console.log(channel); '__EMOTION_THEMING__';
 ```

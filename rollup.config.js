@@ -11,11 +11,12 @@ const pkg = require(path.resolve(process.cwd(), './package.json'))
 const config = {
   input: './src/index.js',
   external: [
-    'react',
-    'emotion',
+    'emotion-theming',
     'emotion-utils',
-    'prop-types',
+    'emotion',
     'hoist-non-react-statics',
+    'prop-types',
+    'react',
     'stylis-rule-sheet'
   ],
   exports: 'named',
@@ -53,6 +54,10 @@ if (process.env.UMD) {
   config.plugins.push(
     alias({
       emotion: path.resolve(__dirname, './packages/emotion/src/index.js'),
+      'emotion-theming': path.resolve(
+        __dirname,
+        './packages/emotion-theming/src/index.js'
+      ),
       'emotion-utils': path.resolve(
         __dirname,
         './packages/emotion-utils/src/index.js'
@@ -74,7 +79,13 @@ if (process.env.UMD) {
 
 if (pkg.name === 'preact-emotion') {
   config.input = '../react-emotion/src/index.js'
-  config.external = ['preact', 'emotion-utils', 'emotion']
+  config.external = [
+    'emotion-theming',
+    'emotion-utils',
+    'emotion',
+    'preact',
+    'prop-types'
+  ]
   config.plugins.unshift(alias({ react: 'preact' }))
 }
 

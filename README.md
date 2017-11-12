@@ -25,7 +25,7 @@ emotion is a high performance, lightweight css-in-js library that supports both 
 ### Quick Start
 Get up and running with a single import.
 ```bash
-npm install --save emotion 
+npm install --save emotion
 ```
 
 ```javascript
@@ -69,7 +69,7 @@ const app = () => (
 
 ### About
 
-The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/glam) library and its philosophy is laid out [here](https://gist.github.com/threepointone/0ef30b196682a69327c407124f33d69a). 
+The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/glam) library and its philosophy is laid out [here](https://gist.github.com/threepointone/0ef30b196682a69327c407124f33d69a).
 
 -- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
@@ -81,7 +81,7 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 - Create composable styles with [`css` classes and props](docs/css.md)
 
   - [`composition`](docs/composition.md)
-  
+
 - [Object styles](docs/object-styles.md)
 
 - Combine styles and class names with [`cx`](docs/cx.md)
@@ -95,7 +95,7 @@ The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/g
 - [Version 7 docs](https://github.com/emotion-js/emotion/tree/v7.3.2)
 
 ### Ecosystem
-  
+
   - [facepaint](https://github.com/emotion-js/facepaint)
   - [emotion-vue](https://github.com/egoist/emotion-vue)
   - [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
