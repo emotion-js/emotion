@@ -21,7 +21,7 @@ const config = {
   exports: 'named',
   sourcemap: true,
   plugins: [
-    cjs({ exclude: ['**/src/**/*'] }),
+    cjs({ exclude: [path.join(__dirname, 'packages', '*/src/**/*')] }),
     resolve(),
     babel({
       presets: [
