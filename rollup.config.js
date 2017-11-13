@@ -21,25 +21,25 @@ const config = {
   exports: 'named',
   sourcemap: true,
   plugins: [
+    cjs({ exclude: [path.join(__dirname, 'packages', '*/src/**/*')] }),
     resolve(),
     babel({
       presets: [
         [
-          'env',
+          '@babel/env',
           {
             loose: true,
             modules: false,
-            exclude: ['transform-es2015-typeof-symbol']
+            exclude: ['transform-typeof-symbol']
           }
         ],
-        'stage-0',
-        'react',
-        'flow'
+        '@babel/stage-0',
+        '@babel/react',
+        '@babel/flow'
       ],
-      plugins: ['codegen', 'external-helpers'],
+      plugins: ['codegen'],
       babelrc: false
-    }),
-    cjs()
+    })
   ],
   output: [
     { file: pkg.main, format: 'cjs' },
@@ -74,7 +74,7 @@ if (process.env.UMD) {
 
 if (pkg.name === 'preact-emotion') {
   config.input = '../react-emotion/src/index.js'
-  config.external = ['preact', 'emotion-utils', 'emotion']
+  config.external = ['preact', 'emotion-utils', 'emotion', 'prop-types']
   config.plugins.unshift(alias({ react: 'preact' }))
 }
 
