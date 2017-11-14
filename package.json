@@ -125,6 +125,9 @@
       "standard/computed-property-even-spacing": 0,
       "no-template-curly-in-string": 0
     },
+    "env": {
+      "browser": true
+    },
     "overrides": [
       {
         "files": [
@@ -147,7 +150,8 @@
       "^emotion-utils$": "<rootDir>/packages/emotion-utils/src",
       "^emotion-server$": "<rootDir>/packages/emotion-server/src",
       "^emotion-theming$": "<rootDir>/packages/emotion-theming/src",
-      "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src"
+      "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src",
+      "^create-emotion": "<rootDir>/packages/create-emotion/src"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
     "coveragePathIgnorePatterns": [

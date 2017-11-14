@@ -72,10 +72,4 @@ if (process.env.UMD) {
   ]
 }
 
-if (pkg.name === 'preact-emotion') {
-  config.input = '../react-emotion/src/index.js'
-  config.external = ['preact', 'emotion-utils', 'emotion', 'prop-types']
-  config.plugins.unshift(alias({ react: 'preact' }))
-}
-
 export default config

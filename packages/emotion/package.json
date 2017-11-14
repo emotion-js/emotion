@@ -9,9 +9,6 @@
     "src",
     "dist",
     "macro.js",
-    "react",
-    "server.js",
-    "babel.js",
     "types"
   ],
   "scripts": {
@@ -24,9 +21,7 @@
   },
   "dependencies": {
     "babel-plugin-emotion": "^8.0.10",
-    "emotion-utils": "^8.0.10",
-    "stylis": "^3.3.2",
-    "stylis-rule-sheet": "^0.0.5"
+    "create-emotion": "^8.0.10"
   },
   "devDependencies": {
     "@types/react": "16.0.16",
@@ -41,7 +36,7 @@
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/tkh44/emotion/tree/master/packages/emotion",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion",
   "keywords": [
     "styles",
     "emotion",
@@ -50,6 +45,6 @@
     "css-in-js"
   ],
   "bugs": {
-    "url": "https://github.com/tkh44/emotion/issues"
+    "url": "https://github.com/emotion-js/emotion/issues"
   }
 }

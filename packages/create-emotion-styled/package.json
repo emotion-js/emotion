@@ -1,43 +1,36 @@
 {
-  "name": "preact-emotion",
+  "name": "create-emotion-styled",
   "version": "8.0.10",
-  "description": "The Next Generation of CSS-in-JS, for Preact projects.",
+  "description": "The styled API for emotion",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
+  "types": "types/index.d.ts",
   "files": [
-    "dist",
     "src",
-    "macro.js"
+    "dist"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup",
     "clean": "rimraf dist",
-    "watch": "rollup -c ../../rollup.config.js --watch",
-    "rollup": "rollup -c ../../rollup.config.js"
+    "rollup": "rollup -c ../../rollup.config.js",
+    "watch": "rollup -c ../../rollup.config.js --watch"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^8.0.10",
     "emotion-utils": "^8.0.10"
   },
-  "peerDependencies": {
-    "emotion": "^8.0.10"
-  },
   "devDependencies": {
-    "emotion": "^8.0.10",
     "npm-run-all": "^4.0.2",
-    "react-emotion": "^8.0.10",
     "rimraf": "^2.6.1",
     "rollup": "^0.51.3"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/preact-emotion",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/create-emotion-styled",
   "keywords": [
     "styles",
     "emotion",
     "react",
-    "preact",
     "css",
     "css-in-js"
   ],

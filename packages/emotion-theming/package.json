@@ -35,7 +35,7 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "homepage": "https://github.com/emotion-js/emotion#readme",
+  "homepage": "https://emotion.sh",
   "devDependencies": {
     "@types/react": "16.0.16",
     "cross-env": "^5.0.1",

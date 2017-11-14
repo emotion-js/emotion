@@ -1,8 +1,13 @@
 [ignore]
+.*/node_modules/styled-components/.*
+.*/node_modules/polished/.*
+.*/node_modules/jest-in-case/.*
+
 
 [include]
 
 [libs]
 
 [options]
+suppress_comment=.*\\$FlowFixMe
 module.name_mapper='^\(emotion-utils\)$' -> '<PROJECT_ROOT>/packages/\1/src'
