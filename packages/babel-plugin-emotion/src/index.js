@@ -188,6 +188,8 @@ const defaultImportedNames = {
   merge: 'merge'
 }
 
+const defaultEmotionPaths = ['emotion', 'react-emotion', 'preact-emotion']
+
 export default function(babel) {
   const { types: t } = babel
 
@@ -197,6 +199,13 @@ export default function(babel) {
     visitor: {
       Program: {
         enter(path, state) {
+          // this needs to handle relative paths and stuff
+          // https://github.com/tleunen/babel-plugin-module-resolver/tree/master/src
+          state.emotionImportPath =
+            state.opts.primaryPath !== undefined
+              ? state.opts.primaryPath
+              : 'emotion'
+
           state.importedNames = {
             ...defaultImportedNames,
             ...state.opts.importedNames
@@ -256,7 +265,11 @@ export default function(babel) {
           }
 
           imports.forEach(({ source, imported, specifiers }) => {
-            if (source.indexOf('emotion') !== -1) {
+            if (
+              defaultEmotionPaths
+                .concat(state.opts.paths || [])
+                .indexOf(source) !== -1
+            ) {
               const importedNames = specifiers
                 .filter(
                   v =>
