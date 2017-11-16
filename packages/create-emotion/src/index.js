@@ -14,10 +14,42 @@ type EmotionCaches = {
   externalStylisPlugins: StylisPlugins
 }
 
+export type Interpolation =
+  | string
+  | number
+  | void
+  | boolean
+  | Object
+  | Array<Interpolation>
+  | Array<any>
+  | (() => Interpolation)
+  | ((props?: Object, context?: Object) => Interpolation)
+
+export type Interpolations = Array<Interpolation>
+
+export type Emotion = {
+  css: (...args: Interpolations) => string,
+  cx: (...classNames: any) => string,
+  flush: () => void,
+  fontFace: (...args: Interpolations) => void,
+  getRegisteredStyles: (
+    registeredStyles: Array<string>,
+    classNames: string
+  ) => string,
+  hydrate: (ids: Array<string>) => void,
+  injectGlobal: (...args: Interpolations) => void,
+  inserted: {},
+  keyframes: (...args: Interpolations) => string,
+  merge: (className: string, sourceMap?: string) => string,
+  registered: {},
+  sheet: StyleSheet,
+  useStylisPlugin: (plugin: Function) => void
+}
+
 function createEmotion(
   context: { __SECRET_EMOTION__: EmotionCaches },
   options?: { nonce?: string }
-) {
+): Emotion {
   if (options === undefined) options = {}
   let caches: EmotionCaches = context.__SECRET_EMOTION__
   let current
@@ -64,13 +96,6 @@ function createEmotion(
 
   let currentSourceMap = ''
 
-  type Interpolation =
-    | string
-    | number
-    | Object
-    | Interpolation[]
-    | (() => Interpolation)
-    | ((props?: Object, context?: Object) => Interpolation)
   function handleInterpolation(
     interpolation: Interpolation,
     couldBeSelectorInterpolation: boolean
@@ -151,7 +176,6 @@ function createEmotion(
 
     if (strings == null || strings.raw === undefined) {
       stringMode = false
-      // $FlowFixMe
       styles += handleInterpolation.call(this, strings, false)
     } else {
       // $FlowFixMe
@@ -195,7 +219,7 @@ function createEmotion(
       inserted[name] = current
     }
   }
-  function css(...args: any) {
+  function css(...args: Interpolation[]) {
     const styles = createStyles.apply(this, arguments)
     const selector = `css-${name}`
 
@@ -207,20 +231,20 @@ function createEmotion(
     return selector
   }
 
-  function keyframes() {
-    const styles = createStyles.apply(this, arguments)
+  function keyframes(...args: Interpolation[]) {
+    const styles = createStyles(...args)
     const animation = `animation-${name}`
     insert('', `@keyframes ${animation}{${styles}}`)
 
     return animation
   }
 
-  function injectGlobal() {
-    const styles = createStyles.apply(this, arguments)
+  function injectGlobal(...args: Interpolation[]) {
+    const styles = createStyles(...args)
     insert('', styles)
   }
 
-  function fontFace(...args: any) {
+  function fontFace(...args: Interpolation[]) {
     const styles = createStyles(...args)
     insert('', `@font-face{${styles}}`)
   }
@@ -265,7 +289,7 @@ function createEmotion(
     registered = context.__SECRET_EMOTION__.registered = {}
     sheet.inject()
   }
-  return {
+  const emotion = {
     flush,
     hydrate,
     cx,
@@ -280,6 +304,7 @@ function createEmotion(
     inserted,
     useStylisPlugin
   }
+  return emotion
 }
 
 export default createEmotion

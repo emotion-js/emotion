@@ -16,7 +16,8 @@ const config = {
     'emotion-utils',
     'prop-types',
     'hoist-non-react-statics',
-    'stylis-rule-sheet'
+    'stylis-rule-sheet',
+    'preact'
   ],
   exports: 'named',
   sourcemap: true,
