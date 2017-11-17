@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer'
 import styled, { css, flush } from '../src/'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
 import { lighten, hiDPI, modularScale } from 'polished'
