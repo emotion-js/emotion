@@ -9,7 +9,7 @@ import path from 'path'
 const pkg = require(path.resolve(process.cwd(), './package.json'))
 
 const config = {
-  entry: './src/index.js',
+  input: './src/index.js',
   external: [
     'react',
     'emotion',
@@ -19,31 +19,31 @@ const config = {
     'stylis-rule-sheet'
   ],
   exports: 'named',
-  sourceMap: true,
+  sourcemap: true,
   plugins: [
+    cjs({ exclude: [path.join(__dirname, 'packages', '*/src/**/*')] }),
     resolve(),
     babel({
       presets: [
         [
-          'env',
+          '@babel/env',
           {
             loose: true,
             modules: false,
-            exclude: ['transform-es2015-typeof-symbol']
+            exclude: ['transform-typeof-symbol']
           }
         ],
-        'stage-0',
-        'react',
-        'flow'
+        '@babel/stage-0',
+        '@babel/react',
+        '@babel/flow'
       ],
-      plugins: ['codegen', 'external-helpers'],
+      plugins: ['codegen'],
       babelrc: false
-    }),
-    cjs()
+    })
   ],
-  targets: [
-    { dest: pkg.main, format: 'cjs' },
-    { dest: pkg.module, format: 'es' }
+  output: [
+    { file: pkg.main, format: 'cjs' },
+    { file: pkg.module, format: 'es' }
   ]
 }
 
@@ -63,18 +63,18 @@ if (process.env.UMD) {
     }),
     uglify()
   )
-  config.targets = [
+  config.output = [
     {
-      dest: './dist/emotion.umd.min.js',
+      file: './dist/emotion.umd.min.js',
       format: 'umd',
-      moduleName: pkg.name
+      name: pkg.name
     }
   ]
 }
 
 if (pkg.name === 'preact-emotion') {
-  config.entry = '../react-emotion/src/index.js'
-  config.external = ['preact', 'emotion-utils', 'emotion']
+  config.input = '../react-emotion/src/index.js'
+  config.external = ['preact', 'emotion-utils', 'emotion', 'prop-types']
   config.plugins.unshift(alias({ react: 'preact' }))
 }
 
