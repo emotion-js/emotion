@@ -194,7 +194,26 @@ const props = {
   unselectable: true,
   //
   // SVG properties: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute
+  // The following "onX" events have been omitted:
   //
+  //  onabort
+  //  onactivate
+  //  onbegin
+  //  onclick
+  //  onend
+  //  onerror
+  //  onfocusin
+  //  onfocusout
+  //  onload
+  //  onmousedown
+  //  onmousemove
+  //  onmouseout
+  //  onmouseover
+  //  onmouseup
+  //  onrepeat
+  //  onresize
+  //  onscroll
+  //  onunload
   accentHeight: true,
   accumulate: true,
   additive: true,
@@ -217,7 +236,6 @@ const props = {
   by: true,
   calcMode: true,
   capHeight: true,
-  class: true,
   clip: true,
   clipPathUnits: true,
   clipPath: true,
@@ -265,7 +283,7 @@ const props = {
   fontWeight: true,
   format: true,
   from: true,
-  fr: true,
+  fr: true, // valid SVG element but React will ask for removal
   fx: true,
   fy: true,
   g1: true,
@@ -313,24 +331,6 @@ const props = {
   mode: true,
   numOctaves: true,
   offset: true,
-  onabort: true,
-  onactivate: true,
-  onbegin: true,
-  onclick: true,
-  onend: true,
-  onerror: true,
-  onfocusin: true,
-  onfocusout: true,
-  onload: true,
-  onmousedown: true,
-  onmousemove: true,
-  onmouseout: true,
-  onmouseover: true,
-  onmouseup: true,
-  onrepeat: true,
-  onresize: true,
-  onscroll: true,
-  onunload: true,
   opacity: true,
   operator: true,
   order: true,
@@ -397,7 +397,6 @@ const props = {
   strokeWidth: true,
   surfaceScale: true,
   systemLanguage: true,
-  tabindex: true,
   tableValues: true,
   targetX: true,
   targetY: true,
