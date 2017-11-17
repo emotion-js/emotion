@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import styled, { css, flush } from '../src/'
+import styled, { css, flush } from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { mount } from 'enzyme'
