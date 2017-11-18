@@ -157,3 +157,11 @@ export const getInjectedRules = ({ caches }: Emotion) =>
         .join('')
     )
   )
+
+export const setHtml = (html: string, document: Document) => {
+  if (document.body !== null) {
+    document.body.innerHTML = html
+  } else {
+    throw new Error('body does not exist on document')
+  }
+}

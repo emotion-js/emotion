@@ -8,7 +8,8 @@ import {
   getComponents,
   getInjectedRules,
   createBigComponent,
-  getCssFromChunks
+  getCssFromChunks,
+  setHtml
 } from './util'
 import { JSDOM } from 'jsdom'
 
@@ -62,6 +63,7 @@ describe('hydration', () => {
     global.document = window.document
     global.window = window
     global.__SECRET_EMOTION__ = undefined
+    setHtml(html, document)
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
