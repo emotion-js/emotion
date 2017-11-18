@@ -22,6 +22,16 @@ export function hashArray(arr) {
 
 const staticStylis = new Stylis({ keyframe: false })
 
+const setIsPrefixed = ({ prefix = true }) => {
+  if (typeof prefix === 'function') {
+    staticStylis.use({
+      prefix
+    })
+  } else {
+    staticStylis.set({ prefix })
+  }
+}
+
 export function hoistPureArgs(path) {
   const args = path.get('arguments')
 
@@ -49,6 +59,7 @@ export function replaceCssWithCallExpression(
     const name = getName(identifierName, 'css')
 
     if (state.extractStatic && !path.node.quasi.expressions.length) {
+      setIsPrefixed(state.opts)
       const staticCSSRules = staticStylis(
         staticCSSSelectorCreator(name, hash),
         staticCSSSrcCreator(src, name, hash)
@@ -103,6 +114,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
       identifierName,
       'styled' // we don't want these styles to be merged in css``
     )
+    setIsPrefixed(state.opts)
     const staticClassName = `css-${hash}`
     const staticCSSRules = staticStylis(`.${staticClassName}`, src)
 
