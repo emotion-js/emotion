@@ -36,7 +36,6 @@ describe('hydration', () => {
     emotion = require('emotion')
     emotionServer = require('emotion-server')
     expect(emotion.inserted).toEqual({})
-    expect(emotion.inserted).toBe(global.__SECRET_EMOTION__)
     emotion.hydrate(ids)
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)
