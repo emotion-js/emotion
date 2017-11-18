@@ -1,7 +1,8 @@
-// @flow weak
-export function memoize(fn) {
+// @flow
+
+export const memoize = (fn: string => any) => {
   const cache = {}
-  return arg => {
+  return (arg: string) => {
     if (cache[arg] === undefined) cache[arg] = fn(arg)
     return cache[arg]
   }

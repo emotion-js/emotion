@@ -8,8 +8,7 @@ function macro({ references, state, babel: { types: t } }) {
   Object.keys(references).forEach(referenceKey => {
     let isPure = true
     switch (referenceKey) {
-      case 'injectGlobal':
-      case 'fontFace': {
+      case 'injectGlobal': {
         isPure = false
       }
       // eslint-disable-next-line no-fallthrough

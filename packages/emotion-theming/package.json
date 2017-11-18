@@ -35,14 +35,14 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "homepage": "https://github.com/emotion-js/emotion#readme",
+  "homepage": "https://emotion.sh",
   "devDependencies": {
     "@types/react": "16.0.16",
     "cross-env": "^5.0.1",
     "dtslint": "^0.2.0",
     "prop-types": "^15.5.8",
     "rimraf": "^2.6.1",
-    "rollup": "^0.43.0"
+    "rollup": "^0.51.3"
   },
   "dependencies": {
     "hoist-non-react-statics": "^2.3.1"

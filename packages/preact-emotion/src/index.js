@@ -1,4 +1,4 @@
-import { createElement, Component } from 'react'
+import { createElement, Component } from 'preact'
 import * as emotion from 'emotion'
 import { channel, contextTypes } from '../../emotion-theming/src/utils'
 import createEmotionStyled from 'create-emotion-styled'

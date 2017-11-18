@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component, PureComponent } from 'react'
 
-import { channel } from '../src/utils'
+import { channel } from 'emotion-theming'
 
 export const getContextTypes = C => C.contextTypes
 export const getChannel = C => Object.keys(getContextTypes(C))[0]

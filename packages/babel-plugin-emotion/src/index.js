@@ -184,9 +184,10 @@ const defaultImportedNames = {
   css: 'css',
   keyframes: 'keyframes',
   injectGlobal: 'injectGlobal',
-  fontFace: 'fontFace',
   merge: 'merge'
 }
+
+const defaultEmotionPaths = ['emotion', 'react-emotion', 'preact-emotion']
 
 export default function(babel) {
   const { types: t } = babel
@@ -197,6 +198,13 @@ export default function(babel) {
     visitor: {
       Program: {
         enter(path, state) {
+          // this needs to handle relative paths and stuff
+          // https://github.com/tleunen/babel-plugin-module-resolver/tree/master/src
+          state.emotionImportPath =
+            state.opts.primaryPath !== undefined
+              ? state.opts.primaryPath
+              : 'emotion'
+
           state.importedNames = {
             ...defaultImportedNames,
             ...state.opts.importedNames
@@ -256,7 +264,11 @@ export default function(babel) {
           }
 
           imports.forEach(({ source, imported, specifiers }) => {
-            if (source.indexOf('emotion') !== -1) {
+            if (
+              defaultEmotionPaths
+                .concat(state.opts.paths || [])
+                .indexOf(source) !== -1
+            ) {
               const importedNames = specifiers
                 .filter(
                   v =>
@@ -265,7 +277,6 @@ export default function(babel) {
                       'css',
                       'keyframes',
                       'injectGlobal',
-                      'fontFace',
                       'merge'
                     ].indexOf(v.imported) !== -1
                 )
@@ -349,7 +360,6 @@ export default function(babel) {
               }
               // eslint-disable-next-line no-fallthrough
               case state.importedNames.injectGlobal:
-              case state.importedNames.fontFace:
                 if (
                   state.opts.sourceMap === true &&
                   path.node.loc !== undefined
@@ -433,15 +443,6 @@ export default function(babel) {
               (src, name, hash) => `@keyframes ${name}-${hash} { ${src} }`,
               false,
               () => ''
-            )
-          } else if (path.node.tag.name === state.importedNames.fontFace) {
-            replaceCssWithCallExpression(
-              path,
-              path.node.tag,
-              state,
-              t,
-              (src, name, hash) => `@font-face {${src}}`,
-              true
             )
           } else if (path.node.tag.name === state.importedNames.injectGlobal) {
             replaceCssWithCallExpression(

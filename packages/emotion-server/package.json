@@ -32,7 +32,7 @@
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/tkh44/emotion/tree/master/packages/emotion-server",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-server",
   "keywords": [
     "styles",
     "emotion",
@@ -43,6 +43,6 @@
     "server-side-rendering"
   ],
   "bugs": {
-    "url": "https://github.com/tkh44/emotion/issues"
+    "url": "https://github.com/emotion-js/emotion/issues"
   }
 }

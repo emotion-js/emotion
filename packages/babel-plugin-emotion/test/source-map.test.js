@@ -55,19 +55,6 @@ const cases = {
     filename: 'styled.source-map.test.js'
   },
 
-  'fontFace source map': {
-    code: `
-      fontFace\`
-        font-family: MyHelvetica;
-        src: local("Helvetica Neue Bold"),
-             local("HelveticaNeue-Bold"),
-             url(MgOpenModernaBold.ttf);
-        font-weight: bold;
-    \`;`,
-
-    filename: 'fontFace.source-map.test.js'
-  },
-
   'css prop': {
     code: `
     <div
