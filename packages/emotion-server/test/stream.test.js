@@ -32,6 +32,7 @@ let reactEmotion
 
 describe('renderStylesToNodeStream', () => {
   beforeEach(() => {
+    global.__SECRET_EMOTION__ = undefined
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
@@ -63,6 +64,7 @@ describe('hydration', () => {
   })
   beforeEach(() => {
     jest.resetModules()
+    global.__SECRET_EMOTION__ = undefined
     emotion = require('emotion')
     emotionServer = require('emotion-server')
     reactEmotion = require('react-emotion')
@@ -74,6 +76,8 @@ describe('hydration', () => {
     const { window } = new JSDOM(html)
     global.document = window.document
     global.window = window
+    global.__SECRET_EMOTION__ = undefined
+
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
