@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`prefix babel 6 css default prefix 1`] = `
+"
+/*#__PURE__*/css(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 6 css default prefix 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+\\"css-5gnu3i\\";
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}"
+`;
+
+exports[`prefix babel 6 css explicit prefix 1`] = `
+"
+/*#__PURE__*/css(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 6 css explicit prefix 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+\\"css-5gnu3i\\";
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}"
+`;
+
+exports[`prefix babel 6 css function prefix 1`] = `
+"
+/*#__PURE__*/css(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 6 css function prefix 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+\\"css-5gnu3i\\";
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}"
+`;
+
+exports[`prefix babel 6 css function unprefixed 1`] = `
+"
+/*#__PURE__*/css(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 6 css function unprefixed 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+\\"css-5gnu3i\\";
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:flex;}"
+`;
+
+exports[`prefix babel 6 css unprefixed 1`] = `
+"
+/*#__PURE__*/css(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 6 css unprefixed 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+\\"css-5gnu3i\\";
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:flex;}"
+`;
+
+exports[`prefix babel 6 styled prefix 1`] = `
+"
+/*#__PURE__*/styled('div')('color:rebeccapurple\\\\n        display:flex;');"
+`;
+
+exports[`prefix babel 6 styled prefix 2`] = `
+"require('./emotion.emotion.css');
+
+styled('div', {
+  e: 'css-5gnu3i'
+})();
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}"
+`;
+
+exports[`prefix babel 6 styled unprefixed 1`] = `
+"
+/*#__PURE__*/styled('div')('color:rebeccapurple\\\\n        display:flex;');"
+`;
+
+exports[`prefix babel 6 styled unprefixed 2`] = `
+"require('./emotion.emotion.css');
+
+styled('div', {
+  e: 'css-5gnu3i'
+})();
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:flex;}"
+`;
+
+exports[`prefix babel 7 css default prefix 1`] = `
+"/*#__PURE__*/
+css(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 7 css default prefix 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+\\"css-5gnu3i\\";
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}"
+`;
+
+exports[`prefix babel 7 css explicit prefix 1`] = `
+"/*#__PURE__*/
+css(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 7 css explicit prefix 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+\\"css-5gnu3i\\";
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}"
+`;
+
+exports[`prefix babel 7 css function prefix 1`] = `
+"/*#__PURE__*/
+css(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 7 css function prefix 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+\\"css-5gnu3i\\";
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}"
+`;
+
+exports[`prefix babel 7 css function unprefixed 1`] = `
+"/*#__PURE__*/
+css(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 7 css function unprefixed 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+\\"css-5gnu3i\\";
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:flex;}"
+`;
+
+exports[`prefix babel 7 css unprefixed 1`] = `
+"/*#__PURE__*/
+css(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 7 css unprefixed 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+\\"css-5gnu3i\\";
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:flex;}"
+`;
+
+exports[`prefix babel 7 styled prefix 1`] = `
+"/*#__PURE__*/
+styled('div')(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 7 styled prefix 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+styled('div', {
+  e: \\"css-5gnu3i\\"
+})();
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}"
+`;
+
+exports[`prefix babel 7 styled unprefixed 1`] = `
+"/*#__PURE__*/
+styled('div')(\\"color:rebeccapurple\\\\n        display:flex;\\");"
+`;
+
+exports[`prefix babel 7 styled unprefixed 2`] = `
+"require(\\"./emotion.emotion.css\\");
+
+styled('div', {
+  e: \\"css-5gnu3i\\"
+})();
+
+
+emotion.emotion.css
+.css-5gnu3i{color:rebeccapurple;display:flex;}"
+`;
