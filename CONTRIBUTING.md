@@ -7,7 +7,7 @@
 ## Installation
 
 - Running `yarn` in the module's root directory will install everything you need for development.
-- Run `lerna bootstrap` in the module's root directory
+- Run `yarn bootstrap` in the module's root directory
 
 ## Running Tests
 
