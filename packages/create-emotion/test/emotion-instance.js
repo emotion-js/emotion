@@ -1,10 +1,17 @@
 // @flow
 import createEmotion from 'create-emotion'
+import { transform } from 'cssjanus'
 
 const context =
   typeof global !== 'undefined'
     ? global
     : typeof window !== 'undefined' ? window : {}
+
+function stylisPlugin(context, content) {
+  if (context === 2) {
+    return transform(content)
+  }
+}
 
 export const {
   flush,
@@ -18,4 +25,4 @@ export const {
   sheet,
   registered,
   inserted
-} = createEmotion(context)
+} = createEmotion(context, { stylisPlugins: stylisPlugin })

@@ -184,7 +184,6 @@ const defaultImportedNames = {
   css: 'css',
   keyframes: 'keyframes',
   injectGlobal: 'injectGlobal',
-  fontFace: 'fontFace',
   merge: 'merge'
 }
 
@@ -278,7 +277,6 @@ export default function(babel) {
                       'css',
                       'keyframes',
                       'injectGlobal',
-                      'fontFace',
                       'merge'
                     ].indexOf(v.imported) !== -1
                 )
@@ -362,7 +360,6 @@ export default function(babel) {
               }
               // eslint-disable-next-line no-fallthrough
               case state.importedNames.injectGlobal:
-              case state.importedNames.fontFace:
                 if (
                   state.opts.sourceMap === true &&
                   path.node.loc !== undefined
@@ -446,15 +443,6 @@ export default function(babel) {
               (src, name, hash) => `@keyframes ${name}-${hash} { ${src} }`,
               false,
               () => ''
-            )
-          } else if (path.node.tag.name === state.importedNames.fontFace) {
-            replaceCssWithCallExpression(
-              path,
-              path.node.tag,
-              state,
-              t,
-              (src, name, hash) => `@font-face {${src}}`,
-              true
             )
           } else if (path.node.tag.name === state.importedNames.injectGlobal) {
             replaceCssWithCallExpression(

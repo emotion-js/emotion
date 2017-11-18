@@ -4,14 +4,13 @@ import stylisRuleSheet from 'stylis-rule-sheet'
 import { processStyleName, processStyleValue, classnames } from './utils'
 import StyleSheet from './sheet'
 
-type StylisPlugins = Function[]
+type StylisPlugins = Function[] | null | Function
 
 type EmotionCaches = {
   registered: { [key: string]: string },
   inserted: { [key: string]: string | true },
   stylis: (scope: string, styles: string) => string,
-  sheet: StyleSheet,
-  externalStylisPlugins: StylisPlugins
+  sheet: StyleSheet
 }
 
 export type Interpolation =
@@ -31,7 +30,6 @@ export type Emotion = {
   css: (...args: Interpolations) => string,
   cx: (...classNames: any) => string,
   flush: () => void,
-  fontFace: (...args: Interpolations) => void,
   getRegisteredStyles: (
     registeredStyles: Array<string>,
     classNames: string
@@ -42,15 +40,17 @@ export type Emotion = {
   keyframes: (...args: Interpolations) => string,
   merge: (className: string, sourceMap?: string) => string,
   registered: {},
-  sheet: StyleSheet,
-  useStylisPlugin: (plugin: Function) => void
+  sheet: StyleSheet
 }
 
+type EmotionOptions = { nonce?: string, stylisPlugins?: StylisPlugins }
+
 function createEmotion(
-  context: { __SECRET_EMOTION__: EmotionCaches },
-  options?: { nonce?: string }
+  context: { __SECRET_EMOTION__?: EmotionCaches },
+  options?: EmotionOptions
 ): Emotion {
   if (options === undefined) options = {}
+  // $FlowFixMe
   let caches: EmotionCaches = context.__SECRET_EMOTION__
   let current
 
@@ -73,18 +73,12 @@ function createEmotion(
       registered: {},
       inserted: {},
       sheet: new StyleSheet(options.nonce),
-      externalStylisPlugins: [],
       stylis: new Stylis(stylisOptions)
     }
 
-    caches.stylis.use(insertionPlugin)
+    caches.stylis.use(options.stylisPlugins)(insertionPlugin)
     // 🚀
     caches.sheet.inject()
-  }
-
-  const useStylisPlugin = (plugin: Function) => {
-    caches.externalStylisPlugins.push(plugin)
-    caches.stylis.use(null)(caches.externalStylisPlugins)(insertionPlugin)
   }
 
   let stylis = caches.stylis
@@ -244,11 +238,6 @@ function createEmotion(
     insert('', styles)
   }
 
-  function fontFace(...args: Interpolation[]) {
-    const styles = createStyles(...args)
-    insert('', `@font-face{${styles}}`)
-  }
-
   function getRegisteredStyles(registeredStyles: string[], classNames: string) {
     let rawClassName = ''
 
@@ -285,24 +274,23 @@ function createEmotion(
 
   function flush() {
     sheet.flush()
-    inserted = context.__SECRET_EMOTION__.inserted = {}
-    registered = context.__SECRET_EMOTION__.registered = {}
+    inserted = caches.inserted = {}
+    registered = caches.registered = {}
     sheet.inject()
   }
+
   const emotion = {
     flush,
     hydrate,
     cx,
     merge,
     getRegisteredStyles,
-    fontFace,
     injectGlobal,
     keyframes,
     css,
     sheet,
     registered,
-    inserted,
-    useStylisPlugin
+    inserted
   }
   return emotion
 }

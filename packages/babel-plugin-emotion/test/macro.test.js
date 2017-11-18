@@ -92,18 +92,6 @@ const cases = {
   \`;`
   },
 
-  fontFace: {
-    code: `
-    import { fontFace } from '../src/macro'
-    fontFace\`
-    font-family: MyHelvetica;
-    src: local("Helvetica Neue Bold"),
-         local("HelveticaNeue-Bold"),
-         url(MgOpenModernaBold.ttf);
-    font-weight: bold;
-    \`;`
-  },
-
   css: {
     code: `
     import { css } from '../src/macro'

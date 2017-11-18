@@ -9,7 +9,9 @@
     "^emotion-utils$": "<rootDir>/packages/emotion-utils/dist/index.cjs.js",
     "^emotion-server$": "<rootDir>/packages/emotion-server/lib",
     "^emotion-theming$": "<rootDir>/packages/emotion-theming/dist/index.cjs.js",
-    "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/lib"
+    "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/lib",
+    "^create-emotion$": "<rootDir>/packages/create-emotion/dist",
+    "^create-emotion-styled$": "<rootDir>/packages/create-emotion-styled/dist"
   },
   "transformIgnorePatterns": [
     "dist"

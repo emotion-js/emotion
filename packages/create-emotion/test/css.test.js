@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { css, flush, sheet } from 'emotion'
+import { css, flush, sheet } from './emotion-instance'
 
 describe('css', () => {
   test('float property', () => {
