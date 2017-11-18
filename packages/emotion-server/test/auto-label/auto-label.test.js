@@ -1,12 +1,15 @@
+// @flow
 /**
  * @jest-environment node
 */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import styled from 'react-emotion'
-import { css, injectGlobal, keyframes, flush, hydrate, sheet } from 'emotion'
+import { css, injectGlobal, keyframes, flush, hydrate } from 'emotion'
 import { extractCritical } from 'emotion-server'
-import { prettyifyCritical } from '../util'
+import { prettyifyCritical, getInjectedRules } from '../util'
+
+const emotion = require('emotion')
 
 const getComponents = () => {
   const color = 'red'
@@ -115,9 +118,11 @@ describe('hydration', () => {
     const { html, ids, css } = extractCritical(renderToString(<Page1 />))
     expect(prettyifyCritical({ html, css, ids })).toMatchSnapshot()
     flush()
+
     hydrate(ids)
+
     const { Page1: NewPage1 } = getComponents()
     renderToString(<NewPage1 />)
-    expect(sheet.sheet).toMatchSnapshot()
+    expect(getInjectedRules(emotion)).toMatchSnapshot()
   })
 })

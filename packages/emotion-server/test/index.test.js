@@ -1,9 +1,10 @@
+// @flow
 /**
  * @jest-environment node
 */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { getComponents, prettyifyCritical } from './util'
+import { getComponents, prettyifyCritical, getInjectedRules } from './util'
 
 let emotion = require('emotion')
 let reactEmotion = require('react-emotion')
@@ -35,10 +36,10 @@ describe('hydration', () => {
     global.__SECRET_EMOTION__ = undefined
     emotion = require('emotion')
     emotionServer = require('emotion-server')
-    expect(emotion.inserted).toEqual({})
+    expect(emotion.caches.inserted).toEqual({})
     emotion.hydrate(ids)
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)
-    expect(emotion.sheet.sheet).toMatchSnapshot()
+    expect(getInjectedRules(emotion)).toMatchSnapshot()
   })
 })

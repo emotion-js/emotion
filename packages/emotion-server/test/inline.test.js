@@ -1,3 +1,4 @@
+// @flow
 /**
  * @jest-environment node
 */
@@ -66,7 +67,7 @@ describe('hydration', () => {
     emotionServer = require('emotion-server')
     reactEmotion = require('react-emotion')
 
-    expect(emotion.registered).toEqual({})
+    expect(emotion.caches.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)

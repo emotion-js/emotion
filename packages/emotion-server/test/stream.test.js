@@ -1,7 +1,9 @@
+// @flow
 /**
  * @jest-environment node
 */
 import React from 'react'
+// $FlowFixMe
 import { renderToNodeStream, renderToString } from 'react-dom/server'
 import {
   getComponents,
@@ -82,7 +84,7 @@ describe('hydration', () => {
     emotion = require('emotion')
     emotionServer = require('emotion-server')
     reactEmotion = require('react-emotion')
-    expect(emotion.registered).toEqual({})
+    expect(emotion.caches.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)

@@ -23,15 +23,17 @@ const createRenderStylesToNodeStream = (emotion: Emotion) => () => {
             ids[match[1]] = true
           }
         }
-        Object.keys(emotion.inserted).forEach(id => {
+        Object.keys(emotion.caches.inserted).forEach(id => {
           if (
+            emotion.caches.inserted[id] !== true &&
             insed[id] === undefined &&
             (ids[id] === true ||
-              (emotion.registered[`css-${id}`] === undefined &&
+              (emotion.caches.registered[`css-${id}`] === undefined &&
                 (ids[id] = true)))
           ) {
             insed[id] = true
-            css += emotion.inserted[id]
+            // $FlowFixMe flow thinks emotion.caches.inserted[id] can be true even though it's checked earlier
+            css += emotion.caches.inserted[id]
           }
         })
 

@@ -15,9 +15,13 @@ const createExtractCritical = (emotion: Emotion) => (html: string) => {
     }
   }
 
-  o.ids = Object.keys(emotion.inserted).filter(id => {
-    if (ids[id] === true || emotion.registered[`css-${id}`] === undefined) {
-      o.css += emotion.inserted[id]
+  o.ids = Object.keys(emotion.caches.inserted).filter(id => {
+    if (
+      (ids[id] === true ||
+        emotion.caches.registered[`css-${id}`] === undefined) &&
+      emotion.caches.inserted[id] !== true
+    ) {
+      o.css += emotion.caches.inserted[id]
       return true
     }
   })

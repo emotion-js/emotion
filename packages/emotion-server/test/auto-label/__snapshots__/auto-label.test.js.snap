@@ -348,9 +348,18 @@ Object {
 `;
 
 exports[`hydration only rules that are not in the critical css are inserted 2`] = `
-Array [
-  ".css-1ypzo6g-hoverStyles{color:hotpink;}",
-  ".css-1ypzo6g-hoverStyles:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}",
-  ".css-lecien-getComponents{display:none;}",
-]
+".css-1ypzo6g-hoverStyles {
+  color: hotpink;
+}
+
+.css-1ypzo6g-hoverStyles:hover {
+  color: white;
+  background-color: lightgray;
+  border-color: aqua;
+  box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
+}
+
+.css-lecien-getComponents {
+  display: none;
+}"
 `;

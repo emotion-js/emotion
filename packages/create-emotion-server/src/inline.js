@@ -13,8 +13,8 @@ function toTag(
   let styles = ''
   let idHydration = ''
   thing.keys = thing.keys.filter(id => {
-    if (idhash[id] !== undefined) {
-      styles += emotion.inserted[id]
+    if (idhash[id] !== undefined && emotion.caches.inserted[id] !== true) {
+      styles += emotion.caches.inserted[id]
       idHydration += ` ${id}`
     }
     return true
@@ -34,12 +34,15 @@ const createRenderStylesToString = (emotion: Emotion) => (
   let idBuffer = []
   let result = []
   let insed = {}
-  let keys = Object.keys(emotion.inserted)
+  let keys = Object.keys(emotion.caches.inserted)
   let globalStyles = ''
   let globalIds = ''
   keys = keys.filter(id => {
-    if (emotion.registered[`css-${id}`] === undefined) {
-      globalStyles += emotion.inserted[id]
+    if (
+      emotion.caches.registered[`css-${id}`] === undefined &&
+      emotion.caches.inserted[id] !== true
+    ) {
+      globalStyles += emotion.caches.inserted[id]
       globalIds += ` ${id}`
       return false
     }

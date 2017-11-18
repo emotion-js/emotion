@@ -1,7 +1,12 @@
 // @flow
 import { hashString, Stylis } from 'emotion-utils'
 import stylisRuleSheet from 'stylis-rule-sheet'
-import { processStyleName, processStyleValue, classnames } from './utils'
+import {
+  processStyleName,
+  processStyleValue,
+  classnames,
+  isBrowser
+} from './utils'
 import StyleSheet from './sheet'
 
 type StylisPlugins = Function[] | null | Function
@@ -13,21 +18,24 @@ type EmotionCaches = {
   sheet: StyleSheet
 }
 
-export type Interpolation =
-  | string
-  | number
-  | void
-  | boolean
-  | Object
-  | Array<Interpolation>
-  | Array<any>
-  | (() => Interpolation)
-  | ((props?: Object, context?: Object) => Interpolation)
+// this should probably be an actual type but it's hard to do without errors
+export type Interpolation = any
+// | string
+// | number
+// | void
+// | boolean
+// | null
+// | Object
+// | Array<Interpolation>
+// | (() => Interpolation)
+// | ((props?: Object, context?: Object) => Interpolation)
 
 export type Interpolations = Array<Interpolation>
 
+type CreateStyles<ReturnValue> = (...args: Interpolations) => ReturnValue
+
 export type Emotion = {
-  css: (...args: Interpolations) => string,
+  css: CreateStyles<string>,
   cx: (...classNames: any) => string,
   flush: () => void,
   getRegisteredStyles: (
@@ -35,12 +43,11 @@ export type Emotion = {
     classNames: string
   ) => string,
   hydrate: (ids: Array<string>) => void,
-  injectGlobal: (...args: Interpolations) => void,
-  inserted: {},
-  keyframes: (...args: Interpolations) => string,
+  injectGlobal: CreateStyles<void>,
+  keyframes: CreateStyles<string>,
   merge: (className: string, sourceMap?: string) => string,
-  registered: {},
-  sheet: StyleSheet
+  sheet: StyleSheet,
+  caches: EmotionCaches
 }
 
 type EmotionOptions = { nonce?: string, stylisPlugins?: StylisPlugins }
@@ -56,7 +63,9 @@ function createEmotion(
 
   function insertRule(rule: string) {
     current += rule
-    sheet.insert(rule, currentSourceMap)
+    if (isBrowser) {
+      sheet.insert(rule, currentSourceMap)
+    }
   }
 
   const insertionPlugin = stylisRuleSheet(insertRule)
@@ -78,15 +87,13 @@ function createEmotion(
 
     caches.stylis.use(options.stylisPlugins)(insertionPlugin)
     // 🚀
-    caches.sheet.inject()
+    if (isBrowser) {
+      caches.sheet.inject()
+    }
   }
 
   let stylis = caches.stylis
   let sheet = caches.sheet
-
-  let registered = {}
-
-  let inserted = {}
 
   let currentSourceMap = ''
 
@@ -113,7 +120,7 @@ function createEmotion(
       case 'object':
         return createStringFromObject.call(this, interpolation)
       default:
-        const cached: string | void = registered[interpolation]
+        const cached: string | void = caches.registered[interpolation]
         return couldBeSelectorInterpolation === false && cached !== undefined
           ? cached
           : interpolation
@@ -137,8 +144,8 @@ function createEmotion(
       Object.keys(obj).forEach(function(key: string) {
         // $FlowFixMe
         if (typeof obj[key] !== 'object') {
-          if (registered[obj[key]] !== undefined) {
-            string += `${key}{${registered[obj[key]]}}`
+          if (caches.registered[obj[key]] !== undefined) {
+            string += `${key}{${caches.registered[obj[key]]}}`
           } else {
             string += `${processStyleName(key)}:${processStyleValue(
               key,
@@ -160,7 +167,7 @@ function createEmotion(
 
   const labelPattern = /label:\s*([^\s;\n]+)\s*[;\n]/g
 
-  function createStyles(
+  const createStyles: CreateStyles<string> = function(
     strings: Interpolation | string[],
     ...interpolations: Interpolation[]
   ) {
@@ -172,7 +179,6 @@ function createEmotion(
       stringMode = false
       styles += handleInterpolation.call(this, strings, false)
     } else {
-      // $FlowFixMe
       styles += strings[0]
     }
 
@@ -182,9 +188,7 @@ function createEmotion(
         interpolation,
         styles.charCodeAt(styles.length - 1) === 46 // .
       )
-      // $FlowFixMe
       if (stringMode === true && strings[i + 1] !== undefined) {
-        // $FlowFixMe
         styles += strings[i + 1]
       }
     }, this)
@@ -207,34 +211,34 @@ function createEmotion(
     }
   }
   function insert(scope, styles) {
-    if (inserted[name] === undefined) {
+    if (caches.inserted[name] === undefined) {
       current = ''
       stylis(scope, styles)
-      inserted[name] = current
+      caches.inserted[name] = current
     }
   }
-  function css(...args: Interpolation[]) {
+  const css: CreateStyles<string> = function css() {
     const styles = createStyles.apply(this, arguments)
     const selector = `css-${name}`
 
-    if (registered[selector] === undefined) {
-      registered[selector] = styles
+    if (caches.registered[selector] === undefined) {
+      caches.registered[selector] = styles
     }
     insert(`.${selector}`, styles)
 
     return selector
   }
 
-  function keyframes(...args: Interpolation[]) {
-    const styles = createStyles(...args)
+  const keyframes: CreateStyles<string> = function keyframes() {
+    const styles = createStyles.apply(this, arguments)
     const animation = `animation-${name}`
     insert('', `@keyframes ${animation}{${styles}}`)
 
     return animation
   }
 
-  function injectGlobal(...args: Interpolation[]) {
-    const styles = createStyles(...args)
+  const injectGlobal: CreateStyles<void> = function injectGlobal() {
+    const styles = createStyles.apply(this, arguments)
     insert('', styles)
   }
 
@@ -242,7 +246,7 @@ function createEmotion(
     let rawClassName = ''
 
     classNames.split(' ').forEach(className => {
-      if (registered[className] !== undefined) {
+      if (caches.registered[className] !== undefined) {
         registeredStyles.push(className)
       } else {
         rawClassName += `${className} `
@@ -268,15 +272,17 @@ function createEmotion(
 
   function hydrate(ids: string[]) {
     ids.forEach(id => {
-      inserted[id] = true
+      caches.inserted[id] = true
     })
   }
 
   function flush() {
-    sheet.flush()
-    inserted = caches.inserted = {}
-    registered = caches.registered = {}
-    sheet.inject()
+    if (isBrowser) {
+      sheet.flush()
+      sheet.inject()
+    }
+    caches.inserted = {}
+    caches.registered = {}
   }
 
   if (typeof window !== 'undefined') {
@@ -289,7 +295,7 @@ function createEmotion(
         .getAttribute('data-emotion-chunk')
         .split(' ')
         .forEach(id => {
-          inserted[id] = true
+          caches.inserted[id] = true
         })
     })
   }
@@ -304,8 +310,7 @@ function createEmotion(
     keyframes,
     css,
     sheet,
-    registered,
-    inserted
+    caches
   }
   return emotion
 }

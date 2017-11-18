@@ -1,10 +1,12 @@
+// @flow
 /* eslint-env jest */
 import React from 'react'
 import { parse, stringify } from 'css'
+import type { Emotion } from 'create-emotion'
 
 export const getComponents = (
-  { injectGlobal, keyframes, css },
-  { default: styled }
+  { injectGlobal, keyframes, css }: Emotion,
+  { default: styled }: { default: Function }
 ) => {
   const color = 'red'
 
@@ -97,8 +99,8 @@ export const getComponents = (
 
 const maxColors = Math.pow(16, 6)
 
-export const createBigComponent = ({ injectGlobal, css }) => {
-  const BigComponent = ({ count }) => {
+export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
+  const BigComponent = ({ count }: { count: number }) => {
     if (count === 0) return null
     injectGlobal`
     .some-global-${count} {
@@ -124,24 +126,34 @@ export const createBigComponent = ({ injectGlobal, css }) => {
   return BigComponent
 }
 
-export const prettyifyCritical = ({ html, css, ids }) => {
+export const prettyifyCritical = ({
+  html,
+  css,
+  ids
+}: {
+  html: string,
+  css: string,
+  ids: Array<string>
+}) => {
   return { css: stringify(parse(css)), ids, html }
 }
 
-export const getCssFromChunks = document => {
+export const getCssFromChunks = (document: Document) => {
   const chunks = Array.from(
+    // $FlowFixMe
     document.head.querySelectorAll('[data-emotion-chunk]')
   )
+  // $FlowFixMe
   expect(document.body.querySelector('[data-emotion-chunk]')).toBeNull()
   return stringify(parse(chunks.map(chunk => chunk.textContent || '').join('')))
 }
 
-export const getInjectedRules = ({ inserted }) =>
+export const getInjectedRules = ({ caches }: Emotion) =>
   stringify(
     parse(
-      Object.keys(inserted)
-        .filter(hash => inserted[hash] !== true)
-        .map(hash => inserted[hash])
+      Object.keys(caches.inserted)
+        .filter(hash => caches.inserted[hash] !== true)
+        .map(hash => caches.inserted[hash])
         .join('')
     )
   )
