@@ -1,15 +1,20 @@
-import { inserted, registered } from 'emotion'
+// @flow
+import type { Emotion } from 'create-emotion'
 
-function toTag(ids, thing) {
+function toTag(
+  emotion: Emotion,
+  ids: Array<string>,
+  thing: { keys: Array<string> }
+) {
   let idhash = ids.reduce((o, x) => {
-    o[x + ''] = true
+    o[x] = true
     return o
   }, {})
   let styles = ''
   let idHydration = ''
   thing.keys = thing.keys.filter(id => {
     if (idhash[id] !== undefined) {
-      styles += inserted[id]
+      styles += emotion.inserted[id]
       idHydration += ` ${id}`
     }
     return true
@@ -19,7 +24,9 @@ function toTag(ids, thing) {
   )}">${styles}</style>`
 }
 
-export default function inline(html) {
+const createRenderStylesToString = (emotion: Emotion) => (
+  html: string
+): string => {
   let regex = /<|css-([a-zA-Z0-9-]+)/gm
 
   let match
@@ -27,12 +34,12 @@ export default function inline(html) {
   let idBuffer = []
   let result = []
   let insed = {}
-  let keys = Object.keys(inserted)
+  let keys = Object.keys(emotion.inserted)
   let globalStyles = ''
   let globalIds = ''
   keys = keys.filter(id => {
-    if (registered[`css-${id}`] === undefined) {
-      globalStyles += inserted[id]
+    if (emotion.registered[`css-${id}`] === undefined) {
+      globalStyles += emotion.inserted[id]
       globalIds += ` ${id}`
       return false
     }
@@ -49,7 +56,7 @@ export default function inline(html) {
   while ((match = regex.exec(html)) !== null) {
     if (match[0] === '<') {
       idBuffer = idBuffer.filter(x => !insed[x])
-      idBuffer.length > 0 && result.push(toTag(idBuffer, thing))
+      idBuffer.length > 0 && result.push(toTag(emotion, idBuffer, thing))
       result.push(html.substring(lastBackIndex, match.index))
       lastBackIndex = match.index
       idBuffer.forEach(x => {
@@ -63,3 +70,5 @@ export default function inline(html) {
   result.push(html.substring(lastBackIndex, html.length))
   return result.join('')
 }
+
+export default createRenderStylesToString

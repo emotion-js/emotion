@@ -1,9 +1,10 @@
+// @flow
+import type { Emotion } from 'create-emotion'
 import through from 'through'
 import tokenize from 'html-tokenize'
 import pipe from 'multipipe'
-import { inserted, registered } from 'emotion'
 
-export default function renderStylesToNodeStream() {
+const createRenderStylesToNodeStream = (emotion: Emotion) => () => {
   let insed = {}
   const tokenStream = tokenize()
 
@@ -22,14 +23,15 @@ export default function renderStylesToNodeStream() {
             ids[match[1]] = true
           }
         }
-        Object.keys(inserted).forEach(id => {
+        Object.keys(emotion.inserted).forEach(id => {
           if (
             insed[id] === undefined &&
             (ids[id] === true ||
-              (registered[`css-${id}`] === undefined && (ids[id] = true)))
+              (emotion.registered[`css-${id}`] === undefined &&
+                (ids[id] = true)))
           ) {
             insed[id] = true
-            css += inserted[id]
+            css += emotion.inserted[id]
           }
         })
 
@@ -50,3 +52,5 @@ export default function renderStylesToNodeStream() {
 
   return pipe(tokenStream, inlineStream)
 }
+
+export default createRenderStylesToNodeStream
