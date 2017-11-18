@@ -6,18 +6,19 @@ The Babel Plugin is highly recommended, but not required in version 8 and above.
 
 ## Feature table
 
-| Feature/Syntax           | Native | Babel Plugin Required | Notes                                                                                                                                        |
-|--------------------------|:------:|:---------------------:|----------------------------------------------------------------------------------------------------------------------------------------------|
-| css``               |    ✅   |                       |                                                                                                                                              |
-| `css(...)`               |    ✅   |                       | Generally used for object styles.                                                                                                            |
-| styled('div')`` syntax |    ✅   |                       | Both string and object styles work without this plugin.                                                                                      |
-| styled.div`` syntax    |        |           ✅           | Supporting the shortcut syntax without the Babel plugin requires a large list of valid elements to be included in the bundle.                |
-| Minification             |        |           ✅           | Any leading/trailing space between properties in your `css` and `styled` blocks is removed. This can reduce the size of your final bundle.   |
-| Dead Code Elimination    |        |           ✅           | Uglifyjs will use the injected `/*#__PURE__*/` flag comments to mark your `css` and `styled` blocks as candidates for dead code elimination. |
-| Static Extraction        |        |           ✅           | Generated CSS that is eligible for extraction can be moved to an external css file.                                                          |
-| Source Maps              |        |           ✅           | When enabled, navigate directly to the style declaration in your javascript file.                                                            |
-| `css` as Prop            |        |           ✅           | Convenient helper for calling `css` and appending the generated className during compile time.                                               |
-| Contextual Class Names   |        |           ✅           | Generated class names include the name of the variable or component they were defined in. 
+| Feature/Syntax         | Native | Babel Plugin Required | Notes                                                                                                                                        |
+| ---------------------- | :----: | :-------------------: | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| css``                  | ✅      |                       |                                                                                                                                              |
+| `css(...)`             | ✅      |                       | Generally used for object styles.                                                                                                            |
+| styled('div')`` syntax | ✅      |                       | Both string and object styles work without this plugin.                                                                                      |
+| styled.div`` syntax    |        | ✅                     | Supporting the shortcut syntax without the Babel plugin requires a large list of valid elements to be included in the bundle.                |
+| Minification           |        | ✅                     | Any leading/trailing space between properties in your `css` and `styled` blocks is removed. This can reduce the size of your final bundle.   |
+| Dead Code Elimination  |        | ✅                     | Uglifyjs will use the injected `/*#__PURE__*/` flag comments to mark your `css` and `styled` blocks as candidates for dead code elimination. |
+| Static Extraction      |        | ✅                     | Generated CSS that is eligible for extraction can be moved to an external css file.                                                          |
+| Source Maps            |        | ✅                     | When enabled, navigate directly to the style declaration in your javascript file.                                                            |
+| `css` as Prop          |        | ✅                     | Convenient helper for calling `css` and appending the generated className during compile time.                                               |
+| Contextual Class Names |        | ✅                     | Generated class names include the name of the variable or component they were defined in.                                                    |
+| Disable Prefixing      |        | ✅                     | Choose to leave off all vendor prefixes or individual rules                                                                                  |
 ## Example
 
 **In**
@@ -79,6 +80,7 @@ With options:
       "sourceMap": false,
       "autoLabel": false,
       "extractStatic": false,
+      "prefix": true,
       "importedNames": {
         "styled": "styled",
         "css": "css",
@@ -234,6 +236,16 @@ This option enables the following:
  - Extract static styles into CSS files.
 
 [**Documentation**](docs/extract-static.md)
+
+### `prefix`
+
+`boolean | function`, defaults to `true`.
+
+This option enables the following:
+
+ - Enable or disable automatic vendor prefixing.
+ - If a function is passed it receives 3 arguments `key, value, context` and the rule will be prefixed based on a `boolean` return value.
+
 
 ### `importedNames` 
 
