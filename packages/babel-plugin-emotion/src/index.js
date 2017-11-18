@@ -21,7 +21,11 @@ export function hashArray(arr) {
 }
 
 const staticStylis = new Stylis({ keyframe: false })
-
+/**
+ * Sets the prefix option for Stylis.
+ * @param {Object} opts - babel options
+ * @param {boolean|function} opts.prefix - should the rule be prefixed
+ */
 const setIsPrefixed = ({ prefix = true }) => {
   if (typeof prefix === 'function') {
     staticStylis.use({
