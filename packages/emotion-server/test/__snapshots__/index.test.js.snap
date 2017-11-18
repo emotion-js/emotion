@@ -7,7 +7,7 @@ Object {
   font-style: normal;
   font-weight: 400;
   src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-  unicode-range: U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
 }
 
 @-webkit-keyframes animation-16qlhaj {
@@ -110,7 +110,7 @@ Object {
 }",
   "html": "<main class=\\"css-4xq7ky\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-z382ib\\"/><img size=\\"100\\" class=\\"css-z382ib\\"/><img class=\\"css-z382ib\\"/></main>",
   "ids": Array [
-    "w17k2a",
+    "84kji8",
     "16qlhaj",
     "hbhpyh",
     "4xq7ky",
@@ -126,7 +126,7 @@ Object {
   font-style: normal;
   font-weight: 400;
   src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-  unicode-range: U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
 }
 
 @-webkit-keyframes animation-16qlhaj {
@@ -220,7 +220,7 @@ Object {
 }",
   "html": "<main class=\\"css-4xq7ky\\" data-reactroot=\\"\\"><div>Hello</div></main>",
   "ids": Array [
-    "w17k2a",
+    "84kji8",
     "16qlhaj",
     "hbhpyh",
     "4xq7ky",
@@ -235,7 +235,7 @@ Object {
   font-style: normal;
   font-weight: 400;
   src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-  unicode-range: U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF;
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
 }
 
 @-webkit-keyframes animation-16qlhaj {
@@ -338,7 +338,7 @@ Object {
 }",
   "html": "<main class=\\"css-4xq7ky\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-z382ib\\"/><img size=\\"100\\" class=\\"css-z382ib\\"/><img class=\\"css-z382ib\\"/></main>",
   "ids": Array [
-    "w17k2a",
+    "84kji8",
     "16qlhaj",
     "hbhpyh",
     "4xq7ky",
