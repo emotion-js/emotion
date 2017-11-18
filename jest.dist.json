@@ -15,7 +15,8 @@
     "^create-emotion-server$": "<rootDir>/packages/create-emotion-server/lib"    
   },
   "transformIgnorePatterns": [
-    "dist"
+    "dist",
+    "node_modules"
   ],
   "testPathIgnorePatterns": [
     "babel-plugin-emotion"
