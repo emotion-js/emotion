@@ -1126,6 +1126,10 @@ babel-eslint@^7.2.3:
     babel-types "^6.23.0"
     babylon "^6.17.0"
 
+babel-flow-types@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/babel-flow-types/-/babel-flow-types-1.2.2.tgz#71674e4ab3c41137bdc29278b2ecff82029863c6"
+
 babel-generator@^6.18.0, babel-generator@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-generator/-/babel-generator-6.26.0.tgz#ac1ae20070b79f6e3ca1d3269613053774f20dc5"

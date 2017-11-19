@@ -545,7 +545,7 @@ declare var expect: {
   /** Add additional Jasmine matchers to Jest's roster */
   extend(matchers: { [name: string]: JestMatcher }): void,
   /** Add a module that formats application-specific data structures. */
-  addSnapshotSerializer(serializer: (input: Object) => string): void,
+  addSnapshotSerializer(serializer: {test: (val: any) => boolean, print: (val: any, printer: (value: any) => string) => string}): void,
   assertions(expectedAssertions: number): void,
   hasAssertions(): void,
   any(value: mixed): JestAsymmetricEqualityType,

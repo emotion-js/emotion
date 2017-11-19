@@ -1,3 +1,4 @@
+// @flow
 /* eslint-env jest */
 import serializer from 'jest-glamor-react'
 import { sheet } from 'emotion'

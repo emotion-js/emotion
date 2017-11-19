@@ -33,6 +33,7 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-flow-types": "^1.2.2",
     "babel-jest": "^20.0.3",
     "babel-macros": "^1.2.0",
     "babel-plugin-codegen": "^1.2.0",

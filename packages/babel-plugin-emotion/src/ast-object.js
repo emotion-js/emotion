@@ -1,21 +1,25 @@
-const interleave = (strings, interpolations) =>
+// @flow
+import type { Types, Expression, StringLiteral } from 'babel-flow-types'
+const interleave = (
+  strings: Array<StringLiteral>,
+  interpolations: Array<Expression>
+) =>
   interpolations.reduce(
-    (array, interp, i) => array.concat(interp, strings[i + 1]),
+    (array, interp, i) => array.concat([interp], strings[i + 1]),
     [strings[0]]
   )
 
 export default class ASTObject {
-  props: Array<any>
-  expressions: Array<any>
-  composesCount: number
+  expressions: Array<Expression>
   t: any
+  src: string
 
-  constructor(src, expressions, t) {
-    this.stringSrc = src
+  constructor(src: string, expressions: Array<Expression>, t: Types) {
+    this.src = src
     this.expressions = expressions || []
     this.t = t
   }
-  getDynamicMatches(str) {
+  getDynamicMatches(str: string) {
     const re = /xxx(\d+)xxx/gm
     let match
     const matches = []
@@ -58,13 +62,16 @@ export default class ASTObject {
     })
 
     return interleave(strings, finalExpressions).filter(
-      node => node.value !== ''
+      // $FlowFixMe
+      (node: StringLiteral) => {
+        return node.value !== ''
+      }
     )
   }
   toExpressions() {
     return this.replacePlaceholdersWithExpressions(
-      this.getDynamicMatches(this.stringSrc),
-      this.stringSrc
+      this.getDynamicMatches(this.src),
+      this.src
     )
   }
 }
