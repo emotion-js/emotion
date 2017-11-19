@@ -29,6 +29,7 @@ export const {
         return false
       }
       return true
-    }
+    },
+    nonce: 'some-nonce'
   }
 )

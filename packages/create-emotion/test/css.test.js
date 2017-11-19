@@ -364,4 +364,18 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
   })
+  test('sets correct nonce value', () => {
+    flush()
+    css`
+      color: hotpink;
+    `
+    css`
+      color: yellow;
+    `
+    expect(sheet.tags).toHaveLength(3)
+
+    expect(sheet.tags[0].getAttribute('nonce')).toBe('some-nonce')
+    expect(sheet.tags[1].getAttribute('nonce')).toBe('some-nonce')
+    expect(sheet.tags[2].getAttribute('nonce')).toBe('some-nonce')
+  })
 })

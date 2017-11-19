@@ -22,25 +22,27 @@ styleSheet.flush()
 - empties the stylesheet of all its contents
 
 */
-
-function sheetForTag(tag: HTMLStyleElement) {
+// $FlowFixMe
+function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
   if (tag.sheet) {
+    // $FlowFixMe
     return tag.sheet
   }
 
   // this weirdness brought to you by firefox
   for (let i = 0; i < document.styleSheets.length; i++) {
     if (document.styleSheets[i].ownerNode === tag) {
+      // $FlowFixMe
       return document.styleSheets[i]
     }
   }
 }
 
-function makeStyleTag(nonce?: string): HTMLStyleElement {
+function makeStyleTag(nonce: string | null): HTMLStyleElement {
   let tag = document.createElement('style')
   tag.type = 'text/css'
   tag.setAttribute('data-emotion', '')
-  if (nonce !== undefined) {
+  if (nonce !== null) {
     tag.setAttribute('nonce', nonce)
   }
   tag.appendChild(document.createTextNode(''))
@@ -55,11 +57,11 @@ export default class StyleSheet {
   ctr: number
   sheet: string[]
   tags: HTMLStyleElement[]
-  nonce: string | void
+  nonce: string | null
   constructor(nonce?: string) {
     this.isSpeedy = process.env.NODE_ENV === 'production' // the big drawback here is that the css won't be editable in devtools
     this.tags = []
-    this.nonce = nonce
+    this.nonce = nonce === undefined ? null : nonce
     this.ctr = 0
   }
   inject() {
@@ -82,7 +84,6 @@ export default class StyleSheet {
       const tag = this.tags[this.tags.length - 1]
       const sheet = sheetForTag(tag)
       try {
-        // $FlowFixMe
         sheet.insertRule(rule, sheet.cssRules.length)
       } catch (e) {
         if (process.env.NODE_ENV !== 'production') {
@@ -90,13 +91,13 @@ export default class StyleSheet {
         }
       }
     } else {
-      const tag = makeStyleTag()
+      const tag = makeStyleTag(this.nonce)
       this.tags.push(tag)
       tag.appendChild(document.createTextNode(rule + (sourceMap || '')))
     }
     this.ctr++
     if (this.ctr % 65000 === 0) {
-      this.tags.push(makeStyleTag())
+      this.tags.push(makeStyleTag(this.nonce))
     }
   }
   flush() {
