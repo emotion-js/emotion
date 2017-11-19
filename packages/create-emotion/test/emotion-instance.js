@@ -2,11 +2,6 @@
 import createEmotion from 'create-emotion'
 import { transform } from 'cssjanus'
 
-const context =
-  typeof global !== 'undefined'
-    ? global
-    : typeof window !== 'undefined' ? window : {}
-
 function stylisPlugin(context, content) {
   if (context === 2) {
     return transform(content)
@@ -24,4 +19,16 @@ export const {
   css,
   sheet,
   caches
-} = createEmotion(context, { stylisPlugins: stylisPlugin })
+} = createEmotion(
+  // don't use a global so the options aren't cached
+  {},
+  {
+    stylisPlugins: stylisPlugin,
+    prefix: (key, value) => {
+      if (key === 'display' && value === 'flex') {
+        return false
+      }
+      return true
+    }
+  }
+)

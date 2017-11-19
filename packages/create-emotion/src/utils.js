@@ -59,3 +59,17 @@ export function classnames(...args: ClassNameArg[]) {
 }
 
 export const isBrowser = typeof window !== 'undefined'
+
+export type PrefixOption =
+  | boolean
+  | ((key: string, value: string, context: 1 | 2 | 3) => boolean)
+
+export type StylisOptions = {
+  keyframe?: boolean,
+  compress?: boolean,
+  global?: boolean,
+  cascade?: boolean,
+  semicolon?: boolean,
+  preserve?: boolean,
+  prefix?: PrefixOption
+}

@@ -1,7 +1,10 @@
 // @flow
 import React from 'react'
 import renderer from 'react-test-renderer'
+import serializer from 'jest-glamor-react'
 import { css, flush, sheet } from './emotion-instance'
+
+expect.addSnapshotSerializer(serializer(sheet))
 
 describe('css', () => {
   test('float property', () => {

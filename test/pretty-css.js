@@ -1,11 +1,10 @@
-import { sheet } from 'emotion'
 import { parse, stringify } from 'css'
 
 export default {
-  test: val => val === sheet,
+  test: val => val.tags !== undefined && Array.isArray(val.tags),
   print(val, printer) {
     return printer(
-      stringify(parse(sheet.tags.map(tag => tag.textContent || '').join('')))
+      stringify(parse(val.tags.map(tag => tag.textContent || '').join('')))
     )
   }
 }
