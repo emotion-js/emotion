@@ -16,6 +16,5 @@ export const {
   keyframes,
   css,
   sheet,
-  registered,
-  inserted
+  caches
 } = createEmotion(context)

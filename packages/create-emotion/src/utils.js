@@ -57,3 +57,5 @@ export function classnames(...args: ClassNameArg[]) {
   }
   return cls
 }
+
+export const isBrowser = typeof window !== 'undefined'

@@ -1,17 +1,13 @@
 // @flow
-/**
- * @jest-environment node
-*/
+/* eslint-env jest */
 import React from 'react'
-import { renderToString } from 'react-dom/server'
-import styled from 'react-emotion'
-import { css, injectGlobal, keyframes, flush, hydrate } from 'emotion'
-import { extractCritical } from 'emotion-server'
-import { prettyifyCritical, getInjectedRules } from '../util'
+import { parse, stringify } from 'css'
+import type { Emotion } from 'create-emotion'
 
-const emotion = require('emotion')
-
-const getComponents = () => {
+export const getComponents = (
+  { injectGlobal, keyframes, css }: Emotion,
+  { default: styled }: { default: Function }
+) => {
   const color = 'red'
 
   injectGlobal`
@@ -101,28 +97,71 @@ const getComponents = () => {
   return { Page1, Page2 }
 }
 
-describe('extractCritical', () => {
-  test('returns static css', () => {
-    const { Page1, Page2 } = getComponents()
-    expect(
-      prettyifyCritical(extractCritical(renderToString(<Page1 />)))
-    ).toMatchSnapshot()
-    expect(
-      prettyifyCritical(extractCritical(renderToString(<Page2 />)))
-    ).toMatchSnapshot()
-  })
-})
-describe('hydration', () => {
-  test('only rules that are not in the critical css are inserted', () => {
-    const { Page1 } = getComponents()
-    const { html, ids, css } = extractCritical(renderToString(<Page1 />))
-    expect(prettyifyCritical({ html, css, ids })).toMatchSnapshot()
-    flush()
+const maxColors = Math.pow(16, 6)
 
-    hydrate(ids)
+export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
+  const BigComponent = ({ count }: { count: number }) => {
+    if (count === 0) return null
+    injectGlobal`
+    .some-global-${count} {
+      padding: 0;
+      margin: ${count};
+    }`
+    return (
+      <div
+        className={css({
+          color:
+            '#' +
+            Math.round(1 / count * maxColors)
+              .toString(16)
+              .padStart(6, '0')
+        })}
+      >
+        woah there
+        <span>hello world</span>
+        <BigComponent count={count - 1} />
+      </div>
+    )
+  }
+  return BigComponent
+}
 
-    const { Page1: NewPage1 } = getComponents()
-    renderToString(<NewPage1 />)
-    expect(getInjectedRules(emotion)).toMatchSnapshot()
-  })
-})
+export const prettyifyCritical = ({
+  html,
+  css,
+  ids
+}: {
+  html: string,
+  css: string,
+  ids: Array<string>
+}) => {
+  return { css: stringify(parse(css)), ids, html }
+}
+
+export const getCssFromChunks = (document: Document) => {
+  const chunks = Array.from(
+    // $FlowFixMe
+    document.head.querySelectorAll('[data-emotion-chunk]')
+  )
+  // $FlowFixMe
+  expect(document.body.querySelector('[data-emotion-chunk]')).toBeNull()
+  return stringify(parse(chunks.map(chunk => chunk.textContent || '').join('')))
+}
+
+export const getInjectedRules = ({ caches }: Emotion) =>
+  stringify(
+    parse(
+      Object.keys(caches.inserted)
+        .filter(hash => caches.inserted[hash] !== true)
+        .map(hash => caches.inserted[hash])
+        .join('')
+    )
+  )
+
+export const setHtml = (html: string, document: Document) => {
+  if (document.body !== null) {
+    document.body.innerHTML = html
+  } else {
+    throw new Error('body does not exist on document')
+  }
+}

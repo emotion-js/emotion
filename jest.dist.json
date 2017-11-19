@@ -10,11 +10,13 @@
     "^emotion-server$": "<rootDir>/packages/emotion-server/lib",
     "^emotion-theming$": "<rootDir>/packages/emotion-theming/dist/index.cjs.js",
     "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/lib",
-    "^create-emotion$": "<rootDir>/packages/create-emotion/dist",
-    "^create-emotion-styled$": "<rootDir>/packages/create-emotion-styled/dist"
+    "^create-emotion$": "<rootDir>/packages/create-emotion/dist/index.cjs.js",
+    "^create-emotion-styled$": "<rootDir>/packages/create-emotion-styled/dist/index.cjs.js",
+    "^create-emotion-server$": "<rootDir>/packages/create-emotion-server/lib"    
   },
   "transformIgnorePatterns": [
-    "dist"
+    "dist",
+    "node_modules"
   ],
   "testPathIgnorePatterns": [
     "babel-plugin-emotion"

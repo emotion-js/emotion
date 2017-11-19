@@ -52,13 +52,11 @@ function makeStyleTag(nonce?: string): HTMLStyleElement {
 export default class StyleSheet {
   injected: boolean
   isSpeedy: boolean
-  isBrowser: boolean
   ctr: number
   sheet: string[]
   tags: HTMLStyleElement[]
   nonce: string | void
   constructor(nonce?: string) {
-    this.isBrowser = typeof window !== 'undefined'
     this.isSpeedy = process.env.NODE_ENV === 'production' // the big drawback here is that the css won't be editable in devtools
     this.tags = []
     this.nonce = nonce
@@ -68,12 +66,7 @@ export default class StyleSheet {
     if (this.injected) {
       throw new Error('already injected!')
     }
-    if (this.isBrowser) {
-      this.tags[0] = makeStyleTag(this.nonce)
-    } else {
-      // server side 'polyfill'. just enough behavior to be useful.
-      this.sheet = []
-    }
+    this.tags[0] = makeStyleTag(this.nonce)
     this.injected = true
   }
   speedy(bool: boolean) {
@@ -84,45 +77,34 @@ export default class StyleSheet {
     this.isSpeedy = !!bool
   }
   insert(rule: string, sourceMap?: string) {
-    if (this.isBrowser) {
-      // this is the ultrafast version, works across browsers
-      if (this.isSpeedy) {
-        const tag = this.tags[this.tags.length - 1]
-        const sheet = sheetForTag(tag)
-        try {
-          // $FlowFixMe
-          sheet.insertRule(rule, sheet.cssRules.length)
-        } catch (e) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.warn('illegal rule', rule) // eslint-disable-line no-console
-          }
+    // this is the ultrafast version, works across browsers
+    if (this.isSpeedy) {
+      const tag = this.tags[this.tags.length - 1]
+      const sheet = sheetForTag(tag)
+      try {
+        // $FlowFixMe
+        sheet.insertRule(rule, sheet.cssRules.length)
+      } catch (e) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn('illegal rule', rule) // eslint-disable-line no-console
         }
-      } else {
-        const tag = makeStyleTag()
-        this.tags.push(tag)
-        tag.appendChild(document.createTextNode(rule + (sourceMap || '')))
-      }
-      this.ctr++
-      if (this.ctr % 65000 === 0) {
-        this.tags.push(makeStyleTag())
       }
     } else {
-      // enough 'spec compliance' to be able to extract the rules later
-      // in other words, just the rule
-      this.sheet.push(rule)
+      const tag = makeStyleTag()
+      this.tags.push(tag)
+      tag.appendChild(document.createTextNode(rule + (sourceMap || '')))
+    }
+    this.ctr++
+    if (this.ctr % 65000 === 0) {
+      this.tags.push(makeStyleTag())
     }
   }
   flush() {
-    if (this.isBrowser) {
-      // $FlowFixMe
-      this.tags.forEach(tag => tag.parentNode.removeChild(tag))
-      this.tags = []
-      this.ctr = 0
-      // todo - look for remnants in document.styleSheets
-    } else {
-      // simpler on server
-      this.sheet = []
-    }
+    // $FlowFixMe
+    this.tags.forEach(tag => tag.parentNode.removeChild(tag))
+    this.tags = []
+    this.ctr = 0
+    // todo - look for remnants in document.styleSheets
     this.injected = false
   }
 }
