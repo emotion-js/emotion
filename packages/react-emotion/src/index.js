@@ -85,7 +85,7 @@ const createStyled = (tag, options: { e: string, label: string }) => {
       render() {
         const { props, state } = this
         this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
-          theme: (state !== null && state.theme) || props.theme || {}
+          theme: (state && state.theme) || props.theme || {}
         })
 
         let className = ''
