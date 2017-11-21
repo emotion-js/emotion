@@ -6,7 +6,7 @@
     "build": "lerna run build --parallel",
     "test:size": "npm-run-all clean rollup:umd size",
     "clean": "lerna run clean --parallel",
-    "test": "npm-run-all -p lint:check coverage test:size test:typescript && npm run test:prod && npm run benchmark",
+    "test": "npm-run-all -p lint:check coverage test:size test:typescript flow && npm run test:prod && npm run benchmark",
     "test:typescript": "lerna run test:typescript --parallel",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
     "test:prod": "npm run build && jest -c jest.dist.json --no-cache --ci --runInBand",
@@ -21,7 +21,8 @@
     "start:site": "lerna exec --scope emotion-example-project npm run start:site",
     "build:site": "lerna exec --scope emotion-example-project npm run build:site",
     "watch": "lerna run --parallel watch",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "flow": "flow check"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.31",
