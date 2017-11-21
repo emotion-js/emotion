@@ -1,6 +1,6 @@
-// @flow weak
+// @flow
 import fs from 'fs'
-import { basename } from 'path'
+import nodePath from 'path'
 import { touchSync } from 'touch'
 import { addSideEffect } from '@babel/helper-module-imports'
 import {
@@ -9,20 +9,31 @@ import {
   createRawStringFromTemplateLiteral,
   minify
 } from './babel-utils'
-
+import type {
+  BabelPath as _BabelPath,
+  Identifier,
+  BabelPluginPass,
+  Types,
+  StringLiteral,
+  Babel
+} from 'babel-flow-types'
 import { hashString, Stylis } from 'emotion-utils'
 import { addSourceMaps } from './source-map'
 
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
-export function hashArray(arr) {
+type BabelPath = _BabelPath & {
+  node: *
+}
+
+export function hashArray(arr: Array<string>) {
   return hashString(arr.join(''))
 }
 
 const staticStylis = new Stylis({ keyframe: false })
 
-export function hoistPureArgs(path) {
+export function hoistPureArgs(path: BabelPath) {
   const args = path.get('arguments')
 
   if (args && Array.isArray(args)) {
@@ -34,14 +45,37 @@ export function hoistPureArgs(path) {
   }
 }
 
+type EmotionBabelPluginPass = BabelPluginPass & {
+  extractStatic: boolean,
+  insertStaticRules: (rules: Array<string>) => void,
+  emotionImportPath: string,
+  staticRules: Array<string>,
+  cssPropIdentifier: Identifier,
+  importedNames: {
+    css: string,
+    keyframes: string,
+    injectGlobal: string,
+    styled: string,
+    merge: string
+  },
+  [symbol: Symbol]: boolean
+}
+
 export function replaceCssWithCallExpression(
-  path,
-  identifier,
-  state,
-  t,
-  staticCSSSrcCreator = src => src,
-  removePath = false,
-  staticCSSSelectorCreator = (name, hash) => `.${name}-${hash}`
+  path: BabelPath,
+  identifier: Identifier,
+  state: EmotionBabelPluginPass,
+  t: Types,
+  staticCSSSrcCreator: (
+    src: string,
+    name: string,
+    hash: string
+  ) => string = src => src,
+  removePath: boolean = false,
+  staticCSSSelectorCreator: (name: string, hash: string) => string = (
+    name,
+    hash
+  ) => `.${name}-${hash}`
 ) {
   try {
     let { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
@@ -94,7 +128,13 @@ export function replaceCssWithCallExpression(
   }
 }
 
-export function buildStyledCallExpression(identifier, tag, path, state, t) {
+export function buildStyledCallExpression(
+  identifier: Identifier,
+  tag: StringLiteral,
+  path: BabelPath,
+  state: EmotionBabelPluginPass,
+  t: Types
+) {
   const identifierName = getIdentifierName(path, t)
 
   if (state.extractStatic && !path.node.quasi.expressions.length) {
@@ -145,7 +185,12 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   )
 }
 
-export function buildStyledObjectCallExpression(path, state, identifier, t) {
+export function buildStyledObjectCallExpression(
+  path: BabelPath,
+  state: EmotionBabelPluginPass,
+  identifier: Identifier,
+  t: Types
+) {
   const identifierName = getIdentifierName(path, t)
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
@@ -189,7 +234,14 @@ const defaultImportedNames = {
 
 const defaultEmotionPaths = ['emotion', 'react-emotion', 'preact-emotion']
 
-export default function(babel) {
+function getPath(filepath: string) {
+  if (filepath.charAt(0) === '.') {
+    return nodePath.resolve(process.cwd(), filepath)
+  }
+  return filepath
+}
+
+export default function(babel: Babel) {
   const { types: t } = babel
 
   return {
@@ -197,13 +249,13 @@ export default function(babel) {
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       Program: {
-        enter(path, state) {
+        enter(path: BabelPath, state: EmotionBabelPluginPass) {
           // this needs to handle relative paths and stuff
           // https://github.com/tleunen/babel-plugin-module-resolver/tree/master/src
-          state.emotionImportPath =
-            state.opts.primaryPath !== undefined
-              ? state.opts.primaryPath
-              : 'emotion'
+          state.emotionImportPath = 'emotion'
+          if (state.opts.primaryPath !== undefined) {
+            state.emotionImportPath = getPath(state.opts.primaryPath)
+          }
 
           state.importedNames = {
             ...defaultImportedNames,
@@ -266,7 +318,7 @@ export default function(babel) {
           imports.forEach(({ source, imported, specifiers }) => {
             if (
               defaultEmotionPaths
-                .concat(state.opts.paths || [])
+                .concat((state.opts.paths || []).map(getPath))
                 .indexOf(source) !== -1
             ) {
               const importedNames = specifiers
@@ -304,7 +356,7 @@ export default function(babel) {
             state.staticRules.push(...staticRules)
           }
         },
-        exit(path, state) {
+        exit(path: BabelPath, state: EmotionBabelPluginPass) {
           if (state.staticRules.length !== 0) {
             const toWrite = state.staticRules.join('\n').trim()
             const filenameArr = path.hub.file.opts.filename.split('.')
@@ -312,7 +364,7 @@ export default function(babel) {
             filenameArr.push('emotion', 'css')
             const cssFilename = filenameArr.join('.')
             const exists = fs.existsSync(cssFilename)
-            addSideEffect(path, './' + basename(cssFilename))
+            addSideEffect(path, './' + nodePath.basename(cssFilename))
             if (
               exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
             ) {
@@ -324,7 +376,7 @@ export default function(babel) {
           }
         }
       },
-      JSXOpeningElement(path, state) {
+      JSXOpeningElement(path: BabelPath, state: EmotionBabelPluginPass) {
         cssProps(path, state, t)
         if (state.opts.hoist) {
           path.traverse({
@@ -339,10 +391,12 @@ export default function(babel) {
           })
         }
       },
-      CallExpression(path, state) {
+      CallExpression(path: BabelPath, state: EmotionBabelPluginPass) {
+        // $FlowFixMe
         if (path[visited]) {
           return
         }
+
         try {
           if (t.isIdentifier(path.node.callee)) {
             switch (path.node.callee.name) {
@@ -392,14 +446,10 @@ export default function(babel) {
         } catch (e) {
           throw path.buildCodeFrameError(e)
         }
-
+        // $FlowFixMe
         path[visited] = true
       },
-      TaggedTemplateExpression(path, state) {
-        if (path[visited]) {
-          return
-        }
-        path[visited] = true
+      TaggedTemplateExpression(path: BabelPath, state: EmotionBabelPluginPass) {
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
