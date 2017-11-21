@@ -17,6 +17,8 @@ type TestRendererOptions = {
   createNodeMock: (element: React$Element<any>) => any
 }
 
+type ReactTestRendererNode = ReactTestRendererJSON | string
+
 type ReactTestRendererJSON = {|
   type: string,
   props: { [propName: string]: any },
