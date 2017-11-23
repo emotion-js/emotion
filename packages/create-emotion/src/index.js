@@ -136,7 +136,9 @@ function createEmotion(
 
   const objectToStringCache = new WeakMap()
 
-  function createStringFromObject(obj: Object | any[]): string {
+  function createStringFromObject(obj: {
+    [key: string]: Interpolation
+  }): string {
     if (objectToStringCache.has(obj)) {
       // $FlowFixMe
       return objectToStringCache.get(obj)
@@ -149,14 +151,12 @@ function createEmotion(
       }, this)
     } else {
       Object.keys(obj).forEach(function(key: string) {
-        // $FlowFixMe
         if (typeof obj[key] !== 'object') {
           if (caches.registered[obj[key]] !== undefined) {
             string += `${key}{${caches.registered[obj[key]]}}`
           } else {
             string += `${processStyleName(key)}:${processStyleValue(
               key,
-              // $FlowFixMe
               obj[key]
             )};`
           }
