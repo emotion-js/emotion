@@ -38,10 +38,13 @@ export const {
 
 ### nonce: string
 
-A nonce that will be set on each style tag that emotion inserts for CSP.
+A nonce that will be set on each style tag that emotion inserts for [Content Security Policies](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
 ### stylisPlugins: Function | Array<Function>
 
-A Stylis plugin or plugins that will be run be stylis during preprocessing. [Read Stylis' docs to find out more](https://github.com/thysultan/stylis.js#plugins). This can for be used for many purposes such as RTL.
+A Stylis plugin or plugins that will be run by stylis during preprocessing. [Read Stylis' docs to find out more](https://github.com/thysultan/stylis.js#plugins). This can for be used for many purposes such as RTL.
 
-### prefix: boolean
+### prefix: boolean | Function
+
+Allows changing Stylis' prefixing settings, this defaults to `true`. It can be a boolean or a function to dynamicly set which properties are prefixed. [More information can be found in Stylis' docs](https://github.com/thysultan/stylis.js#vendor-prefixing)
+
