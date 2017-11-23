@@ -1,12 +1,11 @@
-import { createElement, Component } from 'preact'
+import { h, Component } from 'preact'
 import * as emotion from 'emotion'
-import { channel, contextTypes } from '../../emotion-theming/src/utils'
+import channel from '../../emotion-theming/src/channel'
 import createEmotionStyled from 'create-emotion-styled'
 
 export default createEmotionStyled(emotion, {
   channel,
-  contextTypes,
-  createElement,
+  createElement: h,
   Component
 })
 
