@@ -57,8 +57,7 @@ type EmotionBabelPluginPass = BabelPluginPass & {
     injectGlobal: string,
     styled: string,
     merge: string
-  },
-  [symbol: Symbol]: boolean
+  }
 }
 
 export function replaceCssWithCallExpression(
@@ -396,6 +395,8 @@ export default function(babel: Babel) {
         if (path[visited]) {
           return
         }
+        // $FlowFixMe
+        path[visited] = true
 
         try {
           if (t.isIdentifier(path.node.callee)) {
@@ -446,10 +447,14 @@ export default function(babel: Babel) {
         } catch (e) {
           throw path.buildCodeFrameError(e)
         }
-        // $FlowFixMe
-        path[visited] = true
       },
       TaggedTemplateExpression(path: BabelPath, state: EmotionBabelPluginPass) {
+        // $FlowFixMe
+        if (path[visited]) {
+          return
+        }
+        // $FlowFixMe
+        path[visited] = true
         if (
           // styled.h1`color:${color};`
           t.isMemberExpression(path.node.tag) &&
