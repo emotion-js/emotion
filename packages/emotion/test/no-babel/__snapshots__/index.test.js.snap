@@ -101,6 +101,7 @@ exports[`css function in expression 1`] = `
 
 <h1
   className="legacy__class glamor-0"
+  scale={2}
 >
   hello world
 </h1>
@@ -120,6 +121,7 @@ exports[`css glamorous style api & composition 1`] = `
 
 <h1
   className="glamor-0"
+  fontSize={20}
 >
   hello world
 </h1>
@@ -188,6 +190,7 @@ exports[`css object as style 1`] = `
 
 <h1
   className="glamor-0"
+  fontSize={20}
 >
   hello world
 </h1>
