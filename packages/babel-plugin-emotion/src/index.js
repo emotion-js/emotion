@@ -313,13 +313,11 @@ export default function(babel: Babel) {
               }
             })
           }
-
+          const emotionPaths = defaultEmotionPaths.concat(
+            (state.opts.paths || []).map(getPath)
+          )
           imports.forEach(({ source, imported, specifiers }) => {
-            if (
-              defaultEmotionPaths
-                .concat((state.opts.paths || []).map(getPath))
-                .indexOf(source) !== -1
-            ) {
+            if (emotionPaths.indexOf(getPath(source)) !== -1) {
               const importedNames = specifiers
                 .filter(
                   v =>
