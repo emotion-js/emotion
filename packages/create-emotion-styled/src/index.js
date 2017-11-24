@@ -1,16 +1,25 @@
-/* global codegen */
+// @flow
 import { memoize } from 'emotion-utils'
+import type { Emotion, Interpolation, Interpolations } from 'create-emotion'
 
 function setTheme(theme) {
   this.setState({ theme })
 }
 
-const reactPropsRegex = codegen.require('./props')
-const testOmitPropsOnStringTag = memoize(key => reactPropsRegex.test(key))
+declare var codegen: { require: (path: string) => * }
+
+const reactPropsRegex: RegExp = codegen.require('./props')
+const testOmitPropsOnStringTag: (key: string) => boolean = memoize(key =>
+  reactPropsRegex.test(key)
+)
 const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
 const testAlwaysTrue = () => true
 
-const omitAssign = function(testFn, target) {
+const omitAssign: (
+  testFn: (key: string) => boolean,
+  target: {},
+  ...sources: Array<{}>
+) => Object = function(testFn, target) {
   let i = 2
   let length = arguments.length
   for (; i < length; i++) {
@@ -24,9 +33,18 @@ const omitAssign = function(testFn, target) {
   }
   return target
 }
+
+export type EmotionStyledOptions = {
+  channel: string,
+  contextTypes?: *,
+  Component: *,
+  createElement: Function,
+  contextTypes?: *
+}
+
 function createEmotionStyled(
-  { css, getRegisteredStyles },
-  { channel, createElement, Component, contextTypes }
+  { css, getRegisteredStyles }: Emotion,
+  { channel, createElement, Component, contextTypes }: EmotionStyledOptions
 ) {
   function componentWillMount() {
     if (this.context[channel] !== undefined) {
@@ -38,7 +56,7 @@ function createEmotionStyled(
       this.context[channel].unsubscribe(this.unsubscribe)
     }
   }
-  const createStyled = (tag, options: { e: string, label: string }) => {
+  const createStyled = (tag: *, options: { e: string, label: string }) => {
     if (process.env.NODE_ENV !== 'production') {
       if (tag === undefined) {
         throw new Error(
@@ -64,7 +82,7 @@ function createEmotionStyled(
         ? testOmitPropsOnStringTag
         : testOmitPropsOnComponent
 
-    return (strings, ...interpolations) => {
+    return (strings: Interpolation, ...interpolations: Interpolations) => {
       let styles = (isReal && tag.__emotion_styles) || []
       if (identifierName !== undefined) {
         styles = styles.concat(`label:${identifierName};`)
