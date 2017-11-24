@@ -94,10 +94,16 @@ export function replaceCssWithCallExpression(
   }
 }
 
+function getFilepathFromState(state) {
+  const path = state.file.opts.filename;
+
+  return process.env.NODE_ENV === 'test' ? basename(path) : path;
+}
+
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
-  let stableClassName = `el-${hashString(state.file.opts.filename)}`
+  let stableClassName = `el-${hashString(getFilepathFromState(state))}`
 
   if (identifierName) {
     stableClassName += `-${identifierName}`
