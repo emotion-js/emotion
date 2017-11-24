@@ -55,7 +55,11 @@ exports[`source map babel 6 styled object styles source map 1`] = `
 }, '\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNNIiwiZmlsZSI6ImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICBzdHlsZWQoJ2RpdicpKHtcbiAgICAgICAgY29sb3I6ICdibHVlJyxcbiAgICAgICAgJyY6aG92ZXInOiB7XG4gICAgICAgICAgJyYgLm5hbWUnOiB7XG4gICAgICAgICAgICBjb2xvcjogJ2FtZXRoeXN0JyxcbiAgICAgICAgICAgICcmOmZvY3VzJzoge1xuICAgICAgICAgICAgICBjb2xvcjogJ2J1cmx5d29vZCcsXG4gICAgICAgICAgICAgIFttcVswXV06IHtcbiAgICAgICAgICAgICAgICBjb2xvcjogJ3JlYmVjY2FwdXJwbGUnXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICB9LFxuICAgICAgICAgIGNvbG9yOiAnZ3JlZW4nXG4gICAgICAgIH1cbiAgICAgIH0pXG4gICAgIl19 */');"
 `;
 
-exports[`source map babel 6 styled source map 1`] = `"const Avatar = /*#__PURE__*/styled('img')('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQTRCIiwiZmlsZSI6InN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBBdmF0YXIgPSBzdHlsZWQoJ2ltZycpYFxuICAgICAgICB3aWR0aDogOTZweDtcbiAgICAgICAgaGVpZ2h0OiA5NnB4O1xuXG4gICAgICAgIGJvcmRlci1yYWRpdXM6ICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJSYWRpdXN9O1xuXG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJDb2xvcn07XG4gICAgICBgIl19 */');"`;
+exports[`source map babel 6 styled source map 1`] = `
+"const Avatar = /*#__PURE__*/styled('img', {
+  target: 'el-1367ks3-Avatar'
+})('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQTRCIiwiZmlsZSI6InN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBBdmF0YXIgPSBzdHlsZWQoJ2ltZycpYFxuICAgICAgICB3aWR0aDogOTZweDtcbiAgICAgICAgaGVpZ2h0OiA5NnB4O1xuXG4gICAgICAgIGJvcmRlci1yYWRpdXM6ICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJSYWRpdXN9O1xuXG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJDb2xvcn07XG4gICAgICBgIl19 */');"
+`;
 
 exports[`source map babel 7 css object 1`] = `
 "/*#__PURE__*/
@@ -119,5 +123,7 @@ styled('div')({
 exports[`source map babel 7 styled source map 1`] = `
 "const Avatar =
 /*#__PURE__*/
-styled('img')(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQTRCIiwiZmlsZSI6InN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBBdmF0YXIgPSBzdHlsZWQoJ2ltZycpYFxuICAgICAgICB3aWR0aDogOTZweDtcbiAgICAgICAgaGVpZ2h0OiA5NnB4O1xuXG4gICAgICAgIGJvcmRlci1yYWRpdXM6ICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJSYWRpdXN9O1xuXG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJDb2xvcn07XG4gICAgICBgIl19 */\\");"
+styled('img', {
+  target: \\"el-1367ks3-Avatar\\"
+})(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQTRCIiwiZmlsZSI6InN0eWxlZC5zb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBBdmF0YXIgPSBzdHlsZWQoJ2ltZycpYFxuICAgICAgICB3aWR0aDogOTZweDtcbiAgICAgICAgaGVpZ2h0OiA5NnB4O1xuXG4gICAgICAgIGJvcmRlci1yYWRpdXM6ICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJSYWRpdXN9O1xuXG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICR7cHJvcHMgPT5cbiAgICAgICAgICBwcm9wcy50aGVtZS5ib3JkZXJDb2xvcn07XG4gICAgICBgIl19 */\\");"
 `;

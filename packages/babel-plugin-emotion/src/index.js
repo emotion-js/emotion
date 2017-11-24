@@ -97,6 +97,17 @@ export function replaceCssWithCallExpression(
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
+  let stableClassName = `el-${hashString(state.file.opts.filename)}`
+
+  if (identifierName) {
+    stableClassName += `-${identifierName}`
+  }
+
+  const targetExpression = t.objectProperty(
+    t.identifier('target'),
+    t.stringLiteral(stableClassName)
+  )
+
   if (state.extractStatic && !path.node.quasi.expressions.length) {
     const { hash, src } = createRawStringFromTemplateLiteral(
       path.node.quasi,
@@ -107,11 +118,13 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     const staticCSSRules = staticStylis(`.${staticClassName}`, src)
 
     state.insertStaticRules([staticCSSRules])
+
     return t.callExpression(
       t.callExpression(identifier, [
         tag,
         t.objectExpression([
-          t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName))
+          t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName)),
+          targetExpression
         ])
       ]),
       []
@@ -126,21 +139,20 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     src += addSourceMaps(path.node.quasi.loc.start, state)
   }
 
+  let labelExpression
+
+  if (state.opts.autoLabel && identifierName) {
+    labelExpression = t.objectProperty(
+      t.identifier('label'),
+      t.stringLiteral(identifierName.trim())
+    )
+  }
+
   return t.callExpression(
-    t.callExpression(
-      identifier,
-      state.opts.autoLabel && identifierName
-        ? [
-            tag,
-            t.objectExpression([
-              t.objectProperty(
-                t.identifier('label'),
-                t.stringLiteral(identifierName.trim())
-              )
-            ])
-          ]
-        : [tag]
-    ),
+    t.callExpression(identifier, [
+      tag,
+      t.objectExpression([labelExpression, targetExpression].filter(Boolean))
+    ]),
     new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }

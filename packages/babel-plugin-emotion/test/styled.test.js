@@ -245,6 +245,7 @@ const cases = {
     code: 'what.h1`color:blue;`',
     opts: { importedNames: { styled: 'what' } }
   },
+
   'autoLabel object styles': {
     code: `
       const Profile = () => {
@@ -269,14 +270,27 @@ const cases = {
           const ProfileH1 = styled('h1')\`
             color: blue;
           \`
-          
+
           return <H1>Hello</H1>
         }
       `,
     opts: { autoLabel: true }
+  },
+
+  'component selector': {
+    code: `
+      const Child = styled.div\`
+        color: red;
+      \`;
+
+      const Parent = styled.div\`
+        \${Child} {
+          color: blue;
+        }
+      \`;
+    `
   }
 }
 
 createInlineTests('styled inline', cases)
-
 createExtractTests('styled extract', cases)

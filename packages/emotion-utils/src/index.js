@@ -7,6 +7,13 @@ export function memoize(fn) {
   }
 }
 
+export const KEY_STYLES = '__emotion_styles'
+export const KEY_TARGET = '__emotion_target'
+
+export function isEmotionElement(fn) {
+  return KEY_STYLES in fn
+}
+
 export const unitless = {
   animationIterationCount: 1,
   borderImageOutset: 1,

@@ -1,6 +1,6 @@
 /* global codegen */
 import { createElement, Component } from 'react'
-import { memoize } from 'emotion-utils'
+import { memoize, KEY_STYLES, KEY_TARGET } from 'emotion-utils'
 import { css, getRegisteredStyles } from 'emotion'
 import { channel, contextTypes } from '../../emotion-theming/src/utils'
 
@@ -41,7 +41,10 @@ const omitAssign = function(testFn, target) {
   return target
 }
 
-const createStyled = (tag, options: { e: string, label: string }) => {
+const createStyled = (
+  tag,
+  options: { e: string, label: string, target: string }
+) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
       throw new Error(
@@ -51,9 +54,11 @@ const createStyled = (tag, options: { e: string, label: string }) => {
   }
   let staticClassName
   let identifierName
+  let stableClassName
   if (options !== undefined) {
-    staticClassName = options.e
     identifierName = options.label
+    stableClassName = options.target
+    staticClassName = options.e
   }
   const isReal = tag.__emotion_real === tag
   const baseTag =
@@ -66,7 +71,7 @@ const createStyled = (tag, options: { e: string, label: string }) => {
       : testOmitPropsOnComponent
 
   return (strings, ...interpolations) => {
-    let styles = (isReal && tag.__emotion_styles) || []
+    let styles = (isReal && tag[KEY_STYLES]) || []
     if (identifierName !== undefined) {
       styles = styles.concat(`label:${identifierName};`)
     }
@@ -123,9 +128,13 @@ const createStyled = (tag, options: { e: string, label: string }) => {
             : baseTag.displayName || baseTag.name || 'Component'})`
 
     Styled.contextTypes = contextTypes
-    Styled.__emotion_styles = styles
+    Styled[KEY_STYLES] = styles
     Styled.__emotion_base = baseTag
     Styled.__emotion_real = Styled
+
+    if (stableClassName) {
+      Styled[KEY_TARGET] = stableClassName
+    }
 
     Styled.withComponent = nextTag => {
       return createStyled(nextTag, options)(styles)
