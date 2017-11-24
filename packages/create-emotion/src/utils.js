@@ -19,9 +19,16 @@ export const processStyleValue = (key: string, value: string) => {
   return value
 }
 
-type ClassNameArg = string | boolean | Function | Object | ClassNameArg[]
+export type ClassNameArg =
+  | string
+  | boolean
+  | (() => ClassNameArg)
+  | { [key: string]: boolean }
+  | Array<ClassNameArg>
 
-export function classnames(...args: ClassNameArg[]) {
+export const classnames: (
+  ...args: Array<ClassNameArg>
+) => string = function classnames() {
   let len = arguments.length
   let i = 0
   let cls = ''

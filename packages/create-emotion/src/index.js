@@ -8,7 +8,7 @@ import {
   isBrowser
 } from './utils'
 import StyleSheet from './sheet'
-import type { PrefixOption, StylisOptions } from './utils'
+import type { PrefixOption, StylisOptions, ClassNameArg } from './utils'
 
 type StylisPlugins = Function[] | null | Function
 
@@ -37,7 +37,7 @@ type CreateStyles<ReturnValue> = (...args: Interpolations) => ReturnValue
 
 export type Emotion = {
   css: CreateStyles<string>,
-  cx: (...classNames: any) => string,
+  cx: (...classNames: Array<ClassNameArg>) => string,
   flush: () => void,
   getRegisteredStyles: (
     registeredStyles: Array<string>,
@@ -273,7 +273,7 @@ function createEmotion(
     return rawClassName + css(registeredStyles, sourceMap)
   }
 
-  function cx(...classNames: any) {
+  function cx(...classNames: Array<ClassNameArg>) {
     return merge(classnames(...classNames))
   }
 

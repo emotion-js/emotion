@@ -43,17 +43,19 @@ export type EmotionStyledOptions = {
 }
 
 function createEmotionStyled(
-  { css, getRegisteredStyles }: Emotion,
-  { channel, createElement, Component, contextTypes }: EmotionStyledOptions
+  emotion: Emotion,
+  instanceOptions: EmotionStyledOptions
 ) {
   function componentWillMount() {
-    if (this.context[channel] !== undefined) {
-      this.unsubscribe = this.context[channel].subscribe(setTheme.bind(this))
+    if (this.context[instanceOptions.channel] !== undefined) {
+      this.unsubscribe = this.context[instanceOptions.channel].subscribe(
+        setTheme.bind(this)
+      )
     }
   }
   function componentWillUnmount() {
     if (this.unsubscribe !== undefined) {
-      this.context[channel].unsubscribe(this.unsubscribe)
+      this.context[instanceOptions.channel].unsubscribe(this.unsubscribe)
     }
   }
   const createStyled = (tag: *, options: { e: string, label: string }) => {
@@ -98,7 +100,7 @@ function createEmotionStyled(
         }
       }
 
-      class Styled extends Component {
+      class Styled extends instanceOptions.Component {
         render() {
           const { props, state } = this
           this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
@@ -110,7 +112,7 @@ function createEmotionStyled(
 
           if (props.className) {
             if (staticClassName === undefined) {
-              className += getRegisteredStyles(
+              className += emotion.getRegisteredStyles(
                 classInterpolations,
                 props.className
               )
@@ -119,12 +121,15 @@ function createEmotionStyled(
             }
           }
           if (staticClassName === undefined) {
-            className += css.apply(this, styles.concat(classInterpolations))
+            className += emotion.css.apply(
+              this,
+              styles.concat(classInterpolations)
+            )
           } else {
             className += staticClassName
           }
 
-          return createElement(
+          return instanceOptions.createElement(
             baseTag,
             omitAssign(omitFn, {}, props, { className, ref: props.innerRef })
           )
@@ -139,7 +144,7 @@ function createEmotionStyled(
               ? baseTag
               : baseTag.displayName || baseTag.name || 'Component'})`
 
-      Styled.contextTypes = contextTypes
+      Styled.contextTypes = instanceOptions.contextTypes
       Styled.__emotion_styles = styles
       Styled.__emotion_base = baseTag
       Styled.__emotion_real = Styled
