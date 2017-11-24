@@ -1,6 +1,6 @@
 /* global codegen */
 import { createElement, Component } from 'react'
-import { memoize, KEY_STYLES, KEY_TARGET } from 'emotion-utils'
+import { memoize, STYLES_KEY, TARGET_KEY } from 'emotion-utils'
 import { css, getRegisteredStyles } from 'emotion'
 import { channel, contextTypes } from '../../emotion-theming/src/utils'
 
@@ -71,7 +71,7 @@ const createStyled = (
       : testOmitPropsOnComponent
 
   return (strings, ...interpolations) => {
-    let styles = (isReal && tag[KEY_STYLES]) || []
+    let styles = (isReal && tag[STYLES_KEY]) || []
     if (identifierName !== undefined) {
       styles = styles.concat(`label:${identifierName};`)
     }
@@ -128,12 +128,12 @@ const createStyled = (
             : baseTag.displayName || baseTag.name || 'Component'})`
 
     Styled.contextTypes = contextTypes
-    Styled[KEY_STYLES] = styles
+    Styled[STYLES_KEY] = styles
     Styled.__emotion_base = baseTag
     Styled.__emotion_real = Styled
 
     if (stableClassName) {
-      Styled[KEY_TARGET] = stableClassName
+      Styled[TARGET_KEY] = stableClassName
     }
 
     Styled.withComponent = nextTag => {

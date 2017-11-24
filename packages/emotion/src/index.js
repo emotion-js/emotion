@@ -4,7 +4,7 @@ import {
   memoize,
   unitless,
   isEmotionElement,
-  KEY_TARGET
+  TARGET_KEY
 } from 'emotion-utils'
 import stylisRuleSheet from 'stylis-rule-sheet'
 import StyleSheet from './sheet'
@@ -59,14 +59,14 @@ function handleInterpolation(
       if (isEmotionElement(interpolation)) {
         if (
           process.env.NODE_ENV !== 'production' &&
-          !(KEY_TARGET in interpolation)
+          interpolation[TARGET_KEY] !== undefined
         ) {
           throw new Error(
             'Component selectors can only be used in conjunction with babel-plugin-emotion.'
           )
         }
 
-        return `.${interpolation[KEY_TARGET]}`
+        return `.${interpolation[TARGET_KEY]}`
       }
 
       return handleInterpolation.call(

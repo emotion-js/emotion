@@ -7,11 +7,11 @@ export function memoize(fn) {
   }
 }
 
-export const KEY_STYLES = '__emotion_styles'
-export const KEY_TARGET = '__emotion_target'
+export const STYLES_KEY = '__emotion_styles'
+export const TARGET_KEY = '__emotion_target'
 
 export function isEmotionElement(fn) {
-  return KEY_STYLES in fn
+  return fn[STYLES_KEY] !== undefined
 }
 
 export const unitless = {

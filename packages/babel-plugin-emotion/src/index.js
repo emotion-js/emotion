@@ -95,9 +95,9 @@ export function replaceCssWithCallExpression(
 }
 
 function getFilepathFromState(state) {
-  const path = state.file.opts.filename;
+  const path = state.file.opts.filename
 
-  return process.env.NODE_ENV === 'test' ? basename(path) : path;
+  return process.env.NODE_ENV === 'test' ? basename(path) : path
 }
 
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
