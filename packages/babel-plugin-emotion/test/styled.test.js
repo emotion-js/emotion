@@ -283,9 +283,15 @@ const cases = {
         color: red;
       \`;
 
+      const SecondChild = Child.withComponent('span');
+
       const Parent = styled.div\`
         \${Child} {
           color: blue;
+        }
+
+        \${SecondChild} {
+          color: pink;
         }
       \`;
     `

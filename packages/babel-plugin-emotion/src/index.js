@@ -100,19 +100,29 @@ function getFilepathFromState(state) {
   return process.env.NODE_ENV === 'test' ? basename(path) : path
 }
 
-export function buildStyledCallExpression(identifier, tag, path, state, t) {
+function createClassName(hash) {
+  return `css-${hash}`
+}
+
+function buildTargetObjectProperty(path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
-  let stableClassName = `el-${hashString(getFilepathFromState(state))}`
+  let stableClassName = createClassName(hashString(getFilepathFromState(state)))
 
   if (identifierName) {
     stableClassName += `-${identifierName}`
   }
 
-  const targetExpression = t.objectProperty(
+  return t.objectProperty(
     t.identifier('target'),
     t.stringLiteral(stableClassName)
   )
+}
+
+export function buildStyledCallExpression(identifier, tag, path, state, t) {
+  const identifierName = getIdentifierName(path, t)
+
+  const targetProperty = buildTargetObjectProperty(path, state, t);
 
   if (state.extractStatic && !path.node.quasi.expressions.length) {
     const { hash, src } = createRawStringFromTemplateLiteral(
@@ -120,7 +130,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
       identifierName,
       'styled' // we don't want these styles to be merged in css``
     )
-    const staticClassName = `css-${hash}`
+    const staticClassName = createClassName(hash)
     const staticCSSRules = staticStylis(`.${staticClassName}`, src)
 
     state.insertStaticRules([staticCSSRules])
@@ -130,7 +140,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
         tag,
         t.objectExpression([
           t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName)),
-          targetExpression
+          targetProperty
         ])
       ]),
       []
@@ -145,10 +155,10 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
     src += addSourceMaps(path.node.quasi.loc.start, state)
   }
 
-  let labelExpression
+  let labelProperty
 
   if (state.opts.autoLabel && identifierName) {
-    labelExpression = t.objectProperty(
+    labelProperty = t.objectProperty(
       t.identifier('label'),
       t.stringLiteral(identifierName.trim())
     )
@@ -157,7 +167,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   return t.callExpression(
     t.callExpression(identifier, [
       tag,
-      t.objectExpression([labelExpression, targetExpression].filter(Boolean))
+      t.objectExpression([labelProperty, targetProperty].filter(Boolean))
     ]),
     new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
@@ -346,62 +356,79 @@ export default function(babel) {
           })
         }
       },
-      CallExpression(path, state) {
-        if (path[visited]) {
-          return
-        }
-        try {
-          if (t.isIdentifier(path.node.callee)) {
-            switch (path.node.callee.name) {
-              case state.importedNames.css:
-              case state.importedNames.keyframes: {
-                path.addComment('leading', '#__PURE__')
-                if (state.opts.autoLabel) {
-                  const identifierName = getIdentifierName(path, t)
-                  if (identifierName) {
-                    path.node.arguments.push(
-                      t.stringLiteral(`label:${identifierName.trim()};`)
-                    )
+      CallExpression: {
+        enter(path, state) {
+          if (path[visited]) {
+            return
+          }
+          try {
+            if (t.isIdentifier(path.node.callee)) {
+              switch (path.node.callee.name) {
+                case state.importedNames.css:
+                case state.importedNames.keyframes: {
+                  path.addComment('leading', '#__PURE__')
+                  if (state.opts.autoLabel) {
+                    const identifierName = getIdentifierName(path, t)
+                    if (identifierName) {
+                      path.node.arguments.push(
+                        t.stringLiteral(`label:${identifierName.trim()};`)
+                      )
+                    }
                   }
                 }
+                // eslint-disable-next-line no-fallthrough
+                case state.importedNames.injectGlobal:
+                case state.importedNames.fontFace:
+                  if (
+                    state.opts.sourceMap === true &&
+                    path.node.loc !== undefined
+                  ) {
+                    path.node.arguments.push(
+                      t.stringLiteral(addSourceMaps(path.node.loc.start, state))
+                    )
+                  }
               }
-              // eslint-disable-next-line no-fallthrough
-              case state.importedNames.injectGlobal:
-              case state.importedNames.fontFace:
-                if (
-                  state.opts.sourceMap === true &&
-                  path.node.loc !== undefined
-                ) {
-                  path.node.arguments.push(
-                    t.stringLiteral(addSourceMaps(path.node.loc.start, state))
-                  )
-                }
             }
+
+            if (
+              (t.isCallExpression(path.node.callee) &&
+                path.node.callee.callee.name === state.importedNames.styled) ||
+              (t.isMemberExpression(path.node.callee) &&
+                t.isIdentifier(path.node.callee.object) &&
+                path.node.callee.object.name === state.importedNames.styled)
+            ) {
+              const identifier = t.isCallExpression(path.node.callee)
+                ? path.node.callee.callee
+                : path.node.callee.object
+              path.replaceWith(
+                buildStyledObjectCallExpression(path, state, identifier, t)
+              )
+
+              if (state.opts.hoist) {
+                hoistPureArgs(path)
+              }
+            }
+          } catch (e) {
+            throw path.buildCodeFrameError(e)
           }
 
-          if (
-            (t.isCallExpression(path.node.callee) &&
-              path.node.callee.callee.name === state.importedNames.styled) ||
-            (t.isMemberExpression(path.node.callee) &&
-              t.isIdentifier(path.node.callee.object) &&
-              path.node.callee.object.name === state.importedNames.styled)
-          ) {
-            const identifier = t.isCallExpression(path.node.callee)
-              ? path.node.callee.callee
-              : path.node.callee.object
-            path.replaceWith(
-              buildStyledObjectCallExpression(path, state, identifier, t)
-            )
-
-            if (state.opts.hoist) {
-              hoistPureArgs(path)
+          path[visited] = true
+        },
+        exit(path, state) {
+          try {
+            if (path.node.callee && path.node.callee.property && path.node.callee.property.name === 'withComponent') {
+              if (path.node.arguments.length === 1) {
+                path.node.arguments.push(
+                  t.objectExpression([
+                    buildTargetObjectProperty(path, state, t)
+                  ])
+                )
+              }
             }
+          } catch (e) {
+            throw path.buildCodeFrameError(e)
           }
-        } catch (e) {
-          throw path.buildCodeFrameError(e)
         }
-
-        path[visited] = true
       },
       TaggedTemplateExpression(path, state) {
         if (path[visited]) {

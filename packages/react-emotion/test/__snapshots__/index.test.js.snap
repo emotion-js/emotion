@@ -784,6 +784,12 @@ exports[`styled with higher order component that hoists statics 1`] = `
 />
 `;
 
+exports[`styled withComponent creates a new, unique stable class per invocation 1`] = `"css-tk02q6-Title"`;
+
+exports[`styled withComponent creates a new, unique stable class per invocation 2`] = `"css-tk02q6-Subtitle"`;
+
+exports[`styled withComponent creates a new, unique stable class per invocation 3`] = `"css-tk02q6-Byline"`;
+
 exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 .glamor-0 {
   color: green;

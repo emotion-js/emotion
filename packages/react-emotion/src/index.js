@@ -15,6 +15,7 @@ function componentWillMount() {
     this.unsubscribe = this.context[channel].subscribe(setTheme.bind(this))
   }
 }
+
 function componentWillUnmount() {
   if (this.unsubscribe !== undefined) {
     this.context[channel].unsubscribe(this.unsubscribe)
@@ -43,7 +44,7 @@ const omitAssign = function(testFn, target) {
 
 const createStyled = (
   tag,
-  options: { e: string, label: string, target: string }
+  options: { e: string, label: string, target: string } = {}
 ) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
@@ -52,14 +53,10 @@ const createStyled = (
       )
     }
   }
-  let staticClassName
-  let identifierName
-  let stableClassName
-  if (options !== undefined) {
-    identifierName = options.label
-    stableClassName = options.target
-    staticClassName = options.e
-  }
+  let staticClassName = options.e
+  let identifierName = options.label
+  let stableClassName = options.target
+
   const isReal = tag.__emotion_real === tag
   const baseTag =
     staticClassName === undefined ? (isReal && tag.__emotion_base) || tag : tag
@@ -136,8 +133,8 @@ const createStyled = (
       Styled[TARGET_KEY] = stableClassName
     }
 
-    Styled.withComponent = nextTag => {
-      return createStyled(nextTag, options)(styles)
+    Styled.withComponent = (nextTag, nextOptions : { target: string } = {}) => {
+      return createStyled(nextTag, { ...options, ...nextOptions })(styles)
     }
 
     return Styled
