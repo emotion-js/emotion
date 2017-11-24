@@ -1,3 +1,4 @@
+// @flow
 import { injectGlobal, sheet, flush, css } from 'emotion'
 
 describe('injectGlobal', () => {

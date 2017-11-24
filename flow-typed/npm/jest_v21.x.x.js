@@ -545,7 +545,7 @@ declare var expect: {
   /** Add additional Jasmine matchers to Jest's roster */
   extend(matchers: { [name: string]: JestMatcher }): void,
   /** Add a module that formats application-specific data structures. */
-  addSnapshotSerializer(serializer: {test: (val: any) => boolean, print: (val: any, printer: (value: any) => string) => string}): void,
+  addSnapshotSerializer(serializer: JestSnapshotSerializer): void,
   assertions(expectedAssertions: number): void,
   hasAssertions(): void,
   any(value: mixed): JestAsymmetricEqualityType,
@@ -556,6 +556,8 @@ declare var expect: {
   stringContaining(value: string): void,
   stringMatching(value: string | RegExp): void
 };
+
+export type JestSnapshotSerializer = {test: (val: any) => boolean, print: (val: any, printer: (value: any) => string) => string}
 
 // TODO handle return type
 // http://jasmine.github.io/2.4/introduction.html#section-Spies

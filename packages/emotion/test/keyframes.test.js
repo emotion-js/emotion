@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { keyframes, sheet, flush } from 'emotion'

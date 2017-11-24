@@ -1,3 +1,4 @@
+// @flow
 import { createElement, Component } from 'react'
 import * as emotion from 'emotion'
 import { channel, contextTypes } from '../../emotion-theming/src/utils'

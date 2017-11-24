@@ -1,4 +1,3 @@
-// @flow
 import { memoize } from 'emotion-utils'
 import type { Emotion, Interpolation, Interpolations } from 'create-emotion'
 
