@@ -1,7 +1,14 @@
+// @flow
 import { addNamed } from '@babel/helper-module-imports'
 import { addSourceMaps } from './source-map'
+import type { BabelPath, EmotionBabelPluginPass } from './index'
+import type { Types } from 'babel-flow-types'
 
-export default function(path, state, t) {
+export default function(
+  path: BabelPath,
+  state: EmotionBabelPluginPass,
+  t: Types
+) {
   let cssPath
   let classNamesPath
 
@@ -66,30 +73,32 @@ export default function(path, state, t) {
   }
 
   cssPath.parentPath.remove()
-  if (t.isJSXExpressionContainer(classNamesValue)) {
-    const args = [
-      add(
-        cssTemplateExpression,
-        add(t.stringLiteral(' '), classNamesValue.expression)
-      )
-    ]
-
-    if (state.opts.sourceMap) {
-      args.push(t.stringLiteral(addSourceMaps(cssPath.node.loc.start, state)))
-    }
-
-    classNamesPath.parentPath.replaceWith(
-      createClassNameAttr(t.callExpression(getMergeIdentifier(), args))
-    )
-  } else {
-    classNamesPath.parentPath.replaceWith(
-      createClassNameAttr(
+  if (classNamesPath && classNamesPath.parentPath) {
+    if (t.isJSXExpressionContainer(classNamesValue)) {
+      const args = [
         add(
           cssTemplateExpression,
-          t.stringLiteral(` ${classNamesValue.value || ''}`)
+          add(t.stringLiteral(' '), classNamesValue.expression)
+        )
+      ]
+
+      if (state.opts.sourceMap) {
+        args.push(t.stringLiteral(addSourceMaps(cssPath.node.loc.start, state)))
+      }
+
+      classNamesPath.parentPath.replaceWith(
+        createClassNameAttr(t.callExpression(getMergeIdentifier(), args))
+      )
+    } else {
+      classNamesPath.parentPath.replaceWith(
+        createClassNameAttr(
+          add(
+            cssTemplateExpression,
+            t.stringLiteral(` ${classNamesValue.value || ''}`)
+          )
         )
       )
-    )
+    }
   }
 
   function add(a, b) {
@@ -99,7 +108,7 @@ export default function(path, state, t) {
   function createClassNameAttr(expression) {
     return t.jSXAttribute(
       t.jSXIdentifier('className'),
-      t.JSXExpressionContainer(expression)
+      t.jSXExpressionContainer(expression)
     )
   }
 
@@ -115,16 +124,16 @@ export default function(path, state, t) {
   }
   function getMergeIdentifier() {
     if (state.opts.autoImportCssProp !== false) {
-      if (!state.cssPropMergeIdentifier) {
-        state.cssPropMergeIdentifier = addNamed(
+      if (!state.cssPropCxIdentifier) {
+        state.cssPropCxIdentifier = addNamed(
           path,
-          'merge',
+          'cx',
           state.emotionImportPath
         )
       }
-      return state.cssPropMergeIdentifier
+      return state.cssPropCxIdentifier
     } else {
-      return t.identifier(state.importedNames.merge)
+      return t.identifier(state.importedNames.cx)
     }
   }
   function createCssTemplateExpression(templateLiteral) {

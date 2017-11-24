@@ -23,7 +23,7 @@ import { addSourceMaps } from './source-map'
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
-type BabelPath = _BabelPath & {
+export type BabelPath = _BabelPath & {
   node: *
 }
 
@@ -45,19 +45,22 @@ export function hoistPureArgs(path: BabelPath) {
   }
 }
 
-type EmotionBabelPluginPass = BabelPluginPass & {
+type ImportedNames = {
+  css: string,
+  keyframes: string,
+  injectGlobal: string,
+  styled: string,
+  cx: string
+}
+
+export type EmotionBabelPluginPass = BabelPluginPass & {
   extractStatic: boolean,
   insertStaticRules: (rules: Array<string>) => void,
   emotionImportPath: string,
   staticRules: Array<string>,
   cssPropIdentifier: Identifier,
-  importedNames: {
-    css: string,
-    keyframes: string,
-    injectGlobal: string,
-    styled: string,
-    merge: string
-  }
+  cssPropCxIdentifier: Identifier,
+  importedNames: ImportedNames
 }
 
 export function replaceCssWithCallExpression(
@@ -137,11 +140,7 @@ export function buildStyledCallExpression(
   const identifierName = getIdentifierName(path, t)
 
   if (state.extractStatic && !path.node.quasi.expressions.length) {
-    const { hash, src } = createRawStringFromTemplateLiteral(
-      path.node.quasi,
-      identifierName,
-      'styled' // we don't want these styles to be merged in css``
-    )
+    const { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
     const staticClassName = `css-${hash}`
     const staticCSSRules = staticStylis(`.${staticClassName}`, src)
 
@@ -223,13 +222,15 @@ export function buildStyledObjectCallExpression(
 
 const visited = Symbol('visited')
 
-const defaultImportedNames = {
+const defaultImportedNames: ImportedNames = {
   styled: 'styled',
   css: 'css',
   keyframes: 'keyframes',
   injectGlobal: 'injectGlobal',
-  merge: 'merge'
+  cx: 'cx'
 }
+
+const importedNameKeys = Object.keys(defaultImportedNames)
 
 const defaultEmotionPaths = ['emotion', 'react-emotion', 'preact-emotion']
 
@@ -319,16 +320,7 @@ export default function(babel: Babel) {
           imports.forEach(({ source, imported, specifiers }) => {
             if (emotionPaths.indexOf(getPath(source)) !== -1) {
               const importedNames = specifiers
-                .filter(
-                  v =>
-                    [
-                      'default',
-                      'css',
-                      'keyframes',
-                      'injectGlobal',
-                      'merge'
-                    ].indexOf(v.imported) !== -1
-                )
+                .filter(v => importedNameKeys.indexOf(v.imported) !== -1)
                 .reduce(
                   (acc, { imported, local }) => ({
                     ...acc,

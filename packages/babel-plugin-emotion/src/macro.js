@@ -1,3 +1,4 @@
+// @flow
 import { replaceCssWithCallExpression } from './index'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 import { createMacro } from 'babel-macros'
