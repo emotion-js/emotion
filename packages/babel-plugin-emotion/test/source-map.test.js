@@ -1,3 +1,4 @@
+// @flow
 import { createInlineTests } from './util'
 
 const cases = {

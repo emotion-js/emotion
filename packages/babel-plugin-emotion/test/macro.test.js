@@ -1,3 +1,4 @@
+// @flow
 import * as babel6 from 'babel-core'
 import * as babel7 from '@babel/core'
 import { createMacroTests } from './util'

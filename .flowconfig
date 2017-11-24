@@ -1,7 +1,5 @@
 [ignore]
 .*/node_modules/styled-components/.*
-.*/node_modules/polished/.*
-.*/node_modules/jest-in-case/.*
 
 
 [include]

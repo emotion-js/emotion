@@ -1,3 +1,4 @@
+// @flow
 import { createInlineTests, createExtractTests } from './util'
 
 const inline = {
