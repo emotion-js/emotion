@@ -10,7 +10,7 @@
       "Tag: Internal": ":house: Internal"
     }
   },
-  "version": "8.0.10",
+  "version": "8.0.11",
   "npmClient": "yarn",
   "useWorkspaces": true
 }
