@@ -95,7 +95,7 @@ export function replaceCssWithCallExpression(
   }
 }
 
-const normalizeFilename = memoize((filename) => {
+const normalizeFilename = memoize(filename => {
   // normalize the file path to ignore folder structure
   // outside the current node project and arch-specific delimiters
   let rootPath = filename
@@ -104,9 +104,8 @@ const normalizeFilename = memoize((filename) => {
     rootPath = findRoot(filename)
   } catch (err) {}
 
-  const finalPath = filename === rootPath
-    ? basename(filename)
-    : filename.slice(rootPath.length)
+  const finalPath =
+    filename === rootPath ? basename(filename) : filename.slice(rootPath.length)
 
   return normalize(finalPath)
 })
@@ -114,7 +113,10 @@ const normalizeFilename = memoize((filename) => {
 function buildTargetObjectProperty(path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
-  let stableClassName = getName(hashString(normalizeFilename(state.file.opts.filename)), 'css')
+  let stableClassName = getName(
+    hashString(normalizeFilename(state.file.opts.filename)),
+    'css'
+  )
 
   if (identifierName) {
     stableClassName += `-${identifierName}`
