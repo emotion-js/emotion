@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { flush, sheet } from 'react-emotion'
 import renderer from 'react-test-renderer'
 
-afterEach(() => flush)
+afterEach(() => flush())
 
 test('component as selector', () => {
   const fontSize = '20px'

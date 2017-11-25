@@ -47,10 +47,6 @@ exports[`component as selector 2`] = `
 `;
 
 exports[`component as selector function interpolation 1`] = `
-.glamor-0 {
-  font-size: 20px;
-}
-
 .glamor-1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -60,6 +56,10 @@ exports[`component as selector function interpolation 1`] = `
 
 .glamor-1 .css-rey33e-2 {
   color: green;
+}
+
+.glamor-0 {
+  font-size: 20px;
 }
 
 <div
@@ -78,22 +78,7 @@ exports[`component as selector function interpolation 1`] = `
 `;
 
 exports[`component as selector function interpolation 2`] = `
-".css-1nog45b {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.css-1nog45b .css-rey33e-0 {
-  color: green;
-}
-
-.css-bk9fzy {
-  font-size: 20px;
-}
-
-.css-fxw8kz {
+".css-fxw8kz {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -102,5 +87,9 @@ exports[`component as selector function interpolation 2`] = `
 
 .css-fxw8kz .css-rey33e-2 {
   color: green;
+}
+
+.css-bk9fzy {
+  font-size: 20px;
 }"
 `;
