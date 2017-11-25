@@ -7,8 +7,8 @@ describe('component selector', () => {
   afterEach(() => flush())
   test('should be converted to use the emotion target className', () => {
     const FakeComponent = styled.div`
-        color: blue;
-    `;
+      color: blue;
+    `
 
     const cls2 = css`
       ${FakeComponent} {
