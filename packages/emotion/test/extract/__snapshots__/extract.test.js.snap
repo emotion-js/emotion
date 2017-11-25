@@ -2,7 +2,7 @@
 
 exports[`styled basic render nested 1`] = `
 <h1
-  className="css-s9f816"
+  className="css-s9f816 css-zs4jzh-1"
 >
   hello world
 </h1>
@@ -10,7 +10,7 @@ exports[`styled basic render nested 1`] = `
 
 exports[`styled className prop on styled 1`] = `
 <h1
-  className="some-class css-mdajr1"
+  className="some-class css-mdajr1 css-zs4jzh-2"
 >
   hello world
 </h1>
@@ -18,7 +18,7 @@ exports[`styled className prop on styled 1`] = `
 
 exports[`styled no dynamic 1`] = `
 <h1
-  className="css-dae0kw"
+  className="css-dae0kw css-zs4jzh-0"
 >
   hello world
 </h1>

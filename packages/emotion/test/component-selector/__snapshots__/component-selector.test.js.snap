@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component selector should be converted to use the emotion target className 1`] = `
+.glamor-2 .glamor-1 {
+  color: red;
+}
+
+.glamor-0 {
+  color: blue;
+}
+
+<div
+  className="glamor-2"
+>
+  <div
+    className="glamor-0 glamor-1"
+  />
+</div>
+`;
+
+exports[`component selector should be converted to use the emotion target className 2`] = `
+".css-s93m7i .css-1h3vm1x-0 {
+  color: red;
+}
+
+.css-14ksm7b {
+  color: blue;
+}"
+`;

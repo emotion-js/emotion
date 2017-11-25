@@ -109,6 +109,10 @@ const createStyled = (
           className += staticClassName
         }
 
+        if (stableClassName !== undefined) {
+          className += ` ${stableClassName}`
+        }
+
         return createElement(
           baseTag,
           omitAssign(omitFn, {}, props, { className, ref: props.innerRef })

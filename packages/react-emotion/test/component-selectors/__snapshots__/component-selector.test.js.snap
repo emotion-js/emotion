@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`component as selector 1`] = `
-.glamor-1 {
+.glamor-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.glamor-1 .css-rey33e-0 {
+.glamor-2 .glamor-1 {
   color: green;
 }
 
@@ -17,11 +17,11 @@ exports[`component as selector 1`] = `
 }
 
 <div
-  className="glamor-1"
+  className="glamor-2 glamor-3"
 >
   hello 
   <h1
-    className="glamor-0"
+    className="glamor-0 glamor-1"
   >
     This will be green
   </h1>
@@ -47,14 +47,14 @@ exports[`component as selector 2`] = `
 `;
 
 exports[`component as selector function interpolation 1`] = `
-.glamor-1 {
+.glamor-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.glamor-1 .css-rey33e-2 {
+.glamor-2 .glamor-1 {
   color: green;
 }
 
@@ -63,12 +63,12 @@ exports[`component as selector function interpolation 1`] = `
 }
 
 <div
-  className="glamor-1"
+  className="glamor-2 glamor-3"
   fontSize={10}
 >
   hello 
   <h1
-    className="glamor-0"
+    className="glamor-0 glamor-1"
     fontSize={20}
   >
     This will be green
