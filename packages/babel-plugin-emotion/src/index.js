@@ -1,6 +1,7 @@
 // @flow weak
 import fs from 'fs'
-import { basename } from 'path'
+import findRoot from 'find-root'
+import { basename, normalize } from 'path'
 import { touchSync } from 'touch'
 import { addSideEffect } from '@babel/helper-module-imports'
 import {
@@ -10,7 +11,7 @@ import {
   minify
 } from './babel-utils'
 
-import { hashString, Stylis } from 'emotion-utils'
+import { hashString, Stylis, memoize } from 'emotion-utils'
 import { addSourceMaps } from './source-map'
 
 import cssProps from './css-prop'
@@ -94,20 +95,26 @@ export function replaceCssWithCallExpression(
   }
 }
 
-function getFilepathFromState(state) {
-  const path = state.file.opts.filename
+const normalizeFilename = memoize((filename) => {
+  // normalize the file path to ignore folder structure
+  // outside the current node project and arch-specific delimiters
+  let rootPath = filename
 
-  return process.env.NODE_ENV === 'test' ? basename(path) : path
-}
+  try {
+    rootPath = findRoot(filename)
+  } catch (err) {}
 
-function createClassName(hash) {
-  return `css-${hash}`
-}
+  const finalPath = filename === rootPath
+    ? basename(filename)
+    : filename.slice(rootPath.length)
+
+  return normalize(finalPath)
+})
 
 function buildTargetObjectProperty(path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
-  let stableClassName = createClassName(hashString(getFilepathFromState(state)))
+  let stableClassName = getName(hashString(normalizeFilename(state.file.opts.filename)), 'css')
 
   if (identifierName) {
     stableClassName += `-${identifierName}`
@@ -122,7 +129,7 @@ function buildTargetObjectProperty(path, state, t) {
 export function buildStyledCallExpression(identifier, tag, path, state, t) {
   const identifierName = getIdentifierName(path, t)
 
-  const targetProperty = buildTargetObjectProperty(path, state, t);
+  const targetProperty = buildTargetObjectProperty(path, state, t)
 
   if (state.extractStatic && !path.node.quasi.expressions.length) {
     const { hash, src } = createRawStringFromTemplateLiteral(
@@ -130,7 +137,7 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
       identifierName,
       'styled' // we don't want these styles to be merged in css``
     )
-    const staticClassName = createClassName(hash)
+    const staticClassName = getName(hash, 'css')
     const staticCSSRules = staticStylis(`.${staticClassName}`, src)
 
     state.insertStaticRules([staticCSSRules])
@@ -416,7 +423,11 @@ export default function(babel) {
         },
         exit(path, state) {
           try {
-            if (path.node.callee && path.node.callee.property && path.node.callee.property.name === 'withComponent') {
+            if (
+              path.node.callee &&
+              path.node.callee.property &&
+              path.node.callee.property.name === 'withComponent'
+            ) {
               if (path.node.arguments.length === 1) {
                 path.node.arguments.push(
                   t.objectExpression([

@@ -59,7 +59,7 @@ function handleInterpolation(
       if (isEmotionElement(interpolation)) {
         if (
           process.env.NODE_ENV !== 'production' &&
-          interpolation[TARGET_KEY] !== undefined
+          interpolation[TARGET_KEY] === undefined
         ) {
           throw new Error(
             'Component selectors can only be used in conjunction with babel-plugin-emotion.'

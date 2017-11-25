@@ -56,8 +56,8 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-      <H1 fontSize={20} flex={1}>
-        hello world
+        <H1 fontSize={20} flex={1}>
+          hello world
         </H1>
       )
       .toJSON()
@@ -71,8 +71,8 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-      <H2 fontSize={20} flex={1}>
-        hello world
+        <H2 fontSize={20} flex={1}>
+          hello world
         </H2>
       )
       .toJSON()
@@ -82,7 +82,7 @@ describe('styled', () => {
 
   test('inline function return value is a function', () => {
     const fontSize = () => 20
-    const Blue = styled('h1') `
+    const Blue = styled('h1')`
       font-size: ${() => fontSize}px;
     `
 
@@ -93,7 +93,7 @@ describe('styled', () => {
 
   test('call expression', () => {
     const fontSize = 20
-    const Div = styled('div') `
+    const Div = styled('div')`
       font-size: ${fontSize}px;
     `
 
@@ -121,8 +121,8 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-      <Thing>
-        hello <H1>This will be green</H1> world
+        <Thing>
+          hello <H1>This will be green</H1> world
         </Thing>
       )
       .toJSON()
@@ -149,7 +149,7 @@ describe('styled', () => {
       }
     `
 
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       ${mq};
       ${props =>
         props.prop &&
@@ -162,8 +162,8 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-      <H1 className={'legacy__class'} prop>
-        hello world
+        <H1 className={'legacy__class'} prop>
+          hello world
         </H1>
       )
       .toJSON()
@@ -172,7 +172,7 @@ describe('styled', () => {
   })
 
   test('random expressions undefined return', () => {
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       ${props =>
         props.prop &&
         css`
@@ -206,8 +206,8 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-      <H1 className={'legacy__class'} prop>
-        hello world
+        <H1 className={'legacy__class'} prop>
+          hello world
         </H1>
       )
       .toJSON()
@@ -217,11 +217,11 @@ describe('styled', () => {
 
   test('composition', () => {
     const fontSize = 20
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       font-size: ${fontSize + 'px'};
     `
 
-    const H2 = styled(H1) `
+    const H2 = styled(H1)`
       font-size: ${fontSize * 2 / 3 + 'px'};
     `
 
@@ -274,7 +274,7 @@ describe('styled', () => {
       { border: '3px solid currentColor' }
     ])
 
-    const Avatar = styled('img') `
+    const Avatar = styled('img')`
       ${prettyStyles};
       ${imageStyles};
       ${blue};
@@ -286,7 +286,7 @@ describe('styled', () => {
   })
 
   test('handles more than 10 dynamic properties', () => {
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       text-decoration: ${'underline'};
       border-right: solid blue 54px;
       background: ${'white'};
@@ -303,8 +303,8 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-      <H1 className={'legacy__class'} theme={{ blue: 'blue' }}>
-        hello world
+        <H1 className={'legacy__class'} theme={{ blue: 'blue' }}>
+          hello world
         </H1>
       )
       .toJSON()
@@ -314,18 +314,18 @@ describe('styled', () => {
 
   test('function in expression', () => {
     const fontSize = 20
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       font-size: ${fontSize + 'px'};
     `
 
-    const H2 = styled(H1) `
+    const H2 = styled(H1)`
       font-size: ${({ scale }) => fontSize * scale + 'px'};
     `
 
     const tree = renderer
       .create(
-      <H2 scale={2} className={'legacy__class'}>
-        hello world
+        <H2 scale={2} className={'legacy__class'}>
+          hello world
         </H2>
       )
       .toJSON()
@@ -345,20 +345,20 @@ describe('styled', () => {
       color: red;
     `
 
-    const BlueH1 = styled('h1') `
+    const BlueH1 = styled('h1')`
       ${cssB};
       color: blue;
       font-size: ${fontSize};
     `
 
-    const FinalH2 = styled(BlueH1) `
+    const FinalH2 = styled(BlueH1)`
       font-size: 32px;
     `
 
     const tree = renderer
       .create(
-      <FinalH2 scale={2} className={'legacy__class'}>
-        hello world
+        <FinalH2 scale={2} className={'legacy__class'}>
+          hello world
         </FinalH2>
       )
       .toJSON()
@@ -380,19 +380,19 @@ describe('styled', () => {
       height: 64px;
     `
 
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       ${cssB};
       font-size: ${modularScale(4)};
     `
 
-    const H2 = styled(H1) `
+    const H2 = styled(H1)`
       font-size: 32px;
     `
 
     const tree = renderer
       .create(
-      <H2 scale={2} className={'legacy__class'}>
-        hello world
+        <H2 scale={2} className={'legacy__class'}>
+          hello world
         </H2>
       )
       .toJSON()
@@ -429,25 +429,25 @@ describe('styled', () => {
       height: 64px;
     `
 
-    const Heading = styled('span') `
+    const Heading = styled('span')`
       background-color: ${p => p.theme.gold};
     `
 
-    const H1 = styled(Heading) `
+    const H1 = styled(Heading)`
       ${cssB};
       font-size: ${fontSize};
       color: ${p => p.theme.purple};
     `
 
-    const H2 = styled(H1) `
+    const H2 = styled(H1)`
       font-size: 32px;
     `
 
     const tree = renderer
       .create(
-      <ThemeProvider theme={theme}>
-        <H2>hello world</H2>
-      </ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <H2>hello world</H2>
+        </ThemeProvider>
       )
       .toJSON()
     expect(tree).toMatchSnapshot()
@@ -455,7 +455,7 @@ describe('styled', () => {
 
   test('higher order component', () => {
     const fontSize = 20
-    const Content = styled('div') `
+    const Content = styled('div')`
       font-size: ${fontSize}px;
     `
 
@@ -464,7 +464,7 @@ describe('styled', () => {
     `
 
     const flexColumn = Component => {
-      const NewComponent = styled(Component) `
+      const NewComponent = styled(Component)`
         ${squirtleBlueBackground};
         background-color: '#343a40';
         flex-direction: column;
@@ -489,7 +489,7 @@ describe('styled', () => {
       color: green;
     `
 
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       ${props => (props.a ? cssA : cssB)};
     `
 
@@ -521,20 +521,20 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-      <Button
-        className={css({
-          '&:hover': {
-            color: 'pink',
-            '&:active': {
-              color: 'purple'
-            },
-            '&.some-class': {
-              color: 'yellow'
+        <Button
+          className={css({
+            '&:hover': {
+              color: 'pink',
+              '&:active': {
+                color: 'purple'
+              },
+              '&.some-class': {
+                color: 'yellow'
+              }
             }
-          }
-        })}
-      >
-        Should be purple
+          })}
+        >
+          Should be purple
         </Button>
       )
       .toJSON()
@@ -562,11 +562,11 @@ describe('styled', () => {
     const Button = styled.button`
       color: green;
     `
-    const OtherButton = styled(Button) `
+    const OtherButton = styled(Button)`
       display: none;
     `
 
-    const AnotherButton = styled(OtherButton) `
+    const AnotherButton = styled(OtherButton)`
       display: flex;
       justify-content: center;
     `
@@ -627,7 +627,7 @@ describe('styled', () => {
       display: flex;
       color: ${props => props.someProp};
     `)
-    const FinalComponent = styled(SomeComponent) `
+    const FinalComponent = styled(SomeComponent)`
       padding: 8px;
     `
     const tree = renderer.create(<FinalComponent />).toJSON()
@@ -642,20 +642,20 @@ describe('styled', () => {
 
     const tree = renderer
       .create(
-      <Link
-        a
-        b
-        wow
-        prop
-        filtering
-        is
-        cool
-        aria-label="some label"
-        data-wow="value"
-        href="link"
-        {...rest}
-      >
-        hello world
+        <Link
+          a
+          b
+          wow
+          prop
+          filtering
+          is
+          cool
+          aria-label="some label"
+          data-wow="value"
+          href="link"
+          {...rest}
+        >
+          hello world
         </Link>
       )
       .toJSON()
@@ -663,25 +663,25 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
   test('no prop filtering on non string tags', () => {
-    const Link = styled(props => <a {...props} />) `
+    const Link = styled(props => <a {...props} />)`
       color: green;
     `
 
     const tree = renderer
       .create(
-      <Link
-        a
-        b
-        wow
-        prop
-        filtering
-        is
-        cool
-        aria-label="some label"
-        data-wow="value"
-        href="link"
-      >
-        hello world
+        <Link
+          a
+          b
+          wow
+          prop
+          filtering
+          is
+          cool
+          aria-label="some label"
+          data-wow="value"
+          href="link"
+        >
+          hello world
         </Link>
       )
       .toJSON()
@@ -690,25 +690,25 @@ describe('styled', () => {
   })
 
   test('no prop filtering on string tags started with upper case', () => {
-    const Link = styled('SomeCustomLink') `
+    const Link = styled('SomeCustomLink')`
       color: green;
     `
 
     const tree = renderer
       .create(
-      <Link
-        a
-        b
-        wow
-        prop
-        filtering
-        is
-        cool
-        aria-label="some label"
-        data-wow="value"
-        href="link"
-      >
-        hello world
+        <Link
+          a
+          b
+          wow
+          prop
+          filtering
+          is
+          cool
+          aria-label="some label"
+          data-wow="value"
+          href="link"
+        >
+          hello world
         </Link>
       )
       .toJSON()
@@ -717,7 +717,7 @@ describe('styled', () => {
   })
 
   test('basic SVG attributes survive prop filtering', () => {
-    const RedCircle = styled('circle') `
+    const RedCircle = styled('circle')`
       fill: #ff0000;
       stroke-width: 0.26458332;
     `
@@ -975,7 +975,7 @@ describe('styled', () => {
       zoomAndPan: 'abcd'
     }
 
-    const RedPath = styled('path') `
+    const RedPath = styled('path')`
       stroke-width: 0.26458332;
     `
 
@@ -992,25 +992,25 @@ describe('styled', () => {
     const BaseLink = styled.a`
       background-color: hotpink;
     `
-    const Link = styled(BaseLink) `
+    const Link = styled(BaseLink)`
       color: green;
     `
 
     const tree = renderer
       .create(
-      <Link
-        a
-        b
-        wow
-        prop
-        filtering
-        is
-        cool
-        aria-label="some label"
-        data-wow="value"
-        href="link"
-      >
-        hello world
+        <Link
+          a
+          b
+          wow
+          prop
+          filtering
+          is
+          cool
+          aria-label="some label"
+          data-wow="value"
+          href="link"
+        >
+          hello world
         </Link>
       )
       .toJSON()
@@ -1020,13 +1020,13 @@ describe('styled', () => {
   test('throws if undefined is passed as the component', () => {
     expect(
       () =>
-        styled(undefined) `
+        styled(undefined)`
           display: flex;
         `
     ).toThrowErrorMatchingSnapshot()
   })
   test('withComponent will replace tags but keep styling classes', () => {
-    const Title = styled('h1') `
+    const Title = styled('h1')`
       color: green;
     `
     const Subtitle = Title.withComponent('h2')
@@ -1041,7 +1041,7 @@ describe('styled', () => {
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
   test('withComponent with function interpolation', () => {
-    const Title = styled('h1') `
+    const Title = styled('h1')`
       color: ${props => props.color || 'green'};
     `
     const Subtitle = Title.withComponent('h2')
@@ -1057,7 +1057,7 @@ describe('styled', () => {
   })
 
   test('withComponent creates a new, unique stable class per invocation', () => {
-    const Title = styled('h1') `
+    const Title = styled('h1')`
       color: ${props => props.color || 'green'};
     `
     const Subtitle = Title.withComponent('h2')
@@ -1077,7 +1077,7 @@ describe('styled', () => {
         return <div className={this.props.className} />
       }
     }
-    const StyledComponent = styled(SomeComponent) `
+    const StyledComponent = styled(SomeComponent)`
       color: hotpink;
     `
     const wrapper = mount(<StyledComponent />)

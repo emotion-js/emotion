@@ -133,7 +133,7 @@ const createStyled = (
       Styled[TARGET_KEY] = stableClassName
     }
 
-    Styled.withComponent = (nextTag, nextOptions : { target: string } = {}) => {
+    Styled.withComponent = (nextTag, nextOptions: { target: string } = {}) => {
       return createStyled(nextTag, { ...options, ...nextOptions })(styles)
     }
 

@@ -19,6 +19,7 @@
     "babel-plugin-syntax-jsx": "^6.18.0",
     "convert-source-map": "^1.5.0",
     "emotion-utils": "^8.0.10",
+    "find-root": "^1.1.0",
     "source-map": "^0.5.7",
     "touch": "^1.0.0"
   },
