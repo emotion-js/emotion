@@ -23,7 +23,7 @@ exports[`styled extract babel 6 autoLabel string styles 1`] = `
 const Profile = () => {
   const ProfileH1 = styled('h1', {
     e: 'css-kmz3n4',
-    target: 'css-8nbyc5-ProfileH1'
+    target: 'css-8nbyc5-0'
   })();
 
   return <H1>Hello</H1>;
@@ -36,7 +36,7 @@ emotion.emotion.css
 
 exports[`styled extract babel 6 basic 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc5-H1'
+  target: 'css-8nbyc5-0'
 })('font-size:', fontSize + 'px', ';');"
 `;
 
@@ -45,15 +45,15 @@ exports[`styled extract babel 6 component selector 1`] = `
 
 const Child = styled('div', {
   e: 'css-1vhj9jp',
-  target: 'css-8nbyc5-Child'
+  target: 'css-8nbyc5-0'
 })();
 
 const SecondChild = Child.withComponent('span', {
-  target: 'css-8nbyc5-SecondChild'
+  target: 'css-8nbyc5-1'
 });
 
 const Parent = /*#__PURE__*/styled('div', {
-  target: 'css-8nbyc5-Parent'
+  target: 'css-8nbyc5-2'
 })(Child, '{color:blue;}', SecondChild, '{color:pink;}');
 
 
@@ -66,7 +66,7 @@ exports[`styled extract babel 6 composition based on props 1`] = `
 
 const cls1 = 'css-cls1-1ltut9y';
 const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc5-H1'
+  target: 'css-8nbyc5-0'
 })(props => {
   return props.a ? cssA : cssB;
 }, ';font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');');
@@ -81,7 +81,7 @@ exports[`styled extract babel 6 config rename 1`] = `
 
 what(\\"h1\\", {
   e: \\"css-14ksm7b\\",
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })();
 
 
@@ -91,13 +91,13 @@ emotion.emotion.css
 
 exports[`styled extract babel 6 dynamic fns 1`] = `
 "const Avatar = /*#__PURE__*/styled('img', {
-  target: 'css-8nbyc5-Avatar'
+  target: 'css-8nbyc5-0'
 })('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';');"
 `;
 
 exports[`styled extract babel 6 function call 1`] = `
 "/*#__PURE__*/styled(MyComponent, {
-  target: 'css-8nbyc5'
+  target: 'css-8nbyc5-0'
 })('font-size:', fontSize + 'px', ';');"
 `;
 
@@ -123,7 +123,7 @@ const Profile = () => {
 exports[`styled extract babel 6 interpolation in different places 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc5-H1'
+  target: 'css-8nbyc5-0'
 })('font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');height1:', something, 'wow;width:w', something, 'ow;transform:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform1:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform2:translateX(', props => props.translateX, ') ', props => props.translateX, ';');"
 `;
 
@@ -132,7 +132,7 @@ exports[`styled extract babel 6 media query 1`] = `
 
 const H1 = styled(\\"h1\\", {
   e: \\"css-6skbg5\\",
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })();
 
 
@@ -142,13 +142,13 @@ emotion.emotion.css
 
 exports[`styled extract babel 6 more than 10 dynamic values 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', {
-    target: 'css-8nbyc5-H1'
+    target: 'css-8nbyc5-0'
 })('text-decoration:', 'underline', ';border-right:solid blue ', 54, 'px;background:', 'white', ';color:', 'black', ';display:', 'block', ';border-radius:', '3px', ';padding:', '25px', ';width:', '500px', ';z-index:', 100, ';font-size:', '18px', ';text-align:', 'center', ';border-left:', p => p.theme.blue, ';');"
 `;
 
 exports[`styled extract babel 6 nested 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc5-H1'
+  target: 'css-8nbyc5-0'
 })('font-size:', fontSize + 'px', ';& div{color:blue;& span{color:red}}');"
 `;
 
@@ -157,7 +157,7 @@ exports[`styled extract babel 6 no dynamic 1`] = `
 
 styled(\\"h1\\", {
   e: \\"css-14ksm7b\\",
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })();
 
 
@@ -170,7 +170,7 @@ exports[`styled extract babel 6 no use 1`] = `
 
 styled(\\"h1\\", {
   e: \\"css-0\\",
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })();
 
 
@@ -212,7 +212,7 @@ exports[`styled extract babel 6 random expressions 1`] = `
 
 const a = () => \\"css-a-1cvrkk1\\";
 /*#__PURE__*/styled(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"margin:12px 48px;\\", \\"css-143zpy6\\", \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\");
 
 
@@ -277,7 +277,7 @@ exports[`styled extract babel 6 variable import: no dynamic 1`] = `
 "import './emotion.emotion.css';
 import what from 'emotion';what('h1', {
   e: 'css-14ksm7b',
-  target: 'css-8nbyc5'
+  target: 'css-8nbyc5-0'
 })();
 
 
@@ -309,7 +309,7 @@ exports[`styled extract babel 7 autoLabel string styles 1`] = `
 const Profile = () => {
   const ProfileH1 = styled('h1', {
     e: \\"css-kmz3n4\\",
-    target: \\"css-8nbyc5-ProfileH1\\"
+    target: \\"css-8nbyc5-0\\"
   })();
   return <H1>Hello</H1>;
 };
@@ -323,7 +323,7 @@ exports[`styled extract babel 7 basic 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"font-size:\\", fontSize + 'px', \\";\\");"
 `;
 
@@ -332,15 +332,15 @@ exports[`styled extract babel 7 component selector 1`] = `
 
 const Child = styled(\\"div\\", {
   e: \\"css-1vhj9jp\\",
-  target: \\"css-8nbyc5-Child\\"
+  target: \\"css-8nbyc5-0\\"
 })();
 const SecondChild = Child.withComponent('span', {
-  target: \\"css-8nbyc5-SecondChild\\"
+  target: \\"css-8nbyc5-1\\"
 });
 const Parent =
 /*#__PURE__*/
 styled(\\"div\\", {
-  target: \\"css-8nbyc5-Parent\\"
+  target: \\"css-8nbyc5-2\\"
 })(Child, \\"{color:blue;}\\", SecondChild, \\"{color:pink;}\\");
 
 
@@ -355,7 +355,7 @@ const cls1 = \\"css-cls1-1ltut9y\\";
 const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(props => {
   return props.a ? cssA : cssB;
 }, \\";font-size:\\", fontSize + 'px', \\";height:20px;transform:translateX(\\", props => props.translateX, \\");\\");
@@ -370,7 +370,7 @@ exports[`styled extract babel 7 config rename 1`] = `
 
 what(\\"h1\\", {
   e: \\"css-14ksm7b\\",
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })();
 
 
@@ -382,14 +382,14 @@ exports[`styled extract babel 7 dynamic fns 1`] = `
 "const Avatar =
 /*#__PURE__*/
 styled('img', {
-  target: \\"css-8nbyc5-Avatar\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";\\");"
 `;
 
 exports[`styled extract babel 7 function call 1`] = `
 "/*#__PURE__*/
 styled(MyComponent, {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"font-size:\\", fontSize + 'px', \\";\\");"
 `;
 
@@ -420,7 +420,7 @@ exports[`styled extract babel 7 interpolation in different places 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"font-size:\\", fontSize + 'px', \\";height:20px;transform:translateX(\\", props => props.translateX, \\");height1:\\", something, \\"wow;width:w\\", something, \\"ow;transform:translateX(\\", props => props.translateX, \\") translateY(\\", props => props.translateX, \\");transform1:translateX(\\", props => props.translateX, \\") translateY(\\", props => props.translateX, \\");transform2:translateX(\\", props => props.translateX, \\") \\", props => props.translateX, \\";\\");"
 `;
 
@@ -429,7 +429,7 @@ exports[`styled extract babel 7 media query 1`] = `
 
 const H1 = styled(\\"h1\\", {
   e: \\"css-6skbg5\\",
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })();
 
 
@@ -441,7 +441,7 @@ exports[`styled extract babel 7 more than 10 dynamic values 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1', {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"text-decoration:\\", 'underline', \\";border-right:solid blue \\", 54, \\"px;background:\\", 'white', \\";color:\\", 'black', \\";display:\\", 'block', \\";border-radius:\\", '3px', \\";padding:\\", '25px', \\";width:\\", '500px', \\";z-index:\\", 100, \\";font-size:\\", '18px', \\";text-align:\\", 'center', \\";border-left:\\", p => p.theme.blue, \\";\\");"
 `;
 
@@ -449,7 +449,7 @@ exports[`styled extract babel 7 nested 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"font-size:\\", fontSize + 'px', \\";& div{color:blue;& span{color:red}}\\");"
 `;
 
@@ -458,7 +458,7 @@ exports[`styled extract babel 7 no dynamic 1`] = `
 
 styled(\\"h1\\", {
   e: \\"css-14ksm7b\\",
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })();
 
 
@@ -471,7 +471,7 @@ exports[`styled extract babel 7 no use 1`] = `
 
 styled(\\"h1\\", {
   e: \\"css-0\\",
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })();
 
 
@@ -520,7 +520,7 @@ const a = () => \\"css-a-1cvrkk1\\";
 
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"margin:12px 48px;\\", \\"css-143zpy6\\", \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", {
   backgroundColor: \\"hotpink\\"
 }, \\";\\");
@@ -604,7 +604,7 @@ exports[`styled extract babel 7 variable import: no dynamic 1`] = `
 import what from 'emotion';
 what(\\"h1\\", {
   e: \\"css-14ksm7b\\",
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })();
 
 
@@ -634,7 +634,7 @@ exports[`styled inline babel 6 autoLabel string styles 1`] = `
 const Profile = () => {
   const ProfileH1 = /*#__PURE__*/styled('h1', {
     label: 'ProfileH1',
-    target: 'css-8nbyc5-ProfileH1'
+    target: 'css-8nbyc5-0'
   })('color:blue;');
 
   return <H1>Hello</H1>;
@@ -643,29 +643,29 @@ const Profile = () => {
 
 exports[`styled inline babel 6 basic 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc5-H1'
+  target: 'css-8nbyc5-0'
 })('font-size:', fontSize + 'px', ';');"
 `;
 
 exports[`styled inline babel 6 component selector 1`] = `
 "
 const Child = /*#__PURE__*/styled('div', {
-  target: 'css-8nbyc5-Child'
+  target: 'css-8nbyc5-0'
 })('color:red;');
 
 const SecondChild = Child.withComponent('span', {
-  target: 'css-8nbyc5-SecondChild'
+  target: 'css-8nbyc5-1'
 });
 
 const Parent = /*#__PURE__*/styled('div', {
-  target: 'css-8nbyc5-Parent'
+  target: 'css-8nbyc5-2'
 })(Child, '{color:blue;}', SecondChild, '{color:pink;}');"
 `;
 
 exports[`styled inline babel 6 composition based on props 1`] = `
 "const cls1 = /*#__PURE__*/css('width:20px;');
 const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc5-H1'
+  target: 'css-8nbyc5-0'
 })(props => {
   return props.a ? cssA : cssB;
 }, ';font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');');"
@@ -673,19 +673,19 @@ const H1 = /*#__PURE__*/styled('h1', {
 
 exports[`styled inline babel 6 config rename 1`] = `
 "/*#__PURE__*/what(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"color:blue;\\");"
 `;
 
 exports[`styled inline babel 6 dynamic fns 1`] = `
 "const Avatar = /*#__PURE__*/styled('img', {
-  target: 'css-8nbyc5-Avatar'
+  target: 'css-8nbyc5-0'
 })('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';');"
 `;
 
 exports[`styled inline babel 6 function call 1`] = `
 "/*#__PURE__*/styled(MyComponent, {
-  target: 'css-8nbyc5'
+  target: 'css-8nbyc5-0'
 })('font-size:', fontSize + 'px', ';');"
 `;
 
@@ -711,37 +711,37 @@ const Profile = () => {
 exports[`styled inline babel 6 interpolation in different places 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc5-H1'
+  target: 'css-8nbyc5-0'
 })('font-size:', fontSize + 'px', ';height:20px;transform:translateX(', props => props.translateX, ');height1:', something, 'wow;width:w', something, 'ow;transform:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform1:translateX(', props => props.translateX, ') translateY(', props => props.translateX, ');transform2:translateX(', props => props.translateX, ') ', props => props.translateX, ';');"
 `;
 
 exports[`styled inline babel 6 media query 1`] = `
 "const H1 = /*#__PURE__*/styled(\\"h1\\", {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\\");"
 `;
 
 exports[`styled inline babel 6 more than 10 dynamic values 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', {
-    target: 'css-8nbyc5-H1'
+    target: 'css-8nbyc5-0'
 })('text-decoration:', 'underline', ';border-right:solid blue ', 54, 'px;background:', 'white', ';color:', 'black', ';display:', 'block', ';border-radius:', '3px', ';padding:', '25px', ';width:', '500px', ';z-index:', 100, ';font-size:', '18px', ';text-align:', 'center', ';border-left:', p => p.theme.blue, ';');"
 `;
 
 exports[`styled inline babel 6 nested 1`] = `
 "const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc5-H1'
+  target: 'css-8nbyc5-0'
 })('font-size:', fontSize + 'px', ';& div{color:blue;& span{color:red}}');"
 `;
 
 exports[`styled inline babel 6 no dynamic 1`] = `
 "/*#__PURE__*/styled(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"color:blue;\\");"
 `;
 
 exports[`styled inline babel 6 no use 1`] = `
 "/*#__PURE__*/styled(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })();"
 `;
 
@@ -778,7 +778,7 @@ exports[`styled inline babel 6 random expressions 1`] = `
 "
 const a = () => /*#__PURE__*/css(\\"font-size:1rem\\");
 /*#__PURE__*/styled(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"margin:12px 48px;\\", /*#__PURE__*/css(\\"font-size:32px\\"), \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"
 `;
 
@@ -836,7 +836,7 @@ const Figure = /*#__PURE__*/styled(\\"figure\\")({
 
 exports[`styled inline babel 6 variable import: no dynamic 1`] = `
 "import what from 'emotion'; /*#__PURE__*/what('h1', {
-  target: 'css-8nbyc5'
+  target: 'css-8nbyc5-0'
 })('color:blue;');"
 `;
 
@@ -864,7 +864,7 @@ exports[`styled inline babel 7 autoLabel string styles 1`] = `
   /*#__PURE__*/
   styled('h1', {
     label: \\"ProfileH1\\",
-    target: \\"css-8nbyc5-ProfileH1\\"
+    target: \\"css-8nbyc5-0\\"
   })(\\"color:blue;\\");
   return <H1>Hello</H1>;
 };"
@@ -874,7 +874,7 @@ exports[`styled inline babel 7 basic 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"font-size:\\", fontSize + 'px', \\";\\");"
 `;
 
@@ -882,15 +882,15 @@ exports[`styled inline babel 7 component selector 1`] = `
 "const Child =
 /*#__PURE__*/
 styled(\\"div\\", {
-  target: \\"css-8nbyc5-Child\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"color:red;\\");
 const SecondChild = Child.withComponent('span', {
-  target: \\"css-8nbyc5-SecondChild\\"
+  target: \\"css-8nbyc5-1\\"
 });
 const Parent =
 /*#__PURE__*/
 styled(\\"div\\", {
-  target: \\"css-8nbyc5-Parent\\"
+  target: \\"css-8nbyc5-2\\"
 })(Child, \\"{color:blue;}\\", SecondChild, \\"{color:pink;}\\");"
 `;
 
@@ -901,7 +901,7 @@ css(\\"width:20px;\\");
 const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(props => {
   return props.a ? cssA : cssB;
 }, \\";font-size:\\", fontSize + 'px', \\";height:20px;transform:translateX(\\", props => props.translateX, \\");\\");"
@@ -910,7 +910,7 @@ styled(\\"h1\\", {
 exports[`styled inline babel 7 config rename 1`] = `
 "/*#__PURE__*/
 what(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"color:blue;\\");"
 `;
 
@@ -918,14 +918,14 @@ exports[`styled inline babel 7 dynamic fns 1`] = `
 "const Avatar =
 /*#__PURE__*/
 styled('img', {
-  target: \\"css-8nbyc5-Avatar\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";\\");"
 `;
 
 exports[`styled inline babel 7 function call 1`] = `
 "/*#__PURE__*/
 styled(MyComponent, {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"font-size:\\", fontSize + 'px', \\";\\");"
 `;
 
@@ -956,7 +956,7 @@ exports[`styled inline babel 7 interpolation in different places 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"font-size:\\", fontSize + 'px', \\";height:20px;transform:translateX(\\", props => props.translateX, \\");height1:\\", something, \\"wow;width:w\\", something, \\"ow;transform:translateX(\\", props => props.translateX, \\") translateY(\\", props => props.translateX, \\");transform1:translateX(\\", props => props.translateX, \\") translateY(\\", props => props.translateX, \\");transform2:translateX(\\", props => props.translateX, \\") \\", props => props.translateX, \\";\\");"
 `;
 
@@ -964,7 +964,7 @@ exports[`styled inline babel 7 media query 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"@media print{font-size:10pt}@media screen{.child-selector{font-size:13px}}@media screen,print{&:hover + &{line-height:1.2}}@media only screen   and (min-device-width:320px)   and (max-device-width:480px)  and (-webkit-min-device-pixel-ratio:2){.child-selector{line-height:1.4}}\\");"
 `;
 
@@ -972,7 +972,7 @@ exports[`styled inline babel 7 more than 10 dynamic values 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1', {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"text-decoration:\\", 'underline', \\";border-right:solid blue \\", 54, \\"px;background:\\", 'white', \\";color:\\", 'black', \\";display:\\", 'block', \\";border-radius:\\", '3px', \\";padding:\\", '25px', \\";width:\\", '500px', \\";z-index:\\", 100, \\";font-size:\\", '18px', \\";text-align:\\", 'center', \\";border-left:\\", p => p.theme.blue, \\";\\");"
 `;
 
@@ -980,21 +980,21 @@ exports[`styled inline babel 7 nested 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5-H1\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"font-size:\\", fontSize + 'px', \\";& div{color:blue;& span{color:red}}\\");"
 `;
 
 exports[`styled inline babel 7 no dynamic 1`] = `
 "/*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"color:blue;\\");"
 `;
 
 exports[`styled inline babel 7 no use 1`] = `
 "/*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })();"
 `;
 
@@ -1039,7 +1039,7 @@ css(\\"font-size:1rem\\");
 
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"margin:12px 48px;\\",
 /*#__PURE__*/
 css(\\"font-size:32px\\"), \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", {
@@ -1120,6 +1120,6 @@ exports[`styled inline babel 7 variable import: no dynamic 1`] = `
 
 /*#__PURE__*/
 what(\\"h1\\", {
-  target: \\"css-8nbyc5\\"
+  target: \\"css-8nbyc5-0\\"
 })(\\"color:blue;\\");"
 `;

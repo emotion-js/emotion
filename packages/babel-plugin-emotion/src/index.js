@@ -111,16 +111,15 @@ const normalizeFilename = memoize(filename => {
 })
 
 function buildTargetObjectProperty(path, state, t) {
-  const identifierName = getIdentifierName(path, t)
+  if (state.count === undefined) {
+    state.count = 0;
+  }
 
-  let stableClassName = getName(
-    hashString(normalizeFilename(state.file.opts.filename)),
+  const positionInFile = state.count++;
+  const stableClassName = getName(
+    `${hashString(normalizeFilename(state.file.opts.filename))}-${positionInFile}`,
     'css'
   )
-
-  if (identifierName) {
-    stableClassName += `-${identifierName}`
-  }
 
   return t.objectProperty(
     t.identifier('target'),
