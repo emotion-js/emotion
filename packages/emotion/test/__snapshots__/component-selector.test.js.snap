@@ -19,7 +19,7 @@ exports[`component selector should be converted to use the emotion target classN
 `;
 
 exports[`component selector should be converted to use the emotion target className 2`] = `
-".css-s93m7i .css-1h3vm1x-0 {
+".css-1aogt2e .css-h7xc3b-0 {
   color: red;
 }
 
