@@ -132,10 +132,7 @@ const createStyled = (
     Styled[STYLES_KEY] = styles
     Styled.__emotion_base = baseTag
     Styled.__emotion_real = Styled
-
-    if (stableClassName) {
-      Styled[TARGET_KEY] = stableClassName
-    }
+    Styled[TARGET_KEY] = stableClassName
 
     Styled.withComponent = (nextTag, nextOptions: { target: string } = {}) => {
       return createStyled(nextTag, { ...options, ...nextOptions })(styles)
