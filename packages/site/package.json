@@ -32,7 +32,9 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-emotion": "^8.0.9",
+    "react-icons": "^2.2.7",
     "react-live": "^1.7.1",
+    "react-sidebar": "^2.3.2",
     "rebass-emotion": "^1.0.5",
     "styled-system": "^1.0.8"
   },

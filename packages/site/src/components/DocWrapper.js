@@ -1,55 +1,96 @@
+// @flow
 import React from 'react'
-import { css } from 'react-emotion'
+import styled, { css } from 'react-emotion'
 import Link from 'gatsby-link'
 import Box from './Box'
-import { constants } from '../utils/style'
+import { constants, colors } from '../utils/style'
+import DocSidebar from './DocSidebar'
+import { darken } from 'polished'
+import MenuIcon from 'react-icons/lib/md/menu'
 
-const containerCls = css`
-  display: grid;
-  grid-template-columns: minmax(25%, 1fr) auto;
-  grid-template-rows: auto minmax(min-content, 1fr) auto;
+const ToggleSidebarButton = styled.button`
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  background-color: ${colors.pink};
+  padding: 16px;
+  margin: 32px;
+  transition: 150ms ease-in-out background-color;
+  border: 0;
+  :hover,
+  :focus {
+    background-color: ${darken(0.15)(colors.pink)};
+  }
+  :active {
+    background-color: ${darken(0.25)(colors.pink)};
+  }
 `
 
-const sidebarCls = css`
-  grid-column: 2;
-  grid-row: 1;
-`
+const Children = ({ children }: { children: React$Node }) => children
 
-export default props => (
-  <Box flex={1} className={containerCls}>
-    <Box p={4}>{props.children}</Box>
-    <Box bg="#f5f5f5" p={3} className={sidebarCls}>
-      {props.sidebarNodes.map(({ node }) => {
-        return (
-          <Box key={node.name}>
-            <Link
-              className={css`
-                display: block;
-                text-decoration: none;
-                margin: 16px;
-                font-size: ${constants.fontSizes[2]}px
-                color: inherit;
-              `}
-              activeClassName={css`
-                font-weight: bold;
-                &::before {
-                  content: '';
-                  height: 32px;
-                  width: 8px;
-                  margin-right: 16px;
-                  transform: translateX(-32px) translateY(-8px);
-                  position: absolute;
-                  display: inline-block;
-                  background-color: hotpink;
-                }
-              `}
-              to={`/docs/${node.name}`}
-            >
-              {node.childMarkdownRemark.frontmatter.title || node.name}
-            </Link>
+type Props = {
+  children: React$Node,
+  sidebarNodes: Array<{
+    node: {
+      name: string,
+      childMarkdownRemark: { frontmatter: { title?: string } }
+    }
+  }>
+}
+
+export default (props: Props) => (
+  <Box flex={1}>
+    <DocSidebar
+      renderContent={({ docked, setSidebarOpenState }) => (
+        <Children>
+          <Box p={4}>
+            {props.children}
+            {!docked && (
+              <ToggleSidebarButton onClick={() => setSidebarOpenState(true)}>
+                <MenuIcon color="white" size={32} />
+              </ToggleSidebarButton>
+            )}
           </Box>
-        )
-      })}
-    </Box>
+        </Children>
+      )}
+      styles={{ root: { top: 83 } }}
+      sidebarClassName={css`
+        background-color: #f5f5f5;
+        padding: ${constants.space[3]}px;
+      `}
+      renderSidebar={({ setSidebarOpenState }) =>
+        props.sidebarNodes.map(({ node }) => {
+          return (
+            <Box key={node.name} onClick={() => setSidebarOpenState(false)}>
+              <Link
+                className={css`
+              display: block;
+              text-decoration: none;
+              margin: 16px;
+              font-size: ${constants.fontSizes[2]}px
+              color: inherit;
+            `}
+                activeClassName={css`
+                  font-weight: bold;
+                  &::before {
+                    content: '';
+                    height: 32px;
+                    width: 8px;
+                    margin-right: 16px;
+                    transform: translateX(-32px) translateY(-8px);
+                    position: absolute;
+                    display: inline-block;
+                    background-color: hotpink;
+                  }
+                `}
+                to={`/docs/${node.name}`}
+              >
+                {node.childMarkdownRemark.frontmatter.title || node.name}
+              </Link>
+            </Box>
+          )
+        })}
+    />
   </Box>
 )

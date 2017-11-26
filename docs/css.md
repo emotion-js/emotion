@@ -3,7 +3,7 @@ title: "CSS"
 ---
 `css` accepts styles as a template literal, object, or array of objects and returns a class name. It is the foundation of emotion.
 
-```jsx harmony
+```jsx
 import { css } from 'emotion'
 import { hiDPI, lighten, modularScale } from 'polished'
 

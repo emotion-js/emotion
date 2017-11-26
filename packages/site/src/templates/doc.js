@@ -124,7 +124,7 @@ class DocRoute extends React.Component {
         <Box pb={3} className={styles}>
           {/* The URL below should change when this is on master */}
           <a
-            href={`https://github.com/emotion-js/emotion/edit/gatsby/packages/site/src/docs/${this
+            href={`https://github.com/emotion-js/emotion/edit/gatsby/docs/${this
               .props.pathContext.slug}.md`}
           >
             Edit this page
