@@ -95,31 +95,35 @@ export function replaceCssWithCallExpression(
   }
 }
 
-const normalizeFilename = memoize(filename => {
-  // normalize the file path to ignore folder structure
-  // outside the current node project and arch-specific delimiters
-  let rootPath = filename
-
-  try {
-    rootPath = findRoot(filename)
-  } catch (err) {}
-
-  const finalPath =
-    filename === rootPath ? basename(filename) : filename.slice(rootPath.length)
-
-  return normalize(finalPath)
-})
+const getPackageRootPath = memoize(filename => findRoot(filename))
 
 function buildTargetObjectProperty(path, state, t) {
   if (state.count === undefined) {
     state.count = 0
   }
 
+  const filename = state.file.opts.filename
+
+  // normalize the file path to ignore folder structure
+  // outside the current node project and arch-specific delimiters
+  let moduleName = ''
+  let rootPath = filename
+
+  try {
+    rootPath = getPackageRootPath(filename)
+    moduleName = require(rootPath + '/package.json').name
+  } catch (err) {}
+
+  const finalPath =
+    filename === rootPath ? basename(filename) : filename.slice(rootPath.length)
+
   const positionInFile = state.count++
   const stableClassName = getName(
-    `${hashString(
-      normalizeFilename(state.file.opts.filename)
-    )}-${positionInFile}`,
+    `${hashArray([
+      normalize(finalPath),
+      moduleName,
+      state.file.code
+    ])}${positionInFile}`,
     'css'
   )
 
