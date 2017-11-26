@@ -108,7 +108,7 @@ Object {
   width: 50px;
   background-color: red;
 }",
-  "html": "<main class=\\"css-19m49uk-Main\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-1m3qzmz-Image\\"/><img size=\\"100\\" class=\\"css-1m3qzmz-Image\\"/><img class=\\"css-1m3qzmz-Image\\"/></main>",
+  "html": "<main class=\\"css-19m49uk-Main css-vqwlk30\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-1m3qzmz-Image css-vqwlk31\\"/><img size=\\"100\\" class=\\"css-1m3qzmz-Image css-vqwlk31\\"/><img class=\\"css-1m3qzmz-Image css-vqwlk31\\"/></main>",
   "ids": Array [
     "n47v5l-getComponents",
     "1fps0gg-bounce",
@@ -218,7 +218,7 @@ Object {
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
-  "html": "<main class=\\"css-19m49uk-Main\\" data-reactroot=\\"\\"><div>Hello</div></main>",
+  "html": "<main class=\\"css-19m49uk-Main css-vqwlk30\\" data-reactroot=\\"\\"><div>Hello</div></main>",
   "ids": Array [
     "n47v5l-getComponents",
     "1fps0gg-bounce",
@@ -336,7 +336,7 @@ Object {
   width: 50px;
   background-color: red;
 }",
-  "html": "<main class=\\"css-19m49uk-Main\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-1m3qzmz-Image\\"/><img size=\\"100\\" class=\\"css-1m3qzmz-Image\\"/><img class=\\"css-1m3qzmz-Image\\"/></main>",
+  "html": "<main class=\\"css-19m49uk-Main css-vqwlk30\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-1m3qzmz-Image css-vqwlk31\\"/><img size=\\"100\\" class=\\"css-1m3qzmz-Image css-vqwlk31\\"/><img class=\\"css-1m3qzmz-Image css-vqwlk31\\"/></main>",
   "ids": Array [
     "n47v5l-getComponents",
     "1fps0gg-bounce",

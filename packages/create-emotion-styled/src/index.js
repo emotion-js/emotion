@@ -1,4 +1,4 @@
-import { memoize } from 'emotion-utils'
+import { memoize, STYLES_KEY, TARGET_KEY } from 'emotion-utils'
 import type { Emotion, Interpolation, Interpolations } from 'create-emotion'
 
 function setTheme(theme) {
@@ -57,7 +57,10 @@ function createEmotionStyled(
       this.context[instanceOptions.channel].unsubscribe(this.unsubscribe)
     }
   }
-  const createStyled = (tag: *, options: { e: string, label: string }) => {
+  const createStyled = (
+    tag: *,
+    options: { e: string, label: string, target: string }
+  ) => {
     if (process.env.NODE_ENV !== 'production') {
       if (tag === undefined) {
         throw new Error(
@@ -67,9 +70,11 @@ function createEmotionStyled(
     }
     let staticClassName
     let identifierName
+    let stableClassName
     if (options !== undefined) {
       staticClassName = options.e
       identifierName = options.label
+      stableClassName = options.target
     }
     const isReal = tag.__emotion_real === tag
     const baseTag =
@@ -84,7 +89,7 @@ function createEmotionStyled(
         : testOmitPropsOnComponent
 
     return (strings: Interpolation, ...interpolations: Interpolations) => {
-      let styles = (isReal && tag.__emotion_styles) || []
+      let styles = (isReal && tag[STYLES_KEY]) || []
       if (identifierName !== undefined) {
         styles = styles.concat(`label:${identifierName};`)
       }
@@ -128,6 +133,10 @@ function createEmotionStyled(
             className += staticClassName
           }
 
+          if (stableClassName !== undefined) {
+            className += ` ${stableClassName}`
+          }
+
           return instanceOptions.createElement(
             baseTag,
             omitAssign(omitFn, {}, props, { className, ref: props.innerRef })
@@ -144,12 +153,18 @@ function createEmotionStyled(
               : baseTag.displayName || baseTag.name || 'Component'})`
 
       Styled.contextTypes = instanceOptions.contextTypes
-      Styled.__emotion_styles = styles
+      Styled[STYLES_KEY] = styles
       Styled.__emotion_base = baseTag
       Styled.__emotion_real = Styled
+      Styled[TARGET_KEY] = stableClassName
 
-      Styled.withComponent = nextTag => {
-        return createStyled(nextTag, options)(styles)
+      Styled.withComponent = (nextTag, nextOptions: { target: string }) => {
+        return createStyled(
+          nextTag,
+          nextOptions !== undefined
+            ? omitAssign(testAlwaysTrue, {}, options, nextOptions)
+            : options
+        )(styles)
       }
 
       return Styled

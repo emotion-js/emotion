@@ -182,9 +182,9 @@ const inline = {
           background: green;
           \${{ backgroundColor: "hotpink" }};
         \`
-      
-        const cls2 = css\`\${{color: 'blue'}}\` 
-      
+
+        const cls2 = css\`\${{color: 'blue'}}\`
+
         const cls3 = css\`
           display: flex;
           &:hover {
@@ -194,7 +194,7 @@ const inline = {
         function inner () {
           const styles = { color: "darkorchid" };
           const color = 'aquamarine';
-          
+
           const cls4 = css\`
             \${cls3};
             \${cls1};
@@ -221,7 +221,7 @@ function test () {
     \${{ backgroundColor: "hotpink" }};
   \`
 
-  const cls2 = css\`\${{color: 'blue'}}\` 
+  const cls2 = css\`\${{color: 'blue'}}\`
   const cls4 = css({color: "hotpink"})
 
   const cls3 = css\`
@@ -233,7 +233,7 @@ function test () {
   function inner () {
     const styles = { color: "darkorchid" };
     const color = 'aquamarine';
-    
+
     const cls4 = css\`
       \${cls3};
       \${cls1};

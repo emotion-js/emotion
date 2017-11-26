@@ -1,6 +1,7 @@
 // @flow
 import fs from 'fs'
 import nodePath from 'path'
+import findRoot from 'find-root'
 import { touchSync } from 'touch'
 import { addSideEffect } from '@babel/helper-module-imports'
 import {
@@ -17,7 +18,7 @@ import type {
   StringLiteral,
   Babel
 } from 'babel-flow-types'
-import { hashString, Stylis } from 'emotion-utils'
+import { hashString, Stylis, memoize } from 'emotion-utils'
 import { addSourceMaps } from './source-map'
 
 import cssProps from './css-prop'
@@ -60,7 +61,8 @@ export type EmotionBabelPluginPass = BabelPluginPass & {
   staticRules: Array<string>,
   cssPropIdentifier: Identifier,
   cssPropCxIdentifier: Identifier,
-  importedNames: ImportedNames
+  importedNames: ImportedNames,
+  count: number
 }
 
 export function replaceCssWithCallExpression(
@@ -130,6 +132,47 @@ export function replaceCssWithCallExpression(
   }
 }
 
+const unsafeRequire = require
+
+const getPackageRootPath = memoize(filename => findRoot(filename))
+
+function buildTargetObjectProperty(path, state, t) {
+  if (state.count === undefined) {
+    state.count = 0
+  }
+
+  const filename = state.file.opts.filename
+
+  // normalize the file path to ignore folder structure
+  // outside the current node project and arch-specific delimiters
+  let moduleName = ''
+  let rootPath = filename
+
+  try {
+    rootPath = getPackageRootPath(filename)
+    moduleName = unsafeRequire(rootPath + '/package.json').name
+  } catch (err) {}
+
+  const finalPath =
+    filename === rootPath
+      ? nodePath.basename(filename)
+      : filename.slice(rootPath.length)
+
+  const positionInFile = state.count++
+  const stableClassName = getName(
+    `${hashArray([
+      nodePath.normalize(finalPath),
+      moduleName,
+      state.file.code
+    ])}${positionInFile}`,
+    'css'
+  )
+
+  return t.objectProperty(
+    t.identifier('target'),
+    t.stringLiteral(stableClassName)
+  )
+}
 export function buildStyledCallExpression(
   identifier: Identifier,
   tag: StringLiteral,
@@ -139,17 +182,21 @@ export function buildStyledCallExpression(
 ) {
   const identifierName = getIdentifierName(path, t)
 
+  const targetProperty = buildTargetObjectProperty(path, state, t)
+
   if (state.extractStatic && !path.node.quasi.expressions.length) {
     const { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
     const staticClassName = `css-${hash}`
     const staticCSSRules = staticStylis(`.${staticClassName}`, src)
 
     state.insertStaticRules([staticCSSRules])
+
     return t.callExpression(
       t.callExpression(identifier, [
         tag,
         t.objectExpression([
-          t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName))
+          t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName)),
+          targetProperty
         ])
       ]),
       []
@@ -164,21 +211,20 @@ export function buildStyledCallExpression(
     src += addSourceMaps(path.node.quasi.loc.start, state)
   }
 
+  let labelProperty
+
+  if (state.opts.autoLabel && identifierName) {
+    labelProperty = t.objectProperty(
+      t.identifier('label'),
+      t.stringLiteral(identifierName.trim())
+    )
+  }
+
   return t.callExpression(
-    t.callExpression(
-      identifier,
-      state.opts.autoLabel && identifierName
-        ? [
-            tag,
-            t.objectExpression([
-              t.objectProperty(
-                t.identifier('label'),
-                t.stringLiteral(identifierName.trim())
-              )
-            ])
-          ]
-        : [tag]
-    ),
+    t.callExpression(identifier, [
+      tag,
+      t.objectExpression([labelProperty, targetProperty].filter(Boolean))
+    ]),
     new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
@@ -380,62 +426,82 @@ export default function(babel: Babel) {
           })
         }
       },
-      CallExpression(path: BabelPath, state: EmotionBabelPluginPass) {
-        // $FlowFixMe
-        if (path[visited]) {
-          return
-        }
-        // $FlowFixMe
-        path[visited] = true
-
-        try {
-          if (t.isIdentifier(path.node.callee)) {
-            switch (path.node.callee.name) {
-              case state.importedNames.css:
-              case state.importedNames.keyframes: {
-                path.addComment('leading', '#__PURE__')
-                if (state.opts.autoLabel) {
-                  const identifierName = getIdentifierName(path, t)
-                  if (identifierName) {
-                    path.node.arguments.push(
-                      t.stringLiteral(`label:${identifierName.trim()};`)
-                    )
+      CallExpression: {
+        enter(path: BabelPath, state: EmotionBabelPluginPass) {
+          // $FlowFixMe
+          if (path[visited]) {
+            return
+          }
+          try {
+            if (t.isIdentifier(path.node.callee)) {
+              switch (path.node.callee.name) {
+                case state.importedNames.css:
+                case state.importedNames.keyframes: {
+                  path.addComment('leading', '#__PURE__')
+                  if (state.opts.autoLabel) {
+                    const identifierName = getIdentifierName(path, t)
+                    if (identifierName) {
+                      path.node.arguments.push(
+                        t.stringLiteral(`label:${identifierName.trim()};`)
+                      )
+                    }
                   }
                 }
+                // eslint-disable-next-line no-fallthrough
+                case state.importedNames.injectGlobal:
+                  if (
+                    state.opts.sourceMap === true &&
+                    path.node.loc !== undefined
+                  ) {
+                    path.node.arguments.push(
+                      t.stringLiteral(addSourceMaps(path.node.loc.start, state))
+                    )
+                  }
               }
-              // eslint-disable-next-line no-fallthrough
-              case state.importedNames.injectGlobal:
-                if (
-                  state.opts.sourceMap === true &&
-                  path.node.loc !== undefined
-                ) {
-                  path.node.arguments.push(
-                    t.stringLiteral(addSourceMaps(path.node.loc.start, state))
-                  )
-                }
             }
-          }
 
-          if (
-            (t.isCallExpression(path.node.callee) &&
-              path.node.callee.callee.name === state.importedNames.styled) ||
-            (t.isMemberExpression(path.node.callee) &&
-              t.isIdentifier(path.node.callee.object) &&
-              path.node.callee.object.name === state.importedNames.styled)
-          ) {
-            const identifier = t.isCallExpression(path.node.callee)
-              ? path.node.callee.callee
-              : path.node.callee.object
-            path.replaceWith(
-              buildStyledObjectCallExpression(path, state, identifier, t)
-            )
+            if (
+              (t.isCallExpression(path.node.callee) &&
+                path.node.callee.callee.name === state.importedNames.styled) ||
+              (t.isMemberExpression(path.node.callee) &&
+                t.isIdentifier(path.node.callee.object) &&
+                path.node.callee.object.name === state.importedNames.styled)
+            ) {
+              const identifier = t.isCallExpression(path.node.callee)
+                ? path.node.callee.callee
+                : path.node.callee.object
+              path.replaceWith(
+                buildStyledObjectCallExpression(path, state, identifier, t)
+              )
 
-            if (state.opts.hoist) {
-              hoistPureArgs(path)
+              if (state.opts.hoist) {
+                hoistPureArgs(path)
+              }
             }
+          } catch (e) {
+            throw path.buildCodeFrameError(e)
           }
-        } catch (e) {
-          throw path.buildCodeFrameError(e)
+          // $FlowFixMe
+          path[visited] = true
+        },
+        exit(path: BabelPath, state: EmotionBabelPluginPass) {
+          try {
+            if (
+              path.node.callee &&
+              path.node.callee.property &&
+              path.node.callee.property.name === 'withComponent'
+            ) {
+              if (path.node.arguments.length === 1) {
+                path.node.arguments.push(
+                  t.objectExpression([
+                    buildTargetObjectProperty(path, state, t)
+                  ])
+                )
+              }
+            }
+          } catch (e) {
+            throw path.buildCodeFrameError(e)
+          }
         }
       },
       TaggedTemplateExpression(path: BabelPath, state: EmotionBabelPluginPass) {

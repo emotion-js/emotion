@@ -14,7 +14,7 @@ const H1 = styled('h1')`
 
 function Greeting ({ name }) {
   // blue, 48px, and scaled 2x text
-  return <H1 scale={2}>Hello {name}</H1> 
+  return <H1 scale={2}>Hello {name}</H1>
 }
 
 // Component
@@ -40,6 +40,28 @@ const Content = styled('section')`
 // creates an aside element with the same styles as Content
 const Sidebar = Content.withComponent('aside')
 
+```
+
+### Targeting another emotion component
+
+Similar to the implementation in [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for a previously-defined emotion component to be targeted like a regular CSS selector when using the [babel plugin](./babel.md):
+
+```jsx
+const Child = styled.div`
+  color: red;
+`;
+
+const Parent = styled.div`
+  ${Child} {
+    color: green;
+  }
+`;
+```
+
+This will generate a class selector something like:
+
+```css
+.css-{ParentDynamicHash} .css-{ChildStableHash}-{ChildComponentPositionInFile} { color: green; }
 ```
 
 ### pass refs down using innerRef
