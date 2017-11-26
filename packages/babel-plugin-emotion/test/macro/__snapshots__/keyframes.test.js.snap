@@ -7,7 +7,7 @@ exports[`keyframes - macro keyframes with interpolation 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </h1>
@@ -55,7 +55,7 @@ exports[`keyframes - macro renders 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </h1>

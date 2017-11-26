@@ -1,6 +1,6 @@
 /* global codegen */
 import { createElement, Component } from 'react'
-import { memoize } from 'emotion-utils'
+import { memoize, STYLES_KEY, TARGET_KEY } from 'emotion-utils'
 import { css, getRegisteredStyles } from 'emotion'
 import { channel, contextTypes } from '../../emotion-theming/src/utils'
 
@@ -15,6 +15,7 @@ function componentWillMount() {
     this.unsubscribe = this.context[channel].subscribe(setTheme.bind(this))
   }
 }
+
 function componentWillUnmount() {
   if (this.unsubscribe !== undefined) {
     this.context[channel].unsubscribe(this.unsubscribe)
@@ -41,7 +42,10 @@ const omitAssign = function(testFn, target) {
   return target
 }
 
-const createStyled = (tag, options: { e: string, label: string }) => {
+const createStyled = (
+  tag,
+  options: { e: string, label: string, target: string }
+) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
       throw new Error(
@@ -49,12 +53,16 @@ const createStyled = (tag, options: { e: string, label: string }) => {
       )
     }
   }
-  let staticClassName
   let identifierName
+  let stableClassName
+  let staticClassName
+
   if (options !== undefined) {
-    staticClassName = options.e
     identifierName = options.label
+    stableClassName = options.target
+    staticClassName = options.e
   }
+
   const isReal = tag.__emotion_real === tag
   const baseTag =
     staticClassName === undefined ? (isReal && tag.__emotion_base) || tag : tag
@@ -66,7 +74,7 @@ const createStyled = (tag, options: { e: string, label: string }) => {
       : testOmitPropsOnComponent
 
   return (strings, ...interpolations) => {
-    let styles = (isReal && tag.__emotion_styles) || []
+    let styles = (isReal && tag[STYLES_KEY]) || []
     if (identifierName !== undefined) {
       styles = styles.concat(`label:${identifierName};`)
     }
@@ -107,6 +115,10 @@ const createStyled = (tag, options: { e: string, label: string }) => {
           className += staticClassName
         }
 
+        if (stableClassName !== undefined) {
+          className += ` ${stableClassName}`
+        }
+
         return createElement(
           baseTag,
           omitAssign(omitFn, {}, props, { className, ref: props.innerRef })
@@ -123,12 +135,18 @@ const createStyled = (tag, options: { e: string, label: string }) => {
             : baseTag.displayName || baseTag.name || 'Component'})`
 
     Styled.contextTypes = contextTypes
-    Styled.__emotion_styles = styles
+    Styled[STYLES_KEY] = styles
     Styled.__emotion_base = baseTag
     Styled.__emotion_real = Styled
+    Styled[TARGET_KEY] = stableClassName
 
-    Styled.withComponent = nextTag => {
-      return createStyled(nextTag, options)(styles)
+    Styled.withComponent = (nextTag, nextOptions: { target: string }) => {
+      return createStyled(
+        nextTag,
+        nextOptions !== undefined
+          ? omitAssign(testAlwaysTrue, {}, options, nextOptions)
+          : options
+      )(styles)
     }
 
     return Styled

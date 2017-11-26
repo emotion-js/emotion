@@ -1,6 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const UglifyPlugin = require('uglifyjs-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = env => {
   const PROD = env === 'production'
@@ -64,7 +66,21 @@ module.exports = env => {
         filename: 'index.html',
         inject: false
       })
-    ].concat(PROD ? new ExtractTextPlugin('styles.css') : []),
+    ].concat(
+      PROD
+        ? [
+            new ExtractTextPlugin('styles.css'),
+            new webpack.DefinePlugin({
+              'process.env.NODE_ENV': JSON.stringify('production')
+            }),
+            new UglifyPlugin({
+              extractComments: true,
+              parallel: true,
+              sourceMap: true
+            })
+          ]
+        : []
+    ),
     module: {
       loaders: loaders
     },

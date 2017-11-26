@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component selector should be converted to use the emotion target className 1`] = `
+.glamor-2 .glamor-1 {
+  color: red;
+}
+
+.glamor-0 {
+  color: blue;
+}
+
+<div
+  className="glamor-2"
+>
+  <div
+    className="glamor-0 glamor-1"
+  />
+</div>
+`;
+
+exports[`component selector should be converted to use the emotion target className 2`] = `
+".css-15bo3am .css-1p21h840 {
+  color: red;
+}
+
+.css-14ksm7b {
+  color: blue;
+}"
+`;
+
+exports[`component selector should throw if the missing the static targeting property 1`] = `"Component selectors can only be used in conjunction with babel-plugin-emotion."`;

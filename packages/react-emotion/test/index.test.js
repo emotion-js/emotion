@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer'
 import styled, { css, flush } from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'
+import { TARGET_KEY } from 'emotion-utils'
 import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
@@ -1053,6 +1054,22 @@ describe('styled', () => {
     )
 
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
+  })
+
+  test('withComponent creates a new, unique stable class per invocation', () => {
+    const Title = styled('h1')`
+      color: ${props => props.color || 'green'};
+    `
+    const Subtitle = Title.withComponent('h2')
+    const Byline = Title.withComponent('span')
+
+    expect(Subtitle[TARGET_KEY]).not.toBe(Title[TARGET_KEY])
+    expect(Byline[TARGET_KEY]).not.toBe(Title[TARGET_KEY])
+    expect(Byline[TARGET_KEY]).not.toBe(Subtitle[TARGET_KEY])
+
+    expect(Title[TARGET_KEY]).toMatchSnapshot()
+    expect(Subtitle[TARGET_KEY]).toMatchSnapshot()
+    expect(Byline[TARGET_KEY]).toMatchSnapshot()
   })
   test('name with class component', () => {
     class SomeComponent extends React.Component {

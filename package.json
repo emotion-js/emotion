@@ -59,6 +59,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
+    "find-root": "^1.1.0",
     "hoist-non-react-statics": "^2.3.1",
     "jest": "^21.2.1",
     "jest-cli": "^20.0.4",
@@ -167,7 +168,7 @@
     },
     {
       "path": "./packages/react-emotion/dist/emotion.umd.min.js",
-      "threshold": "8.9 Kb"
+      "threshold": "8.95 Kb"
     }
   ]
 }

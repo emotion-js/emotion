@@ -10,7 +10,7 @@ exports[`styled with autoLabel composition 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class glamor-0 glamor-1"
   scale={2}
 >
   hello world
@@ -52,7 +52,7 @@ exports[`styled with autoLabel composition with objects 1`] = `
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class glamor-0 glamor-1"
   scale={2}
 >
   hello world
@@ -98,7 +98,7 @@ exports[`styled with autoLabel higher order component 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 />
 `;
 
