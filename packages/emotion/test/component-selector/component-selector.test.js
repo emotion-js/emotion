@@ -41,6 +41,6 @@ describe('component selector', () => {
           color: red;
         }
       `
-    }).toThrow()
+    }).toThrowErrorMatchingSnapshot()
   })
 })
