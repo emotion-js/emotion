@@ -51,7 +51,7 @@ type ImportedNames = {
   keyframes: string,
   injectGlobal: string,
   styled: string,
-  cx: string
+  merge: string
 }
 
 export type EmotionBabelPluginPass = BabelPluginPass & {
@@ -60,7 +60,7 @@ export type EmotionBabelPluginPass = BabelPluginPass & {
   emotionImportPath: string,
   staticRules: Array<string>,
   cssPropIdentifier: Identifier,
-  cssPropCxIdentifier: Identifier,
+  cssPropMergeIdentifier: Identifier,
   importedNames: ImportedNames,
   count: number
 }
@@ -273,10 +273,12 @@ const defaultImportedNames: ImportedNames = {
   css: 'css',
   keyframes: 'keyframes',
   injectGlobal: 'injectGlobal',
-  cx: 'cx'
+  merge: 'merge'
 }
 
-const importedNameKeys = Object.keys(defaultImportedNames)
+const importedNameKeys = Object.keys(defaultImportedNames).map(
+  key => (key === 'styled' ? 'default' : key)
+)
 
 const defaultEmotionPaths = ['emotion', 'react-emotion', 'preact-emotion']
 

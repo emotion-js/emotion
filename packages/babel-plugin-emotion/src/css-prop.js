@@ -124,16 +124,16 @@ export default function(
   }
   function getMergeIdentifier() {
     if (state.opts.autoImportCssProp !== false) {
-      if (!state.cssPropCxIdentifier) {
-        state.cssPropCxIdentifier = addNamed(
+      if (!state.cssPropMergeIdentifier) {
+        state.cssPropMergeIdentifier = addNamed(
           path,
-          'cx',
+          'merge',
           state.emotionImportPath
         )
       }
-      return state.cssPropCxIdentifier
+      return state.cssPropMergeIdentifier
     } else {
-      return t.identifier(state.importedNames.cx)
+      return t.identifier(state.importedNames.merge)
     }
   }
   function createCssTemplateExpression(templateLiteral) {
