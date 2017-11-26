@@ -111,6 +111,7 @@ function buildTargetObjectProperty(path, state, t) {
 
   try {
     rootPath = getPackageRootPath(filename)
+    // $FlowFixMe
     moduleName = require(rootPath + '/package.json').name
   } catch (err) {}
 

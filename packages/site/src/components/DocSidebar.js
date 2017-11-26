@@ -2,7 +2,10 @@
 import React from 'react'
 import Sidebar from 'react-sidebar'
 
-const mql = window.matchMedia(`(min-width: 900px)`)
+let mql: MediaQueryList | void
+if (typeof window !== 'undefined') {
+  mql = window.matchMedia(`(min-width: 900px)`)
+}
 
 type State = {
   docked: boolean,
@@ -21,7 +24,7 @@ type Props = {
 
 export default class DocSidebar extends React.Component<Props, State> {
   state = {
-    docked: true || mql.matches,
+    docked: true || (mql && mql.matches),
     open: false
   }
   onSetSidebarOpen = (open: boolean) => {
@@ -29,13 +32,17 @@ export default class DocSidebar extends React.Component<Props, State> {
   }
 
   componentWillMount() {
-    mql.addListener(this.mediaQueryChanged)
+    if (mql !== undefined) {
+      mql.addListener(this.mediaQueryChanged)
 
-    this.setState({ docked: mql.matches })
+      this.setState({ docked: mql.matches })
+    }
   }
 
   componentWillUnmount() {
-    mql.removeListener(this.mediaQueryChanged)
+    if (mql !== undefined) {
+      mql.removeListener(this.mediaQueryChanged)
+    }
   }
 
   mediaQueryChanged = (e: MediaQueryListEvent) => {
