@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import styled, { css } from 'react-emotion'
+import styled, { css, keyframes } from 'react-emotion'
 import Link from 'gatsby-link'
 import Box from './Box'
 import { constants, colors } from '../utils/style'
@@ -16,6 +16,13 @@ const ToggleSidebarButton = styled.button`
   background-color: ${colors.pink};
   padding: 16px;
   margin: 32px;
+  animation: 0.25s ease-in ${keyframes(css`
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }`)};
   transition: 150ms ease-in-out background-color;
   border: 0;
   :hover,
