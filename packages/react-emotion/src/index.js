@@ -134,8 +134,13 @@ const createStyled = (
     Styled.__emotion_real = Styled
     Styled[TARGET_KEY] = stableClassName
 
-    Styled.withComponent = (nextTag, nextOptions: { target: string } = {}) => {
-      return createStyled(nextTag, { ...options, ...nextOptions })(styles)
+    Styled.withComponent = (nextTag, nextOptions: { target: string }) => {
+      return createStyled(
+        nextTag,
+        nextOptions !== undefined
+          ? omitAssign(testAlwaysTrue, {}, options, nextOptions)
+          : options
+      )(styles)
     }
 
     return Styled
