@@ -3,7 +3,7 @@ import {
   Stylis,
   memoize,
   unitless,
-  isEmotionElement,
+  STYLES_KEY,
   TARGET_KEY
 } from 'emotion-utils'
 import stylisRuleSheet from 'stylis-rule-sheet'
@@ -56,7 +56,7 @@ function handleInterpolation(
     case 'boolean':
       return ''
     case 'function':
-      if (isEmotionElement(interpolation)) {
+      if (interpolation[STYLES_KEY] !== undefined) {
         if (
           process.env.NODE_ENV !== 'production' &&
           interpolation[TARGET_KEY] === undefined
