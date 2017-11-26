@@ -44,7 +44,7 @@ const omitAssign = function(testFn, target) {
 
 const createStyled = (
   tag,
-  options: { e: string, label: string, target: string } = {}
+  options: { e: string, label: string, target: string }
 ) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
@@ -53,9 +53,15 @@ const createStyled = (
       )
     }
   }
-  let staticClassName = options.e
-  let identifierName = options.label
-  let stableClassName = options.target
+  let identifierName
+  let stableClassName
+  let staticClassName
+
+  if (options !== undefined) {
+    identifierName = options.label
+    stableClassName = options.target
+    staticClassName = options.e
+  }
 
   const isReal = tag.__emotion_real === tag
   const baseTag =
