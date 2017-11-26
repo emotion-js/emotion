@@ -1,0 +1,21 @@
+{
+  "transform": {
+    "\\.css$": "<rootDir>/test/styleTransform.js",
+    "^.+\\.js?$": "babel-jest"
+  },
+  "moduleNameMapper": {
+    "^emotion$": "<rootDir>/packages/emotion/dist/index.cjs.js",
+    "^react-emotion$": "<rootDir>/packages/react-emotion/dist/index.cjs.js",
+    "^emotion-utils$": "<rootDir>/packages/emotion-utils/dist/index.cjs.js",
+    "^emotion-server$": "<rootDir>/packages/emotion-server/lib",
+    "^emotion-theming$": "<rootDir>/packages/emotion-theming/dist/index.cjs.js",
+    "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/lib"
+  },
+  "transformIgnorePatterns": [
+    "dist"
+  ],
+  "testPathIgnorePatterns": [
+    "babel-plugin-emotion"
+  ],
+  "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js"
+}

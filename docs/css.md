@@ -5,7 +5,7 @@ title: "CSS"
 
 ```jsx harmony
 import { css } from 'emotion'
-import { lighten, modularScale } from 'polished'
+import { hiDPI, lighten, modularScale } from 'polished'
 
 // Write your css as normal.
 const flex = css`

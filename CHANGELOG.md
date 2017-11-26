@@ -1,3 +1,47 @@
+## v8.0.10 (2017-11-07)
+
+#### :rocket: Enhancement
+* `react-emotion`
+  * [#443](https://github.com/emotion-js/emotion/pull/443) Don't filter props on string tags started with Uppercase letter. ([@asvetliakov](https://github.com/asvetliakov))
+* `babel-plugin-emotion`, `emotion-server`, `emotion`, `react-emotion`
+  * [#375](https://github.com/emotion-js/emotion/pull/375) Add label property and autoLabel option for babel-plugin-emotion. ([@tkh44](https://github.com/tkh44))
+
+#### :bug: Bug Fix
+* `babel-plugin-emotion`, `benchmarks`, `emotion-server`, `emotion-theming`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`, `site`
+  * [#440](https://github.com/emotion-js/emotion/pull/440) Babel 7 compatibility and change tests. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :memo: Documentation
+* `emotion-theming`
+  * [#445](https://github.com/emotion-js/emotion/pull/445) docs(emotion-theming): fix typo in README of packages/emotion-theming. ([@cherealnice](https://github.com/cherealnice))
+* Other
+  * [#444](https://github.com/emotion-js/emotion/pull/444) docs(css): fix import in example. ([@justinobney](https://github.com/justinobney))
+  * [#441](https://github.com/emotion-js/emotion/pull/441) Object style docs. ([@tkh44](https://github.com/tkh44))
+  * [#439](https://github.com/emotion-js/emotion/pull/439) Add docs for media queries and reusable media queries. ([@dstaley](https://github.com/dstaley))
+  * [#438](https://github.com/emotion-js/emotion/pull/438) Add blazity.com to In the Wild section 🔥. ([@hmeissner](https://github.com/hmeissner))
+  * [#435](https://github.com/emotion-js/emotion/pull/435) add design-system-utils to ecosystem. ([@mrmartineau](https://github.com/mrmartineau))
+  * [#429](https://github.com/emotion-js/emotion/pull/429) Updates README Ecosystem with ShevyJS. ([@kyleshevlin](https://github.com/kyleshevlin))
+* `babel-plugin-emotion`
+  * [#436](https://github.com/emotion-js/emotion/pull/436) Fix typo in package description. ([@ismamz](https://github.com/ismamz))
+  * [#431](https://github.com/emotion-js/emotion/pull/431) extractStatic Default Value in Readme. ([@malectro](https://github.com/malectro))
+
+#### :house: Internal
+* `emotion-theming`, `emotion`, `react-emotion`
+  * [#421](https://github.com/emotion-js/emotion/pull/421) Switched to using dtslint from just running tsc --noEmit for typescript tests. ([@cameron-martin](https://github.com/cameron-martin))
+
+#### Committers: 12
+- Alexey Svetliakov ([asvetliakov](https://github.com/asvetliakov))
+- Cameron Martin ([cameron-martin](https://github.com/cameron-martin))
+- Dan Cherouny ([cherealnice](https://github.com/cherealnice))
+- Dylan Staley ([dstaley](https://github.com/dstaley))
+- Hugo Meissner ([hmeissner](https://github.com/hmeissner))
+- Ismael Martínez ([ismamz](https://github.com/ismamz))
+- Justin Obney ([justinobney](https://github.com/justinobney))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Kyle Shevlin ([kyleshevlin](https://github.com/kyleshevlin))
+- Kyle Warren ([malectro](https://github.com/malectro))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- ZΛNDΞR ([mrmartineau](https://github.com/mrmartineau))
+
 ## v8.0.9 (2017-10-23)
 
 #### :rocket: Enhancement
