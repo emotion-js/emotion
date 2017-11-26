@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component as selector 1`] = `
+.glamor-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-2 .glamor-1 {
+  color: green;
+}
+
+.glamor-0 {
+  font-size: 20px;
+}
+
+<div
+  className="glamor-2 glamor-3"
+>
+  hello 
+  <h1
+    className="glamor-0 glamor-1"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`component as selector 2`] = `
+".css-1kmu0ik {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.css-1kmu0ik .css-hp998q0 {
+  color: green;
+}
+
+.css-bk9fzy {
+  font-size: 20px;
+}"
+`;
+
+exports[`component as selector function interpolation 1`] = `
+.glamor-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-2 .glamor-1 {
+  color: green;
+}
+
+.glamor-0 {
+  font-size: 20px;
+}
+
+<div
+  className="glamor-2 glamor-3"
+  fontSize={10}
+>
+  hello 
+  <h1
+    className="glamor-0 glamor-1"
+    fontSize={20}
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`component as selector function interpolation 2`] = `
+".css-hp387i {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.css-hp387i .css-hp998q2 {
+  color: green;
+}
+
+.css-bk9fzy {
+  font-size: 20px;
+}"
+`;

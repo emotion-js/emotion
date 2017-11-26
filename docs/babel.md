@@ -33,3 +33,6 @@ import { css, keyframes, fontFace, injectGlobal, flush, hydrate } from 'emotion/
 ```
 
 [create-react-app issue discussing macros](https://github.com/facebookincubator/create-react-app/issues/2730).
+
+### Components as selectors
+The ability to refer to another component to apply override styles depending on nesting context. Learn more in the [react-emotion docs](./styled.md#targeting-another-emotion-component).

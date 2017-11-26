@@ -43,4 +43,4 @@ const paragraph = css`
 `
 ```
 
-The result of `css` is a class name _without_ the dot (`.`), so we prepended it. 
+The result of `css` is a class name _without_ the dot (`.`), so we prepended it.
