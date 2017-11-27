@@ -32,7 +32,7 @@ If using Babel's env option emotion must also be first for each environment.
     "env": {
       "production": {
         "plugins": [
-          "emotion", 
+          "emotion",
           [...all other babel plugins...]
         ]
       }

@@ -105,17 +105,14 @@ const headerClassName = css({
 
 const docs = [
   { name: 'install', hasCodeExample: false },
+  { name: 'styled', hasCodeExample: true },
   { name: 'nested', hasCodeExample: true },
-  { name: 'pseudo', hasCodeExample: true },
-  { name: 'media', hasCodeExample: true },
-  { name: 'styling-any-component', hasCodeExample: true },
-  { name: 'styled-with-component', hasCodeExample: true },
-  { name: 'props', hasCodeExample: true },
+  { name: 'media-queries', hasCodeExample: true },
+  { name: 'with-props', hasCodeExample: false },
   { name: 'keyframes', hasCodeExample: true },
   { name: 'composition', hasCodeExample: true },
-  { name: 'objects', hasCodeExample: true },
-  { name: 'styled-with-object', hasCodeExample: true },
-  { name: 'css-prop', hasCodeExample: true },
+  { name: 'object-styles', hasCodeExample: true },
+  { name: 'css', hasCodeExample: true },
   { name: 'theming', hasCodeExample: true },
   { name: 'source-maps', hasCodeExample: false }
 ]
