@@ -2,7 +2,7 @@
 
 Writing styles with objects is a powerful pattern built directly into the core of emotion.
 
-### Examples 
+### Examples
 
 #### With `css`
 
@@ -30,7 +30,7 @@ const A = styled('a')({ color: 'darkorchid' })
 ```javascript
 import { css } from 'emotion'
 
-const className = css({ 
+const className = css({
   color: 'darkorchid',
   '& .name': {
     color: 'orange'
@@ -43,7 +43,7 @@ const className = css({
 ```javascript
 import { css } from 'emotion'
 
-const className = css({ 
+const className = css({
   color: 'darkorchid',
   '@media(min-width: 420px)': {
     color: 'orange'
@@ -56,7 +56,7 @@ const className = css({
 ```javascript
 import { css } from 'emotion'
 
-const className = css({ 
+const className = css({
   color: 'darkorchid'
 }, {
   backgroundColor: 'hotpink'
@@ -72,7 +72,7 @@ Nested arrays are flattened.
 ```javascript
 import { css } from 'emotion'
 
-const className = css([{ 
+const className = css([{
   color: 'darkorchid'
 }, {
   backgroundColor: 'hotpink'

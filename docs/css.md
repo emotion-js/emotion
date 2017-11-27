@@ -38,7 +38,7 @@ const H2 = styled(H1)`font-size:32px;`
 </div>
 ```
 
-## CSS Prop 
+## CSS Prop
 ###### [requires babel plugin](babel.md)
 A shortcut for calling the css function and appending the result to the className prop. Done at compile time.
 _Note: CSS props are not compatible with babel's `"transform-react-inline-elements"` plugin. If you include it in your `.babelrc` no transformation will take place and your styles will silently fail._

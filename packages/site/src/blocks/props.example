@@ -1,7 +1,0 @@
-const Avatar = styled('img')`
-  width: 96px;
-  height: 96px;
-  border-radius: ${props => (props.rounded ? '50%' : 0)};
-`
-
-render(<Avatar src={logoUrl} rounded />)
