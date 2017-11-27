@@ -14,6 +14,7 @@ const wrap = responsiveStyle('flexWrap', 'wrap', 'wrap')
 const direction = responsiveStyle('flexDirection', 'direction')
 const align = responsiveStyle('alignItems', 'align')
 const justify = responsiveStyle('justifyContent', 'justify')
+const overflow = responsiveStyle('overflow', 'overflow')
 const column = props => (props.column ? 'flex-direction:column;' : null)
 
 /**
@@ -46,5 +47,6 @@ export default styled.div(
   column,
   direction,
   align,
-  justify
+  justify,
+  overflow
 )

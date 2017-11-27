@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import { LiveEditor, LivePreview, LiveProvider, withLive } from 'react-live/lib'
 import styled, { css, keyframes, merge, fontFace } from 'react-emotion'
@@ -5,10 +6,8 @@ import { ThemeProvider, withTheme } from 'emotion-theming'
 import Box from '../components/Box'
 import colors from 'open-color'
 import '../utils/highlight-css'
-import logoUrl from '../assets/logo.png'
 
 export const scope = {
-  logoUrl,
   css,
   keyframes,
   styled,
@@ -46,12 +45,17 @@ export const Preview = withLive(
     )
 )
 
-export default class Playground extends Component {
+type Props = {
+  code: string,
+  logoUrl: string
+}
+
+export default class Playground extends Component<Props> {
   render() {
     return (
       <LiveProvider
         noInline
-        scope={scope}
+        scope={{ ...scope, logoUrl: this.props.logoUrl }}
         code={this.props.code}
         mountStylesheet={false}
       >

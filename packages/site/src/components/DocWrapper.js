@@ -61,7 +61,14 @@ export default (props: Props) => (
           </Box>
         </Children>
       )}
-      styles={{ root: { top: 83 } }}
+      styles={{
+        root: {
+          top: 83
+        },
+        sidebar: {
+          transitionTimingFunction: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)'
+        }
+      }}
       sidebarClassName={css`
         background-color: #f5f5f5;
         padding: ${constants.space[3]}px;

@@ -100,7 +100,7 @@ function Greeting ({ name }) {
 ```
 
 ### Object styles
-```jsx harmony
+```jsx
 import styled from 'react-emotion'
 
 const H1 = styled.h1(

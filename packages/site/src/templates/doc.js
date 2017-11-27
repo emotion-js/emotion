@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import styled, { css } from 'react-emotion'
 import { constants, openColors } from '../utils/style'
@@ -107,19 +108,36 @@ const styles = css`
   }
 `
 
-const contentCls = css`
-  grid-column: 2;
-  grid-row: 1;
-  align-self: start;
-  margin-left: ${constants.space[2]}px;
-`
+type Props = {
+  data: {
+    doc: {
+      html: string,
+      frontmatter: {
+        title: string
+      }
+    },
+    allCodeExample: {
+      edges: Array<{ node: { content: string } }>
+    },
+    avatar: {
+      childImageSharp: {
+        resolutions: {
+          src: string
+        }
+      }
+    }
+  },
+  pathContext: {
+    slug: string
+  }
+}
 
-class DocRoute extends React.Component {
+export default class DocRoute extends React.Component<Props> {
   render() {
     const { data } = this.props
-    const { doc, allCodeExample } = data
+    const { doc, allCodeExample, avatar } = data
     return (
-      <Box className={contentCls}>
+      <Box>
         <Title>{doc.frontmatter.title}</Title>
         <Box pb={3} className={styles}>
           {/* The URL below should change when this is on master */}
@@ -132,7 +150,10 @@ class DocRoute extends React.Component {
         </Box>
         {allCodeExample && (
           <Box mb={constants.space[3]}>
-            <Playground code={allCodeExample.edges[0].node.content} />
+            <Playground
+              logoUrl={avatar.childImageSharp.resolutions.src}
+              code={allCodeExample.edges[0].node.content}
+            />
           </Box>
         )}
         <div
@@ -143,8 +164,6 @@ class DocRoute extends React.Component {
     )
   }
 }
-
-export default DocRoute
 
 export const pageQuery = graphql`
   query DocBySlug($slug: String!) {
@@ -158,6 +177,13 @@ export const pageQuery = graphql`
       edges {
         node {
           content
+        }
+      }
+    }
+    avatar: file(name: { eq: "emotion" }) {
+      childImageSharp {
+        resolutions(width: 96, height: 96) {
+          src
         }
       }
     }

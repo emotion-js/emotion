@@ -1,5 +1,5 @@
+// @flow
 import React from 'react'
-import PropTypes from 'prop-types'
 import Link from '../components/Link'
 import styled, { fontFace, injectGlobal, css } from 'react-emotion'
 import Box from '../components/Box'
@@ -9,6 +9,7 @@ import 'normalize.css/normalize.css'
 import DocWrapper from '../components/DocWrapper'
 import { colors, constants } from '../utils/style'
 import Image from 'gatsby-image'
+import type { Location, Match } from '../utils/types'
 
 injectGlobal(
   prismStyles.replace('prism-code', 'prism-code,pre[class*="language-"]')
@@ -86,25 +87,34 @@ const StyledLink = styled(Box)`
     `};
 `.withComponent(({ hideUnderline, ...props }) => <Link {...props} />)
 
+const StyledLinkSpan = StyledLink.withComponent('span')
+
 StyledLink.defaultProps = {
   activeClassName: 'active'
 }
 
 const Children = ({ children }) => children
 
+const H1 = Box.withComponent('h1')
+
 const Header = ({ isHome, avatar }) => (
   <Children>
     <Box
       bg={colors.dark}
-      p={2}
       css={{
         transition: 'all 200ms ease'
       }}
     >
-      <Box display="flex" flex={1} justify="space-between">
+      <Box
+        overflow={['auto', 'initial']}
+        display="flex"
+        flex={1}
+        p={2}
+        justify={'space-between'}
+      >
         <Box
           flex={1}
-          display="flex"
+          display="inline"
           css={{
             opacity: isHome ? 0 : 1,
             transition: 'opacity 200ms ease',
@@ -112,27 +122,32 @@ const Header = ({ isHome, avatar }) => (
           }}
           align="center"
         >
-          <Image
-            css={{ display: 'inline-block', margin: 0, padding: 0 }}
-            height="36px"
-            width="36px"
-            resolutions={avatar}
-          />
-
-          <h1 css={{ margin: 0, padding: 0, display: 'flex' }}>
-            <StyledLink
-              to="/"
-              css={{
-                flex: 1,
-                margin: 0
-              }}
-              hideUnderline
-            >
-              emotion
-            </StyledLink>
-          </h1>
+          <Link to="/" css={{ textDecoration: 'none', display: 'flex' }}>
+            <Image
+              css={{ display: 'inline-block', margin: 0, padding: 0 }}
+              height="36px"
+              width="36px"
+              resolutions={avatar}
+            />
+            <H1 m={0} p={0} align="center" display={['none', 'inline-flex']}>
+              <StyledLinkSpan
+                hideUnderline
+                css={{
+                  flex: 1,
+                  margin: 0
+                }}
+              >
+                emotion
+              </StyledLinkSpan>
+            </H1>
+          </Link>
         </Box>
-        <Box flex={1} display="flex" justify="flex-end" css={`overflow: auto;`}>
+        <Box
+          flex={1}
+          display="flex"
+          justify="flex-end"
+          css={{ overflow: 'initial' }}
+        >
           <StyledLink to="/try">Try</StyledLink>
           <StyledLink to="/docs">Documentation</StyledLink>
           <StyledLink to="https://github.com/emotion-js/emotion">
@@ -195,11 +210,39 @@ const BaseWrapper = props => {
   )
 }
 
-const TemplateWrapper = props => {
+type SidebarNode = {
+  node: {
+    name: string,
+    childMarkdownRemark: {
+      frontmatter: {
+        title?: string
+      }
+    }
+  }
+}
+
+type TemplateWrapperProps = {
+  children: () => React$Node,
+  location: Location,
+  match: Match,
+  data: {
+    avatar: {
+      childImageSharp: {
+        resolutions: Object
+      }
+    },
+    allFile: {
+      edges: Array<SidebarNode>
+    }
+  }
+}
+
+const TemplateWrapper = (props: TemplateWrapperProps) => {
+  console.log(props)
   if (props.location.pathname.match(/\/docs\/.+/)) {
     return (
       <BaseWrapper
-        avatar={props.data.avatar.resolutions}
+        avatar={props.data.avatar.childImageSharp.resolutions}
         location={props.location}
       >
         <DocWrapper sidebarNodes={props.data.allFile.edges}>
@@ -210,16 +253,12 @@ const TemplateWrapper = props => {
   }
   return (
     <BaseWrapper
-      avatar={props.data.avatar.resolutions}
+      avatar={props.data.avatar.childImageSharp.resolutions}
       location={props.location}
     >
       <Box m={[1, 2]}>{props.children()}</Box>
     </BaseWrapper>
   )
-}
-
-TemplateWrapper.propTypes = {
-  children: PropTypes.func
 }
 
 export const pageQuery = graphql`
@@ -236,9 +275,11 @@ export const pageQuery = graphql`
         }
       }
     }
-    avatar: imageSharp {
-      resolutions(width: 36, height: 36) {
-        ...GatsbyImageSharpResolutions
+    avatar: file(name: { eq: "emotion" }) {
+      childImageSharp {
+        resolutions(width: 36, height: 36) {
+          ...GatsbyImageSharpResolutions_withWebp_noBase64
+        }
       }
     }
   }
