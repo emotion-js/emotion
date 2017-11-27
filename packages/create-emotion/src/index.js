@@ -289,10 +289,12 @@ function createEmotion(
     return merge(classnames(...classNames))
   }
 
+  function hydrateSingleId(id: string) {
+    caches.inserted[id] = true
+  }
+
   function hydrate(ids: string[]) {
-    ids.forEach(id => {
-      caches.inserted[id] = true
-    })
+    ids.forEach(hydrateSingleId)
   }
 
   function flush() {
@@ -313,9 +315,7 @@ function createEmotion(
       node
         .getAttribute('data-emotion-chunk')
         .split(' ')
-        .forEach(id => {
-          caches.inserted[id] = true
-        })
+        .forEach(hydrateSingleId)
     })
   }
 
