@@ -38,7 +38,7 @@ const config = {
         '@babel/react',
         '@babel/flow'
       ],
-      plugins: ['codegen'],
+      plugins: ['codegen', 'closure-elimination'],
       babelrc: false
     })
   ],

@@ -37,6 +37,7 @@
     "babel-flow-types": "^1.2.2",
     "babel-jest": "^20.0.3",
     "babel-macros": "^1.2.0",
+    "babel-plugin-closure-elimination": "^1.3.0",
     "babel-plugin-codegen": "^1.2.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-polyfill": "^6.26.0",
@@ -127,7 +128,8 @@
       "react/prop-types": 0,
       "react/no-unused-prop-types": 0,
       "standard/computed-property-even-spacing": 0,
-      "no-template-curly-in-string": 0
+      "no-template-curly-in-string": 0,
+      "camelcase": 0
     },
     "env": {
       "browser": true
@@ -173,11 +175,11 @@
   "bundlesize": [
     {
       "path": "./packages/emotion/dist/emotion.umd.min.js",
-      "threshold": "6.55 Kb"
+      "threshold": "6.60 Kb"
     },
     {
       "path": "./packages/react-emotion/dist/emotion.umd.min.js",
-      "threshold": "9.25 Kb"
+      "threshold": "9.30 Kb"
     }
   ]
 }

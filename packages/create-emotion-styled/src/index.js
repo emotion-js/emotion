@@ -1,7 +1,10 @@
+// @flow
 import { memoize, STYLES_KEY, TARGET_KEY } from 'emotion-utils'
 import type { Emotion, Interpolation, Interpolations } from 'create-emotion'
+import type { ElementType } from 'react'
+import typeof { Component as BaseComponentType } from 'react'
 
-function setTheme(theme) {
+function setTheme(theme: Object) {
   this.setState({ theme })
 }
 
@@ -33,34 +36,33 @@ const omitAssign: (
   return target
 }
 
-export type EmotionStyledOptions = {
-  channel: string,
+export type EmotionStyledInstanceOptions = {
+  channel?: string,
   contextTypes?: *,
-  Component: *,
+  Component: BaseComponentType,
   createElement: Function,
   contextTypes?: *
 }
 
+type StyledOptions = { e: string, label: string, target: string }
+
+type CreateStyledComponent = (...args: Interpolations) => *
+
+type BaseCreateStyled = (
+  tag: any,
+  options?: StyledOptions
+) => CreateStyledComponent
+
+type CreateStyled = {
+  $call: BaseCreateStyled,
+  [key: string]: CreateStyledComponent
+}
+
 function createEmotionStyled(
   emotion: Emotion,
-  instanceOptions: EmotionStyledOptions
+  instanceOptions: EmotionStyledInstanceOptions
 ) {
-  function componentWillMount() {
-    if (this.context[instanceOptions.channel] !== undefined) {
-      this.unsubscribe = this.context[instanceOptions.channel].subscribe(
-        setTheme.bind(this)
-      )
-    }
-  }
-  function componentWillUnmount() {
-    if (this.unsubscribe !== undefined) {
-      this.context[instanceOptions.channel].unsubscribe(this.unsubscribe)
-    }
-  }
-  const createStyled = (
-    tag: *,
-    options: { e: string, label: string, target: string }
-  ) => {
+  const createStyled: CreateStyled = (tag, options) => {
     if (process.env.NODE_ENV !== 'production') {
       if (tag === undefined) {
         throw new Error(
@@ -104,7 +106,27 @@ function createEmotionStyled(
         }
       }
 
-      class Styled extends instanceOptions.Component {
+      class Styled extends instanceOptions.Component<*, { theme: Object }> {
+        unsubscribe: number
+        mergedProps: Object
+        static __emotion_real: any
+        static __emotion_styles: Interpolations
+        static __emotion_base: Styled
+        static __emotion_target: string
+        static withComponent: (ElementType, options?: StyledOptions) => any
+
+        componentWillMount() {
+          if (this.context[instanceOptions.channel] !== undefined) {
+            this.unsubscribe = this.context[instanceOptions.channel].subscribe(
+              setTheme.bind(this)
+            )
+          }
+        }
+        componentWillUnmount() {
+          if (this.unsubscribe !== undefined) {
+            this.context[instanceOptions.channel].unsubscribe(this.unsubscribe)
+          }
+        }
         render() {
           const { props, state } = this
           this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
@@ -143,8 +165,6 @@ function createEmotionStyled(
           )
         }
       }
-      Styled.prototype.componentWillMount = componentWillMount
-      Styled.prototype.componentWillUnmount = componentWillUnmount
       Styled.displayName =
         identifierName !== undefined
           ? identifierName
@@ -158,11 +178,15 @@ function createEmotionStyled(
       Styled.__emotion_real = Styled
       Styled[TARGET_KEY] = stableClassName
 
-      Styled.withComponent = (nextTag, nextOptions: { target: string }) => {
+      Styled.withComponent = (
+        nextTag: ElementType,
+        nextOptions?: StyledOptions
+      ) => {
         return createStyled(
           nextTag,
           nextOptions !== undefined
-            ? omitAssign(testAlwaysTrue, {}, options, nextOptions)
+            ? // $FlowFixMe
+              omitAssign(testAlwaysTrue, {}, options, nextOptions)
             : options
         )(styles)
       }

@@ -1,7 +1,8 @@
 // @flow
 import React from 'react'
 import renderer from 'react-test-renderer'
-import styled, { css, flush } from 'react-emotion'
+import styled, { css, flush, sheet } from './emotion-instance'
+import serializer from 'jest-glamor-react'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { TARGET_KEY } from 'emotion-utils'
@@ -9,6 +10,8 @@ import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
 import { lighten, hiDPI, modularScale } from 'polished'
+
+expect.addSnapshotSerializer(serializer(sheet))
 
 describe('styled', () => {
   beforeEach(() => flush())

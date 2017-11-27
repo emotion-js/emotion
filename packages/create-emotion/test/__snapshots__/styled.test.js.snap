@@ -128,9 +128,6 @@ exports[`styled composing components 1`] = `
 .glamor-0 {
   color: green;
   display: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -287,9 +284,6 @@ exports[`styled glamorous style api & composition 1`] = `
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -304,7 +298,7 @@ exports[`styled glamorous style api & composition 1`] = `
 exports[`styled handles more than 10 dynamic properties 1`] = `
 .glamor-0 {
   text-decoration: underline;
-  border-right: solid blue 54px;
+  border-left: solid blue 54px;
   background: white;
   color: black;
   display: block;
@@ -314,7 +308,7 @@ exports[`styled handles more than 10 dynamic properties 1`] = `
   z-index: 100;
   font-size: 18px;
   text-align: center;
-  border-left: blue;
+  border-right: blue;
 }
 
 <h1
@@ -429,9 +423,6 @@ exports[`styled name with class component 1`] = `
 
 exports[`styled nested 1`] = `
 .glamor-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -462,7 +453,7 @@ exports[`styled nested 1`] = `
 
 exports[`styled no dynamic 1`] = `
 .glamor-0 {
-  float: left;
+  float: right;
 }
 
 <h1
@@ -522,9 +513,6 @@ exports[`styled object as style 1`] = `
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -563,9 +551,6 @@ exports[`styled object composition 1`] = `
 exports[`styled objects 1`] = `
 .glamor-0 {
   padding: 10px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -639,9 +624,9 @@ exports[`styled random object expression 1`] = `
   background-color: hotpink;
   font-size: 1rem;
   margin-top: 0;
-  margin-right: auto;
-  margin-bottom: 0;
   margin-left: auto;
+  margin-bottom: 0;
+  margin-right: auto;
   color: green;
 }
 
@@ -709,7 +694,7 @@ exports[`styled theming 1`] = `
   >
     <Styled(div)>
       <div
-        className="css-olgnlr css-1rh8huw31"
+        className="css-olgnlr css-10q4z3a31"
       >
         this will be green then pink
       </div>
@@ -736,7 +721,7 @@ exports[`styled theming 2`] = `
   >
     <Styled(div)>
       <div
-        className="css-olgnlr css-1rh8huw31"
+        className="css-olgnlr css-10q4z3a31"
       >
         this will be green then pink
       </div>
@@ -771,9 +756,6 @@ You may have forgotten to import it."
 
 exports[`styled with higher order component that hoists statics 1`] = `
 .glamor-1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   color: hotpink;
   padding: 8px;
@@ -784,11 +766,11 @@ exports[`styled with higher order component that hoists statics 1`] = `
 />
 `;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 1`] = `"css-1rh8huw46"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 1`] = `"css-10q4z3a46"`;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 2`] = `"css-1rh8huw47"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 2`] = `"css-10q4z3a47"`;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 3`] = `"css-1rh8huw48"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 3`] = `"css-10q4z3a48"`;
 
 exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 .glamor-0 {
