@@ -322,6 +322,17 @@ exports[`css media query specificity 2`] = `
 />
 `;
 
+exports[`css multiline declaration 1`] = `
+.glamor-0 {
+  display: grid;
+  grid: 'AppBar' auto 'Main' 1fr / 1fr;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css nested 1`] = `
 .glamor-0 {
   color: yellow;
