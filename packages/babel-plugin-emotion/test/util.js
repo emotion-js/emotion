@@ -8,6 +8,9 @@ import makeCases from 'jest-in-case'
 import { basename } from 'path'
 import * as fs from 'fs'
 
+// $FlowFixMe
+process.cwd = () => __dirname
+
 type TestCases<Opts> = { [name: string]: Opts } | Array<Opts>
 
 type EmotionTestCases = TestCases<{
@@ -35,7 +38,7 @@ const createInlineTester = transform => opts => {
           }
         ]
       ],
-      filename: opts.filename || 'emotion.js',
+      filename: opts.filename || __filename,
       babelrc: false
     }).code
   ).toMatchSnapshot()

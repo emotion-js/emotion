@@ -62,7 +62,8 @@ export type EmotionBabelPluginPass = BabelPluginPass & {
   cssPropIdentifier: Identifier,
   cssPropMergeIdentifier: Identifier,
   importedNames: ImportedNames,
-  count: number
+  count: number,
+  opts: any
 }
 
 export function replaceCssWithCallExpression(
@@ -282,11 +283,37 @@ const importedNameKeys = Object.keys(defaultImportedNames).map(
 
 const defaultEmotionPaths = ['emotion', 'react-emotion', 'preact-emotion']
 
-function getPath(filepath: string) {
-  if (filepath.charAt(0) === '.') {
-    return nodePath.resolve(process.cwd(), filepath)
+function getRelativePath(filepath: string, absoluteInstancePath: string) {
+  let relativePath = nodePath.relative(
+    nodePath.dirname(filepath),
+    absoluteInstancePath
+  )
+
+  return relativePath.charAt(0) === '.' ? relativePath : `./${relativePath}`
+}
+
+function getAbsolutePath(instancePath: string, rootPath: string) {
+  if (instancePath.charAt(0) === '.') {
+    let absoluteInstancePath = nodePath.resolve(rootPath, instancePath)
+    return absoluteInstancePath
   }
-  return filepath
+  return false
+}
+
+function getInstancePathToImport(instancePath: string, filepath: string) {
+  let absolutePath = getAbsolutePath(instancePath, process.cwd())
+  if (absolutePath === false) {
+    return instancePath
+  }
+  return getRelativePath(filepath, absolutePath)
+}
+
+function getInstancePathToCompare(instancePath: string, rootPath: string) {
+  let absolutePath = getAbsolutePath(instancePath, rootPath)
+  if (absolutePath === false) {
+    return instancePath
+  }
+  return absolutePath
 }
 
 export default function(babel: Babel) {
@@ -298,11 +325,12 @@ export default function(babel: Babel) {
     visitor: {
       Program: {
         enter(path: BabelPath, state: EmotionBabelPluginPass) {
-          // this needs to handle relative paths and stuff
-          // https://github.com/tleunen/babel-plugin-module-resolver/tree/master/src
           state.emotionImportPath = 'emotion'
-          if (state.opts.primaryPath !== undefined) {
-            state.emotionImportPath = getPath(state.opts.primaryPath)
+          if (state.opts.primaryInstance !== undefined) {
+            state.emotionImportPath = getInstancePathToImport(
+              state.opts.primaryInstance,
+              path.hub.file.opts.filename
+            )
           }
 
           state.importedNames = {
@@ -363,10 +391,17 @@ export default function(babel: Babel) {
             })
           }
           const emotionPaths = defaultEmotionPaths.concat(
-            (state.opts.paths || []).map(getPath)
+            (state.opts.instances || []).map(instancePath =>
+              getInstancePathToCompare(instancePath, process.cwd())
+            )
           )
+          let dirname = nodePath.dirname(path.hub.file.opts.filename)
           imports.forEach(({ source, imported, specifiers }) => {
-            if (emotionPaths.indexOf(getPath(source)) !== -1) {
+            if (
+              emotionPaths.indexOf(
+                getInstancePathToCompare(source, dirname)
+              ) !== -1
+            ) {
               const importedNames = specifiers
                 .filter(v => importedNameKeys.indexOf(v.imported) !== -1)
                 .reduce(

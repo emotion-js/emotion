@@ -103,6 +103,24 @@ const inline = {
       }
     `,
     opts: { autoLabel: true }
+  },
+  'custom instance': {
+    code: '(<div css={`color: brown;`}></div>)',
+    opts: {
+      primaryInstance: 'my-emotion-instance'
+    }
+  },
+  'relative custom instance': {
+    code: '(<div css={`color: brown;`}></div>)',
+    opts: {
+      primaryInstance: './my-emotion-instance'
+    }
+  },
+  'another relative custom instance': {
+    code: '(<div css={`color: brown;`}></div>)',
+    opts: {
+      primaryInstance: '../my-emotion-instance'
+    }
   }
 }
 
