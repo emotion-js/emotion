@@ -1,3 +1,4 @@
+// @flow
 import { memoize } from 'emotion-utils'
 import type { Interpolations } from 'create-emotion'
 import typeof { Component as BaseComponentType } from 'react'
@@ -12,7 +13,7 @@ const reactPropsRegex: RegExp = codegen.require('./props')
 export const testOmitPropsOnStringTag: (key: string) => boolean = memoize(key =>
   reactPropsRegex.test(key)
 )
-export const testOmitPropsOnComponent = key =>
+export const testOmitPropsOnComponent = (key: string) =>
   key !== 'theme' && key !== 'innerRef'
 export const testAlwaysTrue = () => true
 
@@ -43,7 +44,7 @@ export type EmotionStyledInstanceOptions = {
   contextTypes?: *
 }
 
-type StyledOptions = { e: string, label: string, target: string }
+export type StyledOptions = { e: string, label: string, target: string }
 
 type CreateStyledComponent = (...args: Interpolations) => *
 
