@@ -361,14 +361,4 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
   })
-  test('multiline declaration', () => {
-    const cls1 = css`
-      display: grid;
-      grid: 'AppBar' auto 'Main' 1fr / 1fr / 1fr 1fr / 1fr1fr / 1fr1fr / 1fr1fr /
-        1fr1fr / 1fr auto 'Main' 1fr / 1fr / 1fr 1fr / 1fr1fr / 1fr1fr / 1fr1fr /
-        1fr1fr / 1fr;
-    `
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
 })

@@ -18,8 +18,7 @@ import type {
   StringLiteral,
   Babel
 } from 'babel-flow-types'
-import { hashString, memoize } from 'emotion-utils'
-import Stylis from 'stylis'
+import { hashString, Stylis, memoize } from 'emotion-utils'
 import { addSourceMaps } from './source-map'
 
 import cssProps from './css-prop'

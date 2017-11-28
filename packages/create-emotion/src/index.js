@@ -1,6 +1,5 @@
 // @flow
-import { hashString, STYLES_KEY, TARGET_KEY } from 'emotion-utils'
-import Stylis from 'stylis'
+import { hashString, Stylis, STYLES_KEY, TARGET_KEY } from 'emotion-utils'
 import stylisRuleSheet from 'stylis-rule-sheet'
 import {
   processStyleName,
