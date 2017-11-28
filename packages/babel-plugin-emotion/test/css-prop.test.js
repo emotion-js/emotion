@@ -108,19 +108,22 @@ const inline = {
     code: '(<div css={`color: brown;`}></div>)',
     opts: {
       primaryInstance: 'my-emotion-instance'
-    }
+    },
+    filename: __filename
   },
   'relative custom instance': {
     code: '(<div css={`color: brown;`}></div>)',
     opts: {
       primaryInstance: './my-emotion-instance'
-    }
+    },
+    filename: __filename
   },
   'another relative custom instance': {
     code: '(<div css={`color: brown;`}></div>)',
     opts: {
       primaryInstance: '../my-emotion-instance'
-    }
+    },
+    filename: __filename
   }
 }
 

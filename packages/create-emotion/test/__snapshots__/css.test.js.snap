@@ -137,12 +137,12 @@ exports[`css css variables 1`] = `
 
 exports[`css explicit & 1`] = `
 <div
-  className="css-16ooeb3 another-class"
+  className="css-gfk73z another-class"
 />
 `;
 
 exports[`css explicit & 2`] = `
-".css-16ooeb3.another-class {
+".css-gfk73z.another-class {
   display: flex;
 }"
 `;
@@ -195,7 +195,7 @@ exports[`css flushes correctly 1`] = `
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-k008qs"
+  className="css-vyoujf"
 />
 `;
 
@@ -256,20 +256,20 @@ exports[`css manually use label property 1`] = `
 `;
 
 exports[`css manually use label property 2`] = `
-".css-1qqiudg-wow {
+".css-32iy0l-wow {
   color: hotpink;
 }"
 `;
 
 exports[`css media query specificity 1`] = `
-".css-mfslnr {
+".css-11dfhpp {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
 
 @media (min-width:420px) {
-  .css-mfslnr {
+  .css-11dfhpp {
     width: 96px;
     height: 96px;
   }
@@ -379,7 +379,7 @@ exports[`css null value 1`] = `
 
 exports[`css null value 2`] = `
 <div
-  className="css-1xdhyk6"
+  className="css-r6hgcc"
 />
 `;
 

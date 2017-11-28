@@ -11,5 +11,5 @@
     "react",
     "stage-2"
   ],
-  "plugins": [["../../../babel-plugin-emotion-test", {"paths": ["./emotion-instance"]}], "codegen"]
+  "plugins": [["../../../babel-plugin-emotion-test", {"paths": ["./packages/create-emotion/test/emotion-instance"]}], "codegen"]
 }

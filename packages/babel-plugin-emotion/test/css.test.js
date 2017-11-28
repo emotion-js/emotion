@@ -288,7 +288,8 @@ function test () {
     lol\`color:hotpink;\``,
     opts: {
       instances: ['my-emotion-instance']
-    }
+    },
+    filename: __filename
   },
   'custom instance relative': {
     code: `
@@ -296,7 +297,8 @@ function test () {
     lol\`color:hotpink;\``,
     opts: {
       instances: ['./my-emotion-instance']
-    }
+    },
+    filename: __filename
   },
   'custom instance relative complex': {
     code: `
@@ -304,7 +306,8 @@ function test () {
     lol\`color:hotpink;\``,
     opts: {
       instances: ['./my-emotion-instance']
-    }
+    },
+    filename: __filename
   }
 }
 createInlineTests('babel css inline', inline)

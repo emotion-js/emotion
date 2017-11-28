@@ -2,13 +2,13 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import serializer from 'jest-glamor-react'
-import { css, flush, sheet } from './emotion-instance'
+import { css as differentCss, flush, sheet } from './emotion-instance'
 
 expect.addSnapshotSerializer(serializer(sheet))
 
 describe('css', () => {
   test('float property', () => {
-    const cls1 = css`
+    const cls1 = differentCss`
       float: left;
     `
 
@@ -17,7 +17,7 @@ describe('css', () => {
   })
 
   test('handles more than 10 dynamic properties', () => {
-    const cls1 = css`
+    const cls1 = differentCss`
       text-decoration: ${'underline'};
       border-right: solid blue 54px;
       background: ${'white'};
@@ -36,23 +36,27 @@ describe('css', () => {
   })
 
   test('falsy value in nested selector on object', () => {
-    const cls1 = css({ ':hover': { display: null, color: 'hotpink' } })
+    const cls1 = differentCss({ ':hover': { display: null, color: 'hotpink' } })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
   test('boolean as value', () => {
-    const cls1 = css({ display: 'flex', color: false, backgroundColor: true })
+    const cls1 = differentCss({
+      display: 'flex',
+      color: false,
+      backgroundColor: true
+    })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
   test('auto px', () => {
-    const cls1 = css({ display: 'flex', flex: 1, fontSize: 10 })
+    const cls1 = differentCss({ display: 'flex', flex: 1, fontSize: 10 })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test('random interpolation with undefined values', () => {
-    const cls2 = css`
+    const cls2 = differentCss`
       ${undefined};
       justify-content: center;
     `
@@ -61,11 +65,11 @@ describe('css', () => {
   })
 
   test('random expression', () => {
-    const cls2 = css`
+    const cls2 = differentCss`
       font-size: 20px;
       @media (min-width: 420px) {
         color: blue;
-        ${css`
+        ${differentCss`
           width: 96px;
           height: 96px;
         `};
@@ -78,13 +82,13 @@ describe('css', () => {
   })
 
   test('simple composition', () => {
-    const cls1 = css`
+    const cls1 = differentCss`
       display: flex;
       &:hover {
         color: hotpink;
       }
     `
-    const cls2 = css`
+    const cls2 = differentCss`
       ${cls1};
       justify-content: center;
     `
@@ -93,7 +97,7 @@ describe('css', () => {
   })
 
   test('handles objects', () => {
-    const cls1 = css({
+    const cls1 = differentCss({
       float: 'left',
       display: 'flex',
       color: `${'blue'}`,
@@ -106,19 +110,19 @@ describe('css', () => {
   })
 
   test('handles array of objects', () => {
-    const cls1 = css([{ height: 50, width: 20 }, null])
+    const cls1 = differentCss([{ height: 50, width: 20 }, null])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test('computed key is only dynamic', () => {
-    const cls1 = css({ fontSize: 10, [`w${'idth'}`]: 20 })
+    const cls1 = differentCss({ fontSize: 10, [`w${'idth'}`]: 20 })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test('composition with objects', () => {
-    const cls1 = css({
+    const cls1 = differentCss({
       display: 'flex',
       width: 30,
       height: 'calc(40vw - 50px)',
@@ -131,7 +135,7 @@ describe('css', () => {
         color: 'green'
       }
     })
-    const cls2 = css`
+    const cls2 = differentCss`
       ${cls1};
       justify-content: center;
     `
@@ -140,7 +144,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('@supports', () => {
-    const cls1 = css`
+    const cls1 = differentCss`
       @supports (display: grid) {
         display: grid;
       }
@@ -149,7 +153,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test.skip('nested at rules', () => {
-    const cls1 = css`
+    const cls1 = differentCss`
       @supports (display: grid) {
         display: grid;
         @supports (display: flex) {
@@ -167,7 +171,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('nested array', () => {
-    const cls1 = css([
+    const cls1 = differentCss([
       [{ display: 'inline' }],
       [{ display: 'inline-block' }],
       [
@@ -192,25 +196,25 @@ describe('css', () => {
   })
 
   test('explicit false', () => {
-    const cls1 = css(false)
+    const cls1 = differentCss(false)
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test('array with explicit false', () => {
-    const cls1 = css([[{ display: 'flex' }], false])
+    const cls1 = differentCss([[{ display: 'flex' }], false])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test('array with explicit true', () => {
-    const cls1 = css([[{ display: 'flex' }], true])
+    const cls1 = differentCss([[{ display: 'flex' }], true])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test('nested', () => {
-    const cls1 = css`
+    const cls1 = differentCss`
       color: yellow;
       & .some-class {
         display: flex;
@@ -235,7 +239,7 @@ describe('css', () => {
   })
   test('explicit &', () => {
     flush()
-    const cls1 = css`
+    const cls1 = differentCss`
       &.another-class {
         display: flex;
       }
@@ -248,29 +252,29 @@ describe('css', () => {
     flush()
   })
   test('falsy property value in object', () => {
-    const cls = css({ display: 'flex', backgroundColor: undefined })
+    const cls = differentCss({ display: 'flex', backgroundColor: undefined })
     const tree = renderer.create(<div className={cls} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
   test('registered styles as nested selector value in object', () => {
-    const cls = css({ display: 'flex', backgroundColor: 'hotpink' })
-    const cls1 = css({ ':hover': cls })
+    const cls = differentCss({ display: 'flex', backgroundColor: 'hotpink' })
+    const cls1 = differentCss({ ':hover': cls })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
   test('composition stuff', () => {
-    const cls1 = css({ justifyContent: 'center' })
-    const cls2 = css([cls1])
+    const cls1 = differentCss({ justifyContent: 'center' })
+    const cls2 = differentCss([cls1])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
     const tree2 = renderer.create(<div className={cls2} />).toJSON()
     expect(tree2).toMatchSnapshot()
   })
   test('nested selector without parent declaration', () => {
-    const cls1 = css`
+    const cls1 = differentCss`
       color: blue;
     `
-    const cls2 = css`
+    const cls2 = differentCss`
       & .${cls1} {
         color: red;
       }
@@ -285,13 +289,13 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('null rule', () => {
-    const cls1 = css()
+    const cls1 = differentCss()
 
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
   test('css variables', () => {
-    const cls1 = css`
+    const cls1 = differentCss`
       --some-var: 1px;
       width: var(--some-var);
     `
@@ -300,8 +304,8 @@ describe('css', () => {
   })
 
   test('null value', () => {
-    const cls1 = css(null)
-    const cls2 = css`
+    const cls1 = differentCss(null)
+    const cls2 = differentCss`
       ${() => null};
     `
     expect(renderer.create(<div className={cls1} />).toJSON()).toMatchSnapshot()
@@ -309,7 +313,7 @@ describe('css', () => {
   })
 
   test('flushes correctly', () => {
-    const cls1 = css`
+    const cls1 = differentCss`
       display: flex;
     `
     const tree = renderer.create(<div className={cls1} />).toJSON()
@@ -320,7 +324,7 @@ describe('css', () => {
   })
   test('media query specificity', () => {
     flush()
-    const cls = css`
+    const cls = differentCss`
       width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -338,8 +342,8 @@ describe('css', () => {
   })
   test('weakmap', () => {
     const styles = { display: 'flex' }
-    const cls1 = css(styles)
-    const cls2 = css(styles)
+    const cls1 = differentCss(styles)
+    const cls2 = differentCss(styles)
     const tree1 = renderer.create(<div className={cls1} />).toJSON()
     expect(tree1).toMatchSnapshot()
     const tree2 = renderer.create(<div className={cls2} />).toJSON()
@@ -347,7 +351,7 @@ describe('css', () => {
   })
 
   test('return function in interpolation', () => {
-    const cls1 = css`
+    const cls1 = differentCss`
       color: ${() => 'blue'};
     `
 
@@ -356,7 +360,7 @@ describe('css', () => {
   })
   test('manually use label property', () => {
     flush()
-    const cls1 = css`
+    const cls1 = differentCss`
       color: hotpink;
       label: wow;
     `
@@ -366,10 +370,10 @@ describe('css', () => {
   })
   test('sets correct nonce value', () => {
     flush()
-    css`
+    differentCss`
       color: hotpink;
     `
-    css`
+    differentCss`
       color: yellow;
     `
     expect(sheet.tags).toHaveLength(3)
