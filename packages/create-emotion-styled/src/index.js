@@ -1,62 +1,19 @@
 // @flow
-import { memoize, STYLES_KEY, TARGET_KEY } from 'emotion-utils'
+import { STYLES_KEY, TARGET_KEY } from 'emotion-utils'
 import type { Emotion, Interpolation, Interpolations } from 'create-emotion'
 import type { ElementType } from 'react'
-import typeof { Component as BaseComponentType } from 'react'
-
-function setTheme(theme: Object) {
-  this.setState({ theme })
-}
-
-declare var codegen: { require: (path: string) => * }
-
-const reactPropsRegex: RegExp = codegen.require('./props')
-const testOmitPropsOnStringTag: (key: string) => boolean = memoize(key =>
-  reactPropsRegex.test(key)
-)
-const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef'
-const testAlwaysTrue = () => true
-
-const omitAssign: (
-  testFn: (key: string) => boolean,
-  target: {},
-  ...sources: Array<{}>
-) => Object = function(testFn, target) {
-  let i = 2
-  let length = arguments.length
-  for (; i < length; i++) {
-    let source = arguments[i]
-    let key
-    for (key in source) {
-      if (testFn(key)) {
-        target[key] = source[key]
-      }
-    }
-  }
-  return target
-}
-
-export type EmotionStyledInstanceOptions = {
-  channel?: string,
-  contextTypes?: *,
-  Component: BaseComponentType,
-  createElement: Function,
-  contextTypes?: *
-}
-
-type StyledOptions = { e: string, label: string, target: string }
-
-type CreateStyledComponent = (...args: Interpolations) => *
-
-type BaseCreateStyled = (
-  tag: any,
-  options?: StyledOptions
-) => CreateStyledComponent
-
-type CreateStyled = {
-  $call: BaseCreateStyled,
-  [key: string]: CreateStyledComponent
-}
+import type {
+  EmotionStyledInstanceOptions,
+  CreateStyled,
+  StyledOptions
+} from './utils'
+import {
+  testOmitPropsOnComponent,
+  testAlwaysTrue,
+  testOmitPropsOnStringTag,
+  omitAssign,
+  setTheme
+} from './utils'
 
 function createEmotionStyled(
   emotion: Emotion,
