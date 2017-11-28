@@ -1,5 +1,5 @@
 // @flow
-import { Stylis } from 'emotion-utils'
+import Stylis from 'stylis'
 import stylisRuleSheet from 'stylis-rule-sheet'
 
 const specs = [

@@ -58,4 +58,3 @@ export const unitless = {
 }
 
 export { hashString } from './hash'
-export { default as Stylis } from './stylis'
