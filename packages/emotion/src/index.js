@@ -96,7 +96,12 @@ const processStyleValue = (key, value) => {
   if (value === undefined || value === null || typeof value === 'boolean')
     return ''
 
-  if (unitless[key] !== 1 && !isNaN(value) && value !== 0) {
+  if (
+    unitless[key] !== 1 &&
+    key.indexOf('--') !== 0 &&
+    !isNaN(value) &&
+    value !== 0
+  ) {
     return value + 'px'
   }
   return value
