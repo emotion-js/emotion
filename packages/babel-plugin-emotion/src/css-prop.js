@@ -105,20 +105,16 @@ export default function(path, state, t) {
 
   function getCssIdentifer() {
     if (state.opts.autoImportCssProp !== false) {
-      if (!state.cssPropIdentifier) {
-        state.cssPropIdentifier = addNamed(path, 'css', 'emotion')
-      }
-      return state.cssPropIdentifier
+      const cssImport = addNamed(path, 'css', 'emotion')
+      state.cssPropIdentifiers.push(cssImport)
+      return cssImport
     } else {
       return t.identifier(state.importedNames.css)
     }
   }
   function getMergeIdentifier() {
     if (state.opts.autoImportCssProp !== false) {
-      if (!state.cssPropMergeIdentifier) {
-        state.cssPropMergeIdentifier = addNamed(path, 'merge', 'emotion')
-      }
-      return state.cssPropMergeIdentifier
+      return addNamed(path, 'merge', 'emotion')
     } else {
       return t.identifier(state.importedNames.merge)
     }

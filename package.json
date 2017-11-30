@@ -24,12 +24,12 @@
     "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.31",
-    "@babel/plugin-external-helpers": "^7.0.0-beta.31",
-    "@babel/preset-env": "^7.0.0-beta.31",
-    "@babel/preset-flow": "^7.0.0-beta.31",
-    "@babel/preset-react": "^7.0.0-beta.31",
-    "@babel/preset-stage-0": "^7.0.0-beta.31",
+    "@babel/core": "^7.0.0-beta.32",
+    "@babel/plugin-external-helpers": "^7.0.0-beta.32",
+    "@babel/preset-env": "^7.0.0-beta.32",
+    "@babel/preset-flow": "^7.0.0-beta.32",
+    "@babel/preset-react": "^7.0.0-beta.32",
+    "@babel/preset-stage-0": "^7.0.0-beta.32",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",

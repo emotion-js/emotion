@@ -1,4 +1,5 @@
 import { createInlineTests, createExtractTests } from './util'
+import { transform } from '@babel/core'
 
 const inline = {
   'basic inline': {
@@ -114,3 +115,29 @@ const extract = {
 }
 
 createExtractTests('babel css prop extract', extract)
+
+test('with module transformer in babel 7', () => {
+  expect(
+    transform(
+      `
+  import React, { Component } from 'react';
+  
+  export class Home extends Component {
+    render() {
+      return (
+        <div>
+          <div css="background: yellow;">yellow</div>
+          <div css="background: pink;">pink</div>
+        </div>
+      );
+    }
+  }`,
+      {
+        plugins: [
+          require('babel-plugin-emotion'),
+          require('@babel/plugin-transform-modules-commonjs')
+        ]
+      }
+    ).code
+  ).toMatchSnapshot()
+})

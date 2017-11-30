@@ -324,7 +324,7 @@ export default function(babel) {
               }
             }
           })
-
+          state.cssPropIdentifiers = []
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
@@ -362,7 +362,8 @@ export default function(babel) {
             CallExpression(callExprPath) {
               if (
                 callExprPath.node.callee.name === state.importedNames.css ||
-                callExprPath.node.callee === state.cssPropIdentifier
+                state.cssPropIdentifiers.indexOf(callExprPath.node.callee) !==
+                  -1
               ) {
                 hoistPureArgs(callExprPath)
               }
@@ -484,7 +485,7 @@ export default function(babel) {
         } else if (t.isIdentifier(path.node.tag)) {
           if (
             path.node.tag.name === state.importedNames.css ||
-            path.node.tag === state.cssPropIdentifier
+            state.cssPropIdentifiers.indexOf(path.node.tag) !== -1
           ) {
             replaceCssWithCallExpression(path, path.node.tag, state, t)
           } else if (path.node.tag.name === state.importedNames.keyframes) {
