@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-emotion",
-  "version": "8.0.11",
+  "version": "8.0.12",
   "description": "A recommended babel preprocessing plugin for emotion, The Next Generation of CSS-in-JS.",
   "main": "lib/index.js",
   "files": [
@@ -18,7 +18,7 @@
     "babel-macros": "^1.2.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "convert-source-map": "^1.5.0",
-    "emotion-utils": "^8.0.11",
+    "emotion-utils": "^8.0.12",
     "find-root": "^1.1.0",
     "source-map": "^0.5.7",
     "touch": "^1.0.0"
