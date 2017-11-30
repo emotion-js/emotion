@@ -30,7 +30,35 @@ export const {
 
 ## Context
 
-`emotion` requires a global object to store caches on to ensure that even if multiple instances (as in the same code is run multiple time, not multiple explicit emotion instances) they will all use the same caches so that SSR, composition and etc. will work. If there will only be a single instance of emotion in the app `global` or `window` should be the `context`, if there are going to be multiple instances of emotion you must use an  an object on a global such as `global` or `window`.
+`emotion` requires a global object to store caches on to ensure that even if multiple instances (as in the same code is run multiple times, not multiple explicit emotion instances) they will all use the same caches so that SSR, composition and etc. will work. If there will only be a single instance of emotion in the app `global` or `window` should be the `context`, if there are going to be multiple instances of emotion you must use an object on a global such as `global` or `window`.
+<details>
+<summary>Example instance if there must be multiple instances in a single app</summary>
+
+```jsx
+import createEmotion from 'create-emotion'
+
+const context =
+  typeof global !== 'undefined'
+    ? global
+    : typeof window !== 'undefined' ? window : {}
+
+context.__MY_EMOTION_INSTANCE__ = {}
+
+export const {
+  flush,
+  hydrate,
+  cx,
+  merge,
+  getRegisteredStyles,
+  injectGlobal,
+  keyframes,
+  css,
+  sheet,
+  caches
+} = createEmotion(context.__MY_EMOTION_INSTANCE__)
+
+```
+</details>
 
 **Note**: calling `createEmotion` twice with the same `context` will use the same instance, so options provided in another call of `createEmotion` with the same context will be ignored.
 
