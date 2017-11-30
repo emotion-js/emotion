@@ -98,7 +98,7 @@ const processStyleValue = (key, value) => {
 
   if (
     unitless[key] !== 1 &&
-    key.indexOf('--') !== 0 &&
+    key.charCodeAt(1) !== 45 && // custom properties
     !isNaN(value) &&
     value !== 0
   ) {
