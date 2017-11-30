@@ -49,7 +49,7 @@ describe('css', () => {
     expect(tree).toMatchSnapshot()
   })
   test('auto px', () => {
-    const cls1 = css({ display: 'flex', flex: 1, fontSize: 10 })
+    const cls1 = css({ display: 'flex', flex: 1, fontSize: 10, '--custom': 5 })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
