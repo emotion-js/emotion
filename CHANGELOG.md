@@ -1,3 +1,40 @@
+## v8.0.12 (2017-12-01)
+
+#### :rocket: Enhancement
+* `babel-plugin-emotion`, `emotion-server`, `emotion-theming`, `emotion-utils`, `emotion`, `react-emotion`, `site`
+  * [#474](https://github.com/emotion-js/emotion/pull/474) Reimplement component selectors. ([@probablyup](https://github.com/probablyup))
+
+#### :bug: Bug Fix
+* `babel-plugin-emotion`
+  * [#483](https://github.com/emotion-js/emotion/pull/483) Fix css prop in babel 7 with module transformer and fix source maps in latest babel 7 beta. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `emotion`
+  * [#480](https://github.com/emotion-js/emotion/pull/480) Do not add px to css custom-properties. ([@TrySound](https://github.com/TrySound))
+
+#### Committers: 3
+- Bogdan Chadkin ([TrySound](https://github.com/TrySound))
+- Evan Scott ([probablyup](https://github.com/probablyup))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
+## v8.0.11 (2017-11-24)
+
+#### :bug: Bug Fix
+* `babel-plugin-emotion`, `emotion`, `react-emotion`
+  * [#465](https://github.com/emotion-js/emotion/pull/465) Add SVG attributes. ([@sleepycat](https://github.com/sleepycat))
+* `babel-plugin-emotion`, `emotion`
+  * [#458](https://github.com/emotion-js/emotion/pull/458) Fix source maps without a semicolon or newline after the last declaration. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :house: Internal
+* `emotion-theming`
+  * [#459](https://github.com/emotion-js/emotion/pull/459) Create rollup builds with Babel 7. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `emotion-theming`, `emotion-utils`, `emotion`, `preact-emotion`, `react-emotion`
+  * [#457](https://github.com/emotion-js/emotion/pull/457) Update rollup. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 2
+- Mike Williamson ([sleepycat](https://github.com/sleepycat))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+
 ## v8.0.10 (2017-11-07)
 
 #### :rocket: Enhancement
