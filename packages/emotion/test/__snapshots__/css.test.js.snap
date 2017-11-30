@@ -334,6 +334,16 @@ exports[`css multiline declaration 1`] = `
 />
 `;
 
+exports[`css multiline selector 1`] = `
+.glamor-0 .my-class:hover .its-child {
+  background: pink;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css nested 1`] = `
 .glamor-0 {
   color: yellow;

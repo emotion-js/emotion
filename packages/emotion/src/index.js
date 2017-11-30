@@ -13,7 +13,7 @@ export const sheet = new StyleSheet()
 
 // 🚀
 sheet.inject()
-const stylisOptions = { keyframe: false }
+const stylisOptions = { keyframe: false, semicolon: true }
 
 if (process.env.NODE_ENV !== 'production') {
   stylisOptions.compress = false
