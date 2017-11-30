@@ -381,4 +381,17 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('multiline selector', () => {
+    /* eslint-disable prettier/prettier */
+    const cls1 = css`
+      .my-class:hover
+      .its-child {
+        background: pink;
+      }
+    `
+    /* eslint-enable prettier/prettier */
+
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })
