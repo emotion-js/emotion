@@ -1,13 +1,16 @@
-# gatsby-starter-default
-The default Gatsby starter
+# Emotion Site
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/)
+## Docs
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
+All of the docs live in the `docs` in the root of this repository. They are in [Markdown](https://daringfireball.net/projects/markdown/basics) and they should include the following frontmatter at the top of each file that specifies the name for the page.
+
+```yaml
+---
+title: "Some Title"
+---
 ```
-gatsby new gatsby-example-site
-```
 
-## Deploy
+### Code Blocks
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+The docs can contain Markdown code blocks, the language should generally be `jsx` but it can also be `jsx live` to have previews. When the langauge is `jsx live` the code block will have a preview next to it and all of emotion and react-emotion's exports are available along with a `render` function that accepts a react element and will render into the preview next to it.
+
