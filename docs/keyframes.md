@@ -1,14 +1,18 @@
 ---
 title: "Keyframes"
 ---
-If you need more control over an animation, you can use `keyframes` with the same JS interpolation as `css`.
-The `keyframes` function takes in the css keyframes definition and returns the animation name so that you can include it in other styles. This is similar to how `css` takes in styles and returns the className that you can use to apply the styles.
+
+If you need more control over an animation, you can use `keyframes` with the
+same JS interpolation as `css`. The `keyframes` function takes in the css
+keyframes definition and returns the animation name so that you can include it
+in other styles. This is similar to how `css` takes in styles and returns the
+className that you can use to apply the styles.
 
 ```jsx
 import { keyframes, css } from 'emotion'
 import styled from 'react-emotion'
 
-const bounceHeight = 30;
+const bounceHeight = 30
 
 // This returns a animation
 const bounce = keyframes`

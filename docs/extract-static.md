@@ -1,12 +1,14 @@
 ---
 title: "Extract Static"
 ---
+
 ###### [requires babel plugin](./babel)
 
 Extract styles with no interpolations into external css files.
 
-While there are some beneficial use cases for `extractStatic`, emotion's inherent performance since version 8 makes the added complexity of this feature somewhat disadvantageous.
-
+While there are some beneficial use cases for `extractStatic`, emotion's
+inherent performance since version 8 makes the added complexity of this feature
+somewhat disadvantageous.
 
 **does NOT work with object styles**
 
@@ -20,7 +22,6 @@ const Button = styled('button')`
 <Button style={{ '--bg': props.success ? '#8BC34A' : '#2395f3' }}/>
 ```
 
-
 Configure babel
 
 ```bash
@@ -28,11 +29,10 @@ npm install babel-plugin-emotion -D
 ```
 
 **.babelrc**
+
 ```json
 {
-  "plugins": [
-    ["emotion", { "extractStatic": true }]
-  ]
+  "plugins": [["emotion", { "extractStatic": true }]]
 }
 ```
 
@@ -46,12 +46,13 @@ const H1 = styled('h1')`
 `
 ```
 
-During babel compilation emotion will create `h1.emotion.css` and add `import './h1.emotion.css'` to the top of `h1.js`
+During babel compilation emotion will create `h1.emotion.css` and add `import
+'./h1.emotion.css'` to the top of `h1.js`
 
 ```css
 // h1.emotion.css
 .css-H1-duiy4a {
-  color: blue
+  color: blue;
 }
 ```
 

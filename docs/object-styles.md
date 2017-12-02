@@ -1,7 +1,9 @@
 ---
 title: "Object Styles"
 ---
-Writing styles with objects is a powerful pattern built directly into the core of emotion.
+
+Writing styles with objects is a powerful pattern built directly into the core
+of emotion.
 
 ### Examples
 
@@ -13,7 +15,6 @@ import { css } from 'emotion'
 const className = css({ color: 'darkorchid' })
 ```
 
-
 #### With `styled`
 
 `styled` is a thin wrapper around `css` and accepts the same arguments.
@@ -23,8 +24,6 @@ import styled from 'react-emotion'
 
 const A = styled('a')({ color: 'darkorchid' })
 ```
-
-
 
 ### Child Selectors
 
@@ -57,13 +56,17 @@ const className = css({
 ```javascript
 import { css } from 'emotion'
 
-const className = css({
-  color: 'darkorchid'
-}, {
-  backgroundColor: 'hotpink'
-}, {
-  height: 20
-})
+const className = css(
+  {
+    color: 'darkorchid'
+  },
+  {
+    backgroundColor: 'hotpink'
+  },
+  {
+    height: 20
+  }
+)
 ```
 
 ### Arrays
@@ -73,11 +76,15 @@ Nested arrays are flattened.
 ```javascript
 import { css } from 'emotion'
 
-const className = css([{
-  color: 'darkorchid'
-}, {
-  backgroundColor: 'hotpink'
-}, {
-  height: 20
-}])
+const className = css([
+  {
+    color: 'darkorchid'
+  },
+  {
+    backgroundColor: 'hotpink'
+  },
+  {
+    height: 20
+  }
+])
 ```

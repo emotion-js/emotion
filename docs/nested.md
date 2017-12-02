@@ -1,10 +1,13 @@
 ---
 title: "Nested Selectors"
 ---
-Sometimes you will want to nest selectors to target only elements inside the current class or React component. Here is an example of a simple element selector nested in the class generated with `css`:
+
+Sometimes you will want to nest selectors to target only elements inside the
+current class or React component. Here is an example of a simple element
+selector nested in the class generated with `css`:
 
 ```jsx
-import { css } from 'emotion';
+import { css } from 'emotion'
 
 const paragraph = css`
   color: gray;
@@ -27,7 +30,9 @@ const paragraph = css`
 `
 ```
 
-To nest a class selector using the class generated with `css` you can interpolate it but be aware than emotion merges styles from `css` together when composing so that class name may not always be there:
+To nest a class selector using the class generated with `css` you can
+interpolate it but be aware than emotion merges styles from `css` together when
+composing so that class name may not always be there:
 
 ```jsx
 const link = css`

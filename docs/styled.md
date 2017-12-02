@@ -1,9 +1,12 @@
 ---
 title: "styled"
 ---
-`styled` accepts styles as a template literal, object, or function that returns an object.
+
+`styled` accepts styles as a template literal, object, or function that returns
+an object.
 
 ### Styling elements and components
+
 ```jsx
 import styled from 'react-emotion'
 // simple element
@@ -13,25 +16,28 @@ const H1 = styled('h1')`
   transform: scale(${props => props.scale});
 `
 
-function Greeting ({ name }) {
+function Greeting({ name }) {
   // blue, 48px, and scaled 2x text
   return <H1 scale={2}>Hello {name}</H1>
 }
 
 // Component
 const H2 = styled(H1)`
-  font-size: ${fontSize * 2/3}px;
+  font-size: ${fontSize * 2 / 3}px;
   color: red;
 `
 
-function Greeting ({ name }) {
+function Greeting({ name }) {
   return <H2>Hello {name}</H2> // red, 32px, and scaled 2x text
 }
-
 ```
+
 ### Change the rendered tag using `withComponent`
 
-Sometimes you want to create some styles with one component but then use those styles again with another component, the `withComponent` method can be used for this. This API was inspired by [styled-components' `withComponent`](https://www.styled-components.com/docs/api#withcomponent).
+Sometimes you want to create some styles with one component but then use those
+styles again with another component, the `withComponent` method can be used for
+this. This API was inspired by
+[styled-components' `withComponent`](https://www.styled-components.com/docs/api#withcomponent).
 
 ```jsx live
 // Create a section element
@@ -50,7 +56,10 @@ render(
 
 ### Targeting another emotion component
 
-Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components),emotion allows for previously-defined emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](./babel):
+Similar to
+[styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components),emotion
+allows for previously-defined emotion components to be targeted like regular CSS
+selectors when using [babel-plugin-emotion](./babel):
 
 ```jsx live
 const Child = styled('div')`
@@ -80,7 +89,11 @@ This will generate a css rule something like this:
 
 ### Pass refs down using `innerRef`
 
-Sometimes you need to get a [ref](https://reactjs.org/docs/refs-and-the-dom.html) but passing `ref` to a styled component will return a ref to the styled component, not the component that it renders which is generally the one you want. You can pass `innerRef` instead of `ref` to get the ref of the component that styled renders.
+Sometimes you need to get a
+[ref](https://reactjs.org/docs/refs-and-the-dom.html) but passing `ref` to a
+styled component will return a ref to the styled component, not the component
+that it renders which is generally the one you want. You can pass `innerRef`
+instead of `ref` to get the ref of the component that styled renders.
 
 ```jsx live
 const Input = styled('input')`
@@ -109,9 +122,12 @@ function TextInput(props) {
 }
 render(<TextInput />)
 ```
+
 ### Shorthand Style
 
-Instead of using the function call syntax(`styled('div')`), you can use create components by using a property, where the property refers to an HTML tag(`styled.div`).
+Instead of using the function call syntax(`styled('div')`), you can use create
+components by using a property, where the property refers to an HTML
+tag(`styled.div`).
 
 ```jsx live
 const DivWithoutShorthand = styled('div')`
@@ -130,23 +146,23 @@ render(
 ```
 
 > **Note:**
-> 
+>
 > `babel-plugin-emotion` is required for the styled shorthand
-
 
 ```jsx
 import styled from 'react-emotion'
 
 const H3 = styled.h3`
-  font-size: ${fontSize * 1/3}px;
+  font-size: ${fontSize * 1 / 3}px;
   color: red;
 `
-function Greeting ({ name }) {
+function Greeting({ name }) {
   return <H3>Hello {name}</H3>
 }
 ```
 
 ### Object styles
+
 ```jsx
 import styled from 'react-emotion'
 
@@ -154,16 +170,16 @@ const H1 = styled.h1(
   {
     fontSize: 20
   },
-  (props) => ({ color: props.color })
+  props => ({ color: props.color })
 )
 
-const H2 = styled(H1)(
-  { fontSize: '40px' }
-)
-
+const H2 = styled(H1)({ fontSize: '40px' })
 ```
+
 This API was inspired by [glamorous](https://github.com/paypal/glamorous).
 
 ### withConfig is not a function error
 
-This error is caused by using the shorthand syntax for styled such as `styled.div` without the Babel plugin. To fix this, [install `babel-plugin-emotion`](./babel)
+This error is caused by using the shorthand syntax for styled such as
+`styled.div` without the Babel plugin. To fix this,
+[install `babel-plugin-emotion`](./babel)

@@ -1,7 +1,10 @@
 ---
 title: "Global Style Injection"
 ---
-Sometimes it's useful to insert global css like resets or font faces. `injectGlobal` can be used for this.
+
+Sometimes it's useful to insert global css like resets or font faces.
+`injectGlobal` can be used for this.
+
 ```jsx
 import { injectGlobal } from 'emotion'
 

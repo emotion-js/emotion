@@ -1,6 +1,7 @@
 ---
 title: "Media Queries"
 ---
+
 ```jsx
 const Avatar = styled('img')`
   width: 32px;
@@ -29,7 +30,7 @@ const breakpoints = {
   xLarge: 1200,
   // String values will be used as is
   tallPhone: '(max-width: 360px) and (min-height: 740px)'
-};
+}
 
 export const queries = Object.keys(breakpoints).reduce((accumulator, label) => {
   if (typeof breakpoints[label] === 'string') {
@@ -38,18 +39,18 @@ export const queries = Object.keys(breakpoints).reduce((accumulator, label) => {
         @media (${breakpoints[label]}) {
           ${css(...args)};
         }
-      `;
+      `
   } else {
     accumulator[label] = (...args) =>
       css`
         @media (min-width: ${breakpoints[label]}px) {
           ${css(...args)};
         }
-      `;
+      `
   }
 
-  return accumulator;
-}, {});
+  return accumulator
+}, {})
 ```
 
 ```jsx

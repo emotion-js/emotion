@@ -1,6 +1,7 @@
 ---
 title: "Composition"
 ---
+
 `css` can be used in emotion to build styles that can compose with other styles.
 
 ```javascript
@@ -25,7 +26,6 @@ const FlexCenterComponent = styled.div`
   ${flexCenter};
 `
 
-
 const flexWrap = props => css`
   flex-wrap: ${props.wrap ? 'wrap' : 'nowrap'};
 `
@@ -41,14 +41,13 @@ const ColumnCenteredComponent = styled.div`
 // after flex-direction: row
 const stillColumn = css`
   flex-direction: row;
-  ${flexCenterClass}
+  ${flexCenterClass};
 `
 
 // Nested composing is supported
 const cls = css`
   & .flex {
-      ${flexCenter};
+    ${flexCenter};
   }
 `
-
 ```
