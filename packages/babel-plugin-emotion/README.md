@@ -258,3 +258,29 @@ This option enables the following:
 
 [**Documentation**](docs/configurable-imports.md)
 
+
+### `instances`
+
+
+`Array<string>`, defaults to 
+
+`['emotion', 'react-emotion', 'preact-emotion']`
+
+
+This option allows `babel-plugin-emotion` to know which imports to treat as emotion imports and transform as such. This option is **only** required if you use a custom instance of emotion created with `create-emotion` or you're importing emotion from somewhere other than the paths above. Relative paths are resolved relative to `process.cwd()`(the current working directory).
+
+[**Documentation**](docs/instances.md)
+
+### `primaryInstance`
+
+
+`string`, defaults to 
+
+`'emotion'`
+
+
+This option allows `babel-plugin-emotion` to know where to import emotion from when it needs to import emotion. Currently this is only used for the css prop to import `css` and `merge` but it could be used for other purposes in the future so it's recommend to make sure that this instance exports everything returned from `createEmotion`, [an up-to-date example of this can be seen in the emotion package's source](https://github.com/emotion-js/emotion/blob/master/packages/emotion/src/index.js).
+
+[**Documentation**](docs/instances.md)
+
+

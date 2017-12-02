@@ -1,9 +1,10 @@
 ---
 title: "Babel Plugin"
 ---
-`babel-plugin-emotion` is highly recommended, but not required in version 8 and above. See the [installation instructions](./install).
 
-## Features which are enabled with the babel plugin
+`babel-plugin-emotion` is highly recommended, but not required in version 8 and above. All of the options that can be provided to `babel-plugin-emotion` are documented in [`babel-plugin-emotion`'s README](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion). See the [installation instructions](./install).
+
+### Features which are enabled with the babel plugin
 
 ### styled.element Syntax
 `styled('div')` will work without the plugin
@@ -29,7 +30,7 @@ The ability to refer to another component to apply override styles depending on 
 
 ## Babel Macros
 
-Instead of using emotion's babel plugin, you can use emotion with [`babel-macros`](https://github.com/kentcdodds/babel-macros). Add `babel-macros` to your babel config and import whatever you want from emotion but add `/macro` to the end. The macro is currently the same as inline mode. Currently every API except for the css prop is supported by the macro.
+Instead of using emotion's babel plugin, you can use emotion with [`babel-macros`](https://github.com/kentcdodds/babel-macros). Add `babel-macros` to your babel config and import whatever you want from emotion but add `/macro` to the end. Currently every API except for the css prop is supported by the macro.
 
 ```jsx
 import styled from 'react-emotion/macro'

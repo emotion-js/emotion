@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 import fs from 'fs'
+import nodePath from 'path'
 import findRoot from 'find-root'
-import { basename, normalize } from 'path'
 import { touchSync } from 'touch'
 import { addSideEffect } from '@babel/helper-module-imports'
 import {
@@ -10,20 +10,31 @@ import {
   createRawStringFromTemplateLiteral,
   minify
 } from './babel-utils'
-
+import type {
+  BabelPath as _BabelPath,
+  Identifier,
+  BabelPluginPass,
+  Types,
+  StringLiteral,
+  Babel
+} from 'babel-flow-types'
 import { hashString, Stylis, memoize } from 'emotion-utils'
 import { addSourceMaps } from './source-map'
 
 import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
-export function hashArray(arr) {
+export type BabelPath = _BabelPath & {
+  node: *
+}
+
+export function hashArray(arr: Array<string>) {
   return hashString(arr.join(''))
 }
 
 const staticStylis = new Stylis({ keyframe: false })
 
-export function hoistPureArgs(path) {
+export function hoistPureArgs(path: BabelPath) {
   const args = path.get('arguments')
 
   if (args && Array.isArray(args)) {
@@ -35,14 +46,40 @@ export function hoistPureArgs(path) {
   }
 }
 
+type ImportedNames = {
+  css: string,
+  keyframes: string,
+  injectGlobal: string,
+  styled: string,
+  merge: string
+}
+
+export type EmotionBabelPluginPass = BabelPluginPass & {
+  extractStatic: boolean,
+  insertStaticRules: (rules: Array<string>) => void,
+  emotionImportPath: string,
+  staticRules: Array<string>,
+  cssPropIdentifiers: Array<Identifier>,
+  importedNames: ImportedNames,
+  count: number,
+  opts: any
+}
+
 export function replaceCssWithCallExpression(
-  path,
-  identifier,
-  state,
-  t,
-  staticCSSSrcCreator = src => src,
-  removePath = false,
-  staticCSSSelectorCreator = (name, hash) => `.${name}-${hash}`
+  path: BabelPath,
+  identifier: Identifier,
+  state: EmotionBabelPluginPass,
+  t: Types,
+  staticCSSSrcCreator: (
+    src: string,
+    name: string,
+    hash: string
+  ) => string = src => src,
+  removePath: boolean = false,
+  staticCSSSelectorCreator: (name: string, hash: string) => string = (
+    name,
+    hash
+  ) => `.${name}-${hash}`
 ) {
   try {
     let { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
@@ -95,6 +132,8 @@ export function replaceCssWithCallExpression(
   }
 }
 
+const unsafeRequire = require
+
 const getPackageRootPath = memoize(filename => findRoot(filename))
 
 function buildTargetObjectProperty(path, state, t) {
@@ -111,17 +150,18 @@ function buildTargetObjectProperty(path, state, t) {
 
   try {
     rootPath = getPackageRootPath(filename)
-    // $FlowFixMe
-    moduleName = require(rootPath + '/package.json').name
+    moduleName = unsafeRequire(rootPath + '/package.json').name
   } catch (err) {}
 
   const finalPath =
-    filename === rootPath ? basename(filename) : filename.slice(rootPath.length)
+    filename === rootPath
+      ? nodePath.basename(filename)
+      : filename.slice(rootPath.length)
 
   const positionInFile = state.count++
   const stableClassName = getName(
     `${hashArray([
-      normalize(finalPath),
+      nodePath.normalize(finalPath),
       moduleName,
       state.file.code
     ])}${positionInFile}`,
@@ -133,19 +173,20 @@ function buildTargetObjectProperty(path, state, t) {
     t.stringLiteral(stableClassName)
   )
 }
-
-export function buildStyledCallExpression(identifier, tag, path, state, t) {
+export function buildStyledCallExpression(
+  identifier: Identifier,
+  tag: StringLiteral,
+  path: BabelPath,
+  state: EmotionBabelPluginPass,
+  t: Types
+) {
   const identifierName = getIdentifierName(path, t)
 
   const targetProperty = buildTargetObjectProperty(path, state, t)
 
   if (state.extractStatic && !path.node.quasi.expressions.length) {
-    const { hash, src } = createRawStringFromTemplateLiteral(
-      path.node.quasi,
-      identifierName,
-      'styled' // we don't want these styles to be merged in css``
-    )
-    const staticClassName = getName(hash, 'css')
+    const { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
+    const staticClassName = `css-${hash}`
     const staticCSSRules = staticStylis(`.${staticClassName}`, src)
 
     state.insertStaticRules([staticCSSRules])
@@ -188,7 +229,12 @@ export function buildStyledCallExpression(identifier, tag, path, state, t) {
   )
 }
 
-export function buildStyledObjectCallExpression(path, state, identifier, t) {
+export function buildStyledObjectCallExpression(
+  path: BabelPath,
+  state: EmotionBabelPluginPass,
+  identifier: Identifier,
+  t: Types
+) {
   const identifierName = getIdentifierName(path, t)
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
@@ -222,16 +268,54 @@ export function buildStyledObjectCallExpression(path, state, identifier, t) {
 
 const visited = Symbol('visited')
 
-const defaultImportedNames = {
+const defaultImportedNames: ImportedNames = {
   styled: 'styled',
   css: 'css',
   keyframes: 'keyframes',
   injectGlobal: 'injectGlobal',
-  fontFace: 'fontFace',
   merge: 'merge'
 }
 
-export default function(babel) {
+const importedNameKeys = Object.keys(defaultImportedNames).map(
+  key => (key === 'styled' ? 'default' : key)
+)
+
+const defaultEmotionPaths = ['emotion', 'react-emotion', 'preact-emotion']
+
+function getRelativePath(filepath: string, absoluteInstancePath: string) {
+  let relativePath = nodePath.relative(
+    nodePath.dirname(filepath),
+    absoluteInstancePath
+  )
+
+  return relativePath.charAt(0) === '.' ? relativePath : `./${relativePath}`
+}
+
+function getAbsolutePath(instancePath: string, rootPath: string) {
+  if (instancePath.charAt(0) === '.') {
+    let absoluteInstancePath = nodePath.resolve(rootPath, instancePath)
+    return absoluteInstancePath
+  }
+  return false
+}
+
+function getInstancePathToImport(instancePath: string, filepath: string) {
+  let absolutePath = getAbsolutePath(instancePath, process.cwd())
+  if (absolutePath === false) {
+    return instancePath
+  }
+  return getRelativePath(filepath, absolutePath)
+}
+
+function getInstancePathToCompare(instancePath: string, rootPath: string) {
+  let absolutePath = getAbsolutePath(instancePath, rootPath)
+  if (absolutePath === false) {
+    return instancePath
+  }
+  return absolutePath
+}
+
+export default function(babel: Babel) {
   const { types: t } = babel
 
   return {
@@ -239,7 +323,15 @@ export default function(babel) {
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       Program: {
-        enter(path, state) {
+        enter(path: BabelPath, state: EmotionBabelPluginPass) {
+          state.emotionImportPath = 'emotion'
+          if (state.opts.primaryInstance !== undefined) {
+            state.emotionImportPath = getInstancePathToImport(
+              state.opts.primaryInstance,
+              path.hub.file.opts.filename
+            )
+          }
+
           state.importedNames = {
             ...defaultImportedNames,
             ...state.opts.importedNames
@@ -297,21 +389,20 @@ export default function(babel) {
               }
             })
           }
-
+          const emotionPaths = defaultEmotionPaths.concat(
+            (state.opts.instances || []).map(instancePath =>
+              getInstancePathToCompare(instancePath, process.cwd())
+            )
+          )
+          let dirname = nodePath.dirname(path.hub.file.opts.filename)
           imports.forEach(({ source, imported, specifiers }) => {
-            if (source.indexOf('emotion') !== -1) {
+            if (
+              emotionPaths.indexOf(
+                getInstancePathToCompare(source, dirname)
+              ) !== -1
+            ) {
               const importedNames = specifiers
-                .filter(
-                  v =>
-                    [
-                      'default',
-                      'css',
-                      'keyframes',
-                      'injectGlobal',
-                      'fontFace',
-                      'merge'
-                    ].indexOf(v.imported) !== -1
-                )
+                .filter(v => importedNameKeys.indexOf(v.imported) !== -1)
                 .reduce(
                   (acc, { imported, local }) => ({
                     ...acc,
@@ -336,7 +427,7 @@ export default function(babel) {
             state.staticRules.push(...staticRules)
           }
         },
-        exit(path, state) {
+        exit(path: BabelPath, state: EmotionBabelPluginPass) {
           if (state.staticRules.length !== 0) {
             const toWrite = state.staticRules.join('\n').trim()
             const filenameArr = path.hub.file.opts.filename.split('.')
@@ -344,7 +435,7 @@ export default function(babel) {
             filenameArr.push('emotion', 'css')
             const cssFilename = filenameArr.join('.')
             const exists = fs.existsSync(cssFilename)
-            addSideEffect(path, './' + basename(cssFilename))
+            addSideEffect(path, './' + nodePath.basename(cssFilename))
             if (
               exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
             ) {
@@ -356,7 +447,7 @@ export default function(babel) {
           }
         }
       },
-      JSXOpeningElement(path, state) {
+      JSXOpeningElement(path: BabelPath, state: EmotionBabelPluginPass) {
         cssProps(path, state, t)
         if (state.opts.hoist) {
           path.traverse({
@@ -373,7 +464,8 @@ export default function(babel) {
         }
       },
       CallExpression: {
-        enter(path, state) {
+        enter(path: BabelPath, state: EmotionBabelPluginPass) {
+          // $FlowFixMe
           if (path[visited]) {
             return
           }
@@ -394,7 +486,6 @@ export default function(babel) {
                 }
                 // eslint-disable-next-line no-fallthrough
                 case state.importedNames.injectGlobal:
-                case state.importedNames.fontFace:
                   if (
                     state.opts.sourceMap === true &&
                     path.node.loc !== undefined
@@ -427,10 +518,10 @@ export default function(babel) {
           } catch (e) {
             throw path.buildCodeFrameError(e)
           }
-
+          // $FlowFixMe
           path[visited] = true
         },
-        exit(path, state) {
+        exit(path: BabelPath, state: EmotionBabelPluginPass) {
           try {
             if (
               path.node.callee &&
@@ -450,10 +541,12 @@ export default function(babel) {
           }
         }
       },
-      TaggedTemplateExpression(path, state) {
+      TaggedTemplateExpression(path: BabelPath, state: EmotionBabelPluginPass) {
+        // $FlowFixMe
         if (path[visited]) {
           return
         }
+        // $FlowFixMe
         path[visited] = true
         if (
           // styled.h1`color:${color};`
@@ -498,15 +591,6 @@ export default function(babel) {
               (src, name, hash) => `@keyframes ${name}-${hash} { ${src} }`,
               false,
               () => ''
-            )
-          } else if (path.node.tag.name === state.importedNames.fontFace) {
-            replaceCssWithCallExpression(
-              path,
-              path.node.tag,
-              state,
-              t,
-              (src, name, hash) => `@font-face {${src}}`,
-              true
             )
           } else if (path.node.tag.name === state.importedNames.injectGlobal) {
             replaceCssWithCallExpression(

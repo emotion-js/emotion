@@ -16,7 +16,8 @@ const config = {
     'emotion-utils',
     'prop-types',
     'hoist-non-react-statics',
-    'stylis-rule-sheet'
+    'stylis-rule-sheet',
+    'preact'
   ],
   exports: 'named',
   sourcemap: true,
@@ -37,7 +38,7 @@ const config = {
         '@babel/react',
         '@babel/flow'
       ],
-      plugins: ['codegen'],
+      plugins: ['codegen', 'closure-elimination'],
       babelrc: false
     })
   ],
@@ -56,6 +57,14 @@ if (process.env.UMD) {
       'emotion-utils': path.resolve(
         __dirname,
         './packages/emotion-utils/src/index.js'
+      ),
+      'create-emotion': path.resolve(
+        __dirname,
+        './packages/create-emotion/src/index.js'
+      ),
+      'create-emotion-styled': path.resolve(
+        __dirname,
+        './packages/create-emotion-styled/src/index.js'
       )
     }),
     replace({
@@ -70,12 +79,6 @@ if (process.env.UMD) {
       name: pkg.name
     }
   ]
-}
-
-if (pkg.name === 'preact-emotion') {
-  config.input = '../react-emotion/src/index.js'
-  config.external = ['preact', 'emotion-utils', 'emotion', 'prop-types']
-  config.plugins.unshift(alias({ react: 'preact' }))
 }
 
 export default config

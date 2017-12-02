@@ -1,3 +1,4 @@
+// @flow
 import { injectGlobal, sheet } from 'emotion/macro'
 
 test('injectGlobal', () => {

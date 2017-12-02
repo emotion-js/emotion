@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { css, flush, sheet } from 'emotion'
@@ -29,14 +30,14 @@ describe('meta', () => {
       return <div css={`display: flex;`}>Hello</div>
     }
 
-    class ClsComp extends React.Component {
+    class ClsComp extends React.Component<*> {
       render() {
         return <div css={`display: grid;`}>Hello</div>
       }
     }
 
     const hoc = W =>
-      class extends React.Component {
+      class extends React.Component<*> {
         render() {
           return (
             <div css={`display: block;`}>

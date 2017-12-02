@@ -1,3 +1,4 @@
+// @flow
 import { css, sheet, flush } from 'emotion'
 
 describe('css', () => {

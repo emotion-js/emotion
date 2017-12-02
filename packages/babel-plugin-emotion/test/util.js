@@ -1,3 +1,4 @@
+// @flow
 /* eslint-env jest */
 import plugin from 'babel-plugin-emotion'
 import { transform as babel6Transform } from 'babel-core'
@@ -6,6 +7,18 @@ import stage2 from 'babel-plugin-syntax-object-rest-spread'
 import makeCases from 'jest-in-case'
 import { basename } from 'path'
 import * as fs from 'fs'
+
+// $FlowFixMe
+process.cwd = () => __dirname
+
+type TestCases<Opts> = { [name: string]: Opts } | Array<Opts>
+
+type EmotionTestCases = TestCases<{
+  name?: string,
+  only?: boolean,
+  skip?: boolean,
+  [key: string | number]: mixed
+}>
 
 jest.mock('fs')
 
@@ -31,7 +44,7 @@ const createInlineTester = transform => opts => {
   ).toMatchSnapshot()
 }
 
-export const createInlineTests = (title, cases) => {
+export const createInlineTests = (title: string, cases: EmotionTestCases) => {
   describe(title, () => {
     makeCases('babel 6', createInlineTester(babel6Transform), cases)
     makeCases('babel 7', createInlineTester(babel7Transform), cases)
@@ -71,7 +84,7 @@ const createExtractTester = transform => opts => {
   }
 }
 
-export const createExtractTests = (title, cases) => {
+export const createExtractTests = (title: string, cases: EmotionTestCases) => {
   describe(title, () => {
     makeCases('babel 6', createExtractTester(babel6Transform), cases)
     makeCases('babel 7', createExtractTester(babel7Transform), cases)
@@ -96,7 +109,7 @@ const createMacroTester = transform => opts => {
   ).toMatchSnapshot()
 }
 
-export const createMacroTests = (title, cases) => {
+export const createMacroTests = (title: string, cases: EmotionTestCases) => {
   describe(title, () => {
     makeCases('babel 6', createMacroTester(babel6Transform), cases)
     makeCases('babel 7', createMacroTester(babel7Transform), cases)

@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import renderer from 'react-test-renderer'
 import styled, { css, flush } from 'react-emotion'
@@ -1072,7 +1073,7 @@ describe('styled', () => {
     expect(Byline[TARGET_KEY]).toMatchSnapshot()
   })
   test('name with class component', () => {
-    class SomeComponent extends React.Component {
+    class SomeComponent extends React.Component<{ className: string }> {
       render() {
         return <div className={this.props.className} />
       }

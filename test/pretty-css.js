@@ -1,11 +1,12 @@
-import { sheet } from 'emotion'
+// @flow
 import { parse, stringify } from 'css'
+import typeof { sheet as StyleSheet } from 'emotion'
 
 export default {
-  test: val => val === sheet,
-  print(val, printer) {
+  test: (val: any) => val.tags !== undefined && Array.isArray(val.tags),
+  print(val: StyleSheet, printer: Function) {
     return printer(
-      stringify(parse(sheet.tags.map(tag => tag.textContent || '').join('')))
+      stringify(parse(val.tags.map(tag => tag.textContent || '').join('')))
     )
   }
 }

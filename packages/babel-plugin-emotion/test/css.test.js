@@ -1,3 +1,4 @@
+// @flow
 import { createInlineTests, createExtractTests } from './util'
 
 const inline = {
@@ -280,6 +281,33 @@ function test () {
         [\`w$\{'idth'}\`]: 20
       })
      `
+  },
+  'custom instance': {
+    code: `
+    import {css as lol} from 'my-emotion-instance'
+    lol\`color:hotpink;\``,
+    opts: {
+      instances: ['my-emotion-instance']
+    },
+    filename: __filename
+  },
+  'custom instance relative': {
+    code: `
+    import {css as lol} from './my-emotion-instance'
+    lol\`color:hotpink;\``,
+    opts: {
+      instances: ['./my-emotion-instance']
+    },
+    filename: __filename
+  },
+  'custom instance relative complex': {
+    code: `
+    import {css as lol} from '../test/my-emotion-instance'
+    lol\`color:hotpink;\``,
+    opts: {
+      instances: ['./my-emotion-instance']
+    },
+    filename: __filename
   }
 }
 createInlineTests('babel css inline', inline)

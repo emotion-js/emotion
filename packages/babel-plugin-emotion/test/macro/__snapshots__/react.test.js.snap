@@ -716,7 +716,7 @@ exports[`styled theming 1`] = `
   >
     <Styled(div)>
       <div
-        className="css-olgnlr css-10fpkjb13"
+        className="css-olgnlr css-yfjrs213"
       >
         this will be green then pink
       </div>
@@ -743,7 +743,7 @@ exports[`styled theming 2`] = `
   >
     <Styled(div)>
       <div
-        className="css-olgnlr css-10fpkjb13"
+        className="css-olgnlr css-yfjrs213"
       >
         this will be green then pink
       </div>

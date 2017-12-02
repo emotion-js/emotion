@@ -1,3 +1,4 @@
+// @flow
 import { Stylis } from 'emotion-utils'
 import stylisRuleSheet from 'stylis-rule-sheet'
 

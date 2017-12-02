@@ -1,13 +1,7 @@
+// @flow
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { css, flush, sheet, useStylisPlugin } from 'emotion'
-import { transform } from 'cssjanus'
-
-useStylisPlugin(function(context, content) {
-  if (context === 2) {
-    return transform(content)
-  }
-})
+import { css, flush, sheet } from 'emotion'
 
 describe('css', () => {
   test('float property', () => {

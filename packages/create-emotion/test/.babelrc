@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "flow",
+    [
+      "env",
+      {
+        "loose": true,
+        "exclude": ["transform-es2015-typeof-symbol"]
+      }
+    ],
+    "react",
+    "stage-2"
+  ],
+  "plugins": [["../../../babel-plugin-emotion-test", {"paths": ["./packages/create-emotion/test/emotion-instance"]}], "codegen"]
+}
