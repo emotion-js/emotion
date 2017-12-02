@@ -9,25 +9,27 @@ of emotion.
 
 #### With `css`
 
-```javascript
+```jsx live
 import { css } from 'emotion'
 
 const className = css({ color: 'darkorchid' })
+render(<div className={className}>This is darkorchid.</div>)
 ```
 
 #### With `styled`
 
-`styled` is a thin wrapper around `css` and accepts the same arguments.
+`styled` is a thin wrapper around `css` and accepts the same arguments. [More ways to use `styled` can be found it it's own doc](docs/styled#)
 
-```javascript
+```jsx live
 import styled from 'react-emotion'
 
-const A = styled('a')({ color: 'darkorchid' })
+const Button = styled('button')({ color: 'darkorchid' })
+render(<Button>This is a darkorchid button.</Button>)
 ```
 
 ### Child Selectors
 
-```javascript
+```jsx live
 import { css } from 'emotion'
 
 const className = css({
@@ -36,11 +38,16 @@ const className = css({
     color: 'orange'
   }
 })
+render(
+  <div className={className}>
+    This is darkorchid.<div className="name">This is orange</div>
+  </div>
+)
 ```
 
 ### Media Queries
 
-```javascript
+```jsx live
 import { css } from 'emotion'
 
 const className = css({
@@ -49,11 +56,17 @@ const className = css({
     color: 'orange'
   }
 })
+
+render(
+  <div className={className}>
+    This is orange on a big screen and darkorchid on a small screen.
+  </div>
+)
 ```
 
 ### Multiple Arguments
 
-```javascript
+```jsx live
 import { css } from 'emotion'
 
 const className = css(
@@ -67,13 +80,19 @@ const className = css(
     height: 20
   }
 )
+
+render(
+  <div className={className}>
+    This is darkorchid with a hotpink background and a height of 20px.
+  </div>
+)
 ```
 
 ### Arrays
 
 Nested arrays are flattened.
 
-```javascript
+```jsx live
 import { css } from 'emotion'
 
 const className = css([
@@ -87,4 +106,10 @@ const className = css([
     height: 20
   }
 ])
+
+render(
+  <div className={className}>
+    This is darkorchid with a hotpink background and a height of 20px.
+  </div>
+)
 ```
