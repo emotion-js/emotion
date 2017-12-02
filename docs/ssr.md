@@ -2,12 +2,7 @@
 title: "Server Side Rendering"
 ---
 
-Server-Side Rendering in emotion currently does not work with `extractStatic`.
-It's similar to
-[glamor's api](https://github.com/threepointone/glamor/blob/master/docs/server.md).
-For an example of emotion and next.js checkout the
-[with-emotion example in the next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
-
+## API
 ### renderStylesToString
 
 This returns a string of html that inlines the critical css required right
@@ -23,7 +18,7 @@ const html = renderStylesToString(renderToString(<App />))
 
 ### renderStylesToNodeStream
 
-This returns
+This returns a
 [Node Stream Writable](https://nodejs.org/api/stream.html#stream_class_stream_writable)
 that can be used to insert critical css right before it's required. This can be
 used with
@@ -63,4 +58,26 @@ automatically with `renderStylesToString` and `renderStylesToNodeStream`.
 import { hydrate } from 'emotion'
 
 hydrate(ids)
+```
+
+
+## Next.js
+
+To use emotion's SSR with Next.js you need a custom `Document` component in `pages/_document.js` that renders the styles and inserts them into the `<head>`.[ An example of Next.js with emotion can be found in the Next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
+
+## Gatsby
+
+To use emotion's SSR with Gatsby, you can use `gatsby-plugin-emotion` or you can do it yourself with emotion and Gatsby's various APIs but it's generally recommended to use `gatsby-plugin-emotion`. [There's an example available in the Gatsby repo](https://github.com/gatsbyjs/gatsby/tree/master/examples/using-emotion) or [you can look at this site which is built with Gatsby!](https://github.com/emotion-js/emotion/tree/master/packages/site)
+
+```bash
+yarn add gatsby-plugin-emotion
+```
+gatsby-config.js
+```jsx
+module.exports = {
+  plugins: [
+    ...otherGatsbyPlugins,
+    'gatsby-plugin-emotion'
+  ]
+}
 ```
