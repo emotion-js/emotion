@@ -19,6 +19,8 @@ export const scope = {
         return require('emotion')
       case 'react-emotion':
         return require('react-emotion')
+      case 'recompose/withProps':
+        return require('recompose/withProps')
       default:
         throw new Error(`Module "${moduleName}" not found`)
     }
