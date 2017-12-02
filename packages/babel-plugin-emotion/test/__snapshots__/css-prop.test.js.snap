@@ -343,3 +343,34 @@ exports[`babel css prop inline babel 7 with spread arg in jsx opening tag 1`] = 
 /*#__PURE__*/
 _css(\\"color:brown;\\") + \\" a\\"} {...rest}></div>;"
 `;
+
+exports[`with module transformer in babel 7 1`] = `
+"\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+exports.Home = void 0;
+
+var _emotion = require(\\"emotion\\");
+
+var _react = _interopRequireWildcard(require(\\"react\\"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+class Home extends _react.Component {
+  render() {
+    return <div>
+          <div className={
+      /*#__PURE__*/
+      (0, _emotion.css)(\\"background:yellow;\\")}>yellow</div>
+          <div className={
+      /*#__PURE__*/
+      (0, _emotion.css)(\\"background:pink;\\")}>pink</div>
+        </div>;
+  }
+
+}
+
+exports.Home = Home;"
+`;

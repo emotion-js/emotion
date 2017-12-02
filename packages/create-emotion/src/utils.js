@@ -13,7 +13,12 @@ export const processStyleValue = (key: string, value: string) => {
   if (value === undefined || value === null || typeof value === 'boolean')
     return ''
 
-  if (unitless[key] !== 1 && !isNaN(value) && value !== 0) {
+  if (
+    unitless[key] !== 1 &&
+    key.charCodeAt(1) !== 45 && // custom properties
+    !isNaN(value) &&
+    value !== 0
+  ) {
     return value + 'px'
   }
   return value
