@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import Link from '../components/Link'
-import styled, { fontFace, injectGlobal, css } from 'react-emotion'
+import styled, { injectGlobal, css } from 'react-emotion'
 import Box from '../components/Box'
 import prismStyles from 'react-live/lib/constants/css'
 import Helmet from 'react-helmet'
@@ -38,7 +38,6 @@ html, body, #___gatsby {
   padding: 0;
   margin: 0;
   -webkit-font-smoothing: antialiased;
-  
 }
 
 pre[class*="language-"],.prism-code {
@@ -51,14 +50,13 @@ pre[class*="language-"],.prism-code {
 * {
   box-sizing: border-box;
 }
-`
-
-fontFace`
+@font-face {
   font-family: 'Oxygen';
   font-style: normal;
   font-weight: 400;
   src: local('Oxygen Regular'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v6/qBSyz106i5ud7wkBU-FrPevvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
 `
 
 const StyledLink = styled(Box)`

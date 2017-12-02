@@ -1,20 +1,18 @@
 // @flow
 import React, { Component } from 'react'
 import { LiveEditor, LivePreview, LiveProvider, withLive } from 'react-live/lib'
-import styled, { css, keyframes, merge, fontFace } from 'react-emotion'
+import styled from 'react-emotion'
 import { ThemeProvider, withTheme } from 'emotion-theming'
 import Box from '../components/Box'
 import colors from 'open-color'
 import '../utils/highlight-css'
+import * as emotion from 'emotion'
 
 export const scope = {
-  css,
-  keyframes,
+  ...emotion,
   styled,
   ThemeProvider,
   withTheme,
-  fontFace,
-  merge,
   require(moduleName: string) {
     switch (moduleName) {
       case 'emotion':
