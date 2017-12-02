@@ -31,56 +31,103 @@ function Greeting ({ name }) {
 ```
 ### Change the rendered tag using `withComponent`
 
-This API was inspired by [styled-components' `withComponent`](https://www.styled-components.com/docs/api#withcomponent).
+Sometimes you want to create some styles with one component but then use those styles again with another component, the `withComponent` method can be used for this. This API was inspired by [styled-components' `withComponent`](https://www.styled-components.com/docs/api#withcomponent).
 
-```jsx
-// Creates a section element
-const Content = styled('section')`
+```jsx live
+// Create a section element
+const Section = styled('section')`
   background: #333;
 `
-// creates an aside element with the same styles as Content
-const Sidebar = Content.withComponent('aside')
-
+// Create an aside element with the same styles as Section
+const Aside = Section.withComponent('aside')
+render(
+  <div>
+    <Section>This is a section</Section>
+    <Aside>This is an an aside</Aside>
+  </div>
+)
 ```
 
 ### Targeting another emotion component
 
-Similar to the implementation in [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for a previously-defined emotion component to be targeted like a regular CSS selector when using the [babel plugin](./babel.md):
+Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components),emotion allows for previously-defined emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](./babel):
 
-```jsx
-const Child = styled.div`
-  color: red;
-`;
-
-const Parent = styled.div`
-  ${Child} {
-    color: green;
-  }
-`;
-```
-
-This will generate a class selector something like:
-
-```css
-.css-{ParentDynamicHash} .css-{ChildStableHash}-{ChildComponentPositionInFile} { color: green; }
-```
-
-### pass refs down using innerRef
-
-```jsx
-const H1 = styled('h1')`
+```jsx live
+const Child = styled('div')`
   color: red;
 `
 
-function Greeting ({ name }) {
-  // will turn into to <h1 className="generated-className" ref={() => console.log('hello!')}>Hello {name}</h1>
-  return <H1 innerRef={() => console.log('hello!')}>Hello {name}</H1>
-}
+const Parent = styled('div')`
+  ${Child} {
+    color: green;
+  }
+`
+render(
+  <div>
+    <Parent>
+      <Child>green</Child>
+    </Parent>
+    <Child>red</Child>
+  </div>
+)
+```
 
+This will generate a css rule something like this:
+
+```css
+.css-{ParentDynamicHash} .css-{ChildStableHash} { color: green; }
+```
+
+### Pass refs down using `innerRef`
+
+Sometimes you need to get a [ref](https://reactjs.org/docs/refs-and-the-dom.html) but passing `ref` to a styled component will return a ref to the styled component, not the component that it renders which is generally the one you want. You can pass `innerRef` instead of `ref` to get the ref of the component that styled renders.
+
+```jsx live
+const Input = styled('input')`
+  color: hotpink;
+`
+
+const Button = styled('button')`
+  color: green;
+`
+
+function TextInput(props) {
+  let textInput = null
+  function handleClick() {
+    textInput.focus()
+  }
+  return (
+    <div>
+      <Input
+        innerRef={input => {
+          textInput = input
+        }}
+      />
+      <Button onClick={handleClick}>Focus the text input</Button>
+    </div>
+  )
+}
+render(<TextInput />)
 ```
 ### Shorthand Style
 
 Instead of using the function call syntax(`styled('div')`), you can use create components by using a property, where the property refers to an HTML tag(`styled.div`).
+
+```jsx live
+const DivWithoutShorthand = styled('div')`
+  color: green;
+`
+
+const DivWithShorthand = styled.div`
+  color: hotpink;
+`
+
+render(
+  <DivWithoutShorthand>
+    This is green. <DivWithShorthand>This is hotpink.</DivWithShorthand>
+  </DivWithoutShorthand>
+)
+```
 
 > **Note:**
 > 
