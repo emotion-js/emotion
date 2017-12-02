@@ -44,7 +44,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-plugin-emotion',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-react-next',
     'gatsby-plugin-netlify',
     'gatsby-plugin-catch-links'
   ]
