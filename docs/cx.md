@@ -25,7 +25,7 @@ title: "cx"
 
 ##### Combining emotion generated class names
 
-```jsx harmony
+```jsx live
 import { cx, css } from 'emotion'
 
 const cls1 = css`
@@ -37,7 +37,7 @@ const cls2 = css`
   background: blue;
 `
 
-<div className={cx(cls1, cls2)} />
+render(<div className={cx(cls1, cls2)}>Blue Text</div>)
 ```
 
 This renders a `div` with a single class name and the following styles would be inserted.
@@ -53,7 +53,7 @@ This renders a `div` with a single class name and the following styles would be 
 
 If the order of the class names is reversed in the `cx` call the styles would change precedence.
 
-```jsx harmony
+```jsx live
 import { cx, css } from 'emotion'
 
 const cls1 = css`
@@ -65,7 +65,7 @@ const cls2 = css`
   background: blue;
 `
 
-<div className={cx(cls2, cls1)} /> // <-- arguments reversed
+render(<div className={cx(cls2, cls1)}>Green Text</div>) // <-- arguments reversed
 ```
 
 The div will now have a **green** background even though `cls2` was inserted into the stylesheet **after** `cls1`.
@@ -81,7 +81,9 @@ The div will now have a **green** background even though `cls2` was inserted int
 
 ##### Combining both emotion generated class names and custom class names.
 
-```jsx harmony
+```jsx live
+import { cx, css } from 'emotion'
+
 const cls1 = css`
   font-size: 20px;
   background: green;
@@ -99,13 +101,14 @@ const cls3 = css`
 const cls4 = css`
   font-size: 20px;
   background: darkgreen;
+  color: white;
 `
 
 const foo = true
 const bar = false
 
 
-<div
+render(<div
   className={cx(
     { [cls1]: foo },
     { [cls2]: bar },
@@ -113,7 +116,7 @@ const bar = false
     'profile',
     [[cls3, [cls4]]]
   )}
-/>
+>Some content</div>)
 ```
 
 Output:

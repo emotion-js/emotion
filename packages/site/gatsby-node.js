@@ -104,3 +104,38 @@ exports.onCreateNode = async ({
     createParentChildLink({ parent: node, child: codeExampleNode })
   }
 }
+
+// https://github.com/Skoli-Code/skoli-app-template/blob/8262fd0f1db12164b627cce8efefc9390a0c63ea/plugins/remark-custom-elements/extend-node-type.js
+
+const parse = require('remark-parse')
+const unified = require('unified')
+const GraphQLJSON = require('graphql-type-json')
+const frontmatter = require('remark-frontmatter')
+const customElementCompiler = require('@dumpster/remark-custom-element-to-hast')
+const visit = require(`unist-util-visit`)
+
+exports.setFieldsOnGraphQLNodeType = ({ type }) => {
+  if (type.name !== 'MarkdownRemark') {
+    return {}
+  }
+  return {
+    hast: {
+      type: GraphQLJSON,
+      resolve(node) {
+        const hast = unified()
+          .use(parse)
+          .use(frontmatter, ['yaml'])
+          .use(() => MarkdownAST => {
+            visit(MarkdownAST, 'code', node => {
+              if (node.lang === 'jsx live') {
+                node.lang = 'jsx-live'
+              }
+            })
+          })
+          .use(customElementCompiler)
+          .processSync(node.internal.content).contents
+        return hast
+      }
+    }
+  }
+}

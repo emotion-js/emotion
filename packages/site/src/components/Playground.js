@@ -14,7 +14,17 @@ export const scope = {
   ThemeProvider,
   withTheme,
   fontFace,
-  merge
+  merge,
+  require(moduleName: string) {
+    switch (moduleName) {
+      case 'emotion':
+        return require('emotion')
+      case 'react-emotion':
+        return require('react-emotion')
+      default:
+        throw new Error(`Module "${moduleName}" not found`)
+    }
+  }
 }
 
 export const Error = styled.pre`

@@ -1,9 +1,15 @@
 // @flow
 import React from 'react'
-import styled, { css } from 'react-emotion'
-import { constants, openColors } from '../utils/style'
+import styled from 'react-emotion'
+import { constants } from '../utils/style'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
+import styles from '../utils/markdown-styles'
+import RenderHAST from '../components/RenderHAST'
+import type { HASTRoot } from '../utils/types'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-json'
+import 'prismjs/components/prism-jsx'
 
 const Title = styled.h1`
   font-size: ${constants.fontSizes[8]}px;
@@ -11,107 +17,11 @@ const Title = styled.h1`
   margin-top: 0;
 `
 
-const styles = css`
-  p {
-    font-size: 1.25rem;
-    margin-bottom: 1.3rem;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4 {
-    margin: 0.75rem 0 0.5rem;
-    font-weight: inherit;
-    line-height: 1.42;
-  }
-
-  h1 {
-    margin-top: 0;
-    font-size: 3.998rem;
-  }
-
-  h2 {
-    font-size: 2.827rem;
-  }
-
-  h3 {
-    font-size: 1.999rem;
-  }
-
-  h4 {
-    font-size: 1.414rem;
-  }
-
-  h5 {
-    font-size: 1.121rem;
-  }
-
-  h6 {
-    font-size: 0.88rem;
-  }
-
-  small {
-    font-size: 0.707em;
-  }
-
-  /* https://github.com/mrmrs/fluidity */
-
-  img,
-  canvas,
-  iframe,
-  video,
-  svg,
-  select,
-  textarea {
-    max-width: 100%;
-  }
-
-  img {
-    max-height: 360px;
-    margin: 0 auto;
-  }
-
-  a,
-  a:visited {
-    background-color: #faebf8;
-    color: inherit;
-    text-decoration: none;
-  }
-
-  a:hover,
-  a:focus,
-  a:active {
-    background-color: #f5d0f0;
-  }
-
-  a.anchor {
-    background-color: initial;
-  }
-
-  blockquote {
-    margin: 0;
-    border-left: 5px solid ${openColors.gray[5]};
-    font-style: italic;
-    padding: 1.33em;
-    text-align: left;
-  }
-
-  ul,
-  ol,
-  li {
-    text-align: left;
-  }
-
-  p {
-    color: ${openColors.gray[8]};
-  }
-`
-
 type Props = {
   data: {
     doc: {
       html: string,
+      hast: HASTRoot,
       frontmatter: {
         title: string
       }
@@ -130,6 +40,30 @@ type Props = {
   pathContext: {
     slug: string
   }
+}
+
+const createCode = (logoUrl: string) => (props: *) => {
+  if (props.className === undefined) {
+    return <code {...props} />
+  }
+  console.log(props.className)
+  if (props.className[0] === 'language-jsx-live') {
+    return <Playground logoUrl={logoUrl} code={props.children[0][0]} />
+  }
+  const language = props.className[0].replace('language-', '')
+  if (global.Prism.languages[language] === undefined) {
+    throw new Error(`Language: "${language}" not found`)
+  }
+  const highlighted = global.Prism.highlight(
+    props.children[0][0],
+    global.Prism.languages[language]
+  )
+  return (
+    <code
+      className="prism-code"
+      dangerouslySetInnerHTML={{ __html: highlighted }}
+    />
+  )
 }
 
 export default class DocRoute extends React.Component<Props> {
@@ -156,10 +90,14 @@ export default class DocRoute extends React.Component<Props> {
             />
           </Box>
         )}
-        <div
-          className={styles}
-          dangerouslySetInnerHTML={{ __html: doc.html }}
-        />
+        <div className={styles}>
+          <RenderHAST
+            hast={doc.hast}
+            componentMap={{
+              code: createCode(avatar.childImageSharp.resolutions.src)
+            }}
+          />
+        </div>
       </Box>
     )
   }
@@ -169,6 +107,7 @@ export const pageQuery = graphql`
   query DocBySlug($slug: String!) {
     doc: markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      hast
       frontmatter {
         title
       }

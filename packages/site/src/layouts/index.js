@@ -41,7 +41,7 @@ html, body, #___gatsby {
   
 }
 
-pre[class*="language-"] {
+pre[class*="language-"],.prism-code {
   border-radius: 8px;
   overflow: scroll; 
 }

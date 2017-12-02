@@ -10,3 +10,20 @@ export type Match = {
   path: string,
   url: string
 }
+
+export type HASTText = {
+  type: 'text',
+  value: string
+}
+
+export type HASTElement = {
+  type: 'element',
+  tagName: string,
+  properties: Object,
+  children: Array<HASTElement | HASTText>
+}
+
+export type HASTRoot = {
+  type: 'root',
+  children: Array<HASTElement | HASTText>
+}
