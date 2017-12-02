@@ -48,6 +48,7 @@ exports[`css auto px 1`] = `
   -ms-flex: 1;
   flex: 1;
   font-size: 10px;
+  --custom: 5;
 }
 
 <div
@@ -315,6 +316,17 @@ exports[`css media query specificity 2`] = `
     width: 96px;
     height: 96px;
   }
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css multiline declaration 1`] = `
+.glamor-0 {
+  display: grid;
+  grid: 'AppBar' auto 'Main' 1fr / 1fr;
 }
 
 <div

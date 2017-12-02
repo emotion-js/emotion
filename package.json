@@ -6,7 +6,7 @@
     "build": "lerna run build --parallel",
     "test:size": "npm-run-all clean rollup:umd size",
     "clean": "lerna run clean --parallel",
-    "test": "npm-run-all -p lint:check coverage test:size test:typescript && npm run test:prod && npm run benchmark",
+    "test": "npm-run-all -p lint:check coverage test:size test:typescript && npm run test:prod",
     "test:typescript": "lerna run test:typescript --parallel",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
     "test:prod": "npm run build && jest -c jest.dist.json --no-cache --ci --runInBand",
@@ -24,12 +24,12 @@
     "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.31",
-    "@babel/plugin-external-helpers": "^7.0.0-beta.31",
-    "@babel/preset-env": "^7.0.0-beta.31",
-    "@babel/preset-flow": "^7.0.0-beta.31",
-    "@babel/preset-react": "^7.0.0-beta.31",
-    "@babel/preset-stage-0": "^7.0.0-beta.31",
+    "@babel/core": "^7.0.0-beta.32",
+    "@babel/plugin-external-helpers": "^7.0.0-beta.32",
+    "@babel/preset-env": "^7.0.0-beta.32",
+    "@babel/preset-flow": "^7.0.0-beta.32",
+    "@babel/preset-react": "^7.0.0-beta.32",
+    "@babel/preset-stage-0": "^7.0.0-beta.32",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
@@ -164,11 +164,11 @@
   "bundlesize": [
     {
       "path": "./packages/emotion/dist/emotion.umd.min.js",
-      "threshold": "6.30 Kb"
+      "threshold": "6.35 Kb"
     },
     {
       "path": "./packages/react-emotion/dist/emotion.umd.min.js",
-      "threshold": "8.95 Kb"
+      "threshold": "9 Kb"
     }
   ]
 }
