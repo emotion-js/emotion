@@ -324,6 +324,9 @@ export default function(babel: Babel) {
     visitor: {
       Program: {
         enter(path: BabelPath, state: EmotionBabelPluginPass) {
+          const hasFilepath =
+            path.hub.file.opts.filename &&
+            path.hub.file.opts.filename !== 'unknown'
           state.emotionImportPath = 'emotion'
           if (state.opts.primaryInstance !== undefined) {
             state.emotionImportPath = getInstancePathToImport(
@@ -394,7 +397,9 @@ export default function(babel: Babel) {
               getInstancePathToCompare(instancePath, process.cwd())
             )
           )
-          let dirname = nodePath.dirname(path.hub.file.opts.filename)
+          let dirname = hasFilepath
+            ? nodePath.dirname(path.hub.file.opts.filename)
+            : ''
           imports.forEach(({ source, imported, specifiers }) => {
             if (
               emotionPaths.indexOf(
