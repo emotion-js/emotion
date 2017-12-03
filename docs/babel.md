@@ -6,7 +6,7 @@ title: "Babel Plugin"
 above. All of the options that can be provided to `babel-plugin-emotion` are
 documented in
 [`babel-plugin-emotion`'s README](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion).
-See the [installation instructions](./install).
+See the [installation instructions](docs/install).
 
 ### Features which are enabled with the babel plugin
 
@@ -43,7 +43,7 @@ compile time.
 
 The ability to refer to another component to apply override styles depending on
 nesting context. Learn more in the
-[react-emotion docs](./styled.md#targeting-another-emotion-component).
+[react-emotion docs](docs/styled#targeting-another-emotion-component).
 
 ## Babel Macros
 

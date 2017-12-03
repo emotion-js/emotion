@@ -2,7 +2,7 @@
 title: "Configurable Imports"
 ---
 
-If you are using ES Module imports (`import styled from 'react-emotion'`) the
+If you are using [ES Module imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) (`import styled from 'react-emotion'`) the
 emotion babel plugin can handle two types of import renaming.
 
 ## Dynamic
