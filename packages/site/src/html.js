@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === `production`) {
     // eslint-disable-next-line import/no-webpack-loader-syntax
     stylesStr = require('!raw-loader!../public/styles.css')
   } catch (e) {
-    console.log(e)
+    console.error(e) // eslint-disable-line no-console
   }
 }
 

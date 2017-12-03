@@ -110,9 +110,6 @@ const SelectButton = styled.button`
 `
 
 class IndexPage extends React.Component {
-  componentDidCatch(error) {
-    console.error(error)
-  }
   state = { mode: 'string', stringCode, objectCode }
   render() {
     return (

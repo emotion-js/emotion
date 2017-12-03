@@ -97,7 +97,6 @@ export default class DocRoute extends React.Component<Props> {
   render() {
     const { data } = this.props
     const { doc, allCodeExample, avatar } = data
-    console.log(data.doc.hast)
     return (
       <Box>
         <Title>{doc.frontmatter.title}</Title>
