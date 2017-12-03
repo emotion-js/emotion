@@ -163,14 +163,6 @@ const ATTRIBUTE_TO_JSX = {
   usemap: 'useMap'
 }
 
-function patch(context, key, value) {
-  if (!context[key]) {
-    context[key] = value
-  }
-
-  return context[key]
-}
-
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
   if (type.name !== 'MarkdownRemark') {
     return {}
@@ -199,6 +191,15 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
               node.properties[ATTRIBUTE_TO_JSX[key]] = node.properties[key]
               delete node.properties[key]
             }
+          }
+          if (node.properties.style !== undefined) {
+            node.properties.style = node.properties.style
+              .split(';')
+              .map(val => val.split(':'))
+              .reduce((prev, current) => {
+                prev[current[0]] = current[1]
+                return prev
+              }, {})
           }
           switch (node.tagName) {
             case 'h1':

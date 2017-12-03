@@ -31,16 +31,6 @@ const RenderHAST = ({ hast, componentMap = {} }: Props) => {
           </Tag>
         )
       } else {
-        properties.key = i
-        if (typeof properties.style === 'string') {
-          properties.style = properties.style
-            .split(';')
-            .map(val => val.split(':'))
-            .reduce((prev, current) => {
-              prev[current[0]] = current[1]
-              return prev
-            }, {})
-        }
         return createElement(
           tagName,
           properties,
