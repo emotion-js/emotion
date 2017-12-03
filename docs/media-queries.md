@@ -2,7 +2,7 @@
 title: "Media Queries"
 ---
 
-```jsx
+```jsx live
 const Avatar = styled('img')`
   width: 32px;
   height: 32px;

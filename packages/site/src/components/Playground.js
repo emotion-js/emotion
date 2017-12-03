@@ -19,6 +19,8 @@ export const scope = {
         return require('emotion')
       case 'react-emotion':
         return require('react-emotion')
+      case 'emotion-theming':
+        return require('emotion-theming')
       case 'recompose/withProps':
         return require('recompose/withProps')
       default:

@@ -137,10 +137,11 @@ Output:
   background: darkorange;
   font-size: 20px;
   background: darkgreen;
+  color: white;
 }
 ```
 
-```jsx harmony
+```jsx
 <div
   className="modal profile css-i43k4"
 />

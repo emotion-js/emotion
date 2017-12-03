@@ -1,4 +1,6 @@
-# Instances
+---
+title: "Instances"
+---
 
 emotion allows creating custom instances of emotion to provide special options.
 Instances are created with the

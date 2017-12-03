@@ -51,7 +51,7 @@ babel's `"transform-react-inline-elements"` plugin. If you include it in your
 `.babelrc` no transformation will take place and your styles will silently
 fail._
 
-```jsx
+```jsx live
 function SomeComponent(props) {
   // Create styles as if you're calling css and the class will be applied to the component
   return (
@@ -71,7 +71,9 @@ function SomeComponent(props) {
     >
       This will be blue until hovered.
       <div className="some-class">This font size will be 20px</div>
+      <div css={{ color: 'hotpink' }}>This is hotpink</div>
     </div>
   )
 }
+render(<SomeComponent fontSize={15} />)
 ```

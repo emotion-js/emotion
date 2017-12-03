@@ -13,17 +13,25 @@ Add `ThemeProvider` to the top level of your app and access the theme with
 `props.theme` in a styled component. The api is laid out in detail
 [in the documentation](https://github.com/emotion-js/emotion/tree/master/packages/emotion-theming/README.md#api).
 
-```jsx
+```jsx live
 import styled from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 
-const H1 = styled(Heading)`
-  color: ${p => p.theme.purple};
+const theme = {
+  borderRadius: '50%',
+  borderColor: '#BF67AD'
+}
+
+const Avatar = styled('img')`
+  width: 96px;
+  height: 96px;
+  border-radius: ${props => props.theme.borderRadius};
+  border: 1px solid ${props => props.theme.borderColor};
 `
 
-const App = () => (
+render(
   <ThemeProvider theme={theme}>
-    <H1>emotion</H1>
+    <Avatar src={logoUrl} />
   </ThemeProvider>
 )
 ```
