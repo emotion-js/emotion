@@ -1,7 +1,12 @@
+// @flow
 import React from 'react'
 import Link from '../components/Link'
 
-export default props => {
+type Props = {
+  data: *
+}
+
+export default (props: Props) => {
   return (
     <ul>
       {props.data.allSitePage.edges.map(node => (

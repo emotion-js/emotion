@@ -1,3 +1,4 @@
+// @flow
 import styled from 'react-emotion'
 import {
   space,

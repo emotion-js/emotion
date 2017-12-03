@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+// @flow
+import * as React from 'react'
 import styled, { css } from 'react-emotion'
 import Box from '../components/Box'
 import { LiveEditor, withLive, LiveProvider } from 'react-live/lib'
@@ -69,8 +70,11 @@ const Preview = withLive(({ live: { element: BaseLink, onError, error } }) => {
   )
 })
 
-class ErrorBoundary extends Component {
-  state = { error: false }
+class ErrorBoundary extends React.Component<{
+  children: React.Node,
+  error: *,
+  onError: Error => void
+}> {
   componentDidCatch(err) {
     this.props.onError(err)
   }
@@ -109,17 +113,24 @@ const SelectButton = styled.button`
   border: 0;
 `
 
-class IndexPage extends React.Component {
-  state = { mode: 'string', stringCode, objectCode }
+type Props = {
+  data: {
+    imageSharp: *
+  }
+}
+
+type State = {
+  mode: 'string' | 'object',
+  code: string
+}
+
+class IndexPage extends React.Component<Props, State> {
+  state = { mode: 'string', code: stringCode }
   render() {
     return (
       <LiveProvider
         scope={scope}
-        code={
-          this.state.mode === 'object'
-            ? this.state.objectCode
-            : this.state.stringCode
-        }
+        code={this.state.code}
         noInline
         transformCode={transform}
         mountStylesheet={false}
@@ -184,7 +195,7 @@ class IndexPage extends React.Component {
                 <SelectButton
                   active={this.state.mode === 'string'}
                   onClick={() => {
-                    this.setState({ mode: 'string' })
+                    this.setState({ code: stringCode, mode: 'string' })
                   }}
                 >
                   String
@@ -192,7 +203,7 @@ class IndexPage extends React.Component {
                 <SelectButton
                   active={this.state.mode === 'object'}
                   onClick={() => {
-                    this.setState({ mode: 'object' })
+                    this.setState({ code: objectCode, mode: 'object' })
                   }}
                 >
                   Object
@@ -200,7 +211,7 @@ class IndexPage extends React.Component {
               </Box>
               <LiveEditor
                 onChange={code => {
-                  this.setState({ [`${this.state.mode}Code`]: code })
+                  this.setState({ code })
                 }}
                 css={scroll}
               />
