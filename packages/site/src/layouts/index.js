@@ -236,7 +236,6 @@ type TemplateWrapperProps = {
 }
 
 const TemplateWrapper = (props: TemplateWrapperProps) => {
-  console.log(props)
   if (props.location.pathname.match(/\/docs\/.+/)) {
     return (
       <BaseWrapper
