@@ -36,6 +36,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-emotion": "^8.0.9",
+    "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
     "react-live": "^1.7.1",
     "react-sidebar": "^2.3.2",
