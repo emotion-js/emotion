@@ -32,8 +32,8 @@ export default class HTML extends Component {
             content="width=device-width, initial-scale=1.0"
           />
           <link rel="icon" href="/favicon.ico" />
-          {this.props.headComponents}
           <script src="//unpkg.com/babel-standalone@6.26.0/babel.min.js" />
+          {this.props.headComponents}
           {css}
         </head>
         <body>
