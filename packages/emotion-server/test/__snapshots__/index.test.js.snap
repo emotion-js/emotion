@@ -108,7 +108,7 @@ Object {
   width: 50px;
   background-color: red;
 }",
-  "html": "<main class=\\"css-4xq7ky css-90n0k90\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-z382ib css-90n0k91\\"/><img size=\\"100\\" class=\\"css-z382ib css-90n0k91\\"/><img class=\\"css-z382ib css-90n0k91\\"/></main>",
+  "html": "<main class=\\"css-4xq7ky css-crafi20\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-z382ib css-crafi21\\"/><img size=\\"100\\" class=\\"css-z382ib css-crafi21\\"/><img class=\\"css-z382ib css-crafi21\\"/></main>",
   "ids": Array [
     "84kji8",
     "16qlhaj",
@@ -218,7 +218,7 @@ Object {
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
-  "html": "<main class=\\"css-4xq7ky css-90n0k90\\" data-reactroot=\\"\\"><div>Hello</div></main>",
+  "html": "<main class=\\"css-4xq7ky css-crafi20\\" data-reactroot=\\"\\"><div>Hello</div></main>",
   "ids": Array [
     "84kji8",
     "16qlhaj",
@@ -336,7 +336,7 @@ Object {
   width: 50px;
   background-color: red;
 }",
-  "html": "<main class=\\"css-4xq7ky css-90n0k90\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-z382ib css-90n0k91\\"/><img size=\\"100\\" class=\\"css-z382ib css-90n0k91\\"/><img class=\\"css-z382ib css-90n0k91\\"/></main>",
+  "html": "<main class=\\"css-4xq7ky css-crafi20\\" data-reactroot=\\"\\"><img size=\\"30\\" class=\\"css-z382ib css-crafi21\\"/><img size=\\"100\\" class=\\"css-z382ib css-crafi21\\"/><img class=\\"css-z382ib css-crafi21\\"/></main>",
   "ids": Array [
     "84kji8",
     "16qlhaj",
