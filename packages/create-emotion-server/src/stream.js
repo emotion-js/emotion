@@ -4,7 +4,10 @@ import through from 'through'
 import tokenize from 'html-tokenize'
 import pipe from 'multipipe'
 
-const createRenderStylesToNodeStream = (emotion: Emotion) => () => {
+const createRenderStylesToNodeStream = (
+  emotion: Emotion,
+  nonceString: string
+) => () => {
   let insed = {}
   const tokenStream = tokenize()
 
@@ -41,7 +44,7 @@ const createRenderStylesToNodeStream = (emotion: Emotion) => () => {
           this.queue(
             `<style data-emotion-chunk="${Object.keys(ids).join(
               ' '
-            )}">${css}</style>`
+            )}"${nonceString}>${css}</style>`
           )
         }
       }

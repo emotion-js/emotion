@@ -12,12 +12,13 @@ import type { PrefixOption, StylisOptions, ClassNameArg } from './utils'
 
 type StylisPlugins = Function[] | null | Function
 
-type EmotionCaches = {
+type EmotionCaches = {|
   registered: { [key: string]: string },
   inserted: { [key: string]: string | true },
   stylis: (scope: string, styles: string) => string,
-  sheet: StyleSheet
-}
+  sheet: StyleSheet,
+  nonce?: string
+|}
 
 // this should probably be an actual type but it's hard to do without errors
 export type Interpolation = any
@@ -89,7 +90,8 @@ function createEmotion(
       registered: {},
       inserted: {},
       sheet: new StyleSheet(options.nonce),
-      stylis: new Stylis(stylisOptions)
+      stylis: new Stylis(stylisOptions),
+      nonce: options.nonce
     }
 
     caches.stylis.use(options.stylisPlugins)(insertionPlugin)

@@ -4,7 +4,8 @@ import type { Emotion } from 'create-emotion'
 function toTag(
   emotion: Emotion,
   ids: Array<string>,
-  thing: { keys: Array<string> }
+  thing: { keys: Array<string> },
+  nonceString: string
 ) {
   let idhash = ids.reduce((o, x) => {
     o[x] = true
@@ -21,10 +22,10 @@ function toTag(
   })
   return `<style data-emotion-chunk="${idHydration.substring(
     1
-  )}">${styles}</style>`
+  )}"${nonceString}>${styles}</style>`
 }
 
-const createRenderStylesToString = (emotion: Emotion) => (
+const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
   html: string
 ): string => {
   let regex = /<|css-([a-zA-Z0-9-]+)/gm
@@ -32,7 +33,7 @@ const createRenderStylesToString = (emotion: Emotion) => (
   let match
   let lastBackIndex = 0
   let idBuffer = []
-  let result = []
+  let result = ''
   let insed = {}
   let keys = Object.keys(emotion.caches.inserted)
   let globalStyles = ''
@@ -49,18 +50,18 @@ const createRenderStylesToString = (emotion: Emotion) => (
     return true
   })
   if (globalStyles !== '') {
-    result.push(
-      `<style data-emotion-chunk="${globalIds.substring(
-        1
-      )}">${globalStyles}</style>`
-    )
+    result += `<style data-emotion-chunk="${globalIds.substring(
+      1
+    )}"${nonceString}>${globalStyles}</style>`
   }
   const thing = { keys }
   while ((match = regex.exec(html)) !== null) {
     if (match[0] === '<') {
       idBuffer = idBuffer.filter(x => !insed[x])
-      idBuffer.length > 0 && result.push(toTag(emotion, idBuffer, thing))
-      result.push(html.substring(lastBackIndex, match.index))
+      if (idBuffer.length > 0) {
+        result += toTag(emotion, idBuffer, thing, nonceString)
+      }
+      result += html.substring(lastBackIndex, match.index)
       lastBackIndex = match.index
       idBuffer.forEach(x => {
         insed[x] = true
@@ -70,8 +71,8 @@ const createRenderStylesToString = (emotion: Emotion) => (
       idBuffer.push(match[1])
     }
   }
-  result.push(html.substring(lastBackIndex, html.length))
-  return result.join('')
+  result += html.substring(lastBackIndex, html.length)
+  return result
 }
 
 export default createRenderStylesToString

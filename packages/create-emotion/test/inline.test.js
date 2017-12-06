@@ -9,38 +9,36 @@ import {
   getInjectedRules,
   createBigComponent,
   getCssFromChunks,
-  setHtml,
-  renderToStringWithStream
-} from './util'
+  setHtml
+} from '../../emotion-server/test/util'
 import { JSDOM } from 'jsdom'
 
 let emotion
 let emotionServer
 let reactEmotion
 
-describe('renderStylesToNodeStream', () => {
+describe('renderStylesToString', () => {
   beforeEach(() => {
     global.__SECRET_EMOTION__ = undefined
     jest.resetModules()
-    emotion = require('emotion')
-    emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    emotion = require('./emotion-instance')
+    emotionServer = require('./emotion-instance')
+    reactEmotion = require('./emotion-instance')
   })
-  test('renders styles with ids', async () => {
+  test('renders styles with ids', () => {
     const { Page1, Page2 } = getComponents(emotion, reactEmotion)
     expect(
-      await renderToStringWithStream(<Page1 />, emotionServer)
+      emotionServer.renderStylesToString(renderToString(<Page1 />))
     ).toMatchSnapshot()
     expect(
-      await renderToStringWithStream(<Page2 />, emotionServer)
+      emotionServer.renderStylesToString(renderToString(<Page2 />))
     ).toMatchSnapshot()
   })
-  test('renders large recursive component', async () => {
+  test('renders large recursive component', () => {
     const BigComponent = createBigComponent(emotion)
     expect(
-      await renderToStringWithStream(
-        <BigComponent count={200} />,
-        emotionServer
+      emotionServer.renderStylesToString(
+        renderToString(<BigComponent count={200} />)
       )
     ).toMatchSnapshot()
   })
@@ -51,15 +49,15 @@ describe('hydration', () => {
     global.window = undefined
   })
   beforeEach(() => {
-    jest.resetModules()
     global.__SECRET_EMOTION__ = undefined
-    emotion = require('emotion')
-    emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    jest.resetModules()
+    emotion = require('./emotion-instance')
+    emotionServer = require('./emotion-instance')
+    reactEmotion = require('./emotion-instance')
   })
-  test('only inserts rules that are not in the critical css', async () => {
+  test('only inserts rules that are not in the critical css', () => {
     const { Page1 } = getComponents(emotion, reactEmotion)
-    const html = await renderToStringWithStream(<Page1 />, emotionServer)
+    const html = emotionServer.renderStylesToString(renderToString(<Page1 />))
     expect(html).toMatchSnapshot()
     const { window } = new JSDOM(html)
     global.document = window.document
@@ -67,9 +65,10 @@ describe('hydration', () => {
     global.__SECRET_EMOTION__ = undefined
     setHtml(html, document)
     jest.resetModules()
-    emotion = require('emotion')
-    emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    emotion = require('./emotion-instance')
+    emotionServer = require('./emotion-instance')
+    reactEmotion = require('./emotion-instance')
+
     expect(emotion.caches.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)

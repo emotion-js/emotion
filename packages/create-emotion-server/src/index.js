@@ -5,9 +5,11 @@ import createRenderStylesToString from './inline'
 import createRenderStylesToStream from './stream'
 
 module.exports = function(emotion: Emotion) {
+  const nonceString =
+    emotion.caches.nonce !== undefined ? ` nonce="${emotion.caches.nonce}"` : ''
   return {
     extractCritical: createExtractCritical(emotion),
-    renderStylesToString: createRenderStylesToString(emotion),
-    renderStylesToNodeStream: createRenderStylesToStream(emotion)
+    renderStylesToString: createRenderStylesToString(emotion, nonceString),
+    renderStylesToNodeStream: createRenderStylesToStream(emotion, nonceString)
   }
 }
