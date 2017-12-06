@@ -1,8 +1,11 @@
 // @flow
 /* eslint-env jest */
-import React from 'react'
+import * as React from 'react'
 import { parse, stringify } from 'css'
 import type { Emotion } from 'create-emotion'
+// $FlowFixMe
+import { renderToNodeStream } from 'react-dom/server'
+import * as emotionServerInstanceForType from 'emotion-server'
 
 export const getComponents = (
   { injectGlobal, keyframes, css }: Emotion,
@@ -165,3 +168,21 @@ export const setHtml = (html: string, document: Document) => {
     throw new Error('body does not exist on document')
   }
 }
+
+export const renderToStringWithStream = (
+  element: React.Element<*>,
+  { renderStylesToNodeStream }: typeof emotionServerInstanceForType
+): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const stream = renderToNodeStream(element).pipe(renderStylesToNodeStream())
+    let html = ''
+    stream.on('data', data => {
+      html += data.toString()
+    })
+    stream.on('end', () => {
+      resolve(html)
+    })
+    stream.on('error', error => {
+      reject(error)
+    })
+  })

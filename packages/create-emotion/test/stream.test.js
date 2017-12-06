@@ -11,7 +11,7 @@ import {
   getCssFromChunks,
   setHtml,
   renderToStringWithStream
-} from './util'
+} from '../../emotion-server/test/util'
 import { JSDOM } from 'jsdom'
 
 let emotion
@@ -22,9 +22,9 @@ describe('renderStylesToNodeStream', () => {
   beforeEach(() => {
     global.__SECRET_EMOTION__ = undefined
     jest.resetModules()
-    emotion = require('emotion')
-    emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    emotion = require('./emotion-instance')
+    emotionServer = require('./emotion-instance')
+    reactEmotion = require('./emotion-instance')
   })
   test('renders styles with ids', async () => {
     const { Page1, Page2 } = getComponents(emotion, reactEmotion)
@@ -53,9 +53,9 @@ describe('hydration', () => {
   beforeEach(() => {
     jest.resetModules()
     global.__SECRET_EMOTION__ = undefined
-    emotion = require('emotion')
-    emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    emotion = require('./emotion-instance')
+    emotionServer = require('./emotion-instance')
+    reactEmotion = require('./emotion-instance')
   })
   test('only inserts rules that are not in the critical css', async () => {
     const { Page1 } = getComponents(emotion, reactEmotion)
@@ -67,9 +67,9 @@ describe('hydration', () => {
     global.__SECRET_EMOTION__ = undefined
     setHtml(html, document)
     jest.resetModules()
-    emotion = require('emotion')
-    emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    emotion = require('./emotion-instance')
+    emotionServer = require('./emotion-instance')
+    reactEmotion = require('./emotion-instance')
     expect(emotion.caches.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
