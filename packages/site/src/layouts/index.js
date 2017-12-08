@@ -1,13 +1,13 @@
 // @flow
 import React from 'react'
 import Link from '../components/Link'
-import styled, { injectGlobal, css } from 'react-emotion'
+import styled, { injectGlobal } from 'react-emotion'
 import Box from '../components/Box'
 import prismStyles from 'react-live/lib/constants/css'
 import Helmet from 'react-helmet'
 import 'normalize.css/normalize.css'
 import DocWrapper from '../components/DocWrapper'
-import { colors, constants } from '../utils/style'
+import { colors, constants, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
 import type { Location, Match } from '../utils/types'
 
@@ -65,24 +65,7 @@ const StyledLink = styled(Box)`
   font-size: ${constants.fontSizes[3]}px;
   text-decoration: none;
   font-weight: 300;
-  ${props =>
-    !props.hideUnderline &&
-    css`
-      &::after {
-        content: '';
-        display: block;
-        width: 100%;
-        margin-top: 4px;
-        height: 4px;
-        transition: transform 250ms ease;
-        transform: scaleX(0);
-        background-color: hotpink;
-      }
-      &.active::after,
-      &:hover::after {
-        transform: scaleX(1);
-      }
-    `};
+  ${props => !props.hideUnderline && animatedUnderline};
 `.withComponent(({ hideUnderline, ...props }) => <Link {...props} />)
 
 const StyledLinkSpan = StyledLink.withComponent('span')
@@ -236,7 +219,7 @@ type TemplateWrapperProps = {
 }
 
 const TemplateWrapper = (props: TemplateWrapperProps) => {
-  if (props.location.pathname.match(/\/docs\/.+/)) {
+  if (props.location.pathname.match(/\/docs.*/)) {
     return (
       <BaseWrapper
         avatar={props.data.avatar.childImageSharp.resolutions}

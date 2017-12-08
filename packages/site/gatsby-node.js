@@ -1,5 +1,10 @@
 const path = require('path')
+const { promisify } = require('util')
+const fs = require('fs')
 const crypto = require(`crypto`)
+const yaml = require('js-yaml')
+const yamlPath = path.resolve(__dirname, '../../docs/index.yaml')
+const readFile = promisify(fs.readFile)
 
 global.Babel = require('babel-standalone')
 
@@ -19,11 +24,11 @@ exports.modifyWebpackConfig = ({ config }) => {
   })
 }
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
+exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
-  return new Promise((resolve, reject) => {
-    const blogPostTemplate = require.resolve(`./src/templates/doc.js`)
+  const blogPostTemplate = require.resolve(`./src/templates/doc.js`)
+  const [result, yamlContents] = await Promise.all([
     graphql(
       `
         {
@@ -38,21 +43,31 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           }
         }
       `
-    ).then(result => {
-      if (result.errors) {
-        console.log(result.errors)
-      }
-      result.data.allMarkdownRemark.edges.forEach(edge => {
-        createPage({
-          path: `docs/${edge.node.fields.slug}`,
-          component: blogPostTemplate,
-          context: {
-            slug: edge.node.fields.slug
-          }
-        })
-      })
+    ),
+    readFile(yamlPath, { encoding: 'utf-8' })
+  ])
+  const docsInYaml = yaml
+    .safeLoad(yamlContents.toString())
+    .reduce((prev, current) => {
+      return prev.concat(current.items)
+    }, [])
 
-      resolve()
+  if (result.errors) {
+    console.log(result.errors)
+  }
+  result.data.allMarkdownRemark.edges.forEach(edge => {
+    if (docsInYaml.indexOf(edge.node.fields.slug) === -1) {
+      throw new Error(
+        `${edge.node.fields
+          .slug}.md found in docs folder but not in docs/index.yaml, please add it to docs/index.yaml`
+      )
+    }
+    createPage({
+      path: `docs/${edge.node.fields.slug}`,
+      component: blogPostTemplate,
+      context: {
+        slug: edge.node.fields.slug
+      }
     })
   })
 }

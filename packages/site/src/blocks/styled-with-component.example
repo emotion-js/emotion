@@ -1,9 +1,0 @@
-const Circle = styled('span')`
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-`
-
-const Avatar = Circle.withComponent('img')
-
-render(<Circle><Avatar src={logoUrl} /></Circle>)

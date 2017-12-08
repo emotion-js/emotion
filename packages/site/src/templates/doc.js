@@ -1,21 +1,15 @@
 // @flow
 import React from 'react'
-import styled from 'react-emotion'
 import { constants } from '../utils/style'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
 import styles from '../utils/markdown-styles'
 import RenderHAST from '../components/RenderHAST'
+import Title from '../components/Title'
 import type { HASTRoot } from '../utils/types'
 import 'prismjs/components/prism-bash'
 import 'prismjs/components/prism-json'
 import 'prismjs/components/prism-jsx'
-
-const Title = styled.h1`
-  font-size: ${constants.fontSizes[8]}px;
-  font-weight: 500;
-  margin-top: 0;
-`
 
 type Props = {
   data: {
@@ -51,7 +45,7 @@ const createHeading = (
   }
   return (
     <TagName {...props}>
-      <a href={`#${props.id}`} ariaHidden className="anchor">
+      <a href={`#${props.id}`} aria-hidden className="anchor">
         <svg
           aria-hidden
           height="16"

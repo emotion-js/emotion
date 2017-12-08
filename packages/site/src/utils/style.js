@@ -1,4 +1,23 @@
 // @flow
+import { css } from 'emotion'
+
+export const animatedUnderline = css`
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    height: 4px;
+    transition: transform 250ms ease;
+    transform: scaleX(0);
+    background-color: hotpink;
+  }
+  &.active::after,
+  &:hover::after {
+    transform: scaleX(1);
+  }
+`
+
 export const colors = {
   pink: '#D26AC2',
   blue: '#46C9E5',
