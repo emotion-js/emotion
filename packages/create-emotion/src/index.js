@@ -80,7 +80,8 @@ function createEmotion(
     const stylisOptions: StylisOptions = {
       keyframe: false,
       global: false,
-      prefix: options.prefix === undefined ? true : options.prefix
+      prefix: options.prefix === undefined ? true : options.prefix,
+      semicolon: true
     }
 
     if (process.env.NODE_ENV !== 'production') {
