@@ -42,7 +42,9 @@ const context =
     ? global
     : typeof window !== 'undefined' ? window : {}
 
-context.__MY_EMOTION_INSTANCE__ = {}
+if (context.__MY_EMOTION_INSTANCE__ === undefined) {
+  context.__MY_EMOTION_INSTANCE__ = {}
+}
 
 export const {
   flush,
