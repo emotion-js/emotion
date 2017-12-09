@@ -142,7 +142,7 @@ function createEmotion(
       case 'object':
         return createStringFromObject.call(this, interpolation)
       default:
-        const cached: string | void = caches.registered[interpolation]
+        const cached = caches.registered[interpolation]
         return couldBeSelectorInterpolation === false && cached !== undefined
           ? cached
           : interpolation

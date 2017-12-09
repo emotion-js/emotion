@@ -9,9 +9,10 @@ export const processStyleName: (
   styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
-export const processStyleValue = (key: string, value: string) => {
-  if (value === undefined || value === null || typeof value === 'boolean')
+export const processStyleValue = (key: string, value: string): string => {
+  if (value == null || typeof value === 'boolean') {
     return ''
+  }
 
   if (
     unitless[key] !== 1 &&
