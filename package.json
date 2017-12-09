@@ -69,6 +69,7 @@
     "jest-cli": "^20.0.4",
     "jest-glamor-react": "^3.1.1",
     "jest-in-case": "^1.0.2",
+    "jest-serializer-html": "^4.0.1",
     "jsdom": "^11.3.0",
     "lerna": "^2.2.0",
     "module-alias": "^2.0.1",

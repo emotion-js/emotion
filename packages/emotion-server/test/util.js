@@ -6,6 +6,9 @@ import type { Emotion } from 'create-emotion'
 // $FlowFixMe
 import { renderToNodeStream } from 'react-dom/server'
 import * as emotionServerInstanceForType from 'emotion-server'
+import HTMLSerializer from 'jest-serializer-html'
+
+expect.addSnapshotSerializer(HTMLSerializer)
 
 export const getComponents = (
   { injectGlobal, keyframes, css }: Emotion,
