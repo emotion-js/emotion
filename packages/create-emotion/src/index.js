@@ -80,7 +80,8 @@ function createEmotion(
     const stylisOptions: StylisOptions = {
       keyframe: false,
       global: false,
-      prefix: options.prefix === undefined ? true : options.prefix
+      prefix: options.prefix === undefined ? true : options.prefix,
+      semicolon: true
     }
 
     if (process.env.NODE_ENV !== 'production') {
@@ -141,7 +142,7 @@ function createEmotion(
       case 'object':
         return createStringFromObject.call(this, interpolation)
       default:
-        const cached: string | void = caches.registered[interpolation]
+        const cached = caches.registered[interpolation]
         return couldBeSelectorInterpolation === false && cached !== undefined
           ? cached
           : interpolation

@@ -4088,6 +4088,12 @@ diff@^3.2.0:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.3.1.tgz#aa8567a6eed03c531fc89d3f711cd0e5259dec75"
 
+diffable-html@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/diffable-html/-/diffable-html-2.1.0.tgz#0d4c2de115ac58f904aab1b72e6649cefca5f025"
+  dependencies:
+    htmlparser2 "^3.9.2"
+
 diffie-hellman@^5.0.0:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/diffie-hellman/-/diffie-hellman-5.0.2.tgz#b5835739270cfe26acf632099fded2a07f209e5e"
@@ -5343,9 +5349,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-bin@^0.59.0:
-  version "0.59.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.59.0.tgz#8c151ee7f09f1deed9bf0b9d1f2e8ab9d470f1bb"
+flow-bin@^0.61.0:
+  version "0.61.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.61.0.tgz#d0473a8c35dbbf4de573823f4932124397d32d35"
 
 follow-redirects@1.0.0:
   version "1.0.0"
@@ -6689,7 +6695,7 @@ html-webpack-plugin@^2.30.1:
     pretty-error "^2.0.2"
     toposort "^1.0.0"
 
-htmlparser2@^3.9.0, htmlparser2@^3.9.1:
+htmlparser2@^3.9.0, htmlparser2@^3.9.1, htmlparser2@^3.9.2:
   version "3.9.2"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.9.2.tgz#1bdf87acca0f3f9e53fa4fcceb0f4b4cbb00b338"
   dependencies:
@@ -7919,6 +7925,12 @@ jest-runtime@^21.2.1:
     strip-bom "3.0.0"
     write-file-atomic "^2.1.0"
     yargs "^9.0.0"
+
+jest-serializer-html@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/jest-serializer-html/-/jest-serializer-html-4.0.1.tgz#f9e04022add07b8e03da5ad305581f1004d8f7e8"
+  dependencies:
+    diffable-html "^2.0.0"
 
 jest-snapshot@^20.0.3:
   version "20.0.3"

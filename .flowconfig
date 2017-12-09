@@ -1,3 +1,6 @@
+[version]
+0.61.0
+
 [ignore]
 .*/node_modules/config-chain/.*
 .*/node_modules/styled-components/.*
