@@ -3,10 +3,8 @@ import React from 'react'
 import Link from '../components/Link'
 import Box from '../components/Box'
 import Title from '../components/Title'
-// $FlowFixMe
-import docNames from '../../../../docs/index.yaml'
 import { openColors } from '../utils/style'
-import { getDocMap } from '../utils/misc'
+import { getDocMap, docList } from '../utils/misc'
 
 const H2 = Box.withComponent('h2')
 const H3 = Box.withComponent('h3')
@@ -32,11 +30,11 @@ export default (props: Props) => {
           direction={['column', 'row']}
           justify="space-around"
         >
-          {docNames.map(docName => (
-            <Box flex={1} key={docName.title}>
+          {docList.map(item => (
+            <Box flex={1} key={item.title}>
               <H2 css={centerText} color={openColors.gray[7]}>
-                {docName.title}
-                {docName.items.map(item => {
+                {item.title}
+                {item.items.map(item => {
                   return (
                     <Link to={`/docs/${item}`}>
                       <H3>{docMap[item]}</H3>

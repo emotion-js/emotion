@@ -17,3 +17,9 @@ export function getDocMap(
   })
   return docMap
 }
+
+export const docList: Array<{
+  title: string,
+  items: Array<string>
+  // $FlowFixMe
+}> = require('../../../../docs/index.yaml')

@@ -193,11 +193,11 @@ const BaseWrapper = props => {
 
 type SidebarNode = {
   node: {
-    name: string,
-    childMarkdownRemark: {
-      frontmatter: {
-        title?: string
-      }
+    frontmatter: {
+      title: string
+    },
+    fields: {
+      slug: string
     }
   }
 }
@@ -212,7 +212,7 @@ type TemplateWrapperProps = {
         resolutions: Object
       }
     },
-    allFile: {
+    allMarkdownRemark: {
       edges: Array<SidebarNode>
     }
   }
@@ -225,7 +225,7 @@ const TemplateWrapper = (props: TemplateWrapperProps) => {
         avatar={props.data.avatar.childImageSharp.resolutions}
         location={props.location}
       >
-        <DocWrapper sidebarNodes={props.data.allFile.edges}>
+        <DocWrapper sidebarNodes={props.data.allMarkdownRemark.edges}>
           {props.children()}
         </DocWrapper>
       </BaseWrapper>
@@ -243,14 +243,14 @@ const TemplateWrapper = (props: TemplateWrapperProps) => {
 
 export const pageQuery = graphql`
   query TemplateQuery {
-    allFile(filter: { extension: { eq: "md" } }) {
+    allMarkdownRemark {
       edges {
         node {
-          name
-          childMarkdownRemark {
-            frontmatter {
-              title
-            }
+          frontmatter {
+            title
+          }
+          fields {
+            slug
           }
         }
       }
