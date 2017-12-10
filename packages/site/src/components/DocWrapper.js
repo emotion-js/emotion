@@ -36,11 +36,11 @@ const ToggleSidebarButton = styled.button`
 `
 
 const linkStyles = css`
-display: block;
-text-decoration: none;
-margin: 16px;
-font-size: ${constants.fontSizes[2]}px
-color: inherit;
+  display: block;
+  text-decoration: none;
+  margin: 16px;
+  font-size: ${constants.fontSizes[2]}px;
+  color: inherit;
 `
 
 const activeStyles = css`
