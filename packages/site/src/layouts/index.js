@@ -205,16 +205,12 @@ type TemplateWrapperProps = {
 }
 
 const TemplateWrapper = (props: TemplateWrapperProps) => {
+  let children = <Box m={[1, 2]}>{props.children()}</Box>
   if (props.location.pathname.match(/\/docs.*/)) {
-    return (
-      <BaseWrapper
-        avatar={props.data.avatar.childImageSharp.resolutions}
-        location={props.location}
-      >
-        <DocWrapper sidebarNodes={props.data.allMarkdownRemark.edges}>
-          {props.children()}
-        </DocWrapper>
-      </BaseWrapper>
+    children = (
+      <DocWrapper sidebarNodes={props.data.allMarkdownRemark.edges}>
+        {props.children()}
+      </DocWrapper>
     )
   }
   return (
@@ -222,14 +218,14 @@ const TemplateWrapper = (props: TemplateWrapperProps) => {
       avatar={props.data.avatar.childImageSharp.resolutions}
       location={props.location}
     >
-      <Box m={[1, 2]}>{props.children()}</Box>
+      {children}
     </BaseWrapper>
   )
 }
 
 export const pageQuery = graphql`
   query TemplateQuery {
-    allMarkdownRemark {
+    allMarkdownRemark(filter: { fileAbsolutePath: { glob: "**/docs/*.md" } }) {
       edges {
         node {
           frontmatter {

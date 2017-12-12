@@ -32,7 +32,9 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
     graphql(
       `
         {
-          allMarkdownRemark(limit: 1000) {
+          allMarkdownRemark(
+            filter: { fileAbsolutePath: { glob: "**/docs/*.md" } }
+          ) {
             edges {
               node {
                 fields {
