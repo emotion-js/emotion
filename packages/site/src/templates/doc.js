@@ -1,9 +1,10 @@
 // @flow
 import React from 'react'
-import { constants } from '../utils/style'
+import { cx, css } from 'react-emotion'
+import { constants, mq } from '../utils/style'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
-import styles from '../utils/markdown-styles'
+import * as markdownComponents from '../utils/markdown-styles'
 import RenderHAST from '../components/RenderHAST'
 import Title from '../components/Title'
 import type { HASTRoot } from '../utils/types'
@@ -35,6 +36,38 @@ type Props = {
   }
 }
 
+const baseHeadingStyles = css`
+  margin: 0.75rem 0 0.5rem;
+  font-weight: inherit;
+  line-height: 1.42;
+`
+
+const headingStylesMap = {
+  h1: css`
+    margin-top: 0;
+    font-size: 3.998rem;
+    ${baseHeadingStyles};
+  `,
+  h2: css`
+    font-size: 2.827rem;
+    ${baseHeadingStyles};
+  `,
+  h3: css`
+    font-size: 1.999rem;
+    ${baseHeadingStyles};
+  `,
+  h4: css`
+    font-size: 1.414rem;
+    ${baseHeadingStyles};
+  `,
+  h5: css`
+    font-size: 1.121rem;
+  `,
+  h6: css`
+    font-size: 0.88rem;
+  `
+}
+
 const createHeading = (
   TagName: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 ) => props => {
@@ -44,7 +77,10 @@ const createHeading = (
     )
   }
   return (
-    <TagName {...props}>
+    <TagName
+      {...props}
+      className={cx(headingStylesMap[TagName], props.className)}
+    >
       <a href={`#${props.id}`} aria-hidden className="anchor">
         <svg
           aria-hidden
@@ -64,26 +100,41 @@ const createHeading = (
   )
 }
 
+const codeStyles = css(
+  mq({
+    marginLeft: -30,
+    marginRight: -30
+  })
+)
+
 const createCode = (logoUrl: string) => (props: *) => {
   if (props.className === undefined) {
     return <code {...props} />
   }
   if (props.className[0] === 'language-jsx-live') {
-    return <Playground logoUrl={logoUrl} code={props.children[0][0]} />
+    return (
+      <Playground
+        className={codeStyles}
+        logoUrl={logoUrl}
+        code={props.children[0]}
+      />
+    )
   }
   const language = props.className[0].replace('language-', '')
   if (global.Prism.languages[language] === undefined) {
     throw new Error(`Language: "${language}" not found`)
   }
   const highlighted = global.Prism.highlight(
-    props.children[0][0],
+    props.children[0],
     global.Prism.languages[language]
   )
   return (
-    <code
-      className="prism-code"
-      dangerouslySetInnerHTML={{ __html: highlighted }}
-    />
+    <pre className={codeStyles}>
+      <code
+        className={'prism-code'}
+        dangerouslySetInnerHTML={{ __html: highlighted }}
+      />
+    </pre>
   )
 }
 
@@ -94,14 +145,14 @@ export default class DocRoute extends React.Component<Props> {
     return (
       <Box>
         <Title>{doc.frontmatter.title}</Title>
-        <Box pb={3} className={styles}>
+        <Box pb={3}>
           {/* The URL below should change when this is on master */}
-          <a
+          <markdownComponents.a
             href={`https://github.com/emotion-js/emotion/edit/gatsby/docs/${this
               .props.pathContext.slug}.md`}
           >
             Edit this page
-          </a>
+          </markdownComponents.a>
         </Box>
         {allCodeExample && (
           <Box mb={constants.space[3]}>
@@ -111,20 +162,19 @@ export default class DocRoute extends React.Component<Props> {
             />
           </Box>
         )}
-        <div className={styles}>
-          <RenderHAST
-            hast={doc.hast}
-            componentMap={{
-              h1: createHeading('h1'),
-              h2: createHeading('h2'),
-              h3: createHeading('h3'),
-              h4: createHeading('h4'),
-              h5: createHeading('h5'),
-              h6: createHeading('h6'),
-              code: createCode(avatar.childImageSharp.resolutions.src)
-            }}
-          />
-        </div>
+        <RenderHAST
+          hast={doc.hast}
+          componentMap={{
+            h1: createHeading('h1'),
+            h2: createHeading('h2'),
+            h3: createHeading('h3'),
+            h4: createHeading('h4'),
+            h5: createHeading('h5'),
+            h6: createHeading('h6'),
+            code: createCode(avatar.childImageSharp.resolutions.src),
+            ...markdownComponents
+          }}
+        />
       </Box>
     )
   }

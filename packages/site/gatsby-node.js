@@ -201,6 +201,15 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
         slugs.reset()
 
         visit(hast, 'element', node => {
+          if (
+            node.tagName === 'pre' &&
+            node.children.length === 1 &&
+            node.children[0].tagName === 'code'
+          ) {
+            node.tagName = 'code'
+            node.properties = node.children[0].properties
+            node.children = node.children[0].children
+          }
           for (const key of Object.keys(node.properties)) {
             if (ATTRIBUTE_TO_JSX[key] !== undefined) {
               node.properties[ATTRIBUTE_TO_JSX[key]] = node.properties[key]

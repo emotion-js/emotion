@@ -2,6 +2,8 @@
 title: "Media Queries"
 ---
 
+Using media queries in emotion works just like using media queries in regular css except you don't have to specify a selector inside the block, you can put your css directly in the css block.
+
 ```jsx live
 const Avatar = styled('img')`
   width: 32px;
@@ -17,7 +19,55 @@ const Avatar = styled('img')`
 render(<Avatar src={logoUrl} rounded />)
 ```
 
-## Reusable Media Queries
+
+## Reusable Media Queries with Object Styles
+
+Making media queries reusable can be really useful to create responsive apps, with emotion's object styles you can move them into constants so you can refer to them instead of rewriting them each time they're used.
+
+```jsx live
+const breakpoints = [576, 768, 992, 1200]
+
+const mq = breakpoints.map(
+  bp => `@media (min-width: ${bp}px)`
+)
+
+const styles = css({
+  color: 'green',
+  [mq[0]]: {
+    color: 'gray'
+  },
+  [mq[1]]: {
+    color: 'hotpink'
+  }
+})
+render(<div className={styles}>Some text.</div>)
+```
+
+### facepaint
+
+While defining media queries in constants is great and is much easier than rewriting media queries each time, they're still quite verbose since usually you want to change the same property at different break points. [facepaint](https://github.com/emotion-js/facepaint) makes this easier by allowing you to define what each css property should be at each media query as an array.
+```bash
+npm install --save facepaint
+```
+```jsx live
+import { css } from 'emotion'
+import facepaint from 'facepaint'
+
+const breakpoints = [576, 768, 992, 1200]
+
+const mq = facepaint(
+  breakpoints.map(
+    bp => `@media (min-width: ${bp}px)`
+  )
+)
+
+const styles = css(mq({
+  color: ['green', 'gray', 'hotpink']
+}))
+render(<div className={styles}>Some text.</div>)
+```
+
+## Reusable Media Queries with String Styles
 
 [Demo](https://stackblitz.com/edit/react-wudbyn)
 

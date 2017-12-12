@@ -2,39 +2,62 @@
 title: "Nested Selectors"
 ---
 
-Sometimes you will want to nest selectors to target only elements inside the
-current class or React component. Here is an example of a simple element
-selector nested in the class generated with `css`:
+Sometimes it's useful nest selectors to target elements inside the current class or React component. Here is an example of a simple element selector nested in the class generated with `css`:
 
-```jsx
+```jsx live
 import { css } from 'emotion'
 
 const paragraph = css`
-  color: gray;
+  color: turquoise;
 
   a {
     border-bottom: 1px solid currentColor;
   }
 `
+render(
+  <p className={paragraph}>
+    Some text. <a>
+      A link with a bottom border.
+    </a>
+  </p>
+)
+
 ```
 
 You can use `&` to select the current class nested in another element:
 
-```jsx
+```jsx live
+import { css } from 'emotion'
+
 const paragraph = css`
-  color: gray;
+  color: turquoise;
 
   header & {
-    color: black;
+    color: green;
   }
 `
+render(
+  <div>
+    <header>
+      <p className={paragraph}>
+        This is green since it's inside a
+        header
+      </p>
+    </header>
+    <p className={paragraph}>
+      This is turquoise since it's not inside a
+      header.
+    </p>
+  </div>
+)
 ```
 
 To nest a class selector using the class generated with `css` you can
-interpolate it but be aware than emotion merges styles from `css` together when
-composing so that class name may not always be there:
+interpolate it but this is **strongly** recommended against and should only be used in rare circumstances because [composition](docs/composition) merges styles together so the original class name isn't there.
 
-```jsx
+```jsx live
+import { css } from 'emotion'
+
 const link = css`
   color: hotpink;
 `
@@ -46,6 +69,12 @@ const paragraph = css`
     border-bottom: 1px solid currentColor;
   }
 `
+render(
+  <div>
+    <p className={paragraph}>
+      Some text with a
+      <a className={link}> link</a>.
+    </p>
+  </div>
+)
 ```
-
-The result of `css` is a class name _without_ the dot (`.`), so we prepended it.

@@ -7,7 +7,7 @@ import prismStyles from 'react-live/lib/constants/css'
 import Helmet from 'react-helmet'
 import 'normalize.css/normalize.css'
 import DocWrapper from '../components/DocWrapper'
-import { colors, constants, animatedUnderline } from '../utils/style'
+import { colors, constants, animatedUnderline, fonts } from '../utils/style'
 import Image from 'gatsby-image'
 import type { Location, Match } from '../utils/types'
 
@@ -17,21 +17,7 @@ injectGlobal(
 
 injectGlobal`
 html, body, #___gatsby {
-  font-family: -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "Roboto",
-    "Roboto Light",
-    "Oxygen",
-    "Ubuntu",
-    "Cantarell",
-    "Fira Sans",
-    "Droid Sans",
-    "Helvetica Neue",
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol";
+  font-family: ${fonts.primary};
   color: #FFFEFF;
   width: 100%;
   height: 100%;

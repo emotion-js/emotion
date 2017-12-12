@@ -1,6 +1,6 @@
 // @flow
 // https://github.com/Skoli-Code/skoli-app-template/blob/8262fd0f1db12164b627cce8efefc9390a0c63ea/src/components/renderHAST.js
-import React, { createElement } from 'react'
+import * as React from 'react'
 import type { HASTRoot, HASTText, HASTElement } from '../utils/types'
 
 type Props = {
@@ -9,36 +9,17 @@ type Props = {
 }
 
 const RenderHAST = ({ hast, componentMap = {} }: Props) => {
-  const renderTag = (
-    {
-      type,
-      tagName,
-      properties = {},
-      value,
-      children = []
-    }: HASTText | HASTElement,
-    i: number
-  ) => {
-    properties.key = i
-
-    if (type === 'element') {
-      const Tag = componentMap[tagName]
-      if (Tag) {
-        return (
-          <Tag {...properties}>
-            {children.map(renderTag)}
-            {value}
-          </Tag>
-        )
-      } else {
-        return createElement(
-          tagName,
-          properties,
-          (children.length && children.map(renderTag)) || undefined
-        )
-      }
+  const renderTag = (node: HASTText | HASTElement, i: number) => {
+    if (node.type === 'element') {
+      const { tagName, properties, children } = node
+      properties.key = i
+      return React.createElement(
+        componentMap[tagName] || tagName,
+        properties,
+        (children.length && children.map(renderTag)) || undefined
+      )
     } else {
-      return value
+      return node.value
     }
   }
 

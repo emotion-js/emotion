@@ -1,5 +1,7 @@
 // @flow
 import { css } from 'emotion'
+import facepaint from 'facepaint'
+import { util, constants } from 'styled-system'
 
 export const animatedUnderline = css`
   &::after {
@@ -18,11 +20,17 @@ export const animatedUnderline = css`
   }
 `
 
+export const mq = facepaint(constants.breakpoints.map(util.mq))
+
 export const colors = {
   pink: '#D26AC2',
   blue: '#46C9E5',
   yellow: '#FFCA2A',
   dark: '#1D2029'
+}
+
+export const fonts = {
+  primary: `-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif`
 }
 export { default as openColors } from 'open-color'
 export {
