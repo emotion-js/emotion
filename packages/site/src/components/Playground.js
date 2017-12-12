@@ -18,6 +18,7 @@ export const scope = {
       case 'emotion':
         return require('emotion')
       case 'react-emotion':
+      case 'preact-emotion':
         return require('react-emotion')
       case 'emotion-theming':
         return require('emotion-theming')
