@@ -104,7 +104,11 @@ const codeStyles = css(
   mq({
     marginLeft: -30,
     marginRight: -30
-  })
+  }),
+  {
+    fontFamily:
+      'source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace !important'
+  }
 )
 
 const createCode = (logoUrl: string) => (props: *) => {
