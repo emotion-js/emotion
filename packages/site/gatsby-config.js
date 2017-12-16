@@ -1,15 +1,12 @@
-const fs = require('fs')
+const path = require('path')
+const packages = require('./packages')
 
 module.exports = {
   siteMetadata: {
     title: `emotion`
   },
-  plugins: fs
-    .readdirSync(`${__dirname}/..`)
-    .filter(
-      dir => dir !== 'site' && dir !== 'benchmarks' && dir !== 'emotion-utils'
-    )
-    .map(dir => `${__dirname}/../${dir}/README.md`)
+  plugins: packages
+    .map(pkg => path.resolve(`${__dirname}/../${pkg}/README.md`))
     .map(file => ({
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -22,13 +19,6 @@ module.exports = {
         options: {
           name: 'docs',
           path: `${__dirname}/../../docs`
-        }
-      },
-      {
-        resolve: 'gatsby-source-filesystem',
-        options: {
-          name: 'blocks',
-          path: `${__dirname}/src/blocks`
         }
       },
       {

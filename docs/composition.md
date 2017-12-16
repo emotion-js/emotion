@@ -3,6 +3,25 @@ title: "Composition"
 ---
 
 `css` can be used in emotion to build styles that can compose with other styles.
+<!-- This needs to be improved -->
+```jsx live
+const imageBase = css`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+`
+
+const Avatar = styled('img')`
+  ${imageBase};
+
+  @media (min-width: 420px) {
+    width: 96px;
+    height: 96px;
+  }
+`
+
+render(<Avatar src={logoUrl} />)
+```
 
 ```javascript
 import { css } from 'emotion'

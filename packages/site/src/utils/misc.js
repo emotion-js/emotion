@@ -22,4 +22,9 @@ export const docList: Array<{
   title: string,
   items: Array<string>
   // $FlowFixMe
-}> = require('../../../../docs/index.yaml')
+}> = require('../../../../docs/docs.yaml')
+
+export const packageList: Array<
+  string
+  // $FlowFixMe
+> = require('../../../../docs/packages.yaml')

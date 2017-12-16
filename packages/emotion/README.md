@@ -1,3 +1,7 @@
+# emotion
+
+> The Next Generation of CSS-in-JS
+
 <p align="center" style="color: #343a40">
   <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" height="200" width="200">
   <h1 align="center">emotion</h1>

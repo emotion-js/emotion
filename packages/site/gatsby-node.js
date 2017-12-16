@@ -1,9 +1,9 @@
 const path = require('path')
 const { promisify } = require('util')
 const fs = require('fs')
-const crypto = require(`crypto`)
 const yaml = require('js-yaml')
-const yamlPath = path.resolve(__dirname, '../../docs/index.yaml')
+const yamlPath = path.resolve(__dirname, '../../docs/docs.yaml')
+const packages = require('./packages')
 const readFile = promisify(fs.readFile)
 
 global.Babel = require('babel-standalone')
@@ -27,7 +27,7 @@ exports.modifyWebpackConfig = ({ config }) => {
 exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
-  const blogPostTemplate = require.resolve(`./src/templates/doc.js`)
+  const docTemplate = require.resolve(`./src/templates/doc.js`)
   const [result, yamlContents] = await Promise.all([
     graphql(
       `
@@ -66,9 +66,19 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
     }
     createPage({
       path: `docs/${edge.node.fields.slug}`,
-      component: blogPostTemplate,
+      component: docTemplate,
       context: {
         slug: edge.node.fields.slug
+      }
+    })
+  })
+  const packageTemplate = require.resolve('./src/templates/packages')
+  packages.forEach(pkgName => {
+    createPage({
+      path: `packages/${pkgName}`,
+      component: packageTemplate,
+      context: {
+        slug: pkgName
       }
     })
   })
@@ -81,44 +91,23 @@ exports.onCreateNode = async ({
   getNode,
   loadNodeContent
 }) => {
-  const {
-    createNodeField,
-    createNode,
-    createParentChildLink
-  } = boundActionCreators
+  const { createNodeField } = boundActionCreators
 
   if (
     node.internal.type === `MarkdownRemark` &&
     typeof node.slug === `undefined`
   ) {
     const fileNode = getNode(node.parent)
+
+    const splitAbsolutePath = fileNode.absolutePath.split(path.sep)
     createNodeField({
       node,
       name: `slug`,
-      value: fileNode.name
+      value:
+        fileNode.name === 'README'
+          ? splitAbsolutePath[splitAbsolutePath.length - 2]
+          : fileNode.name
     })
-  } else if (node.internal.type === 'File' && node.extension === 'example') {
-    const content = await loadNodeContent(node)
-
-    const contentDigest = crypto
-      .createHash(`md5`)
-      .update(JSON.stringify(content))
-      .digest(`hex`)
-
-    const codeExampleNode = {
-      id: `${node.id} >>> CodeExample`,
-      children: [],
-      parent: node.id,
-      content,
-      name: node.name,
-      internal: {
-        content,
-        contentDigest,
-        type: `CodeExample`
-      }
-    }
-    createNode(codeExampleNode)
-    createParentChildLink({ parent: node, child: codeExampleNode })
   }
 }
 
@@ -126,12 +115,14 @@ exports.onCreateNode = async ({
 
 const parse = require('remark-parse')
 const unified = require('unified')
+const { GraphQLString } = require('graphql')
 const GraphQLJSON = require('graphql-type-json')
 const frontmatter = require('remark-frontmatter')
 const customElementCompiler = require('@dumpster/remark-custom-element-to-hast')
 const visit = require(`unist-util-visit`)
 const toString = require(`mdast-util-to-string`)
 const slugs = require(`github-slugger`)()
+const remark = require('remark')
 
 const ATTRIBUTE_TO_JSX = {
   'accept-charset': 'acceptCharset',
@@ -185,6 +176,18 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
     return {}
   }
   return {
+    tagline: {
+      type: GraphQLString,
+      resolve(node) {
+        return new Promise(resolve => {
+          remark()
+            .use(() => markdownAST => {
+              resolve(markdownAST.children[1].children[0].children[0].value)
+            })
+            .processSync(node.internal.content)
+        })
+      }
+    },
     hast: {
       type: GraphQLJSON,
       resolve(node) {
@@ -192,6 +195,9 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
           .use(parse)
           .use(frontmatter, ['yaml'])
           .use(() => markdownAST => {
+            // if (node.fields.slug === 'README') {
+            //   console.log(markdownAST)
+            // }
             visit(markdownAST, 'code', node => {
               if (node.lang === 'jsx live') {
                 node.lang = 'jsx-live'
@@ -238,6 +244,11 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
             }
           }
         })
+        if (packages.indexOf(node.fields.slug) !== -1) {
+          hast.children.shift()
+          hast.children.shift()
+          hast.children.shift()
+        }
         return hast
       }
     }

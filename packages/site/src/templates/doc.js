@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import { cx, css } from 'react-emotion'
-import { constants, mq } from '../utils/style'
+import { mq } from '../utils/style'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
@@ -19,9 +19,6 @@ type Props = {
       frontmatter: {
         title: string
       }
-    },
-    allCodeExample: {
-      edges: Array<{ node: { content: string } }>
     },
     avatar: {
       childImageSharp: {
@@ -145,7 +142,7 @@ const createCode = (logoUrl: string) => (props: *) => {
 export default class DocRoute extends React.Component<Props> {
   render() {
     const { data } = this.props
-    const { doc, allCodeExample, avatar } = data
+    const { doc, avatar } = data
     return (
       <Box>
         <Title>{doc.frontmatter.title}</Title>
@@ -158,14 +155,6 @@ export default class DocRoute extends React.Component<Props> {
             Edit this page
           </markdownComponents.a>
         </Box>
-        {allCodeExample && (
-          <Box mb={constants.space[3]}>
-            <Playground
-              logoUrl={avatar.childImageSharp.resolutions.src}
-              code={allCodeExample.edges[0].node.content}
-            />
-          </Box>
-        )}
         <RenderHAST
           hast={doc.hast}
           componentMap={{
@@ -190,13 +179,6 @@ export const pageQuery = graphql`
       hast
       frontmatter {
         title
-      }
-    }
-    allCodeExample(filter: { name: { eq: $slug } }) {
-      edges {
-        node {
-          content
-        }
       }
     }
     avatar: file(name: { eq: "emotion" }) {

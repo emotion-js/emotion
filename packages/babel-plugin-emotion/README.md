@@ -1,24 +1,26 @@
 # babel-plugin-emotion
 
-> Babel plugin for the minification and optimization of [emotion](https://github.com/emotion-js/emotion) styles.
+> Babel plugin for the minification and optimization of emotion styles.
 
-The Babel Plugin is highly recommended, but not required in version 8 and above.
+`babel-plugin-emotion` is highly recommended, but not required in version 8 and
+above of `emotion`.
 
-## Feature table
+## Features
 
-| Feature/Syntax           | Native | Babel Plugin Required | Notes                                                                                                                                        |
-|--------------------------|:------:|:---------------------:|----------------------------------------------------------------------------------------------------------------------------------------------|
-| css``               |    ✅   |                       |                                                                                                                                              |
-| `css(...)`               |    ✅   |                       | Generally used for object styles.                                                                                                            |
-| styled('div')`` syntax |    ✅   |                       | Both string and object styles work without this plugin.                                                                                      |
-| styled.div`` syntax    |        |           ✅           | Supporting the shortcut syntax without the Babel plugin requires a large list of valid elements to be included in the bundle.                |
-| components as selectors    |        |           ✅           | Allows an emotion component to be [used as a CSS selector](https://github.com/emotion-js/emotion/blob/master/docs/styled.md#targeting-another-emotion-component).                |
-| Minification             |        |           ✅           | Any leading/trailing space between properties in your `css` and `styled` blocks is removed. This can reduce the size of your final bundle.   |
-| Dead Code Elimination    |        |           ✅           | Uglifyjs will use the injected `/*#__PURE__*/` flag comments to mark your `css` and `styled` blocks as candidates for dead code elimination. |
-| Static Extraction        |        |           ✅           | Generated CSS that is eligible for extraction can be moved to an external css file.                                                          |
-| Source Maps              |        |           ✅           | When enabled, navigate directly to the style declaration in your javascript file.                                                            |
-| `css` as Prop            |        |           ✅           | Convenient helper for calling `css` and appending the generated className during compile time.                                               |
-| Contextual Class Names   |        |           ✅           | Generated class names include the name of the variable or component they were defined in.
+| Feature/Syntax                                                                                                                                             | Native | Babel Plugin Required | Notes                                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | :----: | :-------------------: | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| css`` | ✅                                                                                                                                                 |
+| `css(...)`                                                                                                                                                 |   ✅   |                       | Generally used for object styles.                                                                                                            |
+| styled('div')`` syntax | ✅ | | Both string and object styles work without this plugin.                                                                    |
+| styled.div`` syntax | | ✅ | Supporting the shortcut syntax without the Babel plugin requires a large list of valid elements to be included in the bundle. |
+| components as selectors                                                                                                                                    |        |          ✅           | Allows an emotion component to be [used as a CSS selector](https://emotion.sh/docs/styled#targeting-another-emotion-component).              |
+| Minification                                                                                                                                               |        |          ✅           | Any leading/trailing space between properties in your `css` and `styled` blocks is removed. This can reduce the size of your final bundle.   |
+| Dead Code Elimination                                                                                                                                      |        |          ✅           | Uglifyjs will use the injected `/*#__PURE__*/` flag comments to mark your `css` and `styled` blocks as candidates for dead code elimination. |
+| Static Extraction                                                                                                                                          |        |          ✅           | Generated CSS that is eligible for extraction can be moved to an external css file.                                                          |
+| Source Maps                                                                                                                                                |        |          ✅           | When enabled, navigate directly to the style declaration in your javascript file.                                                            |
+| `css` as Prop                                                                                                                                              |        |          ✅           | Convenient helper for calling `css` and appending the generated className during compile time.                                               |
+| Contextual Class Names                                                                                                                                     |        |          ✅           | Generated class names include the name of the variable or component they were defined in.                                                    |
+
 ## Example
 
 **In**
@@ -26,20 +28,23 @@ The Babel Plugin is highly recommended, but not required in version 8 and above.
 ```javascript
 const myStyles = css`
   font-size: 20px;
-  @media(min-width: 420px) {
+  @media (min-width: 420px) {
     color: blue;
-    ${css`width: 96px; height: 96px;`};
+    ${css`
+      width: 96px;
+      height: 96px;
+    `};
     line-height: 26px;
   }
   background: green;
-  ${{ backgroundColor: "hotpink" }};
+  ${{ backgroundColor: 'hotpink' }};
 `
 ```
 
 **Out**
 
 ```javascript
-const myStyles = /* #__PURE__ */css(
+const myStyles = /* #__PURE__ */ css(
   'font-size:20px;@media(min-width:420px){color:blue;',
   /* #__PURE__ */ css('width:96px;height:96px;'),
   ';line-height:26px;}background:green;',
@@ -50,7 +55,7 @@ const myStyles = /* #__PURE__ */css(
 
 ## Installation
 
-```sh
+```bash
 npm install --save-dev babel-plugin-emotion
 ```
 
@@ -70,25 +75,28 @@ Without options:
 
 With options:
 
-*Defaults Shown*
+_Defaults Shown_
 
 ```json
 {
   "plugins": [
-    ["emotion", {
-      "hoist": false,
-      "sourceMap": false,
-      "autoLabel": false,
-      "extractStatic": false,
-      "importedNames": {
-        "styled": "styled",
-        "css": "css",
-        "keyframes": "keyframes",
-        "injectGlobal": "injectGlobal",
-        "fontFace": "fontFace",
-        "merge": "merge"
+    [
+      "emotion",
+      {
+        "hoist": false,
+        "sourceMap": false,
+        "autoLabel": false,
+        "extractStatic": false,
+        "importedNames": {
+          "styled": "styled",
+          "css": "css",
+          "keyframes": "keyframes",
+          "injectGlobal": "injectGlobal",
+          "fontFace": "fontFace",
+          "merge": "merge"
+        }
       }
-    }]
+    ]
   ]
 }
 ```
@@ -98,14 +106,19 @@ Recommended Setup
 Use [Babel's `env` property](https://babeljs.io/docs/usage/babelrc/#env-option)
 
 **.babelrc**
+
 ```json
 {
   "env": {
     "production": {
-      "plugins": [["emotion", { "sourceMap": false, "hoist": true, "autoLabel": true }]]
+      "plugins": [
+        ["emotion", { "sourceMap": false, "hoist": true, "autoLabel": true }]
+      ]
     },
     "development": {
-      "plugins": [["emotion", { "sourceMap": true, "hoist": false, "autoLabel": true  }]]
+      "plugins": [
+        ["emotion", { "sourceMap": true, "hoist": false, "autoLabel": true }]
+      ]
     }
   }
 }
@@ -120,9 +133,9 @@ babel --plugins babel-plugin-emotion script.js
 ### Via Node API
 
 ```javascript
-require("@babel/core").transform("code", {
-  plugins: ["babel-plugin-emotion"]
-});
+require('@babel/core').transform('code', {
+  plugins: ['babel-plugin-emotion']
+})
 ```
 
 ## Options
@@ -133,25 +146,27 @@ require("@babel/core").transform("code", {
 
 This option enables the following:
 
- - Any argument supplied to `css` or `styled` is hoisted.
+* Any argument supplied to `css` or `styled` is hoisted.
 
-By hoisting the argument, or assigning the value to a variable,
-emotion is able to leverage the use of a [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
-[cache](https://github.com/emotion-js/emotion/blob/6257f0c9cb00db9cbd08a9d6995f335730808329/packages/emotion/src/index.js#L85-L116) to increase performance. Users of object styles will benefit the most from enabling this option.
+By hoisting the argument, or assigning the value to a variable, emotion is able
+to leverage the use of a
+[WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
+[cache](https://github.com/emotion-js/emotion/blob/6257f0c9cb00db9cbd08a9d6995f335730808329/packages/emotion/src/index.js#L85-L116)
+to increase performance. Users of object styles will benefit the most from
+enabling this option.
 
 **In**
 
 ```javascript
-css({ color: 'brown' });
+css({ color: 'brown' })
 ```
 
 **Out**
 
 ```javascript
-var _ref = { color: 'brown' };
-css(_ref);
+var _ref = { color: 'brown' }
+css(_ref)
 ```
-
 
 ### `sourceMap`
 
@@ -159,9 +174,9 @@ css(_ref);
 
 This option enables the following:
 
- - Injected source maps for use in browser dev tools
+* Injected source maps for use in browser dev tools
 
-[**Documentation**](docs/source-maps.md)
+[**Documentation**](https://emotion.sh/docs/source-maps.md)
 
 ### `autoLabel`
 
@@ -169,20 +184,22 @@ This option enables the following:
 
 This option enables the following:
 
- - Automatically adds the `label` property to styles so that class names generated by `css` or `styled` include the name of the variable the result is assigned to.
+* Automatically adds the `label` property to styles so that class names
+  generated by `css` or `styled` include the name of the variable the result is
+  assigned to.
 
 #### css
 
 **In**
 
 ```javascript
-const brownStyles = css({ color: 'brown' });
+const brownStyles = css({ color: 'brown' })
 ```
 
 **Out**
 
 ```javascript
-const brownStyles = /*#__PURE__*/css({ color: 'blue' }, "label:brownStyles;");
+const brownStyles = /*#__PURE__*/ css({ color: 'blue' }, 'label:brownStyles;')
 ```
 
 `brownStyles`'s value would be `css-1q8eu9e-brownStyles`
@@ -209,7 +226,7 @@ const Profile = () => {
 
 ```javascript
 const Profile = () => {
-  const H1 = /*#__PURE__*/styled('h1', {
+  const H1 = /*#__PURE__*/ styled('h1', {
     label: 'H1'
   })({
     borderRadius: '50%',
@@ -219,12 +236,11 @@ const Profile = () => {
     ':hover': {
       transform: 'scale(1.2)'
     }
-  });
-};
+  })
+}
 ```
 
 `H1`'s class name attribute would be `css-13djram-H1`
-
 
 ### `extractStatic`
 
@@ -232,12 +248,11 @@ const Profile = () => {
 
 This option enables the following:
 
- - Extract static styles into CSS files.
+* Extract static styles into CSS files.
 
-[**Documentation**](docs/extract-static.md)
+[**Documentation**](https://emotion.sh/docs/extract-static)
 
 ### `importedNames`
-
 
 `object`, defaults to
 
@@ -254,33 +269,39 @@ This option enables the following:
 
 This option enables the following:
 
- - Configurable import names
+* Configurable import names
 
-[**Documentation**](docs/configurable-imports.md)
-
+[**Documentation**](https://emotion.sh/docs/configurable-imports)
 
 ### `instances`
 
+`Array<string>`, defaults to
 
-`Array<string>`, defaults to 
+```jsx
+;['emotion', 'react-emotion', 'preact-emotion']
+```
 
-`['emotion', 'react-emotion', 'preact-emotion']`
+This option allows `babel-plugin-emotion` to know which imports to treat as
+emotion imports and transform as such. This option is **only** required if you
+use a custom instance of emotion created with `create-emotion` or you're
+importing emotion from somewhere other than the paths above. Relative paths are
+resolved relative to `process.cwd()`(the current working directory).
 
-
-This option allows `babel-plugin-emotion` to know which imports to treat as emotion imports and transform as such. This option is **only** required if you use a custom instance of emotion created with `create-emotion` or you're importing emotion from somewhere other than the paths above. Relative paths are resolved relative to `process.cwd()`(the current working directory).
-
-[**Documentation**](docs/instances.md)
+[**Documentation**](https://emotion.sh/docs/instances)
 
 ### `primaryInstance`
 
+`string`, defaults to
 
-`string`, defaults to 
+```jsx
+'emotion'
+```
 
-`'emotion'`
+This option allows `babel-plugin-emotion` to know where to import emotion from
+when it needs to import emotion. Currently this is only used for the css prop to
+import `css` and `merge` but it could be used for other purposes in the future
+so it's recommend to make sure that this instance exports everything returned
+from `createEmotion`,
+[an up-to-date example of this can be found in the emotion package's source](https://github.com/emotion-js/emotion/blob/master/packages/emotion/src/index.js).
 
-
-This option allows `babel-plugin-emotion` to know where to import emotion from when it needs to import emotion. Currently this is only used for the css prop to import `css` and `merge` but it could be used for other purposes in the future so it's recommend to make sure that this instance exports everything returned from `createEmotion`, [an up-to-date example of this can be seen in the emotion package's source](https://github.com/emotion-js/emotion/blob/master/packages/emotion/src/index.js).
-
-[**Documentation**](docs/instances.md)
-
-
+[**Documentation**](https://emotion.sh/docs/instances)

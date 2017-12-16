@@ -1,7 +1,7 @@
 {
   "name": "emotion-server",
   "version": "8.0.12",
-  "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
+  "description": "Extract and inline critical css with emotion.",
   "main": "lib/index.js",
   "files": [
     "src",
