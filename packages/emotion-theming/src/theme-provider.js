@@ -1,7 +1,7 @@
 // adapted from styled-components' ThemeProvider
 // https://github.com/styled-components/styled-components/blob/4503cab5b86aa9ef8314c5baa360a2fbb4812485/src/models/ThemeProvider.js
 
-import React, { Component } from 'react'
+import { Component } from 'react'
 import createBroadcast from './create-broadcast'
 import { channel, contextTypes } from './utils'
 
@@ -84,10 +84,17 @@ class ThemeProvider extends Component {
   }
 
   render() {
-    if (!this.props.children) {
-      return null
+    const children = Array.prototype.concat(this.props.children)
+
+    if (children.length > 1) {
+      if (process.env.NODE_ENV !== 'production') {
+        throw new Error(
+          '[ThemeProvider] ThemeProvider only accepts a single child'
+        )
+      }
     }
-    return React.Children.only(this.props.children)
+
+    return children[0] || null
   }
 }
 

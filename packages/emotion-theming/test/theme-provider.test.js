@@ -39,6 +39,30 @@ test(`ThemeProvider should unsubscribe on unmounting`, () => {
   expect(unsubscribe).toHaveBeenCalled()
 })
 
+test(`ThemeProvider should only accept a single child`, () => {
+  const theme = { themed: true }
+  const broadcast = createBroadcast(theme)
+
+  expect(() =>
+    mount(
+      <ThemeProvider theme={theme}>
+        <div>foo</div>
+      </ThemeProvider>,
+      mountOptions(broadcast)
+    )
+  ).not.toThrowError()
+
+  expect(() =>
+    mount(
+      <ThemeProvider theme={theme}>
+        <div>foo</div>
+        <div>bar</div>
+      </ThemeProvider>,
+      mountOptions(broadcast)
+    )
+  ).toThrowError()
+})
+
 test(`ThemeProvider should throw if theme is not a plain object`, () => {
   jest.spyOn(console, 'error').mockImplementation(() => {})
 
