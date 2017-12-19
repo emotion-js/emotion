@@ -14,7 +14,6 @@ function createSerializer(
   emotion: Emotion,
   { classNameReplacer }: Options = {}
 ) {
-  const styleSheet = emotion.sheet
   function test(val: *) {
     return (
       val && !val.withStyles && val.$$typeof === Symbol.for('react.test.json')
@@ -89,11 +88,14 @@ function createSerializer(
   }
 
   function getStyles(nodeSelectors) {
-    const tags =
-      typeof styleSheet === 'function' ? styleSheet().tags : styleSheet.tags
-    const styles = tags
-      .map(tag => /* istanbul ignore next */ tag.textContent || '')
-      .join('\n')
+    const styles = Object.keys(
+      emotion.caches.inserted
+    ).reduce((style, current) => {
+      if (emotion.caches.inserted[current] === true) {
+        return style
+      }
+      return style + emotion.caches.inserted[current]
+    }, '')
     const ast = css.parse(styles)
     const rules = ast.stylesheet.rules.filter(filter)
     const mediaQueries = getMediaQueries(ast, filter)
