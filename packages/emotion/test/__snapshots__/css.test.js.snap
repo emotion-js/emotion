@@ -534,6 +534,22 @@ exports[`css return function in interpolation 1`] = `
 />
 `;
 
+exports[`css rule after media query 1`] = `
+@media (min-width:600px) {
+  .glamor-0 {
+    color: green;
+  }
+}
+
+.glamor-0:hover {
+  color: hotpink;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
 exports[`css simple composition 1`] = `
 .glamor-0 {
   display: -webkit-box;
