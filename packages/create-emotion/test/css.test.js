@@ -1,10 +1,13 @@
 // @flow
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-glamor-react'
+import serializer from 'jest-emotion-react'
+// eslint-disable-next-line import/no-duplicates
 import { css as differentCss, flush, sheet } from './emotion-instance'
+// eslint-disable-next-line import/no-duplicates
+import * as emotion from './emotion-instance'
 
-expect.addSnapshotSerializer(serializer(sheet))
+expect.addSnapshotSerializer(serializer(emotion))
 
 describe('css', () => {
   test('float property', () => {
