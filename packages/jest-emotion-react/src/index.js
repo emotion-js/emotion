@@ -96,11 +96,16 @@ function createSerializer(
       }
       return style + emotion.caches.inserted[current]
     }, '')
-    const ast = css.parse(styles)
-    const rules = ast.stylesheet.rules.filter(filter)
-    const mediaQueries = getMediaQueries(ast, filter)
-
-    ast.stylesheet.rules = [...rules, ...mediaQueries]
+    let ast
+    try {
+      ast = css.parse(styles)
+    } catch (e) {
+      console.error(e)
+      throw new Error(
+        `There was an error parsing css in jest-emotion-react: "${styles}"`
+      )
+    }
+    ast.stylesheet.rules = ast.stylesheet.rules.reduce(reduceRules, [])
 
     const ret = css.stringify(ast)
     return ret
