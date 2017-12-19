@@ -10,10 +10,52 @@ type Options = {
   classNameReplacer: ClassNameReplacer
 }
 
+function getNodes(node, nodes = []) {
+  if (node.children) {
+    node.children.forEach(child => getNodes(child, nodes))
+  }
+
+  if (typeof node === 'object') {
+    nodes.push(node)
+  }
+
+  return nodes
+}
+
+function markNodes(nodes) {
+  nodes.forEach(node => {
+    node.withStyles = true
+  })
+}
+
+function getSelectors(nodes) {
+  return nodes.reduce(
+    (selectors, node) => getSelectorsFromProps(selectors, node.props),
+    []
+  )
+}
+
+function getSelectorsFromProps(selectors, props) {
+  const className = props.className || props.class
+  if (className) {
+    selectors = selectors.concat(className.split(' ').map(cn => `.${cn}`))
+  }
+  return selectors
+}
+
+function filterChildSelector(baseSelector) {
+  if (baseSelector.slice(-1) === '>') {
+    return baseSelector.slice(0, -1)
+  }
+  return baseSelector
+}
+
 function createSerializer(
   emotion: Emotion,
   { classNameReplacer }: Options = {}
 ) {
+  // in case we add a key option
+  const key = 'css'
   function test(val: *) {
     return (
       val && !val.withStyles && val.$$typeof === Symbol.for('react.test.json')
@@ -27,64 +69,16 @@ function createSerializer(
     const styles = getStyles(selectors)
     const printedVal = printer(val)
     if (styles) {
-      return replaceClassNames(selectors, styles, printedVal, classNameReplacer)
+      return replaceClassNames(
+        selectors,
+        styles,
+        printedVal,
+        key,
+        classNameReplacer
+      )
     } else {
       return printedVal
     }
-  }
-
-  function getNodes(node, nodes = []) {
-    if (node.children) {
-      node.children.forEach(child => getNodes(child, nodes))
-    }
-
-    if (typeof node === 'object') {
-      nodes.push(node)
-    }
-
-    return nodes
-  }
-
-  function markNodes(nodes) {
-    nodes.forEach(node => {
-      node.withStyles = true
-    })
-  }
-
-  function getSelectors(nodes) {
-    return nodes.reduce(
-      (selectors, node) => getSelectorsFromProps(selectors, node.props),
-      []
-    )
-  }
-
-  function getSelectorsFromProps(selectors, props) {
-    const className = props.className || props.class
-    if (className) {
-      selectors = selectors.concat(
-        className
-          .toString()
-          .split(' ')
-          .map(cn => `.${cn}`)
-      )
-    }
-    const dataProps = Object.keys(props).reduce((dProps, key) => {
-      if (key.startsWith('data-')) {
-        dProps.push(`[${key}]`)
-      }
-      return dProps
-    }, [])
-    if (dataProps.length) {
-      selectors = selectors.concat(dataProps)
-    }
-    return selectors
-  }
-
-  function filterChildSelector(baseSelector) {
-    if (baseSelector.slice(-1) === '>') {
-      return baseSelector.slice(0, -1)
-    }
-    return baseSelector
   }
 
   function getStyles(nodeSelectors) {
@@ -110,9 +104,10 @@ function createSerializer(
     const ret = css.stringify(ast)
     return ret
 
-    function filter(rule) {
+    function reduceRules(rules, rule) {
+      let shouldIncludeRule = false
       if (rule.type === 'rule') {
-        return rule.selectors.some(selector => {
+        shouldIncludeRule = rule.selectors.some(selector => {
           const baseSelector = filterChildSelector(
             selector.split(/:| |\./).filter(s => !!s)[0]
           )
@@ -121,27 +116,18 @@ function createSerializer(
           )
         })
       }
-      return false
+      if (rule.type === 'media' || rule.type === 'supports') {
+        rule.rules = rule.rules.reduce(reduceRules, [])
+
+        if (rule.rules.length) {
+          shouldIncludeRule = true
+        }
+      }
+      return shouldIncludeRule ? rules.concat(rule) : rules
     }
   }
 
-  function getMediaQueries(ast, filter) {
-    return ast.stylesheet.rules
-      .filter(rule => rule.type === 'media' || rule.type === 'supports')
-      .reduce((acc, mediaQuery) => {
-        mediaQuery.rules = mediaQuery.rules.filter(filter)
-
-        if (mediaQuery.rules.length) {
-          return acc.concat(mediaQuery)
-        }
-
-        return acc
-      }, [])
-  }
   return { test, print }
 }
-
-// doing this to make it easier for users to mock things
-// like switching between development mode and whatnot.
 
 module.exports = createSerializer

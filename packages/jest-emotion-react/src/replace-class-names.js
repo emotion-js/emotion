@@ -1,5 +1,6 @@
 // @flow
 function defaultClassNameReplacer(className, index) {
+  // Change this to emotion before merging
   return `glamor-${index}`
 }
 
@@ -9,6 +10,7 @@ export const replaceClassNames = (
   selectors: Array<string>,
   styles: string,
   code: string,
+  key: string,
   replacer: ClassNameReplacer = defaultClassNameReplacer
 ) => {
   let index = 0
