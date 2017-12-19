@@ -15,7 +15,7 @@ export const replaceClassNames = (
 ) => {
   let index = 0
   return selectors.reduce((acc, className) => {
-    if (className.indexOf('.css-') === 0) {
+    if (className.indexOf(`.${key}-`) === 0) {
       const escapedRegex = new RegExp(
         className.replace('.', '').replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'),
         'g'
@@ -23,5 +23,5 @@ export const replaceClassNames = (
       return acc.replace(escapedRegex, replacer(className, index++))
     }
     return acc
-  }, `${styles}\n\n${code}`)
+  }, `${styles}${styles ? '\n\n' : ''}${code}`)
 }

@@ -175,7 +175,7 @@ exports[`css explicit & 2`] = `
 
 exports[`css explicit false 1`] = `
 <div
-  className="css-0"
+  className="glamor-0"
 />
 `;
 
@@ -227,7 +227,7 @@ exports[`css flushes correctly 1`] = `
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-k008qs"
+  className="glamor-0"
 />
 `;
 
@@ -461,19 +461,19 @@ exports[`css nested selector without parent declaration 1`] = `
 
 exports[`css null rule 1`] = `
 <div
-  className="css-0"
+  className="glamor-0"
 />
 `;
 
 exports[`css null value 1`] = `
 <div
-  className="css-0"
+  className="glamor-0"
 />
 `;
 
 exports[`css null value 2`] = `
 <div
-  className="css-1xdhyk6"
+  className="glamor-0"
 />
 `;
 

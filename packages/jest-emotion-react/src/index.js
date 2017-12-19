@@ -22,12 +22,6 @@ function getNodes(node, nodes = []) {
   return nodes
 }
 
-function markNodes(nodes) {
-  nodes.forEach(node => {
-    node.withStyles = true
-  })
-}
-
 function getSelectors(nodes) {
   return nodes.reduce(
     (selectors, node) => getSelectorsFromProps(selectors, node.props),
@@ -50,6 +44,15 @@ function filterChildSelector(baseSelector) {
   return baseSelector
 }
 
+function getEmotionStyles(emotion: Emotion) {
+  return Object.keys(emotion.caches.inserted).reduce((style, current) => {
+    if (emotion.caches.inserted[current] === true) {
+      return style
+    }
+    return style + emotion.caches.inserted[current]
+  }, '')
+}
+
 function createSerializer(
   emotion: Emotion,
   { classNameReplacer }: Options = {}
@@ -58,7 +61,9 @@ function createSerializer(
   const key = 'css'
   function test(val: *) {
     return (
-      val && !val.withStyles && val.$$typeof === Symbol.for('react.test.json')
+      val &&
+      !val.withEmotionStyles &&
+      val.$$typeof === Symbol.for('react.test.json')
     )
   }
 
@@ -68,28 +73,23 @@ function createSerializer(
     const selectors = getSelectors(nodes)
     const styles = getStyles(selectors)
     const printedVal = printer(val)
-    if (styles) {
-      return replaceClassNames(
-        selectors,
-        styles,
-        printedVal,
-        key,
-        classNameReplacer
-      )
-    } else {
-      return printedVal
-    }
+    return replaceClassNames(
+      selectors,
+      styles,
+      printedVal,
+      key,
+      classNameReplacer
+    )
+  }
+
+  function markNodes(nodes) {
+    nodes.forEach(node => {
+      node.withEmotionStyles = true
+    })
   }
 
   function getStyles(nodeSelectors) {
-    const styles = Object.keys(
-      emotion.caches.inserted
-    ).reduce((style, current) => {
-      if (emotion.caches.inserted[current] === true) {
-        return style
-      }
-      return style + emotion.caches.inserted[current]
-    }, '')
+    const styles = getEmotionStyles(emotion)
     let ast
     try {
       ast = css.parse(styles)
