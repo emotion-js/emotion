@@ -1,19 +1,27 @@
+// @flow
 // adapted from styled-components' ThemeProvider
 // https://github.com/styled-components/styled-components/blob/4503cab5b86aa9ef8314c5baa360a2fbb4812485/src/models/ThemeProvider.js
 
 import React, { Component } from 'react'
 import createBroadcast from './create-broadcast'
-import { channel, contextTypes } from './utils'
+import { channel, contextTypes, type Theme } from './utils'
 
 const isPlainObject = test =>
   Object.prototype.toString.call(test) === '[object Object]'
 
-class ThemeProvider extends Component {
+type Props = {
+  theme: Theme
+}
+
+class ThemeProvider extends Component<Props> {
   constructor() {
     super()
+    // $FlowFixMe
     this.getTheme = this.getTheme.bind(this)
   }
-
+  outerTheme: Object
+  broadcast: *
+  unsubscribeToOuterId: number
   componentWillMount() {
     // If there is a ThemeProvider wrapper anywhere around this theme provider, merge this theme
     // with the outer theme
@@ -34,7 +42,7 @@ class ThemeProvider extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (this.props.theme !== nextProps.theme) {
       this.broadcast.publish(this.getTheme(nextProps.theme))
     }
@@ -48,7 +56,7 @@ class ThemeProvider extends Component {
   }
 
   // Get the theme from the props, supporting both (outerTheme) => {} as well as object notation
-  getTheme(theme) {
+  getTheme(theme: Theme) {
     if (typeof theme === 'function') {
       const mergedTheme = theme(this.outerTheme)
       if (!isPlainObject(mergedTheme)) {
