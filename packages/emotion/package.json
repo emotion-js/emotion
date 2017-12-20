@@ -16,8 +16,7 @@
     "test:typescript": "dtslint types",
     "clean": "rimraf dist",
     "rollup": "rollup -c ../../rollup.config.js",
-    "watch": "rollup -c ../../rollup.config.js --watch",
-    "rollup:umd": "cross-env UMD=true rollup -c ../../rollup.config.js"
+    "watch": "rollup -c ../../rollup.config.js --watch"
   },
   "dependencies": {
     "babel-plugin-emotion": "^8.0.12",

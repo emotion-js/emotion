@@ -4,7 +4,7 @@
   "scripts": {
     "build:watch": "npm run build -- -w",
     "build": "lerna run build --parallel",
-    "test:size": "npm-run-all clean rollup:umd size",
+    "test:size": "npm-run-all clean rollup size",
     "clean": "lerna run clean --parallel",
     "test": "npm-run-all -p lint:check coverage test:size test:typescript flow && npm run test:prod && npm run benchmark",
     "test:typescript": "lerna run test:typescript --parallel",
@@ -13,7 +13,6 @@
     "lint:check": "eslint .",
     "test:watch": "jest --watch --no-cache",
     "rollup": "lerna run rollup --parallel",
-    "rollup:umd": "lerna run rollup:umd --parallel",
     "size": "bundlesize",
     "release": "npm run test && npm run build && lerna publish && git push --tags",
     "lint": "eslint . --fix",
