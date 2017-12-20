@@ -18,7 +18,11 @@
   "dependencies": {
     "emotion-utils": "^8.0.11"
   },
+  "peerDependencies": {
+    "prop-types": ">= 15"
+  },
   "devDependencies": {
+    "prop-types": "^15.6.0",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.51.3"
