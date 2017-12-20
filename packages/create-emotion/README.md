@@ -7,10 +7,7 @@
 ```jsx
 import createEmotion from 'create-emotion'
 
-const context =
-  typeof global !== 'undefined'
-    ? global
-    : typeof window !== 'undefined' ? window : {}
+const context = typeof global !== 'undefined' ? global : {}
 
 export const {
   flush,
@@ -30,17 +27,15 @@ export const {
 
 ## Context
 
-`emotion` requires a global object to store caches on to ensure that even if multiple instances (as in the same code is run multiple times, not multiple explicit emotion instances) they will all use the same caches so that SSR, composition and etc. will work. If there will only be a single instance of emotion in the app `global` or `window` should be the `context`, if there are going to be multiple instances of emotion you must use an object on a global such as `global` or `window`.
+`emotion` requires a global object for server-side rendering to ensure that even if a module is calling an emotion instance from two paths(e.g. the same emotion instance in multiple node_modules, this can happen often with linking [#349](https://github.com/emotion-js/emotion/issues/349)) they'll still both work with SSR. If you aren't using SSR, `context` can be an empty object. This isn't required in the browser because your bundler should deduplicate modules.
+
 <details>
 <summary>Example instance if there must be multiple instances in a single app</summary>
 
 ```jsx
 import createEmotion from 'create-emotion'
 
-const context =
-  typeof global !== 'undefined'
-    ? global
-    : typeof window !== 'undefined' ? window : {}
+const context = typeof global !== 'undefined' ? global : {}
 
 if (context.__MY_EMOTION_INSTANCE__ === undefined) {
   context.__MY_EMOTION_INSTANCE__ = {}
@@ -58,7 +53,6 @@ export const {
   sheet,
   caches
 } = createEmotion(context.__MY_EMOTION_INSTANCE__)
-
 ```
 </details>
 
