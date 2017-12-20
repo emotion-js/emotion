@@ -2,7 +2,7 @@
 // adapted from styled-components' ThemeProvider
 // https://github.com/styled-components/styled-components/blob/4503cab5b86aa9ef8314c5baa360a2fbb4812485/src/models/ThemeProvider.js
 
-import React, { Component } from 'react'
+import { Component, Children } from 'react'
 import createBroadcast from './create-broadcast'
 import { channel, contextTypes, type Theme } from './utils'
 
@@ -83,7 +83,7 @@ class ThemeProvider extends Component<Props> {
     if (!this.props.children) {
       return null
     }
-    return React.Children.only(this.props.children)
+    return Children.only(this.props.children)
   }
 }
 
