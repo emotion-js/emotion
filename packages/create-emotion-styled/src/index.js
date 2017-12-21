@@ -1,6 +1,6 @@
 // @flow
 import { STYLES_KEY, TARGET_KEY } from 'emotion-utils'
-import type { Emotion, Interpolation, Interpolations } from 'create-emotion'
+import type { Emotion, Interpolations } from 'create-emotion'
 import { channel, contextTypes } from '../../emotion-theming/src/utils'
 import type { ElementType } from 'react'
 import typeof ReactType from 'react'
@@ -42,19 +42,23 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         ? testOmitPropsOnStringTag
         : testOmitPropsOnComponent
 
-    return (strings: Interpolation, ...interpolations: Interpolations) => {
-      let styles = (isReal && tag[STYLES_KEY]) || []
+    return function() {
+      let args = arguments
+      let styles =
+        isReal && tag[STYLES_KEY] !== undefined ? tag[STYLES_KEY].slice(0) : []
       if (identifierName !== undefined) {
-        styles = styles.concat(`label:${identifierName};`)
+        styles.push(`label:${identifierName};`)
       }
       if (staticClassName === undefined) {
-        if (strings == null || strings.raw === undefined) {
-          styles = styles.concat(strings, interpolations)
+        if (args[0] == null || args[0].raw === undefined) {
+          styles.push.apply(styles, args)
         } else {
-          styles = interpolations.reduce(
-            (array, interp, i) => array.concat(interp, strings[i + 1]),
-            styles.concat(strings[0])
-          )
+          styles.push(args[0][0])
+          let len = args.length
+          let i = 1
+          for (; i < len; i++) {
+            styles.push(args[i], args[0][i])
+          }
         }
       }
 
@@ -140,7 +144,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
             ? // $FlowFixMe
               omitAssign(testAlwaysTrue, {}, options, nextOptions)
             : options
-        )(styles)
+        )(...args)
       }
 
       return Styled

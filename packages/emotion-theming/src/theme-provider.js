@@ -14,9 +14,9 @@ type Props = {
 }
 
 class ThemeProvider extends Component<Props> {
+  getTheme: ThemeProvider.prototype.getTheme
   constructor() {
     super()
-    // $FlowFixMe
     this.getTheme = this.getTheme.bind(this)
   }
   outerTheme: Object
@@ -28,8 +28,13 @@ class ThemeProvider extends Component<Props> {
     if (this.context[channel] !== undefined) {
       this.unsubscribeToOuterId = this.context[channel].subscribe(theme => {
         this.outerTheme = theme
+
+        if (this.broadcast !== undefined) {
+          this.publish(this.props.theme)
+        }
       })
     }
+
     this.broadcast = createBroadcast(this.getTheme(this.props.theme))
   }
 
@@ -44,7 +49,7 @@ class ThemeProvider extends Component<Props> {
 
   componentWillReceiveProps(nextProps: Props) {
     if (this.props.theme !== nextProps.theme) {
-      this.broadcast.publish(this.getTheme(nextProps.theme))
+      this.publish(nextProps.theme)
     }
   }
 
@@ -77,6 +82,10 @@ class ThemeProvider extends Component<Props> {
     }
 
     return { ...this.outerTheme, ...theme }
+  }
+
+  publish(theme: Theme) {
+    this.broadcast.publish(this.getTheme(theme))
   }
 
   render() {

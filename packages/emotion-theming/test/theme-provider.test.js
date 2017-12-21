@@ -177,6 +177,27 @@ test(`ThemeProvider propagates theme updates`, () => {
   expect(actual()).toEqual(expected)
 })
 
+test(`ThemeProvider propagates theme updates through nested ThemeProviders`, () => {
+  const theme = { themed: true }
+  const augment = outerTheme =>
+    Object.assign({}, outerTheme, { augmented: true })
+  const update = { updated: true }
+  const actual = getInterceptor()
+  const expected = { themed: true, augmented: true, updated: true }
+
+  const wrapper = mount(
+    <ThemeProvider theme={theme}>
+      <ThemeProvider theme={augment}>
+        <Trap.Context intercept={actual} />
+      </ThemeProvider>
+    </ThemeProvider>
+  )
+
+  wrapper.setProps({ theme: Object.assign({}, theme, update) })
+
+  expect(actual()).toEqual(expected)
+})
+
 test('ThemeProvider propagates theme updates even through PureComponent', () => {
   const theme = { themed: true }
   const update = { updated: true }

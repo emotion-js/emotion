@@ -796,11 +796,21 @@ exports[`styled with higher order component that hoists statics 1`] = `
 />
 `;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 1`] = `"e1amggv547"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 1`] = `"e12aia047"`;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 2`] = `"e1amggv548"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 2`] = `"e12aia048"`;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 3`] = `"e1amggv549"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 3`] = `"e12aia049"`;
+
+exports[`styled withComponent does not carry styles from flattened component 1`] = `
+.glamor-0 {
+  color: hotpink;
+}
+
+<p
+  className="glamor-0 glamor-1"
+/>
+`;
 
 exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 .glamor-0 {
