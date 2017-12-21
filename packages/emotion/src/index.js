@@ -147,7 +147,7 @@ function isLastCharDot(string) {
 let hash
 let name
 
-const labelPattern = /label:\s*([^\s;\n]+)\s*[;\n]/g
+const labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 
 function createStyles(strings, ...interpolations) {
   let stringMode = true
