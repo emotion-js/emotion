@@ -1,10 +1,7 @@
 const path = require('path')
-const { promisify } = require('util')
-const fs = require('fs')
-const yaml = require('js-yaml')
-const yamlPath = path.resolve(__dirname, '../../docs/docs.yaml')
-const packages = require('./packages')
-const readFile = promisify(fs.readFile)
+const docs = require('./docs-yaml')
+
+const packages = docs.filter(({ title }) => title === 'Packages')[0].items
 
 global.Babel = require('babel-standalone')
 
@@ -28,58 +25,15 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
   const docTemplate = require.resolve(`./src/templates/doc.js`)
-  const [result, yamlContents] = await Promise.all([
-    graphql(
-      `
-        {
-          allMarkdownRemark(
-            filter: { fileAbsolutePath: { glob: "**/docs/*.md" } }
-          ) {
-            edges {
-              node {
-                fields {
-                  slug
-                }
-              }
-            }
-          }
+  docs.forEach(({ title, items }) => {
+    items.forEach(itemName => {
+      createPage({
+        path: `docs/${itemName}`,
+        component: docTemplate,
+        context: {
+          slug: itemName
         }
-      `
-    ),
-    readFile(yamlPath, { encoding: 'utf-8' })
-  ])
-  const docsInYaml = yaml
-    .safeLoad(yamlContents.toString())
-    .reduce((prev, current) => {
-      return prev.concat(current.items)
-    }, [])
-
-  if (result.errors) {
-    console.log(result.errors)
-  }
-  result.data.allMarkdownRemark.edges.forEach(edge => {
-    if (docsInYaml.indexOf(edge.node.fields.slug) === -1) {
-      throw new Error(
-        `${edge.node.fields
-          .slug}.md found in docs folder but not in docs/index.yaml, please add it to docs/index.yaml`
-      )
-    }
-    createPage({
-      path: `docs/${edge.node.fields.slug}`,
-      component: docTemplate,
-      context: {
-        slug: edge.node.fields.slug
-      }
-    })
-  })
-  const packageTemplate = require.resolve('./src/templates/packages')
-  packages.forEach(pkgName => {
-    createPage({
-      path: `packages/${pkgName}`,
-      component: packageTemplate,
-      context: {
-        slug: pkgName
-      }
+      })
     })
   })
 }
@@ -203,6 +157,9 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
                 node.lang = 'jsx-live'
               }
             })
+            visit(markdownAST, 'link', node => {
+              node.url = node.url.replace(/^https?:\/\/emotion.sh\//, '')
+            })
           })
           .use(customElementCompiler)
           .processSync(node.internal.content).contents
@@ -245,8 +202,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
           }
         })
         if (packages.indexOf(node.fields.slug) !== -1) {
-          hast.children.shift()
-          hast.children.shift()
+          // Remove the title from the markdown if it's a package
           hast.children.shift()
         }
         return hast

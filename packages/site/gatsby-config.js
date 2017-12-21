@@ -1,5 +1,7 @@
 const path = require('path')
-const packages = require('./packages')
+const packages = require('./docs-yaml').filter(
+  ({ title }) => title === 'Packages'
+)[0].items
 
 module.exports = {
   siteMetadata: {

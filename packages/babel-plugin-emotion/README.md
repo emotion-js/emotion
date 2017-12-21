@@ -126,7 +126,7 @@ Use [Babel's `env` property](https://babeljs.io/docs/usage/babelrc/#env-option)
 
 ### Via CLI
 
-```sh
+```bash
 babel --plugins babel-plugin-emotion script.js
 ```
 
@@ -176,7 +176,7 @@ This option enables the following:
 
 * Injected source maps for use in browser dev tools
 
-[**Documentation**](https://emotion.sh/docs/source-maps.md)
+[**Documentation**](https://emotion.sh/docs/source-maps)
 
 ### `autoLabel`
 
@@ -278,7 +278,7 @@ This option enables the following:
 `Array<string>`, defaults to
 
 ```jsx
-;['emotion', 'react-emotion', 'preact-emotion']
+['emotion', 'react-emotion', 'preact-emotion']
 ```
 
 This option allows `babel-plugin-emotion` to know which imports to treat as

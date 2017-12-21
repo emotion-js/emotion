@@ -34,6 +34,8 @@ export const blockquote = styled.blockquote`
   margin: 0;
   border-left: 5px solid ${openColors.gray[5]};
   font-style: italic;
-  padding: 1.33em;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   text-align: left;
 `

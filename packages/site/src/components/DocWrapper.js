@@ -98,6 +98,7 @@ export default (props: Props) => {
         sidebarClassName={css`
           background-color: #f5f5f5;
           padding: ${constants.space[3]}px;
+          width: 280px;
         `}
         renderSidebar={({ setSidebarOpenState }) =>
           docList.map(item => {
@@ -110,7 +111,7 @@ export default (props: Props) => {
                     activeClassName={activeStyles}
                     to={`/docs/${slug}`}
                   >
-                    {docMap[slug]}
+                    {docMap[slug] || slug}
                   </Link>
                 ))}
               </Box>

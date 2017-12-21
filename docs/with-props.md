@@ -10,7 +10,9 @@ higher-order component to do this.
 ```jsx live
 import withProps from 'recompose/withProps'
 
-const RedPasswordInput = withProps({ type: 'password' })(styled('input')`
+const RedPasswordInput = withProps({
+  type: 'password'
+})(styled('input')`
   background-color: red;
 `)
 

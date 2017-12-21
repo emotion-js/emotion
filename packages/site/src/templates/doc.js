@@ -145,12 +145,17 @@ export default class DocRoute extends React.Component<Props> {
     const { doc, avatar } = data
     return (
       <Box>
-        <Title>{doc.frontmatter.title}</Title>
+        <Title>{doc.frontmatter.title || this.props.pathContext.slug}</Title>
         <Box pb={3}>
           {/* The URL below should change when this is on master */}
           <markdownComponents.a
-            href={`https://github.com/emotion-js/emotion/edit/gatsby/docs/${this
-              .props.pathContext.slug}.md`}
+            href={
+              doc.frontmatter.title
+                ? `https://github.com/emotion-js/emotion/edit/gatsby/docs/${this
+                    .props.pathContext.slug}.md`
+                : `https://github.com/emotion-js/emotion/edit/gatsby/packages/${this
+                    .props.pathContext.slug}/README.md`
+            }
           >
             Edit this page
           </markdownComponents.a>

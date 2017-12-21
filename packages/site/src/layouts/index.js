@@ -117,7 +117,6 @@ const Header = ({ isHome, avatar }) => (
         >
           <StyledLink to="/try">Try</StyledLink>
           <StyledLink to="/docs">Documentation</StyledLink>
-          <StyledLink to="/packages">Packages</StyledLink>
           <StyledLink to="https://github.com/emotion-js/emotion">
             GitHub
           </StyledLink>
