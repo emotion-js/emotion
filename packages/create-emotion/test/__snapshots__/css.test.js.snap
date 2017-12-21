@@ -136,8 +136,12 @@ exports[`css css variables 1`] = `
 `;
 
 exports[`css explicit & 1`] = `
+.glamor-0.another-class {
+  display: flex;
+}
+
 <div
-  className="css-gfk73z another-class"
+  className="glamor-0 another-class"
 />
 `;
 
@@ -149,7 +153,7 @@ exports[`css explicit & 2`] = `
 
 exports[`css explicit false 1`] = `
 <div
-  className="css-0"
+  className="glamor-0"
 />
 `;
 
@@ -195,7 +199,7 @@ exports[`css flushes correctly 1`] = `
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-vyoujf"
+  className="glamor-0"
 />
 `;
 
@@ -367,19 +371,19 @@ exports[`css nested selector without parent declaration 1`] = `
 
 exports[`css null rule 1`] = `
 <div
-  className="css-0"
+  className="glamor-0"
 />
 `;
 
 exports[`css null value 1`] = `
 <div
-  className="css-0"
+  className="glamor-0"
 />
 `;
 
 exports[`css null value 2`] = `
 <div
-  className="css-r6hgcc"
+  className="glamor-0"
 />
 `;
 

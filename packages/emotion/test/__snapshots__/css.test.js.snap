@@ -152,8 +152,15 @@ exports[`css css variables 1`] = `
 `;
 
 exports[`css explicit & 1`] = `
+.glamor-0.another-class {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 <div
-  className="css-16ooeb3 another-class"
+  className="glamor-0 another-class"
 />
 `;
 
@@ -168,7 +175,7 @@ exports[`css explicit & 2`] = `
 
 exports[`css explicit false 1`] = `
 <div
-  className="css-0"
+  className="glamor-0"
 />
 `;
 
@@ -220,7 +227,7 @@ exports[`css flushes correctly 1`] = `
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-k008qs"
+  className="glamor-0"
 />
 `;
 
@@ -454,19 +461,19 @@ exports[`css nested selector without parent declaration 1`] = `
 
 exports[`css null rule 1`] = `
 <div
-  className="css-0"
+  className="glamor-0"
 />
 `;
 
 exports[`css null value 1`] = `
 <div
-  className="css-0"
+  className="glamor-0"
 />
 `;
 
 exports[`css null value 2`] = `
 <div
-  className="css-1xdhyk6"
+  className="glamor-0"
 />
 `;
 
@@ -520,6 +527,22 @@ exports[`css registered styles as nested selector value in object 1`] = `
 exports[`css return function in interpolation 1`] = `
 .glamor-0 {
   color: blue;
+}
+
+<div
+  className="glamor-0"
+/>
+`;
+
+exports[`css rule after media query 1`] = `
+@media (min-width:600px) {
+  .glamor-0 {
+    color: green;
+  }
+}
+
+.glamor-0:hover {
+  color: hotpink;
 }
 
 <div
