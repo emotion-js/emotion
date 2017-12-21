@@ -20,7 +20,7 @@ function toTag(
     }
     return true
   })
-  return `<style data-emotion-chunk="${idHydration.substring(
+  return `<style data-emotion-${emotion.caches.key}="${idHydration.substring(
     1
   )}"${nonceString}>${styles}</style>`
 }
@@ -28,7 +28,7 @@ function toTag(
 const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
   html: string
 ): string => {
-  let regex = /<|css-([a-zA-Z0-9-]+)/gm
+  let regex = new RegExp(`<|${emotion.caches.key}-([a-zA-Z0-9-]+)`, 'gm')
 
   let match
   let lastBackIndex = 0
@@ -40,7 +40,7 @@ const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
   let globalIds = ''
   keys = keys.filter(id => {
     if (
-      emotion.caches.registered[`css-${id}`] === undefined &&
+      emotion.caches.registered[`${emotion.caches.key}-${id}`] === undefined &&
       emotion.caches.inserted[id] !== true
     ) {
       globalStyles += emotion.caches.inserted[id]
@@ -50,7 +50,7 @@ const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
     return true
   })
   if (globalStyles !== '') {
-    result += `<style data-emotion-chunk="${globalIds.substring(
+    result += `<style data-emotion-${emotion.caches.key}="${globalIds.substring(
       1
     )}"${nonceString}>${globalStyles}</style>`
   }

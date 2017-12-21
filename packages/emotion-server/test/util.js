@@ -144,13 +144,17 @@ export const prettyifyCritical = ({
   return { css: stringify(parse(css)), ids, html }
 }
 
-export const getCssFromChunks = (document: Document) => {
+export const getCssFromChunks = (emotion: Emotion, document: Document) => {
   const chunks = Array.from(
     // $FlowFixMe
-    document.head.querySelectorAll('[data-emotion-chunk]')
+    emotion.sheet.tags[0].parentNode.querySelectorAll(
+      `[data-emotion-${emotion.caches.key}]`
+    )
   )
-  // $FlowFixMe
-  expect(document.body.querySelector('[data-emotion-chunk]')).toBeNull()
+  expect(
+    // $FlowFixMe
+    document.body.querySelector(`[data-emotion-${emotion.caches.key}]`)
+  ).toBeNull()
   return stringify(parse(chunks.map(chunk => chunk.textContent || '').join('')))
 }
 

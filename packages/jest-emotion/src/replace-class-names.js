@@ -6,6 +6,8 @@ function defaultClassNameReplacer(className, index) {
 
 export type ClassNameReplacer = (className: string, index: number) => string
 
+const componentSelectorClassNamePattern = /\.e[a-zA-Z0-9-]+[0-9]+/
+
 export const replaceClassNames = (
   selectors: Array<string>,
   styles: string,
@@ -14,8 +16,13 @@ export const replaceClassNames = (
   replacer: ClassNameReplacer = defaultClassNameReplacer
 ) => {
   let index = 0
+  const classRegex = new RegExp(`^\\.${key}-([a-zA-Z0-9-]+)`)
+
   return selectors.reduce((acc, className) => {
-    if (className.indexOf(`.${key}-`) === 0) {
+    if (
+      classRegex.test(className) ||
+      componentSelectorClassNamePattern.test(className)
+    ) {
       const escapedRegex = new RegExp(
         className.replace('.', '').replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'),
         'g'
