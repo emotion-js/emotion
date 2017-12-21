@@ -36,6 +36,8 @@
     - babel-plugin-emotion
     - emotion-server
     - emotion-theming
+    - jest-emotion
     - create-emotion
     - create-emotion-styled
+    - create-emotion-server
     - preact-emotion
