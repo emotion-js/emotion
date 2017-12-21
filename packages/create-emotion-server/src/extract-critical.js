@@ -4,7 +4,7 @@ import type { Emotion } from 'create-emotion'
 const createExtractCritical = (emotion: Emotion) => (html: string) => {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
-  const RGX = /css-([a-zA-Z0-9-]+)/gm
+  let RGX = new RegExp(`${emotion.caches.key}-([a-zA-Z0-9-]+)`, 'gm')
 
   let o = { html, ids: [], css: '' }
   let match
@@ -18,7 +18,8 @@ const createExtractCritical = (emotion: Emotion) => (html: string) => {
   o.ids = Object.keys(emotion.caches.inserted).filter(id => {
     if (
       (ids[id] === true ||
-        emotion.caches.registered[`css-${id}`] === undefined) &&
+        emotion.caches.registered[`${emotion.caches.key}-${id}`] ===
+          undefined) &&
       emotion.caches.inserted[id] !== true
     ) {
       o.css += emotion.caches.inserted[id]

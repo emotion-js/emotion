@@ -30,14 +30,14 @@ exports[`component as selector 1`] = `
 `;
 
 exports[`component as selector 2`] = `
-".css-1kmu0ik {
+".css-112oqv {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.css-1kmu0ik .css-hp998q0 {
+.css-112oqv .eqeli5r0 {
   color: green;
 }
 
@@ -78,14 +78,14 @@ exports[`component as selector function interpolation 1`] = `
 `;
 
 exports[`component as selector function interpolation 2`] = `
-".css-hp387i {
+".css-36srpd {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.css-hp387i .css-hp998q2 {
+.css-36srpd .eqeli5r2 {
   color: green;
 }
 

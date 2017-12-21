@@ -296,6 +296,11 @@ const cases = {
         }
       \`;
     `
+  },
+
+  'hash generation no file system': {
+    code: 'styled.h1`color:blue;`',
+    filename: ''
   }
 }
 

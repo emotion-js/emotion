@@ -169,7 +169,7 @@ exports[`styled macro babel 6 tagged template literal function 1`] = `
 "import _styled from './styled';
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
-  target: 'css-gx73fp0'
+  target: 'eo9rakq0'
 })('display:flex;');"
 `;
 
@@ -177,7 +177,7 @@ exports[`styled macro babel 6 tagged template literal member 1`] = `
 "import _styled from './styled';
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
-  target: 'css-5a9af00'
+  target: 'eo9rakq0'
 })('display:flex;');"
 `;
 
@@ -220,7 +220,7 @@ exports[`styled macro babel 7 tagged template literal function 1`] = `
 const SomeComponent =
 /*#__PURE__*/
 _styled('div', {
-  target: \\"css-gx73fp0\\"
+  target: \\"eo9rakq0\\"
 })(\\"display:flex;\\");"
 `;
 
@@ -230,6 +230,6 @@ exports[`styled macro babel 7 tagged template literal member 1`] = `
 const SomeComponent =
 /*#__PURE__*/
 _styled(\\"div\\", {
-  target: \\"css-5a9af00\\"
+  target: \\"eo9rakq0\\"
 })(\\"display:flex;\\");"
 `;

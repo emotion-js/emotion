@@ -109,16 +109,16 @@ Object {
   background-color: red;
 }",
   "html": 
-<main class="css-19m49uk-Main css-vqwlk30"
+<main class="css-19m49uk-Main enylr5n0"
       data-reactroot
 >
   <img size="30"
-       class="css-1m3qzmz-Image css-vqwlk31"
+       class="css-1m3qzmz-Image enylr5n1"
   >
   <img size="100"
-       class="css-1m3qzmz-Image css-vqwlk31"
+       class="css-1m3qzmz-Image enylr5n1"
   >
-  <img class="css-1m3qzmz-Image css-vqwlk31">
+  <img class="css-1m3qzmz-Image enylr5n1">
 </main>
 ,
   "ids": Array [
@@ -231,7 +231,7 @@ Object {
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
   "html": 
-<main class="css-19m49uk-Main css-vqwlk30"
+<main class="css-19m49uk-Main enylr5n0"
       data-reactroot
 >
   <div>
@@ -357,16 +357,16 @@ Object {
   background-color: red;
 }",
   "html": 
-<main class="css-19m49uk-Main css-vqwlk30"
+<main class="css-19m49uk-Main enylr5n0"
       data-reactroot
 >
   <img size="30"
-       class="css-1m3qzmz-Image css-vqwlk31"
+       class="css-1m3qzmz-Image enylr5n1"
   >
   <img size="100"
-       class="css-1m3qzmz-Image css-vqwlk31"
+       class="css-1m3qzmz-Image enylr5n1"
   >
-  <img class="css-1m3qzmz-Image css-vqwlk31">
+  <img class="css-1m3qzmz-Image enylr5n1">
 </main>
 ,
   "ids": Array [

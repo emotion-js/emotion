@@ -11,6 +11,11 @@ function stylisPlugin(context, content) {
   }
 }
 
+export const container = document.createElement('div')
+
+// $FlowFixMe
+document.head.appendChild(container)
+
 const emotion = createEmotion(
   // don't use a global so the options aren't cached
   {},
@@ -22,7 +27,9 @@ const emotion = createEmotion(
       }
       return true
     },
-    nonce: 'some-nonce'
+    nonce: 'some-nonce',
+    key: 'some-key',
+    container
   }
 )
 

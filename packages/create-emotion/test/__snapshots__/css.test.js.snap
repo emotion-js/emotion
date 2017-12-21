@@ -146,7 +146,7 @@ exports[`css explicit & 1`] = `
 `;
 
 exports[`css explicit & 2`] = `
-".css-gfk73z.another-class {
+".some-key-gfk73z.another-class {
   display: flex;
 }"
 `;
@@ -260,20 +260,20 @@ exports[`css manually use label property 1`] = `
 `;
 
 exports[`css manually use label property 2`] = `
-".css-32iy0l-wow {
+".some-key-32iy0l-wow {
   color: hotpink;
 }"
 `;
 
 exports[`css media query specificity 1`] = `
-".css-11dfhpp {
+".some-key-11dfhpp {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
 
 @media (min-width:420px) {
-  .css-11dfhpp {
+  .some-key-11dfhpp {
     width: 96px;
     height: 96px;
   }

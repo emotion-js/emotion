@@ -38,7 +38,7 @@ const createInlineTester = transform => opts => {
           }
         ]
       ],
-      filename: opts.filename || 'emotion.js',
+      filename: opts.filename !== undefined ? opts.filename : 'emotion.js',
       babelrc: false
     }).code
   ).toMatchSnapshot()
