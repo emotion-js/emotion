@@ -187,7 +187,7 @@ function createEmotion(
 
   let name
 
-  const labelPattern = /label:\s*([^\s;\n]+)\s*[;\n]/g
+  const labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 
   const createStyles: CreateStyles<string> = function(
     strings: Interpolation | string[],
