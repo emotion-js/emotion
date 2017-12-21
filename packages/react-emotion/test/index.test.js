@@ -578,6 +578,21 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('theme with react-test-renderer', () => {
+    const Div = styled.div`
+      color: ${props => props.theme.primary};
+    `
+    const tree = renderer
+      .create(
+        <ThemeProvider theme={{ primary: 'pink' }}>
+          {<Div>this will be pink</Div>}
+        </ThemeProvider>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('change theme', () => {
     const Div = styled.div`
       color: ${props => props.theme.primary};
