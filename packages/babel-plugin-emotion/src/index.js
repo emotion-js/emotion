@@ -118,12 +118,17 @@ function buildTargetObjectProperty(path, state, t) {
     filename === rootPath ? basename(filename) : filename.slice(rootPath.length)
 
   const positionInFile = state.count++
+
+  const stuffToHash = [moduleName]
+
+  if (finalPath) {
+    stuffToHash.push(normalize(finalPath))
+  } else {
+    stuffToHash.push(state.file.code)
+  }
+
   const stableClassName = getName(
-    `${hashArray([
-      normalize(finalPath),
-      moduleName,
-      state.file.code
-    ])}${positionInFile}`,
+    `${hashArray(stuffToHash)}${positionInFile}`,
     'css'
   )
 
