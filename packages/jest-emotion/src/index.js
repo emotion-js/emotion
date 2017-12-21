@@ -44,7 +44,7 @@ function filterChildSelector(baseSelector) {
   return baseSelector
 }
 
-function getEmotionStyles(emotion: Emotion) {
+export function getStyles(emotion: Emotion) {
   return Object.keys(emotion.caches.inserted).reduce((style, current) => {
     if (emotion.caches.inserted[current] === true) {
       return style
@@ -53,25 +53,26 @@ function getEmotionStyles(emotion: Emotion) {
   }, '')
 }
 
-function createSerializer(
+function test(val: *) {
+  return (
+    val &&
+    !val.withEmotionStyles &&
+    val.$$typeof === Symbol.for('react.test.json')
+  )
+}
+
+export function createSerializer(
   emotion: Emotion,
   { classNameReplacer }: Options = {}
 ) {
   // in case we add a key option
   const key = 'css'
-  function test(val: *) {
-    return (
-      val &&
-      !val.withEmotionStyles &&
-      val.$$typeof === Symbol.for('react.test.json')
-    )
-  }
 
   function print(val: *, printer: Function) {
     const nodes = getNodes(val)
     markNodes(nodes)
     const selectors = getSelectors(nodes)
-    const styles = getStyles(selectors)
+    const styles = getStylesFromSelectors(selectors)
     const printedVal = printer(val)
     return replaceClassNames(
       selectors,
@@ -88,8 +89,8 @@ function createSerializer(
     })
   }
 
-  function getStyles(nodeSelectors) {
-    const styles = getEmotionStyles(emotion)
+  function getStylesFromSelectors(nodeSelectors) {
+    const styles = getStyles(emotion)
     let ast
     try {
       ast = css.parse(styles)
@@ -129,5 +130,3 @@ function createSerializer(
 
   return { test, print }
 }
-
-module.exports = createSerializer
