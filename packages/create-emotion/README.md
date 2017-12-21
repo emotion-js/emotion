@@ -77,7 +77,7 @@ Allows changing Stylis' prefixing settings, this defaults to `true`. It can be a
 
 ### key: string
 
-The prefix before class names, this defaults to `css`. It will also be set as the value of the `data-emotion` attribute on the style tags that emotion inserts and it's used in the attribute name that marks style elements in `renderStylesToString` and `renderStylesToNodeStream`. This is **required** if there will be **multiple emotion instances in the same app**.
+The prefix before class names, this defaults to `css`. It will also be set as the value of the `data-emotion` attribute on the style tags that emotion inserts and it's used in the attribute name that marks style elements in `renderStylesToString` and `renderStylesToNodeStream`. This is **required if using multiple emotion instances in the same app**.
 
 ### container: HTMLElement
 
