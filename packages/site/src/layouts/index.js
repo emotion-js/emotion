@@ -189,7 +189,7 @@ type SidebarNode = {
 }
 
 type TemplateWrapperProps = {
-  children: () => React$Node,
+  children: (*) => React$Node,
   location: Location,
   match: Match,
   data: {
@@ -209,7 +209,10 @@ const TemplateWrapper = (props: TemplateWrapperProps) => {
   if (props.location.pathname.match(/\/docs.*/)) {
     children = (
       <DocWrapper sidebarNodes={props.data.allMarkdownRemark.edges}>
-        {props.children()}
+        {props.children({
+          ...props,
+          markdownNodes: props.data.allMarkdownRemark.edges
+        })}
       </DocWrapper>
     )
   }

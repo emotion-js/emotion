@@ -229,7 +229,7 @@ export const pageQuery = graphql`
   query EmotionAvatar {
     imageSharp {
       resolutions(width: 100, height: 100) {
-        ...GatsbyImageSharpResolutions_noBase64
+        ...GatsbyImageSharpResolutions
       }
     }
   }

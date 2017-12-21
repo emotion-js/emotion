@@ -13,6 +13,7 @@ import 'prismjs/components/prism-json'
 import 'prismjs/components/prism-jsx'
 
 type Props = {
+  markdownNodes: *,
   data: {
     doc: {
       hast: HASTRoot,
@@ -141,7 +142,8 @@ const createCode = (logoUrl: string) => (props: *) => {
 
 export default class DocRoute extends React.Component<Props> {
   render() {
-    const { data } = this.props
+    // eslint-disable-next-line no-unused-vars
+    const { data, markdownNodes } = this.props
     const { doc, avatar } = data
     return (
       <Box>

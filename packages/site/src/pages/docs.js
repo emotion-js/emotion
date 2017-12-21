@@ -12,11 +12,11 @@ const H3 = Box.withComponent('h3')
 const centerText = { textAlign: 'center' }
 
 type Props = {
-  data: *
+  markdownNodes: *
 }
 
 export default (props: Props) => {
-  const docMap = getDocMap(props.data.allMarkdownRemark.edges)
+  const docMap = getDocMap(props.markdownNodes)
   return (
     <Box>
       <Box flex={1}>
@@ -49,20 +49,3 @@ export default (props: Props) => {
     </Box>
   )
 }
-
-export const pageQuery = graphql`
-  query IndexDocsPage {
-    allMarkdownRemark {
-      edges {
-        node {
-          frontmatter {
-            title
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  }
-`

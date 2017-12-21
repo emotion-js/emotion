@@ -36,7 +36,7 @@ const column = props => (props.column ? 'flex-direction:column;' : null)
  *   ${justify};
  * `
  */
-export default styled.div(
+const Box = styled.div(
   display,
   space,
   width,
@@ -51,3 +51,5 @@ export default styled.div(
   justify,
   overflow
 )
+
+export default Box
