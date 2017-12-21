@@ -388,4 +388,16 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('rule after media query', () => {
+    const cls1 = css`
+      @media (min-width: 600px) {
+        color: green;
+      }
+      &:hover {
+        color: hotpink;
+      }
+    `
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })

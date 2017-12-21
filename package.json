@@ -158,6 +158,7 @@
       "^emotion-theming$": "<rootDir>/packages/emotion-theming/src",
       "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src",
       "^create-emotion$": "<rootDir>/packages/create-emotion/src",
+      "^jest-emotion$": "<rootDir>/packages/jest-emotion/src",
       "^create-emotion-styled$": "<rootDir>/packages/create-emotion-styled/src",
       "^create-emotion-server$": "<rootDir>/packages/create-emotion-server/src"
     },
