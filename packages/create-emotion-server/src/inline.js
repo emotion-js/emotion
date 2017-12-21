@@ -40,7 +40,7 @@ const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
   let globalIds = ''
   keys = keys.filter(id => {
     if (
-      emotion.caches.registered[`css-${id}`] === undefined &&
+      emotion.caches.registered[`${emotion.caches.key}-${id}`] === undefined &&
       emotion.caches.inserted[id] !== true
     ) {
       globalStyles += emotion.caches.inserted[id]

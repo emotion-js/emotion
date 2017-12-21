@@ -8,19 +8,19 @@ exports[`hydration only inserts rules that are not in the critical css 1`] = `
 <style data-emotion-css="4xq7ky">
   .css-4xq7ky{color:hotpink;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.css-4xq7ky:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
-<main class="css-4xq7ky css-qnjanj0"
+<main class="css-4xq7ky eqnjanj0"
       data-reactroot
 >
   <style data-emotion-css="z382ib">
     .css-z382ib{-webkit-animation:animation-16qlhaj;animation:animation-16qlhaj;border-radius:50%;height:50px;width:50px;background-color:red;}
   </style>
   <img size="30"
-       class="css-z382ib css-qnjanj1"
+       class="css-z382ib eqnjanj1"
   >
   <img size="100"
-       class="css-z382ib css-qnjanj1"
+       class="css-z382ib eqnjanj1"
   >
-  <img class="css-z382ib css-qnjanj1">
+  <img class="css-z382ib eqnjanj1">
 </main>
 
 `;
@@ -1969,19 +1969,19 @@ exports[`renderStylesToString renders styles with ids 1`] = `
 <style data-emotion-css="4xq7ky">
   .css-4xq7ky{color:hotpink;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.css-4xq7ky:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
-<main class="css-4xq7ky css-qnjanj0"
+<main class="css-4xq7ky eqnjanj0"
       data-reactroot
 >
   <style data-emotion-css="z382ib">
     .css-z382ib{-webkit-animation:animation-16qlhaj;animation:animation-16qlhaj;border-radius:50%;height:50px;width:50px;background-color:red;}
   </style>
   <img size="30"
-       class="css-z382ib css-qnjanj1"
+       class="css-z382ib eqnjanj1"
   >
   <img size="100"
-       class="css-z382ib css-qnjanj1"
+       class="css-z382ib eqnjanj1"
   >
-  <img class="css-z382ib css-qnjanj1">
+  <img class="css-z382ib eqnjanj1">
 </main>
 
 `;
@@ -1994,7 +1994,7 @@ exports[`renderStylesToString renders styles with ids 2`] = `
 <style data-emotion-css="4xq7ky">
   .css-4xq7ky{color:hotpink;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.css-4xq7ky:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:-15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
-<main class="css-4xq7ky css-qnjanj0"
+<main class="css-4xq7ky eqnjanj0"
       data-reactroot
 >
   <div>

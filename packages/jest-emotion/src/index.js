@@ -65,9 +65,6 @@ export function createSerializer(
   emotion: Emotion,
   { classNameReplacer }: Options = {}
 ) {
-  // in case we add a key option
-  const key = 'css'
-
   function print(val: *, printer: Function) {
     const nodes = getNodes(val)
     markNodes(nodes)
@@ -78,7 +75,7 @@ export function createSerializer(
       selectors,
       styles,
       printedVal,
-      key,
+      emotion.caches.key,
       classNameReplacer
     )
   }

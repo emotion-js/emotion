@@ -31,7 +31,8 @@ const createRenderStylesToNodeStream = (
             emotion.caches.inserted[id] !== true &&
             insed[id] === undefined &&
             (ids[id] === true ||
-              (emotion.caches.registered[`css-${id}`] === undefined &&
+              (emotion.caches.registered[`${emotion.caches.key}-${id}`] ===
+                undefined &&
                 (ids[id] = true)))
           ) {
             insed[id] = true
