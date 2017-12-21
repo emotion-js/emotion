@@ -1,12 +1,10 @@
 // @flow
 import { STYLES_KEY, TARGET_KEY } from 'emotion-utils'
 import type { Emotion, Interpolation, Interpolations } from 'create-emotion'
+import { channel, contextTypes } from '../../emotion-theming/src/utils'
 import type { ElementType } from 'react'
-import type {
-  EmotionStyledInstanceOptions,
-  CreateStyled,
-  StyledOptions
-} from './utils'
+import typeof ReactType from 'react'
+import type { CreateStyled, StyledOptions } from './utils'
 import {
   testOmitPropsOnComponent,
   testAlwaysTrue,
@@ -15,10 +13,7 @@ import {
   setTheme
 } from './utils'
 
-function createEmotionStyled(
-  emotion: Emotion,
-  instanceOptions: EmotionStyledInstanceOptions
-) {
+function createEmotionStyled(emotion: Emotion, view: ReactType) {
   const createStyled: CreateStyled = (tag, options) => {
     if (process.env.NODE_ENV !== 'production') {
       if (tag === undefined) {
@@ -63,7 +58,7 @@ function createEmotionStyled(
         }
       }
 
-      class Styled extends instanceOptions.Component<*, { theme: Object }> {
+      class Styled extends view.Component<*, { theme: Object }> {
         unsubscribe: number
         mergedProps: Object
         static __emotion_real: any
@@ -73,15 +68,15 @@ function createEmotionStyled(
         static withComponent: (ElementType, options?: StyledOptions) => any
 
         componentWillMount() {
-          if (this.context[instanceOptions.channel] !== undefined) {
-            this.unsubscribe = this.context[instanceOptions.channel].subscribe(
+          if (this.context[channel] !== undefined) {
+            this.unsubscribe = this.context[channel].subscribe(
               setTheme.bind(this)
             )
           }
         }
         componentWillUnmount() {
           if (this.unsubscribe !== undefined) {
-            this.context[instanceOptions.channel].unsubscribe(this.unsubscribe)
+            this.context[channel].unsubscribe(this.unsubscribe)
           }
         }
         render() {
@@ -116,7 +111,7 @@ function createEmotionStyled(
             className += ` ${stableClassName}`
           }
 
-          return instanceOptions.createElement(
+          return view.createElement(
             baseTag,
             omitAssign(omitFn, {}, props, { className, ref: props.innerRef })
           )
@@ -129,7 +124,7 @@ function createEmotionStyled(
               ? baseTag
               : baseTag.displayName || baseTag.name || 'Component'})`
 
-      Styled.contextTypes = instanceOptions.contextTypes
+      Styled.contextTypes = contextTypes
       Styled[STYLES_KEY] = styles
       Styled.__emotion_base = baseTag
       Styled.__emotion_real = Styled

@@ -3,8 +3,7 @@ import createEmotion from 'create-emotion'
 import createEmotionStyled from 'create-emotion-styled'
 import createEmotionServer from 'create-emotion-server'
 import { transform } from 'cssjanus'
-import { createElement, Component } from 'react'
-import { channel, contextTypes } from 'emotion-theming'
+import React from 'react'
 
 function stylisPlugin(context, content) {
   if (context === 2) {
@@ -46,9 +45,4 @@ export const {
   renderStylesToNodeStream
 } = createEmotionServer(emotion)
 
-export default createEmotionStyled(emotion, {
-  createElement,
-  Component,
-  channel,
-  contextTypes
-})
+export default createEmotionStyled(emotion, React)

@@ -1,7 +1,6 @@
 // @flow
 import { memoize } from 'emotion-utils'
 import type { Interpolations } from 'create-emotion'
-import typeof { Component as BaseComponentType } from 'react'
 
 export function setTheme(theme: Object) {
   this.setState({ theme })
@@ -34,14 +33,6 @@ export const omitAssign: (
     }
   }
   return target
-}
-
-export type EmotionStyledInstanceOptions = {
-  channel?: string,
-  contextTypes?: *,
-  Component: BaseComponentType,
-  createElement: Function,
-  contextTypes?: *
 }
 
 export type StyledOptions = { e: string, label: string, target: string }

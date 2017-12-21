@@ -8,50 +8,52 @@ import path from 'path'
 
 const pkg = require(path.resolve(process.cwd(), './package.json'))
 
-const config = {
+const basePlugins = [
+  cjs({ exclude: [path.join(__dirname, 'packages', '*/src/**/*')] }),
+  resolve(),
+  babel({
+    presets: [
+      [
+        '@babel/env',
+        {
+          loose: true,
+          modules: false,
+          exclude: ['transform-typeof-symbol']
+        }
+      ],
+      '@babel/stage-0',
+      '@babel/react',
+      '@babel/flow'
+    ],
+    plugins: ['codegen', 'closure-elimination'],
+    babelrc: false
+  })
+]
+
+const baseConfig = {
   input: './src/index.js',
-  external: [
-    'react',
+  exports: 'named',
+  sourcemap: true
+}
+
+const baseExternal = ['react', 'prop-types', 'preact']
+
+const mainConfig = Object.assign({}, baseConfig, {
+  external: baseExternal.concat([
     'emotion',
     'emotion-utils',
-    'prop-types',
     'hoist-non-react-statics',
-    'stylis-rule-sheet',
-    'preact'
-  ],
-  exports: 'named',
-  sourcemap: true,
-  plugins: [
-    cjs({ exclude: [path.join(__dirname, 'packages', '*/src/**/*')] }),
-    resolve(),
-    babel({
-      presets: [
-        [
-          '@babel/env',
-          {
-            loose: true,
-            modules: false,
-            exclude: ['transform-typeof-symbol']
-          }
-        ],
-        '@babel/stage-0',
-        '@babel/react',
-        '@babel/flow'
-      ],
-      plugins: ['codegen', 'closure-elimination'],
-      babelrc: false
-    })
-  ],
+    'stylis-rule-sheet'
+  ]),
+  plugins: basePlugins,
   output: [
     { file: pkg.main, format: 'cjs' },
     { file: pkg.module, format: 'es' }
   ]
-}
+})
 
-if (process.env.UMD) {
-  config.external = ['react', 'prop-types']
-  config.globals = { react: 'React', 'prop-types': 'PropTypes' }
-  config.plugins.push(
+const umdConfig = Object.assign({}, baseConfig, {
+  plugins: basePlugins.concat(
     alias({
       emotion: path.resolve(__dirname, './packages/emotion/src/index.js'),
       'emotion-utils': path.resolve(
@@ -71,14 +73,16 @@ if (process.env.UMD) {
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     uglify()
-  )
-  config.output = [
+  ),
+  output: [
     {
       file: './dist/emotion.umd.min.js',
       format: 'umd',
       name: pkg.name
     }
-  ]
-}
+  ],
+  globals: { react: 'React', 'prop-types': 'PropTypes', preact: 'preact' },
+  external: baseExternal
+})
 
-export default config
+export default [mainConfig, umdConfig]

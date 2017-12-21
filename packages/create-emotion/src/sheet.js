@@ -22,6 +22,7 @@ styleSheet.flush()
 - empties the stylesheet of all its contents
 
 */
+
 // $FlowFixMe
 function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
   if (tag.sheet) {
@@ -38,11 +39,11 @@ function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
   }
 }
 
-function makeStyleTag(nonce: string | null): HTMLStyleElement {
+function makeStyleTag(nonce?: string): HTMLStyleElement {
   let tag = document.createElement('style')
   tag.type = 'text/css'
   tag.setAttribute('data-emotion', '')
-  if (nonce !== null) {
+  if (nonce !== undefined) {
     tag.setAttribute('nonce', nonce)
   }
   tag.appendChild(document.createTextNode(''))
@@ -57,11 +58,11 @@ export default class StyleSheet {
   ctr: number
   sheet: string[]
   tags: HTMLStyleElement[]
-  nonce: string | null
+  nonce: string | void
   constructor(nonce?: string) {
     this.isSpeedy = process.env.NODE_ENV === 'production' // the big drawback here is that the css won't be editable in devtools
     this.tags = []
-    this.nonce = nonce === undefined ? null : nonce
+    this.nonce = nonce
     this.ctr = 0
   }
   inject() {

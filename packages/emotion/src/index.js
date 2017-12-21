@@ -1,10 +1,7 @@
 // @flow
 import createEmotion from 'create-emotion'
 
-const context =
-  typeof global !== 'undefined'
-    ? global
-    : typeof window !== 'undefined' ? window : {}
+const context = typeof global !== 'undefined' ? global : {}
 
 export const {
   flush,

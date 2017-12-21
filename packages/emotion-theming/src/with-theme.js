@@ -1,11 +1,15 @@
-import React from 'react'
+// @flow
+import * as React from 'react'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { channel, contextTypes } from './utils'
 
-const withTheme = Component => {
+type Props = { theme: Object }
+
+const withTheme = (Component: React.ComponentType<Props>) => {
   const componentName = Component.displayName || Component.name || 'Component'
 
-  class WithTheme extends React.Component {
+  class WithTheme extends React.Component<{}, { theme: Object }> {
+    unsubscribeId: number
     componentWillMount() {
       const themeContext = this.context[channel]
       if (themeContext === undefined) {
