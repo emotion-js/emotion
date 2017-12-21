@@ -1125,4 +1125,15 @@ describe('styled', () => {
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('withComponent does not carry styles from flattened component', () => {
+    const SomeComponent = styled.div`
+      color: green;
+    `
+    const AnotherComponent = styled(SomeComponent)`
+      color: hotpink;
+    `
+    const OneMoreComponent = AnotherComponent.withComponent('p')
+    const tree = renderer.create(<OneMoreComponent />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })
