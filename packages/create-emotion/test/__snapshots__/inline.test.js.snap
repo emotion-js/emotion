@@ -12,7 +12,7 @@ exports[`hydration only inserts rules that are not in the critical css 1`] = `
 >
   .some-key-4xq7ky{color:hotpink;display:flex;}.some-key-4xq7ky:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
-<main class="some-key-4xq7ky eqnjanj0"
+<main class="some-key-4xq7ky e126fyao0"
       data-reactroot
 >
   <style data-emotion-some-key="z382ib"
@@ -21,12 +21,12 @@ exports[`hydration only inserts rules that are not in the critical css 1`] = `
     .some-key-z382ib{-webkit-animation:animation-16qlhaj;animation:animation-16qlhaj;border-radius:50%;height:50px;width:50px;background-color:red;}
   </style>
   <img size="30"
-       class="some-key-z382ib eqnjanj1"
+       class="some-key-z382ib e126fyao1"
   >
   <img size="100"
-       class="some-key-z382ib eqnjanj1"
+       class="some-key-z382ib e126fyao1"
   >
-  <img class="some-key-z382ib eqnjanj1">
+  <img class="some-key-z382ib e126fyao1">
 </main>
 
 `;
@@ -2375,7 +2375,7 @@ exports[`renderStylesToString renders styles with ids 1`] = `
 >
   .some-key-4xq7ky{color:hotpink;display:flex;}.some-key-4xq7ky:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
-<main class="some-key-4xq7ky eqnjanj0"
+<main class="some-key-4xq7ky e126fyao0"
       data-reactroot
 >
   <style data-emotion-some-key="z382ib"
@@ -2384,12 +2384,12 @@ exports[`renderStylesToString renders styles with ids 1`] = `
     .some-key-z382ib{-webkit-animation:animation-16qlhaj;animation:animation-16qlhaj;border-radius:50%;height:50px;width:50px;background-color:red;}
   </style>
   <img size="30"
-       class="some-key-z382ib eqnjanj1"
+       class="some-key-z382ib e126fyao1"
   >
   <img size="100"
-       class="some-key-z382ib eqnjanj1"
+       class="some-key-z382ib e126fyao1"
   >
-  <img class="some-key-z382ib eqnjanj1">
+  <img class="some-key-z382ib e126fyao1">
 </main>
 
 `;
@@ -2406,7 +2406,7 @@ exports[`renderStylesToString renders styles with ids 2`] = `
 >
   .some-key-4xq7ky{color:hotpink;display:flex;}.some-key-4xq7ky:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
-<main class="some-key-4xq7ky eqnjanj0"
+<main class="some-key-4xq7ky e126fyao0"
       data-reactroot
 >
   <div>
