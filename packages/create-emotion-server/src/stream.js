@@ -20,7 +20,7 @@ const createRenderStylesToNodeStream = (
 
         let match
         let fragment = data.toString()
-        let regex = /css-([a-zA-Z0-9-]+)/gm
+        let regex = new RegExp(`${emotion.caches.key}-([a-zA-Z0-9-]+)`, 'gm')
         while ((match = regex.exec(fragment)) !== null) {
           if (match !== null && insed[match[1]] === undefined) {
             ids[match[1]] = true
@@ -42,7 +42,7 @@ const createRenderStylesToNodeStream = (
 
         if (css !== '') {
           this.queue(
-            `<style data-emotion-chunk="${Object.keys(ids).join(
+            `<style data-emotion-${emotion.caches.key}="${Object.keys(ids).join(
               ' '
             )}"${nonceString}>${css}</style>`
           )

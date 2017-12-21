@@ -39,16 +39,20 @@ function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
   }
 }
 
-function makeStyleTag(nonce?: string): HTMLStyleElement {
+type Options = { nonce?: string, key?: string, container?: HTMLElement }
+
+function makeStyleTag(opts: Options): HTMLStyleElement {
   let tag = document.createElement('style')
   tag.type = 'text/css'
-  tag.setAttribute('data-emotion', '')
-  if (nonce !== undefined) {
-    tag.setAttribute('nonce', nonce)
+  tag.setAttribute('data-emotion', opts.key || '')
+  if (opts.nonce !== undefined) {
+    tag.setAttribute('nonce', opts.nonce)
   }
   tag.appendChild(document.createTextNode(''))
   // $FlowFixMe
-  document.head.appendChild(tag)
+  ;(opts.container !== undefined ? opts.container : document.head).appendChild(
+    tag
+  )
   return tag
 }
 
@@ -59,17 +63,18 @@ export default class StyleSheet {
   sheet: string[]
   tags: HTMLStyleElement[]
   nonce: string | void
-  constructor(nonce?: string) {
+  opts: Options
+  constructor(options: Options) {
     this.isSpeedy = process.env.NODE_ENV === 'production' // the big drawback here is that the css won't be editable in devtools
     this.tags = []
-    this.nonce = nonce
     this.ctr = 0
+    this.opts = options
   }
   inject() {
     if (this.injected) {
       throw new Error('already injected!')
     }
-    this.tags[0] = makeStyleTag(this.nonce)
+    this.tags[0] = makeStyleTag(this.opts)
     this.injected = true
   }
   speedy(bool: boolean) {
@@ -92,13 +97,13 @@ export default class StyleSheet {
         }
       }
     } else {
-      const tag = makeStyleTag(this.nonce)
+      const tag = makeStyleTag(this.opts)
       this.tags.push(tag)
       tag.appendChild(document.createTextNode(rule + (sourceMap || '')))
     }
     this.ctr++
     if (this.ctr % 65000 === 0) {
-      this.tags.push(makeStyleTag(this.nonce))
+      this.tags.push(makeStyleTag(this.opts))
     }
   }
   flush() {

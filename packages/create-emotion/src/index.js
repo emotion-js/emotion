@@ -17,7 +17,8 @@ type EmotionCaches = {|
   inserted: { [key: string]: string | true },
   stylis: (scope: string, styles: string) => string,
   sheet: StyleSheet,
-  nonce?: string
+  nonce?: string,
+  key: string
 |}
 
 // this should probably be an actual type but it's hard to do without errors
@@ -55,7 +56,9 @@ export type Emotion = {
 type EmotionOptions = {
   nonce?: string,
   stylisPlugins?: StylisPlugins,
-  prefix?: PrefixOption
+  prefix?: PrefixOption,
+  key?: string,
+  container?: HTMLElement
 }
 
 function createEmotion(
@@ -63,6 +66,14 @@ function createEmotion(
   options?: EmotionOptions
 ): Emotion {
   if (options === undefined) options = {}
+  let key = options.key || 'css'
+  if (process.env.NODE_ENV !== 'production') {
+    if (/[^a-z-]/.test(key)) {
+      throw new Error(
+        `Emotion key must only contain lower case alphabetical characters and - but "${key}" was passed`
+      )
+    }
+  }
   // $FlowFixMe
   let caches: EmotionCaches = context.__SECRET_EMOTION__
   let current
@@ -90,9 +101,10 @@ function createEmotion(
     context.__SECRET_EMOTION__ = caches = {
       registered: {},
       inserted: {},
-      sheet: new StyleSheet(options.nonce),
+      sheet: new StyleSheet(options),
       stylis: new Stylis(stylisOptions),
-      nonce: options.nonce
+      nonce: options.nonce,
+      key
     }
 
     caches.stylis.use(options.stylisPlugins)(insertionPlugin)
@@ -241,7 +253,7 @@ function createEmotion(
   }
   const css: CreateStyles<string> = function css() {
     const styles = createStyles.apply(this, arguments)
-    const selector = `css-${name}`
+    const selector = `${key}-${name}`
 
     if (caches.registered[selector] === undefined) {
       caches.registered[selector] = styles
@@ -310,13 +322,13 @@ function createEmotion(
   }
 
   if (typeof window !== 'undefined') {
-    let chunks = Array.from(document.querySelectorAll('[data-emotion-chunk]'))
+    let chunks = Array.from(document.querySelectorAll(`[data-emotion-${key}]`))
     chunks.forEach(node => {
       // $FlowFixMe
-      document.head.insertBefore(node, sheet.tags[0])
+      sheet.tags[0].parentNode.insertBefore(node, sheet.tags[0])
       // $FlowFixMe
       node
-        .getAttribute('data-emotion-chunk')
+        .getAttribute(`data-emotion-${key}`)
         .split(' ')
         .forEach(hydrateSingleId)
     })

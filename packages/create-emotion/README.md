@@ -52,7 +52,10 @@ export const {
   css,
   sheet,
   caches
-} = createEmotion(context.__MY_EMOTION_INSTANCE__)
+} = createEmotion(context.__MY_EMOTION_INSTANCE__, {
+  // The key option is required when there will be multiple instances in a single app
+  key: 'some-key'
+})
 ```
 </details>
 
@@ -72,3 +75,10 @@ A Stylis plugin or plugins that will be run by stylis during preprocessing. [Rea
 
 Allows changing Stylis' prefixing settings, this defaults to `true`. It can be a boolean or a function to dynamicly set which properties are prefixed. [More information can be found in Stylis' docs](https://github.com/thysultan/stylis.js#vendor-prefixing)
 
+### key: string
+
+The prefix before class names, this defaults to `css`. It will also be set as the value of the `data-emotion` attribute on the style tags that emotion inserts and it's used in the attribute name that marks style elements in `renderStylesToString` and `renderStylesToNodeStream`. This is **required** if there will be **multiple emotion instances in the same app**.
+
+### container: HTMLElement
+
+A DOM Node that emotion will insert all of it's style tags into, this is useful for inserting styles into iframes.
