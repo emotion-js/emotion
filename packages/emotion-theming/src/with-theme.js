@@ -1,14 +1,13 @@
-import React from 'react'
 import hoistNonReactStatics from 'hoist-non-react-statics'
-import { channel, contextTypes } from './utils'
 
-const withTheme = Component => {
-  const componentName = Component.displayName || Component.name || 'Component'
+export default (ReactlikeAPI, channel, contextTypes) => WrappedComponent => {
+  const componentName =
+    WrappedComponent.displayName || WrappedComponent.name || 'Component'
 
-  class WithTheme extends React.Component {
+  class WithTheme extends ReactlikeAPI.Component {
     componentWillMount() {
       const themeContext = this.context[channel]
-      if (themeContext === undefined) {
+      if (process.env.NODE_ENV !== 'production' && themeContext === undefined) {
         // eslint-disable-next-line no-console
         console.error(
           '[withTheme] Please use ThemeProvider to be able to use withTheme'
@@ -27,13 +26,15 @@ const withTheme = Component => {
     }
 
     render() {
-      return <Component theme={this.state.theme} {...this.props} />
+      return ReactlikeAPI.createElement(WrappedComponent, {
+        theme: this.state.theme,
+        ...this.props
+      })
     }
   }
+
   WithTheme.displayName = `WithTheme(${componentName})`
   WithTheme.contextTypes = contextTypes
 
-  return hoistNonReactStatics(WithTheme, Component)
+  return hoistNonReactStatics(WithTheme, WrappedComponent)
 }
-
-export default withTheme

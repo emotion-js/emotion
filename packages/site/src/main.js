@@ -1,12 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { ThemeProvider, withTheme } from 'emotion-theming'
 import styled, {
   css,
   fontFace,
-  keyframes,
   injectGlobal,
-  merge
+  keyframes,
+  merge,
+  ThemeProvider,
+  withTheme
 } from 'react-emotion'
 import Markdown from './markdown'
 import Playground from './playground'

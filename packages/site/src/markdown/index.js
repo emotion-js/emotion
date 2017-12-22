@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { withTheme } from 'emotion-theming'
-import styled from 'react-emotion'
+import styled, { withTheme } from 'react-emotion'
 import colors from 'open-color'
 import Editor from 'component-playground/lib/components/editor'
 import { editorStyles } from '../playground'
