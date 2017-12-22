@@ -1,3 +1,9 @@
-export { default as ThemeProvider } from './theme-provider'
-export { default as withTheme } from './with-theme'
-export { channel, contextTypes } from './utils'
+import React from 'react'
+import createTheming from './factory'
+
+export const {
+  channel,
+  contextTypes,
+  ThemeProvider,
+  withTheme
+} = createTheming(React)
