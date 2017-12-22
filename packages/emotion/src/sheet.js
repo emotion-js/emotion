@@ -56,7 +56,9 @@ export default class StyleSheet {
       throw new Error('already injected!')
     }
     if (this.isBrowser) {
-      this.tags[0] = makeStyleTag()
+      // If an existing style tag with a nonce attribute is present, use that before attempting to create a new tag.
+      const tagWithNonce = document.querySelector('style[nonce][data-emotion]')
+      this.tags[0] = tagWithNonce !== null ? tagWithNonce : makeStyleTag()
     } else {
       // server side 'polyfill'. just enough behavior to be useful.
       this.sheet = []

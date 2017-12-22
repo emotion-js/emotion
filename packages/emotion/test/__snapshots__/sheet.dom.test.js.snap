@@ -4,6 +4,15 @@ exports[`sheet flush 1`] = `Array []`;
 
 exports[`sheet inject method throws if the sheet is already injected 1`] = `"already injected!"`;
 
+exports[`sheet nonce 1`] = `
+Array [
+  <style
+    nonce="123456"
+    data-emotion=""
+/>,
+]
+`;
+
 exports[`sheet tags 1`] = `
 Array [
   <style
