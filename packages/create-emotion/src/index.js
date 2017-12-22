@@ -301,7 +301,7 @@ function createEmotion(
   }
 
   function cx(...classNames: Array<ClassNameArg>) {
-    return merge(classnames(...classNames))
+    return merge(classnames(classNames))
   }
 
   function hydrateSingleId(id: string) {
