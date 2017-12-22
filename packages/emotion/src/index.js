@@ -258,12 +258,12 @@ export function merge(className, sourceMap) {
   return rawClassName + css(registeredStyles, sourceMap)
 }
 
-function classnames() {
-  let len = arguments.length
+function classnames(args) {
+  let len = args.length
   let i = 0
   let cls = ''
   for (; i < len; i++) {
-    let arg = arguments[i]
+    let arg = args[i]
 
     if (arg == null) continue
     let next = (cls && cls + ' ') || cls
@@ -272,11 +272,11 @@ function classnames() {
       case 'boolean':
         break
       case 'function':
-        cls = next + classnames(arg())
+        cls = next + classnames([arg()])
         break
       case 'object': {
         if (Array.isArray(arg)) {
-          cls = next + classnames.apply(null, arg)
+          cls = next + classnames(arg)
         } else {
           for (const k in arg) {
             if (arg[k]) {
@@ -296,7 +296,7 @@ function classnames() {
 }
 
 export function cx(...classNames) {
-  return merge(classnames(...classNames))
+  return merge(classnames(classNames))
 }
 
 export function hydrate(ids) {
