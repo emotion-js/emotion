@@ -56,6 +56,18 @@ const Parent = styled.div`
     color: green;
   }
 `;
+
+```
+```jsx
+const Child = styled('div')({
+  color: 'red'
+});
+
+const Parent = styled('div')({
+  [Child]: {
+    color: 'green'
+  }
+});
 ```
 
 This will generate a class selector something like:

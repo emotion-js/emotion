@@ -180,7 +180,7 @@
     },
     {
       "path": "./packages/react-emotion/dist/emotion.umd.min.js",
-      "threshold": "9.35 Kb"
+      "threshold": "9.4 Kb"
     }
   ]
 }
