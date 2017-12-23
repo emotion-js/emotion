@@ -237,6 +237,7 @@ export function buildStyledObjectCallExpression(
   identifier: Identifier,
   t: Types
 ) {
+  const targetProperty = buildTargetObjectProperty(path, state, t)
   const identifierName = getIdentifierName(path, t)
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
@@ -247,23 +248,21 @@ export function buildStyledObjectCallExpression(
     args.push(t.stringLiteral(addSourceMaps(path.node.loc.start, state)))
   }
 
+  const objectProperties = [targetProperty]
+
+  if (state.opts.autoLabel && identifierName) {
+    objectProperties.push(
+      t.objectProperty(
+        t.identifier('label'),
+        t.stringLiteral(identifierName.trim())
+      )
+    )
+  }
+
   path.addComment('leading', '#__PURE__')
 
   return t.callExpression(
-    t.callExpression(
-      identifier,
-      state.opts.autoLabel && identifierName
-        ? [
-            tag,
-            t.objectExpression([
-              t.objectProperty(
-                t.identifier('label'),
-                t.stringLiteral(identifierName.trim())
-              )
-            ])
-          ]
-        : [tag]
-    ),
+    t.callExpression(identifier, [tag, t.objectExpression(objectProperties)]),
     args
   )
 }

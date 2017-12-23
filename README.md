@@ -1,3 +1,5 @@
+**Emotion 9 is currently in beta, there may be breaking changes between versions, [for docs on Emotion 8 please go here](https://github.com/emotion-js/emotion/tree/v8.0.12/docs)**
+
 
 <p align="center" style="color: #343a40">
   <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" height="150" width="150">

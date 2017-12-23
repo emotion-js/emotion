@@ -128,6 +128,24 @@ describe('css', () => {
 
     expect(tree).toMatchSnapshot()
   })
+  test('component as selectors (object syntax)', () => {
+    expect(() => {
+      const fontSize = '20px'
+      const H1 = styled('h1')({ fontSize })
+
+      const Thing = styled('div')({
+        display: 'flex',
+        [H1]: {
+          color: 'green'
+        }
+      })
+      renderer.create(
+        <Thing>
+          hello <H1>This will be green</H1> world
+        </Thing>
+      )
+    }).toThrowErrorMatchingSnapshot()
+  })
   test('glamorous style api & composition', () => {
     const H1 = styled('h1')(props => ({ fontSize: props.fontSize }))
     const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })

@@ -23,3 +23,4 @@ module.name_mapper='^\(emotion-theming\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(emotion-server\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(create-emotion-server\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(jest-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
+unsafe.enable_getters_and_setters=true

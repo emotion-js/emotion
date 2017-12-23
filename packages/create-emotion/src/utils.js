@@ -32,14 +32,12 @@ export type ClassNameArg =
   | { [key: string]: boolean }
   | Array<ClassNameArg>
 
-export const classnames: (
-  ...args: Array<ClassNameArg>
-) => string = function classnames() {
-  let len = arguments.length
+export const classnames = (args: Array<ClassNameArg>): string => {
+  let len = args.length
   let i = 0
   let cls = ''
   for (; i < len; i++) {
-    let arg: ClassNameArg = arguments[i]
+    let arg = args[i]
 
     if (arg == null) continue
     let next = (cls && cls + ' ') || cls
@@ -48,11 +46,11 @@ export const classnames: (
       case 'boolean':
         break
       case 'function':
-        cls = next + classnames(arg())
+        cls = next + classnames([arg()])
         break
       case 'object': {
         if (Array.isArray(arg)) {
-          cls = next + classnames.apply(null, arg)
+          cls = next + classnames(arg)
         } else {
           for (const k in arg) {
             if (arg[k]) {

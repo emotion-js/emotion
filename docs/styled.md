@@ -79,6 +79,30 @@ render(
     <Child>red</Child>
   </div>
 )
+`;
+
+```
+
+Component selectors can also be used with object styles.
+```jsx live
+const Child = styled('div')({
+  color: 'red'
+})
+
+const Parent = styled('div')({
+  [Child]: {
+    color: 'green'
+  }
+})
+
+render(
+  <div>
+    <Parent>
+      <Child>green</Child>
+    </Parent>
+    <Child>red</Child>
+  </div>
+)
 ```
 
 This will generate a css rule something like this:

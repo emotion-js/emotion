@@ -146,7 +146,9 @@ const someCls = /*#__PURE__*/_css('display:flex;');"
 exports[`styled macro babel 6 object function 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div')({
+const SomeComponent = /*#__PURE__*/_styled('div', {
+  target: 'eo9rakq0'
+})({
   display: 'flex'
 });"
 `;
@@ -154,7 +156,9 @@ const SomeComponent = /*#__PURE__*/_styled('div')({
 exports[`styled macro babel 6 object member 1`] = `
 "import _styled from './styled';
 
-const SomeComponent = /*#__PURE__*/_styled('div')({
+const SomeComponent = /*#__PURE__*/_styled('div', {
+  target: 'eo9rakq0'
+})({
   display: 'flex'
 });"
 `;
@@ -194,7 +198,9 @@ exports[`styled macro babel 7 object function 1`] = `
 
 const SomeComponent =
 /*#__PURE__*/
-_styled('div')({
+_styled('div', {
+  target: \\"eo9rakq0\\"
+})({
   display: 'flex'
 });"
 `;
@@ -204,7 +210,9 @@ exports[`styled macro babel 7 object member 1`] = `
 
 const SomeComponent =
 /*#__PURE__*/
-_styled(\\"div\\")({
+_styled(\\"div\\", {
+  target: \\"eo9rakq0\\"
+})({
   display: 'flex'
 });"
 `;

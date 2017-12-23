@@ -25,7 +25,7 @@ exports[`styled basic render with object as style 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </h1>
@@ -226,7 +226,7 @@ exports[`styled composition of nested pseudo selectors 1`] = `
 }
 
 <button
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   Should be purple
 </button>
@@ -294,7 +294,7 @@ exports[`styled glamorous style api & composition 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
   fontSize={20}
 >
   hello world
@@ -405,7 +405,7 @@ exports[`styled input placeholder object 1`] = `
 }
 
 <input
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </input>
@@ -529,7 +529,7 @@ exports[`styled object as style 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
   fontSize={20}
 >
   hello world
@@ -570,7 +570,7 @@ exports[`styled objects 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
   display="flex"
 >
   hello world
@@ -583,7 +583,7 @@ exports[`styled objects with spread properties 1`] = `
 }
 
 <figure
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </figure>
@@ -796,11 +796,11 @@ exports[`styled with higher order component that hoists statics 1`] = `
 />
 `;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 1`] = `"eldhy9947"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 1`] = `"eldhy9955"`;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 2`] = `"eldhy9948"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 2`] = `"eldhy9956"`;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 3`] = `"eldhy9949"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 3`] = `"eldhy9957"`;
 
 exports[`styled withComponent does not carry styles from flattened component 1`] = `
 .glamor-0 {

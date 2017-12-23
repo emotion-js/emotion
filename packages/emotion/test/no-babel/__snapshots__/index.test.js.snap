@@ -12,6 +12,8 @@ exports[`css @supports 1`] = `
 />
 `;
 
+exports[`css component as selectors (object syntax) 1`] = `"Component selectors can only be used in conjunction with babel-plugin-emotion."`;
+
 exports[`css composition 1`] = `
 .glamor-0 {
   display: -webkit-box;

@@ -33,7 +33,9 @@ exports[`source map babel 6 css source map 1`] = `
 
 exports[`source map babel 6 styled object styles source map 1`] = `
 "
-/*#__PURE__*/styled('div')({
+/*#__PURE__*/styled('div', {
+  target: 'e5gcmo60'
+})({
   color: 'blue',
   '&:hover': {
     '& .name': {
@@ -96,7 +98,9 @@ css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@med
 
 exports[`source map babel 7 styled object styles source map 1`] = `
 "/*#__PURE__*/
-styled('div')({
+styled('div', {
+  target: \\"e5gcmo60\\"
+})({
   color: 'blue',
   '&:hover': {
     '& .name': {

@@ -65,6 +65,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
       class Styled extends view.Component<*, { theme: Object }> {
         unsubscribe: number
         mergedProps: Object
+        static toString: () => string
         static __emotion_real: any
         static __emotion_styles: Interpolations
         static __emotion_base: Styled
@@ -133,6 +134,20 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
       Styled.__emotion_base = baseTag
       Styled.__emotion_real = Styled
       Styled[TARGET_KEY] = stableClassName
+      Object.defineProperty(Styled, 'toString', {
+        enumerable: false,
+        value() {
+          if (
+            process.env.NODE_ENV !== 'production' &&
+            stableClassName === undefined
+          ) {
+            throw new Error(
+              'Component selectors can only be used in conjunction with babel-plugin-emotion.'
+            )
+          }
+          return `.${stableClassName}`
+        }
+      })
 
       Styled.withComponent = (
         nextTag: ElementType,

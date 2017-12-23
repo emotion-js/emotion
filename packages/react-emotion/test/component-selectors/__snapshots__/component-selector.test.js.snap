@@ -1,5 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`component as selector (object syntax) 1`] = `
+.glamor-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-2 .glamor-1 {
+  color: green;
+}
+
+.glamor-0 {
+  font-size: 20px;
+}
+
+<div
+  className="glamor-2 glamor-3"
+>
+  hello 
+  <h1
+    className="glamor-0 glamor-1"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`component as selector (object syntax) 2`] = `
+".css-1qozo52 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.css-1qozo52 .eqeli5r4 {
+  color: green;
+}
+
+.css-bk9fzy {
+  font-size: 20px;
+}"
+`;
+
 exports[`component as selector 1`] = `
 .glamor-2 {
   display: -webkit-box;
@@ -38,6 +84,54 @@ exports[`component as selector 2`] = `
 }
 
 .css-112oqv .eqeli5r0 {
+  color: green;
+}
+
+.css-bk9fzy {
+  font-size: 20px;
+}"
+`;
+
+exports[`component as selector function interpolation (object syntax) 1`] = `
+.glamor-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.glamor-2 .glamor-1 {
+  color: green;
+}
+
+.glamor-0 {
+  font-size: 20px;
+}
+
+<div
+  className="glamor-2 glamor-3"
+  fontSize={10}
+>
+  hello 
+  <h1
+    className="glamor-0 glamor-1"
+    fontSize={20}
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`component as selector function interpolation (object syntax) 2`] = `
+".css-6641zl {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.css-6641zl .eqeli5r6 {
   color: green;
 }
 
