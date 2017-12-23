@@ -6163,6 +6163,12 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+lerna-alias@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/lerna-alias/-/lerna-alias-3.0.0.tgz#3e1cce3e83463fcfa42c5486d19d8edfe4035afb"
+  dependencies:
+    glob "^7.1.2"
+
 lerna@^2.2.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/lerna/-/lerna-2.4.0.tgz#7b76446b154bafb9cba8996f3dc233f1cb6ca7c3"

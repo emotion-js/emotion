@@ -9,7 +9,7 @@
     "test": "npm-run-all -p lint:check coverage test:size test:typescript flow && npm run test:prod && npm run benchmark",
     "test:typescript": "lerna run test:typescript --parallel",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
-    "test:prod": "npm run build && jest -c jest.dist.json --no-cache --ci --runInBand",
+    "test:prod": "npm run build && jest -c jest.dist.js --no-cache --ci --runInBand",
     "lint:check": "eslint .",
     "test:watch": "jest --watch --no-cache",
     "rollup": "lerna run rollup --parallel",
@@ -71,6 +71,7 @@
     "jest-serializer-html": "^4.0.1",
     "jsdom": "^11.3.0",
     "lerna": "^2.2.0",
+    "lerna-alias": "^3.0.0",
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
@@ -143,28 +144,6 @@
           "jest": true
         }
       }
-    ]
-  },
-  "jest": {
-    "transform": {
-      "\\.css$": "<rootDir>/test/styleTransform.js",
-      "^.+\\.js?$": "babel-jest"
-    },
-    "moduleNameMapper": {
-      "^emotion$": "<rootDir>/packages/emotion/src",
-      "^react-emotion$": "<rootDir>/packages/react-emotion/src",
-      "^emotion-utils$": "<rootDir>/packages/emotion-utils/src",
-      "^emotion-server$": "<rootDir>/packages/emotion-server/src",
-      "^emotion-theming$": "<rootDir>/packages/emotion-theming/src",
-      "^babel-plugin-emotion": "<rootDir>/packages/babel-plugin-emotion/src",
-      "^create-emotion$": "<rootDir>/packages/create-emotion/src",
-      "^jest-emotion$": "<rootDir>/packages/jest-emotion/src",
-      "^create-emotion-styled$": "<rootDir>/packages/create-emotion-styled/src",
-      "^create-emotion-server$": "<rootDir>/packages/create-emotion-server/src"
-    },
-    "setupTestFrameworkScriptFile": "<rootDir>/test/testSetup.js",
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/packages/emotion-utils/src/stylis.js"
     ]
   },
   "workspaces": [
