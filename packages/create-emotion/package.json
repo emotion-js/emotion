@@ -1,6 +1,6 @@
 {
   "name": "create-emotion",
-  "version": "8.0.12",
+  "version": "9.0.0-0",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -16,7 +16,7 @@
     "watch": "rollup -c ../../rollup.config.js --watch"
   },
   "dependencies": {
-    "emotion-utils": "^8.0.11",
+    "emotion-utils": "^9.0.0-0",
     "stylis": "^3.3.2",
     "stylis-rule-sheet": "^0.0.5"
   },
