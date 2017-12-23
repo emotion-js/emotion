@@ -4,6 +4,7 @@ exports[`styled extract babel 6 autoLabel object styles 1`] = `
 "
 const Profile = () => {
   const H1 = /*#__PURE__*/styled('h1', {
+    target: 'css-8nbyc50',
     label: 'H1'
   })({
     borderRadius: '50%',
@@ -127,7 +128,9 @@ exports[`styled extract babel 6 hoisting 1`] = `
 var _ref2 = [{ color: 'blue' }];
 
 const Profile = () => {
-  const H1 = /*#__PURE__*/styled('h1')(_ref, props => ({
+  const H1 = /*#__PURE__*/styled('h1', {
+    target: 'css-8nbyc50'
+  })(_ref, props => ({
     display: props.display
   }), _ref2);
 };"
@@ -193,21 +196,27 @@ emotion.emotion.css
 
 exports[`styled extract babel 6 objects based on props 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1')({ padding: 10 }, props => ({
+const H1 = /*#__PURE__*/styled('h1', {
+  target: 'css-8nbyc50'
+})({ padding: 10 }, props => ({
   display: props.display
 }));"
 `;
 
 exports[`styled extract babel 6 objects fn call 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1')({
+const H1 = /*#__PURE__*/styled('h1', {
+  target: 'css-8nbyc50'
+})({
   display: 'flex'
 });"
 `;
 
 exports[`styled extract babel 6 objects prefixed 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1')({
+const H1 = /*#__PURE__*/styled('h1', {
+    target: 'css-8nbyc50'
+})({
     borderRadius: '50%',
     transition: 'transform 400ms ease-in-out',
     boxSizing: 'border-box',
@@ -234,11 +243,17 @@ emotion.emotion.css
 .css-143zpy6{font-size:32px;}"
 `;
 
-exports[`styled extract babel 6 shorthand property 1`] = `"const H1 = /*#__PURE__*/styled(\\"h1\\")({ fontSize });"`;
+exports[`styled extract babel 6 shorthand property 1`] = `
+"const H1 = /*#__PURE__*/styled(\\"h1\\", {
+  target: \\"css-8nbyc50\\"
+})({ fontSize });"
+`;
 
 exports[`styled extract babel 6 styled objects prefixed 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1')({
+const H1 = /*#__PURE__*/styled('h1', {
+  target: 'css-8nbyc50'
+})({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
   boxSizing: 'border-box',
@@ -253,7 +268,9 @@ const H1 = /*#__PURE__*/styled('h1')({
 
 exports[`styled extract babel 6 styled. objects 1`] = `
 "
-const H1 = /*#__PURE__*/styled(\\"h1\\")({ padding: 10 }, props => ({
+const H1 = /*#__PURE__*/styled(\\"h1\\", {
+  target: \\"css-8nbyc50\\"
+})({ padding: 10 }, props => ({
   display: props.display
 }));"
 `;
@@ -261,7 +278,9 @@ const H1 = /*#__PURE__*/styled(\\"h1\\")({ padding: 10 }, props => ({
 exports[`styled extract babel 6 styled. objects with a multiple spread properties 1`] = `
 "
 const defaultText = { fontSize: 20 };
-const Figure = /*#__PURE__*/styled(\\"figure\\")({
+const Figure = /*#__PURE__*/styled(\\"figure\\", {
+  target: \\"css-8nbyc50\\"
+})({
   ...defaultText,
   ...defaultFigure
 });"
@@ -270,7 +289,9 @@ const Figure = /*#__PURE__*/styled(\\"figure\\")({
 exports[`styled extract babel 6 styled. objects with a multiple spread properties and other keys 1`] = `
 "
 const defaultText = { fontSize: 20 };
-const Figure = /*#__PURE__*/styled('figure')({
+const Figure = /*#__PURE__*/styled('figure', {
+  target: 'css-8nbyc50'
+})({
   ...defaultText,
   fontSize: '20px',
   ...defaultFigure,
@@ -281,7 +302,9 @@ const Figure = /*#__PURE__*/styled('figure')({
 exports[`styled extract babel 6 styled. objects with a single spread property 1`] = `
 "
 const defaultText = { fontSize: 20 };
-const Figure = /*#__PURE__*/styled(\\"figure\\")({
+const Figure = /*#__PURE__*/styled(\\"figure\\", {
+  target: \\"css-8nbyc50\\"
+})({
   ...defaultText
 });"
 `;
@@ -303,6 +326,7 @@ exports[`styled extract babel 7 autoLabel object styles 1`] = `
   const H1 =
   /*#__PURE__*/
   styled(\\"h1\\", {
+    target: \\"css-8nbyc50\\",
     label: \\"H1\\"
   })({
     borderRadius: '50%',
@@ -436,7 +460,9 @@ var _ref2 = [{
 const Profile = () => {
   const H1 =
   /*#__PURE__*/
-  styled(\\"h1\\")(_ref, props => ({
+  styled(\\"h1\\", {
+    target: \\"css-8nbyc50\\"
+  })(_ref, props => ({
     display: props.display
   }), _ref2);
 };"
@@ -508,7 +534,9 @@ emotion.emotion.css
 exports[`styled extract babel 7 objects based on props 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled('h1')({
+styled('h1', {
+  target: \\"css-8nbyc50\\"
+})({
   padding: 10
 }, props => ({
   display: props.display
@@ -518,7 +546,9 @@ styled('h1')({
 exports[`styled extract babel 7 objects fn call 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled('h1')({
+styled('h1', {
+  target: \\"css-8nbyc50\\"
+})({
   display: 'flex'
 });"
 `;
@@ -526,7 +556,9 @@ styled('h1')({
 exports[`styled extract babel 7 objects prefixed 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled('h1')({
+styled('h1', {
+  target: \\"css-8nbyc50\\"
+})({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
   boxSizing: 'border-box',
@@ -560,7 +592,9 @@ emotion.emotion.css
 exports[`styled extract babel 7 shorthand property 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled(\\"h1\\")({
+styled(\\"h1\\", {
+  target: \\"css-8nbyc50\\"
+})({
   fontSize
 });"
 `;
@@ -568,7 +602,9 @@ styled(\\"h1\\")({
 exports[`styled extract babel 7 styled objects prefixed 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled(\\"h1\\")({
+styled(\\"h1\\", {
+  target: \\"css-8nbyc50\\"
+})({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
   boxSizing: 'border-box',
@@ -584,7 +620,9 @@ styled(\\"h1\\")({
 exports[`styled extract babel 7 styled. objects 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled(\\"h1\\")({
+styled(\\"h1\\", {
+  target: \\"css-8nbyc50\\"
+})({
   padding: 10
 }, props => ({
   display: props.display
@@ -597,7 +635,9 @@ exports[`styled extract babel 7 styled. objects with a multiple spread propertie
 };
 const Figure =
 /*#__PURE__*/
-styled(\\"figure\\")({ ...defaultText,
+styled(\\"figure\\", {
+  target: \\"css-8nbyc50\\"
+})({ ...defaultText,
   ...defaultFigure
 });"
 `;
@@ -608,7 +648,9 @@ exports[`styled extract babel 7 styled. objects with a multiple spread propertie
 };
 const Figure =
 /*#__PURE__*/
-styled(\\"figure\\")({ ...defaultText,
+styled(\\"figure\\", {
+  target: \\"css-8nbyc50\\"
+})({ ...defaultText,
   fontSize: '20px',
   ...defaultFigure,
   ...defaultText2
@@ -621,7 +663,9 @@ exports[`styled extract babel 7 styled. objects with a single spread property 1`
 };
 const Figure =
 /*#__PURE__*/
-styled(\\"figure\\")({ ...defaultText
+styled(\\"figure\\", {
+  target: \\"css-8nbyc50\\"
+})({ ...defaultText
 });"
 `;
 
@@ -642,6 +686,7 @@ exports[`styled inline babel 6 autoLabel object styles 1`] = `
 "
 const Profile = () => {
   const H1 = /*#__PURE__*/styled('h1', {
+    target: 'css-8nbyc50',
     label: 'H1'
   })({
     borderRadius: '50%',
@@ -734,7 +779,9 @@ exports[`styled inline babel 6 hoisting 1`] = `
 var _ref2 = [{ color: 'blue' }];
 
 const Profile = () => {
-  const H1 = /*#__PURE__*/styled('h1')(_ref, props => ({
+  const H1 = /*#__PURE__*/styled('h1', {
+    target: 'css-8nbyc50'
+  })(_ref, props => ({
     display: props.display
   }), _ref2);
 };"
@@ -779,21 +826,27 @@ exports[`styled inline babel 6 no use 1`] = `
 
 exports[`styled inline babel 6 objects based on props 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1')({ padding: 10 }, props => ({
+const H1 = /*#__PURE__*/styled('h1', {
+  target: 'css-8nbyc50'
+})({ padding: 10 }, props => ({
   display: props.display
 }));"
 `;
 
 exports[`styled inline babel 6 objects fn call 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1')({
+const H1 = /*#__PURE__*/styled('h1', {
+  target: 'css-8nbyc50'
+})({
   display: 'flex'
 });"
 `;
 
 exports[`styled inline babel 6 objects prefixed 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1')({
+const H1 = /*#__PURE__*/styled('h1', {
+    target: 'css-8nbyc50'
+})({
     borderRadius: '50%',
     transition: 'transform 400ms ease-in-out',
     boxSizing: 'border-box',
@@ -814,11 +867,17 @@ const a = () => /*#__PURE__*/css(\\"font-size:1rem\\");
 })(\\"margin:12px 48px;\\", /*#__PURE__*/css(\\"font-size:32px\\"), \\";color:#ffffff;& .profile{\\", props => props.prop && a(), \\"}\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"
 `;
 
-exports[`styled inline babel 6 shorthand property 1`] = `"const H1 = /*#__PURE__*/styled(\\"h1\\")({ fontSize });"`;
+exports[`styled inline babel 6 shorthand property 1`] = `
+"const H1 = /*#__PURE__*/styled(\\"h1\\", {
+  target: \\"css-8nbyc50\\"
+})({ fontSize });"
+`;
 
 exports[`styled inline babel 6 styled objects prefixed 1`] = `
 "
-const H1 = /*#__PURE__*/styled('h1')({
+const H1 = /*#__PURE__*/styled('h1', {
+  target: 'css-8nbyc50'
+})({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
   boxSizing: 'border-box',
@@ -833,7 +892,9 @@ const H1 = /*#__PURE__*/styled('h1')({
 
 exports[`styled inline babel 6 styled. objects 1`] = `
 "
-const H1 = /*#__PURE__*/styled(\\"h1\\")({ padding: 10 }, props => ({
+const H1 = /*#__PURE__*/styled(\\"h1\\", {
+  target: \\"css-8nbyc50\\"
+})({ padding: 10 }, props => ({
   display: props.display
 }));"
 `;
@@ -841,7 +902,9 @@ const H1 = /*#__PURE__*/styled(\\"h1\\")({ padding: 10 }, props => ({
 exports[`styled inline babel 6 styled. objects with a multiple spread properties 1`] = `
 "
 const defaultText = { fontSize: 20 };
-const Figure = /*#__PURE__*/styled(\\"figure\\")({
+const Figure = /*#__PURE__*/styled(\\"figure\\", {
+  target: \\"css-8nbyc50\\"
+})({
   ...defaultText,
   ...defaultFigure
 });"
@@ -850,7 +913,9 @@ const Figure = /*#__PURE__*/styled(\\"figure\\")({
 exports[`styled inline babel 6 styled. objects with a multiple spread properties and other keys 1`] = `
 "
 const defaultText = { fontSize: 20 };
-const Figure = /*#__PURE__*/styled('figure')({
+const Figure = /*#__PURE__*/styled('figure', {
+  target: 'css-8nbyc50'
+})({
   ...defaultText,
   fontSize: '20px',
   ...defaultFigure,
@@ -861,7 +926,9 @@ const Figure = /*#__PURE__*/styled('figure')({
 exports[`styled inline babel 6 styled. objects with a single spread property 1`] = `
 "
 const defaultText = { fontSize: 20 };
-const Figure = /*#__PURE__*/styled(\\"figure\\")({
+const Figure = /*#__PURE__*/styled(\\"figure\\", {
+  target: \\"css-8nbyc50\\"
+})({
   ...defaultText
 });"
 `;
@@ -877,6 +944,7 @@ exports[`styled inline babel 7 autoLabel object styles 1`] = `
   const H1 =
   /*#__PURE__*/
   styled(\\"h1\\", {
+    target: \\"css-8nbyc50\\",
     label: \\"H1\\"
   })({
     borderRadius: '50%',
@@ -985,7 +1053,9 @@ var _ref2 = [{
 const Profile = () => {
   const H1 =
   /*#__PURE__*/
-  styled(\\"h1\\")(_ref, props => ({
+  styled(\\"h1\\", {
+    target: \\"css-8nbyc50\\"
+  })(_ref, props => ({
     display: props.display
   }), _ref2);
 };"
@@ -1040,7 +1110,9 @@ styled(\\"h1\\", {
 exports[`styled inline babel 7 objects based on props 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled('h1')({
+styled('h1', {
+  target: \\"css-8nbyc50\\"
+})({
   padding: 10
 }, props => ({
   display: props.display
@@ -1050,7 +1122,9 @@ styled('h1')({
 exports[`styled inline babel 7 objects fn call 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled('h1')({
+styled('h1', {
+  target: \\"css-8nbyc50\\"
+})({
   display: 'flex'
 });"
 `;
@@ -1058,7 +1132,9 @@ styled('h1')({
 exports[`styled inline babel 7 objects prefixed 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled('h1')({
+styled('h1', {
+  target: \\"css-8nbyc50\\"
+})({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
   boxSizing: 'border-box',
@@ -1089,7 +1165,9 @@ css(\\"font-size:32px\\"), \\";color:#ffffff;& .profile{\\", props => props.prop
 exports[`styled inline babel 7 shorthand property 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled(\\"h1\\")({
+styled(\\"h1\\", {
+  target: \\"css-8nbyc50\\"
+})({
   fontSize
 });"
 `;
@@ -1097,7 +1175,9 @@ styled(\\"h1\\")({
 exports[`styled inline babel 7 styled objects prefixed 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled(\\"h1\\")({
+styled(\\"h1\\", {
+  target: \\"css-8nbyc50\\"
+})({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
   boxSizing: 'border-box',
@@ -1113,7 +1193,9 @@ styled(\\"h1\\")({
 exports[`styled inline babel 7 styled. objects 1`] = `
 "const H1 =
 /*#__PURE__*/
-styled(\\"h1\\")({
+styled(\\"h1\\", {
+  target: \\"css-8nbyc50\\"
+})({
   padding: 10
 }, props => ({
   display: props.display
@@ -1126,7 +1208,9 @@ exports[`styled inline babel 7 styled. objects with a multiple spread properties
 };
 const Figure =
 /*#__PURE__*/
-styled(\\"figure\\")({ ...defaultText,
+styled(\\"figure\\", {
+  target: \\"css-8nbyc50\\"
+})({ ...defaultText,
   ...defaultFigure
 });"
 `;
@@ -1137,7 +1221,9 @@ exports[`styled inline babel 7 styled. objects with a multiple spread properties
 };
 const Figure =
 /*#__PURE__*/
-styled(\\"figure\\")({ ...defaultText,
+styled(\\"figure\\", {
+  target: \\"css-8nbyc50\\"
+})({ ...defaultText,
   fontSize: '20px',
   ...defaultFigure,
   ...defaultText2
@@ -1150,7 +1236,9 @@ exports[`styled inline babel 7 styled. objects with a single spread property 1`]
 };
 const Figure =
 /*#__PURE__*/
-styled(\\"figure\\")({ ...defaultText
+styled(\\"figure\\", {
+  target: \\"css-8nbyc50\\"
+})({ ...defaultText
 });"
 `;
 

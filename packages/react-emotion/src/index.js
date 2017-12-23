@@ -140,6 +140,21 @@ const createStyled = (
     Styled.__emotion_real = Styled
     Styled[TARGET_KEY] = stableClassName
 
+    Object.defineProperty(Styled, 'toString', {
+      enumerable: false,
+      value() {
+        if (
+          process.env.NODE_ENV !== 'production' &&
+          stableClassName === undefined
+        ) {
+          throw new Error(
+            'Component selectors can only be used in conjunction with babel-plugin-emotion.'
+          )
+        }
+        return `.${stableClassName}`
+      }
+    })
+
     Styled.withComponent = (nextTag, nextOptions: { target: string }) => {
       return createStyled(
         nextTag,

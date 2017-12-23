@@ -25,7 +25,7 @@ exports[`styled basic render with object as style 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </h1>
@@ -226,7 +226,7 @@ exports[`styled composition of nested pseudo selectors 1`] = `
 }
 
 <button
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   Should be purple
 </button>
@@ -294,7 +294,7 @@ exports[`styled glamorous style api & composition 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
   fontSize={20}
 >
   hello world
@@ -405,7 +405,7 @@ exports[`styled input placeholder object 1`] = `
 }
 
 <input
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </input>
@@ -507,7 +507,7 @@ exports[`styled object as style 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
   fontSize={20}
 >
   hello world
@@ -548,7 +548,7 @@ exports[`styled objects 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="glamor-0 glamor-1"
   display="flex"
 >
   hello world
@@ -561,7 +561,7 @@ exports[`styled objects with spread properties 1`] = `
 }
 
 <figure
-  className="glamor-0"
+  className="glamor-0 glamor-1"
 >
   hello world
 </figure>

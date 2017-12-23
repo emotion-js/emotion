@@ -38,7 +38,9 @@ fontFace(\\"font-family:MyHelvetica;src:local(\\\\\\"Helvetica Neue Bold\\\\\\")
 
 exports[`source map babel 6 styled object styles source map 1`] = `
 "
-/*#__PURE__*/styled('div')({
+/*#__PURE__*/styled('div', {
+  target: 'css-5gcmo60'
+})({
   color: 'blue',
   '&:hover': {
     '& .name': {
@@ -103,7 +105,9 @@ exports[`source map babel 7 fontFace source map 1`] = `"fontFace(\\"font-family:
 
 exports[`source map babel 7 styled object styles source map 1`] = `
 "/*#__PURE__*/
-styled('div')({
+styled('div', {
+  target: \\"css-5gcmo60\\"
+})({
   color: 'blue',
   '&:hover': {
     '& .name': {
