@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`sheet flush 1`] = `Array []`;
+exports[`sheet .speedy throws when a rule has already been inserted 1`] = `"cannot change speedy now"`;
 
 exports[`sheet inject method throws if the sheet is already injected 1`] = `"already injected!"`;
 

@@ -56,7 +56,7 @@ npm install --save jest-emotion
 -expect.addSnapshotSerializer(serializer(sheet))
 +expect.addSnapshotSerializer(createSerializer(sheet))
 ```
-3. Emotion doesn't automatically insert semicolons now. We recommend using [Prettier](https://prettier.io/) to ensure that your styles are formatted correctly.
+3. Emotion doesn't automatically insert semicolons in styles now. We recommend using [Prettier](https://prettier.io/) to ensure that your styles are formatted correctly.
 4. That's It!! You might want to check the more detailed list of breaking changes below just in case though.
 
 
