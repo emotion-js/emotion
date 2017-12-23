@@ -1,6 +1,6 @@
 ## v9.0.0 (UNRELEASED)
 
-TODO: Add all the other stuff that's on master
+**Emotion 9 is currently in beta and there may be breaking changes between versions**
 
 Emotion 9 introduces [instances](https://emotion.sh/docs/create-emotion), jest-emotion, two new SSR methods and a brand new website!! Instances allow you to customize prefixing options, run plugins during CSS processing, set nonces for CSP and they're totally optional so if you don't need instances keep on using `emotion`. jest-emotion offers a better out of the box experience and has the potential for more features in the future. emotion-server has new methods for inlining CSS in HTML right before it's needed and adds support for streaming.
 
@@ -70,7 +70,34 @@ npm install --save jest-emotion
 * `emotion-server`
   * `extractCritical` no longer returns a rules property, this was never documented so it shouldn't cause any problems.
 
+## v9.0.0-0 (2017-12-23)
 
+#### :boom: Breaking Change
+* `babel-plugin-emotion`, `create-emotion-server`, `create-emotion-styled`, `create-emotion`, `emotion-server`, `emotion-theming`, `emotion-utils`, `emotion`, `jest-emotion`, `preact-emotion`, `react-emotion`, `site`
+  * [#464](https://github.com/emotion-js/emotion/pull/464) Add Instances. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :rocket: Enhancement
+* `babel-plugin-emotion`, `emotion`, `react-emotion`
+  * [#503](https://github.com/emotion-js/emotion/pull/503) [babel-plugin-emotion][react-emotion] Adds Support for Components as Selectors Using the Object Syntax #501. ([@smlmrkhlms](https://github.com/smlmrkhlms))
+
+#### :bug: Bug Fix
+* `emotion`
+  * [#500](https://github.com/emotion-js/emotion/pull/500) Fix styles getting injected in the classname (#492). ([@pimmey](https://github.com/pimmey))
+* `emotion-theming`
+  * [#497](https://github.com/emotion-js/emotion/pull/497) Fixed nested themes not being republished on outer theme changes. ([@Andarist](https://github.com/Andarist))
+
+#### :house: Internal
+* `emotion`
+  * [#502](https://github.com/emotion-js/emotion/pull/502) Pass converted arguments as array directly to the underlaying classnames helper. ([@Andarist](https://github.com/Andarist))
+* `babel-plugin-emotion`, `emotion-server`, `emotion`, `react-emotion`
+  * [#498](https://github.com/emotion-js/emotion/pull/498) used a simpler hashing strategy when a file system is available. ([@probablyup](https://github.com/probablyup))
+
+#### Committers: 5
+- Evan Scott ([probablyup](https://github.com/probablyup))
+- Mark Holmes ([smlmrkhlms](https://github.com/smlmrkhlms))
+- Mateusz Burzyński ([Andarist](https://github.com/Andarist))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Yegor Borisenco ([pimmey](https://github.com/pimmey))
 
 ## v8.0.12 (2017-12-01)
 
