@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { css } from 'emotion/macro'
@@ -757,7 +758,7 @@ describe('styled', () => {
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
   test('name with class component', () => {
-    class SomeComponent extends React.Component {
+    class SomeComponent extends React.Component<*> {
       render() {
         return <div className={this.props.className} />
       }

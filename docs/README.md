@@ -8,7 +8,6 @@
 - [Nested Selectors](https://github.com/emotion-js/emotion/tree/master/docs/nested.md)
 - [Composition](https://github.com/emotion-js/emotion/tree/master/docs/composition.md)
 - [Injecting Global Styles](https://github.com/emotion-js/emotion/tree/master/docs/inject-global.md)
-- [Custom Fonts](https://github.com/emotion-js/emotion/tree/master/docs/font-face.md)
 - [Keyframe Animations](https://github.com/emotion-js/emotion/tree/master/docs/keyframes.md)
 - [Theming](https://github.com/emotion-js/emotion/tree/master/docs/theming.md)
 - [Server Side Rendering](https://github.com/emotion-js/emotion/tree/master/docs/ssr.md)

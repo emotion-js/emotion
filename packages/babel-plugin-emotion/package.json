@@ -30,9 +30,9 @@
     "rimraf": "^2.6.1"
   },
   "author": "Kye Hohenberger",
-  "homepage": "https://github.com/tkh44/emotion#readme",
+  "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/tkh44/emotion/tree/master/packages/babel-plugin-emotion",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion",
   "keywords": [
     "styles",
     "emotion",
@@ -41,6 +41,6 @@
     "css-in-js"
   ],
   "bugs": {
-    "url": "https://github.com/tkh44/emotion/issues"
+    "url": "https://github.com/emotion-js/emotion/issues"
   }
 }

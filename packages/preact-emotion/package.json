@@ -6,6 +6,7 @@
   "module": "dist/index.es.js",
   "files": [
     "dist",
+    "src",
     "macro.js"
   ],
   "scripts": {
@@ -16,7 +17,7 @@
   },
   "dependencies": {
     "babel-plugin-emotion": "^8.0.12",
-    "emotion-utils": "^8.0.12"
+    "create-emotion-styled": "^8.0.12"
   },
   "peerDependencies": {
     "emotion": "^8.0.12"
@@ -29,9 +30,9 @@
     "rollup": "^0.51.3"
   },
   "author": "Kye Hohenberger",
-  "homepage": "https://github.com/tkh44/emotion#readme",
+  "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/tkh44/emotion/tree/master/packages/preact-emotion",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/preact-emotion",
   "keywords": [
     "styles",
     "emotion",
@@ -41,6 +42,6 @@
     "css-in-js"
   ],
   "bugs": {
-    "url": "https://github.com/tkh44/emotion/issues"
+    "url": "https://github.com/emotion-js/emotion/issues"
   }
 }

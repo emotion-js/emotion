@@ -30,6 +30,12 @@ exports[`babel css prop inline babel 6 StringLiteral css prop value 1`] = `
 <div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
 `;
 
+exports[`babel css prop inline babel 6 another relative custom instance 1`] = `
+"var _css = require(\\"../my-emotion-instance\\").css;
+
+<div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
+`;
+
 exports[`babel css prop inline babel 6 basic inline 1`] = `
 "var _css = require(\\"emotion\\").css;
 
@@ -62,6 +68,12 @@ exports[`babel css prop inline babel 6 css empty 1`] = `
 "var _css = require(\\"emotion\\").css;
 
 <div className={/*#__PURE__*/_css()}></div>;"
+`;
+
+exports[`babel css prop inline babel 6 custom instance 1`] = `
+"var _css = require(\\"my-emotion-instance\\").css;
+
+<div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
 `;
 
 exports[`babel css prop inline babel 6 dynamic inline 1`] = `
@@ -137,6 +149,12 @@ exports[`babel css prop inline babel 6 redefined-import: basic inline 1`] = `
 <div className={/*#__PURE__*/_css(\\"color:brown;\\") + \\" a\\"}></div>;"
 `;
 
+exports[`babel css prop inline babel 6 relative custom instance 1`] = `
+"var _css = require(\\"./my-emotion-instance\\").css;
+
+<div className={/*#__PURE__*/_css(\\"color:brown;\\")}></div>;"
+`;
+
 exports[`babel css prop inline babel 6 with spread arg in jsx opening tag 1`] = `
 "var _css = require(\\"emotion\\").css;
 
@@ -145,6 +163,14 @@ exports[`babel css prop inline babel 6 with spread arg in jsx opening tag 1`] = 
 
 exports[`babel css prop inline babel 7 StringLiteral css prop value 1`] = `
 "var _css = require(\\"emotion\\").css;
+
+<div className={
+/*#__PURE__*/
+_css(\\"color:brown;\\")}></div>;"
+`;
+
+exports[`babel css prop inline babel 7 another relative custom instance 1`] = `
+"var _css = require(\\"../my-emotion-instance\\").css;
 
 <div className={
 /*#__PURE__*/
@@ -193,6 +219,14 @@ exports[`babel css prop inline babel 7 css empty 1`] = `
 <div className={
 /*#__PURE__*/
 _css()}></div>;"
+`;
+
+exports[`babel css prop inline babel 7 custom instance 1`] = `
+"var _css = require(\\"my-emotion-instance\\").css;
+
+<div className={
+/*#__PURE__*/
+_css(\\"color:brown;\\")}></div>;"
 `;
 
 exports[`babel css prop inline babel 7 dynamic inline 1`] = `
@@ -292,6 +326,14 @@ exports[`babel css prop inline babel 7 redefined-import: basic inline 1`] = `
 <div className={
 /*#__PURE__*/
 _css(\\"color:brown;\\") + \\" a\\"}></div>;"
+`;
+
+exports[`babel css prop inline babel 7 relative custom instance 1`] = `
+"var _css = require(\\"./my-emotion-instance\\").css;
+
+<div className={
+/*#__PURE__*/
+_css(\\"color:brown;\\")}></div>;"
 `;
 
 exports[`babel css prop inline babel 7 with spread arg in jsx opening tag 1`] = `

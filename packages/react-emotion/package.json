@@ -12,16 +12,15 @@
     "types"
   ],
   "scripts": {
-    "build": "npm-run-all clean rollup rollup:umd",
+    "build": "npm-run-all clean rollup",
     "test:typescript": "dtslint types",
     "clean": "rimraf dist",
     "rollup": "rollup -c ../../rollup.config.js",
-    "watch": "rollup -c ../../rollup.config.js --watch",
-    "rollup:umd": "cross-env UMD=true rollup -c ../../rollup.config.js"
+    "watch": "rollup -c ../../rollup.config.js --watch"
   },
   "dependencies": {
     "babel-plugin-emotion": "^8.0.12",
-    "emotion-utils": "^8.0.12"
+    "create-emotion-styled": "^8.0.12"
   },
   "peerDependencies": {
     "emotion": "^8.0.12"
@@ -36,9 +35,9 @@
     "rollup": "^0.51.3"
   },
   "author": "Kye Hohenberger",
-  "homepage": "https://github.com/tkh44/emotion#readme",
+  "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/tkh44/emotion/tree/master/packages/react-emotion",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/react-emotion",
   "keywords": [
     "styles",
     "emotion",
@@ -47,6 +46,6 @@
     "css-in-js"
   ],
   "bugs": {
-    "url": "https://github.com/tkh44/emotion/issues"
+    "url": "https://github.com/emotion-js/emotion/issues"
   }
 }

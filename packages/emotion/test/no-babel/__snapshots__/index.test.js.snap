@@ -174,7 +174,7 @@ exports[`css no dynamic 1`] = `
 
 exports[`css null rule 1`] = `
 <div
-  className="css-0"
+  className="glamor-0"
 />
 `;
 

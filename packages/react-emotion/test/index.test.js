@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import renderer from 'react-test-renderer'
 import styled, { css, flush } from 'react-emotion'
@@ -577,6 +578,21 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('theme with react-test-renderer', () => {
+    const Div = styled.div`
+      color: ${props => props.theme.primary};
+    `
+    const tree = renderer
+      .create(
+        <ThemeProvider theme={{ primary: 'pink' }}>
+          {<Div>this will be pink</Div>}
+        </ThemeProvider>
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('change theme', () => {
     const Div = styled.div`
       color: ${props => props.theme.primary};
@@ -1072,7 +1088,7 @@ describe('styled', () => {
     expect(Byline[TARGET_KEY]).toMatchSnapshot()
   })
   test('name with class component', () => {
-    class SomeComponent extends React.Component {
+    class SomeComponent extends React.Component<{ className: string }> {
       render() {
         return <div className={this.props.className} />
       }
@@ -1107,6 +1123,17 @@ describe('styled', () => {
     const tree = renderer
       .create(<SomeComponent theme={{ color: 'hotpink' }} />)
       .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('withComponent does not carry styles from flattened component', () => {
+    const SomeComponent = styled.div`
+      color: green;
+    `
+    const AnotherComponent = styled(SomeComponent)`
+      color: hotpink;
+    `
+    const OneMoreComponent = AnotherComponent.withComponent('p')
+    const tree = renderer.create(<OneMoreComponent />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

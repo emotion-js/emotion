@@ -4,7 +4,7 @@ Adding [snapshot tests with Jest](https://facebook.github.io/jest/docs/en/snapsh
 
 By diffing the serialized value of your React tree Jest can show you what changed in your app and allow you to fix it or update the snapshot.
 
-By default snapshots with emotion show generated class names. Adding [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) allows you to output the actual styles being applied. 
+By default snapshots with emotion show generated class names. Adding [jest-emotion](https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion) allows you to output the actual styles being applied. 
 
 <img height="360px" src="https://user-images.githubusercontent.com/514026/31314015-02b79ca6-abc3-11e7-8f70-1edb31c7f43b.jpg"/>
 
@@ -12,16 +12,16 @@ By default snapshots with emotion show generated class names. Adding [jest-glamo
 ### Installation
 
 ```bash
-npm install --save-dev jest-glamor-react
+npm install --save-dev jest-emotion
 ```
 
 **testSetup.js** _or_ at the top of your test file
 
 ```javascript
-import { sheet } from 'emotion'
-import serializer from 'jest-glamor-react'
+import * as emotion from 'emotion'
+import { createSerializer } from 'jest-emotion'
 
-expect.addSnapshotSerializer(serializer(sheet))
+expect.addSnapshotSerializer(createSerializer(emotion))
 ```
 
 **package.json**
@@ -49,7 +49,6 @@ test('Link renders correctly', () => {
 ```
 
 ### Notes
-It's recommended to set your Jest `testEnvironment` to `jsdom`, but you can mock global browser objects instead.
 
-Your snapshot class names will now appear as `glamor-[0...n]`
+Your snapshot class names will appear as `emotion-[0...n]` instead of `css-[hash]`.
 

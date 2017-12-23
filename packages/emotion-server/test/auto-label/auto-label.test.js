@@ -1,29 +1,30 @@
+// @flow
 /**
  * @jest-environment node
 */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import styled from 'react-emotion'
-import {
-  css,
-  injectGlobal,
-  keyframes,
-  flush,
-  hydrate,
-  fontFace,
-  sheet
-} from 'emotion'
+import { css, injectGlobal, keyframes, flush, hydrate } from 'emotion'
 import { extractCritical } from 'emotion-server'
+import { prettyifyCritical, getInjectedRules } from '../util'
+
+const emotion = require('emotion')
 
 const getComponents = () => {
   const color = 'red'
 
-  fontFace`
-    font-family: 'Patrick Hand SC';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Patrick Hand SC'), local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+  injectGlobal`
+    @font-face {
+      font-family: 'Patrick Hand SC';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Patrick Hand SC'), local('PatrickHandSC-Regular'),
+        url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2)
+          format('woff2');
+      unicode-range: U+0100-024f, U+1-1eff, U+20a0-20ab, U+20ad-20cf,
+        U+2c60-2c7f, U+A720-A7FF;
+    }
   `
 
   const bounce = keyframes`
@@ -103,19 +104,25 @@ const getComponents = () => {
 describe('extractCritical', () => {
   test('returns static css', () => {
     const { Page1, Page2 } = getComponents()
-    expect(extractCritical(renderToString(<Page1 />))).toMatchSnapshot()
-    expect(extractCritical(renderToString(<Page2 />))).toMatchSnapshot()
+    expect(
+      prettyifyCritical(extractCritical(renderToString(<Page1 />)))
+    ).toMatchSnapshot()
+    expect(
+      prettyifyCritical(extractCritical(renderToString(<Page2 />)))
+    ).toMatchSnapshot()
   })
 })
 describe('hydration', () => {
   test('only rules that are not in the critical css are inserted', () => {
     const { Page1 } = getComponents()
-    const { html, ids, css, rules } = extractCritical(renderToString(<Page1 />))
-    expect({ html, ids, css, rules }).toMatchSnapshot()
+    const { html, ids, css } = extractCritical(renderToString(<Page1 />))
+    expect(prettyifyCritical({ html, css, ids })).toMatchSnapshot()
     flush()
+
     hydrate(ids)
+
     const { Page1: NewPage1 } = getComponents()
     renderToString(<NewPage1 />)
-    expect(sheet.sheet).toMatchSnapshot()
+    expect(getInjectedRules(emotion)).toMatchSnapshot()
   })
 })

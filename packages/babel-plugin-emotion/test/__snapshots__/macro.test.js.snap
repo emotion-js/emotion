@@ -30,12 +30,6 @@ exports[`macro babel 6 flush 1`] = `
 const someOtherVar = _flush;"
 `;
 
-exports[`macro babel 6 fontFace 1`] = `
-"import { fontFace as _fontFace } from '../src';
-
-_fontFace('font-family:MyHelvetica;src:local(\\"Helvetica Neue Bold\\"),local(\\"HelveticaNeue-Bold\\"),url(MgOpenModernaBold.ttf);font-weight:bold;');"
-`;
-
 exports[`macro babel 6 hydrate 1`] = `
 "import { hydrate as _hydrate } from '../src';
 
@@ -107,12 +101,6 @@ exports[`macro babel 7 flush 1`] = `
 const someOtherVar = _flush;"
 `;
 
-exports[`macro babel 7 fontFace 1`] = `
-"import { fontFace as _fontFace } from \\"../src\\";
-
-_fontFace(\\"font-family:MyHelvetica;src:local(\\\\\\"Helvetica Neue Bold\\\\\\"),local(\\\\\\"HelveticaNeue-Bold\\\\\\"),url(MgOpenModernaBold.ttf);font-weight:bold;\\");"
-`;
-
 exports[`macro babel 7 hydrate 1`] = `
 "import { hydrate as _hydrate } from \\"../src\\";
 const someOtherVar = _hydrate;"
@@ -159,7 +147,7 @@ exports[`styled macro babel 6 object function 1`] = `
 "import _styled from './styled';
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
-  target: 'css-o9rakq0'
+  target: 'eo9rakq0'
 })({
   display: 'flex'
 });"
@@ -169,7 +157,7 @@ exports[`styled macro babel 6 object member 1`] = `
 "import _styled from './styled';
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
-  target: 'css-o9rakq0'
+  target: 'eo9rakq0'
 })({
   display: 'flex'
 });"
@@ -185,7 +173,7 @@ exports[`styled macro babel 6 tagged template literal function 1`] = `
 "import _styled from './styled';
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
-  target: 'css-o9rakq0'
+  target: 'eo9rakq0'
 })('display:flex;');"
 `;
 
@@ -193,7 +181,7 @@ exports[`styled macro babel 6 tagged template literal member 1`] = `
 "import _styled from './styled';
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
-  target: 'css-o9rakq0'
+  target: 'eo9rakq0'
 })('display:flex;');"
 `;
 
@@ -211,7 +199,7 @@ exports[`styled macro babel 7 object function 1`] = `
 const SomeComponent =
 /*#__PURE__*/
 _styled('div', {
-  target: \\"css-o9rakq0\\"
+  target: \\"eo9rakq0\\"
 })({
   display: 'flex'
 });"
@@ -223,7 +211,7 @@ exports[`styled macro babel 7 object member 1`] = `
 const SomeComponent =
 /*#__PURE__*/
 _styled(\\"div\\", {
-  target: \\"css-o9rakq0\\"
+  target: \\"eo9rakq0\\"
 })({
   display: 'flex'
 });"
@@ -240,7 +228,7 @@ exports[`styled macro babel 7 tagged template literal function 1`] = `
 const SomeComponent =
 /*#__PURE__*/
 _styled('div', {
-  target: \\"css-o9rakq0\\"
+  target: \\"eo9rakq0\\"
 })(\\"display:flex;\\");"
 `;
 
@@ -250,6 +238,6 @@ exports[`styled macro babel 7 tagged template literal member 1`] = `
 const SomeComponent =
 /*#__PURE__*/
 _styled(\\"div\\", {
-  target: \\"css-o9rakq0\\"
+  target: \\"eo9rakq0\\"
 })(\\"display:flex;\\");"
 `;

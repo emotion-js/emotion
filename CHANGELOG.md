@@ -1,3 +1,77 @@
+## v9.0.0 (UNRELEASED)
+
+TODO: Add all the other stuff that's on master
+
+Emotion 9 introduces [instances](https://emotion.sh/docs/create-emotion), jest-emotion, two new SSR methods and a brand new website!! Instances allow you to customize prefixing options, run plugins during CSS processing, set nonces for CSP and they're totally optional so if you don't need instances keep on using `emotion`. jest-emotion offers a better out of the box experience and has the potential for more features in the future. emotion-server has new methods for inlining CSS in HTML right before it's needed and adds support for streaming.
+
+
+#### :rocket: Enhancement
+
+* `jest-emotion`
+  * [#495](https://github.com/emotion-js/emotion/pull/495) Add jest-emotion ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `emotion-server`
+  * [#448](https://github.com/emotion-js/emotion/pull/448) Add SSR streaming API and stuff ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Migrating from Emotion 8
+
+1. Emotion no longer has `fontFace`, you can use `injectGlobal` to insert font faces instead.
+
+```diff
+-import { fontFace } from 'emotion'
++import { injectGlobal } from 'emotion'
+ 
+-fontFace`
+-  font-family: 'Oxygen';
+-  font-style: normal;
+-  font-weight: 400;
+-  src: local('Oxygen Regular'), local('Oxygen-Regular'),
+-    url(https://fonts.gstatic.com/s/oxygen/v6/qBSyz106i5ud7wkBU-FrPevvDin1pK8aKteLpeZ5c0A.woff2)
+-      format('woff2');
+-  unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02c6, U+02da, U+02dc,
+-    U+2000-206f, U+2074, U+20ac, U+2212, U+2215;
+-`
++injectGlobal`
++  @font-face {
++    font-family: 'Oxygen';
++    font-style: normal;
++    font-weight: 400;
++    src: local('Oxygen Regular'), local('Oxygen-Regular'),
++      url(https://fonts.gstatic.com/s/oxygen/v6/qBSyz106i5ud7wkBU-FrPevvDin1pK8aKteLpeZ5c0A.woff2)
++        format('woff2');
++    unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02c6, U+02da, U+02dc,
++      U+2000-206f, U+2074, U+20ac, U+2212, U+2215;
++  }
++`
+```
+2. If you used [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) in emotion 8, you can switch to jest-emotion by installing it and changing your test setup as shown below.
+```bash
+npm install --save jest-emotion
+```
+```diff
+-import { sheet } from 'emotion'
+-import serializer from 'jest-glamor-react'
++import * as emotion from 'emotion'
++import { createSerializer } from 'jest-emotion'
+ 
+-expect.addSnapshotSerializer(serializer(sheet))
++expect.addSnapshotSerializer(createSerializer(sheet))
+```
+3. Emotion doesn't automatically insert semicolons in styles now. We recommend using [Prettier](https://prettier.io/) to ensure that your styles are formatted correctly.
+4. That's It!! You might want to check the more detailed list of breaking changes below just in case though.
+
+
+#### :boom: Breaking Change
+
+* `emotion`
+  * `fontFace` is gone, it can be replaced with `injectGlobal` with a regular css `@font-face` rule.
+  * The `registered` and `inserted` caches are no longer exports of emotion (they're now on the `caches` object which is exported by emotion) but these aren't documented and should never be relied on externally so this shouldn't cause a problem.
+  * Semicolons are not automatically added in style blocks.
+  * `StyleSheet` is no longer used for SSR, this is completely internal(except that emotion exports an instance of this as `sheet`) so it shouldn't cause any problems.
+* `emotion-server`
+  * `extractCritical` no longer returns a rules property, this was never documented so it shouldn't cause any problems.
+
+
+
 ## v8.0.12 (2017-12-01)
 
 #### :rocket: Enhancement

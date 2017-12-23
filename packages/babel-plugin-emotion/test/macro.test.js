@@ -1,3 +1,4 @@
+// @flow
 import * as babel6 from 'babel-core'
 import * as babel7 from '@babel/core'
 import { createMacroTests } from './util'
@@ -90,18 +91,6 @@ const cases = {
         background: green;
       }
   \`;`
-  },
-
-  fontFace: {
-    code: `
-    import { fontFace } from '../src/macro'
-    fontFace\`
-    font-family: MyHelvetica;
-    src: local("Helvetica Neue Bold"),
-         local("HelveticaNeue-Bold"),
-         url(MgOpenModernaBold.ttf);
-    font-weight: bold;
-    \`;`
   },
 
   css: {

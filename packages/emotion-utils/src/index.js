@@ -1,7 +1,8 @@
-// @flow weak
-export function memoize(fn) {
+// @flow
+
+export const memoize = (fn: string => any) => {
   const cache = {}
-  return arg => {
+  return (arg: string) => {
     if (cache[arg] === undefined) cache[arg] = fn(arg)
     return cache[arg]
   }
@@ -10,7 +11,7 @@ export function memoize(fn) {
 export const STYLES_KEY = '__emotion_styles'
 export const TARGET_KEY = '__emotion_target'
 
-export const unitless = {
+export const unitless: { [string]: 1 } = {
   animationIterationCount: 1,
   borderImageOutset: 1,
   borderImageSlice: 1,

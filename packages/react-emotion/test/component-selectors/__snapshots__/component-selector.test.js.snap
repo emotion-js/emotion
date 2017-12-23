@@ -30,14 +30,14 @@ exports[`component as selector (object syntax) 1`] = `
 `;
 
 exports[`component as selector (object syntax) 2`] = `
-".css-bpijsz {
+".css-1qozo52 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.css-bpijsz .css-qeli5r4 {
+.css-1qozo52 .eqeli5r4 {
   color: green;
 }
 
@@ -76,14 +76,14 @@ exports[`component as selector 1`] = `
 `;
 
 exports[`component as selector 2`] = `
-".css-1n9lalg {
+".css-112oqv {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.css-1n9lalg .css-qeli5r0 {
+.css-112oqv .eqeli5r0 {
   color: green;
 }
 
@@ -124,14 +124,14 @@ exports[`component as selector function interpolation (object syntax) 1`] = `
 `;
 
 exports[`component as selector function interpolation (object syntax) 2`] = `
-".css-hm85j0 {
+".css-6641zl {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.css-hm85j0 .css-qeli5r6 {
+.css-6641zl .eqeli5r6 {
   color: green;
 }
 
@@ -172,14 +172,14 @@ exports[`component as selector function interpolation 1`] = `
 `;
 
 exports[`component as selector function interpolation 2`] = `
-".css-1rfbkon {
+".css-36srpd {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.css-1rfbkon .css-qeli5r2 {
+.css-36srpd .eqeli5r2 {
   color: green;
 }
 

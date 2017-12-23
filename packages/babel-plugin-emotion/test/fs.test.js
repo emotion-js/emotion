@@ -1,3 +1,4 @@
+// @flow
 import { transform } from 'babel-core'
 import fs from 'fs'
 import touch from 'touch'

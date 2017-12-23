@@ -674,6 +674,18 @@ exports[`styled theme prop exists without ThemeProvider with a theme prop on the
 />
 `;
 
+exports[`styled theme with react-test-renderer 1`] = `
+.glamor-0 {
+  color: pink;
+}
+
+<div
+  className="glamor-0 glamor-1"
+>
+  this will be pink
+</div>
+`;
+
 exports[`styled themes 1`] = `
 .glamor-0 {
   background-color: #ffd43b;
@@ -709,7 +721,7 @@ exports[`styled theming 1`] = `
   >
     <Styled(div)>
       <div
-        className="css-olgnlr css-ldhy9939"
+        className="glamor-0 glamor-1"
       >
         this will be green then pink
       </div>
@@ -736,7 +748,7 @@ exports[`styled theming 2`] = `
   >
     <Styled(div)>
       <div
-        className="css-olgnlr css-ldhy9939"
+        className="glamor-0 glamor-1"
       >
         this will be green then pink
       </div>
@@ -784,11 +796,21 @@ exports[`styled with higher order component that hoists statics 1`] = `
 />
 `;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 1`] = `"css-ldhy9954"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 1`] = `"eldhy9955"`;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 2`] = `"css-ldhy9955"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 2`] = `"eldhy9956"`;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 3`] = `"css-ldhy9956"`;
+exports[`styled withComponent creates a new, unique stable class per invocation 3`] = `"eldhy9957"`;
+
+exports[`styled withComponent does not carry styles from flattened component 1`] = `
+.glamor-0 {
+  color: hotpink;
+}
+
+<p
+  className="glamor-0 glamor-1"
+/>
+`;
 
 exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 .glamor-0 {
