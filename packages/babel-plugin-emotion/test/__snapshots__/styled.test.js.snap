@@ -4,7 +4,7 @@ exports[`styled extract babel 6 autoLabel object styles 1`] = `
 "
 const Profile = () => {
   const H1 = /*#__PURE__*/styled('h1', {
-    target: 'css-8nbyc50',
+    target: 'e8nbyc50',
     label: 'H1'
   })({
     borderRadius: '50%',
@@ -129,7 +129,7 @@ var _ref2 = [{ color: 'blue' }];
 
 const Profile = () => {
   const H1 = /*#__PURE__*/styled('h1', {
-    target: 'css-8nbyc50'
+    target: 'e8nbyc50'
   })(_ref, props => ({
     display: props.display
   }), _ref2);
@@ -197,7 +197,7 @@ emotion.emotion.css
 exports[`styled extract babel 6 objects based on props 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc50'
+  target: 'e8nbyc50'
 })({ padding: 10 }, props => ({
   display: props.display
 }));"
@@ -206,7 +206,7 @@ const H1 = /*#__PURE__*/styled('h1', {
 exports[`styled extract babel 6 objects fn call 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc50'
+  target: 'e8nbyc50'
 })({
   display: 'flex'
 });"
@@ -215,7 +215,7 @@ const H1 = /*#__PURE__*/styled('h1', {
 exports[`styled extract babel 6 objects prefixed 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
-    target: 'css-8nbyc50'
+    target: 'e8nbyc50'
 })({
     borderRadius: '50%',
     transition: 'transform 400ms ease-in-out',
@@ -245,14 +245,14 @@ emotion.emotion.css
 
 exports[`styled extract babel 6 shorthand property 1`] = `
 "const H1 = /*#__PURE__*/styled(\\"h1\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({ fontSize });"
 `;
 
 exports[`styled extract babel 6 styled objects prefixed 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc50'
+  target: 'e8nbyc50'
 })({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
@@ -269,7 +269,7 @@ const H1 = /*#__PURE__*/styled('h1', {
 exports[`styled extract babel 6 styled. objects 1`] = `
 "
 const H1 = /*#__PURE__*/styled(\\"h1\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({ padding: 10 }, props => ({
   display: props.display
 }));"
@@ -279,7 +279,7 @@ exports[`styled extract babel 6 styled. objects with a multiple spread propertie
 "
 const defaultText = { fontSize: 20 };
 const Figure = /*#__PURE__*/styled(\\"figure\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   ...defaultText,
   ...defaultFigure
@@ -290,7 +290,7 @@ exports[`styled extract babel 6 styled. objects with a multiple spread propertie
 "
 const defaultText = { fontSize: 20 };
 const Figure = /*#__PURE__*/styled('figure', {
-  target: 'css-8nbyc50'
+  target: 'e8nbyc50'
 })({
   ...defaultText,
   fontSize: '20px',
@@ -303,7 +303,7 @@ exports[`styled extract babel 6 styled. objects with a single spread property 1`
 "
 const defaultText = { fontSize: 20 };
 const Figure = /*#__PURE__*/styled(\\"figure\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   ...defaultText
 });"
@@ -326,7 +326,7 @@ exports[`styled extract babel 7 autoLabel object styles 1`] = `
   const H1 =
   /*#__PURE__*/
   styled(\\"h1\\", {
-    target: \\"css-8nbyc50\\",
+    target: \\"e8nbyc50\\",
     label: \\"H1\\"
   })({
     borderRadius: '50%',
@@ -461,7 +461,7 @@ const Profile = () => {
   const H1 =
   /*#__PURE__*/
   styled(\\"h1\\", {
-    target: \\"css-8nbyc50\\"
+    target: \\"e8nbyc50\\"
   })(_ref, props => ({
     display: props.display
   }), _ref2);
@@ -535,7 +535,7 @@ exports[`styled extract babel 7 objects based on props 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1', {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   padding: 10
 }, props => ({
@@ -547,7 +547,7 @@ exports[`styled extract babel 7 objects fn call 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1', {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   display: 'flex'
 });"
@@ -557,7 +557,7 @@ exports[`styled extract babel 7 objects prefixed 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1', {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
@@ -593,7 +593,7 @@ exports[`styled extract babel 7 shorthand property 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   fontSize
 });"
@@ -603,7 +603,7 @@ exports[`styled extract babel 7 styled objects prefixed 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
@@ -621,7 +621,7 @@ exports[`styled extract babel 7 styled. objects 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   padding: 10
 }, props => ({
@@ -636,7 +636,7 @@ exports[`styled extract babel 7 styled. objects with a multiple spread propertie
 const Figure =
 /*#__PURE__*/
 styled(\\"figure\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({ ...defaultText,
   ...defaultFigure
 });"
@@ -649,7 +649,7 @@ exports[`styled extract babel 7 styled. objects with a multiple spread propertie
 const Figure =
 /*#__PURE__*/
 styled(\\"figure\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({ ...defaultText,
   fontSize: '20px',
   ...defaultFigure,
@@ -664,7 +664,7 @@ exports[`styled extract babel 7 styled. objects with a single spread property 1`
 const Figure =
 /*#__PURE__*/
 styled(\\"figure\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({ ...defaultText
 });"
 `;
@@ -686,7 +686,7 @@ exports[`styled inline babel 6 autoLabel object styles 1`] = `
 "
 const Profile = () => {
   const H1 = /*#__PURE__*/styled('h1', {
-    target: 'css-8nbyc50',
+    target: 'e8nbyc50',
     label: 'H1'
   })({
     borderRadius: '50%',
@@ -780,7 +780,7 @@ var _ref2 = [{ color: 'blue' }];
 
 const Profile = () => {
   const H1 = /*#__PURE__*/styled('h1', {
-    target: 'css-8nbyc50'
+    target: 'e8nbyc50'
   })(_ref, props => ({
     display: props.display
   }), _ref2);
@@ -827,7 +827,7 @@ exports[`styled inline babel 6 no use 1`] = `
 exports[`styled inline babel 6 objects based on props 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc50'
+  target: 'e8nbyc50'
 })({ padding: 10 }, props => ({
   display: props.display
 }));"
@@ -836,7 +836,7 @@ const H1 = /*#__PURE__*/styled('h1', {
 exports[`styled inline babel 6 objects fn call 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc50'
+  target: 'e8nbyc50'
 })({
   display: 'flex'
 });"
@@ -845,7 +845,7 @@ const H1 = /*#__PURE__*/styled('h1', {
 exports[`styled inline babel 6 objects prefixed 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
-    target: 'css-8nbyc50'
+    target: 'e8nbyc50'
 })({
     borderRadius: '50%',
     transition: 'transform 400ms ease-in-out',
@@ -869,14 +869,14 @@ const a = () => /*#__PURE__*/css(\\"font-size:1rem\\");
 
 exports[`styled inline babel 6 shorthand property 1`] = `
 "const H1 = /*#__PURE__*/styled(\\"h1\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({ fontSize });"
 `;
 
 exports[`styled inline babel 6 styled objects prefixed 1`] = `
 "
 const H1 = /*#__PURE__*/styled('h1', {
-  target: 'css-8nbyc50'
+  target: 'e8nbyc50'
 })({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
@@ -893,7 +893,7 @@ const H1 = /*#__PURE__*/styled('h1', {
 exports[`styled inline babel 6 styled. objects 1`] = `
 "
 const H1 = /*#__PURE__*/styled(\\"h1\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({ padding: 10 }, props => ({
   display: props.display
 }));"
@@ -903,7 +903,7 @@ exports[`styled inline babel 6 styled. objects with a multiple spread properties
 "
 const defaultText = { fontSize: 20 };
 const Figure = /*#__PURE__*/styled(\\"figure\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   ...defaultText,
   ...defaultFigure
@@ -914,7 +914,7 @@ exports[`styled inline babel 6 styled. objects with a multiple spread properties
 "
 const defaultText = { fontSize: 20 };
 const Figure = /*#__PURE__*/styled('figure', {
-  target: 'css-8nbyc50'
+  target: 'e8nbyc50'
 })({
   ...defaultText,
   fontSize: '20px',
@@ -927,7 +927,7 @@ exports[`styled inline babel 6 styled. objects with a single spread property 1`]
 "
 const defaultText = { fontSize: 20 };
 const Figure = /*#__PURE__*/styled(\\"figure\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   ...defaultText
 });"
@@ -944,7 +944,7 @@ exports[`styled inline babel 7 autoLabel object styles 1`] = `
   const H1 =
   /*#__PURE__*/
   styled(\\"h1\\", {
-    target: \\"css-8nbyc50\\",
+    target: \\"e8nbyc50\\",
     label: \\"H1\\"
   })({
     borderRadius: '50%',
@@ -1054,7 +1054,7 @@ const Profile = () => {
   const H1 =
   /*#__PURE__*/
   styled(\\"h1\\", {
-    target: \\"css-8nbyc50\\"
+    target: \\"e8nbyc50\\"
   })(_ref, props => ({
     display: props.display
   }), _ref2);
@@ -1111,7 +1111,7 @@ exports[`styled inline babel 7 objects based on props 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1', {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   padding: 10
 }, props => ({
@@ -1123,7 +1123,7 @@ exports[`styled inline babel 7 objects fn call 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1', {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   display: 'flex'
 });"
@@ -1133,7 +1133,7 @@ exports[`styled inline babel 7 objects prefixed 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled('h1', {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
@@ -1166,7 +1166,7 @@ exports[`styled inline babel 7 shorthand property 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   fontSize
 });"
@@ -1176,7 +1176,7 @@ exports[`styled inline babel 7 styled objects prefixed 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
@@ -1194,7 +1194,7 @@ exports[`styled inline babel 7 styled. objects 1`] = `
 "const H1 =
 /*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({
   padding: 10
 }, props => ({
@@ -1209,7 +1209,7 @@ exports[`styled inline babel 7 styled. objects with a multiple spread properties
 const Figure =
 /*#__PURE__*/
 styled(\\"figure\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({ ...defaultText,
   ...defaultFigure
 });"
@@ -1222,7 +1222,7 @@ exports[`styled inline babel 7 styled. objects with a multiple spread properties
 const Figure =
 /*#__PURE__*/
 styled(\\"figure\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({ ...defaultText,
   fontSize: '20px',
   ...defaultFigure,
@@ -1237,7 +1237,7 @@ exports[`styled inline babel 7 styled. objects with a single spread property 1`]
 const Figure =
 /*#__PURE__*/
 styled(\\"figure\\", {
-  target: \\"css-8nbyc50\\"
+  target: \\"e8nbyc50\\"
 })({ ...defaultText
 });"
 `;
