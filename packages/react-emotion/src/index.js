@@ -147,7 +147,9 @@ const createStyled = (
           process.env.NODE_ENV !== 'production' &&
           stableClassName === undefined
         ) {
-          throw new Error('')
+          throw new Error(
+            'Component selectors can only be used in conjunction with babel-plugin-emotion.'
+          )
         }
         return `.${stableClassName}`
       }
