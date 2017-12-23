@@ -14,7 +14,7 @@
     "test:watch": "jest --watch --no-cache",
     "rollup": "lerna run rollup --parallel",
     "size": "bundlesize",
-    "release": "npm run test && npm run build && lerna publish && git push --tags",
+    "release": "npm run test && npm run build && lerna publish --npm-tag=next && git push --tags",
     "lint": "eslint . --fix",
     "benchmark": "lerna exec --scope benchmarks npm run benchmark",
     "start:site": "lerna exec --scope emotion-example-project npm run start:site",
