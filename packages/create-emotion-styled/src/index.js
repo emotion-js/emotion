@@ -65,6 +65,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
       class Styled extends view.Component<*, { theme: Object }> {
         unsubscribe: number
         mergedProps: Object
+        static toString: () => string
         static __emotion_real: any
         static __emotion_styles: Interpolations
         static __emotion_base: Styled
