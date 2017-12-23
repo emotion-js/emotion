@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`component as selector (object syntax) 1`] = `
-.glamor-2 {
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.glamor-2 .glamor-1 {
+.emotion-2 .emotion-1 {
   color: green;
 }
 
-.glamor-0 {
+.emotion-0 {
   font-size: 20px;
 }
 
 <div
-  className="glamor-2 glamor-3"
+  className="emotion-2 emotion-3"
 >
   hello 
   <h1
-    className="glamor-0 glamor-1"
+    className="emotion-0 emotion-1"
   >
     This will be green
   </h1>
@@ -47,27 +47,27 @@ exports[`component as selector (object syntax) 2`] = `
 `;
 
 exports[`component as selector 1`] = `
-.glamor-2 {
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.glamor-2 .glamor-1 {
+.emotion-2 .emotion-1 {
   color: green;
 }
 
-.glamor-0 {
+.emotion-0 {
   font-size: 20px;
 }
 
 <div
-  className="glamor-2 glamor-3"
+  className="emotion-2 emotion-3"
 >
   hello 
   <h1
-    className="glamor-0 glamor-1"
+    className="emotion-0 emotion-1"
   >
     This will be green
   </h1>
@@ -93,28 +93,28 @@ exports[`component as selector 2`] = `
 `;
 
 exports[`component as selector function interpolation (object syntax) 1`] = `
-.glamor-2 {
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.glamor-2 .glamor-1 {
+.emotion-2 .emotion-1 {
   color: green;
 }
 
-.glamor-0 {
+.emotion-0 {
   font-size: 20px;
 }
 
 <div
-  className="glamor-2 glamor-3"
+  className="emotion-2 emotion-3"
   fontSize={10}
 >
   hello 
   <h1
-    className="glamor-0 glamor-1"
+    className="emotion-0 emotion-1"
     fontSize={20}
   >
     This will be green
@@ -141,28 +141,28 @@ exports[`component as selector function interpolation (object syntax) 2`] = `
 `;
 
 exports[`component as selector function interpolation 1`] = `
-.glamor-2 {
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.glamor-2 .glamor-1 {
+.emotion-2 .emotion-1 {
   color: green;
 }
 
-.glamor-0 {
+.emotion-0 {
   font-size: 20px;
 }
 
 <div
-  className="glamor-2 glamor-3"
+  className="emotion-2 emotion-3"
   fontSize={10}
 >
   hello 
   <h1
-    className="glamor-0 glamor-1"
+    className="emotion-0 emotion-1"
     fontSize={20}
   >
     This will be green

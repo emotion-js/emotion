@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css prop react basic 1`] = `
-.glamor-0 {
+.emotion-0 {
   color: red;
   font-size: 1px;
 }
 
 <p
-  className="glamor-0"
+  className="emotion-0"
 >
   hello world
 </p>
 `;
 
 exports[`css prop react kitchen sink 1`] = `
-.glamor-4 {
+.emotion-4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -34,52 +34,52 @@ exports[`css prop react kitchen sink 1`] = `
   align-items: center;
 }
 
-.glamor-0 {
+.emotion-0 {
   font-size: 6;
   color: red;
 }
 
-.glamor-1 {
+.emotion-1 {
   color: blue;
 }
 
-.glamor-2 {
+.emotion-2 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-.glamor-3 {
+.emotion-3 {
   color: red;
   border-radius: 5;
 }
 
-.glamor-3:hover {
+.emotion-3:hover {
   font-weight: bold;
   color: gray;
 }
 
 <div
-  className="glamor-4 css__legacy-stuff"
+  className="emotion-4 css__legacy-stuff"
 >
   <h1
-    className="glamor-0"
+    className="emotion-0"
   >
     BOOM
   </h1>
   <p
-    className="glamor-1 test_class1"
+    className="emotion-1 test_class1"
   >
     Hello
   </p>
   <p
-    className="glamor-2 test_class1 test___class45"
+    className="emotion-2 test_class1 test___class45"
   >
     World
   </p>
   <p
-    className="glamor-3"
+    className="emotion-3"
   >
     hello world
   </p>
@@ -87,30 +87,30 @@ exports[`css prop react kitchen sink 1`] = `
 `;
 
 exports[`css prop react merging regular classes 1`] = `
-.glamor-0 {
+.emotion-0 {
   display: block;
 }
 
 <div
-  className="glamor-0 some-class"
+  className="emotion-0 some-class"
 />
 `;
 
 exports[`css prop react objects 1`] = `
-.glamor-0 {
+.emotion-0 {
   color: red;
   font-size: 1px;
 }
 
 <p
-  className="glamor-0"
+  className="emotion-0"
 >
   hello world
 </p>
 `;
 
 exports[`css prop react specificity with composition 1`] = `
-.glamor-0 {
+.emotion-0 {
   display: block;
   display: -webkit-box;
   display: -webkit-flex;
@@ -119,19 +119,19 @@ exports[`css prop react specificity with composition 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
 exports[`css prop react string expression 1`] = `
-.glamor-0 {
+.emotion-0 {
   color: red;
   background: blue;
   font-size: 48px;
 }
 
 <p
-  className="glamor-0"
+  className="emotion-0"
 >
   hello world
 </p>

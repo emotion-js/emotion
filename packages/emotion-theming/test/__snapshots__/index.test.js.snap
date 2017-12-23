@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`emotion integration test 1`] = `
-.glamor-0 {
+.emotion-0 {
   color: red;
   background-color: green;
   border: 1px solid blue;
@@ -17,7 +17,7 @@ exports[`emotion integration test 1`] = `
 >
   <Styled(div)>
     <div
-      className="glamor-0 glamor-1"
+      className="emotion-0 emotion-1"
     />
   </Styled(div)>
 </ThemeProvider>
