@@ -70,6 +70,15 @@ npm install --save jest-emotion
 * `emotion-server`
   * `extractCritical` no longer returns a rules property, this was never documented so it shouldn't cause any problems.
 
+## v9.0.0-1 (2017-12-23)
+
+#### :bug: Bug Fix
+* `babel-plugin-emotion`, `create-emotion`, `emotion-theming`, `emotion`, `jest-emotion`, `react-emotion`
+  * [#504](https://github.com/emotion-js/emotion/pull/504) Change class name prefix in jest-emotion. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
 ## v9.0.0-0 (2017-12-23)
 
 #### :boom: Breaking Change
