@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`label pattern input + label styled 1`] = `
-.glamor-0 + label::after {
+.emotion-0 + label::after {
   color: pink;
   background: orange;
 }
 
 <div>
   <input
-    className="glamor-0 glamor-1"
+    className="emotion-0 emotion-1"
   />
   <label>
     Label

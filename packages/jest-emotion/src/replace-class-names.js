@@ -1,7 +1,6 @@
 // @flow
 function defaultClassNameReplacer(className, index) {
-  // Change this to emotion before merging
-  return `glamor-${index}`
+  return `emotion-${index}`
 }
 
 export type ClassNameReplacer = (className: string, index: number) => string

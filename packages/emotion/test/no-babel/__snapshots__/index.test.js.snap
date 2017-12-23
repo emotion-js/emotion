@@ -2,20 +2,20 @@
 
 exports[`css @supports 1`] = `
 @supports (display:grid) {
-  .glamor-0 {
+  .emotion-0 {
     display: grid;
   }
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
 exports[`css component as selectors (object syntax) 1`] = `"Component selectors can only be used in conjunction with babel-plugin-emotion."`;
 
 exports[`css composition 1`] = `
-.glamor-0 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -26,17 +26,17 @@ exports[`css composition 1`] = `
   justify-content: center;
 }
 
-.glamor-0:hover {
+.emotion-0:hover {
   color: hotpink;
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
 exports[`css composition stuff 1`] = `
-.glamor-0 {
+.emotion-0 {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -44,12 +44,12 @@ exports[`css composition stuff 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
 exports[`css composition stuff 2`] = `
-.glamor-0 {
+.emotion-0 {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -57,12 +57,12 @@ exports[`css composition stuff 2`] = `
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
 exports[`css composition with objects 1`] = `
-.glamor-0 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -75,34 +75,34 @@ exports[`css composition with objects 1`] = `
   justify-content: center;
 }
 
-.glamor-0:hover {
+.emotion-0:hover {
   color: blue;
 }
 
-.glamor-0:after {
+.emotion-0:after {
   content: " ";
   color: red;
 }
 
 @media (min-width:420px) {
-  .glamor-0 {
+  .emotion-0 {
     color: green;
   }
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
 exports[`css function in expression 1`] = `
-.glamor-0 {
+.emotion-0 {
   font-size: 20px;
   font-size: 40px;
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class emotion-0"
   scale={2}
 >
   hello world
@@ -110,7 +110,7 @@ exports[`css function in expression 1`] = `
 `;
 
 exports[`css glamorous style api & composition 1`] = `
-.glamor-0 {
+.emotion-0 {
   font-size: 20px;
   -webkit-flex: 1;
   -ms-flex: 1;
@@ -122,7 +122,7 @@ exports[`css glamorous style api & composition 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="emotion-0"
   fontSize={20}
 >
   hello world
@@ -130,7 +130,7 @@ exports[`css glamorous style api & composition 1`] = `
 `;
 
 exports[`css handles objects 1`] = `
-.glamor-0 {
+.emotion-0 {
   float: left;
   display: -webkit-box;
   display: -webkit-flex;
@@ -143,12 +143,12 @@ exports[`css handles objects 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
 exports[`css nested array 1`] = `
-.glamor-0 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -156,17 +156,17 @@ exports[`css nested array 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
 exports[`css no dynamic 1`] = `
-.glamor-0 {
+.emotion-0 {
   float: left;
 }
 
 <h1
-  className="glamor-0"
+  className="emotion-0"
 >
   hello world
 </h1>
@@ -174,12 +174,12 @@ exports[`css no dynamic 1`] = `
 
 exports[`css null rule 1`] = `
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
 exports[`css object as style 1`] = `
-.glamor-0 {
+.emotion-0 {
   font-size: 20px;
   -webkit-flex: 1;
   -ms-flex: 1;
@@ -191,7 +191,7 @@ exports[`css object as style 1`] = `
 }
 
 <h1
-  className="glamor-0"
+  className="emotion-0"
   fontSize={20}
 >
   hello world
@@ -199,13 +199,13 @@ exports[`css object as style 1`] = `
 `;
 
 exports[`css random expression 1`] = `
-.glamor-0 {
+.emotion-0 {
   font-size: 20px;
   background: green;
 }
 
 @media (min-width:420px) {
-  .glamor-0 {
+  .emotion-0 {
     color: blue;
     width: 96px;
     height: 96px;
@@ -214,17 +214,17 @@ exports[`css random expression 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
 exports[`css random expressions undefined return 1`] = `
-.glamor-0 {
+.emotion-0 {
   color: green;
 }
 
 <h1
-  className="legacy__class glamor-0"
+  className="legacy__class emotion-0"
 >
   hello world
 </h1>

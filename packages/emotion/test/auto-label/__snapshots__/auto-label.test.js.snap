@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`meta css generated class name should have the correct id 1`] = `
-.glamor-0 {
+.emotion-0 {
   color: blue;
 }
 
-.glamor-1 .glamor-0 {
+.emotion-1 .emotion-0 {
   color: red;
 }
 
 <div
-  className="glamor-1"
+  className="emotion-1"
 >
   <div
-    className="glamor-0"
+    className="emotion-0"
   />
 </div>
 `;
@@ -29,7 +29,7 @@ exports[`meta css generated class name should have the correct id 2`] = `
 `;
 
 exports[`meta css prop correctly adds the id 1`] = `
-.glamor-0 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -37,38 +37,38 @@ exports[`meta css prop correctly adds the id 1`] = `
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 >
   Hello
 </div>
 `;
 
 exports[`meta css prop correctly adds the id 2`] = `
-.glamor-0 {
+.emotion-0 {
   display: grid;
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 >
   Hello
 </div>
 `;
 
 exports[`meta css prop correctly adds the id 3`] = `
-.glamor-0 {
+.emotion-0 {
   display: grid;
 }
 
-.glamor-1 {
+.emotion-1 {
   display: block;
 }
 
 <div
-  className="glamor-1"
+  className="emotion-1"
 >
   <div
-    className="glamor-0"
+    className="emotion-0"
   >
     Hello
   </div>
@@ -93,12 +93,12 @@ exports[`meta css prop correctly adds the id 4`] = `
 `;
 
 exports[`meta manually use label property 1`] = `
-.glamor-0 {
+.emotion-0 {
   color: blue;
 }
 
 <div
-  className="glamor-0"
+  className="emotion-0"
 />
 `;
 
@@ -109,14 +109,14 @@ exports[`meta manually use label property 2`] = `
 `;
 
 exports[`meta multiple classes with the same styles 1`] = `
-.glamor-0 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.glamor-1 {
+.emotion-1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -125,10 +125,10 @@ exports[`meta multiple classes with the same styles 1`] = `
 
 <div>
   <div
-    className="glamor-0"
+    className="emotion-0"
   />
   <div
-    className="glamor-1"
+    className="emotion-1"
   />
 </div>
 `;
