@@ -71,7 +71,7 @@
     "jest-serializer-html": "^4.0.1",
     "jsdom": "^11.3.0",
     "lerna": "^2.2.0",
-    "lerna-alias": "^3.0.0",
+    "lerna-alias": "^3.0.1",
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
