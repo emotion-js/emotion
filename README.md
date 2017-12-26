@@ -16,13 +16,19 @@
 ![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?label=react%20size)
 [![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
 
-emotion is a high performance, lightweight css-in-js library that supports both string and object based styles.
+Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
 
----
+# [Go here to see the docs](https://emotion.sh/docs/introduction)
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion.svg' /></a>
+Frequently viewed docs:
 
----
+- [Introduction](https://emotion.sh/docs/introduction)
+- [Install](https://emotion.sh/docs/install)
+- [CSS](https://emotion.sh/docs/css)
+- [Styled Components](https://emotion.sh/docs/styled)
+- [Composition](https://emotion.sh/docs/composition)
+- [Nested Selectors](https://emotion.sh/docs/nested)
+- [Media Queries](https://emotion.sh/docs/media-queries)
 
 ### Quick Start
 Get up and running with a single import.
@@ -31,14 +37,15 @@ npm install --save emotion
 ```
 
 ```javascript
-import { css } from 'emotion';
+import { css } from 'emotion'
 
-const app = document.getElementById('root');
+const app = document.getElementById('root')
 const myStyle = css`
   color: rebeccapurple;
 `
-app.classList.add(myStyle);
+app.classList.add(myStyle)
 ```
+
 ### React with [Optional Babel Plugin](docs/babel.md)
 ```bash
 npm install --save emotion react-emotion babel-plugin-emotion
@@ -46,7 +53,7 @@ npm install --save emotion react-emotion babel-plugin-emotion
 _Note: use `preact-emotion` in place of `react-emotion` if using [Preact](https://github.com/developit/preact)_
 
 ```javascript
-import styled, { css } from 'react-emotion';
+import styled, { css } from 'react-emotion'
 
 const Container = styled('div')`
   background: #333;
@@ -58,7 +65,7 @@ const app = () => (
 <Container>
   <p className={myStyle}>Hello World</p>
 </Container>
-);
+)
 ```
 
 [Demo Code Sandbox](https://codesandbox.io/s/pk1qjqpw67)
@@ -68,32 +75,6 @@ const app = () => (
   - [emotion website](packages/site) [[Demo Here](https://emotion.sh)]
   - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
   - **open a PR and add yours!**
-
-### About
-
-The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/glam) library and its philosophy is laid out [here](https://gist.github.com/threepointone/0ef30b196682a69327c407124f33d69a).
-
--- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
-
-### [Documentation](docs/)
-
-#### API
-- Styling components with [`styled`](docs/styled.md)
-
-- Create composable styles with [`css` classes and props](docs/css.md)
-
-  - [`composition`](docs/composition.md)
-
-- [Object styles](docs/object-styles.md)
-
-- Combine styles and class names with [`cx`](docs/cx.md)
-
-- [`keyframes`](docs/keyframes.md)
-- [`injectGlobal`](docs/inject-global.md)
-
-#### Doc files
-- [All docs](docs/)
-- [Version 7 docs](https://github.com/emotion-js/emotion/tree/v7.3.2)
 
 ### Ecosystem
 

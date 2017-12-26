@@ -6,16 +6,49 @@ title: "Styled Components"
 
 ### Styling elements and components
 
-`styled` is very similar to `css` except you call it with an html tag or React/Preact component.
+`styled` is very similar to `css` except you call it with an html tag or React/Preact component and then call that with a template literal for string styles or a regular function call for object styles.
 
 ```jsx live
 import styled from 'react-emotion'
 
 const Button = styled('button')`
-  color: turqoise;
+  color: turquoise;
 `
 
 render(<Button>This my button component.</Button>)
+```
+
+### Changing based on props
+
+Any interpolations or arguments that are functions in `styled` are called with `props`, this allows you to change the styles of a component based on the props.
+
+```jsx live
+import styled from 'react-emotion'
+
+const Button = styled('button')`
+  color: ${props =>
+    props.primary ? 'hotpink' : 'turquoise'};
+`
+
+const Container = styled('div')(
+  {
+    display: 'flex'
+  },
+  props => ({
+    flexDirection: props.column && 'column'
+  })
+)
+
+render(
+  <Container column>
+    <Button>
+      This is a regular button.
+    </Button>
+    <Button primary>
+      This is a primary button.
+    </Button>
+  </Container>
+)
 ```
 
 
@@ -40,7 +73,7 @@ render(
 
 ### Targeting another emotion component
 
-Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components),emotion allows for previously-defined emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](./babel):
+Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](https://emotion.sh/docs/babel-plugin-emotion):
 
 ```jsx live
 const Child = styled('div')`

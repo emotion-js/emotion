@@ -56,6 +56,10 @@ const myStyles = /* #__PURE__ */ css(
 ## Installation
 
 ```bash
+yarn add --dev babel-plugin-emotion
+```
+or if you prefer npm
+```bash
 npm install --save-dev babel-plugin-emotion
 ```
 
@@ -111,13 +115,11 @@ Use [Babel's `env` property](https://babeljs.io/docs/usage/babelrc/#env-option)
 {
   "env": {
     "production": {
-      "plugins": [
-        ["emotion", { "sourceMap": false, "hoist": true, "autoLabel": true }]
-      ]
+      "plugins": [["emotion", { "hoist": true }]]
     },
     "development": {
       "plugins": [
-        ["emotion", { "sourceMap": true, "hoist": false, "autoLabel": true }]
+        ["emotion", { "sourceMap": true, "autoLabel": true }]
       ]
     }
   }

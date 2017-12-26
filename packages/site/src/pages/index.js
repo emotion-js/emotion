@@ -62,7 +62,11 @@ const Preview = withLive(({ live: { element: BaseLink, onError, error } }) => {
         >
           Install
         </Link>
-        <Link css={`margin-left: 20px;`} className={textCenter} to="/docs">
+        <Link
+          css={`margin-left: 20px;`}
+          className={textCenter}
+          to="/docs/introduction"
+        >
           Getting Started
         </Link>
       </ErrorBoundary>
@@ -172,11 +176,12 @@ class IndexPage extends React.Component<Props, State> {
                   fontSize={'1.15rem'}
                 >
                   Emotion is a performant and flexible CSS-in-JS library.
-                  Building on many other CSS-in-JS libraries it allows you to
-                  style applications quickly with string styles or object
-                  styles. With source maps and labels, Emotion has a great
-                  developer experience and great performance with heavy caching
-                  and insertRule.
+                  Building on many other CSS-in-JS libraries, it allows you to
+                  style apps quickly with string or object styles. It has
+                  predictable composition to avoid specificity issues with CSS.
+                  With source maps and labels, Emotion has a great developer
+                  experience and great performance with heavy caching in
+                  production.
                 </Paragraph>
                 <Preview />
               </Box>

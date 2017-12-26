@@ -17,9 +17,10 @@
     - ssr
     - with-props
     - theming
+    - labels
     - configurable-imports
     - instances
-    - benchmarks
+    #- benchmarks
 
 - title: Tooling
   items:

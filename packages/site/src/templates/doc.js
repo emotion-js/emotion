@@ -101,7 +101,9 @@ const createHeading = (
 const codeStyles = css(
   mq({
     marginLeft: -30,
-    marginRight: -30
+    marginRight: -30,
+    marginTop: 16,
+    marginBottom: 16
   }),
   {
     fontFamily:

@@ -1,5 +1,5 @@
 ---
-title: "Global Style Injection"
+title: "Global Styles"
 ---
 
 Sometimes it's useful to insert global css like resets or font faces. `injectGlobal` can be used for this.

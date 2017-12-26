@@ -16,31 +16,85 @@ npm install --save emotion
 
 To use it, import what you need, for example use [css](https://emotion.sh/docs/css) to create class names with styles.
 
-```jsx
+```jsx live
 import { css } from 'emotion'
 
 const className = css`
   color: hotpink;
-`(<div className={className}>Some hotpink text.</div>)
+`
+
+const SomeComponent = ({ children }) => (
+  <div className={className}>
+    Some hotpink text.{children}
+  </div>
+)
 
 const anotherClassName = css({
   textDecoration: 'underline'
-})(<div className={anotherClassName}>Some text with an underline.</div>)
+})
+
+const AnotherComponent = () => (
+  <div className={anotherClassName}>
+    Some text with an underline.
+  </div>
+)
+render(
+  <SomeComponent>
+    <AnotherComponent />
+  </SomeComponent>
+)
 ```
+
+## With [`styled`](https://emotion.sh/docs/styled)
+
+`styled` is a way to create React/Preact components that have styles attached to them.
 
 ```bash
-npm install --save emotion react-emotion babel-plugin-emotion
+# assuming you already have emotion installed
+# React
+yarn add react-emotion
+# Preact
+yarn add preact-emotion
+```
+or if you prefer npm
+```bash
+# React
+npm install --save react-emotion
+# Preact
+npm install --save preact-emotion
 ```
 
-> **Note:** All APIs from `emotion` are also available from the `react-emotion` package.
->
-> ```javascript
-> import styled, { css, injectGlobal } from 'react-emotion'
-> ```
+> **Note:** All APIs from `emotion` are also exported by the `react-emotion` package.
+
+```jsx live
+import styled, { css } from 'react-emotion'
+
+const Button = styled('button')`
+  color: hotpink;
+`
+
+render(<Button>This is a hotpink button.</Button>)
+```
+
+## With [`babel-plugin-emotion`](https://emotion.sh/docs/babel-plugin-emotion)
+
+> **Note:** If you're using Create React App, you can't add custom babel plugins so you can skip this section.
+
+Emotion has a [Babel](https://babeljs.io/) plugin that optimizes styles by compressing and hoisting them and creates a better developer experience with source maps and labels.
+
+```bash
+yarn add babel-plugin-emotion
+```
+or if you prefer npm
+```bash
+npm install --save babel-plugin-emotion
+```
+
+
 
 ### .babelrc
 
-> **Note:** `babel-plugin-emotion` is optional but highly recommended. [More information on `babel-plugin-emotion`.](docs/babel)
+> **Note:** `babel-plugin-emotion` is optional but highly recommended. [More information on `babel-plugin-emotion`.](https://emotion.sh/docs/babel-plugin-eotion)
 
 _`"emotion"` must be the **first plugin** in your babel config `plugins` list._
 
@@ -63,6 +117,21 @@ If you are using Babel's env option emotion must also be first for each environm
     }
   },
   "plugins": ["emotion"]
+}
+```
+##
+```json
+{
+  "env": {
+    "production": {
+      "plugins": [["emotion", { "hoist": true }]]
+    },
+    "development": {
+      "plugins": [
+        ["emotion", { "sourceMap": true, "autoLabel": true }]
+      ]
+    }
+  }
 }
 ```
 

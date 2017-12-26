@@ -4,7 +4,7 @@ title: "Composition"
 
 Composition is one of the most powerful and useful patterns in Emotion. With regular css, you can compose styles together using multiple class names but this is very limited because the order that they're defined is the order they'll be applied. This can lead to hacks with `!important` and such to apply the correct styles.
 
-For example, we have some base styles and a danger style, we want the danger styles to have precedence over the base styles but because `base` is in the stylesheet after `danger` it has higher [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity). In regular CSS, you might do something to make `danger` have a higher specifity than `base` like move the `danger` class so it's more specific than `base`, use `!important` or abandon composition and rewrite the styles each time you need them.
+For example, we have some base styles and a danger style, we want the danger styles to have precedence over the base styles but because `base` is in the stylesheet after `danger` it has higher [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity). In regular CSS, you might do something to make `danger` have a higher specificity than `base` like move the `danger` class so it's more specific than `base`, use `!important` or abandon composition and rewrite the styles each time you need them.
 
 ```jsx live
 import { css } from 'emotion'
@@ -46,71 +46,35 @@ render(
 )
 ```
 
-a
+## Composing dynamic styles
+
+You can also do dynamic composition and reuse it multiple 
 
 ```jsx live
-const imageBase = css`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+import styled, { css } from 'react-emotion'
+
+const dynamicStyle = props =>
+  css`
+    color: ${props.color};
+  `
+
+const Div = styled('div')`
+  ${dynamicStyle};
 `
-
-const Avatar = styled('img')`
-  ${imageBase};
-
-  @media (min-width: 420px) {
-    width: 96px;
-    height: 96px;
-  }
-`
-
-render(<Avatar src={logoUrl} />)
+render(<Div color="yellow">This is yellow.</Div>)
 ```
 
-```javascript
-import { css } from 'emotion'
-import styled from 'react-emotion'
+If you're composing lots of other styles and aren't using any string styles directly in the `styled` call, you can use the function call syntax to make it smaller.
 
-// Define a class
-const flexCenter = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
+```jsx live
+import styled, { css } from 'react-emotion'
 
-// interpolate it where you want to apply the styles
-const flexCenterClass = css`
-  ${flexCenter};
-  flex-direction: column;
-`
+const dynamicStyle = props =>
+  css`
+    color: ${props.color};
+  `
 
-// You can also use it in styled and the css prop
-const FlexCenterComponent = styled.div`
-  ${flexCenter};
-`
+const Div = styled('div')(dynamicStyle)
 
-const flexWrap = props => css`
-  flex-wrap: ${props.wrap ? 'wrap' : 'nowrap'};
-`
-
-// You can compose with multiple classes
-const ColumnCenteredComponent = styled.div`
-  ${flexCenter};
-  ${flexWrap};
-`
-
-// Composition can be very powerful. For example, styles are expanded where you interpolate,
-// so the following class has flex-direction: column because ${flexCenterClass} is interpolated
-// after flex-direction: row
-const stillColumn = css`
-  flex-direction: row;
-  ${flexCenterClass};
-`
-
-// Nested composing is supported
-const cls = css`
-  & .flex {
-    ${flexCenter};
-  }
-`
+render(<Div color="yellow">This is yellow.</Div>)
 ```
