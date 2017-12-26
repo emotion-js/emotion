@@ -1,8 +1,8 @@
-# Emotion Site
+# [Emotion Site](https://emotion.sh)
 
 ## Docs
 
-All of the docs live in the `docs` in the root of this repository. They are in [Markdown](https://daringfireball.net/projects/markdown/basics) and they should include the following frontmatter at the top of each file that specifies the name for the page.
+All of the docs live in the `docs` in the root of this repository. They are in [Markdown](https://daringfireball.net/projects/markdown/basics) and they should include the following frontmatter at the top of each file that specifies the title for the page.
 
 ```yaml
 ---
@@ -17,6 +17,4 @@ The docs can contain Markdown code blocks, the language should generally be `jsx
 
 ### Links
 
-All links to other pages on the docs should be linked to with `docs/doc-name`.
-
-TODO: Add packages pages and do something special with links to READMEs.
+All links to other pages on the docs should be linked to with `https://emotion.sh/docs/doc-name`, these links are transformed so they are local links.

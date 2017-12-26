@@ -1,5 +1,5 @@
 const path = require('path')
-const packages = require('./docs-yaml').filter(
+const packages = require('./docs-yaml')().filter(
   ({ title }) => title === 'Packages'
 )[0].items
 

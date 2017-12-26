@@ -4,7 +4,7 @@ title: "Extract Static"
 
 ###### [requires babel plugin](docs/babel)
 
-The `extractStatic` option to `babel-plugin-emotion` allows you to extract styles with no interpolations into external css files. `extractStatic` is generally not recommended because it breaks [composition](docs/composition) and other powerful patterns from libraries like [facepaint](https://github.com/emotion-js/facepaint). It is primarily available for historical reasons. It does not work with object styles.
+The `extractStatic` option to `babel-plugin-emotion` allows you to extract styles with no interpolations into external css files. `extractStatic` is generally not recommended because it **breaks [composition](docs/composition)** and other powerful patterns from libraries like [facepaint](https://github.com/emotion-js/facepaint). It is primarily available for historical reasons. It does not work with object styles.
 
 **If you want to use dynamic values you must use css variables.**
 
@@ -40,8 +40,7 @@ const H1 = styled('h1')`
 `
 ```
 
-During babel compilation emotion will create `h1.emotion.css` and add `import
-'./h1.emotion.css'` to the top of `h1.js`
+During babel compilation emotion will create `h1.emotion.css` and add `import './h1.emotion.css'` to the top of `h1.js`
 
 ```css
 /* h1.emotion.css */
@@ -56,5 +55,7 @@ During babel compilation emotion will create `h1.emotion.css` and add `import
 import './h1.emotion.css'
 import styled from 'react-emotion'
 
-const H1 = styled('h1', 'css-duiy4a')
+const H1 = styled('h1', {
+  e: 'css-duiy4a'
+})()
 ```

@@ -1,6 +1,6 @@
 # jest-emotion
 
-> Jest testing utilities for emotions
+> Jest testing utilities for emotion
 
 # Installation
 
@@ -36,7 +36,7 @@ Refer to the [testing doc](https://github.com/emotion-js/emotion/blob/master/doc
 
 ## Options
 
-# `classNameReplacer`
+### `classNameReplacer`
 
 jest-emotion's snapshot serializer replaces the hashes in class names with an index so that things like whitespace changes won't break snapshots. It optionally accepts a custom class name replacer, it defaults to the below.
 

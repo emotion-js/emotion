@@ -22,27 +22,21 @@ export default something.div`
 
 ## Babel Options
 
-`babel-plugin-emotion` also supports setting the name of emotion's exports via the `importedNames` option. ~~This is useful for targetting a prop
-other than `css` for processing.~~(this will change to be a seperate option)
+`babel-plugin-emotion` also supports setting the name of emotion's exports via the `importedNames` option. ~~This is useful for targetting a prop other than `css` for processing.~~(this will change to be a seperate option)
 
 <!-- TODO: Create a different option for the css prop name so that it can be changed without forcing people to import css with that name/does using ESM imports change the css prop name?-->
 
 ```json
 {
-  "plugins": [
-    ["emotion", { "importedNames": { "css": "emotion" }}]
-  ]
+  "plugins": [["emotion", { "importedNames": { "css": "emotion" } }]]
 }
 ```
 
-Beware that if you use the babel configuration, you must import as the same
-name. In the previous example, you would have to use `import { css as emotion } from 'emotion'` and use `emotion` instead of `css`.
+Beware that if you use the babel configuration, you must import as the same name. In the previous example, you would have to use `import { css as emotion } from 'emotion'` and use `emotion` instead of `css`.
 
 # Use Case
 
-One use case for this functionality is to migrate incrementally from a
-styled-jsx application. When compiling the following file with emotion and
-styled-jsx.
+One use case for this functionality is to migrate incrementally from a styled-jsx application. When compiling the following file with emotion and styled-jsx.
 
 ```js
 import styled, { css } from 'react-emotion'
@@ -100,8 +94,7 @@ By adding the babel opt config rename as such.
 }
 ```
 
-We can avoid re-compiling the `css` props and instead use `emotion` for our
-template literals, etc.
+We can avoid re-compiling the `css` props and instead use `emotion` for our template literals, etc.
 
 ```js
 import _JSXStyle from 'styled-jsx/style'

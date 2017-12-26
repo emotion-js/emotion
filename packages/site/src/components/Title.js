@@ -1,10 +1,12 @@
 import styled from 'react-emotion'
-import { constants } from '../utils/style'
+import { constants, mq } from '../utils/style'
 
-const Title = styled.h1`
-  font-size: ${constants.fontSizes[8]}px;
-  font-weight: 500;
-  margin-top: 0;
-`
+const Title = styled.h1(
+  mq({
+    fontSize: [constants.fontSizes[6], constants.fontSizes[7]],
+    fontWeight: 500,
+    marginTop: 0
+  })
+)
 
 export default Title

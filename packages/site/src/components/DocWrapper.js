@@ -78,7 +78,7 @@ export default (props: Props) => {
     <Box flex={1}>
       <DocSidebar
         renderContent={({ docked, setSidebarOpenState }) => (
-          <Box p={4}>
+          <Box p={[3, 4]}>
             {props.children}
             {!docked && (
               <ToggleSidebarButton onClick={() => setSidebarOpenState(true)}>
@@ -98,13 +98,13 @@ export default (props: Props) => {
         sidebarClassName={css`
           background-color: #f5f5f5;
           padding: ${constants.space[3]}px;
-          width: 280px;
+          width: 290px;
         `}
         renderSidebar={({ setSidebarOpenState }) =>
           docList.map(item => {
             return (
               <Box key={item.title} onClick={() => setSidebarOpenState(false)}>
-                {item.title}
+                <h3>{item.title}</h3>
                 {item.items.map(slug => (
                   <Link
                     className={linkStyles}

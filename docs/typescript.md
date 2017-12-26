@@ -1,6 +1,7 @@
 ---
 title: "Typescript"
 ---
+
 Emotion includes TypeScript definitions for `styled` components and has type inferences for both html elements and React components.
 
 ### html elements
@@ -12,12 +13,10 @@ const Link = styled('a')`
   color: red;
 `
 
-const App = () => (
-  <Link href="#">Click me</Link>
-)
-``` 
+const App = () => <Link href="#">Click me</Link>
+```
 
-```jsx 
+```jsx
 import styled from 'react-emotion'
 
 const NotALink = styled('div')`
@@ -36,21 +35,19 @@ const App = () => (
 import styled from 'react-emotion'
 
 const NotALink = styled('div')`
-  color: red,
+  color: red;
 `
 
 const Link = NotALink.withComponent('a')
 
-const App = () => (
-  <Link href="#">Click me</Link>
-)
+const App = () => <Link href="#">Click me</Link>
 
 // No errors!
 ```
 
 ### Passing Props
 
-You can type the props of your styled components.  
+You can type the props of your styled components.\
 Unfortunately, you will need to pass a second parameter with the tag name because TypeScript is unable to infer the tagname.
 
 ```jsx
@@ -64,7 +61,7 @@ const Image = styled<ImageProps, 'div'>('div')`
   background: url(${props => props.src}) center center;
   background-size: contain;
 `
-``` 
+```
 
 ### Object Styles
 
@@ -88,10 +85,9 @@ const Image = styled.div<ImageProps>({
 }, ({ src }) => ({
   background: `url(${src}) center center`,
 }))
+```
 
-``` 
-
-* Note that in shorthand example you don't need to pass the tag name argument. 
+* Note that in shorthand example you don't need to pass the tag name argument.
 * The shorthand only works with object styles due to https://github.com/Microsoft/TypeScript/issues/11947.
 
 ### React Components
@@ -102,13 +98,11 @@ import styled from 'react-emotion'
 
 type ComponentProps = {
   className?: string,
-  label: string,
+  label: string
 }
 
 const Component: SFC = ({ label, className }) => (
-  <div className={className}>
-    {label}
-  </div>
+  <div className={className}>{label}</div>
 )
 
 const StyledComponent = styled(Component)`
@@ -128,21 +122,22 @@ import styled from 'react-emotion'
 
 type ComponentProps = {
   className?: string,
-  label: string,
+  label: string
 }
 
 const Component: SFC = ({ label, className }) => (
-  <div className={className}>
-    {label}
-  </div>
+  <div className={className}>{label}</div>
 )
 
 type StyledComponentProps = {
-  bgColor: string,
+  bgColor: string
 } & ComponentProps
 //  ^^^ You will need this
 
-const StyledComponent = styled<StyledComponentProps>(Component)`
+const StyledComponent =
+  styled <
+  StyledComponentProps >
+  Component`
   color: red;
   background: ${props => props.bgColor};
 `
@@ -156,10 +151,11 @@ Unfortunately, when you pass custom props to a styled component, TypeScript will
 
 ### Define a Theme
 
-By default, the `props.theme` has `any` type annotation and works without error.  
+By default, the `props.theme` has `any` type annotation and works without error.\
 However, you can define a theme type by creating a another `styled` instance.
 
-*styled.tsx*
+_styled.tsx_
+
 ```jsx
 import styled, { ThemedReactEmotionInterface } from 'react-emotion'
 
@@ -173,9 +169,10 @@ type Theme = {
 }
 
 export default styled as ThemedReactEmotionInterface<Theme>
-``` 
+```
 
-*Button.tsx*
+_Button.tsx_
+
 ```jsx
 import styled from '../pathto/styled'
 
@@ -186,4 +183,4 @@ const Button = styled('button')`
 `
 
 export default Button
-``` 
+```

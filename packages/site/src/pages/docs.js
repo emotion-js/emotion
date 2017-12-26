@@ -37,7 +37,7 @@ export default (props: Props) => {
                 {item.items.map(item => {
                   return (
                     <Link to={`/docs/${item}`}>
-                      <H3>{docMap[item]}</H3>
+                      <H3>{docMap[item] || item}</H3>
                     </Link>
                   )
                 })}

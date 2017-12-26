@@ -2,17 +2,13 @@
 title: "cx"
 ---
 
-`cx` is emotion's version of the popular
-[`classnames` library](https://github.com/JedWatson/classnames). `cx` is useful
-when combining multiple class names, even class names from your stylesheets and
-emotion generated class names.
+`cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames). `cx` is useful when combining multiple class names, even class names from your stylesheets and emotion generated class names.
 
 ### Key features
 
 * High performance integration with emotion
 * Custom class names. e.g, `.my-bem--class`, are appended in order.
-* Combines the actual content of emotion generated class names. Multiple emotion
-  generated class names are input and a unique class name is output.
+* Combines the actual content of emotion generated class names. Multiple emotion generated class names are input and a unique class name is output.
 
 ### API
 
@@ -21,10 +17,8 @@ emotion generated class names.
 `cx` takes any number of arguments and returns a string class name.
 
 * Falsey values are removed from the final string.
-* If an object value is encountered, any key that has a corresponding truthy
-  value is added to the final string.
-* If an function value is encountered, the return value is wrapped in `cx` and
-  returned.
+* If an object value is encountered, any key that has a corresponding truthy value is added to the final string.
+* If an function value is encountered, the return value is wrapped in `cx` and returned.
 
 ### Examples
 
@@ -45,8 +39,7 @@ const cls2 = css`
 render(<div className={cx(cls1, cls2)}>Blue Text</div>)
 ```
 
-This renders a `div` with a single class name and the following styles would be
-inserted.
+This renders a `div` with a single class name and the following styles would be inserted.
 
 ```css
 .css-12345 {
@@ -57,8 +50,7 @@ inserted.
 }
 ```
 
-If the order of the class names is reversed in the `cx` call the styles would
-change precedence.
+If the order of the class names is reversed in the `cx` call the styles would change precedence.
 
 ```jsx live
 import { cx, css } from 'emotion'
@@ -75,8 +67,7 @@ const cls2 = css`
 render(<div className={cx(cls2, cls1)}>Green Text</div>) // <-- arguments reversed
 ```
 
-The div will now have a **green** background even though `cls2` was inserted
-into the stylesheet **after** `cls1`.
+The div will now have a **green** background even though `cls2` was inserted into the stylesheet **after** `cls1`.
 
 ```css
 .css-54321 {
@@ -142,7 +133,5 @@ Output:
 ```
 
 ```jsx
-<div
-  className="modal profile css-i43k4"
-/>
+;<div className="modal profile css-i43k4" />
 ```

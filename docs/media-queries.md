@@ -19,7 +19,6 @@ const Avatar = styled('img')`
 render(<Avatar src={logoUrl} rounded />)
 ```
 
-
 ## Reusable Media Queries with Object Styles
 
 Making media queries reusable can be really useful to create responsive apps, with emotion's object styles you can move them into constants so you can refer to them instead of rewriting them each time they're used.
@@ -46,9 +45,13 @@ render(<div className={styles}>Some text.</div>)
 ### facepaint
 
 While defining media queries in constants is great and is much easier than rewriting media queries each time, they're still quite verbose since usually you want to change the same property at different break points. [facepaint](https://github.com/emotion-js/facepaint) makes this easier by allowing you to define what each css property should be at each media query as an array.
+
 ```bash
+yarn add facepaint
+# or if you use npm
 npm install --save facepaint
 ```
+
 ```jsx live
 import { css } from 'emotion'
 import facepaint from 'facepaint'
@@ -69,9 +72,7 @@ render(<div className={styles}>Some text.</div>)
 
 ## Reusable Media Queries with String Styles
 
-[Demo](https://stackblitz.com/edit/react-wudbyn)
-
-```jsx
+```jsx live
 const breakpoints = {
   // Numerical values will result in a min-width query
   small: 576,
@@ -82,39 +83,33 @@ const breakpoints = {
   tallPhone: '(max-width: 360px) and (min-height: 740px)'
 }
 
-export const queries = Object.keys(breakpoints).reduce((accumulator, label) => {
-  if (typeof breakpoints[label] === 'string') {
-    accumulator[label] = (...args) =>
+const mq = Object.keys(breakpoints).reduce(
+  (accumulator, label) => {
+    let suffix =
+      typeof breakpoints[label] === 'string' ? '' : 'px'
+    accumulator[label] = cls =>
       css`
-        @media (${breakpoints[label]}) {
-          ${css(...args)};
+        @media (${breakpoints[label] + suffix}) {
+          ${cls};
         }
       `
-  } else {
-    accumulator[label] = (...args) =>
-      css`
-        @media (min-width: ${breakpoints[label]}px) {
-          ${css(...args)};
-        }
-      `
-  }
-
-  return accumulator
-}, {})
-```
-
-```jsx
-import { queries } from './mediaQueries.js`;
+    return accumulator
+  },
+  {}
+)
 
 const paragraph = css`
   font-size: 12px;
-
-  ${queries.medium`
+  ${mq.medium(css`
     font-size: 14px;
-  `}
-
-  ${queries.large`
+  `)};
+  ${mq.large(css`
     font-size: 16px;
-  `}
-`;
+  `)};
+`
+render(
+  <p className={paragraph}>
+    This font size is different at different breakpoints.
+  </p>
+)
 ```

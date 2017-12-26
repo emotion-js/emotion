@@ -28,7 +28,7 @@ html, body, #___gatsby {
 
 pre[class*="language-"],.prism-code {
   border-radius: 8px;
-  overflow: scroll; 
+  overflow: auto; 
 }
 .gatsy-highlight {
   overflow: hidden;

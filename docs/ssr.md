@@ -3,10 +3,10 @@ title: "Server Side Rendering"
 ---
 
 ## API
+
 ### renderStylesToString
 
-This returns a string of html that inlines the critical css required right
-before it's used.
+This returns a string of html that inlines the critical css required right before it's used.
 
 ```jsx
 import { renderToString } from 'react-dom/server'
@@ -18,11 +18,7 @@ const html = renderStylesToString(renderToString(<App />))
 
 ### renderStylesToNodeStream
 
-This returns a
-[Node Stream Writable](https://nodejs.org/api/stream.html#stream_class_stream_writable)
-that can be used to insert critical css right before it's required. This can be
-used with
-[React's streaming API](https://reactjs.org/docs/react-dom-server.html#rendertonodestream).
+This returns a [Node Stream Writable](https://nodejs.org/api/stream.html#stream_class_stream_writable) that can be used to insert critical css right before it's required. This can be used with [React's streaming API](https://reactjs.org/docs/react-dom-server.html#rendertonodestream).
 
 ```jsx
 import { renderToNodeStream } from 'react-dom/server'
@@ -34,9 +30,7 @@ const stream = renderToNodeStream(<App />).pipe(renderStylesToNodeStream())
 
 ### extractCritical
 
-This returns an object with the properties `html`, `ids` and `css`. It removes
-unused rules that were created with emotion(it still includes rules that were
-inserted with `injectGlobal`).
+This returns an object with the properties `html`, `ids` and `css`. It removes unused rules that were created with emotion(it still includes rules that were inserted with `injectGlobal`).
 
 ```jsx
 import { renderToString } from 'react-dom/server'
@@ -48,18 +42,13 @@ const { html, ids, css } = extractCritical(renderToString(<App />))
 
 #### hydrate
 
-`hydrate` should be called on the client with the `ids` that `extractCritical`
-returns. If you don't call it then emotion will reinsert all the rules.
-`hydrate` is **only** required for `extractCritical`, **not** for
-`renderStylesToString` or `renderStylesToNodeStream`, hydration occurs
-automatically with `renderStylesToString` and `renderStylesToNodeStream`.
+`hydrate` should be called on the client with the `ids` that `extractCritical` returns. If you don't call it then emotion will reinsert all the rules. `hydrate` is **only** required for `extractCritical`, **not** for `renderStylesToString` or `renderStylesToNodeStream`, hydration occurs automatically with `renderStylesToString` and `renderStylesToNodeStream`.
 
 ```jsx
 import { hydrate } from 'emotion'
 
 hydrate(ids)
 ```
-
 
 ## Next.js
 
@@ -72,12 +61,11 @@ To use emotion's SSR with Gatsby, you can use `gatsby-plugin-emotion` or you can
 ```bash
 yarn add gatsby-plugin-emotion
 ```
+
 gatsby-config.js
+
 ```jsx
 module.exports = {
-  plugins: [
-    ...otherGatsbyPlugins,
-    'gatsby-plugin-emotion'
-  ]
+  plugins: [...otherGatsbyPlugins, 'gatsby-plugin-emotion']
 }
 ```

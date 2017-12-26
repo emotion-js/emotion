@@ -3,6 +3,8 @@ const path = require('path')
 const yaml = require('js-yaml')
 const packageYamlPath = path.resolve(__dirname, '../../docs/docs.yaml')
 
-const yamlString = fs.readFileSync(packageYamlPath).toString()
+module.exports = () => {
+  const yamlString = fs.readFileSync(packageYamlPath).toString()
 
-module.exports = yaml.safeLoad(yamlString)
+  return yaml.safeLoad(yamlString)
+}

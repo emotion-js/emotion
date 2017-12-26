@@ -21,7 +21,6 @@ render(
     </a>
   </p>
 )
-
 ```
 
 You can use `&` to select the current class nested in another element:
@@ -52,8 +51,7 @@ render(
 )
 ```
 
-To nest a class selector using the class generated with `css` you can
-interpolate it but this is **strongly** recommended against and should only be used in rare circumstances because [composition](docs/composition) merges styles together so the original class name isn't there.
+To nest a class selector using the class generated with `css` you can interpolate it but this is **strongly** recommended against and should only be used in rare circumstances because it will break when used with [composition](https://emotion.sh/docs/composition).
 
 ```jsx live
 import { css } from 'emotion'

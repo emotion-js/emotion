@@ -171,13 +171,12 @@ class IndexPage extends React.Component<Props, State> {
                   css={{ fontWeight: 300, lineHeight: '1.5rem' }}
                   fontSize={'1.15rem'}
                 >
-                  {/* just putting this here until we write an up to date intro */}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Pellentesque condimentum urna imperdiet lectus convallis, quis
-                  cursus nunc euismod. Sed at ornare mauris. Maecenas et orci
-                  sed dolor commodo semper. Vestibulum mauris nibh, posuere a
-                  ornare nec, rhoncus a magna. Sed non felis et lectus luctus
-                  blandit nec lacinia quam.
+                  Emotion is a performant and flexible CSS-in-JS library.
+                  Building on many other CSS-in-JS libraries it allows you to
+                  style applications quickly with string styles or object
+                  styles. With source maps and labels, Emotion has a great
+                  developer experience and great performance with heavy caching
+                  and insertRule.
                 </Paragraph>
                 <Preview />
               </Box>

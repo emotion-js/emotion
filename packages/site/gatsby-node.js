@@ -1,6 +1,5 @@
 const path = require('path')
-const docs = require('./docs-yaml')
-
+const docs = require('./docs-yaml')()
 const packages = docs.filter(({ title }) => title === 'Packages')[0].items
 
 global.Babel = require('babel-standalone')
@@ -41,9 +40,9 @@ exports.modifyBabelrc = ({ babelrc }) => {
 
 exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
-
+  const docs1 = require('./docs-yaml')()
   const docTemplate = require.resolve(`./src/templates/doc.js`)
-  docs.forEach(({ title, items }) => {
+  docs1.forEach(({ title, items }) => {
     items.forEach(itemName => {
       createPage({
         path: `docs/${itemName}`,
@@ -219,6 +218,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
             }
           }
         })
+
         if (packages.indexOf(node.fields.slug) !== -1) {
           // Remove the title from the markdown if it's a package
           hast.children.shift()

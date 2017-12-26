@@ -1,5 +1,6 @@
 - title: Getting Started
   items: 
+    - introduction
     - install
     - css
     - styled
