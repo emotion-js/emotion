@@ -3,9 +3,12 @@
 `styled` accepts styles as a template literal, object, or function that returns an object.
 
 ### Styling elements and components
+
+Simple element:
+
 ```jsx
 import styled from 'react-emotion'
-// simple element
+
 const H1 = styled('h1')`
   color: blue;
   font-size: 48px;
@@ -16,18 +19,35 @@ function Greeting ({ name }) {
   // blue, 48px, and scaled 2x text
   return <H1 scale={2}>Hello {name}</H1>
 }
+```
 
-// Component
-const H2 = styled(H1)`
-  font-size: ${fontSize * 2/3}px;
-  color: red;
+Component:
+
+```jsx
+import styled from 'react-emotion'
+
+const Heading = styled('h1')`
+  color: blue;
+  font-size: 48px;
+`
+
+const SmallHeading = styled(Heading)`
+  color: black;
+  font-size: 36px;
 `
 
 function Greeting ({ name }) {
-  return <H2>Hello {name}</H2> // red, 32px, and scaled 2x text
+  return (
+    <span>
+      <Heading>Hello {name}</Heading> // blue 48px
+      <SmallHeading>I'm an explainer</SmallHeading> // black 36px
+    </span>
+  )
 }
-
 ```
+
+When styling your custom components, be sure it inherits the appropriate props otherwise it won't propagate the changes. For more info check [issue #366](https://github.com/emotion-js/emotion/issues/366).
+
 ### Change the rendered tag using `withComponent`
 
 This API was inspired by [styled-components' `withComponent`](https://www.styled-components.com/docs/api#withcomponent).
