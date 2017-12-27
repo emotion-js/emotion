@@ -73,7 +73,7 @@ const app = () => (
 
 The core idea comes from Sunil Pai’s [glam](https://github.com/threepointone/glam) library and its philosophy is laid out [here](https://gist.github.com/threepointone/0ef30b196682a69327c407124f33d69a).
 
--- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
+- [Introduction Article](https://medium.com/@tkh44/emotion-ad1c45c6d28b)
 
 ### [Documentation](docs/)
 
