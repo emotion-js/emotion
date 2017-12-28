@@ -85,7 +85,6 @@ With options:
         "css": "css",
         "keyframes": "keyframes",
         "injectGlobal": "injectGlobal",
-        "fontFace": "fontFace",
         "merge": "merge"
       }
     }]
@@ -247,7 +246,6 @@ This option enables the following:
   "css": "css",
   "keyframes": "keyframes",
   "injectGlobal": "injectGlobal",
-  "fontFace": "fontFace",
   "merge": "merge"
 }
 ```
