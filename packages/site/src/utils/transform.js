@@ -5,7 +5,7 @@ Babel.registerPlugin('babel-plugin-emotion', babelPluginEmotion)
 
 const options = {
   presets: ['es2015', 'react', 'stage-1'],
-  plugins: [['babel-plugin-emotion', { autoImportCssProp: false }]]
+  plugins: ['babel-plugin-emotion']
 }
 module.exports = {
   transform(code) {

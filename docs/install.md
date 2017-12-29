@@ -67,20 +67,24 @@ npm install --save preact-emotion
 > **Note:** All APIs from `emotion` are also exported by the `react-emotion` package.
 
 ```jsx live
+// change this import to preact-emotion
+// if you're using Preact
 import styled, { css } from 'react-emotion'
 
 const Button = styled('button')`
   color: hotpink;
 `
 
-render(<Button>This is a hotpink button.</Button>)
+render(
+  <Button>This is a hotpink button.</Button>
+)
 ```
 
 ## With [`babel-plugin-emotion`](https://emotion.sh/docs/babel-plugin-emotion)
 
 > **Note:** If you're using Create React App, you can't add custom babel plugins so you can skip this section.
 
-Emotion has a [Babel](https://babeljs.io/) plugin that optimizes styles by compressing and hoisting them and creates a better developer experience with source maps and labels.
+Emotion has an optional [Babel](https://babeljs.io/) plugin that optimizes styles by compressing and hoisting them and creates a better developer experience with source maps and labels.
 
 ```bash
 yarn add babel-plugin-emotion
@@ -92,9 +96,7 @@ npm install --save babel-plugin-emotion
 
 
 
-### .babelrc
-
-> **Note:** `babel-plugin-emotion` is optional but highly recommended. [More information on `babel-plugin-emotion`.](https://emotion.sh/docs/babel-plugin-eotion)
+## .babelrc
 
 _`"emotion"` must be the **first plugin** in your babel config `plugins` list._
 
@@ -112,14 +114,16 @@ If you are using Babel's env option emotion must also be first for each environm
     "production": {
       "plugins": [
         "emotion",
-        [...all other babel plugins...]
+        ...otherBabelPlugins
       ]
     }
   },
   "plugins": ["emotion"]
 }
 ```
-##
+
+## Recommended config
+
 ```json
 {
   "env": {
@@ -135,14 +139,3 @@ If you are using Babel's env option emotion must also be first for each environm
 }
 ```
 
-### Preact
-
-Import `preact-emotion` instead of `react-emotion` and use it the same way you would with React.
-
-```jsx
-import styled from 'preact-emotion'
-
-const SomeComponent = styled.div`
-  display: flex;
-`
-```

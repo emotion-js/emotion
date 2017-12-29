@@ -158,7 +158,7 @@ render(
 
 ### Composition
 
-To learn more about why compositon is so useful in Emotion, [go here](https://emotion.sh/docs/composition)
+[Learn more composition in Emotion](https://emotion.sh/docs/composition).
 
 ```jsx live
 import { css } from 'emotion'

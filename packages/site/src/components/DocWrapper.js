@@ -3,11 +3,14 @@ import React from 'react'
 import styled, { css, keyframes } from 'react-emotion'
 import Link from 'gatsby-link'
 import Box from './Box'
-import { constants, colors } from '../utils/style'
+import { constants, colors, p } from '../utils/style'
 import DocSidebar from './DocSidebar'
 import { darken } from 'polished'
 import MenuIcon from 'react-icons/lib/md/menu'
 import { getDocMap, docList } from '../utils/misc'
+
+import type { Match } from '../utils/types'
+import { Route } from 'react-router'
 
 const ToggleSidebarButton = styled.button`
   position: fixed;
@@ -71,9 +74,25 @@ type Props = {
   }>
 }
 
+const pageLinkStyles = css(
+  p({
+    color: [
+      colors.pink,
+      colors.darken(colors.pink),
+      colors.darken2(colors.pink),
+
+      colors.darken3(colors.pink)
+    ]
+  })
+)
+
+const flatDocList = docList.reduce(
+  (arr, current) => arr.concat(current.items),
+  []
+)
+
 export default (props: Props) => {
   const docMap = getDocMap(props.sidebarNodes)
-
   return (
     <Box flex={1}>
       <DocSidebar
@@ -85,6 +104,60 @@ export default (props: Props) => {
                 <MenuIcon color="white" size={32} />
               </ToggleSidebarButton>
             )}
+            <Route
+              path="/docs/:doc"
+              render={({ match }: { match: Match }) => {
+                const index = flatDocList.findIndex(
+                  item => item === match.params.doc
+                )
+                const hasNextDoc = index !== flatDocList.length - 1
+                const hasPrevDoc = index !== 0
+                const containerFontSize = [3, 4]
+                const linkFontSize = [5, 6]
+                return (
+                  <Box
+                    display="flex"
+                    pt={2}
+                    direction={['column', 'row']}
+                    justify="space-between"
+                  >
+                    {hasPrevDoc ? (
+                      <Box fontSize={containerFontSize}>
+                        Previous Page
+                        <Box fontSize={linkFontSize}>
+                          <Link
+                            className={pageLinkStyles}
+                            to={`/docs/${flatDocList[index - 1]}`}
+                          >
+                            {docMap[flatDocList[index - 1]] ||
+                              flatDocList[index - 1]}
+                          </Link>
+                        </Box>
+                      </Box>
+                    ) : (
+                      <Box />
+                    )}
+                    {hasNextDoc ? (
+                      <Box pt={[3, 0]} fontSize={containerFontSize}>
+                        Next Page
+                        <Box fontSize={linkFontSize}>
+                          <Link
+                            className={pageLinkStyles}
+                            to={`/docs/${flatDocList[index + 1]}`}
+                          >
+                            {docMap[flatDocList[index + 1]] ||
+                              flatDocList[index + 1]}
+                          </Link>
+                        </Box>
+                      </Box>
+                    ) : (
+                      <Box />
+                    )}
+                  </Box>
+                )
+              }}
+            />
+            <Box p={[4, 1]} />
           </Box>
         )}
         styles={{

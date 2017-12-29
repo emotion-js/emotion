@@ -30,14 +30,10 @@ const Button = styled('button')`
     props.primary ? 'hotpink' : 'turquoise'};
 `
 
-const Container = styled('div')(
-  {
-    display: 'flex'
-  },
-  props => ({
-    flexDirection: props.column && 'column'
-  })
-)
+const Container = styled('div')(props => ({
+  display: 'flex',
+  flexDirection: props.column && 'column'
+}))
 
 render(
   <Container column>
@@ -73,7 +69,7 @@ render(
 
 ### Targeting another emotion component
 
-Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](https://emotion.sh/docs/babel-plugin-emotion):
+Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](https://emotion.sh/docs/babel-plugin-emotion).
 
 ```jsx live
 const Child = styled('div')`

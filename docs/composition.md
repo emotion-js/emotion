@@ -46,9 +46,11 @@ render(
 )
 ```
 
+> **Note:** <br> This is just an example to demonstrate composition, for class name merging with emotion you should use [cx](https://emotion.sh/docs/cx)
+
 ## Composing dynamic styles
 
-You can also do dynamic composition and reuse it multiple 
+You can also do dynamic composition based on props and use it in `styled`
 
 ```jsx live
 import styled, { css } from 'react-emotion'
@@ -58,10 +60,14 @@ const dynamicStyle = props =>
     color: ${props.color};
   `
 
-const Div = styled('div')`
+const Container = styled('div')`
   ${dynamicStyle};
 `
-render(<Div color="yellow">This is yellow.</Div>)
+render(
+  <Container color="lightgreen">
+    This is lightgreen.
+  </Container>
+)
 ```
 
 If you're composing lots of other styles and aren't using any string styles directly in the `styled` call, you can use the function call syntax to make it smaller.
@@ -74,7 +80,11 @@ const dynamicStyle = props =>
     color: ${props.color};
   `
 
-const Div = styled('div')(dynamicStyle)
+const Container = styled('div')(dynamicStyle)
 
-render(<Div color="yellow">This is yellow.</Div>)
+render(
+  <Container color="lightgreen">
+    This is lightgreen.
+  </Container>
+)
 ```

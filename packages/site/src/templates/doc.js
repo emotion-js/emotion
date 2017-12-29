@@ -100,15 +100,22 @@ const createHeading = (
 
 const codeStyles = css(
   mq({
-    marginLeft: -30,
-    marginRight: -30,
+    marginLeft: [-35, -30],
+    marginRight: [-35, -30],
     marginTop: 16,
-    marginBottom: 16
+    marginBottom: 16,
+    borderRadius: [0, 8]
   }),
   {
     fontFamily:
       'source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace !important'
   }
+)
+
+const internalCodeStyles = css(
+  mq({
+    paddingLeft: [35, 30]
+  })
 )
 
 const createCode = (logoUrl: string) => (props: *) => {
@@ -119,6 +126,7 @@ const createCode = (logoUrl: string) => (props: *) => {
     return (
       <Playground
         className={codeStyles}
+        editorClassName={internalCodeStyles}
         logoUrl={logoUrl}
         code={props.children[0]}
       />
@@ -134,10 +142,12 @@ const createCode = (logoUrl: string) => (props: *) => {
   )
   return (
     <pre className={codeStyles}>
-      <code
-        className={'prism-code'}
-        dangerouslySetInnerHTML={{ __html: highlighted }}
-      />
+      <code className="prism-code">
+        <div
+          className={internalCodeStyles}
+          dangerouslySetInnerHTML={{ __html: highlighted }}
+        />
+      </code>
     </pre>
   )
 }

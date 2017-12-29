@@ -1,49 +1,15 @@
 // @flow
+import '../utils/global'
 import React from 'react'
 import Link from '../components/Link'
-import styled, { injectGlobal } from 'react-emotion'
+import styled from 'react-emotion'
 import Box from '../components/Box'
-import prismStyles from 'react-live/lib/constants/css'
 import Helmet from 'react-helmet'
 import 'normalize.css/normalize.css'
 import DocWrapper from '../components/DocWrapper'
-import { colors, constants, animatedUnderline, fonts } from '../utils/style'
+import { colors, constants, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
 import type { Location, Match } from '../utils/types'
-
-injectGlobal(
-  prismStyles.replace('prism-code', 'prism-code,pre[class*="language-"]')
-)
-
-injectGlobal`
-html, body, #___gatsby {
-  font-family: ${fonts.primary};
-  color: #FFFEFF;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-}
-
-pre[class*="language-"],.prism-code {
-  border-radius: 8px;
-  overflow: auto; 
-}
-.gatsy-highlight {
-  overflow: hidden;
-}
-* {
-  box-sizing: border-box;
-}
-@font-face {
-  font-family: 'Oxygen';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Oxygen Regular'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v6/qBSyz106i5ud7wkBU-FrPevvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-}
-`
 
 const StyledLink = styled(Box)`
   color: white;
@@ -115,7 +81,6 @@ const Header = ({ isHome, avatar }) => (
           justify="flex-end"
           css={{ overflow: 'initial' }}
         >
-          <StyledLink to="/try">Try</StyledLink>
           <StyledLink to="/docs">Documentation</StyledLink>
           <StyledLink to="https://github.com/emotion-js/emotion">
             GitHub

@@ -78,7 +78,7 @@ The div will now have a **green** background even though `cls2` was inserted int
 }
 ```
 
-##### Combining both emotion generated class names and custom class names.
+##### Combining emotion generated class names and custom class names.
 
 ```jsx live
 import { cx, css } from 'emotion'
@@ -132,6 +132,6 @@ Output:
 }
 ```
 
-```jsx
-;<div className="modal profile css-i43k4" />
+```html
+<div class="modal profile css-i43k4">Some content</div>
 ```

@@ -2,6 +2,7 @@
 import { css } from 'emotion'
 import facepaint from 'facepaint'
 import { util, constants } from 'styled-system'
+import { darken } from 'polished'
 
 export const animatedUnderline = css`
   &::after {
@@ -22,11 +23,16 @@ export const animatedUnderline = css`
 
 export const mq = facepaint(constants.breakpoints.map(util.mq))
 
+export const p = facepaint([':hover,:focus', ':active', ':visited'])
+
 export const colors = {
   pink: '#D26AC2',
   blue: '#46C9E5',
   yellow: '#FFCA2A',
-  dark: '#1D2029'
+  dark: '#1D2029',
+  darken: darken(0.1),
+  darken2: darken(0.15),
+  darken3: darken(0.2)
 }
 
 export const fonts = {

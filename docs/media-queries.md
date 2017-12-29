@@ -16,7 +16,7 @@ const Avatar = styled('img')`
   }
 `
 
-render(<Avatar src={logoUrl} rounded />)
+render(<Avatar src={logoUrl} />)
 ```
 
 ## Reusable Media Queries with Object Styles
@@ -39,7 +39,9 @@ const styles = css({
     color: 'hotpink'
   }
 })
-render(<div className={styles}>Some text.</div>)
+render(
+  <div className={styles}>Some text.</div>
+)
 ```
 
 ### facepaint
@@ -64,10 +66,14 @@ const mq = facepaint(
   )
 )
 
-const styles = css(mq({
-  color: ['green', 'gray', 'hotpink']
-}))
-render(<div className={styles}>Some text.</div>)
+const styles = css(
+  mq({
+    color: ['green', 'gray', 'hotpink']
+  })
+)
+render(
+  <div className={styles}>Some text.</div>
+)
 ```
 
 ## Reusable Media Queries with String Styles

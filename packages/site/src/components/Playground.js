@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 import { LiveEditor, LivePreview, LiveProvider, withLive } from 'react-live/lib'
-import styled from 'react-emotion'
+import styled, { css, cx } from 'react-emotion'
 import { ThemeProvider, withTheme } from 'emotion-theming'
 import Box from '../components/Box'
 import { openColors as colors, fonts } from '../utils/style'
@@ -66,7 +66,8 @@ export const Preview = withLive(
 type Props = {
   code: string,
   logoUrl: string,
-  className?: string
+  className?: string,
+  editorClassName?: string
 }
 
 export default class Playground extends Component<Props> {
@@ -98,7 +99,11 @@ export default class Playground extends Component<Props> {
             fontSize={1}
           >
             <LiveEditor
-              css={{ overflow: 'auto', height: '100%', borderRadius: 0 }}
+              // $FlowFixMe
+              className={cx(
+                css({ overflow: 'auto', height: '100%', borderRadius: 0 }),
+                this.props.editorClassName
+              )}
             />
           </Box>
           <Box
