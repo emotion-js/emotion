@@ -180,6 +180,7 @@ export default (props: Props) => {
                 <h3>{item.title}</h3>
                 {item.items.map(slug => (
                   <Link
+                    key={slug}
                     className={linkStyles}
                     activeClassName={activeStyles}
                     to={`/docs/${slug}`}
