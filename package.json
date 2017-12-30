@@ -23,6 +23,10 @@
     "bootstrap": "lerna bootstrap",
     "flow": "flow check"
   },
+  "resolutions": {
+    "**/react": "^16.2.0",
+    "**/react-dom": "^16.2.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.32",
     "@babel/plugin-external-helpers": "^7.0.0-beta.32",

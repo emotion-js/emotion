@@ -2,7 +2,7 @@
 import { css } from 'emotion'
 import facepaint from 'facepaint'
 import { util, constants } from 'styled-system'
-import { darken } from 'polished'
+import darken from 'polished/lib/color/darken'
 
 export const animatedUnderline = css`
   &::after {

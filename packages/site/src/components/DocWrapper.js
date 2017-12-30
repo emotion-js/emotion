@@ -5,7 +5,7 @@ import Link from 'gatsby-link'
 import Box from './Box'
 import { constants, colors, p } from '../utils/style'
 import DocSidebar from './DocSidebar'
-import { darken } from 'polished'
+import darken from 'polished/lib/color/darken'
 import MenuIcon from 'react-icons/lib/md/menu'
 import { getDocMap, docList } from '../utils/misc'
 
