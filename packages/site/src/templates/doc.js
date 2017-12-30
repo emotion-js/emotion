@@ -128,6 +128,7 @@ const createCode = (logoUrl: string) => (props: *) => {
         className={codeStyles}
         editorClassName={internalCodeStyles}
         logoUrl={logoUrl}
+        initialCompiledCode={props.compiled}
         code={props.children[0]}
       />
     )

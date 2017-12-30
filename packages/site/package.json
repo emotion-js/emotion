@@ -46,7 +46,8 @@
     "remark-parse": "^4.0.0",
     "styled-system": "^1.0.8",
     "unified": "^6.1.6",
-    "unist-util-visit": "^1.2.0"
+    "unist-util-visit": "^1.2.0",
+    "worker-loader": "1.0.0"
   },
   "keywords": [
     "gatsby"

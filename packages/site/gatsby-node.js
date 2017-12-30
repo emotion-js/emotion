@@ -208,6 +208,19 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
             node.properties = node.children[0].properties
             node.children = node.children[0].children
           }
+          if (
+            node.tagName === 'code' &&
+            node.properties.className !== undefined &&
+            node.properties.className[0] === 'language-jsx-live'
+          ) {
+            node.properties.compiled = global.Babel.transform(
+              node.children[0].value,
+              {
+                presets: ['es2015', 'react', 'stage-1'],
+                plugins: [require('babel-plugin-emotion')]
+              }
+            ).code
+          }
           for (const key of Object.keys(node.properties)) {
             if (ATTRIBUTE_TO_JSX[key] !== undefined) {
               node.properties[ATTRIBUTE_TO_JSX[key]] = node.properties[key]
