@@ -5,6 +5,7 @@ import babel from 'rollup-plugin-babel'
 import alias from 'rollup-plugin-alias'
 import cjs from 'rollup-plugin-commonjs'
 import path from 'path'
+import { rollup as lernaAliases } from 'lerna-alias'
 
 const pkg = require(path.resolve(process.cwd(), './package.json'))
 
@@ -53,22 +54,7 @@ const mainConfig = Object.assign({}, baseConfig, {
 })
 
 const umdConfig = Object.assign({}, baseConfig, {
-  plugins: basePlugins.concat(
-    alias({
-      emotion: path.resolve(__dirname, './packages/emotion/src/index.js'),
-      'emotion-utils': path.resolve(
-        __dirname,
-        './packages/emotion-utils/src/index.js'
-      ),
-      'create-emotion': path.resolve(
-        __dirname,
-        './packages/create-emotion/src/index.js'
-      ),
-      'create-emotion-styled': path.resolve(
-        __dirname,
-        './packages/create-emotion-styled/src/index.js'
-      )
-    }),
+  plugins: [alias(lernaAliases())].concat(basePlugins).concat(
     replace({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),

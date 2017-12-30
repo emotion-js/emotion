@@ -96,7 +96,6 @@ _Defaults Shown_
           "css": "css",
           "keyframes": "keyframes",
           "injectGlobal": "injectGlobal",
-          "fontFace": "fontFace",
           "merge": "merge"
         }
       }
@@ -264,7 +263,6 @@ This option enables the following:
   "css": "css",
   "keyframes": "keyframes",
   "injectGlobal": "injectGlobal",
-  "fontFace": "fontFace",
   "merge": "merge"
 }
 ```
@@ -318,7 +316,6 @@ import styled from 'react-emotion/macro'
 import {
   css,
   keyframes,
-  fontFace,
   injectGlobal,
   flush,
   hydrate

@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`component selector should be converted to use the emotion target className 1`] = `
-.glamor-2 .glamor-1 {
+.emotion-2 .emotion-1 {
   color: red;
 }
 
-.glamor-0 {
+.emotion-0 {
   color: blue;
 }
 
 <div
-  className="glamor-2"
+  className="emotion-2"
 >
   <div
-    className="glamor-0 glamor-1"
+    className="emotion-0 emotion-1"
   />
 </div>
 `;

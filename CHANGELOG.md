@@ -54,7 +54,7 @@ npm install --save jest-emotion
 +import { createSerializer } from 'jest-emotion'
  
 -expect.addSnapshotSerializer(serializer(sheet))
-+expect.addSnapshotSerializer(createSerializer(sheet))
++expect.addSnapshotSerializer(createSerializer(emotion))
 ```
 3. Emotion doesn't automatically insert semicolons in styles now. We recommend using [Prettier](https://prettier.io/) to ensure that your styles are formatted correctly.
 4. That's It!! You might want to check the more detailed list of breaking changes below just in case though.
@@ -69,6 +69,15 @@ npm install --save jest-emotion
   * `StyleSheet` is no longer used for SSR, this is completely internal(except that emotion exports an instance of this as `sheet`) so it shouldn't cause any problems.
 * `emotion-server`
   * `extractCritical` no longer returns a rules property, this was never documented so it shouldn't cause any problems.
+
+## v9.0.0-1 (2017-12-23)
+
+#### :bug: Bug Fix
+* `babel-plugin-emotion`, `create-emotion`, `emotion-theming`, `emotion`, `jest-emotion`, `react-emotion`
+  * [#504](https://github.com/emotion-js/emotion/pull/504) Change class name prefix in jest-emotion. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
 
 ## v9.0.0-0 (2017-12-23)
 
