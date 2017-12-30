@@ -1,24 +1,39 @@
 const path = require('path')
 const docs = require('./docs-yaml')()
 const packages = docs.filter(({ title }) => title === 'Packages')[0].items
-
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 global.Babel = require('babel-standalone')
 
-exports.modifyWebpackConfig = ({ config }) => {
+const webpack = require('webpack')
+
+exports.modifyWebpackConfig = ({ config, stage }) => {
   config.merge({
     resolve: {
       alias: {
+        assert: 'fbjs/lib/emptyFunction',
+        'source-map': 'fbjs/lib/emptyFunction',
         '@babel/types': path.join(__dirname, './src/utils/babel-types'),
-        'buble/dist/buble.deps': path.join(__dirname, './src/utils/transform'),
-        // used by a dependency of react-live
-        xor$: 'component-xor',
-        props$: 'component-props'
+        'buble/dist/buble.deps': path.join(__dirname, './src/utils/transform')
       }
     },
     node: {
-      fs: 'empty'
+      fs: 'empty',
+      buffer: 'empty',
+      assert: 'empty'
     }
   })
+  config.plugin('ignore-stuff', () => new webpack.IgnorePlugin(/^(xor|props)$/))
+  if (stage === 'build-javascript') {
+    config.merge({
+      plugins: [
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+          generateStatsFile: true
+        })
+      ]
+    })
+  }
 }
 
 exports.modifyBabelrc = ({ babelrc }) => {

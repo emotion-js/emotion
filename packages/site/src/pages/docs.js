@@ -5,6 +5,7 @@ import Box from '../components/Box'
 import Title from '../components/Title'
 import { openColors } from '../utils/style'
 import { getDocMap, docList } from '../utils/misc'
+import '../components/Playground'
 
 const H2 = Box.withComponent('h2')
 const H3 = Box.withComponent('h3')
