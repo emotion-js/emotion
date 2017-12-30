@@ -1,10 +1,13 @@
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import Worker from 'worker!./worker'
+import BabelWorker from 'worker!./worker'
 
-const worker = new Worker()
+let worker
+
+if (typeof Worker !== 'undefined') {
+  worker = new BabelWorker()
+}
+
 let count = 0
-
-global.lol = worker
 
 const call = (method, ...params) =>
   new Promise((resolve, reject) => {
