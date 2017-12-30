@@ -96,6 +96,7 @@ export default (props: Props) => {
   return (
     <Box flex={1}>
       <DocSidebar
+        defaultSidebarWidth={290}
         renderOutside={({ docked, setSidebarOpenState }) =>
           !docked && (
             <ToggleSidebarButton onClick={() => setSidebarOpenState(true)}>
