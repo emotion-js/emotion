@@ -1,7 +1,8 @@
 // https://github.com/developit/preact-www/blob/cb47a5015ea666930ead6eebc2917307db6c1db6/src/components/controllers/repl/worker.js
-import babelPluginEmotion from 'babel-plugin-emotion'
+
 importScripts('https://unpkg.com/babel-standalone@6.26.0/babel.min.js')
-// eslint-disable-next-line no-debugger
+
+const babelPluginEmotion = require('babel-plugin-emotion').default
 
 global.window = global
 
