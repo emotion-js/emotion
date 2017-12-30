@@ -166,6 +166,9 @@ export default (props: Props) => {
           },
           sidebar: {
             transitionTimingFunction: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)'
+          },
+          content: {
+            transition: 'none'
           }
         }}
         sidebarClassName={css`
