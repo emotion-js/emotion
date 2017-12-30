@@ -1,5 +1,5 @@
 // @flow
-import React from 'react'
+import * as React from 'react'
 import Sidebar from 'react-sidebar'
 
 let mql: MediaQueryList | void
@@ -17,8 +17,9 @@ type RenderProps = State & {
 }
 
 type Props = {
-  renderSidebar: RenderProps => React$Node,
-  renderContent: RenderProps => React$Node,
+  renderSidebar: RenderProps => React.Node,
+  renderContent: RenderProps => React.Node,
+  renderOutside: RenderProps => React.Node,
   styles?: Object
 }
 
@@ -56,17 +57,20 @@ export default class DocSidebar extends React.Component<Props, State> {
       setSidebarOpenState: this.onSetSidebarOpen
     }
     return (
-      <Sidebar
-        sidebar={this.props.renderSidebar(renderProps)}
-        open={this.state.open}
-        docked={this.state.docked}
-        onSetOpen={this.onSetSidebarOpen}
-        shadow={false}
-        pullRight
-        {...otherProps}
-      >
-        {this.props.renderContent(renderProps)}
-      </Sidebar>
+      <div>
+        <Sidebar
+          sidebar={this.props.renderSidebar(renderProps)}
+          open={this.state.open}
+          docked={this.state.docked}
+          onSetOpen={this.onSetSidebarOpen}
+          shadow={false}
+          pullRight
+          {...otherProps}
+        >
+          {this.props.renderContent(renderProps)}
+        </Sidebar>
+        {this.props.renderOutside(renderProps)}
+      </div>
     )
   }
 }

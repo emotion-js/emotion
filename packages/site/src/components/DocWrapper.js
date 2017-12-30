@@ -96,14 +96,15 @@ export default (props: Props) => {
   return (
     <Box flex={1}>
       <DocSidebar
+        renderOutside={({ docked, setSidebarOpenState }) =>
+          !docked && (
+            <ToggleSidebarButton onClick={() => setSidebarOpenState(true)}>
+              <MenuIcon color="white" size={32} />
+            </ToggleSidebarButton>
+          )}
         renderContent={({ docked, setSidebarOpenState }) => (
           <Box p={[3, 4]}>
             {props.children}
-            {!docked && (
-              <ToggleSidebarButton onClick={() => setSidebarOpenState(true)}>
-                <MenuIcon color="white" size={32} />
-              </ToggleSidebarButton>
-            )}
             <Route
               path="/docs/:doc"
               render={({ match }: { match: Match }) => {
@@ -175,6 +176,9 @@ export default (props: Props) => {
           background-color: #f5f5f5;
           padding: ${constants.space[3]}px;
           width: 290px;
+        `}
+        contentClassName={css`
+          transform: translateZ(0px);
         `}
         renderSidebar={({ setSidebarOpenState }) =>
           docList.map(item => {
