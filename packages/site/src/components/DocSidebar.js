@@ -7,8 +7,6 @@ if (typeof window !== 'undefined') {
   mql = window.matchMedia(`(min-width: 900px)`)
 }
 
-Sidebar.prototype.saveSidebarWidth = () => {}
-
 type State = {
   docked: boolean,
   open: boolean
