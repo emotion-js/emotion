@@ -8,6 +8,7 @@ exports.modifyWebpackConfig = ({ config }) => {
   config.merge({
     resolve: {
       alias: {
+        '@babel/types': path.join(__dirname, './src/utils/babel-types'),
         'buble/dist/buble.deps': path.join(__dirname, './src/utils/transform'),
         // used by a dependency of react-live
         xor$: 'component-xor',
