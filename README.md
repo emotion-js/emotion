@@ -18,12 +18,6 @@
 
 emotion is a high performance, lightweight css-in-js library that supports both string and object based styles.
 
----
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/kn3vqJSkK4YSjwLR8ofSEhXn/emotion-js/emotion.svg' /></a>
-
----
-
 ### Quick Start
 Get up and running with a single import.
 ```bash
