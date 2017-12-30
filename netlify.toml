@@ -1,5 +1,5 @@
 [build]
-  command = "yarn && npm run bootstrap && npm run build && npm run build:site"
+  command = "npm run build && npm run build:site"
   publish = "packages/site/public"
 
 [build.environment]
