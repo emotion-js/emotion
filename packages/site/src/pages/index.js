@@ -191,7 +191,6 @@ class IndexPage extends React.Component<Props, State> {
           <Box flex={1} display="flex" justify="center" align="center">
             <div
               css={{
-                width: 448,
                 overflow: 'hidden'
               }}
             >
