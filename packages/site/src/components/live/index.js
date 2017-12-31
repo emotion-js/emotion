@@ -46,6 +46,9 @@ export default class Live extends React.Component<Props, State> {
   }
 
   compile = (code: string, compiler: Compiler, scope: Scope) => {
+    if (code !== this.state.code) {
+      this.setState({ code })
+    }
     compileAndEvaluate(code, compiler, scope)
       .then(ret => {
         this.setState(ret)
@@ -88,7 +91,6 @@ type ErrorBoundaryProps = {
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
   componentDidCatch(err: Error) {
     this.props.onError(err)
-    console.log(err)
   }
   render() {
     return this.props.children

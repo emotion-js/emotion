@@ -1,14 +1,14 @@
 // @flow
 import styled from 'react-emotion'
-import { openColors, constants } from './style'
+import { openColors, mq, colors } from './style'
 
-export const p = styled.p`
-  font-size: 1.25rem;
-  margin-bottom: 1.3rem;
-  color: ${openColors.gray[8]};
-  line-height: 1.7;
-  font-size: ${constants.fontSizes[4]};
-`
+export const p = styled.p(
+  mq({
+    fontSize: [16, 17],
+    color: openColors.gray[8],
+    lineHeight: '1.7'
+  })
+)
 
 export const img = styled.img`
   max-height: 360px;
@@ -17,9 +17,9 @@ export const img = styled.img`
 
 export const a = styled.a`
   background-color: #faebf8;
+  border-bottom: 1px solid currentColor;
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid currentColor;
   :hover,
   :focus,
   :active {
@@ -28,14 +28,26 @@ export const a = styled.a`
   &.anchor {
     background-color: initial;
   }
+  code {
+    background-color: inherit;
+  }
 `
+
+const blockquoteColor = '#fe7ce5'
 
 export const blockquote = styled.blockquote`
   margin: 0;
-  border-left: 5px solid ${openColors.gray[5]};
+  border-left: 5px solid ${blockquoteColor};
+  background-color: ${colors.lighten(0.24, blockquoteColor)};
   font-style: italic;
   padding: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
   text-align: left;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  margin-right: -32px;
+  margin-left: -32px;
+  padding-right: 32px;
+  padding-left: 32px;
 `

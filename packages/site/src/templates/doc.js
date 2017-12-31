@@ -100,27 +100,36 @@ const createHeading = (
 
 const codeStyles = css(
   mq({
-    marginLeft: [-35, -30],
-    marginRight: [-35, -30],
+    marginLeft: [-32, -30],
+    marginRight: [-32, -30],
     marginTop: 16,
     marginBottom: 16,
-    borderRadius: [0, 8]
-  }),
-  {
-    fontFamily:
-      'source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace !important'
-  }
+    borderRadius: [0, 8],
+    whiteSpace: 'pre-wrap',
+    wordBreak: 'break-word'
+  })
 )
+
+const inlineCodeStyles = css({
+  backgroundColor: '#CEF6FF',
+  'p &': {
+    fontSize: 16
+  },
+  'a &': {
+    backgroundColor: 'inherit'
+  }
+})
 
 const internalCodeStyles = css(
   mq({
-    paddingLeft: [35, 30]
+    paddingLeft: [32, 30],
+    paddingRight: [32, 30]
   })
 )
 
 const createCode = (logoUrl: string) => (props: *) => {
   if (props.className === undefined) {
-    return <code {...props} />
+    return <code className={inlineCodeStyles} {...props} />
   }
   if (props.className[0] === 'language-jsx-live') {
     return (
@@ -164,6 +173,7 @@ export default class DocRoute extends React.Component<Props> {
         <Box pb={3}>
           {/* The URL below should change when this is on master */}
           <markdownComponents.a
+            css={{ color: 'rgb(107, 107, 107)', fontSize: 14.5 }}
             href={
               doc.frontmatter.title
                 ? `https://github.com/emotion-js/emotion/edit/gatsby/docs/${this

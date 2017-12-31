@@ -3,6 +3,20 @@ import { css } from 'emotion'
 import facepaint from 'facepaint'
 import { util, constants } from 'styled-system'
 import darken from 'polished/lib/color/darken'
+import lighten from 'polished/lib/color/lighten'
+
+export const colors = {
+  pink: '#D26AC2',
+  blue: '#46C9E5',
+  yellow: '#FFCA2A',
+  dark: '#1D2029',
+  darken,
+  lighten,
+  darken1: darken(0.1),
+  darken2: darken(0.15),
+  darken3: darken(0.2),
+  reallyLightPink: '#f9e9fb'
+}
 
 export const animatedUnderline = css`
   &::after {
@@ -25,18 +39,9 @@ export const mq = facepaint(constants.breakpoints.map(util.mq))
 
 export const p = facepaint([':hover,:focus', ':active', ':visited'])
 
-export const colors = {
-  pink: '#D26AC2',
-  blue: '#46C9E5',
-  yellow: '#FFCA2A',
-  dark: '#1D2029',
-  darken: darken(0.1),
-  darken2: darken(0.15),
-  darken3: darken(0.2)
-}
-
 export const fonts = {
-  primary: `-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif`
+  primary: `-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif`,
+  code: 'source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace'
 }
 export { default as openColors } from 'open-color'
 export {

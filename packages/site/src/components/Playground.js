@@ -100,24 +100,26 @@ export default class Playground extends Component<Props> {
                   minHeight: '100%'
                 }}
               >
-                {error ? (
-                  <Error>{error.toString()}</Error>
-                ) : (
-                  <div
-                    css={{
-                      flex: 1,
-                      background: 'transparent',
-                      padding: 8,
-                      height: '100%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontFamily: fonts.primary
-                    }}
-                  >
-                    {element}
-                  </div>
-                )}
+                <ErrorBoundary onError={onError}>
+                  {error ? (
+                    <Error>{error.toString()}</Error>
+                  ) : (
+                    <div
+                      css={{
+                        flex: 1,
+                        background: 'transparent',
+                        padding: 8,
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontFamily: fonts.primary
+                      }}
+                    >
+                      {element}
+                    </div>
+                  )}
+                </ErrorBoundary>
               </Box>
             </Box>
           )

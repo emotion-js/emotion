@@ -5,7 +5,6 @@ import Link from '../components/Link'
 import styled from 'react-emotion'
 import Box from '../components/Box'
 import Helmet from 'react-helmet'
-import 'normalize.css/normalize.css'
 import DocWrapper from '../components/DocWrapper'
 import { colors, constants, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
@@ -67,7 +66,8 @@ const Header = ({ isHome, avatar }) => (
                 hideUnderline
                 css={{
                   flex: 1,
-                  margin: 0
+                  margin: 0,
+                  letterSpacing: 0.8
                 }}
               >
                 emotion
@@ -97,7 +97,8 @@ const Header = ({ isHome, avatar }) => (
         transformOrigin: 'left',
         transform: `scaleX(${isHome ? 0 : 1})`,
         background:
-          !isHome && `linear-gradient(90deg, ${colors.pink}, ${colors.blue})`
+          !isHome && `linear-gradient(90deg, ${colors.pink}, ${colors.blue})`,
+        zIndex: 100
       }}
     />
   </Children>

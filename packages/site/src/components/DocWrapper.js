@@ -78,9 +78,8 @@ const pageLinkStyles = css(
   p({
     color: [
       colors.pink,
-      colors.darken(colors.pink),
+      colors.darken1(colors.pink),
       colors.darken2(colors.pink),
-
       colors.darken3(colors.pink)
     ]
   })
