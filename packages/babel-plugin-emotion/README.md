@@ -136,19 +136,21 @@ This option enables the following:
 
 By hoisting the argument, or assigning the value to a variable,
 emotion is able to leverage the use of a [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
-[cache](https://github.com/emotion-js/emotion/blob/6257f0c9cb00db9cbd08a9d6995f335730808329/packages/emotion/src/index.js#L85-L116) to increase performance. Users of object styles will benefit the most from enabling this option.
+[cache](https://github.com/emotion-js/emotion/blob/6257f0c9cb00db9cbd08a9d6995f335730808329/packages/emotion/src/index.js#L85-L116) to increase performance. Users of object styles with `css` prop will benefit the most from enabling this option.
 
 **In**
 
 ```javascript
-css({ color: 'brown' });
+const Sample = () => <div css={{ background: 'brown' }} />
 ```
 
 **Out**
 
 ```javascript
-var _ref = { color: 'brown' };
-css(_ref);
+var _css = require('emotion').css;
+var _ref = { background: 'brown' };
+
+const Sample = () => <div className={_css(_ref)} />;
 ```
 
 
@@ -260,7 +262,7 @@ This option enables the following:
 ### `instances`
 
 
-`Array<string>`, defaults to 
+`Array<string>`, defaults to
 
 `['emotion', 'react-emotion', 'preact-emotion']`
 
@@ -272,7 +274,7 @@ This option allows `babel-plugin-emotion` to know which imports to treat as emot
 ### `primaryInstance`
 
 
-`string`, defaults to 
+`string`, defaults to
 
 `'emotion'`
 
