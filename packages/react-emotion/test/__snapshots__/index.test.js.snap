@@ -796,12 +796,6 @@ exports[`styled with higher order component that hoists statics 1`] = `
 />
 `;
 
-exports[`styled withComponent creates a new, unique stable class per invocation 1`] = `"eldhy9955"`;
-
-exports[`styled withComponent creates a new, unique stable class per invocation 2`] = `"eldhy9956"`;
-
-exports[`styled withComponent creates a new, unique stable class per invocation 3`] = `"eldhy9957"`;
-
 exports[`styled withComponent does not carry styles from flattened component 1`] = `
 .emotion-0 {
   color: hotpink;

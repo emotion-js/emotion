@@ -146,6 +146,19 @@ describe('css', () => {
       )
     }).toThrowErrorMatchingSnapshot()
   })
+  test('component selectors without target', () => {
+    const SomeComponent = styled('div')`
+      color: blue;
+    `
+
+    expect(() => {
+      css`
+        ${SomeComponent} {
+          color: red;
+        }
+      `
+    }).toThrowErrorMatchingSnapshot()
+  })
   test('glamorous style api & composition', () => {
     const H1 = styled('h1')(props => ({ fontSize: props.fontSize }))
     const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
@@ -196,5 +209,10 @@ describe('css', () => {
       .toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+  test('styled throws a nice error when using the styled shorthand without babel-plugin-emotion', () => {
+    expect(() => {
+      styled.div``
+    }).toThrowErrorMatchingSnapshot()
   })
 })
