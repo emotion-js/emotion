@@ -1,5 +1,5 @@
 // @flow
-import { STYLES_KEY, TARGET_KEY } from 'emotion-utils'
+import { STYLES_KEY } from 'emotion-utils'
 import type { Emotion, Interpolations } from 'create-emotion'
 import { channel, contextTypes } from '../../emotion-theming/src/utils'
 import type { ElementType } from 'react'
@@ -133,7 +133,6 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
       Styled[STYLES_KEY] = styles
       Styled.__emotion_base = baseTag
       Styled.__emotion_real = Styled
-      Styled[TARGET_KEY] = stableClassName
       Object.defineProperty(Styled, 'toString', {
         enumerable: false,
         value() {

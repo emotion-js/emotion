@@ -9,7 +9,6 @@ export const memoize = (fn: string => any) => {
 }
 
 export const STYLES_KEY = '__emotion_styles'
-export const TARGET_KEY = '__emotion_target'
 
 export const unitless: { [string]: 1 } = {
   animationIterationCount: 1,

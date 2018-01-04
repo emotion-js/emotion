@@ -8,7 +8,6 @@ import * as emotion from './emotion-instance'
 import { createSerializer } from 'jest-emotion'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'
-import { TARGET_KEY } from 'emotion-utils'
 import { mount } from 'enzyme'
 import enzymeToJson from 'enzyme-to-json'
 
@@ -1070,13 +1069,9 @@ describe('styled', () => {
     const Subtitle = Title.withComponent('h2')
     const Byline = Title.withComponent('span')
 
-    expect(Subtitle[TARGET_KEY]).not.toBe(Title[TARGET_KEY])
-    expect(Byline[TARGET_KEY]).not.toBe(Title[TARGET_KEY])
-    expect(Byline[TARGET_KEY]).not.toBe(Subtitle[TARGET_KEY])
-
-    expect(Title[TARGET_KEY]).toMatchSnapshot()
-    expect(Subtitle[TARGET_KEY]).toMatchSnapshot()
-    expect(Byline[TARGET_KEY]).toMatchSnapshot()
+    expect(Subtitle.toString()).not.toBe(Title.toString())
+    expect(Byline.toString()).not.toBe(Title.toString())
+    expect(Byline.toString()).not.toBe(Subtitle.toString())
   })
   test('name with class component', () => {
     class SomeComponent extends React.Component<{ className: string }> {
