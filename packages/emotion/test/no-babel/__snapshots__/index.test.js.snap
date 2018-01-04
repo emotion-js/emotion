@@ -14,6 +14,8 @@ exports[`css @supports 1`] = `
 
 exports[`css component as selectors (object syntax) 1`] = `"Component selectors can only be used in conjunction with babel-plugin-emotion."`;
 
+exports[`css component selectors without target 1`] = `"Component selectors can only be used in conjunction with babel-plugin-emotion."`;
+
 exports[`css composition 1`] = `
 .emotion-0 {
   display: -webkit-box;
@@ -228,4 +230,9 @@ exports[`css random expressions undefined return 1`] = `
 >
   hello world
 </h1>
+`;
+
+exports[`css styled throws a nice error when using the styled shorthand without babel-plugin-emotion 1`] = `
+"You're trying to use the styled shorthand without babel-plugin-emotion.
+Please install and setup babel-plugin-emotion or use the function call syntax(\`styled('div')\` instead of \`styled.div\`)"
 `;

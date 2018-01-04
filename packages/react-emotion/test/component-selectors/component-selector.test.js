@@ -77,7 +77,7 @@ test('component as selector (object syntax)', () => {
 })
 
 test('component as selector function interpolation (object syntax)', () => {
-  const H1 = styled('h1')({}, props => ({
+  const H1 = styled('h1')(props => ({
     fontSize: `${props.fontSize}px`
   }))
 

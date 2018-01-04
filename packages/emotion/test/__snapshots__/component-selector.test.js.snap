@@ -27,5 +27,3 @@ exports[`component selector should be converted to use the emotion target classN
   color: blue;
 }"
 `;
-
-exports[`component selector should throw if the missing the static targeting property 1`] = `"Component selectors can only be used in conjunction with babel-plugin-emotion."`;

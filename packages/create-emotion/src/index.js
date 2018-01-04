@@ -1,5 +1,5 @@
 // @flow
-import { hashString, Stylis, STYLES_KEY, TARGET_KEY } from 'emotion-utils'
+import { hashString, Stylis, STYLES_KEY } from 'emotion-utils'
 import stylisRuleSheet from 'stylis-rule-sheet'
 import {
   processStyleName,
@@ -132,16 +132,7 @@ function createEmotion(
         return ''
       case 'function':
         if (interpolation[STYLES_KEY] !== undefined) {
-          if (
-            process.env.NODE_ENV !== 'production' &&
-            interpolation[TARGET_KEY] === undefined
-          ) {
-            throw new Error(
-              'Component selectors can only be used in conjunction with babel-plugin-emotion.'
-            )
-          }
-
-          return `.${interpolation[TARGET_KEY]}`
+          return interpolation.toString()
         }
         return handleInterpolation.call(
           this,
