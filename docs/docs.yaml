@@ -1,0 +1,45 @@
+- title: Getting Started
+  items: 
+    - introduction
+    - install
+    - css
+    - styled
+    - composition
+    - object-styles
+    - nested
+    - media-queries
+    - inject-global
+
+- title: Advanced
+  items:
+    - keyframes
+    - cx
+    - ssr
+    - with-props
+    - theming
+    - labels
+    - configurable-imports
+    - instances
+    #- benchmarks
+
+- title: Tooling
+  items:
+    - babel
+    - source-maps
+    - testing
+    - typescript
+    - extract-static
+
+# This loads the READMEs instead of files in docs/
+- title: Packages
+  items:
+    - emotion
+    - react-emotion
+    - babel-plugin-emotion
+    - emotion-server
+    - emotion-theming
+    - jest-emotion
+    - create-emotion
+    - create-emotion-styled
+    - create-emotion-server
+    - preact-emotion

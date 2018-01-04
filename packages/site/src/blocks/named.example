@@ -1,8 +1,0 @@
-const Avatar = styled('img')`
-  name: emotion-avatar;
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-`
-
-render(<Avatar src={logoUrl} />)

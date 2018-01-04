@@ -15,4 +15,4 @@ export const {
 } = createEmotionServer(emotion)
 ```
 
-[All of emotion's SSR APIs are documented in their own doc.](https://github.com/emotion-js/emotion/blob/master/docs/ssr.md)
+[All of emotion's SSR APIs are documented in their own doc.](https://emotion.sh/docs/ssr)

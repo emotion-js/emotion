@@ -1,53 +1,145 @@
-## Install
+---
+title: "Install"
+---
+
+Emotion can be used in many different ways. The easiest way to get started is to use the [`emotion` package](https://emotion.sh/docs/emotion).
 
 ```bash
-npm install --save emotion react-emotion babel-plugin-emotion
+yarn add emotion
 ```
 
-All `emotion` APIs are available from the `react-emotion` package.
+or if you prefer npm
 
-```javascript
-import styled, { css, injectGlobal } from 'react-emotion';
+```bash
+npm install --save emotion
 ```
 
-### .babelrc
+To use it, import what you need, for example use [css](https://emotion.sh/docs/css) to create class names with styles.
 
-[More information on the babel plugin](babel.md)
+```jsx live
+import { css } from 'emotion'
+
+const className = css`
+  color: hotpink;
+`
+
+const SomeComponent = ({ children }) => (
+  <div className={className}>
+    Some hotpink text.{children}
+  </div>
+)
+
+const anotherClassName = css({
+  textDecoration: 'underline'
+})
+
+const AnotherComponent = () => (
+  <div className={anotherClassName}>
+    Some text with an underline.
+  </div>
+)
+render(
+  <SomeComponent>
+    <AnotherComponent />
+  </SomeComponent>
+)
+```
+
+## With [`styled`](https://emotion.sh/docs/styled)
+
+`styled` is a way to create React/Preact components that have styles attached to them.
+
+```bash
+# assuming you already have emotion installed
+# React
+yarn add react-emotion
+# Preact
+yarn add preact-emotion
+```
+or if you prefer npm
+```bash
+# React
+npm install --save react-emotion
+# Preact
+npm install --save preact-emotion
+```
+
+> Note:
+
+> All APIs from `emotion` are also exported by the `react-emotion` package.
+
+```jsx live
+// change this import to preact-emotion
+// if you're using Preact
+import styled, { css } from 'react-emotion'
+
+const Button = styled('button')`
+  color: hotpink;
+`
+
+render(
+  <Button>This is a hotpink button.</Button>
+)
+```
+
+## With [`babel-plugin-emotion`](https://emotion.sh/docs/babel-plugin-emotion)
+
+> Note:
+
+> If you're using Create React App, you can't add custom babel plugins so you can skip this section.
+
+Emotion has an optional [Babel](https://babeljs.io/) plugin that optimizes styles by compressing and hoisting them and creates a better developer experience with source maps and labels.
+
+```bash
+yarn add babel-plugin-emotion
+```
+or if you prefer npm
+```bash
+npm install --save babel-plugin-emotion
+```
+
+
+
+## .babelrc
 
 _`"emotion"` must be the **first plugin** in your babel config `plugins` list._
 
-Takes optional configs:
-- [extractStatic](babel.md#Static-Extraction) _{boolean}_
-- [sourceMap](babel.md#Static-Extraction) _{boolean}_
 ```json
 {
-  "plugins": [
-    ["emotion"]
-  ]
+  "plugins": ["emotion"]
 }
 ```
-If using Babel's env option emotion must also be first for each environment.
-  ```json
-  {
-    "env": {
-      "production": {
-        "plugins": [
-          "emotion",
-          [...all other babel plugins...]
-        ]
-      }
-    },
-    "plugins": ["emotion"]
-  }
-  ```
-###  Preact
 
-Import `preact-emotion` instead of `react-emotion` and use it the same way you would with React.
+If you are using Babel's env option emotion must also be first for each environment.
 
-```jsx
-import styled from 'preact-emotion'
-
-const SomeComponent = styled.div`
-  display: flex;
-`
+```json
+{
+  "env": {
+    "production": {
+      "plugins": [
+        "emotion",
+        ...otherBabelPlugins
+      ]
+    }
+  },
+  "plugins": ["emotion"]
+}
 ```
+
+## Recommended config
+
+```json
+{
+  "env": {
+    "production": {
+      "plugins": [["emotion", { "hoist": true }]]
+    },
+    "development": {
+      "plugins": [
+        ["emotion", { "sourceMap": true, "autoLabel": true }]
+      ]
+    }
+  }
+}
+```
+

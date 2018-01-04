@@ -1,13 +1,14 @@
-## cx
+---
+title: "cx"
+---
 
-`cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames).
-`cx` is useful when combining multiple class names, even class names from your stylesheets and emotion generated class names.
+`cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames). `cx` is useful when combining multiple class names, even class names from your stylesheets and emotion generated class names.
 
 ### Key features
-- High performance integration with emotion
-- Custom class names. e.g, `.my-bem--class`, are appended in order.
-- Combines the actual content of emotion generated class names. Multiple emotion generated class names are input and a unique class name is output.
 
+* High performance integration with emotion
+* Custom class names. e.g, `.my-bem--class`, are appended in order.
+* Combines the actual content of emotion generated class names. Multiple emotion generated class names are input and a unique class name is output.
 
 ### API
 
@@ -17,14 +18,13 @@
 
 * Falsey values are removed from the final string.
 * If an object value is encountered, any key that has a corresponding truthy value is added to the final string.
-* If an function value is encountered, the return value is wrapped in `cx` and returned. 
-
+* If an function value is encountered, the return value is wrapped in `cx` and returned.
 
 ### Examples
 
 ##### Combining emotion generated class names
 
-```jsx harmony
+```jsx live
 import { cx, css } from 'emotion'
 
 const cls1 = css`
@@ -36,7 +36,7 @@ const cls2 = css`
   background: blue;
 `
 
-<div className={cx(cls1, cls2)} />
+render(<div className={cx(cls1, cls2)}>Blue Text</div>)
 ```
 
 This renders a `div` with a single class name and the following styles would be inserted.
@@ -52,7 +52,7 @@ This renders a `div` with a single class name and the following styles would be 
 
 If the order of the class names is reversed in the `cx` call the styles would change precedence.
 
-```jsx harmony
+```jsx live
 import { cx, css } from 'emotion'
 
 const cls1 = css`
@@ -64,7 +64,7 @@ const cls2 = css`
   background: blue;
 `
 
-<div className={cx(cls2, cls1)} /> // <-- arguments reversed
+render(<div className={cx(cls2, cls1)}>Green Text</div>) // <-- arguments reversed
 ```
 
 The div will now have a **green** background even though `cls2` was inserted into the stylesheet **after** `cls1`.
@@ -78,9 +78,11 @@ The div will now have a **green** background even though `cls2` was inserted int
 }
 ```
 
-##### Combining both emotion generated class names and custom class names.
+##### Combining emotion generated class names and custom class names.
 
-```jsx harmony
+```jsx live
+import { cx, css } from 'emotion'
+
 const cls1 = css`
   font-size: 20px;
   background: green;
@@ -98,13 +100,14 @@ const cls3 = css`
 const cls4 = css`
   font-size: 20px;
   background: darkgreen;
+  color: white;
 `
 
 const foo = true
 const bar = false
 
 
-<div
+render(<div
   className={cx(
     { [cls1]: foo },
     { [cls2]: bar },
@@ -112,7 +115,7 @@ const bar = false
     'profile',
     [[cls3, [cls4]]]
   )}
-/>
+>Some content</div>)
 ```
 
 Output:
@@ -125,11 +128,10 @@ Output:
   background: darkorange;
   font-size: 20px;
   background: darkgreen;
+  color: white;
 }
 ```
 
-```jsx harmony
-<div
-  className="modal profile css-i43k4"
-/>
+```html
+<div class="modal profile css-i43k4">Some content</div>
 ```

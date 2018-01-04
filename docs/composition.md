@@ -1,53 +1,113 @@
-## Composition
+---
+title: "Composition"
+---
 
-`css` can be used in emotion to build styles that can compose with other styles.
+Composition is one of the most powerful and useful patterns in Emotion. You can compose styles together by interpolating the class name returned from `css` in another style block.
 
-```javascript
+```jsx live
 import { css } from 'emotion'
-import styled from 'react-emotion'
 
-// Define a class
-const flexCenter = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const base = css`
+  color: hotpink;
 `
 
-// interpolate it where you want to apply the styles
-const flexCenterClass = css`
-  ${flexCenter};
-  flex-direction: column;
+render(
+  <div
+    className={css`
+      ${base};
+      background-color: #eee;
+    `}
+  >
+    This is hotpink.
+  </div>
+)
+```
+
+With regular css, you can compose styles together using multiple class names but this is very limited because the order that they're defined is the order they'll be applied. This can lead to hacks with `!important` and such to apply the correct styles.
+
+For example, we have some base styles and a danger style, we want the danger styles to have precedence over the base styles but because `base` is in the stylesheet after `danger` it has higher [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity). In regular CSS, you might do something to make `danger` have a higher specificity than `base` like move the `danger` class so it's more specific than `base`, use `!important` or abandon composition and rewrite the styles each time you need them.
+
+```jsx live
+import { css } from 'emotion'
+
+const danger = css`
+  color: red;
 `
 
-// You can also use it in styled and the css prop
-const FlexCenterComponent = styled.div`
-  ${flexCenter};
+const base = css`
+  background-color: lightgray;
+  color: turquoise;
 `
 
+render(
+  <div className={`${base} ${danger}`}>
+    What color will this be?
+  </div>
+)
+```
 
-const flexWrap = props => css`
-  flex-wrap: ${props.wrap ? 'wrap' : 'nowrap'};
+With Emotion though, it's much easier, all we have to change is add `css` before the template literal where we combine the classes and Emotion will use the styles that were passed to danger and base and merge them in the order that they're interpolated.
+
+```jsx live
+import { css } from 'emotion'
+
+const danger = css`
+  color: red;
 `
 
-// You can compose with multiple classes
-const ColumnCenteredComponent = styled.div`
-  ${flexCenter};
-  ${flexWrap};
+const base = css`
+  background-color: lightgray;
+  color: turquoise;
 `
 
-// Composition can be very powerful. For example, styles are expanded where you interpolate,
-// so the following class has flex-direction: column because ${flexCenterClass} is interpolated
-// after flex-direction: row
-const stillColumn = css`
-  flex-direction: row;
-  ${flexCenterClass}
-`
+render(
+  <div className={css`${base} ${danger}`}>
+    What color will this be?
+  </div>
+)
+```
 
-// Nested composing is supported
-const cls = css`
-  & .flex {
-      ${flexCenter};
-  }
-`
+> Note:
+> 
+> This is just an example to demonstrate composition, for class name merging with emotion you should use [cx](https://emotion.sh/docs/cx).
 
+## Composing dynamic styles
+
+You can also do dynamic composition based on props and use it in `styled`.
+
+```jsx live
+import styled, { css } from 'react-emotion'
+
+const dynamicStyle = props =>
+  css`
+    color: ${props.color};
+  `
+
+const Container = styled('div')`
+  ${dynamicStyle};
+`
+render(
+  <Container color="lightgreen">
+    This is lightgreen.
+  </Container>
+)
+```
+
+If you're composing lots of other styles and aren't using any string styles directly in the `styled` call, you can use the function call syntax to make it smaller.
+
+```jsx live
+import styled, { css } from 'react-emotion'
+
+const dynamicStyle = props =>
+  css`
+    color: ${props.color};
+  `
+
+const Container = styled('div')(dynamicStyle)
+
+render(
+  <Container color="lightgreen">
+    This is lightgreen.
+  </Container>
+)
 ```

@@ -1,13 +1,19 @@
-## Usage with recompose's withProps
+---
+title: "Attaching Props"
+---
 
-You can pass additional props to your components using recompose's `withProps` higher-order component. 
+Sometimes it's useful to create components that already have props applied, like the example below with a password input. You use recompose's `withProps` higher-order component to do this.
 
 **[`withProps` documentation](https://github.com/acdlite/recompose/blob/master/docs/API.md#withprops)**
 
-```js
+```jsx live
 import withProps from 'recompose/withProps'
 
-const RedPasswordInput = withProps({ type: 'password' })(styled('input')`
+const RedPasswordInput = withProps({
+  type: 'password'
+})(styled('input')`
   background-color: red;
-`);
+`)
+
+render(<RedPasswordInput />)
 ```
