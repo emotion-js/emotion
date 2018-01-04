@@ -16,7 +16,7 @@ By default snapshots with emotion show generated class names. Adding [jest-emoti
 npm install --save-dev jest-emotion
 ```
 
-**testSetup.js** _or_ at the top of your test file
+Add the snapshot serializer in your [`setupTestFrameworkScriptFile`](http://facebook.github.io/jest/docs/en/configuration.html#setuptestframeworkscriptfile-string) _or_ at the top of your test file.
 
 ```javascript
 import * as emotion from 'emotion'
@@ -25,30 +25,43 @@ import { createSerializer } from 'jest-emotion'
 expect.addSnapshotSerializer(createSerializer(emotion))
 ```
 
-**package.json**
-
-```json
-"jest": {
-	[...]
-	"setupTestFrameworkScriptFile": "<rootDir>/testSetup.js",
-	"testEnvironment": "jsdom"
-	[...]
-}
-```
-
-### Adding a test
-
-```javascript
+### Writing a test
+Writing a test with `jest-emotion` involves creating a snapshot from the `react-test-renderer` or `enzyme-to-json`'s resulting JSON. 
+```jsx
 import React from 'react'
+import * as emotion from 'emotion'
+import { createSerializer } from 'jest-emotion'
+import styled from 'react-emotion'
 import renderer from 'react-test-renderer'
-import App from './App'
 
-test('App renders correctly', () => {
-  const tree = renderer.create(<App />).toJSON()
-  expect(tree).toMatchSnapshot()
+expect.addSnapshotSerializer(createSerializer(emotion))
+
+const Button = styled('div')`
+  color: hotpink;
+`
+
+test('Button renders correctly', () => {
+  expect(
+    renderer.create(<Button>This is hotpink.</Button>).toJSON()
+  ).toMatchSnapshot()
 })
 ```
+It'll create a snapshot that looks like this.
+```jsx
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-### Notes
+exports[`Button renders correctly 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
 
-Your snapshot class names will appear as `emotion-[0...n]` instead of `css-[hash]`.
+<div
+  className="emotion-0 emotion-1"
+>
+  This is hotpink.
+</div>
+`;
+```
+
+When the styles of a component change, the snapshot will fail and you'll be able to update the snapshot or fix the component.
+

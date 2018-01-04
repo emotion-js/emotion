@@ -2,7 +2,28 @@
 title: "Composition"
 ---
 
-Composition is one of the most powerful and useful patterns in Emotion. With regular css, you can compose styles together using multiple class names but this is very limited because the order that they're defined is the order they'll be applied. This can lead to hacks with `!important` and such to apply the correct styles.
+Composition is one of the most powerful and useful patterns in Emotion. You can compose styles together by interpolating the class name returned from `css` in another style block.
+
+```jsx live
+import { css } from 'emotion'
+
+const base = css`
+  color: hotpink;
+`
+
+render(
+  <div
+    className={css`
+      ${base};
+      background-color: #eee;
+    `}
+  >
+    This is hotpink.
+  </div>
+)
+```
+
+With regular css, you can compose styles together using multiple class names but this is very limited because the order that they're defined is the order they'll be applied. This can lead to hacks with `!important` and such to apply the correct styles.
 
 For example, we have some base styles and a danger style, we want the danger styles to have precedence over the base styles but because `base` is in the stylesheet after `danger` it has higher [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity). In regular CSS, you might do something to make `danger` have a higher specificity than `base` like move the `danger` class so it's more specific than `base`, use `!important` or abandon composition and rewrite the styles each time you need them.
 
@@ -46,11 +67,13 @@ render(
 )
 ```
 
-> **Note:** <br> This is just an example to demonstrate composition, for class name merging with emotion you should use [cx](https://emotion.sh/docs/cx)
+> Note:
+> 
+> This is just an example to demonstrate composition, for class name merging with emotion you should use [cx](https://emotion.sh/docs/cx).
 
 ## Composing dynamic styles
 
-You can also do dynamic composition based on props and use it in `styled`
+You can also do dynamic composition based on props and use it in `styled`.
 
 ```jsx live
 import styled, { css } from 'react-emotion'

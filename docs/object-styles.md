@@ -2,7 +2,7 @@
 title: "Object Styles"
 ---
 
-Writing styles with objects is a powerful pattern built directly into the core of emotion. Instead of writing css properties in kebab-case like regular css, you write them in camelCase.
+Writing styles with objects is a powerful pattern built directly into the core of emotion. Instead of writing css properties in `kebab-case` like regular css, you write them in `camelCase`, for example `background-color` would be `backgroundColor`. Object styles work with all functions that accept string styles. (`css`, `styled`, `keyframes` and `injectGlobal`)
 
 ### Examples
 
@@ -25,7 +25,7 @@ render(
 
 #### With `styled`
 
-`styled` is a thin wrapper around `css` and accepts the same arguments. [More ways to use `styled` can be found it it's own doc](https://emotion.sh/docs/styled)
+`styled` is a thin wrapper around `css` and accepts the same arguments. [More ways to use `styled` can be found here](https://emotion.sh/docs/styled).
 
 ```jsx live
 import styled from 'react-emotion'

@@ -2,7 +2,7 @@
 title: "Source Maps"
 ---
 
-> **Note:**
+> Note:
 >
 > `babel-plugin-emotion` is required for source maps
 
@@ -17,7 +17,7 @@ Required For Source Maps:
 
 ---
 
-> **Note:**
+> Note:
 >
 > We do not advise using sourceMaps in production. The source maps can add significant size to your bundle.
 

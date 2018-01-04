@@ -46,11 +46,12 @@ render(
 
 ## CSS Prop
 
-###### [requires `babel-plugin-emotion`](https://emotion.sh/docs/babel-plugin-emotion)
+> Note:
 
-With `babel-plugin-emotion`, the css prop can be used, this accepts styles like `css` and adds it to the className of the element it's on.
+> [The css prop requires `babel-plugin-emotion`](https://emotion.sh/docs/babel-plugin-emotion).
 
-> **Note**:  The css prop is not compatible with `babel-plugin-transform-react-inline-elements"`. If you include it in your `.babelrc` no transformation will take place and your styles will silently fail._
+
+With `babel-plugin-emotion`, the css prop can be used, it accepts styles like `css` and adds it to the className of the element it's on. This happens at compile time by converting the css prop to a css call and prepending it to the className of the element. It will only work if you use it as an actual JSX attribute, if it's in an object that's spread onto the element it won't work.
 
 ```jsx live
 function SomeComponent(props) {
@@ -78,3 +79,7 @@ function SomeComponent(props) {
 }
 render(<SomeComponent fontSize={15} />)
 ```
+
+> Note:
+
+> The css prop is not compatible with `babel-plugin-transform-react-inline-elements`. If you include it in your `.babelrc` no transformation will take place and your styles won't be applied.

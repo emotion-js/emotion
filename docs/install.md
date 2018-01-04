@@ -64,7 +64,9 @@ npm install --save react-emotion
 npm install --save preact-emotion
 ```
 
-> **Note:** All APIs from `emotion` are also exported by the `react-emotion` package.
+> Note:
+
+> All APIs from `emotion` are also exported by the `react-emotion` package.
 
 ```jsx live
 // change this import to preact-emotion
@@ -82,7 +84,9 @@ render(
 
 ## With [`babel-plugin-emotion`](https://emotion.sh/docs/babel-plugin-emotion)
 
-> **Note:** If you're using Create React App, you can't add custom babel plugins so you can skip this section.
+> Note:
+
+> If you're using Create React App, you can't add custom babel plugins so you can skip this section.
 
 Emotion has an optional [Babel](https://babeljs.io/) plugin that optimizes styles by compressing and hoisting them and creates a better developer experience with source maps and labels.
 

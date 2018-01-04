@@ -47,10 +47,27 @@ render(
 )
 ```
 
+### Styling any component
+
+`styled` can style any component as long as it accepts a `className` prop.
+
+```jsx live
+import styled from 'react-emotion'
+const Basic = ({ className }) => (
+  <div className={className}>Some text</div>
+)
+
+const Fancy = styled(Basic)`
+  color: hotpink;
+`
+
+render(<Fancy />)
+```
+
 
 ### Change the rendered tag using `withComponent`
 
-Sometimes you want to create some styles with one component but then use those styles again with another component, the `withComponent` method can be used for this. This API was inspired by [styled-components' `withComponent`](https://www.styled-components.com/docs/api#withcomponent).
+Sometimes you want to create some styles with one component but then use those styles again with another component, the `withComponent` method can be used for this. This was inspired by [styled-components' `withComponent`](https://www.styled-components.com/docs/api#withcomponent).
 
 ```jsx live
 // Create a section element
@@ -150,7 +167,9 @@ render(<TextInput />)
 
 ### Element Shorthand
 
-> **Note:** <br>`babel-plugin-emotion` is required for the element shorthand
+> Note:
+
+> `babel-plugin-emotion` is required for the element shorthand
 
 Instead of using the function call syntax(`styled('div')`), you can use create components by using a property, where the property refers to an HTML tag(`styled.div`).
 

@@ -39,7 +39,6 @@ export const blockquote = styled.blockquote`
   margin: 0;
   border-left: 5px solid ${blockquoteColor};
   background-color: ${colors.lighten(0.24, blockquoteColor)};
-  font-style: italic;
   padding: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -50,4 +49,17 @@ export const blockquote = styled.blockquote`
   margin-left: -32px;
   padding-right: 32px;
   padding-left: 32px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  p {
+    margin-top: 15px;
+    &:first-of-type {
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    &:nth-of-type(2) {
+      margin-top: 4px;
+    }
+  }
 `
