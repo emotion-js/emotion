@@ -8,9 +8,8 @@ import {
   stringCode,
   objectCode,
   GatsbyLink,
-  PrecompiledLinks,
-  PrecompiledLink,
-  Preview
+  Preview,
+  precompiledCode
 } from '../utils/demo-buttons'
 import Live, {
   compile as _compile,
@@ -57,7 +56,7 @@ class IndexPage extends React.Component<Props, State> {
     return (
       <Live
         scope={scope}
-        initial={PrecompiledLink}
+        initial={precompiledCode}
         compile={compile}
         code={this.state.code}
         render={({ error, code, onChange, element, onError }) => {
@@ -111,13 +110,8 @@ class IndexPage extends React.Component<Props, State> {
                       {error ? null : (
                         <Preview
                           onError={onError}
-                          Links={PrecompiledLinks}
-                          Link={
-                            error
-                              ? PrecompiledLink
-                              : // $FlowFixMe
-                                element.withComponent(GatsbyLink)
-                          }
+                          Link={// $FlowFixMe
+                          element.withComponent(GatsbyLink)}
                         />
                       )}
                     </ErrorBoundary>

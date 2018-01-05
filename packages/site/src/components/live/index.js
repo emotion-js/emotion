@@ -10,7 +10,7 @@ type Props = {
   compile: Compiler,
   render: (...args: *) => React.Node,
   scope: Scope,
-  initial: string | React.Element<*>
+  initial: string
 }
 
 type State = {
@@ -22,17 +22,9 @@ type State = {
 export default class Live extends React.Component<Props, State> {
   constructor(...args: *) {
     super(...args)
-    if (typeof this.props.initial === 'string') {
-      this.state = {
-        code: this.props.code,
-        ...evaluate(this.props.initial, this.props.scope)
-      }
-    } else {
-      this.state = {
-        code: this.props.code,
-        error: null,
-        element: this.props.initial
-      }
+    this.state = {
+      code: this.props.code,
+      ...evaluate(this.props.initial, this.props.scope)
     }
   }
   static defaultProps = {
