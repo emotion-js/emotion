@@ -56,8 +56,6 @@ class IndexPage extends React.Component<Props, State> {
     const precompiledCode = nodes[0].properties.compiled + '\nrender(Link);'
     const stringCode = nodes[0].children[0].value
     const objectCode = nodes[2].children[0].value
-
-    // const objectCode = this.pr
     return (
       <Live
         scope={scope}
