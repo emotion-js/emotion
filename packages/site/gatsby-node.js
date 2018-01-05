@@ -5,8 +5,6 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 global.Babel = require('babel-standalone')
 
-Babel.registerPlugin('babel-plugin-emotion', require('babel-plugin-emotion'))
-
 const webpack = require('webpack')
 
 exports.modifyWebpackConfig = ({ config, stage }) => {
