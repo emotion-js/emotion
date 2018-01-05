@@ -5,8 +5,6 @@ import styled, { css } from 'react-emotion'
 import _GatsbyLink from 'gatsby-link'
 import { ErrorBoundary } from '../components/live'
 
-export { stringCode, objectCode } from './button-src'
-
 const Links = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,15 +14,6 @@ const Links = styled.div`
     flex-direction: row;
     justify-content: flex-start;
   }
-`
-
-declare var preval: Function
-
-export const precompiledCode = preval`module.exports =
-Babel.transform(require('./button-src').stringCode, {
-  plugins: [require('babel-plugin-emotion')],
-  presets: ['es2015', 'stage-0', 'react']
-}).code + '\\nrender(Link);'
 `
 
 export const GatsbyLink = ({ primary, ...props }: *) => (

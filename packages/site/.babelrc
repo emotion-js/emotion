@@ -1,4 +1,3 @@
 {
-  "presets": ["env", "react", "flow"],
-  "plugins": ["preval"]
+  "presets": ["env", "react", "flow"]
 }
