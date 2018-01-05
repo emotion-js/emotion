@@ -1418,7 +1418,7 @@ babel-plugin-codegen@^1.2.0:
     babel-template "^6.26.0"
     require-from-string "^1.2.1"
 
-babel-plugin-emotion@8.0.12, babel-plugin-emotion@^8.0.2-7:
+babel-plugin-emotion@^8.0.2-7:
   version "8.0.12"
   resolved "https://registry.yarnpkg.com/babel-plugin-emotion/-/babel-plugin-emotion-8.0.12.tgz#2ed844001416b0ae2ff787a06b1804ec5f531c89"
   dependencies:
