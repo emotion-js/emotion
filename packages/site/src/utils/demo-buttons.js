@@ -10,7 +10,6 @@ const textCenter = css`
 `
 
 const stringLinks = `
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,24 +111,22 @@ export const Preview = ({
   Links: React.ComponentType<*>,
   Link: React.ComponentType<*>,
   onError: Function
-}) => {
-  return (
-    <Box fontSize={2}>
-      <ErrorBoundary onError={onError}>
-        <Links>
-          <Link
-            css={`font-weight: 800;`}
-            className={textCenter}
-            to="/docs/install"
-            primary
-          >
-            Install
-          </Link>
-          <Link to="/docs/introduction" className={textCenter}>
-            Getting Started
-          </Link>
-        </Links>
-      </ErrorBoundary>
-    </Box>
-  )
-}
+}) => (
+  <Box fontSize={2}>
+    <ErrorBoundary onError={onError}>
+      <Links>
+        <Link
+          css={`font-weight: 800;`}
+          className={textCenter}
+          to="/docs/install"
+          primary
+        >
+          Install
+        </Link>
+        <Link to="/docs/introduction" className={textCenter}>
+          Getting Started
+        </Link>
+      </Links>
+    </ErrorBoundary>
+  </Box>
+)
