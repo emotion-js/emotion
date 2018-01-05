@@ -4,14 +4,7 @@ import styled, { css } from 'react-emotion'
 import Box from '../components/Box'
 import { scope, Error } from '../components/Playground'
 import { openColors, colors, constants } from '../utils/style'
-import {
-  stringCode,
-  objectCode,
-  GatsbyLink,
-  PrecompiledLinks,
-  PrecompiledLink,
-  Preview
-} from '../utils/demo-buttons'
+import { GatsbyLink, Preview } from '../utils/demo-buttons'
 import Live, {
   compile as _compile,
   Editor,
@@ -40,7 +33,8 @@ const SelectButton = styled.button`
 
 type Props = {
   data: {
-    imageSharp: *
+    imageSharp: *,
+    allMarkdownRemark: *
   }
 }
 
@@ -52,12 +46,20 @@ type State = {
 }
 
 class IndexPage extends React.Component<Props, State> {
-  state = { mode: 'string', code: stringCode }
+  state = {
+    mode: 'string',
+    code: this.props.data.allMarkdownRemark.edges[0].node.hast.children[0]
+      .children[0].value
+  }
   render() {
+    const nodes = this.props.data.allMarkdownRemark.edges[0].node.hast.children
+    const precompiledCode = nodes[0].properties.compiled + '\nrender(Link);'
+    const stringCode = nodes[0].children[0].value
+    const objectCode = nodes[2].children[0].value
     return (
       <Live
         scope={scope}
-        initial={PrecompiledLink}
+        initial={precompiledCode}
         compile={compile}
         code={this.state.code}
         render={({ error, code, onChange, element, onError }) => {
@@ -111,13 +113,8 @@ class IndexPage extends React.Component<Props, State> {
                       {error ? null : (
                         <Preview
                           onError={onError}
-                          Links={PrecompiledLinks}
-                          Link={
-                            error
-                              ? PrecompiledLink
-                              : // $FlowFixMe
-                                element.withComponent(GatsbyLink)
-                          }
+                          Link={// $FlowFixMe
+                          element.withComponent(GatsbyLink)}
                         />
                       )}
                     </ErrorBoundary>
@@ -179,6 +176,15 @@ export const pageQuery = graphql`
     imageSharp {
       resolutions(width: 100, height: 100) {
         ...GatsbyImageSharpResolutions
+      }
+    }
+    allMarkdownRemark(
+      filter: { fileAbsolutePath: { glob: "**/homepage-buttons.md" } }
+    ) {
+      edges {
+        node {
+          hast
+        }
       }
     }
   }
