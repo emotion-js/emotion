@@ -171,14 +171,13 @@ export default class DocRoute extends React.Component<Props> {
       <Box>
         <Title>{doc.frontmatter.title || this.props.pathContext.slug}</Title>
         <Box pb={3}>
-          {/* The URL below should change when this is on master */}
           <markdownComponents.a
             css={{ color: 'rgb(107, 107, 107)', fontSize: 14.5 }}
             href={
               doc.frontmatter.title
-                ? `https://github.com/emotion-js/emotion/edit/gatsby/docs/${this
+                ? `https://github.com/emotion-js/emotion/edit/master/docs/${this
                     .props.pathContext.slug}.md`
-                : `https://github.com/emotion-js/emotion/edit/gatsby/packages/${this
+                : `https://github.com/emotion-js/emotion/edit/master/packages/${this
                     .props.pathContext.slug}/README.md`
             }
           >
