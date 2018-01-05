@@ -8,6 +8,7 @@ import {
   stringCode,
   objectCode,
   GatsbyLink,
+  PrecompiledLinks,
   PrecompiledLink,
   Preview
 } from '../utils/demo-buttons'
@@ -110,6 +111,7 @@ class IndexPage extends React.Component<Props, State> {
                       {error ? null : (
                         <Preview
                           onError={onError}
+                          Links={PrecompiledLinks}
                           Link={
                             error
                               ? PrecompiledLink
