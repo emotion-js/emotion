@@ -5,10 +5,6 @@ import styled, { css } from 'react-emotion'
 import _GatsbyLink from 'gatsby-link'
 import { ErrorBoundary } from '../components/live'
 
-const textCenter = css`
-  text-align: center;
-`
-
 const stringLinks = `
   display: flex;
   flex-direction: column;
@@ -101,6 +97,10 @@ export const PrecompiledLinks = styled.div`
 
 export const PrecompiledLink = styled(GatsbyLink)`
   ${stringLink};
+`
+
+const textCenter = css`
+  text-align: center;
 `
 
 export const Preview = ({
