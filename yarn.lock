@@ -1378,7 +1378,7 @@ babel-loader@^7.1.1:
     loader-utils "^1.0.2"
     mkdirp "^0.5.1"
 
-babel-macros@^1.0.0, babel-macros@^1.0.2:
+babel-macros@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/babel-macros/-/babel-macros-1.0.2.tgz#04475889990243cc58a0afb5ea3308ec6b89e797"
 
@@ -1452,6 +1452,12 @@ babel-plugin-jest-hoist@^20.0.3:
 babel-plugin-jest-hoist@^21.2.0:
   version "21.2.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-21.2.0.tgz#2cef637259bd4b628a6cace039de5fcd14dbb006"
+
+babel-plugin-macros@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-macros/-/babel-plugin-macros-2.0.0.tgz#fd3aee135f7dec0b82898b7c8f1aed6fa75f9af9"
+  dependencies:
+    cosmiconfig "3.1.0"
 
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"

@@ -6,4 +6,4 @@ require('module-alias').addAliases({
   'emotion/macro': path.join(__dirname, '../../src/macro')
 })
 
-module.exports = require('babel-macros')
+module.exports = require('babel-plugin-macros')

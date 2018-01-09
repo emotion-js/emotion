@@ -306,7 +306,7 @@ from `createEmotion`,
 
 ## Babel Macros
 
-Instead of using `babel-plugin-emotion`, you can use emotion with [`babel-macros`](https://github.com/kentcdodds/babel-macros). Add `babel-macros` to your babel config and import whatever you want from emotion but add `/macro` to the end. Currently every API except for the css prop is supported by the macro.
+Instead of using `babel-plugin-emotion`, you can use emotion with [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros). Add `babel-plugin-macros` to your babel config and import whatever you want from emotion but add `/macro` to the end. Currently every API except for the css prop is supported by the macro.
 
 ```jsx
 import styled from 'react-emotion/macro'
