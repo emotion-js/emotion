@@ -74,6 +74,7 @@ const app = () => (
 
   - [emotion website](packages/site) [[Demo Here](https://emotion.sh)]
   - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
+  - [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
   - **open a PR and add yours!**
 
 ### Ecosystem
