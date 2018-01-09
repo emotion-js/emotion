@@ -8,7 +8,7 @@ import {
   Pure,
   StatelessComp,
   getInterceptor,
-  getChannel
+  getChannel,
 } from './test-helpers'
 import { channel, ThemeProvider, withTheme } from 'emotion-theming'
 
@@ -16,11 +16,11 @@ test(`theming default channel`, () => {
   const defaultChannel = channel
   const actual = {
     themeProviderChannel: getChannel(ThemeProvider),
-    withThemeChannel: getChannel(withTheme(StatelessComp))
+    withThemeChannel: getChannel(withTheme(StatelessComp)),
   }
   const expected = {
     themeProviderChannel: defaultChannel,
-    withThemeChannel: defaultChannel
+    withThemeChannel: defaultChannel,
   }
 
   expect(actual).toEqual(expected)

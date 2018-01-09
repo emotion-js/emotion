@@ -16,7 +16,7 @@ addEventListener('message', ({ data }) => {
 
 const options = {
   presets: ['es2015', 'react', 'stage-1'],
-  plugins: [babelPluginEmotion]
+  plugins: [babelPluginEmotion],
 }
 
 const ACTIONS = {}

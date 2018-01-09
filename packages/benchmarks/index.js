@@ -14,33 +14,33 @@ const allTests = {
   emotion: [
     () => renderSierpinskiTriangle('emotion', emotion),
     () => renderDeepTree('emotion', emotion),
-    () => renderWideTree('emotion', emotion)
+    () => renderWideTree('emotion', emotion),
   ],
   emotionCSS: [
     () => renderDeepTree('emotionCSS', emotionCSS),
-    () => renderWideTree('emotionCSS', emotionCSS)
+    () => renderWideTree('emotionCSS', emotionCSS),
   ],
   emotionObj: [
     () => renderDeepTree('emotionObj', emotionObj),
-    () => renderWideTree('emotionObj', emotionObj)
+    () => renderWideTree('emotionObj', emotionObj),
   ],
   glamor: [
     () => renderSierpinskiTriangle('glamor', glamor),
     () => renderDeepTree('glamor', glamor),
-    () => renderWideTree('glamor', glamor)
+    () => renderWideTree('glamor', glamor),
   ],
   glamorous: [
     () => renderDeepTree('glamorous', glamorous),
-    () => renderWideTree('glamorous', glamorous)
+    () => renderWideTree('glamorous', glamorous),
   ],
   'styled-components': [
     () => renderDeepTree('styled-components', styledComponents),
-    () => renderWideTree('styled-components', styledComponents)
+    () => renderWideTree('styled-components', styledComponents),
   ],
   'css-modules': [
     () => renderDeepTree('css-modules', cssModules),
-    () => renderWideTree('css-modules', cssModules)
-  ]
+    () => renderWideTree('css-modules', cssModules),
+  ],
 }
 
 const tests = []

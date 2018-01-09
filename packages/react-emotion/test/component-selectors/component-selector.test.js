@@ -60,8 +60,8 @@ test('component as selector (object syntax)', () => {
   const Thing = styled('div')({
     display: 'flex',
     [H1]: {
-      color: 'green'
-    }
+      color: 'green',
+    },
   })
 
   const tree = renderer
@@ -78,14 +78,14 @@ test('component as selector (object syntax)', () => {
 
 test('component as selector function interpolation (object syntax)', () => {
   const H1 = styled('h1')(props => ({
-    fontSize: `${props.fontSize}px`
+    fontSize: `${props.fontSize}px`,
   }))
 
   const Thing = styled('div')({
     display: 'flex',
     [H1]: {
-      color: 'green'
-    }
+      color: 'green',
+    },
   })
 
   const tree = renderer

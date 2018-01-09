@@ -54,7 +54,7 @@ describe('styled', () => {
   test('object as style', () => {
     const H1 = styled.h1(
       props => ({
-        fontSize: props.fontSize
+        fontSize: props.fontSize,
       }),
       props => ({ flex: props.flex }),
       { display: 'flex' }
@@ -200,7 +200,7 @@ describe('styled', () => {
         marginTop: t,
         marginRight: r,
         marginBottom: b,
-        marginLeft: l
+        marginLeft: l,
       })
     }
     const H1 = styled.h1`
@@ -251,8 +251,8 @@ describe('styled', () => {
   test('input placeholder object', () => {
     const Input = styled('input')({
       '::placeholder': {
-        backgroundColor: 'green'
-      }
+        backgroundColor: 'green',
+      },
     })
 
     const tree = renderer.create(<Input>hello world</Input>).toJSON()
@@ -274,10 +274,10 @@ describe('styled', () => {
         borderRadius: '50%',
         transition: 'transform 400ms ease-in-out',
         ':hover': {
-          transform: 'scale(1.2)'
-        }
+          transform: 'scale(1.2)',
+        },
       },
-      { border: '3px solid currentColor' }
+      { border: '3px solid currentColor' },
     ])
 
     const Avatar = styled('img')`
@@ -378,7 +378,7 @@ describe('styled', () => {
       fontSize: modularScale(1),
       [hiDPI(1.5)
         .replace('\n', ' ')
-        .trim()]: { fontSize: modularScale(1.25) }
+        .trim()]: { fontSize: modularScale(1.25) },
     }
 
     const cssB = css`
@@ -512,15 +512,15 @@ describe('styled', () => {
       '&:hover': {
         color: 'blue',
         '&:active': {
-          color: 'red'
-        }
-      }
+          color: 'red',
+        },
+      },
     }
 
     const buttonStyles = () => ({
       ...defaultLinkStyles,
       fontSize: '2rem',
-      padding: 16
+      padding: 16,
     })
 
     const Button = styled('button')(buttonStyles)
@@ -532,12 +532,12 @@ describe('styled', () => {
             '&:hover': {
               color: 'pink',
               '&:active': {
-                color: 'purple'
+                color: 'purple',
               },
               '&.some-class': {
-                color: 'yellow'
-              }
-            }
+                color: 'yellow',
+              },
+            },
           })}
         >
           Should be purple
@@ -549,7 +549,7 @@ describe('styled', () => {
 
   test('objects', () => {
     const H1 = styled('h1')({ padding: 10 }, props => ({
-      display: props.display
+      display: props.display,
     }))
     const tree = renderer.create(<H1 display="flex">hello world</H1>).toJSON()
 
@@ -736,7 +736,7 @@ describe('styled', () => {
       className: expect.any(String),
       cx: expect.any(String),
       cy: expect.any(String),
-      r: expect.any(String)
+      r: expect.any(String),
     })
   })
 
@@ -978,7 +978,7 @@ describe('styled', () => {
       y2: 'abcd',
       yChannelSelector: 'abcd',
       z: 'abcd',
-      zoomAndPan: 'abcd'
+      zoomAndPan: 'abcd',
     }
 
     const RedPath = styled('path')`
@@ -989,7 +989,7 @@ describe('styled', () => {
 
     expect(svg.props()).toEqual(
       Object.assign({}, svgAttributes, {
-        className: expect.any(String)
+        className: expect.any(String),
       })
     )
   })

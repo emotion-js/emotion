@@ -6,7 +6,7 @@ export const p = styled.p(
   mq({
     fontSize: [16, 17],
     color: openColors.gray[8],
-    lineHeight: '1.7'
+    lineHeight: '1.7',
   })
 )
 

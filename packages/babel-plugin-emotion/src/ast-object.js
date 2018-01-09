@@ -27,7 +27,7 @@ export default class ASTObject {
       matches.push({
         value: match[0],
         p1: parseInt(match[1], 10),
-        index: match.index
+        index: match.index,
       })
     }
 

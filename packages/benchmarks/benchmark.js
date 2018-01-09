@@ -61,7 +61,7 @@ const benchmark = ({ name, description, setup, teardown, task, runs }) => {
         mean: formattedMean,
         median: formattedMedian,
         stdDev: formattedStdDev,
-        durations
+        durations,
       })
       resolve()
     }

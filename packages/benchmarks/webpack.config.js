@@ -10,7 +10,7 @@ module.exports = {
   entry: ['babel-polyfill', './index'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'performance.bundle.js'
+    filename: 'performance.bundle.js',
   },
   module: {
     rules: [
@@ -20,9 +20,9 @@ module.exports = {
           'style-loader',
           {
             loader: 'css-loader',
-            options: { module: true, localIdentName: '[hash:base64:8]' }
-          }
-        ]
+            options: { module: true, localIdentName: '[hash:base64:8]' },
+          },
+        ],
       },
       {
         test: /\.js$/,
@@ -34,14 +34,14 @@ module.exports = {
             presets: [
               ['env', { modules: false, useBuiltIns: true, debug: true }],
               'react',
-              'stage-0'
+              'stage-0',
             ],
             plugins: ['babel-macros'],
-            cacheDirectory: true
-          }
-        }
-      }
-    ]
+            cacheDirectory: true,
+          },
+        },
+      },
+    ],
   },
   plugins: [
     // new BundleAnalyzerPlugin({
@@ -49,9 +49,9 @@ module.exports = {
     //   openAnalyzer: false
     // }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new webpack.optimize.UglifyJsPlugin(),
-    new HTMLWebpackPlugin({ template: path.join(__dirname, './index.html') })
-  ]
+    new HTMLWebpackPlugin({ template: path.join(__dirname, './index.html') }),
+  ],
 }

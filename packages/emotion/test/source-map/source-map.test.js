@@ -8,7 +8,7 @@ describe('css', () => {
     const mq = [
       '@media(min-width: 420px)',
       '@media(min-width: 640px)',
-      '@media(min-width: 960px)'
+      '@media(min-width: 960px)',
     ]
 
     css({
@@ -19,12 +19,12 @@ describe('css', () => {
           '&:focus': {
             color: 'burlywood',
             [mq[0]]: {
-              color: 'rebeccapurple'
-            }
-          }
+              color: 'rebeccapurple',
+            },
+          },
         },
-        color: 'green'
-      }
+        color: 'green',
+      },
     })
     expect(sheet).toMatchSnapshot()
   })

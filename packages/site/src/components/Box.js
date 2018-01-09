@@ -6,7 +6,7 @@ import {
   fontSize,
   color,
   responsiveStyle,
-  flex
+  flex,
 } from 'styled-system'
 
 export const display = responsiveStyle('display')

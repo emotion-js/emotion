@@ -5,7 +5,7 @@ import type { HASTRoot, HASTText, HASTElement } from '../utils/types'
 
 type Props = {
   hast: HASTRoot,
-  componentMap?: { [key: string]: Function }
+  componentMap?: { [key: string]: Function },
 }
 
 const RenderHAST = ({ hast, componentMap = {} }: Props) => {

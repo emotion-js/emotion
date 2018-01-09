@@ -13,7 +13,7 @@ export function makeSourceMapGenerator(file: BabelFile) {
   const filename = generatorOpts.sourceFileName
   const generator = new SourceMapGenerator({
     file: filename,
-    sourceRoot: generatorOpts.sourceRoot
+    sourceRoot: generatorOpts.sourceRoot,
   })
 
   generator.setSourceContent(filename, file.code)
@@ -29,10 +29,10 @@ export function addSourceMaps(
   generator.addMapping({
     generated: {
       line: 1,
-      column: 0
+      column: 0,
     },
     source: generatorOpts.sourceFileName,
-    original: offset
+    original: offset,
   })
   return '\n' + convert.fromObject(generator).toComment({ multiline: true })
 }

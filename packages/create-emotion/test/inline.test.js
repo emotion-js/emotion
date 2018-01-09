@@ -9,7 +9,7 @@ import {
   getInjectedRules,
   createBigComponent,
   getCssFromChunks,
-  setHtml
+  setHtml,
 } from '../../emotion-server/test/util'
 import { JSDOM } from 'jsdom'
 

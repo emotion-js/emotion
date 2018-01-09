@@ -8,7 +8,7 @@ import { GatsbyLink, Preview } from '../utils/demo-buttons'
 import Live, {
   compile as _compile,
   Editor,
-  ErrorBoundary
+  ErrorBoundary,
 } from '../components/live'
 import Image from 'gatsby-image'
 
@@ -34,22 +34,22 @@ const SelectButton = styled.button`
 type Props = {
   data: {
     imageSharp: *,
-    allMarkdownRemark: *
-  }
+    allMarkdownRemark: *,
+  },
 }
 
 const compile = code => _compile(`${code}\nrender(Link);`)
 
 type State = {
   mode: 'string' | 'object',
-  code: string
+  code: string,
 }
 
 class IndexPage extends React.Component<Props, State> {
   state = {
     mode: 'string',
     code: this.props.data.allMarkdownRemark.edges[0].node.hast.children[0]
-      .children[0].value
+      .children[0].value,
   }
   render() {
     const nodes = this.props.data.allMarkdownRemark.edges[0].node.hast.children
@@ -125,7 +125,7 @@ class IndexPage extends React.Component<Props, State> {
               <Box flex={1} display="flex" justify="center" align="center">
                 <div
                   css={{
-                    overflow: 'hidden'
+                    overflow: 'hidden',
                   }}
                 >
                   <Box bg={openColors.gray[3]} display="flex">

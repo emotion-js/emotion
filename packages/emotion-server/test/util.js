@@ -120,7 +120,7 @@ export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
             '#' +
             Math.round(1 / count * maxColors)
               .toString(16)
-              .padStart(6, '0')
+              .padStart(6, '0'),
         })}
       >
         woah there
@@ -135,11 +135,11 @@ export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
 export const prettyifyCritical = ({
   html,
   css,
-  ids
+  ids,
 }: {
   html: string,
   css: string,
-  ids: Array<string>
+  ids: Array<string>,
 }) => {
   return { css: stringify(parse(css)), ids, html }
 }

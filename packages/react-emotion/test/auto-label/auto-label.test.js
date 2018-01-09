@@ -46,7 +46,7 @@ describe('styled with autoLabel', () => {
       fontSize: modularScale(1),
       [hiDPI(1.5)
         .replace('\n', ' ')
-        .trim()]: { fontSize: modularScale(1.25) }
+        .trim()]: { fontSize: modularScale(1.25) },
     }
 
     const cssB = css`

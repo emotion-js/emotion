@@ -8,7 +8,7 @@ import {
   Pure,
   Trap,
   mountOptions,
-  getInterceptor
+  getInterceptor,
 } from './test-helpers'
 
 test(`withTheme(Comp) result instance should be a React Component`, () => {

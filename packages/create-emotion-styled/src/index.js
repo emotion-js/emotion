@@ -10,7 +10,7 @@ import {
   testAlwaysTrue,
   testOmitPropsOnStringTag,
   omitAssign,
-  setTheme
+  setTheme,
 } from './utils'
 
 function createEmotionStyled(emotion: Emotion, view: ReactType) {
@@ -87,7 +87,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         render() {
           const { props, state } = this
           this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
-            theme: (state !== null && state.theme) || props.theme || {}
+            theme: (state !== null && state.theme) || props.theme || {},
           })
 
           let className = ''
@@ -145,7 +145,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
             )
           }
           return `.${stableClassName}`
-        }
+        },
       })
 
       Styled.withComponent = (
@@ -171,7 +171,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
           `You're trying to use the styled shorthand without babel-plugin-emotion.` +
             `\nPlease install and setup babel-plugin-emotion or use the function call syntax(\`styled('${property}')\` instead of \`styled.${property}\`)`
         )
-      }
+      },
     })
   }
   return createStyled

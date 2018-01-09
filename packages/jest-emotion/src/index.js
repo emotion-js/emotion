@@ -2,12 +2,12 @@
 import * as css from 'css'
 import {
   replaceClassNames,
-  type ClassNameReplacer
+  type ClassNameReplacer,
 } from './replace-class-names'
 import type { Emotion } from 'create-emotion'
 
 type Options = {
-  classNameReplacer: ClassNameReplacer
+  classNameReplacer: ClassNameReplacer,
 }
 
 function getNodes(node, nodes = []) {

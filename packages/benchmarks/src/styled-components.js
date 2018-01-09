@@ -3,5 +3,5 @@ import View from './components/View/styled-components'
 
 export default {
   Box,
-  View
+  View,
 }

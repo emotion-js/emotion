@@ -17,7 +17,7 @@ type EmotionTestCases = TestCases<{
   name?: string,
   only?: boolean,
   skip?: boolean,
-  [key: string | number]: mixed
+  [key: string | number]: mixed,
 }>
 
 jest.mock('fs')
@@ -34,12 +34,12 @@ const createInlineTester = transform => opts => {
         [
           plugin,
           {
-            ...opts.opts
-          }
-        ]
+            ...opts.opts,
+          },
+        ],
       ],
       filename: opts.filename !== undefined ? opts.filename : 'emotion.js',
-      babelrc: false
+      babelrc: false,
     }).code
   ).toMatchSnapshot()
 }
@@ -63,12 +63,12 @@ const createExtractTester = transform => opts => {
         plugin,
         {
           extractStatic: true,
-          ...opts.opts
-        }
-      ]
+          ...opts.opts,
+        },
+      ],
     ],
     filename: opts.filename || 'emotion.js',
-    babelrc: false
+    babelrc: false,
   })
   if (extract) {
     expect(
@@ -99,12 +99,12 @@ const createMacroTester = transform => opts => {
         [
           require('babel-macros'),
           {
-            ...opts.opts
-          }
-        ]
+            ...opts.opts,
+          },
+        ],
       ],
       babelrc: false,
-      filename: opts.filename || __filename
+      filename: opts.filename || __filename,
     }).code
   ).toMatchSnapshot()
 }

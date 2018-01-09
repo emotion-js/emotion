@@ -3,7 +3,7 @@ import View from './components/View/css-modules'
 
 const api = {
   Box,
-  View
+  View,
 }
 
 export default api

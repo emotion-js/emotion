@@ -8,5 +8,5 @@ export default {
     return printer(
       stringify(parse(val.tags.map(tag => tag.textContent || '').join('')))
     )
-  }
+  },
 }

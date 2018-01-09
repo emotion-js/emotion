@@ -9,7 +9,7 @@ const styles = {
   width: '10px',
   height: '10px',
   background: '#eee',
-  transform: 'scale(0.5)'
+  transform: 'scale(0.5)',
 }
 
 export default props => <div className={css(styles)}>{props.children}</div>

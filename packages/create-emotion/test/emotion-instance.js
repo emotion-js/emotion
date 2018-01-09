@@ -29,7 +29,7 @@ const emotion = createEmotion(
     },
     nonce: 'some-nonce',
     key: 'some-key',
-    container
+    container,
   }
 )
 
@@ -43,13 +43,13 @@ export const {
   keyframes,
   css,
   sheet,
-  caches
+  caches,
 } = emotion
 
 export const {
   extractCritical,
   renderStylesToString,
-  renderStylesToNodeStream
+  renderStylesToNodeStream,
 } = createEmotionServer(emotion)
 
 export default createEmotionStyled(emotion, React)

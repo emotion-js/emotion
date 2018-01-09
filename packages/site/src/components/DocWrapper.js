@@ -65,13 +65,13 @@ type Props = {
   sidebarNodes: Array<{
     node: {
       frontmatter: {
-        title: string
+        title: string,
       },
       fields: {
-        slug: string
-      }
-    }
-  }>
+        slug: string,
+      },
+    },
+  }>,
 }
 
 const pageLinkStyles = css(
@@ -80,8 +80,8 @@ const pageLinkStyles = css(
       colors.pink,
       colors.darken1(colors.pink),
       colors.darken2(colors.pink),
-      colors.darken3(colors.pink)
-    ]
+      colors.darken3(colors.pink),
+    ],
   })
 )
 
@@ -162,14 +162,14 @@ export default (props: Props) => {
         )}
         styles={{
           root: {
-            top: 83
+            top: 83,
           },
           sidebar: {
-            transitionTimingFunction: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)'
+            transitionTimingFunction: 'cubic-bezier(0.785, 0.135, 0.15, 0.86)',
           },
           content: {
-            transition: 'none'
-          }
+            transition: 'none',
+          },
         }}
         sidebarClassName={css`
           background-color: #f5f5f5;

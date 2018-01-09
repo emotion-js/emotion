@@ -15,7 +15,7 @@ const cases = {
         html {
           background: green;
         }
-    \`;`
+    \`;`,
   },
   'injectGlobal with interpolation': {
     code: `
@@ -32,7 +32,7 @@ const cases = {
           background: green;
         }
     \`;`,
-    extract: false
+    extract: false,
   },
   'static change import': {
     code: `
@@ -61,7 +61,7 @@ const cases = {
       }
     \`;`,
 
-    opts: { importedNames: { injectGlobal: 'inject' } }
+    opts: { importedNames: { injectGlobal: 'inject' } },
   },
   'dynamic change import': {
     code: `
@@ -89,7 +89,7 @@ const cases = {
       html {
         background: green;
       }
-    \`;`
+    \`;`,
   },
   'with @font-face': {
     code: `injectGlobal\`
@@ -103,8 +103,8 @@ const cases = {
       unicode-range: U+0100-024f, U+1-1eff, U+20a0-20ab, U+20ad-20cf,
         U+2c60-2c7f, U+A720-A7FF;
     }
-  \``
-  }
+  \``,
+  },
 }
 
 createInlineTests('injectGlobal', cases)

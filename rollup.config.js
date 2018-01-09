@@ -19,22 +19,22 @@ const basePlugins = [
         {
           loose: true,
           modules: false,
-          exclude: ['transform-typeof-symbol']
-        }
+          exclude: ['transform-typeof-symbol'],
+        },
       ],
       '@babel/stage-0',
       '@babel/react',
-      '@babel/flow'
+      '@babel/flow',
     ],
     plugins: ['codegen', 'closure-elimination'],
-    babelrc: false
-  })
+    babelrc: false,
+  }),
 ]
 
 const baseConfig = {
   input: './src/index.js',
   exports: 'named',
-  sourcemap: true
+  sourcemap: true,
 }
 
 const baseExternal = ['react', 'prop-types', 'preact']
@@ -44,19 +44,19 @@ const mainConfig = Object.assign({}, baseConfig, {
     'emotion',
     'emotion-utils',
     'hoist-non-react-statics',
-    'stylis-rule-sheet'
+    'stylis-rule-sheet',
   ]),
   plugins: basePlugins,
   output: [
     { file: pkg.main, format: 'cjs' },
-    { file: pkg.module, format: 'es' }
-  ]
+    { file: pkg.module, format: 'es' },
+  ],
 })
 
 const umdConfig = Object.assign({}, baseConfig, {
   plugins: [alias(lernaAliases())].concat(basePlugins).concat(
     replace({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     uglify()
   ),
@@ -64,11 +64,11 @@ const umdConfig = Object.assign({}, baseConfig, {
     {
       file: './dist/emotion.umd.min.js',
       format: 'umd',
-      name: pkg.name
-    }
+      name: pkg.name,
+    },
   ],
   globals: { react: 'React', 'prop-types': 'PropTypes', preact: 'preact' },
-  external: baseExternal
+  external: baseExternal,
 })
 
 export default [mainConfig, umdConfig]

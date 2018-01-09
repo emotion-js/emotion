@@ -2,7 +2,7 @@ import React from 'react'
 import {
   interpolatePurples,
   interpolateBuPu,
-  interpolateRdPu
+  interpolateRdPu,
 } from 'd3-scale-chromatic'
 
 let targetSize = 25
@@ -13,7 +13,7 @@ export default function SierpinskiTriangle({
   s,
   depth = 0,
   renderCount = 0,
-  Dot
+  Dot,
 }) {
   if (s <= targetSize) {
     let fn
@@ -68,6 +68,6 @@ export default function SierpinskiTriangle({
       depth={3}
       Dot={Dot}
       renderCount={renderCount}
-    />
+    />,
   ]
 }

@@ -11,7 +11,7 @@ const cases = {
         to {
           transform: rotate(360deg);
         }
-    \`;`
+    \`;`,
   },
 
   'keyframes with interpolation': {
@@ -24,7 +24,7 @@ const cases = {
           transform: rotate(\${endingRotation});
         }
     \`;`,
-    extract: false
+    extract: false,
   },
 
   'static change import': {
@@ -46,7 +46,7 @@ const cases = {
         }
     \`;`,
 
-    opts: { importedNames: { keyframes: 'frames' } }
+    opts: { importedNames: { keyframes: 'frames' } },
   },
 
   'dynamic change import': {
@@ -67,8 +67,8 @@ const cases = {
         to {
           transform: rotate(360deg);
         }
-    \`;`
-  }
+    \`;`,
+  },
 }
 
 createInlineTests('keyframes', cases)

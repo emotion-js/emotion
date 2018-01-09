@@ -16,7 +16,7 @@ const renderDeepTree = (label, components) =>
           wrap={1}
         />
       )
-    }
+    },
   })
 
 export default renderDeepTree

@@ -3,11 +3,11 @@ import { createInlineTests, createExtractTests } from './util'
 
 const cases = {
   'no use': {
-    code: 'styled.h1``'
+    code: 'styled.h1``',
   },
 
   'no dynamic': {
-    code: 'styled.h1`color:blue;`'
+    code: 'styled.h1`color:blue;`',
   },
 
   'dynamic fns': {
@@ -21,7 +21,7 @@ const cases = {
       border: 1px solid $\{props =>
         props.theme.borderColor};
     \``,
-    extract: false
+    extract: false,
   },
 
   'more than 10 dynamic values': {
@@ -39,7 +39,7 @@ const cases = {
     text-align: $\{'center'};
     border-left: $\{p => p.theme.blue};
   \``,
-    extract: false
+    extract: false,
   },
 
   'random expressions': {
@@ -54,12 +54,12 @@ const cases = {
         }
         \${{ backgroundColor: "hotpink" }};
       \`
-    `
+    `,
   },
 
   basic: {
     code: "const H1 = styled.h1`font-size: ${fontSize + 'px'};`",
-    extract: false
+    extract: false,
   },
 
   nested: {
@@ -69,7 +69,7 @@ const cases = {
       '& div { color: blue;' +
       '& span { color: red } }' +
       '`',
-    extract: false
+    extract: false,
   },
 
   'interpolation in different places': {
@@ -84,7 +84,7 @@ const cases = {
       transform1: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
       transform2: translateX(\${(props) => props.translateX}) \${(props) => props.translateX};
       \``,
-    extract: false
+    extract: false,
   },
 
   'media query': {
@@ -103,12 +103,12 @@ const cases = {
       '  and (max-device-width: 480px)' +
       '  and (-webkit-min-device-pixel-ratio: 2) {' +
       '    .child-selector { line-height: 1.4 }' +
-      '}`'
+      '}`',
   },
 
   'function call': {
     code: "styled(MyComponent)`font-size: ${fontSize + 'px'};`",
-    extract: false
+    extract: false,
   },
 
   'objects fn call': {
@@ -116,7 +116,7 @@ const cases = {
     const H1 = styled('h1')({
       display: 'flex'
     })`,
-    extract: false
+    extract: false,
   },
 
   'objects based on props': {
@@ -124,12 +124,12 @@ const cases = {
     const H1 = styled('h1')({ padding: 10 },props => ({
       display: props.display
     }))`,
-    extract: false
+    extract: false,
   },
 
   'shorthand property': {
     code: `const H1 = styled.h1({ fontSize })`,
-    extract: false
+    extract: false,
   },
 
   'objects prefixed': {
@@ -145,7 +145,7 @@ const cases = {
   }, props => {
       padding: props.padding
   })`,
-    extract: false
+    extract: false,
   },
 
   'styled. objects': {
@@ -153,7 +153,7 @@ const cases = {
     const H1 = styled.h1({ padding: 10 },props => ({
       display: props.display
     }))`,
-    extract: false
+    extract: false,
   },
 
   'styled. objects with a single spread property': {
@@ -162,7 +162,7 @@ const cases = {
     const Figure = styled.figure({
       ...defaultText
     })`,
-    extract: false
+    extract: false,
   },
 
   'styled. objects with a multiple spread properties': {
@@ -172,7 +172,7 @@ const cases = {
       ...defaultText,
       ...defaultFigure
     })`,
-    extract: false
+    extract: false,
   },
 
   'styled. objects with a multiple spread properties and other keys': {
@@ -184,7 +184,7 @@ const cases = {
       ...defaultFigure,
       ...defaultText2
     })`,
-    extract: false
+    extract: false,
   },
 
   'styled objects prefixed': {
@@ -200,7 +200,7 @@ const cases = {
     },props => ({
       display: props.display
     }))`,
-    extract: false
+    extract: false,
   },
 
   'composition based on props': {
@@ -212,7 +212,7 @@ const cases = {
       font-size: \${fontSize + 'px'};
       height: 20px;
       transform: translateX(\${(props) => props.translateX});
-    \``
+    \``,
   },
 
   hoisting: {
@@ -235,16 +235,16 @@ const cases = {
     `,
     extract: false,
 
-    opts: { hoist: true }
+    opts: { hoist: true },
   },
 
   'variable import: no dynamic': {
-    code: "import what from 'emotion'; what.h1`color:blue;`"
+    code: "import what from 'emotion'; what.h1`color:blue;`",
   },
 
   'config rename': {
     code: 'what.h1`color:blue;`',
-    opts: { importedNames: { styled: 'what' } }
+    opts: { importedNames: { styled: 'what' } },
   },
 
   'autoLabel object styles': {
@@ -262,7 +262,7 @@ const cases = {
       }
     `,
     opts: { autoLabel: true },
-    extract: false
+    extract: false,
   },
 
   'autoLabel string styles': {
@@ -275,7 +275,7 @@ const cases = {
           return <H1>Hello</H1>
         }
       `,
-    opts: { autoLabel: true }
+    opts: { autoLabel: true },
   },
 
   'component selector': {
@@ -295,13 +295,13 @@ const cases = {
           color: pink;
         }
       \`;
-    `
+    `,
   },
 
   'hash generation no file system': {
     code: 'styled.h1`color:blue;`',
-    filename: ''
-  }
+    filename: '',
+  },
 }
 
 createInlineTests('styled inline', cases)

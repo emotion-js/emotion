@@ -4,7 +4,7 @@ import React from 'react'
 
 type Props = {
   to: string,
-  activeClassName?: string
+  activeClassName?: string,
 }
 
 export default ({ to, activeClassName, ...props }: Props) =>

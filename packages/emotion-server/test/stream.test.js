@@ -10,7 +10,7 @@ import {
   createBigComponent,
   getCssFromChunks,
   setHtml,
-  renderToStringWithStream
+  renderToStringWithStream,
 } from './util'
 import { JSDOM } from 'jsdom'
 

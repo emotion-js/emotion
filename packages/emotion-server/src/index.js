@@ -5,5 +5,5 @@ import * as emotion from 'emotion'
 export const {
   extractCritical,
   renderStylesToString,
-  renderStylesToNodeStream
+  renderStylesToNodeStream,
 } = createEmotionServer(emotion)

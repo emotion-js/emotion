@@ -110,7 +110,7 @@ describe('cx', () => {
         <div
           className={cx(() => () => [
             () => [cls1, false && cls2, 'modal'],
-            () => [() => [cls3, () => ({ [cls4]: true }), 'profile']]
+            () => [() => [cls3, () => ({ [cls4]: true }), 'profile']],
           ])}
         />
       )

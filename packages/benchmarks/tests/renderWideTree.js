@@ -16,7 +16,7 @@ const renderWideTree = (label, components) =>
           wrap={4}
         />
       )
-    }
+    },
   })
 
 export default renderWideTree

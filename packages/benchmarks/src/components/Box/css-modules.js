@@ -16,7 +16,7 @@ const Box = ({
     className={classnames(styles[`color${color}`], {
       [styles.fixed]: fixed,
       [styles.outer]: outer,
-      [styles.row]: layout === 'row'
+      [styles.row]: layout === 'row',
     })}
   />
 )

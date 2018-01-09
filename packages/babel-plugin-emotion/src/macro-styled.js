@@ -1,7 +1,7 @@
 // @flow
 import {
   buildStyledCallExpression,
-  buildStyledObjectCallExpression
+  buildStyledObjectCallExpression,
 } from './index'
 import { buildMacroRuntimeNode, omit } from './babel-utils'
 import emotionMacro from './macro'

@@ -36,7 +36,7 @@ class Speedometer extends React.Component {
       mean: formattedMean,
       median: formattedMedian,
       stdDev: formattedStdDev,
-      durations
+      durations,
     })
     this.props.onComplete()
   }

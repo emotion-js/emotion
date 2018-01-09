@@ -8,7 +8,7 @@ const {
   TRAVIS_BRANCH = 'test',
   TRAVIS_COMMIT = 'test',
   TRAVIS_COMMIT_MESSAGE = 'test',
-  TRAVIS_PULL_REQUEST = 'test'
+  TRAVIS_PULL_REQUEST = 'test',
 } = process.env
 
 // need to add a timeout if it never completes
@@ -37,8 +37,8 @@ async function run() {
               duration: parseInt(r.mean, 10),
               type: r.name.toLowerCase().includes('deep')
                 ? 'DEEP'
-                : r.name.toLowerCase().includes('wide') ? 'WIDE' : 'TRIANGLE'
-            }))
+                : r.name.toLowerCase().includes('wide') ? 'WIDE' : 'TRIANGLE',
+            })),
           })
         } catch (e) {
           console.log('graphql failed')

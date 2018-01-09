@@ -16,7 +16,7 @@ const cases = {
         width: \${widthVar};
       \``,
 
-    filename: 'css.source-map.test.js'
+    filename: 'css.source-map.test.js',
   },
 
   'styled object styles source map': {
@@ -38,7 +38,7 @@ const cases = {
       })
     `,
 
-    filename: 'css-nested.source-map.test.js'
+    filename: 'css-nested.source-map.test.js',
   },
 
   'styled source map': {
@@ -53,7 +53,7 @@ const cases = {
           props.theme.borderColor};
       \``,
 
-    filename: 'styled.source-map.test.js'
+    filename: 'styled.source-map.test.js',
   },
 
   'css prop': {
@@ -79,7 +79,7 @@ const cases = {
     />
   `,
 
-    filename: 'site.source-map.test.js'
+    filename: 'site.source-map.test.js',
   },
 
   'css prop with objects': {
@@ -91,7 +91,7 @@ const cases = {
       />
     `,
 
-    filename: 'site.source-map.test.js'
+    filename: 'site.source-map.test.js',
   },
 
   'css prop with merge': {
@@ -104,11 +104,11 @@ const cases = {
       />
     `,
 
-    filename: 'site.source-map.test.js'
+    filename: 'site.source-map.test.js',
   },
   'css object': {
-    code: `css({color: 'hotpink'})`
-  }
+    code: `css({color: 'hotpink'})`,
+  },
 }
 
 for (const thing in cases) {
