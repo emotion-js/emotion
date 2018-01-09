@@ -8,7 +8,7 @@ import {
   getIdentifierName,
   getName,
   createRawStringFromTemplateLiteral,
-  minify
+  minify,
 } from './babel-utils'
 import type {
   BabelPath as _BabelPath,
@@ -16,7 +16,7 @@ import type {
   BabelPluginPass,
   Types,
   StringLiteral,
-  Babel
+  Babel,
 } from 'babel-flow-types'
 import { hashString, Stylis, memoize } from 'emotion-utils'
 import { addSourceMaps } from './source-map'
@@ -25,7 +25,7 @@ import cssProps from './css-prop'
 import ASTObject from './ast-object'
 
 export type BabelPath = _BabelPath & {
-  node: *
+  node: *,
 }
 
 export function hashArray(arr: Array<string>) {
@@ -51,7 +51,7 @@ type ImportedNames = {
   keyframes: string,
   injectGlobal: string,
   styled: string,
-  merge: string
+  merge: string,
 }
 
 export type EmotionBabelPluginPass = BabelPluginPass & {
@@ -62,7 +62,7 @@ export type EmotionBabelPluginPass = BabelPluginPass & {
   cssPropIdentifiers: Array<Identifier>,
   importedNames: ImportedNames,
   count: number,
-  opts: any
+  opts: any,
 }
 
 export function replaceCssWithCallExpression(
@@ -198,8 +198,8 @@ export function buildStyledCallExpression(
         tag,
         t.objectExpression([
           t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName)),
-          targetProperty
-        ])
+          targetProperty,
+        ]),
       ]),
       []
     )
@@ -225,7 +225,7 @@ export function buildStyledCallExpression(
   return t.callExpression(
     t.callExpression(identifier, [
       tag,
-      t.objectExpression([labelProperty, targetProperty].filter(Boolean))
+      t.objectExpression([labelProperty, targetProperty].filter(Boolean)),
     ]),
     new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
@@ -274,7 +274,7 @@ const defaultImportedNames: ImportedNames = {
   css: 'css',
   keyframes: 'keyframes',
   injectGlobal: 'injectGlobal',
-  merge: 'merge'
+  merge: 'merge',
 }
 
 const importedNameKeys = Object.keys(defaultImportedNames).map(
@@ -338,7 +338,7 @@ export default function(babel: Babel) {
 
           state.importedNames = {
             ...defaultImportedNames,
-            ...state.opts.importedNames
+            ...state.opts.importedNames,
           }
 
           const imports = []
@@ -364,7 +364,7 @@ export default function(babel: Babel) {
                   imports.push({
                     source: node.source.value,
                     imported,
-                    specifiers
+                    specifiers,
                   })
 
                   for (const specifier of path.get('specifiers')) {
@@ -375,7 +375,7 @@ export default function(babel: Babel) {
                       specifiers.push({
                         kind: 'named',
                         imported: 'default',
-                        local
+                        local,
                       })
                     }
 
@@ -385,12 +385,12 @@ export default function(babel: Babel) {
                       specifiers.push({
                         kind: 'named',
                         imported: importedName,
-                        local
+                        local,
                       })
                     }
                   }
-                }
-              }
+                },
+              },
             })
           }
           const emotionPaths = defaultEmotionPaths.concat(
@@ -412,13 +412,13 @@ export default function(babel: Babel) {
                 .reduce(
                   (acc, { imported, local }) => ({
                     ...acc,
-                    [imported === 'default' ? 'styled' : imported]: local
+                    [imported === 'default' ? 'styled' : imported]: local,
                   }),
                   defaultImportedNames
                 )
               state.importedNames = {
                 ...importedNames,
-                ...state.opts.importedNames
+                ...state.opts.importedNames,
               }
             }
           })
@@ -451,7 +451,7 @@ export default function(babel: Babel) {
               fs.writeFileSync(cssFilename, toWrite)
             }
           }
-        }
+        },
       },
       JSXOpeningElement(path: BabelPath, state: EmotionBabelPluginPass) {
         cssProps(path, state, t)
@@ -465,7 +465,7 @@ export default function(babel: Babel) {
               ) {
                 hoistPureArgs(callExprPath)
               }
-            }
+            },
           })
         }
       },
@@ -537,7 +537,7 @@ export default function(babel: Babel) {
               if (path.node.arguments.length === 1) {
                 path.node.arguments.push(
                   t.objectExpression([
-                    buildTargetObjectProperty(path, state, t)
+                    buildTargetObjectProperty(path, state, t),
                   ])
                 )
               }
@@ -545,7 +545,7 @@ export default function(babel: Babel) {
           } catch (e) {
             throw path.buildCodeFrameError(e)
           }
-        }
+        },
       },
       TaggedTemplateExpression(path: BabelPath, state: EmotionBabelPluginPass) {
         // $FlowFixMe
@@ -610,7 +610,7 @@ export default function(babel: Babel) {
             )
           }
         }
-      }
-    }
+      },
+    },
   }
 }

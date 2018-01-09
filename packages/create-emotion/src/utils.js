@@ -82,5 +82,5 @@ export type StylisOptions = {
   cascade?: boolean,
   semicolon?: boolean,
   preserve?: boolean,
-  prefix?: PrefixOption
+  prefix?: PrefixOption,
 }

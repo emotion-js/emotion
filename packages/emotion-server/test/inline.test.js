@@ -9,7 +9,7 @@ import {
   getInjectedRules,
   createBigComponent,
   getCssFromChunks,
-  setHtml
+  setHtml,
 } from './util'
 import { JSDOM } from 'jsdom'
 

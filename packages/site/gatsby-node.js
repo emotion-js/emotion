@@ -14,14 +14,14 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
         assert: 'fbjs/lib/emptyFunction',
         'source-map': 'fbjs/lib/emptyFunction',
         '@babel/types': path.join(__dirname, './src/utils/babel-types'),
-        'buble/dist/buble.deps': path.join(__dirname, './src/utils/transform')
-      }
+        'buble/dist/buble.deps': path.join(__dirname, './src/utils/transform'),
+      },
     },
     node: {
       fs: 'empty',
       buffer: 'empty',
-      assert: 'empty'
-    }
+      assert: 'empty',
+    },
   })
   config.plugin('ignore-stuff', () => new webpack.IgnorePlugin(/^(xor|props)$/))
   if (stage === 'build-javascript') {
@@ -29,9 +29,9 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
       plugins: [
         new BundleAnalyzerPlugin({
           analyzerMode: 'static',
-          generateStatsFile: true
-        })
-      ]
+          generateStatsFile: true,
+        }),
+      ],
     })
   }
 }
@@ -42,15 +42,15 @@ exports.modifyBabelrc = ({ babelrc }) => {
       plugins: [
         [
           require.resolve(`babel-plugin-emotion`),
-          { sourceMap: true, autoLabel: true }
-        ]
-      ].concat(babelrc.plugins)
+          { sourceMap: true, autoLabel: true },
+        ],
+      ].concat(babelrc.plugins),
     }
   }
   return {
     plugins: [
-      [require.resolve(`babel-plugin-emotion`), { hoist: true }]
-    ].concat(babelrc.plugins)
+      [require.resolve(`babel-plugin-emotion`), { hoist: true }],
+    ].concat(babelrc.plugins),
   }
 }
 
@@ -64,8 +64,8 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
         path: `docs/${itemName}`,
         component: docTemplate,
         context: {
-          slug: itemName
-        }
+          slug: itemName,
+        },
       })
     })
   })
@@ -76,7 +76,7 @@ exports.onCreateNode = async ({
   node,
   boundActionCreators,
   getNode,
-  loadNodeContent
+  loadNodeContent,
 }) => {
   const { createNodeField } = boundActionCreators
 
@@ -93,7 +93,7 @@ exports.onCreateNode = async ({
       value:
         fileNode.name === 'README'
           ? splitAbsolutePath[splitAbsolutePath.length - 2]
-          : fileNode.name
+          : fileNode.name,
     })
   }
 }
@@ -155,7 +155,7 @@ const ATTRIBUTE_TO_JSX = {
   srclang: 'srcLang',
   srcset: 'srcSet',
   tabindex: 'tabIndex',
-  usemap: 'useMap'
+  usemap: 'useMap',
 }
 
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
@@ -173,7 +173,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
             })
             .processSync(node.internal.content)
         })
-      }
+      },
     },
     hast: {
       type: GraphQLJSON,
@@ -217,7 +217,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
               node.children[0].value,
               {
                 presets: ['es2015', 'react', 'stage-1'],
-                plugins: [require('babel-plugin-emotion')]
+                plugins: [require('babel-plugin-emotion')],
               }
             ).code
           }
@@ -253,7 +253,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
           hast.children.shift()
         }
         return hast
-      }
-    }
+      },
+    },
   }
 }

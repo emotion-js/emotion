@@ -43,9 +43,9 @@ export function getRuntimeImportPath(path: BabelPath, t: Types) {
 type EmotionMacroPluginPass = EmotionBabelPluginPass & {
   emotionImports: void | {
     [key: string]: {
-      [key: string]: Identifier
-    }
-  }
+      [key: string]: Identifier,
+    },
+  },
 }
 
 export function buildMacroRuntimeNode(
@@ -101,7 +101,7 @@ export function getName(identifierName?: string, prefix: string) {
 }
 
 export function createRawStringFromTemplateLiteral(quasi: {
-  quasis: Array<{ value: { cooked: string } }>
+  quasis: Array<{ value: { cooked: string } }>,
 }) {
   let strs = quasi.quasis.map(x => x.value.cooked)
   let hash = hashArray([...strs])

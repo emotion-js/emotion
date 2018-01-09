@@ -10,7 +10,7 @@ const styledCases = {
       const SomeComponent = styled.div\`
         display: flex;
       \`
-    `
+    `,
   },
 
   'tagged template literal function': {
@@ -19,7 +19,7 @@ const styledCases = {
       const SomeComponent = styled('div')\`
         display: flex;
       \`
-    `
+    `,
   },
 
   'object member': {
@@ -28,7 +28,7 @@ const styledCases = {
     const SomeComponent = styled.div({
       display: 'flex'
     })
-  `
+  `,
   },
 
   'object function': {
@@ -37,14 +37,14 @@ const styledCases = {
     const SomeComponent = styled('div')({
       display: 'flex'
     })
-  `
+  `,
   },
 
   'some import that does not exist': {
     code: `
     import { thisDoesNotExist } from './styled/macro'
     const someOtherVar = thisDoesNotExist
-    `
+    `,
   },
 
   'css from react': {
@@ -53,8 +53,8 @@ const styledCases = {
     const someCls = css\`
       display: flex;
     \`
-    `
-  }
+    `,
+  },
 }
 
 for (const thing in styledCases) {
@@ -90,7 +90,7 @@ const cases = {
       html {
         background: green;
       }
-  \`;`
+  \`;`,
   },
 
   css: {
@@ -103,35 +103,35 @@ const cases = {
       flex: 1 0 auto;
       color: blue;
       width: \${widthVar};
-  \``
+  \``,
   },
 
   'css object': {
     code: `
     import { css } from '../src/macro'
     const cls1 = css({ display: 'flex' })
-    `
+    `,
   },
 
   hydrate: {
     code: `
     import { hydrate } from '../src/macro'
     const someOtherVar = hydrate
-    `
+    `,
   },
 
   flush: {
     code: `
     import { flush } from '../src/macro'
     const someOtherVar = flush
-    `
+    `,
   },
 
   'css call with no args': {
     code: `
     import { css } from '../src/macro'
     const cls1 = css()
-    `
+    `,
   },
 
   'css inside of css': {
@@ -149,14 +149,14 @@ const cases = {
       }
       background: green;
     \`
-    `
+    `,
   },
 
   'some import that does not exist': {
     code: `
     import { thisDoesNotExist } from '../src/macro'
     const someOtherVar = thisDoesNotExist
-    `
+    `,
   },
 
   keyframes: {
@@ -169,7 +169,7 @@ const cases = {
     to {
       transform: rotate(360deg);
     }
-  \``
+  \``,
   },
 
   'multiple imports': {
@@ -191,8 +191,8 @@ const cases = {
   color: blue;
   width: \${widthVar};
 \`
-  `
-  }
+  `,
+  },
 }
 
 for (const thing in cases) {
@@ -213,7 +213,7 @@ describe('styled macro', () => {
       babel6.transform(basic, {
         plugins: [require('babel-macros')],
         filename: __filename,
-        babelrc: false
+        babelrc: false,
       })
     ).toThrowError(/the emotion macro must be imported with es modules/)
   })
@@ -228,7 +228,7 @@ describe('styled macro', () => {
       babel7.transform(basic, {
         plugins: ['module:babel-macros'],
         filename: __filename,
-        babelrc: false
+        babelrc: false,
       })
     ).toThrowError(/the emotion macro must be imported with es modules/)
   })

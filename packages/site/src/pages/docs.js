@@ -13,7 +13,7 @@ const H3 = Box.withComponent('h3')
 const centerText = { textAlign: 'center' }
 
 type Props = {
-  markdownNodes: *
+  markdownNodes: *,
 }
 
 export default (props: Props) => {

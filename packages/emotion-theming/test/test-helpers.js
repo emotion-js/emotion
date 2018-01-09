@@ -8,14 +8,14 @@ export const getChannel = C => Object.keys(getContextTypes(C))[0]
 
 export const mountOptions = broadcast => ({
   childContextTypes: {
-    [channel]: PropTypes.object.isRequired
+    [channel]: PropTypes.object.isRequired,
   },
   context: {
     [channel]: {
       subscribe: broadcast.subscribe,
-      unsubscribe: broadcast.unsubscribe
-    }
-  }
+      unsubscribe: broadcast.unsubscribe,
+    },
+  },
 })
 
 export function getInterceptor(initialState) {
@@ -34,7 +34,7 @@ StatelessComp.displayName = 'StatelessComp'
 
 export class Pure extends PureComponent {
   static propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
   }
   render() {
     return <div>{this.props.children}</div>
@@ -44,7 +44,7 @@ export class Pure extends PureComponent {
 export class PropTrap extends Component {
   static propTypes = {
     intercept: PropTypes.func.isRequired,
-    theme: PropTypes.object.isRequired
+    theme: PropTypes.object.isRequired,
   }
   constructor(props) {
     super(props)
@@ -63,10 +63,10 @@ export class PropTrap extends Component {
 
 export class ContextTrap extends Component {
   static propTypes = {
-    intercept: PropTypes.func.isRequired
+    intercept: PropTypes.func.isRequired,
   }
   static contextTypes = {
-    [channel]: PropTypes.object.isRequired
+    [channel]: PropTypes.object.isRequired,
   }
   componentWillMount() {
     if (this.context[channel]) {
@@ -81,5 +81,5 @@ export class ContextTrap extends Component {
 
 export const Trap = {
   Prop: PropTrap,
-  Context: ContextTrap
+  Context: ContextTrap,
 }

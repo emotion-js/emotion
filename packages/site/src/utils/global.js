@@ -28,7 +28,7 @@ injectGlobal`
   pre[class*='language-'],
   .prism-code {
     ${mq({
-      borderRadius: [0, 8]
+      borderRadius: [0, 8],
     })} white-space: pre-wrap;
     word-break: break-word;
     word-wrap: normal;

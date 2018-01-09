@@ -3,5 +3,5 @@ import View from './components/View/emotion-css'
 
 export default {
   Box,
-  View
+  View,
 }

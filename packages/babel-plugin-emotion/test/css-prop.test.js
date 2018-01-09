@@ -4,58 +4,58 @@ import { transform } from '@babel/core'
 
 const inline = {
   'basic inline': {
-    code: '(<div className="a" css={`color: brown;`}></div>)'
+    code: '(<div className="a" css={`color: brown;`}></div>)',
   },
 
   'basic object': {
-    code: '(<div className="a" css={{ color: \'brown\' }}></div>)'
+    code: '(<div className="a" css={{ color: \'brown\' }}></div>)',
   },
 
   'dynamic inline': {
-    code: `(<div className="a" css={\`color: $\{color};\`}></div>)`
+    code: `(<div className="a" css={\`color: $\{color};\`}></div>)`,
   },
 
   'no css attr': {
-    code: '(<div></div>)'
+    code: '(<div></div>)',
   },
 
   'with spread arg in jsx opening tag': {
-    code: '(<div className="a" css={`color: brown;`} {...rest}></div>)'
+    code: '(<div className="a" css={`color: brown;`} {...rest}></div>)',
   },
 
   'css empty': {
-    code: '(<div css=""></div>)'
+    code: '(<div css=""></div>)',
   },
 
   'StringLiteral css prop value': {
-    code: `<div css="color: brown;"></div>`
+    code: `<div css="color: brown;"></div>`,
   },
 
   noClassName: {
-    code: '(<div css={`color: brown;`}></div>)'
+    code: '(<div css={`color: brown;`}></div>)',
   },
 
   emptyClassName: {
-    code: '(<div className="" css={`color: brown;`}></div>)'
+    code: '(<div className="" css={`color: brown;`}></div>)',
   },
 
   'className as expression': {
-    code: '(<div className={variable} css={`color: brown;`}></div>)'
+    code: '(<div className={variable} css={`color: brown;`}></div>)',
   },
 
   'className as expression string': {
     code:
-      '(<div className={`test__class`} css={`color: brown;`} this={`hello`}></div>)'
+      '(<div className={`test__class`} css={`color: brown;`} this={`hello`}></div>)',
   },
 
   'no import css prop': {
     code: '(<div className={`test__class`} css={`color: brown;`}></div>)',
-    opts: { autoImportCssProp: false }
+    opts: { autoImportCssProp: false },
   },
 
   'redefined-import: basic inline': {
     code: '(<div className="a" cows={`color: brown;`}></div>)',
-    opts: { importedNames: { css: 'cows' } }
+    opts: { importedNames: { css: 'cows' } },
   },
 
   'hoisting object styles': {
@@ -63,7 +63,7 @@ const inline = {
       'const Profile = () => ' +
       '(<div className="a" css={{ color: \'brown\' }}></div>)',
 
-    opts: { hoist: true }
+    opts: { hoist: true },
   },
 
   'hoisting string styles': {
@@ -73,7 +73,7 @@ const inline = {
       '(<div css={`color: ${color}`}></div>)' +
       '\n}',
 
-    opts: { hoist: true }
+    opts: { hoist: true },
   },
   'label in stateless functional component': {
     code: `
@@ -81,7 +81,7 @@ const inline = {
         return <div css={\`color: brown;\`}>Hello</div>
       }
     `,
-    opts: { autoLabel: true }
+    opts: { autoLabel: true },
   },
 
   'label in class component': {
@@ -92,7 +92,7 @@ const inline = {
         }
       }
     `,
-    opts: { autoLabel: true }
+    opts: { autoLabel: true },
   },
 
   'label in higher order component': {
@@ -103,37 +103,37 @@ const inline = {
         }
       }
     `,
-    opts: { autoLabel: true }
+    opts: { autoLabel: true },
   },
   'custom instance': {
     code: '(<div css={`color: brown;`}></div>)',
     opts: {
-      primaryInstance: 'my-emotion-instance'
+      primaryInstance: 'my-emotion-instance',
     },
-    filename: __filename
+    filename: __filename,
   },
   'relative custom instance': {
     code: '(<div css={`color: brown;`}></div>)',
     opts: {
-      primaryInstance: './my-emotion-instance'
+      primaryInstance: './my-emotion-instance',
     },
-    filename: __filename
+    filename: __filename,
   },
   'another relative custom instance': {
     code: '(<div css={`color: brown;`}></div>)',
     opts: {
-      primaryInstance: '../my-emotion-instance'
+      primaryInstance: '../my-emotion-instance',
     },
-    filename: __filename
-  }
+    filename: __filename,
+  },
 }
 
 createInlineTests('babel css prop inline', inline)
 
 const extract = {
   'basic with extractStatic': {
-    code: '(<div className="a" css={`color: brown;`}></div>)'
-  }
+    code: '(<div className="a" css={`color: brown;`}></div>)',
+  },
 }
 
 createExtractTests('babel css prop extract', extract)
@@ -157,8 +157,8 @@ test('with module transformer in babel 7', () => {
       {
         plugins: [
           require('babel-plugin-emotion'),
-          require('@babel/plugin-transform-modules-commonjs')
-        ]
+          require('@babel/plugin-transform-modules-commonjs'),
+        ],
       }
     ).code
   ).toMatchSnapshot()

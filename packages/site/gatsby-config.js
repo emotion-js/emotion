@@ -5,29 +5,29 @@ const packages = require('./docs-yaml')().filter(
 
 module.exports = {
   siteMetadata: {
-    title: `emotion`
+    title: `emotion`,
   },
   plugins: packages
     .map(pkg => path.resolve(`${__dirname}/../${pkg}/README.md`))
     .map(file => ({
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: file
-      }
+        path: file,
+      },
     }))
     .concat([
       {
         resolve: 'gatsby-source-filesystem',
         options: {
           name: 'docs',
-          path: `${__dirname}/../../docs`
-        }
+          path: `${__dirname}/../../docs`,
+        },
       },
       {
         resolve: 'gatsby-source-filesystem',
         options: {
-          path: `${__dirname}/../../emotion.png`
-        }
+          path: `${__dirname}/../../emotion.png`,
+        },
       },
       {
         resolve: `gatsby-transformer-remark`,
@@ -40,11 +40,11 @@ module.exports = {
               resolve: `gatsby-remark-images`,
               options: {
                 maxWidth: 590,
-                linkImagesToOriginal: false
-              }
-            }
-          ]
-        }
+                linkImagesToOriginal: false,
+              },
+            },
+          ],
+        },
       },
       `gatsby-plugin-react-helmet`,
       'gatsby-plugin-sharp',
@@ -55,9 +55,9 @@ module.exports = {
         options: {
           mergeLinkHeaders: true,
           allPageHeaders: [
-            'Link: <https://unpkg.com/babel-standalone@6.26.0/babel.min.js>; rel=preload; as=script; cross-origin=anonymous'
-          ]
-        }
-      }
-    ])
+            'Link: <https://unpkg.com/babel-standalone@6.26.0/babel.min.js>; rel=preload; as=script; cross-origin=anonymous',
+          ],
+        },
+      },
+    ]),
 }

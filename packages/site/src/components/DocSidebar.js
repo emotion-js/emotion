@@ -9,24 +9,24 @@ if (typeof window !== 'undefined') {
 
 type State = {
   docked: boolean,
-  open: boolean
+  open: boolean,
 }
 
 type RenderProps = State & {
-  setSidebarOpenState: (state: boolean) => void
+  setSidebarOpenState: (state: boolean) => void,
 }
 
 type Props = {
   renderSidebar: RenderProps => React.Node,
   renderContent: RenderProps => React.Node,
   renderOutside: RenderProps => React.Node,
-  styles?: Object
+  styles?: Object,
 }
 
 export default class DocSidebar extends React.Component<Props, State> {
   state = {
     docked: true || (mql && mql.matches),
-    open: false
+    open: false,
   }
   onSetSidebarOpen = (open: boolean) => {
     this.setState({ open })
@@ -54,7 +54,7 @@ export default class DocSidebar extends React.Component<Props, State> {
     const { renderSidebar, renderContent, ...otherProps } = this.props
     const renderProps = {
       ...this.state,
-      setSidebarOpenState: this.onSetSidebarOpen
+      setSidebarOpenState: this.onSetSidebarOpen,
     }
     return (
       <div>

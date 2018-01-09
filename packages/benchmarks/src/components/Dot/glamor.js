@@ -15,7 +15,7 @@ export default ({ size, x, y, children, color }) => (
 
       borderTop: 'none',
       borderWidth: `0 ${size / 2}px ${size / 2}px ${size / 2}px`,
-      borderColor: `transparent transparent ${color} transparent`
+      borderColor: `transparent transparent ${color} transparent`,
     })}
   >
     {children}

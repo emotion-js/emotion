@@ -18,20 +18,20 @@ type Props = {
     doc: {
       hast: HASTRoot,
       frontmatter: {
-        title: string
-      }
+        title: string,
+      },
     },
     avatar: {
       childImageSharp: {
         resolutions: {
-          src: string
-        }
-      }
-    }
+          src: string,
+        },
+      },
+    },
   },
   pathContext: {
-    slug: string
-  }
+    slug: string,
+  },
 }
 
 const baseHeadingStyles = css`
@@ -63,7 +63,7 @@ const headingStylesMap = {
   `,
   h6: css`
     font-size: 0.88rem;
-  `
+  `,
 }
 
 const createHeading = (
@@ -106,24 +106,24 @@ const codeStyles = css(
     marginBottom: 16,
     borderRadius: [0, 8],
     whiteSpace: 'pre-wrap',
-    wordBreak: 'break-word'
+    wordBreak: 'break-word',
   })
 )
 
 const inlineCodeStyles = css({
   backgroundColor: '#CEF6FF',
   'p &': {
-    fontSize: 16
+    fontSize: 16,
   },
   'a &': {
-    backgroundColor: 'inherit'
-  }
+    backgroundColor: 'inherit',
+  },
 })
 
 const internalCodeStyles = css(
   mq({
     paddingLeft: [32, 30],
-    paddingRight: [32, 30]
+    paddingRight: [32, 30],
   })
 )
 
@@ -194,7 +194,7 @@ export default class DocRoute extends React.Component<Props> {
             h5: createHeading('h5'),
             h6: createHeading('h6'),
             code: createCode(avatar.childImageSharp.resolutions.src),
-            ...markdownComponents
+            ...markdownComponents,
           }}
         />
       </Box>

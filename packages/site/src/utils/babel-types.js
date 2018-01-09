@@ -6,10 +6,10 @@ Babel.transform('lol()', {
       visitor: {
         Program() {
           types = babel.types
-        }
-      }
-    })
-  ]
+        },
+      },
+    }),
+  ],
 })
 
 module.exports = types

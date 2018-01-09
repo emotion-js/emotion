@@ -453,7 +453,7 @@ const props = {
   y2: true,
   yChannelSelector: true,
   z: true,
-  zoomAndPan: true
+  zoomAndPan: true,
 }
 
 module.exports = `/^((${Object.keys(props).join(

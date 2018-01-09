@@ -10,6 +10,6 @@ module.exports = function(emotion: Emotion) {
   return {
     extractCritical: createExtractCritical(emotion),
     renderStylesToString: createRenderStylesToString(emotion, nonceString),
-    renderStylesToNodeStream: createRenderStylesToStream(emotion, nonceString)
+    renderStylesToNodeStream: createRenderStylesToStream(emotion, nonceString),
   }
 }

@@ -8,7 +8,7 @@ import {
   Trap,
   Pure,
   getInterceptor,
-  mountOptions
+  mountOptions,
 } from './test-helpers'
 
 test(`createThemeProvider's result should be a React Component`, () => {

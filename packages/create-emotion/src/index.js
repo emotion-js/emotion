@@ -5,7 +5,7 @@ import {
   processStyleName,
   processStyleValue,
   classnames,
-  isBrowser
+  isBrowser,
 } from './utils'
 import StyleSheet from './sheet'
 import type { PrefixOption, StylisOptions, ClassNameArg } from './utils'
@@ -18,7 +18,7 @@ type EmotionCaches = {|
   stylis: (scope: string, styles: string) => string,
   sheet: StyleSheet,
   nonce?: string,
-  key: string
+  key: string,
 |}
 
 // this should probably be an actual type but it's hard to do without errors
@@ -50,7 +50,7 @@ export type Emotion = {
   keyframes: CreateStyles<string>,
   merge: (className: string, sourceMap?: string) => string,
   sheet: StyleSheet,
-  caches: EmotionCaches
+  caches: EmotionCaches,
 }
 
 type EmotionOptions = {
@@ -58,7 +58,7 @@ type EmotionOptions = {
   stylisPlugins?: StylisPlugins,
   prefix?: PrefixOption,
   key?: string,
-  container?: HTMLElement
+  container?: HTMLElement,
 }
 
 function createEmotion(
@@ -92,7 +92,7 @@ function createEmotion(
       keyframe: false,
       global: false,
       prefix: options.prefix === undefined ? true : options.prefix,
-      semicolon: true
+      semicolon: true,
     }
 
     if (process.env.NODE_ENV !== 'production') {
@@ -104,7 +104,7 @@ function createEmotion(
       sheet: new StyleSheet(options),
       stylis: new Stylis(stylisOptions),
       nonce: options.nonce,
-      key
+      key,
     }
 
     caches.stylis.use(options.stylisPlugins)(insertionPlugin)
@@ -155,7 +155,7 @@ function createEmotion(
   const objectToStringCache = new WeakMap()
 
   function createStringFromObject(obj: {
-    [key: string]: Interpolation
+    [key: string]: Interpolation,
   }): string {
     if (objectToStringCache.has(obj)) {
       // $FlowFixMe
@@ -335,7 +335,7 @@ function createEmotion(
     keyframes,
     css,
     sheet,
-    caches
+    caches,
   }
   return emotion
 }

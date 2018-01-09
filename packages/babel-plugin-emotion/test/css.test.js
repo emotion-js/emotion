@@ -14,7 +14,7 @@ const inline = {
         line-height: 40px;
       }
       width: \${widthVar};
-    \``
+    \``,
   },
 
   'css basic renamed as option': {
@@ -31,7 +31,7 @@ const inline = {
       width: \${widthVar};
     \``,
 
-    opts: { importedNames: { css: 'cows' } }
+    opts: { importedNames: { css: 'cows' } },
   },
 
   'css basic as cows': {
@@ -47,14 +47,14 @@ const inline = {
         line-height: 40px;
       }
       width: \${widthVar};
-    \``
+    \``,
   },
 
   'css with float property': {
     code: `
       css\`
         float: left;
-    \``
+    \``,
   },
 
   'css random expression': {
@@ -68,7 +68,7 @@ const inline = {
       background: green;
       \${{ backgroundColor: "hotpink" }};
     \`
-    `
+    `,
   },
 
   'nested expanded properties': {
@@ -78,7 +78,7 @@ const inline = {
       & .div {
         display: flex;
       }
-    \``
+    \``,
   },
 
   'interpolation in selector': {
@@ -90,7 +90,7 @@ const inline = {
         display: none;
       }
       \`
-    `
+    `,
   },
 
   '::placeholder': {
@@ -107,7 +107,7 @@ const inline = {
           display: flex;
         }
       \`
-    `
+    `,
   },
 
   ':fullscreen': {
@@ -124,7 +124,7 @@ const inline = {
         display: flex;
       }
     \`
-  `
+  `,
   },
 
   'only styles on nested selector': {
@@ -137,7 +137,7 @@ const inline = {
           background: pink;
         }
       \`
-    `
+    `,
   },
 
   'object with a bunch of stuff': {
@@ -148,7 +148,7 @@ const inline = {
       flex: 1,
       alignItems: \`\${'center'}\`
     })
-  `
+  `,
   },
 
   'array of objects': {
@@ -160,13 +160,13 @@ const inline = {
     }, {
       justifyContent: 'flex-start'
     }])
-  `
+  `,
   },
 
   'symbols inside of ""': {
     code: `
     const cls = css\`content:  "  {  }  "\`
-  `
+  `,
   },
 
   hoisting: {
@@ -205,7 +205,7 @@ const inline = {
         }
       }
     `,
-    opts: { hoist: true }
+    opts: { hoist: true },
   },
   autoLabel: {
     code: `
@@ -244,20 +244,20 @@ function test () {
   }
 }
 `,
-    opts: { autoLabel: true }
+    opts: { autoLabel: true },
   },
 
   'basic object support': {
-    code: `css({display: 'flex'})`
+    code: `css({display: 'flex'})`,
   },
 
   'renamed-import: basic object support': {
     code: `cows({display: 'flex'})`,
-    opts: { importedNames: { css: 'cows' } }
+    opts: { importedNames: { css: 'cows' } },
   },
 
   'dynamically renamed-import: basic object support': {
-    code: `import { css as cows } from 'emotion'; cows({display: 'flex'})`
+    code: `import { css as cows } from 'emotion'; cows({display: 'flex'})`,
   },
 
   objects: {
@@ -271,7 +271,7 @@ function test () {
               transform: 'scale(1.2)'
           }
       })
- `
+ `,
   },
 
   'dynamic property objects': {
@@ -280,35 +280,35 @@ function test () {
         fontSize: 10,
         [\`w$\{'idth'}\`]: 20
       })
-     `
+     `,
   },
   'custom instance': {
     code: `
     import {css as lol} from 'my-emotion-instance'
     lol\`color:hotpink;\``,
     opts: {
-      instances: ['my-emotion-instance']
+      instances: ['my-emotion-instance'],
     },
-    filename: __filename
+    filename: __filename,
   },
   'custom instance relative': {
     code: `
     import {css as lol} from './my-emotion-instance'
     lol\`color:hotpink;\``,
     opts: {
-      instances: ['./my-emotion-instance']
+      instances: ['./my-emotion-instance'],
     },
-    filename: __filename
+    filename: __filename,
   },
   'custom instance relative complex': {
     code: `
     import {css as lol} from '../test/my-emotion-instance'
     lol\`color:hotpink;\``,
     opts: {
-      instances: ['./my-emotion-instance']
+      instances: ['./my-emotion-instance'],
     },
-    filename: __filename
-  }
+    filename: __filename,
+  },
 }
 createInlineTests('babel css inline', inline)
 
@@ -321,8 +321,8 @@ const extract = {
       display: flex;
       flex: 1 0 auto;
       color: blue;
-    \``
-  }
+    \``,
+  },
 }
 
 createExtractTests('babel css extract', extract)

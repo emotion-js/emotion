@@ -3,12 +3,12 @@ export function getDocMap(
   edges: Array<{
     node: {
       fields: {
-        slug: string
+        slug: string,
       },
       frontmatter: {
-        title: string
-      }
-    }
+        title: string,
+      },
+    },
   }>
 ) {
   const docMap: { [string]: string } = {}
@@ -20,6 +20,6 @@ export function getDocMap(
 
 export const docList: Array<{
   title: string,
-  items: Array<string>
+  items: Array<string>,
   // $FlowFixMe
 }> = require('../../../../docs/docs.yaml')

@@ -15,40 +15,40 @@ const Box = ({
       styles[`color${color}`],
       fixed && styles.fixed,
       layout === 'row' && styles.row,
-      outer && styles.outer
+      outer && styles.outer,
     ]}
   />
 )
 
 const styles = {
   outer: {
-    padding: 4
+    padding: 4,
   },
   row: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   color0: {
-    backgroundColor: '#222'
+    backgroundColor: '#222',
   },
   color1: {
-    backgroundColor: '#666'
+    backgroundColor: '#666',
   },
   color2: {
-    backgroundColor: '#999'
+    backgroundColor: '#999',
   },
   color3: {
-    backgroundColor: 'blue'
+    backgroundColor: 'blue',
   },
   color4: {
-    backgroundColor: 'orange'
+    backgroundColor: 'orange',
   },
   color5: {
-    backgroundColor: 'red'
+    backgroundColor: 'red',
   },
   fixed: {
     width: 20,
-    height: 20
-  }
+    height: 20,
+  },
 }
 
 export default Box

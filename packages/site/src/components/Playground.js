@@ -30,7 +30,7 @@ export const scope = {
         // eslint-disable-next-line no-throw-literal
         throw `Module "${moduleName}" not found`
     }
-  }
+  },
 }
 
 export const Error = styled.pre`
@@ -48,7 +48,7 @@ type Props = {
   logoUrl: string,
   className?: string,
   editorClassName?: string,
-  initialCompiledCode: string
+  initialCompiledCode: string,
 }
 
 export default class Playground extends Component<Props> {
@@ -69,14 +69,14 @@ export default class Playground extends Component<Props> {
                 borderRadius: 8,
                 overflow: 'hidden',
                 boxShadow:
-                  '0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)'
+                  '0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)',
               }}
             >
               <Box
                 flex={1}
                 css={{
                   overflow: 'hidden',
-                  minHeight: '100%'
+                  minHeight: '100%',
                 }}
                 fontSize={1}
               >
@@ -97,7 +97,7 @@ export default class Playground extends Component<Props> {
                 align="center"
                 css={{
                   overflow: 'hidden',
-                  minHeight: '100%'
+                  minHeight: '100%',
                 }}
               >
                 <ErrorBoundary onError={onError}>
@@ -113,7 +113,7 @@ export default class Playground extends Component<Props> {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontFamily: fonts.primary
+                        fontFamily: fonts.primary,
                       }}
                     >
                       {element}

@@ -22,7 +22,7 @@ const StyledLink = styled(Box)`
 const StyledLinkSpan = StyledLink.withComponent('span')
 
 StyledLink.defaultProps = {
-  activeClassName: 'active'
+  activeClassName: 'active',
 }
 
 const Children = ({ children }) => children
@@ -34,7 +34,7 @@ const Header = ({ isHome, avatar }) => (
     <Box
       bg={colors.dark}
       css={{
-        transition: 'all 200ms ease'
+        transition: 'all 200ms ease',
       }}
     >
       <Box
@@ -50,7 +50,7 @@ const Header = ({ isHome, avatar }) => (
           css={{
             opacity: isHome ? 0 : 1,
             transition: 'opacity 200ms ease',
-            fontFamily: "'Oxygen', sans-serif"
+            fontFamily: "'Oxygen', sans-serif",
           }}
           align="center"
         >
@@ -67,7 +67,7 @@ const Header = ({ isHome, avatar }) => (
                 css={{
                   flex: 1,
                   margin: 0,
-                  letterSpacing: 0.8
+                  letterSpacing: 0.8,
                 }}
               >
                 emotion
@@ -98,7 +98,7 @@ const Header = ({ isHome, avatar }) => (
         transform: `scaleX(${isHome ? 0 : 1})`,
         background:
           !isHome && `linear-gradient(90deg, ${colors.pink}, ${colors.blue})`,
-        zIndex: 100
+        zIndex: 100,
       }}
     />
   </Children>
@@ -146,12 +146,12 @@ const BaseWrapper = props => {
 type SidebarNode = {
   node: {
     frontmatter: {
-      title: string
+      title: string,
     },
     fields: {
-      slug: string
-    }
-  }
+      slug: string,
+    },
+  },
 }
 
 type TemplateWrapperProps = {
@@ -161,13 +161,13 @@ type TemplateWrapperProps = {
   data: {
     avatar: {
       childImageSharp: {
-        resolutions: Object
-      }
+        resolutions: Object,
+      },
     },
     allMarkdownRemark: {
-      edges: Array<SidebarNode>
-    }
-  }
+      edges: Array<SidebarNode>,
+    },
+  },
 }
 
 const TemplateWrapper = (props: TemplateWrapperProps) => {
@@ -177,7 +177,7 @@ const TemplateWrapper = (props: TemplateWrapperProps) => {
       <DocWrapper sidebarNodes={props.data.allMarkdownRemark.edges}>
         {props.children({
           ...props,
-          markdownNodes: props.data.allMarkdownRemark.edges
+          markdownNodes: props.data.allMarkdownRemark.edges,
         })}
       </DocWrapper>
     )

@@ -46,5 +46,5 @@ type BaseCreateStyled = (
 
 export type CreateStyled = {
   $call: BaseCreateStyled,
-  [key: string]: CreateStyledComponent
+  [key: string]: CreateStyledComponent,
 }

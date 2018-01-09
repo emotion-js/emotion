@@ -8,7 +8,7 @@ const createRenderBenchmark = ({
   getElement,
   name,
   runs,
-  flush
+  flush,
 }) => () => {
   const setup = () => {}
   const teardown = () => {
@@ -23,7 +23,7 @@ const createRenderBenchmark = ({
     teardown,
     task: () => {
       ReactDOM.render(getElement(), node)
-    }
+    },
   })
 }
 

@@ -26,10 +26,10 @@ const textCenter = css`
 
 export const Preview = ({
   Link,
-  onError
+  onError,
 }: {
   Link: React.ComponentType<*>,
-  onError: Function
+  onError: Function,
 }) => (
   <Box fontSize={2}>
     <ErrorBoundary onError={onError}>

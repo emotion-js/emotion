@@ -48,8 +48,8 @@ export default function(
         [
           t.templateElement({
             raw: cssPropValue.value,
-            cooked: cssPropValue.value
-          })
+            cooked: cssPropValue.value,
+          }),
         ],
         []
       )
@@ -58,7 +58,7 @@ export default function(
     const args = state.opts.sourceMap
       ? [
           cssPropValue,
-          t.stringLiteral(addSourceMaps(cssPath.node.loc.start, state))
+          t.stringLiteral(addSourceMaps(cssPath.node.loc.start, state)),
         ]
       : [cssPropValue]
     cssTemplateExpression = t.callExpression(getCssIdentifer(), args)
@@ -79,7 +79,7 @@ export default function(
         add(
           cssTemplateExpression,
           add(t.stringLiteral(' '), classNamesValue.expression)
-        )
+        ),
       ]
 
       if (state.opts.sourceMap) {

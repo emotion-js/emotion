@@ -10,7 +10,7 @@ const isPlainObject = test =>
   Object.prototype.toString.call(test) === '[object Object]'
 
 type Props = {
-  theme: Theme
+  theme: Theme,
 }
 
 class ThemeProvider extends Component<Props> {
@@ -42,8 +42,8 @@ class ThemeProvider extends Component<Props> {
     return {
       [channel]: {
         subscribe: this.broadcast.subscribe,
-        unsubscribe: this.broadcast.unsubscribe
-      }
+        unsubscribe: this.broadcast.unsubscribe,
+      },
     }
   }
 

@@ -7,5 +7,5 @@ export default {
   Box,
   View,
   Wrapper,
-  Dot
+  Dot,
 }

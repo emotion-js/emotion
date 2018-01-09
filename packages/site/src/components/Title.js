@@ -7,7 +7,7 @@ const Title = styled.h1(
     fontWeight: 500,
     marginTop: 0,
     color: '#fb84bf',
-    marginBottom: constants.space[1]
+    marginBottom: constants.space[1],
   })
 )
 

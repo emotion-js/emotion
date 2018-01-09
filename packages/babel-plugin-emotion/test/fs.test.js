@@ -30,7 +30,7 @@ describe('babel plugin fs', () => {
     const { code } = transform(basic, {
       plugins: [[plugin, { extractStatic: true }]],
       filename: __filename,
-      babelrc: false
+      babelrc: false,
     })
     expect(fs.existsSync).toBeCalledWith(cssFilename)
     expect(touch.sync).toBeCalledWith(cssFilename)
@@ -46,7 +46,7 @@ describe('babel plugin fs', () => {
     const { code } = transform(basic, {
       plugins: [[plugin, { extractStatic: true }]],
       filename: __filename,
-      babelrc: false
+      babelrc: false,
     })
     expect(fs.existsSync).toBeCalledWith(cssFilename)
     expect(touch.sync).toHaveBeenCalledTimes(1)
@@ -61,7 +61,7 @@ describe('babel plugin fs', () => {
     const { code } = transform(basic, {
       plugins: [[plugin, { extractStatic: true }]],
       filename: __filename,
-      babelrc: false
+      babelrc: false,
     })
     expect(fs.existsSync).toBeCalledWith(cssFilename)
     expect(touch.sync).toHaveBeenCalledTimes(1)
