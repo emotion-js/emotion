@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "babel-loader": "^7.1.1",
-    "babel-macros": "^1.0.2",
+    "babel-plugin-macros": "^2.0.0",
     "babel-polyfill": "^6.26.0",
     "cli-chart": "^0.3.1",
     "cli-table": "^0.3.1",

@@ -51,7 +51,7 @@ minimizes the runtime cost of css-in-js dramatically by parsing your styles with
   - [fontFace](https://github.com/emotion-js/emotion/tree/master/docs/font-face.md)
   - [injectGlobal](https://github.com/emotion-js/emotion/tree/master/docs/inject-global.md)
 
-- [Usage with babel-macros](https://github.com/emotion-js/emotion/tree/master/docs/babel.md#usage-with-babel-macros)
+- [Usage with babel-plugin-macros](https://github.com/emotion-js/emotion/tree/master/docs/babel.md#usage-with-babel-macros)
 - [Usage with Preact](https://github.com/emotion-js/emotion/tree/master/docs/preact.md)
 
 - Ecosystem

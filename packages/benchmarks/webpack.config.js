@@ -36,7 +36,7 @@ module.exports = {
               'react',
               'stage-0'
             ],
-            plugins: ['babel-macros'],
+            plugins: ['babel-plugin-macros'],
             cacheDirectory: true
           }
         }
