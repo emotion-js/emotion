@@ -7,6 +7,7 @@
     "@dumpster/remark-custom-element-to-hast": "^0.4.0",
     "babel-plugin-emotion": "^9.0.0-1",
     "babel-standalone": "^6.26.0",
+    "docsearch.js": "^2.5.2",
     "dom-iterator": "^0.3.0",
     "emotion": "^9.0.0-1",
     "emotion-server": "^9.0.0-1",

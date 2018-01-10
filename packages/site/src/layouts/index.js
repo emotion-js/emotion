@@ -6,9 +6,11 @@ import styled from 'react-emotion'
 import Box from '../components/Box'
 import Helmet from 'react-helmet'
 import DocWrapper from '../components/DocWrapper'
+import Search from '../components/Search'
 import { colors, constants, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
 import type { Location, Match } from '../utils/types'
+import 'docsearch.js/dist/cdn/docsearch.css'
 
 const StyledLink = styled(Box)`
   color: white;
@@ -81,6 +83,7 @@ const Header = ({ isHome, avatar }) => (
           justify="flex-end"
           css={{ overflow: 'initial' }}
         >
+          <Search />
           <StyledLink to="/docs">Documentation</StyledLink>
           <StyledLink to="https://github.com/emotion-js/emotion">
             GitHub

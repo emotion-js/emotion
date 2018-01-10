@@ -33,6 +33,7 @@ export default class HTML extends Component {
           />
           <link rel="icon" href="/favicon.ico" />
           {this.props.headComponents}
+          <script src="//unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js" />
           {css}
         </head>
         <body>
