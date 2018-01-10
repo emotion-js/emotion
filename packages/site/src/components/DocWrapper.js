@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import styled, { css, keyframes } from 'react-emotion'
+import styled, { css, keyframes, cx } from 'react-emotion'
 import Link from 'gatsby-link'
 import Box from './Box'
 import { constants, colors, p } from '../utils/style'
@@ -89,6 +89,13 @@ const flatDocList = docList.reduce(
   (arr, current) => arr.concat(current.items),
   []
 )
+
+const docHeadingMap = docList.reduce((obj, current) => {
+  current.items.forEach(item => {
+    obj[item] = current.title
+  })
+  return obj
+}, {})
 
 export default (props: Props) => {
   const docMap = getDocMap(props.sidebarNodes)
@@ -182,19 +189,35 @@ export default (props: Props) => {
         renderSidebar={({ setSidebarOpenState }) =>
           docList.map(item => {
             return (
-              <Box key={item.title} onClick={() => setSidebarOpenState(false)}>
-                <h3>{item.title}</h3>
-                {item.items.map(slug => (
-                  <Link
-                    key={slug}
-                    className={linkStyles}
-                    activeClassName={activeStyles}
-                    to={`/docs/${slug}`}
-                  >
-                    {docMap[slug] || slug}
-                  </Link>
-                ))}
-              </Box>
+              <Route
+                path="/docs/:docName"
+                key={item.title}
+                render={({ match }) => {
+                  const { docName } = match.params
+                  return (
+                    <Box onClick={() => setSidebarOpenState(false)}>
+                      <h3
+                        className={cx({
+                          'docSearch-lvl0':
+                            docHeadingMap[docName] === item.title
+                        })}
+                      >
+                        {item.title}
+                      </h3>
+                      {item.items.map(slug => (
+                        <Link
+                          key={slug}
+                          className={linkStyles}
+                          activeClassName={cx(activeStyles, 'docSearch-lvl1')}
+                          to={`/docs/${slug}`}
+                        >
+                          {docMap[slug] || slug}
+                        </Link>
+                      ))}
+                    </Box>
+                  )
+                }}
+              />
             )
           })}
       />

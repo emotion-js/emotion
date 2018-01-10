@@ -5,6 +5,7 @@ const packages = require('./docs-yaml')().filter(
 
 module.exports = {
   siteMetadata: {
+    siteUrl: 'https://emotion.sh',
     title: `emotion`
   },
   plugins: packages
@@ -50,6 +51,7 @@ module.exports = {
       'gatsby-plugin-sharp',
       'gatsby-transformer-sharp',
       'gatsby-plugin-catch-links',
+      'gatsby-plugin-sitemap',
       {
         resolve: 'gatsby-plugin-netlify',
         options: {

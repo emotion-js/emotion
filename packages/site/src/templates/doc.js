@@ -168,7 +168,7 @@ export default class DocRoute extends React.Component<Props> {
     const { data, markdownNodes } = this.props
     const { doc, avatar } = data
     return (
-      <Box>
+      <Box className="docSearch-content">
         <Title>{doc.frontmatter.title || this.props.pathContext.slug}</Title>
         <Box pb={3}>
           <markdownComponents.a
