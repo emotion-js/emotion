@@ -10,7 +10,7 @@ import Search from '../components/Search'
 import { colors, constants, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
 import type { Location, Match } from '../utils/types'
-import 'docsearch.js/dist/cdn/docsearch.css'
+// import 'docsearch.js/dist/cdn/docsearch.css'
 
 const StyledLink = styled(Box)`
   color: white;
@@ -40,7 +40,10 @@ const Header = ({ isHome, avatar }) => (
       }}
     >
       <Box
-        overflow={['auto', 'initial']}
+        // overflow={['auto', 'initial']}
+        // css={{
+        //   overflowY: 'visible'
+        // }}
         display="flex"
         flex={1}
         p={2}
@@ -101,7 +104,7 @@ const Header = ({ isHome, avatar }) => (
         transform: `scaleX(${isHome ? 0 : 1})`,
         background:
           !isHome && `linear-gradient(90deg, ${colors.pink}, ${colors.blue})`,
-        zIndex: 100
+        zIndex: 50
       }}
     />
   </Children>

@@ -1,6 +1,8 @@
 // @flow
 import React from 'react'
 import { withRouter } from 'react-router'
+import { mq } from '../utils/style'
+import { algoliaStyles } from '../utils/algolia-styles'
 
 type Props = {
   history: { push: string => void }
@@ -9,6 +11,10 @@ type Props = {
 type State = {
   enabled: boolean
 }
+
+// https://feathericons.com search
+const icon =
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4Ii8+PHBhdGggZD0iTTIxIDIxbC00LjM1LTQuMzUiLz48L3N2Zz4='
 
 class Search extends React.Component<Props, State> {
   input: ?HTMLInputElement
@@ -42,15 +48,51 @@ class Search extends React.Component<Props, State> {
 
   render() {
     return this.state.enabled ? (
-      <form css={{ zIndex: 300 }}>
+      <form
+        css={[
+          { zIndex: 100, display: 'flex', alignItems: 'center' },
+          algoliaStyles
+        ]}
+      >
         <input
+          css={{
+            border: 0,
+            fontSize: 16,
+            borderRadius: 4,
+            background: 'transparent',
+            padding: `5px 5px 5px 16px`,
+            backgroundImage: `url(${icon})`,
+            backgroundSize: '16px 16px',
+            backgroundRepeat: 'no-repeat',
+            backgroundPositionY: 'center',
+            backgroundPositionX: 5,
+            color: 'white',
+            outline: 0,
+            width: 16,
+            margin: 8,
+            transition:
+              'width 200ms ease,padding 200ms ease, background-color 100ms ease',
+            '@media (max-width: 600px)': {
+              ':focus': {
+                paddingLeft: 29,
+                width: '8rem'
+              }
+            },
+            ':focus': {
+              backgroundColor: '#444'
+            },
+            '@media (min-width: 601px)': {
+              width: '12rem',
+              paddingLeft: 29
+            }
+          }}
           ref={ele => {
             this.input = ele
           }}
           id="algolia-doc-search"
           type="search"
-          placeholder="Search docs"
-          aria-label="Search docs"
+          placeholder="Search..."
+          aria-label="Search..."
         />
       </form>
     ) : null

@@ -32,9 +32,9 @@ export default class HTML extends Component {
             content="width=device-width, initial-scale=1.0"
           />
           <link rel="icon" href="/favicon.ico" />
+          {css}
           {this.props.headComponents}
           <script src="//unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js" />
-          {css}
         </head>
         <body>
           <div
