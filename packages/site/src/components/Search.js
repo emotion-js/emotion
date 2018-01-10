@@ -42,7 +42,7 @@ class Search extends React.Component<Props, State> {
 
   render() {
     return this.state.enabled ? (
-      <form>
+      <form css={{ zIndex: 300 }}>
         <input
           ref={ele => {
             this.input = ele
