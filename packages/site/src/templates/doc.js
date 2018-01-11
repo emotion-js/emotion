@@ -66,6 +66,21 @@ const headingStylesMap = {
   `
 }
 
+document.addEventListener('DOMContentLoaded', function(event) {
+  var hash = window.decodeURI(location.hash)
+  if (hash !== '') {
+    var element = document.getElementById(`.docSearch-content ${hash} a`)
+    if (element) {
+      // Wait for the browser to finish rendering before scrolling.
+      setTimeout(function() {
+        if (element) {
+          element.click()
+        }
+      }, 0)
+    }
+  }
+})
+
 const createHeading = (
   TagName: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 ) => props => {
@@ -79,7 +94,22 @@ const createHeading = (
       {...props}
       className={cx(headingStylesMap[TagName], props.className)}
     >
-      <a href={`#${props.id}`} aria-hidden className="anchor">
+      <a
+        href={`#${props.id}`}
+        aria-hidden
+        className="anchor"
+        css={`
+          float: left;
+          padding-right: 4px;
+          margin-left: -20px;
+          svg {
+            visibility: hidden;
+          }
+          &:hover svg {
+            visibility: visible;
+          }
+        `}
+      >
         <svg
           aria-hidden
           height="16"
@@ -175,10 +205,12 @@ export default class DocRoute extends React.Component<Props> {
             css={{ color: 'rgb(107, 107, 107)', fontSize: 14.5 }}
             href={
               doc.frontmatter.title
-                ? `https://github.com/emotion-js/emotion/edit/master/docs/${this
-                    .props.pathContext.slug}.md`
-                : `https://github.com/emotion-js/emotion/edit/master/packages/${this
-                    .props.pathContext.slug}/README.md`
+                ? `https://github.com/emotion-js/emotion/edit/master/docs/${
+                    this.props.pathContext.slug
+                  }.md`
+                : `https://github.com/emotion-js/emotion/edit/master/packages/${
+                    this.props.pathContext.slug
+                  }/README.md`
             }
           >
             Edit this page

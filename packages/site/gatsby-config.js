@@ -30,23 +30,7 @@ module.exports = {
           path: `${__dirname}/../../emotion.png`
         }
       },
-      {
-        resolve: `gatsby-transformer-remark`,
-        options: {
-          plugins: [
-            'gatsby-remark-prismjs',
-            'gatsby-remark-autolink-headers',
-            'gatsby-remark-smartypants',
-            {
-              resolve: `gatsby-remark-images`,
-              options: {
-                maxWidth: 590,
-                linkImagesToOriginal: false
-              }
-            }
-          ]
-        }
-      },
+      `gatsby-transformer-remark`,
       `gatsby-plugin-react-helmet`,
       'gatsby-plugin-sharp',
       'gatsby-transformer-sharp',

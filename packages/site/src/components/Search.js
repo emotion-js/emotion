@@ -12,6 +12,13 @@ type State = {
   enabled: boolean
 }
 
+const a = document.createElement('a')
+
+function getHash(url) {
+  a.href = url
+  return a.hash
+}
+
 // https://feathericons.com search
 const icon =
   'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4Ii8+PHBhdGggZD0iTTIxIDIxbC00LjM1LTQuMzUiLz48L3N2Zz4='
@@ -33,9 +40,19 @@ class Search extends React.Component<Props, State> {
             if (this.input) {
               this.input.blur()
             }
-            this.props.history.push(
-              suggestion.url.replace('https://emotion.sh', '')
-            )
+
+            const url = suggestion.url.replace('https://emotion.sh', '')
+            this.props.history.push(url)
+            var hash = window.decodeURI(getHash(url))
+
+            if (hash !== '#' && hash !== '') {
+              var element = document.querySelector(
+                `.docSearch-content ${hash} a`
+              )
+              if (element) {
+                element.click()
+              }
+            }
           }
         })
       } else {
