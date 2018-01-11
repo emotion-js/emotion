@@ -34,10 +34,12 @@ export type ClassNameArg =
 
 export const classnames = (args: Array<ClassNameArg>): string => {
   let cls = ''
-  args.forEach(arg => {
-    if (arg == null) {
-      return
-    }
+  let i = 0
+  let len = args.length
+  for (; i < len; i++) {
+    let arg = args[i]
+    if (arg == null) continue
+
     let toAdd
     switch (typeof arg) {
       case 'boolean':
@@ -67,8 +69,7 @@ export const classnames = (args: Array<ClassNameArg>): string => {
       cls && (cls += ' ')
       cls += toAdd
     }
-  })
-
+  }
   return cls
 }
 
