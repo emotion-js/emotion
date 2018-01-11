@@ -32,6 +32,12 @@ export default class HTML extends Component {
             content="width=device-width, initial-scale=1.0"
           />
           <link rel="icon" href="/favicon.ico" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html:
+                'window.searchError = function() {window.searchErrored = true;};window.searchLoaded = function() {};'
+            }}
+          />
           {this.props.headComponents}
           {css}
         </head>
@@ -41,6 +47,12 @@ export default class HTML extends Component {
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
           {this.props.postBodyComponents}
+          <div
+            dangerouslySetInnerHTML={{
+              __html:
+                '<script src="https://unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js" onload="searchLoaded()" async defer onerror="searchError()"></script>'
+            }}
+          />
         </body>
       </html>
     )
