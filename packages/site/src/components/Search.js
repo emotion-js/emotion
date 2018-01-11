@@ -12,7 +12,11 @@ type State = {
   enabled: boolean
 }
 
-const a = document.createElement('a')
+let a
+
+if (typeof window !== 'undefined') {
+  a = document.createElement('a')
+}
 
 function getHash(url) {
   a.href = url
