@@ -33,9 +33,9 @@ export type ClassNameArg =
   | Array<ClassNameArg>
 
 export const classnames = (args: Array<ClassNameArg>): string => {
-  let cls = ''
-  let i = 0
   let len = args.length
+  let i = 0
+  let cls = ''
   for (; i < len; i++) {
     let arg = args[i]
     if (arg == null) continue
