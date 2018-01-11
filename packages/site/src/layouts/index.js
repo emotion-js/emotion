@@ -39,10 +39,7 @@ const Header = ({ isHome, avatar }) => (
       }}
     >
       <Box
-        // overflow={['auto', 'initial']}
-        // css={{
-        //   overflowY: 'visible'
-        // }}
+        overflow={['auto', 'initial']}
         display="flex"
         flex={1}
         p={2}
