@@ -92,22 +92,26 @@ const createHeading = (
   return (
     <TagName
       {...props}
-      className={cx(headingStylesMap[TagName], props.className)}
+      className={cx(
+        css`
+          svg {
+            visibility: hidden;
+          }
+          &:hover a svg {
+            visibility: visible;
+          }
+        `,
+        headingStylesMap[TagName],
+        props.className
+      )}
     >
       <a
         href={`#${props.id}`}
         aria-hidden
-        className="anchor"
         css={`
           float: left;
           padding-right: 4px;
           margin-left: -20px;
-          svg {
-            visibility: hidden;
-          }
-          &:hover svg {
-            visibility: visible;
-          }
         `}
       >
         <svg
