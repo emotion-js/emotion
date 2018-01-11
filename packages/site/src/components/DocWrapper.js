@@ -10,7 +10,7 @@ import MenuIcon from 'react-icons/lib/md/menu'
 import { getDocMap, docList } from '../utils/misc'
 
 import type { Match } from '../utils/types'
-import { Route } from 'react-router'
+import { Route, Switch } from 'react-router'
 
 const ToggleSidebarButton = styled.button`
   position: fixed;
@@ -96,6 +96,39 @@ const docHeadingMap = docList.reduce((obj, current) => {
   })
   return obj
 }, {})
+
+const Sidebar = (props: {
+  item: { title: string, items: Array<string> },
+  setSidebarOpenState: boolean => void,
+  docMap: *,
+  docName?: string
+}) => {
+  const { item, setSidebarOpenState, docMap, docName } = props
+  return (
+    <Box onClick={() => setSidebarOpenState(false)}>
+      <h3
+        className={
+          docName !== undefined &&
+          cx({
+            'docSearch-lvl0': docHeadingMap[docName] === item.title
+          })
+        }
+      >
+        {item.title}
+      </h3>
+      {item.items.map(slug => (
+        <Link
+          key={slug}
+          className={linkStyles}
+          activeClassName={cx(activeStyles, 'docSearch-lvl1')}
+          to={`/docs/${slug}`}
+        >
+          {docMap[slug] || slug}
+        </Link>
+      ))}
+    </Box>
+  )
+}
 
 export default (props: Props) => {
   const docMap = getDocMap(props.sidebarNodes)
@@ -189,35 +222,37 @@ export default (props: Props) => {
         renderSidebar={({ setSidebarOpenState }) =>
           docList.map(item => {
             return (
-              <Route
-                path="/docs/:docName"
-                key={item.title}
-                render={({ match }) => {
-                  const { docName } = match.params
-                  return (
-                    <Box onClick={() => setSidebarOpenState(false)}>
-                      <h3
-                        className={cx({
-                          'docSearch-lvl0':
-                            docHeadingMap[docName] === item.title
-                        })}
-                      >
-                        {item.title}
-                      </h3>
-                      {item.items.map(slug => (
-                        <Link
-                          key={slug}
-                          className={linkStyles}
-                          activeClassName={cx(activeStyles, 'docSearch-lvl1')}
-                          to={`/docs/${slug}`}
-                        >
-                          {docMap[slug] || slug}
-                        </Link>
-                      ))}
-                    </Box>
-                  )
-                }}
-              />
+              <Switch>
+                <Route
+                  path="/docs/:docName"
+                  key={item.title}
+                  render={({ match }) => {
+                    const { docName } = match.params
+                    return (
+                      <Sidebar
+                        item={item}
+                        setSidebarOpenState={setSidebarOpenState}
+                        docMap={docMap}
+                        docName={docName}
+                      />
+                    )
+                  }}
+                />
+                <Route
+                  exact
+                  path="/docs"
+                  key={item.title}
+                  render={() => {
+                    return (
+                      <Sidebar
+                        item={item}
+                        setSidebarOpenState={setSidebarOpenState}
+                        docMap={docMap}
+                      />
+                    )
+                  }}
+                />
+              </Switch>
             )
           })}
       />

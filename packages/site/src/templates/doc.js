@@ -66,6 +66,23 @@ const headingStylesMap = {
   `
 }
 
+if (typeof window !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', function(event) {
+    var hash = window.decodeURI(location.hash)
+    if (hash !== '' && hash !== '#') {
+      var element = document.getElementById(`.docSearch-content ${hash} a`)
+      if (element) {
+        // Wait for the browser to finish rendering before scrolling.
+        setTimeout(function() {
+          if (element) {
+            element.click()
+          }
+        }, 0)
+      }
+    }
+  })
+}
+
 const createHeading = (
   TagName: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 ) => props => {
@@ -77,9 +94,28 @@ const createHeading = (
   return (
     <TagName
       {...props}
-      className={cx(headingStylesMap[TagName], props.className)}
+      className={cx(
+        css`
+          svg {
+            visibility: hidden;
+          }
+          &:hover a svg {
+            visibility: visible;
+          }
+        `,
+        headingStylesMap[TagName],
+        props.className
+      )}
     >
-      <a href={`#${props.id}`} aria-hidden className="anchor">
+      <a
+        href={`#${props.id}`}
+        aria-hidden
+        css={`
+          float: left;
+          padding-right: 4px;
+          margin-left: -20px;
+        `}
+      >
         <svg
           aria-hidden
           height="16"
