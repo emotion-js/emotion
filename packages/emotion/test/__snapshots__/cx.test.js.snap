@@ -66,3 +66,11 @@ exports[`cx merge 4 1`] = `
   className="modal profile emotion-0"
 />
 `;
+
+exports[`cx no extra whitespace 1`] = `"blockquote news"`;
+
+exports[`cx no extra whitespace 2`] = `"group news"`;
+
+exports[`cx no extra whitespace 3`] = `"author"`;
+
+exports[`cx no extra whitespace 4`] = `"someClass"`;
