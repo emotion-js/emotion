@@ -107,7 +107,7 @@ const renderSidebar = (
     <Box onClick={() => setSidebarOpenState(false)}>
       <h3
         className={
-          docName &&
+          docName !== undefined &&
           cx({
             'docSearch-lvl0': docHeadingMap[docName] === item.title
           })
