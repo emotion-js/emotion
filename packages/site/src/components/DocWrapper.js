@@ -97,12 +97,13 @@ const docHeadingMap = docList.reduce((obj, current) => {
   return obj
 }, {})
 
-const renderSidebar = (
+const Sidebar = (props: {
   item: { title: string, items: Array<string> },
   setSidebarOpenState: boolean => void,
   docMap: *,
   docName?: string
-) => {
+}) => {
+  const { item, setSidebarOpenState, docMap, docName } = props
   return (
     <Box onClick={() => setSidebarOpenState(false)}>
       <h3
@@ -227,11 +228,13 @@ export default (props: Props) => {
                   key={item.title}
                   render={({ match }) => {
                     const { docName } = match.params
-                    return renderSidebar(
-                      item,
-                      setSidebarOpenState,
-                      docMap,
-                      docName
+                    return (
+                      <Sidebar
+                        item={item}
+                        setSidebarOpenState={setSidebarOpenState}
+                        docMap={docMap}
+                        docName={docName}
+                      />
                     )
                   }}
                 />
@@ -240,7 +243,13 @@ export default (props: Props) => {
                   path="/docs"
                   key={item.title}
                   render={() => {
-                    return renderSidebar(item, setSidebarOpenState, docMap)
+                    return (
+                      <Sidebar
+                        item={item}
+                        setSidebarOpenState={setSidebarOpenState}
+                        docMap={docMap}
+                      />
+                    )
                   }}
                 />
               </Switch>
