@@ -106,9 +106,12 @@ const renderSidebar = (
   return (
     <Box onClick={() => setSidebarOpenState(false)}>
       <h3
-        className={cx({
-          'docSearch-lvl0': docHeadingMap[docName] === item.title
-        })}
+        className={
+          docName &&
+          cx({
+            'docSearch-lvl0': docHeadingMap[docName] === item.title
+          })
+        }
       >
         {item.title}
       </h3>
