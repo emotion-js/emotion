@@ -122,5 +122,8 @@ describe('cx', () => {
     expect(cx('', 'group', '', 'news', '')).toMatchSnapshot()
     expect(cx('author', '')).toMatchSnapshot()
     expect(cx({ someClass: true, '': true })).toMatchSnapshot()
+    expect(
+      cx({ someClass: true, '': true, anotherClass: true })
+    ).toMatchSnapshot()
   })
 })
