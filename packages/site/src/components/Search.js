@@ -1,8 +1,8 @@
 // @flow
 import React from 'react'
 import { withRouter } from 'react-router'
-import { mq } from '../utils/style'
 import { algoliaStyles } from '../utils/algolia-styles'
+import { addCallback } from '../utils/async-load-search'
 
 type Props = {
   history: { push: string => void }
@@ -18,32 +18,32 @@ const icon =
 
 class Search extends React.Component<Props, State> {
   input: ?HTMLInputElement
-  state = {
-    enabled: true
-  }
+  state = { enabled: true }
   componentDidMount() {
-    if (window.docsearch) {
-      window.docsearch({
-        apiKey: 'd160789a17f10ba962c4bce1b298fbbb',
-        indexName: 'emotion_sh',
-        inputSelector: '#algolia-doc-search',
-        handleSelected: (input, event, suggestion) => {
-          event.preventDefault()
-          input.setVal('')
-          input.close()
-          if (this.input) {
-            this.input.blur()
+    addCallback(loaded => {
+      if (loaded) {
+        window.docsearch({
+          apiKey: 'd160789a17f10ba962c4bce1b298fbbb',
+          indexName: 'emotion_sh',
+          inputSelector: '#algolia-doc-search',
+          handleSelected: (input, event, suggestion) => {
+            event.preventDefault()
+            input.setVal('')
+            input.close()
+            if (this.input) {
+              this.input.blur()
+            }
+            this.props.history.push(
+              suggestion.url.replace('https://emotion.sh', '')
+            )
           }
-          this.props.history.push(
-            suggestion.url.replace('https://emotion.sh', '')
-          )
-        }
-      })
-    } else {
-      // eslint-disable-next-line no-console
-      console.warn('Search has failed to load and is now disabled')
-      this.setState({ enabled: false })
-    }
+        })
+      } else {
+        // eslint-disable-next-line no-console
+        console.warn('Search has failed to load and is now disabled')
+        this.setState({ enabled: false })
+      }
+    })
   }
 
   render() {
