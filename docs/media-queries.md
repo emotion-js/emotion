@@ -91,11 +91,11 @@ const breakpoints = {
 
 const mq = Object.keys(breakpoints).reduce(
   (accumulator, label) => {
-    let suffix =
-      typeof breakpoints[label] === 'string' ? '' : 'px'
+    let prefix = typeof breakpoints[label] === 'string' ? '' : 'min-width:'
+    let suffix = typeof breakpoints[label] === 'string' ? '' : 'px'
     accumulator[label] = cls =>
       css`
-        @media (min-width:${breakpoints[label] + suffix}) {
+        @media (${prefix + breakpoints[label] + suffix}) {
           ${cls};
         }
       `
