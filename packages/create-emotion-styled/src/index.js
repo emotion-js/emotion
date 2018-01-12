@@ -125,9 +125,11 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
       Styled.displayName =
         identifierName !== undefined
           ? identifierName
-          : `Styled(${typeof baseTag === 'string'
-              ? baseTag
-              : baseTag.displayName || baseTag.name || 'Component'})`
+          : `Styled(${
+              typeof baseTag === 'string'
+                ? baseTag
+                : baseTag.displayName || baseTag.name || 'Component'
+            })`
 
       Styled.contextTypes = contextTypes
       Styled[STYLES_KEY] = styles

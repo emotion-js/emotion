@@ -3,10 +3,8 @@ import { memoize, unitless } from 'emotion-utils'
 
 const hyphenateRegex = /[A-Z]|^ms/g
 
-export const processStyleName: (
-  styleName: string
-) => string = memoize((styleName: string) =>
-  styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+export const processStyleName: (styleName: string) => string = memoize(
+  (styleName: string) => styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
 export const processStyleValue = (key: string, value: string): string => {
