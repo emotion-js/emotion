@@ -113,8 +113,10 @@ class IndexPage extends React.Component<Props, State> {
                       {error ? null : (
                         <Preview
                           onError={onError}
-                          Link={// $FlowFixMe
-                          element.withComponent(GatsbyLink)}
+                          Link={
+                            // $FlowFixMe
+                            element.withComponent(GatsbyLink)
+                          }
                         />
                       )}
                     </ErrorBoundary>

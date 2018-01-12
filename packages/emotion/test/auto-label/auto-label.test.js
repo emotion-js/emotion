@@ -27,12 +27,28 @@ describe('meta', () => {
 
   test('css prop correctly adds the id', () => {
     const SFC = () => {
-      return <div css={`display: flex;`}>Hello</div>
+      return (
+        <div
+          css={`
+            display: flex;
+          `}
+        >
+          Hello
+        </div>
+      )
     }
 
     class ClsComp extends React.Component<*> {
       render() {
-        return <div css={`display: grid;`}>Hello</div>
+        return (
+          <div
+            css={`
+              display: grid;
+            `}
+          >
+            Hello
+          </div>
+        )
       }
     }
 
@@ -40,7 +56,11 @@ describe('meta', () => {
       class extends React.Component<*> {
         render() {
           return (
-            <div css={`display: block;`}>
+            <div
+              css={`
+                display: block;
+              `}
+            >
               <W {...this.props} />
             </div>
           )

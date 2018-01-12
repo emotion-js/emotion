@@ -80,8 +80,7 @@
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
-    "prettier": "1.7.4",
-    "prettier-eslint-cli": "^4.0.3",
+    "prettier": "1.10.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
@@ -125,13 +124,7 @@
     ],
     "parser": "babel-eslint",
     "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "singleQuote": true,
-          "semi": false
-        }
-      ],
+      "prettier/prettier": "error",
       "react/prop-types": 0,
       "react/no-unused-prop-types": 0,
       "standard/computed-property-even-spacing": 0,

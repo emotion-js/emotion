@@ -140,7 +140,8 @@ export default (props: Props) => {
             <ToggleSidebarButton onClick={() => setSidebarOpenState(true)}>
               <MenuIcon color="white" size={32} />
             </ToggleSidebarButton>
-          )}
+          )
+        }
         renderContent={({ docked, setSidebarOpenState }) => (
           <Box p={[3, 4]}>
             {props.children}
@@ -254,7 +255,8 @@ export default (props: Props) => {
                 />
               </Switch>
             )
-          })}
+          })
+        }
       />
     </Box>
   )
