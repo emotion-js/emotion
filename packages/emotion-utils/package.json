@@ -1,6 +1,6 @@
 {
   "name": "emotion-utils",
-  "version": "9.0.0-0",
+  "version": "9.0.0-2",
   "description": "Shared utilities used by emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -29,7 +29,7 @@
     "url": "https://github.com/emotion-js/emotion/issues"
   },
   "devDependencies": {
-    "babel-plugin-emotion": "^8.0.2-7",    
+    "babel-plugin-emotion": "^8.0.2-7",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.51.3"
