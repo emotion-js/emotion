@@ -70,6 +70,48 @@ npm install --save jest-emotion
 * `emotion-server`
   * `extractCritical` no longer returns a rules property, this was never documented so it shouldn't cause any problems.
 
+## v9.0.0-2 (2018-01-17)
+
+#### :rocket: Enhancement
+* `create-emotion-styled`, `create-emotion`, `emotion-utils`, `emotion`, `react-emotion`
+  * [#516](https://github.com/emotion-js/emotion/pull/516) Throw a nice error when using the styled shorthand without babel-plugin-emotion and remove duplication in component selector code. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :bug: Bug Fix
+* `create-emotion`, `emotion`
+  * [#532](https://github.com/emotion-js/emotion/pull/532) Fix extra whitespace in cx. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :memo: Documentation
+* Other
+  * [#533](https://github.com/emotion-js/emotion/pull/533) Reusable Media Queries with String Styles wasn't working. ([@ARChilton](https://github.com/ARChilton))
+  * [#529](https://github.com/emotion-js/emotion/pull/529) Update examples in Readme. ([@divyanshu013](https://github.com/divyanshu013))
+  * [#509](https://github.com/emotion-js/emotion/pull/509) fix Readme markdown list syntax. ([@ryota-murakami](https://github.com/ryota-murakami))
+  * [#505](https://github.com/emotion-js/emotion/pull/505) Fixed jest-glamor-react -> jest-emotion upgrade description. ([@Andarist](https://github.com/Andarist))
+* `site`
+  * [#530](https://github.com/emotion-js/emotion/pull/530) Add search to docs. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `babel-plugin-emotion`
+  * [#514](https://github.com/emotion-js/emotion/pull/514) Better example for hoist option. ([@Andarist](https://github.com/Andarist))
+
+#### :house: Internal
+* `create-emotion-styled`, `create-emotion`, `emotion-server`, `emotion`, `site`
+  * [#534](https://github.com/emotion-js/emotion/pull/534) Update prettier and add .prettierrc.yaml. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `babel-plugin-emotion`, `benchmarks`, `emotion`
+  * [#525](https://github.com/emotion-js/emotion/pull/525) chore: upgrade to babel-plugin-macros. ([@Haroenv](https://github.com/Haroenv))
+* Other
+  * [#507](https://github.com/emotion-js/emotion/pull/507) Use lerna-alias for rollup config + fixed rollup plugins order. ([@Andarist](https://github.com/Andarist))
+  * [#506](https://github.com/emotion-js/emotion/pull/506) Added lerna-alias dep to automate creating jest aliases. ([@Andarist](https://github.com/Andarist))
+
+#### Committers: 9
+- Dara Hak ([darahak](https://github.com/darahak))
+- Divyanshu Maithani ([divyanshu013](https://github.com/divyanshu013))
+- Haroen Viaene ([Haroenv](https://github.com/Haroenv))
+- Mateusz Burzyński ([Andarist](https://github.com/Andarist))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Mouad Debbar ([mdebbar](https://github.com/mdebbar))
+- Oliver Turner ([oliverturner](https://github.com/oliverturner))
+- [ARChilton](https://github.com/ARChilton)
+- ryota-murakami ([ryota-murakami](https://github.com/ryota-murakami))
+
+
 ## v9.0.0-1 (2017-12-23)
 
 #### :bug: Bug Fix
