@@ -91,6 +91,7 @@ class Search extends React.Component<Props, State> {
             outline: 0,
             width: 16,
             margin: 8,
+            appearance: 'none',
             transition:
               'width 200ms ease,padding 200ms ease, background-color 100ms ease',
             '@media (max-width: 600px)': {
