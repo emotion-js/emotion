@@ -169,10 +169,21 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
   if (process.env.NODE_ENV !== 'production' && typeof Proxy !== 'undefined') {
     createStyled = new Proxy(createStyled, {
       get(target, property) {
-        throw new Error(
-          `You're trying to use the styled shorthand without babel-plugin-emotion.` +
-            `\nPlease install and setup babel-plugin-emotion or use the function call syntax(\`styled('${property}')\` instead of \`styled.${property}\`)`
-        )
+        switch (property) {
+          // react-hot-loader tries to access this stuff
+          case '__proto__':
+          case 'name':
+          case 'prototype':
+          case 'displayName': {
+            return target[property]
+          }
+          default: {
+            throw new Error(
+              `You're trying to use the styled shorthand without babel-plugin-emotion.` +
+                `\nPlease install and setup babel-plugin-emotion or use the function call syntax(\`styled('${property}')\` instead of \`styled.${property}\`)`
+            )
+          }
+        }
       }
     })
   }
