@@ -215,4 +215,15 @@ describe('css', () => {
       styled.div``
     }).toThrowErrorMatchingSnapshot()
   })
+  test('styled does not throw an error when certain properties are accessed', () => {
+    expect(() => {
+      /* eslint-disable no-unused-expressions */
+      // eslint-disable-next-line no-proto
+      styled.__proto__
+      styled.prototype
+      styled.name
+      styled.displayName
+      /* eslint-enable no-unused-expressions */
+    }).not.toThrow()
+  })
 })
