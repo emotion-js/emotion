@@ -10,7 +10,7 @@ Object {
   unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
 }
 
-@-webkit-keyframes animation-1fps0gg-bounce {
+@-webkit-keyframes animation-1938e3k-bounce {
   from, 20%, 53%, 80%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
     animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
@@ -42,7 +42,7 @@ Object {
   }
 }
 
-@keyframes animation-1fps0gg-bounce {
+@keyframes animation-1938e3k-bounce {
   from, 20%, 53%, 80%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
     animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
@@ -85,7 +85,7 @@ Object {
   justify-content: center;
 }
 
-.css-19m49uk-Main {
+.css-ggqssp-Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -93,40 +93,40 @@ Object {
   display: flex;
 }
 
-.css-19m49uk-Main:hover {
+.css-ggqssp-Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
-.css-1m3qzmz-Image {
-  -webkit-animation: animation-1fps0gg-bounce;
-  animation: animation-1fps0gg-bounce;
+.css-xucs6l-Image {
+  -webkit-animation: animation-1938e3k-bounce;
+  animation: animation-1938e3k-bounce;
   border-radius: 50%;
   height: 50px;
   width: 50px;
   background-color: red;
 }",
   "html": 
-<main class="css-19m49uk-Main enylr5n0"
+<main class="css-ggqssp-Main ev1dpeo0"
       data-reactroot
 >
   <img size="30"
-       class="css-1m3qzmz-Image enylr5n1"
+       class="css-xucs6l-Image ev1dpeo1"
   >
   <img size="100"
-       class="css-1m3qzmz-Image enylr5n1"
+       class="css-xucs6l-Image ev1dpeo1"
   >
-  <img class="css-1m3qzmz-Image enylr5n1">
+  <img class="css-xucs6l-Image ev1dpeo1">
 </main>
 ,
   "ids": Array [
-    "n47v5l-getComponents",
-    "1fps0gg-bounce",
-    "1teldhi-getComponents",
-    "19m49uk-Main",
-    "1m3qzmz-Image",
+    "1s6lroo-getComponents",
+    "1938e3k-bounce",
+    "11lstga-getComponents",
+    "ggqssp-Main",
+    "xucs6l-Image",
   ],
 }
 `;
@@ -141,7 +141,7 @@ Object {
   unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
 }
 
-@-webkit-keyframes animation-1fps0gg-bounce {
+@-webkit-keyframes animation-1938e3k-bounce {
   from, 20%, 53%, 80%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
     animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
@@ -173,7 +173,7 @@ Object {
   }
 }
 
-@keyframes animation-1fps0gg-bounce {
+@keyframes animation-1938e3k-bounce {
   from, 20%, 53%, 80%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
     animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
@@ -216,7 +216,7 @@ Object {
   justify-content: center;
 }
 
-.css-19m49uk-Main {
+.css-ggqssp-Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -224,14 +224,14 @@ Object {
   display: flex;
 }
 
-.css-19m49uk-Main:hover {
+.css-ggqssp-Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
   "html": 
-<main class="css-19m49uk-Main enylr5n0"
+<main class="css-ggqssp-Main ev1dpeo0"
       data-reactroot
 >
   <div>
@@ -240,10 +240,10 @@ Object {
 </main>
 ,
   "ids": Array [
-    "n47v5l-getComponents",
-    "1fps0gg-bounce",
-    "1teldhi-getComponents",
-    "19m49uk-Main",
+    "1s6lroo-getComponents",
+    "1938e3k-bounce",
+    "11lstga-getComponents",
+    "ggqssp-Main",
   ],
 }
 `;
@@ -258,7 +258,7 @@ Object {
   unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
 }
 
-@-webkit-keyframes animation-1fps0gg-bounce {
+@-webkit-keyframes animation-1938e3k-bounce {
   from, 20%, 53%, 80%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
     animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
@@ -290,7 +290,7 @@ Object {
   }
 }
 
-@keyframes animation-1fps0gg-bounce {
+@keyframes animation-1938e3k-bounce {
   from, 20%, 53%, 80%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
     animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
@@ -333,7 +333,7 @@ Object {
   justify-content: center;
 }
 
-.css-19m49uk-Main {
+.css-ggqssp-Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -341,57 +341,57 @@ Object {
   display: flex;
 }
 
-.css-19m49uk-Main:hover {
+.css-ggqssp-Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
-.css-1m3qzmz-Image {
-  -webkit-animation: animation-1fps0gg-bounce;
-  animation: animation-1fps0gg-bounce;
+.css-xucs6l-Image {
+  -webkit-animation: animation-1938e3k-bounce;
+  animation: animation-1938e3k-bounce;
   border-radius: 50%;
   height: 50px;
   width: 50px;
   background-color: red;
 }",
   "html": 
-<main class="css-19m49uk-Main enylr5n0"
+<main class="css-ggqssp-Main ev1dpeo0"
       data-reactroot
 >
   <img size="30"
-       class="css-1m3qzmz-Image enylr5n1"
+       class="css-xucs6l-Image ev1dpeo1"
   >
   <img size="100"
-       class="css-1m3qzmz-Image enylr5n1"
+       class="css-xucs6l-Image ev1dpeo1"
   >
-  <img class="css-1m3qzmz-Image enylr5n1">
+  <img class="css-xucs6l-Image ev1dpeo1">
 </main>
 ,
   "ids": Array [
-    "n47v5l-getComponents",
-    "1fps0gg-bounce",
-    "1teldhi-getComponents",
-    "19m49uk-Main",
-    "1m3qzmz-Image",
+    "1s6lroo-getComponents",
+    "1938e3k-bounce",
+    "11lstga-getComponents",
+    "ggqssp-Main",
+    "xucs6l-Image",
   ],
 }
 `;
 
 exports[`hydration only rules that are not in the critical css are inserted 2`] = `
-".css-1ypzo6g-hoverStyles {
+".css-84uqt3-hoverStyles {
   color: hotpink;
 }
 
-.css-1ypzo6g-hoverStyles:hover {
+.css-84uqt3-hoverStyles:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
-.css-lecien-getComponents {
+.css-18s9rqr-getComponents {
   display: none;
 }"
 `;
