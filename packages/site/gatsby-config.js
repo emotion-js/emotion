@@ -36,15 +36,6 @@ module.exports = {
       'gatsby-transformer-sharp',
       'gatsby-plugin-catch-links',
       'gatsby-plugin-sitemap',
-      {
-        resolve: 'gatsby-plugin-netlify',
-        options: {
-          mergeLinkHeaders: true,
-          allPageHeaders: [
-            'Link: <https://unpkg.com/babel-standalone@6.26.0/babel.min.js>; rel=preload; as=script; cross-origin=anonymous',
-            'Link: <https://unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js>; rel=preload; as=script; cross-origin=anonymous'
-          ]
-        }
-      }
+      'gatsby-plugin-netlify'
     ])
 }
