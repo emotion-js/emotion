@@ -71,7 +71,7 @@ export const classnames = (args: Array<ClassNameArg>): string => {
   return cls
 }
 
-export const isBrowser = typeof window !== 'undefined'
+export const isBrowser = typeof document !== 'undefined'
 
 export type PrefixOption =
   | boolean

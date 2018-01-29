@@ -312,7 +312,7 @@ function createEmotion(
     caches.registered = {}
   }
 
-  if (typeof window !== 'undefined') {
+  if (isBrowser) {
     let chunks = Array.from(document.querySelectorAll(`[data-emotion-${key}]`))
     chunks.forEach(node => {
       // $FlowFixMe
