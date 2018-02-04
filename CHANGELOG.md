@@ -1,8 +1,6 @@
-## v9.0.0 (UNRELEASED)
+## v9.0.0 (2018-02-04)
 
-**Emotion 9 is currently in beta and there may be breaking changes between versions**
-
-Emotion 9 introduces [instances](https://emotion.sh/docs/create-emotion), jest-emotion, two new SSR methods and a brand new website!! Instances allow you to customize prefixing options, run plugins during CSS processing, set nonces for CSP and they're totally optional so if you don't need instances keep on using `emotion`. jest-emotion offers a better out of the box experience and has the potential for more features in the future. emotion-server has new methods for inlining CSS in HTML right before it's needed and adds support for streaming.
+Emotion 9 introduces [instances](https://emotion.sh/docs/create-emotion), jest-emotion, two new SSR methods, a bunch of fixes and a brand new website!! Instances allow you to customize prefixing options, run plugins during CSS processing, set nonces for CSP and they're totally optional so if you don't need instances keep on using `emotion`. jest-emotion offers a better out of the box experience and has the potential for more features in the future. emotion-server has new methods for inlining CSS in HTML right before it's needed and adds support for streaming.
 
 #### :rocket: Enhancement
 
@@ -71,6 +69,53 @@ npm install --save jest-emotion
   * `StyleSheet` is no longer used for SSR, this is completely internal(except that emotion exports an instance of this as `sheet`) so it shouldn't cause any problems.
 * `emotion-server`
   * `extractCritical` no longer returns a rules property, this was never documented so it shouldn't cause any problems.
+
+#### :boom: Breaking Change
+
+* `babel-plugin-emotion`, `create-emotion-server`, `create-emotion-styled`, `create-emotion`, `emotion-server`, `emotion-theming`, `emotion-utils`, `emotion`, `jest-emotion`, `preact-emotion`, `react-emotion`, `site`
+  * [#464](https://github.com/emotion-js/emotion/pull/464) Add Instances. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :rocket: Enhancement
+
+* `babel-plugin-emotion`, `emotion`, `react-emotion`
+  * [#503](https://github.com/emotion-js/emotion/pull/503) [babel-plugin-emotion][react-emotion] Adds Support for Components as Selectors Using the Object Syntax #501. ([@smlmrkhlms](https://github.com/smlmrkhlms))
+
+#### :bug: Bug Fix
+
+* `emotion`
+  * [#500](https://github.com/emotion-js/emotion/pull/500) Fix styles getting injected in the classname (#492). ([@pimmey](https://github.com/pimmey))
+* `emotion-theming`
+  * [#497](https://github.com/emotion-js/emotion/pull/497) Fixed nested themes not being republished on outer theme changes. ([@Andarist](https://github.com/Andarist))
+* `jest-emotion`
+  * [#504](https://github.com/emotion-js/emotion/pull/504) Change class name prefix in jest-emotion. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :house: Internal
+
+* `emotion`
+  * [#502](https://github.com/emotion-js/emotion/pull/502) Pass converted arguments as array directly to the underlaying classnames helper. ([@Andarist](https://github.com/Andarist))
+* `babel-plugin-emotion`, `emotion-server`, `emotion`, `react-emotion`
+  * [#498](https://github.com/emotion-js/emotion/pull/498) used a simpler hashing strategy when a file system is available. ([@probablyup](https://github.com/probablyup))
+* `create-emotion`
+  * [#550](https://github.com/emotion-js/emotion/pull/550) Check for `document` instead of `window`. ([@alexlafroscia](https://github.com/alexlafroscia))
+* `emotion-utils`
+  * [#544](https://github.com/emotion-js/emotion/pull/544) Change hash implementation. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 12
+
+* Evan Scott ([probablyup](https://github.com/probablyup))
+* Mark Holmes ([smlmrkhlms](https://github.com/smlmrkhlms))
+* Mateusz Burzyński ([Andarist](https://github.com/Andarist))
+* Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+* Yegor Borisenco ([pimmey](https://github.com/pimmey))
+* Dara Hak ([darahak](https://github.com/darahak))
+* Divyanshu Maithani ([divyanshu013](https://github.com/divyanshu013))
+* Haroen Viaene ([Haroenv](https://github.com/Haroenv))
+* Mouad Debbar ([mdebbar](https://github.com/mdebbar))
+* Oliver Turner ([oliverturner](https://github.com/oliverturner))
+* [ARChilton](https://github.com/ARChilton)
+* ryota-murakami ([ryota-murakami](https://github.com/ryota-murakami))
+* Alex LaFroscia ([alexlafroscia](https://github.com/alexlafroscia))
+* Devin Otway ([TroutZen](https://github.com/TroutZen))
 
 ## v9.0.0-3 (2018-02-03)
 
