@@ -223,10 +223,9 @@ export default (props: Props) => {
         renderSidebar={({ setSidebarOpenState }) =>
           docList.map(item => {
             return (
-              <Switch>
+              <Switch key={item.title}>
                 <Route
                   path="/docs/:docName"
-                  key={item.title}
                   render={({ match }) => {
                     const { docName } = match.params
                     return (
@@ -242,7 +241,6 @@ export default (props: Props) => {
                 <Route
                   exact
                   path="/docs"
-                  key={item.title}
                   render={() => {
                     return (
                       <Sidebar
