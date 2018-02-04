@@ -1,6 +1,6 @@
 {
   "name": "emotion-server",
-  "version": "9.0.0-3",
+  "version": "9.0.0",
   "description": "Extract and inline critical css with emotion for server side rendering.",
   "main": "lib/index.js",
   "files": [
@@ -14,17 +14,17 @@
     "clean": "rimraf lib"
   },
   "dependencies": {
-    "create-emotion-server": "^9.0.0-3"
+    "create-emotion-server": "^9.0.0"
   },
   "peerDependencies": {
-    "emotion": "^9.0.0-3"
+    "emotion": "^9.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "babel-plugin-emotion": "^9.0.0-3",
-    "emotion": "^9.0.0-3",
+    "babel-plugin-emotion": "^9.0.0",
+    "emotion": "^9.0.0",
     "npm-run-all": "^4.0.2",
-    "react-emotion": "^9.0.0-3",
+    "react-emotion": "^9.0.0",
     "rimraf": "^2.6.1"
   },
   "author": "Kye Hohenberger",
