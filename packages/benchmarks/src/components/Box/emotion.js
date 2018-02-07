@@ -26,6 +26,9 @@ const Box = styled(View)`
   height: ${props => (props.fixed ? '20px' : 'auto')};
   width: ${props => (props.fixed ? '20px' : 'auto')};
   background-color: ${props => getColor(props.color)};
+  @media (min-width: 420px) {
+    padding: 8px;
+  }
 `
 
 export default Box

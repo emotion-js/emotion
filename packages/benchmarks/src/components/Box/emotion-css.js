@@ -22,7 +22,10 @@ const Box = ({
 
 const styles = {
   outer: {
-    padding: 4
+    padding: 4,
+    '@media(min-width: 420px)': {
+      padding: 8
+    }
   },
   row: {
     flexDirection: 'row'

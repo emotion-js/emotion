@@ -25,7 +25,10 @@ const Box = styled(View)(props => ({
   padding: props.outer ? 4 : 0,
   height: props.fixed ? 20 : 'auto',
   width: props.fixed ? 20 : 'auto',
-  backgroundColor: getColor(props.color)
+  backgroundColor: getColor(props.color),
+  '@media(min-width: 420px)': {
+    padding: 8
+  }
 }))
 
 export default Box
