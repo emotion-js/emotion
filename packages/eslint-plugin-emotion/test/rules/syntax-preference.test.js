@@ -1,6 +1,7 @@
 /**
  * @fileoverview Choose between string or object syntax
  * @author alex-pex
+ * @jest-environment node
  */
 
 // ------------------------------------------------------------------------------
@@ -8,7 +9,7 @@
 // ------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint')
-const rule = require('../../../src/rules/syntax-preference')
+const rule = require('../../src/rules/syntax-preference')
 
 RuleTester.setDefaultConfig({
   parserOptions: {

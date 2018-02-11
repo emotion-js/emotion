@@ -10,14 +10,8 @@
   ],
   "author": "alex-pex <alexandre.paixao@stadline.com>",
   "main": "src/index.js",
-  "scripts": {
-    "test": "mocha tests --recursive"
-  },
   "dependencies": {
     "requireindex": "^1.1.0"
-  },
-  "devDependencies": {
-    "mocha": "^3.1.2"
   },
   "engines": {
     "node": ">=0.10.0"
