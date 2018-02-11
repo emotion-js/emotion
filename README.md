@@ -95,3 +95,5 @@ const app = () => (
 * [gatsbythemes.com](https://gatsbythemes.com/)
 * [blazity.com](https://blazity.com/)
 * [postmates.com](https://postmates.com/)
+* [thedisconnect.co](https://thedisconnect.co/one)
+
