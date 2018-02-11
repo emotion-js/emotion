@@ -1,4 +1,5 @@
 // @flow
+import nodePath from 'path'
 import { hashArray } from './index'
 import type { BabelPath, EmotionBabelPluginPass } from './index'
 import type { Types, Identifier } from 'babel-flow-types'
@@ -98,6 +99,23 @@ export function getName(identifierName?: string, prefix: string) {
     parts.push(identifierName)
   }
   return parts.join('-')
+}
+
+export function getLabel(
+  identifierName?: string,
+  autoLabel: boolean,
+  labelFormat?: string,
+  filename: string
+) {
+  if (!identifierName) return null
+  if (autoLabel) return identifierName.trim()
+  if (!labelFormat) return null
+
+  const parsedPath = nodePath.parse(filename)
+  const normalizedFilename = parsedPath.name.replace('.', '-')
+  return labelFormat
+    .replace(/\[local\]/gi, identifierName.trim())
+    .replace(/\[filename\]/gi, normalizedFilename)
 }
 
 export function createRawStringFromTemplateLiteral(quasi: {
