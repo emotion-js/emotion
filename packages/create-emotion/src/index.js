@@ -132,7 +132,16 @@ function createEmotion(
         return ''
       case 'function':
         if (interpolation[STYLES_KEY] !== undefined) {
-          return interpolation.toString()
+          let selector = interpolation.toString()
+          if (
+            selector === 'NO_COMPONENT_SELECTOR' &&
+            process.env.NODE_ENV !== 'production'
+          ) {
+            throw new Error(
+              'Component selectors can only be used in conjunction with babel-plugin-emotion.'
+            )
+          }
+          return selector
         }
         return handleInterpolation.call(
           this,
@@ -179,6 +188,15 @@ function createEmotion(
             )};`
           }
         } else {
+          if (
+            key === 'NO_COMPONENT_SELECTOR' &&
+            process.env.NODE_ENV !== 'production'
+          ) {
+            throw new Error(
+              'Component selectors can only be used in conjunction with babel-plugin-emotion.'
+            )
+          }
+
           string += `${key}{${handleInterpolation.call(this, obj[key], false)}}`
         }
       }, this)
