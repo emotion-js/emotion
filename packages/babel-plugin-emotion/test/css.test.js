@@ -284,7 +284,10 @@ function test () {
   }
 }
 `,
-    opts: { labelFormat: 'my-css-[local]' }
+    opts: {
+      labelFormat: 'my-css-[local]',
+      autoLabel: true
+    }
   },
 
   'label format with filename and local': {
@@ -326,6 +329,7 @@ function test () {
     `,
     opts: {
       labelFormat: 'my-css-[filename]-[local]',
+      autoLabel: true,
       filename: __filename
     }
   },

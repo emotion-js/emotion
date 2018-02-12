@@ -107,9 +107,8 @@ export function getLabel(
   labelFormat?: string,
   filename: string
 ) {
-  if (!identifierName) return null
-  if (autoLabel) return identifierName.trim()
-  if (!labelFormat) return null
+  if (!identifierName || !autoLabel) return null
+  if (!labelFormat) return identifierName.trim()
 
   const parsedPath = nodePath.parse(filename)
   const normalizedFilename = parsedPath.name.replace('.', '-')

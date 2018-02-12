@@ -90,7 +90,7 @@ _Defaults Shown_
         "hoist": false,
         "sourceMap": false,
         "autoLabel": false,
-        "labelFormat": null,
+        "labelFormat": "[local]",
         "extractStatic": false,
         "importedNames": {
           "styled": "styled",
@@ -205,9 +205,9 @@ const brownStyles = /*#__PURE__*/ css({ color: 'brown' }, 'label:brownStyles;')
 
 ### `labelFormat`
 
-`string`, defaults to `null`.
+`string`, defaults to `"[local]"`.
 
-This option automatically adds the `label` property (same as `autoLabel`), but allows you to
+This option only works when `autoLabel` is set to `true`. It allows you to
 define the format of the resulting `label`. The format is defined via string where
 variable parts are enclosed in square brackets `[]`.
 For example `labelFormat: "my-classname--[local]"`, where `[local]` will be replaced
@@ -226,6 +226,7 @@ be prepended automatically.
 
 ```javascript
 // BrownView.js
+// autoLabel: true
 // labelFormat: [filename]--[local]
 const brownStyles = css({ color: 'brown' })
 ```
