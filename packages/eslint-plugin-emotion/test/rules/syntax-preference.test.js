@@ -33,6 +33,10 @@ ruleTester.run('syntax-preference (string)', rule, {
     {
       code: "const H1 = styled('h1')` color: red; `",
       options: ['string']
+    },
+    {
+      code: 'const query = gql` { user(id: 5) { firstName, lastName } }`',
+      options: ['string']
     }
   ],
 
@@ -69,6 +73,10 @@ ruleTester.run('syntax-preference (object)', rule, {
     },
     {
       code: "const H1 = styled('h1')({ color: 'red' })",
+      options: ['object']
+    },
+    {
+      code: 'const query = gql` { user(id: 5) { firstName, lastName } }`',
       options: ['object']
     }
   ],
@@ -111,6 +119,9 @@ ruleTester.run('syntax-preference (undefined)', rule, {
     },
     {
       code: "const H1 = styled('h1')({ color: 'red' })"
+    },
+    {
+      code: 'const query = gql` { user(id: 5) { firstName, lastName } }`'
     }
   ],
 

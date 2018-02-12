@@ -4,53 +4,52 @@
  */
 
 function isStringStyle(node) {
-  if (node.type !== 'TaggedTemplateExpression') {
-    return false
-  }
+  if (node.type === 'TaggedTemplateExpression') {
+    // shorthand notation
+    // eg: styled.h1` color: red; `
+    if (
+      node.tag.type === 'MemberExpression' &&
+      node.tag.object.name === 'styled'
+    ) {
+      // string syntax used
+      return true
+    }
 
-  // shorthand notation
-  // eg: styled.h1` color: red; `
-  if (
-    node.tag.type === 'MemberExpression' &&
-    node.tag.object.name === 'styled'
-  ) {
-    // string syntax used
-    return true
-  }
-
-  // full notation
-  // eg: styled('h1')` color: red; `
-  if (node.tag.type === 'CallExpression' && node.tag.callee.name === 'styled') {
-    // string syntax used
-    return true
+    // full notation
+    // eg: styled('h1')` color: red; `
+    if (
+      node.tag.type === 'CallExpression' &&
+      node.tag.callee.name === 'styled'
+    ) {
+      // string syntax used
+      return true
+    }
   }
 
   return false
 }
 
 function isObjectStyle(node) {
-  if (node.type !== 'CallExpression') {
-    return false
-  }
+  if (node.type === 'CallExpression') {
+    // shorthand notation
+    // eg: styled.h1({ color: 'red' })
+    if (
+      node.callee.type === 'MemberExpression' &&
+      node.callee.object.name === 'styled'
+    ) {
+      // object syntax used
+      return true
+    }
 
-  // shorthand notation
-  // eg: styled.h1({ color: 'red' })
-  if (
-    node.callee.type === 'MemberExpression' &&
-    node.callee.object.name === 'styled'
-  ) {
-    // object syntax used
-    return true
-  }
-
-  // full notation
-  // eg: styled('h1')({ color: 'red' })
-  if (
-    node.callee.type === 'CallExpression' &&
-    node.callee.callee.name === 'styled'
-  ) {
-    // object syntax used
-    return true
+    // full notation
+    // eg: styled('h1')({ color: 'red' })
+    if (
+      node.callee.type === 'CallExpression' &&
+      node.callee.callee.name === 'styled'
+    ) {
+      // object syntax used
+      return true
+    }
   }
 
   return false
