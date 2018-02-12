@@ -214,7 +214,7 @@ For example `labelFormat: "my-classname--[local]"`, where `[local]` will be repl
 with the name of the variable the result is assigned to.
 
 Allowed values:
-* `[local]` - the name of the variable the restul of the `css` or `styled` expression is assigned to.
+* `[local]` - the name of the variable the result of the `css` or `styled` expression is assigned to.
 * `[filename]` - name of the file (without extension) where `css` or `styled` expression is located.
 
 This format only affects the label property of the expression, meaning that `css` prefix and hash will
