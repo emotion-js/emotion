@@ -35,7 +35,6 @@ export const unitless: { [string]: 1 } = {
   gridColumnSpan: 1,
   gridColumnStart: 1,
   fontWeight: 1,
-  lineClamp: 1,
   lineHeight: 1,
   opacity: 1,
   order: 1,
@@ -44,6 +43,7 @@ export const unitless: { [string]: 1 } = {
   widows: 1,
   zIndex: 1,
   zoom: 1,
+  WebkitLineClamp: 1,
 
   // SVG-related properties
   fillOpacity: 1,
