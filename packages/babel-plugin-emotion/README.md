@@ -207,7 +207,7 @@ const brownStyles = /*#__PURE__*/ css({ color: 'brown' }, 'label:brownStyles;')
 
 `string`, defaults to `null`.
 
-This option automatically adds the `label` property (same as `autoLabel`), but allows to
+This option automatically adds the `label` property (same as `autoLabel`), but allows you to
 define the format of the resulting `label`. The format is defined via string where
 variable parts are enclosed in square brackets `[]`.
 For example `labelFormat: "my-classname--[local]"`, where `[local]` will be replaced
