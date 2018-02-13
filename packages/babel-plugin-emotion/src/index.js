@@ -8,7 +8,8 @@ import {
   getIdentifierName,
   getName,
   createRawStringFromTemplateLiteral,
-  minify
+  minify,
+  getLabel
 } from './babel-utils'
 import type {
   BabelPath as _BabelPath,
@@ -105,16 +106,19 @@ export function replaceCssWithCallExpression(
       src += addSourceMaps(path.node.quasi.loc.start, state)
     }
 
+    const label = getLabel(
+      identifierName,
+      state.opts.autoLabel,
+      state.opts.labelFormat,
+      state.file.opts.filename
+    )
+
     path.replaceWith(
       t.callExpression(
         identifier,
         new ASTObject(minify(src), path.node.quasi.expressions, t)
           .toExpressions()
-          .concat(
-            state.opts.autoLabel && identifierName
-              ? [t.stringLiteral(`label:${identifierName.trim()};`)]
-              : []
-          )
+          .concat(label ? [t.stringLiteral(`label:${label};`)] : [])
       )
     )
 
@@ -215,10 +219,17 @@ export function buildStyledCallExpression(
 
   let labelProperty
 
-  if (state.opts.autoLabel && identifierName) {
+  const label = getLabel(
+    identifierName,
+    state.opts.autoLabel,
+    state.opts.labelFormat,
+    state.file.opts.filename
+  )
+
+  if (label) {
     labelProperty = t.objectProperty(
       t.identifier('label'),
-      t.stringLiteral(identifierName.trim())
+      t.stringLiteral(label)
     )
   }
 
@@ -249,13 +260,16 @@ export function buildStyledObjectCallExpression(
   }
 
   const objectProperties = [targetProperty]
+  const label = getLabel(
+    identifierName,
+    state.opts.autoLabel,
+    state.opts.labelFormat,
+    state.file.opts.filename
+  )
 
-  if (state.opts.autoLabel && identifierName) {
+  if (label) {
     objectProperties.push(
-      t.objectProperty(
-        t.identifier('label'),
-        t.stringLiteral(identifierName.trim())
-      )
+      t.objectProperty(t.identifier('label'), t.stringLiteral(label))
     )
   }
 
@@ -481,13 +495,14 @@ export default function(babel: Babel) {
                 case state.importedNames.css:
                 case state.importedNames.keyframes: {
                   path.addComment('leading', '#__PURE__')
-                  if (state.opts.autoLabel) {
-                    const identifierName = getIdentifierName(path, t)
-                    if (identifierName) {
-                      path.node.arguments.push(
-                        t.stringLiteral(`label:${identifierName.trim()};`)
-                      )
-                    }
+                  const label = getLabel(
+                    getIdentifierName(path, t),
+                    state.opts.autoLabel,
+                    state.opts.labelFormat,
+                    state.file.opts.filename
+                  )
+                  if (label) {
+                    path.node.arguments.push(t.stringLiteral(`label:${label};`))
                   }
                 }
                 // eslint-disable-next-line no-fallthrough

@@ -90,6 +90,7 @@ _Defaults Shown_
         "hoist": false,
         "sourceMap": false,
         "autoLabel": false,
+        "labelFormat": "[local]",
         "extractStatic": false,
         "importedNames": {
           "styled": "styled",
@@ -197,10 +198,46 @@ const brownStyles = css({ color: 'brown' })
 **Out**
 
 ```javascript
-const brownStyles = /*#__PURE__*/ css({ color: 'blue' }, 'label:brownStyles;')
+const brownStyles = /*#__PURE__*/ css({ color: 'brown' }, 'label:brownStyles;')
 ```
 
 `brownStyles`'s value would be `css-1q8eu9e-brownStyles`
+
+### `labelFormat`
+
+`string`, defaults to `"[local]"`.
+
+This option only works when `autoLabel` is set to `true`. It allows you to
+define the format of the resulting `label`. The format is defined via string where
+variable parts are enclosed in square brackets `[]`.
+For example `labelFormat: "my-classname--[local]"`, where `[local]` will be replaced
+with the name of the variable the result is assigned to.
+
+Allowed values:
+* `[local]` - the name of the variable the result of the `css` or `styled` expression is assigned to.
+* `[filename]` - name of the file (without extension) where `css` or `styled` expression is located.
+
+This format only affects the label property of the expression, meaning that `css` prefix and hash will
+be prepended automatically.
+
+#### css
+
+**In**
+
+```javascript
+// BrownView.js
+// autoLabel: true
+// labelFormat: [filename]--[local]
+const brownStyles = css({ color: 'brown' })
+```
+
+**Out**
+
+```javascript
+const brownStyles = /*#__PURE__*/ css({ color: 'brown' }, 'label:BrownView--brownStyles;')
+```
+
+`BrownView--brownStyles`'s value would be `css-1q8eu9e-BrownView--brownStyles`
 
 #### styled
 
