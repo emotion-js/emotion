@@ -1,3 +1,25 @@
+## v9.0.1 (2018-02-13)
+
+#### :rocket: Enhancement
+
+* `babel-plugin-emotion`
+  * [#566](https://github.com/emotion-js/emotion/pull/566) Add option for label formatting. ([@sgal](https://github.com/sgal))
+
+#### :bug: Bug Fix
+
+* `create-emotion-styled`, `create-emotion`, `emotion`
+  * [#568](https://github.com/emotion-js/emotion/pull/568) Change component selector error throwing. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `emotion-utils`
+  * [#567](https://github.com/emotion-js/emotion/pull/567) Line clamp property needs webkit vendor prefix. ([@jschr](https://github.com/jschr))
+
+#### Committers: 5
+
+* Alex LaFroscia ([alexlafroscia](https://github.com/alexlafroscia))
+* Chris Bolin ([chrisbolin](https://github.com/chrisbolin))
+* Jordan Schroter ([jschr](https://github.com/jschr))
+* Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+* Sergey Galchenko ([sgal](https://github.com/sgal))
+
 ## v9.0.0 (2018-02-04)
 
 Emotion 9 introduces [instances](https://emotion.sh/docs/create-emotion), jest-emotion, two new SSR methods, a bunch of fixes and a brand new website!! Instances allow you to customize prefixing options, run plugins during CSS processing, set nonces for CSP and they're totally optional so if you don't need instances keep on using `emotion`. jest-emotion offers a better out of the box experience and has the potential for more features in the future. emotion-server has new methods for inlining CSS in HTML right before it's needed and adds support for streaming.
