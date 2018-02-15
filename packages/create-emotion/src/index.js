@@ -332,7 +332,7 @@ function createEmotion(
 
   if (isBrowser) {
     let chunks = document.querySelectorAll(`[data-emotion-${key}]`)
-    ;[].forEach.call(chunks, node => {
+    Array.prototype.forEach.call(chunks, node => {
       // $FlowFixMe
       sheet.tags[0].parentNode.insertBefore(node, sheet.tags[0])
       // $FlowFixMe
