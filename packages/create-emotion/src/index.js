@@ -331,8 +331,8 @@ function createEmotion(
   }
 
   if (isBrowser) {
-    let chunks = Array.from(document.querySelectorAll(`[data-emotion-${key}]`))
-    chunks.forEach(node => {
+    let chunks = document.querySelectorAll(`[data-emotion-${key}]`)
+    Array.prototype.forEach.call(chunks, node => {
       // $FlowFixMe
       sheet.tags[0].parentNode.insertBefore(node, sheet.tags[0])
       // $FlowFixMe
