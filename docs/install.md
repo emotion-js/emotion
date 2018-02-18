@@ -2,7 +2,7 @@
 title: "Install"
 ---
 
-Emotion can be used in many different ways. The easiest way to get started is to use the [`emotion` package](https://emotion.sh/docs/emotion).
+Emotion can be used in many different ways. The easiest way to get started is to use the [`emotion` package](/packages/emotion).
 
 ```bash
 yarn add emotion
@@ -14,7 +14,7 @@ or if you prefer npm
 npm install --save emotion
 ```
 
-To use it, import what you need, for example use [css](https://emotion.sh/docs/css) to create class names with styles.
+To use it, import what you need, for example use [css](/docs/css.md) to create class names with styles.
 
 ```jsx live
 import { css } from 'emotion'
@@ -45,7 +45,7 @@ render(
 )
 ```
 
-## With [`styled`](https://emotion.sh/docs/styled)
+## With [`styled`](/docs/styled.md)
 
 `styled` is a way to create React/Preact components that have styles attached to them.
 
@@ -82,7 +82,7 @@ render(
 )
 ```
 
-## With [`babel-plugin-emotion`](https://emotion.sh/docs/babel-plugin-emotion)
+## With [`babel-plugin-emotion`](/packages/babel-plugin-emotion)
 
 > Note:
 

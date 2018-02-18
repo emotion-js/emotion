@@ -244,6 +244,22 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
             case 'h5':
             case 'h6': {
               node.properties.id = slugs.slug(toString(node))
+              break;
+            }
+            case 'a': {
+              if (
+                node.properties &&
+                node.properties.href &&
+                !node.properties.href.startsWith('//') &&
+                !node.properties.href.startsWith('http')
+              ) {
+                node.properties.href = node.properties.href
+                  .replace(/\.md(#.*)?$/, (match, hash) => {
+                    return hash
+                  })
+                  .replace(/^\/packages\//, '/docs/')
+              }
+              break;
             }
           }
         })

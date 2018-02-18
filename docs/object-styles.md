@@ -25,7 +25,7 @@ render(
 
 #### With `styled`
 
-`styled` is a thin wrapper around `css` and accepts the same arguments. [More ways to use `styled` can be found here](https://emotion.sh/docs/styled).
+`styled` is a thin wrapper around `css` and accepts the same arguments. [More ways to use `styled` can be found here](/docs/styled.md).
 
 ```jsx live
 import styled from 'react-emotion'
@@ -158,7 +158,7 @@ render(
 
 ### Composition
 
-[Learn more composition in Emotion](https://emotion.sh/docs/composition).
+[Learn more composition in Emotion](/docs/composition.md).
 
 ```jsx live
 import { css } from 'emotion'
