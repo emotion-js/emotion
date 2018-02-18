@@ -244,7 +244,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
             case 'h5':
             case 'h6': {
               node.properties.id = slugs.slug(toString(node))
-              break;
+              break
             }
             case 'a': {
               if (
@@ -259,7 +259,7 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
                   })
                   .replace(/^\/packages\//, '/docs/')
               }
-              break;
+              break
             }
           }
         })
