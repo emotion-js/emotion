@@ -191,7 +191,17 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
               }
             })
             visit(markdownAST, 'link', node => {
-              node.url = node.url.replace(/^https?:\/\/emotion.sh\//, '')
+              node.url = node.url.replace(/^https?:\/\/emotion.sh/, '')
+              if (
+                !node.url.startsWith('//') &&
+                !node.url.startsWith('http')
+              ) {
+                node.url = node.url
+                  .replace(/\.md(#.*)?$/, (match, hash) => {
+                    return hash || ''
+                  })
+                  .replace(/^\/packages\//, '/docs/')
+              }
             })
           })
           .use(customElementCompiler)
@@ -244,22 +254,6 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
             case 'h5':
             case 'h6': {
               node.properties.id = slugs.slug(toString(node))
-              break
-            }
-            case 'a': {
-              if (
-                node.properties &&
-                node.properties.href &&
-                !node.properties.href.startsWith('//') &&
-                !node.properties.href.startsWith('http')
-              ) {
-                node.properties.href = node.properties.href
-                  .replace(/\.md(#.*)?$/, (match, hash) => {
-                    return hash
-                  })
-                  .replace(/^\/packages\//, '/docs/')
-              }
-              break
             }
           }
         })
