@@ -51,7 +51,7 @@ render(
 )
 ```
 
-To nest a class selector using the class generated with `css` you can interpolate it but this is **strongly** recommended against and should only be used in rare circumstances because it will break when used with [composition](https://emotion.sh/docs/composition).
+To nest a class selector using the class generated with `css` you can interpolate it but this is **strongly** recommended against and should only be used in rare circumstances because it will break when used with [composition](/docs/composition.md).
 
 ```jsx live
 import { css } from 'emotion'

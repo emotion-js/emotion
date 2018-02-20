@@ -2,7 +2,7 @@
 title: "Styled Components"
 ---
 
-`styled` is a way to create React or Preact components that have styles attached to them. It's available from [react-emotion](https://emotion.sh/docs/react-emotion) and [preact-emotion](https://emotion.sh/docs/preact-emotion). `styled` was heavily inspired by [styled-components](https://www.styled-components.com/) and [glamorous](https://glamorous.rocks/)
+`styled` is a way to create React or Preact components that have styles attached to them. It's available from [react-emotion](/packages/react-emotion) and [preact-emotion](/packages/preact-emotion). `styled` was heavily inspired by [styled-components](https://www.styled-components.com/) and [glamorous](https://glamorous.rocks/)
 
 ### Styling elements and components
 
@@ -86,7 +86,7 @@ render(
 
 ### Targeting another emotion component
 
-Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](https://emotion.sh/docs/babel-plugin-emotion).
+Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](/packages/babel-plugin-emotion.md).
 
 ```jsx live
 const Child = styled('div')`
@@ -212,4 +212,4 @@ This API was inspired by [glamorous](https://github.com/paypal/glamorous).
 
 ### withConfig is not a function error
 
-This error is caused by using the shorthand syntax for styled such as `styled.div` without the Babel plugin. To fix this, [install `babel-plugin-emotion`](https://emotion.sh/docs/babel)
+This error is caused by using the shorthand syntax for styled such as `styled.div` without the Babel plugin. To fix this, [install `babel-plugin-emotion`](/docs/babel.md)

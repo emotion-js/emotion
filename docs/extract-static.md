@@ -2,9 +2,9 @@
 title: "Extract Static"
 ---
 
-###### [requires babel plugin](docs/babel)
+###### [requires babel plugin](/docs/babel.md)
 
-The `extractStatic` option to `babel-plugin-emotion` allows you to extract styles with no interpolations into external css files. **`extractStatic` is not recommended** because it **breaks [composition](docs/composition)** and other powerful patterns from libraries like [facepaint](https://github.com/emotion-js/facepaint). It is primarily available for historical reasons. It does not work with object styles.
+The `extractStatic` option to `babel-plugin-emotion` allows you to extract styles with no interpolations into external css files. **`extractStatic` is not recommended** because it **breaks [composition](/docs/composition.md)** and other powerful patterns from libraries like [facepaint](https://github.com/emotion-js/facepaint). It is primarily available for historical reasons. It does not work with object styles.
 
 **If you want to use dynamic values you must use css variables.**
 

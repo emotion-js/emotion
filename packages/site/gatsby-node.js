@@ -191,7 +191,14 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
               }
             })
             visit(markdownAST, 'link', node => {
-              node.url = node.url.replace(/^https?:\/\/emotion.sh\//, '')
+              node.url = node.url.replace(/^https?:\/\/emotion.sh/, '')
+              if (!node.url.startsWith('//') && !node.url.startsWith('http')) {
+                node.url = node.url
+                  .replace(/\.md(#.*)?$/, (match, hash) => {
+                    return hash || ''
+                  })
+                  .replace(/^\/packages\//, '/docs/')
+              }
             })
           })
           .use(customElementCompiler)

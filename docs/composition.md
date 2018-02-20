@@ -69,7 +69,7 @@ render(
 
 > Note:
 > 
-> This is just an example to demonstrate composition, for class name merging with emotion you should use [cx](https://emotion.sh/docs/cx).
+> This is just an example to demonstrate composition, for class name merging with emotion you should use [cx](/docs/cx.md).
 
 ## Composing dynamic styles
 

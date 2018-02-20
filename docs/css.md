@@ -25,7 +25,7 @@ render(
 )
 ```
 
-`css` also accepts styles as an object, for more usage with objects, go [here](https://emotion.sh/docs/object-styles).
+`css` also accepts styles as an object, for more usage with objects, go [here](/docs/object-styles.md).
 
 ```jsx live
 import { css } from 'emotion'
@@ -48,7 +48,7 @@ render(
 
 > Note:
 
-> [The css prop requires `babel-plugin-emotion`](https://emotion.sh/docs/babel-plugin-emotion).
+> [The css prop requires `babel-plugin-emotion`](/packages/babel-plugin-emotion).
 
 
 With `babel-plugin-emotion`, the css prop can be used, it accepts styles like `css` and adds it to the className of the element it's on. This happens at compile time by converting the css prop to a css call and prepending it to the className of the element. It will only work if you use it as an actual JSX attribute, if it's in an object that's spread onto the element it won't work.
