@@ -6,8 +6,8 @@
 
 ## Installation
 
-- Running `yarn` in the module's root directory will install everything you need for development.
-- Run `lerna bootstrap` in the module's root directory
+- Run `yarn` in the module's root directory to install everything you need for development.
+- Run `yarn build` in the root directory to build the modules.
 
 ## Running Tests
 
@@ -19,6 +19,11 @@
 
 ## Building
 
-- `yarn build` will build the module for publishing to npm.
-
+- Run `yarn build` in the root directory to build the modules. (Required before publishing)
 - `yarn clean` will delete built resources.
+
+## Documentation Website Development
+
+- Run above installation steps and then
+- Run `yarn start:site` to run a development server of gatsby.
+- Run `yarn build:site` to create a build of the assets for the documentation website.
