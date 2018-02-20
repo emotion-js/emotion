@@ -7,7 +7,7 @@
 ## Installation
 
 - Run `yarn` in the module's root directory to install everything you need for development.
-- Run `yarn build` in the root directory to build the modules and handle interlinking.
+- Run `yarn build` in the root directory to build the modules.
 
 ## Running Tests
 
@@ -19,7 +19,7 @@
 
 ## Building
 
-- Run `yarn build` in the root directory to build the modules and handle interlinking.
+- Run `yarn build` in the root directory to build the modules. (Required before publishing)
 - `yarn clean` will delete built resources.
 
 ## Documentation Website Development
