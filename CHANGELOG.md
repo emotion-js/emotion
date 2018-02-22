@@ -1,3 +1,22 @@
+## v9.0.2 (2018-02-23)
+
+#### :bug: Bug Fix
+
+* `create-emotion`
+  * [#575](https://github.com/emotion-js/emotion/pull/575) Remove Array.from() usage to support IE11. ([@asistapl](https://github.com/asistapl))
+
+#### :memo: Documentation
+
+* Other
+  * [#577](https://github.com/emotion-js/emotion/pull/577) Add Website Development to CONTRIBUTING.md. ([@azizhk](https://github.com/azizhk))
+* `emotion`, `site`
+  * [#576](https://github.com/emotion-js/emotion/pull/576) Fix links on both github and website. ([@azizhk](https://github.com/azizhk))
+
+#### Committers: 2
+
+* Asista ([asistapl](https://github.com/asistapl))
+* Aziz Khambati ([azizhk](https://github.com/azizhk))
+
 ## v9.0.1 (2018-02-13)
 
 #### :rocket: Enhancement
