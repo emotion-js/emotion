@@ -8,7 +8,7 @@ Themes are provided by the library [`emotion-theming`](https://github.com/emotio
 npm install -S emotion-theming
 ```
 
-Add `ThemeProvider` to the top level of your app and access the theme with `props.theme` in a styled component. The api is laid out in detail [in the documentation](/packages/emotion-theming.md).
+Add `ThemeProvider` to the top level of your app and access the theme with `props.theme` in a styled component. The api is laid out in detail [in the documentation](https://github.com/emotion-js/emotion/tree/master/packages/emotion-theming).
 
 ```jsx live
 import styled from 'react-emotion'
