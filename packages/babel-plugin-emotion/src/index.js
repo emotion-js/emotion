@@ -453,33 +453,32 @@ export default function(babel: Babel) {
         exit(path: BabelPath, state: EmotionBabelPluginPass) {
           if (state.staticRules.length !== 0) {
             const toWrite = state.staticRules.join('\n').trim()
-            let filenameArr = path.hub.file.opts.filename
+            let cssFilename = path.hub.file.opts.sourceFileName
 
             if (state.outputDir) {
-              filenameArr = nodePath.join(
-                state.outputDir,
-                path.hub.file.opts.sourceFileName
-              )
+              cssFilename = nodePath.join(state.outputDir, cssFilename)
             }
 
-            filenameArr = filenameArr.split('.')
+            const cssFilenameArr = cssFilename.split('.')
+            // remove the extension
+            cssFilenameArr.pop()
+            // add emotion.css as an extension
+            cssFilenameArr.push('emotion.css')
 
-            filenameArr.pop()
-            filenameArr.push('emotion', 'css')
-
-            const cssFilename = filenameArr.join('.')
+            // use absolute path so resolving can't go wrong
+            cssFilename = nodePath.resolve(cssFilenameArr.join('.'))
             const baseCssName = nodePath.basename(cssFilename)
-            const dirPath = cssFilename.replace(baseCssName, '')
 
             const exists = fs.existsSync(cssFilename)
-            addSideEffect(path, './' + nodePath.basename(cssFilename))
+            addSideEffect(path, cssFilename)
             if (
               exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
             ) {
               if (!exists) {
                 if (state.outputDir) {
-                  mkdirp.sync(dirPath)
+                  mkdirp.sync(nodePath.dirname(cssFilename))
                 }
+
                 touchSync(cssFilename)
               }
               fs.writeFileSync(cssFilename, toWrite)
