@@ -467,7 +467,6 @@ export default function(babel: Babel) {
 
             // use absolute path so resolving can't go wrong
             cssFilename = nodePath.resolve(cssFilenameArr.join('.'))
-            const baseCssName = nodePath.basename(cssFilename)
 
             const exists = fs.existsSync(cssFilename)
             addSideEffect(path, cssFilename)
