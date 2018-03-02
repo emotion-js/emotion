@@ -12,11 +12,11 @@ import {
   getLabel
 } from './babel-utils'
 import type {
+  Node,
   BabelPath as _BabelPath,
   Identifier,
   BabelPluginPass,
   Types,
-  StringLiteral,
   Babel
 } from 'babel-flow-types'
 import { hashString, Stylis, memoize } from 'emotion-utils'
@@ -181,11 +181,13 @@ function buildTargetObjectProperty(path, state, t) {
 }
 export function buildStyledCallExpression(
   identifier: Identifier,
-  tag: StringLiteral,
+  args: Node[],
   path: BabelPath,
   state: EmotionBabelPluginPass,
   t: Types
 ) {
+  // TODO: should we preserve also ...rest?
+  const [tag, options] = args
   const identifierName = getIdentifierName(path, t)
 
   const targetProperty = buildTargetObjectProperty(path, state, t)
@@ -233,11 +235,22 @@ export function buildStyledCallExpression(
     )
   }
 
+  let existingProperties = []
+  if (options && !t.isObjectExpression(options)) {
+    console.warn(
+      "Second argument to a styled call is not an object, it's going to be removed."
+    )
+  } else if (options) {
+    existingProperties = options.properties
+  }
+
+  const finalOptions = t.objectExpression(
+    [...existingProperties, labelProperty, targetProperty].filter(Boolean)
+  )
+
+  console.log(tag)
   return t.callExpression(
-    t.callExpression(identifier, [
-      tag,
-      t.objectExpression([labelProperty, targetProperty].filter(Boolean))
-    ]),
+    t.callExpression(identifier, [tag, finalOptions]),
     new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
@@ -577,7 +590,7 @@ export default function(babel: Babel) {
           path.replaceWith(
             buildStyledCallExpression(
               path.node.tag.object,
-              t.stringLiteral(path.node.tag.property.name),
+              [t.stringLiteral(path.node.tag.property.name)],
               path,
               state,
               t
@@ -591,7 +604,7 @@ export default function(babel: Babel) {
           path.replaceWith(
             buildStyledCallExpression(
               path.node.tag.callee,
-              path.node.tag.arguments[0],
+              path.node.tag.arguments,
               path,
               state,
               t

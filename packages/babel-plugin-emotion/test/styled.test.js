@@ -301,6 +301,17 @@ const cases = {
   'hash generation no file system': {
     code: 'styled.h1`color:blue;`',
     filename: ''
+  },
+
+  'existing options': {
+    code: `
+      const Button = styled('button', {
+        existing: true,
+      })\`
+        color: blue;
+      \`
+    `,
+    opts: { autoLabel: true }
   }
 }
 
