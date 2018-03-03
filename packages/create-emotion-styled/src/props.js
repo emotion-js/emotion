@@ -57,6 +57,7 @@ const props = {
   download: true,
   draggable: true,
   encType: true,
+  for: true,
   form: true,
   formAction: true,
   formEncType: true,
