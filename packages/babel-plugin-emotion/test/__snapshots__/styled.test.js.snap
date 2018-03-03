@@ -103,7 +103,7 @@ const Button = styled('button', {
   existing: true,
   e: 'css-1aj1g6z',
   target: 'e8nbyc50'
-})();
+}, otherArg, 'test', { anotherArg: 1 })();
 
 
 emotion.emotion.css
@@ -116,7 +116,7 @@ const Button = /*#__PURE__*/styled('button', {
   existing: true,
   target: 'e8nbyc50',
   label: 'Button'
-})({
+}, otherArg, 'test', { anotherArg: 1 })({
   color: 'blue'
 });"
 `;
@@ -455,6 +455,8 @@ const Button = styled('button', {
   existing: true,
   e: \\"css-1aj1g6z\\",
   target: \\"e8nbyc50\\"
+}, otherArg, 'test', {
+  anotherArg: 1
 })();
 
 
@@ -469,6 +471,8 @@ styled('button', {
   existing: true,
   target: \\"e8nbyc50\\",
   label: \\"Button\\"
+}, otherArg, 'test', {
+  anotherArg: 1
 })({
   color: 'blue'
 });"
@@ -811,7 +815,7 @@ const Button = /*#__PURE__*/styled('button', {
   existing: true,
   label: 'Button',
   target: 'e8nbyc50'
-})('color:blue;');"
+}, otherArg, 'test', { anotherArg: 1 })('color:blue;');"
 `;
 
 exports[`styled inline babel 6 existing options object 1`] = `
@@ -820,7 +824,7 @@ const Button = /*#__PURE__*/styled('button', {
   existing: true,
   target: 'e8nbyc50',
   label: 'Button'
-})({
+}, otherArg, 'test', { anotherArg: 1 })({
   color: 'blue'
 });"
 `;
@@ -1100,6 +1104,8 @@ styled('button', {
   existing: true,
   label: \\"Button\\",
   target: \\"e8nbyc50\\"
+}, otherArg, 'test', {
+  anotherArg: 1
 })(\\"color:blue;\\");"
 `;
 
@@ -1110,6 +1116,8 @@ styled('button', {
   existing: true,
   target: \\"e8nbyc50\\",
   label: \\"Button\\"
+}, otherArg, 'test', {
+  anotherArg: 1
 })({
   color: 'blue'
 });"

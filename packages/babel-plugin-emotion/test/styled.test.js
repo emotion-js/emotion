@@ -307,7 +307,7 @@ const cases = {
     code: `
       const Button = styled('button', {
         existing: true,
-      })\`
+      }, otherArg, 'test', { anotherArg: 1 })\`
         color: blue;
       \`
     `,
@@ -318,7 +318,7 @@ const cases = {
     code: `
       const Button = styled('button', {
         existing: true,
-      })({
+      }, otherArg, 'test', { anotherArg: 1 })({
         color: 'blue'
       })
     `,
