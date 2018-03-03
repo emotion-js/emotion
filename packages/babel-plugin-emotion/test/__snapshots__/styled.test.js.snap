@@ -100,6 +100,7 @@ exports[`styled extract babel 6 existing options 1`] = `
 "require('./emotion.emotion.css');
 
 const Button = styled('button', {
+  existing: true,
   e: 'css-1aj1g6z',
   target: 'e8nbyc50'
 })();
@@ -440,6 +441,7 @@ exports[`styled extract babel 7 existing options 1`] = `
 "require(\\"./emotion.emotion.css\\");
 
 const Button = styled('button', {
+  existing: true,
   e: \\"css-1aj1g6z\\",
   target: \\"e8nbyc50\\"
 })();

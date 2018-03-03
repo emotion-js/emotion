@@ -179,6 +179,24 @@ function buildTargetObjectProperty(path, state, t) {
     t.stringLiteral(stableClassName)
   )
 }
+
+const buildFinalOptions = (t, options, ...newProps) => {
+  let existingProperties = []
+
+  if (options && !t.isObjectExpression(options)) {
+    console.warn(
+      "Second argument to a styled call is not an object, it's going to be removed."
+    )
+  } else if (options) {
+    // $FlowFixMe
+    existingProperties = options.properties
+  }
+
+  return t.objectExpression(
+    [...existingProperties, ...newProps].filter(Boolean)
+  )
+}
+
 export function buildStyledCallExpression(
   identifier: Identifier,
   args: Node[],
@@ -186,8 +204,11 @@ export function buildStyledCallExpression(
   state: EmotionBabelPluginPass,
   t: Types
 ) {
-  // TODO: should we preserve also ...rest?
-  const [tag, options] = args
+  // unpacking "manually" to prevent array out of bounds access (deopt)
+  const tag = args[0]
+  const options = args.length >= 2 ? args[1] : null
+  const restArgs = args.slice(2)
+
   const identifierName = getIdentifierName(path, t)
 
   const targetProperty = buildTargetObjectProperty(path, state, t)
@@ -199,14 +220,16 @@ export function buildStyledCallExpression(
 
     state.insertStaticRules([staticCSSRules])
 
+    const finalOptions = buildFinalOptions(
+      t,
+      options,
+      t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName)),
+      targetProperty
+    )
+
     return t.callExpression(
-      t.callExpression(identifier, [
-        tag,
-        t.objectExpression([
-          t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName)),
-          targetProperty
-        ])
-      ]),
+      // $FlowFixMe
+      t.callExpression(identifier, [tag, finalOptions, ...restArgs]),
       []
     )
   }
@@ -235,22 +258,16 @@ export function buildStyledCallExpression(
     )
   }
 
-  let existingProperties = []
-  if (options && !t.isObjectExpression(options)) {
-    console.warn(
-      "Second argument to a styled call is not an object, it's going to be removed."
-    )
-  } else if (options) {
-    existingProperties = options.properties
-  }
-
-  const finalOptions = t.objectExpression(
-    [...existingProperties, labelProperty, targetProperty].filter(Boolean)
+  const finalOptions = buildFinalOptions(
+    t,
+    options,
+    labelProperty,
+    targetProperty
   )
 
-  console.log(tag)
   return t.callExpression(
-    t.callExpression(identifier, [tag, finalOptions]),
+    // $FlowFixMe
+    t.callExpression(identifier, [tag, finalOptions, ...restArgs]),
     new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
