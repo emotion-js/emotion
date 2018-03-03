@@ -192,9 +192,10 @@ const buildFinalOptions = (t, options, ...newProps) => {
     existingProperties = options.properties
   }
 
-  return t.objectExpression(
-    [...existingProperties, ...newProps].filter(Boolean)
-  )
+  return t.objectExpression([
+    ...existingProperties,
+    ...newProps.filter(Boolean)
+  ])
 }
 
 export function buildStyledCallExpression(
@@ -280,16 +281,28 @@ export function buildStyledObjectCallExpression(
 ) {
   const targetProperty = buildTargetObjectProperty(path, state, t)
   const identifierName = getIdentifierName(path, t)
+
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
+
+  let styledOptions = null
+  let restStyledArgs = []
+  if (t.isCallExpression(path.node.callee)) {
+    const styledArgs = path.node.callee.arguments
+
+    if (styledArgs.length >= 2) {
+      styledOptions = styledArgs[1]
+    }
+
+    restStyledArgs = styledArgs.slice(2)
+  }
 
   let args = path.node.arguments
   if (state.opts.sourceMap === true && path.node.loc !== undefined) {
     args.push(t.stringLiteral(addSourceMaps(path.node.loc.start, state)))
   }
 
-  const objectProperties = [targetProperty]
   const label = getLabel(
     identifierName,
     state.opts.autoLabel,
@@ -297,16 +310,18 @@ export function buildStyledObjectCallExpression(
     state.file.opts.filename
   )
 
-  if (label) {
-    objectProperties.push(
-      t.objectProperty(t.identifier('label'), t.stringLiteral(label))
-    )
-  }
+  const labelProperty = label
+    ? t.objectProperty(t.identifier('label'), t.stringLiteral(label))
+    : null
 
   path.addComment('leading', '#__PURE__')
 
   return t.callExpression(
-    t.callExpression(identifier, [tag, t.objectExpression(objectProperties)]),
+    t.callExpression(identifier, [
+      tag,
+      buildFinalOptions(t, styledOptions, targetProperty, labelProperty),
+      ...restStyledArgs
+    ]),
     args
   )
 }

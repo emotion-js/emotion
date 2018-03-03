@@ -312,6 +312,18 @@ const cases = {
       \`
     `,
     opts: { autoLabel: true }
+  },
+
+  'existing options object': {
+    code: `
+      const Button = styled('button', {
+        existing: true,
+      })({
+        color: 'blue'
+      })
+    `,
+    extract: false,
+    opts: { autoLabel: true }
   }
 }
 
