@@ -27,7 +27,7 @@ function macro(options) {
           path.replaceWith(
             buildStyledCallExpression(
               runtimeNode,
-              t.stringLiteral(path.node.tag.property.name),
+              [t.stringLiteral(path.node.tag.property.name)],
               path,
               state,
               t
@@ -37,7 +37,7 @@ function macro(options) {
           path.replaceWith(
             buildStyledCallExpression(
               runtimeNode,
-              path.node.tag.arguments[0],
+              path.node.tag.arguments,
               path,
               state,
               t
