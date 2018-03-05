@@ -158,7 +158,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
             ? // $FlowFixMe
               omitAssign(testAlwaysTrue, {}, options, nextOptions)
             : options
-        )(...args)
+        )(...styles)
       }
 
       return Styled
