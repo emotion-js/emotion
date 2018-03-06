@@ -97,7 +97,7 @@ const createMacroTester = transform => opts => {
     transform(opts.code, {
       plugins: [
         [
-          require('babel-macros'),
+          require('babel-plugin-macros'),
           {
             ...opts.opts
           }

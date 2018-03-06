@@ -7,7 +7,16 @@ describe('css prop react', () => {
   test('basic', () => {
     const fontSize = '1px'
     const tree = renderer
-      .create(<p css={`color: red;font-size:${fontSize}`}>hello world</p>)
+      .create(
+        <p
+          css={`
+            color: red;
+            font-size: ${fontSize};
+          `}
+        >
+          hello world
+        </p>
+      )
       .toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -62,35 +71,43 @@ describe('css prop react', () => {
         <div
           className="css__legacy-stuff"
           css={`
-              ${bold}; ${flexCenter};
-             `}
+            ${bold};
+            ${flexCenter};
+          `}
         >
           <h1
             css={`
-                ${props.error ? big : small};
-                color: red
-              `}
+              ${props.error ? big : small};
+              color: red;
+            `}
           >
             BOOM
           </h1>
-          <p className="test_class1" css={`color: blue;`}>
+          <p
+            className="test_class1"
+            css={`
+              color: blue;
+            `}
+          >
             Hello
           </p>
           <p
             className="test_class1 test___class45"
-            css={`display: inline-flex`}
+            css={`
+              display: inline-flex;
+            `}
           >
             World
           </p>
           <p
             css={`
-                color: red;
-                border-radius: ${props.radius};
-                &:hover {
-                  font-weight: bold;
-                  color: ${props.online ? 'green' : 'gray'};
-                }
-              `}
+              color: red;
+              border-radius: ${props.radius};
+              &:hover {
+                font-weight: bold;
+                color: ${props.online ? 'green' : 'gray'};
+              }
+            `}
           >
             hello world
           </p>
@@ -105,7 +122,14 @@ describe('css prop react', () => {
       display: flex;
     `
     const tree = renderer
-      .create(<div className={flex} css={`display: block;`} />)
+      .create(
+        <div
+          className={flex}
+          css={`
+            display: block;
+          `}
+        />
+      )
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -113,7 +137,14 @@ describe('css prop react', () => {
   test('merging regular classes', () => {
     const someClass = 'some-class'
     const tree = renderer
-      .create(<div className={someClass} css={`display: block;`} />)
+      .create(
+        <div
+          className={someClass}
+          css={`
+            display: block;
+          `}
+        />
+      )
       .toJSON()
     expect(tree).toMatchSnapshot()
   })

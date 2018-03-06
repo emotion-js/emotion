@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import Sidebar from 'react-sidebar'
+import Sidebar from './react-sidebar-fork'
 
 let mql: MediaQueryList | void
 if (typeof window !== 'undefined') {

@@ -35,7 +35,9 @@ export const Preview = ({
     <ErrorBoundary onError={onError}>
       <Links>
         <Link
-          css={`font-weight: 800;`}
+          css={`
+            font-weight: 800;
+          `}
           className={textCenter}
           to="/docs/install"
           primary

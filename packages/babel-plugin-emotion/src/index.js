@@ -8,14 +8,15 @@ import {
   getIdentifierName,
   getName,
   createRawStringFromTemplateLiteral,
-  minify
+  minify,
+  getLabel
 } from './babel-utils'
 import type {
+  Node,
   BabelPath as _BabelPath,
   Identifier,
   BabelPluginPass,
   Types,
-  StringLiteral,
   Babel
 } from 'babel-flow-types'
 import { hashString, Stylis, memoize } from 'emotion-utils'
@@ -105,16 +106,19 @@ export function replaceCssWithCallExpression(
       src += addSourceMaps(path.node.quasi.loc.start, state)
     }
 
+    const label = getLabel(
+      identifierName,
+      state.opts.autoLabel,
+      state.opts.labelFormat,
+      state.file.opts.filename
+    )
+
     path.replaceWith(
       t.callExpression(
         identifier,
         new ASTObject(minify(src), path.node.quasi.expressions, t)
           .toExpressions()
-          .concat(
-            state.opts.autoLabel && identifierName
-              ? [t.stringLiteral(`label:${identifierName.trim()};`)]
-              : []
-          )
+          .concat(label ? [t.stringLiteral(`label:${label};`)] : [])
       )
     )
 
@@ -175,13 +179,37 @@ function buildTargetObjectProperty(path, state, t) {
     t.stringLiteral(stableClassName)
   )
 }
+
+const buildFinalOptions = (t, options, ...newProps) => {
+  let existingProperties = []
+
+  if (options && !t.isObjectExpression(options)) {
+    console.warn(
+      "Second argument to a styled call is not an object, it's going to be removed."
+    )
+  } else if (options) {
+    // $FlowFixMe
+    existingProperties = options.properties
+  }
+
+  return t.objectExpression([
+    ...existingProperties,
+    ...newProps.filter(Boolean)
+  ])
+}
+
 export function buildStyledCallExpression(
   identifier: Identifier,
-  tag: StringLiteral,
+  args: Node[],
   path: BabelPath,
   state: EmotionBabelPluginPass,
   t: Types
 ) {
+  // unpacking "manually" to prevent array out of bounds access (deopt)
+  const tag = args[0]
+  const options = args.length >= 2 ? args[1] : null
+  const restArgs = args.slice(2)
+
   const identifierName = getIdentifierName(path, t)
 
   const targetProperty = buildTargetObjectProperty(path, state, t)
@@ -193,14 +221,16 @@ export function buildStyledCallExpression(
 
     state.insertStaticRules([staticCSSRules])
 
+    const finalOptions = buildFinalOptions(
+      t,
+      options,
+      t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName)),
+      targetProperty
+    )
+
     return t.callExpression(
-      t.callExpression(identifier, [
-        tag,
-        t.objectExpression([
-          t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName)),
-          targetProperty
-        ])
-      ]),
+      // $FlowFixMe
+      t.callExpression(identifier, [tag, finalOptions, ...restArgs]),
       []
     )
   }
@@ -215,18 +245,30 @@ export function buildStyledCallExpression(
 
   let labelProperty
 
-  if (state.opts.autoLabel && identifierName) {
+  const label = getLabel(
+    identifierName,
+    state.opts.autoLabel,
+    state.opts.labelFormat,
+    state.file.opts.filename
+  )
+
+  if (label) {
     labelProperty = t.objectProperty(
       t.identifier('label'),
-      t.stringLiteral(identifierName.trim())
+      t.stringLiteral(label)
     )
   }
 
+  const finalOptions = buildFinalOptions(
+    t,
+    options,
+    labelProperty,
+    targetProperty
+  )
+
   return t.callExpression(
-    t.callExpression(identifier, [
-      tag,
-      t.objectExpression([labelProperty, targetProperty].filter(Boolean))
-    ]),
+    // $FlowFixMe
+    t.callExpression(identifier, [tag, finalOptions, ...restArgs]),
     new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
   )
 }
@@ -239,30 +281,47 @@ export function buildStyledObjectCallExpression(
 ) {
   const targetProperty = buildTargetObjectProperty(path, state, t)
   const identifierName = getIdentifierName(path, t)
+
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
+
+  let styledOptions = null
+  let restStyledArgs = []
+  if (t.isCallExpression(path.node.callee)) {
+    const styledArgs = path.node.callee.arguments
+
+    if (styledArgs.length >= 2) {
+      styledOptions = styledArgs[1]
+    }
+
+    restStyledArgs = styledArgs.slice(2)
+  }
 
   let args = path.node.arguments
   if (state.opts.sourceMap === true && path.node.loc !== undefined) {
     args.push(t.stringLiteral(addSourceMaps(path.node.loc.start, state)))
   }
 
-  const objectProperties = [targetProperty]
+  const label = getLabel(
+    identifierName,
+    state.opts.autoLabel,
+    state.opts.labelFormat,
+    state.file.opts.filename
+  )
 
-  if (state.opts.autoLabel && identifierName) {
-    objectProperties.push(
-      t.objectProperty(
-        t.identifier('label'),
-        t.stringLiteral(identifierName.trim())
-      )
-    )
-  }
+  const labelProperty = label
+    ? t.objectProperty(t.identifier('label'), t.stringLiteral(label))
+    : null
 
   path.addComment('leading', '#__PURE__')
 
   return t.callExpression(
-    t.callExpression(identifier, [tag, t.objectExpression(objectProperties)]),
+    t.callExpression(identifier, [
+      tag,
+      buildFinalOptions(t, styledOptions, targetProperty, labelProperty),
+      ...restStyledArgs
+    ]),
     args
   )
 }
@@ -481,13 +540,14 @@ export default function(babel: Babel) {
                 case state.importedNames.css:
                 case state.importedNames.keyframes: {
                   path.addComment('leading', '#__PURE__')
-                  if (state.opts.autoLabel) {
-                    const identifierName = getIdentifierName(path, t)
-                    if (identifierName) {
-                      path.node.arguments.push(
-                        t.stringLiteral(`label:${identifierName.trim()};`)
-                      )
-                    }
+                  const label = getLabel(
+                    getIdentifierName(path, t),
+                    state.opts.autoLabel,
+                    state.opts.labelFormat,
+                    state.file.opts.filename
+                  )
+                  if (label) {
+                    path.node.arguments.push(t.stringLiteral(`label:${label};`))
                   }
                 }
                 // eslint-disable-next-line no-fallthrough
@@ -562,7 +622,7 @@ export default function(babel: Babel) {
           path.replaceWith(
             buildStyledCallExpression(
               path.node.tag.object,
-              t.stringLiteral(path.node.tag.property.name),
+              [t.stringLiteral(path.node.tag.property.name)],
               path,
               state,
               t
@@ -576,7 +636,7 @@ export default function(babel: Babel) {
           path.replaceWith(
             buildStyledCallExpression(
               path.node.tag.callee,
-              path.node.tag.arguments[0],
+              path.node.tag.arguments,
               path,
               state,
               t

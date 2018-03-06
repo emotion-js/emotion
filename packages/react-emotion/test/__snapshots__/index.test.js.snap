@@ -796,8 +796,9 @@ exports[`styled with higher order component that hoists statics 1`] = `
 />
 `;
 
-exports[`styled withComponent does not carry styles from flattened component 1`] = `
+exports[`styled withComponent carries styles from flattened components 1`] = `
 .emotion-0 {
+  color: green;
   color: hotpink;
 }
 

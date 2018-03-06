@@ -132,7 +132,16 @@ function createEmotion(
         return ''
       case 'function':
         if (interpolation[STYLES_KEY] !== undefined) {
-          return interpolation.toString()
+          let selector = interpolation.toString()
+          if (
+            selector === 'NO_COMPONENT_SELECTOR' &&
+            process.env.NODE_ENV !== 'production'
+          ) {
+            throw new Error(
+              'Component selectors can only be used in conjunction with babel-plugin-emotion.'
+            )
+          }
+          return selector
         }
         return handleInterpolation.call(
           this,
@@ -179,6 +188,15 @@ function createEmotion(
             )};`
           }
         } else {
+          if (
+            key === 'NO_COMPONENT_SELECTOR' &&
+            process.env.NODE_ENV !== 'production'
+          ) {
+            throw new Error(
+              'Component selectors can only be used in conjunction with babel-plugin-emotion.'
+            )
+          }
+
           string += `${key}{${handleInterpolation.call(this, obj[key], false)}}`
         }
       }, this)
@@ -312,9 +330,9 @@ function createEmotion(
     caches.registered = {}
   }
 
-  if (typeof window !== 'undefined') {
-    let chunks = Array.from(document.querySelectorAll(`[data-emotion-${key}]`))
-    chunks.forEach(node => {
+  if (isBrowser) {
+    let chunks = document.querySelectorAll(`[data-emotion-${key}]`)
+    Array.prototype.forEach.call(chunks, node => {
       // $FlowFixMe
       sheet.tags[0].parentNode.insertBefore(node, sheet.tags[0])
       // $FlowFixMe

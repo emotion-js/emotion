@@ -9,16 +9,16 @@ let mount;
  * Inference HTML Tag Props
  */
 Component = styled.div({ color: 'red' });
-mount = <Component onClick={event => event} />;
+mount = <Component onClick={(event: any) => event} />;
 
 Component = styled('div')({ color: 'red' });
-mount = <Component onClick={event => event} />;
+mount = <Component onClick={(event: any) => event} />;
 
 Component = styled.div`color: red;`;
-mount = <Component onClick={(e) => e} />;
+mount = <Component onClick={(event: any) => event} />;
 
 Component = styled('div')`color: red;`;
-mount = <Component onClick={(e) => e} />;
+mount = <Component onClick={(event: any) => event} />;
 
 Component = styled.a({ color: 'red' });
 mount = <Component href="#" />;
@@ -111,7 +111,7 @@ const _styled = styled as ThemedReactEmotionInterface<Theme>;
 Component = _styled.div`
   color: ${props => props.theme.color.primary}
 `;
-mount = <Component onClick={event => event} />;
+mount = <Component onClick={(event: any) => event} />;
 
 /*
  * withComponent

@@ -117,4 +117,13 @@ describe('cx', () => {
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('no extra whitespace', () => {
+    expect(cx('blockquote', '', 'news')).toMatchSnapshot()
+    expect(cx('', 'group', '', 'news', '')).toMatchSnapshot()
+    expect(cx('author', '')).toMatchSnapshot()
+    expect(cx({ someClass: true, '': true })).toMatchSnapshot()
+    expect(
+      cx({ someClass: true, '': true, anotherClass: true })
+    ).toMatchSnapshot()
+  })
 })

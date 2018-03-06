@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import styled, { css, keyframes } from 'react-emotion'
+import styled, { css, keyframes, cx } from 'react-emotion'
 import Link from 'gatsby-link'
 import Box from './Box'
 import { constants, colors, p } from '../utils/style'
@@ -10,7 +10,7 @@ import MenuIcon from 'react-icons/lib/md/menu'
 import { getDocMap, docList } from '../utils/misc'
 
 import type { Match } from '../utils/types'
-import { Route } from 'react-router'
+import { Route, Switch } from 'react-router'
 
 const ToggleSidebarButton = styled.button`
   position: fixed;
@@ -90,6 +90,46 @@ const flatDocList = docList.reduce(
   []
 )
 
+const docHeadingMap = docList.reduce((obj, current) => {
+  current.items.forEach(item => {
+    obj[item] = current.title
+  })
+  return obj
+}, {})
+
+const Sidebar = (props: {
+  item: { title: string, items: Array<string> },
+  setSidebarOpenState: boolean => void,
+  docMap: *,
+  docName?: string
+}) => {
+  const { item, setSidebarOpenState, docMap, docName } = props
+  return (
+    <Box onClick={() => setSidebarOpenState(false)}>
+      <h3
+        className={
+          docName !== undefined &&
+          cx({
+            'docSearch-lvl0': docHeadingMap[docName] === item.title
+          })
+        }
+      >
+        {item.title}
+      </h3>
+      {item.items.map(slug => (
+        <Link
+          key={slug}
+          className={linkStyles}
+          activeClassName={cx(activeStyles, 'docSearch-lvl1')}
+          to={`/docs/${slug}`}
+        >
+          {docMap[slug] || slug}
+        </Link>
+      ))}
+    </Box>
+  )
+}
+
 export default (props: Props) => {
   const docMap = getDocMap(props.sidebarNodes)
   return (
@@ -100,7 +140,8 @@ export default (props: Props) => {
             <ToggleSidebarButton onClick={() => setSidebarOpenState(true)}>
               <MenuIcon color="white" size={32} />
             </ToggleSidebarButton>
-          )}
+          )
+        }
         renderContent={({ docked, setSidebarOpenState }) => (
           <Box p={[3, 4]}>
             {props.children}
@@ -182,21 +223,38 @@ export default (props: Props) => {
         renderSidebar={({ setSidebarOpenState }) =>
           docList.map(item => {
             return (
-              <Box key={item.title} onClick={() => setSidebarOpenState(false)}>
-                <h3>{item.title}</h3>
-                {item.items.map(slug => (
-                  <Link
-                    key={slug}
-                    className={linkStyles}
-                    activeClassName={activeStyles}
-                    to={`/docs/${slug}`}
-                  >
-                    {docMap[slug] || slug}
-                  </Link>
-                ))}
-              </Box>
+              <Switch key={item.title}>
+                <Route
+                  path="/docs/:docName"
+                  render={({ match }) => {
+                    const { docName } = match.params
+                    return (
+                      <Sidebar
+                        item={item}
+                        setSidebarOpenState={setSidebarOpenState}
+                        docMap={docMap}
+                        docName={docName}
+                      />
+                    )
+                  }}
+                />
+                <Route
+                  exact
+                  path="/docs"
+                  render={() => {
+                    return (
+                      <Sidebar
+                        item={item}
+                        setSidebarOpenState={setSidebarOpenState}
+                        docMap={docMap}
+                      />
+                    )
+                  }}
+                />
+              </Switch>
             )
-          })}
+          })
+        }
       />
     </Box>
   )

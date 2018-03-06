@@ -1,6 +1,3 @@
-**Emotion 9 is currently in beta, there may be breaking changes between versions, [for docs on Emotion 8 please go here](https://github.com/emotion-js/emotion/tree/v8.0.12/docs)**
-
-
 <p align="center" style="color: #343a40">
   <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" height="150" width="150">
   <h1 align="center">emotion</h1>
@@ -22,16 +19,18 @@ Emotion is a performant and flexible CSS-in-JS library. Building on many other C
 
 Frequently viewed docs:
 
-- [Introduction](https://emotion.sh/docs/introduction)
-- [Install](https://emotion.sh/docs/install)
-- [CSS](https://emotion.sh/docs/css)
-- [Styled Components](https://emotion.sh/docs/styled)
-- [Composition](https://emotion.sh/docs/composition)
-- [Nested Selectors](https://emotion.sh/docs/nested)
-- [Media Queries](https://emotion.sh/docs/media-queries)
+* [Introduction](https://emotion.sh/docs/introduction)
+* [Install](https://emotion.sh/docs/install)
+* [CSS](https://emotion.sh/docs/css)
+* [Styled Components](https://emotion.sh/docs/styled)
+* [Composition](https://emotion.sh/docs/composition)
+* [Nested Selectors](https://emotion.sh/docs/nested)
+* [Media Queries](https://emotion.sh/docs/media-queries)
 
 ### Quick Start
+
 Get up and running with a single import.
+
 ```bash
 npm install --save emotion
 ```
@@ -47,9 +46,11 @@ app.classList.add(myStyle)
 ```
 
 ### React with [Optional Babel Plugin](docs/babel.md)
+
 ```bash
 npm install --save emotion react-emotion babel-plugin-emotion
 ```
+
 _Note: use `preact-emotion` in place of `react-emotion` if using [Preact](https://github.com/developit/preact)_
 
 ```javascript
@@ -62,9 +63,9 @@ const myStyle = css`
   color: rebeccapurple;
 `
 const app = () => (
-<Container>
-  <p className={myStyle}>Hello World</p>
-</Container>
+  <Container>
+    <p className={myStyle}>Hello World</p>
+  </Container>
 )
 ```
 
@@ -72,24 +73,27 @@ const app = () => (
 
 ### Examples
 
-  - [emotion website](packages/site) [[Demo Here](https://emotion.sh)]
-  - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
-  - **open a PR and add yours!**
+* [emotion website](packages/site) [[Demo Here](https://emotion.sh)]
+* [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
+* [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
+* **open a PR and add yours!**
 
 ### Ecosystem
 
-  - [facepaint](https://github.com/emotion-js/facepaint)
-  - [emotion-vue](https://github.com/egoist/emotion-vue)
-  - [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
-  - [ShevyJS](https://github.com/kyleshevlin/shevyjs)
-  - [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
+* [facepaint](https://github.com/emotion-js/facepaint)
+* [emotion-vue](https://github.com/egoist/emotion-vue)
+* [ember-emotion](https://github.com/alexlafroscia/ember-emotion)
+* [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
+* [ShevyJS](https://github.com/kyleshevlin/shevyjs)
+* [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
 
 ### In the Wild
 
-  - [healthline.com](https://www.healthline.com/health/body-aches)
-  - [vault.crucible.gg](http://vault.crucible.gg/)
-  - [saldotuc.com](https://saldotuc.com)
-  - [gatsbythemes.com](https://gatsbythemes.com/)
-  - [blazity.com](https://blazity.com/)
-
-
+* [healthline.com](https://www.healthline.com/health/body-aches)
+* [vault.crucible.gg](http://vault.crucible.gg/)
+* [saldotuc.com](https://saldotuc.com)
+* [gatsbythemes.com](https://gatsbythemes.com/)
+* [blazity.com](https://blazity.com/)
+* [postmates.com](https://postmates.com/)
+* [thedisconnect.co](https://thedisconnect.co/one)
+* [zefenify.com](https://zefenify.com/about.html)

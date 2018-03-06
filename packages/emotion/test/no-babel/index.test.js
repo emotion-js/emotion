@@ -210,9 +210,25 @@ describe('css', () => {
 
     expect(tree).toMatchSnapshot()
   })
+  test('styled does not throw on toString without target', () => {
+    expect(() => {
+      styled('div')().toString()
+    }).not.toThrow()
+  })
   test('styled throws a nice error when using the styled shorthand without babel-plugin-emotion', () => {
     expect(() => {
       styled.div``
     }).toThrowErrorMatchingSnapshot()
+  })
+  test('styled does not throw an error when certain properties are accessed', () => {
+    expect(() => {
+      /* eslint-disable no-unused-expressions */
+      // eslint-disable-next-line no-proto
+      styled.__proto__
+      styled.prototype
+      styled.name
+      styled.displayName
+      /* eslint-enable no-unused-expressions */
+    }).not.toThrow()
   })
 })
