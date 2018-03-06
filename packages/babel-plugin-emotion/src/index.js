@@ -452,6 +452,8 @@ export default function(babel: Babel) {
           if (state.staticRules.length !== 0) {
             const toWrite = state.staticRules.join('\n').trim()
             let cssFilename = path.hub.file.opts.sourceFileName
+            let cssFileOnDisk
+            let importPath
 
             const cssFilenameArr = cssFilename.split('.')
             // remove the extension
@@ -462,37 +464,30 @@ export default function(babel: Babel) {
             cssFilename = cssFilenameArr.join('.')
 
             if (state.opts.outputDir) {
-              const cssDirname = nodePath.dirname(path.hub.file.opts.filename)
               const relativeToSourceDir = nodePath.relative(
-                cssDirname,
+                nodePath.dirname(cssFilename),
                 state.opts.outputDir
               )
-              const pathFromRootToCssFile = nodePath.relative(
-                process.cwd(),
-                cssDirname
-              )
-              cssFilename = nodePath.join(
-                relativeToSourceDir,
-                pathFromRootToCssFile,
-                cssFilename
-              )
+              importPath = nodePath.join(relativeToSourceDir, cssFilename)
+              cssFileOnDisk = nodePath.resolve(cssFilename, '..', importPath)
             } else {
-              cssFilename = `./${cssFilename}`
+              importPath = `./${nodePath.basename(cssFilename)}`
+              cssFileOnDisk = nodePath.resolve(cssFilename)
             }
 
-            const exists = fs.existsSync(cssFilename)
-            addSideEffect(path, cssFilename)
+            const exists = fs.existsSync(cssFileOnDisk)
+            addSideEffect(path, importPath)
             if (
-              exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
+              exists ? fs.readFileSync(cssFileOnDisk, 'utf8') !== toWrite : true
             ) {
               if (!exists) {
                 if (state.opts.outputDir) {
-                  mkdirp.sync(nodePath.dirname(cssFilename))
+                  mkdirp.sync(nodePath.dirname(cssFileOnDisk))
                 }
 
-                touchSync(cssFilename)
+                touchSync(cssFileOnDisk)
               }
-              fs.writeFileSync(cssFilename, toWrite)
+              fs.writeFileSync(cssFileOnDisk, toWrite)
             }
           }
         }

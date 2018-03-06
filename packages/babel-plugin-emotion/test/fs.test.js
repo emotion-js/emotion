@@ -22,11 +22,13 @@ css\`
 \``
 
 let output
-const filenameArr = path.basename(__filename).split('.')
+const filenameArr = __filename.split('.')
 filenameArr.pop()
 filenameArr.push('emotion', 'css')
-const cssFilename = filenameArr.join('.')
-const cssFilepath = `./${cssFilename}`
+const cssFilepath = path.resolve(
+  process.cwd(),
+  path.basename(filenameArr.join('.'))
+)
 
 describe('babel plugin fs', () => {
   beforeEach(() => {
@@ -41,6 +43,7 @@ describe('babel plugin fs', () => {
       filename: __filename,
       babelrc: false
     })
+
     expect(fs.existsSync).toBeCalledWith(cssFilepath)
     expect(mkdirp.sync).not.toBeCalledWith()
     expect(touch.sync).toBeCalledWith(cssFilepath)
@@ -52,7 +55,7 @@ describe('babel plugin fs', () => {
   })
 
   test('creates and writes to the custom output dir when it does not exist', () => {
-    const ABSOLUTE_PATH = path.join(process.cwd(), 'tmpdir')
+    const ABSOLUTE_PATH = './tmpdir'
     fs.existsSync.mockReturnValueOnce(false)
     const { code } = transform(basic, {
       plugins: [[plugin, { extractStatic: true, outputDir: ABSOLUTE_PATH }]],
@@ -60,9 +63,7 @@ describe('babel plugin fs', () => {
       babelrc: false
     })
 
-    const dirPath = path.relative(process.cwd(), __dirname)
-    const relativePath = path.relative(__dirname, ABSOLUTE_PATH)
-    const newFilePath = path.join(relativePath, dirPath, cssFilename)
+    const newFilePath = path.resolve(ABSOLUTE_PATH, path.basename(cssFilepath))
     expect(fs.existsSync).toBeCalledWith(newFilePath)
     expect(mkdirp.sync).toBeCalledWith(path.dirname(newFilePath))
     expect(touch.sync).toBeCalledWith(newFilePath)
