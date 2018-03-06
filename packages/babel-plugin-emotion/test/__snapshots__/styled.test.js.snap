@@ -96,6 +96,31 @@ exports[`styled extract babel 6 dynamic fns 1`] = `
 })('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';');"
 `;
 
+exports[`styled extract babel 6 existing options 1`] = `
+"require('./emotion.emotion.css');
+
+const Button = styled('button', {
+  existing: true,
+  e: 'css-1aj1g6z',
+  target: 'e8nbyc50'
+}, otherArg, 'test', { anotherArg: 1 })();
+
+
+emotion.emotion.css
+.css-1aj1g6z{color:blue;}"
+`;
+
+exports[`styled extract babel 6 existing options object 1`] = `
+"
+const Button = /*#__PURE__*/styled('button', {
+  existing: true,
+  target: 'e8nbyc50',
+  label: 'Button'
+}, otherArg, 'test', { anotherArg: 1 })({
+  color: 'blue'
+});"
+`;
+
 exports[`styled extract babel 6 function call 1`] = `
 "/*#__PURE__*/styled(MyComponent, {
   target: 'e8nbyc50'
@@ -421,6 +446,36 @@ exports[`styled extract babel 7 dynamic fns 1`] = `
 styled('img', {
   target: \\"e8nbyc50\\"
 })(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";\\");"
+`;
+
+exports[`styled extract babel 7 existing options 1`] = `
+"require(\\"./emotion.emotion.css\\");
+
+const Button = styled('button', {
+  existing: true,
+  e: \\"css-1aj1g6z\\",
+  target: \\"e8nbyc50\\"
+}, otherArg, 'test', {
+  anotherArg: 1
+})();
+
+
+emotion.emotion.css
+.css-1aj1g6z{color:blue;}"
+`;
+
+exports[`styled extract babel 7 existing options object 1`] = `
+"const Button =
+/*#__PURE__*/
+styled('button', {
+  existing: true,
+  target: \\"e8nbyc50\\",
+  label: \\"Button\\"
+}, otherArg, 'test', {
+  anotherArg: 1
+})({
+  color: 'blue'
+});"
 `;
 
 exports[`styled extract babel 7 function call 1`] = `
@@ -754,6 +809,26 @@ exports[`styled inline babel 6 dynamic fns 1`] = `
 })('width:96px;height:96px;border-radius:', props => props.theme.borderRadius, ';border:1px solid ', props => props.theme.borderColor, ';');"
 `;
 
+exports[`styled inline babel 6 existing options 1`] = `
+"
+const Button = /*#__PURE__*/styled('button', {
+  existing: true,
+  label: 'Button',
+  target: 'e8nbyc50'
+}, otherArg, 'test', { anotherArg: 1 })('color:blue;');"
+`;
+
+exports[`styled inline babel 6 existing options object 1`] = `
+"
+const Button = /*#__PURE__*/styled('button', {
+  existing: true,
+  target: 'e8nbyc50',
+  label: 'Button'
+}, otherArg, 'test', { anotherArg: 1 })({
+  color: 'blue'
+});"
+`;
+
 exports[`styled inline babel 6 function call 1`] = `
 "/*#__PURE__*/styled(MyComponent, {
   target: 'e8nbyc50'
@@ -1020,6 +1095,32 @@ exports[`styled inline babel 7 dynamic fns 1`] = `
 styled('img', {
   target: \\"e8nbyc50\\"
 })(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";\\");"
+`;
+
+exports[`styled inline babel 7 existing options 1`] = `
+"const Button =
+/*#__PURE__*/
+styled('button', {
+  existing: true,
+  label: \\"Button\\",
+  target: \\"e8nbyc50\\"
+}, otherArg, 'test', {
+  anotherArg: 1
+})(\\"color:blue;\\");"
+`;
+
+exports[`styled inline babel 7 existing options object 1`] = `
+"const Button =
+/*#__PURE__*/
+styled('button', {
+  existing: true,
+  target: \\"e8nbyc50\\",
+  label: \\"Button\\"
+}, otherArg, 'test', {
+  anotherArg: 1
+})({
+  color: 'blue'
+});"
 `;
 
 exports[`styled inline babel 7 function call 1`] = `
