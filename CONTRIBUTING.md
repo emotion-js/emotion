@@ -22,3 +22,12 @@
 - `yarn build` will build the module for publishing to npm.
 
 - `yarn clean` will delete built resources.
+
+
+## Benchmarking
+
+- `yarn benchmark` will run the benchmarks locally
+
+- If you commit message includes `#benchmark` the benchmarks will run on the CI.
+
+  - The results for branches in the emotion-js/emotion repo are **here: https://travis-ci.org/emotion-js/emotion/branches**
