@@ -442,8 +442,6 @@ export default function(babel: Babel) {
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
 
-          state.outputDir = state.opts.outputDir
-
           state.staticRules = []
 
           state.insertStaticRules = function(staticRules) {
@@ -455,18 +453,32 @@ export default function(babel: Babel) {
             const toWrite = state.staticRules.join('\n').trim()
             let cssFilename = path.hub.file.opts.sourceFileName
 
-            if (state.outputDir) {
-              cssFilename = nodePath.join(state.outputDir, cssFilename)
-            }
-
             const cssFilenameArr = cssFilename.split('.')
             // remove the extension
             cssFilenameArr.pop()
             // add emotion.css as an extension
             cssFilenameArr.push('emotion.css')
 
-            // use absolute path so resolving can't go wrong
-            cssFilename = nodePath.resolve(cssFilenameArr.join('.'))
+            cssFilename = cssFilenameArr.join('.')
+
+            if (state.opts.outputDir) {
+              const cssDirname = nodePath.dirname(path.hub.file.opts.filename)
+              const relativeToSourceDir = nodePath.relative(
+                cssDirname,
+                state.opts.outputDir
+              )
+              const pathFromRootToCssFile = nodePath.relative(
+                process.cwd(),
+                cssDirname
+              )
+              cssFilename = nodePath.join(
+                relativeToSourceDir,
+                pathFromRootToCssFile,
+                cssFilename
+              )
+            } else {
+              cssFilename = `./${cssFilename}`
+            }
 
             const exists = fs.existsSync(cssFilename)
             addSideEffect(path, cssFilename)
@@ -474,7 +486,7 @@ export default function(babel: Babel) {
               exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
             ) {
               if (!exists) {
-                if (state.outputDir) {
+                if (state.opts.outputDir) {
                   mkdirp.sync(nodePath.dirname(cssFilename))
                 }
 

@@ -25,7 +25,8 @@ let output
 const filenameArr = path.basename(__filename).split('.')
 filenameArr.pop()
 filenameArr.push('emotion', 'css')
-const cssFilename = path.resolve(process.cwd(), filenameArr.join('.'))
+const cssFilename = filenameArr.join('.')
+const cssFilepath = `./${cssFilename}`
 
 describe('babel plugin fs', () => {
   beforeEach(() => {
@@ -40,18 +41,18 @@ describe('babel plugin fs', () => {
       filename: __filename,
       babelrc: false
     })
-    expect(fs.existsSync).toBeCalledWith(cssFilename)
+    expect(fs.existsSync).toBeCalledWith(cssFilepath)
     expect(mkdirp.sync).not.toBeCalledWith()
-    expect(touch.sync).toBeCalledWith(cssFilename)
+    expect(touch.sync).toBeCalledWith(cssFilepath)
     expect(fs.writeFileSync).toHaveBeenCalled()
-    expect(fs.writeFileSync.mock.calls[0][0]).toBe(cssFilename)
+    expect(fs.writeFileSync.mock.calls[0][0]).toBe(cssFilepath)
     expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
     output = fs.writeFileSync.mock.calls[0][1]
     expect(code).toMatchSnapshot()
   })
 
   test('creates and writes to the custom output dir when it does not exist', () => {
-    const ABSOLUTE_PATH = '/some/absolute/path'
+    const ABSOLUTE_PATH = path.join(process.cwd(), 'tmpdir')
     fs.existsSync.mockReturnValueOnce(false)
     const { code } = transform(basic, {
       plugins: [[plugin, { extractStatic: true, outputDir: ABSOLUTE_PATH }]],
@@ -59,9 +60,11 @@ describe('babel plugin fs', () => {
       babelrc: false
     })
 
-    const newFilePath = `${ABSOLUTE_PATH}/${filenameArr.join('.')}`
+    const dirPath = path.relative(process.cwd(), __dirname)
+    const relativePath = path.relative(__dirname, ABSOLUTE_PATH)
+    const newFilePath = path.join(relativePath, dirPath, cssFilename)
     expect(fs.existsSync).toBeCalledWith(newFilePath)
-    expect(mkdirp.sync).toBeCalledWith(ABSOLUTE_PATH)
+    expect(mkdirp.sync).toBeCalledWith(path.dirname(newFilePath))
     expect(touch.sync).toBeCalledWith(newFilePath)
     expect(fs.writeFileSync).toHaveBeenCalled()
     expect(fs.writeFileSync.mock.calls[0][0]).toBe(newFilePath)
@@ -77,10 +80,10 @@ describe('babel plugin fs', () => {
       filename: __filename,
       babelrc: false
     })
-    expect(fs.existsSync).toBeCalledWith(cssFilename)
+    expect(fs.existsSync).toBeCalledWith(cssFilepath)
     expect(touch.sync).not.toHaveBeenCalled()
     expect(fs.writeFileSync).toHaveBeenCalledTimes(1)
-    expect(fs.writeFileSync.mock.calls[0][0]).toBe(cssFilename)
+    expect(fs.writeFileSync.mock.calls[0][0]).toBe(cssFilepath)
     expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
     expect(code).toMatchSnapshot()
   })
@@ -92,7 +95,7 @@ describe('babel plugin fs', () => {
       filename: __filename,
       babelrc: false
     })
-    expect(fs.existsSync).toBeCalledWith(cssFilename)
+    expect(fs.existsSync).toBeCalledWith(cssFilepath)
     expect(touch.sync).not.toHaveBeenCalled()
     expect(fs.writeFileSync).not.toHaveBeenCalled()
     expect(code).toMatchSnapshot()
