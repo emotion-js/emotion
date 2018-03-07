@@ -496,7 +496,9 @@ export default function(babel: Babel) {
         exit(path: BabelPath, state: EmotionBabelPluginPass) {
           if (state.staticRules.length !== 0) {
             const toWrite = state.staticRules.join('\n').trim()
-            let cssFilename = path.hub.file.opts.sourceFileName
+            let cssFilename = path.hub.file.opts.generatorOpts
+              ? path.hub.file.opts.generatorOpts.sourceFileName
+              : path.hub.file.opts.sourceFileName
             let cssFileOnDisk
             let importPath
 
