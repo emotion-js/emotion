@@ -92,6 +92,7 @@ _Defaults Shown_
         "autoLabel": false,
         "labelFormat": "[local]",
         "extractStatic": false,
+        "outputDir": '',
         "importedNames": {
           "styled": "styled",
           "css": "css",
@@ -286,6 +287,12 @@ This option enables the following:
 * Extract static styles into CSS files.
 
 [**Documentation**](https://emotion.sh/docs/extract-static)
+
+### `outputDir`
+
+`string`, defaults to `''`
+
+This option only works when `extractStatic` is set to true. This option allows `babel-plugin-emotion` to set a different directory to where the extracted css files are saved to.
 
 ### `importedNames`
 

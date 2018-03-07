@@ -2,6 +2,7 @@
 import fs from 'fs'
 import nodePath from 'path'
 import findRoot from 'find-root'
+import mkdirp from 'mkdirp'
 import { touchSync } from 'touch'
 import { addSideEffect } from '@babel/helper-module-imports'
 import {
@@ -495,19 +496,45 @@ export default function(babel: Babel) {
         exit(path: BabelPath, state: EmotionBabelPluginPass) {
           if (state.staticRules.length !== 0) {
             const toWrite = state.staticRules.join('\n').trim()
-            const filenameArr = path.hub.file.opts.filename.split('.')
-            filenameArr.pop()
-            filenameArr.push('emotion', 'css')
-            const cssFilename = filenameArr.join('.')
-            const exists = fs.existsSync(cssFilename)
-            addSideEffect(path, './' + nodePath.basename(cssFilename))
+            let cssFilename = path.hub.file.opts.generatorOpts
+              ? path.hub.file.opts.generatorOpts.sourceFileName
+              : path.hub.file.opts.sourceFileName
+            let cssFileOnDisk
+            let importPath
+
+            const cssFilenameArr = cssFilename.split('.')
+            // remove the extension
+            cssFilenameArr.pop()
+            // add emotion.css as an extension
+            cssFilenameArr.push('emotion.css')
+
+            cssFilename = cssFilenameArr.join('.')
+
+            if (state.opts.outputDir) {
+              const relativeToSourceDir = nodePath.relative(
+                nodePath.dirname(cssFilename),
+                state.opts.outputDir
+              )
+              importPath = nodePath.join(relativeToSourceDir, cssFilename)
+              cssFileOnDisk = nodePath.resolve(cssFilename, '..', importPath)
+            } else {
+              importPath = `./${nodePath.basename(cssFilename)}`
+              cssFileOnDisk = nodePath.resolve(cssFilename)
+            }
+
+            const exists = fs.existsSync(cssFileOnDisk)
+            addSideEffect(path, importPath)
             if (
-              exists ? fs.readFileSync(cssFilename, 'utf8') !== toWrite : true
+              exists ? fs.readFileSync(cssFileOnDisk, 'utf8') !== toWrite : true
             ) {
               if (!exists) {
-                touchSync(cssFilename)
+                if (state.opts.outputDir) {
+                  mkdirp.sync(nodePath.dirname(cssFileOnDisk))
+                }
+
+                touchSync(cssFileOnDisk)
               }
-              fs.writeFileSync(cssFilename, toWrite)
+              fs.writeFileSync(cssFileOnDisk, toWrite)
             }
           }
         }

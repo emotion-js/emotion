@@ -8,6 +8,14 @@ exports[`babel plugin fs creates and writes to the css file when it does not exi
 \\"css-1yfv4zm\\";"
 `;
 
+exports[`babel plugin fs creates and writes to the custom output dir when it does not exist 1`] = `".css-1yfv4zm{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;name:class;}"`;
+
+exports[`babel plugin fs creates and writes to the custom output dir when it does not exist 2`] = `
+"require(\\"tmpdir/fs.test.emotion.css\\");
+
+\\"css-1yfv4zm\\";"
+`;
+
 exports[`babel plugin fs does not write to the css file when it is the same as is already written 1`] = `
 "require(\\"./fs.test.emotion.css\\");
 
