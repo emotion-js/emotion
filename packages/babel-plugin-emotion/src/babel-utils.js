@@ -92,14 +92,6 @@ export function addRuntimeImports(state: EmotionMacroPluginPass, t: Types) {
     state.emotionImports = undefined
   }
 }
-export function getName(identifierName?: string, prefix: string) {
-  const parts = []
-  parts.push(prefix)
-  if (identifierName) {
-    parts.push(identifierName)
-  }
-  return parts.join('-')
-}
 
 export function getLabel(
   identifierName?: string,

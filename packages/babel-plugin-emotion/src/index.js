@@ -487,6 +487,8 @@ export default function(babel: Babel) {
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
 
+          state.outputDir = state.opts.outputDir
+
           state.staticRules = []
 
           state.insertStaticRules = function(staticRules) {
