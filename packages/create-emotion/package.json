@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "emotion-utils": "^9.0.1",
-    "stylis": "^3.3.2",
-    "stylis-rule-sheet": "^0.0.5"
+    "stylis": "^3.5.0",
+    "stylis-rule-sheet": "^0.0.10"
   },
   "devDependencies": {
     "@types/react": "16.0.16",

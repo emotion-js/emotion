@@ -216,6 +216,7 @@ exports[`css handles array of objects 1`] = `
 
 exports[`css handles more than 10 dynamic properties 1`] = `
 .emotion-0 {
+  -webkit-text-decoration: underline;
   text-decoration: underline;
   border-left: solid blue 54px;
   background: white;
