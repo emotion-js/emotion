@@ -29,8 +29,8 @@ export const {
 
 `emotion` requires a global object for server-side rendering to ensure that even if a module is calling an emotion instance from two paths(e.g. the same emotion instance in multiple node_modules, this can happen often with linking [#349](https://github.com/emotion-js/emotion/issues/349)) they'll still both work with SSR. If you aren't using SSR, `context` can be an empty object. This isn't required in the browser because your bundler should deduplicate modules.
 
-<details>
-<summary>Example instance if there must be multiple instances in a single app</summary>
+
+## Example instance if there must be multiple instances in a single app
 
 ```jsx
 import createEmotion from 'create-emotion'
@@ -57,7 +57,6 @@ export const {
   key: 'some-key'
 })
 ```
-</details>
 
 **Note**: calling `createEmotion` twice with the same `context` will use the same instance, so options provided in another call of `createEmotion` with the same context will be ignored.
 
