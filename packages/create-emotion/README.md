@@ -1,8 +1,59 @@
 # create-emotion
 
-> Create instances of emotion.
+### Create distinct instances of emotion.
 
-`create-emotion` allows you to create instances of emotion to use instead of the default `emotion` package. `create-emotion` is **only** needed if you are using emotion in a place where code is being embedded that could use emotion, you need to set a nonce, you need to use custom stylis plugins or you need to customize prefixing.
+The main [emotion](https://github.com/emotion-js/emotion/tree/master/packages/emotion) repo can be thought of as a call to `createEmotion` with sensible defaults for most applications.
+
+```javascript
+import createEmotion from 'create-emotion'
+
+const context = typeof global !== 'undefined' ? global : {}
+
+export const {
+  flush,
+  hydrate,
+  cx,
+  merge,
+  getRegisteredStyles,
+  injectGlobal,
+  keyframes,
+  css,
+  sheet,
+  caches
+} = createEmotion(context)
+
+```
+
+### Upside
+
+- Calling it directly will allow for some low level custimization.
+
+- Create custom names for emotion APIs to help with migration from other, similar libraries.
+
+- Could set custom `key` to `👩‍🎤`, `🥞`, `⚛️`, `👩‍🎨`
+
+### Downside
+
+- Introduces some amount of complexity to your application that can vary depending on developer experience.
+
+- Required to keep up with changes in the repo and API at a lower level than if using `emotion` directly
+
+
+### Primary use cases
+
+- Using emotion in embedded contexts such as an `<iframe/>`
+
+- Setting a [nonce]() on any `<style/>` tag emotion creates for security purposes
+
+- Use emotion with a developer defined `<style/>` tag
+
+- Using emotion with custom stylis plugins
+
+### Advanced use cases
+
+- Using emotion in component libraries to sync up multiple intances of emotion together
+
+
 
 ```jsx
 import createEmotion from 'create-emotion'
@@ -30,7 +81,7 @@ export const {
 `emotion` requires a global object for server-side rendering to ensure that even if a module is calling an emotion instance from two paths(e.g. the same emotion instance in multiple node_modules, this can happen often with linking [#349](https://github.com/emotion-js/emotion/issues/349)) they'll still both work with SSR. If you aren't using SSR, `context` can be an empty object. This isn't required in the browser because your bundler should deduplicate modules.
 
 
-## Example instance if there must be multiple instances in a single app
+## Multiple instances in a single app example
 
 ```jsx
 import createEmotion from 'create-emotion'
