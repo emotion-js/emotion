@@ -4,7 +4,6 @@ import {
   injectGlobal,
   flush,
   css,
-  fontFace,
   hydrate,
   cx
 } from '../';
@@ -62,10 +61,6 @@ css(
 );
 
 css(null);
-
-fontFace`
-  font-family: 'Foo';
-`;
 
 injectGlobal`
   #foo {
