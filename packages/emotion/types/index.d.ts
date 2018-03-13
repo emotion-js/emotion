@@ -35,8 +35,6 @@ export const injectGlobal: CreateStyles<void>;
 
 export const keyframes: CreateStyles<string>;
 
-export const fontFace: CreateStyles<void>;
-
 export function getRegisteredStyles(registeredStyles: string[], classNames: string): string;
 
 export function cx(...interpolations: Interpolation[]): string;
