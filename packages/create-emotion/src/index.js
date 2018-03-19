@@ -76,10 +76,8 @@ function createEmotion(
   }
   // $FlowFixMe
   let caches: EmotionCaches = context.__SECRET_EMOTION__
-  let current
 
   function insertRule(rule: string) {
-    current += rule
     if (isBrowser) {
       sheet.insert(rule, currentSourceMap)
     }
@@ -249,15 +247,15 @@ function createEmotion(
     stylis = (selector, styles) => {
       const result = sourceMapRegEx.exec(styles)
       currentSourceMap = result ? result[0] : ''
-      oldStylis(selector, styles)
+      let processedStyles
+      processedStyles = oldStylis(selector, styles)
       currentSourceMap = ''
+      return processedStyles
     }
   }
   function insert(scope, styles) {
     if (caches.inserted[name] === undefined) {
-      current = ''
-      stylis(scope, styles)
-      caches.inserted[name] = current
+      caches.inserted[name] = stylis(scope, styles)
     }
   }
   const css: CreateStyles<string> = function css() {
