@@ -76,10 +76,8 @@ function createEmotion(
   }
   // $FlowFixMe
   let caches: EmotionCaches = context.__SECRET_EMOTION__
-  let current
 
   function insertRule(rule: string) {
-    current += rule
     if (isBrowser) {
       sheet.insert(rule, currentSourceMap)
     }
