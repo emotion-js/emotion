@@ -15,8 +15,6 @@ type StylisPlugins = Function[] | null | Function
 type EmotionCaches = {|
   registered: { [key: string]: string },
   inserted: { [key: string]: string | true },
-  stylis: (scope: string, styles: string) => string,
-  sheet: StyleSheet,
   nonce?: string,
   key: string
 |}
@@ -62,9 +60,12 @@ type EmotionOptions = {
 }
 
 function createEmotion(
-  context: { __SECRET_EMOTION__?: EmotionCaches },
+  context: { __SECRET_EMOTION__?: Emotion },
   options?: EmotionOptions
 ): Emotion {
+  if (context.__SECRET_EMOTION__ !== undefined) {
+    return context.__SECRET_EMOTION__
+  }
   if (options === undefined) options = {}
   let key = options.key || 'css'
   if (process.env.NODE_ENV !== 'production') {
@@ -74,10 +75,7 @@ function createEmotion(
       )
     }
   }
-  // $FlowFixMe
-  let caches: EmotionCaches = context.__SECRET_EMOTION__
   let current
-
   function insertRule(rule: string) {
     current += rule
     if (isBrowser) {
@@ -87,35 +85,33 @@ function createEmotion(
 
   const insertionPlugin = stylisRuleSheet(insertRule)
 
-  if (caches === undefined) {
-    const stylisOptions: StylisOptions = {
-      keyframe: false,
-      global: false,
-      prefix: options.prefix === undefined ? true : options.prefix,
-      semicolon: true
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-      stylisOptions.compress = false
-    }
-    context.__SECRET_EMOTION__ = caches = {
-      registered: {},
-      inserted: {},
-      sheet: new StyleSheet(options),
-      stylis: new Stylis(stylisOptions),
-      nonce: options.nonce,
-      key
-    }
-
-    caches.stylis.use(options.stylisPlugins)(insertionPlugin)
-    // 🚀
-    if (isBrowser) {
-      caches.sheet.inject()
-    }
+  const stylisOptions: StylisOptions = {
+    keyframe: false,
+    global: false,
+    prefix: options.prefix === undefined ? true : options.prefix,
+    semicolon: true
   }
 
-  let stylis = caches.stylis
-  let sheet = caches.sheet
+  if (process.env.NODE_ENV !== 'production') {
+    stylisOptions.compress = false
+  }
+
+  const caches = {
+    registered: {},
+    inserted: {},
+    nonce: options.nonce,
+    key
+  }
+
+  const sheet = new StyleSheet(options)
+
+  if (isBrowser) {
+    // 🚀
+    sheet.inject()
+  }
+
+  let stylis = new Stylis(stylisOptions)
+  stylis.use(options.stylisPlugins)(insertionPlugin)
 
   let currentSourceMap = ''
 
@@ -355,6 +351,7 @@ function createEmotion(
     sheet,
     caches
   }
+  context.__SECRET_EMOTION__ = emotion
   return emotion
 }
 
