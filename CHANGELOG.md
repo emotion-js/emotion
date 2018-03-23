@@ -1,3 +1,34 @@
+## v9.1.0 (2018-03-24)
+
+#### :rocket: Enhancement
+
+* `babel-plugin-emotion`
+  * [#583](https://github.com/emotion-js/emotion/pull/583) Output dir support. ([@wardpeet](https://github.com/wardpeet))
+
+#### :bug: Bug Fix
+
+* `create-emotion`
+  * [#605](https://github.com/emotion-js/emotion/pull/605) Fix SSR with multiple createEmotion calls with the same context. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `emotion`
+  * [#596](https://github.com/emotion-js/emotion/pull/596) Remove fontface type. ([@renanrboliveira](https://github.com/renanrboliveira))
+* `react-emotion`
+  * [#590](https://github.com/emotion-js/emotion/pull/590) Fixed TSLint errors. ([@alex-pex](https://github.com/alex-pex))
+* `create-emotion-styled`, `react-emotion`
+  * [#589](https://github.com/emotion-js/emotion/pull/589) Carry styles from flattened components with withComponent. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+* `babel-plugin-emotion`
+  * [#584](https://github.com/emotion-js/emotion/pull/584) Preserve existing options passed to styled calls. ([@Andarist](https://github.com/Andarist))
+
+#### Committers: 8
+
+* Alexandre PAIXAO ([alex-pex](https://github.com/alex-pex))
+* Felix Jung ([felixjung](https://github.com/felixjung))
+* Mateusz Burzyński ([Andarist](https://github.com/Andarist))
+* Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+* Rajan Singh ([woahitsraj](https://github.com/woahitsraj))
+* Renan R. Oliveira ([renanrboliveira](https://github.com/renanrboliveira))
+* Utopia፲ ([utopiaio](https://github.com/utopiaio))
+* Ward Peeters ([wardpeet](https://github.com/wardpeet))
+
 ## v9.0.2 (2018-02-23)
 
 #### :bug: Bug Fix
