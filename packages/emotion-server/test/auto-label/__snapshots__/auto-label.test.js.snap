@@ -85,7 +85,7 @@ Object {
   justify-content: center;
 }
 
-.css-19m49uk-Main {
+.css-1h80n0w-Main-hoverStyles {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -93,7 +93,7 @@ Object {
   display: flex;
 }
 
-.css-19m49uk-Main:hover {
+.css-1h80n0w-Main-hoverStyles:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
@@ -109,7 +109,7 @@ Object {
   background-color: red;
 }",
   "html": 
-<main class="css-19m49uk-Main enylr5n0"
+<main class="css-1h80n0w-Main-hoverStyles enylr5n0"
       data-reactroot
 >
   <img size="30"
@@ -125,7 +125,7 @@ Object {
     "n47v5l-getComponents",
     "1fps0gg-bounce",
     "1teldhi-getComponents",
-    "19m49uk-Main",
+    "1h80n0w-Main-hoverStyles",
     "1m3qzmz-Image",
   ],
 }
@@ -216,7 +216,7 @@ Object {
   justify-content: center;
 }
 
-.css-19m49uk-Main {
+.css-1h80n0w-Main-hoverStyles {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -224,14 +224,14 @@ Object {
   display: flex;
 }
 
-.css-19m49uk-Main:hover {
+.css-1h80n0w-Main-hoverStyles:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
   "html": 
-<main class="css-19m49uk-Main enylr5n0"
+<main class="css-1h80n0w-Main-hoverStyles enylr5n0"
       data-reactroot
 >
   <div>
@@ -243,7 +243,7 @@ Object {
     "n47v5l-getComponents",
     "1fps0gg-bounce",
     "1teldhi-getComponents",
-    "19m49uk-Main",
+    "1h80n0w-Main-hoverStyles",
   ],
 }
 `;
@@ -333,7 +333,7 @@ Object {
   justify-content: center;
 }
 
-.css-19m49uk-Main {
+.css-1h80n0w-Main-hoverStyles {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -341,7 +341,7 @@ Object {
   display: flex;
 }
 
-.css-19m49uk-Main:hover {
+.css-1h80n0w-Main-hoverStyles:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
@@ -357,7 +357,7 @@ Object {
   background-color: red;
 }",
   "html": 
-<main class="css-19m49uk-Main enylr5n0"
+<main class="css-1h80n0w-Main-hoverStyles enylr5n0"
       data-reactroot
 >
   <img size="30"
@@ -373,7 +373,7 @@ Object {
     "n47v5l-getComponents",
     "1fps0gg-bounce",
     "1teldhi-getComponents",
-    "19m49uk-Main",
+    "1h80n0w-Main-hoverStyles",
     "1m3qzmz-Image",
   ],
 }
