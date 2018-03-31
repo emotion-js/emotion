@@ -203,6 +203,7 @@ function createEmotion(
   }
 
   let name
+  let stylesWithLabel
 
   const labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 
@@ -231,6 +232,7 @@ function createEmotion(
         styles += strings[i + 1]
       }
     }, this)
+    stylesWithLabel = styles
     styles = styles.replace(labelPattern, (match, p1: string) => {
       identifierName += `-${p1}`
       return ''
@@ -261,7 +263,7 @@ function createEmotion(
     const selector = `${key}-${name}`
 
     if (caches.registered[selector] === undefined) {
-      caches.registered[selector] = styles
+      caches.registered[selector] = stylesWithLabel
     }
     insert(`.${selector}`, styles)
 
