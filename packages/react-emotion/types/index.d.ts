@@ -59,7 +59,7 @@ export interface CreateStyled<Props, Theme, IntrinsicProps> {
   // overload for template string as styles
   (
     strings: TemplateStringsArray,
-    ...vars: Array<Interpolation<ThemedProps<Props & IntrinsicProps, Theme>>>,
+    ...vars: Array<Interpolation<ThemedProps<Props & IntrinsicProps, Theme>>>
   ): StyledComponent<Props, Theme, IntrinsicProps>;
 
   // overload for object as styles
@@ -78,7 +78,7 @@ type ShorthandsFactories<Theme> = {
     // overload for template string as styles
     <Props = {}>(
       strings: TemplateStringsArray,
-      ...vars: Array<Interpolation<ThemedProps<Props & JSX.IntrinsicElements[Tag], Theme>>>,
+      ...vars: Array<Interpolation<ThemedProps<Props & JSX.IntrinsicElements[Tag], Theme>>>
     ): StyledComponent<Props, Theme, ElementProps<Tag>>
 
     // overload for object as styles
