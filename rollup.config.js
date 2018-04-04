@@ -44,7 +44,8 @@ const mainConfig = Object.assign({}, baseConfig, {
     'emotion',
     'emotion-utils',
     'hoist-non-react-statics',
-    'stylis-rule-sheet'
+    'stylis-rule-sheet',
+    '@emotion/is-prop-valid'
   ]),
   plugins: basePlugins,
   output: [
