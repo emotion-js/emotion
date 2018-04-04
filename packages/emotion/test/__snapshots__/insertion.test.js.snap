@@ -346,7 +346,7 @@ Array [
 
 exports[`vendor prefixing IV 1`] = `
 Array [
-  ".css-25{-webkit-text-size-adjust:none;text-size-adjust:none;text-decoration:none;-webkit-filter:grayscale(100%);filter:grayscale(100%);fill:red;position:-webkit-sticky;position:sticky;-webkit-mask-image:linear-gradient(#fff);mask-image:linear-gradient(#fff);-webkit-mask-image:none;mask-image:none;}",
+  ".css-25{-webkit-text-size-adjust:none;text-size-adjust:none;-webkit-text-decoration:none;text-decoration:none;-webkit-filter:grayscale(100%);filter:grayscale(100%);fill:red;position:-webkit-sticky;position:sticky;-webkit-mask-image:linear-gradient(#fff);mask-image:linear-gradient(#fff);-webkit-mask-image:none;mask-image:none;}",
 ]
 `;
 

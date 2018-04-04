@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { css, flush, sheet } from 'emotion'
+import { css, flush, sheet, cx } from 'emotion'
 
 describe('meta', () => {
   afterEach(() => flush())
@@ -105,5 +105,16 @@ describe('meta', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
+  })
+  test('labels compose', () => {
+    const cls1 = css`
+      color: blue;
+    `
+    const cls2 = css`
+      color: hotpink;
+    `
+    expect(cls1).toContain('cls1')
+    expect(cls2).toContain('cls2')
+    expect(cx(cls1, cls2)).toContain('cls1-cls2')
   })
 })

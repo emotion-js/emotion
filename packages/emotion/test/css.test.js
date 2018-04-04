@@ -378,8 +378,7 @@ describe('css', () => {
   test('multiline selector', () => {
     /* eslint-disable prettier/prettier */
     const cls1 = css`
-      .my-class:hover
-      .its-child {
+      .my-class:hover .its-child {
         background: pink;
       }
     `
@@ -398,6 +397,19 @@ describe('css', () => {
       }
     `
     const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test('nested at rule', () => {
+    const cls = css({
+      '@media (min-width: 980px)': {
+        backgroundColor: 'blue',
+        '@supports (width: 100vw)': {
+          backgroundColor: 'red'
+        }
+      }
+    })
+    // this works correctly but `css` doesn't print it correctly so the snapshot doesn't look correct
+    const tree = renderer.create(<div className={cls} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

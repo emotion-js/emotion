@@ -163,6 +163,7 @@ exports[`css flushes correctly 2`] = `
 
 exports[`css handles more than 10 dynamic properties 1`] = `
 .emotion-0 {
+  -webkit-text-decoration: underline;
   text-decoration: underline;
   border-right: solid blue 54px;
   background: white;

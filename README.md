@@ -76,6 +76,7 @@ const app = () => (
 * [emotion website](packages/site) [[Demo Here](https://emotion.sh)]
 * [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
 * [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
+* [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
 * **open a PR and add yours!**
 
 ### Ecosystem
