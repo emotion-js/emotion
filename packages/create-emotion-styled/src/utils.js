@@ -33,7 +33,12 @@ export const pickAssign: (
   return target
 }
 
-export type StyledOptions = { e: string, label: string, target: string }
+export type StyledOptions = {
+  e?: string,
+  label?: string,
+  target?: string,
+  shouldForwardProp?: (?string) => boolean
+}
 
 type CreateStyledComponent = (...args: Interpolations) => *
 
