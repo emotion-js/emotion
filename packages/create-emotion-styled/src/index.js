@@ -25,10 +25,13 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
     let staticClassName
     let identifierName
     let stableClassName
+    let defaultProps
+
     if (options !== undefined) {
       staticClassName = options.e
       identifierName = options.label
       stableClassName = options.target
+      defaultProps = options.props
     }
     const isReal = tag.__emotion_real === tag
     const baseTag =
@@ -85,7 +88,9 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
           }
         }
         render() {
-          const { props, state } = this
+          const state = this.state
+          const props = Object.assign({}, defaultProps, this.props)
+
           this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
             theme: (state !== null && state.theme) || props.theme || {}
           })

@@ -1120,4 +1120,34 @@ describe('styled', () => {
     const tree = renderer.create(<OneMoreComponent />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  test('option: props: { className }', () => {
+    const H1 = styled('h1', { props: { className: 'blue' } })`
+      color: blue;
+    `
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('option: props: { data- }', () => {
+    const H1 = styled('h1', { props: { 'aria-label': 'blue' } })`
+      color: blue;
+    `
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('option: props: { random }', () => {
+    const H1 = styled('h1', { props: { random: 'blue' } })`
+      color: blue;
+    `
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
 })

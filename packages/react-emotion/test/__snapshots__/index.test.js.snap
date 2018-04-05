@@ -590,6 +590,43 @@ exports[`styled objects with spread properties 1`] = `
 </figure>
 `;
 
+exports[`styled option: props: { className } 1`] = `
+.emotion-0 {
+  color: blue;
+}
+
+<h1
+  className="blue emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled option: props: { data- } 1`] = `
+.emotion-0 {
+  color: blue;
+}
+
+<h1
+  aria-label="blue"
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled option: props: { random } 1`] = `
+.emotion-0 {
+  color: blue;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled prop filtering 1`] = `
 .emotion-0 {
   color: green;
