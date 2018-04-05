@@ -194,6 +194,8 @@ import React from 'react';
 
 describe('emotion-theming', function() {
   it('can use theme from a ThemeProvider', function() {
+    const myTheme = {color: 'green'};
+    const broadcast = createBroadcast(myTheme);
     const wrapper = mount(<MyComponent />, {
       context: {
         [channel]: broadcast,
