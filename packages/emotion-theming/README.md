@@ -179,6 +179,38 @@ import { channel } from 'emotion-theming';
 console.log(channel); '__EMOTION_THEMING__';
 ```
 
+### createBroadcast: Function
+
+Creates a broadcast that is used to listen to theme events via context. This is probably only useful for testing.
+If you have styled components that depend on `theme` via `ThemeProvider`, one option is to wrap all your components being tested
+in `ThemeProvider`. However if you're using `enzyme`, you'll lose the ability to call some methods that require it to be run on the root instance.
+Instead you can `mount` a component a pass the channel and broadcast as part of `context`.
+
+```js
+import {channel, createBroadcast} from 'emotion-theming';
+import {mount} from 'enzyme';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+describe('emotion-theming', function() {
+  it('can use theme from a ThemeProvider', function() {
+    const wrapper = mount(<MyComponent />, {
+      context: {
+        [channel]: broadcast,
+      },
+      childContextTypes: {
+        [channel]: PropTypes.object,
+      },
+    });
+
+    wrapper.setState({foo: 'bar'});
+    expect(wrapper.state('foo')).toBe('bar');
+  });
+});
+```
+
+
+
 ## Credits
 
 Thanks goes to the [styled-components team](https://github.com/styled-components/styled-components) and [their contributors](https://github.com/styled-components/styled-components/graphs/contributors) who originally wrote this.
