@@ -122,6 +122,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
 
           return view.createElement(
             baseTag,
+            // $FlowFixMe
             pickAssign(shouldForwardProp, {}, props, {
               className,
               ref: props.innerRef
@@ -151,6 +152,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
           ) {
             return 'NO_COMPONENT_SELECTOR'
           }
+          // $FlowFixMe
           return `.${stableClassName}`
         }
       })
