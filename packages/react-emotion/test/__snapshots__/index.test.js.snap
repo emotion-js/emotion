@@ -255,6 +255,31 @@ exports[`styled composition with objects 1`] = `
 </h1>
 `;
 
+exports[`styled custom shouldForwardProp works 1`] = `
+.emotion-0,
+.emotion-0 * {
+  fill: #0000ff;
+}
+
+<svg
+  className="emotion-0 emotion-1"
+  height="100px"
+  width="100px"
+>
+  <rect
+    height="100"
+    style={
+      Object {
+        "stroke": "#ff0000",
+      }
+    }
+    width="100"
+    x="10"
+    y="10"
+  />
+</svg>
+`;
+
 exports[`styled function in expression 1`] = `
 .emotion-0 {
   font-size: 20px;

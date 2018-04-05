@@ -6,10 +6,10 @@ import type { ElementType } from 'react'
 import typeof ReactType from 'react'
 import type { CreateStyled, StyledOptions } from './utils'
 import {
-  testOmitPropsOnComponent,
+  testPickPropsOnComponent,
   testAlwaysTrue,
-  testOmitPropsOnStringTag,
-  omitAssign,
+  testPickPropsOnStringTag,
+  pickAssign,
   setTheme
 } from './utils'
 
@@ -25,10 +25,12 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
     let staticClassName
     let identifierName
     let stableClassName
+    let shouldForwardProp
     if (options !== undefined) {
       staticClassName = options.e
       identifierName = options.label
       stableClassName = options.target
+      shouldForwardProp = options.shouldForwardProp
     }
     const isReal = tag.__emotion_real === tag
     const baseTag =
@@ -36,11 +38,13 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         ? (isReal && tag.__emotion_base) || tag
         : tag
 
-    const omitFn =
-      typeof baseTag === 'string' &&
-      baseTag.charAt(0) === baseTag.charAt(0).toLowerCase()
-        ? testOmitPropsOnStringTag
-        : testOmitPropsOnComponent
+    if (typeof shouldForwardProp !== 'function') {
+      shouldForwardProp =
+        typeof baseTag === 'string' &&
+        baseTag.charAt(0) === baseTag.charAt(0).toLowerCase()
+          ? testPickPropsOnStringTag
+          : testPickPropsOnComponent
+    }
 
     return function() {
       let args = arguments
@@ -86,7 +90,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         }
         render() {
           const { props, state } = this
-          this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
+          this.mergedProps = pickAssign(testAlwaysTrue, {}, props, {
             theme: (state !== null && state.theme) || props.theme || {}
           })
 
@@ -118,7 +122,10 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
 
           return view.createElement(
             baseTag,
-            omitAssign(omitFn, {}, props, { className, ref: props.innerRef })
+            pickAssign(shouldForwardProp, {}, props, {
+              className,
+              ref: props.innerRef
+            })
           )
         }
       }
@@ -156,7 +163,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
           nextTag,
           nextOptions !== undefined
             ? // $FlowFixMe
-              omitAssign(testAlwaysTrue, {}, options, nextOptions)
+              pickAssign(testAlwaysTrue, {}, options, nextOptions)
             : options
         )(...styles)
       }
