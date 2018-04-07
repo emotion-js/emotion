@@ -1,5 +1,4 @@
 // @flow
-import { memoize } from 'emotion-utils'
 import isPropValid from '@emotion/is-prop-valid'
 import type { Interpolations } from 'create-emotion'
 
@@ -7,9 +6,8 @@ export function setTheme(theme: Object) {
   this.setState({ theme })
 }
 
-export const testPickPropsOnStringTag: (key: string) => boolean = memoize(
-  isPropValid
-)
+export const testPickPropsOnStringTag = isPropValid
+
 export const testPickPropsOnComponent = (key: string) =>
   key !== 'theme' && key !== 'innerRef'
 export const testAlwaysTrue = () => true
