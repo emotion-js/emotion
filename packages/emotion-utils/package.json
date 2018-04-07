@@ -28,6 +28,9 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
+  "dependencies": {
+    "@emotion/memoize": "^0.6.1"
+  },
   "devDependencies": {
     "babel-plugin-emotion": "^8.0.2-7",
     "npm-run-all": "^4.0.2",
