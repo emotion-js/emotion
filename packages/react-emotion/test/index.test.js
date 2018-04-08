@@ -82,7 +82,7 @@ describe('styled', () => {
 
   test('inline function return value is a function', () => {
     const fontSize = () => 20
-    const Blue = styled('h1') `
+    const Blue = styled('h1')`
       font-size: ${() => fontSize}px;
     `
 
@@ -93,7 +93,7 @@ describe('styled', () => {
 
   test('call expression', () => {
     const fontSize = 20
-    const Div = styled('div') `
+    const Div = styled('div')`
       font-size: ${fontSize}px;
     `
 
@@ -149,7 +149,7 @@ describe('styled', () => {
       }
     `
 
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       ${mq};
       ${props =>
         props.prop &&
@@ -172,7 +172,7 @@ describe('styled', () => {
   })
 
   test('random expressions undefined return', () => {
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       ${props =>
         props.prop &&
         css`
@@ -217,11 +217,11 @@ describe('styled', () => {
 
   test('composition', () => {
     const fontSize = 20
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       font-size: ${fontSize + 'px'};
     `
 
-    const H2 = styled(H1) `
+    const H2 = styled(H1)`
       font-size: ${fontSize * 2 / 3 + 'px'};
     `
 
@@ -274,7 +274,7 @@ describe('styled', () => {
       { border: '3px solid currentColor' }
     ])
 
-    const Avatar = styled('img') `
+    const Avatar = styled('img')`
       ${prettyStyles};
       ${imageStyles};
       ${blue};
@@ -286,7 +286,7 @@ describe('styled', () => {
   })
 
   test('handles more than 10 dynamic properties', () => {
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       text-decoration: ${'underline'};
       border-right: solid blue 54px;
       background: ${'white'};
@@ -314,11 +314,11 @@ describe('styled', () => {
 
   test('function in expression', () => {
     const fontSize = 20
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       font-size: ${fontSize + 'px'};
     `
 
-    const H2 = styled(H1) `
+    const H2 = styled(H1)`
       font-size: ${({ scale }) => fontSize * scale + 'px'};
     `
 
@@ -345,13 +345,13 @@ describe('styled', () => {
       color: red;
     `
 
-    const BlueH1 = styled('h1') `
+    const BlueH1 = styled('h1')`
       ${cssB};
       color: blue;
       font-size: ${fontSize};
     `
 
-    const FinalH2 = styled(BlueH1) `
+    const FinalH2 = styled(BlueH1)`
       font-size: 32px;
     `
 
@@ -380,12 +380,12 @@ describe('styled', () => {
       height: 64px;
     `
 
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       ${cssB};
       font-size: ${modularScale(4)};
     `
 
-    const H2 = styled(H1) `
+    const H2 = styled(H1)`
       font-size: 32px;
     `
 
@@ -429,17 +429,17 @@ describe('styled', () => {
       height: 64px;
     `
 
-    const Heading = styled('span') `
+    const Heading = styled('span')`
       background-color: ${p => p.theme.gold};
     `
 
-    const H1 = styled(Heading) `
+    const H1 = styled(Heading)`
       ${cssB};
       font-size: ${fontSize};
       color: ${p => p.theme.purple};
     `
 
-    const H2 = styled(H1) `
+    const H2 = styled(H1)`
       font-size: 32px;
     `
 
@@ -455,7 +455,7 @@ describe('styled', () => {
 
   test('higher order component', () => {
     const fontSize = 20
-    const Content = styled('div') `
+    const Content = styled('div')`
       font-size: ${fontSize}px;
     `
 
@@ -464,7 +464,7 @@ describe('styled', () => {
     `
 
     const flexColumn = Component => {
-      const NewComponent = styled(Component) `
+      const NewComponent = styled(Component)`
         ${squirtleBlueBackground};
         background-color: '#343a40';
         flex-direction: column;
@@ -489,7 +489,7 @@ describe('styled', () => {
       color: green;
     `
 
-    const H1 = styled('h1') `
+    const H1 = styled('h1')`
       ${props => (props.a ? cssA : cssB)};
     `
 
@@ -562,11 +562,11 @@ describe('styled', () => {
     const Button = styled.button`
       color: green;
     `
-    const OtherButton = styled(Button) `
+    const OtherButton = styled(Button)`
       display: none;
     `
 
-    const AnotherButton = styled(OtherButton) `
+    const AnotherButton = styled(OtherButton)`
       display: flex;
       justify-content: center;
     `
@@ -642,7 +642,7 @@ describe('styled', () => {
       display: flex;
       color: ${props => props.someProp};
     `)
-    const FinalComponent = styled(SomeComponent) `
+    const FinalComponent = styled(SomeComponent)`
       padding: 8px;
     `
     const tree = renderer.create(<FinalComponent />).toJSON()
@@ -678,7 +678,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
   test('no prop filtering on non string tags', () => {
-    const Link = styled(props => <a {...props} />) `
+    const Link = styled(props => <a {...props} />)`
       color: green;
     `
 
@@ -705,7 +705,7 @@ describe('styled', () => {
   })
 
   test('no prop filtering on string tags started with upper case', () => {
-    const Link = styled('SomeCustomLink') `
+    const Link = styled('SomeCustomLink')`
       color: green;
     `
 
@@ -732,7 +732,7 @@ describe('styled', () => {
   })
 
   test('basic SVG attributes survive prop filtering', () => {
-    const RedCircle = styled('circle') `
+    const RedCircle = styled('circle')`
       fill: #ff0000;
       stroke-width: 0.26458332;
     `
@@ -990,7 +990,7 @@ describe('styled', () => {
       zoomAndPan: 'abcd'
     }
 
-    const RedPath = styled('path') `
+    const RedPath = styled('path')`
       stroke-width: 0.26458332;
     `
 
@@ -1007,7 +1007,7 @@ describe('styled', () => {
     const BaseLink = styled.a`
       background-color: hotpink;
     `
-    const Link = styled(BaseLink) `
+    const Link = styled(BaseLink)`
       color: green;
     `
 
@@ -1035,13 +1035,13 @@ describe('styled', () => {
   test('throws if undefined is passed as the component', () => {
     expect(
       () =>
-        styled(undefined) `
+        styled(undefined)`
           display: flex;
         `
     ).toThrowErrorMatchingSnapshot()
   })
   test('withComponent will replace tags but keep styling classes', () => {
-    const Title = styled('h1') `
+    const Title = styled('h1')`
       color: green;
     `
     const Subtitle = Title.withComponent('h2')
@@ -1056,7 +1056,7 @@ describe('styled', () => {
     expect(enzymeToJson(wrapper)).toMatchSnapshot()
   })
   test('withComponent with function interpolation', () => {
-    const Title = styled('h1') `
+    const Title = styled('h1')`
       color: ${props => props.color || 'green'};
     `
     const Subtitle = Title.withComponent('h2')
@@ -1077,7 +1077,7 @@ describe('styled', () => {
         return <div className={this.props.className} />
       }
     }
-    const StyledComponent = styled(SomeComponent) `
+    const StyledComponent = styled(SomeComponent)`
       color: hotpink;
     `
     const wrapper = mount(<StyledComponent />)
@@ -1113,7 +1113,7 @@ describe('styled', () => {
     const SomeComponent = styled.div`
       color: green;
     `
-    const AnotherComponent = styled(SomeComponent) `
+    const AnotherComponent = styled(SomeComponent)`
       color: hotpink;
     `
     const OneMoreComponent = AnotherComponent.withComponent('p')
@@ -1121,32 +1121,71 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('option: props: { className }', () => {
-    const H1 = styled('h1', { props: { className: 'blue' } }) `
+  test('withProps { className }', () => {
+    const H1 = styled.h1`
       color: blue;
-    `
+    `.withProps({ className: 'blue' })
+
+    const tree = renderer
+      .create(<H1 className="other">hello world</H1>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('withProps { data- }', () => {
+    const H1 = styled.h1`
+      color: blue;
+    `.withProps({ 'aria-label': 'blue' })
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
-  test('option: props: { data- }', () => {
-    const H1 = styled('h1', { props: { 'aria-label': 'blue' } }) `
+  test('withProps { random }', () => {
+    const H1 = styled.h1`
       color: blue;
-    `
+    `.withProps({ random: 'blue' })
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
-
     expect(tree).toMatchSnapshot()
   })
 
-  test('option: props: { random }', () => {
-    const H1 = styled('h1', { props: { random: 'blue' } }) `
-      color: blue;
+  test('withProps component flattening', () => {
+    const _H1 = styled.h1`
+      color: yellow;
+    `.withProps({ style: { color: 'hotpink' } })
+
+    const H1 = styled(_H1)`
+      color: hotpink;
     `
 
     const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('withProps component flattening with multiple withProps', () => {
+    const _H1 = styled.h1`
+      color: yellow;
+    `.withProps({ style: { color: 'hotpink' } })
+
+    const H1 = styled(_H1)`
+      color: hotpink;
+    `.withProps({ label: 'something' })
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('withProps function', () => {
+    const H1 = styled.h1`
+      color: yellow;
+    `.withProps(props => ({ 'aria-label': props.label }))
+
+    const tree = renderer
+      .create(<H1 label="something">hello world</H1>)
+      .toJSON()
     expect(tree).toMatchSnapshot()
   })
 
@@ -1166,7 +1205,7 @@ describe('styled', () => {
     const StyledSvg = styled(Svg, {
       shouldForwardProp: prop =>
         ['className', 'width', 'height'].indexOf(prop) !== -1
-    }) `
+    })`
       &,
       & * {
         fill: ${({ color }) => color};

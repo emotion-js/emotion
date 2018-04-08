@@ -4,7 +4,6 @@ title: "Styled Components"
 
 `styled` is a way to create React or Preact components that have styles attached to them. It's available from [react-emotion](/packages/react-emotion) and [preact-emotion](/packages/preact-emotion). `styled` was heavily inspired by [styled-components](https://www.styled-components.com/) and [glamorous](https://glamorous.rocks/)
 
-
 ### Styling elements and components
 
 `styled` is very similar to `css` except you call it with an html tag or React/Preact component and then call that with a template literal for string styles or a regular function call for object styles.
@@ -48,26 +47,6 @@ render(
 )
 ```
 
-### Default Props
-
-Default props can be set via the second argument of `styled`. 
-
-`this.props` is merged with and overwrites any overlapping keys in `defaultProps`.  
-
-*Does not work with shorthand syntax*
-
-```jsx live
-const MyComponent = styled('input', {
-  props: {
-    'type': 'checkbox'
-  }
-})({
-  height: 40,
-  width: 40,
-  color: 'green'
-})
-```
-
 ### Styling any component
 
 `styled` can style any component as long as it accepts a `className` prop.
@@ -84,7 +63,6 @@ const Fancy = styled(Basic)`
 
 render(<Fancy />)
 ```
-
 
 ### `withComponent`
 

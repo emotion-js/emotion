@@ -22,20 +22,28 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         )
       }
     }
+
+    const isReal = tag.__emotion_real === tag
+
     let staticClassName
     let identifierName
-    let stableClassName
-    let defaultProps
+    let stableClassName = tag.__emotion_target
     let shouldForwardProp
+    let extraProps = tag.__emotion_props
 
     if (options !== undefined) {
       staticClassName = options.e
       identifierName = options.label
       stableClassName = options.target
-      defaultProps = options.props
       shouldForwardProp = options.shouldForwardProp
+      if (options.withProps !== undefined) {
+        extraProps =
+          isReal && tag.__emotion_props
+            ? tag.__emotion_props.concat(options.withProps)
+            : [options.withProps]
+      }
     }
-    const isReal = tag.__emotion_real === tag
+
     const baseTag =
       staticClassName === undefined
         ? (isReal && tag.__emotion_base) || tag
@@ -44,12 +52,12 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
     if (typeof shouldForwardProp !== 'function') {
       shouldForwardProp =
         typeof baseTag === 'string' &&
-          baseTag.charAt(0) === baseTag.charAt(0).toLowerCase()
+        baseTag.charAt(0) === baseTag.charAt(0).toLowerCase()
           ? testPickPropsOnStringTag
           : testPickPropsOnComponent
     }
 
-    return function () {
+    return function() {
       let args = arguments
       let styles =
         isReal && tag[STYLES_KEY] !== undefined ? tag[STYLES_KEY].slice(0) : []
@@ -77,7 +85,9 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         static __emotion_styles: Interpolations
         static __emotion_base: Styled
         static __emotion_target: string
-        static withComponent: (ElementType, options?: StyledOptions) => any
+        static __emotion_props: any
+        static withComponent: (ElementType, options?: StyledOptions) => Styled
+        static withProps: (extraProps: Object | (Object => Object)) => Styled
 
         componentWillMount() {
           if (this.context[channel] !== undefined) {
@@ -93,11 +103,24 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         }
         render() {
           const state = this.state
-          const props = Object.assign({}, defaultProps, this.props)
-
-          this.mergedProps = pickAssign(testAlwaysTrue, {}, props, {
-            theme: (state !== null && state.theme) || props.theme || {}
-          })
+          const props = this.props
+          this.mergedProps = {}
+          let propClassName = ''
+          if (extraProps !== undefined) {
+            extraProps.forEach(extra => {
+              let val = typeof extra === 'function' ? extra(props) : extra
+              // $FlowFixMe
+              if (val.className) {
+                propClassName += `${val.className} `
+              }
+              // $FlowFixMe
+              pickAssign(testAlwaysTrue, this.mergedProps, val)
+            })
+          }
+          propClassName += props.className
+          pickAssign(testAlwaysTrue, this.mergedProps, props)
+          this.mergedProps.theme =
+            (state !== null && state.theme) || props.theme || {}
 
           let className = ''
           let classInterpolations = []
@@ -106,10 +129,10 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
             if (staticClassName === undefined) {
               className += emotion.getRegisteredStyles(
                 classInterpolations,
-                props.className
+                propClassName
               )
             } else {
-              className += `${props.className} `
+              className += `${propClassName} `
             }
           }
           if (staticClassName === undefined) {
@@ -128,9 +151,9 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
           return view.createElement(
             baseTag,
             // $FlowFixMe
-            pickAssign(shouldForwardProp, {}, props, {
+            pickAssign(shouldForwardProp, {}, this.mergedProps, {
               className,
-              ref: props.innerRef
+              ref: this.mergedProps.innerRef
             })
           )
         }
@@ -139,15 +162,16 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         identifierName !== undefined
           ? identifierName
           : `Styled(${
-          typeof baseTag === 'string'
-            ? baseTag
-            : baseTag.displayName || baseTag.name || 'Component'
-          })`
+              typeof baseTag === 'string'
+                ? baseTag
+                : baseTag.displayName || baseTag.name || 'Component'
+            })`
 
       Styled.contextTypes = contextTypes
       Styled[STYLES_KEY] = styles
       Styled.__emotion_base = baseTag
       Styled.__emotion_real = Styled
+      Styled.__emotion_props = extraProps
       Object.defineProperty(Styled, 'toString', {
         enumerable: false,
         value() {
@@ -170,9 +194,16 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
           nextTag,
           nextOptions !== undefined
             ? // $FlowFixMe
-            pickAssign(testAlwaysTrue, {}, options, nextOptions)
+              pickAssign(testAlwaysTrue, {}, options, nextOptions)
             : options
         )(...styles)
+      }
+
+      Styled.withProps = (withProps: (Object => Object) | Object) => {
+        return createStyled(
+          Styled,
+          pickAssign(testAlwaysTrue, {}, options, { withProps })
+        )()
       }
 
       return Styled
@@ -192,7 +223,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
           default: {
             throw new Error(
               `You're trying to use the styled shorthand without babel-plugin-emotion.` +
-              `\nPlease install and setup babel-plugin-emotion or use the function call syntax(\`styled('${property}')\` instead of \`styled.${property}\`)`
+                `\nPlease install and setup babel-plugin-emotion or use the function call syntax(\`styled('${property}')\` instead of \`styled.${property}\`)`
             )
           }
         }
