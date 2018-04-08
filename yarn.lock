@@ -659,9 +659,15 @@
     unist-util-remove-position "^1.1.1"
     xtend "^4.0.1"
 
-"@emotion/is-prop-valid@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.5.2.tgz#4f47717c2bcce8759e11997520e6bcb14326f54a"
+"@emotion/is-prop-valid@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.6.1.tgz#98a255ac341064ddcf0d84f823b45ae9fb228f91"
+  dependencies:
+    "@emotion/memoize" "^0.6.1"
+
+"@emotion/memoize@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.6.1.tgz#b2de5184e49f518b7115a5e6d0e727643ec531cf"
 
 "@types/node@*":
   version "8.0.49"
@@ -5866,6 +5872,12 @@ generate-object-property@^1.1.0:
 get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
+
+get-lerna-packages@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/get-lerna-packages/-/get-lerna-packages-0.1.0.tgz#f7cf4b358584d98f24cd931451e56ee9d37094e5"
+  dependencies:
+    glob "^7.1.2"
 
 get-params@^0.1.2:
   version "0.1.2"
