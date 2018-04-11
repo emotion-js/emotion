@@ -7,5 +7,6 @@ export const contextTypes = {
 }
 
 export { default as channel } from './channel'
+export { default as createBroadcast } from './create-broadcast'
 
 export type Theme = Object | ((theme: Object) => Object)
