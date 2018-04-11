@@ -1120,4 +1120,32 @@ describe('styled', () => {
     const tree = renderer.create(<OneMoreComponent />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('custom shouldForwardProp works', () => {
+    const Svg = props => (
+      <svg {...props}>
+        <rect
+          x="10"
+          y="10"
+          height="100"
+          width="100"
+          style={{ stroke: '#ff0000' }}
+        />
+      </svg>
+    )
+
+    const StyledSvg = styled(Svg, {
+      shouldForwardProp: prop =>
+        ['className', 'width', 'height'].indexOf(prop) !== -1
+    })`
+      &,
+      & * {
+        fill: ${({ color }) => color};
+      }
+    `
+
+    const tree = renderer
+      .create(<StyledSvg color="#0000ff" width="100px" height="100px" />)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })
