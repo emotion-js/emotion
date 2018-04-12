@@ -45,6 +45,7 @@ function classNameReplacer(className, index) {
   return `emotion-${index}`
 }
 ```
+
 ```jsx
 import * as emotion from 'emotion'
 import { createSerializer } from 'jest-emotion'
@@ -57,6 +58,21 @@ expect.addSnapshotSerializer(
   })
 )
 ```
+
+### `disableDOMElements`
+
+jest-emotion's snapshot serializer inserts styles and replaces class names in both React and DOM elements. If you would like to disable this behavior for the latter, you can do so by setting this property to false. For example:
+
+```jsx
+import * as emotion from 'emotion'
+import { createSerializer } from 'jest-emotion'
+
+// configures jest-emotion to ignore DOM elements
+expect.addSnapshotSerializer(
+  createSerializer(emotion, { disableDOMElements: true })
+)
+```
+
 # getStyles
 
 jest-emotion also allows you to get all the css that emotion has inserted. This is meant to be an escape hatch if you don't use React or you want to build your own utilities for testing with emotion.
