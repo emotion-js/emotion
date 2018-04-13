@@ -7,7 +7,6 @@ exports[`sheet inject method throws if the sheet is already injected 1`] = `"alr
 exports[`sheet tags 1`] = `
 Array [
   <style
-    type="text/css"
     data-emotion=""
 >
     
