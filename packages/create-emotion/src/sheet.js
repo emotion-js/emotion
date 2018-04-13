@@ -43,7 +43,6 @@ type Options = { nonce?: string, key?: string, container?: HTMLElement }
 
 function makeStyleTag(opts: Options): HTMLStyleElement {
   let tag = document.createElement('style')
-  tag.type = 'text/css'
   tag.setAttribute('data-emotion', opts.key || '')
   if (opts.nonce !== undefined) {
     tag.setAttribute('nonce', opts.nonce)
