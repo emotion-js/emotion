@@ -235,7 +235,6 @@ let stylisOptions = {
   cascade: true
 }
 
-
 let stylis = new Stylis(stylisOptions)
 let regularStylis = new Stylis(stylisOptions)
 
