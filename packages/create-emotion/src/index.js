@@ -1,5 +1,6 @@
 // @flow
-import { hashString, Stylis, STYLES_KEY } from 'emotion-utils'
+import hashString from '@emotion/hash'
+import Stylis from '@emotion/stylis'
 import stylisRuleSheet from 'stylis-rule-sheet'
 import {
   processStyleName,
@@ -127,7 +128,7 @@ function createEmotion(
       case 'boolean':
         return ''
       case 'function':
-        if (interpolation[STYLES_KEY] !== undefined) {
+        if (interpolation.__emotion_styles !== undefined) {
           let selector = interpolation.toString()
           if (
             selector === 'NO_COMPONENT_SELECTOR' &&

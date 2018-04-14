@@ -16,8 +16,7 @@
     "watch": "rollup -c ../../rollup.config.js --watch"
   },
   "dependencies": {
-    "@emotion/is-prop-valid": "^0.6.1",
-    "emotion-utils": "^9.1.0"
+    "@emotion/is-prop-valid": "^0.6.1"
   },
   "peerDependencies": {
     "prop-types": ">= 15"

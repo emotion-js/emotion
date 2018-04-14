@@ -1,5 +1,6 @@
 // @flow
-import { memoize, unitless } from 'emotion-utils'
+import memoize from '@emotion/memoize'
+import unitless from '@emotion/unitless'
 
 const hyphenateRegex = /[A-Z]|^ms/g
 

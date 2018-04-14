@@ -10,7 +10,6 @@
     "dom-iterator": "^0.3.0",
     "emotion": "^9.1.1",
     "emotion-server": "^9.1.1",
-    "emotion-utils": "^9.1.0",
     "facepaint": "^1.1.2",
     "gatsby": "^1.9.149",
     "gatsby-image": "^1.0.31",
