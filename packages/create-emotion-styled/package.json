@@ -1,6 +1,6 @@
 {
   "name": "create-emotion-styled",
-  "version": "9.1.0",
+  "version": "9.1.1",
   "description": "The styled API for emotion",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -16,7 +16,7 @@
     "watch": "rollup -c ../../rollup.config.js --watch"
   },
   "dependencies": {
-    "@emotion/is-prop-valid": "^0.5.2",
+    "@emotion/is-prop-valid": "^0.6.1",
     "emotion-utils": "^9.1.0"
   },
   "peerDependencies": {

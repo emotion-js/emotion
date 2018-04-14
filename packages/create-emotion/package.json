@@ -1,6 +1,6 @@
 {
   "name": "create-emotion",
-  "version": "9.1.0",
+  "version": "9.1.1",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",

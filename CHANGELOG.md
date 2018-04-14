@@ -1,3 +1,19 @@
+## v9.1.1 (2018-04-04)
+
+#### :rocket: Enhancement
+
+* `create-emotion`, `emotion-server`, `emotion`, `react-emotion`
+  * [#609](https://github.com/emotion-js/emotion/pull/609) Allow labels to be composed. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :house: Internal
+
+* `create-emotion-styled`
+  * [#612](https://github.com/emotion-js/emotion/pull/612) Use @emotion/is-prop-valid for checking valid props on string tags. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+
+* Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamiltosn))
+
 ## v9.1.0 (2018-03-24)
 
 #### :rocket: Enhancement

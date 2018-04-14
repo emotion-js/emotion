@@ -5,7 +5,11 @@ import babel from 'rollup-plugin-babel'
 import alias from 'rollup-plugin-alias'
 import cjs from 'rollup-plugin-commonjs'
 import path from 'path'
+import getLernaPackages from 'get-lerna-packages'
 import { rollup as lernaAliases } from 'lerna-alias'
+
+const flatMap = (iteratee, arr) => [].concat(...arr.map(iteratee))
+const uniq = arr => [...new Set(arr)]
 
 const pkg = require(path.resolve(process.cwd(), './package.json'))
 
@@ -40,12 +44,18 @@ const baseConfig = {
 const baseExternal = ['react', 'prop-types', 'preact']
 
 const mainConfig = Object.assign({}, baseConfig, {
-  external: baseExternal.concat([
-    'emotion',
-    'emotion-utils',
-    'hoist-non-react-statics',
-    'stylis-rule-sheet'
-  ]),
+  external: uniq(
+    baseExternal.concat(
+      flatMap(dir => {
+        const {
+          dependencies = {},
+          peerDependencies = {}
+        } = require(`${dir}/package.json`)
+
+        return [...Object.keys(dependencies), ...Object.keys(peerDependencies)]
+      }, getLernaPackages())
+    )
+  ),
   plugins: basePlugins,
   output: [
     { file: pkg.main, format: 'cjs' },
