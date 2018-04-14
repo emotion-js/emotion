@@ -87,10 +87,7 @@ function createEmotion(
   const insertionPlugin = stylisRuleSheet(insertRule)
 
   const stylisOptions: StylisOptions = {
-    keyframe: false,
-    global: false,
-    prefix: options.prefix === undefined ? true : options.prefix,
-    semicolon: true
+    prefix: options.prefix === undefined ? true : options.prefix
   }
 
   if (process.env.NODE_ENV !== 'production') {
