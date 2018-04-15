@@ -18,7 +18,7 @@
   "dependencies": {
     "@emotion/hash": "^0.6.2",
     "@emotion/memoize": "^0.6.1",
-    "@emotion/stylis": "^0.6.4",
+    "@emotion/stylis": "^0.6.5",
     "@emotion/unitless": "^0.6.2",
     "stylis": "^3.5.0",
     "stylis-rule-sheet": "^0.0.10"

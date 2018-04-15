@@ -9,7 +9,7 @@ import {
   isBrowser
 } from './utils'
 import StyleSheet from './sheet'
-import type { PrefixOption, StylisOptions, ClassNameArg } from './utils'
+import type { PrefixOption, ClassNameArg } from './utils'
 
 type StylisPlugins = Function[] | null | Function
 
@@ -86,12 +86,11 @@ function createEmotion(
 
   const insertionPlugin = stylisRuleSheet(insertRule)
 
-  const stylisOptions: StylisOptions = {
-    prefix: options.prefix === undefined ? true : options.prefix
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    stylisOptions.compress = false
+  let stylisOptions
+  if (options.prefix !== undefined) {
+    stylisOptions = {
+      prefix: options.prefix
+    }
   }
 
   const caches = {

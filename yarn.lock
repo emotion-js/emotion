@@ -673,9 +673,9 @@
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.6.1.tgz#b2de5184e49f518b7115a5e6d0e727643ec531cf"
 
-"@emotion/stylis@^0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@emotion/stylis/-/stylis-0.6.4.tgz#ad7dee926df2704745c38bc559b66682f25e711a"
+"@emotion/stylis@^0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@emotion/stylis/-/stylis-0.6.5.tgz#3e1bb0e52307d66212bcd307e2cb4d079f2a0b6a"
 
 "@emotion/unitless@^0.6.2":
   version "0.6.2"
