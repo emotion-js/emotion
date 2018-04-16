@@ -1,5 +1,4 @@
 // @flow
-import { STYLES_KEY } from 'emotion-utils'
 import type { Emotion, Interpolations } from 'create-emotion'
 import { channel, contextTypes } from '../../emotion-theming/src/utils'
 import type { ElementType } from 'react'
@@ -49,7 +48,9 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
     return function() {
       let args = arguments
       let styles =
-        isReal && tag[STYLES_KEY] !== undefined ? tag[STYLES_KEY].slice(0) : []
+        isReal && tag.__emotion_styles !== undefined
+          ? tag.__emotion_styles.slice(0)
+          : []
       if (identifierName !== undefined) {
         styles.push(`label:${identifierName};`)
       }
@@ -140,7 +141,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
             })`
 
       Styled.contextTypes = contextTypes
-      Styled[STYLES_KEY] = styles
+      Styled.__emotion_styles = styles
       Styled.__emotion_base = baseTag
       Styled.__emotion_real = Styled
       Object.defineProperty(Styled, 'toString', {

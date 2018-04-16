@@ -3,7 +3,8 @@ language: node_js
 node_js:
   - "8"
 
-script: npm run test
+
+script: npm run test; if [[ $TRAVIS_COMMIT_MESSAGE == *"#benchmark"* ]]; then npm run benchmark ; fi;
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
