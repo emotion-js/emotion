@@ -1,5 +1,6 @@
 // @flow
-import { memoize, unitless } from 'emotion-utils'
+import memoize from '@emotion/memoize'
+import unitless from '@emotion/unitless'
 
 const hyphenateRegex = /[A-Z]|^ms/g
 
@@ -76,13 +77,3 @@ export const isBrowser = typeof document !== 'undefined'
 export type PrefixOption =
   | boolean
   | ((key: string, value: string, context: 1 | 2 | 3) => boolean)
-
-export type StylisOptions = {
-  keyframe?: boolean,
-  compress?: boolean,
-  global?: boolean,
-  cascade?: boolean,
-  semicolon?: boolean,
-  preserve?: boolean,
-  prefix?: PrefixOption
-}
