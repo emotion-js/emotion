@@ -9,13 +9,13 @@ const { ReactElement, ReactTestComponent, DOMElement } = prettyFormat.plugins
 describe('jest-emotion with dom elements', () => {
   const emotionPlugin = createSerializer(emotion)
 
-  const divStyle = emotion.css(`
+  const divStyle = emotion.css`
     color: red;
-  `)
+  `
 
-  const svgStyle = emotion.css(`
+  const svgStyle = emotion.css`
     width: 100%;
-  `)
+  `
 
   it('replaces class names and inserts styles into React test component snapshots', () => {
     const tree = renderer
@@ -49,15 +49,15 @@ describe('jest-emotion with dom elements', () => {
 })
 
 describe('jest-emotion with DOM elements disabled', () => {
-  const emotionPlugin = createSerializer(emotion, { disableDOMElements: true })
+  const emotionPlugin = createSerializer(emotion, { DOMElements: false })
 
-  const divStyle = emotion.css(`
+  const divStyle = emotion.css`
     color: red;
-  `)
+  `
 
-  const svgStyle = emotion.css(`
+  const svgStyle = emotion.css`
     width: 100%;
-  `)
+  `
 
   it('replaces class names and inserts styles into React test component snapshots', () => {
     const tree = renderer

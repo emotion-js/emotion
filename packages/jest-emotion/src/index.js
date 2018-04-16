@@ -8,7 +8,7 @@ import type { Emotion } from 'create-emotion'
 
 type Options = {
   classNameReplacer: ClassNameReplacer,
-  disableDOMElements: boolean
+  DOMElements: boolean
 }
 
 function getNodes(node, nodes = []) {
@@ -82,7 +82,7 @@ function isDOMElement(val) {
 
 export function createSerializer(
   emotion: Emotion,
-  { classNameReplacer, disableDOMElements }: Options = {}
+  { classNameReplacer, DOMElements = true }: Options = {}
 ) {
   function print(val: *, printer: Function) {
     const nodes = getNodes(val)
@@ -103,9 +103,9 @@ export function createSerializer(
     return (
       val &&
       !val.withEmotionStyles &&
-      (disableDOMElements
-        ? isReactElement(val)
-        : isReactElement(val) || isDOMElement(val))
+      (DOMElements
+        ? isReactElement(val) || isDOMElement(val)
+        : isReactElement(val))
     )
   }
 
