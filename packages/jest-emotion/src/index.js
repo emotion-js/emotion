@@ -7,12 +7,15 @@ import {
 import type { Emotion } from 'create-emotion'
 
 type Options = {
-  classNameReplacer: ClassNameReplacer
+  classNameReplacer: ClassNameReplacer,
+  DOMElements: boolean
 }
 
 function getNodes(node, nodes = []) {
   if (node.children) {
-    node.children.forEach(child => getNodes(child, nodes))
+    for (let child of node.children) {
+      getNodes(child, nodes)
+    }
   }
 
   if (typeof node === 'object') {
@@ -22,19 +25,28 @@ function getNodes(node, nodes = []) {
   return nodes
 }
 
-function getSelectors(nodes) {
-  return nodes.reduce(
-    (selectors, node) => getSelectorsFromProps(selectors, node.props),
-    []
-  )
+function getSelectorsFromClasses(selectors, classes) {
+  return classes
+    ? selectors.concat(classes.split(' ').map(c => `.${c}`))
+    : selectors
 }
 
 function getSelectorsFromProps(selectors, props) {
-  const className = props.className || props.class
-  if (className) {
-    selectors = selectors.concat(className.split(' ').map(cn => `.${cn}`))
-  }
-  return selectors
+  return getSelectorsFromClasses(selectors, props.className || props.class)
+}
+
+function getSelectorsForDOMElement(selectors, node) {
+  return getSelectorsFromClasses(selectors, node.getAttribute('class'))
+}
+
+function getSelectors(nodes) {
+  return nodes.reduce(
+    (selectors, node) =>
+      isReactElement(node)
+        ? getSelectorsFromProps(selectors, node.props)
+        : getSelectorsForDOMElement(selectors, node),
+    []
+  )
 }
 
 function filterChildSelector(baseSelector) {
@@ -53,17 +65,24 @@ export function getStyles(emotion: Emotion) {
   }, '')
 }
 
-function test(val: *) {
+function isReactElement(val) {
+  return val.$$typeof === Symbol.for('react.test.json')
+}
+
+const domElementPattern = /^((HTML|SVG)\w*)?Element$/
+
+function isDOMElement(val) {
   return (
-    val &&
-    !val.withEmotionStyles &&
-    val.$$typeof === Symbol.for('react.test.json')
+    val.nodeType === 1 &&
+    val.constructor &&
+    val.constructor.name &&
+    domElementPattern.test(val.constructor.name)
   )
 }
 
 export function createSerializer(
   emotion: Emotion,
-  { classNameReplacer }: Options = {}
+  { classNameReplacer, DOMElements = true }: Options = {}
 ) {
   function print(val: *, printer: Function) {
     const nodes = getNodes(val)
@@ -77,6 +96,16 @@ export function createSerializer(
       printedVal,
       emotion.caches.key,
       classNameReplacer
+    )
+  }
+
+  function test(val: *) {
+    return (
+      val &&
+      !val.withEmotionStyles &&
+      (DOMElements
+        ? isReactElement(val) || isDOMElement(val)
+        : isReactElement(val))
     )
   }
 
