@@ -1,5 +1,6 @@
 // @flow
-import { hashString, Stylis, STYLES_KEY } from 'emotion-utils'
+import hashString from '@emotion/hash'
+import Stylis from '@emotion/stylis'
 import stylisRuleSheet from 'stylis-rule-sheet'
 import {
   processStyleName,
@@ -8,7 +9,7 @@ import {
   isBrowser
 } from './utils'
 import StyleSheet from './sheet'
-import type { PrefixOption, StylisOptions, ClassNameArg } from './utils'
+import type { PrefixOption, ClassNameArg } from './utils'
 
 type StylisPlugins = Function[] | null | Function
 
@@ -85,15 +86,11 @@ function createEmotion(
 
   const insertionPlugin = stylisRuleSheet(insertRule)
 
-  const stylisOptions: StylisOptions = {
-    keyframe: false,
-    global: false,
-    prefix: options.prefix === undefined ? true : options.prefix,
-    semicolon: true
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    stylisOptions.compress = false
+  let stylisOptions
+  if (options.prefix !== undefined) {
+    stylisOptions = {
+      prefix: options.prefix
+    }
   }
 
   const caches = {
@@ -127,7 +124,7 @@ function createEmotion(
       case 'boolean':
         return ''
       case 'function':
-        if (interpolation[STYLES_KEY] !== undefined) {
+        if (interpolation.__emotion_styles !== undefined) {
           let selector = interpolation.toString()
           if (
             selector === 'NO_COMPONENT_SELECTOR' &&

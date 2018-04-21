@@ -27,3 +27,11 @@
 - Run above installation steps and then
 - Run `yarn start:site` to run a development server of gatsby.
 - Run `yarn build:site` to create a build of the assets for the documentation website.
+
+## Benchmarking
+
+- `yarn benchmark` will run the benchmarks locally
+
+- If you commit message includes `#benchmark` the benchmarks will run on the CI.
+
+  - The results for branches in the emotion-js/emotion repo are **here: https://travis-ci.org/emotion-js/emotion/branches**

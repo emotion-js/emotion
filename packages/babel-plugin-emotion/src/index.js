@@ -20,7 +20,9 @@ import type {
   Types,
   Babel
 } from 'babel-flow-types'
-import { hashString, Stylis, memoize } from 'emotion-utils'
+import hashString from '@emotion/hash'
+import Stylis from '@emotion/stylis'
+import memoize from '@emotion/memoize'
 import { addSourceMaps } from './source-map'
 
 import cssProps from './css-prop'

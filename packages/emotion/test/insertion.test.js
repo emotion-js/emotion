@@ -1,5 +1,5 @@
 // @flow
-import { Stylis } from 'emotion-utils'
+import Stylis from '@emotion/stylis'
 import stylisRuleSheet from 'stylis-rule-sheet'
 
 const specs = [
@@ -227,8 +227,16 @@ const specs = [
   }
 ]
 
-let stylis = new Stylis({ keyframe: false })
-let regularStylis = new Stylis({ keyframe: false })
+let stylisOptions = {
+  global: false,
+  preserve: false,
+  keyframe: false,
+  semicolon: true,
+  cascade: true
+}
+
+let stylis = new Stylis(stylisOptions)
+let regularStylis = new Stylis(stylisOptions)
 
 specs.forEach((spec, i) => {
   const newTest = spec.only ? test.only : spec.skip ? test.skip : test

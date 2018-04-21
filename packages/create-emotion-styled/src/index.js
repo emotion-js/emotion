@@ -1,15 +1,14 @@
 // @flow
-import { STYLES_KEY } from 'emotion-utils'
 import type { Emotion, Interpolations } from 'create-emotion'
 import { channel, contextTypes } from '../../emotion-theming/src/utils'
 import type { ElementType } from 'react'
 import typeof ReactType from 'react'
 import type { CreateStyled, StyledOptions } from './utils'
 import {
-  testOmitPropsOnComponent,
+  testPickPropsOnComponent,
   testAlwaysTrue,
-  testOmitPropsOnStringTag,
-  omitAssign,
+  testPickPropsOnStringTag,
+  pickAssign,
   setTheme
 } from './utils'
 
@@ -25,10 +24,12 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
     let staticClassName
     let identifierName
     let stableClassName
+    let shouldForwardProp
     if (options !== undefined) {
       staticClassName = options.e
       identifierName = options.label
       stableClassName = options.target
+      shouldForwardProp = options.shouldForwardProp
     }
     const isReal = tag.__emotion_real === tag
     const baseTag =
@@ -36,16 +37,20 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         ? (isReal && tag.__emotion_base) || tag
         : tag
 
-    const omitFn =
-      typeof baseTag === 'string' &&
-      baseTag.charAt(0) === baseTag.charAt(0).toLowerCase()
-        ? testOmitPropsOnStringTag
-        : testOmitPropsOnComponent
+    if (typeof shouldForwardProp !== 'function') {
+      shouldForwardProp =
+        typeof baseTag === 'string' &&
+        baseTag.charAt(0) === baseTag.charAt(0).toLowerCase()
+          ? testPickPropsOnStringTag
+          : testPickPropsOnComponent
+    }
 
     return function() {
       let args = arguments
       let styles =
-        isReal && tag[STYLES_KEY] !== undefined ? tag[STYLES_KEY].slice(0) : []
+        isReal && tag.__emotion_styles !== undefined
+          ? tag.__emotion_styles.slice(0)
+          : []
       if (identifierName !== undefined) {
         styles.push(`label:${identifierName};`)
       }
@@ -86,7 +91,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         }
         render() {
           const { props, state } = this
-          this.mergedProps = omitAssign(testAlwaysTrue, {}, props, {
+          this.mergedProps = pickAssign(testAlwaysTrue, {}, props, {
             theme: (state !== null && state.theme) || props.theme || {}
           })
 
@@ -118,7 +123,11 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
 
           return view.createElement(
             baseTag,
-            omitAssign(omitFn, {}, props, { className, ref: props.innerRef })
+            // $FlowFixMe
+            pickAssign(shouldForwardProp, {}, props, {
+              className,
+              ref: props.innerRef
+            })
           )
         }
       }
@@ -132,7 +141,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
             })`
 
       Styled.contextTypes = contextTypes
-      Styled[STYLES_KEY] = styles
+      Styled.__emotion_styles = styles
       Styled.__emotion_base = baseTag
       Styled.__emotion_real = Styled
       Object.defineProperty(Styled, 'toString', {
@@ -144,6 +153,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
           ) {
             return 'NO_COMPONENT_SELECTOR'
           }
+          // $FlowFixMe
           return `.${stableClassName}`
         }
       })
@@ -156,7 +166,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
           nextTag,
           nextOptions !== undefined
             ? // $FlowFixMe
-              omitAssign(testAlwaysTrue, {}, options, nextOptions)
+              pickAssign(testAlwaysTrue, {}, options, nextOptions)
             : options
         )(...styles)
       }
