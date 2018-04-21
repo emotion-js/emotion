@@ -8,7 +8,7 @@ export const processStyleName: (styleName: string) => string = memoize(
   (styleName: string) => styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
-export const processStyleValue = (key: string, value: string): string => {
+export let processStyleValue = (key: string, value: string): string => {
   if (value == null || typeof value === 'boolean') {
     return ''
   }
@@ -22,6 +22,39 @@ export const processStyleValue = (key: string, value: string): string => {
     return value + 'px'
   }
   return value
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  let contentValuePattern = /(attr|calc|counters?|url)\(/
+  let contentValues = [
+    'normal',
+    'none',
+    'counter',
+    'open-quote',
+    'close-quote',
+    'no-open-quote',
+    'no-close-quote',
+    'initial',
+    'inherit',
+    'unset'
+  ]
+  let oldProcessStyleValue = processStyleValue
+  processStyleValue = (key: string, value: string) => {
+    if (key === 'content') {
+      if (
+        typeof value !== 'string' ||
+        (contentValues.indexOf(value) === -1 &&
+          !contentValuePattern.test(value) &&
+          (value.charAt(0) !== value.charAt(value.length - 1) ||
+            (value.charAt(0) !== '"' && value.charAt(0) !== "'")))
+      ) {
+        console.error(
+          `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
+        )
+      }
+    }
+    return oldProcessStyleValue(key, value)
+  }
 }
 
 export type ClassNameArg =
