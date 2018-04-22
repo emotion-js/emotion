@@ -12,6 +12,17 @@ exports[`css @supports 1`] = `
 />
 `;
 
+exports[`css array fallback 1`] = `
+.emotion-0 {
+  color: yellow;
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`css array with explicit false 1`] = `
 .emotion-0 {
   display: -webkit-box;

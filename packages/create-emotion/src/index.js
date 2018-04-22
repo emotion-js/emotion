@@ -189,8 +189,24 @@ function createEmotion(
               'Component selectors can only be used in conjunction with babel-plugin-emotion.'
             )
           }
-
-          string += `${key}{${handleInterpolation.call(this, obj[key], false)}}`
+          if (
+            Array.isArray(obj[key]) &&
+            (typeof obj[key][0] === 'string' &&
+              caches.registered[obj[key][0]] === undefined)
+          ) {
+            obj[key].forEach(value => {
+              string += `${processStyleName(key)}:${processStyleValue(
+                key,
+                value
+              )};`
+            })
+          } else {
+            string += `${key}{${handleInterpolation.call(
+              this,
+              obj[key],
+              false
+            )}}`
+          }
         }
       }, this)
     }

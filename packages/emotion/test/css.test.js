@@ -412,4 +412,11 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+  test('array fallback', () => {
+    const cls = css({
+      color: ['yellow', 'hotpink']
+    })
+    const tree = renderer.create(<div className={cls} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })

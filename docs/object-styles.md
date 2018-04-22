@@ -156,6 +156,26 @@ render(
 )
 ```
 
+### Fallbacks
+
+Define fallback values for browsers that don't support features with arrays.
+
+```jsx live
+import { css } from 'emotion'
+
+const className = css({
+  background: ['red', 'linear-gradient(#e66465, #9198e5)'],
+  height: 100
+})
+
+render(
+  <div className={className}>
+    This has a gradient background in browsers that support gradients and is red
+    in browsers that don't support gradients
+  </div>
+)
+```
+
 ### Composition
 
 [Learn more composition in Emotion](/docs/composition.md).
