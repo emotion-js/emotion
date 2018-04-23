@@ -16,7 +16,8 @@ export type InterpolationTypes<Props = {}> =
 
 export type Interpolation<Props = {}> =
   | InterpolationTypes<Props>
-  | Array<InterpolationTypes<Props>>;
+  | Array<InterpolationTypes<Props>>
+  | ComponentRef;
 
 export interface Options {
   string?: string;
@@ -34,8 +35,12 @@ type ElementProps<Tag extends keyof JSX.IntrinsicElements> =
   & JSX.IntrinsicElements[Tag]
   & { innerRef?: JSX.IntrinsicElements[Tag]['ref'] };
 
+// tslint:disable:no-empty-interface
+interface ComponentRef {}
+
 export interface StyledComponent<Props, Theme, IntrinsicProps>
   extends
+    ComponentRef,
     ComponentClass<Props & IntrinsicProps>,
     StatelessComponent<Props & IntrinsicProps> {
   withComponent<Tag extends keyof JSX.IntrinsicElements>(tag: Tag):
