@@ -134,7 +134,7 @@ export function createSerializer(
     } catch (e) {
       console.error(e)
       throw new Error(
-        `There was an error parsing css in jest-emotionå: "${styles}"`
+        `There was an error parsing css in jest-emotion: "${styles}"`
       )
     }
     return prettyStyles
