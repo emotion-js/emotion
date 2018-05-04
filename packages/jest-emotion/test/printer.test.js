@@ -101,7 +101,7 @@ describe('jest-emotion with nested selectors', () => {
     }
   `
 
-  it('replaces class names and inserts styles into React test component snapshots', () => {
+  it.skip('replaces class names and inserts styles into React test component snapshots', () => {
     const tree = renderer.create(<div className={divStyle} />).toJSON()
 
     const output = prettyFormat(tree, {
