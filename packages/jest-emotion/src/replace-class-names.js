@@ -1,5 +1,4 @@
 // @flow
-import type { Emotion } from 'create-emotion'
 function defaultClassNameReplacer(className, index) {
   return `emotion-${index}`
 }
@@ -19,10 +18,6 @@ export const replaceClassNames = (
 
   return classNames.reduce((acc, className) => {
     if (
-      // using the registered cache since its keys are
-      // key-hash
-      // instead of the inserted cache which is
-      // hash
       className.indexOf(`${key}-`) === 0 ||
       componentSelectorClassNamePattern.test(className)
     ) {
