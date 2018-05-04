@@ -1,5 +1,5 @@
 // @flow
-import styled from 'react-emotion'
+import styled from '@emotion/styled.macro'
 import {
   space,
   width,

@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import styled, { css, cx } from 'react-emotion'
+import styled from '@emotion/styled.macro'
 import Live, { compile, Editor, ErrorBoundary } from './live'
 import { ThemeProvider, withTheme } from 'emotion-theming'
 import Box from '../components/Box'
@@ -83,11 +83,9 @@ export default class Playground extends Component<Props> {
                 <Editor
                   code={code}
                   onChange={onChange}
+                  css={{ overflow: 'auto', height: '100%', borderRadius: 0 }}
                   // $FlowFixMe
-                  className={cx(
-                    css({ overflow: 'auto', height: '100%', borderRadius: 0 }),
-                    this.props.editorClassName
-                  )}
+                  className={this.props.editorClassName}
                 />
               </Box>
               <Box

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { cx, css } from 'react-emotion'
+import css from '@emotion/css'
 import { mq } from '../utils/style'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
@@ -94,7 +94,7 @@ const createHeading = (
   return (
     <TagName
       {...props}
-      className={cx(
+      css={[
         css`
           svg {
             visibility: hidden;
@@ -103,14 +103,14 @@ const createHeading = (
             visibility: visible;
           }
         `,
-        headingStylesMap[TagName],
-        props.className
-      )}
+        headingStylesMap[TagName]
+      ]}
+      className={props.className}
     >
       <a
         href={`#${props.id}`}
         aria-hidden
-        css={`
+        css={css`
           float: left;
           padding-right: 4px;
           margin-left: -20px;
@@ -165,12 +165,12 @@ const internalCodeStyles = css(
 
 const createCode = (logoUrl: string) => (props: *) => {
   if (props.className === undefined) {
-    return <code className={inlineCodeStyles} {...props} />
+    return <code css={inlineCodeStyles} {...props} />
   }
   if (props.className[0] === 'language-jsx-live') {
     return (
       <Playground
-        className={codeStyles}
+        css={codeStyles}
         editorClassName={internalCodeStyles}
         logoUrl={logoUrl}
         initialCompiledCode={props.compiled}
@@ -187,10 +187,10 @@ const createCode = (logoUrl: string) => (props: *) => {
     global.Prism.languages[language]
   )
   return (
-    <pre className={codeStyles}>
+    <pre css={codeStyles}>
       <code className="prism-code">
         <div
-          className={internalCodeStyles}
+          css={internalCodeStyles}
           dangerouslySetInnerHTML={{ __html: highlighted }}
         />
       </code>

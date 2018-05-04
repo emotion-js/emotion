@@ -5,6 +5,13 @@
   "version": "9.1.2",
   "dependencies": {
     "@dumpster/remark-custom-element-to-hast": "^0.4.0",
+    "@emotion/compat-cache": "^0.7.0",
+    "@emotion/core": "^0.7.0",
+    "@emotion/css": "^0.7.0",
+    "@emotion/global": "^0.7.0",
+    "@emotion/jsx": "^0.7.0",
+    "@emotion/provider": "^0.7.0",
+    "@emotion/styled.macro": "^0.7.0",
     "babel-plugin-emotion": "^9.1.2",
     "babel-standalone": "^6.26.0",
     "dom-iterator": "^0.3.0",

@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled.macro'
+import css from '@emotion/css'
 import Box from '../components/Box'
 import { scope, Error } from '../components/Playground'
 import { openColors, colors, constants } from '../utils/style'
@@ -159,7 +160,7 @@ class IndexPage extends React.Component<Props, State> {
                     css={scroll}
                   />
                   {error && (
-                    <Box className={scroll} fontSize={1}>
+                    <Box css={scroll} fontSize={1}>
                       <Error css={scroll}>{error.toString()}</Error>
                     </Box>
                   )}

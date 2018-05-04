@@ -1,15 +1,12 @@
-import { injectGlobal } from 'emotion'
+import css from '@emotion/css'
 import { mq, fonts } from './style'
 import prismStyles from 'react-live/lib/constants/css.js'
 
-injectGlobal(
-  prismStyles.replace('prism-code', 'prism-code,pre[class*="language-"]')
-)
-
-injectGlobal`
-  html,
-  body,
-  #___gatsby {
+const globalStyles = css`
+  ${prismStyles.replace(
+    'prism-code',
+    'prism-code,pre[class*="language-"]'
+  )} html, body, #___gatsby {
     font-family: ${fonts.primary};
     color: #fffeff;
     width: 100%;
@@ -50,3 +47,5 @@ injectGlobal`
       U+2000-206f, U+2074, U+20ac, U+2212, U+2215;
   }
 `
+
+export default globalStyles

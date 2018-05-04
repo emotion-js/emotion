@@ -1,8 +1,8 @@
 // @flow
-import '../utils/global'
+import globalStyles from '../utils/global'
 import React from 'react'
 import Link from '../components/Link'
-import styled from 'react-emotion'
+import styled from '@emotion/styled.macro'
 import Box from '../components/Box'
 import Helmet from 'react-helmet'
 import DocWrapper from '../components/DocWrapper'
@@ -10,6 +10,7 @@ import Search from '../components/Search'
 import { colors, constants, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
 import type { Location, Match } from '../utils/types'
+import Global from '@emotion/global'
 
 const StyledLink = styled(Box)`
   color: white;
@@ -185,12 +186,16 @@ const TemplateWrapper = (props: TemplateWrapperProps) => {
     )
   }
   return (
-    <BaseWrapper
-      avatar={props.data.avatar.childImageSharp.resolutions}
-      location={props.location}
-    >
-      {children}
-    </BaseWrapper>
+    // $FlowFixMe
+    <React.Fragment>
+      <Global css={globalStyles} />
+      <BaseWrapper
+        avatar={props.data.avatar.childImageSharp.resolutions}
+        location={props.location}
+      >
+        {children}
+      </BaseWrapper>
+    </React.Fragment>
   )
 }
 

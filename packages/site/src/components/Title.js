@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled.macro'
 import { constants, mq } from '../utils/style'
 
 const Title = styled.h1(

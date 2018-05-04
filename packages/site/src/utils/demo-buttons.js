@@ -1,7 +1,8 @@
 // @flow
 import Box from '../components/Box'
 import * as React from 'react'
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled.macro'
+import css from '@emotion/css'
 import _GatsbyLink from 'gatsby-link'
 import { ErrorBoundary } from '../components/live'
 
@@ -35,16 +36,16 @@ export const Preview = ({
     <ErrorBoundary onError={onError}>
       <Links>
         <Link
-          css={`
+          css={css`
             font-weight: 800;
+            ${textCenter};
           `}
-          className={textCenter}
           to="/docs/install"
           primary
         >
           Install
         </Link>
-        <Link to="/docs/introduction" className={textCenter}>
+        <Link to="/docs/introduction" css={textCenter}>
           Getting Started
         </Link>
       </Links>

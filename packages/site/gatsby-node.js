@@ -23,6 +23,13 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
       assert: 'empty'
     }
   })
+
+  config.plugin(`Emotion`, webpack.ProvidePlugin, [
+    {
+      EmotionJSX: `@emotion/jsx`
+    }
+  ])
+
   config.plugin('ignore-stuff', () => new webpack.IgnorePlugin(/^(xor|props)$/))
   if (stage === 'build-javascript') {
     config.merge({
@@ -37,22 +44,31 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
 }
 
 exports.modifyBabelrc = ({ babelrc }) => {
-  if (process.env.NODE_ENV !== `production`) {
-    return {
-      plugins: [
-        [
-          require.resolve(`babel-plugin-emotion`),
-          { sourceMap: true, autoLabel: true }
-        ]
-      ].concat(babelrc.plugins)
-    }
-  }
   return {
-    plugins: [
-      [require.resolve(`babel-plugin-emotion`), { hoist: true }]
-    ].concat(babelrc.plugins)
+    ...babelrc,
+    plugins: babelrc.plugins.concat([
+      [`transform-react-jsx`, { pragma: `EmotionJSX` }]
+    ])
   }
 }
+
+// exports.modifyBabelrc = ({ babelrc }) => {
+//   if (process.env.NODE_ENV !== `production`) {
+//     return {
+//       plugins: [
+//         [
+//           require.resolve(`babel-plugin-emotion`),
+//           { sourceMap: true, autoLabel: true }
+//         ]
+//       ].concat(babelrc.plugins)
+//     }
+//   }
+//   return {
+//     plugins: [
+//       [require.resolve(`babel-plugin-emotion`), { hoist: true }]
+//     ].concat(babelrc.plugins)
+//   }
+// }
 
 exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
