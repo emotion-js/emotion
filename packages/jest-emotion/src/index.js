@@ -47,13 +47,6 @@ function getClassNamesFromNodes(nodes) {
   )
 }
 
-function filterChildSelector(baseSelector) {
-  if (baseSelector.slice(-1) === '>') {
-    return baseSelector.slice(0, -1)
-  }
-  return baseSelector
-}
-
 export function getStyles(emotion: Emotion) {
   return Object.keys(emotion.caches.inserted).reduce((style, current) => {
     if (emotion.caches.inserted[current] === true) {
