@@ -32,6 +32,10 @@ export type BabelPath = _BabelPath & {
   node: *
 }
 
+export const emotionMacro = require('./macro')
+
+export const styledMacro = require('./macro-styled')
+
 export function hashArray(arr: Array<string>) {
   return hashString(arr.join(''))
 }

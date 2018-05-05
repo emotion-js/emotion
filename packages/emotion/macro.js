@@ -1,1 +1,1 @@
-module.exports = require('babel-plugin-emotion/lib/macro')
+module.exports = require('babel-plugin-emotion').emotionMacro
