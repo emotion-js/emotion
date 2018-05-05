@@ -7,23 +7,14 @@
     "src",
     "lib"
   ],
-  "scripts": {
-    "build": "npm-run-all clean babel",
-    "babel": "babel src -d lib",
-    "watch": "babel src -d lib --watch",
-    "clean": "rimraf lib"
-  },
   "dependencies": {
     "html-tokenize": "^2.0.0",
     "multipipe": "^1.0.2",
     "through": "^2.3.8"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
     "emotion": "^9.1.2",
-    "npm-run-all": "^4.0.2",
-    "react-emotion": "^9.1.2",
-    "rimraf": "^2.6.1"
+    "react-emotion": "^9.1.2"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

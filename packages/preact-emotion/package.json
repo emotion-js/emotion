@@ -9,12 +9,6 @@
     "src",
     "macro.js"
   ],
-  "scripts": {
-    "build": "npm-run-all clean rollup",
-    "clean": "rimraf dist",
-    "watch": "rollup -c ../../rollup.config.js --watch",
-    "rollup": "rollup -c ../../rollup.config.js"
-  },
   "dependencies": {
     "babel-plugin-emotion": "^9.1.2",
     "create-emotion-styled": "^9.1.2"
@@ -24,10 +18,7 @@
   },
   "devDependencies": {
     "emotion": "^9.1.2",
-    "npm-run-all": "^4.0.2",
-    "react-emotion": "^9.1.2",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.51.3"
+    "react-emotion": "^9.1.2"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

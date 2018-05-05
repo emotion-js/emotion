@@ -1,0 +1,13 @@
+{
+  "name": "build",
+  "version": "0.5.2",
+  "private": true,
+  "dependencies": {
+    "chalk": "^2.3.2",
+    "del": "^3.0.0",
+    "globby": "^7.1.1",
+    "is-plain-object": "^2.0.4",
+    "lodash": "^4.17.5",
+    "rollup-plugin-replace": "^2.0.0"
+  }
+}

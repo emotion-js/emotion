@@ -12,11 +12,7 @@
     "types"
   ],
   "scripts": {
-    "build": "npm-run-all clean rollup",
-    "test:typescript": "dtslint types",
-    "clean": "rimraf dist",
-    "rollup": "rollup -c ../../rollup.config.js",
-    "watch": "rollup -c ../../rollup.config.js --watch"
+    "test:typescript": "dtslint types"
   },
   "dependencies": {
     "babel-plugin-emotion": "^9.1.2",
@@ -27,12 +23,8 @@
   },
   "devDependencies": {
     "@types/react": "16.0.16",
-    "cross-env": "^5.0.5",
     "dtslint": "^0.2.0",
-    "emotion": "^9.1.2",
-    "npm-run-all": "^4.0.2",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.51.3"
+    "emotion": "^9.1.2"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

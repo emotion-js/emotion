@@ -9,12 +9,6 @@
     "src",
     "dist"
   ],
-  "scripts": {
-    "build": "npm-run-all clean rollup",
-    "clean": "rimraf dist",
-    "rollup": "rollup -c ../../rollup.config.js",
-    "watch": "rollup -c ../../rollup.config.js --watch"
-  },
   "dependencies": {
     "@emotion/is-prop-valid": "^0.6.1"
   },
@@ -22,10 +16,7 @@
     "prop-types": ">= 15"
   },
   "devDependencies": {
-    "npm-run-all": "^4.0.2",
-    "prop-types": "^15.6.0",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.51.3"
+    "prop-types": "^15.6.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
