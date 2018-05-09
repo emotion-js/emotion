@@ -9,8 +9,8 @@ import {
   getIdentifierName,
   getName,
   createRawStringFromTemplateLiteral,
-  minify,
-  getLabel
+  getLabel,
+  appendStringToExpressions
 } from './babel-utils'
 import type {
   Node,
@@ -24,7 +24,6 @@ import hashString from '@emotion/hash'
 import Stylis from '@emotion/stylis'
 import memoize from '@emotion/memoize'
 import { addSourceMaps } from './source-map'
-import { appendStringToExpressions } from './babel-utils'
 
 import cssProps from './css-prop'
 import { getExpressionsFromTemplateLiteral } from '@emotion/babel-utils'
