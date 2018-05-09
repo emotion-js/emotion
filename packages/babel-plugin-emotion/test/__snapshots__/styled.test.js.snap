@@ -41,6 +41,19 @@ exports[`styled extract babel 6 basic 1`] = `
 })('font-size:', fontSize + 'px', ';');"
 `;
 
+exports[`styled extract babel 6 comments 1`] = `
+"require(\\"./emotion.emotion.css\\");
+
+styled(\\"div\\", {
+    e: \\"css-n0xpvi\\",
+    target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-n0xpvi{color:hotpink;}"
+`;
+
 exports[`styled extract babel 6 component selector 1`] = `
 "require('./emotion.emotion.css');
 
@@ -387,6 +400,19 @@ exports[`styled extract babel 7 basic 1`] = `
 styled(\\"h1\\", {
   target: \\"e8nbyc50\\"
 })(\\"font-size:\\", fontSize + 'px', \\";\\");"
+`;
+
+exports[`styled extract babel 7 comments 1`] = `
+"require(\\"./emotion.emotion.css\\");
+
+styled(\\"div\\", {
+  e: \\"css-n0xpvi\\",
+  target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-n0xpvi{color:hotpink;}"
 `;
 
 exports[`styled extract babel 7 component selector 1`] = `
@@ -773,6 +799,13 @@ exports[`styled inline babel 6 basic 1`] = `
 })('font-size:', fontSize + 'px', ';');"
 `;
 
+exports[`styled inline babel 6 comments 1`] = `
+"
+/*#__PURE__*/styled(\\"div\\", {
+    target: \\"e8nbyc50\\"
+})(\\"color:hotpink;\\");"
+`;
+
 exports[`styled inline babel 6 component selector 1`] = `
 "
 const Child = /*#__PURE__*/styled('div', {
@@ -1051,6 +1084,13 @@ exports[`styled inline babel 7 basic 1`] = `
 styled(\\"h1\\", {
   target: \\"e8nbyc50\\"
 })(\\"font-size:\\", fontSize + 'px', \\";\\");"
+`;
+
+exports[`styled inline babel 7 comments 1`] = `
+"/*#__PURE__*/
+styled(\\"div\\", {
+  target: \\"e8nbyc50\\"
+})(\\"color:hotpink;\\");"
 `;
 
 exports[`styled inline babel 7 component selector 1`] = `
