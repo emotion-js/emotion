@@ -1,6 +1,20 @@
+## v9.1.3 (2018-05-07)
+
+#### :rocket: Enhancement
+
+* `create-emotion`, `emotion`
+  * [#634](https://github.com/emotion-js/emotion/pull/634) Support array fallback syntax in objects. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+  * [#633](https://github.com/emotion-js/emotion/pull/633) Add warning for invalid content values in objects. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 2
+
+* Andrew Hutchings ([ahutchings](https://github.com/ahutchings))
+* Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
 ## v9.1.2 (2018-04-17)
 
 #### :rocket: Enhancement
+
 * `jest-emotion`
   * [#622](https://github.com/emotion-js/emotion/pull/622) Add support to jest-emotion for printing DOM Elements (#619). ([@rszewczyk](https://github.com/rszewczyk))
 * `emotion-theming`
@@ -9,6 +23,7 @@
   * [#616](https://github.com/emotion-js/emotion/pull/616) Support shouldForwardProp in styled's options. ([@Andarist](https://github.com/Andarist))
 
 #### :house: Internal
+
 * `babel-plugin-emotion`, `create-emotion-server`, `create-emotion-styled`, `create-emotion`, `emotion-utils`, `emotion`, `site`
   * [#628](https://github.com/emotion-js/emotion/pull/628) Remove emotion-utils and use packages from emotion-js/next. ([@mitchellhamilton](https://github.com/mitchellhamilton))
 * `create-emotion`, `emotion`
@@ -17,14 +32,15 @@
   * [#620](https://github.com/emotion-js/emotion/pull/620) Use @emotion/memoize. ([@Andarist](https://github.com/Andarist))
 
 #### Committers: 8
-- Billy Vong ([billyvg](https://github.com/billyvg))
-- Claudio Procida ([claudiopro](https://github.com/claudiopro))
-- Karol Majewski ([karol-majewski](https://github.com/karol-majewski))
-- Kye Hohenberger ([tkh44](https://github.com/tkh44))
-- Mateusz Burzyński ([Andarist](https://github.com/Andarist))
-- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
-- Rob Szewczyk ([rszewczyk](https://github.com/rszewczyk))
-- Thomas Ingram ([ravinggenius](https://github.com/ravinggenius))
+
+* Billy Vong ([billyvg](https://github.com/billyvg))
+* Claudio Procida ([claudiopro](https://github.com/claudiopro))
+* Karol Majewski ([karol-majewski](https://github.com/karol-majewski))
+* Kye Hohenberger ([tkh44](https://github.com/tkh44))
+* Mateusz Burzyński ([Andarist](https://github.com/Andarist))
+* Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+* Rob Szewczyk ([rszewczyk](https://github.com/rszewczyk))
+* Thomas Ingram ([ravinggenius](https://github.com/ravinggenius))
 
 ## v9.1.1 (2018-04-04)
 

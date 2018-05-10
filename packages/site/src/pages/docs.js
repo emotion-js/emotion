@@ -27,7 +27,6 @@ export default (props: Props) => {
         <Box
           display="flex"
           flex={1}
-          css={{ maxWidth: 800 }}
           direction={['column', 'row']}
           justify="space-around"
         >
