@@ -659,6 +659,10 @@
     unist-util-remove-position "^1.1.1"
     xtend "^4.0.1"
 
+"@emotion/babel-utils@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@emotion/babel-utils/-/babel-utils-0.5.3.tgz#6be6dd7a480fdbdfb6cbba7f4f6d9361744b8d6e"
+
 "@emotion/hash@^0.6.2":
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.6.2.tgz#4cfe6b57e251aa7f254750ddac7c449ff99c476f"
