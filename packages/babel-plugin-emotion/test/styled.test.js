@@ -324,6 +324,20 @@ const cases = {
     `,
     extract: false,
     opts: { autoLabel: true }
+  },
+  comments: {
+    code: `
+    styled.div\`
+    // display:flex;
+    
+    /*
+    wef
+    
+    dfwf */
+    color:hotpink;
+    \`
+    
+    `
   }
 }
 
