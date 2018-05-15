@@ -678,6 +678,30 @@ exports[`styled random object expression 1`] = `
 </h1>
 `;
 
+exports[`styled should forward .defaultProps when reusing __emotion_base 1`] = `
+.emotion-0 {
+  text-align: center;
+  color: red;
+}
+
+.emotion-2 {
+  text-align: center;
+  color: red;
+  font-style: italic;
+}
+
+<div>
+  <h1
+    className="emotion-0 emotion-1"
+    color="red"
+  />
+  <h1
+    className="emotion-2 emotion-3"
+    color="red"
+  />
+</div>
+`;
+
 exports[`styled theme prop exists without ThemeProvider 1`] = `
 .emotion-0 {
   color: green;
