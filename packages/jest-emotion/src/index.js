@@ -6,6 +6,8 @@ import {
 } from './replace-class-names'
 import type { Emotion } from 'create-emotion'
 
+export { createMatchers } from './matchers'
+
 type Options = {
   classNameReplacer: ClassNameReplacer,
   DOMElements: boolean
@@ -37,12 +39,14 @@ function getClassNamesFromDOMElement(selectors, node) {
   return getClassNames(selectors, node.getAttribute('class'))
 }
 
-function getClassNamesFromNodes(nodes) {
+export function getClassNamesFromNodes(nodes) {
   return nodes.reduce(
     (selectors, node) =>
       isReactElement(node)
         ? getClassNamesFromProps(selectors, node.props)
-        : getClassNamesFromDOMElement(selectors, node),
+        : isEnzymeElement(node)
+          ? getClassNamesFromProps(selectors, node.props())
+          : getClassNamesFromDOMElement(selectors, node),
     []
   )
 }
@@ -58,6 +62,10 @@ export function getStyles(emotion: Emotion) {
 
 function isReactElement(val) {
   return val.$$typeof === Symbol.for('react.test.json')
+}
+
+function isEnzymeElement(val) {
+  return typeof val.findWhere === 'function'
 }
 
 const domElementPattern = /^((HTML|SVG)\w*)?Element$/
