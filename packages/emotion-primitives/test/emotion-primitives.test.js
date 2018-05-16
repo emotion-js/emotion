@@ -2,10 +2,9 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import { ThemeProvider } from 'emotion-theming'
 import { Text, StyleSheet } from 'react-primitives'
 
-import { emotionPrimitive } from '../src'
+import emotionPrimitive from '../src'
 
 const styles = StyleSheet.create({
   foo: {
@@ -15,121 +14,62 @@ const styles = StyleSheet.create({
 
 Enzyme.configure({ adapter: new Adapter() })
 
-const Title = emotionPrimitive('Text')`
-  font-size: 10em;
-  color: hotpink;
-`
-
-const TitleObj = emotionPrimitive('Text')(
-  {
-    fontSize: '10',
-    color: 'hotpink'
-  },
-  props => ({ padding: props.padding || 10 })
-)
-
-const View = emotionPrimitive('View')`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20;
-`
-
 describe('Emotion primitives', () => {
-  it('should not throw an error when passed a valid primitive', () => {
-    expect(() => emotionPrimitive('View')``).not.toThrowError()
+  test('should not throw an error when used valid primitive', () => {
+    expect(() => emotionPrimitive.text({})).not.toThrow()
   })
 
-  it('should give an error message when passed an invalid primitive', () => {
-    expect(() => emotionPrimitive('text')).toThrow(
-      `text is an invalid primitive. Expected primitive to be one of ['Text', 'View', 'Image'].`
-    )
+  test('should throw an error when used invalid primitive', () => {
+    expect(() => emotionPrimitive.TEXT({})).toThrowError(`Cannot style invalid primitive TEXT. Expected primitive to be one of ['Text', 'View', 'Image']`)
   })
 
-  it('should render <Text />', () => {
-    const tree = renderer.create(<Title>Emotion primitives</Title>).toJSON()
-
+  test('should render the primitive when styles applied using object style notation', () => {
+    const Text = emotionPrimitive.text`color: red; font-size: 20px; background-color: ${props => props.back};`
+    const tree = renderer.create(<Text back='red' fontSize={40}>Emotion Primitives</Text>).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  it('primitive should work with theme', () => {
-    const Text = emotionPrimitive('Text')(
-      {
-        fontSize: 20
-      },
-      props => ({ color: props.theme.color })
-    )
-
+  test('should render the primitive on changing the props', () => {
+    const Text = emotionPrimitive.text({ padding: '20px' }, props => ({
+      color: props.decor
+    }))
     const tree = renderer
-      .create(
-        <ThemeProvider theme={{ color: 'mistyrose' }}>
-          <Text>Hello World</Text>
-        </ThemeProvider>
-      )
+      .create(<Text decor="hotpink">Emotion Primitives</Text>)
       .toJSON()
-
     expect(tree).toMatchSnapshot()
   })
 
-  it('should render <Text /> with style prop', () => {
+  test('should render primitive with style prop', () => {
+    const Title = emotionPrimitive.text`color: hotpink;`
     const tree = renderer
       .create(<Title style={{ padding: 10 }}>Emotion primitives</Title>)
       .toJSON()
-
     expect(tree).toMatchSnapshot()
-
     const wrapper = Enzyme.shallow(
       <Title style={{ padding: 10 }}>Emotion primitives</Title>
     )
-
-    expect(wrapper.find('Text').prop('style')).toEqual({ padding: 10 })
+    expect(wrapper.find('Text').prop('style')).toEqual([77, {"padding": 10}])
   })
 
-  it('should render <Text /> when passed props using object styles', () => {
-    const tree = renderer
-      .create(<TitleObj padding={20}>Emotion primitives</TitleObj>)
-      .toJSON()
-
+  test('primitive should work with `withComponent`', () => {
+    const Text = emotionPrimitive.text`color: ${props => props.decor};`
+    const Name = Text.withComponent('Text')
+    const tree = renderer.create(<Name decor='hotpink'>Mike</Name>).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  it('should render <View />', () => {
-    const tree = renderer.create(<View />).toJSON()
-
+  test('should render primitive with css overrides', () => {
+    const Text = emotionPrimitive.text`color: hotpink;`
+    const tree = renderer.create(<Text fontSize={40}>Emotions</Text>).toJSON()
     expect(tree).toMatchSnapshot()
-  })
-
-  it('should work with `withComponent`', () => {
-    const Name = Title.withComponent(Text)
-
-    const tree = renderer.create(<Name>Mike</Name>).toJSON()
-
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('should work with StyleSheet.create', () => {
-    const tree = renderer
-      .create(<Title style={styles.foo}>Emotion</Title>)
-      .toJSON()
-
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('should render <View /> with style prop', () => {
-    const tree = renderer.create(<View style={{ padding: 30 }} />).toJSON()
-
-    expect(tree).toMatchSnapshot()
-
-    const wrapper = Enzyme.shallow(<View style={{ padding: 20 }} />)
-
-    expect(wrapper.find('View').prop('style')).toEqual({ padding: 20 })
+    const wrapper = Enzyme.shallow(<Text fontSize={20}>Emotions</Text>)
+    expect(wrapper.find('Text').prop('style')).toEqual([80, {"fontSize": 20}])
   })
 
   it('should render <Image />', () => {
-    const Image = emotionPrimitive('Image')`
+    const Image = emotionPrimitive.image`
       border: 2px solid hotpink;
     `
-
     const tree = renderer
       .create(
         <Image
