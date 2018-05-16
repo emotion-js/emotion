@@ -81,7 +81,7 @@ export function createEmotionPrimitive(splitProps) {
       Styled.primitive = primitive
 
       Styled.withComponent = (newPrimitive, options = {}) =>
-        emotion(reactPrimitives[newPrimitive], {
+        emotion(getPrimitive(newPrimitive), {
           ...options
         })(...Styled.styles)
 
