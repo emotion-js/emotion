@@ -99,11 +99,14 @@ export const isPrimitiveProp = (element, propName) => {
 
   if (element === 'Image') return imageProps.indexOf(propName) > -1
 
-  if (typeof element === 'function' && element.name === 'Text') return textProps.indexOf(propName) > -1
+  if (typeof element === 'function' && element.name === 'Text')
+    return textProps.indexOf(propName) > -1
 
-  if (typeof element === 'function' && element.name === 'View') return viewProps.indexOf(propName) > -1
+  if (typeof element === 'function' && element.name === 'View')
+    return viewProps.indexOf(propName) > -1
 
-  if (typeof element === 'function' && element.name === 'Image') return imageProps.indexOf(propName) > -1
+  if (typeof element === 'function' && element.name === 'Image')
+    return imageProps.indexOf(propName) > -1
 
   return false
 }
@@ -115,11 +118,14 @@ export const isValidStyleProp = (element, propName) => {
 
   if (element === 'Image') return imageStyleProps.indexOf(propName) > -1
 
-  if (typeof element === 'function' && element.name === 'Text') return textStyleProps.indexOf(propName) > -1
+  if (typeof element === 'function' && element.name === 'Text')
+    return textStyleProps.indexOf(propName) > -1
 
-  if (typeof element === 'function' && element.name === 'View') return viewStyleProps.indexOf(propName) > -1
+  if (typeof element === 'function' && element.name === 'View')
+    return viewStyleProps.indexOf(propName) > -1
 
-  if (typeof element === 'function' && element.name === 'Image') return imageStyleProps.indexOf(propName) > -1
+  if (typeof element === 'function' && element.name === 'Image')
+    return imageStyleProps.indexOf(propName) > -1
 
   return false
 }

@@ -2,15 +2,15 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import { Text, StyleSheet } from 'react-primitives'
+// import { StyleSheet } from 'react-primitives'
 
 import emotionPrimitive from '../src'
 
-const styles = StyleSheet.create({
-  foo: {
-    fontWeight: 'bold'
-  }
-})
+// const styles = StyleSheet.create({
+//   foo: {
+//     fontWeight: 'bold'
+//   }
+// })
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -20,12 +20,21 @@ describe('Emotion primitives', () => {
   })
 
   test('should throw an error when used invalid primitive', () => {
-    expect(() => emotionPrimitive.TEXT({})).toThrowError(`Cannot style invalid primitive TEXT. Expected primitive to be one of ['Text', 'View', 'Image']`)
+    expect(() => emotionPrimitive.TEXT({})).toThrowError(
+      `Cannot style invalid primitive TEXT. Expected primitive to be one of ['Text', 'View', 'Image']`
+    )
   })
 
   test('should render the primitive when styles applied using object style notation', () => {
-    const Text = emotionPrimitive.text`color: red; font-size: 20px; background-color: ${props => props.back};`
-    const tree = renderer.create(<Text back='red' fontSize={40}>Emotion Primitives</Text>).toJSON()
+    const Text = emotionPrimitive.text`color: red; font-size: 20px; background-color: ${props =>
+      props.back};`
+    const tree = renderer
+      .create(
+        <Text back="red" fontSize={40}>
+          Emotion Primitives
+        </Text>
+      )
+      .toJSON()
     expect(tree).toMatchSnapshot()
   })
 
@@ -48,13 +57,13 @@ describe('Emotion primitives', () => {
     const wrapper = Enzyme.shallow(
       <Title style={{ padding: 10 }}>Emotion primitives</Title>
     )
-    expect(wrapper.find('Text').prop('style')).toEqual([77, {"padding": 10}])
+    expect(wrapper.find('Text').prop('style')).toEqual([77, { padding: 10 }])
   })
 
   test('primitive should work with `withComponent`', () => {
     const Text = emotionPrimitive.text`color: ${props => props.decor};`
     const Name = Text.withComponent('Text')
-    const tree = renderer.create(<Name decor='hotpink'>Mike</Name>).toJSON()
+    const tree = renderer.create(<Name decor="hotpink">Mike</Name>).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
@@ -63,7 +72,7 @@ describe('Emotion primitives', () => {
     const tree = renderer.create(<Text fontSize={40}>Emotions</Text>).toJSON()
     expect(tree).toMatchSnapshot()
     const wrapper = Enzyme.shallow(<Text fontSize={20}>Emotions</Text>)
-    expect(wrapper.find('Text').prop('style')).toEqual([80, {"fontSize": 20}])
+    expect(wrapper.find('Text').prop('style')).toEqual([80, { fontSize: 20 }])
   })
 
   it('should render <Image />', () => {

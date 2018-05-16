@@ -5,7 +5,7 @@ import { splitProps } from './splitProps'
 
 const primitives = ['Text', 'View', 'Image']
 
-const assignPrimitives = (styled) => {
+const assignPrimitives = styled => {
   Object.assign(
     styled,
     primitives.reduce((getters, alias) => {
@@ -31,13 +31,15 @@ const assignPrimitives = (styled) => {
 const emotion = createEmotionPrimitive(splitProps)
 
 // Validate primitives accessed using the emotion function directly like emotion.TEXT`` or emotion.VIEW``
-const validate = (target) => {
+const validate = target => {
   const handler = {
     get: (obj, prop) => {
       if (prop in obj) {
         return obj[prop]
       } else {
-        throw new Error(`Cannot style invalid primitive ${prop}. Expected primitive to be one of ['Text', 'View', 'Image']`)
+        throw new Error(
+          `Cannot style invalid primitive ${prop}. Expected primitive to be one of ['Text', 'View', 'Image']`
+        )
       }
     }
   }

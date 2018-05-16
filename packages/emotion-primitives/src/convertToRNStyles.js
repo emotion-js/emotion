@@ -27,8 +27,6 @@ function handleInterpolation(interpolation, couldBeSelectorInterpolation) {
 function createStyles(strings, ...interpolations) {
   let stringMode = true
   let styles = ''
-  let identifierName = ''
-  let stylesWithLabel
 
   if (strings == null || strings.raw === undefined) {
     stringMode = false
@@ -78,11 +76,8 @@ export function convertToRNStyles(styles) {
     let arr = []
 
     arr.push(styles[0][0])
-    
     let len = styles.length
-    
     let i = 1
-    
     for (; i < len; i++) {
       arr.push(styles[i], styles[0][i])
     }
@@ -97,18 +92,18 @@ export function convertToRNStyles(styles) {
     return [StyleSheet.create({ style: rnStyles }).style]
   } else if (styles[0] == null || styles[0].raw === undefined) {
     return styles
-    .filter(style => {
-      if (typeof style === 'object') {
-        return Object.keys(style).length > 0
-      }
-      return true
-    })
-    .map(style => {
-      if (typeof style === 'object') {
-        return StyleSheet.create({ style }).style
-      }
+      .filter(style => {
+        if (typeof style === 'object') {
+          return Object.keys(style).length > 0
+        }
+        return true
+      })
+      .map(style => {
+        if (typeof style === 'object') {
+          return StyleSheet.create({ style }).style
+        }
 
-      return style
-    })
+        return style
+      })
   }
 }

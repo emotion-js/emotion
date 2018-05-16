@@ -3,7 +3,7 @@ import reactPrimitives from 'react-primitives'
 import PropTypes from 'prop-types'
 
 import { getStyles } from './getStyles'
-import { convertToRNStyles, createStyles } from './convertToRNStyles'
+import { convertToRNStyles } from './convertToRNStyles'
 
 const isValidPrimitive = primitive =>
   ['Text', 'View', 'Image'].indexOf(primitive) > -1
@@ -24,19 +24,14 @@ function evalStyles(context, Comp, styles, styleOverrides) {
   // Assign static property so that the styles can be reused (like in withComponent)
   Comp.styles = convertToRNStyles.call(context, styles)
 
-  return getStyles.call(
-    context,
-    Comp.styles,
-    context.props,
-    styleOverrides
-  )
+  return getStyles.call(context, Comp.styles, context.props, styleOverrides)
 }
 
 /**
  * Creates a function that renders the styles on multiple targets with same code.
  */
 export function createEmotionPrimitive(splitProps) {
-  /* 
+  /*
    * Returns styled component
    */
   return function emotion(primitive, { displayName } = {}) {
