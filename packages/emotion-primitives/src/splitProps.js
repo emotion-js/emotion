@@ -1,57 +1,23 @@
-import {
-  textProps,
-  imageProps,
-  viewProps,
-  textStyleProps,
-  viewStyleProps,
-  imageStyleProps
-} from './props'
+import { isPrimitiveProp, isValidStyleProp } from './props'
 
-function isValidStyleProp(element, propName) {
-  if (element === 'Text') {
-    return textStyleProps.includes(propName)
-  } else if (element === 'View') {
-    return viewStyleProps.includes(propName)
-  } else if (element === 'Image') {
-    return imageStyleProps.includes(propName)
-  }
+/**
+ * Split primitive props, style props and styled component props into an object.
+ */
+export function splitProps(tag, { innerRef, ...rest }) {
+  // Style overrides are the style props that are directly passed to the styled primitive <Text display='flex' />
+  const styleOverrides = {}
+  // Forward props are the one which are valid primitive props, hence these props are forwarded to the component.
+  const returnValue = { toForward: {}, styleOverrides }
 
-  return false
-}
-
-export function splitProps(rootEl, props) {
-  const rest = { ...props }
-
-  return Object.keys(rest).reduce(
-    (acc, prop) => {
-      if (isValidStyleProp(rootEl, prop)) acc.styleProps[prop] = rest[prop]
-
-      return acc
-    },
-    { styleProps: {} }
-  )
-}
-
-function isPrimitiveProp(element, propName) {
-  if (element === 'Text') {
-    return textProps.includes(propName)
-  } else if (element === 'View') {
-    return viewProps.includes(propName)
-  } else if (element === 'Image') {
-    return imageProps.includes(propName)
-  }
-
-  return false
-}
-
-export function getPrimitiveProps(element, props) {
-  const acc = {}
-
-  Object.keys(props).forEach(prop => {
-    if (isPrimitiveProp(element, prop)) {
-      acc[prop] = props[prop]
+  return Object.keys(rest).reduce((split, propName) => {
+    if (isPrimitiveProp(tag, propName)) {
+      split.toForward[propName] = rest[propName]
     }
-  })
 
-  return acc
+    if (isValidStyleProp(tag, propName)) {
+      split.styleOverrides[propName] = rest[propName]
+    }
+
+    return split
+  }, returnValue)
 }
