@@ -5,8 +5,9 @@ import PropTypes from 'prop-types'
 import { getStyles } from './getStyles'
 import { convertToRNStyles } from './convertToRNStyles'
 
-const isValidPrimitive = primitive =>
-  ['Text', 'View', 'Image'].indexOf(primitive) > -1
+const primitives = ['Text', 'View', 'Image']
+
+const isValidPrimitive = primitive => primitives.indexOf(primitive) > -1
 
 const getPrimitive = primitive => {
   if (typeof primitive === 'string' && isValidPrimitive(primitive)) {
@@ -34,7 +35,7 @@ export function createEmotionPrimitive(splitProps) {
   /*
    * Returns styled component
    */
-  return function emotion(primitive, { displayName } = {}) {
+  return function emotion(primitive) {
     return createStyledComponent
 
     /**
@@ -80,17 +81,14 @@ export function createEmotionPrimitive(splitProps) {
 
       Styled.primitive = primitive
 
-      Styled.withComponent = (newPrimitive, options = {}) =>
-        emotion(getPrimitive(newPrimitive), {
-          ...options
-        })(...Styled.styles)
+      Styled.withComponent = newPrimitive =>
+        emotion(getPrimitive(newPrimitive))(...Styled.styles)
 
       Object.assign(
         Styled,
         getStyledMetadata({
           primitive,
-          styles,
-          displayName
+          styles
         })
       )
 
@@ -99,11 +97,13 @@ export function createEmotionPrimitive(splitProps) {
   }
 }
 
-const getStyledMetadata = ({ primitive, styles, displayName }) => ({
+const getStyledMetadata = ({ primitive, styles }) => ({
   styles: primitive.styles ? primitive.styles.concat(styles) : styles,
   primitive: primitive.primitive ? primitive.primitive : primitive,
-  displayName: displayName || `emotion(${getDisplayName(primitive)})`
+  displayName: `emotion(${getDisplayName(primitive)})`
 })
 
 const getDisplayName = primitive =>
-  typeof primitive === 'string' ? primitive : primitive.displayName || 'Styled'
+  typeof primitive === 'string'
+    ? primitive
+    : primitive.displayName || primitive.name || 'Styled'
