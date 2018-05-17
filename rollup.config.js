@@ -4,17 +4,25 @@ import replace from 'rollup-plugin-replace'
 import babel from 'rollup-plugin-babel'
 import alias from 'rollup-plugin-alias'
 import cjs from 'rollup-plugin-commonjs'
+import json from 'rollup-plugin-json'
 import path from 'path'
-import getLernaPackages from 'get-lerna-packages'
 import { rollup as lernaAliases } from 'lerna-alias'
 
-const flatMap = (iteratee, arr) => [].concat(...arr.map(iteratee))
 const uniq = arr => [...new Set(arr)]
+
+const makeExternalPredicate = externalArr => {
+  if (externalArr.length === 0) {
+    return () => false
+  }
+  const pattern = new RegExp(`^(${externalArr.join('|')})($|/)`)
+  return id => pattern.test(id)
+}
 
 const pkg = require(path.resolve(process.cwd(), './package.json'))
 
 const basePlugins = [
   cjs({ exclude: [path.join(__dirname, 'packages', '*/src/**/*')] }),
+  json(),
   resolve(),
   babel({
     presets: [
@@ -44,16 +52,12 @@ const baseConfig = {
 const baseExternal = ['react', 'prop-types', 'preact']
 
 const mainConfig = Object.assign({}, baseConfig, {
-  external: uniq(
-    baseExternal.concat(
-      flatMap(dir => {
-        const {
-          dependencies = {},
-          peerDependencies = {}
-        } = require(`${dir}/package.json`)
-
-        return [...Object.keys(dependencies), ...Object.keys(peerDependencies)]
-      }, getLernaPackages())
+  external: makeExternalPredicate(
+    uniq(
+      baseExternal.concat([
+        ...Object.keys(pkg.dependencies || {}),
+        ...Object.keys(pkg.peerDependencies || {})
+      ])
     )
   ),
   plugins: basePlugins,
@@ -78,7 +82,9 @@ const umdConfig = Object.assign({}, baseConfig, {
     }
   ],
   globals: { react: 'React', 'prop-types': 'PropTypes', preact: 'preact' },
-  external: baseExternal
+  external: makeExternalPredicate(
+    uniq(baseExternal.concat(Object.keys(pkg.peerDependencies || {})))
+  )
 })
 
 export default [mainConfig, umdConfig]

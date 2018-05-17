@@ -1,15 +1,43 @@
 {
   "name": "emotion-primitives",
   "version": "1.0.0-beta.1",
-  "main": "src/index.js",
-  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm-run-all clean rollup",
+    "clean": "rimraf dist",
+    "rollup": "rollup -c ../../rollup.config.js",
+    "watch": "rollup -c ../../rollup.config.js --watch"
+  },
   "dependencies": {
     "css-to-react-native": "^2.2.0",
-    "prop-types": "^15.6.1",
+    "prop-types": "^15.6.1"
+  },
+  "peerDependencies": {
     "react-primitives": "^0.5.1"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1"
+    "enzyme-adapter-react-16": "^1.1.1",
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.51.3"
+  },
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-primitives",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
   }
 }
