@@ -51,20 +51,18 @@ function createStyles(strings, ...interpolations) {
 }
 
 function convertStyles(str) {
-  if (typeof str === 'string' && str.length === 0) return str
+  if (typeof str === 'string' && str.length === 0) return ''
 
   const styleObj = []
 
   const parsedString = str.split(';')
 
   parsedString.forEach(style => {
-    if (typeof style === 'string') {
-      // Get prop name and prop value
-      const ar = style.split(': ')
+    // Get prop name and prop value
+    const ar = style.split(': ')
 
-      if (ar[0] && ar[1]) {
-        styleObj.push([ar[0].trim(), ar[1].trim()])
-      }
+    if (ar[0] && ar[1]) {
+      styleObj.push([ar[0].trim(), ar[1].trim()])
     }
   })
 
@@ -90,20 +88,13 @@ export function convertToRNStyles(styles) {
     let rnStyles = Array.isArray(parsedCSS) ? transform(parsedCSS) : {}
 
     return [StyleSheet.create({ style: rnStyles }).style]
-  } else if (styles[0] == null || styles[0].raw === undefined) {
-    return styles
-      .filter(style => {
-        if (typeof style === 'object') {
-          return Object.keys(style).length > 0
-        }
-        return true
-      })
-      .map(style => {
-        if (typeof style === 'object') {
-          return StyleSheet.create({ style }).style
-        }
-
-        return style
-      })
   }
+
+  return styles.map(style => {
+    if (typeof style === 'object' && Object.keys(style).length > 0) {
+      return StyleSheet.create({ style }).style
+    }
+
+    return style
+  })
 }
