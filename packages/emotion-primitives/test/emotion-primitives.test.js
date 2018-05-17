@@ -2,10 +2,13 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
+import { ThemeProvider, withTheme } from 'emotion-theming'
 
 import emotionPrimitive from '../src'
 
 Enzyme.configure({ adapter: new Adapter() })
+
+const theme = { backgroundColor: 'magenta' }
 
 describe('Emotion primitives', () => {
   test('should not throw an error when used valid primitive', () => {
@@ -16,6 +19,14 @@ describe('Emotion primitives', () => {
     expect(() => emotionPrimitive.TEXT({})).toThrowError(
       `Cannot style invalid primitive TEXT. Expected primitive to be one of ['Text', 'View', 'Image']`
     )
+  })
+
+  test('theme', () => {
+    const T = withTheme(emotionPrimitive.text`color: red; backgroundColor: ${props => props.theme.backgroundColor}`)
+
+    const tree = renderer.create(<ThemeProvider theme={theme}><T bg='red'>Hello</T></ThemeProvider>).toJSON()
+
+    expect(tree).toMatchSnapshot()
   })
 
   test('should render the primitive when styles applied using object style notation', () => {
@@ -50,7 +61,7 @@ describe('Emotion primitives', () => {
     const wrapper = Enzyme.shallow(
       <Title style={{ padding: 10 }}>Emotion primitives</Title>
     )
-    expect(wrapper.find('Text').prop('style')).toEqual([76, { padding: 10 }])
+    expect(wrapper.find('Text').prop('style')).toEqual([77, { padding: 10 }])
   })
 
   test('primitive should work with `withComponent`', () => {
@@ -65,7 +76,7 @@ describe('Emotion primitives', () => {
     const tree = renderer.create(<Text fontSize={40}>Emotions</Text>).toJSON()
     expect(tree).toMatchSnapshot()
     const wrapper = Enzyme.shallow(<Text fontSize={20}>Emotions</Text>)
-    expect(wrapper.find('Text').prop('style')).toEqual([79, { fontSize: 20 }])
+    expect(wrapper.find('Text').prop('style')).toEqual([80, { fontSize: 20 }])
   })
 
   it('should render <Image />', () => {
