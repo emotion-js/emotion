@@ -28,6 +28,10 @@ function evalStyles(context, Comp, styles, styleOverrides) {
   return getStyles.call(context, Comp.styles, context.props, styleOverrides)
 }
 
+// Do not pass ref in stateless components
+const shouldPassRef = (primitive, ref) =>
+  typeof primitive.prototype.render !== 'undefined' ? { ref } : null
+
 /**
  * Creates a function that renders the styles on multiple targets with same code.
  */
@@ -71,7 +75,7 @@ export function createEmotionPrimitive(splitProps) {
             getPrimitive(primitive),
             {
               ...toForward,
-              ref: this.onRef,
+              ...shouldPassRef(primitive, this.onRef),
               style: emotionStyles.length > 0 ? emotionStyles : null
             },
             this.props.children || null
