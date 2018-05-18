@@ -6,6 +6,8 @@ import { ThemeProvider, withTheme } from 'emotion-theming'
 
 import emotionPrimitive from '../src'
 
+import { convertToRNStyles } from '../src/convertToRNStyles'
+
 Enzyme.configure({ adapter: new Adapter() })
 
 const theme = { backgroundColor: 'magenta' }
@@ -19,6 +21,16 @@ describe('Emotion primitives', () => {
     expect(() => emotionPrimitive.TEXT({})).toThrowError(
       `Cannot style invalid primitive TEXT. Expected primitive to be one of ['Text', 'View', 'Image']`
     )
+  })
+
+  test('compose via .styles prop', () => {
+    const Text = emotionPrimitive.text`color: hotpink;`
+
+    const Name = emotionPrimitive.text`${Text.styles}`
+
+    const tree = renderer.create(<Name>Hello World</Name>).toJSON()
+
+    expect(tree).toMatchSnapshot()
   })
 
   test('theme', () => {
@@ -61,7 +73,7 @@ describe('Emotion primitives', () => {
     const wrapper = Enzyme.shallow(
       <Title style={{ padding: 10 }}>Emotion primitives</Title>
     )
-    expect(wrapper.find('Text').prop('style')).toEqual([77, { padding: 10 }])
+    expect(wrapper.find('Text').prop('style')).toEqual([78, { padding: 10 }])
   })
 
   test('primitive should work with `withComponent`', () => {
@@ -76,7 +88,23 @@ describe('Emotion primitives', () => {
     const tree = renderer.create(<Text fontSize={40}>Emotions</Text>).toJSON()
     expect(tree).toMatchSnapshot()
     const wrapper = Enzyme.shallow(<Text fontSize={20}>Emotions</Text>)
-    expect(wrapper.find('Text').prop('style')).toEqual([80, { fontSize: 20 }])
+    expect(wrapper.find('Text').prop('style')).toEqual([81, { fontSize: 20 }])
+  })
+
+  it('should style any other component', () => {
+    const Text = emotionPrimitive.text`color: hotpink;`
+    const Title = () => <Text>Hello World</Text>
+    const StyledTitle = emotionPrimitive(Title)`font-size: 20px; font-style: ${props => props.sty}`
+    const tree = renderer.create(<StyledTitle sty='italic' />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('innerRef', () => {
+    const innerRef = jest.fn()
+    const Text = emotionPrimitive.text`color: red;`
+    const tree = renderer.create(<Text innerRef={innerRef}>Emotion primitives</Text>).toJSON()
+    expect(tree).toMatchSnapshot()
+    expect(innerRef).toBeCalled()
   })
 
   it('should render <Image />', () => {
