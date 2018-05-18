@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import * as css from 'css'
-import { getClassNamesFromNodes } from './index'
+import { getClassNamesFromNodes } from './utils'
 
 /*
  * Taken from
