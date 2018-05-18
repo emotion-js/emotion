@@ -25,35 +25,26 @@ function getNodes(node, nodes = []) {
   return nodes
 }
 
-function getSelectorsFromClasses(selectors, classes) {
-  return classes
-    ? selectors.concat(classes.split(' ').map(c => `.${c}`))
-    : selectors
+function getClassNames(selectors, classes) {
+  return classes ? selectors.concat(classes.split(' ')) : selectors
 }
 
-function getSelectorsFromProps(selectors, props) {
-  return getSelectorsFromClasses(selectors, props.className || props.class)
+function getClassNamesFromProps(selectors, props) {
+  return getClassNames(selectors, props.className || props.class)
 }
 
-function getSelectorsForDOMElement(selectors, node) {
-  return getSelectorsFromClasses(selectors, node.getAttribute('class'))
+function getClassNamesFromDOMElement(selectors, node) {
+  return getClassNames(selectors, node.getAttribute('class'))
 }
 
-function getSelectors(nodes) {
+function getClassNamesFromNodes(nodes) {
   return nodes.reduce(
     (selectors, node) =>
       isReactElement(node)
-        ? getSelectorsFromProps(selectors, node.props)
-        : getSelectorsForDOMElement(selectors, node),
+        ? getClassNamesFromProps(selectors, node.props)
+        : getClassNamesFromDOMElement(selectors, node),
     []
   )
-}
-
-function filterChildSelector(baseSelector) {
-  if (baseSelector.slice(-1) === '>') {
-    return baseSelector.slice(0, -1)
-  }
-  return baseSelector
 }
 
 export function getStyles(emotion: Emotion) {
@@ -87,11 +78,11 @@ export function createSerializer(
   function print(val: *, printer: Function) {
     const nodes = getNodes(val)
     markNodes(nodes)
-    const selectors = getSelectors(nodes)
-    const styles = getStylesFromSelectors(selectors)
+    const classNames = getClassNamesFromNodes(nodes)
+    const styles = getStylesFromClassNames(classNames)
     const printedVal = printer(val)
     return replaceClassNames(
-      selectors,
+      classNames,
       styles,
       printedVal,
       emotion.caches.key,
@@ -115,43 +106,31 @@ export function createSerializer(
     })
   }
 
-  function getStylesFromSelectors(nodeSelectors) {
-    const styles = getStyles(emotion)
-    let ast
+  function getStylesFromClassNames(classNames: Array<string>) {
+    let styles = ''
+    // This could be done in a more efficient way
+    // but it would be a breaking change to do so
+    // because it would change the ordering of styles
+    Object.keys(emotion.caches.registered).forEach(className => {
+      let indexOfClassName = classNames.indexOf(className)
+      if (indexOfClassName !== -1) {
+        let nameWithoutKey = classNames[indexOfClassName].substring(
+          emotion.caches.key.length + 1
+        )
+        // $FlowFixMe
+        styles += emotion.caches.inserted[nameWithoutKey]
+      }
+    })
+    let prettyStyles
     try {
-      ast = css.parse(styles)
+      prettyStyles = css.stringify(css.parse(styles))
     } catch (e) {
       console.error(e)
       throw new Error(
-        `There was an error parsing css in jest-emotion-react: "${styles}"`
+        `There was an error parsing css in jest-emotion: "${styles}"`
       )
     }
-    ast.stylesheet.rules = ast.stylesheet.rules.reduce(reduceRules, [])
-
-    const ret = css.stringify(ast)
-    return ret
-
-    function reduceRules(rules, rule) {
-      let shouldIncludeRule = false
-      if (rule.type === 'rule') {
-        shouldIncludeRule = rule.selectors.some(selector => {
-          const baseSelector = filterChildSelector(
-            selector.split(/:| |\./).filter(s => !!s)[0]
-          )
-          return nodeSelectors.some(
-            sel => sel === baseSelector || sel === `.${baseSelector}`
-          )
-        })
-      }
-      if (rule.type === 'media' || rule.type === 'supports') {
-        rule.rules = rule.rules.reduce(reduceRules, [])
-
-        if (rule.rules.length) {
-          shouldIncludeRule = true
-        }
-      }
-      return shouldIncludeRule ? rules.concat(rule) : rules
-    }
+    return prettyStyles
   }
 
   return { test, print }
