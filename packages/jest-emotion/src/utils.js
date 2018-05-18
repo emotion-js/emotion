@@ -9,13 +9,21 @@ function getClassNamesFromTestRenderer(selectors, node) {
   return getClassNames(selectors, props.className || props.class)
 }
 
+function shouldDive(node) {
+  return typeof node.dive === 'function' && typeof node.type() !== 'string'
+}
+
 function isTagWithClassName(node) {
   return node.prop('className') && typeof node.type() === 'string'
 }
 
 function getClassNamesFromEnzyme(selectors, node) {
-  const components = node.findWhere(isTagWithClassName)
+  // We need to dive if we have selected a styled child from a shallow render
+  const actualComponent = shouldDive(node) ? node.dive() : node
+  // Find the first node with a className prop
+  const components = actualComponent.findWhere(isTagWithClassName)
   const classes = components.length && components.first().prop('className')
+
   return getClassNames(selectors, classes)
 }
 

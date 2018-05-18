@@ -2,6 +2,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import * as enzyme from 'enzyme'
 import * as emotion from 'emotion'
+import styled from 'react-emotion'
 import { createSerializer, createMatchers } from '../src'
 
 expect.addSnapshotSerializer(createSerializer(emotion))
@@ -64,6 +65,30 @@ describe('toHaveStyleRule', () => {
       expect(wrapper).toHaveStyleRule('color', 'red')
       expect(wrapper).not.toHaveStyleRule('width', '100%')
       const svgNode = wrapper.find('svg')
+      expect(svgNode).toHaveStyleRule('width', '100%')
+      expect(svgNode).not.toHaveStyleRule('color', 'red')
+    })
+  })
+
+  it('supports styled components', () => {
+    const Div = styled('div')`
+      color: red;
+    `
+    const Svg = styled('svg')`
+      width: 100%;
+    `
+    const enzymeMethods = ['shallow', 'mount', 'render']
+
+    enzymeMethods.forEach(method => {
+      const wrapper = enzyme[method](
+        <Div>
+          <Svg />
+        </Div>
+      )
+      expect(wrapper).toHaveStyleRule('color', 'red')
+      expect(wrapper).not.toHaveStyleRule('width', '100%')
+      const svgNode =
+        method === 'render' ? wrapper.find('svg') : wrapper.find(Svg)
       expect(svgNode).toHaveStyleRule('width', '100%')
       expect(svgNode).not.toHaveStyleRule('color', 'red')
     })
