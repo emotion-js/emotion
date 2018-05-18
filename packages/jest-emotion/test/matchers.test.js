@@ -57,7 +57,7 @@ describe('toHaveStyleRule', () => {
         <svg className={svgStyle} />
       </div>
     )
-    const enzymeMethods = ['shallow']
+    const enzymeMethods = ['shallow', 'mount']
 
     enzymeMethods.forEach(method => {
       const wrapper = enzyme[method](<Component />)

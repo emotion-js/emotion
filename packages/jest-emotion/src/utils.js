@@ -1,11 +1,22 @@
 // @flow
 
+function isTagWithClassName(node) {
+  return node.prop('className') && typeof node.type() === 'string'
+}
+
 function getClassNames(selectors, classes) {
   return classes ? selectors.concat(classes.split(' ')) : selectors
 }
 
-function getClassNamesFromProps(selectors, props) {
+function getClassNamesFromTestRenderer(selectors, node) {
+  const props = node.props
   return getClassNames(selectors, props.className || props.class)
+}
+
+function getClassNamesFromEnzyme(selectors, node) {
+  const components = node.findWhere(isTagWithClassName)
+  const prop = components.length && components.first().prop('className')
+  return getClassNames(selectors, prop)
 }
 
 function getClassNamesFromDOMElement(selectors, node: any) {
@@ -35,9 +46,9 @@ export function getClassNamesFromNodes(nodes: Array<any>) {
   return nodes.reduce(
     (selectors, node) =>
       isReactElement(node)
-        ? getClassNamesFromProps(selectors, node.props)
+        ? getClassNamesFromTestRenderer(selectors, node)
         : isEnzymeElement(node)
-          ? getClassNamesFromProps(selectors, node.props())
+          ? getClassNamesFromEnzyme(selectors, node)
           : getClassNamesFromDOMElement(selectors, node),
     []
   )

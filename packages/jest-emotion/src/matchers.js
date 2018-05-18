@@ -31,11 +31,7 @@ function valueMatches(declaration, value) {
 }
 
 function getStylesFromClassNames(classNames: Array<string>, emotion) {
-  let styles = ''
-  // This could be done in a more efficient way
-  // but it would be a breaking change to do so
-  // because it would change the ordering of styles
-  Object.keys(emotion.caches.registered).forEach(className => {
+  return Object.keys(emotion.caches.registered).reduce((styles, className) => {
     let indexOfClassName = classNames.indexOf(className)
     if (indexOfClassName !== -1) {
       let nameWithoutKey = classNames[indexOfClassName].substring(
@@ -44,8 +40,8 @@ function getStylesFromClassNames(classNames: Array<string>, emotion) {
       // $FlowFixMe
       styles += emotion.caches.inserted[nameWithoutKey]
     }
-  })
-  return styles
+    return styles
+  }, '')
 }
 
 export function createMatchers(emotion) {
