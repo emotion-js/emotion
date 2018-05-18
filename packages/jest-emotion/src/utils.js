@@ -1,9 +1,5 @@
 // @flow
 
-function isTagWithClassName(node) {
-  return node.prop('className') && typeof node.type() === 'string'
-}
-
 function getClassNames(selectors, classes) {
   return classes ? selectors.concat(classes.split(' ')) : selectors
 }
@@ -13,10 +9,19 @@ function getClassNamesFromTestRenderer(selectors, node) {
   return getClassNames(selectors, props.className || props.class)
 }
 
+function isTagWithClassName(node) {
+  return node.prop('className') && typeof node.type() === 'string'
+}
+
 function getClassNamesFromEnzyme(selectors, node) {
   const components = node.findWhere(isTagWithClassName)
-  const prop = components.length && components.first().prop('className')
-  return getClassNames(selectors, prop)
+  const classes = components.length && components.first().prop('className')
+  return getClassNames(selectors, classes)
+}
+
+function getClassNamesFromCheerio(selectors, node) {
+  const classes = node.attr('class')
+  return getClassNames(selectors, classes)
 }
 
 function getClassNamesFromDOMElement(selectors, node: any) {
@@ -42,14 +47,19 @@ function isEnzymeElement(val: any): boolean {
   return typeof val.findWhere === 'function'
 }
 
+function isCheerioElement(val: any): boolean {
+  return val.cheerio === '[cheerio object]'
+}
+
 export function getClassNamesFromNodes(nodes: Array<any>) {
-  return nodes.reduce(
-    (selectors, node) =>
-      isReactElement(node)
-        ? getClassNamesFromTestRenderer(selectors, node)
-        : isEnzymeElement(node)
-          ? getClassNamesFromEnzyme(selectors, node)
-          : getClassNamesFromDOMElement(selectors, node),
-    []
-  )
+  return nodes.reduce((selectors, node) => {
+    if (isReactElement(node)) {
+      return getClassNamesFromTestRenderer(selectors, node)
+    } else if (isEnzymeElement(node)) {
+      return getClassNamesFromEnzyme(selectors, node)
+    } else if (isCheerioElement(node)) {
+      return getClassNamesFromCheerio(selectors, node)
+    }
+    return getClassNamesFromDOMElement(selectors, node)
+  }, [])
 }
