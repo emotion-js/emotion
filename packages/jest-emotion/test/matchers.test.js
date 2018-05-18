@@ -3,9 +3,8 @@ import renderer from 'react-test-renderer'
 import * as enzyme from 'enzyme'
 import * as emotion from 'emotion'
 import styled from 'react-emotion'
-import { createSerializer, createMatchers } from '../src'
+import { createMatchers } from '../src'
 
-expect.addSnapshotSerializer(createSerializer(emotion))
 expect.extend(createMatchers(emotion))
 
 describe('toHaveStyleRule', () => {
@@ -16,6 +15,8 @@ describe('toHaveStyleRule', () => {
   const svgStyle = emotion.css`
     width: 100%;
   `
+
+  const enzymeMethods = ['shallow', 'mount', 'render']
 
   it('matches styles on the top-most node passed in', () => {
     const tree = renderer
@@ -58,7 +59,6 @@ describe('toHaveStyleRule', () => {
         <svg className={svgStyle} />
       </div>
     )
-    const enzymeMethods = ['shallow', 'mount', 'render']
 
     enzymeMethods.forEach(method => {
       const wrapper = enzyme[method](<Component />)
@@ -77,7 +77,6 @@ describe('toHaveStyleRule', () => {
     const Svg = styled('svg')`
       width: 100%;
     `
-    const enzymeMethods = ['shallow', 'mount', 'render']
 
     enzymeMethods.forEach(method => {
       const wrapper = enzyme[method](
