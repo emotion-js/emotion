@@ -6,8 +6,10 @@ import alias from 'rollup-plugin-alias'
 import cjs from 'rollup-plugin-commonjs'
 import json from 'rollup-plugin-json'
 import path from 'path'
+import getLernaPackages from 'get-lerna-packages'
 import { rollup as lernaAliases } from 'lerna-alias'
 
+const flatMap = (iteratee, arr) => [].concat(...arr.map(iteratee))
 const uniq = arr => [...new Set(arr)]
 
 const makeExternalPredicate = externalArr => {
@@ -54,10 +56,17 @@ const baseExternal = ['react', 'prop-types', 'preact']
 const mainConfig = Object.assign({}, baseConfig, {
   external: makeExternalPredicate(
     uniq(
-      baseExternal.concat([
-        ...Object.keys(pkg.dependencies || {}),
-        ...Object.keys(pkg.peerDependencies || {})
-      ])
+      baseExternal
+        .concat(Object.keys(pkg.dependencies || {}))
+        .concat(
+          flatMap(
+            dir =>
+              Object.keys(
+                require(`${dir}/package.json`).peerDependencies || {}
+              ),
+            getLernaPackages()
+          )
+        )
     )
   ),
   plugins: basePlugins,
