@@ -21,7 +21,7 @@ const assignPrimitives = styled => {
     primitives.reduce((getters, alias) => {
       const tag = alias.toLowerCase()
       getters[alias] = styled[tag]()
-      getters[alias].tag = reactPrimitives[alias]
+      getters[alias].primitive = reactPrimitives[alias]
       getters[alias].displayName = `emotion.${tag}`
       return getters
     }, {})
@@ -30,25 +30,32 @@ const assignPrimitives = styled => {
   return styled
 }
 
-const emotion = createEmotionPrimitive(splitProps)
+const styled = createEmotionPrimitive(splitProps)
 
 if (process.env.NODE_ENV !== 'production' && typeof Proxy !== 'undefined') {
+  const Platform = reactPrimitives.Platform
+
   // Validate primitives accessed using the emotion function directly like emotion.TEXT`` or emotion.VIEW``
-  validate = target => {
-    const handler = {
-      get: (obj, prop) => {
-        if (prop in obj) {
-          return obj[prop]
-        } else {
-          throw new Error(
-            `Cannot style invalid primitive ${prop}. Expected primitive to be one of ['Text', 'View', 'Image']`
-          )
+  // Proxy is not supported in Native or Sketch. So makes sure that errors are not logged out in those env.
+  if (Platform.OS === 'web') {
+    validate = target => {
+      const handler = {
+        get: (obj, prop) => {
+          if (prop in obj) {
+            return obj[prop]
+          } else {
+            throw new Error(
+              `Cannot style invalid primitive ${prop}. Expected primitive to be one of ['Text', 'View', 'Image']`
+            )
+          }
         }
       }
-    }
 
-    return new Proxy(target, handler)
+      return new Proxy(target, handler)
+    }
+  } else {
+    validate = (fn) => fn
   }
 }
 
-export default validate(assignPrimitives(emotion))
+export default validate(assignPrimitives(styled))
