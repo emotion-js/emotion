@@ -47,6 +47,14 @@ getRegisteredStyles([], 'abc');
 getRegisteredStyles(['abc'], 'bcd');
 getRegisteredStyles([], 'abc def fpfw');
 
+css`
+  height: 20px;
+`;
+css`
+  color: ${'green'};
+  font-size: ${10 + 4}px;
+`;
+
 css();
 css(1);
 css('abc');

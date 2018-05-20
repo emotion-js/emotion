@@ -16,6 +16,7 @@ export interface ArrayInterpolation extends Array<Interpolation> {}
 
 export type Interpolation =
   | undefined | null | boolean | string | number
+  | TemplateStringsArray
   | CSSObject
   | ArrayInterpolation
   ;
