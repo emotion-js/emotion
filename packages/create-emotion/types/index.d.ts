@@ -6,30 +6,25 @@ import * as CSS from 'csstype';
 export interface MultiDimensionalArray<T> extends Array<T | MultiDimensionalArray<T>> {}
 
 export type CSSBaseObject = CSS.PropertiesFallback<number | string>;
-export type CSSPseudoObject<C> = { [K in CSS.Pseudos]?: CSSObject<C> };
-export interface CSSOthersObject<C> {
-  [propertiesName: string]: Interpolation<C>;
+export type CSSPseudoObject = { [K in CSS.Pseudos]?: CSSObject };
+export interface CSSOthersObject {
+  [propertiesName: string]: Interpolation;
 }
-export interface CSSObject<C> extends CSSBaseObject, CSSPseudoObject<C>, CSSOthersObject<C> {}
+export interface CSSObject extends CSSBaseObject, CSSPseudoObject, CSSOthersObject {}
 
-export type FunctionInterpolation<C> = (mergedProps: any, context: C) => Interpolation<C> | void;
+export interface ArrayInterpolation extends Array<Interpolation> {}
 
-export interface ArrayInterpolation<C> extends Array<Interpolation<C>> {}
-
-export type Interpolation<C> =
+export type Interpolation =
   | undefined | null | boolean | string | number
-  | CSSObject<C>
-  | ArrayInterpolation<C>
-  | FunctionInterpolation<C>
+  | CSSObject
+  | ArrayInterpolation
   ;
 
-export type FunctionClassNameArg = () => ClassNameArg | void;
 export interface ArrayClassNameArg extends Array<ClassNameArg> {}
 
 export type ClassNameArg =
   | undefined | null | boolean | string
   | { [key: string]: boolean }
-  | FunctionClassNameArg
   | ArrayClassNameArg
   ;
 
@@ -51,21 +46,25 @@ export interface EmotionCache {
   key: string;
 }
 
-export interface Emotion<C> {
+export interface Emotion {
   flush(): void;
   hydrate(ids: Array<string>): void;
   cx(...classNames: Array<ClassNameArg>): string;
   merge(className: string, sourceMap?: string): string;
   getRegisteredStyles(registeredStyles: Array<string>, classNames: string): string;
-  css(...args: Array<Interpolation<C>>): string;
-  injectGlobal(...args: Array<Interpolation<C>>): void;
-  keyframes(...args: Array<Interpolation<C>>): string;
+  css(...args: Array<Interpolation>): string;
+  injectGlobal(...args: Array<Interpolation>): void;
+  keyframes(...args: Array<Interpolation>): string;
   sheet: StyleSheet;
   caches: EmotionCache;
 }
 
-export interface EmotionBaseContext<C> {
-  __SECRET_EMOTION__?: Emotion<C>;
+export interface EmotionBaseContext {
+  __SECRET_EMOTION__?: Emotion;
+}
+
+export interface EmotionContext extends EmotionBaseContext {
+  [key: string]: any;
 }
 
 export type StylisPlugins =
@@ -82,4 +81,4 @@ export interface EmotionOption {
   container?: HTMLElement;
 }
 
-export default function createEmotion<C extends EmotionBaseContext<C>>(context: C, options?: EmotionOption): Emotion<C>;
+export default function createEmotion(context: EmotionContext, options?: EmotionOption): Emotion;

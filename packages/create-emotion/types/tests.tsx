@@ -1,5 +1,13 @@
 import createEmotion from '../';
 
+const emotion0 = createEmotion({
+  x: 5,
+});
+const emotion1 = createEmotion({
+  y: 4,
+  __SECRET_EMOTION__: emotion0,
+});
+
 const {
   flush,
   hydrate,
@@ -48,13 +56,6 @@ css([]);
 css([1]);
 css([['abc', 'asdf'], 'efw']);
 
-css(() => {
-  return 1;
-});
-css((a: number, b: {}) => {
-  return 1;
-});
-
 css({
   ':active': {
     borderRadius: '2px',
@@ -69,16 +70,6 @@ css({
 css(true, true);
 css('fa', 1123);
 css(['123'], 'asdf');
-css('fa', () => {
-});
-css('pa--emp', () => {
-  return null;
-});
-css('squid', () => {
-  return ['other-squid', {
-    alignSelf: 'middle',
-  }];
-});
 
 injectGlobal();
 injectGlobal(30);
