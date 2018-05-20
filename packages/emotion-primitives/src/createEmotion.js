@@ -9,6 +9,7 @@ const primitives = ['Text', 'View', 'Image']
 
 const isValidPrimitive = primitive => primitives.indexOf(primitive) > -1
 
+// Validate and return the primitive
 const getPrimitive = primitive => {
   if (typeof primitive === 'string' && isValidPrimitive(primitive)) {
     return reactPrimitives[primitive]
@@ -21,6 +22,7 @@ const getPrimitive = primitive => {
   }
 }
 
+// Evaluate the styles and convert them to React Native using styled component context
 function evalStyles(context, Comp, styles, styleOverrides) {
   // Assign static property so that the styles can be reused (like in withComponent)
   Comp.styles = convertToRNStyles.call(context, styles)
@@ -29,8 +31,11 @@ function evalStyles(context, Comp, styles, styleOverrides) {
 }
 
 // Do not pass ref in stateless components
-const shouldPassRef = (primitive, ref) =>
-  typeof primitive.prototype.render !== 'undefined' ? { ref } : null
+const shouldPassRef = (primitive, ref) => {
+  if (typeof primitive !== 'string') {
+    return typeof primitive.prototype.render !== 'undefined' ? { ref } : null
+  }
+}
 
 /**
  * Creates a function that renders the styles on multiple targets with same code.
@@ -52,14 +57,16 @@ export function createEmotionPrimitive(splitProps) {
 
       class Styled extends React.Component {
         static propTypes = {
-          innerRef: PropTypes.func
+          innerRef: PropTypes.oneOfType([ PropTypes.func, PropTypes.object ])
         }
 
-        onRef = innerComponent => {
-          this.innerComponent = innerComponent
+        onRef = node => {
+          const { innerRef } = this.props
 
-          if (this.props.innerRef) {
-            this.props.innerRef(innerComponent)
+          if (typeof innerRef === 'function') {
+            innerRef(node)
+          } else if (typeof innerRef === 'object' && innerRef && innerRef.hasOwnProperty('current')) {
+            innerRef.current = node
           }
         }
 
@@ -76,9 +83,8 @@ export function createEmotionPrimitive(splitProps) {
             {
               ...toForward,
               ...shouldPassRef(primitive, this.onRef),
-              style: emotionStyles.length > 0 ? emotionStyles : null
-            },
-            this.props.children || null
+              style: emotionStyles.length > 0 ? emotionStyles : {}
+            }
           )
         }
       }
