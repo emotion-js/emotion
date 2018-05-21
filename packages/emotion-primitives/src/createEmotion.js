@@ -89,8 +89,6 @@ export function createEmotionPrimitive(splitProps) {
         }
       }
 
-      Styled.primitive = primitive
-
       Styled.withComponent = newPrimitive =>
         emotion(getPrimitive(newPrimitive))(...Styled.styles)
 
@@ -109,7 +107,6 @@ export function createEmotionPrimitive(splitProps) {
 
 const getStyledMetadata = ({ primitive, styles }) => ({
   styles: primitive.styles ? primitive.styles.concat(styles) : styles,
-  primitive: primitive.primitive ? primitive.primitive : primitive,
   displayName: `emotion(${getDisplayName(primitive)})`
 })
 
