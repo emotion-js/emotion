@@ -140,6 +140,10 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
                 : baseTag.displayName || baseTag.name || 'Component'
             })`
 
+      if (tag.defaultProps !== undefined) {
+        // $FlowFixMe
+        Styled.defaultProps = tag.defaultProps
+      }
       Styled.contextTypes = contextTypes
       Styled.__emotion_styles = styles
       Styled.__emotion_base = baseTag
