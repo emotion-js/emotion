@@ -1,6 +1,5 @@
 import * as React from 'react'
 import reactPrimitives from 'react-primitives'
-import PropTypes from 'prop-types'
 
 import { getStyles } from './getStyles'
 import { convertToRNStyles } from './convertToRNStyles'
@@ -30,13 +29,6 @@ function evalStyles(context, Comp, styles, styleOverrides) {
   return getStyles.call(context, Comp.styles, context.props, styleOverrides)
 }
 
-// Do not pass ref in stateless components
-const shouldPassRef = (primitive, ref) => {
-  if (typeof primitive !== 'string') {
-    return typeof primitive.prototype.render !== 'undefined' ? { ref } : null
-  }
-}
-
 /**
  * Creates a function that renders the styles on multiple targets with same code.
  */
@@ -56,20 +48,6 @@ export function createEmotionPrimitive(splitProps) {
       styles.push.apply(styles, arguments)
 
       class Styled extends React.Component {
-        static propTypes = {
-          innerRef: PropTypes.oneOfType([ PropTypes.func, PropTypes.object ])
-        }
-
-        onRef = node => {
-          const { innerRef } = this.props
-
-          if (typeof innerRef === 'function') {
-            innerRef(node)
-          } else if (typeof innerRef === 'object' && innerRef && innerRef.hasOwnProperty('current')) {
-            innerRef.current = node
-          }
-        }
-
         render() {
           const { toForward, styleOverrides } = splitProps(
             primitive,
@@ -82,7 +60,7 @@ export function createEmotionPrimitive(splitProps) {
             getPrimitive(primitive),
             {
               ...toForward,
-              ...shouldPassRef(primitive, this.onRef),
+              ref: this.props.innerRef,
               style: emotionStyles.length > 0 ? emotionStyles : {}
             }
           )
