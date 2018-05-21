@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-primitives'
 import transform from 'css-to-react-native'
+import { convertRuleOptions } from 'tslint/lib/configuration'
 
 // Copied and edited from @emotion/css
 // Cannot use css from @emotion/css directly because of unnecessary checks, __emotion_styles, and registering interpolations in cache.
@@ -81,12 +82,10 @@ export function convertToRNStyles(styles) {
     }
 
     let css = createStyles.apply(this, arr)
-
     let parsedCSS = convertStyles(css)
 
     // Convert css styles to react native
     let rnStyles = Array.isArray(parsedCSS) ? transform(parsedCSS) : {}
-
     return [StyleSheet.create({ style: rnStyles }).style]
   }
 
@@ -94,7 +93,6 @@ export function convertToRNStyles(styles) {
     if (typeof style === 'object' && Object.keys(style).length > 0) {
       return StyleSheet.create({ style }).style
     }
-
     return style
   })
 }

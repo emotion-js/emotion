@@ -11,18 +11,7 @@ const assignPrimitives = styled => {
   Object.assign(
     styled,
     primitives.reduce((getters, alias) => {
-      getters[alias.toLowerCase()] = styled(reactPrimitives[alias])
-      return getters
-    }, {})
-  )
-
-  Object.assign(
-    styled,
-    primitives.reduce((getters, alias) => {
-      const tag = alias.toLowerCase()
-      getters[alias] = styled[tag]()
-      getters[alias].primitive = reactPrimitives[alias]
-      getters[alias].displayName = `emotion.${tag}`
+      getters[alias] = styled(reactPrimitives[alias])
       return getters
     }, {})
   )

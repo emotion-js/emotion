@@ -11,5 +11,9 @@ export const isValidStyleProp = (element, propName) => {
   if (element === 'View') return viewStyleProps.indexOf(propName) > -1
   if (element === 'Image') return imageStyleProps.indexOf(propName) > -1
 
+  if (typeof element === 'function' && element.name === 'Text') return textStyleProps.indexOf(propName) > -1
+  if (typeof element === 'function' && element.name === 'View') return viewStyleProps.indexOf(propName) > -1
+  if (typeof element === 'function' && element.name === 'Image') return imageStyleProps.indexOf(propName) > -1
+
   return false
 }
