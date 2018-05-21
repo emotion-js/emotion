@@ -1,8 +1,7 @@
 {
   "name": "emotion-primitives",
-  "version": "1.0.0-beta.1",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "version": "1.0.0-beta.3",
+  "main": "dist/index.es.js",
   "files": [
     "src",
     "dist"
@@ -15,7 +14,9 @@
   },
   "dependencies": {
     "css-to-react-native": "^2.2.0",
-    "prop-types": "^15.6.1"
+    "get-lerna-packages": "^0.1.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2"
   },
   "peerDependencies": {
     "react-primitives": "^0.5.1"
