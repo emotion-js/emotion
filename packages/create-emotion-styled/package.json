@@ -12,6 +12,7 @@
   "scripts": {
     "build": "npm-run-all clean rollup",
     "clean": "rimraf dist",
+    "test:typescript": "dtslint types",
     "rollup": "rollup -c ../../rollup.config.js",
     "watch": "rollup -c ../../rollup.config.js --watch"
   },
