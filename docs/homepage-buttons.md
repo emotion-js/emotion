@@ -2,7 +2,7 @@
 const Link = styled.a`
   min-width: 12rem;
   margin: 0 auto 20px;
-  padding: 16px;
+  padding: ${props => props.primary ? 18 : 16}px;
   border-radius: 5px;
   text-decoration: none;
   border: ${props =>
@@ -23,11 +23,12 @@ const Link = styled.a`
   }
 `
 ```
+
 ```jsx live
 const Link = styled.a(props => ({
   minWidth: '12rem',
   margin: '0 auto 20px',
-  padding: 16,
+  padding: props.primary ? 18 : 16,
   borderRadius: 5,
   textDecoration: 'none',
   border: props.primary
