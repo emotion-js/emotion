@@ -1176,3 +1176,18 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 })
+
+test('composes shouldForwardProp on composed styled components', () => {
+  const StyledDiv = styled('div', {
+    shouldForwardProp: prop => prop === 'forwardMe'
+  })()
+
+  const ComposedDiv = styled(StyledDiv, {
+    shouldForwardProp: () => true
+  })()
+
+  const tree = renderer.create(<ComposedDiv filterMe forwardMe />).toJSON()
+
+  expect(tree.props.filterMe).toBeUndefined()
+  expect(tree.props.forwardMe).toBeDefined()
+})
