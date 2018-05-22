@@ -22,6 +22,7 @@
     "prop-types": ">= 15"
   },
   "devDependencies": {
+    "dtslint": "^0.3.0",
     "npm-run-all": "^4.0.2",
     "prop-types": "^15.6.0",
     "rimraf": "^2.6.1",
