@@ -17,7 +17,7 @@ export interface StyledOptions {
   e?: string;
   label?: string;
   target?: string;
-  shouldForwardProp?: (name?: string) => boolean;
+  shouldForwardProp?: (name: string) => boolean;
 }
 
 export type Themed<P extends object, T> = P & { theme: T };
