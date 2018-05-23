@@ -24,7 +24,7 @@ class TestClassComp extends React.Component<TestClassProps> {
   }
 }
 
-interface TestFunProps {
+interface TestFunProps0 {
   complex: {
     readonly id: number;
     name: string;
@@ -32,34 +32,39 @@ interface TestFunProps {
   };
 }
 
-const TestFunComp = (props: TestFunProps) => (
+const TestFunComp0 = (props: TestFunProps0) => (
   <div>
     {props.complex.friends.map((fid) => <div>{fid}</div>)}
   </div>
 );
 
-interface TestFunProps2 extends TestFunProps {
+interface TestFunProps1 extends TestFunProps0 {
   world: number;
 }
 
-const TestFunComp2 = (props: TestFunProps2) => (
+const TestFunComp1 = (props: TestFunProps1) => (
   <div>
     {props.world}
-    <TestFunComp complex={props.complex} />
+    <TestFunComp0 complex={props.complex} />
   </div>
 );
 
-const StyledClassComp = createStyled(TestClassComp)({
+const StyledClassComp0 = createStyled(TestClassComp)({
   width: '200px',
 }, (props) => ({
   height: props.theme ? '200px' : '100px',
 }));
 
+const StyledClassComp1 = createStyled(TestClassComp)`
+  width: 200px;
+  height: ${(props) => props.theme ? '200px' : '100px'};
+`;
+
 interface StyledFunProps {
   color: string;
 }
 
-const StyledFunComp = createStyled(TestFunComp)<StyledFunProps>([{
+const StyledFunComp0 = createStyled(TestFunComp0)<StyledFunProps>([{
   display: 'inline',
   position: 'fixed',
 }, {
@@ -70,7 +75,18 @@ const StyledFunComp = createStyled(TestFunComp)<StyledFunProps>([{
   color: props.color,
 }));
 
-const StyledCompWithButton = StyledClassComp.withComponent('button');
-const StyledCompWithFunComp2 = StyledFunComp.withComponent(TestFunComp2);
+const StyledFunComp1 = createStyled(TestFunComp0)`
+  display: inline;
+  position: fixed;
+  flexGrow: 20;
+  ${(props: StyledFunProps, context) => `
+    content: ${context.name};
+
+    color: ${props.color};
+  `}
+`;
+
+const StyledCompWithButton = StyledClassComp0.withComponent('button');
+const StyledCompWithFunComp2 = StyledFunComp0.withComponent(TestFunComp1);
 
 <StyledCompWithButton />;
