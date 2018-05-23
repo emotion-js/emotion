@@ -7,7 +7,8 @@ const context = {
   name: 'emotion',
 };
 
-const createStyled = createEmotionStyled(createEmotion(context), React);
+const emotion = createEmotion(context);
+const createStyled = createEmotionStyled(emotion, React);
 
 interface TestClassProps {
   readonly some: number;
@@ -79,7 +80,7 @@ const StyledFunComp1 = createStyled(TestFunComp0)`
   display: inline;
   position: fixed;
   flexGrow: 20;
-  ${(props: StyledFunProps, context) => `
+  ${(props: StyledFunProps, context) => emotion.css`
     content: ${context.name};
 
     color: ${props.color};
