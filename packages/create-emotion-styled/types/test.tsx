@@ -52,7 +52,7 @@ const TestFunComp1 = (props: TestFunProps1) => (
 const StyledClassComp0 = createStyled(TestClassComp)({
   width: '200px',
 }, (props) => ({
-  height: props.theme ? '200px' : '100px',
+  height: props.theme.long ? '200px' : '100px',
 }));
 
 const StyledClassComp1 = createStyled(TestClassComp)`

@@ -20,18 +20,18 @@ export interface StyledOptions {
   shouldForwardProp?: (name: string) => boolean;
 }
 
-export type Themed<P extends object, T> = P & { theme: T };
+export type Themed<P extends object, T extends object> = P & { theme: T };
 
-export type StyledStatelessComponentProps<P extends object, T> =
+export type StyledStatelessComponentProps<P extends object, T extends object> =
   & P
   & { theme?: T }
   ;
-export type StyledOtherComponentProps<P extends object, T> =
+export type StyledOtherComponentProps<P extends object, T extends object> =
   & StyledStatelessComponentProps<P, T>
   & { innerRef?: Ref<any> }
   ;
 
-export interface StyledComponentMethods<Props extends object, InnerProps extends object, Theme> {
+export interface StyledComponentMethods<Props extends object, InnerProps extends object, Theme extends object> {
   withComponent<T extends keyof ReactHTML>(
     tag: T,
     options?: StyledOptions,
@@ -53,30 +53,30 @@ export interface StyledComponentMethods<Props extends object, InnerProps extends
   ): StyledOtherComponent<Props, IP, Theme>;
 }
 
-export interface StyledStatelessComponent<Props extends object, InnerProps extends object, Theme>
+export interface StyledStatelessComponent<Props extends object, InnerProps extends object, Theme extends object>
   extends ComponentClass<StyledStatelessComponentProps<Props & InnerProps, Theme>>,
     StyledComponentMethods<Props, InnerProps, Theme> {}
 
-export interface StyledOtherComponent<Props extends object, InnerProps extends object, Theme>
+export interface StyledOtherComponent<Props extends object, InnerProps extends object, Theme extends object>
   extends ComponentClass<StyledOtherComponentProps<Props & InnerProps, Theme>>,
     StyledComponentMethods<Props, InnerProps, Theme> {}
 
-export type StyledComponent<Props extends object, InnerProps extends object, Theme> =
+export type StyledComponent<Props extends object, InnerProps extends object, Theme extends object> =
   | StyledStatelessComponent<Props, InnerProps, Theme>
   | StyledOtherComponent<Props, InnerProps, Theme>
   ;
 
-export type CreateStyledStatelessComponent<InnerProps extends object, Theme> =
-  <Props extends object, OverridedTheme = Theme>(
+export type CreateStyledStatelessComponent<InnerProps extends object, Theme extends object> =
+  <Props extends object, OverridedTheme extends object = Theme>(
     ...args: Array<Interpolation<Themed<Props, OverridedTheme>>>
   ) => StyledStatelessComponent<Props, InnerProps, OverridedTheme>;
 
-export type CreateStyledOtherComponent<InnerProps extends object, Theme> =
-  <Props extends object, OverridedTheme = Theme>(
+export type CreateStyledOtherComponent<InnerProps extends object, Theme extends object> =
+  <Props extends object, OverridedTheme extends object = Theme>(
     ...args: Array<Interpolation<Themed<Props, OverridedTheme>>>
   ) => StyledOtherComponent<Props, InnerProps, OverridedTheme>;
 
-export interface CreateStyled<Theme = any> {
+export interface CreateStyled<Theme extends object = any> {
   <T extends keyof ReactHTML>(
     tag: T,
     options?: StyledOptions,
