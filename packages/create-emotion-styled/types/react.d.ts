@@ -1,7 +1,7 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.3
 
-import React, { ComponentClass, ReactHTML, ReactSVG, Ref, SFC, StatelessComponent } from 'react';
+import React, { ComponentClass, Ref, SFC } from 'react';
 
 import {
   Interpolation,
@@ -12,15 +12,10 @@ import {
 } from './common';
 
 export interface StyledComponentMethods<Props extends object, InnerProps extends object, Theme extends object> {
-  withComponent<T extends keyof ReactHTML>(
+  withComponent<T extends keyof JSX.IntrinsicElements>(
     tag: T,
     options?: StyledOptions,
-  ): StyledOtherComponent<Props, ReactHTML[T], Theme>;
-
-  withComponent<T extends keyof ReactSVG>(
-    tag: T,
-    options?: StyledOptions,
-  ): StyledOtherComponent<Props, ReactSVG[T], Theme>;
+  ): StyledOtherComponent<Props, JSX.IntrinsicElements[T], Theme>;
 
   withComponent<IP extends object>(
     component: SFC<IP>,
@@ -59,15 +54,10 @@ export interface CreateStyledOtherComponent<InnerProps extends object, Theme ext
 }
 
 export interface CreateStyled<Theme extends object = any> {
-  <T extends keyof ReactHTML>(
+  <T extends keyof JSX.IntrinsicElements>(
     tag: T,
     options?: StyledOptions,
-  ): CreateStyledOtherComponent<ReactHTML[T], Theme>;
-
-  <T extends keyof ReactSVG>(
-    tag: T,
-    options?: StyledOptions,
-  ): CreateStyledOtherComponent<ReactSVG[T], Theme>;
+  ): CreateStyledOtherComponent<JSX.IntrinsicElements[T], Theme>;
 
   <IP extends object>(
     component: SFC<IP>,
