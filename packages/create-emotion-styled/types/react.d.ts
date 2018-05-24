@@ -46,15 +46,17 @@ export type StyledComponent<Props extends object, InnerProps extends object, The
   | StyledOtherComponent<Props, InnerProps, Theme>
   ;
 
-export type CreateStyledStatelessComponent<InnerProps extends object, Theme extends object> =
+export interface CreateStyledStatelessComponent<InnerProps extends object, Theme extends object> {
   <Props extends object, OverridedTheme extends object = Theme>(
     ...args: Array<Interpolation<Themed<Props, OverridedTheme>>>
-  ) => StyledStatelessComponent<Props, InnerProps, OverridedTheme>;
+  ): StyledStatelessComponent<Props, InnerProps, OverridedTheme>;
+}
 
-export type CreateStyledOtherComponent<InnerProps extends object, Theme extends object> =
+export interface CreateStyledOtherComponent<InnerProps extends object, Theme extends object> {
   <Props extends object, OverridedTheme extends object = Theme>(
     ...args: Array<Interpolation<Themed<Props, OverridedTheme>>>
-  ) => StyledOtherComponent<Props, InnerProps, OverridedTheme>;
+  ): StyledOtherComponent<Props, InnerProps, OverridedTheme>;
+}
 
 export interface CreateStyled<Theme extends object = any> {
   <T extends keyof ReactHTML>(
