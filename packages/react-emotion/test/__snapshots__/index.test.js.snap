@@ -909,3 +909,91 @@ exports[`styled withComponent with function interpolation 1`] = `
   </Styled(h2)>
 </article>
 `;
+
+exports[`styled withProps { className } 1`] = `
+.emotion-0 {
+  color: blue;
+}
+
+<h1
+  className="blue other emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled withProps { data- } 1`] = `
+.emotion-0 {
+  color: blue;
+}
+
+<h1
+  aria-label="blue"
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled withProps { random } 1`] = `
+.emotion-0 {
+  color: blue;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled withProps component flattening 1`] = `
+.emotion-0 {
+  color: yellow;
+  color: hotpink;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+  style={
+    Object {
+      "color": "hotpink",
+    }
+  }
+>
+  hello world
+</h1>
+`;
+
+exports[`styled withProps component flattening with multiple withProps 1`] = `
+.emotion-0 {
+  color: yellow;
+  color: hotpink;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+  label="something"
+  style={
+    Object {
+      "color": "hotpink",
+    }
+  }
+>
+  hello world
+</h1>
+`;
+
+exports[`styled withProps function 1`] = `
+.emotion-0 {
+  color: yellow;
+}
+
+<h1
+  aria-label="something"
+  className="emotion-0 emotion-1"
+  label="something"
+>
+  hello world
+</h1>
+`;

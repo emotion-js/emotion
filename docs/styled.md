@@ -64,10 +64,9 @@ const Fancy = styled(Basic)`
 render(<Fancy />)
 ```
 
+### `withComponent`
 
-### Change the rendered tag using `withComponent`
-
-Sometimes you want to create some styles with one component but then use those styles again with another component, the `withComponent` method can be used for this. This was inspired by [styled-components' `withComponent`](https://www.styled-components.com/docs/api#withcomponent).
+Change the underlying tag of the styled component.
 
 ```jsx live
 // Create a section element
@@ -76,12 +75,6 @@ const Section = styled('section')`
 `
 // Create an aside element with the same styles as Section
 const Aside = Section.withComponent('aside')
-render(
-  <div>
-    <Section>This is a section</Section>
-    <Aside>This is an an aside</Aside>
-  </div>
-)
 ```
 
 ### Targeting another emotion component

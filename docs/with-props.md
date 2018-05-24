@@ -2,18 +2,32 @@
 title: "Attaching Props"
 ---
 
-Sometimes it's useful to create components that already have props applied, like the example below with a password input. You use recompose's `withProps` higher-order component to do this.
-
-**[`withProps` documentation](https://github.com/acdlite/recompose/blob/master/docs/API.md#withprops)**
+Sometimes it's useful to create components that already have props applied, like the example below with a checkbox. You can use `.withProps` to do this. `this.props` is merged with and overwrites any overlapping keys from `withProps` except for classNames from withProps which are merged.
 
 ```jsx live
-import withProps from 'recompose/withProps'
+import styled from 'react-emotion'
 
-const RedPasswordInput = withProps({
-  type: 'password'
-})(styled('input')`
-  background-color: red;
-`)
+const MyCheckbox = styled('input')`
+  height: 40px;
+  width: 40px;
+  color: green;
+`.withProps({
+  type: 'checkbox'
+})
+
+render(<MyCheckbox />)
+```
+
+`withProps` also accepts a function that recieves props.
+
+```jsx live
+import styled from 'react-emotion'
+
+const Input = styled('input')`
+  background-color: ${props => props.password && 'red'};
+`.withProps(
+  props => (props.password ? { type: 'password' } : {})
+)
 
 render(<RedPasswordInput />)
 ```

@@ -1120,6 +1120,75 @@ describe('styled', () => {
     const tree = renderer.create(<OneMoreComponent />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  test('withProps { className }', () => {
+    const H1 = styled.h1`
+      color: blue;
+    `.withProps({ className: 'blue' })
+
+    const tree = renderer
+      .create(<H1 className="other">hello world</H1>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('withProps { data- }', () => {
+    const H1 = styled.h1`
+      color: blue;
+    `.withProps({ 'aria-label': 'blue' })
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('withProps { random }', () => {
+    const H1 = styled.h1`
+      color: blue;
+    `.withProps({ random: 'blue' })
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('withProps component flattening', () => {
+    const _H1 = styled.h1`
+      color: yellow;
+    `.withProps({ style: { color: 'hotpink' } })
+
+    const H1 = styled(_H1)`
+      color: hotpink;
+    `
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('withProps component flattening with multiple withProps', () => {
+    const _H1 = styled.h1`
+      color: yellow;
+    `.withProps({ style: { color: 'hotpink' } })
+
+    const H1 = styled(_H1)`
+      color: hotpink;
+    `.withProps({ label: 'something' })
+
+    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('withProps function', () => {
+    const H1 = styled.h1`
+      color: yellow;
+    `.withProps(props => ({ 'aria-label': props.label }))
+
+    const tree = renderer
+      .create(<H1 label="something">hello world</H1>)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('custom shouldForwardProp works', () => {
     const Svg = props => (
       <svg {...props}>
