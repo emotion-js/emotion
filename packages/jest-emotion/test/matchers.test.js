@@ -5,7 +5,10 @@ import * as emotion from 'emotion'
 import styled from 'react-emotion'
 import { createMatchers } from '../src'
 
-expect.extend(createMatchers(emotion))
+const matchers = createMatchers(emotion)
+const { toHaveStyleRule } = matchers
+
+expect.extend(matchers)
 
 describe('toHaveStyleRule', () => {
   const divStyle = emotion.css`
@@ -91,5 +94,29 @@ describe('toHaveStyleRule', () => {
       expect(svgNode).toHaveStyleRule('width', '100%')
       expect(svgNode).not.toHaveStyleRule('color', 'red')
     })
+  })
+
+  it('fails if no styles are found', () => {
+    const tree = renderer.create(<div />).toJSON()
+    const result = toHaveStyleRule(tree, 'color', 'red')
+    expect(result.pass).toBe(false)
+    expect(result.message()).toBe('Property not found: color')
+  })
+
+  it('supports regex values', () => {
+    const tree = renderer.create(<div className={divStyle} />).toJSON()
+    expect(tree).toHaveStyleRule('color', /red/)
+  })
+
+  it('returns a message explaining the failure', () => {
+    const tree = renderer.create(<div className={divStyle} />).toJSON()
+
+    // When expect(tree).toHaveStyleRule('color', 'blue') fails
+    const resultFail = toHaveStyleRule(tree, 'color', 'blue')
+    expect(resultFail.message()).toMatchSnapshot()
+
+    // When expect(tree).not.toHaveStyleRule('color', 'red')
+    const resultPass = toHaveStyleRule(tree, 'color', 'red')
+    expect(resultPass.message()).toMatchSnapshot()
   })
 })
