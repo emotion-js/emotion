@@ -14,7 +14,7 @@ function handleInterpolation(interpolation, couldBeSelectorInterpolation) {
     case 'function':
       return handleInterpolation.call(
         this,
-        this === undefined ? interpolation() : interpolation(this.props),
+        this === undefined ? interpolation() : interpolation(this.mergedProps),
         couldBeSelectorInterpolation
       )
 
