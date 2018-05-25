@@ -138,3 +138,50 @@ const StyledCompWithFunComp2 = StyledFunComp0.withComponent(TestFunComp1);
 <StyledCompWithFunComp2 color='#ffff00' complex={{ id: 42, name: 'truth', friends: [69] }} world={1} />;
 // $ExpectError
 <StyledCompWithFunComp2 color='#ffff00' complex={{ id: 42, name: 'truth', friends: [69] }} world={1} innerRef={() => ''} />;
+
+const StyledCompShorthand0 = createStyled.a({
+  textAlign: 'center',
+})
+const StyledCompShorthand1 = createStyled.label`
+  display: block;
+
+  width: 200px;
+  height: 130px;
+`;
+
+<StyledCompShorthand0 />;
+<StyledCompShorthand1 />;
+<StyledCompShorthand1 theme={{}} />;
+// $ExpectError
+<StyledCompShorthand1 theme={{}} asdfasdf={undefined as any} />;
+
+interface ShorthandProps {
+  editor: 'vscode' | 'emacs' | 'sublime';
+}
+
+const getEditorLogoColor = (editor: 'vscode' | 'emacs' | 'sublime') => {
+  switch (editor) {
+    case 'vscode':
+      return '007bcd';
+    case 'emacs':
+      return '5e5ba8';
+    case 'sublime':
+      return 'ff9800';
+  }
+}
+
+const StyledCompShorthandWithProps0 = createStyled.div<ShorthandProps>(props => ({
+  backgroundColor: getEditorLogoColor(props.editor),
+}));
+const StyledCompShorthandWithProps1 = createStyled.section<ShorthandProps>`
+  backgroundColor: ${props => getEditorLogoColor(props.editor)};
+`;
+
+<StyledCompShorthandWithProps0 editor='emacs' />;
+<StyledCompShorthandWithProps0 editor='vscode' innerRef={() => {}} />;
+<StyledCompShorthandWithProps1 editor={'sublime'} theme={{}} />;
+// $ExpectError
+<StyledCompShorthandWithProps0 editor='emacs' other={'thing' as any} />;
+
+// $ExpectError
+createStyled.asdf;

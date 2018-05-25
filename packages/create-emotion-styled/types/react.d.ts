@@ -53,7 +53,7 @@ export interface CreateStyledOtherComponent<InnerProps extends object, Theme ext
   ): StyledOtherComponent<Props, InnerProps, OverridedTheme>;
 }
 
-export interface CreateStyled<Theme extends object = any> {
+export interface CreateStyledFunction<Theme extends object> {
   <T extends keyof JSX.IntrinsicElements>(
     tag: T,
     options?: StyledOptions,
@@ -69,3 +69,11 @@ export interface CreateStyled<Theme extends object = any> {
     options?: StyledOptions,
   ): CreateStyledOtherComponent<IP, Theme>;
 }
+
+export type CreateStyledShorthands<Theme extends object> = {
+  [T in keyof JSX.IntrinsicElements]: CreateStyledOtherComponent<JSX.IntrinsicElements[T], Theme>;
+};
+
+export interface CreateStyled<Theme extends object = any>
+  extends CreateStyledFunction<Theme>,
+    CreateStyledShorthands<Theme> {}
