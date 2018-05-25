@@ -12,13 +12,12 @@ title: "cx"
 
 ### API
 
-**`cx`** - `(...args<string|number|function|object|array>): string`
+**`cx`** - `(...args<string|number|object|array>): string`
 
 `cx` takes any number of arguments and returns a string class name.
 
 * Falsey values are removed from the final string.
 * If an object value is encountered, any key that has a corresponding truthy value is added to the final string.
-* If an function value is encountered, the return value is wrapped in `cx` and returned.
 
 ### Examples
 

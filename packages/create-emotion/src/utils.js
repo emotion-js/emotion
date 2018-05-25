@@ -77,6 +77,12 @@ export const classnames = (args: Array<ClassNameArg>): string => {
       case 'boolean':
         break
       case 'function':
+        if (process.env.NODE_ENV !== 'production') {
+          console.error(
+            'Passing functions to cx is deprecated and will be removed in the next major version of Emotion.\n' +
+              'Please call the function before passing it to cx.'
+          )
+        }
         toAdd = classnames([arg()])
         break
       case 'object': {

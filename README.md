@@ -69,6 +69,13 @@ const app = () => (
 )
 ```
 
+### Do I Need To Use the Babel Plugin?
+The babel plugin is not required, but enables some optimizations and customizations that could be beneficial for your project.
+
+Look here 👉 *[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)* 
+
+### Demo Sandbox
+
 [Demo Code Sandbox](https://codesandbox.io/s/pk1qjqpw67)
 
 ### Examples
