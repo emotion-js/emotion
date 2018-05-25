@@ -4,7 +4,10 @@ import {
   replaceClassNames,
   type ClassNameReplacer
 } from './replace-class-names'
+import { getClassNamesFromNodes, isReactElement, isDOMElement } from './utils'
 import type { Emotion } from 'create-emotion'
+
+export { createMatchers } from './matchers'
 
 type Options = {
   classNameReplacer: ClassNameReplacer,
@@ -25,28 +28,6 @@ function getNodes(node, nodes = []) {
   return nodes
 }
 
-function getClassNames(selectors, classes) {
-  return classes ? selectors.concat(classes.split(' ')) : selectors
-}
-
-function getClassNamesFromProps(selectors, props) {
-  return getClassNames(selectors, props.className || props.class)
-}
-
-function getClassNamesFromDOMElement(selectors, node) {
-  return getClassNames(selectors, node.getAttribute('class'))
-}
-
-function getClassNamesFromNodes(nodes) {
-  return nodes.reduce(
-    (selectors, node) =>
-      isReactElement(node)
-        ? getClassNamesFromProps(selectors, node.props)
-        : getClassNamesFromDOMElement(selectors, node),
-    []
-  )
-}
-
 export function getStyles(emotion: Emotion) {
   return Object.keys(emotion.caches.inserted).reduce((style, current) => {
     if (emotion.caches.inserted[current] === true) {
@@ -54,21 +35,6 @@ export function getStyles(emotion: Emotion) {
     }
     return style + emotion.caches.inserted[current]
   }, '')
-}
-
-function isReactElement(val) {
-  return val.$$typeof === Symbol.for('react.test.json')
-}
-
-const domElementPattern = /^((HTML|SVG)\w*)?Element$/
-
-function isDOMElement(val) {
-  return (
-    val.nodeType === 1 &&
-    val.constructor &&
-    val.constructor.name &&
-    domElementPattern.test(val.constructor.name)
-  )
 }
 
 export function createSerializer(
