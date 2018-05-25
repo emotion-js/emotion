@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-primitives'
 import transform from 'css-to-react-native'
-import { convertRuleOptions } from 'tslint/lib/configuration'
 
 // Copied and edited from @emotion/css
 // Cannot use css from @emotion/css directly because of unnecessary checks, __emotion_styles, and registering interpolations in cache.
