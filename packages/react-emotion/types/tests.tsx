@@ -1,6 +1,6 @@
 // tslint:disable-next-line:no-implicit-dependencies
 import React from 'react';
-import styled, { flush, ThemedReactEmotionInterface } from '../';
+import styled, { flush, CreateStyled } from '../';
 
 let Component;
 let mount;
@@ -42,7 +42,7 @@ Component = styled.div<CustomProps>(
 );
 mount = <Component lookColor="red" />;
 
-Component = styled<CustomProps, 'div'>('div')(
+Component = styled('div')<CustomProps>(
   { color: 'blue' },
   props => ({
     background: props.lookColor,
@@ -51,8 +51,8 @@ Component = styled<CustomProps, 'div'>('div')(
 mount = <Component lookColor="red" />;
 
 const anotherColor = 'blue';
-Component = styled<CustomProps, 'div'>('div')`
-  background: ${props => props.lookColor};
+Component = styled('div')`
+  background: ${(props: CustomProps) => props.lookColor};
   color: ${anotherColor};
 `;
 mount = <Component lookColor="red" />;
@@ -81,7 +81,7 @@ Component = styled(MyClassC) ``;
 mount = <Component customProp="abc" />;
 
 // do not infer SFCComponentProps with pass CustomProps, need to pass both
-Component = styled<SFCComponentProps, CustomProps2>(SFCComponent)({
+Component = styled(SFCComponent)<CustomProps2>({
   color: 'red',
 }, props => ({
   background: props.customProp,
@@ -89,9 +89,9 @@ Component = styled<SFCComponentProps, CustomProps2>(SFCComponent)({
 mount = <Component customProp="red" foo="bar" />;
 
 // do not infer SFCComponentProps with pass CustomProps, need to pass both
-Component = styled<SFCComponentProps, CustomProps2>(SFCComponent)`
+Component = styled(SFCComponent)`
   color: red;
-  background: ${props => props.customProp};
+  background: ${(props: CustomProps2) => props.customProp};
 `;
 mount = <Component customProp="red" foo="bar" />;
 
@@ -106,7 +106,7 @@ interface Theme {
   };
 }
 
-const _styled = styled as ThemedReactEmotionInterface<Theme>;
+const _styled = styled as CreateStyled<Theme>;
 
 Component = _styled.div`
   color: ${props => props.theme.color.primary}
