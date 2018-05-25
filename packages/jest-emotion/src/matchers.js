@@ -1,6 +1,8 @@
+// @flow
 import chalk from 'chalk'
 import * as css from 'css'
 import { getClassNamesFromNodes } from './utils'
+import type { Emotion } from 'create-emotion'
 
 /*
  * Taken from
@@ -44,8 +46,8 @@ function getStylesFromClassNames(classNames: Array<string>, emotion) {
   }, '')
 }
 
-export function createMatchers(emotion) {
-  function toHaveStyleRule(received, property, value) {
+export function createMatchers(emotion: Emotion) {
+  function toHaveStyleRule(received: *, property: *, value: *) {
     const selectors = getClassNamesFromNodes([received])
     const cssString = getStylesFromClassNames(selectors, emotion)
     const styles = css.parse(cssString)
