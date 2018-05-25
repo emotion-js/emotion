@@ -9,15 +9,6 @@ exports[`Emotion primitives compose via .styles prop 1`] = `
 </div>
 `;
 
-exports[`Emotion primitives innerRef 1`] = `
-<div
-  className="emotion-0 rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb emotion-1 rn-boxSizing-deolkf emotion-2 rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi emotion-3 rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi emotion-4 rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j emotion-5 emotion-6 emotion-7 rn-wordWrap-qvutc0"
-  dir="auto"
->
-  Emotion primitives
-</div>
-`;
-
 exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
 <div
   className="emotion-0 rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb emotion-1 rn-boxSizing-deolkf rn-color-k9pu7p rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi emotion-2 rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi emotion-3 rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j emotion-4 emotion-5 emotion-6 rn-wordWrap-qvutc0"
@@ -82,11 +73,11 @@ exports[`Emotion primitives should style any other component 1`] = `
 </div>
 `;
 
-exports[`Emotion primitives theme 1`] = `
+exports[`Emotion primitives should work with emotion-theming 1`] = `
 <div
-  className="rn-backgroundColor-15fsygq emotion-0 rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb emotion-1 rn-boxSizing-deolkf emotion-2 rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi emotion-3 rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi emotion-4 rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j emotion-5 emotion-6 emotion-7 rn-wordWrap-qvutc0"
+  className="emotion-0 rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb emotion-1 rn-boxSizing-deolkf rn-color-ar5qwb rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi emotion-2 rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi emotion-3 rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j emotion-4 emotion-5 emotion-6 rn-wordWrap-qvutc0"
   dir="auto"
 >
-  Hello
+  Hello World
 </div>
 `;
