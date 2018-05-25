@@ -60,7 +60,7 @@ function convertStyles(str) {
 
   parsedString.forEach(style => {
     // Get prop name and prop value
-    const ar = style.split(': ')
+    const ar = style.split(':')
 
     if (ar[0] && ar[1]) {
       styleObj.push([ar[0].trim(), ar[1].trim()])
