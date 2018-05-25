@@ -395,6 +395,20 @@ function test () {
       instances: ['./my-emotion-instance']
     },
     filename: __filename
+  },
+  comments: {
+    code: `
+    css\`
+    // display:flex;
+    
+    /*
+    wef
+    
+    dfwf*/
+    color:hotpink;
+    \`
+    
+    `
   }
 }
 createInlineTests('babel css inline', inline)
