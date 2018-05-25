@@ -2,8 +2,8 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import { ThemeProvider, withTheme } from 'emotion-theming'
 import reactPrimitives from 'react-primitives'
+import { ThemeProvider } from 'emotion-theming'
 
 import emotion from '../src'
 
@@ -31,14 +31,6 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('theme', () => {
-    const T = withTheme(emotion.Text`color: red; backgroundColor: ${props => props.theme.backgroundColor}`)
-
-    const tree = renderer.create(<ThemeProvider theme={theme}><T bg='red'>Hello</T></ThemeProvider>).toJSON()
-
-    expect(tree).toMatchSnapshot()
-  })
-
   test('should render the primitive when styles applied using object style notation', () => {
     const Text = emotion.Text`color: red; font-size: 20px; background-color: ${props =>
       props.back};`
@@ -49,6 +41,18 @@ describe('Emotion primitives', () => {
         </Text>
       )
       .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('should work with emotion-theming', () => {
+    const Text = emotion.Text`color: ${props => props.theme.backgroundColor}`
+
+    const tree = renderer.create(
+      <ThemeProvider theme={theme}>
+        <Text>Hello World</Text>
+      </ThemeProvider>
+    ).toJSON()
+
     expect(tree).toMatchSnapshot()
   })
 
@@ -104,18 +108,18 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('innerRef', () => {
-    const innerRef = jest.fn()
-    const Text = emotion.Text`color: red;`
-    const tree = renderer.create(<Text innerRef={innerRef}>Emotion primitives</Text>).toJSON()
-    expect(tree).toMatchSnapshot()
-    expect(innerRef).toBeCalled()
+  // it('innerRef', () => {
+  //   const innerRef = jest.fn()
+  //   const Text = emotion.Text`color: red;`
+  //   const tree = renderer.create(<Text innerRef={innerRef}>Emotion primitives</Text>).toJSON()
+  //   expect(tree).toMatchSnapshot()
+  //   expect(innerRef).toBeCalled()
 
-    const ref = React.createRef()
-    const wrapper = Enzyme.mount(<Text innerRef={ref}></Text>)
-    const text = wrapper.find('Text').first()
-    expect(ref.current).toBe(text.instance())
-  })
+  //   const ref = React.createRef()
+  //   const wrapper = Enzyme.mount(<Text innerRef={ref}></Text>)
+  //   const text = wrapper.find('Text').first()
+  //   expect(ref.current).toBe(text.instance())
+  // })
 
   it('should render <Image />', () => {
     const Image = emotion.Image`
