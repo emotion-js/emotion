@@ -1,5 +1,6 @@
 import * as React from 'react'
 import reactPrimitives from 'react-primitives'
+import { channel, contextTypes, setTheme, testAlwaysTrue, pickAssign } from './utils'
 
 import { getStyles } from './getStyles'
 import { convertToRNStyles } from './convertToRNStyles'
@@ -23,35 +24,48 @@ const getPrimitive = primitive => {
 
 // Evaluate the styles and convert them to React Native using styled component context
 function evalStyles(context, Comp, styles, styleOverrides) {
-  // Assign static property so that the styles can be reused (like in withComponent)
+  // Convert styles with or without interpolations to React Native (StyleSheet.create)
+  // TODO: Make the implementation more concrete
+  // Assign static property so that the styles can be reused when using `withComponent` or composing styles via Comp.styles.
   Comp.styles = convertToRNStyles.call(context, styles)
 
   return getStyles.call(context, Comp.styles, context.props, styleOverrides)
 }
 
 /**
- * Creates a function that renders the styles on multiple targets with same code.
+ * Creates a function that returns a styled component which render styles on multiple targets with same code
  */
 export function createEmotionPrimitive(splitProps) {
-  /*
-   * Returns styled component
-   */
   return function emotion(primitive) {
     return createStyledComponent
 
-    /**
-     * Create emotion styled component
-     */
-    function createStyledComponent() {
-      let styles = []
-
-      styles.push.apply(styles, arguments)
-
+    function createStyledComponent(...styles) {
       class Styled extends React.Component {
+        componentWillMount() {
+          if (this.context[channel] !== undefined) {
+            this.unsubscribe = this.context[channel].subscribe(
+              setTheme.bind(this)
+            )
+          }
+        }
+
+        componentWillUnmount() {
+          if (this.unsubscribe !== undefined) {
+            this.context[channel].unsubscribe(this.unsubscribe)
+          }
+        }
+
         render() {
+          const { props, state } = this
+
+          // Similar to create-emotion-styled component implementation
+          this.mergedProps = pickAssign(testAlwaysTrue, {}, props, {
+            theme: (state !== null && state.theme) || props.theme || {}
+          })
+
           const { toForward, styleOverrides } = splitProps(
             primitive,
-            this.props
+            props
           )
 
           const emotionStyles = evalStyles(this, Styled, styles, styleOverrides)
@@ -60,12 +74,14 @@ export function createEmotionPrimitive(splitProps) {
             getPrimitive(primitive),
             {
               ...toForward,
-              ref: this.props.innerRef,
+              ref: props.innerRef,
               style: emotionStyles.length > 0 ? emotionStyles : {}
             }
           )
         }
       }
+
+      Styled.contextTypes = contextTypes
 
       Styled.withComponent = newPrimitive =>
         emotion(getPrimitive(newPrimitive))(...Styled.styles)
