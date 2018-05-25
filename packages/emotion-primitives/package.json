@@ -1,6 +1,6 @@
 {
   "name": "emotion-primitives",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0",
   "main": "dist/index.es.js",
   "files": [
     "src",
@@ -16,10 +16,12 @@
     "css-to-react-native": "^2.2.0"
   },
   "peerDependencies": {
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-primitives": "^0.5.1"
   },
   "devDependencies": {
+    "emotion-theming": "^9.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "npm-run-all": "^4.0.2",
