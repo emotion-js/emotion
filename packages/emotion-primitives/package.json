@@ -13,19 +13,17 @@
     "watch": "rollup -c ../../rollup.config.js --watch"
   },
   "dependencies": {
-    "css-to-react-native": "^2.2.0",
-    "get-lerna-packages": "^0.1.0",
-    "prop-types": "^15.6.1",
-    "react": "^16.3.2"
+    "css-to-react-native": "^2.2.0"
   },
   "peerDependencies": {
+    "react": "^16.2.0",
     "react-primitives": "^0.5.1"
   },
   "devDependencies": {
-    "emotion-theming": "^9.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "npm-run-all": "^4.0.2",
+    "react": "^16.4.0",
     "react-primitives": "^0.5.1",
     "rimraf": "^2.6.1",
     "rollup": "^0.51.3"
