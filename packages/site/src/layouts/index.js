@@ -2,7 +2,7 @@
 import globalStyles from '../utils/global'
 import React from 'react'
 import Link from '../components/Link'
-import styled from '@emotion/styled.macro'
+import styled from '@emotion/styled'
 import Box from '../components/Box'
 import Helmet from 'react-helmet'
 import DocWrapper from '../components/DocWrapper'
@@ -10,7 +10,7 @@ import Search from '../components/Search'
 import { colors, constants, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
 import type { Location, Match } from '../utils/types'
-import Global from '@emotion/global'
+import { Global } from '@emotion/core'
 
 const StyledLink = styled(Box)`
   color: white;

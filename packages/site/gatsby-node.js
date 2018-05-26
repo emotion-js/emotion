@@ -24,12 +24,6 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
     }
   })
 
-  config.plugin(`Emotion`, webpack.ProvidePlugin, [
-    {
-      EmotionJSX: `@emotion/jsx`
-    }
-  ])
-
   config.plugin('ignore-stuff', () => new webpack.IgnorePlugin(/^(xor|props)$/))
   if (stage === 'build-javascript') {
     config.merge({
@@ -47,7 +41,18 @@ exports.modifyBabelrc = ({ babelrc }) => {
   return {
     ...babelrc,
     plugins: babelrc.plugins.concat([
-      [`transform-react-jsx`, { pragma: `EmotionJSX` }]
+      [`transform-react-jsx`, { pragma: `___EmotionJSX` }],
+      [
+        'babel-plugin-jsx-pragmatic',
+        {
+          ['export']: 'jsx',
+          ['module']: '@emotion/core',
+          ['import']: '___EmotionJSX'
+        }
+      ],
+      process.env.NODE_ENV === 'production'
+        ? ['@emotion/babel-plugin-core', { jsx: true }]
+        : ['@emotion/babel-plugin-core', { sourceMap: true, jsx: true }]
     ])
   }
 }

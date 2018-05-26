@@ -1,7 +1,7 @@
 // @flow
 import Box from '../components/Box'
 import * as React from 'react'
-import styled from '@emotion/styled.macro'
+import styled from '@emotion/styled'
 import css from '@emotion/css'
 import _GatsbyLink from 'gatsby-link'
 import { ErrorBoundary } from '../components/live'

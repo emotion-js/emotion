@@ -163,19 +163,27 @@ const internalCodeStyles = css(
   })
 )
 
+const ClassName = (props: any) => {
+  return props.children(props.className)
+}
+
 const createCode = (logoUrl: string) => (props: *) => {
   if (props.className === undefined) {
     return <code css={inlineCodeStyles} {...props} />
   }
   if (props.className[0] === 'language-jsx-live') {
     return (
-      <Playground
-        css={codeStyles}
-        editorClassName={internalCodeStyles}
-        logoUrl={logoUrl}
-        initialCompiledCode={props.compiled}
-        code={props.children[0]}
-      />
+      <ClassName css={internalCodeStyles}>
+        {internalCodeStylesClassName => (
+          <Playground
+            css={codeStyles}
+            editorClassName={internalCodeStylesClassName}
+            logoUrl={logoUrl}
+            initialCompiledCode={props.compiled}
+            code={props.children[0]}
+          />
+        )}
+      </ClassName>
     )
   }
   const language = props.className[0].replace('language-', '')

@@ -1,5 +1,5 @@
 // @flow
-import styled from '@emotion/styled.macro'
+import styled from '@emotion/styled'
 import {
   space,
   width,

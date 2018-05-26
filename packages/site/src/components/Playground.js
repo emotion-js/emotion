@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import styled from '@emotion/styled.macro'
+import styled from '@emotion/styled'
 import Live, { compile, Editor, ErrorBoundary } from './live'
 import { ThemeProvider, withTheme } from 'emotion-theming'
 import Box from '../components/Box'

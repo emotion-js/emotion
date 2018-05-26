@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import styled from '@emotion/styled.macro'
+import styled from '@emotion/styled'
 import css from '@emotion/css'
 import Box from '../components/Box'
 import { scope, Error } from '../components/Playground'
