@@ -5,11 +5,11 @@
   "version": "9.1.2",
   "dependencies": {
     "@dumpster/remark-custom-element-to-hast": "^0.4.0",
-    "@emotion/babel-plugin-core": "^0.6.0",
+    "@emotion/babel-plugin-core": "^0.6.1",
     "@emotion/compat-cache": "^0.8.1",
     "@emotion/core": "^0.10.1",
     "@emotion/css": "^0.9.0",
-    "@emotion/provider": "^0.7.0",
+    "@emotion/provider": "^0.9.0",
     "@emotion/styled": "^0.9.0",
     "babel-plugin-emotion": "^9.1.2",
     "babel-plugin-jsx-pragmatic": "^1.0.2",
