@@ -77,7 +77,7 @@ mount = <Component foo="bar" />;
 Component = styled(SFCComponent)`color: red`;
 mount = <Component foo="bar" />;
 
-Component = styled(MyClassC) ``;
+Component = styled(MyClassC)``;
 mount = <Component customProp="abc" />;
 
 // do not infer SFCComponentProps with pass CustomProps, need to pass both
