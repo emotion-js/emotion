@@ -2,109 +2,80 @@
 title: "Typescript"
 ---
 
-Emotion includes TypeScript definitions for `create-emotion`, `emotion`, `create-emotion-styled`, and `react-emotion` packages. These definition also could infer types for css property (with object syntax), and HTML/SVG tag name, and props types.
+Emotion includes TypeScript definitions for `emotion`, `react-emotion`, `create-emotion`, and `create-emotion-styled` packages. These definitions also infer types for css property (with object syntax), and HTML/SVG tag names, and props types.
 
-## create-emotion
+## emotion
 
-``` tsx
-import createEmotion, { Emotion, EmotionOption } from 'create-emotion';
+```jsx
+import { css } from 'emotion';
 
-const context = {};
-const options: EmotionOption = {
-  key: 'my-emotion',
-};
-const myEmotion: Emotion = createEmotion(context, options);
-
-const titleStyle = myEmotion.css({
+const titleStyle = css({
   boxSizing: 'border-box',
   width: 300,
   height: 200,
 });
 
-const subtitleStyle = myEmotion.css`
+const subtitleStyle = css`
   boxSizing: 'border-box';
   width: 100;
   height: 60;
 `;
 ```
 
-Typescript checks css properties in object style syntax using csstype package, so following code will emit errors.
+Typescript checks css properties in object style syntax using [csstype](https://www.npmjs.com/package/csstype) package, so following code will emit errors.
 
-``` tsx
-import createEmotion, { Emotion, EmotionOption } from 'create-emotion';
+```jsx
+import { css } from 'emotion';
 
-const context = {};
-const options: EmotionOption = {
-  key: 'my-emotion',
-};
-const myEmotion: Emotion = createEmotion(context, options);
-
-const titleStyle = myEmotion.css({
-                                 ^ Argument of type 'boxSizing: 'bordre-box';' is not assignable [...]
+const titleStyle = css({
+                       ^ Argument of type 'boxSizing: 'bordre-box';' is not assignable [...]
   boxSizing: 'bordre-box', // Oops, there's a typo!
   width: 300,
   height: 200,
 });
 
-const subtitleStyle = myEmotion.css`
+const subtitleStyle = css`
   boxSizing: 'border-box';
   width: 100;
   height: 60;
 `;
 ```
-
-## emotion
-
-Basically same with `create-emotion`.
-
-``` tsx
-import { css } from 'emotion';
-
-const bodyStyle = css({
-  display: 'flex',
-  flowDirection: 'column-reverse',
-});
-```
-
-## create-emotion-styled
-
-Current typing for `create-emotion-styled` is only compatible with React, and will not work with Preact. For detail typing, see following `react-element` section.
 
 ## react-emotion
 
 ### HTML/SVG elements
 
 ```jsx
-import styled from 'react-emotion'
+import styled from 'react-emotion';
 
 const Link = styled('a')`
   color: red;
-`
+`;
 
 const Icon = styled('svg')`
   stroke: green;
 `;
 
-const App = () => <Link href="#">Click me</Link>
+const App = () => <Link href="#">Click me</Link>;
 ```
 
 ```jsx
-import styled from 'react-emotion'
+import styled from 'react-emotion';
 
 const NotALink = styled('div')`
   color: red;
-`
+`;
 
 const App = () => (
   <NotALink href="#">Click me</NotALink>
             ^^^^^^^^ Property 'href' does not exist [...]
-)
+);
 ```
 
 ### `withComponent`
 
 ```jsx
-import styled from 'react-emotion'
+import styled from 'react-emotion';
 
 const NotALink = styled('div')`
   color: red;
@@ -230,7 +201,7 @@ const App = () => (
 By default, the `props.theme` has `any` type annotation and works without error.\
 However, you can define a theme type by creating a another `styled` instance.
 
-_styled.tsx_
+_styled.jsx_
 
 ```jsx
 import styled, { CreateStyled } from 'react-emotion'
@@ -247,7 +218,7 @@ type Theme = {
 export default styled as CreateStyled<Theme>
 ```
 
-_Button.tsx_
+_Button.jsx_
 
 ```jsx
 import styled from '../pathto/styled'
@@ -260,3 +231,25 @@ const Button = styled('button')`
 
 export default Button
 ```
+## create-emotion
+
+Basically same with `emotion`, except that you can pass your own context and options.
+
+```jsx
+import createEmotion, { Emotion, EmotionOption } from 'create-emotion';
+
+const context = {};
+const options: EmotionOption = {
+  key: 'my-emotion',
+};
+const myEmotion: Emotion = createEmotion(context, options);
+
+const bodyStyle = myEmotion.css({
+  display: 'flex',
+  flowDirection: 'column-reverse',
+});
+```
+
+## create-emotion-styled
+
+The current typings for `create-emotion-styled` are only compatible with React, and will not work with Preact. For detail typing, see `react-element` section above.
