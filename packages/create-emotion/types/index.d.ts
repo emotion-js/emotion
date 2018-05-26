@@ -14,11 +14,20 @@ export interface CSSObject extends CSSBaseObject, CSSPseudoObject, CSSOthersObje
 
 export interface ArrayInterpolation extends Array<Interpolation> {}
 
+export interface ClassInterpolation extends Function {
+  __emotion_real: any;
+  __emotion_styles: Array<Interpolation>;
+  __emotion_base: ClassInterpolation;
+  __emotion_target: string;
+  __emotion_forwardProp: undefined | null | ((arg: string) => boolean);
+}
+
 export type Interpolation =
   | undefined | null | boolean | string | number
   | TemplateStringsArray
   | CSSObject
   | ArrayInterpolation
+  | ClassInterpolation
   ;
 
 export interface ArrayClassNameArg extends Array<ClassNameArg> {}
