@@ -12,6 +12,7 @@
   "scripts": {
     "build": "npm-run-all clean rollup",
     "clean": "rimraf dist",
+    "test:typescript": "dtslint types",
     "rollup": "rollup -c ../../rollup.config.js",
     "watch": "rollup -c ../../rollup.config.js --watch"
   },
@@ -22,6 +23,8 @@
     "prop-types": ">= 15"
   },
   "devDependencies": {
+    "@types/react": "16.0.16",
+    "dtslint": "^0.3.0",
     "npm-run-all": "^4.0.2",
     "prop-types": "^15.6.0",
     "rimraf": "^2.6.1",

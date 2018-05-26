@@ -89,6 +89,34 @@ test('correct styles are inserted', () => {
 })
 ```
 
+# Custom matchers
+
+## toHaveStyleRule
+
+To make more explicit assertions when testing your styled components you can use the `toHaveStyleRule` matcher.
+
+```jsx
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { createMatchers } from 'jest-emotion'
+import * as emotion from 'emotion'
+import styled from 'react-emotion'
+
+// Add the custom matchers provided by 'jest-emotion'
+expect.extend(createMatchers(emotion))
+
+test('renders with correct styles', () => {
+  const H1 = styled.h1`
+    float: left;
+  `
+
+  const tree = renderer.create(<H1>hello world</H1>).toJSON()
+
+  expect(tree).toHaveStyleRule('float', 'left')
+  expect(tree).not.toHaveStyleRule('color', 'hotpink')
+})
+```
+
 ## Thanks
 
 Thanks to [Kent C. Dodds](https://twitter.com/kentcdodds) who wrote [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) which this library is largely based on.

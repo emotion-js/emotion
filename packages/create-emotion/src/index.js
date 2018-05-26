@@ -136,6 +136,15 @@ function createEmotion(
           }
           return selector
         }
+        if (this === undefined && process.env.NODE_ENV !== 'production') {
+          console.error(
+            'Interpolating functions in css calls is deprecated and will be removed in the next major version of Emotion.\n' +
+              'If you want to have a css call based on props, create a function that returns a css call like this\n' +
+              'let dynamicStyle = (props) => css`color: ${props.color}`\n' +
+              'It can be called directly with props or interpolated in a styled call like this\n' +
+              "let SomeComponent = styled('div')`${dynamicStyle}`"
+          )
+        }
         return handleInterpolation.call(
           this,
           this === undefined
