@@ -2,6 +2,7 @@
 // TypeScript Version: 2.3
 
 import React, { ComponentClass, Ref, SFC } from 'react';
+import { ClassInterpolation } from 'create-emotion';
 
 import {
   Interpolation,
@@ -30,10 +31,12 @@ export interface StyledComponentMethods<Props extends object, InnerProps extends
 
 export interface StyledStatelessComponent<Props extends object, InnerProps extends object, Theme extends object>
   extends ComponentClass<StyledStatelessProps<Props & InnerProps, Theme>>,
+    ClassInterpolation,
     StyledComponentMethods<Props, InnerProps, Theme> {}
 
 export interface StyledOtherComponent<Props extends object, InnerProps extends object, Theme extends object>
   extends ComponentClass<StyledOtherProps<Props & InnerProps, Theme, Ref<any>>>,
+    ClassInterpolation,
     StyledComponentMethods<Props, InnerProps, Theme> {}
 
 export type StyledComponent<Props extends object, InnerProps extends object, Theme extends object> =

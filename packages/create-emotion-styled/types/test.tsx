@@ -141,7 +141,7 @@ const StyledCompWithFunComp2 = StyledFunComp0.withComponent(TestFunComp1);
 
 const StyledCompShorthand0 = createStyled.a({
   textAlign: 'center',
-})
+});
 const StyledCompShorthand1 = createStyled.label`
   display: block;
 
@@ -168,13 +168,13 @@ const getEditorLogoColor = (editor: 'vscode' | 'emacs' | 'sublime') => {
     case 'sublime':
       return 'ff9800';
   }
-}
+};
 
 const StyledCompShorthandWithProps0 = createStyled.div<ShorthandProps>(props => ({
   backgroundColor: getEditorLogoColor(props.editor),
 }));
-const StyledCompShorthandWithProps1 = createStyled.section<ShorthandProps>`
-  backgroundColor: ${props => getEditorLogoColor(props.editor)};
+const StyledCompShorthandWithProps1 = createStyled.section`
+  backgroundColor: ${(props: ShorthandProps) => getEditorLogoColor(props.editor)};
 `;
 
 <StyledCompShorthandWithProps0 editor='emacs' />;
@@ -185,3 +185,9 @@ const StyledCompShorthandWithProps1 = createStyled.section<ShorthandProps>`
 
 // $ExpectError
 createStyled.asdf;
+
+const ComposingComp = createStyled.div`
+  ${StyledCompShorthand0} {
+    color: black;
+  }
+`;
