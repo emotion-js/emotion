@@ -2,7 +2,7 @@
 title: "Typescript"
 ---
 
-Emotion includes TypeScript definitions for `emotion`, `react-emotion`, `create-emotion`, and `create-emotion-styled` packages. These definitions also infer types for css property (with object syntax), and HTML/SVG tag names, and props types.
+Emotion includes TypeScript definitions for `emotion`, `react-emotion`, `preact-emotion`, `create-emotion`, and `create-emotion-styled` packages. These definitions also infer types for css property (with object syntax), and HTML/SVG tag names, and props types.
 
 ## emotion
 
@@ -231,6 +231,11 @@ const Button = styled('button')`
 
 export default Button
 ```
+
+## preact-emotion
+
+Types are almost same with `react-emotion` package.
+
 ## create-emotion
 
 Basically same with `emotion`, except that you can pass your own context and options.
