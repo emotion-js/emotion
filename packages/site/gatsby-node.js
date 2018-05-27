@@ -45,9 +45,9 @@ exports.modifyBabelrc = ({ babelrc }) => {
       [
         'babel-plugin-jsx-pragmatic',
         {
-          ['export']: 'jsx',
-          ['module']: '@emotion/core',
-          ['import']: '___EmotionJSX'
+          export: 'jsx',
+          module: '@emotion/core',
+          import: '___EmotionJSX'
         }
       ],
       process.env.NODE_ENV === 'production'
