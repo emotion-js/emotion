@@ -47,7 +47,7 @@ const App = () => <Link href="#">Click me</Link>
 
 ### Passing Props
 
-You can type the props of your styled components.\
+You can type the props of your styled components.
 Unfortunately, you will need to pass a second parameter with the tag name because TypeScript is unable to infer the tagname.
 
 ```jsx
@@ -101,7 +101,7 @@ type ComponentProps = {
   label: string
 }
 
-const Component: SFC = ({ label, className }) => (
+const Component: SFC<ComponentProps> = ({ label, className }) => (
   <div className={className}>{label}</div>
 )
 
@@ -125,7 +125,7 @@ type ComponentProps = {
   label: string
 }
 
-const Component: SFC = ({ label, className }) => (
+const Component: SFC<ComponentProps> = ({ label, className }) => (
   <div className={className}>{label}</div>
 )
 
@@ -134,10 +134,7 @@ type StyledComponentProps = {
 } & ComponentProps
 //  ^^^ You will need this
 
-const StyledComponent =
-  styled <
-  StyledComponentProps >
-  Component`
+const StyledComponent = styled<StyledComponentProps, {}>(Component)`
   color: red;
   background: ${props => props.bgColor};
 `
