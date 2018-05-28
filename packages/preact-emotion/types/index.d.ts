@@ -13,8 +13,6 @@ import {
 
 export * from 'emotion';
 
-export type ThemedReactEmotionInterface<Theme extends object> = CreateStyled<Theme>;
-
 export {
   CreateStyled,
   Interpolation,
