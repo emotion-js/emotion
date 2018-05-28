@@ -16,9 +16,9 @@ const titleStyle = css({
 });
 
 const subtitleStyle = css`
-  boxSizing: 'border-box';
-  width: 100;
-  height: 60;
+  box-sizing: border-box;
+  width: 100px;
+  height: 60px;
 `;
 ```
 
@@ -33,12 +33,6 @@ const titleStyle = css({
   width: 300,
   height: 200,
 });
-
-const subtitleStyle = css`
-  boxSizing: 'border-box';
-  width: 100;
-  height: 60;
-`;
 ```
 
 ## react-emotion
