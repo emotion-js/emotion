@@ -46,17 +46,34 @@ type State = {
   code: string
 }
 
+type Code = { stringCode: string, objectCode: string, precompiledCode: string }
+
+let cache: WeakMap<*, Code> = new WeakMap()
+
+function getCode(htmlAst): Code {
+  let cachedVal = cache.get(htmlAst)
+  if (cachedVal) return cachedVal
+  let nodes = htmlAst.children.filter(node => node.tagName === 'live-code')
+  let ret = {
+    precompiledCode: nodes[0].properties.compiled,
+    stringCode: nodes[0].properties.code,
+    objectCode: nodes[1].properties.code
+  }
+  cache.set(htmlAst, ret)
+  return ret
+}
+
 class IndexPage extends React.Component<Props, State> {
   state = {
     mode: 'string',
-    code: this.props.data.allMarkdownRemark.edges[0].node.hast.children[0]
-      .children[0].value
+    code: getCode(this.props.data.allMarkdownRemark.edges[0].node.htmlAst)
+      .stringCode
   }
   render() {
-    const nodes = this.props.data.allMarkdownRemark.edges[0].node.hast.children
-    const precompiledCode = nodes[0].properties.compiled + '\nrender(Link);'
-    const stringCode = nodes[0].children[0].value
-    const objectCode = nodes[2].children[0].value
+    let { precompiledCode, stringCode, objectCode } = getCode(
+      this.props.data.allMarkdownRemark.edges[0].node.htmlAst
+    )
+    precompiledCode += '\nrender(Link);'
     return (
       <Live
         scope={scope}
@@ -186,7 +203,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          hast
+          htmlAst
         }
       }
     }

@@ -1,4 +1,5 @@
 // @flow
+import '../utils/make-prism-manual'
 import globalStyles from '../utils/global'
 import React from 'react'
 import Link from '../components/Link'

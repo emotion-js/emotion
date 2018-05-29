@@ -27,6 +27,7 @@ export const a = styled.a`
   }
   &.anchor {
     background-color: initial;
+    border-bottom: initial;
   }
   code {
     background-color: inherit;

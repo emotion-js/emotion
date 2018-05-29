@@ -48,7 +48,17 @@ module.exports = {
           }
         }
       },
-      `gatsby-transformer-remark`,
+      {
+        resolve: `gatsby-transformer-remark`,
+        options: {
+          plugins: [
+            'gatsby-remark-live-code',
+            'gatsby-remark-autolink-headers',
+            'gatsby-remark-prismjs',
+            'gatsby-remark-smartypants'
+          ]
+        }
+      },
       `gatsby-plugin-react-helmet`,
       'gatsby-plugin-sharp',
       'gatsby-transformer-sharp',

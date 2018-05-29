@@ -2,11 +2,43 @@ import css from '@emotion/css'
 import { mq, fonts } from './style'
 import prismStyles from 'react-live/lib/constants/css.js'
 
+const baseHeadingStyles = css`
+  margin: 0.75rem 0 0.5rem;
+  font-weight: inherit;
+  line-height: 1.42;
+`
+
 const globalStyles = css`
-  ${prismStyles.replace(
-    'prism-code',
-    'prism-code,pre[class*="language-"]'
-  )} html, body, #___gatsby {
+  ${{
+    h1: css`
+      margin-top: 0;
+      font-size: 3.998rem;
+      ${baseHeadingStyles};
+    `,
+    h2: css`
+      font-size: 2.827rem;
+      ${baseHeadingStyles};
+    `,
+    h3: css`
+      font-size: 1.999rem;
+      ${baseHeadingStyles};
+    `,
+    h4: css`
+      font-size: 1.414rem;
+      ${baseHeadingStyles};
+    `,
+    h5: css`
+      font-size: 1.121rem;
+    `,
+    h6: css`
+      font-size: 0.88rem;
+    `
+  }} ${prismStyles.replace(
+      'prism-code',
+      'prism-code,pre[class*="language-"]'
+    )} html,
+    body,
+    #___gatsby {
     font-family: ${fonts.primary};
     color: #fffeff;
     width: 100%;
@@ -14,6 +46,28 @@ const globalStyles = css`
     padding: 0;
     margin: 0;
     -webkit-font-smoothing: antialiased;
+  }
+  ${{
+    'p code': {
+      backgroundColor: '#CEF6FF',
+      fontSize: 16
+    },
+    'a code': {
+      backgroundColor: 'inherit'
+    }
+  }};
+  pre[class*='language-'] {
+    ${mq({
+      marginLeft: [-32, -30],
+      marginRight: [-32, -30],
+      marginTop: 16,
+      marginBottom: 16,
+      borderRadius: [0, 8],
+      whiteSpace: 'pre-wrap',
+      wordBreak: 'break-word',
+      paddingLeft: [32, 30],
+      paddingRight: [32, 30]
+    })};
   }
 
   code,
@@ -26,7 +80,8 @@ const globalStyles = css`
   .prism-code {
     ${mq({
       borderRadius: [0, 8]
-    })} white-space: pre-wrap;
+    })};
+    white-space: pre-wrap;
     word-break: break-word;
     word-wrap: normal;
   }
@@ -35,16 +90,6 @@ const globalStyles = css`
   }
   * {
     box-sizing: border-box;
-  }
-  @font-face {
-    font-family: 'Oxygen';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Oxygen Regular'), local('Oxygen-Regular'),
-      url(https://fonts.gstatic.com/s/oxygen/v6/qBSyz106i5ud7wkBU-FrPevvDin1pK8aKteLpeZ5c0A.woff2)
-        format('woff2');
-    unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02c6, U+02da, U+02dc,
-      U+2000-206f, U+2074, U+20ac, U+2212, U+2215;
   }
 `
 
