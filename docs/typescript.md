@@ -195,7 +195,7 @@ const App = () => (
 By default, the `props.theme` has `any` type annotation and works without error.\
 However, you can define a theme type by creating a another `styled` instance.
 
-_styled.jsx_
+_styled.tsx_
 
 ```jsx
 import styled, { CreateStyled } from 'react-emotion'
@@ -212,7 +212,7 @@ type Theme = {
 export default styled as CreateStyled<Theme>
 ```
 
-_Button.jsx_
+_Button.tsx_
 
 ```jsx
 import styled from '../pathto/styled'
