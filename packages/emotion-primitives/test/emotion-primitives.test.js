@@ -23,14 +23,7 @@ describe('Emotion primitives', () => {
       `Cannot style invalid primitive TEXT. Expected primitive to be one of ['Text', 'View', 'Image']`
     )
   })
-
-  test('compose via .styles prop', () => {
-    const Text = emotion.Text`color: hotpink; font-size: 20;`
-    const Name = emotion.Text`${Text.styles}`
-    const tree = renderer.create(<Name>Hello World</Name>).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-
+  
   test('should render the primitive when styles applied using object style notation', () => {
     const Text = emotion.Text`color: red; font-size: 20px; background-color: ${props =>
       props.back};`
