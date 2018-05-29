@@ -35,7 +35,7 @@ type ElementProps<Tag extends keyof JSX.IntrinsicElements> =
   & JSX.IntrinsicElements[Tag]
   & { innerRef?: JSX.IntrinsicElements[Tag]['ref'] };
 
-// tslint:disable:no-empty-interface
+// tslint:disable-next-line:no-empty-interface
 interface ComponentRef {}
 
 export interface StyledComponent<Props, Theme, IntrinsicProps>
