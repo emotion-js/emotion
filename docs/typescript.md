@@ -137,7 +137,7 @@ type StyledComponentProps = {
 const StyledComponent = styled<StyledComponentProps>(Component)`
   color: red;
   background: ${props => props.bgColor};
-`;
+`
 
 const App = () => (
   <StyledComponent bgColor="red" label="Oh, needs to re-type label prop =(" />
