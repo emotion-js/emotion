@@ -1,6 +1,5 @@
 // @flow
 import React from 'react'
-import css from '@emotion/css'
 import { mq } from '../utils/style'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
