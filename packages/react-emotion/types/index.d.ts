@@ -1,6 +1,6 @@
 // TypeScript Version: 2.3
 // tslint:disable-next-line:no-implicit-dependencies
-import { StatelessComponent, ComponentClass, CSSProperties } from 'react';
+import { ReactElement, StatelessComponent, ComponentClass, ComponentType, CSSProperties } from 'react';
 import { Interpolation as EmotionInterpolation } from 'emotion';
 
 export * from 'emotion';
@@ -8,24 +8,21 @@ export * from 'emotion';
 export type InterpolationFn<Props = {}> =
   (props: Props) =>
     | EmotionInterpolation
-    | InterpolationFn<Props>;
+    | InterpolationFn<Props>
+    | ReactElement<any>;
 
 export type InterpolationTypes<Props = {}> =
   | InterpolationFn<Props>
   | EmotionInterpolation;
 
 export type Interpolation<Props = {}> =
+  | ComponentClass<any>
   | InterpolationTypes<Props>
-  | Array<InterpolationTypes<Props>>
-  | ComponentRef;
+  | Array<InterpolationTypes<Props>>;
 
 export interface Options {
   string?: string;
 }
-
-type Component<Props> =
-  | ComponentClass<Props>
-  | StatelessComponent<Props>;
 
 export type ThemedProps<Props, Theme> = Props & {
   theme: Theme,
@@ -35,24 +32,20 @@ type ElementProps<Tag extends keyof JSX.IntrinsicElements> =
   & JSX.IntrinsicElements[Tag]
   & { innerRef?: JSX.IntrinsicElements[Tag]['ref'] };
 
-// tslint:disable:no-empty-interface
-interface ComponentRef {}
-
 export interface StyledComponent<Props, Theme, IntrinsicProps>
   extends
-    ComponentRef,
     ComponentClass<Props & IntrinsicProps>,
     StatelessComponent<Props & IntrinsicProps> {
   withComponent<Tag extends keyof JSX.IntrinsicElements>(tag: Tag):
     StyledComponent<Props, Theme, ElementProps<Tag>>;
 
-  withComponent(component: Component<Props>):
+  withComponent(component: ComponentType<Props>):
     StyledComponent<Props, Theme, {}>;
 
   displayName: string;
 
   __emotion_styles: string[];
-  __emotion_base: string | Component<Props & IntrinsicProps>;
+  __emotion_base: string | ComponentType<Props & IntrinsicProps>;
   __emotion_real: ThemedReactEmotionInterface<Theme>;
 }
 
@@ -106,7 +99,7 @@ export interface ThemedReactEmotionInterface<Theme> extends ShorthandsFactories<
 
   // overload for component
   <Props, CustomProps>(
-    component: Component<Props>,
+    component: ComponentType<Props>,
     options?: Options,
     // tslint:disable-next-line:no-unnecessary-generics
   ): CreateStyled<Props & CustomProps, Theme, {}>;
