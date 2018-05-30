@@ -259,7 +259,17 @@ function createEmotion(
       identifierName += `-${p1}`
       return ''
     })
-    name = hashString(styles + identifierName) + identifierName
+    if (process.env.NODE_ENV !== 'production') {
+      name =
+        hashString(
+          styles.replace(
+            /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g,
+            ''
+          ) + identifierName
+        ) + identifierName
+    } else {
+      name = hashString(styles + identifierName) + identifierName
+    }
     return styles
   }
 
