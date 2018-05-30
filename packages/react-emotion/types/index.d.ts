@@ -8,15 +8,18 @@ export * from 'emotion';
 export type InterpolationFn<Props = {}> =
   (props: Props) =>
     | EmotionInterpolation
-    | InterpolationFn<Props>
-    | ReactElement<any>;
+    | InterpolationFn<Props>;
+
+// This is to differentiate between a normal interpolation function and a StyledComponent because
+// a StyledComponent also extends StatelessComponent and thus also matches InterpolationFn above
+type InterpolationStyledComponent = ComponentClass<any> & { __emotion_styles: string[]; };
 
 export type InterpolationTypes<Props = {}> =
+  | InterpolationStyledComponent
   | InterpolationFn<Props>
   | EmotionInterpolation;
 
 export type Interpolation<Props = {}> =
-  | ComponentClass<any>
   | InterpolationTypes<Props>
   | Array<InterpolationTypes<Props>>;
 
