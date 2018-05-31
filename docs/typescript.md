@@ -139,11 +139,9 @@ const StyledComponent = styled<ComponentProps, StyledComponentProps>(Component)`
 `
 
 const App = () => (
-  <StyledComponent bgColor="red" label="Oh, needs to re-type label prop =(" />
+  <StyledComponent bgColor="red" label="Some text" />
 )
 ```
-
-Unfortunately, when you pass custom props to a styled component, TypeScript will stop inferring your Component props, and you will need to re-type them.
 
 ### Define a Theme
 
