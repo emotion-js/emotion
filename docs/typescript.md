@@ -134,10 +134,7 @@ type StyledComponentProps = {
 } & ComponentProps
 //  ^^^ You will need this
 
-const StyledComponent =
-  styled <
-  StyledComponentProps >
-  Component`
+const StyledComponent = styled<StyledComponentProps>(Component)`
   color: red;
   background: ${props => props.bgColor};
 `
