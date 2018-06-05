@@ -39,7 +39,7 @@
     "@types/react": "16.0.16",
     "cross-env": "^5.0.1",
     "dtslint": "^0.2.0",
-    "prop-types": "^15.5.8",
+    "prop-types": "^15.6.1",
     "rimraf": "^2.6.1",
     "rollup": "^0.51.3"
   },
@@ -47,7 +47,7 @@
     "hoist-non-react-statics": "^2.3.1"
   },
   "peerDependencies": {
-    "prop-types": ">= 15",
-    "react": ">= 15"
+    "prop-types": "15.x",
+    "react": "15.x || 16.x"
   }
 }
