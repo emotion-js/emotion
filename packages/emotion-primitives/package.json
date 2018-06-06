@@ -17,7 +17,6 @@
     "css-to-react-native": "^2.2.0"
   },
   "peerDependencies": {
-    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-primitives": "^0.5.1"
   },
