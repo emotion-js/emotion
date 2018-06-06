@@ -1,6 +1,12 @@
 import * as React from 'react'
 import reactPrimitives from 'react-primitives'
-import { channel, contextTypes, setTheme, testAlwaysTrue, pickAssign } from './utils'
+import {
+  channel,
+  contextTypes,
+  setTheme,
+  testAlwaysTrue,
+  pickAssign
+} from './utils'
 
 import { getStyles } from './getStyles'
 import { convertToRNStyles } from './convertToRNStyles'
@@ -63,21 +69,15 @@ export function createEmotionPrimitive(splitProps) {
             theme: (state !== null && state.theme) || props.theme || {}
           })
 
-          const { toForward, styleOverrides } = splitProps(
-            primitive,
-            props
-          )
+          const { toForward, styleOverrides } = splitProps(primitive, props)
 
           const emotionStyles = evalStyles(this, Styled, styles, styleOverrides)
 
-          return React.createElement(
-            getPrimitive(primitive),
-            {
-              ...toForward,
-              ref: props.innerRef,
-              style: emotionStyles.length > 0 ? emotionStyles : {}
-            }
-          )
+          return React.createElement(getPrimitive(primitive), {
+            ...toForward,
+            ref: props.innerRef,
+            style: emotionStyles.length > 0 ? emotionStyles : {}
+          })
         }
       }
 
