@@ -3,8 +3,6 @@
 
 import * as CSS from 'csstype';
 
-export interface MultiDimensionalArray<T> extends Array<T | MultiDimensionalArray<T>> {}
-
 export type CSSBaseObject = CSS.PropertiesFallback<number | string>;
 export type CSSPseudoObject = { [K in CSS.Pseudos]?: CSSObject };
 export interface CSSOthersObject {
