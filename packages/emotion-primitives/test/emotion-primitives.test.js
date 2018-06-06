@@ -23,7 +23,7 @@ describe('Emotion primitives', () => {
       `Cannot style invalid primitive TEXT. Expected primitive to be one of ['Text', 'View', 'Image']`
     )
   })
-  
+
   test('should render the primitive when styles applied using object style notation', () => {
     const Text = emotion.Text`color: red; font-size: 20px; background-color: ${props =>
       props.back};`
@@ -40,11 +40,13 @@ describe('Emotion primitives', () => {
   it('should work with emotion-theming', () => {
     const Text = emotion.Text`color: ${props => props.theme.backgroundColor}`
 
-    const tree = renderer.create(
-      <ThemeProvider theme={theme}>
-        <Text>Hello World</Text>
-      </ThemeProvider>
-    ).toJSON()
+    const tree = renderer
+      .create(
+        <ThemeProvider theme={theme}>
+          <Text>Hello World</Text>
+        </ThemeProvider>
+      )
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -68,16 +70,16 @@ describe('Emotion primitives', () => {
     const wrapper = Enzyme.shallow(
       <Title style={{ padding: 10 }}>Emotion primitives</Title>
     )
-    expect(wrapper.find('Text').prop('style')).toEqual([78, { padding: 10 }])
+    expect(wrapper.find('Text').prop('style')).toEqual([77, { padding: 10 }])
   })
 
   it('should work with StyleSheet.create API', () => {
-    const styles = StyleSheet.create({ foo: { color: 'red' }})
+    const styles = StyleSheet.create({ foo: { color: 'red' } })
     const Text = emotion.Text`font-size: 10px;`
     const wrapper = Enzyme.shallow(
       <Text style={styles.foo}>Emotion Primitives</Text>
     )
-    expect(wrapper.find('Text').prop('style')).toEqual([80, 79])
+    expect(wrapper.find('Text').prop('style')).toEqual([79, 78])
   })
 
   test('primitive should work with `withComponent`', () => {
@@ -90,14 +92,15 @@ describe('Emotion primitives', () => {
   test('should render primitive with css overrides', () => {
     const Text = emotion.Text`color: hotpink;`
     const wrapper = Enzyme.shallow(<Text fontSize={20}>Emotions</Text>)
-    expect(wrapper.find('Text').prop('style')).toEqual([82, { fontSize: 20 }])
+    expect(wrapper.find('Text').prop('style')).toEqual([81, { fontSize: 20 }])
   })
 
   it('should style any other component', () => {
     const Text = emotion.Text`color: hotpink;`
     const Title = () => <Text>Hello World</Text>
-    const StyledTitle = emotion(Title)`font-size: 20px; font-style: ${props => props.sty}`
-    const tree = renderer.create(<StyledTitle sty='italic' />).toJSON()
+    const StyledTitle = emotion(Title)`font-size: 20px; font-style: ${props =>
+      props.sty}`
+    const tree = renderer.create(<StyledTitle sty="italic" />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
