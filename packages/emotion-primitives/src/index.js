@@ -43,7 +43,7 @@ if (process.env.NODE_ENV !== 'production' && typeof Proxy !== 'undefined') {
       return new Proxy(target, handler)
     }
   } else {
-    validate = (fn) => fn
+    validate = fn => fn
   }
 }
 
