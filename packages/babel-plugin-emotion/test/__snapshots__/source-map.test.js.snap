@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`source map babel 6 css object 1`] = `"/*#__PURE__*/css({ color: 'hotpink' }, '\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVtb3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiZW1vdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImNzcyh7Y29sb3I6ICdob3RwaW5rJ30pIl19 */');"`;
+exports[`source map babel 6 css object 1`] = `"/*#__PURE__*/css({ color: 'hotpink' }, '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVtb3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiZW1vdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImNzcyh7Y29sb3I6ICdob3RwaW5rJ30pIl19 */');"`;
 
 exports[`source map babel 6 css prop 1`] = `
 "var _css = require(\\"emotion\\").css;
@@ -15,7 +15,7 @@ var _css = require('emotion').css;
 
 <div className={_merge(_css({
   color: 'plum'
-}, '\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17c29tZUNsYXNzTmFtZX1cbiAgICAgICAgY3NzPXt7XG4gICAgICAgICAgY29sb3I6ICdwbHVtJ1xuICAgICAgICB9fVxuICAgICAgLz5cbiAgICAiXX0= */') + (' ' + someClassName), '\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17c29tZUNsYXNzTmFtZX1cbiAgICAgICAgY3NzPXt7XG4gICAgICAgICAgY29sb3I6ICdwbHVtJ1xuICAgICAgICB9fVxuICAgICAgLz5cbiAgICAiXX0= */')} />;"
+}, '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17c29tZUNsYXNzTmFtZX1cbiAgICAgICAgY3NzPXt7XG4gICAgICAgICAgY29sb3I6ICdwbHVtJ1xuICAgICAgICB9fVxuICAgICAgLz5cbiAgICAiXX0= */') + (' ' + someClassName), '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17c29tZUNsYXNzTmFtZX1cbiAgICAgICAgY3NzPXt7XG4gICAgICAgICAgY29sb3I6ICdwbHVtJ1xuICAgICAgICB9fVxuICAgICAgLz5cbiAgICAiXX0= */')} />;"
 `;
 
 exports[`source map babel 6 css prop with objects 1`] = `
@@ -23,7 +23,7 @@ exports[`source map babel 6 css prop with objects 1`] = `
 
 <div className={_css({
   color: 'plum'
-}, '\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGNvbG9yOiAncGx1bSdcbiAgICAgICAgfX1cbiAgICAgIC8+XG4gICAgIl19 */')} />;"
+}, '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGNvbG9yOiAncGx1bSdcbiAgICAgICAgfX1cbiAgICAgIC8+XG4gICAgIl19 */')} />;"
 `;
 
 exports[`source map babel 6 css source map 1`] = `
@@ -49,7 +49,7 @@ exports[`source map babel 6 styled object styles source map 1`] = `
     },
     color: 'green'
   }
-}, '\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNNIiwiZmlsZSI6ImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICBzdHlsZWQoJ2RpdicpKHtcbiAgICAgICAgY29sb3I6ICdibHVlJyxcbiAgICAgICAgJyY6aG92ZXInOiB7XG4gICAgICAgICAgJyYgLm5hbWUnOiB7XG4gICAgICAgICAgICBjb2xvcjogJ2FtZXRoeXN0JyxcbiAgICAgICAgICAgICcmOmZvY3VzJzoge1xuICAgICAgICAgICAgICBjb2xvcjogJ2J1cmx5d29vZCcsXG4gICAgICAgICAgICAgIFttcVswXV06IHtcbiAgICAgICAgICAgICAgICBjb2xvcjogJ3JlYmVjY2FwdXJwbGUnXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICB9LFxuICAgICAgICAgIGNvbG9yOiAnZ3JlZW4nXG4gICAgICAgIH1cbiAgICAgIH0pXG4gICAgIl19 */');"
+}, '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNNIiwiZmlsZSI6ImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICBzdHlsZWQoJ2RpdicpKHtcbiAgICAgICAgY29sb3I6ICdibHVlJyxcbiAgICAgICAgJyY6aG92ZXInOiB7XG4gICAgICAgICAgJyYgLm5hbWUnOiB7XG4gICAgICAgICAgICBjb2xvcjogJ2FtZXRoeXN0JyxcbiAgICAgICAgICAgICcmOmZvY3VzJzoge1xuICAgICAgICAgICAgICBjb2xvcjogJ2J1cmx5d29vZCcsXG4gICAgICAgICAgICAgIFttcVswXV06IHtcbiAgICAgICAgICAgICAgICBjb2xvcjogJ3JlYmVjY2FwdXJwbGUnXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICB9LFxuICAgICAgICAgIGNvbG9yOiAnZ3JlZW4nXG4gICAgICAgIH1cbiAgICAgIH0pXG4gICAgIl19 */');"
 `;
 
 exports[`source map babel 6 styled source map 1`] = `
@@ -62,7 +62,7 @@ exports[`source map babel 7 css object 1`] = `
 "/*#__PURE__*/
 css({
   color: 'hotpink'
-}, \\"\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVtb3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiZW1vdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImNzcyh7Y29sb3I6ICdob3RwaW5rJ30pIl19 */\\");"
+}, \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVtb3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEiLCJmaWxlIjoiZW1vdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImNzcyh7Y29sb3I6ICdob3RwaW5rJ30pIl19 */\\");"
 `;
 
 exports[`source map babel 7 css prop 1`] = `
@@ -80,7 +80,7 @@ var _css = require(\\"emotion\\").css;
 
 <div className={_merge(_css({
   color: 'plum'
-}, \\"\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17c29tZUNsYXNzTmFtZX1cbiAgICAgICAgY3NzPXt7XG4gICAgICAgICAgY29sb3I6ICdwbHVtJ1xuICAgICAgICB9fVxuICAgICAgLz5cbiAgICAiXX0= */\\") + (\\" \\" + someClassName), \\"\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17c29tZUNsYXNzTmFtZX1cbiAgICAgICAgY3NzPXt7XG4gICAgICAgICAgY29sb3I6ICdwbHVtJ1xuICAgICAgICB9fVxuICAgICAgLz5cbiAgICAiXX0= */\\")} />;"
+}, \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17c29tZUNsYXNzTmFtZX1cbiAgICAgICAgY3NzPXt7XG4gICAgICAgICAgY29sb3I6ICdwbHVtJ1xuICAgICAgICB9fVxuICAgICAgLz5cbiAgICAiXX0= */\\") + (\\" \\" + someClassName), \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNsYXNzTmFtZT17c29tZUNsYXNzTmFtZX1cbiAgICAgICAgY3NzPXt7XG4gICAgICAgICAgY29sb3I6ICdwbHVtJ1xuICAgICAgICB9fVxuICAgICAgLz5cbiAgICAiXX0= */\\")} />;"
 `;
 
 exports[`source map babel 7 css prop with objects 1`] = `
@@ -88,7 +88,7 @@ exports[`source map babel 7 css prop with objects 1`] = `
 
 <div className={_css({
   color: 'plum'
-}, \\"\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGNvbG9yOiAncGx1bSdcbiAgICAgICAgfX1cbiAgICAgIC8+XG4gICAgIl19 */\\")} />;"
+}, \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpdGUuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVRIiwiZmlsZSI6InNpdGUuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICA8ZGl2XG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGNvbG9yOiAncGx1bSdcbiAgICAgICAgfX1cbiAgICAgIC8+XG4gICAgIl19 */\\")} />;"
 `;
 
 exports[`source map babel 7 css source map 1`] = `
@@ -114,7 +114,7 @@ styled('div', {
     },
     color: 'green'
   }
-}, \\"\\\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNNIiwiZmlsZSI6ImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICBzdHlsZWQoJ2RpdicpKHtcbiAgICAgICAgY29sb3I6ICdibHVlJyxcbiAgICAgICAgJyY6aG92ZXInOiB7XG4gICAgICAgICAgJyYgLm5hbWUnOiB7XG4gICAgICAgICAgICBjb2xvcjogJ2FtZXRoeXN0JyxcbiAgICAgICAgICAgICcmOmZvY3VzJzoge1xuICAgICAgICAgICAgICBjb2xvcjogJ2J1cmx5d29vZCcsXG4gICAgICAgICAgICAgIFttcVswXV06IHtcbiAgICAgICAgICAgICAgICBjb2xvcjogJ3JlYmVjY2FwdXJwbGUnXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICB9LFxuICAgICAgICAgIGNvbG9yOiAnZ3JlZW4nXG4gICAgICAgIH1cbiAgICAgIH0pXG4gICAgIl19 */\\");"
+}, \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNNIiwiZmlsZSI6ImNzcy1uZXN0ZWQuc291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgICBzdHlsZWQoJ2RpdicpKHtcbiAgICAgICAgY29sb3I6ICdibHVlJyxcbiAgICAgICAgJyY6aG92ZXInOiB7XG4gICAgICAgICAgJyYgLm5hbWUnOiB7XG4gICAgICAgICAgICBjb2xvcjogJ2FtZXRoeXN0JyxcbiAgICAgICAgICAgICcmOmZvY3VzJzoge1xuICAgICAgICAgICAgICBjb2xvcjogJ2J1cmx5d29vZCcsXG4gICAgICAgICAgICAgIFttcVswXV06IHtcbiAgICAgICAgICAgICAgICBjb2xvcjogJ3JlYmVjY2FwdXJwbGUnXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICB9LFxuICAgICAgICAgIGNvbG9yOiAnZ3JlZW4nXG4gICAgICAgIH1cbiAgICAgIH0pXG4gICAgIl19 */\\");"
 `;
 
 exports[`source map babel 7 styled source map 1`] = `

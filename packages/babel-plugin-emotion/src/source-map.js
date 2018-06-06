@@ -34,5 +34,5 @@ export function addSourceMaps(
     source: generatorOpts.sourceFileName,
     original: offset
   })
-  return '\n' + convert.fromObject(generator).toComment({ multiline: true })
+  return convert.fromObject(generator).toComment({ multiline: true })
 }

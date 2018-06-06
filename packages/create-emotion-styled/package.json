@@ -7,11 +7,13 @@
   "types": "types/index.d.ts",
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "build": "npm-run-all clean rollup",
     "clean": "rimraf dist",
+    "test:typescript": "dtslint types",
     "rollup": "rollup -c ../../rollup.config.js",
     "watch": "rollup -c ../../rollup.config.js --watch"
   },
@@ -19,11 +21,13 @@
     "@emotion/is-prop-valid": "^0.6.1"
   },
   "peerDependencies": {
-    "prop-types": ">= 15"
+    "prop-types": "15.x"
   },
   "devDependencies": {
+    "@types/react": "16.0.16",
+    "dtslint": "^0.3.0",
     "npm-run-all": "^4.0.2",
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.6.1",
     "rimraf": "^2.6.1",
     "rollup": "^0.51.3"
   },

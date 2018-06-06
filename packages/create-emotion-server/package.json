@@ -1,17 +1,20 @@
 {
   "name": "create-emotion-server",
-  "version": "9.1.2",
+  "version": "9.1.3",
   "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "src",
-    "lib"
+    "lib",
+    "types"
   ],
   "scripts": {
     "build": "npm-run-all clean babel",
     "babel": "babel src -d lib",
-    "watch": "babel src -d lib --watch",
-    "clean": "rimraf lib"
+    "clean": "rimraf lib",
+    "test:typescript": "dtslint types",
+    "watch": "babel src -d lib --watch"
   },
   "dependencies": {
     "html-tokenize": "^2.0.0",
@@ -19,10 +22,12 @@
     "through": "^2.3.8"
   },
   "devDependencies": {
+    "@types/node": "*",
     "babel-cli": "^6.24.1",
-    "emotion": "^9.1.2",
+    "dtslint": "^0.3.0",
+    "emotion": "^9.1.3",
     "npm-run-all": "^4.0.2",
-    "react-emotion": "^9.1.2",
+    "react-emotion": "^9.1.3",
     "rimraf": "^2.6.1"
   },
   "author": "Kye Hohenberger",

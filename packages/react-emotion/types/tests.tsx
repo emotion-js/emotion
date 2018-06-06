@@ -152,3 +152,16 @@ mount = <Component innerRef={(element: HTMLDivElement) => {}} />;
 
 Component = Component.withComponent('input');
 mount = <Component innerRef={(element: HTMLInputElement) => {}} />;
+
+/*
+ * Reference to other styled component
+ */
+const Child = styled.div`
+  color: red;
+`;
+
+const Parent = styled.div`
+  ${Child} {
+    color: blue;
+  }
+`;
