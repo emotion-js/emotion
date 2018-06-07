@@ -1,3 +1,14 @@
+## v9.2.1 (2018-06-07)
+
+#### :bug: Bug Fix
+
+- `create-emotion-styled`, `create-emotion`, `emotion-theming`, `emotion`, `preact-emotion`, `react-emotion`
+  - [#704](https://github.com/emotion-js/emotion/pull/704) Update rollup to fix bundle size regression. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 1
+
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
 ## v9.2.0 (2018-06-07)
 
 #### :rocket: Enhancement
