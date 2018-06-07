@@ -1,6 +1,6 @@
 {
   "name": "create-emotion-styled",
-  "version": "9.1.2",
+  "version": "9.2.0",
   "description": "The styled API for emotion",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
