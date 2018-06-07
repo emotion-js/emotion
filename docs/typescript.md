@@ -228,7 +228,7 @@ export default Button
 
 ## preact-emotion
 
-The `preact-emotion` types are extremely similar to `react-emotion` except that the types use Preact component types like `ComponentConstructor` and `FunctionalComponent` instead of React component types.
+The `preact-emotion` types are the same as the `react-emotion` types except that the types use Preact component types like `ComponentConstructor` and `FunctionalComponent` instead of React component types.
 
 ## create-emotion
 
