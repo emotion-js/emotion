@@ -1,7 +1,7 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.3
 
-import React, { ComponentClass, Ref, SFC } from 'react';
+import * as React from 'react';
 import { ClassInterpolation } from 'create-emotion';
 
 import {
@@ -19,23 +19,23 @@ export interface StyledComponentMethods<Props extends object, InnerProps extends
   ): StyledOtherComponent<Props, JSX.IntrinsicElements[T], Theme>;
 
   withComponent<IP extends object>(
-    component: SFC<IP>,
+    component: React.SFC<IP>,
     options?: StyledOptions,
   ): StyledStatelessComponent<Props, IP, Theme>;
 
   withComponent<IP extends object>(
-    component: ComponentClass<IP>,
+    component: React.ComponentClass<IP>,
     options?: StyledOptions,
   ): StyledOtherComponent<Props, IP, Theme>;
 }
 
 export interface StyledStatelessComponent<Props extends object, InnerProps extends object, Theme extends object>
-  extends ComponentClass<StyledStatelessProps<Props & InnerProps, Theme>>,
+  extends React.ComponentClass<StyledStatelessProps<Props & InnerProps, Theme>>,
     ClassInterpolation,
     StyledComponentMethods<Props, InnerProps, Theme> {}
 
 export interface StyledOtherComponent<Props extends object, InnerProps extends object, Theme extends object>
-  extends ComponentClass<StyledOtherProps<Props & InnerProps, Theme, Ref<any>>>,
+  extends React.ComponentClass<StyledOtherProps<Props & InnerProps, Theme, React.Ref<any>>>,
     ClassInterpolation,
     StyledComponentMethods<Props, InnerProps, Theme> {}
 
@@ -63,12 +63,12 @@ export interface CreateStyledFunction<Theme extends object> {
   ): CreateStyledOtherComponent<JSX.IntrinsicElements[T], Theme>;
 
   <IP extends object>(
-    component: SFC<IP>,
+    component: React.SFC<IP>,
     options?: StyledOptions,
   ): CreateStyledStatelessComponent<IP, Theme>;
 
   <IP extends object>(
-    component: ComponentClass<IP>,
+    component: React.ComponentClass<IP>,
     options?: StyledOptions,
   ): CreateStyledOtherComponent<IP, Theme>;
 }
