@@ -7,6 +7,7 @@ import {
   StyledComponent,
   StyledOptions,
   Themed,
+  StyledOtherComponent
 } from 'create-emotion-styled';
 
 export * from 'emotion';
@@ -19,6 +20,7 @@ export {
   StyledComponent,
   StyledOptions,
   Themed,
+  StyledOtherComponent
 };
 
 declare const styled: CreateStyled;
