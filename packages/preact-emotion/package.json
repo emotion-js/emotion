@@ -32,7 +32,7 @@
     "preact": "^8.2.9",
     "react-emotion": "^9.2.0",
     "rimraf": "^2.6.1",
-    "rollup": "^0.51.3"
+    "rollup": "^0.60.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

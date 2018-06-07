@@ -29,7 +29,7 @@
     "npm-run-all": "^4.0.2",
     "prop-types": "^15.6.1",
     "rimraf": "^2.6.1",
-    "rollup": "^0.51.3"
+    "rollup": "^0.60.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
