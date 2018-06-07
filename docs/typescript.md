@@ -6,7 +6,7 @@ Emotion includes TypeScript definitions for `emotion`, `react-emotion`, `preact-
 
 ## emotion
 
-```jsx
+```tsx
 import { css } from 'emotion';
 
 const titleStyle = css({
@@ -24,7 +24,7 @@ const subtitleStyle = css`
 
 Typescript checks css properties with the object style syntax using [csstype](https://www.npmjs.com/package/csstype) package, so following code will emit errors.
 
-```jsx
+```tsx
 import { css } from 'emotion';
 
 const titleStyle = css({
@@ -39,7 +39,7 @@ const titleStyle = css({
 
 ### HTML/SVG elements
 
-```jsx
+```tsx
 import styled from 'react-emotion';
 
 const Link = styled('a')`
@@ -53,7 +53,7 @@ const Icon = styled('svg')`
 const App = () => <Link href="#">Click me</Link>;
 ```
 
-```jsx
+```tsx
 import styled from 'react-emotion';
 
 const NotALink = styled('div')`
@@ -68,7 +68,7 @@ const App = () => (
 
 ### `withComponent`
 
-```jsx
+```tsx
 import styled from 'react-emotion';
 
 const NotALink = styled('div')`
@@ -86,7 +86,7 @@ const App = () => <Link href="#">Click me</Link>
 
 You can type the props of styled components.
 
-```jsx
+```tsx
 import styled from 'react-emotion'
 
 type ImageProps = {
@@ -123,7 +123,7 @@ const Image1 = styled('div')<ImageProps>({
 
 ### React Components
 
-```jsx
+```tsx
 import React, { SFC } from 'react'
 import styled from 'react-emotion'
 
@@ -154,7 +154,7 @@ const App = () => (
 
 ### Passing props when styling a React component
 
-```jsx
+```tsx
 import React, { SFC } from 'react'
 import styled from 'react-emotion'
 
@@ -197,7 +197,7 @@ However, you can define a theme type by creating a another `styled` instance.
 
 _styled.tsx_
 
-```jsx
+```tsx
 import styled, { CreateStyled } from 'react-emotion'
 
 type Theme = {
@@ -214,7 +214,7 @@ export default styled as CreateStyled<Theme>
 
 _Button.tsx_
 
-```jsx
+```tsx
 import styled from '../path/to/styled'
 
 const Button = styled('button')`
@@ -234,7 +234,7 @@ The `preact-emotion` types are extremely similar to `react-emotion` except that 
 
 The `create-emotion` types are very similar to the `emotion` types except that you can pass your own context and options.
 
-```jsx
+```tsx
 import createEmotion, { Emotion, EmotionOption } from 'create-emotion';
 
 const context = {};
