@@ -132,7 +132,7 @@ type ComponentProps = {
   label: string
 }
 
-const Component: SFC = ({ label, className }) => (
+const Component: SFC<ComponentProps> = ({ label, className }) => (
   <div className={className}>{label}</div>
 )
 
@@ -163,7 +163,7 @@ type ComponentProps = {
   label: string
 }
 
-const Component: SFC = ({ label, className }) => (
+const Component: SFC<ComponentProps> = ({ label, className }) => (
   <div className={className}>{label}</div>
 )
 
