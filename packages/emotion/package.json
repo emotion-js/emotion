@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "9.2.0",
+  "version": "9.2.1",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "babel-plugin-emotion": "^9.2.0",
-    "create-emotion": "^9.2.0"
+    "create-emotion": "^9.2.1"
   },
   "devDependencies": {
     "@types/react": "16.0.16",
