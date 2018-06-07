@@ -4332,7 +4332,7 @@ defined@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
 
-"definitelytyped-header-parser@github:Microsoft/definitelytyped-header-parser#production":
+definitelytyped-header-parser@Microsoft/definitelytyped-header-parser#production:
   version "0.0.0"
   resolved "https://codeload.github.com/Microsoft/definitelytyped-header-parser/tar.gz/f152526f82f51d2baf91a99a397b449342b52db1"
   dependencies:
@@ -4629,16 +4629,6 @@ download@^4.0.0, download@^4.1.2:
     vinyl "^1.0.0"
     vinyl-fs "^2.2.0"
     ware "^1.2.0"
-
-dtslint@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-0.2.0.tgz#7723be0d974ad133ff1e5cdb84728669ca66c51e"
-  dependencies:
-    definitelytyped-header-parser Microsoft/definitelytyped-header-parser#production
-    fs-promise "^2.0.0"
-    strip-json-comments "^2.0.1"
-    tslint "^5.4.2"
-    typescript next
 
 dtslint@^0.3.0:
   version "0.3.0"
@@ -8549,9 +8539,16 @@ js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-yaml@^3.10.0, js-yaml@^3.5.2, js-yaml@^3.7.0, js-yaml@^3.9.0, js-yaml@^3.9.1:
+js-yaml@^3.10.0, js-yaml@^3.5.2, js-yaml@^3.9.0, js-yaml@^3.9.1:
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.11.0.tgz#597c1a8bd57152f26d622ce4117851a51f5ebaef"
+  dependencies:
+    argparse "^1.0.7"
+    esprima "^4.0.0"
+
+js-yaml@^3.7.0:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.0.tgz#eaed656ec8344f10f527c6bfa1b6e2244de167d1"
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
@@ -10581,8 +10578,8 @@ parseurl@~1.3.2:
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.2.tgz#fc289d4ed8993119460c156253262cdc8de65bf3"
 
 parsimmon@^1.2.0:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/parsimmon/-/parsimmon-1.7.3.tgz#3e8a9ae1f651077c4f6dcf9b3ade1f9e60d085df"
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/parsimmon/-/parsimmon-1.8.0.tgz#9aa1072b6ed9116ae746cdbd3a8db0bb680d57e8"
 
 pascalcase@^0.1.1:
   version "0.1.1"
@@ -14112,11 +14109,15 @@ tryer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.0.tgz#027b69fa823225e551cace3ef03b11f6ab37c1d7"
 
-tslib@^1.6.0, tslib@^1.8.0, tslib@^1.8.1:
+tslib@^1.6.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.1.tgz#a5d1f0532a49221c87755cfcc89ca37197242ba7"
 
-tslint@^5.4.2, tslint@^5.9.1:
+tslib@^1.8.0, tslib@^1.8.1:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.2.tgz#8be0cc9a1f6dc7727c38deb16c2ebd1a2892988e"
+
+tslint@^5.9.1:
   version "5.10.0"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.10.0.tgz#11e26bccb88afa02dd0d9956cae3d4540b5f54c3"
   dependencies:
@@ -14179,8 +14180,8 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
 typescript@next:
-  version "3.0.0-dev.20180526"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.0-dev.20180526.tgz#98e2ad71ce10db18a6b2e0d350e0f739e5ae896e"
+  version "3.0.0-dev.20180607"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.0-dev.20180607.tgz#b48c4ad8a0b1da23f1b0863a6a827fa8fc1e9b26"
 
 ua-parser-js@^0.7.9:
   version "0.7.18"
