@@ -235,10 +235,10 @@ The `preact-emotion` types are extremely similar to `react-emotion` except that 
 The `create-emotion` types are very similar to the `emotion` types except that you can pass your own context and options.
 
 ```tsx
-import createEmotion, { Emotion, EmotionOption } from 'create-emotion';
+import createEmotion, { Emotion, EmotionOptions } from 'create-emotion';
 
 const context = {};
-const options: EmotionOption = {
+const options: EmotionOptions = {
   key: 'my-emotion',
 };
 const myEmotion: Emotion = createEmotion(context, options);
