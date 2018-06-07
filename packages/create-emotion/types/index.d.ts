@@ -3,8 +3,6 @@
 
 import * as CSS from 'csstype';
 
-export interface MultiDimensionalArray<T> extends Array<T | MultiDimensionalArray<T>> {}
-
 export type CSSBaseObject = CSS.PropertiesFallback<number | string>;
 export type CSSPseudoObject = { [K in CSS.Pseudos]?: CSSObject };
 export interface CSSOthersObject {
@@ -83,7 +81,7 @@ export type StylisPlugins =
   | Array<(...args: Array<any>) => any>
   ;
 
-export interface EmotionOption {
+export interface EmotionOptions {
   nonce?: string;
   stylisPlugins?: StylisPlugins;
   prefix?: boolean | ((key: string, value: string, context: 1 | 2 | 3) => boolean);
@@ -91,4 +89,4 @@ export interface EmotionOption {
   container?: HTMLElement;
 }
 
-export default function createEmotion(context: EmotionContext, options?: EmotionOption): Emotion;
+export default function createEmotion(context: EmotionContext, options?: EmotionOptions): Emotion;
