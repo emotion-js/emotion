@@ -25,7 +25,7 @@
     "gatsby-plugin-catch-links": "next",
     "gatsby-plugin-emotion": "next",
     "gatsby-plugin-favicon": "^2.1.1",
-    "gatsby-plugin-netlify": "^next",
+    "gatsby-plugin-netlify": "1.0.19-11",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-react-next": "next",
     "gatsby-plugin-sharp": "next",

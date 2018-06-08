@@ -7064,11 +7064,11 @@ gatsby-plugin-favicon@^2.1.1:
     babel-runtime "^6.26.0"
     favicons-webpack-plugin "0.0.7"
 
-gatsby-plugin-netlify@^next:
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-1.0.21.tgz#a4cd6631e2c73d73177f1ce8532f125601c8c426"
+gatsby-plugin-netlify@1.0.19-11:
+  version "1.0.19-11"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-1.0.19-11.tgz#4b956d228cfd3f21b70fe8258e65a12902fe95f3"
   dependencies:
-    babel-runtime "^6.26.0"
+    "@babel/runtime" "7.0.0-beta.47"
     fs-extra "^4.0.2"
     lodash "^4.17.4"
     webpack-assets-manifest "^1.0.0"
