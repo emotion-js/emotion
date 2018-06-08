@@ -5,7 +5,7 @@ import Provider from '@emotion/provider'
 
 const cache = createCompatCache(emotion)
 
-exports.wrapRootComponent = ({ Root }) => () => {
+export const wrapRootComponent = ({ Root }) => () => {
   return (
     <Provider cache={cache}>
       <Root />

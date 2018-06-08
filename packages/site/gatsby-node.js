@@ -5,11 +5,14 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 global.Babel = require('babel-standalone')
 
-const webpack = require('webpack')
+// const webpack = require('webpack')
 
-exports.modifyWebpackConfig = ({ config, stage }) => {
-  config.merge({
+exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
+  // console.log(.module.rules)
+  actions.setWebpackConfig({
+    plugins: [plugins.ignore(/^(xor|props)$/)],
     resolve: {
+      modules: ['node_modules'],
       alias: {
         assert: 'fbjs/lib/emptyFunction',
         'source-map': 'fbjs/lib/emptyFunction',
@@ -23,10 +26,24 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
       assert: 'empty'
     }
   })
+  const config = getConfig()
+  actions.replaceWebpackConfig({
+    ...config,
+    module: {
+      ...config.module,
+      rules: config.module.rules.filter(rule => {
+        // eslint is annoying
+        return rule.enforce !== 'pre'
+      })
+    }
+  })
+  console.log(getConfig().module.rules)
+  // getConfig().module.rules.forEach(rule => {
+  //   console.log(rule, rule.use)
+  // })
 
-  config.plugin('ignore-stuff', () => new webpack.IgnorePlugin(/^(xor|props)$/))
   if (stage === 'build-javascript') {
-    config.merge({
+    actions.setWebpackConfig({
       plugins: [
         new BundleAnalyzerPlugin({
           analyzerMode: 'static',
@@ -37,28 +54,28 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
   }
 }
 
-exports.modifyBabelrc = ({ babelrc }) => {
-  return {
-    ...babelrc,
-    plugins: babelrc.plugins.concat([
-      [`transform-react-jsx`, { pragma: `___EmotionJSX` }],
-      [
-        'babel-plugin-jsx-pragmatic',
-        {
-          export: 'jsx',
-          module: '@emotion/core',
-          import: '___EmotionJSX'
-        }
-      ],
-      process.env.NODE_ENV === 'production'
-        ? ['@emotion/babel-plugin-core', { jsx: true }]
-        : ['@emotion/babel-plugin-core', { sourceMap: true, jsx: true }]
-    ])
-  }
-}
+// exports.modifyBabelrc = ({ babelrc }) => {
+//   return {
+//     ...babelrc,
+//     plugins: babelrc.plugins.concat([
+//       [`transform-react-jsx`, { pragma: `___EmotionJSX` }],
+//       [
+//         'babel-plugin-jsx-pragmatic',
+//         {
+//           export: 'jsx',
+//           module: '@emotion/core',
+//           import: '___EmotionJSX'
+//         }
+//       ],
+//       process.env.NODE_ENV === 'production'
+//         ? ['@emotion/babel-plugin-core', { jsx: true }]
+//         : ['@emotion/babel-plugin-core', { sourceMap: true, jsx: true }]
+//     ])
+//   }
+// }
 
-exports.createPages = async ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
   const docs1 = require('./docs-yaml')()
   const docTemplate = require.resolve(`./src/templates/doc.js`)
   docs1.forEach(({ title, items }) => {
@@ -75,13 +92,8 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
 }
 
 // Add custom url pathname for blog posts.
-exports.onCreateNode = async ({
-  node,
-  boundActionCreators,
-  getNode,
-  loadNodeContent
-}) => {
-  const { createNodeField } = boundActionCreators
+exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
+  const { createNodeField } = actions
 
   if (
     node.internal.type === `MarkdownRemark` &&

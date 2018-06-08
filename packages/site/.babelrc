@@ -1,4 +1,0 @@
-{
-  "presets": ["env", "react", "flow"],
-  "plugins": ["macros"]
-}

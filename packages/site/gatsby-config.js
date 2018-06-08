@@ -30,24 +30,25 @@ module.exports = {
           path: `${__dirname}/../../emotion.png`
         }
       },
-      {
-        resolve: `gatsby-plugin-favicon`,
-        options: {
-          logo: `${__dirname}/../../emotion.png`,
-          injectHTML: true,
-          icons: {
-            android: false,
-            appleIcon: false,
-            appleStartup: false,
-            coast: false,
-            favicons: true,
-            firefox: false,
-            twitter: false,
-            yandex: false,
-            windows: false
-          }
-        }
-      },
+      // {
+      //   resolve: `gatsby-plugin-favicon`,
+      //   options: {
+      //     logo: `${__dirname}/../../emotion.png`,
+      //     injectHTML: true,
+      //     icons: {
+      //       android: false,
+      //       appleIcon: false,
+      //       appleStartup: false,
+      //       coast: false,
+      //       favicons: true,
+      //       firefox: false,
+      //       twitter: false,
+      //       yandex: false,
+      //       windows: false
+      //     }
+      //   }
+      // },
+      'gatsby-plugin-emotion-next',
       {
         resolve: `gatsby-transformer-remark`,
         options: {
