@@ -14,7 +14,6 @@ module.exports = ({ markdownAST }) => {
           plugins: [require('babel-plugin-emotion')]
         }).code
       }"></live-code>`
-      console.log(node)
     }
   })
 }
