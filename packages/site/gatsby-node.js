@@ -46,8 +46,7 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
     actions.setWebpackConfig({
       plugins: [
         new BundleAnalyzerPlugin({
-          analyzerMode: 'static',
-          generateStatsFile: true
+          analyzerMode: 'static'
         })
       ]
     })
