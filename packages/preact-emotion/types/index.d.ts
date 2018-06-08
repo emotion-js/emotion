@@ -1,17 +1,17 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.3
+// TypeScript Version: 2.6
 
 import {
-  CreateStyled,
   Interpolation,
-  StyledComponent,
   StyledOptions,
   Themed,
-} from 'create-emotion-styled';
+} from 'create-emotion-styled/types/common';
+import {
+  CreateStyled,
+  StyledComponent,
+} from './preact';
 
 export * from 'emotion';
-
-export type ThemedReactEmotionInterface<Theme extends object> = CreateStyled<Theme>;
 
 export {
   CreateStyled,

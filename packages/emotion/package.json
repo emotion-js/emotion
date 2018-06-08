@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "9.1.3",
+  "version": "9.2.1",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -19,8 +19,8 @@
     "watch": "rollup -c ../../rollup.config.js --watch"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^9.1.2",
-    "create-emotion": "^9.1.3"
+    "babel-plugin-emotion": "^9.2.0",
+    "create-emotion": "^9.2.1"
   },
   "devDependencies": {
     "@types/react": "16.0.16",
@@ -30,7 +30,7 @@
     "dtslint": "^0.3.0",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1",
-    "rollup": "^0.51.3"
+    "rollup": "^0.60.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

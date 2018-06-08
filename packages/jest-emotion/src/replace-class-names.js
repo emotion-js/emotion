@@ -5,7 +5,7 @@ function defaultClassNameReplacer(className, index) {
 
 export type ClassNameReplacer = (className: string, index: number) => string
 
-const componentSelectorClassNamePattern = /e[a-zA-Z0-9-]+[0-9]+/
+const componentSelectorClassNamePattern = /^e[a-zA-Z0-9]+[0-9]+$/
 
 export const replaceClassNames = (
   classNames: Array<string>,

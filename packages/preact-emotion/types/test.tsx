@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-implicit-dependencies
-import React from 'react';
+import Preact, { h } from 'preact';
 import styled, { flush, CreateStyled } from '../';
 
 let Component;
@@ -8,8 +8,8 @@ let mount;
 /*
  * Inference HTML Tag Props
  */
-Component = styled.div({ color: 'red' });
-mount = <Component onClick={(event: any) => event} />;
+const Component0 = styled.div({ color: 'red' });
+mount = <Component0 onClick={(event: any) => event} />;
 
 Component = styled('div')({ color: 'red' });
 mount = <Component onClick={(event: any) => event} />;
@@ -63,11 +63,13 @@ mount = <Component lookColor="red" />;
 interface CustomProps2 { customProp: string; }
 interface SFCComponentProps { className?: string; foo: string; }
 
-const SFCComponent: React.StatelessComponent<SFCComponentProps> = props => (
+const SFCComponent: Preact.FunctionalComponent<SFCComponentProps> = props => (
   <div className={props.className}>{props.children} {props.foo}</div>
 );
 
-declare class MyClassC extends React.Component<CustomProps2> { }
+declare class MyClassC extends Preact.Component<CustomProps2> {
+  render(): JSX.Element;
+}
 
 // infer SFCComponentProps
 Component = styled(SFCComponent)({ color: 'red' });

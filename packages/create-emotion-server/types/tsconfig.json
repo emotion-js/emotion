@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "baseUrl": "../",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": [
-      "es6",
-      "dom"
+      "es6"
     ],
     "module": "commonjs",
     "noEmit": true,

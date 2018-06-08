@@ -1,30 +1,35 @@
 {
   "name": "emotion-server",
-  "version": "9.1.3",
+  "version": "9.2.1",
   "description": "Extract and inline critical css with emotion for server side rendering.",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "src",
-    "lib"
+    "lib",
+    "types"
   ],
   "scripts": {
     "build": "npm-run-all clean babel",
     "babel": "babel src -d lib",
-    "watch": "babel src -d lib --watch",
-    "clean": "rimraf lib"
+    "clean": "rimraf lib",
+    "test:typescript": "dtslint types",
+    "watch": "babel src -d lib --watch"
   },
   "dependencies": {
-    "create-emotion-server": "^9.1.3"
+    "create-emotion-server": "^9.2.1"
   },
   "peerDependencies": {
     "emotion": "^9.1.3"
   },
   "devDependencies": {
+    "@types/react-dom": "16.0.5",
     "babel-cli": "^6.24.1",
-    "babel-plugin-emotion": "^9.1.2",
-    "emotion": "^9.1.3",
+    "babel-plugin-emotion": "^9.2.0",
+    "dtslint": "^0.3.0",
+    "emotion": "^9.2.1",
     "npm-run-all": "^4.0.2",
-    "react-emotion": "^9.1.3",
+    "react-emotion": "^9.2.1",
     "rimraf": "^2.6.1"
   },
   "author": "Kye Hohenberger",

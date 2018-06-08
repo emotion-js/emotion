@@ -211,7 +211,7 @@ describe('styled macro', () => {
       `
     expect(() =>
       babel6.transform(basic, {
-        plugins: [require('babel-macros')],
+        plugins: [require('babel-plugin-macros')],
         filename: __filename,
         babelrc: false
       })
@@ -226,7 +226,7 @@ describe('styled macro', () => {
       `
     expect(() =>
       babel7.transform(basic, {
-        plugins: ['module:babel-macros'],
+        plugins: ['module:babel-plugin-macros'],
         filename: __filename,
         babelrc: false
       })
