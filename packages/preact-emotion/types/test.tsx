@@ -1,6 +1,8 @@
 // tslint:disable-next-line:no-implicit-dependencies
-import Preact, { h } from 'preact';
+import * as Preact from 'preact';
 import styled, { flush, CreateStyled } from '../';
+
+const h = Preact.h;
 
 let Component;
 let mount;

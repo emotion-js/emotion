@@ -2,7 +2,7 @@
 // TypeScript Version: 2.3
 
 import { Emotion, Interpolation as BaseInterpolation } from 'create-emotion';
-import React, { ComponentClass, ReactHTML, ReactSVG, Ref, SFC } from 'react';
+import * as React from 'react';
 
 import {
   CreateStyled,

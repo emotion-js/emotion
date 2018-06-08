@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-implicit-dependencies
-import React from 'react';
+import * as React from 'react';
 import styled, { flush, CreateStyled } from '../';
 
 let Component;
