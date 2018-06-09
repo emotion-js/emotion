@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "9.2.1",
+  "version": "9.2.3",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
