@@ -1,3 +1,14 @@
+## v9.2.3 (2018-06-09)
+
+#### :bug: Bug Fix
+
+- `create-emotion-styled`, `emotion-server`, `emotion-theming`, `emotion`, `preact-emotion`, `react-emotion`
+  - [#710](https://github.com/emotion-js/emotion/pull/710) Remove allowSyntheticDefaultImports from typings. ([@Ailrun](https://github.com/Ailrun))
+
+#### Committers: 1
+
+- Junyoung Clare Jang ([Ailrun](https://github.com/Ailrun))
+
 ## v9.2.1 (2018-06-07)
 
 #### :bug: Bug Fix
