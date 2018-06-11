@@ -1,6 +1,7 @@
 const path = require('path')
-const docs = require('./docs-yaml')()
-const packages = docs.filter(({ title }) => title === 'Packages')[0].items
+const officialPackages = require('./docs-yaml')().filter(
+  ({ title }) => title === 'Official Packages'
+)[0].items
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 global.Babel = require('babel-standalone')
@@ -56,9 +57,8 @@ exports.modifyBabelrc = ({ babelrc }) => {
 
 exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
-  const docs1 = require('./docs-yaml')()
   const docTemplate = require.resolve(`./src/templates/doc.js`)
-  docs1.forEach(({ title, items }) => {
+  require('./docs-yaml')().forEach(({ title, items }) => {
     items.forEach(itemName => {
       createPage({
         path: `docs/${itemName}`,
@@ -255,8 +255,8 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
           }
         })
 
-        if (packages.indexOf(node.fields.slug) !== -1) {
-          // Remove the title from the markdown if it's a package
+        if (officialPackages.indexOf(node.fields.slug) !== -1) {
+          // Remove the title from the markdown if it's a official package
           hast.children.shift()
         }
         return hast

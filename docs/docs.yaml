@@ -30,8 +30,8 @@
     - typescript
     - extract-static
 
-# This loads the READMEs instead of files in docs/
-- title: Packages
+# Official Packages loads the READMEs instead of files in docs/
+- title: Official Packages
   items:
     - emotion
     - react-emotion
