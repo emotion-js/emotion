@@ -2,6 +2,8 @@ require('prismjs/components/prism-css')
 require('prismjs/components/prism-jsx')
 require('prismjs/components/prism-typescript')
 require('prismjs/components/prism-tsx')
+require('prismjs/components/prism-markup-templating')
+require('prismjs/components/prism-handlebars')
 
 global.Prism.languages.insertBefore('jsx', 'template-string', {
   'styled-template-string': {
