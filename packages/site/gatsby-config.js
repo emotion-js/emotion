@@ -1,6 +1,6 @@
 const path = require('path')
-const packages = require('./docs-yaml')().filter(
-  ({ title }) => title === 'Packages'
+const officialPackages = require('./docs-yaml')().filter(
+  ({ title }) => title === 'Official Packages'
 )[0].items
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
     siteUrl: 'https://emotion.sh',
     title: `emotion`
   },
-  plugins: packages
+  plugins: officialPackages
     .map(pkg => path.resolve(`${__dirname}/../${pkg}/README.md`))
     .map(file => ({
       resolve: 'gatsby-source-filesystem',
