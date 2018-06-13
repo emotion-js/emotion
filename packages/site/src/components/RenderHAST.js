@@ -8,6 +8,19 @@ type Props = {
   componentMap?: { [key: string]: Function }
 }
 
+const pattern = /-(\w|$)/g
+
+const upperCaseCharacter = (dashChar, char) => char.toUpperCase()
+
+const camelCaseCSSProperty = property => {
+  property = property.toLowerCase()
+  if (property.indexOf('-ms-') === 0) {
+    return property.substr(1).replace(pattern, upperCaseCharacter)
+  } else {
+    return property.replace(pattern, upperCaseCharacter)
+  }
+}
+
 const RenderHAST = ({ hast, componentMap = {} }: Props) => {
   const renderTag = (node: HASTText | HASTElement, i: number) => {
     if (node.type === 'element') {
@@ -21,7 +34,7 @@ const RenderHAST = ({ hast, componentMap = {} }: Props) => {
           .split(';')
           .map(val => val.split(':'))
           .reduce((prev, current) => {
-            prev[current[0]] = current[1]
+            prev[camelCaseCSSProperty(current[0])] = current[1]
             return prev
           }, {})
       }

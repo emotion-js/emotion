@@ -15,7 +15,17 @@ addEventListener('message', ({ data }) => {
 })
 
 const options = {
-  presets: ['es2015', 'react', 'stage-1'],
+  presets: [
+    'es2015',
+    'react',
+    [
+      'stage-1',
+      {
+        // without this option, compilation fails even though we don't use decorators
+        decoratorsLegacy: true
+      }
+    ]
+  ],
   plugins: [babelPluginEmotion]
 }
 

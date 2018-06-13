@@ -1,14 +1,9 @@
 const path = require('path')
-// const docs = require('./docs-yaml')()
-// const packages = docs.filter(({ title }) => title === 'Packages')[0].items
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 global.Babel = require('babel-standalone')
 
-// const webpack = require('webpack')
-
 exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
-  // console.log(.module.rules)
   actions.setWebpackConfig({
     plugins: [plugins.ignore(/^(xor|props)$/)],
     resolve: {
@@ -29,6 +24,12 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
   const config = getConfig()
   actions.replaceWebpackConfig({
     ...config,
+    output: {
+      ...config.output,
+      // this doesn't seem to always merge correctly with `setWebpackConfig` for some reason
+      // so i'm setting it here
+      globalObject: 'this'
+    },
     module: {
       ...config.module,
       rules: config.module.rules.filter(rule => {
@@ -37,10 +38,6 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
       })
     }
   })
-  console.log(getConfig().module.rules)
-  // getConfig().module.rules.forEach(rule => {
-  //   console.log(rule, rule.use)
-  // })
 
   if (stage === 'build-javascript') {
     actions.setWebpackConfig({
@@ -52,26 +49,6 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
     })
   }
 }
-
-// exports.modifyBabelrc = ({ babelrc }) => {
-//   return {
-//     ...babelrc,
-//     plugins: babelrc.plugins.concat([
-//       [`transform-react-jsx`, { pragma: `___EmotionJSX` }],
-//       [
-//         'babel-plugin-jsx-pragmatic',
-//         {
-//           export: 'jsx',
-//           module: '@emotion/core',
-//           import: '___EmotionJSX'
-//         }
-//       ],
-//       process.env.NODE_ENV === 'production'
-//         ? ['@emotion/babel-plugin-core', { jsx: true }]
-//         : ['@emotion/babel-plugin-core', { sourceMap: true, jsx: true }]
-//     ])
-//   }
-// }
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions

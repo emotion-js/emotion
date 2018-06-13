@@ -16,7 +16,6 @@ export default function transformer(file, api) {
       if (path.value.source.raw.charAt(0) === '"') {
         quote = 'double'
       }
-      console.log(path)
       if (
         path.value.specifiers.length === 1 &&
         path.value.specifiers[0].type === 'ImportDefaultSpecifier'

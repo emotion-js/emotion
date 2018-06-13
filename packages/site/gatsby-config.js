@@ -48,7 +48,7 @@ module.exports = {
       //     }
       //   }
       // },
-      'gatsby-plugin-emotion-next',
+      'gatsby-plugin-emotion-next-compat',
       {
         resolve: `gatsby-transformer-remark`,
         options: {
