@@ -212,3 +212,10 @@ const ComposingCompFactory = styled.div`
 <StyledComponentFactory0 value={5} />;
 <StyledComponentFactory1 value={4} />;
 <ComposingCompFactory />;
+interface InferProps {
+  w: number;
+}
+declare const InferComponent: Preact.FunctionalComponent<InferProps>;
+const StyledInferComponent = styled(InferComponent)`
+  width: ${props => props.w};
+`;

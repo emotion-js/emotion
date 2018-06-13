@@ -44,13 +44,13 @@ export type StyledComponent<Props extends object, InnerProps extends object, The
   ;
 
 export interface CreateStyledStatelessComponent<InnerProps extends object, Theme extends object> {
-  <Props extends object, OverridedTheme extends object = Theme>(
+  <Props extends object = InnerProps, OverridedTheme extends object = Theme>(
     ...args: Array<Interpolation<Themed<Props, OverridedTheme>>>
   ): StyledStatelessComponent<Props, InnerProps, OverridedTheme>;
 }
 
 export interface CreateStyledOtherComponent<InnerProps extends object, Theme extends object> {
-  <Props extends object, OverridedTheme extends object = Theme>(
+  <Props extends object = InnerProps, OverridedTheme extends object = Theme>(
     ...args: Array<Interpolation<Themed<Props, OverridedTheme>>>
   ): StyledOtherComponent<Props, InnerProps, OverridedTheme>;
 }

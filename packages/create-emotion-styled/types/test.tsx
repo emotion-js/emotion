@@ -131,9 +131,9 @@ const StyledTag1 = createStyled('label')`
 const StyledCompWithButton = StyledClassComp0.withComponent('button');
 const StyledCompWithFunComp2 = StyledFunComp0.withComponent(TestFunComp1);
 
-<StyledCompWithButton />;
-<StyledCompWithButton onClick={() => ''} />;
-<StyledCompWithButton onClick={() => ''} innerRef={(ref: HTMLButtonElement) => { }} />;
+<StyledCompWithButton some={4} />;
+<StyledCompWithButton some={2} onClick={() => ''} />;
+<StyledCompWithButton some={3} onClick={() => ''} innerRef={(ref: HTMLButtonElement) => { }} />;
 
 <StyledCompWithFunComp2 color='#ffff00' complex={{ id: 42, name: 'truth', friends: [69] }} world={1} />;
 // $ExpectError
@@ -222,3 +222,11 @@ const ComposingCompType = createStyled.div`
 <StyledComponentType0 value={5} />;
 <StyledComponentType1 value={4} />;
 <ComposingCompType />;
+
+interface InferProps {
+  w: number;
+}
+declare const InferComponent: React.SFC<InferProps>;
+const StyledInferComponent = createStyled(InferComponent)`
+  width: ${props => props.w};
+`;
