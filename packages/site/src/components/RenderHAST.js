@@ -26,7 +26,7 @@ const RenderHAST = ({ hast, componentMap = {} }: Props) => {
     if (node.type === 'element') {
       const { tagName, properties, children } = node
       properties.key = i
-      if (properties.className && typeof properties.className !== 'string') {
+      if (properties.className && Array.isArray(properties.className)) {
         properties.className = properties.className.join(' ')
       }
       if (typeof properties.style === 'string') {
