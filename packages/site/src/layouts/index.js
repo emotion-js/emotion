@@ -100,10 +100,14 @@ const Header = ({ isHome }) => (
           <StyledLink activeClassName="active" to="/docs">
             Documentation
           </StyledLink>
+          <StyledLink activeClassName="active" to="/community">
+            Community
+          </StyledLink>
           <StyledLink to="https://github.com/emotion-js/emotion">
             GitHub
           </StyledLink>
           <StyledLink to="https://emotion.now.sh">Slack</StyledLink>
+          <StyledLink to="https://spectrum.chat/emotion">Spectrum</StyledLink>
         </Box>
       </Box>
     </Box>

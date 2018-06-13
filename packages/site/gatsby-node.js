@@ -50,6 +50,18 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
   }
 }
 
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+
+exports.sourceNodes = async ({ store, cache, actions, createNodeId }) => {
+  await createRemoteFileNode({
+    url: `https://raw.githubusercontent.com/emotion-js/awesome-emotion/master/README.md`,
+    store,
+    cache,
+    createNode: actions.createNode,
+    createNodeId
+  })
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const docs1 = require('./docs-yaml')()
