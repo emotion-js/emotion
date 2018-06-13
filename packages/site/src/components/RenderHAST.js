@@ -29,7 +29,7 @@ const RenderHAST = ({ hast, componentMap = {} }: Props) => {
       if (properties.className && typeof properties.className !== 'string') {
         properties.className = properties.className.join(' ')
       }
-      if (properties.style !== undefined) {
+      if (typeof properties.style === 'string') {
         properties.style = properties.style
           .split(';')
           .map(val => val.split(':'))
