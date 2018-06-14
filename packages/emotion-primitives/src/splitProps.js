@@ -1,6 +1,74 @@
 import { isValidStyleProp } from './props'
 
-const primitiveProps = `selectable accessible ellipsizeMode nativeID  numberOfLines  onLayout  onLongPress  onPress  pressRetentionOffset  allowFontScaling  testID  disabled  selectionColor  textBreakStrategy  adjustsFontSizeToFit  minimumFontScale  suppressHighlighting  onStartShouldSetResponder  accessibilityLabel  hitSlop  nativeID  onAccessibilityTap  onLayout  onMagicTap  onMoveShouldSetResponder  onMoveShouldSetResponderCapture  onResponderGrant  onResponderMove  onResponderReject  onResponderRelease  onResponderTerminate  onResponderTerminationRequest  accessible  onStartShouldSetResponderCapture  pointerEvents  removeClippedSubviews  testID  accessibilityComponentType  accessibilityLiveRegion  collapsable  importantForAccessibility  needsOffscreenAlphaCompositing  renderToHardwareTextureAndroid  accessibilityTraits  accessibilityViewIsModal  accessibilityElementsHidden  shouldRasterizeIOS  blurRadius  onLayout  onLoad  onLoadEnd  onLoadStart  resizeMode  source  loadingIndicatorSource  onError  testID  resizeMethod  accessibilityLabel  accessible capInsets defaultSource onPartialLoad onProgress fadeDuration Methods getSize prefetch abortPrefetch queryCache resolveAssetSource`
+const forwardableProps = {
+  // primitive props
+  abortPrefetch: true,
+  accessibilityComponentType: true,
+  accessibilityElementsHidden: true,
+  accessibilityLabel: true,
+  accessibilityLiveRegion: true,
+  accessibilityTraits: true,
+  accessibilityViewIsModal: true,
+  accessible: true,
+  adjustsFontSizeToFit: true,
+  allowFontScaling: true,
+  blurRadius: true,
+  capInsets: true,
+  collapsable: true,
+  defaultSource: true,
+  disabled: true,
+  ellipsizeMode: true,
+  fadeDuration: true,
+  getSize: true,
+  hitSlop: true,
+  importantForAccessibility: true,
+  loadingIndicatorSource: true,
+  Methods: true,
+  minimumFontScale: true,
+  nativeID: true,
+  needsOffscreenAlphaCompositing: true,
+  numberOfLines: true,
+  onAccessibilityTap: true,
+  onError: true,
+  onLayout: true,
+  onLoad: true,
+  onLoadEnd: true,
+  onLoadStart: true,
+  onLongPress: true,
+  onMagicTap: true,
+  onMoveShouldSetResponder: true,
+  onMoveShouldSetResponderCapture: true,
+  onPartialLoad: true,
+  onPress: true,
+  onProgress: true,
+  onResponderGrant: true,
+  onResponderMove: true,
+  onResponderReject: true,
+  onResponderRelease: true,
+  onResponderTerminate: true,
+  onResponderTerminationRequest: true,
+  onStartShouldSetResponder: true,
+  onStartShouldSetResponderCapture: true,
+  pointerEvents: true,
+  prefetch: true,
+  pressRetentionOffset: true,
+  queryCache: true,
+  removeClippedSubviews: true,
+  renderToHardwareTextureAndroid: true,
+  resizeMethod: true,
+  resizeMode: true,
+  resolveAssetSource: true,
+  selectable: true,
+  selectionColor: true,
+  shouldRasterizeIOS: true,
+  source: true,
+  suppressHighlighting: true,
+  testID: true,
+  textBreakStrategy: true,
+
+  // react props
+  children: true
+}
 
 /**
  * Split primitive props, style props and styled component props into an object.
@@ -9,24 +77,18 @@ export function splitProps(primitive, { innerRef, ...rest }) {
   // Style overrides are the style props that are directly passed to the styled primitive <Text display='flex' />
   const styleOverrides = {}
   // Forward props are the one which are valid primitive props, hence these props are forwarded to the component.
-  const returnValue = { toForward: {}, styleOverrides }
+  const split = { toForward: {}, styleOverrides }
 
-  return Object.keys(rest).reduce((split, propName) => {
+  for (const propName of Object.keys(rest)) {
     if (isValidStyleProp(primitive, propName)) {
       split.styleOverrides[propName] = rest[propName]
     }
 
     // If its a valid primitive prop, then forward it to the component. With this, we also delegate the prop checking to the platform so there are no downsides.
-    primitiveProps.split(/\s+/m).forEach(prop => {
-      if (prop === propName) {
-        split.toForward[propName] = rest[propName]
-      }
-    })
-
-    if (propName === 'children') {
+    if (forwardableProps[propName]) {
       split.toForward[propName] = rest[propName]
     }
+  }
 
-    return split
-  }, returnValue)
+  return split
 }
