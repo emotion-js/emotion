@@ -17,15 +17,16 @@ const isValidPrimitive = primitive => primitives.indexOf(primitive) > -1
 
 // Validate and return the primitive
 const getPrimitive = primitive => {
-  if (typeof primitive === 'string' && isValidPrimitive(primitive)) {
-    return reactPrimitives[primitive]
-  } else if (typeof primitive === 'string' && !isValidPrimitive(primitive)) {
+  if (typeof primitive === 'string') {
+    if (isValidPrimitive(primitive)) {
+      return reactPrimitives[primitive]
+    }
     throw new Error(
       `Cannot style invalid primitive ${primitive}. Expected primitive to be one of ['Text', 'View', 'Image']`
     )
-  } else if (typeof primitive === 'function') {
-    return primitive
   }
+
+  return primitive
 }
 
 // Evaluate the styles and convert them to React Native using styled component context
