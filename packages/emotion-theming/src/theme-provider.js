@@ -11,7 +11,7 @@ const isPlainObject = test =>
 
 type Props = {
   theme: Theme,
-  children?: ReactNode
+  children: ReactNode
 }
 
 class ThemeProvider extends Component<Props> {
