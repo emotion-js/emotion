@@ -2,43 +2,11 @@ import css from '@emotion/css'
 import { mq, fonts } from './style'
 import prismStyles from 'react-live/lib/constants/css.js'
 
-const baseHeadingStyles = css`
-  margin: 0.75rem 0 0.5rem;
-  font-weight: inherit;
-  line-height: 1.42;
-`
-
 const globalStyles = css`
-  ${{
-    h1: css`
-      margin-top: 0;
-      font-size: 3.998rem;
-      ${baseHeadingStyles};
-    `,
-    h2: css`
-      font-size: 2.827rem;
-      ${baseHeadingStyles};
-    `,
-    h3: css`
-      font-size: 1.999rem;
-      ${baseHeadingStyles};
-    `,
-    h4: css`
-      font-size: 1.414rem;
-      ${baseHeadingStyles};
-    `,
-    h5: css`
-      font-size: 1.121rem;
-    `,
-    h6: css`
-      font-size: 0.88rem;
-    `
-  }} ${prismStyles.replace(
-      'prism-code',
-      'prism-code,pre[class*="language-"]'
-    )} html,
-    body,
-    #___gatsby {
+  ${prismStyles.replace(
+    'prism-code',
+    'prism-code,pre[class*="language-"]'
+  )} html, body, #___gatsby {
     font-family: ${fonts.primary};
     color: #fffeff;
     width: 100%;
