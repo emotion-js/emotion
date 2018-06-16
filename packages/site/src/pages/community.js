@@ -13,7 +13,8 @@ const Community = (props: *) => (
         display: 'flex',
         justifyContent: 'center',
         width: '100%',
-        margin: 'auto'
+        margin: 'auto',
+        lineHeight: 1.4
       }}
     >
       <div>

@@ -89,7 +89,7 @@ export default class DocRoute extends React.Component<Props> {
     return (
       <Layout>
         <DocWrapper>
-          <Box className="docSearch-content">
+          <Box css={{ lineHeight: 1.4 }} className="docSearch-content">
             <Title>
               {doc.frontmatter.title || this.props.pageContext.slug}
             </Title>
