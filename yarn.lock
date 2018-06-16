@@ -928,6 +928,10 @@
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
 
+"@types/jest@^23.0.2":
+  version "23.0.2"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.0.2.tgz#f03f9e6dd2206cc2a2e8fd033161b0b7cf905db6"
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
