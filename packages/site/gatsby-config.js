@@ -53,6 +53,7 @@ module.exports = {
         resolve: `gatsby-transformer-remark`,
         options: {
           plugins: [
+            'gatsby-remark-remove-readme-titles',
             'gatsby-remark-live-code',
             'gatsby-remark-autolink-headers',
             'gatsby-remark-prismjs',
