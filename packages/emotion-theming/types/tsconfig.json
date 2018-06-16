@@ -1,16 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
-    "declaration": true,
-    "strict": true,
-    "moduleResolution": "node",
+    "baseUrl": "../",
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["es6"],
+    "lib": [
+      "es6"
+    ],
+    "module": "commonjs",
+    "noEmit": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
+    "strict": true,
     "strictNullChecks": true,
-    "strictFunctionTypes": true
+    "strictFunctionTypes": true,
+    "target": "es5",
+    "typeRoots": [
+      "../"
+    ],
+    "types": []
   },
   "include": [
     "./*.ts",
