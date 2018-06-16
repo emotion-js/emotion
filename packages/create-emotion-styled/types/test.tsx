@@ -50,15 +50,15 @@ const TestFunComp1 = (props: TestFunProps1) => (
   </div>
 );
 
-const StyledClassComp0 = createStyled(TestClassComp)({
+const StyledClassComp0 = createStyled(TestClassComp)<{}>({
   width: '200px',
 }, (props) => ({
   height: props.theme.long ? '200px' : '100px',
 }));
 
-const StyledClassComp1 = createStyled(TestClassComp) `
+const StyledClassComp1 = createStyled(TestClassComp)`
   width: 200px;
-  height: ${(props) => props.theme ? '200px' : '100px'};
+  height: ${(props) => props.theme.long ? '200px' : '100px'};
 `;
 
 <StyledClassComp0 some={5} />;
@@ -131,9 +131,9 @@ const StyledTag1 = createStyled('label')`
 const StyledCompWithButton = StyledClassComp0.withComponent('button');
 const StyledCompWithFunComp2 = StyledFunComp0.withComponent(TestFunComp1);
 
-<StyledCompWithButton some={4} />;
-<StyledCompWithButton some={2} onClick={() => ''} />;
-<StyledCompWithButton some={3} onClick={() => ''} innerRef={(ref: HTMLButtonElement) => { }} />;
+<StyledCompWithButton />;
+<StyledCompWithButton onClick={() => ''} />;
+<StyledCompWithButton onClick={() => ''} innerRef={(ref: HTMLButtonElement) => { }} />;
 
 <StyledCompWithFunComp2 color='#ffff00' complex={{ id: 42, name: 'truth', friends: [69] }} world={1} />;
 // $ExpectError
