@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import reactPrimitives from 'react-primitives'
 import { ThemeProvider } from 'emotion-theming'
 
-import emotion from '../dist/index.es.js'
+import emotion from '../dist/index.es'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -116,6 +116,18 @@ describe('Emotion primitives', () => {
   //   const text = wrapper.find('Text').first()
   //   expect(ref.current).toBe(text.instance())
   // })
+
+  it('should pass props in withComponent', () => {
+    const ViewOne = emotion.View`
+      background-color: ${props => props.color};
+    `
+    const treeOne = renderer.create(<ViewOne color="green" />)
+    const ViewTwo = ViewOne.withComponent('Text')
+    const treeTwo = renderer.create(<ViewTwo color="hotpink" />)
+
+    expect(treeOne).toMatchSnapshot()
+    expect(treeTwo).toMatchSnapshot()
+  })
 
   it('should render <Image />', () => {
     const Image = emotion.Image`
