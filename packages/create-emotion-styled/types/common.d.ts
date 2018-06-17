@@ -1,7 +1,7 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.3
 
-import { Emotion, Interpolation as BaseInterpolation } from 'create-emotion';
+import { Emotion, Interpolation as BaseInterpolation, CSSObject } from 'create-emotion';
 
 export interface ArrayInterpolation<Props> extends Array<Interpolation<Props>> {}
 export type FunctionInterpolation<Props> = (props: Props, context: any) => Interpolation<Props>;

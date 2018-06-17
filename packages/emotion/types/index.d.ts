@@ -21,3 +21,12 @@ declare module 'react' {
     css?: Interpolation;
   }
 }
+
+// Preact support for css prop
+declare global {
+  namespace JSX {
+    interface HTMLAttributes {
+      css?: Interpolation;
+    }
+  }
+}

@@ -153,6 +153,25 @@ mount = <Component innerRef={(element: HTMLDivElement) => {}} />;
 Component = Component.withComponent('input');
 mount = <Component innerRef={(element: HTMLInputElement) => {}} />;
 
+/**
+ * css prop
+ */
+Component = styled.div({ color: 'red' });
+mount = <Component css={{ color: 'blue' }} />;
+mount = (
+  <Component css={`
+    color: blue;
+    `}
+  />
+);
+mount = <div css={{ color: 'blue' }} />;
+mount = (
+  <div css={`
+    color: blue;
+    `}
+  />
+);
+
 /*
  * Reference to other styled component
  */

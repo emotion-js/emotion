@@ -1,3 +1,4 @@
+import 'emotion';
 import createEmotion from 'create-emotion';
 import * as React from 'react';
 
@@ -191,3 +192,10 @@ const ComposingComp = createStyled.div`
     color: black;
   }
 `;
+
+const CSSPropComp = createStyled.div();
+<CSSPropComp css={{ color: 'blue' }} />;
+<CSSPropComp css={`
+  color: blue;
+  `}
+/>;
