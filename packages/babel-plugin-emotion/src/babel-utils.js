@@ -4,6 +4,10 @@ import { hashArray } from './index'
 import type { BabelPath, EmotionBabelPluginPass } from './index'
 import type { Types, Identifier } from 'babel-flow-types'
 
+function cloneNode(t, node) {
+  return (typeof t.cloneNode === 'function' ? t.cloneNode : t.cloneDeep)(node)
+}
+
 function getDeclaratorName(path: BabelPath, t: Types) {
   // $FlowFixMe
   const parent = path.findParent(p => p.isVariableDeclarator())
@@ -54,7 +58,7 @@ export function buildMacroRuntimeNode(
   state: EmotionMacroPluginPass,
   importName: string,
   t: Types
-) {
+): Identifier {
   const runtimeImportPath = getRuntimeImportPath(path, t)
   if (state.emotionImports === undefined) state.emotionImports = {}
   if (state.emotionImports[runtimeImportPath] === undefined) {
@@ -66,7 +70,8 @@ export function buildMacroRuntimeNode(
       importName
     ] = path.scope.generateUidIdentifier(path.node.name)
   }
-  return state.emotionImports[runtimeImportPath][importName]
+  // $FlowFixMe
+  return cloneNode(t, state.emotionImports[runtimeImportPath][importName])
 }
 
 export function addRuntimeImports(state: EmotionMacroPluginPass, t: Types) {
