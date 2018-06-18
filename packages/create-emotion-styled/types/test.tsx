@@ -1,4 +1,3 @@
-import 'emotion';
 import createEmotion from 'create-emotion';
 import * as React from 'react';
 
