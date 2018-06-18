@@ -249,7 +249,7 @@ describe('styled macro', () => {
       export { normal, demibold }
     `
 
-    const { ast } = babel7.transform(input, {
+    const { ast, code } = babel7.transform(input, {
       plugins: [
         'module:babel-plugin-macros',
         '@babel/plugin-transform-modules-commonjs'
@@ -258,6 +258,8 @@ describe('styled macro', () => {
       babelrc: false,
       ast: true
     })
+
+    expect(code).toMatchSnapshot()
 
     expect(() => checkDuplicatedNodes(babel7, ast)).not.toThrow()
   })
