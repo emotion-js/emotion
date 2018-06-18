@@ -109,8 +109,8 @@ type ImageProps = {
 }
 
 const Image0 = styled<ImageProps, 'div'>('div')`
-  width: ${(props) => props.width};
-  background: url(${(props: ImageProps) => props.src}) center center;
+  width: ${props => props.width};
+  background: url(${props => props.src}) center center;
   background-size: contain;
 `
 
@@ -118,7 +118,7 @@ const Image0 = styled<ImageProps, 'div'>('div')`
 
 const Image1 = styled<ImageProps, 'div'>('div')({
   backgroundSize: 'contain',
-}, (props) => ({
+}, props => ({
   width: props.width;
   background: `url(${props.src}) center center`,
 }));
@@ -134,7 +134,7 @@ const Image1 = styled('div')<ImageProps>({
 ```
 
 * The generic function version only works with object styles in TS <= 2.8 due to https://github.com/Microsoft/TypeScript/issues/11947.
-* If you use TS > 2.9, generic function will works with string styles too, but it will break VSCode syntax highlighting. See https://github.com/emotion-js/emotion/issues/721#issuecomment-396954993
+* If you use TS > 2.9, generic function will work with string styles too, but it will break VSCode syntax highlighting. See https://github.com/emotion-js/emotion/issues/721#issuecomment-396954993
 
 ### React Components
 
