@@ -24,6 +24,8 @@
     "babel-cli": "^6.24.1",
     "dtslint": "^0.3.0",
     "npm-run-all": "^4.0.2",
+    "preact": "^8.2.9",
+    "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3",
     "rimraf": "^2.6.1"
   },
