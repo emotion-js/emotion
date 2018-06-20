@@ -241,3 +241,23 @@ _styled(\\"div\\", {
   target: \\"eo9rakq0\\"
 })(\\"display:flex;\\");"
 `;
+
+exports[`styled macro inserts unique AST nodes 1`] = `
+"\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+exports.demibold = exports.normal = void 0;
+
+var _styled = require(\\"./styled\\");
+
+const normal =
+/*#__PURE__*/
+(0, _styled.css)(\\"font-weight:400;\\");
+exports.normal = normal;
+const demibold =
+/*#__PURE__*/
+(0, _styled.css)(\\"font-weight:600;\\");
+exports.demibold = demibold;"
+`;
