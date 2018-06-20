@@ -121,11 +121,14 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
               styles.concat(classInterpolations)
             )
           } else {
-            className += staticClassName
+            className = `${staticClassName} ${className}`
           }
 
           if (stableClassName !== undefined) {
-            className += ` ${stableClassName}`
+            if (staticClassName === undefined) {
+              className += ' '
+            }
+            className += stableClassName
           }
 
           return view.createElement(

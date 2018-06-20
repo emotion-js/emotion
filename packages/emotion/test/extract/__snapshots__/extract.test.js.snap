@@ -10,7 +10,7 @@ exports[`styled basic render nested 1`] = `
 
 exports[`styled className prop on styled 1`] = `
 <h1
-  className="some-class emotion-0 emotion-1"
+  className="emotion-0 some-class emotion-1"
 >
   hello world
 </h1>

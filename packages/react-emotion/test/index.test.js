@@ -1191,3 +1191,17 @@ test('composes shouldForwardProp on composed styled components', () => {
   expect(tree.props.filterMe).toBeUndefined()
   expect(tree.props.forwardMe).toBeDefined()
 })
+
+test('should append classNames in the correct order', () => {
+  const blue = css`
+    color: blue;
+  `
+  const red = css`
+    color: red;
+  `
+  const H1 = styled('h1', { e: blue })()
+  const RedH1 = styled(H1, { e: red })()
+
+  const tree = renderer.create(<RedH1>Test</RedH1>).toJSON()
+  expect(tree).toMatchSnapshot()
+})

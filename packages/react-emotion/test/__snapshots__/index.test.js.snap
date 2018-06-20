@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should append classNames in the correct order 1`] = `
+.emotion-0 {
+  color: blue;
+}
+
+.emotion-1 {
+  color: red;
+}
+
+<h1
+  className="emotion-0 emotion-1 emotion-2 emotion-3"
+>
+  Test
+</h1>
+`;
+
 exports[`styled basic render 1`] = `
 .emotion-0 {
   color: blue;
