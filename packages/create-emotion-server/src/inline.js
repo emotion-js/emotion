@@ -19,11 +19,13 @@ const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
   const regex = new RegExp(`<|${cssKey}-([a-zA-Z0-9-]+)`, 'gm')
 
   const seen = {}
+  const order = {}
 
   let result = ''
   let globalIds = ''
   let globalStyles = ''
 
+  let i = 0
   for (const id in inserted) {
     if (inserted.hasOwnProperty(id)) {
       const style = inserted[id]
@@ -32,6 +34,7 @@ const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
         globalStyles += style
         globalIds += ` ${id}`
       }
+      order[id] = i++
     }
   }
 
@@ -39,17 +42,24 @@ const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
     result = generateStyleTag(cssKey, globalIds, globalStyles, nonceString)
   }
 
-  let ids = ''
-  let styles = ''
+  const styles = []
   let lastInsertionPoint = 0
   let match
 
   while ((match = regex.exec(html)) !== null) {
     if (match[0] === '<') {
-      if (ids !== '') {
-        result += generateStyleTag(cssKey, ids, styles, nonceString)
-        ids = ''
-        styles = ''
+      if (styles.length > 0) {
+        let stylesString = ''
+        let idsString = ''
+        if (styles.length > 1) {
+          styles.sort((a, b) => order[a.id] - order[b.id])
+        }
+        for (let j = 0; j < styles.length; j++) {
+          stylesString += styles[j].style
+          idsString += ` ${styles[j].id}`
+        }
+        result += generateStyleTag(cssKey, idsString, stylesString, nonceString)
+        styles.length = 0
       }
       result += html.substring(lastInsertionPoint, match.index)
       lastInsertionPoint = match.index
@@ -63,8 +73,7 @@ const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
     }
 
     seen[id] = true
-    styles += style
-    ids += ` ${id}`
+    styles.push({ id, style })
   }
 
   result += html.substring(lastInsertionPoint)
