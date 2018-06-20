@@ -188,3 +188,27 @@ const Parent = styled.div`
     color: blue;
   }
 `;
+
+interface TestComponentFactoryProps {
+  value: number;
+}
+
+declare const TestComponentFactory: Preact.ComponentFactory<TestComponentFactoryProps>;
+
+const StyledComponentFactory0 = styled(TestComponentFactory)({
+  color: 'red',
+});
+
+const StyledComponentFactory1 = styled(TestComponentFactory)`
+  color: red;
+`;
+
+const ComposingCompFactory = styled.div`
+  ${StyledComponentFactory1} {
+    background-color: green;
+  }
+`;
+
+<StyledComponentFactory0 value={5} />;
+<StyledComponentFactory1 value={4} />;
+<ComposingCompFactory />;
