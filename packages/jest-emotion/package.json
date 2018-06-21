@@ -1,6 +1,6 @@
 {
   "name": "jest-emotion",
-  "version": "9.2.2",
+  "version": "9.2.4",
   "description": "Jest utilities for emotion",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
