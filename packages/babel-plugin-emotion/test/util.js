@@ -33,6 +33,7 @@ const createInlineTester = babel => opts => {
   const { code, ast } = babel.transform(opts.code, {
     plugins: [
       stage2,
+      require('babel-plugin-syntax-class-properties'),
       [
         plugin,
         {

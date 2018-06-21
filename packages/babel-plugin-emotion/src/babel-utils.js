@@ -4,33 +4,10 @@ import { hashArray } from './index'
 import type { BabelPath, EmotionBabelPluginPass } from './index'
 import type { Types, Identifier } from 'babel-flow-types'
 
+export { getLabelFromPath as getIdentifierName } from '@emotion/babel-utils'
+
 function cloneNode(t, node) {
   return (typeof t.cloneNode === 'function' ? t.cloneNode : t.cloneDeep)(node)
-}
-
-function getDeclaratorName(path: BabelPath, t: Types) {
-  // $FlowFixMe
-  const parent = path.findParent(p => p.isVariableDeclarator())
-  return parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
-}
-
-export function getIdentifierName(path: BabelPath, t: Types) {
-  let classParent
-  if (path) {
-    // $FlowFixMe
-    classParent = path.findParent(p => t.isClass(p))
-  }
-  if (classParent && classParent.node.id) {
-    return t.isIdentifier(classParent.node.id) ? classParent.node.id.name : ''
-  } else if (
-    classParent &&
-    classParent.node.superClass &&
-    classParent.node.superClass.name
-  ) {
-    return `${getDeclaratorName(path, t)}(${classParent.node.superClass.name})`
-  }
-
-  return getDeclaratorName(path, t)
 }
 
 export function getRuntimeImportPath(path: BabelPath, t: Types) {
@@ -155,18 +132,4 @@ export function omit(
   return target
 }
 
-export const appendStringToExpressions = (
-  expressions: Array<*>,
-  string: string,
-  t: *
-) => {
-  if (!string) {
-    return expressions
-  }
-  if (t.isStringLiteral(expressions[expressions.length - 1])) {
-    expressions[expressions.length - 1].value += string
-  } else {
-    expressions.push(t.stringLiteral(string))
-  }
-  return expressions
-}
+export { appendStringToExpressions } from '@emotion/babel-utils'

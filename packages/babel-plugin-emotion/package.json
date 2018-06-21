@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/helper-module-imports": "7.0.0-beta.40",
-    "@emotion/babel-utils": "^0.5.3",
+    "@emotion/babel-utils": "^0.6.4",
     "@emotion/hash": "^0.6.2",
     "@emotion/memoize": "^0.6.1",
     "@emotion/stylis": "^0.6.5",
