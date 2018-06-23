@@ -1,3 +1,46 @@
+## v9.2.4 (2018-06-22)
+
+#### :rocket: Enhancement
+
+- `babel-plugin-emotion`, `create-emotion`
+  - [#741](https://github.com/emotion-js/emotion/pull/741) Improve labels and upgrade @emotion/stylis. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+- `jest-emotion`
+  - [#723](https://github.com/emotion-js/emotion/pull/723) Add typings for jest-emotion. ([@Ailrun](https://github.com/Ailrun))
+
+#### :bug: Bug Fix
+
+- `jest-emotion`
+  - [#731](https://github.com/emotion-js/emotion/pull/731) Fix jest-emotion for preact. ([@aaronjensen](https://github.com/aaronjensen))
+- `babel-plugin-emotion`
+  - [#730](https://github.com/emotion-js/emotion/pull/730) No duplicated ast nodes. ([@Andarist](https://github.com/Andarist))
+
+#### :house: Internal
+
+- `create-emotion-server`
+  - [#725](https://github.com/emotion-js/emotion/pull/725) create-emotion-server: refactor inline for performance. ([@apapirovski](https://github.com/apapirovski))
+- `emotion-theming`
+  - [#714](https://github.com/emotion-js/emotion/pull/714) Fix tsconfig for emotion-theming. ([@Ailrun](https://github.com/Ailrun))
+
+#### Committers: 6
+
+- Aaron Jensen ([aaronjensen](https://github.com/aaronjensen))
+- Anatoli Papirovski ([apapirovski](https://github.com/apapirovski))
+- Junyoung Clare Jang ([Ailrun](https://github.com/Ailrun))
+- Konrad Kruk ([konradk](https://github.com/konradk))
+- Mateusz Burzyński ([Andarist](https://github.com/Andarist))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
+## v9.2.3 (2018-06-09)
+
+#### :bug: Bug Fix
+
+- `create-emotion-styled`, `emotion-server`, `emotion-theming`, `emotion`, `preact-emotion`, `react-emotion`
+  - [#710](https://github.com/emotion-js/emotion/pull/710) Remove allowSyntheticDefaultImports from typings. ([@Ailrun](https://github.com/Ailrun))
+
+#### Committers: 1
+
+- Junyoung Clare Jang ([Ailrun](https://github.com/Ailrun))
+
 ## v9.2.1 (2018-06-07)
 
 #### :bug: Bug Fix

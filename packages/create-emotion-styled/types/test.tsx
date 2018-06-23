@@ -1,5 +1,5 @@
 import createEmotion from 'create-emotion';
-import React from 'react';
+import * as React from 'react';
 
 import createEmotionStyled, { StyledComponent } from '../';
 

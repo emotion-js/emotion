@@ -1,7 +1,7 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.3
 
-import React, { ComponentClass, Ref, SFC } from 'react';
+import { ComponentClass, Ref, SFC } from 'react';
 import { ClassInterpolation } from 'create-emotion';
 
 import {
