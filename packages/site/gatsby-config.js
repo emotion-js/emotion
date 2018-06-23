@@ -54,6 +54,7 @@ module.exports = {
         options: {
           plugins: [
             'gatsby-remark-remove-readme-titles',
+            'gatsby-remark-change-awesome',
             'gatsby-remark-live-code',
             'gatsby-remark-autolink-headers',
             'gatsby-remark-prismjs',
