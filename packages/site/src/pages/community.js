@@ -24,9 +24,14 @@ const Community = (props: *) => (
           componentMap={markdownComponents}
           hast={props.data.markdownRemark.htmlAst}
         />
-        <markdownComponents.h1>Contributing</markdownComponents.h1>
-
-        <markdownComponents.h1>Thanks!</markdownComponents.h1>
+        <markdownComponents.h2>Contributing</markdownComponents.h2>
+        <markdownComponents.p>
+          This list comes from{' '}
+          <a href="https://github.com/emotion-js/awesome-emotion">
+            awesome-emotion
+          </a>. Anything added to that that list will appear here automatically.
+        </markdownComponents.p>
+        <markdownComponents.h2>Thanks!</markdownComponents.h2>
         <markdownComponents.p>
           Thanks to the styled-components team for the idea of embedding an
           awesome list into a website! ❤️
