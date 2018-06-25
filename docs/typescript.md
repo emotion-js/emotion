@@ -94,7 +94,7 @@ const App = () => <Link href="#">Click me</Link>
 // No errors!
 ```
 
-The prop types used to construct the resulting style definition of `withComponent` should be explicitly provided to avoid TypeScript compiler error. If you don't, TS will think all props for `Text` are used to construct style definition, and request user to give all those props when using the result component of `withComponent`.
+The prop types used to construct the resulting style definition of `withComponent` should be explicitly provided to avoid TypeScript compiler errors.
 
 ### Passing Props
 
