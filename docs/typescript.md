@@ -114,18 +114,17 @@ const Image0 = styled<ImageProps, 'div'>('div')`
   background-size: contain;
 `
 
-// Or with object styles
-
-const Image1 = styled<ImageProps, 'div'>('div')({
+// Or with a generic function
+const Image1 = styled('div')<ImageProps>({
   backgroundSize: 'contain',
 }, props => ({
   width: props.width;
   background: `url(${props.src}) center center`,
 }));
 
-// Or with a generic function
-
-const Image1 = styled('div')<ImageProps>({
+// This one is only for compatibility,
+// so one should not write new code with this style.
+const Image1 = styled<ImageProps, 'div'>('div')({
   backgroundSize: 'contain',
 }, props => ({
   width: props.width;
