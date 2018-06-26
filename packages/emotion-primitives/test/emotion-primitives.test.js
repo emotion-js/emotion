@@ -19,9 +19,7 @@ describe('Emotion primitives', () => {
   })
 
   test('should throw an error when used invalid primitive', () => {
-    expect(() => emotion.TEXT({})).toThrowError(
-      `Cannot style invalid primitive TEXT. Expected primitive to be one of ['Text', 'View', 'Image']`
-    )
+    expect(() => emotion.TEXT({})).toThrow()
   })
 
   test('should render the primitive when styles applied using object style notation', () => {
