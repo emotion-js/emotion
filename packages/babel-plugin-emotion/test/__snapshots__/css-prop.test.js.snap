@@ -120,7 +120,7 @@ exports[`babel css prop inline babel 6 label in higher order component 1`] = `
 
 const foo = W => class extends Component {
   render() {
-    return <div className={/*#__PURE__*/_css(\\"color:brown;label:foo(Component);\\")}>Hello</div>;
+    return <div className={/*#__PURE__*/_css(\\"color:brown;label:foo;\\")}>Hello</div>;
   }
 };"
 `;
@@ -288,7 +288,7 @@ const foo = W => class extends Component {
   render() {
     return <div className={
     /*#__PURE__*/
-    _css(\\"color:brown;label:foo(Component);\\")}>Hello</div>;
+    _css(\\"color:brown;label:foo;\\")}>Hello</div>;
   }
 
 };"
@@ -356,7 +356,7 @@ var _emotion = require(\\"emotion\\");
 
 var _react = _interopRequireWildcard(require(\\"react\\"));
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 class Home extends _react.Component {
   render() {

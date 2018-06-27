@@ -30,9 +30,6 @@ What happened:
 <!-- 
 Please provide the full error message/screenshots/anything
  
-
-If possible, create a CodeSandbox (https://codesandbox.io/s/new) or fork this CodeSandbox (https://codesandbox.io/s/pk1qjqpw67) and add a repoduction of your issue.
-
 Your bug will get fixed much faster if we can easily run your code. Please paste the link to your CodeSandbox below.
 -->
 
@@ -40,6 +37,9 @@ Reproduction:
 
 
 <!--
+
+If possible, create a CodeSandbox (https://codesandbox.io/s/new) or fork this CodeSandbox (https://codesandbox.io/s/pk1qjqpw67) and add a repoduction of your issue.
+
 Does it seem like the issue is only happening to you?
 
 If this is the case and you can't reproduce it in a CodeSandbox, your best hope of a solution will be to
