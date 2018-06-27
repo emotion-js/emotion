@@ -1,6 +1,6 @@
 {
   "name": "emotion-theming",
-  "version": "9.1.2",
+  "version": "9.2.4",
   "description": "A CSS-in-JS theming solution, inspired by styled-components",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -38,10 +38,10 @@
   "devDependencies": {
     "@types/react": "16.0.16",
     "cross-env": "^5.0.1",
-    "dtslint": "^0.2.0",
+    "dtslint": "^0.3.0",
     "prop-types": "^15.6.1",
     "rimraf": "^2.6.1",
-    "rollup": "^0.51.3"
+    "rollup": "^0.60.1"
   },
   "dependencies": {
     "hoist-non-react-statics": "^2.3.1"

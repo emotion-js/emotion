@@ -1,26 +1,13 @@
 // @flow
 import type { Emotion } from 'create-emotion'
 
-function toTag(
-  emotion: Emotion,
-  ids: Array<string>,
-  thing: { keys: Array<string> },
+function generateStyleTag(
+  cssKey: string,
+  ids: string,
+  styles: string,
   nonceString: string
 ) {
-  let idhash = ids.reduce((o, x) => {
-    o[x] = true
-    return o
-  }, {})
-  let styles = ''
-  let idHydration = ''
-  thing.keys = thing.keys.filter(id => {
-    if (idhash[id] !== undefined && emotion.caches.inserted[id] !== true) {
-      styles += emotion.caches.inserted[id]
-      idHydration += ` ${id}`
-    }
-    return true
-  })
-  return `<style data-emotion-${emotion.caches.key}="${idHydration.substring(
+  return `<style data-emotion-${cssKey}="${ids.substring(
     1
   )}"${nonceString}>${styles}</style>`
 }
@@ -28,50 +15,60 @@ function toTag(
 const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
   html: string
 ): string => {
-  let regex = new RegExp(`<|${emotion.caches.key}-([a-zA-Z0-9-]+)`, 'gm')
+  const { inserted, key: cssKey, registered } = emotion.caches
+  const regex = new RegExp(`<|${cssKey}-([a-zA-Z0-9-]+)`, 'gm')
 
-  let match
-  let lastBackIndex = 0
-  let idBuffer = []
+  const seen = {}
+
   let result = ''
-  let insed = {}
-  let keys = Object.keys(emotion.caches.inserted)
-  let globalStyles = ''
   let globalIds = ''
-  keys = keys.filter(id => {
-    if (
-      emotion.caches.registered[`${emotion.caches.key}-${id}`] === undefined &&
-      emotion.caches.inserted[id] !== true
-    ) {
-      globalStyles += emotion.caches.inserted[id]
-      globalIds += ` ${id}`
-      return false
+  let globalStyles = ''
+
+  for (const id in inserted) {
+    if (inserted.hasOwnProperty(id)) {
+      const style = inserted[id]
+      const key = `${cssKey}-${id}`
+      if (style !== true && registered[key] === undefined) {
+        globalStyles += style
+        globalIds += ` ${id}`
+      }
     }
-    return true
-  })
-  if (globalStyles !== '') {
-    result += `<style data-emotion-${emotion.caches.key}="${globalIds.substring(
-      1
-    )}"${nonceString}>${globalStyles}</style>`
   }
-  const thing = { keys }
+
+  if (globalStyles !== '') {
+    result = generateStyleTag(cssKey, globalIds, globalStyles, nonceString)
+  }
+
+  let ids = ''
+  let styles = ''
+  let lastInsertionPoint = 0
+  let match
+
   while ((match = regex.exec(html)) !== null) {
     if (match[0] === '<') {
-      idBuffer = idBuffer.filter(x => !insed[x])
-      if (idBuffer.length > 0) {
-        result += toTag(emotion, idBuffer, thing, nonceString)
+      if (ids !== '') {
+        result += generateStyleTag(cssKey, ids, styles, nonceString)
+        ids = ''
+        styles = ''
       }
-      result += html.substring(lastBackIndex, match.index)
-      lastBackIndex = match.index
-      idBuffer.forEach(x => {
-        insed[x] = true
-      })
-      idBuffer = []
-    } else {
-      idBuffer.push(match[1])
+      result += html.substring(lastInsertionPoint, match.index)
+      lastInsertionPoint = match.index
+      continue
     }
+
+    const id = match[1]
+    const style = inserted[id]
+    if (style === true || seen[id]) {
+      continue
+    }
+
+    seen[id] = true
+    styles += style
+    ids += ` ${id}`
   }
-  result += html.substring(lastBackIndex, html.length)
+
+  result += html.substring(lastInsertionPoint)
+
   return result
 }
 

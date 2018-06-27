@@ -81,7 +81,7 @@ export type StylisPlugins =
   | Array<(...args: Array<any>) => any>
   ;
 
-export interface EmotionOption {
+export interface EmotionOptions {
   nonce?: string;
   stylisPlugins?: StylisPlugins;
   prefix?: boolean | ((key: string, value: string, context: 1 | 2 | 3) => boolean);
@@ -89,4 +89,19 @@ export interface EmotionOption {
   container?: HTMLElement;
 }
 
-export default function createEmotion(context: EmotionContext, options?: EmotionOption): Emotion;
+export default function createEmotion(context: EmotionContext, options?: EmotionOptions): Emotion;
+
+declare module 'react' {
+  interface HTMLAttributes<T> {
+    css?: Interpolation;
+  }
+}
+
+// Preact support for css prop
+declare global {
+  namespace JSX {
+    interface HTMLAttributes {
+      css?: Interpolation;
+    }
+  }
+}

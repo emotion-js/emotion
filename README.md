@@ -98,7 +98,8 @@ Look here 👉 *[emotion babel plugin feature table and documentation](https://g
 
 ### In the Wild
 
-* [healthline.com](https://www.healthline.com/health/body-aches)
+* [healthline.com](https://www.healthline.com)
+* [nytimes.com](https://www.nytimes.com)
 * [vault.crucible.gg](http://vault.crucible.gg/)
 * [saldotuc.com](https://saldotuc.com)
 * [gatsbythemes.com](https://gatsbythemes.com/)

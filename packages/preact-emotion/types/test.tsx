@@ -1,6 +1,8 @@
 // tslint:disable-next-line:no-implicit-dependencies
-import Preact, { h } from 'preact';
+import * as Preact from 'preact';
 import styled, { flush, CreateStyled } from '../';
+
+const h = Preact.h;
 
 let Component;
 let mount;
@@ -154,6 +156,25 @@ mount = <Component innerRef={(element: HTMLDivElement) => {}} />;
 
 Component = Component.withComponent('input');
 mount = <Component innerRef={(element: HTMLInputElement) => {}} />;
+
+/**
+ * css prop
+ */
+Component = styled.div({ color: 'red' });
+mount = <Component css={{color: 'blue'}} />;
+mount = (
+  <Component css={`
+    color: blue;
+  `}
+  />
+);
+mount = <div css={{ color: 'blue' }} />;
+mount = (
+  <div css={`
+    color: blue;
+    `}
+  />
+);
 
 /*
  * Reference to other styled component
