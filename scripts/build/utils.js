@@ -32,8 +32,8 @@ exports.getPackages = async function getPackages() {
       ret.name = ret.pkg.name
       ret.configs = [
         {
-          config: ret.config,
-          outputConfigs: ret.outputConfigs
+          config: makeRollupConfig(ret),
+          outputConfigs: getOutputConfigs(ret)
         }
       ]
       if (ret.pkg['umd:main']) {

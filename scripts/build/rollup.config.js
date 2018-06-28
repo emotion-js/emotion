@@ -31,7 +31,7 @@ function getChildPeerDeps(finalPeerDeps, depKeys) {
 
 module.exports = (data, isUMD = false, isBrowser = false) => {
   const { pkg } = data
-  const external = []
+  let external = []
   if (pkg.peerDependencies) {
     external.push(...Object.keys(pkg.peerDependencies))
   }
@@ -44,6 +44,9 @@ module.exports = (data, isUMD = false, isBrowser = false) => {
     )
   ])
   external.push('fs', 'path')
+  if (data.name === 'react-emotion') {
+    external = external.filter(name => name !== 'emotion')
+  }
 
   const config = {
     input: path.resolve(data.path, 'src', 'index.js'),
@@ -102,9 +105,7 @@ module.exports = (data, isUMD = false, isBrowser = false) => {
       }),
 
       isUMD && alias(lernaAliases()),
-      isUMD &&
-        pkg.dependencies &&
-        resolve({ only: Object.keys(pkg.dependencies) }),
+      isUMD && resolve(),
       isUMD && replace({ 'process.env.NODE_ENV': '"production"' }),
       isUMD && uglify()
     ].filter(Boolean)
