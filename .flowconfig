@@ -1,9 +1,10 @@
 [version]
-0.61.0
+0.73.0
 
 [ignore]
 .*/node_modules/config-chain/.*
 .*/node_modules/styled-components/.*
+.*/node_modules/graphql/.*
 
 
 [include]
@@ -23,4 +24,3 @@ module.name_mapper='^\(emotion-theming\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(emotion-server\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(create-emotion-server\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(jest-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-unsafe.enable_getters_and_setters=true

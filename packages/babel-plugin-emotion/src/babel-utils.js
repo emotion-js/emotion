@@ -6,7 +6,7 @@ import type { Types, Identifier } from 'babel-flow-types'
 
 export { getLabelFromPath as getIdentifierName } from '@emotion/babel-utils'
 
-function cloneNode(t, node) {
+function cloneNode(t: any, node) {
   return (typeof t.cloneNode === 'function' ? t.cloneNode : t.cloneDeep)(node)
 }
 
