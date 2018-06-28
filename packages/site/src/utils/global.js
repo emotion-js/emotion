@@ -40,8 +40,6 @@ const globalStyles = css`
   code,
   pre[class*='language-'],
   .prism-code {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
     font-family: ${fonts.code};
   }
 
@@ -53,6 +51,8 @@ const globalStyles = css`
     white-space: pre-wrap;
     word-break: break-word;
     word-wrap: normal;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
   .gatsy-highlight {
     overflow: hidden;
