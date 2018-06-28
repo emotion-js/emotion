@@ -90,3 +90,18 @@ export interface EmotionOptions {
 }
 
 export default function createEmotion(context: EmotionContext, options?: EmotionOptions): Emotion;
+
+declare module 'react' {
+  interface HTMLAttributes<T> {
+    css?: Interpolation;
+  }
+}
+
+// Preact support for css prop
+declare global {
+  namespace JSX {
+    interface HTMLAttributes {
+      css?: Interpolation;
+    }
+  }
+}
