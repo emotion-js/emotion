@@ -24,12 +24,8 @@
   },
   "devDependencies": {
     "@types/react": "16.0.16",
-    "cross-env": "^5.0.5",
     "dtslint": "^0.3.0",
-    "emotion": "^9.2.4",
-    "npm-run-all": "^4.0.2",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.60.1"
+    "emotion": "^9.2.4"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

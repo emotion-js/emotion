@@ -10,11 +10,7 @@
     "types"
   ],
   "scripts": {
-    "build": "npm-run-all clean babel",
-    "babel": "babel src -d lib",
-    "clean": "rimraf lib",
-    "test:typescript": "dtslint types",
-    "watch": "babel src -d lib --watch"
+    "test:typescript": "dtslint types"
   },
   "dependencies": {
     "html-tokenize": "^2.0.0",
@@ -23,12 +19,9 @@
   },
   "devDependencies": {
     "@types/node": "*",
-    "babel-cli": "^6.24.1",
     "dtslint": "^0.3.0",
     "emotion": "^9.2.4",
-    "npm-run-all": "^4.0.2",
-    "react-emotion": "^9.2.4",
-    "rimraf": "^2.6.1"
+    "react-emotion": "^9.2.4"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

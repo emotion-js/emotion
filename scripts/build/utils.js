@@ -16,6 +16,8 @@ exports.cleanDist = async function cleanDist(pkgPath) {
 }
 
 exports.getPackages = async function getPackages() {
+  // we're intentionally not getting all the packages that are part of the monorepo
+  // we only want ones in packages
   const packagePaths = (await readdir(path.join(rootPath, 'packages'))).map(
     pkg => path.join(rootPath, 'packages', pkg)
   )
@@ -26,16 +28,15 @@ exports.getPackages = async function getPackages() {
         path: fullPackagePath,
         pkg: require(path.resolve(fullPackagePath, 'package.json'))
       }
-      if (ret.pkg.main.includes('src')) {
-        return false
-      }
+
       ret.name = ret.pkg.name
-      ret.configs = [
-        {
+      ret.configs = []
+      if (ret.pkg.main && !ret.pkg.main.includes('src')) {
+        ret.configs.push({
           config: makeRollupConfig(ret),
           outputConfigs: getOutputConfigs(ret)
-        }
-      ]
+        })
+      }
       if (ret.pkg['umd:main']) {
         ret.configs.push({
           config: makeRollupConfig(ret, true, true),

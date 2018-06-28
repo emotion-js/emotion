@@ -9,11 +9,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm-run-all clean babel",
-    "babel": "babel src -d lib",
-    "test:typescript": "dtslint types",
-    "watch": "babel src -d lib --watch",
-    "clean": "rimraf lib"
+    "test:typescript": "dtslint types"
   },
   "dependencies": {
     "@types/jest": "^23.0.2",
@@ -21,13 +17,10 @@
     "css": "^2.2.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
     "dtslint": "^0.3.0",
-    "npm-run-all": "^4.0.2",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
-    "pretty-format": "^22.4.3",
-    "rimraf": "^2.6.1"
+    "pretty-format": "^22.4.3"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

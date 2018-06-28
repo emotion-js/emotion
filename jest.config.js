@@ -5,7 +5,10 @@ module.exports = {
     '\\.css$': '<rootDir>/test/styleTransform.js',
     '^.+\\.js?$': 'babel-jest'
   },
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname'
+  ],
   moduleNameMapper: lernaAliases(),
-  setupTestFrameworkScriptFile: '<rootDir>/test/testSetup.js',
-  coveragePathIgnorePatterns: ['<rootDir>/packages/emotion-utils/src/stylis.js']
+  setupTestFrameworkScriptFile: '<rootDir>/test/testSetup.js'
 }

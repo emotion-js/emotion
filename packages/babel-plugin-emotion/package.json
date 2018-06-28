@@ -23,10 +23,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.0.0-beta.40",
-    "babel-check-duplicated-nodes": "^1.0.0",
-    "babel-cli": "^6.24.1",
-    "npm-run-all": "^4.0.2",
-    "rimraf": "^2.6.1"
+    "babel-check-duplicated-nodes": "^1.0.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
