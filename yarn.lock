@@ -1411,16 +1411,6 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@dumpster/remark-custom-element-to-hast@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@dumpster/remark-custom-element-to-hast/-/remark-custom-element-to-hast-0.4.0.tgz#e305aa34855fb15f796c226027052075bf0755ef"
-  dependencies:
-    hast-util-raw "^2.0.1"
-    mdast-util-to-hast "^2.1.1"
-    unist-util-map "^1.0.3"
-    unist-util-remove-position "^1.1.1"
-    xtend "^4.0.1"
-
 "@emotion/babel-plugin-core@^0.6.1":
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin-core/-/babel-plugin-core-0.6.1.tgz#f3d90019a6aceeaa44d2379433be0b6a90646115"
@@ -6484,9 +6474,9 @@ fault@^1.0.1:
   dependencies:
     format "^0.2.2"
 
-favicons-webpack-plugin@jantimon/favicons-webpack-plugin:
+favicons-webpack-plugin@^0.0.9:
   version "0.0.9"
-  resolved "https://codeload.github.com/jantimon/favicons-webpack-plugin/tar.gz/7e5ed396fc18a59276032dcdcbf43c929716bf49"
+  resolved "https://registry.yarnpkg.com/favicons-webpack-plugin/-/favicons-webpack-plugin-0.0.9.tgz#df63e80c556b804e4925ec8e05bee36391573dc9"
   dependencies:
     favicons "^4.8.3"
     loader-utils "^0.2.14"
@@ -7958,7 +7948,7 @@ hast-util-parse-selector@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/hast-util-parse-selector/-/hast-util-parse-selector-2.1.1.tgz#fc06985272f5d204a25187f002bb916521e74f3a"
 
-hast-util-raw@^2.0.1, hast-util-raw@^2.0.2:
+hast-util-raw@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/hast-util-raw/-/hast-util-raw-2.0.2.tgz#20674cfb45428213917a54ec929e6774df0642d8"
   dependencies:
@@ -10288,22 +10278,6 @@ mdast-util-definitions@^1.2.0:
   resolved "https://registry.yarnpkg.com/mdast-util-definitions/-/mdast-util-definitions-1.2.2.tgz#673f4377c3e23d3de7af7a4fe2214c0e221c5ac7"
   dependencies:
     unist-util-visit "^1.0.0"
-
-mdast-util-to-hast@^2.1.1:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-2.5.0.tgz#f087844d255c7540f36906da30ba106c0ee5ee2f"
-  dependencies:
-    collapse-white-space "^1.0.0"
-    detab "^2.0.0"
-    mdast-util-definitions "^1.2.0"
-    mdurl "^1.0.1"
-    trim "0.0.1"
-    trim-lines "^1.0.0"
-    unist-builder "^1.0.1"
-    unist-util-generated "^1.1.0"
-    unist-util-position "^3.0.0"
-    unist-util-visit "^1.1.0"
-    xtend "^4.0.1"
 
 mdast-util-to-hast@^3.0.0:
   version "3.0.1"
@@ -14905,12 +14879,6 @@ unist-util-is@^2.0.0, unist-util-is@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/unist-util-is/-/unist-util-is-2.1.2.tgz#1193fa8f2bfbbb82150633f3a8d2eb9a1c1d55db"
 
-unist-util-map@^1.0.3:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/unist-util-map/-/unist-util-map-1.0.4.tgz#f27bb03e14e8072171379d132c96c1dfcea44574"
-  dependencies:
-    object-assign "^4.0.1"
-
 unist-util-modify-children@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/unist-util-modify-children/-/unist-util-modify-children-1.1.2.tgz#c7f1b91712554ee59c47a05b551ed3e052a4e2d1"
@@ -14921,7 +14889,7 @@ unist-util-position@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/unist-util-position/-/unist-util-position-3.0.1.tgz#8e220c24658239bf7ddafada5725ed0ea1ebbc26"
 
-unist-util-remove-position@^1.0.0, unist-util-remove-position@^1.1.1, unist-util-remove-position@^1.1.2:
+unist-util-remove-position@^1.0.0, unist-util-remove-position@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/unist-util-remove-position/-/unist-util-remove-position-1.1.2.tgz#86b5dad104d0bbfbeb1db5f5c92f3570575c12cb"
   dependencies:

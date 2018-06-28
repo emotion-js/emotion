@@ -4,7 +4,6 @@
   "description": "emotion site",
   "version": "9.1.2",
   "dependencies": {
-    "@dumpster/remark-custom-element-to-hast": "^0.4.0",
     "@emotion/babel-plugin-core": "^0.6.1",
     "@emotion/compat-cache": "^0.8.1",
     "@emotion/core": "^0.10.1",
@@ -19,7 +18,7 @@
     "emotion-server": "^9.1.2",
     "escape-goat": "^1.3.0",
     "facepaint": "^1.1.2",
-    "favicons-webpack-plugin": "jantimon/favicons-webpack-plugin",
+    "favicons-webpack-plugin": "^0.0.9",
     "gatsby": "^2.0.0-beta.12",
     "gatsby-image": "^2.0.0-beta.2",
     "gatsby-link": "^2.0.0-beta.3",
