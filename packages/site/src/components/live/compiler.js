@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import BabelWorker from 'worker!./worker'
+import BabelWorker from 'worker-loader!./worker'
 
 let worker
 

@@ -2,7 +2,7 @@
 import * as React from 'react'
 import type { Scope, Compiler } from './types'
 
-const evalCode = (code: string, scope: Scope) => {
+const evalCode = (code: string, scope: Scope): React.Node => {
   const scopeKeys = Object.keys(scope)
   const scopeValues = scopeKeys.map(key => scope[key])
   let element

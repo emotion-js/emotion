@@ -8,11 +8,40 @@ type Props = {
   componentMap?: { [key: string]: Function }
 }
 
+const pattern = /-(\w|$)/g
+
+const upperCaseCharacter = (dashChar, char) => char.toUpperCase()
+
+const camelCaseCSSProperty = property => {
+  property = property.toLowerCase()
+  if (property.indexOf('-ms-') === 0) {
+    return property.substr(1).replace(pattern, upperCaseCharacter)
+  } else {
+    return property.replace(pattern, upperCaseCharacter)
+  }
+}
+
 const RenderHAST = ({ hast, componentMap = {} }: Props) => {
   const renderTag = (node: HASTText | HASTElement, i: number) => {
     if (node.type === 'element') {
       const { tagName, properties, children } = node
       properties.key = i
+      if (properties.className && Array.isArray(properties.className)) {
+        properties.className = properties.className.join(' ')
+      }
+      if (typeof properties.style === 'string') {
+        properties.style = properties.style
+          .split(';')
+          .map(val => val.split(':'))
+          .reduce((prev, current) => {
+            prev[camelCaseCSSProperty(current[0])] = current[1]
+            return prev
+          }, {})
+      }
+      if (properties.ariaHidden !== undefined) {
+        properties['aria-hidden'] = properties.ariaHidden
+        delete properties.ariaHidden
+      }
       return React.createElement(
         componentMap[tagName] || tagName,
         properties,
