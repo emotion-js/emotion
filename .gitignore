@@ -1,7 +1,6 @@
 /coverage
 /demo/dist
 dist/
-lib/
 node_modules/
 *.log
 .idea

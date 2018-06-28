@@ -29,9 +29,10 @@ import { getExpressionsFromTemplateLiteral } from '@emotion/babel-utils'
 
 export type BabelPath = any
 
-export const emotionMacro = require('./macro')
-
-export const styledMacro = require('./macro-styled')
+export const macros = {
+  emotion: require('./macro'),
+  styled: require('./macro-styled')
+}
 
 export function hashArray(arr: Array<string>) {
   return hashString(arr.join(''))
