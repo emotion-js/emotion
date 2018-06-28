@@ -3,10 +3,9 @@ import { mq, fonts } from './style'
 import prismStyles from 'react-live/lib/constants/css.js'
 
 const globalStyles = css`
-  ${prismStyles.replace(
-    'prism-code',
-    'prism-code,pre[class*="language-"]'
-  )} html, body, #___gatsby {
+  ${prismStyles
+    .replace('prism-code', 'prism-code,pre[class*="language-"]')
+    .replace(/0\.5rem/g, '')} html, body, #___gatsby {
     font-family: ${fonts.primary};
     color: #fffeff;
     width: 100%;
@@ -41,6 +40,8 @@ const globalStyles = css`
   code,
   pre[class*='language-'],
   .prism-code {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     font-family: ${fonts.code};
   }
 
