@@ -147,7 +147,9 @@
     ]
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "site",
+    "scripts/*"
   ],
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
