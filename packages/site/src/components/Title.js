@@ -1,4 +1,5 @@
-import styled from 'react-emotion'
+// @flow
+import styled from '@emotion/styled'
 import { constants, mq } from '../utils/style'
 
 const Title = styled.h1(

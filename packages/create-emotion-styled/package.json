@@ -1,22 +1,35 @@
 {
   "name": "create-emotion-styled",
-  "version": "9.1.2",
+  "version": "9.2.3",
   "description": "The styled API for emotion",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
+  "scripts": {
+    "build": "npm-run-all clean rollup",
+    "clean": "rimraf dist",
+    "test:typescript": "dtslint types",
+    "rollup": "rollup -c ../../rollup.config.js",
+    "watch": "rollup -c ../../rollup.config.js --watch"
+  },
   "dependencies": {
     "@emotion/is-prop-valid": "^0.6.1"
   },
   "peerDependencies": {
-    "prop-types": ">= 15"
+    "prop-types": "15.x"
   },
   "devDependencies": {
-    "prop-types": "^15.6.0"
+    "@types/react": "16.0.16",
+    "dtslint": "^0.3.0",
+    "npm-run-all": "^4.0.2",
+    "prop-types": "^15.6.1",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.60.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

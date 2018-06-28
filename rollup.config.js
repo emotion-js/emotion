@@ -1,5 +1,5 @@
 import resolve from 'rollup-plugin-node-resolve'
-import uglify from 'rollup-plugin-uglify'
+import { uglify } from 'rollup-plugin-uglify'
 import replace from 'rollup-plugin-replace'
 import babel from 'rollup-plugin-babel'
 import alias from 'rollup-plugin-alias'
@@ -36,9 +36,7 @@ const basePlugins = [
 ]
 
 const baseConfig = {
-  input: './src/index.js',
-  exports: 'named',
-  sourcemap: true
+  input: './src/index.js'
 }
 
 const baseExternal = ['react', 'prop-types', 'preact']
@@ -58,8 +56,16 @@ const mainConfig = Object.assign({}, baseConfig, {
   ),
   plugins: basePlugins,
   output: [
-    { file: pkg.main, format: 'cjs' },
-    { file: pkg.module, format: 'es' }
+    {
+      file: pkg.main,
+      format: 'cjs',
+      sourcemap: true
+    },
+    {
+      file: pkg.module,
+      format: 'es',
+      sourcemap: true
+    }
   ]
 })
 
@@ -74,10 +80,11 @@ const umdConfig = Object.assign({}, baseConfig, {
     {
       file: './dist/emotion.umd.min.js',
       format: 'umd',
-      name: pkg.name
+      name: pkg.name,
+      globals: { react: 'React', 'prop-types': 'PropTypes', preact: 'preact' },
+      sourcemap: true
     }
   ],
-  globals: { react: 'React', 'prop-types': 'PropTypes', preact: 'preact' },
   external: baseExternal
 })
 

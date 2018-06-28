@@ -43,6 +43,7 @@ export const fonts = {
   primary: `-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif`,
   code: 'source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace'
 }
+
 export { default as openColors } from 'open-color'
 export {
   space,

@@ -1,5 +1,5 @@
 // @flow
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import React from 'react'
 
 type Props = {
@@ -7,9 +7,9 @@ type Props = {
   activeClassName?: string
 }
 
-export default ({ to, activeClassName, ...props }: Props) =>
+export default ({ to, ...props }: Props) =>
   to.match(/^https?:\/\//) ? (
     <a href={to} {...props} />
   ) : (
-    <Link activeClassName={activeClassName} to={to} {...props} />
+    <Link to={to} {...props} />
   )

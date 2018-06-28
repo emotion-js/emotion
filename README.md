@@ -69,6 +69,13 @@ const app = () => (
 )
 ```
 
+### Do I Need To Use the Babel Plugin?
+The babel plugin is not required, but enables some optimizations and customizations that could be beneficial for your project.
+
+Look here 👉 *[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)* 
+
+### Demo Sandbox
+
 [Demo Code Sandbox](https://codesandbox.io/s/pk1qjqpw67)
 
 ### Examples
@@ -77,6 +84,7 @@ const app = () => (
 * [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
 * [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
 * [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
+* [govuk-react](https://github.com/penx/govuk-react/), a React component library built for UK Government departments
 * **open a PR and add yours!**
 
 ### Ecosystem
@@ -90,7 +98,8 @@ const app = () => (
 
 ### In the Wild
 
-* [healthline.com](https://www.healthline.com/health/body-aches)
+* [healthline.com](https://www.healthline.com)
+* [nytimes.com](https://www.nytimes.com)
 * [vault.crucible.gg](http://vault.crucible.gg/)
 * [saldotuc.com](https://saldotuc.com)
 * [gatsbythemes.com](https://gatsbythemes.com/)

@@ -1,6 +1,7 @@
 // @flow
 import * as babel6 from 'babel-core'
 import * as babel7 from '@babel/core'
+import checkDuplicatedNodes from 'babel-check-duplicated-nodes'
 import { createMacroTests } from './util'
 
 const styledCases = {
@@ -73,13 +74,13 @@ const cases = {
         padding: 0;
         & > div {
           display: none;
-          
+
           &:hover {
             color: green;
-            
+
             & span {
               color: red;
-              
+
               &:after {
                 content: "end of line"
               }
@@ -211,7 +212,7 @@ describe('styled macro', () => {
       `
     expect(() =>
       babel6.transform(basic, {
-        plugins: [require('babel-macros')],
+        plugins: [require('babel-plugin-macros')],
         filename: __filename,
         babelrc: false
       })
@@ -226,10 +227,40 @@ describe('styled macro', () => {
       `
     expect(() =>
       babel7.transform(basic, {
-        plugins: ['module:babel-macros'],
+        plugins: ['module:babel-plugin-macros'],
         filename: __filename,
         babelrc: false
       })
     ).toThrowError(/the emotion macro must be imported with es modules/)
+  })
+
+  test('inserts unique AST nodes', () => {
+    const input = `
+      import { css } from './styled/macro'
+
+      const normal = css\`
+        font-weight: 400;
+      \`
+
+      const demibold = css\`
+        font-weight: 600;
+      \`
+
+      export { normal, demibold }
+    `
+
+    const { ast, code } = babel7.transform(input, {
+      plugins: [
+        'module:babel-plugin-macros',
+        '@babel/plugin-transform-modules-commonjs'
+      ],
+      filename: __filename,
+      babelrc: false,
+      ast: true
+    })
+
+    expect(code).toMatchSnapshot()
+
+    expect(() => checkDuplicatedNodes(babel7, ast)).not.toThrow()
   })
 })

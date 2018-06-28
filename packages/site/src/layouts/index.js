@@ -1,15 +1,18 @@
 // @flow
-import '../utils/global'
+import '../utils/make-prism-manual'
+import globalStyles from '../utils/global'
 import React from 'react'
 import Link from '../components/Link'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import Box from '../components/Box'
 import Helmet from 'react-helmet'
-import DocWrapper from '../components/DocWrapper'
 import Search from '../components/Search'
 import { colors, constants, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
 import type { Location, Match } from '../utils/types'
+import { Global } from '@emotion/core'
+import { StaticQuery, graphql } from 'gatsby'
+import { Route } from 'react-router'
 
 const StyledLink = styled(Box)`
   color: white;
@@ -22,16 +25,10 @@ const StyledLink = styled(Box)`
 
 const StyledLinkSpan = StyledLink.withComponent('span')
 
-StyledLink.defaultProps = {
-  activeClassName: 'active'
-}
-
-const Children = ({ children }) => children
-
 const H1 = Box.withComponent('h1')
 
-const Header = ({ isHome, avatar }) => (
-  <Children>
+const Header = ({ isHome }) => (
+  <React.Fragment>
     <Box
       bg={colors.dark}
       css={{
@@ -56,11 +53,28 @@ const Header = ({ isHome, avatar }) => (
           align="center"
         >
           <Link to="/" css={{ textDecoration: 'none', display: 'flex' }}>
-            <Image
-              css={{ display: 'inline-block', margin: 0, padding: 0 }}
-              height="36px"
-              width="36px"
-              resolutions={avatar}
+            <StaticQuery
+              query={graphql`
+                query Avatar {
+                  avatar: file(name: { eq: "emotion" }) {
+                    childImageSharp {
+                      resolutions(width: 36, height: 36) {
+                        ...GatsbyImageSharpResolutions_withWebp_noBase64
+                      }
+                    }
+                  }
+                }
+              `}
+              render={({ avatar }) => {
+                return (
+                  <Image
+                    css={{ display: 'inline-block', margin: 0, padding: 0 }}
+                    height="36px"
+                    width="36px"
+                    resolutions={avatar.childImageSharp.resolutions}
+                  />
+                )
+              }}
             />
             <H1 m={0} p={0} align="center" display={['none', 'inline-flex']}>
               <StyledLinkSpan
@@ -83,11 +97,17 @@ const Header = ({ isHome, avatar }) => (
           css={{ overflow: 'initial' }}
         >
           <Search />
-          <StyledLink to="/docs">Documentation</StyledLink>
+          <StyledLink activeClassName="active" to="/docs">
+            Documentation
+          </StyledLink>
+          <StyledLink activeClassName="active" to="/community">
+            Community
+          </StyledLink>
           <StyledLink to="https://github.com/emotion-js/emotion">
             GitHub
           </StyledLink>
           <StyledLink to="https://emotion.now.sh">Slack</StyledLink>
+          <StyledLink to="https://spectrum.chat/emotion">Spectrum</StyledLink>
         </Box>
       </Box>
     </Box>
@@ -103,7 +123,7 @@ const Header = ({ isHome, avatar }) => (
         zIndex: 50
       }}
     />
-  </Children>
+  </React.Fragment>
 )
 
 const OuterGradientContainer = styled(Box)`
@@ -138,84 +158,37 @@ const BaseWrapper = props => {
         color={isHome ? '#FFFEFF' : '#1e2029'}
       >
         <Helmet title="emotion" />
-        <Header avatar={props.avatar} isHome={isHome} />
+        <Header isHome={isHome} />
         {props.children}
       </BodyInner>
     </OuterGradientContainer>
   )
 }
 
-type SidebarNode = {
-  node: {
-    frontmatter: {
-      title: string
-    },
-    fields: {
-      slug: string
-    }
-  }
-}
-
 type TemplateWrapperProps = {
   children: (*) => React$Node,
   location: Location,
-  match: Match,
-  data: {
-    avatar: {
-      childImageSharp: {
-        resolutions: Object
-      }
-    },
-    allMarkdownRemark: {
-      edges: Array<SidebarNode>
-    }
-  }
+  match: Match
 }
 
 const TemplateWrapper = (props: TemplateWrapperProps) => {
-  let children = <Box m={[1, 2]}>{props.children()}</Box>
-  if (props.location.pathname.match(/\/docs.*/)) {
-    children = (
-      <DocWrapper sidebarNodes={props.data.allMarkdownRemark.edges}>
-        {props.children({
-          ...props,
-          markdownNodes: props.data.allMarkdownRemark.edges
-        })}
-      </DocWrapper>
-    )
-  }
   return (
-    <BaseWrapper
-      avatar={props.data.avatar.childImageSharp.resolutions}
-      location={props.location}
-    >
-      {children}
-    </BaseWrapper>
+    // $FlowFixMe
+    <React.Fragment>
+      <Global css={globalStyles} />
+      <BaseWrapper location={props.location}>{props.children}</BaseWrapper>
+    </React.Fragment>
   )
 }
 
-export const pageQuery = graphql`
-  query TemplateQuery {
-    allMarkdownRemark(filter: { fileAbsolutePath: { glob: "**/docs/*.md" } }) {
-      edges {
-        node {
-          frontmatter {
-            title
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-    avatar: file(name: { eq: "emotion" }) {
-      childImageSharp {
-        resolutions(width: 36, height: 36) {
-          ...GatsbyImageSharpResolutions_withWebp_noBase64
-        }
-      }
-    }
-  }
-`
+const OuterWrapper = (props: *) => {
+  return (
+    <Route
+      render={routerProps => {
+        return <TemplateWrapper {...routerProps} {...props} />
+      }}
+    />
+  )
+}
 
-export default TemplateWrapper
+export default OuterWrapper

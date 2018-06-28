@@ -9,12 +9,11 @@ import {
   getIdentifierName,
   getName,
   createRawStringFromTemplateLiteral,
-  minify,
-  getLabel
+  getLabel,
+  appendStringToExpressions
 } from './babel-utils'
 import type {
   Node,
-  BabelPath as _BabelPath,
   Identifier,
   BabelPluginPass,
   Types,
@@ -26,11 +25,9 @@ import memoize from '@emotion/memoize'
 import { addSourceMaps } from './source-map'
 
 import cssProps from './css-prop'
-import ASTObject from './ast-object'
+import { getExpressionsFromTemplateLiteral } from '@emotion/babel-utils'
 
-export type BabelPath = _BabelPath & {
-  node: *
-}
+export type BabelPath = any
 
 export const emotionMacro = require('./macro')
 
@@ -109,8 +106,10 @@ export function replaceCssWithCallExpression(
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
     }
+
+    let stringToAppend = ''
     if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
-      src += addSourceMaps(path.node.quasi.loc.start, state)
+      stringToAppend += addSourceMaps(path.node.quasi.loc.start, state)
     }
 
     const label = getLabel(
@@ -120,12 +119,18 @@ export function replaceCssWithCallExpression(
       state.file.opts.filename
     )
 
+    if (label) {
+      stringToAppend += `label:${label};`
+    }
+
     path.replaceWith(
       t.callExpression(
         identifier,
-        new ASTObject(minify(src), path.node.quasi.expressions, t)
-          .toExpressions()
-          .concat(label ? [t.stringLiteral(`label:${label};`)] : [])
+        appendStringToExpressions(
+          getExpressionsFromTemplateLiteral(path.node.quasi, t),
+          stringToAppend,
+          t
+        )
       )
     )
 
@@ -242,12 +247,12 @@ export function buildStyledCallExpression(
     )
   }
 
-  let { src } = createRawStringFromTemplateLiteral(path.node.quasi)
-
   path.addComment('leading', '#__PURE__')
 
+  let stringToAppend = ''
+
   if (state.opts.sourceMap === true && path.node.quasi.loc !== undefined) {
-    src += addSourceMaps(path.node.quasi.loc.start, state)
+    stringToAppend += addSourceMaps(path.node.quasi.loc.start, state)
   }
 
   let labelProperty
@@ -276,7 +281,11 @@ export function buildStyledCallExpression(
   return t.callExpression(
     // $FlowFixMe
     t.callExpression(identifier, [tag, finalOptions, ...restArgs]),
-    new ASTObject(minify(src), path.node.quasi.expressions, t).toExpressions()
+    appendStringToExpressions(
+      getExpressionsFromTemplateLiteral(path.node.quasi, t),
+      stringToAppend,
+      t
+    )
   )
 }
 

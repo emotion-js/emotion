@@ -29,7 +29,13 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
       staticClassName = options.e
       identifierName = options.label
       stableClassName = options.target
-      shouldForwardProp = options.shouldForwardProp
+      shouldForwardProp =
+        tag.__emotion_forwardProp && options.shouldForwardProp
+          ? propName =>
+              tag.__emotion_forwardProp(propName) &&
+              // $FlowFixMe
+              options.shouldForwardProp(propName)
+          : options.shouldForwardProp
     }
     const isReal = tag.__emotion_real === tag
     const baseTag =
@@ -75,6 +81,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         static __emotion_styles: Interpolations
         static __emotion_base: Styled
         static __emotion_target: string
+        static __emotion_forwardProp: void | (string => boolean)
         static withComponent: (ElementType, options?: StyledOptions) => any
 
         componentWillMount() {
@@ -140,10 +147,15 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
                 : baseTag.displayName || baseTag.name || 'Component'
             })`
 
+      if (tag.defaultProps !== undefined) {
+        // $FlowFixMe
+        Styled.defaultProps = tag.defaultProps
+      }
       Styled.contextTypes = contextTypes
       Styled.__emotion_styles = styles
       Styled.__emotion_base = baseTag
       Styled.__emotion_real = Styled
+      Styled.__emotion_forwardProp = shouldForwardProp
       Object.defineProperty(Styled, 'toString', {
         enumerable: false,
         value() {

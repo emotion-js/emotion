@@ -56,22 +56,27 @@ const cls2 = /*#__PURE__*/css([{
 exports[`babel css inline babel 6 autoLabel 1`] = `
 "
 function test() {
-  const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\", \\"label:cls1;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\", \\"label:cls1;\\");
+  const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;label:cls1;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";label:cls1;\\");
 
   const cls2 = /*#__PURE__*/css({ color: 'blue' }, \\"label:cls2;\\");
   const cls4 = /*#__PURE__*/css({ color: \\"hotpink\\" }, \\"label:cls4;\\");
 
-  const cls3 = /*#__PURE__*/css(\\"display:flex;&:hover{color:hotpink;}\\", \\"label:cls3;\\");
+  const cls3 = /*#__PURE__*/css(\\"display:flex;&:hover{color:hotpink;}label:cls3;\\");
   function inner() {
     const styles = { color: \\"darkorchid\\" };
     const color = 'aquamarine';
 
-    const cls4 = /*#__PURE__*/css(cls3, \\";\\", cls1, \\";\\", () => ({ color: \\"darkorchid\\" }), \\";\\", () => ({ color }), \\";\\", /*#__PURE__*/css(\\"height:420px;width:\\", styles, \\"label:cls4;\\"), \\";\\", \\"label:cls4;\\");
+    const cls4 = /*#__PURE__*/css(cls3, \\";\\", cls1, \\";\\", () => ({ color: \\"darkorchid\\" }), \\";\\", () => ({ color }), \\";\\", /*#__PURE__*/css(\\"height:420px;width:\\", styles, \\"label:cls4;\\"), \\";label:cls4;\\");
   }
 }"
 `;
 
 exports[`babel css inline babel 6 basic object support 1`] = `"/*#__PURE__*/css({ display: 'flex' });"`;
+
+exports[`babel css inline babel 6 comments 1`] = `
+"
+/*#__PURE__*/css(\\"color:hotpink;\\");"
+`;
 
 exports[`babel css inline babel 6 css basic 1`] = `
 "
@@ -165,17 +170,17 @@ const cls2 = /*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;\\", className, 
 exports[`babel css inline babel 6 label format with filename and local 1`] = `
 "
 function test() {
-  const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\", \\"label:my-css-emotion-cls1;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\", \\"label:my-css-emotion-cls1;\\");
+  const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;label:my-css-emotion-cls1;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";label:my-css-emotion-cls1;\\");
 
   const cls2 = /*#__PURE__*/css({ color: 'blue' }, \\"label:my-css-emotion-cls2;\\");
   const cls4 = /*#__PURE__*/css({ color: \\"hotpink\\" }, \\"label:my-css-emotion-cls4;\\");
 
-  const cls3 = /*#__PURE__*/css(\\"display:flex;&:hover{color:hotpink;}\\", \\"label:my-css-emotion-cls3;\\");
+  const cls3 = /*#__PURE__*/css(\\"display:flex;&:hover{color:hotpink;}label:my-css-emotion-cls3;\\");
   function inner() {
     const styles = { color: \\"darkorchid\\" };
     const color = 'aquamarine';
 
-    const cls4 = /*#__PURE__*/css(cls3, \\";\\", cls1, \\";\\", () => ({ color: \\"darkorchid\\" }), \\";\\", () => ({ color }), \\";\\", /*#__PURE__*/css(\\"height:420px;width:\\", styles, \\"label:my-css-emotion-cls4;\\"), \\";\\", \\"label:my-css-emotion-cls4;\\");
+    const cls4 = /*#__PURE__*/css(cls3, \\";\\", cls1, \\";\\", () => ({ color: \\"darkorchid\\" }), \\";\\", () => ({ color }), \\";\\", /*#__PURE__*/css(\\"height:420px;width:\\", styles, \\"label:my-css-emotion-cls4;\\"), \\";label:my-css-emotion-cls4;\\");
   }
 }"
 `;
@@ -183,17 +188,17 @@ function test() {
 exports[`babel css inline babel 6 labelFormat 1`] = `
 "
 function test() {
-  const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\", \\"label:my-css-cls1;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\", \\"label:my-css-cls1;\\");
+  const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;label:my-css-cls1;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";label:my-css-cls1;\\");
 
   const cls2 = /*#__PURE__*/css({ color: 'blue' }, \\"label:my-css-cls2;\\");
   const cls4 = /*#__PURE__*/css({ color: \\"hotpink\\" }, \\"label:my-css-cls4;\\");
 
-  const cls3 = /*#__PURE__*/css(\\"display:flex;&:hover{color:hotpink;}\\", \\"label:my-css-cls3;\\");
+  const cls3 = /*#__PURE__*/css(\\"display:flex;&:hover{color:hotpink;}label:my-css-cls3;\\");
   function inner() {
     const styles = { color: \\"darkorchid\\" };
     const color = 'aquamarine';
 
-    const cls4 = /*#__PURE__*/css(cls3, \\";\\", cls1, \\";\\", () => ({ color: \\"darkorchid\\" }), \\";\\", () => ({ color }), \\";\\", /*#__PURE__*/css(\\"height:420px;width:\\", styles, \\"label:my-css-cls4;\\"), \\";\\", \\"label:my-css-cls4;\\");
+    const cls4 = /*#__PURE__*/css(cls3, \\";\\", cls1, \\";\\", () => ({ color: \\"darkorchid\\" }), \\";\\", () => ({ color }), \\";\\", /*#__PURE__*/css(\\"height:420px;width:\\", styles, \\"label:my-css-cls4;\\"), \\";label:my-css-cls4;\\");
   }
 }"
 `;
@@ -201,6 +206,18 @@ function test() {
 exports[`babel css inline babel 6 nested expanded properties 1`] = `
 "
 /*#__PURE__*/css(\\"margin:12px 48px;& .div{display:flex;}\\");"
+`;
+
+exports[`babel css inline babel 6 object label 1`] = `
+"
+let obj = {
+  someProp: /*#__PURE__*/css({ color: 'green' }, 'label:someProp;'),
+  'anotherProp': /*#__PURE__*/css({ color: 'hotpink' }, 'label:anotherProp;')
+};
+class Thing {
+  static Prop = /*#__PURE__*/css({ color: 'yellow' }, 'label:Prop;');
+  BadIdea = /*#__PURE__*/css({ color: 'red' }, 'label:BadIdea;');
+}"
 `;
 
 exports[`babel css inline babel 6 object with a bunch of stuff 1`] = `
@@ -285,9 +302,9 @@ exports[`babel css inline babel 7 autoLabel 1`] = `
   /*#__PURE__*/
   css(\\"font-size:20px;@media(min-width:420px){color:blue;\\",
   /*#__PURE__*/
-  css(\\"width:96px;height:96px;\\", \\"label:cls1;\\"), \\";line-height:26px;}background:green;\\", {
+  css(\\"width:96px;height:96px;label:cls1;\\"), \\";line-height:26px;}background:green;\\", {
     backgroundColor: \\"hotpink\\"
-  }, \\";\\", \\"label:cls1;\\");
+  }, \\";label:cls1;\\");
   const cls2 =
   /*#__PURE__*/
   css({
@@ -300,7 +317,7 @@ exports[`babel css inline babel 7 autoLabel 1`] = `
   }, \\"label:cls4;\\");
   const cls3 =
   /*#__PURE__*/
-  css(\\"display:flex;&:hover{color:hotpink;}\\", \\"label:cls3;\\");
+  css(\\"display:flex;&:hover{color:hotpink;}label:cls3;\\");
 
   function inner() {
     const styles = {
@@ -315,7 +332,7 @@ exports[`babel css inline babel 7 autoLabel 1`] = `
       color
     }), \\";\\",
     /*#__PURE__*/
-    css(\\"height:420px;width:\\", styles, \\"label:cls4;\\"), \\";\\", \\"label:cls4;\\");
+    css(\\"height:420px;width:\\", styles, \\"label:cls4;\\"), \\";label:cls4;\\");
   }
 }"
 `;
@@ -325,6 +342,11 @@ exports[`babel css inline babel 7 basic object support 1`] = `
 css({
   display: 'flex'
 });"
+`;
+
+exports[`babel css inline babel 7 comments 1`] = `
+"/*#__PURE__*/
+css(\\"color:hotpink;\\");"
 `;
 
 exports[`babel css inline babel 7 css basic 1`] = `
@@ -461,9 +483,9 @@ exports[`babel css inline babel 7 label format with filename and local 1`] = `
   /*#__PURE__*/
   css(\\"font-size:20px;@media(min-width:420px){color:blue;\\",
   /*#__PURE__*/
-  css(\\"width:96px;height:96px;\\", \\"label:my-css-emotion-cls1;\\"), \\";line-height:26px;}background:green;\\", {
+  css(\\"width:96px;height:96px;label:my-css-emotion-cls1;\\"), \\";line-height:26px;}background:green;\\", {
     backgroundColor: \\"hotpink\\"
-  }, \\";\\", \\"label:my-css-emotion-cls1;\\");
+  }, \\";label:my-css-emotion-cls1;\\");
   const cls2 =
   /*#__PURE__*/
   css({
@@ -476,7 +498,7 @@ exports[`babel css inline babel 7 label format with filename and local 1`] = `
   }, \\"label:my-css-emotion-cls4;\\");
   const cls3 =
   /*#__PURE__*/
-  css(\\"display:flex;&:hover{color:hotpink;}\\", \\"label:my-css-emotion-cls3;\\");
+  css(\\"display:flex;&:hover{color:hotpink;}label:my-css-emotion-cls3;\\");
 
   function inner() {
     const styles = {
@@ -491,7 +513,7 @@ exports[`babel css inline babel 7 label format with filename and local 1`] = `
       color
     }), \\";\\",
     /*#__PURE__*/
-    css(\\"height:420px;width:\\", styles, \\"label:my-css-emotion-cls4;\\"), \\";\\", \\"label:my-css-emotion-cls4;\\");
+    css(\\"height:420px;width:\\", styles, \\"label:my-css-emotion-cls4;\\"), \\";label:my-css-emotion-cls4;\\");
   }
 }"
 `;
@@ -502,9 +524,9 @@ exports[`babel css inline babel 7 labelFormat 1`] = `
   /*#__PURE__*/
   css(\\"font-size:20px;@media(min-width:420px){color:blue;\\",
   /*#__PURE__*/
-  css(\\"width:96px;height:96px;\\", \\"label:my-css-cls1;\\"), \\";line-height:26px;}background:green;\\", {
+  css(\\"width:96px;height:96px;label:my-css-cls1;\\"), \\";line-height:26px;}background:green;\\", {
     backgroundColor: \\"hotpink\\"
-  }, \\";\\", \\"label:my-css-cls1;\\");
+  }, \\";label:my-css-cls1;\\");
   const cls2 =
   /*#__PURE__*/
   css({
@@ -517,7 +539,7 @@ exports[`babel css inline babel 7 labelFormat 1`] = `
   }, \\"label:my-css-cls4;\\");
   const cls3 =
   /*#__PURE__*/
-  css(\\"display:flex;&:hover{color:hotpink;}\\", \\"label:my-css-cls3;\\");
+  css(\\"display:flex;&:hover{color:hotpink;}label:my-css-cls3;\\");
 
   function inner() {
     const styles = {
@@ -532,7 +554,7 @@ exports[`babel css inline babel 7 labelFormat 1`] = `
       color
     }), \\";\\",
     /*#__PURE__*/
-    css(\\"height:420px;width:\\", styles, \\"label:my-css-cls4;\\"), \\";\\", \\"label:my-css-cls4;\\");
+    css(\\"height:420px;width:\\", styles, \\"label:my-css-cls4;\\"), \\";label:my-css-cls4;\\");
   }
 }"
 `;
@@ -540,6 +562,34 @@ exports[`babel css inline babel 7 labelFormat 1`] = `
 exports[`babel css inline babel 7 nested expanded properties 1`] = `
 "/*#__PURE__*/
 css(\\"margin:12px 48px;& .div{display:flex;}\\");"
+`;
+
+exports[`babel css inline babel 7 object label 1`] = `
+"let obj = {
+  someProp:
+  /*#__PURE__*/
+  css({
+    color: 'green'
+  }, \\"label:someProp;\\"),
+  'anotherProp':
+  /*#__PURE__*/
+  css({
+    color: 'hotpink'
+  }, \\"label:anotherProp;\\")
+};
+
+class Thing {
+  static Prop =
+  /*#__PURE__*/
+  css({
+    color: 'yellow'
+  }, \\"label:Prop;\\");
+  BadIdea =
+  /*#__PURE__*/
+  css({
+    color: 'red'
+  }, \\"label:BadIdea;\\");
+}"
 `;
 
 exports[`babel css inline babel 7 object with a bunch of stuff 1`] = `

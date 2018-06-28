@@ -90,6 +90,26 @@ describe('jest-emotion with DOM elements disabled', () => {
   })
 })
 
+test('does not replace class names that are not from emotion', () => {
+  const emotionPlugin = createSerializer(emotion)
+
+  const classes = emotion.cx(
+    'net-42',
+    'net',
+    emotion.css`
+      color: darkorchid;
+    `
+  )
+
+  let tree = renderer.create(<div className={classes} />).toJSON()
+
+  const output = prettyFormat(tree, {
+    plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
+  })
+
+  expect(output).toMatchSnapshot()
+})
+
 describe('jest-emotion with nested selectors', () => {
   const emotionPlugin = createSerializer(emotion)
 
@@ -97,11 +117,11 @@ describe('jest-emotion with nested selectors', () => {
     color: blue;
 
     header & {
-      color: 'red';
+      color: red;
     }
   `
 
-  it.skip('replaces class names and inserts styles into React test component snapshots', () => {
+  it('replaces class names and inserts styles into React test component snapshots', () => {
     const tree = renderer.create(<div className={divStyle} />).toJSON()
 
     const output = prettyFormat(tree, {

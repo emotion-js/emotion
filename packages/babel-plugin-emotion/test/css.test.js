@@ -395,6 +395,35 @@ function test () {
       instances: ['./my-emotion-instance']
     },
     filename: __filename
+  },
+  comments: {
+    code: `
+    css\`
+    // display:flex;
+    
+    /*
+    wef
+    
+    dfwf*/
+    color:hotpink;
+    \`
+    
+    `
+  },
+  'object label': {
+    code: `
+    let obj = {
+      someProp: css({color:'green'}),
+      'anotherProp': css({color:'hotpink'})
+    }
+    class Thing {
+      static Prop = css({color:'yellow'})
+      BadIdea = css({color:'red'})
+    }
+    `,
+    opts: {
+      autoLabel: true
+    }
   }
 }
 createInlineTests('babel css inline', inline)

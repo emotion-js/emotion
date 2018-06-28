@@ -4,29 +4,10 @@ import { hashArray } from './index'
 import type { BabelPath, EmotionBabelPluginPass } from './index'
 import type { Types, Identifier } from 'babel-flow-types'
 
-function getDeclaratorName(path: BabelPath, t: Types) {
-  // $FlowFixMe
-  const parent = path.findParent(p => p.isVariableDeclarator())
-  return parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
-}
+export { getLabelFromPath as getIdentifierName } from '@emotion/babel-utils'
 
-export function getIdentifierName(path: BabelPath, t: Types) {
-  let classParent
-  if (path) {
-    // $FlowFixMe
-    classParent = path.findParent(p => t.isClass(p))
-  }
-  if (classParent && classParent.node.id) {
-    return t.isIdentifier(classParent.node.id) ? classParent.node.id.name : ''
-  } else if (
-    classParent &&
-    classParent.node.superClass &&
-    classParent.node.superClass.name
-  ) {
-    return `${getDeclaratorName(path, t)}(${classParent.node.superClass.name})`
-  }
-
-  return getDeclaratorName(path, t)
+function cloneNode(t: any, node) {
+  return (typeof t.cloneNode === 'function' ? t.cloneNode : t.cloneDeep)(node)
 }
 
 export function getRuntimeImportPath(path: BabelPath, t: Types) {
@@ -54,7 +35,7 @@ export function buildMacroRuntimeNode(
   state: EmotionMacroPluginPass,
   importName: string,
   t: Types
-) {
+): Identifier {
   const runtimeImportPath = getRuntimeImportPath(path, t)
   if (state.emotionImports === undefined) state.emotionImports = {}
   if (state.emotionImports[runtimeImportPath] === undefined) {
@@ -66,7 +47,8 @@ export function buildMacroRuntimeNode(
       importName
     ] = path.scope.generateUidIdentifier(path.node.name)
   }
-  return state.emotionImports[runtimeImportPath][importName]
+  // $FlowFixMe
+  return cloneNode(t, state.emotionImports[runtimeImportPath][importName])
 }
 
 export function addRuntimeImports(state: EmotionMacroPluginPass, t: Types) {
@@ -150,28 +132,4 @@ export function omit(
   return target
 }
 
-// babel-plugin-styled-components
-// https://github.com/styled-components/babel-plugin-styled-components/blob/8d44acc36f067d60d4e09f9c22ff89695bc332d2/src/minify/index.js
-
-const symbolRegex = /(\s*[;:{},]\s*)/g
-
-// Counts occurences of substr inside str
-const countOccurences = (str, substr) => str.split(substr).length - 1
-
-export const minify = (code: string) =>
-  code.split(symbolRegex).reduce((str, fragment, index) => {
-    // Even-indices are non-symbol fragments
-    if (index % 2 === 0) {
-      return str + fragment
-    }
-
-    // Only manipulate symbols outside of strings
-    if (
-      countOccurences(str, "'") % 2 === 0 &&
-      countOccurences(str, '"') % 2 === 0
-    ) {
-      return str + fragment.trim()
-    }
-
-    return str + fragment
-  }, '')
+export { appendStringToExpressions } from '@emotion/babel-utils'

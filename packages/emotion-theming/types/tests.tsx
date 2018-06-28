@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import * as emotionTheming from '../';
 // tslint:disable-next-line:no-duplicate-imports
 import { ThemeProvider, withTheme, EmotionThemingModule } from '../';

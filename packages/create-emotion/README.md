@@ -26,7 +26,7 @@ export const {
 
 ### Upside
 
-- Calling it directly will allow for some low level custimization.
+- Calling it directly will allow for some low level customization.
 
 - Create custom names for emotion APIs to help with migration from other, similar libraries.
 
