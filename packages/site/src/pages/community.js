@@ -1,5 +1,6 @@
 // @flow
 import React from 'react'
+import { graphql } from 'gatsby'
 import Layout from '../layouts'
 import RenderHAST from '../components/RenderHAST'
 import Box from '../components/Box'

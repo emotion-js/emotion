@@ -9,6 +9,7 @@ import Title from '../components/Title'
 import type { HASTRoot } from '../utils/types'
 import memoize from '@emotion/memoize'
 import Layout from '../layouts'
+import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
 
 type Props = {

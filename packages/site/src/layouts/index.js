@@ -11,7 +11,7 @@ import { colors, constants, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
 import type { Location, Match } from '../utils/types'
 import { Global } from '@emotion/core'
-import { StaticQuery } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 import { Route } from 'react-router'
 
 const StyledLink = styled(Box)`

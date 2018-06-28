@@ -2,7 +2,7 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
 import { css, keyframes, cx } from 'emotion'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import Box from './Box'
 import { constants, colors, p } from '../utils/style'
 import DocSidebar from './DocSidebar'
