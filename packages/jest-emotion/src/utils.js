@@ -1,6 +1,6 @@
 // @flow
 
-function getClassNames(selectors, classes) {
+function getClassNames(selectors: any, classes?: string) {
   return classes ? selectors.concat(classes.split(' ')) : selectors
 }
 

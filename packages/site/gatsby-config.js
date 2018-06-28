@@ -31,13 +31,15 @@ module.exports = {
         }
       },
       {
-        resolve: `gatsby-plugin-favicon`,
+        // todo: contribute to gatsby-plugin-manifest
+        // https://github.com/gatsbyjs/gatsby/issues/5887
+        resolve: `gatsby-plugin-favicon-fork`,
         options: {
           logo: `${__dirname}/../../emotion.png`,
           injectHTML: true,
           icons: {
             android: false,
-            appleIcon: false,
+            appleIcon: true,
             appleStartup: false,
             coast: false,
             favicons: true,
@@ -48,7 +50,20 @@ module.exports = {
           }
         }
       },
-      `gatsby-transformer-remark`,
+      'gatsby-plugin-emotion-next-compat',
+      {
+        resolve: `gatsby-transformer-remark`,
+        options: {
+          plugins: [
+            'gatsby-remark-remove-readme-titles',
+            'gatsby-remark-change-awesome',
+            'gatsby-remark-live-code',
+            'gatsby-remark-autolink-headers',
+            'gatsby-remark-prismjs',
+            'gatsby-remark-smartypants'
+          ]
+        }
+      },
       `gatsby-plugin-react-helmet`,
       'gatsby-plugin-sharp',
       'gatsby-transformer-sharp',

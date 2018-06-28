@@ -14,7 +14,6 @@ import {
 } from './babel-utils'
 import type {
   Node,
-  BabelPath as _BabelPath,
   Identifier,
   BabelPluginPass,
   Types,
@@ -28,9 +27,7 @@ import { addSourceMaps } from './source-map'
 import cssProps from './css-prop'
 import { getExpressionsFromTemplateLiteral } from '@emotion/babel-utils'
 
-export type BabelPath = _BabelPath & {
-  node: *
-}
+export type BabelPath = any
 
 export function hashArray(arr: Array<string>) {
   return hashString(arr.join(''))
