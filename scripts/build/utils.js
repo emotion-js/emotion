@@ -1,22 +1,24 @@
 const path = require('path')
-const globby = require('globby')
 const del = require('del')
+const { promisify } = require('util')
+const fs = require('fs')
 const makeRollupConfig = require('./rollup.config')
 const camelize = require('fbjs/lib/camelize')
+
+const readdir = promisify(fs.readdir)
 
 const rootPath = path.resolve(__dirname, '..', '..')
 
 exports.rootPath = rootPath
 
 exports.cleanDist = async function cleanDist(pkgPath) {
-  await del(`${pkgPath}/dist`, { force: true, cwd: rootPath })
+  await del(`${pkgPath}/dist`)
 }
 
 exports.getPackages = async function getPackages() {
-  const packagePaths = await globby('packages/*/', {
-    cwd: rootPath,
-    nodir: false
-  })
+  const packagePaths = (await readdir(path.join(rootPath, 'packages'))).map(
+    pkg => path.join(rootPath, 'packages', pkg)
+  )
   const packages = packagePaths
     .map(packagePath => {
       const fullPackagePath = path.resolve(rootPath, packagePath)
@@ -24,32 +26,54 @@ exports.getPackages = async function getPackages() {
         path: fullPackagePath,
         pkg: require(path.resolve(fullPackagePath, 'package.json'))
       }
+      if (ret.pkg.main.includes('src')) {
+        return false
+      }
       ret.name = ret.pkg.name
-      ret.config = makeRollupConfig(ret)
-      ret.outputConfigs = getOutputConfigs(ret)
+      ret.configs = [
+        {
+          config: ret.config,
+          outputConfigs: ret.outputConfigs
+        }
+      ]
       if (ret.pkg['umd:main']) {
-        ret.UMDConfig = makeRollupConfig(ret, true)
-        ret.UMDOutputConfig = getUMDOutputConfig(ret)
+        ret.configs.push({
+          config: makeRollupConfig(ret, true, true),
+          outputConfigs: [getUMDOutputConfig(ret)]
+        })
+      }
+      if (ret.pkg.browser) {
+        ret.configs.push({
+          config: makeRollupConfig(ret, false, true),
+          outputConfigs: getOutputConfigs(ret, true)
+        })
       }
       return ret
     })
-    .filter(pkg => pkg.name !== 'eslint-plugin-emotion')
+    .filter(Boolean)
   return packages
 }
 
-function getOutputConfigs(pkg) {
-  let configs = []
-  if (pkg.pkg.main) {
-    const cjsPath = path.resolve(pkg.path, pkg.pkg.main)
+function getPath(pkg, field, isBrowser) {
+  return path.resolve(
+    pkg.path,
+    isBrowser && pkg.pkg.browser && pkg.pkg.browser['./' + pkg.pkg[field]]
+      ? pkg.pkg.browser['./' + pkg.pkg[field]]
+      : pkg.pkg[field]
+  )
+}
 
-    configs.push({
+function getOutputConfigs(pkg, isBrowser = false) {
+  const cjsPath = getPath(pkg, 'main', isBrowser)
+  let configs = [
+    {
       format: 'cjs',
       sourcemap: true,
       file: cjsPath
-    })
-  }
+    }
+  ]
   if (pkg.pkg.module) {
-    const esmPath = path.resolve(pkg.path, pkg.pkg.module)
+    const esmPath = getPath(pkg, 'module', isBrowser)
 
     configs.push({
       format: 'es',

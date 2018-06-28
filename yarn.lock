@@ -262,6 +262,13 @@
     "@babel/types" "7.0.0-beta.46"
     lodash "^4.2.0"
 
+"@babel/helper-module-imports@7.0.0-beta.49":
+  version "7.0.0-beta.49"
+  resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.0.0-beta.49.tgz#41d7d59891016c493432a46f7464446552890c75"
+  dependencies:
+    "@babel/types" "7.0.0-beta.49"
+    lodash "^4.17.5"
+
 "@babel/helper-module-imports@7.0.0-beta.51":
   version "7.0.0-beta.51"
   resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.0.0-beta.51.tgz#ce00428045fbb7d5ebc0ea7bf835789f15366ab2"
@@ -1401,6 +1408,14 @@
   dependencies:
     esutils "^2.0.2"
     lodash "^4.2.0"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@7.0.0-beta.49":
+  version "7.0.0-beta.49"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.49.tgz#b7e3b1c3f4d4cfe11bdf8c89f1efd5e1617b87a6"
+  dependencies:
+    esutils "^2.0.2"
+    lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
 "@babel/types@7.0.0-beta.51":
@@ -13158,6 +13173,13 @@ rollup-plugin-babel@4.0.0-beta.4:
     "@babel/helper-module-imports" "7.0.0-beta.44"
     rollup-pluginutils "^2.0.1"
 
+rollup-plugin-babel@^4.0.0-beta.1:
+  version "4.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-babel/-/rollup-plugin-babel-4.0.0-beta.5.tgz#1968a72a0be9414a2b073689cf747874cbf0a12b"
+  dependencies:
+    "@babel/helper-module-imports" "7.0.0-beta.49"
+    rollup-pluginutils "^2.0.1"
+
 rollup-plugin-commonjs@^9.1.3:
   version "9.1.3"
   resolved "https://registry.yarnpkg.com/rollup-plugin-commonjs/-/rollup-plugin-commonjs-9.1.3.tgz#37bfbf341292ea14f512438a56df8f9ca3ba4d67"
@@ -13167,7 +13189,7 @@ rollup-plugin-commonjs@^9.1.3:
     resolve "^1.5.0"
     rollup-pluginutils "^2.0.1"
 
-rollup-plugin-node-resolve@^3.0.0:
+rollup-plugin-node-resolve@^3.0.0, rollup-plugin-node-resolve@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-3.3.0.tgz#c26d110a36812cbefa7ce117cadcd3439aa1c713"
   dependencies:
@@ -13208,6 +13230,13 @@ rollup-watch@^4.3.1:
 rollup@^0.60.1:
   version "0.60.1"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.60.1.tgz#07cb66153f1541d5f7e82b8393b405c31647dae9"
+  dependencies:
+    "@types/estree" "0.0.39"
+    "@types/node" "*"
+
+rollup@^0.60.7:
+  version "0.60.7"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.60.7.tgz#2b62ef9306f719b1ab85a7814b3e6596ac51fae8"
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "*"

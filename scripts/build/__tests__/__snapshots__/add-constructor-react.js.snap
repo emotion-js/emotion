@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`add-basic-constructor-to-react-component basic 1`] = `
+"
+      class Thing extends React.Component {
+        thing = true;
+      }
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+class Thing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.thing = true;
+  }
+
+}"
+`;
+
+exports[`add-basic-constructor-to-react-component does not modify if there is already a constructor 1`] = `
+"class Thing2 extends React.Component {
+        constructor(props, otherThing) {
+          super(props, otherThing);
+        }
+        ok = true;
+      }
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+class Thing2 extends React.Component {
+  constructor(props, otherThing) {
+    super(props, otherThing);
+    this.ok = true;
+  }
+
+}"
+`;
+
+exports[`add-basic-constructor-to-react-component does not modify other non react components 1`] = `
+"      class Thing3 {
+            ok = true;
+          }
+          class Thing4 extends Thing3 {
+            ok = true;
+          }
+          class Thing5 extends Thing3.OtherThing {
+            ok = true;
+          }
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+class Thing3 {
+  constructor() {
+    this.ok = true;
+  }
+
+}
+
+class Thing4 extends Thing3 {
+  constructor(...args) {
+    var _temp;
+
+    return _temp = super(...args), this.ok = true, _temp;
+  }
+
+}
+
+class Thing5 extends Thing3.OtherThing {
+  constructor(...args) {
+    var _temp2;
+
+    return _temp2 = super(...args), this.ok = true, _temp2;
+  }
+
+}"
+`;

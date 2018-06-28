@@ -44,5 +44,6 @@
   ],
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
-  }
+  },
+  "umd:main": "./dist/emotion.umd.min.js"
 }

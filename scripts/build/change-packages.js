@@ -5,36 +5,28 @@ const fs = require('fs')
 const path = require('path')
 const writeFile = promisify(fs.writeFileSync)
 
+let pkgsThatShouldHaveUMDBuilds = [
+  'emotion',
+  'react-emotion',
+  'preact-emotion',
+  'emotion-theming',
+  'create-emotion',
+  'create-emotion-styled'
+]
+
 async function changePackages() {
   const packages = await getPackages()
 
   await Promise.all(
-    packages.map(async pkg => {
-      let devDeps = pkg.pkg.devDependencies
-      if (pkg.pkg.devDependencies) {
-        delete devDeps['npm-run-all']
-        delete devDeps['cross-env']
-        delete devDeps['babel-cli']
-        delete devDeps['rollup']
-        delete devDeps.rimraf
-        if (Object.keys(devDeps).length === 0) {
-          delete pkg.pkg.devDependencies
-        }
+    packages.map(async ({ pkg, path: pkgPath }) => {
+      // you can transform the package.json contents here
+      if (pkgsThatShouldHaveUMDBuilds.includes(pkg.name)) {
+        pkg['umd:main'] = './dist/emotion.umd.min.js'
       }
-      let scripts = pkg.pkg.scripts
-      if (pkg.pkg.scripts) {
-        delete scripts.build
-        delete scripts.clean
-        delete scripts.rollup
-        delete scripts.babel
-        delete scripts.watch
-        if (Object.keys(scripts).length === 0) {
-          delete pkg.pkg.scripts
-        }
-      }
+
       await writeFile(
-        path.resolve(pkg.path, 'package.json'),
-        JSON.stringify(pkg.pkg, null, 2) + '\n'
+        path.resolve(pkgPath, 'package.json'),
+        JSON.stringify(pkg, null, 2) + '\n'
       )
     })
   )
