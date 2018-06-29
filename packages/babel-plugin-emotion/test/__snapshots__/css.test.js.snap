@@ -208,6 +208,18 @@ exports[`babel css inline babel 6 nested expanded properties 1`] = `
 /*#__PURE__*/css(\\"margin:12px 48px;& .div{display:flex;}\\");"
 `;
 
+exports[`babel css inline babel 6 object label 1`] = `
+"
+let obj = {
+  someProp: /*#__PURE__*/css({ color: 'green' }, 'label:someProp;'),
+  'anotherProp': /*#__PURE__*/css({ color: 'hotpink' }, 'label:anotherProp;')
+};
+class Thing {
+  static Prop = /*#__PURE__*/css({ color: 'yellow' }, 'label:Prop;');
+  BadIdea = /*#__PURE__*/css({ color: 'red' }, 'label:BadIdea;');
+}"
+`;
+
 exports[`babel css inline babel 6 object with a bunch of stuff 1`] = `
 "
 const cls2 = /*#__PURE__*/css({
@@ -550,6 +562,34 @@ exports[`babel css inline babel 7 labelFormat 1`] = `
 exports[`babel css inline babel 7 nested expanded properties 1`] = `
 "/*#__PURE__*/
 css(\\"margin:12px 48px;& .div{display:flex;}\\");"
+`;
+
+exports[`babel css inline babel 7 object label 1`] = `
+"let obj = {
+  someProp:
+  /*#__PURE__*/
+  css({
+    color: 'green'
+  }, \\"label:someProp;\\"),
+  'anotherProp':
+  /*#__PURE__*/
+  css({
+    color: 'hotpink'
+  }, \\"label:anotherProp;\\")
+};
+
+class Thing {
+  static Prop =
+  /*#__PURE__*/
+  css({
+    color: 'yellow'
+  }, \\"label:Prop;\\");
+  BadIdea =
+  /*#__PURE__*/
+  css({
+    color: 'red'
+  }, \\"label:BadIdea;\\");
+}"
 `;
 
 exports[`babel css inline babel 7 object with a bunch of stuff 1`] = `

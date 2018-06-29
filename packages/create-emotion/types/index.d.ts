@@ -3,8 +3,6 @@
 
 import * as CSS from 'csstype';
 
-export interface MultiDimensionalArray<T> extends Array<T | MultiDimensionalArray<T>> {}
-
 export type CSSBaseObject = CSS.PropertiesFallback<number | string>;
 export type CSSPseudoObject = { [K in CSS.Pseudos]?: CSSObject };
 export interface CSSOthersObject {
@@ -14,11 +12,20 @@ export interface CSSObject extends CSSBaseObject, CSSPseudoObject, CSSOthersObje
 
 export interface ArrayInterpolation extends Array<Interpolation> {}
 
+export interface ClassInterpolation extends Function {
+  __emotion_real: any;
+  __emotion_styles: Array<Interpolation>;
+  __emotion_base: ClassInterpolation;
+  __emotion_target: string;
+  __emotion_forwardProp: undefined | null | ((arg: string) => boolean);
+}
+
 export type Interpolation =
   | undefined | null | boolean | string | number
   | TemplateStringsArray
   | CSSObject
   | ArrayInterpolation
+  | ClassInterpolation
   ;
 
 export interface ArrayClassNameArg extends Array<ClassNameArg> {}
@@ -74,7 +81,7 @@ export type StylisPlugins =
   | Array<(...args: Array<any>) => any>
   ;
 
-export interface EmotionOption {
+export interface EmotionOptions {
   nonce?: string;
   stylisPlugins?: StylisPlugins;
   prefix?: boolean | ((key: string, value: string, context: 1 | 2 | 3) => boolean);
@@ -82,4 +89,19 @@ export interface EmotionOption {
   container?: HTMLElement;
 }
 
-export default function createEmotion(context: EmotionContext, options?: EmotionOption): Emotion;
+export default function createEmotion(context: EmotionContext, options?: EmotionOptions): Emotion;
+
+declare module 'react' {
+  interface HTMLAttributes<T> {
+    css?: Interpolation;
+  }
+}
+
+// Preact support for css prop
+declare global {
+  namespace JSX {
+    interface HTMLAttributes {
+      css?: Interpolation;
+    }
+  }
+}

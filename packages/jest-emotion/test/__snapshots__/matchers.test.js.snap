@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`toHaveStyleRule returns a message explaining the failure 1`] = `
+"Expected color to match:
+  [32mblue[39m
+Received:
+  [31mred[39m"
+`;
+
+exports[`toHaveStyleRule returns a message explaining the failure 2`] = `
+"Expected color not to match:
+  [32mred[39m
+Received:
+  [31mred[39m"
+`;

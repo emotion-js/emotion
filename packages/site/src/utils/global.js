@@ -1,15 +1,11 @@
-import { injectGlobal } from 'emotion'
+import css from '@emotion/css'
 import { mq, fonts } from './style'
 import prismStyles from 'react-live/lib/constants/css.js'
 
-injectGlobal(
-  prismStyles.replace('prism-code', 'prism-code,pre[class*="language-"]')
-)
-
-injectGlobal`
-  html,
-  body,
-  #___gatsby {
+const globalStyles = css`
+  ${prismStyles
+    .replace('prism-code', 'prism-code,pre[class*="language-"]')
+    .replace(/0\.5rem/g, '')} html, body, #___gatsby {
     font-family: ${fonts.primary};
     color: #fffeff;
     width: 100%;
@@ -17,6 +13,28 @@ injectGlobal`
     padding: 0;
     margin: 0;
     -webkit-font-smoothing: antialiased;
+  }
+  ${{
+    'p code': {
+      backgroundColor: '#CEF6FF',
+      fontSize: 16
+    },
+    'a code': {
+      backgroundColor: 'inherit'
+    }
+  }};
+  pre[class*='language-'] {
+    ${mq({
+      marginLeft: [-32, -30],
+      marginRight: [-32, -30],
+      marginTop: 16,
+      marginBottom: 16,
+      borderRadius: [0, 8],
+      whiteSpace: 'pre-wrap',
+      wordBreak: 'break-word',
+      paddingLeft: [32, 30],
+      paddingRight: [32, 30]
+    })};
   }
 
   code,
@@ -29,9 +47,12 @@ injectGlobal`
   .prism-code {
     ${mq({
       borderRadius: [0, 8]
-    })} white-space: pre-wrap;
+    })};
+    white-space: pre-wrap;
     word-break: break-word;
     word-wrap: normal;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
   .gatsy-highlight {
     overflow: hidden;
@@ -39,14 +60,6 @@ injectGlobal`
   * {
     box-sizing: border-box;
   }
-  @font-face {
-    font-family: 'Oxygen';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Oxygen Regular'), local('Oxygen-Regular'),
-      url(https://fonts.gstatic.com/s/oxygen/v6/qBSyz106i5ud7wkBU-FrPevvDin1pK8aKteLpeZ5c0A.woff2)
-        format('woff2');
-    unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02c6, U+02da, U+02dc,
-      U+2000-206f, U+2074, U+20ac, U+2212, U+2215;
-  }
 `
+
+export default globalStyles

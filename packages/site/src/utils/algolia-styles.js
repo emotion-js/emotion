@@ -1,5 +1,5 @@
 // @flow
-import { css } from 'emotion'
+import css from '@emotion/css'
 import { colors } from '../utils/style'
 
 const headingBackground = colors.pink

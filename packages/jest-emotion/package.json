@@ -1,8 +1,9 @@
 {
   "name": "jest-emotion",
-  "version": "9.1.3",
+  "version": "9.2.4",
   "description": "Jest utilities for emotion",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "src",
     "lib"
@@ -10,15 +11,21 @@
   "scripts": {
     "build": "npm-run-all clean babel",
     "babel": "babel src -d lib",
+    "test:typescript": "dtslint types",
     "watch": "babel src -d lib --watch",
     "clean": "rimraf lib"
   },
   "dependencies": {
+    "@types/jest": "^23.0.2",
+    "chalk": "^2.4.1",
     "css": "^2.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "dtslint": "^0.3.0",
     "npm-run-all": "^4.0.2",
+    "preact": "^8.2.9",
+    "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3",
     "rimraf": "^2.6.1"
   },

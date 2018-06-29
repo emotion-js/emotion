@@ -15,9 +15,3 @@ export const injectGlobal: Emotion['injectGlobal'];
 export const keyframes: Emotion['keyframes'];
 export const sheet: Emotion['sheet'];
 export const caches: Emotion['caches'];
-
-declare module 'react' {
-  interface HTMLAttributes<T> {
-    css?: Interpolation;
-  }
-}
