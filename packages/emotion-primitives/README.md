@@ -1,6 +1,6 @@
 # Emotion primitives
 
-> Style and render primitives interfaces across multiple targets with emotion
+> Style and render primitive interfaces across multiple targets with emotion
 
 ## Introduction
 
@@ -84,3 +84,7 @@ class App extends React.Component {
 * **View**
 
 * **Image**
+
+## Usage with `react-sketchapp`
+
+[Using emotion-primitives with react-sketchapp](https://github.com/airbnb/react-sketchapp/tree/master/examples/emotion)
