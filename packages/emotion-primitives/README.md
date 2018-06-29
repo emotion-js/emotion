@@ -24,9 +24,9 @@ This package also depends on `react` and `react-primitives` so make sure you've 
 
 ```js
 import React from 'react'
-import { ThemeProvider } from 'emotion-theming'
+import emotion from 'emotion-primitives'
 
-const emotion = require('emotion-primitives')
+import { ThemeProvider } from 'emotion-theming'
 
 const theme = {
   color: 'hotpink',
