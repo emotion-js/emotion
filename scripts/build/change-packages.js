@@ -3,7 +3,10 @@ const { getPackages } = require('./utils')
 const { promisify } = require('util')
 const fs = require('fs')
 const path = require('path')
-const writeFile = promisify(fs.writeFileSync)
+const writeFile = promisify(fs.writeFile)
+
+// this is a helper script to modify the package.json contents of all the packages
+// change this to do whatever modifications you need to do to all of the packages
 
 async function changePackages() {
   const packages = await getPackages()
@@ -16,7 +19,7 @@ async function changePackages() {
         delete devDeps['npm-run-all']
         delete devDeps['cross-env']
         delete devDeps['babel-cli']
-        delete devDeps['rollup']
+        delete devDeps.rollup
         delete devDeps.rimraf
         if (Object.keys(devDeps).length === 0) {
           delete pkg.devDependencies

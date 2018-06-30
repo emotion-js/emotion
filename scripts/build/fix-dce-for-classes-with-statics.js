@@ -57,11 +57,9 @@ function looksLike(a, b) {
       if (typeof bVal === 'function') {
         return bVal(aVal)
       }
-      return isPrimitive(bVal) ? bVal === aVal : looksLike(aVal, bVal)
+      return typeof bVal === 'object' && bVal !== null
+        ? looksLike(aVal, bVal)
+        : bVal === aVal
     })
   )
-}
-
-function isPrimitive(val) {
-  return val == null || /^[sbn]/.test(typeof val)
 }

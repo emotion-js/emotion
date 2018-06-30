@@ -21,37 +21,35 @@ exports.getPackages = async function getPackages() {
   const packagePaths = (await readdir(path.join(rootPath, 'packages'))).map(
     pkg => path.join(rootPath, 'packages', pkg)
   )
-  const packages = packagePaths
-    .map(packagePath => {
-      const fullPackagePath = path.resolve(rootPath, packagePath)
-      const ret = {
-        path: fullPackagePath,
-        pkg: require(path.resolve(fullPackagePath, 'package.json'))
-      }
+  const packages = packagePaths.map(packagePath => {
+    const fullPackagePath = path.resolve(rootPath, packagePath)
+    const ret = {
+      path: fullPackagePath,
+      pkg: require(path.resolve(fullPackagePath, 'package.json'))
+    }
 
-      ret.name = ret.pkg.name
-      ret.configs = []
-      if (ret.pkg.main && !ret.pkg.main.includes('src')) {
-        ret.configs.push({
-          config: makeRollupConfig(ret),
-          outputConfigs: getOutputConfigs(ret)
-        })
-      }
-      if (ret.pkg['umd:main']) {
-        ret.configs.push({
-          config: makeRollupConfig(ret, true, true),
-          outputConfigs: [getUMDOutputConfig(ret)]
-        })
-      }
-      if (ret.pkg.browser) {
-        ret.configs.push({
-          config: makeRollupConfig(ret, false, true),
-          outputConfigs: getOutputConfigs(ret, true)
-        })
-      }
-      return ret
-    })
-    .filter(Boolean)
+    ret.name = ret.pkg.name
+    ret.configs = []
+    if (ret.pkg.main && !ret.pkg.main.includes('src')) {
+      ret.configs.push({
+        config: makeRollupConfig(ret),
+        outputConfigs: getOutputConfigs(ret)
+      })
+    }
+    if (ret.pkg['umd:main']) {
+      ret.configs.push({
+        config: makeRollupConfig(ret, true, true),
+        outputConfigs: [getUMDOutputConfig(ret)]
+      })
+    }
+    if (ret.pkg.browser) {
+      ret.configs.push({
+        config: makeRollupConfig(ret, false, true),
+        outputConfigs: getOutputConfigs(ret, true)
+      })
+    }
+    return ret
+  })
   return packages
 }
 
