@@ -36,6 +36,7 @@
     - emotion
     - react-emotion
     - babel-plugin-emotion
+    - eslint-plugin-emotion
     - emotion-server
     - emotion-theming
     - jest-emotion
