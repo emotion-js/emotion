@@ -9,7 +9,7 @@ module.exports = {
     title: `emotion`
   },
   plugins: packages
-    .map(pkg => path.resolve(`${__dirname}/../${pkg}/README.md`))
+    .map(pkg => path.resolve(`${__dirname}/../packages/${pkg}/README.md`))
     .map(file => ({
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -21,13 +21,13 @@ module.exports = {
         resolve: 'gatsby-source-filesystem',
         options: {
           name: 'docs',
-          path: `${__dirname}/../../docs`
+          path: `${__dirname}/../docs`
         }
       },
       {
         resolve: 'gatsby-source-filesystem',
         options: {
-          path: `${__dirname}/../../emotion.png`
+          path: `${__dirname}/../emotion.png`
         }
       },
       {
@@ -35,7 +35,7 @@ module.exports = {
         // https://github.com/gatsbyjs/gatsby/issues/5887
         resolve: `gatsby-plugin-favicon-fork`,
         options: {
-          logo: `${__dirname}/../../emotion.png`,
+          logo: `${__dirname}/../emotion.png`,
           injectHTML: true,
           icons: {
             android: false,
