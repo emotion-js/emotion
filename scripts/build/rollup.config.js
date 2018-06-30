@@ -38,11 +38,7 @@ module.exports = (data, isUMD = false, isBrowser = false) => {
   if (pkg.dependencies && !isUMD) {
     external.push(...Object.keys(pkg.dependencies))
   }
-  getChildPeerDeps(external, [
-    ...new Set(
-      external.concat((pkg.dependencies && Object.keys(pkg.dependencies)) || [])
-    )
-  ])
+  getChildPeerDeps(external, external)
   external.push('fs', 'path')
   if (data.name === 'react-emotion') {
     external = external.filter(name => name !== 'emotion')
