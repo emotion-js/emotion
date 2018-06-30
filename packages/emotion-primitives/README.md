@@ -24,7 +24,7 @@ This package also depends on `react` and `react-primitives` so make sure you've 
 
 ```js
 import React from 'react'
-import emotion from 'emotion-primitives'
+import styled from 'emotion-primitives'
 
 import { ThemeProvider } from 'emotion-theming'
 
@@ -33,7 +33,7 @@ const theme = {
   backgroundColor: 'purple'
 }
 
-const Container = emotion.View`
+const Container = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,16 +42,16 @@ const Container = emotion.View`
   background-color: ${props => props.theme.backgroundColor}
 `
 
-const Description = emotion.Text({
+const Description = styled.Text({
   color: 'hotpink'
 })
 
-const Image = emotion.Image`
+const Image = styled.Image`
   padding: 40px;
 `
 
-const emotionLogo =
-  'https://emotion.sh/static/emotion-a76dfa0d18a0536af9e917cdb8f873b9-a69fb.png'
+const styledLogo =
+  'https://cdn.rawgit.com/emotion-js/emotion/master/emotion.png'
 
 class App extends React.Component {
   render() {
