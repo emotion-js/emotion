@@ -133,6 +133,15 @@
         ],
         "env": {
           "jest": true
+        } 
+      },
+      {
+        "files":[
+          "**/packages/*/src/*",
+          "**/packages/*/src/**/*"
+        ],
+        "rules": {
+          "import/no-commonjs": 2
         }
       }
     ]

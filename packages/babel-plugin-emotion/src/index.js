@@ -26,13 +26,15 @@ import { addSourceMaps } from './source-map'
 
 import cssProps from './css-prop'
 import { getExpressionsFromTemplateLiteral } from '@emotion/babel-utils'
-
-export type BabelPath = any
+import emotionMacro from './macro'
+import styledMacro from './macro-styled'
 
 export const macros = {
-  emotion: require('./macro'),
-  styled: require('./macro-styled')
+  emotion: emotionMacro,
+  styled: styledMacro
 }
+
+export type BabelPath = any
 
 export function hashArray(arr: Array<string>) {
   return hashString(arr.join(''))

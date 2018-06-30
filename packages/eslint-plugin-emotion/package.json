@@ -9,10 +9,7 @@
     "emotion"
   ],
   "author": "alex-pex <alexandre.paixao@stadline.com>",
-  "main": "src/index.js",
-  "dependencies": {
-    "requireindex": "^1.1.0"
-  },
+  "main": "dist/index.js",
   "engines": {
     "node": ">=0.10.0"
   },
