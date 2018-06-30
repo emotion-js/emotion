@@ -23,9 +23,9 @@ function getChildPeerDeps(finalPeerDeps, depKeys) {
       finalPeerDeps.push(...Object.keys(pkgJson.peerDependencies))
       getChildPeerDeps(finalPeerDeps, Object.keys(pkgJson.peerDependencies))
     }
-    if (pkgJson.dependencies) {
-      getChildPeerDeps(finalPeerDeps, Object.keys(pkgJson.dependencies))
-    }
+    // if (pkgJson.dependencies) {
+    //   getChildPeerDeps(finalPeerDeps, Object.keys(pkgJson.dependencies))
+    // }
   })
 }
 
