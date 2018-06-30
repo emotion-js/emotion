@@ -48,7 +48,6 @@ module.exports = (data, isUMD = false, isBrowser = false) => {
     input: path.resolve(data.path, 'src', 'index.js'),
     external: makeExternalPredicate(external),
     plugins: [
-      cjs(),
       babel({
         presets: [
           [
@@ -97,7 +96,7 @@ module.exports = (data, isUMD = false, isBrowser = false) => {
         ].filter(Boolean),
         babelrc: false
       }),
-
+      cjs(),
       isUMD && alias(lernaAliases()),
       isUMD && resolve(),
       isUMD && replace({ 'process.env.NODE_ENV': '"production"' }),
