@@ -1,7 +1,6 @@
 ## Prerequisites
 
 - [Node.js](http://nodejs.org/) >= v7 must be installed.
-
 - [Yarn](https://yarnpkg.com/en/docs/install)
 
 ## Installation
@@ -12,15 +11,14 @@
 ## Running Tests
 
 - `yarn test` will run the tests once.
-
-- `yarn test:coverage` will run the tests and produce a coverage report in `coverage/`.
-
+- `yarn coverage` will run the tests and produce a coverage report in `coverage/`.
 - `yarn test:watch` will run the tests on every change.
 
 ## Building
 
 - Run `yarn build` in the root directory to build the modules. (Required before publishing)
-- `yarn clean` will delete built resources.
+- Run `yarn build PACKAGE_NAME ANOTHER_PACKAGE_NAME` to only build certain packages.
+- Run `yarn build:watch` to build packages on every change.
 
 ## Documentation Website Development
 
