@@ -48,9 +48,7 @@ module.exports = (data, isUMD = false, isBrowser = false) => {
     input: path.resolve(data.path, 'src', 'index.js'),
     external: makeExternalPredicate(external),
     plugins: [
-      cjs({
-        exclude: [path.join(__dirname, '..', '..', 'packages', '*/src/**/*')]
-      }),
+      cjs(),
       babel({
         presets: [
           [
