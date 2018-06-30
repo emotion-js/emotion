@@ -62,7 +62,7 @@ function isObjectStyle(node) {
 const MSG_PREFER_STRING_STYLE = 'Styles should be written using strings.'
 const MSG_PREFER_OBJECT_STYLE = 'Styles should be written using objects.'
 
-export default {
+module.exports = {
   meta: {
     docs: {
       description: 'Choose between string or object styles',

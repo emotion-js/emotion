@@ -7,14 +7,11 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
+const requireIndex = require('requireindex')
+
 // ------------------------------------------------------------------------------
 // Plugin Definition
 // ------------------------------------------------------------------------------
 
 // import all rules in src/rules
-
-import syntaxPreference from './rules/syntax-preference'
-
-export const rules = {
-  'syntax-preference': syntaxPreference
-}
+module.exports.rules = requireIndex(`${__dirname}/rules`)
