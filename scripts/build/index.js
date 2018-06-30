@@ -29,7 +29,9 @@ async function doBuild() {
           )
         })
       )
-      console.log(chalk.magenta(`Generated bundles for`, pkg.pkg.name))
+      if (pkg.configs.length) {
+        console.log(chalk.magenta(`Generated bundles for`, pkg.pkg.name))
+      }
       // if (!pkg.name.endsWith('.macro')) {
       //   await writeFlowFiles(
       //     pkg.outputConfigs.map(({ file }) => file),
