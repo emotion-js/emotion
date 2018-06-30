@@ -4,6 +4,8 @@
 module.exports = function(babel) {
   const { types: t } = babel
   let isReactComponent = t.buildMatchMemberExpression('React.Component')
+  let isReactPureComponent = t.buildMatchMemberExpression('React.PureComponent')
+
   let hasConstructor = body =>
     body.length &&
     body.some(node => {
@@ -18,7 +20,8 @@ module.exports = function(babel) {
     visitor: {
       Class(path) {
         if (
-          isReactComponent(path.node.superClass) &&
+          (isReactComponent(path.node.superClass) ||
+            isReactPureComponent(path.node.superClass)) &&
           !hasConstructor(path.node.body.body)
         ) {
           path.node.body.body.unshift(
