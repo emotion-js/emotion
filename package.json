@@ -128,7 +128,8 @@
     "overrides": [
       {
         "files": [
-          "*.test.js"
+          "*.test.js",
+          "**/__tests__/*"
         ],
         "env": {
           "jest": true
