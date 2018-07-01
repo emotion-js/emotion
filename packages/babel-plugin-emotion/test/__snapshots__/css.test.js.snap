@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`babel css extract babel 6 babel css extract basic 1`] = `
-"require(\\"./emotion.emotion.css\\");
+"import \\"./emotion.emotion.css\\";
 
 \\"css-5bxlk\\";
 
@@ -11,8 +11,7 @@ emotion.emotion.css
 `;
 
 exports[`babel css extract babel 7 babel css extract basic 1`] = `
-"require(\\"./emotion.emotion.css\\");
-
+"import \\"./emotion.emotion.css\\";
 \\"css-5bxlk\\";
 
 

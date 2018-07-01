@@ -147,7 +147,7 @@ exports[`styled macro babel 6 object function 1`] = `
 "import _styled from './styled';
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
-  target: 'eo9rakq0'
+  target: 'ef2fk0r0'
 })({
   display: 'flex'
 });"
@@ -157,7 +157,7 @@ exports[`styled macro babel 6 object member 1`] = `
 "import _styled from './styled';
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
-  target: 'eo9rakq0'
+  target: 'ef2fk0r0'
 })({
   display: 'flex'
 });"
@@ -173,7 +173,7 @@ exports[`styled macro babel 6 tagged template literal function 1`] = `
 "import _styled from './styled';
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
-  target: 'eo9rakq0'
+  target: 'ef2fk0r0'
 })('display:flex;');"
 `;
 
@@ -181,7 +181,7 @@ exports[`styled macro babel 6 tagged template literal member 1`] = `
 "import _styled from './styled';
 
 const SomeComponent = /*#__PURE__*/_styled('div', {
-  target: 'eo9rakq0'
+  target: 'ef2fk0r0'
 })('display:flex;');"
 `;
 
@@ -199,7 +199,7 @@ exports[`styled macro babel 7 object function 1`] = `
 const SomeComponent =
 /*#__PURE__*/
 _styled('div', {
-  target: \\"eo9rakq0\\"
+  target: \\"ef2fk0r0\\"
 })({
   display: 'flex'
 });"
@@ -211,7 +211,7 @@ exports[`styled macro babel 7 object member 1`] = `
 const SomeComponent =
 /*#__PURE__*/
 _styled(\\"div\\", {
-  target: \\"eo9rakq0\\"
+  target: \\"ef2fk0r0\\"
 })({
   display: 'flex'
 });"
@@ -228,7 +228,7 @@ exports[`styled macro babel 7 tagged template literal function 1`] = `
 const SomeComponent =
 /*#__PURE__*/
 _styled('div', {
-  target: \\"eo9rakq0\\"
+  target: \\"ef2fk0r0\\"
 })(\\"display:flex;\\");"
 `;
 
@@ -238,7 +238,7 @@ exports[`styled macro babel 7 tagged template literal member 1`] = `
 const SomeComponent =
 /*#__PURE__*/
 _styled(\\"div\\", {
-  target: \\"eo9rakq0\\"
+  target: \\"ef2fk0r0\\"
 })(\\"display:flex;\\");"
 `;
 
