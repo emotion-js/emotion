@@ -21,10 +21,34 @@ type EmotionTestCases = TestCases<{
   [key: string | number]: mixed
 }>
 
-jest.mock('fs')
-
-fs.existsSync.mockReturnValue(true)
-fs.statSync.mockReturnValue({ isFile: () => false })
+jest.mock('fs', () => {
+  // $FlowFixMe
+  let realFs = require.requireActual('fs')
+  let readFileSync = jest.fn()
+  readFileSync.mockImplementation((...args) => {
+    if (args[0].includes('emotion.css')) {
+      return ''
+    }
+    return realFs.readFileSync(...args)
+  })
+  return {
+    ...realFs,
+    readFileSync,
+    writeFileSync: jest.fn(),
+    existsSync: (...args) => {
+      if (args[0].includes('emotion.css')) {
+        return true
+      }
+      return realFs.existsSync(...args)
+    },
+    statSync: (...args) => {
+      if (args[0].includes('emotion.css')) {
+        return { isFile: () => false }
+      }
+      return realFs.statSync(...args)
+    }
+  }
+})
 
 const isBabel7 = babel => parseInt(babel.version.split('.')[0], 10) === 7
 
