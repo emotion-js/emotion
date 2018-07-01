@@ -8,7 +8,10 @@ const node = document.querySelector('.root')
 let runs = 20
 
 class Speedometer extends React.Component {
-  state = { renderCount: -1 }
+  constructor(props) {
+    super(props)
+    this.state = { renderCount: -1 }
+  }
 
   async componentDidMount() {
     const durations = []

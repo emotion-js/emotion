@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import cssModules from './src/css-modules'
 import emotion from './src/emotion'
 import emotionCSS from './src/emotion-css'
