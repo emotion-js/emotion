@@ -43,7 +43,12 @@ const createInlineTester = babel => opts => {
     ],
     filename: opts.filename !== undefined ? opts.filename : 'emotion.js',
     babelrc: false,
-    ast: true
+    ast: true,
+    ...(isBabel7(babel)
+      ? {
+          configFile: false
+        }
+      : {})
   })
   if (isBabel7(babel)) {
     expect(() => checkDuplicatedNodes(babel, ast)).not.toThrow()
@@ -74,9 +79,14 @@ const createExtractTester = babel => opts => {
         }
       ]
     ],
-    filename: opts.filename || 'emotion.js',
+    filename: opts.filename !== undefined ? opts.filename : 'emotion.js',
     babelrc: false,
-    ast: true
+    ast: true,
+    ...(isBabel7(babel)
+      ? {
+          configFile: false
+        }
+      : {})
   })
   if (isBabel7(babel)) {
     expect(() => checkDuplicatedNodes(babel, ast)).not.toThrow()

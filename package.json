@@ -25,12 +25,12 @@
     "**/react-dom": "^16.3.2"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-beta.40",
-    "@babel/plugin-external-helpers": "7.0.0-beta.40",
-    "@babel/preset-env": "7.0.0-beta.40",
-    "@babel/preset-flow": "7.0.0-beta.40",
-    "@babel/preset-react": "7.0.0-beta.40",
-    "@babel/preset-stage-0": "7.0.0-beta.40",
+    "@babel/core": "7.0.0-beta.51",
+    "@babel/plugin-external-helpers": "7.0.0-beta.51",
+    "@babel/preset-env": "7.0.0-beta.51",
+    "@babel/preset-flow": "7.0.0-beta.51",
+    "@babel/preset-react": "7.0.0-beta.51",
+    "@babel/preset-stage-0": "7.0.0-beta.51",
     "babel-check-duplicated-nodes": "^1.0.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
@@ -69,9 +69,9 @@
     "get-lerna-packages": "^0.1.0",
     "hoist-non-react-statics": "^2.3.1",
     "jest": "^23.2.0",
-    "jest-watch-typeahead": "^0.1.0",
     "jest-in-case": "^1.0.2",
     "jest-serializer-html": "^4.0.1",
+    "jest-watch-typeahead": "^0.1.0",
     "jsdom": "^11.3.0",
     "lerna": "^2.2.0",
     "lerna-alias": "^3.0.1",
@@ -120,7 +120,7 @@
       "standard/computed-property-even-spacing": 0,
       "no-template-curly-in-string": 0,
       "camelcase": 0,
-      "import/no-duplicates":0
+      "import/no-duplicates": 0
     },
     "env": {
       "browser": true
@@ -133,10 +133,10 @@
         ],
         "env": {
           "jest": true
-        } 
+        }
       },
       {
-        "files":[
+        "files": [
           "**/packages/*/src/*",
           "**/packages/*/src/**/*"
         ],

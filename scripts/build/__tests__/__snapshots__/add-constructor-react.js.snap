@@ -58,18 +58,16 @@ class Thing3 {
 
 class Thing4 extends Thing3 {
   constructor(...args) {
-    var _temp;
-
-    return _temp = super(...args), this.ok = true, _temp;
+    super(...args);
+    this.ok = true;
   }
 
 }
 
 class Thing5 extends Thing3.OtherThing {
   constructor(...args) {
-    var _temp2;
-
-    return _temp2 = super(...args), this.ok = true, _temp2;
+    super(...args);
+    this.ok = true;
   }
 
 }"
