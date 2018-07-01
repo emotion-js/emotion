@@ -1,3 +1,4 @@
+// @flow
 const rollup = require('rollup')
 // const fs = require('fs')
 // const { promisify } = require('util')

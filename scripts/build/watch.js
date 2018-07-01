@@ -1,3 +1,4 @@
+// @flow
 const rollup = require('rollup')
 const chalk = require('chalk')
 const path = require('path')

@@ -1,3 +1,4 @@
+// @flow
 const path = require('path')
 const del = require('del')
 const { promisify } = require('util')
@@ -11,11 +12,17 @@ const rootPath = path.resolve(__dirname, '..', '..')
 
 exports.rootPath = rootPath
 
-exports.cleanDist = async function cleanDist(pkgPath) {
+exports.cleanDist = async function cleanDist(pkgPath /*: string */) {
   await del(`${pkgPath}/dist`)
 }
 
-exports.getPackages = async function getPackages() {
+/*::
+import type { Package } from './types'
+*/
+
+let unsafeRequire = require
+
+exports.getPackages = async function getPackages() /*: Promise<Array<Package>> */ {
   // we're intentionally not getting all the packages that are part of the monorepo
   // we only want ones in packages
   const packagePaths = (await readdir(path.join(rootPath, 'packages'))).map(
@@ -23,13 +30,14 @@ exports.getPackages = async function getPackages() {
   )
   const packages = packagePaths.map(packagePath => {
     const fullPackagePath = path.resolve(rootPath, packagePath)
-    const ret = {
+    let pkgJSON = unsafeRequire(path.resolve(fullPackagePath, 'package.json'))
+    const ret /*: Package */ = {
       path: fullPackagePath,
-      pkg: require(path.resolve(fullPackagePath, 'package.json'))
+      pkg: pkgJSON,
+      configs: [],
+      name: pkgJSON.name
     }
 
-    ret.name = ret.pkg.name
-    ret.configs = []
     if (ret.pkg.main && !ret.pkg.main.includes('src')) {
       ret.configs.push({
         config: makeRollupConfig(ret),
@@ -38,13 +46,13 @@ exports.getPackages = async function getPackages() {
     }
     if (ret.pkg['umd:main']) {
       ret.configs.push({
-        config: makeRollupConfig(ret, true, true),
+        config: makeRollupConfig(ret, { isBrowser: true, isUMD: true }),
         outputConfigs: [getUMDOutputConfig(ret)]
       })
     }
     if (ret.pkg.browser) {
       ret.configs.push({
-        config: makeRollupConfig(ret, false, true),
+        config: makeRollupConfig(ret, { isBrowser: true, isUMD: false }),
         outputConfigs: getOutputConfigs(ret, true)
       })
     }

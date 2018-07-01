@@ -1,3 +1,4 @@
+// @flow
 const resolve = require('rollup-plugin-node-resolve')
 const { uglify } = require('rollup-plugin-uglify')
 const babel = require('rollup-plugin-babel')
@@ -13,12 +14,14 @@ const makeExternalPredicate = externalArr => {
     return () => false
   }
   const pattern = new RegExp(`^(${externalArr.join('|')})($|/)`)
-  return id => pattern.test(id)
+  return (id /*: string */) => pattern.test(id)
 }
+
+let unsafeRequire = require
 
 function getChildPeerDeps(finalPeerDeps, depKeys) {
   depKeys.forEach(key => {
-    const pkgJson = require(key + '/package.json')
+    const pkgJson = unsafeRequire(key + '/package.json')
     if (pkgJson.peerDependencies) {
       finalPeerDeps.push(...Object.keys(pkgJson.peerDependencies))
       getChildPeerDeps(finalPeerDeps, Object.keys(pkgJson.peerDependencies))
@@ -29,7 +32,17 @@ function getChildPeerDeps(finalPeerDeps, depKeys) {
   })
 }
 
-module.exports = (data, isUMD = false, isBrowser = false) => {
+/*::
+
+import type { Package } from './types'
+*/
+module.exports = (
+  data /*: Package */,
+  {
+    isUMD = false,
+    isBrowser = false
+  } /*: { isUMD:boolean, isBrowser:boolean } */ = {}
+) => {
   const { pkg } = data
   let external = []
   if (pkg.peerDependencies) {
