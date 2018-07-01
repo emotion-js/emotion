@@ -53,7 +53,7 @@ module.exports = (
   }
   getChildPeerDeps(external, external)
   external.push('fs', 'path')
-  if (data.name === 'react-emotion') {
+  if (data.name === 'react-emotion' || data.name === 'preact-emotion') {
     external = external.filter(name => name !== 'emotion')
   }
 
