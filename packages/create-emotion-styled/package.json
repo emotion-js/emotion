@@ -3,7 +3,7 @@
   "version": "9.2.3",
   "description": "The styled API for emotion",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "module": "dist/index.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",

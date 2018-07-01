@@ -14,27 +14,9 @@ async function changePackages() {
   await Promise.all(
     packages.map(async ({ pkg, path: pkgPath }) => {
       // you can transform the package.json contents here
-      let devDeps = pkg.devDependencies
-      if (pkg.devDependencies) {
-        delete devDeps['npm-run-all']
-        delete devDeps['cross-env']
-        delete devDeps['babel-cli']
-        delete devDeps.rollup
-        delete devDeps.rimraf
-        if (Object.keys(devDeps).length === 0) {
-          delete pkg.devDependencies
-        }
-      }
-      let scripts = pkg.scripts
-      if (pkg.scripts) {
-        delete scripts.build
-        delete scripts.clean
-        delete scripts.rollup
-        delete scripts.babel
-        delete scripts.watch
-        if (Object.keys(scripts).length === 0) {
-          delete pkg.scripts
-        }
+
+      if (pkg.module) {
+        pkg.module = pkg.module.replace('.es.js', '.esm.js')
       }
 
       await writeFile(
