@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import reactPrimitives from 'react-primitives'
 import { ThemeProvider } from 'emotion-theming'
 
-import emotion from '../dist/index.es'
+import emotion from '../src/index'
 
 Enzyme.configure({ adapter: new Adapter() })
 
