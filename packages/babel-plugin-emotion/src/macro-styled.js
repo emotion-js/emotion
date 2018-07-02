@@ -7,7 +7,7 @@ import { buildMacroRuntimeNode, omit } from './babel-utils'
 import emotionMacro from './macro'
 import { createMacro } from 'babel-plugin-macros'
 
-module.exports = createMacro(macro)
+export default createMacro(macro)
 
 function macro(options) {
   const { references, state, babel: { types: t } } = options

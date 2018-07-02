@@ -5,9 +5,9 @@ global.Babel = require('babel-standalone')
 
 exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
   actions.setWebpackConfig({
-    plugins: [plugins.ignore(/^(xor|props)$/)],
+    // xor and props are for react-live and cosmiconfig is for babel-plugin-macros
+    plugins: [plugins.ignore(/^(xor|props|cosmiconfig)$/)],
     resolve: {
-      modules: ['node_modules'],
       alias: {
         assert: 'fbjs/lib/emptyFunction',
         'source-map': 'fbjs/lib/emptyFunction',
@@ -28,6 +28,9 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
       ...config.output,
       // this doesn't seem to always merge correctly with `setWebpackConfig` for some reason
       // so i'm setting it here
+      // this is here because it defaults to window and is used for hot reloading and other stuff
+      // so if this wasn't here, the web worker would break
+      // since it would try to access window
       globalObject: 'this'
     },
     module: {

@@ -4,7 +4,7 @@ import createExtractCritical from './extract-critical'
 import createRenderStylesToString from './inline'
 import createRenderStylesToStream from './stream'
 
-module.exports = function(emotion: Emotion) {
+export default function(emotion: Emotion) {
   const nonceString =
     emotion.caches.nonce !== undefined ? ` nonce="${emotion.caches.nonce}"` : ''
   return {

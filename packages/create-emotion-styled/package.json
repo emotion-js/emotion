@@ -3,7 +3,7 @@
   "version": "9.2.3",
   "description": "The styled API for emotion",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "module": "dist/index.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -11,11 +11,7 @@
     "types"
   ],
   "scripts": {
-    "build": "npm-run-all clean rollup",
-    "clean": "rimraf dist",
-    "test:typescript": "dtslint types",
-    "rollup": "rollup -c ../../rollup.config.js",
-    "watch": "rollup -c ../../rollup.config.js --watch"
+    "test:typescript": "dtslint types"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^0.6.1"
@@ -26,10 +22,7 @@
   "devDependencies": {
     "@types/react": "16.0.16",
     "dtslint": "^0.3.0",
-    "npm-run-all": "^4.0.2",
-    "prop-types": "^15.6.1",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.60.1"
+    "prop-types": "^15.6.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -44,5 +37,6 @@
   ],
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
-  }
+  },
+  "umd:main": "./dist/emotion.umd.min.js"
 }
