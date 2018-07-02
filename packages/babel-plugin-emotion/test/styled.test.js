@@ -3,7 +3,8 @@ import { createInlineTests, createExtractTests } from './util'
 
 const cases = {
   'no use': {
-    code: 'styled.h1``'
+    code: 'styled.h1``',
+    extract: false
   },
 
   'no dynamic': {

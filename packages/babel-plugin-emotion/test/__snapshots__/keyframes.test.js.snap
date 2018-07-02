@@ -98,7 +98,7 @@ emotion.emotion.css
 `;
 
 exports[`keyframes extract babel 6 keyframes basic 1`] = `
-"require(\\"./emotion.emotion.css\\");
+"import \\"./emotion.emotion.css\\";
 
 const rotate360 = \\"css-rotate360-bhsghd\\";
 
@@ -113,7 +113,7 @@ const rotate360 = /*#__PURE__*/keyframes(\\"from{transform:rotate(0deg);}to{tran
 `;
 
 exports[`keyframes extract babel 6 static change import 1`] = `
-"require(\\"./emotion.emotion.css\\");
+"import \\"./emotion.emotion.css\\";
 
 const rotate360 = \\"css-rotate360-bhsghd\\";
 const rotate3601 = keyframes\`
@@ -149,8 +149,7 @@ emotion.emotion.css
 `;
 
 exports[`keyframes extract babel 7 keyframes basic 1`] = `
-"require(\\"./emotion.emotion.css\\");
-
+"import \\"./emotion.emotion.css\\";
 const rotate360 = \\"css-rotate360-bhsghd\\";
 
 
@@ -165,8 +164,7 @@ keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotatio
 `;
 
 exports[`keyframes extract babel 7 static change import 1`] = `
-"require(\\"./emotion.emotion.css\\");
-
+"import \\"./emotion.emotion.css\\";
 const rotate360 = \\"css-rotate360-bhsghd\\";
 const rotate3601 = keyframes\`
         from {

@@ -40,8 +40,7 @@ export const compileAndEvaluate = (
   code: string,
   compiler: Compiler,
   scope: Scope
-): Promise<{ error: Error | null, element: React.Element<*> | null }> => {
-  // $FlowFixMe i'm lazy
+): Promise<{ error: Error | null, element: React.Node | null }> => {
   return compiler(code)
     .then(compiledCode => {
       return evaluate(compiledCode, scope)

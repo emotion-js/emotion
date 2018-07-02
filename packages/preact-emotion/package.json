@@ -3,7 +3,7 @@
   "version": "9.2.4",
   "description": "The Next Generation of CSS-in-JS, for Preact projects.",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "module": "dist/index.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "dist",
@@ -12,11 +12,7 @@
     "types"
   ],
   "scripts": {
-    "build": "npm-run-all clean rollup",
-    "clean": "rimraf dist",
-    "test:typescript": "dtslint types",
-    "watch": "rollup -c ../../rollup.config.js --watch",
-    "rollup": "rollup -c ../../rollup.config.js"
+    "test:typescript": "dtslint types"
   },
   "dependencies": {
     "babel-plugin-emotion": "^9.2.4",
@@ -28,11 +24,8 @@
   },
   "devDependencies": {
     "emotion": "^9.2.4",
-    "npm-run-all": "^4.0.2",
     "preact": "^8.2.9",
-    "react-emotion": "^9.2.4",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.60.1"
+    "react-emotion": "^9.2.4"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -48,5 +41,6 @@
   ],
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
-  }
+  },
+  "umd:main": "./dist/emotion.umd.min.js"
 }
