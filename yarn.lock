@@ -4106,7 +4106,7 @@ core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
-core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0, core-js@^2.5.1, core-js@^2.5.3, core-js@^2.5.7:
+core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0, core-js@^2.5.3, core-js@^2.5.7:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
 
@@ -6529,14 +6529,6 @@ gatsby-plugin-react-helmet@^3.0.0-beta.3:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.0.0-beta.3.tgz#916ad68ff19de9d084a35cbda4a32ea88fe4b7e9"
   dependencies:
     "@babel/runtime" "7.0.0-beta.51"
-
-gatsby-plugin-react-next@next:
-  version "2.0.1-13"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-next/-/gatsby-plugin-react-next-2.0.1-13.tgz#c08a5335c0b3c9e8f016ae5495a17c8ce1422a44"
-  dependencies:
-    "@babel/runtime" "7.0.0-beta.47"
-    core-js "^2.5.1"
-    resolve "^1.5.0"
 
 gatsby-plugin-sharp@^2.0.0-beta.2:
   version "2.0.0-beta.2"

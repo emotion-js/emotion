@@ -15,7 +15,7 @@ type Props = {
 
 type State = {
   code: string,
-  element: React.Element<*> | null,
+  element: React.Node | null,
   error: Error | null
 }
 
