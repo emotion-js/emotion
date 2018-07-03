@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "files": [
     "src",
-    "lib"
+    "lib",
+    "dist"
   ],
   "dependencies": {
     "@babel/helper-module-imports": "7.0.0-beta.51",
