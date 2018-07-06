@@ -14,4 +14,6 @@ const assignPrimitives = styled => {
   return styled
 }
 
+export { css } from './css'
+
 export default /* #__PURE__ */ assignPrimitives(createStyled)

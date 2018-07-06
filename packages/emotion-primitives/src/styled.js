@@ -1,19 +1,19 @@
 // @flow
 import * as React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-primitives'
+import { View, Text, Image } from 'react-primitives'
 import {
   channel,
   contextTypes,
   setTheme,
   testAlwaysTrue,
-  pickAssign
+  pickAssign,
+  interleave
 } from './utils'
-import { getStyles } from './getStyles'
-import { convertToRNStyles } from './convertToRNStyles'
 import {
   testPickPropsOnPrimitiveComponent,
   testPickPropsOnOtherComponent
 } from './test-props'
+import { css } from './css'
 
 function isPrimitiveComponent(component: React.ElementType) {
   switch (component) {
@@ -24,14 +24,6 @@ function isPrimitiveComponent(component: React.ElementType) {
     }
   }
   return false
-}
-
-// Evaluate the styles and convert them to React Native using styled component context
-function evalStyles(context, Comp, styles) {
-  // Convert styles with or without interpolations to React Native (StyleSheet.create)
-  let otherStyles = convertToRNStyles.call(context, styles)
-
-  return getStyles.call(context, otherStyles, context.props)
 }
 
 type State = {
@@ -46,7 +38,14 @@ export function createStyled(component: React.ElementType) {
   let pick = isPrimitive
     ? testPickPropsOnPrimitiveComponent
     : testPickPropsOnOtherComponent
-  return function createStyledComponent(...styles: *) {
+  return function createStyledComponent(...rawStyles: *) {
+    let styles
+
+    if (rawStyles[0] == null || rawStyles[0].raw === undefined) {
+      styles = rawStyles
+    } else {
+      styles = interleave(rawStyles)
+    }
     class Styled extends React.Component<*, State> {
       unsubscribe: number | void
       mergedProps: Object
@@ -75,14 +74,17 @@ export function createStyled(component: React.ElementType) {
         this.mergedProps = pickAssign(testAlwaysTrue, {}, props, {
           theme: (state !== null && state.theme) || props.theme || {}
         })
-
-        const emotionStyles = evalStyles(this, Styled, styles)
+        let stylesWithStyleProp = styles
+        if (props.style) {
+          stylesWithStyleProp = styles.concat(props.style)
+        }
+        const emotionStyles = css.apply(this, stylesWithStyleProp)
 
         return React.createElement(
           component,
           pickAssign(pick, {}, props, {
             ref: props.innerRef,
-            style: StyleSheet.flatten(emotionStyles)
+            style: emotionStyles
           })
         )
       }

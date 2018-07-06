@@ -88,7 +88,6 @@ describe('Emotion primitives', () => {
   })
 
   it('should work with StyleSheet.create API', () => {
-    console.log(StyleSheet)
     const styles = StyleSheet.create({ foo: { color: 'red' } })
     const Text = emotion.Text`font-size: 10px;`
     const wrapper = Enzyme.shallow(
