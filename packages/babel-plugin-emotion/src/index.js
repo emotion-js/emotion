@@ -218,6 +218,7 @@ export function buildStyledCallExpression(
   args: Node[],
   path: BabelPath,
   state: EmotionBabelPluginPass,
+  isCallExpression: boolean,
   t: Types
 ) {
   // unpacking "manually" to prevent array out of bounds access (deopt)
@@ -281,8 +282,11 @@ export function buildStyledCallExpression(
     targetProperty
   )
 
-  let createStyledCall = // $FlowFixMe
-    t.isStringLiteral(tag) && tag.value[0] !== tag.value[0].toLowerCase()
+  let createStyledCall =
+    t.isStringLiteral(tag) &&
+    !isCallExpression &&
+    // $FlowFixMe
+    tag.value[0] !== tag.value[0].toLowerCase()
       ? // $FlowFixMe
         t.memberExpression(identifier, t.identifier(tag.value))
       : // $FlowFixMe
@@ -310,7 +314,7 @@ export function buildStyledObjectCallExpression(
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
-
+  let isCallExpression = t.isCallExpression(path.node.callee)
   let styledOptions = null
   let restStyledArgs = []
   if (t.isCallExpression(path.node.callee)) {
@@ -342,7 +346,9 @@ export function buildStyledObjectCallExpression(
   path.addComment('leading', '#__PURE__')
 
   let createStyledCall =
-    t.isStringLiteral(tag) && tag.value[0] !== tag.value[0].toLowerCase()
+    t.isStringLiteral(tag) &&
+    !isCallExpression &&
+    tag.value[0] !== tag.value[0].toLowerCase()
       ? t.memberExpression(identifier, t.identifier(tag.value))
       : t.callExpression(identifier, [
           tag,
@@ -683,6 +689,7 @@ export default function(babel: Babel) {
               [t.stringLiteral(path.node.tag.property.name)],
               path,
               state,
+              false,
               t
             )
           )
@@ -697,6 +704,7 @@ export default function(babel: Babel) {
               path.node.tag.arguments,
               path,
               state,
+              true,
               t
             )
           )
