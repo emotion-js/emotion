@@ -35,7 +35,7 @@ type State = {
  */
 export function createStyled(component: React.ElementType) {
   let isPrimitive = isPrimitiveComponent(component)
-  let pick = isPrimitive
+  let pickTest = isPrimitive
     ? testPickPropsOnPrimitiveComponent
     : testPickPropsOnOtherComponent
   return function createStyledComponent(...rawStyles: *) {
@@ -82,7 +82,7 @@ export function createStyled(component: React.ElementType) {
 
         return React.createElement(
           component,
-          pickAssign(pick, {}, props, {
+          pickAssign(pickTest, {}, props, {
             ref: props.innerRef,
             style: emotionStyles
           })
