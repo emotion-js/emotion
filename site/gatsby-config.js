@@ -9,7 +9,11 @@ module.exports = {
     title: `emotion`
   },
   plugins: packages
-    .map(pkg => path.resolve(`${__dirname}/../packages/${pkg}/README.md`))
+    .map(pkg =>
+      path.resolve(
+        `${__dirname}/../packages/${pkg.replace('@emotion/', '')}/README.md`
+      )
+    )
     .map(file => ({
       resolve: 'gatsby-source-filesystem',
       options: {

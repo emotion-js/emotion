@@ -92,14 +92,25 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
   ) {
     const fileNode = getNode(node.parent)
 
-    const splitAbsolutePath = fileNode.absolutePath.split(path.sep)
     createNodeField({
       node,
       name: `slug`,
       value:
         fileNode.name === 'README'
-          ? splitAbsolutePath[splitAbsolutePath.length - 2]
+          ? getNameForPackage(fileNode.absolutePath)
           : fileNode.name
     })
+  }
+}
+
+function getNameForPackage(absolutePath) {
+  try {
+    return require(`${path.parse(absolutePath).dir}/package.json`).name
+  } catch (e) {
+    if (e.code === 'MODULE_NOT_FOUND') {
+      const splitAbsolutePath = absolutePath.split(path.sep)
+      return splitAbsolutePath[splitAbsolutePath.length - 2]
+    }
+    throw e
   }
 }

@@ -218,6 +218,7 @@ export function buildStyledCallExpression(
   args: Node[],
   path: BabelPath,
   state: EmotionBabelPluginPass,
+  isCallExpression: boolean,
   t: Types
 ) {
   // unpacking "manually" to prevent array out of bounds access (deopt)
@@ -281,9 +282,18 @@ export function buildStyledCallExpression(
     targetProperty
   )
 
-  return t.callExpression(
+  let styledCall =
+    t.isStringLiteral(tag) &&
+    !isCallExpression &&
     // $FlowFixMe
-    t.callExpression(identifier, [tag, finalOptions, ...restArgs]),
+    tag.value[0] !== tag.value[0].toLowerCase()
+      ? // $FlowFixMe
+        t.memberExpression(identifier, t.identifier(tag.value))
+      : // $FlowFixMe
+        t.callExpression(identifier, [tag, finalOptions, ...restArgs])
+
+  return t.callExpression(
+    styledCall,
     appendStringToExpressions(
       getExpressionsFromTemplateLiteral(path.node.quasi, t),
       stringToAppend,
@@ -304,7 +314,7 @@ export function buildStyledObjectCallExpression(
   const tag = t.isCallExpression(path.node.callee)
     ? path.node.callee.arguments[0]
     : t.stringLiteral(path.node.callee.property.name)
-
+  let isCallExpression = t.isCallExpression(path.node.callee)
   let styledOptions = null
   let restStyledArgs = []
   if (t.isCallExpression(path.node.callee)) {
@@ -335,14 +345,18 @@ export function buildStyledObjectCallExpression(
 
   path.addComment('leading', '#__PURE__')
 
-  return t.callExpression(
-    t.callExpression(identifier, [
-      tag,
-      buildFinalOptions(t, styledOptions, targetProperty, labelProperty),
-      ...restStyledArgs
-    ]),
-    args
-  )
+  let styledCall =
+    t.isStringLiteral(tag) &&
+    !isCallExpression &&
+    tag.value[0] !== tag.value[0].toLowerCase()
+      ? t.memberExpression(identifier, t.identifier(tag.value))
+      : t.callExpression(identifier, [
+          tag,
+          buildFinalOptions(t, styledOptions, targetProperty, labelProperty),
+          ...restStyledArgs
+        ])
+
+  return t.callExpression(styledCall, args)
 }
 
 const visited = Symbol('visited')
@@ -359,7 +373,12 @@ const importedNameKeys = Object.keys(defaultImportedNames).map(
   key => (key === 'styled' ? 'default' : key)
 )
 
-const defaultEmotionPaths = ['emotion', 'react-emotion', 'preact-emotion']
+const defaultEmotionPaths = [
+  'emotion',
+  'react-emotion',
+  'preact-emotion',
+  '@emotion/primitives'
+]
 
 function getRelativePath(filepath: string, absoluteInstancePath: string) {
   let relativePath = nodePath.relative(
@@ -670,6 +689,7 @@ export default function(babel: Babel) {
               [t.stringLiteral(path.node.tag.property.name)],
               path,
               state,
+              false,
               t
             )
           )
@@ -684,6 +704,7 @@ export default function(babel: Babel) {
               path.node.tag.arguments,
               path,
               state,
+              true,
               t
             )
           )
