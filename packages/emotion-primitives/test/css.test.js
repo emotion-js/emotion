@@ -100,3 +100,15 @@ test('falsy value in the middle', () => {
     `
   ).toEqual({ backgroundColor: 'hotpink' })
 })
+
+test('composition', () => {
+  let firstStyle = css`
+    color: hotpink;
+  `
+  expect(
+    css`
+      background-color: green;
+      ${firstStyle};
+    `
+  ).toEqual({ backgroundColor: 'green', color: 'hotpink' })
+})
