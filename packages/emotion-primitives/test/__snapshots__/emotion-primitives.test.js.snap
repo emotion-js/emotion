@@ -14,6 +14,7 @@ exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
 
 exports[`Emotion primitives should pass props in withComponent 1`] = `
 <View
+  color="green"
   style={
     Object {
       "backgroundColor": "green",
@@ -24,6 +25,7 @@ exports[`Emotion primitives should pass props in withComponent 1`] = `
 
 exports[`Emotion primitives should pass props in withComponent 2`] = `
 <Text
+  color="hotpink"
   style={
     Object {
       "backgroundColor": "hotpink",

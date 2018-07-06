@@ -4,8 +4,9 @@ import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import reactPrimitives from 'react-primitives'
 import { ThemeProvider } from 'emotion-theming'
+import { render } from 'react-dom'
 
-import emotion from 'emotion-primitives'
+import styled from 'emotion-primitives'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -28,16 +29,19 @@ const theme = { backgroundColor: 'magenta' }
 
 describe('Emotion primitives', () => {
   test('should not throw an error when used valid primitive', () => {
-    expect(() => emotion.Text({})).not.toThrow()
+    expect(() => styled.Text({})).not.toThrow()
   })
 
   test('should throw an error when used invalid primitive', () => {
-    expect(() => emotion.TEXT({})).toThrow()
+    expect(() => styled.TEXT({})).toThrow()
   })
 
   test('should render the primitive when styles applied using object style notation', () => {
-    const Text = emotion.Text`color: red; font-size: 20px; background-color: ${props =>
-      props.back};`
+    const Text = styled.Text`
+      color: red;
+      font-size: 20px;
+      background-color: ${props => props.back};
+    `
     const tree = renderer
       .create(
         <Text style={{ fontSize: 40 }} back="red">
@@ -49,7 +53,9 @@ describe('Emotion primitives', () => {
   })
 
   it('should work with emotion-theming', () => {
-    const Text = emotion.Text`color: ${props => props.theme.backgroundColor}`
+    const Text = styled.Text`
+      color: ${props => props.theme.backgroundColor};
+    `
 
     const tree = renderer
       .create(
@@ -63,7 +69,7 @@ describe('Emotion primitives', () => {
   })
 
   test('should render the primitive on changing the props', () => {
-    const Text = emotion.Text({ padding: '20px' }, props => ({
+    const Text = styled.Text({ padding: '20px' }, props => ({
       color: props.decor
     }))
     const tree = renderer
@@ -73,7 +79,9 @@ describe('Emotion primitives', () => {
   })
 
   test('should render primitive with style prop', () => {
-    const Title = emotion.Text`color: hotpink;`
+    const Title = styled.Text`
+      color: hotpink;
+    `
     const tree = renderer
       .create(<Title style={{ padding: 10 }}>Emotion primitives</Title>)
       .toJSON()
@@ -89,7 +97,9 @@ describe('Emotion primitives', () => {
 
   it('should work with StyleSheet.create API', () => {
     const styles = StyleSheet.create({ foo: { color: 'red' } })
-    const Text = emotion.Text`font-size: 10px;`
+    const Text = styled.Text`
+      font-size: 10px;
+    `
     const wrapper = Enzyme.shallow(
       <Text style={styles.foo}>Emotion Primitives</Text>
     )
@@ -100,36 +110,39 @@ describe('Emotion primitives', () => {
   })
 
   test('primitive should work with `withComponent`', () => {
-    const Text = emotion.Text`color: ${props => props.decor};`
+    const Text = styled.Text`
+      color: ${props => props.decor};
+    `
     const Name = Text.withComponent(reactPrimitives.Text)
     const tree = renderer.create(<Name decor="hotpink">Mike</Name>).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('should style any other component', () => {
-    const Text = emotion.Text`color: hotpink;`
+    const Text = styled.Text`
+      color: hotpink;
+    `
     const Title = () => <Text>Hello World</Text>
-    const StyledTitle = emotion(Title)`font-size: 20px; font-style: ${props =>
-      props.sty}`
+    const StyledTitle = styled(Title)`
+      font-size: 20px;
+      font-style: ${props => props.sty};
+    `
     const tree = renderer.create(<StyledTitle sty="italic" />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  // it('innerRef', () => {
-  //   const innerRef = jest.fn()
-  //   const Text = emotion.Text`color: red;`
-  //   const tree = renderer.create(<Text innerRef={innerRef}>Emotion primitives</Text>).toJSON()
-  //   expect(tree).toMatchSnapshot()
-  //   expect(innerRef).toBeCalled()
+  it('innerRef', () => {
+    const Text = styled.Text`
+      color: hotpink;
+    `
+    let ref = React.createRef()
 
-  //   const ref = React.createRef()
-  //   const wrapper = Enzyme.mount(<Text innerRef={ref}></Text>)
-  //   const text = wrapper.find('Text').first()
-  //   expect(ref.current).toBe(text.instance())
-  // })
+    render(<Text innerRef={ref} />, document.createElement('div'))
+    expect(ref.current).not.toBeNull()
+  })
 
   it('should pass props in withComponent', () => {
-    const ViewOne = emotion.View`
+    const ViewOne = styled.View`
       background-color: ${props => props.color};
     `
     const treeOne = renderer.create(<ViewOne color="green" />)
@@ -141,7 +154,7 @@ describe('Emotion primitives', () => {
   })
 
   it('should render <Image />', () => {
-    const Image = emotion.Image`
+    const Image = styled.Image`
       border: 2px solid hotpink;
     `
     const tree = renderer

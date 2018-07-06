@@ -9,7 +9,8 @@
   ],
   "dependencies": {
     "css-to-react-native": "^2.2.0",
-    "babel-plugin-emotion": "^9.2.4"
+    "babel-plugin-emotion": "^9.2.4",
+    "@emotion/is-prop-valid": "^0.6.3"
   },
   "peerDependencies": {
     "react": "15.x || 16.x",

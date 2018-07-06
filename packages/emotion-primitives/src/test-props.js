@@ -1,4 +1,5 @@
 // @flow
+import isPropValid from '@emotion/is-prop-valid'
 
 const forwardableProps = {
   // primitive props
@@ -64,15 +65,17 @@ const forwardableProps = {
   source: true,
   suppressHighlighting: true,
   testID: true,
-  textBreakStrategy: true,
-
-  // react props
-  children: true,
-  style: true
+  textBreakStrategy: true
 }
 
 export function testPickPropsOnPrimitiveComponent(prop: string) {
-  return forwardableProps[prop] === true
+  return (
+    forwardableProps[prop] === true ||
+    // This will allow the standard react props
+    // and dom props since people could
+    // be using it on the web
+    isPropValid(prop)
+  )
 }
 
 export function testPickPropsOnOtherComponent(prop: string) {
