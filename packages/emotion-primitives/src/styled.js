@@ -33,7 +33,21 @@ type State = {
 /**
  * a function that returns a styled component which render styles on multiple targets with same code
  */
-export function createStyled(component: React.ElementType) {
+
+type CreateStyledComponent = (...styles: any) => React.ElementType
+
+type BaseCreateStyled = (tag: React.ElementType) => CreateStyledComponent
+
+export type CreateStyled = BaseCreateStyled & {
+  View: CreateStyledComponent,
+  Text: CreateStyledComponent,
+  Image: CreateStyledComponent
+}
+
+// $FlowFixMe
+let createStyled: CreateStyled = function createStyled(
+  component: React.ElementType
+) {
   let isPrimitive = isPrimitiveComponent(component)
   let pickTest = isPrimitive
     ? testPickPropsOnPrimitiveComponent
@@ -102,3 +116,5 @@ const getDisplayName = primitive =>
   typeof primitive === 'string'
     ? primitive
     : primitive.displayName || primitive.name || 'Styled'
+
+export { createStyled }

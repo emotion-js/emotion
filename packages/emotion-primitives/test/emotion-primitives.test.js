@@ -1,4 +1,6 @@
-import React from 'react'
+// @flow
+import './mock-primitives'
+import * as React from 'react'
 import renderer from 'react-test-renderer'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -11,19 +13,6 @@ import styled from 'emotion-primitives'
 Enzyme.configure({ adapter: new Adapter() })
 
 const StyleSheet = reactPrimitives.StyleSheet
-
-jest.mock('react-primitives', () => {
-  let realPrimitives = require.requireActual('react-primitives')
-
-  return {
-    ...realPrimitives,
-    // mock the components to strings so that we can see the actual styles rather
-    // than a bunch of class names that don't mean anything
-    View: 'View',
-    Text: 'Text',
-    Image: 'Image'
-  }
-})
 
 const theme = { backgroundColor: 'magenta' }
 
