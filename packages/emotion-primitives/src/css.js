@@ -37,7 +37,10 @@ export function css(...args: any) {
     let isRnStyle =
       (type === 'object' && !Array.isArray(interpolation)) || type === 'number'
     if (lastType === 'string' && (isRnStyle || isFalsy)) {
-      styles.push(convertStyles(buffer))
+      let converted = convertStyles(buffer)
+      if (converted !== undefined) {
+        styles.push(converted)
+      }
       buffer = ''
     }
     if (isFalsy) {
@@ -48,7 +51,10 @@ export function css(...args: any) {
       buffer += interpolation
 
       if (arr.length - 1 === i) {
-        styles.push(convertStyles(buffer))
+        let converted = convertStyles(buffer)
+        if (converted !== undefined) {
+          styles.push(converted)
+        }
         buffer = ''
       }
     }
@@ -69,7 +75,7 @@ export function css(...args: any) {
 let propertyValuePattern = /\s*([^\s]+)\s*:\s*(.+?)\s*$/
 
 function convertStyles(str: string) {
-  if (str.trim() === '') return {}
+  if (str.trim() === '') return
 
   const styleObj = []
 
@@ -85,6 +91,9 @@ function convertStyles(str: string) {
       styleObj.push(match)
     }
   })
+  if (styleObj.length === 0) {
+    return
+  }
 
   return transform(styleObj)
 }
