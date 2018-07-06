@@ -1,40 +1,31 @@
 {
-  "name": "emotion-primitives",
-  "version": "1.0.0",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js", 
-  "files": [
-    "src",
-    "dist"
-  ],
-  "dependencies": {
-    "css-to-react-native": "^2.2.0",
-    "babel-plugin-emotion": "^9.2.4",
-    "@emotion/is-prop-valid": "^0.6.3"
-  },
-  "peerDependencies": {
-    "react": "15.x || 16.x",
-    "react-primitives": "^0.5.1",
-    "prop-types": "15.x"
-  },
-  "devDependencies": {
-    "emotion-theming": "^9.1.2",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "react": "^16.4.0",
-    "react-primitives": "^0.5.1"
-  },
-  "homepage": "https://emotion.sh",
-  "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-primitives",
-  "keywords": [
-    "styles",
-    "emotion",
-    "react",
-    "css",
-    "css-in-js"
-  ],
-  "bugs": {
-    "url": "https://github.com/emotion-js/emotion/issues"
-  }
+	"name": "emotion-primitives",
+	"version": "1.0.0",
+	"main": "dist/index.cjs.js",
+	"module": "dist/index.esm.js",
+	"files": ["src", "dist"],
+	"dependencies": {
+		"css-to-react-native": "^2.2.0",
+		"babel-plugin-emotion": "^9.2.4",
+		"@emotion/is-prop-valid": "^0.6.3"
+	},
+	"peerDependencies": {
+		"react": "15.x || 16.x",
+		"react-primitives": "^0.5.1",
+		"prop-types": "15.x"
+	},
+	"devDependencies": {
+		"emotion-theming": "^9.1.2",
+		"enzyme": "^3.3.0",
+		"enzyme-adapter-react-16": "^1.1.1",
+		"react": "^16.4.0",
+		"react-primitives": "^0.5.1"
+	},
+	"homepage": "https://emotion.sh",
+	"license": "MIT",
+	"repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-primitives",
+	"keywords": ["styles", "emotion", "react", "css", "css-in-js"],
+	"bugs": {
+		"url": "https://github.com/emotion-js/emotion/issues"
+	}
 }

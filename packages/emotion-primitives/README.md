@@ -91,4 +91,62 @@ class App extends React.Component {
 
 ## Usage with `react-sketchapp`
 
-[Using emotion-primitives with react-sketchapp](https://github.com/airbnb/react-sketchapp/tree/master/examples/emotion)
+### Installing dependencies
+
+* [`react-sketchapp`](https://github.com/airbnb/react-sketchapp)
+
+```
+yarn add react-sketchapp
+```
+
+* `skpm` for building and publishing sketch plugins. This is required to render the components and build them to Sketch environment.
+
+```
+yarn add @skpm/builder --dev
+```
+
+### Configuring `skpm` builder
+
+Once you've installed `skpm`, 
+
+* create a new field `skpm` in `package.json`
+
+```json
+ "skpm": {
+   "main": "some-name.sketchplugin",
+   "manifest": "manifest.json"
+},
+```
+
+* Create `manifest.json` file with following content -
+
+```json
+{
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "react-sketchapp: some-name",
+      "identifier": "main",
+      "script": "./your-app-file.js"
+    }
+  ],
+  "menu": {
+    "isRoot": true,
+    "items": ["main"]
+  }
+}
+```
+
+* add this to your `scripts` section of your `package.json`
+
+```json
+scripts: {
+  "render": "skpm-build --watch --run",
+}
+```
+
+and finally run `yarn render` to render the components to Sketch.
+
+For a complete reference, checkout [this](https://github.com/airbnb/react-sketchapp/blob/master/examples/emotion/src) project setup.
+
