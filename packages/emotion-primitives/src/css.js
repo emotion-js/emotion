@@ -3,6 +3,10 @@ import transform from 'css-to-react-native'
 import { StyleSheet } from 'react-primitives'
 import { interleave } from './utils'
 
+// this is for handleInterpolation
+// they're reset on every call to css
+// this is done so we don't create a new
+// handleInterpolation function on every css call
 let styles
 let buffer
 let lastType
