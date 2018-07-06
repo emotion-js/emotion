@@ -18,7 +18,7 @@ or if you use yarn
 yarn add emotion-primitives
 ```
 
-This package also depends on `react` and `react-primitives` so make sure you've them installed.
+This package also depends on `react`, `react-primitives` and `prop-types` so make sure you've them installed.
 
 ## Example
 
