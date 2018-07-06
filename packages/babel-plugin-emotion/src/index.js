@@ -377,7 +377,7 @@ const defaultEmotionPaths = [
   'emotion',
   'react-emotion',
   'preact-emotion',
-  'emotion-primitives'
+  '@emotion/primitives'
 ]
 
 function getRelativePath(filepath: string, absoluteInstancePath: string) {

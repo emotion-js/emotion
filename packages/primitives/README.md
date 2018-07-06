@@ -1,21 +1,21 @@
-# Emotion primitives
+# @emotion/primitives
 
 > Style and render primitive interfaces across multiple targets with emotion
 
 ## Introduction
 
-Emotion primitives makes it easy to style and render primitives across multiple platforms like `Web`, `React Native` and `Sketch` using the similar `emotion` API.
+Emotion primitives makes it easy to style and render primitives across multiple platforms like the web, React Native and Sketch using the `emotion` API.
 
 ## Install
 
 ```
-npm install emotion-primitives
+npm install @emotion/primitives
 ```
 
 or if you use yarn
 
 ```
-yarn add emotion-primitives
+yarn add @emotion/primitives
 ```
 
 This package also depends on `react`, `react-primitives` and `prop-types` so make sure you've them installed.
@@ -24,7 +24,7 @@ This package also depends on `react`, `react-primitives` and `prop-types` so mak
 
 ```js
 import React from 'react'
-import styled, { css } from 'emotion-primitives'
+import styled, { css } from '@emotion/primitives'
 
 import { ThemeProvider } from 'emotion-theming'
 
@@ -50,7 +50,7 @@ const Image = styled.Image`
   padding: 40px;
 `
 
-const styledLogo =
+const emotionLogo =
   'https://cdn.rawgit.com/emotion-js/emotion/master/emotion.png'
 
 class App extends React.Component {
@@ -79,7 +79,7 @@ class App extends React.Component {
 }
 ```
 
-[![Edit 03r1rxv7jl](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/03r1rxv7jl)
+[![Edit n3nmq8v46j](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n3nmq8v46j)
 
 ## Supported primitives
 
@@ -107,7 +107,7 @@ yarn add @skpm/builder --dev
 
 ### Configuring `skpm` builder
 
-Once you've installed `skpm`, 
+Once you've installed `skpm`,
 
 * create a new field `skpm` in `package.json`
 
@@ -149,4 +149,3 @@ scripts: {
 and finally run `yarn render` to render the components to Sketch.
 
 For a complete reference, checkout [this](https://github.com/airbnb/react-sketchapp/blob/master/examples/emotion/src) project setup.
-

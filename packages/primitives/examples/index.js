@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styled from 'emotion-primitives'
+import styled from '@emotion/primitives'
 
 const Container = styled.View`
   display: flex;

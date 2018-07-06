@@ -92,13 +92,13 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
   ) {
     const fileNode = getNode(node.parent)
 
-    const splitAbsolutePath = fileNode.absolutePath.split(path.sep)
     createNodeField({
       node,
       name: `slug`,
       value:
         fileNode.name === 'README'
-          ? splitAbsolutePath[splitAbsolutePath.length - 2]
+          ? require(`${path.parse(fileNode.absolutePath).dir}/package.json`)
+              .name
           : fileNode.name
     })
   }

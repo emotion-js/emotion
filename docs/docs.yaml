@@ -31,6 +31,7 @@
     - extract-static
 
 # This loads the READMEs instead of files in docs/
+# This should be the folder name, not the package name
 - title: Packages
   items:
     - emotion
@@ -40,7 +41,7 @@
     - emotion-server
     - emotion-theming
     - jest-emotion
-    - emotion-primitives
+    - "@emotion/primitives"
     - create-emotion
     - create-emotion-styled
     - create-emotion-server

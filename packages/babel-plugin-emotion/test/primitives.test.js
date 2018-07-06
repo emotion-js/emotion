@@ -9,9 +9,9 @@ const cases = {
     styled.View({})
     `
   },
-  'other name with emotion-primitives': {
+  'other name with @emotion/primitives': {
     code: `
-    import someOtherName from 'emotion-primitives'
+    import someOtherName from '@emotion/primitives'
     someOtherName.View\`color: hotpink;\`
     someOtherName.View({})
     `

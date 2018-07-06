@@ -13,7 +13,6 @@ import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
 
 type Props = {
-  markdownNodes: *,
   data: {
     doc: {
       htmlAst: HASTRoot,
@@ -84,8 +83,7 @@ const createLiveCode = memoize(logoUrl => props => (
 
 export default class DocRoute extends React.Component<Props> {
   render() {
-    // eslint-disable-next-line no-unused-vars
-    const { data, markdownNodes } = this.props
+    const { data } = this.props
     const { doc, avatar } = data
     return (
       <Layout>
