@@ -1,5 +1,5 @@
 // @flow
-/* eslint-env: jest */
+/* eslint-env jest */
 
 jest.mock('react-primitives', () => {
   // $FlowFixMe
