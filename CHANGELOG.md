@@ -1,3 +1,40 @@
+## v9.2.5 (2018-07-07)
+
+#### :rocket: Enhancement
+
+- `babel-plugin-emotion`, `@emotion/primitives`
+  - [#658](https://github.com/emotion-js/emotion/pull/658) Emotion Primitives. ([@nitin42](https://github.com/nitin42))
+
+#### :bug: Bug Fix
+
+- `create-emotion-styled`, `preact-emotion`
+  - [#737](https://github.com/emotion-js/emotion/pull/737) Add ComponentType overloading. ([@Ailrun](https://github.com/Ailrun))
+- `create-emotion-styled`, `create-emotion`, `emotion`, `preact-emotion`, `react-emotion`
+  - [#729](https://github.com/emotion-js/emotion/pull/729) Enable css prop in Preact with TypeScript. ([@aaronjensen](https://github.com/aaronjensen))
+
+#### :memo: Documentation
+
+- Other
+  - [#748](https://github.com/emotion-js/emotion/pull/748) update link to site in examples section. ([@bpote](https://github.com/bpote))
+  - [#636](https://github.com/emotion-js/emotion/pull/636) Add eslint-plugin-emotion to docs. ([@alex-pex](https://github.com/alex-pex))
+- `babel-plugin-emotion`, `emotion-theming`, `emotion`, `jest-emotion`, `site`
+  - [#720](https://github.com/emotion-js/emotion/pull/720) Use emotion-next in the site, update to gatsby v2 and add Community page. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### :house: Internal
+
+- `babel-plugin-emotion`, `create-emotion-server`, `create-emotion-styled`, `create-emotion`, `emotion-server`, `emotion-theming`, `emotion`, `eslint-plugin-emotion`, `jest-emotion`, `preact-emotion`, `react-emotion`
+  - [#747](https://github.com/emotion-js/emotion/pull/747) Change build system and update Jest. ([@mitchellhamilton](https://github.com/mitchellhamilton))
+
+#### Committers: 7
+
+- Aaron Jensen ([aaronjensen](https://github.com/aaronjensen))
+- Alexandre Paixao ([alex-pex](https://github.com/alex-pex))
+- Brisha Pote ([bpote](https://github.com/bpote))
+- Junyoung Clare Jang ([Ailrun](https://github.com/Ailrun))
+- Kye Hohenberger ([tkh44](https://github.com/tkh44))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Nitin Tulswani ([nitin42](https://github.com/nitin42))
+
 ## v9.2.4 (2018-06-22)
 
 #### :rocket: Enhancement
