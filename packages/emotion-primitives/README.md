@@ -39,7 +39,7 @@ const Container = styled.View`
   align-items: center;
   margin: 50px;
   border: 5px solid red;
-  background-color: ${props => props.theme.backgroundColor}
+  background-color: ${props => props.theme.backgroundColor};
 `
 
 const Description = styled.Text({
@@ -57,8 +57,8 @@ class App extends React.Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Container borderRadius="10px">
-          <Description fontSize={45} fontWeight="bold">
+        <Container style={{ borderRadius: '10px' }}>
+          <Description style={{ fontSize: 45, fontWeight: 'bold' }}>
             Emotion Primitives
           </Description>
           <Image
