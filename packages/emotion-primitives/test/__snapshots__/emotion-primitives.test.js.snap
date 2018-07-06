@@ -3,9 +3,9 @@
 exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
 <Text
   style={
-    Array [
-      80,
-    ]
+    Object {
+      "color": "hotpink",
+    }
   }
 >
   Mike
@@ -14,23 +14,22 @@ exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
 
 exports[`Emotion primitives should pass props in withComponent 1`] = `
 <View
+  color="green"
   style={
-    Array [
-      84,
-    ]
+    Object {
+      "backgroundColor": "green",
+    }
   }
 />
 `;
 
 exports[`Emotion primitives should pass props in withComponent 2`] = `
 <Text
+  color="hotpink"
   style={
-    Array [
-      84,
-      Object {
-        "color": "hotpink",
-      },
-    ]
+    Object {
+      "backgroundColor": "hotpink",
+    }
   }
 />
 `;
@@ -45,9 +44,11 @@ exports[`Emotion primitives should render <Image /> 1`] = `
     }
   }
   style={
-    Array [
-      85,
-    ]
+    Object {
+      "borderColor": "hotpink",
+      "borderStyle": "solid",
+      "borderWidth": 2,
+    }
   }
 />
 `;
@@ -55,12 +56,10 @@ exports[`Emotion primitives should render <Image /> 1`] = `
 exports[`Emotion primitives should render primitive with style prop 1`] = `
 <Text
   style={
-    Array [
-      76,
-      Object {
-        "padding": 10,
-      },
-    ]
+    Object {
+      "color": "hotpink",
+      "padding": 10,
+    }
   }
 >
   Emotion primitives
@@ -70,12 +69,10 @@ exports[`Emotion primitives should render primitive with style prop 1`] = `
 exports[`Emotion primitives should render the primitive on changing the props 1`] = `
 <Text
   style={
-    Array [
-      75,
-      Object {
-        "color": "hotpink",
-      },
-    ]
+    Object {
+      "color": "hotpink",
+      "padding": "20px",
+    }
   }
 >
   Emotion Primitives
@@ -85,12 +82,11 @@ exports[`Emotion primitives should render the primitive on changing the props 1`
 exports[`Emotion primitives should render the primitive when styles applied using object style notation 1`] = `
 <Text
   style={
-    Array [
-      73,
-      Object {
-        "fontSize": 40,
-      },
-    ]
+    Object {
+      "backgroundColor": "red",
+      "color": "red",
+      "fontSize": 40,
+    }
   }
 >
   Emotion Primitives
@@ -100,9 +96,9 @@ exports[`Emotion primitives should render the primitive when styles applied usin
 exports[`Emotion primitives should style any other component 1`] = `
 <Text
   style={
-    Array [
-      82,
-    ]
+    Object {
+      "color": "hotpink",
+    }
   }
 >
   Hello World
@@ -123,9 +119,9 @@ exports[`Emotion primitives should unmount with emotion-theming 1`] = `
 exports[`Emotion primitives should work with emotion-theming 1`] = `
 <Text
   style={
-    Array [
-      74,
-    ]
+    Object {
+      "color": "magenta",
+    }
   }
 >
   Hello World
