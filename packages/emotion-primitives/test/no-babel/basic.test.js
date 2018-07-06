@@ -45,3 +45,12 @@ test('should render the primitive when styles applied using object style notatio
     .toJSON()
   expect(tree).toMatchSnapshot()
 })
+
+// this needs to be here since the babel plugin will remove the whitespace
+test('empty string', () => {
+  // prettier-ignore
+  let style = css`    
+      
+  `
+  expect(style).toEqual({})
+})

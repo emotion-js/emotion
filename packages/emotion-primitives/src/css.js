@@ -11,14 +11,16 @@ function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
   let type = typeof interpolation
 
   if (type === 'function') {
-    if (this === undefined && process.env.NODE_ENV !== 'production') {
-      console.error(
-        'Interpolating functions in css calls is not allowed.\n' +
-          'If you want to have a css call based on props, create a function that returns a css call like this\n' +
-          'let dynamicStyle = (props) => css`color: ${props.color}`\n' +
-          'It can be called directly with props or interpolated in a styled call like this\n' +
-          'let SomeComponent = styled.View`${dynamicStyle}`'
-      )
+    if (this === undefined) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          'Interpolating functions in css calls is not allowed.\n' +
+            'If you want to have a css call based on props, create a function that returns a css call like this\n' +
+            'let dynamicStyle = (props) => css`color: ${props.color}`\n' +
+            'It can be called directly with props or interpolated in a styled call like this\n' +
+            'let SomeComponent = styled.View`${dynamicStyle}`'
+        )
+      }
     } else {
       handleInterpolation.call(
         this,
