@@ -28,36 +28,46 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
   const packagePaths = (await readdir(path.join(rootPath, 'packages'))).map(
     pkg => path.join(rootPath, 'packages', pkg)
   )
-  const packages = packagePaths.map(packagePath => {
-    const fullPackagePath = path.resolve(rootPath, packagePath)
-    let pkgJSON = unsafeRequire(path.resolve(fullPackagePath, 'package.json'))
-    const ret /*: Package */ = {
-      path: fullPackagePath,
-      pkg: pkgJSON,
-      configs: [],
-      name: pkgJSON.name
-    }
+  const packages = packagePaths
+    .map(packagePath => {
+      const fullPackagePath = path.resolve(rootPath, packagePath)
+      let pkgJSON
+      try {
+        pkgJSON = unsafeRequire(path.resolve(fullPackagePath, 'package.json'))
+      } catch (e) {
+        if (e.code === 'MODULE_NOT_FOUND') {
+          return false
+        }
+        throw e
+      }
+      const ret /*: Package */ = {
+        path: fullPackagePath,
+        pkg: pkgJSON,
+        configs: [],
+        name: pkgJSON.name
+      }
 
-    if (ret.pkg.main && !ret.pkg.main.includes('src')) {
-      ret.configs.push({
-        config: makeRollupConfig(ret),
-        outputConfigs: getOutputConfigs(ret)
-      })
-    }
-    if (ret.pkg['umd:main']) {
-      ret.configs.push({
-        config: makeRollupConfig(ret, { isBrowser: true, isUMD: true }),
-        outputConfigs: [getUMDOutputConfig(ret)]
-      })
-    }
-    if (ret.pkg.browser) {
-      ret.configs.push({
-        config: makeRollupConfig(ret, { isBrowser: true, isUMD: false }),
-        outputConfigs: getOutputConfigs(ret, true)
-      })
-    }
-    return ret
-  })
+      if (ret.pkg.main && !ret.pkg.main.includes('src')) {
+        ret.configs.push({
+          config: makeRollupConfig(ret),
+          outputConfigs: getOutputConfigs(ret)
+        })
+      }
+      if (ret.pkg['umd:main']) {
+        ret.configs.push({
+          config: makeRollupConfig(ret, { isBrowser: true, isUMD: true }),
+          outputConfigs: [getUMDOutputConfig(ret)]
+        })
+      }
+      if (ret.pkg.browser) {
+        ret.configs.push({
+          config: makeRollupConfig(ret, { isBrowser: true, isUMD: false }),
+          outputConfigs: getOutputConfigs(ret, true)
+        })
+      }
+      return ret
+    })
+    .filter(Boolean)
   return packages
 }
 
