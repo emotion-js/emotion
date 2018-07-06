@@ -1,19 +1,19 @@
 import React from 'react'
 
-import emotion from '../dist/index.es'
+import styled from 'emotion-primitives'
 
-const Container = emotion.View`
+const Container = styled.View`
   display: flex;
   justify-content: center;
   margin-top: 50px;
 `
 
-const Title = emotion.Text`
+const Title = styled.Text`
   font-size: 20px;
   color: hotpink;
 `
 
-const Description = emotion.Text`
+const Description = styled.Text`
   font-size: 15px;
   color: #4c4c4c;
 `

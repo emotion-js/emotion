@@ -12658,10 +12658,6 @@ rollup-watch@^4.3.1:
     require-relative "0.8.7"
     rollup-pluginutils "^2.0.1"
 
-rollup@^0.51.3:
-  version "0.51.8"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.51.8.tgz#58bd0b642885f4770b5f93cc64f14e4233c2236d"
-
 rollup@^0.60.1:
   version "0.60.7"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.60.7.tgz#2b62ef9306f719b1ab85a7814b3e6596ac51fae8"

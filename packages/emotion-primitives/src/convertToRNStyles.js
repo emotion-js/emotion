@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-primitives'
+// @flow
 import transform from 'css-to-react-native'
 
 // Copied and edited from @emotion/css
@@ -24,7 +24,7 @@ function handleInterpolation(interpolation, couldBeSelectorInterpolation) {
 }
 
 // Return evaluated css string
-function createStyles(strings, ...interpolations) {
+function createStyles(strings: any, ...interpolations: any) {
   let stringMode = true
   let styles = ''
 
@@ -69,7 +69,7 @@ function convertStyles(str) {
   return styleObj
 }
 
-export function convertToRNStyles(styles) {
+export function convertToRNStyles(styles: *) {
   if (styles[0][0] !== undefined) {
     let arr = []
 
@@ -85,13 +85,8 @@ export function convertToRNStyles(styles) {
 
     // Convert css styles to react native
     let rnStyles = Array.isArray(parsedCSS) ? transform(parsedCSS) : {}
-    return [StyleSheet.create({ style: rnStyles }).style]
+    return [rnStyles]
   }
 
-  return styles.map(style => {
-    if (typeof style === 'object' && Object.keys(style).length > 0) {
-      return StyleSheet.create({ style }).style
-    }
-    return style
-  })
+  return styles
 }

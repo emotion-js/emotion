@@ -1,22 +1,17 @@
-import reactPrimitives from 'react-primitives'
+// @flow
+import { Text, View, Image } from 'react-primitives'
 
-import { createEmotionPrimitive } from './createEmotion'
-import { splitProps } from './splitProps'
-
-const primitives = ['Text', 'View', 'Image']
+import { createStyled } from './styled'
 
 const assignPrimitives = styled => {
-  Object.assign(
-    styled,
-    primitives.reduce((getters, alias) => {
-      getters[alias] = styled(reactPrimitives[alias])
-      return getters
-    }, {})
-  )
+  // $FlowFixMe
+  createStyled.Text = createStyled(Text)
+  // $FlowFixMe
+  createStyled.View = createStyled(View)
+  // $FlowFixMe
+  createStyled.Image = createStyled(Image)
 
   return styled
 }
 
-const styled = createEmotionPrimitive(splitProps)
-
-export default assignPrimitives(styled)
+export default /* #__PURE__ */ assignPrimitives(createStyled)

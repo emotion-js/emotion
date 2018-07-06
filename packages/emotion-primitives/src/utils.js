@@ -1,17 +1,23 @@
+// @flow
 import PropTypes from 'prop-types'
-import channel from './channel'
+
+export const channel = '__EMOTION_THEMING__'
 
 export const contextTypes = {
   [channel]: PropTypes.object
 }
 
-export function setTheme(theme) {
+export function setTheme(theme: Object) {
   this.setState({ theme })
 }
 
 export const testAlwaysTrue = () => true
 
-export const pickAssign = function(testFn, target) {
+export const pickAssign: (
+  testFn: (key: string) => boolean,
+  target: {},
+  ...sources: Array<{}>
+) => Object = function(testFn, target) {
   let i = 2
   let length = arguments.length
   for (; i < length; i++) {
@@ -25,5 +31,3 @@ export const pickAssign = function(testFn, target) {
   }
   return target
 }
-
-export { default as channel } from './channel'

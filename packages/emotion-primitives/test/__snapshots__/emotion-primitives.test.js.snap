@@ -1,92 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
-<div
-  className="rn-borderTopWidth-13yce4e rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb rn-borderLeftWidth-gxnn5r rn-boxSizing-deolkf rn-color-k9pu7p rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi rn-fontSize-1b43r93 rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi rn-marginLeft-11wrixw rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j rn-paddingLeft-gy4na3 rn-textDecoration-bauka4 rn-whiteSpace-q42fyq rn-wordWrap-qvutc0"
-  dir="auto"
->
-  Mike
-</div>
-`;
-
-exports[`Emotion primitives should pass props in withComponent 1`] = `
-<div
-  className="rn-alignItems-1oszu61 rn-backgroundColor-hgn260 rn-borderTopStyle-1efd50x rn-borderRightStyle-14skgim rn-borderBottomStyle-rull8r rn-borderLeftStyle-mm0ijv rn-borderTopWidth-13yce4e rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb rn-borderLeftWidth-gxnn5r rn-boxSizing-deolkf rn-display-6koalj rn-flexShrink-1pxmb3b rn-flexBasis-7vfszb rn-flexDirection-eqz5dr rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi rn-marginLeft-11wrixw rn-minHeight-ifefl9 rn-minWidth-bcqeeo rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j rn-paddingLeft-gy4na3 rn-position-bnwqim rn-zIndex-1lgpqti"
-/>
-`;
-
-exports[`Emotion primitives should pass props in withComponent 2`] = `
-<div
-  className="rn-backgroundColor-hgn260 rn-borderTopWidth-13yce4e rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb rn-borderLeftWidth-gxnn5r rn-boxSizing-deolkf rn-color-k9pu7p rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi rn-fontSize-1b43r93 rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi rn-marginLeft-11wrixw rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j rn-paddingLeft-gy4na3 rn-textDecoration-bauka4 rn-whiteSpace-q42fyq rn-wordWrap-qvutc0"
-  dir="auto"
-/>
-`;
-
-exports[`Emotion primitives should render <Image /> 1`] = `
-<div
-  className="rn-alignItems-1oszu61 rn-backgroundColor-wib322 rn-backgroundPosition-vvn4in rn-backgroundRepeat-u6sd8q rn-backgroundSize-4gszlv rn-borderTopColor-dlg664 rn-borderRightColor-1lcur80 rn-borderBottomColor-1g86s93 rn-borderLeftColor-839kgp rn-borderTopStyle-1efd50x rn-borderRightStyle-14skgim rn-borderBottomStyle-rull8r rn-borderLeftStyle-mm0ijv rn-borderTopWidth-1jxfwug rn-borderRightWidth-18p6if4 rn-borderBottomWidth-wgabs5 rn-borderLeftWidth-dwliz8 rn-boxSizing-deolkf rn-display-6koalj rn-flexShrink-1pxmb3b rn-flexBasis-7vfszb rn-flexDirection-eqz5dr rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi rn-marginLeft-11wrixw rn-minHeight-ifefl9 rn-minWidth-bcqeeo rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j rn-paddingLeft-gy4na3 rn-position-bnwqim rn-zIndex-1lgpqti"
-/>
-`;
-
-exports[`Emotion primitives should render primitive with style prop 1`] = `
-<div
-  className="rn-borderTopWidth-13yce4e rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb rn-borderLeftWidth-gxnn5r rn-boxSizing-deolkf rn-color-k9pu7p rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi rn-fontSize-1b43r93 rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi rn-marginLeft-11wrixw rn-textDecoration-bauka4 rn-whiteSpace-q42fyq rn-wordWrap-qvutc0"
-  dir="auto"
-  style={
-    Object {
-      "paddingBottom": "10px",
-      "paddingLeft": "10px",
-      "paddingRight": "10px",
-      "paddingTop": "10px",
-    }
-  }
->
-  Emotion primitives
-</div>
-`;
-
-exports[`Emotion primitives should render the primitive on changing the props 1`] = `
-<div
-  className="rn-borderTopWidth-13yce4e rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb rn-borderLeftWidth-gxnn5r rn-boxSizing-deolkf rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi rn-fontSize-1b43r93 rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi rn-marginLeft-11wrixw rn-paddingTop-1knelpx rn-paddingRight-1ah4tor rn-paddingBottom-k8qxaj rn-paddingLeft-b5h31w rn-textDecoration-bauka4 rn-whiteSpace-q42fyq rn-wordWrap-qvutc0"
-  dir="auto"
+<Text
   style={
     Object {
       "color": "hotpink",
     }
   }
 >
-  Emotion Primitives
-</div>
+  Mike
+</Text>
 `;
 
-exports[`Emotion primitives should render the primitive when styles applied using object style notation 1`] = `
-<div
-  className="rn-backgroundColor-1mjtqww rn-borderTopWidth-13yce4e rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb rn-borderLeftWidth-gxnn5r rn-boxSizing-deolkf rn-color-1lbce71 rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi rn-marginLeft-11wrixw rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j rn-paddingLeft-gy4na3 rn-textDecoration-bauka4 rn-whiteSpace-q42fyq rn-wordWrap-qvutc0"
-  dir="auto"
+exports[`Emotion primitives should pass props in withComponent 1`] = `
+<View
   style={
     Object {
-      "fontSize": "40px",
+      "backgroundColor": "green",
+    }
+  }
+/>
+`;
+
+exports[`Emotion primitives should pass props in withComponent 2`] = `
+<Text
+  style={
+    Object {
+      "backgroundColor": "hotpink",
+    }
+  }
+/>
+`;
+
+exports[`Emotion primitives should render <Image /> 1`] = `
+<Image
+  source={
+    Object {
+      "height": 150,
+      "uri": "https://camo.githubusercontent.com/209bdea972b9b6ef90220c59ecbe66d35ffefa8a/68747470733a2f2f63646e2e7261776769742e636f6d2f746b6834342f656d6f74696f6e2f6d61737465722f656d6f74696f6e2e706e67",
+      "width": 150,
+    }
+  }
+  style={
+    Object {
+      "borderColor": "hotpink",
+      "borderStyle": "solid",
+      "borderWidth": 2,
+    }
+  }
+/>
+`;
+
+exports[`Emotion primitives should render primitive with style prop 1`] = `
+<Text
+  style={
+    Object {
+      "color": "hotpink",
+      "padding": 10,
+    }
+  }
+>
+  Emotion primitives
+</Text>
+`;
+
+exports[`Emotion primitives should render the primitive on changing the props 1`] = `
+<Text
+  style={
+    Object {
+      "color": "hotpink",
+      "padding": "20px",
     }
   }
 >
   Emotion Primitives
-</div>
+</Text>
+`;
+
+exports[`Emotion primitives should render the primitive when styles applied using object style notation 1`] = `
+<Text
+  style={
+    Object {
+      "backgroundColor": "red",
+      "color": "red",
+      "fontSize": 40,
+    }
+  }
+>
+  Emotion Primitives
+</Text>
 `;
 
 exports[`Emotion primitives should style any other component 1`] = `
-<div
-  className="rn-borderTopWidth-13yce4e rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb rn-borderLeftWidth-gxnn5r rn-boxSizing-deolkf rn-color-k9pu7p rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi rn-fontSize-1b43r93 rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi rn-marginLeft-11wrixw rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j rn-paddingLeft-gy4na3 rn-textDecoration-bauka4 rn-whiteSpace-q42fyq rn-wordWrap-qvutc0"
-  dir="auto"
+<Text
+  style={
+    Object {
+      "color": "hotpink",
+    }
+  }
 >
   Hello World
-</div>
+</Text>
 `;
 
 exports[`Emotion primitives should work with emotion-theming 1`] = `
-<div
-  className="rn-borderTopWidth-13yce4e rn-borderRightWidth-fnigne rn-borderBottomWidth-ndvcnb rn-borderLeftWidth-gxnn5r rn-boxSizing-deolkf rn-color-ar5qwb rn-display-1471scf rn-font-1lw9tu2 rn-fontFamily-10u92zi rn-fontSize-1b43r93 rn-marginTop-1mnahxq rn-marginRight-61z16t rn-marginBottom-p1pxzi rn-marginLeft-11wrixw rn-paddingTop-wk8lta rn-paddingRight-9aemit rn-paddingBottom-1mdbw0j rn-paddingLeft-gy4na3 rn-textDecoration-bauka4 rn-whiteSpace-q42fyq rn-wordWrap-qvutc0"
-  dir="auto"
+<Text
+  style={
+    Object {
+      "color": "magenta",
+    }
+  }
 >
   Hello World
-</div>
+</Text>
 `;

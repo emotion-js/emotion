@@ -5,11 +5,24 @@ import Adapter from 'enzyme-adapter-react-16'
 import reactPrimitives from 'react-primitives'
 import { ThemeProvider } from 'emotion-theming'
 
-import emotion from '../src/index'
+import emotion from 'emotion-primitives'
 
 Enzyme.configure({ adapter: new Adapter() })
 
 const StyleSheet = reactPrimitives.StyleSheet
+
+jest.mock('react-primitives', () => {
+  let realPrimitives = require.requireActual('react-primitives')
+
+  return {
+    ...realPrimitives,
+    // mock the components to strings so that we can see the actual styles rather
+    // than a bunch of class names that don't mean anything
+    View: 'View',
+    Text: 'Text',
+    Image: 'Image'
+  }
+})
 
 const theme = { backgroundColor: 'magenta' }
 
@@ -27,7 +40,7 @@ describe('Emotion primitives', () => {
       props.back};`
     const tree = renderer
       .create(
-        <Text back="red" fontSize={40}>
+        <Text style={{ fontSize: 40 }} back="red">
           Emotion Primitives
         </Text>
       )
@@ -68,29 +81,30 @@ describe('Emotion primitives', () => {
     const wrapper = Enzyme.shallow(
       <Title style={{ padding: 10 }}>Emotion primitives</Title>
     )
-    expect(wrapper.find('Text').prop('style')).toEqual([77, { padding: 10 }])
+    expect(wrapper.find('Text').prop('style')).toEqual({
+      color: 'hotpink',
+      padding: 10
+    })
   })
 
   it('should work with StyleSheet.create API', () => {
+    console.log(StyleSheet)
     const styles = StyleSheet.create({ foo: { color: 'red' } })
     const Text = emotion.Text`font-size: 10px;`
     const wrapper = Enzyme.shallow(
       <Text style={styles.foo}>Emotion Primitives</Text>
     )
-    expect(wrapper.find('Text').prop('style')).toEqual([79, 78])
+    expect(wrapper.find('Text').prop('style')).toEqual({
+      color: 'red',
+      fontSize: 10
+    })
   })
 
   test('primitive should work with `withComponent`', () => {
     const Text = emotion.Text`color: ${props => props.decor};`
-    const Name = Text.withComponent('Text')
+    const Name = Text.withComponent(reactPrimitives.Text)
     const tree = renderer.create(<Name decor="hotpink">Mike</Name>).toJSON()
     expect(tree).toMatchSnapshot()
-  })
-
-  test('should render primitive with css overrides', () => {
-    const Text = emotion.Text`color: hotpink;`
-    const wrapper = Enzyme.shallow(<Text fontSize={20}>Emotions</Text>)
-    expect(wrapper.find('Text').prop('style')).toEqual([81, { fontSize: 20 }])
   })
 
   it('should style any other component', () => {
@@ -120,7 +134,7 @@ describe('Emotion primitives', () => {
       background-color: ${props => props.color};
     `
     const treeOne = renderer.create(<ViewOne color="green" />)
-    const ViewTwo = ViewOne.withComponent('Text')
+    const ViewTwo = ViewOne.withComponent(reactPrimitives.Text)
     const treeTwo = renderer.create(<ViewTwo color="hotpink" />)
 
     expect(treeOne).toMatchSnapshot()

@@ -1,4 +1,4 @@
-import { isValidStyleProp } from './props'
+// @flow
 
 const forwardableProps = {
   // primitive props
@@ -67,28 +67,14 @@ const forwardableProps = {
   textBreakStrategy: true,
 
   // react props
-  children: true
+  children: true,
+  style: true
 }
 
-/**
- * Split primitive props, style props and styled component props into an object.
- */
-export function splitProps(primitive, { innerRef, ...rest }) {
-  // Style overrides are the style props that are directly passed to the styled primitive <Text display='flex' />
-  const styleOverrides = {}
-  // Forward props are the one which are valid primitive props, hence these props are forwarded to the component.
-  const split = { toForward: {}, styleOverrides }
+export function testPickPropsOnPrimitiveComponent(prop: string) {
+  return forwardableProps[prop] === true
+}
 
-  for (const propName of Object.keys(rest)) {
-    if (isValidStyleProp(primitive, propName)) {
-      split.styleOverrides[propName] = rest[propName]
-    }
-
-    // If its a valid primitive prop, then forward it to the component. With this, we also delegate the prop checking to the platform so there are no downsides.
-    if (forwardableProps[propName]) {
-      split.toForward[propName] = rest[propName]
-    }
-  }
-
-  return split
+export function testPickPropsOnOtherComponent(prop: string) {
+  return prop !== 'theme' && prop !== 'innerRef'
 }
