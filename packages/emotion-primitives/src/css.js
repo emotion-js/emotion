@@ -85,6 +85,20 @@ export function css(...args: any) {
 
 let propertyValuePattern = /\s*([^\s]+)\s*:\s*(.+?)\s*$/
 
+function convertPropertyValue(style) {
+  // Get prop name and prop value
+  let match = propertyValuePattern.exec(style)
+  // match[2] will be " " in cases where there is no value
+  // but there is whitespace, e.g. "color: "
+  if (match !== null && match[2] !== ' ') {
+    // the first value in the array will
+    // be the whole string so we remove it
+    match.shift()
+    // yes i know this looks funny
+    this.push(match)
+  }
+}
+
 function convertStyles(str: string) {
   if (str.trim() === '') return
 
@@ -92,18 +106,7 @@ function convertStyles(str: string) {
 
   const parsedString = str.split(';')
 
-  parsedString.forEach(style => {
-    // Get prop name and prop value
-    let match = propertyValuePattern.exec(style)
-    // match[2] will be " " in cases where there is no value
-    // but there is whitespace, e.g. "color: "
-    if (match !== null && match[2] !== ' ') {
-      // the first value in the array will
-      // be the whole string so we remove it
-      match.shift()
-      stylePairs.push(match)
-    }
-  })
+  parsedString.forEach(convertPropertyValue, stylePairs)
 
   return transform(stylePairs)
 }
