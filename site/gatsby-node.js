@@ -97,9 +97,20 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
       name: `slug`,
       value:
         fileNode.name === 'README'
-          ? require(`${path.parse(fileNode.absolutePath).dir}/package.json`)
-              .name
+          ? getNameForPackage(fileNode.absolutePath)
           : fileNode.name
     })
+  }
+}
+
+function getNameForPackage(absolutePath) {
+  try {
+    return require(`${path.parse(absolutePath).dir}/package.json`).name
+  } catch (e) {
+    if (e.code === 'MODULE_NOT_FOUND') {
+      const splitAbsolutePath = absolutePath.split(path.sep)
+      return splitAbsolutePath[splitAbsolutePath.length - 2]
+    }
+    throw e
   }
 }
