@@ -74,6 +74,10 @@ function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
 
 export function css(...args: any) {
   let vals
+
+  // these are declared earlier
+  // this is done so we don't create a new
+  // handleInterpolation function on every css call
   styles = []
   buffer = ''
   lastType = undefined
