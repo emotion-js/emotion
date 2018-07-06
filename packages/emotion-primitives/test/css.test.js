@@ -2,13 +2,16 @@
 import transform from 'css-to-react-native'
 import { StyleSheet } from 'react-primitives'
 
-function interleave(strings, ...interpolations) {
-  return interpolations.reduce(
-    function(array, interp, i) {
-      return array.concat([interp], strings[i + 1])
-    },
-    [strings[0]]
-  )
+function interleave(vals) {
+  let strings = vals[0]
+  let finalArray = [strings[0]]
+  for (let i = 1, len = vals.length; i < len; i++) {
+    finalArray.push(vals[i])
+    if (strings[i + 1] !== undefined) {
+      finalArray.push(strings[i + 1])
+    }
+  }
+  return finalArray
 }
 
 function css(...args: any) {
@@ -17,7 +20,7 @@ function css(...args: any) {
   if (args[0].strings == null || args[0].strings.raw === undefined) {
     vals = args
   } else {
-    vals = interleave(...args)
+    vals = interleave(args)
   }
 
   let styles = []

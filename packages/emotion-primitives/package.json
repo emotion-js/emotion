@@ -12,7 +12,8 @@
   },
   "peerDependencies": {
     "react": "15.x || 16.x",
-    "react-primitives": "^0.5.1"
+    "react-primitives": "^0.5.1",
+    "prop-types": "15.x"
   },
   "devDependencies": {
     "emotion-theming": "^9.1.2",
