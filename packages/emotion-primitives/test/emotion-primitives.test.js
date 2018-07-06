@@ -1,10 +1,12 @@
-import React from 'react'
+// @flow
+import './mock-primitives'
+import * as React from 'react'
 import renderer from 'react-test-renderer'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import reactPrimitives from 'react-primitives'
 import { ThemeProvider } from 'emotion-theming'
-import { render } from 'react-dom'
+import { render, unmountComponentAtNode } from 'react-dom'
 
 import styled from 'emotion-primitives'
 
@@ -12,20 +14,7 @@ Enzyme.configure({ adapter: new Adapter() })
 
 const StyleSheet = reactPrimitives.StyleSheet
 
-jest.mock('react-primitives', () => {
-  let realPrimitives = require.requireActual('react-primitives')
-
-  return {
-    ...realPrimitives,
-    // mock the components to strings so that we can see the actual styles rather
-    // than a bunch of class names that don't mean anything
-    View: 'View',
-    Text: 'Text',
-    Image: 'Image'
-  }
-})
-
-const theme = { backgroundColor: 'magenta' }
+const theme = { backgroundColor: 'magenta', display: 'flex' }
 
 describe('Emotion primitives', () => {
   test('should not throw an error when used valid primitive', () => {
@@ -66,6 +55,26 @@ describe('Emotion primitives', () => {
       .toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('should unmount with emotion-theming', () => {
+    const Text = styled('p')`
+      display: ${props => props.theme.display};
+    `
+
+    let mountNode = document.createElement('div')
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Text id="something" style={{ backgroundColor: 'yellow' }}>
+          Hello World
+        </Text>
+      </ThemeProvider>,
+      mountNode
+    )
+    expect(mountNode).toMatchSnapshot()
+    unmountComponentAtNode(mountNode)
+    expect(mountNode.querySelector('#something')).toBe(null)
   })
 
   test('should render the primitive on changing the props', () => {
@@ -132,13 +141,15 @@ describe('Emotion primitives', () => {
   })
 
   it('innerRef', () => {
-    const Text = styled.Text`
+    const Text = styled('p')`
       color: hotpink;
     `
     let ref = React.createRef()
+    const rootNode = document.createElement('div')
 
-    render(<Text innerRef={ref} />, document.createElement('div'))
-    expect(ref.current).not.toBeNull()
+    render(<Text innerRef={ref} id="something" />, rootNode)
+    expect(ref.current).toBe(rootNode.querySelector('#something'))
+    unmountComponentAtNode(rootNode)
   })
 
   it('should pass props in withComponent', () => {

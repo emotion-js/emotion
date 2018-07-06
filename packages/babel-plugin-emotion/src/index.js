@@ -282,7 +282,7 @@ export function buildStyledCallExpression(
     targetProperty
   )
 
-  let createStyledCall =
+  let styledCall =
     t.isStringLiteral(tag) &&
     !isCallExpression &&
     // $FlowFixMe
@@ -293,7 +293,7 @@ export function buildStyledCallExpression(
         t.callExpression(identifier, [tag, finalOptions, ...restArgs])
 
   return t.callExpression(
-    createStyledCall,
+    styledCall,
     appendStringToExpressions(
       getExpressionsFromTemplateLiteral(path.node.quasi, t),
       stringToAppend,
@@ -345,7 +345,7 @@ export function buildStyledObjectCallExpression(
 
   path.addComment('leading', '#__PURE__')
 
-  let createStyledCall =
+  let styledCall =
     t.isStringLiteral(tag) &&
     !isCallExpression &&
     tag.value[0] !== tag.value[0].toLowerCase()
@@ -356,7 +356,7 @@ export function buildStyledObjectCallExpression(
           ...restStyledArgs
         ])
 
-  return t.callExpression(createStyledCall, args)
+  return t.callExpression(styledCall, args)
 }
 
 const visited = Symbol('visited')

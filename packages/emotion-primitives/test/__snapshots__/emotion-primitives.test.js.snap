@@ -109,6 +109,17 @@ exports[`Emotion primitives should style any other component 1`] = `
 </Text>
 `;
 
+exports[`Emotion primitives should unmount with emotion-theming 1`] = `
+<div>
+  <p
+    id="something"
+    style="display: flex; background-color: yellow;"
+  >
+    Hello World
+  </p>
+</div>
+`;
+
 exports[`Emotion primitives should work with emotion-theming 1`] = `
 <Text
   style={
