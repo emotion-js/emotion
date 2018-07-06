@@ -84,6 +84,8 @@ function convertStyles(str: string) {
   parsedString.forEach(style => {
     // Get prop name and prop value
     let match = propertyValuePattern.exec(style)
+    // match[2] will be " " in cases where there is no value
+    // but there is whitespace, e.g. "color: "
     if (match !== null && match[2] !== ' ') {
       // the first value in the array will
       // be the whole string so we remove it
