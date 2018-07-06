@@ -30,6 +30,7 @@ function macro(options) {
               [t.stringLiteral(path.node.tag.property.name)],
               path,
               state,
+              false,
               t
             )
           )
@@ -40,6 +41,7 @@ function macro(options) {
               path.node.tag.arguments,
               path,
               state,
+              true,
               t
             )
           )
