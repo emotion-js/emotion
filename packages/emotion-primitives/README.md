@@ -24,7 +24,7 @@ This package also depends on `react`, `react-primitives` and `prop-types` so mak
 
 ```js
 import React from 'react'
-import styled from 'emotion-primitives'
+import styled, { css } from 'emotion-primitives'
 
 import { ThemeProvider } from 'emotion-theming'
 
@@ -57,7 +57,11 @@ class App extends React.Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Container style={{ borderRadius: '10px' }}>
+        <Container
+          style={css`
+            border-radius: 10px;
+          `}
+        >
           <Description style={{ fontSize: 45, fontWeight: 'bold' }}>
             Emotion Primitives
           </Description>
