@@ -281,9 +281,15 @@ export function buildStyledCallExpression(
     targetProperty
   )
 
+  let createStyledCall = // $FlowFixMe
+    t.isStringLiteral(tag) && tag.value[0] !== tag.value[0].toLowerCase()
+      ? // $FlowFixMe
+        t.memberExpression(identifier, t.identifier(tag.value))
+      : // $FlowFixMe
+        t.callExpression(identifier, [tag, finalOptions, ...restArgs])
+
   return t.callExpression(
-    // $FlowFixMe
-    t.callExpression(identifier, [tag, finalOptions, ...restArgs]),
+    createStyledCall,
     appendStringToExpressions(
       getExpressionsFromTemplateLiteral(path.node.quasi, t),
       stringToAppend,
@@ -335,14 +341,16 @@ export function buildStyledObjectCallExpression(
 
   path.addComment('leading', '#__PURE__')
 
-  return t.callExpression(
-    t.callExpression(identifier, [
-      tag,
-      buildFinalOptions(t, styledOptions, targetProperty, labelProperty),
-      ...restStyledArgs
-    ]),
-    args
-  )
+  let createStyledCall =
+    t.isStringLiteral(tag) && tag.value[0] !== tag.value[0].toLowerCase()
+      ? t.memberExpression(identifier, t.identifier(tag.value))
+      : t.callExpression(identifier, [
+          tag,
+          buildFinalOptions(t, styledOptions, targetProperty, labelProperty),
+          ...restStyledArgs
+        ])
+
+  return t.callExpression(createStyledCall, args)
 }
 
 const visited = Symbol('visited')
@@ -359,7 +367,12 @@ const importedNameKeys = Object.keys(defaultImportedNames).map(
   key => (key === 'styled' ? 'default' : key)
 )
 
-const defaultEmotionPaths = ['emotion', 'react-emotion', 'preact-emotion']
+const defaultEmotionPaths = [
+  'emotion',
+  'react-emotion',
+  'preact-emotion',
+  'emotion-primitives'
+]
 
 function getRelativePath(filepath: string, absoluteInstancePath: string) {
   let relativePath = nodePath.relative(
