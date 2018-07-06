@@ -1,7 +1,7 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.6
 
-import { ComponentConstructor, FunctionalComponent, Ref } from 'preact';
+import { ComponentConstructor, ComponentFactory, FunctionalComponent, Ref } from 'preact';
 import { ClassInterpolation } from 'create-emotion';
 import {
   Interpolation,
@@ -23,7 +23,7 @@ export interface StyledComponentMethods<Props extends object, InnerProps extends
   ): StyledStatelessComponent<Props, IP, Theme>;
 
   withComponent<IP extends object>(
-    component: ComponentConstructor<IP>,
+    component: ComponentConstructor<IP> | ComponentFactory<IP>,
     options?: StyledOptions,
   ): StyledOtherComponent<Props, IP, Theme>;
 }
@@ -67,7 +67,7 @@ export interface CreateStyledFunction<Theme extends object> {
   ): CreateStyledStatelessComponent<IP, Theme>;
 
   <IP extends object>(
-    component: ComponentConstructor<IP>,
+    component: ComponentConstructor<IP> | ComponentFactory<IP>,
     options?: StyledOptions,
   ): CreateStyledOtherComponent<IP, Theme>;
 }
