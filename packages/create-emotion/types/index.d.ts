@@ -32,7 +32,7 @@ export interface ArrayClassNameArg extends Array<ClassNameArg> {}
 
 export type ClassNameArg =
   | undefined | null | boolean | string
-  | { [key: string]: boolean }
+  | { [key: string]: undefined | null | boolean | string }
   | ArrayClassNameArg
   ;
 
