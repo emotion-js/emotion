@@ -40,6 +40,7 @@
     - emotion-server
     - emotion-theming
     - jest-emotion
+    - "@emotion/primitives"
     - create-emotion
     - create-emotion-styled
     - create-emotion-server
