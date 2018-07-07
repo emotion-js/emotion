@@ -7,7 +7,6 @@ import { touchSync } from 'touch'
 import { addSideEffect } from '@babel/helper-module-imports'
 import {
   getIdentifierName,
-  getName,
   createRawStringFromTemplateLiteral,
   getLabel,
   appendStringToExpressions
@@ -73,35 +72,79 @@ export type EmotionBabelPluginPass = BabelPluginPass & {
   opts: any
 }
 
+/**
+ * this function gives you the ability to change the generated css selector
+ * from the babel plugin, it's based on
+ */
+function getLocalIdentName(
+  filePath: string,
+  localName: string,
+  hash: string,
+  localIdentName: string
+) {
+  const parsedPath = nodePath.parse(filePath)
+  const directory = parsedPath.dir
+    .replace(/\\/g, '/')
+    .replace(/\.\.(\/)?/g, '_$1')
+  const filename = parsedPath.name
+  const ext = parsedPath.ext
+
+  return localIdentName
+    .replace('[path]', directory)
+    .replace('[name]', filename)
+    .replace('[hash]', hash)
+    .replace('[local]', localName)
+    .replace('[ext]', ext)
+}
+
 export function replaceCssWithCallExpression(
   path: BabelPath,
   identifier: Identifier,
   state: EmotionBabelPluginPass,
   t: Types,
-  staticCSSSrcCreator: (
-    src: string,
-    name: string,
-    hash: string
-  ) => string = src => src,
+  staticCSSSrcCreator: (src: string, name: string) => string = src => src,
   removePath: boolean = false,
-  staticCSSSelectorCreator: (name: string, hash: string) => string = (
-    name,
-    hash
-  ) => `.${name}-${hash}`
+  localIdentName?: string,
+  getLocalIdent?: Function
 ) {
   try {
     let { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
     const identifierName = getIdentifierName(path, t)
-    const name = getName(identifierName, 'css')
+
+    let generatedIdentName = ''
+    if (localIdentName) {
+      const fileName = path.hub.file.opts.generatorOpts
+        ? path.hub.file.opts.generatorOpts.sourceFileName
+        : path.hub.file.opts.sourceFileName
+      generatedIdentName = getLocalIdentName(
+        fileName,
+        identifierName,
+        hash,
+        localIdentName
+      )
+        .replace(new RegExp('[^a-zA-Z0-9\\-_\u00A0-\uFFFF]', 'g'), '-')
+        .replace(/^((-?[0-9])|--)/, '_$1')
+    }
+
+    if (typeof getLocalIdent !== 'undefined') {
+      generatedIdentName = getLocalIdent(generatedIdentName, identifierName);
+    }
+
+    // backwards compatibility so we don't break anything
+    if (typeof localIdentName === 'undefined') {
+      generatedIdentName = ['css', identifierName, hash]
+        .filter(Boolean)
+        .join('-')
+    }
 
     if (state.extractStatic && !path.node.quasi.expressions.length) {
       const staticCSSRules = staticStylis(
-        staticCSSSelectorCreator(name, hash),
-        staticCSSSrcCreator(src, name, hash)
+        `${generatedIdentName ? '.' : ''}${generatedIdentName}`,
+        staticCSSSrcCreator(src, generatedIdentName)
       )
       state.insertStaticRules([staticCSSRules])
       if (!removePath) {
-        return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
+        return path.replaceWith(t.stringLiteral(generatedIdentName))
       }
       return path.replaceWith(t.identifier('undefined'))
     }
@@ -524,6 +567,8 @@ export default function(babel: Babel) {
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
 
+          state.outputDir = state.opts.outputDir
+
           state.staticRules = []
 
           state.insertStaticRules = function(staticRules) {
@@ -713,16 +758,24 @@ export default function(babel: Babel) {
             path.node.tag.name === state.importedNames.css ||
             state.cssPropIdentifiers.indexOf(path.node.tag) !== -1
           ) {
-            replaceCssWithCallExpression(path, path.node.tag, state, t)
+            replaceCssWithCallExpression(
+              path,
+              path.node.tag,
+              state,
+              t,
+              src => src,
+              false,
+              state.opts.localIdentName,
+              state.opts.getLocalIdent
+            )
           } else if (path.node.tag.name === state.importedNames.keyframes) {
             replaceCssWithCallExpression(
               path,
               path.node.tag,
               state,
               t,
-              (src, name, hash) => `@keyframes ${name}-${hash} { ${src} }`,
-              false,
-              () => ''
+              (src, name) => `@keyframes ${name} { ${src} }`,
+              state.opts.getLocalIdent
             )
           } else if (path.node.tag.name === state.importedNames.injectGlobal) {
             replaceCssWithCallExpression(
@@ -732,7 +785,8 @@ export default function(babel: Babel) {
               t,
               undefined,
               true,
-              () => ''
+              '',
+              state.opts.getLocalIdent
             )
           }
         }
