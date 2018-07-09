@@ -1,4 +1,3 @@
-// @flow
 import reactNative from 'react-native'
 import { createCss } from 'primitives-core'
 
