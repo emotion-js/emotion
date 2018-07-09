@@ -18,7 +18,8 @@ let defaultPickTest = prop => prop !== 'theme' && prop !== 'innerRef'
 
 export function createStyled(
   StyleSheet: Object,
-  getShouldForwardProp: Function = cmp => defaultPickTest
+  getShouldForwardProp: Function = (cmp: React.ElementType): Function =>
+    defaultPickTest
 ) {
   const css = createCss(StyleSheet)
 
