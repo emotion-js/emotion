@@ -1,120 +1,37 @@
 // @flow
 import * as React from 'react'
-import { View, Text, Image } from 'react-primitives'
-import {
-  channel,
-  contextTypes,
-  setTheme,
-  testAlwaysTrue,
-  pickAssign,
-  interleave
-} from './utils'
+import { StyleSheet, View, Text, Image } from 'react-primitives'
+import { createStyled } from 'primitives-core'
 import {
   testPickPropsOnPrimitiveComponent,
   testPickPropsOnOtherComponent
 } from './test-props'
-import { css } from './css'
 
 function isPrimitiveComponent(component: React.ElementType) {
   switch (component) {
     case View:
     case Text:
     case Image: {
-      return true
+      return testPickPropsOnPrimitiveComponent
     }
   }
-  return false
+  return testPickPropsOnOtherComponent
 }
-
-type State = {
-  theme: Object
-} | null
 
 /**
  * a function that returns a styled component which render styles on multiple targets with same code
  */
 
-type CreateStyledComponent = (...styles: any) => React.ElementType
+// type CreateStyledComponent = (...styles: any) => React.ElementType
 
-type BaseCreateStyled = (tag: React.ElementType) => CreateStyledComponent
+// type BaseStyled = (tag: React.ElementType) => CreateStyledComponent
 
-export type CreateStyled = BaseCreateStyled & {
-  View: CreateStyledComponent,
-  Text: CreateStyledComponent,
-  Image: CreateStyledComponent
-}
+// export type Styled = BaseStyled & {
+//   View: CreateStyledComponent,
+//   Text: CreateStyledComponent,
+//   Image: CreateStyledComponent
+// }
 
-// $FlowFixMe
-let createStyled: CreateStyled = function createStyled(
-  component: React.ElementType
-) {
-  let isPrimitive = isPrimitiveComponent(component)
-  let pickTest = isPrimitive
-    ? testPickPropsOnPrimitiveComponent
-    : testPickPropsOnOtherComponent
-  return function createStyledComponent(...rawStyles: *) {
-    let styles
+let styled = createStyled(StyleSheet, isPrimitiveComponent)
 
-    if (rawStyles[0] == null || rawStyles[0].raw === undefined) {
-      styles = rawStyles
-    } else {
-      styles = interleave(rawStyles)
-    }
-    class Styled extends React.Component<*, State> {
-      unsubscribe: number | void
-      mergedProps: Object
-
-      static withComponent = (newComponent: React.ElementType) =>
-        createStyled(newComponent)(...styles)
-
-      componentWillMount() {
-        if (this.context[channel] !== undefined) {
-          this.unsubscribe = this.context[channel].subscribe(
-            setTheme.bind(this)
-          )
-        }
-      }
-
-      componentWillUnmount() {
-        if (this.unsubscribe !== undefined) {
-          this.context[channel].unsubscribe(this.unsubscribe)
-        }
-      }
-
-      render() {
-        const { props, state } = this
-
-        // Similar to create-emotion-styled component implementation
-        this.mergedProps = pickAssign(testAlwaysTrue, {}, props, {
-          theme: (state !== null && state.theme) || props.theme || {}
-        })
-        let stylesWithStyleProp = styles
-        if (props.style) {
-          stylesWithStyleProp = styles.concat(props.style)
-        }
-        const emotionStyles = css.apply(this, stylesWithStyleProp)
-
-        return React.createElement(
-          component,
-          pickAssign(pickTest, {}, props, {
-            ref: props.innerRef,
-            style: emotionStyles
-          })
-        )
-      }
-    }
-
-    Styled.contextTypes = contextTypes
-
-    Styled.displayName = `emotion(${getDisplayName(component)})`
-
-    return Styled
-  }
-}
-
-const getDisplayName = primitive =>
-  typeof primitive === 'string'
-    ? primitive
-    : primitive.displayName || primitive.name || 'Styled'
-
-export { createStyled }
+export { styled }

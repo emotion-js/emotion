@@ -1,5 +1,5 @@
 // @flow
-import { css } from '@emotion/primitives'
+import { css } from '../src'
 
 let returnArguments = (...args) => args
 

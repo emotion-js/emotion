@@ -2,6 +2,7 @@
 
 exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
 <Text
+  decor="hotpink"
   style={
     Object {
       "color": "hotpink",
@@ -45,9 +46,10 @@ exports[`Emotion primitives should render <Image /> 1`] = `
   }
   style={
     Object {
-      "borderColor": "hotpink",
-      "borderStyle": "solid",
-      "borderWidth": 2,
+      "borderBottomLeftRadius": 2,
+      "borderBottomRightRadius": 2,
+      "borderTopLeftRadius": 2,
+      "borderTopRightRadius": 2,
     }
   }
 />
@@ -68,6 +70,7 @@ exports[`Emotion primitives should render primitive with style prop 1`] = `
 
 exports[`Emotion primitives should render the primitive on changing the props 1`] = `
 <Text
+  decor="hotpink"
   style={
     Object {
       "color": "hotpink",
@@ -81,6 +84,7 @@ exports[`Emotion primitives should render the primitive on changing the props 1`
 
 exports[`Emotion primitives should render the primitive when styles applied using object style notation 1`] = `
 <Text
+  back="red"
   style={
     Object {
       "backgroundColor": "red",
@@ -102,6 +106,19 @@ exports[`Emotion primitives should style any other component 1`] = `
   }
 >
   Hello World
+</Text>
+`;
+
+exports[`Emotion primitives should work with StyleSheet.create API 1`] = `
+<Text
+  style={
+    Object {
+      "color": "red",
+      "fontSize": 10,
+    }
+  }
+>
+  Emotion primitives
 </Text>
 `;
 

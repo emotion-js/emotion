@@ -10,7 +10,8 @@
 	"dependencies": {
 		"@emotion/is-prop-valid": "^0.6.3",
 		"babel-plugin-emotion": "^9.2.5",
-		"css-to-react-native": "^2.2.0"
+		"css-to-react-native": "^2.2.0",
+		"primitives-core": "1.0.0-beta.0"
 	},
 	"peerDependencies": {
 		"prop-types": "15.x",
@@ -26,7 +27,7 @@
 	},
 	"homepage": "https://emotion.sh",
 	"license": "MIT",
-	"repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-primitives",
+	"repository": "https://github.com/emotion-js/emotion/tree/master/packages/primitives",
 	"keywords": [
 		"styles",
 		"emotion",
