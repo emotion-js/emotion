@@ -1,8 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
+exports[`Emotion native primitive should work with \`withComponent\` 1`] = `
 <Text
+  accessible={true}
+  allowFontScaling={true}
   decor="hotpink"
+  disabled={false}
+  ellipsizeMode="tail"
   style={
     Object {
       "color": "hotpink",
@@ -13,7 +17,7 @@ exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
 </Text>
 `;
 
-exports[`Emotion primitives should pass props in withComponent 1`] = `
+exports[`Emotion native should pass props in withComponent 1`] = `
 <View
   color="green"
   style={
@@ -24,9 +28,13 @@ exports[`Emotion primitives should pass props in withComponent 1`] = `
 />
 `;
 
-exports[`Emotion primitives should pass props in withComponent 2`] = `
+exports[`Emotion native should pass props in withComponent 2`] = `
 <Text
+  accessible={true}
+  allowFontScaling={true}
   color="hotpink"
+  disabled={false}
+  ellipsizeMode="tail"
   style={
     Object {
       "backgroundColor": "hotpink",
@@ -35,7 +43,7 @@ exports[`Emotion primitives should pass props in withComponent 2`] = `
 />
 `;
 
-exports[`Emotion primitives should render <Image /> 1`] = `
+exports[`Emotion native should render <Image /> 1`] = `
 <Image
   source={
     Object {
@@ -55,8 +63,12 @@ exports[`Emotion primitives should render <Image /> 1`] = `
 />
 `;
 
-exports[`Emotion primitives should render primitive with style prop 1`] = `
+exports[`Emotion native should render primitive with style prop 1`] = `
 <Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
   style={
     Object {
       "color": "hotpink",
@@ -68,9 +80,13 @@ exports[`Emotion primitives should render primitive with style prop 1`] = `
 </Text>
 `;
 
-exports[`Emotion primitives should render the primitive on changing the props 1`] = `
+exports[`Emotion native should render the primitive on changing the props 1`] = `
 <Text
+  accessible={true}
+  allowFontScaling={true}
   decor="hotpink"
+  disabled={false}
+  ellipsizeMode="tail"
   style={
     Object {
       "color": "hotpink",
@@ -82,9 +98,13 @@ exports[`Emotion primitives should render the primitive on changing the props 1`
 </Text>
 `;
 
-exports[`Emotion primitives should render the primitive when styles applied using object style notation 1`] = `
+exports[`Emotion native should render the primitive when styles applied using object style notation 1`] = `
 <Text
+  accessible={true}
+  allowFontScaling={true}
   back="red"
+  disabled={false}
+  ellipsizeMode="tail"
   style={
     Object {
       "backgroundColor": "red",
@@ -97,8 +117,12 @@ exports[`Emotion primitives should render the primitive when styles applied usin
 </Text>
 `;
 
-exports[`Emotion primitives should style any other component 1`] = `
+exports[`Emotion native should style any other component 1`] = `
 <Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
   style={
     Object {
       "color": "hotpink",
@@ -109,8 +133,12 @@ exports[`Emotion primitives should style any other component 1`] = `
 </Text>
 `;
 
-exports[`Emotion primitives should work with StyleSheet.create API 1`] = `
+exports[`Emotion native should work with StyleSheet.create API 1`] = `
 <Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
   style={
     Object {
       "color": "red",
@@ -122,8 +150,12 @@ exports[`Emotion primitives should work with StyleSheet.create API 1`] = `
 </Text>
 `;
 
-exports[`Emotion primitives should work with emotion-theming 1`] = `
+exports[`Emotion native should work with emotion-theming 1`] = `
 <Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
   style={
     Object {
       "color": "magenta",

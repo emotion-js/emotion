@@ -71,6 +71,8 @@ function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
   lastType = type
 }
 
+// Use platform specific StyleSheet method for creating the styles.
+// This enables us to use the css``/css({}) in any environment
 export function createCss(StyleSheet) {
   return function css(...args: any) {
     let vals

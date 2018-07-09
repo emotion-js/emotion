@@ -1,39 +1,15 @@
 import * as React from 'react'
 import renderer from 'react-test-renderer'
-import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import { ThemeProvider } from 'emotion-theming'
 
-import { createStyled } from '../src/styled'
+import styled from '../src'
 import reactNative from 'react-native'
 
 const StyleSheet = reactNative.StyleSheet
 
-Enzyme.configure({ adapter: new Adapter() })
-
 const theme = { backgroundColor: 'magenta', display: 'flex' }
 
-const styled = createStyled(reactNative.StyleSheet)
-
-const components = `ActivityIndicator ActivityIndicatorIOS ART Button DatePickerIOS DrawerLayoutAndroid
- Image ImageBackground ImageEditor ImageStore KeyboardAvoidingView ListView MapView Modal NavigatorIOS
- Picker PickerIOS ProgressBarAndroid ProgressViewIOS ScrollView SegmentedControlIOS Slider
- SliderIOS SnapshotViewIOS Switch RecyclerViewBackedScrollView RefreshControl SafeAreaView StatusBar
- SwipeableListView SwitchAndroid SwitchIOS TabBarIOS Text TextInput ToastAndroid ToolbarAndroid
- Touchable TouchableHighlight TouchableNativeFeedback TouchableOpacity TouchableWithoutFeedback
- View ViewPagerAndroid WebView FlatList SectionList VirtualizedList`
-
-components.split(/\s+/m).forEach(comp =>
-  Object.defineProperty(styled, comp, {
-    enumerable: true,
-    configurable: false,
-    get() {
-      return styled(reactNative[comp])
-    }
-  })
-)
-
-describe('Emotion primitives', () => {
+describe('Emotion native', () => {
   test('should not throw an error when used valid primitive', () => {
     expect(() => styled.Text({})).not.toThrow()
   })

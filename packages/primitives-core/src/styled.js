@@ -20,7 +20,6 @@ export function createStyled(
   StyleSheet,
   getShouldForwardProp = () => defaultPickTest
 ) {
-  // Use platform specific StyleSheet method
   const css = createCss(StyleSheet)
 
   return function createEmotion(component: React.ElementType) {

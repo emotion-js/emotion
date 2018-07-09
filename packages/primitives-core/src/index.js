@@ -1,4 +1,2 @@
-import { createCss } from './css'
-import { createStyled } from './styled'
-
-export { createCss, createStyled }
+export { createCss } from './css'
+export { createStyled } from './styled'
