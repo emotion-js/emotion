@@ -229,6 +229,23 @@ function createEmotion(
 
   const labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 
+  let createClassName = (styles, identifierName) => {
+    return hashString(styles + identifierName) + identifierName
+  }
+  if (process.env.NODE_ENV !== 'production') {
+    const oldCreateClassName = createClassName
+    const sourceMappingUrlPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
+    createClassName = (styles, identifierName) => {
+      return oldCreateClassName(
+        styles.replace(sourceMappingUrlPattern, sourceMap => {
+          currentSourceMap = sourceMap
+          return ''
+        }),
+        identifierName
+      )
+    }
+  }
+
   const createStyles: CreateStyles<string> = function(
     strings: Interpolation | string[],
     ...interpolations: Interpolation[]
@@ -259,26 +276,13 @@ function createEmotion(
       identifierName += `-${p1}`
       return ''
     })
-    if (process.env.NODE_ENV !== 'production') {
-      name =
-        hashString(
-          styles.replace(
-            /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g,
-            ''
-          ) + identifierName
-        ) + identifierName
-    } else {
-      name = hashString(styles + identifierName) + identifierName
-    }
+    name = createClassName(styles, identifierName)
     return styles
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    const sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
     const oldStylis = stylis
     stylis = (selector, styles) => {
-      const result = sourceMapRegEx.exec(styles)
-      currentSourceMap = result ? result[0] : ''
       oldStylis(selector, styles)
       currentSourceMap = ''
     }
