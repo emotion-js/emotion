@@ -1,5 +1,5 @@
 import createEmotion from 'create-emotion';
-import React from 'react';
+import * as React from 'react';
 
 import createEmotionStyled, { StyledComponent } from '../';
 
@@ -191,3 +191,34 @@ const ComposingComp = createStyled.div`
     color: black;
   }
 `;
+
+const CSSPropComp = createStyled.div();
+<CSSPropComp css={{ color: 'blue' }} />;
+<CSSPropComp css={`
+  color: blue;
+  `}
+/>;
+
+interface TestComponentTypeProps {
+  value: number;
+}
+
+declare const TestComponentType: React.ComponentType<TestComponentTypeProps>;
+
+const StyledComponentType0 = createStyled(TestComponentType)({
+  color: 'red',
+});
+
+const StyledComponentType1 = createStyled(TestComponentType)`
+  color: red;
+`;
+
+const ComposingCompType = createStyled.div`
+  ${StyledComponentType1} {
+    background-color: green;
+  }
+`;
+
+<StyledComponentType0 value={5} />;
+<StyledComponentType1 value={4} />;
+<ComposingCompType />;

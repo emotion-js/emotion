@@ -1,9 +1,9 @@
 {
   "name": "emotion",
-  "version": "9.1.3",
+  "version": "9.2.5",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "module": "dist/index.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -12,25 +12,16 @@
     "types"
   ],
   "scripts": {
-    "build": "npm-run-all clean rollup",
-    "test:typescript": "dtslint types",
-    "clean": "rimraf dist",
-    "rollup": "rollup -c ../../rollup.config.js",
-    "watch": "rollup -c ../../rollup.config.js --watch"
+    "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^9.1.2",
-    "create-emotion": "^9.1.3"
+    "babel-plugin-emotion": "^9.2.5",
+    "create-emotion": "^9.2.5"
   },
   "devDependencies": {
     "@types/react": "16.0.16",
-    "babel-cli": "^6.24.1",
     "babel-plugin-transform-define": "^1.3.0",
-    "cross-env": "^5.0.5",
-    "dtslint": "^0.3.0",
-    "npm-run-all": "^4.0.2",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.51.3"
+    "dtslint": "^0.3.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -45,5 +36,6 @@
   ],
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
-  }
+  },
+  "umd:main": "./dist/emotion.umd.min.js"
 }

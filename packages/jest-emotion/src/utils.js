@@ -1,11 +1,10 @@
 // @flow
 
-function getClassNames(selectors, classes) {
+function getClassNames(selectors: any, classes?: string) {
   return classes ? selectors.concat(classes.split(' ')) : selectors
 }
 
-function getClassNamesFromTestRenderer(selectors, node) {
-  const props = node.props
+function getClassNamesFromTestRenderer(selectors, { props = {} }) {
   return getClassNames(selectors, props.className || props.class)
 }
 

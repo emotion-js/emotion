@@ -36,9 +36,11 @@
     - emotion
     - react-emotion
     - babel-plugin-emotion
+    - eslint-plugin-emotion
     - emotion-server
     - emotion-theming
     - jest-emotion
+    - "@emotion/primitives"
     - create-emotion
     - create-emotion-styled
     - create-emotion-server

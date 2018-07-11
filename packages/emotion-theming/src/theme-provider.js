@@ -2,7 +2,7 @@
 // adapted from styled-components' ThemeProvider
 // https://github.com/styled-components/styled-components/blob/4503cab5b86aa9ef8314c5baa360a2fbb4812485/src/models/ThemeProvider.js
 
-import { Component, Children } from 'react'
+import { Component, Children, type Node as ReactNode } from 'react'
 import createBroadcast from './create-broadcast'
 import { channel, contextTypes, type Theme } from './utils'
 
@@ -10,7 +10,8 @@ const isPlainObject = test =>
   Object.prototype.toString.call(test) === '[object Object]'
 
 type Props = {
-  theme: Theme
+  theme: Theme,
+  children: ReactNode
 }
 
 class ThemeProvider extends Component<Props> {

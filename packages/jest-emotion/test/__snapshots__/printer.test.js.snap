@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`does not replace class names that are not from emotion 1`] = `
+".emotion-0 {
+  color: darkorchid;
+}
+
+<div
+  className=\\"net-42 net emotion-0\\"
+/>"
+`;
+
 exports[`jest-emotion with DOM elements disabled does not replace class names or insert styles into DOM element snapshots 1`] = `
 "<div
   class=\\"css-17f3slo\\"

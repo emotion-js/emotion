@@ -7,7 +7,7 @@ import { buildMacroRuntimeNode, omit } from './babel-utils'
 import emotionMacro from './macro'
 import { createMacro } from 'babel-plugin-macros'
 
-module.exports = createMacro(macro)
+export default createMacro(macro)
 
 function macro(options) {
   const { references, state, babel: { types: t } } = options
@@ -30,6 +30,7 @@ function macro(options) {
               [t.stringLiteral(path.node.tag.property.name)],
               path,
               state,
+              false,
               t
             )
           )
@@ -40,6 +41,7 @@ function macro(options) {
               path.node.tag.arguments,
               path,
               state,
+              true,
               t
             )
           )

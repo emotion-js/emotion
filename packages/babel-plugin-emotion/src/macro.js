@@ -3,7 +3,7 @@ import { replaceCssWithCallExpression } from './index'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 import { createMacro } from 'babel-plugin-macros'
 
-module.exports = createMacro(macro)
+export default createMacro(macro)
 
 function macro({ references, state, babel: { types: t } }) {
   Object.keys(references).forEach(referenceKey => {

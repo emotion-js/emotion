@@ -15,7 +15,9 @@
 
 Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
 
-# [Go here to see the docs](https://emotion.sh/docs/introduction)
+# [👀 Demo Sandbox](https://codesandbox.io/s/pk1qjqpw67)
+
+# [📖 Docs](https://emotion.sh/docs/introduction)
 
 Frequently viewed docs:
 
@@ -80,7 +82,7 @@ Look here 👉 *[emotion babel plugin feature table and documentation](https://g
 
 ### Examples
 
-* [emotion website](packages/site) [[Demo Here](https://emotion.sh)]
+* [emotion website](site) [[Demo Here](https://emotion.sh)]
 * [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
 * [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
 * [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
@@ -98,7 +100,8 @@ Look here 👉 *[emotion babel plugin feature table and documentation](https://g
 
 ### In the Wild
 
-* [healthline.com](https://www.healthline.com/health/body-aches)
+* [healthline.com](https://www.healthline.com)
+* [nytimes.com](https://www.nytimes.com)
 * [vault.crucible.gg](http://vault.crucible.gg/)
 * [saldotuc.com](https://saldotuc.com)
 * [gatsbythemes.com](https://gatsbythemes.com/)

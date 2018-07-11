@@ -1,7 +1,6 @@
 /coverage
 /demo/dist
 dist/
-lib/
 node_modules/
 *.log
 .idea
@@ -10,3 +9,4 @@ package-lock.json
 .DS_Store
 .cache
 public/
+/extract.test.emotion.css
