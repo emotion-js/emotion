@@ -6,7 +6,7 @@ let writeFile = promisify(fs.writeFile)
 
 async function changeToNextPackages() {
   let lernaPath = require.resolve('../../lerna.json')
-  let rootPkgJsonPath = require.resolve('../../lerna.json')
+  let rootPkgJsonPath = require.resolve('../../package.json')
   let rootPkgJson = require(rootPkgJsonPath)
 
   let lerna = require(lernaPath)

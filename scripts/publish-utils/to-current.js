@@ -5,7 +5,7 @@ const { promisify } = require('util')
 let writeFile = promisify(fs.writeFile)
 
 async function changeToCurrentPackages() {
-  let rootPkgJsonPath = require.resolve('../../lerna.json')
+  let rootPkgJsonPath = require.resolve('../../package.json')
   let rootPkgJson = require(rootPkgJsonPath)
 
   rootPkgJson.workspaces = ['packages/*']
