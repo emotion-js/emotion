@@ -879,7 +879,7 @@
     "@babel/plugin-syntax-dynamic-import" "7.0.0-beta.51"
     "@babel/plugin-syntax-import-meta" "7.0.0-beta.51"
 
-"@babel/register@^7.0.0-beta.53":
+"@babel/register@7.0.0-beta.53":
   version "7.0.0-beta.53"
   resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.0.0-beta.53.tgz#a3c62be5256b9ce0b940b6a34d793e8bc97b7654"
   dependencies:

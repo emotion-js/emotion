@@ -33,6 +33,7 @@
     "@babel/preset-flow": "7.0.0-beta.51",
     "@babel/preset-react": "7.0.0-beta.51",
     "@babel/preset-stage-0": "7.0.0-beta.51",
+    "@babel/register": "7.0.0-beta.53",
     "babel-check-duplicated-nodes": "^1.0.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^7.0.0-bridge.0",
@@ -151,7 +152,8 @@
   "workspaces": [
     "packages/*",
     "site",
-    "scripts/*"
+    "scripts/*",
+    "next-packages/*"
   ],
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
@@ -165,8 +167,5 @@
       "path": "./packages/react-emotion/dist/emotion.umd.min.js",
       "threshold": "9.7 Kb"
     }
-  ],
-  "dependencies": {
-    "@babel/register": "^7.0.0-beta.53"
-  }
+  ]
 }
