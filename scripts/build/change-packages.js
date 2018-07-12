@@ -15,12 +15,8 @@ async function changePackages() {
     packages.map(async ({ pkg, path: pkgPath }) => {
       // you can transform the package.json contents here
 
-      if (
-        pkg.files &&
-        pkg.files.includes('lib') &&
-        pkg.name !== 'babel-plugin-emotion'
-      ) {
-        pkg.files = pkg.files.map(file => (file === 'lib' ? 'dist' : file))
+      if (pkg.module) {
+        pkg.module = pkg.module.replace('es.js', 'esm.js')
       }
 
       await writeFile(

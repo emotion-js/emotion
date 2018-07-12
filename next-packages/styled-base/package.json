@@ -3,7 +3,7 @@
   "version": "0.9.3",
   "description": "base styled API for emotion",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "module": "dist/index.esm.js",
   "browser": {
     "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
     "./dist/index.es.js": "./dist/index.browser.es.js"

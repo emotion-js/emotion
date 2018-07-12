@@ -3,7 +3,7 @@
   "version": "0.9.4",
   "description": "babel macro for emotion's styled",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "module": "dist/index.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/next/tree/master/packages/styled.macro",
   "dependencies": {
