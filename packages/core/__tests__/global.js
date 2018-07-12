@@ -1,4 +1,5 @@
 // @flow
+import 'test-utils/next-env'
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'

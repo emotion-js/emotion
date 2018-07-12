@@ -1,5 +1,6 @@
 // @flow
 /** @jsx jsx */
+import 'test-utils/next-env'
 import { jsx, Global, keyframes } from '@emotion/core'
 import Provider from '@emotion/provider'
 import css from '@emotion/css'

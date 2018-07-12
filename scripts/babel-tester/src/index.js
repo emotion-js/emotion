@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env jest */
 import jestInCase from 'jest-in-case'
 import * as babel from '@babel/core'
 import fs from 'fs'
@@ -26,6 +27,7 @@ const tester = allOpts => async opts => {
     ],
     presets: allOpts.presets,
     babelrc: false,
+    configFile: false,
     filename: opts.babelFileName || __filename
   })
 
