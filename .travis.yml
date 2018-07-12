@@ -15,8 +15,8 @@ before_install:
 
 install: yarn install --frozen-lockfile
 
-after_success:
-  - cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
+#after_success:
+#  - cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
 
 cache:
   yarn: true
