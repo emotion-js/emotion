@@ -141,10 +141,18 @@
       {
         "files": [
           "**/packages/*/src/*",
-          "**/packages/*/src/**/*"
+          "**/packages/*/src/**/*",
+          "**/next-packages/*/src/*",
+          "**/next-packages/*/src/**/*"
         ],
         "rules": {
           "import/no-commonjs": 2
+        }
+      },
+      {
+        "files": ["**/__fixtures__/*"],
+        "rules": {
+          "no-unused-vars": 0
         }
       }
     ]
