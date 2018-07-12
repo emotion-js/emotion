@@ -1,4 +1,4 @@
 require('@babel/register')
-require('module-alias').addAliases(require('lerna-alias').webpack())
+require('module-alias').addAliases(require('lerna-alias').rollup())
 
 module.exports = require('babel-plugin-emotion')
