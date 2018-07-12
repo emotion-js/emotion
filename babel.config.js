@@ -2,7 +2,9 @@ let pkgsThatNeedBabelPluginEmotion = [
   'emotion',
   'create-emotion',
   'react-emotion',
-  'jest-emotion'
+  'jest-emotion',
+  'emotion-server',
+  'create-emotion-server'
 ]
 
 let needsBabelPluginEmotion = filename =>
