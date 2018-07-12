@@ -50,7 +50,7 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn build
-      - run: yarn test:dist
+      - run: yarn test:prod
   lint_and_typescript:
     docker:
       - image: circleci/node:10.6.0
