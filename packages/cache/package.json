@@ -1,0 +1,22 @@
+{
+  "name": "@emotion/cache",
+  "version": "0.8.3",
+  "description": "emotion's cache",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/next/tree/master/packages/cache",
+  "dependencies": {
+    "@emotion/sheet": "^0.6.6",
+    "@emotion/stylis": "^0.6.10",
+    "@emotion/utils": "^0.7.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "umd:main": "./dist/index.min.js"
+}

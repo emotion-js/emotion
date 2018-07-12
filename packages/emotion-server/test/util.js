@@ -5,8 +5,13 @@ import { parse, stringify } from 'css'
 import type { Emotion } from 'create-emotion'
 // $FlowFixMe
 import { renderToNodeStream } from 'react-dom/server'
-import * as emotionServerInstanceForType from 'emotion-server'
 import HTMLSerializer from 'jest-serializer-html'
+
+type EmotionServer = {
+  renderStylesToNodeStream: () => *,
+  extractCritical: string => { html: string, css: string, ids: Array<string> },
+  renderStylesToString: string => string
+}
 
 expect.addSnapshotSerializer(HTMLSerializer)
 
@@ -178,7 +183,7 @@ export const setHtml = (html: string, document: Document) => {
 
 export const renderToStringWithStream = (
   element: React.Element<*>,
-  { renderStylesToNodeStream }: typeof emotionServerInstanceForType
+  { renderStylesToNodeStream }: EmotionServer
 ): Promise<string> =>
   new Promise((resolve, reject) => {
     const stream = renderToNodeStream(element).pipe(renderStylesToNodeStream())

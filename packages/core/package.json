@@ -1,0 +1,40 @@
+{
+  "name": "@emotion/core",
+  "version": "0.10.4",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "browser": {
+    "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
+    "./dist/index.es.js": "./dist/index.browser.es.js"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm-run-all clean rollup",
+    "clean": "rimraf dist",
+    "rollup": "rollup -c ../../rollup.config.js"
+  },
+  "dependencies": {
+    "@emotion/cache": "^0.8.3",
+    "@emotion/css": "^0.9.3",
+    "@emotion/serialize": "^0.8.3",
+    "@emotion/sheet": "^0.6.6",
+    "@emotion/utils": "^0.7.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.3.0"
+  },
+  "devDependencies": {
+    "html-tag-names": "^1.1.2",
+    "svg-tag-names": "^1.1.1"
+  },
+  "repository": "https://github.com/emotion/next/tree/master/packages/core",
+  "publishConfig": {
+    "access": "public"
+  },
+  "umd:main": "./dist/index.min.js"
+}

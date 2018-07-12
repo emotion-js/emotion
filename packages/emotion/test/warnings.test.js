@@ -1,4 +1,5 @@
 // @flow
+import 'test-utils/legacy-env'
 import { css, cx } from 'emotion'
 import * as React from 'react'
 import renderer from 'react-test-renderer'

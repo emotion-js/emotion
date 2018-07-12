@@ -577,19 +577,21 @@ export default function(babel: Babel) {
         }
       },
       JSXOpeningElement(path: BabelPath, state: EmotionBabelPluginPass) {
-        cssProps(path, state, t)
-        if (state.opts.hoist) {
-          path.traverse({
-            CallExpression(callExprPath) {
-              if (
-                callExprPath.node.callee.name === state.importedNames.css ||
-                state.cssPropIdentifiers.indexOf(callExprPath.node.callee) !==
-                  -1
-              ) {
-                hoistPureArgs(callExprPath)
+        if (state.opts.cssProp !== false) {
+          cssProps(path, state, t)
+          if (state.opts.hoist) {
+            path.traverse({
+              CallExpression(callExprPath) {
+                if (
+                  callExprPath.node.callee.name === state.importedNames.css ||
+                  state.cssPropIdentifiers.indexOf(callExprPath.node.callee) !==
+                    -1
+                ) {
+                  hoistPureArgs(callExprPath)
+                }
               }
-            }
-          })
+            })
+          }
         }
       },
       CallExpression: {

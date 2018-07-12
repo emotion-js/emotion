@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`specificity with globals 1`] = `
+<html>
+  <head>
+    <style
+      data-emotion="css-global"
+    >
+      
+      .some-class{color:green;}
+    </style>
+    <style
+      data-emotion="css"
+    >
+      
+      .css-1ndtvd6{color:hotpink;}
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+    >
+      <div
+        id="root"
+      >
+        <p
+          class="some-class css-1ndtvd6"
+          id="text"
+        >
+          some text
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+`;
+
+exports[`specificity with globals 2`] = `
+<html>
+  <head>
+    <style
+      data-emotion="css-global"
+    >
+      
+      .some-class{color:yellow;}
+    </style>
+    <style
+      data-emotion="css"
+    >
+      
+      .css-1ndtvd6{color:hotpink;}
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+    >
+      <div
+        id="root"
+      >
+        <p
+          class="some-class css-1ndtvd6"
+          id="text"
+        >
+          some text
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+`;

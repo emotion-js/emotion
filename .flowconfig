@@ -1,5 +1,5 @@
 [version]
-0.73.0
+0.76.0
 
 [ignore]
 .*/node_modules/config-chain/.*
@@ -10,6 +10,9 @@
 [include]
 
 [libs]
+
+[declarations]
+.*/node_modules/polished/.*
 
 [options]
 suppress_comment=.*\\$FlowFixMe

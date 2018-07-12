@@ -1,0 +1,17 @@
+{
+  "name": "@emotion/hash",
+  "version": "0.6.3",
+  "description": "A MurmurHash2 implementation",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/next/tree/master/packages/hash",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "umd:main": "./dist/index.min.js"
+}

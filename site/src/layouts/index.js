@@ -173,9 +173,8 @@ type TemplateWrapperProps = {
 
 const TemplateWrapper = (props: TemplateWrapperProps) => {
   return (
-    // $FlowFixMe
     <React.Fragment>
-      <Global css={globalStyles} />
+      <Global styles={globalStyles} />
       <BaseWrapper location={props.location}>{props.children}</BaseWrapper>
     </React.Fragment>
   )
