@@ -25,7 +25,7 @@ module.exports = api => {
             filename.includes('test') &&
             !filename.includes('no-babel') &&
             packagesThatRequireBabelPluginEmotionForTests.some(pkg =>
-              filename.includes(pkg)
+              filename.includes(`packages/${pkg}/`)
             )
           )
         },

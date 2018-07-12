@@ -66,7 +66,7 @@ const SomeComponent = styled.div({
 import _styled from \\"@emotion/styled-base\\";
 
 const SomeComponent = _styled(\\"div\\", {
-  target: \\"e1xccll10\\",
+  target: \\"ezg2t240\\",
   label: \\"SomeComponent\\"
 })({
   color: 'hotpink'
@@ -86,7 +86,7 @@ const SomeComponent = styled.div\`
 import _styled from \\"@emotion/styled-base\\";
 
 const SomeComponent = _styled(\\"div\\", {
-  target: \\"e1xccll10\\",
+  target: \\"ezg2t240\\",
   label: \\"SomeComponent\\"
 })(\\"color:hotpink;/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFZ0MiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2YFxuICBjb2xvcjogaG90cGluaztcbmBcbiJdfQ== */\\");"
 `;
