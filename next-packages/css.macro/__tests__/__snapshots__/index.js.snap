@@ -135,6 +135,8 @@ import _css from \\"@emotion/css\\";
 exports[`@emotion/css.macro impure 1`] = `
 "import css from '@emotion/css.macro'
 
+function thing() {}
+
 function doThing() {
   return css\`
     display: \${thing()};
@@ -145,6 +147,8 @@ function doThing() {
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _css from \\"@emotion/css\\";
+
+function thing() {}
 
 function doThing() {
   return _css(\\"display:\\", thing(), \\";\\");
