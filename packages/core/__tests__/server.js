@@ -2,7 +2,6 @@
  * @jest-environment node
  */
 // @flow
-import 'test-utils/next-env'
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import cases from 'jest-in-case'

@@ -14,12 +14,31 @@ type Props = {
   children: ReactNode
 }
 
-class ThemeProvider extends Component<Props> {
-  getTheme: ThemeProvider.prototype.getTheme
-  constructor() {
-    super()
-    this.getTheme = this.getTheme.bind(this)
+// Get the theme from the props, supporting both (outerTheme) => {} as well as object notation
+function getTheme(theme: Theme, outerTheme?: Object) {
+  if (typeof theme === 'function') {
+    const mergedTheme = theme(outerTheme)
+    if (!isPlainObject(mergedTheme)) {
+      throw new Error(
+        '[ThemeProvider] Please return an object from your theme function, i.e. theme={() => ({})}!'
+      )
+    }
+    return mergedTheme
   }
+  if (!isPlainObject(theme)) {
+    throw new Error(
+      '[ThemeProvider] Please make your theme prop a plain object'
+    )
+  }
+
+  if (outerTheme === undefined) {
+    return theme
+  }
+
+  return { ...outerTheme, ...theme }
+}
+
+class ThemeProvider extends Component<Props> {
   outerTheme: Object
   broadcast: *
   unsubscribeToOuterId: number
@@ -36,7 +55,9 @@ class ThemeProvider extends Component<Props> {
       })
     }
 
-    this.broadcast = createBroadcast(this.getTheme(this.props.theme))
+    this.broadcast = createBroadcast(
+      getTheme(this.props.theme, this.outerTheme)
+    )
   }
 
   getChildContext() {
@@ -61,32 +82,8 @@ class ThemeProvider extends Component<Props> {
     }
   }
 
-  // Get the theme from the props, supporting both (outerTheme) => {} as well as object notation
-  getTheme(theme: Theme) {
-    if (typeof theme === 'function') {
-      const mergedTheme = theme(this.outerTheme)
-      if (!isPlainObject(mergedTheme)) {
-        throw new Error(
-          '[ThemeProvider] Please return an object from your theme function, i.e. theme={() => ({})}!'
-        )
-      }
-      return mergedTheme
-    }
-    if (!isPlainObject(theme)) {
-      throw new Error(
-        '[ThemeProvider] Please make your theme prop a plain object'
-      )
-    }
-
-    if (this.outerTheme === undefined) {
-      return theme
-    }
-
-    return { ...this.outerTheme, ...theme }
-  }
-
   publish(theme: Theme) {
-    this.broadcast.publish(this.getTheme(theme))
+    this.broadcast.publish(getTheme(theme, this.outerTheme))
   }
 
   render() {

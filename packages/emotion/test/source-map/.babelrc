@@ -1,8 +1,4 @@
 {
-  "presets": [
-    "flow",
-    "env",
-    "react"
-  ],
-  "plugins": [["../../../../babel-plugin-emotion-test", {"sourceMap": true}], "codegen"]
+  "presets": ["babel-preset-emotion-dev"],
+  "plugins": [["babel-plugin-emotion-test", { "sourceMap": true }]]
 }

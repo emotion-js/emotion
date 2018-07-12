@@ -1,6 +1,5 @@
 // @flow
 /** @jsx jsx */
-import 'test-utils/next-env'
 import { jsx } from '@emotion/core'
 import css from '@emotion/css'
 import { serializeStyles } from '@emotion/serialize'

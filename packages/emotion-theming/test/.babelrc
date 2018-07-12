@@ -1,4 +1,4 @@
 {
   "presets": ["babel-preset-emotion-dev"],
-  "plugins": ["./babel-macros-register"]
+  "plugins": ["babel-plugin-emotion-test"]
 }
