@@ -63,8 +63,7 @@ function replacePlaceholdersWithExpressions(
   })
 
   return interleave(strings, finalExpressions).filter(
-    // $FlowFixMe
-    (node: StringLiteral) => {
+    (node: { value: string }) => {
       return node.value !== ''
     }
   )

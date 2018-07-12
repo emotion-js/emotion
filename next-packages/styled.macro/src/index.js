@@ -1,3 +1,5 @@
 // @flow
 
-module.exports = require('@emotion/babel-plugin-core').macros.styled
+import { macros } from '@emotion/babel-plugin-core'
+
+export default macros.styled

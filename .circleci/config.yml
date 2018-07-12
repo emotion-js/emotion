@@ -28,7 +28,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn flow:check
+      - run: yarn flow
   test:
     docker:
       - image: circleci/node:10.6.0
@@ -60,7 +60,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn lint
+      - run: yarn lint:check
 
 
 workflows:

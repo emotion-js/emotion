@@ -457,7 +457,7 @@ const props = {
   for: true,
   class: true
 }
-
+// eslint-disable-next-line import/no-commonjs
 module.exports = `/^((${Object.keys(props).join(
   '|'
 )})|(on[A-Z].*)|((data|aria)-.*))$/i`
