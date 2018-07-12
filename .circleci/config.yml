@@ -31,8 +31,8 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: yarn install --pure-lockfile
-      - run: yarn coverage
-      - run: cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
+      - run: yarn coverage packages/babel-plugin-emotion/test/styled.test.js
+     # - run: cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
   test_dist:
     docker:
       - image: circleci/node:10.6.0

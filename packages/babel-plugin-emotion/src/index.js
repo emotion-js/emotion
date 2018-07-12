@@ -186,6 +186,7 @@ function buildTargetObjectProperty(path, state, t) {
   } else {
     stuffToHash.push(state.file.code)
   }
+  console.log(stuffToHash)
 
   const stableClassName = `e${hashArray(stuffToHash)}${positionInFile}`
 
