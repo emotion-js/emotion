@@ -4,7 +4,8 @@ let pkgsThatNeedBabelPluginEmotion = [
   'react-emotion',
   'jest-emotion',
   'emotion-server',
-  'create-emotion-server'
+  'create-emotion-server',
+  'emotion-theming'
 ]
 
 let needsBabelPluginEmotion = filename =>
@@ -39,9 +40,7 @@ module.exports = api => {
         plugins: [['babel-plugin-emotion-test', { sourceMap: true }]]
       },
       {
-        test: filename =>
-          filename.includes('babel-plugin-emotion') &&
-          filename.includes('macro'),
+        test: filename => filename.includes('babel-plugin-emotion/test/macro/'),
         plugins: ['babel-plugin-macros-register']
       }
     ]
