@@ -500,7 +500,7 @@ exports[`styled extract babel 7 hash generation no file system 1`] = `
 "import \\"./emotion.css\\";
 styled(\\"h1\\", {
   e: \\"css-14ksm7b\\",
-  target: \\"es9q2x00\\"
+  target: \\"e1kqw4hu0\\"
 })();
 
 
@@ -1150,7 +1150,7 @@ styled(MyComponent, {
 exports[`styled inline babel 7 hash generation no file system 1`] = `
 "/*#__PURE__*/
 styled(\\"h1\\", {
-  target: \\"es9q2x00\\"
+  target: \\"e1kqw4hu0\\"
 })(\\"color:blue;\\");"
 `;
 

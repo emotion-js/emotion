@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`does not rehash if value is css call return value 1`] = `
+<div>
+  <style>
+    .emotion-0 {
+      color: hotpink;
+    }
+  </style>
+  <div
+    className="emotion-0"
+  />
+</div>
+`;

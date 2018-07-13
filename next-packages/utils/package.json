@@ -1,0 +1,28 @@
+{
+  "name": "@emotion/utils",
+  "version": "0.7.1",
+  "description": "internal utils for emotion",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "browser": {
+    "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
+    "./dist/index.esm.js": "./dist/index.browser.esm.js"
+  },
+  "types": "types/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/serialize",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "umd:main": "./dist/index.min.js",
+  "devDependencies": {
+    "dtslint": "^0.3.0"
+  }
+}

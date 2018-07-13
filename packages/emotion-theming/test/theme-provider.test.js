@@ -1,3 +1,4 @@
+import 'test-utils/legacy-env'
 import createBroadcast from '../src/create-broadcast'
 import { mount } from 'enzyme'
 import React, { Component } from 'react'

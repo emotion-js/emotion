@@ -1,0 +1,20 @@
+{
+  "name": "@emotion/css.macro",
+  "version": "0.9.4",
+  "description": "babel macro for emotion's css",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/css.macro",
+  "dependencies": {
+    "@emotion/babel-plugin-core": "^0.6.4",
+    "@emotion/css": "^0.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist"
+  ]
+}

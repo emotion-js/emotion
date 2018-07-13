@@ -229,6 +229,7 @@ describe('styled macro', () => {
       babel7.transform(basic, {
         plugins: ['module:babel-plugin-macros'],
         filename: __filename,
+        configFile: false,
         babelrc: false
       })
     ).toThrowError(/the emotion macro must be imported with es modules/)
@@ -256,6 +257,7 @@ describe('styled macro', () => {
       ],
       filename: __filename,
       babelrc: false,
+      configFile: false,
       ast: true
     })
 

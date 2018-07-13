@@ -1,0 +1,23 @@
+{
+  "name": "@emotion/serialize",
+  "version": "0.8.3",
+  "description": "serialization utils for emotion",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/serialize",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@emotion/hash": "^0.6.3",
+    "@emotion/memoize": "^0.6.3",
+    "@emotion/unitless": "^0.6.3",
+    "@emotion/utils": "^0.7.1"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "umd:main": "./dist/index.min.js"
+}
