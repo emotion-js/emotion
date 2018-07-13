@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Emotion native primitive should work with \`withComponent\` 1`] = `
+exports[`Emotion native styled primitive should work with \`withComponent\` 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
@@ -17,7 +17,7 @@ exports[`Emotion native primitive should work with \`withComponent\` 1`] = `
 </Text>
 `;
 
-exports[`Emotion native should pass props in withComponent 1`] = `
+exports[`Emotion native styled should pass props in withComponent 1`] = `
 <View
   color="green"
   style={
@@ -28,7 +28,7 @@ exports[`Emotion native should pass props in withComponent 1`] = `
 />
 `;
 
-exports[`Emotion native should pass props in withComponent 2`] = `
+exports[`Emotion native styled should pass props in withComponent 2`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
@@ -43,7 +43,7 @@ exports[`Emotion native should pass props in withComponent 2`] = `
 />
 `;
 
-exports[`Emotion native should render <Image /> 1`] = `
+exports[`Emotion native styled should render <Image /> 1`] = `
 <Image
   source={
     Object {
@@ -63,7 +63,7 @@ exports[`Emotion native should render <Image /> 1`] = `
 />
 `;
 
-exports[`Emotion native should render primitive with style prop 1`] = `
+exports[`Emotion native styled should render primitive with style prop 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
@@ -80,7 +80,7 @@ exports[`Emotion native should render primitive with style prop 1`] = `
 </Text>
 `;
 
-exports[`Emotion native should render the primitive on changing the props 1`] = `
+exports[`Emotion native styled should render the primitive on changing the props 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
@@ -98,7 +98,7 @@ exports[`Emotion native should render the primitive on changing the props 1`] = 
 </Text>
 `;
 
-exports[`Emotion native should render the primitive when styles applied using object style notation 1`] = `
+exports[`Emotion native styled should render the primitive when styles applied using object style notation 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
@@ -117,7 +117,7 @@ exports[`Emotion native should render the primitive when styles applied using ob
 </Text>
 `;
 
-exports[`Emotion native should style any other component 1`] = `
+exports[`Emotion native styled should style any other component 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
@@ -133,7 +133,7 @@ exports[`Emotion native should style any other component 1`] = `
 </Text>
 `;
 
-exports[`Emotion native should work with StyleSheet.create API 1`] = `
+exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
@@ -150,7 +150,7 @@ exports[`Emotion native should work with StyleSheet.create API 1`] = `
 </Text>
 `;
 
-exports[`Emotion native should work with emotion-theming 1`] = `
+exports[`Emotion native styled should work with emotion-theming 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}

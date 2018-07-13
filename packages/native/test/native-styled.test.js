@@ -9,7 +9,7 @@ const StyleSheet = reactNative.StyleSheet
 
 const theme = { backgroundColor: 'magenta', display: 'flex' }
 
-describe('Emotion native', () => {
+describe('Emotion native styled', () => {
   test('should not throw an error when used valid primitive', () => {
     expect(() => styled.Text({})).not.toThrow()
   })
