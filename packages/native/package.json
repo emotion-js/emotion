@@ -19,7 +19,7 @@
 	"homepage": "https://emotion.sh",
 	"license": "MIT",
 	"repository": "https://github.com/emotion-js/emotion/tree/master/packages/native",
-	"keywords": ["styles", "emotion", "react", "css", "css-in-js"],
+	"keywords": ["styles", "emotion", "react", "css", "css-in-js", "native"],
 	"bugs": {
 		"url": "https://github.com/emotion-js/emotion/issues"
 	}

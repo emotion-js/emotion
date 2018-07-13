@@ -23,7 +23,7 @@
 	"homepage": "https://emotion.sh",
 	"license": "MIT",
 	"repository": "https://github.com/emotion-js/emotion/tree/master/packages/primitives",
-	"keywords": ["styles", "emotion", "react", "css", "css-in-js"],
+	"keywords": ["styles", "emotion", "react", "css", "css-in-js", "primitives"],
 	"bugs": {
 		"url": "https://github.com/emotion-js/emotion/issues"
 	}
