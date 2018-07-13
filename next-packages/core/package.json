@@ -5,7 +5,7 @@
   "module": "dist/index.esm.js",
   "browser": {
     "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
-    "./dist/index.es.js": "./dist/index.browser.es.js"
+    "./dist/index.esm.js": "./dist/index.browser.esm.js"
   },
   "files": [
     "src",
