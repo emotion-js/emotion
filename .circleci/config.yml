@@ -32,7 +32,7 @@ jobs:
           - v1-dependencies-
       - run: yarn install --pure-lockfile
       - run: yarn coverage
-      - run: cat ./coverage/lcov.info | ./node_modules/codecov/bin/codecov
+      - run: yarn codecov
   test_dist:
     docker:
       - image: circleci/node:10.6.0
