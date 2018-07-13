@@ -6,15 +6,10 @@ let writeFile = promisify(fs.writeFile)
 
 async function changeToNextPackages() {
   let lernaPath = require.resolve('../../lerna.json')
-  let rootPkgJsonPath = require.resolve('../../package.json')
-  let rootPkgJson = require(rootPkgJsonPath)
 
   let lerna = require(lernaPath)
   lerna.version = 'independent'
-  rootPkgJson.workspaces = ['packages-next/*']
-  await Promise.all([
-    writeFile(lernaPath, JSON.stringify(lerna, null, 2) + '\n'),
-    writeFile(rootPkgJsonPath, JSON.stringify(rootPkgJson, null, 2) + '\n')
-  ])
+  lerna.packages = ['packages-next/*']
+  await writeFile(lernaPath, JSON.stringify(lerna, null, 2) + '\n')
 }
 changeToNextPackages()
