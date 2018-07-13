@@ -72,7 +72,7 @@ function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
 }
 
 // Use platform specific StyleSheet method for creating the styles.
-// This enables us to use the css``/css({}) in any environment
+// This enables us to use the css``/css({}) in any environment (Native | Sketch | Web)
 export function createCss(StyleSheet: Object) {
   return function css(...args: any) {
     let vals

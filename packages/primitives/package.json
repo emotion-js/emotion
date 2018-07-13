@@ -6,7 +6,7 @@
 	"files": ["src", "dist"],
 	"dependencies": {
 		"babel-plugin-emotion": "^9.2.5",
-		"primitives-core": "1.0.0-beta"
+		"@emotion/primitives-core": "1.0.0"
 	},
 	"peerDependencies": {
 		"prop-types": "15.x",

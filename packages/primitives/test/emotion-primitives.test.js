@@ -8,7 +8,7 @@ import reactPrimitives from 'react-primitives'
 import { ThemeProvider } from 'emotion-theming'
 import { render, unmountComponentAtNode } from 'react-dom'
 
-import styled from '../src'
+import styled from '@emotion/primitives'
 
 Enzyme.configure({ adapter: new Adapter() })
 

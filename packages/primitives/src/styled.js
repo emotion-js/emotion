@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { StyleSheet, View, Text, Image } from 'react-primitives'
-import { createStyled } from 'primitives-core'
+import { createStyled } from '@emotion/primitives-core'
 import {
   testPickPropsOnPrimitiveComponent,
   testPickPropsOnOtherComponent
