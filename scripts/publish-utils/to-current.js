@@ -1,8 +1,8 @@
+// @flow
 const { changeLernaConfig } = require('./change-lerna-config')
 
 changeLernaConfig(lerna => {
-  lerna.packages = ['next-packages/*']
-  lerna.version = 'independent'
+  lerna.packages = ['packages/*']
   lerna.npmClient = 'npm'
   delete lerna.useWorkspaces
 })
