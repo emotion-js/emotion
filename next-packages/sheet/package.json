@@ -9,7 +9,7 @@
   "scripts": {
     "test:typescript": "dtslint types"
   },
-  "repository": "https://github.com/emotion-js/next/tree/master/packages/sheet",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/sheet",
   "publishConfig": {
     "access": "public"
   },

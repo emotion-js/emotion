@@ -5,7 +5,7 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/next/tree/master/packages/css",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/css",
   "dependencies": {
     "@emotion/hash": "^0.6.3",
     "@emotion/serialize": "^0.8.3",

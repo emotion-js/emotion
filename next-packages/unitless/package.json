@@ -5,7 +5,7 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/next/tree/master/packages/unitless",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/unitless",
   "publishConfig": {
     "access": "public"
   },

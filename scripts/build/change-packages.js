@@ -14,9 +14,11 @@ async function changePackages() {
   await Promise.all(
     packages.map(async ({ pkg, path: pkgPath }) => {
       // you can transform the package.json contents here
-
-      if (pkg.module) {
-        pkg.module = pkg.module.replace('es.js', 'esm.js')
+      if (pkg.repository) {
+        pkg.repository = pkg.repository.replace(
+          'https://github.com/emotion-js/next/tree/master/packages',
+          'https://github.com/emotion-js/emotion/tree/master/next-packages'
+        )
       }
 
       await writeFile(

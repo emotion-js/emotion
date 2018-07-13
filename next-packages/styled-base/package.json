@@ -9,7 +9,7 @@
     "./dist/index.es.js": "./dist/index.browser.es.js"
   },
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/next/tree/master/packages/styled-base",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/styled-base",
   "dependencies": {
     "@emotion/is-prop-valid": "^0.6.3",
     "@emotion/serialize": "^0.8.3",
