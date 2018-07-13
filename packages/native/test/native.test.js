@@ -2,7 +2,7 @@ import * as React from 'react'
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'emotion-theming'
 
-import styled from '../src'
+import styled from '@emotion/native'
 import reactNative from 'react-native'
 
 const StyleSheet = reactNative.StyleSheet

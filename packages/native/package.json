@@ -1,6 +1,6 @@
 {
-	"name": "emotion-native",
-	"version": "1.0.0-beta.0",
+	"name": "@emotion/native",
+	"version": "1.0.0",
 	"description": "Style and render React Native components using emotion",
 	"main": "dist/index.cjs.js",
 	"module": "dist/index.esm.js",
@@ -11,7 +11,10 @@
 		"react-native": "0.46.0"
 	},
 	"dependencies": {
-		"primitives-core": "1.0.0-beta"
+		"@emotion/primitives-core": "1.0.0"
+	},
+	"peerDependencies": {
+		"react-native": "0.46.0"
 	},
 	"homepage": "https://emotion.sh",
 	"license": "MIT",
