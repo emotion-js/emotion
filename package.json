@@ -7,11 +7,11 @@
 		"test:size": "npm-run-all build size",
 		"test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
 		"test": "npm-run-all -p lint:check coverage test:size test:typescript flow && npm run test:prod",
-		"test:typescript": "lerna run test:typescript --parallel",
+		"test:typescript": "lerna run test:typescript --parallel --env=jsdom",
 		"coverage": "jest --coverage --no-cache --ci --runInBand",
-		"test:prod": "npm run build && jest -c jest.dist.js --no-cache --ci --runInBand",
+		"test:prod": "npm run build && jest -c jest.dist.js --no-cache --ci --runInBand --env=jsdom",
 		"lint:check": "eslint .",
-		"test:watch": "jest --watch",
+		"test:watch": "jest --watch --no-cache --env=jsdom",
 		"size": "bundlesize",
 		"release": "npm run build && lerna publish",
 		"lint": "eslint . --fix",
@@ -33,15 +33,14 @@
 		"@babel/preset-flow": "7.0.0-beta.51",
 		"@babel/preset-react": "7.0.0-beta.51",
 		"@babel/preset-stage-0": "7.0.0-beta.51",
-		"@babel/register": "7.0.0-beta.53",
 		"babel-check-duplicated-nodes": "^1.0.0",
 		"babel-cli": "^6.24.1",
-		"babel-core": "^7.0.0-bridge.0",
+		"babel-core": "^6.24.1",
 		"babel-eslint": "^8.2.3",
 		"babel-flow-types": "^1.2.3",
 		"babel-jest": "^23.2.0",
 		"babel-plugin-closure-elimination": "^1.3.0",
-		"babel-plugin-codegen": "^3.0.0",
+		"babel-plugin-codegen": "^1.2.0",
 		"babel-plugin-external-helpers": "^6.22.0",
 		"babel-plugin-macros": "^2.0.0",
 		"babel-polyfill": "^6.26.0",
@@ -67,7 +66,7 @@
 		"eslint-plugin-promise": "^3.5.0",
 		"eslint-plugin-react": "^7.3.0",
 		"eslint-plugin-standard": "^3.0.1",
-		"flow-bin": "^0.76.0",
+		"flow-bin": "^0.73.0",
 		"gatsby-react-router-scroll": "^1.0.7",
 		"get-lerna-packages": "^0.1.0",
 		"hoist-non-react-statics": "^2.3.1",
@@ -123,25 +122,14 @@
 				}
 			},
 			{
-				"files": [
-					"**/packages/*/src/*",
-					"**/packages/*/src/**/*",
-					"**/next-packages/*/src/*",
-					"**/next-packages/*/src/**/*"
-				],
+				"files": ["**/packages/*/src/*", "**/packages/*/src/**/*"],
 				"rules": {
 					"import/no-commonjs": 2
-				}
-			},
-			{
-				"files": ["**/__fixtures__/*"],
-				"rules": {
-					"no-unused-vars": 0
 				}
 			}
 		]
 	},
-	"workspaces": ["packages/*", "site", "scripts/*", "next-packages/*"],
+	"workspaces": ["packages/*", "site", "scripts/*"],
 	"bugs": {
 		"url": "https://github.com/tkh44/emotion/issues"
 	},
