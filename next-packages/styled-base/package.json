@@ -1,6 +1,6 @@
 {
   "name": "@emotion/styled-base",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "description": "base styled API for emotion",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -11,9 +11,9 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/styled-base",
   "dependencies": {
-    "@emotion/is-prop-valid": "^0.6.3",
-    "@emotion/serialize": "^0.8.3",
-    "@emotion/utils": "^0.7.1"
+    "@emotion/is-prop-valid": "^0.6.4",
+    "@emotion/serialize": "^0.8.4",
+    "@emotion/utils": "^0.7.2"
   },
   "peerDependencies": {
     "@emotion/core": "0.x.x",

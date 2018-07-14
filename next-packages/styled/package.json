@@ -1,13 +1,13 @@
 {
   "name": "@emotion/styled",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "description": "styled API for emotion",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/styled",
   "dependencies": {
-    "@emotion/styled-base": "^0.9.3"
+    "@emotion/styled-base": "^0.10.0"
   },
   "publishConfig": {
     "access": "public"

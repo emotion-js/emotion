@@ -1,6 +1,6 @@
 {
   "name": "@emotion/snapshot-serializer",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A snapshot serializer for jest and emotion",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

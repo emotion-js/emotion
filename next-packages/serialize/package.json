@@ -1,6 +1,6 @@
 {
   "name": "@emotion/serialize",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "serialization utils for emotion",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -10,10 +10,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@emotion/hash": "^0.6.3",
-    "@emotion/memoize": "^0.6.3",
-    "@emotion/unitless": "^0.6.3",
-    "@emotion/utils": "^0.7.1"
+    "@emotion/hash": "^0.6.4",
+    "@emotion/memoize": "^0.6.4",
+    "@emotion/unitless": "^0.6.4",
+    "@emotion/utils": "^0.7.2"
   },
   "files": [
     "src",

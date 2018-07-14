@@ -1,6 +1,6 @@
 {
   "name": "@emotion/is-prop-valid",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "A function to check whether a prop is valid for HTML and SVG elements",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -10,7 +10,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@emotion/memoize": "^0.6.3"
+    "@emotion/memoize": "^0.6.4"
   },
   "files": [
     "src",
