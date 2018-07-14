@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import { withCSSContext, CSSContext } from '@emotion/core'
-import type { CSSContextType } from '@emotion/utils'
 import weakMemoize from '@emotion/weak-memoize'
 
 type Props = {

@@ -8,7 +8,6 @@
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/provider",
   "dependencies": {
     "@emotion/cache": "^0.8.4",
-    "@emotion/utils": "^0.7.2",
     "@emotion/weak-memoize": "^0.1.0"
   },
   "peerDependencies": {

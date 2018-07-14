@@ -4,8 +4,6 @@ import * as React from 'react'
 import Provider from '@emotion/provider'
 import { jsx } from '@emotion/core'
 import renderer from 'react-test-renderer'
-import createCache from '@emotion/cache'
-import { CSSContext } from '@emotion/core'
 
 test('nested provider', () => {
   const tree = renderer
