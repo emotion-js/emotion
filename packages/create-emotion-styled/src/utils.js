@@ -45,7 +45,6 @@ type BaseCreateStyled = (
   options?: StyledOptions
 ) => CreateStyledComponent
 
-export type CreateStyled = {
-  $call: BaseCreateStyled,
+export type CreateStyled = BaseCreateStyled & {
   [key: string]: CreateStyledComponent
 }

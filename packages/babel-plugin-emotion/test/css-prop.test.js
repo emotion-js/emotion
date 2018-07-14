@@ -158,7 +158,9 @@ test('with module transformer in babel 7', () => {
         plugins: [
           require('babel-plugin-emotion'),
           require('@babel/plugin-transform-modules-commonjs')
-        ]
+        ],
+        babelrc: false,
+        configFile: false
       }
     ).code
   ).toMatchSnapshot()

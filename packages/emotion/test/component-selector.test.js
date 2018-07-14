@@ -1,3 +1,4 @@
+import 'test-utils/legacy-env'
 import React from 'react'
 import styled from 'react-emotion'
 import renderer from 'react-test-renderer'

@@ -45,17 +45,20 @@ const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
   let match
 
   while ((match = regex.exec(html)) !== null) {
+    // $FlowFixMe
     if (match[0] === '<') {
       if (ids !== '') {
         result += generateStyleTag(cssKey, ids, styles, nonceString)
         ids = ''
         styles = ''
       }
+      // $FlowFixMe
       result += html.substring(lastInsertionPoint, match.index)
+      // $FlowFixMe
       lastInsertionPoint = match.index
       continue
     }
-
+    // $FlowFixMe
     const id = match[1]
     const style = inserted[id]
     if (style === true || seen[id]) {

@@ -67,8 +67,63 @@ class App extends React.Component {
 AppRegistry.registerComponent('ExampleApp', () => App);
 ```
 
-The API surface remains same for `@emotion/native` which means you can use all the API methods similar to `emotion`.
-
 ## Theming
 
 Use `emotion-theming` for theming support.
+
+```js
+import React from 'react'
+import styled, { css } from '@emotion/native'
+
+import { ThemeProvider } from 'emotion-theming'
+
+const theme = {
+  color: 'hotpink',
+  backgroundColor: 'purple'
+}
+
+const Container = styled.View`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  border: 5px solid red;
+  background-color: ${props => props.theme.backgroundColor};
+`
+
+const Description = styled.Text({
+  color: 'hotpink'
+})
+
+const Image = styled.Image`
+  padding: 40px;
+`
+
+const emotionLogo =
+  'https://cdn.rawgit.com/emotion-js/emotion/master/emotion.png'
+
+class App extends React.Component {
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <Container
+          style={css`
+            border-radius: 10px;
+          `}
+        >
+          <Description style={{ fontSize: 45, fontWeight: 'bold' }}>
+            Emotion Primitives
+          </Description>
+          <Image
+            source={{
+              uri: emotionLogo,
+              height: 150,
+              width: 150
+            }}
+          />
+        </Container>
+      </ThemeProvider>
+    )
+  }
+}
+```

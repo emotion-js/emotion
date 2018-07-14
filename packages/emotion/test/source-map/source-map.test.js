@@ -1,3 +1,4 @@
+import 'test-utils/legacy-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { css, sheet, flush } from 'emotion'
@@ -57,7 +58,9 @@ describe('css', () => {
   })
   test('css without newline or semicolon', () => {
     // eslint-disable-next-line
-    const cls = css`color: hotpink`
+    const cls = css`
+      color: hotpink;
+    `
     expect(sheet).toMatchSnapshot()
   })
 })

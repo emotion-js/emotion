@@ -10,7 +10,9 @@ const createExtractCritical = (emotion: Emotion) => (html: string) => {
   let match
   let ids = {}
   while ((match = RGX.exec(html)) !== null) {
+    // $FlowFixMe
     if (ids[match[1]] === undefined) {
+      // $FlowFixMe
       ids[match[1]] = true
     }
   }

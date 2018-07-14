@@ -1,0 +1,357 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`& 1`] = `
+Array [
+  ".css-8{color:blue;}",
+  ".css-8.css-8.css-8{color:red;}",
+  ".css-8 + .css-8{color:red;}",
+  ".wrapper button.css-8{color:red;}",
+]
+`;
+
+exports[`&:before 1`] = `
+Array [
+  ".css-9:before{color:blue;}",
+]
+`;
+
+exports[`:matches(:not()) 1`] = `
+Array [
+  ".css-21 h1:matches(.a,.b,:not(.c)){display:none;}",
+]
+`;
+
+exports[`@font-face 1`] = `
+Array [
+  "@font-face{font-family:Pangolin;src:url('Pangolin-Regular.ttf') format('truetype');}",
+]
+`;
+
+exports[`@media specifity 1`] = `
+Array [
+  ".css-13 > #box-not-working{background:red;padding-left:8px;width:10px;height:10px;}",
+  "@media only screen and (min-width:10px){.css-13 > #box-not-working{width:calc(10px + 90px *(100vw - 10px) / 90);}}",
+  "@media only screen and (min-width:90px){.css-13 > #box-not-working{width:90px;}}",
+  "@media only screen and (min-width:10px){.css-13 > #box-not-working{height:calc(10px + 90px *(100vw - 10px) / 90);}}",
+  "@media only screen and (min-width:90px){.css-13 > #box-not-working{height:90px;}}",
+]
+`;
+
+exports[`@supports 1`] = `
+Array [
+  "@supports (display:block){.css-11{color:red;display:none;}.css-11 h1{color:red;}.css-11 h1 h2{color:blue;}}",
+  "@supports (-webkit-appearance:none) or (-moz-appearance:none) or (appearance:none){.css-11{color:red;}}",
+]
+`;
+
+exports[`[title="a,b"] and :matches(a,b) 1`] = `
+Array [
+  ".css-16 .test:matches(a,b,c),.css-16 .test{color:blue;}",
+  ".css-16 .test[title=\\",\\"]{color:red;}",
+  ".css-16 [title=\\"a,b,c, something\\"],.css-16 h1,.css-16 [title=\\"a,b,c\\"]{color:red;}",
+  ".css-16 [title=\\"a\\"],.css-16 [title=\\"b\\"]{color:red;}",
+]
+`;
+
+exports[`attribute namespace 1`] = `
+Array [
+  ".css-31 h1{-webkit-animation:slide 1s;animation:slide 1s;}",
+]
+`;
+
+exports[`calc rules 1`] = `
+Array [
+  ".css-0{height:calc( 100vh - 1px );height:calc(100vh -1px);}",
+]
+`;
+
+exports[`cascade isolation @at-rules 1`] = `
+Array [
+  "@-webkit-keyframes hahaha{from{top:0;}to{top:100;}}",
+  "@keyframes hahaha{from{top:0;}to{top:100;}}",
+  "@media (min-width:480px){.css-38 div{color:red;}}",
+]
+`;
+
+exports[`cascade isolation complex 1`] = `
+Array [
+  ".css-37 .List :global(>) :global(*){margin-top:10px;}",
+  ".css-37 .List :global(*) :global(+) :global(*){margin-top:10px;}",
+  ".css-37 .List :global(> *){margin-top:10px;}",
+  ".css-37 .List :global(* + *){margin-top:10px;}",
+  ".css-37:global(.foo #bar > baz){color:red;}",
+  ".css-37 div :global(.react-select .some-child-of-react-select){color:red;}",
+  ".css-37 .root > :global(*):not(header){color:red;}",
+  ".css-37 a:matches( a +b foo:hover :global(marquee) a) > :hover{color:red;}",
+]
+`;
+
+exports[`cascade isolation nesting 1`] = `
+Array [
+  ".css-39{color:red;}",
+  ".css-39 h1:global(section){color:red;}",
+  ".css-39 h1 h2{color:red;}",
+  ".css-39 div h1,.css-39 span h1{color:red;}",
+  ".css-39 span:hover{color:red;}",
+  ".css-39 [data-id=foo]:hover{color:red;}",
+]
+`;
+
+exports[`cascade isolation simple 1`] = `
+Array [
+  ".css-36 [data-id=foo]{color:red;}",
+  ".css-36 p{color:red;}",
+  ".css-36 p a{color:red;}",
+  ".css-36 p:hover{color:red;}",
+  ".css-36 p::before{color:red;}",
+  ".css-36:hover{color:red;}",
+  ".css-36::before{color:red;}",
+  ".css-36:hover p{color:red;}",
+  "html.something .css-36{color:red;}",
+  ".css-36 .class #id{color:red;}",
+  ".css-36{color:red;}",
+  ".css-36 .a.b .c{color:red;}",
+  ".css-36:nth-child(2n),.css-36:nth-last-child(2n),.css-36:nth-of-type(2n){color:red;}",
+  ".css-36 a:not(:focus):disabled{color:red;}",
+  ".css-36 a:not(:focus) :disabled{color:red;}",
+]
+`;
+
+exports[`class namespace 1`] = `
+Array [
+  ".css-29 h1{-webkit-animation:slide 1s;animation:slide 1s;}",
+]
+`;
+
+exports[`comments 1`] = `
+Array [
+  ".css-7{/*! 1 */color:red;/*! 2 */}",
+  ".css-7 button{color:blue;}",
+  ".css-7 button{color:red;}",
+  ".css-7 h1{/*! 1 */color:red;/*! 2 */color:red;/*! 3 */}",
+]
+`;
+
+exports[`complex nested selector 1`] = `
+Array [
+  ".css-47{font-size:2rem;padding:16px;}",
+  ".css-47:hover{color:blue;}",
+  ".css-47:hover:active{color:red;}",
+  ".css-47:hover{color:pink;}",
+  ".css-47:hover:active{color:purple;}",
+  ".css-47:hover.some-class{color:yellow;}",
+]
+`;
+
+exports[`edge cases 1`] = `
+Array [
+  "@media (min-width:537px){.css-33{border-bottom:4px solid red;}}",
+  ".css-33::-webkit-input-placeholder{color:pink;}",
+  ".css-33::-moz-placeholder{color:pink;}",
+  ".css-33:-ms-input-placeholder{color:pink;}",
+  ".css-33::placeholder{color:pink;}",
+  ".css-33 .a{color:'red';}",
+  ".css-33 .b{color:\\"red\\";}",
+  ".css-33 .a{color:red;}",
+  ".css-33 [role=button]{color:red;}",
+  ".css-33 .b{padding:30 3;}",
+]
+`;
+
+exports[`empty namespace 1`] = `
+Array [
+  ".css-32 h1{-webkit-animation:slide 1s;animation:slide 1s;}",
+  "@-webkit-keyframes name{0:{top:0;}}",
+  "@keyframes name{0:{top:0;}}",
+]
+`;
+
+exports[`escape breaking control characters 1`] = `
+Array [
+  ".css-3{content:\\"\\\\f\\\\0\\\\v\\";}",
+]
+`;
+
+exports[`flat 1`] = `
+Array [
+  ".css-5{color:20px;font-size:20px;-webkit-transition:all;transition:all;}",
+]
+`;
+
+exports[`id namespace 1`] = `
+Array [
+  ".css-30 h1{-webkit-animation:slide 1s;animation:slide 1s;}",
+]
+`;
+
+exports[`isolation edge cases 1`] = `
+Array [
+  ".css-40{width:0;}",
+  "@media(screen){.css-40{color:red;}}",
+  ".css-40 h1{color:red;}",
+]
+`;
+
+exports[`last semicolon omission 1`] = `
+Array [
+  ".css-20 .content{display:none;}",
+  ".css-20 .content{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}",
+]
+`;
+
+exports[`monkey-patch some invalid css patterns 1`] = `
+Array [
+  ".css-2{margin:20px;color:red;}",
+  ".css-2 .b{border:3px solid green;}",
+  ".css-2 .c{color:red;}",
+  ".css-2 .d{color:red;}",
+  "@media(screen){.css-2{width:20%;}}",
+  "@media(screen){.css-2{width:30%;}}",
+  ".css-2 h1{color:red;}",
+  ".css-2 h1{color:red;}",
+  ".css-2 h1:hover{color:red;}",
+]
+`;
+
+exports[`multiline declaration 1`] = `
+Array [
+  ".css-44 html{background-image:linear-gradient(0deg,rgba(255,255,255,0.8),rgba(255,255,255,0.8)),url(/static/background.svg);}",
+]
+`;
+
+exports[`multiple selectors 1`] = `
+Array [
+  ".css-15 span,.css-15 h1{color:red;}",
+  ".css-15 h1,.css-15:after,.css-15:before{color:red;}",
+]
+`;
+
+exports[`namespace 1`] = `
+Array [
+  ".css-6{color:blue;}",
+  ".css-6{color:red;}",
+]
+`;
+
+exports[`nested 1`] = `
+Array [
+  ".css-28:global(div) h2{color:red;}",
+  ".css-28:global(div) h2 h3{color:blue;}",
+  ".foo .css-28{width:1px;}",
+  ".foo .css-28:hover{color:black;}",
+  ".foo .css-28 li{color:white;}",
+  ".css-28 h1,.css-28 div{color:red;color:blue;}",
+  ".css-28 h1 h2,.css-28 div h2,.css-28 h1:before,.css-28 div:before{color:red;}",
+  ".css-28 h1 header,.css-28 div header{font-size:12px;}",
+  "@media{.css-28 h1,.css-28 div{color:red;}}",
+  "@media{.css-28 h1,.css-28 div{color:blue;}}",
+  ".css-28.foo.bar{color:orange;}",
+  ".css-28.foo.bar.barbar{color:orange;}",
+]
+`;
+
+exports[`nesting selector multiple levels 1`] = `
+Array [
+  ".css-45 a a a a a a a a a a a a{color:red;}",
+]
+`;
+
+exports[`no semi-colons I 1`] = `
+Array [
+  ".css-42 color:redh2 color:bluewidth:0h3{display:none;}",
+  ".css-42 div:hover{color:red;}",
+]
+`;
+
+exports[`no semi-colons II 1`] = `
+Array [
+  ".css-43 color:redcolor:redh1:hover,.css-43 h2:hover,.css-43 h3{color:redwidth:0/2;}",
+  ".css-43 h1{grid-template-areas:\\"header header header\\"'. main .';}",
+  ".css-43 h1{width:calc(20px)20px;}",
+]
+`;
+
+exports[`quoutes 1`] = `
+Array [
+  ".css-17 .foo:before{content:\\".hello {world}\\";content:\\".hello {world} ' \\";content:'.hello {world} \\" ';}",
+]
+`;
+
+exports[`remove empty css 1`] = `Array []`;
+
+exports[`semi-colons 1`] = `
+Array [
+  ".css-41 color:redh2 color:bluewidth:0h3{display:none;}",
+]
+`;
+
+exports[`universal selector 1`] = `
+Array [
+  ".css-4 *{color:red;}",
+]
+`;
+
+exports[`urls 1`] = `
+Array [
+  ".css-19{background:url(http://url.com/});background:url(http://url.com//1234) '(';}",
+]
+`;
+
+exports[`vendor prefixing 1`] = `
+Array [
+  ".css-22 html{-webkit-text-size-adjust:none;text-size-adjust:none;}",
+  ".css-22 input.red::-webkit-input-placeholder{color:red;}",
+  ".css-22 input.red::-moz-placeholder{color:red;}",
+  ".css-22 input.red:-ms-input-placeholder{color:red;}",
+  ".css-22 input.red::placeholder{color:red;}",
+  ".css-22{width:var(--foo-content);width:var(-content);width:var(--max-content);width:--max-content;width:-webkit-max-content;width:-moz-max-content;width:max-content;width:-webkit-min-content;width:-moz-min-content;width:min-content;display:-webkit-box!important;display:-webkit-flex!important;display:-ms-flexbox!important;display:flex!important;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;display:-webkit-inline-box;display:inline-box;-webkit-transform:rotate(30deg);-ms-transform:rotate(30deg);transform:rotate(30deg);cursor:-webkit-grab;cursor:-moz-grab;cursor:grab;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-pack:start;-webkit-justify-content:flex-start;-ms-flex-pack:start;justify-content:flex-start;-webkit-box-pack:justify;-webkit-justify-content:justify;-ms-flex-pack:justify;justify-content:justify;}",
+  ".css-22 div{-webkit-align-items:value;-webkit-box-align:value;-ms-flex-align:value;align-items:value;-webkit-align-self:value;-ms-flex-item-align:value;align-self:value;-webkit-align-content:value;-ms-flex-line-pack:value;align-content:value;}",
+  ".css-22 div{color:papayawhip;-webkit-order:flex;-ms-flex-order:flex;order:flex;}",
+  ".css-22 div{-webkit-backface-visibility:hidden;backface-visibility:hidden;}",
+  ".css-22 h1:-moz-read-only{color:red;}",
+  ".css-22 h1:read-only{color:red;}",
+  ".css-22{-webkit-transition:-webkit-transform 1s,-webkit-transform all 400ms,text-transform;-webkit-transition:transform 1s,transform all 400ms,text-transform;transition:transform 1s,transform all 400ms,text-transform;}",
+]
+`;
+
+exports[`vendor prefixing II 1`] = `
+Array [
+  ".css-23 div{-webkit-writing-mode:vertical-lr;-ms-writing-mode:tb;writing-mode:vertical-lr;-webkit-writing-mode:vertical-rl;-ms-writing-mode:tb-rl;writing-mode:vertical-rl;-webkit-writing-mode:horizontal-tb;-ms-writing-mode:lr;writing-mode:horizontal-tb;writing-mode:sideways-rl;writing-mode:sideways-lr;}",
+]
+`;
+
+exports[`vendor prefixing III 1`] = `
+Array [
+  ".css-24{color:red;-webkit-columns:auto;columns:auto;-webkit-column-count:auto;column-count:auto;-webkit-column-fill:auto;column-fill:auto;-webkit-column-gap:auto;column-gap:auto;-webkit-column-rule:auto;column-rule:auto;-webkit-column-rule-color:auto;column-rule-color:auto;-webkit-column-rule-style:auto;column-rule-style:auto;-webkit-column-rule-width:auto;column-rule-width:auto;-webkit-column-span:auto;column-span:auto;-webkit-column-width:auto;column-width:auto;}",
+]
+`;
+
+exports[`vendor prefixing IV 1`] = `
+Array [
+  ".css-25{-webkit-text-size-adjust:none;text-size-adjust:none;-webkit-text-decoration:none;text-decoration:none;-webkit-filter:grayscale(100%);filter:grayscale(100%);fill:red;position:-webkit-sticky;position:sticky;-webkit-mask-image:linear-gradient(#fff);mask-image:linear-gradient(#fff);-webkit-mask-image:none;mask-image:none;}",
+]
+`;
+
+exports[`vendor prefixing V 1`] = `
+Array [
+  ".css-26{display :-webkit-box!important;display :-webkit-flex!important;display :-ms-flexbox!important;display :flex!important;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-self:flex-start;-ms-flex-item-align:start;align-self:flex-start;-webkit-align-self:flex-end;-ms-flex-item-align:end;align-self:flex-end;}",
+]
+`;
+
+exports[`vendor prefixing VI 1`] = `
+Array [
+  ".css-27{-webkit-clip-path:none;clip-path:none;-webkit-mask-image:none;mask-image:none;}",
+]
+`;
+
+exports[`whitespace cascade false 1`] = `
+Array [
+  ".css-35 html{width:0;}",
+]
+`;
+
+exports[`whitespace cascade true 1`] = `
+Array [
+  ".css-34 html{width:0;}",
+]
+`;

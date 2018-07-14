@@ -2,7 +2,7 @@ lib/
 dist/
 coverage/
 node_modules/
-stylis.js
+stylis.min.js
 /demo/dist
 /packages/site/build
 flow-typed/

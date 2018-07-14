@@ -1,4 +1,5 @@
 // @flow
+import 'test-utils/legacy-env'
 import { injectGlobal, sheet } from 'emotion/macro'
 
 test('injectGlobal', () => {

@@ -1,3 +1,4 @@
+import 'test-utils/legacy-env'
 import { mount } from 'enzyme'
 import enyzmeToJSON from 'enzyme-to-json'
 import React from 'react'

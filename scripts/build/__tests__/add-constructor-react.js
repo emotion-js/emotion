@@ -14,6 +14,7 @@ cases(
         ['@babel/plugin-proposal-class-properties', { loose: true }]
       ],
       babelrc: false,
+      configFile: false,
       filename: __filename
     })
     expect(`${opts.code}${separator}${code}`).toMatchSnapshot()

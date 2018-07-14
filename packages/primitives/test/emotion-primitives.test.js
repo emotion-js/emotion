@@ -140,17 +140,17 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  // it('innerRef', () => {
-  //   const Text = styled('p')`
-  //     color: hotpink;
-  //   `
-  //   let ref = React.createRef()
-  //   const rootNode = document.createElement('div')
+  it('innerRef', () => {
+    const Text = styled('p')`
+      color: hotpink;
+    `
+    let ref = React.createRef()
+    const rootNode = document.createElement('div')
 
-  //   render(<Text innerRef={ref} id="something" />, rootNode)
-  //   expect(ref.current).toBe(rootNode.querySelector('#something'))
-  //   unmountComponentAtNode(rootNode)
-  // })
+    render(<Text innerRef={ref} id="something" />, rootNode)
+    expect(ref.current).toBe(rootNode.querySelector('#something'))
+    unmountComponentAtNode(rootNode)
+  })
 
   it('should pass props in withComponent', () => {
     const ViewOne = styled.View`

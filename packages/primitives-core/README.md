@@ -6,6 +6,8 @@
 
 This package contains some shared utilities which are consumed by `@emotion/primitives` and `@emotion/native` for styling and rendering components.
 
+> Note - In most of the cases, you won't need this package and should use `@emotion/native` or `@emotion/primitives`.
+
 This package provides two functions, `createCss` and `createStyled`.
 
 ### `createCss(StyleSheet)`
@@ -23,7 +25,7 @@ const css = createCss(StyleSheet)
 
 ### `createStyled(StyleSheet)`
 
-`createStyled` also accepts a platform specific `StyleSheet` method for creating styles, and returns a styled component. You can assign primitives to it for example - `View`
+`createStyled` also accepts a platform specific `StyleSheet` method for creating styles, and returns a function that returns a function that returns a styled component. You can assign primitives to it for example - `View`
 
 ```js
 import { StyleSheet, View, Text } from 'react-native'

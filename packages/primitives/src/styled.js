@@ -7,7 +7,7 @@ import {
   testPickPropsOnOtherComponent
 } from './test-props'
 
-function shouldForwardProp(component: React.ElementType) {
+function getShouldForwardProp(component: React.ElementType) {
   switch (component) {
     case View:
     case Text:
@@ -32,6 +32,6 @@ export type Styled = BaseStyled & {
   Image: CreateStyledComponent
 }
 
-let styled: Styled = createStyled(StyleSheet, shouldForwardProp)
+let styled: Styled = createStyled(StyleSheet, getShouldForwardProp)
 
 export { styled }
