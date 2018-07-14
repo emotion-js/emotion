@@ -1,6 +1,7 @@
 // @flow
 /** @jsx jsx */
 import * as React from 'react'
+import { ignoreConsoleErrors } from 'test-utils'
 import Provider from '@emotion/provider'
 import { jsx } from '@emotion/core'
 import renderer from 'react-test-renderer'
@@ -59,38 +60,42 @@ class ExpectErrorComponent extends React.Component<{ children: React.Node }> {
 }
 
 test('nested provider with function that does not return a function throws the correct error', () => {
-  renderer.create(
-    <ExpectErrorComponent>
-      <Provider theme={{ color: 'hotpink', padding: 4 }}>
-        <Provider theme={theme => undefined}>
-          <div
-            css={({ color, padding, backgroundColor }) => ({
-              color,
-              padding,
-              backgroundColor
-            })}
-          />
+  ignoreConsoleErrors(() => {
+    renderer.create(
+      <ExpectErrorComponent>
+        <Provider theme={{ color: 'hotpink', padding: 4 }}>
+          <Provider theme={theme => undefined}>
+            <div
+              css={({ color, padding, backgroundColor }) => ({
+                color,
+                padding,
+                backgroundColor
+              })}
+            />
+          </Provider>
         </Provider>
-      </Provider>
-    </ExpectErrorComponent>
-  )
+      </ExpectErrorComponent>
+    )
+  })
 })
 
 test('nested provider with theme value that is not a plain object throws', () => {
-  renderer.create(
-    <ExpectErrorComponent>
-      <Provider theme={{ color: 'hotpink', padding: 4 }}>
-        {/* $FlowFixMe */}
-        <Provider theme>
-          <div
-            css={({ color, padding, backgroundColor }) => ({
-              color,
-              padding,
-              backgroundColor
-            })}
-          />
+  ignoreConsoleErrors(() => {
+    renderer.create(
+      <ExpectErrorComponent>
+        <Provider theme={{ color: 'hotpink', padding: 4 }}>
+          {/* $FlowFixMe */}
+          <Provider theme>
+            <div
+              css={({ color, padding, backgroundColor }) => ({
+                color,
+                padding,
+                backgroundColor
+              })}
+            />
+          </Provider>
         </Provider>
-      </Provider>
-    </ExpectErrorComponent>
-  )
+      </ExpectErrorComponent>
+    )
+  })
 })
