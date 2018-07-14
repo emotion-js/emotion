@@ -15,5 +15,21 @@ Because @emotion/weak-memoize uses a WeakMap the arguments must be non primitive
 ```jsx
 import weakMemoize from '@emotion/weak-memoize'
 
-let thing = weakMemoize(arg => {})
+let doThing = weakMemoize(({ someProperty }) => {
+  return { newName: someProperty }
+})
+
+let obj = { someProperty: true }
+
+let firstResult = doThing(obj)
+
+let secondResult = doThing(obj)
+
+firstResult === secondResult // true
+
+let newObj = { someProperty: true }
+
+let thirdResult = doThing(newObj)
+
+thirdResult === firstResult // false
 ```
