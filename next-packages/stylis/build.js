@@ -161,7 +161,10 @@ async function doThing() {
     srcWithoutUMDWrapper +
     '\nexport default ' +
     (ast.declarations ? ast.declarations[0].id.name : ast.id.name)
-  await writeFile('./src/stylis.min.js', prettier.format(finalSrc))
+  await writeFile(
+    './src/stylis.min.js',
+    prettier.format(finalSrc, { semi: false, singleQuote: true })
+  )
 
   console.log('done')
 }
