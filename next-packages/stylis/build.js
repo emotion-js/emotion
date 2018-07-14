@@ -131,6 +131,7 @@ async function doThing() {
       'comment + quote + parentheses + bracket + semicolon === 0',
       'true === false'
     )
+    .replace('switch (selector.charCodeAt(1))', 'switch (100)')
     .replace('(insert === 1)', '(true === false)')
     .replace('input.charCodeAt(9)*keyed', '0')
     .replace('switch (cascade + level) {', 'switch (2) {')
