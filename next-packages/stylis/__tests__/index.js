@@ -41,8 +41,34 @@ const specs: Array<{
   },
   {
     name: 'comments',
-    sample:
-      "// line comment// color: red;/** * removes block comments and line comments, * there's a fire in the house // there is */button /* // what's xxx  */{color: blue;}// hellobutton /* 1 */{color: red; /* 2 */}"
+    sample: `
+    // line comment
+    // color: red;
+    /**
+     * removes block comments and line comments,
+     * there's a fire in the house // there is
+     */
+    button /*
+       // what's
+       xxx
+      */
+    {color: blue;}
+    // hello
+    button /* 1 */
+    {
+      color: red; /* 2 */
+    }
+    /*! 1 */
+    color: red;
+    /*! 2 */
+    h1 {
+      /*! 1 */
+      color: red;
+      /*! 2 */
+      color: red;
+      /*! 3 */
+    }
+  `
   },
   {
     name: '&',

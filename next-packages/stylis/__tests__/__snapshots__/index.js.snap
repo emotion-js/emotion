@@ -123,7 +123,14 @@ Array [
 ]
 `;
 
-exports[`comments 1`] = `Array []`;
+exports[`comments 1`] = `
+Array [
+  ".css-7{/*! 1 */color:red;/*! 2 */}",
+  ".css-7 button{color:blue;}",
+  ".css-7 button{color:red;}",
+  ".css-7 h1{/*! 1 */color:red;/*! 2 */color:red;/*! 3 */}",
+]
+`;
 
 exports[`complex nested selector 1`] = `
 Array [
