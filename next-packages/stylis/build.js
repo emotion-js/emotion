@@ -13,6 +13,7 @@ const recast = require('recast')
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 
+// can be removed after https://github.com/thysultan/stylis.js/pull/111
 const removeUselessThingForQuotes = src =>
   j(src)
     .find(j.SwitchStatement, {
@@ -33,6 +34,7 @@ const removeUselessThingForQuotes = src =>
     })
     .toSource()
 
+// can be removed after https://github.com/thysultan/stylis.js/pull/112
 const removeUselessCasesInProxy = src =>
   j(src)
     .find(j.FunctionDeclaration, { id: { name: 'proxy' } })
