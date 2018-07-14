@@ -41,14 +41,14 @@ export const insertStyles = (
 
     if (shouldSerializeToReactTree) {
       context.inserted[insertable.name] = rules.join('')
+      if (context.compat === undefined) {
+        return context.inserted[insertable.name]
+      }
     } else {
       rules.forEach(rule => {
         context.sheet.insert(rule)
       })
       context.inserted[insertable.name] = true
-    }
-    if (context.compat === undefined) {
-      return context.inserted[insertable.name]
     }
   }
 }
