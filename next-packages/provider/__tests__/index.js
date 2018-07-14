@@ -96,20 +96,3 @@ test('nested provider with theme value that is not a plain object throws', () =>
     </ExpectErrorComponent>
   )
 })
-
-test('allow passing a cache', () => {
-  const cache = createCache()
-  const tree = renderer
-    .create(
-      <Provider cache={cache}>
-        <CSSContext.Consumer>
-          {context => {
-            expect(context).toBe(cache)
-            return null
-          }}
-        </CSSContext.Consumer>
-      </Provider>
-    )
-    .toJSON()
-  expect(tree).toMatchSnapshot()
-})

@@ -1,82 +1,60 @@
 // @flow
 import * as React from 'react'
-import { CSSContext } from '@emotion/core'
+import { withCSSContext, CSSContext } from '@emotion/core'
 import type { CSSContextType } from '@emotion/utils'
-import createCache from '@emotion/cache'
+import weakMemoize from '@emotion/weak-memoize'
 
 type Props = {
-  theme?: Object | ((Object | void) => Object),
-  children?: React.Node,
-  cache?: CSSContextType
+  theme: Object | ((Object | void) => Object),
+  children: React.Node
 }
 
-function getTheme(
-  theme: Object | ((Object | void) => Object),
-  outerTheme: Object | void
-) {
-  if (typeof theme === 'function') {
-    const mergedTheme = theme(outerTheme)
+let createCreateCacheWithTheme = weakMemoize(cache => {
+  return weakMemoize(theme => {
+    return {
+      ...cache,
+      theme
+    }
+  })
+})
+
+let createGetTheme = weakMemoize((outerTheme: Object | void) => {
+  return weakMemoize((theme: Object | ((Object | void) => Object)) => {
+    if (typeof theme === 'function') {
+      const mergedTheme = theme(outerTheme)
+      if (
+        process.env.NODE_ENV !== 'production' &&
+        Object.prototype.toString.call(mergedTheme) !== '[object Object]'
+      ) {
+        throw new Error(
+          '[@emotion/provider] Please return an object from your theme function, i.e. theme={() => ({})}!'
+        )
+      }
+      return mergedTheme
+    }
     if (
       process.env.NODE_ENV !== 'production' &&
-      Object.prototype.toString.call(mergedTheme) !== '[object Object]'
+      Object.prototype.toString.call(theme) !== '[object Object]'
     ) {
       throw new Error(
-        '[@emotion/provider] Please return an object from your theme function, i.e. theme={() => ({})}!'
+        '[@emotion/provider] Please make your theme prop a plain object'
       )
     }
-    return mergedTheme
-  }
-  if (
-    process.env.NODE_ENV !== 'production' &&
-    Object.prototype.toString.call(theme) !== '[object Object]'
-  ) {
-    throw new Error(
-      '[@emotion/provider] Please make your theme prop a plain object'
-    )
-  }
 
-  if (outerTheme === undefined) {
-    return theme
-  }
-
-  return { ...outerTheme, ...theme }
-}
-
-export default class Provider extends React.Component<Props> {
-  emotionCache: CSSContextType
-  consumer = (context: CSSContextType | null) => {
-    if (this.props.cache !== undefined) {
-      context = this.props.cache
+    if (outerTheme === undefined) {
+      return theme
     }
-    let newContext = context
-    if (context === null) {
-      if (this.emotionCache === undefined) {
-        newContext = createCache()
-        if (this.props.theme) {
-          newContext.theme = getTheme(this.props.theme, undefined)
-        }
-      } else if (
-        this.props.theme &&
-        this.props.theme !== this.emotionCache.theme
-      ) {
-        newContext = {
-          ...this.emotionCache,
-          theme: getTheme(this.props.theme, undefined)
-        }
-      }
-    } else if (this.props.theme && this.props.theme !== context.theme) {
-      newContext = {
-        ...context,
-        theme: getTheme(this.props.theme, context.theme)
-      }
-    }
-    return (
-      <CSSContext.Provider value={newContext}>
-        {this.props.children}
-      </CSSContext.Provider>
-    )
+
+    return { ...outerTheme, ...theme }
+  })
+})
+
+export default withCSSContext((props: Props, context) => {
+  if (props.theme !== context.theme) {
+    let newTheme = createGetTheme(context.theme)(props.theme)
+    context = createCreateCacheWithTheme(context)(newTheme)
   }
-  render() {
-    return <CSSContext.Consumer children={this.consumer} />
-  }
-}
+  return (
+    <CSSContext.Provider value={context}>{props.children}</CSSContext.Provider>
+  )
+})

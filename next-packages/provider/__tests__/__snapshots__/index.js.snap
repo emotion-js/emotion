@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`allow passing a cache 1`] = `null`;
-
 exports[`nested provider 1`] = `
 Array [
   <style>
