@@ -2,8 +2,8 @@
   "name": "@emotion/styled",
   "version": "0.10.0",
   "description": "styled API for emotion",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/styled.cjs.js",
+  "module": "dist/styled.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/styled",
   "dependencies": {

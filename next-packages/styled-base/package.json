@@ -2,11 +2,11 @@
   "name": "@emotion/styled-base",
   "version": "0.10.0",
   "description": "base styled API for emotion",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/styled-base.cjs.js",
+  "module": "dist/styled-base.esm.js",
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
-    "./dist/index.esm.js": "./dist/index.browser.esm.js"
+    "./dist/styled-base.cjs.js": "./dist/styled-base.browser.cjs.js",
+    "./dist/styled-base.esm.js": "./dist/styled-base.browser.esm.js"
   },
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/styled-base",
