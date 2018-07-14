@@ -4,12 +4,6 @@
   "description": "emotion site",
   "version": "9.2.5",
   "dependencies": {
-    "@emotion/babel-plugin-core": "^0.6.1",
-    "@emotion/compat-cache": "^0.8.1",
-    "@emotion/core": "^0.10.1",
-    "@emotion/css": "^0.9.0",
-    "@emotion/provider": "^0.9.0",
-    "@emotion/styled": "^0.9.0",
     "babel-plugin-emotion": "^9.2.5",
     "babel-plugin-jsx-pragmatic": "^1.0.2",
     "babel-standalone": "^6.26.0",

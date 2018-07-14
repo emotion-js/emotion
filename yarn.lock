@@ -977,34 +977,6 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@emotion/core@^0.10.1":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@emotion/core/-/core-0.10.4.tgz#ed58e5a4f61bf45d2ee1a6a702837d52608d3577"
-  dependencies:
-    "@emotion/cache" "^0.8.3"
-    "@emotion/css" "^0.9.3"
-    "@emotion/serialize" "^0.8.3"
-    "@emotion/sheet" "^0.6.6"
-    "@emotion/utils" "^0.7.1"
-
-"@emotion/sheet@^0.6.6":
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-0.6.6.tgz#bcb703620ff1922c9893331f6476133b116b0c37"
-
-"@emotion/styled-base@^0.9.3":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@emotion/styled-base/-/styled-base-0.9.3.tgz#9ac7a1149cf3cea797422e507fdca335b9677ff2"
-  dependencies:
-    "@emotion/is-prop-valid" "^0.6.3"
-    "@emotion/serialize" "^0.8.3"
-    "@emotion/utils" "^0.7.1"
-
-"@emotion/styled@^0.9.0":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-0.9.3.tgz#031351154ccf3122814867686e2f307ba83b31d1"
-  dependencies:
-    "@emotion/styled-base" "^0.9.3"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
