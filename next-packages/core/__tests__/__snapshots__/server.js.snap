@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ssr basic 1`] = `
+
+<style data-emotion-css="1lrxbo5">
+  .css-1lrxbo5{color:hotpink;}
+</style>
+<div class="css-1lrxbo5">
+  some hotpink text
+</div>
+
+`;
+
+exports[`ssr global 1`] = `
+
+<style data-emotion-css="6l7sk3">
+  html{background-color:hotpink;}
+</style>
+
+`;
+
+exports[`ssr keyframes 1`] = `
+
+<style data-emotion-css="1s775nx">
+  .css-1s775nx{-webkit-animation:1s animation-1kyaq4y;animation:1s animation-1kyaq4y;}@-webkit-keyframes animation-1kyaq4y{from{color:green;}to{color:blue;}}@keyframes animation-1kyaq4y{from{color:green;}to{color:blue;}}
+</style>
+<div class="css-1s775nx">
+</div>
+
+`;
+
+exports[`ssr only render a style once with styled 1`] = `
+
+<style data-emotion-css="bjcoli">
+  .css-bjcoli{color:green;}
+</style>
+<div class="css-bjcoli">
+  <style data-emotion-css="181qz4b">
+    .css-181qz4b{color:hotpink;}
+  </style>
+  <div class="css-181qz4b">
+  </div>
+  <div class="css-181qz4b">
+  </div>
+</div>
+
+`;
+
+exports[`ssr only render a style once with the css prop 1`] = `
+
+<style data-emotion-css="bjcoli">
+  .css-bjcoli{color:green;}
+</style>
+<div class="css-bjcoli">
+  <style data-emotion-css="1lrxbo5">
+    .css-1lrxbo5{color:hotpink;}
+  </style>
+  <div class="css-1lrxbo5">
+  </div>
+  <div class="css-1lrxbo5">
+  </div>
+</div>
+
+`;

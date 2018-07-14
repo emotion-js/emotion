@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unknown-property */
+import 'test-utils/legacy-env'
 import { h } from 'preact'
 import render from 'preact-render-to-json'
 import prettyFormat from 'pretty-format'

@@ -1,3 +1,4 @@
+import 'test-utils/legacy-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'

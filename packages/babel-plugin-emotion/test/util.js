@@ -149,7 +149,8 @@ const createMacroTester = babel => opts => {
     ],
     babelrc: false,
     filename: opts.filename || __filename,
-    ast: true
+    ast: true,
+    ...(isBabel7(babel) ? { configFile: false } : {})
   })
   if (isBabel7(babel)) {
     expect(() => checkDuplicatedNodes(babel, ast)).not.toThrow()

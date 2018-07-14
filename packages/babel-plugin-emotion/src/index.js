@@ -172,10 +172,7 @@ function buildTargetObjectProperty(path, state, t) {
     moduleName = unsafeRequire(rootPath + '/package.json').name
   } catch (err) {}
 
-  const finalPath =
-    filename === rootPath
-      ? nodePath.basename(filename)
-      : filename.slice(rootPath.length)
+  const finalPath = filename === rootPath ? '' : filename.slice(rootPath.length)
 
   const positionInFile = state.count++
 

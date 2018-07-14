@@ -107,6 +107,7 @@ module.exports = (
             }),
           ['@babel/plugin-proposal-object-rest-spread', { loose: true }]
         ].filter(Boolean),
+        configFile: false,
         overrides: [
           {
             test: filename => filename.includes('packages/utils'),

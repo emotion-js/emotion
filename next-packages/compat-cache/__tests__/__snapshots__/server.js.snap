@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it works 1`] = `
+Object {
+  "css": ".css-1lrxbo5{color:hotpink;}",
+  "html": "<div class=\\"css-1lrxbo5\\"></div>",
+  "ids": Array [
+    "1lrxbo5",
+  ],
+}
+`;

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic 1`] = `
+<head>
+  <style
+    data-emotion="css-global"
+  >
+    
+    html{background-color:hotpink;}
+  </style>
+</head>
+`;
+
+exports[`basic 2`] = `
+<body>
+  <div
+    id="root"
+  />
+</body>
+`;
+
+exports[`basic 3`] = `<head />`;
+
+exports[`basic 4`] = `
+<body>
+  <div
+    id="root"
+  />
+</body>
+`;
