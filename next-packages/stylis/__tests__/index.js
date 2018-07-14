@@ -6,7 +6,8 @@ const specs: Array<{
   name: string,
   sample: string,
   skip?: boolean,
-  only?: boolean
+  only?: boolean,
+  expected?: string
 }> = [
   {
     name: 'calc rules',
@@ -255,6 +256,37 @@ const specs: Array<{
     name: 'complex nested selector',
     sample:
       '&:hover{color:blue;&:active{color:red;}}font-size:2rem;padding:16px;&:hover{color:pink;&:active{color:purple;}&.some-class{color:yellow;}}'
+  },
+  {
+    name: 'more comments',
+    sample: `.a{color:red; /*// */}`,
+    expected: `.user .a{color:red;}`
+  },
+  {
+    name: 'comments(context character IV)',
+    sample: `.a{/**/color:red}`,
+    expected: `.user .a{color:red;}`
+  },
+  {
+    name: 'comments(context character V)',
+    sample: `.a{color:red;/*//
+    color:blue;*/}`,
+    expected: `.user .a{color:red;}`
+  },
+  {
+    name: 'comments(context character VI)',
+    sample: `background: url("img}.png");.a {background: url("img}.png");}`,
+    expected: `.user{background:url("img}.png");}.user .a{background:url("img}.png");}`
+  },
+  {
+    name: 'comments(context character VII)',
+    sample: `background: url(img}.png);.a {background: url(img}.png);}`,
+    expected: `.user{background:url(img}.png);}.user .a{background:url(img}.png);}`
+  },
+  {
+    name: 'comments(context character VIII)',
+    sample: `background: url[img}.png];.a {background: url[img}.png];}`,
+    expected: `.user{background:url[img}.png];}.user .a{background:url[img}.png];}`
   }
 ]
 
@@ -276,9 +308,14 @@ specs.forEach((spec, i) => {
     const plugin = stylisRuleSheet(rule => {
       out.push(rule)
     })
+    let selector = spec.expected ? '.user' : `.css-${i}`
     stylis.use(null)(plugin)
-    stylis(`.css-${i}`, spec.sample)
-    expect(out).toMatchSnapshot()
-    expect(out.join('')).toEqual(regularStylis(`.css-${i}`, spec.sample))
+    stylis(selector, spec.sample)
+    if (spec.expected) {
+      expect(out.join('')).toEqual(spec.expected)
+    } else {
+      expect(out).toMatchSnapshot()
+    }
+    expect(out.join('')).toEqual(regularStylis(selector, spec.sample))
   })
 })
