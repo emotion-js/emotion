@@ -4,7 +4,7 @@ import { withCSSContext, CSSContext } from '@emotion/core'
 import weakMemoize from '@emotion/weak-memoize'
 
 type Props = {
-  theme: Object | ((Object | void) => Object),
+  theme: Object | (Object => Object),
   children: React.Node
 }
 
@@ -17,8 +17,8 @@ let createCreateCacheWithTheme = weakMemoize(cache => {
   })
 })
 
-let createGetTheme = weakMemoize((outerTheme: Object | void) => {
-  return weakMemoize((theme: Object | ((Object | void) => Object)) => {
+let createGetTheme = weakMemoize((outerTheme: Object) => {
+  return weakMemoize((theme: Object | (Object => Object)) => {
     if (typeof theme === 'function') {
       const mergedTheme = theme(outerTheme)
       if (
@@ -38,10 +38,6 @@ let createGetTheme = weakMemoize((outerTheme: Object | void) => {
       throw new Error(
         '[@emotion/provider] Please make your theme prop a plain object'
       )
-    }
-
-    if (outerTheme === undefined) {
-      return theme
     }
 
     return { ...outerTheme, ...theme }
