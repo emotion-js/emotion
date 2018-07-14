@@ -10,7 +10,7 @@ yarn add @emotion/weak-memoize
 
 ## Usage
 
-Because @emotion/weak-memoize uses a WeakMap the arguments must be non primitive types, e.g. objects, functions, arrays and etc.
+Because @emotion/weak-memoize uses a WeakMap the argument must be non primitive types, e.g. objects, functions, arrays and etc. The function passed to `weakMemoize` must also only accept a single argument.
 
 ```jsx
 import weakMemoize from '@emotion/weak-memoize'
