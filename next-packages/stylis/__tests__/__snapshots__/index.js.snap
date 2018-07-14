@@ -79,7 +79,7 @@ Array [
   ".css-37 .List :global(*) :global(+) :global(*){margin-top:10px;}",
   ".css-37 .List :global(> *){margin-top:10px;}",
   ".css-37 .List :global(* + *){margin-top:10px;}",
-  ".css-37 :global(.foo #bar > baz){color:red;}",
+  ".css-37:global(.foo #bar > baz){color:red;}",
   ".css-37 div :global(.react-select .some-child-of-react-select){color:red;}",
   ".css-37 .root > :global(*):not(header){color:red;}",
   ".css-37 a:matches( a +b foo:hover :global(marquee) a) > :hover{color:red;}",
@@ -89,7 +89,7 @@ Array [
 exports[`cascade isolation nesting 1`] = `
 Array [
   ".css-39{color:red;}",
-  ".css-39 h1 :global(section){color:red;}",
+  ".css-39 h1:global(section){color:red;}",
   ".css-39 h1 h2{color:red;}",
   ".css-39 div h1,.css-39 span h1{color:red;}",
   ".css-39 span:hover{color:red;}",
@@ -123,7 +123,14 @@ Array [
 ]
 `;
 
-exports[`comments 1`] = `Array []`;
+exports[`comments 1`] = `
+Array [
+  ".css-7{/*! 1 */color:red;/*! 2 */}",
+  ".css-7 button{color:blue;}",
+  ".css-7 button{color:red;}",
+  ".css-7 h1{/*! 1 */color:red;/*! 2 */color:red;/*! 3 */}",
+]
+`;
 
 exports[`complex nested selector 1`] = `
 Array [
@@ -228,8 +235,8 @@ Array [
 
 exports[`nested 1`] = `
 Array [
-  ".css-28 :global(div) h2{color:red;}",
-  ".css-28 :global(div) h2 h3{color:blue;}",
+  ".css-28:global(div) h2{color:red;}",
+  ".css-28:global(div) h2 h3{color:blue;}",
   ".foo .css-28{width:1px;}",
   ".foo .css-28:hover{color:black;}",
   ".foo .css-28 li{color:white;}",

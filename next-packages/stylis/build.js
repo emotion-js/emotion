@@ -13,6 +13,7 @@ const recast = require('recast')
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 
+// can be removed after https://github.com/thysultan/stylis.js/pull/111
 const removeUselessThingForQuotes = src =>
   j(src)
     .find(j.SwitchStatement, {
@@ -33,6 +34,7 @@ const removeUselessThingForQuotes = src =>
     })
     .toSource()
 
+// can be removed after https://github.com/thysultan/stylis.js/pull/112
 const removeUselessCasesInProxy = src =>
   j(src)
     .find(j.FunctionDeclaration, { id: { name: 'proxy' } })
@@ -129,6 +131,7 @@ async function doThing() {
       'comment + quote + parentheses + bracket + semicolon === 0',
       'true === false'
     )
+    .replace('switch (selector.charCodeAt(1))', 'switch (100)')
     .replace('(insert === 1)', '(true === false)')
     .replace('input.charCodeAt(9)*keyed', '0')
     .replace('switch (cascade + level) {', 'switch (2) {')
@@ -161,7 +164,10 @@ async function doThing() {
     srcWithoutUMDWrapper +
     '\nexport default ' +
     (ast.declarations ? ast.declarations[0].id.name : ast.id.name)
-  await writeFile('./src/stylis.min.js', prettier.format(finalSrc))
+  await writeFile(
+    './src/stylis.min.js',
+    prettier.format(finalSrc, { semi: false, singleQuote: true })
+  )
 
   console.log('done')
 }
