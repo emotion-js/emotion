@@ -59,7 +59,7 @@ class ExpectErrorComponent extends React.Component<{ children: React.Node }> {
   }
 }
 
-test('nested provider with function that does not return a function throws the correct error', () => {
+test('nested provider with function that does not return a plain object throws the correct error', () => {
   ignoreConsoleErrors(() => {
     renderer.create(
       <ExpectErrorComponent>
