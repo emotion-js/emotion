@@ -1,9 +1,9 @@
 {
   "name": "@emotion/memoize",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "emotion's memoize utility",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/memoize.cjs.js",
+  "module": "dist/memoize.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/memoize",
   "publishConfig": {

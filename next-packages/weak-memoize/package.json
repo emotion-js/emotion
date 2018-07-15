@@ -1,0 +1,17 @@
+{
+  "name": "@emotion/weak-memoize",
+  "version": "0.1.1",
+  "description": "A memoization function that uses a WeakMap",
+  "main": "dist/weak-memoize.cjs.js",
+  "module": "dist/weak-memoize.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/weak-memoize",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "umd:main": "./dist/index.min.js"
+}

@@ -1,11 +1,11 @@
 // @flow
 const rollup = require('rollup')
-// const fs = require('fs')
-// const { promisify } = require('util')
+const fs = require('fs')
+const { promisify } = require('util')
 const chalk = require('chalk')
 const { getPackages, cleanDist } = require('./utils')
 
-// const writeFile = promisify(fs.writeFile)
+const writeFile = promisify(fs.writeFile)
 
 async function doBuild() {
   let packages = await getPackages()
@@ -33,32 +33,36 @@ async function doBuild() {
       if (pkg.configs.length) {
         console.log(chalk.magenta(`Generated bundles for`, pkg.pkg.name))
       }
-      // if (!pkg.name.endsWith('.macro')) {
-      //   await writeFlowFiles(
-      //     pkg.outputConfigs.map(({ file }) => file),
-      //     someBundle.exports
-      //   )
-      //   console.log(chalk.magenta('Wrote flow files for', pkg.pkg.name))
-      // }
+      if (
+        !pkg.name.endsWith('.macro') &&
+        pkg.path.includes('next-packages') &&
+        someBundle
+      ) {
+        await writeFlowFiles(
+          pkg.configs[0].outputConfigs.map(({ file }) => file),
+          someBundle.exports
+        )
+        console.log(chalk.magenta('Wrote flow files for', pkg.pkg.name))
+      }
     })
   )
 }
 
-// async function writeFlowFiles(paths, exportNames) {
-//   return Promise.all(
-//     paths.map(async path => {
-//       await writeFile(
-//         path + '.flow',
-//         `// @flow
-// export * from '../src/index.js'${
-//           exportNames.indexOf('default') !== -1
-//             ? `\nexport { default } from '../src/index.js'`
-//             : ''
-//         }\n`
-//       )
-//     })
-//   )
-// }
+async function writeFlowFiles(paths, exportNames) {
+  return Promise.all(
+    paths.map(async path => {
+      await writeFile(
+        path + '.flow',
+        `// @flow
+export * from '../src/index.js'${
+          exportNames.indexOf('default') !== -1
+            ? `\nexport { default } from '../src/index.js'`
+            : ''
+        }\n`
+      )
+    })
+  )
+}
 
 doBuild().catch(err => {
   console.error(err)

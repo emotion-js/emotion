@@ -1,11 +1,11 @@
 {
   "name": "@emotion/core",
-  "version": "0.11.0",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "version": "0.11.1",
+  "main": "dist/core.cjs.js",
+  "module": "dist/core.esm.js",
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
-    "./dist/index.esm.js": "./dist/index.browser.esm.js"
+    "./dist/core.cjs.js": "./dist/core.browser.cjs.js",
+    "./dist/core.esm.js": "./dist/core.browser.esm.js"
   },
   "files": [
     "src",
@@ -19,11 +19,11 @@
     "rollup": "rollup -c ../../rollup.config.js"
   },
   "dependencies": {
-    "@emotion/cache": "^0.8.4",
-    "@emotion/css": "^0.9.4",
-    "@emotion/serialize": "^0.8.4",
-    "@emotion/sheet": "^0.7.0",
-    "@emotion/utils": "^0.7.2"
+    "@emotion/cache": "^0.8.5",
+    "@emotion/css": "^0.9.5",
+    "@emotion/serialize": "^0.8.5",
+    "@emotion/sheet": "^0.7.1",
+    "@emotion/utils": "^0.7.3"
   },
   "peerDependencies": {
     "react": ">=16.3.0"

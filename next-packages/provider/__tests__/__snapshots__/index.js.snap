@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`allow passing a cache 1`] = `null`;
-
 exports[`nested provider 1`] = `
 Array [
   <style>
@@ -32,6 +30,6 @@ Array [
 ]
 `;
 
-exports[`nested provider with function that does not return a function throws the correct error 1`] = `"[@emotion/provider] Please return an object from your theme function, i.e. theme={() => ({})}!"`;
+exports[`nested provider with function that does not return a plain object throws the correct error 1`] = `"[@emotion/provider] Please return an object from your theme function, i.e. theme={() => ({})}!"`;
 
 exports[`nested provider with theme value that is not a plain object throws 1`] = `"[@emotion/provider] Please make your theme prop a plain object"`;

@@ -1,19 +1,14 @@
 // @flow
 import * as React from 'react'
-import { CSSContext } from '@emotion/core'
-import type { CSSContextType } from '@emotion/utils'
-import createCache from '@emotion/cache'
+import { withCSSContext, CSSContext } from '@emotion/core'
+import weakMemoize from '@emotion/weak-memoize'
 
 type Props = {
-  theme?: Object | ((Object | void) => Object),
-  children?: React.Node,
-  cache?: CSSContextType
+  theme: Object | (Object => Object),
+  children: React.Node
 }
 
-function getTheme(
-  theme: Object | ((Object | void) => Object),
-  outerTheme: Object | void
-) {
+let getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   if (typeof theme === 'function') {
     const mergedTheme = theme(outerTheme)
     if (
@@ -35,48 +30,24 @@ function getTheme(
     )
   }
 
-  if (outerTheme === undefined) {
-    return theme
-  }
-
   return { ...outerTheme, ...theme }
 }
 
-export default class Provider extends React.Component<Props> {
-  emotionCache: CSSContextType
-  consumer = (context: CSSContextType | null) => {
-    if (this.props.cache !== undefined) {
-      context = this.props.cache
+let createCreateCacheWithTheme = weakMemoize(cache => {
+  return weakMemoize(theme => {
+    let actualTheme = getTheme(cache.theme, theme)
+    return {
+      ...cache,
+      theme: actualTheme
     }
-    let newContext = context
-    if (context === null) {
-      if (this.emotionCache === undefined) {
-        newContext = createCache()
-        if (this.props.theme) {
-          newContext.theme = getTheme(this.props.theme, undefined)
-        }
-      } else if (
-        this.props.theme &&
-        this.props.theme !== this.emotionCache.theme
-      ) {
-        newContext = {
-          ...this.emotionCache,
-          theme: getTheme(this.props.theme, undefined)
-        }
-      }
-    } else if (this.props.theme && this.props.theme !== context.theme) {
-      newContext = {
-        ...context,
-        theme: getTheme(this.props.theme, context.theme)
-      }
-    }
-    return (
-      <CSSContext.Provider value={newContext}>
-        {this.props.children}
-      </CSSContext.Provider>
-    )
+  })
+})
+
+export default withCSSContext((props: Props, context) => {
+  if (props.theme !== context.theme) {
+    context = createCreateCacheWithTheme(context)(props.theme)
   }
-  render() {
-    return <CSSContext.Consumer children={this.consumer} />
-  }
-}
+  return (
+    <CSSContext.Provider value={context}>{props.children}</CSSContext.Provider>
+  )
+})

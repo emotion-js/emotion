@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-emotion",
-  "version": "9.2.5",
+  "version": "9.2.6",
   "description": "Apply eslint rules to emotion.sh css-in-js",
   "keywords": [
     "eslint",
