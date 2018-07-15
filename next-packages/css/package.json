@@ -1,15 +1,15 @@
 {
   "name": "@emotion/css",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "a function to serialize css and object styless",
   "main": "dist/css.cjs.js",
   "module": "dist/css.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/css",
   "dependencies": {
-    "@emotion/hash": "^0.6.4",
-    "@emotion/serialize": "^0.8.4",
-    "@emotion/utils": "^0.7.2"
+    "@emotion/hash": "^0.6.5",
+    "@emotion/serialize": "^0.8.5",
+    "@emotion/utils": "^0.7.3"
   },
   "publishConfig": {
     "access": "public"

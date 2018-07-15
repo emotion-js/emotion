@@ -1,6 +1,6 @@
 {
   "name": "@emotion/babel-plugin-core",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "A babel plugin for emotion",
   "main": "dist/babel-plugin-core.cjs.js",
   "module": "dist/babel-plugin-core.esm.js",
@@ -15,8 +15,8 @@
   ],
   "dependencies": {
     "@babel/helper-module-imports": "7.0.0-beta.46",
-    "@emotion/babel-utils": "^0.6.6",
-    "@emotion/css": "^0.9.4",
+    "@emotion/babel-utils": "^0.6.7",
+    "@emotion/css": "^0.9.5",
     "babel-plugin-macros": "^2.2.1"
   }
 }
