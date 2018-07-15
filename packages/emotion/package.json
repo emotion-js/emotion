@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "9.2.5",
+  "version": "9.2.6",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -15,8 +15,8 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^9.2.5",
-    "create-emotion": "^9.2.5"
+    "babel-plugin-emotion": "^9.2.6",
+    "create-emotion": "^9.2.6"
   },
   "devDependencies": {
     "@types/react": "16.0.16",
