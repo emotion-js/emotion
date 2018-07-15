@@ -1,5 +1,4 @@
 // @flow
-import './mock-primitives'
 import * as React from 'react'
 import renderer from 'react-test-renderer'
 import Enzyme from 'enzyme'
@@ -9,6 +8,8 @@ import { ThemeProvider } from 'emotion-theming'
 import { render, unmountComponentAtNode } from 'react-dom'
 
 import styled from '@emotion/primitives'
+
+jest.mock('react-primitives')
 
 Enzyme.configure({ adapter: new Adapter() })
 

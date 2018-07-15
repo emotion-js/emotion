@@ -7,6 +7,8 @@ import reactNative from 'react-native'
 
 const StyleSheet = reactNative.StyleSheet
 
+jest.mock('react-native')
+
 const theme = { backgroundColor: 'magenta', display: 'flex' }
 
 describe('Emotion native styled', () => {

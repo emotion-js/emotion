@@ -15,6 +15,5 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/packages/babel-plugin-emotion/test/util.js'
-  ],
-  preset: 'react-native'
+  ]
 }

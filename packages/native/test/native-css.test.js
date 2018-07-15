@@ -1,5 +1,7 @@
 import { css } from '@emotion/native'
 
+jest.mock('react-native')
+
 let returnArguments = (...args) => args
 
 describe('Emotion native css', () => {
