@@ -2,11 +2,7 @@
 
 exports[`Emotion native styled primitive should work with \`withComponent\` 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
   decor="hotpink"
-  disabled={false}
-  ellipsizeMode="tail"
   style={
     Object {
       "color": "hotpink",
@@ -30,11 +26,7 @@ exports[`Emotion native styled should pass props in withComponent 1`] = `
 
 exports[`Emotion native styled should pass props in withComponent 2`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
   color="hotpink"
-  disabled={false}
-  ellipsizeMode="tail"
   style={
     Object {
       "backgroundColor": "hotpink",
@@ -65,10 +57,6 @@ exports[`Emotion native styled should render <Image /> 1`] = `
 
 exports[`Emotion native styled should render primitive with style prop 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  disabled={false}
-  ellipsizeMode="tail"
   style={
     Object {
       "color": "hotpink",
@@ -82,11 +70,7 @@ exports[`Emotion native styled should render primitive with style prop 1`] = `
 
 exports[`Emotion native styled should render the primitive on changing the props 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
   decor="hotpink"
-  disabled={false}
-  ellipsizeMode="tail"
   style={
     Object {
       "color": "hotpink",
@@ -100,11 +84,7 @@ exports[`Emotion native styled should render the primitive on changing the props
 
 exports[`Emotion native styled should render the primitive when styles applied using object style notation 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
   back="red"
-  disabled={false}
-  ellipsizeMode="tail"
   style={
     Object {
       "backgroundColor": "red",
@@ -119,10 +99,6 @@ exports[`Emotion native styled should render the primitive when styles applied u
 
 exports[`Emotion native styled should style any other component 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  disabled={false}
-  ellipsizeMode="tail"
   style={
     Object {
       "color": "hotpink",
@@ -135,10 +111,6 @@ exports[`Emotion native styled should style any other component 1`] = `
 
 exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  disabled={false}
-  ellipsizeMode="tail"
   style={
     Object {
       "color": "red",
@@ -152,10 +124,6 @@ exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
 
 exports[`Emotion native styled should work with emotion-theming 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  disabled={false}
-  ellipsizeMode="tail"
   style={
     Object {
       "color": "magenta",
