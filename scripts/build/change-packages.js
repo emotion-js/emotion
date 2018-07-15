@@ -14,11 +14,20 @@ async function changePackages() {
   await Promise.all(
     packages.map(async ({ pkg, path: pkgPath }) => {
       // you can transform the package.json contents here
-      if (pkg.repository) {
-        pkg.repository = pkg.repository.replace(
-          'https://github.com/emotion-js/next/tree/master/packages',
-          'https://github.com/emotion-js/emotion/tree/master/next-packages'
-        )
+      if (pkgPath.includes('next-packages')) {
+        let replaceArgs = ['index', pkg.name.replace('@emotion/', '')]
+        pkg.main = pkg.main.replace(...replaceArgs)
+        if (pkg.module) {
+          pkg.module = pkg.module.replace(...replaceArgs)
+        }
+        if (pkg.browser) {
+          pkg.browser = Object.keys(pkg.browser).reduce((obj, key) => {
+            obj[key.replace(...replaceArgs)] = pkg.browser[key].replace(
+              ...replaceArgs
+            )
+            return obj
+          }, {})
+        }
       }
 
       await writeFile(

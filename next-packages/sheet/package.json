@@ -2,8 +2,8 @@
   "name": "@emotion/sheet",
   "version": "0.7.0",
   "description": "emotion's stylesheet",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/sheet.cjs.js",
+  "module": "dist/sheet.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "scripts": {
