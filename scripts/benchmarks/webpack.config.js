@@ -16,16 +16,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: { modules: true, localIdentName: '[hash:base64:8]' }
-          }
-        ]
-      },
-      {
         test: /\.js$/,
         include: [path.resolve(appDirectory, 'src')],
         use: {
