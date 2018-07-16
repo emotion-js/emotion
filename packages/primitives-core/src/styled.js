@@ -22,7 +22,7 @@ type options = {
 
 export function createStyled(
   StyleSheet: Object,
-  { getShouldForwardProp = () => defaultPickTest }: options
+  { getShouldForwardProp = () => defaultPickTest }: options = {}
 ) {
   const css = createCss(StyleSheet)
 
