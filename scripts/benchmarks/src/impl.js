@@ -1,15 +1,16 @@
 // @flow
-import { type Component } from 'react'
+import * as React from 'react'
 import packageJson from '../package.json'
 
+// $FlowFixMe
 const context = require.context('./implementations/', true, /index\.js$/)
 const { dependencies } = packageJson
 
 type ComponentsType = {
-  Box: Component,
-  Dot: Component,
-  Provider: Component,
-  View: Component
+  Box: React.ElementType,
+  Dot: React.ElementType,
+  Provider: React.ElementType,
+  View: React.ElementType
 }
 
 type ImplementationType = {
@@ -20,6 +21,7 @@ type ImplementationType = {
 
 const toImplementations = (context: Object): Array<ImplementationType> =>
   context.keys().map(path => {
+    // $FlowFixMe
     const components = context(path).default
     const name = path.split('/')[1]
     const version = dependencies[name] || ''

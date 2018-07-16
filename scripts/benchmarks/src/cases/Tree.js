@@ -1,11 +1,11 @@
-import { BenchmarkType } from '../app/Benchmark';
-import { number, object } from 'prop-types';
-import React, { Component } from 'react';
+import { BenchmarkType } from '../app/Benchmark'
+import { number, object } from 'prop-types'
+import React, { Component } from 'react'
 
 class Tree extends Component {
-  static displayName = 'Tree';
+  static displayName = 'Tree'
 
-  static benchmarkType = BenchmarkType.MOUNT;
+  static benchmarkType = BenchmarkType.MOUNT
 
   static propTypes = {
     breadth: number.isRequired,
@@ -13,11 +13,11 @@ class Tree extends Component {
     depth: number.isRequired,
     id: number.isRequired,
     wrap: number.isRequired
-  };
+  }
 
   render() {
-    const { breadth, components, depth, id, wrap } = this.props;
-    const { Box } = components;
+    const { breadth, components, depth, id, wrap } = this.props
+    const { Box } = components
 
     let result = (
       <Box color={id % 3} layout={depth % 2 === 0 ? 'column' : 'row'} outer>
@@ -34,12 +34,12 @@ class Tree extends Component {
             />
           ))}
       </Box>
-    );
+    )
     for (let i = 0; i < wrap; i++) {
-      result = <Box>{result}</Box>;
+      result = <Box>{result}</Box>
     }
-    return result;
+    return result
   }
 }
 
-export default Tree;
+export default Tree

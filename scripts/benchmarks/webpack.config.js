@@ -1,4 +1,3 @@
-const babelPreset = require('../../scripts/babel/preset')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 const path = require('path')

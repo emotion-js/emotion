@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
-import { css } from 'emotion';
+import React from 'react'
+import { css } from 'emotion'
 
 const Dot = ({ size, x, y, children, color }) => (
   <div
@@ -15,7 +14,7 @@ const Dot = ({ size, x, y, children, color }) => (
   >
     {children}
   </div>
-);
+)
 
 const styles = {
   root: {
@@ -28,6 +27,6 @@ const styles = {
     borderTopWidth: 0,
     transform: 'translate(50%, 50%)'
   }
-};
+}
 
-export default Dot;
+export default Dot

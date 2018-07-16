@@ -1,14 +1,18 @@
-import { BenchmarkType } from '../app/Benchmark';
-import { number, object } from 'prop-types';
-import React from 'react';
-import { interpolatePurples, interpolateBuPu, interpolateRdPu } from 'd3-scale-chromatic';
+import { BenchmarkType } from '../app/Benchmark'
+import { number, object } from 'prop-types'
+import React from 'react'
+import {
+  interpolatePurples,
+  interpolateBuPu,
+  interpolateRdPu
+} from 'd3-scale-chromatic'
 
-const targetSize = 10;
+const targetSize = 10
 
 class SierpinskiTriangle extends React.Component {
-  static displayName = 'SierpinskiTriangle';
+  static displayName = 'SierpinskiTriangle'
 
-  static benchmarkType = BenchmarkType.UPDATE;
+  static benchmarkType = BenchmarkType.UPDATE
 
   static propTypes = {
     components: object,
@@ -17,41 +21,46 @@ class SierpinskiTriangle extends React.Component {
     s: number,
     x: number,
     y: number
-  };
+  }
 
   static defaultProps = {
     depth: 0,
     renderCount: 0
-  };
+  }
 
   render() {
-    const { components, x, y, depth, renderCount } = this.props;
-    let { s } = this.props;
-    const { Dot } = components;
+    const { components, x, y, depth, renderCount } = this.props
+    let { s } = this.props
+    const { Dot } = components
 
     if (Dot) {
       if (s <= targetSize) {
-        let fn;
+        let fn
         switch (depth) {
           case 1:
-            fn = interpolatePurples;
-            break;
+            fn = interpolatePurples
+            break
           case 2:
-            fn = interpolateBuPu;
-            break;
+            fn = interpolateBuPu
+            break
           case 3:
           default:
-            fn = interpolateRdPu;
+            fn = interpolateRdPu
         }
 
         // introduce randomness to ensure that repeated runs don't produce the same colors
-        const color = fn(renderCount * Math.random() / 20);
+        const color = fn(renderCount * Math.random() / 20)
         return (
-          <Dot color={color} size={targetSize} x={x - targetSize / 2} y={y - targetSize / 2} />
-        );
+          <Dot
+            color={color}
+            size={targetSize}
+            x={x - targetSize / 2}
+            y={y - targetSize / 2}
+          />
+        )
       }
 
-      s /= 2;
+      s /= 2
 
       return (
         <React.Fragment>
@@ -80,11 +89,11 @@ class SierpinskiTriangle extends React.Component {
             y={y + s / 2}
           />
         </React.Fragment>
-      );
+      )
     } else {
-      return <span style={{ color: 'white' }}>No implementation available</span>;
+      return <span style={{ color: 'white' }}>No implementation available</span>
     }
   }
 }
 
-export default SierpinskiTriangle;
+export default SierpinskiTriangle

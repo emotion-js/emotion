@@ -1,9 +1,14 @@
-import { ColorPropType, StyleSheet, TouchableHighlight, Text } from 'react-native';
-import React, { Component } from 'react';
-import { bool, func, string } from 'prop-types';
+import {
+  ColorPropType,
+  StyleSheet,
+  TouchableHighlight,
+  Text
+} from 'react-native'
+import React, { Component } from 'react'
+import { bool, func, string } from 'prop-types'
 
 export default class Button extends Component<*> {
-  static displayName = '@app/Button';
+  static displayName = '@app/Button'
 
   static propTypes = {
     accessibilityLabel: string,
@@ -14,7 +19,7 @@ export default class Button extends Component<*> {
     testID: string,
     textStyle: Text.propTypes.style,
     title: string.isRequired
-  };
+  }
 
   render() {
     const {
@@ -26,7 +31,7 @@ export default class Button extends Component<*> {
       textStyle,
       testID,
       title
-    } = this.props;
+    } = this.props
 
     return (
       <TouchableHighlight
@@ -42,9 +47,11 @@ export default class Button extends Component<*> {
         ]}
         testID={testID}
       >
-        <Text style={[styles.text, textStyle, disabled && styles.textDisabled]}>{title}</Text>
+        <Text style={[styles.text, textStyle, disabled && styles.textDisabled]}>
+          {title}
+        </Text>
       </TouchableHighlight>
-    );
+    )
   }
 }
 
@@ -68,4 +75,4 @@ const styles = StyleSheet.create({
   textDisabled: {
     color: '#a1a1a1'
   }
-});
+})

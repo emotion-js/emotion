@@ -1,8 +1,13 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
-import View from './View';
+import React from 'react'
+import View from './View'
 
-const Box = ({ color, fixed = false, layout = 'column', outer = false, ...other }) => (
+const Box = ({
+  color,
+  fixed = false,
+  layout = 'column',
+  outer = false,
+  ...other
+}) => (
   <View
     {...other}
     style={[
@@ -12,7 +17,7 @@ const Box = ({ color, fixed = false, layout = 'column', outer = false, ...other 
       outer && styles.outer
     ]}
   />
-);
+)
 
 const styles = {
   outer: {
@@ -44,6 +49,6 @@ const styles = {
     width: 6,
     height: 6
   }
-};
+}
 
-export default Box;
+export default Box

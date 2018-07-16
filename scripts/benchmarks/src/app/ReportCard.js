@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import Text from './Text';
-import { StyleSheet, View } from 'react-native';
-import React, { Fragment } from 'react';
+import Text from './Text'
+import { StyleSheet, View } from 'react-native'
+import React, { Fragment } from 'react'
 
 const fmt = (time: number) => {
-  const i = Number(Math.round(time + 'e2') + 'e-2').toFixed(2);
-  return 10 / i > 1 ? `0${i}` : i;
-};
+  const i = Number(Math.round(time + 'e2') + 'e-2').toFixed(2)
+  return 10 / i > 1 ? `0${i}` : i
+}
 
 class ReportCard extends React.PureComponent {
   render() {
@@ -19,9 +19,9 @@ class ReportCard extends React.PureComponent {
       meanScripting,
       stdDev,
       libraryVersion
-    } = this.props;
+    } = this.props
 
-    const sampleCountText = sampleCount != null ? `(${sampleCount})` : '';
+    const sampleCountText = sampleCount != null ? `(${sampleCount})` : ''
 
     return (
       <View style={styles.root}>
@@ -48,7 +48,7 @@ class ReportCard extends React.PureComponent {
           )}
         </View>
       </View>
-    );
+    )
   }
 }
 
@@ -78,6 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-end'
   }
-});
+})
 
-export default ReportCard;
+export default ReportCard

@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
-import { css } from 'emotion';
-import React from 'react';
+import { css } from 'emotion'
+import React from 'react'
 
 class View extends React.Component {
   render() {
-    const { style, ...other } = this.props;
-    return <div {...other} className={css(viewStyle, ...style)} />;
+    const { style, ...other } = this.props
+    return <div {...other} className={css(viewStyle, ...style)} />
   }
 }
 
@@ -24,6 +23,6 @@ const viewStyle = {
   // fix flexbox bugs
   minHeight: 0,
   minWidth: 0
-};
+}
 
-export default View;
+export default View

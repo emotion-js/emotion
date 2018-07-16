@@ -1,25 +1,30 @@
-import { colors } from './theme';
-import { element } from 'prop-types';
-import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { colors } from './theme'
+import { element } from 'prop-types'
+import React, { Component } from 'react'
+import { StyleSheet, View } from 'react-native'
 
 export default class Layout extends Component {
   static propTypes = {
     actionPanel: element,
     listPanel: element,
     viewPanel: element
-  };
+  }
 
   state = {
     widescreen: false
-  };
+  }
 
   render() {
-    const { viewPanel, actionPanel, listPanel } = this.props;
-    const { widescreen } = this.state;
+    const { viewPanel, actionPanel, listPanel } = this.props
+    const { widescreen } = this.state
     return (
-      <View onLayout={this._handleLayout} style={[styles.root, widescreen && styles.row]}>
-        <View style={[widescreen ? styles.grow : styles.stackPanel, styles.layer]}>
+      <View
+        onLayout={this._handleLayout}
+        style={[styles.root, widescreen && styles.row]}
+      >
+        <View
+          style={[widescreen ? styles.grow : styles.stackPanel, styles.layer]}
+        >
           {viewPanel}
         </View>
         <View style={styles.grow}>
@@ -28,18 +33,18 @@ export default class Layout extends Component {
           <View style={styles.layer}>{actionPanel}</View>
         </View>
       </View>
-    );
+    )
   }
 
   _handleLayout = ({ nativeEvent }) => {
-    const { layout } = nativeEvent;
-    const { width } = layout;
+    const { layout } = nativeEvent
+    const { width } = layout
     if (width >= 740) {
-      this.setState(() => ({ widescreen: true }));
+      this.setState(() => ({ widescreen: true }))
     } else {
-      this.setState(() => ({ widescreen: false }));
+      this.setState(() => ({ widescreen: false }))
     }
-  };
+  }
 }
 
 const styles = StyleSheet.create({
@@ -65,4 +70,4 @@ const styles = StyleSheet.create({
   layer: {
     transform: [{ translateZ: '0' }]
   }
-});
+})

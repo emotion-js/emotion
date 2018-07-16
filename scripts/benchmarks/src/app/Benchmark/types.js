@@ -1,6 +1,16 @@
 /**
  * @flow
  */
+
+export type FullSampleTimingType = {
+  start: number,
+  end: number,
+  scriptingStart: number,
+  scriptingEnd: number,
+  layoutStart?: number,
+  layoutEnd?: number
+}
+
 export type BenchResultsType = {
   startTime: number,
   endTime: number,
@@ -12,20 +22,11 @@ export type BenchResultsType = {
   median: number,
   mean: number,
   stdDev: number
-};
+}
 
 export type SampleTimingType = {
   scriptingStart: number,
   scriptingEnd?: number,
   layoutStart?: number,
   layoutEnd?: number
-};
-
-export type FullSampleTimingType = {
-  start: number,
-  end: number,
-  scriptingStart: number,
-  scriptingEnd: number,
-  layoutStart?: number,
-  layoutEnd?: number
-};
+}
