@@ -1,16 +1,17 @@
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-//   .BundleAnalyzerPlugin
+const babelPreset = require('../../scripts/babel/preset')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 const path = require('path')
-const webpack = require('webpack')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
+
+const appDirectory = path.resolve(__dirname)
 
 module.exports = {
-  // context: __dirname,
-  // devtool: 'eval',
-  entry: ['babel-polyfill', './index'],
+  mode: 'production',
+  context: __dirname,
+  entry: './src/index',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'performance.bundle.js'
+    path: path.resolve(appDirectory, 'dist'),
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -20,38 +21,36 @@ module.exports = {
           'style-loader',
           {
             loader: 'css-loader',
-            options: { module: true, localIdentName: '[hash:base64:8]' }
+            options: { modules: true, localIdentName: '[hash:base64:8]' }
           }
         ]
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        include: [path.resolve(appDirectory, 'src')],
         use: {
           loader: 'babel-loader',
           options: {
-            babelrc: false,
+            cacheDirectory: false,
             presets: [
-              ['env', { modules: false, useBuiltIns: true, debug: true }],
-              'react',
-              'stage-0'
-            ],
-            plugins: ['babel-plugin-macros'],
-            cacheDirectory: true
+              ['babel-preset-env', { modules: false, loose: true }],
+              'babel-preset-react',
+              'babel-preset-stage-2'
+            ]
           }
         }
       }
     ]
   },
   plugins: [
-    // new BundleAnalyzerPlugin({
-    //   analyzerMode: 'static',
-    //   openAnalyzer: false
-    // }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    new webpack.optimize.UglifyJsPlugin(),
-    new HTMLWebpackPlugin({ template: path.join(__dirname, './index.html') })
-  ]
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false
+    })
+  ],
+  resolve: {
+    alias: {
+      'react-native': 'react-native-web'
+    }
+  }
 }
