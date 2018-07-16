@@ -8,14 +8,14 @@
 	"devDependencies": {
 		"emotion-theming": "^9.2.5",
 		"react": "^16.4.1",
-		"react-native": "0.46.0"
+		"react-native": "^0.56.0"
 	},
 	"dependencies": {
 		"@emotion/primitives-core": "1.0.0"
 	},
 	"peerDependencies": {
 		"prop-types": "15.x",
-		"react-native": "0.46.0"
+		"react-native": "^0.56.0"
 	},
 	"homepage": "https://emotion.sh",
 	"license": "MIT",
