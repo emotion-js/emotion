@@ -16,11 +16,13 @@ type State = {
 
 let defaultPickTest = prop => prop !== 'theme' && prop !== 'innerRef'
 
+type options = {
+  getShouldForwardProp: (cmp: React.ElementType) => (prop: string) => boolean
+}
+
 export function createStyled(
   StyleSheet: Object,
-  getShouldForwardProp: (
-    cmp: React.ElementType
-  ) => (prop: string) => boolean = () => defaultPickTest
+  { getShouldForwardProp = () => defaultPickTest }: options
 ) {
   const css = createCss(StyleSheet)
 
