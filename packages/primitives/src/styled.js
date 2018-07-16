@@ -32,6 +32,6 @@ export type Styled = BaseStyled & {
   Image: CreateStyledComponent
 }
 
-let styled: Styled = createStyled(StyleSheet, getShouldForwardProp)
+let styled: Styled = createStyled(StyleSheet, { getShouldForwardProp })
 
 export { styled }
