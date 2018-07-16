@@ -4,9 +4,10 @@
 
 ## Introduction
 
+> Note: In most of the cases, you won't need this package and should use `@emotion/native` or `@emotion/primitives`.
+
 This package contains some shared utilities which are consumed by `@emotion/primitives` and `@emotion/native` for styling and rendering components.
 
-> Note - In most of the cases, you won't need this package and should use `@emotion/native` or `@emotion/primitives`.
 
 This package provides two functions, `createCss` and `createStyled`.
 
