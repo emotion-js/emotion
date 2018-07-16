@@ -1,10 +1,10 @@
 // @flow
 import * as React from 'react'
-import packageJson from '../package.json'
 
 // $FlowFixMe
-const context = require.context('./implementations/', true, /index\.js$/)
-const { dependencies } = packageJson
+let impls = require('./implementations/*/index.js')
+
+console.log(impls)
 
 type ComponentsType = {
   Box: React.ElementType,
@@ -15,18 +15,15 @@ type ComponentsType = {
 
 type ImplementationType = {
   components: ComponentsType,
-  name: string,
-  version: string
+  name: string
 }
 
-const toImplementations = (context: Object): Array<ImplementationType> =>
-  context.keys().map(path => {
-    // $FlowFixMe
-    const components = context(path).default
-    const name = path.split('/')[1]
-    const version = dependencies[name] || ''
-    return { components, name, version }
-  })
+const implementations: Array<ImplementationType> = Object.keys(impls).map(
+  name => {
+    const components = impls[name]
+    return { components, name }
+  }
+)
 
 const toObject = (impls: Array<ImplementationType>): Object =>
   impls.reduce((acc, impl) => {
@@ -34,6 +31,6 @@ const toObject = (impls: Array<ImplementationType>): Object =>
     return acc
   }, {})
 
-const map = toObject(toImplementations(context))
+const map = toObject(implementations)
 
 export default map

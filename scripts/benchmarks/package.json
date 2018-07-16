@@ -3,17 +3,19 @@
   "name": "benchmarks",
   "version": "0.8.8",
   "scripts": {
-    "build": "mkdir -p dist && cp -f index.html dist/index.html && ./node_modules/.bin/webpack-cli --config ./webpack.config.js"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-react-native-web": "^0.8.8",
     "d3-scale-chromatic": "^1.3.0",
+    "parcel": "^1.9.7",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-native-web": "0.8.8"
   },
-  "devDependencies": {
-    "webpack": "^4.15.1",
-    "webpack-bundle-analyzer": "^2.13.1",
-    "webpack-cli": "^3.0.8"
+  "alias": {
+    "react-native": "react-native-web"
   }
 }

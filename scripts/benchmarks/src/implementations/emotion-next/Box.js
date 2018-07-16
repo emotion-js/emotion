@@ -1,5 +1,5 @@
-import React from 'react'
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
 const Box = ({
   color,
@@ -10,7 +10,7 @@ const Box = ({
 }) => (
   <div
     {...other}
-    className={css(
+    css={css(
       styles[`color${color}`],
       fixed && styles.fixed,
       layout === 'row' && styles.row,

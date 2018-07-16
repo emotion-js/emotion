@@ -1,9 +1,9 @@
-import React from 'react'
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
 const Dot = ({ size, x, y, children, color }) => (
   <div
-    className={css(styles.root, {
+    css={css(styles.root, {
       borderBottomColor: color,
       borderRightWidth: `${size / 2}px`,
       borderBottomWidth: `${size / 2}px`,
