@@ -1,4 +1,5 @@
 // @flow
+import stats from 'stats-analysis'
 type ValuesType = Array<number>
 
 export const getStdDev = (values: ValuesType): number => {
@@ -13,15 +14,8 @@ export const getStdDev = (values: ValuesType): number => {
 }
 
 export const getMean = (values: ValuesType): number => {
-  const sum = values.reduce((sum: number, value: number) => sum + value, 0)
-  return sum / values.length
+  let valuesWithoutOutliers = stats.filterMADoutliers(values)
+  return stats.mean(valuesWithoutOutliers)
 }
 
-export const getMedian = (values: ValuesType): number => {
-  if (values.length === 1) {
-    return values[0]
-  }
-
-  const numbers = values.sort((a: number, b: number) => a - b)
-  return (numbers[(numbers.length - 1) >> 1] + numbers[numbers.length >> 1]) / 2
-}
+export const getMedian = stats.median
