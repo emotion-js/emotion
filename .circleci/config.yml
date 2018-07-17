@@ -2,7 +2,7 @@ version: 2
 jobs:
   flow:
     docker:
-      - image: circleci/node:10.6.0-browser
+      - image: circleci/node:10.6.0-browsers
     working_directory: ~/repo
     steps:
       - checkout
