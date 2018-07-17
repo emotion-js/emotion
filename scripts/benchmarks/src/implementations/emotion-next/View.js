@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core'
 
 const View = ({ style, ...other }) => {
-  return <div {...other} className={css(viewStyle, style)} />
+  return <div {...other} css={css(viewStyle, style)} />
 }
 
 const viewStyle = css({
