@@ -13,7 +13,7 @@ jobs:
           - v1-dependencies-
       - run: yarn install --pure-lockfile
       - run: yarn flow
-      - run: cd scripts/benchmarks && yarn build && yarn run-benchmark && yarn run-benchmark
+      - run: yarn build && cd scripts/benchmarks && yarn build && yarn run-benchmark && yarn run-benchmark
       - save_cache:
           paths:
             - ~/.cache/yarn
