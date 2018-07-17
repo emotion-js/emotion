@@ -25,7 +25,9 @@ const implementations: Array<ImplementationType> = Object.keys(impls).map(
   }
 )
 
-const toObject = (impls: Array<ImplementationType>): Object =>
+const toObject = (
+  impls: Array<ImplementationType>
+): { [name: string]: ImplementationType } =>
   impls.reduce((acc, impl) => {
     acc[impl.name] = impl
     return acc

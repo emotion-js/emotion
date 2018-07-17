@@ -12,7 +12,7 @@ const packageNames = Object.keys(implementations)
 
 const createTestBlock = fn => {
   return packageNames.reduce((testSetups, packageName) => {
-    const { name, components, version } = implementations[packageName]
+    const { name, components } = implementations[packageName]
     const {
       Component,
       getComponentProps,
@@ -27,7 +27,6 @@ const createTestBlock = fn => {
       sampleCount,
       Provider,
       benchmarkType,
-      version,
       name
     }
     return testSetups
