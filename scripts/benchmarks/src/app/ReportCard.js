@@ -1,4 +1,3 @@
-// @flow
 import Text from './Text'
 import { StyleSheet, View } from 'react-native'
 import React from 'react'
