@@ -1,3 +1,4 @@
+// @flow
 import Benchmark from './Benchmark'
 import {
   Picker,
@@ -16,7 +17,7 @@ import { colors } from './theme'
 
 const Overlay = () => <View style={[StyleSheet.absoluteFill, { zIndex: 2 }]} />
 
-export default class App extends Component {
+export default class App extends Component<{}> {
   static displayName = '@app/App'
 
   constructor(props, context) {
@@ -61,6 +62,7 @@ export default class App extends Component {
                   onValueChange={this._handleChangeLibrary}
                   selectedValue={currentLibraryName}
                   style={styles.picker}
+                  testID="library-picker"
                 >
                   {Object.keys(tests[currentBenchmarkName]).map(libraryName => (
                     <Picker.Item
@@ -74,12 +76,15 @@ export default class App extends Component {
               <View style={{ width: 1, backgroundColor: colors.fadedGray }} />
               <View style={styles.pickerContainer}>
                 <Text style={styles.pickerTitle}>Benchmark</Text>
-                <Text>{currentBenchmarkName}</Text>
+                <Text testID="current-benchmark-name">
+                  {currentBenchmarkName}
+                </Text>
                 <Picker
                   enabled={status !== 'running'}
                   onValueChange={this._handleChangeBenchmark}
                   selectedValue={currentBenchmarkName}
                   style={styles.picker}
+                  testID="benchmark-picker"
                 >
                   {Object.keys(tests).map(test => (
                     <Picker.Item key={test} label={test} value={test} />
@@ -94,6 +99,8 @@ export default class App extends Component {
                   onPress={this._handleStart}
                   style={styles.button}
                   title={status === 'running' ? 'Running…' : 'Run'}
+                  disabled={status === 'running'}
+                  testID="run-button"
                 />
               </View>
             </View>
