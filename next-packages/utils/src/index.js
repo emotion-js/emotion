@@ -28,9 +28,23 @@ export function getRegisteredStyles(
 
 export const insertStyles = (
   context: CSSContextType,
-  insertable: ScopedInsertableStyles
+  insertable: ScopedInsertableStyles,
+  isStringTag: boolean
 ) => {
-  if (context.registered[`${context.key}-${insertable.name}`] === undefined) {
+  if (
+    // we only need to add the styles to the registered cache if the
+    // class name could be used further down
+    // the tree but if it's a string tag, we know it won't
+    // so we don't have to add it to registered cache.
+    // this improves memory usage since we can avoid storing the whole style string
+    (isStringTag === false ||
+      // we need to always store it if we're in compat mode and
+      // in node since emotion-server relies on whether a style is in
+      // the registered cache to know whether a style is global or not
+      // also, note that this will be dead code eliminated in the browser
+      (isBrowser === false && context.compat !== undefined)) &&
+    context.registered[`${context.key}-${insertable.name}`] === undefined
+  ) {
     context.registered[`${context.key}-${insertable.name}`] = insertable.styles
   }
   if (context.inserted[insertable.name] === undefined) {
@@ -38,17 +52,22 @@ export const insertStyles = (
       `.${context.key}-${insertable.name}`,
       insertable.styles
     )
+    context.inserted[insertable.name] = true
 
     if (shouldSerializeToReactTree) {
-      context.inserted[insertable.name] = rules.join('')
+      let joinedRules = rules.join('')
       if (context.compat === undefined) {
-        return context.inserted[insertable.name]
+        // in regular mode, we don't set the styles on the inserted cache
+        // since we don't need to and that would be wasting memory
+        // we return them so that they are rendered in a style tag
+        return joinedRules
+      } else {
+        // in compat mode, we put the styles on the inserted cache so
+        // that emotion-server can pull out the styles
+        context.inserted[insertable.name] = joinedRules
       }
     } else {
-      rules.forEach(rule => {
-        context.sheet.insert(rule)
-      })
-      context.inserted[insertable.name] = true
+      rules.forEach(context.sheet.insert, context.sheet)
     }
   }
 }
