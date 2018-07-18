@@ -2415,3 +2415,17 @@ exports[`renderStylesToString renders styles with ids 2`] = `
 </main>
 
 `;
+
+exports[`renderStylesToString retains the original style order 1`] = `
+
+<style data-emotion-some-key="14jcta0 jk0pkr"
+       nonce="some-nonce"
+>
+  .some-key-14jcta0{color:blue;}.some-key-jk0pkr{color:red;}
+</style>
+<div class="some-key-jk0pkr some-key-14jcta0"
+     data-reactroot
+>
+</div>
+
+`;
