@@ -56,16 +56,16 @@ const components = [
   'VirtualizedList'
 ]
 
-components.forEach(comp =>
-  Object.defineProperty(styled, comp, {
-    enumerable: true,
-    configurable: false,
-    get() {
-      return styled(reactNative[comp])
-    }
-  })
-)
-
 export { css }
 
-export default /* #__PURE__ */ styled
+export default components.reduce(
+  (acc, comp) =>
+    Object.defineProperty(acc, comp, {
+      enumerable: true,
+      configurable: false,
+      get() {
+        return styled(reactNative[comp])
+      }
+    }),
+  styled
+)
