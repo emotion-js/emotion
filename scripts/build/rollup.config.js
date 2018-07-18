@@ -86,7 +86,7 @@ module.exports = (
         configFile: false,
         overrides: [
           {
-            test: filename => filename.includes('utils'),
+            test: filename => filename.includes('utils/src'),
             plugins: [
               isBrowser &&
                 (babel => {
