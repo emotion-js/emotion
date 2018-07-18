@@ -81,36 +81,12 @@ module.exports = (
           ['@babel/proposal-class-properties', { loose: true }],
           require('./fix-dce-for-classes-with-statics'),
           isBrowser && require('./inline-isBrowser'),
-          isBrowser &&
-            (babel => {
-              let t = babel.types
-              return {
-                // for @emotion/utils
-                visitor: {
-                  VariableDeclarator(path, state) {
-                    if (t.isIdentifier(path.node.id)) {
-                      if (path.node.id.name === 'isBrowser') {
-                        path.get('init').replaceWith(t.booleanLiteral(true))
-                      }
-                      if (path.node.id.name === 'shouldSerializeToReactTree') {
-                        path.get('init').replaceWith(t.booleanLiteral(false))
-                      }
-                    }
-                  },
-                  ReferencedIdentifier(path, node) {
-                    if (path.node.name === 'shouldSerializeToReactTree') {
-                      path.replaceWith(t.booleanLiteral(false))
-                    }
-                  }
-                }
-              }
-            }),
           ['@babel/plugin-proposal-object-rest-spread', { loose: true }]
         ].filter(Boolean),
         configFile: false,
         overrides: [
           {
-            test: filename => filename.includes('packages/utils'),
+            test: filename => filename.includes('utils'),
             plugins: [
               isBrowser &&
                 (babel => {
@@ -135,6 +111,9 @@ module.exports = (
                       ReferencedIdentifier(path, node) {
                         if (path.node.name === 'shouldSerializeToReactTree') {
                           path.replaceWith(t.booleanLiteral(false))
+                        }
+                        if (path.node.name === 'isBrowser') {
+                          path.replaceWith(t.booleanLiteral(true))
                         }
                       }
                     }
