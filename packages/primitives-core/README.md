@@ -26,7 +26,7 @@ const css = createCss(StyleSheet)
 
 ### `createStyled(StyleSheet)`
 
-`createStyled` also accepts a platform specific `StyleSheet` method for creating styles, and returns a function that returns a function that returns a styled component. You can assign primitives to it for example - `View`
+`createStyled` also accepts a platform specific `StyleSheet` method for creating styles. It returns a function to which primitives can be assigned for example - `View`, `Text`, and it returns a styled component.
 
 ```js
 import { StyleSheet, View, Text } from 'react-native'
