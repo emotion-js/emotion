@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { viewStyle } from './View'
 import { css, jsx } from '@emotion/core'
 
 const Box = ({
@@ -11,6 +12,7 @@ const Box = ({
   <div
     {...other}
     css={css(
+      viewStyle,
       styles[`color${color}`],
       fixed && styles.fixed,
       layout === 'row' && styles.row,

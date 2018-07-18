@@ -1,5 +1,6 @@
 import React from 'react'
 import { css } from 'emotion'
+import { viewStyle } from './View'
 
 const Box = ({
   color,
@@ -11,6 +12,7 @@ const Box = ({
   <div
     {...other}
     className={css(
+      viewStyle,
       styles[`color${color}`],
       fixed && styles.fixed,
       layout === 'row' && styles.row,

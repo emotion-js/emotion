@@ -5,7 +5,7 @@ const View = ({ style, ...other }) => {
   return <div {...other} className={css(viewStyle, style)} />
 }
 
-const viewStyle = css({
+export const viewStyle = css({
   alignItems: 'stretch',
   borderWidth: 0,
   borderStyle: 'solid',
