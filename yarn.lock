@@ -2963,34 +2963,12 @@ browserify-zlib@^0.2.0:
   dependencies:
     pako "~1.0.5"
 
-browserslist@^1.3.6, browserslist@^1.5.2, browserslist@^1.7.6:
-  version "1.7.7"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-1.7.7.tgz#0bd76704258be829b2398bb50e4b62d1a166b0b9"
-  dependencies:
-    caniuse-db "^1.0.30000639"
-    electron-to-chromium "^1.2.7"
-
-browserslist@^2.11.3:
-  version "2.11.3"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-2.11.3.tgz#fe36167aed1bbcde4827ebfe71347a2cc70b99b2"
-  dependencies:
-    caniuse-lite "^1.0.30000792"
-    electron-to-chromium "^1.3.30"
-
-browserslist@^3.0.0, browserslist@^3.2.6:
+browserslist@^1.3.6, browserslist@^1.5.2, browserslist@^1.7.6, browserslist@^2.11.3, browserslist@^3.0.0, browserslist@^3.2.6, browserslist@^3.2.8, browserslist@^4.0.0:
   version "3.2.8"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-3.2.8.tgz#b0005361d6471f0f5952797a76fc985f1f978fc6"
   dependencies:
     caniuse-lite "^1.0.30000844"
     electron-to-chromium "^1.3.47"
-
-browserslist@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.0.1.tgz#61c05ce2a5843c7d96166408bc23d58b5416e818"
-  dependencies:
-    caniuse-lite "^1.0.30000865"
-    electron-to-chromium "^1.3.52"
-    node-releases "^1.0.0-alpha.10"
 
 bser@^2.0.0:
   version "2.0.0"
@@ -3224,11 +3202,7 @@ caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634:
   version "1.0.30000860"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000860.tgz#5ceab253aae172b5f0acd0d5428ba501c4b08d41"
 
-caniuse-db@^1.0.30000639:
-  version "1.0.30000867"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000867.tgz#b55a6ecfac3107988940c9c7dfe1866315312c97"
-
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000865:
+caniuse-lite@^1.0.0:
   version "1.0.30000865"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000865.tgz#70026616e8afe6e1442f8bb4e1092987d81a2f25"
 
@@ -5177,10 +5151,6 @@ ee-first@1.1.1:
 ejs@^2.5.7:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.6.1.tgz#498ec0d495655abc6f23cd61868d926464071aa0"
-
-electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30, electron-to-chromium@^1.3.52:
-  version "1.3.52"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.52.tgz#d2d9f1270ba4a3b967b831c40ef71fb4d9ab5ce0"
 
 electron-to-chromium@^1.3.47:
   version "1.3.50"
@@ -10297,12 +10267,6 @@ node-pre-gyp@^0.10.0:
     semver "^5.3.0"
     tar "^4"
 
-node-releases@^1.0.0-alpha.10:
-  version "1.0.0-alpha.10"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.0.0-alpha.10.tgz#61c8d5f9b5b2e05d84eba941d05b6f5202f68a2a"
-  dependencies:
-    semver "^5.3.0"
-
 node-rest-client@^1.5.1:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/node-rest-client/-/node-rest-client-1.8.0.tgz#8d3c566b817e27394cb7273783a41caefe3e5955"
@@ -12142,18 +12106,9 @@ react-dev-utils@^4.2.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^16.2.0, react-dom@^16.3.2:
+react-dom@^16.2.0, react-dom@^16.3.2, react-dom@^16.4.1:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
-
-react-dom@^16.4.1:
-  version "16.4.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.1.tgz#7f8b0223b3a5fbe205116c56deb85de32685dad6"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -12338,18 +12293,9 @@ react-timer-mixin@^0.13.3:
   version "0.13.3"
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.3.tgz#0da8b9f807ec07dc3e854d082c737c65605b3d22"
 
-react@^16.2.0, react@^16.3.2:
+react@^16.2.0, react@^16.3.2, react@^16.4.0, react@^16.4.1:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
-
-react@^16.4.0, react@^16.4.1:
-  version "16.4.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
