@@ -14,7 +14,7 @@ jobs:
       - run: yarn install --pure-lockfile
       - run: yarn flow
       - run: yarn build
-      - run: cd scripts/benchmarks && yarn build && yarn run-benchmark && yarn run-benchmark
+      - run: cd scripts/benchmarks && yarn build
       - store_artifacts:
           path: ~/repo/scripts/benchmarks/dist
       - save_cache:
