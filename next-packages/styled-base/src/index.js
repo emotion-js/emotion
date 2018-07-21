@@ -111,7 +111,8 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             <style
               {...{
                 [`data-emotion-${context.key}`]: serialized.name,
-                dangerouslySetInnerHTML: { __html: rules }
+                dangerouslySetInnerHTML: { __html: rules },
+                nonce: context.sheet.nonce
               }}
             />
             {ele}

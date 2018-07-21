@@ -3,6 +3,8 @@ export type RegisteredCache = { [string]: string }
 
 interface StyleSheet {
   container: HTMLElement;
+  nonce: string | void;
+  key: string;
   insert(rule: string): void;
   flush(): void;
 }

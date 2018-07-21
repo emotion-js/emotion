@@ -94,7 +94,6 @@ function getOutputConfigs(pkg, isBrowser = false) {
   let configs = [
     {
       format: 'cjs',
-      sourcemap: true,
       file: cjsPath
     }
   ]
@@ -103,7 +102,6 @@ function getOutputConfigs(pkg, isBrowser = false) {
 
     configs.push({
       format: 'es',
-      sourcemap: true,
       file: esmPath
     })
   }
