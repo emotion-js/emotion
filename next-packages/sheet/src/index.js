@@ -23,6 +23,8 @@ styleSheet.flush()
 
 */
 
+import { isBrowser } from '@emotion/utils'
+
 // $FlowFixMe
 function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
   if (tag.sheet) {
@@ -89,7 +91,7 @@ export class StyleSheet {
     this.container =
       options.container ||
       // $FlowFixMe
-      (typeof document !== 'undefined' ? document.head : null)
+      (isBrowser ? document.head : null)
   }
   insert(rule: string) {
     if (this.ctr % this.maxLength === 0) {
