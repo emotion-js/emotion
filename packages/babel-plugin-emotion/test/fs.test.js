@@ -73,6 +73,26 @@ describe('babel plugin fs', () => {
     expect(code).toMatchSnapshot()
   })
 
+  test('creates and writes to the custom output dir with correct filenames', () => {
+    const ABSOLUTE_PATH = './tmpdir'
+    fs.existsSync.mockReturnValueOnce(false)
+    const { code } = transform(basic, {
+      plugins: [[plugin, { extractStatic: true, outputDir: ABSOLUTE_PATH }]],
+      filename: __filename,
+      sourceFileName: '../' + path.basename(__filename),
+      babelrc: false
+    })
+
+    const newFilePath = path.resolve(ABSOLUTE_PATH, '_', path.basename(cssFilepath))
+    expect(fs.existsSync).toBeCalledWith(newFilePath)
+    expect(mkdirp.sync).toBeCalledWith(path.dirname(newFilePath))
+    expect(touch.sync).toBeCalledWith(newFilePath)
+    expect(fs.writeFileSync).toHaveBeenCalled()
+    expect(fs.writeFileSync.mock.calls[0][0]).toBe(newFilePath)
+    expect(fs.writeFileSync.mock.calls[0][1]).toMatchSnapshot()
+    expect(code).toMatchSnapshot()
+  })
+
   test('writes to the css file when it does exist ', () => {
     fs.existsSync.mockReturnValueOnce(true)
     fs.readFileSync.mockReturnValueOnce('')

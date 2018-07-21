@@ -549,8 +549,15 @@ export default function(babel: Babel) {
                 nodePath.dirname(cssFilename),
                 state.opts.outputDir
               )
+
+              // convert ../ to _/ so we stay in our outputDir scope
+              cssFilename = cssFilename.replace(/\.\.\//g, '_/')
+
               importPath = nodePath.join(relativeToSourceDir, cssFilename)
-              cssFileOnDisk = nodePath.resolve(cssFilename, '..', importPath)
+              cssFileOnDisk = nodePath.resolve(
+                state.opts.outputDir,
+                cssFilename
+              )
             } else {
               importPath = `./${nodePath.basename(cssFilename)}`
               cssFileOnDisk = nodePath.resolve(cssFilename)
