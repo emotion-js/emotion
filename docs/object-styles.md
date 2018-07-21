@@ -2,22 +2,25 @@
 title: "Object Styles"
 ---
 
-Writing styles with objects is a powerful pattern built directly into the core of emotion. Instead of writing css properties in `kebab-case` like regular css, you write them in `camelCase`, for example `background-color` would be `backgroundColor`. Object styles work with all functions that accept string styles. (`css`, `styled`, `keyframes` and `injectGlobal`)
+Writing styles with objects is a powerful pattern built directly into the core of emotion. Instead of writing css properties in `kebab-case` like regular css, you write them in `camelCase`, for example `background-color` would be `backgroundColor`. Object styles are especially useful with the css prop because you don't need a css call like with string styles but object styles can also be used with styled.
+
+## ADD LINKS TO THE ABOVE STUFF
 
 ### Examples
 
-#### With `css`
+#### With the css prop
 
 ```jsx live
-import { css } from 'emotion'
-
-const className = css({
-  color: 'darkorchid',
-  backgroundColor: 'lightgray'
-})
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 
 render(
-  <div className={className}>
+  <div
+    css={{
+      color: 'darkorchid',
+      backgroundColor: 'lightgray'
+    }}
+  >
     This is darkorchid.
   </div>
 )
@@ -25,12 +28,10 @@ render(
 
 #### With `styled`
 
-`styled` is a thin wrapper around `css` and accepts the same arguments. [More ways to use `styled` can be found here](/docs/styled.md).
-
 ```jsx live
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
-const Button = styled('button')({
+const Button = styled.button({
   color: 'darkorchid'
 }, (props) => ({
   fontSize: props.fontSize
@@ -45,21 +46,20 @@ render(
 
 ### Child Selectors
 
-```jsx live
-import { css } from 'emotion'
-
-const className = css({
-  color: 'darkorchid',
-  '& .name': {
-    color: 'orange'
-  }
-})
+```jsx
+/* @jsx jsx */
+import { jsx } from '@emotion/core'
 
 render(
-  <div className={className}>
-    This is darkorchid.<div className="name">
-      This is orange
-    </div>
+  <div
+    css={{
+      color: 'darkorchid',
+      '& .name': {
+        color: 'orange'
+      }
+    }}
+  >
+    This is darkorchid.<div className="name">This is orange</div>
   </div>
 )
 ```
@@ -67,19 +67,19 @@ render(
 ### Media Queries
 
 ```jsx live
-import { css } from 'emotion'
-
-const className = css({
-  color: 'darkorchid',
-  '@media(min-width: 420px)': {
-    color: 'orange'
-  }
-})
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 
 render(
-  <div className={className}>
-    This is orange on a big screen and
-    darkorchid on a small screen.
+  <div
+    css={{
+      color: 'darkorchid',
+      '@media(min-width: 420px)': {
+        color: 'orange'
+      }
+    }}
+  >
+    This is orange on a big screen and darkorchid on a small screen.
   </div>
 )
 ```
@@ -89,42 +89,17 @@ render(
 When numbers are the value of a css property, `px` is appended to the number unless it is a css property that is unitless.
 
 ```jsx live
-import { css } from 'emotion'
-
-const className = css({
-  padding: 8,
-  zIndex: 200
-})
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 
 render(
-  <div className={className}>
-    This has 8px of padding and a
-    z-index of 200.
-  </div>
-)
-```
-
-### Multiple Arguments
-
-```jsx live
-import { css } from 'emotion'
-
-const className = css(
-  {
-    color: 'darkorchid'
-  },
-  {
-    backgroundColor: 'hotpink'
-  },
-  {
-    padding: 8
-  }
-)
-
-render(
-  <div className={className}>
-    This is darkorchid with a hotpink background
-    and 8px of padding.
+  <div
+    css={{
+      padding: 8,
+      zIndex: 200
+    }}
+  >
+    This has 8px of padding and a z-index of 200.
   </div>
 )
 ```
@@ -133,25 +108,19 @@ render(
 
 Nested arrays are flattened.
 
-```jsx live
-import { css } from 'emotion'
-
-const className = css([
-  {
-    color: 'darkorchid'
-  },
-  {
-    backgroundColor: 'hotpink'
-  },
-  {
-    padding: 8
-  }
-])
+```jsx
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 
 render(
-  <div className={className}>
-    This is darkorchid with a hotpink background
-    and 8px of padding.
+  <div
+    css={[
+      { color: 'darkorchid' },
+      { backgroundColor: 'hotpink' },
+      { padding: 8 }
+    ]}
+  >
+    This is darkorchid with a hotpink background and 8px of padding.
   </div>
 )
 ```
@@ -161,17 +130,37 @@ render(
 Define fallback values for browsers that don't support features with arrays.
 
 ```jsx live
-import { css } from 'emotion'
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 
-const className = css({
-  background: ['red', 'linear-gradient(#e66465, #9198e5)'],
-  height: 100
+render(
+  <div
+    css={{
+      background: ['red', 'linear-gradient(#e66465, #9198e5)'],
+      height: 100
+    }}
+  >
+    This has a gradient background in browsers that support gradients and is red
+    in browsers that don't support gradients
+  </div>
+)
+```
+
+### With `css`
+
+You can also use `css` with object styles.
+
+```jsx live
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
+
+const hotpink = css({
+  color: 'hotpink'
 })
 
 render(
-  <div className={className}>
-    This has a gradient background in browsers that support gradients and is red
-    in browsers that don't support gradients
+  <div>
+    <p css={hotpink}>This is hotpink</p>
   </div>
 )
 ```
@@ -181,7 +170,8 @@ render(
 [Learn more composition in Emotion](/docs/composition.md).
 
 ```jsx live
-import { css } from 'emotion'
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
 
 const hotpink = css({
   color: 'hotpink'
@@ -196,26 +186,16 @@ const hotpinkWithBlackBackground = css(
     backgroundColor: 'black',
     color: 'green'
   },
-  hotpink,
+  hotpink
 )
 
 render(
   <div>
-    <p className={hotpink}>
-      This is hotpink
-    </p>
-    <button
-      className={hotpinkHoverOrFocus}>
-      This is hotpink on hover or focus
-    </button>
-    <p
-      className={
-        hotpinkWithBlackBackground
-      }>
-      This has a black background and
-      is hotpink. Try moving where
-      hotpink is in the css call and
-      see if the color changes.
+    <p css={hotpink}>This is hotpink</p>
+    <button css={hotpinkHoverOrFocus}>This is hotpink on hover or focus</button>
+    <p css={hotpinkWithBlackBackground}>
+      This has a black background and is hotpink. Try moving where hotpink is in
+      the css call and see if the color changes.
     </p>
   </div>
 )

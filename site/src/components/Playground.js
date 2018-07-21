@@ -2,17 +2,11 @@
 import React, { Component } from 'react'
 import styled from '@emotion/styled'
 import Live, { compile, Editor, ErrorBoundary } from './live'
-import { ThemeProvider, withTheme } from 'emotion-theming'
 import Box from '../components/Box'
 import { openColors as colors, fonts } from '../utils/style'
 import '../utils/highlight-css'
-import * as emotion from 'emotion'
 
 export const scope = {
-  ...emotion,
-  styled,
-  ThemeProvider,
-  withTheme,
   require(moduleName: string) {
     switch (moduleName) {
       case 'emotion':
@@ -20,6 +14,14 @@ export const scope = {
       case 'react-emotion':
       case 'preact-emotion':
         return require('react-emotion')
+      case '@emotion/core':
+        return require('@emotion/core')
+      case '@emotion/styled':
+        return require('@emotion/styled')
+      case '@emotion/styled-base':
+        return require('@emotion/styled-base')
+      case '@emotion/css':
+        return require('@emotion/css')
       case 'emotion-theming':
         return require('emotion-theming')
       case 'recompose/withProps':

@@ -11,7 +11,7 @@ module.exports = ({ markdownAST }) => {
       }" compiled="${
         Babel.transform(node.value, {
           presets: ['es2015', 'react', 'stage-1'],
-          plugins: [require('babel-plugin-emotion').default]
+          plugins: [require('@emotion/babel-plugin-core').default]
         }).code
       }"></live-code>`
     }

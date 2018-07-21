@@ -2,7 +2,7 @@
 
 importScripts('https://unpkg.com/@babel/standalone@7.0.0-beta.49/babel.min.js')
 
-const babelPluginEmotion = require('babel-plugin-emotion').default
+const babelPluginEmotion = require('@emotion/babel-plugin-core').default
 
 global.window = global
 
