@@ -41,9 +41,10 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   }
   const isReal = tag.__emotion_real === tag
   const baseTag = (isReal && tag.__emotion_base) || tag
+  let isStringTag = typeof baseTag === 'string'
   if (typeof shouldForwardProp !== 'function') {
     shouldForwardProp =
-      typeof baseTag === 'string' &&
+      isStringTag &&
       // 96 is one less than the char code
       // for "a" so this is checking that
       // it's a lowercase character
@@ -90,7 +91,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         context.registered,
         styles.concat(classInterpolations)
       )
-      const rules = insertStyles(context, serialized)
+      const rules = insertStyles(context, serialized, isStringTag)
       className += `${context.key}-${serialized.name}`
       if (targetClassName !== undefined) {
         className += ` ${targetClassName}`
@@ -110,7 +111,8 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             <style
               {...{
                 [`data-emotion-${context.key}`]: serialized.name,
-                dangerouslySetInnerHTML: { __html: rules }
+                dangerouslySetInnerHTML: { __html: rules },
+                nonce: context.sheet.nonce
               }}
             />
             {ele}

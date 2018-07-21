@@ -5,9 +5,10 @@
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import cases from 'jest-in-case'
-import { jsx, Global, keyframes } from '@emotion/core'
+import { jsx, Global, keyframes, CSSContext } from '@emotion/core'
 import styled from '@emotion/styled'
 import css from '@emotion/css'
+import createCache from '@emotion/cache'
 import { renderToString } from 'react-dom/server'
 import HTMLSerializer from 'jest-serializer-html'
 
@@ -75,6 +76,28 @@ cases(
             <SomeComponent />
             <SomeComponent />
           </div>
+        )
+      }
+    },
+    'works with nonces': {
+      render: () => {
+        const SomeComponent = styled.div`
+          color: hotpink;
+        `
+        return (
+          <CSSContext.Provider value={createCache({ nonce: 'some-nonce' })}>
+            <SomeComponent />
+            <div css={{ color: 'hotpink' }} />
+            <Global
+              styles={{
+                html: {
+                  margin: 0,
+                  padding: 0,
+                  fontFamily: 'sans-serif'
+                }
+              }}
+            />
+          </CSSContext.Provider>
         )
       }
     }

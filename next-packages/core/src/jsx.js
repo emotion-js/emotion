@@ -46,7 +46,7 @@ export const jsx: typeof React.createElement = function(
       typeof props.css === 'function' ? props.css(context.theme) : props.css
     )
     const serialized = serializeStyles(context.registered, registeredStyles)
-    const rules = insertStyles(context, serialized)
+    const rules = insertStyles(context, serialized, typeof type === 'string')
     className += `${context.key}-${serialized.name}`
 
     const newProps = {}
@@ -75,7 +75,8 @@ export const jsx: typeof React.createElement = function(
           <style
             {...{
               [`data-emotion-${context.key}`]: serialized.name,
-              dangerouslySetInnerHTML: { __html: rules }
+              dangerouslySetInnerHTML: { __html: rules },
+              nonce: context.sheet.nonce
             }}
           />
           {ele}
