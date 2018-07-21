@@ -83,7 +83,11 @@ describe('babel plugin fs', () => {
       babelrc: false
     })
 
-    const newFilePath = path.resolve(ABSOLUTE_PATH, '_', path.basename(cssFilepath))
+    const newFilePath = path.resolve(
+      ABSOLUTE_PATH,
+      '_',
+      path.basename(cssFilepath)
+    )
     expect(fs.existsSync).toBeCalledWith(newFilePath)
     expect(mkdirp.sync).toBeCalledWith(path.dirname(newFilePath))
     expect(touch.sync).toBeCalledWith(newFilePath)
