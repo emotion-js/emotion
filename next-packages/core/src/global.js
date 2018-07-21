@@ -45,7 +45,6 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
       if (!this.sheet) {
         this.sheet = new StyleSheet({
           key: `${this.props.context.key}-global`,
-          // $FlowFixMe
           nonce: this.props.context.sheet.nonce,
           container: this.props.context.sheet.container
         })
@@ -89,7 +88,8 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
         <style
           {...{
             [`data-emotion-${this.props.context.key}`]: serialized.name,
-            dangerouslySetInnerHTML: { __html: rules.join('') }
+            dangerouslySetInnerHTML: { __html: rules.join('') },
+            nonce: this.props.context.sheet.nonce
           }}
         />
       )
