@@ -62,3 +62,27 @@ exports[`ssr only render a style once with the css prop 1`] = `
 </div>
 
 `;
+
+exports[`ssr works with nonces 1`] = `
+
+<style data-emotion-css="181qz4b"
+       nonce="some-nonce"
+>
+  .css-181qz4b{color:hotpink;}
+</style>
+<div class="css-181qz4b">
+</div>
+<style data-emotion-css="1lrxbo5"
+       nonce="some-nonce"
+>
+  .css-1lrxbo5{color:hotpink;}
+</style>
+<div class="css-1lrxbo5">
+</div>
+<style data-emotion-css="1r145pv"
+       nonce="some-nonce"
+>
+  html{margin:0;padding:0;font-family:sans-serif;}
+</style>
+
+`;
