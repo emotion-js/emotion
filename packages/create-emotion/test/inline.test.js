@@ -42,6 +42,15 @@ describe('renderStylesToString', () => {
       )
     ).toMatchSnapshot()
   })
+  test('retains the original style order', () => {
+    const style1 = emotion.css`color: blue;`
+    const style2 = emotion.css`color: red;`
+    expect(
+      emotionServer.renderStylesToString(
+        renderToString(<div className={`${style2} ${style1}`} />)
+      )
+    ).toMatchSnapshot()
+  })
 })
 describe('hydration', () => {
   afterAll(() => {
