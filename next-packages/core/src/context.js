@@ -42,7 +42,10 @@ if (shouldSerializeToReactTree) {
     render() {
       return (
         <CSSContext.Provider {...this.state}>
-          {this.props.children(this.state.value)}
+          {process.env.PREACT
+            ? // $FlowFixMe
+              this.props.children[0](this.state.value)
+            : this.props.children(this.state.value)}
         </CSSContext.Provider>
       )
     }

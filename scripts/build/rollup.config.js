@@ -40,8 +40,9 @@ module.exports = (
   data /*: Package */,
   {
     isUMD = false,
-    isBrowser = false
-  } /*: { isUMD:boolean, isBrowser:boolean } */ = {}
+    isBrowser = false,
+    isPreact = false
+  } /*: { isUMD:boolean, isBrowser:boolean, isPreact:boolean } */ = {}
 ) => {
   const { pkg } = data
   let external = []
@@ -58,7 +59,7 @@ module.exports = (
   }
 
   const config = {
-    input: path.resolve(data.path, 'src', 'index.js'),
+    input: data.input,
     external: makeExternalPredicate(external),
     plugins: [
       babel({
@@ -126,8 +127,13 @@ module.exports = (
       }),
       cjs(),
       isUMD && alias(lernaAliases()),
+      isPreact &&
+        alias({ react: require.resolve('emotion-react-mock-for-preact') }),
       isUMD && resolve(),
-      isUMD && replace({ 'process.env.NODE_ENV': '"production"' }),
+      replace({
+        ...(isUMD ? { 'process.env.NODE_ENV': '"production"' } : {}),
+        'process.env.PREACT': isPreact ? 'true' : 'false'
+      }),
       isUMD && uglify()
     ].filter(Boolean)
   }

@@ -81,6 +81,8 @@
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
+    "preact": "^8.2.9",
+    "preact-render-to-json": "^3.6.6",
     "prettier": "1.10.2",
     "raf": "^3.4.0",
     "react": "^16.3.2",
@@ -110,7 +112,8 @@
       "standard",
       "standard-react",
       "prettier",
-      "prettier/react"
+      "prettier/react",
+      "flowtype"
     ],
     "plugins": [
       "prettier"
@@ -123,7 +126,8 @@
       "standard/computed-property-even-spacing": 0,
       "no-template-curly-in-string": 0,
       "camelcase": 0,
-      "import/no-duplicates": 0
+      "import/no-duplicates": 0,
+      "flowtype/define-flow-type": 2
     },
     "env": {
       "browser": true
@@ -181,5 +185,8 @@
       "path": "./next-packages/core/dist/index.min.js",
       "threshold": "7 Kb"
     }
-  ]
+  ],
+  "dependencies": {
+    "eslint-plugin-flowtype": "^2.50.0"
+  }
 }

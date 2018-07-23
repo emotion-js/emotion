@@ -52,24 +52,45 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
         path: fullPackagePath,
         pkg: pkgJSON,
         configs: [],
-        name: pkgJSON.name
+        name: pkgJSON.name,
+        input: path.resolve(fullPackagePath, 'src', 'index.js')
+      }
+      let isPreact = false
+      if (ret.name.endsWith('preact') && ret.name.startsWith('@emotion/')) {
+        isPreact = true
+        if (!packagePaths.includes(ret.path.replace(/-preact/, ''))) {
+          throw new Error(`could not find real package for ${ret.name}`)
+        }
+        ret.input = ret.input.replace(/-preact/, '')
       }
 
       if (ret.pkg.main && !ret.pkg.main.includes('src')) {
         ret.configs.push({
-          config: makeRollupConfig(ret),
+          config: makeRollupConfig(ret, {
+            isBrowser: false,
+            isUMD: false,
+            isPreact
+          }),
           outputConfigs: getOutputConfigs(ret)
         })
       }
       if (ret.pkg['umd:main']) {
         ret.configs.push({
-          config: makeRollupConfig(ret, { isBrowser: true, isUMD: true }),
+          config: makeRollupConfig(ret, {
+            isBrowser: true,
+            isUMD: true,
+            isPreact
+          }),
           outputConfigs: [getUMDOutputConfig(ret)]
         })
       }
       if (ret.pkg.browser) {
         ret.configs.push({
-          config: makeRollupConfig(ret, { isBrowser: true, isUMD: false }),
+          config: makeRollupConfig(ret, {
+            isBrowser: true,
+            isUMD: false,
+            isPreact
+          }),
           outputConfigs: getOutputConfigs(ret, true)
         })
       }
