@@ -1,5 +1,5 @@
 // @flow
-import { Component } from 'preact'
+import * as React from 'preact'
 import { type Node } from 'react'
 // from https://github.com/jamiebuilds/create-react-context but with stuff we don't need removed and changed to only support preact
 
@@ -19,8 +19,8 @@ type ConsumerState<T> = {
   value: T
 }
 
-type Provider<T> = Component<ProviderProps<T>>
-type Consumer<T> = Component<ConsumerProps<T>, ConsumerState<T>>
+type Provider<T> = React.Component<ProviderProps<T>>
+type Consumer<T> = React.Component<ConsumerProps<T>, ConsumerState<T>>
 
 type Context<T> = {
   Provider: Class<Provider<T>>,
@@ -66,7 +66,7 @@ export function createContext<T>(defaultValue: T): Context<T> {
   const contextProp =
     '__emotion-preact-context-' + Math.random().toString(36) + '__'
 
-  class Provider extends Component<ProviderProps<T>> {
+  class Provider extends React.Component<ProviderProps<T>> {
     emitter = createEventEmitter(this.props.value)
 
     getChildContext() {
@@ -87,7 +87,7 @@ export function createContext<T>(defaultValue: T): Context<T> {
     }
   }
 
-  class Consumer extends Component<ConsumerProps<T>, ConsumerState<T>> {
+  class Consumer extends React.Component<ConsumerProps<T>, ConsumerState<T>> {
     observedBits: number
     constructor(props, context) {
       super(props, context)
