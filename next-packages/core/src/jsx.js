@@ -21,8 +21,8 @@ export const jsx: typeof React.createElement = function(
   if (
     typeof props.css === 'string' &&
     // check if there is a css declaration
-    props.css.indexOf(':') !== -1 &&
-    process.env.NODE_ENV !== 'production'
+    process.env.NODE_ENV !== 'production' &&
+    props.css.indexOf(':') !== -1
   ) {
     throw new Error(
       `Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/css' like this: css\`${
