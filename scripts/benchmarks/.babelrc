@@ -1,0 +1,13 @@
+{
+  "presets": [
+    ["babel-preset-env", { "modules": false, "loose": true }],
+    "babel-preset-flow",
+    "babel-preset-react",
+    "babel-preset-stage-0"
+  ],
+  "plugins": [
+    "babel-plugin-transform-class-properties",
+    "babel-plugin-react-native-web",
+    "macros"
+  ]
+}
