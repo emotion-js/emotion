@@ -57,6 +57,13 @@ module.exports = (
   if (data.name === 'react-emotion' || data.name === 'preact-emotion') {
     external = external.filter(name => name !== 'emotion')
   }
+  let packageAliases = lernaAliases()
+  if (external.includes('@emotion/preact-core')) {
+    packageAliases['@emotion/core'] = '@emotion/preact-core'
+  }
+  if (external.includes('@emotion/preact-styled-base')) {
+    packageAliases['@emotion/styled-base'] = '@emotion/preact-styled-base'
+  }
 
   const config = {
     input: data.input,
@@ -126,7 +133,8 @@ module.exports = (
         babelrc: false
       }),
       cjs(),
-      (isUMD || isPreact) && alias(lernaAliases()),
+      isPreact && alias(),
+      (isUMD || isPreact) && alias(packageAliases),
       isPreact &&
         alias({ react: require.resolve('emotion-react-mock-for-preact') }),
       isUMD && resolve(),
