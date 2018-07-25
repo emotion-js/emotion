@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import { withCSSContext, Provider } from '@emotion/core'
+import { withCSSContext, CSSContext } from '@emotion/core'
 import weakMemoize from '@emotion/weak-memoize'
 
 type Props = {
@@ -47,5 +47,7 @@ export default withCSSContext((props: Props, context) => {
   if (props.theme !== context.theme) {
     context = createCreateCacheWithTheme(context)(props.theme)
   }
-  return <Provider value={context}>{props.children}</Provider>
+  return (
+    <CSSContext.Provider value={context}>{props.children}</CSSContext.Provider>
+  )
 })
