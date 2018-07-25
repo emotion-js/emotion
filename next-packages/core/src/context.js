@@ -3,9 +3,11 @@ import { shouldSerializeToReactTree, type CSSContextType } from '@emotion/utils'
 import * as React from 'react'
 import createCache from '@emotion/cache'
 
-export const CSSContext = React.createContext(
+let CSSContext = React.createContext(
   shouldSerializeToReactTree ? null : createCache()
 )
+
+export let Provider = CSSContext.Provider
 
 let withCSSContext = function withCSSContext<Props>(
   func: (props: Props, context: CSSContextType) => React.Node

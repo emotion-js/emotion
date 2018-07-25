@@ -2,7 +2,7 @@
 import * as React from 'react'
 import * as emotion from 'emotion'
 import createCompatCache from '@emotion/compat-cache'
-import { CSSContext } from '@emotion/core'
+import { Provider } from '@emotion/core'
 
 const cache = createCompatCache(emotion)
 
@@ -12,8 +12,8 @@ export const wrapRootComponent = ({
   Root: React.ElementType
 }) => () => {
   return (
-    <CSSContext.Provider value={cache}>
+    <Provider value={cache}>
       <Root />
-    </CSSContext.Provider>
+    </Provider>
   )
 }
