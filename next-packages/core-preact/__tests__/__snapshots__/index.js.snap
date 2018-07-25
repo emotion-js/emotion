@@ -2,12 +2,25 @@
 
 exports[`it works 1`] = `
 <html>
-  <head />
+  <head>
+    <style
+      data-emotion="css"
+    >
+      
+      .css-1lrxbo5{color:hotpink;}
+    </style>
+  </head>
   <body>
     <div
       id="root"
     >
-      <undefined />
+      <p>
+        <div
+          class="css-1lrxbo5"
+        >
+          wow
+        </div>
+      </p>
     </div>
   </body>
 </html>

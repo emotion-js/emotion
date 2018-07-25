@@ -55,14 +55,8 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
         name: pkgJSON.name,
         input: path.resolve(fullPackagePath, 'src', 'index.js')
       }
-      let isPreact = false
-      if (ret.name.endsWith('preact') && ret.name.startsWith('@emotion/')) {
-        isPreact = true
-        if (!packagePaths.includes(ret.path.replace(/-preact/, ''))) {
-          throw new Error(`could not find real package for ${ret.name}`)
-        }
-        ret.input = ret.input.replace(/-preact/, '')
-      }
+      let isPreact =
+        ret.name.endsWith('preact') && ret.name.startsWith('@emotion/')
 
       if (ret.pkg.main && !ret.pkg.main.includes('src')) {
         ret.configs.push({

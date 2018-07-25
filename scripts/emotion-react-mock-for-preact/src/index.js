@@ -83,7 +83,8 @@ export function createContext<T>(defaultValue: T): Context<T> {
     }
 
     render() {
-      return this.props.children
+      // $FlowFixMe
+      return this.props.children[0]
     }
   }
 
@@ -129,8 +130,23 @@ export function createContext<T>(defaultValue: T): Context<T> {
   }
 }
 
-export const forwardRef = render => render
+export const forwardRef = (render: *) => render
 
-export * from 'preact'
+export let Fragment = () => {}
+if (process.env.NODE_ENV !== 'production') {
+  Fragment = () => {
+    // TODO: add a doc page about how to use the compat cache for ssr and link to it here
+    throw new Error(
+      "Fragments aren't supported in preact yet, to do server side rendering in preact with emotion, please use the compat cache"
+    )
+  }
+}
 
-export { default } from 'preact'
+export {
+  // I know preact now exports createElement but h is smaller
+  // so we can use instead since rollup will rename everything
+  h as createElement,
+  Component,
+  cloneElement,
+  default
+} from 'preact'

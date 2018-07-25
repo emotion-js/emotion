@@ -20,8 +20,8 @@ export const jsx: typeof React.createElement = function(
 
   if (
     typeof props.css === 'string' &&
-    // check if there is a css declaration
     process.env.NODE_ENV !== 'production' &&
+    // check if there is a css declaration
     props.css.indexOf(':') !== -1
   ) {
     throw new Error(

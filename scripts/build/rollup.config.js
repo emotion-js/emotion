@@ -57,6 +57,7 @@ module.exports = (
   if (data.name === 'react-emotion' || data.name === 'preact-emotion') {
     external = external.filter(name => name !== 'emotion')
   }
+  console.log(isPreact, data.name)
 
   const config = {
     input: data.input,
@@ -126,7 +127,7 @@ module.exports = (
         babelrc: false
       }),
       cjs(),
-      isUMD && alias(lernaAliases()),
+      (isUMD || isPreact) && alias(lernaAliases()),
       isPreact &&
         alias({ react: require.resolve('emotion-react-mock-for-preact') }),
       isUMD && resolve(),
