@@ -1,6 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`it works 1`] = `
+exports[`Global works 1`] = `
+<html>
+  <head />
+  <body>
+    <div
+      id="root"
+    >
+      <p>
+        
+        something
+      </p>
+    </div>
+  </body>
+</html>
+`;
+
+exports[`the css prop works 1`] = `
 <html>
   <head>
     <style
