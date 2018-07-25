@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server'
 import { renderStylesToString } from 'emotion-server'
 import * as emotion from 'emotion'
 import createCompatCache from '@emotion/compat-cache'
-import { CSSContext } from '@emotion/core'
+import { Provider } from '@emotion/core'
 
 export const replaceRenderer = ({
   replaceBodyHTMLString,
@@ -13,9 +13,7 @@ export const replaceRenderer = ({
   let cache = createCompatCache(emotion)
   return replaceBodyHTMLString(
     renderStylesToString(
-      renderToString(
-        <CSSContext.Provider value={cache}>{bodyComponent}</CSSContext.Provider>
-      )
+      renderToString(<Provider value={cache}>{bodyComponent}</Provider>)
     )
   )
 }
