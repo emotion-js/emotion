@@ -10,11 +10,7 @@ import {
   type CreateStyled
 } from './utils'
 import { withCSSContext } from '@emotion/core'
-import {
-  getRegisteredStyles,
-  insertStyles,
-  shouldSerializeToReactTree
-} from '@emotion/utils'
+import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
 type StyledComponent = (
@@ -111,7 +107,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
           ref: props.innerRef
         })
       )
-      if (shouldSerializeToReactTree && rules !== undefined) {
+      if (!isBrowser && rules !== undefined) {
         return (
           <React.Fragment>
             <style

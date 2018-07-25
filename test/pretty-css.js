@@ -1,6 +1,9 @@
 // @flow
 import { parse, stringify } from 'css'
-import typeof { sheet as StyleSheet } from 'emotion'
+
+type StyleSheet = {
+  tags: Array<HTMLStyleElement>
+}
 
 export default {
   test: (val: any) => val.tags !== undefined && Array.isArray(val.tags),

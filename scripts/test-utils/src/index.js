@@ -1,5 +1,7 @@
 // @flow
 
+import { createSerializer } from '@emotion/snapshot-serializer'
+
 export function throwIfFalsy(something: *) {
   if (something) {
     return something
@@ -14,4 +16,8 @@ export function ignoreConsoleErrors(cb: () => mixed) {
   cb()
   // $FlowFixMe
   console.error = oldConsoleError
+}
+
+if (!process.env.LEGACY_TEST) {
+  expect.addSnapshotSerializer(createSerializer())
 }

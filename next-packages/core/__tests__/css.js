@@ -1,9 +1,11 @@
 // @flow
 /** @jsx jsx */
-import { jsx, Global, keyframes } from '@emotion/core'
-import Provider from '@emotion/provider'
+import 'test-utils/next-env'
+import { jsx, Global, keyframes, Provider } from '@emotion/core'
+import ThemeProvider from '@emotion/provider'
 import css from '@emotion/css'
 import renderer from 'react-test-renderer'
+import createCache from '@emotion/cache'
 
 const SomeComponent = (props: { lol: true }) => (props.lol ? 'yes' : 'no')
 
@@ -74,20 +76,21 @@ test('keyframes insert in css call', () => {
 })
 
 test('global', () => {
-  const tree = renderer.create(
-    <div>
-      <Global
-        styles={css`
-          body {
-            color: hotpink;
-          }
-        `}
-      />
-    </div>
+  let cache = createCache()
+  renderer.create(
+    <Global
+      styles={css`
+        body {
+          color: hotpink;
+        }
+      `}
+    />
   )
 
-  expect(tree.toJSON()).toMatchSnapshot()
+  expect(cache.sheet).toMatchSnapshot()
 })
+
+console.log(jest)
 
 test('@font-face in global', () => {
   const tree = renderer.create(
@@ -115,9 +118,9 @@ test('css call composition', () => {
 
 test('theming with the css prop', () => {
   const tree = renderer.create(
-    <Provider theme={{ primary: 'hotpink' }}>
+    <ThemeProvider theme={{ primary: 'hotpink' }}>
       <div css={theme => ({ color: theme.primary })} />
-    </Provider>
+    </ThemeProvider>
   )
 
   expect(tree.toJSON()).toMatchSnapshot()

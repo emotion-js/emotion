@@ -1,13 +1,33 @@
 // @flow
-import { parse, stringify } from 'css'
+import * as css from 'css'
+import {
+  replaceClassNames,
+  type ClassNameReplacer
+} from './replace-class-names'
+import {
+  getClassNamesFromNodes,
+  isReactElement,
+  isDOMElement,
+  getStylesFromClassNames,
+  getStyleElements,
+  getKeys
+} from './utils'
+
+export { createMatchers } from './matchers'
+
+type Options = {
+  classNameReplacer: ClassNameReplacer,
+  DOMElements: boolean
+}
 
 function getNodes(node, nodes = []) {
   if (node.children) {
-    node.children.forEach(child => getNodes(child, nodes))
+    for (let child of node.children) {
+      getNodes(child, nodes)
+    }
   }
-  if (Array.isArray(node)) {
-    node.forEach(child => getNodes(child, nodes))
-  } else if (typeof node === 'object') {
+
+  if (typeof node === 'object') {
     nodes.push(node)
   }
 
@@ -16,69 +36,56 @@ function getNodes(node, nodes = []) {
 
 function markNodes(nodes) {
   nodes.forEach(node => {
-    node.withNewStyles = true
+    node.withEmotionNextStyles = true
   })
 }
 
-// i know this looks hacky but it works pretty well
-// and most importantly it doesn't mutate the object that gets passed in
-let re = /<style\n(\s+)dangerouslySetInnerHTML={\s+Object {\s+"__html": "(.*?)",\n\s+}\s+}\s+data-emotion-([\w-]+)="[^"]+"\s+\/>/g
+function getPrettyStylesFromClassNames(
+  classNames: Array<string>,
+  elements: Array<HTMLStyleElement>
+) {
+  let styles = getStylesFromClassNames(classNames, elements)
 
-const serializer = {
-  test: (val: any) => {
-    if (!val) {
-      return false
-    }
-    if (!val.withNewStyles && val.$$typeof === Symbol.for('react.test.json')) {
-      return true
-    } else if (
-      Array.isArray(val) &&
-      val[0] &&
-      !val[0].withNewStyles &&
-      val[0].$$typeof === Symbol.for('react.test.json')
-    ) {
-      return true
-    }
-    return false
-  },
-  print: (val: any, printer: any => string) => {
-    const nodes = getNodes(val)
-
-    markNodes(nodes)
-    let i = 0
-    const classMap = {}
-    let printed = printer(val).replace(
-      re,
-      (match, whiteSpace, cssString, key) => {
-        return `<style>\n${whiteSpace}${stringify(
-          parse(
-            // for some reason the quotes seem to be escaped and that breaks the formatting
-            cssString.replace(/\\"/g, '"').replace(/\\'/g, "'")
-          )
-        )
-          .replace(new RegExp(`${key}-([a-zA-Z0-9-]+)`, 'g'), match => {
-            if (classMap[match] !== undefined) {
-              return classMap[match]
-            }
-            return (classMap[match] = `emotion-${i++}`)
-          })
-          .split('\n')
-          .join('\n' + whiteSpace)}\n${whiteSpace.substring(2)}</style>`
-      }
-    )
-    Object.keys(classMap).forEach(key => {
-      printed = printed.replace(new RegExp(key, 'g'), classMap[key])
-    })
-    return printed
+  let prettyStyles
+  try {
+    prettyStyles = css.stringify(css.parse(styles))
+  } catch (e) {
+    console.error(e)
+    throw new Error(`There was an error parsing the following css: "${styles}"`)
   }
+  return prettyStyles
 }
 
-// clsPattern,
-// (match, p1) => {
-//   if (classMap[p1] !== undefined) {
-//     return classMap[p1]
-//   }
-//   return match
-// }
+export function createSerializer({
+  classNameReplacer,
+  DOMElements = true
+}: Options = {}) {
+  function print(val: *, printer: Function) {
+    const nodes = getNodes(val)
+    markNodes(nodes)
+    const classNames = getClassNamesFromNodes(nodes)
+    let elements = getStyleElements()
+    const styles = getPrettyStylesFromClassNames(classNames, elements)
+    const printedVal = printer(val)
+    let keys = getKeys(elements)
+    return replaceClassNames(
+      classNames,
+      styles,
+      printedVal,
+      keys,
+      classNameReplacer
+    )
+  }
 
-export default serializer
+  function test(val: *) {
+    return (
+      val &&
+      !val.withEmotionNextStyles &&
+      (DOMElements
+        ? isReactElement(val) || isDOMElement(val)
+        : isReactElement(val))
+    )
+  }
+
+  return { test, print }
+}

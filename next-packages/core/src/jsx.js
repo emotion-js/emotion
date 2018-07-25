@@ -1,11 +1,7 @@
 // @flow
 import * as React from 'react'
 import { consume } from './context'
-import {
-  getRegisteredStyles,
-  insertStyles,
-  shouldSerializeToReactTree
-} from '@emotion/utils'
+import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
 // $FlowFixMe
@@ -69,7 +65,7 @@ export const jsx: typeof React.createElement = function(
 
     // $FlowFixMe
     const ele = React.createElement.apply(undefined, createElementArgArray)
-    if (shouldSerializeToReactTree && rules !== undefined) {
+    if (!isBrowser && rules !== undefined) {
       return (
         <React.Fragment>
           <style

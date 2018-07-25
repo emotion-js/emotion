@@ -107,19 +107,9 @@ module.exports = (
                           if (path.node.id.name === 'isBrowser') {
                             path.get('init').replaceWith(t.booleanLiteral(true))
                           }
-                          if (
-                            path.node.id.name === 'shouldSerializeToReactTree'
-                          ) {
-                            path
-                              .get('init')
-                              .replaceWith(t.booleanLiteral(false))
-                          }
                         }
                       },
                       ReferencedIdentifier(path, node) {
-                        if (path.node.name === 'shouldSerializeToReactTree') {
-                          path.replaceWith(t.booleanLiteral(false))
-                        }
                         if (path.node.name === 'isBrowser') {
                           path.replaceWith(t.booleanLiteral(true))
                         }
