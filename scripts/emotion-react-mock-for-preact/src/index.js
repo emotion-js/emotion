@@ -144,9 +144,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 export {
   // I know preact now exports createElement but h is smaller
-  // so we can use instead since rollup will rename everything
+  // so we can use it instead since rollup will rename everything
   h as createElement,
-  Component,
-  cloneElement,
-  default
+  Component
 } from 'preact'

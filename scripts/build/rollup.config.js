@@ -57,7 +57,6 @@ module.exports = (
   if (data.name === 'react-emotion' || data.name === 'preact-emotion') {
     external = external.filter(name => name !== 'emotion')
   }
-  console.log(isPreact, data.name)
 
   const config = {
     input: data.input,

@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/core-preact",
+  "name": "@emotion/preact-core",
   "version": "0.11.1",
   "main": "dist/preact-core.cjs.js",
   "module": "dist/preact-core.esm.js",

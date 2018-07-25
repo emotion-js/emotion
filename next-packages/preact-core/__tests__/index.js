@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/dev-mode'
 import 'test-utils/preact-mode'
-import { jsx } from '@emotion/core-preact'
+import { jsx } from '@emotion/preact-core'
 import { throwIfFalsy } from 'test-utils'
 import { render } from 'preact'
 
