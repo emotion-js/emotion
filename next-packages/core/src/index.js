@@ -1,9 +1,5 @@
 // @flow
-import { withCSSContext, CSSContext } from './context'
-
-export const Provider = CSSContext.Provider
-
-export { withCSSContext }
+export { withCSSContext, Provider } from './context'
 export { jsx } from './jsx'
 export { Global } from './global'
 export { keyframes } from './keyframes'
