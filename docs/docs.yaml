@@ -2,13 +2,13 @@
   items: 
     - introduction
     - install
-    - css-prop
+    - css
     - styled
     - composition
     - object-styles
     - nested
     - media-queries
-    - globals
+    - inject-global
 
 - title: Advanced
   items:
