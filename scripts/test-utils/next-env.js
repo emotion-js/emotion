@@ -1,5 +1,5 @@
 // @flow
 /* eslint-env jest */
-import { createSerializer } from '@emotion/snapshot-serializer'
+import serializer from '@emotion/snapshot-serializer'
 
-expect.addSnapshotSerializer(createSerializer())
+expect.addSnapshotSerializer(serializer)

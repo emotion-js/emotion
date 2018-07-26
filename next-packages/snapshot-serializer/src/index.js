@@ -13,12 +13,8 @@ import {
   getKeys
 } from './utils'
 
-export { createMatchers } from './matchers'
-
-type Options = {
-  classNameReplacer: ClassNameReplacer,
-  DOMElements: boolean
-}
+// i know this package is called @emotion/snapshot-serializer and this is exporting a matcher but this is probably going to move to jest-emotion later
+export { matchers } from './matchers'
 
 function getNodes(node, nodes = []) {
   if (node.children) {
@@ -56,36 +52,22 @@ function getPrettyStylesFromClassNames(
   return prettyStyles
 }
 
-export function createSerializer({
-  classNameReplacer,
-  DOMElements = true
-}: Options = {}) {
-  function print(val: *, printer: Function) {
-    const nodes = getNodes(val)
-    markNodes(nodes)
-    const classNames = getClassNamesFromNodes(nodes)
-    let elements = getStyleElements()
-    const styles = getPrettyStylesFromClassNames(classNames, elements)
-    const printedVal = printer(val)
-    let keys = getKeys(elements)
-    return replaceClassNames(
-      classNames,
-      styles,
-      printedVal,
-      keys,
-      classNameReplacer
-    )
-  }
-
-  function test(val: *) {
-    return (
-      val &&
-      !val.withEmotionNextStyles &&
-      (DOMElements
-        ? isReactElement(val) || isDOMElement(val)
-        : isReactElement(val))
-    )
-  }
-
-  return { test, print }
+export function print(val: *, printer: Function) {
+  const nodes = getNodes(val)
+  markNodes(nodes)
+  const classNames = getClassNamesFromNodes(nodes)
+  let elements = getStyleElements()
+  const styles = getPrettyStylesFromClassNames(classNames, elements)
+  const printedVal = printer(val)
+  let keys = getKeys(elements)
+  return replaceClassNames(classNames, styles, printedVal, keys)
 }
+
+export function test(val: *) {
+  return (
+    (val && !val.withEmotionNextStyles && isReactElement(val)) ||
+    isDOMElement(val)
+  )
+}
+
+export default { print, test }

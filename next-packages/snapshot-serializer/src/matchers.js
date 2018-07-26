@@ -6,7 +6,6 @@ import {
   getStylesFromClassNames,
   getStyleElements
 } from './utils'
-import type { Emotion } from 'create-emotion'
 
 /*
  * Taken from
@@ -36,39 +35,35 @@ function valueMatches(declaration, value) {
   return value === declaration.value
 }
 
-export function createMatchers(emotion: Emotion) {
-  function toHaveStyleRule(received: *, property: *, value: *) {
-    const classNames = getClassNamesFromNodes([received])
-    const cssString = getStylesFromClassNames(classNames, getStyleElements())
-    const styles = css.parse(cssString)
+function toHaveStyleRule(received: *, property: *, value: *) {
+  const classNames = getClassNamesFromNodes([received])
+  const cssString = getStylesFromClassNames(classNames, getStyleElements())
+  const styles = css.parse(cssString)
 
-    const declaration = styles.stylesheet.rules
-      .reduce((decs, rule) => Object.assign([], decs, rule.declarations), [])
-      .filter(dec => dec.type === 'declaration' && dec.property === property)
-      .pop()
+  const declaration = styles.stylesheet.rules
+    .reduce((decs, rule) => Object.assign([], decs, rule.declarations), [])
+    .filter(dec => dec.type === 'declaration' && dec.property === property)
+    .pop()
 
-    if (!declaration) {
-      return {
-        pass: false,
-        message: () => `Property not found: ${property}`
-      }
-    }
-
-    const pass = valueMatches(declaration, value)
-
-    const message = () =>
-      `Expected ${property}${pass ? ' not ' : ' '}to match:\n` +
-      `  ${chalk.green(value)}\n` +
-      'Received:\n' +
-      `  ${chalk.red(declaration.value)}`
-
+  if (!declaration) {
     return {
-      pass,
-      message
+      pass: false,
+      message: () => `Property not found: ${property}`
     }
   }
+
+  const pass = valueMatches(declaration, value)
+
+  const message = () =>
+    `Expected ${property}${pass ? ' not ' : ' '}to match:\n` +
+    `  ${chalk.green(value)}\n` +
+    'Received:\n' +
+    `  ${chalk.red(declaration.value)}`
 
   return {
-    toHaveStyleRule
+    pass,
+    message
   }
 }
+
+export let matchers = { toHaveStyleRule }
