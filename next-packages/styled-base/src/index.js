@@ -134,7 +134,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
           })`
     let FinalStyled = process.env.PREACT
       ? Styled
-      : //$FlowFixMe
+      : // $FlowFixMe
         React.forwardRef((props, ref) => {
           // this avoids creating a new object if there's no ref
           return (

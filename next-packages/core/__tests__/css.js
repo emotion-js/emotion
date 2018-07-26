@@ -1,11 +1,10 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
-import { jsx, Global, keyframes, Provider } from '@emotion/core'
+import { jsx, keyframes } from '@emotion/core'
 import ThemeProvider from '@emotion/provider'
 import css from '@emotion/css'
 import renderer from 'react-test-renderer'
-import createCache from '@emotion/cache'
 
 const SomeComponent = (props: { lol: true }) => (props.lol ? 'yes' : 'no')
 

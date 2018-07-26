@@ -5,7 +5,6 @@ const babel = require('rollup-plugin-babel')
 const alias = require('rollup-plugin-alias')
 const cjs = require('rollup-plugin-commonjs')
 const replace = require('rollup-plugin-replace')
-const path = require('path')
 const lernaAliases = require('lerna-alias').rollup
 
 // this makes sure nested imports of external packages are external

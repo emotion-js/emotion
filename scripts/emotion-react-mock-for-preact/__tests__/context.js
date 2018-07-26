@@ -5,7 +5,7 @@ import { render } from 'preact'
 
 test('default', () => {
   let defaultContext = <div>it works!!</div>
-  let { Consumer, Provider } = React.createContext(defaultContext)
+  let { Consumer } = React.createContext(defaultContext)
   throwIfFalsy(document.body).innerHTML = `<div id="root"></root>`
   render(
     <Consumer>{element => element}</Consumer>,
@@ -29,7 +29,7 @@ test('with provider', () => {
 
 test('provider without children', () => {
   let defaultContext = <div>it works!!</div>
-  let { Consumer, Provider } = React.createContext(defaultContext)
+  let { Provider } = React.createContext(defaultContext)
   throwIfFalsy(document.body).innerHTML = `<div id="root"></root>`
   render(
     <div>
