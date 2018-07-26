@@ -10,7 +10,19 @@ npm install --save-dev jest-emotion
 
 # Snapshot Serializer
 
-The easiest way to test React components with emotion is with the snapshot serializer. (the example below is with react-test-renderer but jest-emotion also works with enzyme)
+The easiest way to test React components with emotion is with the snapshot serializer. You can register the serializer via the `snapshotSerializers` configuration property in your jest configuration like so:
+
+```js
+// jest.config.js
+module.exports = {
+  // ... other config
+  snapshotSerializers: [
+    'jest-emotion/serializer'
+  ]
+}
+```
+
+Or you can customize the serializer via the `createSerializer` method like so: (the example below is with react-test-renderer but jest-emotion also works with enzyme and react-testing-library)
 
 ```jsx
 import React from 'react'
