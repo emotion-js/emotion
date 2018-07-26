@@ -1,28 +1,29 @@
 // @flow
-import { throwIfFalsy } from 'test-utils'
+import { throwIfFalsy, safeQuerySelector } from 'test-utils'
 import * as React from 'emotion-react-mock-for-preact'
-import { render } from 'preact'
+import { render as preactRender } from 'preact'
+
+function render(element) {
+  preactRender(element, safeQuerySelector('#root'))
+}
+beforeEach(() => {
+  throwIfFalsy(document.body).innerHTML = `<div id="root"></div>`
+})
 
 test('default', () => {
   let defaultContext = <div>it works!!</div>
   let { Consumer } = React.createContext(defaultContext)
-  throwIfFalsy(document.body).innerHTML = `<div id="root"></root>`
-  render(
-    <Consumer>{element => element}</Consumer>,
-    throwIfFalsy(document.getElementById('root'))
-  )
+  render(<Consumer>{element => element}</Consumer>)
   expect(document.documentElement).toMatchSnapshot()
 })
 
 test('with provider', () => {
   let defaultContext = <div>it works!!</div>
   let { Consumer, Provider } = React.createContext(defaultContext)
-  throwIfFalsy(document.body).innerHTML = `<div id="root"></root>`
   render(
     <Provider value={<div>this is the actual value!!</div>}>
       <Consumer>{element => element}</Consumer>
-    </Provider>,
-    throwIfFalsy(document.getElementById('root'))
+    </Provider>
   )
   expect(document.documentElement).toMatchSnapshot()
 })
@@ -30,12 +31,50 @@ test('with provider', () => {
 test('provider without children', () => {
   let defaultContext = <div>it works!!</div>
   let { Provider } = React.createContext(defaultContext)
-  throwIfFalsy(document.body).innerHTML = `<div id="root"></root>`
   render(
     <div>
       some content<Provider value={<div>this is the actual value!!</div>} />
-    </div>,
-    throwIfFalsy(document.getElementById('root'))
+    </div>
   )
   expect(document.documentElement).toMatchSnapshot()
+})
+
+test('provider change', cb => {
+  let firstContextValue = 'first'
+  let secondContextValue = 'second'
+  let { Provider, Consumer } = React.createContext(null)
+
+  class ThingThatDoesSomething extends React.Component<{}, *> {
+    state = { value: firstContextValue }
+    render() {
+      return (
+        <Provider value={this.state.value}>
+          <Consumer>{value => <button id="thing">{value}</button>}</Consumer>
+        </Provider>
+      )
+    }
+  }
+  // $FlowFixMe
+  let ref: ThingThatDoesSomething
+  render(<ThingThatDoesSomething ref={node => (ref = node)} />)
+  expect(safeQuerySelector('#thing').textContent).toBe(firstContextValue)
+  ref.setState({ value: secondContextValue }, () => {
+    expect(safeQuerySelector('#thing').textContent).toBe(secondContextValue)
+    cb()
+  })
+})
+
+test('does not throw on unmount', () => {
+  let { Provider, Consumer } = React.createContext(null)
+
+  render(
+    <Provider value={'value'}>
+      <Consumer>{value => <div>{value}</div>}</Consumer>
+    </Provider>
+  )
+  preactRender(
+    null,
+    safeQuerySelector('#root'),
+    throwIfFalsy(safeQuerySelector('#root').firstChild)
+  )
 })
