@@ -48,19 +48,19 @@ exports[`styled component selectors 1`] = `
   color: hotpink;
 }
 
-.emotion-1 {
+.emotion-2 {
   color: green;
 }
 
-.emotion-1 .e322f2d3tbrgf2e {
+.emotion-2 .emotion-1 {
   color: yellow;
 }
 
 <div
-  className="emotion-1"
+  className="emotion-2"
 >
   <div
-    className="emotion-0 e322f2d3tbrgf2e"
+    className="emotion-0 emotion-1"
   />
 </div>
 `;
