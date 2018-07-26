@@ -89,7 +89,6 @@ export function createContext<T>(defaultValue: T): Context<T> {
   }
 
   class Consumer extends React.Component<ConsumerProps<T>, ConsumerState<T>> {
-    observedBits: number
     constructor(props, context) {
       super(props, context)
       let value
