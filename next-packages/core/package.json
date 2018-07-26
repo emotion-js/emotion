@@ -13,11 +13,6 @@
   ],
   "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
   "license": "MIT",
-  "scripts": {
-    "build": "npm-run-all clean rollup",
-    "clean": "rimraf dist",
-    "rollup": "rollup -c ../../rollup.config.js"
-  },
   "dependencies": {
     "@emotion/cache": "^0.8.5",
     "@emotion/css": "^0.9.5",
@@ -32,7 +27,7 @@
     "html-tag-names": "^1.1.2",
     "svg-tag-names": "^1.1.1"
   },
-  "repository": "https://github.com/emotion/next/tree/master/packages/core",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/core",
   "publishConfig": {
     "access": "public"
   },

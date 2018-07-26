@@ -10,7 +10,7 @@
   "files": [
     "src",
     "dist"
-  ],  
+  ],
   "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
   "license": "MIT",
   "dependencies": {
@@ -27,7 +27,7 @@
     "html-tag-names": "^1.1.2",
     "svg-tag-names": "^1.1.1"
   },
-  "repository": "https://github.com/emotion/next/tree/master/packages/preact-core",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/preact-core",
   "publishConfig": {
     "access": "public"
   },
