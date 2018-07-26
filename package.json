@@ -112,11 +112,11 @@
       "standard",
       "standard-react",
       "prettier",
-      "prettier/react",
-      "flowtype"
+      "prettier/react"
     ],
     "plugins": [
-      "prettier"
+      "prettier",
+      "flowtype"
     ],
     "parser": "babel-eslint",
     "rules": {
