@@ -122,7 +122,6 @@ module.exports = (
         babelrc: false
       }),
       cjs(),
-      isPreact && alias(),
       (isUMD || isPreact) && alias(packageAliases),
       isPreact &&
         alias({ react: require.resolve('emotion-react-mock-for-preact') }),

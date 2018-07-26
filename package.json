@@ -57,6 +57,7 @@
     "enzyme-adapter-react-16": "^1.0.4",
     "enzyme-to-json": "^3.2.1",
     "eslint": "^4.5.0",
+    "eslint-plugin-flowtype": "^2.50.0",
     "eslint-config-prettier": "^2.3.0",
     "eslint-config-react": "^1.1.7",
     "eslint-config-standard": "^10.2.1",
@@ -185,8 +186,5 @@
       "path": "./next-packages/core/dist/index.min.js",
       "threshold": "7 Kb"
     }
-  ],
-  "dependencies": {
-    "eslint-plugin-flowtype": "^2.50.0"
-  }
+  ]
 }
