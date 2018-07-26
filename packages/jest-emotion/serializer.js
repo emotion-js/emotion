@@ -1,4 +1,4 @@
 const { createSerializer } = require('./dist')
 const emotion = require('emotion')
 
-expect.addSnapshotSerializer(createSerializer(emotion))
+module.exports = createSerializer(emotion)
