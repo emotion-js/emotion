@@ -1,9 +1,6 @@
 // @flow
 import * as css from 'css'
-import {
-  replaceClassNames,
-  type ClassNameReplacer
-} from './replace-class-names'
+import { replaceClassNames } from './replace-class-names'
 import {
   getClassNamesFromNodes,
   isReactElement,
