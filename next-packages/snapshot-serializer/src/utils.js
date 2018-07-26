@@ -71,8 +71,6 @@ export function getClassNamesFromNodes(nodes: Array<any>) {
   }, [])
 }
 
-let unique = arr => Array.prototype.concat(...new Set(arr))
-
 export function getStylesFromClassNames(
   classNames: Array<string>,
   elements: Array<HTMLStyleElement>
@@ -112,6 +110,8 @@ export function getStyleElements(): Array<HTMLStyleElement> {
   // $FlowFixMe
   return elements
 }
+
+let unique = arr => Array.from(new Set(arr))
 
 export function getKeys(elements: Array<HTMLStyleElement>) {
   let keys = unique(

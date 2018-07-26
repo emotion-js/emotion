@@ -1,4 +1,5 @@
 // @flow
+import 'test-utils/next-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import hoistNonReactStatics from 'hoist-non-react-statics'

@@ -75,39 +75,6 @@ test('keyframes insert in css call', () => {
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('global', () => {
-  let cache = createCache()
-  renderer.create(
-    <Global
-      styles={css`
-        body {
-          color: hotpink;
-        }
-      `}
-    />
-  )
-
-  expect(cache.sheet).toMatchSnapshot()
-})
-
-console.log(jest)
-
-test('@font-face in global', () => {
-  const tree = renderer.create(
-    <div>
-      <Global
-        styles={{
-          '@font-face': {
-            fontFamily: 'some-name'
-          }
-        }}
-      />
-    </div>
-  )
-
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
 test('css call composition', () => {
   const first = css`
     color: hotpink;

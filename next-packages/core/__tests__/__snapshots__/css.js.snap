@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@font-face in global 1`] = `<div />`;
-
 exports[`array fallback 1`] = `
 .emotion-0 {
   display: green;
@@ -25,8 +23,6 @@ Object {
   }",
 }
 `;
-
-exports[`global 1`] = `<div />`;
 
 exports[`keyframes 1`] = `
 .emotion-0 {
