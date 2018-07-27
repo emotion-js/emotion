@@ -109,3 +109,4 @@ Look here 👉 *[emotion babel plugin feature table and documentation](https://g
 * [postmates.com](https://postmates.com/)
 * [thedisconnect.co](https://thedisconnect.co/one)
 * [zefenify.com](https://zefenify.com/about.html)
+* [sentry.io](https://sentry.io)
