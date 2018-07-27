@@ -69,3 +69,40 @@ module.exports = {
   plugins: [...otherGatsbyPlugins, 'gatsby-plugin-emotion']
 }
 ```
+
+## Puppeteer
+
+If you are using Puppeteer to prerender your application, you have to disable emotion's `speedy` option to fully render all needed CSS inside the DOM.
+
+index.jsx
+
+```jsx
+// Has to be the first import!
+import './disable-speedy'
+import ReactDOM from 'react-dom'
+import App from './App'
+
+const root = document.getElementById('root')
+
+// Use root to detect if our app is already mounted / if it has been prerendered
+if (root.hasChildNodes()) {
+  ReactDOM.hydrate(<App />, root)
+} else {
+  ReactDOM.render(<App />, root)
+}
+```
+
+disable-speedy.js
+
+```js
+import { sheet } from 'emotion'
+
+// Use root to detect if our app is already mounted / if it has been prerendered
+if (!document.getElementById('root').hasChildNodes()) {
+  sheet.speedy(false)
+}
+```
+
+> Note:
+>
+> You need to put the option disabling into it's own file, which is imported before any other operation executes (first line in your entrypoint), because of ES module hoisting.
