@@ -1,7 +1,10 @@
 // @flow
-import { Text, View, Image } from 'react-primitives'
+import { StyleSheet, Text, View, Image } from 'react-primitives'
+import { createCss } from '@emotion/primitives-core'
 
-import { createStyled } from './styled'
+import { styled as createStyled } from './styled'
+
+const css = createCss(StyleSheet)
 
 const assignPrimitives = styled => {
   createStyled.Text = createStyled(Text)
@@ -11,6 +14,6 @@ const assignPrimitives = styled => {
   return styled
 }
 
-export { css } from './css'
+export { css }
 
 export default /* #__PURE__ */ assignPrimitives(createStyled)

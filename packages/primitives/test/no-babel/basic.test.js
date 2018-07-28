@@ -1,8 +1,9 @@
 // @flow
-import '../mock-primitives'
 import * as React from 'react'
 import styled, { css } from '@emotion/primitives'
 import renderer from 'react-test-renderer'
+
+jest.mock('react-primitives')
 
 // this isn't intented to test everything
 // this is just to make sure things work

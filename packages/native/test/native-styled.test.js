@@ -1,23 +1,17 @@
-// @flow
 import * as React from 'react'
 import renderer from 'react-test-renderer'
-import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-import reactPrimitives from 'react-primitives'
 import { ThemeProvider } from 'emotion-theming'
-import { render, unmountComponentAtNode } from 'react-dom'
 
-import styled from '@emotion/primitives'
+import styled from '@emotion/native'
+import reactNative from 'react-native'
 
-jest.mock('react-primitives')
+const StyleSheet = reactNative.StyleSheet
 
-Enzyme.configure({ adapter: new Adapter() })
-
-const StyleSheet = reactPrimitives.StyleSheet
+jest.mock('react-native')
 
 const theme = { backgroundColor: 'magenta', display: 'flex' }
 
-describe('Emotion primitives', () => {
+describe('Emotion native styled', () => {
   test('should not throw an error when used valid primitive', () => {
     expect(() => styled.Text({})).not.toThrow()
   })
@@ -58,26 +52,6 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should unmount with emotion-theming', () => {
-    const Text = styled('p')`
-      display: ${props => props.theme.display};
-    `
-
-    let mountNode = document.createElement('div')
-
-    render(
-      <ThemeProvider theme={theme}>
-        <Text id="something" style={{ backgroundColor: 'yellow' }}>
-          Hello World
-        </Text>
-      </ThemeProvider>,
-      mountNode
-    )
-    expect(mountNode).toMatchSnapshot()
-    unmountComponentAtNode(mountNode)
-    expect(mountNode.querySelector('#something')).toBe(null)
-  })
-
   test('should render the primitive on changing the props', () => {
     const Text = styled.Text({ padding: '20px' }, props => ({
       color: props.decor
@@ -96,13 +70,6 @@ describe('Emotion primitives', () => {
       .create(<Title style={{ padding: 10 }}>Emotion primitives</Title>)
       .toJSON()
     expect(tree).toMatchSnapshot()
-    const wrapper = Enzyme.shallow(
-      <Title style={{ padding: 10 }}>Emotion primitives</Title>
-    )
-    expect(wrapper.find('Text').prop('style')).toEqual({
-      color: 'hotpink',
-      padding: 10
-    })
   })
 
   it('should work with StyleSheet.create API', () => {
@@ -110,20 +77,17 @@ describe('Emotion primitives', () => {
     const Text = styled.Text`
       font-size: 10px;
     `
-    const wrapper = Enzyme.shallow(
-      <Text style={styles.foo}>Emotion Primitives</Text>
-    )
-    expect(wrapper.find('Text').prop('style')).toEqual({
-      color: 'red',
-      fontSize: 10
-    })
+    const tree = renderer
+      .create(<Text style={styles.foo}>Emotion primitives</Text>)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   test('primitive should work with `withComponent`', () => {
     const Text = styled.Text`
       color: ${props => props.decor};
     `
-    const Name = Text.withComponent(reactPrimitives.Text)
+    const Name = Text.withComponent(reactNative.Text)
     const tree = renderer.create(<Name decor="hotpink">Mike</Name>).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -141,24 +105,12 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('innerRef', () => {
-    const Text = styled('p')`
-      color: hotpink;
-    `
-    let ref = React.createRef()
-    const rootNode = document.createElement('div')
-
-    render(<Text innerRef={ref} id="something" />, rootNode)
-    expect(ref.current).toBe(rootNode.querySelector('#something'))
-    unmountComponentAtNode(rootNode)
-  })
-
   it('should pass props in withComponent', () => {
     const ViewOne = styled.View`
       background-color: ${props => props.color};
     `
     const treeOne = renderer.create(<ViewOne color="green" />)
-    const ViewTwo = ViewOne.withComponent(reactPrimitives.Text)
+    const ViewTwo = ViewOne.withComponent(reactNative.Text)
     const treeTwo = renderer.create(<ViewTwo color="hotpink" />)
 
     expect(treeOne).toMatchSnapshot()
@@ -167,7 +119,7 @@ describe('Emotion primitives', () => {
 
   it('should render <Image />', () => {
     const Image = styled.Image`
-      border: 2px solid hotpink;
+      border-radius: 2px;
     `
     const tree = renderer
       .create(
