@@ -1,4 +1,5 @@
 // @flow
+import 'test-utils/next-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import hoistNonReactStatics from 'hoist-non-react-statics'
@@ -669,7 +670,7 @@ describe('styled', () => {
       // if anyone is looking this
       // please don't do this.
       // use the babel plugin/macro.
-      target: 'e322f2d3tbrgf2e'
+      target: 'e322f2d3tbrgf2e0'
     })`
       color: hotpink;
     `

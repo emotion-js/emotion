@@ -7,8 +7,7 @@ let createMacros = babel => {
   }
   return {
     '@emotion/utils': {
-      isBrowser: replaceWithBoolean(true),
-      shouldSerializeToReactTree: replaceWithBoolean(false)
+      isBrowser: replaceWithBoolean(true)
     }
   }
 }

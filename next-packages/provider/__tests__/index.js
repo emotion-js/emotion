@@ -1,5 +1,6 @@
 // @flow
 /** @jsx jsx */
+import 'test-utils/next-env'
 import * as React from 'react'
 import { ignoreConsoleErrors } from 'test-utils'
 import Provider from '@emotion/provider'

@@ -14,6 +14,7 @@ async function doBuild() {
       return process.argv.indexOf(pkg.name) !== -1
     })
   }
+
   await Promise.all(
     packages.map(async pkg => {
       await cleanDist(pkg.path)
