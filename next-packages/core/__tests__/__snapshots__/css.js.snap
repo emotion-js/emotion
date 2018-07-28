@@ -1,23 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@font-face in global 1`] = `
-<div>
-  <style>
-    @font-face {
-      font-family: some-name;
-    }
-  </style>
-</div>
-`;
-
 exports[`array fallback 1`] = `
+.emotion-0 {
+  display: green;
+  display: hotpink;
+}
+
 <div>
-  <style>
-    .emotion-0 {
-      display: green;
-      display: hotpink;
-    }
-  </style>
   <div
     className="emotion-0"
   >
@@ -35,44 +24,13 @@ Object {
 }
 `;
 
-exports[`global 1`] = `
-<div>
-  <style>
-    body {
-      color: hotpink;
-    }
-  </style>
-</div>
-`;
-
 exports[`keyframes 1`] = `
+.emotion-0 {
+  -webkit-animation: animation-1ozfi5a;
+  animation: animation-1ozfi5a;
+}
+
 <div>
-  <style>
-    .emotion-0 {
-      -webkit-animation: animation-1ozfi5a;
-      animation: animation-1ozfi5a;
-    }
-    
-    @-webkit-keyframes animation-1ozfi5a {
-      from {
-        color: green;
-      }
-    
-      to {
-        color: hotpink;
-      }
-    }
-    
-    @keyframes animation-1ozfi5a {
-      from {
-        color: green;
-      }
-    
-      to {
-        color: hotpink;
-      }
-    }
-  </style>
   <div
     className="emotion-0"
   >
@@ -82,33 +40,12 @@ exports[`keyframes 1`] = `
 `;
 
 exports[`keyframes insert in css call 1`] = `
+.emotion-0 {
+  -webkit-animation: animation-1ozfi5a;
+  animation: animation-1ozfi5a;
+}
+
 <div>
-  <style>
-    .emotion-0 {
-      -webkit-animation: animation-1ozfi5a;
-      animation: animation-1ozfi5a;
-    }
-    
-    @-webkit-keyframes animation-1ozfi5a {
-      from {
-        color: green;
-      }
-    
-      to {
-        color: hotpink;
-      }
-    }
-    
-    @keyframes animation-1ozfi5a {
-      from {
-        color: green;
-      }
-    
-      to {
-        color: hotpink;
-      }
-    }
-  </style>
   <div
     className="emotion-0"
   >
@@ -118,12 +55,11 @@ exports[`keyframes insert in css call 1`] = `
 `;
 
 exports[`label in css call 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
 <div>
-  <style>
-    .emotion-0 {
-      color: hotpink;
-    }
-  </style>
   <div
     className="emotion-0"
   >
@@ -133,12 +69,11 @@ exports[`label in css call 1`] = `
 `;
 
 exports[`object with false 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
 <div>
-  <style>
-    .emotion-0 {
-      color: hotpink;
-    }
-  </style>
   <div
     className="emotion-0"
   >
@@ -154,28 +89,24 @@ exports[`string as css prop throws 1`] = `
 `;
 
 exports[`theming with the css prop 1`] = `
-Array [
-  <style>
-    .emotion-0 {
-      color: hotpink;
-    }
-  </style>,
-  <div
-    className="emotion-0"
-  />,
-]
+.emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
 `;
 
 exports[`thing 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 <div>
-  <style>
-    .emotion-0 {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-    }
-  </style>
   <div
     className="emotion-0"
   >

@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { withCSSContext } from './context'
-import { shouldSerializeToReactTree, type CSSContextType } from '@emotion/utils'
+import { isBrowser, type CSSContextType } from '@emotion/utils'
 import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
 
@@ -34,51 +34,49 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
     this.updateStyles()
   }
   updateStyles() {
-    if (shouldSerializeToReactTree === false) {
-      let serialized = serializeStyles(this.props.context.registered, [
-        this.props.styles
-      ])
-      if (serialized.name === this.styleName) {
-        return
-      }
-      this.styleName = serialized.name
-      if (!this.sheet) {
-        this.sheet = new StyleSheet({
-          key: `${this.props.context.key}-global`,
-          nonce: this.props.context.sheet.nonce,
-          container: this.props.context.sheet.container
-        })
-        // $FlowFixMe
-        let node: HTMLStyleElement | null = document.querySelector(
-          `style[data-emotion-${this.props.context.key}="${serialized.name}"]`
-        )
-
-        if (node !== null) {
-          this.sheet.tags.push(node)
-        }
-        // $FlowFixMe
-        if (this.props.context.sheet.tags.length) {
-          this.sheet.before = this.props.context.sheet.tags[0]
-        }
-      }
-      let rules = this.props.context.stylis(``, serialized.styles)
-      if (this.sheet.tags.length) {
-        // if this doesn't exist then it will be null so the style element will be appended
-        this.sheet.before = this.sheet.tags[0].nextElementSibling
-        this.sheet.flush()
-      }
-
-      rules.forEach(rule => {
-        this.sheet.insert(rule)
-      })
+    let serialized = serializeStyles(this.props.context.registered, [
+      this.props.styles
+    ])
+    if (serialized.name === this.styleName) {
+      return
     }
+    this.styleName = serialized.name
+    if (!this.sheet) {
+      this.sheet = new StyleSheet({
+        key: `${this.props.context.key}-global`,
+        nonce: this.props.context.sheet.nonce,
+        container: this.props.context.sheet.container
+      })
+      // $FlowFixMe
+      let node: HTMLStyleElement | null = document.querySelector(
+        `style[data-emotion-${this.props.context.key}="${serialized.name}"]`
+      )
+
+      if (node !== null) {
+        this.sheet.tags.push(node)
+      }
+      // $FlowFixMe
+      if (this.props.context.sheet.tags.length) {
+        this.sheet.before = this.props.context.sheet.tags[0]
+      }
+    }
+    let rules = this.props.context.stylis(``, serialized.styles)
+    if (this.sheet.tags.length) {
+      // if this doesn't exist then it will be null so the style element will be appended
+      this.sheet.before = this.sheet.tags[0].nextElementSibling
+      this.sheet.flush()
+    }
+
+    rules.forEach(rule => {
+      this.sheet.insert(rule)
+    })
   }
 
   componentWillUnmount() {
     this.sheet.flush()
   }
   render() {
-    if (shouldSerializeToReactTree) {
+    if (!isBrowser) {
       const serialized = serializeStyles(this.props.context.registered, [
         this.props.styles
       ])

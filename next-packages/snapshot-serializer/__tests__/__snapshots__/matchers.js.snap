@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`toHaveStyleRule fails if no styles are found 1`] = `"Property not found: color"`;

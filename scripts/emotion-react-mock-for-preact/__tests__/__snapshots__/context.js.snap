@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default 1`] = `
+<html>
+  <head />
+  <body>
+    <div
+      id="root"
+    >
+      <div>
+        it works!!
+      </div>
+    </div>
+  </body>
+</html>
+`;
+
+exports[`provider without children 1`] = `
+<html>
+  <head />
+  <body>
+    <div
+      id="root"
+    >
+      <div>
+        some content
+        
+      </div>
+    </div>
+  </body>
+</html>
+`;
+
+exports[`with provider 1`] = `
+<html>
+  <head />
+  <body>
+    <div
+      id="root"
+    >
+      <div>
+        this is the actual value!!
+      </div>
+    </div>
+  </body>
+</html>
+`;

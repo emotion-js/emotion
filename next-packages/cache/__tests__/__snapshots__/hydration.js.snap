@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it works 1`] = `
+<html>
+  <head>
+    <style
+      data-emotion-css="1lrxbo5"
+    >
+      .css-1lrxbo5{color:hotpink;}
+    </style>
+  </head>
+  <body />
+</html>
+`;

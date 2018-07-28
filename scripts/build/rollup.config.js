@@ -5,7 +5,6 @@ const babel = require('rollup-plugin-babel')
 const alias = require('rollup-plugin-alias')
 const cjs = require('rollup-plugin-commonjs')
 const replace = require('rollup-plugin-replace')
-const path = require('path')
 const lernaAliases = require('lerna-alias').rollup
 
 // this makes sure nested imports of external packages are external
@@ -40,8 +39,9 @@ module.exports = (
   data /*: Package */,
   {
     isUMD = false,
-    isBrowser = false
-  } /*: { isUMD:boolean, isBrowser:boolean } */ = {}
+    isBrowser = false,
+    isPreact = false
+  } /*: { isUMD:boolean, isBrowser:boolean, isPreact:boolean } */ = {}
 ) => {
   const { pkg } = data
   let external = []
@@ -56,9 +56,16 @@ module.exports = (
   if (data.name === 'react-emotion' || data.name === 'preact-emotion') {
     external = external.filter(name => name !== 'emotion')
   }
+  let packageAliases = lernaAliases()
+  if (external.includes('@emotion/preact-core')) {
+    packageAliases['@emotion/core'] = '@emotion/preact-core'
+  }
+  if (external.includes('@emotion/preact-styled-base')) {
+    packageAliases['@emotion/styled-base'] = '@emotion/preact-styled-base'
+  }
 
   const config = {
-    input: path.resolve(data.path, 'src', 'index.js'),
+    input: data.input,
     external: makeExternalPredicate(external),
     plugins: [
       babel({
@@ -99,19 +106,9 @@ module.exports = (
                           if (path.node.id.name === 'isBrowser') {
                             path.get('init').replaceWith(t.booleanLiteral(true))
                           }
-                          if (
-                            path.node.id.name === 'shouldSerializeToReactTree'
-                          ) {
-                            path
-                              .get('init')
-                              .replaceWith(t.booleanLiteral(false))
-                          }
                         }
                       },
                       ReferencedIdentifier(path, node) {
-                        if (path.node.name === 'shouldSerializeToReactTree') {
-                          path.replaceWith(t.booleanLiteral(false))
-                        }
                         if (path.node.name === 'isBrowser') {
                           path.replaceWith(t.booleanLiteral(true))
                         }
@@ -125,9 +122,14 @@ module.exports = (
         babelrc: false
       }),
       cjs(),
-      isUMD && alias(lernaAliases()),
+      (isUMD || isPreact) && alias(packageAliases),
+      isPreact &&
+        alias({ react: require.resolve('emotion-react-mock-for-preact') }),
       isUMD && resolve(),
-      isUMD && replace({ 'process.env.NODE_ENV': '"production"' }),
+      replace({
+        ...(isUMD ? { 'process.env.NODE_ENV': '"production"' } : {}),
+        'process.env.PREACT': isPreact ? 'true' : 'false'
+      }),
       isUMD && uglify()
     ].filter(Boolean)
   }

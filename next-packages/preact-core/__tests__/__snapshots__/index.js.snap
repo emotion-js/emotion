@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Global works 1`] = `
+<html>
+  <head />
+  <body>
+    <div
+      id="root"
+    >
+      <p>
+        
+        something
+      </p>
+    </div>
+  </body>
+</html>
+`;
+
+exports[`the css prop works 1`] = `
+<html>
+  <head>
+    <style
+      data-emotion="css"
+    >
+      
+      .css-1lrxbo5{color:hotpink;}
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+    >
+      <p>
+        <div
+          class="css-1lrxbo5"
+        >
+          wow
+        </div>
+      </p>
+    </div>
+  </body>
+</html>
+`;
