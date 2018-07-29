@@ -46,7 +46,7 @@ render(
 
 ### Child Selectors
 
-```jsx
+```jsx live
 /* @jsx jsx */
 import { jsx } from '@emotion/core'
 

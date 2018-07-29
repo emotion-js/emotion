@@ -2,6 +2,17 @@
 title: "Server Side Rendering"
 ---
 
+Server side rendering works out of the box in emotion 10 and above
+
+```jsx
+import { renderToString } from 'react-dom/server'
+import App from './App'
+
+const html = renderToString(<App />)
+```
+
+If you're u
+
 ## API
 
 ### renderStylesToString
