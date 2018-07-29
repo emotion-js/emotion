@@ -8,7 +8,6 @@
 
 This package contains some shared utilities which are consumed by `@emotion/primitives` and `@emotion/native` for styling and rendering components.
 
-
 This package provides two functions, `createCss` and `createStyled`.
 
 ### `createCss(StyleSheet)`

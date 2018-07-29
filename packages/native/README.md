@@ -20,7 +20,7 @@ This package also depends on `react`, `react-native` and `prop-types` so make su
 
 ```js
 import React from 'react'
-import { AppRegistry } from 'react-native';
+import { AppRegistry } from 'react-native'
 import styled, { css } from '@emotion/native'
 
 const Container = styled.View`
@@ -64,7 +64,7 @@ class App extends React.Component {
   }
 }
 
-AppRegistry.registerComponent('ExampleApp', () => App);
+AppRegistry.registerComponent('ExampleApp', () => App)
 ```
 
 ## Theming
@@ -135,47 +135,46 @@ class App extends React.Component {
 ### Example
 
 ```js
-import React from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-360';
-import styled from '@emotion/native';
+import React from 'react'
+import { AppRegistry, StyleSheet, Text, View } from 'react-360'
+import styled from '@emotion/native'
 
 const StyledName = styled.Text`
-	font-size: 40px;
-	color: hotpink;
-`;
+  font-size: 40px;
+  color: hotpink;
+`
 
 export default class App extends React.Component {
-	render() {
-		return (
-			<View style={styles.panel}>
-				<View style={styles.greetingBox}>
-					<StyledName>Emotion Native</StyledName>
-				</View>
-			</View>
-		);
-	}
+  render() {
+    return (
+      <View style={styles.panel}>
+        <View style={styles.greetingBox}>
+          <StyledName>Emotion Native</StyledName>
+        </View>
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
-	panel: {
-		// Fill the entire surface
-		width: 1000,
-		height: 600,
-		backgroundColor: 'rgba(255, 255, 255, 0.4)',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	greetingBox: {
-		padding: 20,
-		backgroundColor: '#000000',
-		borderColor: '#639dda',
-		borderWidth: 2,
-	},
-	greeting: {
-		fontSize: 30,
-	},
-});
+  panel: {
+    // Fill the entire surface
+    width: 1000,
+    height: 600,
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  greetingBox: {
+    padding: 20,
+    backgroundColor: '#000000',
+    borderColor: '#639dda',
+    borderWidth: 2
+  },
+  greeting: {
+    fontSize: 30
+  }
+})
 
-AppRegistry.registerComponent('App', () => App);
-
+AppRegistry.registerComponent('App', () => App)
 ```

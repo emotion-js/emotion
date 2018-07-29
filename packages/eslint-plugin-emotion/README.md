@@ -24,28 +24,20 @@ Add `emotion` to the plugins section of your `.eslintrc` configuration file. You
 
 ```json
 {
-    "plugins": [
-        "emotion"
-    ]
+  "plugins": ["emotion"]
 }
 ```
-
 
 Then configure the rules you want to use under the rules section.
 
 ```json
 {
-    "rules": {
-        "emotion/syntax-preference": [2, "string"]
-    }
+  "rules": {
+    "emotion/syntax-preference": [2, "string"]
+  }
 }
 ```
 
 ## Supported Rules
 
 * [syntax-preference](docs/rules/syntax-preference.md)
-
-
-
-
-
