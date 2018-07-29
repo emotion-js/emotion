@@ -28,7 +28,9 @@ Making media queries reusable can be really useful to create responsive apps, wi
 // @live
 const breakpoints = [576, 768, 992, 1200]
 
-const mq = breakpoints.map(bp => `@media (min-width: ${bp}px)`)
+const mq = breakpoints.map(
+  bp => `@media (min-width: ${bp}px)`
+)
 
 const styles = css({
   color: 'green',
@@ -59,7 +61,9 @@ import facepaint from 'facepaint'
 
 const breakpoints = [576, 768, 992, 1200]
 
-const mq = facepaint(breakpoints.map(bp => `@media (min-width: ${bp}px)`))
+const mq = facepaint(
+  breakpoints.map(bp => `@media (min-width: ${bp}px)`)
+)
 
 const styles = css(
   mq({
@@ -83,17 +87,24 @@ const breakpoints = {
   tallPhone: '(max-width: 360px) and (min-height: 740px)'
 }
 
-const mq = Object.keys(breakpoints).reduce((accumulator, label) => {
-  let prefix = typeof breakpoints[label] === 'string' ? '' : 'min-width:'
-  let suffix = typeof breakpoints[label] === 'string' ? '' : 'px'
-  accumulator[label] = cls =>
-    css`
-      @media (${prefix + breakpoints[label] + suffix}) {
-        ${cls};
-      }
-    `
-  return accumulator
-}, {})
+const mq = Object.keys(breakpoints).reduce(
+  (accumulator, label) => {
+    let prefix =
+      typeof breakpoints[label] === 'string'
+        ? ''
+        : 'min-width:'
+    let suffix =
+      typeof breakpoints[label] === 'string' ? '' : 'px'
+    accumulator[label] = cls =>
+      css`
+        @media (${prefix + breakpoints[label] + suffix}) {
+          ${cls};
+        }
+      `
+    return accumulator
+  },
+  {}
+)
 
 const paragraph = css`
   font-size: 12px;

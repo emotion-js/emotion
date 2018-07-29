@@ -5,6 +5,7 @@ title: "Babel Plugin"
 `babel-plugin-emotion` is highly recommended. All of the options that can be provided to `babel-plugin-emotion` are documented in [`babel-plugin-emotion`'s README](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion).
 
 ### Install
+
 In `emotion` version 8 and above, installation is optional. In older versions, installation is required. See the [installation instructions](/docs/install.md).
 
 ### Features which are enabled with the babel plugin
@@ -36,4 +37,3 @@ Convenient helper for calling `css` and appending the generated className during
 ### Components as selectors
 
 The ability to refer to another component to apply override styles depending on nesting context. Learn more in the [react-emotion docs](/docs/styled.md#targeting-another-emotion-component).
-

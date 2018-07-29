@@ -37,7 +37,11 @@ const Button = styled('button')(
   })
 )
 
-render(<Button fontSize={16}>This is a darkorchid button.</Button>)
+render(
+  <Button fontSize={16}>
+    This is a darkorchid button.
+  </Button>
+)
 ```
 
 ### Child Selectors
@@ -75,7 +79,8 @@ const className = css({
 
 render(
   <div className={className}>
-    This is orange on a big screen and darkorchid on a small screen.
+    This is orange on a big screen and darkorchid on a small
+    screen.
   </div>
 )
 ```
@@ -94,7 +99,9 @@ const className = css({
 })
 
 render(
-  <div className={className}>This has 8px of padding and a z-index of 200.</div>
+  <div className={className}>
+    This has 8px of padding and a z-index of 200.
+  </div>
 )
 ```
 
@@ -118,7 +125,8 @@ const className = css(
 
 render(
   <div className={className}>
-    This is darkorchid with a hotpink background and 8px of padding.
+    This is darkorchid with a hotpink background and 8px of
+    padding.
   </div>
 )
 ```
@@ -145,7 +153,8 @@ const className = css([
 
 render(
   <div className={className}>
-    This is darkorchid with a hotpink background and 8px of padding.
+    This is darkorchid with a hotpink background and 8px of
+    padding.
   </div>
 )
 ```
@@ -165,8 +174,9 @@ const className = css({
 
 render(
   <div className={className}>
-    This has a gradient background in browsers that support gradients and is red
-    in browsers that don't support gradients
+    This has a gradient background in browsers that support
+    gradients and is red in browsers that don't support
+    gradients
   </div>
 )
 ```
@@ -202,8 +212,9 @@ render(
       This is hotpink on hover or focus
     </button>
     <p className={hotpinkWithBlackBackground}>
-      This has a black background and is hotpink. Try moving where hotpink is in
-      the css call and see if the color changes.
+      This has a black background and is hotpink. Try moving
+      where hotpink is in the css call and see if the color
+      changes.
     </p>
   </div>
 )

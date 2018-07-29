@@ -74,7 +74,9 @@ function SomeComponent(props) {
       `}
     >
       This will be blue until hovered.
-      <div className="some-class">This font size will be 20px</div>
+      <div className="some-class">
+        This font size will be 20px
+      </div>
       <div css={{ color: 'hotpink' }}>This is hotpink</div>
     </div>
   )

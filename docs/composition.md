@@ -41,7 +41,11 @@ const base = css`
   color: turquoise;
 `
 
-render(<div className={`${base} ${danger}`}>What color will this be?</div>)
+render(
+  <div className={`${base} ${danger}`}>
+    What color will this be?
+  </div>
+)
 ```
 
 With Emotion though, it's much easier, all we have to change is add `css` before the template literal where we combine the classes and Emotion will use the styles that were passed to danger and base and merge them in the order that they're interpolated.
@@ -90,7 +94,11 @@ const dynamicStyle = props =>
 const Container = styled('div')`
   ${dynamicStyle};
 `
-render(<Container color="lightgreen">This is lightgreen.</Container>)
+render(
+  <Container color="lightgreen">
+    This is lightgreen.
+  </Container>
+)
 ```
 
 If you're composing lots of other styles and aren't using any string styles directly in the `styled` call, you can use the function call syntax to make it smaller.
@@ -106,5 +114,9 @@ const dynamicStyle = props =>
 
 const Container = styled('div')(dynamicStyle)
 
-render(<Container color="lightgreen">This is lightgreen.</Container>)
+render(
+  <Container color="lightgreen">
+    This is lightgreen.
+  </Container>
+)
 ```

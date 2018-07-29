@@ -110,9 +110,13 @@ const bar = false
 
 render(
   <div
-    className={cx({ [cls1]: foo }, { [cls2]: bar }, () => 'modal', 'profile', [
-      [cls3, [cls4]]
-    ])}
+    className={cx(
+      { [cls1]: foo },
+      { [cls2]: bar },
+      () => 'modal',
+      'profile',
+      [[cls3, [cls4]]]
+    )}
   >
     Some content
   </div>

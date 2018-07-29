@@ -38,7 +38,9 @@ const paragraph = css`
 render(
   <div>
     <header>
-      <p className={paragraph}>This is green since it's inside a header</p>
+      <p className={paragraph}>
+        This is green since it's inside a header
+      </p>
     </header>
     <p className={paragraph}>
       This is turquoise since it's not inside a header.

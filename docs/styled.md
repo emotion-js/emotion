@@ -28,7 +28,8 @@ Any interpolations or arguments that are functions in `styled` are called with `
 import styled from 'react-emotion'
 
 const Button = styled('button')`
-  color: ${props => (props.primary ? 'hotpink' : 'turquoise')};
+  color: ${props =>
+    props.primary ? 'hotpink' : 'turquoise'};
 `
 
 const Container = styled('div')(props => ({
@@ -51,7 +52,9 @@ render(
 ```jsx
 // @live
 import styled from 'react-emotion'
-const Basic = ({ className }) => <div className={className}>Some text</div>
+const Basic = ({ className }) => (
+  <div className={className}>Some text</div>
+)
 
 const Fancy = styled(Basic)`
   color: hotpink;

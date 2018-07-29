@@ -25,7 +25,9 @@ import { renderToNodeStream } from 'react-dom/server'
 import { renderStylesToNodeStream } from 'emotion-server'
 import App from './App'
 
-const stream = renderToNodeStream(<App />).pipe(renderStylesToNodeStream())
+const stream = renderToNodeStream(<App />).pipe(
+  renderStylesToNodeStream()
+)
 ```
 
 ### extractCritical
@@ -37,7 +39,9 @@ import { renderToString } from 'react-dom/server'
 import { extractCritical } from 'emotion-server'
 import App from './App'
 
-const { html, ids, css } = extractCritical(renderToString(<App />))
+const { html, ids, css } = extractCritical(
+  renderToString(<App />)
+)
 ```
 
 #### hydrate

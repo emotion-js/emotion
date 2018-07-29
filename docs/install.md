@@ -25,7 +25,9 @@ const className = css`
 `
 
 const SomeComponent = ({ children }) => (
-  <div className={className}>Some hotpink text.{children}</div>
+  <div className={className}>
+    Some hotpink text.{children}
+  </div>
 )
 
 const anotherClassName = css({
@@ -33,7 +35,9 @@ const anotherClassName = css({
 })
 
 const AnotherComponent = () => (
-  <div className={anotherClassName}>Some text with an underline.</div>
+  <div className={anotherClassName}>
+    Some text with an underline.
+  </div>
 )
 render(
   <SomeComponent>
@@ -130,7 +134,12 @@ If you are using Babel's env option emotion must also be first for each environm
       "plugins": [["emotion", { "hoist": true }]]
     },
     "development": {
-      "plugins": [["emotion", { "sourceMap": true, "autoLabel": true }]]
+      "plugins": [
+        [
+          "emotion",
+          { "sourceMap": true, "autoLabel": true }
+        ]
+      ]
     }
   }
 }
