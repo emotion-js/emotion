@@ -1,12 +1,15 @@
 {
   "name": "@emotion/primitives",
-  "version": "9.2.6",
+  "version": "9.2.7",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "files": ["src", "dist"],
+  "files": [
+    "src",
+    "dist"
+  ],
   "dependencies": {
-    "babel-plugin-emotion": "^9.2.5",
-    "@emotion/primitives-core": "1.0.0"
+    "@emotion/primitives-core": "^9.2.7",
+    "babel-plugin-emotion": "^9.2.5"
   },
   "peerDependencies": {
     "prop-types": "15.x",
@@ -23,7 +26,14 @@
   "homepage": "https://emotion.sh",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/primitives",
-  "keywords": ["styles", "emotion", "react", "css", "css-in-js", "primitives"],
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js",
+    "primitives"
+  ],
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   }
