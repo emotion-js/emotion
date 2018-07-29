@@ -17,33 +17,42 @@ async function doBuild() {
 
   await Promise.all(
     packages.map(async pkg => {
-      await cleanDist(pkg.path)
-      let someBundle
-      await Promise.all(
-        pkg.configs.map(async config => {
-          const bundle = await rollup.rollup(config.config)
-          if (!someBundle) someBundle = bundle
+      try {
+        await cleanDist(pkg.path)
+        let someBundle
+        await Promise.all(
+          pkg.configs.map(async config => {
+            const bundle = await rollup.rollup(config.config)
+            if (!someBundle) someBundle = bundle
 
-          await Promise.all(
-            config.outputConfigs.map(outputConfig => {
-              return bundle.write(outputConfig)
-            })
-          )
-        })
-      )
-      if (pkg.configs.length) {
-        console.log(chalk.magenta(`Generated bundles for`, pkg.pkg.name))
-      }
-      if (
-        !pkg.name.endsWith('.macro') &&
-        pkg.path.includes('next-packages') &&
-        someBundle
-      ) {
-        await writeFlowFiles(
-          pkg.configs[0].outputConfigs.map(({ file }) => file),
-          someBundle.exports
+            await Promise.all(
+              config.outputConfigs.map(outputConfig => {
+                return bundle.write(outputConfig)
+              })
+            )
+          })
         )
-        console.log(chalk.magenta('Wrote flow files for', pkg.pkg.name))
+        if (pkg.configs.length) {
+          console.log(chalk.magenta(`Generated bundles for`, pkg.pkg.name))
+        }
+        if (
+          !pkg.name.endsWith('.macro') &&
+          pkg.path.includes('next-packages') &&
+          someBundle
+        ) {
+          await writeFlowFiles(
+            pkg.configs[0].outputConfigs.map(({ file }) => file),
+            someBundle.exports
+          )
+          console.log(chalk.magenta('Wrote flow files for', pkg.pkg.name))
+        }
+      } catch (err) {
+        console.error(
+          'The error below was caused by the package: ',
+          pkg.pkg.name
+        )
+        console.error(err)
+        throw err
       }
     })
   )
