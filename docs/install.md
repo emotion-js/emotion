@@ -16,7 +16,8 @@ npm install --save emotion
 
 To use it, import what you need, for example use [css](/docs/css.md) to create class names with styles.
 
-```jsx live
+```jsx
+// @live
 import { css } from 'emotion'
 
 const className = css`
@@ -24,9 +25,7 @@ const className = css`
 `
 
 const SomeComponent = ({ children }) => (
-  <div className={className}>
-    Some hotpink text.{children}
-  </div>
+  <div className={className}>Some hotpink text.{children}</div>
 )
 
 const anotherClassName = css({
@@ -34,9 +33,7 @@ const anotherClassName = css({
 })
 
 const AnotherComponent = () => (
-  <div className={anotherClassName}>
-    Some text with an underline.
-  </div>
+  <div className={anotherClassName}>Some text with an underline.</div>
 )
 render(
   <SomeComponent>
@@ -56,7 +53,9 @@ yarn add react-emotion
 # Preact
 yarn add preact-emotion
 ```
+
 or if you prefer npm
+
 ```bash
 # React
 npm install --save react-emotion
@@ -68,7 +67,8 @@ npm install --save preact-emotion
 
 > All APIs from `emotion` are also exported by the `react-emotion` package.
 
-```jsx live
+```jsx
+// @live
 // change this import to preact-emotion
 // if you're using Preact
 import styled, { css } from 'react-emotion'
@@ -77,9 +77,7 @@ const Button = styled('button')`
   color: hotpink;
 `
 
-render(
-  <Button>This is a hotpink button.</Button>
-)
+render(<Button>This is a hotpink button.</Button>)
 ```
 
 ## With [`babel-plugin-emotion`](/packages/babel-plugin-emotion)
@@ -93,12 +91,12 @@ Emotion has an optional [Babel](https://babeljs.io/) plugin that optimizes style
 ```bash
 yarn add babel-plugin-emotion
 ```
+
 or if you prefer npm
+
 ```bash
 npm install --save babel-plugin-emotion
 ```
-
-
 
 ## .babelrc
 
@@ -116,10 +114,7 @@ If you are using Babel's env option emotion must also be first for each environm
 {
   "env": {
     "production": {
-      "plugins": [
-        "emotion",
-        ...otherBabelPlugins
-      ]
+      "plugins": ["emotion", ...otherBabelPlugins]
     }
   },
   "plugins": ["emotion"]
@@ -135,11 +130,8 @@ If you are using Babel's env option emotion must also be first for each environm
       "plugins": [["emotion", { "hoist": true }]]
     },
     "development": {
-      "plugins": [
-        ["emotion", { "sourceMap": true, "autoLabel": true }]
-      ]
+      "plugins": [["emotion", { "sourceMap": true, "autoLabel": true }]]
     }
   }
 }
 ```
-

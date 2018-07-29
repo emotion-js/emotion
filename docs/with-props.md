@@ -6,7 +6,8 @@ Sometimes it's useful to create components that already have props applied, like
 
 **[`withProps` documentation](https://github.com/acdlite/recompose/blob/master/docs/API.md#withprops)**
 
-```jsx live
+```jsx
+// @live
 import withProps from 'recompose/withProps'
 
 const RedPasswordInput = withProps({

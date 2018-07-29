@@ -8,7 +8,8 @@ title: "Styled Components"
 
 `styled` is very similar to `css` except you call it with an html tag or React/Preact component and then call that with a template literal for string styles or a regular function call for object styles.
 
-```jsx live
+```jsx
+// @live
 import styled from 'react-emotion'
 
 const Button = styled('button')`
@@ -22,12 +23,12 @@ render(<Button>This my button component.</Button>)
 
 Any interpolations or arguments that are functions in `styled` are called with `props`, this allows you to change the styles of a component based on the props.
 
-```jsx live
+```jsx
+// @live
 import styled from 'react-emotion'
 
 const Button = styled('button')`
-  color: ${props =>
-    props.primary ? 'hotpink' : 'turquoise'};
+  color: ${props => (props.primary ? 'hotpink' : 'turquoise')};
 `
 
 const Container = styled('div')(props => ({
@@ -37,12 +38,8 @@ const Container = styled('div')(props => ({
 
 render(
   <Container column>
-    <Button>
-      This is a regular button.
-    </Button>
-    <Button primary>
-      This is a primary button.
-    </Button>
+    <Button>This is a regular button.</Button>
+    <Button primary>This is a primary button.</Button>
   </Container>
 )
 ```
@@ -51,11 +48,10 @@ render(
 
 `styled` can style any component as long as it accepts a `className` prop.
 
-```jsx live
+```jsx
+// @live
 import styled from 'react-emotion'
-const Basic = ({ className }) => (
-  <div className={className}>Some text</div>
-)
+const Basic = ({ className }) => <div className={className}>Some text</div>
 
 const Fancy = styled(Basic)`
   color: hotpink;
@@ -64,12 +60,12 @@ const Fancy = styled(Basic)`
 render(<Fancy />)
 ```
 
-
 ### Change the rendered tag using `withComponent`
 
 Sometimes you want to create some styles with one component but then use those styles again with another component, the `withComponent` method can be used for this. This was inspired by [styled-components' `withComponent`](https://www.styled-components.com/docs/api#withcomponent).
 
-```jsx live
+```jsx
+// @live
 // Create a section element
 const Section = styled('section')`
   background: #333;

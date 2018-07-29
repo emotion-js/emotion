@@ -8,7 +8,8 @@ Writing styles with objects is a powerful pattern built directly into the core o
 
 #### With `css`
 
-```jsx live
+```jsx
+// @live
 import { css } from 'emotion'
 
 const className = css({
@@ -16,36 +17,33 @@ const className = css({
   backgroundColor: 'lightgray'
 })
 
-render(
-  <div className={className}>
-    This is darkorchid.
-  </div>
-)
+render(<div className={className}>This is darkorchid.</div>)
 ```
 
 #### With `styled`
 
 `styled` is a thin wrapper around `css` and accepts the same arguments. [More ways to use `styled` can be found here](/docs/styled.md).
 
-```jsx live
+```jsx
+// @live
 import styled from 'react-emotion'
 
-const Button = styled('button')({
-  color: 'darkorchid'
-}, (props) => ({
-  fontSize: props.fontSize
-}))
-
-render(
-  <Button fontSize={16}>
-    This is a darkorchid button.
-  </Button>
+const Button = styled('button')(
+  {
+    color: 'darkorchid'
+  },
+  props => ({
+    fontSize: props.fontSize
+  })
 )
+
+render(<Button fontSize={16}>This is a darkorchid button.</Button>)
 ```
 
 ### Child Selectors
 
-```jsx live
+```jsx
+// @live
 import { css } from 'emotion'
 
 const className = css({
@@ -57,16 +55,15 @@ const className = css({
 
 render(
   <div className={className}>
-    This is darkorchid.<div className="name">
-      This is orange
-    </div>
+    This is darkorchid.<div className="name">This is orange</div>
   </div>
 )
 ```
 
 ### Media Queries
 
-```jsx live
+```jsx
+// @live
 import { css } from 'emotion'
 
 const className = css({
@@ -78,8 +75,7 @@ const className = css({
 
 render(
   <div className={className}>
-    This is orange on a big screen and
-    darkorchid on a small screen.
+    This is orange on a big screen and darkorchid on a small screen.
   </div>
 )
 ```
@@ -88,7 +84,8 @@ render(
 
 When numbers are the value of a css property, `px` is appended to the number unless it is a css property that is unitless.
 
-```jsx live
+```jsx
+// @live
 import { css } from 'emotion'
 
 const className = css({
@@ -97,16 +94,14 @@ const className = css({
 })
 
 render(
-  <div className={className}>
-    This has 8px of padding and a
-    z-index of 200.
-  </div>
+  <div className={className}>This has 8px of padding and a z-index of 200.</div>
 )
 ```
 
 ### Multiple Arguments
 
-```jsx live
+```jsx
+// @live
 import { css } from 'emotion'
 
 const className = css(
@@ -123,8 +118,7 @@ const className = css(
 
 render(
   <div className={className}>
-    This is darkorchid with a hotpink background
-    and 8px of padding.
+    This is darkorchid with a hotpink background and 8px of padding.
   </div>
 )
 ```
@@ -133,7 +127,8 @@ render(
 
 Nested arrays are flattened.
 
-```jsx live
+```jsx
+// @live
 import { css } from 'emotion'
 
 const className = css([
@@ -150,8 +145,7 @@ const className = css([
 
 render(
   <div className={className}>
-    This is darkorchid with a hotpink background
-    and 8px of padding.
+    This is darkorchid with a hotpink background and 8px of padding.
   </div>
 )
 ```
@@ -160,7 +154,8 @@ render(
 
 Define fallback values for browsers that don't support features with arrays.
 
-```jsx live
+```jsx
+// @live
 import { css } from 'emotion'
 
 const className = css({
@@ -180,7 +175,8 @@ render(
 
 [Learn more composition in Emotion](/docs/composition.md).
 
-```jsx live
+```jsx
+// @live
 import { css } from 'emotion'
 
 const hotpink = css({
@@ -196,26 +192,18 @@ const hotpinkWithBlackBackground = css(
     backgroundColor: 'black',
     color: 'green'
   },
-  hotpink,
+  hotpink
 )
 
 render(
   <div>
-    <p className={hotpink}>
-      This is hotpink
-    </p>
-    <button
-      className={hotpinkHoverOrFocus}>
+    <p className={hotpink}>This is hotpink</p>
+    <button className={hotpinkHoverOrFocus}>
       This is hotpink on hover or focus
     </button>
-    <p
-      className={
-        hotpinkWithBlackBackground
-      }>
-      This has a black background and
-      is hotpink. Try moving where
-      hotpink is in the css call and
-      see if the color changes.
+    <p className={hotpinkWithBlackBackground}>
+      This has a black background and is hotpink. Try moving where hotpink is in
+      the css call and see if the color changes.
     </p>
   </div>
 )

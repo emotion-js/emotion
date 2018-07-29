@@ -23,7 +23,8 @@ title: "cx"
 
 ##### Combining emotion generated class names
 
-```jsx live
+```jsx
+// @live
 import { cx, css } from 'emotion'
 
 const cls1 = css`
@@ -51,7 +52,8 @@ This renders a `div` with a single class name and the following styles would be 
 
 If the order of the class names is reversed in the `cx` call the styles would change precedence.
 
-```jsx live
+```jsx
+// @live
 import { cx, css } from 'emotion'
 
 const cls1 = css`
@@ -79,7 +81,8 @@ The div will now have a **green** background even though `cls2` was inserted int
 
 ##### Combining emotion generated class names and custom class names.
 
-```jsx live
+```jsx
+// @live
 import { cx, css } from 'emotion'
 
 const cls1 = css`
@@ -105,16 +108,15 @@ const cls4 = css`
 const foo = true
 const bar = false
 
-
-render(<div
-  className={cx(
-    { [cls1]: foo },
-    { [cls2]: bar },
-    () => 'modal',
-    'profile',
-    [[cls3, [cls4]]]
-  )}
->Some content</div>)
+render(
+  <div
+    className={cx({ [cls1]: foo }, { [cls2]: bar }, () => 'modal', 'profile', [
+      [cls3, [cls4]]
+    ])}
+  >
+    Some content
+  </div>
+)
 ```
 
 Output:

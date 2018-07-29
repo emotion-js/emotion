@@ -1,9 +1,11 @@
 ---
 title: "Labels"
 ---
+
 `css` accepts a css property called `label` that will be appended to the end of the class name so it's more readable. `babel-plugin-emotion`'s `autoLabel` option will add these labels automatically based on the variable name and other information so you don't need to manually specify them.
 
 ```jsx live
+// @live
 import { css } from 'emotion'
 
 const className = css`
