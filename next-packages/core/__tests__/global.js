@@ -17,6 +17,9 @@ test('basic', () => {
       styles={{
         html: {
           backgroundColor: 'hotpink'
+        },
+        '@font-face': {
+          fontFamily: 'some-name'
         }
       }}
     />,

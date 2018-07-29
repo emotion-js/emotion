@@ -1,5 +1,5 @@
 // @flow
-export * from './context'
+export { withCSSContext, Provider } from './context'
 export { jsx } from './jsx'
 export { Global } from './global'
 export { keyframes } from './keyframes'

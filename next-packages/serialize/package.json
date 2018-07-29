@@ -1,6 +1,6 @@
 {
   "name": "@emotion/serialize",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "serialization utils for emotion",
   "main": "dist/serialize.cjs.js",
   "module": "dist/serialize.esm.js",
@@ -13,7 +13,7 @@
     "@emotion/hash": "^0.6.5",
     "@emotion/memoize": "^0.6.5",
     "@emotion/unitless": "^0.6.5",
-    "@emotion/utils": "^0.7.3"
+    "@emotion/utils": "^0.8.0"
   },
   "files": [
     "src",

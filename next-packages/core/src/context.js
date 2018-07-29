@@ -1,11 +1,11 @@
 // @flow
-import { shouldSerializeToReactTree, type CSSContextType } from '@emotion/utils'
+import { isBrowser, type CSSContextType } from '@emotion/utils'
 import * as React from 'react'
 import createCache from '@emotion/cache'
 
-export const CSSContext = React.createContext(
-  shouldSerializeToReactTree ? null : createCache()
-)
+let CSSContext = React.createContext(isBrowser ? createCache() : null)
+
+export let Provider = CSSContext.Provider
 
 let withCSSContext = function withCSSContext<Props>(
   func: (props: Props, context: CSSContextType) => React.Node
@@ -33,7 +33,7 @@ let consume = (func: CSSContextType => React.Node) => {
   )
 }
 
-if (shouldSerializeToReactTree) {
+if (!isBrowser) {
   class BasicProvider extends React.Component<
     { children: CSSContextType => React.Node },
     { value: CSSContextType }
@@ -42,7 +42,10 @@ if (shouldSerializeToReactTree) {
     render() {
       return (
         <CSSContext.Provider {...this.state}>
-          {this.props.children(this.state.value)}
+          {process.env.PREACT
+            ? // $FlowFixMe
+              this.props.children[0](this.state.value)
+            : this.props.children(this.state.value)}
         </CSSContext.Provider>
       )
     }

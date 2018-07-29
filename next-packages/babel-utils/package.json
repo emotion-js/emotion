@@ -1,6 +1,6 @@
 {
   "name": "@emotion/babel-utils",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "description": "Internal Babel utils used in various macros",
   "main": "dist/babel-utils.cjs.js",
   "module": "dist/babel-utils.esm.js",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@emotion/hash": "^0.6.5",
     "@emotion/memoize": "^0.6.5",
-    "@emotion/serialize": "^0.8.5",
+    "@emotion/serialize": "^0.8.6",
     "convert-source-map": "^1.5.1",
     "find-root": "^1.1.0",
     "source-map": "^0.7.2"

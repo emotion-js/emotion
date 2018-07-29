@@ -1,6 +1,6 @@
 // @flow
 /* eslint-env jest */
 import 'raf/polyfill'
-import serializer from '@emotion/snapshot-serializer'
+import prettyCSS from './pretty-css'
 
-expect.addSnapshotSerializer(serializer)
+expect.addSnapshotSerializer(prettyCSS)

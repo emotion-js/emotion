@@ -1,13 +1,14 @@
 {
   "name": "jest-emotion",
-  "version": "9.2.6",
+  "version": "9.2.7",
   "description": "Jest utilities for emotion",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
     "dist",
-    "types"
+    "types",
+    "serializer.js"
   ],
   "scripts": {
     "test:typescript": "dtslint types"

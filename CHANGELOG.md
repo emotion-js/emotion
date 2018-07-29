@@ -1,3 +1,37 @@
+## v9.2.7 (2018-07-29)
+
+#### :rocket: Enhancement
+
+- `native`, `primitives-core`, `primitives`
+  - [#759](https://github.com/emotion-js/emotion/pull/759) Emotion Native. ([@nitin42](https://github.com/nitin42))
+- `jest-emotion`
+  - [#777](https://github.com/emotion-js/emotion/pull/777) add serializer file. ([@kentcdodds](https://github.com/kentcdodds))
+
+#### Committers: 4
+
+- Billy Vong ([billyvg](https://github.com/billyvg))
+- Kent C. Dodds ([kentcdodds](https://github.com/kentcdodds))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+- Nitin Tulswani ([nitin42](https://github.com/nitin42))
+
+## v9.2.6 (2018-07-15)
+
+#### :rocket: Enhancement
+
+- `create-emotion`
+  - [#751](https://github.com/emotion-js/emotion/pull/751) classnames also accept undefined as value. ([@pasix](https://github.com/pasix))
+
+#### :bug: Bug Fix
+
+- `create-emotion`, `emotion`
+  - [#695](https://github.com/emotion-js/emotion/pull/695) Generate the same class names for server and client if source maps are different. ([@mgroenhoff](https://github.com/mgroenhoff))
+
+#### Committers: 2
+
+- Iacopo ([pasix](https://github.com/pasix))
+- Melvin Groenhoff ([mgroenhoff](https://github.com/mgroenhoff))
+- Mitchell Hamilton ([mitchellhamilton](https://github.com/mitchellhamilton))
+
 ## v9.2.5 (2018-07-07)
 
 #### :rocket: Enhancement

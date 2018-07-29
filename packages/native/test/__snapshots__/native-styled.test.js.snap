@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Emotion native styled primitive should work with \`withComponent\` 1`] = `
+<Text
+  decor="hotpink"
+  style={
+    Object {
+      "color": "hotpink",
+    }
+  }
+>
+  Mike
+</Text>
+`;
+
+exports[`Emotion native styled should pass props in withComponent 1`] = `
+<View
+  color="green"
+  style={
+    Object {
+      "backgroundColor": "green",
+    }
+  }
+/>
+`;
+
+exports[`Emotion native styled should pass props in withComponent 2`] = `
+<Text
+  color="hotpink"
+  style={
+    Object {
+      "backgroundColor": "hotpink",
+    }
+  }
+/>
+`;
+
+exports[`Emotion native styled should render <Image /> 1`] = `
+<Image
+  source={
+    Object {
+      "height": 150,
+      "uri": "https://camo.githubusercontent.com/209bdea972b9b6ef90220c59ecbe66d35ffefa8a/68747470733a2f2f63646e2e7261776769742e636f6d2f746b6834342f656d6f74696f6e2f6d61737465722f656d6f74696f6e2e706e67",
+      "width": 150,
+    }
+  }
+  style={
+    Object {
+      "borderBottomLeftRadius": 2,
+      "borderBottomRightRadius": 2,
+      "borderTopLeftRadius": 2,
+      "borderTopRightRadius": 2,
+    }
+  }
+/>
+`;
+
+exports[`Emotion native styled should render primitive with style prop 1`] = `
+<Text
+  style={
+    Object {
+      "color": "hotpink",
+      "padding": 10,
+    }
+  }
+>
+  Emotion primitives
+</Text>
+`;
+
+exports[`Emotion native styled should render the primitive on changing the props 1`] = `
+<Text
+  decor="hotpink"
+  style={
+    Object {
+      "color": "hotpink",
+      "padding": "20px",
+    }
+  }
+>
+  Emotion Primitives
+</Text>
+`;
+
+exports[`Emotion native styled should render the primitive when styles applied using object style notation 1`] = `
+<Text
+  back="red"
+  style={
+    Object {
+      "backgroundColor": "red",
+      "color": "red",
+      "fontSize": 40,
+    }
+  }
+>
+  Emotion Primitives
+</Text>
+`;
+
+exports[`Emotion native styled should style any other component 1`] = `
+<Text
+  style={
+    Object {
+      "color": "hotpink",
+    }
+  }
+>
+  Hello World
+</Text>
+`;
+
+exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
+<Text
+  style={
+    Object {
+      "color": "red",
+      "fontSize": 10,
+    }
+  }
+>
+  Emotion primitives
+</Text>
+`;
+
+exports[`Emotion native styled should work with emotion-theming 1`] = `
+<Text
+  style={
+    Object {
+      "color": "magenta",
+    }
+  }
+>
+  Hello World
+</Text>
+`;

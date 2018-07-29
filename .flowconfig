@@ -13,6 +13,8 @@
 
 [declarations]
 .*/node_modules/polished/.*
+.*/node_modules/react-native/.*
+
 
 [options]
 suppress_comment=.*\\$FlowFixMe
