@@ -18,16 +18,44 @@ const makeExternalPredicate = externalArr => {
 
 let unsafeRequire = require
 
-function getChildPeerDeps(finalPeerDeps, depKeys) {
+let pkgJsonsAllowedToFail = [
+  // the package.json can't be found for this package on ci so for now,
+  // we're just going to ignore it
+  // TODO: investigate why it fails
+  'nopt'
+]
+
+function getChildPeerDeps(
+  finalPeerDeps /*: Array<string> */,
+  isUMD /*: boolean */,
+  depKeys /*: Array<string> */
+) {
   depKeys.forEach(key => {
-    const pkgJson = unsafeRequire(key + '/package.json')
+    let pkgJson
+    try {
+      pkgJson = unsafeRequire(key + '/package.json')
+    } catch (err) {
+      if (
+        err.code === 'MODULE_NOT_FOUND' &&
+        pkgJsonsAllowedToFail.includes(key)
+      ) {
+        return
+      }
+      throw err
+    }
     if (pkgJson.peerDependencies) {
       finalPeerDeps.push(...Object.keys(pkgJson.peerDependencies))
-      getChildPeerDeps(finalPeerDeps, Object.keys(pkgJson.peerDependencies))
+      getChildPeerDeps(
+        finalPeerDeps,
+        isUMD,
+        Object.keys(pkgJson.peerDependencies)
+      )
     }
-    // if (pkgJson.dependencies) {
-    //   getChildPeerDeps(finalPeerDeps, Object.keys(pkgJson.dependencies))
-    // }
+    // when we're building a UMD bundle, we're also bundling the dependencies so we need
+    // to get the peerDependencies of dependencies
+    if (pkgJson.dependencies && isUMD) {
+      getChildPeerDeps(finalPeerDeps, isUMD, Object.keys(pkgJson.dependencies))
+    }
   })
 }
 
@@ -51,7 +79,13 @@ module.exports = (
   if (pkg.dependencies && !isUMD) {
     external.push(...Object.keys(pkg.dependencies))
   }
-  getChildPeerDeps(external, external)
+  getChildPeerDeps(
+    external,
+    isUMD,
+    external.concat(
+      isUMD && pkg.dependencies ? Object.keys(pkg.dependencies) : []
+    )
+  )
   external.push('fs', 'path')
   if (data.name === 'react-emotion' || data.name === 'preact-emotion') {
     external = external.filter(name => name !== 'emotion')
@@ -62,6 +96,9 @@ module.exports = (
   }
   if (external.includes('@emotion/preact-styled-base')) {
     packageAliases['@emotion/styled-base'] = '@emotion/preact-styled-base'
+  }
+  if (isPreact) {
+    packageAliases['react'] = require.resolve('emotion-react-mock-for-preact')
   }
 
   const config = {
@@ -123,9 +160,7 @@ module.exports = (
       }),
       cjs(),
       (isUMD || isPreact) && alias(packageAliases),
-      isPreact &&
-        alias({ react: require.resolve('emotion-react-mock-for-preact') }),
-      isUMD && resolve(),
+      (isUMD || isPreact) && resolve(),
       replace({
         ...(isUMD ? { 'process.env.NODE_ENV': '"production"' } : {}),
         'process.env.PREACT': isPreact ? 'true' : 'false'

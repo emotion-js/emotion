@@ -17,7 +17,7 @@
   },
   "peerDependencies": {
     "@emotion/preact-core": "0.x.x",
-    "react": "8.x"
+    "preact": "8.x"
   },
   "publishConfig": {
     "access": "public"
