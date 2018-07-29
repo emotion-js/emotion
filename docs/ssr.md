@@ -72,7 +72,7 @@ module.exports = {
 
 ## Puppeteer
 
-If you are using Puppeteer to prerender your application, you have to disable emotion's `speedy` option so that the CSS is rendered into the DOM.
+If you are using Puppeteer to prerender your application, emotion's `speedy` option has to be disabled so that the CSS is rendered into the DOM.
 
 index.js
 
