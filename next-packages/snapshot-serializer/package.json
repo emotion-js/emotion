@@ -1,13 +1,13 @@
 {
   "name": "@emotion/snapshot-serializer",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "A snapshot serializer for jest and emotion",
   "main": "dist/snapshot-serializer.cjs.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/snapshot-serializer",
   "dependencies": {
-    "css": "^2.2.1",
-    "chalk": "^2.4.1"
+    "chalk": "^2.4.1",
+    "css": "^2.2.1"
   },
   "publishConfig": {
     "access": "public"

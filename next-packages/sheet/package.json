@@ -1,6 +1,6 @@
 {
   "name": "@emotion/sheet",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "emotion's stylesheet",
   "main": "dist/sheet.cjs.js",
   "module": "dist/sheet.esm.js",
@@ -14,7 +14,7 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/utils": "^0.7.3"
+    "@emotion/utils": "^0.8.0"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/sheet",
   "publishConfig": {
