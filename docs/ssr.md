@@ -72,19 +72,19 @@ module.exports = {
 
 ## Puppeteer
 
-If you are using Puppeteer to prerender your application, you have to disable emotion's `speedy` option to fully render all needed CSS inside the DOM.
+If you are using Puppeteer to prerender your application, you have to disable emotion's `speedy` option so that the CSS is rendered into the DOM.
 
-index.jsx
+index.js
 
 ```jsx
-// Has to be the first import!
+// This has to be run before emotion inserts any styles so it's imported before the App component
 import './disable-speedy'
 import ReactDOM from 'react-dom'
 import App from './App'
 
 const root = document.getElementById('root')
 
-// Use root to detect if our app is already mounted / if it has been prerendered
+// Check if the root node has any children to detect if the app has been prerendered
 if (root.hasChildNodes()) {
   ReactDOM.hydrate(<App />, root)
 } else {
@@ -97,7 +97,9 @@ disable-speedy.js
 ```js
 import { sheet } from 'emotion'
 
-// Use root to detect if our app is already mounted / if it has been prerendered
+// Check if the root node has any children to detect if the app has been preprendered
+// speedy is disabled when the app is being prerendered so that styles render into the DOM
+// speedy is significantly faster though so it should only be disabled during prerendering
 if (!document.getElementById('root').hasChildNodes()) {
   sheet.speedy(false)
 }
@@ -105,4 +107,4 @@ if (!document.getElementById('root').hasChildNodes()) {
 
 > Note:
 >
-> You need to put the option disabling into it's own file, which is imported before any other operation executes (first line in your entrypoint), because of ES module hoisting.
+> The `sheet.speedy` call has to be run before anything that inserts styles so it has to be put into it's own file that's imported before anything else.
