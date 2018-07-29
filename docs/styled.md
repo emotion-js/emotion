@@ -87,7 +87,8 @@ render(
 
 Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](/packages/babel-plugin-emotion.md).
 
-```jsx live
+```jsx
+// @live
 const Child = styled('div')`
   color: red;
 `
@@ -109,7 +110,8 @@ render(
 
 Component selectors can also be used with object styles.
 
-```jsx live
+```jsx
+// @live
 const Child = styled('div')({
   color: 'red'
 })
@@ -134,7 +136,8 @@ render(
 
 Sometimes you need to get a [ref](https://reactjs.org/docs/refs-and-the-dom.html) but passing `ref` to a styled component will return a ref to the styled component, not the component that it renders which is generally the one you want. You can pass `innerRef` instead of `ref` to get the ref of the component that styled renders.
 
-```jsx live
+```jsx
+// @live
 const Input = styled('input')`
   color: hotpink;
 `
@@ -172,7 +175,8 @@ render(<TextInput />)
 
 Instead of using the function call syntax(`styled('div')`), you can use create components by using a property, where the property refers to an HTML tag(`styled.div`).
 
-```jsx live
+```jsx
+// @live
 const DivWithoutShorthand = styled('div')`
   color: green;
 `
@@ -183,14 +187,16 @@ const DivWithShorthand = styled.div`
 
 render(
   <DivWithoutShorthand>
-    This is green. <DivWithShorthand>This is hotpink.</DivWithShorthand>
+    This is green.{' '}
+    <DivWithShorthand>This is hotpink.</DivWithShorthand>
   </DivWithoutShorthand>
 )
 ```
 
 ### Object styles
 
-```jsx live
+```jsx
+// @live
 import styled from 'react-emotion'
 
 const H1 = styled.h1(
@@ -200,11 +206,7 @@ const H1 = styled.h1(
   props => ({ color: props.color })
 )
 
-render(
-  <H1 color="lightgreen">
-    This is lightgreen.
-  </H1>
-)
+render(<H1 color="lightgreen">This is lightgreen.</H1>)
 ```
 
 This API was inspired by [glamorous](https://github.com/paypal/glamorous).
