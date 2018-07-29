@@ -20,7 +20,8 @@
     "build:site": "lerna exec --scope emotion-site npm run build:site",
     "bootstrap": "lerna bootstrap",
     "flow": "flow check",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "postcommit": "git update-index --again"
   },
   "resolutions": {
     "**/react": "^16.3.2",
