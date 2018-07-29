@@ -6,6 +6,12 @@ exports[`basic 1`] = `
     data-emotion="css-global"
   >
     
+    @font-face{font-family:some-name;}
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
     html{background-color:hotpink;}
   </style>
 </head>

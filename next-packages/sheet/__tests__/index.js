@@ -19,16 +19,16 @@ describe('StyleSheet', () => {
   it('should remove its style elements from the document when flushed', () => {
     const sheet = new StyleSheet()
     sheet.insert(rule)
-    expect(document.querySelector('html')).toMatchSnapshot()
+    expect(document.documentElement).toMatchSnapshot()
     sheet.flush()
-    expect(document.querySelector('html')).toMatchSnapshot()
+    expect(document.documentElement).toMatchSnapshot()
   })
 
   it('should set the data-emotion attribute to the key option', () => {
     const key = 'some-key'
     const sheet = new StyleSheet({ key })
     sheet.insert(rule)
-    expect(document.querySelector('html')).toMatchSnapshot()
+    expect(document.documentElement).toMatchSnapshot()
     expect(
       // $FlowFixMe
       document.querySelector('[data-emotion]').getAttribute('data-emotion')
@@ -39,14 +39,14 @@ describe('StyleSheet', () => {
   it('should insert a rule into the DOM when not in speedy', () => {
     const sheet = new StyleSheet({})
     sheet.insert(rule)
-    expect(document.querySelector('html')).toMatchSnapshot()
+    expect(document.documentElement).toMatchSnapshot()
     sheet.flush()
   })
 
   it('should insert a rule with insertRule when in speedy', () => {
     const sheet = new StyleSheet({ speedy: true })
     sheet.insert(rule)
-    expect(document.querySelector('html')).toMatchSnapshot()
+    expect(document.documentElement).toMatchSnapshot()
     expect(sheet.tags).toHaveLength(1)
     // $FlowFixMe
     expect(sheet.tags[0].sheet.cssRules).toMatchSnapshot()
@@ -85,7 +85,7 @@ describe('StyleSheet', () => {
     const sheet = new StyleSheet({ container })
     expect(sheet.container).toBe(container)
     sheet.insert(rule)
-    expect(document.querySelector('html')).toMatchSnapshot()
+    expect(document.documentElement).toMatchSnapshot()
     expect(sheet.tags).toHaveLength(1)
     expect(sheet.tags[0].parentNode).toBe(container)
     sheet.flush()

@@ -1,6 +1,5 @@
 // @flow
 import transform from 'css-to-react-native'
-import { StyleSheet } from 'react-primitives'
 import { interleave } from './utils'
 
 // this is for handleInterpolation
@@ -72,25 +71,29 @@ function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
   lastType = type
 }
 
-export function css(...args: any) {
-  let vals
+// Use platform specific StyleSheet method for creating the styles.
+// This enables us to use the css``/css({}) in any environment (Native | Sketch | Web)
+export function createCss(StyleSheet: Object) {
+  return function css(...args: any) {
+    let vals
 
-  // these are declared earlier
-  // this is done so we don't create a new
-  // handleInterpolation function on every css call
-  styles = []
-  buffer = ''
-  lastType = undefined
+    // these are declared earlier
+    // this is done so we don't create a new
+    // handleInterpolation function on every css call
+    styles = []
+    buffer = ''
+    lastType = undefined
 
-  if (args[0] == null || args[0].raw === undefined) {
-    vals = args
-  } else {
-    vals = interleave(args)
+    if (args[0] == null || args[0].raw === undefined) {
+      vals = args
+    } else {
+      vals = interleave(args)
+    }
+
+    vals.forEach(handleInterpolation, this)
+
+    return StyleSheet.flatten(styles)
   }
-
-  vals.forEach(handleInterpolation, this)
-
-  return StyleSheet.flatten(styles)
 }
 
 let propertyValuePattern = /\s*([^\s]+)\s*:\s*(.+?)\s*$/

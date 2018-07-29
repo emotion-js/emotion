@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`throws correct error with invalid key 1`] = `"Emotion key must only contain lower case alphabetical characters and - but \\".\\" was passed"`;

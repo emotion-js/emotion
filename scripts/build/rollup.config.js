@@ -5,7 +5,6 @@ const babel = require('rollup-plugin-babel')
 const alias = require('rollup-plugin-alias')
 const cjs = require('rollup-plugin-commonjs')
 const replace = require('rollup-plugin-replace')
-const path = require('path')
 const lernaAliases = require('lerna-alias').rollup
 
 // this makes sure nested imports of external packages are external
@@ -19,16 +18,44 @@ const makeExternalPredicate = externalArr => {
 
 let unsafeRequire = require
 
-function getChildPeerDeps(finalPeerDeps, depKeys) {
+let pkgJsonsAllowedToFail = [
+  // the package.json can't be found for this package on ci so for now,
+  // we're just going to ignore it
+  // TODO: investigate why it fails
+  'nopt'
+]
+
+function getChildPeerDeps(
+  finalPeerDeps /*: Array<string> */,
+  isUMD /*: boolean */,
+  depKeys /*: Array<string> */
+) {
   depKeys.forEach(key => {
-    const pkgJson = unsafeRequire(key + '/package.json')
+    let pkgJson
+    try {
+      pkgJson = unsafeRequire(key + '/package.json')
+    } catch (err) {
+      if (
+        err.code === 'MODULE_NOT_FOUND' &&
+        pkgJsonsAllowedToFail.includes(key)
+      ) {
+        return
+      }
+      throw err
+    }
     if (pkgJson.peerDependencies) {
       finalPeerDeps.push(...Object.keys(pkgJson.peerDependencies))
-      getChildPeerDeps(finalPeerDeps, Object.keys(pkgJson.peerDependencies))
+      getChildPeerDeps(
+        finalPeerDeps,
+        isUMD,
+        Object.keys(pkgJson.peerDependencies)
+      )
     }
-    // if (pkgJson.dependencies) {
-    //   getChildPeerDeps(finalPeerDeps, Object.keys(pkgJson.dependencies))
-    // }
+    // when we're building a UMD bundle, we're also bundling the dependencies so we need
+    // to get the peerDependencies of dependencies
+    if (pkgJson.dependencies && isUMD) {
+      getChildPeerDeps(finalPeerDeps, isUMD, Object.keys(pkgJson.dependencies))
+    }
   })
 }
 
@@ -40,8 +67,9 @@ module.exports = (
   data /*: Package */,
   {
     isUMD = false,
-    isBrowser = false
-  } /*: { isUMD:boolean, isBrowser:boolean } */ = {}
+    isBrowser = false,
+    isPreact = false
+  } /*: { isUMD:boolean, isBrowser:boolean, isPreact:boolean } */ = {}
 ) => {
   const { pkg } = data
   let external = []
@@ -51,14 +79,30 @@ module.exports = (
   if (pkg.dependencies && !isUMD) {
     external.push(...Object.keys(pkg.dependencies))
   }
-  getChildPeerDeps(external, external)
+  getChildPeerDeps(
+    external,
+    isUMD,
+    external.concat(
+      isUMD && pkg.dependencies ? Object.keys(pkg.dependencies) : []
+    )
+  )
   external.push('fs', 'path')
   if (data.name === 'react-emotion' || data.name === 'preact-emotion') {
     external = external.filter(name => name !== 'emotion')
   }
+  let packageAliases = lernaAliases()
+  if (external.includes('@emotion/preact-core')) {
+    packageAliases['@emotion/core'] = '@emotion/preact-core'
+  }
+  if (external.includes('@emotion/preact-styled-base')) {
+    packageAliases['@emotion/styled-base'] = '@emotion/preact-styled-base'
+  }
+  if (isPreact) {
+    packageAliases['react'] = require.resolve('emotion-react-mock-for-preact')
+  }
 
   const config = {
-    input: path.resolve(data.path, 'src', 'index.js'),
+    input: data.input,
     external: makeExternalPredicate(external),
     plugins: [
       babel({
@@ -99,19 +143,9 @@ module.exports = (
                           if (path.node.id.name === 'isBrowser') {
                             path.get('init').replaceWith(t.booleanLiteral(true))
                           }
-                          if (
-                            path.node.id.name === 'shouldSerializeToReactTree'
-                          ) {
-                            path
-                              .get('init')
-                              .replaceWith(t.booleanLiteral(false))
-                          }
                         }
                       },
                       ReferencedIdentifier(path, node) {
-                        if (path.node.name === 'shouldSerializeToReactTree') {
-                          path.replaceWith(t.booleanLiteral(false))
-                        }
                         if (path.node.name === 'isBrowser') {
                           path.replaceWith(t.booleanLiteral(true))
                         }
@@ -125,9 +159,12 @@ module.exports = (
         babelrc: false
       }),
       cjs(),
-      isUMD && alias(lernaAliases()),
-      isUMD && resolve(),
-      isUMD && replace({ 'process.env.NODE_ENV': '"production"' }),
+      (isUMD || isPreact) && alias(packageAliases),
+      (isUMD || isPreact) && resolve(),
+      replace({
+        ...(isUMD ? { 'process.env.NODE_ENV': '"production"' } : {}),
+        'process.env.PREACT': isPreact ? 'true' : 'false'
+      }),
       isUMD && uglify()
     ].filter(Boolean)
   }

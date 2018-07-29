@@ -29,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "7.0.0-beta.51",
     "@babel/plugin-external-helpers": "7.0.0-beta.51",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.51",
     "@babel/preset-env": "7.0.0-beta.51",
     "@babel/preset-flow": "7.0.0-beta.51",
     "@babel/preset-react": "7.0.0-beta.51",
@@ -57,6 +58,7 @@
     "enzyme-adapter-react-16": "^1.0.4",
     "enzyme-to-json": "^3.2.1",
     "eslint": "^4.5.0",
+    "eslint-plugin-flowtype": "^2.50.0",
     "eslint-config-prettier": "^2.3.0",
     "eslint-config-react": "^1.1.7",
     "eslint-config-standard": "^10.2.1",
@@ -81,6 +83,8 @@
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
+    "preact": "^8.2.9",
+    "preact-render-to-json": "^3.6.6",
     "prettier": "1.10.2",
     "raf": "^3.4.0",
     "react": "^16.3.2",
@@ -113,7 +117,8 @@
       "prettier/react"
     ],
     "plugins": [
-      "prettier"
+      "prettier",
+      "flowtype"
     ],
     "parser": "babel-eslint",
     "rules": {
@@ -123,7 +128,8 @@
       "standard/computed-property-even-spacing": 0,
       "no-template-curly-in-string": 0,
       "camelcase": 0,
-      "import/no-duplicates": 0
+      "import/no-duplicates": 0,
+      "flowtype/define-flow-type": 2
     },
     "env": {
       "browser": true

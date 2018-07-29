@@ -6,8 +6,6 @@ import type {
 } from './types'
 
 export const isBrowser = typeof document !== 'undefined'
-export const shouldSerializeToReactTree =
-  !isBrowser || process.env.NODE_ENV === 'test'
 
 export function getRegisteredStyles(
   registered: RegisteredCache,
@@ -54,7 +52,7 @@ export const insertStyles = (
     )
     context.inserted[insertable.name] = true
 
-    if (shouldSerializeToReactTree) {
+    if (!isBrowser) {
       let joinedRules = rules.join('')
       if (context.compat === undefined) {
         // in regular mode, we don't set the styles on the inserted cache

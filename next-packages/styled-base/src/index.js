@@ -10,12 +10,14 @@ import {
   type CreateStyled
 } from './utils'
 import { withCSSContext } from '@emotion/core'
-import {
-  getRegisteredStyles,
-  insertStyles,
-  shouldSerializeToReactTree
-} from '@emotion/utils'
+import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
+
+type StyledComponent = (
+  props: *
+) => React.Node & {
+  withComponent(nextTag: ElementType, nextOptions?: StyledOptions): *
+}
 
 let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -53,7 +55,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         : testOmitPropsOnComponent
   }
 
-  return function() {
+  return function(): StyledComponent {
     let args = arguments
     let styles =
       isReal && tag.__emotion_styles !== undefined
@@ -73,7 +75,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       }
     }
 
-    const Styled = withCSSContext((props, context) => {
+    const Styled: any = withCSSContext((props, context) => {
       let className = ''
       let classInterpolations = []
       let mergedProps = pickAssign(testAlwaysTrue, {}, props, {
@@ -105,7 +107,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
           ref: props.innerRef
         })
       )
-      if (shouldSerializeToReactTree && rules !== undefined) {
+      if (!isBrowser && rules !== undefined) {
         return (
           <React.Fragment>
             <style
@@ -130,17 +132,19 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               ? baseTag
               : baseTag.displayName || baseTag.name || 'Component'
           })`
-
-    // $FlowFixMe
-    const FinalStyled = React.forwardRef((props, ref) => {
-      if (ref === null) {
-        // this avoids creating a new object if there's no ref
-        return <Styled {...props} />
-      }
-      return (
-        <Styled {...pickAssign(testAlwaysTrue, { innerRef: ref }, props)} />
-      )
-    })
+    let FinalStyled = process.env.PREACT
+      ? Styled
+      : // $FlowFixMe
+        React.forwardRef((props, ref) => {
+          // this avoids creating a new object if there's no ref
+          return (
+            <Styled
+              {...(ref === null
+                ? props
+                : pickAssign(testAlwaysTrue, { innerRef: ref }, props))}
+            />
+          )
+        })
 
     FinalStyled.__emotion_real = FinalStyled
     FinalStyled.__emotion_base = baseTag
