@@ -73,3 +73,42 @@ module.exports = {
   plugins: [...otherGatsbyPlugins, 'gatsby-plugin-emotion']
 }
 ```
+
+## Puppeteer
+
+If you are using Puppeteer to prerender your application, emotion's `speedy` option has to be disabled so that the CSS is rendered into the DOM.
+
+index.js
+
+```jsx
+// This has to be run before emotion inserts any styles so it's imported before the App component
+import './disable-speedy'
+import ReactDOM from 'react-dom'
+import App from './App'
+
+const root = document.getElementById('root')
+
+// Check if the root node has any children to detect if the app has been prerendered
+if (root.hasChildNodes()) {
+  ReactDOM.hydrate(<App />, root)
+} else {
+  ReactDOM.render(<App />, root)
+}
+```
+
+disable-speedy.js
+
+```js
+import { sheet } from 'emotion'
+
+// Check if the root node has any children to detect if the app has been preprendered
+// speedy is disabled when the app is being prerendered so that styles render into the DOM
+// speedy is significantly faster though so it should only be disabled during prerendering
+if (!document.getElementById('root').hasChildNodes()) {
+  sheet.speedy(false)
+}
+```
+
+> Note:
+>
+> The `sheet.speedy` call has to be run before anything that inserts styles so it has to be put into it's own file that's imported before anything else.
