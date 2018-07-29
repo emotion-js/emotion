@@ -72,10 +72,6 @@ module.exports = (
   if (data.name === 'react-emotion' || data.name === 'preact-emotion') {
     external = external.filter(name => name !== 'emotion')
   }
-  if (data.name === '@emotion/styled' && isUMD) {
-    debugger // eslint-disable-line
-  }
-  // console.log({ external, isUMD, isBrowser, isPreact })
   let packageAliases = lernaAliases()
   if (external.includes('@emotion/preact-core')) {
     packageAliases['@emotion/core'] = '@emotion/preact-core'
