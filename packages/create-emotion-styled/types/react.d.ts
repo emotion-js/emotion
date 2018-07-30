@@ -44,37 +44,37 @@ export type StyledComponent<Props extends object, InnerProps extends object, The
   | StyledOtherComponent<Props, InnerProps, Theme>
   ;
 
-export interface CreateStyledStatelessComponent<InnerProps extends object, Theme extends object> {
-  <Props extends object, OverridedTheme extends object = Theme>(
-    ...args: Array<Interpolation<Themed<Props, OverridedTheme>>>
-  ): StyledStatelessComponent<Props, InnerProps, OverridedTheme>;
+export interface CreateStyledStatelessComponent<Props extends object, InnerProps extends object, Theme extends object> {
+  <P extends object = Props, OverridedTheme extends object = Theme>(
+    ...args: Array<Interpolation<Themed<P, OverridedTheme>>>
+  ): StyledStatelessComponent<P, InnerProps, OverridedTheme>;
 }
 
-export interface CreateStyledOtherComponent<InnerProps extends object, Theme extends object> {
-  <Props extends object, OverridedTheme extends object = Theme>(
-    ...args: Array<Interpolation<Themed<Props, OverridedTheme>>>
-  ): StyledOtherComponent<Props, InnerProps, OverridedTheme>;
+export interface CreateStyledOtherComponent<Props extends object, InnerProps extends object, Theme extends object> {
+  <P extends object = Props, OverridedTheme extends object = Theme>(
+    ...args: Array<Interpolation<Themed<P, OverridedTheme>>>
+  ): StyledOtherComponent<P, InnerProps, OverridedTheme>;
 }
 
 export interface CreateStyledFunction<Theme extends object> {
-  <T extends keyof JSX.IntrinsicElements>(
+  <P extends object, T extends keyof JSX.IntrinsicElements>(
     tag: T,
     options?: StyledOptions,
-  ): CreateStyledOtherComponent<JSX.IntrinsicElements[T], Theme>;
+  ): CreateStyledOtherComponent<P & JSX.IntrinsicElements[T], JSX.IntrinsicElements[T], Theme>;
 
-  <IP extends object>(
+  <P extends object, IP extends object>(
     component: SFC<IP>,
     options?: StyledOptions,
-  ): CreateStyledStatelessComponent<IP, Theme>;
+  ): CreateStyledStatelessComponent<P & IP, IP, Theme>;
 
-  <IP extends object>(
+  <P extends object, IP extends object>(
     component: ComponentClass<IP> | ComponentType<IP>,
     options?: StyledOptions,
-  ): CreateStyledOtherComponent<IP, Theme>;
+  ): CreateStyledOtherComponent<P & IP, IP, Theme>;
 }
 
 export type CreateStyledShorthands<Theme extends object> = {
-  [T in keyof JSX.IntrinsicElements]: CreateStyledOtherComponent<JSX.IntrinsicElements[T], Theme>;
+  [T in keyof JSX.IntrinsicElements]: CreateStyledOtherComponent<JSX.IntrinsicElements[T], JSX.IntrinsicElements[T], Theme>;
 };
 
 export interface CreateStyled<Theme extends object = any>

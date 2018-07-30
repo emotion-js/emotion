@@ -3,6 +3,7 @@
     "rules": {
         "array-type": [true, "generic"],
         "callable-types": false,
-        "no-relative-import-in-test": false
+        "no-relative-import-in-test": false,
+        "no-unnecessary-generics": false
     }
 }

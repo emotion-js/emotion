@@ -50,15 +50,15 @@ const TestFunComp1 = (props: TestFunProps1) => (
   </div>
 );
 
-const StyledClassComp0 = createStyled(TestClassComp)({
+const StyledClassComp0 = createStyled(TestClassComp)<{}>({
   width: '200px',
 }, (props) => ({
   height: props.theme.long ? '200px' : '100px',
 }));
 
-const StyledClassComp1 = createStyled(TestClassComp) `
+const StyledClassComp1 = createStyled(TestClassComp)`
   width: 200px;
-  height: ${(props) => props.theme ? '200px' : '100px'};
+  height: ${(props) => props.theme.long ? '200px' : '100px'};
 `;
 
 <StyledClassComp0 some={5} />;
@@ -222,3 +222,11 @@ const ComposingCompType = createStyled.div`
 <StyledComponentType0 value={5} />;
 <StyledComponentType1 value={4} />;
 <ComposingCompType />;
+
+interface InferProps {
+  w: number;
+}
+declare const InferComponent: React.SFC<InferProps>;
+const StyledInferComponent = createStyled(InferComponent)`
+  width: ${props => props.w};
+`;

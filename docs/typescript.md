@@ -71,16 +71,30 @@ const App = () => (
 ```tsx
 import styled from 'react-emotion';
 
-const NotALink = styled('div')`
+const NotALink = styled<{}, 'div'>('div')`
   color: red;
 `
 
 const Link = NotALink.withComponent('a')
 
+type TextProps = {
+  className: string;
+  text: string;
+}
+const Text = ({ className, text }: TextProps) => <div className={className}>{text}</div>
+const StyledText = styled<{}, TextProps>(Text)`
+  fontSize: 20px;
+  color: white;
+`;
+
+const OtherLink = StyledText.withComponent('a');
+
 const App = () => <Link href="#">Click me</Link>
 
 // No errors!
 ```
+
+The prop types used to construct the resulting style definition of `withComponent` should be explicitly provided to avoid TypeScript compiler errors.
 
 ### Passing Props
 
@@ -90,28 +104,27 @@ You can type the props of styled components.
 import styled from 'react-emotion'
 
 type ImageProps = {
-  src: string,
+  src: string;
   width: number;
 }
 
-const Image0 = styled('div')`
-  width: ${(props: ImageProps) => props.width};
-  background: url(${(props: ImageProps) => props.src}) center center;
+const Image0 = styled<ImageProps, 'div'>('div')`
+  width: ${props => props.width};
+  background: url(${props => props.src}) center center;
   background-size: contain;
 `
 
-// Or with object styles
-
-const Image1 = styled('div')({
+// Or with a generic function
+const Image1 = styled('div')<ImageProps>({
   backgroundSize: 'contain',
-}, (props: ImageProps) => ({
+}, props => ({
   width: props.width;
   background: `url(${props.src}) center center`,
 }));
 
-// Or with a generic type
-
-const Image1 = styled('div')<ImageProps>({
+// This one is only for compatibility,
+// so one should not write new code with this style.
+const Image1 = styled<ImageProps, 'div'>('div')({
   backgroundSize: 'contain',
 }, props => ({
   width: props.width;
@@ -119,7 +132,8 @@ const Image1 = styled('div')<ImageProps>({
 }));
 ```
 
-* The generic type version only works with object styles due to https://github.com/Microsoft/TypeScript/issues/11947.
+* The generic function version only works with object styles in TS <= 2.8 due to https://github.com/Microsoft/TypeScript/issues/11947.
+* If you use TS > 2.9, generic function will work with string styles too, but it will break VSCode syntax highlighting. See https://github.com/emotion-js/emotion/issues/721#issuecomment-396954993
 
 ### React Components
 
@@ -128,8 +142,8 @@ import React, { SFC } from 'react'
 import styled from 'react-emotion'
 
 type ComponentProps = {
-  className?: string,
-  label: string
+  className?: string;
+  label: string;
 }
 
 const Component: SFC<ComponentProps> = ({ label, className }) => (
@@ -158,12 +172,12 @@ const App = () => (
 import React, { SFC } from 'react'
 import styled from 'react-emotion'
 
-type ComponentProps = {
-  className?: string,
-  label: string
+type ComponentProps0 = {
+  className?: string;
+  label: string;
 }
 
-const Component: SFC<ComponentProps> = ({ label, className }) => (
+const Component0: SFC<ComponentProps0> = ({ label, className }) => (
   <div className={className}>{label}</div>
 )
 
@@ -171,12 +185,33 @@ type StyledComponentProps = {
   bgColor: string
 };
 
-const StyledComponent0 = styled(Component)`
+const StyledComponent00 = styled<StyledComponentProps, ComponentProps0>(Component)`
   color: red;
-  background: ${(props: StyledComponentProps) => props.bgColor};
+  background: ${props => props.bgColor};
 `
 
-const StyledComponent1 = styled(Component)<StyledComponentProps>({
+const StyledComponent01 = styled(Component)<StyledComponentProps>({
+  color: 'red',
+}, props => ({
+  background: props.bgColor,
+}));
+
+type ComponentProps1 = {
+  className?: string;
+  label: string;
+  bgColor: string;
+}
+
+const Component1: SFC<ComponentProps1> = ({ label, className }) => (
+  <div className={className}>{label}</div>
+)
+
+const StyledComponent10 = styled(Component)`
+  color: red;
+  background: ${props => props.bgColor}
+`
+
+const StyledComponent11 = styled(Component)({
   color: 'red',
 }, props => ({
   background: props.bgColor,
@@ -184,8 +219,10 @@ const StyledComponent1 = styled(Component)<StyledComponentProps>({
 
 const App = () => (
   <div>
-    <StyledComponent0 bgColor="red" label="Some cool text" />
-    <StyledComponent1 bgColor="red" label="Some more cool text" />
+    <StyledComponent00 bgColor="red" label="Some cool text" />
+    <StyledComponent01 bgColor="red" label="Some more cool text" />
+    <StyledComponent10 bgColor="red" label="Much more cool text" />
+    <StyledComponent11 bgColor="red" label="The most cool text" />
   </div>
 )
 ```
