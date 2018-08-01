@@ -1,5 +1,5 @@
 // @flow
-export default {
+let unitlessKeys: { [key: string]: 1 } = {
   animationIterationCount: 1,
   borderImageOutset: 1,
   borderImageSlice: 1,
@@ -44,3 +44,5 @@ export default {
   strokeOpacity: 1,
   strokeWidth: 1
 }
+
+export default unitlessKeys

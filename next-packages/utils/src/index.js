@@ -24,6 +24,40 @@ export function getRegisteredStyles(
   return rawClassName
 }
 
+let internalInsertStyles = (
+  context: CSSContextType,
+  insertable: ScopedInsertableStyles
+) => {
+  if (context.inserted[insertable.name] === undefined) {
+    if (insertable.deps !== undefined) {
+      insertable.deps.forEach(dep => {
+        internalInsertStyles(context, dep)
+      })
+    }
+    let rules = context.stylis(
+      `.${context.key}-${insertable.name}`,
+      insertable.styles
+    )
+    context.inserted[insertable.name] = true
+
+    if (isBrowser) {
+      rules.forEach(context.sheet.insert, context.sheet)
+    } else {
+      let joinedRules = rules.join('')
+      if (context.compat === undefined) {
+        // in regular mode, we don't set the styles on the inserted cache
+        // since we don't need to and that would be wasting memory
+        // we return them so that they are rendered in a style tag
+        return joinedRules
+      } else {
+        // in compat mode, we put the styles on the inserted cache so
+        // that emotion-server can pull out the styles
+        context.inserted[insertable.name] = joinedRules
+      }
+    }
+  }
+}
+
 export const insertStyles = (
   context: CSSContextType,
   insertable: ScopedInsertableStyles,
@@ -45,29 +79,7 @@ export const insertStyles = (
   ) {
     context.registered[`${context.key}-${insertable.name}`] = insertable.styles
   }
-  if (context.inserted[insertable.name] === undefined) {
-    let rules = context.stylis(
-      `.${context.key}-${insertable.name}`,
-      insertable.styles
-    )
-    context.inserted[insertable.name] = true
-
-    if (!isBrowser) {
-      let joinedRules = rules.join('')
-      if (context.compat === undefined) {
-        // in regular mode, we don't set the styles on the inserted cache
-        // since we don't need to and that would be wasting memory
-        // we return them so that they are rendered in a style tag
-        return joinedRules
-      } else {
-        // in compat mode, we put the styles on the inserted cache so
-        // that emotion-server can pull out the styles
-        context.inserted[insertable.name] = joinedRules
-      }
-    } else {
-      rules.forEach(context.sheet.insert, context.sheet)
-    }
-  }
+  return internalInsertStyles(context, insertable)
 }
 
 export * from './types'

@@ -21,7 +21,8 @@ export type CSSContextType = {
 
 export type Interpolation = any
 
-export type ScopedInsertableStyles = {|
+export type ScopedInsertableStyles = {
   name: string,
-  styles: string
-|}
+  styles: string,
+  deps?: Array<ScopedInsertableStyles>
+}

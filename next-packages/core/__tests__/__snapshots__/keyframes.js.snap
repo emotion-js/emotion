@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`keyframes basic 1`] = `
+<div
+  className="css-1mzou9w"
+>
+  animation-1bi8wtt
+</div>
+`;
+
+exports[`keyframes basic 2`] = `
+Array [
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  ".css-1mzou9w{-webkit-animation:animation-1bi8wtt;animation:animation-1bi8wtt;}",
+]
+`;
+
+exports[`keyframes object 1`] = `
+<div
+  className="css-d88cqt"
+>
+  animation-o4c3es
+</div>
+`;
+
+exports[`keyframes object 2`] = `
+Array [
+  "@-webkit-keyframes animation-o4c3es{from{color:green;}to{color:hotpink;}}",
+  "@keyframes animation-o4c3es{from{color:green;}to{color:hotpink;}}",
+  ".css-d88cqt{-webkit-animation:animation-o4c3es 1s;animation:animation-o4c3es 1s;}",
+]
+`;
+
+exports[`keyframes without css call 1`] = `
+<div
+  className="css-1mzou9w"
+>
+  animation-1bi8wtt
+</div>
+`;
+
+exports[`keyframes without css call 2`] = `
+Array [
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  ".css-1mzou9w{-webkit-animation:animation-1bi8wtt;animation:animation-1bi8wtt;}",
+]
+`;

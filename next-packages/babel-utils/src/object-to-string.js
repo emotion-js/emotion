@@ -34,7 +34,11 @@ export function simplifyObject(node: *, t: Object) {
     }
     let value = property.value.value
 
-    finalString += handleInterpolation({}, { [key]: value })
+    finalString += handleInterpolation({}, { [key]: value }, () => {
+      throw new Error(
+        'Unexpected dependant style, this should never happen, please open an issue.'
+      )
+    })
   })
   return bailout ? node : t.stringLiteral(finalString)
 }

@@ -1,15 +1,23 @@
 // @flow
-import type { ScopedInsertableStyles } from '@emotion/utils'
+import css from '@emotion/css'
 
 type Keyframes = {|
   name: string,
-  styles: string
-|}
+  styles: string,
+  anim: 1,
+  toString: () => string
+|} & string
 
-export const keyframes = (arg: ScopedInsertableStyles): Keyframes => {
-  const name = `animation-${arg.name}`
+export const keyframes = (...args: *): Keyframes => {
+  let insertable = css(...args)
+  const name = `animation-${insertable.name}`
+  // $FlowFixMe
   return {
     name,
-    styles: `@keyframes ${name}{${arg.styles}}`
+    styles: `@keyframes ${name}{${insertable.styles}}`,
+    anim: 1,
+    toString() {
+      return `__EMOTION_${this.name}_${this.styles}__ANIMATION__`
+    }
   }
 }
