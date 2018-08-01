@@ -19,7 +19,9 @@
     "start:site": "lerna exec --scope emotion-site npm run start:site",
     "build:site": "lerna exec --scope emotion-site npm run build:site",
     "bootstrap": "lerna bootstrap",
-    "flow": "flow check"
+    "flow": "flow check",
+    "precommit": "lint-staged",
+    "postcommit": "git update-index --again"
   },
   "resolutions": {
     "**/react": "^16.3.2",
@@ -58,11 +60,11 @@
     "enzyme-adapter-react-16": "^1.0.4",
     "enzyme-to-json": "^3.2.1",
     "eslint": "^4.5.0",
-    "eslint-plugin-flowtype": "^2.50.0",
     "eslint-config-prettier": "^2.3.0",
     "eslint-config-react": "^1.1.7",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standard-react": "^5.0.0",
+    "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-prettier": "^2.2.0",
@@ -73,6 +75,7 @@
     "gatsby-react-router-scroll": "^1.0.7",
     "get-lerna-packages": "^0.1.0",
     "hoist-non-react-statics": "^2.3.1",
+    "husky": "^0.14.3",
     "jest": "^23.2.0",
     "jest-in-case": "^1.0.2",
     "jest-serializer-html": "^4.0.1",
@@ -80,6 +83,7 @@
     "jsdom": "^11.3.0",
     "lerna": "^2.2.0",
     "lerna-alias": "^3.0.1",
+    "lint-staged": "^7.2.0",
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
     "polished": "^1.2.1",
@@ -187,5 +191,8 @@
       "path": "./next-packages/core/dist/index.min.js",
       "threshold": "7 Kb"
     }
-  ]
+  ],
+  "lint-staged": {
+    "*.md": ["prettier --write", "git add"]
+  }
 }

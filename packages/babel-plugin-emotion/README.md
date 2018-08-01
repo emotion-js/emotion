@@ -123,7 +123,9 @@ const myStyles = /* #__PURE__ */ css(
 ```bash
 yarn add --dev babel-plugin-emotion
 ```
+
 or if you prefer npm
+
 ```bash
 npm install --save-dev babel-plugin-emotion
 ```
@@ -157,7 +159,7 @@ _Defaults Shown_
         "autoLabel": false,
         "labelFormat": "[local]",
         "extractStatic": false,
-        "outputDir": '',
+        "outputDir": "",
         "importedNames": {
           "styled": "styled",
           "css": "css",
@@ -184,9 +186,7 @@ Use [Babel's `env` property](https://babeljs.io/docs/usage/babelrc/#env-option)
       "plugins": [["emotion", { "hoist": true }]]
     },
     "development": {
-      "plugins": [
-        ["emotion", { "sourceMap": true, "autoLabel": true }]
-      ]
+      "plugins": [["emotion", { "sourceMap": true, "autoLabel": true }]]
     }
   }
 }
@@ -227,10 +227,10 @@ const Sample = () => <div css={{ background: 'brown' }} />
 **Out**
 
 ```javascript
-var _css = require('emotion').css;
-var _ref = { background: 'brown' };
+var _css = require('emotion').css
+var _ref = { background: 'brown' }
 
-const Sample = () => <div className={_css(_ref)} />;
+const Sample = () => <div className={_css(_ref)} />
 ```
 
 ### `sourceMap`
@@ -280,6 +280,7 @@ For example `labelFormat: "my-classname--[local]"`, where `[local]` will be repl
 with the name of the variable the result is assigned to.
 
 Allowed values:
+
 * `[local]` - the name of the variable the result of the `css` or `styled` expression is assigned to.
 * `[filename]` - name of the file (without extension) where `css` or `styled` expression is located.
 
@@ -300,7 +301,10 @@ const brownStyles = css({ color: 'brown' })
 **Out**
 
 ```javascript
-const brownStyles = /*#__PURE__*/ css({ color: 'brown' }, 'label:BrownView--brownStyles;')
+const brownStyles = /*#__PURE__*/ css(
+  { color: 'brown' },
+  'label:BrownView--brownStyles;'
+)
 ```
 
 `BrownView--brownStyles`'s value would be `css-1q8eu9e-BrownView--brownStyles`
@@ -384,7 +388,7 @@ This option enables the following:
 `Array<string>`, defaults to
 
 ```jsx
-['emotion', 'react-emotion', 'preact-emotion']
+;['emotion', 'react-emotion', 'preact-emotion']
 ```
 
 This option allows `babel-plugin-emotion` to know which imports to treat as
@@ -412,20 +416,13 @@ from `createEmotion`,
 
 [**Documentation**](https://emotion.sh/docs/instances)
 
-
 ## Babel Macros
 
 Instead of using `babel-plugin-emotion`, you can use emotion with [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros). Add `babel-plugin-macros` to your babel config and import whatever you want from emotion but add `/macro` to the end. Currently every API except for the css prop is supported by the macro.
 
 ```jsx
 import styled from 'react-emotion/macro'
-import {
-  css,
-  keyframes,
-  injectGlobal,
-  flush,
-  hydrate
-} from 'emotion/macro'
+import { css, keyframes, injectGlobal, flush, hydrate } from 'emotion/macro'
 ```
 
 [create-react-app issue discussing macros](https://github.com/facebookincubator/create-react-app/issues/2730).

@@ -12,9 +12,28 @@ title: "Some Title"
 
 ### Code Blocks
 
-The docs can contain Markdown code blocks, the language should generally be `jsx` but it can also be `jsx live` to have previews. When the langauge is `jsx live` the code block will have a preview next to it and all of emotion and react-emotion's exports are available along with a `render` function that accepts a react element and will render into the preview next to it.
+When the langauge is `jsx live` the code block will have a preview next to it and all of emotion and react-emotion's exports are available along with a `render` function that accepts a react element and will render into the preview next to it.
 
+```md
+\`\`\`jsx
+// @live
+
+render('some react element')
+\`\`\`
+```
 
 ### Links
 
 All links to other pages on the docs should be linked to with `https://emotion.sh/docs/doc-name`, these links are transformed so they are local links.
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```

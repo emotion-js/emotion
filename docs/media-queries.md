@@ -4,7 +4,8 @@ title: "Media Queries"
 
 Using media queries in emotion works just like using media queries in regular css except you don't have to specify a selector inside the block, you can put your css directly in the css block.
 
-```jsx live
+```jsx
+// @live
 const Avatar = styled('img')`
   width: 32px;
   height: 32px;
@@ -23,7 +24,8 @@ render(<Avatar src={logoUrl} />)
 
 Making media queries reusable can be really useful to create responsive apps, with emotion's object styles you can move them into constants so you can refer to them instead of rewriting them each time they're used.
 
-```jsx live
+```jsx
+// @live
 const breakpoints = [576, 768, 992, 1200]
 
 const mq = breakpoints.map(
@@ -39,9 +41,7 @@ const styles = css({
     color: 'hotpink'
   }
 })
-render(
-  <div className={styles}>Some text.</div>
-)
+render(<div className={styles}>Some text.</div>)
 ```
 
 ### facepaint
@@ -54,16 +54,15 @@ yarn add facepaint
 npm install --save facepaint
 ```
 
-```jsx live
+```jsx
+// @live
 import { css } from 'emotion'
 import facepaint from 'facepaint'
 
 const breakpoints = [576, 768, 992, 1200]
 
 const mq = facepaint(
-  breakpoints.map(
-    bp => `@media (min-width: ${bp}px)`
-  )
+  breakpoints.map(bp => `@media (min-width: ${bp}px)`)
 )
 
 const styles = css(
@@ -71,14 +70,13 @@ const styles = css(
     color: ['green', 'gray', 'hotpink']
   })
 )
-render(
-  <div className={styles}>Some text.</div>
-)
+render(<div className={styles}>Some text.</div>)
 ```
 
 ## Reusable Media Queries with String Styles
 
-```jsx live
+```jsx
+// @live
 const breakpoints = {
   // Numerical values will result in a min-width query
   small: 576,
@@ -91,8 +89,12 @@ const breakpoints = {
 
 const mq = Object.keys(breakpoints).reduce(
   (accumulator, label) => {
-    let prefix = typeof breakpoints[label] === 'string' ? '' : 'min-width:'
-    let suffix = typeof breakpoints[label] === 'string' ? '' : 'px'
+    let prefix =
+      typeof breakpoints[label] === 'string'
+        ? ''
+        : 'min-width:'
+    let suffix =
+      typeof breakpoints[label] === 'string' ? '' : 'px'
     accumulator[label] = cls =>
       css`
         @media (${prefix + breakpoints[label] + suffix}) {

@@ -8,7 +8,8 @@ title: "Styled Components"
 
 `styled` is very similar to `css` except you call it with an html tag or React/Preact component and then call that with a template literal for string styles or a regular function call for object styles.
 
-```jsx live
+```jsx
+// @live
 import styled from 'react-emotion'
 
 const Button = styled('button')`
@@ -22,7 +23,8 @@ render(<Button>This my button component.</Button>)
 
 Any interpolations or arguments that are functions in `styled` are called with `props`, this allows you to change the styles of a component based on the props.
 
-```jsx live
+```jsx
+// @live
 import styled from 'react-emotion'
 
 const Button = styled('button')`
@@ -37,12 +39,8 @@ const Container = styled('div')(props => ({
 
 render(
   <Container column>
-    <Button>
-      This is a regular button.
-    </Button>
-    <Button primary>
-      This is a primary button.
-    </Button>
+    <Button>This is a regular button.</Button>
+    <Button primary>This is a primary button.</Button>
   </Container>
 )
 ```
@@ -51,7 +49,8 @@ render(
 
 `styled` can style any component as long as it accepts a `className` prop.
 
-```jsx live
+```jsx
+// @live
 import styled from 'react-emotion'
 const Basic = ({ className }) => (
   <div className={className}>Some text</div>
@@ -64,12 +63,12 @@ const Fancy = styled(Basic)`
 render(<Fancy />)
 ```
 
-
 ### Change the rendered tag using `withComponent`
 
 Sometimes you want to create some styles with one component but then use those styles again with another component, the `withComponent` method can be used for this. This was inspired by [styled-components' `withComponent`](https://www.styled-components.com/docs/api#withcomponent).
 
-```jsx live
+```jsx
+// @live
 // Create a section element
 const Section = styled('section')`
   background: #333;
@@ -88,7 +87,8 @@ render(
 
 Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](/packages/babel-plugin-emotion.md).
 
-```jsx live
+```jsx
+// @live
 const Child = styled('div')`
   color: red;
 `
@@ -110,7 +110,8 @@ render(
 
 Component selectors can also be used with object styles.
 
-```jsx live
+```jsx
+// @live
 const Child = styled('div')({
   color: 'red'
 })
@@ -135,7 +136,8 @@ render(
 
 Sometimes you need to get a [ref](https://reactjs.org/docs/refs-and-the-dom.html) but passing `ref` to a styled component will return a ref to the styled component, not the component that it renders which is generally the one you want. You can pass `innerRef` instead of `ref` to get the ref of the component that styled renders.
 
-```jsx live
+```jsx
+// @live
 const Input = styled('input')`
   color: hotpink;
 `
@@ -173,7 +175,8 @@ render(<TextInput />)
 
 Instead of using the function call syntax(`styled('div')`), you can use create components by using a property, where the property refers to an HTML tag(`styled.div`).
 
-```jsx live
+```jsx
+// @live
 const DivWithoutShorthand = styled('div')`
   color: green;
 `
@@ -184,14 +187,16 @@ const DivWithShorthand = styled.div`
 
 render(
   <DivWithoutShorthand>
-    This is green. <DivWithShorthand>This is hotpink.</DivWithShorthand>
+    This is green.{' '}
+    <DivWithShorthand>This is hotpink.</DivWithShorthand>
   </DivWithoutShorthand>
 )
 ```
 
 ### Object styles
 
-```jsx live
+```jsx
+// @live
 import styled from 'react-emotion'
 
 const H1 = styled.h1(
@@ -201,11 +206,7 @@ const H1 = styled.h1(
   props => ({ color: props.color })
 )
 
-render(
-  <H1 color="lightgreen">
-    This is lightgreen.
-  </H1>
-)
+render(<H1 color="lightgreen">This is lightgreen.</H1>)
 ```
 
 This API was inspired by [glamorous](https://github.com/paypal/glamorous).
