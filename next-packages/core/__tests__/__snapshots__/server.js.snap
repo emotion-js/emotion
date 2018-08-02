@@ -21,10 +21,10 @@ exports[`ssr global 1`] = `
 
 exports[`ssr keyframes 1`] = `
 
-<style data-emotion-css="q9uc0r">
-  .css-q9uc0r{-webkit-animation:1s animation-1kyaq4y;animation:1s animation-1kyaq4y;}@-webkit-keyframes animation-1kyaq4y{from{color:green;}to{color:blue;}}@keyframes animation-1kyaq4y{from{color:green;}to{color:blue;}}
+<style data-emotion-css="p822nd">
+  .css-p822nd{-webkit-animation:1s animation-1kyaq4y;animation:1s animation-1kyaq4y;}@-webkit-keyframes animation-1kyaq4y{from{color:green;}to{color:blue;}}@keyframes animation-1kyaq4y{from{color:green;}to{color:blue;}}
 </style>
-<div class="css-q9uc0r">
+<div class="css-p822nd">
 </div>
 
 `;
