@@ -206,15 +206,31 @@ export const serializeStyles = function(
   let strings = args[0]
   if (strings == null || strings.raw === undefined) {
     stringMode = false
-    styles += handleInterpolation(mergedProps, registered, strings)
+    // we have to store this in a variable and then append it to styles since
+    // styles could be modified in handleInterpolation and using += would mean
+    // it would append the return value of handleInterpolation to the value before handleInterpolation is called
+    let stringifiedInterpolation = handleInterpolation(
+      mergedProps,
+      registered,
+      strings
+    )
+    styles += stringifiedInterpolation
   } else {
     styles += strings[0]
   }
   // we start at 1 since we've already handled the first arg
   for (let i = 1; i < args.length; i++) {
-    styles += handleInterpolation(mergedProps, registered, args[i])
+    // we have to store this in a variable and then append it to styles since
+    // styles could be modified in handleInterpolation and using += would mean
+    // it would append the return value of handleInterpolation to the value before handleInterpolation is called
+    let stringifiedInterpolation = handleInterpolation(
+      mergedProps,
+      registered,
+      args[i]
+    )
+    styles += stringifiedInterpolation
     if (stringMode) {
-      styles += strings[i + 1]
+      styles += strings[i]
     }
   }
 
