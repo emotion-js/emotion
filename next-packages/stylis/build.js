@@ -6,7 +6,6 @@ const { promisify } = require('util')
 const j = require('jscodeshift')
 const request = require('request-promise-native')
 const fs = require('fs')
-const babylon = require('babylon')
 const prettier = require('prettier')
 const recast = require('recast')
 
@@ -122,8 +121,6 @@ const removeUMDWrapper = src => {
     .toSource()
   return "'use strict';\nwindow['stylis'] = " + code
 }
-
-let removeWindowSetting = src => {}
 
 async function doThing() {
   const stylisSrc = (await readFile(stylisPath))
