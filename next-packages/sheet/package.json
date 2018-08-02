@@ -13,9 +13,6 @@
   "scripts": {
     "test:typescript": "dtslint types"
   },
-  "dependencies": {
-    "@emotion/utils": "^0.8.0"
-  },
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/sheet",
   "publishConfig": {
     "access": "public"

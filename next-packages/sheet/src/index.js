@@ -23,8 +23,6 @@ styleSheet.flush()
 
 */
 
-import { isBrowser } from '@emotion/utils'
-
 // $FlowFixMe
 function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
   if (tag.sheet) {
@@ -44,8 +42,8 @@ function sheetForTag(tag: HTMLStyleElement): CSSStyleSheet {
 
 export type Options = {
   nonce?: string,
-  key?: string,
-  container?: HTMLElement,
+  key: string,
+  container: HTMLElement,
   speedy?: boolean,
   maxLength?: number
 }
@@ -72,26 +70,21 @@ export class StyleSheet {
   key: string
   nonce: string | void
   before: Element | null | void
-  constructor(options: Options | void) {
-    if (options === undefined) options = {}
+  constructor(options: Options) {
     this.isSpeedy =
       options.speedy === undefined
         ? process.env.NODE_ENV === 'production'
         : options.speedy
     // maxLength is how many rules we have per style tag, it's 65000 in speedy mode
-    // because that's the upper limit in IE 10 TODO: make sure that is actually correct
     // it's 1 in dev because we insert source maps that map a single rule to a location
     // and you can only have one source map per style tag
-    this.maxLength = options.maxLength || this.isSpeedy ? 65000 : 1
+    this.maxLength = this.isSpeedy ? 65000 : 1
     this.tags = []
     this.ctr = 0
     this.nonce = options.nonce
     // key is the value of the data-emotion attribute, it's used to identify different sheets
-    this.key = options.key || ''
-    this.container =
-      options.container ||
-      // $FlowFixMe
-      (isBrowser ? document.head : null)
+    this.key = options.key
+    this.container = options.container
   }
   insert(rule: string) {
     if (this.ctr % this.maxLength === 0) {
