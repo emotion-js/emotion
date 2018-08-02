@@ -112,13 +112,18 @@ const setOptions = src =>
     })
     .toSource()
 
-const removeUMDWrapper = src =>
+const removeUMDWrapper = src => {
+  let code
   j(src)
-    .find(j.Program)
-    .forEach(thing => {
-      delete thing.value.body[1]
+    .find(j.FunctionExpression, { id: { name: 'factory' } })
+    .forEach(path => {
+      code = j(path).toSource()
     })
     .toSource()
+  return "'use strict';\nwindow['stylis'] = " + code
+}
+
+let removeWindowSetting = src => {}
 
 async function doThing() {
   const stylisSrc = (await readFile(stylisPath))
@@ -140,9 +145,12 @@ async function doThing() {
     // .replace("stylis['set'] = set", '')
     // .replace('set(options)', '')
     .replace('this !== void 0 && this.constructor === stylis', 'false')
-  const result = simplifySet(
-    removeUselessCasesInProxy(
-      removeUselessThingForQuotes(setOptions(removeOptions(stylisSrc)))
+    .replace('return factory(selector)', '')
+  const result = removeUMDWrapper(
+    simplifySet(
+      removeUselessCasesInProxy(
+        removeUselessThingForQuotes(setOptions(removeOptions(stylisSrc)))
+      )
     )
   )
   // await writeFile('./src/stylis.js', result)
@@ -156,16 +164,15 @@ async function doThing() {
       output_info: 'compiled_code'
     }
   })).toString()
-  const srcWithoutUMDWrapper = removeUMDWrapper(data)
-  console.log(srcWithoutUMDWrapper)
-  let ast = babylon.parse(srcWithoutUMDWrapper).program.body[0]
-  const finalSrc =
-    srcWithoutUMDWrapper +
-    '\nexport default ' +
-    (ast.declarations ? ast.declarations[0].id.name : ast.id.name)
+
+  let finalSrc = data.replace('window.stylis=', 'export default ')
+
   await writeFile(
     './src/stylis.min.js',
-    prettier.format(finalSrc, { semi: false, singleQuote: true })
+    prettier.format(finalSrc, {
+      semi: false,
+      singleQuote: true
+    })
   )
 
   console.log('done')
