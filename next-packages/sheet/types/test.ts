@@ -2,14 +2,6 @@ import { Options, StyleSheet } from '@emotion/sheet'
 
 new StyleSheet({
   key: 'abc',
-  container: document.body
-})
-new StyleSheet({
-  key: 'abc',
-  container: document.head
-})
-new StyleSheet({
-  key: 'abc',
   container: document.head
 })
 
@@ -34,11 +26,17 @@ new StyleSheet({
   kye: 'abc'
 })
 
-const styleSheet0 = new StyleSheet()
+const styleSheet0 = new StyleSheet({
+  key: 'abc',
+  container: document.head
+})
 const styleSheet1: StyleSheet = styleSheet0
 const styleSheet2: StyleSheet = new StyleSheet()
 
-const styleSheet = new StyleSheet()
+const styleSheet = new StyleSheet({
+  key: 'abc',
+  container: document.head
+})
 
 styleSheet.insert('.name{ color: black; }')
 styleSheet.insert('.cl{ width: 200px; height: 200px; }')
