@@ -21,7 +21,8 @@
     "bootstrap": "lerna bootstrap",
     "flow": "flow check",
     "precommit": "lint-staged",
-    "postcommit": "git update-index --again"
+    "postcommit": "git update-index --again",
+    "postinstall": "opencollective-postinstall"
   },
   "resolutions": {
     "**/react": "^16.3.2",
@@ -193,6 +194,16 @@
     }
   ],
   "lint-staged": {
-    "*.md": ["prettier --write", "git add"]
+    "*.md": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "opencollective": "^1.0.3"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/emotion"
   }
 }
