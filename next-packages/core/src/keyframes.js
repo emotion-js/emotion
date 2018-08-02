@@ -17,7 +17,7 @@ export const keyframes = (...args: *): Keyframes => {
     styles: `@keyframes ${name}{${insertable.styles}}`,
     anim: 1,
     toString() {
-      return `_EMO_${this.name}_${this.styles}_ANIM_`
+      return `_EMO_${this.name}_${this.styles}_EMO_`
     }
   }
 }

@@ -10,7 +10,7 @@ import memoize from '@emotion/memoize'
 
 let hyphenateRegex = /[A-Z]|^ms/g
 
-let animationRegex = /_EMO_([^_]+?)_([^]*?)_ANIM_/g
+let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
 const processStyleName = memoize((styleName: string) =>
   styleName.replace(hyphenateRegex, '-$&').toLowerCase()
