@@ -137,10 +137,9 @@ async function doThing() {
     .replace('switch (cascade + level) {', 'switch (2) {')
     .replace('compress*code === 0', 'true')
     .replace(`typeof(output = result) !== 'string'`, '(output = result)')
-
-  // .replace("stylis['set'] = set", '')
-  // .replace('options !== void 0', 'false')
-  // .replace('this !== void 0 && this.constructor === stylis', 'false')
+    // .replace("stylis['set'] = set", '')
+    // .replace('set(options)', '')
+    .replace('this !== void 0 && this.constructor === stylis', 'false')
   const result = simplifySet(
     removeUselessCasesInProxy(
       removeUselessThingForQuotes(setOptions(removeOptions(stylisSrc)))
