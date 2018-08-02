@@ -10,9 +10,27 @@ exports[`keyframes basic 1`] = `
 
 exports[`keyframes basic 2`] = `
 Array [
+  ".css-1mzou9w{-webkit-animation:animation-1bi8wtt;animation:animation-1bi8wtt;}",
   "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
-  ".css-1mzou9w{-webkit-animation:animation-1bi8wtt;animation:animation-1bi8wtt;}",
+]
+`;
+
+exports[`keyframes multiple keyframes object 1`] = `
+<div
+  className="css-1jqzi3u"
+>
+  animation-1bi8wtt
+</div>
+`;
+
+exports[`keyframes multiple keyframes object 2`] = `
+Array [
+  ".css-1jqzi3u{-webkit-animation:animation-1bi8wtt 1s animation-1ajb83a;animation:animation-1bi8wtt 1s animation-1ajb83a;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@-webkit-keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
+  "@keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
 ]
 `;
 
@@ -26,9 +44,25 @@ exports[`keyframes object 1`] = `
 
 exports[`keyframes object 2`] = `
 Array [
+  ".css-d88cqt{-webkit-animation:animation-o4c3es 1s;animation:animation-o4c3es 1s;}",
   "@-webkit-keyframes animation-o4c3es{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-o4c3es{from{color:green;}to{color:hotpink;}}",
-  ".css-d88cqt{-webkit-animation:animation-o4c3es 1s;animation:animation-o4c3es 1s;}",
+]
+`;
+
+exports[`keyframes object with string keyframes 1`] = `
+<div
+  className="css-1wh2ide"
+>
+  animation-1bi8wtt
+</div>
+`;
+
+exports[`keyframes object with string keyframes 2`] = `
+Array [
+  ".css-1wh2ide{-webkit-animation:animation-1bi8wtt 1s;animation:animation-1bi8wtt 1s;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
 ]
 `;
 
@@ -42,8 +76,8 @@ exports[`keyframes without css call 1`] = `
 
 exports[`keyframes without css call 2`] = `
 Array [
+  ".css-1mzou9w{-webkit-animation:animation-1bi8wtt;animation:animation-1bi8wtt;}",
   "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
-  ".css-1mzou9w{-webkit-animation:animation-1bi8wtt;animation:animation-1bi8wtt;}",
 ]
 `;

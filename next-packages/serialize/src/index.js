@@ -10,7 +10,7 @@ import memoize from '@emotion/memoize'
 
 const hyphenateRegex = /[A-Z]|^ms/g
 
-let animationRegex = /__EMOTION_([^_]+?)_(.*?)__ANIMATION__/g
+let animationRegex = /_EMO_([^_]+?)_([^]*?)_ANIM_/g
 
 export const processStyleName: (styleName: string) => string = memoize(
   (styleName: string) => styleName.replace(hyphenateRegex, '-$&').toLowerCase()
@@ -19,7 +19,7 @@ export const processStyleName: (styleName: string) => string = memoize(
 export let processStyleValue = (
   key: string,
   value: string,
-  addDependantStyle: ScopedInsertableStyles => void
+  addDependantStyle: string => void
 ): string => {
   if (value == null || typeof value === 'boolean') {
     return ''
@@ -29,7 +29,7 @@ export let processStyleValue = (
     case 'animation':
     case 'animationName': {
       value = value.replace(animationRegex, (match, p1, p2) => {
-        addDependantStyle({ name: p1, styles: p2 })
+        addDependantStyle(p2)
         return p1
       })
     }
@@ -64,7 +64,7 @@ if (process.env.NODE_ENV !== 'production') {
   processStyleValue = (
     key: string,
     value: string,
-    addDependantStyle: ScopedInsertableStyles => void
+    addDependantStyle: string => void
   ) => {
     if (key === 'content') {
       if (
@@ -86,7 +86,7 @@ if (process.env.NODE_ENV !== 'production') {
 export function handleInterpolation(
   registered: RegisteredCache,
   interpolation: Interpolation,
-  addDependantStyle: ScopedInsertableStyles => void
+  addDependantStyle: string => void
 ): string | number {
   if (interpolation == null) {
     return ''
@@ -109,7 +109,7 @@ export function handleInterpolation(
     }
     case 'object': {
       if (interpolation.anim === 1) {
-        addDependantStyle(interpolation)
+        addDependantStyle(interpolation.styles)
         return interpolation.name
       }
       if (interpolation.styles !== undefined) {
@@ -145,7 +145,7 @@ export function handleInterpolation(
 function createStringFromObject(
   registered: RegisteredCache,
   obj: { [key: string]: Interpolation },
-  addDependantStyle: ScopedInsertableStyles => void
+  addDependantStyle: string => void
 ): string {
   let string = ''
 
@@ -204,13 +204,10 @@ function createStringFromObject(
 
 export const labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 
-let dependantStyles
+let dependantStyles = ''
 
 let addDependantStyle = style => {
-  if (dependantStyles === undefined) {
-    dependantStyles = []
-  }
-  dependantStyles.push(style)
+  dependantStyles += style
 }
 
 export const serializeStyles = function(
@@ -225,7 +222,7 @@ export const serializeStyles = function(
   ) {
     return args[0]
   }
-  dependantStyles = undefined
+  dependantStyles = ''
   let styles = ''
   let identifierName = ''
   args.forEach(function(interpolation, i) {
@@ -244,7 +241,6 @@ export const serializeStyles = function(
 
   return {
     name,
-    styles,
-    deps: dependantStyles
+    styles: styles + dependantStyles
   }
 }

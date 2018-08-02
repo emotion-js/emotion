@@ -7,10 +7,7 @@ let fakeRegisteredCache = {}
 
 let dependantStyles
 let addDependantStyle = style => {
-  if (dependantStyles === undefined) {
-    dependantStyles = []
-  }
-  dependantStyles.push(style)
+  dependantStyles += style
 }
 
 function css(
@@ -20,7 +17,7 @@ function css(
   let stringMode = true
   let styles: string = ''
   let identifierName = ''
-  dependantStyles = undefined
+  dependantStyles = ''
   if (strings == null || strings.raw === undefined) {
     stringMode = false
     styles += handleInterpolation(
@@ -50,8 +47,7 @@ function css(
 
   return {
     name,
-    styles,
-    deps: dependantStyles
+    styles: styles + dependantStyles
   }
 }
 

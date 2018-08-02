@@ -1,7 +1,7 @@
 // @flow
 /** @jsx jsx */
 import { jsx, css, keyframes } from '@emotion/core'
-import { safeQuerySelector } from 'test-utils'
+import { safeQuerySelector, throwIfFalsy } from 'test-utils'
 import cases from 'jest-in-case'
 import * as renderer from 'react-test-renderer'
 import createCache from '@emotion/cache'
@@ -17,7 +17,10 @@ cases(
         .create(<Provider value={cache}>{opts.render()}</Provider>)
         .toJSON()
     ).toMatchSnapshot()
-    expect(cache.sheet.tags.map(tag => tag.textContent || '')).toMatchSnapshot()
+    expect(
+      throwIfFalsy(cache.sheet.tags).map(tag => tag.textContent || '')
+    ).toMatchSnapshot()
+    cache.sheet.flush()
   },
   {
     basic: {
@@ -75,12 +78,67 @@ cases(
             color: 'hotpink'
           }
         })
-        let serialized = css({
-          animation: `${animation} 1s`
-        })
-        console.log(serialized)
 
-        return <div css={serialized}>{animation.name}</div>
+        return (
+          <div
+            css={{
+              animation: `${animation} 1s`
+            }}
+          >
+            {animation.name}
+          </div>
+        )
+      }
+    },
+    'object with string keyframes': {
+      render: () => {
+        let animation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: hotpink;
+          }
+        `)
+
+        return (
+          <div
+            css={{
+              animation: `${animation} 1s`
+            }}
+          >
+            {animation.name}
+          </div>
+        )
+      }
+    },
+    'multiple keyframes object': {
+      render: () => {
+        let animation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: hotpink;
+          }
+        `)
+        let yellowAnimation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: yellow;
+          }
+        `)
+        return (
+          <div
+            css={{
+              animation: `${animation} 1s ${yellowAnimation}`
+            }}
+          >
+            {animation.name}
+          </div>
+        )
       }
     }
   }

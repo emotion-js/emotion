@@ -7,6 +7,7 @@ interface StyleSheet {
   key: string;
   insert(rule: string): void;
   flush(): void;
+  tags: Array<HTMLStyleElement>;
 }
 
 export type CSSContextType = {
@@ -21,8 +22,7 @@ export type CSSContextType = {
 
 export type Interpolation = any
 
-export type ScopedInsertableStyles = {
+export type ScopedInsertableStyles = {|
   name: string,
-  styles: string,
-  deps?: Array<ScopedInsertableStyles>
-}
+  styles: string
+|}

@@ -24,16 +24,28 @@ export function getRegisteredStyles(
   return rawClassName
 }
 
-let internalInsertStyles = (
+export const insertStyles = (
   context: CSSContextType,
-  insertable: ScopedInsertableStyles
+  insertable: ScopedInsertableStyles,
+  isStringTag: boolean
 ) => {
+  if (
+    // we only need to add the styles to the registered cache if the
+    // class name could be used further down
+    // the tree but if it's a string tag, we know it won't
+    // so we don't have to add it to registered cache.
+    // this improves memory usage since we can avoid storing the whole style string
+    (isStringTag === false ||
+      // we need to always store it if we're in compat mode and
+      // in node since emotion-server relies on whether a style is in
+      // the registered cache to know whether a style is global or not
+      // also, note that this check will be dead code eliminated in the browser
+      (isBrowser === false && context.compat !== undefined)) &&
+    context.registered[`${context.key}-${insertable.name}`] === undefined
+  ) {
+    context.registered[`${context.key}-${insertable.name}`] = insertable.styles
+  }
   if (context.inserted[insertable.name] === undefined) {
-    if (insertable.deps !== undefined) {
-      insertable.deps.forEach(dep => {
-        internalInsertStyles(context, dep)
-      })
-    }
     let rules = context.stylis(
       `.${context.key}-${insertable.name}`,
       insertable.styles
@@ -56,30 +68,6 @@ let internalInsertStyles = (
       }
     }
   }
-}
-
-export const insertStyles = (
-  context: CSSContextType,
-  insertable: ScopedInsertableStyles,
-  isStringTag: boolean
-) => {
-  if (
-    // we only need to add the styles to the registered cache if the
-    // class name could be used further down
-    // the tree but if it's a string tag, we know it won't
-    // so we don't have to add it to registered cache.
-    // this improves memory usage since we can avoid storing the whole style string
-    (isStringTag === false ||
-      // we need to always store it if we're in compat mode and
-      // in node since emotion-server relies on whether a style is in
-      // the registered cache to know whether a style is global or not
-      // also, note that this will be dead code eliminated in the browser
-      (isBrowser === false && context.compat !== undefined)) &&
-    context.registered[`${context.key}-${insertable.name}`] === undefined
-  ) {
-    context.registered[`${context.key}-${insertable.name}`] = insertable.styles
-  }
-  return internalInsertStyles(context, insertable)
 }
 
 export * from './types'
