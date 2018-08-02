@@ -7,7 +7,6 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/css",
   "dependencies": {
-    "@emotion/hash": "^0.6.5",
     "@emotion/serialize": "^0.8.6",
     "@emotion/utils": "^0.8.0"
   },

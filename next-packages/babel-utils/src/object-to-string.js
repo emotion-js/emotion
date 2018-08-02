@@ -1,5 +1,5 @@
 // @flow
-import { handleInterpolation } from '@emotion/serialize'
+import { serializeStyles } from '@emotion/serialize'
 
 export function simplifyObject(node: *, t: Object) {
   let bailout = false
@@ -34,11 +34,7 @@ export function simplifyObject(node: *, t: Object) {
     }
     let value = property.value.value
 
-    finalString += handleInterpolation({}, { [key]: value }, () => {
-      throw new Error(
-        'Unexpected dependant style, this should never happen, please open an issue.'
-      )
-    })
+    finalString += serializeStyles({}, [{ [key]: value }]).styles
   })
   return bailout ? node : t.stringLiteral(finalString)
 }

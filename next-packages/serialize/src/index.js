@@ -8,15 +8,15 @@ import hashString from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import memoize from '@emotion/memoize'
 
-const hyphenateRegex = /[A-Z]|^ms/g
+let hyphenateRegex = /[A-Z]|^ms/g
 
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_ANIM_/g
 
-export const processStyleName: (styleName: string) => string = memoize(
+const processStyleName: (styleName: string) => string = memoize(
   (styleName: string) => styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
-export let processStyleValue = (
+let processStyleValue = (
   key: string,
   value: string,
   addDependantStyle: string => void
@@ -83,7 +83,7 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-export function handleInterpolation(
+function handleInterpolation(
   registered: RegisteredCache,
   interpolation: Interpolation,
   addDependantStyle: string => void
@@ -202,7 +202,7 @@ function createStringFromObject(
   return string
 }
 
-export const labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
+let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 
 let dependantStyles = ''
 
@@ -223,20 +223,29 @@ export const serializeStyles = function(
     return args[0]
   }
   dependantStyles = ''
-  let styles = ''
+  let stringMode = true
+  let styles: string = ''
   let identifierName = ''
-  args.forEach(function(interpolation, i) {
-    styles += handleInterpolation.call(
-      this,
-      registered,
-      interpolation,
-      addDependantStyle
-    )
-  }, this)
+  let strings = args[0]
+  if (strings == null || strings.raw === undefined) {
+    stringMode = false
+    styles += handleInterpolation(registered, strings, addDependantStyle)
+  } else {
+    styles += strings[0]
+  }
+  // we start at 1 since we've already handled the first arg
+  for (let i = 1; i < args.length; i++) {
+    styles += handleInterpolation(registered, args[i], addDependantStyle)
+    if (stringMode) {
+      styles += strings[i + 1]
+    }
+  }
+
   styles = styles.replace(labelPattern, (match, p1: string) => {
     identifierName += `-${p1}`
     return ''
   })
+
   let name = hashString(styles) + identifierName
 
   return {
