@@ -76,6 +76,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 function handleInterpolation(
+  mergedProps: void | Object,
   registered: RegisteredCache,
   interpolation: Interpolation
 ): string | number {
@@ -107,12 +108,12 @@ function handleInterpolation(
         return interpolation.styles
       }
 
-      return createStringFromObject.call(this, registered, interpolation)
+      return createStringFromObject(mergedProps, registered, interpolation)
     }
     case 'function': {
-      if (this !== undefined) {
-        return handleInterpolation.call(
-          this,
+      if (mergedProps !== undefined) {
+        return handleInterpolation(
+          mergedProps,
           registered,
           // $FlowFixMe
           interpolation(this)
@@ -128,6 +129,7 @@ function handleInterpolation(
 }
 
 function createStringFromObject(
+  mergedProps: void | Object,
   registered: RegisteredCache,
   obj: { [key: string]: Interpolation }
 ): string {
@@ -135,7 +137,7 @@ function createStringFromObject(
 
   if (Array.isArray(obj)) {
     for (let i = 0; i < obj.length; i++) {
-      string += handleInterpolation.call(this, registered, obj[i])
+      string += handleInterpolation(mergedProps, registered, obj[i])
     }
   } else {
     for (let key in obj) {
@@ -165,8 +167,8 @@ function createStringFromObject(
             )};`
           })
         } else {
-          string += `${key}{${handleInterpolation.call(
-            this,
+          string += `${key}{${handleInterpolation(
+            mergedProps,
             registered,
             obj[key]
           )}}`
@@ -186,6 +188,7 @@ let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 let styles = ''
 
 export const serializeStyles = function(
+  mergedProps: void | Object,
   registered: RegisteredCache,
   args: Array<Interpolation>
 ): ScopedInsertableStyles {
@@ -203,13 +206,13 @@ export const serializeStyles = function(
   let strings = args[0]
   if (strings == null || strings.raw === undefined) {
     stringMode = false
-    styles += handleInterpolation(registered, strings)
+    styles += handleInterpolation(mergedProps, registered, strings)
   } else {
     styles += strings[0]
   }
   // we start at 1 since we've already handled the first arg
   for (let i = 1; i < args.length; i++) {
-    styles += handleInterpolation(registered, args[i])
+    styles += handleInterpolation(mergedProps, registered, args[i])
     if (stringMode) {
       styles += strings[i + 1]
     }

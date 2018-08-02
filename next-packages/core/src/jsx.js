@@ -41,7 +41,11 @@ export const jsx: typeof React.createElement = function(
     registeredStyles.push(
       typeof props.css === 'function' ? props.css(context.theme) : props.css
     )
-    const serialized = serializeStyles(context.registered, registeredStyles)
+    const serialized = serializeStyles(
+      undefined,
+      context.registered,
+      registeredStyles
+    )
     const rules = insertStyles(context, serialized, typeof type === 'string')
     className += `${context.key}-${serialized.name}`
 
