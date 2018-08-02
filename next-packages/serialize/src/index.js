@@ -116,7 +116,7 @@ function handleInterpolation(
           mergedProps,
           registered,
           // $FlowFixMe
-          interpolation(this)
+          interpolation(mergedProps)
         )
       }
     }
