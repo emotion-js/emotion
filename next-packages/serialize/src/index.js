@@ -188,9 +188,9 @@ let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 let styles = ''
 
 export const serializeStyles = function(
-  mergedProps: void | Object,
   registered: RegisteredCache,
-  args: Array<Interpolation>
+  args: Array<Interpolation>,
+  mergedProps: void | Object
 ): ScopedInsertableStyles {
   if (
     args.length === 1 &&

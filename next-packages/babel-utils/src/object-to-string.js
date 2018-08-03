@@ -37,7 +37,7 @@ export function simplifyObject(node: *, t: Object) {
     }
     let value = property.value.value
 
-    finalString += serializeStyles(undefined, {}, [{ [key]: value }]).styles
+    finalString += serializeStyles({}, [{ [key]: value }]).styles
   })
   return bailout ? node : t.stringLiteral(finalString)
 }

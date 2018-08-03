@@ -5,7 +5,7 @@ import { serializeStyles } from '@emotion/serialize'
 let fakeRegisteredCache = {}
 
 function css(...args: Array<Interpolation>): ScopedInsertableStyles {
-  return serializeStyles(undefined, fakeRegisteredCache, args)
+  return serializeStyles(fakeRegisteredCache, args)
 }
 
 export default css
