@@ -22,7 +22,7 @@
     "flow": "flow check",
     "precommit": "lint-staged",
     "postcommit": "git update-index --again",
-    "postinstall": "opencollective-postinstall"
+    "postinstall": "opencollective postinstall"
   },
   "resolutions": {
     "**/react": "^16.3.2",
