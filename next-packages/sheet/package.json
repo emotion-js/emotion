@@ -10,9 +10,6 @@
   },
   "types": "types/index.d.ts",
   "license": "MIT",
-  "scripts": {
-    "test:typescript": "dtslint types"
-  },
   "dependencies": {
     "@emotion/utils": "^0.8.0"
   },
