@@ -1,23 +1,29 @@
 // @flow
+import { safeQuerySelector } from 'test-utils'
 import { StyleSheet } from '@emotion/sheet'
 
 const rule = 'html { color: hotpink; }'
 
+let defaultOptions = {
+  key: '',
+  container: safeQuerySelector('head')
+}
+
 describe('StyleSheet', () => {
   it('should be speedy by default in production', () => {
     process.env.NODE_ENV = 'production'
-    const sheet = new StyleSheet()
+    const sheet = new StyleSheet(defaultOptions)
     expect(sheet.isSpeedy).toBe(true)
     process.env.NODE_ENV = 'test'
   })
 
   it('should not be speedy in a non-production environment by default', () => {
-    const sheet = new StyleSheet()
+    const sheet = new StyleSheet(defaultOptions)
     expect(sheet.isSpeedy).toBe(false)
   })
 
   it('should remove its style elements from the document when flushed', () => {
-    const sheet = new StyleSheet()
+    const sheet = new StyleSheet(defaultOptions)
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
     sheet.flush()
@@ -26,7 +32,7 @@ describe('StyleSheet', () => {
 
   it('should set the data-emotion attribute to the key option', () => {
     const key = 'some-key'
-    const sheet = new StyleSheet({ key })
+    const sheet = new StyleSheet({ ...defaultOptions, key })
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
     expect(
@@ -37,14 +43,14 @@ describe('StyleSheet', () => {
   })
 
   it('should insert a rule into the DOM when not in speedy', () => {
-    const sheet = new StyleSheet({})
+    const sheet = new StyleSheet(defaultOptions)
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
     sheet.flush()
   })
 
   it('should insert a rule with insertRule when in speedy', () => {
-    const sheet = new StyleSheet({ speedy: true })
+    const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
     expect(sheet.tags).toHaveLength(1)
@@ -54,7 +60,7 @@ describe('StyleSheet', () => {
   })
 
   it('should throw when inserting a bad rule in speedy mode', () => {
-    const sheet = new StyleSheet({ speedy: true })
+    const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
     const oldConsoleWarn = console.warn
     // $FlowFixMe
     console.warn = jest.fn()
@@ -70,7 +76,7 @@ describe('StyleSheet', () => {
 
   it('should set the nonce option as an attribute to style elements', () => {
     let nonce = 'some-nonce'
-    const sheet = new StyleSheet({ nonce })
+    const sheet = new StyleSheet({ ...defaultOptions, nonce })
     sheet.insert(rule)
     expect(sheet.tags[0]).toBe(document.querySelector('[data-emotion]'))
     expect(sheet.tags).toHaveLength(1)
@@ -82,7 +88,7 @@ describe('StyleSheet', () => {
     const container = document.createElement('div')
     // $FlowFixMe
     document.body.appendChild(container)
-    const sheet = new StyleSheet({ container })
+    const sheet = new StyleSheet({ ...defaultOptions, container })
     expect(sheet.container).toBe(container)
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()

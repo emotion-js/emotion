@@ -10,8 +10,8 @@
   },
   "types": "types/index.d.ts",
   "license": "MIT",
-  "dependencies": {
-    "@emotion/utils": "^0.8.0"
+  "scripts": {
+    "test:typescript": "dtslint types"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/sheet",
   "publishConfig": {

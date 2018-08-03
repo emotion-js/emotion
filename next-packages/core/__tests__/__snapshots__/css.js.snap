@@ -16,42 +16,13 @@ exports[`array fallback 1`] = `
 `;
 
 exports[`css call composition 1`] = `
-Object {
-  "name": "d4uv9l",
-  "styles": ":hover{
-    color: hotpink;
-  }",
-}
-`;
-
-exports[`keyframes 1`] = `
-.emotion-0 {
-  -webkit-animation: animation-1ozfi5a;
-  animation: animation-1ozfi5a;
+.emotion-0:hover {
+  color: hotpink;
 }
 
-<div>
-  <div
-    className="emotion-0"
-  >
-    animation-1ozfi5a
-  </div>
-</div>
-`;
-
-exports[`keyframes insert in css call 1`] = `
-.emotion-0 {
-  -webkit-animation: animation-1ozfi5a;
-  animation: animation-1ozfi5a;
-}
-
-<div>
-  <div
-    className="emotion-0"
-  >
-    animation-1ozfi5a
-  </div>
-</div>
+<div
+  className="emotion-0"
+/>
 `;
 
 exports[`label in css call 1`] = `

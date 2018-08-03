@@ -88,10 +88,10 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
           props.className
         )
       }
-      const serialized = serializeStyles.call(
-        mergedProps,
+      const serialized = serializeStyles(
         context.registered,
-        styles.concat(classInterpolations)
+        styles.concat(classInterpolations),
+        mergedProps
       )
       const rules = insertStyles(context, serialized, isStringTag)
       className += `${context.key}-${serialized.name}`

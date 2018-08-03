@@ -82,10 +82,10 @@ let createCache = (options?: Options): CSSContextType => {
     })
   }
   let inserted = {}
-
+  // $FlowFixMe
+  let container: HTMLElement
   if (isBrowser) {
-    // $FlowFixMe
-    let parent: HTMLElement = options.container || document.head
+    container = options.container || document.head
 
     const nodes = document.querySelectorAll(`style[data-emotion-${key}]`)
 
@@ -95,8 +95,8 @@ let createCache = (options?: Options): CSSContextType => {
       attrib.split(' ').forEach(id => {
         inserted[id] = true
       })
-      if (node.parentNode !== parent) {
-        parent.appendChild(node)
+      if (node.parentNode !== container) {
+        container.appendChild(node)
       }
     })
   }
@@ -106,7 +106,7 @@ let createCache = (options?: Options): CSSContextType => {
     key,
     sheet: new StyleSheet({
       key,
-      container: options.container,
+      container,
       nonce: options.nonce
     }),
     inserted,

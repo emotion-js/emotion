@@ -7,6 +7,7 @@ interface StyleSheet {
   key: string;
   insert(rule: string): void;
   flush(): void;
+  tags: Array<HTMLStyleElement>;
 }
 
 export type CSSContextType = {
