@@ -4,7 +4,7 @@
 </p>
 <p align="center" style="font-size: 1.2rem;">The Next Generation of CSS-in-JS</p>
 
-[![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
+[![Backers on Open Collective](https://opencollective.com/emotion/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/emotion/sponsors/badge.svg)](#sponsors) [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://img.shields.io/circleci/project/github/emotion-js/emotion/master.svg)](https://circleci.com/gh/emotion-js/emotion)
 [![codecov](https://codecov.io/gh/emotion-js/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/emotion-js/emotion)
 ![core gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/emotion.umd.min.js?compression=gzip&label=core%20gzip%20size)
@@ -72,9 +72,10 @@ const app = () => (
 ```
 
 ### Do I Need To Use the Babel Plugin?
+
 The babel plugin is not required, but enables some optimizations and customizations that could be beneficial for your project.
 
-Look here 👉 *[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)* 
+Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)_
 
 ### Demo Sandbox
 
@@ -110,3 +111,29 @@ Look here 👉 *[emotion babel plugin feature table and documentation](https://g
 * [thedisconnect.co](https://thedisconnect.co/one)
 * [zefenify.com](https://zefenify.com/about.html)
 * [sentry.io](https://sentry.io)
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="graphs/contributors"><img src="https://opencollective.com/emotion/contributors.svg?width=890&button=false" /></a>
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/emotion#backer)]
+
+<a href="https://opencollective.com/emotion#backers" target="_blank"><img src="https://opencollective.com/emotion/backers.svg?width=890"></a>
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/emotion#sponsor)]
+
+<a href="https://opencollective.com/emotion/sponsor/0/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/emotion/sponsor/1/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/emotion/sponsor/2/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/emotion/sponsor/3/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/emotion/sponsor/4/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/emotion/sponsor/5/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/emotion/sponsor/6/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/emotion/sponsor/7/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/emotion/sponsor/8/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/emotion/sponsor/9/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/9/avatar.svg"></a>
