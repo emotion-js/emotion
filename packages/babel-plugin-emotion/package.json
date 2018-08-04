@@ -13,7 +13,7 @@
     "@emotion/babel-utils": "^0.6.4",
     "@emotion/hash": "^0.6.2",
     "@emotion/memoize": "^0.6.1",
-    "@emotion/stylis": "^0.6.10",
+    "@emotion/stylis": "^0.7.0",
     "babel-core": "^6.26.3",
     "babel-plugin-macros": "^2.0.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
