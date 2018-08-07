@@ -22,9 +22,8 @@ export let getStyledOptions = (t: *, path: *, state: *) => {
     if (t.isObjectExpression(optionsArgument)) {
       properties.unshift(...optionsArgument.properties)
     } else {
-      console.warn(
-        "Second argument to a styled call is not an object, it's going to be removed."
-      )
+      // $FlowFixMe
+      properties.push(t.spreadElement(optionsArgument))
     }
   }
 
