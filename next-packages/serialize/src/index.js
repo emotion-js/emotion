@@ -144,7 +144,9 @@ function createStringFromObject(
       if (typeof obj[key] !== 'object') {
         string += `${processStyleName(key)}:${processStyleValue(
           key,
-          obj[key]
+          typeof obj[key] === 'function'
+            ? handleInterpolation(mergedProps, registered, obj[key])
+            : obj[key]
         )};`
       } else {
         if (

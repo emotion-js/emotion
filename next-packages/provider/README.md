@@ -12,7 +12,7 @@ yarn add @emotion/provider
 
 ```jsx
 /** @jsx jsx */
-import { jsx } from '@emotion/jsx'
+import { jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import * as React from 'react'
 import ThemeProvider from '@emotion/provider'

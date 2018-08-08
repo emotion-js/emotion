@@ -186,7 +186,9 @@ function createEmotion(
           } else {
             string += `${processStyleName(key)}:${processStyleValue(
               key,
-              obj[key]
+              typeof obj[key] === 'function'
+                ? handleInterpolation.call(this, obj[key], false)
+                : obj[key]
             )};`
           }
         } else {

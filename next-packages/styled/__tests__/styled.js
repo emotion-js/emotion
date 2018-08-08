@@ -62,6 +62,14 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test("function as object's value", () => {
+    const H1 = styled.h1({ flex: props => props.flex })
+
+    const tree = renderer.create(<H1 flex={1}>hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('glamorous style api & composition', () => {
     const H1 = styled.h1(props => ({ fontSize: props.fontSize }))
     const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
