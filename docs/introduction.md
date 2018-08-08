@@ -8,7 +8,8 @@ Emotion@10 has a React and non React-specific version, ....
 
 This documentation has lots of live examples that look like this, they're all editable so you can try emotion without installing it. Try changing the color below.
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 

@@ -1,56 +1,57 @@
-import { Options, StyleSheet } from '@emotion/sheet';
+import { Options, StyleSheet } from '@emotion/sheet'
 
-new StyleSheet();
-new StyleSheet({});
-new StyleSheet({
-  container: document.body,
-});
-new StyleSheet({
-  container: document.head,
-});
 new StyleSheet({
   key: 'abc',
-});
+  container: document.createElement('div')
+})
+
 new StyleSheet({
   key: 'abc',
-  maxLength: 200,
-});
+  container: document.createElement('div'),
+  nonce: 'fefwe090rqr'
+})
 new StyleSheet({
-  nonce: 'fefwe090rqr',
-});
-new StyleSheet({
-  speedy: true,
-});
+  key: 'abc',
+  container: document.createElement('div'),
+  speedy: true
+})
 // $ExpectError
 new StyleSheet({
-  maxLength: 'abc',
-});
-// $ExpectError
+  container: document.createElement('div'),
+  key: 120
+})
 new StyleSheet({
-  key: 120,
-});
-new StyleSheet({
+  container: document.createElement('div'),
   // $ExpectError
   kye: 'abc'
-});
+})
 
-const styleSheet0 = new StyleSheet();
-const styleSheet1: StyleSheet = styleSheet0;
-const styleSheet2: StyleSheet = new StyleSheet();
+const styleSheet0 = new StyleSheet({
+  key: 'abc',
+  container: document.createElement('div')
+})
+const styleSheet1: StyleSheet = styleSheet0
+const styleSheet2: StyleSheet = new StyleSheet()
 
-const styleSheet = new StyleSheet();
+const styleSheet = new StyleSheet({
+  key: 'abc',
+  container: document.createElement('div')
+})
 
-styleSheet.insert('.name{ color: black; }');
-styleSheet.insert('.cl{ width: 200px; height: 200px; }');
+styleSheet.insert('.name{ color: black; }')
+styleSheet.insert('.cl{ width: 200px; height: 200px; }')
 // $ExpectError
-styleSheet.insert();
+styleSheet.insert()
 // $ExpectError
-styleSheet.insert('.name{ color: black; }', (undefined as any));
+styleSheet.insert('.name{ color: black; }', undefined as any)
 // $ExpectError
-styleSheet.insert('.name{ color: black; }', ...(undefined as any as Array<any>));
+styleSheet.insert(
+  '.name{ color: black; }',
+  ...((undefined as any) as Array<any>)
+)
 
-styleSheet.flush();
+styleSheet.flush()
 // $ExpectError
-styleSheet.flush((undefined as any));
+styleSheet.flush(undefined as any)
 // $ExpectError
-styleSheet.flush(...(undefined as any as Array<any>));
+styleSheet.flush(...((undefined as any) as Array<any>))

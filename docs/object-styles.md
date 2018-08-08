@@ -10,7 +10,8 @@ Writing styles with objects is a powerful pattern built directly into the core o
 
 #### With the css prop
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
@@ -28,14 +29,18 @@ render(
 
 #### With `styled`
 
-```jsx live
+```jsx
+// @live
 import styled from '@emotion/styled'
 
-const Button = styled.button({
-  color: 'darkorchid'
-}, (props) => ({
-  fontSize: props.fontSize
-}))
+const Button = styled.button(
+  {
+    color: 'darkorchid'
+  },
+  props => ({
+    fontSize: props.fontSize
+  })
+)
 
 render(
   <Button fontSize={16}>
@@ -46,7 +51,8 @@ render(
 
 ### Child Selectors
 
-```jsx live
+```jsx
+// @live
 /* @jsx jsx */
 import { jsx } from '@emotion/core'
 
@@ -66,7 +72,8 @@ render(
 
 ### Media Queries
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
@@ -79,7 +86,8 @@ render(
       }
     }}
   >
-    This is orange on a big screen and darkorchid on a small screen.
+    This is orange on a big screen and darkorchid on a small
+    screen.
   </div>
 )
 ```
@@ -88,7 +96,8 @@ render(
 
 When numbers are the value of a css property, `px` is appended to the number unless it is a css property that is unitless.
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
@@ -109,6 +118,7 @@ render(
 Nested arrays are flattened.
 
 ```jsx
+// @live
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
@@ -120,7 +130,8 @@ render(
       { padding: 8 }
     ]}
   >
-    This is darkorchid with a hotpink background and 8px of padding.
+    This is darkorchid with a hotpink background and 8px of
+    padding.
   </div>
 )
 ```
@@ -129,19 +140,24 @@ render(
 
 Define fallback values for browsers that don't support features with arrays.
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
 render(
   <div
     css={{
-      background: ['red', 'linear-gradient(#e66465, #9198e5)'],
+      background: [
+        'red',
+        'linear-gradient(#e66465, #9198e5)'
+      ],
       height: 100
     }}
   >
-    This has a gradient background in browsers that support gradients and is red
-    in browsers that don't support gradients
+    This has a gradient background in browsers that support
+    gradients and is red in browsers that don't support
+    gradients
   </div>
 )
 ```
@@ -150,7 +166,8 @@ render(
 
 You can also use `css` with object styles.
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
@@ -169,7 +186,8 @@ render(
 
 [Learn more composition in Emotion](/docs/composition.md).
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
@@ -192,10 +210,13 @@ const hotpinkWithBlackBackground = css(
 render(
   <div>
     <p css={hotpink}>This is hotpink</p>
-    <button css={hotpinkHoverOrFocus}>This is hotpink on hover or focus</button>
+    <button css={hotpinkHoverOrFocus}>
+      This is hotpink on hover or focus
+    </button>
     <p css={hotpinkWithBlackBackground}>
-      This has a black background and is hotpink. Try moving where hotpink is in
-      the css call and see if the color changes.
+      This has a black background and is hotpink. Try moving
+      where hotpink is in the css call and see if the color
+      changes.
     </p>
   </div>
 )

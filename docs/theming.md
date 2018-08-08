@@ -11,6 +11,7 @@ npm install -S emotion-theming
 Add `ThemeProvider` to the top level of your app and access the theme with `props.theme` in a styled component or provide a function that accepts the theme as the css prop. The api is laid out in detail [in the documentation](https://github.com/emotion-js/emotion/tree/master/packages/emotion-theming).
 
 ```jsx
+// @live
 import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
 

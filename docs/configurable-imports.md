@@ -28,7 +28,9 @@ export default something.div`
 
 ```json
 {
-  "plugins": [["emotion", { "importedNames": { "css": "emotion" } }]]
+  "plugins": [
+    ["emotion", { "importedNames": { "css": "emotion" } }]
+  ]
 }
 ```
 
@@ -45,7 +47,7 @@ export default () => (
   <div>
     <p>only this paragraph will get the style :)</p>
     {/* you can include <Component />s here that include
-         other <p>s that don't get unexpected styles! */}
+                 other <p>s that don't get unexpected styles! */}
     <style jsx>{`
       p {
         color: red;
@@ -63,20 +65,26 @@ import styled, { css } from 'react-emotion'
 
 export default () => (
   <div data-jsx={2648947580}>
-    <p data-jsx={2648947580}>only this paragraph will get the style :)</p>
+    <p data-jsx={2648947580}>
+      only this paragraph will get the style :)
+    </p>
     {}
     <_JSXStyle
       styleId={2648947580}
       className={
-        /*#__PURE__*/ _css([], [], function createEmotionStyledRules() {
-          return [
-            {
-              'p[data-jsx="2648947580"]': {
-                color: 'red'
+        /*#__PURE__*/ _css(
+          [],
+          [],
+          function createEmotionStyledRules() {
+            return [
+              {
+                'p[data-jsx="2648947580"]': {
+                  color: 'red'
+                }
               }
-            }
-          ]
-        })
+            ]
+          }
+        )
       }
     />
   </div>
@@ -102,7 +110,9 @@ import styled, { css as emotion } from 'react-emotion'
 
 export default () => (
   <div data-jsx={2648947580}>
-    <p data-jsx={2648947580}>only this paragraph will get the style :)</p>
+    <p data-jsx={2648947580}>
+      only this paragraph will get the style :)
+    </p>
     {}
     <_JSXStyle
       styleId={2648947580}

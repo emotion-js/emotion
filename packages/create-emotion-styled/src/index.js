@@ -157,7 +157,6 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
       Styled.__emotion_real = Styled
       Styled.__emotion_forwardProp = shouldForwardProp
       Object.defineProperty(Styled, 'toString', {
-        enumerable: false,
         value() {
           if (
             process.env.NODE_ENV !== 'production' &&

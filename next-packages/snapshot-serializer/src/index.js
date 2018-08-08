@@ -62,8 +62,9 @@ export function print(val: *, printer: Function) {
 
 export function test(val: *) {
   return (
-    (val && !val.withEmotionNextStyles && isReactElement(val)) ||
-    isDOMElement(val)
+    val &&
+    !val.withEmotionNextStyles &&
+    (isReactElement(val) || isDOMElement(val))
   )
 }
 

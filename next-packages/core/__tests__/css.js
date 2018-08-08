@@ -1,9 +1,8 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
-import { jsx, keyframes } from '@emotion/core'
+import { jsx, css } from '@emotion/core'
 import ThemeProvider from '@emotion/provider'
-import css from '@emotion/css'
 import renderer from 'react-test-renderer'
 
 const SomeComponent = (props: { lol: true }) => (props.lol ? 'yes' : 'no')
@@ -24,62 +23,13 @@ test('thing', () => {
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('keyframes', () => {
-  const animation = keyframes(css`
-    from {
-      color: green;
-    }
-    to {
-      color: hotpink;
-    }
-  `)
-  const tree = renderer.create(
-    <div>
-      <div
-        css={css`
-          animation: ${animation.name} ${true};
-          ${animation.styles};
-        `}
-      >
-        {animation.name}
-      </div>
-    </div>
-  )
-
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
-test('keyframes insert in css call', () => {
-  const animation = keyframes(css`
-    from {
-      color: green;
-    }
-    to {
-      color: hotpink;
-    }
-  `)
-  const tree = renderer.create(
-    <div>
-      <div
-        css={css`
-          animation: ${animation.name};
-          ${animation.styles};
-        `}
-      >
-        {animation.name}
-      </div>
-    </div>
-  )
-
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
 test('css call composition', () => {
-  const first = css`
+  let first = css`
     color: hotpink;
   `
-  const second = css({ ':hover': first })
-  expect(second).toMatchSnapshot()
+  let tree = renderer.create(<div css={css({ ':hover': first })} />)
+
+  expect(tree.toJSON()).toMatchSnapshot()
 })
 
 test('theming with the css prop', () => {

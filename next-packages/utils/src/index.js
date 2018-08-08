@@ -39,7 +39,7 @@ export const insertStyles = (
       // we need to always store it if we're in compat mode and
       // in node since emotion-server relies on whether a style is in
       // the registered cache to know whether a style is global or not
-      // also, note that this will be dead code eliminated in the browser
+      // also, note that this check will be dead code eliminated in the browser
       (isBrowser === false && context.compat !== undefined)) &&
     context.registered[`${context.key}-${insertable.name}`] === undefined
   ) {
@@ -52,7 +52,9 @@ export const insertStyles = (
     )
     context.inserted[insertable.name] = true
 
-    if (!isBrowser) {
+    if (isBrowser) {
+      rules.forEach(context.sheet.insert, context.sheet)
+    } else {
       let joinedRules = rules.join('')
       if (context.compat === undefined) {
         // in regular mode, we don't set the styles on the inserted cache
@@ -64,8 +66,6 @@ export const insertStyles = (
         // that emotion-server can pull out the styles
         context.inserted[insertable.name] = joinedRules
       }
-    } else {
-      rules.forEach(context.sheet.insert, context.sheet)
     }
   }
 }

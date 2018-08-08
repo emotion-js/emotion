@@ -21,39 +21,35 @@ export const {
   sheet,
   caches
 } = createEmotion(context)
-
 ```
 
 ### Upside
 
-- Calling it directly will allow for some low level customization.
+* Calling it directly will allow for some low level customization.
 
-- Create custom names for emotion APIs to help with migration from other, similar libraries.
+* Create custom names for emotion APIs to help with migration from other, similar libraries.
 
-- Could set custom `key` to `👩‍🎤`, `🥞`, `⚛️`, `👩‍🎨`
+* Could set custom `key` to `👩‍🎤`, `🥞`, `⚛️`, `👩‍🎨`
 
 ### Downside
 
-- Introduces some amount of complexity to your application that can vary depending on developer experience.
+* Introduces some amount of complexity to your application that can vary depending on developer experience.
 
-- Required to keep up with changes in the repo and API at a lower level than if using `emotion` directly
-
+* Required to keep up with changes in the repo and API at a lower level than if using `emotion` directly
 
 ### Primary use cases
 
-- Using emotion in embedded contexts such as an `<iframe/>`
+* Using emotion in embedded contexts such as an `<iframe/>`
 
-- Setting a [nonce]() on any `<style/>` tag emotion creates for security purposes
+* Setting a [nonce]() on any `<style/>` tag emotion creates for security purposes
 
-- Use emotion with a developer defined `<style/>` tag
+* Use emotion with a developer defined `<style/>` tag
 
-- Using emotion with custom stylis plugins
+* Using emotion with custom stylis plugins
 
 ### Advanced use cases
 
-- Using emotion in component libraries to sync up multiple intances of emotion together
-
-
+* Using emotion in component libraries to sync up multiple intances of emotion together
 
 ```jsx
 import createEmotion from 'create-emotion'
@@ -79,7 +75,6 @@ export const {
 ## Context
 
 `emotion` requires a global object for server-side rendering to ensure that even if a module is calling an emotion instance from two paths(e.g. the same emotion instance in multiple node_modules, this can happen often with linking [#349](https://github.com/emotion-js/emotion/issues/349)) they'll still both work with SSR. If you aren't using SSR, `context` can be an empty object. This isn't required in the browser because your bundler should deduplicate modules.
-
 
 ## Multiple instances in a single app example
 

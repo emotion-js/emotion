@@ -9,7 +9,7 @@ yarn add @emotion/sheet
 ```jsx
 import { StyleSheet } from '@emotion/sheet'
 
-const sheet = new StyleSheet()
+const sheet = new StyleSheet({ key: '', container: document.head })
 
 sheet.insert('html { color: hotpink; }')
 ```
@@ -24,8 +24,8 @@ sheet.insert('html { color: hotpink; }')
 ```ts
 type Options = {
   nonce?: string
-  key?: string
-  container?: HTMLElement
+  key: string
+  container: HTMLElement
   speedy?: boolean
   maxLength?: number
 }

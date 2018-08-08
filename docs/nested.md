@@ -4,7 +4,8 @@ title: "Nested Selectors"
 
 Sometimes it's useful to nest selectors to target elements inside the current class or React component. Here is an example of a simple element selector nested in the class generated with `css`:
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
@@ -24,7 +25,8 @@ render(
 
 You can use `&` to select the current class nested in another element:
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
@@ -38,9 +40,13 @@ const paragraph = css`
 render(
   <div>
     <header>
-      <p css={paragraph}>This is green since it's inside a header</p>
+      <p css={paragraph}>
+        This is green since it's inside a header
+      </p>
     </header>
-    <p css={paragraph}>This is turquoise since it's not inside a header.</p>
+    <p css={paragraph}>
+      This is turquoise since it's not inside a header.
+    </p>
   </div>
 )
 ```

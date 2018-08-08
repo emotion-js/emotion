@@ -2,8 +2,7 @@
 
 > A CSS-in-JS theming solution for React(-like) views.
 
-*`emotion-theming` is a theming library inspired by [styled-components](https://github.com/styled-components/styled-components)*
-
+_`emotion-theming` is a theming library inspired by [styled-components](https://github.com/styled-components/styled-components)_
 
 ## Table of Contents
 
@@ -16,9 +15,7 @@
 * [Credits](#credits)
 * [License](#license)
 
-
 ## Install
-
 
 ```bash
 # add --save if using npm@4 or lower
@@ -90,81 +87,74 @@ ReactDOM.render(<App />, document.querySelector('main'));
 
 `<ThemeProvider>` acts as a conductor in the component hierarchy and themed components receive the `theme` for whatever purposes are necessary, be it styling or perhaps toggling a piece of functionality.
 
-
 ## API
 
 ### ThemeProvider: ReactComponent
 
 A React component that passes the theme object down the component tree via [context](https://facebook.github.io/react/docs/context.html). Additional `<ThemeProvider>` wrappers may be added deeper in the hierarchy to override the original theme. The theme object will be merged into its ancestor as if by [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign). If a function is passed instead of an object it will be called with the ancestor theme and the result will be the new theme.
 
-*Accepts:*
+_Accepts:_
+
 * **`children`: ReactComponent** - A single React component.
 * **`theme`: Object|Function** - An object or function that provides an object.
 
 ```jsx
-import React from 'react';
+import React from 'react'
 import styled from 'react-emotion'
-import { ThemeProvider, withTheme } from 'emotion-theming';
+import { ThemeProvider, withTheme } from 'emotion-theming'
 
 // object-style theme
 
 const theme = {
   backgroundColor: 'green',
-  color: 'red',
-};
+  color: 'red'
+}
 
 // function-style theme; note that if multiple <ThemeProvider> are used,
 // the parent theme will be passed as a function argument
 
-const adjustedTheme = ancestorTheme => ({ ...ancestorTheme, color: 'blue' });
+const adjustedTheme = ancestorTheme => ({ ...ancestorTheme, color: 'blue' })
 
 class Container extends React.Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
         <ThemeProvider theme={adjustedTheme}>
-          <Text>
-            Boom shaka laka!
-          </Text>
+          <Text>Boom shaka laka!</Text>
         </ThemeProvider>
       </ThemeProvider>
-    );
+    )
   }
 }
 
 const Text = styled.div`
-  background-color: ${props => props.theme.backgroundColor};  // will be green
-  color: ${props => props.theme.color};                       // will be blue
+  background-color: ${props => props.theme.backgroundColor}; // will be green
+  color: ${props => props.theme.color}; // will be blue
 `
 ```
-
 
 ### withTheme(component: ReactComponent): Function
 
 A higher-order component that provides the current theme as a prop to the wrapped child and listens for changes. If the theme is updated, the child component will be re-rendered accordingly.
 
 ```jsx
-import PropTypes from 'prop-types';
-import React from 'react';
-import { withTheme } from 'emotion-theming';
+import PropTypes from 'prop-types'
+import React from 'react'
+import { withTheme } from 'emotion-theming'
 
 class TellMeTheColor extends React.Component {
   render() {
-    return (
-      <div>
-        The color is {this.props.theme.color}.
-      </div>
-    );
+    return <div>The color is {this.props.theme.color}.</div>
   }
 }
 
 TellMeTheColor.propTypes = {
   theme: PropTypes.shape({
-    color: PropTypes.string,
-  }),
-};
+    color: PropTypes.string
+  })
+}
 
-const TellMeTheColorWithTheme = withTheme(TellMeTheColor);
+const TellMeTheColorWithTheme = withTheme(TellMeTheColor)
 ```
 
 ### channel: String
@@ -174,9 +164,10 @@ The emotion-theming package uses this string as the React context key by default
 If you wish to build your own components on top of this library, it is recommended to import the context key from this package instead of hardcoding its value.
 
 ```js
-import { channel } from 'emotion-theming';
+import { channel } from 'emotion-theming'
 
-console.log(channel); '__EMOTION_THEMING__';
+console.log(channel)
+;('__EMOTION_THEMING__')
 ```
 
 ### createBroadcast: Function
@@ -187,36 +178,33 @@ in `ThemeProvider`. However if you're using `enzyme`, you'll lose the ability to
 Instead you can `mount` a component a pass the channel and broadcast as part of `context`.
 
 ```js
-import {channel, createBroadcast} from 'emotion-theming';
-import {mount} from 'enzyme';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { channel, createBroadcast } from 'emotion-theming'
+import { mount } from 'enzyme'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 describe('emotion-theming', function() {
   it('can use theme from a ThemeProvider', function() {
-    const myTheme = {color: 'green'};
-    const broadcast = createBroadcast(myTheme);
+    const myTheme = { color: 'green' }
+    const broadcast = createBroadcast(myTheme)
     const wrapper = mount(<MyComponent />, {
       context: {
-        [channel]: broadcast,
+        [channel]: broadcast
       },
       childContextTypes: {
-        [channel]: PropTypes.object,
-      },
-    });
+        [channel]: PropTypes.object
+      }
+    })
 
-    wrapper.setState({foo: 'bar'});
-    expect(wrapper.state('foo')).toBe('bar');
-  });
-});
+    wrapper.setState({ foo: 'bar' })
+    expect(wrapper.state('foo')).toBe('bar')
+  })
+})
 ```
-
-
 
 ## Credits
 
 Thanks goes to the [styled-components team](https://github.com/styled-components/styled-components) and [their contributors](https://github.com/styled-components/styled-components/graphs/contributors) who originally wrote this.
-
 
 ## License
 

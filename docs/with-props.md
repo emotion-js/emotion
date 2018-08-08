@@ -6,7 +6,8 @@ Sometimes it's useful to create components that already have props applied, like
 
 **[`withProps` documentation](https://github.com/acdlite/recompose/blob/master/docs/API.md#withprops)**
 
-```jsx live
+```jsx
+// @live
 import styled from '@emotion/styled'
 import withProps from 'recompose/withProps'
 
@@ -21,7 +22,8 @@ render(<RedPasswordInput />)
 
 Alternatively, you can use the css prop and create a regular component like this.
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 

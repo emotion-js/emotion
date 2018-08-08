@@ -10,7 +10,8 @@ For more documentation on `styled`, [read about it and try it out in the `styled
 npm install --save emotion preact-emotion
 ```
 
-```jsx live
+```jsx
+// @live
 import styled, { css } from 'preact-emotion'
 const SomeComponent = styled('div')`
   display: flex;
@@ -26,9 +27,7 @@ const AnotherComponent = styled('h1')(
 
 render(
   <SomeComponent color="#DA70D6">
-    <AnotherComponent flex={1}>
-      Some text.
-    </AnotherComponent>
+    <AnotherComponent flex={1}>Some text.</AnotherComponent>
   </SomeComponent>
 )
 ```

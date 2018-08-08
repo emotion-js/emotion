@@ -7,19 +7,19 @@ Emotion includes TypeScript definitions for `emotion`, `react-emotion`, `preact-
 ## emotion
 
 ```tsx
-import { css } from 'emotion';
+import { css } from 'emotion'
 
 const titleStyle = css({
   boxSizing: 'border-box',
   width: 300,
-  height: 200,
-});
+  height: 200
+})
 
 const subtitleStyle = css`
   box-sizing: border-box;
   width: 100px;
   height: 60px;
-`;
+`
 ```
 
 Typescript checks css properties with the object style syntax using [csstype](https://www.npmjs.com/package/csstype) package, so following code will emit errors.
@@ -40,17 +40,17 @@ const titleStyle = css({
 ### HTML/SVG elements
 
 ```tsx
-import styled from 'react-emotion';
+import styled from 'react-emotion'
 
 const Link = styled('a')`
   color: red;
-`;
+`
 
 const Icon = styled('svg')`
   stroke: green;
-`;
+`
 
-const App = () => <Link href="#">Click me</Link>;
+const App = () => <Link href="#">Click me</Link>
 ```
 
 ```tsx
@@ -69,7 +69,7 @@ const App = () => (
 ### `withComponent`
 
 ```tsx
-import styled from 'react-emotion';
+import styled from 'react-emotion'
 
 const NotALink = styled('div')`
   color: red;
@@ -128,21 +128,22 @@ import React, { SFC } from 'react'
 import styled from 'react-emotion'
 
 type ComponentProps = {
-  className?: string,
+  className?: string
   label: string
 }
 
-const Component: SFC<ComponentProps> = ({ label, className }) => (
-  <div className={className}>{label}</div>
-)
+const Component: SFC<ComponentProps> = ({
+  label,
+  className
+}) => <div className={className}>{label}</div>
 
 const StyledComponent0 = styled(Component)`
   color: red;
 `
 
 const StyledComponent1 = styled(Component)({
-  color: 'red',
-});
+  color: 'red'
+})
 
 const App = () => (
   <div>
@@ -159,33 +160,46 @@ import React, { SFC } from 'react'
 import styled from 'react-emotion'
 
 type ComponentProps = {
-  className?: string,
+  className?: string
   label: string
 }
 
-const Component: SFC<ComponentProps> = ({ label, className }) => (
-  <div className={className}>{label}</div>
-)
+const Component: SFC<ComponentProps> = ({
+  label,
+  className
+}) => <div className={className}>{label}</div>
 
 type StyledComponentProps = {
   bgColor: string
-};
+}
 
 const StyledComponent0 = styled(Component)`
   color: red;
-  background: ${(props: StyledComponentProps) => props.bgColor};
+  background: ${(props: StyledComponentProps) =>
+    props.bgColor};
 `
 
-const StyledComponent1 = styled(Component)<StyledComponentProps>({
-  color: 'red',
-}, props => ({
-  background: props.bgColor,
-}));
+const StyledComponent1 = styled(Component)<
+  StyledComponentProps
+>(
+  {
+    color: 'red'
+  },
+  props => ({
+    background: props.bgColor
+  })
+)
 
 const App = () => (
   <div>
-    <StyledComponent0 bgColor="red" label="Some cool text" />
-    <StyledComponent1 bgColor="red" label="Some more cool text" />
+    <StyledComponent0
+      bgColor="red"
+      label="Some cool text"
+    />
+    <StyledComponent1
+      bgColor="red"
+      label="Some more cool text"
+    />
   </div>
 )
 ```
@@ -202,10 +216,10 @@ import styled, { CreateStyled } from 'react-emotion'
 
 type Theme = {
   color: {
-    primary: string,
-    positive: string,
-    negative: string,
-  },
+    primary: string
+    positive: string
+    negative: string
+  }
   // ...
 }
 
@@ -235,18 +249,21 @@ The `preact-emotion` types are the same as the `react-emotion` types except that
 The `create-emotion` types are very similar to the `emotion` types except that you can pass your own context and options.
 
 ```tsx
-import createEmotion, { Emotion, EmotionOptions } from 'create-emotion';
+import createEmotion, {
+  Emotion,
+  EmotionOptions
+} from 'create-emotion'
 
-const context = {};
+const context = {}
 const options: EmotionOptions = {
-  key: 'my-emotion',
-};
-const myEmotion: Emotion = createEmotion(context, options);
+  key: 'my-emotion'
+}
+const myEmotion: Emotion = createEmotion(context, options)
 
 const bodyStyle = myEmotion.css({
   display: 'flex',
-  flowDirection: 'column-reverse',
-});
+  flowDirection: 'column-reverse'
+})
 ```
 
 ## create-emotion-styled

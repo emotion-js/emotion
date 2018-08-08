@@ -67,9 +67,7 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
       this.sheet.flush()
     }
 
-    rules.forEach(rule => {
-      this.sheet.insert(rule)
-    })
+    rules.forEach(this.sheet.insert, this.sheet)
   }
 
   componentWillUnmount() {

@@ -26,7 +26,9 @@ expect.addSnapshotSerializer(createSerializer(emotion))
 ```
 
 ### Writing a test
-Writing a test with `jest-emotion` involves creating a snapshot from the `react-test-renderer` or `enzyme-to-json`'s resulting JSON. 
+
+Writing a test with `jest-emotion` involves creating a snapshot from the `react-test-renderer` or `enzyme-to-json`'s resulting JSON.
+
 ```jsx
 import React from 'react'
 import * as emotion from 'emotion'
@@ -42,11 +44,15 @@ const Button = styled('div')`
 
 test('Button renders correctly', () => {
   expect(
-    renderer.create(<Button>This is hotpink.</Button>).toJSON()
+    renderer
+      .create(<Button>This is hotpink.</Button>)
+      .toJSON()
   ).toMatchSnapshot()
 })
 ```
+
 It'll create a snapshot that looks like this.
+
 ```jsx
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
@@ -60,8 +66,7 @@ exports[`Button renders correctly 1`] = `
 >
   This is hotpink.
 </div>
-`;
+`
 ```
 
 When the styles of a component change, the snapshot will fail and you'll be able to update the snapshot or fix the component.
-

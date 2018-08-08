@@ -1,6 +1,7 @@
 {
-    "extends": "dtslint/dtslint.json",
-    "rules": {
-        "array-type": [true, "generic"]
-    }
+  "extends": "dtslint/dtslint.json",
+  "rules": {
+    "array-type": [true, "generic"],
+    "semicolon": [true, "never"]
+  }
 }

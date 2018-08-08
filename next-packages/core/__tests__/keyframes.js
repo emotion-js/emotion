@@ -1,0 +1,149 @@
+// @flow
+/** @jsx jsx */
+import { jsx, css, keyframes } from '@emotion/core'
+import { safeQuerySelector, throwIfFalsy } from 'test-utils'
+import cases from 'jest-in-case'
+import * as renderer from 'react-test-renderer'
+import createCache from '@emotion/cache'
+import { Provider } from '@emotion/core'
+
+cases(
+  'keyframes',
+  opts => {
+    safeQuerySelector('head').innerHTML = ''
+    let cache = createCache()
+    expect(
+      renderer
+        .create(<Provider value={cache}>{opts.render()}</Provider>)
+        .toJSON()
+    ).toMatchSnapshot()
+    expect(
+      throwIfFalsy(cache.sheet.tags).map(tag => tag.textContent || '')
+    ).toMatchSnapshot()
+    cache.sheet.flush()
+  },
+  {
+    basic: {
+      render: () => {
+        // this isn't necessary and many people will likely use
+        // keyframes as a tagged template literal but using a css call
+        // means prettier will format it
+        let animation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: hotpink;
+          }
+        `)
+        debugger // eslint-disable-line no-debugger
+        console.log(css`
+          animation: ${animation};
+        `)
+        return (
+          <div
+            css={css`
+              animation: ${animation};
+            `}
+          >
+            {animation.name}
+          </div>
+        )
+      }
+    },
+    'without css call': {
+      render: () => {
+        let animation = keyframes`
+          from {
+            color: green;
+          }
+          to {
+            color: hotpink;
+          }
+        `
+        return (
+          <div
+            css={css`
+              animation: ${animation};
+            `}
+          >
+            {animation.name}
+          </div>
+        )
+      }
+    },
+    object: {
+      render: () => {
+        let animation = keyframes({
+          from: {
+            color: 'green'
+          },
+          to: {
+            color: 'hotpink'
+          }
+        })
+
+        return (
+          <div
+            css={{
+              animation: `${animation} 1s`
+            }}
+          >
+            {animation.name}
+          </div>
+        )
+      }
+    },
+    'object with string keyframes': {
+      render: () => {
+        let animation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: hotpink;
+          }
+        `)
+
+        return (
+          <div
+            css={{
+              animation: `${animation} 1s`
+            }}
+          >
+            {animation.name}
+          </div>
+        )
+      }
+    },
+    'multiple keyframes object': {
+      render: () => {
+        let animation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: hotpink;
+          }
+        `)
+        let yellowAnimation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: yellow;
+          }
+        `)
+        return (
+          <div
+            css={{
+              animation: `${animation} 1s ${yellowAnimation}`
+            }}
+          >
+            {animation.name}
+          </div>
+        )
+      }
+    }
+  }
+)

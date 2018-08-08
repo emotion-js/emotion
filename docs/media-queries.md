@@ -4,7 +4,8 @@ title: "Media Queries"
 
 Using media queries in emotion works just like using media queries in regular css except you don't have to specify a selector inside the block, you can put your css directly in the css block.
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
@@ -26,13 +27,16 @@ render(
 
 Media queries can be really useful to create responsive apps though repeating them is annoying and can lead to inconsistencies so instead of rewriting them each time they're used, you can move them into constants and refer to the variable each time you want to use them like this.
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
 const breakpoints = [576, 768, 992, 1200]
 
-const mq = breakpoints.map(bp => `@media (min-width: ${bp}px)`)
+const mq = breakpoints.map(
+  bp => `@media (min-width: ${bp}px)`
+)
 
 render(
   <div>
@@ -80,14 +84,17 @@ yarn add facepaint
 npm install --save facepaint
 ```
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import facepaint from 'facepaint'
 
 const breakpoints = [576, 768, 992, 1200]
 
-const mq = facepaint(breakpoints.map(bp => `@media (min-width: ${bp}px)`))
+const mq = facepaint(
+  breakpoints.map(bp => `@media (min-width: ${bp}px)`)
+)
 
 render(
   <div

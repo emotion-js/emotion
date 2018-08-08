@@ -1,2 +1,6 @@
 semi: false
 singleQuote: true
+overrides:
+- files: "docs/*.md"
+  options:
+    printWidth: 60

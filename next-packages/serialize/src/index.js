@@ -8,15 +8,27 @@ import hashString from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import memoize from '@emotion/memoize'
 
-const hyphenateRegex = /[A-Z]|^ms/g
+let hyphenateRegex = /[A-Z]|^ms/g
 
-export const processStyleName: (styleName: string) => string = memoize(
-  (styleName: string) => styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
+
+const processStyleName = memoize((styleName: string) =>
+  styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
-export let processStyleValue = (key: string, value: string): string => {
+let processStyleValue = (key: string, value: string): string => {
   if (value == null || typeof value === 'boolean') {
     return ''
+  }
+
+  switch (key) {
+    case 'animation':
+    case 'animationName': {
+      value = value.replace(animationRegex, (match, p1, p2) => {
+        styles = p2 + styles
+        return p1
+      })
+    }
   }
 
   if (
@@ -63,7 +75,8 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-export function handleInterpolation(
+function handleInterpolation(
+  mergedProps: void | Object,
   registered: RegisteredCache,
   interpolation: Interpolation
 ): string | number {
@@ -72,8 +85,8 @@ export function handleInterpolation(
   }
   if (interpolation.__emotion_styles !== undefined) {
     if (
-      interpolation.toString() === 'NO_COMPONENT_SELECTOR' &&
-      process.env.NODE_ENV !== 'production'
+      process.env.NODE_ENV !== 'production' &&
+      interpolation.toString() === 'NO_COMPONENT_SELECTOR'
     ) {
       throw new Error(
         'Component selectors can only be used in conjunction with babel-plugin-emotion.'
@@ -87,22 +100,23 @@ export function handleInterpolation(
       return ''
     }
     case 'object': {
-      if (interpolation.type === 2) {
+      if (interpolation.anim === 1) {
+        styles = interpolation.styles + styles
         return interpolation.name
       }
       if (interpolation.styles !== undefined) {
         return interpolation.styles
       }
 
-      return createStringFromObject.call(this, registered, interpolation)
+      return createStringFromObject(mergedProps, registered, interpolation)
     }
     case 'function': {
-      if (this !== undefined) {
-        return handleInterpolation.call(
-          this,
+      if (mergedProps !== undefined) {
+        return handleInterpolation(
+          mergedProps,
           registered,
           // $FlowFixMe
-          interpolation(this)
+          interpolation(mergedProps)
         )
       }
     }
@@ -115,17 +129,18 @@ export function handleInterpolation(
 }
 
 function createStringFromObject(
+  mergedProps: void | Object,
   registered: RegisteredCache,
   obj: { [key: string]: Interpolation }
 ): string {
   let string = ''
 
   if (Array.isArray(obj)) {
-    obj.forEach(function(interpolation: Interpolation) {
-      string += handleInterpolation.call(this, registered, interpolation)
-    }, this)
+    for (let i = 0; i < obj.length; i++) {
+      string += handleInterpolation(mergedProps, registered, obj[i])
+    }
   } else {
-    Object.keys(obj).forEach(function(key: string) {
+    for (let key in obj) {
       if (typeof obj[key] !== 'object') {
         string += `${processStyleName(key)}:${processStyleValue(
           key,
@@ -152,24 +167,30 @@ function createStringFromObject(
             )};`
           })
         } else {
-          string += `${key}{${handleInterpolation.call(
-            this,
+          string += `${key}{${handleInterpolation(
+            mergedProps,
             registered,
             obj[key]
           )}}`
         }
       }
-    }, this)
+    }
   }
 
   return string
 }
 
-export const labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
+let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
+
+// this is set to an empty string on each serializeStyles call
+// it's declared in the module scope since we need to add to
+// it in the middle of serialization to add styles from keyframes
+let styles = ''
 
 export const serializeStyles = function(
   registered: RegisteredCache,
-  args: Array<Interpolation>
+  args: Array<Interpolation>,
+  mergedProps: void | Object
 ): ScopedInsertableStyles {
   if (
     args.length === 1 &&
@@ -179,15 +200,45 @@ export const serializeStyles = function(
   ) {
     return args[0]
   }
-  let styles = ''
+  let stringMode = true
+  styles = ''
   let identifierName = ''
-  args.forEach(function(interpolation, i) {
-    styles += handleInterpolation.call(this, registered, interpolation)
-  }, this)
+  let strings = args[0]
+  if (strings == null || strings.raw === undefined) {
+    stringMode = false
+    // we have to store this in a variable and then append it to styles since
+    // styles could be modified in handleInterpolation and using += would mean
+    // it would append the return value of handleInterpolation to the value before handleInterpolation is called
+    let stringifiedInterpolation = handleInterpolation(
+      mergedProps,
+      registered,
+      strings
+    )
+    styles += stringifiedInterpolation
+  } else {
+    styles += strings[0]
+  }
+  // we start at 1 since we've already handled the first arg
+  for (let i = 1; i < args.length; i++) {
+    // we have to store this in a variable and then append it to styles since
+    // styles could be modified in handleInterpolation and using += would mean
+    // it would append the return value of handleInterpolation to the value before handleInterpolation is called
+    let stringifiedInterpolation = handleInterpolation(
+      mergedProps,
+      registered,
+      args[i]
+    )
+    styles += stringifiedInterpolation
+    if (stringMode) {
+      styles += strings[i]
+    }
+  }
+
   styles = styles.replace(labelPattern, (match, p1: string) => {
     identifierName += `-${p1}`
     return ''
   })
+
   let name = hashString(styles) + identifierName
 
   return {

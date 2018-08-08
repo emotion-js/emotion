@@ -5,18 +5,25 @@ title: "Install"
 Emotion can be used in many different ways. The easiest way to get started is to use the [`@emotion/core` package](/packages/@emotion/core).
 
 ```bash
+# React
 yarn add @emotion/core
+# Preact
+yarn add @emotion/preact-core
 ```
 
 or if you prefer npm
 
 ```bash
+# React
 npm install --save @emotion/core
+# Preact
+npm install --save @emotion/preact-core
 ```
 
 To use it, import what you need, for example use [jsx](/docs/jsx.md) to create class names with styles.
 
-```jsx live
+```jsx
+// @live
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
@@ -26,9 +33,7 @@ const style = css`
 `
 
 const SomeComponent = ({ children }) => (
-  <div css={style}>
-    Some hotpink text.{children}
-  </div>
+  <div css={style}>Some hotpink text.{children}</div>
 )
 
 const anotherStyle = css({
@@ -36,9 +41,7 @@ const anotherStyle = css({
 })
 
 const AnotherComponent = () => (
-  <div css={anotherStyle}>
-    Some text with an underline.
-  </div>
+  <div css={anotherStyle}>Some text with an underline.</div>
 )
 render(
   <SomeComponent>
@@ -56,7 +59,7 @@ render(
 # React
 yarn add @emotion/styled
 # Preact
-# TODO
+yarn add @emotion/preact-styled
 ```
 
 or if you prefer npm
@@ -65,11 +68,11 @@ or if you prefer npm
 # React
 npm install --save @emotion/styled
 # Preact
-# TODO
+npm install --save @emotion/preact-styled
 ```
 
 ```jsx live
-// change this import to TODO
+// change this import to @emotion/preact-styled
 // if you're using Preact
 import styled from '@emotion/styled'
 
@@ -77,9 +80,7 @@ const Button = styled.button`
   color: hotpink;
 `
 
-render(
-  <Button>This is a hotpink button.</Button>
-)
+render(<Button>This is a hotpink button.</Button>)
 ```
 
 ## With [`babel-plugin-emotion`](/packages/babel-plugin-emotion)
@@ -134,7 +135,12 @@ If you are using Babel's env option emotion must also be first for each environm
       "plugins": [["emotion", { "hoist": true }]]
     },
     "development": {
-      "plugins": [["emotion", { "sourceMap": true, "autoLabel": true }]]
+      "plugins": [
+        [
+          "emotion",
+          { "sourceMap": true, "autoLabel": true }
+        ]
+      ]
     }
   }
 }

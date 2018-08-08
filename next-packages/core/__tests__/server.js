@@ -46,12 +46,9 @@ cases(
             }
           `
         )
-
         return (
           <React.Fragment>
-            <div
-              css={[{ animation: `1s ${animation.name}` }, animation.styles]}
-            />
+            <div css={{ animation: `1s ${animation}` }} />
           </React.Fragment>
         )
       }

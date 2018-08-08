@@ -1,6 +1,9 @@
 // @flow
-import { handleInterpolation } from '@emotion/serialize'
+import { serializeStyles } from '@emotion/serialize'
 
+// to anyone looking at this, this isn't intended to simplify every single case
+// it's meant to simplify the most common cases so i don't want to make it especially complex
+// also, this will be unnecessary when prepack is ready
 export function simplifyObject(node: *, t: Object) {
   let bailout = false
   let finalString = ''
@@ -34,7 +37,7 @@ export function simplifyObject(node: *, t: Object) {
     }
     let value = property.value.value
 
-    finalString += handleInterpolation({}, { [key]: value })
+    finalString += serializeStyles({}, [{ [key]: value }]).styles
   })
   return bailout ? node : t.stringLiteral(finalString)
 }

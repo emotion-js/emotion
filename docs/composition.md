@@ -4,7 +4,8 @@ title: "Composition"
 
 Composition is one of the most powerful and useful patterns in Emotion. You can compose styles together by interpolating value returned from `css` in another style block.
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
@@ -28,7 +29,8 @@ With regular css, you can compose styles together using multiple class names but
 
 For example, we have some base styles and a danger style, we want the danger styles to have precedence over the base styles but because `base` is in the stylesheet after `danger` it has higher [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity). In regular CSS, you might do something to make `danger` have a higher specificity than `base` like move the `danger` class so it's more specific than `base`, use `!important` or abandon composition and rewrite the styles each time you need them.
 
-```jsx live
+```jsx
+// @live
 render(
   <div>
     <style>
@@ -50,7 +52,8 @@ render(
 
 With Emotion though, we can create styles and combine them
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 
@@ -67,8 +70,8 @@ render(
   <div>
     <div css={base}>This will be turquoise</div>
     <div css={[danger, base]}>
-      This will be also be turquoise since the base styles overwrite the danger
-      styles.
+      This will be also be turquoise since the base styles
+      overwrite the danger styles.
     </div>
     <div css={[base, danger]}>This will be red</div>
   </div>
@@ -83,7 +86,8 @@ render(
 
 You can also do dynamic composition based on props and use it in `styled`.
 
-```jsx live
+```jsx
+// @live
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
@@ -95,12 +99,17 @@ const dynamicStyle = props =>
 const Container = styled.div`
   ${dynamicStyle};
 `
-render(<Container color="lightgreen">This is lightgreen.</Container>)
+render(
+  <Container color="lightgreen">
+    This is lightgreen.
+  </Container>
+)
 ```
 
 If you're composing lots of other styles and aren't using any string styles directly in the `styled` call, you can use the function call syntax to make it smaller.
 
-```jsx live
+```jsx
+// @live
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 

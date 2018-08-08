@@ -2,7 +2,7 @@
 
 > A custom build of Stylis
 
-`@emotion/stylis` is a version of [Stylis](https://github.com/thysultan/stylis.js) that has been modified slightly to make it smaller. The only Stylis option that can be changed is `prefix`, the rest of the options are already set to the values shown below and cannot be changed. This package also only exports the constructer, so you have to do `new Stylis()` and use the result from that rather than directly calling `Stylis`.
+`@emotion/stylis` is a version of [Stylis](https://github.com/thysultan/stylis.js) that has been modified slightly to make it smaller. The only Stylis option that can be changed is `prefix`, the rest of the options are already set to the values shown below and cannot be changed. This package also only exports the constructer, so you have to do `new Stylis()` and use the result from that rather than directly calling `Stylis`. The result of that function also cannot be used to create a stylis instance unlike stylis.
 
 ```js
 type Options = {
