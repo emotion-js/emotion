@@ -161,6 +161,20 @@ exports[`styled composition of nested pseudo selectors 1`] = `
 </button>
 `;
 
+exports[`styled function as object's value 1`] = `
+.emotion-0 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+<h1
+  className="emotion-0"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled function in expression 1`] = `
 .emotion-0 {
   font-size: 20px;

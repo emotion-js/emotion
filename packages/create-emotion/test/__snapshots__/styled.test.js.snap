@@ -252,6 +252,20 @@ exports[`styled composition with objects 1`] = `
 </h1>
 `;
 
+exports[`styled function as object's value 1`] = `
+.emotion-0 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled function in expression 1`] = `
 .emotion-0 {
   font-size: 20px;
