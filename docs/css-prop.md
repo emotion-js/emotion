@@ -6,7 +6,8 @@ The primary way to style things in emotion is with the css prop, to use the css 
 
 To pass string styles, you must use `css` which is exported by `@emotion/core`, it can be used as a [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) like below.
 
-```jsx live
+```jsx
+// @live
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
@@ -29,7 +30,8 @@ render(
 
 You can also pass objects directly to the css prop, for more usage with objects, go [here](/docs/object-styles.md).
 
-```jsx live
+```jsx
+// @live
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
