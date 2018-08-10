@@ -1,5 +1,5 @@
 - title: Getting Started
-  items: 
+  items:
     - introduction
     - install
     - css-prop
@@ -20,6 +20,7 @@
     - labels
     - configurable-imports
     - instances
+    - migrating-to-emotion-10
     #- benchmarks
 
 - title: Tooling
@@ -40,7 +41,7 @@
     - emotion-server
     - emotion-theming
     - jest-emotion
-    - "@emotion/primitives"
+    - '@emotion/primitives'
     - create-emotion
     - create-emotion-styled
     - create-emotion-server

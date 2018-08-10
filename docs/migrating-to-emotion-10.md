@@ -2,11 +2,11 @@
 title: "Migrating to Emotion 10"
 ---
 
-Emotion 10 is a large change to Emotion so it requires some changes to your code.
+Emotion 10 is a large change to Emotion so it requires some changes to your code. Some of the changes can be done automatically via a codemod and the rest can be done incrementally.
 
 # Thinking
 
-The biggest change in Emotion 10 is that it doesn't let you easily access the underlying class names. Instead of thinking in class names, you have to think in terms of styles and composing them together.
+The biggest change in Emotion 10 is that it doesn't let you easily access the underlying class names. Instead of thinking in class names, you have to think in terms of styles and composing them together. (you can still use classnames if you want to but it's not recommended except during migration)
 
 For example, in Emotion 9, you might have had two classes from `css` and compose them together with `cx` but in Emotion 10, you create 2 styles and compose them together in the css prop like this
 
@@ -23,7 +23,9 @@ let important = css`
 `
 
 const SomeComponent = props => (
-  <div className={cx(basic, props.important && important)} />
+  <div
+    className={cx(basic, props.important && important)}
+  />
 )
 ```
 
@@ -47,9 +49,11 @@ const SomeComponent = props => (
 
 # Incremental Migration
 
-Incremental migration is something really important to Emotion because we don't want anyone to have to rewrite your entire app instantly.
+Incremental migration is something really important to Emotion because we don't want anyone to have to rewrite their entire app.
 
 The upgrades to emotion 10 are split into two parts. The first part can be done automatically by a codemod.
+
+## Codemoddable
 
 * Change all react-emotion imports so that styled is imported from `@emotion/styled` and all the emotion exports are split into a second import.
 
@@ -85,7 +89,7 @@ let element = (
 ```
 
 * Add a `jsx` import and set jsx pragma
-* Alternatively, you use this TODO babel preset
+* Alternatively, use this TODO babel preset
 
 ```jsx
 import { css } from '@emotion/core'
@@ -146,3 +150,5 @@ let element = (
   />
 )
 ```
+
+* TODO: add a render prop component that can add multiple class names at once.
