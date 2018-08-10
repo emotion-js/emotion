@@ -410,6 +410,8 @@ function getInstancePathToCompare(instancePath: string, rootPath: string) {
   return absolutePath
 }
 
+let warnedAboutExtractStatic = false
+
 export default function(babel: Babel) {
   const { types: t } = babel
 
@@ -517,6 +519,15 @@ export default function(babel: Babel) {
             }
           })
           state.cssPropIdentifiers = []
+          if (state.opts.extractStatic && !warnedAboutExtractStatic) {
+            console.warn(
+              'extractStatic is deprecated and will be removed in emotion@10. We recommend disabling extractStatic or using other libraries like linaria or css-literal-loader'
+            )
+            // lots of cli tools write to the same line so
+            // this moves to the next line so the warning doesn't get removed
+            console.log('')
+            warnedAboutExtractStatic = true
+          }
           state.extractStatic =
             // path.hub.file.opts.filename !== 'unknown' ||
             state.opts.extractStatic
