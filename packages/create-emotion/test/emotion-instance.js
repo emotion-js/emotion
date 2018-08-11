@@ -16,22 +16,18 @@ export const container = document.createElement('div')
 // $FlowFixMe
 document.head.appendChild(container)
 
-const emotion = createEmotion(
-  // don't use a global so the options aren't cached
-  {},
-  {
-    stylisPlugins: stylisPlugin,
-    prefix: (key, value) => {
-      if (key === 'display' && value === 'flex') {
-        return false
-      }
-      return true
-    },
-    nonce: 'some-nonce',
-    key: 'some-key',
-    container
-  }
-)
+const emotion = createEmotion({
+  stylisPlugins: stylisPlugin,
+  prefix: (key, value) => {
+    if (key === 'display' && value === 'flex') {
+      return false
+    }
+    return true
+  },
+  nonce: 'some-nonce',
+  key: 'some-key',
+  container
+})
 
 export const {
   flush,

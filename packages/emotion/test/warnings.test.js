@@ -1,6 +1,6 @@
 // @flow
 import 'test-utils/legacy-env'
-import { css, cx } from 'emotion'
+import { css } from 'emotion'
 import * as React from 'react'
 import renderer from 'react-test-renderer'
 
@@ -55,9 +55,9 @@ it('does warn when functions are passed to css calls', () => {
   )
 })
 
-it('does warn when functions are passed to cx calls ', () => {
-  cx(() => 'cls')
-  expect(console.error).toBeCalledWith(
-    'Passing functions to cx is deprecated and will be removed in the next major version of Emotion.\nPlease call the function before passing it to cx.'
-  )
-})
+// it('does warn when functions are passed to cx calls ', () => {
+//   cx(() => 'cls')
+//   expect(console.error).toBeCalledWith(
+//     'Passing functions to cx is deprecated and will be removed in the next major version of Emotion.\nPlease call the function before passing it to cx.'
+//   )
+// })

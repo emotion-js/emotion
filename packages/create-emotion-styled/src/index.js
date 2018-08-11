@@ -11,6 +11,7 @@ import {
   pickAssign,
   setTheme
 } from './utils'
+import { getRegisteredStyles } from '@emotion/utils'
 
 function createEmotionStyled(emotion: Emotion, view: ReactType) {
   let createStyled: CreateStyled = (tag, options) => {
@@ -107,7 +108,8 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
 
           if (props.className) {
             if (staticClassName === undefined) {
-              className += emotion.getRegisteredStyles(
+              className += getRegisteredStyles(
+                emotion.caches.registered,
                 classInterpolations,
                 props.className
               )
