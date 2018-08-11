@@ -13,24 +13,24 @@ Add `ThemeProvider` to the top level of your app and access the theme with `prop
 ```jsx
 // @live
 import styled from '@emotion/styled'
-import { ThemeProvider } from 'emotion-theming'
+import ThemeProvider from '@emotion/provider'
 
 const theme = {
-  borderRadius: '50%',
-  borderColor: '#BF67AD'
+  colors: {
+    primaryColors: 'hotpink'
+  }
 }
 
-const Avatar = styled('img')`
-  width: 96px;
-  height: 96px;
-  border-radius: ${props => props.theme.borderRadius};
-  border: 1px solid ${props => props.theme.borderColor};
+const SomeText = styled.div`
+  color: ${props => props.theme.colors.primary};
 `
 
 render(
   <ThemeProvider theme={theme}>
-    <Avatar src={logoUrl} />
-    <div
+    <SomeText>some text</SomeText>
+    <div css={theme => ({ color: theme.colors.primary })}>
+      some other text
+    </div>
   </ThemeProvider>
 )
 ```

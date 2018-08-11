@@ -139,7 +139,7 @@ render(
 
 ### Object styles
 
-````jsx
+```jsx
 // @live
 import styled from '@emotion/styled'
 
@@ -154,4 +154,3 @@ render(<H1 color="lightgreen">This is lightgreen.</H1>)
 ```
 
 This API was inspired by [glamorous](https://github.com/paypal/glamorous). ❤️
-````

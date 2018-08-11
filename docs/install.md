@@ -71,7 +71,8 @@ npm install --save @emotion/styled
 npm install --save @emotion/preact-styled
 ```
 
-```jsx live
+```jsx
+// @live
 // change this import to @emotion/preact-styled
 // if you're using Preact
 import styled from '@emotion/styled'
