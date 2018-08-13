@@ -98,6 +98,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 * [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
 * [ShevyJS](https://github.com/kyleshevlin/shevyjs)
 * [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
+* [stylelint](https://github.com/stylelint/stylelint) - linter that helps you avoid errors and enforce conventions in your styles.
 
 ### In the Wild
 
