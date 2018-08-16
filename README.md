@@ -12,6 +12,7 @@
 ![react gzip size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?compression=gzip&label=react%20gzip%20size)
 ![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?label=react%20size)
 [![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
+[![spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/emotion)
 
 Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
 
