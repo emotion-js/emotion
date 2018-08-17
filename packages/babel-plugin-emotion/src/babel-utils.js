@@ -2,9 +2,16 @@
 import nodePath from 'path'
 import { hashArray } from './index'
 import type { BabelPath, EmotionBabelPluginPass } from './index'
-import type { Types, Identifier } from 'babel-flow-types'
+import type { Types, Identifier, Node } from 'babel-flow-types'
 
 export { getLabelFromPath as getIdentifierName } from '@emotion/babel-utils'
+
+function getBestNodeName(t, arg) {
+  if (t.isLiteral(arg)) return arg.value
+  if (arg.id && typeof arg.id.name !== 'undefined') return arg.id.name
+  if (typeof arg.name !== 'undefined') return arg.name
+  return null
+}
 
 function cloneNode(t: any, node) {
   return (typeof t.cloneNode === 'function' ? t.cloneNode : t.cloneDeep)(node)
@@ -87,9 +94,18 @@ export function getLabel(
   identifierName?: string,
   autoLabel: boolean,
   labelFormat?: string,
-  filename: string
+  filename: string,
+  t: Types,
+  args: Node[]
 ) {
-  if (!identifierName || !autoLabel) return null
+  if (!autoLabel) return null
+
+  if (!identifierName && t && args && args.length > 0) {
+    // Try to generate name based on first argument
+    const argLabel = getBestNodeName(t, args[0])
+    return argLabel ? `styled(${argLabel})` : null
+  }
+
   if (!labelFormat) return identifierName.trim()
 
   const parsedPath = nodePath.parse(filename)
