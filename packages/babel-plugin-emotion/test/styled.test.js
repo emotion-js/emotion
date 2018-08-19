@@ -279,6 +279,62 @@ const cases = {
     opts: { autoLabel: true }
   },
 
+  'autoLabel anonymous styled function component': {
+    code: `
+      export default styled(function Profile() {})\`
+        color: blue;
+      \`;
+    `,
+    opts: { autoLabel: true }
+  },
+
+  'autoLabel anonymous styled function component via variable identifier': {
+    code: `
+      const Profile = () => <div />;
+      export default styled(Profile)\`
+        color: blue;
+      \`;
+    `,
+    opts: { autoLabel: true }
+  },
+
+  'autoLabel anonymous styled class component': {
+    code: `
+      export default styled(class Profile extends React.Component {})\`
+        color: blue;
+      \`;
+    `,
+    opts: { autoLabel: true }
+  },
+
+  'autoLabel anonymous styled anonymous class component': {
+    code: `
+      export default styled(class extends React.Component{})\`
+        color: blue
+      \`
+    `,
+    opts: { autoLabel: true }
+  },
+
+  'autoLabel anonymous styled dom component with string styles': {
+    code: `
+      export default styled('h1')\`
+        color: blue;
+      \`;
+    `,
+    opts: { autoLabel: true }
+  },
+
+  'autoLabel anonymous styled dom component with object styles': {
+    code: `
+      export default styled.h1({
+        color: 'blue'
+      });
+    `,
+    opts: { autoLabel: true },
+    extract: false
+  },
+
   'component selector': {
     code: `
       const Child = styled.div\`

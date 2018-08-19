@@ -1,5 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`styled extract babel 6 autoLabel anonymous styled anonymous class component 1`] = `
+"import \\"./emotion.emotion.css\\";
+
+export default styled(class extends React.Component {}, {
+  e: \\"css-1e93lt2\\",
+  target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-1e93lt2{color:blue;}"
+`;
+
+exports[`styled extract babel 6 autoLabel anonymous styled class component 1`] = `
+"import \\"./emotion.emotion.css\\";
+
+export default styled(class Profile extends React.Component {}, {
+  e: \\"css-1aj1g6z\\",
+  target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-1aj1g6z{color:blue;}"
+`;
+
+exports[`styled extract babel 6 autoLabel anonymous styled dom component with object styles 1`] = `
+"
+export default /*#__PURE__*/styled('h1', {
+  target: 'e8nbyc50',
+  label: 'styled(h1)'
+})({
+  color: 'blue'
+});"
+`;
+
+exports[`styled extract babel 6 autoLabel anonymous styled dom component with string styles 1`] = `
+"import './emotion.emotion.css';
+
+export default styled('h1', {
+  e: 'css-1aj1g6z',
+  target: 'e8nbyc50'
+})();
+
+
+emotion.emotion.css
+.css-1aj1g6z{color:blue;}"
+`;
+
+exports[`styled extract babel 6 autoLabel anonymous styled function component 1`] = `
+"import \\"./emotion.emotion.css\\";
+
+export default styled(function Profile() {}, {
+  e: \\"css-1aj1g6z\\",
+  target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-1aj1g6z{color:blue;}"
+`;
+
+exports[`styled extract babel 6 autoLabel anonymous styled function component via variable identifier 1`] = `
+"import \\"./emotion.emotion.css\\";
+
+const Profile = () => <div />;
+export default styled(Profile, {
+  e: \\"css-1aj1g6z\\",
+  target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-1aj1g6z{color:blue;}"
+`;
+
 exports[`styled extract babel 6 autoLabel object styles 1`] = `
 "
 const Profile = () => {
@@ -347,6 +423,80 @@ import what from 'emotion';what('h1', {
 
 emotion.emotion.css
 .css-14ksm7b{color:blue;}"
+`;
+
+exports[`styled extract babel 7 autoLabel anonymous styled anonymous class component 1`] = `
+"import \\"./emotion.emotion.css\\";
+export default styled(class extends React.Component {}, {
+  e: \\"css-1e93lt2\\",
+  target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-1e93lt2{color:blue;}"
+`;
+
+exports[`styled extract babel 7 autoLabel anonymous styled class component 1`] = `
+"import \\"./emotion.emotion.css\\";
+export default styled(class Profile extends React.Component {}, {
+  e: \\"css-1aj1g6z\\",
+  target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-1aj1g6z{color:blue;}"
+`;
+
+exports[`styled extract babel 7 autoLabel anonymous styled dom component with object styles 1`] = `
+"export default
+/*#__PURE__*/
+styled(\\"h1\\", {
+  target: \\"e8nbyc50\\",
+  label: \\"styled(h1)\\"
+})({
+  color: 'blue'
+});"
+`;
+
+exports[`styled extract babel 7 autoLabel anonymous styled dom component with string styles 1`] = `
+"import \\"./emotion.emotion.css\\";
+export default styled('h1', {
+  e: \\"css-1aj1g6z\\",
+  target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-1aj1g6z{color:blue;}"
+`;
+
+exports[`styled extract babel 7 autoLabel anonymous styled function component 1`] = `
+"import \\"./emotion.emotion.css\\";
+export default styled(function Profile() {}, {
+  e: \\"css-1aj1g6z\\",
+  target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-1aj1g6z{color:blue;}"
+`;
+
+exports[`styled extract babel 7 autoLabel anonymous styled function component via variable identifier 1`] = `
+"import \\"./emotion.emotion.css\\";
+
+const Profile = () => <div />;
+
+export default styled(Profile, {
+  e: \\"css-1aj1g6z\\",
+  target: \\"e8nbyc50\\"
+})();
+
+
+emotion.emotion.css
+.css-1aj1g6z{color:blue;}"
 `;
 
 exports[`styled extract babel 7 autoLabel object styles 1`] = `
@@ -740,6 +890,56 @@ emotion.emotion.css
 .css-14ksm7b{color:blue;}"
 `;
 
+exports[`styled inline babel 6 autoLabel anonymous styled anonymous class component 1`] = `
+"
+export default /*#__PURE__*/styled(class extends React.Component {}, {
+  target: \\"e8nbyc50\\"
+})(\\"color:blue\\");"
+`;
+
+exports[`styled inline babel 6 autoLabel anonymous styled class component 1`] = `
+"
+export default /*#__PURE__*/styled(class Profile extends React.Component {}, {
+  label: \\"styled(Profile)\\",
+  target: \\"e8nbyc50\\"
+})(\\"color:blue;\\");"
+`;
+
+exports[`styled inline babel 6 autoLabel anonymous styled dom component with object styles 1`] = `
+"
+export default /*#__PURE__*/styled('h1', {
+  target: 'e8nbyc50',
+  label: 'styled(h1)'
+})({
+  color: 'blue'
+});"
+`;
+
+exports[`styled inline babel 6 autoLabel anonymous styled dom component with string styles 1`] = `
+"
+export default /*#__PURE__*/styled('h1', {
+  label: 'styled(h1)',
+  target: 'e8nbyc50'
+})('color:blue;');"
+`;
+
+exports[`styled inline babel 6 autoLabel anonymous styled function component 1`] = `
+"
+export default /*#__PURE__*/styled(function Profile() {}, {
+  label: \\"styled(Profile)\\",
+  target: \\"e8nbyc50\\"
+})(\\"color:blue;\\");"
+`;
+
+exports[`styled inline babel 6 autoLabel anonymous styled function component via variable identifier 1`] = `
+"
+const Profile = () => <div />;
+export default /*#__PURE__*/styled(Profile, {
+  label: \\"styled(Profile)\\",
+  target: \\"e8nbyc50\\"
+})(\\"color:blue;\\");"
+`;
+
 exports[`styled inline babel 6 autoLabel object styles 1`] = `
 "
 const Profile = () => {
@@ -1022,6 +1222,63 @@ exports[`styled inline babel 6 variable import: no dynamic 1`] = `
 "import what from 'emotion'; /*#__PURE__*/what('h1', {
   target: 'e8nbyc50'
 })('color:blue;');"
+`;
+
+exports[`styled inline babel 7 autoLabel anonymous styled anonymous class component 1`] = `
+"export default
+/*#__PURE__*/
+styled(class extends React.Component {}, {
+  target: \\"e8nbyc50\\"
+})(\\"color:blue\\");"
+`;
+
+exports[`styled inline babel 7 autoLabel anonymous styled class component 1`] = `
+"export default
+/*#__PURE__*/
+styled(class Profile extends React.Component {}, {
+  label: \\"styled(Profile)\\",
+  target: \\"e8nbyc50\\"
+})(\\"color:blue;\\");"
+`;
+
+exports[`styled inline babel 7 autoLabel anonymous styled dom component with object styles 1`] = `
+"export default
+/*#__PURE__*/
+styled(\\"h1\\", {
+  target: \\"e8nbyc50\\",
+  label: \\"styled(h1)\\"
+})({
+  color: 'blue'
+});"
+`;
+
+exports[`styled inline babel 7 autoLabel anonymous styled dom component with string styles 1`] = `
+"export default
+/*#__PURE__*/
+styled('h1', {
+  label: \\"styled(h1)\\",
+  target: \\"e8nbyc50\\"
+})(\\"color:blue;\\");"
+`;
+
+exports[`styled inline babel 7 autoLabel anonymous styled function component 1`] = `
+"export default
+/*#__PURE__*/
+styled(function Profile() {}, {
+  label: \\"styled(Profile)\\",
+  target: \\"e8nbyc50\\"
+})(\\"color:blue;\\");"
+`;
+
+exports[`styled inline babel 7 autoLabel anonymous styled function component via variable identifier 1`] = `
+"const Profile = () => <div />;
+
+export default
+/*#__PURE__*/
+styled(Profile, {
+  label: \\"styled(Profile)\\",
+  target: \\"e8nbyc50\\"
+})(\\"color:blue;\\");"
 `;
 
 exports[`styled inline babel 7 autoLabel object styles 1`] = `

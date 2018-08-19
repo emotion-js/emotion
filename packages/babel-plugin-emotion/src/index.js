@@ -262,7 +262,9 @@ export function buildStyledCallExpression(
     identifierName,
     state.opts.autoLabel,
     state.opts.labelFormat,
-    state.file.opts.filename
+    state.file.opts.filename,
+    t,
+    args
   )
 
   if (label) {
@@ -333,7 +335,9 @@ export function buildStyledObjectCallExpression(
     identifierName,
     state.opts.autoLabel,
     state.opts.labelFormat,
-    state.file.opts.filename
+    state.file.opts.filename,
+    t,
+    t.isCallExpression(path.node.callee) ? null : [path.node.callee.property]
   )
 
   const labelProperty = label
