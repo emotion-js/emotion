@@ -81,9 +81,10 @@ let createEmotion = (options: *): Emotion => {
   // $FlowFixMe
   cache.sheet.speedy = function(value: boolean) {
     if (this.ctr !== 0) {
-      throw new Error('ctr must be changed before any rules are inserted')
+      throw new Error('speedy must be changed before any rules are inserted')
     }
     this.isSpeedy = value
+    this.maxLength = value ? 65000 : 1
   }
   cache.compat = true
 
@@ -129,7 +130,9 @@ let createEmotion = (options: *): Emotion => {
     flush() {
       cache.registered = {}
       cache.inserted = {}
+      cache.sheet.flush()
     },
+    // $FlowFixMe
     sheet: cache.sheet,
     caches: {
       registered: cache.registered,

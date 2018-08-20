@@ -78,7 +78,8 @@ if (process.env.NODE_ENV !== 'production') {
 function handleInterpolation(
   mergedProps: void | Object,
   registered: RegisteredCache,
-  interpolation: Interpolation
+  interpolation: Interpolation,
+  couldBeSelectorInterpolation: boolean
 ): string | number {
   if (interpolation == null) {
     return ''
@@ -115,15 +116,17 @@ function handleInterpolation(
         return handleInterpolation(
           mergedProps,
           registered,
-          // $FlowFixMe
-          interpolation(mergedProps)
+          interpolation(mergedProps),
+          couldBeSelectorInterpolation
         )
       }
     }
     // eslint-disable-next-line no-fallthrough
     default: {
       const cached = registered[interpolation]
-      return cached !== undefined ? cached : interpolation
+      return cached !== undefined && !couldBeSelectorInterpolation
+        ? cached
+        : interpolation
     }
   }
 }
@@ -137,15 +140,19 @@ function createStringFromObject(
 
   if (Array.isArray(obj)) {
     for (let i = 0; i < obj.length; i++) {
-      string += handleInterpolation(mergedProps, registered, obj[i])
+      string += handleInterpolation(mergedProps, registered, obj[i], false)
     }
   } else {
     for (let key in obj) {
       if (typeof obj[key] !== 'object') {
-        string += `${processStyleName(key)}:${processStyleValue(
-          key,
-          obj[key]
-        )};`
+        if (registered[obj[key]] !== undefined) {
+          string += `${key}{${registered[obj[key]]}}`
+        } else {
+          string += `${processStyleName(key)}:${processStyleValue(
+            key,
+            obj[key]
+          )};`
+        }
       } else {
         if (
           key === 'NO_COMPONENT_SELECTOR' &&
@@ -170,7 +177,8 @@ function createStringFromObject(
           string += `${key}{${handleInterpolation(
             mergedProps,
             registered,
-            obj[key]
+            obj[key],
+            false
           )}}`
         }
       }
@@ -212,7 +220,8 @@ export const serializeStyles = function(
     let stringifiedInterpolation = handleInterpolation(
       mergedProps,
       registered,
-      strings
+      strings,
+      false
     )
     styles += stringifiedInterpolation
   } else {
@@ -226,7 +235,8 @@ export const serializeStyles = function(
     let stringifiedInterpolation = handleInterpolation(
       mergedProps,
       registered,
-      args[i]
+      args[i],
+      styles.charCodeAt(styles.length - 1) === 46
     )
     styles += stringifiedInterpolation
     if (stringMode) {

@@ -43,7 +43,7 @@ let ruleSheet: StylisPlugin = (
           return ''
         }
         default: {
-          return content + delimiter
+          return content + (at === 0 ? delimiter : '')
         }
       }
     case -2: {

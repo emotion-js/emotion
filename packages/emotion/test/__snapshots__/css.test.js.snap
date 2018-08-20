@@ -238,7 +238,7 @@ exports[`css flushes correctly 1`] = `
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="emotion-0"
+  className="css-k008qs"
 />
 `;
 
@@ -303,7 +303,7 @@ exports[`css manually use label property 1`] = `
 `;
 
 exports[`css manually use label property 2`] = `
-".css-1qqiudg-wow {
+".css-1lrxbo5-wow {
   color: hotpink;
 }"
 `;
@@ -501,12 +501,6 @@ exports[`css null value 1`] = `
 />
 `;
 
-exports[`css null value 2`] = `
-<div
-  className="emotion-0"
-/>
-`;
-
 exports[`css random expression 1`] = `
 .emotion-0 {
   font-size: 20px;
@@ -547,16 +541,6 @@ exports[`css registered styles as nested selector value in object 1`] = `
   display: -ms-flexbox;
   display: flex;
   background-color: hotpink;
-}
-
-<div
-  className="emotion-0"
-/>
-`;
-
-exports[`css return function in interpolation 1`] = `
-.emotion-0 {
-  color: blue;
 }
 
 <div

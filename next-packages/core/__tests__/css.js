@@ -100,3 +100,22 @@ test('array fallback', () => {
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
+
+test('nested at rule', () => {
+  const tree = renderer.create(
+    <div
+      css={{
+        '@media (min-width: 980px)': {
+          backgroundColor: 'blue',
+          '@supports (width: 100vw)': {
+            backgroundColor: 'red'
+          }
+        }
+      }}
+    >
+      something
+    </div>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
