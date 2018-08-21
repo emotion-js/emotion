@@ -4,7 +4,9 @@ title: "Extract Static"
 
 ###### [requires babel plugin](/docs/babel.md)
 
-## extractStatic is deprecated and will be removed in emotion@10. We recommend disabling extractStatic or using other libraries like [linaria](https://github.com/callstack-io/linaria) or [css-literal-loader](https://github.com/4Catalyzer/css-literal-loader)
+## DEPRECATED
+
+extractStatic is deprecated and will be removed in emotion@10. We recommend disabling extractStatic or using other libraries like [linaria](https://github.com/callstack-io/linaria) or [css-literal-loader](https://github.com/4Catalyzer/css-literal-loader).
 
 The `extractStatic` option to `babel-plugin-emotion` allows you to extract styles with no interpolations into external css files. **`extractStatic` is not recommended** because it **breaks [composition](/docs/composition.md)** and other powerful patterns from libraries like [facepaint](https://github.com/emotion-js/facepaint).
 
