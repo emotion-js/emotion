@@ -95,7 +95,9 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-router-dom": "^4.2.2",
-    "react-test-renderer": "^16.3.2"
+    "react-test-renderer": "^16.3.2",
+    "cssom": "^0.3.4",
+    "opencollective": "^1.0.3"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
@@ -198,9 +200,6 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "dependencies": {
-    "opencollective": "^1.0.3"
   },
   "collective": {
     "type": "opencollective",
