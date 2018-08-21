@@ -39,14 +39,14 @@ export const transformCssCallExpression = ({ babel, state, path }: *) => {
       appendStringToExpressions(path.node.arguments, `label:${label};`, t)
     }
 
+    path.node.arguments = joinStringLiterals(path.node.arguments, t)
+
     if (state.emotionSourceMap) {
+      appendStringToExpressions(path.node.arguments, sourceMap, t)
       if (!sourceMap && path.node.loc !== undefined) {
         sourceMap = getSourceMap(path.node.loc.start, state)
       }
-      appendStringToExpressions(path.node.arguments, sourceMap, t)
     }
-
-    path.node.arguments = joinStringLiterals(path.node.arguments, t)
 
     if (
       path.node.arguments.length === 1 &&
@@ -56,15 +56,22 @@ export const transformCssCallExpression = ({ babel, state, path }: *) => {
       let res = css(cssString)
 
       path.replaceWith(
-        t.objectExpression([
-          t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
-          t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles))
-        ])
+        t.objectExpression(
+          [
+            t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
+            t.objectProperty(
+              t.identifier('styles'),
+              t.stringLiteral(res.styles)
+            ),
+            res.map &&
+              t.objectProperty(t.identifier('map'), t.stringLiteral(res.map))
+          ].filter(Boolean)
+        )
       )
-    }
 
-    if (isPure) {
-      path.hoist()
+      if (isPure) {
+        path.hoist()
+      }
     }
   }
 }

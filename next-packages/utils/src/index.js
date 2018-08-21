@@ -52,6 +52,12 @@ export const insertStyles = (
     )
     context.inserted[insertable.name] = true
 
+    if (insertable.map !== undefined && process.env.NODE_ENV !== 'production') {
+      for (let i = 0; i < rules.length; i++) {
+        rules[i] += insertable.map
+      }
+    }
+
     if (isBrowser) {
       rules.forEach(context.sheet.insert, context.sheet)
     } else {

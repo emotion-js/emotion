@@ -119,6 +119,14 @@ function handleInterpolation(
           interpolation(mergedProps),
           couldBeSelectorInterpolation
         )
+      } else if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          'Functions that are interpolated in  css calls will be stringified.\n' +
+            'If you want to have a css call based on props, create a function that returns a css call like this\n' +
+            'let dynamicStyle = (props) => css`color: ${props.color}`\n' +
+            'It can be called directly with props or interpolated in a styled call like this\n' +
+            "let SomeComponent = styled('div')`${dynamicStyle}`"
+        )
       }
     }
     // eslint-disable-next-line no-fallthrough
@@ -195,6 +203,30 @@ let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 // it in the middle of serialization to add styles from keyframes
 let styles = ''
 
+let identifierName = ''
+
+let sourceMap
+
+let replaceStyles = () => {
+  styles = styles.replace(labelPattern, (match, p1: string) => {
+    identifierName += `-${p1}`
+    return ''
+  })
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  let oldReplaceStyles = replaceStyles
+  let sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
+
+  replaceStyles = () => {
+    oldReplaceStyles()
+    styles = styles.replace(sourceMapPattern, match => {
+      sourceMap = match
+      return ''
+    })
+  }
+}
+
 export const serializeStyles = function(
   registered: RegisteredCache,
   args: Array<Interpolation>,
@@ -210,7 +242,8 @@ export const serializeStyles = function(
   }
   let stringMode = true
   styles = ''
-  let identifierName = ''
+  identifierName = ''
+  sourceMap = undefined
   let strings = args[0]
   if (strings == null || strings.raw === undefined) {
     stringMode = false
@@ -244,15 +277,13 @@ export const serializeStyles = function(
     }
   }
 
-  styles = styles.replace(labelPattern, (match, p1: string) => {
-    identifierName += `-${p1}`
-    return ''
-  })
+  replaceStyles()
 
   let name = hashString(styles) + identifierName
 
   return {
     name,
-    styles
+    styles,
+    map: sourceMap
   }
 }

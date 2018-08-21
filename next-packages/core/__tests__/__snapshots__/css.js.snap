@@ -39,6 +39,26 @@ exports[`label in css call 1`] = `
 </div>
 `;
 
+exports[`nested at rule 1`] = `
+@media (min-width:980px) {
+  .emotion-0 {
+    background-color: blue;
+  }
+
+@supports (width:100vw) {
+    .emotion-0 {
+      background-color: red;
+    }
+}
+}
+
+<div
+  className="emotion-0"
+>
+  something
+</div>
+`;
+
 exports[`object with false 1`] = `
 .emotion-0 {
   color: hotpink;

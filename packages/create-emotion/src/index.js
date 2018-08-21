@@ -52,7 +52,6 @@ type EmotionCaches = {|
 
 declare class StyleSheet {
   insert(rule: string): void;
-  inject(): void;
   flush(): void;
   speedy(newVal: boolean): void;
   tags: Array<HTMLStyleElement>;
@@ -76,8 +75,6 @@ export type Emotion = {
 let createEmotion = (options: *): Emotion => {
   let cache = createCache(options)
 
-  // $FlowFixMe
-  cache.sheet.inject = function() {}
   // $FlowFixMe
   cache.sheet.speedy = function(value: boolean) {
     if (this.ctr !== 0) {
