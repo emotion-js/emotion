@@ -4,4 +4,4 @@ declare var codegen: { require: string => RegExp }
 
 const reactPropsRegex = codegen.require('./props')
 
-export default memoize(RegExp.prototype.test.bind(reactPropsRegex))
+export default memoize(reactPropsRegex.test.bind(reactPropsRegex))
