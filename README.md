@@ -93,6 +93,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 
 ### Ecosystem
 
+* [stylelint](https://github.com/stylelint/stylelint) - A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
 * [facepaint](https://github.com/emotion-js/facepaint)
 * [emotion-vue](https://github.com/egoist/emotion-vue)
 * [ember-emotion](https://github.com/alexlafroscia/ember-emotion)
