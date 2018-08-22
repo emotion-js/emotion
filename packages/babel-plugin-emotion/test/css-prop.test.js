@@ -15,6 +15,16 @@ const inline = {
     code: `(<div className="a" css={\`color: $\{color};\`}></div>)`
   },
 
+  'undefined className': {
+    code: `(<div className={undefined} css={\`color: $\{color};\`}></div>)`
+  },
+  'undefined const className': {
+    code: `const cls = undefined; (<div className={cls} css={\`color: $\{color};\`}></div>)`
+  },
+  '"undefined" className': {
+    code: `(<div className="undefined" css={\`color: $\{color};\`}></div>)`
+  },
+
   'no css attr': {
     code: '(<div></div>)'
   },

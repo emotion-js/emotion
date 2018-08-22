@@ -101,7 +101,12 @@ export default function(
     }
   }
 
+  function isUndefinedIdentifier(node) {
+    return node.type === 'Identifier' && node.name === 'undefined'
+  }
   function add(a, b) {
+    if (isUndefinedIdentifier(a)) return b
+    if (isUndefinedIdentifier(b)) return a
     return t.binaryExpression('+', a, b)
   }
 
