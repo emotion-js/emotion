@@ -100,6 +100,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 * [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
 * [ShevyJS](https://github.com/kyleshevlin/shevyjs)
 * [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
+* [polished](https://github.com/styled-components/polished) - Lightweight set of Sass/Compass-style mixins/helpers for writing styles in JavaScript.
 
 ### In the Wild
 
