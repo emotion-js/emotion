@@ -1,6 +1,6 @@
 {
   "name": "@emotion/preact-styled-base",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "base styled API for emotion and preact",
   "main": "dist/preact-styled-base.cjs.js",
   "module": "dist/preact-styled-base.esm.js",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/preact-styled-base",
   "dependencies": {
-    "@emotion/is-prop-valid": "^0.6.5",
+    "@emotion/is-prop-valid": "^0.6.6",
     "@emotion/serialize": "^0.9.0",
     "@emotion/utils": "^0.8.1"
   },

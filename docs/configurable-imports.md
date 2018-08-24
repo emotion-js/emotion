@@ -22,7 +22,7 @@ export default something.div`
 
 ## Babel Options
 
-`babel-plugin-emotion` also supports setting the name of emotion's exports via the `importedNames` option. ~~This is useful for targetting a prop other than `css` for processing.~~(this will change to be a seperate option)
+`babel-plugin-emotion` also supports setting the name of emotion's exports via the `importedNames` option. ~~This is useful for targetting a prop other than `css` for processing.~~(this will change to be a separate option)
 
 <!-- TODO: Create a different option for the css prop name so that it can be changed without forcing people to import css with that name/does using ESM imports change the css prop name?-->
 

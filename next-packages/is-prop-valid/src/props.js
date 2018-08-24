@@ -10,6 +10,8 @@ const props = {
   defaultChecked: true,
   innerHTML: true,
   suppressContentEditableWarning: true,
+  // deprecated react prop
+  valueLink: true,
 
   // https://github.com/facebook/react/blob/d7157651f7b72d9888ctrue123e191f9b88cd8f41e9/src/renderers/dom/shared/HTMLDOMPropertyConfig.js
   /**
@@ -33,8 +35,9 @@ const props = {
   capture: true,
   cellPadding: true,
   cellSpacing: true,
+  // keygen prop
+  challenge: true,
   charSet: true,
-  // challenge: true,
   checked: true,
   cite: true,
   classID: true,
@@ -454,10 +457,11 @@ const props = {
   yChannelSelector: true,
   z: true,
   zoomAndPan: true,
+  // preact
   for: true,
   class: true
 }
 // eslint-disable-next-line import/no-commonjs
 module.exports = `/^((${Object.keys(props).join(
   '|'
-)})|(on[A-Z].*)|((data|aria)-.*))$/i`
+)})|(on[A-Z].*)|((data|aria|x)-.*))$/i`
