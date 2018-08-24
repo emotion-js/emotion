@@ -113,7 +113,7 @@ render(
     className={cx(
       { [cls1]: foo },
       { [cls2]: bar },
-      () => 'modal',
+      'modal',
       'profile',
       [[cls3, [cls4]]]
     )}
