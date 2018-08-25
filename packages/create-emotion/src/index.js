@@ -1,7 +1,12 @@
 // @flow
 import createCache from '@emotion/cache'
 import { serializeStyles } from '@emotion/serialize'
-import { insertStyles, isBrowser, getRegisteredStyles } from '@emotion/utils'
+import {
+  insertStyles,
+  isBrowser,
+  getRegisteredStyles,
+  getClassName
+} from '@emotion/utils'
 
 function insertWithoutScoping(cache, name: string, styles: string) {
   if (cache.inserted[name] === undefined) {
@@ -92,7 +97,7 @@ let createEmotion = (options: *): Emotion => {
       this !== undefined ? this.mergedProps : undefined
     )
     insertStyles(cache, serialized, false)
-    return `${cache.key}-${serialized.name}`
+    return getClassName(cache, serialized)
   }
 
   let keyframes = (...args) => {

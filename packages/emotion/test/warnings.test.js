@@ -51,13 +51,6 @@ it('does warn when invalid values are passed for the content property', () => {
 it('does warn when functions are passed to css calls', () => {
   css(() => 'color:hotpink;')
   expect(console.error).toBeCalledWith(
-    "Interpolating functions in css calls is deprecated and will be removed in the next major version of Emotion.\nIf you want to have a css call based on props, create a function that returns a css call like this\nlet dynamicStyle = (props) => css`color: ${props.color}`\nIt can be called directly with props or interpolated in a styled call like this\nlet SomeComponent = styled('div')`${dynamicStyle}`"
+    "Functions that are interpolated in css calls will be stringified.\nIf you want to have a css call based on props, create a function that returns a css call like this\nlet dynamicStyle = (props) => css`color: ${props.color}`\nIt can be called directly with props or interpolated in a styled call like this\nlet SomeComponent = styled('div')`${dynamicStyle}`"
   )
 })
-
-// it('does warn when functions are passed to cx calls ', () => {
-//   cx(() => 'cls')
-//   expect(console.error).toBeCalledWith(
-//     'Passing functions to cx is deprecated and will be removed in the next major version of Emotion.\nPlease call the function before passing it to cx.'
-//   )
-// })

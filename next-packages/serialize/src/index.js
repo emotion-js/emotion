@@ -121,7 +121,7 @@ function handleInterpolation(
         )
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
-          'Functions that are interpolated in  css calls will be stringified.\n' +
+          'Functions that are interpolated in css calls will be stringified.\n' +
             'If you want to have a css call based on props, create a function that returns a css call like this\n' +
             'let dynamicStyle = (props) => css`color: ${props.color}`\n' +
             'It can be called directly with props or interpolated in a styled call like this\n' +
@@ -203,23 +203,14 @@ let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 // it in the middle of serialization to add styles from keyframes
 let styles = ''
 
-let identifierName = ''
-
 let sourceMap
 
-let replaceStyles = () => {
-  styles = styles.replace(labelPattern, (match, p1: string) => {
-    identifierName += `-${p1}`
-    return ''
-  })
-}
+let replaceStyles = () => {}
 
 if (process.env.NODE_ENV !== 'production') {
-  let oldReplaceStyles = replaceStyles
   let sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
 
   replaceStyles = () => {
-    oldReplaceStyles()
     styles = styles.replace(sourceMapPattern, match => {
       sourceMap = match
       return ''
@@ -242,7 +233,6 @@ export const serializeStyles = function(
   }
   let stringMode = true
   styles = ''
-  identifierName = ''
   sourceMap = undefined
   let strings = args[0]
   if (strings == null || strings.raw === undefined) {
@@ -279,11 +269,25 @@ export const serializeStyles = function(
 
   replaceStyles()
 
-  let name = hashString(styles) + identifierName
+  // using a global regex with .exec is stateful so lastIndex has to be reset each time
+  labelPattern.lastIndex = 0
+  let identifierName = ''
+
+  let match
+  // https://esbench.com/bench/5b809c2cf2949800a0f61fb5
+  while ((match = labelPattern.exec(styles)) !== null) {
+    identifierName +=
+      '-' +
+      // $FlowFixMe we know it's not null
+      match[1]
+  }
+
+  let name = hashString(styles)
 
   return {
     name,
     styles,
-    map: sourceMap
+    map: sourceMap,
+    label: identifierName === '' ? undefined : identifierName
   }
 }

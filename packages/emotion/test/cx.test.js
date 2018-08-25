@@ -73,7 +73,7 @@ describe('cx', () => {
     const tree = renderer
       .create(
         <div
-          className={cx({ [cls1]: foo }, { [cls2]: bar }, 'profile', [
+          className={cx({ [cls1]: foo }, 'modal', { [cls2]: bar }, 'profile', [
             [cls3, [cls4]]
           ])}
         />

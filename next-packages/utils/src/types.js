@@ -25,5 +25,6 @@ export type Interpolation = any
 export type ScopedInsertableStyles = {|
   name: string,
   styles: string,
-  map?: string
+  map?: string,
+  label?: string
 |}

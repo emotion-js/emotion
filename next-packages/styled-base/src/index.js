@@ -10,7 +10,12 @@ import {
   type CreateStyled
 } from './utils'
 import { withCSSContext } from '@emotion/core'
-import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
+import {
+  getRegisteredStyles,
+  insertStyles,
+  isBrowser,
+  getClassName
+} from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
 type StyledComponent = (
@@ -94,7 +99,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         mergedProps
       )
       const rules = insertStyles(context, serialized, isStringTag)
-      className += `${context.key}-${serialized.name}`
+      className += getClassName(context, serialized)
       if (targetClassName !== undefined) {
         className += ` ${targetClassName}`
       }

@@ -7,6 +7,17 @@ import type {
 
 export const isBrowser = typeof document !== 'undefined'
 
+export function getClassName(
+  context: CSSContextType,
+  insertable: ScopedInsertableStyles
+) {
+  let className = `${context.key}-${insertable.name}`
+  if (insertable.label !== undefined) {
+    className += insertable.label
+  }
+  return className
+}
+
 export function getRegisteredStyles(
   registered: RegisteredCache,
   registeredStyles: string[],
@@ -29,6 +40,7 @@ export const insertStyles = (
   insertable: ScopedInsertableStyles,
   isStringTag: boolean
 ) => {
+  let className = getClassName(context, insertable)
   if (
     // we only need to add the styles to the registered cache if the
     // class name could be used further down
@@ -41,15 +53,12 @@ export const insertStyles = (
       // the registered cache to know whether a style is global or not
       // also, note that this check will be dead code eliminated in the browser
       (isBrowser === false && context.compat !== undefined)) &&
-    context.registered[`${context.key}-${insertable.name}`] === undefined
+    context.registered[className] === undefined
   ) {
-    context.registered[`${context.key}-${insertable.name}`] = insertable.styles
+    context.registered[className] = insertable.styles
   }
   if (context.inserted[insertable.name] === undefined) {
-    let rules = context.stylis(
-      `.${context.key}-${insertable.name}`,
-      insertable.styles
-    )
+    let rules = context.stylis(`.${className}`, insertable.styles)
     context.inserted[insertable.name] = true
 
     if (insertable.map !== undefined && process.env.NODE_ENV !== 'production') {

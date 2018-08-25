@@ -303,7 +303,7 @@ exports[`css manually use label property 1`] = `
 `;
 
 exports[`css manually use label property 2`] = `
-".css-1lrxbo5-wow {
+".css-1t6hm03-wow {
   color: hotpink;
 }"
 `;

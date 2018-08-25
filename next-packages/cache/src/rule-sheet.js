@@ -22,20 +22,45 @@ let ruleSheet: StylisPlugin = (
   line,
   column,
   length,
-  at,
-  depth
+  ns,
+  depth,
+  at
 ) => {
   switch (context) {
     case -1: {
       current = []
       break
     }
-    case 2:
-      if (at === 0) return content + delimiter
+    // property
+    case 1: {
+      switch (content.charCodeAt(0)) {
+        case 64: {
+          // @import
+          if (depth === 0) {
+            current.push(content + ';')
+            return ''
+          }
+          break
+        }
+        // charcode for l
+        case 108: {
+          // charcode for b
+          // this ignores label
+          if (content.charCodeAt(2) === 98) {
+            return ''
+          }
+        }
+      }
       break
+    }
+    // selector
+    case 2: {
+      if (ns === 0) return content + delimiter
+      break
+    }
     // at-rule
-    case 3:
-      switch (at) {
+    case 3: {
+      switch (ns) {
         // @font-face, @page
         case 102:
         case 112: {
@@ -46,6 +71,7 @@ let ruleSheet: StylisPlugin = (
           return content + (at === 0 ? delimiter : '')
         }
       }
+    }
     case -2: {
       content.split(needle).forEach(toSheet)
       return current
