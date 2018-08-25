@@ -12,6 +12,7 @@
 ![react gzip size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?compression=gzip&label=react%20gzip%20size)
 ![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?label=react%20size)
 [![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
+[![spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/emotion)
 
 Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
 
@@ -92,12 +93,14 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 
 ### Ecosystem
 
+* [stylelint](https://github.com/stylelint/stylelint) - A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
 * [facepaint](https://github.com/emotion-js/facepaint)
 * [emotion-vue](https://github.com/egoist/emotion-vue)
 * [ember-emotion](https://github.com/alexlafroscia/ember-emotion)
 * [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
 * [ShevyJS](https://github.com/kyleshevlin/shevyjs)
 * [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
+* [polished](https://github.com/styled-components/polished) - Lightweight set of Sass/Compass-style mixins/helpers for writing styles in JavaScript.
 
 ### In the Wild
 
