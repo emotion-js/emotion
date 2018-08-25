@@ -42,10 +42,10 @@ export const transformCssCallExpression = ({ babel, state, path }: *) => {
     path.node.arguments = joinStringLiterals(path.node.arguments, t)
 
     if (state.emotionSourceMap) {
-      appendStringToExpressions(path.node.arguments, sourceMap, t)
       if (!sourceMap && path.node.loc !== undefined) {
         sourceMap = getSourceMap(path.node.loc.start, state)
       }
+      appendStringToExpressions(path.node.arguments, sourceMap, t)
     }
 
     if (
@@ -54,7 +54,6 @@ export const transformCssCallExpression = ({ babel, state, path }: *) => {
     ) {
       let cssString = path.node.arguments[0].value
       let res = css(cssString)
-
       path.replaceWith(
         t.objectExpression(
           [
