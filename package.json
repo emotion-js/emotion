@@ -57,6 +57,7 @@
     "codecov": "^2.3.1",
     "css": "^2.2.1",
     "cssjanus": "^1.2.0",
+    "cssom": "^0.3.4",
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
     "enzyme-to-json": "^3.2.1",
@@ -87,6 +88,7 @@
     "lint-staged": "^7.2.0",
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
+    "opencollective": "^1.0.3",
     "polished": "^1.2.1",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
@@ -95,9 +97,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-router-dom": "^4.2.2",
-    "react-test-renderer": "^16.3.2",
-    "cssom": "^0.3.4",
-    "opencollective": "^1.0.3"
+    "react-test-renderer": "^16.3.2"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
@@ -204,5 +204,8 @@
   "collective": {
     "type": "opencollective",
     "url": "https://opencollective.com/emotion"
+  },
+  "dependencies": {
+    "jest-junit": "^5.1.0"
   }
 }
