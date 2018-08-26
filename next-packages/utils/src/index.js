@@ -61,7 +61,7 @@ export const insertStyles = (
     let rules = context.stylis(`.${className}`, insertable.styles)
     context.inserted[insertable.name] = true
 
-    if (insertable.map !== undefined && process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && insertable.map !== undefined) {
       for (let i = 0; i < rules.length; i++) {
         rules[i] += insertable.map
       }
