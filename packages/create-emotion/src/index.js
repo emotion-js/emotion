@@ -105,7 +105,7 @@ let createEmotion = (options: *): Emotion => {
     let animation = `animation-${serialized.name}`
     insertWithoutScoping(
       cache,
-      animation,
+      serialized.name,
       `@keyframes ${animation}{${serialized.styles}}`
     )
 

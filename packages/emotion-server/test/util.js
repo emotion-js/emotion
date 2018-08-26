@@ -6,6 +6,9 @@ import type { Emotion } from 'create-emotion'
 // $FlowFixMe
 import { renderToNodeStream } from 'react-dom/server'
 import HTMLSerializer from 'jest-serializer-html'
+import weakMemoize from '@emotion/weak-memoize'
+import _createCompatCache from '@emotion/compat-cache'
+import { Provider } from '@emotion/core'
 
 type EmotionServer = {
   renderStylesToNodeStream: () => *,
@@ -15,10 +18,16 @@ type EmotionServer = {
 
 expect.addSnapshotSerializer(HTMLSerializer)
 
+// this caching thing isn't strictly necessary for the tests
+// but people should do it in actual apps so I want to provide a good example
+
+let createCompatCache = weakMemoize(_createCompatCache)
+
 export const getComponents = (
-  { injectGlobal, keyframes, css }: Emotion,
+  emotion: Emotion,
   { default: styled }: { default: Function }
 ) => {
+  let { injectGlobal, keyframes, css } = emotion
   const color = 'red'
 
   injectGlobal`
@@ -93,17 +102,21 @@ export const getComponents = (
   `
 
   const Page1 = () => (
-    <Main>
-      <Image size={30} />
-      <Image size={100} />
-      <Image />
-    </Main>
+    <Provider value={createCompatCache(emotion)}>
+      <Main>
+        <Image size={30} />
+        <Image size={100} />
+        <Image />
+      </Main>
+    </Provider>
   )
 
   const Page2 = () => (
-    <Main>
-      <div>Hello</div>
-    </Main>
+    <Provider value={createCompatCache(emotion)}>
+      <Main>
+        <div>Hello</div>
+      </Main>
+    </Provider>
   )
   return { Page1, Page2 }
 }
@@ -163,12 +176,11 @@ export const getCssFromChunks = (emotion: Emotion, document: Document) => {
   return stringify(parse(chunks.map(chunk => chunk.textContent || '').join('')))
 }
 
-export const getInjectedRules = ({ caches }: Emotion) =>
+export const getInjectedRules = () =>
   stringify(
     parse(
-      Object.keys(caches.inserted)
-        .filter(hash => caches.inserted[hash] !== true)
-        .map(hash => caches.inserted[hash])
+      Array.from(document.querySelectorAll('[data-emotion]'))
+        .map(x => x.textContent || '')
         .join('')
     )
   )

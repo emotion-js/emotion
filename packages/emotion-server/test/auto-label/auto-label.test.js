@@ -1,6 +1,6 @@
-// @flow
 /**
  * @jest-environment node
+ * @flow
  */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -123,6 +123,6 @@ describe('hydration', () => {
 
     const { Page1: NewPage1 } = getComponents()
     renderToString(<NewPage1 />)
-    expect(getInjectedRules(emotion)).toMatchSnapshot()
+    expect(getInjectedRules()).toMatchSnapshot()
   })
 })
