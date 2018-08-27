@@ -1,7 +1,7 @@
 // @flow
 import 'test-utils/legacy-env'
 import React from 'react'
-import renderer from 'react-test-renderer'
+import * as renderer from 'test-utils/compat-render-json'
 import styled, { css, flush } from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'

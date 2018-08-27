@@ -1,7 +1,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import styled, { flush, sheet } from 'react-emotion'
-import renderer from 'react-test-renderer'
+import * as renderer from 'test-utils/compat-render-json'
 
 afterEach(() => flush())
 

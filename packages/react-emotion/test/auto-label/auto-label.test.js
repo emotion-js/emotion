@@ -1,6 +1,6 @@
 import 'test-utils/legacy-env'
 import React from 'react'
-import renderer from 'react-test-renderer'
+import * as renderer from 'test-utils/compat-render-json'
 import styled, { css, flush, sheet } from 'react-emotion'
 
 import { hiDPI, lighten, modularScale } from 'polished'
