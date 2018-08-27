@@ -83,7 +83,11 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       let classInterpolations = []
       let mergedProps = props
       if (props.theme == null) {
-        mergedProps = { ...props, theme: context.theme }
+        mergedProps = {}
+        for (let key in props) {
+          mergedProps[key] = props[key]
+        }
+        mergedProps.theme = context.theme
       }
 
       if (typeof props.className === 'string') {
