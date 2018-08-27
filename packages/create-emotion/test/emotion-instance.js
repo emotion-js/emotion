@@ -1,9 +1,7 @@
 // @flow
 import createEmotion from 'create-emotion'
-import createEmotionStyled from 'create-emotion-styled'
 import createEmotionServer from 'create-emotion-server'
 import { transform } from 'cssjanus'
-import React from 'react'
 
 function stylisPlugin(context, content) {
   if (context === 2) {
@@ -48,4 +46,4 @@ export const {
   renderStylesToNodeStream
 } = createEmotionServer(emotion)
 
-export default createEmotionStyled(emotion, React)
+export { default } from '@emotion/styled'

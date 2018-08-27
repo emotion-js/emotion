@@ -2,7 +2,8 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import * as renderer from 'test-utils/compat-render-json'
-import styled, { css, flush } from 'react-emotion'
+import { css, flush } from 'emotion'
+import styled from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { mount } from 'enzyme'
@@ -1036,6 +1037,7 @@ describe('styled', () => {
   test('throws if undefined is passed as the component', () => {
     expect(
       () =>
+        // $FlowFixMe
         styled(undefined)`
           display: flex;
         `

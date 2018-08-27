@@ -3,9 +3,7 @@ import * as React from 'react'
 import type { ElementType } from 'react'
 import {
   testOmitPropsOnComponent,
-  testAlwaysTrue,
   testOmitPropsOnStringTag,
-  pickAssign,
   type StyledOptions,
   type CreateStyled
 } from './utils'
@@ -83,9 +81,11 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     const Styled: any = withCSSContext((props, context) => {
       let className = ''
       let classInterpolations = []
-      let mergedProps = pickAssign(testAlwaysTrue, {}, props, {
-        theme: props.theme || context.theme
-      })
+      let mergedProps = props
+      if (props.theme == null) {
+        mergedProps = { ...props, theme: context.theme }
+      }
+
       if (typeof props.className === 'string') {
         className += getRegisteredStyles(
           context.registered,
@@ -103,15 +103,31 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       if (targetClassName !== undefined) {
         className += ` ${targetClassName}`
       }
+      let newProps = {}
 
-      const ele = React.createElement(
-        baseTag,
-        // $FlowFixMe
-        pickAssign(shouldForwardProp, {}, props, {
-          className,
-          ref: props.innerRef
-        })
-      )
+      for (let key in props) {
+        if (
+          // $FlowFixMe
+          shouldForwardProp(key)
+        ) {
+          newProps[key] = props[key]
+        }
+      }
+
+      newProps.className = className
+      if (process.env.PREACT) {
+        if (props.innerRef != null) {
+          newProps.ref = props.innerRef
+        }
+      } else {
+        if (process.env.NODE_ENV !== 'production' && props.innerRef) {
+          console.error(
+            '`innerRef` is no longer allowed, please use the `ref` prop instead'
+          )
+        }
+      }
+
+      const ele = React.createElement(baseTag, newProps)
       if (!isBrowser && rules !== undefined) {
         return (
           <React.Fragment>
@@ -137,27 +153,13 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               ? baseTag
               : baseTag.displayName || baseTag.name || 'Component'
           })`
-    let FinalStyled = process.env.PREACT
-      ? Styled
-      : // $FlowFixMe
-        React.forwardRef((props, ref) => {
-          // this avoids creating a new object if there's no ref
-          return (
-            <Styled
-              {...(ref === null
-                ? props
-                : pickAssign(testAlwaysTrue, { innerRef: ref }, props))}
-            />
-          )
-        })
 
-    FinalStyled.__emotion_real = FinalStyled
-    FinalStyled.__emotion_base = baseTag
-    FinalStyled.__emotion_styles = styles
-    FinalStyled.__emotion_forwardProp = shouldForwardProp
+    Styled.__emotion_real = Styled
+    Styled.__emotion_base = baseTag
+    Styled.__emotion_styles = styles
+    Styled.__emotion_forwardProp = shouldForwardProp
 
-    Object.defineProperty(FinalStyled, 'toString', {
-      enumerable: false,
+    Object.defineProperty(Styled, 'toString', {
       value() {
         if (
           targetClassName === undefined &&
@@ -170,18 +172,18 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       }
     })
 
-    FinalStyled.withComponent = (
+    Styled.withComponent = (
       nextTag: ElementType,
       nextOptions?: StyledOptions
     ) => {
       return createStyled(
         nextTag,
         nextOptions !== undefined
-          ? pickAssign(testAlwaysTrue, {}, options || {}, nextOptions)
+          ? { ...(options || {}), ...nextOptions }
           : options
       )(...styles)
     }
-    return FinalStyled
+    return Styled
   }
 }
 

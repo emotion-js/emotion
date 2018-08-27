@@ -10,16 +10,25 @@ export let Provider = CSSContext.Provider
 let withCSSContext = function withCSSContext<Props>(
   func: (props: Props, context: CSSContextType) => React.Node
 ): React.StatelessFunctionalComponent<Props> {
-  return (props: Props) => (
-    <CSSContext.Consumer>
-      {(
-        // $FlowFixMe we know it won't be null
-        context: CSSContextType
-      ) => {
-        return func(props, context)
-      }}
-    </CSSContext.Consumer>
-  )
+  let render = (props: Props, ref?: *) => {
+    if (!process.env.PREACT && ref !== null) {
+      props = { ref, ...props }
+    }
+    return (
+      <CSSContext.Consumer>
+        {(
+          // $FlowFixMe we know it won't be null
+          context: CSSContextType
+        ) => {
+          return func(props, context)
+        }}
+      </CSSContext.Consumer>
+    )
+  }
+  return process.env.PREACT
+    ? render
+    : // $FlowFixMe
+      React.forwardRef(render)
 }
 
 let consume = (func: CSSContextType => React.Node) => {
