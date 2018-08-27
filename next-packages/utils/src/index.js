@@ -58,8 +58,6 @@ export const insertStyles = (
     context.registered[className] = insertable.styles
   }
   if (context.inserted[insertable.name] === undefined) {
-    global.inserted = Object.assign({}, context.inserted)
-    global.insertable = insertable
     let rules = context.stylis(`.${className}`, insertable.styles)
     context.inserted[insertable.name] = true
 
