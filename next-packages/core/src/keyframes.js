@@ -10,7 +10,7 @@ type Keyframes = {|
 
 export const keyframes = (...args: *): Keyframes => {
   let insertable = css(...args)
-  const name = `animation-${insertable.name}`
+  const name = `animation-${insertable.name}${insertable.label || ''}`
   // $FlowFixMe
   return {
     name,

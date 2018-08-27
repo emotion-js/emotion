@@ -6,6 +6,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { getComponents, prettyifyCritical, getInjectedRules } from './util'
+import { JSDOM } from 'jsdom'
 
 let emotion = require('emotion')
 let reactEmotion = require('react-emotion')
@@ -33,9 +34,14 @@ describe('hydration', () => {
       renderToString(<Page1 />)
     )
     expect(prettyifyCritical({ html, css, ids })).toMatchSnapshot()
+    const { window } = new JSDOM(html)
+    global.document = window.document
+    global.window = window
+
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
+
     expect(emotion.caches.inserted).toEqual({})
     emotion.hydrate(ids)
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)

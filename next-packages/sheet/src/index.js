@@ -87,6 +87,7 @@ export class StyleSheet {
     this.container = options.container
   }
   insert(rule: string) {
+    // debugger // eslint-disable-line no-debugger
     if (this.ctr % this.maxLength === 0) {
       let tag = createStyleElement(this)
       let before

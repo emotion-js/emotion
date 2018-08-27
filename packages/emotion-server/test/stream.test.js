@@ -71,7 +71,7 @@ describe('hydration', () => {
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)
-    expect(getInjectedRules(emotion)).toMatchSnapshot()
+    expect(getInjectedRules()).toMatchSnapshot()
     expect(getCssFromChunks(emotion, document)).toMatchSnapshot()
   })
 })
