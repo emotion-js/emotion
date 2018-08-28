@@ -3,9 +3,7 @@ import { createMacro } from 'babel-plugin-macros'
 import { addDefault } from '@babel/helper-module-imports'
 import {
   getLabelFromPath,
-  getExpressionsFromTemplateLiteral,
-  getSourceMap,
-  appendStringToExpressions,
+  transformExpressionWithStyles,
   getTargetClassName
 } from '@emotion/babel-utils'
 
@@ -28,23 +26,17 @@ export default createMacro(({ references, state, babel }) => {
       } else {
         reference.replaceWith(t.cloneDeep(styledIdentifier))
       }
-      let sourceMap = ''
       if (reference.parentPath && reference.parentPath.parentPath) {
         const styledCallPath = reference.parentPath.parentPath
-        if (t.isTaggedTemplateExpression(styledCallPath)) {
-          const expressions = getExpressionsFromTemplateLiteral(
-            styledCallPath.node.quasi,
-            t
-          )
-          if (
-            state.emotionSourceMap &&
-            styledCallPath.node.quasi.loc !== undefined
-          ) {
-            sourceMap = getSourceMap(styledCallPath.node.quasi.loc.start, state)
-          }
-          styledCallPath.replaceWith(
-            t.callExpression(styledCallPath.node.tag, expressions)
-          )
+        let { node } = transformExpressionWithStyles({
+          path: styledCallPath,
+          state,
+          babel,
+          shouldLabel: false
+        })
+        if (node) {
+          // we know the argument length will be 1 since that's the only time we will have a node since it will be static
+          styledCallPath.node.arguments[0] = node
         }
       }
       if (t.isCallExpression(reference.parentPath)) {
@@ -58,25 +50,6 @@ export default createMacro(({ references, state, babel }) => {
             t.stringLiteral(getLabelFromPath(reference.parentPath, t))
           )
         ])
-      }
-      if (t.isCallExpression(reference.parentPath.parentPath)) {
-        if (state.emotionSourceMap) {
-          if (
-            !sourceMap &&
-            reference.parentPath.parentPath.node.loc !== undefined
-          ) {
-            sourceMap = getSourceMap(
-              reference.parentPath.parentPath.node.loc.start,
-              state
-            )
-          }
-
-          appendStringToExpressions(
-            reference.parentPath.parentPath.node.arguments,
-            sourceMap,
-            t
-          )
-        }
       }
     })
   }

@@ -15,7 +15,10 @@ import _styled from \\"@emotion/styled-base\\";
 const SomeComponent = _styled(\\"div\\", {
   target: \\"eddbda30\\",
   label: \\"SomeComponent\\"
-})(\\"color:hotpink;\\");"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
 `;
 
 exports[`@emotion/babel-plugin-core styled call-expression 1`] = `
@@ -33,7 +36,10 @@ import _styled from \\"@emotion/styled-base\\";
 const SomeComponent = _styled('div', {
   target: \\"e1wwfyhh0\\",
   label: \\"SomeComponent\\"
-})(\\"color:hotpink;\\");"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
 `;
 
 exports[`@emotion/babel-plugin-core styled label 1`] = `
@@ -57,11 +63,17 @@ class Thing {
   static SomeComponent = _styled(\\"div\\", {
     target: \\"erkd9g00\\",
     label: \\"SomeComponent\\"
-  })(\\"color:hotpink;\\");
+  })({
+    name: \\"1lrxbo5\\",
+    styles: \\"color:hotpink;\\"
+  });
   BadIdeaComponent = _styled(\\"div\\", {
     target: \\"erkd9g01\\",
     label: \\"BadIdeaComponent\\"
-  })(\\"background:hotpink;\\");
+  })({
+    name: \\"d1m7sn\\",
+    styles: \\"background:hotpink;\\"
+  });
 }"
 `;
 
@@ -84,12 +96,18 @@ import _styled from \\"@emotion/styled-base\\";
 const SomeComponent = _styled(\\"div\\", {
   target: \\"e15zzbw00\\",
   label: \\"SomeComponent\\"
-})(\\"color:hotpink;\\");
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});
 
 const SomeOtherComponent = _styled(\\"button\\", {
   target: \\"e15zzbw01\\",
   label: \\"SomeOtherComponent\\"
-})(\\"color:green;\\");"
+})({
+  name: \\"bjcoli\\",
+  styles: \\"color:green;\\"
+});"
 `;
 
 exports[`@emotion/babel-plugin-core styled object 1`] = `
@@ -106,6 +124,7 @@ const SomeComponent = _styled(\\"div\\", {
   target: \\"es0jczh0\\",
   label: \\"SomeComponent\\"
 })({
-  color: 'hotpink'
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
 });"
 `;
