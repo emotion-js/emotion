@@ -8,11 +8,8 @@ import {
   pickAssign,
   interleave
 } from './utils'
+import { withCSSContext } from '@emotion/core'
 import { createCss } from './css'
-
-type State = {
-  theme: Object
-} | null
 
 let defaultPickTest = prop => prop !== 'theme' && prop !== 'innerRef'
 
@@ -37,51 +34,29 @@ export function createStyled(
       } else {
         styles = interleave(rawStyles)
       }
-      class Styled extends React.Component<*, State> {
-        unsubscribe: number | void
-        mergedProps: Object
 
-        static withComponent = (newComponent: React.ElementType) =>
-          createEmotion(newComponent)(...styles)
-
-        componentWillMount() {
-          if (this.context[channel] !== undefined) {
-            this.unsubscribe = this.context[channel].subscribe(
-              setTheme.bind(this)
-            )
-          }
+      // do we really want to use the same infra as the web since it only really uses theming?
+      let Styled = withCSSContext((props, context) => {
+        let mergedProps = pickAssign(testAlwaysTrue, {}, props, {
+          theme: props.theme || context.theme
+        })
+        let stylesWithStyleProp = styles
+        if (props.style) {
+          stylesWithStyleProp = styles.concat(props.style)
         }
+        const emotionStyles = css.apply(mergedProps, stylesWithStyleProp)
 
-        componentWillUnmount() {
-          if (this.unsubscribe !== undefined) {
-            this.context[channel].unsubscribe(this.unsubscribe)
-          }
-        }
-
-        render() {
-          const { props, state } = this
-
-          // Similar to create-emotion-styled component implementation
-          this.mergedProps = pickAssign(testAlwaysTrue, {}, props, {
-            theme: (state !== null && state.theme) || props.theme || {}
+        return React.createElement(
+          component,
+          pickAssign(pickTest, {}, props, {
+            ref: props.innerRef,
+            style: emotionStyles
           })
-          let stylesWithStyleProp = styles
-          if (props.style) {
-            stylesWithStyleProp = styles.concat(props.style)
-          }
-          const emotionStyles = css.apply(this, stylesWithStyleProp)
-
-          return React.createElement(
-            component,
-            pickAssign(pickTest, {}, props, {
-              ref: props.innerRef,
-              style: emotionStyles
-            })
-          )
-        }
-      }
-
-      Styled.contextTypes = contextTypes
+        )
+      })
+      // $FlowFixMe
+      Styled.withComponent = (newComponent: React.ElementType) =>
+        createEmotion(newComponent)(...styles)
 
       Styled.displayName = `emotion(${getDisplayName(component)})`
 

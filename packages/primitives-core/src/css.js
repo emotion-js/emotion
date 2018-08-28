@@ -29,7 +29,7 @@ function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
         this,
         interpolation(
           // $FlowFixMe
-          this.mergedProps
+          this
         ),
         i,
         arr
