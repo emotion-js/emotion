@@ -1,13 +1,6 @@
 // @flow
 import * as React from 'react'
-import {
-  channel,
-  contextTypes,
-  setTheme,
-  testAlwaysTrue,
-  pickAssign,
-  interleave
-} from './utils'
+import { testAlwaysTrue, pickAssign, interleave } from './utils'
 import { withCSSContext } from '@emotion/core'
 import { createCss } from './css'
 
