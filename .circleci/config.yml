@@ -41,6 +41,11 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
       - run: yarn codecov
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
+
   test_dist:
     docker:
       - image: circleci/node:10.6.0
