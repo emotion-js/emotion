@@ -21,8 +21,9 @@ import _css from \\"@emotion/css\\";
 /** @jsx jsx */
 import jsx from '@emotion/jsx';
 var _ref = {
-  name: \\"1lrxbo5-SomeComponent\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"1wl9j1m\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\",
+  label: \\"-SomeComponent\\"
 };
 
 const SomeComponent = () => <div css={_ref} />;"
@@ -90,8 +91,9 @@ const thing = css\`
 import _css from \\"@emotion/css\\";
 
 const thing = _css(\\"display:flex;&:hover{\\", {
-  name: \\"1lrxbo5-thing\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"1hi0qos\\",
+  styles: \\"color:hotpink;label:thing;\\",
+  label: \\"-thing\\"
 }, \\";}label:thing;\\");"
 `;
 
@@ -182,8 +184,9 @@ import _css from \\"@emotion/css\\";
 import { Component } from 'react';
 import jsx from '@emotion/jsx';
 var _ref = {
-  name: \\"1lrxbo5-SomeComponent\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"1wl9j1m\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\",
+  label: \\"-SomeComponent\\"
 };
 
 class SomeComponent extends Component {
@@ -206,8 +209,9 @@ const thing = css\`
 
 import _css from \\"@emotion/css\\";
 const thing = {
-  name: \\"1lrxbo5-thing\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"1hi0qos\\",
+  styles: \\"color:hotpink;label:thing;\\",
+  label: \\"-thing\\"
 };"
 `;
 
@@ -230,13 +234,15 @@ const thing = {
 import _css from \\"@emotion/css\\";
 const thing = {
   thisShouldBeTheLabel: {
-    name: \\"1lrxbo5-thisShouldBeTheLabel\\",
-    styles: \\"color:hotpink;\\"
+    name: \\"xjpive\\",
+    styles: \\"color:hotpink;label:thisShouldBeTheLabel;\\",
+    label: \\"-thisShouldBeTheLabel\\"
   },
   // prettier-ignore
   'shouldBeAnotherLabel': {
-    name: \\"bjcoli-shouldBeAnotherLabel\\",
-    styles: \\"color:green;\\"
+    name: \\"lgalrw\\",
+    styles: \\"color:green;label:shouldBeAnotherLabel;\\",
+    label: \\"-shouldBeAnotherLabel\\"
   }
 };"
 `;
@@ -257,12 +263,14 @@ const otherThing = css\`
 
 import _css from \\"@emotion/css\\";
 const thing = {
-  name: \\"1lrxbo5-thing\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"1hi0qos\\",
+  styles: \\"color:hotpink;label:thing;\\",
+  label: \\"-thing\\"
 };
 const otherThing = {
-  name: \\"bjcoli-otherThing\\",
-  styles: \\"color:green;\\"
+  name: \\"onvdw0\\",
+  styles: \\"color:green;label:otherThing;\\",
+  label: \\"-otherThing\\"
 };"
 `;
 
