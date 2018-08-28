@@ -1,5 +1,5 @@
 // @flow
-import { createInlineTests, createExtractTests } from './util'
+import { createInlineTests } from './util'
 
 const inline = {
   'css basic': {
@@ -427,18 +427,3 @@ function test () {
   }
 }
 createInlineTests('babel css inline', inline)
-
-const extract = {
-  'babel css extract basic': {
-    code: `
-      css\`
-      margin: 12px 48px;
-      color: #ffffff;
-      display: flex;
-      flex: 1 0 auto;
-      color: blue;
-    \``
-  }
-}
-
-createExtractTests('babel css extract', extract)

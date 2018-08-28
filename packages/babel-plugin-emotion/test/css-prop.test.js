@@ -1,5 +1,5 @@
 // @flow
-import { createInlineTests, createExtractTests } from './util'
+import { createInlineTests } from './util'
 import { transform } from '@babel/core'
 
 const inline = {
@@ -129,14 +129,6 @@ const inline = {
 }
 
 createInlineTests('babel css prop inline', inline)
-
-const extract = {
-  'basic with extractStatic': {
-    code: '(<div className="a" css={`color: brown;`}></div>)'
-  }
-}
-
-createExtractTests('babel css prop extract', extract)
 
 test('with module transformer in babel 7', () => {
   expect(

@@ -24,14 +24,7 @@ function macro({ references, state, babel: { types: t } }) {
             t
           )
           if (t.isTaggedTemplateExpression(path)) {
-            replaceCssWithCallExpression(
-              path,
-              runtimeNode,
-              state,
-              t,
-              undefined,
-              !isPure
-            )
+            replaceCssWithCallExpression(path, runtimeNode, state, t, !isPure)
           } else {
             if (isPure) {
               path.addComment('leading', '#__PURE__')

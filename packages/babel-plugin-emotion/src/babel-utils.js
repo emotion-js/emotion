@@ -1,6 +1,5 @@
 // @flow
 import nodePath from 'path'
-import { hashArray } from './index'
 import type { BabelPath, EmotionBabelPluginPass } from './index'
 import type { Types, Identifier } from 'babel-flow-types'
 
@@ -97,25 +96,6 @@ export function getLabel(
   return labelFormat
     .replace(/\[local\]/gi, identifierName.trim())
     .replace(/\[filename\]/gi, normalizedFilename)
-}
-
-export function createRawStringFromTemplateLiteral(quasi: {
-  quasis: Array<{ value: { cooked: string } }>
-}) {
-  let strs = quasi.quasis.map(x => x.value.cooked)
-  let hash = hashArray([...strs])
-
-  const src = strs
-    .reduce((arr, str, i) => {
-      arr.push(str)
-      if (i !== strs.length - 1) {
-        arr.push(`xxx${i}xxx`)
-      }
-      return arr
-    }, [])
-    .join('')
-    .trim()
-  return { src, hash }
 }
 
 export function omit(

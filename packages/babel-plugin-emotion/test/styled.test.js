@@ -1,10 +1,9 @@
 // @flow
-import { createInlineTests, createExtractTests } from './util'
+import { createInlineTests } from './util'
 
 const cases = {
   'no use': {
-    code: 'styled.h1``',
-    extract: false
+    code: 'styled.h1``'
   },
 
   'no dynamic': {
@@ -21,8 +20,7 @@ const cases = {
 
       border: 1px solid $\{props =>
         props.theme.borderColor};
-    \``,
-    extract: false
+    \``
   },
 
   'more than 10 dynamic values': {
@@ -39,8 +37,7 @@ const cases = {
     font-size: $\{'18px'};
     text-align: $\{'center'};
     border-left: $\{p => p.theme.blue};
-  \``,
-    extract: false
+  \``
   },
 
   'random expressions': {
@@ -59,8 +56,7 @@ const cases = {
   },
 
   basic: {
-    code: "const H1 = styled.h1`font-size: ${fontSize + 'px'};`",
-    extract: false
+    code: "const H1 = styled.h1`font-size: ${fontSize + 'px'};`"
   },
 
   nested: {
@@ -69,8 +65,7 @@ const cases = {
       "font-size: ${fontSize + 'px'};" +
       '& div { color: blue;' +
       '& span { color: red } }' +
-      '`',
-    extract: false
+      '`'
   },
 
   'interpolation in different places': {
@@ -84,8 +79,7 @@ const cases = {
       transform: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
       transform1: translateX(\${(props) => props.translateX}) translateY(\${(props) => props.translateX});
       transform2: translateX(\${(props) => props.translateX}) \${(props) => props.translateX};
-      \``,
-    extract: false
+      \``
   },
 
   'media query': {
@@ -108,29 +102,25 @@ const cases = {
   },
 
   'function call': {
-    code: "styled(MyComponent)`font-size: ${fontSize + 'px'};`",
-    extract: false
+    code: "styled(MyComponent)`font-size: ${fontSize + 'px'};`"
   },
 
   'objects fn call': {
     code: `
     const H1 = styled('h1')({
       display: 'flex'
-    })`,
-    extract: false
+    })`
   },
 
   'objects based on props': {
     code: `
     const H1 = styled('h1')({ padding: 10 },props => ({
       display: props.display
-    }))`,
-    extract: false
+    }))`
   },
 
   'shorthand property': {
-    code: `const H1 = styled.h1({ fontSize })`,
-    extract: false
+    code: `const H1 = styled.h1({ fontSize })`
   },
 
   'objects prefixed': {
@@ -145,16 +135,14 @@ const cases = {
       }
   }, props => {
       padding: props.padding
-  })`,
-    extract: false
+  })`
   },
 
   'styled. objects': {
     code: `
     const H1 = styled.h1({ padding: 10 },props => ({
       display: props.display
-    }))`,
-    extract: false
+    }))`
   },
 
   'styled. objects with a single spread property': {
@@ -162,8 +150,7 @@ const cases = {
     const defaultText = { fontSize: 20 }
     const Figure = styled.figure({
       ...defaultText
-    })`,
-    extract: false
+    })`
   },
 
   'styled. objects with a multiple spread properties': {
@@ -172,8 +159,7 @@ const cases = {
     const Figure = styled.figure({
       ...defaultText,
       ...defaultFigure
-    })`,
-    extract: false
+    })`
   },
 
   'styled. objects with a multiple spread properties and other keys': {
@@ -184,8 +170,7 @@ const cases = {
       fontSize: '20px',
       ...defaultFigure,
       ...defaultText2
-    })`,
-    extract: false
+    })`
   },
 
   'styled objects prefixed': {
@@ -200,8 +185,7 @@ const cases = {
       }
     },props => ({
       display: props.display
-    }))`,
-    extract: false
+    }))`
   },
 
   'composition based on props': {
@@ -234,8 +218,6 @@ const cases = {
         )
       }
     `,
-    extract: false,
-
     opts: { hoist: true }
   },
 
@@ -262,8 +244,7 @@ const cases = {
         })
       }
     `,
-    opts: { autoLabel: true },
-    extract: false
+    opts: { autoLabel: true }
   },
 
   'autoLabel string styles': {
@@ -323,7 +304,6 @@ const cases = {
         color: 'blue'
       })
     `,
-    extract: false,
     opts: { autoLabel: true }
   },
   comments: {
@@ -343,4 +323,3 @@ const cases = {
 }
 
 createInlineTests('styled inline', cases)
-createExtractTests('styled extract', cases)

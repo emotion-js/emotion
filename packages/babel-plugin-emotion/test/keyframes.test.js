@@ -1,5 +1,5 @@
 // @flow
-import { createInlineTests, createExtractTests } from './util'
+import { createInlineTests } from './util'
 
 const cases = {
   'keyframes basic': {
@@ -23,8 +23,7 @@ const cases = {
         to {
           transform: rotate(\${endingRotation});
         }
-    \`;`,
-    extract: false
+    \`;`
   },
 
   'static change import': {
@@ -72,5 +71,3 @@ const cases = {
 }
 
 createInlineTests('keyframes', cases)
-
-createExtractTests('keyframes extract', cases)

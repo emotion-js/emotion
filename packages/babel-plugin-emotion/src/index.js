@@ -1,14 +1,8 @@
 // @flow
-import fs from 'fs'
 import nodePath from 'path'
 import findRoot from 'find-root'
-import mkdirp from 'mkdirp'
-import { touchSync } from 'touch'
-import { addSideEffect } from '@babel/helper-module-imports'
 import {
   getIdentifierName,
-  getName,
-  createRawStringFromTemplateLiteral,
   getLabel,
   appendStringToExpressions
 } from './babel-utils'
@@ -20,7 +14,6 @@ import type {
   Babel
 } from 'babel-flow-types'
 import hashString from '@emotion/hash'
-import Stylis from '@emotion/stylis'
 import memoize from '@emotion/memoize'
 import { addSourceMaps } from './source-map'
 
@@ -35,12 +28,6 @@ export const macros = {
 }
 
 export type BabelPath = any
-
-export function hashArray(arr: Array<string>) {
-  return hashString(arr.join(''))
-}
-
-const staticStylis = new Stylis({ keyframe: false })
 
 export function hoistPureArgs(path: BabelPath) {
   const args = path.get('arguments')
@@ -78,33 +65,10 @@ export function replaceCssWithCallExpression(
   identifier: Identifier,
   state: EmotionBabelPluginPass,
   t: Types,
-  staticCSSSrcCreator: (
-    src: string,
-    name: string,
-    hash: string
-  ) => string = src => src,
-  removePath: boolean = false,
-  staticCSSSelectorCreator: (name: string, hash: string) => string = (
-    name,
-    hash
-  ) => `.${name}-${hash}`
+  removePath: boolean = false
 ) {
   try {
-    let { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
     const identifierName = getIdentifierName(path, t)
-    const name = getName(identifierName, 'css')
-
-    if (state.extractStatic && !path.node.quasi.expressions.length) {
-      const staticCSSRules = staticStylis(
-        staticCSSSelectorCreator(name, hash),
-        staticCSSSrcCreator(src, name, hash)
-      )
-      state.insertStaticRules([staticCSSRules])
-      if (!removePath) {
-        return path.replaceWith(t.stringLiteral(`${name}-${hash}`))
-      }
-      return path.replaceWith(t.identifier('undefined'))
-    }
 
     if (!removePath) {
       path.addComment('leading', '#__PURE__')
@@ -184,7 +148,9 @@ function buildTargetObjectProperty(path, state, t) {
     stuffToHash.push(state.file.code)
   }
 
-  const stableClassName = `e${hashArray(stuffToHash)}${positionInFile}`
+  const stableClassName = `e${hashString(
+    stuffToHash.join('')
+  )}${positionInFile}`
 
   return t.objectProperty(
     t.identifier('target'),
@@ -226,27 +192,6 @@ export function buildStyledCallExpression(
   const identifierName = getIdentifierName(path, t)
 
   const targetProperty = buildTargetObjectProperty(path, state, t)
-
-  if (state.extractStatic && !path.node.quasi.expressions.length) {
-    const { hash, src } = createRawStringFromTemplateLiteral(path.node.quasi)
-    const staticClassName = `css-${hash}`
-    const staticCSSRules = staticStylis(`.${staticClassName}`, src)
-
-    state.insertStaticRules([staticCSSRules])
-
-    const finalOptions = buildFinalOptions(
-      t,
-      options,
-      t.objectProperty(t.identifier('e'), t.stringLiteral(staticClassName)),
-      targetProperty
-    )
-
-    return t.callExpression(
-      // $FlowFixMe
-      t.callExpression(identifier, [tag, finalOptions, ...restArgs]),
-      []
-    )
-  }
 
   path.addComment('leading', '#__PURE__')
 
@@ -517,60 +462,6 @@ export default function(babel: Babel) {
             }
           })
           state.cssPropIdentifiers = []
-          state.extractStatic =
-            // path.hub.file.opts.filename !== 'unknown' ||
-            state.opts.extractStatic
-
-          state.staticRules = []
-
-          state.insertStaticRules = function(staticRules) {
-            state.staticRules.push(...staticRules)
-          }
-        },
-        exit(path: BabelPath, state: EmotionBabelPluginPass) {
-          if (state.staticRules.length !== 0) {
-            const toWrite = state.staticRules.join('\n').trim()
-            let cssFilename = path.hub.file.opts.generatorOpts
-              ? path.hub.file.opts.generatorOpts.sourceFileName
-              : path.hub.file.opts.sourceFileName
-            let cssFileOnDisk
-            let importPath
-
-            const cssFilenameArr = cssFilename.split('.')
-            // remove the extension
-            cssFilenameArr.pop()
-            // add emotion.css as an extension
-            cssFilenameArr.push('emotion.css')
-
-            cssFilename = cssFilenameArr.join('.')
-
-            if (state.opts.outputDir) {
-              const relativeToSourceDir = nodePath.relative(
-                nodePath.dirname(cssFilename),
-                state.opts.outputDir
-              )
-              importPath = nodePath.join(relativeToSourceDir, cssFilename)
-              cssFileOnDisk = nodePath.resolve(cssFilename, '..', importPath)
-            } else {
-              importPath = `./${nodePath.basename(cssFilename)}`
-              cssFileOnDisk = nodePath.resolve(cssFilename)
-            }
-
-            const exists = fs.existsSync(cssFileOnDisk)
-            addSideEffect(path, importPath)
-            if (
-              exists ? fs.readFileSync(cssFileOnDisk, 'utf8') !== toWrite : true
-            ) {
-              if (!exists) {
-                if (state.opts.outputDir) {
-                  mkdirp.sync(nodePath.dirname(cssFileOnDisk))
-                }
-
-                touchSync(cssFileOnDisk)
-              }
-              fs.writeFileSync(cssFileOnDisk, toWrite)
-            }
-          }
         }
       },
       JSXOpeningElement(path: BabelPath, state: EmotionBabelPluginPass) {
@@ -712,25 +603,9 @@ export default function(babel: Babel) {
           ) {
             replaceCssWithCallExpression(path, path.node.tag, state, t)
           } else if (path.node.tag.name === state.importedNames.keyframes) {
-            replaceCssWithCallExpression(
-              path,
-              path.node.tag,
-              state,
-              t,
-              (src, name, hash) => `@keyframes ${name}-${hash} { ${src} }`,
-              false,
-              () => ''
-            )
+            replaceCssWithCallExpression(path, path.node.tag, state, t, false)
           } else if (path.node.tag.name === state.importedNames.injectGlobal) {
-            replaceCssWithCallExpression(
-              path,
-              path.node.tag,
-              state,
-              t,
-              undefined,
-              true,
-              () => ''
-            )
+            replaceCssWithCallExpression(path, path.node.tag, state, t, true)
           }
         }
       }

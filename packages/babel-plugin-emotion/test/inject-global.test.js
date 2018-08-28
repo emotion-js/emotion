@@ -1,5 +1,5 @@
 // @flow
-import { createInlineTests, createExtractTests } from './util'
+import { createInlineTests } from './util'
 
 const cases = {
   'injectGlobal basic': {
@@ -31,8 +31,7 @@ const cases = {
         html {
           background: green;
         }
-    \`;`,
-    extract: false
+    \`;`
   },
   'static change import': {
     code: `
@@ -108,5 +107,3 @@ const cases = {
 }
 
 createInlineTests('injectGlobal', cases)
-
-createExtractTests('injectGlobal extract', cases)
