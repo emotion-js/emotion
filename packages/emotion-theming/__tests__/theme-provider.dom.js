@@ -1,5 +1,6 @@
 // @flow
 /** @jsx jsx */
+import 'test-utils/next-env'
 import 'test-utils/dev-mode'
 import { throwIfFalsy } from 'test-utils'
 import * as React from 'react'
