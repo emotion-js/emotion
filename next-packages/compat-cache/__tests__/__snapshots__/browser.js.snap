@@ -4,12 +4,7 @@ exports[`composition works from old emotion css calls 1`] = `
 <html>
   <head>
     <style
-      data-emotion=""
-    >
-      
-    </style>
-    <style
-      data-emotion=""
+      data-emotion="css"
     >
       
       .css-ulmpz9{color:green;}
