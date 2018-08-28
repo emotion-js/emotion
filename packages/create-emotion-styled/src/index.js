@@ -12,6 +12,8 @@ import {
   setTheme
 } from './utils'
 
+let warnedAboutExtractStatic = false
+
 function createEmotionStyled(emotion: Emotion, view: ReactType) {
   let createStyled: CreateStyled = (tag, options) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -71,6 +73,14 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
             styles.push(args[i], args[0][i])
           }
         }
+      } else if (
+        process.env.NODE_ENV !== 'production' &&
+        !warnedAboutExtractStatic
+      ) {
+        console.warn(
+          'extractStatic is deprecated and will be removed in emotion@10. We recommend disabling extractStatic or using other libraries like linaria or css-literal-loader'
+        )
+        warnedAboutExtractStatic = true
       }
 
       class Styled extends view.Component<*, { theme: Object }> {
