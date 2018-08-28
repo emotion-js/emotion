@@ -11,8 +11,6 @@
     }
   },
   "version": "9.2.8",
-  "npmClient": "npm",
-  "packages": [
-    "packages/*"
-  ]
+  "npmClient": "yarn",
+  "useWorkspaces": true
 }
