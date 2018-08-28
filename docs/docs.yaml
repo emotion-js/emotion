@@ -18,7 +18,6 @@
     - with-props
     - theming
     - labels
-    - configurable-imports
     - instances
     - migrating-to-emotion-10
     #- benchmarks
