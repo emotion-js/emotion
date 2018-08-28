@@ -48,12 +48,12 @@ type ClassNameArg =
   | { [key: string]: boolean }
   | Array<ClassNameArg>
 
-type EmotionCaches = {|
+type EmotionCaches = {
   registered: { [key: string]: string },
   inserted: { [key: string]: string | true },
   nonce?: string,
   key: string
-|}
+}
 
 declare class StyleSheet {
   insert(rule: string): void;
@@ -136,12 +136,7 @@ let createEmotion = (options: *): Emotion => {
     },
     // $FlowFixMe
     sheet: cache.sheet,
-    caches: {
-      registered: cache.registered,
-      inserted: cache.inserted,
-      nonce: cache.sheet.nonce,
-      key: cache.sheet.key
-    },
+    caches: cache,
     getRegisteredStyles: getRegisteredStyles.bind(null, cache.registered),
     merge: merge.bind(null, cache.registered, css)
   }

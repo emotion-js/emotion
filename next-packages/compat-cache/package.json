@@ -6,9 +6,6 @@
   "module": "dist/compat-cache.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/compat-cache",
-  "dependencies": {
-    "@emotion/cache": "^0.8.7"
-  },
   "publishConfig": {
     "access": "public"
   },

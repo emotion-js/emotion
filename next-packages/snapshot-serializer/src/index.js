@@ -49,23 +49,38 @@ function getPrettyStylesFromClassNames(
   return prettyStyles
 }
 
-export function print(val: *, printer: Function) {
-  const nodes = getNodes(val)
-  markNodes(nodes)
-  const classNames = getClassNamesFromNodes(nodes)
-  let elements = getStyleElements()
-  const styles = getPrettyStylesFromClassNames(classNames, elements)
-  const printedVal = printer(val)
-  let keys = getKeys(elements)
-  return replaceClassNames(classNames, styles, printedVal, keys)
+export function createSerializer(
+  options: {
+    classNameReplacer?: (className: string, index: number) => string
+  } = {}
+) {
+  function print(val: *, printer: Function) {
+    const nodes = getNodes(val)
+    markNodes(nodes)
+    const classNames = getClassNamesFromNodes(nodes)
+    let elements = getStyleElements()
+    const styles = getPrettyStylesFromClassNames(classNames, elements)
+    const printedVal = printer(val)
+    let keys = getKeys(elements)
+    return replaceClassNames(
+      classNames,
+      styles,
+      printedVal,
+      keys,
+      options.classNameReplacer
+    )
+  }
+
+  function test(val: *) {
+    return (
+      val &&
+      !val.withEmotionNextStyles &&
+      (isReactElement(val) || isDOMElement(val))
+    )
+  }
+  return { test, print }
 }
 
-export function test(val: *) {
-  return (
-    val &&
-    !val.withEmotionNextStyles &&
-    (isReactElement(val) || isDOMElement(val))
-  )
-}
+export let { print, test } = createSerializer()
 
 export default { print, test }

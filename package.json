@@ -206,6 +206,8 @@
     "url": "https://opencollective.com/emotion"
   },
   "dependencies": {
-    "jest-junit": "^5.1.0"
+    "enzyme-adapter-react-16.3": "^1.1.0",
+    "jest-junit": "^5.1.0",
+    "react-testing-library": "^5.0.0"
   }
 }

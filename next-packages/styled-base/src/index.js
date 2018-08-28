@@ -158,6 +158,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               : baseTag.displayName || baseTag.name || 'Component'
           })`
 
+    Styled.defaultProps = tag.defaultProps
     Styled.__emotion_real = Styled
     Styled.__emotion_base = baseTag
     Styled.__emotion_styles = styles

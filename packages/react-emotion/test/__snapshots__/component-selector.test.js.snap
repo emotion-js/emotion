@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`component as selector (object syntax) 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -10,10 +14,6 @@ exports[`component as selector (object syntax) 1`] = `
 
 .emotion-2 .emotion-1 {
   color: green;
-}
-
-.emotion-0 {
-  font-size: 20px;
 }
 
 <div
@@ -27,23 +27,6 @@ exports[`component as selector (object syntax) 1`] = `
   </h1>
    world
 </div>
-`;
-
-exports[`component as selector (object syntax) 2`] = `
-".css-1qozo52 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.css-1qozo52 .eqeli5r4 {
-  color: green;
-}
-
-.css-bk9fzy {
-  font-size: 20px;
-}"
 `;
 
 exports[`component as selector 1`] = `
@@ -75,24 +58,11 @@ exports[`component as selector 1`] = `
 </div>
 `;
 
-exports[`component as selector 2`] = `
-".css-112oqv {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.css-112oqv .eqeli5r0 {
-  color: green;
-}
-
-.css-bk9fzy {
-  font-size: 20px;
-}"
-`;
-
 exports[`component as selector function interpolation (object syntax) 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -102,10 +72,6 @@ exports[`component as selector function interpolation (object syntax) 1`] = `
 
 .emotion-2 .emotion-1 {
   color: green;
-}
-
-.emotion-0 {
-  font-size: 20px;
 }
 
 <div
@@ -121,26 +87,13 @@ exports[`component as selector function interpolation (object syntax) 1`] = `
   </h1>
    world
 </div>
-`;
-
-exports[`component as selector function interpolation (object syntax) 2`] = `
-".css-6641zl {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.css-6641zl .eqeli5r6 {
-  color: green;
-}
-
-.css-bk9fzy {
-  font-size: 20px;
-}"
 `;
 
 exports[`component as selector function interpolation 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -150,10 +103,6 @@ exports[`component as selector function interpolation 1`] = `
 
 .emotion-2 .emotion-1 {
   color: green;
-}
-
-.emotion-0 {
-  font-size: 20px;
 }
 
 <div
@@ -169,21 +118,4 @@ exports[`component as selector function interpolation 1`] = `
   </h1>
    world
 </div>
-`;
-
-exports[`component as selector function interpolation 2`] = `
-".css-36srpd {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.css-36srpd .eqeli5r2 {
-  color: green;
-}
-
-.css-bk9fzy {
-  font-size: 20px;
-}"
 `;

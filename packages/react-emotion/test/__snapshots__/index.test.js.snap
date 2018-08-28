@@ -43,138 +43,6 @@ exports[`styled call expression 1`] = `
 </div>
 `;
 
-exports[`styled change theme 1`] = `
-.emotion-0 {
-  color: green;
-}
-
-<TestComponent
-  renderChild={true}
-  theme={
-    Object {
-      "primary": "green",
-    }
-  }
->
-  <ThemeProvider
-    theme={
-      Object {
-        "primary": "green",
-      }
-    }
-  >
-    <Styled(div)>
-      <div
-        className="emotion-0 emotion-1"
-      >
-        this will be green then pink
-      </div>
-    </Styled(div)>
-  </ThemeProvider>
-</TestComponent>
-`;
-
-exports[`styled change theme 2`] = `
-.emotion-0 {
-  color: pink;
-}
-
-<TestComponent
-  renderChild={true}
-  theme={
-    Object {
-      "primary": "pink",
-    }
-  }
->
-  <ThemeProvider
-    theme={
-      Object {
-        "primary": "pink",
-      }
-    }
-  >
-    <Styled(div)>
-      <div
-        className="emotion-0 emotion-1"
-      >
-        this will be green then pink
-      </div>
-    </Styled(div)>
-  </ThemeProvider>
-</TestComponent>
-`;
-
-exports[`styled change theme 3`] = `
-<TestComponent
-  renderChild={false}
-  theme={
-    Object {
-      "primary": "pink",
-    }
-  }
->
-  <ThemeProvider
-    theme={
-      Object {
-        "primary": "pink",
-      }
-    }
-  />
-</TestComponent>
-`;
-
-exports[`styled composing components 1`] = `
-.emotion-0 {
-  color: green;
-  display: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-<button
-  className="emotion-0 emotion-1"
->
-  hello world
-</button>
-`;
-
-exports[`styled composition 1`] = `
-.emotion-0 {
-  font-size: 20px;
-  font-size: 13.333333333333334px;
-}
-
-<h1
-  className="legacy__class emotion-0 emotion-1"
->
-  hello world
-</h1>
-`;
-
-exports[`styled composition 2`] = `
-.emotion-0 {
-  color: blue;
-  color: red;
-  color: blue;
-  font-size: 20px;
-  font-size: 32px;
-}
-
-<h1
-  className="legacy__class emotion-0 emotion-1"
-  scale={2}
->
-  hello world
-</h1>
-`;
-
 exports[`styled composition based on props 1`] = `
 .emotion-0 {
   color: blue;
@@ -197,87 +65,6 @@ exports[`styled composition based on props 2`] = `
 >
   hello world
 </h1>
-`;
-
-exports[`styled composition of nested pseudo selectors 1`] = `
-.emotion-0 {
-  font-size: 2rem;
-  padding: 16px;
-}
-
-.emotion-0:hover {
-  color: blue;
-}
-
-.emotion-0:hover:active {
-  color: red;
-}
-
-.emotion-0:hover {
-  color: pink;
-}
-
-.emotion-0:hover:active {
-  color: purple;
-}
-
-.emotion-0:hover.some-class {
-  color: yellow;
-}
-
-<button
-  className="emotion-0 emotion-1"
->
-  Should be purple
-</button>
-`;
-
-exports[`styled composition with objects 1`] = `
-.emotion-0 {
-  color: #333;
-  font-size: 1.333em;
-  height: 64px;
-  font-size: 3.157334518321em;
-  font-size: 32px;
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
-  .emotion-0 {
-    font-size: 1.4323121856191332em;
-  }
-}
-
-<h1
-  className="legacy__class emotion-0 emotion-1"
-  scale={2}
->
-  hello world
-</h1>
-`;
-
-exports[`styled custom shouldForwardProp works 1`] = `
-.emotion-0,
-.emotion-0 * {
-  fill: #0000ff;
-}
-
-<svg
-  className="emotion-0 emotion-1"
-  height="100px"
-  width="100px"
->
-  <rect
-    height="100"
-    style={
-      Object {
-        "stroke": "#ff0000",
-      }
-    }
-    width="100"
-    x="10"
-    y="10"
-  />
-</svg>
 `;
 
 exports[`styled function in expression 1`] = `
@@ -306,26 +93,6 @@ exports[`styled function that function returns gets called with props 1`] = `
 />
 `;
 
-exports[`styled glamorous style api & composition 1`] = `
-.emotion-0 {
-  font-size: 20px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-<h1
-  className="emotion-0 emotion-1"
-  fontSize={20}
->
-  hello world
-</h1>
-`;
-
 exports[`styled handles more than 10 dynamic properties 1`] = `
 .emotion-0 {
   -webkit-text-decoration: underline;
@@ -350,36 +117,9 @@ exports[`styled handles more than 10 dynamic properties 1`] = `
 </h1>
 `;
 
-exports[`styled higher order component 1`] = `
-.emotion-0 {
-  font-size: 20px;
-  background-color: #7fc8d6;
-  background-color: '#343a40';
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-<div
-  className="emotion-0 emotion-1"
-/>
-`;
-
 exports[`styled inline function return value is a function 1`] = `
 .emotion-0 {
   font-size: 20px;
-}
-
-<h1
-  className="emotion-0 emotion-1"
->
-  hello world
-</h1>
-`;
-
-exports[`styled innerRef 1`] = `
-.emotion-0 {
-  font-size: 12px;
 }
 
 <h1
@@ -437,23 +177,11 @@ exports[`styled input placeholder object 1`] = `
 </input>
 `;
 
-exports[`styled name with class component 1`] = `
+exports[`styled nested 1`] = `
 .emotion-0 {
-  color: hotpink;
+  font-size: 20px;
 }
 
-<Styled(SomeComponent)>
-  <SomeComponent
-    className="emotion-0 emotion-1"
-  >
-    <div
-      className="emotion-0 emotion-1"
-    />
-  </SomeComponent>
-</Styled(SomeComponent)>
-`;
-
-exports[`styled nested 1`] = `
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -467,10 +195,6 @@ exports[`styled nested 1`] = `
 
 .emotion-2 div span {
   color: red;
-}
-
-.emotion-0 {
-  font-size: 20px;
 }
 
 <div
@@ -498,50 +222,6 @@ exports[`styled no dynamic 1`] = `
 </h1>
 `;
 
-exports[`styled no prop filtering on non string tags 1`] = `
-.emotion-0 {
-  color: green;
-}
-
-<a
-  a={true}
-  aria-label="some label"
-  b={true}
-  className="emotion-0 emotion-1"
-  cool={true}
-  data-wow="value"
-  filtering={true}
-  href="link"
-  is={true}
-  prop={true}
-  wow={true}
->
-  hello world
-</a>
-`;
-
-exports[`styled no prop filtering on string tags started with upper case 1`] = `
-.emotion-0 {
-  color: green;
-}
-
-<SomeCustomLink
-  a={true}
-  aria-label="some label"
-  b={true}
-  className="emotion-0 emotion-1"
-  cool={true}
-  data-wow="value"
-  filtering={true}
-  href="link"
-  is={true}
-  prop={true}
-  wow={true}
->
-  hello world
-</SomeCustomLink>
-`;
-
 exports[`styled object as style 1`] = `
 .emotion-0 {
   font-size: 20px;
@@ -560,30 +240,6 @@ exports[`styled object as style 1`] = `
 >
   hello world
 </h1>
-`;
-
-exports[`styled object composition 1`] = `
-.emotion-0 {
-  border-radius: 50%;
-  -webkit-transition: -webkit-transform 400ms ease-in-out;
-  -webkit-transition: transform 400ms ease-in-out;
-  transition: transform 400ms ease-in-out;
-  border: 3px solid currentColor;
-  width: 96px;
-  height: 96px;
-  color: red;
-  color: blue;
-}
-
-.emotion-0:hover {
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-}
-
-<img
-  className="emotion-0 emotion-1"
-/>
 `;
 
 exports[`styled objects 1`] = `
@@ -613,39 +269,6 @@ exports[`styled objects with spread properties 1`] = `
 >
   hello world
 </figure>
-`;
-
-exports[`styled prop filtering 1`] = `
-.emotion-0 {
-  color: green;
-}
-
-<a
-  aria-label="some label"
-  className="emotion-0 emotion-1"
-  data-wow="value"
-  href="link"
-  is={true}
->
-  hello world
-</a>
-`;
-
-exports[`styled prop filtering on composed styled components that are string tags 1`] = `
-.emotion-0 {
-  background-color: hotpink;
-  color: green;
-}
-
-<a
-  aria-label="some label"
-  className="emotion-0 emotion-1"
-  data-wow="value"
-  href="link"
-  is={true}
->
-  hello world
-</a>
 `;
 
 exports[`styled random expressions undefined return 1`] = `
@@ -678,6 +301,18 @@ exports[`styled random object expression 1`] = `
 </h1>
 `;
 
+exports[`styled ref 1`] = `
+.emotion-0 {
+  font-size: 12px;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
 exports[`styled should forward .defaultProps when reusing __emotion_base 1`] = `
 .emotion-0 {
   text-align: center;
@@ -700,130 +335,6 @@ exports[`styled should forward .defaultProps when reusing __emotion_base 1`] = `
     color="red"
   />
 </div>
-`;
-
-exports[`styled theme prop exists without ThemeProvider 1`] = `
-.emotion-0 {
-  color: green;
-  background-color: yellow;
-}
-
-<div
-  className="emotion-0 emotion-1"
-/>
-`;
-
-exports[`styled theme prop exists without ThemeProvider with a theme prop on the component 1`] = `
-.emotion-0 {
-  color: hotpink;
-  background-color: yellow;
-}
-
-<div
-  className="emotion-0 emotion-1"
-/>
-`;
-
-exports[`styled theme with react-test-renderer 1`] = `
-.emotion-0 {
-  color: pink;
-}
-
-<div
-  className="emotion-0 emotion-1"
->
-  this will be pink
-</div>
-`;
-
-exports[`styled themes 1`] = `
-.emotion-0 {
-  background-color: #ffd43b;
-  color: blue;
-  height: 64px;
-  font-size: 20px;
-  color: #8c81d8;
-  font-size: 32px;
-}
-
-<span
-  className="emotion-0 emotion-1"
->
-  hello world
-</span>
-`;
-
-exports[`styled theming 1`] = `
-<TestComponent
-  renderChild={true}
-  theme={
-    Object {
-      "primary": "green",
-    }
-  }
->
-  <ThemeProvider
-    theme={
-      Object {
-        "primary": "green",
-      }
-    }
-  >
-    <Styled(div)>
-      <div
-        className="emotion-0 emotion-1"
-      >
-        this will be green then pink
-      </div>
-    </Styled(div)>
-  </ThemeProvider>
-</TestComponent>
-`;
-
-exports[`styled theming 2`] = `
-<TestComponent
-  renderChild={true}
-  theme={
-    Object {
-      "primary": "pink",
-    }
-  }
->
-  <ThemeProvider
-    theme={
-      Object {
-        "primary": "pink",
-      }
-    }
-  >
-    <Styled(div)>
-      <div
-        className="emotion-0 emotion-1"
-      >
-        this will be green then pink
-      </div>
-    </Styled(div)>
-  </ThemeProvider>
-</TestComponent>
-`;
-
-exports[`styled theming 3`] = `
-<TestComponent
-  renderChild={false}
-  theme={
-    Object {
-      "primary": "pink",
-    }
-  }
->
-  <ThemeProvider
-    theme={
-      Object {
-        "primary": "pink",
-      }
-    }
-  />
-</TestComponent>
 `;
 
 exports[`styled throws if undefined is passed as the component 1`] = `
@@ -863,20 +374,16 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
 }
 
 <article>
-  <Styled(h1)>
-    <h1
-      className="emotion-0 emotion-1"
-    >
-      My Title
-    </h1>
-  </Styled(h1)>
-  <Styled(h2)>
-    <h2
-      className="emotion-0 emotion-3"
-    >
-      My Subtitle
-    </h2>
-  </Styled(h2)>
+  <h1
+    className="emotion-0 emotion-1"
+  >
+    My Title
+  </h1>
+  <h2
+    className="emotion-0 emotion-3"
+  >
+    My Subtitle
+  </h2>
 </article>
 `;
 
@@ -890,22 +397,16 @@ exports[`styled withComponent with function interpolation 1`] = `
 }
 
 <article>
-  <Styled(h1)>
-    <h1
-      className="emotion-0 emotion-1"
-    >
-      My Title
-    </h1>
-  </Styled(h1)>
-  <Styled(h2)
+  <h1
+    className="emotion-0 emotion-1"
+  >
+    My Title
+  </h1>
+  <h2
+    className="emotion-2 emotion-3"
     color="hotpink"
   >
-    <h2
-      className="emotion-2 emotion-3"
-      color="hotpink"
-    >
-      My Subtitle
-    </h2>
-  </Styled(h2)>
+    My Subtitle
+  </h2>
 </article>
 `;

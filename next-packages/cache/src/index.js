@@ -109,6 +109,7 @@ let createCache = (options?: Options): CSSContextType => {
       container,
       nonce: options.nonce
     }),
+    nonce: options.nonce,
     inserted,
     registered: {},
     theme: {}

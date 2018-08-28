@@ -9,8 +9,6 @@ import { css, injectGlobal, keyframes, flush, hydrate } from 'emotion'
 import { extractCritical } from 'emotion-server'
 import { prettyifyCritical, getInjectedRules } from '../util'
 
-const emotion = require('emotion')
-
 const getComponents = () => {
   const color = 'red'
 

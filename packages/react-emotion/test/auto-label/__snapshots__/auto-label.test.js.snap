@@ -36,6 +36,17 @@ exports[`styled with autoLabel composition 2`] = `
 }"
 `;
 
+exports[`styled with autoLabel composition 3`] = `
+".css-17vftq3-cssA {
+  color: blue;
+}
+
+.css-bit9r7-cssA-cssB {
+  color: blue;
+  color: red;
+}"
+`;
+
 exports[`styled with autoLabel composition with objects 1`] = `
 .emotion-0 {
   color: #333;

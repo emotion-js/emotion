@@ -1,9 +1,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
-import styled, { flush, sheet } from 'react-emotion'
+import styled from 'react-emotion'
 import * as renderer from 'test-utils/compat-render-json'
-
-afterEach(() => flush())
 
 test('component as selector', () => {
   const fontSize = '20px'
@@ -27,7 +25,6 @@ test('component as selector', () => {
     .toJSON()
 
   expect(tree).toMatchSnapshot()
-  expect(sheet).toMatchSnapshot()
 })
 
 test('component as selector function interpolation', () => {
@@ -51,7 +48,6 @@ test('component as selector function interpolation', () => {
     .toJSON()
 
   expect(tree).toMatchSnapshot()
-  expect(sheet).toMatchSnapshot()
 })
 
 test('component as selector (object syntax)', () => {
@@ -74,7 +70,6 @@ test('component as selector (object syntax)', () => {
     .toJSON()
 
   expect(tree).toMatchSnapshot()
-  expect(sheet).toMatchSnapshot()
 })
 
 test('component as selector function interpolation (object syntax)', () => {
@@ -98,5 +93,4 @@ test('component as selector function interpolation (object syntax)', () => {
     .toJSON()
 
   expect(tree).toMatchSnapshot()
-  expect(sheet).toMatchSnapshot()
 })

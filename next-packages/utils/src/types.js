@@ -17,7 +17,8 @@ export type CSSContextType = {
   sheet: StyleSheet,
   theme: Object,
   key: string,
-  compat?: true
+  compat?: true,
+  nonce?: string
 }
 
 export type Interpolation = any

@@ -1,13 +1,8 @@
 // @flow
-import createCache from '@emotion/cache'
 
 let createCompatCache = (emotion: *) => {
-  // $FlowFixMe
-  let cache = createCache(emotion.sheet.opts)
-  cache.inserted = emotion.caches.inserted
-  cache.registered = emotion.caches.registered
-  cache.compat = true
-  return cache
+  // rename this property to cache later and remove this package and tell people to use .cache
+  return emotion.caches
 }
 
 export default createCompatCache
