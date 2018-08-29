@@ -71,7 +71,7 @@ it('allows function interpolations when this is defined', () => {
 
 it('works with nested functions', () => {
   expect(
-    css.call({ mergedProps: { thing: true } }, props => () => ({
+    css.call({ thing: true }, props => () => ({
       color: props.thing && 'hotpink'
     }))
   ).toEqual({ color: 'hotpink' })
