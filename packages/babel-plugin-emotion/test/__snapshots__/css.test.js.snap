@@ -1,24 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`babel css extract babel 6 babel css extract basic 1`] = `
-"import \\"./emotion.emotion.css\\";
-
-\\"css-5bxlk\\";
-
-
-emotion.emotion.css
-.css-5bxlk{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;}"
-`;
-
-exports[`babel css extract babel 7 babel css extract basic 1`] = `
-"import \\"./emotion.emotion.css\\";
-\\"css-5bxlk\\";
-
-
-emotion.emotion.css
-.css-5bxlk{margin:12px 48px;color:#ffffff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;color:blue;}"
-`;
-
 exports[`babel css inline babel 6 ::placeholder 1`] = `
 "
 const cls1 = /*#__PURE__*/css({
