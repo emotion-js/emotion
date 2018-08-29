@@ -1,8 +1,6 @@
 // @flow
 import * as React from 'react'
 import renderer from 'react-test-renderer'
-import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import reactPrimitives from 'react-primitives'
 import { ThemeProvider } from 'emotion-theming'
 import { render, unmountComponentAtNode } from 'react-dom'
@@ -10,8 +8,6 @@ import { render, unmountComponentAtNode } from 'react-dom'
 import styled from '@emotion/primitives'
 
 jest.mock('react-primitives')
-
-Enzyme.configure({ adapter: new Adapter() })
 
 const StyleSheet = reactPrimitives.StyleSheet
 
@@ -96,13 +92,6 @@ describe('Emotion primitives', () => {
       .create(<Title style={{ padding: 10 }}>Emotion primitives</Title>)
       .toJSON()
     expect(tree).toMatchSnapshot()
-    const wrapper = Enzyme.shallow(
-      <Title style={{ padding: 10 }}>Emotion primitives</Title>
-    )
-    expect(wrapper.find('Text').prop('style')).toEqual({
-      color: 'hotpink',
-      padding: 10
-    })
   })
 
   it('should work with StyleSheet.create API', () => {
@@ -110,13 +99,11 @@ describe('Emotion primitives', () => {
     const Text = styled.Text`
       font-size: 10px;
     `
-    const wrapper = Enzyme.shallow(
-      <Text style={styles.foo}>Emotion Primitives</Text>
-    )
-    expect(wrapper.find('Text').prop('style')).toEqual({
-      color: 'red',
-      fontSize: 10
-    })
+
+    const tree = renderer
+      .create(<Text style={styles.foo}>Emotion Primitives</Text>)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   test('primitive should work with `withComponent`', () => {
