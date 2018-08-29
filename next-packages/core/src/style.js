@@ -84,7 +84,7 @@ export const Style = withCSSContext((props, context) => {
 
   let css = (...args) => {
     if (hasRendered && process.env.NODE_ENV !== 'production') {
-      throw new Error('css can only be used in the render prop of Style')
+      throw new Error('css can only be used during render')
     }
     let serialized = serializeStyles(context.registered, args)
     if (isBrowser) {
@@ -102,11 +102,11 @@ export const Style = withCSSContext((props, context) => {
   }
   let cx = (...args) => {
     if (hasRendered && process.env.NODE_ENV !== 'production') {
-      throw new Error('cx can only be used in the render prop of Style')
+      throw new Error('cx can only be used during render')
     }
     return merge(context.registered, css, classnames(args))
   }
-  let content = { css, cx }
+  let content = { css, cx, theme: context.theme }
   let ele = props.children(content)
   hasRendered = true
   if (!isBrowser && rules !== undefined) {
