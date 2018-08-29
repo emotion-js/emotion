@@ -80,7 +80,7 @@ it('works with nested functions', () => {
 it('works with functions in tagged template literals', () => {
   expect(
     css.call(
-      { mergedProps: {} },
+      {},
       ...returnArguments`
         color: ${() => 'hotpink'};
       `
