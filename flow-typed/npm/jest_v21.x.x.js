@@ -264,7 +264,7 @@ type JestExpectType = {
    */
   toMatchSnapshot(name?: string): void,
   toMatchInlineSnapshot(...args: any): void,
-
+  toThrowErrorMatchingInlineSnapshot(...args: any): void,
   /**
    * Use .toThrow to test that a function throws when it is called.
    * If you want to test that a specific error gets thrown, you can provide an

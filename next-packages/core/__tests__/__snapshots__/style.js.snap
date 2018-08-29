@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`cx 1`] = `
+.emotion-0 {
+  color: hotpink;
+  color: green;
+}
+
+<div
+  className="some-other-class emotion-0"
+/>
+`;
