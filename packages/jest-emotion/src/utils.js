@@ -70,3 +70,54 @@ export function getClassNamesFromNodes(nodes: Array<any>) {
     return getClassNamesFromDOMElement(selectors, node)
   }, [])
 }
+
+export function getStylesFromClassNames(
+  classNames: Array<string>,
+  elements: Array<HTMLStyleElement>
+): string {
+  if (!classNames.length) {
+    return ''
+  }
+  let keys = getKeys(elements)
+  if (!keys.length) {
+    return ''
+  }
+
+  let keyPatten = new RegExp(`^(${keys.join('|')})-`)
+  let filteredClassNames = classNames.filter(className =>
+    keyPatten.test(className)
+  )
+  if (!filteredClassNames.length) {
+    return ''
+  }
+  let selectorPattern = new RegExp('\\.(' + filteredClassNames.join('|') + ')')
+
+  let styles = ''
+  elements.forEach(element => {
+    let rule = element.textContent || ''
+    if (selectorPattern.test(rule)) {
+      styles += rule
+    }
+  })
+
+  return styles
+}
+
+export function getStyleElements(): Array<HTMLStyleElement> {
+  let elements = Array.from(document.querySelectorAll('style[data-emotion]'))
+  // $FlowFixMe
+  return elements
+}
+
+let unique = arr => Array.from(new Set(arr))
+
+export function getKeys(elements: Array<HTMLStyleElement>) {
+  let keys = unique(
+    elements.map(
+      element =>
+        // $FlowFixMe we know it exists since we query for elements with this attribute
+        (element.getAttribute('data-emotion'): string)
+    )
+  ).filter(Boolean)
+  return keys
+}

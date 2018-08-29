@@ -1,20 +1,21 @@
+// @flow
 import 'test-utils/legacy-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'
-import * as emotion from 'emotion'
-import { createSerializer } from '../src'
+import { css, cx } from 'emotion'
+import { createSerializer } from 'jest-emotion'
+
+let emotionPlugin = createSerializer()
 
 const { ReactElement, ReactTestComponent, DOMElement } = prettyFormat.plugins
 
 describe('jest-emotion with dom elements', () => {
-  const emotionPlugin = createSerializer(emotion)
-
-  const divStyle = emotion.css`
+  const divStyle = css`
     color: red;
   `
 
-  const svgStyle = emotion.css`
+  const svgStyle = css`
     width: 100%;
   `
 
@@ -50,13 +51,13 @@ describe('jest-emotion with dom elements', () => {
 })
 
 describe('jest-emotion with DOM elements disabled', () => {
-  const emotionPlugin = createSerializer(emotion, { DOMElements: false })
+  const emotionPlugin = createSerializer({ DOMElements: false })
 
-  const divStyle = emotion.css`
+  const divStyle = css`
     color: red;
   `
 
-  const svgStyle = emotion.css`
+  const svgStyle = css`
     width: 100%;
   `
 
@@ -92,12 +93,10 @@ describe('jest-emotion with DOM elements disabled', () => {
 })
 
 test('does not replace class names that are not from emotion', () => {
-  const emotionPlugin = createSerializer(emotion)
-
-  const classes = emotion.cx(
+  const classes = cx(
     'net-42',
     'net',
-    emotion.css`
+    css`
       color: darkorchid;
     `
   )
@@ -112,9 +111,7 @@ test('does not replace class names that are not from emotion', () => {
 })
 
 describe('jest-emotion with nested selectors', () => {
-  const emotionPlugin = createSerializer(emotion)
-
-  const divStyle = emotion.css`
+  const divStyle = css`
     color: blue;
 
     header & {
