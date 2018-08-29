@@ -4,6 +4,9 @@ import * as React from 'react'
 import { StaticRouter } from 'react-router-dom'
 import express from 'express'
 import { renderToString } from 'react-dom/server'
+import { renderStylesToString } from 'emotion-server'
+import { caches } from 'emotion'
+import { Provider } from '@emotion/core'
 
 // $FlowFixMe
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
@@ -14,10 +17,20 @@ server
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
     const context = {}
-    const markup = renderToString(
-      <StaticRouter context={context} location={req.url}>
-        <App />
-      </StaticRouter>
+    const markup = renderStylesToString(
+      renderToString(
+        // DON'T DO THIS, I'M JUST BEING LAZY HERE, THE WAY THIS WORKS IS GOING TO CHANGE, USE @emotion/compat-cache FOR NOW
+        <Provider
+          value={
+            // $FlowFixMe
+            caches
+          }
+        >
+          <StaticRouter context={context} location={req.url}>
+            <App />
+          </StaticRouter>
+        </Provider>
+      )
     )
 
     if (context.url) {
