@@ -4,7 +4,15 @@ title: "Extract Static"
 
 ###### [requires babel plugin](/docs/babel.md)
 
-The `extractStatic` option to `babel-plugin-emotion` allows you to extract styles with no interpolations into external css files. **`extractStatic` is not recommended** because it **breaks [composition](/docs/composition.md)** and other powerful patterns from libraries like [facepaint](https://github.com/emotion-js/facepaint). It is primarily available for historical reasons. It does not work with object styles.
+## DEPRECATED
+
+extractStatic is deprecated and will be removed in emotion@10. We recommend disabling extractStatic or using other libraries like [linaria](https://github.com/callstack-io/linaria) or [css-literal-loader](https://github.com/4Catalyzer/css-literal-loader).
+
+### Why is extractStatic being deprecated?
+
+Static extraction was made for earlier versions of emotion which had a very different architecture to the architecture emotion has today. As emotion has gotten more performant and features such as [composition](/docs/composition.md) have been added, static extraction has become less important. Because most of the community is leveraging the composition and `extractStatic` is rarely used, the time spent maintaining `extractStatic` is much higher than the benefits we get from it. Libraries such as [linaria](https://github.com/callstack-io/linaria) and [css-literal-loader](https://github.com/4Catalyzer/css-literal-loader) do static extraction well and the people working on them are focused on this specific problem. As a team, we believe that projects like [prepack](https://github.com/facebook/prepack), when they are ready, will provide a better and more powerful way to pre-compile styles.
+
+The `extractStatic` option to `babel-plugin-emotion` allows you to extract styles with no interpolations into external css files. **`extractStatic` is not recommended** because it **breaks [composition](/docs/composition.md)** and other powerful patterns from libraries like [facepaint](https://github.com/emotion-js/facepaint).
 
 **If you want to use dynamic values you must use css variables.**
 

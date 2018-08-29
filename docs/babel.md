@@ -26,6 +26,10 @@ Uglifyjs will use the injected `/*#__PURE__*/` flag comments to mark your `css` 
 
 Generated CSS that is eligible for extraction can be moved to an external css file.
 
+> Note:
+>
+> extractStatic is deprecated and will be removed in emotion@10. We recommend disabling extractStatic or using other libraries like [linaria](https://github.com/callstack-io/linaria) or [css-literal-loader](https://github.com/4Catalyzer/css-literal-loader)
+
 ### Source Maps
 
 When enabled, navigate directly to the style declaration in your javascript file.

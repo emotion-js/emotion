@@ -60,7 +60,7 @@ above of `emotion`.
       <td>Uglifyjs will use the injected <code>/*#__PURE__*/</code> flag comments to mark your <code>css</code> and <code>styled</code> blocks as candidates for dead code elimination.</td>
     </tr>
     <tr>
-      <td>Static Extraction</td>
+      <td>Static Extraction (deprecated)</td>
       <td align="center"></td>
       <td align="center">✅</td>
       <td>Generated CSS that is eligible for extraction can be moved to an external css file.</td>
@@ -350,6 +350,10 @@ const Profile = () => {
 ### `extractStatic`
 
 `boolean`, defaults to `false`.
+
+> Note:
+>
+> extractStatic is deprecated and will be removed in emotion@10. We recommend disabling extractStatic or using other libraries like [linaria](https://github.com/callstack-io/linaria) or [css-literal-loader](https://github.com/4Catalyzer/css-literal-loader)
 
 This option enables the following:
 
