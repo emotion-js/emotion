@@ -355,8 +355,6 @@ function getInstancePathToCompare(instancePath: string, rootPath: string) {
   return absolutePath
 }
 
-let warnedAboutExtractStatic = false
-
 export default function(babel: Babel) {
   const { types: t } = babel
 
