@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Styled Elements - basic element 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`Styled Elements - css 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: hotpink;
+  color: green;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`Styled Elements - nested elements 1`] = `
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: hotpink;
+}
+
+.emotion-0 {
+  font-size: 18px;
+}
+
+.emotion-1 {
+  outline: none;
+  border: none;
+  background-color: purple;
+}
+
+<div
+  className="emotion-2"
+>
+  <h1
+    className="emotion-0"
+  >
+    Hello
+  </h1>
+  <button
+    className="emotion-1"
+  >
+    Click Me
+  </button>
+</div>
+`;
+
+exports[`Styled Elements - prop function 1`] = `
+.emotion-0 {
+  font-size: 24px;
+}
+
+<div
+  className="emotion-0"
+  fontSize={24}
+/>
+`;
+
+exports[`Styled Elements - prop function with theming 1`] = `
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`Styled Elements - theming 1`] = `
+.emotion-0 {
+  color: hotpink;
+  color: green;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
