@@ -216,7 +216,8 @@ describe('css', () => {
       styled('div')().toString()
     }).not.toThrow()
   })
-  test('styled throws a nice error when using the styled shorthand without babel-plugin-emotion', () => {
+  // skip it until we decide if we want to include the tag list in react-emotion
+  test.skip('styled throws a nice error when using the styled shorthand without babel-plugin-emotion', () => {
     expect(() => {
       styled.div``
     }).toThrowErrorMatchingSnapshot()
