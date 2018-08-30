@@ -1,5 +1,206 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`babel-plugin-emotion comments 1`] = `
+"import { css } from 'emotion'
+
+css\`
+  // display:flex;
+
+  /*
+wef
+
+dfwf*/
+  color: hotpink;
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+/*#__PURE__*/
+_css({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`babel-plugin-emotion css-basic 1`] = `
+"import { css } from 'emotion'
+
+css\`
+  margin: 12px 48px;
+  color: #ffffff;
+  display: flex;
+  flex: 1 0 auto;
+  color: blue;
+  @media (min-width: 420px) {
+    line-height: 40px;
+  }
+  width: \${window.whatever};
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+/*#__PURE__*/
+_css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media (min-width:420px){line-height:40px;}width:\\", window.whatever, \\";\\");"
+`;
+
+exports[`babel-plugin-emotion css-object 1`] = `
+"import { css } from 'emotion'
+
+let someCls = css({
+  color: window.whatever
+})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+let someCls =
+/*#__PURE__*/
+_css({
+  color: window.whatever
+});"
+`;
+
+exports[`babel-plugin-emotion does-not-minify-inside-content-property 1`] = `
+"import { css } from 'emotion'
+
+const cls1 = css\`
+  content: '  {  }  ';
+\`
+// prettier-ignore
+const cls2 = css\`
+  content: \\"  {  }  \\";
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+const cls1 =
+/*#__PURE__*/
+_css({
+  name: \\"hh44ja\\",
+  styles: \\"content:'  {  }  ';\\"
+}); // prettier-ignore
+
+
+const cls2 =
+/*#__PURE__*/
+_css({
+  name: \\"1rr8elb\\",
+  styles: \\"content:\\\\\\"  {  }  \\\\\\";\\"
+});"
+`;
+
+exports[`babel-plugin-emotion hoisting 1`] = `
+"import { css } from 'emotion'
+
+function test() {
+  const cls1 = css\`
+    font-size: 20px;
+    @media (min-width: 420px) {
+      color: blue;
+      \${css\`
+        width: 96px;
+        height: 96px;
+      \`};
+      line-height: 26px;
+    }
+    background: green;
+    \${{ backgroundColor: 'hotpink' }};
+  \`
+
+  const cls2 = css\`
+    \${{ color: 'blue' }};
+  \`
+
+  const cls3 = css\`
+    display: flex;
+    &:hover {
+      color: hotpink;
+    }
+  \`
+  let outerVar = 'something'
+  function inner() {
+    const styles = { color: 'darkorchid' }
+    const color = 'aquamarine'
+
+    const cls4 = css\`
+      \${cls3};
+      \${cls1};
+      \${{ color: 'darkorchid' }};
+      \${{ color }};
+      \${css\`
+        height: 420px;
+        width: \${styles};
+      \`};
+    \`
+    let someCls = css\`
+      color: \${outerVar};
+    \`
+  }
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+function test() {
+  const cls1 =
+  /*#__PURE__*/
+  _css(\\"font-size:20px;@media (min-width:420px){color:blue;\\",
+  /*#__PURE__*/
+  _css({
+    name: \\"15xbpqr\\",
+    styles: \\"width:96px;height:96px;\\"
+  }), \\";line-height:26px;}background:green;background-color:hotpink;;\\");
+
+  const cls2 =
+  /*#__PURE__*/
+  _css({
+    name: \\"1rdr7a4\\",
+    styles: \\"color:blue;;\\"
+  });
+
+  const cls3 =
+  /*#__PURE__*/
+  _css({
+    name: \\"a21n9o\\",
+    styles: \\"display:flex;&:hover{color:hotpink;}\\"
+  });
+
+  let outerVar = 'something';
+
+  function inner() {
+    const styles = {
+      color: 'darkorchid'
+    };
+    const color = 'aquamarine';
+
+    const cls4 =
+    /*#__PURE__*/
+    _css(cls3, \\";\\", cls1, \\";color:darkorchid;;\\", {
+      color
+    }, \\";\\",
+    /*#__PURE__*/
+    _css(\\"height:420px;width:\\", styles, \\";\\"), \\";\\");
+
+    let someCls =
+    /*#__PURE__*/
+    _css(\\"color:\\", outerVar, \\";\\");
+  }
+}"
+`;
+
 exports[`babel-plugin-emotion inject-global-basic 1`] = `
 "import { injectGlobal } from 'emotion'
 
@@ -186,4 +387,51 @@ let endingRotation = window.whatever;
 const rotate360 =
 /*#__PURE__*/
 _keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\");"
+`;
+
+exports[`babel-plugin-emotion object-label 1`] = `
+"import { css } from 'emotion'
+
+let obj = {
+  someProp: css({ color: 'green' }),
+  anotherProp: css({ color: 'hotpink' })
+}
+class Thing {
+  static Prop = css({ color: 'yellow' })
+  BadIdea = css({ color: 'red' })
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+let obj = {
+  someProp:
+  /*#__PURE__*/
+  _css({
+    name: \\"bjcoli\\",
+    styles: \\"color:green;\\"
+  }),
+  anotherProp:
+  /*#__PURE__*/
+  _css({
+    name: \\"1lrxbo5\\",
+    styles: \\"color:hotpink;\\"
+  })
+};
+
+class Thing {
+  static Prop =
+  /*#__PURE__*/
+  _css({
+    name: \\"fsfbn2\\",
+    styles: \\"color:yellow;\\"
+  });
+  BadIdea =
+  /*#__PURE__*/
+  _css({
+    name: \\"tokvmb\\",
+    styles: \\"color:red;\\"
+  });
+}"
 `;
