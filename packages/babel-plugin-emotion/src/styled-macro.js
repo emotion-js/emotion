@@ -14,7 +14,15 @@ export default createMacro(({ references, state, babel }) => {
           nameHint: 'styled'
         })
       }
-      if (t.isMemberExpression(reference.parent)) {
+      if (
+        t.isMemberExpression(reference.parent) &&
+        reference.parent.computed === false &&
+        // checks if the first character is lowercase
+        // becasue we don't want to transform the member expression if
+        // it's in primitives/native
+        // TODO: this is kind of irrelevant right now since this macro only works for @emotion/styled so make it work for native and primitives
+        reference.parent.property.name.charCodeAt(0) > 96
+      ) {
         reference.parentPath.replaceWith(
           t.callExpression(t.cloneDeep(styledIdentifier), [
             t.stringLiteral(reference.parent.property.name)
