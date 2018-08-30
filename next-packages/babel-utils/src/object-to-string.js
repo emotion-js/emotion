@@ -5,12 +5,10 @@ import { serializeStyles } from '@emotion/serialize'
 // it's meant to simplify the most common cases so i don't want to make it especially complex
 // also, this will be unnecessary when prepack is ready
 export function simplifyObject(node: *, t: Object) {
-  let bailout = false
   let finalString = ''
-  node.properties.forEach(property => {
-    if (bailout) {
-      return
-    }
+  for (let i = 0; i < node.properties.length; i++) {
+    let property = node.properties[i]
+
     if (
       !t.isObjectProperty(property) ||
       property.computed ||
@@ -19,27 +17,24 @@ export function simplifyObject(node: *, t: Object) {
         !t.isNumericLiteral(property.value) &&
         !t.isObjectExpression(property.value))
     ) {
-      bailout = true
-      return
+      return node
     }
 
     let key = property.key.name || property.key.value
     if (key === 'styles') {
-      bailout = true
-      return
+      return node
     }
     if (t.isObjectExpression(property.value)) {
       let simplifiedChild = simplifyObject(property.value, t)
       if (!t.isStringLiteral(simplifiedChild)) {
-        bailout = true
-        return
+        return node
       }
       finalString += `${key}{${simplifiedChild.value}}`
-      return
+      continue
     }
     let value = property.value.value
 
     finalString += serializeStyles({}, [{ [key]: value }]).styles
-  })
-  return bailout ? node : t.stringLiteral(finalString)
+  }
+  return t.stringLiteral(finalString)
 }
