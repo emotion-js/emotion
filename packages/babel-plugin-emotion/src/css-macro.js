@@ -15,6 +15,8 @@ export const transformCssCallExpression = ({ babel, state, path }: *) => {
     if (isPure) {
       path.hoist()
     }
+  } else {
+    path.addComment('leading', '#__PURE__')
   }
 }
 

@@ -90,7 +90,9 @@ const thing = css\`
 
 import _css from \\"@emotion/css\\";
 
-const thing = _css(\\"display:flex;&:hover{\\", {
+const thing =
+/*#__PURE__*/
+_css(\\"display:flex;&:hover{\\", {
   name: \\"1hi0qos\\",
   styles: \\"color:hotpink;label:thing;\\",
   label: \\"-thing\\"
@@ -153,7 +155,10 @@ import _css from \\"@emotion/css\\";
 function thing() {}
 
 function doThing() {
-  return _css(\\"display:\\", thing(), \\";\\");
+  return (
+    /*#__PURE__*/
+    _css(\\"display:\\", thing(), \\";\\")
+  );
 }"
 `;
 
