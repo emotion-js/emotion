@@ -94,7 +94,7 @@ function createEmotionStyled(emotion: Emotion, view: ReactType) {
         static __emotion_forwardProp: void | (string => boolean)
         static withComponent: (ElementType, options?: StyledOptions) => any
 
-        componentWillMount() {
+        componentDidMount() {
           if (this.context[channel] !== undefined) {
             this.unsubscribe = this.context[channel].subscribe(
               setTheme.bind(this)
