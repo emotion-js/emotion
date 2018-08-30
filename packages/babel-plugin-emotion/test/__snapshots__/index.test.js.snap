@@ -389,6 +389,27 @@ const rotate360 =
 _keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\");"
 `;
 
+exports[`babel-plugin-emotion native 1`] = `
+"import styled from '@emotion/native'
+
+styled.View\`
+  color: hotpink;
+\`
+
+styled.View({})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/native\\";
+
+/*#__PURE__*/
+_styled.View(\\"color:hotpink;\\");
+
+/*#__PURE__*/
+_styled.View(\\"\\");"
+`;
+
 exports[`babel-plugin-emotion object-label 1`] = `
 "import { css } from 'emotion'
 
@@ -434,4 +455,62 @@ class Thing {
     styles: \\"color:red;\\"
   });
 }"
+`;
+
+exports[`babel-plugin-emotion primitives 1`] = `
+"import styled from '@emotion/primitives'
+
+styled('SomeFakeComponent')\`
+  color: hotpink;
+\`
+
+styled('SomeFakeComponent')({})
+
+styled.View\`
+  color: hotpink;
+\`
+
+styled.View({})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/primitives\\";
+
+/*#__PURE__*/
+_styled('SomeFakeComponent', {
+  target: \\"e3zf7vu0\\"
+})(\\"color:hotpink;\\");
+
+/*#__PURE__*/
+_styled('SomeFakeComponent', {
+  target: \\"e3zf7vu1\\"
+})(\\"\\");
+
+/*#__PURE__*/
+_styled.View(\\"color:hotpink;\\");
+
+/*#__PURE__*/
+_styled.View(\\"\\");"
+`;
+
+exports[`babel-plugin-emotion primitives-other-name 1`] = `
+"import something from '@emotion/primitives'
+
+something.View\`
+  color: hotpink;
+\`
+
+something.View({})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/primitives\\";
+
+/*#__PURE__*/
+_styled.View(\\"color:hotpink;\\");
+
+/*#__PURE__*/
+_styled.View(\\"\\");"
 `;

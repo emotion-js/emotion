@@ -7,9 +7,9 @@ import { addDefault } from '@babel/helper-module-imports'
 import { getSourceMap } from '@emotion/babel-utils'
 import { buildStyledOptions } from './babel-utils'
 
-let webStyledMacro = createStyledMacro('@emotion/styled-base')
-let nativeStyledMacro = createStyledMacro('@emotion/native')
-let primitivesStyledMacro = createStyledMacro('@emotion/primitives')
+let webStyledMacro = createStyledMacro('@emotion/styled-base', true)
+let nativeStyledMacro = createStyledMacro('@emotion/native', false)
+let primitivesStyledMacro = createStyledMacro('@emotion/primitives', false)
 
 export const macros = {
   emotion: createEmotionMacro('emotion'),

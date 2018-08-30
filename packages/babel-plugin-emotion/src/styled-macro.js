@@ -4,7 +4,10 @@ import { addDefault } from '@babel/helper-module-imports'
 import { transformExpressionWithStyles } from '@emotion/babel-utils'
 import { buildStyledOptions } from './babel-utils'
 
-export let createStyledMacro = (importPath: string) =>
+export let createStyledMacro = (
+  importPath: string,
+  replaceWithSerialized: boolean
+) =>
   createMacro(({ references, state, babel }) => {
     const t = babel.types
     if (references.default.length) {
@@ -39,7 +42,7 @@ export let createStyledMacro = (importPath: string) =>
             babel,
             shouldLabel: false
           })
-          if (node) {
+          if (node && replaceWithSerialized) {
             // we know the argument length will be 1 since that's the only time we will have a node since it will be static
             styledCallPath.node.arguments[0] = node
           }
