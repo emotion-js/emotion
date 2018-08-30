@@ -1,5 +1,5 @@
 // @flow
-import emotionMacro from './macro'
+import { createEmotionMacro } from './macro'
 import styledMacro from './styled-macro'
 import cssMacro, { transformCssCallExpression } from './css-macro'
 import { createPlugin } from './create-plugin'
@@ -8,10 +8,12 @@ import { getSourceMap } from '@emotion/babel-utils'
 import { buildStyledOptions } from './babel-utils'
 
 export const macros = {
-  emotion: emotionMacro,
+  emotion: createEmotionMacro('emotion'),
   css: cssMacro,
   styled: styledMacro
 }
+
+export { createEmotionMacro }
 
 export type BabelPath = any
 
@@ -32,7 +34,9 @@ export default createPlugin(
   {
     '@emotion/css': cssMacro,
     '@emotion/styled': styledMacro,
-    '@emotion/core': emotionCoreMacroThatsNotARealMacro
+    '@emotion/core': emotionCoreMacroThatsNotARealMacro,
+    'react-emotion': styledMacro,
+    emotion: createEmotionMacro('emotion')
   },
   babel => {
     let t = babel.types

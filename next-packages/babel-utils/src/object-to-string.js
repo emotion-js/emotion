@@ -12,6 +12,7 @@ export function simplifyObject(node: *, t: Object) {
       return
     }
     if (
+      !t.isObjectProperty(property) ||
       property.computed ||
       (!t.isIdentifier(property.key) && !t.isStringLiteral(property.key)) ||
       (!t.isStringLiteral(property.value) &&
@@ -19,6 +20,7 @@ export function simplifyObject(node: *, t: Object) {
         !t.isObjectExpression(property.value))
     ) {
       bailout = true
+      return
     }
 
     let key = property.key.name || property.key.value
