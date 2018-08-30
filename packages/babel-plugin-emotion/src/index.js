@@ -16,8 +16,6 @@ import type {
 import hashString from '@emotion/hash'
 import memoize from '@emotion/memoize'
 import { addSourceMaps } from './source-map'
-
-import cssProps from './css-prop'
 import { getExpressionsFromTemplateLiteral } from '@emotion/babel-utils'
 import emotionMacro from './macro'
 import styledMacro from './macro-styled'
@@ -465,7 +463,6 @@ export default function(babel: Babel) {
         }
       },
       JSXOpeningElement(path: BabelPath, state: EmotionBabelPluginPass) {
-        cssProps(path, state, t)
         if (state.opts.hoist) {
           path.traverse({
             CallExpression(callExprPath) {
