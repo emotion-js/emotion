@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import { jsx, css } from '@emotion/core'
-import ThemeProvider from '@emotion/provider'
+import { ThemeProvider } from 'emotion-theming'
 import renderer from 'react-test-renderer'
 
 const SomeComponent = (props: { lol: true }) => (props.lol ? 'yes' : 'no')

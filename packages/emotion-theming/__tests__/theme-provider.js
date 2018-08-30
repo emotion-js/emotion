@@ -3,15 +3,15 @@
 import 'test-utils/next-env'
 import * as React from 'react'
 import { ignoreConsoleErrors } from 'test-utils'
-import Provider from '@emotion/provider'
+import { ThemeProvider } from 'emotion-theming'
 import { jsx } from '@emotion/core'
 import renderer from 'react-test-renderer'
 
 test('nested provider', () => {
   const tree = renderer
     .create(
-      <Provider theme={{ color: 'hotpink', padding: 4 }}>
-        <Provider theme={{ backgroundColor: 'darkgreen', color: 'white' }}>
+      <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
+        <ThemeProvider theme={{ backgroundColor: 'darkgreen', color: 'white' }}>
           <div
             css={({ color, padding, backgroundColor }) => ({
               color,
@@ -19,8 +19,8 @@ test('nested provider', () => {
               backgroundColor
             })}
           />
-        </Provider>
-      </Provider>
+        </ThemeProvider>
+      </ThemeProvider>
     )
     .toJSON()
   expect(tree).toMatchSnapshot()
@@ -29,8 +29,8 @@ test('nested provider', () => {
 test('nested provider with function', () => {
   const tree = renderer
     .create(
-      <Provider theme={{ color: 'hotpink', padding: 4 }}>
-        <Provider
+      <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
+        <ThemeProvider
           theme={theme => ({
             backgroundColor: 'darkgreen',
             ...theme,
@@ -44,8 +44,8 @@ test('nested provider with function', () => {
               backgroundColor
             })}
           />
-        </Provider>
-      </Provider>
+        </ThemeProvider>
+      </ThemeProvider>
     )
     .toJSON()
   expect(tree).toMatchSnapshot()
@@ -64,8 +64,8 @@ test('nested provider with function that does not return a plain object throws t
   ignoreConsoleErrors(() => {
     renderer.create(
       <ExpectErrorComponent>
-        <Provider theme={{ color: 'hotpink', padding: 4 }}>
-          <Provider theme={theme => undefined}>
+        <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
+          <ThemeProvider theme={theme => undefined}>
             <div
               css={({ color, padding, backgroundColor }) => ({
                 color,
@@ -73,8 +73,8 @@ test('nested provider with function that does not return a plain object throws t
                 backgroundColor
               })}
             />
-          </Provider>
-        </Provider>
+          </ThemeProvider>
+        </ThemeProvider>
       </ExpectErrorComponent>
     )
   })
@@ -84,9 +84,9 @@ test('nested provider with theme value that is not a plain object throws', () =>
   ignoreConsoleErrors(() => {
     renderer.create(
       <ExpectErrorComponent>
-        <Provider theme={{ color: 'hotpink', padding: 4 }}>
+        <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
           {/* $FlowFixMe */}
-          <Provider theme>
+          <ThemeProvider theme>
             <div
               css={({ color, padding, backgroundColor }) => ({
                 color,
@@ -94,8 +94,8 @@ test('nested provider with theme value that is not a plain object throws', () =>
                 backgroundColor
               })}
             />
-          </Provider>
-        </Provider>
+          </ThemeProvider>
+        </ThemeProvider>
       </ExpectErrorComponent>
     )
   })

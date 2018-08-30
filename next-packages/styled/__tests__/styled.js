@@ -4,7 +4,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import styled from '@emotion/styled'
-import Provider from '@emotion/provider'
+import { ThemeProvider } from 'emotion-theming'
 import css from '@emotion/css'
 
 describe('styled', () => {
@@ -637,9 +637,9 @@ describe('styled', () => {
     `
     const tree = renderer
       .create(
-        <Provider theme={{ primary: 'hotpink' }}>
+        <ThemeProvider theme={{ primary: 'hotpink' }}>
           <Div>this should be hotpink</Div>
-        </Provider>
+        </ThemeProvider>
       )
       .toJSON()
     expect(tree).toMatchSnapshot()

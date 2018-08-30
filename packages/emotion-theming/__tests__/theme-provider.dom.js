@@ -4,7 +4,7 @@ import 'test-utils/next-env'
 import 'test-utils/dev-mode'
 import { throwIfFalsy } from 'test-utils'
 import * as React from 'react'
-import Provider from '@emotion/provider'
+import { ThemeProvider } from 'emotion-theming'
 import { jsx } from '@emotion/core'
 import { render } from 'react-dom'
 
@@ -13,7 +13,7 @@ test('provider with theme value that changes', () => {
     state = { theme: { color: 'hotpink', padding: 4 } }
     render() {
       return (
-        <Provider theme={this.state.theme}>
+        <ThemeProvider theme={this.state.theme}>
           <div
             id="the-thing"
             onClick={() => {
@@ -24,7 +24,7 @@ test('provider with theme value that changes', () => {
               padding
             })}
           />
-        </Provider>
+        </ThemeProvider>
       )
     }
   }
