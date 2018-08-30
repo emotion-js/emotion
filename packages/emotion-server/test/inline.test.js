@@ -72,7 +72,7 @@ describe('hydration', () => {
     emotionServer = require('emotion-server')
     reactEmotion = require('react-emotion')
 
-    expect(emotion.caches.registered).toEqual({})
+    expect(emotion.cache.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)

@@ -1,12 +1,13 @@
 // @flow
 import * as React from 'react'
 import * as renderer from 'react-test-renderer'
-import * as emotion from 'emotion'
-import createCompatCache from '@emotion/compat-cache'
+import { cache as vanillaEmotionCache } from 'emotion'
+import type { CSSContextType } from '@emotion/utils'
 import { Provider } from '@emotion/core'
 
-let compatCache = createCompatCache(emotion)
-
-export let create = (element: React.Node) => {
-  return renderer.create(<Provider value={compatCache}>{element}</Provider>)
+export let create = (
+  element: React.Node,
+  cache: CSSContextType = vanillaEmotionCache
+) => {
+  return renderer.create(<Provider value={cache}>{element}</Provider>)
 }

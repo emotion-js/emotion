@@ -6,8 +6,6 @@ import type { Emotion } from 'create-emotion'
 // $FlowFixMe
 import { renderToNodeStream } from 'react-dom/server'
 import HTMLSerializer from 'jest-serializer-html'
-import weakMemoize from '@emotion/weak-memoize'
-import _createCompatCache from '@emotion/compat-cache'
 import { Provider } from '@emotion/core'
 
 type EmotionServer = {
@@ -17,11 +15,6 @@ type EmotionServer = {
 }
 
 expect.addSnapshotSerializer(HTMLSerializer)
-
-// this caching thing isn't strictly necessary for the tests
-// but people should do it in actual apps so I want to provide a good example
-
-let createCompatCache = weakMemoize(_createCompatCache)
 
 export const getComponents = (
   emotion: Emotion,
@@ -102,7 +95,7 @@ export const getComponents = (
   `
 
   const Page1 = () => (
-    <Provider value={createCompatCache(emotion)}>
+    <Provider value={emotion.cache}>
       <Main>
         <Image size={30} />
         <Image size={100} />
@@ -112,7 +105,7 @@ export const getComponents = (
   )
 
   const Page2 = () => (
-    <Provider value={createCompatCache(emotion)}>
+    <Provider value={emotion.cache}>
       <Main>
         <div>Hello</div>
       </Main>
@@ -166,12 +159,12 @@ export const getCssFromChunks = (emotion: Emotion, document: Document) => {
   const chunks = Array.from(
     // $FlowFixMe
     emotion.sheet.tags[0].parentNode.querySelectorAll(
-      `[data-emotion-${emotion.caches.key}]`
+      `[data-emotion-${emotion.cache.key}]`
     )
   )
   expect(
     // $FlowFixMe
-    document.body.querySelector(`[data-emotion-${emotion.caches.key}]`)
+    document.body.querySelector(`[data-emotion-${emotion.cache.key}]`)
   ).toBeNull()
   return stringify(parse(chunks.map(chunk => chunk.textContent || '').join('')))
 }

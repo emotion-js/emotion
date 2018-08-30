@@ -1,10 +1,7 @@
 // @flow
 import * as React from 'react'
-import * as emotion from 'emotion'
-import createCompatCache from '@emotion/compat-cache'
+import { cache } from 'emotion'
 import { Provider } from '@emotion/core'
-
-const cache = createCompatCache(emotion)
 
 export const wrapRootComponent = ({
   Root

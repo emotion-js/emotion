@@ -145,7 +145,7 @@
       {
         "files": [
           "*.test.js",
-          "**/__tests__/*"
+          "**/__tests__/**"
         ],
         "env": {
           "jest": true
@@ -168,6 +168,9 @@
         ],
         "rules": {
           "no-unused-vars": 0
+        },
+        "env": {
+          "jest": false
         }
       }
     ]

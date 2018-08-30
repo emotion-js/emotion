@@ -1,15 +1,20 @@
 // @flow
-import type { Emotion } from 'create-emotion'
+import type { CSSContextType } from '@emotion/utils'
 import createExtractCritical from './extract-critical'
 import createRenderStylesToString from './inline'
 import createRenderStylesToStream from './stream'
 
-export default function(emotion: Emotion) {
-  const nonceString =
-    emotion.caches.nonce !== undefined ? ` nonce="${emotion.caches.nonce}"` : ''
+export default function(cache: CSSContextType) {
+  if (cache.compat !== true) {
+    // is this good? should we do this automatically?
+    // this is only for when using the new apis (not emotion or create-emotion)
+    //
+    cache.compat = true
+  }
+  const nonceString = cache.nonce !== undefined ? ` nonce="${cache.nonce}"` : ''
   return {
-    extractCritical: createExtractCritical(emotion),
-    renderStylesToString: createRenderStylesToString(emotion, nonceString),
-    renderStylesToNodeStream: createRenderStylesToStream(emotion, nonceString)
+    extractCritical: createExtractCritical(cache),
+    renderStylesToString: createRenderStylesToString(cache, nonceString),
+    renderStylesToNodeStream: createRenderStylesToStream(cache, nonceString)
   }
 }

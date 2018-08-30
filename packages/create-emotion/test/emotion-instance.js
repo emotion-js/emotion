@@ -37,13 +37,13 @@ export const {
   keyframes,
   css,
   sheet,
-  caches
+  cache
 } = emotion
 
 export const {
   extractCritical,
   renderStylesToString,
   renderStylesToNodeStream
-} = createEmotionServer(emotion)
+} = createEmotionServer(cache)
 
 export { default } from '@emotion/styled'

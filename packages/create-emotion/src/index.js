@@ -5,7 +5,8 @@ import {
   insertStyles,
   isBrowser,
   getRegisteredStyles,
-  getClassName
+  getClassName,
+  type CSSContextType
 } from '@emotion/utils'
 
 function insertWithoutScoping(cache, name: string, styles: string) {
@@ -48,13 +49,6 @@ type ClassNameArg =
   | { [key: string]: boolean }
   | Array<ClassNameArg>
 
-type EmotionCaches = {
-  registered: { [key: string]: string },
-  inserted: { [key: string]: string | true },
-  nonce?: string,
-  key: string
-}
-
 declare class StyleSheet {
   insert(rule: string): void;
   flush(): void;
@@ -72,7 +66,7 @@ export type Emotion = {
   injectGlobal: CreateStyles<void>,
   keyframes: CreateStyles<string>,
   sheet: StyleSheet,
-  caches: EmotionCaches,
+  cache: CSSContextType,
   merge: *,
   getRegisteredStyles: *
 }
@@ -136,7 +130,7 @@ let createEmotion = (options: *): Emotion => {
     },
     // $FlowFixMe
     sheet: cache.sheet,
-    caches: cache,
+    cache,
     getRegisteredStyles: getRegisteredStyles.bind(null, cache.registered),
     merge: merge.bind(null, cache.registered, css)
   }

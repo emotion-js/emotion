@@ -42,7 +42,7 @@ describe('hydration', () => {
     emotion = require('emotion')
     emotionServer = require('emotion-server')
 
-    expect(emotion.caches.inserted).toEqual({})
+    expect(emotion.cache.inserted).toEqual({})
     emotion.hydrate(ids)
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)
