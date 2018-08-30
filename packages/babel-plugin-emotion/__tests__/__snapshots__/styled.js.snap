@@ -44,6 +44,168 @@ _styled('div', {
 });"
 `;
 
+exports[`@emotion/babel-plugin-core styled comments 1`] = `
+"import styled from '@emotion/styled'
+
+styled.div\`
+  // display:flex;
+
+  /*
+wef
+
+dfwf */
+  color: hotpink;
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+_styled(\\"div\\", {
+  target: \\"e1ewmxpp0\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`@emotion/babel-plugin-core styled component-selector 1`] = `
+"import styled from '@emotion/styled'
+
+const SomeComponent = styled.div\`
+  color: hotpink;
+\`
+
+let SomeOtherComponent = styled.div({ color: 'hotpink' })
+
+let AnotherComponent = styled.div\`
+  \${SomeComponent} {
+    color: green;
+  }
+  \${SomeOtherComponent} {
+    color: green;
+  }
+\`
+
+let OneLastComponent = styled.div({
+  [SomeComponent]: {
+    color: 'green'
+  },
+  [SomeOtherComponent]: {
+    color: 'green'
+  }
+})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const SomeComponent = _styled(\\"div\\", {
+  target: \\"e14x8jfs0\\",
+  label: \\"SomeComponent\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});
+
+let SomeOtherComponent = _styled(\\"div\\", {
+  target: \\"e14x8jfs1\\",
+  label: \\"SomeOtherComponent\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});
+
+let AnotherComponent = _styled(\\"div\\", {
+  target: \\"e14x8jfs2\\",
+  label: \\"AnotherComponent\\"
+})(SomeComponent, \\"{color:green;}\\", SomeOtherComponent, \\"{color:green;}\\");
+
+let OneLastComponent = _styled(\\"div\\", {
+  target: \\"e14x8jfs3\\",
+  label: \\"OneLastComponent\\"
+})({
+  [SomeComponent]: {
+    color: 'green'
+  },
+  [SomeOtherComponent]: {
+    color: 'green'
+  }
+});"
+`;
+
+exports[`@emotion/babel-plugin-core styled existing-options 1`] = `
+"import styled from '@emotion/styled'
+
+styled('div', { shouldForwardProp: window.whatever }, window.whatever)()
+
+styled('div', { shouldForwardProp: window.whatever }, window.whatever)\`\`
+
+styled(
+  window.whatever,
+  { shouldForwardProp: window.whatever },
+  window.whatever
+)()
+
+styled(
+  window.whatever,
+  { shouldForwardProp: window.whatever },
+  window.whatever
+)\`\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+/*#__PURE__*/
+_styled('div', {
+  shouldForwardProp: window.whatever,
+  target: \\"e1pu1ggq0\\"
+}, window.whatever)();
+
+/*#__PURE__*/
+_styled('div', {
+  shouldForwardProp: window.whatever,
+  target: \\"e1pu1ggq1\\"
+}, window.whatever)();
+
+/*#__PURE__*/
+_styled(window.whatever, {
+  shouldForwardProp: window.whatever,
+  target: \\"e1pu1ggq2\\"
+}, window.whatever)();
+
+/*#__PURE__*/
+_styled(window.whatever, {
+  shouldForwardProp: window.whatever,
+  target: \\"e1pu1ggq3\\"
+}, window.whatever)();"
+`;
+
+exports[`@emotion/babel-plugin-core styled function-interpolation 1`] = `
+"import styled from '@emotion/styled'
+
+let Avatar = styled.img\`
+  width: 96px;
+  height: 96px;
+  border-radius: \${props => props.theme.borderRadius};
+  border: 1px solid \${props => props.theme.borderColor};
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+let Avatar = _styled(\\"img\\", {
+  target: \\"e1iwlc0p0\\",
+  label: \\"Avatar\\"
+})(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";\\");"
+`;
+
 exports[`@emotion/babel-plugin-core styled label 1`] = `
 "import styled from '@emotion/styled'
 
@@ -77,6 +239,37 @@ class Thing {
     styles: \\"background:hotpink;\\"
   });
 }"
+`;
+
+exports[`@emotion/babel-plugin-core styled more-than-10-interpolations 1`] = `
+"import styled from '@emotion/styled'
+
+// yes, this was actually a bug at one point
+const H1 = styled.h1\`
+  text-decoration: \${'underline'};
+  border-right: solid blue \${54}px;
+  background: \${'white'};
+  color: \${'black'};
+  display: \${'block'};
+  border-radius: \${'3px'};
+  padding: \${'25px'};
+  width: \${'500px'};
+  z-index: \${100};
+  font-size: \${'18px'};
+  text-align: \${'center'};
+  border-left: \${p => p.theme.blue};
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+// yes, this was actually a bug at one point
+const H1 = _styled(\\"h1\\", {
+  target: \\"e1ip2xek0\\",
+  label: \\"H1\\"
+})(\\"text-decoration:underline;border-right:solid blue \\", 54, \\"px;background:white;color:black;display:block;border-radius:3px;padding:25px;width:500px;z-index:\\", 100, \\";font-size:18px;text-align:center;border-left:\\", p => p.theme.blue, \\";\\");"
 `;
 
 exports[`@emotion/babel-plugin-core styled multiple-calls 1`] = `
@@ -149,5 +342,61 @@ _styled('div', {
 })({
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`@emotion/babel-plugin-core styled object-function 1`] = `
+"import styled from '@emotion/styled'
+
+const SomeComponent = styled.div(props => ({ color: props.color }))
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const SomeComponent = _styled(\\"div\\", {
+  target: \\"e18gi6040\\",
+  label: \\"SomeComponent\\"
+})(props => ({
+  color: props.color
+}));"
+`;
+
+exports[`@emotion/babel-plugin-core styled shorthand-property 1`] = `
+"import styled from '@emotion/styled'
+
+let fontSize = window.whatever
+
+const H1 = styled.h1({ fontSize })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+let fontSize = window.whatever;
+
+const H1 = _styled(\\"h1\\", {
+  target: \\"e1aegz740\\",
+  label: \\"H1\\"
+})({
+  fontSize
+});"
+`;
+
+exports[`@emotion/babel-plugin-core styled with-spread 1`] = `
+"import styled from '@emotion/styled'
+
+const H1 = styled.h1({ ...window.whatever })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const H1 = _styled(\\"h1\\", {
+  target: \\"e1xgd01a0\\",
+  label: \\"H1\\"
+})({ ...window.whatever
 });"
 `;

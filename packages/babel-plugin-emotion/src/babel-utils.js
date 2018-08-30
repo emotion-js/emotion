@@ -9,12 +9,14 @@ export let buildStyledOptions = (t: *, path: *, state: *) => {
     t.objectProperty(
       t.identifier('target'),
       t.stringLiteral(getTargetClassName(state, t))
-    ),
-    t.objectProperty(
-      t.identifier('label'),
-      t.stringLiteral(getLabelFromPath(path, t))
     )
   ]
+  let label = getLabelFromPath(path, t)
+  if (label) {
+    properties.push(
+      t.objectProperty(t.identifier('label'), t.stringLiteral(label))
+    )
+  }
 
   let args = path.node.arguments
   let optionsArgument = args.length >= 2 ? args[1] : null
