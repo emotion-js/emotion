@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/styled.macro",
   "dependencies": {
-    "@emotion/babel-plugin-core": "^0.6.8",
+    "babel-plugin-emotion": "^9.2.8",
     "@emotion/styled-base": "^0.10.4"
   },
   "publishConfig": {

@@ -33,7 +33,9 @@ const SomeComponent = styled('div')\`
 
 import _styled from \\"@emotion/styled-base\\";
 
-const SomeComponent = _styled('div', {
+const SomeComponent =
+/*#__PURE__*/
+_styled('div', {
   target: \\"e1wwfyhh0\\",
   label: \\"SomeComponent\\"
 })({
@@ -122,6 +124,27 @@ import _styled from \\"@emotion/styled-base\\";
 
 const SomeComponent = _styled(\\"div\\", {
   target: \\"es0jczh0\\",
+  label: \\"SomeComponent\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`@emotion/styled.macro object-call-expression 1`] = `
+"import styled from '@emotion/styled.macro'
+
+const SomeComponent = styled('div')({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const SomeComponent =
+/*#__PURE__*/
+_styled('div', {
+  target: \\"e1q97y6o0\\",
   label: \\"SomeComponent\\"
 })({
   name: \\"1lrxbo5\\",

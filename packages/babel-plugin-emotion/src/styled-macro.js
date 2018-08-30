@@ -1,11 +1,8 @@
 // @flow
 import { createMacro } from 'babel-plugin-macros'
 import { addDefault } from '@babel/helper-module-imports'
-import {
-  getLabelFromPath,
-  transformExpressionWithStyles,
-  getTargetClassName
-} from '@emotion/babel-utils'
+import { transformExpressionWithStyles } from '@emotion/babel-utils'
+import { buildStyledOptions } from './babel-utils'
 
 export default createMacro(({ references, state, babel }) => {
   const t = babel.types
@@ -39,17 +36,14 @@ export default createMacro(({ references, state, babel }) => {
           styledCallPath.node.arguments[0] = node
         }
       }
+      reference.addComment('leading', '#__PURE__')
+
       if (t.isCallExpression(reference.parentPath)) {
-        reference.parentPath.node.arguments[1] = t.objectExpression([
-          t.objectProperty(
-            t.identifier('target'),
-            t.stringLiteral(getTargetClassName(state, t))
-          ),
-          t.objectProperty(
-            t.identifier('label'),
-            t.stringLiteral(getLabelFromPath(reference.parentPath, t))
-          )
-        ])
+        reference.parentPath.node.arguments[1] = buildStyledOptions(
+          t,
+          reference.parentPath,
+          state
+        )
       }
     })
   }

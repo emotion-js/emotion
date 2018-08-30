@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@emotion/babel-plugin-core css-object 1`] = `
+exports[`source maps css-object 1`] = `
 "import css from '@emotion/css'
 
 css({ color: 'hotpink' })
@@ -16,7 +16,7 @@ import _css from \\"@emotion/css\\";
 });"
 `;
 
-exports[`@emotion/babel-plugin-core css-prop 1`] = `
+exports[`source maps css-prop 1`] = `
 "/** @jsx jsx */
 import jsx from '@emotion/jsx'
 
@@ -39,7 +39,7 @@ var _ref = {
 const SomeComponent = props => <div css={_ref} {...props} />;"
 `;
 
-exports[`@emotion/babel-plugin-core css-string 1`] = `
+exports[`source maps css-string 1`] = `
 "import css from '@emotion/css'
 
 css\`
@@ -57,7 +57,7 @@ import _css from \\"@emotion/css\\";
 });"
 `;
 
-exports[`@emotion/babel-plugin-core styled-object 1`] = `
+exports[`source maps styled-object 1`] = `
 "import styled from '@emotion/styled'
 
 const SomeComponent = styled.div({
@@ -79,7 +79,7 @@ const SomeComponent = _styled(\\"div\\", {
 });"
 `;
 
-exports[`@emotion/babel-plugin-core styled-string 1`] = `
+exports[`source maps styled-string 1`] = `
 "import styled from '@emotion/styled'
 
 const SomeComponent = styled.div\`

@@ -2,6 +2,7 @@
 import nodePath from 'path'
 import type { BabelPath, EmotionBabelPluginPass } from './index'
 import type { Types, Identifier } from 'babel-flow-types'
+import { getLabelFromPath, getTargetClassName } from '@emotion/babel-utils'
 
 export { getLabelFromPath as getIdentifierName } from '@emotion/babel-utils'
 
@@ -19,6 +20,36 @@ export function getRuntimeImportPath(path: BabelPath, t: Types) {
   }
   const importPath = binding.path.parentPath.node.source.value
   return importPath.match(/(.*)\/macro/)[1]
+}
+
+export let buildStyledOptions = (t: *, path: *, state: *) => {
+  let properties = [
+    t.objectProperty(
+      t.identifier('target'),
+      t.stringLiteral(getTargetClassName(state, t))
+    ),
+    t.objectProperty(
+      t.identifier('label'),
+      t.stringLiteral(getLabelFromPath(path, t))
+    )
+  ]
+
+  let args = path.node.arguments
+  let optionsArgument = args.length >= 2 ? args[1] : null
+  if (optionsArgument) {
+    if (t.isObjectExpression(optionsArgument)) {
+      properties.unshift(...optionsArgument.properties)
+    } else {
+      console.warn(
+        "Second argument to a styled call is not an object, it's going to be removed."
+      )
+    }
+  }
+
+  return t.objectExpression(
+    // $FlowFixMe
+    properties
+  )
 }
 
 type EmotionMacroPluginPass = EmotionBabelPluginPass & {

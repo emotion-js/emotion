@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { Component } from 'react'
-import jsx from '@emotion/jsx'
+import { jsx } from '@emotion/core'
 import css from '@emotion/css.macro'
 
 class SomeComponent extends Component {

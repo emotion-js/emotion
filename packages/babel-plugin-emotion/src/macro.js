@@ -1,11 +1,12 @@
 // @flow
-import { replaceCssWithCallExpression } from './index'
+import { transformExpressionWithStyles } from '@emotion/babel-utils'
 import { buildMacroRuntimeNode, addRuntimeImports } from './babel-utils'
 import { createMacro } from 'babel-plugin-macros'
 
 export default createMacro(macro)
 
-function macro({ references, state, babel: { types: t } }) {
+function macro({ references, state, babel }) {
+  let t = babel.types
   Object.keys(references).forEach(referenceKey => {
     let isPure = true
     switch (referenceKey) {
@@ -23,14 +24,16 @@ function macro({ references, state, babel: { types: t } }) {
             referenceKey,
             t
           )
-          if (t.isTaggedTemplateExpression(path)) {
-            replaceCssWithCallExpression(path, runtimeNode, state, t, !isPure)
-          } else {
-            if (isPure) {
-              path.addComment('leading', '#__PURE__')
-            }
-            reference.replaceWith(runtimeNode)
+          reference.replaceWith(runtimeNode)
+          if (isPure) {
+            path.addComment('leading', '#__PURE__')
           }
+          transformExpressionWithStyles({
+            babel,
+            state,
+            path,
+            shouldLabel: state.opts.autoLabel
+          })
         })
         break
       }

@@ -2,7 +2,7 @@
 
 exports[`@emotion/css.macro actual-expected-usage 1`] = `
 "/** @jsx jsx */
-import jsx from '@emotion/jsx'
+import { jsx } from '@emotion/core'
 import css from '@emotion/css.macro'
 
 const SomeComponent = () => (
@@ -19,7 +19,7 @@ const SomeComponent = () => (
 import _css from \\"@emotion/css\\";
 
 /** @jsx jsx */
-import jsx from '@emotion/jsx';
+import { jsx } from '@emotion/core';
 var _ref = {
   name: \\"1wl9j1m\\",
   styles: \\"color:hotpink;label:SomeComponent;\\",
@@ -160,7 +160,7 @@ function doThing() {
 exports[`@emotion/css.macro inside-class 1`] = `
 "/** @jsx jsx */
 import { Component } from 'react'
-import jsx from '@emotion/jsx'
+import { jsx } from '@emotion/core'
 import css from '@emotion/css.macro'
 
 class SomeComponent extends Component {
@@ -182,7 +182,7 @@ import _css from \\"@emotion/css\\";
 
 /** @jsx jsx */
 import { Component } from 'react';
-import jsx from '@emotion/jsx';
+import { jsx } from '@emotion/core';
 var _ref = {
   name: \\"1wl9j1m\\",
   styles: \\"color:hotpink;label:SomeComponent;\\",

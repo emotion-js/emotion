@@ -10,7 +10,8 @@ export const createPlugin = (
   customVisitor: (babel: *) => Object
 ) => (babel: *) => {
   return {
-    name: '@emotion/babel-plugin-core',
+    name: 'emotion',
+    inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       ImportDeclaration(path: *, state: *) {
         if (macros[path.node.source.value] === undefined) {
