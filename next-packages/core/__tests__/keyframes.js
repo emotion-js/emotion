@@ -36,10 +36,6 @@ cases(
             color: hotpink;
           }
         `)
-        debugger // eslint-disable-line no-debugger
-        console.log(css`
-          animation: ${animation};
-        `)
         return (
           <div
             css={css`
