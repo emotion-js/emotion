@@ -19,7 +19,7 @@ const createExtractCritical = (cache: CSSContextType) => (html: string) => {
 
   o.ids = Object.keys(cache.inserted).filter(id => {
     if (
-      (ids[id] === true ||
+      (ids[id] !== undefined ||
         cache.registered[`${cache.key}-${id}`] === undefined) &&
       cache.inserted[id] !== true
     ) {

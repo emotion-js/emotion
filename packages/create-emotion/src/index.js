@@ -96,7 +96,7 @@ let createEmotion = (options: *): Emotion => {
 
   let keyframes = (...args) => {
     let serialized = serializeStyles(cache.registered, args)
-    let animation = `animation-${serialized.name}${serialized.label || ''}`
+    let animation = `animation-${serialized.name}`
     insertWithoutScoping(
       cache,
       serialized.name,

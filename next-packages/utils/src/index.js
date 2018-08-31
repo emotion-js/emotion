@@ -12,9 +12,6 @@ export function getClassName(
   insertable: ScopedInsertableStyles
 ) {
   let className = `${context.key}-${insertable.name}`
-  if (insertable.label !== undefined) {
-    className += insertable.label
-  }
   return className
 }
 

@@ -282,12 +282,11 @@ export const serializeStyles = function(
       match[1]
   }
 
-  let name = hashString(styles)
+  let name = hashString(styles) + identifierName
 
   return {
     name,
     styles,
-    map: sourceMap,
-    label: identifierName === '' ? undefined : identifierName
+    map: sourceMap
   }
 }

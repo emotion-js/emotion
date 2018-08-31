@@ -53,19 +53,15 @@ describe('hydration', () => {
     emotionServer = require('emotion-server')
     reactEmotion = require('react-emotion')
   })
-  test.only('only inserts rules that are not in the critical css', () => {
+  test('only inserts rules that are not in the critical css', () => {
     const { Page1 } = getComponents(emotion, reactEmotion)
     const html = emotionServer.renderStylesToString(renderToString(<Page1 />))
     expect(html).toMatchSnapshot()
+
     const { window } = new JSDOM(html)
     global.document = window.document
     global.window = window
     setHtml(html, document)
-    console.log(
-      Array.from(document.querySelectorAll('[data-emotion-css]')).map(x =>
-        x.getAttribute('data-emotion-css')
-      )
-    )
 
     jest.resetModules()
     emotion = require('emotion')
@@ -75,8 +71,8 @@ describe('hydration', () => {
     expect(emotion.cache.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
+
     renderToString(<NewPage1 />)
-    // debugger // eslint-disable-line no-debugger
     expect(getInjectedRules()).toMatchSnapshot()
     expect(getCssFromChunks(emotion, document)).toMatchSnapshot()
   })

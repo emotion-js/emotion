@@ -67,8 +67,6 @@ export let transformExpressionWithStyles = ({
         [
           t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
           t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles)),
-          res.label &&
-            t.objectProperty(t.identifier('label'), t.stringLiteral(res.label)),
           res.map &&
             t.objectProperty(t.identifier('map'), t.stringLiteral(res.map))
         ].filter(Boolean)

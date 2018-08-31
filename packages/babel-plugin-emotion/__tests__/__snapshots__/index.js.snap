@@ -19,9 +19,8 @@ const SomeComponent = props => (
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 var _ref = {
-  name: \\"1wl9j1m\\",
-  styles: \\"color:hotpink;label:SomeComponent;\\",
-  label: \\"-SomeComponent\\"
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\"
 };
 
 const SomeComponent = props => <div css={_ref} {...props} />;"
@@ -48,9 +47,8 @@ import _css from \\"@emotion/css\\";
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 var _ref = {
-  name: \\"1wl9j1m\\",
-  styles: \\"color:hotpink;label:SomeComponent;\\",
-  label: \\"-SomeComponent\\"
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\"
 };
 
 const SomeComponent = props => <div css={_ref} {...props} />;"
@@ -78,9 +76,8 @@ import _css from \\"@emotion/css\\";
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 var _ref = {
-  name: \\"lcrht\\",
-  styles: \\"color:hotpink;background-color:green;label:SomeComponent;\\",
-  label: \\"-SomeComponent\\"
+  name: \\"lcrht-SomeComponent\\",
+  styles: \\"color:hotpink;background-color:green;label:SomeComponent;\\"
 };
 
 const SomeComponent = props => <div css={_ref} {...props} />;"
@@ -113,9 +110,8 @@ import _css from \\"@emotion/css\\";
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 var _ref = {
-  name: \\"1y9ypgi\\",
-  styles: \\"color:green;:hover{color:hotpink;}label:SomeComponent;\\",
-  label: \\"-SomeComponent\\"
+  name: \\"1y9ypgi-SomeComponent\\",
+  styles: \\"color:green;:hover{color:hotpink;}label:SomeComponent;\\"
 };
 
 const SomeComponent = props => {

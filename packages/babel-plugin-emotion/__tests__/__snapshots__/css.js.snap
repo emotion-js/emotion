@@ -21,9 +21,8 @@ import _css from \\"@emotion/css\\";
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 var _ref = {
-  name: \\"1wl9j1m\\",
-  styles: \\"color:hotpink;label:SomeComponent;\\",
-  label: \\"-SomeComponent\\"
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\"
 };
 
 const SomeComponent = () => <div css={_ref} />;"
@@ -93,9 +92,8 @@ import _css from \\"@emotion/css\\";
 const thing =
 /*#__PURE__*/
 _css(\\"display:flex;&:hover{\\", {
-  name: \\"1hi0qos\\",
-  styles: \\"color:hotpink;label:thing;\\",
-  label: \\"-thing\\"
+  name: \\"1hi0qos-thing\\",
+  styles: \\"color:hotpink;label:thing;\\"
 }, \\";}label:thing;\\");"
 `;
 
@@ -189,9 +187,8 @@ import _css from \\"@emotion/css\\";
 import { Component } from 'react';
 import { jsx } from '@emotion/core';
 var _ref = {
-  name: \\"1wl9j1m\\",
-  styles: \\"color:hotpink;label:SomeComponent;\\",
-  label: \\"-SomeComponent\\"
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\"
 };
 
 class SomeComponent extends Component {
@@ -214,9 +211,8 @@ const thing = css\`
 
 import _css from \\"@emotion/css\\";
 const thing = {
-  name: \\"1hi0qos\\",
-  styles: \\"color:hotpink;label:thing;\\",
-  label: \\"-thing\\"
+  name: \\"1hi0qos-thing\\",
+  styles: \\"color:hotpink;label:thing;\\"
 };"
 `;
 
@@ -239,15 +235,13 @@ const thing = {
 import _css from \\"@emotion/css\\";
 const thing = {
   thisShouldBeTheLabel: {
-    name: \\"xjpive\\",
-    styles: \\"color:hotpink;label:thisShouldBeTheLabel;\\",
-    label: \\"-thisShouldBeTheLabel\\"
+    name: \\"xjpive-thisShouldBeTheLabel\\",
+    styles: \\"color:hotpink;label:thisShouldBeTheLabel;\\"
   },
   // prettier-ignore
   'shouldBeAnotherLabel': {
-    name: \\"lgalrw\\",
-    styles: \\"color:green;label:shouldBeAnotherLabel;\\",
-    label: \\"-shouldBeAnotherLabel\\"
+    name: \\"lgalrw-shouldBeAnotherLabel\\",
+    styles: \\"color:green;label:shouldBeAnotherLabel;\\"
   }
 };"
 `;
@@ -268,14 +262,12 @@ const otherThing = css\`
 
 import _css from \\"@emotion/css\\";
 const thing = {
-  name: \\"1hi0qos\\",
-  styles: \\"color:hotpink;label:thing;\\",
-  label: \\"-thing\\"
+  name: \\"1hi0qos-thing\\",
+  styles: \\"color:hotpink;label:thing;\\"
 };
 const otherThing = {
-  name: \\"onvdw0\\",
-  styles: \\"color:green;label:otherThing;\\",
-  label: \\"-otherThing\\"
+  name: \\"onvdw0-otherThing\\",
+  styles: \\"color:green;label:otherThing;\\"
 };"
 `;
 
