@@ -11,7 +11,7 @@ export let buildStyledOptions = (t: *, path: *, state: *) => {
       t.stringLiteral(getTargetClassName(state, t))
     )
   ]
-  let label = getLabelFromPath(path, t)
+  let label = getLabelFromPath(path, state, t)
   if (label) {
     properties.push(
       t.objectProperty(t.identifier('label'), t.stringLiteral(label))

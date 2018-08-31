@@ -1,86 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`babel css inline babel 6 ::placeholder 1`] = `
-"
-const cls1 = /*#__PURE__*/css({
-  '::placeholder': {
-    color: 'green',
-    display: 'flex'
-  }
-});
-const cls2 = /*#__PURE__*/css('::placeholder{color:green;display:flex;}');"
-`;
-
-exports[`babel css inline babel 6 :fullscreen 1`] = `
-"
-const cls1 = /*#__PURE__*/css({
-  ':fullscreen': {
-    color: 'green',
-    display: 'flex'
-  }
-});
-const cls2 = /*#__PURE__*/css(':fullscreen{color:green;display:flex;}');"
-`;
-
-exports[`babel css inline babel 6 array of objects 1`] = `
-"
-const cls2 = /*#__PURE__*/css([{
-  display: 'flex',
-  flex: 1,
-  alignItems: \`\${'center'}\`
-}, {
-  justifyContent: 'flex-start'
-}]);"
-`;
-
-exports[`babel css inline babel 6 autoLabel 1`] = `
-"
-function test() {
-  const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;label:cls1;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";label:cls1;\\");
-
-  const cls2 = /*#__PURE__*/css({ color: 'blue' }, \\"label:cls2;\\");
-  const cls4 = /*#__PURE__*/css({ color: \\"hotpink\\" }, \\"label:cls4;\\");
-
-  const cls3 = /*#__PURE__*/css(\\"display:flex;&:hover{color:hotpink;}label:cls3;\\");
-  function inner() {
-    const styles = { color: \\"darkorchid\\" };
-    const color = 'aquamarine';
-
-    const cls4 = /*#__PURE__*/css(cls3, \\";\\", cls1, \\";\\", () => ({ color: \\"darkorchid\\" }), \\";\\", () => ({ color }), \\";\\", /*#__PURE__*/css(\\"height:420px;width:\\", styles, \\"label:cls4;\\"), \\";label:cls4;\\");
-  }
-}"
-`;
-
-exports[`babel css inline babel 6 basic object support 1`] = `"/*#__PURE__*/css({ display: 'flex' });"`;
-
-exports[`babel css inline babel 6 comments 1`] = `
-"
-/*#__PURE__*/css(\\"color:hotpink;\\");"
-`;
-
-exports[`babel css inline babel 6 css basic 1`] = `
-"
-/*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
-`;
-
-exports[`babel css inline babel 6 css basic as cows 1`] = `
-"
-import { css as cows } from 'emotion';
-/*#__PURE__*/cows('margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:', widthVar, ';');"
-`;
-
-exports[`babel css inline babel 6 css basic renamed as option 1`] = `
-"
-/*#__PURE__*/cows(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
-`;
-
-exports[`babel css inline babel 6 css random expression 1`] = `"/*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";\\");"`;
-
-exports[`babel css inline babel 6 css with float property 1`] = `
-"
-/*#__PURE__*/css(\\"float:left;\\");"
-`;
-
 exports[`babel css inline babel 6 custom instance 1`] = `
 "
 import { css as lol } from 'my-emotion-instance';
@@ -99,265 +18,31 @@ import { css as lol } from '../test/my-emotion-instance';
 /*#__PURE__*/lol('color:hotpink;');"
 `;
 
-exports[`babel css inline babel 6 dynamic property objects 1`] = `
-"
-/*#__PURE__*/css({
-  fontSize: 10,
-  [\`w\${'idth'}\`]: 20
-});"
-`;
-
-exports[`babel css inline babel 6 dynamically renamed-import: basic object support 1`] = `"import { css as cows } from 'emotion'; /*#__PURE__*/cows({ display: 'flex' });"`;
-
-exports[`babel css inline babel 6 hoisting 1`] = `
-"var _ref = \\"font-size:20px;@media(min-width:420px){color:blue;\\";
-var _ref2 = \\";line-height:26px;}background:green;\\";
-var _ref3 = { backgroundColor: \\"hotpink\\" };
-var _ref4 = \\";\\";
-var _ref5 = \\"width:96px;height:96px;\\";
-var _ref6 = { color: 'blue' };
-var _ref7 = \\"display:flex;&:hover{color:hotpink;}\\";
-var _ref8 = \\";\\";
-var _ref9 = \\";\\";
-
-var _ref10 = () => ({ color: \\"darkorchid\\" });
-
-var _ref11 = \\";\\";
-var _ref12 = \\";\\";
-var _ref13 = \\";\\";
-var _ref14 = \\"height:420px;width:\\";
-
-function test() {
-  const cls1 = /*#__PURE__*/css(_ref, /*#__PURE__*/css(_ref5), _ref2, _ref3, _ref4);
-
-  const cls2 = /*#__PURE__*/css(_ref6);
-
-  const cls3 = /*#__PURE__*/css(_ref7);
-  function inner() {
-    const styles = { color: \\"darkorchid\\" };
-    const color = 'aquamarine';
-
-    const cls4 = /*#__PURE__*/css(cls3, _ref8, cls1, _ref9, _ref10, _ref11, () => ({ color }), _ref12, /*#__PURE__*/css(_ref14, styles), _ref13);
-  }
-}"
-`;
-
-exports[`babel css inline babel 6 interpolation in selector 1`] = `
-"
-const cls2 = /*#__PURE__*/css(\\"margin:12px 48px;color:#ffffff;\\", className, \\"{display:none;}\\");"
-`;
-
 exports[`babel css inline babel 6 label format with filename and local 1`] = `
-"
-function test() {
-  const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;label:my-css-emotion-cls1;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";label:my-css-emotion-cls1;\\");
+"import { css as _css } from 'emotion';
 
-  const cls2 = /*#__PURE__*/css({ color: 'blue' }, \\"label:my-css-emotion-cls2;\\");
-  const cls4 = /*#__PURE__*/css({ color: \\"hotpink\\" }, \\"label:my-css-emotion-cls4;\\");
-
-  const cls3 = /*#__PURE__*/css(\\"display:flex;&:hover{color:hotpink;}label:my-css-emotion-cls3;\\");
-  function inner() {
-    const styles = { color: \\"darkorchid\\" };
-    const color = 'aquamarine';
-
-    const cls4 = /*#__PURE__*/css(cls3, \\";\\", cls1, \\";\\", () => ({ color: \\"darkorchid\\" }), \\";\\", () => ({ color }), \\";\\", /*#__PURE__*/css(\\"height:420px;width:\\", styles, \\"label:my-css-emotion-cls4;\\"), \\";label:my-css-emotion-cls4;\\");
-  }
-}"
-`;
-
-exports[`babel css inline babel 6 labelFormat 1`] = `
-"
-function test() {
-  const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media(min-width:420px){color:blue;\\", /*#__PURE__*/css(\\"width:96px;height:96px;label:my-css-cls1;\\"), \\";line-height:26px;}background:green;\\", { backgroundColor: \\"hotpink\\" }, \\";label:my-css-cls1;\\");
-
-  const cls2 = /*#__PURE__*/css({ color: 'blue' }, \\"label:my-css-cls2;\\");
-  const cls4 = /*#__PURE__*/css({ color: \\"hotpink\\" }, \\"label:my-css-cls4;\\");
-
-  const cls3 = /*#__PURE__*/css(\\"display:flex;&:hover{color:hotpink;}label:my-css-cls3;\\");
-  function inner() {
-    const styles = { color: \\"darkorchid\\" };
-    const color = 'aquamarine';
-
-    const cls4 = /*#__PURE__*/css(cls3, \\";\\", cls1, \\";\\", () => ({ color: \\"darkorchid\\" }), \\";\\", () => ({ color }), \\";\\", /*#__PURE__*/css(\\"height:420px;width:\\", styles, \\"label:my-css-cls4;\\"), \\";label:my-css-cls4;\\");
-  }
-}"
-`;
-
-exports[`babel css inline babel 6 nested expanded properties 1`] = `
-"
-/*#__PURE__*/css(\\"margin:12px 48px;& .div{display:flex;}\\");"
-`;
-
-exports[`babel css inline babel 6 object label 1`] = `
-"
-let obj = {
-  someProp: /*#__PURE__*/css({ color: 'green' }, 'label:someProp;'),
-  'anotherProp': /*#__PURE__*/css({ color: 'hotpink' }, 'label:anotherProp;')
-};
-class Thing {
-  static Prop = /*#__PURE__*/css({ color: 'yellow' }, 'label:Prop;');
-  BadIdea = /*#__PURE__*/css({ color: 'red' }, 'label:BadIdea;');
-}"
-`;
-
-exports[`babel css inline babel 6 object with a bunch of stuff 1`] = `
-"
-const cls2 = /*#__PURE__*/css({
-  float: 'left',
-  display: 'flex',
-  flex: 1,
-  alignItems: \`\${'center'}\`
+let cls = /*#__PURE__*/_css({
+    name: '1wg0g17-my-css-css-test-cls',
+    styles: 'color:hotpink;label:my-css-css-test-cls;'
 });"
 `;
 
-exports[`babel css inline babel 6 objects 1`] = `
-"
-/*#__PURE__*/css({
-    borderRadius: '50%',
-    transition: 'transform 400ms ease-in-out',
-    boxSizing: 'border-box',
-    display: 'flex',
-    ':hover': {
-        transform: 'scale(1.2)'
-    }
+exports[`babel css inline babel 6 label format with filename that is index and local 1`] = `
+"import { css as _css } from 'emotion';
+
+let cls = /*#__PURE__*/_css({
+    name: '1uf5d32-my-css-some-directory-cls',
+    styles: 'color:hotpink;label:my-css-some-directory-cls;'
 });"
 `;
 
-exports[`babel css inline babel 6 only styles on nested selector 1`] = `
-"
-const cls1 = /*#__PURE__*/css(\\"display:flex;\\");
-const cls2 = /*#__PURE__*/css(\\"&:hover{background:pink;}\\");"
-`;
+exports[`babel css inline babel 6 label format with only local 1`] = `
+"import { css as _css } from 'emotion';
 
-exports[`babel css inline babel 6 renamed-import: basic object support 1`] = `"/*#__PURE__*/cows({ display: 'flex' });"`;
-
-exports[`babel css inline babel 6 symbols inside of "" 1`] = `
-"
-const cls = /*#__PURE__*/css(\\"content:\\\\\\"  {  }  \\\\\\"\\");"
-`;
-
-exports[`babel css inline babel 7 ::placeholder 1`] = `
-"const cls1 =
-/*#__PURE__*/
-css({
-  '::placeholder': {
-    color: 'green',
-    display: 'flex'
-  }
-});
-const cls2 =
-/*#__PURE__*/
-css(\\"::placeholder{color:green;display:flex;}\\");"
-`;
-
-exports[`babel css inline babel 7 :fullscreen 1`] = `
-"const cls1 =
-/*#__PURE__*/
-css({
-  ':fullscreen': {
-    color: 'green',
-    display: 'flex'
-  }
-});
-const cls2 =
-/*#__PURE__*/
-css(\\":fullscreen{color:green;display:flex;}\\");"
-`;
-
-exports[`babel css inline babel 7 array of objects 1`] = `
-"const cls2 =
-/*#__PURE__*/
-css([{
-  display: 'flex',
-  flex: 1,
-  alignItems: \`\${'center'}\`
-}, {
-  justifyContent: 'flex-start'
-}]);"
-`;
-
-exports[`babel css inline babel 7 autoLabel 1`] = `
-"function test() {
-  const cls1 =
-  /*#__PURE__*/
-  css(\\"font-size:20px;@media(min-width:420px){color:blue;\\",
-  /*#__PURE__*/
-  css(\\"width:96px;height:96px;label:cls1;\\"), \\";line-height:26px;}background:green;\\", {
-    backgroundColor: \\"hotpink\\"
-  }, \\";label:cls1;\\");
-  const cls2 =
-  /*#__PURE__*/
-  css({
-    color: 'blue'
-  }, \\"label:cls2;\\");
-  const cls4 =
-  /*#__PURE__*/
-  css({
-    color: \\"hotpink\\"
-  }, \\"label:cls4;\\");
-  const cls3 =
-  /*#__PURE__*/
-  css(\\"display:flex;&:hover{color:hotpink;}label:cls3;\\");
-
-  function inner() {
-    const styles = {
-      color: \\"darkorchid\\"
-    };
-    const color = 'aquamarine';
-    const cls4 =
-    /*#__PURE__*/
-    css(cls3, \\";\\", cls1, \\";\\", () => ({
-      color: \\"darkorchid\\"
-    }), \\";\\", () => ({
-      color
-    }), \\";\\",
-    /*#__PURE__*/
-    css(\\"height:420px;width:\\", styles, \\"label:cls4;\\"), \\";label:cls4;\\");
-  }
-}"
-`;
-
-exports[`babel css inline babel 7 basic object support 1`] = `
-"/*#__PURE__*/
-css({
-  display: 'flex'
+let cls = /*#__PURE__*/_css({
+    name: '1xiywpm-my-css-cls',
+    styles: 'color:hotpink;label:my-css-cls;'
 });"
-`;
-
-exports[`babel css inline babel 7 comments 1`] = `
-"/*#__PURE__*/
-css(\\"color:hotpink;\\");"
-`;
-
-exports[`babel css inline babel 7 css basic 1`] = `
-"/*#__PURE__*/
-css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
-`;
-
-exports[`babel css inline babel 7 css basic as cows 1`] = `
-"import { css as cows } from 'emotion';
-
-/*#__PURE__*/
-cows(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
-`;
-
-exports[`babel css inline babel 7 css basic renamed as option 1`] = `
-"/*#__PURE__*/
-cows(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media(min-width:420px){line-height:40px;}width:\\", widthVar, \\";\\");"
-`;
-
-exports[`babel css inline babel 7 css random expression 1`] = `
-"/*#__PURE__*/
-css(\\"font-size:20px;@media(min-width:420px){color:blue;\\",
-/*#__PURE__*/
-css(\\"width:96px;height:96px;\\"), \\";line-height:26px;}background:green;\\", {
-  backgroundColor: \\"hotpink\\"
-}, \\";\\");"
-`;
-
-exports[`babel css inline babel 7 css with float property 1`] = `
-"/*#__PURE__*/
-css(\\"float:left;\\");"
 `;
 
 exports[`babel css inline babel 7 custom instance 1`] = `
@@ -381,239 +66,35 @@ exports[`babel css inline babel 7 custom instance relative complex 1`] = `
 lol(\\"color:hotpink;\\");"
 `;
 
-exports[`babel css inline babel 7 dynamic property objects 1`] = `
-"/*#__PURE__*/
-css({
-  fontSize: 10,
-  [\`w\${'idth'}\`]: 20
-});"
-`;
-
-exports[`babel css inline babel 7 dynamically renamed-import: basic object support 1`] = `
-"import { css as cows } from 'emotion';
-
-/*#__PURE__*/
-cows({
-  display: 'flex'
-});"
-`;
-
-exports[`babel css inline babel 7 hoisting 1`] = `
-"var _ref = \\"font-size:20px;@media(min-width:420px){color:blue;\\";
-var _ref2 = \\";line-height:26px;}background:green;\\";
-var _ref3 = {
-  backgroundColor: \\"hotpink\\"
-};
-var _ref4 = \\";\\";
-var _ref5 = \\"width:96px;height:96px;\\";
-var _ref6 = {
-  color: 'blue'
-};
-var _ref7 = \\"display:flex;&:hover{color:hotpink;}\\";
-var _ref8 = \\";\\";
-var _ref9 = \\";\\";
-
-var _ref10 = () => ({
-  color: \\"darkorchid\\"
-});
-
-var _ref11 = \\";\\";
-var _ref12 = \\";\\";
-var _ref13 = \\";\\";
-var _ref14 = \\"height:420px;width:\\";
-
-function test() {
-  const cls1 =
-  /*#__PURE__*/
-  css(_ref,
-  /*#__PURE__*/
-  css(_ref5), _ref2, _ref3, _ref4);
-  const cls2 =
-  /*#__PURE__*/
-  css(_ref6);
-  const cls3 =
-  /*#__PURE__*/
-  css(_ref7);
-
-  function inner() {
-    const styles = {
-      color: \\"darkorchid\\"
-    };
-    const color = 'aquamarine';
-    const cls4 =
-    /*#__PURE__*/
-    css(cls3, _ref8, cls1, _ref9, _ref10, _ref11, () => ({
-      color
-    }), _ref12,
-    /*#__PURE__*/
-    css(_ref14, styles), _ref13);
-  }
-}"
-`;
-
-exports[`babel css inline babel 7 interpolation in selector 1`] = `
-"const cls2 =
-/*#__PURE__*/
-css(\\"margin:12px 48px;color:#ffffff;\\", className, \\"{display:none;}\\");"
-`;
-
 exports[`babel css inline babel 7 label format with filename and local 1`] = `
-"function test() {
-  const cls1 =
-  /*#__PURE__*/
-  css(\\"font-size:20px;@media(min-width:420px){color:blue;\\",
-  /*#__PURE__*/
-  css(\\"width:96px;height:96px;label:my-css-emotion-cls1;\\"), \\";line-height:26px;}background:green;\\", {
-    backgroundColor: \\"hotpink\\"
-  }, \\";label:my-css-emotion-cls1;\\");
-  const cls2 =
-  /*#__PURE__*/
-  css({
-    color: 'blue'
-  }, \\"label:my-css-emotion-cls2;\\");
-  const cls4 =
-  /*#__PURE__*/
-  css({
-    color: \\"hotpink\\"
-  }, \\"label:my-css-emotion-cls4;\\");
-  const cls3 =
-  /*#__PURE__*/
-  css(\\"display:flex;&:hover{color:hotpink;}label:my-css-emotion-cls3;\\");
+"import { css as _css } from \\"emotion\\";
 
-  function inner() {
-    const styles = {
-      color: \\"darkorchid\\"
-    };
-    const color = 'aquamarine';
-    const cls4 =
-    /*#__PURE__*/
-    css(cls3, \\";\\", cls1, \\";\\", () => ({
-      color: \\"darkorchid\\"
-    }), \\";\\", () => ({
-      color
-    }), \\";\\",
-    /*#__PURE__*/
-    css(\\"height:420px;width:\\", styles, \\"label:my-css-emotion-cls4;\\"), \\";label:my-css-emotion-cls4;\\");
-  }
-}"
-`;
-
-exports[`babel css inline babel 7 labelFormat 1`] = `
-"function test() {
-  const cls1 =
-  /*#__PURE__*/
-  css(\\"font-size:20px;@media(min-width:420px){color:blue;\\",
-  /*#__PURE__*/
-  css(\\"width:96px;height:96px;label:my-css-cls1;\\"), \\";line-height:26px;}background:green;\\", {
-    backgroundColor: \\"hotpink\\"
-  }, \\";label:my-css-cls1;\\");
-  const cls2 =
-  /*#__PURE__*/
-  css({
-    color: 'blue'
-  }, \\"label:my-css-cls2;\\");
-  const cls4 =
-  /*#__PURE__*/
-  css({
-    color: \\"hotpink\\"
-  }, \\"label:my-css-cls4;\\");
-  const cls3 =
-  /*#__PURE__*/
-  css(\\"display:flex;&:hover{color:hotpink;}label:my-css-cls3;\\");
-
-  function inner() {
-    const styles = {
-      color: \\"darkorchid\\"
-    };
-    const color = 'aquamarine';
-    const cls4 =
-    /*#__PURE__*/
-    css(cls3, \\";\\", cls1, \\";\\", () => ({
-      color: \\"darkorchid\\"
-    }), \\";\\", () => ({
-      color
-    }), \\";\\",
-    /*#__PURE__*/
-    css(\\"height:420px;width:\\", styles, \\"label:my-css-cls4;\\"), \\";label:my-css-cls4;\\");
-  }
-}"
-`;
-
-exports[`babel css inline babel 7 nested expanded properties 1`] = `
-"/*#__PURE__*/
-css(\\"margin:12px 48px;& .div{display:flex;}\\");"
-`;
-
-exports[`babel css inline babel 7 object label 1`] = `
-"let obj = {
-  someProp:
-  /*#__PURE__*/
-  css({
-    color: 'green'
-  }, \\"label:someProp;\\"),
-  'anotherProp':
-  /*#__PURE__*/
-  css({
-    color: 'hotpink'
-  }, \\"label:anotherProp;\\")
-};
-
-class Thing {
-  static Prop =
-  /*#__PURE__*/
-  css({
-    color: 'yellow'
-  }, \\"label:Prop;\\");
-  BadIdea =
-  /*#__PURE__*/
-  css({
-    color: 'red'
-  }, \\"label:BadIdea;\\");
-}"
-`;
-
-exports[`babel css inline babel 7 object with a bunch of stuff 1`] = `
-"const cls2 =
+let cls =
 /*#__PURE__*/
-css({
-  float: 'left',
-  display: 'flex',
-  flex: 1,
-  alignItems: \`\${'center'}\`
+_css({
+  name: \\"1wg0g17-my-css-css-test-cls\\",
+  styles: \\"color:hotpink;label:my-css-css-test-cls;\\"
 });"
 `;
 
-exports[`babel css inline babel 7 objects 1`] = `
-"/*#__PURE__*/
-css({
-  borderRadius: '50%',
-  transition: 'transform 400ms ease-in-out',
-  boxSizing: 'border-box',
-  display: 'flex',
-  ':hover': {
-    transform: 'scale(1.2)'
-  }
+exports[`babel css inline babel 7 label format with filename that is index and local 1`] = `
+"import { css as _css } from \\"emotion\\";
+
+let cls =
+/*#__PURE__*/
+_css({
+  name: \\"1uf5d32-my-css-some-directory-cls\\",
+  styles: \\"color:hotpink;label:my-css-some-directory-cls;\\"
 });"
 `;
 
-exports[`babel css inline babel 7 only styles on nested selector 1`] = `
-"const cls1 =
-/*#__PURE__*/
-css(\\"display:flex;\\");
-const cls2 =
-/*#__PURE__*/
-css(\\"&:hover{background:pink;}\\");"
-`;
+exports[`babel css inline babel 7 label format with only local 1`] = `
+"import { css as _css } from \\"emotion\\";
 
-exports[`babel css inline babel 7 renamed-import: basic object support 1`] = `
-"/*#__PURE__*/
-cows({
-  display: 'flex'
+let cls =
+/*#__PURE__*/
+_css({
+  name: \\"1xiywpm-my-css-cls\\",
+  styles: \\"color:hotpink;label:my-css-cls;\\"
 });"
-`;
-
-exports[`babel css inline babel 7 symbols inside of "" 1`] = `
-"const cls =
-/*#__PURE__*/
-css(\\"content:\\\\\\"  {  }  \\\\\\"\\");"
 `;

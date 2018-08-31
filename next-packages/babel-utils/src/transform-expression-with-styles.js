@@ -31,7 +31,7 @@ export let transformExpressionWithStyles = ({
   }
 
   if (t.isCallExpression(path)) {
-    const label = getLabelFromPath(path, t)
+    const label = getLabelFromPath(path, state, t)
     if (label && shouldLabel) {
       appendStringToExpressions(path.node.arguments, `label:${label};`, t)
     }

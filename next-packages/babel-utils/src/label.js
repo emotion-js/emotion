@@ -1,6 +1,34 @@
 // @flow
-export function getLabelFromPath(path: *, t: *) {
-  return getIdentifierName(path, t)
+import nodePath from 'path'
+
+function getLabel(
+  identifierName?: string,
+  autoLabel: boolean,
+  labelFormat?: string,
+  filename: string
+) {
+  if (!identifierName || !autoLabel) return null
+  if (!labelFormat) return identifierName.trim()
+
+  const parsedPath = nodePath.parse(filename)
+  let localFilename = parsedPath.name
+  if (localFilename === 'index') {
+    localFilename = nodePath.basename(parsedPath.dir)
+  }
+  localFilename = localFilename.replace('.', '-')
+
+  return labelFormat
+    .replace(/\[local\]/gi, identifierName.trim())
+    .replace(/\[filename\]/gi, localFilename)
+}
+
+export function getLabelFromPath(path: *, state: *, t: *) {
+  return getLabel(
+    getIdentifierName(path, t),
+    state.opts.autoLabel,
+    state.opts.labelFormat,
+    state.file.opts.filename
+  )
 }
 
 function getDeclaratorName(path, t) {
@@ -9,7 +37,7 @@ function getDeclaratorName(path, t) {
   return parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 }
 
-function getIdentifierName(path, t) {
+function getIdentifierName(path: *, t: *) {
   let classOrClassPropertyParent
 
   if (
