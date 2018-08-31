@@ -12,7 +12,6 @@ import { withCSSContext } from '@emotion/core'
 type ClassNameArg =
   | string
   | boolean
-  | (() => ClassNameArg)
   | { [key: string]: boolean }
   | Array<ClassNameArg>
 
@@ -91,7 +90,7 @@ export const ClassNames = withCSSContext((props, context) => {
     }
     return getClassName(context, serialized)
   }
-  let cx = (...args) => {
+  let cx = (...args: Array<ClassNameArg>) => {
     if (hasRendered && process.env.NODE_ENV !== 'production') {
       throw new Error('cx can only be used during render')
     }
