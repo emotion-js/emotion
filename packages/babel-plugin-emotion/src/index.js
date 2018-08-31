@@ -59,12 +59,13 @@ export default createPlugin(
         } else {
           state.transformCssProp = state.opts.jsx
         }
+
         if (state.opts.sourceMap) {
           state.emotionSourceMap = true
         }
       },
       JSXAttribute(path: *, state: *) {
-        if (path.node.name.name !== 'css' && state.transformCssProp) {
+        if (path.node.name.name !== 'css' || !state.transformCssProp) {
           return
         }
 

@@ -26,6 +26,22 @@ var _ref = {
 const SomeComponent = props => <div css={_ref} {...props} />;"
 `;
 
+exports[`@emotion/babel-plugin-core does-not-change-other-props 1`] = `
+"/** @jsx jsx */
+import { jsx } from '@emotion/core'
+
+const Svg = <rect style={{ stroke: '#ff0000' }} />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+const Svg = <rect style={{
+  stroke: '#ff0000'
+}} />;"
+`;
+
 exports[`@emotion/babel-plugin-core jsx-hoist 1`] = `
 "/** @jsx jsx */
 import { jsx } from '@emotion/core'
