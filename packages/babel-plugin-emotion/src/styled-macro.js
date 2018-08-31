@@ -11,13 +11,10 @@ export let createStyledMacro = (
   createMacro(({ references, state, babel }) => {
     const t = babel.types
     if (references.default.length) {
-      let styledIdentifier
+      let styledIdentifier = addDefault(state.file.path, importPath, {
+        nameHint: 'styled'
+      })
       references.default.forEach(reference => {
-        if (!styledIdentifier) {
-          styledIdentifier = addDefault(reference, importPath, {
-            nameHint: 'styled'
-          })
-        }
         if (
           t.isMemberExpression(reference.parent) &&
           reference.parent.computed === false &&
