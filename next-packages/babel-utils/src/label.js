@@ -25,7 +25,9 @@ function getLabel(
 export function getLabelFromPath(path: *, state: *, t: *) {
   return getLabel(
     getIdentifierName(path, t),
-    state.opts.autoLabel,
+    state.opts.autoLabel === undefined
+      ? process.env.NODE_ENV !== 'production'
+      : state.opts.autoLabel,
     state.opts.labelFormat,
     state.file.opts.filename
   )

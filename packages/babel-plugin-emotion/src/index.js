@@ -59,9 +59,6 @@ export default createPlugin(
         } else {
           state.transformCssProp = state.opts.jsx
         }
-        if (state.opts.autoLabel === undefined) {
-          state.opts.autoLabel = process.env.NODE_ENV !== 'production'
-        }
 
         if (state.opts.sourceMap) {
           state.emotionSourceMap = true
