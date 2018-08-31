@@ -18,7 +18,7 @@ import _css from \\"@emotion/css\\";
 
 exports[`source maps css-prop 1`] = `
 "/** @jsx jsx */
-import jsx from '@emotion/jsx'
+import { jsx } from '@emotion/core'
 
 const SomeComponent = props => <div css={{ color: 'hotpink' }} {...props} />
 
@@ -28,11 +28,11 @@ const SomeComponent = props => <div css={{ color: 'hotpink' }} {...props} />
 import _css from \\"@emotion/css\\";
 
 /** @jsx jsx */
-import jsx from '@emotion/jsx';
+import { jsx } from '@emotion/core';
 var _ref = {
   name: \\"1wl9j1m-SomeComponent\\",
   styles: \\"color:hotpink;label:SomeComponent;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0MiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQganN4IGZyb20gJ0BlbW90aW9uL2pzeCdcblxuY29uc3QgU29tZUNvbXBvbmVudCA9IHByb3BzID0+IDxkaXYgY3NzPXt7IGNvbG9yOiAnaG90cGluaycgfX0gey4uLnByb3BzfSAvPlxuIl19 */\\"
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0MiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jb25zdCBTb21lQ29tcG9uZW50ID0gcHJvcHMgPT4gPGRpdiBjc3M9e3sgY29sb3I6ICdob3RwaW5rJyB9fSB7Li4ucHJvcHN9IC8+XG4iXX0= */\\"
 };
 
 const SomeComponent = props => <div css={_ref} {...props} />;"
