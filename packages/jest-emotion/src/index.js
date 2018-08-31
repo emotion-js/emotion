@@ -26,12 +26,6 @@ function getNodes(node, nodes = []) {
   return nodes
 }
 
-function markNodes(nodes) {
-  nodes.forEach(node => {
-    node.withEmotionNextStyles = true
-  })
-}
-
 function getPrettyStylesFromClassNames(
   classNames: Array<string>,
   elements: Array<HTMLStyleElement>
@@ -57,13 +51,15 @@ export function createSerializer({
   classNameReplacer,
   DOMElements = true
 }: Options = {}) {
+  let cache = new WeakSet()
   function print(val: *, printer: Function) {
     const nodes = getNodes(val)
-    markNodes(nodes)
     const classNames = getClassNamesFromNodes(nodes)
     let elements = getStyleElements()
     const styles = getPrettyStylesFromClassNames(classNames, elements)
+    nodes.forEach(cache.add, cache)
     const printedVal = printer(val)
+    nodes.forEach(cache.delete, cache)
     let keys = getKeys(elements)
     return replaceClassNames(
       classNames,
@@ -77,7 +73,7 @@ export function createSerializer({
   function test(val: *) {
     return (
       val &&
-      !val.withEmotionNextStyles &&
+      !cache.has(val) &&
       (isReactElement(val) || (DOMElements && isDOMElement(val)))
     )
   }
