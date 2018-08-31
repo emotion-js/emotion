@@ -28,15 +28,6 @@ let classnames = (args: Array<ClassNameArg>): string => {
     switch (typeof arg) {
       case 'boolean':
         break
-      case 'function':
-        if (process.env.NODE_ENV !== 'production') {
-          console.error(
-            'Passing functions to cx is deprecated and will be removed in the next major version of Emotion.\n' +
-              'Please call the function before passing it to cx.'
-          )
-        }
-        toAdd = classnames([arg()])
-        break
       case 'object': {
         if (Array.isArray(arg)) {
           toAdd = classnames(arg)
@@ -77,7 +68,7 @@ function merge(registered: Object, css: (*) => string, className: string) {
   return rawClassName + css(registeredStyles)
 }
 
-export const Style = withCSSContext((props, context) => {
+export const ClassNames = withCSSContext((props, context) => {
   let rules = ''
   let serializedHashes = ''
   let hasRendered = false

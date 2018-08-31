@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react'
 import 'test-utils/next-env'
-import { Style } from '@emotion/core'
+import { ClassNames } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 import renderer from 'react-test-renderer'
 
 test('css', () => {
   const tree = renderer.create(
-    <Style>
+    <ClassNames>
       {({ css }) => (
         <div
           className={css`
@@ -15,7 +15,7 @@ test('css', () => {
           `}
         />
       )}
-    </Style>
+    </ClassNames>
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
@@ -24,7 +24,7 @@ test('css', () => {
 it('should get the theme', () => {
   const tree = renderer.create(
     <ThemeProvider theme={{ color: 'green' }}>
-      <Style>
+      <ClassNames>
         {({ css, theme }) => (
           <div
             className={css`
@@ -32,7 +32,7 @@ it('should get the theme', () => {
             `}
           />
         )}
-      </Style>
+      </ClassNames>
     </ThemeProvider>
   )
 
@@ -41,7 +41,7 @@ it('should get the theme', () => {
 
 test('cx', () => {
   const tree = renderer.create(
-    <Style>
+    <ClassNames>
       {({ css, cx }) => {
         let secondClassButItsInsertedFirst = css`
           color: green;
@@ -60,7 +60,7 @@ test('cx', () => {
           />
         )
       }}
-    </Style>
+    </ClassNames>
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
@@ -69,12 +69,12 @@ test('cx', () => {
 test('css and cx throws when used after render', () => {
   let cx, css
   renderer.create(
-    <Style>
+    <ClassNames>
       {arg => {
         ;({ cx, css } = arg)
         return null
       }}
-    </Style>
+    </ClassNames>
   )
 
   expect(cx).toThrowErrorMatchingInlineSnapshot(
