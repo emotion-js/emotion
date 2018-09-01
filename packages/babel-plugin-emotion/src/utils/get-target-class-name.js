@@ -16,7 +16,6 @@ export function getTargetClassName(state: *, t: *) {
   }
 
   const filename = state.file.opts.filename
-
   // normalize the file path to ignore folder structure
   // outside the current node project and arch-specific delimiters
   let moduleName = ''
@@ -28,9 +27,7 @@ export function getTargetClassName(state: *, t: *) {
   } catch (err) {}
 
   const finalPath =
-    filename === rootPath
-      ? nodePath.basename(filename)
-      : filename.slice(rootPath.length)
+    filename === rootPath ? 'root' : filename.slice(rootPath.length)
 
   const positionInFile = state.emotionTargetClassNameCount++
 
