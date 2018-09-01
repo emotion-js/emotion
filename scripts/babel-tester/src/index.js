@@ -5,6 +5,7 @@ import * as babel from '@babel/core'
 import fs from 'fs'
 import path from 'path'
 import { promisify } from 'util'
+import checkDuplicatedNodes from 'babel-check-duplicated-nodes'
 
 const readFile = promisify(fs.readFile)
 
@@ -18,7 +19,7 @@ const tester = allOpts => async opts => {
   if (allOpts.transform) {
     rawCode = allOpts.transform(rawCode)
   }
-  const { code } = babel.transformSync(rawCode, {
+  const { code, ast } = babel.transformSync(rawCode, {
     plugins: [
       'macros',
       '@babel/plugin-syntax-jsx',
@@ -29,8 +30,10 @@ const tester = allOpts => async opts => {
     presets: allOpts.presets,
     babelrc: false,
     configFile: false,
+    ast: true,
     filename: opts.babelFileName || __filename
   })
+  expect(() => checkDuplicatedNodes(babel, ast)).not.toThrow()
 
   expect(`${rawCode}${separator}${code}`).toMatchSnapshot()
 }

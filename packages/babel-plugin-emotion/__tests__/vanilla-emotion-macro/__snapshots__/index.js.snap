@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`babel-plugin-emotion comments 1`] = `
-"import { css } from 'emotion'
+exports[`vanilla emotion comments 1`] = `
+"import { css } from 'emotion/macro'
 
 css\`
   // display:flex;
@@ -25,8 +25,8 @@ _css({
 });"
 `;
 
-exports[`babel-plugin-emotion css-basic 1`] = `
-"import { css } from 'emotion'
+exports[`vanilla emotion css-basic 1`] = `
+"import { css } from 'emotion/macro'
 
 css\`
   margin: 12px 48px;
@@ -49,8 +49,8 @@ import { css as _css } from \\"emotion\\";
 _css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media (min-width:420px){line-height:40px;}width:\\", window.whatever, \\";\\");"
 `;
 
-exports[`babel-plugin-emotion css-object 1`] = `
-"import { css } from 'emotion'
+exports[`vanilla emotion css-object 1`] = `
+"import { css } from 'emotion/macro'
 
 let someCls = css({
   color: window.whatever
@@ -68,8 +68,8 @@ _css({
 });"
 `;
 
-exports[`babel-plugin-emotion does-not-minify-inside-content-property 1`] = `
-"import { css } from 'emotion'
+exports[`vanilla emotion does-not-minify-inside-content-property 1`] = `
+"import { css } from 'emotion/macro'
 
 const cls1 = css\`
   content: '  {  }  ';
@@ -100,8 +100,8 @@ _css({
 });"
 `;
 
-exports[`babel-plugin-emotion hoisting 1`] = `
-"import { css } from 'emotion'
+exports[`vanilla emotion hoisting 1`] = `
+"import { css } from 'emotion/macro'
 
 function test() {
   const cls1 = css\`
@@ -201,8 +201,8 @@ function test() {
 }"
 `;
 
-exports[`babel-plugin-emotion inject-global-basic 1`] = `
-"import { injectGlobal } from 'emotion'
+exports[`vanilla emotion inject-global-basic 1`] = `
+"import { injectGlobal } from 'emotion/macro'
 
 injectGlobal\`
   body {
@@ -228,8 +228,8 @@ _injectGlobal({
 });"
 `;
 
-exports[`babel-plugin-emotion inject-global-change-import 1`] = `
-"import { injectGlobal as inject } from 'emotion'
+exports[`vanilla emotion inject-global-change-import 1`] = `
+"import { injectGlobal as inject } from 'emotion/macro'
 
 inject\`
   body {
@@ -284,8 +284,8 @@ injectGlobal\`
 \`;"
 `;
 
-exports[`babel-plugin-emotion inject-global-with-font-face 1`] = `
-"import { injectGlobal } from 'emotion'
+exports[`vanilla emotion inject-global-with-font-face 1`] = `
+"import { injectGlobal } from 'emotion/macro'
 
 injectGlobal\`
   @font-face {
@@ -311,8 +311,8 @@ _injectGlobal({
 });"
 `;
 
-exports[`babel-plugin-emotion inject-global-with-interpolation 1`] = `
-"import { injectGlobal } from 'emotion'
+exports[`vanilla emotion inject-global-with-interpolation 1`] = `
+"import { injectGlobal } from 'emotion/macro'
 
 let display = window.whatever
 
@@ -339,8 +339,8 @@ let display = window.whatever;
 _injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"
 `;
 
-exports[`babel-plugin-emotion keyframes-basic 1`] = `
-"import { keyframes } from 'emotion'
+exports[`vanilla emotion keyframes-basic 1`] = `
+"import { keyframes } from 'emotion/macro'
 
 const rotate360 = keyframes\`
   from {
@@ -364,8 +364,8 @@ _keyframes({
 });"
 `;
 
-exports[`babel-plugin-emotion keyframes-with-interpolation 1`] = `
-"import { keyframes } from 'emotion'
+exports[`vanilla emotion keyframes-with-interpolation 1`] = `
+"import { keyframes } from 'emotion/macro'
 
 let endingRotation = window.whatever
 
@@ -389,29 +389,8 @@ const rotate360 =
 _keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\");"
 `;
 
-exports[`babel-plugin-emotion native 1`] = `
-"import styled from '@emotion/native'
-
-styled.View\`
-  color: hotpink;
-\`
-
-styled.View({})
-
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import _styled from \\"@emotion/native\\";
-
-/*#__PURE__*/
-_styled.View(\\"color:hotpink;\\");
-
-/*#__PURE__*/
-_styled.View(\\"\\");"
-`;
-
-exports[`babel-plugin-emotion object-label 1`] = `
-"import { css } from 'emotion'
+exports[`vanilla emotion object-label 1`] = `
+"import { css } from 'emotion/macro'
 
 let obj = {
   someProp: css({ color: 'green' }),
@@ -455,62 +434,4 @@ class Thing {
     styles: \\"color:red;\\"
   });
 }"
-`;
-
-exports[`babel-plugin-emotion primitives 1`] = `
-"import styled from '@emotion/primitives'
-
-styled('SomeFakeComponent')\`
-  color: hotpink;
-\`
-
-styled('SomeFakeComponent')({})
-
-styled.View\`
-  color: hotpink;
-\`
-
-styled.View({})
-
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import _styled from \\"@emotion/primitives\\";
-
-/*#__PURE__*/
-_styled('SomeFakeComponent', {
-  target: \\"e3zf7vu0\\"
-})(\\"color:hotpink;\\");
-
-/*#__PURE__*/
-_styled('SomeFakeComponent', {
-  target: \\"e3zf7vu1\\"
-})(\\"\\");
-
-/*#__PURE__*/
-_styled.View(\\"color:hotpink;\\");
-
-/*#__PURE__*/
-_styled.View(\\"\\");"
-`;
-
-exports[`babel-plugin-emotion primitives-other-name 1`] = `
-"import something from '@emotion/primitives'
-
-something.View\`
-  color: hotpink;
-\`
-
-something.View({})
-
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import _styled from \\"@emotion/primitives\\";
-
-/*#__PURE__*/
-_styled.View(\\"color:hotpink;\\");
-
-/*#__PURE__*/
-_styled.View(\\"\\");"
 `;

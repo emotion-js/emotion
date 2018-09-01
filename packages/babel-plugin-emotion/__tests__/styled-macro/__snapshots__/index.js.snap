@@ -305,6 +305,25 @@ const SomeOtherComponent = _styled(\\"button\\", {
 });"
 `;
 
+exports[`@emotion/styled.macro native 1`] = `
+"import styled from '@emotion/native'
+
+styled.View\`
+  color: hotpink;
+\`
+
+styled.View({})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from '@emotion/native';
+styled.View\`
+  color: hotpink;
+\`;
+styled.View({});"
+`;
+
 exports[`@emotion/styled.macro object 1`] = `
 "import styled from '@emotion/styled/macro'
 
@@ -361,6 +380,54 @@ const SomeComponent = _styled(\\"div\\", {
 })(props => ({
   color: props.color
 }));"
+`;
+
+exports[`@emotion/styled.macro primitives 1`] = `
+"import styled from '@emotion/primitives'
+
+styled('SomeFakeComponent')\`
+  color: hotpink;
+\`
+
+styled('SomeFakeComponent')({})
+
+styled.View\`
+  color: hotpink;
+\`
+
+styled.View({})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from '@emotion/primitives';
+styled('SomeFakeComponent')\`
+  color: hotpink;
+\`;
+styled('SomeFakeComponent')({});
+styled.View\`
+  color: hotpink;
+\`;
+styled.View({});"
+`;
+
+exports[`@emotion/styled.macro primitives-other-name 1`] = `
+"import something from '@emotion/primitives'
+
+something.View\`
+  color: hotpink;
+\`
+
+something.View({})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import something from '@emotion/primitives';
+something.View\`
+  color: hotpink;
+\`;
+something.View({});"
 `;
 
 exports[`@emotion/styled.macro shorthand-property 1`] = `
