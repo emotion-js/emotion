@@ -1,12 +1,7 @@
 // @flow
 import * as React from 'react'
 import { consume } from './context'
-import {
-  getRegisteredStyles,
-  insertStyles,
-  isBrowser,
-  getClassName
-} from '@emotion/utils'
+import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
 // $FlowFixMe
@@ -48,7 +43,7 @@ export const jsx: typeof React.createElement = function(
     )
     const serialized = serializeStyles(context.registered, registeredStyles)
     const rules = insertStyles(context, serialized, typeof type === 'string')
-    className += getClassName(context, serialized)
+    className += `${context.key}-${serialized.name}`
 
     const newProps = {}
     for (let key in props) {

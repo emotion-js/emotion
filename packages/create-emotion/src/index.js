@@ -5,7 +5,6 @@ import {
   insertStyles,
   isBrowser,
   getRegisteredStyles,
-  getClassName,
   type CSSContextType
 } from '@emotion/utils'
 
@@ -91,7 +90,7 @@ let createEmotion = (options: *): Emotion => {
       this !== undefined ? this.mergedProps : undefined
     )
     insertStyles(cache, serialized, false)
-    return getClassName(cache, serialized)
+    return `${cache.key}-${serialized.name}`
   }
 
   let keyframes = (...args) => {

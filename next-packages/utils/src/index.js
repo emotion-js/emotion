@@ -7,14 +7,6 @@ import type {
 
 export const isBrowser = typeof document !== 'undefined'
 
-export function getClassName(
-  context: CSSContextType,
-  insertable: ScopedInsertableStyles
-) {
-  let className = `${context.key}-${insertable.name}`
-  return className
-}
-
 export function getRegisteredStyles(
   registered: RegisteredCache,
   registeredStyles: string[],
@@ -37,7 +29,7 @@ export const insertStyles = (
   insertable: ScopedInsertableStyles,
   isStringTag: boolean
 ) => {
-  let className = getClassName(context, insertable)
+  let className = `${context.key}-${insertable.name}`
   if (
     // we only need to add the styles to the registered cache if the
     // class name could be used further down
