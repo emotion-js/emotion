@@ -1,5 +1,5 @@
 // @flow
-import { isBrowser, type CSSContextType } from '@emotion/utils'
+import { isBrowser, type EmotionCache } from '@emotion/utils'
 import * as React from 'react'
 import createCache from '@emotion/cache'
 
@@ -8,7 +8,7 @@ let CSSContext = React.createContext(isBrowser ? createCache() : null)
 export let Provider = CSSContext.Provider
 
 let withCSSContext = function withCSSContext<Props>(
-  func: (props: Props, context: CSSContextType) => React.Node
+  func: (props: Props, context: EmotionCache) => React.Node
 ): React.StatelessFunctionalComponent<Props> {
   let render = (props: Props, ref?: *) => {
     if (!process.env.PREACT && ref !== null) {
@@ -18,7 +18,7 @@ let withCSSContext = function withCSSContext<Props>(
       <CSSContext.Consumer>
         {(
           // $FlowFixMe we know it won't be null
-          context: CSSContextType
+          context: EmotionCache
         ) => {
           return func(props, context)
         }}
@@ -31,7 +31,7 @@ let withCSSContext = function withCSSContext<Props>(
       React.forwardRef(render)
 }
 
-let consume = (func: CSSContextType => React.Node) => {
+let consume = (func: EmotionCache => React.Node) => {
   return (
     <CSSContext.Consumer>
       {
@@ -44,8 +44,8 @@ let consume = (func: CSSContextType => React.Node) => {
 
 if (!isBrowser) {
   class BasicProvider extends React.Component<
-    { children: CSSContextType => React.Node },
-    { value: CSSContextType }
+    { children: EmotionCache => React.Node },
+    { value: EmotionCache }
   > {
     state = { value: createCache() }
     render() {
@@ -61,7 +61,7 @@ if (!isBrowser) {
   }
 
   withCSSContext = function withCSSContext<Props>(
-    func: (props: Props, context: CSSContextType) => React.Node
+    func: (props: Props, context: EmotionCache) => React.Node
   ): React.StatelessFunctionalComponent<Props> {
     return (props: Props) => (
       <CSSContext.Consumer>
@@ -81,7 +81,7 @@ if (!isBrowser) {
       </CSSContext.Consumer>
     )
   }
-  consume = (func: CSSContextType => React.Node) => {
+  consume = (func: EmotionCache => React.Node) => {
     return (
       <CSSContext.Consumer>
         {context => {

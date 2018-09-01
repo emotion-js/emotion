@@ -10,7 +10,7 @@ interface StyleSheet {
   tags: Array<HTMLStyleElement>;
 }
 
-export type CSSContextType = {
+export type EmotionCache = {
   stylis: (string, string) => Array<string>,
   inserted: { [string]: string | true },
   registered: RegisteredCache,
@@ -23,7 +23,7 @@ export type CSSContextType = {
 
 export type Interpolation = any
 
-export type ScopedInsertableStyles = {|
+export type SerializedStyles = {|
   name: string,
   styles: string,
   map?: string

@@ -1,6 +1,6 @@
 // @flow
 import { StyleSheet } from '@emotion/sheet'
-import { isBrowser, type CSSContextType } from '@emotion/utils'
+import { isBrowser, type EmotionCache } from '@emotion/utils'
 import Stylis from '@emotion/stylis'
 import ruleSheetPlugin from './rule-sheet'
 import type { StylisPlugin } from './types'
@@ -19,7 +19,7 @@ export type Options = {
   container?: HTMLElement
 }
 
-let createCache = (options?: Options): CSSContextType => {
+let createCache = (options?: Options): EmotionCache => {
   if (options === undefined) options = {}
   let key = options.key || 'css'
   let stylisOptions
@@ -101,7 +101,7 @@ let createCache = (options?: Options): CSSContextType => {
     })
   }
 
-  const context: CSSContextType = {
+  const cache: EmotionCache = {
     stylis,
     key,
     sheet: new StyleSheet({
@@ -114,7 +114,7 @@ let createCache = (options?: Options): CSSContextType => {
     registered: {},
     theme: {}
   }
-  return context
+  return cache
 }
 
 export default createCache

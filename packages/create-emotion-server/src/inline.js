@@ -1,5 +1,5 @@
 // @flow
-import type { CSSContextType } from '@emotion/utils'
+import type { EmotionCache } from '@emotion/utils'
 
 function generateStyleTag(
   cssKey: string,
@@ -13,7 +13,7 @@ function generateStyleTag(
 }
 
 const createRenderStylesToString = (
-  cache: CSSContextType,
+  cache: EmotionCache,
   nonceString: string
 ) => (html: string): string => {
   const { inserted, key: cssKey, registered } = cache

@@ -1,9 +1,5 @@
 // @flow
-import type {
-  RegisteredCache,
-  CSSContextType,
-  ScopedInsertableStyles
-} from './types'
+import type { RegisteredCache, EmotionCache, SerializedStyles } from './types'
 
 export const isBrowser = typeof document !== 'undefined'
 
@@ -25,11 +21,11 @@ export function getRegisteredStyles(
 }
 
 export const insertStyles = (
-  context: CSSContextType,
-  insertable: ScopedInsertableStyles,
+  cache: EmotionCache,
+  serialized: SerializedStyles,
   isStringTag: boolean
 ) => {
-  let className = `${context.key}-${insertable.name}`
+  let className = `${cache.key}-${serialized.name}`
   if (
     // we only need to add the styles to the registered cache if the
     // class name could be used further down
@@ -41,26 +37,26 @@ export const insertStyles = (
       // in node since emotion-server relies on whether a style is in
       // the registered cache to know whether a style is global or not
       // also, note that this check will be dead code eliminated in the browser
-      (isBrowser === false && context.compat !== undefined)) &&
-    context.registered[className] === undefined
+      (isBrowser === false && cache.compat !== undefined)) &&
+    cache.registered[className] === undefined
   ) {
-    context.registered[className] = insertable.styles
+    cache.registered[className] = serialized.styles
   }
-  if (context.inserted[insertable.name] === undefined) {
-    let rules = context.stylis(`.${className}`, insertable.styles)
-    context.inserted[insertable.name] = true
+  if (cache.inserted[serialized.name] === undefined) {
+    let rules = cache.stylis(`.${className}`, serialized.styles)
+    cache.inserted[serialized.name] = true
 
-    if (process.env.NODE_ENV !== 'production' && insertable.map !== undefined) {
+    if (process.env.NODE_ENV !== 'production' && serialized.map !== undefined) {
       for (let i = 0; i < rules.length; i++) {
-        rules[i] += insertable.map
+        rules[i] += serialized.map
       }
     }
 
     if (isBrowser) {
-      rules.forEach(context.sheet.insert, context.sheet)
+      rules.forEach(cache.sheet.insert, cache.sheet)
     } else {
       let joinedRules = rules.join('')
-      if (context.compat === undefined) {
+      if (cache.compat === undefined) {
         // in regular mode, we don't set the styles on the inserted cache
         // since we don't need to and that would be wasting memory
         // we return them so that they are rendered in a style tag
@@ -68,7 +64,7 @@ export const insertStyles = (
       } else {
         // in compat mode, we put the styles on the inserted cache so
         // that emotion-server can pull out the styles
-        context.inserted[insertable.name] = joinedRules
+        cache.inserted[serialized.name] = joinedRules
       }
     }
   }

@@ -1,7 +1,7 @@
 // @flow
-import type { CSSContextType } from '@emotion/utils'
+import type { EmotionCache } from '@emotion/utils'
 
-const createExtractCritical = (cache: CSSContextType) => (html: string) => {
+const createExtractCritical = (cache: EmotionCache) => (html: string) => {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
   let RGX = new RegExp(`${cache.key}-([a-zA-Z0-9-]+)`, 'gm')

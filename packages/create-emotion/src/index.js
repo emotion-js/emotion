@@ -5,7 +5,7 @@ import {
   insertStyles,
   isBrowser,
   getRegisteredStyles,
-  type CSSContextType
+  type EmotionCache
 } from '@emotion/utils'
 
 function insertWithoutScoping(cache, name: string, styles: string) {
@@ -65,7 +65,7 @@ export type Emotion = {
   injectGlobal: CreateStyles<void>,
   keyframes: CreateStyles<string>,
   sheet: StyleSheet,
-  cache: CSSContextType,
+  cache: EmotionCache,
   merge: *,
   getRegisteredStyles: *
 }

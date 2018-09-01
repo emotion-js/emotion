@@ -1,7 +1,7 @@
 // @flow
 import type {
   Interpolation,
-  ScopedInsertableStyles,
+  SerializedStyles,
   RegisteredCache
 } from '@emotion/utils'
 import hashString from '@emotion/hash'
@@ -222,7 +222,7 @@ export const serializeStyles = function(
   registered: RegisteredCache,
   args: Array<Interpolation>,
   mergedProps: void | Object
-): ScopedInsertableStyles {
+): SerializedStyles {
   if (
     args.length === 1 &&
     typeof args[0] === 'object' &&

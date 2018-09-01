@@ -1,11 +1,11 @@
 // @flow
-import type { CSSContextType } from '@emotion/utils'
+import type { EmotionCache } from '@emotion/utils'
 import through from 'through'
 import tokenize from 'html-tokenize'
 import pipe from 'multipipe'
 
 const createRenderStylesToNodeStream = (
-  cache: CSSContextType,
+  cache: EmotionCache,
   nonceString: string
 ) => () => {
   let insed = {}

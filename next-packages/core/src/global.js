@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { withCSSContext } from './context'
-import { isBrowser, type CSSContextType } from '@emotion/utils'
+import { isBrowser, type EmotionCache } from '@emotion/utils'
 import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
 
@@ -17,7 +17,7 @@ export let Global: React.StatelessFunctionalComponent<
 
 type InnerGlobalProps = {
   styles: Object | Array<Object>,
-  context: CSSContextType
+  context: EmotionCache
 }
 
 // maintain place over rerenders.
