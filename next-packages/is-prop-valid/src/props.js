@@ -22,6 +22,7 @@ const props = {
   acceptCharset: true,
   accessKey: true,
   action: true,
+  allow: true,
   allowFullScreen: true,
   allowTransparency: true,
   alt: true,
