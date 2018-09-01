@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import { withCSSContext } from './context'
+import { withEmotionCache } from './context'
 import { isBrowser, type EmotionCache } from '@emotion/utils'
 import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
@@ -11,7 +11,7 @@ type GlobalProps = {
 
 export let Global: React.StatelessFunctionalComponent<
   GlobalProps
-> = /* #__PURE__ */ withCSSContext((props: GlobalProps, context) => {
+> = /* #__PURE__ */ withEmotionCache((props: GlobalProps, context) => {
   return <InnerGlobal styles={props.styles} context={context} />
 })
 

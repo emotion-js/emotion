@@ -7,7 +7,7 @@ import {
   type StyledOptions,
   type CreateStyled
 } from './utils'
-import { withCSSContext } from '@emotion/core'
+import { withEmotionCache } from '@emotion/core'
 import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
@@ -92,7 +92,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       }
     }
 
-    const Styled: any = withCSSContext((props, context) => {
+    const Styled: any = withEmotionCache((props, context) => {
       let className = ''
       let classInterpolations = []
       let mergedProps = props

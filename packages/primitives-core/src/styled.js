@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { testAlwaysTrue, pickAssign, interleave } from './utils'
-import { withCSSContext } from '@emotion/core'
+import { withEmotionCache } from '@emotion/core'
 import { createCss } from './css'
 
 let defaultPickTest = prop => prop !== 'theme' && prop !== 'innerRef'
@@ -29,7 +29,7 @@ export function createStyled(
       }
 
       // do we really want to use the same infra as the web since it only really uses theming?
-      let Styled = withCSSContext((props, context) => {
+      let Styled = withEmotionCache((props, context) => {
         let mergedProps = pickAssign(testAlwaysTrue, {}, props, {
           theme: props.theme || context.theme
         })

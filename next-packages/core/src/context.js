@@ -3,26 +3,26 @@ import { isBrowser, type EmotionCache } from '@emotion/utils'
 import * as React from 'react'
 import createCache from '@emotion/cache'
 
-let CSSContext = React.createContext(isBrowser ? createCache() : null)
+let EmotionCacheContext = React.createContext(isBrowser ? createCache() : null)
 
-export let Provider = CSSContext.Provider
+export let Provider = EmotionCacheContext.Provider
 
-let withCSSContext = function withCSSContext<Props>(
-  func: (props: Props, context: EmotionCache) => React.Node
+let withEmotionCache = function withEmotionCache<Props>(
+  func: (props: Props, cache: EmotionCache) => React.Node
 ): React.StatelessFunctionalComponent<Props> {
   let render = (props: Props, ref?: *) => {
     if (!process.env.PREACT && ref !== null) {
       props = { ref, ...props }
     }
     return (
-      <CSSContext.Consumer>
+      <EmotionCacheContext.Consumer>
         {(
           // $FlowFixMe we know it won't be null
-          context: EmotionCache
+          cache: EmotionCache
         ) => {
-          return func(props, context)
+          return func(props, cache)
         }}
-      </CSSContext.Consumer>
+      </EmotionCacheContext.Consumer>
     )
   }
   return process.env.PREACT
@@ -33,12 +33,12 @@ let withCSSContext = function withCSSContext<Props>(
 
 let consume = (func: EmotionCache => React.Node) => {
   return (
-    <CSSContext.Consumer>
+    <EmotionCacheContext.Consumer>
       {
         // $FlowFixMe we know it won't be null
         func
       }
-    </CSSContext.Consumer>
+    </EmotionCacheContext.Consumer>
   )
 }
 
@@ -50,21 +50,21 @@ if (!isBrowser) {
     state = { value: createCache() }
     render() {
       return (
-        <CSSContext.Provider {...this.state}>
+        <EmotionCacheContext.Provider {...this.state}>
           {process.env.PREACT
             ? // $FlowFixMe
               this.props.children[0](this.state.value)
             : this.props.children(this.state.value)}
-        </CSSContext.Provider>
+        </EmotionCacheContext.Provider>
       )
     }
   }
 
-  withCSSContext = function withCSSContext<Props>(
-    func: (props: Props, context: EmotionCache) => React.Node
+  withEmotionCache = function withEmotionCache<Props>(
+    func: (props: Props, cache: EmotionCache) => React.Node
   ): React.StatelessFunctionalComponent<Props> {
     return (props: Props) => (
-      <CSSContext.Consumer>
+      <EmotionCacheContext.Consumer>
         {context => {
           if (context === null) {
             return (
@@ -78,12 +78,12 @@ if (!isBrowser) {
             return func(props, context)
           }
         }}
-      </CSSContext.Consumer>
+      </EmotionCacheContext.Consumer>
     )
   }
   consume = (func: EmotionCache => React.Node) => {
     return (
-      <CSSContext.Consumer>
+      <EmotionCacheContext.Consumer>
         {context => {
           if (context === null) {
             return (
@@ -97,9 +97,9 @@ if (!isBrowser) {
             return func(context)
           }
         }}
-      </CSSContext.Consumer>
+      </EmotionCacheContext.Consumer>
     )
   }
 }
 
-export { consume, withCSSContext }
+export { consume, withEmotionCache }

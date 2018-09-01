@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import hoistNonReactStatics from 'hoist-non-react-statics'
-import { withCSSContext } from '@emotion/core'
+import { withEmotionCache } from '@emotion/core'
 
 type Props = { theme: Object }
 
@@ -10,7 +10,7 @@ type Props = { theme: Object }
 const withTheme = (Component: React.ComponentType<Props>) => {
   const componentName = Component.displayName || Component.name || 'Component'
 
-  let WithTheme = withCSSContext((props, context) => {
+  let WithTheme = withEmotionCache((props, context) => {
     return <Component theme={context.theme} {...props} />
   })
 
