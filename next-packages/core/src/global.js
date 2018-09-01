@@ -1,7 +1,11 @@
 // @flow
 import * as React from 'react'
 import { withEmotionCache } from './context'
-import { isBrowser, type EmotionCache } from '@emotion/utils'
+import {
+  isBrowser,
+  type EmotionCache,
+  type SerializedStyles
+} from '@emotion/utils'
 import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
 
@@ -11,13 +15,19 @@ type GlobalProps = {
 
 export let Global: React.StatelessFunctionalComponent<
   GlobalProps
-> = /* #__PURE__ */ withEmotionCache((props: GlobalProps, context) => {
-  return <InnerGlobal styles={props.styles} context={context} />
+> = /* #__PURE__ */ withEmotionCache((props: GlobalProps, cache) => {
+  let serialized = serializeStyles(cache.registered, [
+    typeof props.styles === 'function'
+      ? props.styles(cache.theme)
+      : props.styles
+  ])
+
+  return <InnerGlobal serialized={serialized} cache={cache} />
 })
 
 type InnerGlobalProps = {
-  styles: Object | Array<Object>,
-  context: EmotionCache
+  serialized: SerializedStyles,
+  cache: EmotionCache
 }
 
 // maintain place over rerenders.
@@ -25,42 +35,35 @@ type InnerGlobalProps = {
 // initial client-side render from SSR, use place of hydrating tag
 
 class InnerGlobal extends React.Component<InnerGlobalProps> {
-  styleName: string
   sheet: StyleSheet
   componentDidMount() {
-    this.updateStyles()
-  }
-  componentDidUpdate() {
-    this.updateStyles()
-  }
-  updateStyles() {
-    let serialized = serializeStyles(this.props.context.registered, [
-      this.props.styles
-    ])
-    if (serialized.name === this.styleName) {
-      return
-    }
-    this.styleName = serialized.name
-    if (!this.sheet) {
-      this.sheet = new StyleSheet({
-        key: `${this.props.context.key}-global`,
-        nonce: this.props.context.sheet.nonce,
-        container: this.props.context.sheet.container
-      })
-      // $FlowFixMe
-      let node: HTMLStyleElement | null = document.querySelector(
-        `style[data-emotion-${this.props.context.key}="${serialized.name}"]`
-      )
+    this.sheet = new StyleSheet({
+      key: `${this.props.cache.key}-global`,
+      nonce: this.props.cache.sheet.nonce,
+      container: this.props.cache.sheet.container
+    })
+    // $FlowFixMe
+    let node: HTMLStyleElement | null = document.querySelector(
+      `style[data-emotion-${this.props.cache.key}="${
+        this.props.serialized.name
+      }"]`
+    )
 
-      if (node !== null) {
-        this.sheet.tags.push(node)
-      }
-      // $FlowFixMe
-      if (this.props.context.sheet.tags.length) {
-        this.sheet.before = this.props.context.sheet.tags[0]
-      }
+    if (node !== null) {
+      this.sheet.tags.push(node)
     }
-    let rules = this.props.context.stylis(``, serialized.styles)
+    if (this.props.cache.sheet.tags.length) {
+      this.sheet.before = this.props.cache.sheet.tags[0]
+    }
+    this.insertStyles()
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.serialized.name !== this.props.serialized.name) {
+      this.insertStyles()
+    }
+  }
+  insertStyles() {
+    let rules = this.props.cache.stylis(``, this.props.serialized.styles)
     if (this.sheet.tags.length) {
       // if this doesn't exist then it will be null so the style element will be appended
       this.sheet.before = this.sheet.tags[0].nextElementSibling
@@ -75,17 +78,15 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
   }
   render() {
     if (!isBrowser) {
-      const serialized = serializeStyles(this.props.context.registered, [
-        this.props.styles
-      ])
-      let rules = this.props.context.stylis(``, serialized.styles)
+      let { serialized } = this.props
+      let rules = this.props.cache.stylis(``, serialized.styles)
 
       return (
         <style
           {...{
-            [`data-emotion-${this.props.context.key}`]: serialized.name,
+            [`data-emotion-${this.props.cache.key}`]: serialized.name,
             dangerouslySetInnerHTML: { __html: rules.join('') },
-            nonce: this.props.context.sheet.nonce
+            nonce: this.props.cache.sheet.nonce
           }}
         />
       )
