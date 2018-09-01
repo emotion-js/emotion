@@ -1450,28 +1450,6 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@emotion/is-prop-valid@^0.6.7":
-  version "0.6.7"
-  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.6.7.tgz#1767d39c29ba786b7afc3d8d727a2896995f01eb"
-  dependencies:
-    "@emotion/memoize" "^0.6.5"
-
-"@emotion/preact-styled-base@^0.10.5":
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/@emotion/preact-styled-base/-/preact-styled-base-0.10.5.tgz#a61d3e5d21f51f93da53b753936b017ead4cb73a"
-  dependencies:
-    "@emotion/is-prop-valid" "^0.6.7"
-    "@emotion/serialize" "^0.9.0"
-    "@emotion/utils" "^0.8.1"
-
-"@emotion/styled-base@^0.10.5":
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/@emotion/styled-base/-/styled-base-0.10.5.tgz#7f8afca216b2440367c6747de0cb1459468624b1"
-  dependencies:
-    "@emotion/is-prop-valid" "^0.6.7"
-    "@emotion/serialize" "^0.9.0"
-    "@emotion/utils" "^0.8.1"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
