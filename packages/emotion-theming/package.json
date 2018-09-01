@@ -33,15 +33,14 @@
   "homepage": "https://emotion.sh",
   "devDependencies": {
     "@types/react": "16.0.16",
-    "dtslint": "^0.3.0",
-    "prop-types": "^15.6.1"
+    "dtslint": "^0.3.0"
   },
   "dependencies": {
     "hoist-non-react-statics": "^2.3.1"
   },
   "peerDependencies": {
-    "prop-types": "15.x",
-    "react": "15.x || 16.x"
+    "react": "15.x || 16.x",
+    "@emotion/core": "0.x.x"
   },
   "umd:main": "./dist/emotion.umd.min.js"
 }

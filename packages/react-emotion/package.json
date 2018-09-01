@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "babel-plugin-emotion": "^9.2.8",
-    "create-emotion-styled": "^9.2.8"
+    "@emotion/styled-base": "^0.10.5"
   },
   "peerDependencies": {
     "emotion": "^9.1.3",
