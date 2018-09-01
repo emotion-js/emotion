@@ -3,8 +3,7 @@ import { createEmotionMacro } from './macro'
 import { createStyledMacro } from './styled-macro'
 import cssMacro, { transformCssCallExpression } from './css-macro'
 import { addDefault } from '@babel/helper-module-imports'
-import { getSourceMap } from '@emotion/babel-utils'
-import { buildStyledOptions } from './babel-utils'
+import { getSourceMap, getStyledOptions } from './utils'
 
 let webStyledMacro = createStyledMacro('@emotion/styled-base', true)
 let nativeStyledMacro = createStyledMacro('@emotion/native', false)
@@ -164,7 +163,7 @@ export default function(babel: *) {
               switch (path.node.arguments.length) {
                 case 1:
                 case 2: {
-                  path.node.arguments[1] = buildStyledOptions(t, path, state)
+                  path.node.arguments[1] = getStyledOptions(t, path, state)
                 }
               }
             }

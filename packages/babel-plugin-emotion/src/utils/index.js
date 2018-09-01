@@ -7,6 +7,7 @@ export { simplifyObject } from './object-to-string'
 export {
   transformExpressionWithStyles
 } from './transform-expression-with-styles'
+export { getStyledOptions } from './get-styled-options'
 
 export const appendStringToExpressions = (
   expressions: Array<*>,

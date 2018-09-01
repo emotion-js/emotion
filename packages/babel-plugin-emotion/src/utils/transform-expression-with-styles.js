@@ -6,7 +6,7 @@ import {
   appendStringToExpressions,
   simplifyObject,
   joinStringLiterals
-} from '@emotion/babel-utils'
+} from './'
 import css from '@emotion/css'
 
 export let transformExpressionWithStyles = ({

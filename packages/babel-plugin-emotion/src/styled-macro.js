@@ -1,8 +1,7 @@
 // @flow
 import { createMacro } from 'babel-plugin-macros'
 import { addDefault } from '@babel/helper-module-imports'
-import { transformExpressionWithStyles } from '@emotion/babel-utils'
-import { buildStyledOptions } from './babel-utils'
+import { transformExpressionWithStyles, getStyledOptions } from './utils'
 
 export let createStyledMacro = (
   importPath: string,
@@ -47,7 +46,7 @@ export let createStyledMacro = (
         reference.addComment('leading', '#__PURE__')
 
         if (t.isCallExpression(reference.parentPath)) {
-          reference.parentPath.node.arguments[1] = buildStyledOptions(
+          reference.parentPath.node.arguments[1] = getStyledOptions(
             t,
             reference.parentPath,
             state

@@ -1,7 +1,7 @@
 // @flow
 import { createMacro } from 'babel-plugin-macros'
 import { addDefault } from '@babel/helper-module-imports'
-import { transformExpressionWithStyles } from '@emotion/babel-utils'
+import { transformExpressionWithStyles } from './utils'
 
 export const transformCssCallExpression = ({ babel, state, path }: *) => {
   let { node, isPure } = transformExpressionWithStyles({

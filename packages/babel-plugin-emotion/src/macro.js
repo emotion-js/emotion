@@ -1,5 +1,5 @@
 // @flow
-import { transformExpressionWithStyles } from '@emotion/babel-utils'
+import { transformExpressionWithStyles } from './utils'
 import { addNamed } from '@babel/helper-module-imports'
 import { createMacro } from 'babel-plugin-macros'
 
