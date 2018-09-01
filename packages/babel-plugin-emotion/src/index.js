@@ -85,6 +85,9 @@ export default function(babel: *) {
         if (pluginMacros[path.node.source.value] === undefined) {
           return
         }
+        if (t.isImportNamespaceSpecifier(path.node.specifiers[0])) {
+          return
+        }
         const imports = path.node.specifiers.map(s => ({
           localName: s.local.name,
           importedName:
