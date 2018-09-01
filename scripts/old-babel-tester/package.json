@@ -1,0 +1,9 @@
+{
+  "name": "old-babel-tester",
+  "main": "src/index.js",
+  "version": "0.4.4",
+  "private": true,
+  "dependencies": {
+    "babel-core": "^6.26.3"
+  }
+}

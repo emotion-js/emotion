@@ -1,5 +1,6 @@
 // @flow
-import { createInlineTests } from './util'
+import { createInlineTests } from 'old-babel-tester'
+import path from 'path'
 
 const inline = {
   'label format with only local': {
@@ -51,16 +52,16 @@ const inline = {
     import {css as lol} from './my-emotion-instance'
     lol\`color:hotpink;\``,
     opts: {
-      instances: ['./my-emotion-instance']
+      instances: [path.join(__dirname, './my-emotion-instance')]
     },
     filename: __filename
   },
   'custom instance relative complex': {
     code: `
-    import {css as lol} from '../test/my-emotion-instance'
+    import {css as lol} from '../__tests__/my-emotion-instance'
     lol\`color:hotpink;\``,
     opts: {
-      instances: ['./my-emotion-instance']
+      instances: [path.join(__dirname, './my-emotion-instance')]
     },
     filename: __filename
   }

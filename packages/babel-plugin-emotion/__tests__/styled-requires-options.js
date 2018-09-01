@@ -1,5 +1,5 @@
 // @flow
-import { createInlineTests } from './util'
+import { createInlineTests } from 'old-babel-tester'
 
 const cases = {
   'hash generation no file system': {

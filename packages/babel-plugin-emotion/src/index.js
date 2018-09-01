@@ -3,6 +3,7 @@ import { createEmotionMacro } from './macro'
 import { createStyledMacro } from './styled-macro'
 import cssMacro, { transformCssCallExpression } from './css-macro'
 import { addDefault } from '@babel/helper-module-imports'
+import nodePath from 'path'
 import { getSourceMap, getStyledOptions } from './utils'
 
 let webStyledMacro = createStyledMacro({
@@ -39,14 +40,20 @@ let emotionCoreMacroThatsNotARealMacro = ({ references, state, babel }) => {
 }
 emotionCoreMacroThatsNotARealMacro.keepImport = true
 
-let pluginMacros = {
-  '@emotion/css': cssMacro,
-  '@emotion/styled': webStyledMacro,
-  '@emotion/core': emotionCoreMacroThatsNotARealMacro,
-  'react-emotion': webStyledMacro,
-  '@emotion/primitives': primitivesStyledMacro,
-  '@emotion/native': nativeStyledMacro,
-  emotion: createEmotionMacro('emotion')
+function getAbsolutePath(instancePath: string, rootPath: string) {
+  if (instancePath.charAt(0) === '.') {
+    let absoluteInstancePath = nodePath.resolve(rootPath, instancePath)
+    return absoluteInstancePath
+  }
+  return false
+}
+
+function getInstancePathToCompare(instancePath: string, rootPath: string) {
+  let absolutePath = getAbsolutePath(instancePath, rootPath)
+  if (absolutePath === false) {
+    return instancePath
+  }
+  return absolutePath
 }
 
 export default function(babel: *) {
@@ -56,6 +63,24 @@ export default function(babel: *) {
     inherits: require('babel-plugin-syntax-jsx'),
     visitor: {
       ImportDeclaration(path: *, state: *) {
+        const hasFilepath =
+          path.hub.file.opts.filename &&
+          path.hub.file.opts.filename !== 'unknown'
+        let dirname = hasFilepath
+          ? nodePath.dirname(path.hub.file.opts.filename)
+          : ''
+
+        if (
+          !state.pluginMacros[path.node.source.value] &&
+          state.emotionInstancePaths.indexOf(
+            getInstancePathToCompare(path.node.source.value, dirname)
+          ) !== -1
+        ) {
+          state.pluginMacros[path.node.source.value] = createEmotionMacro(
+            path.node.source.value
+          )
+        }
+        let pluginMacros = state.pluginMacros
         // most of this is from https://github.com/kentcdodds/babel-plugin-macros/blob/master/src/index.js
         if (pluginMacros[path.node.source.value] === undefined) {
           return
@@ -107,6 +132,18 @@ export default function(babel: *) {
         }
       },
       Program(path: *, state: *) {
+        state.emotionInstancePaths = (state.opts.instances || []).map(
+          instancePath => getInstancePathToCompare(instancePath, process.cwd())
+        )
+        state.pluginMacros = {
+          '@emotion/css': cssMacro,
+          '@emotion/styled': webStyledMacro,
+          '@emotion/core': emotionCoreMacroThatsNotARealMacro,
+          'react-emotion': webStyledMacro,
+          '@emotion/primitives': primitivesStyledMacro,
+          '@emotion/native': nativeStyledMacro,
+          emotion: createEmotionMacro('emotion')
+        }
         if (state.opts.jsx === undefined) {
           for (const node of path.node.body) {
             if (
