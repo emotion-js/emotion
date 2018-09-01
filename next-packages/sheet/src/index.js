@@ -1,19 +1,18 @@
 // @flow
 /*
 
+Based off glamor's StyleSheet, thanks Sunil ❤️
+
 high performance StyleSheet for css-in-js systems
 
 - uses multiple style tags behind the scenes for millions of rules
 - uses `insertRule` for appending in production for *much* faster performance
-- 'polyfills' on server side
 
 // usage
 
-import StyleSheet from 'glamor/lib/sheet'
-let styleSheet = new StyleSheet()
+import { StyleSheet } from '@emotion/sheet'
 
-styleSheet.inject()
-- 'injects' the stylesheet into the page (or into memory if on server)
+let styleSheet = new StyleSheet({ key: '', container: document.head })
 
 styleSheet.insert('#box { border: 1px solid red; }')
 - appends a css rule into the stylesheet
