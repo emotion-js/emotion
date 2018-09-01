@@ -8,14 +8,16 @@
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/css",
   "dependencies": {
     "@emotion/serialize": "^0.9.0",
-    "@emotion/utils": "^0.8.1"
+    "@emotion/utils": "^0.8.1",
+    "babel-plugin-emotion": "^9.2.8"
   },
   "publishConfig": {
     "access": "public"
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "macro.js"
   ],
   "umd:main": "./dist/index.min.js"
 }

@@ -7,14 +7,16 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/styled",
   "dependencies": {
-    "@emotion/styled-base": "^0.10.5"
+    "@emotion/styled-base": "^0.10.5",
+    "babel-plugin-emotion": "^9.2.8"
   },
   "publishConfig": {
     "access": "public"
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "macro.js"
   ],
   "umd:main": "./dist/index.min.js"
 }

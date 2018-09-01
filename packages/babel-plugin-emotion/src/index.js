@@ -5,14 +5,23 @@ import cssMacro, { transformCssCallExpression } from './css-macro'
 import { addDefault } from '@babel/helper-module-imports'
 import { getSourceMap, getStyledOptions } from './utils'
 
-let webStyledMacro = createStyledMacro('@emotion/styled-base', true)
-let nativeStyledMacro = createStyledMacro('@emotion/native', false)
-let primitivesStyledMacro = createStyledMacro('@emotion/primitives', false)
+let webStyledMacro = createStyledMacro({
+  importPath: '@emotion/styled-base',
+  isWeb: true
+})
+let nativeStyledMacro = createStyledMacro({
+  importPath: '@emotion/native',
+  isWeb: false
+})
+let primitivesStyledMacro = createStyledMacro({
+  importPath: '@emotion/primitives',
+  isWeb: false
+})
 
 export const macros = {
-  emotion: createEmotionMacro('emotion'),
+  createEmotionMacro,
   css: cssMacro,
-  styled: webStyledMacro
+  createStyledMacro
 }
 
 export type BabelPath = any

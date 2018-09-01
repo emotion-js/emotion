@@ -4,17 +4,9 @@ import path from 'path'
 
 babelTester(
   '@emotion/babel-plugin-core css',
-  path.join(
-    __dirname,
-    '..',
-    '..',
-    '..',
-    'next-packages',
-    'css.macro',
-    '__tests__'
-  ),
+  path.join(__dirname, 'css-macro'),
   {
     plugins: [plugin],
-    transform: src => src.replace(/\.macro/g, '')
+    transform: src => src.replace(/\/macro/g, '')
   }
 )

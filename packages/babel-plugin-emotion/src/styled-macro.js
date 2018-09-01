@@ -3,10 +3,13 @@ import { createMacro } from 'babel-plugin-macros'
 import { addDefault } from '@babel/helper-module-imports'
 import { transformExpressionWithStyles, getStyledOptions } from './utils'
 
-export let createStyledMacro = (
+export let createStyledMacro = ({
+  importPath,
+  isWeb
+}: {
   importPath: string,
-  replaceWithSerialized: boolean
-) =>
+  isWeb: boolean
+}) =>
   createMacro(({ references, state, babel }) => {
     const t = babel.types
     if (references.default.length) {
@@ -38,7 +41,7 @@ export let createStyledMacro = (
             babel,
             shouldLabel: false
           })
-          if (node && replaceWithSerialized) {
+          if (node && isWeb) {
             // we know the argument length will be 1 since that's the only time we will have a node since it will be static
             styledCallPath.node.arguments[0] = node
           }
