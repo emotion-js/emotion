@@ -9,10 +9,13 @@ function stylisPlugin(context, content) {
   }
 }
 
-export const container = document.createElement('div')
+export let container
 
-// $FlowFixMe
-document.head.appendChild(container)
+if (typeof document !== 'undefined') {
+  container = document.createElement('div')
+  // $FlowFixMe
+  document.head.appendChild(container)
+}
 
 const emotion = createEmotion({
   stylisPlugins: stylisPlugin,
