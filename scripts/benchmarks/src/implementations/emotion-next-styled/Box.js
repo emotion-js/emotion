@@ -1,4 +1,4 @@
-import styled from '@emotion/styled.macro'
+import styled from '@emotion/styled/macro'
 import View from './View'
 
 const getColor = ({ color }) => {

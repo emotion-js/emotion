@@ -1,4 +1,4 @@
-import styled from '@emotion/styled.macro'
+import styled from '@emotion/styled/macro'
 
 const View = styled.div`
   align-items: stretch;
