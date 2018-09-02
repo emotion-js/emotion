@@ -1,0 +1,46 @@
+{
+  "name": "inferno-emotion",
+  "version": "9.2.8",
+  "description": "The Next Generation of CSS-in-JS, for Inferno projects.",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "macro.js",
+    "types"
+  ],
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
+  "dependencies": {
+    "inferno-create-element": "4.x || 5.x",
+    "babel-plugin-emotion": "^9.2.8",
+    "create-emotion-styled": "^9.2.8"
+  },
+  "peerDependencies": {
+    "emotion": "^9.1.3",
+    "inferno": "4.x || 5.x"
+  },
+  "devDependencies": {
+    "dtslint": "^0.3.0",
+    "emotion": "^9.2.8",
+    "inferno-test-utils": "^5.5.0"
+  },
+  "author": "Luca Tagliavini, The emotion contributors",
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/inferno-emotion",
+  "keywords": [
+    "styles",
+    "emotion",
+    "inferno",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
+  },
+  "umd:main": "./dist/emotion.umd.min.js"
+}

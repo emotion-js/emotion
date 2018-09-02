@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled with autoLabel composition 1`] = `
+<h1
+  className="legacy__class"
+  scale={2}
+/>
+`;
+
+exports[`styled with autoLabel composition with objects 1`] = `
+<h1
+  className="legacy__class"
+  scale={2}
+/>
+`;
+
+exports[`styled with autoLabel higher order component 1`] = `<div />`;
