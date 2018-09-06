@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Emotion native styled Log error message if units are not specified when using shorthand properties 1`] = `
+<Text
+  style={Object {}}
+>
+  Hello World
+</Text>
+`;
+
 exports[`Emotion native styled primitive should work with \`withComponent\` 1`] = `
 <Text
   decor="hotpink"

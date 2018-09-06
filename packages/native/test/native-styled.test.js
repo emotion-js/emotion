@@ -136,4 +136,15 @@ describe('Emotion native styled', () => {
 
     expect(tree).toMatchSnapshot()
   })
+
+  it('Log error message if units are not specified when using shorthand properties', () => {
+    const Text = styled.Text`
+      margin: 20px;
+      padding: 50;
+    `
+
+    const tree = renderer.create(<Text>Hello World</Text>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
 })
