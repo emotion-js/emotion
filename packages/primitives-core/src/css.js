@@ -11,15 +11,12 @@ let buffer
 let lastType
 
 function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
-  // Strip the comments
-  if (typeof interpolation === 'string') {
-    interpolation = interpolation.replace(
-      /(\/\*([\s\S]*?)\*\/)|(\/\/(.*)$)/gm,
-      ''
-    )
-  }
-
   let type = typeof interpolation
+
+  if (type === 'string') {
+    // strip comments
+    interpolation = interpolation.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '')
+  }
 
   if (type === 'function') {
     if (this === undefined) {
