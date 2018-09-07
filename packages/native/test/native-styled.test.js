@@ -9,6 +9,8 @@ const StyleSheet = reactNative.StyleSheet
 
 jest.mock('react-native')
 
+console.error = jest.fn()
+
 const theme = { backgroundColor: 'magenta', display: 'flex' }
 
 describe('Emotion native styled', () => {
@@ -140,11 +142,13 @@ describe('Emotion native styled', () => {
   it('Log error message if units are not specified when using shorthand properties', () => {
     const Text = styled.Text`
       margin: 20px;
-      padding: 50;
+      padding: 20;
     `
 
-    const tree = renderer.create(<Text>Hello World</Text>).toJSON()
+    renderer.create(<Text>Hello World</Text>)
 
-    expect(tree).toMatchSnapshot()
+    expect(console.error).toBeCalledWith(
+      "'padding' shorthand property requires units for example - padding: 20px or padding: 10px 20px 40px 50px"
+    )
   })
 })
