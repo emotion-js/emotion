@@ -13,6 +13,11 @@ let lastType
 function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
   let type = typeof interpolation
 
+  if (type === 'string') {
+    // strip comments
+    interpolation = interpolation.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '')
+  }
+
   if (type === 'function') {
     if (this === undefined) {
       if (process.env.NODE_ENV !== 'production') {
