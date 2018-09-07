@@ -1,13 +1,11 @@
 // @flow
-import {
-  getLabelFromPath,
-  getExpressionsFromTemplateLiteral,
-  getSourceMap,
-  appendStringToExpressions,
-  simplifyObject,
-  joinStringLiterals
-} from './'
+
 import css from '@emotion/css'
+import { getExpressionsFromTemplateLiteral } from './minify'
+import { getLabelFromPath } from './label'
+import { getSourceMap } from './source-maps'
+import { simplifyObject } from './object-to-string'
+import { appendStringToExpressions, joinStringLiterals } from './strings'
 
 export let transformExpressionWithStyles = ({
   babel,

@@ -6,6 +6,7 @@ const alias = require('rollup-plugin-alias')
 const cjs = require('rollup-plugin-commonjs')
 const replace = require('rollup-plugin-replace')
 const lernaAliases = require('lerna-alias').rollup
+let chalk = require('chalk')
 
 // this makes sure nested imports of external packages are external
 const makeExternalPredicate = externalArr => {
@@ -28,9 +29,10 @@ let pkgJsonsAllowedToFail = [
 function getChildPeerDeps(
   finalPeerDeps /*: Array<string> */,
   isUMD /*: boolean */,
-  depKeys /*: Array<string> */
+  depKeys /*: Array<string> */,
+  doneDeps /*: Array<string> */
 ) {
-  depKeys.forEach(key => {
+  depKeys.filter(x => !doneDeps.includes(x)).forEach(key => {
     let pkgJson
     try {
       pkgJson = unsafeRequire(key + '/package.json')
@@ -48,13 +50,20 @@ function getChildPeerDeps(
       getChildPeerDeps(
         finalPeerDeps,
         isUMD,
-        Object.keys(pkgJson.peerDependencies)
+        Object.keys(pkgJson.peerDependencies),
+        doneDeps
       )
     }
     // when we're building a UMD bundle, we're also bundling the dependencies so we need
     // to get the peerDependencies of dependencies
     if (pkgJson.dependencies && isUMD) {
-      getChildPeerDeps(finalPeerDeps, isUMD, Object.keys(pkgJson.dependencies))
+      doneDeps.push(...Object.keys(pkgJson.dependencies))
+      getChildPeerDeps(
+        finalPeerDeps,
+        isUMD,
+        Object.keys(pkgJson.dependencies),
+        doneDeps
+      )
     }
   })
 }
@@ -84,7 +93,8 @@ module.exports = (
     isUMD,
     external.concat(
       isUMD && pkg.dependencies ? Object.keys(pkg.dependencies) : []
-    )
+    ),
+    []
   )
   external.push('fs', 'path')
   if (data.name === 'react-emotion' || data.name === 'preact-emotion') {
@@ -104,6 +114,17 @@ module.exports = (
   const config = {
     input: data.input,
     external: makeExternalPredicate(external),
+    onwarn: (warning /*: * */) => {
+      switch (warning.code) {
+        case 'UNUSED_EXTERNAL_IMPORT': {
+          break
+        }
+        default: {
+          console.error(chalk.red(warning.toString()))
+          throw new Error(`There was an error compiling ${data.name}`)
+        }
+      }
+    },
     plugins: [
       babel({
         presets: [

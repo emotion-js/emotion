@@ -36,7 +36,8 @@
     "dtslint": "^0.3.0"
   },
   "dependencies": {
-    "hoist-non-react-statics": "^2.3.1"
+    "hoist-non-react-statics": "^2.3.1",
+    "@emotion/weak-memoize": "^0.1.2"
   },
   "peerDependencies": {
     "react": "15.x || 16.x",

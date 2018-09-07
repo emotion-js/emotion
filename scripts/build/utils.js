@@ -108,7 +108,8 @@ function getOutputConfigs(pkg, isBrowser = false) {
   let configs = [
     {
       format: 'cjs',
-      file: cjsPath
+      file: cjsPath,
+      exports: 'named'
     }
   ]
   if (pkg.pkg.module) {

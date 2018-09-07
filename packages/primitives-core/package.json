@@ -10,7 +10,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@emotion/is-prop-valid": "^0.6.3",
     "css-to-react-native": "^2.2.1",
     "@emotion/core": "^0.13.0"
   },
