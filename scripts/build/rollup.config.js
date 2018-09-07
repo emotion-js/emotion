@@ -107,6 +107,7 @@ module.exports = (
   if (external.includes('@emotion/preact-styled-base')) {
     packageAliases['@emotion/styled-base'] = '@emotion/preact-styled-base'
   }
+
   if (isPreact) {
     packageAliases['react'] = require.resolve('emotion-react-mock-for-preact')
   }

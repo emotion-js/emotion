@@ -55,7 +55,9 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
         name: pkgJSON.name,
         input: path.resolve(fullPackagePath, 'src', 'index.js')
       }
-      let isPreact = ret.name.startsWith('@emotion/preact-')
+      let isPreact =
+        ret.name.startsWith('@emotion/preact-') ||
+        ret.name.startsWith('preact-')
 
       if (ret.pkg.main && !ret.pkg.main.includes('src')) {
         ret.configs.push({
