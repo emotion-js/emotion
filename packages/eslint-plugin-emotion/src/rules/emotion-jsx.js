@@ -25,7 +25,6 @@ module.exports = {
             if (jsxSpecifier) {
               hasJsxImport = true
               local = jsxSpecifier.local.name
-            } else {
               emotionCoreNode = x
             }
           }
@@ -37,8 +36,8 @@ module.exports = {
         let pragma = sourceCode
           .getAllComments()
           .find(node => JSX_ANNOTATION_REGEX.test(node.value))
-
-        if (pragma === local) {
+        let match = pragma && pragma.value.match(JSX_ANNOTATION_REGEX)
+        if (match && (match[1] === local || (!local && match[1] === 'jsx'))) {
           hasSetPragma = true
         }
 
@@ -47,12 +46,24 @@ module.exports = {
             node,
             message:
               'The css prop can only be used if jsx from @emotion/core is imported and it is set as the jsx pragma',
-            fix:
-              !hasSetPragma && hasJsxImport
-                ? function(fixer) {
-                    fixer.insertTextBefore(emotionCoreNode, `/** @jsx */\n`)
-                  }
-                : undefined
+            fix(fixer) {
+              if (hasJsxImport) {
+                return fixer.insertTextBefore(
+                  emotionCoreNode,
+                  `/** @jsx ${local} */\n`
+                )
+              }
+              if (hasSetPragma) {
+                return fixer.insertTextBefore(
+                  sourceCode.ast.body[0],
+                  `import { jsx } from '@emotion/core'\n`
+                )
+              }
+              return fixer.insertTextBefore(
+                sourceCode.ast.body[0],
+                `/** @jsx jsx */\nimport { jsx } from '@emotion/core'\n`
+              )
+            }
           })
         }
       }
