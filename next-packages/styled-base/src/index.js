@@ -152,7 +152,6 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     FinalStyled.__emotion_forwardProp = shouldForwardProp
 
     Object.defineProperty(FinalStyled, 'toString', {
-      enumerable: false,
       value() {
         if (
           targetClassName === undefined &&
