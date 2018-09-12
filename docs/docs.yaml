@@ -13,7 +13,6 @@
 - title: Advanced
   items:
     - keyframes
-    - cx
     - ssr
     - with-props
     - theming
