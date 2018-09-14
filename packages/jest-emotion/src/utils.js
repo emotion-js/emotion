@@ -33,7 +33,7 @@ function getClassNamesFromCheerio(selectors, node) {
 
 function getClassNamesFromDOMElement(selectors, node: any) {
   return getClassNames(
-    selectors, 
+    selectors,
     node.getAttribute && node.getAttribute('class')
   )
 }
