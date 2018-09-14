@@ -18,8 +18,8 @@
   },
   "devDependencies": {
     "emotion-theming": "^9.2.5",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "react": "^16.5.0",
     "react-primitives": "^0.5.1"
   },
