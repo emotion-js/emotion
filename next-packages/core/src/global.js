@@ -4,7 +4,8 @@ import { withEmotionCache } from './context'
 import {
   isBrowser,
   type EmotionCache,
-  type SerializedStyles
+  type SerializedStyles,
+  insertStyles
 } from '@emotion/utils'
 import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
@@ -63,6 +64,10 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
     }
   }
   insertStyles() {
+    if (this.props.serialized.next !== undefined) {
+      // insert keyframes
+      insertStyles(this.props.cache, this.props.serialized.next, true)
+    }
     let rules = this.props.cache.stylis(``, this.props.serialized.styles)
     if (this.sheet.tags.length) {
       // if this doesn't exist then it will be null so the style element will be appended
@@ -80,11 +85,16 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
     if (!isBrowser) {
       let { serialized } = this.props
       let rules = this.props.cache.stylis(``, serialized.styles)
-
+      let serializedNames = serialized.name
+      let next = serialized.next
+      while (next !== undefined) {
+        serializedNames += ' ' + next.name
+        next = next.next
+      }
       return (
         <style
           {...{
-            [`data-emotion-${this.props.cache.key}`]: serialized.name,
+            [`data-emotion-${this.props.cache.key}`]: serializedNames,
             dangerouslySetInnerHTML: { __html: rules.join('') },
             nonce: this.props.cache.sheet.nonce
           }}

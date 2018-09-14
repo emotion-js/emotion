@@ -147,11 +147,17 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
 
       const ele = React.createElement(baseTag, newProps)
       if (!isBrowser && rules !== undefined) {
+        let serializedNames = serialized.name
+        let next = serialized.next
+        while (next !== undefined) {
+          serializedNames += ' ' + next.name
+          next = next.next
+        }
         return (
           <React.Fragment>
             <style
               {...{
-                [`data-emotion-${context.key}`]: serialized.name,
+                [`data-emotion-${context.key}`]: serializedNames,
                 dangerouslySetInnerHTML: { __html: rules },
                 nonce: context.sheet.nonce
               }}

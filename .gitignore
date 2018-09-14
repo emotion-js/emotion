@@ -10,3 +10,5 @@ package-lock.json
 .cache
 public/
 /extract.test.emotion.css
+build
+!playgrounds/cra/public

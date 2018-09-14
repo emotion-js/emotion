@@ -43,6 +43,25 @@ export const insertStyles = (
     cache.registered[className] = serialized.styles
   }
   if (cache.inserted[serialized.name] === undefined) {
+    // the inserting
+    let next = serialized.next
+    let dependencyStylesForSSR = ''
+    if (next !== undefined) {
+      // keyframes are dependencies of the style so they're
+      // stored on the style as a singly linked list
+      // they're stored seperately to the base styles
+      // so that they can be cached seperately
+      // if the keyframe is used multiple times
+      // since the next property
+      if (isBrowser) {
+        insertStyles(cache, next, true)
+      } else {
+        let result = insertStyles(cache, next, true)
+        if (result !== undefined) {
+          dependencyStylesForSSR = result
+        }
+      }
+    }
     let rules = cache.stylis(`.${className}`, serialized.styles)
     cache.inserted[serialized.name] = true
 
@@ -60,7 +79,7 @@ export const insertStyles = (
         // in regular mode, we don't set the styles on the inserted cache
         // since we don't need to and that would be wasting memory
         // we return them so that they are rendered in a style tag
-        return joinedRules
+        return dependencyStylesForSSR + joinedRules
       } else {
         // in compat mode, we put the styles on the inserted cache so
         // that emotion-server can pull out the styles
