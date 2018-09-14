@@ -20,3 +20,7 @@ export interface EmotionThemingModule<Theme> {
     ThemeProvider: ThemeProviderComponent<Theme>;
     withTheme<Props>(component: ComponentClass<Props> | SFC<Props>): ComponentClass<OptionalThemeProps<Props, Theme>>;
 }
+
+export const channel: string;
+
+export function createBroadcast(initialState: any): any;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as emotionTheming from '../';
 // tslint:disable-next-line:no-duplicate-imports
-import { ThemeProvider, withTheme, EmotionThemingModule } from '../';
+import { ThemeProvider, withTheme, EmotionThemingModule, channel, createBroadcast } from '../';
 
 const theme = { primary: "green", secondary: "white" };
 const CompSFC = (props: { prop: boolean }) => <div />;
@@ -37,3 +37,8 @@ const TypedThemedSFC = typedWithTheme(ThemedSFC);
 const TypedCompSFC = typedWithTheme(CompSFC);
 <TypedCompSFC prop />;
 <TypedCompSFC theme={theme} prop />;
+
+const context = {
+    [channel]: createBroadcast({})
+};
+context;
