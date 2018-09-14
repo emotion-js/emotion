@@ -32,7 +32,10 @@ function getClassNamesFromCheerio(selectors, node) {
 }
 
 function getClassNamesFromDOMElement(selectors, node: any) {
-  return getClassNames(selectors, node.getAttribute && node.getAttribute('class'))
+  return getClassNames(
+    selectors, 
+    node.getAttribute && node.getAttribute('class')
+  )
 }
 
 export function isReactElement(val: any): boolean {
