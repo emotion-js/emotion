@@ -2,5 +2,8 @@
   "name": "babel-preset-emotion-dev",
   "main": "src/index",
   "version": "9.2.5",
-  "private": true
-}  
+  "private": true,
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.0.0"
+  }
+}
