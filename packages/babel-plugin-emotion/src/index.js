@@ -372,6 +372,7 @@ const importedNameKeys = Object.keys(defaultImportedNames).map(
 
 const defaultEmotionPaths = [
   'emotion',
+  'inferno-emotion',
   'react-emotion',
   'preact-emotion',
   '@emotion/primitives'

@@ -1,0 +1,281 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled for inferno basic render 1`] = `<h1 />`;
+
+exports[`styled for inferno basic render with object as style 1`] = `<h1 />`;
+
+exports[`styled for inferno call expression 1`] = `<div />`;
+
+exports[`styled for inferno composing components 1`] = `<button />`;
+
+exports[`styled for inferno composition 1`] = `
+<h1
+  className="legacy__class"
+/>
+`;
+
+exports[`styled for inferno composition 2`] = `
+<h1
+  className="legacy__class"
+  scale={2}
+/>
+`;
+
+exports[`styled for inferno composition based on props 1`] = `
+<h1
+  a={true}
+/>
+`;
+
+exports[`styled for inferno composition based on props 2`] = `<h1 />`;
+
+exports[`styled for inferno composition of nested pseudo selectors 1`] = `
+<button
+  className="css-rl47rh"
+/>
+`;
+
+exports[`styled for inferno composition with objects 1`] = `
+<h1
+  className="legacy__class"
+  scale={2}
+/>
+`;
+
+exports[`styled for inferno custom shouldForwardProp works 1`] = `
+<svg
+  color="#0000ff"
+  height="100px"
+  width="100px"
+/>
+`;
+
+exports[`styled for inferno function in expression 1`] = `
+<h1
+  className="legacy__class"
+  scale={2}
+/>
+`;
+
+exports[`styled for inferno function that function returns gets called with props 1`] = `
+<div
+  color="hotpink"
+/>
+`;
+
+exports[`styled for inferno glamorous style api & composition 1`] = `
+<h1
+  flex={1}
+  fontSize={20}
+/>
+`;
+
+exports[`styled for inferno handles more than 10 dynamic properties 1`] = `
+<h1
+  className="legacy__class"
+  theme={
+    Object {
+      "blue": "blue",
+    }
+  }
+/>
+`;
+
+exports[`styled for inferno higher order component 1`] = `<div />`;
+
+exports[`styled for inferno inline function return value is a function 1`] = `<h1 />`;
+
+exports[`styled for inferno innerRef 1`] = `
+<h1
+  innerRef={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          <h1
+            class="css-dae0kw"
+          >
+            hello world
+          </h1>,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+/>
+`;
+
+exports[`styled for inferno input placeholder 1`] = `
+<input
+  placeholder="hello world"
+/>
+`;
+
+exports[`styled for inferno input placeholder object 1`] = `
+<input
+  placeholder="hello world"
+/>
+`;
+
+exports[`styled for inferno name with class component 1`] = `<div />`;
+
+exports[`styled for inferno nested 1`] = `<div />`;
+
+exports[`styled for inferno no dynamic 1`] = `<h1 />`;
+
+exports[`styled for inferno no prop filtering on non string tags 1`] = `
+<a
+  a={true}
+  aria-label="some label"
+  b={true}
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+/>
+`;
+
+exports[`styled for inferno no prop filtering on string tags started with upper case 1`] = `
+<somecustomlink
+  a={true}
+  aria-label="some label"
+  b={true}
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+/>
+`;
+
+exports[`styled for inferno object as style 1`] = `
+<h1
+  flex={1}
+  fontSize={20}
+/>
+`;
+
+exports[`styled for inferno object composition 1`] = `<img />`;
+
+exports[`styled for inferno objects 1`] = `
+<h1
+  display="flex"
+/>
+`;
+
+exports[`styled for inferno objects with spread properties 1`] = `<figure />`;
+
+exports[`styled for inferno prop filtering 1`] = `
+<a
+  a={true}
+  aria-label="some label"
+  b={true}
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  m={
+    Array [
+      3,
+    ]
+  }
+  prop={true}
+  pt={
+    Array [
+      4,
+    ]
+  }
+  wow={true}
+/>
+`;
+
+exports[`styled for inferno prop filtering on composed styled components that are string tags 1`] = `
+<a
+  a={true}
+  aria-label="some label"
+  b={true}
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+/>
+`;
+
+exports[`styled for inferno random expressions undefined return 1`] = `
+<h1
+  className="legacy__class"
+/>
+`;
+
+exports[`styled for inferno random object expression 1`] = `
+<h1
+  className="legacy__class"
+  prop={true}
+/>
+`;
+
+exports[`styled for inferno should forward .defaultProps when reusing __emotion_base 1`] = `
+<div>
+  <h1
+    color="red"
+  />
+  <h1
+    color="red"
+  />
+</div>
+`;
+
+exports[`styled for inferno theme prop exists without ThemeProvider 1`] = `<div />`;
+
+exports[`styled for inferno theme prop exists without ThemeProvider with a theme prop on the component 1`] = `
+<div
+  theme={
+    Object {
+      "color": "hotpink",
+    }
+  }
+/>
+`;
+
+exports[`styled for inferno throws if undefined is passed as the component 1`] = `
+"You are trying to create a styled element with an undefined component.
+You may have forgotten to import it."
+`;
+
+exports[`styled for inferno withComponent carries styles from flattened components 1`] = `<p />`;
+
+exports[`styled for inferno withComponent will replace tags but keep styling classes 1`] = `
+<article>
+  <h1
+    children="My Title"
+  />
+  <h2
+    children="My Subtitle"
+  />
+</article>
+`;
+
+exports[`styled for inferno withComponent with function interpolation 1`] = `
+<article>
+  <h1
+    children="My Title"
+  />
+  <h2
+    children="My Subtitle"
+    color="hotpink"
+  />
+</article>
+`;
