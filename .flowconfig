@@ -5,6 +5,7 @@
 .*/node_modules/config-chain/.*
 .*/node_modules/styled-components/.*
 .*/node_modules/graphql/.*
+.*/node_modules/metro.*
 
 
 [include]

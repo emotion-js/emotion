@@ -115,6 +115,18 @@ function handleInterpolation(
         return interpolation.name
       }
       if (interpolation.styles !== undefined) {
+        let next = interpolation.next
+        if (next !== undefined) {
+          // not the most efficient thing ever but this is a pretty rare case
+          while (next !== undefined) {
+            cursor = {
+              name: next.name,
+              styles: next.styles,
+              next: cursor
+            }
+            next = next.next
+          }
+        }
         return interpolation.styles
       }
 

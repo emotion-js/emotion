@@ -16,6 +16,24 @@ Array [
 ]
 `;
 
+exports[`keyframes keyframes used in css call 1`] = `
+<div
+  className="css-1jqzi3u"
+>
+  animation-1bi8wtt
+</div>
+`;
+
+exports[`keyframes keyframes used in css call 2`] = `
+Array [
+  "@-webkit-keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
+  "@keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  ".css-1jqzi3u{-webkit-animation:animation-1bi8wtt 1s animation-1ajb83a;animation:animation-1bi8wtt 1s animation-1ajb83a;}",
+]
+`;
+
 exports[`keyframes multiple keyframes object 1`] = `
 <div
   className="css-1jqzi3u"

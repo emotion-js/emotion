@@ -140,6 +140,37 @@ cases(
           </div>
         )
       }
+    },
+    'keyframes used in css call': {
+      render: () => {
+        let animation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: hotpink;
+          }
+        `)
+        let yellowAnimation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: yellow;
+          }
+        `)
+        return (
+          <div
+            css={[
+              css({
+                animation: `${animation} 1s ${yellowAnimation}`
+              })
+            ]}
+          >
+            {animation.name}
+          </div>
+        )
+      }
     }
   }
 )
