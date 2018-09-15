@@ -152,7 +152,9 @@ export default function(babel: *) {
             if (
               t.isImportDeclaration(node) &&
               node.source.value === '@emotion/core' &&
-              node.specifiers.some(x => x.imported.name === 'jsx')
+              node.specifiers.some(
+                x => x.isImportSpecifier(x) && x.imported.name === 'jsx'
+              )
             ) {
               state.transformCssProp = true
               break
