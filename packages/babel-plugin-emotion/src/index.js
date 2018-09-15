@@ -151,7 +151,8 @@ export default function(babel: *) {
           for (const node of path.node.body) {
             if (
               t.isImportDeclaration(node) &&
-              node.source.value === '@emotion/core'
+              node.source.value === '@emotion/core' &&
+              node.specifiers.some(x => x.imported.name === 'jsx')
             ) {
               state.transformCssProp = true
               break

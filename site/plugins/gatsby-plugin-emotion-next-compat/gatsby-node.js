@@ -21,7 +21,7 @@ exports.onCreateBabelConfig = ({ actions, stage }) => {
     name: 'babel-plugin-emotion',
     stage,
     options: {
-      jsx: true,
+      cssPropOptimization: true,
       sourceMap: stage === 'develop'
     }
   })
