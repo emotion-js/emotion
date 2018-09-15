@@ -3,9 +3,11 @@ module.exports = () => {
     presets: [
       ['@babel/preset-env', { loose: true }],
       '@babel/preset-flow',
-      '@babel/preset-react',
-      ['@babel/preset-stage-2', { decoratorsLegacy: true }]
+      '@babel/preset-react'
     ],
-    plugins: ['babel-plugin-codegen']
+    plugins: [
+      'babel-plugin-codegen',
+      ['@babel/plugin-proposal-class-properties', { loose: false }]
+    ]
   }
 }

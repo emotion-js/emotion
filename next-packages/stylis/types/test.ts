@@ -74,11 +74,7 @@ stylis.set({
   },
 });
 // $ExpectError
-stylis.set({
-  prefix() {
-    return 'hi';
-  },
-});
+stylis.set({ prefix: () => 'hi' });
 
 stylis.use();
 // $ExpectError
