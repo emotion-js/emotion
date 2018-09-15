@@ -153,7 +153,7 @@ export default function(babel: *) {
               t.isImportDeclaration(node) &&
               node.source.value === '@emotion/core' &&
               node.specifiers.some(
-                x => x.isImportSpecifier(x) && x.imported.name === 'jsx'
+                x => t.isImportSpecifier(x) && x.imported.name === 'jsx'
               )
             ) {
               state.transformCssProp = true
