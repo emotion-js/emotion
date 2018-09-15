@@ -11,9 +11,6 @@
     "macro.js",
     "types"
   ],
-  "scripts": {
-    "test:typescript": "dtslint types"
-  },
   "dependencies": {
     "babel-plugin-emotion": "^9.2.8",
     "@emotion/styled-base": "^0.10.5"
