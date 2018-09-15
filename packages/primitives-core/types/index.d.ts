@@ -3,7 +3,8 @@
 // Sam Pettersson <https://github.com/iamsamwhoami>
 // TypeScript Version: 2.3
 
-import { Emotion, Interpolation as BaseInterpolation } from 'create-emotion';
+import { StyleSheet } from 'react-primitives';
+import { Emotion } from 'create-emotion';
 import * as React from 'react';
 
 import {
@@ -19,10 +20,12 @@ import {
 import {
   ArrayInterpolation,
   FunctionInterpolation,
-  Interpolation
+  BaseInterpolation,
+  Interpolation,
+  StyledOptions
 } from './common';
 
-import { StyledOptions, Themed } from 'create-emotion-styled/types/common';
+import { Themed } from 'create-emotion-styled/types/common';
 
 export {
   ArrayInterpolation,
@@ -39,7 +42,15 @@ export {
   StyledStatelessComponent
 };
 
-export default function createEmotionStyled(
-  emotion: Emotion,
-  view: typeof React
-): CreateStyled;
+type CreatePrimitivesStyled = (
+  styleSheet: typeof StyleSheet,
+  options: StyledOptions
+) => CreateStyled;
+
+export const createStyled: CreatePrimitivesStyled;
+
+type CreatePrimitivesCss = (
+  styleSheet: typeof StyleSheet
+) => (...args: BaseInterpolation[]) => string;
+
+export const createCss: CreatePrimitivesCss;

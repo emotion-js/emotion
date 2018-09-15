@@ -6,10 +6,9 @@
 import { ComponentType, ComponentClass, Ref, SFC } from 'react';
 import { ClassInterpolation } from 'create-emotion';
 
-import { Interpolation } from './common';
+import { Interpolation, StyledOptions } from './common';
 
 import {
-  StyledOptions,
   StyledOtherProps,
   StyledStatelessProps,
   Themed

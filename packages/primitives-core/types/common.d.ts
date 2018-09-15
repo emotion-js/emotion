@@ -11,6 +11,10 @@ import {
   ClassInterpolation
 } from 'create-emotion';
 
+export interface StyledOptions {
+  shouldForwardProp?: (name: string) => boolean;
+}
+
 export type BasePrimitivesStyle = ViewStyle | TextStyle | ImageStyle;
 
 export type BaseInterpolation =
