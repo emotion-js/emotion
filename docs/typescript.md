@@ -2,7 +2,7 @@
 title: "Typescript"
 ---
 
-Emotion includes TypeScript definitions for `emotion`, `react-emotion`, `preact-emotion`, `create-emotion`, and `create-emotion-styled`. These definitions also infer types for css properties with the object syntax, HTML/SVG tag names, and prop types.
+Emotion includes TypeScript definitions for `emotion`, `react-emotion`, `preact-emotion`, `create-emotion`, `create-emotion-styled`, `@emotion/primitives` and `@emotion/primitives-core`. These definitions also infer types for css properties with the object syntax, HTML/SVG tag names, and prop types.
 
 ## emotion
 
@@ -269,3 +269,50 @@ const bodyStyle = myEmotion.css({
 ## create-emotion-styled
 
 The current typings for `create-emotion-styled` are only compatible with React, and will not work with Preact. For detail typing, see the [`react-emotion` section](#react-emotion) above.
+
+## @emotion/primitives
+
+The usage for `@emotion/primitives` is the same as for `react-emotion` except for creating emotion instances from strings.
+
+```tsx
+import styled from '@emotion/primitives'
+import { View } from 'react-primitives'
+
+const Component = styled.View({
+  color: 'red'
+})
+
+const OtherComponent = styled(View)({
+  color: 'red'
+})
+
+interface Props {
+  width: number
+}
+
+const ComponentWithProps = styled(View)(
+  ({ width }: Props) => ({
+    color: 'red',
+    width
+  })
+)
+```
+
+## @emotion/primitives-core
+
+```tsx
+import {
+  createStyled,
+  createCss
+} from '@emotion/primitives-core'
+
+import { StyleSheet } from 'react-primitives'
+
+createStyled(StyleSheet, {
+  shouldForwardProp: () => true
+})
+
+const css = createCss(StyleSheet)({
+  color: 'blue'
+})
+```
