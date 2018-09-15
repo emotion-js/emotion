@@ -6,7 +6,8 @@
   "types": "types/index.d.ts",
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "test:typescript": "dtslint types"
