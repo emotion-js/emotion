@@ -227,6 +227,8 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
+// this is the cursor for keyframes
+// keyframes are stored on the SerializedStyles object as a linked list
 let cursor
 
 export const serializeStyles = function(
