@@ -325,7 +325,7 @@ resolved relative to `process.cwd()`(the current working directory).
 
 [**Documentation**](https://emotion.sh/docs/instances)
 
-### `cssPropOptimizaton`
+### `cssPropOptimization`
 
 `boolean`, defaults to `true`.
 

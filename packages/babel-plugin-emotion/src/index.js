@@ -147,7 +147,7 @@ export default function(babel: *) {
           '@emotion/native': nativeStyledMacro,
           emotion: createEmotionMacro('emotion')
         }
-        if (state.opts.jsx === undefined) {
+        if (state.opts.cssPropOptimization === undefined) {
           for (const node of path.node.body) {
             if (
               t.isImportDeclaration(node) &&
@@ -158,7 +158,7 @@ export default function(babel: *) {
             }
           }
         } else {
-          state.transformCssProp = state.opts.jsx
+          state.transformCssProp = state.opts.cssPropOptimization
         }
 
         if (state.opts.sourceMap) {
