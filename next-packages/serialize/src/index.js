@@ -25,13 +25,11 @@ let processStyleValue = (key: string, value: string): string => {
     case 'animation':
     case 'animationName': {
       value = value.replace(animationRegex, (match, p1, p2) => {
-        let obj: SerializedStyles = { name: p1, styles: p2 }
-        if (cursor === undefined) {
-          first = obj
-        } else {
-          cursor.next = obj
+        cursor = {
+          name: p1,
+          styles: p2,
+          next: cursor
         }
-        cursor = obj
         return p1
       })
     }
@@ -108,18 +106,11 @@ function handleInterpolation(
     }
     case 'object': {
       if (interpolation.anim === 1) {
-        // we don't reuse the animation object here since we might mutate it
-
-        let obj: SerializedStyles = {
+        cursor = {
           name: interpolation.name,
-          styles: interpolation.styles
+          styles: interpolation.styles,
+          next: cursor
         }
-        if (cursor === undefined) {
-          first = obj
-        } else {
-          cursor.next = obj
-        }
-        cursor = obj
 
         return interpolation.name
       }
@@ -237,7 +228,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 let cursor
-let first
 
 export const serializeStyles = function(
   registered: RegisteredCache,
@@ -256,7 +246,6 @@ export const serializeStyles = function(
   styles = ''
   sourceMap = undefined
   cursor = undefined
-  first = undefined
 
   let strings = args[0]
   if (strings == null || strings.raw === undefined) {
@@ -312,6 +301,6 @@ export const serializeStyles = function(
     name,
     styles,
     map: sourceMap,
-    next: first
+    next: cursor
   }
 }

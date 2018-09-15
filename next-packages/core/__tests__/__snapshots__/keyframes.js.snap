@@ -26,10 +26,10 @@ exports[`keyframes multiple keyframes object 1`] = `
 
 exports[`keyframes multiple keyframes object 2`] = `
 Array [
-  "@-webkit-keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
-  "@keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
   "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@-webkit-keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
+  "@keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",
   ".css-1jqzi3u{-webkit-animation:animation-1bi8wtt 1s animation-1ajb83a;animation:animation-1bi8wtt 1s animation-1ajb83a;}",
 ]
 `;
