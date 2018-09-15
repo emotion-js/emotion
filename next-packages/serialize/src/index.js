@@ -118,6 +118,7 @@ function handleInterpolation(
         let next = interpolation.next
         if (next !== undefined) {
           // not the most efficient thing ever but this is a pretty rare case
+          // and there will be very few iterations of this generally
           while (next !== undefined) {
             cursor = {
               name: next.name,
