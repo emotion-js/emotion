@@ -10,8 +10,8 @@ import darken from 'polished/lib/color/darken'
 import MenuIcon from 'react-icons/lib/md/menu'
 import { getDocMap, docList } from '../utils/misc'
 
-import type { Match } from '../utils/types'
-import { Route, Switch } from 'react-router'
+import { Match } from '@reach/router'
+
 import DocMetadata from './DocMetadata'
 
 const ToggleSidebarButton = styled.button`
@@ -141,11 +141,11 @@ export default (props: Props) => {
               renderContent={({ docked, setSidebarOpenState }) => (
                 <Box p={[3, 4]}>
                   {props.children}
-                  <Route
+                  <Match
                     path="/docs/:doc"
-                    render={({ match }: { match: Match }) => {
+                    children={({ match }: { match: { doc: string } }) => {
                       const index = flatDocList.findIndex(
-                        item => item === match.params.doc
+                        item => item === match.doc
                       )
                       const hasNextDoc = index !== flatDocList.length - 1
                       const hasPrevDoc = index !== 0
@@ -220,35 +220,18 @@ export default (props: Props) => {
               renderSidebar={({ setSidebarOpenState }) =>
                 docList.map(item => {
                   return (
-                    <Switch key={item.title}>
-                      <Route
-                        path="/docs/:docName"
-                        render={({ match }) => {
-                          const { docName } = match.params
-                          return (
-                            <Sidebar
-                              item={item}
-                              setSidebarOpenState={setSidebarOpenState}
-                              docMap={docMap}
-                              docName={docName}
-                            />
-                          )
-                        }}
-                      />
-                      <Route
-                        exact
-                        path="/docs"
-                        render={() => {
-                          return (
-                            <Sidebar
-                              item={item}
-                              setSidebarOpenState={setSidebarOpenState}
-                              docMap={docMap}
-                            />
-                          )
-                        }}
-                      />
-                    </Switch>
+                    <Match path="/docs/:docName" key={item.title}>
+                      {({ match }: { match?: { docName: string } }) => {
+                        return (
+                          <Sidebar
+                            item={item}
+                            setSidebarOpenState={setSidebarOpenState}
+                            docMap={docMap}
+                            docName={match && match.docName}
+                          />
+                        )
+                      }}
+                    </Match>
                   )
                 })
               }
