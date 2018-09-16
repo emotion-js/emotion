@@ -740,13 +740,6 @@
     pirates "^4.0.0"
     source-map-support "^0.5.9"
 
-"@babel/runtime@7.0.0-beta.47":
-  version "7.0.0-beta.47"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0-beta.47.tgz#273f5e71629e80f6cbcd7507503848615e59f7e0"
-  dependencies:
-    core-js "^2.5.3"
-    regenerator-runtime "^0.11.1"
-
 "@babel/runtime@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0.tgz#adeb78fedfc855aa05bc041640f3f6f98e85424c"
@@ -4686,7 +4679,7 @@ core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
-core-js@^2.2.2, core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0, core-js@^2.5.3, core-js@^2.5.7:
+core-js@^2.2.2, core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0, core-js@^2.5.7:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
 
@@ -7866,14 +7859,15 @@ gatsby-plugin-emotion@^2.0.0-beta.2:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-plugin-netlify@1.0.19-11:
-  version "1.0.19-11"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-1.0.19-11.tgz#4b956d228cfd3f21b70fe8258e65a12902fe95f3"
+gatsby-plugin-netlify@^2.0.0-rc.6:
+  version "2.0.0-rc.6"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.0.0-rc.6.tgz#33ff1535442a0d6b50d8fb54ef049cccb47bb1bd"
   dependencies:
-    "@babel/runtime" "7.0.0-beta.47"
+    "@babel/runtime" "^7.0.0"
     fs-extra "^4.0.2"
-    lodash "^4.17.4"
-    webpack-assets-manifest "^1.0.0"
+    kebab-hash "^0.1.2"
+    lodash "^4.17.10"
+    webpack-assets-manifest "^3.0.2"
 
 gatsby-plugin-page-creator@^2.0.0-rc.5:
   version "2.0.0-rc.5"
@@ -11667,10 +11661,6 @@ lodash.keys@^3.0.0, lodash.keys@^3.1.2:
     lodash.isarguments "^3.0.0"
     lodash.isarray "^3.0.0"
 
-lodash.keys@^4.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/lodash.keys/-/lodash.keys-4.2.0.tgz#a08602ac12e4fb83f91fc1fb7a360a4d9ba35205"
-
 lodash.keysin@^3.0.0:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/lodash.keysin/-/lodash.keysin-3.0.8.tgz#22c4493ebbedb1427962a54b445b2c8a767fb47f"
@@ -11706,10 +11696,6 @@ lodash.merge@^3.3.2:
     lodash.keysin "^3.0.0"
     lodash.toplainobject "^3.0.0"
 
-lodash.merge@^4.0:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
-
 lodash.mergewith@^4.6.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.1.tgz#639057e726c3afbdb3e7d42741caa8d6e4335927"
@@ -11725,10 +11711,6 @@ lodash.padend@^4.1.0:
 lodash.padstart@^4.1.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.padstart/-/lodash.padstart-4.6.1.tgz#d2e3eebff0d9d39ad50f5cbd1b52a7bce6bb611b"
-
-lodash.pick@^4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
 
 lodash.restparam@^3.0.0:
   version "3.6.1"
@@ -15449,9 +15431,9 @@ react-devtools-core@3.3.4:
     shell-quote "^1.6.1"
     ws "^3.3.1"
 
-react-dom@16.5.0, "react-dom@^15 || ^16", react-dom@^16.2.0, react-dom@^16.3.0, react-dom@^16.3.2, react-dom@^16.4.2, react-dom@^16.5.0:
-  version "16.3.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
+react-dom@16.4.2, react-dom@16.5.0, "react-dom@^15 || ^16", react-dom@^16.2.0, react-dom@^16.3.0, react-dom@^16.3.2, react-dom@^16.4.2, react-dom@^16.5.0:
+  version "16.4.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.2.tgz#4afed569689f2c561d2b8da0b819669c38a0bda4"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -15821,9 +15803,9 @@ react-vis@^1.10.4:
     prop-types "^15.5.8"
     react-motion "^0.5.2"
 
-react@16.5.0, "react@^15 || ^16", react@^16.2.0, react@^16.3.0, react@^16.3.2, react@^16.4.2, react@^16.5.0:
-  version "16.3.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
+react@16.4.2, react@16.5.0, "react@^15 || ^16", react@^16.2.0, react@^16.3.0, react@^16.3.2, react@^16.4.2, react@^16.5.0:
+  version "16.4.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.4.2.tgz#2cd90154e3a9d9dd8da2991149fdca3c260e129f"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -19080,17 +19062,17 @@ webidl-conversions@^4.0.0, webidl-conversions@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
 
-webpack-assets-manifest@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/webpack-assets-manifest/-/webpack-assets-manifest-1.0.0.tgz#54a1bc4036e2eed2b3ce1fd6a7e31c09be99538a"
+webpack-assets-manifest@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/webpack-assets-manifest/-/webpack-assets-manifest-3.0.2.tgz#d9c7f57d4e0a6a261e2558258073f7c5e95e3f32"
   dependencies:
     chalk "^2.0"
     lodash.get "^4.0"
     lodash.has "^4.0"
-    lodash.keys "^4.0"
-    lodash.merge "^4.0"
-    lodash.pick "^4.0"
     mkdirp "^0.5"
+    schema-utils "^1.0.0"
+    tapable "^1.0.0"
+    webpack-sources "^1.0.0"
 
 webpack-bundle-analyzer@2.13.1:
   version "2.13.1"
@@ -19294,7 +19276,7 @@ webpack-node-externals@1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/webpack-node-externals/-/webpack-node-externals-1.6.0.tgz#232c62ec6092b100635a3d29d83c1747128df9bd"
 
-webpack-sources@^1.0.1, webpack-sources@^1.1.0, webpack-sources@^1.2.0:
+webpack-sources@^1.0.0, webpack-sources@^1.0.1, webpack-sources@^1.1.0, webpack-sources@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.2.0.tgz#18181e0d013fce096faf6f8e6d41eeffffdceac2"
   dependencies:

@@ -18,7 +18,7 @@
     "gatsby-link": "^2.0.0-beta.3",
     "gatsby-plugin-catch-links": "^2.0.2-beta.2",
     "gatsby-plugin-emotion": "^2.0.0-beta.2",
-    "gatsby-plugin-netlify": "1.0.19-11",
+    "gatsby-plugin-netlify": "^2.0.0-rc.6",
     "gatsby-plugin-react-helmet": "^3.0.0-beta.3",
     "gatsby-plugin-sharp": "^2.0.0-beta.2",
     "gatsby-plugin-sitemap": "^2.0.0-beta.2",
