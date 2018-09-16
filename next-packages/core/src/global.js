@@ -14,9 +14,24 @@ type GlobalProps = {
   styles: Object | Array<Object>
 }
 
+let warnedAboutCssPropForGlobal = false
+
 export let Global: React.StatelessFunctionalComponent<
   GlobalProps
 > = /* #__PURE__ */ withEmotionCache((props: GlobalProps, cache) => {
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    !warnedAboutCssPropForGlobal &&
+    // check for className as well since the user is
+    // probably using the custom createElement which
+    // means it will be turned into a className prop
+    (props.className || props.css)
+  ) {
+    console.error(
+      "It looks like you're using the css prop on Global, did you mean to use the styles prop instead?"
+    )
+    warnedAboutCssPropForGlobal = true
+  }
   let serialized = serializeStyles(cache.registered, [
     typeof props.styles === 'function'
       ? props.styles(cache.theme)
