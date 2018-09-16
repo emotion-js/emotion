@@ -48,7 +48,8 @@
     "unist-util-visit": "^1.2.0",
     "webpack-bundle-analyzer": "2.13.1",
     "worker-loader": "2.0.0",
-    "workerize-loader": "^1.0.3"
+    "workerize-loader": "^1.0.3",
+    "react-error-overlay": "^3.0.0"
   },
   "keywords": [
     "gatsby"

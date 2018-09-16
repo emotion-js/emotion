@@ -7920,14 +7920,6 @@ gatsby-plugin-sitemap@^2.0.0-beta.2:
     "@babel/runtime" "^7.0.0"
     sitemap "^1.12.0"
 
-gatsby-react-router-scroll@^1.0.7:
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/gatsby-react-router-scroll/-/gatsby-react-router-scroll-1.0.18.tgz#616ffb801dbdbe4598611e2ff3861b91ac3eecbf"
-  dependencies:
-    babel-runtime "^6.26.0"
-    scroll-behavior "^0.9.9"
-    warning "^3.0.0"
-
 gatsby-react-router-scroll@^2.0.0-rc.2:
   version "2.0.0-rc.2"
   resolved "https://registry.yarnpkg.com/gatsby-react-router-scroll/-/gatsby-react-router-scroll-2.0.0-rc.2.tgz#292f013af77b8a75d3289945c5103a578884dfb3"

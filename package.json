@@ -74,7 +74,6 @@
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
     "flow-bin": "^0.76.0",
-    "gatsby-react-router-scroll": "^1.0.7",
     "get-lerna-packages": "^0.1.0",
     "hoist-non-react-statics": "^2.3.1",
     "husky": "^0.14.3",

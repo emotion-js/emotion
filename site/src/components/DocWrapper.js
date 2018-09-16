@@ -144,6 +144,9 @@ export default (props: Props) => {
                   <Match
                     path="/docs/:doc"
                     children={({ match }: { match: { doc: string } }) => {
+                      if (!match) {
+                        return null
+                      }
                       const index = flatDocList.findIndex(
                         item => item === match.doc
                       )
