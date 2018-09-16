@@ -22,20 +22,6 @@ export type ThemedReactEmotionInterface<Theme extends object> = CreateStyled<
   Theme
 >;
 
-declare module 'react-native' {
-  interface ViewProps {
-    css?: BaseInterpolation;
-  }
-
-  interface ImageProps {
-    css?: BaseInterpolation;
-  }
-
-  interface TextProps {
-    css?: BaseInterpolation;
-  }
-}
-
 export interface CreateStyledPrimitivesShorthand<Theme extends object> {
   View: CreateStyledOtherComponent<ViewProps, Theme>;
   Image: CreateStyledOtherComponent<ImageProps, Theme>;

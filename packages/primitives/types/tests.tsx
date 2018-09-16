@@ -172,24 +172,3 @@ const mountComponent21 = (
     source={{ uri: 'dummy' }}
   />
 );
-
-/**
- * css prop
- */
-const Component22 = styled.View({ color: 'red' });
-const mountCssProp1 = <Component22 css={{ color: 'blue' }} />;
-const mountCssProp2 = (
-  <Component22
-    css={`
-      color: blue;
-    `}
-  />
-);
-const mountCssProp3 = <View css={{ color: 'blue' }} />;
-const mountCssProp4 = (
-  <View
-    css={`
-      color: blue;
-    `}
-  />
-);
