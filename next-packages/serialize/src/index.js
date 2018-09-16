@@ -38,7 +38,7 @@ let processStyleValue = (key: string, value: string): string => {
   if (
     unitless[key] !== 1 &&
     key.charCodeAt(1) !== 45 && // custom properties
-    !isNaN(value) &&
+    typeof value === 'number' &&
     value !== 0
   ) {
     return value + 'px'
@@ -173,15 +173,15 @@ function createStringFromObject(
       string += handleInterpolation(mergedProps, registered, obj[i], false)
     }
   } else {
-    for (let key in obj) {
-      if (typeof obj[key] !== 'object') {
-        if (registered[obj[key]] !== undefined) {
-          string += `${key}{${registered[obj[key]]}}`
+    // using var instead of let here because using let here makes babel use a closure
+    var key
+    for (key in obj) {
+      let value = obj[key]
+      if (typeof value !== 'object') {
+        if (registered[value] !== undefined) {
+          string += `${key}{${registered[value]}}`
         } else {
-          string += `${processStyleName(key)}:${processStyleValue(
-            key,
-            obj[key]
-          )};`
+          string += `${processStyleName(key)}:${processStyleValue(key, value)};`
         }
       } else {
         if (
@@ -193,11 +193,10 @@ function createStringFromObject(
           )
         }
         if (
-          Array.isArray(obj[key]) &&
-          (typeof obj[key][0] === 'string' &&
-            registered[obj[key][0]] === undefined)
+          Array.isArray(value) &&
+          (typeof value[0] === 'string' && registered[value[0]] === undefined)
         ) {
-          obj[key].forEach(value => {
+          value.forEach(value => {
             string += `${processStyleName(key)}:${processStyleValue(
               key,
               value
@@ -207,7 +206,7 @@ function createStringFromObject(
           string += `${key}{${handleInterpolation(
             mergedProps,
             registered,
-            obj[key],
+            value,
             false
           )}}`
         }
