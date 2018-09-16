@@ -35,10 +35,6 @@ exports[`does warn when invalid values are passed for the content property 1`] =
 `;
 
 exports[`does warn when invalid values are passed for the content property 2`] = `
-.emotion-0 {
-  content: px;
-}
-
 <div
   className="emotion-0"
 />
