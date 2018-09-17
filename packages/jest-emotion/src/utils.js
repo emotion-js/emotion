@@ -63,6 +63,9 @@ function isCheerioElement(val: any): boolean {
 
 export function getClassNamesFromNodes(nodes: Array<any>) {
   return nodes.reduce((selectors, node) => {
+    if(Array.isArray(node)) {
+      return node.reduce((s, n) => [...s, ...getClassNamesFromNodes(selectors, n)], [])
+    } 
     if (isReactElement(node)) {
       return getClassNamesFromTestRenderer(selectors, node)
     } else if (isEnzymeElement(node)) {
