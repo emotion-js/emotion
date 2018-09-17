@@ -173,8 +173,7 @@ function createStringFromObject(
       string += handleInterpolation(mergedProps, registered, obj[i], false)
     }
   } else {
-    // using var instead of let here because using let here makes babel use a closure
-    var key
+    let key
     for (key in obj) {
       let value = obj[key]
       if (typeof value !== 'object') {
@@ -196,12 +195,12 @@ function createStringFromObject(
           Array.isArray(value) &&
           (typeof value[0] === 'string' && registered[value[0]] === undefined)
         ) {
-          value.forEach(value => {
+          for (let i = 0; i < value.length; i++) {
             string += `${processStyleName(key)}:${processStyleValue(
               key,
-              value
+              value[i]
             )};`
-          })
+          }
         } else {
           string += `${key}{${handleInterpolation(
             mergedProps,
