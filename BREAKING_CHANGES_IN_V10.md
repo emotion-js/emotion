@@ -8,3 +8,5 @@
 * emotion will not be stored on the global object so create-emotion only accepts 1 argument, the options
 * channel and createBroadcast from emotion-theming no longer exist
 * extractStatic is gone
+* create-emotion-server accepts the cache instead of the emotion instance
+* jest-emotion no longer accepts an emotion instance, only the options arg, it also requires a DOM now

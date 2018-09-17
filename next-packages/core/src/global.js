@@ -25,6 +25,7 @@ export let Global: React.StatelessFunctionalComponent<
     // check for className as well since the user is
     // probably using the custom createElement which
     // means it will be turned into a className prop
+    // $FlowFixMe I don't really want to add it to the type since it shouldn't be used
     (props.className || props.css)
   ) {
     console.error(

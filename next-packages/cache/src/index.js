@@ -41,17 +41,8 @@ let createCache = (options?: Options): EmotionCache => {
         `Emotion key must only contain lower case alphabetical characters and - but "${key}" was passed`
       )
     }
-    let sourceMapRegEx = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
-    let currentSourceMap
     stylis.use((context, content, selectors) => {
       switch (context) {
-        case -1: {
-          let result = sourceMapRegEx.exec(content)
-          if (result) {
-            currentSourceMap = result[0]
-          }
-          break
-        }
         case 2: {
           for (let i = 0, len = selectors.length; len > i; i++) {
             // :last-child isn't included here since it's safe
@@ -60,7 +51,7 @@ let createCache = (options?: Options): EmotionCache => {
             if (match !== null) {
               console.error(
                 `The pseudo class "${
-                  match[1]
+                  match[0]
                 }" is potentially unsafe when doing server-side rendering. Try changing it to "${
                   match[1]
                 }-of-type"`
@@ -68,15 +59,6 @@ let createCache = (options?: Options): EmotionCache => {
             }
           }
           break
-        }
-        case -2: {
-          if (currentSourceMap) {
-            content.forEach((rule, i) => {
-              content[i] = rule + currentSourceMap
-            })
-
-            currentSourceMap = ''
-          }
         }
       }
     })
