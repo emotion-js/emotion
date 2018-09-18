@@ -4,9 +4,8 @@
 // TypeScript Version: 2.3
 
 import { ComponentType, ComponentClass, Ref, SFC } from 'react';
-import { ClassInterpolation } from 'create-emotion';
 
-import { Interpolation, StyledOptions } from './common';
+import { Interpolation, StyledOptions, ClassInterpolation } from './common';
 
 import {
   StyledOtherProps,

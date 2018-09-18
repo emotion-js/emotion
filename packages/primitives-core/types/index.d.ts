@@ -5,7 +5,6 @@
 
 import { StyleSheet } from 'react-primitives';
 import { Emotion } from 'create-emotion';
-import * as React from 'react';
 
 import {
   CreateStyled,
