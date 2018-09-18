@@ -21,7 +21,7 @@
     "find-root": "^1.1.0",
     "mkdirp": "^0.5.1",
     "source-map": "^0.5.7",
-    "touch": "^1.0.0"
+    "touch": "^2.0.1"
   },
   "devDependencies": {
     "babel-check-duplicated-nodes": "^1.0.0"
