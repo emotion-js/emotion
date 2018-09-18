@@ -173,8 +173,7 @@ function createStringFromObject(
       string += handleInterpolation(mergedProps, registered, obj[i], false)
     }
   } else {
-    let key
-    for (key in obj) {
+    for (let key in obj) {
       let value = obj[key]
       if (typeof value !== 'object') {
         if (registered[value] !== undefined) {
