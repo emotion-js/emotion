@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-emotion",
-  "version": "9.2.8",
+  "version": "9.2.9",
   "description": "A recommended babel preprocessing plugin for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/index.js",
   "files": [
