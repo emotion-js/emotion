@@ -69,3 +69,5 @@ exports[`does warn when using :nth-last-child(7) 1`] = `
   className="emotion-0"
 />
 `;
+
+exports[`global with css prop 1`] = `null`;

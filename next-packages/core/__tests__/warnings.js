@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import css from '@emotion/css'
-import { jsx } from '@emotion/core'
+import { jsx, Global } from '@emotion/core'
 import renderer from 'react-test-renderer'
 
 // $FlowFixMe
@@ -68,10 +68,33 @@ unsafePseudoClasses.forEach(pseudoClass => {
     expect(renderer.create(<div css={style} />).toJSON()).toMatchSnapshot()
     expect(console.error).toBeCalledWith(
       `The pseudo class "${
-        match[1]
+        match[0]
       }" is potentially unsafe when doing server-side rendering. Try changing it to "${
         match[1]
       }-of-type"`
     )
   })
+})
+
+test('global with css prop', () => {
+  let tree = renderer
+    .create(
+      // $FlowFixMe
+      <Global
+        css={{
+          html: {
+            backgroundColor: 'hotpink'
+          },
+          '@font-face': {
+            fontFamily: 'some-name'
+          }
+        }}
+      />
+    )
+    .toJSON()
+  expect(tree).toMatchSnapshot()
+
+  expect(console.error).toBeCalledWith(
+    "It looks like you're using the css prop on Global, did you mean to use the styles prop instead?"
+  )
 })
