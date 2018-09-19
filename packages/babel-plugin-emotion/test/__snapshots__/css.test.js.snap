@@ -184,6 +184,11 @@ function test() {
 }"
 `;
 
+exports[`babel css inline babel 6 label with non word character variable name 1`] = `
+"
+const iconStyles$1 = /*#__PURE__*/css(\\"color:hotpink;label:iconStyles1;\\");"
+`;
+
 exports[`babel css inline babel 6 labelFormat 1`] = `
 "
 function test() {
@@ -515,6 +520,12 @@ exports[`babel css inline babel 7 label format with filename and local 1`] = `
     css(\\"height:420px;width:\\", styles, \\"label:my-css-emotion-cls4;\\"), \\";label:my-css-emotion-cls4;\\");
   }
 }"
+`;
+
+exports[`babel css inline babel 7 label with non word character variable name 1`] = `
+"const iconStyles$1 =
+/*#__PURE__*/
+css(\\"color:hotpink;label:iconStyles1;\\");"
 `;
 
 exports[`babel css inline babel 7 labelFormat 1`] = `
