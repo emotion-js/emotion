@@ -1,6 +1,6 @@
 {
   "name": "@emotion/primitives",
-  "version": "9.2.9",
+  "version": "9.2.10",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "files": [
@@ -9,7 +9,7 @@
   ],
   "dependencies": {
     "@emotion/primitives-core": "^9.2.9",
-    "babel-plugin-emotion": "^9.2.9"
+    "babel-plugin-emotion": "^9.2.10"
   },
   "peerDependencies": {
     "prop-types": "15.x",
