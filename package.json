@@ -18,7 +18,6 @@
     "benchmark": "lerna exec --scope benchmarks npm run benchmark",
     "start:site": "lerna exec --scope emotion-site npm run start:site",
     "build:site": "lerna exec --scope emotion-site npm run build:site",
-    "bootstrap": "lerna bootstrap",
     "flow": "flow check",
     "precommit": "lint-staged",
     "postcommit": "git update-index --again",

@@ -11,6 +11,12 @@
     }
   },
   "version": "9.2.8",
-  "npmClient": "yarn",
-  "useWorkspaces": true
+  "npmClient": "npm",
+  "packages": [
+    "packages/*",
+    "site",
+    "scripts/*",
+    "next-packages/*",
+    "playgrounds/*"
+  ]
 }
