@@ -93,8 +93,8 @@ export function getLabel(
 
   // Valid Characters in CSS Class Names Selecter
   // https://stackoverflow.com/questions/448981/which-characters-are-valid-in-css-class-names-selectors#449000
-  const transformedidentifierName = identifierName.replace(/[^\w-]/g, '')
-  if (!labelFormat) return transformedidentifierName
+  const normalizedName = identifierName.replace(/[^\w-]/g, '')
+  if (!labelFormat) return normalizedName
 
   const parsedPath = nodePath.parse(filename)
   const normalizedFilename = parsedPath.name
@@ -102,7 +102,7 @@ export function getLabel(
     .replace(/[^\w-]/g, '')
 
   return labelFormat
-    .replace(/\[local\]/gi, transformedidentifierName)
+    .replace(/\[local\]/gi, normalizedName)
     .replace(/\[filename\]/gi, normalizedFilename)
 }
 
