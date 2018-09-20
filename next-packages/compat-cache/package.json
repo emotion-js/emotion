@@ -1,13 +1,13 @@
 {
   "name": "@emotion/compat-cache",
-  "version": "0.8.7",
+  "version": "0.8.8",
   "description": "emotion's cache",
   "main": "dist/compat-cache.cjs.js",
   "module": "dist/compat-cache.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/compat-cache",
   "dependencies": {
-    "@emotion/cache": "^0.8.7"
+    "@emotion/cache": "^0.8.8"
   },
   "publishConfig": {
     "access": "public"

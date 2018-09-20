@@ -1,6 +1,6 @@
 {
   "name": "@emotion/snapshot-serializer",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "A snapshot serializer for jest and emotion",
   "main": "dist/snapshot-serializer.cjs.js",
   "license": "MIT",
