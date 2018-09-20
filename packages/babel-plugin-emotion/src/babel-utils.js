@@ -90,12 +90,19 @@ export function getLabel(
   filename: string
 ) {
   if (!identifierName || !autoLabel) return null
-  if (!labelFormat) return identifierName.trim()
+
+  // Valid Characters in CSS Class Names Selecter
+  // https://stackoverflow.com/questions/448981/which-characters-are-valid-in-css-class-names-selectors#449000
+  const normalizedName = identifierName.replace(/[^\w-]/g, '')
+  if (!labelFormat) return normalizedName
 
   const parsedPath = nodePath.parse(filename)
-  const normalizedFilename = parsedPath.name.replace('.', '-')
+  const normalizedFilename = parsedPath.name
+    .replace('.', '-')
+    .replace(/[^\w-]/g, '')
+
   return labelFormat
-    .replace(/\[local\]/gi, identifierName.trim())
+    .replace(/\[local\]/gi, normalizedName)
     .replace(/\[filename\]/gi, normalizedFilename)
 }
 

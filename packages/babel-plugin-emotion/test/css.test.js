@@ -334,6 +334,17 @@ function test () {
     }
   },
 
+  'label with non word character variable name': {
+    code: `
+      const iconStyles$1 = css\`
+        color: hotpink;
+      \`
+    `,
+    opts: {
+      autoLabel: true
+    }
+  },
+
   'basic object support': {
     code: `css({display: 'flex'})`
   },
