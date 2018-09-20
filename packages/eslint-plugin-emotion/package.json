@@ -16,8 +16,5 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "license": "ISC",
-  "publishConfig": {
-    "tag": "next"
-  }
+  "license": "ISC"
 }

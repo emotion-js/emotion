@@ -35,7 +35,6 @@
     "url": "https://github.com/emotion-js/emotion/issues"
   },
   "publishConfig": {
-    "access": "public",
-    "tag": "next"
+    "access": "public"
   }
 }

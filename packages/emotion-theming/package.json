@@ -43,8 +43,5 @@
     "prop-types": "15.x",
     "react": "15.x || 16.x"
   },
-  "umd:main": "./dist/emotion.umd.min.js",
-  "publishConfig": {
-    "tag": "next"
-  }
+  "umd:main": "./dist/emotion.umd.min.js"
 }
