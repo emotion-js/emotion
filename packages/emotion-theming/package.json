@@ -43,5 +43,8 @@
     "react": "15.x || 16.x",
     "@emotion/core": "0.x.x"
   },
-  "umd:main": "./dist/emotion.umd.min.js"
+  "umd:main": "./dist/emotion.umd.min.js",
+  "publishConfig": {
+    "tag": "next"
+  }
 }
