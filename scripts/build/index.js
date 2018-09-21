@@ -35,11 +35,7 @@ async function doBuild() {
         if (pkg.configs.length) {
           console.log(chalk.magenta(`Generated bundles for`, pkg.pkg.name))
         }
-        if (
-          !pkg.name.endsWith('.macro') &&
-          pkg.path.includes('next-packages') &&
-          someBundle
-        ) {
+        if (someBundle) {
           await writeFlowFiles(
             pkg.configs[0].outputConfigs.map(({ file }) => file),
             someBundle.exports
