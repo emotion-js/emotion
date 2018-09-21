@@ -22,20 +22,15 @@ import type { Package } from './types'
 
 let unsafeRequire = require
 
-let pkgFolders = ['packages', 'next-packages']
+let pkgFolder = 'packages'
 
 exports.getPackages = async function getPackages() /*: Promise<Array<Package>> */ {
   // we're intentionally not getting all the packages that are part of the monorepo
   // we only want ones in packages
-  const packagePaths = [].concat(
-    ...(await Promise.all(
-      pkgFolders.map(async pkgFolder => {
-        return (await readdir(path.join(rootPath, pkgFolder))).map(pkg =>
-          path.join(rootPath, pkgFolder, pkg)
-        )
-      })
-    ))
+  const packagePaths = (await readdir(path.join(rootPath, pkgFolder))).map(
+    pkg => path.join(rootPath, pkgFolder, pkg)
   )
+
   const packages = packagePaths
     .map(packagePath => {
       const fullPackagePath = path.resolve(rootPath, packagePath)
