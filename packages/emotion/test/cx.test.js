@@ -47,6 +47,24 @@ describe('cx', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('merge 5', () => {
+    const cls1 = css`
+      font-size: 20px;
+      background: green;
+      label: cls1;
+    `
+    const cls2 = css`
+      font-size: 20px;
+      background: blue;
+      label: cls2;
+    `
+
+    const tree = renderer
+      .create(<div className={cx(cls1, cls2, 'modal')} />)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('all types', () => {
     const cls1 = css`
       font-size: 20px;

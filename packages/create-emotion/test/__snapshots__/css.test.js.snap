@@ -261,7 +261,7 @@ exports[`css manually use label property 1`] = `
 `;
 
 exports[`css manually use label property 2`] = `
-".some-key-32iy0l-wow {
+".some-key-wow {
   color: hotpink;
 }"
 `;
@@ -458,6 +458,38 @@ exports[`css simple composition 1`] = `
 <div
   className="emotion-0"
 />
+`;
+
+exports[`css test environment className when label is present 1`] = `
+.emotion-0 {
+  float: right;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css test environment className when label is present 2`] = `
+".some-key-label1-label2 {
+  float: right;
+}"
+`;
+
+exports[`css test environment className without label 1`] = `
+.emotion-0 {
+  float: right;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css test environment className without label 2`] = `
+".some-key-1f7s68s {
+  float: right;
+}"
 `;
 
 exports[`css weakmap 1`] = `

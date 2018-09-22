@@ -227,26 +227,32 @@ function createEmotion(
   let name
   let stylesWithLabel
 
-  const labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
+  const labelPattern = 'label:\\s*([^\\s;\\n{]+)\\s*;'
 
-  let createClassName = (styles, identifierName) => {
-    return hashString(styles + identifierName) + identifierName
+  let createClassName = (styles, identifierName, disableHash) => {
+    if (disableHash) {
+      return identifierName.slice(1)
+    } else {
+      return hashString(styles + identifierName) + identifierName
+    }
   }
   if (process.env.NODE_ENV !== 'production') {
     const oldCreateClassName = createClassName
     const sourceMappingUrlPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
-    createClassName = (styles, identifierName) => {
+    createClassName = (styles, identifierName, disableHash) => {
       return oldCreateClassName(
         styles.replace(sourceMappingUrlPattern, sourceMap => {
           currentSourceMap = sourceMap
           return ''
         }),
-        identifierName
+        identifierName,
+        disableHash
       )
     }
   }
 
   const createStyles: CreateStyles<string> = function(
+    forceHash: boolean = false,
     strings: Interpolation | string[],
     ...interpolations: Interpolation[]
   ) {
@@ -272,11 +278,18 @@ function createEmotion(
       }
     }, this)
     stylesWithLabel = styles
-    styles = styles.replace(labelPattern, (match, p1: string) => {
-      identifierName += `-${p1}`
-      return ''
-    })
-    name = createClassName(styles, identifierName)
+    let stylesContainsLabel = false
+    styles = styles.replace(
+      new RegExp(labelPattern, 'g'),
+      (match, p1: string) => {
+        identifierName += `-${p1}`
+        stylesContainsLabel = true
+        return ''
+      }
+    )
+    const disableHash =
+      !forceHash && process.env.NODE_ENV === 'test' && stylesContainsLabel
+    name = createClassName(styles, identifierName, disableHash)
     return styles
   }
 
@@ -295,7 +308,7 @@ function createEmotion(
     }
   }
   const css: CreateStyles<string> = function css() {
-    const styles = createStyles.apply(this, arguments)
+    const styles = createStyles.call(this, false, ...arguments)
     const selector = `${key}-${name}`
 
     if (caches.registered[selector] === undefined) {
@@ -307,7 +320,7 @@ function createEmotion(
   }
 
   const keyframes: CreateStyles<string> = function keyframes() {
-    const styles = createStyles.apply(this, arguments)
+    const styles = createStyles.call(this, false, ...arguments)
     const animation = `animation-${name}`
     insert('', `@keyframes ${animation}{${styles}}`)
 
@@ -315,7 +328,7 @@ function createEmotion(
   }
 
   const injectGlobal: CreateStyles<void> = function injectGlobal() {
-    const styles = createStyles.apply(this, arguments)
+    const styles = createStyles.call(this, true, ...arguments)
     insert('', styles)
   }
 
@@ -325,6 +338,15 @@ function createEmotion(
     classNames.split(' ').forEach(className => {
       if (caches.registered[className] !== undefined) {
         registeredStyles.push(className)
+        if (
+          process.env.NODE_ENV === 'test' &&
+          new RegExp(labelPattern).test(caches.registered[className])
+        ) {
+          let nameWithoutKey = className.substring(
+            emotion.caches.key.length + 1
+          )
+          rawClassName += `${nameWithoutKey} `
+        }
       } else {
         rawClassName += `${className} `
       }
@@ -337,10 +359,12 @@ function createEmotion(
 
     const rawClassName = getRegisteredStyles(registeredStyles, className)
 
+    const otherClasses = css(registeredStyles, sourceMap)
+
     if (registeredStyles.length < 2) {
       return className
     }
-    return rawClassName + css(registeredStyles, sourceMap)
+    return rawClassName + otherClasses
   }
 
   function cx(...classNames: Array<ClassNameArg>) {

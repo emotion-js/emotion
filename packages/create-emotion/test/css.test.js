@@ -362,6 +362,31 @@ describe('css', () => {
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  test('test environment className when label is present', () => {
+    flush()
+    const cls1 = differentCss`
+      float: left;
+      label: label1;
+      label: label2;
+    `
+
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('test environment className without label', () => {
+    flush()
+    const cls1 = differentCss`
+      float: left;
+    `
+
+    const tree = renderer.create(<div className={cls1} />).toJSON()
+    expect(tree).toMatchSnapshot()
+    expect(sheet).toMatchSnapshot()
+  })
+
   test('manually use label property', () => {
     flush()
     const cls1 = differentCss`
