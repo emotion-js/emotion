@@ -3,7 +3,7 @@ const rollup = require('rollup')
 const fs = require('fs')
 const { promisify } = require('util')
 const chalk = require('chalk')
-const { getPackages, cleanDist } = require('./utils')
+const { getPackages, cleanDist, getPath } = require('./utils')
 
 const writeFile = promisify(fs.writeFile)
 
@@ -35,13 +35,35 @@ async function doBuild() {
         if (pkg.configs.length) {
           console.log(chalk.magenta(`Generated bundles for`, pkg.pkg.name))
         }
-        if (someBundle) {
-          await writeFlowFiles(
-            pkg.configs[0].outputConfigs.map(({ file }) => file),
-            someBundle.exports
+        let promises = []
+        if (pkg.pkg.main && !pkg.pkg.main.includes('src')) {
+          let name = pkg.name.replace('@emotion/', '')
+          promises.push(
+            writeFile(
+              getPath(pkg, 'main', false),
+              `'use strict';
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./${name}.prod.cjs.js');
+} else {
+  module.exports = require('./${name}.dev.cjs.js');
+}
+`
+            )
           )
-          console.log(chalk.magenta('Wrote flow files for', pkg.pkg.name))
         }
+
+        if (someBundle && pkg.pkg.main && !pkg.pkg.main.includes('src')) {
+          promises.push(
+            writeFlowFile(
+              getPath(pkg, 'main', false),
+              someBundle.exports.includes('default')
+            )
+          )
+        }
+
+        await Promise.all(promises)
+        console.log(chalk.magenta('Wrote flow files for', pkg.pkg.name))
       } catch (err) {
         console.error(
           'The error below was caused by the package: ',
@@ -54,19 +76,13 @@ async function doBuild() {
   )
 }
 
-async function writeFlowFiles(paths, exportNames) {
-  return Promise.all(
-    paths.map(async path => {
-      await writeFile(
-        path + '.flow',
-        `// @flow
+async function writeFlowFile(filepath, hasDefault) {
+  await writeFile(
+    filepath + '.flow',
+    `// @flow
 export * from '../src/index.js'${
-          exportNames.indexOf('default') !== -1
-            ? `\nexport { default } from '../src/index.js'`
-            : ''
-        }\n`
-      )
-    })
+      hasDefault ? `\nexport { default } from '../src/index.js'` : ''
+    }\n`
   )
 }
 

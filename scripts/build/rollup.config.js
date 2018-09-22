@@ -75,10 +75,18 @@ import type { Package } from './types'
 module.exports = (
   data /*: Package */,
   {
-    isUMD = false,
-    isBrowser = false,
-    isPreact = false
-  } /*: { isUMD:boolean, isBrowser:boolean, isPreact:boolean } */ = {}
+    isUMD,
+    isBrowser,
+    isPreact,
+    isProd,
+    shouldMinify
+  } /*: {
+    isUMD: boolean,
+    isBrowser: boolean,
+    isPreact: boolean,
+    isProd: boolean,
+    shouldMinify: boolean
+  } */
 ) => {
   const { pkg } = data
   let external = []
@@ -184,10 +192,11 @@ module.exports = (
       (isUMD || isPreact) && alias(packageAliases),
       (isUMD || isPreact) && resolve(),
       replace({
-        ...(isUMD ? { 'process.env.NODE_ENV': '"production"' } : {}),
+        ...(isUMD || isProd ? { 'process.env.NODE_ENV': '"production"' } : {}),
         'process.env.PREACT': isPreact ? 'true' : 'false'
       }),
-      isUMD && uglify()
+
+      (isUMD || shouldMinify) && uglify()
     ].filter(Boolean)
   }
 
