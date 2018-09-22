@@ -2,7 +2,7 @@
   "name": "emotion-server",
   "version": "9.2.8",
   "description": "Extract and inline critical css with emotion for server side rendering.",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",
   "files": [
     "src",

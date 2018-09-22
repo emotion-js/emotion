@@ -2,7 +2,7 @@
   "name": "jest-emotion",
   "version": "9.2.7",
   "description": "Jest utilities for emotion",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
