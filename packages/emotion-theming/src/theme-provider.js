@@ -1,12 +1,7 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache, Provider } from '@emotion/core'
+import { ThemeContext } from '@emotion/core'
 import weakMemoize from '@emotion/weak-memoize'
-
-type Props = {
-  theme: Object | (Object => Object),
-  children: React.Node
-}
 
 let getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   if (typeof theme === 'function') {
@@ -35,19 +30,32 @@ let getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   return { ...outerTheme, ...theme }
 }
 
-let createCacheWithTheme = weakMemoize(cache => {
+let createCacheWithTheme = weakMemoize(outerTheme => {
   return weakMemoize(theme => {
-    let actualTheme = getTheme(cache.theme, theme)
-    return {
-      ...cache,
-      theme: actualTheme
-    }
+    return getTheme(outerTheme, theme)
   })
 })
 
-export default withEmotionCache((props: Props, context) => {
-  if (props.theme !== context.theme) {
-    context = createCacheWithTheme(context)(props.theme)
-  }
-  return <Provider value={context}>{props.children}</Provider>
-})
+type Props = {
+  theme: Object | (Object => Object),
+  children: React.Node
+}
+
+let ThemeProvider = (props: Props) => {
+  return (
+    <ThemeContext.Consumer>
+      {theme => {
+        if (props.theme !== theme) {
+          theme = createCacheWithTheme(theme)(props.theme)
+        }
+        return (
+          <ThemeContext.Provider value={theme}>
+            {props.children}
+          </ThemeContext.Provider>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
+}
+
+export default ThemeProvider

@@ -1,17 +1,78 @@
 // @flow
 import * as React from 'react'
-import { consume } from './context'
+import { consume, ThemeContext } from './context'
 import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
+
+let render = (context, props, type, args, theme: null | Object) => {
+  let registeredStyles = []
+
+  let className = ''
+  if (props.className !== undefined) {
+    className = getRegisteredStyles(
+      context.registered,
+      registeredStyles,
+      props.className
+    )
+  }
+  registeredStyles.push(theme === null ? props.css(theme) : props.css)
+  const serialized = serializeStyles(context.registered, registeredStyles)
+  const rules = insertStyles(context, serialized, typeof type === 'string')
+  className += `${context.key}-${serialized.name}`
+
+  const newProps = {}
+  for (let key in props) {
+    if (Object.prototype.hasOwnProperty.call(props, key) && key !== 'css') {
+      newProps[key] = props[key]
+    }
+  }
+  newProps.className = className
+
+  let argsLength = args.length
+
+  let createElementArgArray = new Array(argsLength)
+  createElementArgArray[0] = type
+  createElementArgArray[1] = newProps
+
+  for (let i = 2; i < argsLength; i++) {
+    createElementArgArray[i] = args[i]
+  }
+
+  // $FlowFixMe
+  const ele = React.createElement.apply(undefined, createElementArgArray)
+  if (!isBrowser && rules !== undefined) {
+    let serializedNames = serialized.name
+    let next = serialized.next
+    while (next !== undefined) {
+      serializedNames += ' ' + next.name
+      next = next.next
+    }
+    return (
+      <React.Fragment>
+        <style
+          {...{
+            [`data-emotion-${context.key}`]: serializedNames,
+            dangerouslySetInnerHTML: { __html: rules },
+            nonce: context.sheet.nonce
+          }}
+        />
+        {ele}
+      </React.Fragment>
+    )
+  }
+  return ele
+}
 
 // $FlowFixMe
 export const jsx: typeof React.createElement = function(
   type: React.ElementType,
   props: Object
 ) {
+  let args = arguments
+
   if (props == null || props.css == null) {
     // $FlowFixMe
-    return React.createElement.apply(undefined, arguments)
+    return React.createElement.apply(undefined, args)
   }
 
   if (
@@ -26,65 +87,15 @@ export const jsx: typeof React.createElement = function(
       }\``
     )
   }
-
   return consume(context => {
-    let registeredStyles = []
-
-    let className = ''
-    if (props.className !== undefined) {
-      className = getRegisteredStyles(
-        context.registered,
-        registeredStyles,
-        props.className
-      )
-    }
-    registeredStyles.push(
-      typeof props.css === 'function' ? props.css(context.theme) : props.css
-    )
-    const serialized = serializeStyles(context.registered, registeredStyles)
-    const rules = insertStyles(context, serialized, typeof type === 'string')
-    className += `${context.key}-${serialized.name}`
-
-    const newProps = {}
-    for (let key in props) {
-      if (Object.prototype.hasOwnProperty.call(props, key) && key !== 'css') {
-        newProps[key] = props[key]
-      }
-    }
-    newProps.className = className
-
-    let argsLength = arguments.length
-
-    let createElementArgArray = new Array(argsLength)
-    createElementArgArray[0] = type
-    createElementArgArray[1] = newProps
-
-    for (let i = 2; i < argsLength; i++) {
-      createElementArgArray[i] = arguments[i]
-    }
-
-    // $FlowFixMe
-    const ele = React.createElement.apply(undefined, createElementArgArray)
-    if (!isBrowser && rules !== undefined) {
-      let serializedNames = serialized.name
-      let next = serialized.next
-      while (next !== undefined) {
-        serializedNames += ' ' + next.name
-        next = next.next
-      }
+    // use Context.read for the theme when it's stable
+    if (typeof props.css === 'function') {
       return (
-        <React.Fragment>
-          <style
-            {...{
-              [`data-emotion-${context.key}`]: serializedNames,
-              dangerouslySetInnerHTML: { __html: rules },
-              nonce: context.sheet.nonce
-            }}
-          />
-          {ele}
-        </React.Fragment>
+        <ThemeContext.Consumer>
+          {theme => render(context, props, type, args, theme)}
+        </ThemeContext.Consumer>
       )
     }
-    return ele
+    return render(context, props, type, args, null)
   })
 }

@@ -5,7 +5,7 @@
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import cases from 'jest-in-case'
-import { jsx, Global, keyframes, Provider } from '@emotion/core'
+import { jsx, Global, keyframes, CacheProvider } from '@emotion/core'
 import styled from '@emotion/styled'
 import css from '@emotion/css'
 import createCache from '@emotion/cache'
@@ -82,7 +82,7 @@ cases(
           color: hotpink;
         `
         return (
-          <Provider value={createCache({ nonce: 'some-nonce' })}>
+          <CacheProvider value={createCache({ nonce: 'some-nonce' })}>
             <SomeComponent />
             <div css={{ color: 'hotpink' }} />
             <Global
@@ -94,7 +94,7 @@ cases(
                 }
               }}
             />
-          </Provider>
+          </CacheProvider>
         )
       }
     }

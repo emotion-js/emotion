@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache } from './context'
+import { withEmotionCache, ThemeContext } from './context'
 import {
   isBrowser,
   type EmotionCache,
@@ -10,8 +10,10 @@ import {
 import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
 
+type Styles = Object | Array<Object>
+
 type GlobalProps = {
-  styles: Object | Array<Object>
+  +styles: Styles | (Object => Styles)
 }
 
 let warnedAboutCssPropForGlobal = false
@@ -33,11 +35,20 @@ export let Global: React.StatelessFunctionalComponent<
     )
     warnedAboutCssPropForGlobal = true
   }
-  let serialized = serializeStyles(cache.registered, [
-    typeof props.styles === 'function'
-      ? props.styles(cache.theme)
-      : props.styles
-  ])
+  let styles = props.styles
+
+  if (typeof styles === 'function') {
+    return (
+      <ThemeContext.Consumer>
+        {theme => {
+          let serialized = serializeStyles(cache.registered, [styles(theme)])
+
+          return <InnerGlobal serialized={serialized} cache={cache} />
+        }}
+      </ThemeContext.Consumer>
+    )
+  }
+  let serialized = serializeStyles(cache.registered, [styles])
 
   return <InnerGlobal serialized={serialized} cache={cache} />
 })

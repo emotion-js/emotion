@@ -93,8 +93,7 @@ let createCache = (options?: Options): EmotionCache => {
     }),
     nonce: options.nonce,
     inserted,
-    registered: {},
-    theme: {}
+    registered: {}
   }
   return cache
 }

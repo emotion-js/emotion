@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/dev-mode'
 import { throwIfFalsy } from 'test-utils'
-import { jsx, Provider } from '@emotion/core'
+import { jsx, CacheProvider } from '@emotion/core'
 import { render } from 'react-dom'
 import { css, cache } from 'emotion'
 
@@ -12,9 +12,9 @@ test('composition works from old emotion css calls', cb => {
   `
   throwIfFalsy(document.body).innerHTML = '<div id="root"></div>'
   render(
-    <Provider value={cache}>
+    <CacheProvider value={cache}>
       <div css={cls} />
-    </Provider>,
+    </CacheProvider>,
     throwIfFalsy(document.getElementById('root')),
     () => {
       expect(document.documentElement).toMatchSnapshot()

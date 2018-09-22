@@ -5,7 +5,7 @@ import { safeQuerySelector, throwIfFalsy } from 'test-utils'
 import cases from 'jest-in-case'
 import * as renderer from 'react-test-renderer'
 import createCache from '@emotion/cache'
-import { Provider } from '@emotion/core'
+import { CacheProvider } from '@emotion/core'
 
 cases(
   'keyframes',
@@ -14,7 +14,7 @@ cases(
     let cache = createCache()
     expect(
       renderer
-        .create(<Provider value={cache}>{opts.render()}</Provider>)
+        .create(<CacheProvider value={cache}>{opts.render()}</CacheProvider>)
         .toJSON()
     ).toMatchSnapshot()
     expect(

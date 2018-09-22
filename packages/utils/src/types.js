@@ -15,7 +15,6 @@ export type EmotionCache = {
   inserted: { [string]: string | true },
   registered: RegisteredCache,
   sheet: StyleSheet,
-  theme: Object,
   key: string,
   compat?: true,
   nonce?: string

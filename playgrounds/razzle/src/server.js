@@ -6,7 +6,7 @@ import express from 'express'
 import { renderToString } from 'react-dom/server'
 import { renderStylesToString } from 'emotion-server'
 import { cache } from 'emotion'
-import { Provider } from '@emotion/core'
+import { CacheProvider } from '@emotion/core'
 
 // $FlowFixMe
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
@@ -19,11 +19,11 @@ server
     const context = {}
     const markup = renderStylesToString(
       renderToString(
-        <Provider value={cache}>
+        <CacheProvider value={cache}>
           <StaticRouter context={context} location={req.url}>
             <App />
           </StaticRouter>
-        </Provider>
+        </CacheProvider>
       )
     )
 
