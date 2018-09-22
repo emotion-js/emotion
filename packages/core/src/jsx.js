@@ -15,7 +15,7 @@ let render = (context, props, type, args, theme: null | Object) => {
       props.className
     )
   }
-  registeredStyles.push(theme === null ? props.css(theme) : props.css)
+  registeredStyles.push(theme === null ? props.css : props.css(theme))
   const serialized = serializeStyles(context.registered, registeredStyles)
   const rules = insertStyles(context, serialized, typeof type === 'string')
   className += `${context.key}-${serialized.name}`
