@@ -222,19 +222,9 @@ let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 // it in the middle of serialization to add styles from keyframes
 let styles = ''
 
-let sourceMap
-
-let replaceStyles = () => {}
-
+let sourceMapPattern
 if (process.env.NODE_ENV !== 'production') {
-  let sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
-
-  replaceStyles = () => {
-    styles = styles.replace(sourceMapPattern, match => {
-      sourceMap = match
-      return ''
-    })
-  }
+  sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
 }
 
 // this is the cursor for keyframes
@@ -256,7 +246,6 @@ export const serializeStyles = function(
   }
   let stringMode = true
   styles = ''
-  sourceMap = undefined
   cursor = undefined
 
   let strings = args[0]
@@ -291,8 +280,14 @@ export const serializeStyles = function(
       styles += strings[i]
     }
   }
+  let sourceMap
 
-  replaceStyles()
+  if (process.env.NODE_ENV !== 'production') {
+    styles = styles.replace(sourceMapPattern, match => {
+      sourceMap = match
+      return ''
+    })
+  }
 
   // using a global regex with .exec is stateful so lastIndex has to be reset each time
   labelPattern.lastIndex = 0
@@ -309,10 +304,17 @@ export const serializeStyles = function(
 
   let name = hashString(styles) + identifierName
 
+  if (process.env.NODE_ENV !== 'production') {
+    return {
+      name,
+      styles,
+      map: sourceMap,
+      next: cursor
+    }
+  }
   return {
     name,
     styles,
-    map: sourceMap,
     next: cursor
   }
 }
