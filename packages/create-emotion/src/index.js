@@ -229,24 +229,30 @@ function createEmotion(
 
   const labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 
-  let createClassName = (styles, identifierName) => {
-    return hashString(styles + identifierName) + identifierName
+  let createClassName = (styles, identifierName, disableHash) => {
+    if (disableHash) {
+      return identifierName.slice(1)
+    } else {
+      return hashString(styles + identifierName) + identifierName
+    }
   }
   if (process.env.NODE_ENV !== 'production') {
     const oldCreateClassName = createClassName
     const sourceMappingUrlPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
-    createClassName = (styles, identifierName) => {
+    createClassName = (styles, identifierName, disableHash) => {
       return oldCreateClassName(
         styles.replace(sourceMappingUrlPattern, sourceMap => {
           currentSourceMap = sourceMap
           return ''
         }),
-        identifierName
+        identifierName,
+        disableHash
       )
     }
   }
 
   const createStyles: CreateStyles<string> = function(
+    forceHash: boolean = false,
     strings: Interpolation | string[],
     ...interpolations: Interpolation[]
   ) {
@@ -272,11 +278,15 @@ function createEmotion(
       }
     }, this)
     stylesWithLabel = styles
+    let stylesContainsLabel = false
     styles = styles.replace(labelPattern, (match, p1: string) => {
       identifierName += `-${p1}`
+      stylesContainsLabel = true
       return ''
     })
-    name = createClassName(styles, identifierName)
+    const disableHash =
+      !forceHash && process.env.NODE_ENV === 'test' && stylesContainsLabel
+    name = createClassName(styles, identifierName, disableHash)
     return styles
   }
 
@@ -295,7 +305,7 @@ function createEmotion(
     }
   }
   const css: CreateStyles<string> = function css() {
-    const styles = createStyles.apply(this, arguments)
+    const styles = createStyles.call(this, false, ...arguments)
     const selector = `${key}-${name}`
 
     if (caches.registered[selector] === undefined) {
@@ -307,7 +317,7 @@ function createEmotion(
   }
 
   const keyframes: CreateStyles<string> = function keyframes() {
-    const styles = createStyles.apply(this, arguments)
+    const styles = createStyles.call(this, false, ...arguments)
     const animation = `animation-${name}`
     insert('', `@keyframes ${animation}{${styles}}`)
 
@@ -315,7 +325,7 @@ function createEmotion(
   }
 
   const injectGlobal: CreateStyles<void> = function injectGlobal() {
-    const styles = createStyles.apply(this, arguments)
+    const styles = createStyles.call(this, true, ...arguments)
     insert('', styles)
   }
 

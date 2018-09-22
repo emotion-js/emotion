@@ -19,11 +19,11 @@ exports[`meta css generated class name should have the correct id 1`] = `
 `;
 
 exports[`meta css generated class name should have the correct id 2`] = `
-".css-1staf2a-cls1 {
+".css-cls1 {
   color: blue;
 }
 
-.css-14o1mnu-cls2 .css-1staf2a-cls1 {
+.css-cls2 .css-cls1 {
   color: red;
 }"
 `;
@@ -76,18 +76,18 @@ exports[`meta css prop correctly adds the id 3`] = `
 `;
 
 exports[`meta css prop correctly adds the id 4`] = `
-".css-1bl9k6-SFC {
+".css-SFC {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.css-ptjj1k-ClsComp {
+.css-ClsComp {
   display: grid;
 }
 
-.css-c6rdfv-hoc {
+.css-hoc {
   display: block;
 }"
 `;
@@ -103,7 +103,7 @@ exports[`meta manually use label property 1`] = `
 `;
 
 exports[`meta manually use label property 2`] = `
-".css-1sy7nqn-wow-cls1 {
+".css-wow-cls1 {
   color: blue;
 }"
 `;

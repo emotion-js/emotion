@@ -18,16 +18,16 @@ exports[`styled with autoLabel composition 1`] = `
 `;
 
 exports[`styled with autoLabel composition 2`] = `
-".css-1nvqkkc-cssA {
+".css-cssA {
   color: blue;
 }
 
-.css-1mq2fmo-cssA-cssB {
+.css-cssA-cssB {
   color: blue;
   color: red;
 }
 
-.css-1ep83l4-BlueH1-cssA-cssB-FinalH2 {
+.css-BlueH1-cssA-cssB-FinalH2 {
   color: blue;
   color: red;
   color: blue;
@@ -60,19 +60,19 @@ exports[`styled with autoLabel composition with objects 1`] = `
 `;
 
 exports[`styled with autoLabel composition with objects 2`] = `
-".css-10adwdu-cssB {
+".css-cssB {
   color: #333;
   font-size: 1.333em;
   height: 64px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
-  .css-10adwdu-cssB {
+  .css-cssB {
     font-size: 1.4323121856191332em;
   }
 }
 
-.css-vtmoew-H1-cssB-H2 {
+.css-H1-cssB-H2 {
   color: #333;
   font-size: 1.333em;
   height: 64px;
@@ -81,7 +81,7 @@ exports[`styled with autoLabel composition with objects 2`] = `
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
-  .css-vtmoew-H1-cssB-H2 {
+  .css-H1-cssB-H2 {
     font-size: 1.4323121856191332em;
   }
 }"
@@ -103,11 +103,11 @@ exports[`styled with autoLabel higher order component 1`] = `
 `;
 
 exports[`styled with autoLabel higher order component 2`] = `
-".css-l19ikj-squirtleBlueBackground {
+".css-squirtleBlueBackground {
   background-color: #7fc8d6;
 }
 
-.css-cairh6-Content-NewComponent-squirtleBlueBackground {
+.css-Content-NewComponent-squirtleBlueBackground {
   font-size: 20px;
   background-color: #7fc8d6;
   background-color: '#343a40';
