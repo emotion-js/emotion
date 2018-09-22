@@ -13,5 +13,9 @@
     "src",
     "dist"
   ],
-  "umd:main": "./dist/index.min.js"
+  "umd:main": "./dist/index.min.js",
+  "browser": {
+    "./dist/unitless.cjs.js": "./dist/unitless.browser.cjs.js",
+    "./dist/unitless.esm.js": "./dist/unitless.browser.esm.js"
+  }
 }

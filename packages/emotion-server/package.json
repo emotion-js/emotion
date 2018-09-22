@@ -43,5 +43,8 @@
   },
   "publishConfig": {
     "tag": "next"
+  },
+  "browser": {
+    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
   }
 }

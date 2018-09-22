@@ -16,5 +16,8 @@
     "src",
     "dist"
   ],
-  "umd:main": "./dist/index.min.js"
+  "umd:main": "./dist/index.min.js",
+  "browser": {
+    "./dist/is-prop-valid.cjs.js": "./dist/is-prop-valid.browser.cjs.js"
+  }
 }

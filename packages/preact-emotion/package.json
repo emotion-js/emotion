@@ -41,5 +41,8 @@
   "umd:main": "./dist/emotion.umd.min.js",
   "publishConfig": {
     "tag": "next"
+  },
+  "browser": {
+    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
   }
 }

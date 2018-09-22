@@ -1,4 +1,5 @@
 // @flow
+const prettier = require('rollup-plugin-prettier')
 const resolve = require('rollup-plugin-node-resolve')
 const { uglify } = require('rollup-plugin-uglify')
 const babel = require('rollup-plugin-babel')
@@ -6,7 +7,7 @@ const alias = require('rollup-plugin-alias')
 const cjs = require('rollup-plugin-commonjs')
 const replace = require('rollup-plugin-replace')
 const lernaAliases = require('lerna-alias').rollup
-let chalk = require('chalk')
+const chalk = require('chalk')
 
 // this makes sure nested imports of external packages are external
 const makeExternalPredicate = externalArr => {
@@ -79,13 +80,13 @@ module.exports = (
     isBrowser,
     isPreact,
     isProd,
-    shouldMinify
+    shouldMinifyButStillBePretty
   } /*: {
     isUMD: boolean,
     isBrowser: boolean,
     isPreact: boolean,
     isProd: boolean,
-    shouldMinify: boolean
+    shouldMinifyButStillBePretty: boolean
   } */
 ) => {
   const { pkg } = data
@@ -196,7 +197,12 @@ module.exports = (
         'process.env.PREACT': isPreact ? 'true' : 'false'
       }),
 
-      (isUMD || shouldMinify) && uglify()
+      isUMD && uglify(),
+      shouldMinifyButStillBePretty &&
+        uglify({
+          mangle: false
+        }),
+      shouldMinifyButStillBePretty && prettier({ parser: 'babylon' })
     ].filter(Boolean)
   }
 

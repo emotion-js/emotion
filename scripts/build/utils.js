@@ -61,7 +61,7 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
             isUMD: false,
             isPreact,
             isProd: false,
-            shouldMinify: false
+            shouldMinifyButStillBePretty: false
           }),
           outputConfigs: getOutputConfigs(ret)
         })
@@ -72,7 +72,7 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
             isUMD: false,
             isPreact,
             isProd: true,
-            shouldMinify: true
+            shouldMinifyButStillBePretty: true
           }),
           outputConfigs: [
             {
@@ -90,7 +90,7 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
             isUMD: true,
             isPreact,
             isProd: false,
-            shouldMinify: false
+            shouldMinifyButStillBePretty: false
           }),
           outputConfigs: [getUMDOutputConfig(ret)]
         })
@@ -102,7 +102,7 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
             isUMD: false,
             isPreact,
             isProd: false,
-            shouldMinify: false
+            shouldMinifyButStillBePretty: false
           }),
           outputConfigs: getOutputConfigs(ret, true)
         })
