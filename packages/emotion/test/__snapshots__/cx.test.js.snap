@@ -67,6 +67,19 @@ exports[`cx merge 4 1`] = `
 />
 `;
 
+exports[`cx merge 5 1`] = `
+.emotion-0 {
+  font-size: 20px;
+  background: green;
+  font-size: 20px;
+  background: blue;
+}
+
+<div
+  className="cls1 cls2 modal emotion-0"
+/>
+`;
+
 exports[`cx no extra whitespace 1`] = `"blockquote news"`;
 
 exports[`cx no extra whitespace 2`] = `"group news"`;

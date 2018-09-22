@@ -227,7 +227,7 @@ function createEmotion(
   let name
   let stylesWithLabel
 
-  const labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
+  const labelPattern = 'label:\\s*([^\\s;\\n{]+)\\s*;'
 
   let createClassName = (styles, identifierName, disableHash) => {
     if (disableHash) {
@@ -279,11 +279,14 @@ function createEmotion(
     }, this)
     stylesWithLabel = styles
     let stylesContainsLabel = false
-    styles = styles.replace(labelPattern, (match, p1: string) => {
-      identifierName += `-${p1}`
-      stylesContainsLabel = true
-      return ''
-    })
+    styles = styles.replace(
+      new RegExp(labelPattern, 'g'),
+      (match, p1: string) => {
+        identifierName += `-${p1}`
+        stylesContainsLabel = true
+        return ''
+      }
+    )
     const disableHash =
       !forceHash && process.env.NODE_ENV === 'test' && stylesContainsLabel
     name = createClassName(styles, identifierName, disableHash)
@@ -335,6 +338,15 @@ function createEmotion(
     classNames.split(' ').forEach(className => {
       if (caches.registered[className] !== undefined) {
         registeredStyles.push(className)
+        if (
+          process.env.NODE_ENV === 'test' &&
+          new RegExp(labelPattern).test(caches.registered[className])
+        ) {
+          let nameWithoutKey = className.substring(
+            emotion.caches.key.length + 1
+          )
+          rawClassName += `${nameWithoutKey} `
+        }
       } else {
         rawClassName += `${className} `
       }
@@ -347,10 +359,12 @@ function createEmotion(
 
     const rawClassName = getRegisteredStyles(registeredStyles, className)
 
+    const otherClasses = css(registeredStyles, sourceMap)
+
     if (registeredStyles.length < 2) {
       return className
     }
-    return rawClassName + css(registeredStyles, sourceMap)
+    return rawClassName + otherClasses
   }
 
   function cx(...classNames: Array<ClassNameArg>) {
