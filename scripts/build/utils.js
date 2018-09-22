@@ -137,6 +137,12 @@ function getProdPath(cjsPath /*: string */) {
   return cjsPath.replace('.js', '.prod.js')
 }
 
+Object.assign(exports, {
+  getPath,
+  getDevPath,
+  getProdPath
+})
+
 function getOutputConfigs(pkg, isBrowser = false) {
   const cjsPath = getPath(pkg, 'main', isBrowser)
   let configs = [

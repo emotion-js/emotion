@@ -3,7 +3,14 @@ const rollup = require('rollup')
 const fs = require('fs')
 const { promisify } = require('util')
 const chalk = require('chalk')
-const { getPackages, cleanDist, getPath } = require('./utils')
+const path = require('path')
+const {
+  getPackages,
+  cleanDist,
+  getPath,
+  getDevPath,
+  getProdPath
+} = require('./utils')
 
 const writeFile = promisify(fs.writeFile)
 
@@ -37,16 +44,23 @@ async function doBuild() {
         }
         let promises = []
         if (pkg.pkg.main && !pkg.pkg.main.includes('src')) {
-          let name = pkg.name.replace('@emotion/', '')
+          let filepath = getPath(pkg, 'main', false)
+          let directory = path.parse(filepath).dir
           promises.push(
             writeFile(
-              getPath(pkg, 'main', false),
+              filepath,
               `'use strict';
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./${name}.prod.cjs.js');
+  module.exports = require('./${path.relative(
+    directory,
+    getProdPath(filepath)
+  )}');
 } else {
-  module.exports = require('./${name}.dev.cjs.js');
+  module.exports = require('./${path.relative(
+    directory,
+    getDevPath(filepath)
+  )}');
 }
 `
             )
