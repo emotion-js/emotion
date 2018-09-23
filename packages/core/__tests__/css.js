@@ -1,9 +1,10 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
-import { jsx, css } from '@emotion/core'
+import { jsx, css, CacheProvider } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 import renderer from 'react-test-renderer'
+import createCache from '@emotion/cache'
 
 const SomeComponent = (props: { lol: true }) => (props.lol ? 'yes' : 'no')
 
@@ -118,4 +119,21 @@ test('nested at rule', () => {
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('can set speedy via custom cache', () => {
+  let cache = createCache({ speedy: true })
+  renderer.create(
+    <CacheProvider value={cache}>
+      <div
+        css={{
+          color: 'hotpink'
+        }}
+      >
+        <span css={{ color: 'yellow' }}>wow</span>
+        something
+      </div>
+    </CacheProvider>
+  )
+  expect(cache.sheet.tags).toHaveLength(1)
 })

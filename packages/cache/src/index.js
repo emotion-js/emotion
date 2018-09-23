@@ -16,7 +16,8 @@ export type Options = {
   stylisPlugins?: StylisPlugins,
   prefix?: PrefixOption,
   key?: string,
-  container?: HTMLElement
+  container?: HTMLElement,
+  speedy?: boolean
 }
 
 let createCache = (options?: Options): EmotionCache => {
@@ -89,7 +90,8 @@ let createCache = (options?: Options): EmotionCache => {
     sheet: new StyleSheet({
       key,
       container,
-      nonce: options.nonce
+      nonce: options.nonce,
+      speedy: options.speedy
     }),
     nonce: options.nonce,
     inserted,
