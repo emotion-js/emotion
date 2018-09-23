@@ -128,14 +128,14 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('innerRef', () => {
+  it('ref', () => {
     const Text = styled('p')`
       color: hotpink;
     `
     let ref = React.createRef()
     const rootNode = document.createElement('div')
 
-    render(<Text innerRef={ref} id="something" />, rootNode)
+    render(<Text ref={ref} id="something" />, rootNode)
     expect(ref.current).toBe(rootNode.querySelector('#something'))
     unmountComponentAtNode(rootNode)
   })

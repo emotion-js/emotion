@@ -35,7 +35,7 @@ export function createStyled(
           <ThemeContext.Consumer>
             {theme => {
               let mergedProps = pickAssign(testAlwaysTrue, {}, props, {
-                theme: props.theme
+                theme: props.theme || theme
               })
               let stylesWithStyleProp = styles
               if (props.style) {
