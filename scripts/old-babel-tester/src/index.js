@@ -59,32 +59,3 @@ export const createInlineTests = (title: string, cases: EmotionTestCases) => {
     makeCases('babel 7', createInlineTester(babel7), cases)
   })
 }
-
-const createMacroTester = babel => opts => {
-  if (!opts.opts) opts.opts = {}
-  const { code, ast } = babel.transform(opts.code, {
-    plugins: [
-      [
-        require('babel-plugin-macros'),
-        {
-          ...opts.opts
-        }
-      ]
-    ],
-    babelrc: false,
-    filename: opts.filename || __filename,
-    ast: true,
-    ...(isBabel7(babel) ? { configFile: false } : {})
-  })
-  if (isBabel7(babel)) {
-    expect(() => checkDuplicatedNodes(babel, ast)).not.toThrow()
-  }
-  expect(code).toMatchSnapshot()
-}
-
-export const createMacroTests = (title: string, cases: EmotionTestCases) => {
-  describe(title, () => {
-    makeCases('babel 6', createMacroTester(babel6), cases)
-    makeCases('babel 7', createMacroTester(babel7), cases)
-  })
-}
