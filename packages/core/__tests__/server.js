@@ -117,6 +117,21 @@ cases(
           />
         )
       }
+    },
+    'styled with keyframes': {
+      render: () => {
+        const SomeComponent = styled.div({
+          animation: `${keyframes({
+            'from,to': {
+              color: 'green'
+            },
+            '50%': {
+              color: 'hotpink'
+            }
+          })} 1s`
+        })
+        return <SomeComponent />
+      }
     }
   }
 )

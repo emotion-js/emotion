@@ -71,6 +71,16 @@ exports[`ssr only render a style once with the css prop 1`] = `
 
 `;
 
+exports[`ssr styled with keyframes 1`] = `
+
+<style data-emotion-css="1y9glrp animation-ocj8pk">
+  @-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}@keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}.css-1y9glrp{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}
+</style>
+<div class="css-1y9glrp">
+</div>
+
+`;
+
 exports[`ssr works with nonces 1`] = `
 
 <style data-emotion-css="181qz4b"
