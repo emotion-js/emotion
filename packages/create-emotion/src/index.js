@@ -75,11 +75,10 @@ let createEmotion = (options: *): Emotion => {
 
   // $FlowFixMe
   cache.sheet.speedy = function(value: boolean) {
-    if (this.ctr !== 0) {
+    if (process.env.NODE_ENV !== 'production' && this.ctr !== 0) {
       throw new Error('speedy must be changed before any rules are inserted')
     }
     this.isSpeedy = value
-    this.maxLength = value ? 65000 : 1
   }
   cache.compat = true
 

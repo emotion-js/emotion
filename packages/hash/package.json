@@ -1,6 +1,6 @@
 {
   "name": "@emotion/hash",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "A MurmurHash2 implementation",
   "main": "dist/hash.cjs.js",
   "module": "dist/hash.esm.js",
@@ -13,5 +13,9 @@
     "src",
     "dist"
   ],
-  "umd:main": "./dist/index.min.js"
+  "umd:main": "./dist/index.min.js",
+  "browser": {
+    "./dist/hash.cjs.js": "./dist/hash.browser.cjs.js",
+    "./dist/hash.esm.js": "./dist/hash.browser.esm.js"
+  }
 }

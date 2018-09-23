@@ -1,6 +1,6 @@
 {
   "name": "@emotion/weak-memoize",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A memoization function that uses a WeakMap",
   "main": "dist/weak-memoize.cjs.js",
   "module": "dist/weak-memoize.esm.js",
@@ -13,5 +13,8 @@
     "src",
     "dist"
   ],
-  "umd:main": "./dist/index.min.js"
+  "umd:main": "./dist/index.min.js",
+  "browser": {
+    "./dist/weak-memoize.cjs.js": "./dist/weak-memoize.browser.cjs.js"
+  }
 }

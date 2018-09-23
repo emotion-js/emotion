@@ -98,4 +98,16 @@ describe('StyleSheet', () => {
     // $FlowFixMe
     document.body.removeChild(container)
   })
+
+  it('should not throw an error when inserting a @import rule in speedy when a rule has already been inserted', () => {
+    const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
+    sheet.insert('h1 {color:hotpink;}')
+    let importRule =
+      "@import url('https://fonts.googleapis.com/css?family=Merriweather');"
+    sheet.insert(importRule)
+    expect(sheet.tags).toHaveLength(1)
+    // $FlowFixMe
+    expect(sheet.tags[0].sheet.cssRules[0]).toBeInstanceOf(window.CSSImportRule)
+    sheet.flush()
+  })
 })

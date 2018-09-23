@@ -2,7 +2,7 @@
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
-import { Global } from '@emotion/core'
+import { Global, keyframes } from '@emotion/core'
 
 beforeEach(() => {
   // $FlowFixMe
@@ -17,6 +17,16 @@ test('basic', () => {
       styles={{
         html: {
           backgroundColor: 'hotpink'
+        },
+        h1: {
+          animation: `${keyframes({
+            'from,to': {
+              color: 'green'
+            },
+            '50%': {
+              color: 'hotpink'
+            }
+          })} 1s`
         },
         '@font-face': {
           fontFamily: 'some-name'

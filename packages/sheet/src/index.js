@@ -43,8 +43,7 @@ export type Options = {
   nonce?: string,
   key: string,
   container: HTMLElement,
-  speedy?: boolean,
-  maxLength?: number
+  speedy?: boolean
 }
 
 function createStyleElement(options: {
@@ -65,7 +64,6 @@ export class StyleSheet {
   ctr: number
   tags: HTMLStyleElement[]
   container: HTMLElement
-  maxLength: number
   key: string
   nonce: string | void
   before: Element | null | void
@@ -74,10 +72,6 @@ export class StyleSheet {
       options.speedy === undefined
         ? process.env.NODE_ENV === 'production'
         : options.speedy
-    // maxLength is how many rules we have per style tag, it's 65000 in speedy mode
-    // it's 1 in dev because we insert source maps that map a single rule to a location
-    // and you can only have one source map per style tag
-    this.maxLength = this.isSpeedy ? 65000 : 1
     this.tags = []
     this.ctr = 0
     this.nonce = options.nonce
@@ -86,8 +80,10 @@ export class StyleSheet {
     this.container = options.container
   }
   insert(rule: string) {
-    // debugger // eslint-disable-line no-debugger
-    if (this.ctr % this.maxLength === 0) {
+    // the max length is how many rules we have per style tag, it's 65000 in speedy mode
+    // it's 1 in dev because we insert source maps that map a single rule to a location
+    // and you can only have one source map per style tag
+    if (this.ctr % (this.isSpeedy ? 65000 : 1) === 0) {
       let tag = createStyleElement(this)
       let before
       if (this.tags.length === 0) {
@@ -103,9 +99,27 @@ export class StyleSheet {
     if (this.isSpeedy) {
       const sheet = sheetForTag(tag)
       try {
+        // this is a really hot path
+        // we check the second character first because having "i"
+        // as the second character will happen less often than
+        // having "@" as the first character
+        let isImportRule =
+          rule.charCodeAt(1) === 105 && rule.charCodeAt(0) === 64
         // this is the ultrafast version, works across browsers
         // the big drawback is that the css won't be editable in devtools
-        sheet.insertRule(rule, sheet.cssRules.length)
+        sheet.insertRule(
+          rule,
+          // we need to insert @import rules before anything else
+          // otherwise there will be an error
+          // technically this means that the @import rules will
+          // _usually_(not always since there could be multiple style tags)
+          // be the first ones in prod and generally later in dev
+          // this shouldn't really matter in the real world though
+          // @import is generally only used for font faces from google fonts and etc.
+          // so while this could be technically correct then it would be slower and larger
+          // for a tiny bit of correctness that won't matter in the real world
+          isImportRule ? 0 : sheet.cssRules.length
+        )
       } catch (e) {
         if (process.env.NODE_ENV !== 'production') {
           console.warn(

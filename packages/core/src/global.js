@@ -111,18 +111,22 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
   render() {
     if (!isBrowser) {
       let { serialized } = this.props
-      let rules = this.props.cache.stylis(``, serialized.styles)
+
       let serializedNames = serialized.name
+      let serializedStyles = serialized.styles
       let next = serialized.next
       while (next !== undefined) {
         serializedNames += ' ' + next.name
+        serializedStyles += next.styles
         next = next.next
       }
+      let rules = this.props.cache.stylis(``, serializedStyles).join('')
+
       return (
         <style
           {...{
             [`data-emotion-${this.props.cache.key}`]: serializedNames,
-            dangerouslySetInnerHTML: { __html: rules.join('') },
+            dangerouslySetInnerHTML: { __html: rules },
             nonce: this.props.cache.sheet.nonce
           }}
         />

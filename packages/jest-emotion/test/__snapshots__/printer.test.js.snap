@@ -73,3 +73,5 @@ exports[`jest-emotion with dom elements replaces class names and inserts styles 
   />
 </div>"
 `;
+
+exports[`throws nice error for invalid css 1`] = `"There was an error parsing the following css: \\".css-11cntgz{jnnjvhjevhevhb;}\\""`;

@@ -1,6 +1,6 @@
 {
   "name": "@emotion/is-prop-valid",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "description": "A function to check whether a prop is valid for HTML and SVG elements",
   "main": "dist/is-prop-valid.cjs.js",
   "module": "dist/is-prop-valid.esm.js",
@@ -10,11 +10,14 @@
     "access": "public"
   },
   "dependencies": {
-    "@emotion/memoize": "^0.6.5"
+    "@emotion/memoize": "^0.6.6"
   },
   "files": [
     "src",
     "dist"
   ],
-  "umd:main": "./dist/index.min.js"
+  "umd:main": "./dist/index.min.js",
+  "browser": {
+    "./dist/is-prop-valid.cjs.js": "./dist/is-prop-valid.browser.cjs.js"
+  }
 }
