@@ -19,6 +19,14 @@ exports[`ssr global 1`] = `
 
 `;
 
+exports[`ssr global with keyframes 1`] = `
+
+<style data-emotion-css="eti4v9 animation-ocj8pk">
+  h1{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}@-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}@keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+</style>
+
+`;
+
 exports[`ssr keyframes 1`] = `
 
 <style data-emotion-css="q9uc0r animation-1kyaq4y">

@@ -97,6 +97,26 @@ cases(
           </Provider>
         )
       }
+    },
+    'global with keyframes': {
+      render: () => {
+        return (
+          <Global
+            styles={{
+              h1: {
+                animation: `${keyframes({
+                  'from,to': {
+                    color: 'green'
+                  },
+                  '50%': {
+                    color: 'hotpink'
+                  }
+                })} 1s`
+              }
+            }}
+          />
+        )
+      }
     }
   }
 )
