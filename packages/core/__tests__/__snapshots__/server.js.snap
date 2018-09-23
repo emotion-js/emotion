@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ssr @import 1`] = `
+
+<style data-emotion-css="1lrxbo5">
+  .css-1lrxbo5{color:hotpink;}
+</style>
+<div class="css-1lrxbo5">
+</div>
+<style data-emotion-css="1sh9nmh">
+  @import url('https://some-url');h1{color:hotpink;}
+</style>
+
+`;
+
 exports[`ssr basic 1`] = `
 
 <style data-emotion-css="1lrxbo5">
@@ -78,6 +91,19 @@ exports[`ssr styled with keyframes 1`] = `
 </style>
 <div class="css-1y9glrp">
 </div>
+
+`;
+
+exports[`ssr with old api @import 1`] = `
+
+<style data-emotion-css="1lrxbo5">
+  .css-1lrxbo5{color:hotpink;}
+</style>
+<div class="css-1lrxbo5">
+</div>
+<style data-emotion-css="1sh9nmh">
+  @import url('https://some-url');h1{color:hotpink;}
+</style>
 
 `;
 

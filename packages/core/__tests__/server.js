@@ -129,6 +129,25 @@ let cases = {
       })
       return <SomeComponent />
     }
+  },
+  '@import': {
+    render: () => {
+      // while there's nothing too special here
+      // @import has to be the first rule in the style element
+      return (
+        <React.Fragment>
+          <div css={{ color: 'hotpink' }} />
+          <Global
+            styles={css`
+              h1 {
+                color: hotpink;
+              }
+              @import url('https://some-url');
+            `}
+          />
+        </React.Fragment>
+      )
+    }
   }
 }
 
