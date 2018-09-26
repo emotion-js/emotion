@@ -1,26 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled inline babel 6 does not change call expressions 1`] = `
-"
-/*#__PURE__*/styled('SomeFakeComponent', {
-    target: 'e8nbyc50'
-})('color:hotpink;');
-/*#__PURE__*/styled('SomeFakeComponent', {
-    target: 'e8nbyc51'
+"/*#__PURE__*/
+styled('SomeFakeComponent', {
+  target: \\"e1u6ll0g0\\"
+})(\\"color:hotpink;\\");
+
+/*#__PURE__*/
+styled('SomeFakeComponent', {
+  target: \\"e1u6ll0g1\\"
 })({});"
 `;
 
 exports[`styled inline babel 6 does not change to a call expression when beginning with a upper case letter 1`] = `
-"
-/*#__PURE__*/styled.View(\\"color:hotpink;\\");
-/*#__PURE__*/styled.View({});"
+"/*#__PURE__*/
+styled.View(\\"color:hotpink;\\");
+
+/*#__PURE__*/
+styled.View({});"
 `;
 
 exports[`styled inline babel 6 other name with @emotion/primitives 1`] = `
-"
-import someOtherName from '@emotion/primitives';
-/*#__PURE__*/someOtherName.View('color:hotpink;');
-/*#__PURE__*/someOtherName.View({});"
+"import someOtherName from '@emotion/primitives';
+
+/*#__PURE__*/
+someOtherName.View(\\"color:hotpink;\\");
+
+/*#__PURE__*/
+someOtherName.View({});"
 `;
 
 exports[`styled inline babel 7 does not change call expressions 1`] = `
