@@ -11,11 +11,5 @@
   },
   "version": "9.2.10",
   "npmClient": "npm",
-  "packages": [
-    "packages/*",
-    "site",
-    "scripts/*",
-    "next-packages/*",
-    "playgrounds/*"
-  ]
+  "packages": ["packages/*"]
 }
