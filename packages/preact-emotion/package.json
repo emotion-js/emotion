@@ -1,6 +1,6 @@
 {
   "name": "preact-emotion",
-  "version": "9.2.10",
+  "version": "10.0.0-really-unsafe-please-do-not-use.0",
   "description": "The Next Generation of CSS-in-JS, for Preact projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -12,16 +12,16 @@
     "types"
   ],
   "dependencies": {
-    "babel-plugin-emotion": "^9.2.10",
-    "@emotion/preact-styled-base": "^0.10.5"
+    "@emotion/preact-styled-base": "^10.0.0-really-unsafe-please-do-not-use.0",
+    "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.0"
   },
   "peerDependencies": {
     "preact": "8.x"
   },
   "devDependencies": {
-    "emotion": "^9.2.10",
+    "emotion": "^10.0.0-really-unsafe-please-do-not-use.0",
     "preact": "^8.2.9",
-    "react-emotion": "^9.2.10"
+    "react-emotion": "^10.0.0-really-unsafe-please-do-not-use.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

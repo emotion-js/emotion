@@ -1,15 +1,15 @@
 {
   "name": "@emotion/cache",
-  "version": "0.8.8",
+  "version": "10.0.0-really-unsafe-please-do-not-use.0",
   "description": "emotion's cache",
   "main": "dist/cache.cjs.js",
   "module": "dist/cache.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/cache",
   "dependencies": {
-    "@emotion/sheet": "^0.8.1",
-    "@emotion/stylis": "^0.7.1",
-    "@emotion/utils": "^0.8.2"
+    "@emotion/sheet": "^10.0.0-really-unsafe-please-do-not-use.0",
+    "@emotion/stylis": "^10.0.0-really-unsafe-please-do-not-use.0",
+    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.0"
   },
   "publishConfig": {
     "access": "public"

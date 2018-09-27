@@ -1,6 +1,6 @@
 {
   "name": "@emotion/weak-memoize",
-  "version": "0.1.3",
+  "version": "10.0.0-really-unsafe-please-do-not-use.0",
   "description": "A memoization function that uses a WeakMap",
   "main": "dist/weak-memoize.cjs.js",
   "module": "dist/weak-memoize.esm.js",

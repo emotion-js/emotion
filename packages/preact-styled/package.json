@@ -1,14 +1,14 @@
 {
   "name": "@emotion/preact-styled",
-  "version": "0.10.6",
+  "version": "10.0.0-really-unsafe-please-do-not-use.0",
   "description": "styled API for emotion and emotion",
   "main": "dist/styled.cjs.js",
   "module": "dist/styled.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/preact-styled",
   "dependencies": {
-    "@emotion/preact-styled-base": "^0.10.6",
-    "babel-plugin-emotion": "^9.2.10"
+    "@emotion/preact-styled-base": "^10.0.0-really-unsafe-please-do-not-use.0",
+    "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.0"
   },
   "publishConfig": {
     "access": "public"
