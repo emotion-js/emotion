@@ -2,6 +2,7 @@
   "name": "my-razzle-app",
   "version": "0.1.0",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "start": "razzle start",
     "build": "razzle build",
