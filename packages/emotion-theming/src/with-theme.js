@@ -13,7 +13,7 @@ const withTheme = (Component: React.ComponentType<Props>) => {
     return (
       <ThemeContext.Consumer>
         {theme => {
-          return <Component theme={theme} {...props} />
+          return <Component theme={theme} ref={ref} {...props} />
         }}
       </ThemeContext.Consumer>
     )

@@ -92,7 +92,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       }
     }
 
-    const Styled: any = withEmotionCache((props, context) => {
+    const Styled: any = withEmotionCache((props, context, ref) => {
       return (
         <ThemeContext.Consumer>
           {theme => {
@@ -141,6 +141,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
                 newProps.ref = props.innerRef
               }
             } else {
+              newProps.ref = ref
               if (process.env.NODE_ENV !== 'production' && props.innerRef) {
                 console.error(
                   '`innerRef` is no longer allowed, please use the `ref` prop instead'
