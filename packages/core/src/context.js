@@ -5,7 +5,7 @@ import createCache from '@emotion/cache'
 
 let EmotionCacheContext = React.createContext(isBrowser ? createCache() : null)
 
-export let ThemeContext = React.createContext({})
+export let ThemeContext = React.createContext<Object>({})
 export let CacheProvider: React.ComponentType<{ value: EmotionCache }> =
   // $FlowFixMe
   EmotionCacheContext.Provider
