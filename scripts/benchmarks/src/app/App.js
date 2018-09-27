@@ -118,7 +118,9 @@ export default class App extends Component<{}> {
                 </View>
               </View>
               <ScrollView ref={this._setScrollRef} style={styles.grow}>
-                {results.map((result, i) => <ReportCard key={i} {...result} />)}
+                {results.map((result, i) => (
+                  <ReportCard key={i} {...result} />
+                ))}
                 {status === 'running' ? (
                   <ReportCard
                     benchmarkName={currentBenchmarkName}

@@ -140,7 +140,7 @@ export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
         className={css({
           color:
             '#' +
-            Math.round(1 / count * maxColors)
+            Math.round((1 / count) * maxColors)
               .toString(16)
               .padStart(6, '0')
         })}
