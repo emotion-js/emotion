@@ -1,11 +1,11 @@
 // @flow
-import type { Emotion } from 'create-emotion'
+import type { EmotionCache } from '@emotion/utils'
 import through from 'through'
 import tokenize from 'html-tokenize'
 import pipe from 'multipipe'
 
 const createRenderStylesToNodeStream = (
-  emotion: Emotion,
+  cache: EmotionCache,
   nonceString: string
 ) => () => {
   let insed = {}
@@ -20,30 +20,29 @@ const createRenderStylesToNodeStream = (
 
         let match
         let fragment = data.toString()
-        let regex = new RegExp(`${emotion.caches.key}-([a-zA-Z0-9-]+)`, 'gm')
+        let regex = new RegExp(`${cache.key}-([a-zA-Z0-9-]+)`, 'gm')
         while ((match = regex.exec(fragment)) !== null) {
           if (match !== null && insed[match[1]] === undefined) {
             ids[match[1]] = true
           }
         }
-        Object.keys(emotion.caches.inserted).forEach(id => {
+        Object.keys(cache.inserted).forEach(id => {
           if (
-            emotion.caches.inserted[id] !== true &&
+            cache.inserted[id] !== true &&
             insed[id] === undefined &&
             (ids[id] === true ||
-              (emotion.caches.registered[`${emotion.caches.key}-${id}`] ===
-                undefined &&
+              (cache.registered[`${cache.key}-${id}`] === undefined &&
                 (ids[id] = true)))
           ) {
             insed[id] = true
             // $FlowFixMe flow thinks emotion.caches.inserted[id] can be true even though it's checked earlier
-            css += emotion.caches.inserted[id]
+            css += cache.inserted[id]
           }
         })
 
         if (css !== '') {
           this.queue(
-            `<style data-emotion-${emotion.caches.key}="${Object.keys(ids).join(
+            `<style data-emotion-${cache.key}="${Object.keys(ids).join(
               ' '
             )}"${nonceString}>${css}</style>`
           )

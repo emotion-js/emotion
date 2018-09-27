@@ -1,19 +1,16 @@
 // @flow
 import * as React from 'react'
-import { withCSSContext, Provider } from '@emotion/core'
+import { ThemeContext } from '@emotion/core'
 import weakMemoize from '@emotion/weak-memoize'
-
-type Props = {
-  theme: Object | (Object => Object),
-  children: React.Node
-}
 
 let getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   if (typeof theme === 'function') {
     const mergedTheme = theme(outerTheme)
     if (
       process.env.NODE_ENV !== 'production' &&
-      Object.prototype.toString.call(mergedTheme) !== '[object Object]'
+      (mergedTheme == null ||
+        typeof mergedTheme !== 'object' ||
+        Array.isArray(mergedTheme))
     ) {
       throw new Error(
         '[ThemeProvider] Please return an object from your theme function, i.e. theme={() => ({})}!'
@@ -23,7 +20,7 @@ let getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   }
   if (
     process.env.NODE_ENV !== 'production' &&
-    Object.prototype.toString.call(theme) !== '[object Object]'
+    (theme == null || typeof theme !== 'object' || Array.isArray(theme))
   ) {
     throw new Error(
       '[ThemeProvider] Please make your theme prop a plain object'
@@ -33,19 +30,32 @@ let getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   return { ...outerTheme, ...theme }
 }
 
-let createCreateCacheWithTheme = weakMemoize(cache => {
+let createCacheWithTheme = weakMemoize(outerTheme => {
   return weakMemoize(theme => {
-    let actualTheme = getTheme(cache.theme, theme)
-    return {
-      ...cache,
-      theme: actualTheme
-    }
+    return getTheme(outerTheme, theme)
   })
 })
 
-export default withCSSContext((props: Props, context) => {
-  if (props.theme !== context.theme) {
-    context = createCreateCacheWithTheme(context)(props.theme)
-  }
-  return <Provider value={context}>{props.children}</Provider>
-})
+type Props = {
+  theme: Object | (Object => Object),
+  children: React.Node
+}
+
+let ThemeProvider = (props: Props) => {
+  return (
+    <ThemeContext.Consumer>
+      {theme => {
+        if (props.theme !== theme) {
+          theme = createCacheWithTheme(theme)(props.theme)
+        }
+        return (
+          <ThemeContext.Provider value={theme}>
+            {props.children}
+          </ThemeContext.Provider>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
+}
+
+export default ThemeProvider

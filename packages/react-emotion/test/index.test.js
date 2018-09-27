@@ -399,6 +399,6 @@ describe('styled', () => {
     const StyledComponent = styled(SomeComponent)`
       color: hotpink;
     `
-    expect(StyledComponent.displayName).toBe(`Styled(SomeComponent)`)
+    expect(StyledComponent.displayName).toBe(`StyledComponent`)
   })
 })

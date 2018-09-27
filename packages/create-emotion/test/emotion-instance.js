@@ -9,10 +9,13 @@ function stylisPlugin(context, content) {
   }
 }
 
-export const container = document.createElement('div')
+export let container
 
-// $FlowFixMe
-document.head.appendChild(container)
+if (typeof document !== 'undefined') {
+  container = document.createElement('div')
+  // $FlowFixMe
+  document.head.appendChild(container)
+}
 
 const emotion = createEmotion({
   stylisPlugins: stylisPlugin,
@@ -37,13 +40,13 @@ export const {
   keyframes,
   css,
   sheet,
-  caches
+  cache
 } = emotion
 
 export const {
   extractCritical,
   renderStylesToString,
   renderStylesToNodeStream
-} = createEmotionServer(emotion)
+} = createEmotionServer(cache)
 
 export { default } from '@emotion/styled'

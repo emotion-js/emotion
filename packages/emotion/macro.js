@@ -1,1 +1,3 @@
-module.exports = require('babel-plugin-emotion').macros.emotion
+module.exports = require('babel-plugin-emotion').macros.createEmotionMacro(
+  'emotion'
+)

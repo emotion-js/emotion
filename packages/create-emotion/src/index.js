@@ -5,7 +5,7 @@ import {
   insertStyles,
   isBrowser,
   getRegisteredStyles,
-  getClassName
+  type EmotionCache
 } from '@emotion/utils'
 
 function insertWithoutScoping(cache, name: string, styles: string) {
@@ -48,13 +48,6 @@ type ClassNameArg =
   | { [key: string]: boolean }
   | Array<ClassNameArg>
 
-type EmotionCaches = {
-  registered: { [key: string]: string },
-  inserted: { [key: string]: string | true },
-  nonce?: string,
-  key: string
-}
-
 declare class StyleSheet {
   insert(rule: string): void;
   flush(): void;
@@ -72,7 +65,7 @@ export type Emotion = {
   injectGlobal: CreateStyles<void>,
   keyframes: CreateStyles<string>,
   sheet: StyleSheet,
-  caches: EmotionCaches,
+  cache: EmotionCache,
   merge: *,
   getRegisteredStyles: *
 }
@@ -82,11 +75,10 @@ let createEmotion = (options: *): Emotion => {
 
   // $FlowFixMe
   cache.sheet.speedy = function(value: boolean) {
-    if (this.ctr !== 0) {
+    if (process.env.NODE_ENV !== 'production' && this.ctr !== 0) {
       throw new Error('speedy must be changed before any rules are inserted')
     }
     this.isSpeedy = value
-    this.maxLength = value ? 65000 : 1
   }
   cache.compat = true
 
@@ -97,12 +89,12 @@ let createEmotion = (options: *): Emotion => {
       this !== undefined ? this.mergedProps : undefined
     )
     insertStyles(cache, serialized, false)
-    return getClassName(cache, serialized)
+    return `${cache.key}-${serialized.name}`
   }
 
   let keyframes = (...args) => {
     let serialized = serializeStyles(cache.registered, args)
-    let animation = `animation-${serialized.name}${serialized.label || ''}`
+    let animation = `animation-${serialized.name}`
     insertWithoutScoping(
       cache,
       serialized.name,
@@ -136,7 +128,7 @@ let createEmotion = (options: *): Emotion => {
     },
     // $FlowFixMe
     sheet: cache.sheet,
-    caches: cache,
+    cache,
     getRegisteredStyles: getRegisteredStyles.bind(null, cache.registered),
     merge: merge.bind(null, cache.registered, css)
   }

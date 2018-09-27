@@ -15,9 +15,13 @@ exports[`change theme 1`] = `
 `;
 
 exports[`change theme 2`] = `
+.emotion-0 {
+  color: pink;
+}
+
 <div>
   <div
-    class="css-18ry2co eoyn74y0"
+    class="emotion-0 emotion-1"
   >
     this will be green then pink
   </div>

@@ -22,20 +22,15 @@ import type { Package } from './types'
 
 let unsafeRequire = require
 
-let pkgFolders = ['packages', 'next-packages']
+let pkgFolder = 'packages'
 
 exports.getPackages = async function getPackages() /*: Promise<Array<Package>> */ {
   // we're intentionally not getting all the packages that are part of the monorepo
   // we only want ones in packages
-  const packagePaths = [].concat(
-    ...(await Promise.all(
-      pkgFolders.map(async pkgFolder => {
-        return (await readdir(path.join(rootPath, pkgFolder))).map(pkg =>
-          path.join(rootPath, pkgFolder, pkg)
-        )
-      })
-    ))
+  const packagePaths = (await readdir(path.join(rootPath, pkgFolder))).map(
+    pkg => path.join(rootPath, pkgFolder, pkg)
   )
+
   const packages = packagePaths
     .map(packagePath => {
       const fullPackagePath = path.resolve(rootPath, packagePath)
@@ -55,16 +50,37 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
         name: pkgJSON.name,
         input: path.resolve(fullPackagePath, 'src', 'index.js')
       }
-      let isPreact = ret.name.startsWith('@emotion/preact-')
+      let isPreact =
+        ret.name.startsWith('@emotion/preact-') ||
+        ret.name.startsWith('preact-')
 
       if (ret.pkg.main && !ret.pkg.main.includes('src')) {
         ret.configs.push({
           config: makeRollupConfig(ret, {
             isBrowser: false,
             isUMD: false,
-            isPreact
+            isPreact,
+            isProd: false,
+            shouldMinifyButStillBePretty: false
           }),
           outputConfigs: getOutputConfigs(ret)
+        })
+
+        ret.configs.push({
+          config: makeRollupConfig(ret, {
+            isBrowser: false,
+            isUMD: false,
+            isPreact,
+            isProd: true,
+            shouldMinifyButStillBePretty: true
+          }),
+          outputConfigs: [
+            {
+              format: 'cjs',
+              file: getProdPath(getPath(ret, 'main', false)),
+              exports: 'named'
+            }
+          ]
         })
       }
       if (ret.pkg['umd:main']) {
@@ -72,7 +88,9 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
           config: makeRollupConfig(ret, {
             isBrowser: true,
             isUMD: true,
-            isPreact
+            isPreact,
+            isProd: false,
+            shouldMinifyButStillBePretty: false
           }),
           outputConfigs: [getUMDOutputConfig(ret)]
         })
@@ -82,7 +100,9 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
           config: makeRollupConfig(ret, {
             isBrowser: true,
             isUMD: false,
-            isPreact
+            isPreact,
+            isProd: false,
+            shouldMinifyButStillBePretty: false
           }),
           outputConfigs: getOutputConfigs(ret, true)
         })
@@ -94,7 +114,11 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
   return packages
 }
 
-function getPath(pkg, field, isBrowser) {
+function getPath(
+  pkg /*: Object */,
+  field /*: string */,
+  isBrowser /*: boolean */
+) {
   return path.resolve(
     pkg.path,
     isBrowser && pkg.pkg.browser && pkg.pkg.browser['./' + pkg.pkg[field]]
@@ -103,12 +127,29 @@ function getPath(pkg, field, isBrowser) {
   )
 }
 
+exports.getPath = getPath
+
+function getDevPath(cjsPath /*: string */) {
+  return cjsPath.replace('.js', '.dev.js')
+}
+
+function getProdPath(cjsPath /*: string */) {
+  return cjsPath.replace('.js', '.prod.js')
+}
+
+Object.assign(exports, {
+  getPath,
+  getDevPath,
+  getProdPath
+})
+
 function getOutputConfigs(pkg, isBrowser = false) {
   const cjsPath = getPath(pkg, 'main', isBrowser)
   let configs = [
     {
       format: 'cjs',
-      file: cjsPath
+      file: getDevPath(cjsPath),
+      exports: 'named'
     }
   ]
   if (pkg.pkg.module) {

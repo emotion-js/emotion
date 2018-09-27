@@ -2,7 +2,7 @@
   "name": "jest-emotion",
   "version": "9.2.7",
   "description": "Jest utilities for emotion",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -39,5 +39,11 @@
   ],
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
+  },
+  "publishConfig": {
+    "tag": "next"
+  },
+  "browser": {
+    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
   }
 }

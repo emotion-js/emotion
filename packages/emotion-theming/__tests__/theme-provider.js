@@ -1,17 +1,17 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
-import * as React from 'react'
 import { ignoreConsoleErrors } from 'test-utils'
-import Provider from '@emotion/provider'
+import { ThemeProvider } from 'emotion-theming'
 import { jsx } from '@emotion/core'
 import renderer from 'react-test-renderer'
+import cases from 'jest-in-case'
 
 test('nested provider', () => {
   const tree = renderer
     .create(
-      <Provider theme={{ color: 'hotpink', padding: 4 }}>
-        <Provider theme={{ backgroundColor: 'darkgreen', color: 'white' }}>
+      <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
+        <ThemeProvider theme={{ backgroundColor: 'darkgreen', color: 'white' }}>
           <div
             css={({ color, padding, backgroundColor }) => ({
               color,
@@ -19,8 +19,8 @@ test('nested provider', () => {
               backgroundColor
             })}
           />
-        </Provider>
-      </Provider>
+        </ThemeProvider>
+      </ThemeProvider>
     )
     .toJSON()
   expect(tree).toMatchSnapshot()
@@ -29,8 +29,8 @@ test('nested provider', () => {
 test('nested provider with function', () => {
   const tree = renderer
     .create(
-      <Provider theme={{ color: 'hotpink', padding: 4 }}>
-        <Provider
+      <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
+        <ThemeProvider
           theme={theme => ({
             backgroundColor: 'darkgreen',
             ...theme,
@@ -44,59 +44,50 @@ test('nested provider with function', () => {
               backgroundColor
             })}
           />
-        </Provider>
-      </Provider>
+        </ThemeProvider>
+      </ThemeProvider>
     )
     .toJSON()
   expect(tree).toMatchSnapshot()
 })
 
-class ExpectErrorComponent extends React.Component<{ children: React.Node }> {
-  componentDidCatch(err) {
-    expect(err.message).toMatchSnapshot()
+cases(
+  'ThemeProvider throws the correct errors',
+  ({ value }) => {
+    ignoreConsoleErrors(() => {
+      expect(() => {
+        renderer.create(
+          <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
+            {/* $FlowFixMe */}
+            <ThemeProvider theme={value}>
+              <div
+                css={({ color, padding, backgroundColor }) => ({
+                  color,
+                  padding,
+                  backgroundColor
+                })}
+              />
+            </ThemeProvider>
+          </ThemeProvider>
+        )
+      }).toThrowErrorMatchingSnapshot()
+    })
+  },
+  {
+    boolean: {
+      value: true
+    },
+    array: {
+      value: ['something']
+    },
+    'func to undefined': {
+      value: () => undefined
+    },
+    undefined: {
+      value: undefined
+    },
+    null: {
+      value: null
+    }
   }
-  render() {
-    return this.props.children || null
-  }
-}
-
-test('nested provider with function that does not return a plain object throws the correct error', () => {
-  ignoreConsoleErrors(() => {
-    renderer.create(
-      <ExpectErrorComponent>
-        <Provider theme={{ color: 'hotpink', padding: 4 }}>
-          <Provider theme={theme => undefined}>
-            <div
-              css={({ color, padding, backgroundColor }) => ({
-                color,
-                padding,
-                backgroundColor
-              })}
-            />
-          </Provider>
-        </Provider>
-      </ExpectErrorComponent>
-    )
-  })
-})
-
-test('nested provider with theme value that is not a plain object throws', () => {
-  ignoreConsoleErrors(() => {
-    renderer.create(
-      <ExpectErrorComponent>
-        <Provider theme={{ color: 'hotpink', padding: 4 }}>
-          {/* $FlowFixMe */}
-          <Provider theme>
-            <div
-              css={({ color, padding, backgroundColor }) => ({
-                color,
-                padding,
-                backgroundColor
-              })}
-            />
-          </Provider>
-        </Provider>
-      </ExpectErrorComponent>
-    )
-  })
-})
+)

@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { testAlwaysTrue, pickAssign, interleave } from './utils'
-import { withCSSContext } from '@emotion/core'
+import { ThemeContext } from '@emotion/core'
 import { createCss } from './css'
 
 let defaultPickTest = prop => prop !== 'theme' && prop !== 'innerRef'
@@ -29,22 +29,35 @@ export function createStyled(
       }
 
       // do we really want to use the same infra as the web since it only really uses theming?
-      let Styled = withCSSContext((props, context) => {
-        let mergedProps = pickAssign(testAlwaysTrue, {}, props, {
-          theme: props.theme || context.theme
-        })
-        let stylesWithStyleProp = styles
-        if (props.style) {
-          stylesWithStyleProp = styles.concat(props.style)
-        }
-        const emotionStyles = css.apply(mergedProps, stylesWithStyleProp)
+      // $FlowFixMe
+      let Styled = React.forwardRef((props, ref) => {
+        return (
+          <ThemeContext.Consumer>
+            {theme => {
+              let mergedProps = pickAssign(testAlwaysTrue, {}, props, {
+                theme: props.theme || theme
+              })
+              let stylesWithStyleProp = styles
+              if (props.style) {
+                stylesWithStyleProp = styles.concat(props.style)
+              }
+              const emotionStyles = css.apply(mergedProps, stylesWithStyleProp)
 
-        return React.createElement(
-          component,
-          pickAssign(pickTest, {}, props, {
-            ref: props.innerRef,
-            style: emotionStyles
-          })
+              if (process.env.NODE_ENV !== 'production' && props.innerRef) {
+                console.error(
+                  'innerRef is no longer supported, please use ref instead'
+                )
+              }
+
+              return React.createElement(
+                component,
+                pickAssign(pickTest, {}, props, {
+                  ref: ref,
+                  style: emotionStyles
+                })
+              )
+            }}
+          </ThemeContext.Consumer>
         )
       })
       // $FlowFixMe

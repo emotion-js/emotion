@@ -1,6 +1,6 @@
-// @flow
 /**
  * @jest-environment node
+ * @flow
  */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -66,7 +66,7 @@ describe('hydration', () => {
     emotionServer = require('./emotion-instance')
     reactEmotion = require('./emotion-instance')
 
-    expect(emotion.caches.registered).toEqual({})
+    expect(emotion.cache.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)

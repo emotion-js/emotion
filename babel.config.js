@@ -25,22 +25,8 @@ module.exports = api => {
       },
       {
         test: filename =>
-          filename.includes('auto-label') && needsBabelPluginEmotion(filename),
-        plugins: [['babel-plugin-emotion-test', { autoLabel: true }]]
-      },
-      {
-        test: filename =>
-          filename.includes('extract') && needsBabelPluginEmotion(filename),
-        plugins: [['babel-plugin-emotion-test', { extractStatic: true }]]
-      },
-      {
-        test: filename =>
           filename.includes('source-map') && needsBabelPluginEmotion(filename),
         plugins: [['babel-plugin-emotion-test', { sourceMap: true }]]
-      },
-      {
-        test: filename => filename.includes('babel-plugin-emotion/test/macro/'),
-        plugins: ['babel-plugin-macros-register']
       }
     ]
   }

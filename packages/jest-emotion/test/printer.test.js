@@ -5,6 +5,7 @@ import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'
 import { css, cx } from 'emotion'
 import { createSerializer } from 'jest-emotion'
+import { ignoreConsoleErrors } from 'test-utils'
 
 let emotionPlugin = createSerializer()
 
@@ -138,4 +139,16 @@ header .emotion-0 {
   className="emotion-0"
 />`)
   })
+})
+
+test('throws nice error for invalid css', () => {
+  const tree = renderer.create(<div className={css`jnnjvhjevhevhb`} />).toJSON()
+
+  expect(() => {
+    ignoreConsoleErrors(() => {
+      prettyFormat(tree, {
+        plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
+      })
+    })
+  }).toThrowErrorMatchingSnapshot()
 })

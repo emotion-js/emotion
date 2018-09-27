@@ -1,0 +1,469 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@emotion/styled.macro basic 1`] = `
+"import styled from '@emotion/styled/macro'
+
+const SomeComponent = styled.div\`
+  color: hotpink;
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const SomeComponent = _styled(\\"div\\", {
+  target: \\"e1c0oh1z0\\",
+  label: \\"SomeComponent\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`@emotion/styled.macro call-expression 1`] = `
+"import styled from '@emotion/styled/macro'
+
+const SomeComponent = styled('div')\`
+  color: hotpink;
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const SomeComponent =
+/*#__PURE__*/
+_styled('div', {
+  target: \\"eyt0cf80\\",
+  label: \\"SomeComponent\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`@emotion/styled.macro comments 1`] = `
+"import styled from '@emotion/styled/macro'
+
+styled.div\`
+  // display:flex;
+
+  /*
+wef
+
+dfwf */
+  color: hotpink;
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+_styled(\\"div\\", {
+  target: \\"e1vv9dlm0\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`@emotion/styled.macro component-selector 1`] = `
+"import styled from '@emotion/styled/macro'
+
+const SomeComponent = styled.div\`
+  color: hotpink;
+\`
+
+let SomeOtherComponent = styled.div({ color: 'hotpink' })
+
+let AnotherComponent = styled.div\`
+  \${SomeComponent} {
+    color: green;
+  }
+  \${SomeOtherComponent} {
+    color: green;
+  }
+\`
+
+let OneLastComponent = styled.div({
+  [SomeComponent]: {
+    color: 'green'
+  },
+  [SomeOtherComponent]: {
+    color: 'green'
+  }
+})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const SomeComponent = _styled(\\"div\\", {
+  target: \\"e4byx850\\",
+  label: \\"SomeComponent\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});
+
+let SomeOtherComponent = _styled(\\"div\\", {
+  target: \\"e4byx851\\",
+  label: \\"SomeOtherComponent\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});
+
+let AnotherComponent = _styled(\\"div\\", {
+  target: \\"e4byx852\\",
+  label: \\"AnotherComponent\\"
+})(SomeComponent, \\"{color:green;}\\", SomeOtherComponent, \\"{color:green;}\\");
+
+let OneLastComponent = _styled(\\"div\\", {
+  target: \\"e4byx853\\",
+  label: \\"OneLastComponent\\"
+})({
+  [SomeComponent]: {
+    color: 'green'
+  },
+  [SomeOtherComponent]: {
+    color: 'green'
+  }
+});"
+`;
+
+exports[`@emotion/styled.macro existing-options 1`] = `
+"import styled from '@emotion/styled/macro'
+
+styled('div', { shouldForwardProp: window.whatever }, window.whatever)()
+
+styled('div', { shouldForwardProp: window.whatever }, window.whatever)\`\`
+
+styled(
+  window.whatever,
+  { shouldForwardProp: window.whatever },
+  window.whatever
+)()
+
+styled(
+  window.whatever,
+  { shouldForwardProp: window.whatever },
+  window.whatever
+)\`\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+/*#__PURE__*/
+_styled('div', {
+  shouldForwardProp: window.whatever,
+  target: \\"ek6pnb20\\"
+}, window.whatever)();
+
+/*#__PURE__*/
+_styled('div', {
+  shouldForwardProp: window.whatever,
+  target: \\"ek6pnb21\\"
+}, window.whatever)();
+
+/*#__PURE__*/
+_styled(window.whatever, {
+  shouldForwardProp: window.whatever,
+  target: \\"ek6pnb22\\"
+}, window.whatever)();
+
+/*#__PURE__*/
+_styled(window.whatever, {
+  shouldForwardProp: window.whatever,
+  target: \\"ek6pnb23\\"
+}, window.whatever)();"
+`;
+
+exports[`@emotion/styled.macro function-interpolation 1`] = `
+"import styled from '@emotion/styled/macro'
+
+let Avatar = styled.img\`
+  width: 96px;
+  height: 96px;
+  border-radius: \${props => props.theme.borderRadius};
+  border: 1px solid \${props => props.theme.borderColor};
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+let Avatar = _styled(\\"img\\", {
+  target: \\"ecty2dv0\\",
+  label: \\"Avatar\\"
+})(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";\\");"
+`;
+
+exports[`@emotion/styled.macro label 1`] = `
+"import styled from '@emotion/styled/macro'
+
+class Thing {
+  static SomeComponent = styled.div\`
+    color: hotpink;
+  \`
+  BadIdeaComponent = styled.div\`
+    background: hotpink;
+  \`
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+class Thing {
+  static SomeComponent = _styled(\\"div\\", {
+    target: \\"egllku90\\",
+    label: \\"SomeComponent\\"
+  })({
+    name: \\"1lrxbo5\\",
+    styles: \\"color:hotpink;\\"
+  });
+  BadIdeaComponent = _styled(\\"div\\", {
+    target: \\"egllku91\\",
+    label: \\"BadIdeaComponent\\"
+  })({
+    name: \\"d1m7sn\\",
+    styles: \\"background:hotpink;\\"
+  });
+}"
+`;
+
+exports[`@emotion/styled.macro more-than-10-interpolations 1`] = `
+"import styled from '@emotion/styled/macro'
+
+// yes, this was actually a bug at one point
+const H1 = styled.h1\`
+  text-decoration: \${'underline'};
+  border-right: solid blue \${54}px;
+  background: \${'white'};
+  color: \${'black'};
+  display: \${'block'};
+  border-radius: \${'3px'};
+  padding: \${'25px'};
+  width: \${'500px'};
+  z-index: \${100};
+  font-size: \${'18px'};
+  text-align: \${'center'};
+  border-left: \${p => p.theme.blue};
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+// yes, this was actually a bug at one point
+const H1 = _styled(\\"h1\\", {
+  target: \\"e2mb8uz0\\",
+  label: \\"H1\\"
+})(\\"text-decoration:underline;border-right:solid blue \\", 54, \\"px;background:white;color:black;display:block;border-radius:3px;padding:25px;width:500px;z-index:\\", 100, \\";font-size:18px;text-align:center;border-left:\\", p => p.theme.blue, \\";\\");"
+`;
+
+exports[`@emotion/styled.macro multiple-calls 1`] = `
+"import styled from '@emotion/styled/macro'
+
+const SomeComponent = styled.div\`
+  color: hotpink;
+\`
+
+const SomeOtherComponent = styled.button\`
+  color: green;
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const SomeComponent = _styled(\\"div\\", {
+  target: \\"eqvttbz0\\",
+  label: \\"SomeComponent\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});
+
+const SomeOtherComponent = _styled(\\"button\\", {
+  target: \\"eqvttbz1\\",
+  label: \\"SomeOtherComponent\\"
+})({
+  name: \\"bjcoli\\",
+  styles: \\"color:green;\\"
+});"
+`;
+
+exports[`@emotion/styled.macro native 1`] = `
+"import styled from '@emotion/native'
+
+styled.View\`
+  color: hotpink;
+\`
+
+styled.View({})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from '@emotion/native';
+styled.View\`
+  color: hotpink;
+\`;
+styled.View({});"
+`;
+
+exports[`@emotion/styled.macro object 1`] = `
+"import styled from '@emotion/styled/macro'
+
+const SomeComponent = styled.div({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const SomeComponent = _styled(\\"div\\", {
+  target: \\"e1gch6x40\\",
+  label: \\"SomeComponent\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`@emotion/styled.macro object-call-expression 1`] = `
+"import styled from '@emotion/styled/macro'
+
+const SomeComponent = styled('div')({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const SomeComponent =
+/*#__PURE__*/
+_styled('div', {
+  target: \\"eavmgrz0\\",
+  label: \\"SomeComponent\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`@emotion/styled.macro object-function 1`] = `
+"import styled from '@emotion/styled/macro'
+
+const SomeComponent = styled.div(props => ({ color: props.color }))
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const SomeComponent = _styled(\\"div\\", {
+  target: \\"e1i0tb8p0\\",
+  label: \\"SomeComponent\\"
+})(props => ({
+  color: props.color
+}));"
+`;
+
+exports[`@emotion/styled.macro primitives 1`] = `
+"import styled from '@emotion/primitives'
+
+styled('SomeFakeComponent')\`
+  color: hotpink;
+\`
+
+styled('SomeFakeComponent')({})
+
+styled.View\`
+  color: hotpink;
+\`
+
+styled.View({})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import styled from '@emotion/primitives';
+styled('SomeFakeComponent')\`
+  color: hotpink;
+\`;
+styled('SomeFakeComponent')({});
+styled.View\`
+  color: hotpink;
+\`;
+styled.View({});"
+`;
+
+exports[`@emotion/styled.macro primitives-other-name 1`] = `
+"import something from '@emotion/primitives'
+
+something.View\`
+  color: hotpink;
+\`
+
+something.View({})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import something from '@emotion/primitives';
+something.View\`
+  color: hotpink;
+\`;
+something.View({});"
+`;
+
+exports[`@emotion/styled.macro shorthand-property 1`] = `
+"import styled from '@emotion/styled/macro'
+
+let fontSize = window.whatever
+
+const H1 = styled.h1({ fontSize })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+let fontSize = window.whatever;
+
+const H1 = _styled(\\"h1\\", {
+  target: \\"eqz3u3g0\\",
+  label: \\"H1\\"
+})({
+  fontSize
+});"
+`;
+
+exports[`@emotion/styled.macro with-spread 1`] = `
+"import styled from '@emotion/styled/macro'
+
+const H1 = styled.h1({ ...window.whatever })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+const H1 = _styled(\\"h1\\", {
+  target: \\"e18quw4k0\\",
+  label: \\"H1\\"
+})({ ...window.whatever
+});"
+`;

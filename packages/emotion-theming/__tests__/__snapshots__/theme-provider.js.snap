@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ThemeProvider throws the correct errors array 1`] = `"[ThemeProvider] Please make your theme prop a plain object"`;
+
+exports[`ThemeProvider throws the correct errors boolean 1`] = `"[ThemeProvider] Please make your theme prop a plain object"`;
+
+exports[`ThemeProvider throws the correct errors func to undefined 1`] = `"[ThemeProvider] Please return an object from your theme function, i.e. theme={() => ({})}!"`;
+
+exports[`ThemeProvider throws the correct errors null 1`] = `"[ThemeProvider] Please make your theme prop a plain object"`;
+
+exports[`ThemeProvider throws the correct errors undefined 1`] = `"[ThemeProvider] Please make your theme prop a plain object"`;
+
 exports[`nested provider 1`] = `
 .emotion-0 {
   color: white;
@@ -23,7 +33,3 @@ exports[`nested provider with function 1`] = `
   className="emotion-0"
 />
 `;
-
-exports[`nested provider with function that does not return a plain object throws the correct error 1`] = `"[@emotion/provider] Please return an object from your theme function, i.e. theme={() => ({})}!"`;
-
-exports[`nested provider with theme value that is not a plain object throws 1`] = `"[@emotion/provider] Please make your theme prop a plain object"`;

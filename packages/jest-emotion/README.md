@@ -16,7 +16,7 @@ The easiest way to test React components with emotion is with the snapshot seria
 // jest.config.js
 module.exports = {
   // ... other config
-  snapshotSerializers: ['jest-emotion/serializer']
+  snapshotSerializers: ['jest-emotion']
 }
 ```
 
@@ -25,11 +25,10 @@ Or you can customize the serializer via the `createSerializer` method like so: (
 ```jsx
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { createSerializer } from 'jest-emotion'
-import * as emotion from 'emotion'
-import styled from 'react-emotion'
+import serializer from 'jest-emotion'
+import styled from '@emotion/styled'
 
-expect.addSnapshotSerializer(createSerializer(emotion))
+expect.addSnapshotSerializer(serializer)
 
 test('renders with correct styles', () => {
   const H1 = styled.h1`
@@ -57,11 +56,10 @@ function classNameReplacer(className, index) {
 ```
 
 ```jsx
-import * as emotion from 'emotion'
 import { createSerializer } from 'jest-emotion'
 
 expect.addSnapshotSerializer(
-  createSerializer(emotion, {
+  createSerializer({
     classNameReplacer(className, index) {
       return `my-new-class-name-${index}`
     }
@@ -71,14 +69,13 @@ expect.addSnapshotSerializer(
 
 ### `DOMElements`
 
-jest-emotion's snapshot serializer inserts styles and replaces class names in both React and DOM elements. If you would like to disable this behavior for the latter, you can do so by setting this property to false. For example:
+jest-emotion's snapshot serializer inserts styles and replaces class names in both React and DOM elements. If you would like to disable this behavior for DOM elements, you can do so by passing `{ DOMElements: false }`. For example:
 
 ```jsx
-import * as emotion from 'emotion'
 import { createSerializer } from 'jest-emotion'
 
 // configures jest-emotion to ignore DOM elements
-expect.addSnapshotSerializer(createSerializer(emotion, { DOMElements: false }))
+expect.addSnapshotSerializer(createSerializer({ DOMElements: false }))
 ```
 
 # getStyles
@@ -86,7 +83,6 @@ expect.addSnapshotSerializer(createSerializer(emotion, { DOMElements: false }))
 jest-emotion also allows you to get all the css that emotion has inserted. This is meant to be an escape hatch if you don't use React or you want to build your own utilities for testing with emotion.
 
 ```jsx
-import * as emotion from 'emotion'
 import { css } from 'emotion'
 import { getStyles } from 'jest-emotion'
 
@@ -95,7 +91,7 @@ test('correct styles are inserted', () => {
     display: flex;
   `
 
-  expect(getStyles(emotion)).toMatchSnapshot()
+  expect(getStyles()).toMatchSnapshot()
 })
 ```
 
@@ -108,12 +104,11 @@ To make more explicit assertions when testing your styled components you can use
 ```jsx
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { createMatchers } from 'jest-emotion'
-import * as emotion from 'emotion'
+import { matchers } from 'jest-emotion'
 import styled from 'react-emotion'
 
 // Add the custom matchers provided by 'jest-emotion'
-expect.extend(createMatchers(emotion))
+expect.extend(matchers)
 
 test('renders with correct styles', () => {
   const H1 = styled.h1`
@@ -129,4 +124,4 @@ test('renders with correct styles', () => {
 
 ## Thanks
 
-Thanks to [Kent C. Dodds](https://twitter.com/kentcdodds) who wrote [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) which this library is largely based on.
+Thanks to [Kent C. Dodds](https://twitter.com/kentcdodds) who wrote [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) which this library is largely based on. ❤️

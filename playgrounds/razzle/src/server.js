@@ -5,8 +5,8 @@ import { StaticRouter } from 'react-router-dom'
 import express from 'express'
 import { renderToString } from 'react-dom/server'
 import { renderStylesToString } from 'emotion-server'
-import { caches } from 'emotion'
-import { Provider } from '@emotion/core'
+import { cache } from 'emotion'
+import { CacheProvider } from '@emotion/core'
 
 // $FlowFixMe
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
@@ -19,17 +19,11 @@ server
     const context = {}
     const markup = renderStylesToString(
       renderToString(
-        // DON'T DO THIS, I'M JUST BEING LAZY HERE, THE WAY THIS WORKS IS GOING TO CHANGE, USE @emotion/compat-cache FOR NOW
-        <Provider
-          value={
-            // $FlowFixMe
-            caches
-          }
-        >
+        <CacheProvider value={cache}>
           <StaticRouter context={context} location={req.url}>
             <App />
           </StaticRouter>
-        </Provider>
+        </CacheProvider>
       )
     )
 

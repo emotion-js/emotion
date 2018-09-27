@@ -1,3 +1,4 @@
+// @flow
 import createEmotion from 'create-emotion'
 import { container, css, sheet } from './emotion-instance'
 
@@ -14,7 +15,7 @@ describe('general instance tests', () => {
   })
   test('throws with invalid key', () => {
     expect(() => {
-      createEmotion({}, { key: 'css1' })
+      createEmotion({ key: 'css1' })
     }).toThrowErrorMatchingSnapshot()
   })
 })

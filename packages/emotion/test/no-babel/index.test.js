@@ -211,6 +211,17 @@ describe('css', () => {
 
     expect(tree).toMatchSnapshot()
   })
+  test('name with class component', () => {
+    class SomeComponent extends React.Component<{ className: string }> {
+      render() {
+        return <div className={this.props.className} />
+      }
+    }
+    const StyledComponent = styled(SomeComponent)`
+      color: hotpink;
+    `
+    expect(StyledComponent.displayName).toBe(`Styled(SomeComponent)`)
+  })
   test('styled does not throw on toString without target', () => {
     expect(() => {
       styled('div')().toString()

@@ -2,9 +2,9 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import 'test-utils/dev-mode'
-import { throwIfFalsy } from 'test-utils'
+import { throwIfFalsy, safeQuerySelector } from 'test-utils'
 import * as React from 'react'
-import Provider from '@emotion/provider'
+import { ThemeProvider } from 'emotion-theming'
 import { jsx } from '@emotion/core'
 import { render } from 'react-dom'
 
@@ -13,7 +13,7 @@ test('provider with theme value that changes', () => {
     state = { theme: { color: 'hotpink', padding: 4 } }
     render() {
       return (
-        <Provider theme={this.state.theme}>
+        <ThemeProvider theme={this.state.theme}>
           <div
             id="the-thing"
             onClick={() => {
@@ -24,7 +24,7 @@ test('provider with theme value that changes', () => {
               padding
             })}
           />
-        </Provider>
+        </ThemeProvider>
       )
     }
   }
@@ -34,12 +34,12 @@ test('provider with theme value that changes', () => {
   head.innerHTML = ''
   body.innerHTML = '<div id="root"></div>'
 
-  let root = throwIfFalsy(document.getElementById('root'))
+  let root = safeQuerySelector('#root')
 
   render(<ThemeTest />, root)
-  expect(document.documentElement).toMatchSnapshot()
-  throwIfFalsy(document.getElementById('the-thing')).click()
-  expect(document.documentElement).toMatchSnapshot()
+  expect(root).toMatchSnapshot()
+  throwIfFalsy(safeQuerySelector('#the-thing')).click()
+  expect(root).toMatchSnapshot()
 
   head.innerHTML = ''
   body.innerHTML = '<div id="root"></div>'
