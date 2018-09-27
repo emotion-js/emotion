@@ -14,7 +14,7 @@
     "@emotion/hash": "^0.6.2",
     "@emotion/memoize": "^0.6.1",
     "@emotion/stylis": "^0.7.0",
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.0.0",
     "babel-plugin-macros": "^2.0.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "convert-source-map": "^1.5.0",

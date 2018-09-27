@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`keyframes babel 6 dynamic change import 1`] = `
-"
-import { keyframes as frames } from 'emotion';
-const rotate360 = /*#__PURE__*/frames('from{transform:rotate(0deg);}to{transform:rotate(360deg);}');
+"import { keyframes as frames } from 'emotion';
+const rotate360 =
+/*#__PURE__*/
+frames(\\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\");
 const rotate3601 = keyframes\`
         from {
           transform: rotate(0deg);
@@ -15,18 +16,21 @@ const rotate3601 = keyframes\`
 `;
 
 exports[`keyframes babel 6 keyframes basic 1`] = `
-"
-const rotate360 = /*#__PURE__*/keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\");"
+"const rotate360 =
+/*#__PURE__*/
+keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\");"
 `;
 
 exports[`keyframes babel 6 keyframes with interpolation 1`] = `
-"
-const rotate360 = /*#__PURE__*/keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\");"
+"const rotate360 =
+/*#__PURE__*/
+keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\");"
 `;
 
 exports[`keyframes babel 6 static change import 1`] = `
-"
-const rotate360 = /*#__PURE__*/frames(\\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\");
+"const rotate360 =
+/*#__PURE__*/
+frames(\\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\");
 const rotate3601 = keyframes\`
         from {
           transform: rotate(0deg);
@@ -79,10 +83,9 @@ const rotate3601 = keyframes\`
 `;
 
 exports[`keyframes extract babel 6 dynamic change import 1`] = `
-"import './emotion.emotion.css';
-
+"import \\"./emotion.emotion.css\\";
 import { keyframes as frames } from 'emotion';
-const rotate360 = 'css-rotate360-bhsghd';
+const rotate360 = \\"css-rotate360-bhsghd\\";
 const rotate3601 = keyframes\`
         from {
           transform: rotate(0deg);
@@ -99,7 +102,6 @@ emotion.emotion.css
 
 exports[`keyframes extract babel 6 keyframes basic 1`] = `
 "import \\"./emotion.emotion.css\\";
-
 const rotate360 = \\"css-rotate360-bhsghd\\";
 
 
@@ -108,13 +110,13 @@ emotion.emotion.css
 `;
 
 exports[`keyframes extract babel 6 keyframes with interpolation 1`] = `
-"
-const rotate360 = /*#__PURE__*/keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\");"
+"const rotate360 =
+/*#__PURE__*/
+keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\");"
 `;
 
 exports[`keyframes extract babel 6 static change import 1`] = `
 "import \\"./emotion.emotion.css\\";
-
 const rotate360 = \\"css-rotate360-bhsghd\\";
 const rotate3601 = keyframes\`
         from {
