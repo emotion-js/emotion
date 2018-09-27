@@ -21,7 +21,8 @@
     "flow": "flow check",
     "precommit": "lint-staged",
     "postcommit": "git update-index --again",
-    "postinstall": "opencollective postinstall"
+    "postinstall": "opencollective postinstall",
+    "publish-packages": "lerna publish --npm-tag=super-not-safe-please-do-not-use"
   },
   "resolutions": {
     "**/react": "16.4.2",
