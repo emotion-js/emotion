@@ -10,7 +10,11 @@ import { createMacro } from 'babel-plugin-macros'
 export default createMacro(macro)
 
 function macro(options) {
-  const { references, state, babel: { types: t } } = options
+  const {
+    references,
+    state,
+    babel: { types: t }
+  } = options
   let referencesWithoutDefault = references
   if (references.default) {
     referencesWithoutDefault = omit(references, key => key !== 'default')

@@ -56,7 +56,10 @@ const createRenderStylesToNodeStream = (
     }
   )
 
-  return pipe(tokenStream, inlineStream)
+  return pipe(
+    tokenStream,
+    inlineStream
+  )
 }
 
 export default createRenderStylesToNodeStream

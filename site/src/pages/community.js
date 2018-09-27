@@ -30,7 +30,8 @@ const Community = (props: *) => (
           This list comes from{' '}
           <a href="https://github.com/emotion-js/awesome-emotion">
             awesome-emotion
-          </a>. Anything added to that that list will appear here automatically.
+          </a>
+          . Anything added to that that list will appear here automatically.
         </markdownComponents.p>
         <markdownComponents.h2>Thanks!</markdownComponents.h2>
         <markdownComponents.p>
