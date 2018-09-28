@@ -1,6 +1,6 @@
 {
   "name": "jest-emotion",
-  "version": "10.0.0-really-unsafe-please-do-not-use.1",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "description": "Jest utilities for emotion",
   "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",

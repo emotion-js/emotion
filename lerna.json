@@ -9,7 +9,7 @@
       "Tag: Internal": ":house: Internal"
     }
   },
-  "version": "10.0.0-really-unsafe-please-do-not-use.1",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "npmClient": "npm",
   "packages": [
     "packages/*"

@@ -1,6 +1,6 @@
 {
   "name": "@emotion/core",
-  "version": "10.0.0-really-unsafe-please-do-not-use.1",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",
   "browser": {
@@ -14,11 +14,11 @@
   "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
   "license": "MIT",
   "dependencies": {
-    "@emotion/cache": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/css": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/sheet": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.1"
+    "@emotion/cache": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/css": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/sheet": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
   },
   "peerDependencies": {
     "react": ">=16.3.0"

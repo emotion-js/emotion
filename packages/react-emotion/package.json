@@ -1,6 +1,6 @@
 {
   "name": "react-emotion",
-  "version": "10.0.0-really-unsafe-please-do-not-use.1",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "description": "The Next Generation of CSS-in-JS, for React projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -12,8 +12,8 @@
     "types"
   ],
   "dependencies": {
-    "@emotion/styled-base": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.1"
+    "@emotion/styled-base": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.2"
   },
   "peerDependencies": {
     "react": "15.x || 16.x"
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@types/react": "16.0.16",
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.0-really-unsafe-please-do-not-use.1"
+    "emotion": "^10.0.0-really-unsafe-please-do-not-use.2"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

@@ -1,6 +1,6 @@
 {
   "name": "@emotion/memoize",
-  "version": "10.0.0-really-unsafe-please-do-not-use.1",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "description": "emotion's memoize utility",
   "main": "dist/memoize.cjs.js",
   "module": "dist/memoize.esm.js",

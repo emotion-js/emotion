@@ -1,6 +1,6 @@
 {
   "name": "@emotion/serialize",
-  "version": "10.0.0-really-unsafe-please-do-not-use.1",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "description": "serialization utils for emotion",
   "main": "dist/serialize.cjs.js",
   "module": "dist/serialize.esm.js",
@@ -10,10 +10,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@emotion/hash": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/memoize": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/unitless": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.1"
+    "@emotion/hash": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/memoize": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/unitless": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
   },
   "files": [
     "src",

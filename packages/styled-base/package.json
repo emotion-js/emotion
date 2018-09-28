@@ -1,6 +1,6 @@
 {
   "name": "@emotion/styled-base",
-  "version": "10.0.0-really-unsafe-please-do-not-use.1",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "description": "base styled API for emotion",
   "main": "dist/styled-base.cjs.js",
   "module": "dist/styled-base.esm.js",
@@ -11,9 +11,9 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/styled-base",
   "dependencies": {
-    "@emotion/is-prop-valid": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.1"
+    "@emotion/is-prop-valid": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
   },
   "peerDependencies": {
     "@emotion/core": "0.x.x",

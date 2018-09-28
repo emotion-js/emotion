@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-emotion",
-  "version": "10.0.0-really-unsafe-please-do-not-use.1",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "description": "A recommended babel preprocessing plugin for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/index.js",
   "files": [
@@ -10,11 +10,11 @@
   ],
   "dependencies": {
     "@babel/helper-module-imports": "^7.0.0",
-    "@emotion/css": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/hash": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/memoize": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.1",
-    "@emotion/stylis": "^10.0.0-really-unsafe-please-do-not-use.1",
+    "@emotion/css": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/hash": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/memoize": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/stylis": "^10.0.0-really-unsafe-please-do-not-use.2",
     "babel-plugin-macros": "^2.0.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "convert-source-map": "^1.5.0",
