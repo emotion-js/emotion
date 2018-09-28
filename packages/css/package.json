@@ -1,15 +1,15 @@
 {
   "name": "@emotion/css",
-  "version": "10.0.0-really-unsafe-please-do-not-use.0",
+  "version": "10.0.0-really-unsafe-please-do-not-use.1",
   "description": "a function to serialize css and object styless",
   "main": "dist/css.cjs.js",
   "module": "dist/css.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/css",
   "dependencies": {
-    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.0",
-    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.0",
-    "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.0"
+    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.1",
+    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.1",
+    "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.1"
   },
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@emotion/preact-styled-base",
-  "version": "10.0.0-really-unsafe-please-do-not-use.0",
+  "version": "10.0.0-really-unsafe-please-do-not-use.1",
   "description": "base styled API for emotion and preact",
   "main": "dist/preact-styled-base.cjs.js",
   "module": "dist/preact-styled-base.esm.js",
@@ -11,9 +11,9 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/preact-styled-base",
   "dependencies": {
-    "@emotion/is-prop-valid": "^10.0.0-really-unsafe-please-do-not-use.0",
-    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.0",
-    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.0"
+    "@emotion/is-prop-valid": "^10.0.0-really-unsafe-please-do-not-use.1",
+    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.1",
+    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.1"
   },
   "peerDependencies": {
     "@emotion/preact-core": "0.x.x",
