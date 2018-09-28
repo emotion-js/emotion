@@ -148,7 +148,7 @@ function getOutputConfigs(pkg, isBrowser = false) {
   let configs = [
     {
       format: 'cjs',
-      file: getDevPath(cjsPath),
+      file: isBrowser ? cjsPath : getDevPath(cjsPath),
       exports: 'named'
     }
   ]
