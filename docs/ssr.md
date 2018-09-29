@@ -1,5 +1,5 @@
 ---
-title: "Server Side Rendering"
+title: 'Server Side Rendering'
 ---
 
 Server side rendering works out of the box in emotion 10 and above
@@ -63,7 +63,7 @@ const stream = renderToNodeStream(<App />).pipe(
 
 ### extractCritical
 
-This returns an object with the properties `html`, `ids` and `css`. It removes unused rules that were created with emotion(it still includes rules that were inserted with `injectGlobal`).
+This returns an object with the properties `html`, `ids` and `css`. It removes unused rules that were created with emotion. You may choose whether or not to include rules that were inserted with `injectGlobal`, by setting the second `includeGobals` parameter; by default globals **are** included.
 
 ```jsx
 import { renderToString } from 'react-dom/server'
@@ -73,6 +73,12 @@ import App from './App'
 const { html, ids, css } = extractCritical(
   renderToString(<App />)
 )
+
+const {
+  html: htmlNotInclGlobals,
+  ids: idsNotInclGlobals,
+  css: cssNotInclGlobals
+} = extractCritical(renderToString(<App />), false)
 ```
 
 #### hydrate
