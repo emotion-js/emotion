@@ -244,6 +244,78 @@ Object {
 }
 `;
 
+exports[`extractCritical returns static css without globals if requested 1`] = `
+Object {
+  "css": ".css-14e1j2p-hoverStyles-Something_Main {
+  color: hotpink;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.css-14e1j2p-hoverStyles-Something_Main:hover {
+  color: white;
+  background-color: lightgray;
+  border-color: aqua;
+  box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
+}
+
+.css-1h1w8ez-Image {
+  -webkit-animation: animation-i9f7qw-bounce;
+  animation: animation-i9f7qw-bounce;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: red;
+}",
+  "html": 
+<main class="css-14e1j2p-hoverStyles-Something_Main">
+  <img size="30"
+       class="css-1h1w8ez-Image"
+  >
+  <img size="100"
+       class="css-1h1w8ez-Image"
+  >
+  <img class="css-1h1w8ez-Image">
+</main>
+,
+  "ids": Array [
+    "14e1j2p-hoverStyles-Something_Main",
+    "1h1w8ez-Image",
+  ],
+}
+`;
+
+exports[`extractCritical returns static css without globals if requested 2`] = `
+Object {
+  "css": ".css-14e1j2p-hoverStyles-Something_Main {
+  color: hotpink;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.css-14e1j2p-hoverStyles-Something_Main:hover {
+  color: white;
+  background-color: lightgray;
+  border-color: aqua;
+  box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
+}",
+  "html": 
+<main class="css-14e1j2p-hoverStyles-Something_Main">
+  <div>
+    Hello
+  </div>
+</main>
+,
+  "ids": Array [
+    "14e1j2p-hoverStyles-Something_Main",
+  ],
+}
+`;
+
 exports[`hydration only rules that are not in the critical css are inserted 1`] = `
 Object {
   "css": "@font-face {

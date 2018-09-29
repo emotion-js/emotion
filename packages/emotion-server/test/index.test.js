@@ -26,7 +26,37 @@ describe('extractCritical', () => {
       )
     ).toMatchSnapshot()
   })
+
+  test('returns static css without globals if requested', () => {
+    const { Page1, Page2 } = getComponents(emotion, reactEmotion)
+    expect(
+      prettyifyCritical(
+        emotionServer.extractCritical(renderToString(<Page1 />), false)
+      )
+    ).toMatchSnapshot()
+    expect(
+      prettyifyCritical(
+        emotionServer.extractCritical(renderToString(<Page2 />), false)
+      )
+    ).toMatchSnapshot()
+  })
+
+  test('includes globals by default', () => {
+    const { Page1, Page2 } = getComponents(emotion, reactEmotion)
+    const page1String = renderToString(<Page1 />)
+    const page2String = renderToString(<Page2 />)
+    const defaultCritical = string => emotionServer.extractCritical(string)
+    const explicitIncludeCritical = string =>
+      emotionServer.extractCritical(string, true)
+    expect(defaultCritical(page1String)).toEqual(
+      explicitIncludeCritical(page1String)
+    )
+    expect(defaultCritical(page2String)).toEqual(
+      explicitIncludeCritical(page2String)
+    )
+  })
 })
+
 describe('hydration', () => {
   test('only rules that are not in the critical css are inserted', () => {
     const { Page1 } = getComponents(emotion, reactEmotion)
