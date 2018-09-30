@@ -1,6 +1,6 @@
 // @flow
 
-import css from '@emotion/css'
+import { serializeStyles } from '@emotion/serialize'
 import { getExpressionsFromTemplateLiteral } from './minify'
 import { getLabelFromPath } from './label'
 import { getSourceMap } from './source-maps'
@@ -60,7 +60,7 @@ export let transformExpressionWithStyles = ({
       t.isStringLiteral(path.node.arguments[0])
     ) {
       let cssString = path.node.arguments[0].value
-      let res = css(cssString)
+      let res = serializeStyles({}, [cssString])
       node = t.objectExpression(
         [
           t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),

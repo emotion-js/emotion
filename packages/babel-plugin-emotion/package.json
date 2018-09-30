@@ -10,7 +10,6 @@
   ],
   "dependencies": {
     "@babel/helper-module-imports": "^7.0.0",
-    "@emotion/css": "^10.0.0-really-unsafe-please-do-not-use.2",
     "@emotion/hash": "^10.0.0-really-unsafe-please-do-not-use.2",
     "@emotion/memoize": "^10.0.0-really-unsafe-please-do-not-use.2",
     "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.2",
