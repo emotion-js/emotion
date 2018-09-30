@@ -9,8 +9,10 @@
       "Tag: Internal": ":house: Internal"
     }
   },
-  "npmClient": "yarn",
-  "useWorkspaces": true,
+  "npmClient": "npm",
   "registry": "https://registry.npmjs.org",
-  "version": "9.2.10"
+  "version": "9.2.10",
+  "packages": [
+    "packages/*"
+  ]
 }
