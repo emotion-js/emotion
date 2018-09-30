@@ -68,6 +68,7 @@ export const getComponents = (
   const Main = styled.main`
     ${hoverStyles};
     display: flex;
+    label: Something_Main;
   `
 
   const Image = styled.img`
