@@ -4,7 +4,7 @@ import type { Emotion } from 'create-emotion'
 const createExtractCritical = (emotion: Emotion) => (html: string) => {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
-  let RGX = new RegExp(`${emotion.caches.key}-([a-zA-Z0-9-]+)`, 'gm')
+  let RGX = new RegExp(`${emotion.caches.key}-([a-zA-Z0-9-_]+)`, 'gm')
 
   let o = { html, ids: [], css: '' }
   let match

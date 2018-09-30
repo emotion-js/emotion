@@ -16,7 +16,7 @@ const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
   html: string
 ): string => {
   const { inserted, key: cssKey, registered } = emotion.caches
-  const regex = new RegExp(`<|${cssKey}-([a-zA-Z0-9-]+)`, 'gm')
+  const regex = new RegExp(`<|${cssKey}-([a-zA-Z0-9-_]+)`, 'gm')
 
   const seen = {}
 
