@@ -16,9 +16,11 @@ type EmotionServer = {
 expect.addSnapshotSerializer(HTMLSerializer)
 
 export const getComponents = (
-  { injectGlobal, keyframes, css }: Emotion,
+  emotion: Emotion,
   { default: styled }: { default: Function }
 ) => {
+  let Provider = require('@emotion/core').CacheProvider
+  let { injectGlobal, keyframes, css } = emotion
   const color = 'red'
 
   injectGlobal`
@@ -35,24 +37,30 @@ export const getComponents = (
   `
 
   const bounce = keyframes`
-    from, 20%, 53%, 80%, to {
-      animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-      transform: translate3d(0,0,0);
+    from,
+    20%,
+    53%,
+    80%,
+    to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      transform: translate3d(0, 0, 0);
     }
 
-    40%, 43% {
-      animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    40%,
+    43% {
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
       transform: translate3d(0, -30px, 0);
     }
 
     70% {
-      animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
       transform: translate3d(0, -15px, 0);
     }
 
     90% {
-      transform: translate3d(0,-4px,0);
+      transform: translate3d(0, -4px, 0);
     }
+    label: bounce;
   `
 
   const hoverStyles = css`
@@ -63,20 +71,24 @@ export const getComponents = (
       border-color: aqua;
       box-shadow: -15px -15px 0 0 aqua, -30px -30px 0 0 cornflowerblue;
     }
+    label: hoverStyles;
   `
 
-  const Main = styled.main`
+  // this is using react-emotion which uses @emotion/styled-base
+  // so the call syntax has to be used
+  const Main = styled('main')`
     ${hoverStyles};
     display: flex;
     label: Something_Main;
   `
 
-  const Image = styled.img`
+  const Image = styled('img')`
     animation: ${bounce};
     border-radius: 50%;
     height: 50px;
     width: 50px;
     background-color: ${color};
+    label: Image;
   `
 
   // this will not be included since it's not used
@@ -94,17 +106,21 @@ export const getComponents = (
   `
 
   const Page1 = () => (
-    <Main>
-      <Image size={30} />
-      <Image size={100} />
-      <Image />
-    </Main>
+    <Provider value={emotion.cache}>
+      <Main>
+        <Image size={30} />
+        <Image size={100} />
+        <Image />
+      </Main>
+    </Provider>
   )
 
   const Page2 = () => (
-    <Main>
-      <div>Hello</div>
-    </Main>
+    <Provider value={emotion.cache}>
+      <Main>
+        <div>Hello</div>
+      </Main>
+    </Provider>
   )
   return { Page1, Page2 }
 }
@@ -154,22 +170,26 @@ export const getCssFromChunks = (emotion: Emotion, document: Document) => {
   const chunks = Array.from(
     // $FlowFixMe
     emotion.sheet.tags[0].parentNode.querySelectorAll(
-      `[data-emotion-${emotion.caches.key}]`
+      `[data-emotion-${emotion.cache.key}]`
     )
   )
   expect(
     // $FlowFixMe
-    document.body.querySelector(`[data-emotion-${emotion.caches.key}]`)
+    document.body.querySelector(`[data-emotion-${emotion.cache.key}]`)
   ).toBeNull()
-  return stringify(parse(chunks.map(chunk => chunk.textContent || '').join('')))
+  let css = chunks.map(chunk => chunk.textContent || '').join('')
+  try {
+    return stringify(parse(css))
+  } catch (e) {
+    throw new Error(`There was an error parsing the following css: ${css}`)
+  }
 }
 
-export const getInjectedRules = ({ caches }: Emotion) =>
+export const getInjectedRules = () =>
   stringify(
     parse(
-      Object.keys(caches.inserted)
-        .filter(hash => caches.inserted[hash] !== true)
-        .map(hash => caches.inserted[hash])
+      Array.from(document.querySelectorAll('[data-emotion]'))
+        .map(x => x.textContent || '')
         .join('')
     )
   )

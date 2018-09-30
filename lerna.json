@@ -9,8 +9,7 @@
       "Tag: Internal": ":house: Internal"
     }
   },
-  "npmClient": "yarn",
-  "useWorkspaces": true,
-  "registry": "https://registry.npmjs.org",
-  "version": "9.2.12"
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "npmClient": "npm",
+  "packages": ["packages/*", "site", "scripts/*", "playgrounds/*"]
 }

@@ -1,6 +1,6 @@
 {
   "name": "preact-emotion",
-  "version": "9.2.12",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "description": "The Next Generation of CSS-in-JS, for Preact projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -11,21 +11,17 @@
     "macro.js",
     "types"
   ],
-  "scripts": {
-    "test:typescript": "dtslint types"
-  },
   "dependencies": {
-    "babel-plugin-emotion": "^9.2.11",
-    "create-emotion-styled": "^9.2.8"
+    "@emotion/preact-styled-base": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.2"
   },
   "peerDependencies": {
-    "emotion": "^9.1.3",
     "preact": "8.x"
   },
   "devDependencies": {
-    "emotion": "^9.2.12",
+    "emotion": "^10.0.0-really-unsafe-please-do-not-use.2",
     "preact": "^8.2.9",
-    "react-emotion": "^9.2.12"
+    "react-emotion": "^10.0.0-really-unsafe-please-do-not-use.2"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -42,5 +38,11 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "umd:main": "./dist/emotion.umd.min.js"
+  "umd:main": "./dist/emotion.umd.min.js",
+  "publishConfig": {
+    "tag": "next"
+  },
+  "browser": {
+    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
+  }
 }

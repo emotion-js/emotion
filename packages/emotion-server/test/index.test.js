@@ -1,10 +1,12 @@
-// @flow
 /**
  * @jest-environment node
+ * @flow
  */
+
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { getComponents, prettyifyCritical, getInjectedRules } from './util'
+import { JSDOM } from 'jsdom'
 
 let emotion = require('emotion')
 let reactEmotion = require('react-emotion')
@@ -32,14 +34,18 @@ describe('hydration', () => {
       renderToString(<Page1 />)
     )
     expect(prettyifyCritical({ html, css, ids })).toMatchSnapshot()
+    const { window } = new JSDOM(html)
+    global.document = window.document
+    global.window = window
+
     jest.resetModules()
-    global.__SECRET_EMOTION__ = undefined
     emotion = require('emotion')
     emotionServer = require('emotion-server')
-    expect(emotion.caches.inserted).toEqual({})
+
+    expect(emotion.cache.inserted).toEqual({})
     emotion.hydrate(ids)
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)
-    expect(getInjectedRules(emotion)).toMatchSnapshot()
+    expect(getInjectedRules()).toMatchSnapshot()
   })
 })

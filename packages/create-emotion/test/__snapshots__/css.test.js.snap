@@ -199,7 +199,7 @@ exports[`css flushes correctly 1`] = `
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="emotion-0"
+  className="some-key-vyoujf"
 />
 `;
 
@@ -261,7 +261,7 @@ exports[`css manually use label property 1`] = `
 `;
 
 exports[`css manually use label property 2`] = `
-".some-key-32iy0l-wow {
+".some-key-1ytppqs-wow {
   color: hotpink;
 }"
 `;
@@ -425,16 +425,6 @@ exports[`css registered styles as nested selector value in object 1`] = `
 .emotion-0:hover {
   display: flex;
   background-color: hotpink;
-}
-
-<div
-  className="emotion-0"
-/>
-`;
-
-exports[`css return function in interpolation 1`] = `
-.emotion-0 {
-  color: blue;
 }
 
 <div

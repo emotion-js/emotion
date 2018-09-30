@@ -1,0 +1,35 @@
+{
+  "name": "@emotion/preact-core",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "main": "dist/preact-core.cjs.js",
+  "module": "dist/preact-core.esm.js",
+  "browser": {
+    "./dist/preact-core.cjs.js": "./dist/preact-core.browser.cjs.js",
+    "./dist/preact-core.esm.js": "./dist/preact-core.browser.esm.js"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/cache": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/css": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/sheet": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
+  },
+  "peerDependencies": {
+    "preact": "8.x"
+  },
+  "devDependencies": {
+    "html-tag-names": "^1.1.2",
+    "svg-tag-names": "^1.1.1"
+  },
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/preact-core",
+  "publishConfig": {
+    "access": "public"
+  },
+  "umd:main": "./dist/index.min.js"
+}

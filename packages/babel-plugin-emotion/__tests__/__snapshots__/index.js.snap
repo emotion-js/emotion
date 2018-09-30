@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@emotion/babel-plugin-core core-with-css-import 1`] = `
+"/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
+
+const SomeComponent = props => (
+  <div
+    css={css\`
+      color: hotpink;
+    \`}
+    {...props}
+  />
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+var _ref = {
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\"
+};
+
+const SomeComponent = props => <div css={_ref} {...props} />;"
+`;
+
+exports[`@emotion/babel-plugin-core does-not-change-other-props 1`] = `
+"/** @jsx jsx */
+import { jsx } from '@emotion/core'
+
+const Svg = <rect style={{ stroke: '#ff0000' }} />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+const Svg = <rect style={{
+  stroke: '#ff0000'
+}} />;"
+`;
+
+exports[`@emotion/babel-plugin-core import-namespace-does-not-throw 1`] = `
+"import * as emotionCore from '@emotion/core'
+// could probably support this for real but it's pretty rare so I'm not gonna spend time on it now
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import * as emotionCore from '@emotion/core'; // could probably support this for real but it's pretty rare so I'm not gonna spend time on it now"
+`;
+
+exports[`@emotion/babel-plugin-core jsx-hoist 1`] = `
+"/** @jsx jsx */
+import { jsx } from '@emotion/core'
+
+const SomeComponent = props => (
+  <div
+    css={{
+      color: 'hotpink'
+    }}
+    {...props}
+  />
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+var _ref = {
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\"
+};
+
+const SomeComponent = props => <div css={_ref} {...props} />;"
+`;
+
+exports[`@emotion/babel-plugin-core static-object-with-camel-case 1`] = `
+"/** @jsx jsx */
+import { jsx } from '@emotion/core'
+
+const SomeComponent = props => (
+  <div
+    css={{
+      color: 'hotpink',
+      backgroundColor: 'green'
+    }}
+    {...props}
+  />
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+var _ref = {
+  name: \\"lcrht-SomeComponent\\",
+  styles: \\"color:hotpink;background-color:green;label:SomeComponent;\\"
+};
+
+const SomeComponent = props => <div css={_ref} {...props} />;"
+`;
+
+exports[`@emotion/babel-plugin-core static-object-with-child-selectors 1`] = `
+"/** @jsx jsx */
+
+import { jsx } from '@emotion/core'
+
+const SomeComponent = props => {
+  return (
+    <div
+      css={{
+        color: 'green',
+        ':hover': {
+          color: 'hotpink'
+        }
+      }}
+      {...props}
+    />
+  )
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+var _ref = {
+  name: \\"1y9ypgi-SomeComponent\\",
+  styles: \\"color:green;:hover{color:hotpink;}label:SomeComponent;\\"
+};
+
+const SomeComponent = props => {
+  return <div css={_ref} {...props} />;
+};"
+`;

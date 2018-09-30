@@ -1,17 +1,14 @@
 /* eslint-disable react/no-unknown-property */
 import 'test-utils/legacy-env'
+/** @jsx h */
 import { h } from 'preact'
 import render from 'preact-render-to-json'
 import prettyFormat from 'pretty-format'
 import * as emotion from 'emotion'
-import { createSerializer } from '../src'
+import * as emotionPlugin from 'jest-emotion'
 const { ReactElement, ReactTestComponent, DOMElement } = prettyFormat.plugins
 
-/** @jsx h */
-
 describe('jest-emotion with preact', () => {
-  const emotionPlugin = createSerializer(emotion)
-
   const divStyle = emotion.css`
     color: red;
   `

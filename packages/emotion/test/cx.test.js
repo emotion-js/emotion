@@ -73,13 +73,9 @@ describe('cx', () => {
     const tree = renderer
       .create(
         <div
-          className={cx(
-            { [cls1]: foo },
-            { [cls2]: bar },
-            () => 'modal',
-            'profile',
-            [[cls3, [cls4]]]
-          )}
+          className={cx({ [cls1]: foo }, 'modal', { [cls2]: bar }, 'profile', [
+            [cls3, [cls4]]
+          ])}
         />
       )
       .toJSON()
@@ -109,9 +105,9 @@ describe('cx', () => {
     const tree = renderer
       .create(
         <div
-          className={cx(() => () => [
-            () => [cls1, false && cls2, 'modal'],
-            () => [() => [cls3, () => ({ [cls4]: true }), 'profile']]
+          className={cx([
+            [cls1, false && cls2, 'modal'],
+            [cls3, { [cls4]: true }, 'profile']
           ])}
         />
       )

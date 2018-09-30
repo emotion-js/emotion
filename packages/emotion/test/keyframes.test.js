@@ -2,8 +2,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { keyframes, sheet, flush } from 'emotion'
-import styled from 'react-emotion'
+import { keyframes, sheet, flush, css } from 'emotion'
 
 describe('keyframes', () => {
   afterEach(() => {
@@ -31,11 +30,17 @@ describe('keyframes', () => {
       }
     `
 
-    const H1 = styled.h1`
-      animation: ${bounce} 2s linear infinite;
-    `
-
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    const tree = renderer
+      .create(
+        <h1
+          className={css`
+            animation: ${bounce} 2s linear infinite;
+          `}
+        >
+          hello world
+        </h1>
+      )
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
@@ -43,19 +48,25 @@ describe('keyframes', () => {
   test('keyframes with interpolation', () => {
     const endingRotation = '360deg'
 
-    const H1 = styled.h1`
-      animation: ${keyframes`
-      from {
-        transform: rotate(0deg);
-      }
-    
-      to {
-        transform: rotate(${endingRotation});
-      }
-    `} 2s linear infinite;
-    `
-
-    const tree = renderer.create(<H1>hello world</H1>).toJSON()
+    const tree = renderer
+      .create(
+        <h1
+          className={css`
+            animation: ${keyframes`
+    from {
+      transform: rotate(0deg);
+    }
+  
+    to {
+      transform: rotate(${endingRotation});
+    }
+  `} 2s linear infinite;
+          `}
+        >
+          hello world
+        </h1>
+      )
+      .toJSON()
 
     expect(tree).toMatchSnapshot()
 

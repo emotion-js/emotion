@@ -12,10 +12,10 @@ exports[`does not replace class names that are not from emotion 1`] = `
 
 exports[`jest-emotion with DOM elements disabled does not replace class names or insert styles into DOM element snapshots 1`] = `
 "<div
-  class=\\"css-17f3slo\\"
+  class=\\"css-tokvmb\\"
 >
   <svg
-    class=\\"css-ybrhvy\\"
+    class=\\"css-8atqhb\\"
   />
 </div>"
 `;
@@ -73,3 +73,5 @@ exports[`jest-emotion with dom elements replaces class names and inserts styles 
   />
 </div>"
 `;
+
+exports[`throws nice error for invalid css 1`] = `"There was an error parsing the following css: \\".css-11cntgz{jnnjvhjevhevhb;}\\""`;

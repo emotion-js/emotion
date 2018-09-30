@@ -14,20 +14,27 @@ async function changePackages() {
   await Promise.all(
     packages.map(async ({ pkg, path: pkgPath }) => {
       // you can transform the package.json contents here
-      if (pkgPath.includes('next-packages')) {
-        let replaceArgs = ['index', pkg.name.replace('@emotion/', '')]
-        pkg.main = pkg.main.replace(...replaceArgs)
-        if (pkg.module) {
-          pkg.module = pkg.module.replace(...replaceArgs)
+      if (
+        pkg.name === 'babel-plugin-emotion' ||
+        pkg.name === 'eslint-plugin-emotion' ||
+        pkg.browser
+      ) {
+        return
+      }
+      if (!pkg.main.includes('cjs.js')) {
+        throw new Error(pkg.name + pkg.main)
+      }
+
+      pkg.browser = {
+        ['./' + pkg.main]: './' + pkg.main.replace('cjs.js', 'browser.cjs.js')
+      }
+      if (pkg.module) {
+        if (!pkg.module.includes('esm.js')) {
+          throw new Error(pkg.name + pkg.module)
         }
-        if (pkg.browser) {
-          pkg.browser = Object.keys(pkg.browser).reduce((obj, key) => {
-            obj[key.replace(...replaceArgs)] = pkg.browser[key].replace(
-              ...replaceArgs
-            )
-            return obj
-          }, {})
-        }
+
+        pkg.browser['./' + pkg.module] =
+          './' + pkg.module.replace('esm.js', 'browser.esm.js')
       }
 
       await writeFile(

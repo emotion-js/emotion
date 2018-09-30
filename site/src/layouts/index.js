@@ -1,7 +1,7 @@
 // @flow
 import '../utils/make-prism-manual'
 import globalStyles from '../utils/global'
-import React from 'react'
+import * as React from 'react'
 import Link from '../components/Link'
 import styled from '@emotion/styled'
 import Box from '../components/Box'
@@ -9,10 +9,9 @@ import Helmet from 'react-helmet'
 import Search from '../components/Search'
 import { colors, constants, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
-import type { Location, Match } from '../utils/types'
 import { Global } from '@emotion/core'
 import { StaticQuery, graphql } from 'gatsby'
-import { Route } from 'react-router'
+import { Location } from '@reach/router'
 
 const StyledLink = styled(Box)`
   color: white;
@@ -166,28 +165,20 @@ const BaseWrapper = props => {
 }
 
 type TemplateWrapperProps = {
-  children: (*) => React$Node,
-  location: Location,
-  match: Match
+  children: React.Node
 }
 
 const TemplateWrapper = (props: TemplateWrapperProps) => {
   return (
     <React.Fragment>
       <Global styles={globalStyles} />
-      <BaseWrapper location={props.location}>{props.children}</BaseWrapper>
+      <Location>
+        {({ location }) => (
+          <BaseWrapper location={location}>{props.children}</BaseWrapper>
+        )}
+      </Location>
     </React.Fragment>
   )
 }
 
-const OuterWrapper = (props: *) => {
-  return (
-    <Route
-      render={routerProps => {
-        return <TemplateWrapper {...routerProps} {...props} />
-      }}
-    />
-  )
-}
-
-export default OuterWrapper
+export default TemplateWrapper

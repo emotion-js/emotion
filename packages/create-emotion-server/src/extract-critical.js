@@ -1,10 +1,10 @@
 // @flow
-import type { Emotion } from 'create-emotion'
+import type { EmotionCache } from '@emotion/utils'
 
-const createExtractCritical = (emotion: Emotion) => (html: string) => {
+const createExtractCritical = (cache: EmotionCache) => (html: string) => {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
-  let RGX = new RegExp(`${emotion.caches.key}-([a-zA-Z0-9-_]+)`, 'gm')
+  let RGX = new RegExp(`${cache.key}-([a-zA-Z0-9-_]+)`, 'gm')
 
   let o = { html, ids: [], css: '' }
   let match
@@ -17,14 +17,13 @@ const createExtractCritical = (emotion: Emotion) => (html: string) => {
     }
   }
 
-  o.ids = Object.keys(emotion.caches.inserted).filter(id => {
+  o.ids = Object.keys(cache.inserted).filter(id => {
     if (
-      (ids[id] === true ||
-        emotion.caches.registered[`${emotion.caches.key}-${id}`] ===
-          undefined) &&
-      emotion.caches.inserted[id] !== true
+      (ids[id] !== undefined ||
+        cache.registered[`${cache.key}-${id}`] === undefined) &&
+      cache.inserted[id] !== true
     ) {
-      o.css += emotion.caches.inserted[id]
+      o.css += cache.inserted[id]
       return true
     }
   })

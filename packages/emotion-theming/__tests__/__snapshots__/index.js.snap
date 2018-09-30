@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with styled 1`] = `
+.emotion-0 {
+  color: red;
+  background-color: green;
+  border: 1px solid blue;
+}
+
+<div
+  className="emotion-0"
+/>
+`;

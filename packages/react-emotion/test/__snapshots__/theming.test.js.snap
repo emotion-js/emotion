@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`theme prop exists without ThemeProvider 1`] = `
+.emotion-0 {
+  color: green;
+  background-color: yellow;
+}
+
+<div
+  className="emotion-0 emotion-1"
+/>
+`;
+
+exports[`theme prop exists without ThemeProvider with a theme prop on the component 1`] = `
+.emotion-0 {
+  color: hotpink;
+  background-color: yellow;
+}
+
+<div
+  className="emotion-0 emotion-1"
+/>
+`;
+
+exports[`theme with react-test-renderer 1`] = `
+.emotion-0 {
+  color: pink;
+}
+
+<div
+  className="emotion-0 emotion-1"
+>
+  this will be pink
+</div>
+`;
+
+exports[`themes 1`] = `
+.emotion-0 {
+  background-color: #ffd43b;
+  color: blue;
+  height: 64px;
+  font-size: 20px;
+  color: #8c81d8;
+  font-size: 32px;
+}
+
+<span
+  className="emotion-0 emotion-1"
+>
+  hello world
+</span>
+`;
