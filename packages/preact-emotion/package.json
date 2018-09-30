@@ -1,6 +1,6 @@
 {
   "name": "preact-emotion",
-  "version": "9.2.11",
+  "version": "9.2.12",
   "description": "The Next Generation of CSS-in-JS, for Preact projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -23,9 +23,9 @@
     "preact": "8.x"
   },
   "devDependencies": {
-    "emotion": "^9.2.11",
+    "emotion": "^9.2.12",
     "preact": "^8.2.9",
-    "react-emotion": "^9.2.11"
+    "react-emotion": "^9.2.12"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

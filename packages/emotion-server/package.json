@@ -1,6 +1,6 @@
 {
   "name": "emotion-server",
-  "version": "9.2.11",
+  "version": "9.2.12",
   "description": "Extract and inline critical css with emotion for server side rendering.",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
@@ -13,7 +13,7 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "create-emotion-server": "^9.2.11"
+    "create-emotion-server": "^9.2.12"
   },
   "peerDependencies": {
     "emotion": "^9.1.3"
@@ -22,8 +22,8 @@
     "@types/react-dom": "16.0.5",
     "babel-plugin-emotion": "^9.2.11",
     "dtslint": "^0.3.0",
-    "emotion": "^9.2.11",
-    "react-emotion": "^9.2.11"
+    "emotion": "^9.2.12",
+    "react-emotion": "^9.2.12"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

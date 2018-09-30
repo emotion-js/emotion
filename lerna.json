@@ -11,7 +11,7 @@
   },
   "npmClient": "npm",
   "registry": "https://registry.npmjs.org",
-  "version": "9.2.11",
+  "version": "9.2.12",
   "packages": [
     "packages/*"
   ]
