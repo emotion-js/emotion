@@ -229,7 +229,7 @@ describe('styled', () => {
     `
 
     const H2 = styled(H1)`
-      font-size: ${fontSize * 2 / 3 + 'px'};
+      font-size: ${(fontSize * 2) / 3 + 'px'};
     `
 
     const tree = renderer

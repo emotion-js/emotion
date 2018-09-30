@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-emotion",
-  "version": "9.2.10",
+  "version": "9.2.11",
   "description": "A recommended babel preprocessing plugin for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/index.js",
   "files": [
@@ -14,7 +14,6 @@
     "@emotion/hash": "^0.6.2",
     "@emotion/memoize": "^0.6.1",
     "@emotion/stylis": "^0.7.0",
-    "babel-core": "^6.26.3",
     "babel-plugin-macros": "^2.0.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "convert-source-map": "^1.5.0",
@@ -24,7 +23,8 @@
     "touch": "^2.0.1"
   },
   "devDependencies": {
-    "babel-check-duplicated-nodes": "^1.0.0"
+    "babel-check-duplicated-nodes": "^1.0.0",
+    "babel-core": "^6.26.3"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

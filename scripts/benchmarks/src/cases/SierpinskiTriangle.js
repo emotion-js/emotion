@@ -49,7 +49,7 @@ class SierpinskiTriangle extends React.Component {
         }
 
         // introduce randomness to ensure that repeated runs don't produce the same colors
-        const color = fn(renderCount * Math.random() / 20)
+        const color = fn((renderCount * Math.random()) / 20)
         return (
           <Dot
             color={color}

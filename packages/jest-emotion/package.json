@@ -1,6 +1,6 @@
 {
   "name": "jest-emotion",
-  "version": "9.2.7",
+  "version": "9.2.11",
   "description": "Jest utilities for emotion",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
@@ -27,7 +27,7 @@
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion-react",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion",
   "keywords": [
     "styles",
     "emotion",
