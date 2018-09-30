@@ -20,7 +20,7 @@ const createRenderStylesToNodeStream = (
 
         let match
         let fragment = data.toString()
-        let regex = new RegExp(`${cache.key}-([a-zA-Z0-9-]+)`, 'gm')
+        let regex = new RegExp(`${cache.key}-([a-zA-Z0-9-_]+)`, 'gm')
         while ((match = regex.exec(fragment)) !== null) {
           if (match !== null && insed[match[1]] === undefined) {
             ids[match[1]] = true

@@ -17,7 +17,7 @@ const createRenderStylesToString = (
   nonceString: string
 ) => (html: string): string => {
   const { inserted, key: cssKey, registered } = cache
-  const regex = new RegExp(`<|${cssKey}-([a-zA-Z0-9-]+)`, 'gm')
+  const regex = new RegExp(`<|${cssKey}-([a-zA-Z0-9-_]+)`, 'gm')
 
   const seen = {}
 

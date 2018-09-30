@@ -85,7 +85,7 @@ Object {
   justify-content: center;
 }
 
-.css-fyi5ve-hoverStyles-Main {
+.css-14e1j2p-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -93,7 +93,7 @@ Object {
   display: flex;
 }
 
-.css-fyi5ve-hoverStyles-Main:hover {
+.css-14e1j2p-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
@@ -109,7 +109,7 @@ Object {
   background-color: red;
 }",
   "html": 
-<main class="css-fyi5ve-hoverStyles-Main">
+<main class="css-14e1j2p-hoverStyles-Something_Main">
   <img size="30"
        class="css-1h1w8ez-Image"
   >
@@ -123,7 +123,7 @@ Object {
     "1uqawbr",
     "i9f7qw-bounce",
     "1nhdffy",
-    "fyi5ve-hoverStyles-Main",
+    "14e1j2p-hoverStyles-Something_Main",
     "1h1w8ez-Image",
   ],
 }
@@ -214,7 +214,7 @@ Object {
   justify-content: center;
 }
 
-.css-fyi5ve-hoverStyles-Main {
+.css-14e1j2p-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -222,14 +222,14 @@ Object {
   display: flex;
 }
 
-.css-fyi5ve-hoverStyles-Main:hover {
+.css-14e1j2p-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
   "html": 
-<main class="css-fyi5ve-hoverStyles-Main">
+<main class="css-14e1j2p-hoverStyles-Something_Main">
   <div>
     Hello
   </div>
@@ -239,7 +239,7 @@ Object {
     "1uqawbr",
     "i9f7qw-bounce",
     "1nhdffy",
-    "fyi5ve-hoverStyles-Main",
+    "14e1j2p-hoverStyles-Something_Main",
   ],
 }
 `;
@@ -329,7 +329,7 @@ Object {
   justify-content: center;
 }
 
-.css-fyi5ve-hoverStyles-Main {
+.css-14e1j2p-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -337,7 +337,7 @@ Object {
   display: flex;
 }
 
-.css-fyi5ve-hoverStyles-Main:hover {
+.css-14e1j2p-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
@@ -353,7 +353,7 @@ Object {
   background-color: red;
 }",
   "html": 
-<main class="css-fyi5ve-hoverStyles-Main">
+<main class="css-14e1j2p-hoverStyles-Something_Main">
   <img size="30"
        class="css-1h1w8ez-Image"
   >
@@ -367,7 +367,7 @@ Object {
     "1uqawbr",
     "i9f7qw-bounce",
     "1nhdffy",
-    "fyi5ve-hoverStyles-Main",
+    "14e1j2p-hoverStyles-Something_Main",
     "1h1w8ez-Image",
   ],
 }
