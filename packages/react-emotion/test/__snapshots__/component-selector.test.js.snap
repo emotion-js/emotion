@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component as selector (object syntax) 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-2 .emotion-1 {
+  color: green;
+}
+
+<div
+  className="emotion-2 emotion-3"
+>
+  hello 
+  <h1
+    className="emotion-0 emotion-1"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`component as selector 1`] = `
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-2 .emotion-1 {
+  color: green;
+}
+
+.emotion-0 {
+  font-size: 20px;
+}
+
+<div
+  className="emotion-2 emotion-3"
+>
+  hello 
+  <h1
+    className="emotion-0 emotion-1"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`component as selector function interpolation (object syntax) 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-2 .emotion-1 {
+  color: green;
+}
+
+<div
+  className="emotion-2 emotion-3"
+  fontSize={10}
+>
+  hello 
+  <h1
+    className="emotion-0 emotion-1"
+    fontSize={20}
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`component as selector function interpolation 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-2 .emotion-1 {
+  color: green;
+}
+
+<div
+  className="emotion-2 emotion-3"
+  fontSize={10}
+>
+  hello 
+  <h1
+    className="emotion-0 emotion-1"
+    fontSize={20}
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;

@@ -18,10 +18,10 @@ exports.onCreateBabelConfig = ({ actions, stage }) => {
     }
   })
   actions.setBabelPlugin({
-    name: '@emotion/babel-plugin-core',
+    name: 'babel-plugin-emotion',
     stage,
     options: {
-      jsx: true,
+      cssPropOptimization: true,
       sourceMap: stage === 'develop'
     }
   })

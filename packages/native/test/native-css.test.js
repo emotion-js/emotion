@@ -65,7 +65,7 @@ describe('Emotion native css', () => {
 
   it('allows function interpolations when this.mergedProps is defined', () => {
     expect(
-      css.call({ mergedProps: { thing: true } }, props => ({
+      css.call({ thing: true }, props => ({
         color: props.thing && 'hotpink'
       }))
     ).toEqual({ color: 'hotpink' })
@@ -73,7 +73,7 @@ describe('Emotion native css', () => {
 
   it('works with nested functions', () => {
     expect(
-      css.call({ mergedProps: { thing: true } }, props => () => ({
+      css.call({ thing: true }, props => () => ({
         color: props.thing && 'hotpink'
       }))
     ).toEqual({ color: 'hotpink' })
@@ -82,7 +82,7 @@ describe('Emotion native css', () => {
   it('works with functions in tagged template literals', () => {
     expect(
       css.call(
-        { mergedProps: {} },
+        {},
         ...returnArguments`
         color: ${() => 'hotpink'};
       `
@@ -113,5 +113,22 @@ describe('Emotion native css', () => {
         ${firstStyle};
       `
     ).toEqual({ backgroundColor: 'green', color: 'hotpink' })
+  })
+
+  test('skip comments', () => {
+    let styles = css`
+      color: hotpink;
+      /*
+        padding: 10px;
+      */
+    `
+
+    let anotherStyles = css`
+      font-size: 10px;
+      // color: red;
+    `
+
+    expect(styles).toEqual({ color: 'hotpink' })
+    expect(anotherStyles).toEqual({ fontSize: 10 })
   })
 })

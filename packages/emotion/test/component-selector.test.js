@@ -2,11 +2,9 @@ import 'test-utils/legacy-env'
 import React from 'react'
 import styled from 'react-emotion'
 import renderer from 'react-test-renderer'
-import { css, flush, sheet } from 'emotion'
+import { css } from 'emotion'
 
 describe('component selector', () => {
-  afterEach(() => flush())
-
   test('should be converted to use the emotion target className', () => {
     const FakeComponent = styled.div`
       color: blue;
@@ -25,6 +23,5 @@ describe('component selector', () => {
       )
       .toJSON()
     expect(tree).toMatchSnapshot()
-    expect(sheet).toMatchSnapshot()
   })
 })

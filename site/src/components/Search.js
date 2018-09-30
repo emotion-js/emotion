@@ -1,12 +1,10 @@
 // @flow
 import React from 'react'
-import { withRouter } from 'react-router'
+import { navigate } from '@reach/router'
 import { algoliaStyles } from '../utils/algolia-styles'
 import { addCallback } from '../utils/async-load-search'
 
-type Props = {
-  history: { push: string => void }
-}
+type Props = {}
 
 type State = {
   enabled: boolean
@@ -46,7 +44,7 @@ class Search extends React.Component<Props, State> {
             }
 
             const url = suggestion.url.replace('https://emotion.sh', '')
-            this.props.history.push(url)
+            navigate(url)
             var hash = window.decodeURI(getHash(url))
 
             if (hash !== '#' && hash !== '') {
@@ -121,4 +119,4 @@ class Search extends React.Component<Props, State> {
   }
 }
 
-export default withRouter(Search)
+export default Search

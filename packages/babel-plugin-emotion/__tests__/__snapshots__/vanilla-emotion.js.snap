@@ -1,0 +1,437 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vanilla emotion comments 1`] = `
+"import { css } from 'emotion'
+
+css\`
+  // display:flex;
+
+  /*
+wef
+
+dfwf*/
+  color: hotpink;
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+/*#__PURE__*/
+_css({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`vanilla emotion css-basic 1`] = `
+"import { css } from 'emotion'
+
+css\`
+  margin: 12px 48px;
+  color: #ffffff;
+  display: flex;
+  flex: 1 0 auto;
+  color: blue;
+  @media (min-width: 420px) {
+    line-height: 40px;
+  }
+  width: \${window.whatever};
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+/*#__PURE__*/
+_css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media (min-width:420px){line-height:40px;}width:\\", window.whatever, \\";\\");"
+`;
+
+exports[`vanilla emotion css-object 1`] = `
+"import { css } from 'emotion'
+
+let someCls = css({
+  color: window.whatever
+})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+let someCls =
+/*#__PURE__*/
+_css({
+  color: window.whatever
+});"
+`;
+
+exports[`vanilla emotion does-not-minify-inside-content-property 1`] = `
+"import { css } from 'emotion'
+
+const cls1 = css\`
+  content: '  {  }  ';
+\`
+// prettier-ignore
+const cls2 = css\`
+  content: \\"  {  }  \\";
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+const cls1 =
+/*#__PURE__*/
+_css({
+  name: \\"hh44ja\\",
+  styles: \\"content:'  {  }  ';\\"
+}); // prettier-ignore
+
+
+const cls2 =
+/*#__PURE__*/
+_css({
+  name: \\"1rr8elb\\",
+  styles: \\"content:\\\\\\"  {  }  \\\\\\";\\"
+});"
+`;
+
+exports[`vanilla emotion hoisting 1`] = `
+"import { css } from 'emotion'
+
+function test() {
+  const cls1 = css\`
+    font-size: 20px;
+    @media (min-width: 420px) {
+      color: blue;
+      \${css\`
+        width: 96px;
+        height: 96px;
+      \`};
+      line-height: 26px;
+    }
+    background: green;
+    \${{ backgroundColor: 'hotpink' }};
+  \`
+
+  const cls2 = css\`
+    \${{ color: 'blue' }};
+  \`
+
+  const cls3 = css\`
+    display: flex;
+    &:hover {
+      color: hotpink;
+    }
+  \`
+  let outerVar = 'something'
+  function inner() {
+    const styles = { color: 'darkorchid' }
+    const color = 'aquamarine'
+
+    const cls4 = css\`
+      \${cls3};
+      \${cls1};
+      \${{ color: 'darkorchid' }};
+      \${{ color }};
+      \${css\`
+        height: 420px;
+        width: \${styles};
+      \`};
+    \`
+    let someCls = css\`
+      color: \${outerVar};
+    \`
+  }
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+function test() {
+  const cls1 =
+  /*#__PURE__*/
+  _css(\\"font-size:20px;@media (min-width:420px){color:blue;\\",
+  /*#__PURE__*/
+  _css({
+    name: \\"15xbpqr\\",
+    styles: \\"width:96px;height:96px;\\"
+  }), \\";line-height:26px;}background:green;background-color:hotpink;;\\");
+
+  const cls2 =
+  /*#__PURE__*/
+  _css({
+    name: \\"1rdr7a4\\",
+    styles: \\"color:blue;;\\"
+  });
+
+  const cls3 =
+  /*#__PURE__*/
+  _css({
+    name: \\"a21n9o\\",
+    styles: \\"display:flex;&:hover{color:hotpink;}\\"
+  });
+
+  let outerVar = 'something';
+
+  function inner() {
+    const styles = {
+      color: 'darkorchid'
+    };
+    const color = 'aquamarine';
+
+    const cls4 =
+    /*#__PURE__*/
+    _css(cls3, \\";\\", cls1, \\";color:darkorchid;;\\", {
+      color
+    }, \\";\\",
+    /*#__PURE__*/
+    _css(\\"height:420px;width:\\", styles, \\";\\"), \\";\\");
+
+    let someCls =
+    /*#__PURE__*/
+    _css(\\"color:\\", outerVar, \\";\\");
+  }
+}"
+`;
+
+exports[`vanilla emotion inject-global-basic 1`] = `
+"import { injectGlobal } from 'emotion'
+
+injectGlobal\`
+  body {
+    margin: 0;
+    padding: 0;
+    & > div {
+      display: flex;
+    }
+  }
+  html {
+    background: green;
+  }
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { injectGlobal as _injectGlobal } from \\"emotion\\";
+
+_injectGlobal({
+  name: \\"1d66lop\\",
+  styles: \\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\"
+});"
+`;
+
+exports[`vanilla emotion inject-global-change-import 1`] = `
+"import { injectGlobal as inject } from 'emotion'
+
+inject\`
+  body {
+    margin: 0;
+    padding: 0;
+    & > div {
+      display: flex;
+    }
+  }
+  html {
+    background: green;
+  }
+\`
+
+let injectGlobal = window.whatever
+
+injectGlobal\`
+  body {
+    margin: 0;
+    padding: 0;
+    & > div {
+      display: flex;
+    }
+  }
+  html {
+    background: green;
+  }
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { injectGlobal as _injectGlobal } from \\"emotion\\";
+
+_injectGlobal({
+  name: \\"1d66lop\\",
+  styles: \\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\"
+});
+
+let injectGlobal = window.whatever;
+injectGlobal\`
+  body {
+    margin: 0;
+    padding: 0;
+    & > div {
+      display: flex;
+    }
+  }
+  html {
+    background: green;
+  }
+\`;"
+`;
+
+exports[`vanilla emotion inject-global-with-font-face 1`] = `
+"import { injectGlobal } from 'emotion'
+
+injectGlobal\`
+  @font-face {
+    font-family: 'Patrick Hand SC';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Patrick Hand SC'), local('PatrickHandSC-Regular'),
+      url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2)
+        format('woff2');
+    unicode-range: U+0100-024f, U+1-1eff, U+20a0-20ab, U+20ad-20cf, U+2c60-2c7f,
+      U+A720-A7FF;
+  }
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { injectGlobal as _injectGlobal } from \\"emotion\\";
+
+_injectGlobal({
+  name: \\"lu7y12\\",
+  styles: \\"@font-face{font-family:'Patrick Hand SC';font-style:normal;font-weight:400;src:local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');unicode-range:U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;}\\"
+});"
+`;
+
+exports[`vanilla emotion inject-global-with-interpolation 1`] = `
+"import { injectGlobal } from 'emotion'
+
+let display = window.whatever
+
+injectGlobal\`
+  body {
+    margin: 0;
+    padding: 0;
+    display: \${display};
+    & > div {
+      display: none;
+    }
+  }
+  html {
+    background: green;
+  }
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { injectGlobal as _injectGlobal } from \\"emotion\\";
+let display = window.whatever;
+
+_injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\");"
+`;
+
+exports[`vanilla emotion keyframes-basic 1`] = `
+"import { keyframes } from 'emotion'
+
+const rotate360 = keyframes\`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { keyframes as _keyframes } from \\"emotion\\";
+
+const rotate360 =
+/*#__PURE__*/
+_keyframes({
+  name: \\"1q8eu9e\\",
+  styles: \\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\"
+});"
+`;
+
+exports[`vanilla emotion keyframes-with-interpolation 1`] = `
+"import { keyframes } from 'emotion'
+
+let endingRotation = window.whatever
+
+const rotate360 = keyframes\`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(\${endingRotation});
+  }
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { keyframes as _keyframes } from \\"emotion\\";
+let endingRotation = window.whatever;
+
+const rotate360 =
+/*#__PURE__*/
+_keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\");"
+`;
+
+exports[`vanilla emotion object-label 1`] = `
+"import { css } from 'emotion'
+
+let obj = {
+  someProp: css({ color: 'green' }),
+  anotherProp: css({ color: 'hotpink' })
+}
+class Thing {
+  static Prop = css({ color: 'yellow' })
+  BadIdea = css({ color: 'red' })
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+let obj = {
+  someProp:
+  /*#__PURE__*/
+  _css({
+    name: \\"bjcoli\\",
+    styles: \\"color:green;\\"
+  }),
+  anotherProp:
+  /*#__PURE__*/
+  _css({
+    name: \\"1lrxbo5\\",
+    styles: \\"color:hotpink;\\"
+  })
+};
+
+class Thing {
+  static Prop =
+  /*#__PURE__*/
+  _css({
+    name: \\"fsfbn2\\",
+    styles: \\"color:yellow;\\"
+  });
+  BadIdea =
+  /*#__PURE__*/
+  _css({
+    name: \\"tokvmb\\",
+    styles: \\"color:red;\\"
+  });
+}"
+`;

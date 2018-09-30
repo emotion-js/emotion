@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "9.2.6",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -15,8 +15,8 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^9.2.6",
-    "create-emotion": "^9.2.6"
+    "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "create-emotion": "^10.0.0-really-unsafe-please-do-not-use.2"
   },
   "devDependencies": {
     "@types/react": "16.0.16",
@@ -37,5 +37,12 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "umd:main": "./dist/emotion.umd.min.js"
+  "umd:main": "./dist/emotion.umd.min.js",
+  "publishConfig": {
+    "tag": "next"
+  },
+  "browser": {
+    "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
+    "./dist/index.esm.js": "./dist/index.browser.esm.js"
+  }
 }

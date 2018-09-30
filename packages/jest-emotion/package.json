@@ -1,8 +1,8 @@
 {
   "name": "jest-emotion",
-  "version": "9.2.7",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "description": "Jest utilities for emotion",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -27,7 +27,7 @@
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion-react",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion",
   "keywords": [
     "styles",
     "emotion",
@@ -39,5 +39,11 @@
   ],
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
+  },
+  "publishConfig": {
+    "tag": "next"
+  },
+  "browser": {
+    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
   }
 }

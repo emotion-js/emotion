@@ -47,7 +47,7 @@ describe('css', () => {
 
     expect(sheet).toMatchSnapshot()
   })
-  test('css prop with merge', () => {
+  test.skip('css prop with merge', () => {
     const tree = renderer
       .create(
         <div className={css({ display: 'flex' })} css={{ display: 'block' }} />

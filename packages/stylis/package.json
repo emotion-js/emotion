@@ -1,0 +1,31 @@
+{
+  "name": "@emotion/stylis",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "description": "A custom build of Stylis",
+  "main": "dist/stylis.cjs.js",
+  "module": "dist/stylis.esm.js",
+  "types": "types/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/stylis",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "devDependencies": {
+    "dtslint": "^0.3.0",
+    "jscodeshift": "^0.5.0",
+    "request": "^2.85.0",
+    "request-promise-native": "^1.0.5",
+    "stylis": "3.5.3"
+  },
+  "umd:main": "./dist/index.min.js",
+  "browser": {
+    "./dist/stylis.cjs.js": "./dist/stylis.browser.cjs.js"
+  }
+}

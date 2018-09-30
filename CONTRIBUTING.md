@@ -5,8 +5,12 @@
 
 ## Installation
 
-- Run `yarn` in the module's root directory to install everything you need for development.
+- Run `yarn` in the repository's root directory to install everything you need for development.
 - Run `yarn build` in the root directory to build the modules.
+
+> NOTE:
+>
+> lerna is **NOT** used for installing packages. Only yarn is used. lerna is only used for publishing
 
 ## Running Tests
 
@@ -25,11 +29,3 @@
 - Run above installation steps and then
 - Run `yarn start:site` to run a development server of gatsby.
 - Run `yarn build:site` to create a build of the assets for the documentation website.
-
-## Benchmarking
-
-- `yarn benchmark` will run the benchmarks locally
-
-- If you commit message includes `#benchmark` the benchmarks will run on the CI.
-
-  - The results for branches in the emotion-js/emotion repo are **here: https://travis-ci.org/emotion-js/emotion/branches**

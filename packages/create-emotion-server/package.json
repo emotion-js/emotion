@@ -1,8 +1,8 @@
 {
   "name": "create-emotion-server",
-  "version": "9.2.6",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
   "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -20,8 +20,8 @@
   "devDependencies": {
     "@types/node": "*",
     "dtslint": "^0.3.0",
-    "emotion": "^9.2.6",
-    "react-emotion": "^9.2.6"
+    "emotion": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "react-emotion": "^10.0.0-really-unsafe-please-do-not-use.2"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -38,5 +38,11 @@
   ],
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
+  },
+  "publishConfig": {
+    "tag": "next"
+  },
+  "browser": {
+    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
   }
 }

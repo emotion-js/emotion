@@ -116,6 +116,19 @@ exports[`Emotion primitives should unmount with emotion-theming 1`] = `
 </div>
 `;
 
+exports[`Emotion primitives should work with StyleSheet.create API 1`] = `
+<Text
+  style={
+    Object {
+      "color": "red",
+      "fontSize": 10,
+    }
+  }
+>
+  Emotion Primitives
+</Text>
+`;
+
 exports[`Emotion primitives should work with emotion-theming 1`] = `
 <Text
   style={

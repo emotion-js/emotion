@@ -1,100 +1,61 @@
 // @flow
-// adapted from styled-components' ThemeProvider
-// https://github.com/styled-components/styled-components/blob/4503cab5b86aa9ef8314c5baa360a2fbb4812485/src/models/ThemeProvider.js
+import * as React from 'react'
+import { ThemeContext } from '@emotion/core'
+import weakMemoize from '@emotion/weak-memoize'
 
-import { Component, Children, type Node as ReactNode } from 'react'
-import createBroadcast from './create-broadcast'
-import { channel, contextTypes, type Theme } from './utils'
-
-const isPlainObject = test =>
-  Object.prototype.toString.call(test) === '[object Object]'
-
-type Props = {
-  theme: Theme,
-  children: ReactNode
-}
-
-// Get the theme from the props, supporting both (outerTheme) => {} as well as object notation
-function getTheme(theme: Theme, outerTheme?: Object) {
+let getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   if (typeof theme === 'function') {
     const mergedTheme = theme(outerTheme)
-    if (!isPlainObject(mergedTheme)) {
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      (mergedTheme == null ||
+        typeof mergedTheme !== 'object' ||
+        Array.isArray(mergedTheme))
+    ) {
       throw new Error(
         '[ThemeProvider] Please return an object from your theme function, i.e. theme={() => ({})}!'
       )
     }
     return mergedTheme
   }
-  if (!isPlainObject(theme)) {
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    (theme == null || typeof theme !== 'object' || Array.isArray(theme))
+  ) {
     throw new Error(
       '[ThemeProvider] Please make your theme prop a plain object'
     )
   }
 
-  if (outerTheme === undefined) {
-    return theme
-  }
-
   return { ...outerTheme, ...theme }
 }
 
-class ThemeProvider extends Component<Props> {
-  outerTheme: Object
-  broadcast: *
-  unsubscribeToOuterId: number
-  componentWillMount() {
-    // If there is a ThemeProvider wrapper anywhere around this theme provider, merge this theme
-    // with the outer theme
-    if (this.context[channel] !== undefined) {
-      this.unsubscribeToOuterId = this.context[channel].subscribe(theme => {
-        this.outerTheme = theme
+let createCacheWithTheme = weakMemoize(outerTheme => {
+  return weakMemoize(theme => {
+    return getTheme(outerTheme, theme)
+  })
+})
 
-        if (this.broadcast !== undefined) {
-          this.publish(this.props.theme)
-        }
-      })
-    }
-
-    this.broadcast = createBroadcast(
-      getTheme(this.props.theme, this.outerTheme)
-    )
-  }
-
-  getChildContext() {
-    return {
-      [channel]: {
-        subscribe: this.broadcast.subscribe,
-        unsubscribe: this.broadcast.unsubscribe
-      }
-    }
-  }
-
-  componentWillReceiveProps(nextProps: Props) {
-    if (this.props.theme !== nextProps.theme) {
-      this.publish(nextProps.theme)
-    }
-  }
-
-  componentWillUnmount() {
-    const themeContext = this.context[channel]
-    if (themeContext !== undefined) {
-      themeContext.unsubscribe(this.unsubscribeToOuterId)
-    }
-  }
-
-  publish(theme: Theme) {
-    this.broadcast.publish(getTheme(theme, this.outerTheme))
-  }
-
-  render() {
-    if (!this.props.children) {
-      return null
-    }
-    return Children.only(this.props.children)
-  }
+type Props = {
+  theme: Object | (Object => Object),
+  children: React.Node
 }
 
-ThemeProvider.childContextTypes = contextTypes
-ThemeProvider.contextTypes = contextTypes
+let ThemeProvider = (props: Props) => {
+  return (
+    <ThemeContext.Consumer>
+      {theme => {
+        if (props.theme !== theme) {
+          theme = createCacheWithTheme(theme)(props.theme)
+        }
+        return (
+          <ThemeContext.Provider value={theme}>
+            {props.children}
+          </ThemeContext.Provider>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
+}
 
 export default ThemeProvider

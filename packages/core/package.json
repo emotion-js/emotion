@@ -1,0 +1,35 @@
+{
+  "name": "@emotion/core",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "main": "dist/core.cjs.js",
+  "module": "dist/core.esm.js",
+  "browser": {
+    "./dist/core.cjs.js": "./dist/core.browser.cjs.js",
+    "./dist/core.esm.js": "./dist/core.browser.esm.js"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/cache": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/css": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/sheet": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.3.0"
+  },
+  "devDependencies": {
+    "html-tag-names": "^1.1.2",
+    "svg-tag-names": "^1.1.1"
+  },
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/core",
+  "publishConfig": {
+    "access": "public"
+  },
+  "umd:main": "./dist/index.min.js"
+}

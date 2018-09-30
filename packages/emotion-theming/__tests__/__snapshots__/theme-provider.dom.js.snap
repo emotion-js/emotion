@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`provider with theme value that changes 1`] = `
+.emotion-0 {
+  color: hotpink;
+  padding: 4px;
+}
+
+<div
+  id="root"
+>
+  <div
+    class="emotion-0"
+    id="the-thing"
+  />
+</div>
+`;
+
+exports[`provider with theme value that changes 2`] = `
+.emotion-0 {
+  color: hotpink;
+  padding: 8px;
+}
+
+<div
+  id="root"
+>
+  <div
+    class="emotion-0"
+    id="the-thing"
+  />
+</div>
+`;

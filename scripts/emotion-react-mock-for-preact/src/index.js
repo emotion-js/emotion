@@ -129,7 +129,18 @@ export function createContext<T>(defaultValue: T): Context<T> {
   }
 }
 
-export const forwardRef = (render: *) => render
+export const forwardRef = <Props, Ref: React$Ref<*>>(
+  render: (props: Props, ref: Ref | null) => React$Node
+) => {
+  return (props: { ...Props, innerRef: Ref }) => {
+    let ref = null
+    let newProps = props
+    if (props.innerRef) {
+      ;({ innerRef: ref, ...newProps } = props)
+    }
+    return render(newProps, ref)
+  }
+}
 
 export let Fragment = () => {}
 if (process.env.NODE_ENV !== 'production') {

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`composition works from old emotion css calls 1`] = `
+<html>
+  <head>
+    <style
+      data-emotion="css"
+    >
+      
+      .css-ulmpz9{color:green;}
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+    >
+      <div
+        class="css-ulmpz9"
+      />
+    </div>
+  </body>
+</html>
+`;

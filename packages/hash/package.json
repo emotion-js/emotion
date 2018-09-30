@@ -1,0 +1,21 @@
+{
+  "name": "@emotion/hash",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "description": "A MurmurHash2 implementation",
+  "main": "dist/hash.cjs.js",
+  "module": "dist/hash.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/hash",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "umd:main": "./dist/index.min.js",
+  "browser": {
+    "./dist/hash.cjs.js": "./dist/hash.browser.cjs.js",
+    "./dist/hash.esm.js": "./dist/hash.browser.esm.js"
+  }
+}

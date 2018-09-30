@@ -299,11 +299,8 @@ describe('css', () => {
 
   test('null value', () => {
     const cls1 = css(null)
-    const cls2 = css`
-      ${() => null};
-    `
+
     expect(renderer.create(<div className={cls1} />).toJSON()).toMatchSnapshot()
-    expect(renderer.create(<div className={cls2} />).toJSON()).toMatchSnapshot()
   })
 
   test('flushes correctly', () => {
@@ -344,14 +341,6 @@ describe('css', () => {
     expect(tree2).toMatchSnapshot()
   })
 
-  test('return function in interpolation', () => {
-    const cls1 = css`
-      color: ${() => 'blue'};
-    `
-
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
   test('manually use label property', () => {
     flush()
     const cls1 = css`

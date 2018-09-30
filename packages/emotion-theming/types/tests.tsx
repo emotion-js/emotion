@@ -1,9 +1,13 @@
 import * as React from 'react';
 import * as emotionTheming from '../';
 // tslint:disable-next-line:no-duplicate-imports
-import { ThemeProvider, withTheme, EmotionThemingModule } from '../';
+import { ThemeProvider, withTheme, EmotionThemingModule, channel, createBroadcast, Broadcast } from '../';
 
-const theme = { primary: "green", secondary: "white" };
+interface Theme  {
+    primary: string;
+    secondary: string;
+}
+const theme: Theme = { primary: "green", secondary: "white" };
 const CompSFC = (props: { prop: boolean }) => <div />;
 declare class CompC extends React.Component<{ prop: boolean }> { }
 
@@ -37,3 +41,16 @@ const TypedThemedSFC = typedWithTheme(ThemedSFC);
 const TypedCompSFC = typedWithTheme(CompSFC);
 <TypedCompSFC prop />;
 <TypedCompSFC theme={theme} prop />;
+
+/**
+ * createBroadcast
+ */
+const broadcast: Broadcast<Theme> = createBroadcast(theme);
+const unsubID: number = broadcast.subscribe((theme: Theme) => { theme; });
+broadcast.publish({ primary: "red", secondary: "blue" });
+broadcast.unsubscribe(unsubID);
+
+const context = {
+    [channel]: broadcast
+};
+context;
