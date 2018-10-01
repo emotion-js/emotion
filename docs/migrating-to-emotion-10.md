@@ -1,5 +1,5 @@
 ---
-title: "Migrating to Emotion 10"
+title: 'Migrating to Emotion 10'
 ---
 
 Emotion 10 is a large change to Emotion so it requires some changes to your code. Some of the changes can be done automatically via a codemod and the rest can be done incrementally.
@@ -55,7 +55,7 @@ The upgrades to emotion 10 are split into two parts. The first part can be done 
 
 ## Codemoddable
 
-* Change all react-emotion imports so that styled is imported from `@emotion/styled` and all the emotion exports are split into a second import.
+- Change all react-emotion imports so that styled is imported from `@emotion/styled` and all the emotion exports are split into a second import.
 
 ```jsx
 import styled, { css } from 'react-emotion'
@@ -64,7 +64,7 @@ import styled from '@emotion/styled'
 import { css } from 'emotion'
 ```
 
-* Add a css call to the css prop when a template literal is used.
+- Add a css call to the css prop when a template literal is used.
 
 ```jsx
 let element = (
@@ -88,8 +88,8 @@ let element = (
 )
 ```
 
-* Add a `jsx` import and set jsx pragma
-* Alternatively, use this TODO babel preset
+- Add a `jsx` import and set jsx pragma
+- Alternatively, use this TODO babel preset
 
 ```jsx
 import { css } from '@emotion/core'
@@ -105,28 +105,27 @@ let element = (
 
 ## Manual Steps
 
-* Add compat cache with provider
+- Add compat cache with provider
+
+This step is necessary if you still use `css`, `keyframes` or `injectGlobal` from `emotion`. Once you remove all the usages of them in your app, you can remove this.
 
 ```jsx
 import { render } from 'react-dom'
 import App from './App'
-import * as emotion from 'emotion'
-import createCompatCache from '@emotion/compat-cache'
-import { Provider } from '@emotion/provider'
-
-let compatCache = createCompatCache(emotion)
+import { cache } from 'emotion'
+import { CacheProvider } from '@emotion/provider'
 
 render(
-  <Provider value={compatCache}>
+  <CacheProvider value={cache}>
     <App />
-  </Provider>,
+  </CacheProvider>,
   rootNode
 )
 ```
 
 ## Manual Steps over time
 
-* Change css usage to css prop
+- Change css usage to css prop
 
 ```jsx
 import { css } from 'emotion'
@@ -151,4 +150,33 @@ let element = (
 )
 ```
 
-* TODO: add a render prop component that can add multiple class names at once.
+If you have components that accepts props like `wrapperClassName` or etc. you can use the [`ClassNames` component](./class-names.md).
+
+```jsx
+import { css } from 'emotion'
+import { SomeComponent } from 'somewhere'
+let element = (
+  <SomeComponent
+    wrapperClassName={css`
+      color: hotpink;
+    `}
+  />
+)
+
+// ↓ ↓ ↓ ↓ ↓ ↓
+
+import { ClassNames } from '@emotion/core'
+import { SomeComponent } from 'somewhere'
+
+let element = (
+  <ClassNames>
+    {({ css }) => (
+      <SomeComponent
+        wrapperClassName={css`
+          color: hotpink;
+        `}
+      />
+    )}
+  </ClassNames>
+)
+```

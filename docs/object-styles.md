@@ -1,10 +1,8 @@
 ---
-title: "Object Styles"
+title: 'Object Styles'
 ---
 
 Writing styles with objects is a powerful pattern built directly into the core of emotion. Instead of writing css properties in `kebab-case` like regular css, you write them in `camelCase`, for example `background-color` would be `backgroundColor`. Object styles are especially useful with the css prop because you don't need a css call like with string styles but object styles can also be used with styled.
-
-## ADD LINKS TO THE ABOVE STUFF
 
 ### Examples
 
@@ -65,7 +63,8 @@ render(
       }
     }}
   >
-    This is darkorchid.<div className="name">This is orange</div>
+    This is darkorchid.
+    <div className="name">This is orange</div>
   </div>
 )
 ```

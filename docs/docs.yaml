@@ -17,7 +17,7 @@
     - with-props
     - theming
     - labels
-    - instances
+    - class-names
     - migrating-to-emotion-10
     #- benchmarks
 

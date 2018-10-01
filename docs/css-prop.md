@@ -1,8 +1,8 @@
 ---
-title: "The css Prop"
+title: 'The css Prop'
 ---
 
-The primary way to style things in emotion is with the css prop, to use the css prop you need to ...jsx comment
+The primary way to style things in emotion is with the css prop, to use the css prop you need to import `jsx` from `@emotion/core` and set it as the jsx pragma by adding a comment like this `/** @jsx jsx */`
 
 To pass string styles, you must use `css` which is exported by `@emotion/core`, it can be used as a [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) like below.
 
@@ -28,7 +28,7 @@ render(
 )
 ```
 
-You can also pass objects directly to the css prop, for more usage with objects, go [here](/docs/object-styles.md).
+You can also pass objects directly to the css prop, for more usage with objects, look at [the object styles page](/docs/object-styles.md).
 
 ```jsx
 // @live

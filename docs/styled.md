@@ -1,8 +1,8 @@
 ---
-title: "Styled Components"
+title: 'Styled Components'
 ---
 
-`styled` is a way to create React or Preact components that have styles attached to them. It's available from [@emotion/styled](/packages/@emotion/styled) and [TODO](/packages/preact-emotion). `styled` was heavily inspired by [styled-components](https://www.styled-components.com/) and [glamorous](https://glamorous.rocks/)
+`styled` is a way to create React or Preact components that have styles attached to them. It's available from [@emotion/styled](/packages/@emotion/styled) and [@emotion/preact-styled](/packages/@emotion/preact-styled). `styled` was heavily inspired by [styled-components](https://www.styled-components.com/) and [glamorous](https://glamorous.rocks/)
 
 ### Styling elements and components
 
@@ -154,3 +154,22 @@ render(<H1 color="lightgreen">This is lightgreen.</H1>)
 ```
 
 This API was inspired by [glamorous](https://github.com/paypal/glamorous). ❤️
+
+### Customizing prop forwarding
+
+By default, Emotion will pass all props to custom components and only props that are valid html attributes for string tags. This is can be customized by passing a custom `shouldForwardProp` function. You can also use `@emotion/is-prop-valid` to filter out props that are not valid as html attributes, it is what emotion uses internally.
+
+```jsx
+// @live
+import isPropValid from '@emotion/is-prop-valid'
+import styled from '@emotion/styled'
+
+const H1 = styled('h1', {
+  shouldForwardProp: prop =>
+    isPropValid(prop) && prop !== 'color'
+})(props => ({
+  color: 'hotpink'
+}))
+
+render(<H1 color="lightgreen">This is lightgreen.</H1>)
+```

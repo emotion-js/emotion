@@ -1,8 +1,8 @@
 ---
-title: "Keyframes"
+title: 'Keyframes'
 ---
 
-If you need more control over an animation, you can use `keyframes` with the same JS interpolation as `css`. The `keyframes` function takes in a css keyframe definition and returns an animation name so that you can include it in other styles. This is similar to how `css` takes in styles and returns a className that you can use to apply the styles.
+If you need more control over an animation, you can use `keyframes` with the same JS interpolation as `css`. The `keyframes` function takes in a css keyframe definition and an object which can be interpolated in styles.
 
 ```jsx
 // @live
@@ -30,8 +30,7 @@ const bounce = keyframes`
 render(
   <div
     css={css`
-      animation: ${bounce.name} 1s ease infinite;
-      ${bounce.styles};
+      animation: ${bounce} 1s ease infinite;
     `}
   >
     some bouncing text!
