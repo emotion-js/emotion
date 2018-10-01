@@ -124,7 +124,7 @@ const createLiveCode = memoize(logoUrl => props => {
     }
   })
 
-  const url = `https://codesandbox.io/api/v1/sandboxes/define?embed=1&parameters=${parameters}&query=?module=/src/Example.js&view=split`
+  const url = `https://codesandbox.io/api/v1/sandboxes/define?embed=1&parameters=${parameters}&query=module=%2Fsrc%2FExample.js%26view=split`
 
   return (
     <ClassName
