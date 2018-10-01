@@ -2,7 +2,6 @@
 import React from 'react'
 import { mq, constants } from '../utils/style'
 import Box from '../components/Box'
-import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
 import RenderHAST from '../components/RenderHAST'
 import Title from '../components/Title'
@@ -11,7 +10,7 @@ import memoize from '@emotion/memoize'
 import Layout from '../layouts'
 import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
-import CodeSandboxer from 'react-codesandboxer'
+import { getParameters } from 'codesandbox-import-utils/lib/api/define'
 
 type Props = {
   data: {
@@ -55,28 +54,11 @@ const ClassName = (props: any) => {
   return props.children(props.className)
 }
 
-const createLiveCode = memoize(logoUrl => props => (
-  <ClassName
-    css={mq({
-      maxWidth: constants.breakpoints[1] + 'em',
-      paddingLeft: [32, 30],
-      paddingRight: [32, 30]
-    })}
-  >
-    {internalCodeStylesClassName => (
-      <CodeSandboxer
-        css={mq({
-          marginLeft: [-32, -30],
-          marginRight: [-32, -30],
-          marginTop: 16,
-          marginBottom: 16,
-          borderRadius: [0, 8],
-          whiteSpace: 'pre-wrap',
-          wordBreak: 'break-word'
-        })}
-        preload
-        skipRedirect
-        pkgJSON={{
+const createLiveCode = memoize(logoUrl => props => {
+  const parameters = getParameters({
+    files: {
+      'package.json': {
+        content: {
           name: 'emotion-example-base',
           version: '1.0.0',
           description: '',
@@ -106,60 +88,70 @@ const createLiveCode = memoize(logoUrl => props => (
             test: 'react-scripts test --env=jsdom',
             eject: 'react-scripts eject'
           }
-        }}
-        examplePath="src/Example.js"
-        example={props.code}
-        gitInfo={{
-          account: 'tkh44',
-          repository: 'emotion-example-codesandbox-base',
-          branch: 'master',
-          host: 'github'
-        }}
-        afterDeploy={console.log}
-        afterDeployError={console.log}
-        onLoadComplete={({ parameters, files }) => {
-          console.log('onLoadComplete', parameters, files)
-        }}
-        editorClassName={internalCodeStylesClassName}
-      >
-        {({ error, isLoading, isDeploying, sandboxId, sandboxUrl }) => {
-          if (sandboxId && sandboxUrl) {
-            return (
-              <div className={internalCodeStylesClassName}>
-                <iframe
-                  src={`https://codesandbox.io/embed/${sandboxId}?autoresize=1&hidenavigation=1&module=/example`}
-                  style={{
-                    width: '100%',
-                    height: 500,
-                    border: 0,
-                    borderRadius: 4,
-                    overflow: 'hidden'
-                  }}
-                  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-                />
-              </div>
-            )
-          }
-          return (
-            <pre>
-              {JSON.stringify(
-                {
-                  error,
-                  isLoading,
-                  isDeploying,
-                  sandboxId,
-                  sandboxUrl
-                },
-                null,
-                2
-              )}
-            </pre>
-          )
-        }}
-      </CodeSandboxer>
-    )}
-  </ClassName>
-))
+        }
+      },
+      '.prettierrc': {
+        content: {
+          printWidth: 50,
+          tabWidth: 2,
+          useTabs: false,
+          semi: false,
+          singleQuote: true,
+          trailingComma: 'none',
+          bracketSpacing: true,
+          jsxBracketSameLine: false
+        }
+      },
+      'sandbox.config.json': {
+        content: {
+          infiniteLoopProtection: true,
+          hardReloadOnChange: false
+        }
+      },
+      'src/index.js': {
+        content: `
+          import React from 'react'
+          import { render } from 'react-dom'
+          
+          import Example from './Example.js'
+          
+          render(<Example />, document.getElementById('root'))
+        `
+      },
+      'src/Example.js': {
+        content: props.code
+      }
+    }
+  })
+
+  const url = `https://codesandbox.io/api/v1/sandboxes/define?embed=1&parameters=${parameters}&query=?module=/src/Example.js&view=split`
+
+  return (
+    <ClassName
+      css={mq({
+        maxWidth: constants.breakpoints[1] + 'em',
+        paddingLeft: [32, 30],
+        paddingRight: [32, 30]
+      })}
+    >
+      {internalCodeStylesClassName => (
+        <div className={internalCodeStylesClassName}>
+          <iframe
+            src={url}
+            style={{
+              width: '100%',
+              height: 500,
+              border: 0,
+              borderRadius: 4,
+              overflow: 'hidden'
+            }}
+            sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+          />
+        </div>
+      )}
+    </ClassName>
+  )
+})
 
 export default class DocRoute extends React.Component<Props> {
   render() {
