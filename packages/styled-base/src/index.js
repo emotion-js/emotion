@@ -2,8 +2,7 @@
 import * as React from 'react'
 import type { ElementType } from 'react'
 import {
-  testOmitPropsOnComponent,
-  testOmitPropsOnStringTag,
+  getShouldForwardProp,
   type StyledOptions,
   type CreateStyled
 } from './utils'
@@ -27,30 +26,26 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   }
   let identifierName
   let shouldForwardProp
+  let optionsShouldForwardProp
   let targetClassName
   if (options !== undefined) {
     identifierName = options.label
     targetClassName = options.target
-    shouldForwardProp =
+    optionsShouldForwardProp =
       tag.__emotion_forwardProp && options.shouldForwardProp
         ? propName =>
             tag.__emotion_forwardProp(propName) &&
             // $FlowFixMe
             options.shouldForwardProp(propName)
         : options.shouldForwardProp
+
+    shouldForwardProp = optionsShouldForwardProp
   }
   const isReal = tag.__emotion_real === tag
   const baseTag = (isReal && tag.__emotion_base) || tag
-  let isStringTag = typeof baseTag === 'string'
+
   if (typeof shouldForwardProp !== 'function') {
-    shouldForwardProp =
-      isStringTag &&
-      // 96 is one less than the char code
-      // for "a" so this is checking that
-      // it's a lowercase character
-      baseTag.charCodeAt(0) > 96
-        ? testOmitPropsOnStringTag
-        : testOmitPropsOnComponent
+    shouldForwardProp = getShouldForwardProp(baseTag)
   }
 
   return function(): StyledComponent {
@@ -96,6 +91,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       return (
         <ThemeContext.Consumer>
           {theme => {
+            const finalTag = props.as || baseTag
             let className = ''
             let classInterpolations = []
             let mergedProps = props
@@ -119,17 +115,26 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               styles.concat(classInterpolations),
               mergedProps
             )
-            const rules = insertStyles(context, serialized, isStringTag)
+            const rules = insertStyles(
+              context,
+              serialized,
+              typeof finalTag === 'string'
+            )
             className += `${context.key}-${serialized.name}`
             if (targetClassName !== undefined) {
               className += ` ${targetClassName}`
             }
+
+            const finalShouldForwardProp = props.as
+              ? optionsShouldForwardProp || getShouldForwardProp(finalTag)
+              : shouldForwardProp
+
             let newProps = {}
 
             for (let key in props) {
               if (
                 // $FlowFixMe
-                shouldForwardProp(key)
+                finalShouldForwardProp(key)
               ) {
                 newProps[key] = props[key]
               }
