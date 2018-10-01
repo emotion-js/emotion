@@ -18,7 +18,7 @@ const anotherClassName = css({
   label: 'another-name'
 })
 
-render(
+export default () => (
   <div>
     <div className={className}>{className}</div>
     <div className={anotherClassName}>

@@ -17,7 +17,7 @@ const RedPasswordInput = withProps({
   background-color: red;
 `)
 
-render(<RedPasswordInput />)
+export default () => <RedPasswordInput />
 ```
 
 Alternatively, you can use the css prop and create a regular component like this.
@@ -37,5 +37,5 @@ const RedPasswordInput = props => (
   />
 )
 
-render(<RedPasswordInput />)
+export default () => <RedPasswordInput />
 ```

@@ -9,7 +9,7 @@ Using media queries in emotion works just like using media queries in regular cs
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
-render(
+export default () => (
   <p
     css={css`
       font-size: 30px;
@@ -38,7 +38,7 @@ const mq = breakpoints.map(
   bp => `@media (min-width: ${bp}px)`
 )
 
-render(
+export default () => (
   <div>
     <div
       css={{
@@ -96,7 +96,7 @@ const mq = facepaint(
   breakpoints.map(bp => `@media (min-width: ${bp}px)`)
 )
 
-render(
+export default () => (
   <div
     css={mq({
       color: ['green', 'gray', 'hotpink']

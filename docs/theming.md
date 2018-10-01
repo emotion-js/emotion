@@ -25,7 +25,7 @@ const SomeText = styled.div`
   color: ${props => props.theme.colors.primary};
 `
 
-render(
+export default () => (
   <ThemeProvider theme={theme}>
     <SomeText>some text</SomeText>
     <div css={theme => ({ color: theme.colors.primary })}>

@@ -13,7 +13,7 @@ const base = css`
   color: hotpink;
 `
 
-render(
+export default () => (
   <div
     css={css`
       ${base};
@@ -31,7 +31,7 @@ For example, we have some base styles and a danger style, we want the danger sty
 
 ```jsx
 // @live
-render(
+export default () => (
   <div>
     <style>
       {`
@@ -66,7 +66,7 @@ const base = css`
   color: turquoise;
 `
 
-render(
+export default () => (
   <div>
     <div css={base}>This will be turquoise</div>
     <div css={[danger, base]}>
@@ -99,7 +99,7 @@ const dynamicStyle = props =>
 const Container = styled.div`
   ${dynamicStyle};
 `
-render(
+export default () => (
   <Container color="lightgreen">
     This is lightgreen.
   </Container>
@@ -120,7 +120,7 @@ const dynamicStyle = props =>
 
 const Container = styled.div(dynamicStyle)
 
-render(
+export default () => (
   <Container color="lightgreen">
     This is lightgreen.
   </Container>

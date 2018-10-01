@@ -56,6 +56,7 @@ function getCode(htmlAst): Code {
   let cachedVal = cache.get(htmlAst)
   if (cachedVal) return cachedVal
   let nodes = htmlAst.children.filter(node => node.tagName === 'live-code')
+  console.log("get code")
   let ret = {
     precompiledCode: nodes[0].properties.compiled,
     stringCode: nodes[0].properties.code,

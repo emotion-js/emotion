@@ -13,7 +13,7 @@ This documentation has lots of live examples that look like this, they're all ed
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
-render(
+export default () => (
   <div
     css={css`
       color: hotpink;

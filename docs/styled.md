@@ -16,7 +16,9 @@ const Button = styled.button`
   color: turquoise;
 `
 
-render(<Button>This my button component.</Button>)
+export default () => (
+  <Button>This my button component.</Button>
+)
 ```
 
 ### Changing based on props
@@ -37,7 +39,7 @@ const Container = styled.div(props => ({
   flexDirection: props.column && 'column'
 }))
 
-render(
+export default () => (
   <Container column>
     <Button>This is a regular button.</Button>
     <Button primary>This is a primary button.</Button>
@@ -60,7 +62,7 @@ const Fancy = styled(Basic)`
   color: hotpink;
 `
 
-render(<Fancy />)
+export default () => <Fancy />
 ```
 
 ### Change the rendered tag using `withComponent`
@@ -76,7 +78,7 @@ const Section = styled.section`
 `
 // this component has the same styles as Section but it renders an aside
 const Aside = Section.withComponent('aside')
-render(
+export default () => (
   <div>
     <Section>This is a section</Section>
     <Aside>This is an an aside</Aside>
@@ -101,7 +103,7 @@ const Parent = styled.div`
     color: green;
   }
 `
-render(
+export default () => (
   <div>
     <Parent>
       <Child>green</Child>
@@ -127,7 +129,7 @@ const Parent = styled.div({
   }
 })
 
-render(
+export default () => (
   <div>
     <Parent>
       <Child>green</Child>
@@ -150,7 +152,9 @@ const H1 = styled.h1(
   props => ({ color: props.color })
 )
 
-render(<H1 color="lightgreen">This is lightgreen.</H1>)
+export default () => (
+  <H1 color="lightgreen">This is lightgreen.</H1>
+)
 ```
 
 This API was inspired by [glamorous](https://github.com/paypal/glamorous). ❤️

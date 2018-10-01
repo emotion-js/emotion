@@ -14,7 +14,7 @@ import { css, jsx } from '@emotion/core'
 
 const color = 'darkgreen'
 
-render(
+export default () => (
   <div
     css={css`
       background-color: hotpink;
@@ -35,7 +35,7 @@ You can also pass objects directly to the css prop, for more usage with objects,
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-render(
+export default () => (
   <div
     css={{
       backgroundColor: 'hotpink',

@@ -8,7 +8,7 @@ Sometimes it's useful to insert global css like resets or font faces. The `Globa
 // @live
 import { Global, css } from '@emotion/core'
 
-render(
+export default () => (
   <div>
     <Global
       styles={css`

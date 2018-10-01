@@ -43,7 +43,7 @@ const anotherStyle = css({
 const AnotherComponent = () => (
   <div css={anotherStyle}>Some text with an underline.</div>
 )
-render(
+export default () => (
   <SomeComponent>
     <AnotherComponent />
   </SomeComponent>
@@ -81,7 +81,9 @@ const Button = styled.button`
   color: hotpink;
 `
 
-render(<Button>This is a hotpink button.</Button>)
+export default () => (
+  <Button>This is a hotpink button.</Button>
+)
 ```
 
 ## With [`babel-plugin-emotion`](/packages/babel-plugin-emotion)

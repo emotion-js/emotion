@@ -36,7 +36,9 @@ const cls2 = css`
   background: blue;
 `
 
-render(<div className={cx(cls1, cls2)}>Blue Text</div>)
+export default () => (
+  <div className={cx(cls1, cls2)}>Blue Text</div>
+)
 ```
 
 This renders a `div` with a single class name and the following styles would be inserted.
@@ -65,7 +67,9 @@ const cls2 = css`
   background: blue;
 `
 
-render(<div className={cx(cls2, cls1)}>Green Text</div>) // <-- arguments reversed
+export default () => (
+  <div className={cx(cls2, cls1)}>Green Text</div>
+) // <-- arguments reversed
 ```
 
 The div will now have a **green** background even though `cls2` was inserted into the stylesheet **after** `cls1`.
@@ -108,7 +112,7 @@ const cls4 = css`
 const foo = true
 const bar = false
 
-render(
+export default () => (
   <div
     className={cx(
       { [cls1]: foo },

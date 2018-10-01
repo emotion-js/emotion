@@ -55,6 +55,7 @@ type Props = {
 
 export default class Playground extends Component<Props> {
   render() {
+    console.log('this.props', this.props)
     return (
       <Live
         scope={{ ...scope, logoUrl: this.props.logoUrl }}

@@ -27,7 +27,7 @@ const bounce = keyframes`
   }
 `
 
-render(
+export default () => (
   <div
     css={css`
       animation: ${bounce.name} 1s ease infinite;

@@ -116,10 +116,12 @@ import { Provider } from '@emotion/provider'
 
 let compatCache = createCompatCache(emotion)
 
-render(
-  <Provider value={compatCache}>
-    <App />
-  </Provider>,
+export default () => (
+  (
+    <Provider value={compatCache}>
+      <App />
+    </Provider>
+  ),
   rootNode
 )
 ```

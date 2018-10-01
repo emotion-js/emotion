@@ -16,7 +16,7 @@ const paragraph = css`
     border-bottom: 1px solid currentColor;
   }
 `
-render(
+export default () => (
   <p css={paragraph}>
     Some text. <a>A link with a bottom border.</a>
   </p>
@@ -37,7 +37,7 @@ const paragraph = css`
     color: green;
   }
 `
-render(
+export default () => (
   <div>
     <header>
       <p css={paragraph}>

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { mq } from '../utils/style'
+import { mq, constants } from '../utils/style'
 import Box from '../components/Box'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
@@ -11,6 +11,7 @@ import memoize from '@emotion/memoize'
 import Layout from '../layouts'
 import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
+import CodeSandboxer from 'react-codesandboxer'
 
 type Props = {
   data: {
@@ -57,12 +58,13 @@ const ClassName = (props: any) => {
 const createLiveCode = memoize(logoUrl => props => (
   <ClassName
     css={mq({
+      maxWidth: constants.breakpoints[1] + 'em',
       paddingLeft: [32, 30],
       paddingRight: [32, 30]
     })}
   >
     {internalCodeStylesClassName => (
-      <Playground
+      <CodeSandboxer
         css={mq({
           marginLeft: [-32, -30],
           marginRight: [-32, -30],
@@ -72,11 +74,89 @@ const createLiveCode = memoize(logoUrl => props => (
           whiteSpace: 'pre-wrap',
           wordBreak: 'break-word'
         })}
+        preload
+        skipRedirect
+        pkgJSON={{
+          name: 'emotion-example-base',
+          version: '1.0.0',
+          description: '',
+          keywords: [],
+          homepage: 'https://codesandbox.io/s/new',
+          main: 'src/index.js',
+          dependencies: {
+            '@emotion/core': '0.13.1',
+            '@emotion/css': '0.9.8',
+            '@emotion/keyframes': '0.9.1',
+            '@emotion/style': '0.8.0',
+            '@emotion/styled': '0.10.6',
+            '@emotion/styled-base': '0.10.6',
+            emotion: '9.2.12',
+            'emotion-theming': '9.2.9',
+            facepaint: '1.2.1',
+            react: '16.5.2',
+            'react-dom': '16.5.2',
+            'react-emotion': '9.2.12',
+            'react-scripts': '1.1.5',
+            recompose: '0.30.0'
+          },
+          devDependencies: {},
+          scripts: {
+            start: 'react-scripts start',
+            build: 'react-scripts build',
+            test: 'react-scripts test --env=jsdom',
+            eject: 'react-scripts eject'
+          }
+        }}
+        examplePath="src/Example.js"
+        example={props.code}
+        gitInfo={{
+          account: 'tkh44',
+          repository: 'emotion-example-codesandbox-base',
+          branch: 'master',
+          host: 'github'
+        }}
+        afterDeploy={console.log}
+        afterDeployError={console.log}
+        onLoadComplete={({ parameters, files }) => {
+          console.log('onLoadComplete', parameters, files)
+        }}
         editorClassName={internalCodeStylesClassName}
-        logoUrl={logoUrl}
-        initialCompiledCode={props.compiled}
-        code={props.code}
-      />
+      >
+        {({ error, isLoading, isDeploying, sandboxId, sandboxUrl }) => {
+          if (sandboxId && sandboxUrl) {
+            return (
+              <div className={internalCodeStylesClassName}>
+                <iframe
+                  src={`https://codesandbox.io/embed/${sandboxId}?autoresize=1&hidenavigation=1&module=/example`}
+                  style={{
+                    width: '100%',
+                    height: 500,
+                    border: 0,
+                    borderRadius: 4,
+                    overflow: 'hidden'
+                  }}
+                  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+                />
+              </div>
+            )
+          }
+          return (
+            <pre>
+              {JSON.stringify(
+                {
+                  error,
+                  isLoading,
+                  isDeploying,
+                  sandboxId,
+                  sandboxUrl
+                },
+                null,
+                2
+              )}
+            </pre>
+          )
+        }}
+      </CodeSandboxer>
     )}
   </ClassName>
 ))
@@ -85,6 +165,7 @@ export default class DocRoute extends React.Component<Props> {
   render() {
     const { data } = this.props
     const { doc, avatar } = data
+
     return (
       <Layout>
         <DocWrapper>

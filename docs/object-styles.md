@@ -15,7 +15,7 @@ Writing styles with objects is a powerful pattern built directly into the core o
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-render(
+export default () => (
   <div
     css={{
       color: 'darkorchid',
@@ -42,7 +42,7 @@ const Button = styled.button(
   })
 )
 
-render(
+export default () => (
   <Button fontSize={16}>
     This is a darkorchid button.
   </Button>
@@ -56,7 +56,7 @@ render(
 /* @jsx jsx */
 import { jsx } from '@emotion/core'
 
-render(
+export default () => (
   <div
     css={{
       color: 'darkorchid',
@@ -77,7 +77,7 @@ render(
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-render(
+export default () => (
   <div
     css={{
       color: 'darkorchid',
@@ -101,7 +101,7 @@ When numbers are the value of a css property, `px` is appended to the number unl
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-render(
+export default () => (
   <div
     css={{
       padding: 8,
@@ -122,7 +122,7 @@ Nested arrays are flattened.
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-render(
+export default () => (
   <div
     css={[
       { color: 'darkorchid' },
@@ -145,7 +145,7 @@ Define fallback values for browsers that don't support features with arrays.
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-render(
+export default () => (
   <div
     css={{
       background: [
@@ -175,7 +175,7 @@ const hotpink = css({
   color: 'hotpink'
 })
 
-render(
+export default () => (
   <div>
     <p css={hotpink}>This is hotpink</p>
   </div>
@@ -207,7 +207,7 @@ const hotpinkWithBlackBackground = css(
   hotpink
 )
 
-render(
+export default () => (
   <div>
     <p css={hotpink}>This is hotpink</p>
     <button css={hotpinkHoverOrFocus}>
