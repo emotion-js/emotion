@@ -27,20 +27,17 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   }
   let identifierName
   let shouldForwardProp
-  let optionsShouldForwardProp
   let targetClassName
   if (options !== undefined) {
     identifierName = options.label
     targetClassName = options.target
-    optionsShouldForwardProp =
+    shouldForwardProp =
       tag.__emotion_forwardProp && options.shouldForwardProp
         ? propName =>
             tag.__emotion_forwardProp(propName) &&
             // $FlowFixMe
             options.shouldForwardProp(propName)
         : options.shouldForwardProp
-
-    shouldForwardProp = optionsShouldForwardProp
   }
   const isReal = tag.__emotion_real === tag
   const baseTag = (isReal && tag.__emotion_base) || tag
