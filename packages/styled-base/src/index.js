@@ -3,6 +3,7 @@ import * as React from 'react'
 import type { ElementType } from 'react'
 import {
   getShouldForwardProp,
+  hasDefaultShouldForwardProp,
   type StyledOptions,
   type CreateStyled
 } from './utils'
@@ -45,7 +46,9 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   const baseTag = (isReal && tag.__emotion_base) || tag
 
   if (typeof shouldForwardProp !== 'function') {
-    shouldForwardProp = getShouldForwardProp(baseTag)
+    shouldForwardProp = isReal
+      ? tag.__emotion_forwardProp
+      : getShouldForwardProp(baseTag)
   }
 
   return function(): StyledComponent {
@@ -91,7 +94,9 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       return (
         <ThemeContext.Consumer>
           {theme => {
-            const finalTag = props.as || baseTag
+            const shouldUseAs = !shouldForwardProp('as')
+            const finalTag = (shouldUseAs && props.as) || baseTag
+
             let className = ''
             let classInterpolations = []
             let mergedProps = props
@@ -125,13 +130,17 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               className += ` ${targetClassName}`
             }
 
-            const finalShouldForwardProp = props.as
-              ? optionsShouldForwardProp || getShouldForwardProp(finalTag)
-              : shouldForwardProp
+            const finalShouldForwardProp =
+              (shouldUseAs &&
+                hasDefaultShouldForwardProp(baseTag, shouldForwardProp) &&
+                getShouldForwardProp(finalTag)) ||
+              shouldForwardProp
 
             let newProps = {}
 
             for (let key in props) {
+              if (shouldUseAs && key === 'as') continue
+
               if (
                 // $FlowFixMe
                 finalShouldForwardProp(key)
@@ -154,7 +163,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               }
             }
 
-            const ele = React.createElement(baseTag, newProps)
+            const ele = React.createElement(finalTag, newProps)
             if (!isBrowser && rules !== undefined) {
               let serializedNames = serialized.name
               let next = serialized.next

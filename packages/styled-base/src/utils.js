@@ -17,6 +17,12 @@ export const getShouldForwardProp = tag =>
     ? testOmitPropsOnStringTag
     : testOmitPropsOnComponent
 
+export const hasDefaultShouldForwardProp = (tag, shouldForwardProp) =>
+  shouldForwardProp ===
+  (typeof tag === 'string'
+    ? testOmitPropsOnComponent
+    : testOmitPropsOnComponent)
+
 export type StyledOptions = {
   label?: string,
   shouldForwardProp?: string => boolean,
