@@ -1,5 +1,5 @@
 - title: Getting Started
-  items: 
+  items:
     - introduction
     - install
     - css
@@ -40,7 +40,6 @@
     - emotion-server
     - emotion-theming
     - jest-emotion
-    - "@emotion/primitives"
+    - '@emotion/primitives'
     - create-emotion
     - create-emotion-server
-    - preact-emotion

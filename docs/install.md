@@ -1,5 +1,5 @@
 ---
-title: "Install"
+title: 'Install'
 ---
 
 Emotion can be used in many different ways. The easiest way to get started is to use the [`emotion` package](/packages/emotion).
@@ -26,7 +26,8 @@ const className = css`
 
 const SomeComponent = ({ children }) => (
   <div className={className}>
-    Some hotpink text.{children}
+    Some hotpink text.
+    {children}
   </div>
 )
 
@@ -48,7 +49,7 @@ render(
 
 ## With [`styled`](/docs/styled.md)
 
-`styled` is a way to create React/Preact components that have styles attached to them.
+`styled` is a way to create React components that have styles attached to them.
 
 ```bash
 # assuming you already have emotion installed

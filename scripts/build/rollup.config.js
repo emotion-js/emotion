@@ -78,13 +78,11 @@ module.exports = (
   {
     isUMD,
     isBrowser,
-    isPreact,
     isProd,
     shouldMinifyButStillBePretty
   } /*: {
     isUMD: boolean,
     isBrowser: boolean,
-    isPreact: boolean,
     isProd: boolean,
     shouldMinifyButStillBePretty: boolean
   } */
@@ -106,20 +104,10 @@ module.exports = (
     []
   )
   external.push('fs', 'path')
-  if (data.name === 'react-emotion' || data.name === 'preact-emotion') {
+  if (data.name === 'react-emotion') {
     external = external.filter(name => name !== 'emotion')
   }
   let packageAliases = lernaAliases()
-  if (external.includes('@emotion/preact-core')) {
-    packageAliases['@emotion/core'] = '@emotion/preact-core'
-  }
-  if (external.includes('@emotion/preact-styled-base')) {
-    packageAliases['@emotion/styled-base'] = '@emotion/preact-styled-base'
-  }
-
-  if (isPreact) {
-    packageAliases['react'] = require.resolve('emotion-react-mock-for-preact')
-  }
 
   const config = {
     input: data.input,
@@ -190,11 +178,10 @@ module.exports = (
         babelrc: false
       }),
       cjs(),
-      (isUMD || isPreact) && alias(packageAliases),
-      (isUMD || isPreact) && resolve(),
+      isUMD && alias(packageAliases),
+      isUMD && resolve(),
       replace({
-        ...(isUMD || isProd ? { 'process.env.NODE_ENV': '"production"' } : {}),
-        'process.env.PREACT': isPreact ? 'true' : 'false'
+        ...(isUMD || isProd ? { 'process.env.NODE_ENV': '"production"' } : {})
       }),
 
       isUMD && uglify(),
