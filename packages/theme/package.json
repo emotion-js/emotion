@@ -1,0 +1,25 @@
+{
+  "name": "@emotion/theme",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "description": "a theming experiment",
+  "main": "dist/theme.cjs.js",
+  "module": "dist/theme.esm.js",
+  "browser": {
+    "./dist/theme.cjs.js": "./dist/theme.browser.cjs.js",
+    "./dist/theme.esm.js": "./dist/theme.browser.esm.js"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/theme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "umd:main": "./dist/index.min.js",
+  "dependencies": {
+    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
+  }
+}
+  
