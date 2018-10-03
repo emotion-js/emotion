@@ -1,6 +1,7 @@
 // @flow
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
+import * as React from 'react'
 import 'test-utils/next-env'
 import 'test-utils/fake-css-variables-exist'
 import { createTheme } from '@emotion/theme'
@@ -110,4 +111,33 @@ test('nested object with array', () => {
 `)
 })
 
-test('Theme.consume passes ref', () => {})
+test('Theme.consume passes ref', () => {
+  let Theme = createTheme('green')
+  class SomeComp extends React.Component<*> {
+    render() {
+      return <div {...this.props} />
+    }
+  }
+  let Comp = Theme.consume((props, theme, ref) => {
+    return (
+      <SomeComp
+        css={{
+          color: theme
+        }}
+        ref={ref}
+        {...props}
+      />
+    )
+  })
+  let ref = React.createRef()
+  expect(render(<Comp ref={ref} />)).toMatchInlineSnapshot(`
+.emotion-0 {
+  color: green;
+}
+
+<div
+  className="emotion-0"
+/>
+`)
+  expect(ref.current).toBeInstanceOf(SomeComp)
+})

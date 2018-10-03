@@ -9,11 +9,11 @@ let canUseCSSVars =
   window.CSS.supports('--test', 0)
 
 type ThemeType =
-  | {
+  | $ReadOnly<{
       [key: string]: ThemeType
-    }
+    }>
   | string
-  | Array<ThemeType>
+  | $ReadOnlyArray<ThemeType>
 
 type Ret<Theme> = {
   Consumer: React.ComponentType<{

@@ -28,7 +28,17 @@ let Theme = createTheme({
   spacing: ['4px', '8px', '12px', '16px']
 })
 
-let Comp = Theme.consume((props, theme) => {})
+let Comp = Theme.consume((props, theme) => {
+  return (
+    <div
+      css={{
+        color: theme.color,
+        padding: theme.spacing[0]
+      }}
+      {...props}
+    />
+  )
+})
 
 render(
   <Theme.Provider theme={someObjectThatIsTheSameShapeAsTheOriginalTheme}>
@@ -50,7 +60,7 @@ type CreateTheme = <Theme: ThemeType>(
   Provider: React.ComponentType<{
     theme: Theme,
     children: React.Node,
-    // only used on the never
+    // only used on the server
     supportsCSSVariables?: boolean
   }>,
   Extender: React.ComponentType<{ children: React.Node }>
