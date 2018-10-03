@@ -8,10 +8,12 @@ let canUseCSSVars =
   window.CSS.supports &&
   window.CSS.supports('--test', 0)
 
-// support nested objects and arrays
-type ThemeType = {
-  [key: string]: string
-}
+type ThemeType =
+  | {
+      [key: string]: ThemeType
+    }
+  | string
+  | Array<ThemeType>
 
 type Ret<Theme> = {
   Consumer: React.ComponentType<{
@@ -28,23 +30,55 @@ type Ret<Theme> = {
   Extender: React.ComponentType<{ children: React.Node }>
 }
 
+function getCSSVarUsageTheme(theme: ThemeType, currentPath: string) {
+  if (typeof theme === 'string') {
+    return `var(--theme-${currentPath})`
+  }
+  if (Array.isArray(theme)) {
+    return theme.map((val, i) => getCSSVarUsageTheme(val, currentPath + i))
+  }
+  let keys = Object.keys(theme)
+  let obj = {}
+  for (let i = 0; i < keys.length; i++) {
+    let key = keys[i]
+    obj[key] = getCSSVarUsageTheme(theme[key], currentPath + key)
+  }
+
+  return obj
+}
+
+function getInlineStyles(
+  theme: ThemeType,
+  currentPath: string,
+  stylesObj: { [string]: string }
+) {
+  if (typeof theme === 'string') {
+    stylesObj[`--theme-${currentPath}`] = theme
+    return stylesObj
+  }
+  if (Array.isArray(theme)) {
+    for (let i = 0; i < theme.length; i++) {
+      getInlineStyles(theme[i], currentPath + i, stylesObj)
+    }
+    return stylesObj
+  }
+  let keys = Object.keys(theme)
+  for (let i = 0; i < keys.length; i++) {
+    let key = keys[i]
+    getInlineStyles(theme[key], currentPath + key, stylesObj)
+  }
+
+  return stylesObj
+}
+
 export let createTheme = <Theme: ThemeType>(
   defaultTheme: Theme
 ): Ret<Theme> => {
-  let keys = Object.keys(defaultTheme)
-  let cssVarTheme = keys.reduce((val, key) => {
-    val[key] = `--theme-${key}`
-    return val
-  }, {})
-
   let RawThemeContext = React.createContext(defaultTheme)
 
   let Context = React.createContext(defaultTheme)
   // $FlowFixMe this isn't just to get flow to be quiet, i actually want to fix this because i think flow might be right
-  let cssVarUsageTheme: Theme = keys.reduce((val, key) => {
-    val[key] = `var(--theme-${key})`
-    return val
-  }, {})
+  let cssVarUsageTheme: Theme = getCSSVarUsageTheme(defaultTheme, '')
 
   type ProviderProps = {
     theme: Theme,
@@ -57,12 +91,7 @@ export let createTheme = <Theme: ThemeType>(
       return (
         <RawThemeContext.Provider value={props.theme}>
           <Context.Provider value={cssVarUsageTheme}>
-            <div
-              style={keys.reduce((val, key) => {
-                val[cssVarTheme[key]] = props.theme[key]
-                return val
-              }, {})}
-            >
+            <div style={getInlineStyles(props.theme, '', {})}>
               {props.children}
             </div>
           </Context.Provider>
@@ -86,12 +115,7 @@ export let createTheme = <Theme: ThemeType>(
             <SupportsCSSVarsContext.Provider value={supportsCSSVars}>
               {supportsCSSVars ? (
                 <Context.Provider value={cssVarUsageTheme}>
-                  <div
-                    style={keys.reduce((val, key) => {
-                      val[cssVarTheme[key]] = props.theme[key]
-                      return val
-                    }, {})}
-                  >
+                  <div style={getInlineStyles(props.theme, '', {})}>
                     {props.children}
                   </div>
                 </Context.Provider>
@@ -112,14 +136,7 @@ export let createTheme = <Theme: ThemeType>(
       return (
         <RawThemeContext.Consumer>
           {theme => (
-            <div
-              style={keys.reduce((val, key) => {
-                val[cssVarTheme[key]] = theme[key]
-                return val
-              }, {})}
-            >
-              {props.children}
-            </div>
+            <div style={getInlineStyles(theme, '', {})}>{props.children}</div>
           )}
         </RawThemeContext.Consumer>
       )

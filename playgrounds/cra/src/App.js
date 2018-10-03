@@ -1,36 +1,36 @@
 // @flow
 import * as React from 'react'
 /** @jsx jsx */
-import { Global, jsx, keyframes } from '@emotion/core'
+import { Global, jsx } from '@emotion/core'
+import { createTheme } from '@emotion/theme'
 
-let animation = keyframes({
-  'from,to': {
-    transform: 'scale(1)'
-  },
-  '50%': {
-    transform: 'scale(0.5)'
-  }
+let Theme = createTheme({ color: 'green' })
+
+let Comp = Theme.consume((props, theme) => {
+  return <div css={{ color: theme.color }}>content</div>
 })
 
 const App = () => (
   <React.Fragment>
-    <Global
-      styles={{
-        body: {
-          padding: 0,
-          margin: 0,
-          fontFamily: 'sans-serif'
-        }
-      }}
-    />
-    <h1
-      css={{
-        color: 'hotpink',
-        animation: `${animation} 1s infinite`
-      }}
-    >
-      wow, some hotpink text!!
-    </h1>
+    <Theme.Provider theme={{ color: 'blue' }}>
+      <Global
+        styles={{
+          body: {
+            padding: 0,
+            margin: 0,
+            fontFamily: 'sans-serif'
+          }
+        }}
+      />
+      <h1
+        css={{
+          color: 'hotpink'
+        }}
+      >
+        wow, some hotpink text!!
+        <Comp />
+      </h1>
+    </Theme.Provider>
   </React.Fragment>
 )
 

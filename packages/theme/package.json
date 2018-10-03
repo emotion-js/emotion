@@ -18,6 +18,9 @@
     "dist"
   ],
   "umd:main": "./dist/index.min.js",
+  "peerDependencies": {
+      "react": ">=16.3.0"
+  },
   "dependencies": {
     "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
   }
