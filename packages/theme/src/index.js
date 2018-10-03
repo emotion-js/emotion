@@ -35,13 +35,15 @@ function getCSSVarUsageTheme(theme: ThemeType, currentPath: string) {
     return `var(--theme-${currentPath})`
   }
   if (Array.isArray(theme)) {
-    return theme.map((val, i) => getCSSVarUsageTheme(val, currentPath + i))
+    return theme.map((val, i) =>
+      getCSSVarUsageTheme(val, currentPath + '-' + i)
+    )
   }
   let keys = Object.keys(theme)
   let obj = {}
   for (let i = 0; i < keys.length; i++) {
     let key = keys[i]
-    obj[key] = getCSSVarUsageTheme(theme[key], currentPath + key)
+    obj[key] = getCSSVarUsageTheme(theme[key], currentPath + '-' + key)
   }
 
   return obj
@@ -58,14 +60,14 @@ function getInlineStyles(
   }
   if (Array.isArray(theme)) {
     for (let i = 0; i < theme.length; i++) {
-      getInlineStyles(theme[i], currentPath + i, stylesObj)
+      getInlineStyles(theme[i], currentPath + '-' + i, stylesObj)
     }
     return stylesObj
   }
   let keys = Object.keys(theme)
   for (let i = 0; i < keys.length; i++) {
     let key = keys[i]
-    getInlineStyles(theme[key], currentPath + key, stylesObj)
+    getInlineStyles(theme[key], currentPath + '-' + key, stylesObj)
   }
 
   return stylesObj
