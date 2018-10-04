@@ -31,7 +31,7 @@ const props = {
   async: true,
   autoComplete: true,
   // autoFocus is polyfilled/normalized by AutoFocusUtils
-  // autoFocus: true,
+  autoFocus: true,
   autoPlay: true,
   capture: true,
   cellPadding: true,
@@ -460,7 +460,8 @@ const props = {
   zoomAndPan: true,
   // preact
   for: true,
-  class: true
+  class: true,
+  autofocus: true
 }
 // eslint-disable-next-line import/no-commonjs
 module.exports = `/^((${Object.keys(props).join(
