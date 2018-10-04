@@ -31,7 +31,7 @@ const props = {
   async: true,
   autoComplete: true,
   // autoFocus is polyfilled/normalized by AutoFocusUtils
-  autoFocus: true,
+  // autoFocus: true,
   autoPlay: true,
   capture: true,
   cellPadding: true,
