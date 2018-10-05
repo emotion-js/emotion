@@ -59,4 +59,8 @@ The Emotion 10 codemods are contained in this package. To use them, enable the r
 
 ## Supported Rules
 
-- [syntax-preference](docs/rules/syntax-preference.md)
+- [jsx-import](./docs/rules/jsx-import.md)
+- [styled-import](./docs/rules/styled-import.md)
+- [import-from-emotion](./docs/rules/import-from-emotion.md)
+- [no-vanilla](./docs/rules/no-vanilla.md)
+- [syntax-preference](./docs/rules/syntax-preference.md)
