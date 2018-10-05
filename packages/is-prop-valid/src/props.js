@@ -460,9 +460,10 @@ const props = {
   zoomAndPan: true,
   // preact
   for: true,
-  class: true
+  class: true,
+  autofocus: true
 }
 // eslint-disable-next-line import/no-commonjs
 module.exports = `/^((${Object.keys(props).join(
   '|'
-)})|(on[A-Z].*)|((data|aria|x)-.*))$/i`
+)})|(on[A-Z].*)|((data|aria|x)-.*))$/`
