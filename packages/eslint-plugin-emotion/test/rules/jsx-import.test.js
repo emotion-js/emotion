@@ -3,7 +3,7 @@
  */
 
 const { RuleTester } = require('eslint')
-const rule = require('../../src/rules/jsx')
+const rule = require('../../src/rules/jsx-import')
 
 RuleTester.setDefaultConfig({
   parserOptions: {

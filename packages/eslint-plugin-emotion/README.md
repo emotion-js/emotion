@@ -45,7 +45,7 @@ The Emotion 10 codemods are contained in this package. To use them, enable the r
 ```json
 {
   "rules": {
-    "emotion/jsx": "error",
+    "emotion/jsx-import": "error",
     "emotion/no-vanilla": "error",
     "emotion/import-from-emotion": "error",
     "emotion/styled": "error
