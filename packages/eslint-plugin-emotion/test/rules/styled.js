@@ -3,7 +3,7 @@
  */
 
 const { RuleTester } = require('eslint')
-const rule = require('../../src/rules/styled')
+const rule = require('eslint-plugin-emotion/src/rules/styled')
 
 RuleTester.setDefaultConfig({
   parserOptions: {
@@ -17,16 +17,11 @@ RuleTester.setDefaultConfig({
 
 const ruleTester = new RuleTester()
 
-ruleTester.run('emotion jsx', rule, {
+ruleTester.run('emotion styled', rule, {
   valid: [
     {
       code: `
 import styled from '@emotion/styled'
-      `
-    },
-    {
-      code: `
-import styled from '@emotion/preact-styled'
       `
     }
   ],
@@ -44,19 +39,6 @@ import styled from 'react-emotion'
       output: `
 import styled from '@emotion/styled'
       `.trim()
-    },
-    {
-      code: `
-import styled from 'preact-emotion'
-      `.trim(),
-      errors: [
-        {
-          message: `styled should be imported from @emotion/preact-styled`
-        }
-      ],
-      output: `
-import styled from '@emotion/preact-styled'
-                  `.trim()
     },
     {
       code: `

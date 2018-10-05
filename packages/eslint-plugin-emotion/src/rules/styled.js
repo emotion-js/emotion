@@ -5,18 +5,12 @@ module.exports = {
   create(context) {
     return {
       ImportDeclaration(node) {
-        if (
-          node.source.value === 'react-emotion' ||
-          node.source.value === 'preact-emotion'
-        ) {
-          let newImportPath =
-            node.source.value === 'react-emotion'
-              ? '@emotion/styled'
-              : '@emotion/preact-styled'
+        if (node.source.value === 'react-emotion') {
+          let newImportPath = '@emotion/styled'
           let quote = node.source.raw.charAt(0)
           context.report({
             node: node.source,
-            message: `styled should be imported from ${newImportPath}`,
+            message: `styled should be imported from @emotion/styled`,
             fix:
               node.specifiers.length === 1 &&
               node.specifiers[0].type === 'ImportDefaultSpecifier'

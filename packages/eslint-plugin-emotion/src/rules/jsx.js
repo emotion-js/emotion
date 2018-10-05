@@ -17,8 +17,7 @@ module.exports = {
         sourceCode.ast.body.forEach(x => {
           if (
             x.type === 'ImportDeclaration' &&
-            (x.source.value === '@emotion/core' ||
-              x.source.value === '@emotion/preact-core')
+            x.source.value === '@emotion/core'
           ) {
             // TODO: maybe handle namespace specifiers, not high priority though
             let jsxSpecifier = x.specifiers.find(x => x.imported.name === 'jsx')
