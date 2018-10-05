@@ -3,7 +3,7 @@
  */
 
 const { RuleTester } = require('eslint')
-const rule = require('../../src/rules/emotion-styled')
+const rule = require('../../src/rules/styled')
 
 RuleTester.setDefaultConfig({
   parserOptions: {
