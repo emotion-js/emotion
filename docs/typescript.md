@@ -207,7 +207,7 @@ const App = () => (
 ### Define a Theme
 
 By default, `props.theme` has an `any` type annotation and works without any errors.
-However, you can define a theme type by creating a another `styled` instance.
+However, you can define a theme type by creating another `styled` instance.
 
 _styled.tsx_
 
