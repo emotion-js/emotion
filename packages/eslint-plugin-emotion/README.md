@@ -1,6 +1,6 @@
 # eslint-plugin-emotion
 
-Apply eslint rules to emotion.sh css-in-js
+> ESLint rules for emotion
 
 ## Installation
 
@@ -40,7 +40,7 @@ Then configure the rules you want to use under the rules section.
 
 ## Emotion 10 codemods
 
-The Emotion 10 codemods are contained in this package. To use enable the rules shown below. Keeping these rules after migrating is also useful to have `jsx` from `@emotion/core` automatically imported when the css prop is used and other such things. You may also want to not enable certain rules while you are migrating, such the `no-vanilla` rule.
+The Emotion 10 codemods are contained in this package. To use them, enable the rules shown below. Keeping these rules after migrating is also useful to have `jsx` from `@emotion/core` automatically imported when the css prop is used and other such things. You may also want to not enable certain rules while you are migrating, such the `no-vanilla` rule.
 
 ```json
 {
