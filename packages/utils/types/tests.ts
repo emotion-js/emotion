@@ -1,9 +1,9 @@
 import {
-  CSSContextType, Interpolation, RegisteredCache, ScopedInsertableStyles, StyleSheet,
-  getRegisteredStyles, insertStyles, isBrowser, shouldSerializeToReactTree,
+  EmotionCache, RegisteredCache, SerializedStyles, StyleSheet,
+  getRegisteredStyles, insertStyles, isBrowser,
 } from '@emotion/utils';
 
-declare const testContext: CSSContextType;
+declare const testCache: EmotionCache;
 declare const testRegisteredCache: RegisteredCache;
 
 getRegisteredStyles(testRegisteredCache, [], 'abc');
@@ -15,28 +15,22 @@ getRegisteredStyles();
 // $ExpectError
 getRegisteredStyles(testRegisteredCache);
 
-insertStyles(testContext, {
+insertStyles(testCache, {
   name: 'abc',
   styles: 'color: green;background: red;',
-});
+}, false);
 // $ExpectError
 insertStyles();
 // $ExpectError
-insertStyles(testContext);
+insertStyles(testCache);
 // $ExpectError
-insertStyles(testContext, {});
+insertStyles(testCache, {});
 // $ExpectError
-insertStyles(testContext, {
+insertStyles(testCache, {
   name: 'abc',
-});
-// $ExpectError
-insertStyles(testContext, {
   styles: 'font-size: 18px;',
 });
 
 const test0: boolean = isBrowser;
 // $ExpectError
 const test1: number = isBrowser;
-const test2: boolean = shouldSerializeToReactTree;
-// $ExpectError
-const test3: number = shouldSerializeToReactTree;
