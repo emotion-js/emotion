@@ -1,8 +1,8 @@
-import createCache, { Options } from '@emotion/cache';
+import createCache, { Options } from '@emotion/cache'
 
-declare const testOptions: Options;
+declare const testOptions: Options
 
 // $ExpectType EmotionCache
-createCache();
+createCache()
 // $ExpectType EmotionCache
-createCache(testOptions);
+createCache(testOptions)

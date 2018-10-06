@@ -10,11 +10,7 @@ export enum Context {
   ATRUL = 3
 }
 
-export type PrefixContext =
-  | Context.PROPS
-  | Context.BLCKS
-  | Context.ATRUL
-  ;
+export type PrefixContext = Context.PROPS | Context.BLCKS | Context.ATRUL
 
 export type Plugin = (
   this: Stylis,
@@ -26,41 +22,34 @@ export type Plugin = (
   column: number,
   length: number,
   at: number,
-  depth: number,
-) => any;
+  depth: number
+) => any
 
 export interface ArrayPlugable extends Array<Plugable> {}
-export type Plugable =
-  | undefined
-  | null
-  | boolean
-  | Plugin
-  | ArrayPlugable
-  ;
+export type Plugable = undefined | null | boolean | Plugin | ArrayPlugable
 
-export type StylisUse = (plugin?: Plugable) => StylisUse;
+export type StylisUse = (plugin?: Plugable) => StylisUse
 
-export type StylisSet = (options: Options) => StylisSet;
+export type StylisSet = (options: Options) => StylisSet
 
 export type Prefix =
   | boolean
   | ((key: string, value: string, context: PrefixContext) => boolean)
-  ;
 
 export interface Options {
-  prefix?: Prefix;
+  prefix?: Prefix
 }
 
 export interface StylisConstructor {
-  new (options?: Options): Stylis;
+  new (options?: Options): Stylis
 }
 
 interface Stylis extends StylisConstructor {
-  (selector: string, properties: string): any;
-  use: StylisUse;
-  set: StylisSet;
+  (selector: string, properties: string): any
+  use: StylisUse
+  set: StylisSet
 }
 
-declare const Stylis: StylisConstructor;
+declare const Stylis: StylisConstructor
 
-export default Stylis;
+export default Stylis
