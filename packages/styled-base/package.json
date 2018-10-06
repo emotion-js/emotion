@@ -8,12 +8,20 @@
     "./dist/styled-base.cjs.js": "./dist/styled-base.browser.cjs.js",
     "./dist/styled-base.esm.js": "./dist/styled-base.browser.esm.js"
   },
+  "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/styled-base",
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
   "dependencies": {
     "@emotion/is-prop-valid": "^10.0.0-really-unsafe-please-do-not-use.2",
     "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.2",
     "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
+  },
+  "devDependencies": {
+    "@types/react": "16.3.18",
+    "dtslint": "^0.3.0"
   },
   "peerDependencies": {
     "@emotion/core": "0.x.x",
@@ -24,7 +32,8 @@
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
   "umd:main": "./dist/index.min.js"
 }
