@@ -50,8 +50,22 @@ render(
 # API
 
 ```jsx
+type ThemeType =
+  | $ReadOnly<{
+      [key: string]: ThemeType
+    }>
+  | string
+  | $ReadOnlyArray<ThemeType>
+
+type Options = {
+  // changes the prefix in front of the css var name
+  // this option should be used if you are using more than one theme on a page.
+  prefix?: string
+}
+
 type CreateTheme = <Theme: ThemeType>(
-  defaultTheme: Theme
+  defaultTheme: Theme,
+  options?: Options
 ) => {
   Consumer: React.ComponentType<{ children: Theme => React.Node }>,
   consume: <Props>(

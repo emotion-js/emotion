@@ -141,3 +141,42 @@ test('Theme.consume passes ref', () => {
 `)
   expect(ref.current).toBeInstanceOf(SomeComp)
 })
+
+test('prefix option', () => {
+  let Theme = createTheme('green', { prefix: 'some-prefix' })
+
+  let Comp = Theme.consume((props, theme) => {
+    return (
+      <div
+        css={{
+          color: theme
+        }}
+        {...props}
+      />
+    )
+  })
+
+  expect(
+    render(
+      <Theme.Provider theme="hotpink">
+        <Comp />
+      </Theme.Provider>
+    )
+  ).toMatchInlineSnapshot(`
+.emotion-0 {
+  color: var(--some-prefix);
+}
+
+<div
+  style={
+    Object {
+      "--some-prefix": "hotpink",
+    }
+  }
+>
+  <div
+    className="emotion-0"
+  />
+</div>
+`)
+})

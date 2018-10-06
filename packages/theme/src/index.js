@@ -30,20 +30,24 @@ type Ret<Theme> = {
   Extender: React.ComponentType<{ children: React.Node }>
 }
 
-function getCSSVarUsageTheme(theme: ThemeType, currentPath: string) {
+function getCSSVarUsageTheme(
+  theme: ThemeType,
+  currentPath: string,
+  prefix: string
+) {
   if (typeof theme === 'string') {
-    return `var(--theme-${currentPath})`
+    return `var(--${prefix}${currentPath === '' ? '' : '-' + currentPath})`
   }
   if (Array.isArray(theme)) {
     return theme.map((val, i) =>
-      getCSSVarUsageTheme(val, currentPath + '-' + i)
+      getCSSVarUsageTheme(val, currentPath + '-' + i, prefix)
     )
   }
   let keys = Object.keys(theme)
   let obj = {}
   for (let i = 0; i < keys.length; i++) {
     let key = keys[i]
-    obj[key] = getCSSVarUsageTheme(theme[key], currentPath + '-' + key)
+    obj[key] = getCSSVarUsageTheme(theme[key], currentPath + '-' + key, prefix)
   }
 
   return obj
@@ -52,35 +56,41 @@ function getCSSVarUsageTheme(theme: ThemeType, currentPath: string) {
 function getInlineStyles(
   theme: ThemeType,
   currentPath: string,
-  stylesObj: { [string]: string }
+  stylesObj: { [string]: string },
+  prefix: string
 ) {
   if (typeof theme === 'string') {
-    stylesObj[`--theme-${currentPath}`] = theme
+    stylesObj[
+      `--${prefix}${currentPath === '' ? '' : '-'}${currentPath}`
+    ] = theme
     return stylesObj
   }
   if (Array.isArray(theme)) {
     for (let i = 0; i < theme.length; i++) {
-      getInlineStyles(theme[i], currentPath + '-' + i, stylesObj)
+      getInlineStyles(theme[i], currentPath + '-' + i, stylesObj, prefix)
     }
     return stylesObj
   }
   let keys = Object.keys(theme)
   for (let i = 0; i < keys.length; i++) {
     let key = keys[i]
-    getInlineStyles(theme[key], currentPath + '-' + key, stylesObj)
+    getInlineStyles(theme[key], currentPath + '-' + key, stylesObj, prefix)
   }
 
   return stylesObj
 }
 
 export let createTheme = <Theme: ThemeType>(
-  defaultTheme: Theme
+  defaultTheme: Theme,
+  options?: { prefix?: string } = {}
 ): Ret<Theme> => {
   let RawThemeContext = React.createContext(defaultTheme)
 
+  let prefix = options.prefix || 'theme'
+
   let Context = React.createContext(defaultTheme)
   // $FlowFixMe this isn't just to get flow to be quiet, i actually want to fix this because i think flow might be right
-  let cssVarUsageTheme: Theme = getCSSVarUsageTheme(defaultTheme, '')
+  let cssVarUsageTheme: Theme = getCSSVarUsageTheme(defaultTheme, '', prefix)
 
   type ProviderProps = {
     theme: Theme,
@@ -93,7 +103,7 @@ export let createTheme = <Theme: ThemeType>(
       return (
         <RawThemeContext.Provider value={props.theme}>
           <Context.Provider value={cssVarUsageTheme}>
-            <div style={getInlineStyles(props.theme, '', {})}>
+            <div style={getInlineStyles(props.theme, '', {}, prefix)}>
               {props.children}
             </div>
           </Context.Provider>
@@ -117,7 +127,7 @@ export let createTheme = <Theme: ThemeType>(
             <SupportsCSSVarsContext.Provider value={supportsCSSVars}>
               {supportsCSSVars ? (
                 <Context.Provider value={cssVarUsageTheme}>
-                  <div style={getInlineStyles(props.theme, '', {})}>
+                  <div style={getInlineStyles(props.theme, '', {}, prefix)}>
                     {props.children}
                   </div>
                 </Context.Provider>
@@ -138,7 +148,9 @@ export let createTheme = <Theme: ThemeType>(
       return (
         <RawThemeContext.Consumer>
           {theme => (
-            <div style={getInlineStyles(theme, '', {})}>{props.children}</div>
+            <div style={getInlineStyles(theme, '', {}, prefix)}>
+              {props.children}
+            </div>
           )}
         </RawThemeContext.Consumer>
       )
