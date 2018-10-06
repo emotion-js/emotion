@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { renderToNodeStream, renderToString } from 'react-dom/server';
 import { extractCritical, renderStylesToNodeStream, renderStylesToString } from '../';
 
-declare const element: React.ReactElement<any>;
+declare const renderedString: string;
+declare const renderedNodeStream: NodeJS.ReadableStream;
 
-const { html, css, ids } = extractCritical(renderToString(element));
+const { html, css, ids } = extractCritical(renderedString);
 
-renderStylesToString(renderToString(element));
+renderStylesToString(renderedString);
 
-renderToNodeStream(element).pipe(renderStylesToNodeStream());
+renderedNodeStream.pipe(renderStylesToNodeStream());
