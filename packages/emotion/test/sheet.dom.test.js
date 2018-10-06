@@ -4,7 +4,6 @@ import { sheet } from 'emotion'
 describe('sheet', () => {
   beforeEach(() => {
     sheet.flush()
-    sheet.inject()
   })
 
   test('speedy', () => {
@@ -37,11 +36,6 @@ describe('sheet', () => {
     expect(spy).toHaveBeenCalled()
   })
 
-  test('inject method throws if the sheet is already injected', () => {
-    expect(() => {
-      sheet.inject()
-    }).toThrowErrorMatchingSnapshot()
-  })
   test('.speedy throws when a rule has already been inserted', () => {
     sheet.insert('.foo { color: blue; }')
     expect(() => {

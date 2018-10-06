@@ -1,5 +1,5 @@
-import styled from '@emotion/styled.macro'
-import css from '@emotion/css.macro'
+import styled from '@emotion/styled/macro'
+import css from '@emotion/css/macro'
 import View from './View'
 
 const Dot = styled(View)`

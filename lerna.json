@@ -1,5 +1,4 @@
 {
-  "lerna": "2.2.0",
   "changelog": {
     "repo": "emotion-js/emotion",
     "labels": {
@@ -10,7 +9,7 @@
       "Tag: Internal": ":house: Internal"
     }
   },
-  "version": "9.2.8",
-  "npmClient": "yarn",
-  "useWorkspaces": true
+  "version": "independent",
+  "npmClient": "npm",
+  "packages": ["packages/*", "site", "scripts/*", "playgrounds/*"]
 }

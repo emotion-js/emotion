@@ -7,7 +7,7 @@ exports[`keyframes keyframes with interpolation 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
+  className="emotion-0"
 >
   hello world
 </h1>
@@ -55,7 +55,7 @@ exports[`keyframes renders 1`] = `
 }
 
 <h1
-  className="emotion-0 emotion-1"
+  className="emotion-0"
 >
   hello world
 </h1>

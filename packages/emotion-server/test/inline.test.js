@@ -1,6 +1,6 @@
-// @flow
 /**
  * @jest-environment node
+ * @flow
  */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -19,7 +19,6 @@ let reactEmotion
 
 describe('renderStylesToString', () => {
   beforeEach(() => {
-    global.__SECRET_EMOTION__ = undefined
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
@@ -49,7 +48,6 @@ describe('hydration', () => {
     global.window = undefined
   })
   beforeEach(() => {
-    global.__SECRET_EMOTION__ = undefined
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
@@ -59,21 +57,23 @@ describe('hydration', () => {
     const { Page1 } = getComponents(emotion, reactEmotion)
     const html = emotionServer.renderStylesToString(renderToString(<Page1 />))
     expect(html).toMatchSnapshot()
+
     const { window } = new JSDOM(html)
     global.document = window.document
     global.window = window
-    global.__SECRET_EMOTION__ = undefined
     setHtml(html, document)
+
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
     reactEmotion = require('react-emotion')
 
-    expect(emotion.caches.registered).toEqual({})
+    expect(emotion.cache.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
+
     renderToString(<NewPage1 />)
-    expect(getInjectedRules(emotion)).toMatchSnapshot()
+    expect(getInjectedRules()).toMatchSnapshot()
     expect(getCssFromChunks(emotion, document)).toMatchSnapshot()
   })
 })

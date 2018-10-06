@@ -33,7 +33,8 @@ test('provider without children', () => {
   let { Provider } = React.createContext(defaultContext)
   render(
     <div>
-      some content<Provider value={<div>this is the actual value!!</div>} />
+      some content
+      <Provider value={<div>this is the actual value!!</div>} />
     </div>
   )
   expect(document.documentElement).toMatchSnapshot()

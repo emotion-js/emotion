@@ -1,9 +1,0 @@
-{
-    "extends": "dtslint/dtslint.json",
-    "rules": {
-        "array-type": [true, "generic"],
-        "callable-types": false,
-        "no-import-default-of-export-equals": false,
-        "no-relative-import-in-test": false
-    }
-}

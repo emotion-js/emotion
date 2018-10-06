@@ -1,9 +1,9 @@
 // @flow
 import createEmotionServer from 'create-emotion-server'
-import * as emotion from 'emotion'
+import { cache } from 'emotion'
 
 export const {
   extractCritical,
   renderStylesToString,
   renderStylesToNodeStream
-} = createEmotionServer(emotion)
+} = createEmotionServer(cache)

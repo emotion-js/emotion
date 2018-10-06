@@ -1,14 +1,9 @@
 // @flow
 import 'test-utils/legacy-env'
+import 'test-utils/next-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { createSerializer } from 'jest-emotion'
-// eslint-disable-next-line import/no-duplicates
 import { css as differentCss, flush, sheet } from './emotion-instance'
-// eslint-disable-next-line import/no-duplicates
-import * as emotion from './emotion-instance'
-
-expect.addSnapshotSerializer(createSerializer(emotion))
 
 describe('css', () => {
   test('float property', () => {
@@ -310,7 +305,7 @@ describe('css', () => {
   test('null value', () => {
     const cls1 = differentCss(null)
     const cls2 = differentCss`
-      ${() => null};
+      ${null};
     `
     expect(renderer.create(<div className={cls1} />).toJSON()).toMatchSnapshot()
     expect(renderer.create(<div className={cls2} />).toJSON()).toMatchSnapshot()
@@ -354,14 +349,6 @@ describe('css', () => {
     expect(tree2).toMatchSnapshot()
   })
 
-  test('return function in interpolation', () => {
-    const cls1 = differentCss`
-      color: ${() => 'blue'};
-    `
-
-    const tree = renderer.create(<div className={cls1} />).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
   test('manually use label property', () => {
     flush()
     const cls1 = differentCss`
@@ -380,10 +367,9 @@ describe('css', () => {
     differentCss`
       color: yellow;
     `
-    expect(sheet.tags).toHaveLength(3)
+    expect(sheet.tags).toHaveLength(2)
 
     expect(sheet.tags[0].getAttribute('nonce')).toBe('some-nonce')
     expect(sheet.tags[1].getAttribute('nonce')).toBe('some-nonce')
-    expect(sheet.tags[2].getAttribute('nonce')).toBe('some-nonce')
   })
 })

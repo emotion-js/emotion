@@ -2,48 +2,46 @@
 
 exports[`hydration only inserts rules that are not in the critical css 1`] = `
 
-<style data-emotion-some-key="lu7y12 16qlhaj hbhpyh"
+<style data-emotion-some-key="1uqawbr i9f7qw-bounce 1nhdffy"
        nonce="some-nonce"
 >
-  @font-face{font-family:'Patrick Hand SC';font-style:normal;font-weight:400;src:local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');unicode-range:U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;}@-webkit-keyframes animation-16qlhaj{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}@keyframes animation-16qlhaj{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}.no-prefix{display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+  @font-face{font-family:'Patrick Hand SC';font-style:normal;font-weight:400;src:local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');unicode-range:U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;}@-webkit-keyframes animation-i9f7qw-bounce{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}@keyframes animation-i9f7qw-bounce{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}.no-prefix{display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
 </style>
-<style data-emotion-some-key="4xq7ky"
+<style data-emotion-some-key="14e1j2p-hoverStyles-Something_Main"
        nonce="some-nonce"
 >
-  .some-key-4xq7ky{color:hotpink;display:flex;}.some-key-4xq7ky:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
+  .some-key-14e1j2p-hoverStyles-Something_Main{color:hotpink;display:flex;}.some-key-14e1j2p-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
-<main class="some-key-4xq7ky e126fyao0"
-      data-reactroot
->
-  <style data-emotion-some-key="z382ib"
+<main class="some-key-14e1j2p-hoverStyles-Something_Main">
+  <style data-emotion-some-key="1h1w8ez-Image"
          nonce="some-nonce"
   >
-    .some-key-z382ib{-webkit-animation:animation-16qlhaj;animation:animation-16qlhaj;border-radius:50%;height:50px;width:50px;background-color:red;}
+    .some-key-1h1w8ez-Image{-webkit-animation:animation-i9f7qw-bounce;animation:animation-i9f7qw-bounce;border-radius:50%;height:50px;width:50px;background-color:red;}
   </style>
   <img size="30"
-       class="some-key-z382ib e126fyao1"
+       class="some-key-1h1w8ez-Image"
   >
   <img size="100"
-       class="some-key-z382ib e126fyao1"
+       class="some-key-1h1w8ez-Image"
   >
-  <img class="some-key-z382ib e126fyao1">
+  <img class="some-key-1h1w8ez-Image">
 </main>
 
 `;
 
 exports[`hydration only inserts rules that are not in the critical css 2`] = `
-".some-key-6yzwy8 {
+".some-key-1icu1xs-hoverStyles {
   color: hotpink;
 }
 
-.some-key-6yzwy8:hover {
+.some-key-1icu1xs-hoverStyles:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: 15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
-.some-key-1hyfx7x {
+.some-key-k26awr {
   display: none;
 }"
 `;
@@ -53,30 +51,30 @@ exports[`hydration only inserts rules that are not in the critical css 3`] = `
   font-family: 'Patrick Hand SC';
   font-style: normal;
   font-weight: 400;
-  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
+  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;
 }
 
-@-webkit-keyframes animation-16qlhaj {
+@-webkit-keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
-    animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
+    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
     -webkit-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-30px,0);
     -ms-transform: translate3d(0,-30px,0);
     transform: translate3d(0,-30px,0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-15px,0);
     -ms-transform: translate3d(0,-15px,0);
     transform: translate3d(0,-15px,0);
@@ -89,26 +87,26 @@ exports[`hydration only inserts rules that are not in the critical css 3`] = `
   }
 }
 
-@keyframes animation-16qlhaj {
+@keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
-    animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
+    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
     -webkit-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-30px,0);
     -ms-transform: translate3d(0,-30px,0);
     transform: translate3d(0,-30px,0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-15px,0);
     -ms-transform: translate3d(0,-15px,0);
     transform: translate3d(0,-15px,0);
@@ -129,21 +127,113 @@ exports[`hydration only inserts rules that are not in the critical css 3`] = `
   justify-content: center;
 }
 
-.some-key-4xq7ky {
+.some-key-14e1j2p-hoverStyles-Something_Main {
   color: hotpink;
   display: flex;
 }
 
-.some-key-4xq7ky:hover {
+.some-key-14e1j2p-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: 15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
-.some-key-z382ib {
-  -webkit-animation: animation-16qlhaj;
-  animation: animation-16qlhaj;
+@font-face {
+  font-family: 'Patrick Hand SC';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;
+}
+
+@-webkit-keyframes animation-i9f7qw-bounce {
+  from, 20%, 53%, 80%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    -webkit-transform: translate3d(0,-30px,0);
+    -ms-transform: translate3d(0,-30px,0);
+    transform: translate3d(0,-30px,0);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    -webkit-transform: translate3d(0,-15px,0);
+    -ms-transform: translate3d(0,-15px,0);
+    transform: translate3d(0,-15px,0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0,-4px,0);
+    -ms-transform: translate3d(0,-4px,0);
+    transform: translate3d(0,-4px,0);
+  }
+}
+
+@keyframes animation-i9f7qw-bounce {
+  from, 20%, 53%, 80%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    -webkit-transform: translate3d(0,-30px,0);
+    -ms-transform: translate3d(0,-30px,0);
+    transform: translate3d(0,-30px,0);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    -webkit-transform: translate3d(0,-15px,0);
+    -ms-transform: translate3d(0,-15px,0);
+    transform: translate3d(0,-15px,0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0,-4px,0);
+    -ms-transform: translate3d(0,-4px,0);
+    transform: translate3d(0,-4px,0);
+  }
+}
+
+.no-prefix {
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.some-key-14e1j2p-hoverStyles-Something_Main {
+  color: hotpink;
+  display: flex;
+}
+
+.some-key-14e1j2p-hoverStyles-Something_Main:hover {
+  color: white;
+  background-color: lightgray;
+  border-color: aqua;
+  box-shadow: 15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
+}
+
+.some-key-1h1w8ez-Image {
+  -webkit-animation: animation-i9f7qw-bounce;
+  animation: animation-i9f7qw-bounce;
   border-radius: 50%;
   height: 50px;
   width: 50px;
@@ -153,7 +243,7 @@ exports[`hydration only inserts rules that are not in the critical css 3`] = `
 
 exports[`renderStylesToString renders large recursive component 1`] = `
 
-<style data-emotion-some-key="g1nr0f 1vkcu1s c2fruk nn419e 48ol8g 1muoj0t 1jw61kp jb9y6w dnhf 18sxmgy 1in0cpz 11py00b 1vpsatv 4dhsr9 1jx7gyp lzaomv 1sy7d5q 162844g lt04ub fuyqbj on5m8o qv9im6 1ey25mo f756m1 xzmdnj 1ifvpjk bhdelf 9wc226 4u69ur 6abz8t k4qrsp 1cryaxb 17eolig p3l5r2 1hs29dn 1i82o73 17xq839 2igexv 1c2iobn 1ptyfcp 1dy4lar dg7kk1 1b1a6z3 i41lll 1r5jo6e 1lv4hcs 101fo3z n2e657 a14uk4 1lmtlv2 1asffkr 75nzzo gx08vp 15jc9yz uh0xoc 17nwuf 1ujtza6 1ow0tml im3q9u 1w9ihno 163pfex m6phq0 1vyiei0 1fjyf0 xc987v 1jv3t9 1w1zlei l8myzz 1nilev5 1lqqlsc hp9x6 p3hjsu ilfat5 12kpjsj 121nl0r kqj3ns ilgx12 n1bwpp 16u6qs5 oibmph 1pn9b35 1wnromv 1iah9d0 w5hb6l 1qg96bk 5rzndc qt5sod 11a5jfz 1a9gj4l dl9lpe jf20i6 1wzldx9 1acl0nq eje8u8 wlgex8 5pn40l 5h7j22 1ab45z8 lo3uch 1hmg5sl ezxccn jav0c0 133me80 at4fb7 1wrpuxc 1e6z4bb 1acnko9 djnsrv xco5xq 1yn4uc6 1woykp5 bmkqtt pqfuqd 1a9397e 10pbo1c gasg8o 1fqioza 1h44hlo 1eexzk7 lj3614 11qy4qd q13v6l tls3ng 3f8g57 1nrodj7 18575g8 1owqor8 15deawa 1fi0zap 1jfq5uh 57l3cd 15qzoly p1b8zs 1wn3fth jqzcgm t1tluo 1merui2 1ja35a1 3irr3r hav8pe 1ddjz9m mghztf 177i5a3 kf1rr7 1bswqgw g71f6c zmeflb 1yvkv5r 1lrj0ms rnph06 1xsytti lowd3f 1mo0uqt brp1sn 4xywg1 thbgds kbu6lu m8af45 1emwpvx 634gxp 8e1lz9 l1wkks qvhidn 18c1kun xp8n1m 12lwo0q 1dn3u4x 15dlptr x4wlcx hvvqgg 6abhhh 1xfnz8j 1f9vjtd 1eam427 16wwjh3 1g802dd 4lj62y 9k7k0r 10ixqbq dgc946 1x2aqha mhi5kr dahgtj jx84hm 12bmkxv 2v806a 1ckpr94 15l1x7e 1x2h1cv 1ru0a08 15v0rgx mxd7us hn2rmb 18grb15 19xldmq zih8bt 9zb4jd r82hv2 1yns4rq ns7djp"
+<style data-emotion-some-key="1mxgdgj 7oyr76 j3l52t 1be0pz3 awuqpb 1i7zhog 1wfoctz fc6lvz 2squ55 1w5v94j aunzx7 3al575 11f074x p15six 18u2re8 jcpju2 5d0zsm 1dpd5ul gfcbni 1jiphdk rj01o9 1488xs5 15xnezh 184lbb8 manocn 1umkmjt odl9to 11xg40 rgxdxp 70qps 5rivwv 1ekpy8w 1td920t 1epp5w 1k1d8rn vk4jtt 628xoq 1mvbvml 1c0xybd gj3v00 nkhoz4 17n2b4l 1es3p9i 1ndh3ck 1xvd1pe 18ld629 kg8xpq ppci6y 1ia901n j0k50p e0gjgb 1enrcxf 13r7krf 1kanh94 li2rx1 1mmlcvc 1nlc23 17beei6 1jqhnzu oqcnq8 1uus9kv 1m0952k dcxbft 12b54g8 936m12 1rqy942 ssgydo bvr28e q7rqgc 6uph5v 1t8v36t y7o2df vn3biw qvxdsd 1aqic6s 30owfv 1vj3hk7 1xfrpf4 l539hk 15joy70 16ylmie 7y2cvq 1w0x3oa 15nxgk3 qy1n2d 1vzbl6r 1never2 inwqci cja9xn vh9ala 1l5peir 1y1m1bn clop4i c9h5qg 1803k8u xgd3dd g0qjre 1u3agcs 4vb10h f59pxt 1is0wnp 1m7m6b8 1abpa1i 2qg1ot 1962n5a tvm0n3 1wo7l9z e963hw helz5s 1lo5wgy jas2da 6b1mn9 9456c 1burs84 acvymo 5ir6nu 3uxv18 676m05 16ch583 1l5q8o6 29hq6z t8ulab 11c3pwx plfo0u jzad8y n2u7t0 gj0ny3 hq26b 13txtj7 1abkqu 18qp6qn 1j8ha2k 1dawo17 1g5i33r qwzehu 661prt r9hkdr 1jwml5g eif6tj 1glgqbn xagvgz xegjiq 1dg3mz2 12g56i4 155k1ol wmmgi8 1rtokyw eub81m 1sp6wed sopwqw jvlbzj c0fhpp ya5fjl a1wt2a s3t0mz e2iwhw f6fc7a 14lo9e8 15nr8n6 opmfz1 xzjoum 19cwupx yzjpko 1hdtk9n qch6gk 1brwxbm qi3ue pby1bx 1ngv0xw 1tf2gqw 2aj80b yiuueo 7dj3zo 1ua8hry ph7df6 1wl9l48 1jpf5tg 25pweb 1vhoxch fqa73u 1042dyt 13l2gd9 z8odma 17r5vu0 1neh6nm 10nd4xt 15g5cci 11cgmwf ag6j9u jku1jn 1pxlxrg u1dyl6 37fxtj uia17y 5kf6fm z9hh1c 1abr9jj brxqds 130nyr5 1atrbnz"
        nonce="some-nonce"
 >
   .some-global-200{padding:0;margin:200;}.some-global-199{padding:0;margin:199;}.some-global-198{padding:0;margin:198;}.some-global-197{padding:0;margin:197;}.some-global-196{padding:0;margin:196;}.some-global-195{padding:0;margin:195;}.some-global-194{padding:0;margin:194;}.some-global-193{padding:0;margin:193;}.some-global-192{padding:0;margin:192;}.some-global-191{padding:0;margin:191;}.some-global-190{padding:0;margin:190;}.some-global-189{padding:0;margin:189;}.some-global-188{padding:0;margin:188;}.some-global-187{padding:0;margin:187;}.some-global-186{padding:0;margin:186;}.some-global-185{padding:0;margin:185;}.some-global-184{padding:0;margin:184;}.some-global-183{padding:0;margin:183;}.some-global-182{padding:0;margin:182;}.some-global-181{padding:0;margin:181;}.some-global-180{padding:0;margin:180;}.some-global-179{padding:0;margin:179;}.some-global-178{padding:0;margin:178;}.some-global-177{padding:0;margin:177;}.some-global-176{padding:0;margin:176;}.some-global-175{padding:0;margin:175;}.some-global-174{padding:0;margin:174;}.some-global-173{padding:0;margin:173;}.some-global-172{padding:0;margin:172;}.some-global-171{padding:0;margin:171;}.some-global-170{padding:0;margin:170;}.some-global-169{padding:0;margin:169;}.some-global-168{padding:0;margin:168;}.some-global-167{padding:0;margin:167;}.some-global-166{padding:0;margin:166;}.some-global-165{padding:0;margin:165;}.some-global-164{padding:0;margin:164;}.some-global-163{padding:0;margin:163;}.some-global-162{padding:0;margin:162;}.some-global-161{padding:0;margin:161;}.some-global-160{padding:0;margin:160;}.some-global-159{padding:0;margin:159;}.some-global-158{padding:0;margin:158;}.some-global-157{padding:0;margin:157;}.some-global-156{padding:0;margin:156;}.some-global-155{padding:0;margin:155;}.some-global-154{padding:0;margin:154;}.some-global-153{padding:0;margin:153;}.some-global-152{padding:0;margin:152;}.some-global-151{padding:0;margin:151;}.some-global-150{padding:0;margin:150;}.some-global-149{padding:0;margin:149;}.some-global-148{padding:0;margin:148;}.some-global-147{padding:0;margin:147;}.some-global-146{padding:0;margin:146;}.some-global-145{padding:0;margin:145;}.some-global-144{padding:0;margin:144;}.some-global-143{padding:0;margin:143;}.some-global-142{padding:0;margin:142;}.some-global-141{padding:0;margin:141;}.some-global-140{padding:0;margin:140;}.some-global-139{padding:0;margin:139;}.some-global-138{padding:0;margin:138;}.some-global-137{padding:0;margin:137;}.some-global-136{padding:0;margin:136;}.some-global-135{padding:0;margin:135;}.some-global-134{padding:0;margin:134;}.some-global-133{padding:0;margin:133;}.some-global-132{padding:0;margin:132;}.some-global-131{padding:0;margin:131;}.some-global-130{padding:0;margin:130;}.some-global-129{padding:0;margin:129;}.some-global-128{padding:0;margin:128;}.some-global-127{padding:0;margin:127;}.some-global-126{padding:0;margin:126;}.some-global-125{padding:0;margin:125;}.some-global-124{padding:0;margin:124;}.some-global-123{padding:0;margin:123;}.some-global-122{padding:0;margin:122;}.some-global-121{padding:0;margin:121;}.some-global-120{padding:0;margin:120;}.some-global-119{padding:0;margin:119;}.some-global-118{padding:0;margin:118;}.some-global-117{padding:0;margin:117;}.some-global-116{padding:0;margin:116;}.some-global-115{padding:0;margin:115;}.some-global-114{padding:0;margin:114;}.some-global-113{padding:0;margin:113;}.some-global-112{padding:0;margin:112;}.some-global-111{padding:0;margin:111;}.some-global-110{padding:0;margin:110;}.some-global-109{padding:0;margin:109;}.some-global-108{padding:0;margin:108;}.some-global-107{padding:0;margin:107;}.some-global-106{padding:0;margin:106;}.some-global-105{padding:0;margin:105;}.some-global-104{padding:0;margin:104;}.some-global-103{padding:0;margin:103;}.some-global-102{padding:0;margin:102;}.some-global-101{padding:0;margin:101;}.some-global-100{padding:0;margin:100;}.some-global-99{padding:0;margin:99;}.some-global-98{padding:0;margin:98;}.some-global-97{padding:0;margin:97;}.some-global-96{padding:0;margin:96;}.some-global-95{padding:0;margin:95;}.some-global-94{padding:0;margin:94;}.some-global-93{padding:0;margin:93;}.some-global-92{padding:0;margin:92;}.some-global-91{padding:0;margin:91;}.some-global-90{padding:0;margin:90;}.some-global-89{padding:0;margin:89;}.some-global-88{padding:0;margin:88;}.some-global-87{padding:0;margin:87;}.some-global-86{padding:0;margin:86;}.some-global-85{padding:0;margin:85;}.some-global-84{padding:0;margin:84;}.some-global-83{padding:0;margin:83;}.some-global-82{padding:0;margin:82;}.some-global-81{padding:0;margin:81;}.some-global-80{padding:0;margin:80;}.some-global-79{padding:0;margin:79;}.some-global-78{padding:0;margin:78;}.some-global-77{padding:0;margin:77;}.some-global-76{padding:0;margin:76;}.some-global-75{padding:0;margin:75;}.some-global-74{padding:0;margin:74;}.some-global-73{padding:0;margin:73;}.some-global-72{padding:0;margin:72;}.some-global-71{padding:0;margin:71;}.some-global-70{padding:0;margin:70;}.some-global-69{padding:0;margin:69;}.some-global-68{padding:0;margin:68;}.some-global-67{padding:0;margin:67;}.some-global-66{padding:0;margin:66;}.some-global-65{padding:0;margin:65;}.some-global-64{padding:0;margin:64;}.some-global-63{padding:0;margin:63;}.some-global-62{padding:0;margin:62;}.some-global-61{padding:0;margin:61;}.some-global-60{padding:0;margin:60;}.some-global-59{padding:0;margin:59;}.some-global-58{padding:0;margin:58;}.some-global-57{padding:0;margin:57;}.some-global-56{padding:0;margin:56;}.some-global-55{padding:0;margin:55;}.some-global-54{padding:0;margin:54;}.some-global-53{padding:0;margin:53;}.some-global-52{padding:0;margin:52;}.some-global-51{padding:0;margin:51;}.some-global-50{padding:0;margin:50;}.some-global-49{padding:0;margin:49;}.some-global-48{padding:0;margin:48;}.some-global-47{padding:0;margin:47;}.some-global-46{padding:0;margin:46;}.some-global-45{padding:0;margin:45;}.some-global-44{padding:0;margin:44;}.some-global-43{padding:0;margin:43;}.some-global-42{padding:0;margin:42;}.some-global-41{padding:0;margin:41;}.some-global-40{padding:0;margin:40;}.some-global-39{padding:0;margin:39;}.some-global-38{padding:0;margin:38;}.some-global-37{padding:0;margin:37;}.some-global-36{padding:0;margin:36;}.some-global-35{padding:0;margin:35;}.some-global-34{padding:0;margin:34;}.some-global-33{padding:0;margin:33;}.some-global-32{padding:0;margin:32;}.some-global-31{padding:0;margin:31;}.some-global-30{padding:0;margin:30;}.some-global-29{padding:0;margin:29;}.some-global-28{padding:0;margin:28;}.some-global-27{padding:0;margin:27;}.some-global-26{padding:0;margin:26;}.some-global-25{padding:0;margin:25;}.some-global-24{padding:0;margin:24;}.some-global-23{padding:0;margin:23;}.some-global-22{padding:0;margin:22;}.some-global-21{padding:0;margin:21;}.some-global-20{padding:0;margin:20;}.some-global-19{padding:0;margin:19;}.some-global-18{padding:0;margin:18;}.some-global-17{padding:0;margin:17;}.some-global-16{padding:0;margin:16;}.some-global-15{padding:0;margin:15;}.some-global-14{padding:0;margin:14;}.some-global-13{padding:0;margin:13;}.some-global-12{padding:0;margin:12;}.some-global-11{padding:0;margin:11;}.some-global-10{padding:0;margin:10;}.some-global-9{padding:0;margin:9;}.some-global-8{padding:0;margin:8;}.some-global-7{padding:0;margin:7;}.some-global-6{padding:0;margin:6;}.some-global-5{padding:0;margin:5;}.some-global-4{padding:0;margin:4;}.some-global-3{padding:0;margin:3;}.some-global-2{padding:0;margin:2;}.some-global-1{padding:0;margin:1;}
@@ -2365,50 +2455,46 @@ exports[`renderStylesToString renders large recursive component 1`] = `
 
 exports[`renderStylesToString renders styles with ids 1`] = `
 
-<style data-emotion-some-key="lu7y12 16qlhaj hbhpyh"
+<style data-emotion-some-key="1uqawbr i9f7qw-bounce 1nhdffy"
        nonce="some-nonce"
 >
-  @font-face{font-family:'Patrick Hand SC';font-style:normal;font-weight:400;src:local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');unicode-range:U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;}@-webkit-keyframes animation-16qlhaj{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}@keyframes animation-16qlhaj{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}.no-prefix{display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+  @font-face{font-family:'Patrick Hand SC';font-style:normal;font-weight:400;src:local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');unicode-range:U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;}@-webkit-keyframes animation-i9f7qw-bounce{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}@keyframes animation-i9f7qw-bounce{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}.no-prefix{display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
 </style>
-<style data-emotion-some-key="4xq7ky"
+<style data-emotion-some-key="14e1j2p-hoverStyles-Something_Main"
        nonce="some-nonce"
 >
-  .some-key-4xq7ky{color:hotpink;display:flex;}.some-key-4xq7ky:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
+  .some-key-14e1j2p-hoverStyles-Something_Main{color:hotpink;display:flex;}.some-key-14e1j2p-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
-<main class="some-key-4xq7ky e126fyao0"
-      data-reactroot
->
-  <style data-emotion-some-key="z382ib"
+<main class="some-key-14e1j2p-hoverStyles-Something_Main">
+  <style data-emotion-some-key="1h1w8ez-Image"
          nonce="some-nonce"
   >
-    .some-key-z382ib{-webkit-animation:animation-16qlhaj;animation:animation-16qlhaj;border-radius:50%;height:50px;width:50px;background-color:red;}
+    .some-key-1h1w8ez-Image{-webkit-animation:animation-i9f7qw-bounce;animation:animation-i9f7qw-bounce;border-radius:50%;height:50px;width:50px;background-color:red;}
   </style>
   <img size="30"
-       class="some-key-z382ib e126fyao1"
+       class="some-key-1h1w8ez-Image"
   >
   <img size="100"
-       class="some-key-z382ib e126fyao1"
+       class="some-key-1h1w8ez-Image"
   >
-  <img class="some-key-z382ib e126fyao1">
+  <img class="some-key-1h1w8ez-Image">
 </main>
 
 `;
 
 exports[`renderStylesToString renders styles with ids 2`] = `
 
-<style data-emotion-some-key="lu7y12 16qlhaj hbhpyh"
+<style data-emotion-some-key="1uqawbr i9f7qw-bounce 1nhdffy"
        nonce="some-nonce"
 >
-  @font-face{font-family:'Patrick Hand SC';font-style:normal;font-weight:400;src:local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');unicode-range:U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;}@-webkit-keyframes animation-16qlhaj{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}@keyframes animation-16qlhaj{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);animation-timing-function:cubic-bezier(0.215,0.610,0.355,1.000);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);animation-timing-function:cubic-bezier(0.755,0.050,0.855,0.060);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}.no-prefix{display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+  @font-face{font-family:'Patrick Hand SC';font-style:normal;font-weight:400;src:local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');unicode-range:U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;}@-webkit-keyframes animation-i9f7qw-bounce{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}@keyframes animation-i9f7qw-bounce{from,20%,53%,80%,to{-webkit-animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);animation-timing-function:cubic-bezier(0.215,0.61,0.355,1);-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}40%,43%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-30px,0);-ms-transform:translate3d(0,-30px,0);transform:translate3d(0,-30px,0);}70%{-webkit-animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);animation-timing-function:cubic-bezier(0.755,0.05,0.855,0.06);-webkit-transform:translate3d(0,-15px,0);-ms-transform:translate3d(0,-15px,0);transform:translate3d(0,-15px,0);}90%{-webkit-transform:translate3d(0,-4px,0);-ms-transform:translate3d(0,-4px,0);transform:translate3d(0,-4px,0);}}.no-prefix{display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
 </style>
-<style data-emotion-some-key="4xq7ky"
+<style data-emotion-some-key="14e1j2p-hoverStyles-Something_Main"
        nonce="some-nonce"
 >
-  .some-key-4xq7ky{color:hotpink;display:flex;}.some-key-4xq7ky:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
+  .some-key-14e1j2p-hoverStyles-Something_Main{color:hotpink;display:flex;}.some-key-14e1j2p-hoverStyles-Something_Main:hover{color:white;background-color:lightgray;border-color:aqua;box-shadow:15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;}
 </style>
-<main class="some-key-4xq7ky e126fyao0"
-      data-reactroot
->
+<main class="some-key-14e1j2p-hoverStyles-Something_Main">
   <div>
     Hello
   </div>

@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`array fallback 1`] = `
+.emotion-0 {
+  display: green;
+  display: hotpink;
+}
+
+<div>
+  <div
+    className="emotion-0"
+  >
+    something
+  </div>
+</div>
+`;
+
+exports[`css call composition 1`] = `
+.emotion-0:hover {
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`label in css call 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div>
+  <div
+    className="emotion-0"
+  >
+    something
+  </div>
+</div>
+`;
+
+exports[`nested at rule 1`] = `
+@media (min-width:980px) {
+  .emotion-0 {
+    background-color: blue;
+  }
+
+@supports (width:100vw) {
+    .emotion-0 {
+      background-color: red;
+    }
+}
+}
+
+<div
+  className="emotion-0"
+>
+  something
+</div>
+`;
+
+exports[`object with false 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div>
+  <div
+    className="emotion-0"
+  >
+    something
+  </div>
+</div>
+`;
+
+exports[`string as css prop throws 1`] = `
+"Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/css' like this: css\`
+            color: hotpink;
+          \`"
+`;
+
+exports[`theming with the css prop 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`thing 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div>
+  <div
+    className="emotion-0"
+  >
+    something
+  </div>
+</div>
+`;

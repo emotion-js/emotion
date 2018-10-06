@@ -3,7 +3,7 @@ const rollup = require('rollup')
 const chalk = require('chalk')
 const path = require('path')
 const ms = require('ms')
-const { getPackages, cleanDist } = require('./utils')
+const { getPackages } = require('./utils')
 
 function relativePath(id) {
   return path.relative(process.cwd(), id)
@@ -11,11 +11,6 @@ function relativePath(id) {
 
 async function watch() {
   const packages = await getPackages()
-  await Promise.all(
-    packages.map(async pkg => {
-      await cleanDist(pkg.path)
-    })
-  )
   let configs = packages.reduce((configs, pkg) => {
     return configs.concat(
       pkg.configs.map(config => {

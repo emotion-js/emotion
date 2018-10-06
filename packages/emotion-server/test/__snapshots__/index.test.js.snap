@@ -6,30 +6,30 @@ Object {
   font-family: 'Patrick Hand SC';
   font-style: normal;
   font-weight: 400;
-  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
+  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;
 }
 
-@-webkit-keyframes animation-16qlhaj {
+@-webkit-keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
-    animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
+    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
     -webkit-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-30px,0);
     -ms-transform: translate3d(0,-30px,0);
     transform: translate3d(0,-30px,0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-15px,0);
     -ms-transform: translate3d(0,-15px,0);
     transform: translate3d(0,-15px,0);
@@ -42,26 +42,26 @@ Object {
   }
 }
 
-@keyframes animation-16qlhaj {
+@keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
-    animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
+    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
     -webkit-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-30px,0);
     -ms-transform: translate3d(0,-30px,0);
     transform: translate3d(0,-30px,0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-15px,0);
     -ms-transform: translate3d(0,-15px,0);
     transform: translate3d(0,-15px,0);
@@ -85,7 +85,7 @@ Object {
   justify-content: center;
 }
 
-.css-4xq7ky {
+.css-14e1j2p-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -93,40 +93,38 @@ Object {
   display: flex;
 }
 
-.css-4xq7ky:hover {
+.css-14e1j2p-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
-.css-z382ib {
-  -webkit-animation: animation-16qlhaj;
-  animation: animation-16qlhaj;
+.css-1h1w8ez-Image {
+  -webkit-animation: animation-i9f7qw-bounce;
+  animation: animation-i9f7qw-bounce;
   border-radius: 50%;
   height: 50px;
   width: 50px;
   background-color: red;
 }",
   "html": 
-<main class="css-4xq7ky e126fyao0"
-      data-reactroot
->
+<main class="css-14e1j2p-hoverStyles-Something_Main">
   <img size="30"
-       class="css-z382ib e126fyao1"
+       class="css-1h1w8ez-Image"
   >
   <img size="100"
-       class="css-z382ib e126fyao1"
+       class="css-1h1w8ez-Image"
   >
-  <img class="css-z382ib e126fyao1">
+  <img class="css-1h1w8ez-Image">
 </main>
 ,
   "ids": Array [
-    "lu7y12",
-    "16qlhaj",
-    "hbhpyh",
-    "4xq7ky",
-    "z382ib",
+    "1uqawbr",
+    "i9f7qw-bounce",
+    "1nhdffy",
+    "14e1j2p-hoverStyles-Something_Main",
+    "1h1w8ez-Image",
   ],
 }
 `;
@@ -137,30 +135,30 @@ Object {
   font-family: 'Patrick Hand SC';
   font-style: normal;
   font-weight: 400;
-  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
+  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;
 }
 
-@-webkit-keyframes animation-16qlhaj {
+@-webkit-keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
-    animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
+    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
     -webkit-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-30px,0);
     -ms-transform: translate3d(0,-30px,0);
     transform: translate3d(0,-30px,0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-15px,0);
     -ms-transform: translate3d(0,-15px,0);
     transform: translate3d(0,-15px,0);
@@ -173,26 +171,26 @@ Object {
   }
 }
 
-@keyframes animation-16qlhaj {
+@keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
-    animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
+    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
     -webkit-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-30px,0);
     -ms-transform: translate3d(0,-30px,0);
     transform: translate3d(0,-30px,0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-15px,0);
     -ms-transform: translate3d(0,-15px,0);
     transform: translate3d(0,-15px,0);
@@ -216,7 +214,7 @@ Object {
   justify-content: center;
 }
 
-.css-4xq7ky {
+.css-14e1j2p-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -224,26 +222,24 @@ Object {
   display: flex;
 }
 
-.css-4xq7ky:hover {
+.css-14e1j2p-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
   "html": 
-<main class="css-4xq7ky e126fyao0"
-      data-reactroot
->
+<main class="css-14e1j2p-hoverStyles-Something_Main">
   <div>
     Hello
   </div>
 </main>
 ,
   "ids": Array [
-    "lu7y12",
-    "16qlhaj",
-    "hbhpyh",
-    "4xq7ky",
+    "1uqawbr",
+    "i9f7qw-bounce",
+    "1nhdffy",
+    "14e1j2p-hoverStyles-Something_Main",
   ],
 }
 `;
@@ -254,30 +250,30 @@ Object {
   font-family: 'Patrick Hand SC';
   font-style: normal;
   font-weight: 400;
-  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
+  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;
 }
 
-@-webkit-keyframes animation-16qlhaj {
+@-webkit-keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
-    animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
+    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
     -webkit-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-30px,0);
     -ms-transform: translate3d(0,-30px,0);
     transform: translate3d(0,-30px,0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-15px,0);
     -ms-transform: translate3d(0,-15px,0);
     transform: translate3d(0,-15px,0);
@@ -290,26 +286,26 @@ Object {
   }
 }
 
-@keyframes animation-16qlhaj {
+@keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
-    animation-timing-function: cubic-bezier(0.215,0.610,0.355,1.000);
+    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
     -webkit-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-30px,0);
     -ms-transform: translate3d(0,-30px,0);
     transform: translate3d(0,-30px,0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
-    animation-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     -webkit-transform: translate3d(0,-15px,0);
     -ms-transform: translate3d(0,-15px,0);
     transform: translate3d(0,-15px,0);
@@ -333,7 +329,7 @@ Object {
   justify-content: center;
 }
 
-.css-4xq7ky {
+.css-14e1j2p-hoverStyles-Something_Main {
   color: hotpink;
   display: -webkit-box;
   display: -webkit-flex;
@@ -341,57 +337,55 @@ Object {
   display: flex;
 }
 
-.css-4xq7ky:hover {
+.css-14e1j2p-hoverStyles-Something_Main:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
-.css-z382ib {
-  -webkit-animation: animation-16qlhaj;
-  animation: animation-16qlhaj;
+.css-1h1w8ez-Image {
+  -webkit-animation: animation-i9f7qw-bounce;
+  animation: animation-i9f7qw-bounce;
   border-radius: 50%;
   height: 50px;
   width: 50px;
   background-color: red;
 }",
   "html": 
-<main class="css-4xq7ky e126fyao0"
-      data-reactroot
->
+<main class="css-14e1j2p-hoverStyles-Something_Main">
   <img size="30"
-       class="css-z382ib e126fyao1"
+       class="css-1h1w8ez-Image"
   >
   <img size="100"
-       class="css-z382ib e126fyao1"
+       class="css-1h1w8ez-Image"
   >
-  <img class="css-z382ib e126fyao1">
+  <img class="css-1h1w8ez-Image">
 </main>
 ,
   "ids": Array [
-    "lu7y12",
-    "16qlhaj",
-    "hbhpyh",
-    "4xq7ky",
-    "z382ib",
+    "1uqawbr",
+    "i9f7qw-bounce",
+    "1nhdffy",
+    "14e1j2p-hoverStyles-Something_Main",
+    "1h1w8ez-Image",
   ],
 }
 `;
 
 exports[`hydration only rules that are not in the critical css are inserted 2`] = `
-".css-6yzwy8 {
+".css-1icu1xs-hoverStyles {
   color: hotpink;
 }
 
-.css-6yzwy8:hover {
+.css-1icu1xs-hoverStyles:hover {
   color: white;
   background-color: lightgray;
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
-.css-1hyfx7x {
+.css-k26awr {
   display: none;
 }"
 `;

@@ -1,0 +1,20 @@
+{
+  "name": "@emotion/memoize",
+  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "description": "emotion's memoize utility",
+  "main": "dist/memoize.cjs.js",
+  "module": "dist/memoize.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/memoize",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "umd:main": "./dist/index.min.js",
+  "browser": {
+    "./dist/memoize.cjs.js": "./dist/memoize.browser.cjs.js"
+  }
+}

@@ -20,3 +20,15 @@ export interface EmotionThemingModule<Theme> {
     ThemeProvider: ThemeProviderComponent<Theme>;
     withTheme<Props>(component: ComponentClass<Props> | SFC<Props>): ComponentClass<OptionalThemeProps<Props, Theme>>;
 }
+
+export const channel: "__EMOTION_THEMING__";
+
+export type BroadcastListener<Theme = {}> = (state: Theme) => void;
+
+export interface Broadcast<Theme = {}> {
+    publish(nextState: Theme): void;
+    subscribe(listener: BroadcastListener<Theme>): number;
+    unsubscribe(unsubID: number): void;
+}
+
+export function createBroadcast<Theme = {}>(initialState: Theme): Broadcast<Theme>;
