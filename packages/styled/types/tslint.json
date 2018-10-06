@@ -1,0 +1,7 @@
+{
+    "extends": "dtslint/dtslint.json",
+    "rules": {
+        "array-type": [true, "generic"],
+        "no-unnecessary-generics": false
+    }
+}
