@@ -18,11 +18,10 @@ RuleTester.setDefaultConfig({
 const ruleTester = new RuleTester()
 
 ruleTester.run('no-vanilla', rule, {
+  valid: [{ code: `import { css } from '@emotion/core'` }],
   invalid: [
     {
-      code: `
-import { css } from 'emotion'
-      `.trim(),
+      code: `import { css } from 'emotion'`,
       errors: [
         {
           message: `Vanilla emotion should not be used`

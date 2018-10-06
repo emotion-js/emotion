@@ -7,7 +7,6 @@ module.exports = {
       ImportDeclaration(node) {
         if (node.source.value === 'react-emotion') {
           let newImportPath = '@emotion/styled'
-          let quote = node.source.raw.charAt(0)
           context.report({
             node: node.source,
             message: `styled should be imported from @emotion/styled`,
@@ -15,10 +14,7 @@ module.exports = {
               node.specifiers.length === 1 &&
               node.specifiers[0].type === 'ImportDefaultSpecifier'
                 ? fixer => {
-                    return fixer.replaceText(
-                      node.source,
-                      quote + newImportPath + quote
-                    )
+                    return fixer.replaceText(node.source, `'${newImportPath}'`)
                   }
                 : undefined
           })

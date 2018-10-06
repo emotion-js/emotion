@@ -3,7 +3,7 @@
  */
 
 const { RuleTester } = require('eslint')
-const rule = require('../../src/rules/jsx-import')
+const rule = require('../../src/rules/import-from-emotion')
 
 RuleTester.setDefaultConfig({
   parserOptions: {
@@ -45,7 +45,17 @@ ruleTester.run('emotion jsx', rule, {
             "emotion's exports should be imported directly from emotion rather than from react-emotion"
         }
       ],
-      output: `import styled from 'react-emotion'\nimport { css } from 'emotion'`
+      output: `import styled from 'react-emotion';\nimport { css } from 'emotion';`
+    },
+    {
+      code: `import styled, { css as somethingElse } from 'react-emotion'`,
+      errors: [
+        {
+          message:
+            "emotion's exports should be imported directly from emotion rather than from react-emotion"
+        }
+      ],
+      output: `import styled from 'react-emotion';\nimport { css as somethingElse } from 'emotion';`
     }
   ]
 })

@@ -29,14 +29,6 @@ ruleTester.run('emotion jsx', rule, {
     },
     {
       code: `
-      // @jsx jsx
-      import { jsx } from '@emotion/preact-core'
-
-      let ele = <div css={{}} />
-      `
-    },
-    {
-      code: `
 
       let ele = <div notCss={{}} />
       `
