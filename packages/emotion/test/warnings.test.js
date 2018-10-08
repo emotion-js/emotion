@@ -54,3 +54,20 @@ it('does warn when functions are passed to css calls', () => {
     "Functions that are interpolated in css calls will be stringified.\nIf you want to have a css call based on props, create a function that returns a css call like this\nlet dynamicStyle = (props) => css`color: ${props.color}`\nIt can be called directly with props or interpolated in a styled call like this\nlet SomeComponent = styled('div')`${dynamicStyle}`"
   )
 })
+
+it('does warn when functions are passed to css calls', () => {
+  let cls = css`
+    color: green;
+  `
+  css`
+    .${cls} {
+      color: hotpink;
+    }
+  `
+  expect(console.error.mock.calls[0]).toMatchInlineSnapshot(`
+Array [
+  "Interpolating a className from css\`\` is not recommended and will cause problems with composition.
+Interpolating a className from css\`\` will be completely unsupported in the next major version of Emotion",
+]
+`)
+})
