@@ -1,13 +1,12 @@
 {
     "extends": "dtslint/dtslint.json",
     "rules": {
-        "only-arrow-functions": false,
-
         "array-type": [
             true,
             "generic"
         ],
         "semicolon": false,
-        "space-before-function-paren": false
+
+        "no-unnecessary-generics": false
     }
 }

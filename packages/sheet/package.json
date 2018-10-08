@@ -19,7 +19,8 @@
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
   "umd:main": "./dist/index.min.js",
   "devDependencies": {
