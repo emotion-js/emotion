@@ -4,19 +4,27 @@
   "description": "emotion's cache",
   "main": "dist/cache.cjs.js",
   "module": "dist/cache.esm.js",
+  "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/cache",
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
   "dependencies": {
     "@emotion/sheet": "^10.0.0-really-unsafe-please-do-not-use.2",
     "@emotion/stylis": "^10.0.0-really-unsafe-please-do-not-use.2",
     "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
+  },
+  "devDependencies": {
+    "dtslint": "^0.3.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
   "umd:main": "./dist/index.min.js",
   "browser": {

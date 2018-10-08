@@ -15,7 +15,8 @@
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
   "devDependencies": {
     "dtslint": "^0.3.0",
