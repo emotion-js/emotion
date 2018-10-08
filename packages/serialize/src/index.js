@@ -154,6 +154,16 @@ function handleInterpolation(
     // eslint-disable-next-line no-fallthrough
     default: {
       const cached = registered[interpolation]
+      if (
+        process.env.NODE_ENV !== 'production' &&
+        couldBeSelectorInterpolation &&
+        cached !== undefined
+      ) {
+        console.error(
+          'Interpolating a className from css`` is not recommended and will cause problems with composition.\n' +
+            'Interpolating a className from css`` will be completely unsupported in the next major version of Emotion'
+        )
+      }
       return cached !== undefined && !couldBeSelectorInterpolation
         ? cached
         : interpolation
