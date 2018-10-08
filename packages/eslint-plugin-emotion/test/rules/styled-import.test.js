@@ -39,19 +39,6 @@ import styled from 'react-emotion'
       output: `
 import styled from '@emotion/styled'
       `.trim()
-    },
-    {
-      code: `
-import styled from "react-emotion"
-        `.trim(),
-      errors: [
-        {
-          message: `styled should be imported from @emotion/styled`
-        }
-      ],
-      output: `
-import styled from "@emotion/styled"
-        `.trim()
     }
   ]
 })
