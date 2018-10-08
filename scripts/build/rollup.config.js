@@ -180,9 +180,10 @@ module.exports = (
       cjs(),
       isUMD && alias(packageAliases),
       isUMD && resolve(),
-      replace({
-        ...(isUMD || isProd ? { 'process.env.NODE_ENV': '"production"' } : {})
-      }),
+      (isUMD || isProd) &&
+        replace({
+          'process.env.NODE_ENV': '"production"'
+        }),
 
       isUMD && uglify(),
       shouldMinifyButStillBePretty &&
