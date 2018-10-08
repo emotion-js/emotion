@@ -6,13 +6,13 @@ _`emotion-theming` is a theming library inspired by [styled-components](https://
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [API](#api)
-  * [ThemeProvider](#themeprovider)
-  * [withTheme](#withthemecomponent)
-* [Credits](#credits)
-* [License](#license)
+- [Install](#install)
+- [Usage](#usage)
+- [API](#api)
+  - [ThemeProvider](#themeprovider)
+  - [withTheme](#withthemecomponent)
+- [Credits](#credits)
+- [License](#license)
 
 ## Install
 
@@ -94,8 +94,8 @@ A React component that passes the theme object down the component tree via [cont
 
 _Accepts:_
 
-* **`children`: ReactComponent** - A single React component.
-* **`theme`: Object|Function** - An object or function that provides an object.
+- **`children`: ReactComponent** - A single React component.
+- **`theme`: Object|Function** - An object or function that provides an object.
 
 ```jsx
 import React from 'react'

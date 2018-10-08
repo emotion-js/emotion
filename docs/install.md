@@ -2,42 +2,46 @@
 title: "Install"
 ---
 
-Emotion can be used in many different ways. The easiest way to get started is to use the [`emotion` package](/packages/emotion).
+Emotion can be used in many different ways. The easiest way to get started is to use the [`@emotion/core` package](/packages/@emotion/core).
 
 ```bash
-yarn add emotion
+# React
+yarn add @emotion/core
+# Preact
+yarn add @emotion/preact-core
 ```
 
 or if you prefer npm
 
 ```bash
-npm install --save emotion
+# React
+npm install --save @emotion/core
+# Preact
+npm install --save @emotion/preact-core
 ```
 
-To use it, import what you need, for example use [css](/docs/css.md) to create class names with styles.
+To use it, import what you need, for example use [jsx](/docs/jsx.md) to create class names with styles.
 
 ```jsx
 // @live
-import { css } from 'emotion'
+// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
 
-const className = css`
+const style = css`
   color: hotpink;
 `
 
 const SomeComponent = ({ children }) => (
-  <div className={className}>
-    Some hotpink text.{children}
-  </div>
+  <div css={style}>Some hotpink text.{children}</div>
 )
 
-const anotherClassName = css({
+const anotherStyle = css({
   textDecoration: 'underline'
 })
 
 const AnotherComponent = () => (
-  <div className={anotherClassName}>
-    Some text with an underline.
-  </div>
+  <div css={anotherStyle}>Some text with an underline.</div>
 )
 render(
   <SomeComponent>
@@ -51,33 +55,29 @@ render(
 `styled` is a way to create React/Preact components that have styles attached to them.
 
 ```bash
-# assuming you already have emotion installed
+# assuming you already have @emotion/core installed
 # React
-yarn add react-emotion
+yarn add @emotion/styled
 # Preact
-yarn add preact-emotion
+yarn add @emotion/preact-styled
 ```
 
 or if you prefer npm
 
 ```bash
 # React
-npm install --save react-emotion
+npm install --save @emotion/styled
 # Preact
-npm install --save preact-emotion
+npm install --save @emotion/preact-styled
 ```
-
-> Note:
-
-> All APIs from `emotion` are also exported by the `react-emotion` package.
 
 ```jsx
 // @live
-// change this import to preact-emotion
+// change this import to @emotion/preact-styled
 // if you're using Preact
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
 
-const Button = styled('button')`
+const Button = styled.button`
   color: hotpink;
 `
 
@@ -89,6 +89,8 @@ render(<Button>This is a hotpink button.</Button>)
 > Note:
 
 > If you're using Create React App, you can't add custom babel plugins so you can skip this section.
+
+# IF YOU'RE LOOKING AT THIS NOW, YOU SHOULD USE @emotion/babel-plugin-core BUT IT WILL PROBABLY BE babel-plugin-emotion IN THE FUTURE
 
 Emotion has an optional [Babel](https://babeljs.io/) plugin that optimizes styles by compressing and hoisting them and creates a better developer experience with source maps and labels.
 

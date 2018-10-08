@@ -2,6 +2,37 @@
 title: "Server Side Rendering"
 ---
 
+Server side rendering works out of the box in emotion 10 and above
+
+```jsx
+import { renderToString } from 'react-dom/server'
+import App from './App'
+
+let html = renderToString(<App />)
+```
+
+## Using Emotion 10 with the old SSR APIs
+
+It's still possible to use emotion 10 with the SSR api's in previous versions of emotion. It primarily exists for compatibility reasons.
+
+```jsx
+import createEmotionServer from 'create-emotion-server'
+import createCache from '@emotion/cache'
+import { renderToString } from 'react-dom/server'
+
+let cache = createCache()
+
+let { renderStylesToString } = createEmotionServer(cache)
+
+let element = (
+  <Provider value={cache}>
+    <App />
+  </Provider>
+)
+
+let html = renderStylesToString(renderToString(element))
+```
+
 ## API
 
 ### renderStylesToString
