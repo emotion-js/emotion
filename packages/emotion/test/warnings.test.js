@@ -55,7 +55,7 @@ it('does warn when functions are passed to css calls', () => {
   )
 })
 
-it('does warn when functions are passed to css calls', () => {
+it('warns when class names from css are interpolated', () => {
   let cls = css`
     color: green;
   `
