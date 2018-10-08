@@ -1,12 +1,13 @@
 ---
-title: "Composition"
+title: 'Composition'
 ---
 
-Composition is one of the most powerful and useful patterns in Emotion. You can compose styles together by interpolating the class name returned from `css` in another style block.
+Composition is one of the most powerful and useful patterns in Emotion. You can compose styles together by interpolating value returned from `css` in another style block.
 
 ```jsx
 // @live
-import { css } from 'emotion'
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
 
 const base = css`
   color: hotpink;
@@ -14,7 +15,7 @@ const base = css`
 
 render(
   <div
-    className={css`
+    css={css`
       ${base};
       background-color: #eee;
     `}
@@ -30,68 +31,72 @@ For example, we have some base styles and a danger style, we want the danger sty
 
 ```jsx
 // @live
-import { css } from 'emotion'
-
-const danger = css`
-  color: red;
-`
-
-const base = css`
-  background-color: lightgray;
-  color: turquoise;
-`
-
 render(
-  <div className={`${base} ${danger}`}>
-    What color will this be?
+  <div>
+    <style>
+      {`
+        .danger {
+          color: red;
+        }
+        .base {
+          background-color: lightgray;
+          color: turquoise;
+        }
+      `}
+      >
+    </style>
+    <p className="base danger">What color will this be?</p>
   </div>
 )
 ```
 
-With Emotion though, it's much easier, all we have to change is add `css` before the template literal where we combine the classes and Emotion will use the styles that were passed to danger and base and merge them in the order that they're interpolated.
+With Emotion though, we can create styles and combine them
 
 ```jsx
 // @live
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
 const danger = css`
   color: red;
 `
 
 const base = css`
-  background-color: lightgray;
+  background-color: darkgreen;
   color: turquoise;
 `
 
 render(
-  <div
-    className={css`
-      ${base} ${danger};
-    `}
-  >
-    What color will this be?
+  <div>
+    <div css={base}>This will be turquoise</div>
+    <div css={[danger, base]}>
+      This will be also be turquoise since the base styles
+      overwrite the danger styles.
+    </div>
+    <div css={[base, danger]}>This will be red</div>
   </div>
 )
 ```
 
-> Note:
->
-> This is just an example to demonstrate composition, for class name merging with emotion you should use [cx](/docs/cx.md).
-
 ## Composing dynamic styles
+
+## I FEEL LIKE THIS IS A REALLY SPECIFIC THING AND MORE NEEDS TO BE SAID ABOUT THE STUFF ABOVE
+
+## ALSO, WE PROBABLY NEED A PLACE TO TALK ABOUT PATTERNS
 
 You can also do dynamic composition based on props and use it in `styled`.
 
 ```jsx
 // @live
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 
 const dynamicStyle = props =>
   css`
     color: ${props.color};
   `
 
-const Container = styled('div')`
+const Container = styled.div`
   ${dynamicStyle};
 `
 render(
@@ -105,14 +110,15 @@ If you're composing lots of other styles and aren't using any string styles dire
 
 ```jsx
 // @live
-import styled, { css } from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 
 const dynamicStyle = props =>
   css`
     color: ${props.color};
   `
 
-const Container = styled('div')(dynamicStyle)
+const Container = styled.div(dynamicStyle)
 
 render(
   <Container color="lightgreen">

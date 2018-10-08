@@ -2,24 +2,23 @@
   items:
     - introduction
     - install
-    - css
+    - css-prop
     - styled
     - composition
     - object-styles
     - nested
     - media-queries
-    - inject-global
+    - globals
 
 - title: Advanced
   items:
     - keyframes
-    - cx
     - ssr
     - with-props
     - theming
     - labels
-    - configurable-imports
-    - instances
+    - class-names
+    - migrating-to-emotion-10
     #- benchmarks
 
 - title: Tooling

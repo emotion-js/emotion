@@ -1,8 +1,8 @@
 ---
-title: "Styled Components"
+title: 'Styled Components'
 ---
 
-`styled` is a way to create React or Preact components that have styles attached to them. It's available from [react-emotion](/packages/react-emotion) and [preact-emotion](/packages/preact-emotion). `styled` was heavily inspired by [styled-components](https://www.styled-components.com/) and [glamorous](https://glamorous.rocks/)
+`styled` is a way to create React or Preact components that have styles attached to them. It's available from [@emotion/styled](/packages/@emotion/styled) and [@emotion/preact-styled](/packages/@emotion/preact-styled). `styled` was heavily inspired by [styled-components](https://www.styled-components.com/) and [glamorous](https://glamorous.rocks/)
 
 ### Styling elements and components
 
@@ -10,9 +10,9 @@ title: "Styled Components"
 
 ```jsx
 // @live
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
-const Button = styled('button')`
+const Button = styled.button`
   color: turquoise;
 `
 
@@ -25,14 +25,14 @@ Any interpolations or arguments that are functions in `styled` are called with `
 
 ```jsx
 // @live
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
-const Button = styled('button')`
+const Button = styled.button`
   color: ${props =>
     props.primary ? 'hotpink' : 'turquoise'};
 `
 
-const Container = styled('div')(props => ({
+const Container = styled.div(props => ({
   display: 'flex',
   flexDirection: props.column && 'column'
 }))
@@ -51,7 +51,7 @@ render(
 
 ```jsx
 // @live
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 const Basic = ({ className }) => (
   <div className={className}>Some text</div>
 )
@@ -69,11 +69,12 @@ Sometimes you want to create some styles with one component but then use those s
 
 ```jsx
 // @live
-// Create a section element
-const Section = styled('section')`
+import styled from '@emotion/styled'
+
+const Section = styled.section`
   background: #333;
 `
-// Create an aside element with the same styles as Section
+// this component has the same styles as Section but it renders an aside
 const Aside = Section.withComponent('aside')
 render(
   <div>
@@ -89,11 +90,13 @@ Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i
 
 ```jsx
 // @live
-const Child = styled('div')`
+import styled from '@emotion/styled'
+
+const Child = styled.div`
   color: red;
 `
 
-const Parent = styled('div')`
+const Parent = styled.div`
   ${Child} {
     color: green;
   }
@@ -112,11 +115,13 @@ Component selectors can also be used with object styles.
 
 ```jsx
 // @live
-const Child = styled('div')({
+import styled from '@emotion/styled'
+
+const Child = styled.div({
   color: 'red'
 })
 
-const Parent = styled('div')({
+const Parent = styled.div({
   [Child]: {
     color: 'green'
   }
@@ -132,72 +137,11 @@ render(
 )
 ```
 
-### Pass refs down using `innerRef`
-
-Sometimes you need to get a [ref](https://reactjs.org/docs/refs-and-the-dom.html) but passing `ref` to a styled component will return a ref to the styled component, not the component that it renders which is generally the one you want. You can pass `innerRef` instead of `ref` to get the ref of the component that styled renders.
-
-```jsx
-// @live
-const Input = styled('input')`
-  color: hotpink;
-`
-
-const Button = styled('button')`
-  color: green;
-`
-
-function TextInput(props) {
-  let textInput = null
-  function handleClick() {
-    textInput.focus()
-  }
-  return (
-    <div>
-      <Input
-        innerRef={input => {
-          textInput = input
-        }}
-      />
-      <Button onClick={handleClick}>
-        Focus the text input
-      </Button>
-    </div>
-  )
-}
-render(<TextInput />)
-```
-
-### Element Shorthand
-
-> Note:
-
-> `babel-plugin-emotion` is required for the element shorthand
-
-Instead of using the function call syntax(`styled('div')`), you can use create components by using a property, where the property refers to an HTML tag(`styled.div`).
-
-```jsx
-// @live
-const DivWithoutShorthand = styled('div')`
-  color: green;
-`
-
-const DivWithShorthand = styled.div`
-  color: hotpink;
-`
-
-render(
-  <DivWithoutShorthand>
-    This is green.{' '}
-    <DivWithShorthand>This is hotpink.</DivWithShorthand>
-  </DivWithoutShorthand>
-)
-```
-
 ### Object styles
 
 ```jsx
 // @live
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 const H1 = styled.h1(
   {
@@ -209,8 +153,23 @@ const H1 = styled.h1(
 render(<H1 color="lightgreen">This is lightgreen.</H1>)
 ```
 
-This API was inspired by [glamorous](https://github.com/paypal/glamorous).
+This API was inspired by [glamorous](https://github.com/paypal/glamorous). ❤️
 
-### withConfig is not a function error
+### Customizing prop forwarding
 
-This error is caused by using the shorthand syntax for styled such as `styled.div` without the Babel plugin. To fix this, [install `babel-plugin-emotion`](/docs/babel.md)
+By default, Emotion will pass all props to custom components and only props that are valid html attributes for string tags. This is can be customized by passing a custom `shouldForwardProp` function. You can also use `@emotion/is-prop-valid` to filter out props that are not valid as html attributes, it is what emotion uses internally.
+
+```jsx
+// @live
+import isPropValid from '@emotion/is-prop-valid'
+import styled from '@emotion/styled'
+
+const H1 = styled('h1', {
+  shouldForwardProp: prop =>
+    isPropValid(prop) && prop !== 'color'
+})(props => ({
+  color: 'hotpink'
+}))
+
+render(<H1 color="lightgreen">This is lightgreen.</H1>)
+```

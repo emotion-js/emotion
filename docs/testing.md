@@ -1,5 +1,5 @@
 ---
-title: "Snapshot Testing"
+title: 'Snapshot Testing'
 ---
 
 Adding [snapshot tests with Jest](https://facebook.github.io/jest/docs/en/snapshot-testing.html) is a great way to help avoid unintended changes to your app's UI.
@@ -31,16 +31,21 @@ Writing a test with `jest-emotion` involves creating a snapshot from the `react-
 
 ```jsx
 import React from 'react'
-import * as emotion from 'emotion'
-import { createSerializer } from 'jest-emotion'
-import styled from 'react-emotion'
+import serializer from 'jest-emotion'
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import renderer from 'react-test-renderer'
 
-expect.addSnapshotSerializer(createSerializer(emotion))
+expect.addSnapshotSerializer(serializer)
 
-const Button = styled('div')`
-  color: hotpink;
-`
+const Button = props => (
+  <button
+    css={{
+      color: 'hotpink'
+    }}
+    {...props}
+  />
+)
 
 test('Button renders correctly', () => {
   expect(
@@ -62,7 +67,7 @@ exports[`Button renders correctly 1`] = `
 }
 
 <div
-  className="emotion-0 emotion-1"
+  className="emotion-0"
 >
   This is hotpink.
 </div>

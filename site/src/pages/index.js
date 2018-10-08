@@ -65,6 +65,8 @@ function getCode(htmlAst): Code {
   return ret
 }
 
+let localScope = { ...scope, styled }
+
 class IndexPage extends React.Component<Props, State> {
   state = {
     mode: 'string',
@@ -80,7 +82,7 @@ class IndexPage extends React.Component<Props, State> {
       <Layout>
         <Box m={[1, 2]}>
           <Live
-            scope={scope}
+            scope={localScope}
             initial={precompiledCode}
             compile={compile}
             code={this.state.code}
