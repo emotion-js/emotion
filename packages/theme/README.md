@@ -72,7 +72,7 @@ type CreateTheme = <Theme: ThemeType>(
     render: (props: Props, theme: Theme, ref: React.Ref<*>) => React.Node
   ) => React.ComponentType<Props>,
   Provider: React.ComponentType<{
-    theme: Theme,
+    theme: Theme | (Theme => Theme),
     children: React.Node,
     // only used on the server
     supportsCSSVariables?: boolean

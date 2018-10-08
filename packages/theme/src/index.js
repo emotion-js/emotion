@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import { isBrowser } from '@emotion/utils'
+import weakMemoize from '@emotion/weak-memoize'
 
 let canUseCSSVars =
   isBrowser &&
@@ -23,7 +24,7 @@ type Ret<Theme> = {
     render: (props: Props, theme: Theme, ref: React.Ref<*>) => React.Node
   ) => React.ComponentType<Props>,
   Provider: React.ComponentType<{
-    theme: Theme,
+    theme: Theme | (Theme => Theme),
     children: React.Node,
     supportsCSSVariables?: boolean
   }>,
@@ -93,51 +94,101 @@ export let createTheme = <Theme: ThemeType>(
   let cssVarUsageTheme: Theme = getCSSVarUsageTheme(defaultTheme, '', prefix)
 
   type ProviderProps = {
-    theme: Theme,
+    theme: Theme | (Theme => Theme),
     children: React.Node,
     supportsCSSVariables?: boolean
   }
+  function renderInnerCSSVarsProvider(theme: Theme, children: React.Node) {
+    return (
+      <RawThemeContext.Provider value={theme}>
+        <Context.Provider value={cssVarUsageTheme}>
+          <div style={getInlineStyles(theme, '', {}, prefix)}>{children}</div>
+        </Context.Provider>
+      </RawThemeContext.Provider>
+    )
+  }
+  let isStringTheme = typeof defaultTheme === 'string'
+  let merge = weakMemoize(theme => {
+    return weakMemoize(theme)
+  })
 
   let Provider = (props: ProviderProps) => {
+    let { theme, children } = props
     if (canUseCSSVars) {
+      if (typeof theme === 'function') {
+        return (
+          <RawThemeContext.Consumer>
+            {outerTheme => {
+              return renderInnerCSSVarsProvider(
+                (isStringTheme ? theme : merge(theme))(outerTheme),
+                children
+              )
+            }}
+          </RawThemeContext.Consumer>
+        )
+      }
+      return renderInnerCSSVarsProvider(theme, children)
+    }
+    if (typeof theme === 'function') {
       return (
-        <RawThemeContext.Provider value={props.theme}>
-          <Context.Provider value={cssVarUsageTheme}>
-            <div style={getInlineStyles(props.theme, '', {}, prefix)}>
-              {props.children}
-            </div>
-          </Context.Provider>
-        </RawThemeContext.Provider>
+        <Context.Consumer>
+          {outerTheme => (
+            <Context.Provider
+              value={(isStringTheme ? theme : merge(theme))(outerTheme)}
+            >
+              {children}
+            </Context.Provider>
+          )}
+        </Context.Consumer>
       )
     }
-    return (
-      <Context.Provider value={props.theme}>{props.children}</Context.Provider>
-    )
+    return <Context.Provider value={theme}>{children}</Context.Provider>
   }
   if (!isBrowser) {
     let SupportsCSSVarsContext = React.createContext(false)
-    Provider = props => (
+    let renderInnerSSRProvider = (
+      theme: Theme,
+      supportsCSSVars: boolean,
+      children: React.Node
+    ) => {
+      return (
+        <SupportsCSSVarsContext.Provider value={supportsCSSVars}>
+          {supportsCSSVars ? (
+            <RawThemeContext.Provider value={theme}>
+              <Context.Provider value={cssVarUsageTheme}>
+                <div style={getInlineStyles(theme, '', {}, prefix)}>
+                  {children}
+                </div>
+              </Context.Provider>
+            </RawThemeContext.Provider>
+          ) : (
+            <Context.Provider value={theme}>{children}</Context.Provider>
+          )}
+        </SupportsCSSVarsContext.Provider>
+      )
+    }
+    Provider = (props: ProviderProps) => (
       <SupportsCSSVarsContext.Consumer>
         {supportsCSSVarsFromContext => {
           let supportsCSSVars =
             props.supportsCSSVariables === undefined
               ? supportsCSSVarsFromContext
               : props.supportsCSSVariables
-          return (
-            <SupportsCSSVarsContext.Provider value={supportsCSSVars}>
-              {supportsCSSVars ? (
-                <Context.Provider value={cssVarUsageTheme}>
-                  <div style={getInlineStyles(props.theme, '', {}, prefix)}>
-                    {props.children}
-                  </div>
-                </Context.Provider>
-              ) : (
-                <Context.Provider value={props.theme}>
-                  {props.children}
-                </Context.Provider>
-              )}
-            </SupportsCSSVarsContext.Provider>
-          )
+          let theme = props.theme
+          if (typeof theme === 'function') {
+            return (
+              <RawThemeContext.Consumer>
+                {outerTheme =>
+                  renderInnerSSRProvider(
+                    theme(outerTheme),
+                    supportsCSSVars,
+                    props.children
+                  )
+                }
+              </RawThemeContext.Consumer>
+            )
+          }
+          return renderInnerSSRProvider(theme, supportsCSSVars, props.children)
         }}
       </SupportsCSSVarsContext.Consumer>
     )
