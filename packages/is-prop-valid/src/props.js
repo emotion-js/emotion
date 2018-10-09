@@ -23,6 +23,8 @@ const props = {
   accessKey: true,
   action: true,
   allow: true,
+  allowUserMedia: true,
+  allowPaymentRequest: true,
   allowFullScreen: true,
   allowTransparency: true,
   alt: true,
