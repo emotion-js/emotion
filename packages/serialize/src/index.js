@@ -79,6 +79,8 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
+let shouldWarnAboutInterpolatingClassNameFromCss = true
+
 function handleInterpolation(
   mergedProps: void | Object,
   registered: RegisteredCache,
@@ -157,12 +159,14 @@ function handleInterpolation(
       if (
         process.env.NODE_ENV !== 'production' &&
         couldBeSelectorInterpolation &&
+        shouldWarnAboutInterpolatingClassNameFromCss &&
         cached !== undefined
       ) {
         console.error(
           'Interpolating a className from css`` is not recommended and will cause problems with composition.\n' +
             'Interpolating a className from css`` will be completely unsupported in the next major version of Emotion'
         )
+        shouldWarnAboutInterpolatingClassNameFromCss = false
       }
       return cached !== undefined && !couldBeSelectorInterpolation
         ? cached
