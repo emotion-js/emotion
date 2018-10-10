@@ -84,10 +84,13 @@ function getInlineStyles(
 export let createTheme = <Theme: ThemeType>(
   defaultTheme: Theme,
   options?: { prefix?: string } = {}
-): Ret<Theme> => {
+): $ReadOnly<Ret<Theme>> => {
   let RawThemeContext = React.createContext(defaultTheme)
 
   let prefix = options.prefix || 'theme'
+  let shouldUseCSSVars =
+    canUseCSSVars &&
+    document.querySelector(`[data-theme-emotion="${prefix}"]`) !== null
 
   let Context = React.createContext(defaultTheme)
   // $FlowFixMe this isn't just to get flow to be quiet, i actually want to fix this because i think flow might be right
@@ -102,7 +105,12 @@ export let createTheme = <Theme: ThemeType>(
     return (
       <RawThemeContext.Provider value={theme}>
         <Context.Provider value={cssVarUsageTheme}>
-          <div style={getInlineStyles(theme, '', {}, prefix)}>{children}</div>
+          <div
+            data-theme-emotion={prefix}
+            style={getInlineStyles(theme, '', {}, prefix)}
+          >
+            {children}
+          </div>
         </Context.Provider>
       </RawThemeContext.Provider>
     )
@@ -114,7 +122,7 @@ export let createTheme = <Theme: ThemeType>(
 
   let Provider = (props: ProviderProps) => {
     let { theme, children } = props
-    if (canUseCSSVars) {
+    if (shouldUseCSSVars) {
       if (typeof theme === 'function') {
         return (
           <RawThemeContext.Consumer>
@@ -156,7 +164,10 @@ export let createTheme = <Theme: ThemeType>(
           {supportsCSSVars ? (
             <RawThemeContext.Provider value={theme}>
               <Context.Provider value={cssVarUsageTheme}>
-                <div style={getInlineStyles(theme, '', {}, prefix)}>
+                <div
+                  data-theme-emotion={prefix}
+                  style={getInlineStyles(theme, '', {}, prefix)}
+                >
                   {children}
                 </div>
               </Context.Provider>
@@ -195,7 +206,7 @@ export let createTheme = <Theme: ThemeType>(
   }
 
   let Extender = (props: { children: React.Node }) => {
-    if (canUseCSSVars) {
+    if (shouldUseCSSVars) {
       return (
         <RawThemeContext.Consumer>
           {theme => (
