@@ -111,15 +111,19 @@ const Image1 = styled('div')({
 
 // Or with a generic type
 
-const Image1 = styled('div')<ImageProps>({
+const Image2 = styled('div')<ImageProps>`
+  width: ${props => props.width};
+  background: url(${props => props.src}) center center;
+  background-size: contain;
+`
+
+const Image3 = styled('div')<ImageProps>({
   backgroundSize: 'contain',
 }, props => ({
   width: props.width;
   background: `url(${props.src}) center center`,
 }));
 ```
-
-* The generic type version only works with object styles due to https://github.com/Microsoft/TypeScript/issues/11947.
 
 ### React Components
 
