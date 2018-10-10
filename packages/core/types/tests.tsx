@@ -47,6 +47,13 @@ const ComponentWithCache = withEmotionCache((_props: {}, context) => {
     }}
   />
 </div>
+;<Global
+  styles={css`
+    body {
+      background-color: black;
+    }
+  `}
+/>
 
 declare const MyComponent: ComponentClass<{ className?: string; world: string }>
 ;<MyComponent
@@ -72,6 +79,22 @@ const anim0 = keyframes({
   world="of-world"
 />
 
+const anim1 = keyframes`
+  from: {
+    margin-left: 50px;
+  }
+
+  to: {
+    margin-left: 0;
+  }
+`
+;<MyComponent
+  css={{
+    animationName: anim1
+  }}
+  world="of-world"
+/>
+
 interface TestTheme1 {
   primaryColor: string
   secondaryColor: string
@@ -90,9 +113,9 @@ interface TestTheme1 {
           Fst Text
         </span>
         <span
-          className={css({
-            color: theme.secondaryColor
-          })}
+          className={css`
+            color: theme.secondaryColor;
+          `}
         >
           Snd Text
         </span>
