@@ -1,6 +1,5 @@
 install:
   - ps: Install-Product node 10 x64
-  - npm install -g yarn@latest
   - yarn
 
 shallow_clone: true
