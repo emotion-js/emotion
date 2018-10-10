@@ -1,0 +1,14 @@
+install:
+  - ps: Install-Product node 10 x64
+  - yarn
+
+shallow_clone: true
+build: off
+
+cache:
+  - "%LOCALAPPDATA%\\Yarn"
+
+test_script:
+  - node -v
+  - yarn -v
+  - yarn test
