@@ -85,7 +85,9 @@ test('nested object with array', () => {
     )
   ).toMatchInlineSnapshot(`
 
-<div style="--theme--color:green;--theme--spacing-0:4px;--theme--spacing-1:8px;--theme--spacing-2:12px;--theme--spacing-3:16px;--theme--fonts-primary:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;--theme--fonts-code:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace">
+<div data-theme-emotion="theme"
+     style="--theme--color:green;--theme--spacing-0:4px;--theme--spacing-1:8px;--theme--spacing-2:12px;--theme--spacing-3:16px;--theme--fonts-primary:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;--theme--fonts-code:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace"
+>
   <style data-emotion-css="vnjq5y">
     .css-vnjq5y{color:var(--theme--color);font-family:var(--theme--fonts-primary);}
   </style>

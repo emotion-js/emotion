@@ -90,7 +90,7 @@ export let createTheme = <Theme: ThemeType>(
   let prefix = options.prefix || 'theme'
   let shouldUseCSSVars =
     canUseCSSVars &&
-    document.querySelector(`[data-theme-emotion="${prefix}"]`) !== null
+    document.querySelector(`[data-theme-emotion-no-var]`) === null
 
   let Context = React.createContext(defaultTheme)
   // $FlowFixMe this isn't just to get flow to be quiet, i actually want to fix this because i think flow might be right
@@ -173,7 +173,9 @@ export let createTheme = <Theme: ThemeType>(
               </Context.Provider>
             </RawThemeContext.Provider>
           ) : (
-            <Context.Provider value={theme}>{children}</Context.Provider>
+            <Context.Provider value={theme}>
+              <div data-theme-emotion-no-var="">{children}</div>
+            </Context.Provider>
           )}
         </SupportsCSSVarsContext.Provider>
       )

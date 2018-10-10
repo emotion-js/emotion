@@ -92,6 +92,7 @@ test('nested object with array', () => {
 }
 
 <div
+  data-theme-emotion="theme"
   style={
     Object {
       "--theme--color": "green",
@@ -168,6 +169,7 @@ test('prefix option', () => {
 }
 
 <div
+  data-theme-emotion="some-prefix"
   style={
     Object {
       "--some-prefix": "hotpink",
