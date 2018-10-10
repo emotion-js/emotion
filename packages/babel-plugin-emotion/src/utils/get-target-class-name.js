@@ -3,12 +3,17 @@ import findRoot from 'find-root'
 import memoize from '@emotion/memoize'
 import nodePath from 'path'
 import hashString from '@emotion/hash'
+import escapeRegexp from 'escape-string-regexp'
 
 let hashArray = (arr: Array<string>) => hashString(arr.join(''))
 
 const unsafeRequire = require
 
 const getPackageRootPath = memoize(filename => findRoot(filename))
+
+const separator = new RegExp(escapeRegexp(nodePath.sep), 'g')
+
+const normalizePath = path => nodePath.normalize(path).replace(separator, '/')
 
 export function getTargetClassName(state: *, t: *) {
   if (state.emotionTargetClassNameCount === undefined) {
@@ -34,7 +39,7 @@ export function getTargetClassName(state: *, t: *) {
   const stuffToHash = [moduleName]
 
   if (finalPath) {
-    stuffToHash.push(nodePath.normalize(finalPath))
+    stuffToHash.push(normalizePath(finalPath))
   } else {
     stuffToHash.push(state.file.code)
   }
