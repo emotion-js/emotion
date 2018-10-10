@@ -6,6 +6,9 @@ install:
 shallow_clone: true
 build: off
 
+cache:
+  - "%LOCALAPPDATA%\\Yarn"
+
 test_script:
   - node -v
   - yarn -v
