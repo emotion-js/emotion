@@ -6,12 +6,12 @@ Universal JavaScript applications are tough to setup. Either you buy into a fram
 
 **Razzle comes with the "battery-pack included"**:
 
-* :fire: Universal Hot Module Replacement, so both the client and server update whenever you make edits. No annoying restarts necessary
-* Comes with your favorite ES6 JavaScript goodies (through `babel-preset-razzle`)
-* Comes with the same CSS setup as [create-react-app](https://github.com/facebookincubator/create-react-app)
-* Works with [React](https://github.com/facebook/react), [Preact](https://github.com/developit/preact), [Elm](http://elm-lang.org/), [Reason-React](https://github.com/jaredpalmer/razzle/tree/master/examples/with-reason-react), [Inferno](https://github.com/infernojs), and [Rax](https://github.com/alibaba/rax) as well as [Angular](https://github.com/angular/angular) and [Vue](https://github.com/vuejs/vue) if that's your thing
-* Escape hatches for customization via `.babelrc` and `razzle.config.js`
-* [Jest](https://github.com/facebook/jest) test runner setup with sensible defaults via `razzle test`
+- :fire: Universal Hot Module Replacement, so both the client and server update whenever you make edits. No annoying restarts necessary
+- Comes with your favorite ES6 JavaScript goodies (through `babel-preset-razzle`)
+- Comes with the same CSS setup as [create-react-app](https://github.com/facebookincubator/create-react-app)
+- Works with [React](https://github.com/facebook/react), [Preact](https://github.com/developit/preact), [Elm](http://elm-lang.org/), [Reason-React](https://github.com/jaredpalmer/razzle/tree/master/examples/with-reason-react), [Inferno](https://github.com/infernojs), and [Rax](https://github.com/alibaba/rax) as well as [Angular](https://github.com/angular/angular) and [Vue](https://github.com/vuejs/vue) if that's your thing
+- Escape hatches for customization via `.babelrc` and `razzle.config.js`
+- [Jest](https://github.com/facebook/jest) test runner setup with sensible defaults via `razzle test`
 
 ## Quick Start
 
@@ -68,19 +68,19 @@ To debug the node server, you can use `razzle start --inspect`. This will start 
 
 **Table of Contents**
 
-* [Customization](#customization)
-  * [Extending Babel Config](#extending-babel-config)
-  * [Extending Webpack](#extending-webpack)
-  * [Environment Variables](#environment-variables)
-  * [Adding Temporary Environment Variables In Your Shell](#adding-temporary-environment-variables-in-your-shell)
-    * [Windows (cmd.exe)](#windows-cmdexe)
-    * [Linux, macOS (Bash)](#linux-macos-bash)
-  * [Adding Environment Variables In `.env`](#adding-environment-variables-in-env)
-    * [What other `.env` files are can be used?](#what-other-env-files-are-can-be-used)
-* [How Razzle works (the secret sauce)](#how-razzle-works-the-secret-sauce)
-* [Inspiration](#inspiration)
-  * [Author](#author)
-* [Contributors](#contributors)
+- [Customization](#customization)
+  - [Extending Babel Config](#extending-babel-config)
+  - [Extending Webpack](#extending-webpack)
+  - [Environment Variables](#environment-variables)
+  - [Adding Temporary Environment Variables In Your Shell](#adding-temporary-environment-variables-in-your-shell)
+    - [Windows (cmd.exe)](#windows-cmdexe)
+    - [Linux, macOS (Bash)](#linux-macos-bash)
+  - [Adding Environment Variables In `.env`](#adding-environment-variables-in-env)
+    - [What other `.env` files are can be used?](#what-other-env-files-are-can-be-used)
+- [How Razzle works (the secret sauce)](#how-razzle-works-the-secret-sauce)
+- [Inspiration](#inspiration)
+  - [Author](#author)
+- [Contributors](#contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -129,14 +129,14 @@ Last but not least, if you find yourself needing a more customized setup, Razzle
 
 **The environment variables are embedded during the build time.** Since Razzle produces a static HTML/CSS/JS bundle and an equivalent static bundle for your server, it cannot possibly read them at runtime.
 
-* `process.env.RAZZLE_PUBLIC_DIR`: Path to the public directory.
-* `process.env.RAZZLE_ASSETS_MANIFEST`: Path to a file containing compiled asset outputs
-* `process.env.REACT_DEV_BUNDLE_PATH`: Relative path to where React will be bundled during development. Unless you are modifying the output path of your webpack config, you can safely ignore this. This path is used by `react-error-overlay` and webpack to power up the fancy runtime error iframe. For example, if you are using common chunks and an extra entry to create a vendor bundle with stuff like react, react-dom, react-router, etc. called `vendor.js`, and you've changed webpack's output to `[name].js` in development, you'd want to set this environment variable to `/static/js/vendor.js`. If you do not make this change, nothing bad will happen, you will simply not get the cool error overlay when there are runtime errors. You'll just see them in the console. Note: This does not impact production bundling.
-* `process.env.VERBOSE`: default is false, setting this to true will not clear the console when you make edits in development (useful for debugging).
-* `process.env.PORT`: default is `3000`, unless changed
-* `process.env.HOST`: default is `0.0.0.0`
-* `process.env.NODE_ENV`: `'development'` or `'production'`
-* `process.env.BUILD_TARGET`: either `'client'` or `'server'`
+- `process.env.RAZZLE_PUBLIC_DIR`: Path to the public directory.
+- `process.env.RAZZLE_ASSETS_MANIFEST`: Path to a file containing compiled asset outputs
+- `process.env.REACT_DEV_BUNDLE_PATH`: Relative path to where React will be bundled during development. Unless you are modifying the output path of your webpack config, you can safely ignore this. This path is used by `react-error-overlay` and webpack to power up the fancy runtime error iframe. For example, if you are using common chunks and an extra entry to create a vendor bundle with stuff like react, react-dom, react-router, etc. called `vendor.js`, and you've changed webpack's output to `[name].js` in development, you'd want to set this environment variable to `/static/js/vendor.js`. If you do not make this change, nothing bad will happen, you will simply not get the cool error overlay when there are runtime errors. You'll just see them in the console. Note: This does not impact production bundling.
+- `process.env.VERBOSE`: default is false, setting this to true will not clear the console when you make edits in development (useful for debugging).
+- `process.env.PORT`: default is `3000`, unless changed
+- `process.env.HOST`: default is `0.0.0.0`
+- `process.env.NODE_ENV`: `'development'` or `'production'`
+- `process.env.BUILD_TARGET`: either `'client'` or `'server'`
 
 You can create your own custom build-time environment variables. They must start
 with `RAZZLE_`. Any other variables except the ones listed above will be ignored to avoid accidentally exposing a private key on the machine that could have the same name. Changing any environment variables will require you to restart the development server if it is running.
@@ -172,16 +172,16 @@ RAZZLE_SECRET_CODE=abcdef
 
 #### What other `.env` files are can be used?
 
-* `.env`: Default.
-* `.env.local`: Local overrides. **This file is loaded for all environments except test.**
-* `.env.development`, `.env.test`, `.env.production`: Environment-specific settings.
-* `.env.development.local`, `.env.test.local`, `.env.production.local`: Local overrides of environment-specific settings.
+- `.env`: Default.
+- `.env.local`: Local overrides. **This file is loaded for all environments except test.**
+- `.env.development`, `.env.test`, `.env.production`: Environment-specific settings.
+- `.env.development.local`, `.env.test.local`, `.env.production.local`: Local overrides of environment-specific settings.
 
 Files on the left have more priority than files on the right:
 
-* `npm start`: `.env.development.local`, `.env.development`, `.env.local`, `.env`
-* `npm run build`: `.env.production.local`, `.env.production`, `.env.local`, `.env`
-* `npm test`: `.env.test.local`, `.env.test`, `.env` (note `.env.local` is missing)
+- `npm start`: `.env.development.local`, `.env.development`, `.env.local`, `.env`
+- `npm run build`: `.env.production.local`, `.env.production`, `.env.local`, `.env`
+- `npm test`: `.env.test.local`, `.env.test`, `.env` (note `.env.local` is missing)
 
 These variables will act as the defaults if the machine does not explicitly set them.<br>
 Please refer to the [dotenv documentation](https://github.com/motdotla/dotenv) for more details.
@@ -197,15 +197,15 @@ In development mode (`razzle start`), Razzle bundles both your client and server
 
 ## Inspiration
 
-* [palmerhq/backpack](https://github.com/palmerhq/backpack)
-* [nytimes/kyt](https://github.com/nytimes/kyt)
-* [facebookincubator/create-react-app](https://github.com/facebookincubator/create-react-app)
-* [humblespark/sambell](https://github.com/humblespark/sambell)
-* [zeit/next.js](https://github.com/zeit/next.js)
+- [palmerhq/backpack](https://github.com/palmerhq/backpack)
+- [nytimes/kyt](https://github.com/nytimes/kyt)
+- [facebookincubator/create-react-app](https://github.com/facebookincubator/create-react-app)
+- [humblespark/sambell](https://github.com/humblespark/sambell)
+- [zeit/next.js](https://github.com/zeit/next.js)
 
 #### Author
 
-* [Jared Palmer](https://twitter.com/jaredpalmer)
+- [Jared Palmer](https://twitter.com/jaredpalmer)
 
 ---
 

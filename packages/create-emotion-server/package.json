@@ -18,7 +18,7 @@
     "through": "^2.3.8"
   },
   "devDependencies": {
-    "@types/node": "*",
+    "@types/node": "^10.11.4",
     "dtslint": "^0.3.0",
     "emotion": "^10.0.0-really-unsafe-please-do-not-use.2",
     "react-emotion": "^10.0.0-really-unsafe-please-do-not-use.2"

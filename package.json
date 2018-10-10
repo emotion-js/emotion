@@ -174,12 +174,17 @@
       }
     ]
   },
-  "workspaces": [
-    "packages/*",
-    "site",
-    "scripts/*",
-    "playgrounds/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "site",
+      "scripts/*",
+      "playgrounds/*"
+    ],
+    "nohoist": [
+      "**/dtslint"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
   },
@@ -198,7 +203,7 @@
     }
   ],
   "lint-staged": {
-    "*.{js,md}": [
+    "*.{js,ts,tsx,md}": [
       "prettier --write",
       "git add"
     ]

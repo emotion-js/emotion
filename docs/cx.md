@@ -1,14 +1,14 @@
 ---
-title: "cx"
+title: 'cx'
 ---
 
 `cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames). `cx` is useful when combining multiple class names, even class names from your stylesheets and emotion generated class names.
 
 ### Key features
 
-* High performance integration with emotion
-* Custom class names. e.g, `.my-bem--class`, are appended in order.
-* Combines the actual content of emotion generated class names. Multiple emotion generated class names are input and a unique class name is output.
+- High performance integration with emotion
+- Custom class names. e.g, `.my-bem--class`, are appended in order.
+- Combines the actual content of emotion generated class names. Multiple emotion generated class names are input and a unique class name is output.
 
 ### API
 
@@ -16,8 +16,8 @@ title: "cx"
 
 `cx` takes any number of arguments and returns a string class name.
 
-* Falsey values are removed from the final string.
-* If an object value is encountered, any key that has a corresponding truthy value is added to the final string.
+- Falsey values are removed from the final string.
+- If an object value is encountered, any key that has a corresponding truthy value is added to the final string.
 
 ### Examples
 

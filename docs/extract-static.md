@@ -1,5 +1,5 @@
 ---
-title: "Extract Static"
+title: 'Extract Static'
 ---
 
 ###### [requires babel plugin](/docs/babel.md)

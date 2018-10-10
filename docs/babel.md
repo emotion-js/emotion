@@ -1,5 +1,5 @@
 ---
-title: "Babel Plugin"
+title: 'Babel Plugin'
 ---
 
 `babel-plugin-emotion` is highly recommended. All of the options that can be provided to `babel-plugin-emotion` are documented in [`babel-plugin-emotion`'s README](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion).
