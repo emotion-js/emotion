@@ -1,5 +1,7 @@
 # @emotion/theme
 
+## This package is still in development and it's API may change drastically, please do not use unless you are comfortable with breaking changes
+
 > Theming but fast.... and type safe
 
 # Why does this exist?
