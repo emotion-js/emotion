@@ -49,6 +49,8 @@ export function keyframes(...args: Array<Interpolation>): Keyframes
 
 export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
 export type ClassNamesArg =
+  | undefined
+  | null
   | string
   | boolean
   | { [className: string]: boolean }

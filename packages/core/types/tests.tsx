@@ -104,7 +104,7 @@ interface TestTheme1 {
   {({ css, cx, theme }: ClassNamesContent<TestTheme1>) => {
     return (
       <div>
-        <span className={cx('a', 'b')} />
+        <span className={cx('a', undefined, 'b', null, [['abc']])} />
         <span
           className={css({
             color: theme.primaryColor
