@@ -4,11 +4,11 @@ import type { EmotionCache } from '@emotion/utils'
 const createExtractCritical = (cache: EmotionCache) => (html: string) => {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
-  let RGX = new RegExp(`${cache.key}-([a-zA-Z0-9-_]+)`, 'gm')
+  const RGX = new RegExp(`${cache.key}-([a-zA-Z0-9-_]+)`, 'gm')
 
-  let o = { html, ids: [], css: '' }
+  const o = { html, ids: [], css: '' }
   let match
-  let idsInHtml = {}
+  const idsInHtml = {}
   while ((match = RGX.exec(html)) !== null) {
     // $FlowFixMe
     if (idsInHtml[match[1]] === undefined) {
@@ -18,8 +18,9 @@ const createExtractCritical = (cache: EmotionCache) => (html: string) => {
   }
 
   o.ids = Object.keys(cache.inserted).filter(id => {
-    const idIsDirectlyInHtml = idsInHtml[id] !== undefined
-    const idIsGlobal = cache.registered[`${cache.key}-${id}`] === undefined
+    const idIsDirectlyInHtml = typeof idsInHtml[id] !== 'undefined'
+    const idIsGlobal =
+      typeof cache.registered[`${cache.key}-${id}`] === 'undefined'
 
     if (idIsDirectlyInHtml || idIsGlobal) {
       // cache.inserted contains either strings or 'true'.
