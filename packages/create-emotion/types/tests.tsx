@@ -23,7 +23,7 @@ const {
   injectGlobal,
   keyframes,
   sheet,
-  caches
+  cache
 } = emotion0
 
 flush()
@@ -61,11 +61,11 @@ cx([['abc']])
 // $ExpectError
 cx(5)
 
-merge(caches.registered, css, 'abc def fpfp')
+merge('abc def fpfp')
 
-getRegisteredStyles(caches.registered, [], 'abc')
-getRegisteredStyles(caches.registered, ['abc'], 'bcd')
-getRegisteredStyles(caches.registered, [], 'abc def fpfw')
+getRegisteredStyles([], 'abc')
+getRegisteredStyles(['abc'], 'bcd')
+getRegisteredStyles([], 'abc def fpfw')
 
 css`
   height: 20px;

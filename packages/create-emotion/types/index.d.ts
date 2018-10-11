@@ -41,13 +41,12 @@ export interface Emotion {
   ): string
   keyframes(...args: Array<Interpolation>): string
   sheet: StyleSheet
-  caches: EmotionCache
-  merge(
-    registered: RegisteredCache,
-    css: (registeredStyles: Array<string>) => string,
+  cache: EmotionCache
+  merge(className: string): string
+  getRegisteredStyles(
+    registeredStyles: Array<string>,
     className: string
   ): string
-  getRegisteredStyles: typeof getRegisteredStyles
 }
 
 export default function createEmotion(options?: Options): Emotion
