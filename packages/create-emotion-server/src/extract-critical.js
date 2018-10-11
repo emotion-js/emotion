@@ -8,23 +8,27 @@ const createExtractCritical = (cache: EmotionCache) => (html: string) => {
 
   let o = { html, ids: [], css: '' }
   let match
-  let ids = {}
+  let idsInHtml = {}
   while ((match = RGX.exec(html)) !== null) {
     // $FlowFixMe
-    if (ids[match[1]] === undefined) {
+    if (idsInHtml[match[1]] === undefined) {
       // $FlowFixMe
-      ids[match[1]] = true
+      idsInHtml[match[1]] = true
     }
   }
 
   o.ids = Object.keys(cache.inserted).filter(id => {
-    if (
-      (ids[id] !== undefined ||
-        cache.registered[`${cache.key}-${id}`] === undefined) &&
-      cache.inserted[id] !== true
-    ) {
-      o.css += cache.inserted[id]
-      return true
+    const idIsDirectlyInHtml = idsInHtml[id] !== undefined
+    const idIsGlobal = cache.registered[`${cache.key}-${id}`] === undefined
+
+    if (idIsDirectlyInHtml || idIsGlobal) {
+      // cache.inserted contains either strings or 'true'.
+      // The latter should be ignored, and the type system requires this check to be inline.
+      const valueToInsert = cache.inserted[id]
+      if (valueToInsert !== true) {
+        o.css += valueToInsert
+        return true
+      }
     }
   })
 
