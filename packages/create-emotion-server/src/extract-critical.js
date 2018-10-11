@@ -1,7 +1,10 @@
 // @flow
 import type { EmotionCache } from '@emotion/utils'
 
-const createExtractCritical = (cache: EmotionCache) => (html: string) => {
+const createExtractCritical = (cache: EmotionCache) => (
+  html: string,
+  includeGlobals: boolean = true
+) => {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
   const RGX = new RegExp(`${cache.key}-([a-zA-Z0-9-_]+)`, 'gm')
@@ -22,7 +25,7 @@ const createExtractCritical = (cache: EmotionCache) => (html: string) => {
     const idIsGlobal =
       typeof cache.registered[`${cache.key}-${id}`] === 'undefined'
 
-    if (idIsDirectlyInHtml || idIsGlobal) {
+    if (idIsDirectlyInHtml || (idIsGlobal && includeGlobals)) {
       // cache.inserted contains either strings or 'true'.
       // The latter should be ignored, and the type system requires this check to be inline.
       const valueToInsert = cache.inserted[id]
