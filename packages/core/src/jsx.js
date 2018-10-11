@@ -70,7 +70,12 @@ export const jsx: typeof React.createElement = function(
 ) {
   let args = arguments
 
-  if (props == null || props.css == null || type.__emotion_self === type) {
+  if (
+    props == null ||
+    props.css == null ||
+    // if you rely on this behaviour, be ready to have it break in a patch version
+    type.__emotion_self === type
+  ) {
     // $FlowFixMe
     return React.createElement.apply(undefined, args)
   }
