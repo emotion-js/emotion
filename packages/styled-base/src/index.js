@@ -39,7 +39,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             options.shouldForwardProp(propName)
         : options.shouldForwardProp
   }
-  const isReal = tag.__emotion_real === tag
+  const isReal = tag.__emotion_self === tag
   const baseTag = (isReal && tag.__emotion_base) || tag
   let isStringTag = typeof baseTag === 'string'
   if (typeof shouldForwardProp !== 'function') {
@@ -97,12 +97,16 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         <ThemeContext.Consumer>
           {theme => {
             let className = ''
-            let classInterpolations = []
+            let cssProp = props.css
+
+            let classInterpolations = cssProp === undefined ? [] : [cssProp]
             let mergedProps = props
             if (props.theme == null) {
               mergedProps = {}
               for (let key in props) {
-                mergedProps[key] = props[key]
+                if (key !== 'css') {
+                  mergedProps[key] = props[key]
+                }
               }
               mergedProps.theme = theme
             }
@@ -186,7 +190,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
           })`
 
     Styled.defaultProps = tag.defaultProps
-    Styled.__emotion_real = Styled
+    Styled.__emotion_self = Styled
     Styled.__emotion_base = baseTag
     Styled.__emotion_styles = styles
     Styled.__emotion_forwardProp = shouldForwardProp
