@@ -2,6 +2,7 @@
 import * as React from 'react'
 import { isBrowser } from '@emotion/utils'
 import weakMemoize from '@emotion/weak-memoize'
+import { createConsume } from 'react-context-consume'
 
 let canUseCSSVars =
   isBrowser &&
@@ -222,20 +223,7 @@ export let createTheme = <Theme: ThemeType>(
     return props.children
   }
 
-  let consume = <Props>(
-    render: (props: Props, theme: Theme, ref: React.Ref<*>) => React.Node
-  ): React.ComponentType<Props> => {
-    // $FlowFixMe
-    return React.forwardRef((props, ref) => {
-      return (
-        <Context.Consumer>
-          {theme => {
-            return render(props, theme, ref)
-          }}
-        </Context.Consumer>
-      )
-    })
-  }
+  let consume = createConsume<Theme>(Context)
 
   return {
     Provider,
