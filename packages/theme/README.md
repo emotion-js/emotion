@@ -49,6 +49,10 @@ render(
 )
 ```
 
+# When should I not use this?
+
+This library is built for themes that change a lot dynamically at runtime. If your theme rarely or never changes at runtime you may be better off directly using context or putting your theme in a file and importing it from there.
+
 # API
 
 ```jsx
