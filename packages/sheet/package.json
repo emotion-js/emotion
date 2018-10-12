@@ -13,13 +13,14 @@
   "scripts": {
     "test:typescript": "dtslint types"
   },
-  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/sheet",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/sheet",
   "publishConfig": {
     "access": "public"
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
   "umd:main": "./dist/index.min.js",
   "devDependencies": {

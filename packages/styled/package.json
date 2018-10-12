@@ -4,11 +4,18 @@
   "description": "styled API for emotion",
   "main": "dist/styled.cjs.js",
   "module": "dist/styled.esm.js",
+  "types": "types/index.d.ts",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/styled",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/styled",
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
   "dependencies": {
     "@emotion/styled-base": "^10.0.0-really-unsafe-please-do-not-use.2",
     "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.2"
+  },
+  "devDependencies": {
+    "dtslint": "^0.3.0"
   },
   "publishConfig": {
     "access": "public"

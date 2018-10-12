@@ -13,13 +13,14 @@
   "scripts": {
     "test:typescript": "dtslint types"
   },
-  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/serialize",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/serialize",
   "publishConfig": {
     "access": "public"
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types"
   ],
   "umd:main": "./dist/index.min.js",
   "devDependencies": {

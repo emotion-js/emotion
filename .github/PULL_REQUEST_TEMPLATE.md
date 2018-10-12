@@ -32,5 +32,3 @@ merge of your pull request!
 - [ ] Code complete
 
 <!-- feel free to add additional comments -->
-
-<!-- Please add a `Tag:` prefixed label from the labels so that this PR shows up in the changelog -->

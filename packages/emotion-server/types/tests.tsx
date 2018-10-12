@@ -1,11 +1,29 @@
-import * as React from 'react';
-import { renderToNodeStream, renderToString } from 'react-dom/server';
-import { extractCritical, renderStylesToNodeStream, renderStylesToString } from '../';
+import {
+  extractCritical,
+  renderStylesToNodeStream,
+  renderStylesToString
+} from 'emotion-server'
 
-declare const element: React.ReactElement<any>;
+declare const renderedString: string
+declare const renderedNodeStream: NodeJS.ReadableStream
 
-const { html, css, ids } = extractCritical(renderToString(element));
+// $ExpectType EmotionCritical
+extractCritical(renderedString)
+// $ExpectError
+extractCritical()
+// $ExpectError
+extractCritical(renderedString, undefined as any)
 
-renderStylesToString(renderToString(element));
+// $ExpectType string
+renderStylesToString(renderedString)
+// $ExpectError
+renderStylesToString()
+// $ExpectError
+renderStylesToString(renderedString, undefined as any)
 
-renderToNodeStream(element).pipe(renderStylesToNodeStream());
+// $ExpectType ReadWriteStream
+renderStylesToNodeStream()
+// $ExpectError
+renderStylesToNodeStream(undefined as any)
+
+renderedNodeStream.pipe(renderStylesToNodeStream())

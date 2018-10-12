@@ -1,34 +1,29 @@
-// TypeScript Version: 2.3
-import { ComponentClass, SFC } from "react";
+// Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
+// TypeScript Version: 2.8
 
-export type OptionalThemeProps<Props, Theme> = Props & { theme?: Theme };
+import * as React from 'react'
+
+import { AddOptionalTo, PropsOf } from './helper'
 
 export interface ThemeProviderProps<Theme> {
-    theme: Partial<Theme> | ((theme: Theme) => Theme);
+  theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
 }
 
-export type ThemeProviderComponent<Theme> = ComponentClass<ThemeProviderProps<Theme>>;
-export const ThemeProvider: ThemeProviderComponent<object>;
+export function ThemeProvider<Theme>(
+  props: ThemeProviderProps<Theme>
+): React.ReactElement<any>
 
 /**
- * Inject theme into component
+ * @todo Add more constraint to C so that
+ * this function only accepts components with theme props.
  */
-// tslint:disable-next-line:no-unnecessary-generics
-export function withTheme<Props, Theme = {}>(component: ComponentClass<Props> | SFC<Props>): ComponentClass<OptionalThemeProps<Props, Theme>>;
+export function withTheme<C extends React.ComponentType<any>>(
+  component: C
+): React.SFC<AddOptionalTo<PropsOf<C>, 'theme'>>
 
-export interface EmotionThemingModule<Theme> {
-    ThemeProvider: ThemeProviderComponent<Theme>;
-    withTheme<Props>(component: ComponentClass<Props> | SFC<Props>): ComponentClass<OptionalThemeProps<Props, Theme>>;
+export interface EmotionTheming<Theme> {
+  ThemeProvider(props: ThemeProviderProps<Theme>): React.ReactElement<any>
+  withTheme<C extends React.ComponentType<any>>(
+    component: C
+  ): React.SFC<AddOptionalTo<PropsOf<C>, 'theme'>>
 }
-
-export const channel: "__EMOTION_THEMING__";
-
-export type BroadcastListener<Theme = {}> = (state: Theme) => void;
-
-export interface Broadcast<Theme = {}> {
-    publish(nextState: Theme): void;
-    subscribe(listener: BroadcastListener<Theme>): number;
-    unsubscribe(unsubID: number): void;
-}
-
-export function createBroadcast<Theme = {}>(initialState: Theme): Broadcast<Theme>;

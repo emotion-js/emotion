@@ -147,17 +147,12 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             }
 
             newProps.className = className
-            if (process.env.PREACT) {
-              if (props.innerRef != null) {
-                newProps.ref = props.innerRef
-              }
-            } else {
-              newProps.ref = ref
-              if (process.env.NODE_ENV !== 'production' && props.innerRef) {
-                console.error(
-                  '`innerRef` is no longer allowed, please use the `ref` prop instead'
-                )
-              }
+
+            newProps.ref = ref
+            if (process.env.NODE_ENV !== 'production' && props.innerRef) {
+              console.error(
+                '`innerRef` is no longer allowed, please use the `ref` prop instead'
+              )
             }
 
             const ele = React.createElement(finalTag, newProps)

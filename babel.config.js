@@ -1,3 +1,5 @@
+const path = require('path')
+
 let pkgsThatNeedBabelPluginEmotion = [
   'emotion',
   'create-emotion',
@@ -10,7 +12,7 @@ let pkgsThatNeedBabelPluginEmotion = [
 
 let needsBabelPluginEmotion = filename =>
   pkgsThatNeedBabelPluginEmotion.some(pkg =>
-    filename.includes(`packages/${pkg}/test`)
+    filename.includes(path.join('packages', pkg, 'test'))
   )
 
 module.exports = api => {
