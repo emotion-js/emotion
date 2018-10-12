@@ -5,7 +5,7 @@
   "main": "dist/hash.cjs.js",
   "module": "dist/hash.esm.js",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/hash",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/hash",
   "publishConfig": {
     "access": "public"
   },
