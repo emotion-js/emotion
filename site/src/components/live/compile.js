@@ -6,12 +6,10 @@ const evalCode = (code: string, scope: Scope): React.Node => {
   const scopeKeys = Object.keys(scope)
   const scopeValues = scopeKeys.map(key => scope[key])
   let element
-  let renderWasCalled = false
   const render = val => {
-    if (renderWasCalled === true) {
+    if (element !== undefined) {
       throw new SyntaxError('`render` cannot be called twice.')
     }
-    renderWasCalled = true
     element = val
   }
   /* eslint-disable no-new-func */
@@ -19,7 +17,7 @@ const evalCode = (code: string, scope: Scope): React.Node => {
   const func = new Function('React', 'render', ...scopeKeys, code)
   func(React, render, ...scopeValues)
   /* eslint-enable no-new-func */
-  if (renderWasCalled === false) {
+  if (element === undefined) {
     throw new SyntaxError('`render` must be called')
   }
   return element

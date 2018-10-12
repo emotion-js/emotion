@@ -15,9 +15,11 @@
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import * as React from 'react'
 
-import { Overwrapped, PropsOf } from './helper'
+import { Omit, Overwrapped, PropsOf } from './helper'
 
 export { Interpolation }
+
+type JSXInEl = JSX.IntrinsicElements
 
 export type WithTheme<P, T> = P extends { theme: infer Theme }
   ? P & { theme: Exclude<Theme, undefined> }
@@ -33,50 +35,45 @@ export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
   extends React.SFC<InnerProps & StyleProps & { theme?: Theme }>,
     ComponentSelector {
   /**
-   * @desc
-   * `Overwrapped` part checks the compatibility between `StyleProps` and `NewInnerProps`.
+   * @desc this method is type-unsafe
    */
-  withComponent<NewInnerProps extends Overwrapped<StyleProps, NewInnerProps>>(
-    tag: React.ComponentType<NewInnerProps>
-  ): StyledComponent<NewInnerProps, StyleProps, Theme>
-
-  /**
-   * @desc this function overloading is unsafe
-   */
-  withComponent<NewTag extends keyof JSX.IntrinsicElements>(
+  withComponent<NewTag extends keyof JSXInEl>(
     tag: NewTag
-  ): StyledComponent<JSX.IntrinsicElements[NewTag], StyleProps, Theme>
+  ): StyledComponent<JSXInEl[NewTag], StyleProps, Theme>
+  withComponent<Tag extends React.ComponentType<any>>(
+    tag: Tag
+  ): StyledComponent<PropsOf<Tag>, StyleProps, Theme>
 }
 
+type ReactClassPropKeys = keyof React.ClassAttributes<any>
 export interface CreateStyledComponentBase<
   InnerProps,
   ExtraProps,
   Theme extends object
 > {
   <
-    StyleProps extends Overwrapped<InnerProps, StyleProps> = InnerProps &
-      ExtraProps
+    StyleProps extends Omit<
+      Overwrapped<InnerProps, StyleProps>,
+      ReactClassPropKeys
+    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
   >(
     ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
   ): StyledComponent<InnerProps, StyleProps, Theme>
   <
-    StyleProps extends Overwrapped<InnerProps, StyleProps> = InnerProps &
-      ExtraProps
+    StyleProps extends Omit<
+      Overwrapped<InnerProps, StyleProps>,
+      ReactClassPropKeys
+    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
   >(
     template: TemplateStringsArray,
     ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
   ): StyledComponent<InnerProps, StyleProps, Theme>
 }
 export interface CreateStyledComponentIntrinsic<
-  Tag extends keyof JSX.IntrinsicElements,
+  Tag extends keyof JSXInEl,
   ExtraProps,
   Theme extends object
->
-  extends CreateStyledComponentBase<
-      JSX.IntrinsicElements[Tag],
-      ExtraProps,
-      Theme
-    > {}
+> extends CreateStyledComponentBase<JSXInEl[Tag], ExtraProps, Theme> {}
 export interface CreateStyledComponentExtrinsic<
   Tag extends React.ComponentType<any>,
   ExtraProps,
@@ -94,20 +91,12 @@ export interface CreateStyledComponentExtrinsic<
  * it could be more efficient.
  */
 export interface CreateStyled<Theme extends object = any> {
-  <InnerProps, ExtraProps = {}>(
-    tag: React.ComponentClass<InnerProps>,
+  <Tag extends React.ComponentType<any>, ExtraProps = {}>(
+    tag: Tag,
     options?: StyledOptions
-  ): CreateStyledComponentExtrinsic<
-    React.ComponentClass<InnerProps>,
-    ExtraProps,
-    Theme
-  >
-  <InnerProps, ExtraProps = {}>(
-    tag: React.SFC<InnerProps>,
-    options?: StyledOptions
-  ): CreateStyledComponentExtrinsic<React.SFC<InnerProps>, ExtraProps, Theme>
+  ): CreateStyledComponentExtrinsic<Tag, ExtraProps, Theme>
 
-  <Tag extends keyof JSX.IntrinsicElements, ExtraProps = {}>(
+  <Tag extends keyof JSXInEl, ExtraProps = {}>(
     tag: Tag,
     options?: StyledOptions
   ): CreateStyledComponentIntrinsic<Tag, ExtraProps, Theme>

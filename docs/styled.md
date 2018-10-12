@@ -2,11 +2,11 @@
 title: 'Styled Components'
 ---
 
-`styled` is a way to create React or Preact components that have styles attached to them. It's available from [@emotion/styled](/packages/@emotion/styled) and [@emotion/preact-styled](/packages/@emotion/preact-styled). `styled` was heavily inspired by [styled-components](https://www.styled-components.com/) and [glamorous](https://glamorous.rocks/)
+`styled` is a way to create React components that have styles attached to them. It's available from [@emotion/styled](/packages/@emotion/styled). `styled` was heavily inspired by [styled-components](https://www.styled-components.com/) and [glamorous](https://glamorous.rocks/)
 
 ### Styling elements and components
 
-`styled` is very similar to `css` except you call it with an html tag or React/Preact component and then call that with a template literal for string styles or a regular function call for object styles.
+`styled` is very similar to `css` except you call it with an html tag or React component and then call that with a template literal for string styles or a regular function call for object styles.
 
 ```jsx
 // @live

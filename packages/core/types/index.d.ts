@@ -41,16 +41,23 @@ export function Global<Theme = any>(
   props: GlobalProps<Theme>
 ): ReactElement<any>
 
+export function keyframes(
+  template: TemplateStringsArray,
+  ...args: Array<Interpolation>
+): Keyframes
 export function keyframes(...args: Array<Interpolation>): Keyframes
 
 export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
 export type ClassNamesArg =
+  | undefined
+  | null
   | string
   | boolean
   | { [className: string]: boolean }
   | ArrayClassNamesArg
 
 export interface ClassNamesContent<Theme> {
+  css(template: TemplateStringsArray, ...args: Array<Interpolation>): string
   css(...args: Array<Interpolation>): string
   cx(...args: Array<ClassNamesArg>): string
   theme: Theme

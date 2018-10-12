@@ -42,4 +42,3 @@
     - '@emotion/primitives'
     - create-emotion
     - create-emotion-server
-    - preact-emotion

@@ -1,5 +1,5 @@
 ---
-title: "Nested Selectors"
+title: 'Nested Selectors'
 ---
 
 Sometimes it's useful to nest selectors to target elements inside the current class or React component. Here is an example of a simple element selector nested in the class generated with `css`:

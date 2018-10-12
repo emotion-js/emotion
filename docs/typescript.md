@@ -1,5 +1,5 @@
 ---
-title: "Typescript"
+title: 'Typescript'
 ---
 
 Emotion includes TypeScript definitions for `emotion`, `react-emotion`, `preact-emotion`, `create-emotion`, and `create-emotion-styled`. These definitions also infer types for css properties with the object syntax, HTML/SVG tag names, and prop types.
@@ -111,15 +111,22 @@ const Image1 = styled('div')({
 
 // Or with a generic type
 
-const Image1 = styled('div')<ImageProps>({
+const Image2 = styled('div')<ImageProps>({
   backgroundSize: 'contain',
 }, props => ({
   width: props.width;
   background: `url(${props.src}) center center`,
 }));
+
+// TS 2.9+ only
+const Image3 = styled.div<ImageProps>`
+  width: ${(props: ImageProps) => props.width};
+  background: url(${(props: ImageProps) => props.src}) center center;
+  background-size: contain;
+`
 ```
 
-* The generic type version only works with object styles due to https://github.com/Microsoft/TypeScript/issues/11947.
+* For Typescript <2.9, the generic type version only works with object styles due to https://github.com/Microsoft/TypeScript/issues/11947.
 
 ### React Components
 
@@ -239,10 +246,6 @@ const Button = styled('button')`
 
 export default Button
 ```
-
-## preact-emotion
-
-The `preact-emotion` types are the same as the `react-emotion` types except that the types use Preact component types like `ComponentConstructor` and `FunctionalComponent` instead of React component types.
 
 ## create-emotion
 
