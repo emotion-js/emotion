@@ -17461,16 +17461,6 @@ potrace@^2.1.1:
   dependencies:
     jimp "^0.2.24"
 
-preact-render-to-json@^3.6.6:
-  version "3.6.6"
-  resolved "https://registry.yarnpkg.com/preact-render-to-json/-/preact-render-to-json-3.6.6.tgz#f67f48581912ac53fc9f4873bc6d7ce342f71c20"
-  integrity sha1-9n9IWBkSrFP8n0hzvG1840L3HCA=
-
-preact@^8.2.9:
-  version "8.2.9"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-8.2.9.tgz#813ba9dd45e5d97c5ea0d6c86d375b3be711cc40"
-  integrity sha512-ThuGXBmJS3VsT+jIP+eQufD3L8pRw/PY3FoCys6O9Pu6aF12Pn9zAJDX99TfwRAFOCEKm/P0lwiPTbqKMJp0fA==
-
 prebuild-install@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-4.0.0.tgz#206ce8106ce5efa4b6cf062fc8a0a7d93c17f3a8"
