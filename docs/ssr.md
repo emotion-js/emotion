@@ -1,5 +1,5 @@
 ---
-title: "Server Side Rendering"
+title: 'Server Side Rendering'
 ---
 
 Server side rendering works out of the box in emotion 10 and above

@@ -56,8 +56,6 @@ app.classList.add(myStyle)
 npm install --save emotion react-emotion babel-plugin-emotion
 ```
 
-_Note: use `preact-emotion` in place of `react-emotion` if using [Preact](https://github.com/developit/preact)_
-
 ```javascript
 import styled, { css } from 'react-emotion'
 

@@ -5,7 +5,7 @@
   "main": "dist/memoize.cjs.js",
   "module": "dist/memoize.esm.js",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/memoize",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/memoize",
   "publishConfig": {
     "access": "public"
   },

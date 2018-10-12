@@ -34,7 +34,7 @@
     "html-tag-names": "^1.1.2",
     "svg-tag-names": "^1.1.1"
   },
-  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/core",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/core",
   "publishConfig": {
     "access": "public"
   },
