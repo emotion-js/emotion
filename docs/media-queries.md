@@ -1,5 +1,5 @@
 ---
-title: "Media Queries"
+title: 'Media Queries'
 ---
 
 Using media queries in emotion works just like using media queries in regular css except you don't have to specify a selector inside the block, you can put your css directly in the css block.

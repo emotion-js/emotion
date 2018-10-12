@@ -1,11 +1,13 @@
 [version]
-0.76.0
+0.81.0
 
 [ignore]
 .*/node_modules/config-chain/.*
 .*/node_modules/styled-components/.*
 .*/node_modules/graphql/.*
 .*/node_modules/metro.*
+.*/node_modules/preact/.*
+
 
 
 [include]
@@ -21,7 +23,6 @@
 suppress_comment=.*\\$FlowFixMe
 module.name_mapper='^\(create-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(react-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(preact-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(babel-plugin-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(emotion-theming\)$' -> '<PROJECT_ROOT>/packages/\1/src'

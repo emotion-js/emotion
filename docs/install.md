@@ -1,5 +1,5 @@
 ---
-title: "Install"
+title: 'Install'
 ---
 
 Emotion can be used in many different ways. The easiest way to get started is to use the [`@emotion/core` package](/packages/@emotion/core).
@@ -7,8 +7,6 @@ Emotion can be used in many different ways. The easiest way to get started is to
 ```bash
 # React
 yarn add @emotion/core
-# Preact
-yarn add @emotion/preact-core
 ```
 
 or if you prefer npm
@@ -16,8 +14,6 @@ or if you prefer npm
 ```bash
 # React
 npm install --save @emotion/core
-# Preact
-npm install --save @emotion/preact-core
 ```
 
 To use it, import what you need, for example use [jsx](/docs/jsx.md) to create class names with styles.
@@ -33,7 +29,10 @@ const style = css`
 `
 
 const SomeComponent = ({ children }) => (
-  <div css={style}>Some hotpink text.{children}</div>
+  <div css={style}>
+    Some hotpink text.
+    {children}
+  </div>
 )
 
 const anotherStyle = css({
@@ -52,29 +51,21 @@ render(
 
 ## With [`styled`](/docs/styled.md)
 
-`styled` is a way to create React/Preact components that have styles attached to them.
+`styled` is a way to create React components that have styles attached to them.
 
 ```bash
 # assuming you already have @emotion/core installed
-# React
 yarn add @emotion/styled
-# Preact
-yarn add @emotion/preact-styled
 ```
 
 or if you prefer npm
 
 ```bash
-# React
 npm install --save @emotion/styled
-# Preact
-npm install --save @emotion/preact-styled
 ```
 
 ```jsx
 // @live
-// change this import to @emotion/preact-styled
-// if you're using Preact
 import styled from '@emotion/styled'
 
 const Button = styled.button`

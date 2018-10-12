@@ -116,13 +116,15 @@ const Button3 = styled<'button', PrimaryProps>('button')(props => ({
 // $ExpectError
 ;<Button3 type="button" />
 
-const Button4 = styled<ReactClassProps0, PrimaryProps>(ReactClassComponent0)`
+const Button4 = styled<typeof ReactClassComponent0, PrimaryProps>(
+  ReactClassComponent0
+)`
   backgroundColor: ${props => props.theme.backColor}
 
   fontSize: ${5}px;
   color: ${props => props.primary}
 `
-const Button5 = styled<ReactSFCProps0, PrimaryProps>(ReactSFC0)(props => ({
+const Button5 = styled<typeof ReactSFC0, PrimaryProps>(ReactSFC0)(props => ({
   color: props.primary
 }))
 ;<div>
@@ -161,9 +163,7 @@ const Container2 = Container0.withComponent(ReactSFC0)
 // $ExpectError
 ;<Container2 />
 
-const Container3 = Container0.withComponent<ReactClassProps1>(
-  ReactClassComponent1
-)
+const Container3 = Container0.withComponent(ReactClassComponent1)
 ;<Container3 column={false} value="123" />
 // $ExpectError
 ;<Container3 colume={true} />
@@ -184,7 +184,7 @@ const Container4 = styled(ReactSFC2)<ContainerProps>(props => ({
 // $ExpectError
 ;<Container4 value="5" />
 
-const Container5 = Container3.withComponent<ReactSFCProps2>(ReactSFC2)
+const Container5 = Container3.withComponent(ReactSFC2)
 ;<Container5 column={true} value={123} />
 // $ExpectError
 ;<Container5 />
@@ -195,7 +195,50 @@ const Container5 = Container3.withComponent<ReactSFCProps2>(ReactSFC2)
 
 // $ExpectError
 styled(ReactSFC2)<ReactSFCProps1>()
-// $ExpectError
+
+/**
+ * @todo
+ * I wish we could raise errors for following two `withComponent`s.
+ */
 Container0.withComponent(ReactClassComponent2)
-// $ExpectError
 Container3.withComponent(ReactClassComponent2)
+
+const StyledClass0 = styled(ReactClassComponent0)({})
+declare const ref0_0: (element: ReactClassComponent0 | null) => void
+declare const ref0_1: (element: ReactClassComponent1 | null) => void
+declare const ref0_2: (element: HTMLDivElement | null) => void
+;<StyledClass0 column={true} ref={ref0_0} />
+// $ExpectError
+;<StyledClass0 column={true} ref={ref0_1} />
+// $ExpectError
+;<StyledClass0 column={true} ref={ref0_2} />
+
+const StyledClass1 = StyledClass0.withComponent(ReactClassComponent1)
+declare const ref1_0: (element: ReactClassComponent1 | null) => void
+declare const ref1_1: (element: ReactClassComponent0 | null) => void
+declare const ref1_2: (element: HTMLDivElement | null) => void
+;<StyledClass1 column={true} value="" ref={ref1_0} />
+// $ExpectError
+;<StyledClass1 column={true} value="" ref={ref1_1} />
+// $ExpectError
+;<StyledClass1 column={true} value="" ref={ref1_2} />
+
+const StyledClass2 = StyledClass0.withComponent('div')
+declare const ref2_0: (element: HTMLDivElement | null) => void
+declare const ref2_1: (element: ReactClassComponent0 | null) => void
+declare const ref2_2: (element: ReactClassComponent1 | null) => void
+;<StyledClass2 column={true} ref={ref2_0} />
+// $ExpectError
+;<StyledClass2 column={true} ref={ref2_1} />
+// $ExpectError
+;<StyledClass2 column={true} ref={ref2_2} />
+
+const StyledClass3 = StyledClass1.withComponent('label')
+declare const ref3_0: (element: HTMLLabelElement | null) => void
+declare const ref3_1: (element: ReactClassComponent0 | null) => void
+declare const ref3_2: (element: HTMLDivElement | null) => void
+;<StyledClass3 column={true} ref={ref3_0} />
+// $ExpectError
+;<StyledClass3 column={true} ref={ref3_1} />
+// $ExpectError
+;<StyledClass3 column={true} ref={ref3_2} />
