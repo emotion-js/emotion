@@ -8,7 +8,7 @@ import {
   injectGlobal,
   keyframes,
   sheet,
-  caches
+  cache
 } from 'emotion'
 import * as React from 'react'
 
@@ -87,6 +87,6 @@ const cxResult: string = cx([
   [[className, { [className2]: true }, 'profile']]
 ])
 
-merge(caches.registered, css, `class1 class2 ${className}`)
+merge(`class1 class2 ${className}`)
 
-getRegisteredStyles(caches.registered, [], className)
+getRegisteredStyles([], className)
