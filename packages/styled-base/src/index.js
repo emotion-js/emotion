@@ -47,6 +47,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       ? tag.__emotion_forwardProp
       : getShouldForwardProp(baseTag)
   }
+  const shouldUseAs = !shouldForwardProp('as')
 
   return function(): StyledComponent {
     let args = arguments
@@ -91,7 +92,6 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       return (
         <ThemeContext.Consumer>
           {theme => {
-            const shouldUseAs = !shouldForwardProp('as')
             const finalTag = (shouldUseAs && props.as) || baseTag
 
             let className = ''
@@ -129,7 +129,11 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
 
             const finalShouldForwardProp =
               (shouldUseAs &&
-                hasDefaultShouldForwardProp(baseTag, shouldForwardProp) &&
+                hasDefaultShouldForwardProp(
+                  baseTag,
+                  // $FlowFixMe
+                  shouldForwardProp
+                ) &&
                 getShouldForwardProp(finalTag)) ||
               shouldForwardProp
 

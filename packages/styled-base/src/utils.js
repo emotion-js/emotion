@@ -8,7 +8,7 @@ const testOmitPropsOnStringTag: (key: string) => boolean = isPropValid
 const testOmitPropsOnComponent = (key: string) =>
   key !== 'theme' && key !== 'innerRef' && key !== 'as'
 
-export const getShouldForwardProp = tag =>
+export const getShouldForwardProp = (tag: React.ElementType) =>
   typeof tag === 'string' &&
   // 96 is one less than the char code
   // for "a" so this is checking that
@@ -17,7 +17,10 @@ export const getShouldForwardProp = tag =>
     ? testOmitPropsOnStringTag
     : testOmitPropsOnComponent
 
-export const hasDefaultShouldForwardProp = (tag, shouldForwardProp) =>
+export const hasDefaultShouldForwardProp = (
+  tag: React.ElementType,
+  shouldForwardProp: string => boolean
+) =>
   shouldForwardProp ===
   (typeof tag === 'string'
     ? testOmitPropsOnComponent
