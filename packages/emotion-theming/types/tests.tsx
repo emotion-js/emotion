@@ -1,56 +1,45 @@
-import * as React from 'react';
-import * as emotionTheming from '../';
-// tslint:disable-next-line:no-duplicate-imports
-import { ThemeProvider, withTheme, EmotionThemingModule, channel, createBroadcast, Broadcast } from '../';
+import * as emotionTheming from 'emotion-theming'
+import * as React from 'react'
 
-interface Theme  {
-    primary: string;
-    secondary: string;
+const { ThemeProvider, withTheme } = emotionTheming
+
+interface Theme {
+  primary: string
+  secondary: string
 }
-const theme: Theme = { primary: "green", secondary: "white" };
-const CompSFC = (props: { prop: boolean }) => <div />;
-declare class CompC extends React.Component<{ prop: boolean }> { }
+declare const theme: Theme
 
+interface Props {
+  prop: boolean
+  theme: Theme
+}
+declare const CompSFC: React.SFC<Props>
+declare class CompC extends React.Component<Props> {}
+
+const WrappedCompC = withTheme<typeof CompC>(CompC)
+;<ThemeProvider theme={theme}>{WrappedCompC}</ThemeProvider>
+;<ThemeProvider theme={() => theme} />
+;<ThemeProvider theme={(outerTheme: Theme) => ({ ...outerTheme, ...theme })} />
+
+const ThemedSFC = withTheme(CompSFC)
+;<ThemedSFC prop />
+;<ThemedSFC prop theme={theme} />
+
+const ThemedComp = withTheme(CompC)
+;<ThemedComp prop />
+;<ThemedComp prop theme={theme} />
+
+const {
+  ThemeProvider: TypedThemeProvider,
+  withTheme: typedWithTheme
+} = emotionTheming as emotionTheming.EmotionTheming<Theme>
+;<TypedThemeProvider theme={theme} />
+// $ExpectError
+;<TypedThemeProvider theme={{ primary: 5 }} />
+
+typedWithTheme(CompSFC)
 /**
- * Theme Provider with no type
+ * @todo
+ * Following line should report an error.
  */
-<ThemeProvider theme={theme} />;
-<ThemeProvider theme={() => theme} />;
-
-/**
- * withTheme with no type
- */
-const ThemedSFC = withTheme(CompSFC);
-<ThemedSFC theme={theme} prop />;
-<ThemedSFC prop />;
-
-const ThemedComp = withTheme(CompC);
-<ThemedComp theme={theme} prop />;
-<ThemedComp prop />;
-
-const { ThemeProvider: TypedThemeProvider, withTheme: typedWithTheme } = emotionTheming as EmotionThemingModule<typeof theme>;
-
-<TypedThemeProvider theme={theme} />;
-<TypedThemeProvider theme={{ primary: "white" }} />;
-<TypedThemeProvider theme={theme => ({ primary: theme.primary, secondary: theme.secondary })} />;
-
-const TypedThemedSFC = typedWithTheme(ThemedSFC);
-<TypedThemedSFC prop />;
-<TypedThemedSFC theme={theme} prop/>;
-
-const TypedCompSFC = typedWithTheme(CompSFC);
-<TypedCompSFC prop />;
-<TypedCompSFC theme={theme} prop />;
-
-/**
- * createBroadcast
- */
-const broadcast: Broadcast<Theme> = createBroadcast(theme);
-const unsubID: number = broadcast.subscribe((theme: Theme) => { theme; });
-broadcast.publish({ primary: "red", secondary: "blue" });
-broadcast.unsubscribe(unsubID);
-
-const context = {
-    [channel]: broadcast
-};
-context;
+typedWithTheme((props: { value: number }) => null)

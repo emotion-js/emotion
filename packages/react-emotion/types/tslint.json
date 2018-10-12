@@ -1,6 +1,19 @@
 {
     "extends": "dtslint/dtslint.json",
     "rules": {
-        "no-relative-import-in-test": false
+        "array-type": [true, "generic"],
+        "semicolon": false,
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-module",
+            "check-rest-spread",
+            "check-type",
+            "check-typecast",
+            "check-type-operator",
+            "check-preblock"
+        ]
     }
 }

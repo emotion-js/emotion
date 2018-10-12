@@ -1,15 +1,33 @@
-import { Emotion } from 'create-emotion';
+import createEmotionServer from 'create-emotion-server'
+import { EmotionCache } from 'emotion'
 
-import createEmotionServer from '../';
+declare const cache: EmotionCache
 
-declare const emotion: Emotion;
+// $ExpectType EmotionServer
+createEmotionServer(cache)
+// $ExpectError
+createEmotionServer()
 
-const emotionServer = createEmotionServer(emotion);
+const emotionServer = createEmotionServer(cache)
 
-const { html, css, ids } = emotionServer.extractCritical("<div></div>");
+// $ExpectType EmotionCritical
+emotionServer.extractCritical('<div></div>')
+// $ExpectError
+emotionServer.extractCritical()
+// $ExpectError
+emotionServer.extractCritical('<div></div>', undefined as any)
 
-emotionServer.renderStylesToString("<div></div>");
+// $ExpectType string
+emotionServer.renderStylesToString('<div></div>')
+// $ExpectError
+emotionServer.renderStylesToString()
+// $ExpectError
+emotionServer.renderStylesToString('<div></div>', undefined as any)
 
-declare const stream: NodeJS.ReadableStream;
+// $ExpectType ReadWriteStream
+emotionServer.renderStylesToNodeStream()
+// $ExpectError
+emotionServer.renderStylesToNodeStream(undefined as any)
 
-stream.pipe(emotionServer.renderStylesToNodeStream());
+declare const stream: NodeJS.ReadableStream
+stream.pipe(emotionServer.renderStylesToNodeStream())
