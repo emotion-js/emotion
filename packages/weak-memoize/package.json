@@ -5,7 +5,7 @@
   "main": "dist/weak-memoize.cjs.js",
   "module": "dist/weak-memoize.esm.js",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/weak-memoize",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/weak-memoize",
   "publishConfig": {
     "access": "public"
   },
