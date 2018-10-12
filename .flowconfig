@@ -1,11 +1,13 @@
 [version]
-0.76.0
+0.83.0
 
 [ignore]
 .*/node_modules/config-chain/.*
 .*/node_modules/styled-components/.*
 .*/node_modules/graphql/.*
 .*/node_modules/metro.*
+.*/node_modules/preact/.*
+
 
 
 [include]
