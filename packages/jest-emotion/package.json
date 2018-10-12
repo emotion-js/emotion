@@ -20,8 +20,6 @@
   },
   "devDependencies": {
     "dtslint": "^0.3.0",
-    "preact": "^8.2.9",
-    "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3"
   },
   "author": "Kye Hohenberger",

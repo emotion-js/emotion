@@ -90,8 +90,6 @@
     "npm-run-all": "^4.0.2",
     "opencollective": "^1.0.3",
     "polished": "^1.2.1",
-    "preact": "^8.2.9",
-    "preact-render-to-json": "^3.6.6",
     "prettier": "1.14.3",
     "raf": "^3.4.0",
     "react": "^16.3.2",
