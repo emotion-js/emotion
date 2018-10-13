@@ -17,8 +17,6 @@
     "@emotion/primitives-core": "^10.0.0-beta.5"
   },
   "peerDependencies": {
-    "prop-types": "15.x",
-    "react": "15.x || 16.x",
     "react-native": ">=0.14.0 && < 1"
   },
   "homepage": "https://emotion.sh",
