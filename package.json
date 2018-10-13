@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "emotion-monorepo",
   "version": "7.0.13",
   "scripts": {
     "build:watch": "node scripts/build/watch",
@@ -184,6 +185,14 @@
     ],
     "nohoist": [
       "**/dtslint"
+    ]
+  },
+  "bolt": {
+    "workspaces": [
+      "packages/*",
+      "site",
+      "scripts/*",
+      "playgrounds/*"
     ]
   },
   "bugs": {
