@@ -24,7 +24,7 @@
     "precommit": "lint-staged",
     "postcommit": "git update-index --again",
     "postinstall": "opencollective postinstall",
-    "publish-packages": "lerna publish"
+    "version-packages": "lerna version --preid=beta"
   },
   "resolutions": {
     "**/react": "16.4.2",
