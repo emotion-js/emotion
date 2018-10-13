@@ -1,6 +1,6 @@
 {
   "name": "@emotion/core",
-  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "version": "10.0.0-beta.0",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",
   "browser": {
@@ -19,11 +19,11 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/cache": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/css": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/sheet": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
+    "@emotion/cache": "^10.0.0-beta.0",
+    "@emotion/css": "^10.0.0-beta.0",
+    "@emotion/serialize": "^0.10.0",
+    "@emotion/sheet": "^0.9.0",
+    "@emotion/utils": "^0.9.0"
   },
   "peerDependencies": {
     "react": ">=16.3.0"

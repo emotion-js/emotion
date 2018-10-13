@@ -1,6 +1,6 @@
 {
   "name": "@emotion/cache",
-  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "version": "10.0.0-beta.0",
   "description": "emotion's cache",
   "main": "dist/cache.cjs.js",
   "module": "dist/cache.esm.js",
@@ -11,9 +11,9 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/sheet": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/stylis": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
+    "@emotion/sheet": "^0.9.0",
+    "@emotion/stylis": "^0.8.0",
+    "@emotion/utils": "^0.9.0"
   },
   "devDependencies": {
     "dtslint": "^0.3.0"

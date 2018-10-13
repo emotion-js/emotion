@@ -1,6 +1,6 @@
 {
   "name": "create-emotion",
-  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "version": "10.0.0-beta.0",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -14,15 +14,15 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/cache": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/css": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/hash": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/memoize": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/serialize": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/sheet": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/stylis": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/unitless": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "@emotion/cache": "^10.0.0-beta.0",
+    "@emotion/css": "^10.0.0-beta.0",
+    "@emotion/hash": "^0.7.0",
+    "@emotion/memoize": "^0.7.0",
+    "@emotion/serialize": "^0.10.0",
+    "@emotion/sheet": "^0.9.0",
+    "@emotion/stylis": "^0.8.0",
+    "@emotion/unitless": "^0.7.0",
+    "@emotion/utils": "^0.9.0",
     "csstype": "^2.5.2",
     "stylis": "^3.5.0",
     "stylis-rule-sheet": "^0.0.10"

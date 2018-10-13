@@ -1,6 +1,6 @@
 {
   "name": "@emotion/primitives",
-  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "version": "10.0.0-beta.0",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "files": [
@@ -8,9 +8,9 @@
     "dist"
   ],
   "dependencies": {
-    "@emotion/is-prop-valid": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/primitives-core": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.2"
+    "@emotion/is-prop-valid": "^0.7.0",
+    "@emotion/primitives-core": "^10.0.0-beta.0",
+    "babel-plugin-emotion": "^10.0.0-beta.0"
   },
   "peerDependencies": {
     "prop-types": "15.x",
@@ -18,7 +18,7 @@
     "react-primitives": "^0.5.1"
   },
   "devDependencies": {
-    "emotion-theming": "^10.0.0-really-unsafe-please-do-not-use.2",
+    "emotion-theming": "^10.0.0-beta.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "react": "^16.5.0",
