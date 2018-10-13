@@ -13,7 +13,7 @@
     "lint:check": "eslint .",
     "test:watch": "jest --watch",
     "size": "bundlesize",
-    "release": "npm run build && lerna publish --npm-tag=really-unsafe-please-do-not-use",
+    "release": "npm run build && lerna publish",
     "lint": "eslint . --fix",
     "benchmark": "lerna exec --scope benchmarks npm run benchmark",
     "start:site": "lerna exec --scope emotion-site npm run start:site",
@@ -23,7 +23,7 @@
     "precommit": "lint-staged",
     "postcommit": "git update-index --again",
     "postinstall": "opencollective postinstall",
-    "publish-packages": "lerna publish --npm-tag=really-unsafe-please-do-not-use"
+    "publish-packages": "lerna publish"
   },
   "resolutions": {
     "**/react": "16.4.2",
