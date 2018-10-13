@@ -137,10 +137,10 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
 
             newProps.className = className
 
-            newProps.ref = ref
+            newProps.ref = ref || props.innerRef
             if (process.env.NODE_ENV !== 'production' && props.innerRef) {
               console.error(
-                '`innerRef` is no longer allowed, please use the `ref` prop instead'
+                '`innerRef` is deprecated and will be removed in the next major version of Emotion, please use the `ref` prop instead'
               )
             }
 
