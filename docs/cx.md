@@ -25,7 +25,7 @@ title: 'cx'
 
 ```jsx
 // @live
-// cx should be
+// cx should be consumed from ClassNames if you're using React
 import { cx, css } from 'emotion'
 
 const cls1 = css`
