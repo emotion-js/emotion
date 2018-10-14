@@ -9,7 +9,7 @@
 // ------------------------------------------------------------------------------
 
 const { RuleTester } = require('eslint')
-const rule = require('eslint-plugin-emotion')['syntax-preference']
+const rule = require('eslint-plugin-emotion').rules['syntax-preference']
 
 RuleTester.setDefaultConfig({
   parserOptions: {

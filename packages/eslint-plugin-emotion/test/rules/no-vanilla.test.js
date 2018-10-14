@@ -3,7 +3,7 @@
  */
 
 const { RuleTester } = require('eslint')
-const rule = require('eslint-plugin-emotion')['no-vanilla']
+const rule = require('eslint-plugin-emotion').rules['no-vanilla']
 
 RuleTester.setDefaultConfig({
   parserOptions: {
