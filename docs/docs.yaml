@@ -24,6 +24,7 @@
 - title: Tooling
   items:
     - babel
+    - babel-macros
     - source-maps
     - testing
     - typescript
