@@ -6,13 +6,18 @@
 
 ```jsx
 import createEmotionServer from 'create-emotion-server'
-import * as emotion from 'my-emotion-instance'
+
+import { cache } from 'my-emotion-instance'
+// or
+import createCache from '@emotion/cache'
+
+let cache = createCache()
 
 export const {
   extractCritical,
   renderStylesToString,
   renderStylesToNodeStream
-} = createEmotionServer(emotion)
+} = createEmotionServer(cache)
 ```
 
 [All of emotion's SSR APIs are documented in their own doc.](https://emotion.sh/docs/ssr)

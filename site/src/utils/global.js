@@ -60,6 +60,9 @@ const globalStyles = css`
   * {
     box-sizing: border-box;
   }
+  #___gatsby > div {
+    height: 100%;
+  }
 `
 
 export default globalStyles

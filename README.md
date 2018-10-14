@@ -37,39 +37,23 @@ Frequently viewed docs:
 Get up and running with a single import.
 
 ```bash
-npm install --save emotion
+npm install --save @emotion/core
 ```
 
-```javascript
-import { css } from 'emotion'
+```jsx
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 
-const app = document.getElementById('root')
-const myStyle = css`
-  color: rebeccapurple;
-`
-app.classList.add(myStyle)
-```
-
-### React with [Optional Babel Plugin](docs/babel.md)
-
-```bash
-npm install --save emotion react-emotion babel-plugin-emotion
-```
-
-```javascript
-import styled, { css } from 'react-emotion'
-
-const Container = styled('div')`
-  background: #333;
-`
-const myStyle = css`
-  color: rebeccapurple;
-`
-const app = () => (
-  <Container>
-    <p className={myStyle}>Hello World</p>
-  </Container>
-)
+let SomeComponent = props => {
+  return (
+    <div
+      css={{
+        color: 'hotpink'
+      }}
+      {...props}
+    />
+  )
+}
 ```
 
 ### Do I Need To Use the Babel Plugin?

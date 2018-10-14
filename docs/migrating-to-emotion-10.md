@@ -4,6 +4,10 @@ title: 'Migrating to Emotion 10'
 
 Emotion 10 is a large change to Emotion so it requires some changes to your code. Some of the changes can be done automatically via a codemod and the rest can be done incrementally.
 
+> Note
+>
+> This page only applies using Emotion with React. If you're not using Emotion with React, you don't have to change anything.
+
 # Thinking
 
 The biggest change in Emotion 10 is that it doesn't let you easily access the underlying class names. Instead of thinking in class names, you have to think in terms of styles and composing them together. (you can still use classnames if you want to but it's not recommended except during migration)
@@ -51,7 +55,7 @@ const SomeComponent = props => (
 
 Incremental migration is something really important to Emotion because we don't want anyone to have to rewrite their entire app.
 
-The upgrades to emotion 10 are split into two parts. The first part can be done automatically by a codemod.
+The upgrades to emotion 10 are split into two parts. The first part can be done automatically by using [`eslint-plugin-emotion`](./eslint-plugin-emotion#emotion-10-codemods).
 
 ## Codemoddable
 

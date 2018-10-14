@@ -65,7 +65,7 @@ function getCode(htmlAst): Code {
   return ret
 }
 
-let localScope = { ...scope, styled }
+let localScope = { ...scope, styled: require('@emotion/styled').default }
 
 class IndexPage extends React.Component<Props, State> {
   state = {
