@@ -40,7 +40,7 @@
     "hoist-non-react-statics": "^2.3.1"
   },
   "peerDependencies": {
-    "@emotion/core": "0.x.x",
+    "@emotion/core": "10.x.x || 10.0.0-beta.x",
     "react": "15.x || 16.x"
   },
   "umd:main": "./dist/emotion.umd.min.js",
