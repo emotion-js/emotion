@@ -2,17 +2,15 @@
 title: 'Install'
 ---
 
-Emotion can be used in many different ways. The easiest way to get started is to use the [`@emotion/core` package](/packages/@emotion/core).
+Emotion can be used in many different ways. If you're not using React, the easiest way to get started is to use the [`@emotion/core` package](/packages/@emotion/core). If you're not using React, you will need [the `emotion` package](#vanilla).
 
 ```bash
-# React
 yarn add @emotion/core
 ```
 
 or if you prefer npm
 
 ```bash
-# React
 npm install --save @emotion/core
 ```
 
@@ -79,9 +77,7 @@ render(<Button>This is a hotpink button.</Button>)
 
 > Note:
 
-> If you're using Create React App, you can't add custom babel plugins so you can skip this section.
-
-# IF YOU'RE LOOKING AT THIS NOW, YOU SHOULD USE @emotion/babel-plugin-core BUT IT WILL PROBABLY BE babel-plugin-emotion IN THE FUTURE
+> If you're using Create React App, you can use the [Babel macro](./babel-macros.md)
 
 Emotion has an optional [Babel](https://babeljs.io/) plugin that optimizes styles by compressing and hoisting them and creates a better developer experience with source maps and labels.
 
@@ -124,16 +120,29 @@ If you are using Babel's env option emotion must also be first for each environm
 {
   "env": {
     "production": {
-      "plugins": [["emotion", { "hoist": true }]]
+      "plugins": ["emotion"]
     },
     "development": {
-      "plugins": [
-        [
-          "emotion",
-          { "sourceMap": true, "autoLabel": true }
-        ]
-      ]
+      "plugins": [["emotion", { "sourceMap": true }]]
     }
   }
 }
+```
+
+# Vanilla
+
+If you're not using React, you can use vanilla Emotion from the `emotion` package. Most of the documentation here focuses on the React-specific version of Emotion but most of the concepts in the React-specific verion also apply to vanilla Emotion.
+
+```bash
+yarn add emotion
+```
+
+```jsx
+import { css } from 'emotion'
+
+const app = document.getElementById('root')
+const myClassName = css`
+  color: hotpink;
+`
+app.classList.add(myClassName)
 ```

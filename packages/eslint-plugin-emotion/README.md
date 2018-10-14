@@ -48,19 +48,19 @@ The Emotion 10 codemods are contained in this package. To use them, enable the r
     "emotion/jsx-import": "error",
     "emotion/no-vanilla": "error",
     "emotion/import-from-emotion": "error",
-    "emotion/styled-import": "error
+    "emotion/styled-import": "error"
   }
 }
 ```
 
 > **Note:**
 >
-> These rules assume you are using React, if you are not using React, you should keeping only using the `emotion` package.
+> These rules assume you are using React, if you are not using React, you should keep using the `emotion` package.
 
 ## Supported Rules
 
-- [jsx-import](./docs/rules/jsx-import.md)
-- [styled-import](./docs/rules/styled-import.md)
-- [import-from-emotion](./docs/rules/import-from-emotion.md)
-- [no-vanilla](./docs/rules/no-vanilla.md)
-- [syntax-preference](./docs/rules/syntax-preference.md)
+- [jsx-import](https://github.com/emotion-js/emotion/blob/master/packages/eslint-plugin-emotion/docs/rules/jsx-import.md)
+- [styled-import](https://github.com/emotion-js/emotion/blob/master/packages/eslint-plugin-emotion/docs/rules/styled-import.md)
+- [import-from-emotion](https://github.com/emotion-js/emotion/blob/master/packages/eslint-plugin-emotion/docs/rules/import-from-emotion.md)
+- [no-vanilla](https://github.com/emotion-js/emotion/blob/master/packages/eslint-plugin-emotion/docs/rules/no-vanilla.md)
+- [syntax-preference](https://github.com/emotion-js/emotion/blob/master/packages/eslint-plugin-emotion/docs/rules/syntax-preference.md)

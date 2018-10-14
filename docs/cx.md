@@ -2,7 +2,7 @@
 title: 'cx'
 ---
 
-`cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames). `cx` is useful when combining multiple class names, even class names from your stylesheets and emotion generated class names.
+`cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames). `cx` is useful when combining multiple class names, even class names from your stylesheets and emotion generated class names. `cx` is available from the `emotion` package if you're not using React or the [`ClassNames`](./class-names.md) component if you're using React. `cx` should be rarely using if you're using the React-specific version of Emotion.
 
 ### Key features
 
@@ -25,6 +25,7 @@ title: 'cx'
 
 ```jsx
 // @live
+// cx should be
 import { cx, css } from 'emotion'
 
 const cls1 = css`
