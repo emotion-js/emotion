@@ -1,19 +1,25 @@
 // @flow
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
-import { renderStylesToString } from 'emotion-server'
+import { extractCritical } from 'emotion-server'
 import { cache } from 'emotion'
 import { CacheProvider } from '@emotion/core'
 
 export const replaceRenderer = ({
   replaceBodyHTMLString,
-  bodyComponent
+  bodyComponent,
+  setHeadComponents
 }: *) => {
-  return replaceBodyHTMLString(
-    renderStylesToString(
-      renderToString(
-        <CacheProvider value={cache}>{bodyComponent}</CacheProvider>
-      )
-    )
+  let { html, ids, css } = extractCritical(
+    renderToString(<CacheProvider value={cache}>{bodyComponent}</CacheProvider>)
   )
+  setHeadComponents([
+    <style
+      data-emotion-css={ids.join(' ')}
+      dangerouslySetInnerHTML={{
+        __html: css
+      }}
+    />
+  ])
+  replaceBodyHTMLString(html)
 }
