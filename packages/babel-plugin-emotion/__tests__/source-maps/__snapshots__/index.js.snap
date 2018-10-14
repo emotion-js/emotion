@@ -69,7 +69,7 @@ const SomeComponent = styled.div({
 import _styled from \\"@emotion/styled-base\\";
 
 const SomeComponent = _styled(\\"div\\", {
-  target: \\"ezg2t240\\",
+  target: \\"eb28ebz0\\",
   label: \\"SomeComponent\\"
 })({
   name: \\"1lrxbo5\\",
@@ -91,7 +91,7 @@ const SomeComponent = styled.div\`
 import _styled from \\"@emotion/styled-base\\";
 
 const SomeComponent = _styled(\\"div\\", {
-  target: \\"ezg2t240\\",
+  target: \\"eb28ebz0\\",
   label: \\"SomeComponent\\"
 })({
   name: \\"1lrxbo5\\",
