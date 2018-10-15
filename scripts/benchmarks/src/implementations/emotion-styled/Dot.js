@@ -1,4 +1,5 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled/macro'
+import css from '@emotion/css/macro'
 import View from './View'
 
 const Dot = styled(View)`
@@ -10,7 +11,7 @@ const Dot = styled(View)`
   border-style: solid;
   border-top-width: 0;
   transform: translate(50%, 50%);
-  ${props => `
+  ${props => css`
     margin-left: ${props.x}px;
     margin-top: ${props.y}px;
     border-right-width: ${props.size / 2}px;
