@@ -16,7 +16,7 @@
     "create-emotion-server": "^10.0.0-beta.5"
   },
   "peerDependencies": {
-    "emotion": "10.x.x || 10.0.0-beta.x"
+    "emotion": ">=10.0.0-beta"
   },
   "devDependencies": {
     "@types/node": "^10.11.4",
