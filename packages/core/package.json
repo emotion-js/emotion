@@ -1,6 +1,6 @@
 {
   "name": "@emotion/core",
-  "version": "10.0.0-beta.1",
+  "version": "10.0.0-beta.2",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",
   "browser": {
@@ -19,8 +19,8 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/cache": "^10.0.0-beta.1",
-    "@emotion/css": "^10.0.0-beta.1",
+    "@emotion/cache": "^10.0.0-beta.2",
+    "@emotion/css": "^10.0.0-beta.2",
     "@emotion/serialize": "^0.10.0",
     "@emotion/sheet": "^0.9.0",
     "@emotion/utils": "^0.9.0"
