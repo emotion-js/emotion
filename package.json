@@ -27,9 +27,10 @@
     "version-packages": "lerna version --preid=beta"
   },
   "resolutions": {
-    "**/react": "16.4.2",
-    "**/react-dom": "16.4.2",
-    "**/browserslist": "^3.2.8"
+    "**/react": "16.5.2",
+    "**/react-dom": "16.5.2",
+    "**/browserslist": "^3.2.8",
+    "**/react-primitives/react-native-web": "0.9.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
