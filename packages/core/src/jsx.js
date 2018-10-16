@@ -6,6 +6,8 @@ import { serializeStyles } from '@emotion/serialize'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
+let hasOwnProperty = Object.prototype.hasOwnProperty
+
 let render = (cache, props, theme: null | Object, ref) => {
   let type = props[typePropName]
   let registeredStyles = []
@@ -26,7 +28,7 @@ let render = (cache, props, theme: null | Object, ref) => {
   const newProps = {}
   for (let key in props) {
     if (
-      Object.prototype.hasOwnProperty.call(props, key) &&
+      hasOwnProperty.call(props, key) &&
       key !== 'css' &&
       key !== typePropName
     ) {
@@ -102,7 +104,16 @@ export const jsx: typeof React.createElement = function(
   let createElementArgArray = new Array(argsLength)
 
   createElementArgArray[0] = Emotion
-  createElementArgArray[1] = { ...props, [typePropName]: type }
+  let newProps = {}
+
+  for (let key in props) {
+    if (hasOwnProperty.call(props, key)) {
+      newProps[key] = props[key]
+    }
+  }
+  newProps[typePropName] = type
+
+  createElementArgArray[1] = newProps
 
   for (let i = 2; i < argsLength; i++) {
     createElementArgArray[i] = args[i]
