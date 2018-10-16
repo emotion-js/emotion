@@ -1,6 +1,6 @@
 {
   "name": "@emotion/css",
-  "version": "10.0.0-beta.2",
+  "version": "10.0.0-beta.3",
   "description": "a function to serialize css and object styless",
   "main": "dist/css.cjs.js",
   "module": "dist/css.esm.js",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@emotion/serialize": "^0.10.0",
     "@emotion/utils": "^0.9.0",
-    "babel-plugin-emotion": "^10.0.0-beta.2"
+    "babel-plugin-emotion": "^10.0.0-beta.3"
   },
   "devDependencies": {
     "dtslint": "^0.3.0"
