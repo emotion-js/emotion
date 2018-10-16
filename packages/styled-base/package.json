@@ -24,7 +24,7 @@
     "dtslint": "^0.3.0"
   },
   "peerDependencies": {
-    "@emotion/core": "10.x.x || 10.0.0-beta.x",
+    "@emotion/core": ">=10.0.0-beta",
     "react": ">=16.3.0"
   },
   "publishConfig": {
