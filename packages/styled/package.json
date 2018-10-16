@@ -23,6 +23,7 @@
   "files": [
     "src",
     "dist",
+    "types",
     "macro.js"
   ],
   "umd:main": "./dist/index.min.js",
