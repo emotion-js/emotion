@@ -4,15 +4,14 @@
 import { Emotion } from 'create-emotion'
 
 export {
+  ArrayClassNamesArg,
   ArrayInterpolation,
   ClassNamesArg,
   ComponentSelector,
-  Emotion,
   EmotionCache,
   FunctionInterpolation,
   Interpolation,
   ObjectInterpolation,
-  RegisteredCache,
   StyleSheet
 } from 'create-emotion'
 
