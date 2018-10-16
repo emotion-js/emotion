@@ -2176,10 +2176,10 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-animated@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/animated/-/animated-0.1.5.tgz#83df8dc443d57abab7b0bb04818b0b655b31c9b9"
-  integrity sha1-g9+NxEPVerq3sLsEgYsLZVsxybk=
+animated@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/animated/-/animated-0.2.2.tgz#04af7846ad0b9b8d1f0472cc53d82b8efeb4a751"
+  integrity sha512-7pMzS0Sk2lA6/JT6he+apuy3GnDWUWVCurHMrpsbT9ugeLe80kpDQWjZQvkFiU9o7LsPGydPnoZpJsmt1HPPMA==
   dependencies:
     invariant "^2.2.0"
     normalize-css-color "^1.0.1"
@@ -7114,11 +7114,6 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
   integrity sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=
-
-deline@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/deline/-/deline-1.0.4.tgz#6c05c87836926e1a1c63e47882f3d2eb2c6f14c9"
-  integrity sha1-bAXIeDaSbhocY+R4gvPS6yxvFMk=
 
 denodeify@^1.2.1:
   version "1.2.1"
@@ -18469,7 +18464,7 @@ rc@^1.0.1, rc@^1.1.2, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-art@^16.5.2:
+react-art@^16.4.0, react-art@^16.5.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react-art/-/react-art-16.5.2.tgz#dabfc9a5ef565ecb4f817bb0e872f9a5cd7f89cb"
   integrity sha512-55g2iFRVE+YhkNdzKAtO3BhTdROefBVZ+bif3K5mI7shXE4shOHpWnhbdKZyU1o9O8pvfPApRWbZWdV8fkxyOw==
@@ -18485,11 +18480,6 @@ react-clone-referenced-element@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-clone-referenced-element/-/react-clone-referenced-element-1.0.1.tgz#2bba8c69404c5e4a944398600bcc4c941f860682"
   integrity sha1-K7qMaUBMXkqUQ5hgC8xMlB+GBoI=
-
-react-css-property-operations@^15.4.1:
-  version "15.4.1"
-  resolved "https://registry.yarnpkg.com/react-css-property-operations/-/react-css-property-operations-15.4.1.tgz#4c0e305df4cc35f0f5fd2d65a79214c8b012db35"
-  integrity sha1-TA4wXfTMNfD1/S1lp5IUyLAS2zU=
 
 react-deep-force-update@^1.0.0:
   version "1.1.1"
@@ -18695,7 +18685,7 @@ react-motion@^0.5.2:
     prop-types "^15.5.8"
     raf "^3.1.0"
 
-react-native-web@0.9.3, react-native-web@^0.3.2:
+react-native-web@0.9.3, react-native-web@^0.8.3:
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.9.3.tgz#7d504a4d331e6965061496a5954dfefe1cdc1239"
   integrity sha512-2CqfN0hTbjxqJOV/RUdX/WGxp6FyDHZI/fIrBhxNrJ1UFk95Q086Zr9MLjcXLS3/dqTFnIB1SDV6VdkMrLhE5g==
@@ -18768,22 +18758,21 @@ react-native@^0.57.0:
     xmldoc "^0.4.0"
     yargs "^9.0.0"
 
-react-primitives@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/react-primitives/-/react-primitives-0.5.1.tgz#caa466afd029e7d024f48b5be7c5717fe94fc703"
-  integrity sha512-UM6pwJBRCpZgKFV3gjuipPHqglFVP5eh4K0VzCHa2JzjmDKI1n+rl2FRs9llx/xt9bKIRQK8deZ0rIO8ysabGA==
+react-primitives@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-primitives/-/react-primitives-0.6.1.tgz#7ea4082a7831cbaf928a12058f7950d228dbcdec"
+  integrity sha512-8v1fTTHq9D3Nn3gIDcb/e/aXmEed5FReV8jknyYqeFuVhYhXPKyhdE3Tt6Gl2tSDnC6MFi2KMPxYSbQUtCELdQ==
   dependencies:
-    animated "^0.1.5"
+    animated "^0.2.2"
     asap "^2.0.5"
     create-react-class "^15.6.2"
-    deline "^1.0.4"
     flexibility "^2.0.1"
     inline-style-prefixer "^4.0.2"
     invariant "^2.2.1"
     normalize-css-color "^1.0.1"
     prop-types "^15.5.10"
-    react-css-property-operations "^15.4.1"
-    react-native-web "^0.3.2"
+    react-art "^16.4.0"
+    react-native-web "^0.8.3"
     react-timer-mixin "^0.13.3"
     string-hash "^1.1.3"
 
