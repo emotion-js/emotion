@@ -32,6 +32,8 @@
   },
   "homepage": "https://emotion.sh",
   "devDependencies": {
+    "@emotion/core": "^10.0.0-beta.5",
+    "@emotion/styled": "^10.0.0-beta.5",
     "@types/react": "16.3.18",
     "dtslint": "^0.3.0"
   },
@@ -40,8 +42,7 @@
     "hoist-non-react-statics": "^2.3.1"
   },
   "peerDependencies": {
-    "@emotion/core": ">=10.0.0-beta",
-    "react": "15.x || 16.x"
+    "@emotion/core": ">=10.0.0-beta"
   },
   "umd:main": "./dist/emotion.umd.min.js",
   "publishConfig": {
