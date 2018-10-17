@@ -2,6 +2,13 @@
 // TypeScript Version: 2.8
 import { Interpolation, SerializedStyles } from '@emotion/serialize'
 
+export {
+  ArrayInterpolation,
+  ComponentSelector,
+  FunctionInterpolation,
+  ObjectInterpolation
+} from '@emotion/serialize'
+
 export { Interpolation, SerializedStyles }
 
 export default function css(

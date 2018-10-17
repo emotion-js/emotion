@@ -7,10 +7,14 @@ import {
 } from '@emotion/styled-base'
 
 export {
+  ArrayInterpolation,
+  ComponentSelector,
   CreateStyledComponentBase,
   CreateStyledComponentExtrinsic,
   CreateStyledComponentIntrinsic,
+  FunctionInterpolation,
   Interpolation,
+  ObjectInterpolation,
   StyledComponent,
   StyledOptions,
   WithTheme

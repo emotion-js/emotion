@@ -17,7 +17,13 @@ import * as React from 'react'
 
 import { Omit, Overwrapped, PropsOf } from './helper'
 
-export { Interpolation }
+export {
+  ArrayInterpolation,
+  FunctionInterpolation,
+  ObjectInterpolation
+} from '@emotion/serialize'
+
+export { ComponentSelector, Interpolation }
 
 type JSXInEl = JSX.IntrinsicElements
 

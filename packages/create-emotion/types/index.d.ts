@@ -4,7 +4,6 @@
 import { EmotionCache, Options } from '@emotion/cache'
 import { Interpolation } from '@emotion/serialize'
 import { StyleSheet } from '@emotion/sheet'
-import { RegisteredCache, getRegisteredStyles } from '@emotion/utils'
 
 export {
   ArrayInterpolation,
@@ -13,7 +12,7 @@ export {
   ObjectInterpolation
 } from '@emotion/serialize'
 
-export { EmotionCache, Interpolation, Options, RegisteredCache, StyleSheet }
+export { EmotionCache, Interpolation, Options, StyleSheet }
 
 export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
 export type ClassNamesArg =
