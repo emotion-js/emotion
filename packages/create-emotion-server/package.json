@@ -1,6 +1,6 @@
 {
   "name": "create-emotion-server",
-  "version": "10.0.0-beta.4",
+  "version": "10.0.0-beta.5",
   "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",
@@ -20,8 +20,8 @@
   "devDependencies": {
     "@types/node": "^10.11.4",
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.0-beta.4",
-    "react-emotion": "^10.0.0-beta.4"
+    "emotion": "^10.0.0-beta.5",
+    "react-emotion": "^10.0.0-beta.5"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
