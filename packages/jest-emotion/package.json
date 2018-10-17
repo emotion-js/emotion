@@ -1,6 +1,6 @@
 {
   "name": "jest-emotion",
-  "version": "10.0.0-beta.3",
+  "version": "10.0.0-beta.4",
   "description": "Jest utilities for emotion",
   "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",
