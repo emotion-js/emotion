@@ -110,23 +110,26 @@ export function getStylesFromClassNames(
       keyframes[name] += rule
     }
   })
-
-  let keyframesNamePattern = new RegExp(Object.keys(keyframes).join('|'), 'g')
-  let keyframesNameCache = {}
-  let index = 0
+  let keyframeNameKeys = Object.keys(keyframes)
   let keyframesStyles = ''
 
-  styles = styles.replace(keyframesNamePattern, name => {
-    if (keyframesNameCache[name] === undefined) {
-      keyframesNameCache[name] = `animation-${index++}`
-      keyframesStyles += keyframes[name]
-    }
-    return keyframesNameCache[name]
-  })
+  if (keyframeNameKeys.length) {
+    let keyframesNamePattern = new RegExp(keyframeNameKeys.join('|'), 'g')
+    let keyframesNameCache = {}
+    let index = 0
 
-  keyframesStyles = keyframesStyles.replace(keyframesNamePattern, value => {
-    return keyframesNameCache[value]
-  })
+    styles = styles.replace(keyframesNamePattern, name => {
+      if (keyframesNameCache[name] === undefined) {
+        keyframesNameCache[name] = `animation-${index++}`
+        keyframesStyles += keyframes[name]
+      }
+      return keyframesNameCache[name]
+    })
+
+    keyframesStyles = keyframesStyles.replace(keyframesNamePattern, value => {
+      return keyframesNameCache[value]
+    })
+  }
 
   return keyframesStyles + styles
 }
