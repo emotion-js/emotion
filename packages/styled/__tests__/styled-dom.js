@@ -46,7 +46,7 @@ test('innerRef', () => {
     expect(console.error.mock.calls).toMatchInlineSnapshot(`
 Array [
   Array [
-    "\`innerRef\` is deprecated and will be removed in the next major version of Emotion, please use the \`ref\` prop instead",
+    "\`innerRef\` is deprecated and will be removed in a future major version of Emotion, please use the \`ref\` prop instead",
   ],
 ]
 `)
@@ -71,7 +71,7 @@ test('innerRef and ref', () => {
     expect(console.error.mock.calls).toMatchInlineSnapshot(`
 Array [
   Array [
-    "\`innerRef\` is deprecated and will be removed in the next major version of Emotion, please use the \`ref\` prop instead",
+    "\`innerRef\` is deprecated and will be removed in a future major version of Emotion, please use the \`ref\` prop instead",
   ],
 ]
 `)
@@ -99,7 +99,7 @@ test('innerRef warning with label', () => {
     expect(console.error.mock.calls).toMatchInlineSnapshot(`
 Array [
   Array [
-    "\`innerRef\` is deprecated and will be removed in the next major version of Emotion, please use the \`ref\` prop instead in the usage of \`H1\`",
+    "\`innerRef\` is deprecated and will be removed in a future major version of Emotion, please use the \`ref\` prop instead in the usage of \`H1\`",
   ],
 ]
 `)
