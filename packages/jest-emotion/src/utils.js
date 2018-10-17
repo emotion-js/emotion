@@ -71,7 +71,7 @@ export function getClassNamesFromNodes(nodes: Array<any>) {
   }, [])
 }
 
-let keyframesPattern = /^@(?:-webkit-)?keyframes\s+(animation-[^{\s]+)+/
+let keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
 
 export function getStylesFromClassNames(
   classNames: Array<string>,
