@@ -18,6 +18,7 @@ It's still possible to use emotion 10 with the SSR api's in previous versions of
 ```jsx
 import createEmotionServer from 'create-emotion-server'
 import createCache from '@emotion/cache'
+import { CacheProvider } from '@emotion/core'
 import { renderToString } from 'react-dom/server'
 
 let cache = createCache()
@@ -25,9 +26,9 @@ let cache = createCache()
 let { renderStylesToString } = createEmotionServer(cache)
 
 let element = (
-  <Provider value={cache}>
+  <CacheProvider value={cache}>
     <App />
-  </Provider>
+  </CacheProvider>
 )
 
 let html = renderStylesToString(renderToString(element))

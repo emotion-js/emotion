@@ -98,6 +98,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [thedisconnect.co](https://thedisconnect.co/one)
 - [zefenify.com](https://zefenify.com/about.html)
 - [sentry.io](https://sentry.io)
+- [comparett.com](https://comparett.com)
 
 ## Contributors
 

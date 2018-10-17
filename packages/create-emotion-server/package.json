@@ -13,15 +13,14 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
+    "@emotion/utils": "^0.9.0",
     "html-tokenize": "^2.0.0",
     "multipipe": "^1.0.2",
     "through": "^2.3.8"
   },
   "devDependencies": {
     "@types/node": "^10.11.4",
-    "dtslint": "^0.3.0",
-    "emotion": "^10.0.0-beta.5",
-    "react-emotion": "^10.0.0-beta.5"
+    "dtslint": "^0.3.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

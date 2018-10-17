@@ -18,9 +18,6 @@
     "@emotion/styled-base": "^10.0.0-beta.5",
     "babel-plugin-emotion": "^10.0.0-beta.5"
   },
-  "peerDependencies": {
-    "react": "15.x || 16.x"
-  },
   "devDependencies": {
     "@types/react": "16.3.18",
     "dtslint": "^0.3.0",
