@@ -120,6 +120,7 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
         serializedStyles += next.styles
         next = next.next
       }
+
       let rules = this.props.cache.stylis(``, serializedStyles).join('')
 
       return (
