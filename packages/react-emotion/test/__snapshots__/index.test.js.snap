@@ -373,6 +373,10 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
   color: green;
 }
 
+.emotion-2 {
+  color: green;
+}
+
 <article>
   <h1
     className="emotion-0 emotion-1"
@@ -380,7 +384,7 @@ exports[`styled withComponent will replace tags but keep styling classes 1`] = `
     My Title
   </h1>
   <h2
-    className="emotion-0 emotion-3"
+    className="emotion-2 emotion-3"
   >
     My Subtitle
   </h2>
