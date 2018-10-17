@@ -2,7 +2,7 @@
 title: 'Install'
 ---
 
-Emotion can be used in many different ways. If you're not using React, the easiest way to get started is to use the [`@emotion/core` package](/packages/@emotion/core). If you're not using React, you will need [the `emotion` package](#vanilla).
+Emotion can be used in many different ways. If you're using React, the easiest way to get started is to use the [`@emotion/core` package](/packages/@emotion/core). If you're not using React, you will need [the `emotion` package](#vanilla).
 
 ```bash
 yarn add @emotion/core

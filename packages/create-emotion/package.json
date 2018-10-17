@@ -1,6 +1,6 @@
 {
   "name": "create-emotion",
-  "version": "10.0.0-beta.1",
+  "version": "10.0.0-beta.5",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -14,8 +14,8 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/cache": "^10.0.0-beta.1",
-    "@emotion/css": "^10.0.0-beta.1",
+    "@emotion/cache": "^10.0.0-beta.5",
+    "@emotion/css": "^10.0.0-beta.5",
     "@emotion/hash": "^0.7.0",
     "@emotion/memoize": "^0.7.0",
     "@emotion/serialize": "^0.10.0",
