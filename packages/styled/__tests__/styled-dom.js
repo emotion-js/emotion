@@ -77,3 +77,31 @@ Array [
 `)
   })
 })
+
+test('innerRef warning with label', () => {
+  ignoreConsoleErrors(() => {
+    const H1 = styled('h1', { label: 'H1' })`
+      font-size: 12px;
+    `
+    let node
+
+    render(
+      <H1
+        innerRef={val => {
+          node = val
+        }}
+        id="thing"
+      >
+        hello world
+      </H1>
+    )
+    expect(node).toBe(document.getElementById('thing'))
+    expect(console.error.mock.calls).toMatchInlineSnapshot(`
+Array [
+  Array [
+    "\`innerRef\` is deprecated and will be removed in the next major version of Emotion, please use the \`ref\` prop instead in the usage of \`H1\`",
+  ],
+]
+`)
+  })
+})
