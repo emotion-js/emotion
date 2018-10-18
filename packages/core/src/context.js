@@ -25,21 +25,8 @@ let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
       </EmotionCacheContext.Consumer>
     )
   }
-  return process.env.PREACT
-    ? render
-    : // $FlowFixMe
-      React.forwardRef(render)
-}
-
-let consume = (func: EmotionCache => React.Node) => {
-  return (
-    <EmotionCacheContext.Consumer>
-      {
-        // $FlowFixMe we know it won't be null
-        func
-      }
-    </EmotionCacheContext.Consumer>
-  )
+  // $FlowFixMe
+  return React.forwardRef(render)
 }
 
 if (!isBrowser) {
@@ -51,10 +38,7 @@ if (!isBrowser) {
     render() {
       return (
         <EmotionCacheContext.Provider {...this.state}>
-          {process.env.PREACT
-            ? // $FlowFixMe
-              this.props.children[0](this.state.value)
-            : this.props.children(this.state.value)}
+          {this.props.children(this.state.value)}
         </EmotionCacheContext.Provider>
       )
     }
@@ -81,25 +65,6 @@ if (!isBrowser) {
       </EmotionCacheContext.Consumer>
     )
   }
-  consume = (func: EmotionCache => React.Node) => {
-    return (
-      <EmotionCacheContext.Consumer>
-        {context => {
-          if (context === null) {
-            return (
-              <BasicProvider>
-                {newContext => {
-                  return func(newContext)
-                }}
-              </BasicProvider>
-            )
-          } else {
-            return func(context)
-          }
-        }}
-      </EmotionCacheContext.Consumer>
-    )
-  }
 }
 
-export { consume, withEmotionCache }
+export { withEmotionCache }

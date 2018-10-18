@@ -2,7 +2,7 @@
   "name": "emotion-site",
   "private": true,
   "description": "emotion site",
-  "version": "9.2.5",
+  "version": "9.2.7",
   "dependencies": {
     "babel-plugin-jsx-pragmatic": "^1.0.2",
     "babel-standalone": "^6.26.0",
@@ -33,6 +33,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-error-overlay": "^3.0.0",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
     "react-live": "^1.7.1",
@@ -44,8 +45,7 @@
     "unist-util-visit": "^1.2.0",
     "webpack-bundle-analyzer": "2.13.1",
     "worker-loader": "2.0.0",
-    "workerize-loader": "^1.0.3",
-    "react-error-overlay": "^3.0.0"
+    "workerize-loader": "^1.0.3"
   },
   "keywords": [
     "gatsby"

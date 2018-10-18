@@ -1,5 +1,5 @@
 ---
-title: "Composition"
+title: 'Composition'
 ---
 
 Composition is one of the most powerful and useful patterns in Emotion. You can compose styles together by interpolating value returned from `css` in another style block.

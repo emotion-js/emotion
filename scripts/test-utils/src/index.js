@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env jest */
 
 export function throwIfFalsy(something: *) {
   if (something) {
@@ -10,7 +11,7 @@ export function throwIfFalsy(something: *) {
 export function ignoreConsoleErrors(cb: () => mixed) {
   let oldConsoleError = console.error
   // $FlowFixMe
-  console.error = () => {}
+  console.error = jest.fn()
   cb()
   // $FlowFixMe
   console.error = oldConsoleError

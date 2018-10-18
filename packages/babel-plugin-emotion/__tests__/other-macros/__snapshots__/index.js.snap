@@ -1,26 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`macros preact-emotion 1`] = `
-"import styled from 'preact-emotion/macro'
-
-let Thing = styled.div\`
-  color: hotpink;
-\`
-
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import _styled from \\"@emotion/preact-styled-base\\";
-
-let Thing = _styled(\\"div\\", {
-  target: \\"ep298t30\\",
-  label: \\"Thing\\"
-})({
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
-});"
-`;
-
 exports[`macros react-emotion 1`] = `
 "import styled from 'react-emotion/macro'
 
@@ -40,4 +19,4 @@ let Thing = _styled(\\"div\\", {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\"
 });"
-`;
+`

@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "emotion-monorepo",
   "version": "7.0.13",
   "scripts": {
     "build:watch": "node scripts/build/watch",
@@ -13,21 +14,23 @@
     "lint:check": "eslint .",
     "test:watch": "jest --watch",
     "size": "bundlesize",
-    "release": "npm run build && lerna publish --npm-tag=really-unsafe-please-do-not-use",
+    "release": "npm run build && lerna publish",
     "lint": "eslint . --fix",
     "benchmark": "lerna exec --scope benchmarks npm run benchmark",
     "start:site": "lerna exec --scope emotion-site npm run start:site",
     "build:site": "lerna exec --scope emotion-site npm run build:site",
-    "flow": "flow check",
+    "flow": "flow",
+    "flow:check": "flow check",
     "precommit": "lint-staged",
     "postcommit": "git update-index --again",
     "postinstall": "opencollective postinstall",
-    "publish-packages": "lerna publish --npm-tag=really-unsafe-please-do-not-use"
+    "version-packages": "lerna version --preid=beta"
   },
   "resolutions": {
-    "**/react": "16.4.2",
-    "**/react-dom": "16.4.2",
-    "**/browserslist": "^3.2.8"
+    "**/react": "16.5.2",
+    "**/react-dom": "16.5.2",
+    "**/browserslist": "^3.2.8",
+    "**/react-primitives/react-native-web": "0.9.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -58,8 +61,8 @@
     "css": "^2.2.1",
     "cssjanus": "^1.2.0",
     "cssom": "^0.3.4",
-    "enzyme": "^3.1.1",
-    "enzyme-adapter-react-16": "^1.0.4",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
     "enzyme-to-json": "^3.2.1",
     "eslint": "^4.5.0",
     "eslint-config-prettier": "^2.3.0",
@@ -73,12 +76,13 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
-    "flow-bin": "^0.76.0",
+    "flow-bin": "^0.81.0",
     "get-lerna-packages": "^0.1.0",
     "hoist-non-react-statics": "^2.3.1",
     "husky": "^0.14.3",
     "jest": "^23.6.0",
     "jest-in-case": "^1.0.2",
+    "jest-junit": "^5.1.0",
     "jest-serializer-html": "^4.0.1",
     "jest-watch-typeahead": "^0.2.0",
     "jsdom": "^11.3.0",
@@ -93,10 +97,14 @@
     "preact-render-to-json": "^3.6.6",
     "prettier": "1.14.3",
     "raf": "^3.4.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.5.2",
+    "react-art": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-native": "^0.57.0",
+    "react-primitives": "^0.6.1",
     "react-router-dom": "^4.2.2",
-    "react-test-renderer": "^16.3.2"
+    "react-test-renderer": "^16.3.2",
+    "react-testing-library": "^5.2.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://github.com/tkh44/emotion#readme",
@@ -185,6 +193,14 @@
       "**/dtslint"
     ]
   },
+  "bolt": {
+    "workspaces": [
+      "packages/*",
+      "site",
+      "scripts/*",
+      "playgrounds/*"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/tkh44/emotion/issues"
   },
@@ -211,10 +227,5 @@
   "collective": {
     "type": "opencollective",
     "url": "https://opencollective.com/emotion"
-  },
-  "dependencies": {
-    "enzyme-adapter-react-16.3": "^1.1.0",
-    "jest-junit": "^5.1.0",
-    "react-testing-library": "^5.0.0"
   }
 }

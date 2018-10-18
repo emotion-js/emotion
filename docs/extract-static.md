@@ -2,6 +2,8 @@
 title: 'Extract Static'
 ---
 
+# Static Extraction has been removed from Emotion, this page only exists to explain the decision
+
 ###### [requires babel plugin](/docs/babel.md)
 
 ## DEPRECATED

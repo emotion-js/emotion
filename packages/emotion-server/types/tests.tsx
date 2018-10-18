@@ -1,10 +1,29 @@
-import { extractCritical, renderStylesToNodeStream, renderStylesToString } from '../';
+import {
+  extractCritical,
+  renderStylesToNodeStream,
+  renderStylesToString
+} from 'emotion-server'
 
-declare const renderedString: string;
-declare const renderedNodeStream: NodeJS.ReadableStream;
+declare const renderedString: string
+declare const renderedNodeStream: NodeJS.ReadableStream
 
-const { html, css, ids } = extractCritical(renderedString);
+// $ExpectType EmotionCritical
+extractCritical(renderedString)
+// $ExpectError
+extractCritical()
+// $ExpectError
+extractCritical(renderedString, undefined as any)
 
-renderStylesToString(renderedString);
+// $ExpectType string
+renderStylesToString(renderedString)
+// $ExpectError
+renderStylesToString()
+// $ExpectError
+renderStylesToString(renderedString, undefined as any)
 
-renderedNodeStream.pipe(renderStylesToNodeStream());
+// $ExpectType ReadWriteStream
+renderStylesToNodeStream()
+// $ExpectError
+renderStylesToNodeStream(undefined as any)
+
+renderedNodeStream.pipe(renderStylesToNodeStream())

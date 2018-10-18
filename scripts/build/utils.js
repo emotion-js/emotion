@@ -50,16 +50,12 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
         name: pkgJSON.name,
         input: path.resolve(fullPackagePath, 'src', 'index.js')
       }
-      let isPreact =
-        ret.name.startsWith('@emotion/preact-') ||
-        ret.name.startsWith('preact-')
 
       if (ret.pkg.main && !ret.pkg.main.includes('src')) {
         ret.configs.push({
           config: makeRollupConfig(ret, {
             isBrowser: false,
             isUMD: false,
-            isPreact,
             isProd: false,
             shouldMinifyButStillBePretty: false
           }),
@@ -70,7 +66,6 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
           config: makeRollupConfig(ret, {
             isBrowser: false,
             isUMD: false,
-            isPreact,
             isProd: true,
             shouldMinifyButStillBePretty: true
           }),
@@ -88,7 +83,6 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
           config: makeRollupConfig(ret, {
             isBrowser: true,
             isUMD: true,
-            isPreact,
             isProd: false,
             shouldMinifyButStillBePretty: false
           }),
@@ -100,7 +94,6 @@ exports.getPackages = async function getPackages() /*: Promise<Array<Package>> *
           config: makeRollupConfig(ret, {
             isBrowser: true,
             isUMD: false,
-            isPreact,
             isProd: false,
             shouldMinifyButStillBePretty: false
           }),

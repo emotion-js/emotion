@@ -1,6 +1,6 @@
 {
   "name": "@emotion/utils",
-  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "version": "0.9.0",
   "description": "internal utils for emotion",
   "main": "dist/utils.cjs.js",
   "module": "dist/utils.esm.js",
@@ -13,7 +13,7 @@
   "scripts": {
     "test:typescript": "dtslint types"
   },
-  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/serialize",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/serialize",
   "publishConfig": {
     "access": "public"
   },

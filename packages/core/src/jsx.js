@@ -1,45 +1,44 @@
 // @flow
 import * as React from 'react'
-import { consume, ThemeContext } from './context'
+import { withEmotionCache, ThemeContext } from './context'
 import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
-let render = (context, props, type, args, theme: null | Object) => {
+let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
+
+let hasOwnProperty = Object.prototype.hasOwnProperty
+
+let render = (cache, props, theme: null | Object, ref) => {
+  let type = props[typePropName]
   let registeredStyles = []
 
   let className = ''
   if (props.className !== undefined) {
     className = getRegisteredStyles(
-      context.registered,
+      cache.registered,
       registeredStyles,
       props.className
     )
   }
   registeredStyles.push(theme === null ? props.css : props.css(theme))
-  const serialized = serializeStyles(context.registered, registeredStyles)
-  const rules = insertStyles(context, serialized, typeof type === 'string')
-  className += `${context.key}-${serialized.name}`
+  const serialized = serializeStyles(cache.registered, registeredStyles)
+  const rules = insertStyles(cache, serialized, typeof type === 'string')
+  className += `${cache.key}-${serialized.name}`
 
   const newProps = {}
   for (let key in props) {
-    if (Object.prototype.hasOwnProperty.call(props, key) && key !== 'css') {
+    if (
+      hasOwnProperty.call(props, key) &&
+      key !== 'css' &&
+      key !== typePropName
+    ) {
       newProps[key] = props[key]
     }
   }
+  newProps.ref = ref
   newProps.className = className
 
-  let argsLength = args.length
-
-  let createElementArgArray = new Array(argsLength)
-  createElementArgArray[0] = type
-  createElementArgArray[1] = newProps
-
-  for (let i = 2; i < argsLength; i++) {
-    createElementArgArray[i] = args[i]
-  }
-
-  // $FlowFixMe
-  const ele = React.createElement.apply(undefined, createElementArgArray)
+  const ele = React.createElement(type, newProps)
   if (!isBrowser && rules !== undefined) {
     let serializedNames = serialized.name
     let next = serialized.next
@@ -51,9 +50,9 @@ let render = (context, props, type, args, theme: null | Object) => {
       <React.Fragment>
         <style
           {...{
-            [`data-emotion-${context.key}`]: serializedNames,
+            [`data-emotion-${cache.key}`]: serializedNames,
             dangerouslySetInnerHTML: { __html: rules },
-            nonce: context.sheet.nonce
+            nonce: cache.sheet.nonce
           }}
         />
         {ele}
@@ -62,6 +61,18 @@ let render = (context, props, type, args, theme: null | Object) => {
   }
   return ele
 }
+
+let Emotion = withEmotionCache((props, cache, ref) => {
+  // use Context.read for the theme when it's stable
+  if (typeof props.css === 'function') {
+    return (
+      <ThemeContext.Consumer>
+        {theme => render(cache, props, theme, ref)}
+      </ThemeContext.Consumer>
+    )
+  }
+  return render(cache, props, null, ref)
+})
 
 // $FlowFixMe
 export const jsx: typeof React.createElement = function(
@@ -92,15 +103,26 @@ export const jsx: typeof React.createElement = function(
       }\``
     )
   }
-  return consume(context => {
-    // use Context.read for the theme when it's stable
-    if (typeof props.css === 'function') {
-      return (
-        <ThemeContext.Consumer>
-          {theme => render(context, props, type, args, theme)}
-        </ThemeContext.Consumer>
-      )
+
+  let argsLength = args.length
+
+  let createElementArgArray = new Array(argsLength)
+
+  createElementArgArray[0] = Emotion
+  let newProps = {}
+
+  for (let key in props) {
+    if (hasOwnProperty.call(props, key)) {
+      newProps[key] = props[key]
     }
-    return render(context, props, type, args, null)
-  })
+  }
+  newProps[typePropName] = type
+
+  createElementArgArray[1] = newProps
+
+  for (let i = 2; i < argsLength; i++) {
+    createElementArgArray[i] = args[i]
+  }
+  // $FlowFixMe
+  return React.createElement.apply(null, createElementArgArray)
 }

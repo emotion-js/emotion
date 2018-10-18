@@ -1,6 +1,6 @@
 {
   "name": "create-emotion-server",
-  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "version": "10.0.0-beta.5",
   "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",
@@ -13,15 +13,14 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
+    "@emotion/utils": "^0.9.0",
     "html-tokenize": "^2.0.0",
     "multipipe": "^1.0.2",
     "through": "^2.3.8"
   },
   "devDependencies": {
     "@types/node": "^10.11.4",
-    "dtslint": "^0.3.0",
-    "emotion": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "react-emotion": "^10.0.0-really-unsafe-please-do-not-use.2"
+    "dtslint": "^0.3.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

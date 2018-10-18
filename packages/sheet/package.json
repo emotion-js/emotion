@@ -1,6 +1,6 @@
 {
   "name": "@emotion/sheet",
-  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "version": "0.9.0",
   "description": "emotion's stylesheet",
   "main": "dist/sheet.cjs.js",
   "module": "dist/sheet.esm.js",
@@ -13,7 +13,7 @@
   "scripts": {
     "test:typescript": "dtslint types"
   },
-  "repository": "https://github.com/emotion-js/emotion/tree/master/next-packages/sheet",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/sheet",
   "publishConfig": {
     "access": "public"
   },

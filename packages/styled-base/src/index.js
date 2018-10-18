@@ -60,35 +60,17 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         ? tag.__emotion_styles.slice(0)
         : []
 
-    // idk if this is worth it.
-    // it's only for when autoLabel is on and styles are completely static
-    // and it's only a performance optimisation
-    // just committing this in case we want it later
-    if (
-      identifierName !== undefined &&
-      args.length === 1 &&
-      styles.length === 0 &&
-      args[0].styles !== undefined
-    ) {
-      styles.push({
-        name: args[0].name,
-        label: identifierName,
-        styles: args[0].styles,
-        map: args[0].map
-      })
+    if (identifierName !== undefined) {
+      styles.push(`label:${identifierName};`)
+    }
+    if (args[0] == null || args[0].raw === undefined) {
+      styles.push.apply(styles, args)
     } else {
-      if (identifierName !== undefined) {
-        styles.push(`label:${identifierName};`)
-      }
-      if (args[0] == null || args[0].raw === undefined) {
-        styles.push.apply(styles, args)
-      } else {
-        styles.push(args[0][0])
-        let len = args.length
-        let i = 1
-        for (; i < len; i++) {
-          styles.push(args[i], args[0][i])
-        }
+      styles.push(args[0][0])
+      let len = args.length
+      let i = 1
+      for (; i < len; i++) {
+        styles.push(args[i], args[0][i])
       }
     }
 
@@ -140,17 +122,15 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             }
 
             newProps.className = className
-            if (process.env.PREACT) {
-              if (props.innerRef != null) {
-                newProps.ref = props.innerRef
-              }
-            } else {
-              newProps.ref = ref
-              if (process.env.NODE_ENV !== 'production' && props.innerRef) {
-                console.error(
-                  '`innerRef` is no longer allowed, please use the `ref` prop instead'
-                )
-              }
+
+            newProps.ref = ref || props.innerRef
+            if (process.env.NODE_ENV !== 'production' && props.innerRef) {
+              console.error(
+                '`innerRef` is deprecated and will be removed in a future major version of Emotion, please use the `ref` prop instead' +
+                  (identifierName === undefined
+                    ? ''
+                    : ` in the usage of \`${identifierName}\``)
+              )
             }
 
             const ele = React.createElement(baseTag, newProps)

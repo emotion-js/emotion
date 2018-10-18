@@ -71,6 +71,8 @@ export function getClassNamesFromNodes(nodes: Array<any>) {
   }, [])
 }
 
+let keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
+
 export function getStylesFromClassNames(
   classNames: Array<string>,
   elements: Array<HTMLStyleElement>
@@ -91,16 +93,45 @@ export function getStylesFromClassNames(
     return ''
   }
   let selectorPattern = new RegExp('\\.(' + filteredClassNames.join('|') + ')')
-
+  let keyframes = {}
   let styles = ''
+
   elements.forEach(element => {
     let rule = element.textContent || ''
     if (selectorPattern.test(rule)) {
       styles += rule
     }
+    let match = rule.match(keyframesPattern)
+    if (match !== null) {
+      let name = match[1]
+      if (keyframes[name] === undefined) {
+        keyframes[name] = ''
+      }
+      keyframes[name] += rule
+    }
   })
+  let keyframeNameKeys = Object.keys(keyframes)
+  let keyframesStyles = ''
 
-  return styles
+  if (keyframeNameKeys.length) {
+    let keyframesNamePattern = new RegExp(keyframeNameKeys.join('|'), 'g')
+    let keyframesNameCache = {}
+    let index = 0
+
+    styles = styles.replace(keyframesNamePattern, name => {
+      if (keyframesNameCache[name] === undefined) {
+        keyframesNameCache[name] = `animation-${index++}`
+        keyframesStyles += keyframes[name]
+      }
+      return keyframesNameCache[name]
+    })
+
+    keyframesStyles = keyframesStyles.replace(keyframesNamePattern, value => {
+      return keyframesNameCache[value]
+    })
+  }
+
+  return keyframesStyles + styles
 }
 
 export function getStyleElements(): Array<HTMLStyleElement> {

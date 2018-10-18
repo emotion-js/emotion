@@ -2,7 +2,7 @@
 // TypeScript Version: 2.8
 
 import { EmotionCache } from '@emotion/cache'
-import css, { Interpolation } from '@emotion/css'
+import css, { Interpolation, SerializedStyles } from '@emotion/css'
 import { Keyframes } from '@emotion/serialize'
 import {
   ClassAttributes,
@@ -16,7 +16,14 @@ import {
   createElement
 } from 'react'
 
-export { Interpolation, css }
+export {
+  ArrayInterpolation,
+  ComponentSelector,
+  FunctionInterpolation,
+  ObjectInterpolation
+} from '@emotion/css'
+
+export { EmotionCache, Interpolation, SerializedStyles, css }
 
 export const ThemeContext: Context<object>
 export const CacheProvider: Provider<EmotionCache>
