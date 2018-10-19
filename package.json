@@ -7,7 +7,7 @@
     "build": "node scripts/build",
     "test:size": "npm-run-all build size",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
-    "test": "npm-run-all -p lint:check coverage test:size test:typescript flow && npm run test:prod",
+    "test": "jest",
     "test:typescript": "lerna run test:typescript --parallel",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
     "test:prod": "npm run build && jest -c jest.dist.js --no-cache --ci --runInBand",
