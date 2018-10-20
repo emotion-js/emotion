@@ -1,0 +1,15 @@
+{
+  "name": "ssr-benchmarks",
+  "version": "0.8.11",
+  "scripts": {
+    "build": "parcel build bench.js --target=node",
+    "start": "NODE_ENV=production node dist/bench.js"
+  },
+  "dependencies": {
+    "parcel": "^1.10.3",
+    "benchmark": "^2.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2"
+  }
+}
