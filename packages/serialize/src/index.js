@@ -61,6 +61,12 @@ if (process.env.NODE_ENV !== 'production') {
     'unset'
   ]
   let oldProcessStyleValue = processStyleValue
+
+  let msPattern = /^-ms-/
+  let hyphenPattern = /-(.)/g
+
+  let hyphenatedCache = {}
+
   processStyleValue = (key: string, value: string) => {
     if (key === 'content') {
       if (
@@ -75,6 +81,20 @@ if (process.env.NODE_ENV !== 'production') {
         )
       }
     }
+
+    if (
+      key.charCodeAt(1) !== 45 &&
+      key.indexOf('-') !== -1 &&
+      hyphenatedCache[key] === undefined
+    ) {
+      hyphenatedCache[key] = true
+      console.error(
+        `Using kebab-case for css properties in objects is not supported. Did you mean ${key
+          .replace(msPattern, 'ms-')
+          .replace(hyphenPattern, (str, char) => char.toUpperCase())}?`
+      )
+    }
+
     return oldProcessStyleValue(key, value)
   }
 }
