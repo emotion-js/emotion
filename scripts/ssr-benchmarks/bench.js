@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react'
 import styled from '@emotion/styled'
 import { renderToString } from 'react-dom/server'
@@ -8,6 +9,7 @@ import { css as cssClassName } from 'emotion'
 import { renderStylesToString } from 'emotion-server'
 import createEmotionServer from 'create-emotion-server'
 import createCache from '@emotion/cache'
+import { insertStyles } from '@emotion/utils'
 
 let Triangle = createTriangle(styled.div`
   position: absolute;
@@ -69,6 +71,64 @@ let CssFuncTriangle = createTriangle(({ x, y, size, color, ...props }) => {
     ...props
   })
 })
+// $FlowFixMe
+let CacheContext = CacheProvider._context
+
+let hasOwnProperty = Object.prototype.hasOwnProperty
+
+let ExperimentTriangle = createTriangle(({ x, y, size, color, ...props }) => {
+  let cache = CacheContext._currentValue
+
+  let className = ''
+  const serialized = css`
+    position: absolute;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-top-width: 0;
+    transform: translate(50%, 50%);
+    margin-left: ${x + 'px'};
+    margin-top: ${y + 'px'};
+    border-right-width: ${size / 2 + 'px'};
+    border-bottom-width: ${size / 2 + 'px'};
+    border-left-width: ${size / 2 + 'px'};
+    border-bottom-color: ${color};
+  `
+  const rules = insertStyles(cache, serialized, true)
+  className += `${cache.key}-${serialized.name}`
+
+  const newProps = {}
+  for (let key in props) {
+    if (hasOwnProperty.call(props, key)) {
+      newProps[key] = props[key]
+    }
+  }
+
+  newProps.className = className
+
+  const ele = React.createElement('div', newProps)
+  let serializedNames = serialized.name
+  let next = serialized.next
+  while (next !== undefined) {
+    serializedNames += ' ' + next.name
+    next = next.next
+  }
+  return (
+    <React.Fragment>
+      <style
+        {...{
+          [`data-emotion-${cache.key}`]: serializedNames,
+          dangerouslySetInnerHTML: { __html: rules },
+          nonce: cache.sheet.nonce,
+          key: 1
+        }}
+      />
+      {ele}
+    </React.Fragment>
+  )
+})
 
 const suite = new Benchmark.Suite('ssr', {
   onError: event => {
@@ -99,6 +159,14 @@ suite
   .add('css func', () => {
     renderStylesToString(
       renderToString(<CssFuncTriangle s={100} x={0} y={0} />)
+    )
+  })
+  .add('experiment', () => {
+    let cache = createCache()
+    renderToString(
+      <CacheProvider value={cache}>
+        <ExperimentTriangle s={100} x={0} y={0} />
+      </CacheProvider>
     )
   })
   .on('cycle', event => {

@@ -3,7 +3,8 @@
   "version": "0.8.11",
   "scripts": {
     "build": "parcel build bench.js --target=node",
-    "start": "NODE_ENV=production node dist/bench.js"
+    "start": "NODE_ENV=production node dist/bench.js",
+    "benchmark": "yarn build && yarn start"
   },
   "dependencies": {
     "parcel": "^1.10.3",
