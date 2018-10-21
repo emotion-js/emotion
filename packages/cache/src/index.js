@@ -111,7 +111,7 @@ let createCache = (options?: Options): EmotionCache => {
       // $FlowFixMe
       serverStylisCache = getServerStylisCache(options.stylisPlugins)
     }
-    let getRules = (selector: string, serialized: SerializedStyles) => {
+    let getRules = (selector: string, serialized: SerializedStyles): string => {
       let name = serialized.name
       if (serverStylisCache[name] === undefined) {
         serverStylisCache[name] = stylis(selector, serialized.styles)
@@ -137,8 +137,11 @@ let createCache = (options?: Options): EmotionCache => {
       } else {
         // in compat mode, we put the styles on the inserted cache so
         // that emotion-server can pull out the styles
+        // except when we don't want to cache it(just the Global component right now)
         if (shouldCache) {
           cache.inserted[name] = rules
+        } else {
+          return rules
         }
       }
     }
