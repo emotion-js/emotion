@@ -1,5 +1,8 @@
 // @flow
+/*::
 import { StyleSheet } from '@emotion/sheet'
+
+*/
 
 export type RegisteredCache = { [string]: string }
 
