@@ -13,9 +13,6 @@
   "scripts": {
     "test:typescript": "dtslint types"
   },
-  "dependencies": {
-    "@emotion/weak-memoize": "^0.2.0"
-  },
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/serialize",
   "publishConfig": {
     "access": "public"
