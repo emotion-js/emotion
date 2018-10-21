@@ -1,15 +1,14 @@
-// @flow
-import * as React from 'react'
-import styled from '@emotion/styled'
-import { renderToString } from 'react-dom/server'
-import Benchmark from 'benchmark'
-import { jsx, css, CacheProvider } from '@emotion/core'
-import { createTriangle } from './triangle'
-import { css as cssClassName } from 'emotion'
-import { renderStylesToString } from 'emotion-server'
-import createEmotionServer from 'create-emotion-server'
-import createCache from '@emotion/cache'
-import { insertStyles } from '@emotion/utils'
+let React = require('react')
+let styled = require('@emotion/styled').default
+let { renderToString } = require('react-dom/server')
+let Benchmark = require('benchmark')
+let { jsx, css, CacheProvider } = require('@emotion/core')
+let { createTriangle } = require('./triangle')
+let { css: cssClassName } = require('emotion')
+let { renderStylesToString } = require('emotion-server')
+let createEmotionServer = require('create-emotion-server').default
+let createCache = require('@emotion/cache').default
+let { insertStyles } = require('@emotion/utils')
 
 let Triangle = createTriangle(styled.div`
   position: absolute;
@@ -115,18 +114,16 @@ let ExperimentTriangle = createTriangle(({ x, y, size, color, ...props }) => {
     serializedNames += ' ' + next.name
     next = next.next
   }
-  return (
-    <React.Fragment>
-      <style
-        {...{
-          [`data-emotion-${cache.key}`]: serializedNames,
-          dangerouslySetInnerHTML: { __html: rules },
-          nonce: cache.sheet.nonce,
-          key: 1
-        }}
-      />
-      {ele}
-    </React.Fragment>
+  return React.createElement(
+    React.Fragment,
+    null,
+    React.createElement('style', {
+      [`data-emotion-${cache.key}`]: serializedNames,
+      dangerouslySetInnerHTML: { __html: rules },
+      nonce: cache.sheet.nonce,
+      key: 1
+    }),
+    ele
   )
 })
 
@@ -141,32 +138,38 @@ const suite = new Benchmark.Suite('ssr', {
 
 suite
   .add('styled', () => {
-    renderToString(<Triangle s={100} x={0} y={0} />)
+    renderToString(React.createElement(Triangle, { s: 100, x: 0, y: 0 }))
   })
   .add('css prop', () => {
-    renderToString(<CssPropTriangle s={100} x={0} y={0} />)
+    renderToString(React.createElement(CssPropTriangle, { s: 100, x: 0, y: 0 }))
   })
   .add('css prop compat', () => {
     let cache = createCache()
     createEmotionServer(cache).renderStylesToString(
       renderToString(
-        <CacheProvider value={cache}>
-          <CssPropTriangle s={100} x={0} y={0} />
-        </CacheProvider>
+        React.createElement(
+          CacheProvider,
+          { value: cache },
+          React.createElement(CssPropTriangle, { s: 100, x: 0, y: 0 })
+        )
       )
     )
   })
   .add('css func', () => {
     renderStylesToString(
-      renderToString(<CssFuncTriangle s={100} x={0} y={0} />)
+      renderToString(
+        React.createElement(CssFuncTriangle, { s: 100, x: 0, y: 0 })
+      )
     )
   })
   .add('experiment', () => {
     let cache = createCache()
     renderToString(
-      <CacheProvider value={cache}>
-        <ExperimentTriangle s={100} x={0} y={0} />
-      </CacheProvider>
+      React.createElement(
+        CacheProvider,
+        { value: cache },
+        React.createElement(ExperimentTriangle, { s: 100, x: 0, y: 0 })
+      )
     )
   })
   .on('cycle', event => {
