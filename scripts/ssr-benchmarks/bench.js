@@ -172,6 +172,70 @@ suite
       )
     )
   })
+  .add('styled with random', () => {
+    renderToString(
+      React.createElement(Triangle, {
+        s: 100,
+        x: 0,
+        y: 0,
+        random: Math.random()
+      })
+    )
+  })
+  .add('css prop with random', () => {
+    renderToString(
+      React.createElement(CssPropTriangle, {
+        s: 100,
+        x: 0,
+        y: 0,
+        random: Math.random()
+      })
+    )
+  })
+  .add('css prop compat with random', () => {
+    let cache = createCache()
+    createEmotionServer(cache).renderStylesToString(
+      renderToString(
+        React.createElement(
+          CacheProvider,
+          { value: cache },
+          React.createElement(CssPropTriangle, {
+            s: 100,
+            x: 0,
+            y: 0,
+            random: Math.random()
+          })
+        )
+      )
+    )
+  })
+  .add('css func with random', () => {
+    renderStylesToString(
+      renderToString(
+        React.createElement(CssFuncTriangle, {
+          s: 100,
+          x: 0,
+          y: 0,
+          random: Math.random()
+        })
+      )
+    )
+  })
+  .add('experiment with random', () => {
+    let cache = createCache()
+    renderToString(
+      React.createElement(
+        CacheProvider,
+        { value: cache },
+        React.createElement(ExperimentTriangle, {
+          s: 100,
+          x: 0,
+          y: 0,
+          random: Math.random()
+        })
+      )
+    )
+  })
   .on('cycle', event => {
     console.log(String(event.target))
   })
