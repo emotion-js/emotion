@@ -7,10 +7,10 @@ test('throws correct error with invalid key', () => {
   }).toThrowErrorMatchingSnapshot()
 })
 
-test('with prefix option', () => {
-  let { stylis } = createCache({ prefix: false })
+// test('with prefix option', () => {
+//   let { stylis } = createCache({ prefix: false })
 
-  expect(stylis('.css-hash', 'display:flex;')).toEqual([
-    '.css-hash{display:flex;}'
-  ])
-})
+//   expect(stylis('.css-hash', 'display:flex;')).toEqual([
+//     '.css-hash{display:flex;}'
+//   ])
+// })

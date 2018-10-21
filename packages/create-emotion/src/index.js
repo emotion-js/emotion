@@ -3,22 +3,13 @@ import createCache from '@emotion/cache'
 import { serializeStyles } from '@emotion/serialize'
 import {
   insertStyles,
-  isBrowser,
   getRegisteredStyles,
   type EmotionCache
 } from '@emotion/utils'
 
 function insertWithoutScoping(cache, name: string, styles: string) {
   if (cache.inserted[name] === undefined) {
-    let rules = cache.stylis('', styles)
-    cache.inserted[name] = true
-
-    if (isBrowser) {
-      rules.forEach(cache.sheet.insert, cache.sheet)
-    } else {
-      let joinedRules = rules.join('')
-      cache.inserted[name] = joinedRules
-    }
+    return cache.insert('', { name: name, styles: styles }, cache.sheet, true)
   }
 }
 
