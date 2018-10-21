@@ -13,8 +13,7 @@
   "dependencies": {
     "@emotion/sheet": "^0.9.0",
     "@emotion/stylis": "^0.8.0",
-    "@emotion/utils": "^0.9.0",
-    "@emotion/weak-memoize": "^0.2.0"
+    "@emotion/utils": "^0.9.0"
   },
   "devDependencies": {
     "@emotion/hash": "^0.7.0",

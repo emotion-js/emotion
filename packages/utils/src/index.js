@@ -46,14 +46,28 @@ export const insertStyles = (
     let stylesForSSR = ''
     let current = serialized
     do {
-      let maybeStyles = cache.insert(
-        `.${className}`,
-        current,
-        cache.sheet,
-        true
-      )
-      if (!isBrowser && maybeStyles !== undefined) {
-        stylesForSSR += maybeStyles
+      let rules = cache.stylis(`.${className}`, current.styles)
+      cache.inserted[current.name] = true
+
+      if (process.env.NODE_ENV !== 'production' && current.map !== undefined) {
+        for (let i = 0; i < rules.length; i++) {
+          rules[i] += current.map
+        }
+      }
+      if (isBrowser) {
+        rules.forEach(cache.sheet.insert, cache.sheet)
+      } else {
+        let joinedRules = rules.join('')
+        if (cache.compat === undefined) {
+          // in regular mode, we don't set the styles on the inserted cache
+          // since we don't need to and that would be wasting memory
+          // we return them so that they are rendered in a style tag
+          stylesForSSR += joinedRules
+        } else {
+          // in compat mode, we put the styles on the inserted cache so
+          // that emotion-server can pull out the styles
+          cache.inserted[current.name] = joinedRules
+        }
       }
       current = current.next
     } while (current !== undefined)

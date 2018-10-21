@@ -20,7 +20,6 @@ let cases = {
     render: () => <div css={{ color: 'hotpink' }}>some hotpink text</div>
   },
   global: {
-    only: true,
     render: () => (
       <Global
         styles={{
