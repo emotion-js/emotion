@@ -27,7 +27,22 @@ export type Options = {
 
 let rootServerStylisCache = {}
 
-let getServerStylisCache = isBrowser ? undefined : weakMemoize(() => ({}))
+let getServerStylisCache = isBrowser
+  ? undefined
+  : weakMemoize(() => {
+      let getCache = weakMemoize(() => ({}))
+      let prefixTrueCache = {}
+      let prefixFalseCache = {}
+      return prefix => {
+        if (prefix === undefined || prefix === true) {
+          return prefixTrueCache
+        }
+        if (prefix === false) {
+          return prefixFalseCache
+        }
+        return getCache(prefix)
+      }
+    })
 
 let createCache = (options?: Options): EmotionCache => {
   if (options === undefined) options = {}
@@ -106,10 +121,12 @@ let createCache = (options?: Options): EmotionCache => {
   } else {
     stylis.use(removeLabel)
     let serverStylisCache = rootServerStylisCache
-    if (options.stylisPlugins) {
+    if (options.stylisPlugins || options.prefix !== undefined) {
       stylis.use(options.stylisPlugins)
       // $FlowFixMe
-      serverStylisCache = getServerStylisCache(options.stylisPlugins)
+      serverStylisCache = getServerStylisCache(
+        options.stylisPlugins || rootServerStylisCache
+      )(options.prefix)
     }
     let getRules = (selector: string, serialized: SerializedStyles): string => {
       let name = serialized.name
