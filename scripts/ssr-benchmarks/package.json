@@ -1,0 +1,10 @@
+{
+  "name": "ssr-benchmarks",
+  "version": "0.8.11",
+  "scripts": {
+    "start": "NODE_ENV=production node bench.js"
+  },
+  "dependencies": {
+    "benchmark": "^2.1.4"
+  }
+}

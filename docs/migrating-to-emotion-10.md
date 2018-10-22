@@ -117,7 +117,7 @@ This step is necessary if you still use `css`, `keyframes` or `injectGlobal` fro
 import { render } from 'react-dom'
 import App from './App'
 import { cache } from 'emotion'
-import { CacheProvider } from '@emotion/provider'
+import { CacheProvider } from '@emotion/core'
 
 render(
   <CacheProvider value={cache}>
