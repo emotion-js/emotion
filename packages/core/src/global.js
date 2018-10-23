@@ -95,14 +95,12 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
       // insert keyframes
       insertStyles(this.props.cache, this.props.serialized.next, true)
     }
-    let rules = this.props.cache.stylis(``, this.props.serialized.styles)
     if (this.sheet.tags.length) {
       // if this doesn't exist then it will be null so the style element will be appended
       this.sheet.before = this.sheet.tags[0].nextElementSibling
       this.sheet.flush()
     }
-
-    rules.forEach(this.sheet.insert, this.sheet)
+    this.props.cache.insert(``, this.props.serialized, this.sheet, false)
   }
 
   componentWillUnmount() {
@@ -121,7 +119,12 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
         next = next.next
       }
 
-      let rules = this.props.cache.stylis(``, serializedStyles).join('')
+      let rules = this.props.cache.insert(
+        ``,
+        { name: serializedNames, styles: serializedStyles },
+        this.sheet,
+        false
+      )
 
       return (
         <style
