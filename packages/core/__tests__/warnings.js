@@ -98,3 +98,19 @@ test('global with css prop', () => {
     "It looks like you're using the css prop on Global, did you mean to use the styles prop instead?"
   )
 })
+
+test('kebab-case', () => {
+  css({ 'background-color': 'green' })
+  css({ 'background-color': 'hotpink' })
+  css({ '-ms-filter': 'inherit' })
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`
+Array [
+  Array [
+    "Using kebab-case for css properties in objects is not supported. Did you mean backgroundColor?",
+  ],
+  Array [
+    "Using kebab-case for css properties in objects is not supported. Did you mean msFilter?",
+  ],
+]
+`)
+})
