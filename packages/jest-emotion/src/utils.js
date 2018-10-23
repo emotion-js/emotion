@@ -131,7 +131,7 @@ export function getStylesFromClassNames(
     })
   }
 
-  return keyframesStyles + styles
+  return (keyframesStyles + styles).replace(/\/\*[\s\S]*?\*\//, '')
 }
 
 export function getStyleElements(): Array<HTMLStyleElement> {

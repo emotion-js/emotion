@@ -18,9 +18,14 @@ const SomeComponent = props => (
 
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-var _ref = {
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1wl9j1m-SomeComponent\\",
   styles: \\"color:hotpink;label:SomeComponent;\\"
+} : {
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jc3MtaW1wb3J0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUtZIiwiZmlsZSI6ImNvcmUtd2l0aC1jc3MtaW1wb3J0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBqc3gsIGNzcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBwcm9wcyA9PiAoXG4gIDxkaXZcbiAgICBjc3M9e2Nzc2BcbiAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgIGB9XG4gICAgey4uLnByb3BzfVxuICAvPlxuKVxuIl19 */\\"
 };
 
 const SomeComponent = props => <div css={_ref} {...props} />;"

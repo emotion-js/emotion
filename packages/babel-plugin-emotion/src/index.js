@@ -164,7 +164,9 @@ export default function(babel: *) {
           state.transformCssProp = state.opts.cssPropOptimization
         }
 
-        if (state.opts.sourceMap) {
+        if (state.opts.sourceMap === false) {
+          state.emotionSourceMap = false
+        } else {
           state.emotionSourceMap = true
         }
       },
