@@ -173,3 +173,27 @@ const H1 = styled('h1', {
 
 render(<H1 color="lightgreen">This is lightgreen.</H1>)
 ```
+
+### Composing dynamic styles
+
+You can create dynamic styles that are based on props and use them in styles.
+
+```jsx
+// @live
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
+
+const dynamicStyle = props =>
+  css`
+    color: ${props.color};
+  `
+
+const Container = styled.div`
+  ${dynamicStyle};
+`
+render(
+  <Container color="lightgreen">
+    This is lightgreen.
+  </Container>
+)
+```

@@ -2,7 +2,7 @@
 title: 'Keyframes'
 ---
 
-If you need more control over an animation, you can use `keyframes` with the same JS interpolation as `css`. The `keyframes` function takes in a css keyframe definition and an object which can be interpolated in styles.
+You can define animations using the `keyframes` helper from `@emotion/core`. `keyframes` takes in a css keyframe definition and returns an object which can be interpolated in styles. You can use strings or objects just like `css`.
 
 ```jsx
 // @live

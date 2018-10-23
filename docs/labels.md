@@ -1,29 +1,32 @@
 ---
-title: "Labels"
+title: 'Labels'
 ---
 
-`css` accepts a css property called `label` that will be appended to the end of the class name so it's more readable. `babel-plugin-emotion`'s `autoLabel` option will add these labels automatically based on the variable name and other information so you don't need to manually specify them.
+Emotion adds a css property called `label` that will be appended to the end of the class name so it's more readable. `babel-plugin-emotion` will add these labels automatically based on the variable name and other information so they don't need to be manually specified.
 
 ```jsx
 // @live
-import { css } from 'emotion'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
-const className = css`
+let style = css`
   color: hotpink;
   label: some-name;
 `
 
-const anotherClassName = css({
+let anotherStyle = css({
   color: 'lightgreen',
   label: 'another-name'
 })
 
+let ShowClassName = ({ className }) => (
+  <div className={className}>{className}</div>
+)
+
 render(
   <div>
-    <div className={className}>{className}</div>
-    <div className={anotherClassName}>
-      {anotherClassName}
-    </div>
+    <ShowClassName css={style} />
+    <ShowClassName css={anotherStyle} />
   </div>
 )
 ```

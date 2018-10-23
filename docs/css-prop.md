@@ -6,6 +6,10 @@ The primary way to style things in emotion is with the css prop, to use the css 
 
 To pass string styles, you must use `css` which is exported by `@emotion/core`, it can be used as a [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) like below.
 
+> Note:
+>
+> `css` from `@emotion/core` is not like `css` from `emotion`. It returns an object that must be passed to the css prop, composed in other styles, used in `styled` or etc. It does **not** return a class name.
+
 ```jsx
 // @live
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
@@ -50,5 +54,5 @@ render(
 ```
 
 > Note:
-
+>
 > The css prop is not compatible with `babel-plugin-transform-react-inline-elements`. If you include it in your `.babelrc` your styles won't be applied.
