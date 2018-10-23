@@ -10,11 +10,15 @@ const needle = delimiter + '}'
 
 function toSheet(block) {
   if (block) {
-    current.push(block + '}')
+    Sheet.current.insert(block + '}')
   }
 }
 
-let ruleSheet: StylisPlugin = (
+export let Sheet: { current: { +insert: string => void } } = {
+  current: (null: any)
+}
+
+export let ruleSheet: StylisPlugin = (
   context,
   content,
   selectors,
@@ -27,17 +31,13 @@ let ruleSheet: StylisPlugin = (
   at
 ) => {
   switch (context) {
-    case -1: {
-      current = []
-      break
-    }
     // property
     case 1: {
       switch (content.charCodeAt(0)) {
         case 64: {
           // @import
           if (depth === 0) {
-            current.push(content + ';')
+            Sheet.current.insert(content + ';')
             return ''
           }
           break
@@ -64,7 +64,7 @@ let ruleSheet: StylisPlugin = (
         // @font-face, @page
         case 102:
         case 112: {
-          current.push(selectors[0] + content)
+          Sheet.current.insert(selectors[0] + content)
           return ''
         }
         default: {
@@ -74,11 +74,19 @@ let ruleSheet: StylisPlugin = (
     }
     case -2: {
       content.split(needle).forEach(toSheet)
-      return current
     }
   }
 }
 
-let current
-
-export default ruleSheet
+export let removeLabel: StylisPlugin = (context, content) => {
+  if (
+    context === 1 &&
+    // charcode for l
+    content.charCodeAt(0) === 108 &&
+    // charcode for b
+    content.charCodeAt(2) === 98
+    // this ignores label
+  ) {
+    return ''
+  }
+}

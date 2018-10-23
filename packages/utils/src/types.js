@@ -1,24 +1,10 @@
 // @flow
+/*::
+import { StyleSheet } from '@emotion/sheet'
+
+*/
+
 export type RegisteredCache = { [string]: string }
-
-interface StyleSheet {
-  container: HTMLElement;
-  nonce: string | void;
-  key: string;
-  insert(rule: string): void;
-  flush(): void;
-  tags: Array<HTMLStyleElement>;
-}
-
-export type EmotionCache = {
-  stylis: (string, string) => Array<string>,
-  inserted: { [string]: string | true },
-  registered: RegisteredCache,
-  sheet: StyleSheet,
-  key: string,
-  compat?: true,
-  nonce?: string
-}
 
 export type Interpolation = any
 
@@ -28,3 +14,18 @@ export type SerializedStyles = {|
   map?: string,
   next?: SerializedStyles
 |}
+
+export type EmotionCache = {
+  inserted: { [string]: string | true },
+  registered: RegisteredCache,
+  sheet: StyleSheet,
+  key: string,
+  compat?: true,
+  nonce?: string,
+  insert: (
+    selector: string,
+    serialized: SerializedStyles,
+    sheet: StyleSheet,
+    shouldCache: boolean
+  ) => string | void
+}
