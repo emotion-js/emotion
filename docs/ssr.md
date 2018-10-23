@@ -84,11 +84,11 @@ hydrate(ids)
 
 ## Next.js
 
-To use emotion's SSR with Next.js you need a custom `Document` component in `pages/_document.js` that renders the styles and inserts them into the `<head>`.[ An example of Next.js with emotion can be found in the Next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
+To use emotion's SSR with Next.js you need a custom `Document` component in `pages/_document.js` that renders the styles and inserts them into the `<head>`. [An example of Next.js with emotion can be found in the Next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
 
 > Note:
 >
-> This only applies if you're using vanilla Emotion or a version of Emotion prior to v10, for v10 and above. SSR just works in Next.js.
+> This only applies if you're using vanilla Emotion or a version of Emotion prior to v10. For v10 and above, SSR just works in Next.js.
 
 ## Gatsby
 

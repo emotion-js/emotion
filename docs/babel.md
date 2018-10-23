@@ -24,4 +24,4 @@ When enabled, navigate directly to the style declaration in your javascript file
 
 ### Components as selectors
 
-The ability to refer to another component to apply override styles depending on nesting context. Learn more in the [react-emotion docs](/docs/styled.md#targeting-another-emotion-component).
+The ability to refer to another component to apply override styles depending on nesting context. Learn more in the [styled docs](/docs/styled.md#targeting-another-emotion-component).

@@ -8,7 +8,7 @@ To pass string styles, you must use `css` which is exported by `@emotion/core`, 
 
 > Note:
 >
-> `css` from `@emotion/core` is not like `css` from `emotion`. It returns an object that must be passed to the css prop, composed in other styles, used in `styled` or etc. It does **not** return a class name.
+> `css` from `@emotion/core` is not like `css` from `emotion`. It returns an object that can be passed to the css prop, composed in other styles, used in `styled` or etc. It does **not** return a class name.
 
 ```jsx
 // @live

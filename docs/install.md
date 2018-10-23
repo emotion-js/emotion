@@ -131,7 +131,7 @@ If you are using Babel's env option emotion must also be first for each environm
 
 # Vanilla
 
-If you're not using React, you can use vanilla Emotion from the `emotion` package. Most of the documentation here focuses on the React-specific version of Emotion but most of the concepts in the React-specific verion also apply to vanilla Emotion.
+If you're not using React, you can use vanilla Emotion from the `emotion` package. Most of the documentation here focuses on the React-specific version of Emotion but most of the concepts in the React-specific version also apply to vanilla Emotion.
 
 ```bash
 yarn add emotion
