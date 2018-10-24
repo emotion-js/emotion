@@ -321,4 +321,4 @@ import css from '@emotion/css.macro'
 import styled from '@emotion/styled.macro'
 ```
 
-[create-react-app issue discussing macros](https://github.com/facebookincubator/create-react-app/issues/2730).
+Additionally [Create React App 2.0](https://reactjs.org/blog/2018/10/01/create-react-app-v2.html#whats-new) supports `babel-macros` out of the box.
