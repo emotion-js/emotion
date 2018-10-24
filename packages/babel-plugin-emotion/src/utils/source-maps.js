@@ -24,7 +24,7 @@ export function getSourceMap(
     column: number
   },
   state: *
-) {
+): string {
   const generator = makeSourceMapGenerator(state.file)
   const generatorOpts = getGeneratorOpts(state.file)
   generator.addMapping({
