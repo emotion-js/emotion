@@ -1,6 +1,4 @@
 import 'test-utils/legacy-env'
-import React from 'react'
-import renderer from 'react-test-renderer'
 import { css, sheet, flush } from 'emotion'
 
 global.shouldKeepSourceMaps = true
