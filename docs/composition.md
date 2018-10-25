@@ -50,7 +50,7 @@ render(
 )
 ```
 
-With Emotion though, we can create styles and combine them
+With Emotion though, you can create styles and combine them
 
 ```jsx
 // @live
@@ -78,51 +78,4 @@ render(
 )
 ```
 
-## Composing dynamic styles
-
-## I FEEL LIKE THIS IS A REALLY SPECIFIC THING AND MORE NEEDS TO BE SAID ABOUT THE STUFF ABOVE
-
-## ALSO, WE PROBABLY NEED A PLACE TO TALK ABOUT PATTERNS
-
-You can also do dynamic composition based on props and use it in `styled`.
-
-```jsx
-// @live
-import styled from '@emotion/styled'
-import { css } from '@emotion/core'
-
-const dynamicStyle = props =>
-  css`
-    color: ${props.color};
-  `
-
-const Container = styled.div`
-  ${dynamicStyle};
-`
-render(
-  <Container color="lightgreen">
-    This is lightgreen.
-  </Container>
-)
-```
-
-If you're composing lots of other styles and aren't using any string styles directly in the `styled` call, you can use the function call syntax to make it smaller.
-
-```jsx
-// @live
-import styled from '@emotion/styled'
-import { css } from '@emotion/core'
-
-const dynamicStyle = props =>
-  css`
-    color: ${props.color};
-  `
-
-const Container = styled.div(dynamicStyle)
-
-render(
-  <Container color="lightgreen">
-    This is lightgreen.
-  </Container>
-)
-```
+Using Emotion's composition, you don't have to think about the order that styles were created because the styles are merged in the order that you use them.
