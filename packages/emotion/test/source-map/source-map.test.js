@@ -3,6 +3,8 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { css, sheet, flush } from 'emotion'
 
+global.shouldKeepSourceMaps = true
+
 describe('css', () => {
   afterEach(() => flush())
   test('source-map nested styles', () => {
@@ -45,15 +47,6 @@ describe('css', () => {
       }
     `
 
-    expect(sheet).toMatchSnapshot()
-  })
-  test.skip('css prop with merge', () => {
-    const tree = renderer
-      .create(
-        <div className={css({ display: 'flex' })} css={{ display: 'block' }} />
-      )
-      .toJSON()
-    expect(tree).toMatchSnapshot()
     expect(sheet).toMatchSnapshot()
   })
   test('css without newline or semicolon', () => {
