@@ -3,12 +3,23 @@ import { createMacro } from 'babel-plugin-macros'
 import { addDefault } from '@babel/helper-module-imports'
 import { transformExpressionWithStyles } from './utils'
 
-export const transformCssCallExpression = ({ babel, state, path }: *) => {
+export const transformCssCallExpression = ({
+  babel,
+  state,
+  path,
+  sourceMap
+}: {
+  babel: *,
+  state: *,
+  path: *,
+  sourceMap?: string
+}) => {
   let { node, isPure } = transformExpressionWithStyles({
     babel,
     state,
     path,
-    shouldLabel: true
+    shouldLabel: true,
+    sourceMap
   })
   if (node) {
     path.replaceWith(node)
@@ -21,6 +32,7 @@ export const transformCssCallExpression = ({ babel, state, path }: *) => {
 }
 
 export default createMacro(({ references, state, babel }) => {
+  state.emotionSourceMap = true
   const t = babel.types
   if (references.default.length) {
     references.default.reverse().forEach(reference => {

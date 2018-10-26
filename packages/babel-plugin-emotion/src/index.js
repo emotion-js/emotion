@@ -164,7 +164,9 @@ export default function(babel: *) {
           state.transformCssProp = state.opts.cssPropOptimization
         }
 
-        if (state.opts.sourceMap) {
+        if (state.opts.sourceMap === false) {
+          state.emotionSourceMap = false
+        } else {
           state.emotionSourceMap = true
         }
       },
@@ -179,29 +181,27 @@ export default function(babel: *) {
             t.isArrayExpression(path.node.value.expression))
         ) {
           let expressionPath = path.get('value.expression')
-          if (expressionPath.isPure()) {
-            if (!state.cssIdentifier) {
-              state.cssIdentifier = addDefault(path, '@emotion/css', {
-                nameHint: 'css'
-              })
-            }
-            expressionPath.replaceWith(
-              t.callExpression(
-                t.cloneDeep(state.cssIdentifier),
-                [
-                  path.node.value.expression,
-                  state.emotionSourceMap &&
-                    path.node.loc !== undefined &&
-                    t.stringLiteral(getSourceMap(path.node.loc.start, state))
-                ].filter(Boolean)
-              )
-            )
-            transformCssCallExpression({
-              babel,
-              state,
-              path: expressionPath
+          if (!state.cssIdentifier) {
+            state.cssIdentifier = addDefault(path, '@emotion/css', {
+              nameHint: 'css'
             })
           }
+          let sourceMap =
+            state.emotionSourceMap && path.node.loc !== undefined
+              ? getSourceMap(path.node.loc.start, state)
+              : ''
+          expressionPath.replaceWith(
+            t.callExpression(
+              t.cloneDeep(state.cssIdentifier),
+              [path.node.value.expression].filter(Boolean)
+            )
+          )
+          transformCssCallExpression({
+            babel,
+            state,
+            path: expressionPath,
+            sourceMap
+          })
         }
       },
       CallExpression: {
