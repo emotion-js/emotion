@@ -6759,7 +6759,7 @@ defined@^1.0.0:
 
 definitelytyped-header-parser@Microsoft/definitelytyped-header-parser#production:
   version "0.0.0"
-  resolved "https://codeload.github.com/Microsoft/definitelytyped-header-parser/tar.gz/f152526f82f51d2baf91a99a397b449342b52db1"
+  resolved "https://codeload.github.com/Microsoft/definitelytyped-header-parser/tar.gz/c79916047989994b21f3332771c6b97191c03d38"
   dependencies:
     "@types/parsimmon" "^1.3.0"
     parsimmon "^1.2.0"
