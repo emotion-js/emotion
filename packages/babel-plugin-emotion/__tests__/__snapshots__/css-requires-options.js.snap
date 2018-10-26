@@ -3,54 +3,78 @@
 exports[`babel css inline babel 6 custom instance 1`] = `
 "import { css as _css } from 'my-emotion-instance';
 
-/*#__PURE__*/_css({
+/*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
     name: '1lrxbo5',
     styles: 'color:hotpink;'
+} : {
+    name: '1lrxbo5',
+    styles: 'color:hotpink;',
+    map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVPIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3MgYXMgbG9sfSBmcm9tICdteS1lbW90aW9uLWluc3RhbmNlJ1xuICAgIGxvbGBjb2xvcjpob3RwaW5rO2AiXX0= */'
 });"
 `;
 
 exports[`babel css inline babel 6 custom instance relative 1`] = `
 "import { css as _css } from './my-emotion-instance';
 
-/*#__PURE__*/_css({
+/*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
     name: '1lrxbo5',
     styles: 'color:hotpink;'
+} : {
+    name: '1lrxbo5',
+    styles: 'color:hotpink;',
+    map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVPIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3MgYXMgbG9sfSBmcm9tICcuL215LWVtb3Rpb24taW5zdGFuY2UnXG4gICAgbG9sYGNvbG9yOmhvdHBpbms7YCJdfQ== */'
 });"
 `;
 
 exports[`babel css inline babel 6 custom instance relative complex 1`] = `
 "import { css as _css } from '../__tests__/my-emotion-instance';
 
-/*#__PURE__*/_css({
+/*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
     name: '1lrxbo5',
     styles: 'color:hotpink;'
+} : {
+    name: '1lrxbo5',
+    styles: 'color:hotpink;',
+    map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVPIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3MgYXMgbG9sfSBmcm9tICcuLi9fX3Rlc3RzX18vbXktZW1vdGlvbi1pbnN0YW5jZSdcbiAgICBsb2xgY29sb3I6aG90cGluaztgIl19 */'
 });"
 `;
 
 exports[`babel css inline babel 6 label format with filename and local 1`] = `
 "import { css as _css } from 'emotion';
 
-let cls = /*#__PURE__*/_css({
+let cls = /*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
     name: '12j84ju-my-css-css-requires-options-cls',
     styles: 'color:hotpink;label:my-css-css-requires-options-cls;'
+} : {
+    name: '12j84ju-my-css-css-requires-options-cls',
+    styles: 'color:hotpink;label:my-css-css-requires-options-cls;',
+    map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */'
 });"
 `;
 
 exports[`babel css inline babel 6 label format with filename that is index and local 1`] = `
 "import { css as _css } from 'emotion';
 
-let cls = /*#__PURE__*/_css({
+let cls = /*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
     name: '1uf5d32-my-css-some-directory-cls',
     styles: 'color:hotpink;label:my-css-some-directory-cls;'
+} : {
+    name: '1uf5d32-my-css-some-directory-cls',
+    styles: 'color:hotpink;label:my-css-some-directory-cls;',
+    map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */'
 });"
 `;
 
 exports[`babel css inline babel 6 label format with only local 1`] = `
 "import { css as _css } from 'emotion';
 
-let cls = /*#__PURE__*/_css({
+let cls = /*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
     name: '1xiywpm-my-css-cls',
     styles: 'color:hotpink;label:my-css-cls;'
+} : {
+    name: '1xiywpm-my-css-cls',
+    styles: 'color:hotpink;label:my-css-cls;',
+    map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */'
 });"
 `;
 
@@ -58,9 +82,13 @@ exports[`babel css inline babel 7 custom instance 1`] = `
 "import { css as _css } from \\"my-emotion-instance\\";
 
 /*#__PURE__*/
-_css({
+_css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\"
+} : {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVPIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3MgYXMgbG9sfSBmcm9tICdteS1lbW90aW9uLWluc3RhbmNlJ1xuICAgIGxvbGBjb2xvcjpob3RwaW5rO2AiXX0= */\\"
 });"
 `;
 
@@ -68,9 +96,13 @@ exports[`babel css inline babel 7 custom instance relative 1`] = `
 "import { css as _css } from \\"./my-emotion-instance\\";
 
 /*#__PURE__*/
-_css({
+_css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\"
+} : {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVPIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3MgYXMgbG9sfSBmcm9tICcuL215LWVtb3Rpb24taW5zdGFuY2UnXG4gICAgbG9sYGNvbG9yOmhvdHBpbms7YCJdfQ== */\\"
 });"
 `;
 
@@ -78,9 +110,13 @@ exports[`babel css inline babel 7 custom instance relative complex 1`] = `
 "import { css as _css } from \\"../__tests__/my-emotion-instance\\";
 
 /*#__PURE__*/
-_css({
+_css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\"
+} : {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVPIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3MgYXMgbG9sfSBmcm9tICcuLi9fX3Rlc3RzX18vbXktZW1vdGlvbi1pbnN0YW5jZSdcbiAgICBsb2xgY29sb3I6aG90cGluaztgIl19 */\\"
 });"
 `;
 
@@ -89,9 +125,13 @@ exports[`babel css inline babel 7 label format with filename and local 1`] = `
 
 let cls =
 /*#__PURE__*/
-_css({
+_css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"12j84ju-my-css-css-requires-options-cls\\",
   styles: \\"color:hotpink;label:my-css-css-requires-options-cls;\\"
+} : {
+  name: \\"12j84ju-my-css-css-requires-options-cls\\",
+  styles: \\"color:hotpink;label:my-css-css-requires-options-cls;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */\\"
 });"
 `;
 
@@ -100,9 +140,13 @@ exports[`babel css inline babel 7 label format with filename that is index and l
 
 let cls =
 /*#__PURE__*/
-_css({
+_css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1uf5d32-my-css-some-directory-cls\\",
   styles: \\"color:hotpink;label:my-css-some-directory-cls;\\"
+} : {
+  name: \\"1uf5d32-my-css-some-directory-cls\\",
+  styles: \\"color:hotpink;label:my-css-some-directory-cls;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */\\"
 });"
 `;
 
@@ -111,8 +155,12 @@ exports[`babel css inline babel 7 label format with only local 1`] = `
 
 let cls =
 /*#__PURE__*/
-_css({
+_css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1xiywpm-my-css-cls\\",
   styles: \\"color:hotpink;label:my-css-cls;\\"
+} : {
+  name: \\"1xiywpm-my-css-cls\\",
+  styles: \\"color:hotpink;label:my-css-cls;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */\\"
 });"
 `;

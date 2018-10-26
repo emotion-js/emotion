@@ -5,6 +5,8 @@ import { createMacro } from 'babel-plugin-macros'
 
 export let createEmotionMacro = (instancePath: string) =>
   createMacro(function macro({ references, state, babel }) {
+    state.emotionSourceMap = true
+
     let t = babel.types
     Object.keys(references).forEach(referenceKey => {
       let isPure = true
