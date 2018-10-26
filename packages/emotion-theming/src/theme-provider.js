@@ -3,6 +3,9 @@ import * as React from 'react'
 import { ThemeContext } from '@emotion/core'
 import weakMemoize from '@emotion/weak-memoize'
 
+let useContext: <Value>(context: React$Context<Value>) => Value = (React: any)
+  .useContext
+
 let getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   if (typeof theme === 'function') {
     const mergedTheme = theme(outerTheme)
@@ -42,19 +45,15 @@ type Props = {
 }
 
 let ThemeProvider = (props: Props) => {
+  let theme = useContext(ThemeContext)
+
+  if (props.theme !== theme) {
+    theme = createCacheWithTheme(theme)(props.theme)
+  }
   return (
-    <ThemeContext.Consumer>
-      {theme => {
-        if (props.theme !== theme) {
-          theme = createCacheWithTheme(theme)(props.theme)
-        }
-        return (
-          <ThemeContext.Provider value={theme}>
-            {props.children}
-          </ThemeContext.Provider>
-        )
-      }}
-    </ThemeContext.Consumer>
+    <ThemeContext.Provider value={theme}>
+      {props.children}
+    </ThemeContext.Provider>
   )
 }
 
