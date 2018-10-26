@@ -42,7 +42,7 @@ if (!isBrowser) {
         // yes, we're potentially creating this on every render
         // it doesn't actually matter though since it's only on the server
         // so there will only every be a single render
-        // that could in the future because of suspense and etc. but for now,
+        // that could change in the future because of suspense and etc. but for now,
         // this works and i don't want to optimise for a future thing that we aren't sure about
         cache = createCache()
         return (
