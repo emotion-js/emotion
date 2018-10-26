@@ -73,6 +73,8 @@ export function getClassNamesFromNodes(nodes: Array<any>) {
 
 let keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
 
+let removeCommentPattern = /\/\*[\s\S]*?\*\//g
+
 export function getStylesFromClassNames(
   classNames: Array<string>,
   elements: Array<HTMLStyleElement>
@@ -131,7 +133,7 @@ export function getStylesFromClassNames(
     })
   }
 
-  return keyframesStyles + styles
+  return (keyframesStyles + styles).replace(removeCommentPattern, '')
 }
 
 export function getStyleElements(): Array<HTMLStyleElement> {

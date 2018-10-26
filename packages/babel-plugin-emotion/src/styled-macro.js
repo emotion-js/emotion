@@ -11,6 +11,8 @@ export let createStyledMacro = ({
   isWeb: boolean
 }) =>
   createMacro(({ references, state, babel }) => {
+    state.emotionSourceMap = true
+
     const t = babel.types
     if (references.default.length) {
       let styledIdentifier = addDefault(state.file.path, importPath, {

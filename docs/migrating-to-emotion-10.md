@@ -6,7 +6,7 @@ Emotion 10 is a large change to Emotion so it requires some changes to your code
 
 > Note
 >
-> This page only applies using Emotion with React. If you're not using Emotion with React, you don't have to change anything.
+> This page only applies if you're using Emotion with React. If you're not using Emotion with React, you don't have to change anything.
 
 # Thinking
 

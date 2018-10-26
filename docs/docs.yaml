@@ -32,13 +32,15 @@
 # This loads the READMEs instead of files in docs/
 - title: Packages
   items:
+    - '@emotion/core'
+    - '@emotion/styled'
     - emotion
-    - react-emotion
     - babel-plugin-emotion
     - eslint-plugin-emotion
     - emotion-server
     - emotion-theming
     - jest-emotion
+    - '@emotion/native'
     - '@emotion/primitives'
     - create-emotion
     - create-emotion-server

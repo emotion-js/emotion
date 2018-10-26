@@ -26,27 +26,25 @@ yarn add emotion-theming
 
 ## Usage
 
-### TODO: Add example with the css prop
+Theming is accomplished by placing the `ThemeProvider` component, at the top of the React component tree and wrapping descendants with the `withTheme` higher-order component. This HOC gets the current theme and injects it as a "prop" into your own component.
 
-Theming is accomplished by placing the `ThemeProvider` component, at the top of the React component tree and wrapping descendants with the `withTheme` higher-order component (HOC). This HOC seamlessly acquires the current theme and injects it as a "prop" into your own component.
-
-The theme prop is automatically injected into components created with `styled`.
-
-Here is a complete example for a typical React + Emotion app (information about each piece of the theming API is listed afterward):
+The theme prop is automatically injected into components created with `styled`. The theme can also be accessed via passing a function to the css prop.
 
 ```jsx
-/** child.js */
-import React from 'react'
-import styled from 'react-emotion'
+// Page.js
+import * as React from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
 
-const Container = styled.div`
-  background: whitesmoke;
-  height: 100vh;
-`
+const Container = styled.div({
+  background: 'whitesmoke',
+  height: '100vh'
+})
 
 const Headline = styled.h1`
   color: ${props => props.theme.color};
-  font: 20px/1.5 sans-serif;
+  font-family: sans-serif;
 `
 
 export default class Page extends React.Component {
@@ -54,17 +52,18 @@ export default class Page extends React.Component {
     return (
       <Container>
         <Headline>I'm red!</Headline>
+        <p css={theme => ({ color: theme.color })}>I'm also red!</p>
       </Container>
     )
   }
 }
 
-/** parent.js */
+// App.js
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ThemeProvider } from 'emotion-theming'
 
-import Page from './child.js'
+import Page from './Page.js'
 
 const theme = {
   color: 'red'
@@ -79,23 +78,18 @@ class App extends React.Component {
     )
   }
 }
-
-// this assumes the HTML page template has a <main> element already inside <body>
-ReactDOM.render(<App />, document.querySelector('main'))
 ```
-
-`<ThemeProvider>` acts as a conductor in the component hierarchy and themed components receive the `theme` for whatever purposes are necessary, be it styling or perhaps toggling a piece of functionality.
 
 ## API
 
 ### ThemeProvider: React.ComponentType
 
-A React component that passes the theme object down the component tree via [context](https://reactjs.org/docs/context.html). Additional `<ThemeProvider>` wrappers may be added deeper in the hierarchy to override the original theme. The theme object will be merged into its ancestor as if by [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign). If a function is passed instead of an object it will be called with the ancestor theme and the result will be the new theme.
+A React component that passes the theme object down the component tree via [context](https://reactjs.org/docs/context.html). Additional `ThemeProvider` components can be added deeper in the tree to override the original theme. The theme object will be merged into its ancestor as if by [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign). If a function is passed instead of an object it will be called with the ancestor theme and the result will be the new theme.
 
 _Accepts:_
 
-- **`children`: ReactComponent** - A single React component.
-- **`theme`: Object|Function** - An object or function that provides an object.
+- **`children`: React.Node**
+- **`theme`: Object|Object => Object** - An object or function that provides an object.
 
 ```jsx
 import React from 'react'
@@ -125,12 +119,11 @@ class Container extends React.Component {
     )
   }
 }
-
-const Text = styled.div`
-  background-color: ${props => props.theme.backgroundColor}; // will be green
-  color: ${props => props.theme.color}; // will be blue
-`
 ```
+
+> Note:
+>
+> Make sure to hoist your theme out of render otherwise you may have performance problems.
 
 ### withTheme(component: React.ComponentType): React.ComponentType
 
@@ -158,7 +151,7 @@ const TellMeTheColorWithTheme = withTheme(TellMeTheColor)
 
 ## Credits
 
-Thanks goes to the [styled-components team](https://github.com/styled-components/styled-components) and [their contributors](https://github.com/styled-components/styled-components/graphs/contributors) who originally wrote this.
+Thanks goes to the [styled-components team](https://github.com/styled-components/styled-components) and [their contributors](https://github.com/styled-components/styled-components/graphs/contributors) who designed this API.
 
 ## License
 

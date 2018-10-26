@@ -130,7 +130,8 @@ _Defaults Shown_
     [
       "emotion",
       {
-        "sourceMap": false,
+        // sourceMap is on by default but source maps are dead code eliminated in production
+        "sourceMap": true,
         "autoLabel": process.env.NODE_ENV !== 'production',
         "labelFormat": "[local]",
         "cssPropOptimization": true
@@ -142,20 +143,11 @@ _Defaults Shown_
 
 Recommended Setup
 
-Use [Babel's `env` property](https://babeljs.io/docs/usage/babelrc/#env-option)
-
 **.babelrc**
 
 ```json
 {
-  "env": {
-    "production": {
-      "plugins": [["emotion", { "hoist": true }]]
-    },
-    "development": {
-      "plugins": [["emotion", { "sourceMap": true, "autoLabel": true }]]
-    }
-  }
+  "plugins": ["emotion"]
 }
 ```
 
@@ -177,13 +169,17 @@ require('@babel/core').transform('code', {
 
 ### `sourceMap`
 
-`boolean`, defaults to `false`.
+`boolean`, defaults to `true`.
 
 This option enables the following:
 
 - Injected source maps for use in browser dev tools
 
 [**Documentation**](https://emotion.sh/docs/source-maps)
+
+> Note:
+>
+> Source maps are on by default in babel-plugin-emotion but they will be removed in production builds
 
 ### `autoLabel`
 
@@ -317,8 +313,8 @@ Instead of using `babel-plugin-emotion`, you can use emotion with [`babel-plugin
 ```jsx
 import styled from 'react-emotion/macro'
 import { css, keyframes, injectGlobal, flush, hydrate } from 'emotion/macro'
-import css from '@emotion/css.macro'
-import styled from '@emotion/styled.macro'
+import css from '@emotion/css/macro'
+import styled from '@emotion/styled/macro'
 ```
 
 [create-react-app issue discussing macros](https://github.com/facebookincubator/create-react-app/issues/2730).
