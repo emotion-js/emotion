@@ -312,7 +312,7 @@ This option assumes that you are using something to make `@emotion/core`'s `jsx`
 
 ## Babel Macros
 
-Instead of using `babel-plugin-emotion`, you can use emotion with [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros). Add `babel-plugin-macros` to your babel config (automatically included in Create React App 2.0) and use the imports/packages shown below.
+Instead of using `babel-plugin-emotion`, you can use emotion with [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros). Add `babel-plugin-macros` to your babel config (which is included in Create React App 2.0) and use the imports/packages shown below.
 
 ```jsx
 import styled from 'react-emotion/macro'
