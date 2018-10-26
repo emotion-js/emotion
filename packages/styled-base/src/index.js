@@ -75,85 +75,79 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     }
 
     const Styled: any = withEmotionCache((props, context, ref) => {
-      return (
-        <ThemeContext.Consumer>
-          {theme => {
-            let className = ''
-            let classInterpolations = []
-            let mergedProps = props
-            if (props.theme == null) {
-              mergedProps = {}
-              for (let key in props) {
-                mergedProps[key] = props[key]
-              }
-              mergedProps.theme = theme
-            }
+      let className = ''
+      let classInterpolations = []
+      let mergedProps = props
+      if (props.theme == null) {
+        mergedProps = {}
+        for (let key in props) {
+          mergedProps[key] = props[key]
+        }
+        mergedProps.theme = (React: any).useContext(ThemeContext)
+      }
 
-            if (typeof props.className === 'string') {
-              className += getRegisteredStyles(
-                context.registered,
-                classInterpolations,
-                props.className
-              )
-            }
-            const serialized = serializeStyles(
-              context.registered,
-              styles.concat(classInterpolations),
-              mergedProps
-            )
-            const rules = insertStyles(context, serialized, isStringTag)
-            className += `${context.key}-${serialized.name}`
-            if (targetClassName !== undefined) {
-              className += ` ${targetClassName}`
-            }
-            let newProps = {}
-
-            for (let key in props) {
-              if (
-                // $FlowFixMe
-                shouldForwardProp(key)
-              ) {
-                newProps[key] = props[key]
-              }
-            }
-
-            newProps.className = className
-
-            newProps.ref = ref || props.innerRef
-            if (process.env.NODE_ENV !== 'production' && props.innerRef) {
-              console.error(
-                '`innerRef` is deprecated and will be removed in a future major version of Emotion, please use the `ref` prop instead' +
-                  (identifierName === undefined
-                    ? ''
-                    : ` in the usage of \`${identifierName}\``)
-              )
-            }
-
-            const ele = React.createElement(baseTag, newProps)
-            if (!isBrowser && rules !== undefined) {
-              let serializedNames = serialized.name
-              let next = serialized.next
-              while (next !== undefined) {
-                serializedNames += ' ' + next.name
-                next = next.next
-              }
-              return (
-                <React.Fragment>
-                  <style
-                    {...{
-                      [`data-emotion-${context.key}`]: serializedNames,
-                      dangerouslySetInnerHTML: { __html: rules },
-                      nonce: context.sheet.nonce
-                    }}
-                  />
-                  {ele}
-                </React.Fragment>
-              )
-            }
-            return ele
-          }}
-        </ThemeContext.Consumer>
+      if (typeof props.className === 'string') {
+        className += getRegisteredStyles(
+          context.registered,
+          classInterpolations,
+          props.className
+        )
+      }
+      const serialized = serializeStyles(
+        context.registered,
+        styles.concat(classInterpolations),
+        mergedProps
       )
+      const rules = insertStyles(context, serialized, isStringTag)
+      className += `${context.key}-${serialized.name}`
+      if (targetClassName !== undefined) {
+        className += ` ${targetClassName}`
+      }
+      let newProps = {}
+
+      for (let key in props) {
+        if (
+          // $FlowFixMe
+          shouldForwardProp(key)
+        ) {
+          newProps[key] = props[key]
+        }
+      }
+
+      newProps.className = className
+
+      newProps.ref = ref || props.innerRef
+      if (process.env.NODE_ENV !== 'production' && props.innerRef) {
+        console.error(
+          '`innerRef` is deprecated and will be removed in a future major version of Emotion, please use the `ref` prop instead' +
+            (identifierName === undefined
+              ? ''
+              : ` in the usage of \`${identifierName}\``)
+        )
+      }
+
+      const ele = React.createElement(baseTag, newProps)
+      if (!isBrowser && rules !== undefined) {
+        let serializedNames = serialized.name
+        let next = serialized.next
+        while (next !== undefined) {
+          serializedNames += ' ' + next.name
+          next = next.next
+        }
+        return (
+          <React.Fragment>
+            <style
+              {...{
+                [`data-emotion-${context.key}`]: serializedNames,
+                dangerouslySetInnerHTML: { __html: rules },
+                nonce: context.sheet.nonce
+              }}
+            />
+            {ele}
+          </React.Fragment>
+        )
+      }
+      return ele
     })
 
     Styled.displayName =

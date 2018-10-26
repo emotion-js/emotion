@@ -5,65 +5,51 @@ import createCache from '@emotion/cache'
 
 let EmotionCacheContext = React.createContext(isBrowser ? createCache() : null)
 
+export let useContext: <Value>(
+  context: React$Context<Value>
+) => Value = (React: any).useContext
+
+export let useState: <State>(
+  initialState: (() => State) | State
+) => [State, (State) => void] = (React: any).useState
+
 export let ThemeContext = React.createContext<Object>({})
 export let CacheProvider: React.ComponentType<{ value: EmotionCache }> =
   // $FlowFixMe
   EmotionCacheContext.Provider
 
+let forwardRef: <Props>(
+  render: (props: Props, ref: any) => React.Node
+) => React.StatelessFunctionalComponent<Props> = (React: any).forwardRef
+
 let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
   func: (props: Props, cache: EmotionCache, ref: Ref) => React.Node
 ): React.StatelessFunctionalComponent<Props> {
-  let render = (props: Props, ref: Ref) => {
-    return (
-      <EmotionCacheContext.Consumer>
-        {(
-          // $FlowFixMe we know it won't be null
-          cache: EmotionCache
-        ) => {
-          return func(props, cache, ref)
-        }}
-      </EmotionCacheContext.Consumer>
-    )
-  }
-  // $FlowFixMe
-  return React.forwardRef(render)
+  return forwardRef((props: Props, ref: Ref) => {
+    // $FlowFixMe
+    let cache: EmotionCache = useContext(EmotionCacheContext)
+
+    return func(props, cache, ref)
+  })
 }
 
 if (!isBrowser) {
-  class BasicProvider extends React.Component<
-    { children: EmotionCache => React.Node },
-    { value: EmotionCache }
-  > {
-    state = { value: createCache() }
-    render() {
-      return (
-        <EmotionCacheContext.Provider {...this.state}>
-          {this.props.children(this.state.value)}
-        </EmotionCacheContext.Provider>
-      )
-    }
-  }
-
   withEmotionCache = function withEmotionCache<Props>(
     func: (props: Props, cache: EmotionCache) => React.Node
   ): React.StatelessFunctionalComponent<Props> {
-    return (props: Props) => (
-      <EmotionCacheContext.Consumer>
-        {context => {
-          if (context === null) {
-            return (
-              <BasicProvider>
-                {newContext => {
-                  return func(props, newContext)
-                }}
-              </BasicProvider>
-            )
-          } else {
-            return func(props, context)
-          }
-        }}
-      </EmotionCacheContext.Consumer>
-    )
+    return (props: Props) => {
+      let cache = useContext(EmotionCacheContext)
+      if (cache === null) {
+        let [state] = useState(createCache)
+        return (
+          <EmotionCacheContext.Provider value={state}>
+            {func(props, state)}
+          </EmotionCacheContext.Provider>
+        )
+      } else {
+        return func(props, cache)
+      }
+    }
   }
 }
 
