@@ -4,6 +4,8 @@
 import { RegisteredCache, SerializedStyles } from '@emotion/utils'
 import * as CSS from 'csstype'
 
+import { Equal } from './helper'
+
 export { RegisteredCache, SerializedStyles }
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>
@@ -49,7 +51,7 @@ export type Interpolation<MP = undefined> =
   | SerializedStyles
   | ArrayInterpolation<MP>
   | ObjectInterpolation<MP>
-  | (undefined extends MP ? never : FunctionInterpolation<MP>)
+  | Equal<MP, undefined, never, FunctionInterpolation<MP>>
 
 export function serializeStyles<MP>(
   registered: RegisteredCache,

@@ -75,7 +75,7 @@ render(
 While defining media queries in constants is great and is much easier than rewriting media queries each time, they're still quite verbose since usually you want to change the same property at different break points. [facepaint](https://github.com/emotion-js/facepaint) makes this easier by allowing you to define what each css property should be at each media query as an array.
 
 > Note:
-
+>
 > `facepaint` only works with object styles.
 
 ```bash

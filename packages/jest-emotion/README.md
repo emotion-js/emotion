@@ -78,23 +78,6 @@ import { createSerializer } from 'jest-emotion'
 expect.addSnapshotSerializer(createSerializer({ DOMElements: false }))
 ```
 
-# getStyles
-
-jest-emotion also allows you to get all the css that emotion has inserted. This is meant to be an escape hatch if you don't use React or you want to build your own utilities for testing with emotion.
-
-```jsx
-import { css } from 'emotion'
-import { getStyles } from 'jest-emotion'
-
-test('correct styles are inserted', () => {
-  const cls = css`
-    display: flex;
-  `
-
-  expect(getStyles()).toMatchSnapshot()
-})
-```
-
 # Custom matchers
 
 ## toHaveStyleRule
