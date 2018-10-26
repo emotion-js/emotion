@@ -11,7 +11,7 @@ type GlobalProps = {
   +styles: Styles | (Object => Styles)
 }
 
-let useMemo: <Val>(() => Val, mem?: Array<any>) => Val = (React: any).useMemo
+let useRef: <Val>(Val) => { current: Val } = (React: any).useRef
 
 let useMutationEffect: (() => mixed, mem?: Array<any>) => void = (React: any)
   .useMutationEffect
@@ -46,7 +46,8 @@ export let Global: React.StatelessFunctionalComponent<
   ])
 
   if (isBrowser) {
-    let sheet = useMemo(
+    let sheetRef = useRef(null)
+    useMutationEffect(
       () => {
         let sheet = new StyleSheet({
           key: `${cache.key}-global`,
@@ -64,12 +65,13 @@ export let Global: React.StatelessFunctionalComponent<
         if (cache.sheet.tags.length) {
           sheet.before = cache.sheet.tags[0]
         }
-        return sheet
+        sheetRef.current = sheet
       },
       [cache]
     )
     useMutationEffect(
       () => {
+        let sheet: StyleSheet = (sheetRef.current: any)
         if (serialized.next !== undefined) {
           // insert keyframes
           insertStyles(cache, serialized.next, true)
@@ -81,7 +83,14 @@ export let Global: React.StatelessFunctionalComponent<
           sheet.flush()
         }
       },
-      [serialized, sheet]
+      [
+        serialized,
+        // we don't use the cache in this but we use the sheet
+        // which is determined by the cache
+        // and we don't have a reference to the sheet in render so
+        // we use the cache instead
+        cache
+      ]
     )
     return null
   } else {
