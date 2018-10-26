@@ -13,6 +13,8 @@ export let useState: <State>(
   initialState: (() => State) | State
 ) => [State, (State) => void] = (React: any).useState
 
+let useRef: <T>(initialValue: T) => { current: T } = (React: any).useRef
+
 export let ThemeContext = React.createContext<Object>({})
 export let CacheProvider: React.ComponentType<{ value: EmotionCache }> =
   // $FlowFixMe
@@ -39,15 +41,20 @@ if (!isBrowser) {
   ): React.StatelessFunctionalComponent<Props> {
     return (props: Props) => {
       let cache = useContext(EmotionCacheContext)
+      let ref = useRef(cache)
+      if (ref.current === null) {
+        ref.current = createCache()
+      }
+      let element = func(props, cache)
+
       if (cache === null) {
-        let [state] = useState(createCache)
         return (
-          <EmotionCacheContext.Provider value={state}>
-            {func(props, state)}
+          <EmotionCacheContext.Provider value={ref.current}>
+            {element}
           </EmotionCacheContext.Provider>
         )
       } else {
-        return func(props, cache)
+        return element
       }
     }
   }
