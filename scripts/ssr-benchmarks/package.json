@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "ssr-benchmarks",
   "version": "0.8.12",
   "scripts": {
