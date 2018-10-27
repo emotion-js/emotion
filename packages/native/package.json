@@ -1,6 +1,6 @@
 {
   "name": "@emotion/native",
-  "version": "10.0.0-beta.5",
+  "version": "10.0.0-beta.6",
   "description": "Style and render React Native components using emotion",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -9,12 +9,12 @@
     "dist"
   ],
   "devDependencies": {
-    "emotion-theming": "^10.0.0-beta.5",
+    "emotion-theming": "^10.0.0-beta.6",
     "react": "^16.5.2",
     "react-native": "^0.57.0"
   },
   "dependencies": {
-    "@emotion/primitives-core": "^10.0.0-beta.5"
+    "@emotion/primitives-core": "^10.0.0-beta.6"
   },
   "peerDependencies": {
     "react-native": ">=0.14.0 && < 1"
