@@ -18,6 +18,8 @@ export let CacheProvider: React.ComponentType<{ value: EmotionCache }> =
   // $FlowFixMe
   EmotionCacheContext.Provider
 
+export let useTheme = () => useContext(ThemeContext)
+
 let forwardRef: <Props>(
   render: (props: Props, ref: any) => React.Node
 ) => React.StatelessFunctionalComponent<Props> = (React: any).forwardRef

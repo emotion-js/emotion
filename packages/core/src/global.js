@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache, ThemeContext, useContext } from './context'
+import { withEmotionCache } from './context'
 import { isBrowser, insertStyles } from '@emotion/utils'
 import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
@@ -41,9 +41,7 @@ export let Global: React.StatelessFunctionalComponent<
   }
   let styles = props.styles
 
-  let serialized = serializeStyles(cache.registered, [
-    typeof styles === 'function' ? styles(useContext(ThemeContext)) : styles
-  ])
+  let serialized = serializeStyles(cache.registered, [styles])
 
   if (isBrowser) {
     let sheetRef = useRef(null)

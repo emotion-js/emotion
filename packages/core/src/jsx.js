@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache, ThemeContext, useContext } from './context'
+import { withEmotionCache } from './context'
 import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
@@ -19,10 +19,7 @@ let Emotion = withEmotionCache((props, cache, ref) => {
       props.className
     )
   }
-  let cssProp = props.css
-  registeredStyles.push(
-    typeof cssProp === 'function' ? cssProp(useContext(ThemeContext)) : cssProp
-  )
+  registeredStyles.push(props.css)
   const serialized = serializeStyles(cache.registered, registeredStyles)
   const rules = insertStyles(cache, serialized, typeof type === 'string')
   className += `${cache.key}-${serialized.name}`
