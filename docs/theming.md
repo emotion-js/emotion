@@ -84,7 +84,7 @@ The previous theming API was extremely hard to statically type. By using context
 
 ### Global Namespace
 
-Since there’s was a single object which contained the theme, if a component from npm or somewhere wanted to use theming, it had to choose a unique name store it’s theme in which meant name conflicts could occur. By directly using the Context API, this problem doesn't exist.
+Since there was a single object which contained the theme, if a component from npm or somewhere wanted to use theming, it had to choose a unique name store it’s theme in which meant name conflicts could occur. By directly using the Context API, this problem doesn't exist.
 
 ### Testing
 
