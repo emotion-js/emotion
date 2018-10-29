@@ -30,9 +30,6 @@ const SomeText = styled.div`
 render(
   <ThemeProvider theme={theme}>
     <SomeText>some text</SomeText>
-    <div css={theme => ({ color: theme.colors.primary })}>
-      some other text
-    </div>
   </ThemeProvider>
 )
 ```

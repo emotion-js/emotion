@@ -28,7 +28,7 @@ yarn add emotion-theming
 
 Theming is accomplished by placing the `ThemeProvider` component, at the top of the React component tree and wrapping descendants with the `withTheme` higher-order component. This HOC gets the current theme and injects it as a "prop" into your own component.
 
-The theme prop is automatically injected into components created with `styled`. The theme can also be accessed via passing a function to the css prop.
+The theme prop is automatically injected into components created with `styled`.
 
 ```jsx
 // Page.js
@@ -52,7 +52,6 @@ export default class Page extends React.Component {
     return (
       <Container>
         <Headline>I'm red!</Headline>
-        <p css={theme => ({ color: theme.color })}>I'm also red!</p>
       </Container>
     )
   }

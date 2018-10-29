@@ -1,24 +1,24 @@
 // @flow
-/** @jsx jsx */
+import * as React from 'react'
 import 'test-utils/next-env'
 import { ignoreConsoleErrors } from 'test-utils'
 import { ThemeProvider } from 'emotion-theming'
-import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
 import renderer from 'react-test-renderer'
 import cases from 'jest-in-case'
+
+let Comp = styled.div(({ theme: { color, padding, backgroundColor } }) => ({
+  color,
+  padding,
+  backgroundColor
+}))
 
 test('nested provider', () => {
   const tree = renderer
     .create(
       <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
         <ThemeProvider theme={{ backgroundColor: 'darkgreen', color: 'white' }}>
-          <div
-            css={({ color, padding, backgroundColor }) => ({
-              color,
-              padding,
-              backgroundColor
-            })}
-          />
+          <Comp />
         </ThemeProvider>
       </ThemeProvider>
     )
@@ -37,13 +37,7 @@ test('nested provider with function', () => {
             padding: 8
           })}
         >
-          <div
-            css={({ color, padding, backgroundColor }) => ({
-              color,
-              padding,
-              backgroundColor
-            })}
-          />
+          <Comp />
         </ThemeProvider>
       </ThemeProvider>
     )
@@ -60,13 +54,7 @@ cases(
           <ThemeProvider theme={{ color: 'hotpink', padding: 4 }}>
             {/* $FlowFixMe */}
             <ThemeProvider theme={value}>
-              <div
-                css={({ color, padding, backgroundColor }) => ({
-                  color,
-                  padding,
-                  backgroundColor
-                })}
-              />
+              <Comp />
             </ThemeProvider>
           </ThemeProvider>
         )

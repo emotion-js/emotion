@@ -20,13 +20,3 @@ exports[`cx 1`] = `
   className="some-other-class emotion-0"
 />
 `;
-
-exports[`should get the theme 1`] = `
-.emotion-0 {
-  color: green;
-}
-
-<div
-  className="emotion-0"
-/>
-`;

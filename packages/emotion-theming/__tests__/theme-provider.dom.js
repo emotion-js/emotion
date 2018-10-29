@@ -1,28 +1,27 @@
 // @flow
-/** @jsx jsx */
 import 'test-utils/next-env'
 import 'test-utils/dev-mode'
-import { throwIfFalsy, safeQuerySelector } from 'test-utils'
 import * as React from 'react'
+import { throwIfFalsy, safeQuerySelector } from 'test-utils'
 import { ThemeProvider } from 'emotion-theming'
-import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
 import { render } from 'react-dom'
 
 test('provider with theme value that changes', () => {
+  let Comp = styled.div(({ theme: { color, padding } }) => ({
+    color,
+    padding
+  }))
   class ThemeTest extends React.Component<*, *> {
     state = { theme: { color: 'hotpink', padding: 4 } }
     render() {
       return (
         <ThemeProvider theme={this.state.theme}>
-          <div
+          <Comp
             id="the-thing"
             onClick={() => {
               this.setState({ theme: { color: 'hotpink', padding: 8 } })
             }}
-            css={({ color, padding }) => ({
-              color,
-              padding
-            })}
           />
         </ThemeProvider>
       )
