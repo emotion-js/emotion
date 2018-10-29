@@ -2,7 +2,6 @@
 import * as React from 'react'
 import 'test-utils/next-env'
 import { ClassNames } from '@emotion/core'
-import { ThemeProvider } from 'emotion-theming'
 import renderer from 'react-test-renderer'
 
 test('css', () => {
@@ -16,24 +15,6 @@ test('css', () => {
         />
       )}
     </ClassNames>
-  )
-
-  expect(tree.toJSON()).toMatchSnapshot()
-})
-
-it('should get the theme', () => {
-  const tree = renderer.create(
-    <ThemeProvider theme={{ color: 'green' }}>
-      <ClassNames>
-        {({ css, theme }) => (
-          <div
-            className={css`
-              color: ${theme.color};
-            `}
-          />
-        )}
-      </ClassNames>
-    </ThemeProvider>
   )
 
   expect(tree.toJSON()).toMatchSnapshot()

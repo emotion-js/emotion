@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
-import { withEmotionCache, ThemeContext } from './context'
+import { withEmotionCache } from './context'
 
 type ClassNameArg =
   | string
@@ -62,59 +62,60 @@ function merge(registered: Object, css: (*) => string, className: string) {
   return rawClassName + css(registeredStyles)
 }
 
-export const ClassNames = withEmotionCache((props, context) => {
-  return (
-    <ThemeContext.Consumer>
-      {theme => {
-        let rules = ''
-        let serializedHashes = ''
-        let hasRendered = false
+type Props = {
+  children: ({
+    css: (...args: any) => string,
+    cx: (...args: Array<ClassNameArg>) => string
+  }) => React.Node
+}
 
-        let css = (...args) => {
-          if (hasRendered && process.env.NODE_ENV !== 'production') {
-            throw new Error('css can only be used during render')
-          }
-          let serialized = serializeStyles(context.registered, args)
-          if (isBrowser) {
-            insertStyles(context, serialized, false)
-          } else {
-            let res = insertStyles(context, serialized, false)
-            if (res !== undefined) {
-              rules += res
-            }
-          }
-          if (!isBrowser) {
-            serializedHashes += ` ${serialized.name}`
-          }
-          return `${context.key}-${serialized.name}`
+export const ClassNames: React.ComponentType<Props> = withEmotionCache(
+  (props, context) => {
+    let rules = ''
+    let serializedHashes = ''
+    let hasRendered = false
+
+    let css = (...args) => {
+      if (hasRendered && process.env.NODE_ENV !== 'production') {
+        throw new Error('css can only be used during render')
+      }
+      let serialized = serializeStyles(context.registered, args)
+      if (isBrowser) {
+        insertStyles(context, serialized, false)
+      } else {
+        let res = insertStyles(context, serialized, false)
+        if (res !== undefined) {
+          rules += res
         }
-        let cx = (...args: Array<ClassNameArg>) => {
-          if (hasRendered && process.env.NODE_ENV !== 'production') {
-            throw new Error('cx can only be used during render')
-          }
-          return merge(context.registered, css, classnames(args))
-        }
-        let content = { css, cx, theme }
-        let ele = props.children(content)
-        hasRendered = true
-        if (!isBrowser && rules !== undefined) {
-          return (
-            <React.Fragment>
-              <style
-                {...{
-                  [`data-emotion-${context.key}`]: serializedHashes.substring(
-                    1
-                  ),
-                  dangerouslySetInnerHTML: { __html: rules },
-                  nonce: context.sheet.nonce
-                }}
-              />
-              {ele}
-            </React.Fragment>
-          )
-        }
-        return ele
-      }}
-    </ThemeContext.Consumer>
-  )
-})
+      }
+      if (!isBrowser) {
+        serializedHashes += ` ${serialized.name}`
+      }
+      return `${context.key}-${serialized.name}`
+    }
+    let cx = (...args: Array<ClassNameArg>) => {
+      if (hasRendered && process.env.NODE_ENV !== 'production') {
+        throw new Error('cx can only be used during render')
+      }
+      return merge(context.registered, css, classnames(args))
+    }
+    let content = { css, cx }
+    let ele = props.children(content)
+    hasRendered = true
+    if (!isBrowser && rules !== undefined) {
+      return (
+        <React.Fragment>
+          <style
+            {...{
+              [`data-emotion-${context.key}`]: serializedHashes.substring(1),
+              dangerouslySetInnerHTML: { __html: rules },
+              nonce: context.sheet.nonce
+            }}
+          />
+          {ele}
+        </React.Fragment>
+      )
+    }
+    return ele
+  }
+)
