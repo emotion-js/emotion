@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache } from './context'
+import { withEmotionCache, ThemeContext } from './context'
 import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
@@ -8,7 +8,7 @@ let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
 let hasOwnProperty = Object.prototype.hasOwnProperty
 
-let Emotion = withEmotionCache((props, cache, ref) => {
+let render = (cache, props, theme: null | Object, ref) => {
   let type = props[typePropName]
   let registeredStyles = []
 
@@ -20,7 +20,7 @@ let Emotion = withEmotionCache((props, cache, ref) => {
       props.className
     )
   }
-  registeredStyles.push(props.css)
+  registeredStyles.push(theme === null ? props.css : props.css(theme))
   const serialized = serializeStyles(cache.registered, registeredStyles)
   const rules = insertStyles(cache, serialized, typeof type === 'string')
   className += `${cache.key}-${serialized.name}`
@@ -60,6 +60,18 @@ let Emotion = withEmotionCache((props, cache, ref) => {
     )
   }
   return ele
+}
+
+let Emotion = withEmotionCache((props, cache, ref) => {
+  // use Context.read for the theme when it's stable
+  if (typeof props.css === 'function') {
+    return (
+      <ThemeContext.Consumer>
+        {theme => render(cache, props, theme, ref)}
+      </ThemeContext.Consumer>
+    )
+  }
+  return render(cache, props, null, ref)
 })
 
 // $FlowFixMe
