@@ -30,7 +30,7 @@ export let createEmotionMacro = (instancePath: string) =>
               babel,
               state,
               path,
-              shouldLabel: state.opts.autoLabel
+              shouldLabel: true
             })
             if (node) {
               path.node.arguments[0] = node
