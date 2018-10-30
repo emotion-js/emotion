@@ -2,7 +2,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { keyframes, sheet, flush, css } from 'emotion'
+import { keyframes, flush, css } from 'emotion'
 
 describe('keyframes', () => {
   afterEach(() => {
@@ -43,7 +43,6 @@ describe('keyframes', () => {
       .toJSON()
 
     expect(tree).toMatchSnapshot()
-    expect(sheet).toMatchSnapshot()
   })
   test('keyframes with interpolation', () => {
     const endingRotation = '360deg'
@@ -69,7 +68,5 @@ describe('keyframes', () => {
       .toJSON()
 
     expect(tree).toMatchSnapshot()
-
-    expect(sheet).toMatchSnapshot()
   })
 })

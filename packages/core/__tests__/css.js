@@ -126,3 +126,21 @@ test('can set speedy via custom cache', () => {
   )
   expect(cache.sheet.tags).toHaveLength(1)
 })
+
+test('autoLabel without babel', () => {
+  let SomeComp = props => {
+    return (
+      <div
+        {...props}
+        css={{
+          color: 'hotpink'
+        }}
+      >
+        something
+      </div>
+    )
+  }
+  const tree = renderer.create(<SomeComp />)
+
+  expect(tree.toJSON().props.className.endsWith('-SomeComp')).toBe(true)
+})
