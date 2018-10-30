@@ -7,6 +7,11 @@ import { openColors as colors, fonts } from '../utils/style'
 import '../utils/highlight-css'
 
 export const scope = {
+  process: {
+    env: {
+      NODE_ENV: process.env.NODE_ENV
+    }
+  },
   require(moduleName: string) {
     switch (moduleName) {
       case 'emotion':
