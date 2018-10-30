@@ -134,10 +134,10 @@ export const jsx: typeof React.createElement = function(
     } catch (e) {
       if (e.stack) {
         // chrome
-        let match = e.stack.match(/at jsx.*\n\s+at ([A-Z][A-Za-z]+)/)
+        let match = e.stack.match(/at jsx.*\n\s+at ([A-Z][A-Za-z]+) /)
         if (!match) {
           // safari and firefox
-          match = e.stack.match(/^.*\n([A-Z][A-Za-z]+)/)
+          match = e.stack.match(/^.*\n([A-Z][A-Za-z]+)@/)
         }
         if (match) {
           newProps[labelPropName] = match[1]
