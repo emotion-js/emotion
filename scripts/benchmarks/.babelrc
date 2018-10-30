@@ -1,13 +1,13 @@
 {
   "presets": [
-    ["babel-preset-env", { "modules": false, "loose": true }],
-    "babel-preset-flow",
-    "babel-preset-react",
-    "babel-preset-stage-0"
+    ["@babel/env", { "modules": false, "loose": true }],
+    "@babel/flow",
+    "@babel/react"
   ],
   "plugins": [
-    "babel-plugin-transform-class-properties",
+    ["@babel/plugin-proposal-class-properties", { "loose": false }],
     "babel-plugin-react-native-web",
-    "macros"
+    "babel-plugin-emotion",
+    "transform-inline-environment-variables"
   ]
 }
