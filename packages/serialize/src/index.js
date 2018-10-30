@@ -188,7 +188,7 @@ function handleInterpolation(
       ) {
         console.error(
           'Interpolating a className from css`` is not recommended and will cause problems with composition.\n' +
-            'Interpolating a className from css`` will be completely unsupported in the next major version of Emotion'
+            'Interpolating a className from css`` will be completely unsupported in a future major version of Emotion'
         )
         shouldWarnAboutInterpolatingClassNameFromCss = false
       }
