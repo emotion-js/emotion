@@ -129,19 +129,16 @@ export const jsx: typeof React.createElement = function(
   }
   newProps[typePropName] = type
   if (process.env.NODE_ENV !== 'production') {
-    try {
-      throw new Error()
-    } catch (e) {
-      if (e.stack) {
-        // chrome
-        let match = e.stack.match(/at jsx.*\n\s+at ([A-Z][A-Za-z]+) /)
-        if (!match) {
-          // safari and firefox
-          match = e.stack.match(/^.*\n([A-Z][A-Za-z]+)@/)
-        }
-        if (match) {
-          newProps[labelPropName] = match[1]
-        }
+    let error = new Error()
+    if (error.stack) {
+      // chrome
+      let match = error.stack.match(/at jsx.*\n\s+at ([A-Z][A-Za-z]+) /)
+      if (!match) {
+        // safari and firefox
+        match = error.stack.match(/^.*\n([A-Z][A-Za-z]+)@/)
+      }
+      if (match) {
+        newProps[labelPropName] = match[1]
       }
     }
   }
