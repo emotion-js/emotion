@@ -6,6 +6,8 @@ import { serializeStyles } from '@emotion/serialize'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
+let labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
+
 let hasOwnProperty = Object.prototype.hasOwnProperty
 
 let Emotion = withEmotionCache((props, cache, ref) => {
@@ -19,8 +21,23 @@ let Emotion = withEmotionCache((props, cache, ref) => {
       props.className
     )
   }
+
   registeredStyles.push(props.css)
-  const serialized = serializeStyles(cache.registered, registeredStyles)
+  let serialized = serializeStyles(cache.registered, registeredStyles)
+
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    serialized.name.indexOf('-') === -1
+  ) {
+    let labelFromStack = props[labelPropName]
+    if (labelFromStack) {
+      serialized = serializeStyles(cache.registered, [
+        serialized,
+        'label:' + labelFromStack + ';'
+      ])
+    }
+  }
+
   const rules = insertStyles(cache, serialized, typeof type === 'string')
   className += `${cache.key}-${serialized.name}`
 
@@ -29,7 +46,8 @@ let Emotion = withEmotionCache((props, cache, ref) => {
     if (
       hasOwnProperty.call(props, key) &&
       key !== 'css' &&
-      key !== typePropName
+      key !== typePropName &&
+      (process.env.NODE_ENV !== 'production' && key !== labelPropName)
     ) {
       newProps[key] = props[key]
     }
@@ -78,8 +96,8 @@ export const jsx: typeof React.createElement = function(
   }
 
   if (
-    typeof props.css === 'string' &&
     process.env.NODE_ENV !== 'production' &&
+    typeof props.css === 'string' &&
     // check if there is a css declaration
     props.css.indexOf(':') !== -1
   ) {
@@ -103,6 +121,20 @@ export const jsx: typeof React.createElement = function(
     }
   }
   newProps[typePropName] = type
+  if (process.env.NODE_ENV !== 'production') {
+    let error = new Error()
+    if (error.stack) {
+      // chrome
+      let match = error.stack.match(/at jsx.*\n\s+at ([A-Z][A-Za-z]+) /)
+      if (!match) {
+        // safari and firefox
+        match = error.stack.match(/^.*\n([A-Z][A-Za-z]+)@/)
+      }
+      if (match) {
+        newProps[labelPropName] = match[1]
+      }
+    }
+  }
 
   createElementArgArray[1] = newProps
 

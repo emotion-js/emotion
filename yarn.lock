@@ -2826,7 +2826,7 @@ babel-core@7.0.0-bridge.0, babel-core@^7.0.0-bridge.0:
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-7.0.0-bridge.0.tgz#95a492ddd90f9b4e9a4a1da14eb335b87b634ece"
   integrity sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg==
 
-babel-core@^6.0.0, babel-core@^6.25.0, babel-core@^6.26.0, babel-core@^6.26.3, babel-core@^6.7.2:
+babel-core@^6.0.0, babel-core@^6.26.0, babel-core@^6.26.3, babel-core@^6.7.2:
   version "6.26.3"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.3.tgz#b2e2f09e342d0f0c88e2f02e067794125e75c207"
   integrity sha512-6jyFLuDmeidKmUEb3NM+/yawG0M2bDZ9Z1qbZP59cyHLz8kYGKYwpJP0UwUKKUiTRNvxfLesJnTedqczP7cTDA==
@@ -3474,7 +3474,7 @@ babel-plugin-transform-es2015-modules-commonjs@6.24.0:
     babel-template "^6.23.0"
     babel-types "^6.23.0"
 
-babel-plugin-transform-es2015-modules-commonjs@^6.23.0, babel-plugin-transform-es2015-modules-commonjs@^6.24.1, babel-plugin-transform-es2015-modules-commonjs@^6.26.0, babel-plugin-transform-es2015-modules-commonjs@^6.8.0:
+babel-plugin-transform-es2015-modules-commonjs@^6.23.0, babel-plugin-transform-es2015-modules-commonjs@^6.24.1, babel-plugin-transform-es2015-modules-commonjs@^6.8.0:
   version "6.26.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-modules-commonjs/-/babel-plugin-transform-es2015-modules-commonjs-6.26.2.tgz#58a793863a9e7ca870bdc5a881117ffac27db6f3"
   integrity sha512-CV9ROOHEdrjcwhIaJNBGMBCodN+1cfkwtM1SbUHmvyy35KGT7fohbpOxkE2uLz1o6odKK2Ck/tz47z+VqQfi9Q==
@@ -3615,6 +3615,11 @@ babel-plugin-transform-function-bind@^6.22.0:
   dependencies:
     babel-plugin-syntax-function-bind "^6.8.0"
     babel-runtime "^6.22.0"
+
+babel-plugin-transform-inline-environment-variables@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-inline-environment-variables/-/babel-plugin-transform-inline-environment-variables-0.4.3.tgz#a3b09883353be8b5e2336e3ff1ef8a5d93f9c489"
+  integrity sha1-o7CYgzU76LXiM24/8e+KXZP5xIk=
 
 babel-plugin-transform-object-rest-spread@6.23.0:
   version "6.23.0"
@@ -3787,7 +3792,7 @@ babel-preset-env@1.6.1:
     invariant "^2.2.2"
     semver "^5.3.0"
 
-babel-preset-env@^1.5.1, babel-preset-env@^1.7.0:
+babel-preset-env@^1.5.1:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.7.0.tgz#dea79fa4ebeb883cd35dab07e260c1c9c04df77a"
   integrity sha512-9OR2afuKDneX2/q2EurSftUYM0xGu4O2D9adAhVfADDhrYDaxXV0rBbevVYoY9n6nyX1PmQW/0jtpJvUNr9CHg==
@@ -4151,7 +4156,7 @@ babylon@7.0.0-beta.44:
   resolved "http://registry.npmjs.org/babylon/-/babylon-7.0.0-beta.44.tgz#89159e15e6e30c5096e22d738d8c0af8a0e8ca1d"
   integrity sha512-5Hlm13BJVAioCHpImtFqNOF2H3ieTOHd0fmFGMxOJ9jgeFqeAwsv3u5P5cR7CSeFrkgHsT19DgFJkHV0/Mcd8g==
 
-babylon@^6.17.0, babylon@^6.17.2, babylon@^6.17.4, babylon@^6.18.0:
+babylon@^6.17.0, babylon@^6.17.2, babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
   integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
@@ -7157,7 +7162,7 @@ dot-prop@^4.1.0, dot-prop@^4.1.1, dot-prop@^4.2.0:
   dependencies:
     is-obj "^1.0.0"
 
-dotenv-expand@4.2.0:
+dotenv-expand@4.2.0, dotenv-expand@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-4.2.0.tgz#def1f1ca5d6059d24a766e587942c21106ce1275"
   integrity sha1-3vHxyl1gWdJKdm5YeULCEQbOEnU=
@@ -9259,10 +9264,10 @@ fstream@^1.0.0, fstream@^1.0.2:
     mkdirp ">=0.5 0"
     rimraf "2"
 
-fswatcher-child@^1.0.3:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/fswatcher-child/-/fswatcher-child-1.0.4.tgz#ded81cdf6b8d29af9adf4bd2975f7ad5fb9c1738"
-  integrity sha512-/TnlJKaQLGFIvLDMPQc0myG3AS8YVK7xytpSu3qMHIeuirPpcaraIc1awipj2ienRtb49fxhaRetqw8XvsxmFQ==
+fswatcher-child@^1.0.5:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/fswatcher-child/-/fswatcher-child-1.1.1.tgz#264dd95f9c4b5f8615327d7d7567884591846b9b"
+  integrity sha512-FVDjVhR71TkJ+ud6vnRwCHvCgK9drGRdimWcTLqw8iN88uL5tTX+/xrwigJdcuQGrWYo3TRw9gRzk9xqR0UPPQ==
   dependencies:
     chokidar "^2.0.3"
 
@@ -15840,24 +15845,26 @@ param-case@2.1.x:
   dependencies:
     no-case "^2.2.0"
 
-parcel@^1.9.7:
-  version "1.9.7"
-  resolved "https://registry.yarnpkg.com/parcel/-/parcel-1.9.7.tgz#77ca0cdb305d8e9365ded4762ee39ca760b0c219"
-  integrity sha512-iXeURoAstfXMglibvxWb59Mrs9KNm2NaMbhlWK6mT/EyKVkEdntKIY7ss9VoVLhEzh9imgqVn2VA3e9Tv8GhDA==
+parcel@^1.10.3:
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/parcel/-/parcel-1.10.3.tgz#8b989984cdd9d44935db1dde7705585b2b159769"
+  integrity sha512-YLpMPE74gxYQSOV2tIaIzIV2rkTGyeMc6P16dTOERbKSZwQjyjWvsST04HSOrPXv84usNz6iYPkvnxs7FNrgYQ==
   dependencies:
+    "@babel/code-frame" "^7.0.0"
+    "@babel/core" "^7.0.0"
+    "@babel/generator" "^7.0.0"
+    "@babel/parser" "^7.0.0"
+    "@babel/plugin-transform-flow-strip-types" "^7.0.0"
+    "@babel/plugin-transform-modules-commonjs" "^7.0.0"
+    "@babel/plugin-transform-react-jsx" "^7.0.0"
+    "@babel/preset-env" "^7.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@babel/template" "^7.0.0"
+    "@babel/traverse" "^7.0.0"
+    "@babel/types" "^7.0.0"
     ansi-to-html "^0.6.4"
-    babel-code-frame "^6.26.0"
-    babel-core "^6.25.0"
-    babel-generator "^6.25.0"
-    babel-plugin-transform-es2015-modules-commonjs "^6.26.0"
-    babel-plugin-transform-react-jsx "^6.24.1"
-    babel-preset-env "^1.7.0"
-    babel-template "^6.26.0"
-    babel-traverse "^6.26.0"
-    babel-types "^6.26.0"
-    babylon "^6.17.4"
     babylon-walk "^1.0.2"
-    browserslist "^3.2.6"
+    browserslist "^4.1.0"
     chalk "^2.1.0"
     clone "^2.1.1"
     command-exists "^1.2.6"
@@ -15866,9 +15873,10 @@ parcel@^1.9.7:
     cssnano "^4.0.0"
     deasync "^0.1.13"
     dotenv "^5.0.0"
+    dotenv-expand "^4.2.0"
     fast-glob "^2.2.2"
     filesize "^3.6.0"
-    fswatcher-child "^1.0.3"
+    fswatcher-child "^1.0.5"
     get-port "^3.2.0"
     grapheme-breaker "^0.3.2"
     htmlnano "^0.1.9"
