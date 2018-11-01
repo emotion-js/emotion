@@ -66,7 +66,7 @@ export class StyleSheet {
   container: HTMLElement
   key: string
   nonce: string | void
-  before: Element | null | void
+  before: Element | null
   constructor(options: Options) {
     this.isSpeedy =
       options.speedy === undefined
