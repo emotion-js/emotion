@@ -46,7 +46,7 @@ let render = (cache, props, theme: null | Object, ref) => {
       hasOwnProperty.call(props, key) &&
       key !== 'css' &&
       key !== typePropName &&
-      (process.env.NODE_ENV !== 'production' && key !== labelPropName)
+      (process.env.NODE_ENV === 'production' || key !== labelPropName)
     ) {
       newProps[key] = props[key]
     }

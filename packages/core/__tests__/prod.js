@@ -1,5 +1,7 @@
 import 'test-utils/prod-mode'
-import { css } from '@emotion/core'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
+import renderer from 'react-test-renderer'
 
 test('css works', () => {
   // css has a different return in prod so this is just making sure that isn't broken
@@ -11,4 +13,9 @@ Object {
   "styles": "color:hotpink;",
 }
 `)
+})
+
+test('props work', () => {
+  let tree = renderer.create(<div css={{ color: 'hotpink' }} hidden />)
+  expect(tree.toJSON().props.hidden).toBe(true)
 })
