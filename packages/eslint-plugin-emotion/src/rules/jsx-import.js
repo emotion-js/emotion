@@ -69,6 +69,43 @@ module.exports = {
               )
             }
           })
+          return
+        }
+        if (
+          node.value.type === 'JSXExpressionContainer' &&
+          node.value.expression.type === 'TemplateLiteral'
+        ) {
+          let cssSpecifier = emotionCoreNode.specifiers.find(
+            x => x.imported.name === 'css'
+          )
+          context.report({
+            node,
+            message:
+              'Template literals should be replaced with tagged template literals using `css` when using the css prop',
+            fix(fixer) {
+              if (cssSpecifier) {
+                return fixer.insertTextBefore(
+                  node.value.expression,
+                  cssSpecifier.local.name
+                )
+              }
+              let lastSpecifier =
+                emotionCoreNode.specifiers[
+                  emotionCoreNode.specifiers.length - 1
+                ]
+
+              if (context.getScope().variables.some(x => x.name === 'css')) {
+                return [
+                  fixer.insertTextAfter(lastSpecifier, `, css as _css`),
+                  fixer.insertTextBefore(node.value.expression, '_css')
+                ]
+              }
+              return [
+                fixer.insertTextAfter(lastSpecifier, `, css`),
+                fixer.insertTextBefore(node.value.expression, 'css')
+              ]
+            }
+          })
         }
       }
     }
