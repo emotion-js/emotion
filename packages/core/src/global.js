@@ -97,7 +97,8 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
     }
     if (this.sheet.tags.length) {
       // if this doesn't exist then it will be null so the style element will be appended
-      this.sheet.before = this.sheet.tags[0].nextElementSibling
+      let element = this.sheet.tags[0].nextElementSibling
+      this.sheet.before = ((element: any): Element | null)
       this.sheet.flush()
     }
     this.props.cache.insert(``, this.props.serialized, this.sheet, false)
