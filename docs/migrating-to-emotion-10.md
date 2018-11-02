@@ -93,7 +93,6 @@ let element = (
 ```
 
 - Add a `jsx` import and set jsx pragma
-- Alternatively, use this TODO babel preset
 
 ```jsx
 import { css } from '@emotion/core'
