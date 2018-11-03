@@ -12,7 +12,10 @@ class Home extends React.Component<{}, { isBrowser: boolean }> {
     return (
       <h1
         css={{
-          color: 'hotpink'
+          color: 'hotpink',
+          ':hover': {
+            color: 'yellow'
+          }
         }}
       >
         wow, some hotpink text!!
