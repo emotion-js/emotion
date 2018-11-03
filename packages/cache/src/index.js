@@ -132,6 +132,12 @@ let createCache = (options?: Options): EmotionCache => {
       let name = serialized.name
       if (serverStylisCache[name] === undefined) {
         serverStylisCache[name] = stylis(selector, serialized.styles)
+        if (
+          process.env.NODE_ENV !== 'production' &&
+          serialized.map !== undefined
+        ) {
+          serverStylisCache[name] += serialized.map
+        }
       }
       return serverStylisCache[name]
     }
