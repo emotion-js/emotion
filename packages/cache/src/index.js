@@ -132,12 +132,6 @@ let createCache = (options?: Options): EmotionCache => {
       let name = serialized.name
       if (serverStylisCache[name] === undefined) {
         serverStylisCache[name] = stylis(selector, serialized.styles)
-        if (
-          process.env.NODE_ENV !== 'production' &&
-          serialized.map !== undefined
-        ) {
-          serverStylisCache[name] += serialized.map
-        }
       }
       return serverStylisCache[name]
     }
@@ -156,11 +150,20 @@ let createCache = (options?: Options): EmotionCache => {
         if (shouldCache) {
           cache.inserted[name] = true
         }
+        if (
+          // using === development instead of !== production
+          // because if people do ssr in tests, the source maps showing up would be annoying
+          process.env.NODE_ENV === 'development' &&
+          serialized.map !== undefined
+        ) {
+          return rules + serialized.map
+        }
         return rules
       } else {
         // in compat mode, we put the styles on the inserted cache so
         // that emotion-server can pull out the styles
         // except when we don't want to cache it(just the Global component right now)
+
         if (shouldCache) {
           cache.inserted[name] = rules
         } else {
