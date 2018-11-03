@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic 1`] = `"<div class=\\"css-1pi3r4s-html\\">some hotpink text</div>"`;
