@@ -102,4 +102,4 @@ While this might seem like a lot of boilerplate to this rather than using styled
 
 - It forces you to think about when it makes sense to abstract styles into a component and when it doesn't make sense. This also means that you're less likely to have to make up names for things when they can just be inline.
 - There aren't any problems with prop filtering. styled uses a list of props that can be passed to the native DOM elements which causes some unnecessary props to be forwarded to the DOM which can bloat SSR payloads. By creating components yourself, you can use the object rest syntax to choose which props to forward.
-- It's easier for people who don't know how styled or etc. works since it's a regular React component.
+- It's easier for people who don't know how styled or etc. works since they're regular React components.
