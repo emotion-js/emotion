@@ -2,7 +2,7 @@
 
 > Create Server-Side-Rendering APIs for emotion instances
 
-`create-emotion-styled` allows you create various APIs for Server-Side Rendering with instances of emotion. This is **only** needed if you use a custom instance of emotion from `create-emotion` and you want to do Server-Side Rendering.
+`create-emotion-server` allows you create various APIs for Server-Side Rendering with instances of emotion. This is **only** needed if you use a custom instance of emotion from `create-emotion` and you want to do Server-Side Rendering.
 
 ```jsx
 import createEmotionServer from 'create-emotion-server'
