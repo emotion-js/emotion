@@ -1,5 +1,5 @@
 [version]
-0.81.0
+0.85.0
 
 [ignore]
 .*/node_modules/config-chain/.*
@@ -8,6 +8,8 @@
 .*/node_modules/metro.*
 .*/node_modules/preact/.*
 
+[untyped]
+.*/node_modules/polished/.*
 
 
 [include]
@@ -15,7 +17,6 @@
 [libs]
 
 [declarations]
-.*/node_modules/polished/.*
 .*/node_modules/react-native/.*
 
 

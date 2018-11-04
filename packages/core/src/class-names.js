@@ -62,7 +62,15 @@ function merge(registered: Object, css: (*) => string, className: string) {
   return rawClassName + css(registeredStyles)
 }
 
-export const ClassNames = withEmotionCache((props, context) => {
+type Props = {
+  children: ({
+    css: (...args: Array<any>) => string,
+    cx: (...args: Array<ClassNameArg>) => string,
+    theme: Object
+  }) => React.Node
+}
+
+export const ClassNames = withEmotionCache<Props>((props, context) => {
   return (
     <ThemeContext.Consumer>
       {theme => {
