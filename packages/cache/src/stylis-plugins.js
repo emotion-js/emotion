@@ -36,11 +36,8 @@ export let ruleSheet: StylisPlugin = (
       switch (content.charCodeAt(0)) {
         case 64: {
           // @import
-          if (depth === 0) {
-            Sheet.current.insert(content + ';')
-            return ''
-          }
-          break
+          Sheet.current.insert(content + ';')
+          return ''
         }
         // charcode for l
         case 108: {
