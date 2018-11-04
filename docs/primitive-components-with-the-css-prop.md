@@ -98,9 +98,8 @@ let Button = React.forwardRef((props, ref) => {
 
 ## Why?
 
-While it might seen like a lot of boilerplate to this rather than using styled, it has a few advantages over styled.
+While this might seem like a lot of boilerplate to this rather than using styled, it has a few advantages over styled.
 
-- most components don't actually use refs or change the component that's rendered
-- it forces you to think about when it makes sense to abstract styles into a component so it stops premature abstraction
-- makes it easier to add things like extra props or any other logic to the inner component
-- easier for people who don't know styled or etc. since it's a regular React component
+- It forces you to think about when it makes sense to abstract styles into a component and when it doesn't make sense. This also means that you're less likely to have to make up names for things when they can just be inline.
+- There aren't any problems with prop filtering. styled uses a list of props that can be passed to the native DOM elements which causes some unnecessary props to be forwarded to the DOM which can bloat SSR payloads. By creating components yourself, you can use the object rest syntax to choose which props to forward.
+- It's easier for people who don't know how styled or etc. works since it's a regular React component.
