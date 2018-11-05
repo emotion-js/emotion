@@ -17,7 +17,8 @@
   "dependencies": {
     "@emotion/is-prop-valid": "^0.7.0",
     "@emotion/serialize": "^0.10.2",
-    "@emotion/utils": "^0.10.1"
+    "@emotion/utils": "^0.10.1",
+    "object-assign": "^4.1.1"
   },
   "devDependencies": {
     "@types/react": "16.3.18",

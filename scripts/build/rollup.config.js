@@ -143,7 +143,11 @@ module.exports = (
           'codegen',
           ['@babel/proposal-class-properties', { loose: true }],
           require('./fix-dce-for-classes-with-statics'),
-          ['@babel/plugin-proposal-object-rest-spread', { loose: true }]
+          [
+            '@babel/plugin-proposal-object-rest-spread',
+            { loose: true, useBuiltIns: !isUMD }
+          ],
+          !isUMD && 'babel-plugin-transform-import-object-assign'
         ].filter(Boolean),
         configFile: false,
         babelrc: false
