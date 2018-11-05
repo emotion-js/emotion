@@ -8,8 +8,10 @@ import {
   type CreateStyled
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/core'
-import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
+import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
+
+let isBrowser = typeof document !== 'undefined'
 
 type StyledComponent = (
   props: *

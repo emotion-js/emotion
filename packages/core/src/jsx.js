@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react'
 import { withEmotionCache, ThemeContext } from './context'
-import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
+import { getRegisteredStyles, insertStyles } from '@emotion/utils'
+import { isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
