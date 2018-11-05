@@ -15,6 +15,9 @@ let render = (cache, props, theme: null | Object, ref) => {
   let registeredStyles = []
 
   let className = ''
+
+  registeredStyles.push(theme === null ? props.css : props.css(theme))
+
   if (props.className !== undefined) {
     className = getRegisteredStyles(
       cache.registered,
@@ -22,7 +25,7 @@ let render = (cache, props, theme: null | Object, ref) => {
       props.className
     )
   }
-  registeredStyles.push(theme === null ? props.css : props.css(theme))
+
   let serialized = serializeStyles(cache.registered, registeredStyles)
 
   if (
