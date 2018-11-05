@@ -1,6 +1,6 @@
 {
   "name": "create-emotion-server",
-  "version": "10.0.0-beta.7",
+  "version": "10.0.0-beta.8",
   "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "types": "types/index.d.ts",
@@ -13,7 +13,7 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/utils": "^0.10.1",
+    "@emotion/utils": "^0.11.0",
     "html-tokenize": "^2.0.0",
     "multipipe": "^1.0.2",
     "through": "^2.3.8"
