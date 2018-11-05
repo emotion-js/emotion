@@ -143,7 +143,6 @@ module.exports = (
           'codegen',
           ['@babel/proposal-class-properties', { loose: true }],
           require('./fix-dce-for-classes-with-statics'),
-          isBrowser && require('./inline-isBrowser'),
           [
             '@babel/plugin-proposal-object-rest-spread',
             { loose: true, useBuiltIns: !isUMD }
@@ -151,37 +150,14 @@ module.exports = (
           !isUMD && 'babel-plugin-transform-import-object-assign'
         ].filter(Boolean),
         configFile: false,
-        overrides: [
-          {
-            test: filename => filename.includes('utils/src'),
-            plugins: [
-              isBrowser &&
-                (babel => {
-                  let t = babel.types
-                  return {
-                    // for @emotion/utils
-                    visitor: {
-                      VariableDeclarator(path, state) {
-                        if (t.isIdentifier(path.node.id)) {
-                          if (path.node.id.name === 'isBrowser') {
-                            path.get('init').replaceWith(t.booleanLiteral(true))
-                          }
-                        }
-                      },
-                      ReferencedIdentifier(path, node) {
-                        if (path.node.name === 'isBrowser') {
-                          path.replaceWith(t.booleanLiteral(true))
-                        }
-                      }
-                    }
-                  }
-                })
-            ].filter(Boolean)
-          }
-        ],
         babelrc: false
       }),
       cjs(),
+      isBrowser &&
+        replace({
+          'typeof document': JSON.stringify('object'),
+          'typeof window': JSON.stringify('object')
+        }),
       isUMD && alias(packageAliases),
       isUMD && resolve(),
       (isUMD || isProd) &&

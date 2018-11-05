@@ -5,7 +5,13 @@
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import testCases from 'jest-in-case'
-import { jsx, Global, keyframes, CacheProvider } from '@emotion/core'
+import {
+  jsx,
+  Global,
+  keyframes,
+  CacheProvider,
+  ClassNames
+} from '@emotion/core'
 import styled from '@emotion/styled'
 import css from '@emotion/css'
 import createCache from '@emotion/cache'
@@ -182,6 +188,46 @@ let cases = {
             `}
           />
         </React.Fragment>
+      )
+    }
+  },
+  ClassNames: {
+    render: () => {
+      return (
+        <ClassNames>
+          {({ css, cx }) => {
+            return (
+              <div
+                className={css`
+                  color: hotpink;
+                `}
+              >
+                <span
+                  className={cx(
+                    {
+                      [css`
+                        color: green;
+                      `]: true,
+                      something: false,
+                      'other-class': true
+                    },
+                    [
+                      css`
+                        color: yellowgreen;
+                      `
+                    ],
+                    false && 'some-class',
+                    undefined,
+                    null
+                  )}
+                />
+                <span
+                  className={cx(css({ color: 'darkgreen' }), 'other-class')}
+                />
+              </div>
+            )
+          }}
+        </ClassNames>
       )
     }
   }

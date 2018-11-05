@@ -13,6 +13,20 @@ exports[`ssr @import 1`] = `
 
 `;
 
+exports[`ssr ClassNames 1`] = `
+
+<style data-emotion-css="15qt0xu 1c3m2c3 15gmrnz y0v68j nug1mu">
+  .css-15qt0xu{color:hotpink;}.css-1c3m2c3{color:green;}.css-15gmrnz{color:yellowgreen;}.css-y0v68j{color:green;color:yellowgreen;}.css-nug1mu{color:darkgreen;}
+</style>
+<div class="css-15qt0xu">
+  <span class="other-class css-y0v68j">
+  </span>
+  <span class="css-nug1mu other-class">
+  </span>
+</div>
+
+`;
+
 exports[`ssr basic 1`] = `
 
 <style data-emotion-css="1lrxbo5">
@@ -154,6 +168,26 @@ exports[`ssr with old api @import 1`] = `
 <style data-emotion-css="1sh9nmh">
   @import url('https://some-url');h1{color:hotpink;}
 </style>
+
+`;
+
+exports[`ssr with old api ClassNames 1`] = `
+
+<style data-emotion-css="15qt0xu">
+  .css-15qt0xu{color:hotpink;}
+</style>
+<div class="css-15qt0xu">
+  <style data-emotion-css="y0v68j">
+    .css-y0v68j{color:green;color:yellowgreen;}
+  </style>
+  <span class="other-class css-y0v68j">
+  </span>
+  <style data-emotion-css="nug1mu">
+    .css-nug1mu{color:darkgreen;}
+  </style>
+  <span class="css-nug1mu other-class">
+  </span>
+</div>
 
 `;
 

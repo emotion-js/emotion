@@ -2,11 +2,12 @@
 import * as React from 'react'
 import { withEmotionCache, ThemeContext } from './context'
 import {
-  isBrowser,
   type EmotionCache,
   type SerializedStyles,
   insertStyles
 } from '@emotion/utils'
+import { isBrowser } from './utils'
+
 import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
 

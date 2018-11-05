@@ -24,6 +24,12 @@ exports[`basic 1`] = `
     data-emotion="css-global"
   >
     
+    @import url('something.com/file.css');
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
     html{background-color:hotpink;}
   </style>
   <style
