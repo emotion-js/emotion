@@ -9,6 +9,8 @@ type ClassNameArg =
   | boolean
   | { [key: string]: boolean }
   | Array<ClassNameArg>
+  | null
+  | void
 
 let classnames = (args: Array<ClassNameArg>): string => {
   let len = args.length
@@ -47,7 +49,11 @@ let classnames = (args: Array<ClassNameArg>): string => {
   }
   return cls
 }
-function merge(registered: Object, css: (*) => string, className: string) {
+function merge(
+  registered: Object,
+  css: (...args: Array<any>) => string,
+  className: string
+) {
   const registeredStyles = []
 
   const rawClassName = getRegisteredStyles(
@@ -70,7 +76,7 @@ export const ClassNames = withEmotionCache((props, context) => {
         let serializedHashes = ''
         let hasRendered = false
 
-        let css = (...args) => {
+        let css = (...args: Array<any>) => {
           if (hasRendered && process.env.NODE_ENV !== 'production') {
             throw new Error('css can only be used during render')
           }
@@ -97,7 +103,7 @@ export const ClassNames = withEmotionCache((props, context) => {
         let content = { css, cx, theme }
         let ele = props.children(content)
         hasRendered = true
-        if (!isBrowser && rules !== undefined) {
+        if (!isBrowser && rules.length !== 0) {
           return (
             <React.Fragment>
               <style
