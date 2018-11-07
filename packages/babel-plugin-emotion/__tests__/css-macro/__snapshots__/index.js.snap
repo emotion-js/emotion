@@ -323,6 +323,24 @@ const otherThing = process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
+exports[`@emotion/css/macro no-actual-import 1`] = `
+"import '@emotion/css/macro'
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+"
+`;
+
+exports[`@emotion/css/macro other-imports 1`] = `
+"import { nonExistantImport } from '@emotion/css/macro'
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+"
+`;
+
 exports[`@emotion/css/macro remove-block-comments 1`] = `
 "import css from '@emotion/css/macro'
 
