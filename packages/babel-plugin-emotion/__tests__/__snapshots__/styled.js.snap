@@ -440,10 +440,18 @@ const SomeComponent = _styled(\\"div\\", {
 exports[`@emotion/babel-plugin-core styled other-imports 1`] = `
 "import { something, otherThing } from '@emotion/styled'
 
+something()
+otherThing()
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { something, otherThing } from '@emotion/styled';"
+import { otherThing as _otherThing } from \\"@emotion/styled-base\\";
+import { something as _something } from \\"@emotion/styled-base\\";
+
+_something();
+
+_otherThing();"
 `;
 
 exports[`@emotion/babel-plugin-core styled primitives 1`] = `

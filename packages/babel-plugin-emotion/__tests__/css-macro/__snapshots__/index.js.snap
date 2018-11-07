@@ -335,10 +335,14 @@ exports[`@emotion/css/macro no-actual-import 1`] = `
 exports[`@emotion/css/macro other-imports 1`] = `
 "import { nonExistantImport } from '@emotion/css/macro'
 
+nonExistantImport()
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-"
+import { nonExistantImport as _nonExistantImport } from \\"@emotion/css\\";
+
+_nonExistantImport();"
 `;
 
 exports[`@emotion/css/macro remove-block-comments 1`] = `

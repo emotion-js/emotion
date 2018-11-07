@@ -438,10 +438,15 @@ const SomeComponent = _styled(\\"div\\", {
 exports[`@emotion/styled.macro other-imports 1`] = `
 "import { something, otherThing } from '@emotion/styled'
 
+something()
+otherThing()
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { something, otherThing } from '@emotion/styled';"
+import { something, otherThing } from '@emotion/styled';
+something();
+otherThing();"
 `;
 
 exports[`@emotion/styled.macro primitives 1`] = `

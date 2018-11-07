@@ -335,10 +335,14 @@ import '@emotion/css';"
 exports[`@emotion/babel-plugin-core css other-imports 1`] = `
 "import { nonExistantImport } from '@emotion/css'
 
+nonExistantImport()
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { nonExistantImport } from '@emotion/css';"
+import { nonExistantImport as _nonExistantImport } from \\"@emotion/css\\";
+
+_nonExistantImport();"
 `;
 
 exports[`@emotion/babel-plugin-core css remove-block-comments 1`] = `
