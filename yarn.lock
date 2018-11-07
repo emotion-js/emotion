@@ -3210,10 +3210,10 @@ babel-plugin-macros@^2.4.0:
   dependencies:
     cosmiconfig "^5.0.5"
 
-babel-plugin-react-native-web@^0.8.8:
-  version "0.8.8"
-  resolved "https://registry.yarnpkg.com/babel-plugin-react-native-web/-/babel-plugin-react-native-web-0.8.8.tgz#f896da73d3038f396d2181fc6779d061e52d32b8"
-  integrity sha512-yYQDlCUn68AzigBuFEKL/teDd0bEoumRKDhk3mPItkF950swHofoIV/VVLcang8IhhKxqNh+1wYE70MbVlhNoQ==
+babel-plugin-react-native-web@^0.9.6:
+  version "0.9.6"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-native-web/-/babel-plugin-react-native-web-0.9.6.tgz#21ca8c097d4d475f5b8cd435fa461d1342fcb103"
+  integrity sha512-toyQWuiwwpVFDtlUtpKuf01Qjxk/f3kUi6TvT8kJ9HT59xjchUflhFYrBvQeESS6Mi+psHRWUxhDjX01m2IeUQ==
 
 babel-plugin-remove-graphql-queries@^2.0.2-rc.3:
   version "2.0.2-rc.3"
@@ -17584,7 +17584,7 @@ rc@^1.0.1, rc@^1.1.2, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-art@^16.4.0, react-art@^16.5.2:
+react-art@^16.5.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react-art/-/react-art-16.5.2.tgz#dabfc9a5ef565ecb4f817bb0e872f9a5cd7f89cb"
   integrity sha512-55g2iFRVE+YhkNdzKAtO3BhTdROefBVZ+bif3K5mI7shXE4shOHpWnhbdKZyU1o9O8pvfPApRWbZWdV8fkxyOw==
@@ -17781,10 +17781,10 @@ react-live@^1.7.1:
     prop-types "^15.5.8"
     unescape "^0.2.0"
 
-react-native-web@0.9.3, react-native-web@^0.8.3:
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.9.3.tgz#7d504a4d331e6965061496a5954dfefe1cdc1239"
-  integrity sha512-2CqfN0hTbjxqJOV/RUdX/WGxp6FyDHZI/fIrBhxNrJ1UFk95Q086Zr9MLjcXLS3/dqTFnIB1SDV6VdkMrLhE5g==
+react-native-web@0.9.6:
+  version "0.9.6"
+  resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.9.6.tgz#d51073963582b76775bcdff328aeee0fca807c99"
+  integrity sha512-i0tN/UCLNgsoFkoJOxCtW92L07A5XIJe6p2tlqF3/gdgBL4HK5m63fhc1Ywr1OoU/YJ59/Dnwz1VE/lak5ar3w==
   dependencies:
     array-find-index "^1.0.2"
     create-react-class "^15.6.2"
@@ -17855,10 +17855,10 @@ react-native@^0.57.0:
     xmldoc "^0.4.0"
     yargs "^9.0.0"
 
-react-primitives@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/react-primitives/-/react-primitives-0.6.1.tgz#7ea4082a7831cbaf928a12058f7950d228dbcdec"
-  integrity sha512-8v1fTTHq9D3Nn3gIDcb/e/aXmEed5FReV8jknyYqeFuVhYhXPKyhdE3Tt6Gl2tSDnC6MFi2KMPxYSbQUtCELdQ==
+react-primitives@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-primitives/-/react-primitives-0.7.0.tgz#ccd83c7aa374c66bb1dc4982b423403c59a33805"
+  integrity sha512-9JwzJExMVFIR1H+e+4fF8cTeS1Fj+W5+oL5vHawar36vwsJB5CLvdP3DY2DlYVH+pOZoCCQpBgeOjD2d7e6GKg==
   dependencies:
     animated "^0.2.2"
     asap "^2.0.5"
@@ -17868,8 +17868,6 @@ react-primitives@^0.6.1:
     invariant "^2.2.1"
     normalize-css-color "^1.0.1"
     prop-types "^15.5.10"
-    react-art "^16.4.0"
-    react-native-web "^0.8.3"
     react-timer-mixin "^0.13.3"
     string-hash "^1.1.3"
 
