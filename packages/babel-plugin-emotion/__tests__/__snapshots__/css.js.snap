@@ -323,6 +323,28 @@ const otherThing = process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
+exports[`@emotion/babel-plugin-core css no-actual-import 1`] = `
+"import '@emotion/css'
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import '@emotion/css';"
+`;
+
+exports[`@emotion/babel-plugin-core css other-imports 1`] = `
+"import { nonExistantImport } from '@emotion/css'
+
+nonExistantImport()
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { nonExistantImport as _nonExistantImport } from \\"@emotion/css\\";
+
+_nonExistantImport();"
+`;
+
 exports[`@emotion/babel-plugin-core css remove-block-comments 1`] = `
 "import css from '@emotion/css'
 
