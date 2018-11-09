@@ -9,10 +9,10 @@
 [![Backers on Open Collective](https://opencollective.com/emotion/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/emotion/sponsors/badge.svg)](#sponsors) [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://img.shields.io/circleci/project/github/emotion-js/emotion/master.svg)](https://circleci.com/gh/emotion-js/emotion)
 [![codecov](https://codecov.io/gh/emotion-js/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/emotion-js/emotion)
-![core gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/emotion.umd.min.js?compression=gzip&label=core%20gzip%20size)
-![core size](http://img.badgesize.io/https://unpkg.com/emotion/dist/emotion.umd.min.js?label=core%20size)
-![react gzip size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?compression=gzip&label=react%20gzip%20size)
-![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?label=react%20size)
+![core size](https://img.shields.io/bundlephobia/min/emotion.svg?label=core%20size)
+![core gzip size](https://img.shields.io/bundlephobia/minzip/emotion.svg?label=core%20gzip%20size)
+![react size](https://img.shields.io/bundlephobia/min/@emotion/styled-base.svg?label=react%20size)
+![react gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/styled-base.svg?label=react%20gzip%20size)
 [![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
 [![spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/emotion)
 
@@ -37,39 +37,23 @@ Frequently viewed docs:
 Get up and running with a single import.
 
 ```bash
-npm install --save emotion
+npm install --save @emotion/core
 ```
 
-```javascript
-import { css } from 'emotion'
+```jsx
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 
-const app = document.getElementById('root')
-const myStyle = css`
-  color: rebeccapurple;
-`
-app.classList.add(myStyle)
-```
-
-### React with [Optional Babel Plugin](docs/babel.md)
-
-```bash
-npm install --save emotion react-emotion babel-plugin-emotion
-```
-
-```javascript
-import styled, { css } from 'react-emotion'
-
-const Container = styled('div')`
-  background: #333;
-`
-const myStyle = css`
-  color: rebeccapurple;
-`
-const app = () => (
-  <Container>
-    <p className={myStyle}>Hello World</p>
-  </Container>
-)
+let SomeComponent = props => {
+  return (
+    <div
+      css={{
+        color: 'hotpink'
+      }}
+      {...props}
+    />
+  )
+}
 ```
 
 ### Do I Need To Use the Babel Plugin?
@@ -114,6 +98,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [thedisconnect.co](https://thedisconnect.co/one)
 - [zefenify.com](https://zefenify.com/about.html)
 - [sentry.io](https://sentry.io)
+- [comparett.com](https://comparett.com)
 
 ## Contributors
 

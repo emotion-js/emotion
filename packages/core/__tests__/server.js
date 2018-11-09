@@ -5,7 +5,13 @@
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import testCases from 'jest-in-case'
-import { jsx, Global, keyframes, CacheProvider } from '@emotion/core'
+import {
+  jsx,
+  Global,
+  keyframes,
+  CacheProvider,
+  ClassNames
+} from '@emotion/core'
 import styled from '@emotion/styled'
 import css from '@emotion/css'
 import createCache from '@emotion/cache'
@@ -14,6 +20,8 @@ import HTMLSerializer from 'jest-serializer-html'
 import createEmotionServer from 'create-emotion-server'
 
 expect.addSnapshotSerializer(HTMLSerializer)
+
+let fakeStylisPlugins = []
 
 let cases = {
   basic: {
@@ -95,6 +103,40 @@ let cases = {
       )
     }
   },
+  'prefix option false': {
+    cache: () => createCache({ prefix: false }),
+    render: () => {
+      return <div css={{ display: 'flex' }} />
+    }
+  },
+  'prefix option false with stylis plugins': {
+    cache: () =>
+      createCache({ prefix: false, stylisPlugins: fakeStylisPlugins }),
+    render: () => {
+      return <div css={{ display: 'flex' }} />
+    }
+  },
+  'prefix option true with stylis plugins': {
+    cache: () =>
+      createCache({ prefix: true, stylisPlugins: fakeStylisPlugins }),
+    render: () => {
+      return <div css={{ display: 'flex' }} />
+    }
+  },
+  'prefix option func false with stylis plugins': {
+    cache: () =>
+      createCache({ prefix: () => false, stylisPlugins: fakeStylisPlugins }),
+    render: () => {
+      return <div css={{ display: 'flex' }} />
+    }
+  },
+  'prefix option func false': {
+    cache: () => createCache({ prefix: () => false }),
+    render: () => {
+      return <div css={{ display: 'flex' }} />
+    }
+  },
+
   'global with keyframes': {
     render: () => {
       return (
@@ -146,6 +188,46 @@ let cases = {
             `}
           />
         </React.Fragment>
+      )
+    }
+  },
+  ClassNames: {
+    render: () => {
+      return (
+        <ClassNames>
+          {({ css, cx }) => {
+            return (
+              <div
+                className={css`
+                  color: hotpink;
+                `}
+              >
+                <span
+                  className={cx(
+                    {
+                      [css`
+                        color: green;
+                      `]: true,
+                      something: false,
+                      'other-class': true
+                    },
+                    [
+                      css`
+                        color: yellowgreen;
+                      `
+                    ],
+                    false && 'some-class',
+                    undefined,
+                    null
+                  )}
+                />
+                <span
+                  className={cx(css({ color: 'darkgreen' }), 'other-class')}
+                />
+              </div>
+            )
+          }}
+        </ClassNames>
       )
     }
   }

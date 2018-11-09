@@ -142,7 +142,9 @@ header .emotion-0 {
 })
 
 test('throws nice error for invalid css', () => {
-  const tree = renderer.create(<div className={css`jnnjvhjevhevhb`} />).toJSON()
+  const tree = renderer
+    .create(<div className={css`jnnjvh@'jevhevhb`} />)
+    .toJSON()
 
   expect(() => {
     ignoreConsoleErrors(() => {

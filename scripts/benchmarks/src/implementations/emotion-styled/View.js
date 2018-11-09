@@ -1,6 +1,6 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
-const View = styled('div')`
+const View = styled.div`
   align-items: stretch;
   border-width: 0;
   border-style: solid;

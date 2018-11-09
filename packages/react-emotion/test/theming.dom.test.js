@@ -27,25 +27,4 @@ test('change theme', () => {
   expect(container).toMatchSnapshot()
   rerender(<TestComponent renderChild={false} theme={{ primary: 'pink' }} />)
   expect(container).toMatchSnapshot()
-  expect(document.documentElement).toMatchInlineSnapshot(`
-<html>
-  <head>
-    <style
-      data-emotion="css"
-    >
-      
-      .css-kttjpy-Div{color:green;}
-    </style>
-    <style
-      data-emotion="css"
-    >
-      
-      .css-1nihrz5-Div{color:pink;}
-    </style>
-  </head>
-  <body>
-    <div />
-  </body>
-</html>
-`)
 })

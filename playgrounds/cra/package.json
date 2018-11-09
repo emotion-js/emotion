@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "0.6.16",
+  "version": "0.6.17",
   "private": true,
   "dependencies": {
     "react": "^16.3.0",

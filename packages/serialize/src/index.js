@@ -61,6 +61,12 @@ if (process.env.NODE_ENV !== 'production') {
     'unset'
   ]
   let oldProcessStyleValue = processStyleValue
+
+  let msPattern = /^-ms-/
+  let hyphenPattern = /-(.)/g
+
+  let hyphenatedCache = {}
+
   processStyleValue = (key: string, value: string) => {
     if (key === 'content') {
       if (
@@ -75,6 +81,20 @@ if (process.env.NODE_ENV !== 'production') {
         )
       }
     }
+
+    if (
+      key.charCodeAt(1) !== 45 &&
+      key.indexOf('-') !== -1 &&
+      hyphenatedCache[key] === undefined
+    ) {
+      hyphenatedCache[key] = true
+      console.error(
+        `Using kebab-case for css properties in objects is not supported. Did you mean ${key
+          .replace(msPattern, 'ms-')
+          .replace(hyphenPattern, (str, char) => char.toUpperCase())}?`
+      )
+    }
+
     return oldProcessStyleValue(key, value)
   }
 }
@@ -137,10 +157,14 @@ function handleInterpolation(
     }
     case 'function': {
       if (mergedProps !== undefined) {
+        let previousCursor = cursor
+        let result = interpolation(mergedProps)
+        cursor = previousCursor
+
         return handleInterpolation(
           mergedProps,
           registered,
-          interpolation(mergedProps),
+          result,
           couldBeSelectorInterpolation
         )
       } else if (process.env.NODE_ENV !== 'production') {
@@ -164,7 +188,7 @@ function handleInterpolation(
       ) {
         console.error(
           'Interpolating a className from css`` is not recommended and will cause problems with composition.\n' +
-            'Interpolating a className from css`` will be completely unsupported in the next major version of Emotion'
+            'Interpolating a className from css`` will be completely unsupported in a future major version of Emotion'
         )
         shouldWarnAboutInterpolatingClassNameFromCss = false
       }
@@ -231,11 +255,6 @@ function createStringFromObject(
 
 let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 
-// this is set to an empty string on each serializeStyles call
-// it's declared in the module scope since we need to add to
-// it in the middle of serialization to add styles from keyframes
-let styles = ''
-
 let sourceMapPattern
 if (process.env.NODE_ENV !== 'production') {
   sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
@@ -259,37 +278,24 @@ export const serializeStyles = function(
     return args[0]
   }
   let stringMode = true
-  styles = ''
-  cursor = undefined
+  let styles = ''
 
+  cursor = undefined
   let strings = args[0]
   if (strings == null || strings.raw === undefined) {
     stringMode = false
-    // we have to store this in a variable and then append it to styles since
-    // styles could be modified in handleInterpolation and using += would mean
-    // it would append the return value of handleInterpolation to the value before handleInterpolation is called
-    let stringifiedInterpolation = handleInterpolation(
-      mergedProps,
-      registered,
-      strings,
-      false
-    )
-    styles += stringifiedInterpolation
+    styles += handleInterpolation(mergedProps, registered, strings, false)
   } else {
     styles += strings[0]
   }
   // we start at 1 since we've already handled the first arg
   for (let i = 1; i < args.length; i++) {
-    // we have to store this in a variable and then append it to styles since
-    // styles could be modified in handleInterpolation and using += would mean
-    // it would append the return value of handleInterpolation to the value before handleInterpolation is called
-    let stringifiedInterpolation = handleInterpolation(
+    styles += handleInterpolation(
       mergedProps,
       registered,
       args[i],
       styles.charCodeAt(styles.length - 1) === 46
     )
-    styles += stringifiedInterpolation
     if (stringMode) {
       styles += strings[i]
     }

@@ -4,7 +4,7 @@ const path = require('path')
 const puppeteer = require('puppeteer')
 const { createServer } = require('http-server')
 
-let libraries = ['emotion', 'emotion-next']
+let libraries = ['emotion-css-func', 'emotion-css-prop']
 let tests = ['Mount deep tree', 'Mount wide tree', 'Update dynamic styles']
 let tracing = process.argv.some(arg => arg.includes('tracing'))
 

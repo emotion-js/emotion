@@ -3,22 +3,14 @@ import createCache from '@emotion/cache'
 import { serializeStyles } from '@emotion/serialize'
 import {
   insertStyles,
-  isBrowser,
   getRegisteredStyles,
-  type EmotionCache
+  type EmotionCache,
+  type SerializedStyles
 } from '@emotion/utils'
 
-function insertWithoutScoping(cache, name: string, styles: string) {
-  if (cache.inserted[name] === undefined) {
-    let rules = cache.stylis('', styles)
-    cache.inserted[name] = true
-
-    if (isBrowser) {
-      rules.forEach(cache.sheet.insert, cache.sheet)
-    } else {
-      let joinedRules = rules.join('')
-      cache.inserted[name] = joinedRules
-    }
+function insertWithoutScoping(cache, serialized: SerializedStyles) {
+  if (cache.inserted[serialized.name] === undefined) {
+    return cache.insert('', serialized, cache.sheet, true)
   }
 }
 
@@ -95,17 +87,16 @@ let createEmotion = (options: *): Emotion => {
   let keyframes = (...args) => {
     let serialized = serializeStyles(cache.registered, args)
     let animation = `animation-${serialized.name}`
-    insertWithoutScoping(
-      cache,
-      serialized.name,
-      `@keyframes ${animation}{${serialized.styles}}`
-    )
+    insertWithoutScoping(cache, {
+      name: serialized.name,
+      styles: `@keyframes ${animation}{${serialized.styles}}`
+    })
 
     return animation
   }
   let injectGlobal = (...args) => {
     let serialized = serializeStyles(cache.registered, args)
-    insertWithoutScoping(cache, serialized.name, serialized.styles)
+    insertWithoutScoping(cache, serialized)
   }
 
   let cx = (...args) => {

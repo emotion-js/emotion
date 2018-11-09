@@ -1,6 +1,6 @@
 {
   "name": "@emotion/serialize",
-  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "version": "0.10.3",
   "description": "serialization utils for emotion",
   "main": "dist/serialize.cjs.js",
   "module": "dist/serialize.esm.js",
@@ -14,10 +14,11 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/hash": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/memoize": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/unitless": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "@emotion/utils": "^10.0.0-really-unsafe-please-do-not-use.2"
+    "@emotion/hash": "^0.7.0",
+    "@emotion/memoize": "^0.7.0",
+    "@emotion/unitless": "^0.7.0",
+    "@emotion/utils": "^0.11.0",
+    "csstype": "^2.5.7"
   },
   "devDependencies": {
     "dtslint": "^0.3.0"

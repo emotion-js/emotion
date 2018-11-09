@@ -73,6 +73,18 @@ exports[`object with false 1`] = `
 </div>
 `;
 
+exports[`overwrite styles from parent 1`] = `
+.emotion-0 {
+  color: green;
+  background-color: yellow;
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`string as css prop throws 1`] = `
 "Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/css' like this: css\`
             color: hotpink;

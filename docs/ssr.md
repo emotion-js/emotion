@@ -2,7 +2,7 @@
 title: 'Server Side Rendering'
 ---
 
-Server side rendering works out of the box in emotion 10 and above
+Server side rendering works out of the box in Emotion 10 and above if you're only using `@emotion/core` and `@emotion/styled`.
 
 ```jsx
 import { renderToString } from 'react-dom/server'
@@ -13,21 +13,18 @@ let html = renderToString(<App />)
 
 ## Using Emotion 10 with the old SSR APIs
 
-It's still possible to use emotion 10 with the SSR api's in previous versions of emotion. It primarily exists for compatibility reasons.
+It's also possible to use emotion 10 with the SSR APIs for vanilla Emotion. It should only be used for compatibility and migration purposes.
 
 ```jsx
-import createEmotionServer from 'create-emotion-server'
-import createCache from '@emotion/cache'
+import { renderStylesToString } from 'emotion-server'
+import { cache } from 'emotion'
+import { CacheProvider } from '@emotion/core'
 import { renderToString } from 'react-dom/server'
 
-let cache = createCache()
-
-let { renderStylesToString } = createEmotionServer(cache)
-
 let element = (
-  <Provider value={cache}>
+  <CacheProvider value={cache}>
     <App />
-  </Provider>
+  </CacheProvider>
 )
 
 let html = renderStylesToString(renderToString(element))
@@ -87,11 +84,15 @@ hydrate(ids)
 
 ## Next.js
 
-To use emotion's SSR with Next.js you need a custom `Document` component in `pages/_document.js` that renders the styles and inserts them into the `<head>`.[ An example of Next.js with emotion can be found in the Next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
+To use emotion's SSR with Next.js you need a custom `Document` component in `pages/_document.js` that renders the styles and inserts them into the `<head>`. [An example of Next.js with emotion can be found in the Next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
+
+> Note:
+>
+> This only applies if you're using vanilla Emotion or a version of Emotion prior to v10. For v10 and above, SSR just works in Next.js.
 
 ## Gatsby
 
-To use emotion's SSR with Gatsby, you can use `gatsby-plugin-emotion` or you can do it yourself with emotion and Gatsby's various APIs but it's generally recommended to use `gatsby-plugin-emotion`. [There's an example available in the Gatsby repo](https://github.com/gatsbyjs/gatsby/tree/master/examples/using-emotion) or [you can look at this site which is built with Gatsby!](https://github.com/emotion-js/emotion/tree/master/packages/site)
+To use emotion's SSR with Gatsby, you can use `gatsby-plugin-emotion` or you can do it yourself with emotion and Gatsby's various APIs but it's generally recommended to use `gatsby-plugin-emotion`. [There's an example available in the Gatsby repo](https://github.com/gatsbyjs/gatsby/tree/master/examples/using-emotion) or [you can look at this site which is built with Gatsby!](https://github.com/emotion-js/emotion/tree/master/site)
 
 ```bash
 yarn add gatsby-plugin-emotion
@@ -104,6 +105,10 @@ module.exports = {
   plugins: [...otherGatsbyPlugins, 'gatsby-plugin-emotion']
 }
 ```
+
+> Note:
+>
+> While Emotion 10 and above supports SSR out of the box, it's still recommended to use gatsby-plugin-emotion as gatsby-plugin-emotion will enable babel-plugin-emotion and other potential future optimisations.
 
 ## Puppeteer
 

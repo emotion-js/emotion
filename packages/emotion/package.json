@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "10.0.0-really-unsafe-please-do-not-use.2",
+  "version": "10.0.0-beta.8",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -15,13 +15,16 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^10.0.0-really-unsafe-please-do-not-use.2",
-    "create-emotion": "^10.0.0-really-unsafe-please-do-not-use.2"
+    "babel-plugin-emotion": "^10.0.0-beta.8",
+    "create-emotion": "^10.0.0-beta.8"
   },
   "devDependencies": {
-    "@types/react": "16.3.18",
+    "@emotion/stylis": "^0.8.0",
     "babel-plugin-transform-define": "^1.3.0",
-    "dtslint": "^0.3.0"
+    "dtslint": "^0.3.0",
+    "react-emotion": "^10.0.0-beta.8",
+    "stylis": "3.5.4",
+    "stylis-rule-sheet": "^0.0.10"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

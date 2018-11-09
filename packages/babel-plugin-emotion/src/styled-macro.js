@@ -1,6 +1,6 @@
 // @flow
 import { createMacro } from 'babel-plugin-macros'
-import { addDefault } from '@babel/helper-module-imports'
+import { addDefault, addNamed } from '@babel/helper-module-imports'
 import { transformExpressionWithStyles, getStyledOptions } from './utils'
 
 export let createStyledMacro = ({
@@ -11,8 +11,10 @@ export let createStyledMacro = ({
   isWeb: boolean
 }) =>
   createMacro(({ references, state, babel }) => {
+    state.emotionSourceMap = true
+
     const t = babel.types
-    if (references.default.length) {
+    if (references.default && references.default.length) {
       let styledIdentifier = addDefault(state.file.path, importPath, {
         nameHint: 'styled'
       })
@@ -57,4 +59,13 @@ export let createStyledMacro = ({
         }
       })
     }
+    Object.keys(references)
+      .filter(x => x !== 'default')
+      .forEach(referenceKey => {
+        let runtimeNode = addNamed(state.file.path, referenceKey, importPath)
+
+        references[referenceKey].reverse().forEach(reference => {
+          reference.replaceWith(t.cloneDeep(runtimeNode))
+        })
+      })
   })

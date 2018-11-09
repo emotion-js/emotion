@@ -1,5 +1,6 @@
 // @flow
 /** @jsx jsx */
+import 'test-utils/next-env'
 import { jsx, css, keyframes } from '@emotion/core'
 import { safeQuerySelector, throwIfFalsy } from 'test-utils'
 import cases from 'jest-in-case'

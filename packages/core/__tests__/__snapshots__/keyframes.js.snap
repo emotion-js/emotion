@@ -1,8 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`keyframes basic 1`] = `
+@keyframes animation-0 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: hotpink;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation: animation-0;
+  animation: animation-0;
+}
+
 <div
-  className="css-1mzou9w"
+  className="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -17,8 +32,33 @@ Array [
 `;
 
 exports[`keyframes keyframes used in css call 1`] = `
+@keyframes animation-0 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: hotpink;
+  }
+}
+
+@keyframes animation-1 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: yellow;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation: animation-0 1s animation-1;
+  animation: animation-0 1s animation-1;
+}
+
 <div
-  className="css-1jqzi3u"
+  className="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -35,8 +75,33 @@ Array [
 `;
 
 exports[`keyframes multiple keyframes object 1`] = `
+@keyframes animation-0 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: hotpink;
+  }
+}
+
+@keyframes animation-1 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: yellow;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation: animation-0 1s animation-1;
+  animation: animation-0 1s animation-1;
+}
+
 <div
-  className="css-1jqzi3u"
+  className="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -53,8 +118,23 @@ Array [
 `;
 
 exports[`keyframes object 1`] = `
+@keyframes animation-0 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: hotpink;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation: animation-0 1s;
+  animation: animation-0 1s;
+}
+
 <div
-  className="css-d88cqt"
+  className="emotion-0"
 >
   animation-o4c3es
 </div>
@@ -69,8 +149,23 @@ Array [
 `;
 
 exports[`keyframes object with string keyframes 1`] = `
+@keyframes animation-0 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: hotpink;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation: animation-0 1s;
+  animation: animation-0 1s;
+}
+
 <div
-  className="css-1wh2ide"
+  className="emotion-0"
 >
   animation-1bi8wtt
 </div>
@@ -85,8 +180,23 @@ Array [
 `;
 
 exports[`keyframes without css call 1`] = `
+@keyframes animation-0 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: hotpink;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation: animation-0;
+  animation: animation-0;
+}
+
 <div
-  className="css-1mzou9w"
+  className="emotion-0"
 >
   animation-1bi8wtt
 </div>

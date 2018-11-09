@@ -13,6 +13,20 @@ exports[`ssr @import 1`] = `
 
 `;
 
+exports[`ssr ClassNames 1`] = `
+
+<style data-emotion-css="15qt0xu 1c3m2c3 15gmrnz y0v68j nug1mu">
+  .css-15qt0xu{color:hotpink;}.css-1c3m2c3{color:green;}.css-15gmrnz{color:yellowgreen;}.css-y0v68j{color:green;color:yellowgreen;}.css-nug1mu{color:darkgreen;}
+</style>
+<div class="css-15qt0xu">
+  <span class="other-class css-y0v68j">
+  </span>
+  <span class="css-nug1mu other-class">
+  </span>
+</div>
+
+`;
+
 exports[`ssr basic 1`] = `
 
 <style data-emotion-css="1lrxbo5">
@@ -84,6 +98,56 @@ exports[`ssr only render a style once with the css prop 1`] = `
 
 `;
 
+exports[`ssr prefix option false 1`] = `
+
+<style data-emotion-css="k008qs">
+  .css-k008qs{display:flex;}
+</style>
+<div class="css-k008qs">
+</div>
+
+`;
+
+exports[`ssr prefix option false with stylis plugins 1`] = `
+
+<style data-emotion-css="k008qs">
+  .css-k008qs{display:flex;}
+</style>
+<div class="css-k008qs">
+</div>
+
+`;
+
+exports[`ssr prefix option func false 1`] = `
+
+<style data-emotion-css="k008qs">
+  .css-k008qs{display:flex;}
+</style>
+<div class="css-k008qs">
+</div>
+
+`;
+
+exports[`ssr prefix option func false with stylis plugins 1`] = `
+
+<style data-emotion-css="k008qs">
+  .css-k008qs{display:flex;}
+</style>
+<div class="css-k008qs">
+</div>
+
+`;
+
+exports[`ssr prefix option true with stylis plugins 1`] = `
+
+<style data-emotion-css="k008qs">
+  .css-k008qs{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+</style>
+<div class="css-k008qs">
+</div>
+
+`;
+
 exports[`ssr styled with keyframes 1`] = `
 
 <style data-emotion-css="1y9glrp animation-ocj8pk">
@@ -104,6 +168,26 @@ exports[`ssr with old api @import 1`] = `
 <style data-emotion-css="1sh9nmh">
   @import url('https://some-url');h1{color:hotpink;}
 </style>
+
+`;
+
+exports[`ssr with old api ClassNames 1`] = `
+
+<style data-emotion-css="15qt0xu">
+  .css-15qt0xu{color:hotpink;}
+</style>
+<div class="css-15qt0xu">
+  <style data-emotion-css="y0v68j">
+    .css-y0v68j{color:green;color:yellowgreen;}
+  </style>
+  <span class="other-class css-y0v68j">
+  </span>
+  <style data-emotion-css="nug1mu">
+    .css-nug1mu{color:darkgreen;}
+  </style>
+  <span class="css-nug1mu other-class">
+  </span>
+</div>
 
 `;
 
@@ -177,6 +261,56 @@ exports[`ssr with old api only render a style once with the css prop 1`] = `
   </div>
   <div class="css-1lrxbo5">
   </div>
+</div>
+
+`;
+
+exports[`ssr with old api prefix option false 1`] = `
+
+<style data-emotion-css="k008qs">
+  .css-k008qs{display:flex;}
+</style>
+<div class="css-k008qs">
+</div>
+
+`;
+
+exports[`ssr with old api prefix option false with stylis plugins 1`] = `
+
+<style data-emotion-css="k008qs">
+  .css-k008qs{display:flex;}
+</style>
+<div class="css-k008qs">
+</div>
+
+`;
+
+exports[`ssr with old api prefix option func false 1`] = `
+
+<style data-emotion-css="k008qs">
+  .css-k008qs{display:flex;}
+</style>
+<div class="css-k008qs">
+</div>
+
+`;
+
+exports[`ssr with old api prefix option func false with stylis plugins 1`] = `
+
+<style data-emotion-css="k008qs">
+  .css-k008qs{display:flex;}
+</style>
+<div class="css-k008qs">
+</div>
+
+`;
+
+exports[`ssr with old api prefix option true with stylis plugins 1`] = `
+
+<style data-emotion-css="k008qs">
+  .css-k008qs{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+</style>
+<div class="css-k008qs">
 </div>
 
 `;

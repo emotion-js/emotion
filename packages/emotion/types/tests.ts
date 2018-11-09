@@ -10,7 +10,6 @@ import {
   sheet,
   cache
 } from 'emotion'
-import * as React from 'react'
 
 flush()
 

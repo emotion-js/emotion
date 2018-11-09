@@ -5,6 +5,7 @@ import renderer from 'react-test-renderer'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
+import { keyframes } from '@emotion/core'
 import css from '@emotion/css'
 
 describe('styled', () => {
@@ -689,5 +690,16 @@ describe('styled', () => {
         )
         .toJSON()
     ).toMatchSnapshot()
+  })
+  test('keyframes with css call', () => {
+    let SomeComp = styled.div(
+      css`
+        animation: ${keyframes({
+          'from,to': { color: 'green' },
+          '50%': { color: 'hotpink' }
+        })};
+      `
+    )
+    expect(renderer.create(<SomeComp />).toJSON()).toMatchSnapshot()
   })
 })

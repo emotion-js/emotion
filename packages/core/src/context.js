@@ -1,7 +1,8 @@
 // @flow
-import { isBrowser, type EmotionCache } from '@emotion/utils'
+import { type EmotionCache } from '@emotion/utils'
 import * as React from 'react'
 import createCache from '@emotion/cache'
+import { isBrowser } from './utils'
 
 let EmotionCacheContext = React.createContext(isBrowser ? createCache() : null)
 
@@ -27,17 +28,6 @@ let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
   }
   // $FlowFixMe
   return React.forwardRef(render)
-}
-
-let consume = (func: EmotionCache => React.Node) => {
-  return (
-    <EmotionCacheContext.Consumer>
-      {
-        // $FlowFixMe we know it won't be null
-        func
-      }
-    </EmotionCacheContext.Consumer>
-  )
 }
 
 if (!isBrowser) {
@@ -76,25 +66,6 @@ if (!isBrowser) {
       </EmotionCacheContext.Consumer>
     )
   }
-  consume = (func: EmotionCache => React.Node) => {
-    return (
-      <EmotionCacheContext.Consumer>
-        {context => {
-          if (context === null) {
-            return (
-              <BasicProvider>
-                {newContext => {
-                  return func(newContext)
-                }}
-              </BasicProvider>
-            )
-          } else {
-            return func(context)
-          }
-        }}
-      </EmotionCacheContext.Consumer>
-    )
-  }
 }
 
-export { consume, withEmotionCache }
+export { withEmotionCache }

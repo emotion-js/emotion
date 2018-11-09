@@ -3,7 +3,7 @@
  */
 
 const { RuleTester } = require('eslint')
-const rule = require('../../src/rules/jsx-import')
+const rule = require('eslint-plugin-emotion').rules['jsx-import']
 
 RuleTester.setDefaultConfig({
   parserOptions: {
@@ -109,6 +109,62 @@ let ele = <div css={{}} />
 let ele2 = <div css={{}} />
 
       `.trim()
+    },
+    {
+      code: `
+    /** @jsx jsx */
+    import {jsx} from '@emotion/core'
+    let ele = <div css={\`color:hotpink;\`} />
+          `.trim(),
+      errors: [
+        {
+          message:
+            'Template literals should be replaced with tagged template literals using `css` when using the css prop'
+        }
+      ],
+      output: `
+    /** @jsx jsx */
+    import {jsx, css} from '@emotion/core'
+    let ele = <div css={css\`color:hotpink;\`} />
+          `.trim()
+    },
+    {
+      code: `
+    /** @jsx jsx */
+    import {jsx} from '@emotion/core'
+    let css = 'something'
+    let ele = <div css={\`color:hotpink;\`} />
+          `.trim(),
+      errors: [
+        {
+          message:
+            'Template literals should be replaced with tagged template literals using `css` when using the css prop'
+        }
+      ],
+      output: `
+    /** @jsx jsx */
+    import {jsx, css as _css} from '@emotion/core'
+    let css = 'something'
+    let ele = <div css={_css\`color:hotpink;\`} />
+          `.trim()
+    },
+    {
+      code: `
+    /** @jsx jsx */
+    import {jsx, css} from '@emotion/core'
+    let ele = <div css={\`color:hotpink;\`} />
+          `.trim(),
+      errors: [
+        {
+          message:
+            'Template literals should be replaced with tagged template literals using `css` when using the css prop'
+        }
+      ],
+      output: `
+    /** @jsx jsx */
+    import {jsx, css} from '@emotion/core'
+    let ele = <div css={css\`color:hotpink;\`} />
+          `.trim()
     }
   ]
 })

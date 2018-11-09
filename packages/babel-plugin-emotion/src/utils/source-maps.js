@@ -24,16 +24,19 @@ export function getSourceMap(
     column: number
   },
   state: *
-) {
+): string {
   const generator = makeSourceMapGenerator(state.file)
   const generatorOpts = getGeneratorOpts(state.file)
-  generator.addMapping({
-    generated: {
-      line: 1,
-      column: 0
-    },
-    source: generatorOpts.sourceFileName,
-    original: offset
-  })
-  return convert.fromObject(generator).toComment({ multiline: true })
+  if (generatorOpts.sourceFileName) {
+    generator.addMapping({
+      generated: {
+        line: 1,
+        column: 0
+      },
+      source: generatorOpts.sourceFileName,
+      original: offset
+    })
+    return convert.fromObject(generator).toComment({ multiline: true })
+  }
+  return ''
 }

@@ -19,7 +19,7 @@ import { ThemeProvider } from 'emotion-theming'
 
 const theme = {
   colors: {
-    primaryColors: 'hotpink'
+    primary: 'hotpink'
   }
 }
 

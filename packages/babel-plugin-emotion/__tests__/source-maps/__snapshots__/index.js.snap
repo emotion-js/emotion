@@ -9,11 +9,14 @@ css({ color: 'hotpink' })
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _css from \\"@emotion/css\\";
-({
+process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+} : {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2NzcydcblxuY3NzKHsgY29sb3I6ICdob3RwaW5rJyB9KVxuIl19 */\\"
-});"
+};"
 `;
 
 exports[`source maps css-prop 1`] = `
@@ -29,13 +32,45 @@ import _css from \\"@emotion/css\\";
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-var _ref = {
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\"
+} : {
   name: \\"1wl9j1m-SomeComponent\\",
   styles: \\"color:hotpink;label:SomeComponent;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0MiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jb25zdCBTb21lQ29tcG9uZW50ID0gcHJvcHMgPT4gPGRpdiBjc3M9e3sgY29sb3I6ICdob3RwaW5rJyB9fSB7Li4ucHJvcHN9IC8+XG4iXX0= */\\"
 };
 
 const SomeComponent = props => <div css={_ref} {...props} />;"
+`;
+
+exports[`source maps css-prop-dynamic 1`] = `
+"/** @jsx jsx */
+import { jsx } from '@emotion/core'
+
+const SomeComponent = props => (
+  <div
+    css={{
+      backgroundColor: window.something
+    }}
+    {...props}
+  />
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+
+const SomeComponent = props => <div css={
+/*#__PURE__*/
+_css({
+  backgroundColor: window.something
+}, \\"label:SomeComponent;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLSSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBwcm9wcyA9PiAoXG4gIDxkaXZcbiAgICBjc3M9e3tcbiAgICAgIGJhY2tncm91bmRDb2xvcjogd2luZG93LnNvbWV0aGluZ1xuICAgIH19XG4gICAgey4uLnByb3BzfVxuICAvPlxuKVxuIl19 */\\"))} {...props} />;"
 `;
 
 exports[`source maps css-string 1`] = `
@@ -49,11 +84,14 @@ css\`
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _css from \\"@emotion/css\\";
-({
+process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+} : {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFRyIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2NzcydcblxuY3NzYFxuICBjb2xvcjogaG90cGluaztcbmBcbiJdfQ== */\\"
-});"
+};"
 `;
 
 exports[`source maps styled-object 1`] = `
@@ -69,9 +107,12 @@ const SomeComponent = styled.div({
 import _styled from \\"@emotion/styled-base\\";
 
 const SomeComponent = _styled(\\"div\\", {
-  target: \\"ezg2t240\\",
+  target: \\"eb28ebz0\\",
   label: \\"SomeComponent\\"
-})({
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+} : {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFc0IiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2KHtcbiAgY29sb3I6ICdob3RwaW5rJ1xufSlcbiJdfQ== */\\"
@@ -91,9 +132,12 @@ const SomeComponent = styled.div\`
 import _styled from \\"@emotion/styled-base\\";
 
 const SomeComponent = _styled(\\"div\\", {
-  target: \\"ezg2t240\\",
+  target: \\"eb28ebz0\\",
   label: \\"SomeComponent\\"
-})({
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+} : {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFZ0MiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2YFxuICBjb2xvcjogaG90cGluaztcbmBcbiJdfQ== */\\"

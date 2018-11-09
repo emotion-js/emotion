@@ -17,7 +17,17 @@ render(
         }
       `}
     />
-    Everything is hotpink now!
+    <Global
+      styles={{
+        '.some-class': {
+          fontSize: 50,
+          textAlign: 'center'
+        }
+      }}
+    />
+    <div className="some-class">
+      Everything is hotpink now!
+    </div>
   </div>
 )
 ```

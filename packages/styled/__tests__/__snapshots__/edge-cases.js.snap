@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`nested function using css 1`] = `
+.emotion-0 {
+  color: blue;
+  border: 2px solid #000;
+  background-color: red;
+  padding: 30px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`nested function using css and keyframes 1`] = `
+@keyframes animation-0 {
+  from, to {
+    color: green;
+  }
+
+  50% {
+    color: hotpink;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation: animation-0;
+  animation: animation-0;
+}
+
+<div
+  className="emotion-0"
+/>
+`;

@@ -316,7 +316,7 @@ class Sidebar extends Component {
       overlayStyle.visibility = 'visible'
     }
 
-    if (isTouching || !this.props.transitions) {
+    if (this.props.docked || isTouching || !this.props.transitions) {
       sidebarStyle.transition = 'none'
       sidebarStyle.WebkitTransition = 'none'
       contentStyle.transition = 'none'

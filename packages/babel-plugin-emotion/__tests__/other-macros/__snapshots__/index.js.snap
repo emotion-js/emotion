@@ -15,8 +15,12 @@ import _styled from \\"@emotion/styled-base\\";
 let Thing = _styled(\\"div\\", {
   target: \\"ee3ac3y0\\",
   label: \\"Thing\\"
-})({
+})(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\"
+} : {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlYWN0LWVtb3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRXNCIiwiZmlsZSI6InJlYWN0LWVtb3Rpb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgc3R5bGVkIGZyb20gJ3JlYWN0LWVtb3Rpb24vbWFjcm8nXG5cbmxldCBUaGluZyA9IHN0eWxlZC5kaXZgXG4gIGNvbG9yOiBob3RwaW5rO1xuYFxuIl19 */\\"
 });"
-`
+`;
