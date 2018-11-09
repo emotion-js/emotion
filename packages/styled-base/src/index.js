@@ -2,8 +2,7 @@
 import * as React from 'react'
 import type { ElementType } from 'react'
 import {
-  getShouldForwardProp,
-  hasDefaultShouldForwardProp,
+  getDefaultShouldForwardProp,
   type StyledOptions,
   type CreateStyled
 } from './utils'
@@ -44,12 +43,12 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   const isReal = tag.__emotion_real === tag
   const baseTag = (isReal && tag.__emotion_base) || tag
 
-  if (typeof shouldForwardProp !== 'function') {
-    shouldForwardProp = isReal
-      ? tag.__emotion_forwardProp
-      : getShouldForwardProp(baseTag)
+  if (typeof shouldForwardProp !== 'function' && isReal) {
+    shouldForwardProp = tag.__emotion_forwardProp
   }
-  const shouldUseAs = !shouldForwardProp('as')
+  let defaultShouldForwardProp =
+    shouldForwardProp || getDefaultShouldForwardProp(baseTag)
+  const shouldUseAs = !defaultShouldForwardProp('as')
 
   return function(): StyledComponent {
     let args = arguments
@@ -112,14 +111,9 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             }
 
             const finalShouldForwardProp =
-              (shouldUseAs &&
-                hasDefaultShouldForwardProp(
-                  baseTag,
-                  // $FlowFixMe
-                  shouldForwardProp
-                ) &&
-                getShouldForwardProp(finalTag)) ||
-              shouldForwardProp
+              shouldUseAs && shouldForwardProp !== undefined
+                ? getDefaultShouldForwardProp(finalTag)
+                : defaultShouldForwardProp
 
             let newProps = {}
 

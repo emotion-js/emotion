@@ -74,7 +74,8 @@ test('composite base - string as', () => {
   )
 
   expect(getByTestId(h1Title).tagName).toBe('H1')
-  expect(getByTestId(h3Title).tagName).toBe('H3')
+  expect(getByTestId(h3Title).tagName).toBe('H1')
+  expect(getByTestId(h3Title).getAttribute('as')).toBe('h3')
 })
 
 test('forward as - string base', () => {

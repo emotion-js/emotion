@@ -4,11 +4,11 @@ import isPropValid from '@emotion/is-prop-valid'
 
 export type Interpolations = Array<any>
 
-const testOmitPropsOnStringTag: (key: string) => boolean = isPropValid
+const testOmitPropsOnStringTag = isPropValid
 const testOmitPropsOnComponent = (key: string) =>
-  key !== 'theme' && key !== 'innerRef' && key !== 'as'
+  key !== 'theme' && key !== 'innerRef'
 
-export const getShouldForwardProp = (tag: React.ElementType) =>
+export const getDefaultShouldForwardProp = (tag: React.ElementType) =>
   typeof tag === 'string' &&
   // 96 is one less than the char code
   // for "a" so this is checking that
@@ -16,15 +16,6 @@ export const getShouldForwardProp = (tag: React.ElementType) =>
   tag.charCodeAt(0) > 96
     ? testOmitPropsOnStringTag
     : testOmitPropsOnComponent
-
-export const hasDefaultShouldForwardProp = (
-  tag: React.ElementType,
-  shouldForwardProp: string => boolean
-) =>
-  shouldForwardProp ===
-  (typeof tag === 'string'
-    ? testOmitPropsOnComponent
-    : testOmitPropsOnComponent)
 
 export type StyledOptions = {
   label?: string,
