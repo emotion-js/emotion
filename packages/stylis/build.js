@@ -12,40 +12,6 @@ const recast = require('recast')
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 
-// can be removed after https://github.com/thysultan/stylis.js/pull/111
-const removeUselessThingForQuotes = src =>
-  j(src)
-    .find(j.SwitchStatement, {
-      discriminant: {
-        name: 'code'
-      }
-    })
-    .forEach(path => {
-      path.value.cases.forEach(_case => {
-        if (
-          _case.test &&
-          _case.test.type === 'Identifier' &&
-          _case.test.name === 'DOUBLEQUOTE'
-        ) {
-          _case.consequent = []
-        }
-      })
-    })
-    .toSource()
-
-// can be removed after https://github.com/thysultan/stylis.js/pull/112
-const removeUselessCasesInProxy = src =>
-  j(src)
-    .find(j.FunctionDeclaration, { id: { name: 'proxy' } })
-    .forEach(path => {
-      path.value.body.body[1] = recast.parse(`
-      if (out !== content) {
-        return out
-      }
-      `).program.body[0]
-    })
-    .toSource()
-
 const simplifySet = src =>
   j(src)
     .find(j.FunctionDeclaration, { id: { name: 'set' } })
@@ -144,11 +110,7 @@ async function doThing() {
     .replace('this !== void 0 && this.constructor === stylis', 'false')
     .replace('return factory(selector)', '')
   const result = removeUMDWrapper(
-    simplifySet(
-      removeUselessCasesInProxy(
-        removeUselessThingForQuotes(setOptions(removeOptions(stylisSrc)))
-      )
-    )
+    simplifySet(setOptions(removeOptions(stylisSrc)))
   )
   // await writeFile('./src/stylis.js', result)
   console.log('start request')
