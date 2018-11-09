@@ -111,7 +111,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             }
 
             const finalShouldForwardProp =
-              shouldUseAs && shouldForwardProp !== undefined
+              shouldUseAs && shouldForwardProp === undefined
                 ? getDefaultShouldForwardProp(finalTag)
                 : defaultShouldForwardProp
 
