@@ -26,9 +26,12 @@
     "types",
     "macro.js"
   ],
-  "umd:main": "./dist/index.min.js",
+  "umd:main": "dist/styled.umd.min.js",
   "browser": {
     "./dist/styled.cjs.js": "./dist/styled.browser.cjs.js",
     "./dist/styled.esm.js": "./dist/styled.browser.esm.js"
+  },
+  "preconstruct": {
+    "umdName": "emotionStyled"
   }
 }

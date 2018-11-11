@@ -13,8 +13,8 @@
     "src",
     "dist"
   ],
-  "umd:main": "./dist/index.min.js",
   "browser": {
-    "./dist/memoize.cjs.js": "./dist/memoize.browser.cjs.js"
+    "./dist/memoize.cjs.js": "./dist/memoize.browser.cjs.js",
+    "./dist/memoize.esm.js": "./dist/memoize.browser.esm.js"
   }
 }

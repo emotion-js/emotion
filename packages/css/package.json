@@ -27,7 +27,6 @@
     "types",
     "macro.js"
   ],
-  "umd:main": "./dist/index.min.js",
   "browser": {
     "./dist/css.cjs.js": "./dist/css.browser.cjs.js",
     "./dist/css.esm.js": "./dist/css.browser.esm.js"

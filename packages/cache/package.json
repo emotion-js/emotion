@@ -28,7 +28,6 @@
     "dist",
     "types"
   ],
-  "umd:main": "./dist/index.min.js",
   "browser": {
     "./dist/cache.cjs.js": "./dist/cache.browser.cjs.js",
     "./dist/cache.esm.js": "./dist/cache.browser.esm.js"

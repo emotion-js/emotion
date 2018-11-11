@@ -2,7 +2,7 @@
   "name": "jest-emotion",
   "version": "10.0.0-beta.8",
   "description": "Jest utilities for emotion",
-  "main": "dist/index.cjs.js",
+  "main": "dist/jest-emotion.cjs.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -47,6 +47,6 @@
     "tag": "next"
   },
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
+    "./dist/jest-emotion.cjs.js": "./dist/jest-emotion.browser.cjs.js"
   }
 }

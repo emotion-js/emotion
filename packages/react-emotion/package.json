@@ -2,8 +2,8 @@
   "name": "react-emotion",
   "version": "10.0.0-beta.8",
   "description": "The Next Generation of CSS-in-JS, for React projects.",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/react-emotion.cjs.js",
+  "module": "dist/react-emotion.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -37,12 +37,11 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "umd:main": "./dist/emotion.umd.min.js",
   "publishConfig": {
     "tag": "next"
   },
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
-    "./dist/index.esm.js": "./dist/index.browser.esm.js"
+    "./dist/react-emotion.cjs.js": "./dist/react-emotion.browser.cjs.js",
+    "./dist/react-emotion.esm.js": "./dist/react-emotion.browser.esm.js"
   }
 }

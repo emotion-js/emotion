@@ -2,8 +2,8 @@
   "name": "create-emotion",
   "version": "10.0.0-beta.8",
   "description": "The Next Generation of CSS-in-JS.",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/create-emotion.cjs.js",
+  "module": "dist/create-emotion.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -38,12 +38,11 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "umd:main": "./dist/emotion.umd.min.js",
   "publishConfig": {
     "tag": "next"
   },
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
-    "./dist/index.esm.js": "./dist/index.browser.esm.js"
+    "./dist/create-emotion.cjs.js": "./dist/create-emotion.browser.cjs.js",
+    "./dist/create-emotion.esm.js": "./dist/create-emotion.browser.esm.js"
   }
 }

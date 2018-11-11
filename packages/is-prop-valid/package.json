@@ -24,8 +24,8 @@
     "dist",
     "types"
   ],
-  "umd:main": "./dist/index.min.js",
   "browser": {
-    "./dist/is-prop-valid.cjs.js": "./dist/is-prop-valid.browser.cjs.js"
+    "./dist/is-prop-valid.cjs.js": "./dist/is-prop-valid.browser.cjs.js",
+    "./dist/is-prop-valid.esm.js": "./dist/is-prop-valid.browser.esm.js"
   }
 }
