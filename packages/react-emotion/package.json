@@ -1,6 +1,6 @@
 {
   "name": "react-emotion",
-  "version": "10.0.0-beta.9",
+  "version": "10.0.0-beta.10",
   "description": "The Next Generation of CSS-in-JS, for React projects.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -15,13 +15,13 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/styled-base": "^10.0.0-beta.9",
-    "babel-plugin-emotion": "^10.0.0-beta.9"
+    "@emotion/styled-base": "^10.0.0-beta.10",
+    "babel-plugin-emotion": "^10.0.0-beta.10"
   },
   "devDependencies": {
     "@types/react": "16.3.18",
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.0-beta.9"
+    "emotion": "^10.0.0-beta.10"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
