@@ -60,6 +60,7 @@ if (process.env.NODE_ENV !== 'production') {
     'inherit',
     'unset'
   ]
+
   let oldProcessStyleValue = processStyleValue
 
   let msPattern = /^-ms-/
