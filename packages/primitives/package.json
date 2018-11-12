@@ -9,14 +9,14 @@
   ],
   "dependencies": {
     "@emotion/is-prop-valid": "^0.7.0",
-    "@emotion/primitives-core": "^10.0.0-beta.10",
-    "babel-plugin-emotion": "^10.0.0-beta.10"
+    "@emotion/primitives-core": "10.0.0-beta.10",
+    "babel-plugin-emotion": "10.0.0-beta.10"
   },
   "peerDependencies": {
     "react-primitives": "^0.7.0"
   },
   "devDependencies": {
-    "emotion-theming": "^10.0.0-beta.10",
+    "emotion-theming": "10.0.0-beta.10",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "react": "^16.5.2",

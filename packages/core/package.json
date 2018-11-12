@@ -19,8 +19,8 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/cache": "^10.0.0-beta.10",
-    "@emotion/css": "^10.0.0-beta.10",
+    "@emotion/cache": "10.0.0-beta.10",
+    "@emotion/css": "10.0.0-beta.10",
     "@emotion/serialize": "^0.10.5",
     "@emotion/sheet": "^0.9.1",
     "@emotion/utils": "^0.11.0"
@@ -29,12 +29,12 @@
     "react": ">=16.3.0"
   },
   "devDependencies": {
-    "@emotion/styled": "^10.0.0-beta.10",
+    "@emotion/styled": "10.0.0-beta.10",
     "@types/react": "16.3.18",
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.0-beta.10",
-    "emotion-server": "^10.0.0-beta.10",
-    "emotion-theming": "^10.0.0-beta.10",
+    "emotion": "10.0.0-beta.10",
+    "emotion-server": "10.0.0-beta.10",
+    "emotion-theming": "10.0.0-beta.10",
     "html-tag-names": "^1.1.2",
     "svg-tag-names": "^1.1.1"
   },

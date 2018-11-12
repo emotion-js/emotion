@@ -9,12 +9,12 @@
     "dist"
   ],
   "devDependencies": {
-    "emotion-theming": "^10.0.0-beta.10",
+    "emotion-theming": "10.0.0-beta.10",
     "react": "^16.5.2",
     "react-native": "^0.57.0"
   },
   "dependencies": {
-    "@emotion/primitives-core": "^10.0.0-beta.10"
+    "@emotion/primitives-core": "10.0.0-beta.10"
   },
   "peerDependencies": {
     "react-native": ">=0.14.0 && < 1"
