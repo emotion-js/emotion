@@ -13,7 +13,7 @@
   "dependencies": {
     "@emotion/serialize": "^0.10.3",
     "@emotion/utils": "^0.11.0",
-    "babel-plugin-emotion": "^10.0.0-beta.8"
+    "babel-plugin-emotion": "10.0.0-beta.8"
   },
   "devDependencies": {
     "dtslint": "^0.3.0"

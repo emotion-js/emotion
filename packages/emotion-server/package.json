@@ -13,17 +13,17 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "create-emotion-server": "^10.0.0-beta.8"
+    "create-emotion-server": "10.0.0-beta.8"
   },
   "peerDependencies": {
     "emotion": ">=10.0.0-beta"
   },
   "devDependencies": {
     "@types/node": "^10.11.4",
-    "babel-plugin-emotion": "^10.0.0-beta.8",
+    "babel-plugin-emotion": "10.0.0-beta.8",
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.0-beta.8",
-    "react-emotion": "^10.0.0-beta.8"
+    "emotion": "10.0.0-beta.8",
+    "react-emotion": "10.0.0-beta.8"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

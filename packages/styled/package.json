@@ -11,8 +11,8 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/styled-base": "^10.0.0-beta.8",
-    "babel-plugin-emotion": "^10.0.0-beta.8"
+    "@emotion/styled-base": "10.0.0-beta.8",
+    "babel-plugin-emotion": "10.0.0-beta.8"
   },
   "devDependencies": {
     "dtslint": "^0.3.0"

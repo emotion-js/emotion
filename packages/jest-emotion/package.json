@@ -21,11 +21,11 @@
   },
   "devDependencies": {
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.0-beta.8",
+    "emotion": "10.0.0-beta.8",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3",
-    "react-emotion": "^10.0.0-beta.8"
+    "react-emotion": "10.0.0-beta.8"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
