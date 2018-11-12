@@ -362,6 +362,15 @@ _styled.View(\\"color:hotpink;\\");
 _styled.View(\\"\\");"
 `;
 
+exports[`@emotion/babel-plugin-core styled no-import 1`] = `
+"import '@emotion/styled'
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import '@emotion/styled';"
+`;
+
 exports[`@emotion/babel-plugin-core styled object 1`] = `
 "import styled from '@emotion/styled'
 
@@ -426,6 +435,23 @@ const SomeComponent = _styled(\\"div\\", {
 })(props => ({
   color: props.color
 }), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1mdW5jdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFc0IiLCJmaWxlIjoib2JqZWN0LWZ1bmN0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2KHByb3BzID0+ICh7IGNvbG9yOiBwcm9wcy5jb2xvciB9KSlcbiJdfQ== */\\");"
+`;
+
+exports[`@emotion/babel-plugin-core styled other-imports 1`] = `
+"import { something, otherThing } from '@emotion/styled'
+
+something()
+otherThing()
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { otherThing as _otherThing } from \\"@emotion/styled-base\\";
+import { something as _something } from \\"@emotion/styled-base\\";
+
+_something();
+
+_otherThing();"
 `;
 
 exports[`@emotion/babel-plugin-core styled primitives 1`] = `

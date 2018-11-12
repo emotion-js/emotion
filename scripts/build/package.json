@@ -1,8 +1,9 @@
 {
   "name": "build",
-  "version": "9.2.6",
+  "version": "9.2.7",
   "private": true,
   "dependencies": {
+    "babel-plugin-transform-import-object-assign": "^0.1.0",
     "chalk": "^2.3.2",
     "del": "^3.0.0",
     "rollup": "^0.63.4",

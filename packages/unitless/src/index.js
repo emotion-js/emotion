@@ -1,4 +1,5 @@
 // @flow
+
 let unitlessKeys: { [key: string]: 1 } = {
   animationIterationCount: 1,
   borderImageOutset: 1,
@@ -23,6 +24,10 @@ let unitlessKeys: { [key: string]: 1 } = {
   gridColumnEnd: 1,
   gridColumnSpan: 1,
   gridColumnStart: 1,
+  msGridRow: 1,
+  msGridRowSpan: 1,
+  msGridColumn: 1,
+  msGridColumnSpan: 1,
   fontWeight: 1,
   lineHeight: 1,
   opacity: 1,

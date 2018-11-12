@@ -1,7 +1,8 @@
 // @flow
-import { isBrowser, type EmotionCache } from '@emotion/utils'
+import { type EmotionCache } from '@emotion/utils'
 import * as React from 'react'
 import createCache from '@emotion/cache'
+import { isBrowser } from './utils'
 
 let EmotionCacheContext = React.createContext(isBrowser ? createCache() : null)
 
