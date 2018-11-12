@@ -1,6 +1,6 @@
 {
   "name": "create-emotion",
-  "version": "10.0.0-beta.9",
+  "version": "10.0.0-beta.8",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -14,14 +14,14 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/cache": "^10.0.0-beta.9",
-    "@emotion/serialize": "^0.10.4",
+    "@emotion/cache": "10.0.0-beta.8",
+    "@emotion/serialize": "^0.10.3",
     "@emotion/sheet": "^0.9.1",
     "@emotion/utils": "^0.11.0"
   },
   "devDependencies": {
     "babel-plugin-transform-define": "^1.3.0",
-    "create-emotion-server": "^10.0.0-beta.9",
+    "create-emotion-server": "10.0.0-beta.8",
     "dtslint": "^0.3.0"
   },
   "author": "Kye Hohenberger",
