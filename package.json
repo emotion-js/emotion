@@ -73,7 +73,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
-    "flow-bin": "^0.86.0",
+    "flow-bin": "^0.81.0",
     "get-lerna-packages": "^0.1.0",
     "hoist-non-react-statics": "^2.3.1",
     "husky": "^1.1.3",
