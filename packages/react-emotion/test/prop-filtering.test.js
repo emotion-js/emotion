@@ -48,6 +48,26 @@ test('custom shouldForwardProp works', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('shouldForwardProp should get inherited for wrapped styled components', () => {
+  const Div1 = styled('div', {
+    shouldForwardProp: prop => prop !== 'color'
+  })`
+    background-color: ${({ color }) => color};
+  `
+
+  const Div2 = styled(Div1)``
+
+  const tree = renderer
+    .create(
+      <>
+        <Div1 color="red" id="test-1" />
+        <Div2 color="green" id="test-2" />
+      </>
+    )
+    .toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('prop filtering', () => {
   const Link = styled.a`
     color: green;
