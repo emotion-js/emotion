@@ -27,7 +27,9 @@ At this point, any component or element that accepts a `className` prop can also
 
 The `css` prop accepts object styles directly and does not require an additional import. For more usage with objects, 
 
+
 > [Object Style Documentation](/docs/object-styles.md).
+
 
 ```jsx
 // @live
@@ -52,9 +54,11 @@ render(
 
 To pass string styles, you must use `css` which is exported by `@emotion/core`, it can be used as a [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) like below.
 
+
 > Note:
 >
 > **`css` from `@emotion/core` does not return the computed class name string.**  The function returns an object containing the computed name and flattened styles. The returned object is understood by emotion at a low level and can be composed with other emotion based styles and used with the `styled` API for example.
+
 
 ```jsx
 // @live
