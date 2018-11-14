@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { withEmotionCache, ThemeContext } from './context'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
-import { isBrowser } from './utils'
+import { isBrowser, emptyObj } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
@@ -17,7 +17,16 @@ let render = (cache, props, theme: null | Object, ref) => {
 
   let className = ''
 
-  registeredStyles.push(theme === null ? props.css : props.css(theme))
+  let cssProp = theme === null ? props.css : props.css(theme)
+
+  // so that using `css` from `emotion` and passing the result to the css prop works
+  // not passing the registered cache to serializeStyles because it would
+  // make certain babel optimisations not possible
+  if (typeof cssProp === 'string' && cache.registered[cssProp] !== undefined) {
+    cssProp = cache.registered[cssProp]
+  }
+
+  registeredStyles.push(cssProp)
 
   if (props.className !== undefined) {
     className = getRegisteredStyles(
@@ -27,7 +36,7 @@ let render = (cache, props, theme: null | Object, ref) => {
     )
   }
 
-  let serialized = serializeStyles(cache.registered, registeredStyles)
+  let serialized = serializeStyles(emptyObj, registeredStyles)
 
   if (
     process.env.NODE_ENV !== 'production' &&
@@ -35,7 +44,7 @@ let render = (cache, props, theme: null | Object, ref) => {
   ) {
     let labelFromStack = props[labelPropName]
     if (labelFromStack) {
-      serialized = serializeStyles(cache.registered, [
+      serialized = serializeStyles(emptyObj, [
         serialized,
         'label:' + labelFromStack + ';'
       ])
