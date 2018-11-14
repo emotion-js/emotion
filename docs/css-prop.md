@@ -94,7 +94,7 @@ render(
 Class names containing emotion styles from the `className` prop override `css` prop styles. Class names from sources other than emotion are ignored and simply passed on along with the computed emotion class name. The precedence order may seem counter-intuitive, but it allows developers predictably compose components due to the fact that `css` prop styles defined in the parent overwrite the styles defined inside the child.
 
 
-The `P` component in this example has its default styles overridden in the `ArticleText` component.
+The `P` component in this example has its default styles overridden in the `ArticleText` component. 
 
 ```js
 /** @jsx jsx */
@@ -109,7 +109,7 @@ const P = (props) => (
       fontFamily: 'Sans-Serif',
       color: 'black'
     }}
-    {...props}
+    {...props} // <- props contains the `className` prop
   />
 )
 
@@ -120,11 +120,62 @@ const ArticleText = (props) => (
       fontFamily: 'Georgia, serif',
       color: 'darkgray'
     }}
-    {...props}
+    {...props} // <- props contains the `className` prop
   />
 )
 ```
 
+The `ArticleText` component can be customized and the styles composed with its default styles. The result is passed `P` and the process repeats. 
+
+```js
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+
+const P = (props) => (
+  <p
+    css={{
+      margin: 0,
+      fontSize: 12,
+      lineHeight: '1.5',
+      fontFamily: 'Sans-Serif',
+      color: 'black'
+    }}
+    {...props} // <- props contains the `className` prop
+  />
+)
+
+const ArticleText = (props) => (
+  <P
+    css={{
+      fontSize: 14,
+      fontFamily: 'Georgia, serif',
+      color: 'darkgray'
+    }}
+    {...props} // <- props contains the `className` prop
+  />
+)
+
+const SmallArticleText = (props) => (
+  <ArticleText
+    css={{
+      fontSize: 10
+    }}
+    {...props} // <- props contains the `className` prop
+  />
+)
+```
+
+The `SmallArticleText` component's default styles will look like
+
+```js
+{
+  margin: 0,
+  lineHeight: '1.5',
+  fontFamily: 'Georgia, serif',
+  color: 'darkgray',
+  fontSize: 10
+}
+```
 
 ## Gotchas
 
