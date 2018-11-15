@@ -89,6 +89,7 @@ let createCache = (options?: Options): EmotionCache => {
     sheet: StyleSheet,
     shouldCache: boolean
   ) => string | void
+
   if (isBrowser) {
     stylis.use(options.stylisPlugins)(ruleSheet)
 
@@ -172,6 +173,32 @@ let createCache = (options?: Options): EmotionCache => {
   }
 
   if (process.env.NODE_ENV !== 'production') {
+    // https://esbench.com/bench/5bf7371a4cd7e6009ef61d0a
+    const commentStart = /\/\*/g
+    const commentEnd = /\*\//g
+
+    stylis.use((context, content) => {
+      switch (context) {
+        case -1: {
+          while (commentStart.test(content)) {
+            commentEnd.lastIndex = commentStart.lastIndex
+
+            if (commentEnd.test(content)) {
+              commentStart.lastIndex = commentEnd.lastIndex
+              continue
+            }
+
+            throw new Error(
+              'Your styles have an unterminated comment ("/*" without corresponding "*/").'
+            )
+          }
+
+          commentStart.lastIndex = 0
+          break
+        }
+      }
+    })
+
     stylis.use((context, content, selectors) => {
       switch (context) {
         case 2: {
