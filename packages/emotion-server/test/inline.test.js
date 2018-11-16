@@ -42,7 +42,7 @@ describe('renderStylesToString', () => {
 
     expect(
       emotionServer.renderStylesToString(renderToString(component))
-    ).toEqual(expect.not.stringContaining('undefined'))
+    ).toMatchSnapshot()
   })
   test('renders large recursive component', () => {
     const BigComponent = createBigComponent(emotion)
