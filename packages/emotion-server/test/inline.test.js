@@ -39,10 +39,10 @@ describe('renderStylesToString', () => {
       color: red;
     `
     const component = <a href={`${emotion.cache.key}-fail`} className={style} />
+    const output = emotionServer.renderStylesToString(renderToString(component))
 
-    expect(
-      emotionServer.renderStylesToString(renderToString(component))
-    ).toMatchSnapshot()
+    expect(output).toEqual(expect.not.stringContaining('undefined'))
+    expect(output).toMatchSnapshot()
   })
   test('renders large recursive component', () => {
     const BigComponent = createBigComponent(emotion)
