@@ -62,7 +62,7 @@ const createRenderStylesToString = (
     // $FlowFixMe
     const id = match[1]
     const style = inserted[id]
-    if (style === true || seen[id]) {
+    if (style === true || style === undefined || seen[id]) {
       continue
     }
 
