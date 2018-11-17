@@ -2,8 +2,7 @@
 import * as React from 'react'
 import type { ElementType } from 'react'
 import {
-  testOmitPropsOnComponent,
-  testOmitPropsOnStringTag,
+  getDefaultShouldForwardProp,
   type StyledOptions,
   type CreateStyled
 } from './utils'
@@ -43,17 +42,13 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   }
   const isReal = tag.__emotion_real === tag
   const baseTag = (isReal && tag.__emotion_base) || tag
-  let isStringTag = typeof baseTag === 'string'
-  if (typeof shouldForwardProp !== 'function') {
-    shouldForwardProp =
-      isStringTag &&
-      // 96 is one less than the char code
-      // for "a" so this is checking that
-      // it's a lowercase character
-      baseTag.charCodeAt(0) > 96
-        ? testOmitPropsOnStringTag
-        : testOmitPropsOnComponent
+
+  if (typeof shouldForwardProp !== 'function' && isReal) {
+    shouldForwardProp = tag.__emotion_forwardProp
   }
+  let defaultShouldForwardProp =
+    shouldForwardProp || getDefaultShouldForwardProp(baseTag)
+  const shouldUseAs = !defaultShouldForwardProp('as')
 
   return function(): StyledComponent {
     let args = arguments
@@ -80,6 +75,8 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       return (
         <ThemeContext.Consumer>
           {theme => {
+            const finalTag = (shouldUseAs && props.as) || baseTag
+
             let className = ''
             let classInterpolations = []
             let mergedProps = props
@@ -103,17 +100,29 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               styles.concat(classInterpolations),
               mergedProps
             )
-            const rules = insertStyles(context, serialized, isStringTag)
+            const rules = insertStyles(
+              context,
+              serialized,
+              typeof finalTag === 'string'
+            )
             className += `${context.key}-${serialized.name}`
             if (targetClassName !== undefined) {
               className += ` ${targetClassName}`
             }
+
+            const finalShouldForwardProp =
+              shouldUseAs && shouldForwardProp === undefined
+                ? getDefaultShouldForwardProp(finalTag)
+                : defaultShouldForwardProp
+
             let newProps = {}
 
             for (let key in props) {
+              if (shouldUseAs && key === 'as') continue
+
               if (
                 // $FlowFixMe
-                shouldForwardProp(key)
+                finalShouldForwardProp(key)
               ) {
                 newProps[key] = props[key]
               }
@@ -131,7 +140,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               )
             }
 
-            const ele = React.createElement(baseTag, newProps)
+            const ele = React.createElement(finalTag, newProps)
             if (!isBrowser && rules !== undefined) {
               let serializedNames = serialized.name
               let next = serialized.next

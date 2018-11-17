@@ -16,7 +16,10 @@ const processStyleName = memoize((styleName: string) =>
   styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
-let processStyleValue = (key: string, value: string): string => {
+let processStyleValue = (
+  key: string,
+  value: string | number
+): string | number => {
   if (value == null || typeof value === 'boolean') {
     return ''
   }
@@ -24,14 +27,16 @@ let processStyleValue = (key: string, value: string): string => {
   switch (key) {
     case 'animation':
     case 'animationName': {
-      value = value.replace(animationRegex, (match, p1, p2) => {
-        cursor = {
-          name: p1,
-          styles: p2,
-          next: cursor
-        }
-        return p1
-      })
+      if (typeof value === 'string') {
+        value = value.replace(animationRegex, (match, p1, p2) => {
+          cursor = {
+            name: p1,
+            styles: p2,
+            next: cursor
+          }
+          return p1
+        })
+      }
     }
   }
 
@@ -60,6 +65,7 @@ if (process.env.NODE_ENV !== 'production') {
     'inherit',
     'unset'
   ]
+
   let oldProcessStyleValue = processStyleValue
 
   let msPattern = /^-ms-/

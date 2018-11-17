@@ -11,10 +11,10 @@ export let CacheProvider: React.ComponentType<{ value: EmotionCache }> =
   // $FlowFixMe
   EmotionCacheContext.Provider
 
-let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
-  func: (props: Props, cache: EmotionCache, ref: Ref) => React.Node
+let withEmotionCache = function withEmotionCache<Props>(
+  func: (props: Props, cache: EmotionCache, ref: React.Ref<*>) => React.Node
 ): React.StatelessFunctionalComponent<Props> {
-  let render = (props: Props, ref: Ref) => {
+  let render = (props: Props, ref: React.Ref<*>) => {
     return (
       <EmotionCacheContext.Consumer>
         {(

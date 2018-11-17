@@ -103,3 +103,24 @@ exports[`prop filtering on composed styled components that are string tags 1`] =
   hello world
 </a>
 `;
+
+exports[`shouldForwardProp should get inherited for wrapped styled components 1`] = `
+Array [
+  .emotion-0 {
+  background-color: red;
+}
+
+<div
+    className="emotion-0 emotion-1"
+    id="test-1"
+  />,
+  .emotion-0 {
+  background-color: green;
+}
+
+<div
+    className="emotion-0 emotion-1"
+    id="test-2"
+  />,
+]
+`;
