@@ -3,8 +3,8 @@
   "name": "emotion-monorepo",
   "version": "7.0.13",
   "scripts": {
-    "build:watch": "node scripts/build/watch",
-    "build": "node scripts/build",
+    "build:watch": "preconstruct watch",
+    "build": "preconstruct build",
     "test:size": "npm-run-all build size",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "test": "jest",
