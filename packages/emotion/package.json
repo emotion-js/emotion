@@ -2,8 +2,8 @@
   "name": "emotion",
   "version": "10.0.0-beta.12",
   "description": "The Next Generation of CSS-in-JS.",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/emotion.cjs.js",
+  "module": "dist/emotion.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -40,12 +40,15 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "umd:main": "./dist/emotion.umd.min.js",
+  "umd:main": "dist/emotion.umd.min.js",
   "publishConfig": {
     "tag": "next"
   },
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
-    "./dist/index.esm.js": "./dist/index.browser.esm.js"
+    "./dist/emotion.cjs.js": "./dist/emotion.browser.cjs.js",
+    "./dist/emotion.esm.js": "./dist/emotion.browser.esm.js"
+  },
+  "preconstruct": {
+    "umdName": "emotion"
   }
 }

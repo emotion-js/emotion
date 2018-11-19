@@ -9,7 +9,7 @@
     "emotion"
   ],
   "author": "alex-pex <alexandre.paixao@stadline.com>",
-  "main": "src/index.js",
+  "main": "dist/eslint-plugin-emotion.cjs.js",
   "engines": {
     "node": ">=6"
   },
