@@ -1,6 +1,6 @@
 {
   "name": "@emotion/stylis",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "A custom build of Stylis",
   "main": "dist/stylis.cjs.js",
   "module": "dist/stylis.esm.js",
@@ -25,8 +25,8 @@
     "request-promise-native": "^1.0.5",
     "stylis": "3.5.4"
   },
-  "umd:main": "./dist/index.min.js",
   "browser": {
-    "./dist/stylis.cjs.js": "./dist/stylis.browser.cjs.js"
+    "./dist/stylis.cjs.js": "./dist/stylis.browser.cjs.js",
+    "./dist/stylis.esm.js": "./dist/stylis.browser.esm.js"
   }
 }

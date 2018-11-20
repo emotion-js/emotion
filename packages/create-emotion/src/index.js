@@ -76,8 +76,8 @@ let createEmotion = (options: *): Emotion => {
 
   let css = function(...args) {
     let serialized = serializeStyles(
-      cache.registered,
       args,
+      cache.registered,
       this !== undefined ? this.mergedProps : undefined
     )
     insertStyles(cache, serialized, false)
@@ -85,7 +85,7 @@ let createEmotion = (options: *): Emotion => {
   }
 
   let keyframes = (...args) => {
-    let serialized = serializeStyles(cache.registered, args)
+    let serialized = serializeStyles(args, cache.registered)
     let animation = `animation-${serialized.name}`
     insertWithoutScoping(cache, {
       name: serialized.name,
@@ -95,7 +95,7 @@ let createEmotion = (options: *): Emotion => {
     return animation
   }
   let injectGlobal = (...args) => {
-    let serialized = serializeStyles(cache.registered, args)
+    let serialized = serializeStyles(args, cache.registered)
     insertWithoutScoping(cache, serialized)
   }
 

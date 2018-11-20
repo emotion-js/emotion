@@ -1,8 +1,8 @@
 {
   "name": "jest-emotion",
-  "version": "10.0.0-beta.12",
+  "version": "10.0.0-beta.13",
   "description": "Jest utilities for emotion",
-  "main": "dist/index.cjs.js",
+  "main": "dist/jest-emotion.cjs.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -21,11 +21,11 @@
   },
   "devDependencies": {
     "dtslint": "^0.3.0",
-    "emotion": "10.0.0-beta.12",
+    "emotion": "10.0.0-beta.13",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3",
-    "react-emotion": "10.0.0-beta.12"
+    "react-emotion": "10.0.0-beta.13"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -47,6 +47,6 @@
     "tag": "next"
   },
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
+    "./dist/jest-emotion.cjs.js": "./dist/jest-emotion.browser.cjs.js"
   }
 }

@@ -1,9 +1,9 @@
 {
   "name": "react-emotion",
-  "version": "10.0.0-beta.12",
+  "version": "10.0.0-beta.13",
   "description": "The Next Generation of CSS-in-JS, for React projects.",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/react-emotion.cjs.js",
+  "module": "dist/react-emotion.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -15,13 +15,13 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/styled-base": "10.0.0-beta.12",
-    "babel-plugin-emotion": "10.0.0-beta.12"
+    "@emotion/styled-base": "10.0.0-beta.13",
+    "babel-plugin-emotion": "10.0.0-beta.13"
   },
   "devDependencies": {
     "@types/react": "16.3.18",
     "dtslint": "^0.3.0",
-    "emotion": "10.0.0-beta.12"
+    "emotion": "10.0.0-beta.13"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -37,12 +37,11 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "umd:main": "./dist/emotion.umd.min.js",
   "publishConfig": {
     "tag": "next"
   },
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js",
-    "./dist/index.esm.js": "./dist/index.browser.esm.js"
+    "./dist/react-emotion.cjs.js": "./dist/react-emotion.browser.cjs.js",
+    "./dist/react-emotion.esm.js": "./dist/react-emotion.browser.esm.js"
   }
 }
