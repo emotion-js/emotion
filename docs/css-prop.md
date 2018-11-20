@@ -91,7 +91,10 @@ render(
 
 ## Style Precedence
 
-Class names containing emotion styles from the `className` prop override `css` prop styles. Class names from sources other than emotion are ignored and simply passed on along with the computed emotion class name. The precedence order may seem counter-intuitive, but it allows developers predictably compose components due to the fact that `css` prop styles defined in the parent overwrite the styles defined inside the child.
+* Class names containing emotion styles from the `className` prop override `css` prop styles.
+* Class names from sources other than emotion are ignored and appended to the computed emotion class name. 
+
+The precedence order may seem counter-intuitive, but it allows components with styles defined on the `css` prop to be customized via the `className` prop passed from the parent.
 
 
 The `P` component in this example has its default styles overridden in the `ArticleText` component. 
@@ -165,17 +168,55 @@ const SmallArticleText = (props) => (
 )
 ```
 
-The `SmallArticleText` component's default styles will look like
+The styles are concatenated together and inserted via `insertRule`.
 
-```js
-{
-  margin: 0,
-  lineHeight: '1.5',
-  fontFamily: 'Georgia, serif',
-  color: 'darkgray',
-  fontSize: 10
+1. `P` component
+
+```css
+.css-1 {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: 'Sans-Serif';
+  color: 'black';
 }
 ```
+2. `ArticleText` component
+
+```css
+.css-2 {
+  font-size: 14px,
+  font-family: 'Georgia, serif',
+  color: 'darkgray';
+}
+```
+
+3. `SmallArticleText` component
+
+```css
+.css-3 {
+ font-size: 10px;
+}
+```
+
+4. Result
+
+```diff
+.css-result {
++ margin: 0;
+- font-size: 12px;
++ line-height: 1.5;
+- font-family: 'Sans-Serif';
+- color: 'black';
+- font-size: 14px,
++ font-family: 'Georgia, serif',
++ color: darkgray;
++ font-size: 10px;
+}
+```
+
+Relying on the css spec's ["Order of Appearance"](https://www.w3.org/TR/css-cascade-3/#cascade-order) rule, property values defined later (green) override those before it (red). 
+
 
 ## Gotchas
 
