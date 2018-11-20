@@ -33,6 +33,17 @@ describe('renderStylesToString', () => {
       emotionServer.renderStylesToString(renderToString(<Page2 />))
     ).toMatchSnapshot()
   })
+  test('skip undefined styles', () => {
+    const { css } = emotion
+    const style = css`
+      color: red;
+    `
+    const component = <a href={`${emotion.cache.key}-fail`} className={style} />
+    const output = emotionServer.renderStylesToString(renderToString(component))
+
+    expect(output).toEqual(expect.not.stringContaining('undefined'))
+    expect(output).toMatchSnapshot()
+  })
   test('renders large recursive component', () => {
     const BigComponent = createBigComponent(emotion)
     expect(

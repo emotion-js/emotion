@@ -36,5 +36,8 @@
     "dist",
     "types"
   ],
-  "umd:main": "./dist/index.min.js"
+  "umd:main": "dist/styled-base.umd.min.js",
+  "preconstruct": {
+    "umdName": "emotionStyledBase"
+  }
 }

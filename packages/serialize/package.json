@@ -28,7 +28,6 @@
     "dist",
     "types"
   ],
-  "umd:main": "./dist/index.min.js",
   "browser": {
     "./dist/serialize.cjs.js": "./dist/serialize.browser.cjs.js",
     "./dist/serialize.esm.js": "./dist/serialize.browser.esm.js"

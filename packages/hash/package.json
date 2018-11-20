@@ -13,7 +13,6 @@
     "src",
     "dist"
   ],
-  "umd:main": "./dist/index.min.js",
   "browser": {
     "./dist/hash.cjs.js": "./dist/hash.browser.cjs.js",
     "./dist/hash.esm.js": "./dist/hash.browser.esm.js"

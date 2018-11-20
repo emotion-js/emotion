@@ -22,7 +22,6 @@
     "dist",
     "types"
   ],
-  "umd:main": "./dist/index.min.js",
   "devDependencies": {
     "dtslint": "^0.3.0"
   }

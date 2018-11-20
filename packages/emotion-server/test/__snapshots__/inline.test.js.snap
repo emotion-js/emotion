@@ -2095,3 +2095,16 @@ exports[`renderStylesToString renders styles with ids 2`] = `
 </main>
 
 `;
+
+exports[`renderStylesToString skip undefined styles 1`] = `
+
+<style data-emotion-css="1gqet3">
+  .css-1gqet3{color:red;}
+</style>
+<a href="css-fail"
+   class="css-1gqet3"
+   data-reactroot
+>
+</a>
+
+`;

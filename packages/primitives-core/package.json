@@ -2,8 +2,8 @@
   "name": "@emotion/primitives-core",
   "version": "10.0.0-beta.12",
   "description": "Shared utilities for emotion primitives and native",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/primitives-core.cjs.js",
+  "module": "dist/primitives-core.esm.js",
   "files": [
     "src",
     "dist"
@@ -38,6 +38,7 @@
     "tag": "next"
   },
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
+    "./dist/primitives-core.cjs.js": "./dist/primitives-core.browser.cjs.js",
+    "./dist/primitives-core.esm.js": "./dist/primitives-core.browser.esm.js"
   }
 }
