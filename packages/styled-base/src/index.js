@@ -96,8 +96,8 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               )
             }
             const serialized = serializeStyles(
-              context.registered,
               styles.concat(classInterpolations),
+              context.registered,
               mergedProps
             )
             const rules = insertStyles(

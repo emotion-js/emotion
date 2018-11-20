@@ -36,7 +36,7 @@ let render = (cache, props, theme: null | Object, ref) => {
     )
   }
 
-  let serialized = serializeStyles(null, registeredStyles)
+  let serialized = serializeStyles(registeredStyles)
 
   if (
     process.env.NODE_ENV !== 'production' &&
@@ -44,7 +44,7 @@ let render = (cache, props, theme: null | Object, ref) => {
   ) {
     let labelFromStack = props[labelPropName]
     if (labelFromStack) {
-      serialized = serializeStyles(null, [
+      serialized = serializeStyles([
         serialized,
         'label:' + labelFromStack + ';'
       ])
