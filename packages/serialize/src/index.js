@@ -4,12 +4,106 @@ import type {
   SerializedStyles,
   RegisteredCache
 } from '@emotion/utils'
-import { cursor } from './state'
-import {
-  processStyleName,
-  processStyleValue,
-  createSerializedStyles
-} from './utils'
+import hashString from '@emotion/hash'
+import unitless from '@emotion/unitless'
+import memoize from '@emotion/memoize'
+
+let hyphenateRegex = /[A-Z]|^ms/g
+
+let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
+
+const processStyleName = memoize((styleName: string) =>
+  styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+)
+
+let processStyleValue = (
+  key: string,
+  value: string | number
+): string | number => {
+  if (value == null || typeof value === 'boolean') {
+    return ''
+  }
+
+  switch (key) {
+    case 'animation':
+    case 'animationName': {
+      if (typeof value === 'string') {
+        value = value.replace(animationRegex, (match, p1, p2) => {
+          cursor = {
+            name: p1,
+            styles: p2,
+            next: cursor
+          }
+          return p1
+        })
+      }
+    }
+  }
+
+  if (
+    unitless[key] !== 1 &&
+    key.charCodeAt(1) !== 45 && // custom properties
+    typeof value === 'number' &&
+    value !== 0
+  ) {
+    return value + 'px'
+  }
+  return value
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  let contentValuePattern = /(attr|calc|counters?|url)\(/
+  let contentValues = [
+    'normal',
+    'none',
+    'counter',
+    'open-quote',
+    'close-quote',
+    'no-open-quote',
+    'no-close-quote',
+    'initial',
+    'inherit',
+    'unset'
+  ]
+
+  let oldProcessStyleValue = processStyleValue
+
+  let msPattern = /^-ms-/
+  let hyphenPattern = /-(.)/g
+
+  let hyphenatedCache = {}
+
+  processStyleValue = (key: string, value: string) => {
+    if (key === 'content') {
+      if (
+        typeof value !== 'string' ||
+        (contentValues.indexOf(value) === -1 &&
+          !contentValuePattern.test(value) &&
+          (value.charAt(0) !== value.charAt(value.length - 1) ||
+            (value.charAt(0) !== '"' && value.charAt(0) !== "'")))
+      ) {
+        console.error(
+          `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
+        )
+      }
+    }
+
+    if (
+      key.charCodeAt(1) !== 45 &&
+      key.indexOf('-') !== -1 &&
+      hyphenatedCache[key] === undefined
+    ) {
+      hyphenatedCache[key] = true
+      console.error(
+        `Using kebab-case for css properties in objects is not supported. Did you mean ${key
+          .replace(msPattern, 'ms-')
+          .replace(hyphenPattern, (str, char) => char.toUpperCase())}?`
+      )
+    }
+
+    return oldProcessStyleValue(key, value)
+  }
+}
 
 let shouldWarnAboutInterpolatingClassNameFromCss = true
 
@@ -40,10 +134,10 @@ function handleInterpolation(
     }
     case 'object': {
       if (interpolation.anim === 1) {
-        cursor.current = {
+        cursor = {
           name: interpolation.name,
           styles: interpolation.styles,
-          next: cursor.current
+          next: cursor
         }
 
         return interpolation.name
@@ -54,10 +148,10 @@ function handleInterpolation(
           // not the most efficient thing ever but this is a pretty rare case
           // and there will be very few iterations of this generally
           while (next !== undefined) {
-            cursor.current = {
+            cursor = {
               name: next.name,
               styles: next.styles,
-              next: cursor.current
+              next: cursor
             }
             next = next.next
           }
@@ -69,9 +163,9 @@ function handleInterpolation(
     }
     case 'function': {
       if (mergedProps !== undefined) {
-        let previousCursor = cursor.current
+        let previousCursor = cursor
         let result = interpolation(mergedProps)
-        cursor.current = previousCursor
+        cursor = previousCursor
 
         return handleInterpolation(
           mergedProps,
@@ -170,7 +264,16 @@ function createStringFromObject(
   return string
 }
 
-export { basicSerializeStyles } from './basic'
+let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
+
+let sourceMapPattern
+if (process.env.NODE_ENV !== 'production') {
+  sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
+}
+
+// this is the cursor for keyframes
+// keyframes are stored on the SerializedStyles object as a linked list
+let cursor
 
 export const serializeStyles = function(
   registered: RegisteredCache | null,
@@ -188,7 +291,7 @@ export const serializeStyles = function(
   let stringMode = true
   let styles = ''
 
-  cursor.current = undefined
+  cursor = undefined
   let strings = args[0]
   if (strings == null || strings.raw === undefined) {
     stringMode = false
@@ -208,5 +311,41 @@ export const serializeStyles = function(
       styles += strings[i]
     }
   }
-  return createSerializedStyles(styles)
+  let sourceMap
+
+  if (process.env.NODE_ENV !== 'production') {
+    styles = styles.replace(sourceMapPattern, match => {
+      sourceMap = match
+      return ''
+    })
+  }
+
+  // using a global regex with .exec is stateful so lastIndex has to be reset each time
+  labelPattern.lastIndex = 0
+  let identifierName = ''
+
+  let match
+  // https://esbench.com/bench/5b809c2cf2949800a0f61fb5
+  while ((match = labelPattern.exec(styles)) !== null) {
+    identifierName +=
+      '-' +
+      // $FlowFixMe we know it's not null
+      match[1]
+  }
+
+  let name = hashString(styles) + identifierName
+
+  if (process.env.NODE_ENV !== 'production') {
+    return {
+      name,
+      styles,
+      map: sourceMap,
+      next: cursor
+    }
+  }
+  return {
+    name,
+    styles,
+    next: cursor
+  }
 }

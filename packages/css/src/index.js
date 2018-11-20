@@ -1,9 +1,9 @@
 // @flow
 import type { Interpolation, SerializedStyles } from '@emotion/utils'
-import { basicSerializeStyles } from '@emotion/serialize'
+import { serializeStyles } from '@emotion/serialize'
 
 function css(...args: Array<Interpolation>): SerializedStyles {
-  return basicSerializeStyles(args)
+  return serializeStyles(null, args)
 }
 
 export default css
