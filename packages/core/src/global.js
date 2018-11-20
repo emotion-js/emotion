@@ -6,7 +6,7 @@ import {
   type SerializedStyles,
   insertStyles
 } from '@emotion/utils'
-import { isBrowser, emptyObj } from './utils'
+import { isBrowser } from './utils'
 
 import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
@@ -42,14 +42,14 @@ export let Global: React.StatelessFunctionalComponent<
     return (
       <ThemeContext.Consumer>
         {theme => {
-          let serialized = serializeStyles(emptyObj, [styles(theme)])
+          let serialized = serializeStyles(null, [styles(theme)])
 
           return <InnerGlobal serialized={serialized} cache={cache} />
         }}
       </ThemeContext.Consumer>
     )
   }
-  let serialized = serializeStyles(emptyObj, [styles])
+  let serialized = serializeStyles(null, [styles])
 
   return <InnerGlobal serialized={serialized} cache={cache} />
 })

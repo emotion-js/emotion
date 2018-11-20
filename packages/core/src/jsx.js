@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { withEmotionCache, ThemeContext } from './context'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
-import { isBrowser, emptyObj } from './utils'
+import { isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
@@ -36,7 +36,7 @@ let render = (cache, props, theme: null | Object, ref) => {
     )
   }
 
-  let serialized = serializeStyles(emptyObj, registeredStyles)
+  let serialized = serializeStyles(null, registeredStyles)
 
   if (
     process.env.NODE_ENV !== 'production' &&
@@ -44,7 +44,7 @@ let render = (cache, props, theme: null | Object, ref) => {
   ) {
     let labelFromStack = props[labelPropName]
     if (labelFromStack) {
-      serialized = serializeStyles(emptyObj, [
+      serialized = serializeStyles(null, [
         serialized,
         'label:' + labelFromStack + ';'
       ])

@@ -72,7 +72,7 @@ export let transformExpressionWithStyles = ({
       t.isStringLiteral(path.node.arguments[0])
     ) {
       let cssString = path.node.arguments[0].value
-      let res = serializeStyles({}, [cssString])
+      let res = serializeStyles(null, [cssString])
       let prodNode = t.objectExpression([
         t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
         t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles))
