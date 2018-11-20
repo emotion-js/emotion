@@ -89,7 +89,7 @@ export const ClassNames = withEmotionCache<Props>((props, context) => {
           if (hasRendered && process.env.NODE_ENV !== 'production') {
             throw new Error('css can only be used during render')
           }
-          let serialized = serializeStyles(context.registered, args)
+          let serialized = serializeStyles(args, context.registered)
           if (isBrowser) {
             insertStyles(context, serialized, false)
           } else {

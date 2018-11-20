@@ -42,14 +42,14 @@ export let Global: React.StatelessFunctionalComponent<
     return (
       <ThemeContext.Consumer>
         {theme => {
-          let serialized = serializeStyles(cache.registered, [styles(theme)])
+          let serialized = serializeStyles([styles(theme)])
 
           return <InnerGlobal serialized={serialized} cache={cache} />
         }}
       </ThemeContext.Consumer>
     )
   }
-  let serialized = serializeStyles(cache.registered, [styles])
+  let serialized = serializeStyles([styles])
 
   return <InnerGlobal serialized={serialized} cache={cache} />
 })
