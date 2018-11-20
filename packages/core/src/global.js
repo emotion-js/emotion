@@ -9,7 +9,7 @@ import {
 import { isBrowser } from './utils'
 
 import { StyleSheet } from '@emotion/sheet'
-import { serializeStyles } from '@emotion/serialize'
+import { basicSerializeStyles } from '@emotion/serialize'
 
 type Styles = Object | Array<Object>
 
@@ -42,14 +42,14 @@ export let Global: React.StatelessFunctionalComponent<
     return (
       <ThemeContext.Consumer>
         {theme => {
-          let serialized = serializeStyles(null, [styles(theme)])
+          let serialized = basicSerializeStyles([styles(theme)])
 
           return <InnerGlobal serialized={serialized} cache={cache} />
         }}
       </ThemeContext.Consumer>
     )
   }
-  let serialized = serializeStyles(null, [styles])
+  let serialized = basicSerializeStyles([styles])
 
   return <InnerGlobal serialized={serialized} cache={cache} />
 })
