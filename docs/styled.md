@@ -197,3 +197,27 @@ render(
   </Container>
 )
 ```
+
+### `as` prop
+
+To use styles from a styled component but change the element that's rendered, you can use the `as` prop.
+
+```jsx
+// @live
+import styled from '@emotion/styled'
+
+const Button = styled.button`
+  color: hotpink;
+`
+
+render(
+  <Button
+    as="a"
+    href="https://github.com/emotion-js/emotion"
+  >
+    Emotion on GitHub
+  </Button>
+)
+```
+
+This API was inspired by [styled-components](https://www.styled-components.com). ❤️
