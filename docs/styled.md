@@ -221,3 +221,5 @@ render(
 ```
 
 This API was inspired by [styled-components](https://www.styled-components.com). ❤️
+
+By default, the as prop only works on html tags so that custom components to use use the `as` prop. It can be overridden by passing a custom [`shouldForwardProp`](#customizing-prop-forwarding) that returns `false` to `'as'`.
