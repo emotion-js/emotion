@@ -65,7 +65,7 @@ The upgrades to emotion 10 are split into two parts. The first part can be done 
 import styled, { css } from 'react-emotion'
 // ↓ ↓ ↓ ↓ ↓ ↓
 import styled from '@emotion/styled'
-import { css } from 'emotion'
+import { css } from '@emotion/core'
 ```
 
 - Add a css call to the css prop when a template literal is used.
