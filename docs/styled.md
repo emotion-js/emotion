@@ -197,3 +197,29 @@ render(
   </Container>
 )
 ```
+
+### `as` prop
+
+To use styles from a styled component but change the element that's rendered, you can use the `as` prop.
+
+```jsx
+// @live
+import styled from '@emotion/styled'
+
+const Button = styled.button`
+  color: hotpink;
+`
+
+render(
+  <Button
+    as="a"
+    href="https://github.com/emotion-js/emotion"
+  >
+    Emotion on GitHub
+  </Button>
+)
+```
+
+This API was inspired by [styled-components](https://www.styled-components.com). ❤️
+
+The `as` prop is only used by styled when it's not forwarded to the underlying element. By default, this means that the `as` prop is used for html tags and forwarded for components. To change this, you can pass a custom [`shouldForwardProp`](#customizing-prop-forwarding) which returns `true` for `'as'` to forward it or returns `false` for `'as'` to use it and not forward it.
