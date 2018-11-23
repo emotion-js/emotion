@@ -109,7 +109,7 @@ let shouldWarnAboutInterpolatingClassNameFromCss = true
 
 function handleInterpolation(
   mergedProps: void | Object,
-  registered: RegisteredCache,
+  registered: RegisteredCache | void,
   interpolation: Interpolation,
   couldBeSelectorInterpolation: boolean
 ): string | number {
@@ -185,6 +185,9 @@ function handleInterpolation(
     }
     // eslint-disable-next-line no-fallthrough
     default: {
+      if (registered == null) {
+        return interpolation
+      }
       const cached = registered[interpolation]
       if (
         process.env.NODE_ENV !== 'production' &&
@@ -207,7 +210,7 @@ function handleInterpolation(
 
 function createStringFromObject(
   mergedProps: void | Object,
-  registered: RegisteredCache,
+  registered: RegisteredCache | void,
   obj: { [key: string]: Interpolation }
 ): string {
   let string = ''
@@ -220,7 +223,7 @@ function createStringFromObject(
     for (let key in obj) {
       let value = obj[key]
       if (typeof value !== 'object') {
-        if (registered[value] !== undefined) {
+        if (registered != null && registered[value] !== undefined) {
           string += `${key}{${registered[value]}}`
         } else {
           string += `${processStyleName(key)}:${processStyleValue(key, value)};`
@@ -236,7 +239,9 @@ function createStringFromObject(
         }
         if (
           Array.isArray(value) &&
-          (typeof value[0] === 'string' && registered[value[0]] === undefined)
+          (registered == null ||
+            (typeof value[0] === 'string' &&
+              registered[value[0]] === undefined))
         ) {
           for (let i = 0; i < value.length; i++) {
             string += `${processStyleName(key)}:${processStyleValue(
@@ -271,8 +276,8 @@ if (process.env.NODE_ENV !== 'production') {
 let cursor
 
 export const serializeStyles = function(
-  registered: RegisteredCache,
   args: Array<Interpolation>,
+  registered: RegisteredCache | void,
   mergedProps: void | Object
 ): SerializedStyles {
   if (

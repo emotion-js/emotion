@@ -1,6 +1,6 @@
 {
   "name": "@emotion/styled",
-  "version": "10.0.0-beta.12",
+  "version": "10.0.0-beta.13",
   "description": "styled API for emotion",
   "main": "dist/styled.cjs.js",
   "module": "dist/styled.esm.js",
@@ -11,8 +11,8 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/styled-base": "10.0.0-beta.12",
-    "babel-plugin-emotion": "10.0.0-beta.12"
+    "@emotion/styled-base": "10.0.0-beta.13",
+    "babel-plugin-emotion": "10.0.0-beta.13"
   },
   "devDependencies": {
     "dtslint": "^0.3.0"
@@ -26,9 +26,12 @@
     "types",
     "macro.js"
   ],
-  "umd:main": "./dist/index.min.js",
+  "umd:main": "dist/styled.umd.min.js",
   "browser": {
     "./dist/styled.cjs.js": "./dist/styled.browser.cjs.js",
     "./dist/styled.esm.js": "./dist/styled.browser.esm.js"
+  },
+  "preconstruct": {
+    "umdName": "emotionStyled"
   }
 }
