@@ -222,4 +222,4 @@ render(
 
 This API was inspired by [styled-components](https://www.styled-components.com). ❤️
 
-By default, the as prop only works on html tags so that custom components to use use the `as` prop. It can be overridden by passing a custom [`shouldForwardProp`](#customizing-prop-forwarding) that returns `false` to `'as'`.
+The `as` prop is only used by styled when it's not forwarded to the underlying element. By default, this means that the `as` prop is used for html tags and forwarded for components. To change this, you can pass a custom [`shouldForwardProp`](#customizing-prop-forwarding) which returns `true` for `'as'` to forward it or returns `false` for `'as'` to use it and not forward it.
