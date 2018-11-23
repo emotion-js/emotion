@@ -157,7 +157,7 @@ This API was inspired by [glamorous](https://github.com/paypal/glamorous). ‚ù§Ô∏
 
 ### Customizing prop forwarding
 
-By default, Emotion will pass all props to custom components and only props that are valid html attributes for string tags. This is can be customized by passing a custom `shouldForwardProp` function. You can also use `@emotion/is-prop-valid` to filter out props that are not valid as html attributes, it is what emotion uses internally.
+By default, Emotion passes all props to custom components and only props that are valid html attributes for string tags. You can customise this by passing a custom `shouldForwardProp` function. You can also use `@emotion/is-prop-valid` (which is used by emotion internally) to filter out props that are not valid as html attributes.
 
 ```jsx
 // @live

@@ -2,7 +2,7 @@
 title: 'Labels'
 ---
 
-Emotion adds a css property called `label` that will be appended to the end of the class name so it's more readable. `babel-plugin-emotion` will add these labels automatically based on the variable name and other information so they don't need to be manually specified.
+Emotion adds a css property called `label`, the value of it is appended to the end of the class name, so it's more readable than a hash. `babel-plugin-emotion` adds these labels automatically based on the variable name and other information, so they don't need to be manually specified.
 
 ```jsx
 // @live
