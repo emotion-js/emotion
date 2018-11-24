@@ -16,8 +16,6 @@ export const scope = {
     switch (moduleName) {
       case 'emotion':
         return require('emotion')
-      case 'react-emotion':
-        return require('react-emotion')
       case '@emotion/core':
         return require('@emotion/core')
       case '@emotion/styled':

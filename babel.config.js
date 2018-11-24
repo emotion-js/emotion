@@ -1,19 +1,7 @@
 const path = require('path')
 
-let pkgsThatNeedBabelPluginEmotion = [
-  'emotion',
-  'create-emotion',
-  'react-emotion',
-  'jest-emotion',
-  'emotion-server',
-  'create-emotion-server',
-  'emotion-theming'
-]
-
 let needsBabelPluginEmotion = filename =>
-  pkgsThatNeedBabelPluginEmotion.some(pkg =>
-    filename.includes(path.join('packages', pkg, 'test'))
-  )
+  filename.includes(path.join('.test.js'))
 
 module.exports = api => {
   api.cache(true)
