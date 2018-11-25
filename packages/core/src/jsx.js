@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache, ThemeContext } from './context'
+import { withEmotionCache, ThemeContext, useContext } from './context'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
@@ -17,7 +17,10 @@ let Emotion = withEmotionCache((props, cache, ref) => {
 
   let registeredStyles = []
 
-  let cssProp = theme === null ? props.css : props.css(theme)
+  let cssProp = props.css
+  if (typeof cssProp === 'function') {
+    cssProp = cssProp(useContext(ThemeContext))
+  }
 
   // so that using `css` from `emotion` and passing the result to the css prop works
   // not passing the registered cache to serializeStyles because it would

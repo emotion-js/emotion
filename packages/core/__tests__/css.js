@@ -33,6 +33,15 @@ test('css call composition', () => {
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
+test('theming with the css prop', () => {
+  const tree = renderer.create(
+    <ThemeProvider theme={{ primary: 'hotpink' }}>
+      <div css={theme => ({ color: theme.primary })} />
+    </ThemeProvider>
+  )
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
 test('object with false', () => {
   const tree = renderer.create(
     <div>

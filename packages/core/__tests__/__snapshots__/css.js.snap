@@ -91,6 +91,16 @@ exports[`string as css prop throws 1`] = `
           \`"
 `;
 
+exports[`theming with the css prop 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`thing 1`] = `
 .emotion-0 {
   display: -webkit-box;
