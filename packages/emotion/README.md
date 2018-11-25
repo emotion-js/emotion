@@ -47,32 +47,6 @@ const myStyle = css`
 app.classList.add(myStyle)
 ```
 
-### React with [Optional Babel Plugin](docs/babel.md)
-
-```bash
-npm install --save emotion react-emotion babel-plugin-emotion
-```
-
-```javascript
-import styled, { css } from 'react-emotion'
-
-const Container = styled('div')`
-  background: #333;
-`
-const myStyle = css`
-  color: rebeccapurple;
-`
-const app = () => (
-  <Container>
-    <p className={myStyle}>Hello World</p>
-  </Container>
-)
-```
-
-### Do I Need To Use the Babel Plugin?
-
-The babel plugin is not required, but enables some optimizations and customizations that could be beneficial for your project.
-
 Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)_
 
 ### Demo Sandbox

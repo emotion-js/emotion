@@ -88,7 +88,7 @@ To make more explicit assertions when testing your styled components you can use
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { matchers } from 'jest-emotion'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 // Add the custom matchers provided by 'jest-emotion'
 expect.extend(matchers)
