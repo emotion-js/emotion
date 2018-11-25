@@ -8,8 +8,15 @@ Emotion 10 is a big change that we're really excited about with improvements to 
   - The css prop receives the theme
   - Labels are added to the css prop without `babel-plugin-emotion` in some cases
 - Add the Global and ClassNames components
+- styled uses forwardRef
 - Providing options can be done via the CacheProvider
-- autoLabel and sourceMap is on by default in development in `babel-plugin-emotion`
+- The autoLabel and sourceMap options are enabled in development with the Babel Macros
+- The autoLabel and sourceMap options are on by default in development in `babel-plugin-emotion`
+- Add warning for kebab-case css properties in objects
+- Add keyframes to snapshots with jest-emotion
+- Add codemod rules for Emotion 10
+- Fix SSR with \_ in labels
+- Add warnings for unsafe pseudo classes
 
 #### :bug: Bug Fix
 
@@ -28,6 +35,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 - Functions in interpolations are stringified in css and cx calls(probably won't affect you very much, there's a warning about it in v9)
 - `create-emotion` doesn't return a caches property and instead returns a cache property which is the same return value as `@emotion/cache`
 - The `importedNames` option to babel-plugin-emotion is gone
+- The `hoist` option is gone, hoisting always happens
 
 ## v9.2.7 (2018-07-29)
 
