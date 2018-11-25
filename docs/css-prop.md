@@ -6,7 +6,7 @@ The primary way to style elements with emotion is the `css` prop. It provides a 
 
 ## Get Started
 
-#### Set the jsx pragma at the top of your source file. 
+#### Set the jsx pragma at the top of your source file.
 
 ```js
 /** @jsx jsx */
@@ -16,8 +16,7 @@ Similar to a comment containing linter configuration, this configures the [jsx b
 
 > [JSX Pragma Babel Documentation](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx#pragma)
 
-
-#### Import the `jsx` function from `@emotion/core` 
+#### Import the `jsx` function from `@emotion/core`
 
 ```js
 /** @jsx jsx */
@@ -28,11 +27,9 @@ import { jsx } from '@emotion/core'
 
 Any component or element that accepts a `className` prop can also use the `css` prop. The styles supplied to the `css` prop are evaluated and the computed class name is applied to the `className` prop.
 
-
 ## Object Styles
 
 The `css` prop accepts object styles directly and does not require an additional import.
-
 
 ```jsx
 // @live
@@ -53,13 +50,11 @@ render(
 )
 ```
 
-
 > [Object Style Documentation](/docs/object-styles.md).
 
 ## String Styles
 
 To pass string styles, you must use `css` which is exported by `@emotion/core`, it can be used as a [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) like below.
-
 
 ```jsx
 // @live
@@ -83,27 +78,24 @@ render(
 )
 ```
 
-
 > Note:
 >
-> **`css` from `@emotion/core` does not return the computed class name string.**  The function returns an object containing the computed name and flattened styles. The returned object is understood by emotion at a low level and can be composed with other emotion based styles inside of the `css` prop, other `css` calls, or the `styled` API.
-
+> **`css` from `@emotion/core` does not return the computed class name string.** The function returns an object containing the computed name and flattened styles. The returned object is understood by emotion at a low level and can be composed with other emotion based styles inside of the `css` prop, other `css` calls, or the `styled` API.
 
 ## Style Precedence
 
-* Class names containing emotion styles from the `className` prop override `css` prop styles.
-* Class names from sources other than emotion are ignored and appended to the computed emotion class name. 
+- Class names containing emotion styles from the `className` prop override `css` prop styles.
+- Class names from sources other than emotion are ignored and appended to the computed emotion class name.
 
 The precedence order may seem counter-intuitive, but it allows components with styles defined on the `css` prop to be customized via the `className` prop passed from the parent.
 
-
-The `P` component in this example has its default styles overridden in the `ArticleText` component. 
+The `P` component in this example has its default styles overridden in the `ArticleText` component.
 
 ```js
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-const P = (props) => (
+const P = props => (
   <p
     css={{
       margin: 0,
@@ -116,7 +108,7 @@ const P = (props) => (
   />
 )
 
-const ArticleText = (props) => (
+const ArticleText = props => (
   <P
     css={{
       fontSize: 14,
@@ -128,26 +120,26 @@ const ArticleText = (props) => (
 )
 ```
 
-The `ArticleText` component can be customized and the styles composed with its default styles. The result is passed `P` and the process repeats. 
+The `ArticleText` component can be customized and the styles composed with its default styles. The result is passed `P` and the process repeats.
 
 ```js
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-const P = (props) => (
+const P = props => (
   <p
     css={{
       margin: 0,
       fontSize: 12,
       lineHeight: '1.5',
-      fontFamily: 'Sans-Serif',
+      fontFamily: 'sans-serif',
       color: 'black'
     }}
     {...props} // <- props contains the `className` prop
   />
 )
 
-const ArticleText = (props) => (
+const ArticleText = props => (
   <P
     css={{
       fontSize: 14,
@@ -158,7 +150,7 @@ const ArticleText = (props) => (
   />
 )
 
-const SmallArticleText = (props) => (
+const SmallArticleText = props => (
   <ArticleText
     css={{
       fontSize: 10
@@ -177,17 +169,18 @@ The styles are concatenated together and inserted via `insertRule`.
   margin: 0;
   font-size: 12px;
   line-height: 1.5;
-  font-family: 'Sans-Serif';
-  color: 'black';
+  font-family: sans-serif;
+  color: black;
 }
 ```
+
 2. `ArticleText` component
 
 ```css
 .css-2 {
   font-size: 14px,
-  font-family: 'Georgia, serif',
-  color: 'darkgray';
+  font-family: Georgia, serif,
+  color: darkgray;
 }
 ```
 
@@ -195,7 +188,7 @@ The styles are concatenated together and inserted via `insertRule`.
 
 ```css
 .css-3 {
- font-size: 10px;
+  font-size: 10px;
 }
 ```
 
@@ -206,18 +199,17 @@ The styles are concatenated together and inserted via `insertRule`.
 + margin: 0;
 - font-size: 12px;
 + line-height: 1.5;
-- font-family: 'Sans-Serif';
-- color: 'black';
+- font-family: 'sans-serif';
+- color: black;
 - font-size: 14px,
-+ font-family: 'Georgia, serif',
++ font-family: Georgia, serif,
 + color: darkgray;
 + font-size: 10px;
 }
 ```
 
-Relying on the css spec's ["Order of Appearance"](https://www.w3.org/TR/css-cascade-3/#cascade-order) rule, property values defined later (green) override those before it (red). 
-
+Relying on the css spec's ["Order of Appearance"](https://www.w3.org/TR/css-cascade-3/#cascade-order) rule, property values defined later (green) override those before it (red).
 
 ## Gotchas
 
-* If you include the plugin `babel-plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.
+- If you include the plugin `babel-plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.

@@ -25,9 +25,9 @@ render(
 )
 ```
 
-With regular css, you can compose styles together using multiple class names but this is very limited because the order that they're defined is the order they'll be applied. This can lead to hacks with `!important` and such to apply the correct styles.
+With regular css, you can compose styles together using multiple class names, but this is very limited because the order that they're defined is the order they'll be applied. This can lead to hacks with `!important` and such to apply the correct styles.
 
-For example, we have some base styles and a danger style, we want the danger styles to have precedence over the base styles but because `base` is in the stylesheet after `danger` it has higher [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity). In regular CSS, you might do something to make `danger` have a higher specificity than `base` like move the `danger` class so it's more specific than `base`, use `!important` or abandon composition and rewrite the styles each time you need them.
+For example, we have some base styles and a danger style, we want the danger styles to have precedence over the base styles but because `base` is in the stylesheet after `danger` it has higher [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity). In regular CSS, you might do something to make `danger` have a higher specificity than `base` like moving the `danger` class, so it's more specific than `base`, use `!important` or abandon composition and rewrite the styles each time you need them.
 
 ```jsx
 // @live
@@ -50,7 +50,7 @@ render(
 )
 ```
 
-With Emotion though, you can create styles and combine them
+With Emotion though, you can create styles and combine them.
 
 ```jsx
 // @live

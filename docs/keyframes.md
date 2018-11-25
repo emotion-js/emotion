@@ -2,7 +2,7 @@
 title: 'Keyframes'
 ---
 
-You can define animations using the `keyframes` helper from `@emotion/core`. `keyframes` takes in a css keyframe definition and returns an object which can be interpolated in styles. You can use strings or objects just like `css`.
+You can define animations using the `keyframes` helper from `@emotion/core`. `keyframes` takes in a css keyframe definition and returns an object you can use in styles. You can use strings or objects just like `css`.
 
 ```jsx
 // @live
