@@ -25,7 +25,7 @@ render(
 
 ## Reusable Media Queries
 
-Media queries can be really useful to create responsive apps though repeating them is annoying and can lead to inconsistencies so instead of rewriting them each time they're used, you can move them into constants and refer to the variable each time you want to use them like this.
+Media queries can be useful to create responsive apps but repeating them is annoying and can lead to inconsistencies. Instead of rewriting them each time you use them, you can move them into constants and refer to the variable each time you want to use them like this.
 
 ```jsx
 // @live
@@ -72,7 +72,7 @@ render(
 
 ### facepaint
 
-While defining media queries in constants is great and is much easier than rewriting media queries each time, they're still quite verbose since usually you want to change the same property at different break points. [facepaint](https://github.com/emotion-js/facepaint) makes this easier by allowing you to define what each css property should be at each media query as an array.
+While defining media queries in constants is much easier than rewriting media queries each time, they're still quite verbose since you usually want to change the same property at different breakpoints. [facepaint](https://github.com/emotion-js/facepaint) makes this easier by allowing you to define what each css property should be at each media query as an array.
 
 > Note:
 >

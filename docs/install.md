@@ -2,7 +2,7 @@
 title: 'Install'
 ---
 
-Emotion can be used in many different ways. If you're using React, the easiest way to get started is to use the [`@emotion/core` package](/packages/@emotion/core). If you're not using React, you will need [the `emotion` package](#vanilla).
+There are lots of ways to use Emotion, if you're using React, the easiest way to get started is to use the [`@emotion/core` package](/packages/@emotion/core). If you're not using React, you should use [the `emotion` package](#vanilla).
 
 ```bash
 yarn add @emotion/core
@@ -131,7 +131,7 @@ If you are using Babel's env option emotion must also be first for each environm
 
 # Vanilla
 
-If you're not using React, you can use vanilla Emotion from the `emotion` package. Most of the documentation here focuses on the React-specific version of Emotion but most of the concepts in the React-specific version also apply to vanilla Emotion.
+If you're not using React, you can use vanilla Emotion from the `emotion` package. Most of the documentation here focuses on the React-specific version of Emotion, but most of the concepts in the React-specific version also apply to vanilla Emotion.
 
 ```bash
 yarn add emotion
