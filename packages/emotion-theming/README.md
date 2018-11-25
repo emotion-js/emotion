@@ -93,7 +93,7 @@ _Accepts:_
 
 ```jsx
 import React from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { ThemeProvider, withTheme } from 'emotion-theming'
 
 // object-style theme

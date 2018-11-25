@@ -142,7 +142,6 @@ export default function(babel: *) {
           '@emotion/css': cssMacro,
           '@emotion/styled': webStyledMacro,
           '@emotion/core': emotionCoreMacroThatsNotARealMacro,
-          'react-emotion': webStyledMacro,
           '@emotion/primitives': primitivesStyledMacro,
           '@emotion/native': nativeStyledMacro,
           emotion: createEmotionMacro('emotion')

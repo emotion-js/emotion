@@ -2,7 +2,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import * as renderer from 'test-utils/compat-render-json'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 test('composes shouldForwardProp on composed styled components', () => {
   const StyledDiv = styled('div', {

@@ -3,7 +3,7 @@ import 'test-utils/legacy-env'
 import React from 'react'
 import * as renderer from 'test-utils/compat-render-json'
 import { css } from 'emotion'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 
 describe('styled', () => {

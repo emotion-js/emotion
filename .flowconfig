@@ -23,7 +23,6 @@
 [options]
 suppress_comment=.*\\$FlowFixMe
 module.name_mapper='^\(create-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(react-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(babel-plugin-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
 module.name_mapper='^\(emotion-theming\)$' -> '<PROJECT_ROOT>/packages/\1/src'

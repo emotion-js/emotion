@@ -2,7 +2,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import * as renderer from 'test-utils/compat-render-json'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { css } from 'emotion'
 import { ThemeProvider } from 'emotion-theming'
 

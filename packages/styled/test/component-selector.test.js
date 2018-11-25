@@ -1,6 +1,6 @@
 import 'test-utils/legacy-env'
 import React from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import * as renderer from 'test-utils/compat-render-json'
 
 test('component as selector', () => {

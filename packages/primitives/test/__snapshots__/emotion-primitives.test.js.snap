@@ -71,7 +71,10 @@ exports[`Emotion primitives should render the primitive on changing the props 1`
   style={
     Object {
       "color": "hotpink",
-      "padding": "20px",
+      "paddingBottom": 20,
+      "paddingLeft": 20,
+      "paddingRight": 20,
+      "paddingTop": 20,
     }
   }
 >
