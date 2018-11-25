@@ -2,7 +2,7 @@
 title: 'Migrating to Emotion 10'
 ---
 
-Emotion 10 is a large change to Emotion so it requires some changes to your code. Some of the changes can be done automatically via a codemod and the rest can be done incrementally.
+Emotion 10 is a significant change to Emotion, so it requires some changes to your code. Some of the changes can be done automatically via a codemod, and the rest can be done incrementally.
 
 > Note
 >
@@ -10,9 +10,9 @@ Emotion 10 is a large change to Emotion so it requires some changes to your code
 
 # Thinking
 
-The biggest change in Emotion 10 is that it doesn't let you easily access the underlying class names. Instead of thinking in class names, you have to think in terms of styles and composing them together. (you can still use classnames if you want to but it's not recommended except during migration)
+The most significant change in Emotion 10 is that it doesn't let you easily access the underlying class names. Instead of thinking in class names, you have to think in terms of styles and composing them together. (you can still use class names directly if you want to, but you won't get new features like zero-config server rendering)
 
-For example, in Emotion 9, you might have had two classes from `css` and compose them together with `cx` but in Emotion 10, you create 2 styles and compose them together in the css prop like this
+For example, in Emotion 9, you might have had two classes from `css` and compose them together with `cx`, but in Emotion 10, you create 2 styles and compose them together in the css prop like this.
 
 ```jsx
 // Emotion 9
