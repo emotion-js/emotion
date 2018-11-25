@@ -132,7 +132,7 @@ const P = props => (
       margin: 0,
       fontSize: 12,
       lineHeight: '1.5',
-      fontFamily: 'Sans-Serif',
+      fontFamily: 'sans-serif',
       color: 'black'
     }}
     {...props} // <- props contains the `className` prop
@@ -169,8 +169,8 @@ The styles are concatenated together and inserted via `insertRule`.
   margin: 0;
   font-size: 12px;
   line-height: 1.5;
-  font-family: 'Sans-Serif';
-  color: 'black';
+  font-family: sans-serif;
+  color: black;
 }
 ```
 
@@ -179,8 +179,8 @@ The styles are concatenated together and inserted via `insertRule`.
 ```css
 .css-2 {
   font-size: 14px,
-  font-family: 'Georgia, serif',
-  color: 'darkgray';
+  font-family: Georgia, serif,
+  color: darkgray;
 }
 ```
 
@@ -199,10 +199,10 @@ The styles are concatenated together and inserted via `insertRule`.
 + margin: 0;
 - font-size: 12px;
 + line-height: 1.5;
-- font-family: 'Sans-Serif';
-- color: 'black';
+- font-family: 'sans-serif';
+- color: black;
 - font-size: 14px,
-+ font-family: 'Georgia, serif',
++ font-family: Georgia, serif,
 + color: darkgray;
 + font-size: 10px;
 }
