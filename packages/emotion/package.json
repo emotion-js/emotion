@@ -41,9 +41,6 @@
     "url": "https://github.com/emotion-js/emotion/issues"
   },
   "umd:main": "dist/emotion.umd.min.js",
-  "publishConfig": {
-    "tag": "next"
-  },
   "browser": {
     "./dist/emotion.cjs.js": "./dist/emotion.browser.cjs.js",
     "./dist/emotion.esm.js": "./dist/emotion.browser.esm.js"

@@ -38,9 +38,6 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "publishConfig": {
-    "tag": "next"
-  },
   "browser": {
     "./dist/create-emotion.cjs.js": "./dist/create-emotion.browser.cjs.js",
     "./dist/create-emotion.esm.js": "./dist/create-emotion.browser.esm.js"
