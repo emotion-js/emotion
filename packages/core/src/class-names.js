@@ -84,7 +84,7 @@ export const ClassNames: React.StatelessFunctionalComponent<
   let serializedHashes = ''
   let hasRendered = false
 
-  let css = (...args) => {
+  let css = (...args: Array<any>) => {
     if (hasRendered && process.env.NODE_ENV !== 'production') {
       throw new Error('css can only be used during render')
     }
@@ -115,7 +115,7 @@ export const ClassNames: React.StatelessFunctionalComponent<
   }
   let ele = props.children(content)
   hasRendered = true
-  if (!isBrowser && rules !== undefined) {
+  if (!isBrowser && rules.length !== 0) {
     return (
       <React.Fragment>
         <style
