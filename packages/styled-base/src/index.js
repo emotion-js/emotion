@@ -2,14 +2,15 @@
 import * as React from 'react'
 import type { ElementType } from 'react'
 import {
-  testOmitPropsOnComponent,
-  testOmitPropsOnStringTag,
+  getDefaultShouldForwardProp,
   type StyledOptions,
   type CreateStyled
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/core'
-import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
+import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
+
+let isBrowser = typeof document !== 'undefined'
 
 type StyledComponent = (
   props: *
@@ -41,17 +42,13 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   }
   const isReal = tag.__emotion_real === tag
   const baseTag = (isReal && tag.__emotion_base) || tag
-  let isStringTag = typeof baseTag === 'string'
-  if (typeof shouldForwardProp !== 'function') {
-    shouldForwardProp =
-      isStringTag &&
-      // 96 is one less than the char code
-      // for "a" so this is checking that
-      // it's a lowercase character
-      baseTag.charCodeAt(0) > 96
-        ? testOmitPropsOnStringTag
-        : testOmitPropsOnComponent
+
+  if (typeof shouldForwardProp !== 'function' && isReal) {
+    shouldForwardProp = tag.__emotion_forwardProp
   }
+  let defaultShouldForwardProp =
+    shouldForwardProp || getDefaultShouldForwardProp(baseTag)
+  const shouldUseAs = !defaultShouldForwardProp('as')
 
   return function(): StyledComponent {
     let args = arguments
@@ -94,8 +91,8 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         )
       }
       const serialized = serializeStyles(
-        context.registered,
         styles.concat(classInterpolations),
+        context.registered,
         mergedProps
       )
       const rules = insertStyles(context, serialized, isStringTag)

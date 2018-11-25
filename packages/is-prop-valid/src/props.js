@@ -10,6 +10,7 @@ const props = {
   defaultChecked: true,
   innerHTML: true,
   suppressContentEditableWarning: true,
+  suppressHydrationWarning: true,
   // deprecated react prop
   valueLink: true,
 

@@ -22,7 +22,9 @@ module.exports = api => {
     overrides: [
       {
         test: filename =>
-          !filename.includes('no-babel') && needsBabelPluginEmotion(filename),
+          (!filename.includes('no-babel') &&
+            needsBabelPluginEmotion(filename)) ||
+          filename.includes(path.join('__tests__', 'babel')),
         plugins: ['babel-plugin-emotion-test']
       },
       {

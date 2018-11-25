@@ -1,7 +1,13 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache } from './context'
-import { isBrowser, insertStyles } from '@emotion/utils'
+import { withEmotionCache, ThemeContext } from './context'
+import {
+  type EmotionCache,
+  type SerializedStyles,
+  insertStyles
+} from '@emotion/utils'
+import { isBrowser } from './utils'
+
 import { StyleSheet } from '@emotion/sheet'
 import { serializeStyles } from '@emotion/serialize'
 
@@ -41,7 +47,9 @@ export let Global: React.StatelessFunctionalComponent<
   }
   let styles = props.styles
 
-  let serialized = serializeStyles(cache.registered, [styles])
+  let serialized = serializeStyles([
+    typeof styles === 'function' ? styles(useContext(ThemeContext)) : styles
+  ])
 
   if (isBrowser) {
     let sheetRef = useRef(null)
@@ -77,6 +85,7 @@ export let Global: React.StatelessFunctionalComponent<
         cache.insert(``, serialized, sheet, false)
         return () => {
           // if this doesn't exist then it will be null so the style element will be appended
+          // $FlowFixMe
           sheet.before = sheet.tags[0].nextElementSibling
           sheet.flush()
         }

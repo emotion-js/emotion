@@ -1,14 +1,12 @@
 // @flow
 import { StyleSheet } from '@emotion/sheet'
-import {
-  isBrowser,
-  type EmotionCache,
-  type SerializedStyles
-} from '@emotion/utils'
+import { type EmotionCache, type SerializedStyles } from '@emotion/utils'
 import Stylis from '@emotion/stylis'
 import weakMemoize from '@emotion/weak-memoize'
 import { Sheet, removeLabel, ruleSheet } from './stylis-plugins'
 import type { StylisPlugin } from './types'
+
+let isBrowser = typeof document !== 'undefined'
 
 export type PrefixOption =
   | boolean
@@ -91,6 +89,7 @@ let createCache = (options?: Options): EmotionCache => {
     sheet: StyleSheet,
     shouldCache: boolean
   ) => string | void
+
   if (isBrowser) {
     stylis.use(options.stylisPlugins)(ruleSheet)
 
@@ -150,11 +149,20 @@ let createCache = (options?: Options): EmotionCache => {
         if (shouldCache) {
           cache.inserted[name] = true
         }
+        if (
+          // using === development instead of !== production
+          // because if people do ssr in tests, the source maps showing up would be annoying
+          process.env.NODE_ENV === 'development' &&
+          serialized.map !== undefined
+        ) {
+          return rules + serialized.map
+        }
         return rules
       } else {
         // in compat mode, we put the styles on the inserted cache so
         // that emotion-server can pull out the styles
         // except when we don't want to cache it(just the Global component right now)
+
         if (shouldCache) {
           cache.inserted[name] = rules
         } else {
@@ -165,6 +173,32 @@ let createCache = (options?: Options): EmotionCache => {
   }
 
   if (process.env.NODE_ENV !== 'production') {
+    // https://esbench.com/bench/5bf7371a4cd7e6009ef61d0a
+    const commentStart = /\/\*/g
+    const commentEnd = /\*\//g
+
+    stylis.use((context, content) => {
+      switch (context) {
+        case -1: {
+          while (commentStart.test(content)) {
+            commentEnd.lastIndex = commentStart.lastIndex
+
+            if (commentEnd.test(content)) {
+              commentStart.lastIndex = commentEnd.lastIndex
+              continue
+            }
+
+            throw new Error(
+              'Your styles have an unterminated comment ("/*" without corresponding "*/").'
+            )
+          }
+
+          commentStart.lastIndex = 0
+          break
+        }
+      }
+    })
+
     stylis.use((context, content, selectors) => {
       switch (context) {
         case 2: {

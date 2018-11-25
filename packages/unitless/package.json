@@ -1,6 +1,6 @@
 {
   "name": "@emotion/unitless",
-  "version": "0.7.0",
+  "version": "0.7.3",
   "description": "An object of css properties that don't accept values with units",
   "main": "dist/unitless.cjs.js",
   "module": "dist/unitless.esm.js",
@@ -13,7 +13,6 @@
     "src",
     "dist"
   ],
-  "umd:main": "./dist/index.min.js",
   "browser": {
     "./dist/unitless.cjs.js": "./dist/unitless.browser.cjs.js",
     "./dist/unitless.esm.js": "./dist/unitless.browser.esm.js"

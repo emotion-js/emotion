@@ -18,7 +18,7 @@ test('does not rehash if value is css call return value', () => {
       <div css={val} />
     </div>
   )
-  expect(serializeStyles({}, [val])).toBe(val)
+  expect(serializeStyles([val])).toBe(val)
 
   expect(spy.mock.calls[0][1]).toBe(val)
   expect(tree.toJSON()).toMatchSnapshot()

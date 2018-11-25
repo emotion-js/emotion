@@ -134,7 +134,7 @@ describe('Emotion primitives', () => {
     `
     let ref = React.createRef()
     const rootNode = document.createElement('div')
-
+    // $FlowFixMe
     render(<Text ref={ref} id="something" />, rootNode)
     expect(ref.current).toBe(rootNode.querySelector('#something'))
     unmountComponentAtNode(rootNode)

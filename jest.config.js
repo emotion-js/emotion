@@ -1,4 +1,4 @@
-const { jest: lernaAliases } = require('lerna-alias')
+const { aliases } = require('preconstruct')
 
 module.exports = {
   transform: {
@@ -10,7 +10,7 @@ module.exports = {
     'jest-watch-typeahead/testname'
   ],
   testPathIgnorePatterns: ['/node_modules/', '/__fixtures__/', '/site/'],
-  moduleNameMapper: lernaAliases(),
+  moduleNameMapper: aliases.jest(),
   setupTestFrameworkScriptFile: '<rootDir>/test/testSetup.js',
   coveragePathIgnorePatterns: [
     '/node_modules/',

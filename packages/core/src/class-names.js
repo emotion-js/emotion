@@ -1,14 +1,17 @@
 // @flow
 import * as React from 'react'
-import { getRegisteredStyles, insertStyles, isBrowser } from '@emotion/utils'
+import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 import { withEmotionCache } from './context'
+import { isBrowser } from './utils'
 
 type ClassNameArg =
   | string
   | boolean
   | { [key: string]: boolean }
   | Array<ClassNameArg>
+  | null
+  | void
 
 let classnames = (args: Array<ClassNameArg>): string => {
   let len = args.length
@@ -47,7 +50,11 @@ let classnames = (args: Array<ClassNameArg>): string => {
   }
   return cls
 }
-function merge(registered: Object, css: (*) => string, className: string) {
+function merge(
+  registered: Object,
+  css: (...args: Array<any>) => string,
+  className: string
+) {
   const registeredStyles = []
 
   const rawClassName = getRegisteredStyles(

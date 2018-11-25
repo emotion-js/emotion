@@ -360,6 +360,15 @@ styled.View\`
 styled.View({});"
 `;
 
+exports[`@emotion/styled.macro no-import 1`] = `
+"import '@emotion/styled'
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import '@emotion/styled';"
+`;
+
 exports[`@emotion/styled.macro object 1`] = `
 "import styled from '@emotion/styled/macro'
 
@@ -424,6 +433,20 @@ const SomeComponent = _styled(\\"div\\", {
 })(props => ({
   color: props.color
 }), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1mdW5jdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFc0IiLCJmaWxlIjoib2JqZWN0LWZ1bmN0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2KHByb3BzID0+ICh7IGNvbG9yOiBwcm9wcy5jb2xvciB9KSlcbiJdfQ== */\\");"
+`;
+
+exports[`@emotion/styled.macro other-imports 1`] = `
+"import { something, otherThing } from '@emotion/styled'
+
+something()
+otherThing()
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { something, otherThing } from '@emotion/styled';
+something();
+otherThing();"
 `;
 
 exports[`@emotion/styled.macro primitives 1`] = `
