@@ -17,7 +17,6 @@ Emotion 10 is a big change that we're really excited about with improvements to 
 - Add codemod rules for Emotion 10
 - Fix SSR with \_ in labels
 - Add warnings for unsafe pseudo classes
-- Add `suppressHydrationWarning` to `@emotion/is-prop-valid`
 
 #### :boom: Breaking Change
 
