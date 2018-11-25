@@ -18,6 +18,8 @@ type StyledComponent = (
   withComponent(nextTag: ElementType, nextOptions?: StyledOptions): *
 }
 
+let useContext: <T>(content: React$Context<T>) => T = (React: any).useContext
+
 let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   if (process.env.NODE_ENV !== 'production') {
     if (tag === undefined) {
@@ -72,6 +74,8 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     }
 
     const Styled: any = withEmotionCache((props, context, ref) => {
+      const finalTag = (shouldUseAs && props.as) || baseTag
+
       let className = ''
       let classInterpolations = []
       let mergedProps = props
@@ -80,7 +84,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         for (let key in props) {
           mergedProps[key] = props[key]
         }
-        mergedProps.theme = (React: any).useContext(ThemeContext)
+        mergedProps.theme = useContext(ThemeContext)
       }
 
       if (typeof props.className === 'string') {
@@ -95,22 +99,31 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         context.registered,
         mergedProps
       )
-      const rules = insertStyles(context, serialized, isStringTag)
+      const rules = insertStyles(
+        context,
+        serialized,
+        typeof finalTag === 'string'
+      )
       className += `${context.key}-${serialized.name}`
       if (targetClassName !== undefined) {
         className += ` ${targetClassName}`
       }
       let newProps = {}
 
+      const finalShouldForwardProp =
+        shouldUseAs && shouldForwardProp === undefined
+          ? getDefaultShouldForwardProp(finalTag)
+          : defaultShouldForwardProp
+
       for (let key in props) {
+        if (shouldUseAs && key === 'as') continue
         if (
           // $FlowFixMe
-          shouldForwardProp(key)
+          finalShouldForwardProp(key)
         ) {
           newProps[key] = props[key]
         }
       }
-
       newProps.className = className
 
       newProps.ref = ref || props.innerRef
