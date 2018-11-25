@@ -75,7 +75,6 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
 
     const Styled: any = withEmotionCache((props, context, ref) => {
       const finalTag = (shouldUseAs && props.as) || baseTag
-
       let className = ''
       let classInterpolations = []
       let mergedProps = props
@@ -86,7 +85,6 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         }
         mergedProps.theme = useContext(ThemeContext)
       }
-
       if (typeof props.className === 'string') {
         className += getRegisteredStyles(
           context.registered,
@@ -108,12 +106,13 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       if (targetClassName !== undefined) {
         className += ` ${targetClassName}`
       }
-      let newProps = {}
 
       const finalShouldForwardProp =
         shouldUseAs && shouldForwardProp === undefined
           ? getDefaultShouldForwardProp(finalTag)
           : defaultShouldForwardProp
+
+      let newProps = {}
 
       for (let key in props) {
         if (shouldUseAs && key === 'as') continue
@@ -124,9 +123,11 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
           newProps[key] = props[key]
         }
       }
+
       newProps.className = className
 
       newProps.ref = ref || props.innerRef
+
       if (process.env.NODE_ENV !== 'production' && props.innerRef) {
         console.error(
           '`innerRef` is deprecated and will be removed in a future major version of Emotion, please use the `ref` prop instead' +
@@ -135,8 +136,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               : ` in the usage of \`${identifierName}\``)
         )
       }
-
-      const ele = React.createElement(baseTag, newProps)
+      const ele = React.createElement(finalTag, newProps)
       if (!isBrowser && rules !== undefined) {
         let serializedNames = serialized.name
         let next = serialized.next
