@@ -9,6 +9,7 @@ Emotion 10 is a big change that we're really excited about with improvements to 
   - Labels are added to the css prop without `babel-plugin-emotion` in some cases
 - Add the Global and ClassNames components
 - styled uses forwardRef
+- Add the as prop to styled
 - Providing options can be done via the CacheProvider
 - The autoLabel and sourceMap options are enabled in development with the Babel Macros
 - The autoLabel and sourceMap options are on by default in development in `babel-plugin-emotion`
