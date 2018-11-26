@@ -4,8 +4,10 @@ import { addNamed } from '@babel/helper-module-imports'
 import { createMacro } from 'babel-plugin-macros'
 
 export let createEmotionMacro = (instancePath: string) =>
-  createMacro(function macro({ references, state, babel }) {
-    state.emotionSourceMap = true
+  createMacro(function macro({ references, state, babel, isEmotionCall }) {
+    if (!isEmotionCall) {
+      state.emotionSourceMap = true
+    }
 
     let t = babel.types
     Object.keys(references).forEach(referenceKey => {

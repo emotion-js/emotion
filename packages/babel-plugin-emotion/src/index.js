@@ -128,7 +128,8 @@ export default function(babel: *) {
           references: referencePathsByImportName,
           state,
           babel,
-          isBabelMacrosCall: true
+          isBabelMacrosCall: true,
+          isEmotionCall: true
         })
         if (!pluginMacros[path.node.source.value].keepImport) {
           path.remove()
