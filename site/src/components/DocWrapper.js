@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { css, keyframes, cx } from 'emotion'
 import { Link } from 'gatsby'
 import Box from './Box'
-import { constants, colors, p } from '../utils/style'
+import { constants, colors, p, mq } from '../utils/style'
 import DocSidebar from './DocSidebar'
 import darken from 'polished/lib/color/darken'
 import MenuIcon from 'react-icons/lib/md/menu'
@@ -67,6 +67,7 @@ type Props = {
 }
 
 const pageLinkStyles = css(
+  { marginLeft: 8 },
   p({
     color: [
       colors.pink,
@@ -139,7 +140,7 @@ export default (props: Props) => {
                 )
               }
               renderContent={({ docked, setSidebarOpenState }) => (
-                <Box p={[3, 4]}>
+                <Box p={3}>
                   {props.children}
                   <Match
                     path="/docs/:doc"
@@ -152,48 +153,51 @@ export default (props: Props) => {
                       )
                       const hasNextDoc = index !== flatDocList.length - 1
                       const hasPrevDoc = index !== 0
-                      const containerFontSize = [3, 4]
-                      const linkFontSize = [5, 6]
                       return (
-                        <Box
-                          display="flex"
-                          pt={2}
-                          direction={['column', 'row']}
-                          justify="space-between"
+                        <div
+                          css={mq({
+                            display: 'grid',
+                            gridTemplateColumns: ['1fr', '1fr 1fr'],
+                            gridTemplateRows: ['1fr 1fr', '1fr'],
+                            alignItems: 'center',
+                            justifyContent: ['center', 'space-between'],
+                            gap: [24, 16],
+                            marginTop: 24,
+                            fontSize: [
+                              constants.fontSizes[3],
+                              constants.fontSizes[4]
+                            ]
+                          })}
                         >
                           {hasPrevDoc ? (
-                            <Box fontSize={containerFontSize}>
-                              Previous Page
-                              <Box fontSize={linkFontSize}>
-                                <Link
-                                  className={pageLinkStyles}
-                                  to={`/docs/${flatDocList[index - 1]}`}
-                                >
-                                  {docMap[flatDocList[index - 1]] ||
-                                    flatDocList[index - 1]}
-                                </Link>
-                              </Box>
-                            </Box>
+                            <div css={mq({ justifySelf: ['center', 'start'] })}>
+                              Previous:
+                              <Link
+                                className={pageLinkStyles}
+                                to={`/docs/${flatDocList[index - 1]}`}
+                              >
+                                {docMap[flatDocList[index - 1]] ||
+                                  flatDocList[index - 1]}
+                              </Link>
+                            </div>
                           ) : (
-                            <Box />
+                            <div />
                           )}
                           {hasNextDoc ? (
-                            <Box pt={[3, 0]} fontSize={containerFontSize}>
-                              Next Page
-                              <Box fontSize={linkFontSize}>
-                                <Link
-                                  className={pageLinkStyles}
-                                  to={`/docs/${flatDocList[index + 1]}`}
-                                >
-                                  {docMap[flatDocList[index + 1]] ||
-                                    flatDocList[index + 1]}
-                                </Link>
-                              </Box>
-                            </Box>
+                            <div css={mq({ justifySelf: ['center', 'end'] })}>
+                              Next:
+                              <Link
+                                className={pageLinkStyles}
+                                to={`/docs/${flatDocList[index + 1]}`}
+                              >
+                                {docMap[flatDocList[index + 1]] ||
+                                  flatDocList[index + 1]}
+                              </Link>
+                            </div>
                           ) : (
-                            <Box />
+                            <div />
                           )}
-                        </Box>
+                        </div>
                       )
                     }}
                   />

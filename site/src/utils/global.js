@@ -1,6 +1,7 @@
 import css from '@emotion/css'
 import { mq, fonts } from './style'
 import prismStyles from 'react-live/lib/constants/css.js'
+import draculaStyles from './dracula-prism'
 
 const globalStyles = css`
   ${prismStyles
@@ -25,16 +26,23 @@ const globalStyles = css`
   }};
   pre[class*='language-'] {
     ${mq({
-      marginLeft: [-32, -30],
-      marginRight: [-32, -30],
+      marginLeft: 0,
+      marginRight: 0,
       marginTop: 16,
       marginBottom: 16,
-      borderRadius: [0, 8],
+      borderRadius: [0, 4],
       whiteSpace: 'pre-wrap',
       wordBreak: 'break-word',
-      paddingLeft: [32, 30],
-      paddingRight: [32, 30]
+      paddingTop: [16, 24],
+      paddingRight: 16,
+      paddingBottom: [16, 24],
+      paddingLeft: 16
     })};
+  }
+
+  .gatsby-highlight,
+  .prism-code {
+    ${draculaStyles};
   }
 
   code,
@@ -46,7 +54,7 @@ const globalStyles = css`
   pre[class*='language-'],
   .prism-code {
     ${mq({
-      borderRadius: [0, 8]
+      borderRadius: [0, 4]
     })};
     white-space: pre-wrap;
     word-break: break-word;
