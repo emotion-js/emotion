@@ -1,4 +1,4 @@
-## v10.0.0 (2018-10-(26-30))
+## v10.0.0 (2018-10-27)
 
 Emotion 10 is a big change that we're really excited about with improvements to the css prop, a Global component for dynamic global styles, zero config SSR, lots of small fixes and improvements and more with an incremental adoption strategy. For a higher-level overview, read the [Medium article on Emotion 10](). For a migration guide, visit [the migrating to Emotion 10 page on emotion.sh](https://emotion.sh/docs/migrating-to-emotion-10)
 
