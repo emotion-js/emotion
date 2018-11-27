@@ -43,7 +43,7 @@
     "object-assign": "^4.1.1"
   },
   "peerDependencies": {
-    "@emotion/core": ">=10.0.0-beta"
+    "@emotion/core": "^10.0.0"
   },
   "umd:main": "dist/emotion-theming.umd.min.js",
   "browser": {
