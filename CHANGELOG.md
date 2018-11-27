@@ -1,3 +1,39 @@
+## v10.0.0 (2018-10-27)
+
+Emotion 10 is a big change that we're really excited about with improvements to the css prop, a Global component for dynamic global styles, zero config SSR, lots of small fixes and improvements and more with an incremental adoption strategy. For a higher-level overview, read the [Medium article on Emotion 10](). For a migration guide, visit [the migrating to Emotion 10 page on emotion.sh](https://emotion.sh/docs/migrating-to-emotion-10)
+
+#### :rocket: Enhancement
+
+- The css prop works without `babel-plugin-emotion`
+  - The css prop receives the theme
+  - Labels are added to the css prop without `babel-plugin-emotion` in some cases
+- Add the Global and ClassNames components
+- styled uses forwardRef
+- Add the as prop to styled
+- Providing options can be done via the CacheProvider
+- The autoLabel and sourceMap options are enabled in development with the Babel Macros
+- The autoLabel and sourceMap options are on by default in development in `babel-plugin-emotion`
+- Add warning for kebab-case css properties in objects
+- Add keyframes to snapshots with jest-emotion
+- Add codemod rules for Emotion 10
+- Fix SSR with \_ in labels
+- Add warnings for unsafe pseudo classes
+
+#### :boom: Breaking Change
+
+- create-emotion no longer accepts a global context object
+- Support for preact-emotion has been dropped(note that the emotion package still works with preact)
+- Emotion only supports react@>=16.3
+- The `channel` and `createBroadcast` exports from emotion-theming have been removed
+- The `extractStatic` option to babel-plugin-emotion has been removed
+- jest-emotion no longer accepts an emotion instance
+- `create-emotion-server` accepts a cache instead of an emotion instance
+- The css prop doesn't work via the babel plugin. `jsx` can be manually imported from `@emotion/core`(which can be automated with eslint-plugin-emotion) or [babel-plugin-jsx-pragmatic](https://github.com/jmm/babel-plugin-jsx-pragmatic) can be used.
+- Functions in interpolations are stringified in css and cx calls(probably won't affect you very much, there's a warning about it in v9)
+- `create-emotion` doesn't return a caches property and instead returns a cache property which is the same return value as `@emotion/cache`
+- The `importedNames` option to babel-plugin-emotion is gone
+- The `hoist` option is gone, hoisting always happens
+
 ## v9.2.7 (2018-07-29)
 
 #### :rocket: Enhancement

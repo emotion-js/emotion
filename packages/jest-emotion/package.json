@@ -42,9 +42,6 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "publishConfig": {
-    "tag": "next"
-  },
   "browser": {
     "./dist/jest-emotion.cjs.js": "./dist/jest-emotion.browser.cjs.js"
   }

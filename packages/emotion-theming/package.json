@@ -46,9 +46,6 @@
     "@emotion/core": ">=10.0.0-beta"
   },
   "umd:main": "dist/emotion-theming.umd.min.js",
-  "publishConfig": {
-    "tag": "next"
-  },
   "browser": {
     "./dist/emotion-theming.cjs.js": "./dist/emotion-theming.browser.cjs.js",
     "./dist/emotion-theming.esm.js": "./dist/emotion-theming.browser.esm.js"
