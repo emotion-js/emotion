@@ -1,6 +1,6 @@
 {
   "name": "@emotion/primitives-core",
-  "version": "10.0.0-beta.13",
+  "version": "10.0.0",
   "description": "Shared utilities for emotion primitives and native",
   "main": "dist/primitives-core.cjs.js",
   "module": "dist/primitives-core.esm.js",
@@ -13,7 +13,7 @@
     "css-to-react-native": "^2.2.1"
   },
   "peerDependencies": {
-    "@emotion/core": ">=10.0.0-beta",
+    "@emotion/core": "^10.0.0",
     "react": ">=16.3.0"
   },
   "devDependencies": {
@@ -34,8 +34,7 @@
     "url": "https://github.com/emotion-js/emotion/issues"
   },
   "publishConfig": {
-    "access": "public",
-    "tag": "next"
+    "access": "public"
   },
   "browser": {
     "./dist/primitives-core.cjs.js": "./dist/primitives-core.browser.cjs.js",
