@@ -9,7 +9,7 @@ import { getComponents, prettyifyCritical, getInjectedRules } from './util'
 import { JSDOM } from 'jsdom'
 
 let emotion = require('emotion')
-let reactEmotion = require('react-emotion')
+let reactEmotion = require('@emotion/styled')
 let emotionServer = require('emotion-server')
 
 describe('extractCritical', () => {

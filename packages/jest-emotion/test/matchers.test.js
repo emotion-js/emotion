@@ -3,7 +3,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import * as enzyme from 'enzyme'
 import * as emotion from 'emotion'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { matchers } from 'jest-emotion'
 
 const { toHaveStyleRule } = matchers

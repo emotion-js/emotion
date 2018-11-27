@@ -128,7 +128,8 @@ export default function(babel: *) {
           references: referencePathsByImportName,
           state,
           babel,
-          isBabelMacrosCall: true
+          isBabelMacrosCall: true,
+          isEmotionCall: true
         })
         if (!pluginMacros[path.node.source.value].keepImport) {
           path.remove()
@@ -142,7 +143,6 @@ export default function(babel: *) {
           '@emotion/css': cssMacro,
           '@emotion/styled': webStyledMacro,
           '@emotion/core': emotionCoreMacroThatsNotARealMacro,
-          'react-emotion': webStyledMacro,
           '@emotion/primitives': primitivesStyledMacro,
           '@emotion/native': nativeStyledMacro,
           emotion: createEmotionMacro('emotion')

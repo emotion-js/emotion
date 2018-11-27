@@ -23,7 +23,7 @@ describe('renderStylesToNodeStream', () => {
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    reactEmotion = require('@emotion/styled')
   })
   test('renders styles with ids', async () => {
     const { Page1, Page2 } = getComponents(emotion, reactEmotion)
@@ -53,7 +53,7 @@ describe('hydration', () => {
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    reactEmotion = require('@emotion/styled')
   })
   test('only inserts rules that are not in the critical css', async () => {
     const { Page1 } = getComponents(emotion, reactEmotion)
@@ -66,7 +66,7 @@ describe('hydration', () => {
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    reactEmotion = require('@emotion/styled')
     expect(emotion.cache.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
