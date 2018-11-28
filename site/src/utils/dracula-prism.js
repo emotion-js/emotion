@@ -253,14 +253,6 @@ pre[class*="language-"] {
   color: #ff79c6;
 }
 
-.language-cpp .token.string {
-  color: #8be9fd;
-}
-
-.language-c .token.string {
-  color: #8be9fd;
-}
-
 .language-css .token.selector {
   color: rgba(80, 250, 123, 1);
 }
@@ -269,48 +261,12 @@ pre[class*="language-"] {
   color: rgba(255, 184, 108, 1);
 }
 
-.language-java span.token.class-name {
-  color: #8be9fd;
-}
-
-.language-java .token.class-name {
-  color: #8be9fd;
-}
-
 .language-markup .token.attr-value {
   color: rgba(102, 217, 239, 1);
 }
 
 .language-markup .token.tag {
   color: rgba(80, 250, 123, 1);
-}
-
-.language-objectivec .token.property {
-  color: #66d9ef;
-}
-
-.language-objectivec .token.string {
-  color: #50fa7b;
-}
-
-.language-php .token.boolean {
-  color: #8be9fd;
-}
-
-.language-php .token.function {
-  color: #ff79c6;
-}
-
-.language-php .token.keyword {
-  color: #66d9ef;
-}
-
-.language-ruby .token.symbol {
-  color: #8be9fd;
-}
-
-.language-ruby .token.class-name {
-  color: #cfcfc2;
 }
 
 pre.line-numbers {

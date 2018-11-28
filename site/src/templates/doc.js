@@ -56,10 +56,10 @@ const ClassName = (props: any) => {
 const createLiveCode = memoize(logoUrl => props => (
   <ClassName
     css={mq({
-      paddingTop: [16, 24],
-      paddingRight: [24, 30],
-      paddingBottom: [16, 24],
-      paddingLeft: [24, 30]
+      paddingTop: [8, 16],
+      paddingRight: [8, 16],
+      paddingBottom: [8, 16],
+      paddingLeft: [8, 16]
     })}
   >
     {internalCodeStylesClassName => (

@@ -24,44 +24,38 @@ const globalStyles = css`
       backgroundColor: 'inherit'
     }
   }};
-  pre[class*='language-'] {
-    ${mq({
-      marginLeft: 0,
-      marginRight: 0,
-      marginTop: 16,
-      marginBottom: 16,
-      borderRadius: [0, 4],
-      whiteSpace: 'pre-wrap',
-      wordBreak: 'break-word',
-      paddingTop: [16, 24],
-      paddingRight: 16,
-      paddingBottom: [16, 24],
-      paddingLeft: 16
-    })};
-  }
 
   .gatsby-highlight,
   .prism-code {
     ${draculaStyles};
+    pre[class*='language-'] {
+      ${mq({
+        marginLeft: 0,
+        marginRight: 0,
+        marginTop: 16,
+        marginBottom: 16,
+        borderRadius: [0, 4],
+        whiteSpace: 'pre-wrap',
+        wordBreak: 'break-word',
+        paddingTop: [8, 16],
+        paddingRight: [8, 16],
+        paddingBottom: [8, 16],
+        paddingLeft: [8, 16]
+      })};
+    }
+
+    code,
+    pre,
+    pre[class*='language-'] {
+      font-family: ${fonts.code};
+      font-size: 14px;
+    }
+
+    .language-bash .token.function {
+      color: #ccc;
+    }
   }
 
-  code,
-  pre[class*='language-'],
-  .prism-code {
-    font-family: ${fonts.code};
-  }
-
-  pre[class*='language-'],
-  .prism-code {
-    ${mq({
-      borderRadius: [0, 4]
-    })};
-    white-space: pre-wrap;
-    word-break: break-word;
-    word-wrap: normal;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
   .gatsy-highlight {
     overflow: hidden;
   }

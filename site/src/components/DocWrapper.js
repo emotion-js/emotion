@@ -155,14 +155,17 @@ export default (props: Props) => {
                       const hasPrevDoc = index !== 0
                       return (
                         <div
+                          data-wow
                           css={mq({
                             display: 'grid',
                             gridTemplateColumns: ['1fr', '1fr 1fr'],
                             gridTemplateRows: ['1fr 1fr', '1fr'],
                             alignItems: 'center',
                             justifyContent: ['center', 'space-between'],
+                            width: '100%',
+                            maxWidth: '52em',
                             gap: [24, 16],
-                            marginTop: 24,
+                            margin: ['32px auto 0 auto'],
                             fontSize: [
                               constants.fontSizes[3],
                               constants.fontSizes[4]

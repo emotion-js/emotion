@@ -8708,9 +8708,10 @@ gatsby-source-filesystem@^2.0.9:
     valid-url "^1.0.9"
     xstate "^3.1.0"
 
-gatsby-transformer-remark@^2.1.12:
-  version "2.1.12"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-remark/-/gatsby-transformer-remark-2.1.12.tgz#192c87622bed497bb0f719e9bd8ea36f4290c8fc"
+gatsby-transformer-remark@^2.1.13:
+  version "2.1.13"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-remark/-/gatsby-transformer-remark-2.1.13.tgz#dd2c69be6bad429bb4b7ad3bedd67ffef2d72346"
+  integrity sha512-JpfDfu8rPgrp+N731Woe9fTnD40+shmOPSyXjCsjhE9te68/s9vlovIFcYlSgWDQLiaQq1kOet3CDhX5Edmnvw==
   dependencies:
     "@babel/runtime" "^7.0.0"
     bluebird "^3.5.0"
