@@ -4,4 +4,11 @@ declare var codegen: { require: string => RegExp }
 
 const reactPropsRegex = codegen.require('./props')
 
-export default memoize(reactPropsRegex.test.bind(reactPropsRegex))
+// https://esbench.com/bench/5bfee68a4cd7e6009ef61d23
+export default memoize(
+  prop =>
+    reactPropsRegex.test(prop) ||
+    (prop.charCodeAt(0) === 111 /* o */ &&
+    prop.charCodeAt(1) === 110 /* n */ &&
+      prop.charCodeAt(2) < 91) /* Z+1 */
+)
