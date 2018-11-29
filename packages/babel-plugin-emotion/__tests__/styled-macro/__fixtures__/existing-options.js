@@ -15,3 +15,6 @@ styled(
   { shouldForwardProp: window.whatever },
   window.whatever
 )``
+
+const cfg = { shouldForwardProp: window.whatever }
+styled('button', cfg)({})

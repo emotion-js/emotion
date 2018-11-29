@@ -577,21 +577,7 @@ describe('styled', () => {
 
     expect(tree).toMatchSnapshot()
   })
-  test("config works even if it's defined outside", () => {
-    const Button = ({ isRed, ...rest }) => (
-      <button {...rest}>{isRed ? 'passed' : 'not passed'}</button>
-    )
-    const StyledButton1 = styled(Button, {
-      shouldForwardProp: p => p !== 'isRed'
-    })({})
-    const tree1 = renderer.create(<StyledButton1 isRed />).toJSON()
-    expect(tree1.children).toEqual(['not passed'])
 
-    const cfg = { shouldForwardProp: p => p !== 'isRed' }
-    const StyledButton2 = styled(Button, cfg)({})
-    const tree2 = renderer.create(<StyledButton2 isRed />).toJSON()
-    expect(tree2.children).toEqual(['not passed'])
-  })
   test('throws if undefined is passed as the component', () => {
     expect(
       () =>
