@@ -23,7 +23,7 @@ Frequently viewed docs:
 
 - [Introduction](https://emotion.sh/docs/introduction)
 - [Install](https://emotion.sh/docs/install)
-- [CSS](https://emotion.sh/docs/css)
+- [CSS](https://emotion.sh/docs/css-prop)
 - [Styled Components](https://emotion.sh/docs/styled)
 - [Composition](https://emotion.sh/docs/composition)
 - [Nested Selectors](https://emotion.sh/docs/nested)
