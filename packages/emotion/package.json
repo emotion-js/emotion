@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/emotion.cjs.js",
   "module": "dist/emotion.esm.js",
