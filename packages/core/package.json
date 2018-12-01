@@ -7,6 +7,10 @@
     "./dist/core.cjs.js": "./dist/core.browser.cjs.js",
     "./dist/core.esm.js": "./dist/core.browser.esm.js"
   },
+  "react-native": {
+    "./dist/core.cjs.js": "./dist/core.cjs.js",
+    "./dist/core.esm.js": "./dist/core.esm.js"
+  },
   "types": "types/index.d.ts",
   "files": [
     "src",
