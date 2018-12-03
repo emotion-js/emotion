@@ -1,4 +1,0 @@
-{
-  "presets": ["flow", "env", "react"],
-  "plugins": ["codegen"]
-}

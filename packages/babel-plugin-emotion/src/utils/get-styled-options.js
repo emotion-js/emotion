@@ -19,13 +19,15 @@ export let getStyledOptions = (t: *, path: *, state: *) => {
   let args = path.node.arguments
   let optionsArgument = args.length >= 2 ? args[1] : null
   if (optionsArgument) {
-    if (t.isObjectExpression(optionsArgument)) {
-      properties.unshift(...optionsArgument.properties)
-    } else {
-      console.warn(
-        "Second argument to a styled call is not an object, it's going to be removed."
-      )
+    if (!t.isObjectExpression(optionsArgument)) {
+      return t.callExpression(state.file.addHelper('extends'), [
+        t.objectExpression([]),
+        t.objectExpression(properties),
+        optionsArgument
+      ])
     }
+
+    properties.unshift(...optionsArgument.properties)
   }
 
   return t.objectExpression(
