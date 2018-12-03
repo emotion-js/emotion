@@ -1,11 +1,15 @@
 {
   "name": "@emotion/core",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",
   "browser": {
     "./dist/core.cjs.js": "./dist/core.browser.cjs.js",
     "./dist/core.esm.js": "./dist/core.browser.esm.js"
+  },
+  "react-native": {
+    "./dist/core.cjs.js": "./dist/core.cjs.js",
+    "./dist/core.esm.js": "./dist/core.esm.js"
   },
   "types": "types/index.d.ts",
   "files": [
@@ -29,12 +33,12 @@
     "react": ">=16.3.0"
   },
   "devDependencies": {
-    "@emotion/styled": "10.0.0",
+    "@emotion/styled": "10.0.1",
     "@types/react": "16.3.18",
     "dtslint": "^0.3.0",
-    "emotion": "10.0.0",
-    "emotion-server": "10.0.0",
-    "emotion-theming": "10.0.0",
+    "emotion": "10.0.1",
+    "emotion-server": "10.0.1",
+    "emotion-theming": "10.0.1",
     "html-tag-names": "^1.1.2",
     "svg-tag-names": "^1.1.1"
   },

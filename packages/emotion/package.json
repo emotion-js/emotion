@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/emotion.cjs.js",
   "module": "dist/emotion.esm.js",
@@ -40,10 +40,6 @@
     "url": "https://github.com/emotion-js/emotion/issues"
   },
   "umd:main": "dist/emotion.umd.min.js",
-  "browser": {
-    "./dist/emotion.cjs.js": "./dist/emotion.browser.cjs.js",
-    "./dist/emotion.esm.js": "./dist/emotion.browser.esm.js"
-  },
   "preconstruct": {
     "umdName": "emotion"
   }
