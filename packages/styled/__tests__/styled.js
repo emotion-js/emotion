@@ -577,6 +577,7 @@ describe('styled', () => {
 
     expect(tree).toMatchSnapshot()
   })
+
   test('throws if undefined is passed as the component', () => {
     expect(
       () =>
