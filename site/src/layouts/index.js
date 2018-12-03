@@ -14,9 +14,11 @@ import { StaticQuery, graphql } from 'gatsby'
 import { Location } from '@reach/router'
 
 const StyledLink = styled(Box)`
+  display: inline-flex;
+  align-items: center;
   color: white;
   padding: ${constants.space[1]}px;
-  font-size: ${constants.fontSizes[3]}px;
+  font-size: ${constants.fontSizes[2]}px;
   text-decoration: none;
   font-weight: 300;
   ${props => !props.hideUnderline && animatedUnderline};
@@ -92,6 +94,7 @@ const Header = ({ isHome }) => (
         <Box
           flex={1}
           display="flex"
+          align="center"
           justify="flex-end"
           css={{ overflow: 'initial' }}
         >
