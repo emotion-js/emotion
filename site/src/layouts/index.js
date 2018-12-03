@@ -22,6 +22,7 @@ const StyledLink = styled(Box)`
   text-decoration: none;
   font-weight: 300;
   ${props => !props.hideUnderline && animatedUnderline};
+  white-space: nowrap;
 `.withComponent(({ hideUnderline, ...props }) => <Link {...props} />)
 
 const StyledLinkSpan = StyledLink.withComponent('span')
@@ -110,6 +111,9 @@ const Header = ({ isHome }) => (
           </StyledLink>
           <StyledLink to="https://emotion.now.sh">Slack</StyledLink>
           <StyledLink to="https://spectrum.chat/emotion">Spectrum</StyledLink>
+          <StyledLink to="https://5bb1495273f2cf57a2cf39cc--emotion.netlify.com">
+            v9 Docs
+          </StyledLink>
         </Box>
       </Box>
     </Box>
