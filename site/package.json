@@ -2,7 +2,7 @@
   "name": "emotion-site",
   "private": true,
   "description": "emotion site",
-  "version": "9.2.9",
+  "version": "9.2.10",
   "dependencies": {
     "babel-plugin-jsx-pragmatic": "^1.0.2",
     "babel-standalone": "^6.26.0",

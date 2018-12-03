@@ -1,6 +1,6 @@
 {
   "name": "emotion-theming",
-  "version": "10.0.1",
+  "version": "10.0.2",
   "description": "A CSS-in-JS theming solution, inspired by styled-components",
   "main": "dist/emotion-theming.cjs.js",
   "module": "dist/emotion-theming.esm.js",
@@ -32,8 +32,8 @@
   },
   "homepage": "https://emotion.sh",
   "devDependencies": {
-    "@emotion/core": "10.0.1",
-    "@emotion/styled": "10.0.1",
+    "@emotion/core": "10.0.2",
+    "@emotion/styled": "10.0.2",
     "@types/react": "16.3.18",
     "dtslint": "^0.3.0"
   },
