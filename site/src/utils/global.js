@@ -16,7 +16,7 @@ const globalStyles = css`
     -webkit-font-smoothing: antialiased;
   }
   ${{
-    'p code': {
+    'p code, li code': {
       backgroundColor: '#CEF6FF',
       fontSize: 16
     },

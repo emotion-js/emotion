@@ -231,6 +231,10 @@ pre[class*="language-"] {
   color: #7ec699;
 }
 
+.token.inserted {
+ color: rgba(80, 250, 123, 1);
+}
+
 .token.deleted {
   color: #e2777a;
 }

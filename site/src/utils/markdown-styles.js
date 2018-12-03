@@ -3,14 +3,30 @@ import styled from '@emotion/styled'
 import css from '@emotion/css'
 import { openColors, mq, colors } from './style'
 
-export const p = styled.p(
-  mq({
-    fontSize: [16, 17],
-    marginTop: 16,
-    color: openColors.gray[8],
-    lineHeight: '1.7'
-  })
-)
+const textStyles = mq({
+  fontSize: [16, 17],
+  marginTop: 16,
+  color: openColors.gray[8],
+  lineHeight: '1.7'
+})
+
+export const p = styled.p(textStyles)
+
+export const li = styled.li(textStyles)
+
+export const ul = styled.ul({
+  marginTop: 20,
+  paddingLeft: 20,
+
+  '& li': {
+    marginTop: 10
+  },
+
+  '& ol, & ul': {
+    marginLeft: 20,
+    marginTop: 10
+  }
+})
 
 export const img = styled.img`
   max-height: 360px;
