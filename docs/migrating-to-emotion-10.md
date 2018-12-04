@@ -55,7 +55,7 @@ const SomeComponent = props => (
 
 Incremental migration is something really important to Emotion because we don't want anyone to have to rewrite their entire app.
 
-The upgrades to emotion 10 are split into two parts. The first part can be done automatically by using [`eslint-plugin-emotion`](./eslint-plugin-emotion#emotion-10-codemods).
+The upgrades to emotion 10 are split into two parts. The first part can be done automatically by using [`eslint-plugin-emotion`](./../packages/eslint-plugin-emotion#emotion-10-codemods).
 
 ## Codemoddable
 
