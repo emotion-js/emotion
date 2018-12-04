@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@emotion/babel-preset-css-prop index 1`] = `
+"import * as React from 'react'
+
+export let Button = props => {
+  return (
+    <button
+      css={{
+        color: 'hotpink'
+      }}
+      {...props}
+    />
+  )
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+import * as React from 'react';
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1v4u9bq-Button\\",
+  styles: \\"color:hotpink;label:Button;\\"
+} : {
+  name: \\"1v4u9bq-Button\\",
+  styles: \\"color:hotpink;label:Button;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUtNIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5cbmV4cG9ydCBsZXQgQnV0dG9uID0gcHJvcHMgPT4ge1xuICByZXR1cm4gKFxuICAgIDxidXR0b25cbiAgICAgIGNzcz17e1xuICAgICAgICBjb2xvcjogJ2hvdHBpbmsnXG4gICAgICB9fVxuICAgICAgey4uLnByb3BzfVxuICAgIC8+XG4gIClcbn1cbiJdfQ== */\\"
+};
+
+export let Button = props => {
+  return ___EmotionJSX(\\"button\\", _extends({
+    css: _ref
+  }, props));
+};"
+`;
