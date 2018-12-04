@@ -1,7 +1,6 @@
 // @flow
 import React from 'react'
 import { mq } from '../utils/style'
-import Box from '../components/Box'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
 import RenderHAST from '../components/RenderHAST'
@@ -57,18 +56,20 @@ const ClassName = (props: any) => {
 const createLiveCode = memoize(logoUrl => props => (
   <ClassName
     css={mq({
-      paddingLeft: [32, 30],
-      paddingRight: [32, 30]
+      paddingTop: [8, 16],
+      paddingRight: [8, 16],
+      paddingBottom: [8, 16],
+      paddingLeft: [8, 16]
     })}
   >
     {internalCodeStylesClassName => (
       <Playground
         css={mq({
-          marginLeft: [-32, -30],
-          marginRight: [-32, -30],
-          marginTop: 16,
-          marginBottom: 16,
-          borderRadius: [0, 8],
+          marginLeft: [0],
+          marginRight: [0],
+          marginTop: [16, 24],
+          marginBottom: [16, 24],
+          borderRadius: [0, 4],
           whiteSpace: 'pre-wrap',
           wordBreak: 'break-word'
         })}
@@ -88,36 +89,47 @@ export default class DocRoute extends React.Component<Props> {
     return (
       <Layout>
         <DocWrapper>
-          <Box css={{ lineHeight: 1.4 }} className="docSearch-content">
+          <div
+            css={{
+              display: 'grid',
+              gridTemplateColumns: '1fr auto',
+              gridTemplateRows: 'auto 1fr',
+              alignItems: 'center',
+              gap: 8,
+              maxWidth: '52em',
+              margin: '0 auto'
+            }}
+            className="docSearch-content"
+          >
             <Title>
               {doc.frontmatter.title || this.props.pageContext.slug}
             </Title>
-            <Box pb={3}>
-              <markdownComponents.a
-                css={{ color: 'rgb(107, 107, 107)', fontSize: 14.5 }}
-                href={
-                  doc.frontmatter.title
-                    ? `https://github.com/emotion-js/emotion/edit/master/docs/${
-                        this.props.pageContext.slug
-                      }.md`
-                    : `https://github.com/emotion-js/emotion/edit/master/packages/${
-                        this.props.pageContext.slug
-                      }/README.md`
-                }
-              >
-                Edit this page
-              </markdownComponents.a>
-            </Box>
-            <RenderHAST
-              hast={doc.htmlAst}
-              componentMap={{
-                'live-code': createLiveCode(
-                  avatar.childImageSharp.resolutions.src
-                ),
-                ...markdownComponents
-              }}
-            />
-          </Box>
+            <markdownComponents.a
+              css={{ color: 'rgb(107, 107, 107)', fontSize: 12 }}
+              href={
+                doc.frontmatter.title
+                  ? `https://github.com/emotion-js/emotion/edit/master/docs/${
+                      this.props.pageContext.slug
+                    }.md`
+                  : `https://github.com/emotion-js/emotion/edit/master/packages/${
+                      this.props.pageContext.slug
+                    }/README.md`
+              }
+            >
+              Edit this page
+            </markdownComponents.a>
+            <div css={{ gridColumn: 'span 2' }}>
+              <RenderHAST
+                hast={doc.htmlAst}
+                componentMap={{
+                  'live-code': createLiveCode(
+                    avatar.childImageSharp.resolutions.src
+                  ),
+                  ...markdownComponents
+                }}
+              />
+            </div>
+          </div>
         </DocWrapper>
       </Layout>
     )

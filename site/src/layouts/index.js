@@ -14,12 +14,15 @@ import { StaticQuery, graphql } from 'gatsby'
 import { Location } from '@reach/router'
 
 const StyledLink = styled(Box)`
+  display: inline-flex;
+  align-items: center;
   color: white;
   padding: ${constants.space[1]}px;
-  font-size: ${constants.fontSizes[3]}px;
+  font-size: ${constants.fontSizes[2]}px;
   text-decoration: none;
   font-weight: 300;
   ${props => !props.hideUnderline && animatedUnderline};
+  white-space: nowrap;
 `.withComponent(({ hideUnderline, ...props }) => <Link {...props} />)
 
 const StyledLinkSpan = StyledLink.withComponent('span')
@@ -92,6 +95,7 @@ const Header = ({ isHome }) => (
         <Box
           flex={1}
           display="flex"
+          align="center"
           justify="flex-end"
           css={{ overflow: 'initial' }}
         >
@@ -107,6 +111,9 @@ const Header = ({ isHome }) => (
           </StyledLink>
           <StyledLink to="https://emotion.now.sh">Slack</StyledLink>
           <StyledLink to="https://spectrum.chat/emotion">Spectrum</StyledLink>
+          <StyledLink to="https://5bb1495273f2cf57a2cf39cc--emotion.netlify.com">
+            v9 Docs
+          </StyledLink>
         </Box>
       </Box>
     </Box>

@@ -3,13 +3,30 @@ import styled from '@emotion/styled'
 import css from '@emotion/css'
 import { openColors, mq, colors } from './style'
 
-export const p = styled.p(
-  mq({
-    fontSize: [16, 17],
-    color: openColors.gray[8],
-    lineHeight: '1.7'
-  })
-)
+const textStyles = mq({
+  fontSize: [16, 17],
+  marginTop: 16,
+  color: openColors.gray[8],
+  lineHeight: '1.7'
+})
+
+export const p = styled.p(textStyles)
+
+export const li = styled.li(textStyles)
+
+export const ul = styled.ul({
+  marginTop: 20,
+  paddingLeft: 20,
+
+  '& li': {
+    marginTop: 10
+  },
+
+  '& ol, & ul': {
+    marginLeft: 20,
+    marginTop: 10
+  }
+})
 
 export const img = styled.img`
   max-height: 360px;
@@ -18,33 +35,40 @@ export const img = styled.img`
 
 const baseHeadingStyles = css`
   margin: 0.75rem 0 0.5rem;
-  font-weight: inherit;
-  line-height: 1.42;
+  font-weight: 600;
+  line-height: 1.2;
 `
 
 export const h1 = styled.h1`
-  margin-top: 0;
-  font-size: 3.998rem;
+  margin-top: 44px;
+  padding-top: 30px;
+  font-size: 3.157rem;
   ${baseHeadingStyles};
 `
 
 export const h2 = styled.h2`
-  font-size: 2.827rem;
+  font-size: 2.369rem;
+  margin-top: 44px;
+  padding-top: 30px;
   ${baseHeadingStyles};
 `
 
 export const h3 = styled.h3`
-  font-size: 1.999rem;
+  font-size: 1.777rem;
+  margin-top: 44px;
+  padding-top: 30px;
   ${baseHeadingStyles};
 `
 
 export const h4 = styled.h4`
   font-size: 1.414rem;
+  margin-top: 22px;
+  padding-top: 15px;
   ${baseHeadingStyles};
 `
 
 export const h5 = styled.h5`
-  font-size: 1.121rem;
+  font-size: 1.333rem;
 `
 
 export const h6 = styled.div`
