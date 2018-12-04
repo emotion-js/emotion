@@ -28,7 +28,7 @@ babel --presets @emotion/babel-preset-css-prop script.js
 
 ```javascript
 require('@babel/core').transform(code, {
-  plugins: ['@emotion/babel-preset-css-prop']
+  presets: ['@emotion/babel-preset-css-prop']
 })
 ```
 
