@@ -26,7 +26,7 @@ export default ({
           import: pragmaName
         }
       ],
-      [jsx, { pragma: pragmaName, ...options }],
+      [jsx, { pragma: pragmaName, pragmaFrag: 'React.Fragment', ...options }],
       [
         emotion,
         {

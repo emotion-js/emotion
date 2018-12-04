@@ -5,12 +5,14 @@ exports[`@emotion/babel-preset-css-prop index 1`] = `
 
 export let Button = props => {
   return (
-    <button
-      css={{
-        color: 'hotpink'
-      }}
-      {...props}
-    />
+    <>
+      <button
+        css={{
+          color: 'hotpink'
+        }}
+        {...props}
+      />
+    </>
   )
 }
 
@@ -30,12 +32,12 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
 } : {
   name: \\"1v4u9bq-Button\\",
   styles: \\"color:hotpink;label:Button;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUtNIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5cbmV4cG9ydCBsZXQgQnV0dG9uID0gcHJvcHMgPT4ge1xuICByZXR1cm4gKFxuICAgIDxidXR0b25cbiAgICAgIGNzcz17e1xuICAgICAgICBjb2xvcjogJ2hvdHBpbmsnXG4gICAgICB9fVxuICAgICAgey4uLnByb3BzfVxuICAgIC8+XG4gIClcbn1cbiJdfQ== */\\"
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1RIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5cbmV4cG9ydCBsZXQgQnV0dG9uID0gcHJvcHMgPT4ge1xuICByZXR1cm4gKFxuICAgIDw+XG4gICAgICA8YnV0dG9uXG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGNvbG9yOiAnaG90cGluaydcbiAgICAgICAgfX1cbiAgICAgICAgey4uLnByb3BzfVxuICAgICAgLz5cbiAgICA8Lz5cbiAgKVxufVxuIl19 */\\"
 };
 
 export let Button = props => {
-  return ___EmotionJSX(\\"button\\", _extends({
+  return ___EmotionJSX(React.Fragment, null, ___EmotionJSX(\\"button\\", _extends({
     css: _ref
-  }, props));
+  }, props)));
 };"
 `;
