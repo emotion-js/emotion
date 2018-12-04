@@ -14,7 +14,7 @@ yarn add @emotion/babel-preset-css-prop
 
 ```json
 {
-  "plugins": ["emotion"]
+  "presets": ["@emotion/babel-preset-css-prop"]
 }
 ```
 
