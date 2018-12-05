@@ -39,6 +39,19 @@ exports[`babel css inline babel 6 custom instance relative complex 1`] = `
 });"
 `;
 
+exports[`babel css inline babel 6 label format with dirname, filename, and local 1`] = `
+"import { css as _css } from 'emotion';
+
+let cls = /*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
+    name: '1azqn5t-my-css-__tests__-css-requires-options-cls',
+    styles: 'color:hotpink;label:my-css-__tests__-css-requires-options-cls;'
+} : {
+    name: '1azqn5t-my-css-__tests__-css-requires-options-cls',
+    styles: 'color:hotpink;label:my-css-__tests__-css-requires-options-cls;',
+    map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */'
+});"
+`;
+
 exports[`babel css inline babel 6 label format with filename and local 1`] = `
 "import { css as _css } from 'emotion';
 
@@ -117,6 +130,21 @@ _css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVPIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3MgYXMgbG9sfSBmcm9tICcuLi9fX3Rlc3RzX18vbXktZW1vdGlvbi1pbnN0YW5jZSdcbiAgICBsb2xgY29sb3I6aG90cGluaztgIl19 */\\"
+});"
+`;
+
+exports[`babel css inline babel 7 label format with dirname, filename, and local 1`] = `
+"import { css as _css } from \\"emotion\\";
+
+let cls =
+/*#__PURE__*/
+_css(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1azqn5t-my-css-__tests__-css-requires-options-cls\\",
+  styles: \\"color:hotpink;label:my-css-__tests__-css-requires-options-cls;\\"
+} : {
+  name: \\"1azqn5t-my-css-__tests__-css-requires-options-cls\\",
+  styles: \\"color:hotpink;label:my-css-__tests__-css-requires-options-cls;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */\\"
 });"
 `;
 

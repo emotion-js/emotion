@@ -11,15 +11,17 @@ function getLabel(
   if (!labelFormat) return identifierName.trim()
 
   const parsedPath = nodePath.parse(filename)
+  let localDirname = nodePath.basename(parsedPath.dir)
   let localFilename = parsedPath.name
   if (localFilename === 'index') {
-    localFilename = nodePath.basename(parsedPath.dir)
+    localFilename = localDirname
   }
   localFilename = localFilename.replace('.', '-')
 
   return labelFormat
     .replace(/\[local\]/gi, identifierName.trim())
     .replace(/\[filename\]/gi, localFilename)
+    .replace(/\[dirname\]/gi, localDirname)
 }
 
 export function getLabelFromPath(path: *, state: *, t: *) {

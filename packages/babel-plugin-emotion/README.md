@@ -224,6 +224,7 @@ Allowed values:
 
 - `[local]` - the name of the variable the result of the `css` or `styled` expression is assigned to.
 - `[filename]` - name of the file (without extension) where `css` or `styled` expression is located.
+- `[dirname]` - name of the directory containing the file where `css` or `styled` expression is located.
 
 This format only affects the label property of the expression, meaning that the `css` prefix and hash will
 be prepended automatically.
