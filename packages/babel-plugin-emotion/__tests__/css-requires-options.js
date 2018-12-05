@@ -38,6 +38,18 @@ const inline = {
     filename: __filename
   },
 
+  'label format with dirname, filename, and local': {
+    code: `
+    import {css} from 'emotion'
+    let cls = css({color:'hotpink'})
+    `,
+    opts: {
+      labelFormat: 'my-css-[dirname]-[filename]-[local]',
+      autoLabel: true
+    },
+    filename: __filename
+  },
+
   'custom instance': {
     code: `
     import {css as lol} from 'my-emotion-instance'
