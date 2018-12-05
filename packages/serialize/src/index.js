@@ -163,6 +163,7 @@ function handleInterpolation(
         ) {
           styles += interpolation.map
         }
+
         return styles
       }
 
