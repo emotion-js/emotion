@@ -22,7 +22,7 @@
     "flow": "flow",
     "flow:check": "flow check",
     "postinstall": "opencollective postinstall",
-    "version-packages": "lerna version --preid=beta --exact"
+    "version-packages": "lerna version --preid=beta"
   },
   "resolutions": {
     "**/react": "16.5.2",
