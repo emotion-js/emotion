@@ -156,7 +156,14 @@ function handleInterpolation(
             next = next.next
           }
         }
-        return interpolation.styles
+        let styles = interpolation.styles
+        if (
+          process.env.NODE_ENV !== 'production' &&
+          interpolation.map !== undefined
+        ) {
+          styles += interpolation.map
+        }
+        return styles
       }
 
       return createStringFromObject(mergedProps, registered, interpolation)
