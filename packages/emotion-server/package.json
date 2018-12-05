@@ -1,6 +1,6 @@
 {
   "name": "emotion-server",
-  "version": "10.0.3",
+  "version": "10.0.4",
   "description": "Extract and inline critical css with emotion for server side rendering.",
   "main": "dist/emotion-server.cjs.js",
   "types": "types/index.d.ts",
@@ -20,9 +20,9 @@
   },
   "devDependencies": {
     "@types/node": "^10.11.4",
-    "babel-plugin-emotion": "^10.0.3",
+    "babel-plugin-emotion": "^10.0.4",
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.3"
+    "emotion": "^10.0.4"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
