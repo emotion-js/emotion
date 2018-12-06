@@ -392,12 +392,8 @@ console.log(styled)
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _styled from \\"@emotion/styled\\";
-export let thing =
-/*#__PURE__*/
-_styled;
-console.log(
-/*#__PURE__*/
-_styled);"
+export let thing = _styled;
+console.log(_styled);"
 `;
 
 exports[`@emotion/styled.macro no-import 1`] = `
