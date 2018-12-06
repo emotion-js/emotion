@@ -78,11 +78,7 @@ export let createStyledMacro = ({
         } else {
           reference.replaceWith(getOriginalImportPathStyledIdentifier())
         }
-        if (
-          reference.parentPath &&
-          reference.parentPath.parentPath &&
-          reference.parentPath.parentPath
-        ) {
+        if (reference.parentPath && reference.parentPath.parentPath) {
           const styledCallPath = reference.parentPath.parentPath
           let { node } = transformExpressionWithStyles({
             path: styledCallPath,
