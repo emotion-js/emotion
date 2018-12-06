@@ -383,6 +383,25 @@ _styled.View(\\"color:hotpink;\\");
 _styled.View(\\"\\");"
 `;
 
+exports[`@emotion/babel-plugin-core styled no-call 1`] = `
+"import styled from '@emotion/styled'
+
+export let thing = styled
+
+console.log(styled)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled\\";
+export let thing =
+/*#__PURE__*/
+_styled;
+console.log(
+/*#__PURE__*/
+_styled);"
+`;
+
 exports[`@emotion/babel-plugin-core styled no-import 1`] = `
 "import '@emotion/styled'
 

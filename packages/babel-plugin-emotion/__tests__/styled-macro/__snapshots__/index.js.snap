@@ -381,6 +381,25 @@ styled.View\`
 styled.View({});"
 `;
 
+exports[`@emotion/styled.macro no-call 1`] = `
+"import styled from '@emotion/styled/macro'
+
+export let thing = styled
+
+console.log(styled)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled\\";
+export let thing =
+/*#__PURE__*/
+_styled;
+console.log(
+/*#__PURE__*/
+_styled);"
+`;
+
 exports[`@emotion/styled.macro no-import 1`] = `
 "import '@emotion/styled'
 

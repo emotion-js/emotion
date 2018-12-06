@@ -1,13 +1,15 @@
 // @flow
-import { createMacro } from 'babel-plugin-macros'
+import { createMacro, MacroError } from 'babel-plugin-macros'
 import { addDefault, addNamed } from '@babel/helper-module-imports'
 import { transformExpressionWithStyles, getStyledOptions } from './utils'
 
 export let createStyledMacro = ({
   importPath,
+  originalImportPath = importPath,
   isWeb
 }: {
   importPath: string,
+  originalImportPath?: string,
   isWeb: boolean
 }) =>
   createMacro(({ references, state, babel, isEmotionCall }) => {
@@ -16,10 +18,37 @@ export let createStyledMacro = ({
     }
     const t = babel.types
     if (references.default && references.default.length) {
-      let styledIdentifier = addDefault(state.file.path, importPath, {
-        nameHint: 'styled'
-      })
+      let _styledIdentifier
+      let getStyledIdentifier = () => {
+        if (_styledIdentifier === undefined) {
+          _styledIdentifier = addDefault(state.file.path, importPath, {
+            nameHint: 'styled'
+          })
+        }
+        return t.cloneDeep(_styledIdentifier)
+      }
+      let originalImportPathStyledIdentifier
+      let getOriginalImportPathStyledIdentifier = () => {
+        if (originalImportPathStyledIdentifier === undefined) {
+          try {
+            originalImportPathStyledIdentifier = addDefault(
+              state.file.path,
+              originalImportPath,
+              {
+                nameHint: 'styled'
+              }
+            )
+          } catch (e) {
+            throw new MacroError(originalImportPath)
+          }
+        }
+        return t.cloneDeep(originalImportPathStyledIdentifier)
+      }
+      if (importPath === originalImportPath) {
+        getOriginalImportPathStyledIdentifier = getStyledIdentifier
+      }
       references.default.forEach(reference => {
+        let isCall = false
         if (
           t.isMemberExpression(reference.parent) &&
           reference.parent.computed === false &&
@@ -28,15 +57,32 @@ export let createStyledMacro = ({
           // it's in primitives/native
           reference.parent.property.name.charCodeAt(0) > 96
         ) {
-          reference.parentPath.replaceWith(
-            t.callExpression(t.cloneDeep(styledIdentifier), [
-              t.stringLiteral(reference.parent.property.name)
-            ])
-          )
+          if (reference.parent.property.name.charCodeAt(0) > 96) {
+            reference.parentPath.replaceWith(
+              t.callExpression(getStyledIdentifier(), [
+                t.stringLiteral(reference.parent.property.name)
+              ])
+            )
+            isCall = true
+          } else {
+            reference.replaceWith(getStyledIdentifier())
+          }
+        } else if (
+          reference.parentPath &&
+          reference.parentPath.parentPath &&
+          t.isCallExpression(reference.parentPath) &&
+          reference.parent.callee === reference.node
+        ) {
+          isCall = true
+          reference.replaceWith(getStyledIdentifier())
         } else {
-          reference.replaceWith(t.cloneDeep(styledIdentifier))
+          reference.replaceWith(getOriginalImportPathStyledIdentifier())
         }
-        if (reference.parentPath && reference.parentPath.parentPath) {
+        if (
+          reference.parentPath &&
+          reference.parentPath.parentPath &&
+          reference.parentPath.parentPath
+        ) {
           const styledCallPath = reference.parentPath.parentPath
           let { node } = transformExpressionWithStyles({
             path: styledCallPath,
@@ -51,7 +97,7 @@ export let createStyledMacro = ({
         }
         reference.addComment('leading', '#__PURE__')
 
-        if (t.isCallExpression(reference.parentPath)) {
+        if (t.isCallExpression(reference.parentPath) && isCall) {
           reference.parentPath.node.arguments[1] = getStyledOptions(
             t,
             reference.parentPath,
