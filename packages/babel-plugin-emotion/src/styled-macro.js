@@ -30,17 +30,13 @@ export let createStyledMacro = ({
       let originalImportPathStyledIdentifier
       let getOriginalImportPathStyledIdentifier = () => {
         if (originalImportPathStyledIdentifier === undefined) {
-          try {
-            originalImportPathStyledIdentifier = addDefault(
-              state.file.path,
-              originalImportPath,
-              {
-                nameHint: 'styled'
-              }
-            )
-          } catch (e) {
-            throw new MacroError(originalImportPath)
-          }
+          originalImportPathStyledIdentifier = addDefault(
+            state.file.path,
+            originalImportPath,
+            {
+              nameHint: 'styled'
+            }
+          )
         }
         return t.cloneDeep(originalImportPathStyledIdentifier)
       }
