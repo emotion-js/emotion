@@ -14,18 +14,18 @@ learn how: http://kcd.im/pull-request
 - `emotion` version:
 - `react` version:
 
-Relevant code.
+**Relevant code:**
 
 ```javascript
 
 ```
 
 
-What you did:
+**What you did:**
 
 
 
-What happened:
+**What happened:**
 
 <!-- 
 Please provide the full error message/screenshots/anything
@@ -33,7 +33,7 @@ Please provide the full error message/screenshots/anything
 Your bug will get fixed much faster if we can easily run your code. Please paste the link to your CodeSandbox below.
 -->
 
-Reproduction:
+**Reproduction:**
 
 
 <!--
@@ -45,8 +45,9 @@ Does it seem like the issue is only happening to you?
 If this is the case and you can't reproduce it in a CodeSandbox, your best hope of a solution will be to
 create a github repo that we can download and tinker with. 
 -->
-Problem description:
+
+**Problem description:**
 
 
 
-Suggested solution:
+**Suggested solution:**
