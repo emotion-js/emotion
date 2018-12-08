@@ -1,0 +1,23 @@
+{
+  "name": "@emotion/get-class-name-prop",
+  "version": "10.0.4",
+  "description": "",
+  "main": "dist/get-class-name-prop.cjs.js",
+  "module": "dist/get-class-name-prop.esm.js",
+  "types": "types/index.d.ts",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/get-class-name-prop",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "dtslint": "^0.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist",
+    "types"
+  ]
+}

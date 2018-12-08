@@ -9,6 +9,7 @@ import {
 import { withEmotionCache, ThemeContext } from '@emotion/core'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
+import getClassNameProp from '@emotion/get-class-name-prop'
 
 let isBrowser = typeof document !== 'undefined'
 
@@ -76,6 +77,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         <ThemeContext.Consumer>
           {theme => {
             const finalTag = (shouldUseAs && props.as) || baseTag
+            const classNameProp = getClassNameProp(finalTag, props)
 
             let className = ''
             let classInterpolations = []
@@ -88,11 +90,11 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               mergedProps.theme = theme
             }
 
-            if (typeof props.className === 'string') {
+            if (typeof props[classNameProp] === 'string') {
               className += getRegisteredStyles(
                 context.registered,
                 classInterpolations,
-                props.className
+                props[classNameProp]
               )
             }
             const serialized = serializeStyles(
@@ -128,7 +130,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
               }
             }
 
-            newProps.className = className
+            newProps[classNameProp] = className
 
             newProps.ref = ref || props.innerRef
             if (process.env.NODE_ENV !== 'production' && props.innerRef) {

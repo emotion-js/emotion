@@ -4,6 +4,7 @@ import { withEmotionCache, ThemeContext } from './context'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
+import getClassNameProp from '@emotion/get-class-name-prop'
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
@@ -16,6 +17,7 @@ let render = (cache, props, theme: null | Object, ref) => {
   let registeredStyles = []
 
   let className = ''
+  let classNameProp = getClassNameProp(type, props)
 
   let cssProp = theme === null ? props.css : props.css(theme)
 
@@ -28,11 +30,11 @@ let render = (cache, props, theme: null | Object, ref) => {
 
   registeredStyles.push(cssProp)
 
-  if (props.className !== undefined) {
+  if (props[classNameProp] !== undefined) {
     className = getRegisteredStyles(
       cache.registered,
       registeredStyles,
-      props.className
+      props[classNameProp]
     )
   }
 
@@ -65,7 +67,7 @@ let render = (cache, props, theme: null | Object, ref) => {
     }
   }
   newProps.ref = ref
-  newProps.className = className
+  newProps[classNameProp] = className
 
   const ele = React.createElement(type, newProps)
   if (!isBrowser && rules !== undefined) {
