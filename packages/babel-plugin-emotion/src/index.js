@@ -8,14 +8,17 @@ import { getSourceMap, getStyledOptions } from './utils'
 
 let webStyledMacro = createStyledMacro({
   importPath: '@emotion/styled-base',
+  originalImportPath: '@emotion/styled',
   isWeb: true
 })
 let nativeStyledMacro = createStyledMacro({
   importPath: '@emotion/native',
+  originalImportPath: '@emotion/native',
   isWeb: false
 })
 let primitivesStyledMacro = createStyledMacro({
   importPath: '@emotion/primitives',
+  originalImportPath: '@emotion/primitives',
   isWeb: false
 })
 
