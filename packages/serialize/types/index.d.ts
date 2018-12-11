@@ -22,6 +22,31 @@ export interface CSSOthersObject<MP> {
   [propertiesName: string]: Interpolation<MP>
 }
 
+export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject }
+
+export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
+
+export type CSSInterpolation =
+  | null
+  | undefined
+  | boolean
+  | number
+  | string
+  | ComponentSelector
+  | Keyframes
+  | SerializedStyles
+  | CSSObject
+  | ArrayCSSInterpolation
+
+export interface CSSOthersObjectForCSSObject {
+  [propertiesName: string]: CSSInterpolation
+}
+
+export interface CSSObject
+  extends CSSPropertiesWithMultiValues,
+    CSSPseudosForCSSObject,
+    CSSOthersObjectForCSSObject {}
+
 export interface ComponentSelector {
   __emotion_styles: any
 }
