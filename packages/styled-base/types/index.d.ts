@@ -19,6 +19,7 @@ import { Omit, Overwrapped, PropsOf } from './helper'
 
 export {
   ArrayInterpolation,
+  CSSObject,
   FunctionInterpolation,
   ObjectInterpolation
 } from '@emotion/serialize'

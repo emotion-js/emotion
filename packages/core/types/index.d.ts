@@ -19,6 +19,7 @@ import {
 export {
   ArrayInterpolation,
   ComponentSelector,
+  CSSObject,
   FunctionInterpolation,
   ObjectInterpolation
 } from '@emotion/css'
