@@ -14,6 +14,7 @@ const paragraph = css`
 
   a {
     border-bottom: 1px solid currentColor;
+    cursor:pointer;
   }
 `
 render(
