@@ -383,6 +383,21 @@ _styled.View(\\"color:hotpink;\\");
 _styled.View(\\"\\");"
 `;
 
+exports[`@emotion/babel-plugin-core styled no-call 1`] = `
+"import styled from '@emotion/styled'
+
+export let thing = styled
+
+console.log(styled)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled\\";
+export let thing = _styled;
+console.log(_styled);"
+`;
+
 exports[`@emotion/babel-plugin-core styled no-import 1`] = `
 "import '@emotion/styled'
 
@@ -496,14 +511,10 @@ styled.View({})
 import _styled from \\"@emotion/primitives\\";
 
 /*#__PURE__*/
-_styled('SomeFakeComponent', {
-  target: \\"e1mcncfu0\\"
-})(\\"color:hotpink;\\");
+_styled('SomeFakeComponent')(\\"color:hotpink;\\");
 
 /*#__PURE__*/
-_styled('SomeFakeComponent', {
-  target: \\"e1mcncfu1\\"
-})(\\"\\");
+_styled('SomeFakeComponent')(\\"\\");
 
 /*#__PURE__*/
 _styled.View(\\"color:hotpink;\\");
