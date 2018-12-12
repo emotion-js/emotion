@@ -120,4 +120,56 @@ describe('toHaveStyleRule', () => {
     const resultPass = toHaveStyleRule(tree, 'color', 'red')
     expect(resultPass.message()).toMatchSnapshot()
   })
+
+  it('matches styles on the :focus, :hover targets', () => {
+    const localDivStyle = emotion.css`
+      color: white;
+        &:hover {
+          color: yellow;
+        }
+         &:focus {
+          color: black;
+        }
+    `
+    const tree = renderer
+      .create(
+        <div className={localDivStyle}>
+          <svg className={svgStyle} />
+        </div>
+      )
+      .toJSON()
+
+    expect(tree).toHaveStyleRule('color', 'yellow', { target: ':hover' })
+    expect(tree).toHaveStyleRule('color', 'black', { target: ':focus' })
+    expect(tree).toHaveStyleRule('color', 'white')
+  })
+
+  it('matches styles on the nested component or html element', () => {
+    const Svg = styled('svg')`
+      width: 100%;
+    `
+    const Div = styled('div')`
+      color: red;
+      ${Svg} {
+        fill: green;
+      }
+      span {
+        color: yellow;
+      }
+    `
+
+    const tree = renderer
+      .create(
+        <Div>
+          <Svg />
+          <span>Test</span>
+        </Div>
+      )
+      .toJSON()
+
+    expect(tree).toHaveStyleRule('color', 'yellow', { target: 'span' })
+    expect(tree).not.toHaveStyleRule('color', 'red')
+
+    expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
+  })
 })

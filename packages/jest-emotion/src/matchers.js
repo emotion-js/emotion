@@ -34,14 +34,30 @@ function valueMatches(declaration, value) {
 
   return value === declaration.value
 }
+function hasClassNames(classNames, selectors, target) {
+  return selectors.some(selector => {
+    if (target === '') {
+      return classNames.includes(selector.slice(1))
+    }
+    return selector.includes(target)
+  })
+}
 
-function toHaveStyleRule(received: *, property: *, value: *) {
+function toHaveStyleRule(
+  received: *,
+  property: *,
+  value: *,
+  options?: { target: string }
+) {
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
   const styles = css.parse(cssString)
 
   const declaration = styles.stylesheet.rules
-    .reduce((decs, rule) => Object.assign([], decs, rule.declarations), [])
+    .filter(rule =>
+      hasClassNames(classNames, rule.selectors, options ? options.target : '')
+    )
+    .reduce((decs, rule) => decs.concat(rule.declarations), [])
     .filter(dec => dec.type === 'declaration' && dec.property === property)
     .pop()
 
