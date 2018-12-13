@@ -2,6 +2,11 @@
 
 > A babel preset to automatically enable emotion's css prop
 
+- [Install](#install)
+- [Usage](#usage)
+- [Features](#features)
+- [Options](#options)
+
 ## Install
 
 ```bash
@@ -32,6 +37,153 @@ require('@babel/core').transform(code, {
 })
 ```
 
+## Features
+
+This preset enables the `css` prop for an entire project via a single entry to the babel configuration.
+
+The preset has 2 primary features.
+
+##### Set the `jsx` pragma to use emotion's `React.createElement` wrapper
+
+By default `@babel/plugin-transform-react-jsx` transforms jsx code into `React.createElement` calls.
+
+**In**
+
+```javascript
+<img src="avatar.png" />
+```
+
+**Out**
+
+```javascript
+React.createElement('img', { src: 'avatar.png' })
+```
+
+After adding the preset, compiled jsx code will use emotion's `jsx` function instead of `React.createElement`.
+
+**In**
+
+```javascript
+<img src="avatar.png" />
+```
+
+**Out**
+
+```javascript
+jsx('img', { src: 'avatar.png' })
+```
+
+##### Automatically imports `jsx` from `@emotion/core` if needed.
+
+`import { jsx } from '@emotion/core'` is automatically added to the top of files where required.
+
+## Example
+
+**In**
+
+```javascript
+const Link = props => (
+  <a
+    css={{
+      color: 'hotpink',
+      '&:hover': {
+        color: 'darkorchid'
+      }
+    }}
+    {...props}
+  />
+)
+```
+
+**Out**
+
+```javascript
+import { jsx as ___EmotionJSX } from '@emotion/core'
+
+function _extends() {
+  /* babel Object.assign polyfill */
+}
+
+var _ref =
+  process.env.NODE_ENV === 'production'
+    ? {
+        name: '1fpk7dx-Link',
+        styles: 'color:hotpink;&:hover{color:darkorchid;}label:Link;'
+      }
+    : {
+        name: '1fpk7dx-Link',
+        styles: 'color:hotpink;&:hover{color:darkorchid;}label:Link;',
+        map:
+          '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImF1dG9tYXRpYy1pbXBvcnQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUkiLCJmaWxlIjoiYXV0b21hdGljLWltcG9ydC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IExpbmsgPSBwcm9wcyA9PiAoXG4gIDxhXG4gICAgY3NzPXt7XG4gICAgICBjb2xvcjogJ2hvdHBpbmsnLFxuICAgICAgJyY6aG92ZXInOiB7XG4gICAgICAgIGNvbG9yOiAnZGFya29yY2hpZCdcbiAgICAgIH1cbiAgICB9fVxuICAgIHsuLi5wcm9wc31cbiAgLz5cbilcbiJdfQ== */'
+      }
+
+const Link = props =>
+  ___EmotionJSX(
+    'a',
+    _extends(
+      {
+        css: _ref
+      },
+      props
+    )
+  )
+```
+
+\_In addition to the custom pragma, this example includes `babel-plugin-emotion` transforms that are enabled by default.
+
 ## Options
 
-All options that `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` accept are accepted by `@emotion/babel-preset-css-prop` and they will be forwarded to their respective plugin.
+Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` are supported and will be forwarded to their respective plugin.
+
+> Refer to the plugin's documentation for full option documentation.
+>
+> - [`babel-plugin-emotion`](https://emotion.sh/docs/babel)
+>
+> - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/next/babel-plugin-transform-react-jsx)
+
+### Examples
+
+```json
+{
+  "presets": [
+    "@emotion/babel-preset-css-prop",
+    {
+      // babel-plugin-emotion options
+      "autoLabel": true,
+      "labelFormat": "[local]",
+      // @babel/plugin-transform-react-jsx
+      "useBuiltIns": false,
+      "throwIfNamespace": true
+    }
+  ]
+}
+```
+
+_Options set to default values for demonstration purposes._
+
+It is possible to set the options for `babel-plugin-emotion` on the plugin directly. `@babel/plugin-transform-react-jsx` options must be defined in the `@emotion/babel-preset-css-prop` preset.
+
+```json
+{
+  "presets": [
+    "@emotion/babel-preset-css-prop",
+    {
+      // @babel/plugin-transform-react-jsx
+      "useBuiltIns": false,
+      "throwIfNamespace": true
+    }
+  ],
+  "plugins": [
+    [
+      "emotion",
+      {
+        // babel-plugin-emotion options
+        "autoLabel": true,
+        "labelFormat": "[local]"
+      }
+    ]
+  ]
+}
+```
+
+_Options set to default values for demonstration purposes._
