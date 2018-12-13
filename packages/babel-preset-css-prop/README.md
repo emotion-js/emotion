@@ -143,15 +143,13 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
 
 ### Examples
 
-```js
+```json
 {
   "presets": [
     "@emotion/babel-preset-css-prop",
     {
-      // babel-plugin-emotion options
       "autoLabel": true,
       "labelFormat": "[local]",
-      // @babel/plugin-transform-react-jsx
       "useBuiltIns": false,
       "throwIfNamespace": true
     }
@@ -163,12 +161,11 @@ _Options set to default values for demonstration purposes._
 
 It is possible to set the options for `babel-plugin-emotion` on the plugin directly. `@babel/plugin-transform-react-jsx` options must be defined in the `@emotion/babel-preset-css-prop` preset.
 
-```js
+```json
 {
   "presets": [
     "@emotion/babel-preset-css-prop",
     {
-      // @babel/plugin-transform-react-jsx
       "useBuiltIns": false,
       "throwIfNamespace": true
     }
@@ -177,7 +174,6 @@ It is possible to set the options for `babel-plugin-emotion` on the plugin direc
     [
       "emotion",
       {
-        // babel-plugin-emotion options
         "autoLabel": true,
         "labelFormat": "[local]"
       }
