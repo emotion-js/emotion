@@ -143,7 +143,7 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
 
 ### Examples
 
-```json
+```js
 {
   "presets": [
     "@emotion/babel-preset-css-prop",
@@ -163,7 +163,7 @@ _Options set to default values for demonstration purposes._
 
 It is possible to set the options for `babel-plugin-emotion` on the plugin directly. `@babel/plugin-transform-react-jsx` options must be defined in the `@emotion/babel-preset-css-prop` preset.
 
-```json
+```js
 {
   "presets": [
     "@emotion/babel-preset-css-prop",
