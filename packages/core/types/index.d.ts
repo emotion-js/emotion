@@ -82,7 +82,7 @@ export function ClassNames<Theme = any>(
 ): ReactElement<any>
 
 declare module 'react' {
-  interface DOMAttributes<T> {
+  interface HTMLAttributes<T> {
     css?: InterpolationWithTheme<any>
   }
 }
