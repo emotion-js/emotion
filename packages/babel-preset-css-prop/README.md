@@ -129,7 +129,7 @@ const Link = props =>
   )
 ```
 
-\_In addition to the custom pragma, this example includes `babel-plugin-emotion` transforms that are enabled by default.
+_In addition to the custom pragma, this example includes `babel-plugin-emotion` transforms that are enabled by default._
 
 ## Options
 
