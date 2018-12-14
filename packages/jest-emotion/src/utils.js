@@ -177,7 +177,7 @@ export function hasClassNames(
   })
 }
 
-export function getMediaRules(rules: Array, media: string) {
+export function getMediaRules(rules: Array<any>, media: string) {
   return rules
     .filter(rule => {
       const isMediaMatch = rule.media
