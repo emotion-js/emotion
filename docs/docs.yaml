@@ -44,3 +44,4 @@
     - '@emotion/primitives'
     - create-emotion
     - create-emotion-server
+    - '@emotion/babel-preset-css-prop'
