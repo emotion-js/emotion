@@ -9,7 +9,7 @@ import { Equal } from './helper'
 export { RegisteredCache, SerializedStyles }
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>
-export type CSSPropertiesWithMutliValues = {
+export type CSSPropertiesWithMultiValues = {
   [K in keyof CSSProperties]:
     | CSSProperties[K]
     | Array<Extract<CSSProperties[K], string>>
@@ -21,6 +21,31 @@ export type CSSPseudos<MP> = { [K in CSS.Pseudos]?: ObjectInterpolation<MP> }
 export interface CSSOthersObject<MP> {
   [propertiesName: string]: Interpolation<MP>
 }
+
+export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject }
+
+export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
+
+export type CSSInterpolation =
+  | null
+  | undefined
+  | boolean
+  | number
+  | string
+  | ComponentSelector
+  | Keyframes
+  | SerializedStyles
+  | CSSObject
+  | ArrayCSSInterpolation
+
+export interface CSSOthersObjectForCSSObject {
+  [propertiesName: string]: CSSInterpolation
+}
+
+export interface CSSObject
+  extends CSSPropertiesWithMultiValues,
+    CSSPseudosForCSSObject,
+    CSSOthersObjectForCSSObject {}
 
 export interface ComponentSelector {
   __emotion_styles: any
@@ -35,7 +60,7 @@ export type Keyframes = {
 
 export interface ArrayInterpolation<MP> extends Array<Interpolation<MP>> {}
 export interface ObjectInterpolation<MP>
-  extends CSSPropertiesWithMutliValues,
+  extends CSSPropertiesWithMultiValues,
     CSSPseudos<MP>,
     CSSOthersObject<MP> {}
 export type FunctionInterpolation<MP> = (mergedProps: MP) => Interpolation<MP>

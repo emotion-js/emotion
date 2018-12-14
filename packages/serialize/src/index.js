@@ -156,7 +156,15 @@ function handleInterpolation(
             next = next.next
           }
         }
-        return interpolation.styles
+        let styles = interpolation.styles
+        if (
+          process.env.NODE_ENV !== 'production' &&
+          interpolation.map !== undefined
+        ) {
+          styles += interpolation.map
+        }
+
+        return styles
       }
 
       return createStringFromObject(mergedProps, registered, interpolation)
@@ -239,9 +247,8 @@ function createStringFromObject(
         }
         if (
           Array.isArray(value) &&
-          (registered == null ||
-            (typeof value[0] === 'string' &&
-              registered[value[0]] === undefined))
+          typeof value[0] === 'string' &&
+          (registered == null || registered[value[0]] === undefined)
         ) {
           for (let i = 0; i < value.length; i++) {
             string += `${processStyleName(key)}:${processStyleValue(
