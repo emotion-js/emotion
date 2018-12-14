@@ -1,6 +1,9 @@
 // @flow
 
-interface IRuleType { +[key: string]: string }
+interface IRuleType {
+  +media: string;
+  +rule: string;
+}
 export const RULE_TYPES: IRuleType = {
   media: 'media',
   rule: 'rule'
