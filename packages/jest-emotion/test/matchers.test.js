@@ -168,12 +168,12 @@ describe('toHaveStyleRule', () => {
       .toJSON()
 
     expect(tree).toHaveStyleRule('color', 'yellow', { target: 'span' })
-    expect(tree).not.toHaveStyleRule('color', 'red')
+    expect(tree).toHaveStyleRule('color', 'red')
 
     expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
   })
 
-  it('works with media', () => {
+  it('matches style of the media', () => {
     const Svg = styled('svg')`
       width: 100%;
     `
@@ -191,7 +191,6 @@ describe('toHaveStyleRule', () => {
       .create(
         <Div>
           <Svg />
-          <span>Test</span>
         </Div>
       )
       .toJSON()
@@ -203,5 +202,50 @@ describe('toHaveStyleRule', () => {
     expect(tree).toHaveStyleRule('font-size', '70px', {
       media: '(min-width: 920px) and (max-width: 1200px)'
     })
+  })
+
+  it('matches styles with target and media options', () => {
+    const localDivStyle = emotion.css`
+      color: white;
+      @media (min-width: 420px) {
+        color: green;
+          &:hover {
+          color: yellow;
+        }
+      }
+    `
+    const tree = renderer
+      .create(
+        <div className={localDivStyle}>
+          <span>Test</span>
+        </div>
+      )
+      .toJSON()
+
+    expect(tree).toHaveStyleRule('color', 'yellow', {
+      target: 'hover',
+      media: '(min-width: 420px)'
+    })
+    expect(tree).toHaveStyleRule('color', 'green', {
+      media: '(min-width: 420px)'
+    })
+    expect(tree).toHaveStyleRule('color', 'white')
+  })
+
+  it('fails if option media invalid', () => {
+    const Div = styled('div')`
+      font-size: 30px;
+      @media (min-width: 420px) {
+        font-size: 50px;
+      }
+    `
+
+    const tree = renderer.create(<Div />).toJSON()
+
+    const result = toHaveStyleRule(tree, 'font-size', '50px', {
+      media: '(min-width: 420px'
+    })
+    expect(result.pass).toBe(false)
+    expect(result.message()).toBe('Invalid media: (min-width: 420px')
   })
 })

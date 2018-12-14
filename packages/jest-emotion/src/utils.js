@@ -5,6 +5,7 @@ export const RULE_TYPES: IRuleType = {
   media: 'media',
   rule: 'rule'
 }
+
 function getClassNames(selectors: any, classes?: string) {
   return classes ? selectors.concat(classes.split(' ')) : selectors
 }
@@ -158,4 +159,24 @@ export function getKeys(elements: Array<HTMLStyleElement>) {
     )
   ).filter(Boolean)
   return keys
+}
+
+export function hasClassNames(classNames, selectors, target) {
+  return selectors.some(selector => {
+    if (target === '') {
+      return classNames.includes(selector.slice(1))
+    }
+    return selector.includes(target)
+  })
+}
+
+export function getMediaRules(rules, media) {
+  return rules
+    .filter(rule => {
+      const isMediaMatch = rule.media
+        ? rule.media.replace(/\s/g, '').includes(media.replace(/\s/g, ''))
+        : false
+      return rule.type === RULE_TYPES.media && isMediaMatch
+    })
+    .reduce((mediaRules, mediaRule) => mediaRules.concat(mediaRule.rules), [])
 }

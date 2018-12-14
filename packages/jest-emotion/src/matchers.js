@@ -5,6 +5,8 @@ import {
   getClassNamesFromNodes,
   getStylesFromClassNames,
   getStyleElements,
+  hasClassNames,
+  getMediaRules,
   RULE_TYPES
 } from './utils'
 
@@ -24,6 +26,17 @@ function isAsymmetric(obj) {
   return obj && isA('Function', obj.asymmetricMatch)
 }
 
+/**
+ *  RegExp for short media statement
+ * @type {RegExp}
+ */
+const shortMediaRegExp = /\([a-z-]+:\s[a-z0-9.]+\)/
+/**
+ *  RegExp for long media statement with and
+ * @type {RegExp}
+ */
+const longMediaRegExp = /\([a-z-]+:\s[a-z0-9.]+\)(\s(and)\s)\([a-z-]+:\s[a-z0-9.]+\)/
+
 function valueMatches(declaration, value) {
   if (value instanceof RegExp) {
     return value.test(declaration.value)
@@ -36,42 +49,21 @@ function valueMatches(declaration, value) {
   return value === declaration.value
 }
 
-const mediaRegex = /(\([a-z-]+:)\s?([a-z0-9.]+\))/g
-
-function hasClassNames(classNames, selectors, target) {
-  return selectors.some(selector => {
-    if (target === '') {
-      return classNames.includes(selector.slice(1))
-    }
-    return selector.includes(target)
-  })
-}
-
 function toHaveStyleRule(
   received: *,
   property: *,
   value: *,
-  options?: { target?: string, media?: string }
+  options?: { target?: string, media?: string } = {}
 ) {
-  const { target = '', media = '' } = options ? options : {}
+  const { target = '', media = '' } = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
   const styles = css.parse(cssString)
 
   let preparedRules = styles.stylesheet.rules
   if (media.length > 1) {
-    if (mediaRegex.test(media)) {
-      preparedRules = preparedRules
-        .filter(rule => {
-          let a = rule.media
-            ? rule.media.replace(/\s/g, '').includes(media.replace(/\s/g, ''))
-            : false
-          return rule.type === RULE_TYPES.media && a
-        })
-        .reduce((mediaRules, mediaRule) => {
-          let b = mediaRules.concat(mediaRule.rules)
-          return b
-        }, [])
+    if (shortMediaRegExp.test(media) || longMediaRegExp.test(media)) {
+      preparedRules = getMediaRules(preparedRules, media)
     } else {
       return {
         pass: false,
