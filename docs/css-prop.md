@@ -11,6 +11,14 @@ There are 2 ways to get started with the `css` prop.
 - [Babel Preset](#babel-preset)
 - [JSX Pragma](#jsx-pragma)
 
+Both methods result in the same compiled code. Choose the one that works for you situation.
+After adding the preset or setting the pragma as a comment, compiled jsx code will use emotion's `jsx` function instead of `React.createElement`.
+  
+| | Input | Output |
+| ------ | -------------------------- | --------------------------------------------------- |
+| Before | `<img src="avatar.png" />` | `React.createElement('img', { src: 'avatar.png' })` |
+| After | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })` |
+
 #### Babel Preset
 
 This method will **not** work with [Create React App](https://github.com/facebook/create-react-app) or other projects that do not allow custom babel configurations.
