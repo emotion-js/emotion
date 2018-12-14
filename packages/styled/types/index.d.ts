@@ -12,6 +12,7 @@ export {
   CreateStyledComponentBase,
   CreateStyledComponentExtrinsic,
   CreateStyledComponentIntrinsic,
+  CSSObject,
   FunctionInterpolation,
   Interpolation,
   ObjectInterpolation,

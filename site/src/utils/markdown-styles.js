@@ -1,7 +1,7 @@
 // @flow
 import styled from '@emotion/styled'
 import css from '@emotion/css'
-import { openColors, mq, colors } from './style'
+import { openColors, mq, colors, constants } from './style'
 
 const textStyles = mq({
   fontSize: [16, 17],
@@ -123,4 +123,33 @@ export const blockquote = styled.blockquote`
       margin-top: 4px;
     }
   }
+`
+
+export const table = styled.table`
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  & tr:nth-child(2n) {
+    background-color: #f8f8f8;
+  }
+`
+export const td = styled.td`
+  padding: ${constants.space[1]}px ${constants.space[2]}px;
+  border: 1px solid #ddd;
+`
+
+export const th = styled.th`
+  padding: ${constants.space[1]}px ${constants.space[2]}px;
+  border: 1px solid #ddd;
+  font-weight: bold;
+`
+
+export const tr = styled.tr`
+  background-color: #fff;
+  border-top: 1px solid #ccc;
 `
