@@ -121,7 +121,7 @@ describe('toHaveStyleRule', () => {
     expect(resultPass.message()).toMatchSnapshot()
   })
 
-  it('matches styles on the :focus, :hover targets', () => {
+  it('matches styles on the focus, hover targets', () => {
     const localDivStyle = emotion.css`
       color: white;
         &:hover {
@@ -139,8 +139,8 @@ describe('toHaveStyleRule', () => {
       )
       .toJSON()
 
-    expect(tree).toHaveStyleRule('color', 'yellow', { target: ':hover' })
-    expect(tree).toHaveStyleRule('color', 'black', { target: ':focus' })
+    expect(tree).toHaveStyleRule('color', 'yellow', { target: 'hover' })
+    expect(tree).toHaveStyleRule('color', 'black', { target: 'focus' })
     expect(tree).toHaveStyleRule('color', 'white')
   })
 
@@ -171,5 +171,37 @@ describe('toHaveStyleRule', () => {
     expect(tree).not.toHaveStyleRule('color', 'red')
 
     expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
+  })
+
+  it('works with media', () => {
+    const Svg = styled('svg')`
+      width: 100%;
+    `
+    const Div = styled('div')`
+      font-size: 30px;
+      @media (min-width: 420px) {
+        font-size: 50px;
+      }
+      @media (min-width: 920px) and (max-width: 1200px) {
+        font-size: 70px;
+      }
+    `
+
+    const tree = renderer
+      .create(
+        <Div>
+          <Svg />
+          <span>Test</span>
+        </Div>
+      )
+      .toJSON()
+
+    expect(tree).toHaveStyleRule('font-size', '30px')
+    expect(tree).toHaveStyleRule('font-size', '50px', {
+      media: '(min-width: 420px)'
+    })
+    expect(tree).toHaveStyleRule('font-size', '70px', {
+      media: '(min-width: 920px) and (max-width: 1200px)'
+    })
   })
 })

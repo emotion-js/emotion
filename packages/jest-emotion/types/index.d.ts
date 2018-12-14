@@ -17,7 +17,8 @@ export interface CreateSerializerOptions {
   DOMElements?: boolean
 }
 export interface StyleRuleOptions {
-  target: string
+  target?: string
+  media?: string
 }
 export function createSerializer(
   options?: CreateSerializerOptions

@@ -4,7 +4,8 @@ import * as css from 'css'
 import {
   getClassNamesFromNodes,
   getStylesFromClassNames,
-  getStyleElements
+  getStyleElements,
+  RULE_TYPES
 } from './utils'
 
 /*
@@ -34,6 +35,9 @@ function valueMatches(declaration, value) {
 
   return value === declaration.value
 }
+
+const mediaRegex = /(\([a-z-]+:)\s?([a-z0-9.]+\))/g
+
 function hasClassNames(classNames, selectors, target) {
   return selectors.some(selector => {
     if (target === '') {
@@ -47,15 +51,39 @@ function toHaveStyleRule(
   received: *,
   property: *,
   value: *,
-  options?: { target: string }
+  options?: { target?: string, media?: string }
 ) {
+  const { target = '', media = '' } = options ? options : {}
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
   const styles = css.parse(cssString)
 
-  const declaration = styles.stylesheet.rules
-    .filter(rule =>
-      hasClassNames(classNames, rule.selectors, options ? options.target : '')
+  let preparedRules = styles.stylesheet.rules
+  if (media.length > 1) {
+    if (mediaRegex.test(media)) {
+      preparedRules = preparedRules
+        .filter(rule => {
+          let a = rule.media
+            ? rule.media.replace(/\s/g, '').includes(media.replace(/\s/g, ''))
+            : false
+          return rule.type === RULE_TYPES.media && a
+        })
+        .reduce((mediaRules, mediaRule) => {
+          let b = mediaRules.concat(mediaRule.rules)
+          return b
+        }, [])
+    } else {
+      return {
+        pass: false,
+        message: () => `Invalid media: ${media}`
+      }
+    }
+  }
+  const declaration = preparedRules
+    .filter(
+      rule =>
+        rule.type === RULE_TYPES.rule &&
+        hasClassNames(classNames, rule.selectors, target)
     )
     .reduce((decs, rule) => decs.concat(rule.declarations), [])
     .filter(dec => dec.type === 'declaration' && dec.property === property)

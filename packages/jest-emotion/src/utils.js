@@ -1,5 +1,10 @@
 // @flow
 
+interface IRuleType { +[key: string]: string }
+export const RULE_TYPES: IRuleType = {
+  media: 'media',
+  rule: 'rule'
+}
 function getClassNames(selectors: any, classes?: string) {
   return classes ? selectors.concat(classes.split(' ')) : selectors
 }
