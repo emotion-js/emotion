@@ -8,7 +8,13 @@ The primary way to style elements with emotion is the `css` prop. It provides a 
 
 There are 2 ways to get started with the `css` prop.
 
-#### Add `@emotion/babel-preset-css-prop` to babel configuration to enable for entire project
+- [Babel Preset](#babel-preset)
+- [JSX Pragma](#jsx-pragma)
+
+#### Babel Preset
+
+This method will **not** work with [Create React App](https://github.com/facebook/create-react-app) or other projects that do not allow custom babel configurations.
+Use the [JSX Pragma](#jsx-pragma) method instead.
 
 **.babelrc**
 
@@ -20,8 +26,9 @@ There are 2 ways to get started with the `css` prop.
 
 > [Full `@emotion/babel-preset-css-prop` documentation](https://emotion.sh/docs/@emotion/babel-preset-css-prop)
 
-#### Set the jsx pragma at the top of your source file.
+#### JSX Pragma
 
+Set the jsx pragma at the top of your source file that uses the `css` prop.
 This option works best for testing out the `css` prop feature or in projects where the babel configuration is not configurable (create-react-app, codesandbox, etc.).
 
 ```js
