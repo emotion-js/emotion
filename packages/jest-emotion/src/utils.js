@@ -164,7 +164,11 @@ export function getKeys(elements: Array<HTMLStyleElement>) {
   return keys
 }
 
-export function hasClassNames(classNames, selectors, target) {
+export function hasClassNames(
+  classNames: Array<string>,
+  selectors: Array<string>,
+  target: string
+) {
   return selectors.some(selector => {
     if (target === '') {
       return classNames.includes(selector.slice(1))
@@ -173,7 +177,7 @@ export function hasClassNames(classNames, selectors, target) {
   })
 }
 
-export function getMediaRules(rules, media) {
+export function getMediaRules(rules: Array, media: string) {
   return rules
     .filter(rule => {
       const isMediaMatch = rule.media
