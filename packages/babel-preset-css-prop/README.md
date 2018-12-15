@@ -23,6 +23,30 @@ yarn add @emotion/babel-preset-css-prop
 }
 ```
 
+`@emotion/babel-preset-css-prop` includes the emotion plugin. The `babel-plugin-emotion` entry should be be removed from your config and any options moved to the preset.
+
+```diff
+{
+  "presets": [
++   "@emotion/babel-preset-css-prop",
++   {
++     "autoLabel": true,
++     "labelFormat": "[local]"
++   }
+  ],
+- "plugins": [
+-   [
+-     "emotion",
+-     {
+-       "autoLabel": true,
+-       "labelFormat": "[local]"
+-     }
+-   ]
+- ]
+}
+```
+See [the options documentation](#options) for more information.
+
 ### Via CLI
 
 ```bash
@@ -124,31 +148,6 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
       "useBuiltIns": false,
       "throwIfNamespace": true
     }
-  ]
-}
-```
-
-_Options set to default values for demonstration purposes._
-
-It is possible to set the options for `babel-plugin-emotion` on the plugin directly. `@babel/plugin-transform-react-jsx` options must be defined in the `@emotion/babel-preset-css-prop` preset.
-
-```json
-{
-  "presets": [
-    "@emotion/babel-preset-css-prop",
-    {
-      "useBuiltIns": false,
-      "throwIfNamespace": true
-    }
-  ],
-  "plugins": [
-    [
-      "emotion",
-      {
-        "autoLabel": true,
-        "labelFormat": "[local]"
-      }
-    ]
   ]
 }
 ```
