@@ -23,7 +23,7 @@ yarn add @emotion/babel-preset-css-prop
 }
 ```
 
-`@emotion/babel-preset-css-prop` includes the emotion plugin. The `babel-plugin-emotion`should be be removed from your config and options moved to the preset.
+`@emotion/babel-preset-css-prop` includes the emotion plugin. The `babel-plugin-emotion` entry should be be removed from your config and any options moved to the preset.
 
 ```diff
 {
