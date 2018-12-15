@@ -26,15 +26,8 @@ function isAsymmetric(obj) {
   return obj && isA('Function', obj.asymmetricMatch)
 }
 
-/**
- *  RegExp for short media statement
- * @type {RegExp}
- */
 const shortMediaRegExp = /\([a-z-]+:\s[a-z0-9.]+\)/
-/**
- *  RegExp for long media statement with and
- * @type {RegExp}
- */
+
 const longMediaRegExp = /\([a-z-]+:\s[a-z0-9.]+\)(\s(and)\s)\([a-z-]+:\s[a-z0-9.]+\)/
 
 function valueMatches(declaration, value) {
@@ -55,13 +48,13 @@ function toHaveStyleRule(
   value: *,
   options?: { target?: string, media?: string } = {}
 ) {
-  const { target = '', media = '' } = options
+  const { target, media } = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
   const styles = css.parse(cssString)
 
   let preparedRules = styles.stylesheet.rules
-  if (media.length > 1) {
+  if (media) {
     if (shortMediaRegExp.test(media) || longMediaRegExp.test(media)) {
       preparedRules = getMediaRules(preparedRules, media)
     } else {

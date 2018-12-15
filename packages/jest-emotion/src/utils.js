@@ -1,10 +1,6 @@
 // @flow
 
-interface IRuleType {
-  +media: string;
-  +rule: string;
-}
-export const RULE_TYPES: IRuleType = {
+export const RULE_TYPES = {
   media: 'media',
   rule: 'rule'
 }
@@ -167,10 +163,10 @@ export function getKeys(elements: Array<HTMLStyleElement>) {
 export function hasClassNames(
   classNames: Array<string>,
   selectors: Array<string>,
-  target: string
+  target: ?string
 ) {
   return selectors.some(selector => {
-    if (target === '') {
+    if (!target) {
       return classNames.includes(selector.slice(1))
     }
     return selector.includes(target)
