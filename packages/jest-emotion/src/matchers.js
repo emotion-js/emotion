@@ -26,9 +26,7 @@ function isAsymmetric(obj) {
   return obj && isA('Function', obj.asymmetricMatch)
 }
 
-const shortMediaRegExp = /\([a-z-]+:\s[a-z0-9.]+\)/
-
-const longMediaRegExp = /\([a-z-]+:\s[a-z0-9.]+\)(\s(and)\s)\([a-z-]+:\s[a-z0-9.]+\)/
+const mediaRegExp = /\([a-z-]+:\s[a-z0-9.]+\)/
 
 function valueMatches(declaration, value) {
   if (value instanceof RegExp) {
@@ -55,7 +53,7 @@ function toHaveStyleRule(
 
   let preparedRules = styles.stylesheet.rules
   if (media) {
-    if (shortMediaRegExp.test(media) || longMediaRegExp.test(media)) {
+    if (mediaRegExp.test(media)) {
       preparedRules = getMediaRules(preparedRules, media)
     } else {
       return {

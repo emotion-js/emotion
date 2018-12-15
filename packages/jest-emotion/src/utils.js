@@ -160,15 +160,20 @@ export function getKeys(elements: Array<HTMLStyleElement>) {
   return keys
 }
 
-export function hasClassNames(
+export function a(
   classNames: Array<string>,
   selectors: Array<string>,
   target: ?string
 ) {
+  // selectors is the classNames of specific css rule
   return selectors.some(selector => {
+    // if no target, use className of the specific css rule and try to find it
+    // in the list of received node classNames to make sure this css rule
+    // applied for root element
     if (!target) {
       return classNames.includes(selector.slice(1))
     }
+    // check if selector (className) of specific css rule match target
     return selector.includes(target)
   })
 }
@@ -181,5 +186,9 @@ export function getMediaRules(rules: Array<any>, media: string) {
         : false
       return rule.type === RULE_TYPES.media && isMediaMatch
     })
-    .reduce((mediaRules, mediaRule) => mediaRules.concat(mediaRule.rules), [])
+    .reduce(
+      (mediaRules: [], mediaRule: { rules: Array<any> }) =>
+        mediaRules.concat(mediaRule.rules),
+      []
+    )
 }
