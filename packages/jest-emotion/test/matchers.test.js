@@ -139,14 +139,15 @@ describe('toHaveStyleRule', () => {
       )
       .toJSON()
 
-    expect(tree).toHaveStyleRule('color', 'yellow', { target: 'hover' })
-    expect(tree).toHaveStyleRule('color', 'black', { target: 'focus' })
+    expect(tree).toHaveStyleRule('color', 'yellow', { target: ':hover' })
+    expect(tree).toHaveStyleRule('color', 'black', { target: ':focus' })
     expect(tree).toHaveStyleRule('color', 'white')
   })
 
   it('matches styles on the nested component or html element', () => {
     const Svg = styled('svg')`
       width: 100%;
+      fill: blue;
     `
     const Div = styled('div')`
       color: red;
@@ -223,7 +224,7 @@ describe('toHaveStyleRule', () => {
       .toJSON()
 
     expect(tree).toHaveStyleRule('color', 'yellow', {
-      target: 'hover',
+      target: ':hover',
       media: '(min-width: 420px)'
     })
     expect(tree).toHaveStyleRule('color', 'green', {
