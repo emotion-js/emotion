@@ -164,7 +164,7 @@ export function hasClassNames(
   classNames: Array<string>,
   selectors: Array<string>,
   target: ?string
-) {
+): boolean {
   // selectors is the classNames of specific css rule
   return selectors.some(selector => {
     // if no target, use className of the specific css rule and try to find it
@@ -178,7 +178,7 @@ export function hasClassNames(
   })
 }
 
-export function getMediaRules(rules: Array<any>, media: string) {
+export function getMediaRules(rules: Array<Object>, media: string): Array<any> {
   return rules
     .filter(rule => {
       const isMediaMatch = rule.media
@@ -186,9 +186,5 @@ export function getMediaRules(rules: Array<any>, media: string) {
         : false
       return rule.type === RULE_TYPES.media && isMediaMatch
     })
-    .reduce(
-      (mediaRules: [], mediaRule: { rules: Array<any> }) =>
-        mediaRules.concat(mediaRule.rules),
-      []
-    )
+    .reduce((mediaRules, mediaRule) => mediaRules.concat(mediaRule.rules), [])
 }
