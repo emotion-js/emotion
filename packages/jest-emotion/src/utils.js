@@ -160,7 +160,7 @@ export function getKeys(elements: Array<HTMLStyleElement>) {
   return keys
 }
 
-export function a(
+export function hasClassNames(
   classNames: Array<string>,
   selectors: Array<string>,
   target: ?string
