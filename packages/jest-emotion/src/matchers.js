@@ -26,7 +26,7 @@ function isAsymmetric(obj) {
   return obj && isA('Function', obj.asymmetricMatch)
 }
 
-const mediaRegExp = /\([a-z-]+:\s[a-z0-9.]+\)/
+const mediaRegExp = /\([a-z-]+:\s[a-z0-9.]+\)|screen/
 
 function valueMatches(declaration, value) {
   if (value instanceof RegExp) {
