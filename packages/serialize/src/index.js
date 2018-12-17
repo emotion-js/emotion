@@ -314,7 +314,7 @@ export const serializeStyles = function(
       args[i],
       styles.charCodeAt(styles.length - 1) === 46
     )
-    if (stringMode) {
+    if (stringMode && strings.length > i) {
       styles += strings[i]
     }
   }
