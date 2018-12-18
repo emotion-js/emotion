@@ -9,6 +9,7 @@ import {
   getMediaRules,
   RULE_TYPES
 } from './utils'
+import mediaRegExp from './media-regexp'
 
 /*
  * Taken from
@@ -25,8 +26,6 @@ function isA(typeName, value) {
 function isAsymmetric(obj) {
   return obj && isA('Function', obj.asymmetricMatch)
 }
-
-const mediaRegExp = /\([a-z-]+:\s[a-z0-9.]+\)|screen/
 
 function valueMatches(declaration, value) {
   if (value instanceof RegExp) {

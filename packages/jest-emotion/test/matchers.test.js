@@ -189,6 +189,9 @@ describe('toHaveStyleRule', () => {
       @media screen and (max-width: 1200px) {
         font-size: 80px;
       }
+      @media not all and (monochrome) {
+        font-size: 90px;
+      }
     `
 
     const tree = renderer
@@ -208,6 +211,9 @@ describe('toHaveStyleRule', () => {
     })
     expect(tree).toHaveStyleRule('font-size', '80px', {
       media: 'screen and (max-width: 1200px)'
+    })
+    expect(tree).toHaveStyleRule('font-size', '90px', {
+      media: 'not all and (monochrome)'
     })
   })
 
