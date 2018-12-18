@@ -17,18 +17,18 @@
     "@types/jest": "^23.0.2",
     "chalk": "^2.4.1",
     "css": "^2.2.1",
-    "object-assign": "^4.1.1"
+    "object-assign": "^4.1.1",
+    "css-length-units": "^1.0.0",
+    "css-media-features": "^1.0.0",
+    "css-resolution-units": "^1.0.1",
+    "media-query-types": "^1.0.0"
   },
   "devDependencies": {
     "dtslint": "^0.3.0",
     "emotion": "^10.0.5",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
-    "pretty-format": "^22.4.3",
-    "css-length-units": "^1.0.0",
-    "css-media-features": "^1.0.0",
-    "css-resolution-units": "^1.0.1",
-    "media-query-types": "^1.0.0"
+    "pretty-format": "^22.4.3"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
