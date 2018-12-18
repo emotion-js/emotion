@@ -177,7 +177,11 @@
       "playgrounds/*"
     ],
     "nohoist": [
-      "**/dtslint"
+      "**/dtslint",
+      "**/css-length-units",
+      "**/css-media-features",
+      "**/css-resolution-units",
+      "**/media-query-types"
     ]
   },
   "bolt": {
