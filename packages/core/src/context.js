@@ -4,10 +4,10 @@ import * as React from 'react'
 import createCache from '@emotion/cache'
 import { isBrowser } from './utils'
 
-let EmotionCacheContext = React.createContext<any>(isBrowser ? createCache() : null)
+let EmotionCacheContext = React.createContext<EmotionCache | null>(isBrowser ? createCache() : null)
 
 export let ThemeContext = React.createContext<Object>({})
-export let CacheProvider: React.ComponentType<{ value: EmotionCache, children?: ?React.Node }> =
+export let CacheProvider: React.ComponentType<{ value: EmotionCache | null, children?: ?React.Node }> =
   // $FlowFixMe
   EmotionCacheContext.Provider
 
