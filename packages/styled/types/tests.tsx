@@ -21,3 +21,18 @@ ui = (
     <Button1 type="button" />
   </div>
 )
+
+const Button2 = styled.button<{ size?: 'md' | 'sm' }>(
+  ({ size }) => (size === 'md' ? { fontSize: 15 } : { fontSize: 10 })
+)
+ui = (
+  <div>
+    <Button2 />
+    <Button2 size="sm" />
+  </div>
+)
+
+// $ExpectError
+const BadButton0 = styled.button({ bad: 'value' })
+// $ExpectError
+const BadButton1 = styled.button(() => ({ bad: 'value' }))

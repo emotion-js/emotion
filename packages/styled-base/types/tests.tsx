@@ -48,6 +48,11 @@ const Button1 = styled('button')({
   <Button1 type="button" />
 </div>
 
+// $ExpectError
+const BadButton0 = styled('button')({ bad: 'value' })
+// $ExpectError
+const BadButton1 = styled('button')(() => ({ bad: 'value' }))
+
 const Input0 = styled('input', {
   label: 'mystyle'
 })`
