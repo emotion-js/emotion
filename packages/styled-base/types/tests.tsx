@@ -39,9 +39,6 @@ const Button0 = styled('button')`
 const Button1 = styled('button')({
   color: 'blue'
 })
-const Button1Dot = styled.button({
-  color: 'blue'
-})
 ;<div>
   <Button0 />
   <Button0 type="button" />
@@ -49,10 +46,6 @@ const Button1Dot = styled.button({
 ;<div>
   <Button1 />
   <Button1 type="button" />
-</div>
-;<div>
-  <Button1Dot />
-  <Button1Dot type="button" />
 </div>
 
 const Input0 = styled('input', {
