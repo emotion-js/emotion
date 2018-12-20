@@ -10,7 +10,7 @@ let pragmaName = '___EmotionJSX'
 // the same repo as babel-plugin-emotion
 export default (
   api,
-  { pragma, sourceMap, autoLabel, labelFormat, instances, ...options }
+  { pragma, sourceMap, autoLabel, labelFormat, instances, ...options } = {}
 ) => {
   return {
     plugins: [
