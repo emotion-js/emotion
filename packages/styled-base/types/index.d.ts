@@ -12,19 +12,18 @@
  * a style of that component.
  */
 
-import { ComponentSelector, Interpolation } from '@emotion/serialize'
+import { ComponentSelector, Interpolation, CSSObject } from '@emotion/serialize'
 import * as React from 'react'
 
 import { Omit, Overwrapped, PropsOf } from './helper'
 
 export {
   ArrayInterpolation,
-  CSSObject,
   FunctionInterpolation,
   ObjectInterpolation
 } from '@emotion/serialize'
 
-export { ComponentSelector, Interpolation }
+export { ComponentSelector, Interpolation, CSSObject }
 
 type JSXInEl = JSX.IntrinsicElements
 
@@ -72,7 +71,7 @@ export interface CreateStyledComponentBase<
       ReactClassPropKeys
     > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
   >(
-    template: TemplateStringsArray,
+    template: TemplateStringsArray | CSSObject,
     ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
   ): StyledComponent<InnerProps, StyleProps, Theme>
 }
