@@ -102,6 +102,20 @@ exports[`string as css prop throws 1`] = `
           \`"
 `;
 
+exports[`theming with the array css prop 1`] = `
+.emotion-0 {
+  color: hotpink;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`theming with the css prop 1`] = `
 .emotion-0 {
   color: hotpink;
