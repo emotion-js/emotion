@@ -83,7 +83,7 @@
     "polished": "^1.2.1",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
-    "preconstruct": "^0.0.31",
+    "preconstruct": "^0.0.32",
     "prettier": "1.14.3",
     "raf": "^3.4.0",
     "react": "^16.5.2",

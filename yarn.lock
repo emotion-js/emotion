@@ -17479,10 +17479,10 @@ prebuild-install@^5.2.0:
     tunnel-agent "^0.6.0"
     which-pm-runs "^1.0.0"
 
-preconstruct@^0.0.31:
-  version "0.0.31"
-  resolved "https://registry.yarnpkg.com/preconstruct/-/preconstruct-0.0.31.tgz#a5339c6e1f864be770845ce8cf7efadf8b1ff4da"
-  integrity sha512-AyVR1p7qy2gerB57AKVGIf54OB95H+rEyr3w26GfxqOEYy+ApGQCMX+UvZntZ/BZkZrhELS6d6SdTpCQ+u/Ibg==
+preconstruct@^0.0.32:
+  version "0.0.32"
+  resolved "https://registry.npmjs.org/preconstruct/-/preconstruct-0.0.32.tgz#1c369ae99b8c5f5e721358d9d50d206e1369de34"
+  integrity sha512-+Il67tTtzwi7Hk/IbRZ7PIpaURh5o2OUGd0FJfTEeJ3uSUvawHObS0uZgJuuS0R9Cx95Rh4iFmQZJv1SsnOMzQ==
   dependencies:
     "@babel/core" "^7.1.2"
     "@babel/plugin-proposal-class-properties" "^7.1.0"
