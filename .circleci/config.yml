@@ -12,7 +12,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v3-dependencies-
       - run: yarn install --pure-lockfile
-      - run: yarn flow start --file-watcher=none
       - run: yarn flow:check
       - run: yarn build
       - run: cd scripts/benchmarks && yarn build
