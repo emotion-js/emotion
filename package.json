@@ -20,7 +20,7 @@
     "start:site": "lerna exec --scope emotion-site npm run start:site",
     "build:site": "lerna exec --scope emotion-site npm run build:site",
     "flow": "flow",
-    "flow:check": "flow check --flowconfig-file=.flowconfig-ci",
+    "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
     "postinstall": "opencollective postinstall",
     "version-packages": "lerna version --preid=beta"
   },
