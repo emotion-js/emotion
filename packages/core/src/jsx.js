@@ -103,6 +103,8 @@ let Emotion = withEmotionCache((props, cache, ref) => {
   return render(cache, props, null, ref)
 })
 
+const createElement = React.createElement
+
 // $FlowFixMe
 export const jsx: typeof React.createElement = function(
   type: React.ElementType,
@@ -112,7 +114,7 @@ export const jsx: typeof React.createElement = function(
 
   if (props == null || props.css == null) {
     // $FlowFixMe
-    return React.createElement.apply(undefined, args)
+    return createElement.apply(undefined, args)
   }
 
   if (
@@ -162,5 +164,5 @@ export const jsx: typeof React.createElement = function(
     createElementArgArray[i] = args[i]
   }
   // $FlowFixMe
-  return React.createElement.apply(null, createElementArgArray)
+  return createElement.apply(null, createElementArgArray)
 }
