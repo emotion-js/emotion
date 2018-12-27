@@ -9,7 +9,6 @@ import {
   getMediaRules,
   RULE_TYPES
 } from './utils'
-import mediaRegExp from './media-regexp'
 
 /*
  * Taken from
@@ -52,14 +51,7 @@ function toHaveStyleRule(
 
   let preparedRules = styles.stylesheet.rules
   if (media) {
-    if (mediaRegExp.test(media)) {
-      preparedRules = getMediaRules(preparedRules, media)
-    } else {
-      return {
-        pass: false,
-        message: () => `Invalid media: ${media}`
-      }
-    }
+    preparedRules = getMediaRules(preparedRules, media)
   }
   const declaration = preparedRules
     .filter(

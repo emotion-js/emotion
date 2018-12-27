@@ -17,11 +17,7 @@
     "@types/jest": "^23.0.2",
     "chalk": "^2.4.1",
     "css": "^2.2.1",
-    "object-assign": "^4.1.1",
-    "css-length-units": "^1.0.0",
-    "css-media-features": "^1.0.0",
-    "css-resolution-units": "^1.0.1",
-    "media-query-types": "^1.0.0"
+    "object-assign": "^4.1.1"
   },
   "devDependencies": {
     "dtslint": "^0.3.0",

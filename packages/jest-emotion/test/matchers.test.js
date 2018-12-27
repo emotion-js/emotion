@@ -174,6 +174,21 @@ describe('toHaveStyleRule', () => {
     expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
   })
 
+  it('matches proper style for css', () => {
+    const tree = renderer
+      .create(
+        <div
+          className={emotion.css`
+        color: green;
+        color: hotpink;
+      `}
+        />
+      )
+      .toJSON()
+    expect(tree).not.toHaveStyleRule('color', 'green')
+    expect(tree).toHaveStyleRule('color', 'hotpink')
+  })
+
   it('matches style of the media', () => {
     const Svg = styled('svg')`
       width: 100%;
@@ -256,9 +271,9 @@ describe('toHaveStyleRule', () => {
     const tree = renderer.create(<Div />).toJSON()
 
     const result = toHaveStyleRule(tree, 'font-size', '50px', {
-      media: '(min-width: 420px'
+      media: '(min-width-'
     })
     expect(result.pass).toBe(false)
-    expect(result.message()).toBe('Invalid media: (min-width: 420px')
+    expect(result.message()).toBe('Property not found: font-size')
   })
 })
