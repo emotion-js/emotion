@@ -20,7 +20,7 @@
     "start:site": "lerna exec --scope emotion-site npm run start:site",
     "build:site": "lerna exec --scope emotion-site npm run build:site",
     "flow": "flow",
-    "flow:check": "flow check",
+    "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
     "postinstall": "opencollective postinstall",
     "version-packages": "lerna version --preid=beta"
   },
@@ -65,7 +65,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
-    "flow-bin": "^0.81.0",
+    "flow-bin": "^0.89.0",
     "get-lerna-packages": "^0.1.0",
     "hoist-non-react-statics": "^2.3.1",
     "husky": "^1.1.3",
