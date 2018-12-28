@@ -9,7 +9,7 @@ Most of Emotion's Babel Macros are available by adding `/macro` to the end of th
 ```jsx
 import styled from '@emotion/styled/macro'
 import css from '@emotion/css/macro'
-import { css, keyframes, injectGlobal } from 'emotion/macro'
+import { keyframes, injectGlobal } from '@emotion/core'
 ```
 
 > Note
