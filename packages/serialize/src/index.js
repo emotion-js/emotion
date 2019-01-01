@@ -8,6 +8,11 @@ import hashString from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import memoize from '@emotion/memoize'
 
+const TAGGED_TEMPLATE_ARGS_WEIRDLY_FORWARDED_SNIPPET = `
+const foo = (...args) => css(...args, "color: #d26ac2;")
+foo\`font-size: 16px;\`
+`
+
 let hyphenateRegex = /[A-Z]|^ms/g
 
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
@@ -304,6 +309,15 @@ export const serializeStyles = function(
     stringMode = false
     styles += handleInterpolation(mergedProps, registered, strings, false)
   } else {
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      strings.length !== args.length
+    ) {
+      console.warn(
+        `\`css\` got used in confusing manner - most likely you have forwarded all arguments from tagged template call to \`css\` with extra stuff appended to them.` +
+          ` This may cause parsing problems. Like in this example code snippet:\n${TAGGED_TEMPLATE_ARGS_WEIRDLY_FORWARDED_SNIPPET}`
+      )
+    }
     styles += strings[0]
   }
   // we start at 1 since we've already handled the first arg

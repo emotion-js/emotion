@@ -188,3 +188,32 @@ test('child selector array', () => {
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
+
+test('warn about tagged template arguments weirdly forwarded', () => {
+  function media(...args) {
+    return css`
+      @media (min-width: 100px) {
+        ${css(...args, 'background-color: #fff;')};
+      }
+    `
+  }
+
+  const oldConsoleWarn = console.warn
+  // $FlowFixMe
+  console.warn = jest.fn()
+
+  css`
+    ${media`color: red;`};
+  `
+
+  expect(console.warn).toHaveBeenCalledTimes(1)
+  expect(console.warn.mock.calls[0][0]).toMatchInlineSnapshot(`
+"\`css\` got used in confusing manner - most likely you have forwarded all arguments from tagged template call to \`css\` with extra stuff appended to them. This may cause parsing problems. Like in this example code snippet:
+
+const foo = (...args) => css(...args, \\"color: #d26ac2;\\")
+foo\`font-size: 16px;\`
+"
+`)
+  // $FlowFixMe
+  console.warn = oldConsoleWarn
+})
