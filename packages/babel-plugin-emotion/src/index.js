@@ -192,6 +192,8 @@ export default function(babel: *) {
 
           expressionPath.replaceWith(
             t.callExpression(
+              // the name of this identifier doesn't really matter at all
+              // it'll never appear in generated code
               t.identifier('___shouldNeverAppearCSS'),
               [path.node.value.expression].filter(Boolean)
             )
