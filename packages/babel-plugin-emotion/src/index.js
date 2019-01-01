@@ -195,7 +195,7 @@ export default function(babel: *) {
               // the name of this identifier doesn't really matter at all
               // it'll never appear in generated code
               t.identifier('___shouldNeverAppearCSS'),
-              [path.node.value.expression].filter(Boolean)
+              [path.node.value.expression]
             )
           )
 
