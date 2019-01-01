@@ -184,27 +184,37 @@ export default function(babel: *) {
             t.isArrayExpression(path.node.value.expression))
         ) {
           let expressionPath = path.get('value.expression')
-          if (!state.cssIdentifier) {
-            state.cssIdentifier = addDefault(path, '@emotion/css', {
-              nameHint: 'css'
-            })
-          }
+
           let sourceMap =
             state.emotionSourceMap && path.node.loc !== undefined
               ? getSourceMap(path.node.loc.start, state)
               : ''
+
           expressionPath.replaceWith(
             t.callExpression(
-              t.cloneDeep(state.cssIdentifier),
-              [path.node.value.expression].filter(Boolean)
+              // the name of this identifier doesn't really matter at all
+              // it'll never appear in generated code
+              t.identifier('___shouldNeverAppearCSS'),
+              [path.node.value.expression]
             )
           )
+
           transformCssCallExpression({
             babel,
             state,
             path: expressionPath,
             sourceMap
           })
+          if (t.isCallExpression(expressionPath)) {
+            if (!state.cssIdentifier) {
+              state.cssIdentifier = addDefault(path, '@emotion/css', {
+                nameHint: 'css'
+              })
+            }
+            expressionPath
+              .get('callee')
+              .replaceWith(t.cloneDeep(state.cssIdentifier))
+          }
         }
       },
       CallExpression: {

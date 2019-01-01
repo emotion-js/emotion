@@ -73,8 +73,6 @@ const SomeComponent = props => (
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _css from \\"@emotion/css\\";
-
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 
@@ -106,8 +104,6 @@ const SomeComponent = props => (
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
-
-import _css from \\"@emotion/css\\";
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
@@ -145,8 +141,6 @@ const SomeComponent = props => {
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
-
-import _css from \\"@emotion/css\\";
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
