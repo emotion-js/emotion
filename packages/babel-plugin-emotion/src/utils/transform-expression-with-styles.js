@@ -45,9 +45,15 @@ export let transformExpressionWithStyles = ({
   }
 
   if (t.isCallExpression(path)) {
-    const label = getLabelFromPath(path, state, t)
-    if (label && shouldLabel) {
-      appendStringToExpressions(path.node.arguments, `label:${label};`, t)
+    const canAppendStrings = path.node.arguments.every(
+      arg => arg.type !== 'SpreadElement'
+    )
+
+    if (canAppendStrings) {
+      const label = getLabelFromPath(path, state, t)
+      if (label && shouldLabel) {
+        appendStringToExpressions(path.node.arguments, `label:${label};`, t)
+      }
     }
 
     let isPure = true
@@ -63,7 +69,12 @@ export let transformExpressionWithStyles = ({
 
     path.node.arguments = joinStringLiterals(path.node.arguments, t)
 
-    if (state.emotionSourceMap && !sourceMap && path.node.loc !== undefined) {
+    if (
+      canAppendStrings &&
+      state.emotionSourceMap &&
+      !sourceMap &&
+      path.node.loc !== undefined
+    ) {
       sourceMap = getSourceMap(path.node.loc.start, state)
     }
 
