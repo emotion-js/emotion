@@ -9347,10 +9347,10 @@ flexibility@^2.0.1:
   resolved "https://registry.yarnpkg.com/flexibility/-/flexibility-2.0.1.tgz#ad323aafc40f469ce624286518fc4d7cd72b7c77"
   integrity sha1-rTI6r8QPRpzmJChlGPxNfNcrfHc=
 
-flow-bin@^0.81.0:
-  version "0.81.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.81.0.tgz#7f0a733dce1dad3cb1447c692639292dc3d60bf5"
-  integrity sha512-5e8oL3/5rm3G0Eet3yDCne2R/TLo5Fkn+Z5MtHd4wtz+1miLC35Sgo8XvnbTmiZ9epdTZ1q6GLmJWYh7tUlfGg==
+flow-bin@^0.89.0:
+  version "0.89.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.89.0.tgz#6bd29c2af7e0f429797f820662f33749105c32fa"
+  integrity sha512-DkO4PsXYrl53V6G5+t5HbRMC5ajYUQej2LEGPUZ+j9okTb41Sn5j9vfxsCpXMEAslYnQoysHhYu4GUZsQX/DrQ==
 
 flow-parser@^0.*:
   version "0.76.0"
@@ -17479,10 +17479,10 @@ prebuild-install@^5.2.0:
     tunnel-agent "^0.6.0"
     which-pm-runs "^1.0.0"
 
-preconstruct@^0.0.31:
-  version "0.0.31"
-  resolved "https://registry.yarnpkg.com/preconstruct/-/preconstruct-0.0.31.tgz#a5339c6e1f864be770845ce8cf7efadf8b1ff4da"
-  integrity sha512-AyVR1p7qy2gerB57AKVGIf54OB95H+rEyr3w26GfxqOEYy+ApGQCMX+UvZntZ/BZkZrhELS6d6SdTpCQ+u/Ibg==
+preconstruct@^0.0.32:
+  version "0.0.32"
+  resolved "https://registry.npmjs.org/preconstruct/-/preconstruct-0.0.32.tgz#1c369ae99b8c5f5e721358d9d50d206e1369de34"
+  integrity sha512-+Il67tTtzwi7Hk/IbRZ7PIpaURh5o2OUGd0FJfTEeJ3uSUvawHObS0uZgJuuS0R9Cx95Rh4iFmQZJv1SsnOMzQ==
   dependencies:
     "@babel/core" "^7.1.2"
     "@babel/plugin-proposal-class-properties" "^7.1.0"

@@ -27,13 +27,15 @@ yarn add @emotion/babel-preset-css-prop
 
 ```diff
 {
-  "presets": [
-+   "@emotion/babel-preset-css-prop",
-+   {
-+     "autoLabel": true,
-+     "labelFormat": "[local]"
-+   }
-  ],
++ "presets": [
++   [
++     "@emotion/babel-preset-css-prop",
++     {
++       "autoLabel": true,
++       "labelFormat": "[local]"
++     }
++   ]
++ ],
 - "plugins": [
 -   [
 -     "emotion",
@@ -45,6 +47,7 @@ yarn add @emotion/babel-preset-css-prop
 - ]
 }
 ```
+
 See [the options documentation](#options) for more information.
 
 ### Via CLI

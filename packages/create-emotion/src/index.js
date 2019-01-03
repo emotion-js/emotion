@@ -37,8 +37,10 @@ type CreateStyles<ReturnValue> = (...args: Interpolations) => ReturnValue
 type ClassNameArg =
   | string
   | boolean
-  | { [key: string]: boolean }
+  | { [key: string]: boolean | void | null }
   | Array<ClassNameArg>
+  | void
+  | null
 
 declare class StyleSheet {
   insert(rule: string): void;
