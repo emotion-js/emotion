@@ -4,7 +4,10 @@ import * as css from 'css'
 import {
   getClassNamesFromNodes,
   getStylesFromClassNames,
-  getStyleElements
+  getStyleElements,
+  hasClassNames,
+  getMediaRules,
+  RULE_TYPES
 } from './utils'
 
 /*
@@ -35,13 +38,28 @@ function valueMatches(declaration, value) {
   return value === declaration.value
 }
 
-function toHaveStyleRule(received: *, property: *, value: *) {
+function toHaveStyleRule(
+  received: *,
+  property: *,
+  value: *,
+  options?: { target?: string, media?: string } = {}
+) {
+  const { target, media } = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
   const styles = css.parse(cssString)
 
-  const declaration = styles.stylesheet.rules
-    .reduce((decs, rule) => Object.assign([], decs, rule.declarations), [])
+  let preparedRules = styles.stylesheet.rules
+  if (media) {
+    preparedRules = getMediaRules(preparedRules, media)
+  }
+  const declaration = preparedRules
+    .filter(
+      rule =>
+        rule.type === RULE_TYPES.rule &&
+        hasClassNames(classNames, rule.selectors, target)
+    )
+    .reduce((decs, rule) => decs.concat(rule.declarations), [])
     .filter(dec => dec.type === 'declaration' && dec.property === property)
     .pop()
 
