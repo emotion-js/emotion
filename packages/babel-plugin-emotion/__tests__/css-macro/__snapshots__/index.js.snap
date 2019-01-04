@@ -390,3 +390,37 @@ process.env.NODE_ENV === \\"production\\" ? {
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlbW92ZS1saW5lLWNvbW1lbnRzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVHIiwiZmlsZSI6InJlbW92ZS1saW5lLWNvbW1lbnRzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGNzcyBmcm9tICdAZW1vdGlvbi9jc3MvbWFjcm8nXG5cbmNzc2BcbiAgLy8gY29sb3I6IGdyZWVuO1xuICBjb2xvcjogaG90cGluaztcbmBcbiJdfQ== */\\"
 };"
 `;
+
+exports[`@emotion/css/macro tagged-template-args-forwarded 1`] = `
+"import css from '@emotion/css/macro'
+
+function media(...args) {
+  return css\`
+    @media (min-width: 100px) {
+      \${css(...args)};
+    }
+  \`
+}
+
+const test = css\`
+  \${media\`color: red;\`};
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+
+function media(...args) {
+  return (
+    /*#__PURE__*/
+    _css(\\"@media (min-width:100px){\\",
+    /*#__PURE__*/
+    _css(...args), \\";}\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHWSIsImZpbGUiOiJ0YWdnZWQtdGVtcGxhdGUtYXJncy1mb3J3YXJkZWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2Nzcy9tYWNybydcblxuZnVuY3Rpb24gbWVkaWEoLi4uYXJncykge1xuICByZXR1cm4gY3NzYFxuICAgIEBtZWRpYSAobWluLXdpZHRoOiAxMDBweCkge1xuICAgICAgJHtjc3MoLi4uYXJncyl9O1xuICAgIH1cbiAgYFxufVxuXG5jb25zdCB0ZXN0ID0gY3NzYFxuICAke21lZGlhYGNvbG9yOiByZWQ7YH07XG5gXG4iXX0= */\\"))
+  );
+}
+
+const test =
+/*#__PURE__*/
+_css(media\`color: red;\`, \\";label:test;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFVZ0IiLCJmaWxlIjoidGFnZ2VkLXRlbXBsYXRlLWFyZ3MtZm9yd2FyZGVkLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGNzcyBmcm9tICdAZW1vdGlvbi9jc3MvbWFjcm8nXG5cbmZ1bmN0aW9uIG1lZGlhKC4uLmFyZ3MpIHtcbiAgcmV0dXJuIGNzc2BcbiAgICBAbWVkaWEgKG1pbi13aWR0aDogMTAwcHgpIHtcbiAgICAgICR7Y3NzKC4uLmFyZ3MpfTtcbiAgICB9XG4gIGBcbn1cblxuY29uc3QgdGVzdCA9IGNzc2BcbiAgJHttZWRpYWBjb2xvcjogcmVkO2B9O1xuYFxuIl19 */\\"));"
+`;
