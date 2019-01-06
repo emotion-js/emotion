@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-emotion",
-  "version": "10.0.0",
+  "version": "10.0.6",
   "description": "ESLint rules for emotion",
   "keywords": [
     "eslint",

@@ -1,6 +1,6 @@
 {
   "name": "@emotion/styled",
-  "version": "10.0.5",
+  "version": "10.0.6",
   "description": "styled API for emotion",
   "main": "dist/styled.cjs.js",
   "module": "dist/styled.esm.js",
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@emotion/styled-base": "^10.0.5",
-    "babel-plugin-emotion": "^10.0.5"
+    "babel-plugin-emotion": "^10.0.6"
   },
   "devDependencies": {
     "dtslint": "^0.3.0"
