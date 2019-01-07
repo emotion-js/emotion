@@ -7,8 +7,6 @@ The main [emotion](https://github.com/emotion-js/emotion/tree/master/packages/em
 ```javascript
 import createEmotion from 'create-emotion'
 
-const context = typeof global !== 'undefined' ? global : {}
-
 export const {
   flush,
   hydrate,
@@ -20,7 +18,7 @@ export const {
   css,
   sheet,
   cache
-} = createEmotion(context)
+} = createEmotion()
 ```
 
 ### Upside
