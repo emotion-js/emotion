@@ -105,7 +105,7 @@ const Image0 = styled('div')`
 const Image1 = styled('div')({
   backgroundSize: 'contain',
 }, (props: ImageProps) => ({
-  width: props.width;
+  width: props.width,
   background: `url(${props.src}) center center`,
 }));
 
@@ -114,7 +114,7 @@ const Image1 = styled('div')({
 const Image2 = styled('div')<ImageProps>({
   backgroundSize: 'contain',
 }, props => ({
-  width: props.width;
+  width: props.width,
   background: `url(${props.src}) center center`,
 }));
 
