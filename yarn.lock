@@ -13185,6 +13185,14 @@ jest-worker@23.2.0, jest-worker@^23.2.0:
   dependencies:
     merge-stream "^1.0.1"
 
+jest-worker@24.0.0-alpha.11:
+  version "24.0.0-alpha.11"
+  resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-24.0.0-alpha.11.tgz#3cae89bb8ffcd52a2859164bbd8697fcc160456d"
+  integrity sha512-5rfc/oIw0WrUd5ur7vbmW38R8rRnv+eQ3t8ubyJGgKBXJ3sk9OMP0bC+AdsLjZCNEoNblnrS8kCBztGNRpitHQ==
+  dependencies:
+    merge-stream "^1.0.1"
+    supports-color "^5.5.0"
+
 jest-worker@^24.0.0-alpha.9:
   version "24.0.0-alpha.10"
   resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-24.0.0-alpha.10.tgz#046702c758ae3214cd279e602055a26b066122be"
@@ -17526,10 +17534,10 @@ prebuild-install@^5.2.0:
     tunnel-agent "^0.6.0"
     which-pm-runs "^1.0.0"
 
-preconstruct@0.0.34-no-terser:
-  version "0.0.34-no-terser"
-  resolved "https://registry.yarnpkg.com/preconstruct/-/preconstruct-0.0.34-no-terser.tgz#e08fdd8fda54ef1e97079a2563f583fbe5b3bfa4"
-  integrity sha512-XP3abvGPJVYuYlManzoJ2mcsORrLbdbxaqY1RXd8dUhxo9isrCPiymvwwuxbmkV4D72M02wRjqvGMg7FjXQLsA==
+preconstruct@0.0.36:
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/preconstruct/-/preconstruct-0.0.36.tgz#c9a2627b7d8695ac772dfa821b08ecdd18b2b192"
+  integrity sha512-d9mt5NTI8h6hQ2ttnyYO+GUesryQzF41GHlplYdBCVe1pbx/yIXDqfV5Vw/gTM8lOu1PZqhMnA6sBKjsiix8Dw==
   dependencies:
     "@babel/core" "^7.1.2"
     "@babel/plugin-proposal-class-properties" "^7.1.0"
@@ -17551,7 +17559,7 @@ preconstruct@0.0.34-no-terser:
     inquirer "^6.2.0"
     install-packages "^0.2.5"
     is-ci "^2.0.0"
-    jest-worker "^23.2.0"
+    jest-worker "24.0.0-alpha.11"
     lodash.isempty "^4.4.0"
     lodash.omitby "^4.6.0"
     magic-string "^0.25.1"
