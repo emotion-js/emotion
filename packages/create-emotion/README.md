@@ -69,4 +69,4 @@ export const {
 
 ## Options
 
-`createEmotion` accepts the very same options as [createCache factory](/packages/cache#options) from `@emotion/cache` package.
+`createEmotion` accepts the same options as [createCache](/packages/cache#options) from `@emotion/cache`.

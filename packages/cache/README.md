@@ -2,7 +2,7 @@
 
 ### createCache
 
-Cache factory function, which allows for some low level customization of how & what styles get inserted by emotion to the stylesheets. It's intended to be used with [`<CacheProvider/>`](https://emotion.sh/docs/cache-provider) component to override default cache which is created with sensible defaults for most applications.
+`createCache` allows for low level customization of how styles get inserted by emotion. It's intended to be used with the [`<CacheProvider/>`](https://emotion.sh/docs/cache-provider) component to override the default cache which is created with sensible defaults for most applications.
 
 ```javascript
 import createCache from '@emotion/cache'
@@ -41,7 +41,7 @@ Allows changing Stylis' prefixing settings, this defaults to `true`. It can be a
 
 ### key: string
 
-The prefix before class names, this defaults to `css`. It will also be set as the value of the `data-emotion` attribute on the style tags that emotion inserts and it's used in the attribute name that marks style elements in `renderStylesToString` and `renderStylesToNodeStream`. This is **required if using multiple emotion instances in the same app**.
+The prefix before class names, this defaults to `css`. It will also be set as the value of the `data-emotion` attribute on the style tags that emotion inserts and it's used in the attribute name that marks style elements in `renderStylesToString` and `renderStylesToNodeStream`. This is **required if using multiple emotion caches in the same app**.
 
 ### container: HTMLElement
 
