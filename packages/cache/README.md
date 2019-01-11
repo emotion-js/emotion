@@ -1,6 +1,6 @@
 # @emotion/cache
 
-### Create emotion's cache instance.
+### createCache
 
 Cache factory function, which allows for some low level customization of how & what styles get inserted by emotion to the stylesheets. It's intended to be used with [`<CacheProvider/>`](https://emotion.sh/docs/cache-provider) component to override default cache which is created with sensible defaults for most applications.
 
