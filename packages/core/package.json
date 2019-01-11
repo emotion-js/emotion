@@ -31,7 +31,8 @@
     "@emotion/css": "^10.0.6",
     "@emotion/serialize": "^0.11.3",
     "@emotion/sheet": "0.9.2",
-    "@emotion/utils": "0.11.1"
+    "@emotion/utils": "0.11.1",
+    "@babel/runtime": "^7.2.0"
   },
   "peerDependencies": {
     "react": ">=16.3.0"
