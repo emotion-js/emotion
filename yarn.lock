@@ -5474,6 +5474,11 @@ ci-info@^1.5.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.5.1.tgz#17e8eb5de6f8b2b6038f0cbb714d410bfa9f3030"
   integrity sha512-fKFIKXaYiL1exImwJ0AhR/6jxFPSKQBk2ayV5NiNoruUs2+rxC2kNw0EG+1Z9dugZRdCrppskQ8DN2cyaUM1Hw==
 
+ci-info@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
+  integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
+
 cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/cipher-base/-/cipher-base-1.0.4.tgz#8760e4ecc272f4c363532f926d874aae2c1397de"
@@ -11713,6 +11718,13 @@ is-ci@^1.1.0:
   dependencies:
     ci-info "^1.3.0"
 
+is-ci@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/is-ci/-/is-ci-2.0.0.tgz#6bc6334181810e04b5c22b3d589fdca55026404c"
+  integrity sha512-YfJT7rkpQB0updsdHLGWrvhBJfcfzNNawYDNIyQXJz0IViGf75O8EBPKSdvw2rF+LGCsX4FZ8tcr3b19LcZq4w==
+  dependencies:
+    ci-info "^2.0.0"
+
 is-color-stop@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-color-stop/-/is-color-stop-1.1.0.tgz#cfff471aee4dd5c9e158598fbe12967b5cdad345"
@@ -17514,10 +17526,10 @@ prebuild-install@^5.2.0:
     tunnel-agent "^0.6.0"
     which-pm-runs "^1.0.0"
 
-preconstruct@^0.0.33:
-  version "0.0.33"
-  resolved "https://registry.yarnpkg.com/preconstruct/-/preconstruct-0.0.33.tgz#9bf6d50fcf7947c13221e8ab7202435a8639a7a5"
-  integrity sha512-tJ/MPDBa7NDUD3n3J0xL4IHPHX6OnEurT1c25lce9dbUQvsjUOQiPpDlsFCJBaDy+21tEvhN0pFuvU3XERmqKg==
+preconstruct@^0.0.34:
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/preconstruct/-/preconstruct-0.0.34.tgz#901d484d292523feb5bdbf78bc673cfc0682bb28"
+  integrity sha512-5k0vHG6Sx3GrB/d030Mb7y7rhGqU9C2ueh8l4gcYbVebviBgDLrfyaU6fWMmrOj1BMimM7RYquE/+wmEK/fvvQ==
   dependencies:
     "@babel/core" "^7.1.2"
     "@babel/plugin-proposal-class-properties" "^7.1.0"
@@ -17538,6 +17550,7 @@ preconstruct@^0.0.33:
     globby "^8.0.1"
     inquirer "^6.2.0"
     install-packages "^0.2.5"
+    is-ci "^2.0.0"
     jest-worker "^23.2.0"
     lodash.isempty "^4.4.0"
     lodash.omitby "^4.6.0"
