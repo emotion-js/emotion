@@ -1,6 +1,6 @@
 # Choose between styles written as strings or objects (syntax-preference)
 
-[Styled](https://emotion.sh/#styled) accepts string styles or object styles.
+[Styled](https://emotion.sh/docs/styled) accepts string styles or object styles.
 
 
 ## Rule Details

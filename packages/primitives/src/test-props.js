@@ -8,6 +8,8 @@ const forwardableProps = {
   accessibilityElementsHidden: true,
   accessibilityLabel: true,
   accessibilityLiveRegion: true,
+  accessibilityRole: true,
+  accessibilityStates: true,
   accessibilityTraits: true,
   accessibilityViewIsModal: true,
   accessible: true,

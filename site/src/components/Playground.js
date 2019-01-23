@@ -16,6 +16,8 @@ export const scope = {
     switch (moduleName) {
       case 'emotion':
         return require('emotion')
+      case '@emotion/cache':
+        return require('@emotion/cache')
       case '@emotion/core':
         return require('@emotion/core')
       case '@emotion/styled':
