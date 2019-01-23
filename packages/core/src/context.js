@@ -51,7 +51,7 @@ if (!isBrowser) {
     return (props: Props) => (
       <EmotionCacheContext.Consumer>
         {context => {
-          if (context === null) {
+          if (!context) {
             return (
               <BasicProvider>
                 {newContext => {
