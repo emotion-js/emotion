@@ -2,7 +2,7 @@
 title: 'Introduction'
 ---
 
-Emotion is a lightweight library designed for writing styles in JavaScript, enabling powerful and predictable style composition using both string and object styles. It also provides a great developer experience with features such as source maps, labels, and testing utilities.
+Emotion is a library designed for writing css styles with JavaScript. It provides powerful and predictable style composition in addition to a great developer experience with features such as source maps, labels, and testing utilities. Both string and object styles are supported.
 
 ---
 
@@ -58,9 +58,9 @@ The ["@emotion/core"](https://www.npmjs.com/package/@emotion/core) package requi
 
 - CSS prop support
 
-  - Simliar to the `style` prop but adds support for nested selectors, media queries, and auto-prefixing.
+  - Similar to the `style` prop but adds support for nested selectors, media queries, and auto-prefixing.
 
-  - Allows developers to skip the `styled` api abstraction and style components and elements directly.
+  - Allows developers to skip the `styled` API abstraction and style components and elements directly.
 
   - The `css` prop also accepts a function that is called with your theme as an argument allowing developers easy access to common and customizable values.
 
@@ -70,7 +70,7 @@ The ["@emotion/core"](https://www.npmjs.com/package/@emotion/core) package requi
 
 - Theming works out of the box.
 
-- ESlint plugins available to ensure proper patterns and configuration are set.
+- ESLint plugins available to ensure proper patterns and configuration are set.
 
 **[`@emotion/core` css prop documentation](/docs/css-prop.md)**
 

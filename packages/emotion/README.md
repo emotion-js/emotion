@@ -7,9 +7,8 @@ The [emotion](https://www.npmjs.com/package/emotion) package is framework agnost
 - [Quick Start](#quick-start)
 - [API](#api)
   - [Generate Class Names — `css`](#css)
-    - [String Styles](#string-styles)
-    - [Object Styles](#object-styles)
-    - [Array of Object Styles](#array-of-object-styles)
+    _ [String Styles](#string-styles)
+    _ [Object Styles](#object-styles) \* [Array of Object Styles](#array-of-object-styles)
   - [Global Styles — `insertGlobal`](#global-styles)
   - [Animation Keyframes — `keyframes`](#animation-keyframes)
   - [Composing Class Names — `cx`](#cx)
@@ -240,9 +239,9 @@ render(<Avatar src={logoUrl} />)
 
 `cx` takes any number of arguments and returns a string class name.
 
-- Falsey values are removed from the final string.
+- Falsy values are removed from the final string.
 - If an object value is encountered, any key that has a corresponding truthy value is added to the final string.
-- If an function value is encountered, the return value is wrapped in `cx` and returned.
+- If a function value is encountered, the return value is wrapped in `cx` and returned.
 
 **Examples**
 
