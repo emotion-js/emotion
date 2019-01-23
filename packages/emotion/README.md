@@ -165,7 +165,6 @@ const bounce = keyframes`
   }
 `
 
-
 const Avatar = () => {
   return (
     <div
@@ -176,7 +175,7 @@ const Avatar = () => {
         animation: ${bounce} 1s ease infinite;
         transform-origin: center bottom;
       `}
-    >
+    />
   )
 }
 
@@ -215,7 +214,7 @@ const Avatar = () => {
         animation: `${bounce} 1s ease infinite`,
         transformOrigin: 'center bottom'
       })
-    >
+    />
   )
 }
 
