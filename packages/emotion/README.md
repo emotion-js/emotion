@@ -213,7 +213,7 @@ const Avatar = () => {
         borderRadius: '50%',
         animation: `${bounce} 1s ease infinite`,
         transformOrigin: 'center bottom'
-      })
+      })}
     />
   )
 }
