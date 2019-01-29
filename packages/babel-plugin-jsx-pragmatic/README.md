@@ -1,8 +1,12 @@
 # @emotion/babel-plugin-jsx-pragmatic
 
-Fork from [babel-plugin-jsx-pragmatic](https://github.com/jmm/babel-plugin-jsx-pragmatic) to support React Fragment.
+This package is a fork of [babel-plugin-jsx-pragmatic](https://github.com/jmm/babel-plugin-jsx-pragmatic) to support React Fragments.
 
-This package has a `pragma` option that's used when transforming JSX to function calls instead of the default function `React.createElement`.
+The original README of babel-plugin-jsx-pragmatic with some modifications is shown below.
+
+---
+
+[@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/next/babel-plugin-transform-react-jsx.html) has a `pragma` option that's used when transforming JSX to function calls instead of the default function `React.createElement`.
 
 This Babel plugin is a companion to that feature that allows you to dynamically load a module associated with the `pragma` value.
 
@@ -62,7 +66,7 @@ babel.transform(code, {
     ],
 
     [
-      'babel-plugin-jsx-pragmatic',
+      '@emotion/babel-plugin-jsx-pragmatic',
       {
         module: '/something/whatever',
         import: 'whatever'
@@ -99,7 +103,7 @@ String. The identifier that you want to import the `module` with. This should co
     ],
 
     [
-      'babel-plugin-jsx-pragmatic',
+      '@emotion/babel-plugin-jsx-pragmatic',
       {
         module: '/something/whatever',
         import: 'x'
@@ -118,7 +122,7 @@ String. The identifier that you want to import the `module` with. This should co
     ],
 
     [
-      'babel-plugin-jsx-pragmatic',
+      '@emotion/babel-plugin-jsx-pragmatic',
       {
         module: '/something/whatever',
         import: 'x'
