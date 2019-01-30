@@ -139,7 +139,7 @@ injectGlobal`
 
 ### Animation Keyframes
 
-`keyframes` is used to define a single [`@keyframes` CSS at-rule](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes). The generated rule name is returned and can be used in your styles anywhere an [animation-name](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name) is accepted.
+`keyframes` generates a unique [animation-name](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name) that can be used to animate elements with CSS animations.
 
 **String Styles**
 
@@ -165,21 +165,18 @@ const bounce = keyframes`
   }
 `
 
-const Avatar = () => {
-  return (
-    <div
-      className={css`
-        width: 96px;
-        height: 96px;
-        border-radius: 50%;
-        animation: ${bounce} 1s ease infinite;
-        transform-origin: center bottom;
-      `}
-    />
-  )
-}
-
-render(<Avatar src={logoUrl} />)
+render(
+  <img
+    className={css`
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      animation: ${bounce} 1s ease infinite;
+      transform-origin: center bottom;
+    `}
+    src={logoUrl}
+  />
+)
 ```
 
 **Object Styles**
@@ -203,48 +200,25 @@ const bounce = keyframes({
   }
 })
 
-
-const Avatar = () => {
-  return (
-    <div
-      className={css({
-        width: 96,
-        height: 96,
-        borderRadius: '50%',
-        animation: `${bounce} 1s ease infinite`,
-        transformOrigin: 'center bottom'
-      })
-    />
-  )
-}
-
-render(<Avatar src={logoUrl} />)
+render(
+  <img
+    src={logoUrl}
+    className={css({
+      width: 96,
+      height: 96,
+      borderRadius: '50%',
+      animation: `${bounce} 1s ease infinite`,
+      transformOrigin: 'center bottom'
+    })}
+  />
+)
 ```
 
 ## cx
 
-`cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames).
-`cx` is useful when combining multiple class names, even class names from your stylesheets and emotion generated class names.
+`cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames). The key advantage of `cx` is that it detects emotion generated class names ensuring styles are overwritten in the correct order. Emotion generated styles are applied from left to right. Subsequent styles overwrite property values of previous styles.
 
-**Key Features**
-
-- High performance integration with emotion
-- Custom class names. e.g, `.my-bem--class`, are appended in order.
-- Combines the actual content of emotion generated class names. Multiple emotion generated class names are input and a unique class name is output.
-
-**API**
-
-**`cx`** - `(...args<string|number|function|object|array>): string`
-
-`cx` takes any number of arguments and returns a string class name.
-
-- Falsy values are removed from the final string.
-- If an object value is encountered, any key that has a corresponding truthy value is added to the final string.
-- If a function value is encountered, the return value is wrapped in `cx` and returned.
-
-**Examples**
-
-##### Combining emotion generated class names
+**Combining class names**
 
 ```jsx
 import { cx, css } from 'emotion'
@@ -261,46 +235,7 @@ const cls2 = css`
 <div className={cx(cls1, cls2)} />
 ```
 
-This renders a `div` with a single class name and the following styles would be inserted.
-
-```css
-.css-12345 {
-  font-size: 20px;
-  background: green;
-  font-size: 20px;
-  background: blue;
-}
-```
-
-If the order of the class names is reversed in the `cx` call the styles would change precedence.
-
-```jsx
-import { cx, css } from 'emotion'
-
-const cls1 = css`
-  font-size: 20px;
-  background: green;
-`
-const cls2 = css`
-  font-size: 20px;
-  background: blue;
-`
-
-<div className={cx(cls2, cls1)} /> // <-- arguments reversed
-```
-
-The div will now have a **green** background even though `cls2` was inserted into the stylesheet **after** `cls1`.
-
-```css
-.css-54321 {
-  font-size: 20px;
-  background: blue;
-  font-size: 20px;
-  background: green;
-}
-```
-
-##### Combining both emotion generated class names and custom class names.
+**Conditional class names**
 
 ```jsx
 const cls1 = css`
@@ -310,16 +245,6 @@ const cls1 = css`
 const cls2 = css`
   font-size: 20px;
   background: blue;
-`
-
-const cls3 = css`
-  font-size: 20px;
-  background: darkorange;
-`
-
-const cls4 = css`
-  font-size: 20px;
-  background: darkgreen;
 `
 
 const foo = true
@@ -329,27 +254,20 @@ const bar = false
 <div
   className={cx(
     { [cls1]: foo },
-    { [cls2]: bar },
-    () => 'modal',
-    'profile',
-    [[cls3, [cls4]]]
+    { [cls2]: bar }
   )}
 />
 ```
 
-Output:
-
-```css
-.css-i43k4 {
-  font-size: 20px;
-  background: green;
-  font-size: 20px;
-  background: darkorange;
-  font-size: 20px;
-  background: darkgreen;
-}
-```
+**Using class names from other sources**
 
 ```jsx
-<div className="modal profile css-i43k4" />
+const cls1 = css`
+  font-size: 20px;
+  background: green;
+`
+
+<div
+  className={cx(cls1, 'profile')}
+/>
 ```

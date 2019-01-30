@@ -26,6 +26,8 @@ The [emotion](https://www.npmjs.com/package/emotion) package is framework agnost
 
 - You simply prefer to use the `css` function to generate class names and `cx` to compose them.
 
+- Server side rendering requires [additional work to set up](/docs/ssr.md#api)
+
 ```jsx
 // @live
 import { css, cx } from 'emotion'
@@ -52,7 +54,7 @@ render(
 npm i @emotion/core
 ```
 
-The ["@emotion/core"](https://www.npmjs.com/package/@emotion/core) package requires React and is recommended for users of that framework if possible.\
+The ["@emotion/core"](https://www.npmjs.com/package/@emotion/core) package requires React and is recommended for users of that framework if possible.
 
 - Best when using React with a build environment that can be configured.
 
@@ -117,7 +119,8 @@ render(<Button>This my button component.</Button>)
 
 ### Libraries that Inspired Us
 
-- [glam](https://github.com/threepointone/glam/tree/e9bca3950f12503246ed7fccad5cf13e5e9c86e3)
+- ["original" glam](https://github.com/threepointone/glam/tree/e9bca3950f12503246ed7fccad5cf13e5e9c86e3)
+- [glam](https://github.com/threepointone/glam)
 - [glamor](https://github.com/threepointone/glamor)
 - [styled-components](https://www.styled-components.com/)
 - [glamorous](https://glamorous.rocks)
