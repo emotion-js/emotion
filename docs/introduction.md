@@ -32,18 +32,21 @@ The [emotion](https://www.npmjs.com/package/emotion) package is framework agnost
 // @live
 import { css, cx } from 'emotion'
 
-const color = 'darkgreen'
+const color = 'white'
 
 render(
   <div
     className={css`
+      padding: 32px;
       background-color: hotpink;
+      font-size: 24px;
+      border-radius: 4px;
       &:hover {
         color: ${color};
       }
     `}
   >
-    This has a hotpink background.
+    Hover to change color.
   </div>
 )
 ```
@@ -82,18 +85,21 @@ The ["@emotion/core"](https://www.npmjs.com/package/@emotion/core) package requi
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 
-const color = 'darkgreen'
+const color = 'white'
 
 render(
   <div
     css={css`
+      padding: 32px;
       background-color: hotpink;
+      font-size: 24px;
+      border-radius: 4px;
       &:hover {
         color: ${color};
       }
     `}
   >
-    This has a hotpink background.
+    Hover to change color.
   </div>
 )
 ```
@@ -111,7 +117,15 @@ The [@emotion/styled](https://www.npmjs.com/package/@emotion/styled) package is 
 import styled from '@emotion/styled'
 
 const Button = styled.button`
-  color: turquoise;
+  padding: 32px;
+  background-color: hotpink;
+  font-size: 24px;
+  border-radius: 4px;
+  color: black;
+  font-weight: bold;
+  &:hover {
+    color: white;
+  }
 `
 
 render(<Button>This my button component.</Button>)
