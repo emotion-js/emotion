@@ -2,7 +2,7 @@
 title: 'Server Side Rendering'
 ---
 
-Server side rendering works out of the box in Emotion 10 and above if you're only using `@emotion/core` and `@emotion/styled`.
+Server side rendering works out of the box in Emotion 10 and above if you're only using `@emotion/core` and `@emotion/styled`. This means you can call React's [`renderToString`](https://reactjs.org/docs/react-dom-server.html#rendertostring) or [`renderToNodeStream`](https://reactjs.org/docs/react-dom-server.html#rendertonodestream) methods directly without any extra configuration.
 
 ```jsx
 import { renderToString } from 'react-dom/server'
