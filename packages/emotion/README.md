@@ -139,7 +139,7 @@ injectGlobal`
 
 ### Animation Keyframes
 
-`keyframes` generates a unique [animation-name](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name) that can be used to animate elements with CSS animations.
+`keyframes` generates a unique animation name that can be used to animate elements with CSS animations.
 
 **String Styles**
 
