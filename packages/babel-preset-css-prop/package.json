@@ -9,7 +9,7 @@
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.1.6",
     "babel-plugin-emotion": "^10.0.6",
-    "babel-plugin-jsx-pragmatic": "^1.0.2",
+    "@emotion/babel-plugin-jsx-pragmatic": "^0.0.0",
     "object-assign": "^4.1.1"
   },
   "publishConfig": {

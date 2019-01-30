@@ -1,0 +1,16 @@
+{
+  "name": "@emotion/babel-plugin-jsx-pragmatic",
+  "version": "0.0.0",
+  "description": "Insert code to load a module corresponding to JSX pragma.",
+  "main": "dist/babel-plugin-jsx-pragmatic.cjs.js",
+  "module": "dist/babel-plugin-jsx-pragmatic.esm.js",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-jsx-pragmatic",
+  "dependencies": {
+    "@babel/plugin-syntax-jsx": "^7.2.0"
+  },
+  "files": [
+    "src",
+    "dist"
+  ]
+}

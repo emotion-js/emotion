@@ -1,5 +1,5 @@
 import jsx from '@babel/plugin-transform-react-jsx'
-import pragmatic from 'babel-plugin-jsx-pragmatic'
+import pragmatic from '@emotion/babel-plugin-jsx-pragmatic'
 import emotion from 'babel-plugin-emotion'
 
 let pragmaName = '___EmotionJSX'
