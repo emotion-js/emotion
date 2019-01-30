@@ -14,7 +14,7 @@ There are two primary methods of using Emotion. The first is framework agnostic 
 npm i emotion
 ```
 
-**[`emotion` documentation](/packages/emotion/README.md)**
+**[`emotion` documentation](https://emotion.sh/docs/emotion)**
 
 The [emotion](https://www.npmjs.com/package/emotion) package is framework agnostic and the simplest way to use Emotion.
 
