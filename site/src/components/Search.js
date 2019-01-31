@@ -3,6 +3,7 @@ import React from 'react'
 import { navigate } from '@reach/router'
 import { algoliaStyles } from '../utils/algolia-styles'
 import { addCallback } from '../utils/async-load-search'
+import { colors } from '../utils/style'
 
 type Props = {}
 
@@ -85,7 +86,8 @@ class Search extends React.Component<Props, State> {
             backgroundRepeat: 'no-repeat',
             backgroundPositionY: 'center',
             backgroundPositionX: 5,
-            color: 'white',
+            backgroundColor: colors.color,
+            color: colors.bg,
             outline: 0,
             width: 16,
             margin: 8,
@@ -97,9 +99,6 @@ class Search extends React.Component<Props, State> {
                 paddingLeft: 29,
                 width: '8rem'
               }
-            },
-            ':focus': {
-              backgroundColor: '#444'
             },
             '@media (min-width: 601px)': {
               width: '12rem',

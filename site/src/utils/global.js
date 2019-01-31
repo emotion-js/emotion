@@ -8,22 +8,12 @@ const globalStyles = css`
     .replace('prism-code', 'prism-code,pre[class*="language-"]')
     .replace(/0\.5rem/g, '')} html, body, #___gatsby {
     font-family: ${fonts.primary};
-    color: #fffeff;
     width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
     -webkit-font-smoothing: antialiased;
   }
-  ${{
-    'p code, li code': {
-      backgroundColor: '#CEF6FF',
-      fontSize: 16
-    },
-    'a code': {
-      backgroundColor: 'inherit'
-    }
-  }};
 
   .gatsby-highlight,
   .prism-code {

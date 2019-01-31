@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { mq } from '../utils/style'
+import { mq, colors } from '../utils/style'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
 import RenderHAST from '../components/RenderHAST'
@@ -105,7 +105,7 @@ export default class DocRoute extends React.Component<Props> {
               {doc.frontmatter.title || this.props.pageContext.slug}
             </Title>
             <markdownComponents.a
-              css={{ color: 'rgb(107, 107, 107)', fontSize: 12 }}
+              css={{ fontSize: 12 }}
               href={
                 doc.frontmatter.title
                   ? `https://github.com/emotion-js/emotion/edit/master/docs/${
@@ -116,7 +116,7 @@ export default class DocRoute extends React.Component<Props> {
                     }/README.md`
               }
             >
-              Edit this page
+              ✏️ <span css={{ marginLeft: 2 }}>Edit this page</span>
             </markdownComponents.a>
             <div css={{ gridColumn: 'span 2' }}>
               <RenderHAST

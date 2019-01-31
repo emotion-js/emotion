@@ -15,7 +15,12 @@ export const colors = {
   darken1: darken(0.1),
   darken2: darken(0.15),
   darken3: darken(0.2),
-  reallyLightPink: '#f9e9fb'
+  reallyLightPink: '#f9e9fb',
+  hightlight: '#D36AC2',
+  border: '#C865B9',
+  bg: '#FAF9FA',
+  color: '#463C45',
+  parentBg: '#FBF8FD'
 }
 
 export const animatedUnderline = css`

@@ -40,16 +40,8 @@ const ToggleSidebarButton = styled.button`
   }
 `
 
-const linkStyles = css`
-  display: block;
-  text-decoration: none;
-  margin: 16px;
-  font-size: ${constants.fontSizes[2]}px;
-  color: inherit;
-`
-
 const activeStyles = css`
-  font-weight: bold;
+  font-weight: 800;
   &::before {
     content: '';
     height: 32px;
@@ -58,7 +50,7 @@ const activeStyles = css`
     transform: translateX(-32px) translateY(-8px);
     position: absolute;
     display: inline-block;
-    background-color: hotpink;
+    background-color: ${colors.hightlight};
   }
 `
 
@@ -98,8 +90,17 @@ const Sidebar = (props: {
 }) => {
   const { item, setSidebarOpenState, docMap, docName } = props
   return (
-    <Box onClick={() => setSidebarOpenState(false)}>
+    <>
       <h3
+        css={{
+          display: 'block',
+          fontWeight: 800,
+          fontSize: constants.fontSizes[3],
+          color: colors.color,
+          marginTop: constants.space[2],
+          marginBottom: 0,
+          lineHeight: '32px'
+        }}
         className={cx({
           'docSearch-lvl0':
             docName !== undefined && docHeadingMap[docName] === item.title
@@ -110,14 +111,23 @@ const Sidebar = (props: {
       {item.items.map(slug => (
         <Link
           key={slug}
-          className={linkStyles}
+          css={{
+            display: 'block',
+            fontSize: constants.fontSizes[2],
+            fontWeight: '300',
+            color: colors.color,
+            textDecoration: 'none',
+            marginTop: 12,
+            marginBottom: 12,
+            '&:hover': { color: colors.border }
+          }}
           activeClassName={cx(activeStyles, 'docSearch-lvl1')}
           to={`/docs/${slug}`}
         >
           {docMap[slug] || slug}
         </Link>
       ))}
-    </Box>
+    </>
   )
 }
 
@@ -126,6 +136,43 @@ export default (props: Props) => {
     <DocMetadata
       render={data => {
         const docMap = getDocMap(data)
+
+        return (
+          <>
+            <div
+              css={{
+                padding: constants.space[3],
+                paddingTop: constants.space[1],
+                background: '#F7F7F8',
+                borderRight: `2px solid ${colors.parentBg}`
+              }}
+            >
+              {docList.map(item => {
+                return (
+                  <Match path="/docs/:docName" key={item.title}>
+                    {({ match }: { match?: { docName: string } }) => {
+                      return (
+                        <Sidebar
+                          item={item}
+                          setSidebarOpenState={() => {}}
+                          docMap={docMap}
+                          docName={match && match.docName}
+                        />
+                      )
+                    }}
+                  </Match>
+                )
+              })}
+            </div>
+            <div
+              css={{
+                padding: constants.space[3]
+              }}
+            >
+              {props.children}
+            </div>
+          </>
+        )
 
         return (
           <Box flex={1}>
@@ -227,8 +274,9 @@ export default (props: Props) => {
               contentClassName={css`
                 transform: translateZ(0px);
               `}
-              renderSidebar={({ setSidebarOpenState }) =>
-                docList.map(item => {
+              renderSidebar={({ setSidebarOpenState }) => {
+                console.log(docList)
+                return docList.map(item => {
                   return (
                     <Match path="/docs/:docName" key={item.title}>
                       {({ match }: { match?: { docName: string } }) => {
@@ -244,7 +292,7 @@ export default (props: Props) => {
                     </Match>
                   )
                 })
-              }
+              }}
             />
           </Box>
         )
