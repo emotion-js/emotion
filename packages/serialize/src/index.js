@@ -88,8 +88,12 @@ if (process.env.NODE_ENV !== 'production') {
       }
     }
 
+    const processed = oldProcessStyleValue(key, value)
+    const isCssVariable = key.charCodeAt(1) === 45
+
     if (
-      key.charCodeAt(1) !== 45 &&
+      processed !== '' &&
+      !isCssVariable &&
       key.indexOf('-') !== -1 &&
       hyphenatedCache[key] === undefined
     ) {
@@ -101,7 +105,7 @@ if (process.env.NODE_ENV !== 'production') {
       )
     }
 
-    return oldProcessStyleValue(key, value)
+    return processed
   }
 }
 
