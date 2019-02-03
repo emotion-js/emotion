@@ -22,8 +22,8 @@ const globalStyles = css`
       ${mq({
         marginLeft: 0,
         marginRight: 0,
-        marginTop: 16,
-        marginBottom: 16,
+        marginTop: 32,
+        marginBottom: 32,
         borderRadius: [0, 4],
         whiteSpace: 'pre-wrap',
         wordBreak: 'break-word',
@@ -53,7 +53,7 @@ const globalStyles = css`
     box-sizing: border-box;
   }
   #___gatsby > div {
-    height: 100%;
+    display: flex;
   }
 `
 

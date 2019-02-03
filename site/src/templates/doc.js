@@ -66,8 +66,8 @@ const LiveCode = props => (
         css={mq({
           marginLeft: [0],
           marginRight: [0],
-          marginTop: [16, 24],
-          marginBottom: [16, 24],
+          marginTop: [24, 32],
+          marginBottom: [24, 32],
           borderRadius: [0, 4],
           whiteSpace: 'pre-wrap',
           wordBreak: 'break-word'
@@ -100,14 +100,16 @@ export default class DocRoute extends React.Component<Props> {
             className="docSearch-content"
           >
             <div css={{ display: 'flex', alignItems: 'center' }}>
-              <Title
+              <markdownComponents.h1
                 css={{
+                  paddingTop: 0,
                   marginTop: constants.space[2],
-                  marginBottom: constants.space[2]
+                  marginBottom: constants.space[2],
+                  color: colors.hightlight
                 }}
               >
                 {doc.frontmatter.title || this.props.pageContext.slug}
-              </Title>
+              </markdownComponents.h1>
               <markdownComponents.a
                 css={{ fontSize: 12, marginLeft: 'auto' }}
                 href={

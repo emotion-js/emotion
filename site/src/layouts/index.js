@@ -123,7 +123,8 @@ const TemplateWrapper = props => {
           gridColumnGap: constants.space[2],
           gridRowGap: constants.space[2],
           paddingLeft: constants.space[3],
-          paddingRight: constants.space[3]
+          paddingRight: constants.space[3],
+          margin: '0 auto'
         }}
       >
         <Header />

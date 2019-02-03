@@ -25,18 +25,6 @@ export const code = styled.code(
   })
 )
 
-export const li = styled.li(textStyles, {
-  marginTop: 10,
-  p: { marginTop: 5, marginBottom: 0 },
-  '& > ul, & > ol': {
-    marginTop: 5,
-    marginBottom: 15,
-    '& > li': {
-      marginTop: 5
-    }
-  }
-})
-
 export const ul = styled.ul({
   marginTop: 20,
   paddingLeft: 20,
@@ -48,6 +36,18 @@ export const ul = styled.ul({
   '& ol, & ul': {
     marginLeft: 20,
     marginTop: 10
+  }
+})
+
+export const li = styled.li(textStyles, {
+  marginTop: 10,
+  p: { marginTop: 5, marginBottom: 0 },
+  '& > ul, & > ol': {
+    marginTop: 5,
+    marginBottom: 15,
+    '& > li': {
+      marginTop: 5
+    }
   }
 })
 
@@ -64,15 +64,15 @@ const baseHeadingStyles = css`
 `
 
 export const h1 = styled.h1`
-  margin-top: 44px;
+  margin-top: 32px;
   padding-top: 20px;
-  font-size: 3.157rem;
+  font-size: 32px;
   ${baseHeadingStyles};
 `
 
 export const h2 = styled.h2`
   ${baseHeadingStyles};
-  font-size: 2.369rem;
+  font-size: 24px;
   padding-top: 15px;
   padding-bottom: 8px;
   border-bottom: 1px solid ${colors.lighten(0.25, colors.border)};
@@ -82,24 +82,24 @@ export const h2 = styled.h2`
 `
 
 export const h3 = styled.h3`
-  font-size: 1.777rem;
+  font-size: 20px;
   padding-top: 20px;
   ${baseHeadingStyles};
 `
 
 export const h4 = styled.h4`
-  font-size: 1.414rem;
+  font-size: 16px;
   margin-top: 22px;
   padding-top: 15px;
   ${baseHeadingStyles};
 `
 
 export const h5 = styled.h5`
-  font-size: 1.333rem;
+  font-size: 14px;
 `
 
 export const h6 = styled.div`
-  font-size: 0.88rem;
+  font-size: 12;
 `
 
 export const a = styled.a(
@@ -127,6 +127,8 @@ export const a = styled.a(
 )
 
 export const blockquote = styled.blockquote`
+  display: flex;
+  align-items: center;
   margin: 0;
   margin-top: ${constants.space[3]}px;
   border-left: 5px solid ${colors.border};
@@ -135,14 +137,13 @@ export const blockquote = styled.blockquote`
   text-align: left;
   border-bottom-right-radius: 8px;
   border-top-right-radius: 8px;
-  margin-right: -32px;
-  margin-left: -32px;
-  padding-right: 32px;
-  padding-left: 32px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-right: 16px;
+  padding-left: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+
   p {
-    margin-top: 15px;
+    margin: 0;
     &:first-of-type {
       font-weight: 700;
       margin-top: 0;
@@ -150,6 +151,8 @@ export const blockquote = styled.blockquote`
     }
     &:nth-of-type(2) {
       margin-top: 4px;
+      margin-left: 8px;
+      padding: 0 16px;
     }
   }
 `
