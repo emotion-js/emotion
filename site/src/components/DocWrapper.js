@@ -107,7 +107,7 @@ const Sidebar = (props: {
             marginBottom: 12,
             '&:hover': { color: colors.border },
             '&.active': {
-              fontWeight: 800,
+              fontWeight: 600,
               '&::before': {
                 content: '""',
                 height: 32,

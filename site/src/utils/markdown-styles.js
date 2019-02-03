@@ -2,7 +2,7 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
 import css from '@emotion/css'
-import { mq, colors, constants } from './style'
+import { mq, colors, constants, animatedUnderline } from './style'
 
 const textStyles = mq({
   fontSize: [15, 16],
@@ -102,25 +102,29 @@ export const h6 = styled.div`
   font-size: 0.88rem;
 `
 
-export const a = styled.a({
-  fontSize: constants.fontSizes[2],
-  fontWeight: '500',
-  color: colors.hightlight,
-  textDecoration: 'none',
-  '&:hover': {
-    color: colors.border,
+export const a = styled.a(
+  {
+    display: 'inline-block',
+    fontSize: constants.fontSizes[2],
+    fontWeight: '500',
+    color: colors.hightlight,
+    textDecoration: 'none',
+    '&:hover': {
+      color: colors.border,
+      code: {
+        color: colors.border
+      }
+    },
+    '&.anchor': {
+      backgroundColor: 'initial',
+      borderBottom: 'initial'
+    },
     code: {
-      color: colors.border
+      '&:hover': { color: colors.border }
     }
   },
-  '&.anchor': {
-    backgroundColor: 'initial',
-    borderBottom: 'initial'
-  },
-  code: {
-    '&:hover': { color: colors.border }
-  }
-})
+  animatedUnderline
+)
 
 export const blockquote = styled.blockquote`
   margin: 0;
@@ -166,7 +170,6 @@ export const table = styled.table`
 
   & code {
     font-size: 13px;
-    line-height: 1;
   }
 `
 export const td = styled.td`
@@ -186,5 +189,5 @@ export const tr = styled.tr`
 `
 
 export let hr = (props: {}) => (
-  <hr css={{ border: `4px ${colors.hightlight} solid` }} {...props} />
+  <hr css={{ border: `2px ${colors.hightlight} solid` }} {...props} />
 )
