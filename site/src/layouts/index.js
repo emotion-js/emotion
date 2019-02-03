@@ -3,46 +3,31 @@ import '../utils/make-prism-manual'
 import globalStyles from '../utils/global'
 import * as React from 'react'
 import Link from '../components/Link'
-import styled from '@emotion/styled'
-import Box from '../components/Box'
 import Helmet from 'react-helmet'
 import Search from '../components/Search'
-import { colors, constants, animatedUnderline } from '../utils/style'
+import { colors, constants, mq, animatedUnderline } from '../utils/style'
 import Image from 'gatsby-image'
 import { Global } from '@emotion/core'
 import { StaticQuery, graphql } from 'gatsby'
-import { Location } from '@reach/router'
+import { Match } from '@reach/router'
 
 const HeaderLink = props => (
   <Link
-    css={{
-      fontSize: constants.fontSizes[2],
-      fontWeight: '500',
-      color: colors.color,
-      textDecoration: 'none',
-      '&:hover': { color: colors.border }
-    }}
+    css={[
+      {
+        fontSize: constants.fontSizes[2],
+        fontWeight: '500',
+        color: colors.color
+        // textDecoration: 'none'
+      },
+      animatedUnderline
+    ]}
     {...props}
   />
 )
 
 const Header = () => (
-  <div
-    css={{
-      gridColumn: 'span 2',
-      display: 'grid',
-      gridTemplateColumns: '.25fr 1fr',
-      alignItems: 'center',
-      justifyItems: 'center',
-      gap: constants.space[2],
-      paddingLeft: constants.space[3],
-      paddingRight: constants.space[3],
-      borderBottom: '2px solid',
-      background: colors.parentBg,
-      color: colors.color,
-      borderColor: colors.border
-    }}
-  >
+  <>
     <Link
       to="/"
       css={{
@@ -97,9 +82,20 @@ const Header = () => (
         marginLeft: 'auto'
       }}
     >
-      <HeaderLink activeClassName="active" to="/docs">
-        Documentation
-      </HeaderLink>
+      <Match path="/docs/:docName">
+        {({ match }: { match?: { docName: string } }) => {
+          return (
+            <HeaderLink
+              className={match ? 'active' : ''}
+              activeClassName="active"
+              to="/docs"
+            >
+              Documentation
+            </HeaderLink>
+          )
+        }}
+      </Match>
+
       <HeaderLink activeClassName="active" to="/community">
         Community
       </HeaderLink>
@@ -111,7 +107,7 @@ const Header = () => (
       </HeaderLink>
       <Search />
     </div>
-  </div>
+  </>
 )
 
 const TemplateWrapper = props => {
@@ -122,8 +118,12 @@ const TemplateWrapper = props => {
       <div
         css={{
           display: 'grid',
-          gridTemplateColumns: '300px 1fr',
-          gridTemplateRows: '72px auto'
+          gridTemplateColumns: '275px 1fr',
+          gridTemplateRows: '72px auto',
+          gridColumnGap: constants.space[2],
+          gridRowGap: constants.space[3],
+          paddingLeft: constants.space[3],
+          paddingRight: constants.space[3]
         }}
       >
         <Header />

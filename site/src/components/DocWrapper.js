@@ -40,20 +40,6 @@ const ToggleSidebarButton = styled.button`
   }
 `
 
-const activeStyles = css`
-  font-weight: 800;
-  &::before {
-    content: '';
-    height: 32px;
-    width: 8px;
-    margin-right: 16px;
-    transform: translateX(-32px) translateY(-8px);
-    position: absolute;
-    display: inline-block;
-    background-color: ${colors.hightlight};
-  }
-`
-
 type Props = {
   children: React.Node
 }
@@ -88,7 +74,7 @@ const Sidebar = (props: {
   docMap: *,
   docName?: string
 }) => {
-  const { item, setSidebarOpenState, docMap, docName } = props
+  const { item, docMap, docName } = props
   return (
     <>
       <h3
@@ -119,9 +105,23 @@ const Sidebar = (props: {
             textDecoration: 'none',
             marginTop: 12,
             marginBottom: 12,
-            '&:hover': { color: colors.border }
+            '&:hover': { color: colors.border },
+            '&.active': {
+              fontWeight: 800,
+              '&::before': {
+                content: '""',
+                height: 32,
+                width: 8,
+                transform: `translate3d(-${constants.space[3]}px, -${
+                  constants.space[1]
+                }px, 0)`,
+                position: 'absolute',
+                display: 'inline-block',
+                backgroundColor: colors.hightlight
+              }
+            }
           }}
-          activeClassName={cx(activeStyles, 'docSearch-lvl1')}
+          activeClassName={cx('active', 'docSearch-lvl1')}
           to={`/docs/${slug}`}
         >
           {docMap[slug] || slug}
@@ -141,10 +141,10 @@ export default (props: Props) => {
           <>
             <div
               css={{
-                padding: constants.space[3],
-                paddingTop: constants.space[1],
-                background: '#F7F7F8',
-                borderRight: `2px solid ${colors.parentBg}`
+                // paddingRight: constants.space[3],
+                paddingTop: constants.space[1]
+                // background: '#F7F7F8',
+                // borderRight: `2px solid ${colors.parentBg}`
               }}
             >
               {docList.map(item => {
@@ -166,7 +166,8 @@ export default (props: Props) => {
             </div>
             <div
               css={{
-                padding: constants.space[3]
+                paddingRight: constants.space[3],
+                paddingTop: constants.space[1]
               }}
             >
               {props.children}

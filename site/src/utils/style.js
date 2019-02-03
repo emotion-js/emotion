@@ -1,5 +1,5 @@
 // @flow
-import { css } from 'emotion'
+import { css } from '@emotion/core'
 import facepaint from 'facepaint'
 import { util, constants } from 'styled-system'
 import darken from 'polished/lib/color/darken'
@@ -28,11 +28,11 @@ export const animatedUnderline = css`
     content: '';
     display: block;
     width: 100%;
-    margin-top: 4px;
-    height: 4px;
+    margin-top: 2px;
+    height: 2px;
     transition: transform 250ms ease;
     transform: scaleX(0);
-    background-color: hotpink;
+    background-color: ${colors.hightlight};
   }
   &.active::after,
   &:hover::after {

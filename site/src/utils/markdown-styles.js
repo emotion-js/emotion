@@ -13,13 +13,16 @@ const textStyles = mq({
 
 export const p = styled.p(textStyles)
 
-export const code = styled.code(textStyles, {
-  backgroundColor: '#D0EDF1',
-  borderRadius: 3,
-  fontSize: '85%',
-  margin: 0,
-  padding: '0.2rem 0.4rem'
-})
+export const code = styled.code(
+  textStyles,
+  mq({
+    backgroundColor: 'rgba(117, 63, 131, 0.07)',
+    borderRadius: '0.325rem',
+    fontSize: ['80%', '85%'],
+    margin: 0,
+    padding: '0.2rem 0.325rem'
+  })
+)
 
 export const li = styled.li(textStyles, {
   marginTop: 10,
@@ -158,6 +161,11 @@ export const table = styled.table`
 
   & tr:nth-child(2n) {
     background-color: ${colors.parentBg};
+  }
+
+  & code {
+    font-size: 13px;
+    line-height: 1;
   }
 `
 export const td = styled.td`

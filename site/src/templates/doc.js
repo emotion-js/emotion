@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { mq, colors } from '../utils/style'
+import { mq, colors, constants } from '../utils/style'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
 import RenderHAST from '../components/RenderHAST'
@@ -91,34 +91,43 @@ export default class DocRoute extends React.Component<Props> {
         <DocWrapper>
           <div
             css={{
-              display: 'grid',
-              gridTemplateColumns: '1fr auto',
-              gridTemplateRows: 'auto 1fr',
+              // display: 'grid',
+              // gridTemplateColumns: '1fr auto',
+              // gridTemplateRows: 'auto 1fr',
               alignItems: 'center',
               gap: 8,
               maxWidth: '52em',
-              margin: '0 auto'
+              margin: '0 auto',
+              borderBottom: `1px solid ${colors.lighten(0.25, colors.border)}`
             }}
             className="docSearch-content"
           >
-            <Title>
-              {doc.frontmatter.title || this.props.pageContext.slug}
-            </Title>
-            <markdownComponents.a
-              css={{ fontSize: 12 }}
-              href={
-                doc.frontmatter.title
-                  ? `https://github.com/emotion-js/emotion/edit/master/docs/${
-                      this.props.pageContext.slug
-                    }.md`
-                  : `https://github.com/emotion-js/emotion/edit/master/packages/${
-                      this.props.pageContext.slug
-                    }/README.md`
-              }
-            >
-              ✏️ <span css={{ marginLeft: 2 }}>Edit this page</span>
-            </markdownComponents.a>
-            <div css={{ gridColumn: 'span 2' }}>
+            <div css={{ display: 'flex', alignItems: 'center' }}>
+              <Title
+                css={{
+                  marginTop: constants.space[2],
+                  marginBottom: constants.space[2]
+                }}
+              >
+                {doc.frontmatter.title || this.props.pageContext.slug}
+              </Title>
+              <markdownComponents.a
+                css={{ fontSize: 12, marginLeft: 'auto' }}
+                href={
+                  doc.frontmatter.title
+                    ? `https://github.com/emotion-js/emotion/edit/master/docs/${
+                        this.props.pageContext.slug
+                      }.md`
+                    : `https://github.com/emotion-js/emotion/edit/master/packages/${
+                        this.props.pageContext.slug
+                      }/README.md`
+                }
+              >
+                ✏️ <span css={{ marginLeft: 2 }}>Edit this page</span>
+              </markdownComponents.a>
+            </div>
+
+            <div>
               <RenderHAST
                 hast={doc.htmlAst}
                 componentMap={{
