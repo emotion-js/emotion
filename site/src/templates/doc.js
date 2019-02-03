@@ -6,7 +6,6 @@ import * as markdownComponents from '../utils/markdown-styles'
 import RenderHAST from '../components/RenderHAST'
 import Title from '../components/Title'
 import type { HASTRoot } from '../utils/types'
-import memoize from '@emotion/memoize'
 import Layout from '../layouts'
 import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
@@ -53,7 +52,7 @@ const ClassName = (props: any) => {
   return props.children(props.className)
 }
 
-const createLiveCode = memoize(logoUrl => props => (
+const LiveCode = props => (
   <ClassName
     css={mq({
       paddingTop: [8, 16],
@@ -74,18 +73,16 @@ const createLiveCode = memoize(logoUrl => props => (
           wordBreak: 'break-word'
         })}
         editorClassName={internalCodeStylesClassName}
-        logoUrl={logoUrl}
         initialCompiledCode={props.compiled}
         code={props.code}
       />
     )}
   </ClassName>
-))
+)
 
 export default class DocRoute extends React.Component<Props> {
   render() {
-    const { data } = this.props
-    const { doc, avatar } = data
+    const { doc } = this.props.data
     return (
       <Layout>
         <DocWrapper>
@@ -131,9 +128,7 @@ export default class DocRoute extends React.Component<Props> {
               <RenderHAST
                 hast={doc.htmlAst}
                 componentMap={{
-                  'live-code': createLiveCode(
-                    avatar.childImageSharp.resolutions.src
-                  ),
+                  'live-code': LiveCode,
                   ...markdownComponents
                 }}
               />
@@ -151,13 +146,6 @@ export const pageQuery = graphql`
       htmlAst
       frontmatter {
         title
-      }
-    }
-    avatar: file(name: { eq: "emotion" }) {
-      childImageSharp {
-        resolutions(width: 96, height: 96) {
-          src
-        }
       }
     }
   }
