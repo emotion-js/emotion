@@ -121,7 +121,7 @@ const TemplateWrapper = props => {
           gridTemplateColumns: '275px 1fr',
           gridTemplateRows: '72px auto',
           gridColumnGap: constants.space[2],
-          gridRowGap: constants.space[3],
+          gridRowGap: constants.space[2],
           paddingLeft: constants.space[3],
           paddingRight: constants.space[3]
         }}
