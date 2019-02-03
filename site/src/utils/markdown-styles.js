@@ -1,4 +1,5 @@
 // @flow
+import * as React from 'react'
 import styled from '@emotion/styled'
 import css from '@emotion/css'
 import { mq, colors, constants } from './style'
@@ -175,3 +176,7 @@ export const tr = styled.tr`
   background-color: #fff;
   border-top: 1px solid #ccc;
 `
+
+export let hr = (props: {}) => (
+  <hr css={{ border: '4px #D36AC2 solid' }} {...props} />
+)
