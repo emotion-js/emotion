@@ -178,5 +178,5 @@ export const tr = styled.tr`
 `
 
 export let hr = (props: {}) => (
-  <hr css={{ border: '4px #D36AC2 solid' }} {...props} />
+  <hr css={{ border: `4px ${colors.hightlight} solid` }} {...props} />
 )
