@@ -5,7 +5,7 @@ import * as React from 'react'
 import Link from '../components/Link'
 import Helmet from 'react-helmet'
 import Search from '../components/Search'
-import { colors, constants, mq, animatedUnderline } from '../utils/style'
+import { colors, constants, animatedUnderline, mq } from '../utils/style'
 import Image from 'gatsby-image'
 import { Global } from '@emotion/core'
 import { StaticQuery, graphql } from 'gatsby'
@@ -18,7 +18,6 @@ const HeaderLink = props => (
         fontSize: constants.fontSizes[2],
         fontWeight: '500',
         color: colors.color
-        // textDecoration: 'none'
       },
       animatedUnderline
     ]}
@@ -116,16 +115,16 @@ const TemplateWrapper = props => {
       <Global styles={globalStyles} />
       <Helmet title="emotion" />
       <div
-        css={{
+        css={mq({
           display: 'grid',
-          gridTemplateColumns: '275px 1fr',
-          gridTemplateRows: '72px auto',
+          gridTemplateColumns: ['1fr', '275px 1fr'],
+          gridTemplateRows: ['auto', '72px auto'],
           gridColumnGap: constants.space[2],
           gridRowGap: constants.space[2],
           paddingLeft: constants.space[3],
           paddingRight: constants.space[3],
           margin: '0 auto'
-        }}
+        })}
       >
         <Header />
         {props.children}
