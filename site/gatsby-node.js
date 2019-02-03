@@ -42,7 +42,7 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
     }
   })
 
-  if (stage === 'build-javascript') {
+  if (stage === 'build-javascript' && !process.env.NETLIFY) {
     actions.setWebpackConfig({
       plugins: [
         new BundleAnalyzerPlugin({
