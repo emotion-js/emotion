@@ -9,19 +9,6 @@ type Props = {
   activeClassName?: string
 }
 
-const HeaderLink = props => (
-  <Link
-    css={{
-      fontSize: constants.fontSizes[2],
-      fontWeight: '500',
-      color: colors.color,
-      textDecoration: 'none',
-      '&:hover': { color: colors.border }
-    }}
-    {...props}
-  />
-)
-
 const styles = {
   fontSize: constants.fontSizes[2],
   fontWeight: '500',
