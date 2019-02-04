@@ -12,7 +12,7 @@ export default function HeaderLogoImage({ avatar }) {
       style={{ display: 'inline-block', margin: 0, padding: 0 }}
       height="36px"
       width="36px"
-      resolutions={avatar.childImageSharp.resolutions}
+      resolutions={{}}
     />
   )
 }
