@@ -22,7 +22,7 @@ const HeaderLink = props => (
   />
 )
 
-export default function SiteHeader({ data: { avatar = '' } = {} }) {
+export default function SiteHeader() {
   return (
     <>
       <Link
@@ -35,11 +35,11 @@ export default function SiteHeader({ data: { avatar = '' } = {} }) {
           '&:hover': { color: colors.border }
         }}
       >
-        <HeaderLogoImage avatar={avatar} />
+        <HeaderLogoImage />
         <h1
           css={{
             margin: 0,
-            // marginLeft: constants.space[2],
+            marginLeft: constants.space[2],
             padding: 0,
             fontSize: constants.fontSizes[4]
           }}
@@ -87,15 +87,3 @@ export default function SiteHeader({ data: { avatar = '' } = {} }) {
     </>
   )
 }
-
-// export const query = graphql`
-//   query Avatar {
-//     avatar: file(name: { eq: "emotion" }) {
-//       childImageSharp {
-//         resolutions(width: 36, height: 36) {
-//           ...GatsbyImageSharpResolutions_withWebp_noBase64
-//         }
-//       }
-//     }
-//   }
-// `
