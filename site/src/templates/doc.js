@@ -4,8 +4,8 @@ import { mq, colors, constants } from '../utils/style'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
 import RenderHAST from '../components/RenderHAST'
-import Title from '../components/Title'
 import type { HASTRoot } from '../utils/types'
+import memoize from '@emotion/memoize'
 import Layout from '../layouts'
 import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
@@ -52,7 +52,7 @@ const ClassName = (props: any) => {
   return props.children(props.className)
 }
 
-const LiveCode = props => (
+const createLiveCode = memoize(logoUrl => props => (
   <ClassName
     css={mq({
       paddingTop: [8, 16],
@@ -73,24 +73,23 @@ const LiveCode = props => (
           wordBreak: 'break-word'
         })}
         editorClassName={internalCodeStylesClassName}
+        logoUrl={logoUrl}
         initialCompiledCode={props.compiled}
         code={props.code}
       />
     )}
   </ClassName>
-)
+))
 
 export default class DocRoute extends React.Component<Props> {
   render() {
-    const { doc } = this.props.data
+    const { data } = this.props
+    const { doc, avatar } = data
     return (
       <Layout>
         <DocWrapper>
           <div
             css={{
-              // display: 'grid',
-              // gridTemplateColumns: '1fr auto',
-              // gridTemplateRows: 'auto 1fr',
               alignItems: 'center',
               gap: 8,
               maxWidth: '52em',
@@ -130,7 +129,9 @@ export default class DocRoute extends React.Component<Props> {
               <RenderHAST
                 hast={doc.htmlAst}
                 componentMap={{
-                  'live-code': LiveCode,
+                  'live-code': createLiveCode(
+                    avatar.childImageSharp.resolutions.src
+                  ),
                   ...markdownComponents
                 }}
               />
@@ -148,6 +149,13 @@ export const pageQuery = graphql`
       htmlAst
       frontmatter {
         title
+      }
+    }
+    avatar: file(name: { eq: "emotion" }) {
+      childImageSharp {
+        resolutions(width: 96, height: 96) {
+          src
+        }
       }
     }
   }

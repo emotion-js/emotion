@@ -5,8 +5,8 @@ import * as React from 'react'
 import Link from '../components/Link'
 import Helmet from 'react-helmet'
 import Search from '../components/Search'
+import HeaderLogoImage from '../components/HeaderLogoImage'
 import { colors, constants, animatedUnderline, mq } from '../utils/style'
-import Image from 'gatsby-image'
 import { Global } from '@emotion/core'
 import { StaticQuery, graphql } from 'gatsby'
 import { Match } from '@reach/router'
@@ -50,14 +50,7 @@ const Header = () => (
           }
         `}
         render={({ avatar }) => {
-          return (
-            <Image
-              css={{ display: 'inline-block', margin: 0, padding: 0 }}
-              height="36px"
-              width="36px"
-              resolutions={avatar.childImageSharp.resolutions}
-            />
-          )
+          return <HeaderLogoImage avatar={avatar} />
         }}
       />
       <h1
