@@ -21,6 +21,7 @@
 - Run `yarn build` in the root directory to build the modules. (Required before publishing)
 - Run `yarn build PACKAGE_NAME ANOTHER_PACKAGE_NAME` to only build certain packages.
 - Run `yarn build:watch` to build packages on every change.
+- Run `yarn clean` to remove previously built modules and dependencies.
 
 ## Documentation Website Development
 

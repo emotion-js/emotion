@@ -5,6 +5,7 @@
   "scripts": {
     "build:watch": "preconstruct watch",
     "build": "preconstruct build",
+    "clean": "rm -rf packages/**/{dist,node_modules} node_modules",
     "test:size": "npm-run-all build size",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "test": "jest",
