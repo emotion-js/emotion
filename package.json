@@ -24,6 +24,9 @@
     "postinstall": "opencollective postinstall",
     "version-packages": "lerna version --preid=beta"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "resolutions": {
     "**/react": "16.5.2",
     "**/react-dom": "16.5.2",

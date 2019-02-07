@@ -8,9 +8,7 @@
 - Run `yarn` in the repository's root directory to install everything you need for development.
 - Run `yarn build` in the root directory to build the modules.
 
-> NOTE:
->
-> lerna is **NOT** used for installing packages. Only yarn is used. lerna is only used for publishing
+> Note: Running `yarn` tells Lerna to install and link project packages as [Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/). The `lerna` command itself is only used for publishing.
 
 ## Running Tests
 
