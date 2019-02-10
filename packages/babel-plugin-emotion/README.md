@@ -307,6 +307,26 @@ resolved relative to `process.cwd()`(the current working directory).
 
 This option assumes that you are using something to make `@emotion/core`'s `jsx` function work for all jsx. If you are not doing so and you do not want such optimizations to occur, disable this option.
 
+### `importMap`
+
+This option allows you to re-export things from emotion packages for ...explain the reasons here and still get optimisations from babel-plugin-emotion (reword stuff)
+
+```js
+{
+  "my-package": {
+    "someExport": {
+      // this needs a better name
+      "canonicalImport": ["@emotion/core", "jsx"]
+    },
+    "anotherExport": {
+      "canonicalImport": ["@emotion/styled", "default"],
+       // this option should be optional and have a better name
+      "baseStyledPackage": ["my-package", "anotherExport"]
+    }
+  }
+}
+```
+
 ## Babel Macros
 
 Instead of using `babel-plugin-emotion`, you can use emotion with [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros). Add `babel-plugin-macros` to your babel config (which is included in Create React App 2.0) and use the imports/packages shown below.
