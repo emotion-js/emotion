@@ -103,6 +103,9 @@ test('kebab-case', () => {
   css({ 'background-color': 'green' })
   css({ 'background-color': 'hotpink' })
   css({ '-ms-filter': 'inherit' })
+  css({ '@media (min-width 800px)': undefined })
+  css({ '--primary-color': 'hotpink' })
+  css({ ':last-of-type': null })
   expect(console.error.mock.calls).toMatchInlineSnapshot(`
 Array [
   Array [

@@ -1,6 +1,6 @@
 {
   "name": "@emotion/native",
-  "version": "10.0.6",
+  "version": "10.0.7",
   "description": "Style and render React Native components using emotion",
   "main": "dist/native.cjs.js",
   "module": "dist/native.esm.js",
@@ -9,7 +9,7 @@
     "dist"
   ],
   "devDependencies": {
-    "emotion-theming": "^10.0.6",
+    "emotion-theming": "^10.0.7",
     "react": "^16.5.2",
     "react-native": "^0.57.0"
   },

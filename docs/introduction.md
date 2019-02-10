@@ -105,7 +105,7 @@ render(
 ```
 
 ```bash
-npm i @emotion/styled
+npm i @emotion/styled @emotion/core
 ```
 
 The [@emotion/styled](https://www.npmjs.com/package/@emotion/styled) package is for those who prefer to use the `styled.div` style API for creating components.
