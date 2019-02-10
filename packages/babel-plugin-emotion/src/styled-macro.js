@@ -87,5 +87,6 @@ export let createStyledMacro = ({
   isWeb: boolean
 }) =>
   createTransformerMacro({ default: styledTransformer }, originalImportPath, {
-    baseImportPath: importPath
+    baseImportPath: importPath,
+    isWeb
   })

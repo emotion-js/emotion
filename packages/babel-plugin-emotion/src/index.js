@@ -2,9 +2,8 @@
 import { createEmotionMacro } from './macro'
 import { createStyledMacro } from './styled-macro'
 import cssMacro, { transformCssCallExpression } from './css-macro'
-import { addDefault } from '@babel/helper-module-imports'
 import nodePath from 'path'
-import { getSourceMap, getStyledOptions } from './utils'
+import { getSourceMap, getStyledOptions, addImport } from './utils'
 
 let webStyledMacro = createStyledMacro({
   importPath: '@emotion/styled-base',
@@ -206,14 +205,9 @@ export default function(babel: *) {
             sourceMap
           })
           if (t.isCallExpression(expressionPath)) {
-            if (!state.cssIdentifier) {
-              state.cssIdentifier = addDefault(path, '@emotion/css', {
-                nameHint: 'css'
-              })
-            }
             expressionPath
               .get('callee')
-              .replaceWith(t.cloneDeep(state.cssIdentifier))
+              .replaceWith(addImport(state, '@emotion/css', 'default', 'css'))
           }
         }
       },
