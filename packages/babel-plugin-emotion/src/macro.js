@@ -1,6 +1,9 @@
 // @flow
-import { transformExpressionWithStyles, addImport } from './utils'
-import { createMacro } from 'babel-plugin-macros'
+import {
+  transformExpressionWithStyles,
+  addImport,
+  createTransformerMacro
+} from './utils'
 
 let createEmotionTransformer = (imported: string, isPure: boolean) => ({
   state,
@@ -32,25 +35,4 @@ export let transformers = {
 }
 
 export let createEmotionMacro = (instancePath: string) =>
-  createMacro(function macro({ references, state, babel, isEmotionCall }) {
-    if (!isEmotionCall) {
-      state.emotionSourceMap = true
-    }
-
-    Object.keys(references).forEach(referenceKey => {
-      if (transformers[referenceKey]) {
-        references[referenceKey].reverse().forEach(reference => {
-          transformers[referenceKey]({
-            state,
-            babel,
-            reference,
-            importPath: instancePath
-          })
-        })
-      } else {
-        references[referenceKey].reverse().forEach(reference => {
-          reference.replaceWith(addImport(state, instancePath, referenceKey))
-        })
-      }
-    })
-  })
+  createTransformerMacro(transformers, instancePath)

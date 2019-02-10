@@ -1,7 +1,9 @@
 // @flow
-import { createMacro } from 'babel-plugin-macros'
-import { addDefault, addNamed } from '@babel/helper-module-imports'
-import { transformExpressionWithStyles, addImport } from './utils'
+import {
+  transformExpressionWithStyles,
+  addImport,
+  createTransformerMacro
+} from './utils'
 
 export const transformCssCallExpression = ({
   babel,
@@ -36,33 +38,7 @@ let coreCssTransformer = ({ state, babel, importPath, reference }) => {
   transformCssCallExpression({ babel, state, path: reference.parentPath })
 }
 
-export default createMacro(({ references, state, babel, isEmotionCall }) => {
-  if (!isEmotionCall) {
-    state.emotionSourceMap = true
-  }
-  const t = babel.types
-  if (references.default && references.default.length) {
-    references.default.reverse().forEach(reference => {
-      coreCssTransformer({
-        state,
-        babel,
-        importPath: '@emotion/css',
-        reference
-      })
-    })
-  }
-  Object.keys(references)
-    .filter(x => x !== 'default')
-    .forEach(referenceKey => {
-      let runtimeNode = addNamed(
-        state.file.path,
-        referenceKey,
-        '@emotion/css',
-        { nameHint: referenceKey }
-      )
-
-      references[referenceKey].reverse().forEach(reference => {
-        reference.replaceWith(t.cloneDeep(runtimeNode))
-      })
-    })
-})
+export default createTransformerMacro(
+  { default: coreCssTransformer },
+  '@emotion/css'
+)
