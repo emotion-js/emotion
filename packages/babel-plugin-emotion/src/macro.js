@@ -1,7 +1,35 @@
 // @flow
-import { transformExpressionWithStyles } from './utils'
-import { addNamed } from '@babel/helper-module-imports'
+import { transformExpressionWithStyles, addImport } from './utils'
 import { createMacro } from 'babel-plugin-macros'
+
+let createEmotionTransformer = (imported: string, isPure: boolean) => ({
+  state,
+  babel,
+  importPath,
+  reference
+}: Object) => {
+  const path = reference.parentPath
+
+  reference.replaceWith(addImport(state, importPath, imported))
+  if (isPure) {
+    path.addComment('leading', '#__PURE__')
+  }
+  let { node } = transformExpressionWithStyles({
+    babel,
+    state,
+    path,
+    shouldLabel: true
+  })
+  if (node) {
+    path.node.arguments[0] = node
+  }
+}
+
+export let transformers = {
+  css: createEmotionTransformer('css', true),
+  injectGlobal: createEmotionTransformer('injectGlobal', false),
+  keyframes: createEmotionTransformer('keyframes', true)
+}
 
 export let createEmotionMacro = (instancePath: string) =>
   createMacro(function macro({ references, state, babel, isEmotionCall }) {
@@ -9,42 +37,20 @@ export let createEmotionMacro = (instancePath: string) =>
       state.emotionSourceMap = true
     }
 
-    let t = babel.types
     Object.keys(references).forEach(referenceKey => {
-      let isPure = true
-      let runtimeNode = addNamed(state.file.path, referenceKey, instancePath)
-
-      switch (referenceKey) {
-        case 'injectGlobal': {
-          isPure = false
-        }
-        // eslint-disable-next-line no-fallthrough
-        case 'css':
-        case 'keyframes': {
-          references[referenceKey].reverse().forEach(reference => {
-            const path = reference.parentPath
-
-            reference.replaceWith(t.cloneDeep(runtimeNode))
-            if (isPure) {
-              path.addComment('leading', '#__PURE__')
-            }
-            let { node } = transformExpressionWithStyles({
-              babel,
-              state,
-              path,
-              shouldLabel: true
-            })
-            if (node) {
-              path.node.arguments[0] = node
-            }
+      if (transformers[referenceKey]) {
+        references[referenceKey].reverse().forEach(reference => {
+          transformers[referenceKey]({
+            state,
+            babel,
+            reference,
+            importPath: instancePath
           })
-          break
-        }
-        default: {
-          references[referenceKey].reverse().forEach(reference => {
-            reference.replaceWith(t.cloneDeep(runtimeNode))
-          })
-        }
+        })
+      } else {
+        references[referenceKey].reverse().forEach(reference => {
+          reference.replaceWith(addImport(state, instancePath, referenceKey))
+        })
       }
     })
   })
