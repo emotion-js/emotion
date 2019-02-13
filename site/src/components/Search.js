@@ -3,7 +3,7 @@ import React from 'react'
 import { navigate } from '@reach/router'
 import { algoliaStyles } from '../utils/algolia-styles'
 import { addCallback } from '../utils/async-load-search'
-import { colors } from '../utils/style'
+import { colors, mq } from '../utils/style'
 
 type Props = {}
 
@@ -69,18 +69,29 @@ class Search extends React.Component<Props, State> {
   render() {
     return this.state.enabled ? (
       <form
+        className={this.props.className}
         css={[
-          { zIndex: 100, display: 'flex', alignItems: 'center' },
+          mq({
+            zIndex: 100,
+            display: ['flex', 'flex', 'flex'],
+            gridColumn: ['1 / span 2', undefined, 'auto'],
+            gridRow: ['2', '2', 'auto'],
+            alignItems: 'center',
+            '& span.algolia-autocomplete': {
+              flex: 1
+            }
+          }),
           algoliaStyles
         ]}
       >
         <input
           css={{
+            width: '100%',
             border: 0,
             fontSize: 16,
             borderRadius: 4,
             background: 'transparent',
-            padding: `5px 5px 5px 16px`,
+            padding: `8px 16px 8px 16px`,
             backgroundImage: `url(${icon})`,
             backgroundSize: '16px 16px',
             backgroundRepeat: 'no-repeat',
@@ -89,19 +100,19 @@ class Search extends React.Component<Props, State> {
             backgroundColor: colors.color,
             color: colors.bg,
             outline: 0,
-            width: 16,
-            margin: 8,
+            // width: 16,
+            margin: 0,
             appearance: 'none',
             transition:
               'width 200ms ease,padding 200ms ease, background-color 100ms ease',
             '@media (max-width: 600px)': {
               ':focus': {
                 paddingLeft: 29,
-                width: '8rem'
+                width: '100%'
               }
             },
             '@media (min-width: 601px)': {
-              width: '12rem',
+              width: '100%',
               paddingLeft: 29
             }
           }}

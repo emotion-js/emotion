@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react'
-import styled from '@emotion/styled'
 import { css, keyframes, cx } from 'emotion'
 import { Link } from 'gatsby'
 import Box from './Box'
@@ -14,34 +13,40 @@ import { Match } from '@reach/router'
 
 import DocMetadata from './DocMetadata'
 
-const ToggleSidebarButton = styled.button`
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  border-radius: 50%;
-  background-color: ${colors.pink};
-  padding: 16px;
-  margin: 32px;
-  animation: 0.25s ease-in ${keyframes(css`
-      from {
-        transform: scale(0);
-      }
-      to {
-        transform: scale(1);
-      }`)};
-  transition: 150ms ease-in-out background-color;
-  border: 0;
-  :hover,
-  :focus {
-    background-color: ${darken(0.15)(colors.pink)};
+const scaleAnimation = keyframes`
+  from {
+    transform: scale(0);
   }
-  :active {
-    background-color: ${darken(0.25)(colors.pink)};
+  to {
+    transform: scale(1);
   }
 `
 
-type Props = {
-  children: React.Node
+function ToggleSidebarButton({ setSidebarOpen, ...rest }) {
+  return (
+    <button
+      css={{
+        position: 'fixed',
+        bottom: '0',
+        right: '0',
+        borderRadius: '50%',
+        backgroundColor: 'pink',
+        padding: '16px',
+        margin: '32px',
+        animation: `0.25s ease-in ${scaleAnimation}`,
+        transition: '150ms ease-in-out background-color',
+        border: '0',
+        '&:hover,&:focus': {
+          backgroundColor: darken(0.15)(colors.pink)
+        },
+        '&:active': {
+          backgroundColor: darken(0.25)(colors.pink)
+        }
+      }}
+      onClick={() => setSidebarOpen(true)}
+      {...rest}
+    />
+  )
 }
 
 const pageLinkStyles = css(
@@ -68,25 +73,31 @@ const docHeadingMap = docList.reduce((obj, current) => {
   return obj
 }, {})
 
-const Sidebar = (props: {
+const SidebarGroup = (props: {
   item: { title: string, items: Array<string> },
   setSidebarOpenState: boolean => void,
   docMap: *,
-  docName?: string
+  docName?: string,
+  index: number
 }) => {
-  const { item, docMap, docName } = props
+  const { index, item, docMap, docName } = props
+  console.log(index)
   return (
     <>
       <h3
-        css={{
-          display: 'block',
+        css={mq({
           fontWeight: 800,
-          fontSize: constants.fontSizes[3],
+          fontSize: [
+            constants.fontSizes[5],
+            constants.fontSizes[5],
+            constants.fontSizes[3]
+          ],
           color: colors.color,
-          marginTop: constants.space[2],
+          marginTop:
+            index === 0 ? 0 : [constants.space[3], constants.space[3], 0],
           marginBottom: 0,
           lineHeight: '32px'
-        }}
+        })}
         className={cx({
           'docSearch-lvl0':
             docName !== undefined && docHeadingMap[docName] === item.title
@@ -97,14 +108,18 @@ const Sidebar = (props: {
       {item.items.map(slug => (
         <Link
           key={slug}
-          css={{
+          css={mq({
             display: 'block',
-            fontSize: constants.fontSizes[2],
+            fontSize: [
+              constants.fontSizes[4],
+              constants.fontSizes[4],
+              constants.fontSizes[2]
+            ],
             fontWeight: '300',
             color: colors.color,
             textDecoration: 'none',
-            marginTop: 12,
-            marginBottom: 12,
+            marginTop: [24, 24, 12],
+            marginBottom: [24, 24, 12],
             '&:hover': { color: colors.border },
             '&.active': {
               fontWeight: 600,
@@ -120,7 +135,7 @@ const Sidebar = (props: {
                 backgroundColor: colors.hightlight
               }
             }
-          }}
+          })}
           activeClassName={cx('active', 'docSearch-lvl1')}
           to={`/docs/${slug}`}
         >
@@ -131,7 +146,7 @@ const Sidebar = (props: {
   )
 }
 
-export default (props: Props) => {
+export default ({ children, sidebarOpen, setSidebarOpen }) => {
   return (
     <DocMetadata
       render={data => {
@@ -141,20 +156,60 @@ export default (props: Props) => {
           <>
             <div
               css={{
-                // paddingRight: constants.space[3],
-                paddingTop: constants.space[1]
-                // background: '#F7F7F8',
-                // borderRight: `2px solid ${colors.parentBg}`
+                display: sidebarOpen ? 'flex' : 'none',
+                gridRow: '1 / span 2',
+                gridColumn: '1 / span 2'
               }}
             >
-              {docList.map(item => {
+              <button
+                onClick={() => setSidebarOpen(false)}
+                css={{
+                  marginLeft: 'auto',
+                  position: 'relative',
+                  borderRadius: 4,
+                  height: 48,
+                  width: 48,
+                  '&:after': {
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
+                    content: `"X"`,
+                    fontSize: constants.space[3],
+                    color: colors.color,
+                    lineHeight: '48px',
+                    textAlign: 'center'
+                  }
+                }}
+              />
+            </div>
+            <div
+              css={mq({
+                display: [
+                  sidebarOpen ? 'block' : 'none',
+                  sidebarOpen ? 'block' : 'none',
+                  'block'
+                ],
+                gridRow: '2',
+                gridColumn: '1 / span 2',
+                borderRight: [
+                  'none',
+                  'none',
+                  `1px solid ${colors.lighten(0.25, colors.border)}`
+                ]
+              })}
+            >
+              {docList.map((item, index) => {
                 return (
                   <Match path="/docs/:docName" key={item.title}>
                     {({ match }: { match?: { docName: string } }) => {
                       return (
-                        <Sidebar
+                        <SidebarGroup
+                          index={index}
                           item={item}
-                          setSidebarOpenState={() => {}}
+                          sidebarOpen={sidebarOpen}
+                          setSidebarOpenState={setSidebarOpen}
                           docMap={docMap}
                           docName={match && match.docName}
                         />
@@ -165,137 +220,24 @@ export default (props: Props) => {
               })}
             </div>
             <div
-              css={{
-                paddingRight: constants.space[3],
-                paddingTop: constants.space[1]
-              }}
+              css={mq({
+                display: [
+                  sidebarOpen ? 'none' : 'block',
+                  sidebarOpen ? 'none' : 'block',
+                  'block'
+                ],
+                gridColumn: '1 / span 2',
+                paddingRight: [0, 0, 0]
+              })}
             >
-              {props.children}
+              {children}
             </div>
+            {!sidebarOpen && (
+              <ToggleSidebarButton setSidebarOpen={setSidebarOpen}>
+                <MenuIcon color="white" size={32} />
+              </ToggleSidebarButton>
+            )}
           </>
-        )
-
-        return (
-          <Box flex={1}>
-            <DocSidebar
-              renderOutside={({ docked, setSidebarOpenState }) =>
-                !docked && (
-                  <ToggleSidebarButton
-                    onClick={() => setSidebarOpenState(true)}
-                  >
-                    <MenuIcon color="white" size={32} />
-                  </ToggleSidebarButton>
-                )
-              }
-              renderContent={({ docked, setSidebarOpenState }) => (
-                <Box p={3}>
-                  {props.children}
-                  <Match
-                    path="/docs/:doc"
-                    children={({ match }: { match: { doc: string } }) => {
-                      if (!match) {
-                        return null
-                      }
-                      const index = flatDocList.findIndex(
-                        item => item === match.doc
-                      )
-                      const hasNextDoc = index !== flatDocList.length - 1
-                      const hasPrevDoc = index !== 0
-                      return (
-                        <div
-                          data-wow
-                          css={mq({
-                            display: 'grid',
-                            gridTemplateColumns: ['1fr', '1fr 1fr'],
-                            gridTemplateRows: ['1fr 1fr', '1fr'],
-                            alignItems: 'center',
-                            justifyContent: ['center', 'space-between'],
-                            width: '100%',
-                            maxWidth: '52em',
-                            gap: [24, 16],
-                            margin: ['32px auto 0 auto'],
-                            fontSize: [
-                              constants.fontSizes[3],
-                              constants.fontSizes[4]
-                            ]
-                          })}
-                        >
-                          {hasPrevDoc ? (
-                            <div css={mq({ justifySelf: ['center', 'start'] })}>
-                              Previous:
-                              <Link
-                                className={pageLinkStyles}
-                                to={`/docs/${flatDocList[index - 1]}`}
-                              >
-                                {docMap[flatDocList[index - 1]] ||
-                                  flatDocList[index - 1]}
-                              </Link>
-                            </div>
-                          ) : (
-                            <div />
-                          )}
-                          {hasNextDoc ? (
-                            <div css={mq({ justifySelf: ['center', 'end'] })}>
-                              Next:
-                              <Link
-                                className={pageLinkStyles}
-                                to={`/docs/${flatDocList[index + 1]}`}
-                              >
-                                {docMap[flatDocList[index + 1]] ||
-                                  flatDocList[index + 1]}
-                              </Link>
-                            </div>
-                          ) : (
-                            <div />
-                          )}
-                        </div>
-                      )
-                    }}
-                  />
-                  <Box p={[4, 1]} />
-                </Box>
-              )}
-              styles={{
-                root: {
-                  top: 83
-                },
-                sidebar: {
-                  transitionTimingFunction:
-                    'cubic-bezier(0.785, 0.135, 0.15, 0.86)'
-                },
-                content: {
-                  transition: 'none'
-                }
-              }}
-              sidebarClassName={css`
-                background-color: #f5f5f5;
-                padding: ${constants.space[3]}px;
-                width: 290px;
-              `}
-              contentClassName={css`
-                transform: translateZ(0px);
-              `}
-              renderSidebar={({ setSidebarOpenState }) => {
-                console.log(docList)
-                return docList.map(item => {
-                  return (
-                    <Match path="/docs/:docName" key={item.title}>
-                      {({ match }: { match?: { docName: string } }) => {
-                        return (
-                          <Sidebar
-                            item={item}
-                            setSidebarOpenState={setSidebarOpenState}
-                            docMap={docMap}
-                            docName={match && match.docName}
-                          />
-                        )
-                      }}
-                    </Match>
-                  )
-                })
-              }}
-            />
-          </Box>
         )
       }}
     />

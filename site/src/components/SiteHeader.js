@@ -4,7 +4,7 @@ import * as React from 'react'
 import Link from '../components/Link'
 import Search from '../components/Search'
 import HeaderLogoImage from '../components/HeaderLogoImage'
-import { animatedUnderline, colors, constants } from '../utils/style'
+import { animatedUnderline, colors, constants, mq } from '../utils/style'
 import { graphql, StaticQuery } from 'gatsby'
 import { Match } from '@reach/router'
 
@@ -37,25 +37,29 @@ export default function SiteHeader() {
       >
         <HeaderLogoImage />
         <h1
-          css={{
+          css={mq({
+            display: ['none', 'none', 'inline-block'],
             margin: 0,
             marginLeft: constants.space[2],
             padding: 0,
             fontSize: constants.fontSizes[4]
-          }}
+          })}
         >
           Emotion
         </h1>
       </Link>
       <div
-        css={{
+        css={mq({
           display: 'grid',
-          gridAutoFlow: 'column',
+          gridAutoFlow: ['column dense', undefined, 'column'],
+          gridColumn: ['2 / span 1', undefined, 'auto'],
+          gridRow: ['1', '1', 'auto'],
           alignItems: 'center',
           justifyItems: 'center',
           gap: constants.space[2],
-          marginLeft: 'auto'
-        }}
+          marginLeft: [0, 0, 'auto'],
+          overflow: ['scroll', 'scroll', 'auto']
+        })}
       >
         <Match path="/docs/:docName">
           {({ match }: { match?: { docName: string } }) => {
@@ -65,7 +69,7 @@ export default function SiteHeader() {
                 activeClassName="active"
                 to="/docs"
               >
-                Documentation
+                Docs
               </HeaderLink>
             )
           }}
@@ -82,8 +86,8 @@ export default function SiteHeader() {
         <HeaderLink to="https://5bb1495273f2cf57a2cf39cc--emotion.netlify.com">
           v9 Docs
         </HeaderLink>
-        <Search />
       </div>
+      <Search />
     </>
   )
 }

@@ -82,18 +82,27 @@ const createLiveCode = memoize(logoUrl => props => (
 ))
 
 export default class DocRoute extends React.Component<Props> {
+  state = {
+    sidebarOpen: false
+  }
+
+  setSidebarOpen = value => this.setState({ sidebarOpen: value })
+
   render() {
     const { data } = this.props
     const { doc, avatar } = data
     return (
-      <Layout>
-        <DocWrapper>
+      <Layout sidebarOpen={this.state.sidebarOpen}>
+        <DocWrapper
+          sidebarOpen={this.state.sidebarOpen}
+          setSidebarOpen={this.setSidebarOpen}
+        >
           <div
             css={{
               alignItems: 'center',
               gap: 8,
-              maxWidth: '52em',
-              margin: '0 auto',
+              maxWidth: '64em',
+              // margin: '0 auto',
               borderBottom: `1px solid ${colors.lighten(0.25, colors.border)}`
             }}
             className="docSearch-content"
@@ -102,7 +111,7 @@ export default class DocRoute extends React.Component<Props> {
               <markdownComponents.h1
                 css={{
                   paddingTop: 0,
-                  marginTop: constants.space[2],
+                  marginTop: 0,
                   marginBottom: constants.space[2],
                   color: colors.hightlight
                 }}
