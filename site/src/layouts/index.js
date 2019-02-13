@@ -25,6 +25,7 @@ const TemplateWrapper = ({ data, children, sidebarOpen }) => {
           gridColumnGap: [space[2], space[3]],
           gridRowGap: sidebarOpen ? 0 : [space[2], space[2], space[3]],
           width: '100%',
+          maxWidth: '64em',
           paddingTop: [space[2], space[2], space[2]],
           paddingBottom: [space[2], space[2], space[2]],
           paddingLeft: [space[2], space[2], space[3]],
