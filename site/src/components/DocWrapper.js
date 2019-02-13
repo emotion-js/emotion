@@ -7,12 +7,15 @@ import { constants, colors, p, mq } from '../utils/style'
 import DocSidebar from './DocSidebar'
 import darken from 'polished/lib/color/darken'
 import MenuIcon from 'react-icons/lib/md/menu'
+import CloseIcon from 'react-icons/lib/md/close'
 import { getDocMap, docList } from '../utils/misc'
 
 import { Match } from '@reach/router'
 
 import DocMetadata from './DocMetadata'
+import Search from './Search'
 
+let space = constants.space
 const scaleAnimation = keyframes`
   from {
     transform: scale(0);
@@ -25,24 +28,25 @@ const scaleAnimation = keyframes`
 function ToggleSidebarButton({ setSidebarOpen, ...rest }) {
   return (
     <button
-      css={{
+      css={mq({
+        display: ['block', 'block', 'none'],
         position: 'fixed',
         bottom: '0',
         right: '0',
         borderRadius: '50%',
-        backgroundColor: 'pink',
+        backgroundColor: colors.hightlight,
         padding: '16px',
         margin: '32px',
         animation: `0.25s ease-in ${scaleAnimation}`,
         transition: '150ms ease-in-out background-color',
         border: '0',
         '&:hover,&:focus': {
-          backgroundColor: darken(0.15)(colors.pink)
+          backgroundColor: darken(0.15)(colors.hightlight)
         },
         '&:active': {
-          backgroundColor: darken(0.25)(colors.pink)
+          backgroundColor: darken(0.25)(colors.hightlight)
         }
-      }}
+      })}
       onClick={() => setSidebarOpen(true)}
       {...rest}
     />
@@ -81,7 +85,7 @@ const SidebarGroup = (props: {
   index: number
 }) => {
   const { index, item, docMap, docName } = props
-  console.log(index)
+
   return (
     <>
       <h3
@@ -93,9 +97,8 @@ const SidebarGroup = (props: {
             constants.fontSizes[3]
           ],
           color: colors.color,
-          marginTop:
-            index === 0 ? 0 : [constants.space[3], constants.space[3], 0],
-          marginBottom: 0,
+          marginTop: [constants.space[3], constants.space[3], 0],
+          marginBottom: [constants.space[1], constants.space[1], 0],
           lineHeight: '32px'
         })}
         className={cx({
@@ -118,21 +121,25 @@ const SidebarGroup = (props: {
             fontWeight: '300',
             color: colors.color,
             textDecoration: 'none',
-            marginTop: [24, 24, 12],
-            marginBottom: [24, 24, 12],
+            margin: 0,
+            paddingTop: [12, 12, 6],
+            paddingBottom: [12, 12, 6],
+            paddingLeft: [12, 12, 0],
+            paddingRight: [12, 12, 0],
             '&:hover': { color: colors.border },
             '&.active': {
               fontWeight: 600,
+              color: [colors.hightlight, colors.hightlight, 'none'],
               '&::before': {
                 content: '""',
-                height: 32,
-                width: 8,
+                height: [42, 42, 32],
+                width: [8, 8, 6],
                 transform: `translate3d(-${constants.space[3]}px, -${
                   constants.space[1]
                 }px, 0)`,
                 position: 'absolute',
                 display: 'inline-block',
-                backgroundColor: colors.hightlight
+                backgroundColor: colors.lighten(0.25, colors.border)
               }
             }
           })}
@@ -155,51 +162,23 @@ export default ({ children, sidebarOpen, setSidebarOpen }) => {
         return (
           <>
             <div
-              css={{
-                display: sidebarOpen ? 'flex' : 'none',
-                gridRow: '1 / span 2',
-                gridColumn: '1 / span 2'
-              }}
-            >
-              <button
-                onClick={() => setSidebarOpen(false)}
-                css={{
-                  marginLeft: 'auto',
-                  position: 'relative',
-                  borderRadius: 4,
-                  height: 48,
-                  width: 48,
-                  '&:after': {
-                    position: 'absolute',
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0,
-                    content: `"X"`,
-                    fontSize: constants.space[3],
-                    color: colors.color,
-                    lineHeight: '48px',
-                    textAlign: 'center'
-                  }
-                }}
-              />
-            </div>
-            <div
               css={mq({
                 display: [
                   sidebarOpen ? 'block' : 'none',
                   sidebarOpen ? 'block' : 'none',
                   'block'
                 ],
-                gridRow: '2',
-                gridColumn: '1 / span 2',
-                borderRight: [
+                gridRow: ['1', '1', '2 / span 2'],
+                gridColumn: ['1 / span 2', '1 / span 2', '2 / span 1'],
+                paddingLeft: [0, 0, space[3]],
+                borderLeft: [
                   'none',
                   'none',
                   `1px solid ${colors.lighten(0.25, colors.border)}`
                 ]
               })}
             >
+              <Search />
               {docList.map((item, index) => {
                 return (
                   <Match path="/docs/:docName" key={item.title}>
@@ -226,17 +205,23 @@ export default ({ children, sidebarOpen, setSidebarOpen }) => {
                   sidebarOpen ? 'none' : 'block',
                   'block'
                 ],
-                gridColumn: '1 / span 2',
+                gridColumn: ['1 / span 2', '1 / span 2', '1 / span 1'],
                 paddingRight: [0, 0, 0]
               })}
             >
               {children}
             </div>
-            {!sidebarOpen && (
-              <ToggleSidebarButton setSidebarOpen={setSidebarOpen}>
-                <MenuIcon color="white" size={32} />
+            {
+              <ToggleSidebarButton
+                setSidebarOpen={() => setSidebarOpen(!sidebarOpen)}
+              >
+                {sidebarOpen ? (
+                  <CloseIcon color="white" size={32} />
+                ) : (
+                  <MenuIcon color="white" size={32} />
+                )}
               </ToggleSidebarButton>
-            )}
+            }
           </>
         )
       }}

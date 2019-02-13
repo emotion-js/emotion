@@ -24,7 +24,7 @@ function getHash(url) {
 
 // https://feathericons.com search
 const icon =
-  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4Ii8+PHBhdGggZD0iTTIxIDIxbC00LjM1LTQuMzUiLz48L3N2Zz4='
+  'data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNEMzZBQzIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4Ij48L2NpcmNsZT48bGluZSB4MT0iMjEiIHkxPSIyMSIgeDI9IjE2LjY1IiB5Mj0iMTYuNjUiPjwvbGluZT48L3N2Zz4='
 
 class Search extends React.Component<Props, State> {
   input: ?HTMLInputElement
@@ -74,9 +74,10 @@ class Search extends React.Component<Props, State> {
           mq({
             zIndex: 100,
             display: ['flex', 'flex', 'flex'],
-            gridColumn: ['1 / span 2', undefined, 'auto'],
-            gridRow: ['2', '2', 'auto'],
+            gridColumn: ['1 / span 2', undefined, '2 / span 1'],
+            gridRow: ['2', '2', '2'],
             alignItems: 'center',
+            margin: '8px 0 16px 0',
             '& span.algolia-autocomplete': {
               flex: 1
             }
@@ -87,34 +88,24 @@ class Search extends React.Component<Props, State> {
         <input
           css={{
             width: '100%',
-            border: 0,
+            // border: 0,
             fontSize: 16,
             borderRadius: 4,
             background: 'transparent',
-            padding: `8px 16px 8px 16px`,
+            padding: `8px 16px 8px 29px`,
             backgroundImage: `url(${icon})`,
             backgroundSize: '16px 16px',
             backgroundRepeat: 'no-repeat',
             backgroundPositionY: 'center',
             backgroundPositionX: 5,
-            backgroundColor: colors.color,
-            color: colors.bg,
+            color: colors.color,
+            backgroundColor: colors.white,
+            border: `1px solid ${colors.border}`,
             outline: 0,
-            // width: 16,
             margin: 0,
             appearance: 'none',
             transition:
-              'width 200ms ease,padding 200ms ease, background-color 100ms ease',
-            '@media (max-width: 600px)': {
-              ':focus': {
-                paddingLeft: 29,
-                width: '100%'
-              }
-            },
-            '@media (min-width: 601px)': {
-              width: '100%',
-              paddingLeft: 29
-            }
+              'width 200ms ease,padding 200ms ease, background-color 100ms ease'
           }}
           ref={ele => {
             this.input = ele

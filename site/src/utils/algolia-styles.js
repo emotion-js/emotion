@@ -2,7 +2,7 @@
 import css from '@emotion/css'
 import { colors } from '../utils/style'
 
-const headingBackground = colors.pink
+const headingBackground = colors.hightlight
 
 /* Styles forked from reactjs.org, which is forked from Algolia */
 export const algoliaStyles = css`

@@ -8,6 +8,8 @@ import { animatedUnderline, colors, constants, mq } from '../utils/style'
 import { graphql, StaticQuery } from 'gatsby'
 import { Match } from '@reach/router'
 
+const space = constants.space
+
 const HeaderLink = props => (
   <Link
     css={[
@@ -24,7 +26,14 @@ const HeaderLink = props => (
 
 export default function SiteHeader() {
   return (
-    <>
+    <div
+      css={mq({
+        gridColumn: '1 /span 2',
+        display: 'flex',
+        alignItems: 'center',
+        paddingBottom: space[2]
+      })}
+    >
       <Link
         to="/"
         css={{
@@ -32,6 +41,7 @@ export default function SiteHeader() {
           alignItems: 'center',
           color: '#D36AC2',
           textDecoration: 'none',
+          marginRight: space[2],
           '&:hover': { color: colors.border }
         }}
       >
@@ -40,7 +50,7 @@ export default function SiteHeader() {
           css={mq({
             display: ['none', 'none', 'inline-block'],
             margin: 0,
-            marginLeft: constants.space[2],
+            marginLeft: space[2],
             padding: 0,
             fontSize: constants.fontSizes[4]
           })}
@@ -56,9 +66,9 @@ export default function SiteHeader() {
           gridRow: ['1', '1', 'auto'],
           alignItems: 'center',
           justifyItems: 'center',
-          gap: constants.space[2],
-          marginLeft: [0, 0, 'auto'],
-          overflow: ['scroll', 'scroll', 'auto']
+          gap: space[2],
+          marginLeft: ['auto'],
+          overflow: ['auto', 'auto', 'auto']
         })}
       >
         <Match path="/docs/:docName">
@@ -87,7 +97,6 @@ export default function SiteHeader() {
           v9 Docs
         </HeaderLink>
       </div>
-      <Search />
-    </>
+    </div>
   )
 }

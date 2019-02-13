@@ -101,20 +101,19 @@ export default class DocRoute extends React.Component<Props> {
             css={{
               alignItems: 'center',
               gap: 8,
-              maxWidth: '64em',
-              // margin: '0 auto',
               borderBottom: `1px solid ${colors.lighten(0.25, colors.border)}`
             }}
             className="docSearch-content"
           >
             <div css={{ display: 'flex', alignItems: 'center' }}>
               <markdownComponents.h1
-                css={{
+                css={mq({
                   paddingTop: 0,
                   marginTop: 0,
                   marginBottom: constants.space[2],
-                  color: colors.hightlight
-                }}
+                  fontWeight: 700,
+                  color: [colors.hightlight, colors.hightlight, colors.color]
+                })}
               >
                 {doc.frontmatter.title || this.props.pageContext.slug}
               </markdownComponents.h1>
