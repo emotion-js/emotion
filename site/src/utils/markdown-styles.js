@@ -25,6 +25,12 @@ export const code = styled.code(
   })
 )
 
+export const pre = styled.pre({
+  '& > code': {
+    padding: 0
+  }
+})
+
 export const ul = styled.ul({
   marginTop: 20,
   paddingLeft: 20,
