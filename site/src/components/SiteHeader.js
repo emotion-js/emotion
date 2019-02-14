@@ -1,12 +1,11 @@
 // @flow
 import '../utils/make-prism-manual'
 import * as React from 'react'
+import { Match } from '@reach/router'
+
 import Link from '../components/Link'
-import Search from '../components/Search'
 import HeaderLogoImage from '../components/HeaderLogoImage'
 import { animatedUnderline, colors, constants, mq } from '../utils/style'
-import { graphql, StaticQuery } from 'gatsby'
-import { Match } from '@reach/router'
 
 const space = constants.space
 

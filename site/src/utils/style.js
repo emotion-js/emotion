@@ -19,7 +19,7 @@ export const colors = {
   hightlight: '#D36AC2',
   border: '#C865B9',
   bg: '#FAF9FA',
-  color: '#1B1D1D', //'#2D1832', //'#463C45',
+  color: '#1B1D1D',
   parentBg: '#FBF8FD'
 }
 
