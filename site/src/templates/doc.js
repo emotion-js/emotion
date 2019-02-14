@@ -82,12 +82,16 @@ const createLiveCode = memoize(logoUrl => props => (
   </ClassName>
 ))
 
-export default class DocRoute extends React.Component<Props> {
+type DocRouteState = {
+  sidebarOpen: boolean
+}
+
+export default class DocRoute extends React.Component<Props, DocRouteState> {
   state = {
     sidebarOpen: false
   }
 
-  setSidebarOpen = value => this.setState({ sidebarOpen: value })
+  setSidebarOpen = (value: boolean) => this.setState({ sidebarOpen: value })
 
   render() {
     const { data } = this.props

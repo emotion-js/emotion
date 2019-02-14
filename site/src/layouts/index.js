@@ -7,7 +7,13 @@ import SiteHeader from '../components/SiteHeader'
 import { constants, mq } from '../utils/style'
 import { Global } from '@emotion/core'
 
-const TemplateWrapper = ({ data, children, sidebarOpen }) => {
+const TemplateWrapper = ({
+  children,
+  sidebarOpen
+}: {
+  children: React.Node,
+  sidebarOpen?: boolean
+}) => {
   let space = constants.space
   return (
     <React.Fragment>

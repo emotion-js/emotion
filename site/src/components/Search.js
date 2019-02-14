@@ -5,7 +5,9 @@ import { algoliaStyles } from '../utils/algolia-styles'
 import { addCallback } from '../utils/async-load-search'
 import { colors, mq } from '../utils/style'
 
-type Props = {}
+type Props = {
+  className?: string
+}
 
 type State = {
   enabled: boolean
@@ -99,7 +101,7 @@ class Search extends React.Component<Props, State> {
             backgroundPositionY: 'center',
             backgroundPositionX: 5,
             color: colors.color,
-            backgroundColor: colors.white,
+            backgroundColor: 'white',
             border: `1px solid ${colors.border}`,
             outline: 0,
             margin: 0,

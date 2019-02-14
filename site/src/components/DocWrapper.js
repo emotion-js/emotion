@@ -23,7 +23,12 @@ const scaleAnimation = keyframes`
   }
 `
 
-function ToggleSidebarButton({ setSidebarOpen, ...rest }) {
+function ToggleSidebarButton({
+  setSidebarOpen,
+  ...rest
+}: {
+  setSidebarOpen: boolean => void
+}) {
   return (
     <button
       css={mq({
@@ -133,7 +138,15 @@ const SidebarGroup = (props: {
   )
 }
 
-export default ({ children, sidebarOpen, setSidebarOpen }) => {
+export default ({
+  children,
+  sidebarOpen,
+  setSidebarOpen
+}: {
+  children: React.Node,
+  sidebarOpen: boolean,
+  setSidebarOpen: boolean => void
+}) => {
   return (
     <DocMetadata
       render={data => {
