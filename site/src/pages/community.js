@@ -6,18 +6,14 @@ import RenderHAST from '../components/RenderHAST'
 import Box from '../components/Box'
 import * as markdownComponents from '../utils/markdown-styles'
 import Title from '../components/Title'
+import { mq } from '../utils/style'
 
 const Community = (props: *) => (
   <Layout>
-    <Box
-      p={[3, 4]}
-      css={{
-        display: 'flex',
-        justifyContent: 'center',
-        width: '100%',
-        margin: 'auto',
-        lineHeight: 1.4
-      }}
+    <div
+      css={mq({
+        gridColumn: '1 / span 2'
+      })}
     >
       <div>
         <Title>Community</Title>
@@ -39,7 +35,7 @@ const Community = (props: *) => (
           awesome list into a website! ❤️
         </markdownComponents.p>
       </div>
-    </Box>
+    </div>
   </Layout>
 )
 

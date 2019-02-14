@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { mq, colors, constants } from '../utils/style'
+import { mq, colors } from '../utils/style'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
 import RenderHAST from '../components/RenderHAST'
@@ -9,6 +9,7 @@ import memoize from '@emotion/memoize'
 import Layout from '../layouts'
 import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
+import Title from '../components/Title'
 
 type Props = {
   data: {
@@ -106,17 +107,9 @@ export default class DocRoute extends React.Component<Props> {
             className="docSearch-content"
           >
             <div css={{ display: 'flex', alignItems: 'center' }}>
-              <markdownComponents.h1
-                css={mq({
-                  paddingTop: 0,
-                  marginTop: 0,
-                  marginBottom: constants.space[2],
-                  fontWeight: 700,
-                  color: [colors.hightlight, colors.hightlight, colors.color]
-                })}
-              >
+              <Title>
                 {doc.frontmatter.title || this.props.pageContext.slug}
-              </markdownComponents.h1>
+              </Title>
               <markdownComponents.a
                 css={{ fontSize: 12, marginLeft: 'auto' }}
                 href={

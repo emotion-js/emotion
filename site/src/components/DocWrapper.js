@@ -1,16 +1,14 @@
 // @flow
 import * as React from 'react'
 import { css, keyframes, cx } from 'emotion'
+import { Match } from '@reach/router'
 import { Link } from 'gatsby'
-import Box from './Box'
-import { constants, colors, p, mq } from '../utils/style'
-import DocSidebar from './DocSidebar'
-import darken from 'polished/lib/color/darken'
 import MenuIcon from 'react-icons/lib/md/menu'
 import CloseIcon from 'react-icons/lib/md/close'
-import { getDocMap, docList } from '../utils/misc'
 
-import { Match } from '@reach/router'
+import { constants, colors, mq } from '../utils/style'
+import darken from 'polished/lib/color/darken'
+import { getDocMap, docList } from '../utils/misc'
 
 import DocMetadata from './DocMetadata'
 import Search from './Search'
@@ -53,23 +51,6 @@ function ToggleSidebarButton({ setSidebarOpen, ...rest }) {
   )
 }
 
-const pageLinkStyles = css(
-  { marginLeft: 8 },
-  p({
-    color: [
-      colors.pink,
-      colors.darken1(colors.pink),
-      colors.darken2(colors.pink),
-      colors.darken3(colors.pink)
-    ]
-  })
-)
-
-const flatDocList = docList.reduce(
-  (arr, current) => arr.concat(current.items),
-  []
-)
-
 const docHeadingMap = docList.reduce((obj, current) => {
   current.items.forEach(item => {
     obj[item] = current.title
@@ -81,10 +62,9 @@ const SidebarGroup = (props: {
   item: { title: string, items: Array<string> },
   setSidebarOpenState: boolean => void,
   docMap: *,
-  docName?: string,
-  index: number
+  docName?: string
 }) => {
-  const { index, item, docMap, docName } = props
+  const { item, docMap, docName } = props
 
   return (
     <>
@@ -179,13 +159,12 @@ export default ({ children, sidebarOpen, setSidebarOpen }) => {
               })}
             >
               <Search />
-              {docList.map((item, index) => {
+              {docList.map(item => {
                 return (
                   <Match path="/docs/:docName" key={item.title}>
                     {({ match }: { match?: { docName: string } }) => {
                       return (
                         <SidebarGroup
-                          index={index}
                           item={item}
                           sidebarOpen={sidebarOpen}
                           setSidebarOpenState={setSidebarOpen}

@@ -1,12 +1,14 @@
 // @flow
 import styled from '@emotion/styled'
 import { constants, mq, colors } from '../utils/style'
+import * as markdownComponents from '../utils/markdown-styles'
 
-export default styled.h1(
+export default styled(markdownComponents.h1)(
   mq({
-    fontSize: [constants.fontSizes[4], constants.fontSizes[5]],
-    fontWeight: 800,
-    margin: 0,
-    color: colors.hightlight
+    paddingTop: 0,
+    marginTop: 0,
+    marginBottom: constants.space[2],
+    fontWeight: 700,
+    color: [colors.hightlight, colors.hightlight, colors.color]
   })
 )
