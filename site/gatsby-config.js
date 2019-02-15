@@ -69,6 +69,24 @@ module.exports = {
           ]
         }
       },
+      {
+        resolve: `gatsby-plugin-google-analytics`,
+        options: {
+          trackingId: '101206186',
+          // Puts tracking script in the head instead of the body
+          head: false,
+          // Setting this parameter is optional
+          anonymize: true,
+          // Setting this parameter is also optional
+          respectDNT: true,
+          // Set Variation ID. 0 for original 1,2,3....
+          variationId: 'v10',
+          // Any additional create only fields (optional)
+          sampleRate: 5,
+          siteSpeedSampleRate: 10,
+          cookieDomain: 'emotion.sh'
+        }
+      },
       `gatsby-plugin-react-helmet`,
       'gatsby-plugin-sharp',
       'gatsby-transformer-sharp',
