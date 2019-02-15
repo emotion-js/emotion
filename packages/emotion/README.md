@@ -7,8 +7,6 @@ The [emotion](https://www.npmjs.com/package/emotion) package is framework agnost
 - [Quick Start](#quick-start)
 - [API](#api)
   - [Generate Class Names — `css`](#css)
-    _ [String Styles](#string-styles)
-    _ [Object Styles](#object-styles) \* [Array of Object Styles](#array-of-object-styles)
   - [Global Styles — `insertGlobal`](#global-styles)
   - [Animation Keyframes — `keyframes`](#animation-keyframes)
   - [Composing Class Names — `cx`](#cx)
