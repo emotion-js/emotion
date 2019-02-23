@@ -9,7 +9,12 @@ module.exports = {
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname'
   ],
-  testPathIgnorePatterns: ['/node_modules/', '/__fixtures__/', '/site/'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/__fixtures__/',
+    '/site/',
+    '/.tsx?/'
+  ],
   moduleNameMapper: aliases.jest(),
   setupFilesAfterEnv: ['<rootDir>/test/testSetup.js'],
   coveragePathIgnorePatterns: [
