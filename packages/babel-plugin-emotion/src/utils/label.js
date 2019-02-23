@@ -37,7 +37,9 @@ export function getLabelFromPath(path: *, state: *, t: *) {
 
 function getDeclaratorName(path, t) {
   // $FlowFixMe
-  const parent = path.findParent(p => p.isVariableDeclarator())
+  const parent = path.findParent(
+    p => p.isVariableDeclarator() || p.isFunctionDeclaration()
+  )
   return parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
 }
 
