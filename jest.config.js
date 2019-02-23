@@ -11,7 +11,7 @@ module.exports = {
   ],
   testPathIgnorePatterns: ['/node_modules/', '/__fixtures__/', '/site/'],
   moduleNameMapper: aliases.jest(),
-  setupTestFrameworkScriptFile: '<rootDir>/test/testSetup.js',
+  setupFilesAfterEnv: ['<rootDir>/test/testSetup.js'],
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/packages/babel-plugin-emotion/test/util.js'
