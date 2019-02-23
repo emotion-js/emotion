@@ -13,7 +13,7 @@ module.exports = {
     '/node_modules/',
     '/__fixtures__/',
     '/site/',
-    '/.tsx?/'
+    '.tsx?'
   ],
   moduleNameMapper: aliases.jest(),
   setupFilesAfterEnv: ['<rootDir>/test/testSetup.js'],
