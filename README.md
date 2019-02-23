@@ -80,6 +80,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [stylelint](https://github.com/stylelint/stylelint) - A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
 - [facepaint](https://github.com/emotion-js/facepaint)
 - [emotion-vue](https://github.com/egoist/emotion-vue)
+- [nuxt-community/emotion-module](https://github.com/nuxt-community/emotion-module) - Emotion module for Nuxt.js 
 - [ember-emotion](https://github.com/alexlafroscia/ember-emotion)
 - [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
 - [ShevyJS](https://github.com/kyleshevlin/shevyjs)
