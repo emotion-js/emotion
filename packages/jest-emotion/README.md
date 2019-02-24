@@ -94,14 +94,67 @@ import styled from '@emotion/styled'
 expect.extend(matchers)
 
 test('renders with correct styles', () => {
-  const H1 = styled.h1`
-    float: left;
+  const Svg = styled('svg')`
+    width: 100%;
   `
 
-  const tree = renderer.create(<H1>hello world</H1>).toJSON()
+  const Div = styled('div')`
+    float: left;
+    height: 80%;
+    &:hover {
+      width: 50px;
+    }
+    ${Svg} {
+      fill: green;
+    }
+    span {
+      color: yellow;
+    }
+    @media screen and (max-width: 1200px) {
+      font-size: 14px;
+    }
+  `
+
+  const tree = renderer
+    .create(
+      <Div>
+        <Svg />
+        <span>Test</span>
+      </Div>
+    )
+    .toJSON()
 
   expect(tree).toHaveStyleRule('float', 'left')
-  expect(tree).not.toHaveStyleRule('color', 'hotpink')
+  expect(tree).not.toHaveStyleRule('height', '100%')
+})
+```
+
+You can provide additional options for `toHaveStyleRule` matcher.  
+`target` - option helps to specify target where style rule should be found.
+
+1.  Pseudo-class.
+
+```
+expect(tree).toHaveStyleRule('width', '50px', { target: ':hover' })
+```
+
+2. HTML element.
+
+```
+expect(tree).toHaveStyleRule('color', 'yellow', { target: 'span' })
+```
+
+3. Another styled component.
+
+```
+expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
+```
+
+`media` - option allows to test style rule within media.
+
+```
+expect(tree).toHaveStyleRule('font-size', '14px', {
+  media: 'screen and (max-width: 1200px)'
 })
 ```
 
