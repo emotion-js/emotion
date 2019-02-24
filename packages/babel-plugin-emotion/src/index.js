@@ -1,9 +1,20 @@
 // @flow
-import { createEmotionMacro } from './macro'
-import { createStyledMacro } from './styled-macro'
-import cssMacro, { transformCssCallExpression } from './css-macro'
+import {
+  createEmotionMacro,
+  transformers as vanillaTransformers
+} from './macro'
+import { createStyledMacro, styledTransformer } from './styled-macro'
+import cssMacro, {
+  transformCssCallExpression,
+  coreCssTransformer
+} from './css-macro'
 import nodePath from 'path'
-import { getSourceMap, getStyledOptions, addImport } from './utils'
+import {
+  getSourceMap,
+  getStyledOptions,
+  addImport,
+  createTransformerMacro
+} from './utils'
 
 let webStyledMacro = createStyledMacro({
   importPath: '@emotion/styled-base',
@@ -20,6 +31,31 @@ let primitivesStyledMacro = createStyledMacro({
   originalImportPath: '@emotion/primitives',
   isWeb: false
 })
+
+let transformersSource = {
+  emotion: vanillaTransformers,
+  '@emotion/css': {
+    default: coreCssTransformer
+  },
+  // this might be annoying because @emotion/core is special so gonna deal with it later
+  // '@emotion/core': {
+  //   // jsx isn't included here because it's handled differently
+  //   css: coreCssTransformer
+  //   // TODO: maybe write transformers for keyframes and Global
+  // },
+  '@emotion/styled': {
+    default: [
+      styledTransformer,
+      { baseImportPath: '@emotion/styled-base', isWeb: true }
+    ]
+  },
+  '@emotion/primitives': {
+    default: [styledTransformer, { isWeb: false }]
+  },
+  '@emotion/native': {
+    default: [styledTransformer, { isWeb: false }]
+  }
+}
 
 export const macros = {
   createEmotionMacro,
@@ -141,6 +177,28 @@ export default function(babel: *) {
         state.emotionInstancePaths = (state.opts.instances || []).map(
           instancePath => getInstancePathToCompare(instancePath, process.cwd())
         )
+        let macros = {}
+        Object.keys(state.opts.importMap).forEach(key => {
+          let value = state.opts.importMap[key]
+          let transformers = {}
+          Object.keys(value).forEach(localExportName => {
+            let { canonicalImport, ...options } = value[localExportName]
+            let [packageName, exportName] = canonicalImport
+            let packageTransformers = transformersSource[packageName]
+            let error = new Error(
+              `There is no transformer for the export '${exportName}' in package '${packageName}'`
+            )
+            if (packageTransformers === undefined) {
+              throw error
+            }
+            let exportTransformer = packageTransformers[exportName]
+            if (packageTransformers === undefined) {
+              throw error
+            }
+            transformers[localExportName] = [exportTransformer, options]
+          })
+          macros[key] = createTransformerMacro(transformers)
+        })
         state.pluginMacros = {
           '@emotion/css': cssMacro,
           '@emotion/styled': webStyledMacro,

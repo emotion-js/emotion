@@ -5,9 +5,8 @@ import { addImport } from './add-import'
 type Transformer = Function
 
 export function createTransformerMacro(
-  transformers: { [key: string]: Transformer },
-  importPath: string,
-  options?: any
+  transformers: { [key: string]: Transformer | [Transformer, Object] },
+  importPath: string
 ) {
   return createMacro(({ references, state, babel, isEmotionCall }) => {
     if (!isEmotionCall) {
@@ -16,7 +15,16 @@ export function createTransformerMacro(
     Object.keys(references).forEach(referenceKey => {
       if (transformers[referenceKey]) {
         references[referenceKey].reverse().forEach(reference => {
-          transformers[referenceKey]({
+          let options
+          let transformer
+          if (Array.isArray(transformers[referenceKey])) {
+            transformer = transformers[referenceKey][0]
+            options = transformers[referenceKey][1]
+          } else {
+            transformer = transformers[referenceKey]
+            options = {}
+          }
+          transformer({
             state,
             babel,
             importPath,

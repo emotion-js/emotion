@@ -315,10 +315,10 @@ This option allows you to re-export things from emotion packages for ...explain 
 {
   "my-package": {
     "someExport": {
-      // this needs a better name
-      "canonicalImport": ["@emotion/core", "jsx"]
+      "canonicalImport": ["@emotion/css", "default"]
     },
     "anotherExport": {
+      // this needs a better name
       "canonicalImport": ["@emotion/styled", "default"],
        // this option should be optional and have a better name
       "baseStyledPackage": ["my-package", "anotherExport"]
