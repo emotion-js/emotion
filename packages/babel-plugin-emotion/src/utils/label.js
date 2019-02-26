@@ -35,7 +35,7 @@ export function getLabelFromPath(path: *, state: *, t: *) {
   )
 }
 
-let pascalCaseRegex = /[A-Z][A-Za-z]+/
+let pascalCaseRegex = /^[A-Z][A-Za-z]+/
 
 function getDeclaratorName(path, t) {
   // $FlowFixMe

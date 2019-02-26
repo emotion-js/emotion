@@ -48,11 +48,11 @@ function doThing() {
 import _css from \\"@emotion/css\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"8v5aok-doThing\\",
-  styles: \\"display:flex;label:doThing;\\"
+  name: \\"k008qs\\",
+  styles: \\"display:flex;\\"
 } : {
-  name: \\"8v5aok-doThing\\",
-  styles: \\"display:flex;label:doThing;\\",
+  name: \\"k008qs\\",
+  styles: \\"display:flex;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhc2ljLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdZIiwiZmlsZSI6ImJhc2ljLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGNzcyBmcm9tICdAZW1vdGlvbi9jc3MvbWFjcm8nXG5cbmZ1bmN0aW9uIGRvVGhpbmcoKSB7XG4gIHJldHVybiBjc3NgXG4gICAgZGlzcGxheTogZmxleDtcbiAgYFxufVxuIl19 */\\"
 };
 
@@ -74,11 +74,11 @@ function doThing() {
 import _css from \\"@emotion/css\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"aarqni-doThing\\",
-  styles: \\"color:hotpink;label:doThing;\\"
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
 } : {
-  name: \\"aarqni-doThing\\",
-  styles: \\"color:hotpink;label:doThing;\\",
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhbGwtZXhwcmVzc2lvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHUyIsImZpbGUiOiJjYWxsLWV4cHJlc3Npb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2Nzcy9tYWNybydcblxuZnVuY3Rpb24gZG9UaGluZygpIHtcbiAgcmV0dXJuIGNzcyh7IGNvbG9yOiAnaG90cGluaycgfSlcbn1cbiJdfQ== */\\"
 };
 
@@ -182,7 +182,7 @@ function thing() {}
 function doThing() {
   return (
     /*#__PURE__*/
-    _css(\\"display:\\", thing(), \\";label:doThing;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImltcHVyZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLWSIsImZpbGUiOiJpbXB1cmUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2Nzcy9tYWNybydcblxuZnVuY3Rpb24gdGhpbmcoKSB7fVxuXG5mdW5jdGlvbiBkb1RoaW5nKCkge1xuICByZXR1cm4gY3NzYFxuICAgIGRpc3BsYXk6ICR7dGhpbmcoKX07XG4gIGBcbn1cbiJdfQ== */\\"))
+    _css(\\"display:\\", thing(), \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImltcHVyZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLWSIsImZpbGUiOiJpbXB1cmUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2Nzcy9tYWNybydcblxuZnVuY3Rpb24gdGhpbmcoKSB7fVxuXG5mdW5jdGlvbiBkb1RoaW5nKCkge1xuICByZXR1cm4gY3NzYFxuICAgIGRpc3BsYXk6ICR7dGhpbmcoKX07XG4gIGBcbn1cbiJdfQ== */\\"))
   );
 }"
 `;
