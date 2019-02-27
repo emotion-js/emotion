@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@emotion/weak-memoize": "0.2.2",
-    "hoist-non-react-statics": "^2.3.1",
+    "hoist-non-react-statics": "^3.3.0",
     "object-assign": "^4.1.1"
   },
   "peerDependencies": {
