@@ -10,8 +10,10 @@
 ## Install
 
 ```bash
-yarn add @emotion/babel-preset-css-prop
+yarn add @emotion/babel-preset-css-prop @emotion/styled-base @emotion/native @emotion/primitives
 ```
+
+_Note: `@emotion/styled-base`, `@emotion/native`, and `@emotion/primitives` are included above since `@emotion/babel-preset-css-prop` includes macros which generate code that imports those packages._
 
 ## Usage
 

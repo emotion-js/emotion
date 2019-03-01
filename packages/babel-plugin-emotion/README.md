@@ -97,14 +97,16 @@ const myStyles = /* #__PURE__ */ css(
 ## Installation
 
 ```bash
-yarn add --dev babel-plugin-emotion
+yarn add --dev babel-plugin-emotion @emotion/styled-base @emotion/native @emotion/primitives
 ```
 
 or if you prefer npm
 
 ```bash
-npm install --save-dev babel-plugin-emotion
+npm install --save-dev babel-plugin-emotion @emotion/styled-base @emotion/native @emotion/primitives
 ```
+
+_Note: `@emotion/styled-base`, `@emotion/native`, and `@emotion/primitives` are included above since `babel-plugin-emotion` includes macros which generate code that imports those packages._
 
 ## Usage
 
