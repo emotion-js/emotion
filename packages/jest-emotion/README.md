@@ -130,27 +130,23 @@ test('renders with correct styles', () => {
 ```
 
 You can provide additional options for `toHaveStyleRule` matcher.  
-`target` - option helps to specify target where style rule should be found.
-
-1.  Pseudo-class.
+`target` - helps to specify css selector or other component
+where style rule should be found.
 
 ```
 expect(tree).toHaveStyleRule('width', '50px', { target: ':hover' })
 ```
 
-2. HTML element.
-
 ```
 expect(tree).toHaveStyleRule('color', 'yellow', { target: 'span' })
 ```
-
-3. Another styled component.
 
 ```
 expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
 ```
 
-`media` - option allows to test style rule within media.
+`media` - specifies the media rule where the matcher
+should look for the style property.
 
 ```
 expect(tree).toHaveStyleRule('font-size', '14px', {
