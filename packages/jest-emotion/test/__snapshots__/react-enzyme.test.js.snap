@@ -10,22 +10,10 @@ exports[`enzyme mount test 1`] = `
 }
 
 <Greeting>
-  <ForwardRef(render)
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Greeting"
-    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
-    css={
-      Object {
-        "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlYWN0LWVuenltZS50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVljIiwiZmlsZSI6InJlYWN0LWVuenltZS50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICd0ZXN0LXV0aWxzL2xlZ2FjeS1lbnYnXG4vKiogQGpzeCBqc3ggKi9cbmltcG9ydCAqIGFzIGVuenltZSBmcm9tICdlbnp5bWUnXG5pbXBvcnQgeyBjc3MsIGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5pbXBvcnQgeyBjcmVhdGVTZXJpYWxpemVyIGFzIGNyZWF0ZUVuenltZVNlcmlhbGl6ZXIgfSBmcm9tICdlbnp5bWUtdG8tanNvbidcbmltcG9ydCB7IGNyZWF0ZVNlcmlhbGl6ZXIgfSBmcm9tICdqZXN0LWVtb3Rpb24nXG5cbmV4cGVjdC5hZGRTbmFwc2hvdFNlcmlhbGl6ZXIoY3JlYXRlRW56eW1lU2VyaWFsaXplcigpKVxuZXhwZWN0LmFkZFNuYXBzaG90U2VyaWFsaXplcihjcmVhdGVTZXJpYWxpemVyKCkpXG5cbnRlc3QoJ2VuenltZSBtb3VudCB0ZXN0JywgKCkgPT4ge1xuICBjb25zdCBHcmVldGluZyA9ICh7IGNoaWxkcmVuIH0pID0+IChcbiAgICA8ZGl2IGNzcz17Y3NzKHsgYmFja2dyb3VuZENvbG9yOiAncmVkJyB9KX0+e2NoaWxkcmVufTwvZGl2PlxuICApXG4gIGNvbnN0IHRyZWUgPSBlbnp5bWUubW91bnQoPEdyZWV0aW5nPmhlbGxvPC9HcmVldGluZz4pXG4gIGV4cGVjdCh0cmVlKS50b01hdGNoU25hcHNob3QoKVxufSlcbiJdfQ== */",
-        "name": "1rveqsm-Greeting",
-        "styles": "background-color:red;label:Greeting;",
-      }
-    }
+  <div
+    className="emotion-0"
   >
-    <div
-      className="emotion-0"
-    >
-      hello
-    </div>
-  </ForwardRef(render)>
+    hello
+  </div>
 </Greeting>
 `;
