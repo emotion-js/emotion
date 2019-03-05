@@ -1,17 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`enzyme mount test 1`] = `
+.emotion-0 {
+  background-color: red;
+}
+
+.emotion-0 {
+  background-color: red;
+}
+
 <Greeting>
-  <div
+  <ForwardRef(render)
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Greeting"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
-        "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlYWN0LWVuenltZS50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVljIiwiZmlsZSI6InJlYWN0LWVuenltZS50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICd0ZXN0LXV0aWxzL2xlZ2FjeS1lbnYnXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgKiBhcyBlbnp5bWUgZnJvbSAnZW56eW1lJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcbmltcG9ydCB7IGNyZWF0ZVNlcmlhbGl6ZXIgYXMgY3JlYXRlRW56eW1lU2VyaWFsaXplciB9IGZyb20gJ2VuenltZS10by1qc29uJ1xuaW1wb3J0IHsgY3JlYXRlU2VyaWFsaXplciB9IGZyb20gJ2plc3QtZW1vdGlvbidcblxuZXhwZWN0LmFkZFNuYXBzaG90U2VyaWFsaXplcihjcmVhdGVFbnp5bWVTZXJpYWxpemVyKCkpXG5leHBlY3QuYWRkU25hcHNob3RTZXJpYWxpemVyKGNyZWF0ZVNlcmlhbGl6ZXIoKSlcblxudGVzdCgnZW56eW1lIG1vdW50IHRlc3QnLCAoKSA9PiB7XG4gIGNvbnN0IEdyZWV0aW5nID0gKHsgY2hpbGRyZW4gfSkgPT4gKFxuICAgIDxkaXYgY3NzPXtjc3MoeyBiYWNrZ3JvdW5kQ29sb3I6ICdyZWQnIH0pfT57Y2hpbGRyZW59PC9kaXY+XG4gIClcbiAgY29uc3QgdHJlZSA9IGVuenltZS5tb3VudCg8R3JlZXRpbmc+aGVsbG88L0dyZWV0aW5nPilcbiAgZXhwZWN0KHRyZWUpLnRvTWF0Y2hTbmFwc2hvdCgpXG59KVxuIl19 */",
+        "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlYWN0LWVuenltZS50ZXN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVljIiwiZmlsZSI6InJlYWN0LWVuenltZS50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICd0ZXN0LXV0aWxzL2xlZ2FjeS1lbnYnXG4vKiogQGpzeCBqc3ggKi9cbmltcG9ydCAqIGFzIGVuenltZSBmcm9tICdlbnp5bWUnXG5pbXBvcnQgeyBjc3MsIGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5pbXBvcnQgeyBjcmVhdGVTZXJpYWxpemVyIGFzIGNyZWF0ZUVuenltZVNlcmlhbGl6ZXIgfSBmcm9tICdlbnp5bWUtdG8tanNvbidcbmltcG9ydCB7IGNyZWF0ZVNlcmlhbGl6ZXIgfSBmcm9tICdqZXN0LWVtb3Rpb24nXG5cbmV4cGVjdC5hZGRTbmFwc2hvdFNlcmlhbGl6ZXIoY3JlYXRlRW56eW1lU2VyaWFsaXplcigpKVxuZXhwZWN0LmFkZFNuYXBzaG90U2VyaWFsaXplcihjcmVhdGVTZXJpYWxpemVyKCkpXG5cbnRlc3QoJ2VuenltZSBtb3VudCB0ZXN0JywgKCkgPT4ge1xuICBjb25zdCBHcmVldGluZyA9ICh7IGNoaWxkcmVuIH0pID0+IChcbiAgICA8ZGl2IGNzcz17Y3NzKHsgYmFja2dyb3VuZENvbG9yOiAncmVkJyB9KX0+e2NoaWxkcmVufTwvZGl2PlxuICApXG4gIGNvbnN0IHRyZWUgPSBlbnp5bWUubW91bnQoPEdyZWV0aW5nPmhlbGxvPC9HcmVldGluZz4pXG4gIGV4cGVjdCh0cmVlKS50b01hdGNoU25hcHNob3QoKVxufSlcbiJdfQ== */",
         "name": "1rveqsm-Greeting",
         "styles": "background-color:red;label:Greeting;",
       }
     }
   >
-    hello
-  </div>
+    <div
+      className="emotion-0"
+    >
+      hello
+    </div>
+  </ForwardRef(render)>
 </Greeting>
 `;

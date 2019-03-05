@@ -1,7 +1,7 @@
 import 'test-utils/legacy-env'
-import React from 'react'
+/** @jsx jsx */
 import * as enzyme from 'enzyme'
-import { css } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
 import { createSerializer as createEnzymeSerializer } from 'enzyme-to-json'
 import { createSerializer } from 'jest-emotion'
 
