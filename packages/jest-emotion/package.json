@@ -22,6 +22,7 @@
   "devDependencies": {
     "dtslint": "^0.3.0",
     "emotion": "^10.0.7",
+    "enzyme-to-json": "^3.3.5",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3"
