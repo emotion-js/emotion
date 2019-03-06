@@ -37,12 +37,11 @@ let transformersSource = {
   '@emotion/css': {
     default: coreCssTransformer
   },
-  // this might be annoying because @emotion/core is special so gonna deal with it later
-  // '@emotion/core': {
-  //   // jsx isn't included here because it's handled differently
-  //   css: coreCssTransformer
-  //   // TODO: maybe write transformers for keyframes and Global
-  // },
+  '@emotion/core': {
+    // jsx isn't included here because it's handled differently
+    css: coreCssTransformer
+    // TODO: maybe write transformers for keyframes and Global
+  },
   '@emotion/styled': {
     default: [
       styledTransformer,
@@ -178,12 +177,17 @@ export default function(babel: *) {
           instancePath => getInstancePathToCompare(instancePath, process.cwd())
         )
         let macros = {}
-        Object.keys(state.opts.importMap).forEach(key => {
-          let value = state.opts.importMap[key]
+        let jsxCoreImports = [['@emotion/core', 'jsx']]
+        Object.keys(state.opts.importMap).forEach(packageName => {
+          let value = state.opts.importMap[packageName]
           let transformers = {}
           Object.keys(value).forEach(localExportName => {
             let { canonicalImport, ...options } = value[localExportName]
             let [packageName, exportName] = canonicalImport
+            if (packageName === '@emotion/core' && exportName === 'jsx') {
+              jsxCoreImports.push([packageName, localExportName])
+              return
+            }
             let packageTransformers = transformersSource[packageName]
             let error = new Error(
               `There is no transformer for the export '${exportName}' in package '${packageName}'`
@@ -197,7 +201,7 @@ export default function(babel: *) {
             }
             transformers[localExportName] = [exportTransformer, options]
           })
-          macros[key] = createTransformerMacro(transformers)
+          macros[packageName] = createTransformerMacro(transformers)
         })
         state.pluginMacros = {
           '@emotion/css': cssMacro,
@@ -211,9 +215,14 @@ export default function(babel: *) {
           for (const node of path.node.body) {
             if (
               t.isImportDeclaration(node) &&
-              node.source.value === '@emotion/core' &&
-              node.specifiers.some(
-                x => t.isImportSpecifier(x) && x.imported.name === 'jsx'
+              jsxCoreImports.some(
+                ([packageName, localImportName]) =>
+                  node.source.value === packageName &&
+                  node.specifiers.some(
+                    x =>
+                      t.isImportSpecifier(x) &&
+                      x.imported.name === localImportName
+                  )
               )
             ) {
               state.transformCssProp = true

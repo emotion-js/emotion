@@ -12,16 +12,16 @@ export function createTransformerMacro(
     if (!isEmotionCall) {
       state.emotionSourceMap = true
     }
-    Object.keys(references).forEach(referenceKey => {
-      if (transformers[referenceKey]) {
-        references[referenceKey].reverse().forEach(reference => {
+    Object.keys(references).forEach(importSpecifierName => {
+      if (transformers[importSpecifierName]) {
+        references[importSpecifierName].reverse().forEach(reference => {
           let options
           let transformer
-          if (Array.isArray(transformers[referenceKey])) {
-            transformer = transformers[referenceKey][0]
-            options = transformers[referenceKey][1]
+          if (Array.isArray(transformers[importSpecifierName])) {
+            transformer = transformers[importSpecifierName][0]
+            options = transformers[importSpecifierName][1]
           } else {
-            transformer = transformers[referenceKey]
+            transformer = transformers[importSpecifierName]
             options = {}
           }
           transformer({
@@ -29,13 +29,14 @@ export function createTransformerMacro(
             babel,
             importPath,
             options,
-            reference
+            reference,
+            importSpecifierName
           })
         })
       } else {
-        references[referenceKey].reverse().forEach(reference => {
+        references[importSpecifierName].reverse().forEach(reference => {
           reference.replaceWith(
-            addImport(state, importPath, referenceKey, reference.name)
+            addImport(state, importPath, importSpecifierName, reference.name)
           )
         })
       }
