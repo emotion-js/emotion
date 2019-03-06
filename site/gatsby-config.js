@@ -69,6 +69,12 @@ module.exports = {
           ]
         }
       },
+      {
+        resolve: `gatsby-plugin-google-analytics`,
+        options: {
+          trackingId: 'UA-101206186-1'
+        }
+      },
       `gatsby-plugin-react-helmet`,
       'gatsby-plugin-sharp',
       'gatsby-transformer-sharp',

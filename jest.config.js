@@ -9,9 +9,14 @@ module.exports = {
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname'
   ],
-  testPathIgnorePatterns: ['/node_modules/', '/__fixtures__/', '/site/'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/__fixtures__/',
+    '/site/',
+    '/types/'
+  ],
   moduleNameMapper: aliases.jest(),
-  setupTestFrameworkScriptFile: '<rootDir>/test/testSetup.js',
+  setupFilesAfterEnv: ['<rootDir>/test/testSetup.js'],
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/packages/babel-plugin-emotion/test/util.js'

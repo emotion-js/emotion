@@ -8,22 +8,12 @@ const globalStyles = css`
     .replace('prism-code', 'prism-code,pre[class*="language-"]')
     .replace(/0\.5rem/g, '')} html, body, #___gatsby {
     font-family: ${fonts.primary};
-    color: #fffeff;
     width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
     -webkit-font-smoothing: antialiased;
   }
-  ${{
-    'p code, li code': {
-      backgroundColor: '#CEF6FF',
-      fontSize: 16
-    },
-    'a code': {
-      backgroundColor: 'inherit'
-    }
-  }};
 
   .gatsby-highlight,
   .prism-code {
@@ -32,8 +22,8 @@ const globalStyles = css`
       ${mq({
         marginLeft: 0,
         marginRight: 0,
-        marginTop: 16,
-        marginBottom: 16,
+        marginTop: 32,
+        marginBottom: 32,
         borderRadius: [0, 4],
         whiteSpace: 'pre-wrap',
         wordBreak: 'break-word',
@@ -63,7 +53,7 @@ const globalStyles = css`
     box-sizing: border-box;
   }
   #___gatsby > div {
-    height: 100%;
+    display: flex;
   }
 `
 
