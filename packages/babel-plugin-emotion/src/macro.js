@@ -5,15 +5,16 @@ import {
   createTransformerMacro
 } from './utils'
 
-let createEmotionTransformer = (imported: string, isPure: boolean) => ({
+let createEmotionTransformer = (isPure: boolean) => ({
   state,
   babel,
   importPath,
-  reference
+  reference,
+  importSpecifierName
 }: Object) => {
   const path = reference.parentPath
 
-  reference.replaceWith(addImport(state, importPath, imported))
+  reference.replaceWith(addImport(state, importPath, importSpecifierName))
   if (isPure) {
     path.addComment('leading', '#__PURE__')
   }
@@ -29,9 +30,9 @@ let createEmotionTransformer = (imported: string, isPure: boolean) => ({
 }
 
 export let transformers = {
-  css: createEmotionTransformer('css', true),
-  injectGlobal: createEmotionTransformer('injectGlobal', false),
-  keyframes: createEmotionTransformer('keyframes', true)
+  css: createEmotionTransformer(true),
+  injectGlobal: createEmotionTransformer(false),
+  keyframes: createEmotionTransformer(true)
 }
 
 export let createEmotionMacro = (instancePath: string) =>

@@ -33,8 +33,16 @@ export const transformCssCallExpression = ({
   }
 }
 
-export let coreCssTransformer = ({ state, babel, importPath, reference }) => {
-  reference.replaceWith(addImport(state, importPath, 'default', 'css'))
+export let coreCssTransformer = ({
+  state,
+  babel,
+  importPath,
+  reference,
+  importSpecifierName
+}) => {
+  reference.replaceWith(
+    addImport(state, importPath, importSpecifierName, 'css')
+  )
   transformCssCallExpression({ babel, state, path: reference.parentPath })
 }
 

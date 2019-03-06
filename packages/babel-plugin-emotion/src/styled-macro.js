@@ -11,13 +11,20 @@ export let styledTransformer = ({
   babel,
   importPath,
   reference,
-  options: { baseImportPath = importPath, isWeb }
+  importSpecifierName,
+  options: {
+    baseImport: [
+      baseImportPath = importPath,
+      baseImportSpecifierName = importSpecifierName
+    ] = [],
+    isWeb
+  }
 }: Object) => {
   let getStyledIdentifier = () => {
-    return addImport(state, baseImportPath, 'default', 'styled')
+    return addImport(state, baseImportPath, baseImportSpecifierName, 'styled')
   }
   let getOriginalImportPathStyledIdentifier = () => {
-    return addImport(state, importPath, 'default', 'styled')
+    return addImport(state, importPath, importSpecifierName, 'styled')
   }
   let t = babel.types
   let isCall = false
@@ -80,6 +87,7 @@ export let styledTransformer = ({
 export let createStyledMacro = ({
   importPath,
   originalImportPath = importPath,
+  baseImportSpecifierName = 'default',
   isWeb
 }: {
   importPath: string,
@@ -91,7 +99,7 @@ export let createStyledMacro = ({
       default: [
         styledTransformer,
         {
-          baseImportPath: importPath,
+          baseImport: [importPath, baseImportSpecifierName],
           isWeb
         }
       ]

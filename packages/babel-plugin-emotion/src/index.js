@@ -178,7 +178,7 @@ export default function(babel: *) {
         )
         let macros = {}
         let jsxCoreImports = [['@emotion/core', 'jsx']]
-        Object.keys(state.opts.importMap).forEach(packageName => {
+        Object.keys(state.opts.importMap || {}).forEach(packageName => {
           let value = state.opts.importMap[packageName]
           let transformers = {}
           Object.keys(value).forEach(localExportName => {
