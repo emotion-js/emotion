@@ -33,9 +33,16 @@ const tester = allOpts => async opts => {
     ast: true,
     filename: opts.babelFileName || __filename
   })
+
+  // Removes absolute paths from the output
+  const normalizedCode = code.replace(
+    /\/(?:\w+\/)+(packages)/,
+    '/path/to/emotion/$1'
+  )
+
   expect(() => checkDuplicatedNodes(babel, ast)).not.toThrow()
 
-  expect(`${rawCode}${separator}${code}`).toMatchSnapshot()
+  expect(`${rawCode}${separator}${normalizedCode}`).toMatchSnapshot()
 }
 
 function doThing(dirname) {
