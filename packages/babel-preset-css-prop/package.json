@@ -13,7 +13,8 @@
     "object-assign": "^4.1.1"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0"
+    "@babel/core": "^7.0.0",
+    "@emotion/core": "^10.0.0"
   },
   "publishConfig": {
     "access": "public"

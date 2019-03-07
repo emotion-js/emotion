@@ -18,7 +18,7 @@ export default (
         pragmatic,
         {
           export: 'jsx',
-          module: '@emotion/core',
+          module: require.resolve('@emotion/core'),
           import: pragmaName
         }
       ],
