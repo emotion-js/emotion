@@ -17,6 +17,11 @@
   "peerDependencies": {
     "@babel/core": "^7.0.0"
   },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "dtslint": "^0.3.0"
   },
