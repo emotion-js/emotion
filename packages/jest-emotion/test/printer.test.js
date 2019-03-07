@@ -1,4 +1,6 @@
 // @flow
+import React from 'react'
+import ReactDOM from 'react-dom'
 import 'test-utils/legacy-env'
 import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'
@@ -37,13 +39,15 @@ describe('jest-emotion with dom elements', () => {
   })
 
   it('replaces class names and inserts styles into DOM element snapshots', () => {
-    const divElement = document.createElement('div')
-    divElement.setAttribute('class', divStyle)
-    const svgElement = document.createElement('svg')
-    svgElement.setAttribute('class', svgStyle)
-    divElement.appendChild(svgElement)
+    const divRef = React.createRef()
+    ReactDOM.render(
+      <div css={divStyle} ref={divRef}>
+        <svg css={svgStyle} />
+      </div>,
+      document.createElement('div')
+    )
 
-    const output = prettyFormat(divElement, {
+    const output = prettyFormat(divRef.current, {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
     })
 
@@ -79,13 +83,15 @@ describe('jest-emotion with DOM elements disabled', () => {
   })
 
   it('does not replace class names or insert styles into DOM element snapshots', () => {
-    const divElement = document.createElement('div')
-    divElement.setAttribute('class', divStyle)
-    const svgElement = document.createElement('svg')
-    svgElement.setAttribute('class', svgStyle)
-    divElement.appendChild(svgElement)
+    const divRef = React.createRef()
+    ReactDOM.render(
+      <div css={divStyle} ref={divRef}>
+        <svg css={svgStyle} />
+      </div>,
+      document.createElement('div')
+    )
 
-    const output = prettyFormat(divElement, {
+    const output = prettyFormat(divRef.current, {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
     })
 
