@@ -1,5 +1,4 @@
 import 'test-utils/legacy-env'
-import React from 'react'
 import renderer from 'react-test-renderer'
 /** @jsx jsx */
 import * as enzyme from 'enzyme'
@@ -20,7 +19,7 @@ describe('toHaveStyleRule', () => {
     width: 100%;
   `
 
-  const enzymeMethods = ['shallow', 'mount', 'render']
+  const enzymeMethods = ['mount', 'render']
 
   it('matches styles on the top-most node passed in', () => {
     const tree = renderer
