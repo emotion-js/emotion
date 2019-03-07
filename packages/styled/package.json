@@ -14,6 +14,9 @@
     "@emotion/styled-base": "^10.0.7",
     "babel-plugin-emotion": "^10.0.7"
   },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0"
+  },
   "devDependencies": {
     "dtslint": "^0.3.0"
   },
