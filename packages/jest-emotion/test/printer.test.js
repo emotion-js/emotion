@@ -5,7 +5,7 @@ import 'test-utils/legacy-env'
 import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'
 /** @jsx jsx */
-import { css, jsx, ClassNames } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
 import { createSerializer } from 'jest-emotion'
 import { ignoreConsoleErrors } from 'test-utils'
 
@@ -102,19 +102,12 @@ describe('jest-emotion with DOM elements disabled', () => {
 test('does not replace class names that are not from emotion', () => {
   let tree = renderer
     .create(
-      <ClassNames>
-        {({ css: classNamesCss, cx }) => (
-          <div
-            className={cx([
-              'net-42',
-              'net',
-              classNamesCss`
-                color: darkorchid;
-              `
-            ])}
-          />
-        )}
-      </ClassNames>
+      <div
+        className="net-42 net"
+        css={css`
+          color: darkorchid;
+        `}
+      />
     )
     .toJSON()
 
