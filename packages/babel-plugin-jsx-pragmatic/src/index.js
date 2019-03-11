@@ -2,7 +2,6 @@ import syntaxJsx from '@babel/plugin-syntax-jsx'
 
 export default function jsxPragmatic(babel) {
   const t = babel.types
-
   function getPragmaImport(state) {
     return t.importDeclaration(
       [
