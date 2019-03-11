@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`import mapping non-default-styled 1`] = `
+"import { nonDefaultStyled } from 'package-one'
+
+let SomeComp = nonDefaultStyled.div({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { nonDefaultStyled as _styled } from \\"package-one\\";
+
+let SomeComp = _styled(\\"div\\", {
+  target: \\"e1nqcgbi0\\",
+  label: \\"SomeComp\\"
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+} : {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vbi1kZWZhdWx0LXN0eWxlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFZSIsImZpbGUiOiJub24tZGVmYXVsdC1zdHlsZWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBub25EZWZhdWx0U3R5bGVkIH0gZnJvbSAncGFja2FnZS1vbmUnXG5cbmxldCBTb21lQ29tcCA9IG5vbkRlZmF1bHRTdHlsZWQuZGl2KHsgY29sb3I6ICdob3RwaW5rJyB9KVxuIl19 */\\"
+});"
+`;

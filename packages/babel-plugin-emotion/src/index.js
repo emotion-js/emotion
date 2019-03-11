@@ -195,13 +195,21 @@ export default function(babel: *) {
             if (packageTransformers === undefined) {
               throw error
             }
-            let exportTransformer = packageTransformers[exportName]
+            let [exportTransformer, defaultOptions] = packageTransformers[
+              exportName
+            ]
             if (packageTransformers === undefined) {
               throw error
             }
-            transformers[localExportName] = [exportTransformer, options]
+            transformers[localExportName] = [
+              exportTransformer,
+              { ...defaultOptions, ...options }
+            ]
           })
-          macros[packageName] = createTransformerMacro(transformers)
+          macros[packageName] = createTransformerMacro(
+            transformers,
+            packageName
+          )
         })
         state.pluginMacros = {
           '@emotion/css': cssMacro,
@@ -209,7 +217,8 @@ export default function(babel: *) {
           '@emotion/core': emotionCoreMacroThatsNotARealMacro,
           '@emotion/primitives': primitivesStyledMacro,
           '@emotion/native': nativeStyledMacro,
-          emotion: createEmotionMacro('emotion')
+          emotion: createEmotionMacro('emotion'),
+          ...macros
         }
         if (state.opts.cssPropOptimization === undefined) {
           for (const node of path.node.body) {
