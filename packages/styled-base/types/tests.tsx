@@ -242,3 +242,35 @@ declare const ref3_2: (element: HTMLDivElement | null) => void
 ;<StyledClass3 column={true} ref={ref3_1} />
 // $ExpectError
 ;<StyledClass3 column={true} ref={ref3_2} />
+
+{
+  interface Book {
+    kind: 'book'
+    author: string
+  }
+
+  interface Magazine {
+    kind: 'magazine'
+    issue: number
+  }
+
+  type SomethingToRead = Book | Magazine
+
+  const Readable: React.SFC<SomethingToRead> = props => {
+    if (props.kind === 'magazine') {
+      return <div>magazine #{props.issue}</div>
+    }
+
+    return <div>magazine #{props.author}</div>
+  }
+
+  const StyledReadable = styled(Readable)`
+    font-size: ${props => (props.kind === 'book' ? 16 : 14)};
+  `
+
+  ;<Readable kind="book" author="Hejlsberg" />
+  ;<StyledReadable kind="book" author="Hejlsberg" />
+
+  ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
+  ;<StyledReadable kind="magazine" author="Hejlsberg" /> // $ExpectError
+}

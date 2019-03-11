@@ -43,3 +43,33 @@ typedWithTheme(CompSFC)
  * Following line should report an error.
  */
 typedWithTheme((props: { value: number }) => null)
+
+{
+  interface Book {
+    kind: 'book'
+    author: string
+  }
+
+  interface Magazine {
+    kind: 'magazine'
+    issue: number
+  }
+
+  type SomethingToRead = (Book | Magazine) & { theme?: any }
+
+  const Readable: React.SFC<SomethingToRead> = props => {
+    if (props.kind === 'magazine') {
+      return <div>magazine #{props.issue}</div>
+    }
+
+    return <div>magazine #{props.author}</div>
+  }
+
+  const ThemedReadable = withTheme(Readable)
+
+  ;<Readable kind="book" author="Hejlsberg" />
+  ;<ThemedReadable kind="book" author="Hejlsberg" />
+
+  ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
+  ;<ThemedReadable kind="magazine" author="Hejlsberg" /> // $ExpectError
+}
