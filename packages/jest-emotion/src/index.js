@@ -53,6 +53,12 @@ export function createSerializer({
 }: Options = {}) {
   let cache = new WeakSet()
   function print(val: *, printer: Function) {
+    if (
+      val.$$typeof === Symbol.for('react.test.json') &&
+      val.type === 'EmotionCssPropInternal'
+    ) {
+      return val.children.map(printer).join('\n')
+    }
     const nodes = getNodes(val)
     const classNames = getClassNamesFromNodes(nodes)
     let elements = getStyleElements()
@@ -73,8 +79,10 @@ export function createSerializer({
   function test(val: *) {
     return (
       val &&
-      !cache.has(val) &&
-      (isReactElement(val) || (DOMElements && isDOMElement(val)))
+      ((!cache.has(val) &&
+        (isReactElement(val) || (DOMElements && isDOMElement(val)))) ||
+        (val.$$typeof === Symbol.for('react.test.json') &&
+          val.type === 'EmotionCssPropInternal'))
     )
   }
   return { test, print }

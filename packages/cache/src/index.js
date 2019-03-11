@@ -11,7 +11,6 @@ let isBrowser = typeof document !== 'undefined'
 export type PrefixOption =
   | boolean
   | ((key: string, value: string, context: 1 | 2 | 3) => boolean)
-
 type StylisPlugins = StylisPlugin[] | StylisPlugin
 
 export type Options = {
