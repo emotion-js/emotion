@@ -20,11 +20,15 @@
     "object-assign": "^4.1.1"
   },
   "devDependencies": {
+    "@emotion/core": "^10.0.7",
     "dtslint": "^0.3.0",
     "emotion": "^10.0.7",
+    "enzyme-to-json": "^3.3.5",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
-    "pretty-format": "^22.4.3"
+    "pretty-format": "^22.4.3",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

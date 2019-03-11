@@ -1,8 +1,8 @@
 import 'test-utils/legacy-env'
-import React from 'react'
 import renderer from 'react-test-renderer'
+/** @jsx jsx */
 import * as enzyme from 'enzyme'
-import * as emotion from 'emotion'
+import { css, jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import { matchers } from 'jest-emotion'
 
@@ -11,21 +11,21 @@ const { toHaveStyleRule } = matchers
 expect.extend(matchers)
 
 describe('toHaveStyleRule', () => {
-  const divStyle = emotion.css`
+  const divStyle = css`
     color: red;
   `
 
-  const svgStyle = emotion.css`
+  const svgStyle = css`
     width: 100%;
   `
 
-  const enzymeMethods = ['shallow', 'mount', 'render']
+  const enzymeMethods = ['mount', 'render']
 
   it('matches styles on the top-most node passed in', () => {
     const tree = renderer
       .create(
-        <div className={divStyle}>
-          <svg className={svgStyle} />
+        <div css={divStyle}>
+          <svg css={svgStyle} />
         </div>
       )
       .toJSON()
@@ -42,8 +42,8 @@ describe('toHaveStyleRule', () => {
   it('supports asymmetric matchers', () => {
     const tree = renderer
       .create(
-        <div className={divStyle}>
-          <svg className={svgStyle} />
+        <div css={divStyle}>
+          <svg css={svgStyle} />
         </div>
       )
       .toJSON()
@@ -58,8 +58,8 @@ describe('toHaveStyleRule', () => {
 
   it('supports enzyme render methods', () => {
     const Component = () => (
-      <div className={divStyle}>
-        <svg className={svgStyle} />
+      <div css={divStyle}>
+        <svg css={svgStyle} />
       </div>
     )
 
@@ -105,12 +105,12 @@ describe('toHaveStyleRule', () => {
   })
 
   it('supports regex values', () => {
-    const tree = renderer.create(<div className={divStyle} />).toJSON()
+    const tree = renderer.create(<div css={divStyle} />).toJSON()
     expect(tree).toHaveStyleRule('color', /red/)
   })
 
   it.skip('returns a message explaining the failure', () => {
-    const tree = renderer.create(<div className={divStyle} />).toJSON()
+    const tree = renderer.create(<div css={divStyle} />).toJSON()
 
     // When expect(tree).toHaveStyleRule('color', 'blue') fails
     const resultFail = toHaveStyleRule(tree, 'color', 'blue')
@@ -122,19 +122,19 @@ describe('toHaveStyleRule', () => {
   })
 
   it('matches styles on the focus, hover targets', () => {
-    const localDivStyle = emotion.css`
+    const localDivStyle = css`
       color: white;
-        &:hover {
-          color: yellow;
-        }
-         &:focus {
-          color: black;
-        }
+      &:hover {
+        color: yellow;
+      }
+      &:focus {
+        color: black;
+      }
     `
     const tree = renderer
       .create(
-        <div className={localDivStyle}>
-          <svg className={svgStyle} />
+        <div css={localDivStyle}>
+          <svg css={svgStyle} />
         </div>
       )
       .toJSON()
@@ -178,10 +178,10 @@ describe('toHaveStyleRule', () => {
     const tree = renderer
       .create(
         <div
-          className={emotion.css`
-        color: green;
-        color: hotpink;
-      `}
+          css={css`
+            color: green;
+            color: hotpink;
+          `}
         />
       )
       .toJSON()
@@ -233,18 +233,18 @@ describe('toHaveStyleRule', () => {
   })
 
   it('matches styles with target and media options', () => {
-    const localDivStyle = emotion.css`
+    const localDivStyle = css`
       color: white;
       @media (min-width: 420px) {
         color: green;
-          &:hover {
+        &:hover {
           color: yellow;
         }
       }
     `
     const tree = renderer
       .create(
-        <div className={localDivStyle}>
+        <div css={localDivStyle}>
           <span>Test</span>
         </div>
       )
