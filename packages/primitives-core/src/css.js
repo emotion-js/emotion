@@ -13,11 +13,6 @@ let lastType
 function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
   let type = typeof interpolation
 
-  if (type === 'string') {
-    // strip comments
-    interpolation = interpolation.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '')
-  }
-
   if (type === 'function') {
     if (this === undefined) {
       if (process.env.NODE_ENV !== 'production') {
@@ -76,6 +71,45 @@ function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
   lastType = type
 }
 
+function stripComments(vals: *) {
+  return vals.reduce(
+    (soFar, interpolation) => {
+      const { insideComment, vals } = soFar
+      const type = typeof interpolation
+      if (type === 'string') {
+        // Cleanup properly enclosed comments first
+        if (/\/\*[\s\S]*?\*\/|\/\/.*$/gm.test(interpolation)) {
+          interpolation = interpolation.replace(
+            /\/\*[\s\S]*?\*\/|\/\/.*$/gm,
+            ''
+          )
+        }
+        // Then check for tail closing comments
+        if (/^[\s\S]*?\*\//gm.test(interpolation)) {
+          interpolation = interpolation.replace(/^[\s\S]*?\*\//gm, '')
+          soFar.insideComment = false
+        } else if (insideComment) {
+          // Nothing left to do as we haven't closed the previously opened comment
+          return soFar
+        }
+        // Finally look for any remaining opening comments
+        if (/\/\*[\s\S]*?$/gm.test(interpolation)) {
+          interpolation = interpolation.replace(/\/\*[\s\S]*?$/gm, '')
+          soFar.insideComment = true
+        }
+      } else if (insideComment) {
+        // Skip interpolation as we're still inside a comment
+        return soFar
+      }
+      if (interpolation) {
+        vals.push(interpolation)
+      }
+      return soFar
+    },
+    { vals: [], insideComment: false }
+  ).vals
+}
+
 // Use platform specific StyleSheet method for creating the styles.
 // This enables us to use the css``/css({}) in any environment (Native | Sketch | Web)
 export function createCss(StyleSheet: Object) {
@@ -95,7 +129,7 @@ export function createCss(StyleSheet: Object) {
       vals = interleave(args)
     }
 
-    vals.forEach(handleInterpolation, this)
+    stripComments(vals).forEach(handleInterpolation, this)
 
     return StyleSheet.flatten(styles)
   }
