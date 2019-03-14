@@ -15,3 +15,15 @@ test('enzyme mount test', () => {
   const tree = enzyme.mount(<Greeting>hello</Greeting>)
   expect(tree).toMatchSnapshot()
 })
+
+test.only('enzyme test with prop containing css element', () => {
+  const Greeting = ({ children, content }) => (
+    <div css={{ width: '100%' }}>{children}</div>
+  )
+  const tree = enzyme.mount(
+    <Greeting content={<p css={{ background: 'red' }}>hello</p>}>
+      hello
+    </Greeting>
+  )
+  expect(tree).toMatchSnapshot()
+})
