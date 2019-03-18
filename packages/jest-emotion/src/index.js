@@ -4,6 +4,8 @@ import { replaceClassNames } from './replace-class-names'
 import {
   getClassNamesFromNodes,
   isReactElement,
+  isReactForwardRef,
+  isEmotionElement,
   isDOMElement,
   getStylesFromClassNames,
   getStyleElements,
@@ -47,16 +49,40 @@ type Options = {
   DOMElements?: boolean
 }
 
+function filterEmotionProps(props = {}) {
+  const { css, __EMOTION_TYPE_PLEASE_DO_NOT_USE__, ...rest } = props
+
+  return rest
+}
+
+function formatEmotionForwardRefs(props = {}) {
+  let nextProps = props
+
+  Object.keys(props)
+    .filter(key => isReactForwardRef(props[key]))
+    .forEach(key => {
+      const { __EMOTION_TYPE_PLEASE_DO_NOT_USE__: componentType } = props[
+        key
+      ].props
+
+      nextProps[key] = {
+        ...props[key],
+        props: filterEmotionProps(props[key].props)
+      }
+
+      nextProps[key].type = `CssProp(${componentType})`
+    })
+
+  return nextProps
+}
+
 export function createSerializer({
   classNameReplacer,
   DOMElements = true
 }: Options = {}) {
   let cache = new WeakSet()
   function print(val: *, printer: Function) {
-    if (
-      val.$$typeof === Symbol.for('react.test.json') &&
-      val.type === 'EmotionCssPropInternal'
-    ) {
+    if (isEmotionElement(val)) {
       return val.children.map(printer).join('\n')
     }
     const nodes = getNodes(val)
@@ -64,6 +90,7 @@ export function createSerializer({
     let elements = getStyleElements()
     const styles = getPrettyStylesFromClassNames(classNames, elements)
     nodes.forEach(cache.add, cache)
+    val.props = formatEmotionForwardRefs(val.props)
     const printedVal = printer(val)
     nodes.forEach(cache.delete, cache)
     let keys = getKeys(elements)
@@ -81,8 +108,7 @@ export function createSerializer({
       val &&
       ((!cache.has(val) &&
         (isReactElement(val) || (DOMElements && isDOMElement(val)))) ||
-        (val.$$typeof === Symbol.for('react.test.json') &&
-          val.type === 'EmotionCssPropInternal'))
+        isEmotionElement(val))
     )
   }
   return { test, print }
