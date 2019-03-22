@@ -17,3 +17,137 @@ exports[`enzyme mount test 1`] = `
   </div>
 </Greeting>
 `;
+
+exports[`enzyme test with prop containing css element 1`] = `
+.emotion-0 {
+  background-color: blue;
+}
+
+.emotion-0 {
+  background-color: blue;
+}
+
+<Greeting
+  content={
+    <p
+      css="unknown styles"
+    >
+      Hello
+    </p>
+  }
+>
+  <div>
+    <p
+      className="emotion-0"
+    >
+      Hello
+    </p>
+     
+    World!
+  </div>
+</Greeting>
+`;
+
+exports[`enzyme test with prop containing css element not at the top level 1`] = `
+.emotion-0 {
+  background-color: blue;
+}
+
+.emotion-0 {
+  background-color: blue;
+}
+
+<div>
+  <Greeting
+    content={
+      <p
+        css="unknown styles"
+        id="something"
+      >
+        Hello
+      </p>
+    }
+  >
+    <div>
+      <p
+        className="emotion-0"
+        id="something"
+      >
+        Hello
+      </p>
+       
+      World!
+    </div>
+  </Greeting>
+</div>
+`;
+
+exports[`enzyme test with prop containing css element with other label 1`] = `
+.emotion-0 {
+  background-color: blue;
+}
+
+.emotion-0 {
+  background-color: blue;
+}
+
+<Greeting
+  content={
+    <p
+      css="unknown styles"
+      id="something"
+    >
+      Hello
+    </p>
+  }
+>
+  <Thing
+    content={
+      <div
+        css="unknown styles"
+      />
+    }
+  >
+    <p
+      className="emotion-0"
+      id="something"
+    >
+      Hello
+    </p>
+     
+    World!
+  </Thing>
+</Greeting>
+`;
+
+exports[`enzyme test with prop containing css element with other props 1`] = `
+.emotion-0 {
+  background-color: blue;
+}
+
+.emotion-0 {
+  background-color: blue;
+}
+
+<Greeting
+  content={
+    <p
+      css="unknown styles"
+      id="something"
+    >
+      Hello
+    </p>
+  }
+>
+  <div>
+    <p
+      className="emotion-0"
+      id="something"
+    >
+      Hello
+    </p>
+     
+    World!
+  </div>
+</Greeting>
+`;

@@ -4,6 +4,8 @@ import { replaceClassNames } from './replace-class-names'
 import {
   getClassNamesFromNodes,
   isReactElement,
+  isEmotionCssPropElementType,
+  isEmotionCssPropEnzymeElement,
   isDOMElement,
   getStylesFromClassNames,
   getStyleElements,
@@ -47,17 +49,34 @@ type Options = {
   DOMElements?: boolean
 }
 
+function filterEmotionProps(props = {}) {
+  const {
+    css,
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__,
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__,
+    ...rest
+  } = props
+
+  rest.css = 'unknown styles'
+
+  return rest
+}
+
 export function createSerializer({
   classNameReplacer,
   DOMElements = true
 }: Options = {}) {
   let cache = new WeakSet()
   function print(val: *, printer: Function) {
-    if (
-      val.$$typeof === Symbol.for('react.test.json') &&
-      val.type === 'EmotionCssPropInternal'
-    ) {
+    if (isEmotionCssPropEnzymeElement(val)) {
       return val.children.map(printer).join('\n')
+    }
+    if (isEmotionCssPropElementType(val)) {
+      return printer({
+        ...val,
+        props: filterEmotionProps(val.props),
+        type: val.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+      })
     }
     const nodes = getNodes(val)
     const classNames = getClassNamesFromNodes(nodes)
@@ -81,8 +100,8 @@ export function createSerializer({
       val &&
       ((!cache.has(val) &&
         (isReactElement(val) || (DOMElements && isDOMElement(val)))) ||
-        (val.$$typeof === Symbol.for('react.test.json') &&
-          val.type === 'EmotionCssPropInternal'))
+        isEmotionCssPropEnzymeElement(val) ||
+        isEmotionCssPropElementType(val))
     )
   }
   return { test, print }
