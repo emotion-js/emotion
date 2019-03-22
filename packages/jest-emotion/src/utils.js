@@ -44,7 +44,7 @@ export function isReactElement(val: any): boolean {
   return val.$$typeof === Symbol.for('react.test.json')
 }
 
-export function isReactForwardRef(val: any): boolean {
+export function isEmotionCssPropElementType(val: any): boolean {
   return (
     val.$$typeof === Symbol.for('react.element') &&
     val.type.$$typeof === Symbol.for('react.forward_ref') &&
@@ -52,13 +52,12 @@ export function isReactForwardRef(val: any): boolean {
   )
 }
 
-export function isEmotionElement(val: any): boolean {
+export function isEmotionCssPropEnzymeElement(val: any): boolean {
   return (
     val.$$typeof === Symbol.for('react.test.json') &&
     val.type === 'EmotionCssPropInternal'
   )
 }
-
 const domElementPattern = /^((HTML|SVG)\w*)?Element$/
 
 export function isDOMElement(val: any): boolean {
