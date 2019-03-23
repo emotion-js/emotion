@@ -1,5 +1,5 @@
 // @flow
-export { withEmotionCache, CacheProvider, ThemeContext } from './context'
+export { withEmotionCache, CacheProvider, ThemeContext, EmotionCacheContext } from './context'
 export { jsx } from './jsx'
 export { Global } from './global'
 export { keyframes } from './keyframes'

@@ -4,7 +4,7 @@ import * as React from 'react'
 import createCache from '@emotion/cache'
 import { isBrowser } from './utils'
 
-let EmotionCacheContext: React.Context<EmotionCache | null> = React.createContext(
+export let EmotionCacheContext: React.Context<EmotionCache | null> = React.createContext(
   isBrowser ? createCache() : null
 )
 
