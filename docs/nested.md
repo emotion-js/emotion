@@ -51,3 +51,36 @@ render(
   </div>
 )
 ```
+
+You can also nest generated classnames:
+
+```jsx
+// @live
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
+
+const header = css`
+  padding: 16px;
+  border: 1px solid #ddd;
+`
+
+const paragraph = css`
+  color: turquoise;
+
+  .css-${header.name} & {
+    color: green;
+  }
+`
+render(
+  <div>
+    <header css={header}>
+      <p css={paragraph}>
+        This is green since it's inside a header
+      </p>
+    </header>
+    <p css={paragraph}>
+      This is turquoise since it's not inside a header.
+    </p>
+  </div>
+)
+```
