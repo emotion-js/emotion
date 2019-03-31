@@ -111,3 +111,56 @@ test('emotion plugins - @styled-system/css', () => {
 />
 `)
 })
+
+test('why this exact api would cause a problem', () => {
+  let cache = createCache({
+    emotionPlugins: [styledSystemCss]
+  })
+
+  let SomeComponentFromNpm = props => {
+    // let's say i'm an author of a library using emotion
+    // i want to apply padding: 2px to my element and that's it
+    return <p css={{ padding: 2 }}>i want this to have padding: 2px</p>
+  }
+  // as a consumer of the above component, i don't want to have to care that it uses emotion
+  // and i especially don't want it to break because of how i'm using emotion in my app
+
+  expect(
+    render(
+      <CacheProvider value={cache}>
+        <div>
+          <SomeComponentFromNpm />
+          <div
+            css={{
+              padding: 4
+            }}
+          >
+            i want this to have the padding value at the index 4 from the space
+            thing
+          </div>
+        </div>
+      </CacheProvider>
+    )
+  ).toMatchInlineSnapshot(`
+.emotion-0 {
+  padding: 8px;
+}
+
+.emotion-1 {
+  padding: 32px;
+}
+
+<div>
+  <p
+    className="emotion-0"
+  >
+    i want this to have padding: 2px
+  </p>
+  <div
+    className="emotion-1"
+  >
+    i want this to have the padding value at the index 4 from the space thing
+  </div>
+</div>
+`)
+})
