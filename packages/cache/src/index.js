@@ -18,12 +18,11 @@ export type PrefixOption =
   | boolean
   | ((key: string, value: string, context: 1 | 2 | 3) => boolean)
 type StylisPlugins = StylisPlugin[] | StylisPlugin
-type EmotionPlugins = EmotionPlugin[] | EmotionPlugin
 
 export type Options = {
   nonce?: string,
   stylisPlugins?: StylisPlugins,
-  emotionPlugins?: EmotionPlugins,
+  emotionPlugins?: Array<EmotionPlugin>,
   prefix?: PrefixOption,
   key?: string,
   container?: HTMLElement,
