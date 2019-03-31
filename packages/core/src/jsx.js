@@ -16,8 +16,16 @@ let render = (cache, props, theme: null | Object, ref) => {
   let registeredStyles = []
 
   let className = ''
+  let emotionPlugins = cache.emotionPlugins
+  let rawCssPropValue = theme === null ? props.css : props.css(theme)
 
-  let cssProp = theme === null ? props.css : props.css(theme)
+  let cssProp =
+    emotionPlugins && emotionPlugins.length
+      ? emotionPlugins.reduce((accum, plugin) => {
+          const result = plugin(accum)
+          return typeof result === 'function' ? result(theme || {}) : result
+        }, rawCssPropValue)
+      : rawCssPropValue
 
   // so that using `css` from `emotion` and passing the result to the css prop works
   // not passing the registered cache to serializeStyles because it would

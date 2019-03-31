@@ -1,6 +1,10 @@
 // @flow
 import { StyleSheet } from '@emotion/sheet'
-import { type EmotionCache, type SerializedStyles } from '@emotion/utils'
+import {
+  type EmotionCache,
+  type SerializedStyles,
+  type Interpolation
+} from '@emotion/utils'
 import Stylis from '@emotion/stylis'
 import weakMemoize from '@emotion/weak-memoize'
 import { Sheet, removeLabel, ruleSheet } from './stylis-plugins'
@@ -8,14 +12,18 @@ import type { StylisPlugin } from './types'
 
 let isBrowser = typeof document !== 'undefined'
 
+type EmotionPlugin = (args: Array<Interpolation>) => Array<Interpolation>
+
 export type PrefixOption =
   | boolean
   | ((key: string, value: string, context: 1 | 2 | 3) => boolean)
 type StylisPlugins = StylisPlugin[] | StylisPlugin
+type EmotionPlugins = EmotionPlugin[] | EmotionPlugin
 
 export type Options = {
   nonce?: string,
   stylisPlugins?: StylisPlugins,
+  emotionPlugins?: EmotionPlugins,
   prefix?: PrefixOption,
   key?: string,
   container?: HTMLElement,
@@ -238,6 +246,7 @@ let createCache = (options?: Options): EmotionCache => {
       nonce: options.nonce,
       speedy: options.speedy
     }),
+    emotionPlugins: options.emotionPlugins,
     nonce: options.nonce,
     inserted,
     registered: {},

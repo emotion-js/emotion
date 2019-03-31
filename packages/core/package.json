@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@emotion/styled": "^10.0.10",
+    "@styled-system/css": "^1.0.2",
     "@types/react": "16.3.18",
     "dtslint": "^0.3.0",
     "emotion": "^10.0.9",

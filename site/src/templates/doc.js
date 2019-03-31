@@ -10,6 +10,7 @@ import Layout from '../layouts'
 import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
 import Title from '../components/Title'
+import { Helmet } from 'react-helmet'
 
 type Props = {
   data: {
@@ -98,6 +99,13 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
     const { doc, avatar } = data
     return (
       <Layout sidebarOpen={this.state.sidebarOpen}>
+        <Helmet>
+          <title>
+            {doc.frontmatter.title
+              ? `${doc.frontmatter.title} - Emotion`
+              : 'Emotion'}
+          </title>
+        </Helmet>
         <DocWrapper
           sidebarOpen={this.state.sidebarOpen}
           setSidebarOpen={this.setSidebarOpen}
