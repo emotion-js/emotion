@@ -1,18 +1,12 @@
 // @flow
 import { StyleSheet } from '@emotion/sheet'
-import {
-  type EmotionCache,
-  type SerializedStyles,
-  type Interpolation
-} from '@emotion/utils'
+import { type EmotionCache, type SerializedStyles } from '@emotion/utils'
 import Stylis from '@emotion/stylis'
 import weakMemoize from '@emotion/weak-memoize'
 import { Sheet, removeLabel, ruleSheet } from './stylis-plugins'
 import type { StylisPlugin } from './types'
 
 let isBrowser = typeof document !== 'undefined'
-
-type EmotionPlugin = (args: Array<Interpolation>) => Array<Interpolation>
 
 export type PrefixOption =
   | boolean
@@ -22,7 +16,7 @@ type StylisPlugins = StylisPlugin[] | StylisPlugin
 export type Options = {
   nonce?: string,
   stylisPlugins?: StylisPlugins,
-  emotionPlugins?: Array<EmotionPlugin>,
+  emotionPlugins?: Array<(any) => any>,
   prefix?: PrefixOption,
   key?: string,
   container?: HTMLElement,

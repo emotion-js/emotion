@@ -20,7 +20,7 @@ let render = (cache, props, theme: null | Object, ref) => {
   let rawCssPropValue = theme === null ? props.css : props.css(theme)
 
   let cssProp =
-    emotionPlugins && emotionPlugins.length
+    emotionPlugins !== undefined
       ? emotionPlugins.reduce((accum, plugin) => {
           const result = plugin(accum)
           return typeof result === 'function' ? result(theme || {}) : result

@@ -22,7 +22,7 @@ export type EmotionCache = {
   key: string,
   compat?: true,
   nonce?: string,
-  emotionPlugins?: Array<(args: Array<Interpolation>) => Array<Interpolation>>,
+  emotionPlugins?: Array<(any) => any>,
   insert: (
     selector: string,
     serialized: SerializedStyles,
