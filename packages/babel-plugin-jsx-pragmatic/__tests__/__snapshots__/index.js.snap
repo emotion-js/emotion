@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`@emotion/babel-plugin-jsx-pragmatic css-prop 1`] = `
+"import React from 'react'
+
+export default () => <p css={{ backgroundColor: 'hotpink' }}>hello</p>
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+import React from 'react';
+export default (() => <p css={{
+  backgroundColor: 'hotpink'
+}}>hello</p>);"
+`;
+
 exports[`@emotion/babel-plugin-jsx-pragmatic fragment-only 1`] = `
 "import * as React from 'react'
 
@@ -8,7 +23,6 @@ const F = () => <></>
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
 import * as React from 'react';
 
 const F = () => <></>;"
@@ -22,7 +36,6 @@ const P = () => <p />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
 import * as React from 'react';
 
 const P = () => <p />;"

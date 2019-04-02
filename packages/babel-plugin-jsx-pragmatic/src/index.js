@@ -34,11 +34,15 @@ export default function jsxPragmatic(babel) {
         }
       },
 
-      JSXElement: function(path, state) {
-        state.set('jsxDetected', true)
-      },
-      JSXFragment: function(path, state) {
-        state.set('jsxDetected', true)
+      // jsx components with a prop called 'css'
+      JSXIdentifier: function(path, state) {
+        if (
+          path.node.name === 'css' &&
+          path.parentPath &&
+          t.isJSXAttribute(path.parentPath.node)
+        ) {
+          state.set('jsxDetected', true)
+        }
       }
     }
   }
