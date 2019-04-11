@@ -89,7 +89,7 @@ A React component that passes the theme object down the component tree via [cont
 _Accepts:_
 
 - **`children`: React.Node**
-- **`theme`: Object|Object => Object** - An object or function that provides an object.
+- **`theme`: Object|Function => Object** - An object or function that provides an object.
 
 ```jsx
 import React from 'react'
