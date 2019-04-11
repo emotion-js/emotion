@@ -128,18 +128,6 @@
     "@babel/traverse" "^7.0.0"
     "@babel/types" "^7.0.0"
 
-"@babel/helper-create-class-features-plugin@^7.4.0":
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.4.3.tgz#5bbd279c6c3ac6a60266b89bbfe7f8021080a1ef"
-  integrity sha512-UMl3TSpX11PuODYdWGrUeW6zFkdYhDn7wRLrOuNVM6f9L+S9CzmDXYyrp3MTHcwWjnzur1f/Op8A7iYZWya2Yg==
-  dependencies:
-    "@babel/helper-function-name" "^7.1.0"
-    "@babel/helper-member-expression-to-functions" "^7.0.0"
-    "@babel/helper-optimise-call-expression" "^7.0.0"
-    "@babel/helper-plugin-utils" "^7.0.0"
-    "@babel/helper-replace-supers" "^7.4.0"
-    "@babel/helper-split-export-declaration" "^7.4.0"
-
 "@babel/helper-define-map@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-define-map/-/helper-define-map-7.0.0.tgz#a5684dd2adf30f0137cf9b0bde436f8c2db17225"
@@ -271,16 +259,6 @@
     "@babel/traverse" "^7.0.0"
     "@babel/types" "^7.0.0"
 
-"@babel/helper-replace-supers@^7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@babel/helper-replace-supers/-/helper-replace-supers-7.4.0.tgz#4f56adb6aedcd449d2da9399c2dcf0545463b64c"
-  integrity sha512-PVwCVnWWAgnal+kJ+ZSAphzyl58XrFeSKSAJRiqg5QToTsjL+Xu1f9+RJ+d+Q0aPhPfBGaYfkox66k86thxNSg==
-  dependencies:
-    "@babel/helper-member-expression-to-functions" "^7.0.0"
-    "@babel/helper-optimise-call-expression" "^7.0.0"
-    "@babel/traverse" "^7.4.0"
-    "@babel/types" "^7.4.0"
-
 "@babel/helper-simple-access@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-simple-access/-/helper-simple-access-7.0.0.tgz#ff36a27983ae4c27122da2f7f294dced80ecbd08"
@@ -402,14 +380,6 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/helper-replace-supers" "^7.0.0"
     "@babel/plugin-syntax-class-properties" "^7.0.0"
-
-"@babel/plugin-proposal-class-properties@^7.3.4":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-properties/-/plugin-proposal-class-properties-7.4.0.tgz#d70db61a2f1fd79de927eea91f6411c964e084b8"
-  integrity sha512-t2ECPNOXsIeK1JxJNKmgbzQtoG27KIlVE61vTqX0DKR9E9sZlVVxWUtEW9D5FlZ8b8j7SBNCHY47GgPKCKlpPg==
-  dependencies:
-    "@babel/helper-create-class-features-plugin" "^7.4.0"
-    "@babel/helper-plugin-utils" "^7.0.0"
 
 "@babel/plugin-proposal-export-default-from@^7.0.0":
   version "7.2.0"
@@ -1050,7 +1020,7 @@
     globals "^11.1.0"
     lodash "^4.17.10"
 
-"@babel/traverse@^7.1.0", "@babel/traverse@^7.4.0", "@babel/traverse@^7.4.3":
+"@babel/traverse@^7.1.0", "@babel/traverse@^7.4.3":
   version "7.4.3"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.4.3.tgz#1a01f078fc575d589ff30c0f71bf3c3d9ccbad84"
   integrity sha512-HmA01qrtaCwwJWpSKpA948cBvU5BrmviAief/b3AVw936DtcdsTexlbyzNuDnthwhOQ37xshn7hvQaEQk7ISYQ==
@@ -3639,6 +3609,11 @@ babel-messages@^6.23.0:
   dependencies:
     babel-runtime "^6.22.0"
 
+babel-plugin-add-basic-constructor-for-react-components@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-add-basic-constructor-for-react-components/-/babel-plugin-add-basic-constructor-for-react-components-0.1.0.tgz#6ada51d24d4e0aae3dbb6d64c36f96235bbcdb08"
+  integrity sha512-p2ithVG47iW0bySRjQOgrksTteZr5ymXG0JsFb1N0WwfYOv+zvtVj+8GYUBJ2VM9hiXV+Fz0vtkjH8cEoDU8pA==
+
 babel-plugin-add-module-exports@^0.2.1:
   version "0.2.1"
   resolved "http://registry.npmjs.org/babel-plugin-add-module-exports/-/babel-plugin-add-module-exports-0.2.1.tgz#9ae9a1f4a8dc67f0cdec4f4aeda1e43a5ff65e25"
@@ -3688,6 +3663,11 @@ babel-plugin-dynamic-import-node@^1.2.0:
   integrity sha512-yeDwKaLgGdTpXL7RgGt5r6T4LmnTza/hUn5Ul8uZSGGMtEjYo13Nxai7SQaGCTEzUtg9Zq9qJn0EjEr7SeSlTQ==
   dependencies:
     babel-plugin-syntax-dynamic-import "^6.18.0"
+
+babel-plugin-fix-dce-for-classes-with-statics@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-fix-dce-for-classes-with-statics/-/babel-plugin-fix-dce-for-classes-with-statics-0.1.0.tgz#9cac930cfb50a879d66cd5dc3bd4af731c1ecb90"
+  integrity sha512-nya9Uw5te1kWNXGodrftTNQwx3oyPEQWOgg/k0tzViExKv6L1BoyNI0+rkin+FiF1Kp5ZjURjBnuJg/1n8erLA==
 
 babel-plugin-istanbul@^4.0.0, babel-plugin-istanbul@^4.1.6:
   version "4.1.6"
@@ -18568,15 +18548,13 @@ prebuild-install@^5.2.0:
     tunnel-agent "^0.6.0"
     which-pm-runs "^1.0.0"
 
-preconstruct@0.0.56:
-  version "0.0.56"
-  resolved "https://registry.yarnpkg.com/preconstruct/-/preconstruct-0.0.56.tgz#f1882429005dbd9db574c3932603d10e85d0200f"
-  integrity sha512-ohJpUSBoggJdJrq/SOISjfmvqdEN367MKCHR9gnP4ZkhrFkGxubdKnkD2K8U7F8ZJNp+wKt/yHz2J+74hZzlNQ==
+preconstruct@^0.0.57:
+  version "0.0.57"
+  resolved "https://registry.yarnpkg.com/preconstruct/-/preconstruct-0.0.57.tgz#58c52168025b40a83dc7c3e5d380882d5037e221"
+  integrity sha512-xHPChHTpLrJE9AwixSEBS8w1whr8eNwDS/qqooT+2a2nKMBE2hUug2xrp+k7S4T+7fG5R4iGfyFQzXvfyxCo7w==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.1.2"
-    "@babel/plugin-proposal-class-properties" "^7.3.4"
-    "@babel/plugin-transform-flow-strip-types" "^7.4.0"
     "@babel/plugin-transform-runtime" "^7.2.0"
     builtin-modules "^3.0.0"
     chalk "^2.3.2"
