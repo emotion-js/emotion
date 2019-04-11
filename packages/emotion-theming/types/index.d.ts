@@ -7,6 +7,7 @@ import { AddOptionalTo, PropsOf } from './helper'
 
 export interface ThemeProviderProps<Theme> {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
+  children?: React.ReactNode
 }
 
 export function ThemeProvider<Theme>(

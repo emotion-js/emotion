@@ -10,6 +10,6 @@ export type PropsOf<C extends React.ComponentType<any>> = C extends React.SFC<
         : never)
     : never
 
-export type Omit<T, U> = Pick<T, Exclude<keyof T, U>>
+export type Omit<T, U> = T extends any ? Pick<T, Exclude<keyof T, U>> : never
 export type AddOptionalTo<T, U> = Omit<T, U> &
   Partial<Pick<T, Extract<keyof T, U>>>
