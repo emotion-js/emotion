@@ -1,4 +1,4 @@
-import reactNative from 'react-native'
+import * as reactNative from 'react-native'
 import { createCss } from '@emotion/primitives-core'
 
 import { styled } from './styled'
