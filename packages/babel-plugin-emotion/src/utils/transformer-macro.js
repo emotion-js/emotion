@@ -8,7 +8,7 @@ export function createTransformerMacro(
   transformers: { [key: string]: Transformer | [Transformer, Object] },
   importPath: string
 ) {
-  return createMacro(({ references, state, babel, isEmotionCall }) => {
+  let macro = createMacro(({ references, state, babel, isEmotionCall }) => {
     if (!isEmotionCall) {
       state.emotionSourceMap = true
     }
@@ -42,4 +42,6 @@ export function createTransformerMacro(
       }
     })
   })
+  macro.transformers = transformers
+  return macro
 }

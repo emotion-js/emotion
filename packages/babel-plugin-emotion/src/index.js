@@ -177,7 +177,7 @@ export default function(babel: *) {
           instancePath => getInstancePathToCompare(instancePath, process.cwd())
         )
         let macros = {}
-        let jsxCoreImports = [['@emotion/core', 'jsx']]
+        let jsxCoreImports: Array<[string, string]> = [['@emotion/core', 'jsx']]
         Object.keys(state.opts.importMap || {}).forEach(packageName => {
           let value = state.opts.importMap[packageName]
           let transformers = {}
@@ -195,9 +195,9 @@ export default function(babel: *) {
             if (packageTransformers === undefined) {
               throw error
             }
-            let [exportTransformer, defaultOptions] = packageTransformers[
-              exportName
-            ]
+            let [exportTransformer, defaultOptions] =
+              // $FlowFixMe
+              packageTransformers[exportName]
             if (packageTransformers === undefined) {
               throw error
             }
@@ -211,6 +211,13 @@ export default function(babel: *) {
             packageName
           )
         })
+        // not sure about this
+        // jsxCoreImports.forEach(([packageName, exportName]) => {
+        //   if (packageName)
+        //     throw new Error(
+        //       `You have specified that the package '${packageName}' re-exports 'jsx' from '@emotion/core' but it doesn't also re-export 'css' from '@emotion/core', 'css' is necessary for certain optimisations, please re-export it from '${moduleId}'`
+        //     )
+        // })
         state.pluginMacros = {
           '@emotion/css': cssMacro,
           '@emotion/styled': webStyledMacro,
