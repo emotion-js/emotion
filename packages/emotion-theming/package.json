@@ -40,9 +40,10 @@
   "dependencies": {
     "@emotion/weak-memoize": "0.2.2",
     "hoist-non-react-statics": "^3.3.0",
-    "object-assign": "^4.1.1"
+    "@babel/runtime": "^7.4.3"
   },
   "peerDependencies": {
+    "react": ">=16.3.0",
     "@emotion/core": "^10.0.0"
   },
   "umd:main": "dist/emotion-theming.umd.min.js",

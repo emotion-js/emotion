@@ -14,10 +14,10 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.3",
     "@types/jest": "^23.0.2",
     "chalk": "^2.4.1",
-    "css": "^2.2.1",
-    "object-assign": "^4.1.1"
+    "css": "^2.2.1"
   },
   "devDependencies": {
     "@emotion/core": "^10.0.10",
