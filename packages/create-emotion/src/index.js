@@ -16,7 +16,6 @@ function insertWithoutScoping(cache, serialized: SerializedStyles) {
 
 function merge(registered: Object, css: (*) => string, className: string) {
   const registeredStyles = []
-
   const rawClassName = getRegisteredStyles(
     registered,
     registeredStyles,

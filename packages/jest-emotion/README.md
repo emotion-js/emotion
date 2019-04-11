@@ -154,6 +154,44 @@ expect(tree).toHaveStyleRule('font-size', '14px', {
 })
 ```
 
+Use `media` and `target` options to assert on rules within media queries and to target nested components, pseudo-classes, and pseudo-elements.
+
+```jsx
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { matchers } from 'jest-emotion'
+import styled from '@emotion/styled'
+
+// Add the custom matchers provided by 'jest-emotion'
+expect.extend(matchers)
+
+test('renders with correct link styles', () => {
+  const Container = styled.div`
+    font-size: 14px;
+
+    a {
+      color: yellow;
+    }
+
+    a:hover {
+      color: black;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+  `
+
+  const tree = renderer.create(<Container>hello world</Container>).toJSON()
+
+  expect(tree).toHaveStyleRule('color', 'yellow', { target: /a$/ })
+  expect(tree).toHaveStyleRule('color', 'black', { target: 'a:hover' })
+  expect(tree).toHaveStyleRule('font-size', '16px', {
+    media: '(min-width: 768px)'
+  })
+})
+```
+
 ## Thanks
 
 Thanks to [Kent C. Dodds](https://twitter.com/kentcdodds) who wrote [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) which this library is largely based on. ❤️

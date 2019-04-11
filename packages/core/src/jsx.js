@@ -103,6 +103,10 @@ let Emotion = withEmotionCache((props, cache, ref) => {
   return render(cache, props, null, ref)
 })
 
+if (process.env.NODE_ENV !== 'production') {
+  Emotion.displayName = 'EmotionCssPropInternal'
+}
+
 // $FlowFixMe
 export const jsx: typeof React.createElement = function(
   type: React.ElementType,

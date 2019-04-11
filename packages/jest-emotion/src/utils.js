@@ -44,6 +44,20 @@ export function isReactElement(val: any): boolean {
   return val.$$typeof === Symbol.for('react.test.json')
 }
 
+export function isEmotionCssPropElementType(val: any): boolean {
+  return (
+    val.$$typeof === Symbol.for('react.element') &&
+    val.type.$$typeof === Symbol.for('react.forward_ref') &&
+    val.type.displayName === 'EmotionCssPropInternal'
+  )
+}
+
+export function isEmotionCssPropEnzymeElement(val: any): boolean {
+  return (
+    val.$$typeof === Symbol.for('react.test.json') &&
+    val.type === 'EmotionCssPropInternal'
+  )
+}
 const domElementPattern = /^((HTML|SVG)\w*)?Element$/
 
 export function isDOMElement(val: any): boolean {
@@ -163,7 +177,7 @@ export function getKeys(elements: Array<HTMLStyleElement>) {
 export function hasClassNames(
   classNames: Array<string>,
   selectors: Array<string>,
-  target: ?string
+  target?: string | RegExp
 ): boolean {
   // selectors is the classNames of specific css rule
   return selectors.some(selector => {
@@ -174,7 +188,9 @@ export function hasClassNames(
       return classNames.includes(selector.slice(1))
     }
     // check if selector (className) of specific css rule match target
-    return selector.includes(target)
+    return target instanceof RegExp
+      ? target.test(selector)
+      : selector.includes(target)
   })
 }
 
