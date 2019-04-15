@@ -21,7 +21,7 @@
     "build:site": "lerna exec --scope emotion-site npm run build:site",
     "flow": "flow",
     "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
-    "postinstall": "opencollective postinstall",
+    "postinstall": "opencollective postinstall && preconstruct dev",
     "version-packages": "lerna version --preid=beta"
   },
   "resolutions": {
@@ -83,7 +83,7 @@
     "polished": "^1.2.1",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
-    "preconstruct": "^0.0.57",
+    "preconstruct": "0.0.0-symlink-aliases.0",
     "prettier": "1.14.3",
     "raf": "^3.4.0",
     "react": "^16.5.2",
