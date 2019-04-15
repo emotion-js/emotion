@@ -40,7 +40,7 @@ jobs:
           command: yarn coverage --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
-      - run: yarn codecov
+      - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: reports/junit
       - store_artifacts:
