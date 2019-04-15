@@ -13,12 +13,12 @@ module.exports = api => {
           (!filename.includes('no-babel') &&
             needsBabelPluginEmotion(filename)) ||
           filename.includes(path.join('__tests__', 'babel')),
-        plugins: ['babel-plugin-emotion-test']
+        plugins: ['babel-plugin-emotion']
       },
       {
         test: filename =>
           filename.includes('source-map') && needsBabelPluginEmotion(filename),
-        plugins: [['babel-plugin-emotion-test', { sourceMap: true }]]
+        plugins: [['babel-plugin-emotion', { sourceMap: true }]]
       }
     ]
   }
