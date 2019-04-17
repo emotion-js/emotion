@@ -1,6 +1,0 @@
-{
-  "name": "babel-plugin-emotion-test",
-  "main": "src/index",
-  "version": "9.2.7",
-  "private": true
-}
