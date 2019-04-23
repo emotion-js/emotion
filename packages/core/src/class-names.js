@@ -73,7 +73,9 @@ type Props = {
   children: ({
     css: (...args: Array<any>) => string,
     cx: (...args: Array<ClassNameArg>) => string,
-    theme: Object
+    theme: Object,
+    // This allows to do `({ css, myClass = css`color: red;` }) => `
+    [string]: string,
   }) => React.Node
 }
 
