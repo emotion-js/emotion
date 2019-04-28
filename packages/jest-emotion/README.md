@@ -133,22 +133,22 @@ You can provide additional options for `toHaveStyleRule` matcher.
 `target` - helps to specify css selector or other component
 where style rule should be found.
 
-```
+```js
 expect(tree).toHaveStyleRule('width', '50px', { target: ':hover' })
 ```
 
-```
+```js
 expect(tree).toHaveStyleRule('color', 'yellow', { target: 'span' })
 ```
 
-```
+```js
 expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
 ```
 
 `media` - specifies the media rule where the matcher
 should look for the style property.
 
-```
+```js
 expect(tree).toHaveStyleRule('font-size', '14px', {
   media: 'screen and (max-width: 1200px)'
 })
