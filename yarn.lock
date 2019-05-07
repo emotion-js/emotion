@@ -1095,6 +1095,14 @@
     tty-table "^2.7.0"
     uuid "^3.3.2"
 
+"@changesets/get-github-info@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@changesets/get-github-info/-/get-github-info-0.1.0.tgz#ed955a53fc65f7041342cfc1ca54b63f21683826"
+  integrity sha512-amakKHhg1jVkY1nvLIFGfXvjCLLOU5C3aJutgOgQvmAYvdiU1SPhVFRkjEc8wk3e1PtWxSmTkX+3/XYaqZTzEg==
+  dependencies:
+    dataloader "^1.4.0"
+    node-fetch "^2.5.0"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"
@@ -16576,6 +16584,11 @@ node-fetch@^2.2.0, node-fetch@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.3.0.tgz#1a1d940bbfb916a1d3e0219f037e89e71f8c5fa5"
   integrity sha512-MOd8pV3fxENbryESLgVIeaGKrdl+uaYhCSSVkjeOb/31/njTpcis5aWfdqgNlHIrKOLRbMnfPINPOML2CIFeXA==
+
+node-fetch@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.5.0.tgz#8028c49fc1191bba56a07adc6e2a954644a48501"
+  integrity sha512-YuZKluhWGJwCcUu4RlZstdAxr8bFfOVHakc1mplwHkk8J+tqM1Y5yraYvIUpeX8aY7+crCwiELJq7Vl0o0LWXw==
 
 node-forge@0.7.5, node-forge@^0.7.1:
   version "0.7.5"
