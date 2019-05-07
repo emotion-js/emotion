@@ -1,5 +1,6 @@
-require('dotenv').config()
-const { getInfo } = require('@changesets/get-github-info')
+// TODO: use this when there's a non-broken release of @changesets/get-github-info
+// require('dotenv').config()
+// const { getInfo } = require('@changesets/get-github-info')
 
 /*
 Hey, welcome to the changeset config! This file has been generated
@@ -32,13 +33,18 @@ const getReleaseLine = async (changeset, type) => {
   const [firstLine, ...futureLines] = changeset.summary
     .split('\n')
     .map(l => l.trimRight())
-  let { links } = await getInfo({
-    repo: 'emotion-js/emotion',
-    commit: changeset.commit
-  })
-  return `- ${links.commit}${links.pull === null ? '' : ` ${links.pull}`}${
-    links.user === null ? '' : ` Thanks ${links.user}!`
-  } - ${firstLine}\n${futureLines.map(l => `  ${l}`).join('\n')}`
+  // TODO: use this when there's a non-broken release of @changesets/get-github-info
+  // let { links } = await getInfo({
+  //   repo: 'emotion-js/emotion',
+  //   commit: changeset.commit
+  // })
+  // return `- ${links.commit}${links.pull === null ? '' : ` ${links.pull}`}${
+  //   links.user === null ? '' : ` Thanks ${links.user}!`
+  // } - ${firstLine}\n${futureLines.map(l => `  ${l}`).join('\n')}`
+
+  return `- ${changeset.commit}: ${firstLine}\n${futureLines
+    .map(l => `  ${l}`)
+    .join('\n')}`
 }
 
 // This function takes information about what dependencies we are updating in the package.
