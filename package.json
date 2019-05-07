@@ -230,6 +230,7 @@
     }
   },
   "dependencies": {
+    "@changesets/cli": "^1.1.0",
     "jest-environment-jsdom": "^24.0.0"
   }
 }
