@@ -221,8 +221,8 @@
     }
   },
   "dependencies": {
-    "@changesets/cli": "^1.1.0",
-    "@changesets/get-github-info": "^0.1.0",
+    "@changesets/cli": "^1.1.1",
+    "@changesets/get-github-info": "^0.1.1",
     "jest-environment-jsdom": "^24.0.0"
   }
 }
