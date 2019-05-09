@@ -1,0 +1,4 @@
+{
+  "releases": [{ "name": "@emotion/native", "type": "patch" }],
+  "dependents": []
+}
