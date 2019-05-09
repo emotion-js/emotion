@@ -8,10 +8,6 @@
 - Run `yarn` in the repository's root directory to install everything you need for development.
 - Run `yarn build` in the root directory to build the modules.
 
-> NOTE:
->
-> lerna is **NOT** used for installing packages. Only yarn is used. lerna is only used for publishing
-
 ## Running Tests
 
 - `yarn test` will run the tests once.
