@@ -10,3 +10,4 @@ package-lock.json
 .cache
 public/
 !playgrounds/cra/public
+.env
