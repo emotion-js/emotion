@@ -4,4 +4,4 @@
 
 ### Patch Changes
 
-- [69091859](https://github.com/emotion-js/emotion/commit/69091859) [#1344](https://github.com/emotion-js/emotion/pulls/1344) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fix usage of @emotion/native with react-native-web
+- [8164e7b](https://github.com/emotion-js/emotion/commit/8164e7b) [#1289](https://github.com/emotion-js/emotion/pulls/1344) Thanks [@Josema](https://github.com/Josema)! - Fix usage of @emotion/native with react-native-web
