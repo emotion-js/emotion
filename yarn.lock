@@ -9754,9 +9754,9 @@ get-value@^2.0.2, get-value@^2.0.3, get-value@^2.0.6:
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
 
 get-workspaces@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/get-workspaces/-/get-workspaces-0.1.0.tgz#b46117c6db72c6d2b145a04b414650d088b59e73"
-  integrity sha512-zKiVRpd6Jt//xrbKtAYoFpKTGlZN5WyiJIpZQXBfPF/ZXIJRBcaXcu73TregJcRCL20FgUmFalSb54z8BahT8w==
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/get-workspaces/-/get-workspaces-0.1.1.tgz#c17d57d7ef8cf06e46041ea4f22a41fbcdee3e7b"
+  integrity sha512-ClBj54rZ782YDPLpF5ySeDoMbY49plX1yhU6pfPLXk3dNgmGuvd824W+AzR8Xy5354q2VSGNzkERtr0OODOLJA==
   dependencies:
     fs-extra "^7.0.1"
     globby "^9.2.0"
