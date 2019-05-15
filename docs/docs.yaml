@@ -28,7 +28,7 @@
     - babel-macros
     - source-maps
     - testing
-    - typescript
+    - TypeScript
 
 # This loads the READMEs instead of files in docs/
 - title: Packages
