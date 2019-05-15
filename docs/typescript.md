@@ -1,5 +1,5 @@
 ---
-title: 'Typescript'
+title: 'TypeScript'
 ---
 
 Emotion includes TypeScript definitions for `@emotion/core` and `@emotion/styled`. These definitions also infer types for css properties with the object syntax, HTML/SVG tag names, and prop types.
