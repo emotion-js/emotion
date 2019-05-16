@@ -72,7 +72,6 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
 - [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
 - [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
-- [govuk-react](https://github.com/penx/govuk-react/), a React component library built for UK Government departments
 - **open a PR and add yours!**
 
 ### Ecosystem
