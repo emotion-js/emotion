@@ -25,7 +25,8 @@
     "src",
     "dist",
     "types",
-    "macro.js"
+    "macro.js",
+    "macro.d.ts"
   ],
   "browser": {
     "./dist/css.cjs.js": "./dist/css.browser.cjs.js",
