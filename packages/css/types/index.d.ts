@@ -5,6 +5,7 @@ import { Interpolation, SerializedStyles } from '@emotion/serialize'
 export {
   ArrayInterpolation,
   ComponentSelector,
+  CSSObject,
   FunctionInterpolation,
   ObjectInterpolation
 } from '@emotion/serialize'

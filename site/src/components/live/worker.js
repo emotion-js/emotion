@@ -26,7 +26,7 @@ const options = {
       }
     ]
   ],
-  plugins: [babelPluginEmotion]
+  plugins: [[babelPluginEmotion, { sourceMap: false }]]
 }
 
 const ACTIONS = {}

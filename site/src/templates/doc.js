@@ -1,16 +1,15 @@
 // @flow
 import React from 'react'
-import { mq } from '../utils/style'
-import Box from '../components/Box'
+import { mq, colors } from '../utils/style'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
 import RenderHAST from '../components/RenderHAST'
-import Title from '../components/Title'
 import type { HASTRoot } from '../utils/types'
 import memoize from '@emotion/memoize'
 import Layout from '../layouts'
 import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
+import Title from '../components/Title'
 
 type Props = {
   data: {
@@ -57,18 +56,20 @@ const ClassName = (props: any) => {
 const createLiveCode = memoize(logoUrl => props => (
   <ClassName
     css={mq({
-      paddingLeft: [32, 30],
-      paddingRight: [32, 30]
+      paddingTop: [8, 16],
+      paddingRight: [8, 16],
+      paddingBottom: [8, 16],
+      paddingLeft: [8, 16]
     })}
   >
     {internalCodeStylesClassName => (
       <Playground
         css={mq({
-          marginLeft: [-32, -30],
-          marginRight: [-32, -30],
-          marginTop: 16,
-          marginBottom: 16,
-          borderRadius: [0, 8],
+          marginLeft: [0],
+          marginRight: [0],
+          marginTop: [24, 32],
+          marginBottom: [24, 32],
+          borderRadius: [0, 4],
           whiteSpace: 'pre-wrap',
           wordBreak: 'break-word'
         })}
@@ -81,20 +82,40 @@ const createLiveCode = memoize(logoUrl => props => (
   </ClassName>
 ))
 
-export default class DocRoute extends React.Component<Props> {
+type DocRouteState = {
+  sidebarOpen: boolean
+}
+
+export default class DocRoute extends React.Component<Props, DocRouteState> {
+  state = {
+    sidebarOpen: false
+  }
+
+  setSidebarOpen = (value: boolean) => this.setState({ sidebarOpen: value })
+
   render() {
     const { data } = this.props
     const { doc, avatar } = data
     return (
-      <Layout>
-        <DocWrapper>
-          <Box css={{ lineHeight: 1.4 }} className="docSearch-content">
-            <Title>
-              {doc.frontmatter.title || this.props.pageContext.slug}
-            </Title>
-            <Box pb={3}>
+      <Layout sidebarOpen={this.state.sidebarOpen}>
+        <DocWrapper
+          sidebarOpen={this.state.sidebarOpen}
+          setSidebarOpen={this.setSidebarOpen}
+        >
+          <div
+            css={{
+              alignItems: 'center',
+              gap: 8,
+              borderBottom: `1px solid ${colors.lighten(0.25, colors.border)}`
+            }}
+            className="docSearch-content"
+          >
+            <div css={{ display: 'flex', alignItems: 'center' }}>
+              <Title>
+                {doc.frontmatter.title || this.props.pageContext.slug}
+              </Title>
               <markdownComponents.a
-                css={{ color: 'rgb(107, 107, 107)', fontSize: 14.5 }}
+                css={{ fontSize: 12, marginLeft: 'auto' }}
                 href={
                   doc.frontmatter.title
                     ? `https://github.com/emotion-js/emotion/edit/master/docs/${
@@ -105,19 +126,22 @@ export default class DocRoute extends React.Component<Props> {
                       }/README.md`
                 }
               >
-                Edit this page
+                ✏️ <span css={{ marginLeft: 2 }}>Edit this page</span>
               </markdownComponents.a>
-            </Box>
-            <RenderHAST
-              hast={doc.htmlAst}
-              componentMap={{
-                'live-code': createLiveCode(
-                  avatar.childImageSharp.resolutions.src
-                ),
-                ...markdownComponents
-              }}
-            />
-          </Box>
+            </div>
+
+            <div>
+              <RenderHAST
+                hast={doc.htmlAst}
+                componentMap={{
+                  'live-code': createLiveCode(
+                    avatar.childImageSharp.resolutions.src
+                  ),
+                  ...markdownComponents
+                }}
+              />
+            </div>
+          </div>
         </DocWrapper>
       </Layout>
     )

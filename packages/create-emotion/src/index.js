@@ -16,7 +16,6 @@ function insertWithoutScoping(cache, serialized: SerializedStyles) {
 
 function merge(registered: Object, css: (*) => string, className: string) {
   const registeredStyles = []
-
   const rawClassName = getRegisteredStyles(
     registered,
     registeredStyles,
@@ -37,8 +36,10 @@ type CreateStyles<ReturnValue> = (...args: Interpolations) => ReturnValue
 type ClassNameArg =
   | string
   | boolean
-  | { [key: string]: boolean }
+  | { [key: string]: boolean | void | null }
   | Array<ClassNameArg>
+  | void
+  | null
 
 declare class StyleSheet {
   insert(rule: string): void;

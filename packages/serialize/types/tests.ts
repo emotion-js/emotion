@@ -1,4 +1,5 @@
 import {
+  CSSObject,
   ObjectInterpolation,
   Keyframes,
   serializeStyles
@@ -52,3 +53,13 @@ serializeStyles()
 serializeStyles({})
 // $ExpectError
 serializeStyles({}, {})
+
+let cssObject: CSSObject = {
+  fontWeight: 400,
+  ':hover': {
+    fontWeight: 700
+  }
+}
+
+// $ExpectError
+cssObject = { fontWeight: 'wrong' }

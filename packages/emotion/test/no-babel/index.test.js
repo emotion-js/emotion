@@ -3,7 +3,7 @@ import 'test-utils/legacy-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { css } from 'emotion'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 describe('css', () => {
   test('random expression', () => {

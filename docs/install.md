@@ -14,7 +14,7 @@ or if you prefer npm
 npm install --save @emotion/core
 ```
 
-To use it, import what you need, for example use [jsx](/docs/jsx.md) to create class names with styles.
+To use it, import what you need, for example use [the css prop](/docs/css-prop.md) to create class names with styles.
 
 ```jsx
 // @live

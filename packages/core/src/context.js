@@ -4,7 +4,9 @@ import * as React from 'react'
 import createCache from '@emotion/cache'
 import { isBrowser } from './utils'
 
-let EmotionCacheContext = React.createContext(isBrowser ? createCache() : null)
+let EmotionCacheContext: React.Context<EmotionCache | null> = React.createContext(
+  isBrowser ? createCache() : null
+)
 
 export let useContext: <Value>(
   context: React$Context<Value>
@@ -15,9 +17,7 @@ export let useState: <State>(
 ) => [State, (State) => void] = (React: any).useState
 
 export let ThemeContext = React.createContext<Object>({})
-export let CacheProvider: React.ComponentType<{ value: EmotionCache }> =
-  // $FlowFixMe
-  EmotionCacheContext.Provider
+export let CacheProvider = EmotionCacheContext.Provider
 
 export let useTheme = () => useContext(ThemeContext)
 

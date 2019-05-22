@@ -11,7 +11,6 @@ let isBrowser = typeof document !== 'undefined'
 export type PrefixOption =
   | boolean
   | ((key: string, value: string, context: 1 | 2 | 3) => boolean)
-
 type StylisPlugins = StylisPlugin[] | StylisPlugin
 
 export type Options = {
@@ -201,21 +200,30 @@ let createCache = (options?: Options): EmotionCache => {
 
     stylis.use((context, content, selectors) => {
       switch (context) {
-        case 2: {
-          for (let i = 0, len = selectors.length; len > i; i++) {
-            // :last-child isn't included here since it's safe
-            // because a style element will never be the last element
-            let match = selectors[i].match(/:(first|nth|nth-last)-child/)
-            if (match !== null) {
-              console.error(
-                `The pseudo class "${
-                  match[0]
-                }" is potentially unsafe when doing server-side rendering. Try changing it to "${
-                  match[1]
-                }-of-type"`
+        case -1: {
+          const flag =
+            'emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason'
+          const unsafePseudoClasses = content.match(
+            /(:first|:nth|:nth-last)-child/g
+          )
+
+          if (unsafePseudoClasses) {
+            unsafePseudoClasses.forEach(unsafePseudoClass => {
+              const ignoreRegExp = new RegExp(
+                `${unsafePseudoClass}.*\\/\\* ${flag} \\*\\/`
               )
-            }
+              const ignore = ignoreRegExp.test(content)
+
+              if (unsafePseudoClass && !ignore) {
+                console.error(
+                  `The pseudo class "${unsafePseudoClass}" is potentially unsafe when doing server-side rendering. Try changing it to "${
+                    unsafePseudoClass.split('-child')[0]
+                  }-of-type".`
+                )
+              }
+            })
           }
+
           break
         }
       }

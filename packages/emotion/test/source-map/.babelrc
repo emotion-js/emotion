@@ -1,4 +1,4 @@
 {
   "presets": ["babel-preset-emotion-dev"],
-  "plugins": [["babel-plugin-emotion-test", { "sourceMap": true }]]
+  "plugins": [["babel-plugin-emotion", { "sourceMap": true }]]
 }

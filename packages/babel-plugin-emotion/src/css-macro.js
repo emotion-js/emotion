@@ -31,8 +31,10 @@ export const transformCssCallExpression = ({
   }
 }
 
-export default createMacro(({ references, state, babel }) => {
-  state.emotionSourceMap = true
+export default createMacro(({ references, state, babel, isEmotionCall }) => {
+  if (!isEmotionCall) {
+    state.emotionSourceMap = true
+  }
   const t = babel.types
   if (references.default && references.default.length) {
     references.default.reverse().forEach(reference => {

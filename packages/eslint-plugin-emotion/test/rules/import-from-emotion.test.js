@@ -45,7 +45,7 @@ ruleTester.run('emotion jsx', rule, {
             "emotion's exports should be imported directly from emotion rather than from react-emotion"
         }
       ],
-      output: `import styled from 'react-emotion';\nimport { css } from 'emotion';`
+      output: `import styled from '@emotion/styled';\nimport { css } from 'emotion';`
     },
     {
       code: `import styled, { css as somethingElse } from 'react-emotion'`,
@@ -55,7 +55,7 @@ ruleTester.run('emotion jsx', rule, {
             "emotion's exports should be imported directly from emotion rather than from react-emotion"
         }
       ],
-      output: `import styled from 'react-emotion';\nimport { css as somethingElse } from 'emotion';`
+      output: `import styled from '@emotion/styled';\nimport { css as somethingElse } from 'emotion';`
     }
   ]
 })

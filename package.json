@@ -1,59 +1,53 @@
 {
   "private": true,
   "name": "emotion-monorepo",
-  "version": "7.0.13",
+  "version": "10.0.0",
   "scripts": {
     "build:watch": "preconstruct watch",
     "build": "preconstruct build",
     "test:size": "npm-run-all build size",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "test": "jest",
-    "test:typescript": "lerna run test:typescript --parallel",
+    "test:typescript": "yarn workspaces run test:typescript",
     "coverage": "jest --coverage --no-cache --ci --runInBand",
-    "test:prod": "npm run build && jest -c jest.dist.js --no-cache --ci --runInBand",
+    "test:prod": "yarn build && jest -c jest.dist.js --no-cache --ci --runInBand",
     "lint:check": "eslint .",
     "test:watch": "jest --watch",
     "size": "bundlesize",
-    "release": "npm run build && lerna publish",
     "lint": "eslint . --fix",
-    "benchmark": "lerna exec --scope benchmarks npm run benchmark",
-    "start:site": "lerna exec --scope emotion-site npm run start:site",
-    "build:site": "lerna exec --scope emotion-site npm run build:site",
+    "benchmark": "cd scripts/benchmarks && yarn benchmark",
+    "start:site": "cd site && yarn start:site",
+    "build:site": "cd site && yarn build:site",
     "flow": "flow",
-    "flow:check": "flow check",
-    "postinstall": "opencollective postinstall",
-    "version-packages": "lerna version --preid=beta --exact"
+    "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
+    "postinstall": "opencollective postinstall && preconstruct dev",
+    "changeset": "changeset",
+    "version-packages": "changeset bump",
+    "release": "yarn build && changeset release"
   },
   "resolutions": {
-    "**/react": "16.7.0-alpha.2",
-    "**/react-dom": "16.7.0-alpha.2",
-    "**/react-test-renderer": "16.7.0-alpha.2",
+    "**/react": "16.8.6",
+    "**/react-dom": "16.8.6",
     "**/browserslist": "^3.2.8"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "@babel/plugin-external-helpers": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@changesets/cli": "^1.1.1",
+    "@changesets/get-github-info": "^0.1.1",
     "babel-check-duplicated-nodes": "^1.0.0",
-    "babel-cli": "^6.24.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.3",
     "babel-flow-types": "^1.2.3",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^24.1.0",
     "babel-plugin-closure-elimination": "^1.3.0",
     "babel-plugin-codegen": "^3.0.0",
-    "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-macros": "^2.0.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.5.1",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
     "bundlesize": "^0.13.2",
     "codecov": "^2.3.1",
     "css": "^2.2.1",
@@ -74,17 +68,15 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-standard": "^3.0.1",
-    "flow-bin": "^0.81.0",
-    "get-lerna-packages": "^0.1.0",
-    "hoist-non-react-statics": "^2.3.1",
+    "flow-bin": "^0.89.0",
+    "hoist-non-react-statics": "^3.3.0",
     "husky": "^1.1.3",
-    "jest": "^23.6.0",
+    "jest": "^24.1.0",
     "jest-in-case": "^1.0.2",
     "jest-junit": "^5.1.0",
     "jest-serializer-html": "^4.0.1",
     "jest-watch-typeahead": "^0.2.0",
     "jsdom": "^11.3.0",
-    "lerna": "^3.4.0",
     "lint-staged": "^7.2.0",
     "module-alias": "^2.0.1",
     "npm-run-all": "^4.0.2",
@@ -92,7 +84,7 @@
     "polished": "^1.2.1",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
-    "preconstruct": "^0.0.31",
+    "preconstruct": "^0.0.60",
     "prettier": "1.14.3",
     "raf": "^3.4.0",
     "react": "^16.5.2",
@@ -105,11 +97,11 @@
     "react-testing-library": "^5.2.0"
   },
   "author": "Kye Hohenberger",
-  "homepage": "https://github.com/tkh44/emotion#readme",
+  "homepage": "https://emotion.sh",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tkh44/emotion.git"
+    "url": "git+https://github.com/emotion-js/emotion.git"
   },
   "directories": {
     "test": "tests"
@@ -159,9 +151,7 @@
       {
         "files": [
           "**/packages/*/src/*",
-          "**/packages/*/src/**/*",
-          "**/next-packages/*/src/*",
-          "**/next-packages/*/src/**/*"
+          "**/packages/*/src/**/*"
         ],
         "rules": {
           "import/no-commonjs": 2
@@ -191,14 +181,6 @@
       "**/dtslint"
     ]
   },
-  "bolt": {
-    "workspaces": [
-      "packages/*",
-      "site",
-      "scripts/*",
-      "playgrounds/*"
-    ]
-  },
   "preconstruct": {
     "packages": [
       "packages/*"
@@ -208,7 +190,7 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/tkh44/emotion/issues"
+    "url": "https://github.com/emotion-js/emotion/issues"
   },
   "bundlesize": [
     {
@@ -216,11 +198,11 @@
       "threshold": "7 Kb"
     },
     {
-      "path": "./packages/react-emotion/dist/emotion.umd.min.js",
+      "path": "./packages/styled-base/dist/styled-base.umd.min.js",
       "threshold": "9.7 Kb"
     },
     {
-      "path": "./packages/core/dist/index.min.js",
+      "path": "./packages/core/dist/core.umd.min.js",
       "threshold": "7 Kb"
     }
   ],
@@ -239,5 +221,8 @@
       "post-commit": "git update-index --again",
       "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "jest-environment-jsdom": "^24.0.0"
   }
 }

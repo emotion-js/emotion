@@ -1,6 +1,6 @@
 {
   "name": "create-emotion-server",
-  "version": "10.0.0-beta.13",
+  "version": "10.0.0",
   "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/create-emotion-server.cjs.js",
   "types": "types/index.d.ts",
@@ -37,9 +37,6 @@
   ],
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
-  },
-  "publishConfig": {
-    "tag": "next"
   },
   "browser": {
     "./dist/create-emotion-server.cjs.js": "./dist/create-emotion-server.browser.cjs.js"

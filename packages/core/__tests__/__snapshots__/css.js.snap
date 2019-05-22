@@ -15,6 +15,17 @@ exports[`array fallback 1`] = `
 </div>
 `;
 
+exports[`child selector array 1`] = `
+.emotion-0:hover {
+  color: green;
+  background-color: yellow;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`css call composition 1`] = `
 .emotion-0:hover {
   color: hotpink;

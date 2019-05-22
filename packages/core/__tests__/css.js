@@ -175,3 +175,15 @@ test('overwrite styles from parent', () => {
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
+
+test('child selector array', () => {
+  const tree = renderer.create(
+    <div
+      css={{
+        ':hover': [{ color: 'green' }, { backgroundColor: 'yellow' }]
+      }}
+    />
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})

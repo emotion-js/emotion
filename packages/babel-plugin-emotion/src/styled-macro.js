@@ -5,35 +5,75 @@ import { transformExpressionWithStyles, getStyledOptions } from './utils'
 
 export let createStyledMacro = ({
   importPath,
+  originalImportPath = importPath,
   isWeb
 }: {
   importPath: string,
+  originalImportPath?: string,
   isWeb: boolean
 }) =>
-  createMacro(({ references, state, babel }) => {
-    state.emotionSourceMap = true
-
+  createMacro(({ references, state, babel, isEmotionCall }) => {
+    if (!isEmotionCall) {
+      state.emotionSourceMap = true
+    }
     const t = babel.types
     if (references.default && references.default.length) {
-      let styledIdentifier = addDefault(state.file.path, importPath, {
-        nameHint: 'styled'
-      })
+      let _styledIdentifier
+      let getStyledIdentifier = () => {
+        if (_styledIdentifier === undefined) {
+          _styledIdentifier = addDefault(state.file.path, importPath, {
+            nameHint: 'styled'
+          })
+        }
+        return t.cloneDeep(_styledIdentifier)
+      }
+      let originalImportPathStyledIdentifier
+      let getOriginalImportPathStyledIdentifier = () => {
+        if (originalImportPathStyledIdentifier === undefined) {
+          originalImportPathStyledIdentifier = addDefault(
+            state.file.path,
+            originalImportPath,
+            {
+              nameHint: 'styled'
+            }
+          )
+        }
+        return t.cloneDeep(originalImportPathStyledIdentifier)
+      }
+      if (importPath === originalImportPath) {
+        getOriginalImportPathStyledIdentifier = getStyledIdentifier
+      }
       references.default.forEach(reference => {
+        let isCall = false
         if (
           t.isMemberExpression(reference.parent) &&
-          reference.parent.computed === false &&
-          // checks if the first character is lowercase
-          // becasue we don't want to transform the member expression if
-          // it's in primitives/native
-          reference.parent.property.name.charCodeAt(0) > 96
+          reference.parent.computed === false
         ) {
-          reference.parentPath.replaceWith(
-            t.callExpression(t.cloneDeep(styledIdentifier), [
-              t.stringLiteral(reference.parent.property.name)
-            ])
-          )
+          isCall = true
+          if (
+            // checks if the first character is lowercase
+            // becasue we don't want to transform the member expression if
+            // it's in primitives/native
+            reference.parent.property.name.charCodeAt(0) > 96
+          ) {
+            reference.parentPath.replaceWith(
+              t.callExpression(getStyledIdentifier(), [
+                t.stringLiteral(reference.parent.property.name)
+              ])
+            )
+          } else {
+            reference.replaceWith(getStyledIdentifier())
+          }
+        } else if (
+          reference.parentPath &&
+          reference.parentPath.parentPath &&
+          t.isCallExpression(reference.parentPath) &&
+          reference.parent.callee === reference.node
+        ) {
+          isCall = true
+          reference.replaceWith(getStyledIdentifier())
         } else {
-          reference.replaceWith(t.cloneDeep(styledIdentifier))
+          reference.replaceWith(getOriginalImportPathStyledIdentifier())
         }
         if (reference.parentPath && reference.parentPath.parentPath) {
           const styledCallPath = reference.parentPath.parentPath
@@ -48,14 +88,16 @@ export let createStyledMacro = ({
             styledCallPath.node.arguments[0] = node
           }
         }
-        reference.addComment('leading', '#__PURE__')
 
-        if (t.isCallExpression(reference.parentPath)) {
-          reference.parentPath.node.arguments[1] = getStyledOptions(
-            t,
-            reference.parentPath,
-            state
-          )
+        if (isCall) {
+          reference.addComment('leading', '#__PURE__')
+          if (isWeb) {
+            reference.parentPath.node.arguments[1] = getStyledOptions(
+              t,
+              reference.parentPath,
+              state
+            )
+          }
         }
       })
     }

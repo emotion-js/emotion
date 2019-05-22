@@ -12,9 +12,13 @@ export function ignoreConsoleErrors(cb: () => mixed) {
   let oldConsoleError = console.error
   // $FlowFixMe
   console.error = jest.fn()
-  cb()
-  // $FlowFixMe
-  console.error = oldConsoleError
+
+  try {
+    cb()
+  } finally {
+    // $FlowFixMe
+    console.error = oldConsoleError
+  }
 }
 
 export let safeQuerySelector = (selector: string): HTMLElement => {

@@ -11,15 +11,17 @@ function getLabel(
   if (!labelFormat) return identifierName.trim()
 
   const parsedPath = nodePath.parse(filename)
+  let localDirname = nodePath.basename(parsedPath.dir)
   let localFilename = parsedPath.name
   if (localFilename === 'index') {
-    localFilename = nodePath.basename(parsedPath.dir)
+    localFilename = localDirname
   }
   localFilename = localFilename.replace('.', '-')
 
   return labelFormat
     .replace(/\[local\]/gi, identifierName.trim())
     .replace(/\[filename\]/gi, localFilename)
+    .replace(/\[dirname\]/gi, localDirname)
 }
 
 export function getLabelFromPath(path: *, state: *, t: *) {
@@ -33,10 +35,45 @@ export function getLabelFromPath(path: *, state: *, t: *) {
   )
 }
 
+let pascalCaseRegex = /^[A-Z][A-Za-z]+/
+
 function getDeclaratorName(path, t) {
   // $FlowFixMe
-  const parent = path.findParent(p => p.isVariableDeclarator())
-  return parent && t.isIdentifier(parent.node.id) ? parent.node.id.name : ''
+  const parent = path.findParent(
+    p =>
+      p.isVariableDeclarator() ||
+      p.isFunctionDeclaration() ||
+      p.isFunctionExpression() ||
+      p.isArrowFunctionExpression()
+  )
+  if (!parent) {
+    return ''
+  }
+
+  if (parent.isVariableDeclarator()) {
+    // we probably have a css call assigned to a variable
+    // so we'll just return the variable name
+    return parent.node.id.name
+  }
+
+  // we probably have an inline css prop usage
+  if (parent.isFunctionDeclaration()) {
+    let { name } = parent.node.id
+    if (pascalCaseRegex.test(name)) {
+      return name
+    }
+    return ''
+  }
+
+  let variableDeclarator = path.findParent(p => p.isVariableDeclarator())
+  if (!variableDeclarator) {
+    return ''
+  }
+  let { name } = variableDeclarator.node.id
+  if (pascalCaseRegex.test(name)) {
+    return name
+  }
+  return ''
 }
 
 function getIdentifierName(path: *, t: *) {

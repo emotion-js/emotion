@@ -1,6 +1,0 @@
-{
-  "name": "babel-plugin-macros-register",
-  "main": "src/index",
-  "version": "9.2.6",
-  "private": true
-}

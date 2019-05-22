@@ -9,7 +9,6 @@ import unitless from '@emotion/unitless'
 import memoize from '@emotion/memoize'
 
 let hyphenateRegex = /[A-Z]|^ms/g
-
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
 const processStyleName = memoize((styleName: string) =>
@@ -88,8 +87,12 @@ if (process.env.NODE_ENV !== 'production') {
       }
     }
 
+    const processed = oldProcessStyleValue(key, value)
+    const isCssVariable = key.charCodeAt(1) === 45
+
     if (
-      key.charCodeAt(1) !== 45 &&
+      processed !== '' &&
+      !isCssVariable &&
       key.indexOf('-') !== -1 &&
       hyphenatedCache[key] === undefined
     ) {
@@ -101,7 +104,7 @@ if (process.env.NODE_ENV !== 'production') {
       )
     }
 
-    return oldProcessStyleValue(key, value)
+    return processed
   }
 }
 
@@ -156,7 +159,15 @@ function handleInterpolation(
             next = next.next
           }
         }
-        return interpolation.styles
+        let styles = interpolation.styles
+        if (
+          process.env.NODE_ENV !== 'production' &&
+          interpolation.map !== undefined
+        ) {
+          styles += interpolation.map
+        }
+
+        return styles
       }
 
       return createStringFromObject(mergedProps, registered, interpolation)
@@ -239,9 +250,8 @@ function createStringFromObject(
         }
         if (
           Array.isArray(value) &&
-          (registered == null ||
-            (typeof value[0] === 'string' &&
-              registered[value[0]] === undefined))
+          typeof value[0] === 'string' &&
+          (registered == null || registered[value[0]] === undefined)
         ) {
           for (let i = 0; i < value.length; i++) {
             string += `${processStyleName(key)}:${processStyleValue(

@@ -1,5 +1,10 @@
 // @flow
 
+export const RULE_TYPES = {
+  media: 'media',
+  rule: 'rule'
+}
+
 function getClassNames(selectors: any, classes?: string) {
   return classes ? selectors.concat(classes.split(' ')) : selectors
 }
@@ -39,6 +44,20 @@ export function isReactElement(val: any): boolean {
   return val.$$typeof === Symbol.for('react.test.json')
 }
 
+export function isEmotionCssPropElementType(val: any): boolean {
+  return (
+    val.$$typeof === Symbol.for('react.element') &&
+    val.type.$$typeof === Symbol.for('react.forward_ref') &&
+    val.type.displayName === 'EmotionCssPropInternal'
+  )
+}
+
+export function isEmotionCssPropEnzymeElement(val: any): boolean {
+  return (
+    val.$$typeof === Symbol.for('react.test.json') &&
+    val.type === 'EmotionCssPropInternal'
+  )
+}
 const domElementPattern = /^((HTML|SVG)\w*)?Element$/
 
 export function isDOMElement(val: any): boolean {
@@ -153,4 +172,35 @@ export function getKeys(elements: Array<HTMLStyleElement>) {
     )
   ).filter(Boolean)
   return keys
+}
+
+export function hasClassNames(
+  classNames: Array<string>,
+  selectors: Array<string>,
+  target?: string | RegExp
+): boolean {
+  // selectors is the classNames of specific css rule
+  return selectors.some(selector => {
+    // if no target, use className of the specific css rule and try to find it
+    // in the list of received node classNames to make sure this css rule
+    // applied for root element
+    if (!target) {
+      return classNames.includes(selector.slice(1))
+    }
+    // check if selector (className) of specific css rule match target
+    return target instanceof RegExp
+      ? target.test(selector)
+      : selector.includes(target)
+  })
+}
+
+export function getMediaRules(rules: Array<Object>, media: string): Array<any> {
+  return rules
+    .filter(rule => {
+      const isMediaMatch = rule.media
+        ? rule.media.replace(/\s/g, '').includes(media.replace(/\s/g, ''))
+        : false
+      return rule.type === RULE_TYPES.media && isMediaMatch
+    })
+    .reduce((mediaRules, mediaRule) => mediaRules.concat(mediaRule.rules), [])
 }

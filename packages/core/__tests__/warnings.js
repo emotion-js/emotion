@@ -50,29 +50,84 @@ it('does warn when invalid values are passed for the content property', () => {
   })
 })
 
-let unsafePseudoClasses = [
-  ':first-child',
-  ':nth-child(3)',
-  ':nth-last-child(7)'
-]
+describe('unsafe pseudo classes', () => {
+  const ignoreSsrFlag =
+    '/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */'
 
-unsafePseudoClasses.forEach(pseudoClass => {
-  it('does warn when using ' + pseudoClass, () => {
-    const style = css`
-      ${pseudoClass} {
-        color: hotpink;
+  describe(`warns when using without flag: ${ignoreSsrFlag}`, () => {
+    const unsafePseudoClasses = [
+      ':first-child',
+      ':not(:first-child)',
+      ':nth-child(3)',
+      ':not(:nth-child(3))',
+      ':nth-last-child(7)'
+    ]
+
+    unsafePseudoClasses.forEach(pseudoClass => {
+      it(`"${pseudoClass}"`, () => {
+        const style = css`
+          ${pseudoClass} {
+            color: hotpink;
+          }
+        `
+        const match = (pseudoClass.match(/(:first|:nth|:nth-last)-child/): any)
+        expect(match).not.toBeNull()
+        expect(renderer.create(<div css={style} />).toJSON()).toMatchSnapshot()
+        expect(console.error).toBeCalledWith(
+          `The pseudo class "${
+            match[0]
+          }" is potentially unsafe when doing server-side rendering. Try changing it to "${
+            match[1]
+          }-of-type".`
+        )
+      })
+    })
+  })
+
+  describe(`does not warn when using with flag: ${ignoreSsrFlag}`, () => {
+    const ignoredUnsafePseudoClasses = [
+      `:first-child ${ignoreSsrFlag}`,
+      `:not(:first-child) ${ignoreSsrFlag}`,
+      `:nth-child(3) ${ignoreSsrFlag}`,
+      `:not(:nth-child(3)) ${ignoreSsrFlag}`,
+      `:nth-last-child(7) ${ignoreSsrFlag}`,
+      `:first-child span ${ignoreSsrFlag}`,
+      `:first-child, span ${ignoreSsrFlag}`,
+      `:first-child :nth-child(3) ${ignoreSsrFlag}`,
+      `:first-child, :nth-child(3) ${ignoreSsrFlag}`,
+      `:first-child:nth-child(3) ${ignoreSsrFlag}`
+    ]
+
+    ignoredUnsafePseudoClasses.forEach(pseudoClass => {
+      const styles = {
+        string: css`
+          ${pseudoClass} {
+            color: rebeccapurple;
+          }
+        `,
+        object: {
+          [pseudoClass]: {
+            color: 'rebeccapurple'
+          }
+        }
       }
-    `
-    let match = (pseudoClass.match(/:(first|nth|nth-last)-child/): any)
-    expect(match).not.toBeNull()
-    expect(renderer.create(<div css={style} />).toJSON()).toMatchSnapshot()
-    expect(console.error).toBeCalledWith(
-      `The pseudo class "${
-        match[0]
-      }" is potentially unsafe when doing server-side rendering. Try changing it to "${
-        match[1]
-      }-of-type"`
-    )
+
+      Object.keys(styles).forEach(type => {
+        it(`"${pseudoClass.replace(
+          /\/\* \S+ \*\//g,
+          '/* [flag] */'
+        )}" in a style ${type}`, () => {
+          const match = (pseudoClass.match(
+            /(:first|:nth|:nth-last)-child/
+          ): any)
+          expect(match).not.toBeNull()
+          expect(
+            renderer.create(<div css={styles[type]} />).toJSON()
+          ).toMatchSnapshot()
+          expect(console.error).not.toBeCalled()
+        })
+      })
+    })
   })
 })
 
@@ -103,6 +158,9 @@ test('kebab-case', () => {
   css({ 'background-color': 'green' })
   css({ 'background-color': 'hotpink' })
   css({ '-ms-filter': 'inherit' })
+  css({ '@media (min-width 800px)': undefined })
+  css({ '--primary-color': 'hotpink' })
+  css({ ':last-of-type': null })
   expect(console.error.mock.calls).toMatchInlineSnapshot(`
 Array [
   Array [

@@ -1,11 +1,19 @@
 {
   "name": "@emotion/core",
-  "version": "10.0.0-beta.13",
+  "version": "10.0.10",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",
   "browser": {
     "./dist/core.cjs.js": "./dist/core.browser.cjs.js",
     "./dist/core.esm.js": "./dist/core.browser.esm.js"
+  },
+  "react-native": {
+    "./dist/core.cjs.js": "./dist/core.native.cjs.js",
+    "./dist/core.esm.js": "./dist/core.native.esm.js"
+  },
+  "sketch": {
+    "./dist/core.cjs.js": "./dist/core.native.cjs.js",
+    "./dist/core.esm.js": "./dist/core.native.esm.js"
   },
   "types": "types/index.d.ts",
   "files": [
@@ -19,22 +27,23 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/cache": "10.0.0-beta.13",
-    "@emotion/css": "10.0.0-beta.13",
-    "@emotion/serialize": "0.11.0",
+    "@emotion/cache": "^10.0.9",
+    "@emotion/css": "^10.0.9",
+    "@emotion/serialize": "^0.11.6",
     "@emotion/sheet": "0.9.2",
-    "@emotion/utils": "0.11.1"
+    "@emotion/utils": "0.11.1",
+    "@babel/runtime": "^7.4.3"
   },
   "peerDependencies": {
     "react": ">=16.3.0"
   },
   "devDependencies": {
-    "@emotion/styled": "10.0.0-beta.13",
+    "@emotion/styled": "^10.0.10",
     "@types/react": "16.3.18",
     "dtslint": "^0.3.0",
-    "emotion": "10.0.0-beta.13",
-    "emotion-server": "10.0.0-beta.13",
-    "emotion-theming": "10.0.0-beta.13",
+    "emotion": "^10.0.9",
+    "emotion-server": "^10.0.9",
+    "emotion-theming": "^10.0.10",
     "html-tag-names": "^1.1.2",
     "svg-tag-names": "^1.1.1"
   },

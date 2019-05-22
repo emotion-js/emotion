@@ -5,7 +5,7 @@ const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
 // to
 // <div css={css`color:hotpink;`} /> + import { css }
 
-module.exports = {
+export default {
   meta: {
     fixable: 'code'
   },

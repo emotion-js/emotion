@@ -2,12 +2,12 @@
 title: 'Typescript'
 ---
 
-Emotion includes TypeScript definitions for `emotion`, `react-emotion`, `preact-emotion`, `create-emotion`, and `create-emotion-styled`. These definitions also infer types for css properties with the object syntax, HTML/SVG tag names, and prop types.
+Emotion includes TypeScript definitions for `@emotion/core` and `@emotion/styled`. These definitions also infer types for css properties with the object syntax, HTML/SVG tag names, and prop types.
 
-## emotion
+## @emotion/core
 
 ```tsx
-import { css } from 'emotion'
+import { css } from '@emotion/core'
 
 const titleStyle = css({
   boxSizing: 'border-box',
@@ -22,10 +22,10 @@ const subtitleStyle = css`
 `
 ```
 
-Typescript checks css properties with the object style syntax using [csstype](https://www.npmjs.com/package/csstype) package, so following code will emit errors.
+TypeScript checks css properties with the object style syntax using [csstype](https://www.npmjs.com/package/csstype) package, so following code will emit errors.
 
 ```tsx
-import { css } from 'emotion';
+import { css } from '@emotion/core';
 
 const titleStyle = css({
                        ^ Argument of type 'boxSizing: 'bordre-box';' is not assignable [...]
@@ -35,12 +35,12 @@ const titleStyle = css({
 });
 ```
 
-## react-emotion
+## @emotion/styled
 
 ### HTML/SVG elements
 
 ```tsx
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 const Link = styled('a')`
   color: red;
@@ -54,7 +54,7 @@ const App = () => <Link href="#">Click me</Link>
 ```
 
 ```tsx
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 
 const NotALink = styled('div')`
   color: red;
@@ -69,7 +69,7 @@ const App = () => (
 ### `withComponent`
 
 ```tsx
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 const NotALink = styled('div')`
   color: red;
@@ -87,52 +87,60 @@ const App = () => <Link href="#">Click me</Link>
 You can type the props of styled components.
 
 ```tsx
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 type ImageProps = {
-  src: string,
-  width: number;
+  src: string
+  width: number
 }
 
 const Image0 = styled('div')`
   width: ${(props: ImageProps) => props.width};
-  background: url(${(props: ImageProps) => props.src}) center center;
+  background: url(${(props: ImageProps) => props.src})
+    center center;
   background-size: contain;
 `
 
 // Or with object styles
 
-const Image1 = styled('div')({
-  backgroundSize: 'contain',
-}, (props: ImageProps) => ({
-  width: props.width;
-  background: `url(${props.src}) center center`,
-}));
+const Image1 = styled('div')(
+  {
+    backgroundSize: 'contain'
+  },
+  (props: ImageProps) => ({
+    width: props.width,
+    background: `url(${props.src}) center center`
+  })
+)
 
 // Or with a generic type
 
-const Image2 = styled('div')<ImageProps>({
-  backgroundSize: 'contain',
-}, props => ({
-  width: props.width;
-  background: `url(${props.src}) center center`,
-}));
+const Image2 = styled('div')<ImageProps>(
+  {
+    backgroundSize: 'contain'
+  },
+  props => ({
+    width: props.width,
+    background: `url(${props.src}) center center`
+  })
+)
 
 // TS 2.9+ only
 const Image3 = styled.div<ImageProps>`
   width: ${(props: ImageProps) => props.width};
-  background: url(${(props: ImageProps) => props.src}) center center;
+  background: url(${(props: ImageProps) => props.src})
+    center center;
   background-size: contain;
 `
 ```
 
-* For Typescript <2.9, the generic type version only works with object styles due to https://github.com/Microsoft/TypeScript/issues/11947.
+- For Typescript <2.9, the generic type version only works with object styles due to https://github.com/Microsoft/TypeScript/issues/11947.
 
 ### React Components
 
 ```tsx
 import React, { SFC } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 type ComponentProps = {
   className?: string
@@ -164,7 +172,7 @@ const App = () => (
 
 ```tsx
 import React, { SFC } from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 
 type ComponentProps = {
   className?: string
@@ -219,7 +227,7 @@ However, you can define a theme type by creating another `styled` instance.
 _styled.tsx_
 
 ```tsx
-import styled, { CreateStyled } from 'react-emotion'
+import styled, { CreateStyled } from '@emotion/styled'
 
 type Theme = {
   color: {
@@ -246,29 +254,3 @@ const Button = styled('button')`
 
 export default Button
 ```
-
-## create-emotion
-
-The `create-emotion` types are very similar to the `emotion` types except that you can pass your own context and options.
-
-```tsx
-import createEmotion, {
-  Emotion,
-  EmotionOptions
-} from 'create-emotion'
-
-const context = {}
-const options: EmotionOptions = {
-  key: 'my-emotion'
-}
-const myEmotion: Emotion = createEmotion(context, options)
-
-const bodyStyle = myEmotion.css({
-  display: 'flex',
-  flowDirection: 'column-reverse'
-})
-```
-
-## create-emotion-styled
-
-The current typings for `create-emotion-styled` are only compatible with React, and will not work with Preact. For detail typing, see the [`react-emotion` section](#react-emotion) above.

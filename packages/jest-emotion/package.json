@@ -1,6 +1,6 @@
 {
   "name": "jest-emotion",
-  "version": "10.0.0-beta.13",
+  "version": "10.0.11",
   "description": "Jest utilities for emotion",
   "main": "dist/jest-emotion.cjs.js",
   "types": "types/index.d.ts",
@@ -14,18 +14,21 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.3",
     "@types/jest": "^23.0.2",
     "chalk": "^2.4.1",
-    "css": "^2.2.1",
-    "object-assign": "^4.1.1"
+    "css": "^2.2.1"
   },
   "devDependencies": {
+    "@emotion/core": "^10.0.10",
     "dtslint": "^0.3.0",
-    "emotion": "10.0.0-beta.13",
+    "emotion": "^10.0.9",
+    "enzyme-to-json": "^3.3.5",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3",
-    "react-emotion": "10.0.0-beta.13"
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -42,9 +45,6 @@
   ],
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
-  },
-  "publishConfig": {
-    "tag": "next"
   },
   "browser": {
     "./dist/jest-emotion.cjs.js": "./dist/jest-emotion.browser.cjs.js"

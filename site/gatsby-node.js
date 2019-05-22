@@ -42,7 +42,7 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
     }
   })
 
-  if (stage === 'build-javascript') {
+  if (stage === 'build-javascript' && !process.env.NETLIFY) {
     actions.setWebpackConfig({
       plugins: [
         new BundleAnalyzerPlugin({
@@ -66,7 +66,22 @@ exports.sourceNodes = async ({ store, cache, actions, createNodeId }) => {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
+
+  createRedirect({
+    fromPath: `/`,
+    isPermanent: true,
+    redirectInBrowser: true,
+    toPath: `/docs/introduction`
+  })
+
+  createRedirect({
+    fromPath: `/docs`,
+    isPermanent: true,
+    redirectInBrowser: true,
+    toPath: `/docs/introduction`
+  })
+
   const docs1 = require('./docs-yaml')()
   const docTemplate = require.resolve(`./src/templates/doc.js`)
   docs1.forEach(({ title, items }) => {

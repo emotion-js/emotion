@@ -1,9 +1,15 @@
 // @flow
 
-exports.rules = {
-  'import-from-emotion': require('./rules/import-from-emotion'),
-  'no-vanilla': require('./rules/no-vanilla'),
-  'syntax-preference': require('./rules/syntax-preference'),
-  'styled-import': require('./rules/styled-import'),
-  'jsx-import': require('./rules/jsx-import')
+import importFromEmotion from './rules/import-from-emotion'
+import noVanilla from './rules/no-vanilla'
+import syntaxPreference from './rules/syntax-preference'
+import styledImport from './rules/styled-import'
+import jsxImport from './rules/jsx-import'
+
+export let rules = {
+  'import-from-emotion': importFromEmotion,
+  'no-vanilla': noVanilla,
+  'syntax-preference': syntaxPreference,
+  'styled-import': styledImport,
+  'jsx-import': jsxImport
 }

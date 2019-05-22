@@ -9,8 +9,8 @@ _`emotion-theming` is a theming library inspired by [styled-components](https://
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
-  - [ThemeProvider](#themeprovider)
-  - [withTheme](#withthemecomponent)
+  - [ThemeProvider](#themeprovider-reactcomponenttype)
+  - [withTheme](#withthemecomponent-reactcomponenttype-reactcomponenttype)
 - [Credits](#credits)
 - [License](#license)
 
@@ -93,7 +93,7 @@ _Accepts:_
 
 ```jsx
 import React from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { ThemeProvider, withTheme } from 'emotion-theming'
 
 // object-style theme

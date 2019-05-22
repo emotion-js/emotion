@@ -96,7 +96,7 @@ let Emotion = withEmotionCache((props, cache, ref) => {
 })
 
 if (process.env.NODE_ENV !== 'production') {
-  Emotion.displayName = 'css'
+  Emotion.displayName = 'EmotionCssPropInternal'
 }
 
 // $FlowFixMe
