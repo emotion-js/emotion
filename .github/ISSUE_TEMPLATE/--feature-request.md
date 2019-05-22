@@ -6,7 +6,6 @@ labels: enhancement, needs triage
 assignees: ''
 ---
 
-<!-- Consider opening a pull request instead: it’s a more productive way to discuss new features -->
 
 **The problem**
 
