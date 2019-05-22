@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache, ThemeContext, useContext } from './context'
+import { useLayoutEffect, useContext, useRef } from 'react'
+import { withEmotionCache, ThemeContext } from './context'
 import { insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 
@@ -13,18 +14,13 @@ type GlobalProps = {
   +styles: Styles | (Object => Styles)
 }
 
-let useRef: <Val>(Val) => { current: Val } = (React: any).useRef
-
-let useMutationEffect: (() => mixed, mem?: Array<any>) => void = (React: any)
-  .useMutationEffect
-
 let warnedAboutCssPropForGlobal = false
 
 // maintain place over rerenders.
 // initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
 // initial client-side render from SSR, use place of hydrating tag
 
-export let Global: React.StatelessFunctionalComponent<
+export let Global: React.AbstractComponent<
   GlobalProps
 > = /* #__PURE__ */ withEmotionCache((props: GlobalProps, cache) => {
   if (
@@ -47,56 +43,7 @@ export let Global: React.StatelessFunctionalComponent<
     typeof styles === 'function' ? styles(useContext(ThemeContext)) : styles
   ])
 
-  if (isBrowser) {
-    let sheetRef = useRef(null)
-    useMutationEffect(
-      () => {
-        let sheet = new StyleSheet({
-          key: `${cache.key}-global`,
-          nonce: cache.sheet.nonce,
-          container: cache.sheet.container
-        })
-        // $FlowFixMe
-        let node: HTMLStyleElement | null = document.querySelector(
-          `style[data-emotion-${cache.key}="${serialized.name}"]`
-        )
-
-        if (node !== null) {
-          sheet.tags.push(node)
-        }
-        if (cache.sheet.tags.length) {
-          sheet.before = cache.sheet.tags[0]
-        }
-        sheetRef.current = sheet
-      },
-      [cache]
-    )
-    useMutationEffect(
-      () => {
-        let sheet: StyleSheet = (sheetRef.current: any)
-        if (serialized.next !== undefined) {
-          // insert keyframes
-          insertStyles(cache, serialized.next, true)
-        }
-        cache.insert(``, serialized, sheet, false)
-        return () => {
-          // if this doesn't exist then it will be null so the style element will be appended
-          // $FlowFixMe
-          sheet.before = sheet.tags[0].nextElementSibling
-          sheet.flush()
-        }
-      },
-      [
-        serialized,
-        // we don't use the cache in this but we use the sheet
-        // which is determined by the cache
-        // and we don't have a reference to the sheet in render so
-        // we use the cache instead
-        cache
-      ]
-    )
-    return null
-  } else {
+  if (!isBrowser) {
     let serializedNames = serialized.name
     let serializedStyles = serialized.styles
     let next = serialized.next
@@ -123,4 +70,57 @@ export let Global: React.StatelessFunctionalComponent<
       />
     )
   }
+
+  // yes, i know these hooks are used conditionally
+  // but it is based on a constant that will never change at runtime
+  // it's effectively like having two implementations and switching them out
+  // so it's not actually breaking anything
+
+  let sheetRef = useRef()
+
+  useLayoutEffect(
+    () => {
+      let sheet = new StyleSheet({
+        key: `${cache.key}-global`,
+        nonce: cache.sheet.nonce,
+        container: cache.sheet.container
+      })
+      // $FlowFixMe
+      let node: HTMLStyleElement | null = document.querySelector(
+        `style[data-emotion-${cache.key}="${serialized.name}"]`
+      )
+
+      if (node !== null) {
+        sheet.tags.push(node)
+      }
+      if (cache.sheet.tags.length) {
+        sheet.before = cache.sheet.tags[0]
+      }
+      sheetRef.current = sheet
+      return () => {
+        sheet.flush()
+      }
+    },
+    [cache]
+  )
+
+  useLayoutEffect(
+    () => {
+      if (serialized.next !== undefined) {
+        // insert keyframes
+        insertStyles(cache, serialized.next, true)
+      }
+      let sheet: StyleSheet = ((sheetRef.current: any): StyleSheet)
+      if (sheet.tags.length) {
+        // if this doesn't exist then it will be null so the style element will be appended
+        let element = sheet.tags[sheet.tags.length - 1].nextElementSibling
+        sheet.before = ((element: any): Element | null)
+        sheet.flush()
+      }
+      cache.insert(``, serialized, sheet, false)
+    },
+    [cache, serialized]
+  )
+
+  return null
 })

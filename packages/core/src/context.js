@@ -1,6 +1,7 @@
 // @flow
 import { type EmotionCache } from '@emotion/utils'
 import * as React from 'react'
+import { useContext, forwardRef } from 'react'
 import createCache from '@emotion/cache'
 import { isBrowser } from './utils'
 
@@ -8,28 +9,16 @@ let EmotionCacheContext: React.Context<EmotionCache | null> = React.createContex
   isBrowser ? createCache() : null
 )
 
-export let useContext: <Value>(
-  context: React$Context<Value>
-) => Value = (React: any).useContext
-
-export let useState: <State>(
-  initialState: (() => State) | State
-) => [State, (State) => void] = (React: any).useState
-
 export let ThemeContext = React.createContext<Object>({})
 export let CacheProvider = EmotionCacheContext.Provider
 
-export let useTheme = () => useContext(ThemeContext)
-
-let forwardRef: <Props>(
-  render: (props: Props, ref: any) => React.Node
-) => React.StatelessFunctionalComponent<Props> = (React: any).forwardRef
-
 let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
   func: (props: Props, cache: EmotionCache, ref: Ref) => React.Node
-): React.StatelessFunctionalComponent<Props> {
+): React.AbstractComponent<Props> {
+  // $FlowFixMe
   return forwardRef((props: Props, ref: Ref) => {
-    let cache = useContext(EmotionCacheContext)
+    // the cache will never be null in the browser
+    let cache = ((useContext(EmotionCacheContext): any): EmotionCache)
 
     return func(props, cache, ref)
   })

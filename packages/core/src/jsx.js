@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache, ThemeContext, useContext } from './context'
+import { useContext } from 'react'
+import { withEmotionCache, ThemeContext } from './context'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'

@@ -116,10 +116,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
 
       for (let key in props) {
         if (shouldUseAs && key === 'as') continue
-        if (
-          // $FlowFixMe
-          finalShouldForwardProp(key)
-        ) {
+        if (finalShouldForwardProp(key)) {
           newProps[key] = props[key]
         }
       }
