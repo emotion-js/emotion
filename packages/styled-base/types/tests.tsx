@@ -267,10 +267,8 @@ declare const ref3_2: (element: HTMLDivElement | null) => void
   const StyledReadable = styled(Readable)`
     font-size: ${props => (props.kind === 'book' ? 16 : 14)};
   `
-
   ;<Readable kind="book" author="Hejlsberg" />
   ;<StyledReadable kind="book" author="Hejlsberg" />
-
   ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
   ;<StyledReadable kind="magazine" author="Hejlsberg" /> // $ExpectError
 }

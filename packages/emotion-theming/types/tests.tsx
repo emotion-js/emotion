@@ -66,10 +66,8 @@ typedWithTheme((props: { value: number }) => null)
   }
 
   const ThemedReadable = withTheme(Readable)
-
   ;<Readable kind="book" author="Hejlsberg" />
   ;<ThemedReadable kind="book" author="Hejlsberg" />
-
   ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
   ;<ThemedReadable kind="magazine" author="Hejlsberg" /> // $ExpectError
 }

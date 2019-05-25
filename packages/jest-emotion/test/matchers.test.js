@@ -174,6 +174,26 @@ describe('toHaveStyleRule', () => {
     expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
   })
 
+  it('matches target styles by regex', () => {
+    const localDivStyle = css`
+      a {
+        color: yellow;
+      }
+      a:hover {
+        color: black;
+      }
+    `
+    const tree = renderer
+      .create(
+        <div css={localDivStyle}>
+          <svg css={svgStyle} />
+        </div>
+      )
+      .toJSON()
+
+    expect(tree).toHaveStyleRule('color', 'yellow', { target: /a$/ })
+  })
+
   it('matches proper style for css', () => {
     const tree = renderer
       .create(

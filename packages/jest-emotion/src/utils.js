@@ -177,7 +177,7 @@ export function getKeys(elements: Array<HTMLStyleElement>) {
 export function hasClassNames(
   classNames: Array<string>,
   selectors: Array<string>,
-  target: ?string
+  target?: string | RegExp
 ): boolean {
   // selectors is the classNames of specific css rule
   return selectors.some(selector => {
@@ -188,7 +188,9 @@ export function hasClassNames(
       return classNames.includes(selector.slice(1))
     }
     // check if selector (className) of specific css rule match target
-    return selector.includes(target)
+    return target instanceof RegExp
+      ? target.test(selector)
+      : selector.includes(target)
   })
 }
 

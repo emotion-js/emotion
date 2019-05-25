@@ -72,7 +72,6 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
 - [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
 - [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
-- [govuk-react](https://github.com/penx/govuk-react/), a React component library built for UK Government departments
 - **open a PR and add yours!**
 
 ### Ecosystem
@@ -80,12 +79,13 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [stylelint](https://github.com/stylelint/stylelint) - A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
 - [facepaint](https://github.com/emotion-js/facepaint)
 - [emotion-vue](https://github.com/egoist/emotion-vue)
-- [nuxt-community/emotion-module](https://github.com/nuxt-community/emotion-module) - Emotion module for Nuxt.js 
+- [nuxt-community/emotion-module](https://github.com/nuxt-community/emotion-module) - Emotion module for Nuxt.js
 - [ember-emotion](https://github.com/alexlafroscia/ember-emotion)
 - [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
 - [ShevyJS](https://github.com/kyleshevlin/shevyjs)
 - [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
 - [polished](https://github.com/styled-components/polished) - Lightweight set of Sass/Compass-style mixins/helpers for writing styles in JavaScript.
+- [monad-ui](https://github.com/muhajirdev/monad-ui/) - Utility First CSS-In-JS
 
 ### In the Wild
 
