@@ -28,6 +28,7 @@
     "src",
     "dist",
     "types",
+    "macro.d.ts",
     "macro.js"
   ],
   "umd:main": "dist/styled.umd.min.js",
