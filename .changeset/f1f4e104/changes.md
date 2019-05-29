@@ -1,0 +1,1 @@
+Exposed macro.d.ts
