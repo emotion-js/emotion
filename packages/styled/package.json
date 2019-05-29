@@ -17,6 +17,10 @@
   "devDependencies": {
     "dtslint": "^0.3.0"
   },
+  "peerDependencies": {
+    "@emotion/core": "^10.0.0",
+    "react": ">=16.3.0"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -24,6 +28,7 @@
     "src",
     "dist",
     "types",
+    "macro.d.ts",
     "macro.js"
   ],
   "umd:main": "dist/styled.umd.min.js",
