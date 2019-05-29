@@ -223,3 +223,26 @@ render(
 This API was inspired by [styled-components](https://www.styled-components.com). ❤️
 
 The `as` prop is only used by styled when it's not forwarded to the underlying element. By default, this means that the `as` prop is used for html tags and forwarded for components. To change this, you can pass a custom [`shouldForwardProp`](#customizing-prop-forwarding) which returns `true` for `'as'` to forward it or returns `false` for `'as'` to use it and not forward it.
+
+### Nesting components
+
+We can nest selectors using `&`:
+
+```jsx
+// @live
+
+import styled from '@emotion/styled'
+
+const Example = styled('span')`
+  color: lightgreen;
+  & > a {
+    color: hotpink;
+  }
+`
+
+render(
+  <Example>
+    This is <a>nested</a>.
+  </Example>
+)
+```
