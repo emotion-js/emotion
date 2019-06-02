@@ -464,7 +464,9 @@ const props = {
   // preact
   for: true,
   class: true,
-  autofocus: true
+  autofocus: true,
+  // Loading attribute for images and iframes Spec PR https://github.com/whatwg/html/pull/3752/files#diff-36cd38f49b9afa08222c0dc9ebfe35eb
+  loading: true
 }
 // eslint-disable-next-line import/no-commonjs
 module.exports = `/^((${Object.keys(props).join(
