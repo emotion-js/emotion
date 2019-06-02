@@ -188,3 +188,16 @@ test('child selector array', () => {
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
+
+test('handles camelCased custom properties in object styles properly', () => {
+  const tree = renderer.create(
+    <div
+      css={{
+        '--textColor': 'green',
+        color: 'var(--textColor)'
+      }}
+    />
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
