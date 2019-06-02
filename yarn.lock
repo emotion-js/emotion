@@ -1069,12 +1069,15 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@changesets/cli@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-1.1.1.tgz#2abd1596d3031913a871161bd7c236c33e479ec0"
-  integrity sha512-u5UNOzH71ICrlDhFBT1ltnMAJIoDjQPu/8sn+Z02INjnbHTBS7Bo5Tc9xpo0rzXSg52zkg5iBAD8PP3r37Vs1A==
+"@changesets/cli@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-1.1.5.tgz#506d1af4ce16198f85b47fd2c84ee7439b839b9f"
+  integrity sha512-4UlGEXtggU0vhliIpm7zuBR1gIO5Im335fkmwAsnLTzQmvwhFOVcTgIdOg4RB6rCLmz9/rhi8BPXJ+e33jD6zw==
   dependencies:
     "@babel/runtime" "^7.4.4"
+    "@types/inquirer" "^6.0.3"
+    "@types/semver" "^6.0.0"
+    "@types/uuid" "^3.4.4"
     bolt "^0.22.1"
     boxen "^1.3.0"
     chalk "^2.1.0"
@@ -1082,8 +1085,9 @@
     detect-indent "^6.0.0"
     fs-extra "^7.0.1"
     fuzzy "^0.1.3"
-    get-workspaces "^0.1.0"
+    get-workspaces "^0.3.0"
     globby "^9.2.0"
+    human-id "^1.0.2"
     inquirer "^3.3.0"
     inquirer-checkbox-plus-prompt "^1.0.1"
     lodash.startcase "^4.4.0"
@@ -1096,10 +1100,10 @@
     tty-table "^2.7.0"
     uuid "^3.3.2"
 
-"@changesets/get-github-info@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@changesets/get-github-info/-/get-github-info-0.1.1.tgz#f47e4635b5466957daab9e98c06edcb9564683b3"
-  integrity sha512-d3PGEVnsppnsGanwN9xQWzBgllOfXPwxIOMEdWJYYsSeB2vbSnfsdOFqojwJ92kcZV3ej+HvNCa2pXFD7YY/OQ==
+"@changesets/get-github-info@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@changesets/get-github-info/-/get-github-info-0.1.2.tgz#aa3581969f103c1e7468fadfcd69500a472e723e"
+  integrity sha512-Em6VL5uSOphezJrHI15GzfOaB1PAU+kFu/wvZQHHwQLS2W0ZgWR2ShbTMGnRDMcAH+XDcWEucAa9Lm+psmH32g==
   dependencies:
     dataloader "^1.4.0"
     node-fetch "^2.5.0"
@@ -1400,6 +1404,14 @@
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.0.tgz#2fac51050c68f7d6f96c5aafc631132522f4aa3f"
   integrity sha512-1A/RUAX4VtmGzNTGLSfmiPxQ3XwUSe/1YN4lW9GRa+j307oFK6MPjhlvw6jEHDodUBIvSvrA7/iHDchr5LS+0Q==
 
+"@types/inquirer@^6.0.3":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@types/inquirer/-/inquirer-6.0.3.tgz#597b3c1aa4a575899841ab99bb4f1774d0b8c090"
+  integrity sha512-lBsdZScFMaFYYIE3Y6CWX22B9VeY2NerT1kyU2heTc3u/W6a+Om6Au2q0rMzBrzynN0l4QoABhI0cbNdyz6fDg==
+  dependencies:
+    "@types/through" "*"
+    rxjs "^6.4.0"
+
 "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.0.tgz#1eb8c033e98cf4e1a4cedcaf8bcafe8cb7591e85"
@@ -1482,15 +1494,34 @@
   dependencies:
     "@types/node" "*"
 
+"@types/semver@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-6.0.0.tgz#86ba89f02a414e39c68d02b351872e4ed31bd773"
+  integrity sha512-OO0srjOGH99a4LUN2its3+r6CBYcplhJ466yLqs+zvAWgphCpS8hYZEZ797tRDP/QKcqTdb/YCN6ifASoAWkrQ==
+
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
 
+"@types/through@*":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@types/through/-/through-0.0.29.tgz#72943aac922e179339c651fa34a4428a4d722f93"
+  integrity sha512-9a7C5VHh+1BKblaYiq+7Tfc+EOmjMdZaD1MYtkQjSoxgB69tBjW98ry6SKsi4zEIWztLOMRuL87A3bdT/Fc/4w==
+  dependencies:
+    "@types/node" "*"
+
 "@types/tmp@^0.0.32":
   version "0.0.32"
   resolved "https://registry.yarnpkg.com/@types/tmp/-/tmp-0.0.32.tgz#0d3cb31022f8427ea58c008af32b80da126ca4e3"
   integrity sha1-DTyzECL4Qn6ljACK8yuA2hJspOM=
+
+"@types/uuid@^3.4.4":
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.4.tgz#7af69360fa65ef0decb41fd150bf4ca5c0cefdf5"
+  integrity sha512-tPIgT0GUmdJQNSHxp0X2jnpQfBSTfGxUMc/2CXBU2mnyTFVYVa2ojpoQ74w0U2yn2vw3jnC640+77lkFFpdVDw==
+  dependencies:
+    "@types/node" "*"
 
 "@types/yargs@^12.0.2", "@types/yargs@^12.0.9":
   version "12.0.12"
@@ -9753,10 +9784,10 @@ get-value@^2.0.2, get-value@^2.0.3, get-value@^2.0.6:
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
 
-get-workspaces@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/get-workspaces/-/get-workspaces-0.1.1.tgz#c17d57d7ef8cf06e46041ea4f22a41fbcdee3e7b"
-  integrity sha512-ClBj54rZ782YDPLpF5ySeDoMbY49plX1yhU6pfPLXk3dNgmGuvd824W+AzR8Xy5354q2VSGNzkERtr0OODOLJA==
+get-workspaces@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/get-workspaces/-/get-workspaces-0.3.0.tgz#6352c6cd32c9627cab81f5d33a2fa752515b7550"
+  integrity sha512-H1BcqsiZ7kIlx/ZLNkCUUAc9JqLF3cU8DR6iAYFVaXQa0iRZL3Mw+gnLVktzlmPWikp1u99oZSodrXQOIsypvQ==
   dependencies:
     fs-extra "^7.0.1"
     globby "^9.2.0"
@@ -10847,6 +10878,11 @@ https-proxy-agent@^2.2.1:
   dependencies:
     agent-base "^4.1.0"
     debug "^3.1.0"
+
+human-id@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/human-id/-/human-id-1.0.2.tgz#e654d4b2b0d8b07e45da9f6020d8af17ec0a5df3"
+  integrity sha512-UNopramDEhHJD+VR+ehk8rOslwSfByxPIZyJRfV739NDhN5LF1fa1MqnzKm2lGTQRjNrjK19Q5fhkgIfjlVUKw==
 
 husky@^1.1.3:
   version "1.3.1"
