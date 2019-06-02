@@ -57,6 +57,7 @@ const props = {
   crossOrigin: true,
   data: true, // For `<object />` acts as `src`.
   dateTime: true,
+  decoding: true,
   default: true,
   defer: true,
   dir: true,
@@ -89,6 +90,7 @@ const props = {
   label: true,
   lang: true,
   list: true,
+  loading: true,
   loop: true,
   low: true,
   // manifest: true,
@@ -464,9 +466,7 @@ const props = {
   // preact
   for: true,
   class: true,
-  autofocus: true,
-  // Loading attribute for images and iframes Spec PR https://github.com/whatwg/html/pull/3752/files#diff-36cd38f49b9afa08222c0dc9ebfe35eb
-  loading: true
+  autofocus: true
 }
 // eslint-disable-next-line import/no-commonjs
 module.exports = `/^((${Object.keys(props).join(
