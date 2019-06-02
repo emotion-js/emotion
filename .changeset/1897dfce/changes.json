@@ -1,0 +1,15 @@
+{
+  "releases": [{ "name": "@emotion/is-prop-valid", "type": "minor" }],
+  "dependents": [
+    {
+      "name": "@emotion/primitives",
+      "type": "patch",
+      "dependencies": ["@emotion/is-prop-valid"]
+    },
+    {
+      "name": "@emotion/styled-base",
+      "type": "patch",
+      "dependencies": ["@emotion/is-prop-valid"]
+    }
+  ]
+}
