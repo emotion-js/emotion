@@ -1,4 +1,0 @@
-{
-  "releases": [{ "name": "@emotion/serialize", "type": "patch" }],
-  "dependents": []
-}

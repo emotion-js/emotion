@@ -1,5 +1,12 @@
 # @emotion/styled
 
+## 10.0.12
+
+### Patch Changes
+
+- [f7238e7e](https://github.com/emotion-js/emotion/commit/f7238e7e) [#1364](https://github.com/emotion-js/emotion/pulls/1364) Thanks [@arcanis](https://github.com/arcanis)! - Adds @emotion/core & react to the peer dependencies
+- [b849f66c](https://github.com/emotion-js/emotion/commit/b849f66c) [#1369](https://github.com/emotion-js/emotion/pulls/1369) Thanks [@SavePointSam](https://github.com/SavePointSam)! - Exposed macro.d.ts
+
 ## 10.0.11
 
 ### Patch Changes
