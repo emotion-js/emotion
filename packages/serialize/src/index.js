@@ -11,8 +11,13 @@ import memoize from '@emotion/memoize'
 let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
-const processStyleName = memoize((styleName: string) =>
-  styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
+
+const processStyleName = memoize(
+  (styleName: string) =>
+    isCustomProperty(styleName)
+      ? styleName
+      : styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
 let processStyleValue = (
@@ -41,7 +46,7 @@ let processStyleValue = (
 
   if (
     unitless[key] !== 1 &&
-    key.charCodeAt(1) !== 45 && // custom properties
+    !isCustomProperty(key) &&
     typeof value === 'number' &&
     value !== 0
   ) {
@@ -88,11 +93,10 @@ if (process.env.NODE_ENV !== 'production') {
     }
 
     const processed = oldProcessStyleValue(key, value)
-    const isCssVariable = key.charCodeAt(1) === 45
 
     if (
       processed !== '' &&
-      !isCssVariable &&
+      !isCustomProperty(key) &&
       key.indexOf('-') !== -1 &&
       hyphenatedCache[key] === undefined
     ) {

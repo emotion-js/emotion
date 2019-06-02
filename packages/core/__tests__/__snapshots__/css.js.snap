@@ -36,6 +36,17 @@ exports[`css call composition 1`] = `
 />
 `;
 
+exports[`handles camelCased custom properties in object styles properly 1`] = `
+.emotion-0 {
+  --textColor: green;
+  color: var(--textColor);
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
 exports[`label in css call 1`] = `
 .emotion-0 {
   color: hotpink;
