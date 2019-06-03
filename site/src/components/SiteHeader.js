@@ -90,7 +90,7 @@ export default function SiteHeader() {
         <HeaderLink to="https://github.com/emotion-js/emotion">
           GitHub
         </HeaderLink>
-        <HeaderLink to="https://emotion.now.sh">Slack</HeaderLink>
+        <HeaderLink to="https://emotion-slack.now.sh/">Slack</HeaderLink>
         <HeaderLink to="https://spectrum.chat/emotion">Spectrum</HeaderLink>
         <HeaderLink to="https://5bb1495273f2cf57a2cf39cc--emotion.netlify.com">
           v9 Docs
