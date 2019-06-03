@@ -14,7 +14,7 @@ assignees: ''
 **Description:**
 
 <!--
-  Please provide as much details as possible about your issue,
+  Please provide as much detail as possible about your issue,
   please refrain from asking for solutions to specific problems
   with your code. This template is to report issues with the
   official Emotion documentation.
@@ -23,7 +23,7 @@ assignees: ''
 **Documentation links:**
 
 <!--
-  If existing documentation is available, but needs improvements,
+  If existing documentation is available, but needs to be improved,
   is wrong, or unclear, please post here the relevant 
   https://emotion.sh/docs URLs
 -->
