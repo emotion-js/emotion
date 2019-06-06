@@ -44,15 +44,16 @@ function getDeclaratorName(path, t) {
       p.isVariableDeclarator() ||
       p.isFunctionDeclaration() ||
       p.isFunctionExpression() ||
-      p.isArrowFunctionExpression()
+      p.isArrowFunctionExpression() ||
+      p.isObjectProperty()
   )
   if (!parent) {
     return ''
   }
 
+  // we probably have a css call assigned to a variable
+  // so we'll just return the variable name
   if (parent.isVariableDeclarator()) {
-    // we probably have a css call assigned to a variable
-    // so we'll just return the variable name
     return parent.node.id.name
   }
 
@@ -63,6 +64,11 @@ function getDeclaratorName(path, t) {
       return name
     }
     return ''
+  }
+
+  // we could also have an object property
+  if (parent.isObjectProperty()) {
+    return parent.node.key.name || parent.node.key.value
   }
 
   let variableDeclarator = path.findParent(p => p.isVariableDeclarator())
