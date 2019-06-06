@@ -68,7 +68,7 @@ function getDeclaratorName(path, t) {
 
   // we could also have an object property
   if (parent.isObjectProperty()) {
-    return parent.node.key.name || parent.node.key.value
+    return parent.node.key.name
   }
 
   let variableDeclarator = path.findParent(p => p.isVariableDeclarator())
