@@ -124,6 +124,46 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
 const SomeComponent = props => <div css={_ref} {...props} />;"
 `;
 
+exports[`@emotion/babel-plugin-core object-property 1`] = `
+"// @flow
+import * as React from 'react'
+import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
+
+const MyObject = {
+  MyProperty: styled.div({ color: 'hotpink' })
+}
+
+function Logo(props) {
+  return <MyObject.MyProperty />
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+// @flow
+import * as React from 'react';
+import { jsx } from '@emotion/core';
+const MyObject = {
+  MyProperty: _styled(\\"div\\", {
+    target: \\"e1mmqgwa0\\",
+    label: \\"MyProperty\\"
+  })(process.env.NODE_ENV === \\"production\\" ? {
+    name: \\"1lrxbo5\\",
+    styles: \\"color:hotpink;\\"
+  } : {
+    name: \\"1lrxbo5\\",
+    styles: \\"color:hotpink;\\",
+    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1wcm9wZXJ0eS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNYyIsImZpbGUiOiJvYmplY3QtcHJvcGVydHkuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBAZmxvd1xuaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IE15T2JqZWN0ID0ge1xuICBNeVByb3BlcnR5OiBzdHlsZWQuZGl2KHsgY29sb3I6ICdob3RwaW5rJyB9KVxufVxuXG5mdW5jdGlvbiBMb2dvKHByb3BzKSB7XG4gIHJldHVybiA8TXlPYmplY3QuTXlQcm9wZXJ0eSAvPlxufVxuIl19 */\\"
+  })
+};
+
+function Logo(props) {
+  return <MyObject.MyProperty />;
+}"
+`;
+
 exports[`@emotion/babel-plugin-core static-object-with-camel-case 1`] = `
 "/** @jsx jsx */
 import { jsx } from '@emotion/core'
