@@ -17,8 +17,8 @@
   },
   "devDependencies": {
     "emotion-theming": "^10.0.10",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
     "react": "^16.5.2",
     "react-primitives": "^0.7.0"
   },

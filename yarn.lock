@@ -4206,6 +4206,19 @@ body-parser@1.18.2:
     raw-body "2.3.2"
     type-is "~1.6.15"
 
+bolt-check@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/bolt-check/-/bolt-check-0.3.0.tgz#f4f29efe4c5316e3b2c9a750552d2d4fa13b51a1"
+  integrity sha512-fXLKD3YzXeBsJcZOJxzbw074RpAcwBWcdYCIO1N8hmFbR5zY6dR3v0iYJiG/YHOgsmCYUHGmmanVzCdT3aa9pA==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    chalk "^2.1.0"
+    detect-indent "^6.0.0"
+    fs-extra "^7.0.1"
+    get-workspaces "^0.3.1"
+    meow "^5.0.0"
+    semver "^5.4.1"
+
 bolt@^0.22.1:
   version "0.22.6"
   resolved "https://registry.yarnpkg.com/bolt/-/bolt-0.22.6.tgz#3bdafdb98679828b6153ac175c946c2cf740b736"
@@ -9788,6 +9801,14 @@ get-workspaces@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/get-workspaces/-/get-workspaces-0.3.0.tgz#6352c6cd32c9627cab81f5d33a2fa752515b7550"
   integrity sha512-H1BcqsiZ7kIlx/ZLNkCUUAc9JqLF3cU8DR6iAYFVaXQa0iRZL3Mw+gnLVktzlmPWikp1u99oZSodrXQOIsypvQ==
+  dependencies:
+    fs-extra "^7.0.1"
+    globby "^9.2.0"
+
+get-workspaces@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/get-workspaces/-/get-workspaces-0.3.1.tgz#8e0dc3ea8077725a84d2194be37410c011538536"
+  integrity sha512-TBP1EQTBfEfxn0irOdTYf9nvYefi4hrEJb9Cp7p81xFrKUEq16Mypa8C5459B5IjADujRYnCwWu59zhSobw1fg==
   dependencies:
     fs-extra "^7.0.1"
     globby "^9.2.0"
