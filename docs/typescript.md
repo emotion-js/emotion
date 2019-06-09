@@ -35,16 +35,14 @@ const titleStyle = css({
 });
 ```
 
-To make `css` work with pure TypeScript (without babel plugin) you need to add `jsx pragma` at the
-top of every file that is using `css` prop:
+To make the css prop work with pure TypeScript (without babel plugin) you need to add `/** @jsx jsx */` at the top of every file that is using the css prop:
 
 ```tsx
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 ```
 
-As a result you may be not able to use react fragment shorthand syntax - `<></>`, but still you can
-use `<Fragment></Fragment>`.
+As a result you may be not able to use react fragment shorthand syntax - `<></>`, but still you can use `<Fragment></Fragment>`.
 
 ## @emotion/styled
 
