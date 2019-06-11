@@ -47,3 +47,7 @@ render(
   </CacheProvider>
 )
 ```
+
+## Using CacheProvider with Server-Side-Rendering
+
+Emotion works with SSR out of the box. However, when implmenting `CacheProvider` we must also create our own server implmentation using [`createEmotionServer`](https://emotion.sh/docs/create-emotion-server) and pass it the same `cache` to ensure styles are created and hydrated properly.
