@@ -8,3 +8,14 @@ styled.body
 styled.div
 // $ExpectType CreateStyledComponentIntrinsic<"svg", {}, any>
 styled.svg
+
+{
+  // $ExpectType CreateStyledComponentIntrinsic<"svg", { bar: string }, { themed: "black" }>
+  styled.div<{ bar: string }, { themed: 'black' }>`
+    color: ${props => {
+      // $ExpectType { themed: "black" }
+      const { theme } = props
+      return theme.themed
+    }};
+  `
+}
