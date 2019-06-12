@@ -30,6 +30,7 @@ test(`withTheme(Comp) hoists non-react static class properties`, () => {
   const ComponentWithTheme = withTheme(ExampleComponent)
 
   expect(ComponentWithTheme.displayName).toBe('WithTheme(foo)')
+  // $FlowFixMe
   expect(ComponentWithTheme.someSpecialStatic).toBe(
     ExampleComponent.someSpecialStatic
   )
