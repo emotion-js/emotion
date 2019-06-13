@@ -70,7 +70,6 @@ const SidebarGroup = (props: {
   docName?: string
 }) => {
   const { item, docMap, docName } = props
-
   return (
     <>
       <h3
@@ -82,7 +81,7 @@ const SidebarGroup = (props: {
             constants.fontSizes[3]
           ],
           color: colors.color,
-          marginTop: [constants.space[3], constants.space[3], 0],
+          marginTop: [constants.space[3], constants.space[3]],
           marginBottom: [constants.space[1], constants.space[1], 0],
           lineHeight: '32px'
         })}
@@ -93,47 +92,56 @@ const SidebarGroup = (props: {
       >
         {item.title}
       </h3>
-      {item.items.map(slug => (
-        <Link
-          key={slug}
-          css={mq({
-            display: 'block',
-            fontSize: [
-              constants.fontSizes[4],
-              constants.fontSizes[4],
-              constants.fontSizes[2]
-            ],
-            fontWeight: '300',
-            color: colors.color,
-            textDecoration: 'none',
-            margin: 0,
-            paddingTop: [12, 12, 6],
-            paddingBottom: [12, 12, 6],
-            paddingLeft: [12, 12, 0],
-            paddingRight: [12, 12, 0],
-            '&:hover': { color: colors.border },
-            '&.active': {
-              fontWeight: 600,
-              color: [colors.hightlight, colors.hightlight, 'none'],
-              '&::before': {
-                content: '""',
-                height: [42, 42, 32],
-                width: [8, 8, 6],
-                transform: `translate3d(-${constants.space[3]}px, -${
-                  constants.space[1]
-                }px, 0)`,
-                position: 'absolute',
-                display: 'inline-block',
-                backgroundColor: colors.lighten(0.25, colors.border)
-              }
-            }
-          })}
-          activeClassName={cx('active', 'docSearch-lvl1')}
-          to={`/docs/${slug}`}
-        >
-          {docMap[slug] || slug}
-        </Link>
-      ))}
+      <ul
+        css={{
+          listStyle: 'none',
+          margin: 0,
+          padding: 0
+        }}
+      >
+        {item.items.map(slug => (
+          <li key={slug}>
+            <Link
+              css={mq({
+                display: 'block',
+                fontSize: [
+                  constants.fontSizes[4],
+                  constants.fontSizes[4],
+                  constants.fontSizes[2]
+                ],
+                fontWeight: '300',
+                color: colors.color,
+                textDecoration: 'none',
+                margin: 0,
+                paddingTop: [12, 12, 6],
+                paddingBottom: [12, 12, 6],
+                paddingLeft: [12, 12, 0],
+                paddingRight: [12, 12, 0],
+                '&:hover': { color: colors.border },
+                '&.active': {
+                  fontWeight: 600,
+                  color: [colors.hightlight, colors.hightlight, 'none'],
+                  '&::before': {
+                    content: '""',
+                    height: [42, 42, 32],
+                    width: [8, 8, 6],
+                    transform: `translate3d(-${constants.space[3]}px, -${
+                      constants.space[1]
+                    }px, 0)`,
+                    position: 'absolute',
+                    display: 'inline-block',
+                    backgroundColor: colors.lighten(0.25, colors.border)
+                  }
+                }
+              })}
+              activeClassName={cx('active', 'docSearch-lvl1')}
+              to={`/docs/${slug}`}
+            >
+              {docMap[slug] || slug}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }
@@ -151,17 +159,17 @@ export default ({
     <DocMetadata
       render={data => {
         const docMap = getDocMap(data)
-
+        console.log()
         return (
           <>
-            <div
+            <aside
               css={mq({
                 display: [
                   sidebarOpen ? 'block' : 'none',
                   sidebarOpen ? 'block' : 'none',
                   'block'
                 ],
-                gridRow: ['1', '1', '2 / span 2'],
+                // gridRow: ['1', '1', '2 / span 2'],
                 gridColumn: ['1 / span 2', '1 / span 2', '2 / span 1'],
                 paddingLeft: [0, 0, space[3]],
                 borderLeft: [
@@ -189,20 +197,21 @@ export default ({
                   </Match>
                 )
               })}
-            </div>
-            <div
+            </aside>
+            <main
               css={mq({
                 display: [
                   sidebarOpen ? 'none' : 'block',
                   sidebarOpen ? 'none' : 'block',
                   'block'
                 ],
+                gridRow: 2,
                 gridColumn: ['1 / span 2', '1 / span 2', '1 / span 1'],
                 paddingRight: [0, 0, 0]
               })}
             >
               {children}
-            </div>
+            </main>
             {
               <ToggleSidebarButton
                 setSidebarOpen={() => setSidebarOpen(!sidebarOpen)}
