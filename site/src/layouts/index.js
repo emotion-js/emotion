@@ -13,7 +13,8 @@ const TemplateWrapper = ({
   title
 }: {
   children: React.Node,
-  sidebarOpen?: boolean
+  sidebarOpen?: boolean,
+  title: string
 }) => {
   let space = constants.space
   return (
