@@ -159,7 +159,6 @@ export default ({
     <DocMetadata
       render={data => {
         const docMap = getDocMap(data)
-        console.log()
         return (
           <>
             <aside
