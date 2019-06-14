@@ -24,12 +24,12 @@ export default {
             x.type === 'ImportDeclaration' &&
             x.source.value === '@emotion/core'
           ) {
+            emotionCoreNode = x
             // TODO: maybe handle namespace specifiers, not high priority though
             let jsxSpecifier = x.specifiers.find(x => x.imported.name === 'jsx')
             if (jsxSpecifier) {
               hasJsxImport = true
               local = jsxSpecifier.local.name
-              emotionCoreNode = x
             }
           }
         })
@@ -58,6 +58,14 @@ export default {
                 )
               }
               if (hasSetPragma) {
+                if (emotionCoreNode) {
+                  let lastSpecifier =
+                    emotionCoreNode.specifiers[
+                      emotionCoreNode.specifiers.length - 1
+                    ]
+                  return fixer.insertTextAfter(lastSpecifier, ', jsx')
+                }
+
                 return fixer.insertTextBefore(
                   sourceCode.ast.body[0],
                   `import { jsx } from '@emotion/core'\n`
