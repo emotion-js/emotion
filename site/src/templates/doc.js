@@ -96,8 +96,10 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
   render() {
     const { data } = this.props
     const { doc, avatar } = data
+    const title = doc.frontmatter.title || this.props.pageContext.slug
+
     return (
-      <Layout sidebarOpen={this.state.sidebarOpen}>
+      <Layout sidebarOpen={this.state.sidebarOpen} title={title}>
         <DocWrapper
           sidebarOpen={this.state.sidebarOpen}
           setSidebarOpen={this.setSidebarOpen}
@@ -111,9 +113,7 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
             className="docSearch-content"
           >
             <div css={{ display: 'flex', alignItems: 'center' }}>
-              <Title>
-                {doc.frontmatter.title || this.props.pageContext.slug}
-              </Title>
+              <Title>{title}</Title>
               <markdownComponents.a
                 css={{ fontSize: 12, marginLeft: 'auto' }}
                 href={

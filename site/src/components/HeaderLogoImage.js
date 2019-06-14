@@ -25,6 +25,7 @@ export default function HeaderLogoImage({ avatar }) {
       render={({ avatar }) => {
         return (
           <Image
+            alt="Avatar"
             style={{ display: 'inline-block', margin: 0, padding: 0 }}
             height="36px"
             width="36px"
