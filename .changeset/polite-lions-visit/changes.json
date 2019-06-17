@@ -1,0 +1,4 @@
+{
+  "releases": [{ "name": "eslint-plugin-emotion", "type": "patch" }],
+  "dependents": []
+}
