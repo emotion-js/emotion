@@ -18,7 +18,7 @@
             "check-type-operator",
             "check-preblock"
         ],
-
+        "no-null-undefined-union": false,
         "no-unnecessary-generics": false
     }
 }
