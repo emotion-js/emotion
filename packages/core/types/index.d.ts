@@ -45,9 +45,7 @@ export interface GlobalProps<Theme> {
  * @desc
  * JSX generic are supported only after TS@2.9
  */
-export function Global<Theme = any>(
-  props: GlobalProps<Theme>
-): ReactElement<any>
+export function Global<Theme = any>(props: GlobalProps<Theme>): ReactElement
 
 export function keyframes(
   template: TemplateStringsArray,
@@ -79,7 +77,7 @@ export interface ClassNamesProps<Theme> {
  */
 export function ClassNames<Theme = any>(
   props: ClassNamesProps<Theme>
-): ReactElement<any>
+): ReactElement
 
 declare module 'react' {
   interface DOMAttributes<T> {
