@@ -68,7 +68,10 @@ function getClassNamesFromDOMElement(selectors, node: any) {
 }
 
 export function isReactElement(val: any): boolean {
-  return val.$$typeof === Symbol.for('react.test.json')
+  return (
+    val.$$typeof === Symbol.for('react.test.json') ||
+    val.$$typeof === Symbol.for('react.element')
+  )
 }
 
 export function isEmotionCssPropElementType(val: any): boolean {
@@ -106,12 +109,12 @@ function isCheerioElement(val: any): boolean {
 
 export function getClassNamesFromNodes(nodes: Array<any>) {
   return nodes.reduce((selectors, node) => {
-    if (isReactElement(node)) {
-      return getClassNamesFromTestRenderer(selectors, node)
-    } else if (isEnzymeElement(node)) {
+    if (isEnzymeElement(node)) {
       return getClassNamesFromEnzyme(selectors, node)
     } else if (isCheerioElement(node)) {
       return getClassNamesFromCheerio(selectors, node)
+    } else if (isReactElement(node)) {
+      return getClassNamesFromTestRenderer(selectors, node)
     }
     return getClassNamesFromDOMElement(selectors, node)
   }, [])
