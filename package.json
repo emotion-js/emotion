@@ -173,7 +173,7 @@
     "@changesets/get-github-info": "^0.1.2",
     "@types/jest": "^23.0.2",
     "@types/node": "^10.11.4",
-    "@types/react": "16.3.18",
+    "@types/react": "^16.8.20",
     "babel-check-duplicated-nodes": "^1.0.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",

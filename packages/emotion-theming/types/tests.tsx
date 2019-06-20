@@ -29,6 +29,23 @@ const ThemedComp = withTheme(CompC)
 ;<ThemedComp prop />
 ;<ThemedComp prop theme={theme} />
 
+const CompSFCWithDefault = ({ prop }: Props) => (prop ? <span /> : <div />)
+CompSFCWithDefault.defaultProps = { prop: false }
+class CompCWithDefault extends React.Component<Props> {
+  static defaultProps = { prop: false }
+  render() {
+    return this.props.prop ? <span /> : <div />
+  }
+}
+
+const ThemedSFCWithDefault = withTheme(CompSFCWithDefault)
+;<ThemedSFCWithDefault />
+;<ThemedSFCWithDefault theme={theme} />
+
+const ThemedCompWithDefault = withTheme(CompCWithDefault)
+;<ThemedCompWithDefault />
+;<ThemedCompWithDefault theme={theme} />
+
 const {
   ThemeProvider: TypedThemeProvider,
   withTheme: typedWithTheme
