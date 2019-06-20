@@ -56,13 +56,14 @@ type ReactClassPropKeys = keyof React.ClassAttributes<any>
 export interface CreateStyledComponentBase<
   InnerProps,
   ExtraProps,
-  Theme extends object
+  StyledInstanceTheme extends object
 > {
   <
     StyleProps extends Omit<
       Overwrapped<InnerProps, StyleProps>,
       ReactClassPropKeys
-    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
+    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>,
+    Theme extends object = StyledInstanceTheme
   >(
     ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
   ): StyledComponent<InnerProps, StyleProps, Theme>
@@ -70,7 +71,8 @@ export interface CreateStyledComponentBase<
     StyleProps extends Omit<
       Overwrapped<InnerProps, StyleProps>,
       ReactClassPropKeys
-    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
+    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>,
+    Theme extends object = StyledInstanceTheme
   >(
     template: TemplateStringsArray,
     ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
