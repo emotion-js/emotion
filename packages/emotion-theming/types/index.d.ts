@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.8
+// TypeScript Version: 3.1
 
 import * as React from 'react'
 
@@ -12,7 +12,7 @@ export interface ThemeProviderProps<Theme> {
 
 export function ThemeProvider<Theme>(
   props: ThemeProviderProps<Theme>
-): React.ReactElement<any>
+): React.ReactElement
 
 /**
  * @todo Add more constraint to C so that
@@ -23,7 +23,7 @@ export function withTheme<C extends React.ComponentType<any>>(
 ): React.SFC<AddOptionalTo<PropsOf<C>, 'theme'>>
 
 export interface EmotionTheming<Theme> {
-  ThemeProvider(props: ThemeProviderProps<Theme>): React.ReactElement<any>
+  ThemeProvider(props: ThemeProviderProps<Theme>): React.ReactElement
   withTheme<C extends React.ComponentType<any>>(
     component: C
   ): React.SFC<AddOptionalTo<PropsOf<C>, 'theme'>>

@@ -7,36 +7,39 @@ import * as markdownComponents from '../utils/markdown-styles'
 import Title from '../components/Title'
 import { mq } from '../utils/style'
 
-const Community = (props: *) => (
-  <Layout>
-    <div
-      css={mq({
-        gridColumn: '1 / span 2'
-      })}
-    >
-      <div>
-        <Title>Community</Title>
-        <RenderHAST
-          componentMap={markdownComponents}
-          hast={props.data.markdownRemark.htmlAst}
-        />
-        <markdownComponents.h2>Contributing</markdownComponents.h2>
-        <markdownComponents.p>
-          This list comes from{' '}
-          <a href="https://github.com/emotion-js/awesome-emotion">
-            awesome-emotion
-          </a>
-          . Anything added to that that list will appear here automatically.
-        </markdownComponents.p>
-        <markdownComponents.h2>Thanks!</markdownComponents.h2>
-        <markdownComponents.p>
-          Thanks to the styled-components team for the idea of embedding an
-          awesome list into a website! ❤️
-        </markdownComponents.p>
+const Community = (props: *) => {
+  const title = 'Community'
+  return (
+    <Layout title={title}>
+      <div
+        css={mq({
+          gridColumn: '1 / span 2'
+        })}
+      >
+        <div>
+          <Title>{title}</Title>
+          <RenderHAST
+            componentMap={markdownComponents}
+            hast={props.data.markdownRemark.htmlAst}
+          />
+          <markdownComponents.h2>Contributing</markdownComponents.h2>
+          <markdownComponents.p>
+            This list comes from{' '}
+            <a href="https://github.com/emotion-js/awesome-emotion">
+              awesome-emotion
+            </a>
+            . Anything added to that that list will appear here automatically.
+          </markdownComponents.p>
+          <markdownComponents.h2>Thanks!</markdownComponents.h2>
+          <markdownComponents.p>
+            Thanks to the styled-components team for the idea of embedding an
+            awesome list into a website! ❤️
+          </markdownComponents.p>
+        </div>
       </div>
-    </div>
-  </Layout>
-)
+    </Layout>
+  )
+}
 
 export const pageQuery = graphql`
   query Community {

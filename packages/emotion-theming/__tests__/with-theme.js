@@ -30,7 +30,7 @@ test(`withTheme(Comp) hoists non-react static class properties`, () => {
   const ComponentWithTheme = withTheme(ExampleComponent)
 
   expect(ComponentWithTheme.displayName).toBe('WithTheme(foo)')
-  // $FlowFixMe
+  // $FlowFixMe hoist-non-react-statics doesn't work with AbstractComponent https://github.com/facebook/flow/issues/7612
   expect(ComponentWithTheme.someSpecialStatic).toBe(
     ExampleComponent.someSpecialStatic
   )

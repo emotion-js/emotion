@@ -2,7 +2,7 @@
 title: 'CacheProvider'
 ---
 
-It can be useful to customize emotion's options - i.e. to add custom Stylis plugins, customize prefix of inserted class names, render style tags into specific element and more. You can look up full list of options [here](/packages/cache#options).
+It can be useful to customize emotion's options - i.e. to add custom Stylis plugins, customize prefix of inserted class names, render style tags into specific element and more. You can look up full list of options [here](/packages/@emotion/cache#options).
 
 ```jsx
 // @live
