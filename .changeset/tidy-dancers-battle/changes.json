@@ -1,4 +1,0 @@
-{
-  "releases": [{ "name": "@emotion/primitives", "type": "patch" }],
-  "dependents": []
-}
