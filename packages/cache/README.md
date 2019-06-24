@@ -23,26 +23,36 @@ export const myCache = createCache({
 
 - Using emotion with a developer defined `<style/>` tag
 
-- Using emotion with custom stylis plugins
+- Using emotion with custom Stylis plugins
 
 ## Options
 
-### nonce: string
+### `nonce`
+
+`string`
 
 A nonce that will be set on each style tag that emotion inserts for [Content Security Policies](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
-### stylisPlugins: Function | Array<Function>
+### `stylisPlugins`
 
-A Stylis plugin or plugins that will be run by stylis during preprocessing. [Read Stylis' docs to find out more](https://github.com/thysultan/stylis.js#plugins). This can for be used for many purposes such as RTL.
+`Function` | `Array<Function>`
 
-### prefix: boolean | Function
+A Stylis plugin or plugins that will be run by Stylis during preprocessing. [Read the Stylis docs to find out more](https://github.com/thysultan/stylis.js#plugins). This can be used for many purposes such as RTL.
 
-Allows changing Stylis' prefixing settings; defaults to `true`. It can be a boolean or a function to dynamically set which properties are prefixed. [More information can be found in Stylis' docs](https://github.com/thysultan/stylis.js#vendor-prefixing).
+### `prefix`
 
-### key: string
+`boolean` | `Function`, defaults to `true`
 
-The prefix before class names; defaults to `css`. It will also be set as the value of the `data-emotion` attribute on the style tags that emotion inserts and it's used in the attribute name that marks style elements in `renderStylesToString` and `renderStylesToNodeStream`. This is **required if using multiple emotion caches in the same app**.
+Allows changing Stylis's vendor prefixing settings. It can be a boolean or a function to dynamically set which properties are prefixed. [More information can be found in the Stylis docs](https://github.com/thysultan/stylis.js#vendor-prefixing).
 
-### container: HTMLElement
+### `key`
 
-A DOM Node that emotion will insert all of its style tags into. This is useful for inserting styles into iframes.
+`string`, defaults to `"css"`
+
+The prefix before class names. It will also be set as the value of the `data-emotion` attribute on the style tags that emotion inserts and it's used in the attribute name that marks style elements in `renderStylesToString` and `renderStylesToNodeStream`. This is **required if using multiple emotion caches in the same app**.
+
+### `container`
+
+`HTMLElement`
+
+A DOM node that emotion will insert all of its style tags into. This is useful for inserting styles into iframes.
