@@ -60,7 +60,9 @@ export default function SiteHeader() {
       </Link>
       <nav
         css={{
-          marginLeft: 'auto'
+          marginLeft: 'auto',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch'
         }}
       >
         <ul
@@ -75,7 +77,13 @@ export default function SiteHeader() {
             padding: 0,
             margin: '0 0 0 auto',
             overflow: 'auto',
-            listStyle: 'none'
+            listStyle: 'none',
+            'li a': {
+              display: 'inline-block',
+              paddingTop: space[1],
+              paddingBottom: space[1],
+              whiteSpace: 'nowrap'
+            }
           }}
         >
           <li>
