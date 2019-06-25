@@ -1,6 +1,6 @@
 {
   "name": "@emotion/hash",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "A MurmurHash2 implementation",
   "main": "dist/hash.cjs.js",
   "module": "dist/hash.esm.js",
