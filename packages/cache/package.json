@@ -13,8 +13,8 @@
     "./dist/cache.esm.js": "./dist/cache.native.esm.js"
   },
   "sketch": {
-    "./dist/core.cjs.js": "./dist/cache.native.cjs.js",
-    "./dist/core.esm.js": "./dist/cache.native.esm.js"
+    "./dist/cache.cjs.js": "./dist/cache.native.cjs.js",
+    "./dist/cache.esm.js": "./dist/cache.native.esm.js"
   },
   "types": "types/index.d.ts",
   "license": "MIT",
