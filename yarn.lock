@@ -17665,16 +17665,14 @@ prebuild-install@^5.2.0:
     tunnel-agent "^0.6.0"
     which-pm-runs "^1.0.0"
 
-preconstruct@^0.0.80:
-  version "0.0.80"
-  resolved "https://registry.yarnpkg.com/preconstruct/-/preconstruct-0.0.80.tgz#ea444e3bcbbaecbf510bed2c8de3073f7f6a4c2e"
-  integrity sha512-M4Mvd5uUY4QyqpY32KB4danW/VqwYheYpnFeYZTRq3EEV+DLl9f1vNRXqLHz1HkK8Kxn0UdL85hH7tYIB9nLlQ==
+preconstruct@^0.0.81:
+  version "0.0.81"
+  resolved "https://registry.yarnpkg.com/preconstruct/-/preconstruct-0.0.81.tgz#31ca707af1d69232d9383e44ef11f60784163061"
+  integrity sha512-T1FTx2OF8kwKSDx9UDgM25xcAXOYkQWngmn0O+fo5yFJcZncs/MbeJ2aO+SNeAFxanZT8On2z4NdsOfLJ/pBaQ==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.1.2"
     "@babel/plugin-transform-runtime" "^7.2.0"
-    "@emotion/memoize" "^0.7.1"
-    "@emotion/weak-memoize" "^0.2.2"
     "@preconstruct/hook" "^0.0.3"
     builtin-modules "^3.0.0"
     chalk "^2.3.2"
