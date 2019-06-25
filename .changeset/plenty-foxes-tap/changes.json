@@ -1,0 +1,32 @@
+{
+  "releases": [
+    { "name": "@emotion/primitives", "type": "patch" },
+    { "name": "babel-plugin-emotion", "type": "patch" },
+    { "name": "@emotion/babel-preset-css-prop", "type": "patch" },
+    { "name": "@emotion/babel-plugin-jsx-pragmatic", "type": "patch" },
+    { "name": "@emotion/cache", "type": "patch" },
+    { "name": "@emotion/core", "type": "patch" },
+    { "name": "create-emotion", "type": "patch" },
+    { "name": "create-emotion-server", "type": "patch" },
+    { "name": "@emotion/css", "type": "patch" },
+    { "name": "emotion", "type": "patch" },
+    { "name": "emotion-server", "type": "patch" },
+    { "name": "emotion-theming", "type": "patch" },
+    { "name": "eslint-plugin-emotion", "type": "patch" },
+    { "name": "@emotion/hash", "type": "patch" },
+    { "name": "@emotion/is-prop-valid", "type": "patch" },
+    { "name": "jest-emotion", "type": "patch" },
+    { "name": "@emotion/memoize", "type": "patch" },
+    { "name": "@emotion/native", "type": "patch" },
+    { "name": "@emotion/primitives-core", "type": "patch" },
+    { "name": "@emotion/serialize", "type": "patch" },
+    { "name": "@emotion/sheet", "type": "patch" },
+    { "name": "@emotion/styled", "type": "patch" },
+    { "name": "@emotion/styled-base", "type": "patch" },
+    { "name": "@emotion/stylis", "type": "patch" },
+    { "name": "@emotion/unitless", "type": "patch" },
+    { "name": "@emotion/utils", "type": "patch" },
+    { "name": "@emotion/weak-memoize", "type": "patch" }
+  ],
+  "dependents": []
+}
