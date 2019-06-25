@@ -272,7 +272,7 @@
     "polished": "^1.2.1",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
-    "preconstruct": "^0.0.60",
+    "preconstruct": "^0.0.80",
     "prettier": "1.14.3",
     "pretty-format": "^22.4.3",
     "prop-types": "^15.6.0",
