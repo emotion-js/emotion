@@ -3,7 +3,7 @@ import 'test-utils/legacy-env'
 import React from 'react'
 import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
-import { render, cleanup } from 'react-testing-library'
+import { render, cleanup } from '@testing-library/react'
 import serializer from 'jest-emotion'
 
 expect.addSnapshotSerializer(serializer)

@@ -32,7 +32,7 @@ let processStyleValue = (
     case 'animation':
     case 'animationName': {
       if (typeof value === 'string') {
-        value = value.replace(animationRegex, (match, p1, p2) => {
+        return value.replace(animationRegex, (match, p1, p2) => {
           cursor = {
             name: p1,
             styles: p2,
@@ -264,12 +264,22 @@ function createStringFromObject(
             )};`
           }
         } else {
-          string += `${key}{${handleInterpolation(
+          const interpolated = handleInterpolation(
             mergedProps,
             registered,
             value,
             false
-          )}}`
+          )
+          switch (key) {
+            case 'animation':
+            case 'animationName': {
+              string += `${processStyleName(key)}:${interpolated};`
+              break
+            }
+            default: {
+              string += `${key}{${interpolated}}`
+            }
+          }
         }
       }
     }

@@ -3,7 +3,7 @@ import 'test-utils/prod-mode'
 import * as React from 'react'
 import { css, Global } from '@emotion/core'
 import styled from '@emotion/styled'
-import { render } from 'react-testing-library'
+import { render } from '@testing-library/react'
 import * as cssParser from 'css'
 
 // using styled instead of the css prop because there was a really weird flow error
