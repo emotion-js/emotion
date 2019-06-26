@@ -148,6 +148,105 @@ Array [
 ]
 `;
 
+exports[`keyframes object with animation and opaque keyframes as value 1`] = `
+@keyframes animation-0 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: hotpink;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation: animation-0;
+  animation: animation-0;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+<div
+  className="emotion-0"
+>
+  animation-1bi8wtt
+</div>
+`;
+
+exports[`keyframes object with animation and opaque keyframes as value 2`] = `
+Array [
+  ".css-g32qbw{-webkit-animation:animation-1bi8wtt;animation:animation-1bi8wtt;-webkit-animation-duration:1s;animation-duration:1s;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+]
+`;
+
+exports[`keyframes object with animationName and opaque keyframes as value 1`] = `
+@keyframes animation-0 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: hotpink;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation-name: animation-0;
+  animation-name: animation-0;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+<div
+  className="emotion-0"
+>
+  animation-1bi8wtt
+</div>
+`;
+
+exports[`keyframes object with animationName and opaque keyframes as value 2`] = `
+Array [
+  ".css-wo7teo{-webkit-animation-name:animation-1bi8wtt;animation-name:animation-1bi8wtt;-webkit-animation-duration:1s;animation-duration:1s;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+]
+`;
+
+exports[`keyframes object with animationName and string keyframes as value 1`] = `
+@keyframes animation-0 {
+  from {
+    color: green;
+  }
+
+  to {
+    color: hotpink;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation-name: animation-0;
+  animation-name: animation-0;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+<div
+  className="emotion-0"
+>
+  animation-1bi8wtt
+</div>
+`;
+
+exports[`keyframes object with animationName and string keyframes as value 2`] = `
+Array [
+  ".css-wo7teo{-webkit-animation-name:animation-1bi8wtt;animation-name:animation-1bi8wtt;-webkit-animation-duration:1s;animation-duration:1s;}",
+  "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+  "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
+]
+`;
+
 exports[`keyframes object with string keyframes 1`] = `
 @keyframes animation-0 {
   from {
