@@ -22,28 +22,38 @@ css`
   &.foo {
     left: 3px;
   }
+
+  &.zot {
+    /* @noflip */
+    right: 1px;
+  }
 `
 
 css`
-  // @noflip
+  /* @whatever */
   left: 4px;
 `
 
 css`
-  /* @shouldberemoved */
   left: 5px;
+
+  /* @whatever */
+  &.foo {
+    left: 6px;
+  }
+
+  &.zot {
+    /* @whatever */
+    right: 2px;
+  }
+`
+
+css`
+  // @noflip should-be-removed
+  left: 7px;
 `
 
 css`
   // @shouldberemoved
-  left: 6px;
-`
-
-css`
-  left: 7px;
-
-  /* @shouldberemoved */
-  &.foo {
-    left: 8px;
-  }
+  left: 8px;
 `
