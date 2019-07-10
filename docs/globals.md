@@ -8,8 +8,37 @@ Sometimes you might want to insert global css like resets or font faces. You can
 // @live
 import { Global, css } from '@emotion/core'
 
+const globalStyles1 = css`
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  html {
+    background-color: white;
+  }
+`
+
+const globalStyles2 = {
+  '*,*:before,*:after': {
+    boxSizing: 'inherit',
+    content: '"hi"'
+  },
+  html: {
+    backgroundColor: 'white',
+  },
+  'ul, li': {
+    backgroundColor: 'cornflowerblue',
+  },
+  a: {
+    backgroundColor: 'lightsalmon',
+  },
+}
+
 render(
   <div>
+    <Global styles={globalStyles1} />
+    <Global styles={globalStyles2} />
     <Global
       styles={css`
         * {
