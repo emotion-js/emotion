@@ -1,4 +1,5 @@
 const visit = require('unist-util-visit')
+const packages = require('../../docs-yaml').getPackagesDirs()
 
 module.exports = ({ markdownAST }) => {
   visit(markdownAST, 'link', node => {
@@ -8,7 +9,11 @@ module.exports = ({ markdownAST }) => {
         .replace(/\.md(#.*)?$/, (match, hash) => {
           return hash || ''
         })
-        .replace(/^\/packages\//, '/docs/')
+        .replace(/^\/packages\/(.+)(?:\/)/, (match, p1) => {
+          return `/docs/${
+            require(path.join(packages[p1], 'package.json')).name
+          }`
+        })
     }
   })
 }

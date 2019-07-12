@@ -1,19 +1,13 @@
 const path = require('path')
-const packages = require('./docs-yaml')().filter(
-  ({ title }) => title === 'Packages'
-)[0].items
+const packages = require('./docs-yaml').getPackagesDirs()
 
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://emotion.sh',
     title: `emotion`
   },
-  plugins: packages
-    .map(pkg =>
-      path.resolve(
-        `${__dirname}/../packages/${pkg.replace('@emotion/', '')}/README.md`
-      )
-    )
+  plugins: Object.entries(packages)
+    .map(([pkgDirname, pkgPath]) => path.join(pkgPath, 'README.md'))
     .map(file => ({
       resolve: 'gatsby-source-filesystem',
       options: {
