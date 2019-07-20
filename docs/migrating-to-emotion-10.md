@@ -63,7 +63,9 @@ The upgrades to emotion 10 are split into two parts. The first part can be done 
 
 ```jsx
 import styled, { css } from 'react-emotion'
+
 // ↓ ↓ ↓ ↓ ↓ ↓
+
 import styled from '@emotion/styled'
 import { css } from 'emotion'
 ```
@@ -154,6 +156,7 @@ let element = (
 )
 
 // ↓ ↓ ↓ ↓ ↓ ↓
+
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
