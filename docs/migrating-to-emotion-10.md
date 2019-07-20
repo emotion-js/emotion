@@ -104,6 +104,19 @@ let element = (
     `}
   />
 )
+
+// ↓ ↓ ↓ ↓ ↓ ↓
+
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
+
+let element = (
+  <div
+    css={css`
+      color: hotpink;
+    `}
+  />
+)
 ```
 
 ## Manual Steps
