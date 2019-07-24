@@ -122,22 +122,26 @@ class InnerGlobal extends React.Component<InnerGlobalProps> {
         next = next.next
       }
 
+      let shouldCache = this.props.cache.compat === true
+
       let rules = this.props.cache.insert(
         ``,
         { name: serializedNames, styles: serializedStyles },
         this.sheet,
-        false
+        shouldCache
       )
 
-      return (
-        <style
-          {...{
-            [`data-emotion-${this.props.cache.key}`]: serializedNames,
-            dangerouslySetInnerHTML: { __html: rules },
-            nonce: this.props.cache.sheet.nonce
-          }}
-        />
-      )
+      if (!shouldCache) {
+        return (
+          <style
+            {...{
+              [`data-emotion-${this.props.cache.key}`]: serializedNames,
+              dangerouslySetInnerHTML: { __html: rules },
+              nonce: this.props.cache.sheet.nonce
+            }}
+          />
+        )
+      }
     }
     return null
   }
