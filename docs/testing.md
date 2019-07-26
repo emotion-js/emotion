@@ -19,7 +19,7 @@ npm install --save-dev jest-emotion
 Add the snapshot serializer in your [`setupTestFrameworkScriptFile`](http://facebook.github.io/jest/docs/en/configuration.html#setuptestframeworkscriptfile-string) _or_ at the top of your test file.
 
 ```javascript
-import * as emotion from 'emotion'
+import * as emotion from '@emotion/core'
 import { createSerializer } from 'jest-emotion'
 
 expect.addSnapshotSerializer(createSerializer(emotion))
