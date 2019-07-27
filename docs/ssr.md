@@ -2,6 +2,10 @@
 title: 'Server Side Rendering'
 ---
 
+Server side rendering in emotion 10 has two approaches, each with their pros and cons. In general approach 1 just works, but impacts usage of certain CSS selectors like nth-child. Approach 2 requires more work to integrate but does not limit your css usage.
+
+## Approach 1 - Adjacent styles
+
 Server side rendering works out of the box in Emotion 10 and above if you're only using `@emotion/core` and `@emotion/styled`. This means you can call React's [`renderToString`](https://reactjs.org/docs/react-dom-server.html#rendertostring) or [`renderToNodeStream`](https://reactjs.org/docs/react-dom-server.html#rendertonodestream) methods directly without any extra configuration.
 
 ```jsx
@@ -11,26 +15,25 @@ import App from './App'
 let html = renderToString(<App />)
 ```
 
-## Using Emotion 10 with the old SSR APIs
-
-It's also possible to use emotion 10 with the SSR APIs for vanilla Emotion. It should only be used for compatibility and migration purposes.
+The rendered output will insert a `<style>` tag above each element with styles for example
 
 ```jsx
-import { renderStylesToString } from 'emotion-server'
-import { cache } from 'emotion'
-import { CacheProvider } from '@emotion/core'
-import { renderToString } from 'react-dom/server'
+const MyDiv = styled('div')({ fontSize: 12 })
+<MyDiv>Text</MyDiv>
 
-let element = (
-  <CacheProvider value={cache}>
-    <App />
-  </CacheProvider>
-)
+// Will render as
 
-let html = renderStylesToString(renderToString(element))
+<style>.css-21cs4 { font-size: 12 }</style>
+<div class="css-21cs4">Text</div>
 ```
 
-## API
+This approach also does not require explicit hydration on the client.
+
+_Warning_ this approach can interfere with nth child selectors as it is inserting additional elements into your markup. You will get a warning if you use such selectors when using approach 1.
+
+## Approach 2 - API Integration
+
+It's also possible to use emotion 10 with the SSR APIs for vanilla Emotion. It requires more work but does not have the limitations of the first approach.
 
 ### renderStylesToString
 
@@ -148,3 +151,22 @@ if (!document.getElementById('root').hasChildNodes()) {
 > Note:
 >
 > The `sheet.speedy` call has to be run before anything that inserts styles so it has to be put into it's own file that's imported before anything else.
+
+## Migration
+
+...
+
+```jsx
+import { renderStylesToString } from 'emotion-server'
+import { cache } from 'emotion'
+import { CacheProvider } from '@emotion/core'
+import { renderToString } from 'react-dom/server'
+
+let element = (
+  <CacheProvider value={cache}>
+    <App />
+  </CacheProvider>
+)
+
+let html = renderStylesToString(renderToString(element))
+```
