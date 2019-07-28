@@ -11,6 +11,7 @@ import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
 import Title from '../components/Title'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { MDXProvider } from '@mdx-js/react'
 
 type Props = {
   data: {
@@ -132,15 +133,16 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
             </div>
 
             <div>
-              <MDXRenderer
-                children={doc.body}
+              <MDXProvider
                 components={{
                   'live-code': createLiveCode(
                     avatar.childImageSharp.resolutions.src
                   ),
                   ...markdownComponents
                 }}
-              />
+              >
+                <MDXRenderer children={doc.body} />
+              </MDXProvider>
             </div>
           </div>
         </DocWrapper>

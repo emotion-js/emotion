@@ -5,6 +5,7 @@ import { graphql } from 'gatsby'
 import Layout from '../layouts'
 import * as markdownComponents from '../utils/markdown-styles'
 import Title from '../components/Title'
+import { MDXProvider } from '@mdx-js/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import { mq } from '../utils/style'
@@ -20,9 +21,9 @@ const Community = (props: *) => {
       >
         <div>
           <Title>{title}</Title>
-          <MDXRenderer components={markdownComponents}>
-            {props.data.mdx.body}
-          </MDXRenderer>
+          <MDXProvider components={markdownComponents}>
+            <MDXRenderer>{props.data.mdx.body}</MDXRenderer>
+          </MDXProvider>
           <markdownComponents.h2>Contributing</markdownComponents.h2>
           <markdownComponents.p>
             This list comes from{' '}
