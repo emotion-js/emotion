@@ -1,4 +1,6 @@
 // @flow
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import React from 'react'
 import { mq, colors } from '../utils/style'
 import Playground from '../components/Playground'
