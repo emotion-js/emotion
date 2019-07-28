@@ -129,10 +129,3 @@ function getNameForPackage(absolutePath) {
     throw e
   }
 }
-
-exports.onCreateBabelConfig = ({ actions, stage }) => {
-  actions.setBabelPreset({
-    name: `@babel/preset-flow`,
-    stage
-  })
-}
