@@ -18,30 +18,29 @@ type Props = {
 }
 
 const DocMetadata = (props: Props) => {
-  return (
-    <StaticQuery
-      query={graphql`
-        query DocMetadata {
-          allMarkdownRemark(
-            filter: { fileAbsolutePath: { glob: "**/docs/*.md" } }
-          ) {
-            edges {
-              node {
-                frontmatter {
-                  title
-                }
-                fields {
-                  slug
-                }
-              }
-            }
-          }
-        }
-      `}
-      render={data => {
-        return props.render(data.allMarkdownRemark.edges)
-      }}
-    />
-  )
+  return ''
+  // <StaticQuery
+  //   query={graphql`
+  //     # query DocMetadata {
+  //     #   allMarkdownRemark(
+  //     #     filter: { fileAbsolutePath: { glob: "**/docs/*.md" } }
+  //     #   ) {
+  //     #     edges {
+  //     #       node {
+  //     #         frontmatter {
+  //     #           title
+  //     #         }
+  //     #         fields {
+  //     #           slug
+  //     #         }
+  //     #       }
+  //     #     }
+  //     #   }
+  //     # }
+  //   `}
+  //   render={data => {
+  //     return props.render(data.allMarkdownRemark.edges)
+  //   }}
+  // />
 }
 export default DocMetadata

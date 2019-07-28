@@ -2,9 +2,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../layouts'
-import RenderHAST from '../components/RenderHAST'
 import * as markdownComponents from '../utils/markdown-styles'
 import Title from '../components/Title'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+
 import { mq } from '../utils/style'
 
 const Community = (props: *) => {
@@ -18,10 +19,9 @@ const Community = (props: *) => {
       >
         <div>
           <Title>{title}</Title>
-          <RenderHAST
-            componentMap={markdownComponents}
-            hast={props.data.markdownRemark.htmlAst}
-          />
+          <MDXRenderer components={markdownComponents}>
+            {props.data.mdx.body}
+          </MDXRenderer>
           <markdownComponents.h2>Contributing</markdownComponents.h2>
           <markdownComponents.p>
             This list comes from{' '}
@@ -43,10 +43,12 @@ const Community = (props: *) => {
 
 export const pageQuery = graphql`
   query Community {
-    markdownRemark(
-      fileAbsolutePath: { glob: "**/.cache/gatsby-source-filesystem/*.md" }
+    mdx(
+      fileAbsolutePath: {
+        glob: "**/.cache/gatsby-source-filesystem/*/README.md"
+      }
     ) {
-      htmlAst
+      body
     }
   }
 `

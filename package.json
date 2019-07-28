@@ -28,7 +28,8 @@
   "resolutions": {
     "**/react": "16.8.1",
     "**/react-dom": "16.8.1",
-    "**/browserslist": "^3.2.8"
+    "**/browserslist": "^3.2.8",
+    "**/graphql-type-json": "0.2.4"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -230,7 +231,6 @@
     "flow-bin": "^0.89.0",
     "gatsby": "^2.1.4",
     "gatsby-image": "^2.0.29",
-    "gatsby-link": "^2.0.10",
     "gatsby-plugin-catch-links": "^2.0.10",
     "gatsby-plugin-emotion": "^2.0.7",
     "gatsby-plugin-google-analytics": "^2.0.14",
@@ -245,7 +245,7 @@
     "gatsby-source-filesystem": "^2.0.9",
     "gatsby-transformer-remark": "^2.1.13",
     "gatsby-transformer-sharp": "^2.1.8",
-    "graphql-type-json": "^0.1.4",
+    "graphql-type-json": "^0.2.4",
     "hoist-non-react-statics": "^3.3.0",
     "html-tag-names": "^1.1.2",
     "html-tokenize": "^2.0.0",

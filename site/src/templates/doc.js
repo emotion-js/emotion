@@ -3,18 +3,17 @@ import React from 'react'
 import { mq, colors } from '../utils/style'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
-import RenderHAST from '../components/RenderHAST'
-import type { HASTRoot } from '../utils/types'
 import memoize from '@emotion/memoize'
 import Layout from '../layouts'
 import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
 import Title from '../components/Title'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 type Props = {
   data: {
     doc: {
-      htmlAst: HASTRoot,
+      body: string,
       frontmatter: {
         title: string
       }
@@ -131,9 +130,9 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
             </div>
 
             <div>
-              <RenderHAST
-                hast={doc.htmlAst}
-                componentMap={{
+              <MDXRenderer
+                children={doc.body}
+                components={{
                   'live-code': createLiveCode(
                     avatar.childImageSharp.resolutions.src
                   ),
@@ -150,8 +149,8 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
 
 export const pageQuery = graphql`
   query DocBySlug($slug: String!) {
-    doc: markdownRemark(fields: { slug: { eq: $slug } }) {
-      htmlAst
+    doc: mdx(fields: { slug: { eq: $slug } }) {
+      body
       frontmatter {
         title
       }
