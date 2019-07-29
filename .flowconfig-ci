@@ -7,7 +7,6 @@
 .*/node_modules/graphql/.*
 .*/node_modules/metro.*
 .*/node_modules/preact/.*
-.*/site/.*
 
 
 [untyped]
