@@ -22,3 +22,4 @@
 
 [options]
 suppress_comment=.*\\$FlowFixMe
+sharedmemory.hash_table_pow=21
