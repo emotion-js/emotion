@@ -230,7 +230,7 @@
     "facepaint": "^1.1.2",
     "favicons-webpack-plugin": "^0.0.9",
     "find-root": "^1.1.0",
-    "flow-bin": "^0.84.0",
+    "flow-bin": "^0.89.0",
     "gatsby": "^2.13.41",
     "gatsby-image": "^2.2.7",
     "gatsby-plugin-catch-links": "^2.1.2",
