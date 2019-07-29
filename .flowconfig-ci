@@ -1,5 +1,5 @@
 [version]
-0.104.0
+0.84.0
 
 [ignore]
 .*/node_modules/config-chain/.*
