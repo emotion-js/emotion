@@ -56,16 +56,23 @@ module.exports = {
       },
       'gatsby-plugin-emotion-next-compat',
       {
-        resolve: `gatsby-transformer-remark`,
+        resolve: `gatsby-plugin-mdx`,
         options: {
-          plugins: [
-            'gatsby-remark-remove-readme-titles',
-            'gatsby-remark-fix-links',
-            'gatsby-remark-change-awesome',
-            'gatsby-remark-live-code',
-            'gatsby-remark-autolink-headers',
-            'gatsby-remark-prismjs',
-            'gatsby-remark-smartypants'
+          extensions: ['.mdx', '.md'],
+          gatsbyRemarkPlugins: [
+            {
+              resolve: require.resolve(
+                './plugins/gatsby-remark-remove-readme-titles'
+              )
+            },
+            { resolve: require.resolve('./plugins/gatsby-remark-fix-links') },
+            {
+              resolve: require.resolve('./plugins/gatsby-remark-change-awesome')
+            },
+            { resolve: require.resolve('./plugins/gatsby-remark-live-code') },
+            { resolve: 'gatsby-remark-autolink-headers' },
+            { resolve: 'gatsby-remark-prismjs' },
+            { resolve: 'gatsby-remark-smartypants' }
           ]
         }
       },

@@ -1,6 +1,7 @@
 // @flow
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import '../utils/make-prism-manual'
-import * as React from 'react'
 import { Match } from '@reach/router'
 
 import Link from '../components/Link'
