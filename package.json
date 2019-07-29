@@ -19,7 +19,7 @@
     "start:site": "cd site && yarn start:site",
     "build:site": "cd site && yarn build:site",
     "flow": "flow",
-    "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
+    "flow:check": "flow --flowconfig-name=.flowconfig-ci",
     "postinstall": "opencollective postinstall && preconstruct dev && bolt-check",
     "changeset": "changeset",
     "version-packages": "changeset bump",
