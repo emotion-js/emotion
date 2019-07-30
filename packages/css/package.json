@@ -12,11 +12,11 @@
   },
   "dependencies": {
     "@emotion/serialize": "^0.11.8",
-    "@emotion/utils": "0.11.2",
-    "babel-plugin-emotion": "^10.0.14"
+    "@emotion/utils": "0.11.2"
   },
   "devDependencies": {
-    "dtslint": "^0.3.0"
+    "dtslint": "^0.3.0",
+    "babel-plugin-emotion": "^10.0.14"
   },
   "publishConfig": {
     "access": "public"
