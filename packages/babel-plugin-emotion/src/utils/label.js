@@ -1,6 +1,11 @@
 // @flow
 import nodePath from 'path'
 
+const invalidClassNameCharacters = /[!"#$%&'()*+,./:;<=>?@[\]^`|}~{]/g
+
+const sanitizeLabelPart = (labelPart: string) =>
+  labelPart.trim().replace(invalidClassNameCharacters, '-')
+
 function getLabel(
   identifierName?: string,
   autoLabel: boolean,
@@ -8,20 +13,20 @@ function getLabel(
   filename: string
 ) {
   if (!identifierName || !autoLabel) return null
-  if (!labelFormat) return identifierName.trim()
+  if (!labelFormat) return sanitizeLabelPart(identifierName)
 
   const parsedPath = nodePath.parse(filename)
   let localDirname = nodePath.basename(parsedPath.dir)
   let localFilename = parsedPath.name
+
   if (localFilename === 'index') {
     localFilename = localDirname
   }
-  localFilename = localFilename.replace('.', '-')
 
   return labelFormat
-    .replace(/\[local\]/gi, identifierName.trim())
-    .replace(/\[filename\]/gi, localFilename)
-    .replace(/\[dirname\]/gi, localDirname)
+    .replace(/\[local\]/gi, sanitizeLabelPart(identifierName))
+    .replace(/\[filename\]/gi, sanitizeLabelPart(localFilename))
+    .replace(/\[dirname\]/gi, sanitizeLabelPart(localDirname))
 }
 
 export function getLabelFromPath(path: *, state: *, t: *) {
