@@ -1,0 +1,7 @@
+{
+  "releases": [
+    { "name": "babel-plugin-emotion", "type": "patch" },
+    { "name": "@emotion/core", "type": "patch" }
+  ],
+  "dependents": []
+}
