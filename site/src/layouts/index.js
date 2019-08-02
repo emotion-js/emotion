@@ -1,4 +1,6 @@
 // @flow
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import '../utils/make-prism-manual'
 import globalStyles from '../utils/global'
 import * as React from 'react'
