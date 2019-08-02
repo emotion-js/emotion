@@ -8,6 +8,7 @@
 .*/node_modules/metro.*
 .*/node_modules/preact/.*
 
+
 [untyped]
 .*/node_modules/polished/.*
 
@@ -23,3 +24,4 @@
 [options]
 suppress_comment=.*\\$FlowFixMe
 server.max_workers=1
+sharedmemory.hash_table_pow=21

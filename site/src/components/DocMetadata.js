@@ -22,9 +22,7 @@ const DocMetadata = (props: Props) => {
     <StaticQuery
       query={graphql`
         query DocMetadata {
-          allMarkdownRemark(
-            filter: { fileAbsolutePath: { glob: "**/docs/*.md" } }
-          ) {
+          allMdx {
             edges {
               node {
                 frontmatter {
@@ -39,7 +37,7 @@ const DocMetadata = (props: Props) => {
         }
       `}
       render={data => {
-        return props.render(data.allMarkdownRemark.edges)
+        return props.render(data.allMdx.edges)
       }}
     />
   )
