@@ -156,6 +156,24 @@ test('autoLabel without babel', () => {
   expect(tree.toJSON().props.className.endsWith('-SomeComp')).toBe(true)
 })
 
+test('autoLabel without babel (sanitized)', () => {
+  let SomeComp$ = props => {
+    return (
+      <div
+        {...props}
+        css={{
+          color: 'hotpink'
+        }}
+      >
+        something
+      </div>
+    )
+  }
+  const tree = renderer.create(<SomeComp$ />)
+
+  expect(tree.toJSON().props.className.endsWith('-SomeComp-')).toBe(true)
+})
+
 test('overwrite styles from parent', () => {
   let SomeComponent = (props: Object) => (
     <div
