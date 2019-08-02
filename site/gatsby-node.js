@@ -101,10 +101,7 @@ exports.createPages = async ({ graphql, actions }) => {
 exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
   const { createNodeField } = actions
 
-  if (
-    node.internal.type === `MarkdownRemark` &&
-    typeof node.slug === `undefined`
-  ) {
+  if (node.internal.type === `Mdx` && typeof node.slug === `undefined`) {
     const fileNode = getNode(node.parent)
 
     createNodeField({
@@ -132,7 +129,11 @@ function getNameForPackage(absolutePath) {
 
 exports.onCreateBabelConfig = ({ actions, stage }) => {
   actions.setBabelPreset({
-    name: `@babel/preset-flow`,
+    name: `babel-preset-emotion-dev`,
+    stage
+  })
+  actions.setBabelPreset({
+    name: require.resolve(`@emotion/babel-preset-css-prop`),
     stage
   })
 }

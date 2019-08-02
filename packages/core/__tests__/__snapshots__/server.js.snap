@@ -160,14 +160,14 @@ exports[`ssr styled with keyframes 1`] = `
 
 exports[`ssr with old api @import 1`] = `
 
+<style data-emotion-css="1sh9nmh">
+  @import url('https://some-url');h1{color:hotpink;}
+</style>
 <style data-emotion-css="1lrxbo5">
   .css-1lrxbo5{color:hotpink;}
 </style>
 <div class="css-1lrxbo5">
 </div>
-<style data-emotion-css="1sh9nmh">
-  @import url('https://some-url');h1{color:hotpink;}
-</style>
 
 `;
 
@@ -330,6 +330,11 @@ exports[`ssr with old api styled with keyframes 1`] = `
 
 exports[`ssr with old api works with nonces 1`] = `
 
+<style data-emotion-css="1r145pv"
+       nonce="some-nonce"
+>
+  html{margin:0;padding:0;font-family:sans-serif;}
+</style>
 <style data-emotion-css="ihiui2"
        nonce="some-nonce"
 >
@@ -344,11 +349,6 @@ exports[`ssr with old api works with nonces 1`] = `
 </style>
 <div class="css-1lrxbo5">
 </div>
-<style data-emotion-css="1r145pv"
-       nonce="some-nonce"
->
-  html{margin:0;padding:0;font-family:sans-serif;}
-</style>
 
 `;
 

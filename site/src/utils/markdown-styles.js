@@ -1,5 +1,6 @@
 // @flow
-import * as React from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import styled from '@emotion/styled'
 import css from '@emotion/css'
 import { mq, colors, constants, animatedUnderline } from './style'

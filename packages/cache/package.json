@@ -4,6 +4,18 @@
   "description": "emotion's cache",
   "main": "dist/cache.cjs.js",
   "module": "dist/cache.esm.js",
+  "browser": {
+    "./dist/cache.cjs.js": "./dist/cache.browser.cjs.js",
+    "./dist/cache.esm.js": "./dist/cache.browser.esm.js"
+  },
+  "react-native": {
+    "./dist/cache.cjs.js": "./dist/cache.native.cjs.js",
+    "./dist/cache.esm.js": "./dist/cache.native.esm.js"
+  },
+  "sketch": {
+    "./dist/cache.cjs.js": "./dist/cache.native.cjs.js",
+    "./dist/cache.esm.js": "./dist/cache.native.esm.js"
+  },
   "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/cache",
@@ -27,9 +39,5 @@
     "src",
     "dist",
     "types"
-  ],
-  "browser": {
-    "./dist/cache.cjs.js": "./dist/cache.browser.cjs.js",
-    "./dist/cache.esm.js": "./dist/cache.browser.esm.js"
-  }
+  ]
 }

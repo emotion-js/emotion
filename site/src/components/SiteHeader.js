@@ -1,6 +1,7 @@
 // @flow
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import '../utils/make-prism-manual'
-import * as React from 'react'
 import { Match } from '@reach/router'
 
 import Link from '../components/Link'
@@ -60,7 +61,9 @@ export default function SiteHeader() {
       </Link>
       <nav
         css={{
-          marginLeft: 'auto'
+          marginLeft: 'auto',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch'
         }}
       >
         <ul
@@ -75,7 +78,13 @@ export default function SiteHeader() {
             padding: 0,
             margin: '0 0 0 auto',
             overflow: 'auto',
-            listStyle: 'none'
+            listStyle: 'none',
+            'li a': {
+              display: 'inline-block',
+              paddingTop: space[1],
+              paddingBottom: space[1],
+              whiteSpace: 'nowrap'
+            }
           }}
         >
           <li>

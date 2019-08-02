@@ -1,5 +1,5 @@
 // @flow
-import { createEmotionMacro } from './macro'
+import { createEmotionMacro } from './emotion-macro'
 import { createStyledMacro } from './styled-macro'
 import cssMacro, { transformCssCallExpression } from './css-macro'
 import { addDefault } from '@babel/helper-module-imports'
