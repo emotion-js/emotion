@@ -1,4 +1,6 @@
 // @flow
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import React from 'react'
 import { navigate } from '@reach/router'
 import { algoliaStyles } from '../utils/algolia-styles'

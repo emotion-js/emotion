@@ -1,5 +1,7 @@
 // @flow
-import React, { Component } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+import { Component } from 'react'
 import styled from '@emotion/styled'
 import { StaticQuery, graphql } from 'gatsby'
 import Live, { compile, Editor, ErrorBoundary } from './live'
@@ -110,7 +112,6 @@ export default class Playground extends Component<Props> {
                           height: '100%',
                           borderRadius: 0
                         }}
-                        // $FlowFixMe
                         className={this.props.editorClassName}
                       />
                     </Box>
