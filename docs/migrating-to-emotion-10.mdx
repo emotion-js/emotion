@@ -10,9 +10,9 @@ Emotion 10 is a significant change to Emotion, so it requires some changes to yo
 
 # Thinking
 
-The most significant change in Emotion 10 is that it doesn't let you easily access the underlying class names. Instead of thinking in class names, you have to think in terms of styles and composing them together. (you can still use class names directly if you want to, but you won't get new features like zero-config server rendering)
+The most significant change in Emotion 10 is that it doesn't let you easily access the underlying class names. Instead of thinking in class names, you have to think in terms of styles and composing them together (you can still use class names directly if you want to, but you won't get new features like zero-config server rendering).
 
-For example, in Emotion 9, you might have had two classes from `css` and compose them together with `cx`, but in Emotion 10, you create 2 styles and compose them together in the css prop like this.
+For example, in Emotion 9, you might have had two classes from `css` and compose them together with `cx`, but in Emotion 10, you create two styles and compose them together in the `css` prop like this:
 
 ```jsx
 // Emotion 9
@@ -55,20 +55,22 @@ const SomeComponent = props => (
 
 Incremental migration is something really important to Emotion because we don't want anyone to have to rewrite their entire app.
 
-The upgrades to emotion 10 are split into two parts. The first part can be done automatically by using [`eslint-plugin-emotion`](./eslint-plugin-emotion#emotion-10-codemods).
+The upgrades to Emotion 10 are split into two parts. The first part can be done automatically by using [`eslint-plugin-emotion`](./eslint-plugin-emotion#emotion-10-codemods).
 
 ## Codemoddable
 
-- Change all react-emotion imports so that styled is imported from `@emotion/styled` and all the emotion exports are split into a second import.
+- Change all `react-emotion` imports so that `styled` is imported from `@emotion/styled` and all the `emotion` exports are split into a second import.
 
 ```jsx
 import styled, { css } from 'react-emotion'
+
 // ↓ ↓ ↓ ↓ ↓ ↓
+
 import styled from '@emotion/styled'
 import { css } from 'emotion'
 ```
 
-- Add a css call to the css prop when a template literal is used.
+- Add a `css` call to the `css` prop when a template literal is used.
 
 ```jsx
 let element = (
@@ -92,10 +94,23 @@ let element = (
 )
 ```
 
-- Add a `jsx` import and set jsx pragma
+- Add a `jsx` import and set the jsx pragma at the top of the source file.
 
 ```jsx
 import { css } from '@emotion/core'
+
+let element = (
+  <div
+    css={css`
+      color: hotpink;
+    `}
+  />
+)
+
+// ↓ ↓ ↓ ↓ ↓ ↓
+
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 
 let element = (
   <div
@@ -126,9 +141,9 @@ render(
 )
 ```
 
-## Manual Steps over time
+## Manual Steps Over Time
 
-- Change css usage to css prop
+- Change `css` usage to `css` prop
 
 ```jsx
 import { css } from 'emotion'
@@ -141,6 +156,7 @@ let element = (
 )
 
 // ↓ ↓ ↓ ↓ ↓ ↓
+
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
@@ -153,7 +169,7 @@ let element = (
 )
 ```
 
-If you have components that accepts props like `wrapperClassName` or etc. you can use the [`ClassNames` component](./class-names.md).
+If you have components that accepts props like `wrapperClassName`, etc., you can use the [`ClassNames` component](./class-names.md).
 
 ```jsx
 import { css } from 'emotion'
