@@ -1,6 +1,6 @@
 {
   "name": "@emotion/styled-base",
-  "version": "10.0.14",
+  "version": "10.0.15",
   "description": "base styled API for emotion",
   "main": "dist/styled-base.cjs.js",
   "module": "dist/styled-base.esm.js",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "@emotion/is-prop-valid": "0.8.2",
-    "@emotion/serialize": "^0.11.8",
+    "@emotion/serialize": "^0.11.9",
     "@emotion/utils": "0.11.2"
   },
   "devDependencies": {
@@ -25,7 +25,7 @@
     "dtslint": "^0.3.0"
   },
   "peerDependencies": {
-    "@emotion/core": "^10.0.14",
+    "@emotion/core": "^10.0.15",
     "react": ">=16.3.0"
   },
   "publishConfig": {

@@ -1,7 +1,0 @@
-{
-  "releases": [
-    { "name": "@emotion/styled-base", "type": "patch" },
-    { "name": "@emotion/styled", "type": "patch" }
-  ],
-  "dependents": []
-}
