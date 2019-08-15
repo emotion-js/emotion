@@ -1,0 +1,18 @@
+{
+  "releases": [
+    { "name": "@emotion/cache", "type": "patch" },
+    { "name": "@emotion/sheet", "type": "patch" }
+  ],
+  "dependents": [
+    {
+      "name": "@emotion/core",
+      "type": "patch",
+      "dependencies": ["@emotion/cache", "@emotion/sheet"]
+    },
+    {
+      "name": "create-emotion",
+      "type": "patch",
+      "dependencies": ["@emotion/cache", "@emotion/sheet"]
+    }
+  ]
+}
