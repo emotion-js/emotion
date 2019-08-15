@@ -43,7 +43,8 @@ export type Options = {
   nonce?: string,
   key: string,
   container: HTMLElement,
-  speedy?: boolean
+  speedy?: boolean,
+  prepend?: boolean
 }
 
 function createStyleElement(options: {
@@ -66,6 +67,7 @@ export class StyleSheet {
   container: HTMLElement
   key: string
   nonce: string | void
+  prepend: boolean | void
   before: Element | null
   constructor(options: Options) {
     this.isSpeedy =
@@ -78,6 +80,7 @@ export class StyleSheet {
     // key is the value of the data-emotion attribute, it's used to identify different sheets
     this.key = options.key
     this.container = options.container
+    this.prepend = options.prepend
     this.before = null
   }
   insert(rule: string) {
@@ -92,7 +95,15 @@ export class StyleSheet {
       } else {
         before = this.tags[this.tags.length - 1].nextSibling
       }
-      this.container.insertBefore(tag, before)
+      if (this.prepend) {
+        if (before) {
+          this.container.insertBefore(tag, before)
+        } else {
+          this.container.insertBefore(tag, this.container.firstChild)
+        }
+      } else {
+        this.container.insertBefore(tag, before)
+      }
       this.tags.push(tag)
     }
     const tag = this.tags[this.tags.length - 1]

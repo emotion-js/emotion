@@ -19,7 +19,8 @@ export type Options = {
   prefix?: PrefixOption,
   key?: string,
   container?: HTMLElement,
-  speedy?: boolean
+  speedy?: boolean,
+  prepend?: boolean
 }
 
 let rootServerStylisCache = {}
@@ -240,7 +241,8 @@ let createCache = (options?: Options): EmotionCache => {
       key,
       container,
       nonce: options.nonce,
-      speedy: options.speedy
+      speedy: options.speedy,
+      prepend: options.prepend
     }),
     nonce: options.nonce,
     inserted,

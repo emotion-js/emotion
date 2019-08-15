@@ -56,3 +56,9 @@ The prefix before class names. It will also be set as the value of the `data-emo
 `HTMLElement`
 
 A DOM node that emotion will insert all of its style tags into. This is useful for inserting styles into iframes.
+
+### `prepend`
+
+`boolean`
+
+A string representing whether to prepend rather than append style tags into the specified container DOM node.
