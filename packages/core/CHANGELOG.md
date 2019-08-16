@@ -1,5 +1,11 @@
 # @emotion/core
 
+## 10.0.16
+
+### Patch Changes
+
+- [47262b64](https://github.com/emotion-js/emotion/commit/47262b64) - Fix labels from stack traces in some cases
+
 ## 10.0.15
 
 ### Patch Changes
