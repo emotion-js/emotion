@@ -154,7 +154,9 @@ export const jsx: typeof React.createElement = function(
     let error = new Error()
     if (error.stack) {
       // chrome
-      let match = error.stack.match(/at jsx.*\n\s+at ([A-Z][A-Za-z$]+) /)
+      let match = error.stack.match(
+        /at (?:Object\.|)jsx.*\n\s+at ([A-Z][A-Za-z$]+) /
+      )
       if (!match) {
         // safari and firefox
         match = error.stack.match(/^.*\n([A-Z][A-Za-z$]+)@/)
