@@ -4,9 +4,22 @@ import * as enzyme from 'enzyme'
 import { jsx } from '@emotion/core'
 import { createSerializer as createEnzymeSerializer } from 'enzyme-to-json'
 import { createSerializer } from 'jest-emotion'
+import React from 'react'
 
 expect.addSnapshotSerializer(createEnzymeSerializer())
 expect.addSnapshotSerializer(createSerializer())
+
+// Allow deep serialization in tests.
+let useDeepSerializer = false
+const deepEnzymeSerializer = createEnzymeSerializer({ mode: 'deep' })
+expect.addSnapshotSerializer({
+  test: val => useDeepSerializer && deepEnzymeSerializer.test(val),
+  print: deepEnzymeSerializer.print
+})
+
+beforeEach(() => {
+  useDeepSerializer = false
+})
 
 test('enzyme mount test', () => {
   const Greeting = ({ children }) => (
@@ -95,6 +108,23 @@ test('enzyme test with prop containing css element with other label', () => {
     >
       World!
     </Greeting>
+  )
+  expect(tree).toMatchSnapshot()
+})
+
+test('enzyme test with prop containing css element in fragment', () => {
+  useDeepSerializer = true
+
+  const FragmentComponent = () => (
+    <React.Fragment>
+      x<div css={{ backgroundColor: 'blue' }}>y</div>
+    </React.Fragment>
+  )
+
+  const tree = enzyme.mount(
+    <div>
+      <FragmentComponent />
+    </div>
   )
   expect(tree).toMatchSnapshot()
 })

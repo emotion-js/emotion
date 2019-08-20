@@ -48,6 +48,27 @@ exports[`enzyme test with prop containing css element 1`] = `
 </Greeting>
 `;
 
+exports[`enzyme test with prop containing css element in fragment 1`] = `
+.emotion-0 {
+  background-color: blue;
+}
+
+.emotion-0 {
+  background-color: blue;
+}
+
+<div>
+  Array [
+    "x",
+    <div
+      className="emotion-0"
+    >
+      y
+    </div>,
+  ]
+</div>
+`;
+
 exports[`enzyme test with prop containing css element not at the top level 1`] = `
 .emotion-0 {
   background-color: blue;
