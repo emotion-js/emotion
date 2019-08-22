@@ -288,7 +288,7 @@
     "react-error-overlay": "^3.0.0",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
-    "react-live": "^1.7.1",
+    "react-live": "1.10.0",
     "react-native": "^0.57.0",
     "react-native-web": "0.9.6",
     "react-primitives": "^0.7.0",
