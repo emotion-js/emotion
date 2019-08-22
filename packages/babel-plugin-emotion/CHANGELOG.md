@@ -1,5 +1,11 @@
 # babel-plugin-emotion
 
+## 10.0.16
+
+### Patch Changes
+
+- [1ea9b3a6](https://github.com/emotion-js/emotion/commit/1ea9b3a6) - Fix an inconsistency with Babel config ordering in the README
+
 ## 10.0.15
 
 ### Patch Changes
