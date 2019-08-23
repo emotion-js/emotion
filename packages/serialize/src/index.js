@@ -8,6 +8,11 @@ import hashString from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import memoize from '@emotion/memoize'
 
+const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
+Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
+You can read more about this here:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
+
 let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
@@ -321,6 +326,9 @@ export const serializeStyles = function(
     stringMode = false
     styles += handleInterpolation(mergedProps, registered, strings, false)
   } else {
+    if (process.env.NODE_ENV !== 'production' && strings[0] === undefined) {
+      console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
+    }
     styles += strings[0]
   }
   // we start at 1 since we've already handled the first arg
@@ -332,6 +340,9 @@ export const serializeStyles = function(
       styles.charCodeAt(styles.length - 1) === 46
     )
     if (stringMode) {
+      if (process.env.NODE_ENV !== 'production' && strings[i] === undefined) {
+        console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
+      }
       styles += strings[i]
     }
   }

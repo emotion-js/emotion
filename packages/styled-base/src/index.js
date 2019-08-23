@@ -10,6 +10,11 @@ import { withEmotionCache, ThemeContext } from '@emotion/core'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
+const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
+Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
+You can read more about this here:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
+
 let isBrowser = typeof document !== 'undefined'
 
 type StyledComponent = (
@@ -63,10 +68,16 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     if (args[0] == null || args[0].raw === undefined) {
       styles.push.apply(styles, args)
     } else {
+      if (process.env.NODE_ENV !== 'production' && args[0][0] === undefined) {
+        console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
+      }
       styles.push(args[0][0])
       let len = args.length
       let i = 1
       for (; i < len; i++) {
+        if (process.env.NODE_ENV !== 'production' && args[0][i] === undefined) {
+          console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
+        }
         styles.push(args[i], args[0][i])
       }
     }
