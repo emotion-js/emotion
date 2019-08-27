@@ -211,7 +211,7 @@ let createCache = (options?: Options): EmotionCache => {
             /(:first|:nth|:nth-last)-child/g
           )
 
-          if (unsafePseudoClasses) {
+          if (unsafePseudoClasses && cache.compat !== true) {
             unsafePseudoClasses.forEach(unsafePseudoClass => {
               const ignoreRegExp = new RegExp(
                 `${unsafePseudoClass}.*\\/\\* ${flag} \\*\\/`
