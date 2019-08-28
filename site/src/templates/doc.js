@@ -122,7 +122,7 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
                   doc.frontmatter.title
                     ? `https://github.com/emotion-js/emotion/edit/master/docs/${
                         this.props.pageContext.slug
-                      }.md`
+                      }.mdx`
                     : `https://github.com/emotion-js/emotion/edit/master/packages/${
                         this.props.pageContext.slug
                       }/README.md`
