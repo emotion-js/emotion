@@ -74,4 +74,14 @@ exports[`jest-emotion with dom elements replaces class names and inserts styles 
 </div>"
 `;
 
+exports[`prints speedy styles 1`] = `
+".emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className=\\"emotion-0\\"
+/>"
+`;
+
 exports[`throws nice error for invalid css 1`] = `"There was an error parsing the following css: \\".css-d1550g-tree{jnnjvh@'jevhevhblabel:tree;}\\""`;
