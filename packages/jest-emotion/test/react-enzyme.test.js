@@ -4,16 +4,31 @@ import * as enzyme from 'enzyme'
 import { jsx } from '@emotion/core'
 import { createSerializer as createEnzymeSerializer } from 'enzyme-to-json'
 import { createSerializer } from 'jest-emotion'
+import { toMatchSnapshot } from 'jest-snapshot'
+import React from 'react'
 
-expect.addSnapshotSerializer(createEnzymeSerializer())
+const createEnzymeSnapshotMatcher = serializerOptions => {
+  const serializer = createEnzymeSerializer(serializerOptions)
+  const identityPrinter = v => v
+
+  return function(val) {
+    return toMatchSnapshot.call(this, serializer.print(val, identityPrinter))
+  }
+}
+
 expect.addSnapshotSerializer(createSerializer())
+
+expect.extend({
+  toMatchShallowSnapshot: createEnzymeSnapshotMatcher(),
+  toMatchDeepSnapshot: createEnzymeSnapshotMatcher({ mode: 'deep' })
+})
 
 test('enzyme mount test', () => {
   const Greeting = ({ children }) => (
     <div css={{ backgroundColor: 'red' }}>{children}</div>
   )
   const tree = enzyme.mount(<Greeting>hello</Greeting>)
-  expect(tree).toMatchSnapshot()
+  expect(tree).toMatchShallowSnapshot()
 })
 
 test('enzyme test with prop containing css element', () => {
@@ -28,7 +43,7 @@ test('enzyme test with prop containing css element', () => {
       World!
     </Greeting>
   )
-  expect(tree).toMatchSnapshot()
+  expect(tree).toMatchShallowSnapshot()
 })
 
 test('enzyme test with prop containing css element not at the top level', () => {
@@ -51,7 +66,7 @@ test('enzyme test with prop containing css element not at the top level', () => 
       </Greeting>
     </div>
   )
-  expect(tree).toMatchSnapshot()
+  expect(tree).toMatchShallowSnapshot()
 })
 
 test('enzyme test with prop containing css element with other props', () => {
@@ -72,7 +87,7 @@ test('enzyme test with prop containing css element with other props', () => {
       World!
     </Greeting>
   )
-  expect(tree).toMatchSnapshot()
+  expect(tree).toMatchShallowSnapshot()
 })
 
 test('enzyme test with prop containing css element with other label', () => {
@@ -96,5 +111,20 @@ test('enzyme test with prop containing css element with other label', () => {
       World!
     </Greeting>
   )
-  expect(tree).toMatchSnapshot()
+  expect(tree).toMatchShallowSnapshot()
+})
+
+test('enzyme test with prop containing css element in fragment', () => {
+  const FragmentComponent = () => (
+    <React.Fragment>
+      x<div css={{ backgroundColor: 'blue' }}>y</div>
+    </React.Fragment>
+  )
+
+  const tree = enzyme.mount(
+    <div>
+      <FragmentComponent />
+    </div>
+  )
+  expect(tree).toMatchDeepSnapshot()
 })
