@@ -1,5 +1,9 @@
 // @flow
 
+function flatMap(arr, iteratee) {
+  return [].concat(...arr.map(iteratee))
+}
+
 export const RULE_TYPES = {
   media: 'media',
   rule: 'rule'
@@ -94,6 +98,17 @@ let keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
 
 let removeCommentPattern = /\/\*[\s\S]*?\*\//g
 
+const getElementRules = (element: HTMLStyleElement) => {
+  const nonSpeedyRule = element.textContent
+  if (nonSpeedyRule) {
+    return [nonSpeedyRule]
+  }
+  if (!element.sheet) {
+    return []
+  }
+  return [].slice.call(element.sheet.cssRules).map(cssRule => cssRule.cssText)
+}
+
 export function getStylesFromClassNames(
   classNames: Array<string>,
   elements: Array<HTMLStyleElement>
@@ -117,8 +132,7 @@ export function getStylesFromClassNames(
   let keyframes = {}
   let styles = ''
 
-  elements.forEach(element => {
-    let rule = element.textContent || ''
+  flatMap(elements, getElementRules).forEach(rule => {
     if (selectorPattern.test(rule)) {
       styles += rule
     }
