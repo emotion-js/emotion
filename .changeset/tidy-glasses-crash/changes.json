@@ -1,0 +1,4 @@
+{
+  "releases": [{ "name": "babel-plugin-emotion", "type": "patch" }],
+  "dependents": []
+}
