@@ -1,1 +1,1 @@
-Fix snapshots when using fragments & deep mode
+Fixed snapshots when using Enzyme serializer and its deep mode in combination with fragments
