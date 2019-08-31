@@ -98,7 +98,7 @@ let keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
 
 let removeCommentPattern = /\/\*[\s\S]*?\*\//g
 
-const getElementRules = (element: HTMLStyleElement) => {
+const getElementRules = (element: HTMLStyleElement): string[] => {
   const nonSpeedyRule = element.textContent
   if (nonSpeedyRule) {
     return [nonSpeedyRule]
@@ -106,6 +106,7 @@ const getElementRules = (element: HTMLStyleElement) => {
   if (!element.sheet) {
     return []
   }
+  // $FlowFixMe - flow doesn't know about `cssRules` property
   return [].slice.call(element.sheet.cssRules).map(cssRule => cssRule.cssText)
 }
 
