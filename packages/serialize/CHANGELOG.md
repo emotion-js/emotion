@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 0.11.10
+
+### Patch Changes
+
+- [66cda641](https://github.com/emotion-js/emotion/commit/66cda64128631790b81e3c9df273a972358ea593) [#1478](https://github.com/emotion-js/emotion/pull/1478) Thanks [@Andarist](https://github.com/Andarist)! - Add warnings about using illegal escape sequences
+
 ## 0.11.9
 
 ### Patch Changes
