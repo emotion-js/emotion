@@ -15,6 +15,13 @@ import {
 export { matchers } from './matchers'
 
 function getNodes(node, nodes = []) {
+  if (Array.isArray(node)) {
+    for (let child of node) {
+      getNodes(child, nodes)
+    }
+    return nodes
+  }
+
   if (node.children) {
     for (let child of node.children) {
       getNodes(child, nodes)

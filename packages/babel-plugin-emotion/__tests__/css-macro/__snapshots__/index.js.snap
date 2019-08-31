@@ -416,6 +416,36 @@ exports[`@emotion/css/macro no-actual-import 1`] = `
 "
 `;
 
+exports[`@emotion/css/macro object-dynamic-property 1`] = `
+"import css from '@emotion/css/macro'
+
+function doThing() {
+  return {
+    [css({ color: 'hotpink' })]: 'coldblue'
+  }
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+} : {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1keW5hbWljLXByb3BlcnR5LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUlLIiwiZmlsZSI6Im9iamVjdC1keW5hbWljLXByb3BlcnR5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGNzcyBmcm9tICdAZW1vdGlvbi9jc3MvbWFjcm8nXG5cbmZ1bmN0aW9uIGRvVGhpbmcoKSB7XG4gIHJldHVybiB7XG4gICAgW2Nzcyh7IGNvbG9yOiAnaG90cGluaycgfSldOiAnY29sZGJsdWUnXG4gIH1cbn1cbiJdfQ== */\\"
+};
+
+function doThing() {
+  return {
+    [_ref]: 'coldblue'
+  };
+}"
+`;
+
 exports[`@emotion/css/macro other-imports 1`] = `
 "import { nonExistantImport } from '@emotion/css/macro'
 
