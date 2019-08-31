@@ -1,1 +1,1 @@
-fixes #1400 : regression from #1387 on object dynamic property keys
+Fix `autoLabel` crash on `css` used as a computed key of an object
