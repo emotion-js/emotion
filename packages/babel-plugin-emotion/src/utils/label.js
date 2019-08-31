@@ -72,7 +72,7 @@ function getDeclaratorName(path, t) {
   }
 
   // we could also have an object property
-  if (parent.isObjectProperty()) {
+  if (parent.isObjectProperty() && !parent.node.computed) {
     return parent.node.key.name
   }
 

@@ -7,14 +7,6 @@
     "./dist/core.cjs.js": "./dist/core.browser.cjs.js",
     "./dist/core.esm.js": "./dist/core.browser.esm.js"
   },
-  "react-native": {
-    "./dist/core.cjs.js": "./dist/core.native.cjs.js",
-    "./dist/core.esm.js": "./dist/core.native.esm.js"
-  },
-  "sketch": {
-    "./dist/core.cjs.js": "./dist/core.native.cjs.js",
-    "./dist/core.esm.js": "./dist/core.native.esm.js"
-  },
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -27,7 +19,7 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
+    "@babel/runtime": "^7.5.5",
     "@emotion/cache": "^10.0.15",
     "@emotion/css": "^10.0.14",
     "@emotion/serialize": "^0.11.9",

@@ -1,0 +1,7 @@
+{
+  "releases": [
+    { "name": "@emotion/cache", "type": "patch" },
+    { "name": "@emotion/core", "type": "patch" }
+  ],
+  "dependents": []
+}
