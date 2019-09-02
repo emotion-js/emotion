@@ -269,20 +269,36 @@ function createStringFromObject(
             )};`
           }
         } else {
+          let customValue = value
+          let isCustomValue = false
+          if (
+            value != null &&
+            typeof value === 'object' &&
+            typeof value.valueOf === 'function'
+          ) {
+            customValue = value.valueOf()
+            if (typeof customValue === 'string') {
+              isCustomValue = true
+            }
+          }
           const interpolated = handleInterpolation(
             mergedProps,
             registered,
-            value,
+            isCustomValue ? customValue : value,
             false
           )
-          switch (key) {
-            case 'animation':
-            case 'animationName': {
-              string += `${processStyleName(key)}:${interpolated};`
-              break
-            }
-            default: {
-              string += `${key}{${interpolated}}`
+          if (isCustomValue) {
+            string += `${processStyleName(key)}:${interpolated};`
+          } else {
+            switch (key) {
+              case 'animation':
+              case 'animationName': {
+                string += `${processStyleName(key)}:${interpolated};`
+                break
+              }
+              default: {
+                string += `${key}{${interpolated}}`
+              }
             }
           }
         }

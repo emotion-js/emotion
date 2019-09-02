@@ -219,3 +219,25 @@ test('handles camelCased custom properties in object styles properly', () => {
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
+
+test('handles valueOf on custom object values', () => {
+  class ColorUtil {
+    color = null
+
+    constructor(color: string) {
+      this.color = color
+    }
+    valueOf() {
+      return this.color
+    }
+  }
+
+  const tree = renderer.create(
+    <div
+      css={{
+        color: new ColorUtil('#F00')
+      }}
+    />
+  )
+  expect(tree.toJSON()).toMatchSnapshot()
+})
