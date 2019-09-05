@@ -9,7 +9,7 @@ import MenuIcon from 'react-icons/lib/md/menu'
 import CloseIcon from 'react-icons/lib/md/close'
 
 import { constants, colors, mq } from '../utils/style'
-import darken from '/lib/color/darken'
+import darken from 'polished/lib/color/darken'
 import { getDocMap, docList } from '../utils/misc'
 
 import DocMetadata from './DocMetadata'
