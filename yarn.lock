@@ -1602,10 +1602,10 @@
   dependencies:
     core-js "^2.5.7"
 
-"@manypkg/cli@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.3.0.tgz#9356affe1908abcb965ee70a1fe4b8b9cb8676b2"
-  integrity sha512-CjBboL8qZBT2Ay/1jeW1U6z4clS7cwQ7kPHvDLiuYJ8SI6DDQb7iKthpYU9X5fcdU0H2EM/3kMQxI8lcT9Ejgw==
+"@manypkg/cli@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.5.1.tgz#8c402d277679938a30562d58e2d3b2e0fd57c948"
+  integrity sha512-qWVQyfq7Tt4mhIJzUEhnvi+dTdsEHTW16IpCd01bXGcod1eZZgktjV1atgbrBZ7lRcWZVdCJIdqw9HIycCUxGw==
   dependencies:
     "@babel/runtime" "^7.5.5"
     chalk "^2.4.2"
@@ -1615,7 +1615,7 @@
     fs-extra "^8.1.0"
     get-workspaces "^0.4.0"
     meow "^5.0.0"
-    sembear "^0.2.0"
+    sembear "^0.3.0"
     semver "^6.3.0"
     spawndamnit "^2.0.0"
     validate-npm-package-name "^3.0.0"
@@ -20630,10 +20630,10 @@ selfsigned@^1.10.4, selfsigned@^1.9.1:
   dependencies:
     node-forge "0.7.5"
 
-sembear@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/sembear/-/sembear-0.2.0.tgz#95a91b5f82b7c4891c9ab7105d8682c8631af8ad"
-  integrity sha512-9sIysRFIml2drUiivxbO4/Y+bjt7YBRKl/WpYTGkDGnjuCYHyWcaYI3BYrAOFhFpr41qcix7ppEiYFig/gQeVg==
+sembear@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/sembear/-/sembear-0.3.0.tgz#8af905c16d6c7a9c5ccabdb03f0c3da717f2b34e"
+  integrity sha512-IP39etFscpOV8i8EC+kyu8g8sx3o3IelMM6zZDvzuFlKbnS18jogM+GdwtqeeiOxMJJpqw8WmV9BU+iwHhstsA==
   dependencies:
     "@types/semver" "^6.0.1"
     semver "^6.3.0"

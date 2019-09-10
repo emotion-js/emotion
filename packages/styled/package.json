@@ -15,7 +15,9 @@
     "babel-plugin-emotion": "^10.0.15"
   },
   "devDependencies": {
-    "dtslint": "^0.3.0"
+    "@emotion/core": "^10.0.15",
+    "dtslint": "^0.3.0",
+    "react": "^16.5.2"
   },
   "peerDependencies": {
     "@emotion/core": "^10.0.15",

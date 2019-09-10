@@ -35,7 +35,8 @@
     "@emotion/core": "^10.0.14",
     "@emotion/styled": "^10.0.14",
     "@types/react": "^16.8.20",
-    "dtslint": "^0.3.0"
+    "dtslint": "^0.3.0",
+    "react": "^16.5.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
