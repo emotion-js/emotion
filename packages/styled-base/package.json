@@ -21,8 +21,10 @@
     "@emotion/utils": "0.11.2"
   },
   "devDependencies": {
+    "@emotion/core": "^10.0.15",
     "@types/react": "^16.8.20",
-    "dtslint": "^0.3.0"
+    "dtslint": "^0.3.0",
+    "react": "^16.5.2"
   },
   "peerDependencies": {
     "@emotion/core": "^10.0.17",

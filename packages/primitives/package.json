@@ -13,8 +13,8 @@
     "babel-plugin-emotion": "^10.0.14"
   },
   "peerDependencies": {
-    "react-primitives": "^0.7.0",
-    "react": ">=16.3.0"
+    "react": ">=16.3.0",
+    "react-primitives": "^0.7.0"
   },
   "devDependencies": {
     "emotion-theming": "^10.0.14",
