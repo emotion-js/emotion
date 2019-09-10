@@ -1,5 +1,11 @@
 # babel-plugin-emotion
 
+## 10.0.17
+
+### Patch Changes
+
+- [b22b4ca4](https://github.com/emotion-js/emotion/commit/b22b4ca460ec66ea313dd9ea9556bd7a2d04798c) [#1485](https://github.com/emotion-js/emotion/pull/1485) Thanks [@JSteunou](https://github.com/JSteunou)! - Fix `autoLabel` crash on `css` used as a computed key of an object
+
 ## 10.0.16
 
 ### Patch Changes

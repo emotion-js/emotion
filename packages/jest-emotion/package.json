@@ -1,6 +1,6 @@
 {
   "name": "jest-emotion",
-  "version": "10.0.14",
+  "version": "10.0.17",
   "description": "Jest utilities for emotion",
   "main": "dist/jest-emotion.cjs.js",
   "types": "types/index.d.ts",
@@ -20,9 +20,9 @@
     "css": "^2.2.1"
   },
   "devDependencies": {
-    "@emotion/core": "^10.0.14",
+    "@emotion/core": "^10.0.17",
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.14",
+    "emotion": "^10.0.17",
     "enzyme-to-json": "^3.2.1",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
