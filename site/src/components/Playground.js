@@ -33,8 +33,6 @@ export const scope = {
         return require('@emotion/is-prop-valid')
       case 'emotion-theming':
         return require('emotion-theming')
-      case 'recompose/withProps':
-        return require('recompose/withProps')
       case 'facepaint':
         return require('facepaint')
       default:

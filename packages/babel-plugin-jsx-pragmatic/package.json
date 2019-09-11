@@ -18,5 +18,8 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5"
   }
 }

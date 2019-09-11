@@ -17,7 +17,7 @@
     "@emotion/primitives-core": "10.0.14"
   },
   "peerDependencies": {
-    "react-native": ">=0.14.0 && < 1"
+    "react-native": ">=0.14.0 <1"
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",
