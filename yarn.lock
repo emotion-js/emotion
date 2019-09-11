@@ -1092,12 +1092,13 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@changesets/cli@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.npmjs.org/@changesets/cli/-/cli-1.3.0.tgz#66c77f1ac22fa9e37f7f910560dadfe6d2b28826"
-  integrity sha512-pUi2OrsZfpqgwgcoB9xVQhfkg9tSqQAB99+8NES30BaQAKoOXOPCQgAZ4RTw3xU20JfIM9IQf5Y2Rb5EAoiVaA==
+"@changesets/cli@^1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-1.3.3.tgz#0a2524cf29e056233438c6b0728e3e735ceabcbd"
+  integrity sha512-p6pMinDAfq3JhxJlirJUglQLNSdAnMCMtU+GCVpgh9v2Dk9xG6Q/XsCYMqGqCYedBT9zr2RUpjjcYuHdWkHR1w==
   dependencies:
     "@babel/runtime" "^7.4.4"
+    "@changesets/git" "^0.1.2"
     "@types/semver" "^6.0.0"
     "@types/uuid" "^3.4.4"
     boxen "^1.3.0"
@@ -1107,7 +1108,7 @@
     enquirer "^2.3.0"
     fs-extra "^7.0.1"
     fuzzy "^0.1.3"
-    get-workspaces "^0.4.0"
+    get-workspaces "^0.4.2"
     globby "^9.2.0"
     human-id "^1.0.2"
     is-ci "^2.0.0"
@@ -1117,7 +1118,6 @@
     p-limit "^2.2.0"
     pkg-dir "^4.1.0"
     prettier "^1.14.3"
-    projector-spawn "^1.0.1"
     semver "^5.4.1"
     spawndamnit "^2.0.0"
     term-size "^2.1.0"
@@ -1131,6 +1131,16 @@
   dependencies:
     dataloader "^1.4.0"
     node-fetch "^2.5.0"
+
+"@changesets/git@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@changesets/git/-/git-0.1.2.tgz#a5b194f5564beaaf16bc864593f570d03aeecbc0"
+  integrity sha512-IzZWDTUParPM2wSVHdEqese0K0QRQg5Fgh4Fd7oBrH793tgdNP3JyMbPtSoFUsn/Bxr5HzQWHAlj+MrPjQ2lBQ==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    get-workspaces "^0.4.2"
+    pkg-dir "^4.1.0"
+    spawndamnit "^2.0.0"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
@@ -1602,10 +1612,10 @@
   dependencies:
     core-js "^2.5.7"
 
-"@manypkg/cli@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.5.1.tgz#8c402d277679938a30562d58e2d3b2e0fd57c948"
-  integrity sha512-qWVQyfq7Tt4mhIJzUEhnvi+dTdsEHTW16IpCd01bXGcod1eZZgktjV1atgbrBZ7lRcWZVdCJIdqw9HIycCUxGw==
+"@manypkg/cli@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.5.2.tgz#40d7bd1d587dc5918eec777659cf56f125953b49"
+  integrity sha512-7tdZyiDDMH7pf84JYR6iN8JOKnQUO9tEhQZZ4fGBlhCt1yv+12N+vj9QIZFzZpYXG0NAsi4LOPxIXvPaybdUKA==
   dependencies:
     "@babel/runtime" "^7.5.5"
     chalk "^2.4.2"
@@ -10239,6 +10249,14 @@ get-workspaces@^0.4.0:
     fs-extra "^7.0.1"
     globby "^9.2.0"
 
+get-workspaces@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/get-workspaces/-/get-workspaces-0.4.2.tgz#b887b9632bc5dcc2001c0ba124f00581453597b4"
+  integrity sha512-TZtSe6nltU8BEeJt9Te5BQpY0A1NpW4SK3syIsorRiXEiwfu1KYpvaljefReY44AO96AztUyxy+qTFQhMgwXkQ==
+  dependencies:
+    fs-extra "^7.0.1"
+    globby "^9.2.0"
+
 getpass@^0.1.1:
   version "0.1.7"
   resolved "https://registry.npmjs.org/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
@@ -18516,13 +18534,6 @@ progress@^2.0.0, progress@^2.0.1, progress@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npmjs.org/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
-
-projector-spawn@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/projector-spawn/-/projector-spawn-1.0.1.tgz#0849a9a54d5a76a9293d8240b4374417653312cb"
-  integrity sha1-CEmppU1adqkpPYJAtDdEF2UzEss=
-  dependencies:
-    cross-spawn "^5.1.0"
 
 promise-inflight@^1.0.1, promise-inflight@~1.0.1:
   version "1.0.1"
