@@ -1,5 +1,11 @@
 # emotion-theming
 
+## 10.0.18
+
+### Patch Changes
+
+- [bfb40050](https://github.com/emotion-js/emotion/commit/bfb400503d0d8d399e4e0051dc6e5eac40624b10) [#1499](https://github.com/emotion-js/emotion/pull/1499) Thanks [@tkh44](https://github.com/tkh44)! - Add useTheme React hook to emotion-theming
+
 ## 10.0.17
 
 ### Patch Changes
