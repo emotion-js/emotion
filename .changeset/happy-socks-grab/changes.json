@@ -1,0 +1,52 @@
+{
+  "releases": [
+    { "name": "@emotion/hash", "type": "patch" },
+    { "name": "@emotion/memoize", "type": "patch" },
+    { "name": "@emotion/weak-memoize", "type": "patch" }
+  ],
+  "dependents": [
+    {
+      "name": "babel-plugin-emotion",
+      "type": "patch",
+      "dependencies": [
+        "@emotion/serialize",
+        "@emotion/hash",
+        "@emotion/memoize"
+      ]
+    },
+    {
+      "name": "@emotion/cache",
+      "type": "patch",
+      "dependencies": ["@emotion/hash", "@emotion/weak-memoize"]
+    },
+    {
+      "name": "@emotion/serialize",
+      "type": "patch",
+      "dependencies": ["@emotion/hash", "@emotion/memoize"]
+    },
+    {
+      "name": "@emotion/is-prop-valid",
+      "type": "patch",
+      "dependencies": ["@emotion/memoize"]
+    },
+    {
+      "name": "emotion-theming",
+      "type": "patch",
+      "dependencies": ["@emotion/weak-memoize"]
+    },
+    {
+      "name": "@emotion/primitives",
+      "type": "patch",
+      "dependencies": [
+        "babel-plugin-emotion",
+        "@emotion/is-prop-valid",
+        "emotion-theming"
+      ]
+    },
+    {
+      "name": "@emotion/styled-base",
+      "type": "patch",
+      "dependencies": ["@emotion/serialize", "@emotion/is-prop-valid"]
+    }
+  ]
+}
