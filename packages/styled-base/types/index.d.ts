@@ -15,8 +15,6 @@
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import * as React from 'react'
 
-import { Omit, Overwrapped, PropsOf } from './helper'
-
 export {
   ArrayInterpolation,
   CSSObject,
@@ -26,104 +24,37 @@ export {
 
 export { ComponentSelector, Interpolation }
 
-type JSXInEl = JSX.IntrinsicElements
-
-export type WithTheme<P, T> = P extends { theme: infer Theme }
-  ? P & { theme: Exclude<Theme, undefined> }
-  : P & { theme: T }
-
 export interface StyledOptions {
   label?: string
   shouldForwardProp?(propName: string): boolean
   target?: string
 }
 
-export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
-  extends React.SFC<InnerProps & StyleProps & { theme?: Theme }>,
+export interface StyledComponent<InnerProps, StyleProps>
+  extends React.SFC<InnerProps & StyleProps>,
     ComponentSelector {
   /**
    * @desc this method is type-unsafe
    */
-  withComponent<NewTag extends keyof JSXInEl>(
+  withComponent<NewTag extends keyof JSX.IntrinsicElements>(
     tag: NewTag
-  ): StyledComponent<JSXInEl[NewTag], StyleProps, Theme>
-  withComponent<Tag extends React.ComponentType<any>>(
-    tag: Tag
-  ): StyledComponent<PropsOf<Tag>, StyleProps, Theme>
+  ): StyledComponent<JSX.IntrinsicElements[NewTag], StyleProps>
+  withComponent<Props extends object>(
+    tag: React.ComponentType<Props>
+  ): StyledComponent<Props, StyleProps>
 }
 
 type ReactClassPropKeys = keyof React.ClassAttributes<any>
 
-interface CreateStyledComponentBaseThemeless<InnerProps, ExtraProps> {
-  <
-    StyleProps extends Omit<
-      Overwrapped<InnerProps, StyleProps>,
-      ReactClassPropKeys
-    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>,
-    Theme extends object = object
-  >(
-    ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
-  ): StyledComponent<InnerProps, StyleProps, Theme>
-  <
-    StyleProps extends Omit<
-      Overwrapped<InnerProps, StyleProps>,
-      ReactClassPropKeys
-    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>,
-    Theme extends object = object
-  >(
+export interface CreateStyledComponent<InnerProps, ExtraProps> {
+  <StyleProps extends object>(
+    ...styles: Array<Interpolation<InnerProps & StyleProps & ExtraProps>>
+  ): StyledComponent<InnerProps, StyleProps>
+  <StyleProps extends object>(
     template: TemplateStringsArray,
-    ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
-  ): StyledComponent<InnerProps, StyleProps, Theme>
+    ...styles: Array<Interpolation<InnerProps & StyleProps & ExtraProps>>
+  ): StyledComponent<InnerProps, StyleProps>
 }
-
-interface CreateStyledComponentBaseThemed<
-  InnerProps,
-  ExtraProps,
-  StyledInstanceTheme extends object
-> {
-  <
-    StyleProps extends Omit<
-      Overwrapped<InnerProps, StyleProps>,
-      ReactClassPropKeys
-    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
-  >(
-    ...styles: Array<Interpolation<WithTheme<StyleProps, StyledInstanceTheme>>>
-  ): StyledComponent<InnerProps, StyleProps, StyledInstanceTheme>
-  <
-    StyleProps extends Omit<
-      Overwrapped<InnerProps, StyleProps>,
-      ReactClassPropKeys
-    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
-  >(
-    template: TemplateStringsArray,
-    ...styles: Array<Interpolation<WithTheme<StyleProps, StyledInstanceTheme>>>
-  ): StyledComponent<InnerProps, StyleProps, StyledInstanceTheme>
-}
-
-export type CreateStyledComponentBase<
-  InnerProps,
-  ExtraProps,
-  StyledInstanceTheme extends object
-> =
-  // this "reversed" condition checks if StyledInstanceTheme was already parametrized when using CreateStyled
-  object extends StyledInstanceTheme
-    ? CreateStyledComponentBaseThemeless<InnerProps, ExtraProps>
-    : CreateStyledComponentBaseThemed<
-        InnerProps,
-        ExtraProps,
-        StyledInstanceTheme
-      >
-
-export type CreateStyledComponentIntrinsic<
-  Tag extends keyof JSXInEl,
-  ExtraProps,
-  Theme extends object
-> = CreateStyledComponentBase<JSXInEl[Tag], ExtraProps, Theme>
-export type CreateStyledComponentExtrinsic<
-  Tag extends React.ComponentType<any>,
-  ExtraProps,
-  Theme extends object
-> = CreateStyledComponentBase<PropsOf<Tag>, ExtraProps, Theme>
 
 /**
  * @desc
@@ -135,16 +66,16 @@ export type CreateStyledComponentExtrinsic<
  * If your tool support syntax highlighting for `` styled('button')<ExtraProps>`...` ``
  * it could be more efficient.
  */
-export interface CreateStyled<Theme extends object = any> {
-  <Tag extends React.ComponentType<any>, ExtraProps = {}>(
-    tag: Tag,
+export interface CreateStyled {
+  <Props extends object, ExtraProps = {}>(
+    component: React.ComponentType<Props>,
     options?: StyledOptions
-  ): CreateStyledComponentExtrinsic<Tag, ExtraProps, Theme>
+  ): CreateStyledComponent<Props, ExtraProps>
 
-  <Tag extends keyof JSXInEl, ExtraProps = {}>(
+  <Tag extends keyof JSX.IntrinsicElements, ExtraProps = {}>(
     tag: Tag,
     options?: StyledOptions
-  ): CreateStyledComponentIntrinsic<Tag, ExtraProps, Theme>
+  ): CreateStyledComponent<JSX.IntrinsicElements[Tag], ExtraProps>
 }
 
 declare const styled: CreateStyled
