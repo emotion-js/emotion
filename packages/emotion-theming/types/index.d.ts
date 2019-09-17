@@ -14,6 +14,8 @@ export function ThemeProvider<Theme>(
   props: ThemeProviderProps<Theme>
 ): React.ReactElement
 
+export function useTheme<Theme>(): Theme
+
 /**
  * @todo Add more constraint to C so that
  * this function only accepts components with theme props.
