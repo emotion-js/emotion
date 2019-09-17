@@ -1,7 +1,7 @@
 import * as emotionTheming from 'emotion-theming'
 import * as React from 'react'
 
-const { ThemeProvider, withTheme } = emotionTheming
+const { ThemeProvider, withTheme, useTheme } = emotionTheming
 
 interface Theme {
   primary: string
@@ -36,6 +36,11 @@ class CompCWithDefault extends React.Component<Props> {
   render() {
     return this.props.prop ? <span /> : <div />
   }
+}
+
+{
+  const theme: Theme = useTheme<Theme>()
+  const themeFail: Theme = useTheme<number>() // $ExpectError
 }
 
 const ThemedSFCWithDefault = withTheme(CompSFCWithDefault)
