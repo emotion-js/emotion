@@ -1,5 +1,11 @@
 # @emotion/weak-memoize
 
+## 0.2.4
+
+### Patch Changes
+
+- [c81c0033](https://github.com/emotion-js/emotion/commit/c81c0033c490210077da0e9c3f9fa1a22fcd9c96) [#1503](https://github.com/emotion-js/emotion/pull/1503) Thanks [@Andarist](https://github.com/Andarist)! - Add TS types to util packages - hash, memoize & weak-memoize
+
 ## 0.2.3
 
 ### Patch Changes

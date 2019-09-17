@@ -1,5 +1,12 @@
 # @emotion/primitives
 
+## 10.0.19
+
+- Updated dependencies [c81c0033]:
+  - babel-plugin-emotion@10.0.19
+  - @emotion/is-prop-valid@0.8.3
+  - emotion-theming@10.0.19
+
 ## 10.0.14
 
 ### Patch Changes

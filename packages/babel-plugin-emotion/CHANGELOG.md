@@ -1,5 +1,12 @@
 # babel-plugin-emotion
 
+## 10.0.19
+
+- Updated dependencies [c81c0033]:
+  - @emotion/serialize@0.11.11
+  - @emotion/hash@0.7.3
+  - @emotion/memoize@0.7.3
+
 ## 10.0.17
 
 ### Patch Changes
