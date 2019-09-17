@@ -1,5 +1,10 @@
 # @emotion/is-prop-valid
 
+## 0.8.3
+
+- Updated dependencies [c81c0033]:
+  - @emotion/memoize@0.7.3
+
 ## 0.8.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @emotion/styled-base
 
+## 10.0.19
+
+- Updated dependencies [c81c0033]:
+  - @emotion/serialize@0.11.11
+  - @emotion/is-prop-valid@0.8.3
+
 ## 10.0.17
 
 ### Patch Changes
