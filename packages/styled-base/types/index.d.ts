@@ -47,7 +47,7 @@ export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
   withComponent<NewTag extends keyof JSXInEl>(
     tag: NewTag
   ): StyledComponent<JSXInEl[NewTag], StyleProps, Theme>
-  withComponent<Tag extends React.ComponentType<any>>(
+  withComponent<Tag extends React.ComponentType<PropsOf<Tag>>>(
     tag: Tag
   ): StyledComponent<PropsOf<Tag>, StyleProps, Theme>
 }
@@ -120,7 +120,7 @@ export type CreateStyledComponentIntrinsic<
   Theme extends object
 > = CreateStyledComponentBase<JSXInEl[Tag], ExtraProps, Theme>
 export type CreateStyledComponentExtrinsic<
-  Tag extends React.ComponentType<any>,
+  Tag extends React.ComponentType<PropsOf<Tag>>,
   ExtraProps,
   Theme extends object
 > = CreateStyledComponentBase<PropsOf<Tag>, ExtraProps, Theme>
@@ -136,7 +136,7 @@ export type CreateStyledComponentExtrinsic<
  * it could be more efficient.
  */
 export interface CreateStyled<Theme extends object = any> {
-  <Tag extends React.ComponentType<any>, ExtraProps = {}>(
+  <Tag extends React.ComponentType<PropsOf<Tag>>, ExtraProps = {}>(
     tag: Tag,
     options?: StyledOptions
   ): CreateStyledComponentExtrinsic<Tag, ExtraProps, Theme>

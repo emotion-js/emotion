@@ -1,0 +1,1 @@
+improve TypeScript definition
