@@ -19,8 +19,8 @@ export {
 } from '@emotion/styled-base'
 
 export type StyledTags<ExtraProps extends object = {}> = {
-  [tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
-    JSX.IntrinsicElements[tag],
+  [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
+    JSX.IntrinsicElements[Tag],
     ExtraProps
   >
 }

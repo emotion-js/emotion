@@ -6,8 +6,10 @@ import * as React from 'react'
 import {
   StyledComponent,
   StyledOptions,
-  CreateStyledComponent
+  CreateStyledComponent,
+  StyledTags
 } from '@emotion/styled'
+import { PropsOf } from '@emotion/styled-base'
 
 export interface ThemeProviderProps<Theme> {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
@@ -20,29 +22,20 @@ export function ThemeProvider<Theme>(
 
 export function useTheme<Theme>(): Theme
 
-export function withTheme<P extends object>(
-  component: React.ComponentType<P & { theme: any }>
-): // Return type needs to have an optional theme so it is composible
-React.FC<Omit<P, 'theme'> & { theme?: any }>
-
-export interface EmotionTheming<Theme> {
-  ThemeProvider(props: ThemeProviderProps<Theme>): React.ReactElement
-  withTheme<P extends object>(
-    component: React.ComponentType<P & { theme: Theme }>
-  ): React.FC<Omit<P, 'theme'> & { theme?: any }>
+export interface withTheme<Theme> {
+  <C extends React.ReactType<any>>(component: C): React.FC<
+    Omit<PropsOf<C>, 'theme'> & { theme?: Theme }
+  >
 }
+
+export const withTheme: withTheme<any>
 
 /**
  * @desc
- * This function accepts `InnerProps`/`Tag` to infer the type of `tag`,
- * and accepts `ExtraProps` for user who use string style
- * to be able to declare extra props without using
- * `` styled('button')<ExtraProps>`...` ``, which does not supported in
- * styled-component VSCode extension.
- * If your tool support syntax highlighting for `` styled('button')<ExtraProps>`...` ``
- * it could be more efficient.
+ * Themed version of CreateStyled
  */
-export interface CreateThemedStyled<Theme extends object> {
+export interface CreateThemedStyled<Theme extends object>
+  extends StyledTags<{ theme: Theme }> {
   <Props extends object, ExtraProps = {}>(
     tag: React.ComponentType<Props>,
     options?: StyledOptions

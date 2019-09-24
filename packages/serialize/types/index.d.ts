@@ -61,6 +61,7 @@ export interface ObjectInterpolation<MP>
   extends CSSPropertiesWithMultiValues,
     CSSPseudos<MP>,
     CSSOthersObject<MP> {}
+
 export interface FunctionInterpolation<MP> {
   (mergedProps: MP):
     | null

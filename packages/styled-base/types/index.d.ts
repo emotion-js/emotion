@@ -14,6 +14,7 @@
 
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import * as React from 'react'
+import { PropsOf } from './helper'
 
 export {
   ArrayInterpolation,
@@ -22,7 +23,7 @@ export {
   ObjectInterpolation
 } from '@emotion/serialize'
 
-export { ComponentSelector, Interpolation }
+export { ComponentSelector, Interpolation, PropsOf }
 
 export interface StyledOptions {
   label?: string
@@ -30,8 +31,8 @@ export interface StyledOptions {
   target?: string
 }
 
-export interface StyledComponent<InnerProps, StyleProps>
-  extends React.SFC<InnerProps & StyleProps>,
+export interface StyledComponent<ComponentProps, StyleProps>
+  extends React.FC<ComponentProps & StyleProps>,
     ComponentSelector {
   /**
    * @desc this method is type-unsafe
@@ -44,35 +45,38 @@ export interface StyledComponent<InnerProps, StyleProps>
   ): StyledComponent<Props, StyleProps>
 }
 
-type ReactClassPropKeys = keyof React.ClassAttributes<any>
-
-export interface CreateStyledComponent<InnerProps, ExtraProps> {
+export interface CreateStyledComponent<Props, ExtraProps> {
   <StyleProps extends object>(
-    ...styles: Array<Interpolation<InnerProps & StyleProps & ExtraProps>>
-  ): StyledComponent<InnerProps, StyleProps>
+    ...styles: Array<Interpolation<Props & StyleProps & ExtraProps>>
+  ): StyledComponent<Props, StyleProps>
   <StyleProps extends object>(
     template: TemplateStringsArray,
-    ...styles: Array<Interpolation<InnerProps & StyleProps & ExtraProps>>
-  ): StyledComponent<InnerProps, StyleProps>
+    ...styles: Array<Interpolation<Props & StyleProps & ExtraProps>>
+  ): StyledComponent<Props, StyleProps>
 }
+
+// We have opted to using the props as the generic parameter because it improves
+// inference and allows us to put contraints on the Props.
 
 /**
  * @desc
- * This function accepts `InnerProps`/`Tag` to infer the type of `tag`,
- * and accepts `ExtraProps` for user who use string style
- * to be able to declare extra props without using
- * `` styled('button')<ExtraProps>`...` ``, which does not supported in
- * styled-component VSCode extension.
- * If your tool support syntax highlighting for `` styled('button')<ExtraProps>`...` ``
- * it could be more efficient.
+ * This function accepts a React component or tag ('div', 'a' etc).
+ *
+ * This function does not support React default props defaultProps, use the following syntax to fix
+ * styled<PropsOf<MyComponent>>(MyComponent)({ width: 100 })
+ *
+ * @example styled(MyComponent)({ width: 100 })
+ * @example styled(MyComponent)(myComponentProps => ({ width: myComponentProps.width })
+ * @example styled('div')({ width: 100 })
+ * @example styled('div')<Props>(props => ({ width: props.width })
  */
 export interface CreateStyled {
-  <Props extends object, ExtraProps = {}>(
-    component: React.ComponentType<Props>,
+  <P extends {}, ExtraProps = { theme: any }>(
+    component: React.ReactType<P>,
     options?: StyledOptions
-  ): CreateStyledComponent<Props, ExtraProps>
+  ): CreateStyledComponent<P, ExtraProps>
 
-  <Tag extends keyof JSX.IntrinsicElements, ExtraProps = {}>(
+  <Tag extends keyof JSX.IntrinsicElements, ExtraProps = { theme: any }>(
     tag: Tag,
     options?: StyledOptions
   ): CreateStyledComponent<JSX.IntrinsicElements[Tag], ExtraProps>

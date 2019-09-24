@@ -13,10 +13,10 @@ interface Props {
   prop: boolean
   theme: Theme
 }
-declare const CompSFC: React.SFC<Props>
+declare const CompSFC: React.FC<Props>
 declare class CompC extends React.Component<Props> {}
 
-const WrappedCompC = withTheme<typeof CompC>(CompC)
+const WrappedCompC = withTheme(CompC)
 ;<ThemeProvider theme={theme}>{WrappedCompC}</ThemeProvider>
 ;<ThemeProvider theme={() => theme} />
 ;<ThemeProvider theme={(outerTheme: Theme) => ({ ...outerTheme, ...theme })} />
