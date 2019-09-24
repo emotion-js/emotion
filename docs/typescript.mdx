@@ -39,10 +39,19 @@ To make the css prop work with pure TypeScript (without babel plugin) you need t
 
 ```tsx
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
-```
+import { jsx } from '@emotion/core'
 
+<div css={{ background: 'black' }} />
+```
 As a result you may be not able to use react fragment shorthand syntax - `<></>`, but still you can use `<Fragment></Fragment>`.
+
+You can still use the css helper and pass the className yourself.
+
+```tsx
+import { css } from '@emotion/core'
+
+<div className={css({ background: 'black' })} />
+```
 
 ## @emotion/styled
 
@@ -103,28 +112,20 @@ type ImageProps = {
   width: number
 }
 
-const Image0 = styled('div')`
-  width: ${(props: ImageProps) => props.width};
-  background: url(${(props: ImageProps) => props.src})
-    center center;
+// Using a css block
+const Image0 = styled.div<ImageProps>`
+  width: ${props => props.width};
+  background: url(${props => props.src}) center center;
+  background-size: contain;
+`
+const Image0 = styled('div')<ImageProps>`
+  width: ${props => props.width};
+  background: url(${props => props.src}) center center;
   background-size: contain;
 `
 
 // Or with object styles
-
-const Image1 = styled('div')(
-  {
-    backgroundSize: 'contain'
-  },
-  (props: ImageProps) => ({
-    width: props.width,
-    background: `url(${props.src}) center center`
-  })
-)
-
-// Or with a generic type
-
-const Image2 = styled('div')<ImageProps>(
+const Image1 = styled('div')<ImageProps>(
   {
     backgroundSize: 'contain'
   },
@@ -133,25 +134,17 @@ const Image2 = styled('div')<ImageProps>(
     background: `url(${props.src}) center center`
   })
 )
-
-// TS 2.9+ only
-const Image3 = styled.div<ImageProps>`
-  width: ${(props: ImageProps) => props.width};
-  background: url(${(props: ImageProps) => props.src})
-    center center;
-  background-size: contain;
-`
 ```
 
-- For TypeScript <2.9, the generic type version only works with object styles due to https://github.com/Microsoft/TypeScript/issues/11947.
-
 ### React Components
+
+Emotion can also style React components and will infer component props as expected.
 
 ```tsx
 import React, { SFC } from 'react'
 import styled from '@emotion/styled'
 
-type ComponentProps = {
+interface ComponentProps {
   className?: string
   label: string
 }
@@ -162,7 +155,7 @@ const Component: SFC<ComponentProps> = ({
 }) => <div className={className}>{label}</div>
 
 const StyledComponent0 = styled(Component)`
-  color: red;
+  color: ${props => label === 'Important' ? 'red' : 'green'};
 `
 
 const StyledComponent1 = styled(Component)({
@@ -171,7 +164,7 @@ const StyledComponent1 = styled(Component)({
 
 const App = () => (
   <div>
-    <StyledComponent0 label="Yea! No need to re-type this label prop." />
+    <StyledComponent0 label="Important" />
     <StyledComponent1 label="Yea! No need to re-type this label prop." />
   </div>
 )
@@ -183,7 +176,7 @@ const App = () => (
 import React, { SFC } from 'react'
 import styled from '@emotion/styled'
 
-type ComponentProps = {
+interface ComponentProps {
   className?: string
   label: string
 }
@@ -193,24 +186,19 @@ const Component: SFC<ComponentProps> = ({
   className
 }) => <div className={className}>{label}</div>
 
-type StyledComponentProps = {
+interface StyledComponentProps {
   bgColor: string
 }
 
-const StyledComponent0 = styled(Component)`
+const StyledComponent0 = styled(Component)<StyledComponentProps>`
   color: red;
-  background: ${(props: StyledComponentProps) =>
-    props.bgColor};
+  background: ${props => props.label ? props.bgColor : 'white'};
 `
-
-const StyledComponent1 = styled(Component)<
-  StyledComponentProps
->(
-  {
-    color: 'red'
-  },
+// or
+const StyledComponent1 = styled(Component)<StyledComponentProps>(
   props => ({
-    background: props.bgColor
+    color: 'red'
+    background: props.label ? props.bgColor : 'white'
   })
 )
 
@@ -249,6 +237,8 @@ type Theme = {
 }
 
 export default styled as CreateStyled<Theme>
+
+// You can also create themed versions of all the other theme helpers and hooks
 const { ThemeProvider, withTheme, useTheme } = emotionTheming as EmotionTheming<Theme>
 export { ThemeProvider, withTheme, useTheme }
 ```
@@ -265,4 +255,28 @@ const Button = styled('button')`
 `
 
 export default Button
+```
+
+### TypeScript < 2.9
+
+For Typescript <2.9, the generic type version only works with object styles due to https://github.com/Microsoft/TypeScript/issues/11947.
+
+You can work around this by specifying the prop types in your style callback:
+
+``` ts
+const StyledComponent0 = styled(Component)`
+  color: red;
+  background: ${(props: StyledComponentProps) =>
+    props.bgColor};
+`
+```
+
+NOTE: This approach you will have to perform the intersection with the component props yourself to get at the component props
+
+``` ts
+const StyledComponent0 = styled(Component)`
+  color: red;
+  background: ${(props: StyledComponentProps & ComponentProps) =>
+    props.bgColor};
+`
 ```
