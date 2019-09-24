@@ -37,7 +37,3 @@ export interface EmotionTheming<Theme> {
   withTheme: withTheme<Theme>
   useTheme: useTheme<Theme>
 }
-
-export type WithTheme<P, T> = P extends { theme: infer Theme }
-  ? P & { theme: Exclude<Theme, undefined> }
-  : P & { theme: T }
