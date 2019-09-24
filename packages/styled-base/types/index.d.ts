@@ -52,9 +52,6 @@ export interface CreateStyledComponent<Props, ExtraProps> {
   ): StyledComponent<Props, StyleProps>
 }
 
-// We have opted to using the props as the generic parameter because it improves
-// inference and allows us to put contraints on the Props.
-
 /**
  * @desc
  * This function accepts a React component or tag ('div', 'a' etc).
@@ -80,7 +77,7 @@ export interface CreateStyled<Theme = any> {
     tag: Tag,
     options?: StyledOptions
   ): CreateStyledComponent<
-    JSX.IntrinsicElements[Tag],
+    JSX.IntrinsicElements[Tag] & { theme?: Theme },
     ExtraProps & { theme: Theme }
   >
 }

@@ -199,12 +199,10 @@ const ForwardRefCheckStyled = styled(
 ;<ForwardRefCheckStyled column={true} ref={React.createRef<HTMLDivElement>()} />
 
 const StyledClass0 = styled(ReactClassComponent0)({})
-const StyledClass01 = styled(ReactClassComponent0)({})
 declare const ref0_0: (element: ReactClassComponent0 | null) => void
 declare const ref0_1: (element: ReactClassComponent1 | null) => void
 declare const ref0_2: (element: HTMLDivElement | null) => void
 ;<StyledClass0 column={true} ref={ref0_0} />
-;<StyledClass01 column={true} ref={ref0_0} />
 // $ExpectError
 ;<StyledClass0 column={true} ref={ref0_1} />
 // $ExpectError
@@ -313,8 +311,30 @@ class A extends React.Component<PropsAB> {
 const B = styled(A)`
   color: red;
 `
-
 ;<B title="test" />
 ;<B content="test" />
-// $ExpectError
+// Because these are not tagged unions, they are not mutually exclusive, we can do both
 ;<B title="test" content="test" />
+
+interface TaggedPropsA {
+  tag: 'a'
+  title: string
+}
+interface TaggedPropsB {
+  tag: 'b'
+  content: string
+}
+declare type TaggedPropsAB = TaggedPropsA | TaggedPropsB
+class C extends React.Component<TaggedPropsAB> {
+  render() {
+    return null
+  }
+}
+
+const D = styled(C)`
+  color: red;
+`
+;<D tag="a" title="test" />
+;<D tag="b" content="test" />
+// $ExpectError
+;<D tag="a" title="test" content="test" />
