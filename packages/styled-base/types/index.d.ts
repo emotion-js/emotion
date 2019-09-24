@@ -14,7 +14,7 @@
 
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import * as React from 'react'
-import { PropsOf } from './helper'
+import { PropsOf, MakeOptional } from './helper'
 
 export {
   ArrayInterpolation,
@@ -23,7 +23,7 @@ export {
   ObjectInterpolation
 } from '@emotion/serialize'
 
-export { ComponentSelector, Interpolation, PropsOf }
+export { ComponentSelector, Interpolation, PropsOf, MakeOptional }
 
 export interface StyledOptions {
   label?: string
@@ -34,15 +34,12 @@ export interface StyledOptions {
 export interface StyledComponent<ComponentProps, StyleProps>
   extends React.FC<ComponentProps & StyleProps>,
     ComponentSelector {
-  /**
-   * @desc this method is type-unsafe
-   */
-  withComponent<NewTag extends keyof JSX.IntrinsicElements>(
-    tag: NewTag
-  ): StyledComponent<JSX.IntrinsicElements[NewTag], StyleProps>
-  withComponent<Props extends object>(
-    tag: React.ComponentType<Props>
-  ): StyledComponent<Props, StyleProps>
+  withComponent<C extends React.ComponentType<any>>(
+    component: C
+  ): StyledComponent<PropsOf<C>, StyleProps>
+  withComponent<Tag extends keyof JSX.IntrinsicElements>(
+    tag: Tag
+  ): StyledComponent<JSX.IntrinsicElements[Tag], StyleProps>
 }
 
 export interface CreateStyledComponent<Props, ExtraProps> {
@@ -70,16 +67,22 @@ export interface CreateStyledComponent<Props, ExtraProps> {
  * @example styled('div')({ width: 100 })
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
-export interface CreateStyled {
-  <P extends {}, ExtraProps = { theme: any }>(
-    component: React.ReactType<P>,
+export interface CreateStyled<Theme = any> {
+  <C extends React.ComponentType<any>, ExtraProps = {}>(
+    component: C,
     options?: StyledOptions
-  ): CreateStyledComponent<P, ExtraProps>
+  ): CreateStyledComponent<
+    PropsOf<C> & { theme?: Theme },
+    ExtraProps & { theme: Theme }
+  >
 
-  <Tag extends keyof JSX.IntrinsicElements, ExtraProps = { theme: any }>(
+  <Tag extends keyof JSX.IntrinsicElements, ExtraProps = {}>(
     tag: Tag,
     options?: StyledOptions
-  ): CreateStyledComponent<JSX.IntrinsicElements[Tag], ExtraProps>
+  ): CreateStyledComponent<
+    JSX.IntrinsicElements[Tag],
+    ExtraProps & { theme: Theme }
+  >
 }
 
 declare const styled: CreateStyled

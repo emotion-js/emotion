@@ -236,8 +236,8 @@ However, you can define a theme type by creating another `styled` instance.
 _styled.tsx_
 
 ```tsx
-import styled from '@emotion/styled'
-import  { CreateThemedStyled } from 'emotion-theming'
+import styled, { CreateStyled } from '@emotion/styled'
+import * as emotionTheming, { EmotionTheming } from 'emotion-theming'
 
 type Theme = {
   color: {
@@ -248,7 +248,9 @@ type Theme = {
   // ...
 }
 
-export default styled as CreateThemedStyled<Theme>
+export default styled as CreateStyled<Theme>
+const { ThemeProvider, withTheme, useTheme } = emotionTheming as EmotionTheming<Theme>
+export { ThemeProvider, withTheme, useTheme }
 ```
 
 _Button.tsx_

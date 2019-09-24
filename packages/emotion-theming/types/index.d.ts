@@ -9,45 +9,33 @@ import {
   CreateStyledComponent,
   StyledTags
 } from '@emotion/styled'
-import { PropsOf } from '@emotion/styled-base'
+import { PropsOf, MakeOptional } from '@emotion/styled-base'
 
 export interface ThemeProviderProps<Theme> {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
   children?: React.ReactNode
 }
 
-export function ThemeProvider<Theme>(
-  props: ThemeProviderProps<Theme>
-): React.ReactElement
+export type ThemeProvider<Theme = any> = <T extends Theme = Theme>(
+  props: ThemeProviderProps<T>
+) => React.ReactElement
 
-export function useTheme<Theme>(): Theme
+export type withTheme<Theme = any> = <C extends React.ComponentType<any>>(
+  component: C
+) => React.FC<MakeOptional<PropsOf<C>, 'theme'>>
 
-export interface withTheme<Theme> {
-  <C extends React.ReactType<any>>(component: C): React.FC<
-    Omit<PropsOf<C>, 'theme'> & { theme?: Theme }
-  >
-}
+export type useTheme<Theme = any> = <T extends Theme = Theme>() => T
 
-export const withTheme: withTheme<any>
+export const ThemeProvider: ThemeProvider
 
-/**
- * @desc
- * Themed version of CreateStyled
- */
-export interface CreateThemedStyled<Theme extends object>
-  extends StyledTags<{ theme: Theme }> {
-  <Props extends object, ExtraProps = {}>(
-    tag: React.ComponentType<Props>,
-    options?: StyledOptions
-  ): CreateStyledComponent<Props, ExtraProps & { theme: Theme }>
+export const withTheme: withTheme
 
-  <Tag extends keyof JSX.IntrinsicElements, ExtraProps = {}>(
-    tag: Tag,
-    options?: StyledOptions
-  ): CreateStyledComponent<
-    JSX.IntrinsicElements[Tag],
-    ExtraProps & { theme: Theme }
-  >
+export const useTheme: useTheme
+
+export interface EmotionTheming<Theme> {
+  ThemeProvider: ThemeProvider<Theme>
+  withTheme: withTheme<Theme>
+  useTheme: useTheme<Theme>
 }
 
 export type WithTheme<P, T> = P extends { theme: infer Theme }

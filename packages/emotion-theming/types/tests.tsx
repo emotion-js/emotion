@@ -39,7 +39,8 @@ class CompCWithDefault extends React.Component<Props> {
 }
 
 {
-  const theme: Theme = useTheme<Theme>()
+  const theme: Theme = useTheme()
+
   const themeFail: Theme = useTheme<number>() // $ExpectError
 }
 
@@ -54,7 +55,7 @@ const ThemedCompWithDefault = withTheme(CompCWithDefault)
 const {
   ThemeProvider: TypedThemeProvider,
   withTheme: typedWithTheme
-} = emotionTheming as emotionTheming.EmotionTheming<Theme>
+}: emotionTheming.EmotionTheming<Theme> = emotionTheming
 ;<TypedThemeProvider theme={theme} />
 // $ExpectError
 ;<TypedThemeProvider theme={{ primary: 5 }} />

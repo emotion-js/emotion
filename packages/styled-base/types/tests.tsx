@@ -84,7 +84,7 @@ interface PrimaryProps {
 }
 
 const Button2 = styled('button')<PrimaryProps>`
-  fontsize: ${5}px;
+  font-size: ${5}px;
   color: ${props => props.primary};
 `
 const Button3 = styled('button')<PrimaryProps>(props => ({
@@ -110,9 +110,9 @@ const Button3 = styled('button')<PrimaryProps>(props => ({
 ;<Button3 type="button" />
 
 const Button4 = styled(ReactClassComponent0)<PrimaryProps>`
-  backgroundcolor: ${props => props.theme.backColor};
+  background-color: ${props => props.theme.backColor};
 
-  fontsize: ${5}px;
+  font-size: ${5}px;
   color: ${props => props.primary};
 `
 const Button5 = styled(ReactSFC0)<PrimaryProps>(props => ({
@@ -137,16 +137,17 @@ const Button5 = styled(ReactSFC0)<PrimaryProps>(props => ({
 
 const Container0 = styled(ReactClassComponent0)`
   display: flex;
-  flexdirection: ${props => props.column && 'column'};
+  flex-direction: ${props => props.column && 'column'};
 `
 ;<Container0 column={false} />
 // $ExpectError
 ;<Container0 />
 
 const Container1 = Container0.withComponent('span')
-;<Container1 column={true} />
-;<Container1 column={true} onClick={undefined as any} />
+// Because we have changed the component, it's props should be removed
 // $ExpectError
+;<Container1 column={true} />
+;<Container1 onClick={undefined as any} />
 ;<Container1 contentEditable />
 
 const Container2 = Container0.withComponent(ReactSFC0)
@@ -155,11 +156,9 @@ const Container2 = Container0.withComponent(ReactSFC0)
 ;<Container2 />
 
 const Container3 = Container0.withComponent(ReactClassComponent1)
-;<Container3 column={false} value="123" />
+;<Container3 value="123" />
 // $ExpectError
 ;<Container3 colume={true} />
-// $ExpectError
-;<Container3 value="5" />
 
 interface ContainerProps {
   extraWidth: string
@@ -176,21 +175,15 @@ const Container4 = styled(ReactSFC2)<ContainerProps>(props => ({
 ;<Container4 value="5" />
 
 const Container5 = Container3.withComponent(ReactSFC2)
-;<Container5 column={true} value={123} />
+;<Container5 value={123} />
 // $ExpectError
 ;<Container5 />
 // $ExpectError
 ;<Container5 column={true} />
-// $ExpectError
-;<Container5 value={242} />
 
 // $ExpectError
 styled(ReactSFC2)<ReactSFCProps1>()
 
-/**
- * @todo
- * I wish we could raise errors for following two `withComponent`s.
- */
 Container0.withComponent(ReactClassComponent2)
 Container3.withComponent(ReactClassComponent2)
 
@@ -205,12 +198,8 @@ const ForwardRefCheckStyled = styled(
 // Expose ref only when inner component is forwarding refs
 ;<ForwardRefCheckStyled column={true} ref={React.createRef<HTMLDivElement>()} />
 
-const StyledClass0 = styled<PropsOf<typeof ReactClassComponent0>>(
-  ReactClassComponent0
-)({})
-const StyledClass01 = styled(ReactClassComponent0)<
-  PropsOf<typeof ReactClassComponent0>
->({})
+const StyledClass0 = styled(ReactClassComponent0)({})
+const StyledClass01 = styled(ReactClassComponent0)({})
 declare const ref0_0: (element: ReactClassComponent0 | null) => void
 declare const ref0_1: (element: ReactClassComponent1 | null) => void
 declare const ref0_2: (element: HTMLDivElement | null) => void
@@ -307,3 +296,25 @@ const StyledFCWithDefaultProps = styled(FCWithDefaultProps)`
   background-color: red;
 `
 const fcInstance = <StyledFCWithDefaultProps />
+
+interface PropsA {
+  title: string
+}
+interface PropsB {
+  content: string
+}
+declare type PropsAB = PropsA | PropsB
+class A extends React.Component<PropsAB> {
+  render() {
+    return null
+  }
+}
+
+const B = styled(A)`
+  color: red;
+`
+
+;<B title="test" />
+;<B content="test" />
+// $ExpectError
+;<B title="test" content="test" />
