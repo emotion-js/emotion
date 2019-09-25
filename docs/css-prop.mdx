@@ -113,6 +113,8 @@ render(
 >
 > **`css` from `@emotion/core` does not return the computed class name string.** The function returns an object containing the computed name and flattened styles. The returned object is understood by emotion at a low level and can be composed with other emotion based styles inside of the `css` prop, other `css` calls, or the `styled` API.
 
+You can also pass in your css as variables, which allows for composition (read more about this [here](https://emotion.sh/docs/composition)).
+
 ## Style Precedence
 
 - Class names containing emotion styles from the `className` prop override `css` prop styles.
@@ -244,3 +246,4 @@ Relying on the css spec's ["Order of Appearance"](https://www.w3.org/TR/css-casc
 ## Gotchas
 
 - If you include the plugin `babel-plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.
+- If your css prop is rendering as `[Object Object]`, remember to add `/** @jsx jsx */` to the top of your component files. 
