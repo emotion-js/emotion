@@ -19,11 +19,11 @@ For example, in Emotion 9, you might have had two classes from `css` and compose
 import { css, cx } from 'emotion'
 
 let basic = css`
-  color: green;
+  color: yellow;
 `
 
 let important = css`
-  color: hotpink;
+  color: violet;
 `
 
 const SomeComponent = props => (
@@ -39,11 +39,11 @@ const SomeComponent = props => (
 import { css, jsx } from '@emotion/core'
 
 let basic = css`
-  color: green;
+  color: yellow;
 `
 
 let important = css`
-  color: hotpink;
+  color: violet;
 `
 
 const SomeComponent = props => (
@@ -76,7 +76,7 @@ import { css } from 'emotion'
 let element = (
   <div
     css={`
-      color: hotpink;
+      color: violet;
     `}
   />
 )
@@ -88,7 +88,7 @@ import { css } from '@emotion/core'
 let element = (
   <div
     css={css`
-      color: hotpink;
+      color: violet;
     `}
   />
 )
@@ -102,7 +102,7 @@ import { css } from '@emotion/core'
 let element = (
   <div
     css={css`
-      color: hotpink;
+      color: violet;
     `}
   />
 )
@@ -115,7 +115,7 @@ import { css, jsx } from '@emotion/core'
 let element = (
   <div
     css={css`
-      color: hotpink;
+      color: violet;
     `}
   />
 )
@@ -150,7 +150,7 @@ import { css } from 'emotion'
 let element = (
   <div
     className={css`
-      color: hotpink;
+      color: violet;
     `}
   />
 )
@@ -163,7 +163,7 @@ import { jsx, css } from '@emotion/core'
 let element = (
   <div
     css={css`
-      color: hotpink;
+      color: violet;
     `}
   />
 )
@@ -177,7 +177,7 @@ import { SomeComponent } from 'somewhere'
 let element = (
   <SomeComponent
     wrapperClassName={css`
-      color: hotpink;
+      color: violet;
     `}
   />
 )
@@ -192,7 +192,7 @@ let element = (
     {({ css }) => (
       <SomeComponent
         wrapperClassName={css`
-          color: hotpink;
+          color: violet;
         `}
       />
     )}
