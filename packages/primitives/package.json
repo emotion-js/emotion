@@ -3,6 +3,9 @@
   "version": "10.0.22",
   "main": "dist/primitives.cjs.js",
   "module": "dist/primitives.esm.js",
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
   "files": [
     "src",
     "dist"

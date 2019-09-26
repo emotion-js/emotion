@@ -4,6 +4,9 @@
   "description": "Shared utilities for emotion primitives and native",
   "main": "dist/primitives-core.cjs.js",
   "module": "dist/primitives-core.esm.js",
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
   "files": [
     "src",
     "dist"
