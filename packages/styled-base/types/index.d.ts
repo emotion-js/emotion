@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 3.1
+// TypeScript Version: 3.2
 
 /**
  * @desc
