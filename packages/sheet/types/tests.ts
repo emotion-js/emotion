@@ -44,11 +44,6 @@ styleSheet.insert('.cl{ width: 200px; height: 200px; }')
 styleSheet.insert()
 // $ExpectError
 styleSheet.insert('.name{ color: black; }', undefined as any)
-// $ExpectError
-styleSheet.insert(
-  '.name{ color: black; }',
-  ...((undefined as any) as Array<any>)
-)
 
 styleSheet.flush()
 // $ExpectError
