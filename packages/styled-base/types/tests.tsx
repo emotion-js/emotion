@@ -181,9 +181,6 @@ const Container5 = Container3.withComponent(ReactSFC2)
 // $ExpectError
 ;<Container5 column={true} />
 
-// $ExpectError
-styled(ReactSFC2)<ReactSFCProps1>()
-
 Container0.withComponent(ReactClassComponent2)
 Container3.withComponent(ReactClassComponent2)
 
@@ -301,7 +298,8 @@ interface PropsA {
 interface PropsB {
   content: string
 }
-declare type PropsAB = PropsA | PropsB
+
+type PropsAB = PropsA | PropsB
 class A extends React.Component<PropsAB> {
   render() {
     return null
@@ -324,7 +322,7 @@ interface TaggedPropsB {
   tag: 'b'
   content: string
 }
-declare type TaggedPropsAB = TaggedPropsA | TaggedPropsB
+type TaggedPropsAB = TaggedPropsA | TaggedPropsB
 class C extends React.Component<TaggedPropsAB> {
   render() {
     return null
