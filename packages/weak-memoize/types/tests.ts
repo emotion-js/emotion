@@ -1,15 +1,17 @@
 import weakMemoize from '@emotion/weak-memoize'
 
-type Foo = { bar: 'xyz' }
+interface Foo {
+  bar: 'xyz'
+}
 
 declare class Qwe {
   answer: number
 }
 
-// $ExpectType Array<Foo>
+// $ExpectType Foo[]
 weakMemoize((arg: Foo) => [arg])({ bar: 'xyz' })
 
-// $ExpectType string[]
+// $ExpectError
 weakMemoize((arg: string) => [arg])('foo')
 
 // $ExpectError
@@ -23,8 +25,6 @@ weakMemoize((arg: number) => [arg])
 weakMemoize((arg: boolean) => [arg])
 // $ExpectError
 weakMemoize((arg: symbol) => [arg])
-// $ExpectError
-weakMemoize((arg: void) => [arg])
 // $ExpectError
 weakMemoize((arg: null) => [arg])
 // $ExpectError

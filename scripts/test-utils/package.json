@@ -2,5 +2,8 @@
   "name": "test-utils",
   "main": "src/index",
   "version": "0.3.2",
-  "private": true
+  "private": true,
+  "scripts": {
+    "test:typescript": "exit 0"
+  }
 }

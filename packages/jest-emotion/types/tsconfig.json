@@ -15,9 +15,6 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "target": "es5",
-    "typeRoots": [
-      "../"
-    ],
     "types": []
   },
   "include": [

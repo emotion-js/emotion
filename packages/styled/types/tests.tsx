@@ -1,33 +1,21 @@
-import styled, { CreateStyled } from '@emotion/styled'
+// TypeScript Version: 2.9
 
-// $ExpectType CreateStyledComponentIntrinsic<"a", {}, any>
+import styled from '@emotion/styled'
+
+// $ExpectType CreateStyledComponent<DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, { theme?: any; }>
 styled.a
-// $ExpectType CreateStyledComponentIntrinsic<"body", {}, any>
+// $ExpectType CreateStyledComponent<DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>, { theme?: any; }>
 styled.body
-// $ExpectType CreateStyledComponentIntrinsic<"div", {}, any>
+// $ExpectType CreateStyledComponent<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, { theme?: any; }>
 styled.div
-// $ExpectType CreateStyledComponentIntrinsic<"svg", {}, any>
+// $ExpectType CreateStyledComponent<SVGProps<SVGSVGElement>, { theme?: any; }>
 styled.svg
 
 {
-  // $ExpectType CreateStyledComponentIntrinsic<"svg", { bar: string }, { themed: "black" }>
-  styled.div<{ bar: string }, { themed: 'black' }>`
+  // $ExpectType StyledComponent<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, { bar: string; }>
+  styled.div<{ bar: string }>`
     color: ${props => {
-      // $ExpectType { themed: "black" }
-      const { theme } = props
-      return theme.themed
-    }};
-  `
-}
-
-{
-  const myStyled: CreateStyled<{ themed: 'black' }> = styled
-  // $ExpectError - created styled shouldn't allow for parametrizing with Theme type
-  myStyled.div<{ bar: string }, { themed: 'orange' }>``
-
-  myStyled.div<{ bar: string }>`
-    color: ${props => {
-      // $ExpectType { themed: "black" }
+      // $ExpectType ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; } & { theme?: any; }
       const { theme } = props
       return theme.themed
     }};

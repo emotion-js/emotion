@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.8
+// TypeScript Version: 2.9
 
 import {
   CreateStyled as BaseCreateStyled,
@@ -21,7 +21,7 @@ export {
 export type StyledTags<ExtraProps extends object = {}> = {
   [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
     JSX.IntrinsicElements[Tag],
-    ExtraProps
+    ExtraProps & { theme?: any }
   >
 }
 
