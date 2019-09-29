@@ -20,7 +20,9 @@ export type ThemeProvider<Theme = any> = <T extends Theme = Theme>(
   props: ThemeProviderProps<T>
 ) => React.ReactElement
 
-export type withTheme<Theme = any> = <C extends React.ComponentType<any>>(
+export type withTheme<Theme = any> = <
+  C extends React.ComponentType<React.ComponentPropsWithRef<C>>
+>(
   component: C
 ) => React.FC<MakeOptional<PropsOf<C>, 'theme'>>
 

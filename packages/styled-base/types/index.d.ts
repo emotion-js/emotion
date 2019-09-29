@@ -34,7 +34,7 @@ export interface StyledOptions {
 export interface StyledComponent<ComponentProps, StyleProps>
   extends React.FC<ComponentProps & StyleProps>,
     ComponentSelector {
-  withComponent<C extends React.ComponentType<any>>(
+  withComponent<C extends React.ComponentType<React.ComponentPropsWithRef<C>>>(
     component: C
   ): StyledComponent<PropsOf<C>, StyleProps>
   withComponent<Tag extends keyof JSX.IntrinsicElements>(
