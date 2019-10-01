@@ -1,27 +1,42 @@
-// TypeScript Version: 2.9
-
 import * as React from 'react'
-import styled from '@emotion/styled'
+import styled, { CreateStyled } from '@emotion/styled'
 
-// $ExpectType CreateStyledComponent<DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, { theme?: any; }>
+// $ExpectType CreateStyledComponent<{ theme?: any; }, DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, { theme: any; }>
 styled.a
-// $ExpectType CreateStyledComponent<DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>, { theme?: any; }>
+// $ExpectType CreateStyledComponent<{ theme?: any; }, DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>, { theme: any; }>
 styled.body
-// $ExpectType CreateStyledComponent<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, { theme?: any; }>
+// $ExpectType CreateStyledComponent<{ theme?: any; }, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, { theme: any; }>
 styled.div
-// $ExpectType CreateStyledComponent<SVGProps<SVGSVGElement>, { theme?: any; }>
+// $ExpectType CreateStyledComponent<{ theme?: any; }, SVGProps<SVGSVGElement>, { theme: any; }>
 styled.svg
 
 {
-  // $ExpectType StyledComponent<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, { bar: string; }>
+  // $ExpectType StyledComponent<{ theme?: any; } & { bar: string; }, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
   styled.div<{ bar: string }>`
     color: ${props => {
-      // $ExpectType ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; } & { theme?: any; }
-      const { theme } = props
-      return theme.themed
+      // $ExpectType { theme?: any; } & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; }
+      props
+
+      return {}
     }};
   `
 }
 
 const StyledDiv = styled.div({})
 ;<StyledDiv ref={React.createRef()} />
+
+// can specify theme for StyledTags
+const themedStyled = styled as CreateStyled<{ themeProp: string }>
+const StyledDiv2 = themedStyled.div(props => {
+  // $ExpectType { themeProp: string; }
+  props.theme
+
+  return {}
+})
+;<StyledDiv2 />
+
+// Can override theme optionally on prop
+;<StyledDiv2 theme={{ themeProp: '' }} />
+
+// $ExpectError
+;<StyledDiv2 theme={{ themeProp: 0 }} />

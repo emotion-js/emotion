@@ -31,25 +31,55 @@ export interface StyledOptions {
   target?: string
 }
 
-export interface StyledComponent<ComponentProps, StyleProps>
-  extends React.FC<ComponentProps & StyleProps>,
+/**
+ * @typeparam ComponentProps  Props which will be included when withComponent is called
+ * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
+ */
+export interface StyledComponent<ComponentProps, SpecificComponentProps>
+  extends React.FC<ComponentProps & SpecificComponentProps>,
     ComponentSelector {
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C
-  ): StyledComponent<ComponentProps & PropsOf<C>, StyleProps>
+  ): StyledComponent<ComponentProps & PropsOf<C>, {}>
   withComponent<Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag
-  ): StyledComponent<ComponentProps & JSX.IntrinsicElements[Tag], StyleProps>
+  ): StyledComponent<ComponentProps, JSX.IntrinsicElements[Tag]>
 }
 
-export interface CreateStyledComponent<Props, ExtraProps> {
-  <StyleProps extends object>(
-    ...styles: Array<Interpolation<Props & StyleProps & ExtraProps>>
-  ): StyledComponent<Props, StyleProps>
-  <StyleProps extends object>(
+/**
+ * @typeparam ComponentProps  Props which will be included when withComponent is called
+ * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
+ * @typeparam StyleProps  Params passed to styles but not exposed as React props. These are normally library provided props
+ */
+export interface CreateStyledComponent<
+  ComponentProps,
+  SpecificComponentProps,
+  StyleProps
+> {
+  /**
+   * @typeparam AdditionalProps  Additional props to add to your styled component
+   */
+  <AdditionalProps extends object>(
+    ...styles: Array<
+      Interpolation<
+        ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps
+      >
+    >
+  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
+  /**
+   * @typeparam AdditionalProps  Additional props to add to your styled component
+   */
+  <AdditionalProps extends object>(
     template: TemplateStringsArray,
-    ...styles: Array<Interpolation<Props & StyleProps & ExtraProps>>
-  ): StyledComponent<Props, StyleProps>
+    ...styles: Array<
+      Interpolation<
+        ComponentProps &
+          SpecificComponentProps &
+          AdditionalProps &
+          AdditionalProps
+      >
+    >
+  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
 }
 
 /**
@@ -62,20 +92,18 @@ export interface CreateStyledComponent<Props, ExtraProps> {
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
 export interface CreateStyled<Theme = any> {
-  <C extends React.ComponentType<React.ComponentProps<C>>, ExtraProps = {}>(
+  <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions
-  ): CreateStyledComponent<
-    PropsOf<C> & { theme?: Theme },
-    ExtraProps & { theme: Theme }
-  >
+  ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }, {}, { theme: Theme }>
 
-  <Tag extends keyof JSX.IntrinsicElements, ExtraProps = {}>(
+  <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions
   ): CreateStyledComponent<
-    JSX.IntrinsicElements[Tag] & { theme?: Theme },
-    ExtraProps & { theme: Theme }
+    { theme?: Theme },
+    JSX.IntrinsicElements[Tag],
+    { theme: Theme }
   >
 }
 

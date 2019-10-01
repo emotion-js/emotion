@@ -360,6 +360,7 @@ const D = styled(C)`
 // $ExpectError
 ;<D tag="a" title="test" content="test" />
 
+// Ensure refs are available on intrinsic components and they are correct types
 const StyledDiv = styled('div')({})
 declare const ref4_0: (element: ReactClassComponent1 | null) => void
 declare const ref4_1: (element: ReactClassComponent0 | null) => void
@@ -371,5 +372,11 @@ declare const ref4_2: (element: HTMLDivElement | null) => void
 ;<StyledDiv ref={ref4_2} />
 ;<StyledDiv ref={React.createRef()} />
 
+// test it should drop intrinsic props from first component when withComponent is called
 const StyledButton = StyledDiv.withComponent('button')
-;<StyledButton onClick={() => {}} />
+;<StyledButton
+  onClick={e => {
+    // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+    e
+  }}
+/>
