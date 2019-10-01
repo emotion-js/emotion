@@ -99,12 +99,18 @@ typedWithTheme((props: { value: number }) => null)
 
 const themedStyled = styled as CreateStyled<Theme>
 
-const StyledCompC = themedStyled(CompC)({})
+const StyledCompC = themedStyled(WrappedCompC)({})
 const AdditionallyStyledCompC = themedStyled(StyledCompC)({})
+;<StyledCompC prop={true} />
+;<AdditionallyStyledCompC prop={true} />
 
+// $ExpectType StyledComponent<{ theme?: Theme | undefined; } & object, React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
 const StyledDiv = themedStyled('div')({})
+;<StyledDiv />
+// $ExpectType StyledComponent<{ theme?: Theme | undefined; } & object & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { children?: ReactNode; } & { theme?: Theme | undefined; }, {}>
 const AdditionallyStyledDiv = themedStyled(StyledDiv)({})
 
+// $ExpectType StyledComponent<{ theme?: Theme | undefined; } & object, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
 const StyledDiv2 = themedStyled.div({})
 
 export type StyleDefinition<T = {}> = Interpolation<
