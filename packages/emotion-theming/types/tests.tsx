@@ -116,7 +116,7 @@ export type ObjectStyleDefinition<T = {}> = ObjectInterpolation<
   emotionTheming.WithTheme<T, Theme>
 >
 
-const style: StyleDefinition<{}> = ({ theme }) => ({
+const style: StyleDefinition = ({ theme }) => ({
   color: theme.primary
 })
 const style2: ObjectStyleDefinition = {
