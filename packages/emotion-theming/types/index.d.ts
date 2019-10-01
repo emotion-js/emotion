@@ -21,7 +21,7 @@ export type ThemeProvider<Theme = any> = <T extends Theme = Theme>(
 ) => React.ReactElement
 
 export type withTheme<Theme = any> = <
-  C extends React.ComponentType<React.ComponentPropsWithoutRef<C>>
+  C extends React.ComponentType<React.ComponentProps<C>>
 >(
   component: C
 ) => React.FC<Omit<PropsOf<C>, 'theme'> & { theme?: Theme }>

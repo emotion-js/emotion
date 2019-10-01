@@ -34,14 +34,12 @@ export interface StyledOptions {
 export interface StyledComponent<ComponentProps, StyleProps>
   extends React.FC<ComponentProps & StyleProps>,
     ComponentSelector {
-  withComponent<
-    C extends React.ComponentType<React.ComponentPropsWithoutRef<C>>
-  >(
+  withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C
-  ): StyledComponent<PropsOf<C>, StyleProps>
+  ): StyledComponent<ComponentProps & PropsOf<C>, StyleProps>
   withComponent<Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag
-  ): StyledComponent<JSX.IntrinsicElements[Tag], StyleProps>
+  ): StyledComponent<ComponentProps & JSX.IntrinsicElements[Tag], StyleProps>
 }
 
 export interface CreateStyledComponent<Props, ExtraProps> {
@@ -58,19 +56,13 @@ export interface CreateStyledComponent<Props, ExtraProps> {
  * @desc
  * This function accepts a React component or tag ('div', 'a' etc).
  *
- * This function does not support React default props defaultProps, use the following syntax to fix
- * styled<PropsOf<MyComponent>>(MyComponent)({ width: 100 })
- *
  * @example styled(MyComponent)({ width: 100 })
  * @example styled(MyComponent)(myComponentProps => ({ width: myComponentProps.width })
  * @example styled('div')({ width: 100 })
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
 export interface CreateStyled<Theme = any> {
-  <
-    C extends React.ComponentType<React.ComponentPropsWithoutRef<C>>,
-    ExtraProps = {}
-  >(
+  <C extends React.ComponentType<React.ComponentProps<C>>, ExtraProps = {}>(
     component: C,
     options?: StyledOptions
   ): CreateStyledComponent<

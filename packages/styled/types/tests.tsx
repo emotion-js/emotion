@@ -1,5 +1,6 @@
 // TypeScript Version: 2.9
 
+import * as React from 'react'
 import styled from '@emotion/styled'
 
 // $ExpectType CreateStyledComponent<DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, { theme?: any; }>
@@ -21,3 +22,6 @@ styled.svg
     }};
   `
 }
+
+const StyledDiv = styled.div({})
+;<StyledDiv ref={React.createRef()} />

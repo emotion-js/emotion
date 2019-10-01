@@ -143,11 +143,15 @@ const Container0 = styled(ReactClassComponent0)`
 // $ExpectError
 ;<Container0 />
 
+// When we change component, the original props still need to be available
+// as the original styles may be using those props
 const Container1 = Container0.withComponent('span')
-// Because we have changed the component, it's props should be removed
-// $ExpectError
 ;<Container1 column={true} />
+;<Container1 column={true} onClick={undefined as any} />
+
+// $ExpectError
 ;<Container1 onClick={undefined as any} />
+// $ExpectError
 ;<Container1 contentEditable />
 
 const Container2 = Container0.withComponent(ReactSFC0)
@@ -156,9 +160,11 @@ const Container2 = Container0.withComponent(ReactSFC0)
 ;<Container2 />
 
 const Container3 = Container0.withComponent(ReactClassComponent1)
-;<Container3 value="123" />
+;<Container3 column={false} value="123" />
 // $ExpectError
 ;<Container3 colume={true} />
+// $ExpectError
+;<Container3 value="5" />
 
 interface ContainerProps {
   extraWidth: string
@@ -175,14 +181,27 @@ const Container4 = styled(ReactSFC2)<ContainerProps>(props => ({
 ;<Container4 value="5" />
 
 const Container5 = Container3.withComponent(ReactSFC2)
-;<Container5 value={123} />
+// $ExpectError
+;<Container5 column={true} value={123} />
 // $ExpectError
 ;<Container5 />
 // $ExpectError
 ;<Container5 column={true} />
+// $ExpectError
+;<Container5 value={242} />
 
-Container0.withComponent(ReactClassComponent2)
-Container3.withComponent(ReactClassComponent2)
+/**
+ * @todo
+ * I wish we could raise errors for following two `withComponent`s.
+ * The product a component type which is invalid, but you need to consume the component
+ * to see the error
+ */
+const C02 = Container0.withComponent(ReactClassComponent2)
+// $ExpectError
+;<C02 column="" />
+const C03 = Container3.withComponent(ReactClassComponent2)
+// $ExpectError
+;<C03 column="" />
 
 const ForwardRefCheckStyled = styled(
   React.forwardRef(
@@ -199,6 +218,7 @@ const StyledClass0 = styled(ReactClassComponent0)({})
 declare const ref0_0: (element: ReactClassComponent0 | null) => void
 declare const ref0_1: (element: ReactClassComponent1 | null) => void
 declare const ref0_2: (element: HTMLDivElement | null) => void
+// $ExpectError
 ;<StyledClass0 column={true} ref={ref0_0} />
 // $ExpectError
 ;<StyledClass0 column={true} ref={ref0_1} />
@@ -220,7 +240,6 @@ const StyledClass2 = StyledClass0.withComponent('div')
 declare const ref2_0: (element: HTMLDivElement | null) => void
 declare const ref2_1: (element: ReactClassComponent0 | null) => void
 declare const ref2_2: (element: ReactClassComponent1 | null) => void
-// $ExpectError
 ;<StyledClass2 column={true} ref={ref2_0} />
 // $ExpectError
 ;<StyledClass2 column={true} ref={ref2_1} />
@@ -340,3 +359,17 @@ const D = styled(C)`
 ;<D tag="b" content="test" />
 // $ExpectError
 ;<D tag="a" title="test" content="test" />
+
+const StyledDiv = styled('div')({})
+declare const ref4_0: (element: ReactClassComponent1 | null) => void
+declare const ref4_1: (element: ReactClassComponent0 | null) => void
+declare const ref4_2: (element: HTMLDivElement | null) => void
+// $ExpectError
+;<StyledDiv ref={ref4_0} />
+// $ExpectError
+;<StyledDiv ref={ref4_1} />
+;<StyledDiv ref={ref4_2} />
+;<StyledDiv ref={React.createRef()} />
+
+const StyledButton = StyledDiv.withComponent('button')
+;<StyledButton onClick={() => {}} />
