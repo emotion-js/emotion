@@ -18,14 +18,17 @@ export {
   CreateStyledComponent
 } from '@emotion/styled-base'
 
-export type StyledTags<ExtraProps extends object = {}> = {
+export type StyledTags<Theme = any> = {
   [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
+    { theme?: Theme },
     JSX.IntrinsicElements[Tag],
-    ExtraProps & { theme?: any }
+    { theme: Theme }
   >
 }
 
-export interface CreateStyled extends BaseCreateStyled, StyledTags {}
+export interface CreateStyled<Theme = any>
+  extends BaseCreateStyled<Theme>,
+    StyledTags<Theme> {}
 
 declare const styled: CreateStyled
 export default styled

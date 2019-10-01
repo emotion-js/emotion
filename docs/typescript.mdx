@@ -225,7 +225,7 @@ _styled.tsx_
 
 ```tsx
 import styled, { CreateStyled } from '@emotion/styled'
-import * as emotionTheming, { EmotionTheming } from 'emotion-theming'
+import * as emotionTheming from 'emotion-theming'
 
 type Theme = {
   color: {
@@ -239,7 +239,7 @@ type Theme = {
 export default styled as CreateStyled<Theme>
 
 // You can also create themed versions of all the other theme helpers and hooks
-const { ThemeProvider, withTheme, useTheme } = emotionTheming as EmotionTheming<Theme>
+const { ThemeProvider, withTheme, useTheme } = emotionTheming as emotionTheming.EmotionTheming<Theme>
 export { ThemeProvider, withTheme, useTheme }
 ```
 

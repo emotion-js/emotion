@@ -1,11 +1,7 @@
 import * as emotionTheming from 'emotion-theming'
 import * as React from 'react'
-import styled from '@emotion/styled'
-import {
-  CreateStyled,
-  Interpolation,
-  ObjectInterpolation
-} from '@emotion/styled-base'
+import styled, { CreateStyled } from '@emotion/styled'
+import { Interpolation, ObjectInterpolation } from '@emotion/styled-base'
 
 const { ThemeProvider, withTheme, useTheme } = emotionTheming
 
@@ -108,6 +104,8 @@ const AdditionallyStyledCompC = themedStyled(StyledCompC)({})
 
 const StyledDiv = themedStyled('div')({})
 const AdditionallyStyledDiv = themedStyled(StyledDiv)({})
+
+const StyledDiv2 = themedStyled.div({})
 
 export type StyleDefinition<T = {}> = Interpolation<
   emotionTheming.WithTheme<T, Theme>
