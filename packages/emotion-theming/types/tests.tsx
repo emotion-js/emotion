@@ -1,5 +1,11 @@
 import * as emotionTheming from 'emotion-theming'
 import * as React from 'react'
+import styled from '@emotion/styled'
+import {
+  CreateStyled,
+  Interpolation,
+  ObjectInterpolation
+} from '@emotion/styled-base'
 
 const { ThemeProvider, withTheme, useTheme } = emotionTheming
 
@@ -11,10 +17,9 @@ declare const theme: Theme
 
 interface Props {
   prop: boolean
-  theme: Theme
 }
 declare const CompSFC: React.FC<Props>
-declare class CompC extends React.Component<Props> {}
+declare class CompC extends React.Component<Props & { theme: Theme }> {}
 
 const WrappedCompC = withTheme(CompC)
 ;<ThemeProvider theme={theme}>{WrappedCompC}</ThemeProvider>
@@ -61,6 +66,7 @@ const {
 ;<TypedThemeProvider theme={{ primary: 5 }} />
 
 typedWithTheme(CompSFC)
+
 /**
  * @todo
  * Following line should report an error.
@@ -80,7 +86,7 @@ typedWithTheme((props: { value: number }) => null)
 
   type SomethingToRead = (Book | Magazine) & { theme?: any }
 
-  const Readable: React.SFC<SomethingToRead> = props => {
+  const Readable: React.FC<SomethingToRead> = props => {
     if (props.kind === 'magazine') {
       return <div>magazine #{props.issue}</div>
     }
@@ -93,4 +99,26 @@ typedWithTheme((props: { value: number }) => null)
   ;<ThemedReadable kind="book" author="Hejlsberg" />
   ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
   ;<ThemedReadable kind="magazine" author="Hejlsberg" /> // $ExpectError
+}
+
+const themedStyled = styled as CreateStyled<Theme>
+
+const StyledCompC = themedStyled(CompC)({})
+const AdditionallyStyledCompC = themedStyled(StyledCompC)({})
+
+const StyledDiv = themedStyled('div')({})
+const AdditionallyStyledDiv = themedStyled(StyledDiv)({})
+
+export type StyleDefinition<T = {}> = Interpolation<
+  emotionTheming.WithTheme<T, Theme>
+>
+export type ObjectStyleDefinition<T = {}> = ObjectInterpolation<
+  emotionTheming.WithTheme<T, Theme>
+>
+
+const style: StyleDefinition<{}> = ({ theme }) => ({
+  color: theme.primary
+})
+const style2: ObjectStyleDefinition = {
+  width: 100
 }

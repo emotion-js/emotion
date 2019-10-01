@@ -12,9 +12,9 @@
  * a style of that component.
  */
 
-import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import * as React from 'react'
-import { PropsOf, MakeOptional } from './helper'
+import { ComponentSelector, Interpolation } from '@emotion/serialize'
+import { PropsOf, Omit } from './helper'
 
 export {
   ArrayInterpolation,
@@ -23,7 +23,7 @@ export {
   ObjectInterpolation
 } from '@emotion/serialize'
 
-export { ComponentSelector, Interpolation, PropsOf, MakeOptional }
+export { ComponentSelector, Interpolation, PropsOf, Omit }
 
 export interface StyledOptions {
   label?: string

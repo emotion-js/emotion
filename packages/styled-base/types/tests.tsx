@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, { PropsOf } from '@emotion/styled-base'
+import styled from '@emotion/styled-base'
 
 // tslint:disable-next-line: interface-over-type-literal
 type ReactClassProps0 = {
@@ -301,6 +301,10 @@ interface PropsB {
 
 type PropsAB = PropsA | PropsB
 class A extends React.Component<PropsAB> {
+  static getDerivedStateFromProps(props: PropsAB) {
+    return null
+  }
+
   render() {
     return null
   }
