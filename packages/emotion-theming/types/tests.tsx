@@ -131,3 +131,9 @@ const style: StyleDefinition = ({ theme }) => ({
 const style2: ObjectStyleDefinition = {
   width: 100
 }
+
+// Can use ThemeProvider
+;<ThemeProvider theme={{ prop: 'val' }} />
+;<TypedThemeProvider theme={{ primary: '', secondary: '' }} />
+// $ExpectError
+;<TypedThemeProvider theme={{ nope: 'string' }} />
