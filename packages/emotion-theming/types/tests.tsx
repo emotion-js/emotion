@@ -104,14 +104,19 @@ const AdditionallyStyledCompC = themedStyled(StyledCompC)({})
 ;<StyledCompC prop={true} />
 ;<AdditionallyStyledCompC prop={true} />
 
-// $ExpectType StyledComponent<{ theme?: Theme | undefined; } & object, React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
 const StyledDiv = themedStyled('div')({})
 ;<StyledDiv />
-// $ExpectType StyledComponent<{ theme?: Theme | undefined; } & object & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { children?: ReactNode; } & { theme?: Theme | undefined; }, {}>
+// $ExpectError
+;<StyledDiv theme={{ primary: 0, secondary: 0 }} />
 const AdditionallyStyledDiv = themedStyled(StyledDiv)({})
+;<AdditionallyStyledDiv />
+// $ExpectError
+;<AdditionallyStyledDiv theme={{ primary: 0, secondary: 0 }} />
 
-// $ExpectType StyledComponent<{ theme?: Theme | undefined; } & object, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
 const StyledDiv2 = themedStyled.div({})
+;<StyledDiv2 />
+// $ExpectError
+;<StyledDiv2 theme={{ primary: 0, secondary: 0 }} />
 
 export type StyleDefinition<T = {}> = Interpolation<
   emotionTheming.WithTheme<T, Theme>

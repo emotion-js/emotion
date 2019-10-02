@@ -35,12 +35,12 @@ export interface StyledOptions {
  * @typeparam ComponentProps  Props which will be included when withComponent is called
  * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
  */
-export interface StyledComponent<ComponentProps, SpecificComponentProps>
+export interface StyledComponent<ComponentProps, SpecificComponentProps = {}>
   extends React.FC<ComponentProps & SpecificComponentProps>,
     ComponentSelector {
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C
-  ): StyledComponent<ComponentProps & PropsOf<C>, {}>
+  ): StyledComponent<ComponentProps & PropsOf<C>>
   withComponent<Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag
   ): StyledComponent<ComponentProps, JSX.IntrinsicElements[Tag]>
