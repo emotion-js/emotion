@@ -1,5 +1,11 @@
 # babel-plugin-emotion
 
+## 10.0.20
+
+### Patch Changes
+
+- [1b3791d4](https://github.com/emotion-js/emotion/commit/1b3791d4c458838a097c815a38108c9719023b92) [#1526](https://github.com/emotion-js/emotion/pull/1526) Thanks [@ahutchings](https://github.com/ahutchings)! - Fix `autoLabel` crash on `css` used in expression assigned to an object pattern
+
 ## 10.0.19
 
 - Updated dependencies [c81c0033]:

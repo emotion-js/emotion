@@ -1,5 +1,11 @@
 # @emotion/core
 
+## 10.0.20
+
+### Patch Changes
+
+- [38bb2b19](https://github.com/emotion-js/emotion/commit/38bb2b19d4ff1552116829e068664516d167a3f8) [#1530](https://github.com/emotion-js/emotion/pull/1530) Thanks [@Andarist](https://github.com/Andarist)! - Fix class not being applied when putting nil as css prop value on wrapper component
+
 ## 10.0.17
 
 ### Patch Changes
