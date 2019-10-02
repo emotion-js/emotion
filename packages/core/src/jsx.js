@@ -116,7 +116,7 @@ export const jsx: typeof React.createElement = function(
 ) {
   let args = arguments
 
-  if (props == null || props.css == null) {
+  if (props == null || !hasOwnProperty.call(props, 'css')) {
     // $FlowFixMe
     return React.createElement.apply(undefined, args)
   }

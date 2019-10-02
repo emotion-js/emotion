@@ -1,6 +1,7 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
+import * as React from 'react'
 import { jsx, css, CacheProvider } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 import renderer from 'react-test-renderer'
@@ -215,6 +216,22 @@ test('handles camelCased custom properties in object styles properly', () => {
         color: 'var(--textColor)'
       }}
     />
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('applies class when css prop is set to nil on wrapper component', () => {
+  const Button = props => <button css={{ color: 'hotpink' }} {...props} />
+  const WrappedButton = ({ children, buttonStyles }) => (
+    <Button css={buttonStyles}>{children}</Button>
+  )
+
+  const tree = renderer.create(
+    <React.Fragment>
+      <WrappedButton>{"I'm hotpink!"}</WrappedButton>
+      <WrappedButton buttonStyles={null}>{"I'm hotpink too!"}</WrappedButton>
+    </React.Fragment>
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
