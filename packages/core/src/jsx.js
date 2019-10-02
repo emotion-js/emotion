@@ -17,11 +17,6 @@ let labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
 let hasOwnProperty = Object.prototype.hasOwnProperty
 
 let render = (cache, props, theme: null | Object, ref) => {
-  let type = props[typePropName]
-  let registeredStyles = []
-
-  let className = ''
-
   let cssProp = theme === null ? props.css : props.css(theme)
 
   // so that using `css` from `emotion` and passing the result to the css prop works
@@ -31,7 +26,9 @@ let render = (cache, props, theme: null | Object, ref) => {
     cssProp = cache.registered[cssProp]
   }
 
-  registeredStyles.push(cssProp)
+  let type = props[typePropName]
+  let registeredStyles = [cssProp]
+  let className = ''
 
   if (props.className !== undefined) {
     className = getRegisteredStyles(
