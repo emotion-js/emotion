@@ -72,12 +72,7 @@ export interface CreateStyledComponent<
   <AdditionalProps extends object>(
     template: TemplateStringsArray,
     ...styles: Array<
-      Interpolation<
-        ComponentProps &
-          SpecificComponentProps &
-          AdditionalProps &
-          AdditionalProps
-      >
+      Interpolation<ComponentProps & SpecificComponentProps & AdditionalProps>
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
 }
