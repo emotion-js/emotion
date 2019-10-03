@@ -9,7 +9,7 @@ import {
   ComponentClass,
   Context,
   Provider,
-  SFC,
+  FC,
   ReactElement,
   ReactNode,
   Ref,
@@ -30,7 +30,7 @@ export const ThemeContext: Context<object>
 export const CacheProvider: Provider<EmotionCache>
 export function withEmotionCache<Props, RefType = any>(
   func: (props: Props, context: EmotionCache, ref: Ref<RefType>) => ReactNode
-): SFC<Props & ClassAttributes<RefType>>
+): FC<Props & ClassAttributes<RefType>>
 
 export const jsx: typeof createElement
 

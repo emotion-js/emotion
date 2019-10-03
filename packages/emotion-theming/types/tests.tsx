@@ -14,7 +14,7 @@ declare const theme: Theme
 interface Props {
   prop: boolean
 }
-declare const CompSFC: React.FC<Props>
+declare const CompFC: React.FC<Props>
 declare class CompC extends React.Component<Props & { theme: Theme }> {}
 
 const WrappedCompC = withTheme(CompC)
@@ -22,16 +22,16 @@ const WrappedCompC = withTheme(CompC)
 ;<ThemeProvider theme={() => theme} />
 ;<ThemeProvider theme={(outerTheme: Theme) => ({ ...outerTheme, ...theme })} />
 
-const ThemedSFC = withTheme(CompSFC)
-;<ThemedSFC prop />
-;<ThemedSFC prop theme={theme} />
+const ThemedFC = withTheme(CompFC)
+;<ThemedFC prop />
+;<ThemedFC prop theme={theme} />
 
 const ThemedComp = withTheme(CompC)
 ;<ThemedComp prop />
 ;<ThemedComp prop theme={theme} />
 
-const CompSFCWithDefault = ({ prop }: Props) => (prop ? <span /> : <div />)
-CompSFCWithDefault.defaultProps = { prop: false }
+const CompFCWithDefault = ({ prop }: Props) => (prop ? <span /> : <div />)
+CompFCWithDefault.defaultProps = { prop: false }
 class CompCWithDefault extends React.Component<Props> {
   static defaultProps = { prop: false }
   render() {
@@ -45,9 +45,9 @@ class CompCWithDefault extends React.Component<Props> {
   const themeFail: Theme = useTheme<number>() // $ExpectError
 }
 
-const ThemedSFCWithDefault = withTheme(CompSFCWithDefault)
-;<ThemedSFCWithDefault />
-;<ThemedSFCWithDefault theme={theme} />
+const ThemedFCWithDefault = withTheme(CompFCWithDefault)
+;<ThemedFCWithDefault />
+;<ThemedFCWithDefault theme={theme} />
 
 const ThemedCompWithDefault = withTheme(CompCWithDefault)
 ;<ThemedCompWithDefault />
@@ -61,7 +61,7 @@ const {
 // $ExpectError
 ;<TypedThemeProvider theme={{ primary: 5 }} />
 
-typedWithTheme(CompSFC)
+typedWithTheme(CompFC)
 
 /**
  * @todo

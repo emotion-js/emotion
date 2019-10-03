@@ -143,7 +143,7 @@ const Image1 = styled('div')<ImageProps>(
 Emotion can also style React components and will infer component props as expected.
 
 ```tsx
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 import styled from '@emotion/styled'
 
 interface ComponentProps {
@@ -151,7 +151,7 @@ interface ComponentProps {
   label: string
 }
 
-const Component: SFC<ComponentProps> = ({
+const Component: FC<ComponentProps> = ({
   label,
   className
 }) => <div className={className}>{label}</div>
@@ -175,7 +175,7 @@ const App = () => (
 ### Passing props when styling a React component
 
 ```tsx
-import React, { SFC } from 'react'
+import React, { FC } from 'react'
 import styled from '@emotion/styled'
 
 interface ComponentProps {
@@ -183,7 +183,7 @@ interface ComponentProps {
   label: string
 }
 
-const Component: SFC<ComponentProps> = ({
+const Component: FC<ComponentProps> = ({
   label,
   className
 }) => <div className={className}>{label}</div>
