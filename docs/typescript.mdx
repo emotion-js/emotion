@@ -43,7 +43,9 @@ import { jsx } from '@emotion/core'
 
 <div css={{ background: 'black' }} />
 ```
+
 As a result you may be not able to use react fragment shorthand syntax - `<></>`, but still you can use `<Fragment></Fragment>`.
+This is a limitation of the TypeScript compiler not being able to independently specify jsx pragma and jsxFrag pragma.
 
 You can still use the css helper and pass the className yourself (ensure you are importing from the `@emotion` package, not `@emotion/core`).
 
