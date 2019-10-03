@@ -56,7 +56,7 @@ const ThemedCompWithDefault = withTheme(CompCWithDefault)
 const {
   ThemeProvider: TypedThemeProvider,
   withTheme: typedWithTheme
-}: emotionTheming.EmotionTheming<Theme> = emotionTheming
+} = emotionTheming as emotionTheming.EmotionTheming<Theme>
 ;<TypedThemeProvider theme={theme} />
 // $ExpectError
 ;<TypedThemeProvider theme={{ primary: 5 }} />
