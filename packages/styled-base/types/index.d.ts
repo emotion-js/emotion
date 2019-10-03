@@ -14,7 +14,7 @@
 
 import * as React from 'react'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
-import { PropsOf, Omit } from './helper'
+import { PropsOf, DistributiveOmit } from './helper'
 
 export {
   ArrayInterpolation,
@@ -23,7 +23,7 @@ export {
   ObjectInterpolation
 } from '@emotion/serialize'
 
-export { ComponentSelector, Interpolation, PropsOf, Omit }
+export { ComponentSelector, Interpolation, PropsOf, DistributiveOmit }
 
 export interface StyledOptions {
   label?: string

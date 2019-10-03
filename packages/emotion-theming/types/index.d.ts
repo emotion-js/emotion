@@ -9,7 +9,7 @@ import {
   CreateStyledComponent,
   StyledTags
 } from '@emotion/styled'
-import { PropsOf, Omit } from '@emotion/styled-base'
+import { PropsOf, DistributiveOmit } from '@emotion/styled-base'
 
 export interface ThemeProviderProps<Theme> {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
@@ -24,7 +24,7 @@ export type withTheme<Theme = any> = <
   C extends React.ComponentType<React.ComponentProps<C>>
 >(
   component: C
-) => React.FC<Omit<PropsOf<C>, 'theme'> & { theme?: Theme }>
+) => React.FC<DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Theme }>
 
 export type useTheme<Theme = any> = <T extends Theme = Theme>() => T
 
