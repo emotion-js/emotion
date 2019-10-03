@@ -45,10 +45,10 @@ import { jsx } from '@emotion/core'
 ```
 As a result you may be not able to use react fragment shorthand syntax - `<></>`, but still you can use `<Fragment></Fragment>`.
 
-You can still use the css helper and pass the className yourself.
+You can still use the css helper and pass the className yourself (ensure you are importing from the `@emotion` package, not `@emotion/core`).
 
 ```tsx
-import { css } from '@emotion/core'
+import { css } from '@emotion'
 
 <div className={css({ background: 'black' })} />
 ```
