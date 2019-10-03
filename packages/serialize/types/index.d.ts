@@ -62,21 +62,11 @@ export interface ObjectInterpolation<MP>
     CSSPseudos<MP>,
     CSSOthersObject<MP> {}
 
-export interface FunctionInterpolation<MP> {
-  (mergedProps: MP):
-    | null
-    | undefined
-    | boolean
-    | number
-    | string
-    | ComponentSelector
-    | Keyframes
-    | SerializedStyles
-    | ArrayInterpolation<MP>
-    | ObjectInterpolation<MP>
+export interface FunctionInterpolation<MergedProps> {
+  (mergedProps: MergedProps): Interpolation<MergedProps>
 }
 
-export type Interpolation<MP = undefined> =
+export type Interpolation<MergedProps = undefined> =
   | null
   | undefined
   | boolean
@@ -85,9 +75,9 @@ export type Interpolation<MP = undefined> =
   | ComponentSelector
   | Keyframes
   | SerializedStyles
-  | ArrayInterpolation<MP>
-  | ObjectInterpolation<MP>
-  | FunctionInterpolation<MP>
+  | ArrayInterpolation<MergedProps>
+  | ObjectInterpolation<MergedProps>
+  | FunctionInterpolation<MergedProps>
 
 export function serializeStyles<MP>(
   args: Array<TemplateStringsArray | Interpolation<MP>>,

@@ -13,7 +13,6 @@ If you encounter build issues after upgrade, try removing any manually specified
 
 ## Breaking changes
 
-- Function interpolation can no longer return another function directly
 - withTheme can now have the Theme type specified when calling it. For example `withTheme<MyTheme>(MyComponent)`
 
   **Breaking change:** Generic argument changed, if you were specifying the ComponentType you will need to remove the generic parameter. Recommend following example setup in the TypeScript docs under theming section
