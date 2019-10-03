@@ -35,9 +35,10 @@ export interface StyledOptions {
  * @typeparam ComponentProps  Props which will be included when withComponent is called
  * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
  */
-export interface StyledComponent<ComponentProps, SpecificComponentProps = {}>
-  extends React.FC<ComponentProps & SpecificComponentProps>,
-    ComponentSelector {
+export interface StyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {}
+> extends React.FC<ComponentProps & SpecificComponentProps>, ComponentSelector {
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C
   ): StyledComponent<ComponentProps & PropsOf<C>>
@@ -52,14 +53,14 @@ export interface StyledComponent<ComponentProps, SpecificComponentProps = {}>
  * @typeparam StyleProps  Params passed to styles but not exposed as React props. These are normally library provided props
  */
 export interface CreateStyledComponent<
-  ComponentProps,
-  SpecificComponentProps,
-  StyleProps
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {},
+  StyleProps extends {} = {}
 > {
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
-  <AdditionalProps extends object>(
+  <AdditionalProps extends {} = {}>(
     ...styles: Array<
       Interpolation<
         ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps
@@ -69,7 +70,7 @@ export interface CreateStyledComponent<
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
-  <AdditionalProps extends object>(
+  <AdditionalProps extends {} = {}>(
     template: TemplateStringsArray,
     ...styles: Array<
       Interpolation<ComponentProps & SpecificComponentProps & AdditionalProps>
@@ -86,7 +87,7 @@ export interface CreateStyledComponent<
  * @example styled('div')({ width: 100 })
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
-export interface CreateStyled<Theme = any> {
+export interface CreateStyled<Theme extends object = any> {
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions

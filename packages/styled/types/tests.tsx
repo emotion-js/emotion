@@ -11,7 +11,6 @@ styled.div
 styled.svg
 
 {
-  // $ExpectType StyledComponent<{ theme?: any; } & { bar: string; }, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
   styled.div<{ bar: string }>`
     color: ${props => {
       // $ExpectType { theme?: any; } & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; }

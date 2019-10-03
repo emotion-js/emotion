@@ -18,7 +18,7 @@ export {
   CreateStyledComponent
 } from '@emotion/styled-base'
 
-export type StyledTags<Theme = any> = {
+export type StyledTags<Theme extends object = any> = {
   [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
     { theme?: Theme },
     JSX.IntrinsicElements[Tag],
@@ -26,7 +26,7 @@ export type StyledTags<Theme = any> = {
   >
 }
 
-export interface CreateStyled<Theme = any>
+export interface CreateStyled<Theme extends object = any>
   extends BaseCreateStyled<Theme>,
     StyledTags<Theme> {}
 
