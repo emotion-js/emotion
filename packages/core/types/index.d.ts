@@ -47,11 +47,13 @@ export interface GlobalProps<Theme> {
  */
 export function Global<Theme = any>(props: GlobalProps<Theme>): ReactElement
 
-export function keyframes(
+export function keyframes<Theme = any>(
   template: TemplateStringsArray,
-  ...args: Array<Interpolation>
+  ...args: Array<Interpolation<Theme>>
 ): Keyframes
-export function keyframes(...args: Array<Interpolation>): Keyframes
+export function keyframes<Theme = any>(
+  ...args: Array<Interpolation<Theme>>
+): Keyframes
 
 export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
 export type ClassNamesArg =
@@ -63,8 +65,11 @@ export type ClassNamesArg =
   | ArrayClassNamesArg
 
 export interface ClassNamesContent<Theme> {
-  css(template: TemplateStringsArray, ...args: Array<Interpolation>): string
-  css(...args: Array<Interpolation>): string
+  css(
+    template: TemplateStringsArray,
+    ...args: Array<Interpolation<Theme>>
+  ): string
+  css(...args: Array<Interpolation<Theme>>): string
   cx(...args: Array<ClassNamesArg>): string
   theme: Theme
 }
