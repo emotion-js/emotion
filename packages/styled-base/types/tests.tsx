@@ -193,8 +193,8 @@ const Container5 = Container3.withComponent(ReactFC2)
 /**
  * @todo
  * I wish we could raise errors for following two `withComponent`s.
- * The product a component type which is invalid, but you need to consume the component
- * to see the error
+ * The prduces a component type which is invalid (intersection of number & string is never), but you need to consume the component
+ * to see the error.
  */
 const C02 = Container0.withComponent(ReactClassComponent2)
 // $ExpectError
