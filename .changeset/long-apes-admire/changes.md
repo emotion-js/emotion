@@ -25,12 +25,6 @@ If you encounter build issues after upgrade, try removing any manually specified
   to  
   `styled(MyComponent)<ExtraProps>({})`
 
-- `CreateStyledComponentBase`, `CreateStyledComponentBaseThemeless` and `CreateStyledComponentBaseThemed` have been merged into `CreateStyledComponent`.
-
-  `CreateStyledComponentBaseThemed<P, P1, MyTheme>`  
-  to  
-  `CreateStyledComponent<P & { theme?: MyTheme }, { }, { theme: MyTheme }>`
-
 - `StyledComponent` type no longer supports the third generic `Theme` paramter. Instead add the `theme` prop to the first `Props` argument. For example:
 
   `StyledComponent<Props, {}, MyTheme>`  
