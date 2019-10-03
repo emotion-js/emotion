@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.9
+// TypeScript Version: 2.8
 
 import { EmotionCache, Options } from '@emotion/cache'
 import { Interpolation } from '@emotion/serialize'
