@@ -11,6 +11,8 @@ import {
   keyframes,
   withEmotionCache
 } from '@emotion/core'
+import { ObjectInterpolation } from '@emotion/css'
+
 ;<Global styles={[]} />
 
 interface TestTheme0 {
@@ -123,3 +125,10 @@ interface TestTheme1 {
     )
   }}
 </ClassNames>
+
+// issue 1532 https://github.com/emotion-js/emotion/pull/1532
+interface IHaveCss<T = any> {
+  less: ObjectInterpolation<T>
+}
+// prior to 1532 the css prop being passed less would fail
+const LessComponent = ({ less }: IHaveCss) => <div css={less}>I have Css</div>
