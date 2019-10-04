@@ -1,5 +1,11 @@
 # @emotion/cache
 
+## 10.0.19
+
+- Updated dependencies [c81c0033]:
+  - @emotion/hash@0.7.3
+  - @emotion/weak-memoize@0.2.4
+
 ## 10.0.17
 
 ### Patch Changes

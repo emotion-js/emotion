@@ -446,6 +446,41 @@ function doThing() {
 }"
 `;
 
+exports[`@emotion/babel-plugin-core css object-pattern-variable-declarator 1`] = `
+"import { css } from '@emotion/core'
+import { extractCritical } from 'emotion-server'
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+
+const { css: styles } = extractCritical(
+  renderToString(
+    <div
+      css={css\`
+        color: hotpink;
+      \`}
+    />
+  )
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from '@emotion/core';
+import { extractCritical } from 'emotion-server';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+const {
+  css: styles
+} = extractCritical(renderToString(<div css={process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+} : {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1wYXR0ZXJuLXZhcmlhYmxlLWRlY2xhcmF0b3IuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBUWMiLCJmaWxlIjoib2JqZWN0LXBhdHRlcm4tdmFyaWFibGUtZGVjbGFyYXRvci5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5pbXBvcnQgeyBleHRyYWN0Q3JpdGljYWwgfSBmcm9tICdlbW90aW9uLXNlcnZlcidcbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCB7IHJlbmRlclRvU3RyaW5nIH0gZnJvbSAncmVhY3QtZG9tL3NlcnZlcidcblxuY29uc3QgeyBjc3M6IHN0eWxlcyB9ID0gZXh0cmFjdENyaXRpY2FsKFxuICByZW5kZXJUb1N0cmluZyhcbiAgICA8ZGl2XG4gICAgICBjc3M9e2Nzc2BcbiAgICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgICBgfVxuICAgIC8+XG4gIClcbilcbiJdfQ== */\\"
+}} />));"
+`;
+
 exports[`@emotion/babel-plugin-core css other-imports 1`] = `
 "import { nonExistantImport } from '@emotion/css'
 

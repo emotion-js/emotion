@@ -11,6 +11,7 @@ _`emotion-theming` is a theming library inspired by [styled-components](https://
 - [API](#api)
   - [ThemeProvider](#themeprovider-reactcomponenttype)
   - [withTheme](#withthemecomponent-reactcomponenttype-reactcomponenttype)
+  - [useTheme](#usetheme)
 - [Credits](#credits)
 - [License](#license)
 
@@ -147,6 +148,40 @@ TellMeTheColor.propTypes = {
 }
 
 const TellMeTheColorWithTheme = withTheme(TellMeTheColor)
+```
+
+### useTheme
+
+A React hook that provides the current theme as its value. If the theme is updated, the child component will be re-rendered accordingly.
+
+```jsx
+// @live
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
+import { ThemeProvider, useTheme } from 'emotion-theming'
+
+const theme = {
+  colors: {
+    primary: 'hotpink'
+  }
+}
+
+function SomeText (props) {
+  const theme = useTheme()
+  return (
+    <div
+      css={{ color: theme.colors.primary }}
+      {...props}
+    />
+  )
+}
+
+render(
+  <ThemeProvider theme={theme}>
+    <SomeText>some text</SomeText>
+  </ThemeProvider>
+)
 ```
 
 ## Credits

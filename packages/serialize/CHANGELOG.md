@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 0.11.11
+
+- Updated dependencies [c81c0033]:
+  - @emotion/hash@0.7.3
+  - @emotion/memoize@0.7.3
+
 ## 0.11.10
 
 ### Patch Changes

@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`applies class when css prop is set to nil on wrapper component 1`] = `
+Array [
+  .emotion-0 {
+  color: hotpink;
+}
+
+<button
+    className="emotion-0"
+  >
+    I'm hotpink!
+  </button>,
+  .emotion-0 {
+  color: hotpink;
+}
+
+<button
+    className="emotion-0"
+  >
+    I'm hotpink too!
+  </button>,
+]
+`;
+
 exports[`array fallback 1`] = `
 .emotion-0 {
   display: green;
