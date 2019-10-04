@@ -53,9 +53,7 @@ import { renderToNodeStream } from 'react-dom/server'
 import { renderStylesToNodeStream } from 'emotion-server'
 import App from './App'
 
-const stream = renderToNodeStream(<App />).pipe(
-  renderStylesToNodeStream()
-)
+const stream = renderToNodeStream(<App />).pipe(renderStylesToNodeStream())
 ```
 
 ### extractCritical
@@ -67,9 +65,7 @@ import { renderToString } from 'react-dom/server'
 import { extractCritical } from 'emotion-server'
 import App from './App'
 
-const { html, ids, css } = extractCritical(
-  renderToString(<App />)
-)
+const { html, ids, css } = extractCritical(renderToString(<App />))
 ```
 
 #### hydrate
@@ -104,6 +100,65 @@ gatsby-config.js
 module.exports = {
   plugins: [...otherGatsbyPlugins, 'gatsby-plugin-emotion']
 }
+```
+
+If using a [custom cache](./cache-provider), ensure you are creating a new cache per server render within `gatsby-ssr.js`. This will differ from the implementation within `gatsby-browser.js`.
+
+gatsby-ssr.js
+
+```jsx
+import { CacheProvider } from '@emotion/core'
+import createCache from '@emotion/cache'
+
+const myCache = () =>
+  createCache({
+    key: 'my-prefix-key',
+    stylisPlugins: [
+      /* your plugins here */
+    ],
+    // prefix based on the css property
+    prefix: key => {
+      switch (key) {
+        case 'flex':
+          return false
+        case 'transform':
+        default:
+          return true
+      }
+    }
+  })
+
+export const wrapRootElement = ({ element }) => (
+  <CacheProvider value={myCache()}>{element}</CacheProvider>
+)
+```
+
+gatsby-browser.js
+
+```jsx
+import { CacheProvider } from '@emotion/core'
+import createCache from '@emotion/cache'
+
+const myCache = createCache({
+  key: 'my-prefix-key',
+  stylisPlugins: [
+    /* your plugins here */
+  ],
+  // prefix based on the css property
+  prefix: key => {
+    switch (key) {
+      case 'flex':
+        return false
+      case 'transform':
+      default:
+        return true
+    }
+  }
+})
+
+export const wrapRootElement = ({ element }) => (
+  <CacheProvider value={myCache}>{element}</CacheProvider>
+)
 ```
 
 > Note:
