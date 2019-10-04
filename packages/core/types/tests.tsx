@@ -12,7 +12,6 @@ import {
   withEmotionCache
 } from '@emotion/core'
 import { ObjectInterpolation } from '@emotion/css'
-
 ;<Global styles={[]} />
 
 interface TestTheme0 {
@@ -116,7 +115,7 @@ interface TestTheme1 {
         </span>
         <span
           className={css`
-            color: theme.secondaryColor;
+            color: ${theme.secondaryColor};
           `}
         >
           Snd Text
@@ -127,8 +126,60 @@ interface TestTheme1 {
 </ClassNames>
 
 // issue 1532 https://github.com/emotion-js/emotion/pull/1532
-interface IHaveCss<T = any> {
+interface HaveObjectCss<T = any> {
   less: ObjectInterpolation<T>
 }
 // prior to 1532 the css prop being passed less would fail
-const LessComponent = ({ less }: IHaveCss) => <div css={less}>I have Css</div>
+const LessComponent = <T extends any>({ less }: HaveObjectCss<T>) => (
+  <div css={less}>I have Css</div>
+)
+
+interface AnimationTheme {
+  from: { top: number }
+  to: { top: number }
+}
+
+// BEGIN NON TEMPLATE ANIMATIONS
+// without restricting less
+;<LessComponent
+  less={keyframes<AnimationTheme>({ from: { top: 0 }, to: { top: 20 } })}
+/>
+
+// FAILS IN TYPESCRIPT 2.8 only due to <LessComponent<AnimationTheme> not being supported
+// ;<LessComponent<AnimationTheme>
+// less={keyframes<AnimationTheme>({ from: { top: 0 }, to: { top: 20 } })}
+// />
+// END NON TEMPLATE ANIMATIONS
+
+// BEGIN TEMPLATE ANIMATIONS
+// without restricting less
+;<LessComponent
+  less={keyframes<AnimationTheme>(
+    `
+  .off {
+    from {
+      top: 20px;
+    }
+    from {
+      top: 0px;
+    }
+  }`,
+    { from: { top: 0 }, to: { top: 20 } }
+  )}
+/>
+// FAILS IN TYPESCRIPT 2.8 only due to <LessComponent<AnimationTheme> not being supported
+// ;<LessComponent<AnimationTheme>
+//   less={keyframes<AnimationTheme>(
+//     `
+//   .off {
+//     from {
+//       top: 20px;
+//     }
+//     from {
+//       top: 0px;
+//     }
+//   }`,
+//     { from: { top: 0 }, to: { top: 20 } }
+//   )}
+// />
+// END TEMPLATE ANIMATIONS
