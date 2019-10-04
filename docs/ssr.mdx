@@ -104,13 +104,12 @@ module.exports = {
 
 If using a [custom cache](./cache-provider), ensure you are creating a new cache per server render within `gatsby-ssr.js`. This will differ from the implementation within `gatsby-browser.js`.
 
-gatsby-ssr.js
+create-emotion-cache.js
 
 ```jsx
-import { CacheProvider } from '@emotion/core'
 import createCache from '@emotion/cache'
 
-const myCache = () =>
+export const createMyCache = () =>
   createCache({
     key: 'my-prefix-key',
     stylisPlugins: [
@@ -128,8 +127,18 @@ const myCache = () =>
     }
   })
 
+export const myCache = createMyCache()
+```
+
+gatsby-ssr.js
+
+```jsx
+import { CacheProvider } from '@emotion/core'
+
+import { createMyCache } from './create-emotion-cache'
+
 export const wrapRootElement = ({ element }) => (
-  <CacheProvider value={myCache()}>{element}</CacheProvider>
+  <CacheProvider value={createMyCache()}>{element}</CacheProvider>
 )
 ```
 
@@ -137,24 +146,8 @@ gatsby-browser.js
 
 ```jsx
 import { CacheProvider } from '@emotion/core'
-import createCache from '@emotion/cache'
 
-const myCache = createCache({
-  key: 'my-prefix-key',
-  stylisPlugins: [
-    /* your plugins here */
-  ],
-  // prefix based on the css property
-  prefix: key => {
-    switch (key) {
-      case 'flex':
-        return false
-      case 'transform':
-      default:
-        return true
-    }
-  }
-})
+import { myCache } from './create-emotion-cache'
 
 export const wrapRootElement = ({ element }) => (
   <CacheProvider value={myCache}>{element}</CacheProvider>
