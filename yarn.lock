@@ -1092,13 +1092,45 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@changesets/cli@^1.3.3":
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-1.3.3.tgz#0a2524cf29e056233438c6b0728e3e735ceabcbd"
-  integrity sha512-p6pMinDAfq3JhxJlirJUglQLNSdAnMCMtU+GCVpgh9v2Dk9xG6Q/XsCYMqGqCYedBT9zr2RUpjjcYuHdWkHR1w==
+"@changesets/apply-release-plan@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@changesets/apply-release-plan/-/apply-release-plan-0.2.1.tgz#8d6eaceb6c812d81cc3ca4b5e47884cc133c3242"
+  integrity sha512-zsd6GzYJLC8BaU2iS8vr437qkKBAf1/tF+wkYRyWFVBGmIjf8Gs7lKxYXkV5LMfE1EDpRBMX+VzMGjhsRfVc3w==
   dependencies:
     "@babel/runtime" "^7.4.4"
-    "@changesets/git" "^0.1.2"
+    "@changesets/config" "^0.2.1"
+    "@changesets/get-version-range-type" "^0.1.1"
+    "@changesets/git" "^0.2.1"
+    "@changesets/types" "^0.3.0"
+    fs-extra "^7.0.1"
+    get-workspaces "^0.5.0"
+    lodash.startcase "^4.4.0"
+    outdent "^0.5.0"
+    prettier "^1.14.3"
+    resolve-from "^5.0.0"
+
+"@changesets/assemble-release-plan@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@changesets/assemble-release-plan/-/assemble-release-plan-0.2.1.tgz#87dba8a6d34486e562515797ccaec1cdf7824b0e"
+  integrity sha512-vhd871FuR9f/ViqTIHFn1AVbXxiBnUmyLwYgh59YC1nfiLf1qL/U1oRnfPDmVSMsOneF8DNGwCCWeklRG+FEsQ==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    "@changesets/types" "^0.3.0"
+    semver "^5.4.1"
+
+"@changesets/cli@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.0.3.tgz#2108e0e1fb9cc6c2a4a10e9c9afe56a3ea5304dd"
+  integrity sha512-+Fcy71xK/2q8R+mHsonNEzituo8OH2TOMMh34E6o6SN62kIND2b+CgKE7ChlCwDOuyqkSLlHaCrBMhuVeA6ROA==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    "@changesets/apply-release-plan" "^0.2.1"
+    "@changesets/assemble-release-plan" "^0.2.1"
+    "@changesets/config" "^0.2.1"
+    "@changesets/get-release-plan" "^0.1.2"
+    "@changesets/git" "^0.2.2"
+    "@changesets/read" "^0.2.2"
+    "@changesets/types" "^0.3.0"
     "@types/semver" "^6.0.0"
     "@types/uuid" "^3.4.4"
     boxen "^1.3.0"
@@ -1108,7 +1140,8 @@
     enquirer "^2.3.0"
     fs-extra "^7.0.1"
     fuzzy "^0.1.3"
-    get-workspaces "^0.4.2"
+    get-dependents-graph "^0.1.1"
+    get-workspaces "^0.5.0"
     globby "^9.2.0"
     human-id "^1.0.2"
     is-ci "^2.0.0"
@@ -1124,23 +1157,74 @@
     tty-table "^2.7.0"
     uuid "^3.3.2"
 
-"@changesets/get-github-info@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.npmjs.org/@changesets/get-github-info/-/get-github-info-0.1.3.tgz#835b7cda3d32b1506e07583fb5d8def804642ac3"
-  integrity sha512-gWj9qCqIjCP8VAqsZ58HbqBbzYzLAl06To9h8lEnHRmMMKKW2e+zJbJRvE2C9WUMbfsfJYrBC8CUs4DvkVwovA==
+"@changesets/config@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@changesets/config/-/config-0.2.1.tgz#2ade7381284b772865b9a5f86b444be6923b1818"
+  integrity sha512-RvAUXxyDyfE9wESpWCQPFOVPOnOZch3CfeDpAnsLfoXs2MfdQuJgAi7Cfv3yGZgMJLhV2NNlh6hTKGzeLaPw4A==
+  dependencies:
+    "@changesets/types" "^0.3.0"
+    fs-extra "^7.0.1"
+
+"@changesets/get-github-info@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@changesets/get-github-info/-/get-github-info-0.2.1.tgz#a9886fde67df5bb9fdbddf2c4ce8c0f5b1ff83dd"
+  integrity sha512-0NKwnpcFcV0IqQpDQ9xe/m3p0BzTWvv+DWmF+hC0QBrCqUdCfx4bHM85JD8jYQ157S2h6d28ZdGLY4/IVdi5bQ==
   dependencies:
     dataloader "^1.4.0"
     node-fetch "^2.5.0"
 
-"@changesets/git@^0.1.2":
+"@changesets/get-release-plan@^0.1.2":
   version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@changesets/git/-/git-0.1.2.tgz#a5b194f5564beaaf16bc864593f570d03aeecbc0"
-  integrity sha512-IzZWDTUParPM2wSVHdEqese0K0QRQg5Fgh4Fd7oBrH793tgdNP3JyMbPtSoFUsn/Bxr5HzQWHAlj+MrPjQ2lBQ==
+  resolved "https://registry.yarnpkg.com/@changesets/get-release-plan/-/get-release-plan-0.1.2.tgz#e331df7aa682d805e7a466a0a86f66fcd15c00f8"
+  integrity sha512-MQzYwUFXT31qe4pmQqsYOPSRNB3wP2c+huTG4njmMYFf+O96Z7feqsGoLc3QsnVPyb/awZMDhoBOtYlkJBaRLw==
   dependencies:
     "@babel/runtime" "^7.4.4"
-    get-workspaces "^0.4.2"
+    "@changesets/assemble-release-plan" "^0.2.1"
+    "@changesets/config" "^0.2.1"
+    "@changesets/read" "^0.2.2"
+    "@changesets/types" "^0.3.0"
+    get-dependents-graph "^0.1.1"
+    get-workspaces "^0.5.0"
+
+"@changesets/get-version-range-type@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@changesets/get-version-range-type/-/get-version-range-type-0.1.1.tgz#1a0872073b9ea599c7076fcb2ca89a6e56c7564a"
+  integrity sha512-c61mf/okSm3LjAfU1ximmFxG+sJck82N5mlCy3BBKfM53aJTmaX4Kg6MVsAcg/qae2R60K1fnv5EGfmaSmjCeg==
+
+"@changesets/git@^0.2.1", "@changesets/git@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@changesets/git/-/git-0.2.2.tgz#8df2399da32aae4595051878c7caf013d6d92658"
+  integrity sha512-XDl/Z0LeVMkFjjbvGxA5NoS6QFwMm7G2+HLeBL2IwOJHTXrrIvlM9dE2I6RgJYPS3Opkq1tCaq3KilxmBKIrlQ==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    "@changesets/types" "^0.3.0"
+    get-workspaces "^0.5.0"
     pkg-dir "^4.1.0"
     spawndamnit "^2.0.0"
+
+"@changesets/parse@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@changesets/parse/-/parse-0.2.1.tgz#e6b939e3e40789b30fdf088ddf5334c2d7f2e376"
+  integrity sha512-ZRmERhCP8JKhOZQleRirNOvNW59WPfI5JDfweXNUToOFv20xlvYD3Ijv29j6y4zVvFcRZmNIbaVsY0PPiu3Vqg==
+  dependencies:
+    "@changesets/types" "^0.3.0"
+    js-yaml "^3.13.1"
+
+"@changesets/read@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@changesets/read/-/read-0.2.2.tgz#c0bb0740aee89b14e9d25ea62fbf504906c88e27"
+  integrity sha512-wxxR+t48gRvHmNYzhl0AH2Dp1AfB8VwA1XVhzzunhuLrlot3JS2JnHkGmIxwSfIJ3xBDiX/zTNG/vsrWSW51GQ==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    "@changesets/git" "^0.2.2"
+    "@changesets/parse" "^0.2.1"
+    "@changesets/types" "^0.3.0"
+    fs-extra "^7.0.1"
+
+"@changesets/types@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@changesets/types/-/types-0.3.0.tgz#ca7b609c1e778448c8763ca8cdb0bbd776c39c9b"
+  integrity sha512-9fwlRVzvfzF6vf7178vu1HDg4N80Z4Y/B0pS9zUWmmEruLzmzN94OoDk3obQ3P8M0EUH+oHnq8QVuKPLAR9VAw==
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
@@ -10176,6 +10260,17 @@ get-caller-file@^2.0.1:
   resolved "https://registry.npmjs.org/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
   integrity sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==
 
+get-dependents-graph@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/get-dependents-graph/-/get-dependents-graph-0.1.1.tgz#5e8d1678b416decbef704812f67e4232018ba5ab"
+  integrity sha512-dznifdJoiRuInBnDaFKFpUdebZXmM/m1n0P2K2cqA05I+ynI+6O/1nCY4I5tVhNQcfDBIG1evo9ZG7rQgoCWew==
+  dependencies:
+    "@changesets/types" "^0.3.0"
+    chalk "^2.1.0"
+    fs-extra "^7.0.1"
+    get-workspaces "^0.5.0"
+    semver "^5.4.1"
+
 get-own-enumerable-property-symbols@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/get-own-enumerable-property-symbols/-/get-own-enumerable-property-symbols-3.0.0.tgz#b877b49a5c16aefac3655f2ed2ea5b684df8d203"
@@ -10249,10 +10344,10 @@ get-workspaces@^0.4.0:
     fs-extra "^7.0.1"
     globby "^9.2.0"
 
-get-workspaces@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/get-workspaces/-/get-workspaces-0.4.2.tgz#b887b9632bc5dcc2001c0ba124f00581453597b4"
-  integrity sha512-TZtSe6nltU8BEeJt9Te5BQpY0A1NpW4SK3syIsorRiXEiwfu1KYpvaljefReY44AO96AztUyxy+qTFQhMgwXkQ==
+get-workspaces@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/get-workspaces/-/get-workspaces-0.5.0.tgz#bc00b6d158f409a70ba54cc95e58bf29cfe4df1e"
+  integrity sha512-S7/ItnunHBgGgyNIosz52YxGRWzizqvo+yzT8gYvRwKenFMIF/ZWsTXLhHrASWcSM5baJPzxNW+ny6ixJ5uQ7A==
   dependencies:
     fs-extra "^7.0.1"
     globby "^9.2.0"
@@ -10351,12 +10446,6 @@ global-prefix@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/global-prefix/-/global-prefix-1.0.2.tgz#dbf743c6c14992593c655568cb66ed32c0122ebe"
   integrity sha1-2/dDxsFJklk8ZVVoy2btMsASLr4=
-  dependencies:
-    expand-tilde "^2.0.2"
-    homedir-polyfill "^1.0.1"
-    ini "^1.3.4"
-    is-windows "^1.0.1"
-    which "^1.2.14"
 
 global@^4.3.0:
   version "4.4.0"
@@ -20207,6 +20296,11 @@ resolve-from@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
   integrity sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==
+
+resolve-from@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-5.0.0.tgz#c35225843df8f776df21c57557bc087e9dfdfc69"
+  integrity sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==
 
 resolve-pathname@^2.2.0:
   version "2.2.0"
