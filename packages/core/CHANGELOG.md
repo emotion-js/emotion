@@ -1,5 +1,11 @@
 # @emotion/core
 
+## 10.0.21
+
+### Patch Changes
+
+- [7855db4a](https://github.com/emotion-js/emotion/commit/7855db4ae379f212e7b972b9108419154e17ed45) [#1537](https://github.com/emotion-js/emotion/pull/1537) Thanks [@Andarist](https://github.com/Andarist)! - Add missing `/* #__PURE__ */` annotation to creation of EmotionCssPropInternal
+
 ## 10.0.20
 
 ### Patch Changes
