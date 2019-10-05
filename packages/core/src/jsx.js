@@ -93,7 +93,7 @@ let render = (cache, props, theme: null | Object, ref) => {
   return ele
 }
 
-let Emotion = withEmotionCache((props, cache, ref) => {
+let Emotion = /* #__PURE__ */ withEmotionCache((props, cache, ref) => {
   // use Context.read for the theme when it's stable
   if (typeof props.css === 'function') {
     return (
