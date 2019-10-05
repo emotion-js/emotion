@@ -1,5 +1,11 @@
 # babel-plugin-emotion
 
+## 10.0.21
+
+### Patch Changes
+
+- [0eafebb5](https://github.com/emotion-js/emotion/commit/0eafebb5119212897f81084f63a807c02b0012fc) [#1538](https://github.com/emotion-js/emotion/pull/1538) Thanks [@Andarist](https://github.com/Andarist)! - Push source maps & labels to cooked/raw arrays in TS-transpiled tagged template expressions
+
 ## 10.0.20
 
 ### Patch Changes
