@@ -92,6 +92,32 @@ process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
+exports[`source maps css-transpiled-by-ts 1`] = `
+"import { __makeTemplateObject } from 'tslib'
+
+import css from '@emotion/css'
+
+var templateObject_1
+
+css(
+  templateObject_1 ||
+    (templateObject_1 = __makeTemplateObject(
+      ['\\\\n  color: hotpink;\\\\n'],
+      ['\\\\n  color: hotpink;\\\\n']
+    ))
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+import { __makeTemplateObject } from 'tslib';
+var templateObject_1;
+
+/*#__PURE__*/
+_css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuXG5pbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2NzcydcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY3NzKFxuICB0ZW1wbGF0ZU9iamVjdF8xIHx8XG4gICAgKHRlbXBsYXRlT2JqZWN0XzEgPSBfX21ha2VUZW1wbGF0ZU9iamVjdChcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXSxcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXVxuICAgICkpXG4pXG4iXX0= */\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuXG5pbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2NzcydcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY3NzKFxuICB0ZW1wbGF0ZU9iamVjdF8xIHx8XG4gICAgKHRlbXBsYXRlT2JqZWN0XzEgPSBfX21ha2VUZW1wbGF0ZU9iamVjdChcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXSxcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXVxuICAgICkpXG4pXG4iXX0= */\\")])));"
+`;
+
 exports[`source maps styled-object 1`] = `
 "import styled from '@emotion/styled'
 
