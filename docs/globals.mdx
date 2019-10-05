@@ -12,7 +12,7 @@ render(
   <div>
     <Global
       styles={css`
-        * {
+        .some-class {
           color: hotpink !important;
         }
       `}
@@ -25,9 +25,7 @@ render(
         }
       }}
     />
-    <div className="some-class">
-      Everything is hotpink now!
-    </div>
+    <div className="some-class">This is hotpink now!</div>
   </div>
 )
 ```
