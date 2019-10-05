@@ -6,20 +6,20 @@ Sometimes you might want to insert global css like resets or font faces. You can
 
 ```jsx
 // @live
-import { Global } from '@emotion/core'
+import { Global, css } from '@emotion/core'
 
 render(
   <div>
     <Global
-      styles={{
-        '.some-class': {
-          color: 'hotpink !important',
-          fontSize: 50,
-          textAlign: 'center'
+      styles={css`
+        .some-class {
+          color: hotpink !important;
+          font-size: 50px;
+          text-align: center;
         }
-      }}
+      `}
     />
-    <div className="some-class">Everything is hotpink now!</div>
+    <div className="some-class">This is hotpink now!</div>
   </div>
 )
 ```
