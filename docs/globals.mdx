@@ -14,10 +14,16 @@ render(
       styles={css`
         .some-class {
           color: hotpink !important;
-          font-size: 50px;
-          text-align: center;
         }
       `}
+    />
+    <Global
+      styles={{
+        '.some-class': {
+          fontSize: 50,
+          textAlign: 'center'
+        }
+      }}
     />
     <div className="some-class">This is hotpink now!</div>
   </div>
