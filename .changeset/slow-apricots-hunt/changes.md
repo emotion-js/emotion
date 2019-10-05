@@ -1,1 +1,1 @@
-Add missing /_ #**PURE** _/ annotation to creation of EmotionCssPropInternal
+Add missing `/* #__PURE__ */` annotation to creation of EmotionCssPropInternal
