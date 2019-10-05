@@ -5,7 +5,8 @@ import { getExpressionsFromTemplateLiteral } from './minify'
 import { getLabelFromPath } from './label'
 import { getSourceMap } from './source-maps'
 import { simplifyObject } from './object-to-string'
-import { appendStringToExpressions, joinStringLiterals } from './strings'
+import { appendStringToArguments, joinStringLiterals } from './strings'
+import { isTaggedTemplateExpressionTranspiledByTypeScript } from './checks'
 
 function createSourceMapConditional(t, production, development) {
   return t.conditionalExpression(
@@ -49,10 +50,10 @@ export let transformExpressionWithStyles = ({
       arg => arg.type !== 'SpreadElement'
     )
 
-    if (canAppendStrings) {
+    if (canAppendStrings && shouldLabel) {
       const label = getLabelFromPath(path, state, t)
-      if (label && shouldLabel) {
-        appendStringToExpressions(path.node.arguments, `label:${label};`, t)
+      if (label) {
+        appendStringToArguments(path, `label:${label};`, t)
       }
     }
 
@@ -114,6 +115,23 @@ export let transformExpressionWithStyles = ({
           last,
           sourceMapConditional
         )
+      } else if (isTaggedTemplateExpressionTranspiledByTypeScript(path)) {
+        const makeTemplateObjectCallPath = path
+          .get('arguments')[0]
+          .get('right')
+          .get('right')
+
+        makeTemplateObjectCallPath.get('arguments').forEach(argPath => {
+          const elements = argPath.get('elements')
+          const lastElement = elements[elements.length - 1]
+          lastElement.replaceWith(
+            t.binaryExpression(
+              '+',
+              lastElement.node,
+              t.cloneNode(sourceMapConditional)
+            )
+          )
+        })
       } else {
         path.node.arguments.push(sourceMapConditional)
       }

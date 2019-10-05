@@ -50,6 +50,30 @@ const inline = {
     filename: __filename
   },
 
+  // this test has better readability for label alone than other ones which include source maps
+  'label on code transpiled by TS': {
+    code: `
+    import { __makeTemplateObject } from 'tslib'
+
+    import css from '@emotion/css'
+
+    var templateObject_1
+
+    const someVar = css(
+      templateObject_1 ||
+        (templateObject_1 = __makeTemplateObject(
+          ['\\n  color: hotpink;\\n'],
+          ['\\n  color: hotpink;\\n']
+        ))
+    )
+    `,
+    opts: {
+      autoLabel: true,
+      sourceMap: false
+    },
+    filename: __filename
+  },
+
   'custom instance': {
     code: `
     import {css as lol} from 'my-emotion-instance'

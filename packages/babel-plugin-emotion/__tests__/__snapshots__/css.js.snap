@@ -374,6 +374,32 @@ const thing = {
 };"
 `;
 
+exports[`@emotion/babel-plugin-core css label-transpiled-by-ts 1`] = `
+"import css from '@emotion/css'
+import { __makeTemplateObject } from 'tslib'
+
+var templateObject_1
+
+const someVar = css(
+  templateObject_1 ||
+    (templateObject_1 = __makeTemplateObject(
+      ['\\\\n  color: hotpink;\\\\n'],
+      ['\\\\n  color: hotpink;\\\\n']
+    ))
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+import { __makeTemplateObject } from 'tslib';
+var templateObject_1;
+
+const someVar =
+/*#__PURE__*/
+_css(templateObject_1 || (templateObject_1 = __makeTemplateObject([\\"\\\\n  color: hotpink;\\\\nlabel:someVar;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2NzcydcbmltcG9ydCB7IF9fbWFrZVRlbXBsYXRlT2JqZWN0IH0gZnJvbSAndHNsaWInXG5cbnZhciB0ZW1wbGF0ZU9iamVjdF8xXG5cbmNvbnN0IHNvbWVWYXIgPSBjc3MoXG4gIHRlbXBsYXRlT2JqZWN0XzEgfHxcbiAgICAodGVtcGxhdGVPYmplY3RfMSA9IF9fbWFrZVRlbXBsYXRlT2JqZWN0KFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddLFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddXG4gICAgKSlcbilcbiJdfQ== */\\")], [\\"\\\\n  color: hotpink;\\\\nlabel:someVar;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2NzcydcbmltcG9ydCB7IF9fbWFrZVRlbXBsYXRlT2JqZWN0IH0gZnJvbSAndHNsaWInXG5cbnZhciB0ZW1wbGF0ZU9iamVjdF8xXG5cbmNvbnN0IHNvbWVWYXIgPSBjc3MoXG4gIHRlbXBsYXRlT2JqZWN0XzEgfHxcbiAgICAodGVtcGxhdGVPYmplY3RfMSA9IF9fbWFrZVRlbXBsYXRlT2JqZWN0KFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddLFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddXG4gICAgKSlcbilcbiJdfQ== */\\")])));"
+`;
+
 exports[`@emotion/babel-plugin-core css multiple-calls 1`] = `
 "import css from '@emotion/css'
 

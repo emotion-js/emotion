@@ -91,6 +91,16 @@ let cls = /*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
 });"
 `;
 
+exports[`babel css inline babel 6 label on code transpiled by TS 1`] = `
+"import _css from '@emotion/css';
+
+import { __makeTemplateObject } from 'tslib';
+
+var templateObject_1;
+
+const someVar = /*#__PURE__*/_css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\nlabel:someVar;'], ['\\\\n  color: hotpink;\\\\nlabel:someVar;'])));"
+`;
+
 exports[`babel css inline babel 7 custom instance 1`] = `
 "import { css as _css } from \\"my-emotion-instance\\";
 
@@ -191,4 +201,14 @@ _css(process.env.NODE_ENV === \\"production\\" ? {
   styles: \\"color:hotpink;label:my-css-cls;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */\\"
 });"
+`;
+
+exports[`babel css inline babel 7 label on code transpiled by TS 1`] = `
+"import _css from \\"@emotion/css\\";
+import { __makeTemplateObject } from 'tslib';
+var templateObject_1;
+
+const someVar =
+/*#__PURE__*/
+_css(templateObject_1 || (templateObject_1 = __makeTemplateObject([\\"\\\\n  color: hotpink;\\\\nlabel:someVar;\\"], [\\"\\\\n  color: hotpink;\\\\nlabel:someVar;\\"])));"
 `;
