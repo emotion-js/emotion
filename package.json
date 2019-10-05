@@ -22,8 +22,8 @@
     "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
     "postinstall": "opencollective postinstall && preconstruct dev && manypkg check",
     "changeset": "changeset",
-    "version-packages": "changeset bump",
-    "release": "yarn build && changeset release"
+    "version-packages": "changeset version",
+    "release": "yarn build && changeset publish"
   },
   "resolutions": {
     "**/react": "16.8.1",
