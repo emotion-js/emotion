@@ -105,8 +105,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
                 classInterpolations,
                 props.className
               )
-            }
-            if (
+            } else if (
               typeof props.className === 'object' &&
               !props.className.styles
             ) {
