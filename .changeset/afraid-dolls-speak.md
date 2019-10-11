@@ -1,5 +1,5 @@
 ---
-'@emotion/styled-base': minor
+'@emotion/styled-base': patch
 '@emotion/styled': minor
 ---
 
