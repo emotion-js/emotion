@@ -30,12 +30,14 @@ let render = (cache, props, theme: null | Object, ref) => {
   let registeredStyles = [cssProp]
   let className = ''
 
-  if (props.className !== undefined) {
+  if (typeof props.className === 'string') {
     className = getRegisteredStyles(
       cache.registered,
       registeredStyles,
       props.className
     )
+  } else if (props.className != null) {
+    className = `${props.className} `
   }
 
   let serialized = serializeStyles(registeredStyles)

@@ -100,13 +100,13 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             }
 
             if (typeof props.className === 'string') {
-              className += getRegisteredStyles(
+              className = getRegisteredStyles(
                 context.registered,
                 classInterpolations,
                 props.className
               )
             } else if (props.className != null) {
-              className += `${props.className} `
+              className = `${props.className} `
             }
 
             const serialized = serializeStyles(
