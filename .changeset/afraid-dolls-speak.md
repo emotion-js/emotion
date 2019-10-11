@@ -1,6 +1,6 @@
 ---
 '@emotion/styled-base': patch
-'@emotion/styled': minor
+'@emotion/styled': patch
 ---
 
 Accept objects as className in styled components
