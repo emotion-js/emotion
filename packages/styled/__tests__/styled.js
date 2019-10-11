@@ -7,6 +7,7 @@ import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
 import { keyframes } from '@emotion/core'
 import css from '@emotion/css'
+import { css as emotionCss } from 'emotion'
 
 describe('styled', () => {
   test('no dynamic', () => {
@@ -401,7 +402,7 @@ describe('styled', () => {
     const tree = renderer
       .create(
         <Button
-          css={css({
+          className={emotionCss({
             '&:hover': {
               color: 'pink',
               '&:active': {

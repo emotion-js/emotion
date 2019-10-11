@@ -141,21 +141,33 @@ exports[`styled composition based on props 2`] = `
 `;
 
 exports[`styled composition of nested pseudo selectors 1`] = `
-.emotion-0 {
+.emotion-1 {
   font-size: 2rem;
   padding: 16px;
 }
 
-.emotion-0:hover {
+.emotion-1:hover {
   color: blue;
 }
 
-.emotion-0:hover:active {
+.emotion-1:hover:active {
   color: red;
 }
 
+.emotion-0:hover {
+  color: pink;
+}
+
+.emotion-0:hover:active {
+  color: purple;
+}
+
+.emotion-0:hover.some-class {
+  color: yellow;
+}
+
 <button
-  className="emotion-0"
+  className="emotion-0 emotion-1"
 >
   Should be purple
 </button>
