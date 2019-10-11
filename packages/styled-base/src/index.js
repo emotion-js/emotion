@@ -105,7 +105,10 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
                 classInterpolations,
                 props.className
               )
+            } else if (props.className != null) {
+              className += `${props.className} `
             }
+
             const serialized = serializeStyles(
               styles.concat(classInterpolations),
               context.registered,

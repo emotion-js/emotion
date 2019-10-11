@@ -63,6 +63,15 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('object as className', () => {
+    const myclass = { toString: () => 'myclass' }
+    const Comp = styled.div``
+
+    const tree = renderer.create(<Comp className={myclass} />).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('glamorous style api & composition', () => {
     const H1 = styled.h1(props => ({ fontSize: props.fontSize }))
     const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
@@ -392,7 +401,7 @@ describe('styled', () => {
     const tree = renderer
       .create(
         <Button
-          className={css({
+          css={css({
             '&:hover': {
               color: 'pink',
               '&:active': {
