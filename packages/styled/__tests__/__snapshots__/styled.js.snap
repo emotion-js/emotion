@@ -404,6 +404,12 @@ exports[`styled no prop filtering on string tags started with upper case 1`] = `
 </SomeCustomLink>
 `;
 
+exports[`styled object as className 1`] = `
+<div
+  className="myclass emotion-0"
+/>
+`;
+
 exports[`styled object as style 1`] = `
 .emotion-0 {
   font-size: 20px;
