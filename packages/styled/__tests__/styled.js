@@ -401,7 +401,7 @@ describe('styled', () => {
     const tree = renderer
       .create(
         <Button
-          className={css({
+          css={css({
             '&:hover': {
               color: 'pink',
               '&:active': {
