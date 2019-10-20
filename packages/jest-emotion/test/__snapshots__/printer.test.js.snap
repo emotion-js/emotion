@@ -12,10 +12,10 @@ exports[`does not replace class names that are not from emotion 1`] = `
 
 exports[`jest-emotion with DOM elements disabled does not replace class names or insert styles into DOM element snapshots 1`] = `
 "<div
-  class=\\"css-q1yspt-divStyle\\"
+  class=\\"css-bcbdq6-divStyle\\"
 >
   <svg
-    class=\\"css-18ku24t-svgStyle\\"
+    class=\\"css-1kpuvjo-svgStyle\\"
   />
 </div>"
 `;
@@ -84,4 +84,4 @@ exports[`prints speedy styles 1`] = `
 />"
 `;
 
-exports[`throws nice error for invalid css 1`] = `"There was an error parsing the following css: \\".css-d1550g-tree{jnnjvh@'jevhevhblabel:tree;}\\""`;
+exports[`throws nice error for invalid css 1`] = `"There was an error parsing the following css: \\".css-1kkrnw9-tree{jnnjvh@'jevhevhb;label:tree;}\\""`;

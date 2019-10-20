@@ -10,8 +10,8 @@ let style = css({ color: 'hotpink' })
 
 import _css from \\"@emotion/css\\";
 let style = {
-  name: \\"1gfxf27-style\\",
-  styles: \\"color:hotpink;label:style;\\"
+  name: \\"hpn981-style\\",
+  styles: \\"color:hotpink;;label:style;\\"
 };"
 `;
 
@@ -25,8 +25,8 @@ let style = css({ color: 'hotpink' })
 
 import { css } from '@emotion/core';
 let style = {
-  name: \\"1gfxf27-style\\",
-  styles: \\"color:hotpink;label:style;\\"
+  name: \\"hpn981-style\\",
+  styles: \\"color:hotpink;;label:style;\\"
 };"
 `;
 
@@ -62,7 +62,7 @@ import { css as _css } from \\"emotion\\";
 let cls =
 /*#__PURE__*/
 _css({
-  name: \\"6kh100-cls\\",
-  styles: \\"color:hotpink;label:cls;\\"
+  name: \\"8dy5on-cls\\",
+  styles: \\"color:hotpink;;label:cls;\\"
 });"
 `;

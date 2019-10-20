@@ -26,11 +26,11 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 import * as React from 'react';
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1v4u9bq-Button\\",
-  styles: \\"color:hotpink;label:Button;\\"
+  name: \\"1q24rv0-Button\\",
+  styles: \\"color:hotpink;;label:Button;\\"
 } : {
-  name: \\"1v4u9bq-Button\\",
-  styles: \\"color:hotpink;label:Button;\\",
+  name: \\"1q24rv0-Button\\",
+  styles: \\"color:hotpink;;label:Button;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1RIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5cbmV4cG9ydCBsZXQgQnV0dG9uID0gcHJvcHMgPT4ge1xuICByZXR1cm4gKFxuICAgIDw+XG4gICAgICA8YnV0dG9uXG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGNvbG9yOiAnaG90cGluaydcbiAgICAgICAgfX1cbiAgICAgICAgey4uLnByb3BzfVxuICAgICAgLz5cbiAgICA8Lz5cbiAgKVxufVxuIl19 */\\"
 };
 
