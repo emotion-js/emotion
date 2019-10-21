@@ -43,11 +43,11 @@ exports[`babel css inline babel 6 label format with dirname, filename, and local
 "import { css as _css } from 'emotion';
 
 let cls = /*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
-    name: '1azqn5t-my-css-__tests__-css-requires-options-cls',
-    styles: 'color:hotpink;label:my-css-__tests__-css-requires-options-cls;'
+    name: 'mn0r3a-my-css-__tests__-css-requires-options-cls',
+    styles: 'color:hotpink;;label:my-css-__tests__-css-requires-options-cls;'
 } : {
-    name: '1azqn5t-my-css-__tests__-css-requires-options-cls',
-    styles: 'color:hotpink;label:my-css-__tests__-css-requires-options-cls;',
+    name: 'mn0r3a-my-css-__tests__-css-requires-options-cls',
+    styles: 'color:hotpink;;label:my-css-__tests__-css-requires-options-cls;',
     map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */'
 });"
 `;
@@ -56,11 +56,11 @@ exports[`babel css inline babel 6 label format with filename and local 1`] = `
 "import { css as _css } from 'emotion';
 
 let cls = /*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
-    name: '12j84ju-my-css-css-requires-options-cls',
-    styles: 'color:hotpink;label:my-css-css-requires-options-cls;'
+    name: 'jnyc7-my-css-css-requires-options-cls',
+    styles: 'color:hotpink;;label:my-css-css-requires-options-cls;'
 } : {
-    name: '12j84ju-my-css-css-requires-options-cls',
-    styles: 'color:hotpink;label:my-css-css-requires-options-cls;',
+    name: 'jnyc7-my-css-css-requires-options-cls',
+    styles: 'color:hotpink;;label:my-css-css-requires-options-cls;',
     map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */'
 });"
 `;
@@ -69,11 +69,11 @@ exports[`babel css inline babel 6 label format with filename that is index and l
 "import { css as _css } from 'emotion';
 
 let cls = /*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
-    name: '1uf5d32-my-css-some-directory-cls',
-    styles: 'color:hotpink;label:my-css-some-directory-cls;'
+    name: 'v8qj0c-my-css-some-directory-cls',
+    styles: 'color:hotpink;;label:my-css-some-directory-cls;'
 } : {
-    name: '1uf5d32-my-css-some-directory-cls',
-    styles: 'color:hotpink;label:my-css-some-directory-cls;',
+    name: 'v8qj0c-my-css-some-directory-cls',
+    styles: 'color:hotpink;;label:my-css-some-directory-cls;',
     map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */'
 });"
 `;
@@ -82,11 +82,11 @@ exports[`babel css inline babel 6 label format with only local 1`] = `
 "import { css as _css } from 'emotion';
 
 let cls = /*#__PURE__*/_css(process.env.NODE_ENV === 'production' ? {
-    name: '1xiywpm-my-css-cls',
-    styles: 'color:hotpink;label:my-css-cls;'
+    name: 'ryhvpw-my-css-cls',
+    styles: 'color:hotpink;;label:my-css-cls;'
 } : {
-    name: '1xiywpm-my-css-cls',
-    styles: 'color:hotpink;label:my-css-cls;',
+    name: 'ryhvpw-my-css-cls',
+    styles: 'color:hotpink;;label:my-css-cls;',
     map: '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */'
 });"
 `;
@@ -98,7 +98,7 @@ import { __makeTemplateObject } from 'tslib';
 
 var templateObject_1;
 
-const someVar = /*#__PURE__*/_css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\nlabel:someVar;'], ['\\\\n  color: hotpink;\\\\nlabel:someVar;'])));"
+const someVar = /*#__PURE__*/_css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n;label:someVar;'], ['\\\\n  color: hotpink;\\\\n;label:someVar;'])));"
 `;
 
 exports[`babel css inline babel 7 custom instance 1`] = `
@@ -149,11 +149,11 @@ exports[`babel css inline babel 7 label format with dirname, filename, and local
 let cls =
 /*#__PURE__*/
 _css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1azqn5t-my-css-__tests__-css-requires-options-cls\\",
-  styles: \\"color:hotpink;label:my-css-__tests__-css-requires-options-cls;\\"
+  name: \\"mn0r3a-my-css-__tests__-css-requires-options-cls\\",
+  styles: \\"color:hotpink;;label:my-css-__tests__-css-requires-options-cls;\\"
 } : {
-  name: \\"1azqn5t-my-css-__tests__-css-requires-options-cls\\",
-  styles: \\"color:hotpink;label:my-css-__tests__-css-requires-options-cls;\\",
+  name: \\"mn0r3a-my-css-__tests__-css-requires-options-cls\\",
+  styles: \\"color:hotpink;;label:my-css-__tests__-css-requires-options-cls;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */\\"
 });"
 `;
@@ -164,11 +164,11 @@ exports[`babel css inline babel 7 label format with filename and local 1`] = `
 let cls =
 /*#__PURE__*/
 _css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"12j84ju-my-css-css-requires-options-cls\\",
-  styles: \\"color:hotpink;label:my-css-css-requires-options-cls;\\"
+  name: \\"jnyc7-my-css-css-requires-options-cls\\",
+  styles: \\"color:hotpink;;label:my-css-css-requires-options-cls;\\"
 } : {
-  name: \\"12j84ju-my-css-css-requires-options-cls\\",
-  styles: \\"color:hotpink;label:my-css-css-requires-options-cls;\\",
+  name: \\"jnyc7-my-css-css-requires-options-cls\\",
+  styles: \\"color:hotpink;;label:my-css-css-requires-options-cls;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */\\"
 });"
 `;
@@ -179,11 +179,11 @@ exports[`babel css inline babel 7 label format with filename that is index and l
 let cls =
 /*#__PURE__*/
 _css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1uf5d32-my-css-some-directory-cls\\",
-  styles: \\"color:hotpink;label:my-css-some-directory-cls;\\"
+  name: \\"v8qj0c-my-css-some-directory-cls\\",
+  styles: \\"color:hotpink;;label:my-css-some-directory-cls;\\"
 } : {
-  name: \\"1uf5d32-my-css-some-directory-cls\\",
-  styles: \\"color:hotpink;label:my-css-some-directory-cls;\\",
+  name: \\"v8qj0c-my-css-some-directory-cls\\",
+  styles: \\"color:hotpink;;label:my-css-some-directory-cls;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */\\"
 });"
 `;
@@ -194,11 +194,11 @@ exports[`babel css inline babel 7 label format with only local 1`] = `
 let cls =
 /*#__PURE__*/
 _css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1xiywpm-my-css-cls\\",
-  styles: \\"color:hotpink;label:my-css-cls;\\"
+  name: \\"ryhvpw-my-css-cls\\",
+  styles: \\"color:hotpink;;label:my-css-cls;\\"
 } : {
-  name: \\"1xiywpm-my-css-cls\\",
-  styles: \\"color:hotpink;label:my-css-cls;\\",
+  name: \\"ryhvpw-my-css-cls\\",
+  styles: \\"color:hotpink;;label:my-css-cls;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHtjc3N9IGZyb20gJ2Vtb3Rpb24nXG4gICAgbGV0IGNscyA9IGNzcyh7Y29sb3I6J2hvdHBpbmsnfSlcbiAgICAiXX0= */\\"
 });"
 `;
@@ -210,5 +210,5 @@ var templateObject_1;
 
 const someVar =
 /*#__PURE__*/
-_css(templateObject_1 || (templateObject_1 = __makeTemplateObject([\\"\\\\n  color: hotpink;\\\\nlabel:someVar;\\"], [\\"\\\\n  color: hotpink;\\\\nlabel:someVar;\\"])));"
+_css(templateObject_1 || (templateObject_1 = __makeTemplateObject([\\"\\\\n  color: hotpink;\\\\n;label:someVar;\\"], [\\"\\\\n  color: hotpink;\\\\n;label:someVar;\\"])));"
 `;

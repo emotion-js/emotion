@@ -53,7 +53,7 @@ export let transformExpressionWithStyles = ({
     if (canAppendStrings && shouldLabel) {
       const label = getLabelFromPath(path, state, t)
       if (label) {
-        appendStringToArguments(path, `label:${label};`, t)
+        appendStringToArguments(path, `;label:${label};`, t)
       }
     }
 
