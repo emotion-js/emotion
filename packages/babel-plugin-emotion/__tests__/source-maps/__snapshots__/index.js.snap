@@ -32,11 +32,11 @@ const SomeComponent = props => <div css={{ color: 'hotpink' }} {...props} />
 import { jsx } from '@emotion/core';
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1wl9j1m-SomeComponent\\",
-  styles: \\"color:hotpink;label:SomeComponent;\\"
+  name: \\"zszx19-SomeComponent\\",
+  styles: \\"color:hotpink;;label:SomeComponent;\\"
 } : {
-  name: \\"1wl9j1m-SomeComponent\\",
-  styles: \\"color:hotpink;label:SomeComponent;\\",
+  name: \\"zszx19-SomeComponent\\",
+  styles: \\"color:hotpink;;label:SomeComponent;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0MiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jb25zdCBTb21lQ29tcG9uZW50ID0gcHJvcHMgPT4gPGRpdiBjc3M9e3sgY29sb3I6ICdob3RwaW5rJyB9fSB7Li4ucHJvcHN9IC8+XG4iXX0= */\\"
 };
 
@@ -68,7 +68,7 @@ const SomeComponent = props => <div css={
 /*#__PURE__*/
 _css({
   backgroundColor: window.something
-}, \\"label:SomeComponent;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLSSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBwcm9wcyA9PiAoXG4gIDxkaXZcbiAgICBjc3M9e3tcbiAgICAgIGJhY2tncm91bmRDb2xvcjogd2luZG93LnNvbWV0aGluZ1xuICAgIH19XG4gICAgey4uLnByb3BzfVxuICAvPlxuKVxuIl19 */\\"))} {...props} />;"
+}, \\";label:SomeComponent;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLSSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBwcm9wcyA9PiAoXG4gIDxkaXZcbiAgICBjc3M9e3tcbiAgICAgIGJhY2tncm91bmRDb2xvcjogd2luZG93LnNvbWV0aGluZ1xuICAgIH19XG4gICAgey4uLnByb3BzfVxuICAvPlxuKVxuIl19 */\\"))} {...props} />;"
 `;
 
 exports[`source maps css-string 1`] = `
