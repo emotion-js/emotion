@@ -202,30 +202,57 @@ function handleInterpolation(
             "let SomeComponent = styled('div')`${dynamicStyle}`"
         )
       }
+      break
     }
-    // eslint-disable-next-line no-fallthrough
-    default: {
-      if (registered == null) {
-        return interpolation
-      }
-      const cached = registered[interpolation]
-      if (
-        process.env.NODE_ENV !== 'production' &&
-        couldBeSelectorInterpolation &&
-        shouldWarnAboutInterpolatingClassNameFromCss &&
-        cached !== undefined
-      ) {
-        console.error(
-          'Interpolating a className from css`` is not recommended and will cause problems with composition.\n' +
-            'Interpolating a className from css`` will be completely unsupported in a future major version of Emotion'
+    case 'string':
+      if (process.env.NODE_ENV !== 'production') {
+        const matched = []
+        const replaced = interpolation.replace(
+          animationRegex,
+          (match, p1, p2) => {
+            const fakeVarName = `animation${matched.length}`
+            matched.push(
+              `const ${fakeVarName} = keyframes\`${p2.replace(
+                /^@keyframes animation-\w+/,
+                ''
+              )}\``
+            )
+            return `\${${fakeVarName}}`
+          }
         )
-        shouldWarnAboutInterpolatingClassNameFromCss = false
+        if (matched.length) {
+          console.error(
+            '`keyframes` output got interpolated into plain string, please wrap it with `css`.\n\n' +
+              'Instead of doing this:\n\n' +
+              [...matched, `\`${replaced}\``].join('\n') +
+              '\n\nYou should wrap it with `css` like this:\n\n' +
+              `css\`${replaced}\``
+          )
+        }
       }
-      return cached !== undefined && !couldBeSelectorInterpolation
-        ? cached
-        : interpolation
-    }
+      break
   }
+
+  // finalize string values (regular strings and functions interpolated into css calls)
+  if (registered == null) {
+    return interpolation
+  }
+  const cached = registered[interpolation]
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    couldBeSelectorInterpolation &&
+    shouldWarnAboutInterpolatingClassNameFromCss &&
+    cached !== undefined
+  ) {
+    console.error(
+      'Interpolating a className from css`` is not recommended and will cause problems with composition.\n' +
+        'Interpolating a className from css`` will be completely unsupported in a future major version of Emotion'
+    )
+    shouldWarnAboutInterpolatingClassNameFromCss = false
+  }
+  return cached !== undefined && !couldBeSelectorInterpolation
+    ? cached
+    : interpolation
 }
 
 function createStringFromObject(

@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import css from '@emotion/css'
-import { jsx, Global } from '@emotion/core'
+import { jsx, Global, keyframes } from '@emotion/core'
 import renderer from 'react-test-renderer'
 
 // $FlowFixMe
@@ -162,15 +162,15 @@ test('kebab-case', () => {
   css({ '--primary-color': 'hotpink' })
   css({ ':last-of-type': null })
   expect(console.error.mock.calls).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "Using kebab-case for css properties in objects is not supported. Did you mean backgroundColor?",
-  ],
-  Array [
-    "Using kebab-case for css properties in objects is not supported. Did you mean msFilter?",
-  ],
-]
-`)
+        Array [
+          Array [
+            "Using kebab-case for css properties in objects is not supported. Did you mean backgroundColor?",
+          ],
+          Array [
+            "Using kebab-case for css properties in objects is not supported. Did you mean msFilter?",
+          ],
+        ]
+    `)
 })
 
 test('unterminated comments', () => {
@@ -205,4 +205,40 @@ test('unterminated comments', () => {
   ).toThrowErrorMatchingInlineSnapshot(
     `"Your styles have an unterminated comment (\\"/*\\" without corresponding \\"*/\\")."`
   )
+})
+
+test('keyframes interpolated into plain string', () => {
+  const animateColor = keyframes({
+    'from,to': { color: 'green' },
+    '50%': { color: 'hotpink' }
+  })
+  const rotate360 = keyframes({
+    from: {
+      transform: 'rotate(0deg)'
+    },
+    to: {
+      transform: 'rotate(360deg)'
+    }
+  })
+
+  renderer.create(
+    <div css={[`animation: ${animateColor} 10s ${rotate360} 5s;`]} />
+  )
+  expect(console.error.mock.calls).toMatchInlineSnapshot(`
+    Array [
+      Array [
+        "\`keyframes\` output got interpolated into plain string, please wrap it with \`css\`.
+
+    Instead of doing this:
+
+    const animation0 = keyframes\`{from,to{color:green;}50%{color:hotpink;}}\`
+    const animation1 = keyframes\`{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}\`
+    \`animation: \${animation0} 10s \${animation1} 5s;\`
+
+    You should wrap it with \`css\` like this:
+
+    css\`animation: \${animation0} 10s \${animation1} 5s;\`",
+      ],
+    ]
+  `)
 })
