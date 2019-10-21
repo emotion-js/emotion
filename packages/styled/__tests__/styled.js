@@ -1,12 +1,11 @@
 // @flow
+/** @jsx jsx */
 import 'test-utils/next-env'
-import React from 'react'
 import renderer from 'react-test-renderer'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
-import { keyframes } from '@emotion/core'
-import css from '@emotion/css'
+import { jsx, keyframes, css } from '@emotion/core'
 
 describe('styled', () => {
   test('no dynamic', () => {
