@@ -1,20 +1,27 @@
 // @flow
 import * as css from 'css'
+import { replaceClassNames } from './replace-class-names'
 import {
-  replaceClassNames,
-  type ClassNameReplacer
-} from './replace-class-names'
-import { getClassNamesFromNodes, isReactElement, isDOMElement } from './utils'
-import type { Emotion } from 'create-emotion'
+  getClassNamesFromNodes,
+  isReactElement,
+  isEmotionCssPropElementType,
+  isEmotionCssPropEnzymeElement,
+  isDOMElement,
+  getStylesFromClassNames,
+  getStyleElements,
+  getKeys
+} from './utils'
 
-export { createMatchers } from './matchers'
-
-type Options = {
-  classNameReplacer: ClassNameReplacer,
-  DOMElements: boolean
-}
+export { matchers } from './matchers'
 
 function getNodes(node, nodes = []) {
+  if (Array.isArray(node)) {
+    for (let child of node) {
+      getNodes(child, nodes)
+    }
+    return nodes
+  }
+
   if (node.children) {
     for (let child of node.children) {
       getNodes(child, nodes)
@@ -28,30 +35,69 @@ function getNodes(node, nodes = []) {
   return nodes
 }
 
-export function getStyles(emotion: Emotion) {
-  return Object.keys(emotion.caches.inserted).reduce((style, current) => {
-    if (emotion.caches.inserted[current] === true) {
-      return style
-    }
-    return style + emotion.caches.inserted[current]
-  }, '')
+function getPrettyStylesFromClassNames(
+  classNames: Array<string>,
+  elements: Array<HTMLStyleElement>
+) {
+  let styles = getStylesFromClassNames(classNames, elements)
+
+  let prettyStyles
+  try {
+    prettyStyles = css.stringify(css.parse(styles))
+  } catch (e) {
+    console.error(e)
+    throw new Error(`There was an error parsing the following css: "${styles}"`)
+  }
+  return prettyStyles
 }
 
-export function createSerializer(
-  emotion: Emotion,
-  { classNameReplacer, DOMElements = true }: Options = {}
-) {
+type Options = {
+  classNameReplacer?: (className: string, index: number) => string,
+  DOMElements?: boolean
+}
+
+function filterEmotionProps(props = {}) {
+  const {
+    css,
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__,
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__,
+    ...rest
+  } = props
+
+  rest.css = 'unknown styles'
+
+  return rest
+}
+
+export function createSerializer({
+  classNameReplacer,
+  DOMElements = true
+}: Options = {}) {
+  let cache = new WeakSet()
   function print(val: *, printer: Function) {
+    if (isEmotionCssPropEnzymeElement(val)) {
+      return val.children.map(printer).join('\n')
+    }
+    if (isEmotionCssPropElementType(val)) {
+      return printer({
+        ...val,
+        props: filterEmotionProps(val.props),
+        type: val.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+      })
+    }
     const nodes = getNodes(val)
-    markNodes(nodes)
     const classNames = getClassNamesFromNodes(nodes)
-    const styles = getStylesFromClassNames(classNames)
+    let elements = getStyleElements()
+    const styles = getPrettyStylesFromClassNames(classNames, elements)
+    nodes.forEach(cache.add, cache)
     const printedVal = printer(val)
+    nodes.forEach(cache.delete, cache)
+    let keys = getKeys(elements)
     return replaceClassNames(
       classNames,
       styles,
       printedVal,
-      emotion.caches.key,
+      keys,
       classNameReplacer
     )
   }
@@ -59,45 +105,15 @@ export function createSerializer(
   function test(val: *) {
     return (
       val &&
-      !val.withEmotionStyles &&
-      (DOMElements
-        ? isReactElement(val) || isDOMElement(val)
-        : isReactElement(val))
+      ((!cache.has(val) &&
+        (isReactElement(val) || (DOMElements && isDOMElement(val)))) ||
+        isEmotionCssPropEnzymeElement(val) ||
+        isEmotionCssPropElementType(val))
     )
   }
-
-  function markNodes(nodes) {
-    nodes.forEach(node => {
-      node.withEmotionStyles = true
-    })
-  }
-
-  function getStylesFromClassNames(classNames: Array<string>) {
-    let styles = ''
-    // This could be done in a more efficient way
-    // but it would be a breaking change to do so
-    // because it would change the ordering of styles
-    Object.keys(emotion.caches.registered).forEach(className => {
-      let indexOfClassName = classNames.indexOf(className)
-      if (indexOfClassName !== -1) {
-        let nameWithoutKey = classNames[indexOfClassName].substring(
-          emotion.caches.key.length + 1
-        )
-        // $FlowFixMe
-        styles += emotion.caches.inserted[nameWithoutKey]
-      }
-    })
-    let prettyStyles
-    try {
-      prettyStyles = css.stringify(css.parse(styles))
-    } catch (e) {
-      console.error(e)
-      throw new Error(
-        `There was an error parsing css in jest-emotion: "${styles}"`
-      )
-    }
-    return prettyStyles
-  }
-
   return { test, print }
 }
+
+export let { print, test } = createSerializer()
+
+export default { print, test }

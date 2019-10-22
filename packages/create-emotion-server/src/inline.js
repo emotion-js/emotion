@@ -1,5 +1,5 @@
 // @flow
-import type { Emotion } from 'create-emotion'
+import type { EmotionCache } from '@emotion/utils'
 
 function generateStyleTag(
   cssKey: string,
@@ -12,11 +12,12 @@ function generateStyleTag(
   )}"${nonceString}>${styles}</style>`
 }
 
-const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
-  html: string
-): string => {
-  const { inserted, key: cssKey, registered } = emotion.caches
-  const regex = new RegExp(`<|${cssKey}-([a-zA-Z0-9-]+)`, 'gm')
+const createRenderStylesToString = (
+  cache: EmotionCache,
+  nonceString: string
+) => (html: string): string => {
+  const { inserted, key: cssKey, registered } = cache
+  const regex = new RegExp(`<|${cssKey}-([a-zA-Z0-9-_]+)`, 'gm')
 
   const seen = {}
 
@@ -61,7 +62,7 @@ const createRenderStylesToString = (emotion: Emotion, nonceString: string) => (
     // $FlowFixMe
     const id = match[1]
     const style = inserted[id]
-    if (style === true || seen[id]) {
+    if (style === true || style === undefined || seen[id]) {
       continue
     }
 

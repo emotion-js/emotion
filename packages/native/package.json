@@ -1,25 +1,23 @@
 {
   "name": "@emotion/native",
-  "version": "9.2.7",
+  "version": "10.0.14",
   "description": "Style and render React Native components using emotion",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/native.cjs.js",
+  "module": "dist/native.esm.js",
   "files": [
     "src",
     "dist"
   ],
   "devDependencies": {
-    "emotion-theming": "^9.2.5",
-    "react": "^16.4.1",
-    "react-native": "^0.56.0"
+    "emotion-theming": "^10.0.14",
+    "react": "^16.5.2",
+    "react-native": "^0.57.0"
   },
   "dependencies": {
-    "@emotion/primitives-core": "^9.2.7"
+    "@emotion/primitives-core": "10.0.14"
   },
   "peerDependencies": {
-    "prop-types": "15.x",
-    "react": "15.x || 16.x",
-    "react-native": ">=0.14.0 && < 1"
+    "react-native": ">=0.14.0 <1"
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",
@@ -37,5 +35,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "browser": {
+    "./dist/native.cjs.js": "./dist/native.browser.cjs.js",
+    "./dist/native.esm.js": "./dist/native.browser.esm.js"
   }
 }

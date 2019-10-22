@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`change theme 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    this will be green then pink
+  </div>
+</div>
+`;
+
+exports[`change theme 2`] = `
+.emotion-0 {
+  color: pink;
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    this will be green then pink
+  </div>
+</div>
+`;
+
+exports[`change theme 3`] = `<div />`;

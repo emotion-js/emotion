@@ -61,9 +61,9 @@ test('order with string and object', () => {
   ).toEqual(['color', 'flex', 'backgroundColor', 'flexGrow', 'flexDirection'])
 })
 
-it('allows function interpolations when this.mergedProps is defined', () => {
+it('allows function interpolations when this is defined', () => {
   expect(
-    css.call({ mergedProps: { thing: true } }, props => ({
+    css.call({ thing: true }, props => ({
       color: props.thing && 'hotpink'
     }))
   ).toEqual({ color: 'hotpink' })
@@ -71,7 +71,7 @@ it('allows function interpolations when this.mergedProps is defined', () => {
 
 it('works with nested functions', () => {
   expect(
-    css.call({ mergedProps: { thing: true } }, props => () => ({
+    css.call({ thing: true }, props => () => ({
       color: props.thing && 'hotpink'
     }))
   ).toEqual({ color: 'hotpink' })
@@ -80,7 +80,7 @@ it('works with nested functions', () => {
 it('works with functions in tagged template literals', () => {
   expect(
     css.call(
-      { mergedProps: {} },
+      {},
       ...returnArguments`
         color: ${() => 'hotpink'};
       `

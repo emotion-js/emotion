@@ -1,17 +1,15 @@
-/**
- * @fileoverview Apply eslint rules to emotion.sh css-in-js
- * @author alex-pex
- */
+// @flow
 
-// ------------------------------------------------------------------------------
-// Requirements
-// ------------------------------------------------------------------------------
+import importFromEmotion from './rules/import-from-emotion'
+import noVanilla from './rules/no-vanilla'
+import syntaxPreference from './rules/syntax-preference'
+import styledImport from './rules/styled-import'
+import jsxImport from './rules/jsx-import'
 
-const requireIndex = require('requireindex')
-
-// ------------------------------------------------------------------------------
-// Plugin Definition
-// ------------------------------------------------------------------------------
-
-// import all rules in src/rules
-module.exports.rules = requireIndex(`${__dirname}/rules`)
+export let rules = {
+  'import-from-emotion': importFromEmotion,
+  'no-vanilla': noVanilla,
+  'syntax-preference': syntaxPreference,
+  'styled-import': styledImport,
+  'jsx-import': jsxImport
+}

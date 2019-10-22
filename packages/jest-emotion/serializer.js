@@ -1,4 +1,2 @@
-const { createSerializer } = require('jest-emotion')
-const emotion = require('emotion')
-
-module.exports = createSerializer(emotion)
+// should we remove this?
+module.exports = require('jest-emotion')

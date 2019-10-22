@@ -176,7 +176,7 @@ exports[`css explicit & 1`] = `
 `;
 
 exports[`css explicit & 2`] = `
-".css-16ooeb3.another-class {
+".css-5v9d41-cls1.another-class {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -238,7 +238,7 @@ exports[`css flushes correctly 1`] = `
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="emotion-0"
+  className="css-fnfowi-cls1"
 />
 `;
 
@@ -303,20 +303,20 @@ exports[`css manually use label property 1`] = `
 `;
 
 exports[`css manually use label property 2`] = `
-".css-1qqiudg-wow {
+".css-17sz4tf-wow-cls1 {
   color: hotpink;
 }"
 `;
 
 exports[`css media query specificity 1`] = `
-".css-mfslnr {
+".css-13ug87i-cls {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
 
 @media (min-width:420px) {
-  .css-mfslnr {
+  .css-13ug87i-cls {
     width: 96px;
     height: 96px;
   }
@@ -501,12 +501,6 @@ exports[`css null value 1`] = `
 />
 `;
 
-exports[`css null value 2`] = `
-<div
-  className="emotion-0"
-/>
-`;
-
 exports[`css random expression 1`] = `
 .emotion-0 {
   font-size: 20px;
@@ -547,16 +541,6 @@ exports[`css registered styles as nested selector value in object 1`] = `
   display: -ms-flexbox;
   display: flex;
   background-color: hotpink;
-}
-
-<div
-  className="emotion-0"
-/>
-`;
-
-exports[`css return function in interpolation 1`] = `
-.emotion-0 {
-  color: blue;
 }
 
 <div

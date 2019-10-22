@@ -30,7 +30,7 @@ merge of your pull request!
 - [ ] Documentation
 - [ ] Tests
 - [ ] Code complete
+- [ ] Changeset <!-- This is necessary if your changes should release any packages. Run `yarn changeset` to create a changeset -->
+
 
 <!-- feel free to add additional comments -->
-
-<!-- Please add a `Tag:` prefixed label from the labels so that this PR shows up in the changelog -->

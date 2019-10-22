@@ -1,39 +1,95 @@
-import * as React from 'react';
-import * as emotionTheming from '../';
-// tslint:disable-next-line:no-duplicate-imports
-import { ThemeProvider, withTheme, EmotionThemingModule } from '../';
+import * as emotionTheming from 'emotion-theming'
+import * as React from 'react'
 
-const theme = { primary: "green", secondary: "white" };
-const CompSFC = (props: { prop: boolean }) => <div />;
-declare class CompC extends React.Component<{ prop: boolean }> { }
+const { ThemeProvider, withTheme, useTheme } = emotionTheming
 
+interface Theme {
+  primary: string
+  secondary: string
+}
+declare const theme: Theme
+
+interface Props {
+  prop: boolean
+  theme: Theme
+}
+declare const CompSFC: React.SFC<Props>
+declare class CompC extends React.Component<Props> {}
+
+const WrappedCompC = withTheme<typeof CompC>(CompC)
+;<ThemeProvider theme={theme}>{WrappedCompC}</ThemeProvider>
+;<ThemeProvider theme={() => theme} />
+;<ThemeProvider theme={(outerTheme: Theme) => ({ ...outerTheme, ...theme })} />
+
+const ThemedSFC = withTheme(CompSFC)
+;<ThemedSFC prop />
+;<ThemedSFC prop theme={theme} />
+
+const ThemedComp = withTheme(CompC)
+;<ThemedComp prop />
+;<ThemedComp prop theme={theme} />
+
+const CompSFCWithDefault = ({ prop }: Props) => (prop ? <span /> : <div />)
+CompSFCWithDefault.defaultProps = { prop: false }
+class CompCWithDefault extends React.Component<Props> {
+  static defaultProps = { prop: false }
+  render() {
+    return this.props.prop ? <span /> : <div />
+  }
+}
+
+{
+  const theme: Theme = useTheme<Theme>()
+  const themeFail: Theme = useTheme<number>() // $ExpectError
+}
+
+const ThemedSFCWithDefault = withTheme(CompSFCWithDefault)
+;<ThemedSFCWithDefault />
+;<ThemedSFCWithDefault theme={theme} />
+
+const ThemedCompWithDefault = withTheme(CompCWithDefault)
+;<ThemedCompWithDefault />
+;<ThemedCompWithDefault theme={theme} />
+
+const {
+  ThemeProvider: TypedThemeProvider,
+  withTheme: typedWithTheme
+} = emotionTheming as emotionTheming.EmotionTheming<Theme>
+;<TypedThemeProvider theme={theme} />
+// $ExpectError
+;<TypedThemeProvider theme={{ primary: 5 }} />
+
+typedWithTheme(CompSFC)
 /**
- * Theme Provider with no type
+ * @todo
+ * Following line should report an error.
  */
-<ThemeProvider theme={theme} />;
-<ThemeProvider theme={() => theme} />;
+typedWithTheme((props: { value: number }) => null)
 
-/**
- * withTheme with no type
- */
-const ThemedSFC = withTheme(CompSFC);
-<ThemedSFC theme={theme} prop />;
-<ThemedSFC prop />;
+{
+  interface Book {
+    kind: 'book'
+    author: string
+  }
 
-const ThemedComp = withTheme(CompC);
-<ThemedComp theme={theme} prop />;
-<ThemedComp prop />;
+  interface Magazine {
+    kind: 'magazine'
+    issue: number
+  }
 
-const { ThemeProvider: TypedThemeProvider, withTheme: typedWithTheme } = emotionTheming as EmotionThemingModule<typeof theme>;
+  type SomethingToRead = (Book | Magazine) & { theme?: any }
 
-<TypedThemeProvider theme={theme} />;
-<TypedThemeProvider theme={{ primary: "white" }} />;
-<TypedThemeProvider theme={theme => ({ primary: theme.primary, secondary: theme.secondary })} />;
+  const Readable: React.SFC<SomethingToRead> = props => {
+    if (props.kind === 'magazine') {
+      return <div>magazine #{props.issue}</div>
+    }
 
-const TypedThemedSFC = typedWithTheme(ThemedSFC);
-<TypedThemedSFC prop />;
-<TypedThemedSFC theme={theme} prop/>;
+    return <div>magazine #{props.author}</div>
+  }
 
-const TypedCompSFC = typedWithTheme(CompSFC);
-<TypedCompSFC prop />;
-<TypedCompSFC theme={theme} prop />;
+  const ThemedReadable = withTheme(Readable)
+  ;<Readable kind="book" author="Hejlsberg" />
+  ;<ThemedReadable kind="book" author="Hejlsberg" />
+  ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
+  ;<ThemedReadable kind="magazine" author="Hejlsberg" /> // $ExpectError
+}

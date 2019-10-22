@@ -1,11 +1,22 @@
 module.exports = () => {
   return {
     presets: [
-      ['@babel/preset-env', { loose: true }],
-      '@babel/preset-flow',
-      '@babel/preset-react',
-      ['@babel/preset-stage-2', { decoratorsLegacy: true }]
+      [require.resolve('@babel/preset-env'), { loose: true }],
+      require.resolve('@babel/preset-react')
     ],
-    plugins: ['babel-plugin-codegen']
+    plugins: [
+      require.resolve(
+        'babel-plugin-add-basic-constructor-for-react-components'
+      ),
+      require.resolve('babel-plugin-fix-dce-for-classes-with-statics'),
+      require.resolve('@babel/plugin-transform-flow-strip-types'),
+      require.resolve('babel-plugin-codegen'),
+      require.resolve('@babel/plugin-proposal-object-rest-spread'),
+      require.resolve('@babel/plugin-transform-runtime'),
+      [
+        require.resolve('@babel/plugin-proposal-class-properties'),
+        { loose: true }
+      ]
+    ]
   }
 }

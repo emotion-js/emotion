@@ -1,6 +1,6 @@
-// @flow
 /**
  * @jest-environment node
+ * @flow
  */
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -20,11 +20,10 @@ let reactEmotion
 
 describe('renderStylesToNodeStream', () => {
   beforeEach(() => {
-    global.__SECRET_EMOTION__ = undefined
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    reactEmotion = require('@emotion/styled')
   })
   test('renders styles with ids', async () => {
     const { Page1, Page2 } = getComponents(emotion, reactEmotion)
@@ -52,10 +51,9 @@ describe('hydration', () => {
   })
   beforeEach(() => {
     jest.resetModules()
-    global.__SECRET_EMOTION__ = undefined
     emotion = require('emotion')
     emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
+    reactEmotion = require('@emotion/styled')
   })
   test('only inserts rules that are not in the critical css', async () => {
     const { Page1 } = getComponents(emotion, reactEmotion)
@@ -64,17 +62,16 @@ describe('hydration', () => {
     const { window } = new JSDOM(html)
     global.document = window.document
     global.window = window
-    global.__SECRET_EMOTION__ = undefined
     setHtml(html, document)
     jest.resetModules()
     emotion = require('emotion')
     emotionServer = require('emotion-server')
-    reactEmotion = require('react-emotion')
-    expect(emotion.caches.registered).toEqual({})
+    reactEmotion = require('@emotion/styled')
+    expect(emotion.cache.registered).toEqual({})
 
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)
-    expect(getInjectedRules(emotion)).toMatchSnapshot()
+    expect(getInjectedRules()).toMatchSnapshot()
     expect(getCssFromChunks(emotion, document)).toMatchSnapshot()
   })
 })

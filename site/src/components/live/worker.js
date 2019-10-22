@@ -1,6 +1,6 @@
 // https://github.com/developit/preact-www/blob/cb47a5015ea666930ead6eebc2917307db6c1db6/src/components/controllers/repl/worker.js
 
-importScripts('https://unpkg.com/@babel/standalone@7.0.0-beta.49/babel.min.js')
+importScripts('https://unpkg.com/@babel/standalone@7.0.0/babel.min.js')
 
 const babelPluginEmotion = require('babel-plugin-emotion').default
 
@@ -26,7 +26,7 @@ const options = {
       }
     ]
   ],
-  plugins: [babelPluginEmotion]
+  plugins: [[babelPluginEmotion, { sourceMap: false }]]
 }
 
 const ACTIONS = {}

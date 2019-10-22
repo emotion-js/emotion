@@ -1,8 +1,14 @@
 // @flow
 import chalk from 'chalk'
 import * as css from 'css'
-import { getClassNamesFromNodes } from './utils'
-import type { Emotion } from 'create-emotion'
+import {
+  getClassNamesFromNodes,
+  getStylesFromClassNames,
+  getStyleElements,
+  hasClassNames,
+  getMediaRules,
+  RULE_TYPES
+} from './utils'
 
 /*
  * Taken from
@@ -32,53 +38,50 @@ function valueMatches(declaration, value) {
   return value === declaration.value
 }
 
-function getStylesFromClassNames(classNames: Array<string>, emotion) {
-  return Object.keys(emotion.caches.registered).reduce((styles, className) => {
-    let indexOfClassName = classNames.indexOf(className)
-    if (indexOfClassName !== -1) {
-      let nameWithoutKey = classNames[indexOfClassName].substring(
-        emotion.caches.key.length + 1
-      )
-      // $FlowFixMe
-      styles += emotion.caches.inserted[nameWithoutKey]
-    }
-    return styles
-  }, '')
-}
+function toHaveStyleRule(
+  received: *,
+  property: *,
+  value: *,
+  options?: { target?: string, media?: string } = {}
+) {
+  const { target, media } = options
+  const classNames = getClassNamesFromNodes([received])
+  const cssString = getStylesFromClassNames(classNames, getStyleElements())
+  const styles = css.parse(cssString)
 
-export function createMatchers(emotion: Emotion) {
-  function toHaveStyleRule(received: *, property: *, value: *) {
-    const selectors = getClassNamesFromNodes([received])
-    const cssString = getStylesFromClassNames(selectors, emotion)
-    const styles = css.parse(cssString)
+  let preparedRules = styles.stylesheet.rules
+  if (media) {
+    preparedRules = getMediaRules(preparedRules, media)
+  }
+  const declaration = preparedRules
+    .filter(
+      rule =>
+        rule.type === RULE_TYPES.rule &&
+        hasClassNames(classNames, rule.selectors, target)
+    )
+    .reduce((decs, rule) => decs.concat(rule.declarations), [])
+    .filter(dec => dec.type === 'declaration' && dec.property === property)
+    .pop()
 
-    const declaration = styles.stylesheet.rules
-      .reduce((decs, rule) => Object.assign([], decs, rule.declarations), [])
-      .filter(dec => dec.type === 'declaration' && dec.property === property)
-      .pop()
-
-    if (!declaration) {
-      return {
-        pass: false,
-        message: () => `Property not found: ${property}`
-      }
-    }
-
-    const pass = valueMatches(declaration, value)
-
-    const message = () =>
-      `Expected ${property}${pass ? ' not ' : ' '}to match:\n` +
-      `  ${chalk.green(value)}\n` +
-      'Received:\n' +
-      `  ${chalk.red(declaration.value)}`
-
+  if (!declaration) {
     return {
-      pass,
-      message
+      pass: false,
+      message: () => `Property not found: ${property}`
     }
   }
+
+  const pass = valueMatches(declaration, value)
+
+  const message = () =>
+    `Expected ${property}${pass ? ' not ' : ' '}to match:\n` +
+    `  ${chalk.green(value)}\n` +
+    'Received:\n' +
+    `  ${chalk.red(declaration.value)}`
 
   return {
-    toHaveStyleRule
+    pass,
+    message
   }
 }
+
+export let matchers = { toHaveStyleRule }

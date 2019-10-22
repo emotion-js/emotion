@@ -1,9 +1,6 @@
 {
   "name": "babel-tester",
   "main": "src/index.js",
-  "version": "0.4.4",
-  "private": true,
-  "dependencies": {
-    "path-exists": "^3.0.0"
-  }
+  "version": "0.4.5",
+  "private": true
 }

@@ -1,8 +1,6 @@
 // @flow
 import createEmotion from 'create-emotion'
 
-const context = typeof global !== 'undefined' ? global : {}
-
 export const {
   flush,
   hydrate,
@@ -13,5 +11,5 @@ export const {
   keyframes,
   css,
   sheet,
-  caches
-} = createEmotion(context)
+  cache
+} = createEmotion()

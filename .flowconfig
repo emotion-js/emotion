@@ -1,10 +1,16 @@
 [version]
-0.76.0
+0.89.0
 
 [ignore]
 .*/node_modules/config-chain/.*
 .*/node_modules/styled-components/.*
 .*/node_modules/graphql/.*
+.*/node_modules/metro.*
+.*/node_modules/preact/.*
+.*/node_modules/@parcel/.*
+
+[untyped]
+.*/node_modules/polished/.*
 
 
 [include]
@@ -12,22 +18,9 @@
 [libs]
 
 [declarations]
-.*/node_modules/polished/.*
 .*/node_modules/react-native/.*
 
 
 [options]
 suppress_comment=.*\\$FlowFixMe
-module.name_mapper='^\(@emotion/babel-utils\)$' -> '<PROJECT_ROOT>/test/empty.js'
-module.name_mapper='^\(create-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(create-emotion-styled\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(react-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(preact-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(babel-plugin-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(emotion-theming\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(emotion-server\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(create-emotion-server\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^\(jest-emotion\)$' -> '<PROJECT_ROOT>/packages/\1/src'
-module.name_mapper='^@emotion\/\([a-zA-Z0-9_\-]+\)$' -> '<PROJECT_ROOT>/packages/\1/src/index'
-module.name_mapper='^@emotion\/\([a-zA-Z0-9_\-]+\)$' -> '<PROJECT_ROOT>/next-packages/\1/src/index'
+sharedmemory.hash_table_pow=21

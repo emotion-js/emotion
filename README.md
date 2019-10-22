@@ -4,14 +4,16 @@
 </p>
 <p align="center" style="font-size: 1.2rem;">The Next Generation of CSS-in-JS</p>
 
+> **Need support upgrading to Emotion 10? [See the migration guide](https://emotion.sh/docs/migrating-to-emotion-10)**
+
 [![Backers on Open Collective](https://opencollective.com/emotion/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/emotion/sponsors/badge.svg)](#sponsors) [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://img.shields.io/circleci/project/github/emotion-js/emotion/master.svg)](https://circleci.com/gh/emotion-js/emotion)
 [![codecov](https://codecov.io/gh/emotion-js/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/emotion-js/emotion)
-![core gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/emotion.umd.min.js?compression=gzip&label=core%20gzip%20size)
-![core size](http://img.badgesize.io/https://unpkg.com/emotion/dist/emotion.umd.min.js?label=core%20size)
-![react gzip size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?compression=gzip&label=react%20gzip%20size)
-![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?label=react%20size)
-[![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
+![core size](https://img.shields.io/bundlephobia/min/emotion.svg?label=core%20size)
+![core gzip size](https://img.shields.io/bundlephobia/minzip/emotion.svg?label=core%20gzip%20size)
+![react size](https://img.shields.io/bundlephobia/min/@emotion/styled-base.svg?label=react%20size)
+![react gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/styled-base.svg?label=react%20gzip%20size)
+[![slack](https://emotion-slack.now.sh/badge.svg)](https://emotion-slack.now.sh/)
 [![spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/emotion)
 
 Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
@@ -22,54 +24,36 @@ Emotion is a performant and flexible CSS-in-JS library. Building on many other C
 
 Frequently viewed docs:
 
-* [Introduction](https://emotion.sh/docs/introduction)
-* [Install](https://emotion.sh/docs/install)
-* [CSS](https://emotion.sh/docs/css)
-* [Styled Components](https://emotion.sh/docs/styled)
-* [Composition](https://emotion.sh/docs/composition)
-* [Nested Selectors](https://emotion.sh/docs/nested)
-* [Media Queries](https://emotion.sh/docs/media-queries)
+- [Introduction](https://emotion.sh/docs/introduction)
+- [Install](https://emotion.sh/docs/install)
+- [CSS Prop](https://emotion.sh/docs/css-prop)
+- [Styled Components](https://emotion.sh/docs/styled)
+- [Composition](https://emotion.sh/docs/composition)
+- [Nested Selectors](https://emotion.sh/docs/nested)
+- [Media Queries](https://emotion.sh/docs/media-queries)
 
 ### Quick Start
 
 Get up and running with a single import.
 
 ```bash
-npm install --save emotion
+npm install --save @emotion/core
 ```
 
-```javascript
-import { css } from 'emotion'
+```jsx
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 
-const app = document.getElementById('root')
-const myStyle = css`
-  color: rebeccapurple;
-`
-app.classList.add(myStyle)
-```
-
-### React with [Optional Babel Plugin](docs/babel.md)
-
-```bash
-npm install --save emotion react-emotion babel-plugin-emotion
-```
-
-_Note: use `preact-emotion` in place of `react-emotion` if using [Preact](https://github.com/developit/preact)_
-
-```javascript
-import styled, { css } from 'react-emotion'
-
-const Container = styled('div')`
-  background: #333;
-`
-const myStyle = css`
-  color: rebeccapurple;
-`
-const app = () => (
-  <Container>
-    <p className={myStyle}>Hello World</p>
-  </Container>
-)
+let SomeComponent = props => {
+  return (
+    <div
+      css={{
+        color: 'hotpink'
+      }}
+      {...props}
+    />
+  )
+}
 ```
 
 ### Do I Need To Use the Babel Plugin?
@@ -84,36 +68,40 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 
 ### Examples
 
-* [emotion website](site) [[Demo Here](https://emotion.sh)]
-* [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
-* [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
-* [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
-* [govuk-react](https://github.com/penx/govuk-react/), a React component library built for UK Government departments
-* **open a PR and add yours!**
+- [emotion website](site) [[Demo Here](https://emotion.sh)]
+- [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
+- [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
+- [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
+- **open a PR and add yours!**
 
 ### Ecosystem
 
-* [stylelint](https://github.com/stylelint/stylelint) - A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
-* [facepaint](https://github.com/emotion-js/facepaint)
-* [emotion-vue](https://github.com/egoist/emotion-vue)
-* [ember-emotion](https://github.com/alexlafroscia/ember-emotion)
-* [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
-* [ShevyJS](https://github.com/kyleshevlin/shevyjs)
-* [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
-* [polished](https://github.com/styled-components/polished) - Lightweight set of Sass/Compass-style mixins/helpers for writing styles in JavaScript.
+- [stylelint](https://github.com/stylelint/stylelint) - A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
+- [facepaint](https://github.com/emotion-js/facepaint)
+- [emotion-vue](https://github.com/egoist/emotion-vue)
+- [nuxt-community/emotion-module](https://github.com/nuxt-community/emotion-module) - Emotion module for Nuxt.js
+- [ember-emotion](https://github.com/alexlafroscia/ember-emotion)
+- [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
+- [ShevyJS](https://github.com/kyleshevlin/shevyjs)
+- [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
+- [polished](https://github.com/styled-components/polished) - Lightweight set of Sass/Compass-style mixins/helpers for writing styles in JavaScript.
+- [monad-ui](https://github.com/muhajirdev/monad-ui/) - Utility First CSS-In-JS
+- [css-in-js-media](https://github.com/zx6658/css-in-js-media) - you can deal with responsive design using css-in-js easily with this `css-in-js-media` which is similar with include-media
 
 ### In the Wild
 
-* [healthline.com](https://www.healthline.com)
-* [nytimes.com](https://www.nytimes.com)
-* [vault.crucible.gg](http://vault.crucible.gg/)
-* [saldotuc.com](https://saldotuc.com)
-* [gatsbythemes.com](https://gatsbythemes.com/)
-* [blazity.com](https://blazity.com/)
-* [postmates.com](https://postmates.com/)
-* [thedisconnect.co](https://thedisconnect.co/one)
-* [zefenify.com](https://zefenify.com/about.html)
-* [sentry.io](https://sentry.io)
+- [abacusfi.com](https://abacusfi.com)
+- [healthline.com](https://www.healthline.com)
+- [nytimes.com](https://www.nytimes.com)
+- [vault.crucible.gg](http://vault.crucible.gg/)
+- [render.com](https://render.com)
+- [gatsbythemes.com](https://gatsbythemes.com/)
+- [blazity.com](https://blazity.com/)
+- [postmates.com](https://postmates.com/)
+- [thedisconnect.co](https://thedisconnect.co/one)
+- [zefenify.com](https://zefenify.com/about.html)
+- [sentry.io](https://sentry.io)
+- [comparett.com](https://comparett.com)
 
 ## Contributors
 

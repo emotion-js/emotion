@@ -4,9 +4,11 @@ dist/
 node_modules/
 *.log
 .idea
-packages/site/build
+site/build
 package-lock.json
 .DS_Store
 .cache
 public/
-/extract.test.emotion.css
+!playgrounds/cra/public
+.env
+.vscode

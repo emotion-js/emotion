@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`composing components 1`] = `
+.emotion-0 {
+  color: green;
+  display: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<button
+  className="emotion-0 emotion-1"
+>
+  hello world
+</button>
+`;
+
+exports[`composition 1`] = `
+.emotion-0 {
+  color: blue;
+  color: red;
+  color: blue;
+  font-size: 20px;
+  font-size: 32px;
+}
+
+<h1
+  className="legacy__class emotion-0 emotion-1"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`composition 2`] = `
+.emotion-0 {
+  font-size: 20px;
+  font-size: 13.333333333333334px;
+}
+
+<h1
+  className="legacy__class emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`composition of nested pseudo selectors 1`] = `
+.emotion-0 {
+  font-size: 2rem;
+  padding: 16px;
+}
+
+.emotion-0:hover {
+  color: blue;
+}
+
+.emotion-0:hover:active {
+  color: red;
+}
+
+.emotion-0:hover {
+  color: pink;
+}
+
+.emotion-0:hover:active {
+  color: purple;
+}
+
+.emotion-0:hover.some-class {
+  color: yellow;
+}
+
+<button
+  className="emotion-0 emotion-1"
+>
+  Should be purple
+</button>
+`;
+
+exports[`composition with objects 1`] = `
+.emotion-0 {
+  color: #333;
+  font-size: 1em;
+  height: 64px;
+  font-size: 4em;
+  font-size: 32px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
+  .emotion-0 {
+    font-size: 1.25em;
+  }
+}
+
+<h1
+  className="legacy__class emotion-0 emotion-1"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`glamorous style api & composition 1`] = `
+.emotion-0 {
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+  fontSize={20}
+>
+  hello world
+</h1>
+`;
+
+exports[`object composition 1`] = `
+.emotion-0 {
+  border-radius: 50%;
+  -webkit-transition: -webkit-transform 400ms ease-in-out;
+  -webkit-transition: transform 400ms ease-in-out;
+  transition: transform 400ms ease-in-out;
+  border: 3px solid currentColor;
+  width: 96px;
+  height: 96px;
+  color: red;
+  color: blue;
+}
+
+.emotion-0:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+<img
+  className="emotion-0 emotion-1"
+/>
+`;

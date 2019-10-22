@@ -1,4 +1,5 @@
 // @flow
+/* eslint-env jest */
 
 export function throwIfFalsy(something: *) {
   if (something) {
@@ -10,10 +11,14 @@ export function throwIfFalsy(something: *) {
 export function ignoreConsoleErrors(cb: () => mixed) {
   let oldConsoleError = console.error
   // $FlowFixMe
-  console.error = () => {}
-  cb()
-  // $FlowFixMe
-  console.error = oldConsoleError
+  console.error = jest.fn()
+
+  try {
+    cb()
+  } finally {
+    // $FlowFixMe
+    console.error = oldConsoleError
+  }
 }
 
 export let safeQuerySelector = (selector: string): HTMLElement => {

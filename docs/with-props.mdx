@@ -1,0 +1,35 @@
+---
+title: 'Attaching Props'
+---
+
+Some css-in-js libraries offer APIs to attach props to components, instead of having our own API to do that, we recommend creating a regular react component, using the css prop and attaching props like you would with any other React component.
+
+Note that if css is passed down via props, it will take precedence over the css in the component. 
+
+```jsx
+// @live
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
+
+const pinkInput = css`
+  background-color: pink;
+`;
+const RedPasswordInput = props => (
+  <input
+    type="password"
+    css={css`
+      background-color: red;
+      display: block;
+    `}
+    {...props}
+  />
+)
+
+render(
+  <div>
+    <RedPasswordInput placeholder="red" />
+    <RedPasswordInput placeholder="pink" css={pinkInput} />
+  </div>
+);
+
+```

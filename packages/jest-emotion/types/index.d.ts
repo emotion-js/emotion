@@ -2,21 +2,40 @@
 // TypeScript Version: 2.4
 
 /// <reference types="jest" />
-import { Emotion } from 'create-emotion';
+export interface EmotionMatchers extends jest.ExpectExtendMap {
+  toHaveStyleRule(
+    received: any,
+    property: string,
+    value: any,
+    options?: StyleRuleOptions
+  ): { message(): string; pass: boolean }
+}
+export const matchers: EmotionMatchers
 
 export interface CreateSerializerOptions {
-  classNameReplacer?: (className: string, index: number) => string;
-  DOMElements?: boolean;
+  classNameReplacer?: (className: string, index: number) => string
+  DOMElements?: boolean
 }
-
-export function getStyles(emotion: Emotion): string;
-export function createSerializer(emotion: Emotion, options?: CreateSerializerOptions): jest.SnapshotSerializerPlugin;
-export function createMatchers(emotion: Emotion): jest.ExpectExtendMap;
+export interface StyleRuleOptions {
+  target?: string
+  media?: string
+}
+export function createSerializer(
+  options?: CreateSerializerOptions
+): jest.SnapshotSerializerPlugin
+export const print: jest.SnapshotSerializerPlugin['print']
+export const test: jest.SnapshotSerializerPlugin['test']
+declare const serializer: jest.SnapshotSerializerPlugin
+export default serializer
 
 declare global {
   namespace jest {
     interface Matchers<R> {
-      toHaveStyleRule(property: string, value: any): R;
+      toHaveStyleRule(
+        property: string,
+        value: any,
+        options?: StyleRuleOptions
+      ): R
     }
   }
 }

@@ -1,35 +1,19 @@
-<p align="center" style="color: #343a40">
-  <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" height="150" width="150">
-  <h1 align="center">emotion</h1>
-</p>
-<p align="center" style="font-size: 1.2rem;">The Next Generation of CSS-in-JS</p>
+# emotion
 
-[![Backers on Open Collective](https://opencollective.com/emotion/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/emotion/sponsors/badge.svg)](#sponsors) [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
-[![Build Status](https://img.shields.io/circleci/project/github/emotion-js/emotion/master.svg)](https://circleci.com/gh/emotion-js/emotion)
-[![codecov](https://codecov.io/gh/emotion-js/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/emotion-js/emotion)
-![core gzip size](http://img.badgesize.io/https://unpkg.com/emotion/dist/emotion.umd.min.js?compression=gzip&label=core%20gzip%20size)
-![core size](http://img.badgesize.io/https://unpkg.com/emotion/dist/emotion.umd.min.js?label=core%20size)
-![react gzip size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?compression=gzip&label=react%20gzip%20size)
-![react size](http://img.badgesize.io/https://unpkg.com/react-emotion/dist/emotion.umd.min.js?label=react%20size)
-[![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
+The [emotion](https://www.npmjs.com/package/emotion) package is framework agnostic and the simplest way to use Emotion.
 
-Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
+## Table of Contents
 
-# [👀 Demo Sandbox](https://codesandbox.io/s/pk1qjqpw67)
+- [Quick Start](#quick-start)
+- [API](#api)
+  - [Generate Class Names — `css`](#css)
+  - [Global Styles — `injectGlobal`](#global-styles)
+  - [Animation Keyframes — `keyframes`](#animation-keyframes)
+  - [Composing Class Names — `cx`](#cx)
+- [Server Side Rendering](/docs/ssr.mdx#api)
+- [Babel Plugin](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)
 
-# [📖 Docs](https://emotion.sh/docs/introduction)
-
-Frequently viewed docs:
-
-* [Introduction](https://emotion.sh/docs/introduction)
-* [Install](https://emotion.sh/docs/install)
-* [CSS](https://emotion.sh/docs/css)
-* [Styled Components](https://emotion.sh/docs/styled)
-* [Composition](https://emotion.sh/docs/composition)
-* [Nested Selectors](https://emotion.sh/docs/nested)
-* [Media Queries](https://emotion.sh/docs/media-queries)
-
-### Quick Start
+## Quick Start
 
 Get up and running with a single import.
 
@@ -47,93 +31,241 @@ const myStyle = css`
 app.classList.add(myStyle)
 ```
 
-### React with [Optional Babel Plugin](docs/babel.md)
+## API
 
-```bash
-npm install --save emotion react-emotion babel-plugin-emotion
-```
+### css
 
-_Note: use `preact-emotion` in place of `react-emotion` if using [Preact](https://github.com/developit/preact)_
+The `css` function accepts styles as a template literal, object, or array of objects and returns a class name. It is the foundation of emotion.
 
-```javascript
-import styled, { css } from 'react-emotion'
+#### String Styles
 
-const Container = styled('div')`
-  background: #333;
-`
-const myStyle = css`
-  color: rebeccapurple;
-`
-const app = () => (
-  <Container>
-    <p className={myStyle}>Hello World</p>
-  </Container>
+```jsx
+// @live
+import { css } from 'emotion'
+
+const color = 'darkgreen'
+
+render(
+  <div
+    className={css`
+      background-color: hotpink;
+      &:hover {
+        color: ${color};
+      }
+    `}
+  >
+    This has a hotpink background.
+  </div>
 )
 ```
 
-### Do I Need To Use the Babel Plugin?
+#### Object Styles
 
-The babel plugin is not required, but enables some optimizations and customizations that could be beneficial for your project.
+```jsx
+// @live
+import { css } from 'emotion'
 
-Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)_
+const color = 'darkgreen'
 
-### Demo Sandbox
+render(
+  <div
+    className={css({
+      backgroundColor: 'hotpink',
+      '&:hover': {
+        color
+      }
+    })}
+  >
+    This has a hotpink background.
+  </div>
+)
+```
 
-[Demo Code Sandbox](https://codesandbox.io/s/pk1qjqpw67)
+#### Array of Object Styles
 
-### Examples
+```jsx
+// @live
+import { css } from 'emotion'
 
-* [emotion website](site) [[Demo Here](https://emotion.sh)]
-* [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
-* [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
-* [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
-* [govuk-react](https://github.com/penx/govuk-react/), a React component library built for UK Government departments
-* **open a PR and add yours!**
+const color = 'darkgreen'
+const isDanger = true
 
-### Ecosystem
+render(
+  <div
+    className={css([
+      {
+        backgroundColor: 'hotpink',
+        '&:hover': {
+          color
+        }
+      },
+      isDanger && {
+        color: 'red'
+      }
+    ])}
+  >
+    This has a hotpink background.
+  </div>
+)
+```
 
-* [facepaint](https://github.com/emotion-js/facepaint)
-* [emotion-vue](https://github.com/egoist/emotion-vue)
-* [ember-emotion](https://github.com/alexlafroscia/ember-emotion)
-* [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
-* [ShevyJS](https://github.com/kyleshevlin/shevyjs)
-* [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
+### Global Styles
 
-### In the Wild
+`injectGlobal` injects styles into the global scope and is useful for applications such as css resets or font faces.
 
-* [healthline.com](https://www.healthline.com)
-* [nytimes.com](https://www.nytimes.com)
-* [vault.crucible.gg](http://vault.crucible.gg/)
-* [saldotuc.com](https://saldotuc.com)
-* [gatsbythemes.com](https://gatsbythemes.com/)
-* [blazity.com](https://blazity.com/)
-* [postmates.com](https://postmates.com/)
-* [thedisconnect.co](https://thedisconnect.co/one)
-* [zefenify.com](https://zefenify.com/about.html)
-* [sentry.io](https://sentry.io)
+```jsx
+import { injectGlobal } from 'emotion'
 
-## Contributors
+injectGlobal`
+  * {
+    box-sizing: border-box;
+  }
+  @font-face {
+    font-family: 'Patrick Hand SC';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Patrick Hand SC'),
+      local('PatrickHandSC-Regular'),
+      url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2)
+        format('woff2');
+    unicode-range: U+0100-024f, U+1-1eff,
+      U+20a0-20ab, U+20ad-20cf, U+2c60-2c7f,
+      U+A720-A7FF;
+  }
+`
+```
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="graphs/contributors"><img src="https://opencollective.com/emotion/contributors.svg?width=890&button=false" /></a>
+### Animation Keyframes
 
-## Backers
+`keyframes` generates a unique animation name that can be used to animate elements with CSS animations.
 
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/emotion#backer)]
+**String Styles**
 
-<a href="https://opencollective.com/emotion#backers" target="_blank"><img src="https://opencollective.com/emotion/backers.svg?width=890"></a>
+```jsx
+// @live
+import { css, keyframes } from 'emotion'
 
-## Sponsors
+const bounce = keyframes`
+  from, 20%, 53%, 80%, to {
+    transform: translate3d(0,0,0);
+  }
 
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/emotion#sponsor)]
+  40%, 43% {
+    transform: translate3d(0, -30px, 0);
+  }
 
-<a href="https://opencollective.com/emotion/sponsor/0/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/emotion/sponsor/1/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/emotion/sponsor/2/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/emotion/sponsor/3/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/emotion/sponsor/4/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/emotion/sponsor/5/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/emotion/sponsor/6/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/emotion/sponsor/7/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/emotion/sponsor/8/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/emotion/sponsor/9/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/9/avatar.svg"></a>
+  70% {
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    transform: translate3d(0,-4px,0);
+  }
+`
+
+render(
+  <img
+    className={css`
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      animation: ${bounce} 1s ease infinite;
+      transform-origin: center bottom;
+    `}
+    src={logoUrl}
+  />
+)
+```
+
+**Object Styles**
+
+```jsx
+// @live
+import { css, keyframes } from 'emotion'
+
+const bounce = keyframes({
+  'from, 20%, 53%, 80%, to': {
+    transform: 'translate3d(0,0,0)'
+  },
+  '40%, 43%': {
+    transform: 'translate3d(0, -30px, 0)'
+  },
+  '70%': {
+    transform: 'translate3d(0, -15px, 0)'
+  },
+  '90%': {
+    transform: 'translate3d(0, -4px, 0)'
+  }
+})
+
+render(
+  <img
+    src={logoUrl}
+    className={css({
+      width: 96,
+      height: 96,
+      borderRadius: '50%',
+      animation: `${bounce} 1s ease infinite`,
+      transformOrigin: 'center bottom'
+    })}
+  />
+)
+```
+
+## cx
+
+`cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames). The key advantage of `cx` is that it detects emotion generated class names ensuring styles are overwritten in the correct order. Emotion generated styles are applied from left to right. Subsequent styles overwrite property values of previous styles.
+
+**Combining class names**
+
+```jsx
+import { cx, css } from 'emotion'
+
+const cls1 = css`
+  font-size: 20px;
+  background: green;
+`
+const cls2 = css`
+  font-size: 20px;
+  background: blue;
+`
+
+<div className={cx(cls1, cls2)} />
+```
+
+**Conditional class names**
+
+```jsx
+const cls1 = css`
+  font-size: 20px;
+  background: green;
+`
+const cls2 = css`
+  font-size: 20px;
+  background: blue;
+`
+
+const foo = true
+const bar = false
+
+
+<div
+  className={cx(
+    { [cls1]: foo },
+    { [cls2]: bar }
+  )}
+/>
+```
+
+**Using class names from other sources**
+
+```jsx
+const cls1 = css`
+  font-size: 20px;
+  background: green;
+`
+
+<div
+  className={cx(cls1, 'profile')}
+/>
+```

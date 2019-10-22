@@ -1,47 +1,49 @@
 - title: Getting Started
-  items: 
+  items:
     - introduction
     - install
-    - css
+    - css-prop
     - styled
     - composition
     - object-styles
     - nested
     - media-queries
-    - inject-global
+    - globals
 
 - title: Advanced
   items:
     - keyframes
-    - cx
     - ssr
     - with-props
     - theming
     - labels
-    - configurable-imports
-    - instances
+    - class-names
+    - cache-provider
+    - migrating-to-emotion-10
     #- benchmarks
 
 - title: Tooling
   items:
     - babel
+    - babel-macros
     - source-maps
     - testing
     - typescript
-    - extract-static
 
 # This loads the READMEs instead of files in docs/
 - title: Packages
   items:
+    - '@emotion/core'
+    - '@emotion/styled'
+    - '@emotion/cache'
     - emotion
-    - react-emotion
     - babel-plugin-emotion
     - eslint-plugin-emotion
     - emotion-server
     - emotion-theming
     - jest-emotion
-    - "@emotion/primitives"
+    - '@emotion/native'
+    - '@emotion/primitives'
     - create-emotion
-    - create-emotion-styled
     - create-emotion-server
-    - preact-emotion
+    - '@emotion/babel-preset-css-prop'

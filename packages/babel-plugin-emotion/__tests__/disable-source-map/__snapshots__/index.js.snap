@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`disable source map css 1`] = `
+"import css from '@emotion/css'
+
+let style = css({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+let style = {
+  name: \\"hpn981-style\\",
+  styles: \\"color:hotpink;;label:style;\\"
+};"
+`;
+
+exports[`disable source map css-core 1`] = `
+"import { css } from '@emotion/core'
+
+let style = css({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from '@emotion/core';
+let style = {
+  name: \\"hpn981-style\\",
+  styles: \\"color:hotpink;;label:style;\\"
+};"
+`;
+
+exports[`disable source map styled 1`] = `
+"import styled from '@emotion/styled'
+
+let Comp = styled.div({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled-base\\";
+
+let Comp = _styled(\\"div\\", {
+  target: \\"e4zcdjx0\\",
+  label: \\"Comp\\"
+})({
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+});"
+`;
+
+exports[`disable source map vanilla 1`] = `
+"import { css } from 'emotion'
+
+let cls = css({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"emotion\\";
+
+let cls =
+/*#__PURE__*/
+_css({
+  name: \\"8dy5on-cls\\",
+  styles: \\"color:hotpink;;label:cls;\\"
+});"
+`;

@@ -1,12 +1,19 @@
+// Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
+// TypeScript Version: 2.8
+
 /// <reference types="node" />
-// TypeScript Version: 2.3
+import { EmotionCache } from '@emotion/utils'
 
-import { Emotion } from 'create-emotion';
-
-export interface EmotionServer {
-  extractCritical(html: string): { html: string; ids: string[]; css: string; };
-  renderStylesToString(html: string): string;
-  renderStylesToNodeStream(): NodeJS.ReadWriteStream;
+export interface EmotionCritical {
+  html: string
+  ids: Array<string>
+  css: string
 }
 
-export default function createEmotionServer(emotion: Emotion): EmotionServer;
+export interface EmotionServer {
+  extractCritical(html: string): EmotionCritical
+  renderStylesToString(html: string): string
+  renderStylesToNodeStream(): NodeJS.ReadWriteStream
+}
+
+export default function createEmotionServer(cache: EmotionCache): EmotionServer

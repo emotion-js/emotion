@@ -1,0 +1,416 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled basic render 1`] = `
+.emotion-0 {
+  color: blue;
+  font-size: 20px;
+}
+
+@media (min-width:420px) {
+  .emotion-0 {
+    color: blue;
+  }
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled basic render with object as style 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled call expression 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+<div
+  className="emotion-0 emotion-1"
+>
+  hello world
+</div>
+`;
+
+exports[`styled composition based on props 1`] = `
+.emotion-0 {
+  color: blue;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composition based on props 2`] = `
+.emotion-0 {
+  color: green;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled function in expression 1`] = `
+.emotion-0 {
+  font-size: 20px;
+  font-size: 40px;
+}
+
+<h1
+  className="legacy__class emotion-0 emotion-1"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled function that function returns gets called with props 1`] = `
+.emotion-0 {
+  color: hotpink;
+  background-color: yellow;
+}
+
+<div
+  className="emotion-0 emotion-1"
+  color="hotpink"
+/>
+`;
+
+exports[`styled handles more than 10 dynamic properties 1`] = `
+.emotion-0 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  border-right: solid blue 54px;
+  background: white;
+  color: black;
+  display: block;
+  border-radius: 3px;
+  padding: 25px;
+  width: 500px;
+  z-index: 100;
+  font-size: 18px;
+  text-align: center;
+  border-left: blue;
+}
+
+<h1
+  className="legacy__class emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled inline function return value is a function 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled input placeholder 1`] = `
+.emotion-0::-webkit-input-placeholder {
+  background-color: green;
+}
+
+.emotion-0::-moz-placeholder {
+  background-color: green;
+}
+
+.emotion-0:-ms-input-placeholder {
+  background-color: green;
+}
+
+.emotion-0::placeholder {
+  background-color: green;
+}
+
+<input
+  className="emotion-0 emotion-1"
+>
+  hello world
+</input>
+`;
+
+exports[`styled input placeholder object 1`] = `
+.emotion-0::-webkit-input-placeholder {
+  background-color: green;
+}
+
+.emotion-0::-moz-placeholder {
+  background-color: green;
+}
+
+.emotion-0:-ms-input-placeholder {
+  background-color: green;
+}
+
+.emotion-0::placeholder {
+  background-color: green;
+}
+
+<input
+  className="emotion-0 emotion-1"
+>
+  hello world
+</input>
+`;
+
+exports[`styled nested 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-2 div {
+  color: green;
+}
+
+.emotion-2 div span {
+  color: red;
+}
+
+<div
+  className="emotion-2 emotion-3"
+>
+  hello 
+  <h1
+    className="emotion-0 emotion-1"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`styled no dynamic 1`] = `
+.emotion-0 {
+  float: left;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled object as style 1`] = `
+.emotion-0 {
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+  fontSize={20}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled objects 1`] = `
+.emotion-0 {
+  padding: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+  display="flex"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled objects with spread properties 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+<figure
+  className="emotion-0 emotion-1"
+>
+  hello world
+</figure>
+`;
+
+exports[`styled random expressions undefined return 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<h1
+  className="legacy__class emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled random object expression 1`] = `
+.emotion-0 {
+  background-color: hotpink;
+  font-size: 1rem;
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  color: green;
+}
+
+<h1
+  className="legacy__class emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled ref 1`] = `
+.emotion-0 {
+  font-size: 12px;
+}
+
+<h1
+  className="emotion-0 emotion-1"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled should forward .defaultProps when reusing __emotion_base 1`] = `
+.emotion-0 {
+  text-align: center;
+  color: red;
+}
+
+.emotion-2 {
+  text-align: center;
+  color: red;
+  font-style: italic;
+}
+
+<div>
+  <h1
+    className="emotion-0 emotion-1"
+    color="red"
+  />
+  <h1
+    className="emotion-2 emotion-3"
+    color="red"
+  />
+</div>
+`;
+
+exports[`styled throws if undefined is passed as the component 1`] = `
+"You are trying to create a styled element with an undefined component.
+You may have forgotten to import it."
+`;
+
+exports[`styled with higher order component that hoists statics 1`] = `
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: hotpink;
+  padding: 8px;
+}
+
+<div
+  className="emotion-0 emotion-1 emotion-2"
+/>
+`;
+
+exports[`styled withComponent carries styles from flattened components 1`] = `
+.emotion-0 {
+  color: green;
+  color: hotpink;
+}
+
+<p
+  className="emotion-0 emotion-1"
+/>
+`;
+
+exports[`styled withComponent will replace tags but keep styling classes 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+.emotion-2 {
+  color: green;
+}
+
+<article>
+  <h1
+    className="emotion-0 emotion-1"
+  >
+    My Title
+  </h1>
+  <h2
+    className="emotion-2 emotion-3"
+  >
+    My Subtitle
+  </h2>
+</article>
+`;
+
+exports[`styled withComponent with function interpolation 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+.emotion-2 {
+  color: hotpink;
+}
+
+<article>
+  <h1
+    className="emotion-0 emotion-1"
+  >
+    My Title
+  </h1>
+  <h2
+    className="emotion-2 emotion-3"
+    color="hotpink"
+  >
+    My Subtitle
+  </h2>
+</article>
+`;

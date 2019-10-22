@@ -1,52 +1,45 @@
-/// <reference types="jest" />
-import * as emotion from 'emotion';
-import {
+import serializer, {
+  matchers,
   CreateSerializerOptions,
   createSerializer,
-  createMatchers,
-  getStyles,
-} from '../';
+  print,
+  test
+} from 'jest-emotion'
 
-createSerializer(emotion);
-createSerializer(emotion, {});
-createSerializer(emotion, {
-  DOMElements: true,
-});
-createSerializer(emotion, {
+createSerializer()
+createSerializer({})
+createSerializer({
+  DOMElements: true
+})
+createSerializer({
   classNameReplacer() {
-    return 'abc';
-  },
-});
-createSerializer(emotion, {
+    return 'abc'
+  }
+})
+createSerializer({
   classNameReplacer(className) {
-    return className;
-  },
-});
-createSerializer(emotion, {
+    return className
+  }
+})
+createSerializer({
   classNameReplacer(className, index) {
-    return `${className}-${index}`;
-  },
-});
-createSerializer(emotion, 213 as any as CreateSerializerOptions);
+    return `${className}-${index}`
+  }
+})
+createSerializer((213 as any) as CreateSerializerOptions)
 // $ExpectError
-createSerializer();
+createSerializer(1)
 // $ExpectError
-createSerializer(emotion, 1);
+createSerializer(true)
 // $ExpectError
-createSerializer(emotion, true);
-// $ExpectError
-createSerializer(emotion, {}, undefined as any);
+createSerializer({}, undefined as any)
 
-// $ExpectError
-createMatchers();
-// $ExpectError
-createMatchers(emotion, undefined as any);
+expect.addSnapshotSerializer(serializer)
+expect.addSnapshotSerializer(createSerializer())
+expect.extend(matchers)
 
-expect.addSnapshotSerializer(createSerializer(emotion));
-expect.extend(createMatchers(emotion));
-
-expect({}).toHaveStyleRule('width', 'black');
-expect({}).toHaveStyleRule('height', /red/);
-expect({}).toHaveStyleRule('color', expect.stringContaining('20'));
+expect({}).toHaveStyleRule('width', 'black')
+expect({}).toHaveStyleRule('height', /red/)
+expect({}).toHaveStyleRule('color', expect.stringContaining('20'))
 // $ExpectError
-expect({}).toHaveStyleRule(5, 'abc');
+expect({}).toHaveStyleRule(5, 'abc')

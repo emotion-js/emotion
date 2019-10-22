@@ -16,7 +16,7 @@ The easiest way to test React components with emotion is with the snapshot seria
 // jest.config.js
 module.exports = {
   // ... other config
-  snapshotSerializers: ['jest-emotion/serializer']
+  snapshotSerializers: ['jest-emotion']
 }
 ```
 
@@ -25,11 +25,10 @@ Or you can customize the serializer via the `createSerializer` method like so: (
 ```jsx
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { createSerializer } from 'jest-emotion'
-import * as emotion from 'emotion'
-import styled from 'react-emotion'
+import serializer from 'jest-emotion'
+import styled from '@emotion/styled'
 
-expect.addSnapshotSerializer(createSerializer(emotion))
+expect.addSnapshotSerializer(serializer)
 
 test('renders with correct styles', () => {
   const H1 = styled.h1`
@@ -57,11 +56,10 @@ function classNameReplacer(className, index) {
 ```
 
 ```jsx
-import * as emotion from 'emotion'
 import { createSerializer } from 'jest-emotion'
 
 expect.addSnapshotSerializer(
-  createSerializer(emotion, {
+  createSerializer({
     classNameReplacer(className, index) {
       return `my-new-class-name-${index}`
     }
@@ -71,32 +69,13 @@ expect.addSnapshotSerializer(
 
 ### `DOMElements`
 
-jest-emotion's snapshot serializer inserts styles and replaces class names in both React and DOM elements. If you would like to disable this behavior for the latter, you can do so by setting this property to false. For example:
+jest-emotion's snapshot serializer inserts styles and replaces class names in both React and DOM elements. If you would like to disable this behavior for DOM elements, you can do so by passing `{ DOMElements: false }`. For example:
 
 ```jsx
-import * as emotion from 'emotion'
 import { createSerializer } from 'jest-emotion'
 
 // configures jest-emotion to ignore DOM elements
-expect.addSnapshotSerializer(createSerializer(emotion, { DOMElements: false }))
-```
-
-# getStyles
-
-jest-emotion also allows you to get all the css that emotion has inserted. This is meant to be an escape hatch if you don't use React or you want to build your own utilities for testing with emotion.
-
-```jsx
-import * as emotion from 'emotion'
-import { css } from 'emotion'
-import { getStyles } from 'jest-emotion'
-
-test('correct styles are inserted', () => {
-  const cls = css`
-    display: flex;
-  `
-
-  expect(getStyles(emotion)).toMatchSnapshot()
-})
+expect.addSnapshotSerializer(createSerializer({ DOMElements: false }))
 ```
 
 # Custom matchers
@@ -108,25 +87,111 @@ To make more explicit assertions when testing your styled components you can use
 ```jsx
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { createMatchers } from 'jest-emotion'
-import * as emotion from 'emotion'
-import styled from 'react-emotion'
+import { matchers } from 'jest-emotion'
+import styled from '@emotion/styled'
 
 // Add the custom matchers provided by 'jest-emotion'
-expect.extend(createMatchers(emotion))
+expect.extend(matchers)
 
 test('renders with correct styles', () => {
-  const H1 = styled.h1`
-    float: left;
+  const Svg = styled('svg')`
+    width: 100%;
   `
 
-  const tree = renderer.create(<H1>hello world</H1>).toJSON()
+  const Div = styled('div')`
+    float: left;
+    height: 80%;
+    &:hover {
+      width: 50px;
+    }
+    ${Svg} {
+      fill: green;
+    }
+    span {
+      color: yellow;
+    }
+    @media screen and (max-width: 1200px) {
+      font-size: 14px;
+    }
+  `
+
+  const tree = renderer
+    .create(
+      <Div>
+        <Svg />
+        <span>Test</span>
+      </Div>
+    )
+    .toJSON()
 
   expect(tree).toHaveStyleRule('float', 'left')
-  expect(tree).not.toHaveStyleRule('color', 'hotpink')
+  expect(tree).not.toHaveStyleRule('height', '100%')
+})
+```
+
+You can provide additional options for `toHaveStyleRule` matcher.  
+`target` - helps to specify css selector or other component
+where style rule should be found.
+
+```js
+expect(tree).toHaveStyleRule('width', '50px', { target: ':hover' })
+```
+
+```js
+expect(tree).toHaveStyleRule('color', 'yellow', { target: 'span' })
+```
+
+```js
+expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
+```
+
+`media` - specifies the media rule where the matcher
+should look for the style property.
+
+```js
+expect(tree).toHaveStyleRule('font-size', '14px', {
+  media: 'screen and (max-width: 1200px)'
+})
+```
+
+Use `media` and `target` options to assert on rules within media queries and to target nested components, pseudo-classes, and pseudo-elements.
+
+```jsx
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { matchers } from 'jest-emotion'
+import styled from '@emotion/styled'
+
+// Add the custom matchers provided by 'jest-emotion'
+expect.extend(matchers)
+
+test('renders with correct link styles', () => {
+  const Container = styled.div`
+    font-size: 14px;
+
+    a {
+      color: yellow;
+    }
+
+    a:hover {
+      color: black;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+  `
+
+  const tree = renderer.create(<Container>hello world</Container>).toJSON()
+
+  expect(tree).toHaveStyleRule('color', 'yellow', { target: /a$/ })
+  expect(tree).toHaveStyleRule('color', 'black', { target: 'a:hover' })
+  expect(tree).toHaveStyleRule('font-size', '16px', {
+    media: '(min-width: 768px)'
+  })
 })
 ```
 
 ## Thanks
 
-Thanks to [Kent C. Dodds](https://twitter.com/kentcdodds) who wrote [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) which this library is largely based on.
+Thanks to [Kent C. Dodds](https://twitter.com/kentcdodds) who wrote [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) which this library is largely based on. ❤️

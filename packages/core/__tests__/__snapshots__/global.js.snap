@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic 1`] = `
+<head>
+  <style
+    data-emotion="css"
+  >
+    
+    @-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  </style>
+  <style
+    data-emotion="css"
+  >
+    
+    @keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
+    @font-face{font-family:some-name;}
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
+    @import url('something.com/file.css');
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
+    html{background-color:hotpink;}
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
+    h1{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}
+  </style>
+</head>
+`;
+
+exports[`basic 2`] = `
+<body>
+  <div
+    id="root"
+  />
+</body>
+`;
+
+exports[`basic 3`] = `
+<head>
+  <style
+    data-emotion="css"
+  >
+    
+    @-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  </style>
+  <style
+    data-emotion="css"
+  >
+    
+    @keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  </style>
+</head>
+`;
+
+exports[`basic 4`] = `
+<body>
+  <div
+    id="root"
+  />
+</body>
+`;
+
+exports[`updating more than 1 global rule 1`] = `
+<head>
+  <style
+    data-emotion="css-global"
+  >
+    
+    body{background:white;}
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
+    div{color:black;}
+  </style>
+</head>
+`;
+
+exports[`updating more than 1 global rule 2`] = `
+<head>
+  <style
+    data-emotion="css-global"
+  >
+    
+    body{background:gray;}
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
+    div{color:white;}
+  </style>
+</head>
+`;

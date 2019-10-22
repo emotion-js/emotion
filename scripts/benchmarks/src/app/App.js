@@ -24,7 +24,7 @@ export default class App extends Component<{}> {
     const currentBenchmarkName = Object.keys(props.tests)[0]
     this.state = {
       currentBenchmarkName,
-      currentLibraryName: 'emotion-next',
+      currentLibraryName: 'emotion-css-prop',
       status: 'idle',
       results: []
     }
@@ -118,7 +118,9 @@ export default class App extends Component<{}> {
                 </View>
               </View>
               <ScrollView ref={this._setScrollRef} style={styles.grow}>
-                {results.map((result, i) => <ReportCard key={i} {...result} />)}
+                {results.map((result, i) => (
+                  <ReportCard key={i} {...result} />
+                ))}
                 {status === 'running' ? (
                   <ReportCard
                     benchmarkName={currentBenchmarkName}

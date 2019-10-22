@@ -1,13 +1,16 @@
-// @flow
 /**
  * @jest-environment node
+ * @flow
  */
+
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { getComponents, prettyifyCritical, getInjectedRules } from './util'
+import { JSDOM } from 'jsdom'
+import { ignoreConsoleErrors } from 'test-utils'
 
 let emotion = require('emotion')
-let reactEmotion = require('react-emotion')
+let reactEmotion = require('@emotion/styled')
 let emotionServer = require('emotion-server')
 
 describe('extractCritical', () => {
@@ -24,6 +27,25 @@ describe('extractCritical', () => {
       )
     ).toMatchSnapshot()
   })
+
+  test('does not warn when using extract critical', () => {
+    let Provider = require('@emotion/core').CacheProvider
+    const WithNthSelector = reactEmotion.default('div')({
+      ':nth-child(1)': {}
+    })
+
+    ignoreConsoleErrors(() => {
+      emotionServer.extractCritical(
+        renderToString(
+          <Provider value={emotion.cache}>
+            <WithNthSelector />
+          </Provider>
+        )
+      )
+
+      expect(console.error.mock.calls).toMatchObject([])
+    })
+  })
 })
 describe('hydration', () => {
   test('only rules that are not in the critical css are inserted', () => {
@@ -32,14 +54,18 @@ describe('hydration', () => {
       renderToString(<Page1 />)
     )
     expect(prettyifyCritical({ html, css, ids })).toMatchSnapshot()
+    const { window } = new JSDOM(html)
+    global.document = window.document
+    global.window = window
+
     jest.resetModules()
-    global.__SECRET_EMOTION__ = undefined
     emotion = require('emotion')
     emotionServer = require('emotion-server')
-    expect(emotion.caches.inserted).toEqual({})
+
+    expect(emotion.cache.inserted).toEqual({})
     emotion.hydrate(ids)
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)
-    expect(getInjectedRules(emotion)).toMatchSnapshot()
+    expect(getInjectedRules()).toMatchSnapshot()
   })
 })

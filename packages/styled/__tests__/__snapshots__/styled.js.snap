@@ -1,0 +1,667 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled basic render 1`] = `
+.emotion-0 {
+  color: blue;
+  font-size: 20px;
+}
+
+@media (min-width:420px) {
+  .emotion-0 {
+    color: blue;
+  }
+}
+
+<h1
+  className="emotion-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled basic render with object as style 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+<h1
+  className="emotion-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled call expression 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+<div
+  className="emotion-0"
+>
+  hello world
+</div>
+`;
+
+exports[`styled component selectors 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+.emotion-2 {
+  color: green;
+}
+
+.emotion-2 .emotion-1 {
+  color: yellow;
+}
+
+<div
+  className="emotion-2"
+>
+  <div
+    className="emotion-0 emotion-1"
+  />
+</div>
+`;
+
+exports[`styled composing components 1`] = `
+.emotion-0 {
+  color: green;
+  display: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<button
+  className="emotion-0"
+>
+  hello world
+</button>
+`;
+
+exports[`styled composition 1`] = `
+.emotion-0 {
+  font-size: 20px;
+  font-size: 13.333333333333334px;
+}
+
+<h1
+  className="legacy__class emotion-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composition 2`] = `
+.emotion-0 {
+  color: blue;
+  color: red;
+  color: blue;
+  font-size: 20px;
+  font-size: 32px;
+}
+
+<h1
+  className="legacy__class emotion-0"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composition based on props 1`] = `
+.emotion-0 {
+  color: blue;
+}
+
+<h1
+  className="emotion-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composition based on props 2`] = `
+.emotion-0 {
+  color: green;
+}
+
+<h1
+  className="emotion-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled composition of nested pseudo selectors 1`] = `
+.emotion-0 {
+  font-size: 2rem;
+  padding: 16px;
+}
+
+.emotion-0:hover {
+  color: blue;
+}
+
+.emotion-0:hover:active {
+  color: red;
+}
+
+.emotion-0:hover {
+  color: pink;
+}
+
+.emotion-0:hover:active {
+  color: purple;
+}
+
+.emotion-0:hover.some-class {
+  color: yellow;
+}
+
+<button
+  className="emotion-0"
+>
+  Should be purple
+</button>
+`;
+
+exports[`styled function in expression 1`] = `
+.emotion-0 {
+  font-size: 20px;
+  font-size: 40px;
+}
+
+<h1
+  className="legacy__class emotion-0"
+  scale={2}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled glamorous style api & composition 1`] = `
+.emotion-0 {
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<h1
+  className="emotion-0"
+  fontSize={20}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled handles more than 10 dynamic properties 1`] = `
+.emotion-0 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  border-right: solid blue 54px;
+  background: white;
+  color: black;
+  display: block;
+  border-radius: 3px;
+  padding: 25px;
+  width: 500px;
+  z-index: 100;
+  font-size: 18px;
+  text-align: center;
+  border-left: blue;
+}
+
+<h1
+  className="legacy__class emotion-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled higher order component 1`] = `
+.emotion-0 {
+  font-size: 20px;
+  background-color: #7fc8d6;
+  background-color: '#343a40';
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`styled inline function return value is a function 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+<h1
+  className="emotion-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled input placeholder 1`] = `
+.emotion-0::-webkit-input-placeholder {
+  background-color: green;
+}
+
+.emotion-0::-moz-placeholder {
+  background-color: green;
+}
+
+.emotion-0:-ms-input-placeholder {
+  background-color: green;
+}
+
+.emotion-0::placeholder {
+  background-color: green;
+}
+
+<input
+  className="emotion-0"
+>
+  hello world
+</input>
+`;
+
+exports[`styled input placeholder object 1`] = `
+.emotion-0::-webkit-input-placeholder {
+  background-color: green;
+}
+
+.emotion-0::-moz-placeholder {
+  background-color: green;
+}
+
+.emotion-0:-ms-input-placeholder {
+  background-color: green;
+}
+
+.emotion-0::placeholder {
+  background-color: green;
+}
+
+<input
+  className="emotion-0"
+>
+  hello world
+</input>
+`;
+
+exports[`styled keyframes with css call 1`] = `
+@keyframes animation-0 {
+  from, to {
+    color: green;
+  }
+
+  50% {
+    color: hotpink;
+  }
+}
+
+.emotion-0 {
+  -webkit-animation: animation-0;
+  animation: animation-0;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`styled nested 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-1 div {
+  color: green;
+}
+
+.emotion-1 div span {
+  color: red;
+}
+
+<div
+  className="emotion-1"
+>
+  hello 
+  <h1
+    className="emotion-0"
+  >
+    This will be green
+  </h1>
+   world
+</div>
+`;
+
+exports[`styled no dynamic 1`] = `
+.emotion-0 {
+  float: left;
+}
+
+<h1
+  className="emotion-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled no prop filtering on non string tags 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<a
+  a={true}
+  aria-label="some label"
+  b={true}
+  className="emotion-0"
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+>
+  hello world
+</a>
+`;
+
+exports[`styled no prop filtering on string tags started with upper case 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<SomeCustomLink
+  a={true}
+  aria-label="some label"
+  b={true}
+  className="emotion-0"
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+>
+  hello world
+</SomeCustomLink>
+`;
+
+exports[`styled object as className 1`] = `
+<div
+  className="myclass emotion-0"
+/>
+`;
+
+exports[`styled object as style 1`] = `
+.emotion-0 {
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<h1
+  className="emotion-0"
+  fontSize={20}
+>
+  hello world
+</h1>
+`;
+
+exports[`styled object composition 1`] = `
+.emotion-0 {
+  border-radius: 50%;
+  -webkit-transition: -webkit-transform 400ms ease-in-out;
+  -webkit-transition: transform 400ms ease-in-out;
+  transition: transform 400ms ease-in-out;
+  border: 3px solid currentColor;
+  width: 96px;
+  height: 96px;
+  color: red;
+  color: blue;
+}
+
+.emotion-0:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+<img
+  className="emotion-0"
+/>
+`;
+
+exports[`styled objects 1`] = `
+.emotion-0 {
+  padding: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<h1
+  className="emotion-0"
+  display="flex"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled objects with spread properties 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+<figure
+  className="emotion-0"
+>
+  hello world
+</figure>
+`;
+
+exports[`styled prop filtering 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<a
+  aria-label="some label"
+  className="emotion-0"
+  data-wow="value"
+  href="link"
+  is={true}
+>
+  hello world
+</a>
+`;
+
+exports[`styled prop filtering on composed styled components that are string tags 1`] = `
+.emotion-0 {
+  background-color: hotpink;
+  color: green;
+}
+
+<a
+  aria-label="some label"
+  className="emotion-0"
+  data-wow="value"
+  href="link"
+  is={true}
+>
+  hello world
+</a>
+`;
+
+exports[`styled random expressions undefined return 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<h1
+  className="legacy__class emotion-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled random object expression 1`] = `
+.emotion-0 {
+  background-color: hotpink;
+  font-size: 1rem;
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  color: green;
+}
+
+<h1
+  className="legacy__class emotion-0"
+>
+  hello world
+</h1>
+`;
+
+exports[`styled same component rendered multiple times 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`styled same component rendered multiple times 2`] = `
+.emotion-0 {
+  color: green;
+}
+
+<div
+  className="emotion-0"
+>
+  <div
+    className="emotion-0"
+  />
+  <div
+    className="emotion-0"
+  />
+</div>
+`;
+
+exports[`styled theming 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+>
+  this should be hotpink
+</div>
+`;
+
+exports[`styled throws if undefined is passed as the component 1`] = `
+"You are trying to create a styled element with an undefined component.
+You may have forgotten to import it."
+`;
+
+exports[`styled with higher order component that hoists statics 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: hotpink;
+  padding: 8px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`styled withComponent does carry styles from flattened component 1`] = `
+.emotion-0 {
+  color: green;
+  color: hotpink;
+}
+
+<p
+  className="emotion-0"
+/>
+`;
+
+exports[`styled withComponent will replace tags but keep styling classes 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<article>
+  <h1
+    className="emotion-0"
+  >
+    My Title
+  </h1>
+  <h2
+    className="emotion-0"
+  >
+    My Subtitle
+  </h2>
+</article>
+`;
+
+exports[`styled withComponent with function interpolation 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<article>
+  <h1
+    className="emotion-0"
+  >
+    My Title
+  </h1>
+  <h2
+    className="emotion-0"
+  >
+    My Subtitle
+  </h2>
+</article>
+`;

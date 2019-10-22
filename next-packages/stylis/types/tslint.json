@@ -1,8 +1,0 @@
-{
-    "extends": "dtslint/dtslint.json",
-    "rules": {
-        "array-type": [true, "generic"],
-        "only-arrow-functions": false,
-        "space-before-function-paren": false
-    }
-}
