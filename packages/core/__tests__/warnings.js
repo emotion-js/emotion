@@ -4,6 +4,7 @@ import 'test-utils/next-env'
 import css from '@emotion/css'
 import { jsx, Global, keyframes } from '@emotion/core'
 import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 
 // $FlowFixMe
 console.error = jest.fn()
@@ -162,15 +163,15 @@ test('kebab-case', () => {
   css({ '--primary-color': 'hotpink' })
   css({ ':last-of-type': null })
   expect(console.error.mock.calls).toMatchInlineSnapshot(`
-        Array [
-          Array [
-            "Using kebab-case for css properties in objects is not supported. Did you mean backgroundColor?",
-          ],
-          Array [
-            "Using kebab-case for css properties in objects is not supported. Did you mean msFilter?",
-          ],
-        ]
-    `)
+                    Array [
+                      Array [
+                        "Using kebab-case for css properties in objects is not supported. Did you mean backgroundColor?",
+                      ],
+                      Array [
+                        "Using kebab-case for css properties in objects is not supported. Did you mean msFilter?",
+                      ],
+                    ]
+          `)
 })
 
 test('unterminated comments', () => {
@@ -225,20 +226,38 @@ test('keyframes interpolated into plain string', () => {
     <div css={[`animation: ${animateColor} 10s ${rotate360} 5s;`]} />
   )
   expect(console.error.mock.calls).toMatchInlineSnapshot(`
-    Array [
-      Array [
-        "\`keyframes\` output got interpolated into plain string, please wrap it with \`css\`.
+            Array [
+              Array [
+                "\`keyframes\` output got interpolated into plain string, please wrap it with \`css\`.
 
-    Instead of doing this:
+            Instead of doing this:
 
-    const animation0 = keyframes\`{from,to{color:green;}50%{color:hotpink;}}\`
-    const animation1 = keyframes\`{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}\`
-    \`animation: \${animation0} 10s \${animation1} 5s;\`
+            const animation0 = keyframes\`{from,to{color:green;}50%{color:hotpink;}}\`
+            const animation1 = keyframes\`{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}\`
+            \`animation: \${animation0} 10s \${animation1} 5s;\`
 
-    You should wrap it with \`css\` like this:
+            You should wrap it with \`css\` like this:
 
-    css\`animation: \${animation0} 10s \${animation1} 5s;\`",
-      ],
-    ]
+            css\`animation: \${animation0} 10s \${animation1} 5s;\`",
+              ],
+            ]
+      `)
+})
+
+test('`css` opaque object passed in as `className` prop', () => {
+  const { container } = render(
+    <div
+      className={css`
+        color: hotpink;
+      `}
+    />
+  )
+
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."
+      />
+    </div>
   `)
 })

@@ -1,0 +1,8 @@
+{
+  "releases": [
+    { "name": "@emotion/core", "type": "patch" },
+    { "name": "@emotion/serialize", "type": "patch" },
+    { "name": "@emotion/styled-base", "type": "patch" }
+  ],
+  "dependents": []
+}
