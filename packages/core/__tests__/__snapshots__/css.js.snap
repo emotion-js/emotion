@@ -70,6 +70,19 @@ exports[`handles camelCased custom properties in object styles properly 1`] = `
 />
 `;
 
+exports[`handles composition of styles without a final semi in a declaration block 1`] = `
+.emotion-0 {
+  color: hotpink;
+  background-color: green;
+}
+
+<div
+  className="emotion-0"
+>
+  I'm hotpink on the green background.
+</div>
+`;
+
 exports[`label in css call 1`] = `
 .emotion-0 {
   color: hotpink;
