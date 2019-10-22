@@ -170,7 +170,7 @@
     "@babel/register": "^7.5.5",
     "@babel/runtime": "^7.5.5",
     "@changesets/changelog-github": "^0.1.0",
-    "@changesets/cli": "^2.0.3",
+    "@changesets/cli": "^2.1.2",
     "@manypkg/cli": "^0.5.2",
     "@mdx-js/mdx": "^1.1.0",
     "@mdx-js/react": "^1.0.27",

@@ -154,6 +154,18 @@ exports[`styled composition of nested pseudo selectors 1`] = `
   color: red;
 }
 
+.emotion-0:hover {
+  color: pink;
+}
+
+.emotion-0:hover:active {
+  color: purple;
+}
+
+.emotion-0:hover.some-class {
+  color: yellow;
+}
+
 <button
   className="emotion-0"
 >

@@ -1,8 +1,8 @@
 // @flow
+/** @jsx jsx */
 import 'test-utils/legacy-env'
-import React from 'react'
-import * as renderer from 'test-utils/compat-render-json'
-import { css } from 'emotion'
+import * as renderer from 'react-test-renderer'
+import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import { lighten, hiDPI, modularScale } from 'polished'
@@ -160,7 +160,7 @@ test('composition of nested pseudo selectors', () => {
   const tree = renderer
     .create(
       <Button
-        className={css({
+        css={css({
           '&:hover': {
             color: 'pink',
             '&:active': {
