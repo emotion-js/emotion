@@ -5,7 +5,7 @@ import * as renderer from 'react-test-renderer'
 import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import { lighten, hiDPI, modularScale } from 'polished'
+import { lighten, hiDPI } from 'polished'
 
 test('composition', () => {
   const fontSize = '20px'
@@ -43,10 +43,10 @@ test('composition', () => {
 test('composition with objects', () => {
   const cssA = {
     color: lighten(0.2, '#000'),
-    fontSize: modularScale(1),
+    fontSize: '1em',
     [hiDPI(1.5)
       .replace('\n', ' ')
-      .trim()]: { fontSize: modularScale(1.25) }
+      .trim()]: { fontSize: '1.25em' }
   }
 
   const cssB = css`
@@ -56,7 +56,7 @@ test('composition with objects', () => {
 
   const H1 = styled('h1')`
     ${cssB};
-    font-size: ${modularScale(4)};
+    font-size: 4em;
   `
 
   const H2 = styled(H1)`
