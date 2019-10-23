@@ -162,7 +162,7 @@ test('kebab-case', () => {
   css({ '@media (min-width 800px)': undefined })
   css({ '--primary-color': 'hotpink' })
   css({ ':last-of-type': null })
-  expect(console.error.mock.calls).toMatchInlineSnapshot(`
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
                     Array [
                       Array [
                         "Using kebab-case for css properties in objects is not supported. Did you mean backgroundColor?",
@@ -225,7 +225,7 @@ test('keyframes interpolated into plain string', () => {
   renderer.create(
     <div css={[`animation: ${animateColor} 10s ${rotate360} 5s;`]} />
   )
-  expect(console.error.mock.calls).toMatchInlineSnapshot(`
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
             Array [
               Array [
                 "\`keyframes\` output got interpolated into plain string, please wrap it with \`css\`.

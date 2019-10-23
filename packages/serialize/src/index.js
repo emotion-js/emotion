@@ -398,6 +398,7 @@ export const serializeStyles = function(
   let name = hashString(styles) + identifierName
 
   if (process.env.NODE_ENV !== 'production') {
+    // $FlowFixMe SerializedStyles type doesn't have toString property (and we don't want to add it)
     return {
       name,
       styles,
