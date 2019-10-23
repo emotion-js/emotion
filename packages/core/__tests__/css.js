@@ -236,3 +236,23 @@ test('applies class when css prop is set to nil on wrapper component', () => {
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
+
+test('handles composition of styles without a final semi in a declaration block', () => {
+  const tree = renderer.create(
+    <div
+      css={[
+        // prettier-ignore
+        css`
+          color: hotpink
+        `,
+        css`
+          background-color: green;
+        `
+      ]}
+    >
+      {"I'm hotpink on the green background."}
+    </div>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})

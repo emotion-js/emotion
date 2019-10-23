@@ -66,7 +66,7 @@ exports[`keyframes keyframes used in css call 1`] = `
 
 exports[`keyframes keyframes used in css call 2`] = `
 Array [
-  ".css-1jqzi3u{-webkit-animation:animation-1bi8wtt 1s animation-1ajb83a;animation:animation-1bi8wtt 1s animation-1ajb83a;}",
+  ".css-nq4jxu{-webkit-animation:animation-1bi8wtt 1s animation-1ajb83a;animation:animation-1bi8wtt 1s animation-1ajb83a;}",
   "@-webkit-keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@keyframes animation-1bi8wtt{from{color:green;}to{color:hotpink;}}",
   "@-webkit-keyframes animation-1ajb83a{from{color:green;}to{color:yellow;}}",

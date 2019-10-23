@@ -168,7 +168,7 @@ function handleInterpolation(
             next = next.next
           }
         }
-        let styles = interpolation.styles
+        let styles = `${interpolation.styles};`
         if (
           process.env.NODE_ENV !== 'production' &&
           interpolation.map !== undefined
