@@ -31,7 +31,8 @@
     "dist",
     "types",
     "macro.d.ts",
-    "macro.js"
+    "macro.js",
+    "macro.js.flow"
   ],
   "umd:main": "dist/styled.umd.min.js",
   "browser": {
