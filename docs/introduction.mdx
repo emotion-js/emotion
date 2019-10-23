@@ -20,7 +20,7 @@ The [emotion](https://www.npmjs.com/package/emotion) package is framework agnost
 
 - Requires no additional setup, babel plugin, or other config changes.
 
-- Works in situations where configuration is restricted or not possible such as with [Create React App](https://facebook.github.io/create-react-app)
+- Works in situations where configuration is restricted or not possible such as with [Create React App](https://facebook.github.io/create-react-app). However, it should be noted that with the current version of `Create React App` as of October 2019, the below methods also work out of the box for both the default and `--typescript` configurations.
 
 - The `css` prop is not used or needed.
 
@@ -60,6 +60,8 @@ npm i @emotion/core
 The ["@emotion/core"](https://www.npmjs.com/package/@emotion/core) package requires React and is recommended for users of that framework if possible.
 
 - Best when using React with a build environment that can be configured.
+
+- Also works well even if using React in a nonconfigurable build environment like an unejected `Create React App` app. This is true for the current version of `Create React App` as of October 2019. This method and the one below both work out of the box for the default and `--typescript` configurations of a new `Create React App` app.
 
 - CSS prop support
 
