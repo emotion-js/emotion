@@ -1,7 +1,0 @@
-{
-  "releases": [
-    { "name": "babel-plugin-emotion", "type": "patch" },
-    { "name": "@emotion/babel-preset-css-prop", "type": "patch" }
-  ],
-  "dependents": []
-}

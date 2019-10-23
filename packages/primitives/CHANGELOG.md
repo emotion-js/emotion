@@ -1,5 +1,15 @@
 # @emotion/primitives
 
+## 10.0.22
+
+### Patch Changes
+
+- [`ae90f000`](https://github.com/emotion-js/emotion/commit/ae90f00094483ff12d8cbb80d628e30fe6d57d7a) [#841](https://github.com/emotion-js/emotion/pull/841) Thanks [@nitin42](https://github.com/nitin42)! - Improve error message for shorthand properties with missing units.
+
+- Updated dependencies [[`1bb3efe3`](https://github.com/emotion-js/emotion/commit/1bb3efe399ddf0f3332187f3c751fbba9326d02c), [`ae90f000`](https://github.com/emotion-js/emotion/commit/ae90f00094483ff12d8cbb80d628e30fe6d57d7a)]:
+  - babel-plugin-emotion@10.0.22
+  - @emotion/primitives-core@10.0.22
+
 ## 10.0.19
 
 - Updated dependencies [c81c0033]:
