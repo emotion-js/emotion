@@ -1,6 +1,6 @@
 {
   "name": "@emotion/native",
-  "version": "10.0.14",
+  "version": "10.0.22",
   "description": "Style and render React Native components using emotion",
   "main": "dist/native.cjs.js",
   "module": "dist/native.esm.js",
@@ -14,7 +14,7 @@
     "react-native": "^0.57.0"
   },
   "dependencies": {
-    "@emotion/primitives-core": "10.0.14"
+    "@emotion/primitives-core": "10.0.22"
   },
   "peerDependencies": {
     "react-native": ">=0.14.0 <1"
