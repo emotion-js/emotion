@@ -66,7 +66,7 @@ describe('StyleSheet', () => {
     console.warn = jest.fn()
     sheet.insert('.asdfasdf4###112121211{')
     expect(console.warn).toHaveBeenCalledTimes(1)
-    expect(console.warn.mock.calls[0][0]).toBe(
+    expect((console.warn: any).mock.calls[0][0]).toBe(
       'There was a problem inserting the following rule: ".asdfasdf4###112121211{"'
     )
     // $FlowFixMe

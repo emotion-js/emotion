@@ -43,7 +43,7 @@ describe('extractCritical', () => {
         )
       )
 
-      expect(console.error.mock.calls).toMatchObject([])
+      expect((console.error: any).mock.calls).toMatchObject([])
     })
   })
 })

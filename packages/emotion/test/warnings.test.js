@@ -64,7 +64,7 @@ it('warns when class names from css are interpolated', () => {
       color: hotpink;
     }
   `
-  expect(console.error.mock.calls[0]).toMatchInlineSnapshot(`
+  expect((console.error: any).mock.calls[0]).toMatchInlineSnapshot(`
 Array [
   "Interpolating a className from css\`\` is not recommended and will cause problems with composition.
 Interpolating a className from css\`\` will be completely unsupported in a future major version of Emotion",
