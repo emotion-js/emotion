@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 0.11.13
+
+### Patch Changes
+
+- [`3b7e2f2e`](https://github.com/emotion-js/emotion/commit/3b7e2f2e27499b7263341bb83cfc20c8fc51d237) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Fix flow errors
+
 ## 0.11.12
 
 ### Patch Changes
