@@ -1,8 +1,30 @@
 // @flow
 import * as React from 'react'
+import type { ElementType } from 'react'
 import isPropValid from '@emotion/is-prop-valid'
 
 export type Interpolations = Array<any>
+
+export type StyledOptions = {
+  label?: string,
+  shouldForwardProp?: string => boolean,
+  target?: string
+}
+
+export type StyledComponent = {
+  (Interpolations): React$Node,
+  withComponent: (
+    nextTag: ElementType,
+    nextOptions?: StyledOptions
+  ) => StyledComponent,
+  displayName: string,
+  defaultProps: any,
+  __emotion_real: StyledComponent,
+  __emotion_base: any,
+  __emotion_styles: any,
+  __emotion_forwardProp: any,
+  toString: () => string
+}
 
 const testOmitPropsOnStringTag = isPropValid
 const testOmitPropsOnComponent = (key: string) =>
@@ -17,19 +39,9 @@ export const getDefaultShouldForwardProp = (tag: React.ElementType) =>
     ? testOmitPropsOnStringTag
     : testOmitPropsOnComponent
 
-export type StyledOptions = {
-  label?: string,
-  shouldForwardProp?: string => boolean,
-  target?: string
-}
+export type CreateStyledComponent = (...args: Interpolations) => StyledComponent
 
-type CreateStyledComponent = (...args: Interpolations) => *
-
-type BaseCreateStyled = (
-  tag: React.ElementType,
-  options?: StyledOptions
-) => CreateStyledComponent
-
-export type CreateStyled = BaseCreateStyled & {
+export type CreateStyled = {
+  (tag: React.ElementType, options?: StyledOptions): CreateStyledComponent,
   [key: string]: CreateStyledComponent
 }

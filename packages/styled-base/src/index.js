@@ -4,7 +4,9 @@ import type { ElementType } from 'react'
 import {
   getDefaultShouldForwardProp,
   type StyledOptions,
-  type CreateStyled
+  type CreateStyled,
+  type CreateStyledComponent,
+  type StyledComponent
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/core'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
@@ -16,12 +18,6 @@ You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
 let isBrowser = typeof document !== 'undefined'
-
-type StyledComponent = (
-  props: *
-) => React.Node & {
-  withComponent(nextTag: ElementType, nextOptions?: StyledOptions): *
-}
 
 let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -55,7 +51,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     shouldForwardProp || getDefaultShouldForwardProp(baseTag)
   const shouldUseAs = !defaultShouldForwardProp('as')
 
-  return function(): StyledComponent {
+  return (function() {
     let args = arguments
     let styles =
       isReal && tag.__emotion_styles !== undefined
@@ -82,7 +78,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       }
     }
 
-    const Styled: any = withEmotionCache((props, context, ref) => {
+    const Styled: StyledComponent = withEmotionCache((props, context, ref) => {
       return (
         <ThemeContext.Consumer>
           {theme => {
@@ -221,7 +217,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       )(...styles)
     }
     return Styled
-  }
+  }: CreateStyledComponent)
 }
 
 export default createStyled

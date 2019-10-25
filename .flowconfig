@@ -23,4 +23,5 @@
 
 [options]
 suppress_comment=.*\\$FlowFixMe
+suppress_comment=.*\\$FlowExpectError
 sharedmemory.hash_table_pow=21
