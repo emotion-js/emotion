@@ -5,8 +5,7 @@ import {
   getDefaultShouldForwardProp,
   type StyledOptions,
   type CreateStyled,
-  type CreateStyledComponent,
-  type StyledComponent
+  type PrivateStyledComponent
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/core'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
@@ -51,7 +50,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     shouldForwardProp || getDefaultShouldForwardProp(baseTag)
   const shouldUseAs = !defaultShouldForwardProp('as')
 
-  return (function() {
+  return function<P>(): PrivateStyledComponent<P> {
     let args = arguments
     let styles =
       isReal && tag.__emotion_styles !== undefined
@@ -78,104 +77,106 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       }
     }
 
-    const Styled: StyledComponent = withEmotionCache((props, context, ref) => {
-      return (
-        <ThemeContext.Consumer>
-          {theme => {
-            const finalTag = (shouldUseAs && props.as) || baseTag
+    const Styled: PrivateStyledComponent<P> = withEmotionCache(
+      (props, context, ref) => {
+        return (
+          <ThemeContext.Consumer>
+            {theme => {
+              const finalTag = (shouldUseAs && props.as) || baseTag
 
-            let className = ''
-            let classInterpolations = []
-            let mergedProps = props
-            if (props.theme == null) {
-              mergedProps = {}
-              for (let key in props) {
-                mergedProps[key] = props[key]
+              let className = ''
+              let classInterpolations = []
+              let mergedProps = props
+              if (props.theme == null) {
+                mergedProps = {}
+                for (let key in props) {
+                  mergedProps[key] = props[key]
+                }
+                mergedProps.theme = theme
               }
-              mergedProps.theme = theme
-            }
 
-            if (typeof props.className === 'string') {
-              className = getRegisteredStyles(
+              if (typeof props.className === 'string') {
+                className = getRegisteredStyles(
+                  context.registered,
+                  classInterpolations,
+                  props.className
+                )
+              } else if (props.className != null) {
+                className = `${props.className} `
+              }
+
+              const serialized = serializeStyles(
+                styles.concat(classInterpolations),
                 context.registered,
-                classInterpolations,
-                props.className
+                mergedProps
               )
-            } else if (props.className != null) {
-              className = `${props.className} `
-            }
-
-            const serialized = serializeStyles(
-              styles.concat(classInterpolations),
-              context.registered,
-              mergedProps
-            )
-            const rules = insertStyles(
-              context,
-              serialized,
-              typeof finalTag === 'string'
-            )
-            className += `${context.key}-${serialized.name}`
-            if (targetClassName !== undefined) {
-              className += ` ${targetClassName}`
-            }
-
-            const finalShouldForwardProp =
-              shouldUseAs && shouldForwardProp === undefined
-                ? getDefaultShouldForwardProp(finalTag)
-                : defaultShouldForwardProp
-
-            let newProps = {}
-
-            for (let key in props) {
-              if (shouldUseAs && key === 'as') continue
-
-              if (
-                // $FlowFixMe
-                finalShouldForwardProp(key)
-              ) {
-                newProps[key] = props[key]
+              const rules = insertStyles(
+                context,
+                serialized,
+                typeof finalTag === 'string'
+              )
+              className += `${context.key}-${serialized.name}`
+              if (targetClassName !== undefined) {
+                className += ` ${targetClassName}`
               }
-            }
 
-            newProps.className = className
+              const finalShouldForwardProp =
+                shouldUseAs && shouldForwardProp === undefined
+                  ? getDefaultShouldForwardProp(finalTag)
+                  : defaultShouldForwardProp
 
-            newProps.ref = ref || props.innerRef
-            if (process.env.NODE_ENV !== 'production' && props.innerRef) {
-              console.error(
-                '`innerRef` is deprecated and will be removed in a future major version of Emotion, please use the `ref` prop instead' +
-                  (identifierName === undefined
-                    ? ''
-                    : ` in the usage of \`${identifierName}\``)
-              )
-            }
+              let newProps = {}
 
-            const ele = React.createElement(finalTag, newProps)
-            if (!isBrowser && rules !== undefined) {
-              let serializedNames = serialized.name
-              let next = serialized.next
-              while (next !== undefined) {
-                serializedNames += ' ' + next.name
-                next = next.next
+              for (let key in props) {
+                if (shouldUseAs && key === 'as') continue
+
+                if (
+                  // $FlowFixMe
+                  finalShouldForwardProp(key)
+                ) {
+                  newProps[key] = props[key]
+                }
               }
-              return (
-                <React.Fragment>
-                  <style
-                    {...{
-                      [`data-emotion-${context.key}`]: serializedNames,
-                      dangerouslySetInnerHTML: { __html: rules },
-                      nonce: context.sheet.nonce
-                    }}
-                  />
-                  {ele}
-                </React.Fragment>
-              )
-            }
-            return ele
-          }}
-        </ThemeContext.Consumer>
-      )
-    })
+
+              newProps.className = className
+
+              newProps.ref = ref || props.innerRef
+              if (process.env.NODE_ENV !== 'production' && props.innerRef) {
+                console.error(
+                  '`innerRef` is deprecated and will be removed in a future major version of Emotion, please use the `ref` prop instead' +
+                    (identifierName === undefined
+                      ? ''
+                      : ` in the usage of \`${identifierName}\``)
+                )
+              }
+
+              const ele = React.createElement(finalTag, newProps)
+              if (!isBrowser && rules !== undefined) {
+                let serializedNames = serialized.name
+                let next = serialized.next
+                while (next !== undefined) {
+                  serializedNames += ' ' + next.name
+                  next = next.next
+                }
+                return (
+                  <React.Fragment>
+                    <style
+                      {...{
+                        [`data-emotion-${context.key}`]: serializedNames,
+                        dangerouslySetInnerHTML: { __html: rules },
+                        nonce: context.sheet.nonce
+                      }}
+                    />
+                    {ele}
+                  </React.Fragment>
+                )
+              }
+              return ele
+            }}
+          </ThemeContext.Consumer>
+        )
+      }
+    )
 
     Styled.displayName =
       identifierName !== undefined
@@ -216,8 +217,9 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
           : options
       )(...styles)
     }
+
     return Styled
-  }: CreateStyledComponent)
+  }
 }
 
 export default createStyled

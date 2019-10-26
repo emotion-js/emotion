@@ -11,19 +11,20 @@ export type StyledOptions = {
   target?: string
 }
 
-export type StyledComponent = {
-  (Interpolations): React$Node,
+export type StyledComponent<P> = React.StatelessFunctionalComponent<P> & {
+  defaultProps: any,
+  toString: () => string,
   withComponent: (
     nextTag: ElementType,
     nextOptions?: StyledOptions
-  ) => StyledComponent,
-  displayName: string,
-  defaultProps: any,
-  __emotion_real: StyledComponent,
+  ) => StyledComponent<P>
+}
+
+export type PrivateStyledComponent<P> = StyledComponent<P> & {
+  __emotion_real: StyledComponent<P>,
   __emotion_base: any,
   __emotion_styles: any,
-  __emotion_forwardProp: any,
-  toString: () => string
+  __emotion_forwardProp: any
 }
 
 const testOmitPropsOnStringTag = isPropValid
@@ -39,7 +40,9 @@ export const getDefaultShouldForwardProp = (tag: React.ElementType) =>
     ? testOmitPropsOnStringTag
     : testOmitPropsOnComponent
 
-export type CreateStyledComponent = (...args: Interpolations) => StyledComponent
+export type CreateStyledComponent = <P>(
+  ...args: Interpolations
+) => StyledComponent<P>
 
 export type CreateStyled = {
   (tag: React.ElementType, options?: StyledOptions): CreateStyledComponent,
