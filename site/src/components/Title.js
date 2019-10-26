@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { constants, mq, colors } from '../utils/style'
 import * as markdownComponents from '../utils/markdown-styles'
 
-export default styled(markdownComponents.h1)(
+export default styled(markdownComponents.h1)<{}>(
   mq({
     paddingTop: 0,
     marginTop: 0,

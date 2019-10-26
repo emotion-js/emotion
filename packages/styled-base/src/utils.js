@@ -46,5 +46,6 @@ export type CreateStyledComponent = <P>(
 
 export type CreateStyled = {
   (tag: React.ElementType, options?: StyledOptions): CreateStyledComponent,
-  [key: string]: CreateStyledComponent
+  [key: string]: CreateStyledComponent,
+  bind: () => CreateStyled
 }

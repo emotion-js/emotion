@@ -77,6 +77,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       }
     }
 
+    // $FlowFixMe: we need to cast StatelessFunctionalComponent to our PrivateStyledComponent class
     const Styled: PrivateStyledComponent<P> = withEmotionCache(
       (props, context, ref) => {
         return (
@@ -201,7 +202,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         ) {
           return 'NO_COMPONENT_SELECTOR'
         }
-        // $FlowFixMe
+        // $FlowFixMe: coherce undefined to string
         return `.${targetClassName}`
       }
     })
