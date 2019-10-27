@@ -11,7 +11,6 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/styled-base": "^10.0.22",
     "babel-plugin-emotion": "^10.0.22"
   },
   "devDependencies": {
@@ -29,6 +28,7 @@
   "files": [
     "src",
     "dist",
+    "base",
     "types",
     "macro.d.ts",
     "macro.js",
@@ -40,6 +40,7 @@
     "./dist/styled.esm.js": "./dist/styled.browser.esm.js"
   },
   "preconstruct": {
-    "umdName": "emotionStyled"
+    "umdName": "emotionStyled",
+    "entrypoints": [".", "base"]
   }
 }

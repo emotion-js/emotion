@@ -231,7 +231,7 @@
     "npm-run-all": "^4.0.2",
     "opencollective": "^1.0.3",
     "polished": "^1.2.1",
-    "preconstruct": "^0.0.81",
+    "preconstruct": "^0.3.1",
     "prettier": "1.14.3",
     "puppeteer": "^1.6.0",
     "raf": "^3.4.0",

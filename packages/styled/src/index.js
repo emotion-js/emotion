@@ -1,5 +1,5 @@
 // @flow
-import styled from '@emotion/styled-base'
+import styled from './base'
 import { tags } from './tags'
 
 // bind it to avoid mutating the original function
