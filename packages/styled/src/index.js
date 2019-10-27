@@ -5,7 +5,7 @@ import { tags } from './tags'
 // bind it to avoid mutating the original function
 const newStyled = styled.bind()
 
-tags.forEach((tagName: string) => {
+tags.forEach(tagName => {
   newStyled[tagName] = newStyled(tagName)
 })
 
