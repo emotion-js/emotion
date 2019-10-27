@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 // @flow
 import * as React from 'react'
 import createStyled from '../src'
-import type { CreateStyledComponent } from '../src/utils'
+import type { CreateStyledComponent, StyledComponent } from '../src/utils'
 
 export const valid: CreateStyledComponent = createStyled('div')
 
@@ -10,12 +11,17 @@ export const invalid: string = createStyled('div')
 
 const styled = createStyled('div')
 type Props = { color: string }
+// prettier-ignore
 const Div = styled<Props>({ color: props => props.color })
 
-export const validProp = <Div color="red" />
+const validProp = <Div color="red" />
 
 // $FlowExpectError: color property should be a string
-export const invalidProp = <Div color={2} />
+const invalidProp = <Div color={2} />
 
 // $FlowExpectError: we don't expose the private StyledComponent properties
-export const invalidPropAccess = styled().__emotion_base
+const invalidPropAccess = styled().__emotion_base
+
+// We allow styled components not to specify their props types
+// NOTE: this is allowed only if you don't attempt to export it!
+const untyped: StyledComponent<empty> = styled({})
