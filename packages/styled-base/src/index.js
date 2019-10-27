@@ -202,7 +202,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         ) {
           return 'NO_COMPONENT_SELECTOR'
         }
-        // $FlowFixMe: coherce undefined to string
+        // $FlowFixMe: coerce undefined to string
         return `.${targetClassName}`
       }
     })
