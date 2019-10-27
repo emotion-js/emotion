@@ -1,7 +1,11 @@
 // @flow
 import * as React from 'react'
-import { ThemeContext } from '@emotion/core'
 import weakMemoize from '@emotion/weak-memoize'
+
+type Props = {
+  theme: Object | (Object => Object),
+  children: React.Node
+}
 
 let getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   if (typeof theme === 'function') {
@@ -36,26 +40,34 @@ let createCacheWithTheme = weakMemoize(outerTheme => {
   })
 })
 
-type Props = {
-  theme: Object | (Object => Object),
-  children: React.Node
+// second parameter is private, so we can inject ThemeContext from @emotion/core
+const createTheme = (
+  defaultValue,
+  ThemeContext = React.createContext<Object>(defaultValue)
+) => {
+  let ThemeProvider = (props: Props) => {
+    return (
+      <ThemeContext.Consumer>
+        {theme => {
+          if (props.theme !== theme) {
+            theme = createCacheWithTheme(theme)(props.theme)
+          }
+          return (
+            <ThemeContext.Provider value={theme}>
+              {props.children}
+            </ThemeContext.Provider>
+          )
+        }}
+      </ThemeContext.Consumer>
+    )
+  }
+
+  let useTheme = () => React.useContext(ThemeContext)
+
+  return {
+    ThemeProvider,
+    useTheme
+  }
 }
 
-let ThemeProvider = (props: Props) => {
-  return (
-    <ThemeContext.Consumer>
-      {theme => {
-        if (props.theme !== theme) {
-          theme = createCacheWithTheme(theme)(props.theme)
-        }
-        return (
-          <ThemeContext.Provider value={theme}>
-            {props.children}
-          </ThemeContext.Provider>
-        )
-      }}
-    </ThemeContext.Consumer>
-  )
-}
-
-export default ThemeProvider
+export default createTheme
