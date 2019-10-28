@@ -4,8 +4,18 @@ import 'test-utils/next-env'
 import * as React from 'react'
 import { jsx, css, CacheProvider } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
+import { render } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 import createCache from '@emotion/cache'
+
+// $FlowFixMe
+console.error = jest.fn()
+// $FlowFixMe
+console.warn = jest.fn()
+
+afterEach(() => {
+  jest.clearAllMocks()
+})
 
 const SomeComponent = (props: { lol: true }) => (props.lol ? 'yes' : 'no')
 
@@ -255,4 +265,19 @@ test('handles composition of styles without a final semi in a declaration block'
   )
 
   expect(tree.toJSON()).toMatchSnapshot()
+})
+
+it("doesn't try to insert invalid rules caused by object style's value being falsy", () => {
+  render(
+    <CacheProvider value={createCache({ speedy: true })}>
+      <h1
+        css={css({ color: 'hotpink', '@media (min-width 800px)': undefined })}
+      >
+        {'Emotion'}
+      </h1>
+    </CacheProvider>
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+  expect((console.warn: any).mock.calls).toMatchInlineSnapshot(`Array []`)
 })
