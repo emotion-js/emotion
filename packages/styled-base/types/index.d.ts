@@ -87,7 +87,7 @@ export interface CreateStyledComponent<
  * @example styled('div')({ width: 100 })
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
-export interface CreateStyled<Theme extends object = any> {
+export interface CreateStyled<Theme extends {} = any> {
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions

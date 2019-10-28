@@ -16,17 +16,17 @@ export interface ThemeProviderProps<Theme> {
   children?: React.ReactNode
 }
 
-export interface ThemeProvider<Theme = any> {
+export interface ThemeProvider<Theme extends {} = any> {
   (props: ThemeProviderProps<Theme>): React.ReactElement
 }
 
-export type withTheme<Theme = any> = <
+export type withTheme<Theme extends {} = any> = <
   C extends React.ComponentType<React.ComponentProps<C>>
 >(
   component: C
 ) => React.FC<DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Theme }>
 
-export type useTheme<Theme = any> = <T extends Theme = Theme>() => T
+export type useTheme<Theme extends {} = any> = <T extends Theme = Theme>() => T
 
 export const ThemeProvider: ThemeProvider
 
