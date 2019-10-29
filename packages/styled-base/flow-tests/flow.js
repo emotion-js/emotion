@@ -18,7 +18,7 @@ export const valid: (
 // $FlowExpectError: we can't cast a StyledComponent to string
 export const invalid: string = createStyled('div')
 
-const Div = createStyled.div < Props > { color: props => props.color }
+const Div = createStyled.div<Props>({ color: props => props.color })
 
 const validProp = <Div color="red" />
 
@@ -33,9 +33,6 @@ const invalidPropAccess = createStyled().__emotion_base
 const untyped: StyledComponent<empty> = createStyled.div({})
 
 // Style a functional component
-const styledFn =
-  createStyled <
-  Props >
-  (props => <div {...props} />)`
+const styledFn = createStyled<Props>(props => <div {...props} />)`
   color: red;
 `

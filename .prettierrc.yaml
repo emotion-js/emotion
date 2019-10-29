@@ -4,4 +4,6 @@ overrides:
 - files: "docs/*.md"
   options:
     printWidth: 60
+- files: "*.js"
+  options:
     parser: flow
