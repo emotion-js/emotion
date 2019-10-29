@@ -8,8 +8,10 @@
   "files": [
     "src",
     "dist",
+    "types",
     "macro.js",
-    "types"
+    "macro.d.ts",
+    "macro.js.flow"
   ],
   "scripts": {
     "test:typescript": "dtslint types"
