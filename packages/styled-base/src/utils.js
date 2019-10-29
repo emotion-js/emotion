@@ -1,6 +1,5 @@
 // @flow
-import * as React from 'react'
-import type { ElementType } from 'react'
+import type { ElementType, StatelessFunctionalComponent } from 'react'
 import isPropValid from '@emotion/is-prop-valid'
 
 export type Interpolations = Array<any>
@@ -11,7 +10,7 @@ export type StyledOptions = {
   target?: string
 }
 
-export type StyledComponent<P> = React.StatelessFunctionalComponent<P> & {
+export type StyledComponent<P> = StatelessFunctionalComponent<P> & {
   defaultProps: any,
   toString: () => string,
   withComponent: (
@@ -31,7 +30,7 @@ const testOmitPropsOnStringTag = isPropValid
 const testOmitPropsOnComponent = (key: string) =>
   key !== 'theme' && key !== 'innerRef'
 
-export const getDefaultShouldForwardProp = (tag: React.ElementType) =>
+export const getDefaultShouldForwardProp = (tag: ElementType) =>
   typeof tag === 'string' &&
   // 96 is one less than the char code
   // for "a" so this is checking that
@@ -45,7 +44,10 @@ export type CreateStyledComponent = <P>(
 ) => StyledComponent<P>
 
 export type CreateStyled = {
-  (tag: React.ElementType, options?: StyledOptions): CreateStyledComponent,
+  <P>(
+    tag: ElementType,
+    options?: StyledOptions
+  ): (...args: Interpolations) => StyledComponent<P>,
   [key: string]: CreateStyledComponent,
   bind: () => CreateStyled
 }
