@@ -39,3 +39,15 @@ const StyledDiv2 = themedStyled.div(props => {
 
 // $ExpectError
 ;<StyledDiv2 theme={{ themeProp: 0 }} />
+
+const Container = styled.div((props: { test: number }) => ({
+  width: props.test
+}))
+
+const Container2 = styled.div<{ test: number }>(props => ({
+  width: props.test
+}))
+
+const Container3 = styled.div(({ theme }) => ({
+  width: theme.width
+}))
