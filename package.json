@@ -254,7 +254,7 @@
     "through": "^2.3.8",
     "unified": "^6.1.6",
     "unist-util-visit": "^1.2.0",
-    "webpack-bundle-analyzer": "2.13.1",
+    "webpack-bundle-analyzer": "3.3.2",
     "worker-loader": "2.0.0"
   }
 }
