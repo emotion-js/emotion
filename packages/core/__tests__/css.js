@@ -102,7 +102,23 @@ test('array fallback', () => {
     <div>
       <div
         css={{
-          display: ['green', 'hotpink']
+          color: ['green', 'hotpink']
+        }}
+      >
+        something
+      </div>
+    </div>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('array fallback (using camelCased property)', () => {
+  const tree = renderer.create(
+    <div>
+      <div
+        css={{
+          backgroundColor: ['green', 'hotpink']
         }}
       >
         something
