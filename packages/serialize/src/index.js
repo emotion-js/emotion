@@ -17,6 +17,7 @@ let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
 const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
+const isProcessableValue = value => value != null && typeof value !== 'boolean'
 
 const processStyleName = memoize(
   (styleName: string) =>
@@ -29,10 +30,6 @@ let processStyleValue = (
   key: string,
   value: string | number
 ): string | number => {
-  if (value == null || typeof value === 'boolean') {
-    return ''
-  }
-
   switch (key) {
     case 'animation':
     case 'animationName': {
@@ -272,7 +269,7 @@ function createStringFromObject(
       if (typeof value !== 'object') {
         if (registered != null && registered[value] !== undefined) {
           string += `${key}{${registered[value]}}`
-        } else {
+        } else if (isProcessableValue(value)) {
           string += `${processStyleName(key)}:${processStyleValue(key, value)};`
         }
       } else {
@@ -290,10 +287,12 @@ function createStringFromObject(
           (registered == null || registered[value[0]] === undefined)
         ) {
           for (let i = 0; i < value.length; i++) {
-            string += `${processStyleName(key)}:${processStyleValue(
-              key,
-              value[i]
-            )};`
+            if (isProcessableValue(value[i])) {
+              string += `${processStyleName(key)}:${processStyleValue(
+                key,
+                value[i]
+              )};`
+            }
           }
         } else {
           const interpolated = handleInterpolation(
