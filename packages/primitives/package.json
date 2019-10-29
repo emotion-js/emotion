@@ -1,6 +1,6 @@
 {
   "name": "@emotion/primitives",
-  "version": "10.0.22",
+  "version": "10.0.23",
   "main": "dist/primitives.cjs.js",
   "module": "dist/primitives.esm.js",
   "files": [
@@ -8,9 +8,9 @@
     "dist"
   ],
   "dependencies": {
-    "@emotion/is-prop-valid": "0.8.3",
+    "@emotion/is-prop-valid": "0.8.4",
     "@emotion/primitives-core": "10.0.22",
-    "babel-plugin-emotion": "^10.0.22"
+    "babel-plugin-emotion": "^10.0.23"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
