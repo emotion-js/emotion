@@ -12,8 +12,7 @@ server.listen(process.env.PORT || 3000, error => {
   }
 
   console.log('🚀 started')
-}) // eslint-disable-next-line
-// $FlowFixMe
+}) // $FlowFixMe
 if (module.hot) {
   console.log('✅  Server-side HMR Enabled!')
   // $FlowFixMe
