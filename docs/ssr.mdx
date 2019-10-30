@@ -2,6 +2,10 @@
 title: 'Server Side Rendering'
 ---
 
+Server side rendering in emotion 10 has two approaches, each with their pros and cons. The default usage works with streaming and requires no additional configuration, but has some limitations on some CSS features.
+
+## Default integration
+
 Server side rendering works out of the box in Emotion 10 and above if you're only using `@emotion/core` and `@emotion/styled`. This means you can call React's [`renderToString`](https://reactjs.org/docs/react-dom-server.html#rendertostring) or [`renderToNodeStream`](https://reactjs.org/docs/react-dom-server.html#rendertonodestream) methods directly without any extra configuration.
 
 ```jsx
@@ -11,15 +15,31 @@ import App from './App'
 let html = renderToString(<App />)
 ```
 
-## Using Emotion 10 with the old SSR APIs
-
-It's also possible to use emotion 10 with the SSR APIs for vanilla Emotion. It should only be used for compatibility and migration purposes.
+The rendered output will insert a `<style>` tag above each element with styles for example 
 
 ```jsx
-import { renderStylesToString } from 'emotion-server'
-import { cache } from 'emotion'
+const MyDiv = styled('div')({ fontSize: 12 })
+<MyDiv>Text</MyDiv>
+// Will render as
+<style>.css-21cs4 { font-size: 12 }</style>
+<div class="css-21cs4">Text</div>
+```
+
+_Warning_ this approach can interfere with nth child selectors as it is inserting additional elements into your markup. You will get a warning if you use such selectors when using approach 1.
+
+## Advanced Ingration
+
+You can also use the advanced integration, it requires more work but does not have the CSS limitations of the first approach. This approach does not work with the streaming APIs though.
+
+### On server
+```jsx
 import { CacheProvider } from '@emotion/core'
 import { renderToString } from 'react-dom/server'
+import createEmotionServer from 'create-emotion-server'
+import createCache from '@emotion/cache'
+
+const cache = createCache()
+const { extractCritical } = createEmotionServer(cache)
 
 let element = (
   <CacheProvider value={cache}>
@@ -27,10 +47,45 @@ let element = (
   </CacheProvider>
 )
 
-let html = renderStylesToString(renderToString(element))
+let { html, css, ids } = extractCritical(renderToString(element))
+
+res
+  .status(200)
+  .header('Content-Type', 'text/html')
+  .send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My site</title>
+    <style type="text/css" data-emotion-css="${ids.join(' ')}">${ssrRenderResult.css}</style>
+</head>
+<body>
+    <div id="root">${html}</div>
+
+    <script src="./bundle.js"></script>
+</body>
+</html>`);
 ```
 
-## API
+### On client
+
+```jsx
+// Hydration of the ids in `data-emotion-css` will automatically occur when the cache is created
+const cache = createCache()
+
+ReactDOM.hydrate(
+  <CacheProvider value={cache}>
+    <App />
+  </CacheProvider>,
+  document.getElementById('root')
+)
+```
+
+In this approach you have to create your own cache and emotion server then use extractCritical 
+
+## API Reference
 
 ### renderStylesToString
 
