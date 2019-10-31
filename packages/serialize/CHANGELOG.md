@@ -1,5 +1,13 @@
 # @emotion/serialize
 
+## 0.11.14
+
+### Patch Changes
+
+- [`a55f3d49`](https://github.com/emotion-js/emotion/commit/a55f3d49c2febdf7eb1bede3f12da13c3efa1399) [#1581](https://github.com/emotion-js/emotion/pull/1581) Thanks [@Andarist](https://github.com/Andarist)! - Don't cause invalid rule to be serialized when using object style with falsy value
+
+* [`ca95f385`](https://github.com/emotion-js/emotion/commit/ca95f385f7ce3da6d53de1a652b3b219f11434c4) [#1580](https://github.com/emotion-js/emotion/pull/1580) Thanks [@Andarist](https://github.com/Andarist)! - Warn about `undefined` being used as object style's key
+
 ## 0.11.13
 
 ### Patch Changes
