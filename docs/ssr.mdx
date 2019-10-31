@@ -72,6 +72,21 @@ res
 </html>`);
 ```
 
+### On client
+
+```jsx
+// Hydration of the ids in `data-emotion-css` will automatically occur when the cache is created
+const cache = createCache()
+ReactDOM.hydrate(
+  <CacheProvider value={cache}>
+    <App />
+  </CacheProvider>,
+  document.getElementById('root')
+)
+```
+
+
+
 In this approach you have to create your own cache and emotion server then use extractCritical 
 
 ## API Reference
