@@ -2,7 +2,7 @@
 title: 'Server Side Rendering'
 ---
 
-Server side rendering in Emotion 10 has two approaches, each with their own trade-offs. The default approach works with streaming and requires no additional configuration, but does not work with nth child or similar selectors. It's strongly recommended that you use the default approach unless you need nth child or similar selectors. 
+Server side rendering in Emotion 10 has two approaches, each with their own trade-offs. The default approach works with streaming and requires no additional configuration, but does not work with nth child or similar selectors. It's strongly recommended that you use the default approach unless you need nth child or similar selectors.
 
 ## Default Approach
 
@@ -15,7 +15,7 @@ import App from './App'
 let html = renderToString(<App />)
 ```
 
-The rendered output will insert a `<style>` tag above each element with styles for example 
+The rendered output will insert a `<style>` tag above each element with styles for example
 
 ```jsx
 const MyDiv = styled('div')({ fontSize: 12 })
@@ -29,7 +29,7 @@ const MyDiv = styled('div')({ fontSize: 12 })
 
 ## Advanced Approach
 
-> Note: If you're not using nth child or similar selectors, you don't need to do this. Use the default approach. 
+> Note: If you're not using nth child or similar selectors, you don't need to do this. Use the default approach.
 
 You can also use the advanced integration, it requires more work but does not have limitations on nth child and similar selectors. This approach does not work with the streaming APIs.
 
@@ -62,7 +62,7 @@ res
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My site</title>
-    <style data-emotion-css="${ids.join(' ')}">${ssrRenderResult.css}</style>
+    <style data-emotion-css="${ids.join(' ')}">${css}</style>
 </head>
 <body>
     <div id="root">${html}</div>
@@ -87,7 +87,7 @@ ReactDOM.hydrate(
 
 
 
-In this approach you have to create your own cache and emotion server then use extractCritical 
+In this approach you have to create your own cache and emotion server then use extractCritical
 
 ## API Reference
 
