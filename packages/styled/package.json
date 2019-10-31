@@ -11,6 +11,10 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
+    "@babel/runtime": "^7.5.5",
+    "@emotion/serialize": "0.11.13",
+    "@emotion/utils": "0.11.2",
+    "@emotion/is-prop-valid": "^0.8.3",
     "babel-plugin-emotion": "^10.0.22"
   },
   "devDependencies": {
