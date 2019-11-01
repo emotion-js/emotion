@@ -20,7 +20,7 @@ export type ClassNamesArg =
   | null
   | string
   | boolean
-  | { [className: string]: boolean }
+  | { [className: string]: boolean | null | undefined }
   | ArrayClassNamesArg
 
 export interface Emotion {
