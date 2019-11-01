@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 0.8.5
+
+### Patch Changes
+
+- [`5e17e456`](https://github.com/emotion-js/emotion/commit/5e17e456a66857bb3a3a5b39c9cd8f8dd89301e5) [#1596](https://github.com/emotion-js/emotion/pull/1596) Thanks [@Andarist](https://github.com/Andarist)! - Added Flow types to the package.
+
 ## 0.8.4
 
 ### Patch Changes
