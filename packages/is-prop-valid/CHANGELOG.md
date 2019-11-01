@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 0.8.4
+
+### Patch Changes
+
+- [`6cdb5695`](https://github.com/emotion-js/emotion/commit/6cdb56959bc4b64d7178604f1eb64a058c2e58c2) [#1584](https://github.com/emotion-js/emotion/pull/1584) Thanks [@probablyup](https://github.com/probablyup)! - add "on" amp html attribute to the whitelist
+
 ## 0.8.3
 
 - Updated dependencies [c81c0033]:
