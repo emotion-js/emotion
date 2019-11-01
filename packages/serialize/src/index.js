@@ -13,6 +13,9 @@ Because you write your CSS inside a JavaScript string you actually have to do do
 You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
+const UNDEFINED_AS_OBJECT_KEY_ERROR =
+  "You have passed in falsy value as style object's key (can happen when in example you pass unexported component as computed key)."
+
 let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
@@ -308,6 +311,12 @@ function createStringFromObject(
               break
             }
             default: {
+              if (
+                process.env.NODE_ENV !== 'production' &&
+                key === 'undefined'
+              ) {
+                console.error(UNDEFINED_AS_OBJECT_KEY_ERROR)
+              }
               string += `${key}{${interpolated}}`
             }
           }
