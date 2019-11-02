@@ -442,6 +442,19 @@ exports[`styled object as style 1`] = `
 </h1>
 `;
 
+exports[`styled object as style with function as property value 1`] = `
+.emotion-0 {
+  font-size: 20px;
+}
+
+<h1
+  className="emotion-0"
+  fontSize={20}
+>
+  hello world
+</h1>
+`;
+
 exports[`styled object composition 1`] = `
 .emotion-0 {
   border-radius: 50%;

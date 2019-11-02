@@ -20,7 +20,6 @@ let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
 const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
-const isProcessableValue = value => value != null && typeof value !== 'boolean'
 
 const processStyleName = memoize(
   (styleName: string) =>
@@ -82,7 +81,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   let hyphenatedCache = {}
 
-  processStyleValue = (key: string, value: string) => {
+  processStyleValue = (key: string, value: string | number) => {
     if (key === 'content') {
       if (
         typeof value !== 'string' ||
@@ -255,6 +254,74 @@ function handleInterpolation(
     : interpolation
 }
 
+function createStringFromObjectEntry(mergedProps, registered, key, value) {
+  switch (typeof value) {
+    case 'string':
+    case 'number':
+      if (registered != null && registered[value] !== undefined) {
+        return `${key}{${registered[value]}}`
+      } else {
+        return `${processStyleName(key)}:${processStyleValue(key, value)};`
+      }
+    case 'function': {
+      const interpolated = handleInterpolation(
+        mergedProps,
+        registered,
+        value,
+        false
+      )
+
+      return createStringFromObjectEntry(
+        mergedProps,
+        registered,
+        key,
+        interpolated
+      )
+    }
+    case 'object':
+      if (
+        key === 'NO_COMPONENT_SELECTOR' &&
+        process.env.NODE_ENV !== 'production'
+      ) {
+        throw new Error(
+          'Component selectors can only be used in conjunction with babel-plugin-emotion.'
+        )
+      }
+
+      if (Array.isArray(value) && typeof value[0] === 'string') {
+        let string = ''
+        for (let i = 0; i < value.length; i++) {
+          string += `${processStyleName(key)}:${processStyleValue(
+            key,
+            value[i]
+          )};`
+        }
+        return string
+      }
+
+      const interpolated = handleInterpolation(
+        mergedProps,
+        registered,
+        value,
+        false
+      )
+      switch (key) {
+        case 'animation':
+        case 'animationName': {
+          return `${processStyleName(key)}:${interpolated};`
+        }
+        default: {
+          if (process.env.NODE_ENV !== 'production' && key === 'undefined') {
+            console.error(UNDEFINED_AS_OBJECT_KEY_ERROR)
+          }
+          return `${key}{${interpolated}}`
+        }
+      }
+    default:
+      return ''
+  }
+}
+
 function createStringFromObject(
   mergedProps: void | Object,
   registered: RegisteredCache | void,
@@ -266,63 +333,16 @@ function createStringFromObject(
     for (let i = 0; i < obj.length; i++) {
       string += handleInterpolation(mergedProps, registered, obj[i], false)
     }
-  } else {
-    for (let key in obj) {
-      let value = obj[key]
-      if (typeof value !== 'object') {
-        if (registered != null && registered[value] !== undefined) {
-          string += `${key}{${registered[value]}}`
-        } else if (isProcessableValue(value)) {
-          string += `${processStyleName(key)}:${processStyleValue(key, value)};`
-        }
-      } else {
-        if (
-          key === 'NO_COMPONENT_SELECTOR' &&
-          process.env.NODE_ENV !== 'production'
-        ) {
-          throw new Error(
-            'Component selectors can only be used in conjunction with babel-plugin-emotion.'
-          )
-        }
-        if (
-          Array.isArray(value) &&
-          typeof value[0] === 'string' &&
-          (registered == null || registered[value[0]] === undefined)
-        ) {
-          for (let i = 0; i < value.length; i++) {
-            if (isProcessableValue(value[i])) {
-              string += `${processStyleName(key)}:${processStyleValue(
-                key,
-                value[i]
-              )};`
-            }
-          }
-        } else {
-          const interpolated = handleInterpolation(
-            mergedProps,
-            registered,
-            value,
-            false
-          )
-          switch (key) {
-            case 'animation':
-            case 'animationName': {
-              string += `${processStyleName(key)}:${interpolated};`
-              break
-            }
-            default: {
-              if (
-                process.env.NODE_ENV !== 'production' &&
-                key === 'undefined'
-              ) {
-                console.error(UNDEFINED_AS_OBJECT_KEY_ERROR)
-              }
-              string += `${key}{${interpolated}}`
-            }
-          }
-        }
-      }
-    }
+    return string
+  }
+
+  for (let key in obj) {
+    string += createStringFromObjectEntry(
+      mergedProps,
+      registered,
+      key,
+      obj[key]
+    )
   }
 
   return string

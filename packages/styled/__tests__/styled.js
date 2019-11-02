@@ -62,6 +62,14 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('object as style with function as property value', () => {
+    const H1 = styled.h1({ fontSize: props => props.fontSize })
+
+    const tree = renderer.create(<H1 fontSize={20}>hello world</H1>).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('object as className', () => {
     const myclass = { toString: () => 'myclass' }
     const Comp = styled.div``
