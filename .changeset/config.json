@@ -9,7 +9,6 @@
     [
       "@emotion/core",
       "@emotion/styled",
-      "@emotion/styled-base",
       "@emotion/cache",
       "@emotion/css",
       "create-emotion",

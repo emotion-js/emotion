@@ -7,7 +7,7 @@ import nodePath from 'path'
 import { getSourceMap, getStyledOptions } from './utils'
 
 let webStyledMacro = createStyledMacro({
-  importPath: '@emotion/styled-base',
+  importPath: '@emotion/styled/base',
   originalImportPath: '@emotion/styled',
   isWeb: true
 })

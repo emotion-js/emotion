@@ -38,7 +38,7 @@ let Comp = styled.div({ color: 'hotpink' })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled-base\\";
+import _styled from \\"@emotion/styled/base\\";
 
 let Comp = _styled(\\"div\\", {
   target: \\"e4zcdjx0\\",
