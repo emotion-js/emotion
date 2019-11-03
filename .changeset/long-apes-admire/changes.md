@@ -24,7 +24,7 @@ If you encounter build issues after upgrade, try removing any manually specified
   to  
   `styled(MyComponent)<ExtraProps>({})`
 
-- `StyledComponent` type no longer supports the third generic `Theme` paramter. Instead add the `theme` prop to the first `Props` argument. For example:
+- `StyledComponent` type no longer supports the third generic `Theme` parameter. Instead add the `theme` prop to the first `Props` argument. For example:
 
   `StyledComponent<Props, {}, MyTheme>`  
   to  
