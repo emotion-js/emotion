@@ -1,5 +1,22 @@
 # @emotion/styled-base
 
+## 10.0.24
+
+### Patch Changes
+
+- Updated dependencies [[`5e17e456`](https://github.com/emotion-js/emotion/commit/5e17e456a66857bb3a3a5b39c9cd8f8dd89301e5)]:
+  - @emotion/is-prop-valid@0.8.5
+
+## 10.0.23
+
+### Patch Changes
+
+- [`97673098`](https://github.com/emotion-js/emotion/commit/97673098945a75b716d4cac100c1af46a5ae18f2) [#1570](https://github.com/emotion-js/emotion/pull/1570) Thanks [@FezVrasta](https://github.com/FezVrasta)! - Fixed package's Flow types
+
+- Updated dependencies [[`a55f3d49`](https://github.com/emotion-js/emotion/commit/a55f3d49c2febdf7eb1bede3f12da13c3efa1399), [`ca95f385`](https://github.com/emotion-js/emotion/commit/ca95f385f7ce3da6d53de1a652b3b219f11434c4), [`6cdb5695`](https://github.com/emotion-js/emotion/commit/6cdb56959bc4b64d7178604f1eb64a058c2e58c2)]:
+  - @emotion/serialize@0.11.14
+  - @emotion/is-prop-valid@0.8.4
+
 ## 10.0.22
 
 ### Patch Changes

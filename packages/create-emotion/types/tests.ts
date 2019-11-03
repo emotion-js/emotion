@@ -47,7 +47,9 @@ cx('123')
 cx('123', 'pf')
 cx({
   abc: false,
-  fp: true
+  fp: true,
+  opt1: null,
+  opt2: undefined
 })
 cx([])
 cx([

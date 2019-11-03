@@ -1,6 +1,6 @@
 {
   "name": "emotion",
-  "version": "10.0.17",
+  "version": "10.0.23",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/emotion.cjs.js",
   "module": "dist/emotion.esm.js",
@@ -8,14 +8,16 @@
   "files": [
     "src",
     "dist",
+    "types",
     "macro.js",
-    "types"
+    "macro.d.ts",
+    "macro.js.flow"
   ],
   "scripts": {
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^10.0.17",
+    "babel-plugin-emotion": "^10.0.23",
     "create-emotion": "^10.0.14"
   },
   "devDependencies": {

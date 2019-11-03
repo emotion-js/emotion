@@ -1,3 +1,4 @@
+// @flow
 import memoize from '@emotion/memoize'
 
 declare var codegen: { require: string => RegExp }

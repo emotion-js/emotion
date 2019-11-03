@@ -1,5 +1,17 @@
 # @emotion/is-prop-valid
 
+## 0.8.5
+
+### Patch Changes
+
+- [`5e17e456`](https://github.com/emotion-js/emotion/commit/5e17e456a66857bb3a3a5b39c9cd8f8dd89301e5) [#1596](https://github.com/emotion-js/emotion/pull/1596) Thanks [@Andarist](https://github.com/Andarist)! - Added Flow types to the package.
+
+## 0.8.4
+
+### Patch Changes
+
+- [`6cdb5695`](https://github.com/emotion-js/emotion/commit/6cdb56959bc4b64d7178604f1eb64a058c2e58c2) [#1584](https://github.com/emotion-js/emotion/pull/1584) Thanks [@probablyup](https://github.com/probablyup)! - add "on" amp html attribute to the whitelist
+
 ## 0.8.3
 
 - Updated dependencies [c81c0033]:
