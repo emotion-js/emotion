@@ -3,6 +3,34 @@ import { transformExpressionWithStyles } from './utils'
 import { addNamed } from '@babel/helper-module-imports'
 import { createMacro } from 'babel-plugin-macros'
 
+const isAlreadyTranspiled = path => {
+  if (!path.isCallExpression()) {
+    return false
+  }
+
+  const firstArgPath = path.get('arguments.0')
+
+  if (!firstArgPath) {
+    return false
+  }
+
+  if (!firstArgPath.isConditionalExpression()) {
+    return false
+  }
+
+  const alternatePath = firstArgPath.get('alternate')
+
+  if (!alternatePath.isObjectExpression()) {
+    return false
+  }
+
+  const properties = new Set(
+    alternatePath.get('properties').map(p => p.node.key.name)
+  )
+
+  return ['name', 'styles'].every(p => properties.has(p))
+}
+
 export let createEmotionMacro = (instancePath: string) =>
   createMacro(function macro({ references, state, babel, isEmotionCall }) {
     if (!isEmotionCall) {
@@ -23,6 +51,10 @@ export let createEmotionMacro = (instancePath: string) =>
         case 'keyframes': {
           references[referenceKey].reverse().forEach(reference => {
             const path = reference.parentPath
+
+            if (isAlreadyTranspiled(path)) {
+              return
+            }
 
             reference.replaceWith(t.cloneDeep(runtimeNode))
             if (isPure) {
