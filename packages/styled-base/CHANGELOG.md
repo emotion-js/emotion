@@ -1,5 +1,12 @@
 # @emotion/styled-base
 
+## 11.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [[`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555)]:
+  - @emotion/core@11.0.0-next.0
+
 ## 10.0.24
 
 ### Patch Changes
