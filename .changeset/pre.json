@@ -39,5 +39,8 @@
     "test-utils": "0.3.2",
     "emotion-site": "9.3.0"
   },
-  "changesets": []
+  "changesets": [
+    "light-mice-relate",
+    "rare-books-own"
+  ]
 }

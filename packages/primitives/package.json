@@ -1,6 +1,6 @@
 {
   "name": "@emotion/primitives",
-  "version": "10.0.24",
+  "version": "11.0.0-next.0",
   "main": "dist/primitives.cjs.js",
   "module": "dist/primitives.esm.js",
   "files": [
@@ -9,15 +9,15 @@
   ],
   "dependencies": {
     "@emotion/is-prop-valid": "0.8.5",
-    "@emotion/primitives-core": "10.0.22",
-    "babel-plugin-emotion": "^10.0.23"
+    "@emotion/primitives-core": "11.0.0-next.0",
+    "babel-plugin-emotion": "^11.0.0-next.0"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
     "react-primitives": "^0.7.0"
   },
   "devDependencies": {
-    "emotion-theming": "^10.0.19",
+    "emotion-theming": "^11.0.0-next.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "react": "^16.5.2",
