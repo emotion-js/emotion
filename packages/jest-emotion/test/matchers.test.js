@@ -317,4 +317,28 @@ describe('toHaveStyleRule', () => {
 
     expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
   })
+
+  it('takes specificity into account when matching styles (basic)', () => {
+    const Bar = styled.div`
+      color: yellow;
+    `
+
+    const Foo = styled.div`
+      color: red;
+
+      ${Bar} {
+        color: hotpink;
+      }
+    `
+
+    const tree = renderer
+      .create(
+        <Foo>
+          <Bar />
+        </Foo>
+      )
+      .toJSON()
+
+    expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
+  })
 })

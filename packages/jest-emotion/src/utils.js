@@ -8,6 +8,14 @@ function flatMap(arr, iteratee) {
   return [].concat(...arr.map(iteratee))
 }
 
+export function findLast(arr, predicate) {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (predicate(arr[i])) {
+      return arr[i]
+    }
+  }
+}
+
 export const RULE_TYPES = {
   media: 'media',
   rule: 'rule'
