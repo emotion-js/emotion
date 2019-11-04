@@ -1,7 +1,19 @@
 // @flow
 
+function last(arr) {
+  return arr.length > 0 ? arr[arr.length - 1] : undefined
+}
+
 function flatMap(arr, iteratee) {
   return [].concat(...arr.map(iteratee))
+}
+
+export function findLast<T>(arr: T[], predicate: T => boolean) {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (predicate(arr[i])) {
+      return arr[i]
+    }
+  }
 }
 
 export const RULE_TYPES = {
@@ -122,10 +134,17 @@ export function getStylesFromClassNames(
     return ''
   }
 
-  let keyPatten = new RegExp(`^(${keys.join('|')})-`)
-  let filteredClassNames = classNames.filter(className =>
-    keyPatten.test(className)
+  let targetClassName = classNames.find(className =>
+    /^e[a-z0-9]+$/.test(className)
   )
+  let keyPattern = `(${keys.join('|')})-`
+  let classNamesRegExp = new RegExp(
+    targetClassName ? `^(${keyPattern}|${targetClassName})` : `^${keyPattern}`
+  )
+  let filteredClassNames = classNames.filter(className =>
+    classNamesRegExp.test(className)
+  )
+
   if (!filteredClassNames.length) {
     return ''
   }
@@ -200,7 +219,11 @@ export function hasClassNames(
     // in the list of received node classNames to make sure this css rule
     // applied for root element
     if (!target) {
-      return classNames.includes(selector.slice(1))
+      const lastCls = last(selector.split(' '))
+      if (!lastCls) {
+        return false
+      }
+      return classNames.includes(lastCls.slice(1))
     }
     // check if selector (className) of specific css rule match target
     return target instanceof RegExp
