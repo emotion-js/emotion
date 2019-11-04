@@ -31,6 +31,7 @@ css`
 
 // $ExpectError
 css(() => 'height: 300px;')
+
 // $ExpectError
 css`
   position: relative;

@@ -9,6 +9,9 @@
     "lib",
     "dist"
   ],
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
   "dependencies": {
     "@babel/helper-module-imports": "^7.0.0",
     "@emotion/hash": "0.7.3",

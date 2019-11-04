@@ -5,7 +5,8 @@
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html --public-url .",
-    "run-benchmark": "node run.js"
+    "run-benchmark": "node run.js",
+    "test:typescript": "exit 0"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",

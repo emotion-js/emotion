@@ -6,6 +6,9 @@
   "module": "dist/babel-preset-css-prop.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/babel-preset-css-prop",
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/runtime": "^7.5.5",

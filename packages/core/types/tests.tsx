@@ -4,8 +4,6 @@ import {
   ClassNames,
   ClassNamesContent,
   Global,
-  Interpolation,
-  CacheProvider,
   css,
   jsx,
   keyframes,

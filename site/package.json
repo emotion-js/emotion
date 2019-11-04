@@ -51,6 +51,7 @@
   "license": "MIT",
   "scripts": {
     "build:site": "gatsby build",
-    "start:site": "gatsby develop"
+    "start:site": "gatsby develop",
+    "test:typescript": "exit 0"
   }
 }

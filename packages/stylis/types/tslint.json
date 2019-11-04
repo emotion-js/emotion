@@ -8,6 +8,8 @@
             "generic"
         ],
         "semicolon": false,
-        "space-before-function-paren": false
+        "space-before-function-paren": false,
+        "no-null-undefined-union": false,
+        "callable-types": false
     }
 }

@@ -3,30 +3,43 @@
 
 import * as React from 'react'
 
-import { AddOptionalTo, PropsOf } from './helper'
+import {
+  StyledComponent,
+  StyledOptions,
+  CreateStyledComponent,
+  StyledTags
+} from '@emotion/styled'
+import { PropsOf, DistributiveOmit } from '@emotion/styled-base'
 
 export interface ThemeProviderProps<Theme> {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
   children?: React.ReactNode
 }
 
-export function ThemeProvider<Theme>(
-  props: ThemeProviderProps<Theme>
-): React.ReactElement
+export interface ThemeProvider<Theme extends {} = any> {
+  (props: ThemeProviderProps<Theme>): React.ReactElement
+}
 
-export function useTheme<Theme>(): Theme
-
-/**
- * @todo Add more constraint to C so that
- * this function only accepts components with theme props.
- */
-export function withTheme<C extends React.ComponentType<any>>(
+export type withTheme<Theme extends {} = any> = <
+  C extends React.ComponentType<React.ComponentProps<C>>
+>(
   component: C
-): React.SFC<AddOptionalTo<PropsOf<C>, 'theme'>>
+) => React.FC<DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Theme }>
+
+export type useTheme<Theme extends {} = any> = <T extends Theme = Theme>() => T
+
+export const ThemeProvider: ThemeProvider
+
+export const withTheme: withTheme
+
+export const useTheme: useTheme
 
 export interface EmotionTheming<Theme> {
-  ThemeProvider(props: ThemeProviderProps<Theme>): React.ReactElement
-  withTheme<C extends React.ComponentType<any>>(
-    component: C
-  ): React.SFC<AddOptionalTo<PropsOf<C>, 'theme'>>
+  ThemeProvider: ThemeProvider<Theme>
+  withTheme: withTheme<Theme>
+  useTheme: useTheme<Theme>
 }
+
+export type WithTheme<P, T> = P extends { theme: infer Theme }
+  ? P & { theme: Exclude<Theme, undefined> }
+  : P & { theme: T }

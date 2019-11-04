@@ -5,7 +5,9 @@ import * as React from 'react'
  */
 export type PropsOf<
   C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
-> = JSX.LibraryManagedAttributes<C, React.ComponentPropsWithRef<C>>
+> = JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>
 
-export type Omit<T, U> = T extends any ? Pick<T, Exclude<keyof T, U>> : never
-export type Overwrapped<T, U> = Pick<T, Extract<keyof T, keyof U>>
+// We need to use this version of Omit as it's distributive (Will preserve unions)
+export type DistributiveOmit<T, U> = T extends any
+  ? Pick<T, Exclude<keyof T, U>>
+  : never

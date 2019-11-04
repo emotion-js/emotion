@@ -1,3 +1,5 @@
+// TypeScript Version: 2.2
+
 type UnaryFn<Arg, Return> = (arg: Arg) => Return
 
 export default function weakMemoize<Arg extends object, Return>(

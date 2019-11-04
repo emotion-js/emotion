@@ -4,7 +4,7 @@ import createEmotion from 'create-emotion'
 const emotion0 = createEmotion()
 // $ExpectType Emotion
 const emotion1 = createEmotion({
-  container: document.head !== null ? document.head : undefined,
+  container: document.head,
   nonce: 'fasefw'
 })
 
