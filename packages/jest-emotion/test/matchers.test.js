@@ -296,4 +296,25 @@ describe('toHaveStyleRule', () => {
     expect(result.pass).toBe(false)
     expect(result.message()).toBe('Property not found: font-size')
   })
+
+  it('matches styles for a component used as selector', () => {
+    const Bar = styled.div``
+
+    const Foo = styled.div`
+      color: red;
+
+      ${Bar} {
+        color: hotpink;
+      }
+    `
+    const tree = renderer
+      .create(
+        <Foo>
+          <Bar />
+        </Foo>
+      )
+      .toJSON()
+
+    expect(tree.children[0]).toHaveStyleRule('color', 'hotpink')
+  })
 })
