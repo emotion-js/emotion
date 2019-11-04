@@ -62,6 +62,23 @@ const Input1 = styled('input', {
 ;<Input1 />
 const Input2 = Button0.withComponent('input')
 
+const View = styled('div')({
+  display: 'flex',
+  position: 'relative',
+  boxSizing: 'border-box',
+  flexDirection: 'column'
+})
+
+const Input3 = styled(View.withComponent('input'))({
+  color: 'red'
+})
+;<Input3
+  onChange={e => {
+    // $ExpectType ChangeEvent<HTMLInputElement>
+    e
+  }}
+/>
+
 const Canvas0 = styled('canvas', {
   shouldForwardProp(propName) {
     return propName === 'width' || propName === 'height'
