@@ -8,7 +8,7 @@ function flatMap(arr, iteratee) {
   return [].concat(...arr.map(iteratee))
 }
 
-export function findLast(arr, predicate) {
+export function findLast<T>(arr: T[], predicate: T => boolean) {
   for (let i = arr.length - 1; i >= 0; i--) {
     if (predicate(arr[i])) {
       return arr[i]
@@ -219,7 +219,11 @@ export function hasClassNames(
     // in the list of received node classNames to make sure this css rule
     // applied for root element
     if (!target) {
-      return classNames.includes(last(selector.split(' ')).slice(1))
+      const lastCls = last(selector.split(' '))
+      if (!lastCls) {
+        return false
+      }
+      return classNames.includes(lastCls.slice(1))
     }
     // check if selector (className) of specific css rule match target
     return target instanceof RegExp
