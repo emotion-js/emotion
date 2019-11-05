@@ -2,20 +2,29 @@
 // TypeScript Version: 3.1
 
 import * as React from 'react'
+import '@emotion/core'
 import { DistributiveOmit, PropsOf } from './helper'
+import {
+  StyledComponent,
+  StyledOptions,
+  CreateStyledComponent,
+  StyledTags
+} from '@emotion/styled'
 
 export interface ThemeProviderProps<Theme> {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
   children?: React.ReactNode
 }
 
-export interface ThemeProvider<Theme extends {} = any> {
+export interface ThemeProvider<Theme extends {} = Emotion.Theme> {
   (props: ThemeProviderProps<Theme>): React.ReactElement
 }
 
-export type useTheme<Theme extends {} = any> = <T extends Theme = Theme>() => T
+export type useTheme<Theme extends {} = Emotion.Theme> = <
+  T extends Theme = Theme
+>() => T
 
-export type withTheme<Theme extends {} = any> = <
+export type withTheme<Theme extends {} = Emotion.Theme> = <
   C extends React.ComponentType<React.ComponentProps<C>>
 >(
   component: C

@@ -64,7 +64,7 @@ export interface GlobalProps<Theme> {
  * @desc
  * JSX generic are supported only after TS@2.9
  */
-export function Global<Theme extends {} = any>(
+export function Global<Theme extends {} = Emotion.Theme>(
   props: GlobalProps<Theme>
 ): ReactElement
 
@@ -96,17 +96,22 @@ export interface ClassNamesProps<Theme> {
  * @desc
  * JSX generic are supported only after TS@2.9
  */
-export function ClassNames<Theme extends {} = any>(
+export function ClassNames<Theme extends {} = Emotion.Theme>(
   props: ClassNamesProps<Theme>
 ): ReactElement
 
 declare module 'react' {
   interface DOMAttributes<T> {
-    css?: InterpolationWithTheme<any>
+    css?: InterpolationWithTheme<Emotion.Theme>
   }
 }
 
 declare global {
+  namespace Emotion {
+    // tslint:disable-next-line: no-empty-interface strict-export-declare-modifiers
+    export interface Theme {}
+  }
+
   namespace JSX {
     /**
      * Do we need to modify `LibraryManagedAttributes` too,
@@ -114,7 +119,7 @@ declare global {
      */
 
     interface IntrinsicAttributes {
-      css?: InterpolationWithTheme<any>
+      css?: InterpolationWithTheme<Emotion.Theme>
     }
   }
 }
