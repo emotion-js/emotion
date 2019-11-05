@@ -3,9 +3,6 @@ import * as React from 'react'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { ThemeContext } from '@emotion/core'
 
-let useContext: <Value>(context: React$Context<Value>) => Value = (React: any)
-  .useContext
-
 type Props = { theme: Object }
 
 // should we change this to be forwardRef/withCSSContext style so it doesn't merge with props?
@@ -16,7 +13,7 @@ export default function withTheme<Config: {}>(
 ): React.AbstractComponent<$Diff<Config, Props>> {
   const componentName = Component.displayName || Component.name || 'Component'
   let render = (props, ref) => {
-    let theme = useContext(ThemeContext)
+    let theme = React.useContext(ThemeContext)
 
     return <Component theme={theme} ref={ref} {...props} />
   }

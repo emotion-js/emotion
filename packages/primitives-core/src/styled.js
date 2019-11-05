@@ -4,8 +4,6 @@ import { testAlwaysTrue, pickAssign, interleave } from './utils'
 import { ThemeContext } from '@emotion/core'
 import { createCss } from './css'
 
-let useContext: <V>(content: React$Context<V>) => V = (React: any).useContext
-
 let defaultPickTest = prop => prop !== 'theme'
 
 type options = {
@@ -34,7 +32,7 @@ export function createStyled(
       // $FlowFixMe
       let Styled = React.forwardRef((props, ref) => {
         let mergedProps = pickAssign(testAlwaysTrue, {}, props, {
-          theme: props.theme || useContext(ThemeContext)
+          theme: props.theme || React.useContext(ThemeContext)
         })
         let stylesWithStyleProp = styles
         if (props.style) {
