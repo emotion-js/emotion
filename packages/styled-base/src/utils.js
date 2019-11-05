@@ -27,8 +27,7 @@ export type PrivateStyledComponent<Props> = StyledComponent<Props> & {
 }
 
 const testOmitPropsOnStringTag = isPropValid
-const testOmitPropsOnComponent = (key: string) =>
-  key !== 'theme' && key !== 'innerRef'
+const testOmitPropsOnComponent = (key: string) => key !== 'theme'
 
 export const getDefaultShouldForwardProp = (tag: ElementType) =>
   typeof tag === 'string' &&

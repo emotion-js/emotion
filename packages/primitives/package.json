@@ -16,14 +16,14 @@
     "babel-plugin-emotion": "^11.0.0-next.1"
   },
   "peerDependencies": {
-    "react": ">=16.3.0",
+    "react": ">=16.8.0",
     "react-primitives": "^0.7.0"
   },
   "devDependencies": {
     "emotion-theming": "^11.0.0-next.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
-    "react": "^16.5.2",
+    "react": "^16.11.0",
     "react-primitives": "^0.7.0"
   },
   "homepage": "https://emotion.sh",

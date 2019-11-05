@@ -13,7 +13,7 @@
   ],
   "devDependencies": {
     "emotion-theming": "^11.0.0-next.1",
-    "react": "^16.5.2",
+    "react": "^16.11.0",
     "react-native": "^0.57.0"
   },
   "dependencies": {

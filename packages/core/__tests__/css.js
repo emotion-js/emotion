@@ -50,7 +50,6 @@ test('theming with the css prop', () => {
       <div css={theme => ({ color: theme.primary })} />
     </ThemeProvider>
   )
-
   expect(tree.toJSON()).toMatchSnapshot()
 })
 

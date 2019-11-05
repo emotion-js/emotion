@@ -16,8 +16,12 @@ let labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
 
 let hasOwnProperty = Object.prototype.hasOwnProperty
 
-let render = (cache, props, theme: null | Object, ref) => {
-  let cssProp = theme === null ? props.css : props.css(theme)
+let Emotion = withEmotionCache((props, cache, ref) => {
+  let cssProp = props.css
+
+  if (typeof cssProp === 'function') {
+    cssProp = cssProp(React.useContext(ThemeContext))
+  }
 
   // so that using `css` from `emotion` and passing the result to the css prop works
   // not passing the registered cache to serializeStyles because it would
@@ -93,18 +97,6 @@ let render = (cache, props, theme: null | Object, ref) => {
     )
   }
   return ele
-}
-
-let Emotion = /* #__PURE__ */ withEmotionCache((props, cache, ref) => {
-  // use Context.read for the theme when it's stable
-  if (typeof props.css === 'function') {
-    return (
-      <ThemeContext.Consumer>
-        {theme => render(cache, props, theme, ref)}
-      </ThemeContext.Consumer>
-    )
-  }
-  return render(cache, props, null, ref)
 })
 
 if (process.env.NODE_ENV !== 'production') {
