@@ -248,28 +248,30 @@ const App = () => (
 ### Define a Theme
 
 By default, `props.theme` has an `any` type annotation and works without any errors.
-However, you can define a theme type by creating another `styled` instance.
+However, you can define a theme type by extending our type declarations via your own declarations file.
 
-_styled.tsx_
+_emotion.d.ts_
 
-```tsx
-import styled, { CreateStyled } from '@emotion/styled'
-import { useTheme, ThemeProvider, EmotionTheming } from '@emotion/core'
-
-type Theme = {
-  color: {
-    primary: string
-    positive: string
-    negative: string
-  }
-  // ...
+```typescript
+declare global {
+    namespace Emotion {
+        export interface Theme {
+            colors: {
+              body: string
+              text: string
+            }
+        }
+    }
 }
 
-export default styled as CreateStyled<Theme>
+// You are also able to use a 3rd party theme this way:
+import { MuiTheme as MaterialUITheme } from 'material-ui'
 
-// You can also create themed versions of all the other theme helpers and hooks
-const { ThemeProvider, useTheme } = { ThemeProvider, useTheme } as EmotionTheming<Theme>
-export { ThemeProvider, useTheme }
+delcare global {
+    namespace Emotion {
+        export interface Theme extends MaterialUITheme {}
+    }
+}
 ```
 
 _Button.tsx_
