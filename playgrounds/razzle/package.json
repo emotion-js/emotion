@@ -14,8 +14,8 @@
     "express": "^4.16.3",
     "raf": "^3.4.0",
     "razzle": "^2.4.0",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-router-dom": "^4.2.2"
   }
 }

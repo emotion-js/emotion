@@ -34,9 +34,9 @@
   "devDependencies": {
     "@emotion/core": "^11.0.0-next.0",
     "@emotion/styled": "^11.0.0-next.0",
-    "@types/react": "^16.8.20",
+    "@types/react": "^16.9.11",
     "dtslint": "^0.3.0",
-    "react": "^16.5.2"
+    "react": "^16.11.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
@@ -45,7 +45,7 @@
   },
   "peerDependencies": {
     "@emotion/core": "^11.0.0-next.0",
-    "react": ">=16.3.0"
+    "react": ">=16.8.0"
   },
   "umd:main": "dist/emotion-theming.umd.min.js",
   "browser": {

@@ -17,11 +17,11 @@
   "devDependencies": {
     "@emotion/core": "^11.0.0-next.0",
     "dtslint": "^0.3.0",
-    "react": "^16.5.2"
+    "react": "^16.11.0"
   },
   "peerDependencies": {
     "@emotion/core": "^11.0.0-next.0",
-    "react": ">=16.3.0"
+    "react": ">=16.8.0"
   },
   "publishConfig": {
     "access": "public"
