@@ -1,6 +1,6 @@
 {
   "name": "@emotion/core",
-  "version": "11.0.0-next.1",
+  "version": "11.0.0-next.2",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",
   "browser": {
@@ -30,12 +30,12 @@
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "@emotion/styled": "^11.0.0-next.1",
+    "@emotion/styled": "^11.0.0-next.2",
     "@types/react": "^16.9.11",
     "dtslint": "^0.3.0",
     "emotion": "^11.0.0-next.0",
     "emotion-server": "^11.0.0-next.0",
-    "emotion-theming": "^11.0.0-next.1",
+    "emotion-theming": "^11.0.0-next.2",
     "html-tag-names": "^1.1.2",
     "react": "^16.11.0",
     "svg-tag-names": "^1.1.1"
