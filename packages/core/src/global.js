@@ -19,7 +19,7 @@ let warnedAboutCssPropForGlobal = false
 // initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
 // initial client-side render from SSR, use place of hydrating tag
 
-export let Global: React.StatelessFunctionalComponent<
+export let Global: React.AbstractComponent<
   GlobalProps
 > = /* #__PURE__ */ withEmotionCache((props: GlobalProps, cache) => {
   if (
