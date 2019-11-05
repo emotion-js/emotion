@@ -1,5 +1,15 @@
 # jest-emotion
 
+## 11.0.0-next.1
+
+### Patch Changes
+
+- [`e67a5be9`](https://github.com/emotion-js/emotion/commit/e67a5be9bffaa12f9ae0e366983dced4c3716f84) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@Andarist](https://github.com/Andarist)! - Take specificity into account when matching styles
+
+* [`e67a5be9`](https://github.com/emotion-js/emotion/commit/e67a5be9bffaa12f9ae0e366983dced4c3716f84) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@Andarist](https://github.com/Andarist)! - Match rules in declarations with component used as a selector
+* Updated dependencies []:
+  - @emotion/core@11.0.0-next.1
+
 ## 11.0.0-next.0
 
 ### Major Changes
