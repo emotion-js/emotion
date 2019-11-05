@@ -265,11 +265,11 @@ declare global {
 }
 
 // You are also able to use a 3rd party theme this way:
-import { MuiTheme as MaterialUITheme } from 'material-ui'
+import { MuiTheme } from 'material-ui'
 
 delcare global {
     namespace Emotion {
-        export interface Theme extends MaterialUITheme {}
+        export interface Theme extends MuiTheme {}
     }
 }
 ```
