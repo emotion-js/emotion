@@ -4,8 +4,6 @@ import {
   ClassNames,
   ClassNamesContent,
   Global,
-  Interpolation,
-  CacheProvider,
   css,
   jsx,
   keyframes,
@@ -21,11 +19,11 @@ interface TestTheme0 {
 
 declare const getRandomColor: () => string
 
-const ComponentWithCache = withEmotionCache((_props: {}, context) => {
+const ComponentWithCache = withEmotionCache((_props: {}, cache) => {
   return (
     <div
       onClick={() =>
-        context.sheet.insert(`div { backgroundColor: ${getRandomColor()} }`)
+        cache.sheet.insert(`div { backgroundColor: ${getRandomColor()} }`)
       }
     />
   )

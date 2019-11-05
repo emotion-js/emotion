@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Global } from '@emotion/core'
-import { render } from 'react-testing-library'
+import { render } from '@testing-library/react'
 
 let getDataAttributes = () =>
   Array.from(document.querySelectorAll('style[data-emotion]'), x =>

@@ -113,6 +113,75 @@ cases(
         )
       }
     },
+    'object with animationName and opaque keyframes as value': {
+      render: () => {
+        let animation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: hotpink;
+          }
+        `)
+
+        return (
+          <div
+            css={{
+              animationName: animation,
+              animationDuration: '1s'
+            }}
+          >
+            {animation.name}
+          </div>
+        )
+      }
+    },
+    'object with animationName and string keyframes as value': {
+      render: () => {
+        let animation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: hotpink;
+          }
+        `)
+
+        return (
+          <div
+            css={{
+              animationName: `${animation}`,
+              animationDuration: '1s'
+            }}
+          >
+            {animation.name}
+          </div>
+        )
+      }
+    },
+    'object with animation and opaque keyframes as value': {
+      render: () => {
+        let animation = keyframes(css`
+          from {
+            color: green;
+          }
+          to {
+            color: hotpink;
+          }
+        `)
+
+        return (
+          <div
+            css={{
+              animation,
+              animationDuration: '1s'
+            }}
+          >
+            {animation.name}
+          </div>
+        )
+      }
+    },
     'multiple keyframes object': {
       render: () => {
         let animation = keyframes(css`

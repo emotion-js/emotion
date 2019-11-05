@@ -13,7 +13,7 @@
 ![core gzip size](https://img.shields.io/bundlephobia/minzip/emotion.svg?label=core%20gzip%20size)
 ![react size](https://img.shields.io/bundlephobia/min/@emotion/styled-base.svg?label=react%20size)
 ![react gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/styled-base.svg?label=react%20gzip%20size)
-[![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
+[![slack](https://emotion-slack.now.sh/badge.svg)](https://emotion-slack.now.sh/)
 [![spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/emotion)
 
 Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
@@ -86,6 +86,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
 - [polished](https://github.com/styled-components/polished) - Lightweight set of Sass/Compass-style mixins/helpers for writing styles in JavaScript.
 - [monad-ui](https://github.com/muhajirdev/monad-ui/) - Utility First CSS-In-JS
+- [css-in-js-media](https://github.com/zx6658/css-in-js-media) - you can deal with responsive design using css-in-js easily with this `css-in-js-media` which is similar with include-media
 
 ### In the Wild
 

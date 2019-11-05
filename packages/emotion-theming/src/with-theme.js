@@ -11,7 +11,9 @@ type Props = { theme: Object }
 // should we change this to be forwardRef/withCSSContext style so it doesn't merge with props?
 // should we remove this altogether and tell people to useContext
 
-const withTheme = (Component: React.ComponentType<Props>) => {
+export default function withTheme<Config: {}>(
+  Component: React.AbstractComponent<Config>
+): React.AbstractComponent<$Diff<Config, Props>> {
   const componentName = Component.displayName || Component.name || 'Component'
   let render = (props, ref) => {
     let theme = useContext(ThemeContext)
@@ -25,5 +27,3 @@ const withTheme = (Component: React.ComponentType<Props>) => {
 
   return hoistNonReactStatics(WithTheme, Component)
 }
-
-export default withTheme

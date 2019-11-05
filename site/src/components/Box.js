@@ -36,7 +36,18 @@ const column = props => (props.column ? 'flex-direction:column;' : null)
  *   ${justify};
  * `
  */
-const Box = styled.div(
+type Props = $Shape<{
+  className: ?string,
+  flex: number | string,
+  children: React$Node,
+  direction: Array<string>,
+  css: { [string]: number | string },
+  display: string,
+  fontSize: string | number,
+  justify: string,
+  align: string
+}>
+const Box = styled.div<Props>(
   display,
   space,
   width,

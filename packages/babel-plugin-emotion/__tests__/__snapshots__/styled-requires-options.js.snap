@@ -15,7 +15,7 @@ exports[`styled inline babel 7 hash generation no file system 1`] = `
 "import _styled from \\"@emotion/styled-base\\";
 
 _styled(\\"h1\\", {
-  target: \\"e1i8mfxi0\\"
+  target: \\"e1vqloan0\\"
 })({
   name: \\"14ksm7b\\",
   styles: \\"color:blue;\\"

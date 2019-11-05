@@ -79,7 +79,7 @@ type Props = {
 }
 
 export const ClassNames: React.AbstractComponent<Props> = withEmotionCache(
-  (props, context) => {
+  (props, cache) => {
     let rules = ''
     let serializedHashes = ''
     let hasRendered = false
@@ -88,11 +88,11 @@ export const ClassNames: React.AbstractComponent<Props> = withEmotionCache(
       if (hasRendered && process.env.NODE_ENV !== 'production') {
         throw new Error('css can only be used during render')
       }
-      let serialized = serializeStyles(args, context.registered)
+      let serialized = serializeStyles(args, cache.registered)
       if (isBrowser) {
-        insertStyles(context, serialized, false)
+        insertStyles(cache, serialized, false)
       } else {
-        let res = insertStyles(context, serialized, false)
+        let res = insertStyles(cache, serialized, false)
         if (res !== undefined) {
           rules += res
         }
@@ -100,13 +100,13 @@ export const ClassNames: React.AbstractComponent<Props> = withEmotionCache(
       if (!isBrowser) {
         serializedHashes += ` ${serialized.name}`
       }
-      return `${context.key}-${serialized.name}`
+      return `${cache.key}-${serialized.name}`
     }
     let cx = (...args: Array<ClassNameArg>) => {
       if (hasRendered && process.env.NODE_ENV !== 'production') {
         throw new Error('cx can only be used during render')
       }
-      return merge(context.registered, css, classnames(args))
+      return merge(cache.registered, css, classnames(args))
     }
     let content = {
       css,
@@ -120,9 +120,9 @@ export const ClassNames: React.AbstractComponent<Props> = withEmotionCache(
         <React.Fragment>
           <style
             {...{
-              [`data-emotion-${context.key}`]: serializedHashes.substring(1),
+              [`data-emotion-${cache.key}`]: serializedHashes.substring(1),
               dangerouslySetInnerHTML: { __html: rules },
-              nonce: context.sheet.nonce
+              nonce: cache.sheet.nonce
             }}
           />
           {ele}

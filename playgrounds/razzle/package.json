@@ -7,7 +7,8 @@
     "start": "razzle start",
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
-    "start:prod": "NODE_ENV=production node build/server.js"
+    "start:prod": "NODE_ENV=production node build/server.js",
+    "test:typescript": "exit 0"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -15,6 +16,6 @@
     "razzle": "^2.4.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.2.2"
   }
 }

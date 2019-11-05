@@ -1,8 +1,31 @@
 // @flow
 import * as React from 'react'
+import type { ElementType } from 'react'
 import isPropValid from '@emotion/is-prop-valid'
 
 export type Interpolations = Array<any>
+
+export type StyledOptions = {
+  label?: string,
+  shouldForwardProp?: string => boolean,
+  target?: string
+}
+
+export type StyledComponent<P> = React.StatelessFunctionalComponent<P> & {
+  defaultProps: any,
+  toString: () => string,
+  withComponent: (
+    nextTag: ElementType,
+    nextOptions?: StyledOptions
+  ) => StyledComponent<P>
+}
+
+export type PrivateStyledComponent<P> = StyledComponent<P> & {
+  __emotion_real: StyledComponent<P>,
+  __emotion_base: any,
+  __emotion_styles: any,
+  __emotion_forwardProp: any
+}
 
 const testOmitPropsOnStringTag = isPropValid
 const testOmitPropsOnComponent = (key: string) =>
@@ -17,19 +40,12 @@ export const getDefaultShouldForwardProp = (tag: React.ElementType) =>
     ? testOmitPropsOnStringTag
     : testOmitPropsOnComponent
 
-export type StyledOptions = {
-  label?: string,
-  shouldForwardProp?: string => boolean,
-  target?: string
-}
+export type CreateStyledComponent = <P>(
+  ...args: Interpolations
+) => StyledComponent<P>
 
-type CreateStyledComponent = (...args: Interpolations) => *
-
-type BaseCreateStyled = (
-  tag: React.ElementType,
-  options?: StyledOptions
-) => CreateStyledComponent
-
-export type CreateStyled = BaseCreateStyled & {
-  [key: string]: CreateStyledComponent
+export type CreateStyled = {
+  (tag: React.ElementType, options?: StyledOptions): CreateStyledComponent,
+  [key: string]: CreateStyledComponent,
+  bind: () => CreateStyled
 }

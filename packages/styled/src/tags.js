@@ -1,3 +1,4 @@
+// @flow
 export const tags = [
   'a',
   'abbr',

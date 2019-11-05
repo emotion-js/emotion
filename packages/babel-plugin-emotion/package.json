@@ -1,18 +1,22 @@
 {
   "name": "babel-plugin-emotion",
-  "version": "10.0.9",
+  "version": "11.0.0-next.0",
   "description": "A recommended babel preprocessing plugin for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/babel-plugin-emotion.cjs.js",
+  "module": "dist/babel-plugin-emotion.esm.js",
   "files": [
     "src",
     "lib",
     "dist"
   ],
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
   "dependencies": {
     "@babel/helper-module-imports": "^7.0.0",
-    "@emotion/hash": "0.7.1",
-    "@emotion/memoize": "0.7.1",
-    "@emotion/serialize": "^0.11.6",
+    "@emotion/hash": "0.7.3",
+    "@emotion/memoize": "0.7.3",
+    "@emotion/serialize": "^0.11.14",
     "babel-plugin-macros": "^2.0.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "convert-source-map": "^1.5.0",

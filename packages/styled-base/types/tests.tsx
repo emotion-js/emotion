@@ -5,7 +5,7 @@ import styled from '@emotion/styled-base'
 type ReactClassProps0 = {
   readonly column: boolean
 }
-declare class ReactClassComponent0 extends React.Component<ReactClassProps0> {}
+class ReactClassComponent0 extends React.Component<ReactClassProps0> {}
 
 interface ReactClassProps1 {
   readonly value: string
@@ -18,20 +18,20 @@ interface ReactClassProps2 {
 declare class ReactClassComponent2 extends React.Component<ReactClassProps2> {}
 
 // tslint:disable-next-line: interface-over-type-literal
-type ReactSFCProps0 = {
+type ReactFCProps0 = {
   readonly column: boolean
 }
-declare const ReactSFC0: React.SFC<ReactSFCProps0>
+declare const ReactFC0: React.FC<ReactFCProps0>
 
-interface ReactSFCProps1 {
+interface ReactFCProps1 {
   readonly value: string
 }
-declare const ReactSFC1: React.SFC<ReactSFCProps1>
+declare const ReactFC1: React.FC<ReactFCProps1>
 
-interface ReactSFCProps2 {
+interface ReactFCProps2 {
   readonly value: number
 }
-declare const ReactSFC2: React.SFC<ReactSFCProps2>
+declare const ReactFC2: React.FC<ReactFCProps2>
 
 const Button0 = styled('button')`
   color: blue;
@@ -62,6 +62,23 @@ const Input1 = styled('input', {
 ;<Input1 />
 const Input2 = Button0.withComponent('input')
 
+const View = styled('div')({
+  display: 'flex',
+  position: 'relative',
+  boxSizing: 'border-box',
+  flexDirection: 'column'
+})
+
+const Input3 = styled(View.withComponent('input'))({
+  color: 'red'
+})
+;<Input3
+  onChange={e => {
+    // $ExpectType ChangeEvent<HTMLInputElement>
+    e
+  }}
+/>
+
 const Canvas0 = styled('canvas', {
   shouldForwardProp(propName) {
     return propName === 'width' || propName === 'height'
@@ -82,22 +99,15 @@ const Canvas1 = styled('canvas', {
 interface PrimaryProps {
   readonly primary: string
 }
-/**
- * @desc
- * This function accepts `InnerProps`/`Tag` to infer the type of `tag`,
- * and accepts `ExtraProps` for user who use string style
- * to be able to declare extra props without using
- * `` styled('button')<ExtraProps>`...` ``, which does not supported in
- * styled-component VSCode extension.
- * If your tool support syntax highlighting for `` styled('button')<ExtraProps>`...` ``
- * it could be more efficient.
- */
-const Button2 = styled<'button', PrimaryProps>('button')`
-  fontsize: ${5}px;
+
+const Button2 = styled('button')<PrimaryProps>`
+  font-size: ${5}px;
   color: ${props => props.primary};
 `
-const Button3 = styled<'button', PrimaryProps>('button')(props => ({
-  color: props.primary
+const Button3 = styled('button')<PrimaryProps>(props => ({
+  color: props.primary,
+  // Verify we get access to intrinsic props
+  display: props.hidden ? 'none' : undefined
 }))
 ;<div>
   <Button2 primary="blue" />
@@ -116,15 +126,13 @@ const Button3 = styled<'button', PrimaryProps>('button')(props => ({
 // $ExpectError
 ;<Button3 type="button" />
 
-const Button4 = styled<typeof ReactClassComponent0, PrimaryProps>(
-  ReactClassComponent0
-)`
-  backgroundColor: ${props => props.theme.backColor}
+const Button4 = styled(ReactClassComponent0)<PrimaryProps>`
+  background-color: ${props => props.theme.backColor};
 
-  fontSize: ${5}px;
-  color: ${props => props.primary}
+  font-size: ${5}px;
+  color: ${props => props.primary};
 `
-const Button5 = styled<typeof ReactSFC0, PrimaryProps>(ReactSFC0)(props => ({
+const Button5 = styled(ReactFC0)<PrimaryProps>(props => ({
   color: props.primary
 }))
 ;<div>
@@ -146,19 +154,24 @@ const Button5 = styled<typeof ReactSFC0, PrimaryProps>(ReactSFC0)(props => ({
 
 const Container0 = styled(ReactClassComponent0)`
   display: flex;
-  flexdirection: ${props => props.column && 'column'};
+  flex-direction: ${props => props.column && 'column'};
 `
 ;<Container0 column={false} />
 // $ExpectError
 ;<Container0 />
 
+// When we change component, the original props still need to be available
+// as the original styles may be using those props
 const Container1 = Container0.withComponent('span')
 ;<Container1 column={true} />
 ;<Container1 column={true} onClick={undefined as any} />
+
+// $ExpectError
+;<Container1 onClick={undefined as any} />
 // $ExpectError
 ;<Container1 contentEditable />
 
-const Container2 = Container0.withComponent(ReactSFC0)
+const Container2 = Container0.withComponent(ReactFC0)
 ;<Container2 column={true} />
 // $ExpectError
 ;<Container2 />
@@ -173,7 +186,7 @@ const Container3 = Container0.withComponent(ReactClassComponent1)
 interface ContainerProps {
   extraWidth: string
 }
-const Container4 = styled(ReactSFC2)<ContainerProps>(props => ({
+const Container4 = styled(ReactFC2)<ContainerProps>(props => ({
   borderColor: 'black',
   borderWidth: props.extraWidth,
   borderStyle: 'solid'
@@ -184,7 +197,8 @@ const Container4 = styled(ReactSFC2)<ContainerProps>(props => ({
 // $ExpectError
 ;<Container4 value="5" />
 
-const Container5 = Container3.withComponent(ReactSFC2)
+const Container5 = Container3.withComponent(ReactFC2)
+// $ExpectError
 ;<Container5 column={true} value={123} />
 // $ExpectError
 ;<Container5 />
@@ -193,20 +207,35 @@ const Container5 = Container3.withComponent(ReactSFC2)
 // $ExpectError
 ;<Container5 value={242} />
 
-// $ExpectError
-styled(ReactSFC2)<ReactSFCProps1>()
-
 /**
  * @todo
  * I wish we could raise errors for following two `withComponent`s.
+ * The prduces a component type which is invalid (intersection of number & string is never), but you need to consume the component
+ * to see the error.
  */
-Container0.withComponent(ReactClassComponent2)
-Container3.withComponent(ReactClassComponent2)
+const C02 = Container0.withComponent(ReactClassComponent2)
+// $ExpectError
+;<C02 column="" />
+const C03 = Container3.withComponent(ReactClassComponent2)
+// $ExpectError
+;<C03 column="" />
+
+const ForwardRefCheckStyled = styled(
+  React.forwardRef(
+    (props: ReactClassProps0, ref: React.Ref<HTMLDivElement>) => {
+      return <div ref={ref} />
+    }
+  )
+)({})
+
+// Expose ref only when inner component is forwarding refs
+;<ForwardRefCheckStyled column={true} ref={React.createRef<HTMLDivElement>()} />
 
 const StyledClass0 = styled(ReactClassComponent0)({})
 declare const ref0_0: (element: ReactClassComponent0 | null) => void
 declare const ref0_1: (element: ReactClassComponent1 | null) => void
 declare const ref0_2: (element: HTMLDivElement | null) => void
+// $ExpectError
 ;<StyledClass0 column={true} ref={ref0_0} />
 // $ExpectError
 ;<StyledClass0 column={true} ref={ref0_1} />
@@ -217,6 +246,7 @@ const StyledClass1 = StyledClass0.withComponent(ReactClassComponent1)
 declare const ref1_0: (element: ReactClassComponent1 | null) => void
 declare const ref1_1: (element: ReactClassComponent0 | null) => void
 declare const ref1_2: (element: HTMLDivElement | null) => void
+// $ExpectError
 ;<StyledClass1 column={true} value="" ref={ref1_0} />
 // $ExpectError
 ;<StyledClass1 column={true} value="" ref={ref1_1} />
@@ -237,6 +267,7 @@ const StyledClass3 = StyledClass1.withComponent('label')
 declare const ref3_0: (element: HTMLLabelElement | null) => void
 declare const ref3_1: (element: ReactClassComponent0 | null) => void
 declare const ref3_2: (element: HTMLDivElement | null) => void
+// $ExpectError
 ;<StyledClass3 column={true} ref={ref3_0} />
 // $ExpectError
 ;<StyledClass3 column={true} ref={ref3_1} />
@@ -256,7 +287,7 @@ declare const ref3_2: (element: HTMLDivElement | null) => void
 
   type SomethingToRead = Book | Magazine
 
-  const Readable: React.SFC<SomethingToRead> = props => {
+  const Readable: React.FC<SomethingToRead> = props => {
     if (props.kind === 'magazine') {
       return <div>magazine #{props.issue}</div>
     }
@@ -272,3 +303,97 @@ declare const ref3_2: (element: HTMLDivElement | null) => void
   ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
   ;<StyledReadable kind="magazine" author="Hejlsberg" /> // $ExpectError
 }
+
+interface Props {
+  prop: boolean
+}
+class ClassWithDefaultProps extends React.Component<Props> {
+  static defaultProps = { prop: false }
+  render() {
+    return this.props.prop ? <Button0 /> : <Button1 />
+  }
+}
+const StyledClassWithDefaultProps = styled(ClassWithDefaultProps)`
+  background-color: red;
+`
+const classInstance = <StyledClassWithDefaultProps />
+
+const FCWithDefaultProps = ({ prop }: Props) =>
+  prop ? <Button0 /> : <Button1 />
+FCWithDefaultProps.defaultProps = {
+  prop: false
+}
+const StyledFCWithDefaultProps = styled(FCWithDefaultProps)`
+  background-color: red;
+`
+const fcInstance = <StyledFCWithDefaultProps />
+
+interface PropsA {
+  title: string
+}
+interface PropsB {
+  content: string
+}
+
+type PropsAB = PropsA | PropsB
+class A extends React.Component<PropsAB> {
+  static getDerivedStateFromProps(props: PropsAB) {
+    return null
+  }
+
+  render() {
+    return null
+  }
+}
+
+const B = styled(A)`
+  color: red;
+`
+;<B title="test" />
+;<B content="test" />
+// Because these are not tagged unions, they are not mutually exclusive, we can do both
+;<B title="test" content="test" />
+
+interface TaggedPropsA {
+  tag: 'a'
+  title: string
+}
+interface TaggedPropsB {
+  tag: 'b'
+  content: string
+}
+type TaggedPropsAB = TaggedPropsA | TaggedPropsB
+class C extends React.Component<TaggedPropsAB> {
+  render() {
+    return null
+  }
+}
+
+const D = styled(C)`
+  color: red;
+`
+;<D tag="a" title="test" />
+;<D tag="b" content="test" />
+// $ExpectError
+;<D tag="a" title="test" content="test" />
+
+// Ensure refs are available on intrinsic components and they are correct types
+const StyledDiv = styled('div')({})
+declare const ref4_0: (element: ReactClassComponent1 | null) => void
+declare const ref4_1: (element: ReactClassComponent0 | null) => void
+declare const ref4_2: (element: HTMLDivElement | null) => void
+// $ExpectError
+;<StyledDiv ref={ref4_0} />
+// $ExpectError
+;<StyledDiv ref={ref4_1} />
+;<StyledDiv ref={ref4_2} />
+;<StyledDiv ref={React.createRef()} />
+
+// test it should drop intrinsic props from first component when withComponent is called
+const StyledButton = StyledDiv.withComponent('button')
+;<StyledButton
+  onClick={e => {
+    // $ExpectType MouseEvent<HTMLButtonElement, MouseEvent>
+    e
+  }}
+/>

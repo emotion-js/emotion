@@ -1,10 +1,14 @@
 // @flow
 import * as React from 'react'
-import { useContext } from 'react'
 import { withEmotionCache, ThemeContext } from './context'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
+
+// those identifiers come from error stacks, so they have to be valid JS identifiers
+// thus we only need to replace what is a valid character for JS, but not for CSS
+const sanitizeIdentifier = (identifier: string) =>
+  identifier.replace(/\$/g, '-')
 
 let typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__'
 
@@ -13,14 +17,10 @@ let labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
 let hasOwnProperty = Object.prototype.hasOwnProperty
 
 let Emotion = withEmotionCache((props, cache, ref) => {
-  let type = props[typePropName]
-  let className = ''
-
-  let registeredStyles = []
-
   let cssProp = props.css
+
   if (typeof cssProp === 'function') {
-    cssProp = cssProp(useContext(ThemeContext))
+    cssProp = cssProp(React.useContext(ThemeContext))
   }
 
   // so that using `css` from `emotion` and passing the result to the css prop works
@@ -30,14 +30,18 @@ let Emotion = withEmotionCache((props, cache, ref) => {
     cssProp = cache.registered[cssProp]
   }
 
-  registeredStyles.push(cssProp)
+  let type = props[typePropName]
+  let registeredStyles = [cssProp]
+  let className = ''
 
-  if (props.className !== undefined) {
+  if (typeof props.className === 'string') {
     className = getRegisteredStyles(
       cache.registered,
       registeredStyles,
       props.className
     )
+  } else if (props.className != null) {
+    className = `${props.className} `
   }
 
   let serialized = serializeStyles(registeredStyles)
@@ -54,7 +58,6 @@ let Emotion = withEmotionCache((props, cache, ref) => {
       ])
     }
   }
-
   const rules = insertStyles(cache, serialized, typeof type === 'string')
   className += `${cache.key}-${serialized.name}`
 
@@ -107,7 +110,7 @@ export const jsx: typeof React.createElement = function(
 ) {
   let args = arguments
 
-  if (props == null || props.css == null) {
+  if (props == null || !hasOwnProperty.call(props, 'css')) {
     // $FlowFixMe
     return React.createElement.apply(undefined, args)
   }
@@ -142,13 +145,15 @@ export const jsx: typeof React.createElement = function(
     let error = new Error()
     if (error.stack) {
       // chrome
-      let match = error.stack.match(/at jsx.*\n\s+at ([A-Z][A-Za-z]+) /)
+      let match = error.stack.match(
+        /at (?:Object\.|)jsx.*\n\s+at ([A-Z][A-Za-z$]+) /
+      )
       if (!match) {
         // safari and firefox
-        match = error.stack.match(/^.*\n([A-Z][A-Za-z]+)@/)
+        match = error.stack.match(/^.*\n([A-Z][A-Za-z$]+)@/)
       }
       if (match) {
-        newProps[labelPropName] = match[1]
+        newProps[labelPropName] = sanitizeIdentifier(match[1])
       }
     }
   }

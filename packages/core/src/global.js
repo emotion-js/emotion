@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react'
-import { useLayoutEffect, useContext, useRef } from 'react'
 import { withEmotionCache, ThemeContext } from './context'
 import { insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
@@ -20,13 +19,12 @@ let warnedAboutCssPropForGlobal = false
 // initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
 // initial client-side render from SSR, use place of hydrating tag
 
-export let Global: React.AbstractComponent<
+export let Global: React.StatelessFunctionalComponent<
   GlobalProps
 > = /* #__PURE__ */ withEmotionCache((props: GlobalProps, cache) => {
   if (
     process.env.NODE_ENV !== 'production' &&
-    !warnedAboutCssPropForGlobal &&
-    // check for className as well since the user is
+    !warnedAboutCssPropForGlobal && // check for className as well since the user is
     // probably using the custom createElement which
     // means it will be turned into a className prop
     // $FlowFixMe I don't really want to add it to the type since it shouldn't be used
@@ -40,7 +38,9 @@ export let Global: React.AbstractComponent<
   let styles = props.styles
 
   let serialized = serializeStyles([
-    typeof styles === 'function' ? styles(useContext(ThemeContext)) : styles
+    typeof styles === 'function'
+      ? styles(React.useContext(ThemeContext))
+      : styles
   ])
 
   if (!isBrowser) {
@@ -53,12 +53,18 @@ export let Global: React.AbstractComponent<
       next = next.next
     }
 
+    let shouldCache = cache.compat === true
+
     let rules = cache.insert(
       ``,
       { name: serializedNames, styles: serializedStyles },
       cache.sheet,
-      false
+      shouldCache
     )
+
+    if (shouldCache) {
+      return null
+    }
 
     return (
       <style
@@ -76,9 +82,9 @@ export let Global: React.AbstractComponent<
   // it's effectively like having two implementations and switching them out
   // so it's not actually breaking anything
 
-  let sheetRef = useRef()
+  let sheetRef = React.useRef()
 
-  useLayoutEffect(
+  React.useLayoutEffect(
     () => {
       let sheet = new StyleSheet({
         key: `${cache.key}-global`,
@@ -104,7 +110,7 @@ export let Global: React.AbstractComponent<
     [cache]
   )
 
-  useLayoutEffect(
+  React.useLayoutEffect(
     () => {
       if (serialized.next !== undefined) {
         // insert keyframes

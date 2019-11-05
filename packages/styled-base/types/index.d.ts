@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.8
+// TypeScript Version: 3.2
 
 /**
  * @desc
@@ -12,10 +12,9 @@
  * a style of that component.
  */
 
-import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import * as React from 'react'
-
-import { Omit, Overwrapped, PropsOf } from './helper'
+import { ComponentSelector, Interpolation } from '@emotion/serialize'
+import { PropsOf, DistributiveOmit } from './helper'
 
 export {
   ArrayInterpolation,
@@ -24,13 +23,7 @@ export {
   ObjectInterpolation
 } from '@emotion/serialize'
 
-export { ComponentSelector, Interpolation }
-
-type JSXInEl = JSX.IntrinsicElements
-
-export type WithTheme<P, T> = P extends { theme: infer Theme }
-  ? P & { theme: Exclude<Theme, undefined> }
-  : P & { theme: T }
+export { ComponentSelector, Interpolation, PropsOf, DistributiveOmit }
 
 export interface StyledOptions {
   label?: string
@@ -38,75 +31,76 @@ export interface StyledOptions {
   target?: string
 }
 
-export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
-  extends React.SFC<InnerProps & StyleProps & { theme?: Theme }>,
-    ComponentSelector {
-  /**
-   * @desc this method is type-unsafe
-   */
-  withComponent<NewTag extends keyof JSXInEl>(
-    tag: NewTag
-  ): StyledComponent<JSXInEl[NewTag], StyleProps, Theme>
-  withComponent<Tag extends React.ComponentType<any>>(
+/**
+ * @typeparam ComponentProps  Props which will be included when withComponent is called
+ * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
+ */
+export interface StyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {}
+> extends React.FC<ComponentProps & SpecificComponentProps>, ComponentSelector {
+  withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
+    component: C
+  ): StyledComponent<ComponentProps & PropsOf<C>>
+  withComponent<Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag
-  ): StyledComponent<PropsOf<Tag>, StyleProps, Theme>
+  ): StyledComponent<ComponentProps, JSX.IntrinsicElements[Tag]>
 }
 
-type ReactClassPropKeys = keyof React.ClassAttributes<any>
-export interface CreateStyledComponentBase<
-  InnerProps,
-  ExtraProps,
-  Theme extends object
+/**
+ * @typeparam ComponentProps  Props which will be included when withComponent is called
+ * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
+ * @typeparam StyleProps  Params passed to styles but not exposed as React props. These are normally library provided props
+ */
+export interface CreateStyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {},
+  StyleProps extends {} = {}
 > {
-  <
-    StyleProps extends Omit<
-      Overwrapped<InnerProps, StyleProps>,
-      ReactClassPropKeys
-    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
-  >(
-    ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
-  ): StyledComponent<InnerProps, StyleProps, Theme>
-  <
-    StyleProps extends Omit<
-      Overwrapped<InnerProps, StyleProps>,
-      ReactClassPropKeys
-    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
-  >(
+  /**
+   * @typeparam AdditionalProps  Additional props to add to your styled component
+   */
+  <AdditionalProps extends {} = {}>(
+    ...styles: Array<
+      Interpolation<
+        ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps
+      >
+    >
+  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
+  /**
+   * @typeparam AdditionalProps  Additional props to add to your styled component
+   */
+  <AdditionalProps extends {} = {}>(
     template: TemplateStringsArray,
-    ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
-  ): StyledComponent<InnerProps, StyleProps, Theme>
+    ...styles: Array<
+      Interpolation<ComponentProps & SpecificComponentProps & AdditionalProps>
+    >
+  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
 }
-export interface CreateStyledComponentIntrinsic<
-  Tag extends keyof JSXInEl,
-  ExtraProps,
-  Theme extends object
-> extends CreateStyledComponentBase<JSXInEl[Tag], ExtraProps, Theme> {}
-export interface CreateStyledComponentExtrinsic<
-  Tag extends React.ComponentType<any>,
-  ExtraProps,
-  Theme extends object
-> extends CreateStyledComponentBase<PropsOf<Tag>, ExtraProps, Theme> {}
 
 /**
  * @desc
- * This function accepts `InnerProps`/`Tag` to infer the type of `tag`,
- * and accepts `ExtraProps` for user who use string style
- * to be able to declare extra props without using
- * `` styled('button')<ExtraProps>`...` ``, which does not supported in
- * styled-component VSCode extension.
- * If your tool support syntax highlighting for `` styled('button')<ExtraProps>`...` ``
- * it could be more efficient.
+ * This function accepts a React component or tag ('div', 'a' etc).
+ *
+ * @example styled(MyComponent)({ width: 100 })
+ * @example styled(MyComponent)(myComponentProps => ({ width: myComponentProps.width })
+ * @example styled('div')({ width: 100 })
+ * @example styled('div')<Props>(props => ({ width: props.width })
  */
-export interface CreateStyled<Theme extends object = any> {
-  <Tag extends React.ComponentType<any>, ExtraProps = {}>(
-    tag: Tag,
+export interface CreateStyled<Theme extends {} = any> {
+  <C extends React.ComponentType<React.ComponentProps<C>>>(
+    component: C,
     options?: StyledOptions
-  ): CreateStyledComponentExtrinsic<Tag, ExtraProps, Theme>
+  ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }, {}, { theme: Theme }>
 
-  <Tag extends keyof JSXInEl, ExtraProps = {}>(
+  <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions
-  ): CreateStyledComponentIntrinsic<Tag, ExtraProps, Theme>
+  ): CreateStyledComponent<
+    { theme?: Theme },
+    JSX.IntrinsicElements[Tag],
+    { theme: Theme }
+  >
 }
 
 declare const styled: CreateStyled

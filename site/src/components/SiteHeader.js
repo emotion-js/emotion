@@ -1,6 +1,7 @@
 // @flow
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import '../utils/make-prism-manual'
-import * as React from 'react'
 import { Match } from '@reach/router'
 
 import Link from '../components/Link'
@@ -25,7 +26,7 @@ const HeaderLink = props => (
 
 export default function SiteHeader() {
   return (
-    <div
+    <header
       css={mq({
         gridColumn: '1 /span 2',
         display: 'flex',
@@ -45,57 +46,85 @@ export default function SiteHeader() {
         }}
       >
         <HeaderLogoImage />
-        <h1
+        <span
           css={mq({
             display: ['none', 'none', 'inline-block'],
             margin: 0,
             marginLeft: space[2],
             padding: 0,
-            fontSize: constants.fontSizes[4]
+            fontSize: constants.fontSizes[4],
+            fontWeight: 'bold'
           })}
         >
           Emotion
-        </h1>
+        </span>
       </Link>
-      <div
-        css={mq({
-          display: 'grid',
-          gridAutoFlow: ['column dense', undefined, 'column'],
-          gridColumn: ['2 / span 1', undefined, 'auto'],
-          gridRow: ['1', '1', 'auto'],
-          alignItems: 'center',
-          justifyItems: 'center',
-          gap: space[2],
-          marginLeft: ['auto'],
-          overflow: ['auto', 'auto', 'auto']
-        })}
+      <nav
+        css={{
+          marginLeft: 'auto',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch'
+        }}
       >
-        <Match path="/docs/:docName">
-          {({ match }: { match?: { docName: string } }) => {
-            return (
-              <HeaderLink
-                className={match ? 'active' : ''}
-                activeClassName="active"
-                to="/docs"
-              >
-                Docs
-              </HeaderLink>
-            )
+        <ul
+          css={{
+            display: 'grid',
+            gridAutoFlow: ['column dense', undefined, 'column'],
+            gridColumn: ['2 / span 1', undefined, 'auto'],
+            gridRow: ['1', '1', 'auto'],
+            alignItems: 'center',
+            justifyItems: 'center',
+            gap: space[2],
+            padding: 0,
+            margin: '0 0 0 auto',
+            overflow: 'auto',
+            listStyle: 'none',
+            'li a': {
+              display: 'inline-block',
+              paddingTop: space[1],
+              paddingBottom: space[1],
+              whiteSpace: 'nowrap'
+            }
           }}
-        </Match>
-
-        <HeaderLink activeClassName="active" to="/community">
-          Community
-        </HeaderLink>
-        <HeaderLink to="https://github.com/emotion-js/emotion">
-          GitHub
-        </HeaderLink>
-        <HeaderLink to="https://emotion.now.sh">Slack</HeaderLink>
-        <HeaderLink to="https://spectrum.chat/emotion">Spectrum</HeaderLink>
-        <HeaderLink to="https://5bb1495273f2cf57a2cf39cc--emotion.netlify.com">
-          v9 Docs
-        </HeaderLink>
-      </div>
-    </div>
+        >
+          <li>
+            <Match path="/docs/:docName">
+              {({ match }: { match?: { docName: string } }) => {
+                return (
+                  <HeaderLink
+                    className={match ? 'active' : ''}
+                    activeClassName="active"
+                    to="/docs"
+                  >
+                    Docs
+                  </HeaderLink>
+                )
+              }}
+            </Match>
+          </li>
+          <li>
+            <HeaderLink activeClassName="active" to="/community">
+              Community
+            </HeaderLink>
+          </li>
+          <li>
+            <HeaderLink to="https://github.com/emotion-js/emotion">
+              GitHub
+            </HeaderLink>
+          </li>
+          <li>
+            <HeaderLink to="https://emotion-slack.now.sh/">Slack</HeaderLink>
+          </li>
+          <li>
+            <HeaderLink to="https://spectrum.chat/emotion">Spectrum</HeaderLink>
+          </li>
+          <li>
+            <HeaderLink to="https://5bb1495273f2cf57a2cf39cc--emotion.netlify.com">
+              v9 Docs
+            </HeaderLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
   )
 }

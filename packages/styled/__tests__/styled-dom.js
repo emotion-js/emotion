@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import styled from '@emotion/styled'
-import { render, cleanup } from 'react-testing-library'
+import { render, cleanup } from '@testing-library/react'
 import { ignoreConsoleErrors } from 'test-utils'
 
 afterEach(cleanup)
@@ -43,7 +43,7 @@ test('innerRef', () => {
       </H1>
     )
     expect(node).toBe(document.getElementById('thing'))
-    expect(console.error.mock.calls).toMatchInlineSnapshot(`
+    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
 Array [
   Array [
     "\`innerRef\` is deprecated and will be removed in a future major version of Emotion, please use the \`ref\` prop instead",
@@ -68,7 +68,7 @@ test('innerRef and ref', () => {
     )
     expect(ref.current).toBe(document.getElementById('thing'))
     expect(innerRef.current).toBeNull()
-    expect(console.error.mock.calls).toMatchInlineSnapshot(`
+    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
 Array [
   Array [
     "\`innerRef\` is deprecated and will be removed in a future major version of Emotion, please use the \`ref\` prop instead",
@@ -96,7 +96,7 @@ test('innerRef warning with label', () => {
       </H1>
     )
     expect(node).toBe(document.getElementById('thing'))
-    expect(console.error.mock.calls).toMatchInlineSnapshot(`
+    expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
 Array [
   Array [
     "\`innerRef\` is deprecated and will be removed in a future major version of Emotion, please use the \`ref\` prop instead in the usage of \`H1\`",

@@ -11,3 +11,4 @@ package-lock.json
 public/
 !playgrounds/cra/public
 .env
+.vscode
