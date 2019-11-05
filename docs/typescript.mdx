@@ -254,23 +254,24 @@ _emotion.d.ts_
 
 ```typescript
 declare global {
-    namespace Emotion {
-        export interface Theme {
-            colors: {
-              body: string
-              text: string
-            }
-        }
+  namespace Emotion {
+    export interface Theme {
+      color: {
+        primary: string
+        positive: string
+        negative: string
+      }
     }
+  }
 }
 
 // You are also able to use a 3rd party theme this way:
 import { MuiTheme } from 'material-ui'
 
 delcare global {
-    namespace Emotion {
-        export interface Theme extends MuiTheme {}
-    }
+  namespace Emotion {
+    export interface Theme extends MuiTheme {}
+  }
 }
 ```
 
