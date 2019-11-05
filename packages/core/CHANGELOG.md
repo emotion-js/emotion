@@ -1,5 +1,15 @@
 # @emotion/core
 
+## 11.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [[`1eaa3a38`](https://github.com/emotion-js/emotion/commit/1eaa3a389876d4a623ce66735dc6db093cb2a8e6), [`22935470`](https://github.com/emotion-js/emotion/commit/2293547000ce78d044d054d17564f6c2aa670687)]:
+  - @emotion/css@11.0.0-next.1
+  - emotion-theming@11.0.0-next.1
+  - @emotion/serialize@1.0.0-next.0
+  - @emotion/styled@11.0.0-next.1
+
 ## 11.0.0-next.0
 
 ### Major Changes

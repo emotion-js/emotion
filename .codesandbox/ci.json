@@ -1,0 +1,14 @@
+{
+  "packages": [
+    "packages/cache",
+    "packages/core",
+    "packages/create-emotion",
+    "packages/css",
+    "packages/emotion",
+    "packages/emotion-theming",
+    "packages/serialize",
+    "packages/styled",
+    "packages/styled-base"
+  ],
+  "sandboxes": ["pk1qjqpw67"]
+}

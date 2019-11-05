@@ -50,7 +50,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     shouldForwardProp || getDefaultShouldForwardProp(baseTag)
   const shouldUseAs = !defaultShouldForwardProp('as')
 
-  return function<P>(): PrivateStyledComponent<P> {
+  return function<Props>(): PrivateStyledComponent<Props> {
     let args = arguments
     let styles =
       isReal && tag.__emotion_styles !== undefined
@@ -78,7 +78,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     }
 
     // $FlowFixMe: we need to cast StatelessFunctionalComponent to our PrivateStyledComponent class
-    const Styled: PrivateStyledComponent<P> = withEmotionCache(
+    const Styled: PrivateStyledComponent<Props> = withEmotionCache(
       (props, cache, ref) => {
         const finalTag = (shouldUseAs && props.as) || baseTag
 

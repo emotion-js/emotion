@@ -61,7 +61,7 @@
     ],
     "parser": "babel-eslint",
     "rules": {
-      "prettier/prettier": "error",
+      "prettier/prettier": ["error", {"parser": "flow"}],
       "react/prop-types": 0,
       "react/no-unused-prop-types": 0,
       "standard/computed-property-even-spacing": 0,

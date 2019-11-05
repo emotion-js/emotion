@@ -1,10 +1,10 @@
 {
   "releases": [
-    { "name": "@emotion/css", "type": "minor" },
-    { "name": "emotion-theming", "type": "minor" },
-    { "name": "@emotion/serialize", "type": "minor" },
-    { "name": "@emotion/styled-base", "type": "minor" },
-    { "name": "@emotion/styled", "type": "minor" }
+    { "name": "@emotion/css", "type": "major" },
+    { "name": "emotion-theming", "type": "major" },
+    { "name": "@emotion/serialize", "type": "major" },
+    { "name": "@emotion/styled-base", "type": "major" },
+    { "name": "@emotion/styled", "type": "major" }
   ],
   "dependents": [
     {
