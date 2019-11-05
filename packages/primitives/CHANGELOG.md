@@ -1,5 +1,17 @@
 # @emotion/primitives
 
+## 11.0.0-next.2
+
+### Major Changes
+
+- [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use hooks internally for improved bundle size and a better tree in React DevTools
+
+### Patch Changes
+
+- Updated dependencies [[`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967)]:
+  - emotion-theming@11.0.0-next.2
+  - @emotion/primitives-core@11.0.0-next.2
+
 ## 11.0.0-next.1
 
 ### Patch Changes
