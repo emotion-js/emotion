@@ -137,16 +137,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         }
 
         newProps.className = className
-
-        newProps.ref = ref || props.innerRef
-        if (process.env.NODE_ENV !== 'production' && props.innerRef) {
-          console.error(
-            '`innerRef` is deprecated and will be removed in a future major version of Emotion, please use the `ref` prop instead' +
-              (identifierName === undefined
-                ? ''
-                : ` in the usage of \`${identifierName}\``)
-          )
-        }
+        newProps.ref = ref
 
         const ele = React.createElement(finalTag, newProps)
         if (!isBrowser && rules !== undefined) {

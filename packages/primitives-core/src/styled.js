@@ -6,7 +6,7 @@ import { createCss } from './css'
 
 let useContext: <V>(content: React$Context<V>) => V = (React: any).useContext
 
-let defaultPickTest = prop => prop !== 'theme' && prop !== 'innerRef'
+let defaultPickTest = prop => prop !== 'theme'
 
 type options = {
   getShouldForwardProp: (cmp: React.ElementType) => (prop: string) => boolean
@@ -41,12 +41,6 @@ export function createStyled(
           stylesWithStyleProp = styles.concat(props.style)
         }
         const emotionStyles = css.apply(mergedProps, stylesWithStyleProp)
-
-        if (process.env.NODE_ENV !== 'production' && props.innerRef) {
-          console.error(
-            'innerRef is no longer supported, please use ref instead'
-          )
-        }
 
         return React.createElement(
           component,
