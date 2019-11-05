@@ -91,7 +91,7 @@ if (process.env.NODE_ENV !== 'production') {
           (value.charAt(0) !== value.charAt(value.length - 1) ||
             (value.charAt(0) !== '"' && value.charAt(0) !== "'")))
       ) {
-        console.error(
+        throw new Error(
           `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
         )
       }
