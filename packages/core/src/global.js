@@ -125,7 +125,7 @@ export let Global: React.AbstractComponent<
       }
       cache.insert(``, serialized, sheet, false)
     },
-    [cache, serialized]
+    [cache, serialized.name]
   )
 
   return null
