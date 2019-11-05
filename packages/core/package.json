@@ -1,6 +1,6 @@
 {
   "name": "@emotion/core",
-  "version": "11.0.0-next.0",
+  "version": "11.0.0-next.1",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",
   "browser": {
@@ -21,8 +21,8 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "@emotion/cache": "^11.0.0-next.0",
-    "@emotion/css": "^11.0.0-next.0",
-    "@emotion/serialize": "^0.11.12",
+    "@emotion/css": "^11.0.0-next.1",
+    "@emotion/serialize": "^1.0.0-next.0",
     "@emotion/sheet": "0.9.3",
     "@emotion/utils": "0.11.2"
   },
@@ -30,12 +30,12 @@
     "react": ">=16.3.0"
   },
   "devDependencies": {
-    "@emotion/styled": "^11.0.0-next.0",
+    "@emotion/styled": "^11.0.0-next.1",
     "@types/react": "^16.8.20",
     "dtslint": "^0.3.0",
     "emotion": "^11.0.0-next.0",
     "emotion-server": "^11.0.0-next.0",
-    "emotion-theming": "^11.0.0-next.0",
+    "emotion-theming": "^11.0.0-next.1",
     "html-tag-names": "^1.1.2",
     "react": "^16.5.2",
     "svg-tag-names": "^1.1.1"
