@@ -7,9 +7,10 @@ import {
   StyledComponent,
   StyledOptions,
   CreateStyledComponent,
-  StyledTags
+  StyledTags,
+  PropsOf,
+  DistributiveOmit
 } from '@emotion/styled'
-import { PropsOf, DistributiveOmit } from '@emotion/styled-base'
 
 export interface ThemeProviderProps<Theme> {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme)

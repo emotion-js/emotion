@@ -1,10 +1,7 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.9
+// TypeScript Version: 3.2
 
-import {
-  CreateStyled as BaseCreateStyled,
-  CreateStyledComponent
-} from '@emotion/styled-base'
+import { CreateStyled as BaseCreateStyled, CreateStyledComponent } from './base'
 
 export {
   ArrayInterpolation,
@@ -16,7 +13,9 @@ export {
   StyledComponent,
   StyledOptions,
   CreateStyledComponent
-} from '@emotion/styled-base'
+} from './base'
+
+export { PropsOf, DistributiveOmit } from './helper'
 
 export type StyledTags<Theme extends {} = any> = {
   [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
