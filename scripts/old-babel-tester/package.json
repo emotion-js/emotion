@@ -5,5 +5,8 @@
   "private": true,
   "dependencies": {
     "babel-core": "^6.26.3"
+  },
+  "scripts": {
+      "test:typescript": "exit 0"
   }
 }

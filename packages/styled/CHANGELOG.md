@@ -1,5 +1,86 @@
 # @emotion/styled
 
+## 11.0.0-next.2
+
+### Major Changes
+
+- [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Remove support for deprecated `innerRef` prop
+
+* [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use hooks internally for improved bundle size and a better tree in React DevTools
+
+### Patch Changes
+
+- Updated dependencies [[`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967), [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967)]:
+  - @emotion/styled-base@11.0.0-next.2
+  - @emotion/core@11.0.0-next.2
+
+## 11.0.0-next.1
+
+### Major Changes
+
+- [`1eaa3a38`](https://github.com/emotion-js/emotion/commit/1eaa3a389876d4a623ce66735dc6db093cb2a8e6) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - TypeScript types have been restructured. These changes:
+
+  - Reduce build times when using emotion
+  - In many cases remove the need for manually specifying generic parameters for your emotion components.
+
+  If you encounter build issues after upgrade, try removing any manually specified generic types and let them be inferred. Otherwise refer to the breaking changes list below.
+
+  ## Improvements
+
+  - useTheme added to EmotionTheming interface and can now create your own closed variation of withTheme. More information in the docs under the theming section.
+  - Union types as props are better supported and should be inferred properly
+  - Build times should be reduced significantly in larger projects.
+
+  ## Breaking changes
+
+  - withTheme can now have the Theme type specified when calling it. For example `withTheme<MyTheme>(MyComponent)`
+
+    **Breaking change:** Generic argument changed, if you were specifying the ComponentType you will need to remove the generic parameter. Recommend following example setup in the TypeScript docs under theming section
+
+  - `css` function has been restricted to prevent passing of invalid types
+  - `CreateStyled` functions no longer take a second `ExtraProps` argument. Instead move it to after the create styled call. For example
+
+    `styled<typeof MyComponent, ExtraProps>(MyComponent)({})`
+    to
+    `styled(MyComponent)<ExtraProps>({})`
+
+  - `StyledComponent` type no longer supports the third generic `Theme` parameter. Instead add the `theme` prop to the first `Props` argument. For example:
+
+    `StyledComponent<Props, {}, MyTheme>`
+    to
+    `StyledComponent<Props & { theme?: MyTheme }>`
+
+### Patch Changes
+
+- [`22935470`](https://github.com/emotion-js/emotion/commit/2293547000ce78d044d054d17564f6c2aa670687) [#1588](https://github.com/emotion-js/emotion/pull/1588) Thanks [@FezVrasta](https://github.com/FezVrasta)! - StyledComponent Flow type is now polymorphic, that means you can now define the component prop types to get better type safety.
+- Updated dependencies [[`1eaa3a38`](https://github.com/emotion-js/emotion/commit/1eaa3a389876d4a623ce66735dc6db093cb2a8e6), [`22935470`](https://github.com/emotion-js/emotion/commit/2293547000ce78d044d054d17564f6c2aa670687)]:
+  - @emotion/styled-base@11.0.0-next.1
+  - babel-plugin-emotion@11.0.0-next.1
+  - @emotion/core@11.0.0-next.1
+
+## 11.0.0-next.0
+
+### Major Changes
+
+- [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Ensure packages are major bumped so that pre-release versions of the linked packages are consistent in the major number
+
+### Patch Changes
+
+- Updated dependencies [[`b0ad4f0c`](https://github.com/emotion-js/emotion/commit/b0ad4f0c628813a42c4637857be9a969429db6f0), [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555)]:
+  - babel-plugin-emotion@11.0.0-next.0
+  - @emotion/core@11.0.0-next.0
+  - @emotion/styled-base@11.0.0-next.0
+
+## 10.0.23
+
+### Patch Changes
+
+- [`97673098`](https://github.com/emotion-js/emotion/commit/97673098945a75b716d4cac100c1af46a5ae18f2) [#1570](https://github.com/emotion-js/emotion/pull/1570) Thanks [@FezVrasta](https://github.com/FezVrasta)! - Fixed package's Flow types
+
+- Updated dependencies [[`3927293d`](https://github.com/emotion-js/emotion/commit/3927293d0b9d96b4a7c00196e8430728759b1161), [`97673098`](https://github.com/emotion-js/emotion/commit/97673098945a75b716d4cac100c1af46a5ae18f2), [`b3a0f148`](https://github.com/emotion-js/emotion/commit/b3a0f1484f2efcc78b447639ff2e0bc0f29915ae)]:
+  - babel-plugin-emotion@10.0.23
+  - @emotion/styled-base@10.0.23
+
 ## 10.0.22
 
 ### Patch Changes

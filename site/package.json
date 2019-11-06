@@ -32,8 +32,8 @@
     "graphql-type-json": "^0.2.4",
     "normalize.css": "^8.0.0",
     "open-color": "^1.5.1",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
     "react-live": "1.10.0",
@@ -42,7 +42,7 @@
     "styled-system": "^1.0.8",
     "unified": "^6.1.6",
     "unist-util-visit": "^1.2.0",
-    "webpack-bundle-analyzer": "2.13.1",
+    "webpack-bundle-analyzer": "3.3.2",
     "worker-loader": "2.0.0"
   },
   "keywords": [
@@ -51,6 +51,7 @@
   "license": "MIT",
   "scripts": {
     "build:site": "gatsby build",
-    "start:site": "gatsby develop"
+    "start:site": "gatsby develop",
+    "test:typescript": "exit 0"
   }
 }

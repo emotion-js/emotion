@@ -15,6 +15,7 @@
             "check-typecast",
             "check-type-operator",
             "check-preblock"
-        ]
+        ],
+        "no-null-undefined-union": false
     }
 }

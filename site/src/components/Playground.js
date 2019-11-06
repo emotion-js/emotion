@@ -42,6 +42,7 @@ export const scope = {
   }
 }
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const Error = styled.pre`
   background-color: ${colors.red[8]};
   overflow: auto;

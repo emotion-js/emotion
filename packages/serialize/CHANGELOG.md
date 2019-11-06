@@ -1,5 +1,49 @@
 # @emotion/serialize
 
+## 1.0.0-next.0
+
+### Major Changes
+
+- [`1eaa3a38`](https://github.com/emotion-js/emotion/commit/1eaa3a389876d4a623ce66735dc6db093cb2a8e6) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - TypeScript types have been restructured. These changes:
+
+  - Reduce build times when using emotion
+  - In many cases remove the need for manually specifying generic parameters for your emotion components.
+
+  If you encounter build issues after upgrade, try removing any manually specified generic types and let them be inferred. Otherwise refer to the breaking changes list below.
+
+  ## Improvements
+
+  - useTheme added to EmotionTheming interface and can now create your own closed variation of withTheme. More information in the docs under the theming section.
+  - Union types as props are better supported and should be inferred properly
+  - Build times should be reduced significantly in larger projects.
+
+  ## Breaking changes
+
+  - withTheme can now have the Theme type specified when calling it. For example `withTheme<MyTheme>(MyComponent)`
+
+    **Breaking change:** Generic argument changed, if you were specifying the ComponentType you will need to remove the generic parameter. Recommend following example setup in the TypeScript docs under theming section
+
+  - `css` function has been restricted to prevent passing of invalid types
+  - `CreateStyled` functions no longer take a second `ExtraProps` argument. Instead move it to after the create styled call. For example
+
+    `styled<typeof MyComponent, ExtraProps>(MyComponent)({})`
+    to
+    `styled(MyComponent)<ExtraProps>({})`
+
+  - `StyledComponent` type no longer supports the third generic `Theme` parameter. Instead add the `theme` prop to the first `Props` argument. For example:
+
+    `StyledComponent<Props, {}, MyTheme>`
+    to
+    `StyledComponent<Props & { theme?: MyTheme }>`
+
+## 0.11.14
+
+### Patch Changes
+
+- [`a55f3d49`](https://github.com/emotion-js/emotion/commit/a55f3d49c2febdf7eb1bede3f12da13c3efa1399) [#1581](https://github.com/emotion-js/emotion/pull/1581) Thanks [@Andarist](https://github.com/Andarist)! - Don't cause invalid rule to be serialized when using object style with falsy value
+
+* [`ca95f385`](https://github.com/emotion-js/emotion/commit/ca95f385f7ce3da6d53de1a652b3b219f11434c4) [#1580](https://github.com/emotion-js/emotion/pull/1580) Thanks [@Andarist](https://github.com/Andarist)! - Warn about `undefined` being used as object style's key
+
 ## 0.11.13
 
 ### Patch Changes

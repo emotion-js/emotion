@@ -167,14 +167,9 @@ const theme = {
   }
 }
 
-function SomeText (props) {
+function SomeText(props) {
   const theme = useTheme()
-  return (
-    <div
-      css={{ color: theme.colors.primary }}
-      {...props}
-    />
-  )
+  return <div css={{ color: theme.colors.primary }} {...props} />
 }
 
 render(

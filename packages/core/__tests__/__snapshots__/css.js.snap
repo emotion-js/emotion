@@ -23,10 +23,25 @@ Array [
 ]
 `;
 
+exports[`array fallback (using camelCased property) 1`] = `
+.emotion-0 {
+  background-color: green;
+  background-color: hotpink;
+}
+
+<div>
+  <div
+    className="emotion-0"
+  >
+    something
+  </div>
+</div>
+`;
+
 exports[`array fallback 1`] = `
 .emotion-0 {
-  display: green;
-  display: hotpink;
+  color: green;
+  color: hotpink;
 }
 
 <div>

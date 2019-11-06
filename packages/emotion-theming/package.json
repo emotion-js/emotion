@@ -1,6 +1,6 @@
 {
   "name": "emotion-theming",
-  "version": "10.0.19",
+  "version": "11.0.0-next.2",
   "description": "A CSS-in-JS theming solution, inspired by styled-components",
   "main": "dist/emotion-theming.cjs.js",
   "module": "dist/emotion-theming.esm.js",
@@ -32,11 +32,11 @@
   },
   "homepage": "https://emotion.sh",
   "devDependencies": {
-    "@emotion/core": "^10.0.17",
-    "@emotion/styled": "^10.0.17",
-    "@types/react": "^16.8.20",
+    "@emotion/core": "^11.0.0-next.2",
+    "@emotion/styled": "^11.0.0-next.2",
+    "@types/react": "^16.9.11",
     "dtslint": "^0.3.0",
-    "react": "^16.5.2"
+    "react": "^16.11.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
@@ -44,8 +44,8 @@
     "hoist-non-react-statics": "^3.3.0"
   },
   "peerDependencies": {
-    "@emotion/core": "^10.0.17",
-    "react": ">=16.3.0"
+    "@emotion/core": "^11.0.0-next.2",
+    "react": ">=16.8.0"
   },
   "umd:main": "dist/emotion-theming.umd.min.js",
   "browser": {

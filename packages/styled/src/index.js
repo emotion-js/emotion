@@ -6,6 +6,7 @@ import { tags } from './tags'
 const newStyled = styled.bind()
 
 tags.forEach(tagName => {
+  // $FlowFixMe: we can ignore this because its exposed type is defined by the CreateStyled type
   newStyled[tagName] = newStyled(tagName)
 })
 

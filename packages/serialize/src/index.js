@@ -13,10 +13,14 @@ Because you write your CSS inside a JavaScript string you actually have to do do
 You can read more about this here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
+const UNDEFINED_AS_OBJECT_KEY_ERROR =
+  "You have passed in falsy value as style object's key (can happen when in example you pass unexported component as computed key)."
+
 let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
 const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
+const isProcessableValue = value => value != null && typeof value !== 'boolean'
 
 const processStyleName = memoize(
   (styleName: string) =>
@@ -29,10 +33,6 @@ let processStyleValue = (
   key: string,
   value: string | number
 ): string | number => {
-  if (value == null || typeof value === 'boolean') {
-    return ''
-  }
-
   switch (key) {
     case 'animation':
     case 'animationName': {
@@ -91,7 +91,7 @@ if (process.env.NODE_ENV !== 'production') {
           (value.charAt(0) !== value.charAt(value.length - 1) ||
             (value.charAt(0) !== '"' && value.charAt(0) !== "'")))
       ) {
-        console.error(
+        throw new Error(
           `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
         )
       }
@@ -272,7 +272,7 @@ function createStringFromObject(
       if (typeof value !== 'object') {
         if (registered != null && registered[value] !== undefined) {
           string += `${key}{${registered[value]}}`
-        } else {
+        } else if (isProcessableValue(value)) {
           string += `${processStyleName(key)}:${processStyleValue(key, value)};`
         }
       } else {
@@ -290,10 +290,12 @@ function createStringFromObject(
           (registered == null || registered[value[0]] === undefined)
         ) {
           for (let i = 0; i < value.length; i++) {
-            string += `${processStyleName(key)}:${processStyleValue(
-              key,
-              value[i]
-            )};`
+            if (isProcessableValue(value[i])) {
+              string += `${processStyleName(key)}:${processStyleValue(
+                key,
+                value[i]
+              )};`
+            }
           }
         } else {
           const interpolated = handleInterpolation(
@@ -309,6 +311,12 @@ function createStringFromObject(
               break
             }
             default: {
+              if (
+                process.env.NODE_ENV !== 'production' &&
+                key === 'undefined'
+              ) {
+                console.error(UNDEFINED_AS_OBJECT_KEY_ERROR)
+              }
               string += `${key}{${interpolated}}`
             }
           }
