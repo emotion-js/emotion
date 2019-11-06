@@ -7,6 +7,6 @@
     "babel-core": "^6.26.3"
   },
   "scripts": {
-    "test:typescript": "exit 0"
+      "test:typescript": "exit 0"
   }
 }
