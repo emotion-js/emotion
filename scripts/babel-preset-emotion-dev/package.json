@@ -4,7 +4,7 @@
   "version": "9.2.6",
   "private": true,
   "scripts": {
-      "test:typescript": "exit 0"
+    "test:typescript": "exit 0"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
