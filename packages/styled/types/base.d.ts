@@ -13,7 +13,7 @@
  */
 
 import * as React from 'react'
-import '@emotion/core'
+import { AnyIfEmpty } from '@emotion/core'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import { PropsOf, DistributiveOmit } from '@emotion/core'
 
@@ -100,7 +100,7 @@ export interface CreateStyledComponent<
  * @example styled('div')({ width: 100 })
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
-export interface CreateStyled<Theme extends {} = Emotion.Theme> {
+export interface CreateStyled<Theme extends {} = AnyIfEmpty<Emotion.Theme>> {
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<

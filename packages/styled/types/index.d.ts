@@ -3,6 +3,7 @@
 
 import '@emotion/core'
 import { CreateStyled as BaseCreateStyled, CreateStyledComponent } from './base'
+import { AnyIfEmpty } from '@emotion/core'
 
 export {
   ArrayInterpolation,
@@ -16,7 +17,7 @@ export {
   CreateStyledComponent
 } from './base'
 
-export type StyledTags<Theme extends {} = Emotion.Theme> = {
+export type StyledTags<Theme extends {} = AnyIfEmpty<Emotion.Theme>> = {
   [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
     { theme?: Theme },
     JSX.IntrinsicElements[Tag],
@@ -24,7 +25,7 @@ export type StyledTags<Theme extends {} = Emotion.Theme> = {
   >
 }
 
-export interface CreateStyled<Theme extends {} = Emotion.Theme>
+export interface CreateStyled<Theme extends {} = AnyIfEmpty<Emotion.Theme>>
   extends BaseCreateStyled<Theme>,
     StyledTags<Theme> {}
 
