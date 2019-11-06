@@ -22,7 +22,7 @@ let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
 const isProcessableValue = value => value != null && typeof value !== 'boolean'
 
-const processStyleName = memoize(
+const processStyleName = /* #__PURE__ */ memoize(
   (styleName: string) =>
     isCustomProperty(styleName)
       ? styleName
