@@ -248,9 +248,10 @@ test('handles camelCased custom properties in object styles properly', () => {
 
 test('applies class when css prop is set to nil on wrapper component', () => {
   const Button = props => <button css={{ color: 'hotpink' }} {...props} />
-  const WrappedButton = ({ children, buttonStyles }) => (
-    <Button css={buttonStyles}>{children}</Button>
-  )
+  const WrappedButton: React.StatelessFunctionalComponent<any> = ({
+    children,
+    buttonStyles
+  }) => <Button css={buttonStyles}>{children}</Button>
 
   const tree = renderer.create(
     <React.Fragment>
