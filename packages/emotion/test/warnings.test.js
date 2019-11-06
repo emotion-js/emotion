@@ -39,10 +39,9 @@ const invalidValues = ['this is not valid', '']
 
 it('does warn when invalid values are passed for the content property', () => {
   invalidValues.forEach(value => {
-    expect(
-      renderer.create(<div className={css({ content: value })} />).toJSON()
-    ).toMatchSnapshot()
-    expect(console.error).toBeCalledWith(
+    expect(() =>
+      renderer.create(<div className={css({ content: value })} />)
+    ).toThrowError(
       `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
     )
   })

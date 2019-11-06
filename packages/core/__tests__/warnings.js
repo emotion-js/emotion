@@ -42,10 +42,9 @@ const invalidValues = ['this is not valid', '']
 it('does warn when invalid values are passed for the content property', () => {
   // $FlowFixMe
   invalidValues.forEach(value => {
-    expect(
-      renderer.create(<div css={{ content: value }} />).toJSON()
-    ).toMatchSnapshot()
-    expect(console.error).toBeCalledWith(
+    expect(() =>
+      renderer.create(<div css={{ content: value }} />)
+    ).toThrowError(
       `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
     )
   })
