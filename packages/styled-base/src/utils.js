@@ -1,14 +1,35 @@
 // @flow
-import * as React from 'react'
+import type { ElementType, StatelessFunctionalComponent } from 'react'
 import isPropValid from '@emotion/is-prop-valid'
 
 export type Interpolations = Array<any>
 
-const testOmitPropsOnStringTag = isPropValid
-const testOmitPropsOnComponent = (key: string) =>
-  key !== 'theme' && key !== 'innerRef'
+export type StyledOptions = {
+  label?: string,
+  shouldForwardProp?: string => boolean,
+  target?: string
+}
 
-export const getDefaultShouldForwardProp = (tag: React.ElementType) =>
+export type StyledComponent<Props> = StatelessFunctionalComponent<Props> & {
+  defaultProps: any,
+  toString: () => string,
+  withComponent: (
+    nextTag: ElementType,
+    nextOptions?: StyledOptions
+  ) => StyledComponent<Props>
+}
+
+export type PrivateStyledComponent<Props> = StyledComponent<Props> & {
+  __emotion_real: StyledComponent<Props>,
+  __emotion_base: any,
+  __emotion_styles: any,
+  __emotion_forwardProp: any
+}
+
+const testOmitPropsOnStringTag = isPropValid
+const testOmitPropsOnComponent = (key: string) => key !== 'theme'
+
+export const getDefaultShouldForwardProp = (tag: ElementType) =>
   typeof tag === 'string' &&
   // 96 is one less than the char code
   // for "a" so this is checking that
@@ -17,19 +38,15 @@ export const getDefaultShouldForwardProp = (tag: React.ElementType) =>
     ? testOmitPropsOnStringTag
     : testOmitPropsOnComponent
 
-export type StyledOptions = {
-  label?: string,
-  shouldForwardProp?: string => boolean,
-  target?: string
-}
+export type CreateStyledComponent = <Props>(
+  ...args: Interpolations
+) => StyledComponent<Props>
 
-type CreateStyledComponent = (...args: Interpolations) => *
-
-type BaseCreateStyled = (
-  tag: React.ElementType,
-  options?: StyledOptions
-) => CreateStyledComponent
-
-export type CreateStyled = BaseCreateStyled & {
-  [key: string]: CreateStyledComponent
+export type CreateStyled = {
+  <Props>(
+    tag: ElementType,
+    options?: StyledOptions
+  ): (...args: Interpolations) => StyledComponent<Props>,
+  [key: string]: CreateStyledComponent,
+  bind: () => CreateStyled
 }

@@ -63,10 +63,30 @@ export const compressSymbols = (code: string) =>
 // Detects lines that are exclusively line comments
 const isLineComment = line => line.trim().startsWith('//')
 const linebreakRegex = /[\r\n]\s*/g
+const spacesAndLinebreakRegex = /\s+|\n+/g
+
+function multilineReplacer(match: string) {
+  // When we encounter a standard multi-line CSS comment and it contains a '@'
+  // character, we keep the comment but optimize it into a single line. Some
+  // Stylis plugins, such as the stylis-rtl via the cssjanus plugin, use this
+  // special comment syntax to control behavior (such as: /* @noflip */).
+  // We can do this with standard CSS comments because they will work with
+  // compression, as opposed to non-standard single-line comments that will
+  // break compressed CSS. If the comment doesn't contain '@', then we replace
+  // it with a line break, which effectively removes it from the output.
+
+  const keepComment = match.indexOf('@') > -1
+
+  if (keepComment) {
+    return match.replace(spacesAndLinebreakRegex, ' ').trim()
+  }
+
+  return '\n'
+}
 
 export const minify = (code: string) => {
   const newCode = code
-    .replace(multilineCommentRegex, '\n') // Remove multiline comments
+    .replace(multilineCommentRegex, multilineReplacer) // If allowed, remove line breaks and extra space from multi-line comments so they appear on one line
     .split(linebreakRegex) // Split at newlines
     .filter(line => line.length > 0 && !isLineComment(line)) // Removes lines containing only line comments
     .map(stripLineComment) // Remove line comments inside text

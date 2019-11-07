@@ -8,6 +8,6 @@ export {
   transformExpressionWithStyles
 } from './transform-expression-with-styles'
 export { getStyledOptions } from './get-styled-options'
-export { appendStringToExpressions, joinStringLiterals } from './strings'
+export { appendStringToArguments, joinStringLiterals } from './strings'
 export { addImport } from './add-import'
 export { createTransformerMacro } from './transformer-macro'

@@ -38,7 +38,7 @@ const createInlineTester = babel => opts => {
         }
       ]
     ],
-    filename: opts.filename !== undefined ? opts.filename : 'emotion.js',
+    filename: 'filename' in opts ? opts.filename : 'emotion.js',
     babelrc: false,
     ast: true,
     ...(isBabel7(babel)

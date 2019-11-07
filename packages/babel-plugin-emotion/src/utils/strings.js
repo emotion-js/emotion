@@ -1,17 +1,27 @@
-export const appendStringToExpressions = (
-  expressions: Array<*>,
-  string: string,
-  t: *
-) => {
+// @flow
+import { isTaggedTemplateExpressionTranspiledByTypeScript } from './checks'
+
+export const appendStringToArguments = (path: *, string: string, t: *) => {
   if (!string) {
-    return expressions
+    return
   }
-  if (t.isStringLiteral(expressions[expressions.length - 1])) {
-    expressions[expressions.length - 1].value += string
+  const args = path.node.arguments
+  if (t.isStringLiteral(args[args.length - 1])) {
+    args[args.length - 1].value += string
+  } else if (isTaggedTemplateExpressionTranspiledByTypeScript(path)) {
+    const makeTemplateObjectCallPath = path
+      .get('arguments')[0]
+      .get('right')
+      .get('right')
+
+    makeTemplateObjectCallPath.get('arguments').forEach(argPath => {
+      const elements = argPath.get('elements')
+      const lastElement = elements[elements.length - 1]
+      lastElement.replaceWith(t.stringLiteral(lastElement.node.value + string))
+    })
   } else {
-    expressions.push(t.stringLiteral(string))
+    args.push(t.stringLiteral(string))
   }
-  return expressions
 }
 
 export const joinStringLiterals = (expressions: Array<*>, t: *) => {

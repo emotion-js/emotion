@@ -2,8 +2,9 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import css from '@emotion/css'
-import { jsx, Global } from '@emotion/core'
+import { jsx, Global, keyframes } from '@emotion/core'
 import renderer from 'react-test-renderer'
+import { render } from '@testing-library/react'
 
 // $FlowFixMe
 console.error = jest.fn()
@@ -41,10 +42,9 @@ const invalidValues = ['this is not valid', '']
 it('does warn when invalid values are passed for the content property', () => {
   // $FlowFixMe
   invalidValues.forEach(value => {
-    expect(
-      renderer.create(<div css={{ content: value }} />).toJSON()
-    ).toMatchSnapshot()
-    expect(console.error).toBeCalledWith(
+    expect(() =>
+      renderer.create(<div css={{ content: value }} />)
+    ).toThrowError(
       `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
     )
   })
@@ -161,16 +161,16 @@ test('kebab-case', () => {
   css({ '@media (min-width 800px)': undefined })
   css({ '--primary-color': 'hotpink' })
   css({ ':last-of-type': null })
-  expect(console.error.mock.calls).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "Using kebab-case for css properties in objects is not supported. Did you mean backgroundColor?",
-  ],
-  Array [
-    "Using kebab-case for css properties in objects is not supported. Did you mean msFilter?",
-  ],
-]
-`)
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+                    Array [
+                      Array [
+                        "Using kebab-case for css properties in objects is not supported. Did you mean backgroundColor?",
+                      ],
+                      Array [
+                        "Using kebab-case for css properties in objects is not supported. Did you mean msFilter?",
+                      ],
+                    ]
+          `)
 })
 
 test('unterminated comments', () => {
@@ -205,4 +205,58 @@ test('unterminated comments', () => {
   ).toThrowErrorMatchingInlineSnapshot(
     `"Your styles have an unterminated comment (\\"/*\\" without corresponding \\"*/\\")."`
   )
+})
+
+test('keyframes interpolated into plain string', () => {
+  const animateColor = keyframes({
+    'from,to': { color: 'green' },
+    '50%': { color: 'hotpink' }
+  })
+  const rotate360 = keyframes({
+    from: {
+      transform: 'rotate(0deg)'
+    },
+    to: {
+      transform: 'rotate(360deg)'
+    }
+  })
+
+  renderer.create(
+    <div css={[`animation: ${animateColor} 10s ${rotate360} 5s;`]} />
+  )
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+            Array [
+              Array [
+                "\`keyframes\` output got interpolated into plain string, please wrap it with \`css\`.
+
+            Instead of doing this:
+
+            const animation0 = keyframes\`{from,to{color:green;}50%{color:hotpink;}}\`
+            const animation1 = keyframes\`{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}\`
+            \`animation: \${animation0} 10s \${animation1} 5s;\`
+
+            You should wrap it with \`css\` like this:
+
+            css\`animation: \${animation0} 10s \${animation1} 5s;\`",
+              ],
+            ]
+      `)
+})
+
+test('`css` opaque object passed in as `className` prop', () => {
+  const { container } = render(
+    <div
+      className={css`
+        color: hotpink;
+      `}
+    />
+  )
+
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."
+      />
+    </div>
+  `)
 })

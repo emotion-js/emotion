@@ -7,6 +7,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { getComponents, prettyifyCritical, getInjectedRules } from './util'
 import { JSDOM } from 'jsdom'
+import { ignoreConsoleErrors } from 'test-utils'
 
 let emotion = require('emotion')
 let reactEmotion = require('@emotion/styled')
@@ -25,6 +26,25 @@ describe('extractCritical', () => {
         emotionServer.extractCritical(renderToString(<Page2 />))
       )
     ).toMatchSnapshot()
+  })
+
+  test('does not warn when using extract critical', () => {
+    let Provider = require('@emotion/core').CacheProvider
+    const WithNthSelector = reactEmotion.default('div')({
+      ':nth-child(1)': {}
+    })
+
+    ignoreConsoleErrors(() => {
+      emotionServer.extractCritical(
+        renderToString(
+          <Provider value={emotion.cache}>
+            <WithNthSelector />
+          </Provider>
+        )
+      )
+
+      expect((console.error: any).mock.calls).toMatchObject([])
+    })
   })
 })
 describe('hydration', () => {

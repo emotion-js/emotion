@@ -1,7 +1,7 @@
 // @flow
 import 'test-utils/next-env'
 import React from 'react'
-import { render, cleanup } from 'react-testing-library'
+import { render, cleanup } from '@testing-library/react'
 import styled from '@emotion/styled'
 
 let id = () => Math.random().toString(36)

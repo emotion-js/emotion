@@ -87,15 +87,15 @@ exports[`composition of nested pseudo selectors 1`] = `
 exports[`composition with objects 1`] = `
 .emotion-0 {
   color: #333;
-  font-size: 1.333em;
+  font-size: 1em;
   height: 64px;
-  font-size: 3.157334518321em;
+  font-size: 4em;
   font-size: 32px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
   .emotion-0 {
-    font-size: 1.4323121856191332em;
+    font-size: 1.25em;
   }
 }
 

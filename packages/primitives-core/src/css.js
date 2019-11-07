@@ -126,5 +126,25 @@ function convertStyles(str: string) {
 
   parsedString.forEach(convertPropertyValue, stylePairs)
 
-  return transform(stylePairs)
+  try {
+    return transform(stylePairs)
+  } catch (error) {
+    const msg = error.message
+
+    if (msg.includes('Failed to parse declaration')) {
+      const values = msg
+        .replace('Failed to parse declaration ', '')
+        .replace(/"/g, '')
+        .trim()
+        .split(':')
+
+      const errorMsg = `'${
+        values[0]
+      }' shorthand property requires units for example - ${
+        values[0]
+      }: 20px or ${values[0]}: 10px 20px 40px 50px`
+
+      console.error(errorMsg)
+    }
+  }
 }

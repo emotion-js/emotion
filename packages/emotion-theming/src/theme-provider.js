@@ -42,19 +42,15 @@ type Props = {
 }
 
 let ThemeProvider = (props: Props) => {
+  let theme = React.useContext(ThemeContext)
+
+  if (props.theme !== theme) {
+    theme = createCacheWithTheme(theme)(props.theme)
+  }
   return (
-    <ThemeContext.Consumer>
-      {theme => {
-        if (props.theme !== theme) {
-          theme = createCacheWithTheme(theme)(props.theme)
-        }
-        return (
-          <ThemeContext.Provider value={theme}>
-            {props.children}
-          </ThemeContext.Provider>
-        )
-      }}
-    </ThemeContext.Consumer>
+    <ThemeContext.Provider value={theme}>
+      {props.children}
+    </ThemeContext.Provider>
   )
 }
 

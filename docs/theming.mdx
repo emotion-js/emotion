@@ -1,0 +1,94 @@
+---
+title: 'Theming'
+---
+
+Theming is provided by the library [`emotion-theming`](https://emotion.sh/docs/emotion-theming).
+
+```bash
+npm install -S emotion-theming
+```
+
+Add `ThemeProvider` to the top level of your app and access the theme with `props.theme` in a styled component or provide a function that accepts the theme as the css prop. The api is laid out in detail [in the documentation](https://emotion.sh/docs/emotion-theming).
+
+## Examples
+
+### css prop
+
+```jsx
+// @live
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+import { ThemeProvider } from 'emotion-theming'
+
+const theme = {
+  colors: {
+    primary: 'hotpink'
+  }
+}
+
+render(
+  <ThemeProvider theme={theme}>
+    <div css={theme => ({ color: theme.colors.primary })}>
+      some other text
+    </div>
+  </ThemeProvider>
+)
+```
+
+### styled
+
+```jsx
+// @live
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
+import { ThemeProvider } from 'emotion-theming'
+
+const theme = {
+  colors: {
+    primary: 'hotpink'
+  }
+}
+
+const SomeText = styled.div`
+  color: ${props => props.theme.colors.primary};
+`
+
+render(
+  <ThemeProvider theme={theme}>
+    <SomeText>some text</SomeText>
+  </ThemeProvider>
+)
+```
+
+### useTheme hook
+
+```jsx
+// @live
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+import { ThemeProvider, useTheme } from 'emotion-theming'
+
+const theme = {
+  colors: {
+    primary: 'hotpink'
+  }
+}
+
+function SomeText (props) {
+  const theme = useTheme()
+  return (
+    <div
+      css={{ color: theme.colors.primary }}
+      {...props}
+    />
+  )
+}
+
+render(
+  <ThemeProvider theme={theme}>
+    <SomeText>some text</SomeText>
+  </ThemeProvider>
+)
+```
+

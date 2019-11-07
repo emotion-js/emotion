@@ -1,9 +1,9 @@
 // @flow
 import 'test-utils/legacy-env'
 import React from 'react'
-import * as renderer from 'test-utils/compat-render-json'
+import * as renderer from 'react-test-renderer'
 import styled from '@emotion/styled'
-import { css } from 'emotion'
+import { css } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 
 test('theme with react-test-renderer', () => {

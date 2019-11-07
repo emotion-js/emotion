@@ -10,6 +10,8 @@ let SomeComp = nonDefaultStyled.div({ color: 'hotpink' })
 
 import { nonDefaultStyled as _styled } from \\"package-one\\";
 
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
 let SomeComp = _styled(\\"div\\", {
   target: \\"e1nqcgbi0\\",
   label: \\"SomeComp\\"
@@ -19,6 +21,7 @@ let SomeComp = _styled(\\"div\\", {
 } : {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vbi1kZWZhdWx0LXN0eWxlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFZSIsImZpbGUiOiJub24tZGVmYXVsdC1zdHlsZWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBub25EZWZhdWx0U3R5bGVkIH0gZnJvbSAncGFja2FnZS1vbmUnXG5cbmxldCBTb21lQ29tcCA9IG5vbkRlZmF1bHRTdHlsZWQuZGl2KHsgY29sb3I6ICdob3RwaW5rJyB9KVxuIl19 */\\"
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vbi1kZWZhdWx0LXN0eWxlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFZSIsImZpbGUiOiJub24tZGVmYXVsdC1zdHlsZWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBub25EZWZhdWx0U3R5bGVkIH0gZnJvbSAncGFja2FnZS1vbmUnXG5cbmxldCBTb21lQ29tcCA9IG5vbkRlZmF1bHRTdHlsZWQuZGl2KHsgY29sb3I6ICdob3RwaW5rJyB9KVxuIl19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
 `;

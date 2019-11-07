@@ -1,4 +1,6 @@
 // @flow
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import React from 'react'
 import { navigate } from '@reach/router'
 import { algoliaStyles } from '../utils/algolia-styles'
@@ -77,7 +79,6 @@ class Search extends React.Component<Props, State> {
             zIndex: 100,
             display: ['flex', 'flex', 'flex'],
             gridColumn: ['1 / span 2', undefined, '2 / span 1'],
-            gridRow: ['2', '2', '2'],
             alignItems: 'center',
             margin: '8px 0 16px 0',
             '& span.algolia-autocomplete': {

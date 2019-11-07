@@ -1,9 +1,15 @@
 {
   "name": "babel-preset-emotion-dev",
   "main": "src/index",
-  "version": "9.2.5",
+  "version": "9.2.6",
   "private": true,
+  "scripts": {
+      "test:typescript": "exit 0"
+  },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.0.0"
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-flow-strip-types": "^7.4.4",
+    "babel-plugin-add-basic-constructor-for-react-components": "^0.1.0",
+    "babel-plugin-fix-dce-for-classes-with-statics": "^0.1.0"
   }
 }

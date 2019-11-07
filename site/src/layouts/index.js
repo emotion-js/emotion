@@ -1,4 +1,6 @@
 // @flow
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import '../utils/make-prism-manual'
 import globalStyles from '../utils/global'
 import * as React from 'react'
@@ -9,16 +11,18 @@ import { Global } from '@emotion/core'
 
 const TemplateWrapper = ({
   children,
-  sidebarOpen
+  sidebarOpen,
+  title
 }: {
   children: React.Node,
-  sidebarOpen?: boolean
+  sidebarOpen?: boolean,
+  title: string
 }) => {
   let space = constants.space
   return (
     <React.Fragment>
       <Global styles={globalStyles} />
-      <Helmet title="emotion" />
+      <Helmet title={['Emotion', title].join(' - ')} />
       <div
         css={mq({
           display: 'grid',
@@ -27,7 +31,7 @@ const TemplateWrapper = ({
             '36px 1fr',
             'minmax(400px, 80%) 220px'
           ],
-          gridTemplateRows: ['48px auto', '48px auto', '48px 48px auto'],
+          gridTemplateRows: ['48px auto', '48px auto'],
           gridColumnGap: [space[2], space[3]],
           gridRowGap: sidebarOpen ? 0 : [space[2], space[2], space[3]],
           width: '100%',

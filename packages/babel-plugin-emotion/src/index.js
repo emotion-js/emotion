@@ -2,7 +2,7 @@
 import {
   createEmotionMacro,
   transformers as vanillaTransformers
-} from './macro'
+} from './emotion-macro'
 import { createStyledMacro, styledTransformer } from './styled-macro'
 import cssMacro, {
   transformCssCallExpression,
@@ -266,7 +266,6 @@ export default function(babel: *) {
             t.isArrayExpression(path.node.value.expression))
         ) {
           let expressionPath = path.get('value.expression')
-
           let sourceMap =
             state.emotionSourceMap && path.node.loc !== undefined
               ? getSourceMap(path.node.loc.start, state)

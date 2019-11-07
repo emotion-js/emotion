@@ -1,20 +1,22 @@
 // @flow
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import React from 'react'
 import { mq, colors } from '../utils/style'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
-import RenderHAST from '../components/RenderHAST'
-import type { HASTRoot } from '../utils/types'
 import memoize from '@emotion/memoize'
 import Layout from '../layouts'
 import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
 import Title from '../components/Title'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { MDXProvider } from '@mdx-js/react'
 
 type Props = {
   data: {
     doc: {
-      htmlAst: HASTRoot,
+      body: string,
       frontmatter: {
         title: string
       }
@@ -33,7 +35,7 @@ type Props = {
 }
 
 if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', function(event) {
+  document.addEventListener('DOMContentLoaded', function() {
     var hash = window.decodeURI(window.location.hash)
     if (hash !== '' && hash !== '#') {
       var element = document.getElementById(`.docSearch-content ${hash} a`)
@@ -96,8 +98,10 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
   render() {
     const { data } = this.props
     const { doc, avatar } = data
+    const title = doc.frontmatter.title || this.props.pageContext.slug
+
     return (
-      <Layout sidebarOpen={this.state.sidebarOpen}>
+      <Layout sidebarOpen={this.state.sidebarOpen} title={title}>
         <DocWrapper
           sidebarOpen={this.state.sidebarOpen}
           setSidebarOpen={this.setSidebarOpen}
@@ -111,16 +115,14 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
             className="docSearch-content"
           >
             <div css={{ display: 'flex', alignItems: 'center' }}>
-              <Title>
-                {doc.frontmatter.title || this.props.pageContext.slug}
-              </Title>
+              <Title>{title}</Title>
               <markdownComponents.a
                 css={{ fontSize: 12, marginLeft: 'auto' }}
                 href={
                   doc.frontmatter.title
                     ? `https://github.com/emotion-js/emotion/edit/master/docs/${
                         this.props.pageContext.slug
-                      }.md`
+                      }.mdx`
                     : `https://github.com/emotion-js/emotion/edit/master/packages/${
                         this.props.pageContext.slug
                       }/README.md`
@@ -131,15 +133,16 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
             </div>
 
             <div>
-              <RenderHAST
-                hast={doc.htmlAst}
-                componentMap={{
+              <MDXProvider
+                components={{
                   'live-code': createLiveCode(
                     avatar.childImageSharp.resolutions.src
                   ),
                   ...markdownComponents
                 }}
-              />
+              >
+                <MDXRenderer children={doc.body} />
+              </MDXProvider>
             </div>
           </div>
         </DocWrapper>
@@ -150,8 +153,8 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
 
 export const pageQuery = graphql`
   query DocBySlug($slug: String!) {
-    doc: markdownRemark(fields: { slug: { eq: $slug } }) {
-      htmlAst
+    doc: mdx(fields: { slug: { eq: $slug } }) {
+      body
       frontmatter {
         title
       }

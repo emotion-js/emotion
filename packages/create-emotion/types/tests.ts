@@ -4,7 +4,7 @@ import createEmotion from 'create-emotion'
 const emotion0 = createEmotion()
 // $ExpectType Emotion
 const emotion1 = createEmotion({
-  container: document.head !== null ? document.head : undefined,
+  container: document.head,
   nonce: 'fasefw'
 })
 
@@ -47,7 +47,9 @@ cx('123')
 cx('123', 'pf')
 cx({
   abc: false,
-  fp: true
+  fp: true,
+  opt1: null,
+  opt2: undefined
 })
 cx([])
 cx([

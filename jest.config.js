@@ -1,5 +1,3 @@
-const { aliases } = require('preconstruct')
-
 module.exports = {
   transform: {
     '\\.css$': '<rootDir>/test/styleTransform.js',
@@ -15,7 +13,6 @@ module.exports = {
     '/site/',
     '/types/'
   ],
-  moduleNameMapper: aliases.jest(),
   setupFilesAfterEnv: ['<rootDir>/test/testSetup.js'],
   coveragePathIgnorePatterns: [
     '/node_modules/',

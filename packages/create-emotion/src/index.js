@@ -16,7 +16,6 @@ function insertWithoutScoping(cache, serialized: SerializedStyles) {
 
 function merge(registered: Object, css: (*) => string, className: string) {
   const registeredStyles = []
-
   const rawClassName = getRegisteredStyles(
     registered,
     registeredStyles,
@@ -76,12 +75,8 @@ let createEmotion = (options: *): Emotion => {
   }
   cache.compat = true
 
-  let css = function(...args) {
-    let serialized = serializeStyles(
-      args,
-      cache.registered,
-      this !== undefined ? this.mergedProps : undefined
-    )
+  let css = (...args) => {
+    let serialized = serializeStyles(args, cache.registered, undefined)
     insertStyles(cache, serialized, false)
     return `${cache.key}-${serialized.name}`
   }
