@@ -13,13 +13,23 @@ export let styledTransformer = ({
   reference,
   importSpecifierName,
   options: {
-    baseImport: [
+    styledBaseImport: [
       baseImportPath = importPath,
       baseImportName = importSpecifierName
     ] = [],
     isWeb
   }
-}: Object) => {
+}: {
+  state: Object,
+  babel: Object,
+  importPath: string,
+  reference: Object,
+  importSpecifierName: string,
+  options: {
+    styledBaseImport?: [string, string],
+    isWeb: boolean
+  }
+}) => {
   let getStyledIdentifier = () => {
     return addImport(state, baseImportPath, baseImportName, 'styled')
   }
@@ -101,7 +111,7 @@ export let createStyledMacro = ({
       default: [
         styledTransformer,
         {
-          baseImport: [importPath, baseImportName],
+          styledBaseImport: [importPath, baseImportName],
           isWeb
         }
       ]

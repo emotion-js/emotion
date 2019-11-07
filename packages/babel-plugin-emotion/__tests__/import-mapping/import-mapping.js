@@ -26,7 +26,12 @@ babelTester('import mapping', __dirname, {
               canonicalImport: ['emotion', 'css']
             }
           },
-          'package-four': {}
+          'package-four': {
+            nonDefaultStyled: {
+              canonicalImport: ['@emotion/styled', 'default'],
+              styledBaseImport: ['package-four/base', 'something']
+            }
+          }
         }
       }
     ]

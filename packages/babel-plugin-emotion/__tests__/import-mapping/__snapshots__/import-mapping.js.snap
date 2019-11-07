@@ -47,6 +47,32 @@ let SomeComp = _styled(\\"div\\", {
 });"
 `;
 
+exports[`import mapping styled-with-base-specified 1`] = `
+"import { nonDefaultStyled } from 'package-four'
+
+let SomeComp = nonDefaultStyled.div({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { something as _styled } from \\"package-four/base\\";
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+let SomeComp = _styled(\\"div\\", {
+  target: \\"eccz39l0\\",
+  label: \\"SomeComp\\"
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+} : {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC13aXRoLWJhc2Utc3BlY2lmaWVkLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVlIiwiZmlsZSI6InN0eWxlZC13aXRoLWJhc2Utc3BlY2lmaWVkLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgbm9uRGVmYXVsdFN0eWxlZCB9IGZyb20gJ3BhY2thZ2UtZm91cidcblxubGV0IFNvbWVDb21wID0gbm9uRGVmYXVsdFN0eWxlZC5kaXYoeyBjb2xvcjogJ2hvdHBpbmsnIH0pXG4iXX0= */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});"
+`;
+
 exports[`import mapping vanilla 1`] = `
 "import { something } from 'package-three'
 

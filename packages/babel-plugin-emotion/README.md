@@ -297,17 +297,20 @@ This option allows you to tell babel-plugin-emotion what imports it should look 
 
 An example config:
 
-```js
+```json
 {
   "my-package": {
-    "someExport": {
-      "canonicalImport": ["@emotion/css", "default"]
-    },
     "anotherExport": {
-      // this needs a better name
       "canonicalImport": ["@emotion/styled", "default"],
-       // this option should be optional and have a better name
-      "baseStyledPackage": ["my-package", "anotherExport"]
+      "baseImport": ["my-package/base", "anotherExport"]
+    }
+  },
+  "some-package": {
+    "someExport": {
+      "canonicalImport": ["@emotion/core", "css"]
+    },
+    "thisIsTheJsxExport": {
+      "canonicalImport": ["@emotion/core", "jsx"]
     }
   }
 }

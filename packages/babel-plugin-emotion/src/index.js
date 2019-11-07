@@ -37,14 +37,17 @@ let transformersSource = {
     default: coreCssTransformer
   },
   '@emotion/core': {
-    // jsx isn't included here because it's handled differently
+    // this is an empty function because this transformer is never called
+    // we don't run any transforms on `jsx` directly
+    // instead we use it as a hint to enable css prop optimization
+    jsx: () => {},
     css: coreCssTransformer
     // TODO: maybe write transformers for keyframes and Global
   },
   '@emotion/styled': {
     default: [
       styledTransformer,
-      { baseImportPath: '@emotion/styled-base', isWeb: true }
+      { styledBaseImport: ['@emotion/styled-base', 'default'], isWeb: true }
     ]
   },
   '@emotion/primitives': {
@@ -144,7 +147,7 @@ export default function(babel: *) {
           specifier: string,
           export: string,
           cssExport: string | null
-        }> = [{ specifier: '@emotion/core', export: 'jsx', cssExport: 'css' }]
+        }> = []
         Object.keys(state.opts.importMap || {}).forEach(specifierName => {
           let value = state.opts.importMap[specifierName]
           let transformers = {}
@@ -166,6 +169,7 @@ export default function(babel: *) {
                 `There is no transformer for the export '${exportName}' in '${packageName}'`
               )
             }
+
             let [exportTransformer, defaultOptions] =
               // $FlowFixMe
               Array.isArray(packageTransformers[exportName])
@@ -174,7 +178,7 @@ export default function(babel: *) {
 
             transformers[localExportName] = [
               exportTransformer,
-              { ...defaultOptions, ...options }
+              { ...defaultOptions, styledBaseImport: undefined, ...options }
             ]
           })
           macros[specifierName] = createTransformerMacro(
@@ -183,9 +187,6 @@ export default function(babel: *) {
           )
         })
         jsxCoreImports.forEach(jsxCoreImport => {
-          if (jsxCoreImport.specifier === '@emotion/core') {
-            return
-          }
           let { transformers } = macros[jsxCoreImport.specifier]
           for (let key in transformers) {
             if (transformers[key][0] === coreCssTransformer) {
