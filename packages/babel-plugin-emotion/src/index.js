@@ -183,6 +183,9 @@ export default function(babel: *) {
           )
         })
         jsxCoreImports.forEach(jsxCoreImport => {
+          if (jsxCoreImport.specifier === '@emotion/core') {
+            return
+          }
           let { transformers } = macros[jsxCoreImport.specifier]
           for (let key in transformers) {
             if (transformers[key] === coreCssTransformer) {
