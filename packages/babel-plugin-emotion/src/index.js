@@ -160,18 +160,18 @@ export default function(babel: *) {
               return
             }
             let packageTransformers = transformersSource[packageName]
-            let error = new Error(
-              `There is no transformer for the export '${exportName}' in '${packageName}'`
-            )
+
             if (packageTransformers === undefined) {
-              throw error
+              throw new Error(
+                `There is no transformer for the export '${exportName}' in '${packageName}'`
+              )
             }
             let [exportTransformer, defaultOptions] =
               // $FlowFixMe
-              packageTransformers[exportName]
-            if (packageTransformers === undefined) {
-              throw error
-            }
+              Array.isArray(packageTransformers[exportName])
+                ? packageTransformers[exportName]
+                : [packageTransformers[exportName]]
+
             transformers[localExportName] = [
               exportTransformer,
               { ...defaultOptions, ...options }
@@ -188,7 +188,7 @@ export default function(babel: *) {
           }
           let { transformers } = macros[jsxCoreImport.specifier]
           for (let key in transformers) {
-            if (transformers[key] === coreCssTransformer) {
+            if (transformers[key][0] === coreCssTransformer) {
               jsxCoreImport.cssExport = key
               return
             }
@@ -214,12 +214,11 @@ export default function(babel: *) {
           for (const node of path.node.body) {
             if (t.isImportDeclaration(node)) {
               let jsxCoreImport = jsxCoreImports.find(
-                ([packageName, localImportName]) =>
-                  node.source.value === packageName &&
+                thing =>
+                  node.source.value === thing.specifier &&
                   node.specifiers.some(
                     x =>
-                      t.isImportSpecifier(x) &&
-                      x.imported.name === localImportName
+                      t.isImportSpecifier(x) && x.imported.name === thing.export
                   )
               )
               if (jsxCoreImport) {

@@ -293,7 +293,9 @@ This option assumes that you are using something to make `@emotion/core`'s `jsx`
 
 ### `importMap`
 
-This option allows you to re-export things from emotion packages for ...explain the reasons here and still get optimisations from babel-plugin-emotion (reword stuff)
+This option allows you to tell babel-plugin-emotion what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
+
+An example config:
 
 ```js
 {

@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`import mapping jsx 1`] = `
+"/** @jsx someJsx */
+import { someJsx } from 'package-two'
+
+const SomeComponent = props => <div css={{ color: window }} {...props} />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { someCssFromCore as _css } from \\"package-two\\";
+
+/** @jsx someJsx */
+import { someJsx } from 'package-two';
+
+const SomeComponent = props => <div css={
+/*#__PURE__*/
+_css({
+  color: window
+}, \\";label:SomeComponent;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImpzeC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0MiLCJmaWxlIjoianN4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3ggc29tZUpzeCAqL1xuaW1wb3J0IHsgc29tZUpzeCB9IGZyb20gJ3BhY2thZ2UtdHdvJ1xuXG5jb25zdCBTb21lQ29tcG9uZW50ID0gcHJvcHMgPT4gPGRpdiBjc3M9e3sgY29sb3I6IHdpbmRvdyB9fSB7Li4ucHJvcHN9IC8+XG4iXX0= */\\"))} {...props} />;"
+`;
+
 exports[`import mapping non-default-styled 1`] = `
 "import { nonDefaultStyled } from 'package-one'
 
@@ -22,6 +43,30 @@ let SomeComp = _styled(\\"div\\", {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vbi1kZWZhdWx0LXN0eWxlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFZSIsImZpbGUiOiJub24tZGVmYXVsdC1zdHlsZWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBub25EZWZhdWx0U3R5bGVkIH0gZnJvbSAncGFja2FnZS1vbmUnXG5cbmxldCBTb21lQ29tcCA9IG5vbkRlZmF1bHRTdHlsZWQuZGl2KHsgY29sb3I6ICdob3RwaW5rJyB9KVxuIl19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});"
+`;
+
+exports[`import mapping vanilla 1`] = `
+"import { something } from 'package-three'
+
+something({ color: 'green' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { something as _something } from \\"package-three\\";
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+/*#__PURE__*/
+_something(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"bjcoli\\",
+  styles: \\"color:green;\\"
+} : {
+  name: \\"bjcoli\\",
+  styles: \\"color:green;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInZhbmlsbGEuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUEiLCJmaWxlIjoidmFuaWxsYS5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IHNvbWV0aGluZyB9IGZyb20gJ3BhY2thZ2UtdGhyZWUnXG5cbnNvbWV0aGluZyh7IGNvbG9yOiAnZ3JlZW4nIH0pXG4iXX0= */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
 `;
