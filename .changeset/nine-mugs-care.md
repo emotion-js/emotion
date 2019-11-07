@@ -4,4 +4,4 @@
 '@emotion/serialize': patch
 ---
 
-Add missing #**PURE** annotations
+Add missing `#__PURE__` annotations
