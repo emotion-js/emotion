@@ -15,13 +15,13 @@ export let styledTransformer = ({
   options: {
     baseImport: [
       baseImportPath = importPath,
-      baseImportSpecifierName = importSpecifierName
+      baseImportName = importSpecifierName
     ] = [],
     isWeb
   }
 }: Object) => {
   let getStyledIdentifier = () => {
-    return addImport(state, baseImportPath, baseImportSpecifierName, 'styled')
+    return addImport(state, baseImportPath, baseImportName, 'styled')
   }
   let getOriginalImportPathStyledIdentifier = () => {
     return addImport(state, importPath, importSpecifierName, 'styled')
@@ -58,6 +58,7 @@ export let styledTransformer = ({
   } else {
     reference.replaceWith(getOriginalImportPathStyledIdentifier())
   }
+
   if (reference.parentPath && reference.parentPath.parentPath) {
     const styledCallPath = reference.parentPath.parentPath
     let { node } = transformExpressionWithStyles({
@@ -87,11 +88,12 @@ export let styledTransformer = ({
 export let createStyledMacro = ({
   importPath,
   originalImportPath = importPath,
-  baseImportSpecifierName = 'default',
+  baseImportName = 'default',
   isWeb
 }: {
   importPath: string,
   originalImportPath?: string,
+  baseImportName?: string,
   isWeb: boolean
 }) =>
   createTransformerMacro(
@@ -99,7 +101,7 @@ export let createStyledMacro = ({
       default: [
         styledTransformer,
         {
-          baseImport: [importPath, baseImportSpecifierName],
+          baseImport: [importPath, baseImportName],
           isWeb
         }
       ]

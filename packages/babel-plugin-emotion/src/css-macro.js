@@ -39,6 +39,12 @@ export let coreCssTransformer = ({
   importPath,
   reference,
   importSpecifierName
+}: {
+  state: any,
+  babel: any,
+  importPath: string,
+  reference: any,
+  importSpecifierName: string
 }) => {
   reference.replaceWith(
     addImport(state, importPath, importSpecifierName, 'css')

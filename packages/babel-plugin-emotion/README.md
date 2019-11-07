@@ -285,22 +285,6 @@ const H1 = /*#__PURE__*/ styled('h1', {
 
 `H1`'s class name attribute would be `css-hash-H1`
 
-### `instances`
-
-`Array<string>`, defaults to
-
-```jsx
-;['emotion']
-```
-
-This option allows `babel-plugin-emotion` to know which imports to treat as
-emotion imports and transform as such. This option is **only** required if you
-use a custom instance of emotion created with `create-emotion` or you're
-importing emotion from somewhere other than the paths above. Relative paths are
-resolved relative to `process.cwd()`(the current working directory).
-
-[**Documentation**](https://emotion.sh/docs/instances)
-
 ### `cssPropOptimization`
 
 `boolean`, defaults to `true`.
