@@ -1,23 +1,17 @@
 /* eslint-disable no-unused-vars */
 // @flow
-import * as React from 'react'
+import React from 'react'
 import createStyled from '../src/base'
 import type { CreateStyledComponent, StyledComponent } from '../src/utils'
 
-export const valid: CreateStyledComponent = createStyled('div')
+const valid: StyledComponent<empty> = createStyled('div')({
+  color: 'red'
+})
 
 // $FlowExpectError: we can't cast a StyledComponent to string
-export const invalid: string = createStyled('div')
+const invalid: string = createStyled('div')({ color: 'red' })
 
 const styled = createStyled('div')
-type Props = { color: string }
-// prettier-ignore
-const Div = styled<Props>({ color: props => props.color })
-
-const validProp = <Div color="red" />
-
-// $FlowExpectError: color property should be a string
-const invalidProp = <Div color={2} />
 
 // $FlowExpectError: we don't expose the private StyledComponent properties
 const invalidPropAccess = styled().__emotion_base
