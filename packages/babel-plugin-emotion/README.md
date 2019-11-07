@@ -302,7 +302,7 @@ An example config:
   "my-package": {
     "anotherExport": {
       "canonicalImport": ["@emotion/styled", "default"],
-      "baseImport": ["my-package/base", "anotherExport"]
+      "styledBaseImport": ["my-package/base", "anotherExport"]
     }
   },
   "some-package": {
