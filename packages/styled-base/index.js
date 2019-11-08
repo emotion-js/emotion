@@ -1,3 +1,3 @@
 throw new Error(
-  'This package is deprecated. Please switch to using `@emotion/styled/base` instead.'
+  'A new entrypoint in the `@emotion/styled` package, `@emotion/styled/base`, has replaced the `@emotion/styled-base` package. Please remove this package use `@emotion/styled/base` instead'
 )
