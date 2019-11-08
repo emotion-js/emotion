@@ -138,7 +138,7 @@
       "threshold": "7 Kb"
     },
     {
-      "path": "./packages/styled-base/dist/styled-base.umd.min.js",
+      "path": "./packages/styled/base/dist/styled.umd.min.js",
       "threshold": "9.7 Kb"
     },
     {

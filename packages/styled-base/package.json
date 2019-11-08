@@ -1,45 +1,17 @@
 {
-  "name": "@emotion/styled-base",
-  "version": "11.0.0-next.2",
-  "description": "base styled API for emotion",
-  "main": "dist/styled-base.cjs.js",
-  "module": "dist/styled-base.esm.js",
-  "browser": {
-    "./dist/styled-base.cjs.js": "./dist/styled-base.browser.cjs.js",
-    "./dist/styled-base.esm.js": "./dist/styled-base.browser.esm.js"
-  },
-  "types": "types/index.d.ts",
-  "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/styled-base",
-  "scripts": {
-    "test:typescript": "dtslint types"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.5.5",
-    "@emotion/is-prop-valid": "0.8.5",
-    "@emotion/serialize": "^1.0.0-next.0",
-    "@emotion/utils": "0.11.2"
-  },
-  "devDependencies": {
-    "@emotion/core": "^11.0.0-next.2",
-    "@types/react": "^16.9.11",
-    "dtslint": "^0.3.0",
-    "react": "^16.11.0"
-  },
-  "peerDependencies": {
-    "@emotion/core": "^11.0.0-next.2",
-    "react": ">=16.8.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "src",
-    "dist",
-    "types"
-  ],
-  "umd:main": "dist/styled-base.umd.min.js",
-  "preconstruct": {
-    "umdName": "emotionStyledBase"
-  }
+    "name": "@emotion/styled-base",
+    "version": "11.0.0-next.2",
+    "description": "Deprecated package which became `@emotion/styled/base`",
+    "main": "dist/styled-base.cjs.js",
+    "license": "MIT",
+    "repository": "https://github.com/emotion-js/emotion/tree/master/packages/styled-base",
+    "scripts": {
+        "test:typescript": "exit 0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "preconstruct": {
+        "source": "index"
+    }
 }

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled from '@emotion/styled-base'
+import styled from '@emotion/styled/base'
 
 // tslint:disable-next-line: interface-over-type-literal
 type ReactClassProps0 = {

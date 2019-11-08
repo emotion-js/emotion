@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled inline babel 6 hash generation no file system 1`] = `
-"import _styled from \\"@emotion/styled-base\\";
+"import _styled from \\"@emotion/styled/base\\";
 
 _styled(\\"h1\\", {
   target: \\"e1vqloan0\\"
@@ -12,7 +12,7 @@ _styled(\\"h1\\", {
 `;
 
 exports[`styled inline babel 7 hash generation no file system 1`] = `
-"import _styled from \\"@emotion/styled-base\\";
+"import _styled from \\"@emotion/styled/base\\";
 
 _styled(\\"h1\\", {
   target: \\"e1vqloan0\\"

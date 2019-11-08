@@ -1,5 +1,4 @@
 ---
-'@emotion/styled-base': major
 '@emotion/styled': major
 ---
 

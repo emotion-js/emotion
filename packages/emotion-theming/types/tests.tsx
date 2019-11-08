@@ -1,7 +1,7 @@
 import * as emotionTheming from 'emotion-theming'
 import * as React from 'react'
 import styled, { CreateStyled } from '@emotion/styled'
-import { Interpolation, ObjectInterpolation } from '@emotion/styled-base'
+import { Interpolation, ObjectInterpolation } from '@emotion/styled/base'
 
 const { ThemeProvider, withTheme, useTheme } = emotionTheming
 

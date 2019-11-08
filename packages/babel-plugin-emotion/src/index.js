@@ -16,7 +16,7 @@ import {
 } from './utils'
 
 let webStyledMacro = createStyledMacro({
-  importPath: '@emotion/styled-base',
+  importPath: '@emotion/styled/base',
   originalImportPath: '@emotion/styled',
   isWeb: true
 })
@@ -47,7 +47,7 @@ let transformersSource = {
   '@emotion/styled': {
     default: [
       styledTransformer,
-      { styledBaseImport: ['@emotion/styled-base', 'default'], isWeb: true }
+      { styledBaseImport: ['@emotion/styled/base', 'default'], isWeb: true }
     ]
   },
   '@emotion/primitives': {
