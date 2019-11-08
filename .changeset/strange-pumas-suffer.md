@@ -1,5 +1,4 @@
 ---
-'@emotion/styled-base': patch
 '@emotion/styled': patch
 ---
 

@@ -4,7 +4,6 @@
 '@emotion/native': major
 '@emotion/primitives-core': major
 '@emotion/primitives': major
-'@emotion/styled-base': major
 '@emotion/styled': major
 ---
 
