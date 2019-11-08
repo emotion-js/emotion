@@ -148,6 +148,7 @@ export default function(babel: *) {
           export: string,
           cssExport: string | null
         }> = [{ specifier: '@emotion/core', export: 'jsx', cssExport: 'css' }]
+        state.jsxCoreImport = jsxCoreImports[0]
         Object.keys(state.opts.importMap || {}).forEach(specifierName => {
           let value = state.opts.importMap[specifierName]
           let transformers = {}
