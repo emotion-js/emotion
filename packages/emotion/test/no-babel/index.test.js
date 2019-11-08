@@ -133,7 +133,7 @@ describe('css', () => {
     expect(() => {
       const fontSize = '20px'
       const H1 = styled('h1')({ fontSize })
-
+      // $FlowFixMe
       const Thing = styled('div')({
         display: 'flex',
         [H1]: {

@@ -285,27 +285,36 @@ const H1 = /*#__PURE__*/ styled('h1', {
 
 `H1`'s class name attribute would be `css-hash-H1`
 
-### `instances`
-
-`Array<string>`, defaults to
-
-```jsx
-;['emotion']
-```
-
-This option allows `babel-plugin-emotion` to know which imports to treat as
-emotion imports and transform as such. This option is **only** required if you
-use a custom instance of emotion created with `create-emotion` or you're
-importing emotion from somewhere other than the paths above. Relative paths are
-resolved relative to `process.cwd()`(the current working directory).
-
-[**Documentation**](https://emotion.sh/docs/instances)
-
 ### `cssPropOptimization`
 
 `boolean`, defaults to `true`.
 
 This option assumes that you are using something to make `@emotion/core`'s `jsx` function work for all jsx. If you are not doing so and you do not want such optimizations to occur, disable this option.
+
+### `importMap`
+
+This option allows you to tell babel-plugin-emotion what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
+
+An example config:
+
+```json
+{
+  "my-package": {
+    "anotherExport": {
+      "canonicalImport": ["@emotion/styled", "default"],
+      "styledBaseImport": ["my-package/base", "anotherExport"]
+    }
+  },
+  "some-package": {
+    "someExport": {
+      "canonicalImport": ["@emotion/core", "css"]
+    },
+    "thisIsTheJsxExport": {
+      "canonicalImport": ["@emotion/core", "jsx"]
+    }
+  }
+}
+```
 
 ## Babel Macros
 

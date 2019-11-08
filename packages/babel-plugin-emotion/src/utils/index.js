@@ -9,3 +9,5 @@ export {
 } from './transform-expression-with-styles'
 export { getStyledOptions } from './get-styled-options'
 export { appendStringToArguments, joinStringLiterals } from './strings'
+export { addImport } from './add-import'
+export { createTransformerMacro } from './transformer-macro'
