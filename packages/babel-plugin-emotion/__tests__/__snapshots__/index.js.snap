@@ -34,6 +34,30 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
 const SomeComponent = props => <div css={_ref} {...props} />;"
 `;
 
+exports[`@emotion/babel-plugin-core core-with-css-import-dynamic 1`] = `
+"/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
+
+const SomeComponent = props => (
+  <div
+    css={css\`
+      color: \${window};
+    \`}
+    {...props}
+  />
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+
+const SomeComponent = props => <div css={
+/*#__PURE__*/
+css(\\"color:\\", window, \\";;label:SomeComponent;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jc3MtaW1wb3J0LWR5bmFtaWMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS1kiLCJmaWxlIjoiY29yZS13aXRoLWNzcy1pbXBvcnQtZHluYW1pYy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHsganN4LCBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jb25zdCBTb21lQ29tcG9uZW50ID0gcHJvcHMgPT4gKFxuICA8ZGl2XG4gICAgY3NzPXtjc3NgXG4gICAgICBjb2xvcjogJHt3aW5kb3d9O1xuICAgIGB9XG4gICAgey4uLnByb3BzfVxuICAvPlxuKVxuIl19 */\\"))} {...props} />;"
+`;
+
 exports[`@emotion/babel-plugin-core does-not-change-other-props 1`] = `
 "/** @jsx jsx */
 import { jsx } from '@emotion/core'
@@ -48,6 +72,27 @@ import { jsx } from '@emotion/core';
 const Svg = <rect style={{
   stroke: '#ff0000'
 }} />;"
+`;
+
+exports[`@emotion/babel-plugin-core dynamic 1`] = `
+"/** @jsx jsx */
+import { jsx } from '@emotion/core'
+
+const SomeComponent = props => <div css={{ color: window }} {...props} />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"@emotion/core\\";
+
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+
+const SomeComponent = props => <div css={
+/*#__PURE__*/
+_css({
+  color: window
+}, \\";label:SomeComponent;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImR5bmFtaWMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR29DIiwiZmlsZSI6ImR5bmFtaWMuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBwcm9wcyA9PiA8ZGl2IGNzcz17eyBjb2xvcjogd2luZG93IH19IHsuLi5wcm9wc30gLz5cbiJdfQ== */\\"))} {...props} />;"
 `;
 
 exports[`@emotion/babel-plugin-core function-declaration 1`] = `
