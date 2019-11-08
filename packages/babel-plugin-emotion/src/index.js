@@ -147,7 +147,7 @@ export default function(babel: *) {
           specifier: string,
           export: string,
           cssExport: string | null
-        }> = []
+        }> = [{ specifier: '@emotion/core', export: 'jsx', cssExport: 'css' }]
         Object.keys(state.opts.importMap || {}).forEach(specifierName => {
           let value = state.opts.importMap[specifierName]
           let transformers = {}
@@ -187,6 +187,7 @@ export default function(babel: *) {
           )
         })
         jsxCoreImports.forEach(jsxCoreImport => {
+          if (jsxCoreImport.specifier === '@emotion/core') return
           let { transformers } = macros[jsxCoreImport.specifier]
           for (let key in transformers) {
             if (transformers[key][0] === coreCssTransformer) {
