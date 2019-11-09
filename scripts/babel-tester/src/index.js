@@ -23,7 +23,7 @@ const tester = allOpts => async opts => {
     plugins: [
       'macros',
       '@babel/plugin-syntax-jsx',
-      `@babel/plugin-syntax-class-properties`,
+      '@babel/plugin-syntax-class-properties',
       '@babel/plugin-syntax-object-rest-spread',
       ...(allOpts.plugins || [])
     ],

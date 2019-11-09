@@ -11,7 +11,7 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
+    "@babel/runtime": "^7.7.2",
     "@emotion/is-prop-valid": "0.8.5",
     "@emotion/serialize": "^1.0.0-next.0",
     "@emotion/utils": "0.11.2",
