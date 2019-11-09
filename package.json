@@ -20,6 +20,7 @@
     "build:site": "cd site && yarn build:site",
     "flow": "flow",
     "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
+    "preinstall": "node ./scripts/ensure-yarn.js",
     "postinstall": "opencollective postinstall && preconstruct dev && manypkg check",
     "changeset": "changeset",
     "version-packages": "changeset version",
