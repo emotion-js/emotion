@@ -1,17 +1,17 @@
 {
-    "name": "@emotion/styled-base",
-    "version": "11.0.0-next.2",
-    "description": "Deprecated package which became `@emotion/styled/base`",
-    "main": "dist/styled-base.cjs.js",
-    "license": "MIT",
-    "repository": "https://github.com/emotion-js/emotion/tree/master/packages/styled-base",
-    "scripts": {
-        "test:typescript": "exit 0"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "preconstruct": {
-        "source": "index"
-    }
+  "name": "@emotion/styled-base",
+  "version": "11.0.0-next.3",
+  "description": "Deprecated package which became `@emotion/styled/base`",
+  "main": "dist/styled-base.cjs.js",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/styled-base",
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "preconstruct": {
+    "source": "index"
+  }
 }

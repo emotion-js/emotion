@@ -1,5 +1,13 @@
 # @emotion/serialize
 
+## 0.11.15-next.1
+
+### Patch Changes
+
+- [`8a896a31`](https://github.com/emotion-js/emotion/commit/8a896a31434a1d2f69e1f1467c446c884c929387) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Throw error about invalid content property values instead of just logging error to the console.
+
+* [`a085003d`](https://github.com/emotion-js/emotion/commit/a085003d4c8ca284c116668d7217fb747802ed85) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Add missing `#__PURE__` annotations
+
 ## 1.0.0-next.0
 
 ### Major Changes
