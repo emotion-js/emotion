@@ -1,7 +1,7 @@
 const path = require('path')
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
-global.Babel = require('babel-standalone')
+global.Babel = require('@babel/standalone')
 
 exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
   actions.setWebpackConfig({

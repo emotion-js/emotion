@@ -15,22 +15,12 @@ addEventListener('message', ({ data }) => {
 })
 
 const options = {
-  presets: [
-    'es2015',
-    'react',
-    [
-      'stage-1',
-      {
-        // without this option, compilation fails even though we don't use decorators
-        decoratorsLegacy: true
-      }
-    ]
-  ],
+  presets: ['@babel/preset-env', '@babell/preset-react'],
   plugins: [[babelPluginEmotion, { sourceMap: false }]]
 }
 
 const ACTIONS = {}
 
 ACTIONS.transform = code => {
-  return Babel.transform(code, options).code
+  return Babel.transformSync(code, options).code
 }

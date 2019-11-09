@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@emotion/babel-plugin-core css actual-expected-usage 1`] = `
+exports[`emotion-babel-plugin css actual-expected-usage 1`] = `
 "/** @jsx jsx */
 import { jsx } from '@emotion/core'
 import css from '@emotion/css'
@@ -36,7 +36,7 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
 const SomeComponent = () => <div css={_ref} />;"
 `;
 
-exports[`@emotion/babel-plugin-core css basic 1`] = `
+exports[`emotion-babel-plugin css basic 1`] = `
 "import css from '@emotion/css'
 
 function doThing() {
@@ -67,7 +67,7 @@ function doThing() {
 }"
 `;
 
-exports[`@emotion/babel-plugin-core css call-expression 1`] = `
+exports[`emotion-babel-plugin css call-expression 1`] = `
 "import css from '@emotion/css'
 
 function doThing() {
@@ -96,7 +96,7 @@ function doThing() {
 }"
 `;
 
-exports[`@emotion/babel-plugin-core css call-inside-call 1`] = `
+exports[`emotion-babel-plugin css call-inside-call 1`] = `
 "import css from '@emotion/css'
 
 const thing = css\`
@@ -128,7 +128,7 @@ _css(\\"display:flex;&:hover{\\", process.env.NODE_ENV === \\"production\\" ? {
 }, \\";};label:thing;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhbGwtaW5zaWRlLWNhbGwuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRWlCIiwiZmlsZSI6ImNhbGwtaW5zaWRlLWNhbGwuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2NzcydcblxuY29uc3QgdGhpbmcgPSBjc3NgXG4gIGRpc3BsYXk6IGZsZXg7XG4gICY6aG92ZXIge1xuICAgICR7Y3NzYFxuICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgYH07XG4gIH1cbmBcbiJdfQ== */\\"));"
 `;
 
-exports[`@emotion/babel-plugin-core css comment-with-interpolation 1`] = `
+exports[`emotion-babel-plugin css comment-with-interpolation 1`] = `
 "import css from '@emotion/css'
 
 css\`
@@ -178,7 +178,7 @@ process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/babel-plugin-core css impure 1`] = `
+exports[`emotion-babel-plugin css impure 1`] = `
 "import css from '@emotion/css'
 
 function thing() {}
@@ -204,7 +204,7 @@ function doThing() {
 }"
 `;
 
-exports[`@emotion/babel-plugin-core css inside-anonymous-arrow-function 1`] = `
+exports[`emotion-babel-plugin css inside-anonymous-arrow-function 1`] = `
 "import css from '@emotion/css'
 
 export default () => {
@@ -235,7 +235,7 @@ export default (() => {
 });"
 `;
 
-exports[`@emotion/babel-plugin-core css inside-anonymous-function 1`] = `
+exports[`emotion-babel-plugin css inside-anonymous-function 1`] = `
 "import css from '@emotion/css'
 
 export default () => {
@@ -266,7 +266,7 @@ export default (() => {
 });"
 `;
 
-exports[`@emotion/babel-plugin-core css inside-class 1`] = `
+exports[`emotion-babel-plugin css inside-class 1`] = `
 "/** @jsx jsx */
 import { Component } from 'react'
 import { jsx } from '@emotion/core'
@@ -313,7 +313,7 @@ class SomeComponent extends Component {
 }"
 `;
 
-exports[`@emotion/babel-plugin-core css inside-non-pascal-case-arrow-function 1`] = `
+exports[`emotion-babel-plugin css inside-non-pascal-case-arrow-function 1`] = `
 "import css from '@emotion/css'
 
 let something = () => {
@@ -344,7 +344,7 @@ let something = () => {
 };"
 `;
 
-exports[`@emotion/babel-plugin-core css label-1 1`] = `
+exports[`emotion-babel-plugin css label-1 1`] = `
 "import css from '@emotion/css'
 
 const thing = css\`
@@ -369,7 +369,7 @@ const thing = process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/babel-plugin-core css label-no-final-semi 1`] = `
+exports[`emotion-babel-plugin css label-no-final-semi 1`] = `
 "import css from '@emotion/css'
 
 // prettier-ignore
@@ -396,7 +396,7 @@ const thing = process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/babel-plugin-core css label-object 1`] = `
+exports[`emotion-babel-plugin css label-object 1`] = `
 "import css from '@emotion/css'
 
 const thing = {
@@ -439,7 +439,7 @@ const thing = {
 };"
 `;
 
-exports[`@emotion/babel-plugin-core css label-transpiled-by-ts 1`] = `
+exports[`emotion-babel-plugin css label-transpiled-by-ts 1`] = `
 "import css from '@emotion/css'
 import { __makeTemplateObject } from 'tslib'
 
@@ -465,7 +465,7 @@ const someVar =
 _css(templateObject_1 || (templateObject_1 = __makeTemplateObject([\\"\\\\n  color: hotpink;\\\\n;label:someVar;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2NzcydcbmltcG9ydCB7IF9fbWFrZVRlbXBsYXRlT2JqZWN0IH0gZnJvbSAndHNsaWInXG5cbnZhciB0ZW1wbGF0ZU9iamVjdF8xXG5cbmNvbnN0IHNvbWVWYXIgPSBjc3MoXG4gIHRlbXBsYXRlT2JqZWN0XzEgfHxcbiAgICAodGVtcGxhdGVPYmplY3RfMSA9IF9fbWFrZVRlbXBsYXRlT2JqZWN0KFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddLFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddXG4gICAgKSlcbilcbiJdfQ== */\\")], [\\"\\\\n  color: hotpink;\\\\n;label:someVar;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ0BlbW90aW9uL2NzcydcbmltcG9ydCB7IF9fbWFrZVRlbXBsYXRlT2JqZWN0IH0gZnJvbSAndHNsaWInXG5cbnZhciB0ZW1wbGF0ZU9iamVjdF8xXG5cbmNvbnN0IHNvbWVWYXIgPSBjc3MoXG4gIHRlbXBsYXRlT2JqZWN0XzEgfHxcbiAgICAodGVtcGxhdGVPYmplY3RfMSA9IF9fbWFrZVRlbXBsYXRlT2JqZWN0KFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddLFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddXG4gICAgKSlcbilcbiJdfQ== */\\")])));"
 `;
 
-exports[`@emotion/babel-plugin-core css multiple-calls 1`] = `
+exports[`emotion-babel-plugin css multiple-calls 1`] = `
 "import css from '@emotion/css'
 
 const thing = css\`
@@ -503,7 +503,7 @@ const otherThing = process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/babel-plugin-core css no-actual-import 1`] = `
+exports[`emotion-babel-plugin css no-actual-import 1`] = `
 "import '@emotion/css'
 
 
@@ -512,7 +512,7 @@ exports[`@emotion/babel-plugin-core css no-actual-import 1`] = `
 import '@emotion/css';"
 `;
 
-exports[`@emotion/babel-plugin-core css object-dynamic-property 1`] = `
+exports[`emotion-babel-plugin css object-dynamic-property 1`] = `
 "import css from '@emotion/css'
 
 function doThing() {
@@ -545,7 +545,7 @@ function doThing() {
 }"
 `;
 
-exports[`@emotion/babel-plugin-core css object-pattern-variable-declarator 1`] = `
+exports[`emotion-babel-plugin css object-pattern-variable-declarator 1`] = `
 "import { css } from '@emotion/core'
 import { extractCritical } from 'emotion-server'
 import React from 'react'
@@ -583,7 +583,7 @@ const {
 }} />));"
 `;
 
-exports[`@emotion/babel-plugin-core css other-imports 1`] = `
+exports[`emotion-babel-plugin css other-imports 1`] = `
 "import { nonExistantImport } from '@emotion/css'
 
 nonExistantImport()
@@ -596,7 +596,7 @@ import { nonExistantImport as _nonExistantImport } from \\"@emotion/css\\";
 _nonExistantImport();"
 `;
 
-exports[`@emotion/babel-plugin-core css remove-block-comments 1`] = `
+exports[`emotion-babel-plugin css remove-block-comments 1`] = `
 "import css from '@emotion/css'
 
 css\`
@@ -624,7 +624,7 @@ process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/babel-plugin-core css remove-line-comments 1`] = `
+exports[`emotion-babel-plugin css remove-line-comments 1`] = `
 "import css from '@emotion/css'
 
 css\`
@@ -650,7 +650,7 @@ process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/babel-plugin-core css tagged-template-args-forwarded 1`] = `
+exports[`emotion-babel-plugin css tagged-template-args-forwarded 1`] = `
 "import css from '@emotion/css'
 
 function media(...args) {

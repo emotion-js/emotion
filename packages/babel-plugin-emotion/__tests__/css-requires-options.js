@@ -1,5 +1,5 @@
 // @flow
-import { createInlineTests } from 'old-babel-tester'
+import babelTester from 'babel-tester'
 
 const inline = {
   'label format with only local': {
@@ -11,7 +11,7 @@ const inline = {
       labelFormat: 'my-css-[local]',
       autoLabel: true
     },
-    filename: __filename
+    babelFileName: __filename
   },
   'label format with filename that is index and local': {
     code: `
@@ -22,7 +22,7 @@ const inline = {
       labelFormat: 'my-css-[filename]-[local]',
       autoLabel: true
     },
-    filename: 'some-directory/index.js'
+    babelFileName: 'some-directory/index.js'
   },
 
   'label format with filename and local': {
@@ -34,7 +34,7 @@ const inline = {
       labelFormat: 'my-css-[filename]-[local]',
       autoLabel: true
     },
-    filename: __filename
+    babelFileName: __filename
   },
 
   'label format with dirname, filename, and local': {
@@ -46,7 +46,7 @@ const inline = {
       labelFormat: 'my-css-[dirname]-[filename]-[local]',
       autoLabel: true
     },
-    filename: __filename
+    babelFileName: __filename
   },
 
   // this test has better readability for label alone than other ones which include source maps
@@ -70,7 +70,7 @@ const inline = {
       autoLabel: true,
       sourceMap: false
     },
-    filename: __filename
+    babelFileName: __filename
   },
 
   'code already transpiled by emotion plugin (avoid double transpilation)': {
@@ -104,7 +104,7 @@ const inline = {
       toString: _EMOTION_STRINGIFIED_CSS_ERROR__
     });
     `,
-    filename: __filename
+    babelFileName: __filename
   }
 }
-createInlineTests('babel css inline', inline)
+babelTester('babel css inline', inline)

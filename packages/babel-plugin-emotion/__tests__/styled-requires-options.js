@@ -1,11 +1,11 @@
 // @flow
-import { createInlineTests } from 'old-babel-tester'
+import babelTester from 'babel-tester'
 
 const cases = {
   'hash generation no file system': {
     code: 'import styled from "@emotion/styled";\nstyled.h1`color:blue;`',
-    filename: undefined
+    babelFileName: undefined
   }
 }
 
-createInlineTests('styled inline', cases)
+babelTester('styled inline', cases)

@@ -1,6 +1,6 @@
 const visit = require('unist-util-visit')
 const escapeGoat = require('escape-goat')
-const Babel = require('babel-standalone')
+const Babel = require('@babel/standalone')
 
 let livePattern = /^\s*\/\/ @live/
 
@@ -22,8 +22,8 @@ module.exports = ({ markdownAST }) => {
       let cleanValue = node.value.replace('// @live', '').trim()
       node.type = `html`
       node.value = escapeGoat.escapeTag`<live-code code="${cleanValue}" compiled="${
-        Babel.transform(cleanValue, {
-          presets: ['es2015', 'react', 'stage-1'],
+        Babel.transformSync(cleanValue, {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
           plugins: [
             [require('babel-plugin-emotion').default, { sourceMap: false }]
           ]

@@ -1,6 +1,6 @@
 let types
 
-Babel.transform('lol()', {
+Babel.transformSync('lol()', {
   plugins: [
     babel => ({
       visitor: {

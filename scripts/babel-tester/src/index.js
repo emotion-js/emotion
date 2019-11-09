@@ -31,7 +31,7 @@ const tester = allOpts => async opts => {
     babelrc: false,
     configFile: false,
     ast: true,
-    filename: opts.babelFileName || __filename
+    filename: 'babelFileName' in opts ? opts.babelFileName : 'emotion.js'
   })
   expect(() => checkDuplicatedNodes(babel, ast)).not.toThrow()
 
@@ -50,7 +50,9 @@ export default (
   cases:
     | {
         [key: string]: {
-          code: string
+          code: string,
+          opts?: any,
+          filename?: string
         }
       }
     | string,
