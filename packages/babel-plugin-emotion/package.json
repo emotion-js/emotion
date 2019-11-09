@@ -13,8 +13,8 @@
     "test:typescript": "exit 0"
   },
   "dependencies": {
-    "@babel/helper-module-imports": "^7.0.0",
-    "@babel/runtime": "^7.5.5",
+    "@babel/helper-module-imports": "^7.7.0",
+    "@babel/runtime": "^7.7.2",
     "@emotion/hash": "0.7.3",
     "@emotion/memoize": "0.7.3",
     "@emotion/serialize": "^1.0.0-next.0",
