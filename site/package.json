@@ -4,6 +4,8 @@
   "description": "emotion site",
   "version": "9.3.0",
   "dependencies": {
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
     "@babel/standalone": "^7.7.3",
     "@mdx-js/mdx": "^1.1.0",
     "@mdx-js/react": "^1.0.27",

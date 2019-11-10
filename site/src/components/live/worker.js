@@ -2,6 +2,8 @@
 
 importScripts('https://unpkg.com/@babel/standalone@7.0.0/babel.min.js')
 
+const babelPresetEnv = require('@babel/preset-env').default
+const babelPresetReact = require('@babel/preset-react').default
 const babelPluginEmotion = require('babel-plugin-emotion').default
 
 global.window = global
@@ -15,7 +17,7 @@ addEventListener('message', ({ data }) => {
 })
 
 const options = {
-  presets: ['@babel/preset-env', '@babell/preset-react'],
+  presets: [babelPresetEnv, babelPresetReact],
   plugins: [[babelPluginEmotion, { sourceMap: false }]]
 }
 
