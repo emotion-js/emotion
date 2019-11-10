@@ -1,6 +1,6 @@
 // https://github.com/developit/preact-www/blob/cb47a5015ea666930ead6eebc2917307db6c1db6/src/components/controllers/repl/worker.js
 
-importScripts('https://unpkg.com/@babel/standalone@7.0.0/babel.min.js')
+importScripts('https://unpkg.com/@babel/standalone@7.7.3/babel.min.js')
 
 const babelPresetEnv = require('@babel/preset-env').default
 const babelPresetReact = require('@babel/preset-react').default
