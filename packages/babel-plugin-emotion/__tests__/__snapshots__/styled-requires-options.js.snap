@@ -6,6 +6,12 @@ styled.h1\`color:blue;\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import styled from \\"@emotion/styled\\";
-styled.h1\`color:blue;\`;"
+import _styled from \\"@emotion/styled/base\\";
+
+_styled(\\"h1\\", {
+  target: \\"e1vqloan0\\"
+})({
+  name: \\"14ksm7b\\",
+  styles: \\"color:blue;\\"
+});"
 `;

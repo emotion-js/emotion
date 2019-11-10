@@ -25,7 +25,8 @@ const tester = allOpts => async opts => {
       '@babel/plugin-syntax-jsx',
       '@babel/plugin-syntax-class-properties',
       '@babel/plugin-syntax-object-rest-spread',
-      ...(allOpts.plugins || [])
+      ...(allOpts.plugins || []),
+      ...(opts.plugins || [])
     ],
     presets: allOpts.presets,
     babelrc: false,
@@ -51,8 +52,8 @@ export default (
     | {
         [key: string]: {
           code: string,
-          opts?: any,
-          filename?: string
+          plugins?: any[],
+          babelFileName?: string
         }
       }
     | string,

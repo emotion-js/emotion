@@ -1,16 +1,22 @@
 // @flow
 import babelTester from 'babel-tester'
+import plugin from 'babel-plugin-emotion'
 
-const inline = {
+const cases = {
   'label format with only local': {
     code: `
     import {css} from 'emotion'
     let cls = css({color:'hotpink'})
     `,
-    opts: {
-      labelFormat: 'my-css-[local]',
-      autoLabel: true
-    },
+    plugins: [
+      [
+        plugin,
+        {
+          labelFormat: 'my-css-[local]',
+          autoLabel: true
+        }
+      ]
+    ],
     babelFileName: __filename
   },
   'label format with filename that is index and local': {
@@ -18,10 +24,15 @@ const inline = {
     import {css} from 'emotion'
     let cls = css({color:'hotpink'})
     `,
-    opts: {
-      labelFormat: 'my-css-[filename]-[local]',
-      autoLabel: true
-    },
+    plugins: [
+      [
+        plugin,
+        {
+          labelFormat: 'my-css-[filename]-[local]',
+          autoLabel: true
+        }
+      ]
+    ],
     babelFileName: 'some-directory/index.js'
   },
 
@@ -30,10 +41,15 @@ const inline = {
     import {css} from 'emotion'
     let cls = css({color:'hotpink'})
     `,
-    opts: {
-      labelFormat: 'my-css-[filename]-[local]',
-      autoLabel: true
-    },
+    plugins: [
+      [
+        plugin,
+        {
+          labelFormat: 'my-css-[filename]-[local]',
+          autoLabel: true
+        }
+      ]
+    ],
     babelFileName: __filename
   },
 
@@ -42,10 +58,15 @@ const inline = {
     import {css} from 'emotion'
     let cls = css({color:'hotpink'})
     `,
-    opts: {
-      labelFormat: 'my-css-[dirname]-[filename]-[local]',
-      autoLabel: true
-    },
+    plugins: [
+      [
+        plugin,
+        {
+          labelFormat: 'my-css-[dirname]-[filename]-[local]',
+          autoLabel: true
+        }
+      ]
+    ],
     babelFileName: __filename
   },
 
@@ -66,10 +87,15 @@ const inline = {
         ))
     )
     `,
-    opts: {
-      autoLabel: true,
-      sourceMap: false
-    },
+    plugins: [
+      [
+        plugin,
+        {
+          autoLabel: true,
+          sourceMap: false
+        }
+      ]
+    ],
     babelFileName: __filename
   },
 
@@ -104,7 +130,8 @@ const inline = {
       toString: _EMOTION_STRINGIFIED_CSS_ERROR__
     });
     `,
+    plugins: [plugin],
     babelFileName: __filename
   }
 }
-babelTester('babel css inline', inline)
+babelTester('babel css inline', cases)
