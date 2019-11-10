@@ -9,7 +9,7 @@ const options = {
 }
 module.exports = {
   transform(code) {
-    const transformed = Babel.transformSync(code, options)
+    const transformed = Babel.transform(code, options)
     return transformed
   }
 }

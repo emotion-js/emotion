@@ -22,5 +22,5 @@ const options = {
 const ACTIONS = {}
 
 ACTIONS.transform = code => {
-  return Babel.transformSync(code, options).code
+  return Babel.transform(code, options).code
 }
