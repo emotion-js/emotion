@@ -15,12 +15,10 @@ export type CSSPropertiesWithMultiValues = {
 /**
  * @desc Following type exists for autocompletion of key.
  */
-export type CSSPseudos<
-  MP extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
-> = { [K in CSS.Pseudos]?: ObjectInterpolation<MP> }
-export interface CSSOthersObject<
-  MP extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
-> {
+export type CSSPseudos<MP = { theme: Emotion.Theme }> = {
+  [K in CSS.Pseudos]?: ObjectInterpolation<MP>
+}
+export interface CSSOthersObject<MP = { theme: Emotion.Theme }> {
   [propertiesName: string]: Interpolation<MP>
 }
 
@@ -60,22 +58,18 @@ export type Keyframes = {
   toString: () => string
 } & string
 
-export interface ArrayInterpolation<
-  MP extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
-> extends Array<Interpolation<MP>> {}
-export interface ObjectInterpolation<
-  MP extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
-> extends CSSPropertiesWithMultiValues, CSSPseudos<MP>, CSSOthersObject<MP> {}
+export interface ArrayInterpolation<MP = { theme: Emotion.Theme }>
+  extends Array<Interpolation<MP>> {}
+export interface ObjectInterpolation<MP = { theme: Emotion.Theme }>
+  extends CSSPropertiesWithMultiValues,
+    CSSPseudos<MP>,
+    CSSOthersObject<MP> {}
 
-export interface FunctionInterpolation<
-  MergedProps extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
-> {
+export interface FunctionInterpolation<MergedProps = { theme: Emotion.Theme }> {
   (mergedProps: MergedProps): Interpolation<MergedProps>
 }
 
-export type Interpolation<
-  MergedProps extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
-> =
+export type Interpolation<MergedProps = { theme: Emotion.Theme }> =
   | null
   | undefined
   | boolean
@@ -88,9 +82,7 @@ export type Interpolation<
   | ObjectInterpolation<MergedProps>
   | FunctionInterpolation<MergedProps>
 
-export function serializeStyles<
-  MP extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
->(
+export function serializeStyles<MP = { theme: Emotion.Theme }>(
   args: Array<TemplateStringsArray | Interpolation<MP>>,
   registered: RegisteredCache,
   mergedProps?: MP

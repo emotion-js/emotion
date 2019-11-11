@@ -58,7 +58,7 @@ export type InterpolationWithTheme<Theme> =
   | ((theme: Theme) => Interpolation)
 
 export interface GlobalProps {
-  styles: Interpolation
+  styles: Interpolation<Emotion.Theme>
 }
 
 /**

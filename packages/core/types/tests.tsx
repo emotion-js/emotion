@@ -20,7 +20,7 @@ declare global {
   }
 }
 
-;<Global styles={({ theme }) => [theme.primaryColor]} />
+;<Global styles={theme => [theme.primaryColor]} />
 
 declare const getRandomColor: () => string
 
