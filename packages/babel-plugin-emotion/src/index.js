@@ -1,4 +1,5 @@
 // @flow
+import syntaxJsx from '@babel/plugin-syntax-jsx'
 import {
   createEmotionMacro,
   transformers as vanillaTransformers
@@ -83,7 +84,7 @@ export default function(babel: *) {
   let t = babel.types
   return {
     name: 'emotion',
-    inherits: require('babel-plugin-syntax-jsx'),
+    inherits: syntaxJsx,
     visitor: {
       ImportDeclaration(path: *, state: *) {
         let pluginMacros = state.pluginMacros

@@ -137,7 +137,7 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
 >
 > - [`babel-plugin-emotion`](https://emotion.sh/docs/babel)
 >
-> - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/next/babel-plugin-transform-react-jsx)
+> - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx)
 
 ### Examples
 

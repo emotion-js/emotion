@@ -1,28 +1,39 @@
 // @flow
-import { createInlineTests } from 'old-babel-tester'
+import babelTester from 'babel-tester'
+import plugin from 'babel-plugin-emotion'
 
-const inline = {
+const cases = {
   'label format with only local': {
     code: `
     import {css} from 'emotion'
     let cls = css({color:'hotpink'})
     `,
-    opts: {
-      labelFormat: 'my-css-[local]',
-      autoLabel: true
-    },
-    filename: __filename
+    plugins: [
+      [
+        plugin,
+        {
+          labelFormat: 'my-css-[local]',
+          autoLabel: true
+        }
+      ]
+    ],
+    babelFileName: __filename
   },
   'label format with filename that is index and local': {
     code: `
     import {css} from 'emotion'
     let cls = css({color:'hotpink'})
     `,
-    opts: {
-      labelFormat: 'my-css-[filename]-[local]',
-      autoLabel: true
-    },
-    filename: 'some-directory/index.js'
+    plugins: [
+      [
+        plugin,
+        {
+          labelFormat: 'my-css-[filename]-[local]',
+          autoLabel: true
+        }
+      ]
+    ],
+    babelFileName: 'some-directory/index.js'
   },
 
   'label format with filename and local': {
@@ -30,11 +41,16 @@ const inline = {
     import {css} from 'emotion'
     let cls = css({color:'hotpink'})
     `,
-    opts: {
-      labelFormat: 'my-css-[filename]-[local]',
-      autoLabel: true
-    },
-    filename: __filename
+    plugins: [
+      [
+        plugin,
+        {
+          labelFormat: 'my-css-[filename]-[local]',
+          autoLabel: true
+        }
+      ]
+    ],
+    babelFileName: __filename
   },
 
   'label format with dirname, filename, and local': {
@@ -42,11 +58,16 @@ const inline = {
     import {css} from 'emotion'
     let cls = css({color:'hotpink'})
     `,
-    opts: {
-      labelFormat: 'my-css-[dirname]-[filename]-[local]',
-      autoLabel: true
-    },
-    filename: __filename
+    plugins: [
+      [
+        plugin,
+        {
+          labelFormat: 'my-css-[dirname]-[filename]-[local]',
+          autoLabel: true
+        }
+      ]
+    ],
+    babelFileName: __filename
   },
 
   // this test has better readability for label alone than other ones which include source maps
@@ -66,11 +87,16 @@ const inline = {
         ))
     )
     `,
-    opts: {
-      autoLabel: true,
-      sourceMap: false
-    },
-    filename: __filename
+    plugins: [
+      [
+        plugin,
+        {
+          autoLabel: true,
+          sourceMap: false
+        }
+      ]
+    ],
+    babelFileName: __filename
   },
 
   'code already transpiled by emotion plugin (avoid double transpilation)': {
@@ -104,7 +130,8 @@ const inline = {
       toString: _EMOTION_STRINGIFIED_CSS_ERROR__
     });
     `,
-    filename: __filename
+    plugins: [plugin],
+    babelFileName: __filename
   }
 }
-createInlineTests('babel css inline', inline)
+babelTester('babel css inline', cases)

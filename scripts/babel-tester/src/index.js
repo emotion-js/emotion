@@ -25,13 +25,14 @@ const tester = allOpts => async opts => {
       '@babel/plugin-syntax-jsx',
       '@babel/plugin-syntax-class-properties',
       '@babel/plugin-syntax-object-rest-spread',
-      ...(allOpts.plugins || [])
+      ...(allOpts.plugins || []),
+      ...(opts.plugins || [])
     ],
     presets: allOpts.presets,
     babelrc: false,
     configFile: false,
     ast: true,
-    filename: opts.babelFileName || __filename
+    filename: 'babelFileName' in opts ? opts.babelFileName : 'emotion.js'
   })
   expect(() => checkDuplicatedNodes(babel, ast)).not.toThrow()
 
@@ -50,7 +51,9 @@ export default (
   cases:
     | {
         [key: string]: {
-          code: string
+          code: string,
+          plugins?: any[],
+          babelFileName?: string
         }
       }
     | string,

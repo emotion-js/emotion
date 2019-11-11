@@ -11,10 +11,6 @@ import { isTaggedTemplateExpressionTranspiledByTypeScript } from './checks'
 const CSS_OBJECT_STRINGIFIED_ERROR =
   "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
 
-// with babel@6 fallback
-const cloneNode = (t, node) =>
-  typeof t.cloneNode === 'function' ? t.cloneNode(node) : t.cloneDeep(node)
-
 function createSourceMapConditional(t, production, development) {
   return t.conditionalExpression(
     t.binaryExpression(
@@ -119,7 +115,7 @@ export let transformExpressionWithStyles = ({
           t.objectProperty(t.identifier('map'), t.stringLiteral(sourceMap)),
           t.objectProperty(
             t.identifier('toString'),
-            cloneNode(t, state.emotionStringifiedCssId)
+            t.cloneNode(state.emotionStringifiedCssId)
           )
         ])
         node = createSourceMapConditional(t, prodNode, devNode)
@@ -154,7 +150,7 @@ export let transformExpressionWithStyles = ({
             t.binaryExpression(
               '+',
               lastElement.node,
-              cloneNode(t, sourceMapConditional)
+              t.cloneNode(sourceMapConditional)
             )
           )
         })

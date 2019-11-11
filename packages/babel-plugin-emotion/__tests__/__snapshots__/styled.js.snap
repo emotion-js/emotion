@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@emotion/babel-plugin-core styled basic 1`] = `
+exports[`emotion-babel-plugin styled basic 1`] = `
 "import styled from '@emotion/styled'
 
 const SomeComponent = styled.div\`
@@ -28,7 +28,7 @@ const SomeComponent = _styled(\\"div\\", {
 });"
 `;
 
-exports[`@emotion/babel-plugin-core styled call-expression 1`] = `
+exports[`emotion-babel-plugin styled call-expression 1`] = `
 "import styled from '@emotion/styled'
 
 const SomeComponent = styled('div')\`
@@ -58,7 +58,7 @@ _styled('div', {
 });"
 `;
 
-exports[`@emotion/babel-plugin-core styled comments 1`] = `
+exports[`emotion-babel-plugin styled comments 1`] = `
 "import styled from '@emotion/styled'
 
 styled.div\`
@@ -91,7 +91,7 @@ _styled(\\"div\\", {
 });"
 `;
 
-exports[`@emotion/babel-plugin-core styled component-selector 1`] = `
+exports[`emotion-babel-plugin styled component-selector 1`] = `
 "import styled from '@emotion/styled'
 
 const SomeComponent = styled.div\`
@@ -169,7 +169,7 @@ let OneLastComponent = _styled(\\"div\\", {
 }, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudC1zZWxlY3Rvci5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFpQnVCIiwiZmlsZSI6ImNvbXBvbmVudC1zZWxlY3Rvci5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJ1xuXG5jb25zdCBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgY29sb3I6IGhvdHBpbms7XG5gXG5cbmxldCBTb21lT3RoZXJDb21wb25lbnQgPSBzdHlsZWQuZGl2KHsgY29sb3I6ICdob3RwaW5rJyB9KVxuXG5sZXQgQW5vdGhlckNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICR7U29tZUNvbXBvbmVudH0ge1xuICAgIGNvbG9yOiBncmVlbjtcbiAgfVxuICAke1NvbWVPdGhlckNvbXBvbmVudH0ge1xuICAgIGNvbG9yOiBncmVlbjtcbiAgfVxuYFxuXG5sZXQgT25lTGFzdENvbXBvbmVudCA9IHN0eWxlZC5kaXYoe1xuICBbU29tZUNvbXBvbmVudF06IHtcbiAgICBjb2xvcjogJ2dyZWVuJ1xuICB9LFxuICBbU29tZU90aGVyQ29tcG9uZW50XToge1xuICAgIGNvbG9yOiAnZ3JlZW4nXG4gIH1cbn0pXG4iXX0= */\\");"
 `;
 
-exports[`@emotion/babel-plugin-core styled existing-options 1`] = `
+exports[`emotion-babel-plugin styled existing-options 1`] = `
 "import styled from '@emotion/styled'
 
 styled('div', { shouldForwardProp: window.whatever }, window.whatever)()
@@ -242,7 +242,7 @@ _styled('button', _extends({}, {
 });"
 `;
 
-exports[`@emotion/babel-plugin-core styled function-interpolation 1`] = `
+exports[`emotion-babel-plugin styled function-interpolation 1`] = `
 "import styled from '@emotion/styled'
 
 let Avatar = styled.img\`
@@ -263,7 +263,7 @@ let Avatar = _styled(\\"img\\", {
 })(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZ1bmN0aW9uLWludGVycG9sYXRpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRXVCIiwiZmlsZSI6ImZ1bmN0aW9uLWludGVycG9sYXRpb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCdcblxubGV0IEF2YXRhciA9IHN0eWxlZC5pbWdgXG4gIHdpZHRoOiA5NnB4O1xuICBoZWlnaHQ6IDk2cHg7XG4gIGJvcmRlci1yYWRpdXM6ICR7cHJvcHMgPT4gcHJvcHMudGhlbWUuYm9yZGVyUmFkaXVzfTtcbiAgYm9yZGVyOiAxcHggc29saWQgJHtwcm9wcyA9PiBwcm9wcy50aGVtZS5ib3JkZXJDb2xvcn07XG5gXG4iXX0= */\\"));"
 `;
 
-exports[`@emotion/babel-plugin-core styled label 1`] = `
+exports[`emotion-babel-plugin styled label 1`] = `
 "/** @jsx jsx */
 import styled from '@emotion/styled'
 import { jsx } from '@emotion/core'
@@ -340,7 +340,7 @@ class Thing {
 }"
 `;
 
-exports[`@emotion/babel-plugin-core styled more-than-10-interpolations 1`] = `
+exports[`emotion-babel-plugin styled more-than-10-interpolations 1`] = `
 "import styled from '@emotion/styled'
 
 // yes, this was actually a bug at one point
@@ -371,7 +371,7 @@ const H1 = _styled(\\"h1\\", {
 })(\\"text-decoration:underline;border-right:solid blue \\", 54, \\"px;background:white;color:black;display:block;border-radius:3px;padding:25px;width:500px;z-index:\\", 100, \\";font-size:18px;text-align:center;border-left:\\", p => p.theme.blue, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1vcmUtdGhhbi0xMC1pbnRlcnBvbGF0aW9ucy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0IiLCJmaWxlIjoibW9yZS10aGFuLTEwLWludGVycG9sYXRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbi8vIHllcywgdGhpcyB3YXMgYWN0dWFsbHkgYSBidWcgYXQgb25lIHBvaW50XG5jb25zdCBIMSA9IHN0eWxlZC5oMWBcbiAgdGV4dC1kZWNvcmF0aW9uOiAkeyd1bmRlcmxpbmUnfTtcbiAgYm9yZGVyLXJpZ2h0OiBzb2xpZCBibHVlICR7NTR9cHg7XG4gIGJhY2tncm91bmQ6ICR7J3doaXRlJ307XG4gIGNvbG9yOiAkeydibGFjayd9O1xuICBkaXNwbGF5OiAkeydibG9jayd9O1xuICBib3JkZXItcmFkaXVzOiAkeyczcHgnfTtcbiAgcGFkZGluZzogJHsnMjVweCd9O1xuICB3aWR0aDogJHsnNTAwcHgnfTtcbiAgei1pbmRleDogJHsxMDB9O1xuICBmb250LXNpemU6ICR7JzE4cHgnfTtcbiAgdGV4dC1hbGlnbjogJHsnY2VudGVyJ307XG4gIGJvcmRlci1sZWZ0OiAke3AgPT4gcC50aGVtZS5ibHVlfTtcbmBcbiJdfQ== */\\"));"
 `;
 
-exports[`@emotion/babel-plugin-core styled multiple-calls 1`] = `
+exports[`emotion-babel-plugin styled multiple-calls 1`] = `
 "import styled from '@emotion/styled'
 
 const SomeComponent = styled.div\`
@@ -416,7 +416,7 @@ const SomeOtherComponent = _styled(\\"button\\", {
 });"
 `;
 
-exports[`@emotion/babel-plugin-core styled native 1`] = `
+exports[`emotion-babel-plugin styled native 1`] = `
 "import styled from '@emotion/native'
 
 styled.View\`
@@ -439,7 +439,7 @@ _styled.View(\\"color:hotpink;\\");
 _styled.View(\\"\\");"
 `;
 
-exports[`@emotion/babel-plugin-core styled no-call 1`] = `
+exports[`emotion-babel-plugin styled no-call 1`] = `
 "import styled from '@emotion/styled'
 
 export let thing = styled
@@ -454,7 +454,7 @@ export let thing = _styled;
 console.log(_styled);"
 `;
 
-exports[`@emotion/babel-plugin-core styled no-import 1`] = `
+exports[`emotion-babel-plugin styled no-import 1`] = `
 "import '@emotion/styled'
 
 
@@ -463,7 +463,7 @@ exports[`@emotion/babel-plugin-core styled no-import 1`] = `
 import '@emotion/styled';"
 `;
 
-exports[`@emotion/babel-plugin-core styled object 1`] = `
+exports[`emotion-babel-plugin styled object 1`] = `
 "import styled from '@emotion/styled'
 
 const SomeComponent = styled.div({ color: 'hotpink' })
@@ -489,7 +489,7 @@ const SomeComponent = _styled(\\"div\\", {
 });"
 `;
 
-exports[`@emotion/babel-plugin-core styled object-call-expression 1`] = `
+exports[`emotion-babel-plugin styled object-call-expression 1`] = `
 "import styled from '@emotion/styled'
 
 const SomeComponent = styled('div')({ color: 'hotpink' })
@@ -517,7 +517,7 @@ _styled('div', {
 });"
 `;
 
-exports[`@emotion/babel-plugin-core styled object-function 1`] = `
+exports[`emotion-babel-plugin styled object-function 1`] = `
 "import styled from '@emotion/styled'
 
 const SomeComponent = styled.div(props => ({ color: props.color }))
@@ -535,7 +535,7 @@ const SomeComponent = _styled(\\"div\\", {
 }), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1mdW5jdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFc0IiLCJmaWxlIjoib2JqZWN0LWZ1bmN0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2KHByb3BzID0+ICh7IGNvbG9yOiBwcm9wcy5jb2xvciB9KSlcbiJdfQ== */\\");"
 `;
 
-exports[`@emotion/babel-plugin-core styled other-imports 1`] = `
+exports[`emotion-babel-plugin styled other-imports 1`] = `
 "import { something, otherThing } from '@emotion/styled'
 
 something()
@@ -552,7 +552,7 @@ _something();
 _otherThing();"
 `;
 
-exports[`@emotion/babel-plugin-core styled primitives 1`] = `
+exports[`emotion-babel-plugin styled primitives 1`] = `
 "import styled from '@emotion/primitives'
 
 styled('SomeFakeComponent')\`
@@ -587,7 +587,7 @@ _styled.View(\\"color:hotpink;\\");
 _styled.View(\\"\\");"
 `;
 
-exports[`@emotion/babel-plugin-core styled primitives-other-name 1`] = `
+exports[`emotion-babel-plugin styled primitives-other-name 1`] = `
 "import something from '@emotion/primitives'
 
 something.View\`
@@ -610,7 +610,7 @@ _styled.View(\\"color:hotpink;\\");
 _styled.View(\\"\\");"
 `;
 
-exports[`@emotion/babel-plugin-core styled shorthand-property 1`] = `
+exports[`emotion-babel-plugin styled shorthand-property 1`] = `
 "import styled from '@emotion/styled'
 
 let fontSize = window.whatever
@@ -631,7 +631,7 @@ const H1 = _styled(\\"h1\\", {
 }, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNob3J0aGFuZC1wcm9wZXJ0eS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFJVyIsImZpbGUiOiJzaG9ydGhhbmQtcHJvcGVydHkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCdcblxubGV0IGZvbnRTaXplID0gd2luZG93LndoYXRldmVyXG5cbmNvbnN0IEgxID0gc3R5bGVkLmgxKHsgZm9udFNpemUgfSlcbiJdfQ== */\\");"
 `;
 
-exports[`@emotion/babel-plugin-core styled with-spread 1`] = `
+exports[`emotion-babel-plugin styled with-spread 1`] = `
 "import styled from '@emotion/styled'
 
 const H1 = styled.h1({ ...window.whatever })
