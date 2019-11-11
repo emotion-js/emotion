@@ -11,11 +11,16 @@ import {
 } from '@emotion/core'
 ;<Global styles={[]} />
 
-interface TestTheme0 {
-  resetStyle: any
+declare global {
+  namespace Emotion {
+    interface Theme {
+      primaryColor: string
+      secondaryColor: string
+    }
+  }
 }
 
-;<Global styles={(theme: TestTheme0) => [theme.resetStyle]} />
+;<Global styles={({ theme }) => [theme.primaryColor]} />
 
 declare const getRandomColor: () => string
 
@@ -92,14 +97,8 @@ const anim1 = keyframes`
   }}
   world="of-world"
 />
-
-interface TestTheme1 {
-  primaryColor: string
-  secondaryColor: string
-}
-
 ;<ClassNames>
-  {({ css, cx, theme }: ClassNamesContent<TestTheme1>) => {
+  {({ css, cx, theme }) => {
     return (
       <div>
         <span className={cx('a', undefined, 'b', null, [['abc']])} />

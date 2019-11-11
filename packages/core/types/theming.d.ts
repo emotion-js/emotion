@@ -3,7 +3,6 @@
 
 import * as React from 'react'
 import '@emotion/core'
-import { AnyIfEmpty } from '@emotion/core'
 import { DistributiveOmit, PropsOf } from './helper'
 import {
   StyledComponent,
@@ -12,36 +11,26 @@ import {
   StyledTags
 } from '@emotion/styled'
 
-export interface ThemeProviderProps<Theme> {
-  theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
+export interface ThemeProviderProps {
+  theme: Partial<Emotion.Theme> | ((outerTheme: Emotion.Theme) => Emotion.Theme)
   children?: React.ReactNode
 }
 
-export interface ThemeProvider<Theme extends {} = AnyIfEmpty<Emotion.Theme>> {
-  (props: ThemeProviderProps<Theme>): React.ReactElement
+export interface ThemeProvider {
+  (props: ThemeProviderProps): React.ReactElement
 }
 
-export type useTheme<Theme extends {} = AnyIfEmpty<Emotion.Theme>> = <
-  T extends Theme = Theme
->() => T
-
-export type withTheme<Theme extends {} = AnyIfEmpty<Emotion.Theme>> = <
+export type withTheme = <
   C extends React.ComponentType<React.ComponentProps<C>>
 >(
   component: C
-) => React.FC<DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Theme }>
+) => React.FC<DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Emotion.Theme }>
+
+export function useTheme(): Emotion.Theme
 
 export const ThemeProvider: ThemeProvider
 
-export const useTheme: useTheme
-
 export const withTheme: withTheme
-
-export interface EmotionTheming<Theme> {
-  ThemeProvider: ThemeProvider<Theme>
-  useTheme: useTheme<Theme>
-  withTheme: withTheme<Theme>
-}
 
 export type WithTheme<P, T> = P extends { theme: infer Theme }
   ? P & { theme: Exclude<Theme, undefined> }

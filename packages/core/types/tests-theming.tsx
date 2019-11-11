@@ -12,22 +12,29 @@ import {
 import styled, { CreateStyled } from '@emotion/styled'
 import { Interpolation, ObjectInterpolation } from '@emotion/styled/base'
 
-interface Theme {
-  primary: string
-  secondary: string
+declare global {
+  namespace Emotion {
+    interface Theme {
+      primary: string
+      secondary: string
+    }
+  }
 }
-declare const theme: Theme
+
+declare const theme: Emotion.Theme
 
 interface Props {
   prop: boolean
 }
 declare const CompFC: React.FC<Props>
-declare class CompC extends React.Component<Props & { theme: Theme }> {}
+declare class CompC extends React.Component<Props & { theme: Emotion.Theme }> {}
 
 const WrappedCompC = withTheme(CompC)
 ;<ThemeProvider theme={theme}>{WrappedCompC}</ThemeProvider>
 ;<ThemeProvider theme={() => theme} />
-;<ThemeProvider theme={(outerTheme: Theme) => ({ ...outerTheme, ...theme })} />
+;<ThemeProvider
+  theme={(outerTheme: Emotion.Theme) => ({ ...outerTheme, ...theme })}
+/>
 
 const ThemedFC = withTheme(CompFC)
 ;<ThemedFC prop />
@@ -47,9 +54,7 @@ class CompCWithDefault extends React.Component<Props> {
 }
 
 {
-  const theme: Theme = useTheme()
-
-  const themeFail: Theme = useTheme<number>() // $ExpectError
+  const theme: Emotion.Theme = useTheme()
 }
 
 const ThemedFCWithDefault = withTheme(CompFCWithDefault)
@@ -59,23 +64,6 @@ const ThemedFCWithDefault = withTheme(CompFCWithDefault)
 const ThemedCompWithDefault = withTheme(CompCWithDefault)
 ;<ThemedCompWithDefault />
 ;<ThemedCompWithDefault theme={theme} />
-
-const { ThemeProvider: TypedThemeProvider, withTheme: typedWithTheme } = {
-  ThemeProvider,
-  withTheme
-} as EmotionTheming<Theme>
-;<TypedThemeProvider theme={theme} />
-// $ExpectError
-;<TypedThemeProvider theme={{ primary: 5 }} />
-
-typedWithTheme(CompFC)
-
-/**
- * @todo
- * Following line should report an error.
- */
-
-typedWithTheme((props: { value: number }) => null)
 
 {
   interface Book {
@@ -102,34 +90,12 @@ typedWithTheme((props: { value: number }) => null)
   ;<Readable kind="book" author="Hejlsberg" />
   ;<ThemedReadable kind="book" author="Hejlsberg" />
   ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
-  ;<ThemedReadable kind="magazine" author="Hejlsberg" /> // $ExpectError
 }
 
-const themedStyled = styled as CreateStyled<Theme>
-
-const StyledCompC = themedStyled(WrappedCompC)({})
-const AdditionallyStyledCompC = themedStyled(StyledCompC)({})
-;<StyledCompC prop={true} />
-;<AdditionallyStyledCompC prop={true} />
-
-const StyledDiv = themedStyled('div')({})
-;<StyledDiv />
-// $ExpectError
-;<StyledDiv theme={{ primary: 0, secondary: 0 }} />
-const AdditionallyStyledDiv = themedStyled(StyledDiv)({})
-;<AdditionallyStyledDiv />
-// $ExpectError
-;<AdditionallyStyledDiv theme={{ primary: 0, secondary: 0 }} />
-
-const StyledDiv2 = themedStyled.div({})
-;<StyledDiv2 />
-// $ExpectError
-;<StyledDiv2 theme={{ primary: 0, secondary: 0 }} />
-
-export type StyleDefinition<T = {}> = Interpolation<WithTheme<T, Theme>>
-export type ObjectStyleDefinition<T = {}> = ObjectInterpolation<
-  WithTheme<T, Theme>
->
+export type StyleDefinition = Interpolation
+export type ObjectStyleDefinition = ObjectInterpolation<{
+  theme: Emotion.Theme
+}>
 
 const style: StyleDefinition = ({ theme }) => ({
   color: theme.primary
@@ -139,7 +105,4 @@ const style2: ObjectStyleDefinition = {
 }
 
 // Can use ThemeProvider
-;<ThemeProvider theme={{ prop: 'val' }} />
-;<TypedThemeProvider theme={{ primary: '', secondary: '' }} />
-// $ExpectError
-;<TypedThemeProvider theme={{ nope: 'string' }} />
+;<ThemeProvider theme={{ primary: 'val' }} />

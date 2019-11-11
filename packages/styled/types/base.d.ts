@@ -13,7 +13,6 @@
  */
 
 import * as React from 'react'
-import { AnyIfEmpty } from '@emotion/core'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import { PropsOf, DistributiveOmit } from '@emotion/core'
 
@@ -74,7 +73,10 @@ export interface CreateStyledComponent<
   <AdditionalProps extends {} = {}>(
     ...styles: Array<
       Interpolation<
-        ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps
+        ComponentProps &
+          SpecificComponentProps &
+          StyleProps &
+          AdditionalProps & { theme: Emotion.Theme }
       >
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
@@ -85,7 +87,9 @@ export interface CreateStyledComponent<
     template: TemplateStringsArray,
     ...styles: Array<
       Interpolation<
-        ComponentProps & SpecificComponentProps & AdditionalProps & StyleProps
+        ComponentProps &
+          SpecificComponentProps &
+          AdditionalProps & { theme: Emotion.Theme }
       >
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
@@ -100,7 +104,7 @@ export interface CreateStyledComponent<
  * @example styled('div')({ width: 100 })
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
-export interface CreateStyled<Theme extends {} = AnyIfEmpty<Emotion.Theme>> {
+export interface CreateStyled {
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<
@@ -110,15 +114,19 @@ export interface CreateStyled<Theme extends {} = AnyIfEmpty<Emotion.Theme>> {
     component: C,
     options: FilteringStyledOptions<PropsOf<C>, ForwardedProps>
   ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & { theme?: Theme },
+    Pick<PropsOf<C>, ForwardedProps> & { theme?: Emotion.Theme },
     {},
-    { theme: Theme }
+    { theme: Emotion.Theme }
   >
 
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions<PropsOf<C>>
-  ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }, {}, { theme: Theme }>
+  ): CreateStyledComponent<
+    PropsOf<C> & { theme?: Emotion.Theme },
+    {},
+    { theme: Emotion.Theme }
+  >
 
   <
     Tag extends keyof JSX.IntrinsicElements,
@@ -127,18 +135,18 @@ export interface CreateStyled<Theme extends {} = AnyIfEmpty<Emotion.Theme>> {
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>
   ): CreateStyledComponent<
-    { theme?: Theme },
+    { theme?: Emotion.Theme },
     Pick<JSX.IntrinsicElements[Tag], ForwardedProps>,
-    { theme: Theme }
+    { theme: Emotion.Theme }
   >
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions<JSX.IntrinsicElements[Tag]>
   ): CreateStyledComponent<
-    { theme?: Theme },
+    { theme?: Emotion.Theme },
     JSX.IntrinsicElements[Tag],
-    { theme: Theme }
+    { theme: Emotion.Theme }
   >
 }
 

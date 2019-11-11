@@ -8,10 +8,10 @@ import {
 declare const testTemplateStringsArray: TemplateStringsArray
 declare const testKeyframes: Keyframes
 
-const testObjectInterpolation0: ObjectInterpolation<undefined> = {
+const testObjectInterpolation0: ObjectInterpolation = {
   animation: testKeyframes
 }
-const testObjectInterpolation1: ObjectInterpolation<undefined> = {
+const testObjectInterpolation1: ObjectInterpolation = {
   animationName: testKeyframes
 }
 

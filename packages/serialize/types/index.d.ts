@@ -15,8 +15,12 @@ export type CSSPropertiesWithMultiValues = {
 /**
  * @desc Following type exists for autocompletion of key.
  */
-export type CSSPseudos<MP> = { [K in CSS.Pseudos]?: ObjectInterpolation<MP> }
-export interface CSSOthersObject<MP> {
+export type CSSPseudos<
+  MP extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
+> = { [K in CSS.Pseudos]?: ObjectInterpolation<MP> }
+export interface CSSOthersObject<
+  MP extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
+> {
   [propertiesName: string]: Interpolation<MP>
 }
 
@@ -56,17 +60,22 @@ export type Keyframes = {
   toString: () => string
 } & string
 
-export interface ArrayInterpolation<MP> extends Array<Interpolation<MP>> {}
-export interface ObjectInterpolation<MP>
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudos<MP>,
-    CSSOthersObject<MP> {}
+export interface ArrayInterpolation<
+  MP extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
+> extends Array<Interpolation<MP>> {}
+export interface ObjectInterpolation<
+  MP extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
+> extends CSSPropertiesWithMultiValues, CSSPseudos<MP>, CSSOthersObject<MP> {}
 
-export interface FunctionInterpolation<MergedProps> {
+export interface FunctionInterpolation<
+  MergedProps extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
+> {
   (mergedProps: MergedProps): Interpolation<MergedProps>
 }
 
-export type Interpolation<MergedProps = undefined> =
+export type Interpolation<
+  MergedProps extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
+> =
   | null
   | undefined
   | boolean
@@ -79,7 +88,9 @@ export type Interpolation<MergedProps = undefined> =
   | ObjectInterpolation<MergedProps>
   | FunctionInterpolation<MergedProps>
 
-export function serializeStyles<MP>(
+export function serializeStyles<
+  MP extends { theme: Emotion.Theme } = { theme: Emotion.Theme }
+>(
   args: Array<TemplateStringsArray | Interpolation<MP>>,
   registered: RegisteredCache,
   mergedProps?: MP
