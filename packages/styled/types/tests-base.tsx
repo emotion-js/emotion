@@ -80,7 +80,7 @@ const Input3 = styled(View.withComponent('input'))({
 />
 
 const Canvas0 = styled('canvas', {
-  shouldForwardProp(propName) {
+  shouldForwardProp(propName): propName is 'width' | 'height' {
     return propName === 'width' || propName === 'height'
   }
 })`
@@ -94,6 +94,8 @@ const Canvas1 = styled('canvas', {
   width: '200px'
 })
 ;<Canvas0 />
+// $ExpectError
+;<Canvas0 id="id-should-be-filtered" />
 ;<Canvas1 />
 
 interface PrimaryProps {
