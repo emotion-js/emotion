@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
-    "@types/jest": "^23.0.2",
+    "@types/jest": "^24.0.22",
     "chalk": "^2.4.1",
     "css": "^2.2.1",
     "specificity": "^0.4.1"

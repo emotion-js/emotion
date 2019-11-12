@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.4
+// TypeScript Version: 2.9
 
 /// <reference types="jest" />
 export interface EmotionMatchers extends jest.ExpectExtendMap {
@@ -30,7 +30,7 @@ export default serializer
 
 declare global {
   namespace jest {
-    interface Matchers<R> {
+    interface Matchers<R, T> {
       toHaveStyleRule(
         property: string,
         value: any,
