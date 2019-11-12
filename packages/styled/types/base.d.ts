@@ -98,6 +98,20 @@ export interface CreateStyledComponent<
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
 export interface CreateStyled<Theme extends {} = any> {
+  <
+    C extends React.ComponentType<React.ComponentProps<C>>,
+    ForwardedProps extends keyof React.ComponentProps<
+      C
+    > = keyof React.ComponentProps<C>
+  >(
+    component: C,
+    options: FilteringStyledOptions<PropsOf<C>, ForwardedProps>
+  ): CreateStyledComponent<
+    Pick<PropsOf<C>, ForwardedProps> & { theme?: Theme },
+    {},
+    { theme: Theme }
+  >
+
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions<PropsOf<C>>

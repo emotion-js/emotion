@@ -65,3 +65,20 @@ export const Box = styled('div', {
   color: props.color[0]
 }))
 ;<Box color={['green']} />
+
+const Original: React.FC<{ prop1: string; prop2: string }> = () => null
+
+interface StyledOriginalExtraProps {
+  // This prop would conflict with the `prop2` on Original
+  prop2: number
+}
+const StyledOriginal = styled(Original, {
+  // Filter prop2 by only forwarding prop1
+  shouldForwardProp: (propName): propName is 'prop1' => propName === 'prop1'
+})<StyledOriginalExtraProps>(props => {
+  // props.prop2 will be `number`
+  return {}
+})
+
+// No more type conflict error
+;<StyledOriginal prop1="1" prop2={2} />
