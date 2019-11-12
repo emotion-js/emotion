@@ -7,7 +7,7 @@ import {
   type CreateStyled,
   type PrivateStyledComponent
 } from './utils'
-import { withEmotionCache, ThemeContext } from '@emotion/core'
+import { withEmotionCache, useTheme } from '@emotion/core'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
@@ -90,7 +90,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
           for (let key in props) {
             mergedProps[key] = props[key]
           }
-          mergedProps.theme = React.useContext(ThemeContext)
+          mergedProps.theme = useTheme()
         }
 
         if (typeof props.className === 'string') {

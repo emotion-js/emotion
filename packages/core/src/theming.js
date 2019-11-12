@@ -1,9 +1,13 @@
 // @flow
 import * as React from 'react'
-import { ThemeContext } from '@emotion/core'
 import weakMemoize from '@emotion/weak-memoize'
+import hoistNonReactStatics from 'hoist-non-react-statics'
 
-let getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
+export const ThemeContext = React.createContext<Object>({})
+
+export const useTheme = () => React.useContext(ThemeContext)
+
+const getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   if (typeof theme === 'function') {
     const mergedTheme = theme(outerTheme)
     if (
@@ -36,12 +40,12 @@ let createCacheWithTheme = weakMemoize(outerTheme => {
   })
 })
 
-type Props = {
+type ThemeProviderProps = {
   theme: Object | (Object => Object),
   children: React.Node
 }
 
-let ThemeProvider = (props: Props) => {
+export const ThemeProvider = (props: ThemeProviderProps) => {
   let theme = React.useContext(ThemeContext)
 
   if (props.theme !== theme) {
@@ -54,4 +58,19 @@ let ThemeProvider = (props: Props) => {
   )
 }
 
-export default ThemeProvider
+export function withTheme<Config: {}>(
+  Component: React.AbstractComponent<Config>
+): React.AbstractComponent<$Diff<Config, { theme: Object }>> {
+  const componentName = Component.displayName || Component.name || 'Component'
+  let render = (props, ref) => {
+    let theme = React.useContext(ThemeContext)
+
+    return <Component theme={theme} ref={ref} {...props} />
+  }
+  // $FlowFixMe
+  let WithTheme = React.forwardRef(render)
+
+  WithTheme.displayName = `WithTheme(${componentName})`
+
+  return hoistNonReactStatics(WithTheme, Component)
+}

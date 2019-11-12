@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache, ThemeContext } from './context'
+import { withEmotionCache } from './context'
+import { ThemeContext } from './theming'
 import { insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 

@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { testAlwaysTrue, pickAssign, interleave } from './utils'
-import { ThemeContext } from '@emotion/core'
+import { useTheme } from '@emotion/core'
 import { createCss } from './css'
 
 let defaultPickTest = prop => prop !== 'theme'
@@ -32,7 +32,7 @@ export function createStyled(
       // $FlowFixMe
       let Styled = React.forwardRef((props, ref) => {
         let mergedProps = pickAssign(testAlwaysTrue, {}, props, {
-          theme: props.theme || React.useContext(ThemeContext)
+          theme: props.theme || useTheme()
         })
         let stylesWithStyleProp = styles
         if (props.style) {

@@ -1,9 +1,13 @@
-import * as emotionTheming from 'emotion-theming'
 import * as React from 'react'
+import {
+  useTheme,
+  ThemeProvider,
+  withTheme,
+  EmotionTheming,
+  WithTheme
+} from '@emotion/core'
 import styled, { CreateStyled } from '@emotion/styled'
 import { Interpolation, ObjectInterpolation } from '@emotion/styled/base'
-
-const { ThemeProvider, withTheme, useTheme } = emotionTheming
 
 interface Theme {
   primary: string
@@ -53,10 +57,10 @@ const ThemedCompWithDefault = withTheme(CompCWithDefault)
 ;<ThemedCompWithDefault />
 ;<ThemedCompWithDefault theme={theme} />
 
-const {
-  ThemeProvider: TypedThemeProvider,
-  withTheme: typedWithTheme
-} = emotionTheming as emotionTheming.EmotionTheming<Theme>
+const { ThemeProvider: TypedThemeProvider, withTheme: typedWithTheme } = {
+  ThemeProvider,
+  withTheme
+} as EmotionTheming<Theme>
 ;<TypedThemeProvider theme={theme} />
 // $ExpectError
 ;<TypedThemeProvider theme={{ primary: 5 }} />
@@ -67,6 +71,7 @@ typedWithTheme(CompFC)
  * @todo
  * Following line should report an error.
  */
+
 typedWithTheme((props: { value: number }) => null)
 
 {
@@ -118,11 +123,9 @@ const StyledDiv2 = themedStyled.div({})
 // $ExpectError
 ;<StyledDiv2 theme={{ primary: 0, secondary: 0 }} />
 
-export type StyleDefinition<T = {}> = Interpolation<
-  emotionTheming.WithTheme<T, Theme>
->
+export type StyleDefinition<T = {}> = Interpolation<WithTheme<T, Theme>>
 export type ObjectStyleDefinition<T = {}> = ObjectInterpolation<
-  emotionTheming.WithTheme<T, Theme>
+  WithTheme<T, Theme>
 >
 
 const style: StyleDefinition = ({ theme }) => ({

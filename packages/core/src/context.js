@@ -15,7 +15,6 @@ let EmotionCacheContext: React.Context<EmotionCache | null> = React.createContex
   typeof HTMLElement !== 'undefined' ? createCache() : null
 )
 
-export let ThemeContext = React.createContext<Object>({})
 export let CacheProvider = EmotionCacheContext.Provider
 
 let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(

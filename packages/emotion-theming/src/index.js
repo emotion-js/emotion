@@ -1,4 +1,3 @@
-// @flow
-export { default as ThemeProvider } from './theme-provider'
-export { default as withTheme } from './with-theme'
-export { default as useTheme } from './use-theme'
+throw new Error(
+  "`emotion-theming` has been removed and all its exports were moved to `@emotion/core` package. Please import them like this `import { useTheme, ThemeProvider } from '@emotion/core'`."
+)

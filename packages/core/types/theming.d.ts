@@ -2,15 +2,7 @@
 // TypeScript Version: 3.1
 
 import * as React from 'react'
-
-import {
-  StyledComponent,
-  StyledOptions,
-  CreateStyledComponent,
-  StyledTags,
-  PropsOf,
-  DistributiveOmit
-} from '@emotion/styled'
+import { DistributiveOmit, PropsOf } from './helper'
 
 export interface ThemeProviderProps<Theme> {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
@@ -21,24 +13,24 @@ export interface ThemeProvider<Theme extends {} = any> {
   (props: ThemeProviderProps<Theme>): React.ReactElement
 }
 
+export type useTheme<Theme extends {} = any> = <T extends Theme = Theme>() => T
+
 export type withTheme<Theme extends {} = any> = <
   C extends React.ComponentType<React.ComponentProps<C>>
 >(
   component: C
 ) => React.FC<DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Theme }>
 
-export type useTheme<Theme extends {} = any> = <T extends Theme = Theme>() => T
-
 export const ThemeProvider: ThemeProvider
-
-export const withTheme: withTheme
 
 export const useTheme: useTheme
 
+export const withTheme: withTheme
+
 export interface EmotionTheming<Theme> {
   ThemeProvider: ThemeProvider<Theme>
-  withTheme: withTheme<Theme>
   useTheme: useTheme<Theme>
+  withTheme: withTheme<Theme>
 }
 
 export type WithTheme<P, T> = P extends { theme: infer Theme }

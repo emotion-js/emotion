@@ -36,6 +36,9 @@ export {
   SerializedStyles
 }
 
+export * from './theming'
+export * from './helper'
+
 export const ThemeContext: Context<object>
 export const CacheProvider: Provider<EmotionCache>
 export function withEmotionCache<Props, RefType = any>(

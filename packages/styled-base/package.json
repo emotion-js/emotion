@@ -10,8 +10,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "preconstruct": {
-    "source": "index"
   }
 }

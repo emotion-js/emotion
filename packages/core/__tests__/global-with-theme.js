@@ -1,9 +1,8 @@
 // @flow
 import 'test-utils/dev-mode'
 import * as React from 'react'
-import { ThemeProvider } from 'emotion-theming'
 import { render, unmountComponentAtNode } from 'react-dom'
-import { Global } from '@emotion/core'
+import { Global, ThemeProvider } from '@emotion/core'
 
 beforeEach(() => {
   // $FlowFixMe

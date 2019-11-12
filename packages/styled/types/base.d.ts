@@ -14,7 +14,7 @@
 
 import * as React from 'react'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
-import { PropsOf, DistributiveOmit } from './helper'
+import { PropsOf, DistributiveOmit } from '@emotion/core'
 
 export {
   ArrayInterpolation,
@@ -23,7 +23,7 @@ export {
   ObjectInterpolation
 } from '@emotion/serialize'
 
-export { ComponentSelector, Interpolation, PropsOf, DistributiveOmit }
+export { ComponentSelector, Interpolation }
 
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<

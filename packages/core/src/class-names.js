@@ -1,9 +1,9 @@
 // @flow
 import * as React from 'react'
-import { useContext } from 'react'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
-import { withEmotionCache, ThemeContext } from './context'
+import { withEmotionCache } from './context'
+import { ThemeContext } from './theming'
 import { isBrowser } from './utils'
 
 type ClassNameArg =
@@ -112,7 +112,7 @@ export const ClassNames: React.AbstractComponent<
   let content = {
     css,
     cx,
-    theme: useContext(ThemeContext)
+    theme: React.useContext(ThemeContext)
   }
   let ele = props.children(content)
   hasRendered = true
