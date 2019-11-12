@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "../",
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "jsx": "react",
     "lib": [
       "es6",
