@@ -1,4 +1,4 @@
-Added createStyled overload to handle when shouldForwardProp is a custom type guard for intrinsic props
+Added `CreateStyled` overload to handle when `shouldForwardProp` is a custom type guard for intrinsic props.
 
 As an example, if you want to override the type of the `color` prop:
 
