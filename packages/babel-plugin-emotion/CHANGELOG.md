@@ -1,5 +1,11 @@
 # babel-plugin-emotion
 
+## 11.0.0-next.4
+
+### Major Changes
+
+- [`c65c5d88`](https://github.com/emotion-js/emotion/commit/c65c5d887002d76557eaefcb98091d795b13f9a9) [#973](https://github.com/emotion-js/emotion/pull/973) Thanks [@Andarist](https://github.com/Andarist)! - Drop Babel 6 support
+
 ## 11.0.0-next.3
 
 ### Major Changes

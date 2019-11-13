@@ -1,5 +1,14 @@
 # @emotion/primitives
 
+## 11.0.0-next.4
+
+### Patch Changes
+
+- Updated dependencies [[`c65c5d88`](https://github.com/emotion-js/emotion/commit/c65c5d887002d76557eaefcb98091d795b13f9a9)]:
+  - babel-plugin-emotion@11.0.0-next.4
+  - emotion-theming@11.0.0-next.4
+  - @emotion/primitives-core@11.0.0-next.4
+
 ## 11.0.0-next.3
 
 ### Patch Changes
