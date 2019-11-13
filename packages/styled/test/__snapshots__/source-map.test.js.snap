@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inserts source map 1`] = `
+<html>
+  <head>
+    <style
+      data-emotion="css"
+    >
+      
+      .css-1hytkh9-Comp{color:hotpink;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNdUIiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gQGZsb3dcbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJ1xuaW1wb3J0IHJlbmRlcmVyIGZyb20gJ3JlYWN0LXRlc3QtcmVuZGVyZXInXG5cbnRlc3QoJ2luc2VydHMgc291cmNlIG1hcCcsICgpID0+IHtcbiAgbGV0IENvbXAgPSBzdHlsZWQuZGl2YFxuICAgIGNvbG9yOiBob3RwaW5rO1xuICBgXG4gIHJlbmRlcmVyLmNyZWF0ZSg8Q29tcCAvPilcbiAgZXhwZWN0KGRvY3VtZW50LmRvY3VtZW50RWxlbWVudCkudG9NYXRjaFNuYXBzaG90KClcbn0pXG4iXX0= */
+    </style>
+  </head>
+  <body />
+</html>
+`;

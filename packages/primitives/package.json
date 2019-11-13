@@ -1,26 +1,30 @@
 {
   "name": "@emotion/primitives",
-  "version": "10.0.0-beta.6",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "version": "11.0.0-next.3",
+  "main": "dist/primitives.cjs.js",
+  "module": "dist/primitives.esm.js",
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
   "files": [
     "src",
     "dist"
   ],
   "dependencies": {
-    "@emotion/is-prop-valid": "^0.7.0",
-    "@emotion/primitives-core": "^10.0.0-beta.6",
-    "babel-plugin-emotion": "^10.0.0-beta.6"
+    "@emotion/is-prop-valid": "0.8.6-next.0",
+    "@emotion/primitives-core": "11.0.0-next.3",
+    "babel-plugin-emotion": "^11.0.0-next.3"
   },
   "peerDependencies": {
-    "react-primitives": "^0.6.1"
+    "react": ">=16.8.0",
+    "react-primitives": "^0.7.0"
   },
   "devDependencies": {
-    "emotion-theming": "^10.0.0-beta.6",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "react": "^16.5.2",
-    "react-primitives": "^0.6.1"
+    "emotion-theming": "^11.0.0-next.3",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "react": "^16.11.0",
+    "react-primitives": "^0.7.0"
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",
@@ -37,10 +41,10 @@
     "url": "https://github.com/emotion-js/emotion/issues"
   },
   "publishConfig": {
-    "access": "public",
-    "tag": "next"
+    "access": "public"
   },
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
+    "./dist/primitives.cjs.js": "./dist/primitives.browser.cjs.js",
+    "./dist/primitives.esm.js": "./dist/primitives.browser.esm.js"
   }
 }

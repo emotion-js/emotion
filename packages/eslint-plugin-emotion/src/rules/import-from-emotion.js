@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   meta: {
     fixable: 'code'
   },
@@ -22,7 +22,7 @@ module.exports = {
                   node,
                   `import ${
                     node.specifiers[0].local.name
-                  } from 'react-emotion';\nimport { ${node.specifiers
+                  } from '@emotion/styled';\nimport { ${node.specifiers
                     .filter(x => x.type === 'ImportSpecifier')
                     .map(
                       x =>

@@ -1,10 +1,15 @@
 // @flow
 import chalk from 'chalk'
 import * as css from 'css'
+import * as specificity from 'specificity'
 import {
   getClassNamesFromNodes,
   getStylesFromClassNames,
-  getStyleElements
+  getStyleElements,
+  hasClassNames,
+  getMediaRules,
+  findLast,
+  RULE_TYPES
 } from './utils'
 
 /*
@@ -35,23 +40,55 @@ function valueMatches(declaration, value) {
   return value === declaration.value
 }
 
-function toHaveStyleRule(received: *, property: *, value: *) {
+function toHaveStyleRule(
+  received: *,
+  property: *,
+  value: *,
+  options?: { target?: string, media?: string } = {}
+) {
+  const { target, media } = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
   const styles = css.parse(cssString)
 
-  const declaration = styles.stylesheet.rules
-    .reduce((decs, rule) => Object.assign([], decs, rule.declarations), [])
-    .filter(dec => dec.type === 'declaration' && dec.property === property)
+  let preparedRules = styles.stylesheet.rules
+  if (media) {
+    preparedRules = getMediaRules(preparedRules, media)
+  }
+  const result = preparedRules
+    .filter(
+      rule =>
+        rule.type === RULE_TYPES.rule &&
+        hasClassNames(classNames, rule.selectors, target)
+    )
+    .reduce((acc, rule) => {
+      const lastMatchingDeclaration = findLast(
+        rule.declarations,
+        dec => dec.type === 'declaration' && dec.property === property
+      )
+      if (!lastMatchingDeclaration) {
+        return acc
+      }
+      return acc.concat(
+        rule.selectors.map(selector => ({
+          selector,
+          declaration: lastMatchingDeclaration
+        }))
+      )
+    }, [])
+    .sort(({ selector: selectorA }, { selector: selectorB }) =>
+      specificity.compare(selectorA, selectorB)
+    )
     .pop()
 
-  if (!declaration) {
+  if (!result) {
     return {
       pass: false,
       message: () => `Property not found: ${property}`
     }
   }
 
+  const { declaration } = result
   const pass = valueMatches(declaration, value)
 
   const message = () =>

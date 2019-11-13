@@ -1,12 +1,11 @@
 // @flow
+/** @jsx jsx */
 import 'test-utils/next-env'
-import React from 'react'
 import renderer from 'react-test-renderer'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
-import { keyframes } from '@emotion/core'
-import css from '@emotion/css'
+import { jsx, keyframes, css } from '@emotion/core'
 
 describe('styled', () => {
   test('no dynamic', () => {
@@ -59,6 +58,15 @@ describe('styled', () => {
         </H1>
       )
       .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('object as className', () => {
+    const myclass = { toString: () => 'myclass' }
+    const Comp = styled.div``
+
+    const tree = renderer.create(<Comp className={myclass} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -392,7 +400,7 @@ describe('styled', () => {
     const tree = renderer
       .create(
         <Button
-          className={css({
+          css={css({
             '&:hover': {
               color: 'pink',
               '&:active': {
@@ -577,6 +585,7 @@ describe('styled', () => {
 
     expect(tree).toMatchSnapshot()
   })
+
   test('throws if undefined is passed as the component', () => {
     expect(
       () =>

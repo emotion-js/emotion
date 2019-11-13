@@ -1,7 +1,9 @@
 // https://github.com/developit/preact-www/blob/cb47a5015ea666930ead6eebc2917307db6c1db6/src/components/controllers/repl/worker.js
 
-importScripts('https://unpkg.com/@babel/standalone@7.0.0/babel.min.js')
+importScripts('https://unpkg.com/@babel/standalone@7.7.3/babel.min.js')
 
+const babelPresetEnv = require('@babel/preset-env').default
+const babelPresetReact = require('@babel/preset-react').default
 const babelPluginEmotion = require('babel-plugin-emotion').default
 
 global.window = global
@@ -15,18 +17,8 @@ addEventListener('message', ({ data }) => {
 })
 
 const options = {
-  presets: [
-    'es2015',
-    'react',
-    [
-      'stage-1',
-      {
-        // without this option, compilation fails even though we don't use decorators
-        decoratorsLegacy: true
-      }
-    ]
-  ],
-  plugins: [babelPluginEmotion]
+  presets: [babelPresetEnv, babelPresetReact],
+  plugins: [[babelPluginEmotion, { sourceMap: false }]]
 }
 
 const ACTIONS = {}

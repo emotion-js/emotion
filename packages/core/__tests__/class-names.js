@@ -35,7 +35,6 @@ it('should get the theme', () => {
       </ClassNames>
     </ThemeProvider>
   )
-
   expect(tree.toJSON()).toMatchSnapshot()
 })
 

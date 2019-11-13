@@ -1,6 +1,6 @@
 {
   "name": "@emotion/core",
-  "version": "10.0.0-beta.6",
+  "version": "11.0.0-next.3",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",
   "browser": {
@@ -19,28 +19,40 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/cache": "^10.0.0-beta.6",
-    "@emotion/css": "^10.0.0-beta.6",
-    "@emotion/serialize": "^0.10.1",
-    "@emotion/sheet": "^0.9.0",
-    "@emotion/utils": "^0.10.0"
+    "@babel/runtime": "^7.7.2",
+    "@emotion/cache": "^11.0.0-next.0",
+    "@emotion/css": "^11.0.0-next.3",
+    "@emotion/serialize": "^0.11.15-next.1",
+    "@emotion/sheet": "0.9.3",
+    "@emotion/utils": "0.11.2"
   },
   "peerDependencies": {
-    "react": ">=16.3.0"
+    "@babel/core": "^7.0.0",
+    "react": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "@emotion/styled": "^10.0.0-beta.6",
-    "@types/react": "16.3.18",
+    "@babel/core": "^7.7.2",
+    "@emotion/styled": "^11.0.0-next.3",
+    "@types/react": "^16.9.11",
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.0-beta.6",
-    "emotion-server": "^10.0.0-beta.6",
-    "emotion-theming": "^10.0.0-beta.6",
+    "emotion": "^11.0.0-next.0",
+    "emotion-server": "^11.0.0-next.0",
+    "emotion-theming": "^11.0.0-next.3",
     "html-tag-names": "^1.1.2",
+    "react": "^16.11.0",
     "svg-tag-names": "^1.1.1"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/core",
   "publishConfig": {
     "access": "public"
   },
-  "umd:main": "./dist/index.min.js"
+  "umd:main": "dist/core.umd.min.js",
+  "preconstruct": {
+    "umdName": "emotionCore"
+  }
 }

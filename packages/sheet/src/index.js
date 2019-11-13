@@ -66,7 +66,7 @@ export class StyleSheet {
   container: HTMLElement
   key: string
   nonce: string | void
-  before: Element | null | void
+  before: Element | null
   constructor(options: Options) {
     this.isSpeedy =
       options.speedy === undefined
@@ -78,6 +78,7 @@ export class StyleSheet {
     // key is the value of the data-emotion attribute, it's used to identify different sheets
     this.key = options.key
     this.container = options.container
+    this.before = null
   }
   insert(rule: string) {
     // the max length is how many rules we have per style tag, it's 65000 in speedy mode

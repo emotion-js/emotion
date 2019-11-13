@@ -2,17 +2,16 @@ version: 2
 jobs:
   flow:
     docker:
-      - image: circleci/node:10.6.0-browsers
+      - image: circleci/node:10.16.3-browsers
     working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "yarn.lock" }}
+            - v4-dependencies-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+            - v4-dependencies-
       - run: yarn install --pure-lockfile
-      - run: yarn flow start --file-watcher=none
       - run: yarn flow:check
       - run: yarn build
       - run: cd scripts/benchmarks && yarn build
@@ -22,19 +21,19 @@ jobs:
           paths:
             - ~/.cache/yarn
             - node_modules
-          key: v2-dependencies-{{ checksum "yarn.lock" }}
+          key: v4-dependencies-{{ checksum "yarn.lock" }}
 
   test:
     docker:
-      - image: circleci/node:10.6.0
+      - image: circleci/node:10.16.3
     working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "yarn.lock" }}
+            - v4-dependencies-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+            - v4-dependencies-
       - run: yarn install --pure-lockfile
       - run:
           name: Jest Tests
@@ -49,15 +48,15 @@ jobs:
 
   test_dist:
     docker:
-      - image: circleci/node:10.6.0
+      - image: circleci/node:10.16.3
     working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "yarn.lock" }}
+            - v4-dependencies-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+            - v4-dependencies-
       - run: yarn install --pure-lockfile
       - run:
           name: Jest Tests
@@ -67,15 +66,15 @@ jobs:
 
   lint_and_typescript:
     docker:
-      - image: circleci/node:10.6.0
+      - image: circleci/node:10.16.3
     working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "yarn.lock" }}
+            - v4-dependencies-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+            - v4-dependencies-
       - run: yarn install --pure-lockfile
       - run: yarn lint:check
       - run: yarn test:typescript

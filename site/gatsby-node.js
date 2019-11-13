@@ -1,7 +1,7 @@
 const path = require('path')
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
-global.Babel = require('babel-standalone')
+global.Babel = require('@babel/standalone')
 
 exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
   actions.setWebpackConfig({
@@ -11,8 +11,8 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
       alias: {
         assert: 'fbjs/lib/emptyFunction',
         'source-map': 'fbjs/lib/emptyFunction',
-        '@babel/types': path.join(__dirname, './src/utils/babel-types'),
-        'buble/dist/buble.deps': path.join(__dirname, './src/utils/transform')
+        'convert-source-map': 'fbjs/lib/emptyFunction',
+        '@babel/types': path.join(__dirname, './src/utils/babel-types')
       }
     },
     node: {
@@ -42,7 +42,7 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
     }
   })
 
-  if (stage === 'build-javascript') {
+  if (stage === 'build-javascript' && !process.env.NETLIFY) {
     actions.setWebpackConfig({
       plugins: [
         new BundleAnalyzerPlugin({
@@ -66,7 +66,22 @@ exports.sourceNodes = async ({ store, cache, actions, createNodeId }) => {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
+
+  createRedirect({
+    fromPath: `/`,
+    isPermanent: true,
+    redirectInBrowser: true,
+    toPath: `/docs/introduction`
+  })
+
+  createRedirect({
+    fromPath: `/docs`,
+    isPermanent: true,
+    redirectInBrowser: true,
+    toPath: `/docs/introduction`
+  })
+
   const docs1 = require('./docs-yaml')()
   const docTemplate = require.resolve(`./src/templates/doc.js`)
   docs1.forEach(({ title, items }) => {
@@ -86,10 +101,7 @@ exports.createPages = async ({ graphql, actions }) => {
 exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
   const { createNodeField } = actions
 
-  if (
-    node.internal.type === `MarkdownRemark` &&
-    typeof node.slug === `undefined`
-  ) {
+  if (node.internal.type === `Mdx` && typeof node.slug === `undefined`) {
     const fileNode = getNode(node.parent)
 
     createNodeField({
@@ -117,7 +129,11 @@ function getNameForPackage(absolutePath) {
 
 exports.onCreateBabelConfig = ({ actions, stage }) => {
   actions.setBabelPreset({
-    name: `@babel/preset-flow`,
+    name: `babel-preset-emotion-dev`,
+    stage
+  })
+  actions.setBabelPreset({
+    name: require.resolve(`@emotion/babel-preset-css-prop`),
     stage
   })
 }

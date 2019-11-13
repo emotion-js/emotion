@@ -8,36 +8,50 @@ import hashString from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import memoize from '@emotion/memoize'
 
-let hyphenateRegex = /[A-Z]|^ms/g
+const ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
+Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
+You can read more about this here:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`
 
+const UNDEFINED_AS_OBJECT_KEY_ERROR =
+  "You have passed in falsy value as style object's key (can happen when in example you pass unexported component as computed key)."
+
+let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
-const processStyleName = memoize((styleName: string) =>
-  styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
+const isProcessableValue = value => value != null && typeof value !== 'boolean'
+
+const processStyleName = /* #__PURE__ */ memoize(
+  (styleName: string) =>
+    isCustomProperty(styleName)
+      ? styleName
+      : styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
-let processStyleValue = (key: string, value: string): string => {
-  if (value == null || typeof value === 'boolean') {
-    return ''
-  }
-
+let processStyleValue = (
+  key: string,
+  value: string | number
+): string | number => {
   switch (key) {
     case 'animation':
     case 'animationName': {
-      value = value.replace(animationRegex, (match, p1, p2) => {
-        cursor = {
-          name: p1,
-          styles: p2,
-          next: cursor
-        }
-        return p1
-      })
+      if (typeof value === 'string') {
+        return value.replace(animationRegex, (match, p1, p2) => {
+          cursor = {
+            name: p1,
+            styles: p2,
+            next: cursor
+          }
+          return p1
+        })
+      }
     }
   }
 
   if (
     unitless[key] !== 1 &&
-    key.charCodeAt(1) !== 45 && // custom properties
+    !isCustomProperty(key) &&
     typeof value === 'number' &&
     value !== 0
   ) {
@@ -60,6 +74,7 @@ if (process.env.NODE_ENV !== 'production') {
     'inherit',
     'unset'
   ]
+
   let oldProcessStyleValue = processStyleValue
 
   let msPattern = /^-ms-/
@@ -76,14 +91,17 @@ if (process.env.NODE_ENV !== 'production') {
           (value.charAt(0) !== value.charAt(value.length - 1) ||
             (value.charAt(0) !== '"' && value.charAt(0) !== "'")))
       ) {
-        console.error(
+        throw new Error(
           `You seem to be using a value for 'content' without quotes, try replacing it with \`content: '"${value}"'\``
         )
       }
     }
 
+    const processed = oldProcessStyleValue(key, value)
+
     if (
-      key.charCodeAt(1) !== 45 &&
+      processed !== '' &&
+      !isCustomProperty(key) &&
       key.indexOf('-') !== -1 &&
       hyphenatedCache[key] === undefined
     ) {
@@ -95,7 +113,7 @@ if (process.env.NODE_ENV !== 'production') {
       )
     }
 
-    return oldProcessStyleValue(key, value)
+    return processed
   }
 }
 
@@ -103,7 +121,7 @@ let shouldWarnAboutInterpolatingClassNameFromCss = true
 
 function handleInterpolation(
   mergedProps: void | Object,
-  registered: RegisteredCache,
+  registered: RegisteredCache | void,
   interpolation: Interpolation,
   couldBeSelectorInterpolation: boolean
 ): string | number {
@@ -150,7 +168,15 @@ function handleInterpolation(
             next = next.next
           }
         }
-        return interpolation.styles
+        let styles = `${interpolation.styles};`
+        if (
+          process.env.NODE_ENV !== 'production' &&
+          interpolation.map !== undefined
+        ) {
+          styles += interpolation.map
+        }
+
+        return styles
       }
 
       return createStringFromObject(mergedProps, registered, interpolation)
@@ -176,32 +202,62 @@ function handleInterpolation(
             "let SomeComponent = styled('div')`${dynamicStyle}`"
         )
       }
+      break
     }
-    // eslint-disable-next-line no-fallthrough
-    default: {
-      const cached = registered[interpolation]
-      if (
-        process.env.NODE_ENV !== 'production' &&
-        couldBeSelectorInterpolation &&
-        shouldWarnAboutInterpolatingClassNameFromCss &&
-        cached !== undefined
-      ) {
-        console.error(
-          'Interpolating a className from css`` is not recommended and will cause problems with composition.\n' +
-            'Interpolating a className from css`` will be completely unsupported in the next major version of Emotion'
+    case 'string':
+      if (process.env.NODE_ENV !== 'production') {
+        const matched = []
+        const replaced = interpolation.replace(
+          animationRegex,
+          (match, p1, p2) => {
+            const fakeVarName = `animation${matched.length}`
+            matched.push(
+              `const ${fakeVarName} = keyframes\`${p2.replace(
+                /^@keyframes animation-\w+/,
+                ''
+              )}\``
+            )
+            return `\${${fakeVarName}}`
+          }
         )
-        shouldWarnAboutInterpolatingClassNameFromCss = false
+        if (matched.length) {
+          console.error(
+            '`keyframes` output got interpolated into plain string, please wrap it with `css`.\n\n' +
+              'Instead of doing this:\n\n' +
+              [...matched, `\`${replaced}\``].join('\n') +
+              '\n\nYou should wrap it with `css` like this:\n\n' +
+              `css\`${replaced}\``
+          )
+        }
       }
-      return cached !== undefined && !couldBeSelectorInterpolation
-        ? cached
-        : interpolation
-    }
+      break
   }
+
+  // finalize string values (regular strings and functions interpolated into css calls)
+  if (registered == null) {
+    return interpolation
+  }
+  const cached = registered[interpolation]
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    couldBeSelectorInterpolation &&
+    shouldWarnAboutInterpolatingClassNameFromCss &&
+    cached !== undefined
+  ) {
+    console.error(
+      'Interpolating a className from css`` is not recommended and will cause problems with composition.\n' +
+        'Interpolating a className from css`` will be completely unsupported in a future major version of Emotion'
+    )
+    shouldWarnAboutInterpolatingClassNameFromCss = false
+  }
+  return cached !== undefined && !couldBeSelectorInterpolation
+    ? cached
+    : interpolation
 }
 
 function createStringFromObject(
   mergedProps: void | Object,
-  registered: RegisteredCache,
+  registered: RegisteredCache | void,
   obj: { [key: string]: Interpolation }
 ): string {
   let string = ''
@@ -214,9 +270,9 @@ function createStringFromObject(
     for (let key in obj) {
       let value = obj[key]
       if (typeof value !== 'object') {
-        if (registered[value] !== undefined) {
+        if (registered != null && registered[value] !== undefined) {
           string += `${key}{${registered[value]}}`
-        } else {
+        } else if (isProcessableValue(value)) {
           string += `${processStyleName(key)}:${processStyleValue(key, value)};`
         }
       } else {
@@ -230,21 +286,40 @@ function createStringFromObject(
         }
         if (
           Array.isArray(value) &&
-          (typeof value[0] === 'string' && registered[value[0]] === undefined)
+          typeof value[0] === 'string' &&
+          (registered == null || registered[value[0]] === undefined)
         ) {
           for (let i = 0; i < value.length; i++) {
-            string += `${processStyleName(key)}:${processStyleValue(
-              key,
-              value[i]
-            )};`
+            if (isProcessableValue(value[i])) {
+              string += `${processStyleName(key)}:${processStyleValue(
+                key,
+                value[i]
+              )};`
+            }
           }
         } else {
-          string += `${key}{${handleInterpolation(
+          const interpolated = handleInterpolation(
             mergedProps,
             registered,
             value,
             false
-          )}}`
+          )
+          switch (key) {
+            case 'animation':
+            case 'animationName': {
+              string += `${processStyleName(key)}:${interpolated};`
+              break
+            }
+            default: {
+              if (
+                process.env.NODE_ENV !== 'production' &&
+                key === 'undefined'
+              ) {
+                console.error(UNDEFINED_AS_OBJECT_KEY_ERROR)
+              }
+              string += `${key}{${interpolated}}`
+            }
+          }
         }
       }
     }
@@ -265,8 +340,8 @@ if (process.env.NODE_ENV !== 'production') {
 let cursor
 
 export const serializeStyles = function(
-  registered: RegisteredCache,
   args: Array<Interpolation>,
+  registered: RegisteredCache | void,
   mergedProps: void | Object
 ): SerializedStyles {
   if (
@@ -286,6 +361,9 @@ export const serializeStyles = function(
     stringMode = false
     styles += handleInterpolation(mergedProps, registered, strings, false)
   } else {
+    if (process.env.NODE_ENV !== 'production' && strings[0] === undefined) {
+      console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
+    }
     styles += strings[0]
   }
   // we start at 1 since we've already handled the first arg
@@ -297,6 +375,9 @@ export const serializeStyles = function(
       styles.charCodeAt(styles.length - 1) === 46
     )
     if (stringMode) {
+      if (process.env.NODE_ENV !== 'production' && strings[i] === undefined) {
+        console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
+      }
       styles += strings[i]
     }
   }
@@ -325,11 +406,15 @@ export const serializeStyles = function(
   let name = hashString(styles) + identifierName
 
   if (process.env.NODE_ENV !== 'production') {
+    // $FlowFixMe SerializedStyles type doesn't have toString property (and we don't want to add it)
     return {
       name,
       styles,
       map: sourceMap,
-      next: cursor
+      next: cursor,
+      toString() {
+        return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
+      }
     }
   }
   return {

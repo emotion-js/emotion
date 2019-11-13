@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@emotion/babel-preset-css-prop array-css-prop 1`] = `
+"import * as React from 'react'
+
+const Component = props => <div css={[{ color: 'green' }]} {...props} />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"@emotion/core\\";
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+import * as React from 'react';
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+
+const Component = props => ___EmotionJSX(\\"div\\", _extends({
+  css:
+  /*#__PURE__*/
+  _css([{
+    color: 'green'
+  }], \\";label:Component;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFycmF5LWNzcy1wcm9wLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVnQyIsImZpbGUiOiJhcnJheS1jc3MtcHJvcC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIFJlYWN0IGZyb20gJ3JlYWN0J1xuXG5jb25zdCBDb21wb25lbnQgPSBwcm9wcyA9PiA8ZGl2IGNzcz17W3sgY29sb3I6ICdncmVlbicgfV19IHsuLi5wcm9wc30gLz5cbiJdfQ== */\\"))
+}, props));"
+`;
+
+exports[`@emotion/babel-preset-css-prop index 1`] = `
+"import * as React from 'react'
+
+export let Button = props => {
+  return (
+    <>
+      <button
+        css={{
+          color: 'hotpink'
+        }}
+        {...props}
+      />
+    </>
+  )
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+import * as React from 'react';
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1q24rv0-Button\\",
+  styles: \\"color:hotpink;;label:Button;\\"
+} : {
+  name: \\"1q24rv0-Button\\",
+  styles: \\"color:hotpink;;label:Button;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1RIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5cbmV4cG9ydCBsZXQgQnV0dG9uID0gcHJvcHMgPT4ge1xuICByZXR1cm4gKFxuICAgIDw+XG4gICAgICA8YnV0dG9uXG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGNvbG9yOiAnaG90cGluaydcbiAgICAgICAgfX1cbiAgICAgICAgey4uLnByb3BzfVxuICAgICAgLz5cbiAgICA8Lz5cbiAgKVxufVxuIl19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+export let Button = props => {
+  return ___EmotionJSX(React.Fragment, null, ___EmotionJSX(\\"button\\", _extends({
+    css: _ref
+  }, props)));
+};"
+`;

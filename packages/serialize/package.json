@@ -1,6 +1,6 @@
 {
   "name": "@emotion/serialize",
-  "version": "0.10.1",
+  "version": "0.11.15-next.1",
   "description": "serialization utils for emotion",
   "main": "dist/serialize.cjs.js",
   "module": "dist/serialize.esm.js",
@@ -14,10 +14,10 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/hash": "^0.7.0",
-    "@emotion/memoize": "^0.7.0",
-    "@emotion/unitless": "^0.7.0",
-    "@emotion/utils": "^0.10.0",
+    "@emotion/hash": "0.7.3",
+    "@emotion/memoize": "0.7.3",
+    "@emotion/unitless": "0.7.4",
+    "@emotion/utils": "0.11.2",
     "csstype": "^2.5.7"
   },
   "devDependencies": {
@@ -28,7 +28,6 @@
     "dist",
     "types"
   ],
-  "umd:main": "./dist/index.min.js",
   "browser": {
     "./dist/serialize.cjs.js": "./dist/serialize.browser.cjs.js",
     "./dist/serialize.esm.js": "./dist/serialize.browser.esm.js"

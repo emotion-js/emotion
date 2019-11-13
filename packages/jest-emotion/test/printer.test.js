@@ -1,9 +1,12 @@
 // @flow
-import 'test-utils/legacy-env'
 import React from 'react'
+import ReactDOM from 'react-dom'
+import 'test-utils/legacy-env'
 import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'
-import { css, cx } from 'emotion'
+/** @jsx jsx */
+import { css, jsx, CacheProvider } from '@emotion/core'
+import createCache from '@emotion/cache'
 import { createSerializer } from 'jest-emotion'
 import { ignoreConsoleErrors } from 'test-utils'
 
@@ -23,8 +26,8 @@ describe('jest-emotion with dom elements', () => {
   it('replaces class names and inserts styles into React test component snapshots', () => {
     const tree = renderer
       .create(
-        <div className={divStyle}>
-          <svg className={svgStyle} />
+        <div css={divStyle}>
+          <svg css={svgStyle} />
         </div>
       )
       .toJSON()
@@ -37,13 +40,15 @@ describe('jest-emotion with dom elements', () => {
   })
 
   it('replaces class names and inserts styles into DOM element snapshots', () => {
-    const divElement = document.createElement('div')
-    divElement.setAttribute('class', divStyle)
-    const svgElement = document.createElement('svg')
-    svgElement.setAttribute('class', svgStyle)
-    divElement.appendChild(svgElement)
+    const divRef = React.createRef()
+    ReactDOM.render(
+      <div css={divStyle} ref={divRef}>
+        <svg css={svgStyle} />
+      </div>,
+      document.createElement('div')
+    )
 
-    const output = prettyFormat(divElement, {
+    const output = prettyFormat(divRef.current, {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
     })
 
@@ -65,8 +70,8 @@ describe('jest-emotion with DOM elements disabled', () => {
   it('replaces class names and inserts styles into React test component snapshots', () => {
     const tree = renderer
       .create(
-        <div className={divStyle}>
-          <svg className={svgStyle} />
+        <div css={divStyle}>
+          <svg css={svgStyle} />
         </div>
       )
       .toJSON()
@@ -79,13 +84,15 @@ describe('jest-emotion with DOM elements disabled', () => {
   })
 
   it('does not replace class names or insert styles into DOM element snapshots', () => {
-    const divElement = document.createElement('div')
-    divElement.setAttribute('class', divStyle)
-    const svgElement = document.createElement('svg')
-    svgElement.setAttribute('class', svgStyle)
-    divElement.appendChild(svgElement)
+    const divRef = React.createRef()
+    ReactDOM.render(
+      <div css={divStyle} ref={divRef}>
+        <svg css={svgStyle} />
+      </div>,
+      document.createElement('div')
+    )
 
-    const output = prettyFormat(divElement, {
+    const output = prettyFormat(divRef.current, {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
     })
 
@@ -94,15 +101,16 @@ describe('jest-emotion with DOM elements disabled', () => {
 })
 
 test('does not replace class names that are not from emotion', () => {
-  const classes = cx(
-    'net-42',
-    'net',
-    css`
-      color: darkorchid;
-    `
-  )
-
-  let tree = renderer.create(<div className={classes} />).toJSON()
+  let tree = renderer
+    .create(
+      <div
+        className="net-42 net"
+        css={css`
+          color: darkorchid;
+        `}
+      />
+    )
+    .toJSON()
 
   const output = prettyFormat(tree, {
     plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
@@ -121,7 +129,7 @@ describe('jest-emotion with nested selectors', () => {
   `
 
   it('replaces class names and inserts styles into React test component snapshots', () => {
-    const tree = renderer.create(<div className={divStyle} />).toJSON()
+    const tree = renderer.create(<div css={divStyle} />).toJSON()
 
     const output = prettyFormat(tree, {
       plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
@@ -142,7 +150,7 @@ header .emotion-0 {
 })
 
 test('throws nice error for invalid css', () => {
-  const tree = renderer.create(<div className={css`jnnjvhjevhevhb`} />).toJSON()
+  const tree = renderer.create(<div css={css`jnnjvh@'jevhevhb`} />).toJSON()
 
   expect(() => {
     ignoreConsoleErrors(() => {
@@ -151,4 +159,27 @@ test('throws nice error for invalid css', () => {
       })
     })
   }).toThrowErrorMatchingSnapshot()
+})
+
+test('prints speedy styles', () => {
+  const speedyCache = createCache({
+    speedy: true
+  })
+  const tree = renderer
+    .create(
+      <CacheProvider value={speedyCache}>
+        <div
+          css={css`
+            color: hotpink;
+          `}
+        />
+      </CacheProvider>
+    )
+    .toJSON()
+
+  expect(
+    prettyFormat(tree, {
+      plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
+    })
+  ).toMatchSnapshot()
 })

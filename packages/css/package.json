@@ -1,6 +1,6 @@
 {
   "name": "@emotion/css",
-  "version": "10.0.0-beta.6",
+  "version": "11.0.0-next.3",
   "description": "a function to serialize css and object styless",
   "main": "dist/css.cjs.js",
   "module": "dist/css.esm.js",
@@ -11,11 +11,20 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/serialize": "^0.10.1",
-    "@emotion/utils": "^0.10.0",
-    "babel-plugin-emotion": "^10.0.0-beta.6"
+    "@emotion/serialize": "^0.11.15-next.1",
+    "@emotion/utils": "0.11.2",
+    "babel-plugin-emotion": "^11.0.0-next.3"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    }
   },
   "devDependencies": {
+    "@babel/core": "^7.7.2",
     "dtslint": "^0.3.0"
   },
   "publishConfig": {
@@ -25,9 +34,10 @@
     "src",
     "dist",
     "types",
-    "macro.js"
+    "macro.js",
+    "macro.d.ts",
+    "macro.js.flow"
   ],
-  "umd:main": "./dist/index.min.js",
   "browser": {
     "./dist/css.cjs.js": "./dist/css.browser.cjs.js",
     "./dist/css.esm.js": "./dist/css.browser.esm.js"

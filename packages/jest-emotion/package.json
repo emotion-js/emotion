@@ -1,8 +1,8 @@
 {
   "name": "jest-emotion",
-  "version": "10.0.0-beta.6",
+  "version": "11.0.0-next.3",
   "description": "Jest utilities for emotion",
-  "main": "dist/index.cjs.js",
+  "main": "dist/jest-emotion.cjs.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -14,17 +14,22 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@types/jest": "^23.0.2",
+    "@babel/runtime": "^7.7.2",
+    "@types/jest": "^24.0.22",
     "chalk": "^2.4.1",
-    "css": "^2.2.1"
+    "css": "^2.2.1",
+    "specificity": "^0.4.1"
   },
   "devDependencies": {
+    "@emotion/core": "^11.0.0-next.3",
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.0-beta.6",
+    "emotion": "^11.0.0-next.0",
+    "enzyme-to-json": "^3.2.1",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3",
-    "react-emotion": "^10.0.0-beta.6"
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
@@ -42,10 +47,7 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "publishConfig": {
-    "tag": "next"
-  },
   "browser": {
-    "./dist/index.cjs.js": "./dist/index.browser.cjs.js"
+    "./dist/jest-emotion.cjs.js": "./dist/jest-emotion.browser.cjs.js"
   }
 }

@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`custom shouldForwardProp works 1`] = `
+.emotion-0,
+.emotion-0 * {
+  fill: #0000ff;
+}
+
+<svg
+  className="emotion-0 emotion-1"
+  height="100px"
+  width="100px"
+>
+  <rect
+    height="100"
+    style={
+      Object {
+        "stroke": "#ff0000",
+      }
+    }
+    width="100"
+    x="10"
+    y="10"
+  />
+</svg>
+`;
+
+exports[`no prop filtering on non string tags 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<a
+  a={true}
+  aria-label="some label"
+  b={true}
+  className="emotion-0 emotion-1"
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+>
+  hello world
+</a>
+`;
+
+exports[`no prop filtering on string tags started with upper case 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<SomeCustomLink
+  a={true}
+  aria-label="some label"
+  b={true}
+  className="emotion-0 emotion-1"
+  cool={true}
+  data-wow="value"
+  filtering={true}
+  href="link"
+  is={true}
+  prop={true}
+  wow={true}
+>
+  hello world
+</SomeCustomLink>
+`;
+
+exports[`prop filtering 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+<a
+  aria-label="some label"
+  className="emotion-0 emotion-1"
+  data-wow="value"
+  href="link"
+  is={true}
+>
+  hello world
+</a>
+`;
+
+exports[`prop filtering on composed styled components that are string tags 1`] = `
+.emotion-0 {
+  background-color: hotpink;
+  color: green;
+}
+
+<a
+  aria-label="some label"
+  className="emotion-0 emotion-1"
+  data-wow="value"
+  for="other reasons"
+  href="link"
+  is={true}
+  kind={true}
+>
+  hello world
+</a>
+`;
+
+exports[`shouldForwardProp should get inherited for wrapped styled components 1`] = `
+Array [
+  .emotion-0 {
+  background-color: red;
+}
+
+<div
+    className="emotion-0 emotion-1"
+    id="test-1"
+  />,
+  .emotion-0 {
+  background-color: green;
+}
+
+<div
+    className="emotion-0 emotion-1"
+    id="test-2"
+  />,
+]
+`;

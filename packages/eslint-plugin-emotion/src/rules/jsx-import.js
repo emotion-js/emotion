@@ -5,7 +5,7 @@ const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
 // to
 // <div css={css`color:hotpink;`} /> + import { css }
 
-module.exports = {
+export default {
   meta: {
     fixable: 'code'
   },
@@ -24,12 +24,22 @@ module.exports = {
             x.type === 'ImportDeclaration' &&
             x.source.value === '@emotion/core'
           ) {
-            // TODO: maybe handle namespace specifiers, not high priority though
-            let jsxSpecifier = x.specifiers.find(x => x.imported.name === 'jsx')
-            if (jsxSpecifier) {
+            emotionCoreNode = x
+
+            if (
+              x.specifiers.length === 1 &&
+              x.specifiers[0].type === 'ImportNamespaceSpecifier'
+            ) {
               hasJsxImport = true
-              local = jsxSpecifier.local.name
-              emotionCoreNode = x
+              local = x.specifiers[0].local.name + '.jsx'
+            } else {
+              let jsxSpecifier = x.specifiers.find(
+                x => x.type === 'ImportSpecifier' && x.imported.name === 'jsx'
+              )
+              if (jsxSpecifier) {
+                hasJsxImport = true
+                local = jsxSpecifier.local.name
+              }
             }
           }
         })
@@ -58,6 +68,19 @@ module.exports = {
                 )
               }
               if (hasSetPragma) {
+                if (emotionCoreNode) {
+                  let lastSpecifier =
+                    emotionCoreNode.specifiers[
+                      emotionCoreNode.specifiers.length - 1
+                    ]
+
+                  if (lastSpecifier.type === 'ImportDefaultSpecifier') {
+                    return fixer.insertTextAfter(lastSpecifier, ', { jsx }')
+                  }
+
+                  return fixer.insertTextAfter(lastSpecifier, ', jsx')
+                }
+
                 return fixer.insertTextBefore(
                   sourceCode.ast.body[0],
                   `import { jsx } from '@emotion/core'\n`
@@ -67,6 +90,43 @@ module.exports = {
                 sourceCode.ast.body[0],
                 `/** @jsx jsx */\nimport { jsx } from '@emotion/core'\n`
               )
+            }
+          })
+          return
+        }
+        if (
+          node.value.type === 'JSXExpressionContainer' &&
+          node.value.expression.type === 'TemplateLiteral'
+        ) {
+          let cssSpecifier = emotionCoreNode.specifiers.find(
+            x => x.imported.name === 'css'
+          )
+          context.report({
+            node,
+            message:
+              'Template literals should be replaced with tagged template literals using `css` when using the css prop',
+            fix(fixer) {
+              if (cssSpecifier) {
+                return fixer.insertTextBefore(
+                  node.value.expression,
+                  cssSpecifier.local.name
+                )
+              }
+              let lastSpecifier =
+                emotionCoreNode.specifiers[
+                  emotionCoreNode.specifiers.length - 1
+                ]
+
+              if (context.getScope().variables.some(x => x.name === 'css')) {
+                return [
+                  fixer.insertTextAfter(lastSpecifier, `, css as _css`),
+                  fixer.insertTextBefore(node.value.expression, '_css')
+                ]
+              }
+              return [
+                fixer.insertTextAfter(lastSpecifier, `, css`),
+                fixer.insertTextBefore(node.value.expression, 'css')
+              ]
             }
           })
         }

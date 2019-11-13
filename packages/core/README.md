@@ -11,7 +11,7 @@ yarn add @emotion/core
 ## Usage
 
 ```jsx
-/** @jsx */
+/** @jsx jsx */
 import { jsx, css, Global, ClassNames } from '@emotion/core'
 
 render(

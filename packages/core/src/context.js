@@ -1,69 +1,57 @@
 // @flow
-import { isBrowser, type EmotionCache } from '@emotion/utils'
+import { type EmotionCache } from '@emotion/utils'
 import * as React from 'react'
+import { useContext, forwardRef } from 'react'
 import createCache from '@emotion/cache'
+import { isBrowser } from './utils'
 
-let EmotionCacheContext = React.createContext(isBrowser ? createCache() : null)
+let EmotionCacheContext: React.Context<EmotionCache | null> = React.createContext(
+  // we're doing this to avoid preconstruct's dead code elimination in this one case
+  // because this module is primarily intended for the browser and node
+  // but it's also required in react native and similar environments sometimes
+  // and we could have a special build just for that
+  // but this is much easier and the native packages
+  // might use a different theme context in the future anyway
+  typeof HTMLElement !== 'undefined' ? createCache() : null
+)
 
 export let ThemeContext = React.createContext<Object>({})
-export let CacheProvider: React.ComponentType<{ value: EmotionCache }> =
-  // $FlowFixMe
-  EmotionCacheContext.Provider
+export let CacheProvider = EmotionCacheContext.Provider
 
 let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
   func: (props: Props, cache: EmotionCache, ref: Ref) => React.Node
-): React.StatelessFunctionalComponent<Props> {
-  let render = (props: Props, ref: Ref) => {
-    return (
-      <EmotionCacheContext.Consumer>
-        {(
-          // $FlowFixMe we know it won't be null
-          cache: EmotionCache
-        ) => {
-          return func(props, cache, ref)
-        }}
-      </EmotionCacheContext.Consumer>
-    )
-  }
+): React.AbstractComponent<Props> {
   // $FlowFixMe
-  return React.forwardRef(render)
+  return forwardRef((props: Props, ref: Ref) => {
+    // the cache will never be null in the browser
+    let cache = ((useContext(EmotionCacheContext): any): EmotionCache)
+
+    return func(props, cache, ref)
+  })
 }
 
 if (!isBrowser) {
-  class BasicProvider extends React.Component<
-    { children: EmotionCache => React.Node },
-    { value: EmotionCache }
-  > {
-    state = { value: createCache() }
-    render() {
-      return (
-        <EmotionCacheContext.Provider {...this.state}>
-          {this.props.children(this.state.value)}
-        </EmotionCacheContext.Provider>
-      )
-    }
-  }
-
   withEmotionCache = function withEmotionCache<Props>(
     func: (props: Props, cache: EmotionCache) => React.Node
   ): React.StatelessFunctionalComponent<Props> {
-    return (props: Props) => (
-      <EmotionCacheContext.Consumer>
-        {context => {
-          if (context === null) {
-            return (
-              <BasicProvider>
-                {newContext => {
-                  return func(props, newContext)
-                }}
-              </BasicProvider>
-            )
-          } else {
-            return func(props, context)
-          }
-        }}
-      </EmotionCacheContext.Consumer>
-    )
+    return (props: Props) => {
+      let cache = useContext(EmotionCacheContext)
+      if (cache === null) {
+        // yes, we're potentially creating this on every render
+        // it doesn't actually matter though since it's only on the server
+        // so there will only every be a single render
+        // that could change in the future because of suspense and etc. but for now,
+        // this works and i don't want to optimise for a future thing that we aren't sure about
+        cache = createCache()
+        return (
+          <EmotionCacheContext.Provider value={cache}>
+            {func(props, cache)}
+          </EmotionCacheContext.Provider>
+        )
+      } else {
+        return func(props, cache)
+      }
+    }
   }
 }
 

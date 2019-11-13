@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tagged template args forwarded 1`] = `
+@media (min-width:100px) {
+  .emotion-0 {
+    color: red;
+  }
+}
+
+<h2
+  className="emotion-0"
+>
+  something
+</h2>
+`;

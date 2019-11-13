@@ -1,3 +1,4 @@
+// @flow
 const props = {
   // react props
   // https://github.com/facebook/react/blob/5495a7f24aef85ba6937truetrue1ce962673ca9f5fde6/src/renderers/dom/shared/hooks/ReactDOMUnknownPropertyHook.js
@@ -10,6 +11,7 @@ const props = {
   defaultChecked: true,
   innerHTML: true,
   suppressContentEditableWarning: true,
+  suppressHydrationWarning: true,
   // deprecated react prop
   valueLink: true,
 
@@ -56,6 +58,7 @@ const props = {
   crossOrigin: true,
   data: true, // For `<object />` acts as `src`.
   dateTime: true,
+  decoding: true,
   default: true,
   defer: true,
   dir: true,
@@ -88,6 +91,7 @@ const props = {
   label: true,
   lang: true,
   list: true,
+  loading: true,
   loop: true,
   low: true,
   // manifest: true,
@@ -190,6 +194,8 @@ const props = {
   // https://html.spec.whatwg.org/multipage/microdata.html#microdata-dom-api
   itemID: true,
   itemRef: true,
+  // used in amp html for eventing purposes
+  on: true,
   // results show looking glass icon and recent searches on input
   // search fields in WebKit/Blink
   results: true,
@@ -468,4 +474,4 @@ const props = {
 // eslint-disable-next-line import/no-commonjs
 module.exports = `/^((${Object.keys(props).join(
   '|'
-)})|(on[A-Z].*)|((data|aria|x)-.*))$/`
+)})|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/`

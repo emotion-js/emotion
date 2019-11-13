@@ -1,6 +1,6 @@
 {
   "name": "@emotion/styled",
-  "version": "10.0.0-beta.6",
+  "version": "11.0.0-next.3",
   "description": "styled API for emotion",
   "main": "dist/styled.cjs.js",
   "module": "dist/styled.esm.js",
@@ -11,11 +11,27 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/styled-base": "^10.0.0-beta.6",
-    "babel-plugin-emotion": "^10.0.0-beta.6"
+    "@babel/runtime": "^7.7.2",
+    "@emotion/is-prop-valid": "0.8.6-next.0",
+    "@emotion/serialize": "^0.11.15-next.1",
+    "@emotion/utils": "0.11.2",
+    "babel-plugin-emotion": "^11.0.0-next.3"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0",
+    "@emotion/core": "^11.0.0-next.3",
+    "react": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "dtslint": "^0.3.0"
+    "@babel/core": "^7.7.2",
+    "@emotion/core": "^11.0.0-next.3",
+    "dtslint": "^0.3.0",
+    "react": "^16.11.0"
   },
   "publishConfig": {
     "access": "public"
@@ -23,12 +39,22 @@
   "files": [
     "src",
     "dist",
+    "base",
     "types",
-    "macro.js"
+    "macro.d.ts",
+    "macro.js",
+    "macro.js.flow"
   ],
-  "umd:main": "./dist/index.min.js",
+  "umd:main": "dist/styled.umd.min.js",
   "browser": {
     "./dist/styled.cjs.js": "./dist/styled.browser.cjs.js",
     "./dist/styled.esm.js": "./dist/styled.browser.esm.js"
+  },
+  "preconstruct": {
+    "umdName": "emotionStyled",
+    "entrypoints": [
+      ".",
+      "base"
+    ]
   }
 }

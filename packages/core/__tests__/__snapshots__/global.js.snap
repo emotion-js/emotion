@@ -24,6 +24,12 @@ exports[`basic 1`] = `
     data-emotion="css-global"
   >
     
+    @import url('something.com/file.css');
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
     html{background-color:hotpink;}
   </style>
   <style
@@ -66,4 +72,38 @@ exports[`basic 4`] = `
     id="root"
   />
 </body>
+`;
+
+exports[`updating more than 1 global rule 1`] = `
+<head>
+  <style
+    data-emotion="css-global"
+  >
+    
+    body{background:white;}
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
+    div{color:black;}
+  </style>
+</head>
+`;
+
+exports[`updating more than 1 global rule 2`] = `
+<head>
+  <style
+    data-emotion="css-global"
+  >
+    
+    body{background:gray;}
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
+    div{color:white;}
+  </style>
+</head>
 `;

@@ -154,6 +154,18 @@ exports[`styled composition of nested pseudo selectors 1`] = `
   color: red;
 }
 
+.emotion-0:hover {
+  color: pink;
+}
+
+.emotion-0:hover:active {
+  color: purple;
+}
+
+.emotion-0:hover.some-class {
+  color: yellow;
+}
+
 <button
   className="emotion-0"
 >
@@ -402,6 +414,12 @@ exports[`styled no prop filtering on string tags started with upper case 1`] = `
 >
   hello world
 </SomeCustomLink>
+`;
+
+exports[`styled object as className 1`] = `
+<div
+  className="myclass emotion-0"
+/>
 `;
 
 exports[`styled object as style 1`] = `

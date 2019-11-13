@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css css without newline or semicolon 1`] = `
-".css-1lrxbo5 {
+".css-8dy5on-cls {
   color: hotpink;
 }
 

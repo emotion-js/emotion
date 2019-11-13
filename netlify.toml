@@ -6,3 +6,4 @@
   NODE_VERSION = "10"
   YARN_VERSION = "1.7.0"
   YARN_FLAGS = "--frozen-lockfile"
+  NETLIFY = "true"

@@ -33,14 +33,14 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
   "rules": {
-    "emotion/jsx": "error"
+    "emotion/jsx-import": "error"
   }
 }
 ```
 
 ## Emotion 10 codemods
 
-The Emotion 10 codemods are contained in this package. To use them, enable the rules shown below. Keeping these rules after migrating is also useful to have `jsx` from `@emotion/core` automatically imported when the css prop is used and other such things. You may also want to not enable certain rules while you are migrating, such the `no-vanilla` rule.
+The Emotion 10 codemods are contained in this package. To use them, enable the rules shown below. Keeping these rules after migrating is also useful to have `jsx` from `@emotion/core` automatically imported when the css prop is used and other such things. You may also want to not enable certain rules while you are migrating or forever, such the `no-vanilla` rule.
 
 ```json
 {

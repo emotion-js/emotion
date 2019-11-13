@@ -20,7 +20,9 @@ export function getTargetClassName(state: *, t: *) {
     state.emotionTargetClassNameCount = 0
   }
 
-  const filename = state.file.opts.filename
+  const hasFilepath =
+    state.file.opts.filename && state.file.opts.filename !== 'unknown'
+  const filename = hasFilepath ? state.file.opts.filename : ''
   // normalize the file path to ignore folder structure
   // outside the current node project and arch-specific delimiters
   let moduleName = ''
