@@ -1,5 +1,14 @@
 # @emotion/styled
 
+## 11.0.0-next.4
+
+### Patch Changes
+
+- [`e6e079c3`](https://github.com/emotion-js/emotion/commit/e6e079c35074f027ac0586792e4f19595ac18c55) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@frankwallis](https://github.com/frankwallis)! - Fix for TypeScript error when importing `@emotion/styled/base` in combination with `isolatedModules` option.
+- Updated dependencies [[`c65c5d88`](https://github.com/emotion-js/emotion/commit/c65c5d887002d76557eaefcb98091d795b13f9a9)]:
+  - babel-plugin-emotion@11.0.0-next.4
+  - @emotion/core@11.0.0-next.4
+
 ## 11.0.0-next.3
 
 ### Major Changes
