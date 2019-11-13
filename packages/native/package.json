@@ -9,9 +9,11 @@
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "macro.js"
   ],
   "devDependencies": {
+    "@babel/core": "^7.7.2",
     "emotion-theming": "^11.0.0-next.5",
     "react": "^16.11.0",
     "react-native": "^0.57.0"
@@ -20,7 +22,13 @@
     "@emotion/primitives-core": "11.0.0-next.5"
   },
   "peerDependencies": {
+    "@babel/core": "^7.0.0",
     "react-native": ">=0.14.0 <1"
+  },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    }
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",

@@ -6,37 +6,65 @@ import {
   createTransformerMacro
 } from './utils'
 
+const getReferencedSpecifier = (path, specifierName) => {
+  const specifiers = path.get('specifiers')
+  return specifierName === 'default'
+    ? specifiers.find(p => p.isImportDefaultSpecifier())
+    : specifiers.find(p => p.node.local.name === specifierName)
+}
+
 export let styledTransformer = ({
   state,
   babel,
-  importPath,
+  path,
+  importSource,
   reference,
   importSpecifierName,
-  options: {
-    styledBaseImport: [
-      baseImportPath = importPath,
-      baseImportName = importSpecifierName
-    ] = [],
-    isWeb
-  }
+  options: { styledBaseImport, isWeb }
 }: {
   state: Object,
   babel: Object,
-  importPath: string,
-  reference: Object,
+  path: any,
+  importSource: string,
   importSpecifierName: string,
-  options: {
-    styledBaseImport?: [string, string],
-    isWeb: boolean
-  }
+  reference: Object,
+  options: { styledBaseImport?: [string, string], isWeb: boolean }
 }) => {
-  let getStyledIdentifier = () => {
-    return addImport(state, baseImportPath, baseImportName, 'styled')
-  }
-  let getOriginalImportPathStyledIdentifier = () => {
-    return addImport(state, importPath, importSpecifierName, 'styled')
-  }
   let t = babel.types
+
+  let getStyledIdentifier = () => {
+    if (
+      !styledBaseImport ||
+      (styledBaseImport[0] === importSource &&
+        styledBaseImport[1] === importSpecifierName)
+    ) {
+      return importSpecifierName === 'default'
+        ? t.identifier(
+            path.get('specifiers').find(p => p.isImportDefaultSpecifier()).node
+              .local.name
+          )
+        : t.identifier(importSpecifierName)
+    }
+
+    if (path.node) {
+      const referencedSpecifier = getReferencedSpecifier(
+        path,
+        importSpecifierName
+      )
+
+      if (referencedSpecifier) {
+        referencedSpecifier.remove()
+      }
+
+      if (!path.get('specifiers').length) {
+        path.remove()
+      }
+    }
+
+    const [baseImportSource, baseSpecifierName] = styledBaseImport
+
+    return addImport(state, baseImportSource, baseSpecifierName, 'styled')
+  }
   let isCall = false
   if (
     t.isMemberExpression(reference.parent) &&
@@ -65,8 +93,6 @@ export let styledTransformer = ({
   ) {
     isCall = true
     reference.replaceWith(getStyledIdentifier())
-  } else {
-    reference.replaceWith(getOriginalImportPathStyledIdentifier())
   }
 
   if (reference.parentPath && reference.parentPath.parentPath) {
@@ -96,13 +122,13 @@ export let styledTransformer = ({
 }
 
 export let createStyledMacro = ({
-  importPath,
-  originalImportPath = importPath,
+  importSource,
+  originalImportSource = importSource,
   baseImportName = 'default',
   isWeb
 }: {
-  importPath: string,
-  originalImportPath?: string,
+  importSource: string,
+  originalImportSource?: string,
   baseImportName?: string,
   isWeb: boolean
 }) =>
@@ -110,11 +136,8 @@ export let createStyledMacro = ({
     {
       default: [
         styledTransformer,
-        {
-          styledBaseImport: [importPath, baseImportName],
-          isWeb
-        }
+        { styledBaseImport: [importSource, baseImportName], isWeb }
       ]
     },
-    originalImportPath
+    { importSource: originalImportSource }
   )

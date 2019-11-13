@@ -1,10 +1,3 @@
-// @flow
-
-import type { Interpolation, SerializedStyles } from '@emotion/utils'
-import { serializeStyles } from '@emotion/serialize'
-
-function css(...args: Array<Interpolation>): SerializedStyles {
-  return serializeStyles(args)
-}
-
-export default css
+throw new Error(
+  "`@emotion/css` package has been deprecated and removed. Please just import `css` from `@emotion/core` - like this `import { css } from '@emotion/core'`."
+)

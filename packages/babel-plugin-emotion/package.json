@@ -19,7 +19,7 @@
     "@emotion/hash": "0.7.3",
     "@emotion/memoize": "0.7.3",
     "@emotion/serialize": "^0.11.15-next.1",
-    "babel-plugin-macros": "^2.0.0",
+    "babel-plugin-macros": "^2.6.1",
     "convert-source-map": "^1.5.0",
     "escape-string-regexp": "^1.0.5",
     "find-root": "^1.1.0",

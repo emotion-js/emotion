@@ -1,9 +1,5 @@
 // @flow
-import {
-  transformExpressionWithStyles,
-  addImport,
-  createTransformerMacro
-} from './utils'
+import { transformExpressionWithStyles, createTransformerMacro } from './utils'
 
 const isAlreadyTranspiled = path => {
   if (!path.isCallExpression()) {
@@ -36,13 +32,11 @@ const isAlreadyTranspiled = path => {
 let createEmotionTransformer = (isPure: boolean) => ({
   state,
   babel,
-  importPath,
+  importSource,
   reference,
   importSpecifierName
 }: Object) => {
   const path = reference.parentPath
-
-  reference.replaceWith(addImport(state, importPath, importSpecifierName))
 
   if (isAlreadyTranspiled(path)) {
     return
@@ -69,5 +63,5 @@ export let transformers = {
   keyframes: createEmotionTransformer(true)
 }
 
-export let createEmotionMacro = (instancePath: string) =>
-  createTransformerMacro(transformers, instancePath)
+export let createEmotionMacro = (importSource: string) =>
+  createTransformerMacro(transformers, { importSource })

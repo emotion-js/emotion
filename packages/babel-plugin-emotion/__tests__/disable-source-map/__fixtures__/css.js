@@ -1,3 +1,3 @@
-import css from '@emotion/css'
+import { css } from '@emotion/core'
 
 let style = css({ color: 'hotpink' })

@@ -2,8 +2,17 @@
 // TypeScript Version: 2.8
 
 import { EmotionCache } from '@emotion/cache'
-import css, { Interpolation, SerializedStyles } from '@emotion/css'
-import { Keyframes } from '@emotion/serialize'
+import {
+  ArrayInterpolation,
+  ComponentSelector,
+  CSSInterpolation,
+  CSSObject,
+  FunctionInterpolation,
+  Interpolation,
+  Keyframes,
+  ObjectInterpolation,
+  SerializedStyles
+} from '@emotion/serialize'
 import {
   ClassAttributes,
   ComponentClass,
@@ -20,11 +29,12 @@ export {
   ArrayInterpolation,
   ComponentSelector,
   CSSObject,
+  EmotionCache,
   FunctionInterpolation,
-  ObjectInterpolation
-} from '@emotion/css'
-
-export { EmotionCache, Interpolation, SerializedStyles, css }
+  Interpolation,
+  ObjectInterpolation,
+  SerializedStyles
+}
 
 export const ThemeContext: Context<object>
 export const CacheProvider: Provider<EmotionCache>
@@ -33,6 +43,12 @@ export function withEmotionCache<Props, RefType = any>(
 ): FC<Props & ClassAttributes<RefType>>
 
 export const jsx: typeof createElement
+
+export function css(
+  template: TemplateStringsArray,
+  ...args: Array<CSSInterpolation>
+): SerializedStyles
+export function css(...args: Array<CSSInterpolation>): SerializedStyles
 
 export type InterpolationWithTheme<Theme> =
   | Interpolation
