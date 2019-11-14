@@ -25,9 +25,19 @@ export {
 
 export { ComponentSelector, Interpolation, PropsOf, DistributiveOmit }
 
-export interface StyledOptions {
+/** Same as StyledOptions but shouldForwardProp must be a type guard */
+export interface FilteringStyledOptions<
+  Props,
+  ForwardedProps extends keyof Props = keyof Props
+> {
   label?: string
-  shouldForwardProp?(propName: string): boolean
+  shouldForwardProp?(propName: keyof Props): propName is ForwardedProps
+  target?: string
+}
+
+export interface StyledOptions<Props> {
+  label?: string
+  shouldForwardProp?(propName: keyof Props): boolean
   target?: string
 }
 
@@ -90,14 +100,40 @@ export interface CreateStyledComponent<
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
 export interface CreateStyled<Theme extends {} = any> {
+  <
+    C extends React.ComponentType<React.ComponentProps<C>>,
+    ForwardedProps extends keyof React.ComponentProps<
+      C
+    > = keyof React.ComponentProps<C>
+  >(
+    component: C,
+    options: FilteringStyledOptions<PropsOf<C>, ForwardedProps>
+  ): CreateStyledComponent<
+    Pick<PropsOf<C>, ForwardedProps> & { theme?: Theme },
+    {},
+    { theme: Theme }
+  >
+
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledOptions
+    options?: StyledOptions<PropsOf<C>>
   ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }, {}, { theme: Theme }>
+
+  <
+    Tag extends keyof JSX.IntrinsicElements,
+    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag]
+  >(
+    tag: Tag,
+    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>
+  ): CreateStyledComponent<
+    { theme?: Theme },
+    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>,
+    { theme: Theme }
+  >
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
-    options?: StyledOptions
+    options?: StyledOptions<JSX.IntrinsicElements[Tag]>
   ): CreateStyledComponent<
     { theme?: Theme },
     JSX.IntrinsicElements[Tag],

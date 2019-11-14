@@ -172,6 +172,33 @@ const App = () => (
 )
 ```
 
+### Forwarding props
+
+Sometimes you want to wrap an existing component and override the type of a prop. Emotion allows you to specify a `shouldForwardProp` hook to filter properties which should be passed to the wrapped component.
+
+If you make should `shouldForwardProp` a [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards) then only the props from the type guard will be exposed.
+
+For example:
+
+``` ts
+const Original: React.FC<{ prop1: string, prop2: string }> = () => null
+
+interface StyledOriginalExtraProps {
+  // This prop would conflict with the `prop2` on Original
+  prop2: number
+}
+const StyledOriginal = styled(Original, {
+  // Filter prop2 by only forwarding prop1
+  shouldForwardProp: (propName): propName is 'prop1' => propName === 'prop1'
+})<StyledOriginalExtraProps>(props => {
+  // props.prop2 will be `number`
+  return {}
+})
+
+// No more type conflict error
+;<StyledOriginal prop1="1" prop2={2} />
+```
+
 ### Passing props when styling a React component
 
 ```tsx
