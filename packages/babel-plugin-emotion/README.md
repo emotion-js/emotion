@@ -321,8 +321,7 @@ An example config:
 Instead of using `babel-plugin-emotion`, you can use emotion with [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros). Add `babel-plugin-macros` to your babel config (which is included in Create React App 2.0) and use the imports/packages shown below.
 
 ```jsx
-import styled from 'react-emotion/macro'
 import { css, keyframes, injectGlobal, flush, hydrate } from 'emotion/macro'
-import { css } from '@emotion/core/macro'
+import { jsx, css, Global, keyframes } from '@emotion/core/macro'
 import styled from '@emotion/styled/macro'
 ```

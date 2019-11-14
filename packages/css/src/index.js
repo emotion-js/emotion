@@ -1,3 +1,3 @@
 throw new Error(
-  "`@emotion/css` package has been deprecated and removed. Please just import `css` from `@emotion/core` - like this `import { css } from '@emotion/core'`."
+  "`@emotion/css` package has been replaced with the `css` export from `@emotion/core`. Please import it like this `import { css } from '@emotion/core'`."
 )
