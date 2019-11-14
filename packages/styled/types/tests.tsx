@@ -13,7 +13,7 @@ styled.svg
 {
   styled.div<{ bar: string }>`
     color: ${props => {
-      // $ExpectType { theme?: any; } & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; }
+      // $ExpectType { theme?: any; } & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; } & { theme: any; }
       props
 
       return {}
@@ -26,6 +26,10 @@ const StyledDiv = styled.div({})
 
 // can specify theme for StyledTags
 const themedStyled = styled as CreateStyled<{ themeProp: string }>
+const StyledDiv3 = themedStyled.div`
+  color: ${props => props.theme.themeProp}
+`
+;<StyledDiv3 />
 const StyledDiv2 = themedStyled.div(props => {
   // $ExpectType { themeProp: string; }
   props.theme
