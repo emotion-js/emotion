@@ -70,18 +70,6 @@ type StyledReactNativeComponents = Pick<
 
 export type ReactNativeStyle = ReturnType<typeof ReactNative.StyleSheet.flatten>
 
-type EmotionStyledComponent<
-  ComponentProps,
-  Theme,
-  ExtraProps
-> = {} extends Theme
-  ? CreateStyledComponent<ComponentProps, ExtraProps>
-  : CreateStyledComponent<
-      ComponentProps & { theme: Theme },
-      ExtraProps,
-      { theme: Theme }
-    >
-
 interface ThemedReactNativeStyledComponent<ComponentProps, Theme, ExtraProps> {
   <AdditionalProps extends {} = {}>(
     ...styles: Array<
@@ -91,7 +79,7 @@ interface ThemedReactNativeStyledComponent<ComponentProps, Theme, ExtraProps> {
       | ReactNativeStyle
     >
   ): StyledComponent<
-    ComponentProps & AdditionalProps & { theme: Theme },
+    ComponentProps & AdditionalProps & { theme?: Theme },
     ExtraProps
   >
   <AdditionalProps extends {} = {}>(
@@ -103,25 +91,31 @@ interface ThemedReactNativeStyledComponent<ComponentProps, Theme, ExtraProps> {
       | ReactNativeStyle
     >
   ): StyledComponent<
-    ComponentProps & AdditionalProps & { theme: Theme },
+    ComponentProps & AdditionalProps & { theme?: Theme },
     ExtraProps
   >
 }
 
 interface ThemelessReactNativeStyledComponent<ComponentProps, ExtraProps> {
-  <AdditionalProps extends {} = {}>(
+  <AdditionalProps extends {} = {}, Theme extends object = {}>(
     ...styles: Array<
       | Interpolation<ComponentProps & ExtraProps & AdditionalProps>
       | ReactNativeStyle
     >
-  ): StyledComponent<ComponentProps & AdditionalProps, ExtraProps>
-  <AdditionalProps extends {} = {}>(
+  ): StyledComponent<
+    ComponentProps & AdditionalProps & { theme?: Theme },
+    ExtraProps
+  >
+  <AdditionalProps extends {} = {}, Theme extends object = {}>(
     template: TemplateStringsArray,
     ...styles: Array<
       | Interpolation<ComponentProps & ExtraProps & AdditionalProps>
       | ReactNativeStyle
     >
-  ): StyledComponent<ComponentProps & AdditionalProps, ExtraProps>
+  ): StyledComponent<
+    ComponentProps & AdditionalProps & { theme?: Theme },
+    ExtraProps
+  >
 }
 
 type ReactNativeStyledComponent<
@@ -134,16 +128,11 @@ type ReactNativeStyledComponent<
 
 export type Styled<Theme extends object = {}, ExtraProps = {}> = {
   [K in keyof StyledReactNativeComponents]: typeof ReactNative[K] extends ComponentType
-    ? (EmotionStyledComponent<
+    ? ReactNativeStyledComponent<
         ComponentPropsWithoutRef<typeof ReactNative[K]>,
         Theme,
         ExtraProps
-      > &
-        ReactNativeStyledComponent<
-          ComponentPropsWithoutRef<typeof ReactNative[K]>,
-          Theme,
-          ExtraProps
-        >)
+      >
     : never
 }
 

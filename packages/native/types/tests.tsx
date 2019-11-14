@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { StyleSheet } from 'react-native'
 import styled, { css, Styled } from '@emotion/native'
 
@@ -73,3 +74,14 @@ export const NestedComposedView = styled.View(css`
   ${className} ${className2}
   background-color: white;
 `)
+
+const theme: Theme = {
+  color: {
+    primary: 'blue',
+    negative: 'red',
+    positive: 'green'
+  }
+}
+
+export const themed = <ThemedView foo="foo" bar="bar" theme={theme} />
+export const composed = <ComposedView theme={theme} />
