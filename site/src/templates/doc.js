@@ -35,7 +35,7 @@ type Props = {
 }
 
 if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', function(event) {
+  document.addEventListener('DOMContentLoaded', function() {
     var hash = window.decodeURI(window.location.hash)
     if (hash !== '' && hash !== '#') {
       var element = document.getElementById(`.docSearch-content ${hash} a`)

@@ -1,5 +1,20 @@
 # @emotion/primitives
 
+## 10.0.24
+
+### Patch Changes
+
+- Updated dependencies [[`5e17e456`](https://github.com/emotion-js/emotion/commit/5e17e456a66857bb3a3a5b39c9cd8f8dd89301e5)]:
+  - @emotion/is-prop-valid@0.8.5
+
+## 10.0.23
+
+### Patch Changes
+
+- Updated dependencies [[`6cdb5695`](https://github.com/emotion-js/emotion/commit/6cdb56959bc4b64d7178604f1eb64a058c2e58c2), [`3927293d`](https://github.com/emotion-js/emotion/commit/3927293d0b9d96b4a7c00196e8430728759b1161), [`b3a0f148`](https://github.com/emotion-js/emotion/commit/b3a0f1484f2efcc78b447639ff2e0bc0f29915ae)]:
+  - @emotion/is-prop-valid@0.8.4
+  - babel-plugin-emotion@10.0.23
+
 ## 10.0.22
 
 ### Patch Changes

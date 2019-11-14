@@ -1,5 +1,5 @@
 [version]
-0.89.0
+0.110.0
 
 [ignore]
 .*/node_modules/config-chain/.*
@@ -23,4 +23,5 @@
 
 [options]
 suppress_comment=.*\\$FlowFixMe
+suppress_comment=.*\\$FlowExpectError
 sharedmemory.hash_table_pow=21

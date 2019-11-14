@@ -1,5 +1,14 @@
 # emotion
 
+## 10.0.23
+
+### Patch Changes
+
+- [`1ae94891`](https://github.com/emotion-js/emotion/commit/1ae948917326e2bc2bc978c59d04cb2695c72e38) [#1583](https://github.com/emotion-js/emotion/pull/1583) Thanks [@Andarist](https://github.com/Andarist)! - Export TS & Flow types for emotion/macro
+
+- Updated dependencies [[`3927293d`](https://github.com/emotion-js/emotion/commit/3927293d0b9d96b4a7c00196e8430728759b1161), [`b3a0f148`](https://github.com/emotion-js/emotion/commit/b3a0f1484f2efcc78b447639ff2e0bc0f29915ae)]:
+  - babel-plugin-emotion@10.0.23
+
 ## 10.0.17
 
 ### Patch Changes
