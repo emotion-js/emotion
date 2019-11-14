@@ -112,7 +112,7 @@ interface TestTheme1 {
         </span>
         <span
           className={css`
-            color: theme.secondaryColor;
+            color: ${theme.secondaryColor};
           `}
         >
           Snd Text
