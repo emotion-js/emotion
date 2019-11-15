@@ -30,7 +30,7 @@ export default serializer
 
 declare global {
   namespace jest {
-    interface Matchers<R> {
+    interface Matchers<R, T> {
       toHaveStyleRule(
         property: string,
         value: any,
