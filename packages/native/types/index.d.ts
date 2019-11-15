@@ -70,7 +70,7 @@ type StyledReactNativeComponents = Pick<
 
 export type ReactNativeStyle = ReturnType<typeof ReactNative.StyleSheet.flatten>
 
-interface ThemedReactNativeStyledComponent<ComponentProps, Theme, ExtraProps> {
+interface ReactNativeStyledComponent<ComponentProps, Theme, ExtraProps> {
   <AdditionalProps extends {} = {}>(
     ...styles: Array<
       | Interpolation<
@@ -95,36 +95,6 @@ interface ThemedReactNativeStyledComponent<ComponentProps, Theme, ExtraProps> {
     ExtraProps
   >
 }
-
-interface ThemelessReactNativeStyledComponent<ComponentProps, ExtraProps> {
-  <AdditionalProps extends {} = {}, Theme extends object = {}>(
-    ...styles: Array<
-      | Interpolation<ComponentProps & ExtraProps & AdditionalProps>
-      | ReactNativeStyle
-    >
-  ): StyledComponent<
-    ComponentProps & AdditionalProps & { theme?: Theme },
-    ExtraProps
-  >
-  <AdditionalProps extends {} = {}, Theme extends object = {}>(
-    template: TemplateStringsArray,
-    ...styles: Array<
-      | Interpolation<ComponentProps & ExtraProps & AdditionalProps>
-      | ReactNativeStyle
-    >
-  ): StyledComponent<
-    ComponentProps & AdditionalProps & { theme?: Theme },
-    ExtraProps
-  >
-}
-
-type ReactNativeStyledComponent<
-  ComponentProps,
-  Theme,
-  ExtraProps
-> = {} extends Theme
-  ? ThemelessReactNativeStyledComponent<ComponentProps, ExtraProps>
-  : ThemedReactNativeStyledComponent<ComponentProps, Theme, ExtraProps>
 
 export type Styled<Theme extends object = {}, ExtraProps = {}> = {
   [K in keyof StyledReactNativeComponents]: typeof ReactNative[K] extends ComponentType
