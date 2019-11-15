@@ -175,7 +175,7 @@
     "@mdx-js/mdx": "^1.1.0",
     "@mdx-js/react": "^1.0.27",
     "@testing-library/react": "^8.0.2",
-    "@types/jest": "^23.0.2",
+    "@types/jest": "^24.0.23",
     "@types/node": "^10.11.4",
     "@types/react": "^16.8.20",
     "babel-check-duplicated-nodes": "^1.0.0",
