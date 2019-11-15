@@ -11,7 +11,10 @@
   "files": [
     "src",
     "dist",
-    "types"
+    "types",
+    "macro.js",
+    "macro.d.ts",
+    "macro.js.flow"
   ],
   "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
   "license": "MIT",

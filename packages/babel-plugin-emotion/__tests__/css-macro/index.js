@@ -1,4 +1,4 @@
 // @flow
 import babelTester from 'babel-tester'
 
-babelTester('@emotion/css/macro', __dirname)
+babelTester('@emotion/core - css macro', __dirname)

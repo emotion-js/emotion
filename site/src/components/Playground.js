@@ -27,8 +27,6 @@ export const scope = {
         return require('@emotion/styled')
       case '@emotion/styled/base':
         return require('@emotion/styled/base')
-      case '@emotion/css':
-        return require('@emotion/css')
       case '@emotion/is-prop-valid':
         return require('@emotion/is-prop-valid')
       case 'emotion-theming':

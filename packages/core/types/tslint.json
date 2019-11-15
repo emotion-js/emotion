@@ -2,6 +2,7 @@
   "extends": "dtslint/dtslint.json",
   "rules": {
     "array-type": [true, "generic"],
+    "file-name-casing": false,
     "import-spacing": false,
     "semicolon": false,
     "whitespace": [

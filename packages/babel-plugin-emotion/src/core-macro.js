@@ -1,9 +1,5 @@
 // @flow
-import {
-  transformExpressionWithStyles,
-  addImport,
-  createTransformerMacro
-} from './utils'
+import { transformExpressionWithStyles, createTransformerMacro } from './utils'
 
 export const transformCssCallExpression = ({
   babel,
@@ -36,23 +32,16 @@ export const transformCssCallExpression = ({
 export let coreCssTransformer = ({
   state,
   babel,
-  importPath,
-  reference,
-  importSpecifierName
+  reference
 }: {
   state: any,
   babel: any,
-  importPath: string,
-  reference: any,
-  importSpecifierName: string
+  reference: any
 }) => {
-  reference.replaceWith(
-    addImport(state, importPath, importSpecifierName, 'css')
-  )
   transformCssCallExpression({ babel, state, path: reference.parentPath })
 }
 
 export default createTransformerMacro(
-  { default: coreCssTransformer },
-  '@emotion/css'
+  { css: coreCssTransformer },
+  { importSource: '@emotion/core' }
 )

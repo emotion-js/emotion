@@ -292,6 +292,7 @@ import _styled from \\"@emotion/styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
+/** @jsx jsx */
 import { jsx } from '@emotion/core';
 
 class Thing {
@@ -445,9 +446,9 @@ console.log(styled)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled\\";
-export let thing = _styled;
-console.log(_styled);"
+import styled from \\"@emotion/styled\\";
+export let thing = styled;
+console.log(styled);"
 `;
 
 exports[`@emotion/styled.macro no-import 1`] = `

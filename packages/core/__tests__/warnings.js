@@ -1,8 +1,7 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
-import css from '@emotion/css'
-import { jsx, Global, keyframes } from '@emotion/core'
+import { jsx, css, Global, keyframes } from '@emotion/core'
 import renderer from 'react-test-renderer'
 import { render } from '@testing-library/react'
 

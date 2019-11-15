@@ -29,11 +29,10 @@ let SomeComp = nonDefaultStyled.div({ color: 'hotpink' })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { nonDefaultStyled as _styled } from \\"package-one\\";
-
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-let SomeComp = _styled(\\"div\\", {
+import { nonDefaultStyled } from 'package-one';
+let SomeComp = nonDefaultStyled(\\"div\\", {
   target: \\"e1nqcgbi0\\",
   label: \\"SomeComp\\"
 })(process.env.NODE_ENV === \\"production\\" ? {
@@ -81,12 +80,12 @@ something({ color: 'green' })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { something as _something } from \\"package-three\\";
-
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
+import { something } from 'package-three';
+
 /*#__PURE__*/
-_something(process.env.NODE_ENV === \\"production\\" ? {
+something(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"bjcoli\\",
   styles: \\"color:green;\\"
 } : {

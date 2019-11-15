@@ -2,19 +2,24 @@ import { addDefault, addNamed } from '@babel/helper-module-imports'
 
 export function addImport(
   state: any,
-  importPath: string,
-  imported: string,
+  importSource: string,
+  importedSpecifier: string,
   nameHint?: string
 ) {
-  let cacheKey = ['import', importPath, imported].join(':')
+  let cacheKey = ['import', importSource, importedSpecifier].join(':')
   if (state[cacheKey] === undefined) {
     let importIdentifier
-    if (imported === 'default') {
-      importIdentifier = addDefault(state.file.path, importPath, { nameHint })
+    if (importedSpecifier === 'default') {
+      importIdentifier = addDefault(state.file.path, importSource, { nameHint })
     } else {
-      importIdentifier = addNamed(state.file.path, imported, importPath, {
-        nameHint
-      })
+      importIdentifier = addNamed(
+        state.file.path,
+        importedSpecifier,
+        importSource,
+        {
+          nameHint
+        }
+      )
     }
     state[cacheKey] = importIdentifier.name
   }

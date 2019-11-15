@@ -5,7 +5,7 @@ import plugin from 'babel-plugin-emotion'
 const cases = {
   'label format with only local': {
     code: `
-    import {css} from 'emotion'
+    import { css } from 'emotion'
     let cls = css({color:'hotpink'})
     `,
     plugins: [
@@ -21,7 +21,7 @@ const cases = {
   },
   'label format with filename that is index and local': {
     code: `
-    import {css} from 'emotion'
+    import { css } from 'emotion'
     let cls = css({color:'hotpink'})
     `,
     plugins: [
@@ -38,7 +38,7 @@ const cases = {
 
   'label format with filename and local': {
     code: `
-    import {css} from 'emotion'
+    import { css } from 'emotion'
     let cls = css({color:'hotpink'})
     `,
     plugins: [
@@ -55,7 +55,7 @@ const cases = {
 
   'label format with dirname, filename, and local': {
     code: `
-    import {css} from 'emotion'
+    import { css } from 'emotion'
     let cls = css({color:'hotpink'})
     `,
     plugins: [
@@ -75,7 +75,7 @@ const cases = {
     code: `
     import { __makeTemplateObject } from 'tslib'
 
-    import css from '@emotion/css'
+    import { css } from '@emotion/core'
 
     var templateObject_1
 

@@ -1,4 +1,4 @@
-import css from '@emotion/css'
+import { css } from '@emotion/core'
 import { mq, fonts } from './style'
 import prismStyles from 'react-live/lib/constants/css.js'
 import draculaStyles from './dracula-prism'

@@ -159,7 +159,7 @@ exports[`overwrite styles from parent 1`] = `
 `;
 
 exports[`string as css prop throws 1`] = `
-"Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/css' like this: css\`
+"Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/core' like this: css\`
             color: hotpink;
           \`"
 `;

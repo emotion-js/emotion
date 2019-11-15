@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import css from '@emotion/css'
+import { css } from '@emotion/core'
 import View from './View'
 
 const Dot = styled(View)`

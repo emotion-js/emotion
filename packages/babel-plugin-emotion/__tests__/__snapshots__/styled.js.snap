@@ -292,6 +292,7 @@ import _styled from \\"@emotion/styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
+/** @jsx jsx */
 import { jsx } from '@emotion/core';
 
 class Thing {
@@ -428,15 +429,15 @@ styled.View({})
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/native\\";
-
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-/*#__PURE__*/
-_styled.View(\\"color:hotpink;\\");
+import styled from '@emotion/native';
 
 /*#__PURE__*/
-_styled.View(\\"\\");"
+styled.View(\\"color:hotpink;\\");
+
+/*#__PURE__*/
+styled.View(\\"\\");"
 `;
 
 exports[`emotion-babel-plugin styled no-call 1`] = `
@@ -449,9 +450,9 @@ console.log(styled)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled\\";
-export let thing = _styled;
-console.log(_styled);"
+import styled from '@emotion/styled';
+export let thing = styled;
+console.log(styled);"
 `;
 
 exports[`emotion-babel-plugin styled no-import 1`] = `
@@ -544,12 +545,9 @@ otherThing()
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { otherThing as _otherThing } from \\"@emotion/styled\\";
-import { something as _something } from \\"@emotion/styled\\";
-
-_something();
-
-_otherThing();"
+import { something, otherThing } from '@emotion/styled';
+something();
+otherThing();"
 `;
 
 exports[`emotion-babel-plugin styled primitives 1`] = `
@@ -570,21 +568,21 @@ styled.View({})
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/primitives\\";
-
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-/*#__PURE__*/
-_styled('SomeFakeComponent')(\\"color:hotpink;\\");
+import styled from '@emotion/primitives';
 
 /*#__PURE__*/
-_styled('SomeFakeComponent')(\\"\\");
+styled('SomeFakeComponent')(\\"color:hotpink;\\");
 
 /*#__PURE__*/
-_styled.View(\\"color:hotpink;\\");
+styled('SomeFakeComponent')(\\"\\");
 
 /*#__PURE__*/
-_styled.View(\\"\\");"
+styled.View(\\"color:hotpink;\\");
+
+/*#__PURE__*/
+styled.View(\\"\\");"
 `;
 
 exports[`emotion-babel-plugin styled primitives-other-name 1`] = `
@@ -599,15 +597,15 @@ something.View({})
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/primitives\\";
-
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-/*#__PURE__*/
-_styled.View(\\"color:hotpink;\\");
+import something from '@emotion/primitives';
 
 /*#__PURE__*/
-_styled.View(\\"\\");"
+something.View(\\"color:hotpink;\\");
+
+/*#__PURE__*/
+something.View(\\"\\");"
 `;
 
 exports[`emotion-babel-plugin styled shorthand-property 1`] = `

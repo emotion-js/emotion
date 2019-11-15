@@ -8,7 +8,8 @@
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "macro.js"
   ],
   "dependencies": {
     "@emotion/is-prop-valid": "0.8.6-next.0",
@@ -16,10 +17,17 @@
     "babel-plugin-emotion": "^11.0.0-next.4"
   },
   "peerDependencies": {
+    "@babel/core": "^7.0.0",
     "react": ">=16.8.0",
     "react-primitives": "^0.7.0"
   },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    }
+  },
   "devDependencies": {
+    "@babel/core": "^7.7.2",
     "emotion-theming": "^11.0.0-next.5",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",

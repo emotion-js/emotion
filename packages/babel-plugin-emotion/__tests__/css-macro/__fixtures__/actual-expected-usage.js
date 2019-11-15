@@ -1,6 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
-import css from '@emotion/css/macro'
+import { jsx, css } from '@emotion/core/macro'
 
 const SomeComponent = () => (
   <div
