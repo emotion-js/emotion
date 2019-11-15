@@ -1,5 +1,31 @@
 # @emotion/styled
 
+## 11.0.0-next.5
+
+### Minor Changes
+
+- [`ad77ed24`](https://github.com/emotion-js/emotion/commit/ad77ed24b4bfe62d6c80f0498cd7e76863e2f28e) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@JakeGinnivan](https://github.com/JakeGinnivan)! - Added `CreateStyled` overload to handle when `shouldForwardProp` is a custom type guard for intrinsic props.
+
+  As an example, if you want to override the type of the `color` prop:
+
+  ```ts
+  export const Box = styled('div', {
+    shouldForwardProp: (
+      propName
+    ): propName is Exclude<keyof JSX.IntrinsicElements['div'], 'color'> =>
+      propName !== 'color'
+  })<{ color: Array<string> }>(props => ({
+    color: props.color[0]
+  }))
+  ;<Box color={['green']} />
+  ```
+
+### Patch Changes
+
+- [`99c6b7e2`](https://github.com/emotion-js/emotion/commit/99c6b7e2f65fb7eddb2863b393e2110dbc4810d8) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@JakeGinnivan](https://github.com/JakeGinnivan)! - Fix issue with one of TypeScript overloads for `styled`. It pass `StyleProps` to `Interpolation` correctly now.
+- Updated dependencies []:
+  - @emotion/core@11.0.0-next.5
+
 ## 11.0.0-next.4
 
 ### Patch Changes
