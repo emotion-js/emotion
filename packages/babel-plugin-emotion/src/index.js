@@ -6,15 +6,10 @@ import {
 } from './emotion-macro'
 import { createStyledMacro, styledTransformer } from './styled-macro'
 import coreMacro, {
-  transformCssCallExpression,
-  coreCssTransformer
+  transformers as coreTransformers,
+  transformInlineCsslessExpression
 } from './core-macro'
-import {
-  getSourceMap,
-  getStyledOptions,
-  addImport,
-  createTransformerMacro
-} from './utils'
+import { getStyledOptions, createTransformerMacro } from './utils'
 
 let webStyledMacro = createStyledMacro({
   importSource: '@emotion/styled/base',
@@ -35,14 +30,7 @@ let vanillaEmotionMacro = createEmotionMacro('macro')
 
 let transformersSource = {
   emotion: vanillaTransformers,
-  '@emotion/core': {
-    // this is an empty function because this transformer is never called
-    // we don't run any transforms on `jsx` directly
-    // instead we use it as a hint to enable css prop optimization
-    jsx: () => {},
-    css: coreCssTransformer
-    // TODO: maybe write transformers for keyframes and Global
-  },
+  '@emotion/core': coreTransformers,
   '@emotion/styled': {
     default: [
       styledTransformer,
@@ -180,7 +168,7 @@ export default function(babel: *) {
           if (jsxCoreImport.importSource === '@emotion/core') return
           let { transformers } = macros[jsxCoreImport.importSource]
           for (let key in transformers) {
-            if (transformers[key][0] === coreCssTransformer) {
+            if (transformers[key][0] === coreTransformers.css) {
               jsxCoreImport.cssExport = key
               return
             }
@@ -239,39 +227,7 @@ export default function(babel: *) {
           (t.isObjectExpression(path.node.value.expression) ||
             t.isArrayExpression(path.node.value.expression))
         ) {
-          let expressionPath = path.get('value.expression')
-          let sourceMap =
-            state.emotionSourceMap && path.node.loc !== undefined
-              ? getSourceMap(path.node.loc.start, state)
-              : ''
-
-          expressionPath.replaceWith(
-            t.callExpression(
-              // the name of this identifier doesn't really matter at all
-              // it'll never appear in generated code
-              t.identifier('___shouldNeverAppearCSS'),
-              [path.node.value.expression]
-            )
-          )
-
-          transformCssCallExpression({
-            babel,
-            state,
-            path: expressionPath,
-            sourceMap
-          })
-          if (t.isCallExpression(expressionPath)) {
-            expressionPath
-              .get('callee')
-              .replaceWith(
-                addImport(
-                  state,
-                  state.jsxCoreImport.importSource,
-                  state.jsxCoreImport.cssExport,
-                  'css'
-                )
-              )
-          }
+          transformInlineCsslessExpression({ state, babel, path })
         }
       },
       CallExpression: {

@@ -1,14 +1,19 @@
 // @flow
-import { transformExpressionWithStyles, createTransformerMacro } from './utils'
+import {
+  transformExpressionWithStyles,
+  createTransformerMacro,
+  getSourceMap,
+  addImport
+} from './utils'
 
 export const transformCssCallExpression = ({
-  babel,
   state,
+  babel,
   path,
   sourceMap
 }: {
-  babel: *,
   state: *,
+  babel: *,
   path: *,
   sourceMap?: string
 }) => {
@@ -29,7 +34,48 @@ export const transformCssCallExpression = ({
   }
 }
 
-export let coreCssTransformer = ({
+export const transformInlineCsslessExpression = ({
+  state,
+  babel,
+  path
+}: {
+  babel: *,
+  state: *,
+  path: *
+}) => {
+  let t = babel.types
+  let expressionPath = path.get('value.expression')
+  let sourceMap =
+    state.emotionSourceMap && path.node.loc !== undefined
+      ? getSourceMap(path.node.loc.start, state)
+      : ''
+
+  expressionPath.replaceWith(
+    t.callExpression(
+      // the name of this identifier doesn't really matter at all
+      // it'll never appear in generated code
+      t.identifier('___shouldNeverAppearCSS'),
+      [path.node.value.expression]
+    )
+  )
+
+  transformCssCallExpression({
+    babel,
+    state,
+    path: expressionPath,
+    sourceMap
+  })
+
+  const { importSource = '@emotion/core', cssExport = 'css' } = state
+
+  if (t.isCallExpression(expressionPath)) {
+    expressionPath
+      .get('callee')
+      .replaceWith(addImport(state, importSource, cssExport, 'css'))
+  }
+}
+
+let cssTransformer = ({
   state,
   babel,
   reference
@@ -41,7 +87,42 @@ export let coreCssTransformer = ({
   transformCssCallExpression({ babel, state, path: reference.parentPath })
 }
 
-export default createTransformerMacro(
-  { css: coreCssTransformer },
-  { importSource: '@emotion/core' }
-)
+let globalTransformer = ({ state, babel, reference }) => {
+  const t = babel.types
+
+  if (
+    !t.isJSXIdentifier(reference.node) ||
+    !t.isJSXOpeningElement(reference.parentPath.node)
+  ) {
+    return
+  }
+
+  const stylesPropPath = reference.parentPath
+    .get('attributes')
+    .find(p => t.isJSXAttribute(p.node) && p.node.name.name === 'styles')
+
+  if (!stylesPropPath) {
+    return
+  }
+
+  if (
+    t.isJSXExpressionContainer(stylesPropPath.node.value) &&
+    (t.isObjectExpression(stylesPropPath.node.value.expression) ||
+      t.isArrayExpression(stylesPropPath.node.value.expression))
+  ) {
+    transformInlineCsslessExpression({ state, babel, path: stylesPropPath })
+  }
+}
+
+export const transformers = {
+  // this is an empty function because this transformer is never called
+  // we don't run any transforms on `jsx` directly
+  // instead we use it as a hint to enable css prop optimization
+  jsx: () => {},
+  css: cssTransformer,
+  Global: globalTransformer
+}
+
+export default createTransformerMacro(transformers, {
+  importSource: '@emotion/core'
+})
