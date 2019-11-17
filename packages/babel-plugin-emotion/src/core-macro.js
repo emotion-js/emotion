@@ -37,11 +37,13 @@ export const transformCssCallExpression = ({
 export const transformInlineCsslessExpression = ({
   state,
   babel,
-  path
+  path,
+  cssImport
 }: {
   babel: *,
   state: *,
-  path: *
+  path: *,
+  cssImport: { importSource: string, cssExport: string }
 }) => {
   let t = babel.types
   let expressionPath = path.get('value.expression')
@@ -66,12 +68,12 @@ export const transformInlineCsslessExpression = ({
     sourceMap
   })
 
-  const { importSource = '@emotion/core', cssExport = 'css' } = state
-
   if (t.isCallExpression(expressionPath)) {
     expressionPath
       .get('callee')
-      .replaceWith(addImport(state, importSource, cssExport, 'css'))
+      .replaceWith(
+        addImport(state, cssImport.importSource, cssImport.cssExport, 'css')
+      )
   }
 }
 
@@ -87,7 +89,19 @@ let cssTransformer = ({
   transformCssCallExpression({ babel, state, path: reference.parentPath })
 }
 
-let globalTransformer = ({ state, babel, reference }) => {
+let globalTransformer = ({
+  state,
+  babel,
+  reference,
+  importSource,
+  options
+}: {
+  state: any,
+  babel: any,
+  reference: any,
+  importSource: string,
+  options: { cssExport?: string }
+}) => {
   const t = babel.types
 
   if (
@@ -110,7 +124,21 @@ let globalTransformer = ({ state, babel, reference }) => {
     (t.isObjectExpression(stylesPropPath.node.value.expression) ||
       t.isArrayExpression(stylesPropPath.node.value.expression))
   ) {
-    transformInlineCsslessExpression({ state, babel, path: stylesPropPath })
+    transformInlineCsslessExpression({
+      state,
+      babel,
+      path: stylesPropPath,
+      cssImport:
+        options.cssExport !== undefined
+          ? {
+              importSource,
+              cssExport: options.cssExport
+            }
+          : {
+              importSource: '@emotion/core',
+              cssExport: 'css'
+            }
+    })
   }
 }
 
