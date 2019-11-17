@@ -18,6 +18,9 @@ babelTester('import mapping', __dirname, {
             },
             someCssFromCore: {
               canonicalImport: ['@emotion/core', 'css']
+            },
+            SomeGlobalFromCore: {
+              canonicalImport: ['@emotion/core', 'Global']
             }
           },
 

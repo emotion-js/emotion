@@ -1,5 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`import mapping global 1`] = `
+"import * as React from 'react'
+import { SomeGlobalFromCore } from 'package-two'
+
+export default () => <SomeGlobalFromCore styles={{ color: 'hotpink' }} />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+import * as React from 'react';
+import { SomeGlobalFromCore } from 'package-two';
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+} : {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImdsb2JhbC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHeUMiLCJmaWxlIjoiZ2xvYmFsLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBTb21lR2xvYmFsRnJvbUNvcmUgfSBmcm9tICdwYWNrYWdlLXR3bydcblxuZXhwb3J0IGRlZmF1bHQgKCkgPT4gPFNvbWVHbG9iYWxGcm9tQ29yZSBzdHlsZXM9e3sgY29sb3I6ICdob3RwaW5rJyB9fSAvPlxuIl19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+export default (() => <SomeGlobalFromCore styles={_ref} />);"
+`;
+
+exports[`import mapping global-needs-css 1`] = `
+"import * as React from 'react'
+import { SomeGlobalFromCore } from 'package-two'
+
+const getBgColor = () => ({ backgroundColor: '#fff' })
+
+export default () => (
+  <SomeGlobalFromCore styles={{ color: 'hotpink', ...getBgColor() }} />
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { someCssFromCore as _css } from \\"package-two\\";
+import * as React from 'react';
+import { SomeGlobalFromCore } from 'package-two';
+
+const getBgColor = () => ({
+  backgroundColor: '#fff'
+});
+
+export default (() => <SomeGlobalFromCore styles={
+/*#__PURE__*/
+_css({
+  color: 'hotpink',
+  ...getBgColor()
+}, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImdsb2JhbC1uZWVkcy1jc3MuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBTXNCIiwiZmlsZSI6Imdsb2JhbC1uZWVkcy1jc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCB7IFNvbWVHbG9iYWxGcm9tQ29yZSB9IGZyb20gJ3BhY2thZ2UtdHdvJ1xuXG5jb25zdCBnZXRCZ0NvbG9yID0gKCkgPT4gKHsgYmFja2dyb3VuZENvbG9yOiAnI2ZmZicgfSlcblxuZXhwb3J0IGRlZmF1bHQgKCkgPT4gKFxuICA8U29tZUdsb2JhbEZyb21Db3JlIHN0eWxlcz17eyBjb2xvcjogJ2hvdHBpbmsnLCAuLi5nZXRCZ0NvbG9yKCkgfX0gLz5cbilcbiJdfQ== */\\")} />);"
+`;
+
 exports[`import mapping jsx 1`] = `
 "/** @jsx someJsx */
 import { someJsx } from 'package-two'
