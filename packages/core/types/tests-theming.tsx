@@ -1,3 +1,6 @@
+// Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
+// TypeScript Version: 3.1
+
 import * as React from 'react'
 import {
   useTheme,
