@@ -6,15 +6,25 @@ import {
 } from './emotion-macro'
 import { createStyledMacro, styledTransformer } from './styled-macro'
 import coreMacro, {
-  transformCssCallExpression,
-  coreCssTransformer
+  transformers as coreTransformers,
+  transformInlineCsslessExpression
 } from './core-macro'
-import {
-  getSourceMap,
-  getStyledOptions,
-  addImport,
-  createTransformerMacro
-} from './utils'
+import { getStyledOptions, createTransformerMacro } from './utils'
+
+const getCssExport = (reexported, importSource, mapping) => {
+  const cssExport = Object.keys(mapping).find(localExportName => {
+    const [packageName, exportName] = mapping[localExportName].canonicalImport
+    return packageName === '@emotion/core' && exportName === 'css'
+  })
+
+  if (!cssExport) {
+    throw new Error(
+      `You have specified that '${importSource}' re-exports '${reexported}' from '@emotion/core' but it doesn't also re-export 'css' from '@emotion/core', 'css' is necessary for certain optimisations, please re-export it from '${importSource}'`
+    )
+  }
+
+  return cssExport
+}
 
 let webStyledMacro = createStyledMacro({
   importSource: '@emotion/styled/base',
@@ -35,14 +45,7 @@ let vanillaEmotionMacro = createEmotionMacro('macro')
 
 let transformersSource = {
   emotion: vanillaTransformers,
-  '@emotion/core': {
-    // this is an empty function because this transformer is never called
-    // we don't run any transforms on `jsx` directly
-    // instead we use it as a hint to enable css prop optimization
-    jsx: () => {},
-    css: coreCssTransformer
-    // TODO: maybe write transformers for keyframes and Global
-  },
+  '@emotion/core': coreTransformers,
   '@emotion/styled': {
     default: [
       styledTransformer,
@@ -134,7 +137,7 @@ export default function(babel: *) {
         let jsxCoreImports: Array<{
           importSource: string,
           export: string,
-          cssExport: string | null
+          cssExport: string
         }> = [
           { importSource: '@emotion/core', export: 'jsx', cssExport: 'css' }
         ]
@@ -149,7 +152,7 @@ export default function(babel: *) {
               jsxCoreImports.push({
                 importSource,
                 export: localExportName,
-                cssExport: null
+                cssExport: getCssExport('jsx', importSource, value)
               })
               return
             }
@@ -161,6 +164,22 @@ export default function(babel: *) {
               )
             }
 
+            let extraOptions
+
+            if (packageName === '@emotion/core' && exportName === 'Global') {
+              // this option is not supposed to be set in importMap
+              extraOptions = {
+                cssExport: getCssExport('Global', importSource, value)
+              }
+            } else if (
+              packageName === '@emotion/styled' &&
+              exportName === 'default'
+            ) {
+              // this is supposed to override defaultOptions value
+              // and let correct value to be set if coming in options
+              extraOptions = { styledBaseImport: undefined }
+            }
+
             let [exportTransformer, defaultOptions] =
               // $FlowFixMe
               Array.isArray(packageTransformers[exportName])
@@ -169,29 +188,12 @@ export default function(babel: *) {
 
             transformers[localExportName] = [
               exportTransformer,
-              { ...defaultOptions, styledBaseImport: undefined, ...options }
+              { ...defaultOptions, ...extraOptions, ...options }
             ]
           })
           macros[importSource] = createTransformerMacro(transformers, {
             importSource
           })
-        })
-        jsxCoreImports.forEach(jsxCoreImport => {
-          if (jsxCoreImport.importSource === '@emotion/core') return
-          let { transformers } = macros[jsxCoreImport.importSource]
-          for (let key in transformers) {
-            if (transformers[key][0] === coreCssTransformer) {
-              jsxCoreImport.cssExport = key
-              return
-            }
-          }
-          throw new Error(
-            `You have specified that '${
-              jsxCoreImport.importSource
-            }' re-exports 'jsx' from '@emotion/core' but it doesn't also re-export 'css' from '@emotion/core', 'css' is necessary for certain optimisations, please re-export it from '${
-              jsxCoreImport.importSource
-            }'`
-          )
         })
         state.pluginMacros = {
           '@emotion/styled': webStyledMacro,
@@ -239,39 +241,12 @@ export default function(babel: *) {
           (t.isObjectExpression(path.node.value.expression) ||
             t.isArrayExpression(path.node.value.expression))
         ) {
-          let expressionPath = path.get('value.expression')
-          let sourceMap =
-            state.emotionSourceMap && path.node.loc !== undefined
-              ? getSourceMap(path.node.loc.start, state)
-              : ''
-
-          expressionPath.replaceWith(
-            t.callExpression(
-              // the name of this identifier doesn't really matter at all
-              // it'll never appear in generated code
-              t.identifier('___shouldNeverAppearCSS'),
-              [path.node.value.expression]
-            )
-          )
-
-          transformCssCallExpression({
-            babel,
+          transformInlineCsslessExpression({
             state,
-            path: expressionPath,
-            sourceMap
+            babel,
+            path,
+            cssImport: state.jsxCoreImport
           })
-          if (t.isCallExpression(expressionPath)) {
-            expressionPath
-              .get('callee')
-              .replaceWith(
-                addImport(
-                  state,
-                  state.jsxCoreImport.importSource,
-                  state.jsxCoreImport.cssExport,
-                  'css'
-                )
-              )
-          }
         }
       },
       CallExpression: {

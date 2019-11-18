@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Global inline source maps can be disabled 1`] = `
+"
+import * as React from 'react'
+import { Global } from '@emotion/core'
+
+export default () => <Global styles={{ color: 'hotpink' }} />
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import * as React from 'react';
+import { Global } from '@emotion/core';
+var _ref = {
+  name: \\"1lrxbo5\\",
+  styles: \\"color:hotpink;\\"
+};
+export default (() => <Global styles={_ref} />);"
+`;
