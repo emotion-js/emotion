@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { interleave } from './utils'
-import { useTheme } from '@emotion/core'
+import { ThemeContext } from '@emotion/core'
 import { createCss } from './css'
 
 let testOmitPropsOnComponent = prop => prop !== 'theme'
@@ -49,7 +49,7 @@ export function createStyled(
           for (let key in props) {
             mergedProps[key] = props[key]
           }
-          mergedProps.theme = useTheme()
+          mergedProps.theme = React.useContext(ThemeContext)
         }
 
         let stylesWithStyleProp = styles
