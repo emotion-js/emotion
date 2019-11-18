@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Emotion primitives custom shouldForwardProp works 1`] = `
+<Text
+  style={
+    Object {
+      "color": "hotpink",
+    }
+  }
+>
+  Emotion
+</Text>
+`;
+
 exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
 <Text
   style={
