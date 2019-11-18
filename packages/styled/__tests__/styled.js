@@ -4,8 +4,7 @@ import 'test-utils/next-env'
 import renderer from 'react-test-renderer'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import styled from '@emotion/styled'
-import { ThemeProvider } from 'emotion-theming'
-import { jsx, keyframes, css } from '@emotion/core'
+import { jsx, keyframes, css, ThemeProvider } from '@emotion/core'
 
 describe('styled', () => {
   test('no dynamic', () => {

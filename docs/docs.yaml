@@ -41,7 +41,6 @@
     - babel-plugin-emotion
     - eslint-plugin-emotion
     - emotion-server
-    - emotion-theming
     - jest-emotion
     - '@emotion/native'
     - '@emotion/primitives'

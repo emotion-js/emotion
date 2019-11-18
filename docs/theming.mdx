@@ -2,13 +2,19 @@
 title: 'Theming'
 ---
 
-Theming is provided by the library [`emotion-theming`](https://emotion.sh/docs/emotion-theming).
+Theming is included in the [`@emotion/core`](https://emotion.sh/docs/@emotion/core) package.
 
-```bash
-npm install -S emotion-theming
-```
+Add `ThemeProvider` to the top level of your app and access the theme with `props.theme` in a styled component or provide a function that accepts the theme as the css prop.
 
-Add `ThemeProvider` to the top level of your app and access the theme with `props.theme` in a styled component or provide a function that accepts the theme as the css prop. The api is laid out in detail [in the documentation](https://emotion.sh/docs/emotion-theming).
+## Table of Contents
+
+- [Examples](#examples)
+- [Usage](#usage)
+- [API](#api)
+  - [ThemeProvider](#themeprovider-reactcomponenttype)
+  - [withTheme](#withthemecomponent-reactcomponenttype-reactcomponenttype)
+  - [useTheme](#usetheme)
+- [Credits](#credits)
 
 ## Examples
 
@@ -17,8 +23,7 @@ Add `ThemeProvider` to the top level of your app and access the theme with `prop
 ```jsx
 // @live
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
-import { ThemeProvider } from 'emotion-theming'
+import { jsx, ThemeProvider } from '@emotion/core'
 
 const theme = {
   colors: {
@@ -40,9 +45,8 @@ render(
 ```jsx
 // @live
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx, ThemeProvider } from '@emotion/core'
 import styled from '@emotion/styled'
-import { ThemeProvider } from 'emotion-theming'
 
 const theme = {
   colors: {
@@ -66,8 +70,7 @@ render(
 ```jsx
 // @live
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
-import { ThemeProvider, useTheme } from 'emotion-theming'
+import { jsx, ThemeProvider, useTheme } from '@emotion/core'
 
 const theme = {
   colors: {
@@ -92,3 +95,103 @@ render(
 )
 ```
 
+## API
+
+### ThemeProvider: React.ComponentType
+
+A React component that passes the theme object down the component tree via [context](https://reactjs.org/docs/context.html). Additional `ThemeProvider` components can be added deeper in the tree to override the original theme. The theme object will be merged into its ancestor as if by [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign). If a function is passed instead of an object it will be called with the ancestor theme and the result will be the new theme.
+
+_Accepts:_
+
+- **`children`: React.Node**
+- **`theme`: Object|Object => Object** - An object or function that provides an object.
+
+```jsx
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { ThemeProvider, withTheme } from '@emotion/core'
+
+// object-style theme
+
+const theme = {
+  backgroundColor: 'green',
+  color: 'red'
+}
+
+// function-style theme; note that if multiple <ThemeProvider> are used,
+// the parent theme will be passed as a function argument
+
+const adjustedTheme = ancestorTheme => ({ ...ancestorTheme, color: 'blue' })
+
+class Container extends React.Component {
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <ThemeProvider theme={adjustedTheme}>
+          <Text>Boom shaka laka!</Text>
+        </ThemeProvider>
+      </ThemeProvider>
+    )
+  }
+}
+```
+
+> Note:
+>
+> Make sure to hoist your theme out of render otherwise you may have performance problems.
+
+### withTheme(component: React.ComponentType): React.ComponentType
+
+A higher-order component that provides the current theme as a prop to the wrapped child and listens for changes. If the theme is updated, the child component will be re-rendered accordingly.
+
+```jsx
+import * as PropTypes from 'prop-types'
+import * as React from 'react'
+import { withTheme } from '@emotion/core'
+
+class TellMeTheColor extends React.Component {
+  render() {
+    return <div>The color is {this.props.theme.color}.</div>
+  }
+}
+
+TellMeTheColor.propTypes = {
+  theme: PropTypes.shape({
+    color: PropTypes.string
+  })
+}
+
+const TellMeTheColorWithTheme = withTheme(TellMeTheColor)
+```
+
+### useTheme
+
+A React hook that provides the current theme as its value. If the theme is updated, the child component will be re-rendered accordingly.
+
+```jsx
+// @live
+/** @jsx jsx */
+import { jsx, ThemeProvider, useTheme } from '@emotion/core'
+import styled from '@emotion/styled'
+
+const theme = {
+  colors: {
+    primary: 'hotpink'
+  }
+}
+
+function SomeText(props) {
+  const theme = useTheme()
+  return <div css={{ color: theme.colors.primary }} {...props} />
+}
+
+render(
+  <ThemeProvider theme={theme}>
+    <SomeText>some text</SomeText>
+  </ThemeProvider>
+)
+```
+
+## Credits
+
+Thanks goes to the [styled-components team](https://github.com/styled-components/styled-components) and [their contributors](https://github.com/styled-components/styled-components/graphs/contributors) who designed this API.

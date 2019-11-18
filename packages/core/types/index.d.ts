@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.8
+// TypeScript Version: 3.1
 
 import { EmotionCache } from '@emotion/cache'
 import {
@@ -35,6 +35,9 @@ export {
   ObjectInterpolation,
   SerializedStyles
 }
+
+export * from './theming'
+export * from './helper'
 
 export const ThemeContext: Context<object>
 export const CacheProvider: Provider<EmotionCache>

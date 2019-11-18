@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import * as renderer from 'react-test-renderer'
-import { withTheme, ThemeProvider } from 'emotion-theming'
+import { withTheme, ThemeProvider } from '@emotion/core'
 
 test('withTheme works', () => {
   class SomeComponent extends React.Component<{ theme: Object }> {

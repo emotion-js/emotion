@@ -2,7 +2,7 @@
 import * as React from 'react'
 import renderer from 'react-test-renderer'
 import reactPrimitives from 'react-primitives'
-import { ThemeProvider } from 'emotion-theming'
+import { ThemeProvider } from '@emotion/core'
 import { render, unmountComponentAtNode } from 'react-dom'
 
 import styled from '@emotion/primitives'
@@ -40,7 +40,7 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should work with emotion-theming', () => {
+  it('should work with theming from @emotion/core', () => {
     const Text = styled.Text`
       color: ${props => props.theme.backgroundColor};
     `
@@ -57,7 +57,7 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should unmount with emotion-theming', () => {
+  it('should unmount with theming', () => {
     const Text = styled('p')`
       display: ${props => props.theme.display};
     `

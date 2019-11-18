@@ -3,8 +3,7 @@ import 'test-utils/legacy-env'
 import React from 'react'
 import * as renderer from 'react-test-renderer'
 import styled from '@emotion/styled'
-import { css } from '@emotion/core'
-import { ThemeProvider } from 'emotion-theming'
+import { css, ThemeProvider } from '@emotion/core'
 
 test('theme with react-test-renderer', () => {
   const Div = styled.div`

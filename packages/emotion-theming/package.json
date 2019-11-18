@@ -3,56 +3,17 @@
   "version": "11.0.0-next.5",
   "description": "A CSS-in-JS theming solution, inspired by styled-components",
   "main": "dist/emotion-theming.cjs.js",
-  "module": "dist/emotion-theming.esm.js",
-  "types": "types/index.d.ts",
   "files": [
-    "src",
-    "dist",
-    "types"
+    "dist"
   ],
   "scripts": {
-    "test:typescript": "dtslint types"
+    "test:typescript": "exit 0"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-theming",
-  "keywords": [
-    "react",
-    "theme",
-    "theming",
-    "emotion",
-    "cssinjs",
-    "css-in-js"
-  ],
-  "author": "styled-components team",
-  "contributors": [
-    "Evan Scott <probablyup@gmail.com> (https://github.com/probablyup)"
-  ],
+  "keywords": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "homepage": "https://emotion.sh",
-  "devDependencies": {
-    "@emotion/core": "^11.0.0-next.5",
-    "@emotion/styled": "^11.0.0-next.5",
-    "@types/react": "^16.9.11",
-    "dtslint": "^0.3.0",
-    "react": "^16.11.0"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.7.2",
-    "@emotion/weak-memoize": "0.2.4",
-    "hoist-non-react-statics": "^3.3.0"
-  },
-  "peerDependencies": {
-    "@emotion/core": "^11.0.0-next.5",
-    "react": ">=16.8.0"
-  },
-  "umd:main": "dist/emotion-theming.umd.min.js",
-  "browser": {
-    "./dist/emotion-theming.cjs.js": "./dist/emotion-theming.browser.cjs.js",
-    "./dist/emotion-theming.esm.js": "./dist/emotion-theming.browser.esm.js"
-  },
-  "preconstruct": {
-    "umdName": "emotionTheming"
-  }
+  "homepage": "https://emotion.sh"
 }

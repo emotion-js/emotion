@@ -15,8 +15,6 @@ export {
   CreateStyledComponent
 } from './base'
 
-export { PropsOf, DistributiveOmit } from './helper'
-
 export type StyledTags<Theme extends {} = any> = {
   [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
     { theme?: Theme },
