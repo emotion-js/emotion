@@ -16,7 +16,7 @@ The easiest way to test React components with emotion is with the snapshot seria
 // jest.config.js
 module.exports = {
   // ... other config
-  snapshotSerializers: ['jest-emotion']
+  snapshotSerializers: ['jest-emotion', /* ... other snapshotSerializers */ ]
 }
 ```
 
