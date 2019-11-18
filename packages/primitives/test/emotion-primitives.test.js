@@ -186,4 +186,20 @@ describe('Emotion primitives', () => {
 
     expect(tree).toMatchSnapshot()
   })
+
+  test('custom shouldForwardProp works', () => {
+    const Text = styled.Text``
+    const Title = props => <Text {...props} />
+    // $FlowFixMe
+    const StyledTitle = styled(Title, {
+      shouldForwardProp: prop => prop !== 'color' && prop !== 'theme'
+    })`
+      color: ${props => props.color};
+    `
+
+    const tree = renderer
+      .create(<StyledTitle color="hotpink">{'Emotion'}</StyledTitle>)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })
