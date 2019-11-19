@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from '@emotion/styled/base'
+import isPropValid from '@emotion/is-prop-valid'
 
 // tslint:disable-next-line: interface-over-type-literal
 type ReactClassProps0 = {
@@ -97,6 +98,18 @@ const Canvas1 = styled('canvas', {
 // $ExpectError
 ;<Canvas0 id="id-should-be-filtered" />
 ;<Canvas1 />
+
+const styledWithForwardedExtraProp = styled('div', {
+  shouldForwardProp: prop => prop !== 'priority' && isPropValid(prop)
+})
+
+type Priority = 'info' | 'warning' | 'error'
+
+const Alert = styledWithForwardedExtraProp<{
+  priority?: Priority
+}>(({ priority, theme }) => ({
+  backgroundColor: theme.colors[priority || 'info']
+}))
 
 interface PrimaryProps {
   readonly primary: string
