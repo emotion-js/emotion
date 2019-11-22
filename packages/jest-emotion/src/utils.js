@@ -26,12 +26,20 @@ function isTagWithClassName(node) {
 }
 
 function getClassNamesFromEnzyme(selectors, node) {
-  // We need to dive if we have selected a styled child from a shallow render
-  const actualComponent = shouldDive(node) ? node.dive() : node
-  // Find the first node with a className prop
-  const components = actualComponent.findWhere(isTagWithClassName)
-  const classes = components.length && components.first().prop('className')
-
+  // We need to get the css prop if we have selected a styled child from a shallow render
+  const isShallow = shouldDive(node)
+  let classes
+  if (isShallow) {
+    // Find the first node with a className prop
+    const cacheProvider = node.dive()
+    const cacheConsumer = cacheProvider.dive()
+    const components = cacheConsumer.findWhere(isTagWithClassName)
+    classes = components.length && components.first().prop('className')
+  } else {
+    // Find the first node with a className prop
+    const components = node.findWhere(isTagWithClassName)
+    classes = components.length && components.first().prop('className')
+  }
   return getClassNames(selectors, classes)
 }
 

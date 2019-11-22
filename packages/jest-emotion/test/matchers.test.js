@@ -19,7 +19,7 @@ describe('toHaveStyleRule', () => {
     width: 100%;
   `
 
-  const enzymeMethods = ['mount', 'render']
+  const enzymeMethods = ['mount', 'render', 'shallow']
 
   it('matches styles on the top-most node passed in', () => {
     const tree = renderer
@@ -67,9 +67,11 @@ describe('toHaveStyleRule', () => {
       const wrapper = enzyme[method](<Component />)
       expect(wrapper).toHaveStyleRule('color', 'red')
       expect(wrapper).not.toHaveStyleRule('width', '100%')
-      const svgNode = wrapper.find('svg')
-      expect(svgNode).toHaveStyleRule('width', '100%')
-      expect(svgNode).not.toHaveStyleRule('color', 'red')
+      if (method !== 'shallow') {
+        const svgNode = wrapper.find('svg')
+        expect(svgNode).toHaveStyleRule('width', '100%')
+        expect(svgNode).not.toHaveStyleRule('color', 'red')
+      }
     })
   })
 
