@@ -2,6 +2,18 @@ import * as React from 'react'
 import styled from '@emotion/styled/base'
 import isPropValid from '@emotion/is-prop-valid'
 
+declare global {
+  namespace Emotion {
+    interface Theme {
+      primary: string
+      secondary: string
+      width: number
+      colors: { [key: string]: any }
+      backColor: string
+    }
+  }
+}
+
 // tslint:disable-next-line: interface-over-type-literal
 type ReactClassProps0 = {
   readonly column: boolean

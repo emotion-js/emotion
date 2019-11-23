@@ -2,14 +2,7 @@
 // TypeScript Version: 3.1
 
 import * as React from 'react'
-import {
-  useTheme,
-  ThemeProvider,
-  withTheme,
-  EmotionTheming,
-  WithTheme
-} from '@emotion/core'
-import styled, { CreateStyled } from '@emotion/styled'
+import { useTheme, ThemeProvider, withTheme } from '@emotion/core'
 import { Interpolation, ObjectInterpolation } from '@emotion/styled/base'
 
 declare global {
