@@ -1,59 +1,50 @@
 import * as reactNative from 'react-native'
 import { createCss } from '@emotion/primitives-core'
 
-import { styled } from './styled'
+import { styled } from './base'
 
 const css = createCss(reactNative.StyleSheet)
 
 const components = [
   'ActivityIndicator',
   'ActivityIndicatorIOS',
-  'ART',
   'Button',
   'DatePickerIOS',
   'DrawerLayoutAndroid',
+  'FlatList',
   'Image',
   'ImageBackground',
-  'ImageEditor',
-  'ImageStore',
   'KeyboardAvoidingView',
   'ListView',
-  'MapView',
   'Modal',
   'NavigatorIOS',
   'Picker',
   'PickerIOS',
   'ProgressBarAndroid',
   'ProgressViewIOS',
-  'ScrollView',
-  'SegmentedControlIOS',
-  'Slider',
-  'SliderIOS',
-  'SnapshotViewIOS',
-  'Switch',
   'RecyclerViewBackedScrollView',
   'RefreshControl',
   'SafeAreaView',
+  'ScrollView',
+  'SectionList',
+  'SegmentedControlIOS',
+  'Slider',
+  'SnapshotViewIOS',
   'StatusBar',
   'SwipeableListView',
-  'SwitchAndroid',
+  'Switch',
   'SwitchIOS',
   'TabBarIOS',
   'Text',
   'TextInput',
-  'ToastAndroid',
   'ToolbarAndroid',
-  'Touchable',
   'TouchableHighlight',
   'TouchableNativeFeedback',
   'TouchableOpacity',
   'TouchableWithoutFeedback',
   'View',
   'ViewPagerAndroid',
-  'WebView',
-  'FlatList',
-  'SectionList',
-  'VirtualizedList'
+  'WebView'
 ]
 
 export { css }

@@ -1,118 +1,41 @@
 // Definitions by: Pat Sissons <https://github.com/patsissons>
 // TypeScript Version: 3.4
 
-import { ComponentPropsWithoutRef, ComponentType } from 'react'
-import * as ReactNative from 'react-native'
-import '@emotion/core'
-import { Interpolation } from '@emotion/serialize'
 import {
-  CreateStyled,
+  CreateStyled as BaseCreateStyled,
   CreateStyledComponent,
-  StyledComponent
-} from '@emotion/styled'
+  Interpolation,
+  ReactNativeStyle,
+  ReactNativeElements
+} from './base'
 
-type StyledReactNativeComponents = Pick<
-  typeof ReactNative,
-  | 'ActivityIndicator'
-  | 'ActivityIndicatorIOS'
-  | 'ART'
-  | 'Button'
-  | 'DatePickerIOS'
-  | 'DrawerLayoutAndroid'
-  | 'Image'
-  | 'ImageBackground'
-  | 'ImageEditor'
-  | 'ImageStore'
-  | 'KeyboardAvoidingView'
-  | 'ListView'
-  // does not exist?
-  // | 'MapView'
-  | 'Modal'
-  | 'NavigatorIOS'
-  | 'Picker'
-  | 'PickerIOS'
-  | 'ProgressBarAndroid'
-  | 'ProgressViewIOS'
-  | 'ScrollView'
-  | 'SegmentedControlIOS'
-  | 'Slider'
-  // type alias to Slider
-  // | 'SliderIOS'
-  | 'SnapshotViewIOS'
-  | 'Switch'
-  | 'RecyclerViewBackedScrollView'
-  | 'RefreshControl'
-  | 'SafeAreaView'
-  | 'StatusBar'
-  | 'SwipeableListView'
-  // does not exist?
-  // | 'SwitchAndroid'
-  | 'SwitchIOS'
-  | 'TabBarIOS'
-  | 'Text'
-  | 'TextInput'
-  | 'ToastAndroid'
-  | 'ToolbarAndroid'
-  // just an interface
-  // | 'Touchable'
-  | 'TouchableHighlight'
-  | 'TouchableNativeFeedback'
-  | 'TouchableOpacity'
-  | 'TouchableWithoutFeedback'
-  | 'View'
-  | 'ViewPagerAndroid'
-  | 'WebView'
-  | 'FlatList'
-  | 'SectionList'
-  // migrated to FlatList?
-  // | 'VirtualizedList'
->
-
-export type ReactNativeStyle = ReturnType<typeof ReactNative.StyleSheet.flatten>
-
-interface ReactNativeStyledComponent<ComponentProps, Theme, ExtraProps> {
-  <AdditionalProps extends {} = {}>(
-    ...styles: Array<
-      | Interpolation<
-          ComponentProps & ExtraProps & AdditionalProps & { theme: Theme }
-        >
-      | ReactNativeStyle
-    >
-  ): StyledComponent<
-    ComponentProps & AdditionalProps & { theme?: Theme },
-    ExtraProps
-  >
-  <AdditionalProps extends {} = {}>(
-    template: TemplateStringsArray,
-    ...styles: Array<
-      | Interpolation<
-          ComponentProps & ExtraProps & AdditionalProps & { theme: Theme }
-        >
-      | ReactNativeStyle
-    >
-  ): StyledComponent<
-    ComponentProps & AdditionalProps & { theme?: Theme },
-    ExtraProps
-  >
-}
-
-export type Styled<Theme extends object = {}, ExtraProps = {}> = {
-  [K in keyof StyledReactNativeComponents]: typeof ReactNative[K] extends ComponentType
-    ? ReactNativeStyledComponent<
-        ComponentPropsWithoutRef<typeof ReactNative[K]>,
-        Theme,
-        ExtraProps
-      >
-    : never
-}
+export {
+  ArrayInterpolation,
+  FunctionInterpolation,
+  Interpolation,
+  ObjectInterpolation,
+  StyledComponent,
+  StyledOptions,
+  CreateStyledComponent
+} from './base'
 
 export function css(
   template: TemplateStringsArray,
-  ...args: Array<Interpolation | ReactNativeStyle>
+  ...args: Array<Interpolation>
 ): ReactNativeStyle
-export function css(
-  ...args: Array<Interpolation | ReactNativeStyle>
-): ReactNativeStyle
+export function css(...args: Array<Interpolation>): ReactNativeStyle
 
-declare const styled: Styled
+export type StyledTags<Theme extends {} = any> = {
+  [Tag in keyof ReactNativeElements]: CreateStyledComponent<
+    { theme?: Theme },
+    ReactNativeElements[Tag],
+    { theme: Theme }
+  >
+}
+
+export interface CreateStyled<Theme extends {} = any>
+  extends BaseCreateStyled<Theme>,
+    StyledTags<Theme> {}
+
+declare const styled: CreateStyled
 export default styled

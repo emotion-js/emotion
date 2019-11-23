@@ -5,12 +5,9 @@ import styled, { css, Styled } from '@emotion/native'
 const cssObject = {
   height: 100,
   width: '100%',
-  display: 'block',
-  position: undefined,
-  ':hover': {
-    display: 'block'
-  }
-}
+  display: 'flex',
+  position: undefined
+} as const
 
 const className = css`
   ${(true as boolean) && ''}
