@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { StyleSheet } from 'react-native'
-import styled, { css, Styled } from '@emotion/native'
+import { View } from 'react-native'
+import styled, { CreateStyled, css, ReactNativeStyle } from '@emotion/native'
 
 const cssObject = {
   height: 100,
@@ -17,7 +17,7 @@ const className = css`
   ${cssObject}
 `
 
-const className2: ReturnType<typeof StyleSheet.flatten> = css(cssObject)
+const className2: ReactNativeStyle = css(cssObject)
 
 css([{ display: 'none' }, [{ position: 'relative' }, { width: 100 }]])
 
@@ -33,7 +33,7 @@ interface AdditionalProps {
   bar: string
 }
 
-type Theme = {
+interface Theme {
   color: {
     primary: string
     positive: string
@@ -49,17 +49,13 @@ export const InferredPropsView = styled.View`
   background-color: green; // ${({ testID }) => testID}
 `
 
-export const InferredExtraPropsView = (styled as Styled<{}, ExtraProps>).View`
+export const InferredExtraPropsView = styled.View<ExtraProps>`
   background-color: blue; // ${({ foo }) => foo}
 `
 
-export const ThemedView = (styled as Styled<Theme, ExtraProps>).View<
-  AdditionalProps
->`
-  background-color: ${({ theme }) => theme.color.positive}; // ${({
-  foo,
-  bar
-}) => foo + bar}
+export const ThemedView = (styled as CreateStyled<Theme>).View<AdditionalProps>`
+  background-color: ${({ theme }) => theme.color.positive}; // ${({ bar }) =>
+  bar}
 `
 
 export const ComposedView = styled.View`
@@ -80,5 +76,14 @@ const theme: Theme = {
   }
 }
 
-export const themed = <ThemedView foo="foo" bar="bar" theme={theme} />
+export const themed = <ThemedView bar="bar" theme={theme} />
 export const composed = <ComposedView theme={theme} />
+
+function MyComponent(_props: AdditionalProps) {
+  return null
+}
+
+styled(MyComponent)({ width: 100 })
+styled(MyComponent)(({ bar }) => ({ color: bar }))
+styled(View)({ width: 100 })
+styled(View)<ExtraProps>(({ foo, testID }) => ({ color: foo, testID }))

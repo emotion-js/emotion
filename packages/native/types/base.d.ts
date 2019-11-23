@@ -3,25 +3,21 @@
 
 import { ComponentPropsWithoutRef, ComponentType } from 'react'
 import * as RN from 'react-native'
-import { PropsOf } from '@emotion/core'
 
 type ReactNative = typeof RN
 
 export type ReactNativeStyle = ReturnType<ReactNative['StyleSheet']['flatten']>
 
-export interface ArrayInterpolation<MP> extends Array<Interpolation<MP>> {}
+export interface ArrayInterpolation<MergedProps>
+  extends Array<Interpolation<MergedProps>> {}
 
-// @ts-ignore
-export interface ObjectInterpolation
-  extends RN.ViewStyle,
-    RN.TextStyle,
-    RN.ImageStyle {}
+export type ObjectInterpolation = RN.ViewStyle | RN.TextStyle | RN.ImageStyle
 
 export interface FunctionInterpolation<MergedProps> {
   (mergedProps: MergedProps): Interpolation<MergedProps>
 }
 
-export type Interpolation<MergedProps = undefined> =
+export type Interpolation<MergedProps = unknown> =
   | null
   | undefined
   | boolean
@@ -32,7 +28,7 @@ export type Interpolation<MergedProps = undefined> =
   | ArrayInterpolation<MergedProps>
   | FunctionInterpolation<MergedProps>
 
-type ReactNativeTags =
+export type ReactNativeComponentNames =
   | 'ActivityIndicator'
   | 'ActivityIndicatorIOS'
   | 'Button'
@@ -73,9 +69,11 @@ type ReactNativeTags =
   | 'ViewPagerAndroid'
   | 'WebView'
 
-export type ReactNativeElements = {
-  [Tag in ReactNativeTags]: PropsOf<ReactNative[Tag]>
-}
+export type ReactNativeComponents = Pick<ReactNative, ReactNativeComponentNames>
+
+export type ReactNativeComponentProps<
+  ComponentName extends ReactNativeComponentNames
+> = ComponentPropsWithoutRef<ReactNativeComponents[ComponentName]>
 
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<
@@ -89,21 +87,26 @@ export interface StyledOptions<Props> {
   shouldForwardProp?(propName: PropertyKey): boolean
 }
 
+export interface StyledWithComponent<ComponentProps extends {}> {
+  withComponent<
+    Component extends ComponentType<ComponentPropsWithoutRef<Component>>
+  >(
+    component: Component
+  ): StyledComponent<ComponentProps & ComponentPropsWithoutRef<Component>>
+  withComponent<ComponentName extends ReactNativeComponentNames>(
+    component: ReactNativeComponents[ComponentName]
+  ): StyledComponent<ComponentProps, ReactNativeComponentProps<ComponentName>>
+}
+
 /**
  * @typeparam ComponentProps  Props which will be included when withComponent is called
  * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
  */
-export interface StyledComponent<
+export type StyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {}
-> extends React.FC<ComponentProps & SpecificComponentProps> {
-  withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
-    component: C
-  ): StyledComponent<ComponentProps & PropsOf<C>>
-  withComponent<Tag extends keyof ReactNativeElements>(
-    tag: Tag
-  ): StyledComponent<ComponentProps, ReactNativeElements[Tag]>
-}
+> = ComponentType<ComponentProps & SpecificComponentProps> &
+  StyledWithComponent<ComponentProps>
 
 /**
  * @typeparam ComponentProps  Props which will be included when withComponent is called
@@ -149,45 +152,58 @@ export interface CreateStyledComponent<
  */
 export interface CreateStyled<Theme extends {} = any> {
   <
-    C extends React.ComponentType<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<
-      C
-    > = keyof React.ComponentProps<C>
+    Component extends ComponentType<ComponentPropsWithoutRef<Component>>,
+    ForwardedProps extends keyof ComponentPropsWithoutRef<
+      Component
+    > = keyof ComponentPropsWithoutRef<Component>
   >(
-    component: C,
-    options: FilteringStyledOptions<PropsOf<C>, ForwardedProps>
+    component: Component,
+    options: FilteringStyledOptions<
+      ComponentPropsWithoutRef<Component>,
+      ForwardedProps
+    >
   ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & { theme?: Theme },
+    Pick<ComponentPropsWithoutRef<Component>, ForwardedProps> & {
+      theme?: Theme
+    },
     {},
     { theme: Theme }
   >
 
-  <C extends React.ComponentType<React.ComponentProps<C>>>(
-    component: C,
-    options?: StyledOptions<PropsOf<C>>
-  ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }, {}, { theme: Theme }>
-
-  <
-    Tag extends keyof ReactNativeElements,
-    ForwardedProps extends keyof ReactNativeElements[Tag] = keyof ReactNativeElements[Tag]
-  >(
-    tag: Tag,
-    options: FilteringStyledOptions<ReactNativeElements[Tag], ForwardedProps>
+  <Component extends ComponentType<ComponentPropsWithoutRef<Component>>>(
+    component: Component,
+    options?: StyledOptions<ComponentPropsWithoutRef<Component>>
   ): CreateStyledComponent<
-    { theme?: Theme },
-    Pick<ReactNativeElements[Tag], ForwardedProps>,
+    ComponentPropsWithoutRef<Component> & { theme?: Theme },
+    {},
     { theme: Theme }
   >
 
-  <Tag extends keyof ReactNativeElements>(
-    tag: Tag,
-    options?: StyledOptions<ReactNativeElements[Tag]>
+  <
+    ComponentName extends ReactNativeComponentNames,
+    ForwardedProps extends keyof ReactNativeComponentProps<
+      ComponentName
+    > = keyof ReactNativeComponentProps<ComponentName>
+  >(
+    component: ReactNativeComponents[ComponentName],
+    options: FilteringStyledOptions<
+      ReactNativeComponentProps<ComponentName>,
+      ForwardedProps
+    >
   ): CreateStyledComponent<
     { theme?: Theme },
-    ReactNativeElements[Tag],
+    Pick<ReactNativeComponentProps<ComponentName>, ForwardedProps>,
+    { theme: Theme }
+  >
+
+  <ComponentName extends ReactNativeComponentNames>(
+    component: ReactNativeComponents[ComponentName],
+    options?: StyledOptions<ReactNativeComponentProps<ComponentName>>
+  ): CreateStyledComponent<
+    { theme?: Theme },
+    ReactNativeComponentProps<ComponentName>,
     { theme: Theme }
   >
 }
 
-declare const styled: CreateStyled
-export default styled
+export const styled: CreateStyled

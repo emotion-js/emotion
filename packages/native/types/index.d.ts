@@ -6,17 +6,20 @@ import {
   CreateStyledComponent,
   Interpolation,
   ReactNativeStyle,
-  ReactNativeElements
+  ReactNativeComponentNames,
+  ReactNativeComponentProps,
+  ReactNativeComponents
 } from './base'
 
 export {
   ArrayInterpolation,
+  CreateStyledComponent,
   FunctionInterpolation,
   Interpolation,
   ObjectInterpolation,
+  ReactNativeStyle,
   StyledComponent,
-  StyledOptions,
-  CreateStyledComponent
+  StyledOptions
 } from './base'
 
 export function css(
@@ -25,17 +28,17 @@ export function css(
 ): ReactNativeStyle
 export function css(...args: Array<Interpolation>): ReactNativeStyle
 
-export type StyledTags<Theme extends {} = any> = {
-  [Tag in keyof ReactNativeElements]: CreateStyledComponent<
+export type StyledComponents<Theme extends {} = any> = {
+  [ComponentName in ReactNativeComponentNames]: CreateStyledComponent<
     { theme?: Theme },
-    ReactNativeElements[Tag],
+    ReactNativeComponentProps<ComponentName>,
     { theme: Theme }
   >
 }
 
 export interface CreateStyled<Theme extends {} = any>
   extends BaseCreateStyled<Theme>,
-    StyledTags<Theme> {}
+    StyledComponents<Theme> {}
 
 declare const styled: CreateStyled
 export default styled
