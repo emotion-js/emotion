@@ -2,32 +2,21 @@
 // TypeScript Version: 3.1
 
 import * as React from 'react'
-import { useTheme, ThemeProvider, withTheme } from '@emotion/core'
+import { useTheme, ThemeProvider, withTheme, Theme } from '@emotion/core'
 import { Interpolation, ObjectInterpolation } from '@emotion/styled/base'
 
-declare global {
-  namespace Emotion {
-    interface Theme {
-      primary: string
-      secondary: string
-    }
-  }
-}
-
-declare const theme: Emotion.Theme
+declare const theme: Theme
 
 interface Props {
   prop: boolean
 }
 declare const CompFC: React.FC<Props>
-declare class CompC extends React.Component<Props & { theme: Emotion.Theme }> {}
+declare class CompC extends React.Component<Props & { theme: Theme }> {}
 
 const WrappedCompC = withTheme(CompC)
 ;<ThemeProvider theme={theme}>{WrappedCompC}</ThemeProvider>
 ;<ThemeProvider theme={() => theme} />
-;<ThemeProvider
-  theme={(outerTheme: Emotion.Theme) => ({ ...outerTheme, ...theme })}
-/>
+;<ThemeProvider theme={(outerTheme: Theme) => ({ ...outerTheme, ...theme })} />
 
 const ThemedFC = withTheme(CompFC)
 ;<ThemedFC prop />
@@ -47,7 +36,7 @@ class CompCWithDefault extends React.Component<Props> {
 }
 
 {
-  const theme: Emotion.Theme = useTheme()
+  const theme: Theme = useTheme()
 }
 
 const ThemedFCWithDefault = withTheme(CompFCWithDefault)
@@ -87,7 +76,7 @@ const ThemedCompWithDefault = withTheme(CompCWithDefault)
 
 export type StyleDefinition = Interpolation
 export type ObjectStyleDefinition = ObjectInterpolation<{
-  theme: Emotion.Theme
+  theme: Theme
 }>
 
 const style: StyleDefinition = ({ theme }) => ({

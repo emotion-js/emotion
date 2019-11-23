@@ -2,7 +2,7 @@
 // TypeScript Version: 3.1
 
 import * as React from 'react'
-import '@emotion/core'
+import { Theme } from '@emotion/core'
 import { DistributiveOmit, PropsOf } from './helper'
 import {
   StyledComponent,
@@ -12,7 +12,7 @@ import {
 } from '@emotion/styled'
 
 export interface ThemeProviderProps {
-  theme: Partial<Emotion.Theme> | ((outerTheme: Emotion.Theme) => Emotion.Theme)
+  theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
   children?: React.ReactNode
 }
 
@@ -24,9 +24,9 @@ export type withTheme = <
   C extends React.ComponentType<React.ComponentProps<C>>
 >(
   component: C
-) => React.FC<DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Emotion.Theme }>
+) => React.FC<DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Theme }>
 
-export function useTheme(): Emotion.Theme
+export function useTheme(): Theme
 
 export const ThemeProvider: ThemeProvider
 

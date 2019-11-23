@@ -2,24 +2,24 @@
 import { ComponentClass } from 'react'
 import {
   ClassNames,
-  ClassNamesContent,
   Global,
   css,
   jsx,
   keyframes,
   withEmotionCache
 } from '@emotion/core'
-;<Global styles={[]} />
 
-declare global {
-  namespace Emotion {
-    interface Theme {
-      primaryColor: string
-      secondaryColor: string
-    }
+declare module '@emotion/core' {
+  // tslint:disable-next-line: strict-export-declare-modifiers
+  export interface Theme {
+    primary: string
+    secondary: string
+    primaryColor: string
+    secondaryColor: string
   }
 }
 
+;<Global styles={[]} />
 ;<Global styles={theme => [theme.primaryColor]} />
 
 declare const getRandomColor: () => string

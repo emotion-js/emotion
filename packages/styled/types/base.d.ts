@@ -14,7 +14,7 @@
 
 import * as React from 'react'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
-import { PropsOf, DistributiveOmit } from '@emotion/core'
+import { PropsOf, DistributiveOmit, Theme } from '@emotion/core'
 
 export {
   ArrayInterpolation,
@@ -76,7 +76,7 @@ export interface CreateStyledComponent<
         ComponentProps &
           SpecificComponentProps &
           StyleProps &
-          AdditionalProps & { theme: Emotion.Theme }
+          AdditionalProps & { theme: Theme }
       >
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
@@ -89,7 +89,7 @@ export interface CreateStyledComponent<
       Interpolation<
         ComponentProps &
           SpecificComponentProps &
-          AdditionalProps & { theme: Emotion.Theme }
+          AdditionalProps & { theme: Theme }
       >
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
@@ -114,19 +114,15 @@ export interface CreateStyled {
     component: C,
     options: FilteringStyledOptions<PropsOf<C>, ForwardedProps>
   ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & { theme?: Emotion.Theme },
+    Pick<PropsOf<C>, ForwardedProps> & { theme?: Theme },
     {},
-    { theme: Emotion.Theme }
+    { theme: Theme }
   >
 
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions<PropsOf<C>>
-  ): CreateStyledComponent<
-    PropsOf<C> & { theme?: Emotion.Theme },
-    {},
-    { theme: Emotion.Theme }
-  >
+  ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }, {}, { theme: Theme }>
 
   <
     Tag extends keyof JSX.IntrinsicElements,
@@ -135,18 +131,18 @@ export interface CreateStyled {
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>
   ): CreateStyledComponent<
-    { theme?: Emotion.Theme },
+    { theme?: Theme },
     Pick<JSX.IntrinsicElements[Tag], ForwardedProps>,
-    { theme: Emotion.Theme }
+    { theme: Theme }
   >
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions<JSX.IntrinsicElements[Tag]>
   ): CreateStyledComponent<
-    { theme?: Emotion.Theme },
+    { theme?: Theme },
     JSX.IntrinsicElements[Tag],
-    { theme: Emotion.Theme }
+    { theme: Theme }
   >
 }
 

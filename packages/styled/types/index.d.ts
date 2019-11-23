@@ -1,7 +1,7 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 3.2
 
-import '@emotion/core'
+import { Theme } from '@emotion/core'
 import { CreateStyled as BaseCreateStyled, CreateStyledComponent } from './base'
 
 export {
@@ -18,9 +18,9 @@ export {
 
 export type StyledTags = {
   [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
-    { theme?: Emotion.Theme },
+    { theme?: Theme },
     JSX.IntrinsicElements[Tag],
-    { theme: Emotion.Theme }
+    { theme: Theme }
   >
 }
 

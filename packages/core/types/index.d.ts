@@ -39,6 +39,9 @@ export {
 export * from './theming'
 export * from './helper'
 
+// tslint:disable-next-line: no-empty-interface
+export interface Theme {}
+
 export const ThemeContext: Context<object>
 export const CacheProvider: Provider<EmotionCache>
 export function withEmotionCache<Props, RefType = any>(
@@ -58,7 +61,7 @@ export type InterpolationWithTheme<Theme> =
   | ((theme: Theme) => Interpolation)
 
 export interface GlobalProps {
-  styles: Interpolation<Emotion.Theme>
+  styles: Interpolation<Theme>
 }
 
 /**
@@ -86,7 +89,7 @@ export interface ClassNamesContent {
   css(template: TemplateStringsArray, ...args: Array<Interpolation>): string
   css(...args: Array<Interpolation>): string
   cx(...args: Array<ClassNamesArg>): string
-  theme: Emotion.Theme
+  theme: Theme
 }
 export interface ClassNamesProps {
   children(content: ClassNamesContent): ReactNode
@@ -104,11 +107,6 @@ declare module 'react' {
 }
 
 declare global {
-  namespace Emotion {
-    // tslint:disable-next-line: no-empty-interface strict-export-declare-modifiers
-    export interface Theme {}
-  }
-
   namespace JSX {
     /**
      * Do we need to modify `LibraryManagedAttributes` too,

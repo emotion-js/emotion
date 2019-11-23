@@ -1,7 +1,7 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.8
 
-import '@emotion/core'
+import { Theme } from '@emotion/core'
 import { RegisteredCache, SerializedStyles } from '@emotion/utils'
 import * as CSS from 'csstype'
 
@@ -16,10 +16,10 @@ export type CSSPropertiesWithMultiValues = {
 /**
  * @desc Following type exists for autocompletion of key.
  */
-export type CSSPseudos<MP = { theme: Emotion.Theme }> = {
+export type CSSPseudos<MP = { theme: Theme }> = {
   [K in CSS.Pseudos]?: ObjectInterpolation<MP>
 }
-export interface CSSOthersObject<MP = { theme: Emotion.Theme }> {
+export interface CSSOthersObject<MP = { theme: Theme }> {
   [propertiesName: string]: Interpolation<MP>
 }
 
@@ -59,18 +59,18 @@ export type Keyframes = {
   toString: () => string
 } & string
 
-export interface ArrayInterpolation<MP = { theme: Emotion.Theme }>
+export interface ArrayInterpolation<MP = { theme: Theme }>
   extends Array<Interpolation<MP>> {}
-export interface ObjectInterpolation<MP = { theme: Emotion.Theme }>
+export interface ObjectInterpolation<MP = { theme: Theme }>
   extends CSSPropertiesWithMultiValues,
     CSSPseudos<MP>,
     CSSOthersObject<MP> {}
 
-export interface FunctionInterpolation<MergedProps = { theme: Emotion.Theme }> {
+export interface FunctionInterpolation<MergedProps = { theme: Theme }> {
   (mergedProps: MergedProps): Interpolation<MergedProps>
 }
 
-export type Interpolation<MergedProps = { theme: Emotion.Theme }> =
+export type Interpolation<MergedProps = { theme: Theme }> =
   | null
   | undefined
   | boolean
@@ -83,7 +83,7 @@ export type Interpolation<MergedProps = { theme: Emotion.Theme }> =
   | ObjectInterpolation<MergedProps>
   | FunctionInterpolation<MergedProps>
 
-export function serializeStyles<MP = { theme: Emotion.Theme }>(
+export function serializeStyles<MP = { theme: Theme }>(
   args: Array<TemplateStringsArray | Interpolation<MP>>,
   registered: RegisteredCache,
   mergedProps?: MP

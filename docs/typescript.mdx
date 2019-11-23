@@ -253,14 +253,12 @@ However, you can define a theme type by extending our type declarations via your
 _emotion.d.ts_
 
 ```typescript
-declare global {
-  namespace Emotion {
-    export interface Theme {
-      color: {
-        primary: string
-        positive: string
-        negative: string
-      }
+declare module '@emotion/core' {
+  export interface Theme {
+    color: {
+      primary: string
+      positive: string
+      negative: string
     }
   }
 }
@@ -268,10 +266,8 @@ declare global {
 // You are also able to use a 3rd party theme this way:
 import { MuiTheme } from 'material-ui'
 
-delcare global {
-  namespace Emotion {
-    export interface Theme extends MuiTheme {}
-  }
+declare module '@emotion/core' {
+  export interface Theme extends MuiTheme {}
 }
 ```
 

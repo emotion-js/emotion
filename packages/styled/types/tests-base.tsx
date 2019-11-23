@@ -2,15 +2,14 @@ import * as React from 'react'
 import styled from '@emotion/styled/base'
 import isPropValid from '@emotion/is-prop-valid'
 
-declare global {
-  namespace Emotion {
-    interface Theme {
-      primary: string
-      secondary: string
-      width: number
-      colors: { [key: string]: any }
-      backColor: string
-    }
+declare module '@emotion/core' {
+  // tslint:disable-next-line: strict-export-declare-modifiers
+  export interface Theme {
+    primary: string
+    secondary: string
+    width: number
+    colors: { [key: string]: any }
+    backColor: string
   }
 }
 
