@@ -249,8 +249,7 @@ export default function(babel: *) {
               state,
               babel,
               path,
-              cssImport: state.jsxCoreImport,
-              isArr: true
+              cssImport: state.jsxCoreImport
             })
           }
         }

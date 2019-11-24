@@ -74,9 +74,7 @@ const getBgColor = () => ({
   backgroundColor: '#fff'
 });
 
-export default (() => <Global styles={
-/*#__PURE__*/
-[\\"color:hotpink;\\", getBgColor(), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBsZXgtYXJyYXkuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBSzZCIiwiZmlsZSI6ImNvbXBsZXgtYXJyYXkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCB7IEdsb2JhbCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IGdldEJnQ29sb3IgPSAoKSA9PiAoeyBiYWNrZ3JvdW5kQ29sb3I6ICcjZmZmJyB9KVxuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiA8R2xvYmFsIHN0eWxlcz17W3sgY29sb3I6ICdob3RwaW5rJyB9LCBnZXRCZ0NvbG9yKCldfSAvPlxuIl19 */\\"]} />);"
+export default (() => <Global styles={[\\"color:hotpink;\\", getBgColor(), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBsZXgtYXJyYXkuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBSzZCIiwiZmlsZSI6ImNvbXBsZXgtYXJyYXkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCB7IEdsb2JhbCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IGdldEJnQ29sb3IgPSAoKSA9PiAoeyBiYWNrZ3JvdW5kQ29sb3I6ICcjZmZmJyB9KVxuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiA8R2xvYmFsIHN0eWxlcz17W3sgY29sb3I6ICdob3RwaW5rJyB9LCBnZXRCZ0NvbG9yKCldfSAvPlxuIl19 */\\"]} />);"
 `;
 
 exports[`emotion-babel-plugin Global complex-obj 1`] = `
