@@ -11,16 +11,22 @@ export default () => (
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css as _css } from \\"@emotion/core\\";
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
 import * as React from 'react';
 import { Global } from '@emotion/core';
-export default (() => <Global styles={
-/*#__PURE__*/
-_css([{
-  color: 'hotpink'
-}, {
-  backgroundColor: '#fff'
-}], process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhc2ljLWFycmF5LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUlVIiwiZmlsZSI6ImJhc2ljLWFycmF5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBHbG9iYWwgfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiAoXG4gIDxHbG9iYWwgc3R5bGVzPXtbeyBjb2xvcjogJ2hvdHBpbmsnIH0sIHsgYmFja2dyb3VuZENvbG9yOiAnI2ZmZicgfV19IC8+XG4pXG4iXX0= */\\")} />);"
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"9n87fw\\",
+  styles: \\"color:hotpink;background-color:#fff;\\"
+} : {
+  name: \\"9n87fw\\",
+  styles: \\"color:hotpink;background-color:#fff;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhc2ljLWFycmF5LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUlVIiwiZmlsZSI6ImJhc2ljLWFycmF5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBHbG9iYWwgfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiAoXG4gIDxHbG9iYWwgc3R5bGVzPXtbeyBjb2xvcjogJ2hvdHBpbmsnIH0sIHsgYmFja2dyb3VuZENvbG9yOiAnI2ZmZicgfV19IC8+XG4pXG4iXX0= */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+export default (() => <Global styles={_ref} />);"
 `;
 
 exports[`emotion-babel-plugin Global basic-obj 1`] = `
@@ -61,7 +67,6 @@ export default () => <Global styles={[{ color: 'hotpink' }, getBgColor()]} />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css as _css } from \\"@emotion/core\\";
 import * as React from 'react';
 import { Global } from '@emotion/core';
 
@@ -71,9 +76,7 @@ const getBgColor = () => ({
 
 export default (() => <Global styles={
 /*#__PURE__*/
-_css([{
-  color: 'hotpink'
-}, getBgColor()], process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBsZXgtYXJyYXkuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBSzZCIiwiZmlsZSI6ImNvbXBsZXgtYXJyYXkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCB7IEdsb2JhbCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IGdldEJnQ29sb3IgPSAoKSA9PiAoeyBiYWNrZ3JvdW5kQ29sb3I6ICcjZmZmJyB9KVxuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiA8R2xvYmFsIHN0eWxlcz17W3sgY29sb3I6ICdob3RwaW5rJyB9LCBnZXRCZ0NvbG9yKCldfSAvPlxuIl19 */\\")} />);"
+[\\"color:hotpink;\\", getBgColor(), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBsZXgtYXJyYXkuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBSzZCIiwiZmlsZSI6ImNvbXBsZXgtYXJyYXkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCB7IEdsb2JhbCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IGdldEJnQ29sb3IgPSAoKSA9PiAoeyBiYWNrZ3JvdW5kQ29sb3I6ICcjZmZmJyB9KVxuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiA8R2xvYmFsIHN0eWxlcz17W3sgY29sb3I6ICdob3RwaW5rJyB9LCBnZXRCZ0NvbG9yKCldfSAvPlxuIl19 */\\"]} />);"
 `;
 
 exports[`emotion-babel-plugin Global complex-obj 1`] = `

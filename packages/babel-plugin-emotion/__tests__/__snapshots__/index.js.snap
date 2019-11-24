@@ -58,6 +58,36 @@ const SomeComponent = props => <div css={
 css(\\"color:\\", window, \\";;label:SomeComponent;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jc3MtaW1wb3J0LWR5bmFtaWMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS1kiLCJmaWxlIjoiY29yZS13aXRoLWNzcy1pbXBvcnQtZHluYW1pYy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHsganN4LCBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jb25zdCBTb21lQ29tcG9uZW50ID0gcHJvcHMgPT4gKFxuICA8ZGl2XG4gICAgY3NzPXtjc3NgXG4gICAgICBjb2xvcjogJHt3aW5kb3d9O1xuICAgIGB9XG4gICAgey4uLnByb3BzfVxuICAvPlxuKVxuIl19 */\\"))} {...props} />;"
 `;
 
+exports[`babel-plugin-emotion css-prop-complex-array 1`] = `
+"/** @jsx jsx */
+import { jsx, Global } from '@emotion/core/macro'
+
+const css1 = theme => ({ backgroundColor: theme.bgColor })
+const css2 = theme => ({ padding: theme.spacing.small })
+
+function SomeComponent(props) {
+  return <div css={[css1, css2]}>{'Emotion'}</div>
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+/** @jsx jsx */
+import { jsx, Global } from \\"@emotion/core\\";
+
+const css1 = theme => ({
+  backgroundColor: theme.bgColor
+});
+
+const css2 = theme => ({
+  padding: theme.spacing.small
+});
+
+function SomeComponent(props) {
+  return <div css={[css1, css2, \\";label:SomeComponent;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1wcm9wLWNvbXBsZXgtYXJyYXkuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBT2MiLCJmaWxlIjoiY3NzLXByb3AtY29tcGxleC1hcnJheS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHsganN4LCBHbG9iYWwgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jb25zdCBjc3MxID0gdGhlbWUgPT4gKHsgYmFja2dyb3VuZENvbG9yOiB0aGVtZS5iZ0NvbG9yIH0pXG5jb25zdCBjc3MyID0gdGhlbWUgPT4gKHsgcGFkZGluZzogdGhlbWUuc3BhY2luZy5zbWFsbCB9KVxuXG5mdW5jdGlvbiBTb21lQ29tcG9uZW50KHByb3BzKSB7XG4gIHJldHVybiA8ZGl2IGNzcz17W2NzczEsIGNzczJdfT57J0Vtb3Rpb24nfTwvZGl2PlxufVxuIl19 */\\")]}>{'Emotion'}</div>;
+}"
+`;
+
 exports[`babel-plugin-emotion does-not-change-other-props 1`] = `
 "/** @jsx jsx */
 import { jsx } from '@emotion/core'

@@ -8,19 +8,17 @@ const Component = props => <div css={[{ color: 'green' }]} {...props} />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css as _css } from \\"@emotion/core\\";
-
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import * as React from 'react';
 import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+var _ref = {
+  name: \\"1vf7vy9-__fixtures__--array-css-prop--Component\\",
+  styles: \\"color:green;;label:__fixtures__--array-css-prop--Component;\\"
+};
 
 const Component = props => ___EmotionJSX(\\"div\\", _extends({
-  css:
-  /*#__PURE__*/
-  _css([{
-    color: 'green'
-  }], \\";label:__fixtures__--array-css-prop--Component;\\")
+  css: _ref
 }, props));"
 `;
 
