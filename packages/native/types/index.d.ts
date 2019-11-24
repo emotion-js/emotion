@@ -25,11 +25,16 @@ export {
   StyledOptions
 } from './base'
 
-export function css(
+export function css<StyleType extends ReactNativeStyle = ReactNativeStyle>(
   template: TemplateStringsArray,
   ...args: Array<Interpolation>
-): ReactNativeStyle
-export function css(...args: Array<Interpolation>): ReactNativeStyle
+): StyleType
+export function css<StyleType extends ReactNativeStyle = ReactNativeStyle>(
+  ...args: Array<StyleType>
+): StyleType
+export function css<StyleType extends ReactNativeStyle = ReactNativeStyle>(
+  ...args: Array<Interpolation>
+): StyleType
 
 export type StyledComponents<Theme extends {} = any> = {
   [ComponentName in ReactNativeComponentNames]: CreateStyledComponent<

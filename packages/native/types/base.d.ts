@@ -4,7 +4,8 @@
 import {
   ComponentPropsWithoutRef,
   ComponentType,
-  NamedExoticComponent
+  NamedExoticComponent,
+  PropsWithChildren
 } from 'react'
 import * as RN from 'react-native'
 
@@ -62,24 +63,28 @@ export type ReactNativeComponentProps<
 export type ReactNativeStyleType<Props> = Props extends {
   style?: RN.StyleProp<infer StyleType>
 }
-  ? StyleType
+  ? StyleType extends ReactNativeStyle ? StyleType : ReactNativeStyle
   : ReactNativeStyle
 
-export type ObjectInterpolation<StyleType = ReactNativeStyle> = StyleType
+export type ObjectInterpolation<
+  StyleType extends ReactNativeStyle = ReactNativeStyle
+> = StyleType
 
-export interface ArrayInterpolation<MergedProps, StyleType = ReactNativeStyle>
-  extends Array<Interpolation<MergedProps, StyleType>> {}
+export interface ArrayInterpolation<
+  MergedProps,
+  StyleType extends ReactNativeStyle = ReactNativeStyle
+> extends Array<Interpolation<MergedProps, StyleType>> {}
 
 export interface FunctionInterpolation<
   MergedProps,
-  StyleType = ReactNativeStyle
+  StyleType extends ReactNativeStyle = ReactNativeStyle
 > {
   (mergedProps: MergedProps): Interpolation<MergedProps, StyleType>
 }
 
 export type Interpolation<
   MergedProps = unknown,
-  StyleType = ReactNativeStyle
+  StyleType extends ReactNativeStyle = ReactNativeStyle
 > =
   | null
   | undefined
@@ -120,7 +125,9 @@ export interface StyledWithComponent<ComponentProps extends {}> {
 export type StyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {}
-> = NamedExoticComponent<ComponentProps & SpecificComponentProps> &
+> = NamedExoticComponent<
+  PropsWithChildren<ComponentProps & SpecificComponentProps>
+> &
   StyledWithComponent<ComponentProps>
 
 /**
@@ -132,7 +139,7 @@ export interface CreateStyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {},
   StyleProps extends {} = {},
-  StyleType = ReactNativeStyle
+  StyleType extends ReactNativeStyle = ReactNativeStyle
 > {
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component

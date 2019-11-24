@@ -1,5 +1,12 @@
 import * as React from 'react'
-import { ImageStyle, StyleProp, TextStyle, View } from 'react-native'
+import {
+  FlexStyle,
+  ImageStyle,
+  ScrollView,
+  StyleProp,
+  TextStyle,
+  View
+} from 'react-native'
 import styled, { CreateStyled, css, ReactNativeStyle } from '@emotion/native'
 
 const cssObject = {
@@ -117,3 +124,27 @@ styled(MyComponent)({ width: 100 })
 styled(MyComponent)(({ bar }) => ({ color: bar }))
 styled(View)({ width: 100 })
 styled(View)<ExtraProps>(({ foo, testID }) => ({ color: foo, testID }))
+
+const styles = {
+  container: css({ flex: 1 }),
+  scrollContainer: css`
+    flex-grow: 1;
+    align-items: center;
+  `,
+  centered: css<FlexStyle>`
+    justify-content: center;
+    align-items: center;
+  `
+}
+
+export const scrollElem = (
+  <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <View />
+  </ScrollView>
+)
+export const Container = styled.View(styles.container)
+export const CenterContainer = styled.View(styles.container, styles.centered)
+export const ImageFullWidthContained = styled.Image`
+  ${styles.container} width: 100%;
+  resize-mode: contain;
+`

@@ -18,6 +18,7 @@
       "check-preblock"
     ],
     "no-null-undefined-union": false,
+    "no-unnecessary-generics": false,
     "strict-export-declare-modifiers": false
   }
 }
