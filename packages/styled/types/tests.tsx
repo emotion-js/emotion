@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from '@emotion/styled'
 
+// This file uses the same Theme declaration from tests-base.tsx
+
 // $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, { theme: Theme; }>
 styled.a
 // $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>, { theme: Theme; }>
