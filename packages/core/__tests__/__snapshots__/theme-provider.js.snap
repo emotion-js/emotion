@@ -4,11 +4,23 @@ exports[`ThemeProvider throws the correct errors array 1`] = `"[ThemeProvider] P
 
 exports[`ThemeProvider throws the correct errors boolean 1`] = `"[ThemeProvider] Please make your theme prop a plain object"`;
 
-exports[`ThemeProvider throws the correct errors func to undefined 1`] = `"[ThemeProvider] Please return an object from your theme function, i.e. theme={() => ({})}!"`;
+exports[`ThemeProvider throws the correct errors func to undefined 1`] = `"[ThemeProvider] Please return an object from your theme function, e.g. theme={() => ({})}!"`;
 
 exports[`ThemeProvider throws the correct errors null 1`] = `"[ThemeProvider] Please make your theme prop a plain object"`;
 
 exports[`ThemeProvider throws the correct errors undefined 1`] = `"[ThemeProvider] Please make your theme prop a plain object"`;
+
+exports[`basic 1`] = `
+.emotion-0 {
+  color: hotpink;
+  padding: 4px;
+  background-color: darkgreen;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
 
 exports[`nested provider 1`] = `
 .emotion-0 {
@@ -26,6 +38,18 @@ exports[`nested provider with function 1`] = `
 .emotion-0 {
   color: hotpink;
   padding: 8px;
+  background-color: darkgreen;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`with custom context 1`] = `
+.emotion-0 {
+  color: hotpink;
+  padding: 4px;
   background-color: darkgreen;
 }
 

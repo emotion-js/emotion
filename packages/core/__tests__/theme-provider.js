@@ -1,10 +1,30 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
+import * as React from 'react'
 import { ignoreConsoleErrors } from 'test-utils'
 import { jsx, ThemeProvider } from '@emotion/core'
 import renderer from 'react-test-renderer'
 import cases from 'jest-in-case'
+
+test('basic', () => {
+  const tree = renderer
+    .create(
+      <ThemeProvider
+        theme={{ color: 'hotpink', backgroundColor: 'darkgreen', padding: 4 }}
+      >
+        <div
+          css={({ color, padding, backgroundColor }) => ({
+            color,
+            padding,
+            backgroundColor
+          })}
+        />
+      </ThemeProvider>
+    )
+    .toJSON()
+  expect(tree).toMatchSnapshot()
+})
 
 test('nested provider', () => {
   const tree = renderer
@@ -44,6 +64,33 @@ test('nested provider with function', () => {
             })}
           />
         </ThemeProvider>
+      </ThemeProvider>
+    )
+    .toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('with custom context', () => {
+  const CustomTheme = React.createContext({
+    color: 'hotpink',
+    backgroundColor: 'darkgreen',
+    padding: 4
+  })
+  const tree = renderer
+    .create(
+      <ThemeProvider context={CustomTheme}>
+        <div
+          css={() => {
+            const { color, padding, backgroundColor } = React.useContext(
+              CustomTheme
+            )
+            return {
+              color,
+              padding,
+              backgroundColor
+            }
+          }}
+        />
       </ThemeProvider>
     )
     .toJSON()
