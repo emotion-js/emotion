@@ -91,19 +91,11 @@ export class StyleSheet {
       let tag = createStyleElement(this)
       let before
       if (this.tags.length === 0) {
-        before = this.before
+        before = this.prepend ? this.container.firstChild : this.before
       } else {
         before = this.tags[this.tags.length - 1].nextSibling
       }
-      if (this.prepend) {
-        if (before) {
-          this.container.insertBefore(tag, before)
-        } else {
-          this.container.insertBefore(tag, this.container.firstChild)
-        }
-      } else {
-        this.container.insertBefore(tag, before)
-      }
+      this.container.insertBefore(tag, before)
       this.tags.push(tag)
     }
     const tag = this.tags[this.tags.length - 1]
