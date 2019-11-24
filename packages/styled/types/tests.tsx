@@ -25,7 +25,11 @@ const StyledDiv = styled.div({})
 ;<StyledDiv ref={React.createRef()} />
 
 // Can override theme optionally on prop
-// TODO: Fix types for this usage
+;<StyledDiv
+  theme={{ primary: '', secondary: '', backColor: '', width: 0, colors: {} }}
+/>
+
+// Cannot override with incomplete theme on prop
 // $ExpectError
 ;<StyledDiv theme={{ primary: '' }} />
 
