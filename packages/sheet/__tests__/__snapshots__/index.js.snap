@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`StyleSheet should accept prepend option 1`] = `
+<html>
+  <head>
+    <style
+      data-emotion=""
+    >
+      
+      html { color: hotpink; }
+    </style>
+    <style
+      data-emotion=""
+    >
+      
+      * { box-sizing: border-box; }
+    </style>
+    <style
+      id="other"
+    />
+  </head>
+  <body />
+</html>
+`;
+
 exports[`StyleSheet should insert a rule into the DOM when not in speedy 1`] = `
 <html>
   <head>
