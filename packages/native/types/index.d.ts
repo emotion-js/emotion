@@ -1,6 +1,8 @@
 // Definitions by: Pat Sissons <https://github.com/patsissons>
 // TypeScript Version: 3.4
 
+import '@emotion/core'
+
 import {
   CreateStyled as BaseCreateStyled,
   CreateStyledComponent,
@@ -8,7 +10,8 @@ import {
   ReactNativeStyle,
   ReactNativeComponentNames,
   ReactNativeComponentProps,
-  ReactNativeComponents
+  ReactNativeComponents,
+  ReactNativeStyleType
 } from './base'
 
 export {
@@ -32,7 +35,8 @@ export type StyledComponents<Theme extends {} = any> = {
   [ComponentName in ReactNativeComponentNames]: CreateStyledComponent<
     { theme?: Theme },
     ReactNativeComponentProps<ComponentName>,
-    { theme: Theme }
+    { theme: Theme },
+    ReactNativeStyleType<ReactNativeComponentProps<ComponentName>>
   >
 }
 

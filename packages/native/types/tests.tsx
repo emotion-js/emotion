@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View } from 'react-native'
+import { ImageStyle, StyleProp, TextStyle, View } from 'react-native'
 import styled, { CreateStyled, css, ReactNativeStyle } from '@emotion/native'
 
 const cssObject = {
@@ -58,6 +58,30 @@ export const ThemedView = (styled as CreateStyled<Theme>).View<AdditionalProps>`
   bar}
 `
 
+const largeTextStyle: TextStyle = {
+  fontSize: 24
+}
+
+const stretchImageStyle: ImageStyle = {
+  resizeMode: 'stretch'
+}
+
+// for some reason, TypeScript is not complaining about the incorrect interpolated type
+styled.Text(largeTextStyle, stretchImageStyle)
+export const LargeText = styled.Text`
+  ${largeTextStyle}
+  // ${stretchImageStyle}
+`
+
+styled.Image(
+  stretchImageStyle
+  // this style will not align with the ImageStyle typing requirement
+  // largeTextStyle
+)
+export const StretchedImage = styled.Image`
+  ${stretchImageStyle};
+`
+
 export const ComposedView = styled.View`
   ${className} ${className2}
   background-color: white;
@@ -67,6 +91,12 @@ export const NestedComposedView = styled.View(css`
   ${className} ${className2}
   background-color: white;
 `)
+
+function MyStyledComponent(_props: { style?: StyleProp<ImageStyle> }) {
+  return null
+}
+
+styled(MyStyledComponent)(stretchImageStyle)
 
 const theme: Theme = {
   color: {

@@ -1,32 +1,16 @@
 // Definitions by: Pat Sissons <https://github.com/patsissons>
 // TypeScript Version: 3.4
 
-import { ComponentPropsWithoutRef, ComponentType } from 'react'
+import {
+  ComponentPropsWithoutRef,
+  ComponentType,
+  NamedExoticComponent
+} from 'react'
 import * as RN from 'react-native'
 
 type ReactNative = typeof RN
 
-export type ReactNativeStyle = ReturnType<ReactNative['StyleSheet']['flatten']>
-
-export interface ArrayInterpolation<MergedProps>
-  extends Array<Interpolation<MergedProps>> {}
-
-export type ObjectInterpolation = RN.ViewStyle | RN.TextStyle | RN.ImageStyle
-
-export interface FunctionInterpolation<MergedProps> {
-  (mergedProps: MergedProps): Interpolation<MergedProps>
-}
-
-export type Interpolation<MergedProps = unknown> =
-  | null
-  | undefined
-  | boolean
-  | number
-  | string
-  | ReactNativeStyle
-  | ObjectInterpolation
-  | ArrayInterpolation<MergedProps>
-  | FunctionInterpolation<MergedProps>
+export type ReactNativeStyle = RN.ViewStyle | RN.TextStyle | RN.ImageStyle
 
 export type ReactNativeComponentNames =
   | 'ActivityIndicator'
@@ -75,6 +59,37 @@ export type ReactNativeComponentProps<
   ComponentName extends ReactNativeComponentNames
 > = ComponentPropsWithoutRef<ReactNativeComponents[ComponentName]>
 
+export type ReactNativeStyleType<Props> = Props extends {
+  style?: RN.StyleProp<infer StyleType>
+}
+  ? StyleType
+  : ReactNativeStyle
+
+export type ObjectInterpolation<StyleType = ReactNativeStyle> = StyleType
+
+export interface ArrayInterpolation<MergedProps, StyleType = ReactNativeStyle>
+  extends Array<Interpolation<MergedProps, StyleType>> {}
+
+export interface FunctionInterpolation<
+  MergedProps,
+  StyleType = ReactNativeStyle
+> {
+  (mergedProps: MergedProps): Interpolation<MergedProps, StyleType>
+}
+
+export type Interpolation<
+  MergedProps = unknown,
+  StyleType = ReactNativeStyle
+> =
+  | null
+  | undefined
+  | boolean
+  | number
+  | string
+  | ObjectInterpolation<StyleType>
+  | ArrayInterpolation<MergedProps, StyleType>
+  | FunctionInterpolation<MergedProps, StyleType>
+
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<
   Props,
@@ -105,7 +120,7 @@ export interface StyledWithComponent<ComponentProps extends {}> {
 export type StyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {}
-> = ComponentType<ComponentProps & SpecificComponentProps> &
+> = NamedExoticComponent<ComponentProps & SpecificComponentProps> &
   StyledWithComponent<ComponentProps>
 
 /**
@@ -116,16 +131,16 @@ export type StyledComponent<
 export interface CreateStyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {},
-  StyleProps extends {} = {}
+  StyleProps extends {} = {},
+  StyleType = ReactNativeStyle
 > {
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
   <AdditionalProps extends {} = {}>(
-    ...styles: Array<
-      Interpolation<
-        ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps
-      >
+    ...styles: ArrayInterpolation<
+      ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps,
+      StyleType
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
   /**
@@ -133,10 +148,9 @@ export interface CreateStyledComponent<
    */
   <AdditionalProps extends {} = {}>(
     template: TemplateStringsArray,
-    ...styles: Array<
-      Interpolation<
-        ComponentProps & SpecificComponentProps & AdditionalProps & StyleProps
-      >
+    ...styles: ArrayInterpolation<
+      ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps,
+      StyleType
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
 }
@@ -167,7 +181,8 @@ export interface CreateStyled<Theme extends {} = any> {
       theme?: Theme
     },
     {},
-    { theme: Theme }
+    { theme: Theme },
+    ReactNativeStyleType<ComponentPropsWithoutRef<Component>>
   >
 
   <Component extends ComponentType<ComponentPropsWithoutRef<Component>>>(
@@ -176,7 +191,8 @@ export interface CreateStyled<Theme extends {} = any> {
   ): CreateStyledComponent<
     ComponentPropsWithoutRef<Component> & { theme?: Theme },
     {},
-    { theme: Theme }
+    { theme: Theme },
+    ReactNativeStyleType<ComponentPropsWithoutRef<Component>>
   >
 
   <
@@ -193,7 +209,8 @@ export interface CreateStyled<Theme extends {} = any> {
   ): CreateStyledComponent<
     { theme?: Theme },
     Pick<ReactNativeComponentProps<ComponentName>, ForwardedProps>,
-    { theme: Theme }
+    { theme: Theme },
+    ReactNativeStyleType<ReactNativeComponentProps<ComponentName>>
   >
 
   <ComponentName extends ReactNativeComponentNames>(
@@ -202,7 +219,8 @@ export interface CreateStyled<Theme extends {} = any> {
   ): CreateStyledComponent<
     { theme?: Theme },
     ReactNativeComponentProps<ComponentName>,
-    { theme: Theme }
+    { theme: Theme },
+    ReactNativeStyleType<ReactNativeComponentProps<ComponentName>>
   >
 }
 
