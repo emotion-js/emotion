@@ -13,7 +13,7 @@
 ![core gzip size](https://img.shields.io/bundlephobia/minzip/emotion.svg?label=core%20gzip%20size)
 ![react size](https://img.shields.io/bundlephobia/min/@emotion/styled-base.svg?label=react%20size)
 ![react gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/styled-base.svg?label=react%20gzip%20size)
-[![slack](https://emotion.now.sh/badge.svg)](http://emotion.now.sh/)
+[![slack](https://emotion-slack.now.sh/badge.svg)](https://emotion-slack.now.sh/)
 [![spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/emotion)
 
 Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
@@ -72,7 +72,6 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
 - [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
 - [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
-- [govuk-react](https://github.com/penx/govuk-react/), a React component library built for UK Government departments
 - **open a PR and add yours!**
 
 ### Ecosystem
@@ -80,18 +79,22 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [stylelint](https://github.com/stylelint/stylelint) - A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
 - [facepaint](https://github.com/emotion-js/facepaint)
 - [emotion-vue](https://github.com/egoist/emotion-vue)
+- [nuxt-community/emotion-module](https://github.com/nuxt-community/emotion-module) - Emotion module for Nuxt.js
 - [ember-emotion](https://github.com/alexlafroscia/ember-emotion)
 - [CSS to emotion transform](https://transform.now.sh/css-to-emotion/)
 - [ShevyJS](https://github.com/kyleshevlin/shevyjs)
 - [design-system-utils](https://github.com/mrmartineau/design-system-utils) - Utilities to give better access to your design system.
 - [polished](https://github.com/styled-components/polished) - Lightweight set of Sass/Compass-style mixins/helpers for writing styles in JavaScript.
+- [monad-ui](https://github.com/muhajirdev/monad-ui/) - Utility First CSS-In-JS
+- [css-in-js-media](https://github.com/zx6658/css-in-js-media) - you can deal with responsive design using css-in-js easily with this `css-in-js-media` which is similar with include-media
 
 ### In the Wild
 
+- [abacusfi.com](https://abacusfi.com)
 - [healthline.com](https://www.healthline.com)
 - [nytimes.com](https://www.nytimes.com)
 - [vault.crucible.gg](http://vault.crucible.gg/)
-- [saldotuc.com](https://saldotuc.com)
+- [render.com](https://render.com)
 - [gatsbythemes.com](https://gatsbythemes.com/)
 - [blazity.com](https://blazity.com/)
 - [postmates.com](https://postmates.com/)

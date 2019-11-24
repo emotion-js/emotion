@@ -1,13 +1,17 @@
 // @flow
 import styled from '@emotion/styled'
-import { constants, mq } from '../utils/style'
+import { constants, mq, colors } from '../utils/style'
+import * as markdownComponents from '../utils/markdown-styles'
 
-export default styled.h1(
+type Props = {
+  children: React$Node
+}
+export default styled<Props>(markdownComponents.h1)(
   mq({
-    fontSize: [constants.fontSizes[5], constants.fontSizes[6]],
-    fontWeight: 500,
+    paddingTop: 0,
     marginTop: 0,
-    color: '#fb84bf',
-    marginBottom: constants.space[1]
+    marginBottom: constants.space[2],
+    fontWeight: 700,
+    color: [colors.hightlight, colors.hightlight, colors.color]
   })
 )

@@ -6,3 +6,5 @@ module.exports = Object.assign({}, baseConfig, {
     'babel-plugin-emotion'
   )
 })
+
+delete module.exports.moduleNameMapper

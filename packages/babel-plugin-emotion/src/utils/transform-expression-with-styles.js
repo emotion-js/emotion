@@ -5,7 +5,11 @@ import { getExpressionsFromTemplateLiteral } from './minify'
 import { getLabelFromPath } from './label'
 import { getSourceMap } from './source-maps'
 import { simplifyObject } from './object-to-string'
-import { appendStringToExpressions, joinStringLiterals } from './strings'
+import { appendStringToArguments, joinStringLiterals } from './strings'
+import { isTaggedTemplateExpressionTranspiledByTypeScript } from './checks'
+
+const CSS_OBJECT_STRINGIFIED_ERROR =
+  "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
 
 function createSourceMapConditional(t, production, development) {
   return t.conditionalExpression(
@@ -45,9 +49,15 @@ export let transformExpressionWithStyles = ({
   }
 
   if (t.isCallExpression(path)) {
-    const label = getLabelFromPath(path, state, t)
-    if (label && shouldLabel) {
-      appendStringToExpressions(path.node.arguments, `label:${label};`, t)
+    const canAppendStrings = path.node.arguments.every(
+      arg => arg.type !== 'SpreadElement'
+    )
+
+    if (canAppendStrings && shouldLabel) {
+      const label = getLabelFromPath(path, state, t)
+      if (label) {
+        appendStringToArguments(path, `;label:${label};`, t)
+      }
     }
 
     let isPure = true
@@ -63,7 +73,12 @@ export let transformExpressionWithStyles = ({
 
     path.node.arguments = joinStringLiterals(path.node.arguments, t)
 
-    if (state.emotionSourceMap && !sourceMap && path.node.loc !== undefined) {
+    if (
+      canAppendStrings &&
+      state.emotionSourceMap &&
+      !sourceMap &&
+      path.node.loc !== undefined
+    ) {
       sourceMap = getSourceMap(path.node.loc.start, state)
     }
 
@@ -79,10 +94,29 @@ export let transformExpressionWithStyles = ({
       ])
       let node = prodNode
       if (sourceMap) {
+        if (!state.emotionStringifiedCssId) {
+          const uid = state.file.scope.generateUidIdentifier(
+            '__EMOTION_STRINGIFIED_CSS_ERROR__'
+          )
+          state.emotionStringifiedCssId = uid
+          const cssObjectToString = t.functionDeclaration(
+            uid,
+            [],
+            t.blockStatement([
+              t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR))
+            ])
+          )
+          cssObjectToString._compact = true
+          state.file.path.unshiftContainer('body', [cssObjectToString])
+        }
         let devNode = t.objectExpression([
           t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
           t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles)),
-          t.objectProperty(t.identifier('map'), t.stringLiteral(sourceMap))
+          t.objectProperty(t.identifier('map'), t.stringLiteral(sourceMap)),
+          t.objectProperty(
+            t.identifier('toString'),
+            t.cloneNode(state.emotionStringifiedCssId)
+          )
         ])
         node = createSourceMapConditional(t, prodNode, devNode)
       }
@@ -103,6 +137,23 @@ export let transformExpressionWithStyles = ({
           last,
           sourceMapConditional
         )
+      } else if (isTaggedTemplateExpressionTranspiledByTypeScript(path)) {
+        const makeTemplateObjectCallPath = path
+          .get('arguments')[0]
+          .get('right')
+          .get('right')
+
+        makeTemplateObjectCallPath.get('arguments').forEach(argPath => {
+          const elements = argPath.get('elements')
+          const lastElement = elements[elements.length - 1]
+          lastElement.replaceWith(
+            t.binaryExpression(
+              '+',
+              lastElement.node,
+              t.cloneNode(sourceMapConditional)
+            )
+          )
+        })
       } else {
         path.node.arguments.push(sourceMapConditional)
       }

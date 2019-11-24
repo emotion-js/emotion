@@ -8,6 +8,8 @@ const forwardableProps = {
   accessibilityElementsHidden: true,
   accessibilityLabel: true,
   accessibilityLiveRegion: true,
+  accessibilityRole: true,
+  accessibilityStates: true,
   accessibilityTraits: true,
   accessibilityViewIsModal: true,
   accessible: true,
@@ -58,5 +60,5 @@ export function testPickPropsOnPrimitiveComponent(prop: string) {
 }
 
 export function testPickPropsOnOtherComponent(prop: string) {
-  return prop !== 'theme' && prop !== 'innerRef'
+  return prop !== 'theme'
 }

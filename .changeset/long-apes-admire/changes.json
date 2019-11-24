@@ -1,0 +1,31 @@
+{
+  "releases": [
+    { "name": "@emotion/css", "type": "major" },
+    { "name": "emotion-theming", "type": "major" },
+    { "name": "@emotion/serialize", "type": "major" },
+    { "name": "@emotion/styled-base", "type": "major" },
+    { "name": "@emotion/styled", "type": "major" }
+  ],
+  "dependents": [
+    {
+      "name": "babel-plugin-emotion",
+      "type": "patch",
+      "dependencies": ["@emotion/serialize"]
+    },
+    {
+      "name": "@emotion/core",
+      "type": "patch",
+      "dependencies": [
+        "@emotion/css",
+        "emotion-theming",
+        "@emotion/serialize",
+        "@emotion/styled"
+      ]
+    },
+    {
+      "name": "create-emotion",
+      "type": "patch",
+      "dependencies": ["@emotion/serialize"]
+    }
+  ]
+}

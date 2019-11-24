@@ -125,7 +125,7 @@ exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
 </Text>
 `;
 
-exports[`Emotion native styled should work with emotion-theming 1`] = `
+exports[`Emotion native styled should work with theming from @emotion/core 1`] = `
 <Text
   style={
     Object {

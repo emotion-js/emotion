@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nested useTheme works 1`] = `
+.emotion-1 {
+  color: green;
+}
+
+.emotion-1:hover {
+  color: darkgreen;
+}
+
+.emotion-0 {
+  color: lawngreen;
+}
+
+.emotion-0:hover {
+  color: seagreen;
+}
+
+<div
+  className="emotion-1"
+>
+  Should be green
+  <div
+    className="emotion-0"
+  >
+    Should be lawngreen
+  </div>
+</div>
+`;
+
+exports[`useTheme works 1`] = `
+.emotion-0 {
+  color: green;
+}
+
+.emotion-0:hover {
+  color: darkgreen;
+}
+
+<div
+  className="emotion-0"
+>
+  Should be green
+</div>
+`;

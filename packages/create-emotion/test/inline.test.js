@@ -2,8 +2,6 @@
  * @jest-environment node
  * @flow
  */
-import React from 'react'
-import { renderToString } from 'react-dom/server'
 import {
   getComponents,
   getInjectedRules,
@@ -13,17 +11,24 @@ import {
 } from '../../emotion-server/test/util'
 import { JSDOM } from 'jsdom'
 
+let React
+let renderToString
 let emotion
 let emotionServer
 let reactEmotion
 
+const resetAllModules = () => {
+  jest.resetModules()
+  React = require('react')
+  renderToString = require('react-dom/server').renderToString
+  emotion = require('./emotion-instance')
+  emotionServer = require('./emotion-instance')
+  reactEmotion = require('./emotion-instance')
+}
+
 describe('renderStylesToString', () => {
-  beforeEach(() => {
-    jest.resetModules()
-    emotion = require('./emotion-instance')
-    emotionServer = require('./emotion-instance')
-    reactEmotion = require('./emotion-instance')
-  })
+  beforeEach(resetAllModules)
+
   test('renders styles with ids', () => {
     const { Page1, Page2 } = getComponents(emotion, reactEmotion)
     expect(
@@ -43,16 +48,13 @@ describe('renderStylesToString', () => {
   })
 })
 describe('hydration', () => {
+  beforeEach(resetAllModules)
+
   afterAll(() => {
     global.document = undefined
     global.window = undefined
   })
-  beforeEach(() => {
-    jest.resetModules()
-    emotion = require('./emotion-instance')
-    emotionServer = require('./emotion-instance')
-    reactEmotion = require('./emotion-instance')
-  })
+
   test('only inserts rules that are not in the critical css', () => {
     const { Page1 } = getComponents(emotion, reactEmotion)
     const html = emotionServer.renderStylesToString(renderToString(<Page1 />))
@@ -61,10 +63,8 @@ describe('hydration', () => {
     global.document = window.document
     global.window = window
     setHtml(html, document)
-    jest.resetModules()
-    emotion = require('./emotion-instance')
-    emotionServer = require('./emotion-instance')
-    reactEmotion = require('./emotion-instance')
+
+    resetAllModules()
 
     expect(emotion.cache.registered).toEqual({})
 

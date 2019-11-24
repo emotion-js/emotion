@@ -1,7 +1,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import styled from '@emotion/styled'
-import * as renderer from 'test-utils/compat-render-json'
+import * as renderer from 'react-test-renderer'
 
 test('component as selector', () => {
   const fontSize = '20px'

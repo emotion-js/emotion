@@ -26,7 +26,7 @@ This package also depends on `react`, `react-primitives` and `prop-types` so mak
 import React from 'react'
 import styled, { css } from '@emotion/primitives'
 
-import { ThemeProvider } from 'emotion-theming'
+import { ThemeProvider } from '@emotion/core'
 
 const theme = {
   color: 'hotpink',
@@ -83,23 +83,23 @@ class App extends React.Component {
 
 ## Supported primitives
 
-* **Text**
+- **Text**
 
-* **View**
+- **View**
 
-* **Image**
+- **Image**
 
 ## Usage with `react-sketchapp`
 
 ### Installing dependencies
 
-* [`react-sketchapp`](https://github.com/airbnb/react-sketchapp)
+- [`react-sketchapp`](https://github.com/airbnb/react-sketchapp)
 
 ```
 yarn add react-sketchapp
 ```
 
-* `skpm` for building and publishing sketch plugins. This is required to render the components and build them to Sketch environment.
+- `skpm` for building and publishing sketch plugins. This is required to render the components and build them to Sketch environment.
 
 ```
 yarn add @skpm/builder --dev
@@ -109,7 +109,7 @@ yarn add @skpm/builder --dev
 
 Once you've installed `skpm`,
 
-* create a new field `skpm` in `package.json`
+- create a new field `skpm` in `package.json`
 
 ```json
  "skpm": {
@@ -118,7 +118,7 @@ Once you've installed `skpm`,
 },
 ```
 
-* Create `manifest.json` file with following content -
+- Create `manifest.json` file with following content -
 
 ```json
 {
@@ -138,7 +138,7 @@ Once you've installed `skpm`,
 }
 ```
 
-* add this to your `scripts` section of your `package.json`
+- add this to your `scripts` section of your `package.json`
 
 ```json
 scripts: {

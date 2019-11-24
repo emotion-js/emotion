@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Emotion primitives custom shouldForwardProp works 1`] = `
+<Text
+  style={
+    Object {
+      "color": "hotpink",
+    }
+  }
+>
+  Emotion
+</Text>
+`;
+
 exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
 <Text
   style={
@@ -108,7 +120,7 @@ exports[`Emotion primitives should style any other component 1`] = `
 </Text>
 `;
 
-exports[`Emotion primitives should unmount with emotion-theming 1`] = `
+exports[`Emotion primitives should unmount with theming 1`] = `
 <div>
   <p
     id="something"
@@ -132,7 +144,7 @@ exports[`Emotion primitives should work with StyleSheet.create API 1`] = `
 </Text>
 `;
 
-exports[`Emotion primitives should work with emotion-theming 1`] = `
+exports[`Emotion primitives should work with theming from @emotion/core 1`] = `
 <Text
   style={
     Object {

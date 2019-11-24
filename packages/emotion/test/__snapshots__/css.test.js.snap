@@ -176,7 +176,7 @@ exports[`css explicit & 1`] = `
 `;
 
 exports[`css explicit & 2`] = `
-".css-1iccnl4-cls1.another-class {
+".css-5v9d41-cls1.another-class {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -238,7 +238,7 @@ exports[`css flushes correctly 1`] = `
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-15gpprc-cls1"
+  className="css-fnfowi-cls1"
 />
 `;
 
@@ -303,20 +303,20 @@ exports[`css manually use label property 1`] = `
 `;
 
 exports[`css manually use label property 2`] = `
-".css-3uek40-wow-cls1 {
+".css-17sz4tf-wow-cls1 {
   color: hotpink;
 }"
 `;
 
 exports[`css media query specificity 1`] = `
-".css-eeq86y-cls {
+".css-13ug87i-cls {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
 
 @media (min-width:420px) {
-  .css-eeq86y-cls {
+  .css-13ug87i-cls {
     width: 96px;
     height: 96px;
   }

@@ -1,0 +1,257 @@
+---
+title: 'Server Side Rendering'
+---
+
+Server side rendering in Emotion 10 has two approaches, each with their own trade-offs. The default approach works with streaming and requires no additional configuration, but does not work with nth child or similar selectors. It's strongly recommended that you use the default approach unless you need nth child or similar selectors.
+
+## Default Approach
+
+Server side rendering works out of the box in Emotion 10 and above if you're only using `@emotion/core` and `@emotion/styled`. This means you can call React's [`renderToString`](https://reactjs.org/docs/react-dom-server.html#rendertostring) or [`renderToNodeStream`](https://reactjs.org/docs/react-dom-server.html#rendertonodestream) methods directly without any extra configuration.
+
+```jsx
+import { renderToString } from 'react-dom/server'
+import App from './App'
+
+let html = renderToString(<App />)
+```
+
+The rendered output will insert a `<style>` tag above each element with styles for example
+
+```jsx
+const MyDiv = styled('div')({ fontSize: 12 })
+<MyDiv>Text</MyDiv>
+// Will render as
+<style data-emotion-css="21cs4">.css-21cs4 { font-size: 12 }</style>
+<div class="css-21cs4">Text</div>
+```
+
+> Warning: This approach can interfere with nth child and similar selectors as it is inserts style tags directly into your markup. You will get a warning if you use such selectors when using this approach.
+
+## Advanced Approach
+
+> Note: If you're not using nth child or similar selectors, you don't need to do this. Use the default approach.
+
+You can also use the advanced integration, it requires more work but does not have limitations on nth child and similar selectors. This approach does not work with the streaming APIs.
+
+### On server
+
+```jsx
+import { CacheProvider } from '@emotion/core'
+import { renderToString } from 'react-dom/server'
+import createEmotionServer from 'create-emotion-server'
+import createCache from '@emotion/cache'
+
+const cache = createCache()
+const { extractCritical } = createEmotionServer(cache)
+
+let element = (
+  <CacheProvider value={cache}>
+    <App />
+  </CacheProvider>
+)
+
+let { html, css, ids } = extractCritical(renderToString(element))
+
+res
+  .status(200)
+  .header('Content-Type', 'text/html')
+  .send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My site</title>
+    <style data-emotion-css="${ids.join(' ')}">${css}</style>
+</head>
+<body>
+    <div id="root">${html}</div>
+
+    <script src="./bundle.js"></script>
+</body>
+</html>`);
+```
+
+### On client
+
+```jsx
+// Hydration of the ids in `data-emotion-css` will automatically occur when the cache is created
+const cache = createCache()
+ReactDOM.hydrate(
+  <CacheProvider value={cache}>
+    <App />
+  </CacheProvider>,
+  document.getElementById('root')
+)
+```
+
+
+
+In this approach you have to create your own cache and emotion server then use extractCritical
+
+## API Reference
+
+### renderStylesToString
+
+This returns a string of html that inlines the critical css required right before it's used.
+
+```jsx
+import { renderToString } from 'react-dom/server'
+import { renderStylesToString } from 'emotion-server'
+import App from './App'
+
+const html = renderStylesToString(renderToString(<App />))
+```
+
+### renderStylesToNodeStream
+
+This returns a [Node Stream Writable](https://nodejs.org/api/stream.html#stream_class_stream_writable) that can be used to insert critical css right before it's required. This can be used with [React's streaming API](https://reactjs.org/docs/react-dom-server.html#rendertonodestream).
+
+```jsx
+import { renderToNodeStream } from 'react-dom/server'
+import { renderStylesToNodeStream } from 'emotion-server'
+import App from './App'
+
+const stream = renderToNodeStream(<App />).pipe(renderStylesToNodeStream())
+```
+
+### extractCritical
+
+This returns an object with the properties `html`, `ids` and `css`. It removes unused rules that were created with emotion(it still includes rules that were inserted with `injectGlobal`).
+
+```jsx
+import { renderToString } from 'react-dom/server'
+import { extractCritical } from 'emotion-server'
+import App from './App'
+
+const { html, ids, css } = extractCritical(renderToString(<App />))
+```
+
+#### hydrate
+
+`hydrate` should be called on the client with the `ids` that `extractCritical` returns. If you don't call it then emotion will reinsert all the rules. `hydrate` is **only** required for `extractCritical`, **not** for `renderStylesToString` or `renderStylesToNodeStream`, hydration occurs automatically with `renderStylesToString` and `renderStylesToNodeStream`.
+
+```jsx
+import { hydrate } from 'emotion'
+
+hydrate(ids)
+```
+
+## Next.js
+
+To use emotion's SSR with Next.js you need a custom `Document` component in `pages/_document.js` that renders the styles and inserts them into the `<head>`. [An example of Next.js with emotion can be found in the Next.js repo](https://github.com/zeit/next.js/tree/master/examples/with-emotion).
+
+> Note:
+>
+> This only applies if you're using vanilla Emotion or a version of Emotion prior to v10. For v10 and above, SSR just works in Next.js.
+
+## Gatsby
+
+To use emotion's SSR with Gatsby, you can use `gatsby-plugin-emotion` or you can do it yourself with emotion and Gatsby's various APIs but it's generally recommended to use `gatsby-plugin-emotion`. [There's an example available in the Gatsby repo](https://github.com/gatsbyjs/gatsby/tree/master/examples/using-emotion) or [you can look at this site which is built with Gatsby!](https://github.com/emotion-js/emotion/tree/master/site)
+
+```bash
+yarn add gatsby-plugin-emotion
+```
+
+gatsby-config.js
+
+```jsx
+module.exports = {
+  plugins: [...otherGatsbyPlugins, 'gatsby-plugin-emotion']
+}
+```
+
+If using a [custom cache](./cache-provider), ensure you are creating a new cache per server render within `gatsby-ssr.js`. This will differ from the implementation within `gatsby-browser.js`.
+
+create-emotion-cache.js
+
+```jsx
+import createCache from '@emotion/cache'
+
+export const createMyCache = () =>
+  createCache({
+    key: 'my-prefix-key',
+    stylisPlugins: [
+      /* your plugins here */
+    ],
+    // prefix based on the css property
+    prefix: key => {
+      switch (key) {
+        case 'flex':
+          return false
+        case 'transform':
+        default:
+          return true
+      }
+    }
+  })
+
+export const myCache = createMyCache()
+```
+
+gatsby-ssr.js
+
+```jsx
+import { CacheProvider } from '@emotion/core'
+
+import { createMyCache } from './create-emotion-cache'
+
+export const wrapRootElement = ({ element }) => (
+  <CacheProvider value={createMyCache()}>{element}</CacheProvider>
+)
+```
+
+gatsby-browser.js
+
+```jsx
+import { CacheProvider } from '@emotion/core'
+
+import { myCache } from './create-emotion-cache'
+
+export const wrapRootElement = ({ element }) => (
+  <CacheProvider value={myCache}>{element}</CacheProvider>
+)
+```
+
+> Note:
+>
+> While Emotion 10 and above supports SSR out of the box, it's still recommended to use gatsby-plugin-emotion as gatsby-plugin-emotion will enable babel-plugin-emotion and other potential future optimisations.
+
+## Puppeteer
+
+If you are using Puppeteer to prerender your application, emotion's `speedy` option has to be disabled so that the CSS is rendered into the DOM.
+
+index.js
+
+```jsx
+// This has to be run before emotion inserts any styles so it's imported before the App component
+import './disable-speedy'
+import ReactDOM from 'react-dom'
+import App from './App'
+
+const root = document.getElementById('root')
+
+// Check if the root node has any children to detect if the app has been prerendered
+if (root.hasChildNodes()) {
+  ReactDOM.hydrate(<App />, root)
+} else {
+  ReactDOM.render(<App />, root)
+}
+```
+
+disable-speedy.js
+
+```js
+import { sheet } from 'emotion'
+
+// Check if the root node has any children to detect if the app has been preprendered
+// speedy is disabled when the app is being prerendered so that styles render into the DOM
+// speedy is significantly faster though so it should only be disabled during prerendering
+if (!document.getElementById('root').hasChildNodes()) {
+  sheet.speedy(false)
+}
+```
+
+> Note:
+>
+> The `sheet.speedy` call has to be run before anything that inserts styles so it has to be put into it's own file that's imported before anything else.

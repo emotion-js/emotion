@@ -23,17 +23,19 @@ yarn add @emotion/babel-preset-css-prop
 }
 ```
 
-`@emotion/babel-preset-css-prop` includes the emotion plugin. The `babel-plugin-emotion` entry should be be removed from your config and any options moved to the preset.
+`@emotion/babel-preset-css-prop` includes the emotion plugin. The `babel-plugin-emotion` entry should be be removed from your config and any options moved to the preset. If you use `@babel/preset-react` or `@babel/preset-typescript` ensure that `@emotion/babel-preset-css-prop` is inserted after them in your babel config.
 
 ```diff
 {
-  "presets": [
-+   "@emotion/babel-preset-css-prop",
-+   {
-+     "autoLabel": true,
-+     "labelFormat": "[local]"
-+   }
-  ],
++ "presets": [
++   [
++     "@emotion/babel-preset-css-prop",
++     {
++       "autoLabel": true,
++       "labelFormat": "[local]"
++     }
++   ]
++ ],
 - "plugins": [
 -   [
 -     "emotion",
@@ -45,6 +47,7 @@ yarn add @emotion/babel-preset-css-prop
 - ]
 }
 ```
+
 See [the options documentation](#options) for more information.
 
 ### Via CLI
@@ -134,7 +137,7 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
 >
 > - [`babel-plugin-emotion`](https://emotion.sh/docs/babel)
 >
-> - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/next/babel-plugin-transform-react-jsx)
+> - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx)
 
 ### Examples
 

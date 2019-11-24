@@ -1,9 +1,12 @@
 {
   "name": "@emotion/primitives-core",
-  "version": "10.0.1",
+  "version": "11.0.0-next.5",
   "description": "Shared utilities for emotion primitives and native",
   "main": "dist/primitives-core.cjs.js",
   "module": "dist/primitives-core.esm.js",
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
   "files": [
     "src",
     "dist"
@@ -13,11 +16,12 @@
     "css-to-react-native": "^2.2.1"
   },
   "peerDependencies": {
-    "@emotion/core": "^10.0.0",
-    "react": ">=16.3.0"
+    "@emotion/core": "^11.0.0-next.5",
+    "react": ">=16.8.0"
   },
   "devDependencies": {
-    "react": "^16.5.2"
+    "@emotion/core": "^11.0.0-next.5",
+    "react": "^16.11.0"
   },
   "homepage": "https://emotion.sh",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/primitives-core",

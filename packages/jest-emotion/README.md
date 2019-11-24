@@ -16,7 +16,9 @@ The easiest way to test React components with emotion is with the snapshot seria
 // jest.config.js
 module.exports = {
   // ... other config
-  snapshotSerializers: ['jest-emotion']
+  snapshotSerializers: [
+    'jest-emotion' /* if needed other snapshotSerializers should go here */
+  ]
 }
 ```
 
@@ -94,14 +96,101 @@ import styled from '@emotion/styled'
 expect.extend(matchers)
 
 test('renders with correct styles', () => {
-  const H1 = styled.h1`
-    float: left;
+  const Svg = styled('svg')`
+    width: 100%;
   `
 
-  const tree = renderer.create(<H1>hello world</H1>).toJSON()
+  const Div = styled('div')`
+    float: left;
+    height: 80%;
+    &:hover {
+      width: 50px;
+    }
+    ${Svg} {
+      fill: green;
+    }
+    span {
+      color: yellow;
+    }
+    @media screen and (max-width: 1200px) {
+      font-size: 14px;
+    }
+  `
+
+  const tree = renderer
+    .create(
+      <Div>
+        <Svg />
+        <span>Test</span>
+      </Div>
+    )
+    .toJSON()
 
   expect(tree).toHaveStyleRule('float', 'left')
-  expect(tree).not.toHaveStyleRule('color', 'hotpink')
+  expect(tree).not.toHaveStyleRule('height', '100%')
+})
+```
+
+You can provide additional options for `toHaveStyleRule` matcher.  
+`target` - helps to specify css selector or other component
+where style rule should be found.
+
+```js
+expect(tree).toHaveStyleRule('width', '50px', { target: ':hover' })
+```
+
+```js
+expect(tree).toHaveStyleRule('color', 'yellow', { target: 'span' })
+```
+
+```js
+expect(tree).toHaveStyleRule('fill', 'green', { target: `${Svg}` })
+```
+
+`media` - specifies the media rule where the matcher
+should look for the style property.
+
+```js
+expect(tree).toHaveStyleRule('font-size', '14px', {
+  media: 'screen and (max-width: 1200px)'
+})
+```
+
+Use `media` and `target` options to assert on rules within media queries and to target nested components, pseudo-classes, and pseudo-elements.
+
+```jsx
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { matchers } from 'jest-emotion'
+import styled from '@emotion/styled'
+
+// Add the custom matchers provided by 'jest-emotion'
+expect.extend(matchers)
+
+test('renders with correct link styles', () => {
+  const Container = styled.div`
+    font-size: 14px;
+
+    a {
+      color: yellow;
+    }
+
+    a:hover {
+      color: black;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+  `
+
+  const tree = renderer.create(<Container>hello world</Container>).toJSON()
+
+  expect(tree).toHaveStyleRule('color', 'yellow', { target: /a$/ })
+  expect(tree).toHaveStyleRule('color', 'black', { target: 'a:hover' })
+  expect(tree).toHaveStyleRule('font-size', '16px', {
+    media: '(min-width: 768px)'
+  })
 })
 ```
 

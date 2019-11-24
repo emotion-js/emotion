@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@emotion/babel-plugin-jsx-pragmatic existing-imports 1`] = `
+"// inserted import has to go AFTER polyfills
+import 'react-app-polyfill/ie11'
+import 'react-app-polyfill/stable'
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+
+ReactDOM.render(<App />, document.getElementById('root'))
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// inserted import has to go AFTER polyfills
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+ReactDOM.render(<App />, document.getElementById('root'));"
+`;
+
+exports[`@emotion/babel-plugin-jsx-pragmatic fragment-only 1`] = `
+"import * as React from 'react'
+
+const F = () => <></>
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import * as React from 'react';
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+
+const F = () => <></>;"
+`;
+
+exports[`@emotion/babel-plugin-jsx-pragmatic minimal 1`] = `
+"import * as React from 'react'
+
+const P = () => <p />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import * as React from 'react';
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+
+const P = () => <p />;"
+`;

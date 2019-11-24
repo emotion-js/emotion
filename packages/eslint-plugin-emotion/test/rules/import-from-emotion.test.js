@@ -21,7 +21,7 @@ ruleTester.run('emotion jsx', rule, {
   valid: [
     {
       code: `
-      import {css} from 'emotion'
+      import { css } from 'emotion'
       `
     }
   ],

@@ -23,19 +23,3 @@ exports[`does not warn when valid values are passed for the content property 1`]
   className="emotion-0"
 />
 `;
-
-exports[`does warn when invalid values are passed for the content property 1`] = `
-.emotion-0 {
-  content: this is not valid;
-}
-
-<div
-  className="emotion-0"
-/>
-`;
-
-exports[`does warn when invalid values are passed for the content property 2`] = `
-<div
-  className="emotion-0"
-/>
-`;

@@ -10,15 +10,18 @@ module.exports = api => {
     overrides: [
       {
         test: filename =>
-          (!filename.includes('no-babel') &&
+          filename &&
+          ((!filename.includes('no-babel') &&
             needsBabelPluginEmotion(filename)) ||
-          filename.includes(path.join('__tests__', 'babel')),
-        plugins: ['babel-plugin-emotion-test']
+            filename.includes(path.join('__tests__', 'babel'))),
+        plugins: ['babel-plugin-emotion']
       },
       {
         test: filename =>
-          filename.includes('source-map') && needsBabelPluginEmotion(filename),
-        plugins: [['babel-plugin-emotion-test', { sourceMap: true }]]
+          filename &&
+          filename.includes('source-map') &&
+          needsBabelPluginEmotion(filename),
+        plugins: [['babel-plugin-emotion', { sourceMap: true }]]
       }
     ]
   }
