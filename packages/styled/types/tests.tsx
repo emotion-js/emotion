@@ -48,7 +48,7 @@ const Container3 = styled.div(({ theme }) => ({
 // who's type clashes with an intrinsic prop.
 // It makes use of a custom type guard on shouldForwardProp to exclude color
 
-export const Box = styled('div', {
+const Box = styled('div', {
   shouldForwardProp: (
     propName
   ): propName is Exclude<keyof JSX.IntrinsicElements['div'], 'color'> =>

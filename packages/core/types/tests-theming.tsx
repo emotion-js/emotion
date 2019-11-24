@@ -74,8 +74,8 @@ const ThemedCompWithDefault = withTheme(CompCWithDefault)
   ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
 }
 
-export type StyleDefinition = Interpolation
-export type ObjectStyleDefinition = ObjectInterpolation<{
+type StyleDefinition = Interpolation
+type ObjectStyleDefinition = ObjectInterpolation<{
   theme: Theme
 }>
 
