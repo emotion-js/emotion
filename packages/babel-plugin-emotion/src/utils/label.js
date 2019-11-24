@@ -1,6 +1,11 @@
 // @flow
 import nodePath from 'path'
 
+type LabelFormatOptions = {
+  name: string,
+  filename: string
+}
+
 const invalidClassNameCharacters = /[!"#$%&'()*+,./:;<=>?@[\]^`|}~{]/g
 
 const sanitizeLabelPart = (labelPart: string) =>
@@ -9,11 +14,23 @@ const sanitizeLabelPart = (labelPart: string) =>
 function getLabel(
   identifierName?: string,
   autoLabel: boolean,
-  labelFormat?: string,
+  labelFormat?: string | (LabelFormatOptions => string),
   filename: string
 ) {
   if (!identifierName || !autoLabel) return null
-  if (!labelFormat) return sanitizeLabelPart(identifierName)
+
+  const sanitizedName = sanitizeLabelPart(identifierName)
+
+  if (!labelFormat) {
+    return sanitizedName
+  }
+
+  if (typeof labelFormat === 'function') {
+    return labelFormat({
+      name: sanitizedName,
+      filename
+    })
+  }
 
   const parsedPath = nodePath.parse(filename)
   let localDirname = nodePath.basename(parsedPath.dir)
@@ -24,7 +41,7 @@ function getLabel(
   }
 
   return labelFormat
-    .replace(/\[local\]/gi, sanitizeLabelPart(identifierName))
+    .replace(/\[local\]/gi, sanitizedName)
     .replace(/\[filename\]/gi, sanitizeLabelPart(localFilename))
     .replace(/\[dirname\]/gi, sanitizeLabelPart(localDirname))
 }
