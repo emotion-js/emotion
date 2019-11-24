@@ -1,23 +1,35 @@
 // @flow
 import * as React from 'react'
-import { testAlwaysTrue, pickAssign, interleave } from './utils'
+import { interleave } from './utils'
 import { ThemeContext } from '@emotion/core'
 import { createCss } from './css'
 
-let defaultPickTest = prop => prop !== 'theme' && prop !== 'innerRef'
+let testOmitPropsOnComponent = prop => prop !== 'theme'
 
-type options = {
+type CreateStyledOptions = {
   getShouldForwardProp: (cmp: React.ElementType) => (prop: string) => boolean
+}
+
+type StyledOptions = {
+  shouldForwardProp?: (prop: string) => boolean
 }
 
 export function createStyled(
   StyleSheet: Object,
-  { getShouldForwardProp = () => defaultPickTest }: options = {}
+  {
+    getShouldForwardProp = () => testOmitPropsOnComponent
+  }: CreateStyledOptions = {}
 ) {
   const css = createCss(StyleSheet)
 
-  return function createEmotion(component: React.ElementType) {
-    let pickTest = getShouldForwardProp(component)
+  return function createEmotion(
+    component: React.ElementType,
+    options?: StyledOptions
+  ) {
+    let shouldForwardProp =
+      options && options.shouldForwardProp
+        ? options.shouldForwardProp
+        : getShouldForwardProp(component)
 
     return function createStyledComponent(...rawStyles: *) {
       let styles
@@ -31,34 +43,34 @@ export function createStyled(
       // do we really want to use the same infra as the web since it only really uses theming?
       // $FlowFixMe
       let Styled = React.forwardRef((props, ref) => {
-        return (
-          <ThemeContext.Consumer>
-            {theme => {
-              let mergedProps = pickAssign(testAlwaysTrue, {}, props, {
-                theme: props.theme || theme
-              })
-              let stylesWithStyleProp = styles
-              if (props.style) {
-                stylesWithStyleProp = styles.concat(props.style)
-              }
-              const emotionStyles = css.apply(mergedProps, stylesWithStyleProp)
+        let mergedProps = props
+        if (props.theme == null) {
+          mergedProps = {}
+          for (let key in props) {
+            mergedProps[key] = props[key]
+          }
+          mergedProps.theme = React.useContext(ThemeContext)
+        }
 
-              if (process.env.NODE_ENV !== 'production' && props.innerRef) {
-                console.error(
-                  'innerRef is no longer supported, please use ref instead'
-                )
-              }
+        let stylesWithStyleProp = styles
+        if (props.style) {
+          stylesWithStyleProp = styles.concat(props.style)
+        }
+        const emotionStyles = css.apply(mergedProps, stylesWithStyleProp)
 
-              return React.createElement(
-                component,
-                pickAssign(pickTest, {}, props, {
-                  ref: ref,
-                  style: emotionStyles
-                })
-              )
-            }}
-          </ThemeContext.Consumer>
-        )
+        let newProps = {}
+
+        for (let key in props) {
+          if (shouldForwardProp(key)) {
+            newProps[key] = props[key]
+          }
+        }
+
+        newProps.style = emotionStyles
+        newProps.ref = ref
+
+        // $FlowFixMe
+        return React.createElement(component, newProps)
       })
       // $FlowFixMe
       Styled.withComponent = (newComponent: React.ElementType) =>

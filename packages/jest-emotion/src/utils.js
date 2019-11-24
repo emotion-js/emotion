@@ -1,5 +1,21 @@
 // @flow
 
+function last(arr) {
+  return arr.length > 0 ? arr[arr.length - 1] : undefined
+}
+
+function flatMap(arr, iteratee) {
+  return [].concat(...arr.map(iteratee))
+}
+
+export function findLast<T>(arr: T[], predicate: T => boolean) {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (predicate(arr[i])) {
+      return arr[i]
+    }
+  }
+}
+
 export const RULE_TYPES = {
   media: 'media',
   rule: 'rule'
@@ -94,6 +110,18 @@ let keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
 
 let removeCommentPattern = /\/\*[\s\S]*?\*\//g
 
+const getElementRules = (element: HTMLStyleElement): string[] => {
+  const nonSpeedyRule = element.textContent
+  if (nonSpeedyRule) {
+    return [nonSpeedyRule]
+  }
+  if (!element.sheet) {
+    return []
+  }
+  // $FlowFixMe - flow doesn't know about `cssRules` property
+  return [].slice.call(element.sheet.cssRules).map(cssRule => cssRule.cssText)
+}
+
 export function getStylesFromClassNames(
   classNames: Array<string>,
   elements: Array<HTMLStyleElement>
@@ -106,10 +134,17 @@ export function getStylesFromClassNames(
     return ''
   }
 
-  let keyPatten = new RegExp(`^(${keys.join('|')})-`)
-  let filteredClassNames = classNames.filter(className =>
-    keyPatten.test(className)
+  let targetClassName = classNames.find(className =>
+    /^e[a-z0-9]+$/.test(className)
   )
+  let keyPattern = `(${keys.join('|')})-`
+  let classNamesRegExp = new RegExp(
+    targetClassName ? `^(${keyPattern}|${targetClassName})` : `^${keyPattern}`
+  )
+  let filteredClassNames = classNames.filter(className =>
+    classNamesRegExp.test(className)
+  )
+
   if (!filteredClassNames.length) {
     return ''
   }
@@ -117,8 +152,7 @@ export function getStylesFromClassNames(
   let keyframes = {}
   let styles = ''
 
-  elements.forEach(element => {
-    let rule = element.textContent || ''
+  flatMap(elements, getElementRules).forEach(rule => {
     if (selectorPattern.test(rule)) {
       styles += rule
     }
@@ -185,7 +219,11 @@ export function hasClassNames(
     // in the list of received node classNames to make sure this css rule
     // applied for root element
     if (!target) {
-      return classNames.includes(selector.slice(1))
+      const lastCls = last(selector.split(' '))
+      if (!lastCls) {
+        return false
+      }
+      return classNames.includes(lastCls.slice(1))
     }
     // check if selector (className) of specific css rule match target
     return target instanceof RegExp

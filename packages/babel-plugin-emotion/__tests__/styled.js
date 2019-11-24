@@ -3,7 +3,7 @@ import plugin from 'babel-plugin-emotion'
 import path from 'path'
 
 babelTester(
-  '@emotion/babel-plugin-core styled',
+  'emotion-babel-plugin styled',
   path.join(__dirname, 'styled-macro'),
   {
     plugins: [plugin],

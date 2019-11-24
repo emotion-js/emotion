@@ -1,7 +1,7 @@
 const path = require('path')
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
-global.Babel = require('babel-standalone')
+global.Babel = require('@babel/standalone')
 
 exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
   actions.setWebpackConfig({
@@ -11,8 +11,8 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
       alias: {
         assert: 'fbjs/lib/emptyFunction',
         'source-map': 'fbjs/lib/emptyFunction',
-        '@babel/types': path.join(__dirname, './src/utils/babel-types'),
-        'buble/dist/buble.deps': path.join(__dirname, './src/utils/transform')
+        'convert-source-map': 'fbjs/lib/emptyFunction',
+        '@babel/types': path.join(__dirname, './src/utils/babel-types')
       }
     },
     node: {

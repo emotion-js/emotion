@@ -24,22 +24,6 @@ exports[`does not warn when valid values are passed for the content property 1`]
 />
 `;
 
-exports[`does warn when invalid values are passed for the content property 1`] = `
-.emotion-0 {
-  content: this is not valid;
-}
-
-<div
-  className="emotion-0"
-/>
-`;
-
-exports[`does warn when invalid values are passed for the content property 2`] = `
-<div
-  className="emotion-0"
-/>
-`;
-
 exports[`global with css prop 1`] = `null`;
 
 exports[`unsafe pseudo classes does not warn when using with flag: /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */ ":first-child /* [flag] */" in a style object 1`] = `

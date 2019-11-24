@@ -69,13 +69,12 @@ AppRegistry.registerComponent('ExampleApp', () => App)
 
 ## Theming
 
-Use `emotion-theming` for theming support.
+Use `@emotion/core` for theming support.
 
 ```js
 import React from 'react'
 import styled, { css } from '@emotion/native'
-
-import { ThemeProvider } from 'emotion-theming'
+import { ThemeProvider } from '@emotion/core'
 
 const theme = {
   color: 'hotpink',

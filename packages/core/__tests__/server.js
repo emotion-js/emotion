@@ -7,13 +7,13 @@ import * as React from 'react'
 import testCases from 'jest-in-case'
 import {
   jsx,
+  css,
   Global,
   keyframes,
   CacheProvider,
   ClassNames
 } from '@emotion/core'
 import styled from '@emotion/styled'
-import css from '@emotion/css'
 import createCache from '@emotion/cache'
 import { renderToString } from 'react-dom/server'
 import HTMLSerializer from 'jest-serializer-html'

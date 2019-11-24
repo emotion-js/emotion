@@ -1,5 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`options are used array-css-prop 1`] = `
+"import * as React from 'react'
+
+const Component = props => <div css={[{ color: 'green' }]} {...props} />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"@emotion/core\\";
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+import * as React from 'react';
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+
+const Component = props => ___EmotionJSX(\\"div\\", _extends({
+  css:
+  /*#__PURE__*/
+  _css([{
+    color: 'green'
+  }], \\";label:__fixtures__--array-css-prop--Component;\\")
+}, props));"
+`;
+
 exports[`options are used index 1`] = `
 "import * as React from 'react'
 
@@ -19,14 +43,13 @@ export let Button = props => {
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
-
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import * as React from 'react';
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
 var _ref = {
-  name: \\"17qglar-__fixtures__--__fixtures__--Button\\",
-  styles: \\"color:hotpink;label:__fixtures__--__fixtures__--Button;\\"
+  name: \\"1a7y9g-__fixtures__--__fixtures__--Button\\",
+  styles: \\"color:hotpink;;label:__fixtures__--__fixtures__--Button;\\"
 };
 export let Button = props => {
   return ___EmotionJSX(React.Fragment, null, ___EmotionJSX(\\"button\\", _extends({

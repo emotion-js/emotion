@@ -1,8 +1,7 @@
 // @flow
 import * as React from 'react'
 import 'test-utils/next-env'
-import { ClassNames } from '@emotion/core'
-import { ThemeProvider } from 'emotion-theming'
+import { ClassNames, ThemeProvider } from '@emotion/core'
 import renderer from 'react-test-renderer'
 
 test('css', () => {
@@ -35,7 +34,6 @@ it('should get the theme', () => {
       </ClassNames>
     </ThemeProvider>
   )
-
   expect(tree.toJSON()).toMatchSnapshot()
 })
 

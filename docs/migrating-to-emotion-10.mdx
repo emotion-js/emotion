@@ -199,3 +199,28 @@ let element = (
   </ClassNames>
 )
 ```
+
+- Replace `injectGlobal` with `Global` styles
+
+
+```jsx
+import { injectGlobal } from 'emotion'
+
+injectGlobal`
+  * {
+    box-sizing: border-box;
+  }
+`
+
+// ↓ ↓ ↓ ↓ ↓ ↓
+
+import { Global, css } from '@emotion/core'
+
+<Global
+  styles={css`
+    * {
+      box-sizing: border-box;
+    }
+  `}
+/>
+```

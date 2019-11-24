@@ -1,25 +1,20 @@
 {
   "name": "@emotion/core",
-  "version": "10.0.15",
+  "version": "11.0.0-next.5",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",
   "browser": {
     "./dist/core.cjs.js": "./dist/core.browser.cjs.js",
     "./dist/core.esm.js": "./dist/core.browser.esm.js"
   },
-  "react-native": {
-    "./dist/core.cjs.js": "./dist/core.native.cjs.js",
-    "./dist/core.esm.js": "./dist/core.native.esm.js"
-  },
-  "sketch": {
-    "./dist/core.cjs.js": "./dist/core.native.cjs.js",
-    "./dist/core.esm.js": "./dist/core.native.esm.js"
-  },
   "types": "types/index.d.ts",
   "files": [
     "src",
     "dist",
-    "types"
+    "types",
+    "macro.js",
+    "macro.d.ts",
+    "macro.js.flow"
   ],
   "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
   "license": "MIT",
@@ -27,24 +22,33 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
-    "@emotion/cache": "^10.0.15",
-    "@emotion/css": "^10.0.14",
-    "@emotion/serialize": "^0.11.9",
+    "@babel/runtime": "^7.7.2",
+    "@emotion/cache": "^11.0.0-next.0",
+    "@emotion/css": "^11.0.0-next.3",
+    "@emotion/serialize": "^0.11.15-next.1",
     "@emotion/sheet": "0.9.3",
-    "@emotion/utils": "0.11.2"
+    "@emotion/utils": "0.11.2",
+    "@emotion/weak-memoize": "0.2.4",
+    "hoist-non-react-statics": "^3.3.1"
   },
   "peerDependencies": {
-    "react": ">=16.3.0"
+    "@babel/core": "^7.0.0",
+    "react": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "@emotion/styled": "^10.0.15",
-    "@types/react": "^16.8.20",
+    "@babel/core": "^7.7.2",
+    "@emotion/styled": "^11.0.0-next.5",
+    "@types/react": "^16.9.11",
     "dtslint": "^0.3.0",
-    "emotion": "^10.0.14",
-    "emotion-server": "^10.0.14",
-    "emotion-theming": "^10.0.14",
+    "emotion": "^11.0.0-next.0",
+    "emotion-server": "^11.0.0-next.0",
     "html-tag-names": "^1.1.2",
+    "react": "^16.11.0",
     "svg-tag-names": "^1.1.1"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/core",

@@ -1,4 +1,4 @@
 // @flow
-import tester from 'babel-tester'
+import babelTester from 'babel-tester'
 
-tester('vanilla emotion', __dirname)
+babelTester('vanilla emotion', __dirname)

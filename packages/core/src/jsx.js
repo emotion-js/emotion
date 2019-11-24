@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
-import { withEmotionCache, ThemeContext } from './context'
+import { withEmotionCache } from './context'
+import { ThemeContext } from './theming'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
@@ -16,13 +17,12 @@ let labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
 
 let hasOwnProperty = Object.prototype.hasOwnProperty
 
-let render = (cache, props, theme: null | Object, ref) => {
-  let type = props[typePropName]
-  let registeredStyles = []
+let Emotion = withEmotionCache((props, cache, ref) => {
+  let cssProp = props.css
 
-  let className = ''
-
-  let cssProp = theme === null ? props.css : props.css(theme)
+  if (typeof cssProp === 'function') {
+    cssProp = cssProp(React.useContext(ThemeContext))
+  }
 
   // so that using `css` from `emotion` and passing the result to the css prop works
   // not passing the registered cache to serializeStyles because it would
@@ -31,14 +31,18 @@ let render = (cache, props, theme: null | Object, ref) => {
     cssProp = cache.registered[cssProp]
   }
 
-  registeredStyles.push(cssProp)
+  let type = props[typePropName]
+  let registeredStyles = [cssProp]
+  let className = ''
 
-  if (props.className !== undefined) {
+  if (typeof props.className === 'string') {
     className = getRegisteredStyles(
       cache.registered,
       registeredStyles,
       props.className
     )
+  } else if (props.className != null) {
+    className = `${props.className} `
   }
 
   let serialized = serializeStyles(registeredStyles)
@@ -94,18 +98,6 @@ let render = (cache, props, theme: null | Object, ref) => {
     )
   }
   return ele
-}
-
-let Emotion = withEmotionCache((props, cache, ref) => {
-  // use Context.read for the theme when it's stable
-  if (typeof props.css === 'function') {
-    return (
-      <ThemeContext.Consumer>
-        {theme => render(cache, props, theme, ref)}
-      </ThemeContext.Consumer>
-    )
-  }
-  return render(cache, props, null, ref)
 })
 
 if (process.env.NODE_ENV !== 'production') {
@@ -119,7 +111,7 @@ export const jsx: typeof React.createElement = function(
 ) {
   let args = arguments
 
-  if (props == null || props.css == null) {
+  if (props == null || !hasOwnProperty.call(props, 'css')) {
     // $FlowFixMe
     return React.createElement.apply(undefined, args)
   }
@@ -131,7 +123,7 @@ export const jsx: typeof React.createElement = function(
     props.css.indexOf(':') !== -1
   ) {
     throw new Error(
-      `Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/css' like this: css\`${
+      `Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/core' like this: css\`${
         props.css
       }\``
     )
@@ -154,7 +146,9 @@ export const jsx: typeof React.createElement = function(
     let error = new Error()
     if (error.stack) {
       // chrome
-      let match = error.stack.match(/at jsx.*\n\s+at ([A-Z][A-Za-z$]+) /)
+      let match = error.stack.match(
+        /at (?:Object\.|)jsx.*\n\s+at ([A-Z][A-Za-z$]+) /
+      )
       if (!match) {
         // safari and firefox
         match = error.stack.match(/^.*\n([A-Z][A-Za-z$]+)@/)

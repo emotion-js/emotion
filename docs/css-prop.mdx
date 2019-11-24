@@ -13,11 +13,11 @@ There are 2 ways to get started with the `css` prop.
 
 Both methods result in the same compiled code.
 After adding the preset or setting the pragma as a comment, compiled jsx code will use emotion's `jsx` function instead of `React.createElement`.
-  
-| | Input | Output |
+
+|        | Input                      | Output                                              |
 | ------ | -------------------------- | --------------------------------------------------- |
 | Before | `<img src="avatar.png" />` | `React.createElement('img', { src: 'avatar.png' })` |
-| After | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })` |
+| After  | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })`                 |
 
 #### Babel Preset
 
@@ -53,6 +53,8 @@ Similar to a comment containing linter configuration, this configures the [jsx b
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 ```
+
+Note that excluding this will cause your css to render as `[Object Object]`.
 
 #### Use the `css` prop
 
@@ -112,6 +114,8 @@ render(
 > Note:
 >
 > **`css` from `@emotion/core` does not return the computed class name string.** The function returns an object containing the computed name and flattened styles. The returned object is understood by emotion at a low level and can be composed with other emotion based styles inside of the `css` prop, other `css` calls, or the `styled` API.
+
+You can also pass in your css as variables, which allows for composition (read more about this [here](https://emotion.sh/docs/composition)).
 
 ## Style Precedence
 
@@ -243,4 +247,4 @@ Relying on the css spec's ["Order of Appearance"](https://www.w3.org/TR/css-casc
 
 ## Gotchas
 
-- If you include the plugin `babel-plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.
+- If you include the plugin `@babel/plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.

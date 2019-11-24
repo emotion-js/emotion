@@ -11,7 +11,7 @@ let pragmaName = '___EmotionJSX'
 
 export default (
   api,
-  { pragma, sourceMap, autoLabel, labelFormat, instances, ...options } = {}
+  { pragma, sourceMap, autoLabel, labelFormat, importMap, ...options } = {}
 ) => {
   return {
     plugins: [
@@ -30,8 +30,8 @@ export default (
           sourceMap,
           autoLabel,
           labelFormat,
-          instances,
-          cssPropOptimization: true
+          cssPropOptimization: true,
+          importMap
         }
       ]
     ]

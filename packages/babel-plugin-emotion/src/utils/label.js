@@ -59,7 +59,10 @@ function getDeclaratorName(path, t) {
   // we probably have a css call assigned to a variable
   // so we'll just return the variable name
   if (parent.isVariableDeclarator()) {
-    return parent.node.id.name
+    if (t.isIdentifier(parent.node.id)) {
+      return parent.node.id.name
+    }
+    return ''
   }
 
   // we probably have an inline css prop usage
@@ -72,7 +75,7 @@ function getDeclaratorName(path, t) {
   }
 
   // we could also have an object property
-  if (parent.isObjectProperty()) {
+  if (parent.isObjectProperty() && !parent.node.computed) {
     return parent.node.key.name
   }
 

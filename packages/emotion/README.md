@@ -7,10 +7,10 @@ The [emotion](https://www.npmjs.com/package/emotion) package is framework agnost
 - [Quick Start](#quick-start)
 - [API](#api)
   - [Generate Class Names — `css`](#css)
-  - [Global Styles — `insertGlobal`](#global-styles)
+  - [Global Styles — `injectGlobal`](#global-styles)
   - [Animation Keyframes — `keyframes`](#animation-keyframes)
   - [Composing Class Names — `cx`](#cx)
-- [Server Side Rendering](/docs/ssr.md#api)
+- [Server Side Rendering](/docs/ssr.mdx#api)
 - [Babel Plugin](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)
 
 ## Quick Start

@@ -1,12 +1,14 @@
 // @flow
 import chalk from 'chalk'
 import * as css from 'css'
+import * as specificity from 'specificity'
 import {
   getClassNamesFromNodes,
   getStylesFromClassNames,
   getStyleElements,
   hasClassNames,
   getMediaRules,
+  findLast,
   RULE_TYPES
 } from './utils'
 
@@ -53,23 +55,40 @@ function toHaveStyleRule(
   if (media) {
     preparedRules = getMediaRules(preparedRules, media)
   }
-  const declaration = preparedRules
+  const result = preparedRules
     .filter(
       rule =>
         rule.type === RULE_TYPES.rule &&
         hasClassNames(classNames, rule.selectors, target)
     )
-    .reduce((decs, rule) => decs.concat(rule.declarations), [])
-    .filter(dec => dec.type === 'declaration' && dec.property === property)
+    .reduce((acc, rule) => {
+      const lastMatchingDeclaration = findLast(
+        rule.declarations,
+        dec => dec.type === 'declaration' && dec.property === property
+      )
+      if (!lastMatchingDeclaration) {
+        return acc
+      }
+      return acc.concat(
+        rule.selectors.map(selector => ({
+          selector,
+          declaration: lastMatchingDeclaration
+        }))
+      )
+    }, [])
+    .sort(({ selector: selectorA }, { selector: selectorB }) =>
+      specificity.compare(selectorA, selectorB)
+    )
     .pop()
 
-  if (!declaration) {
+  if (!result) {
     return {
       pass: false,
       message: () => `Property not found: ${property}`
     }
   }
 
+  const { declaration } = result
   const pass = valueMatches(declaration, value)
 
   const message = () =>

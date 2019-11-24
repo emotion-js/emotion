@@ -1,6 +1,6 @@
 {
   "name": "create-emotion-server",
-  "version": "10.0.14",
+  "version": "11.0.0-next.0",
   "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/create-emotion-server.cjs.js",
   "types": "types/index.d.ts",

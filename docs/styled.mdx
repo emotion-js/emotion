@@ -73,13 +73,14 @@ import styled from '@emotion/styled'
 
 const Section = styled.section`
   background: #333;
+  color: #fff;
 `
 // this component has the same styles as Section but it renders an aside
 const Aside = Section.withComponent('aside')
 render(
   <div>
     <Section>This is a section</Section>
-    <Aside>This is an an aside</Aside>
+    <Aside>This is an aside</Aside>
   </div>
 )
 ```
@@ -101,12 +102,13 @@ const Parent = styled.div`
     color: green;
   }
 `
+
 render(
   <div>
     <Parent>
-      <Child>green</Child>
+      <Child>Green because I am inside a Parent</Child>
     </Parent>
-    <Child>red</Child>
+    <Child>Red because I am not inside a Parent</Child>
   </div>
 )
 ```

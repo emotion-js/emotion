@@ -74,7 +74,7 @@ export const getComponents = (
     label: hoverStyles;
   `
 
-  // this is using react-emotion which uses @emotion/styled-base
+  // this is using @emotion/styled/base
   // so the call syntax has to be used
   const Main = styled('main')`
     ${hoverStyles};
