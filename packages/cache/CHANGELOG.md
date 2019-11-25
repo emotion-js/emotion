@@ -1,5 +1,16 @@
 # @emotion/cache
 
+## 11.0.0-next.6
+
+### Minor Changes
+
+- [`4a891bf6`](https://github.com/emotion-js/emotion/commit/4a891bf6a30e3bb37f8f32031fa75a571c637d9c) [#1473](https://github.com/emotion-js/emotion/pull/1473) Thanks [@jcharry](https://github.com/jcharry)! - Accept new `prepend` option to allow for adding style tags at the beginning of the specified DOM container.
+
+### Patch Changes
+
+- Updated dependencies [[`4a891bf6`](https://github.com/emotion-js/emotion/commit/4a891bf6a30e3bb37f8f32031fa75a571c637d9c)]:
+  - @emotion/sheet@0.10.0-next.0
+
 ## 11.0.0-next.0
 
 ### Major Changes
