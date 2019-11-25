@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 0.9.0-next.1
+
+### Minor Changes
+
+- [`923ded01`](https://github.com/emotion-js/emotion/commit/923ded01e2399a242206d590f6646f13aba110e4) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@JakeGinnivan](https://github.com/JakeGinnivan)! - Allow `isPropValid` to take any `PropertyKey` as an argument (instead of just `string`).
+
 ## 0.8.6-next.0
 
 ### Patch Changes

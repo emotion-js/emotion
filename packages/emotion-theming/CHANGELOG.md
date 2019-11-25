@@ -1,5 +1,11 @@
 # emotion-theming
 
+## 11.0.0-next.6
+
+### Major Changes
+
+- [`cbb8b796`](https://github.com/emotion-js/emotion/commit/cbb8b7965c2923cf1922d724de556374323bff61) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - `emotion-theming` has been removed and all its exports were moved to `@emotion/core` package. Please import them like this `import { useTheme, ThemeProvider, withTheme } from '@emotion/core'` from now on.
+
 ## 11.0.0-next.5
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @emotion/babel-preset-css-prop
 
+## 11.0.0-next.6
+
+### Minor Changes
+
+- [`0a4a22ff`](https://github.com/emotion-js/emotion/commit/0a4a22ffcfaa49d09a88856ef2d51e0d53e31b6d) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Allow `labelFormat` option to be a function.
+
+### Patch Changes
+
+- Updated dependencies [[`0a4a22ff`](https://github.com/emotion-js/emotion/commit/0a4a22ffcfaa49d09a88856ef2d51e0d53e31b6d), [`843bfb11`](https://github.com/emotion-js/emotion/commit/843bfb1153ee0dbe33d005fdd5c5be185daa5c41), [`828111cd`](https://github.com/emotion-js/emotion/commit/828111cd32d3fe8c984231201e518d1b6000bffd)]:
+  - babel-plugin-emotion@11.0.0-next.6
+
 ## 11.0.0-next.3
 
 ### Major Changes

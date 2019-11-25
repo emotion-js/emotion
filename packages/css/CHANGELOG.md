@@ -1,5 +1,22 @@
 # @emotion/css
 
+## 11.0.0-next.6
+
+### Major Changes
+
+- [`843bfb11`](https://github.com/emotion-js/emotion/commit/843bfb1153ee0dbe33d005fdd5c5be185daa5c41) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Removed `@emotion/css` - it's main purpose was to allow `css` to be a Babel macro, but since babel-plugin-macros allows us to keep imports nowadays this is no longer needed. `@emotion/core/macro` has been added to account for this use case and appropriate changes has been made to `babel-plugin-emotion` to facilitate those changes.
+
+  If you have used `@emotion/css` directly (it was always reexported from `@emotion/core`) or you have been using its macro then you should update your code like this:
+
+  ```diff
+  -import css from '@emotion/css'
+  +import { css } from '@emotion/core'
+
+  // or
+  -import css from '@emotion/css/macro'
+  +import { css } from '@emotion/core/macro'
+  ```
+
 ## 11.0.0-next.3
 
 ### Patch Changes
