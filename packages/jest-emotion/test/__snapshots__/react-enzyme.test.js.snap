@@ -1,36 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`enzyme test: mount 1`] = `
+exports[`enzyme test with prop containing css element in fragment 1`] = `
 .emotion-0 {
-  background-color: red;
+  background-color: blue;
 }
 
 .emotion-0 {
-  background-color: red;
+  background-color: blue;
 }
 
-<Greeting>
-  <div
-    className="emotion-0"
-  >
-    hello
-  </div>
-</Greeting>
-`;
-
-exports[`enzyme test: shallow 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
-.emotion-0 {
-  background-color: red;
-}
-
-<div
-  className="emotion-0"
->
-  hello
+<div>
+  Array [
+    "x",
+    <div
+      className="emotion-0"
+    >
+      y
+    </div>,
+  ]
 </div>
 `;
 
@@ -67,28 +54,6 @@ exports[`enzyme test with prop containing css element not at the top level: moun
   </Greeting>
 </div>
 `;
-
-exports[`enzyme test with prop containing css element in fragment 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
-.emotion-0 {
-  background-color: blue;
-}
-
-<div>
-  Array [
-    "x",
-    <div
-      className="emotion-0"
-    >
-      y
-    </div>,
-  ]
-</div>
-`;
-
 
 exports[`enzyme test with prop containing css element not at the top level: shallow 1`] = `
 <div>
@@ -163,6 +128,7 @@ exports[`enzyme test with prop containing css element with other label: shallow 
 
 <p
     className="emotion-0"
+    css="unknown styles"
     id="something"
   >
     Hello
@@ -216,6 +182,7 @@ exports[`enzyme test with prop containing css element with other props: shallow 
 
 <p
     className="emotion-0"
+    css="unknown styles"
     id="something"
   >
     Hello
@@ -267,10 +234,46 @@ exports[`enzyme test with prop containing css element: shallow 1`] = `
 
 <p
     className="emotion-0"
+    css="unknown styles"
   >
     Hello
   </p>
    
   World!
+</div>
+`;
+
+exports[`enzyme test: mount 1`] = `
+.emotion-0 {
+  background-color: red;
+}
+
+.emotion-0 {
+  background-color: red;
+}
+
+<Greeting>
+  <div
+    className="emotion-0"
+  >
+    hello
+  </div>
+</Greeting>
+`;
+
+exports[`enzyme test: shallow 1`] = `
+.emotion-0 {
+  background-color: red;
+}
+
+.emotion-0 {
+  background-color: red;
+}
+
+<div
+  className="emotion-0"
+  css="unknown styles"
+>
+  hello
 </div>
 `;

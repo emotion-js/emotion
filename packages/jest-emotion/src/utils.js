@@ -1,6 +1,6 @@
 // @flow
 
-function flatMap(arr, iteratee) {
+export function flatMap(arr: any[], iteratee: Function) {
   return [].concat(...arr.map(iteratee))
 }
 
@@ -25,22 +25,23 @@ function isTagWithClassName(node) {
   return node.prop('className') && typeof node.type() === 'string'
 }
 
+function findNodeWithClassName(node) {
+  // Find the first node with a className prop
+  const found = node.findWhere(isTagWithClassName)
+  return found.length ? found.first() : null
+}
+
+function getClassNameProp(node) {
+  return (node && node.prop('className')) || ''
+}
+
 function getClassNamesFromEnzyme(selectors, node) {
-  // We need to get the css prop if we have selected a styled child from a shallow render
-  const isShallow = shouldDive(node)
-  let classes
-  if (isShallow) {
-    // Find the first node with a className prop
-    const cacheProvider = node.dive()
-    const cacheConsumer = cacheProvider.dive()
-    const components = cacheConsumer.findWhere(isTagWithClassName)
-    classes = components.length && components.first().prop('className')
-  } else {
-    // Find the first node with a className prop
-    const components = node.findWhere(isTagWithClassName)
-    classes = components.length && components.first().prop('className')
-  }
-  return getClassNames(selectors, classes)
+  // We need to dive in to get the className if we have a styled element from a shallow render
+  let isShallow = shouldDive(node)
+  let nodeWithClassName = findNodeWithClassName(
+    isShallow ? node.dive().dive() : node
+  )
+  return getClassNames(selectors, getClassNameProp(nodeWithClassName))
 }
 
 function getClassNamesFromCheerio(selectors, node) {

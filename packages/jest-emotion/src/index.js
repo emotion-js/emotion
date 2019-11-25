@@ -9,7 +9,8 @@ import {
   isDOMElement,
   getStylesFromClassNames,
   getStyleElements,
-  getKeys
+  getKeys,
+  flatMap
 } from './utils'
 
 export { matchers } from './matchers'
@@ -56,7 +57,7 @@ type Options = {
   DOMElements?: boolean
 }
 
-function filterEmotionProps(props = {}, shouldKnowStyles = true) {
+function filterEmotionProps(props = {}) {
   const {
     css,
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__,
@@ -64,9 +65,7 @@ function filterEmotionProps(props = {}, shouldKnowStyles = true) {
     ...rest
   } = props
 
-  if (shouldKnowStyles) {
-    rest.css = 'unknown styles'
-  }
+  rest.css = 'unknown styles'
 
   return rest
 }
@@ -89,36 +88,36 @@ export function createSerializer({
   function print(val: *, printer: Function) {
     let elements = getStyleElements()
     let keys = getKeys(elements)
+    if (isEmotionCssPropEnzymeElement(val)) {
+      let cssClassNames = (val.props.css.name || '').split(' ')
+      let expectedClassNames = flatMap(cssClassNames, cssClassName =>
+        keys.map(key => `${key}-${cssClassName}`)
+      )
+      // if this is a shallow element, we need to manufacture the className
+      // since the underlying component is not rendered.
+      if (isShallowEnzymeElement(val, expectedClassNames)) {
+        let className = [val.props.className]
+          .concat(expectedClassNames)
+          .filter(Boolean)
+          .join(' ')
+        return printer({
+          ...val,
+          props: filterEmotionProps({
+            ...val.props,
+            className
+          }),
+          type: val.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+        })
+      } else {
+        return val.children.map(printer).join('\n')
+      }
+    }
     if (isEmotionCssPropElementType(val)) {
       return printer({
         ...val,
         props: filterEmotionProps(val.props),
         type: val.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
       })
-    }
-    if (isEmotionCssPropEnzymeElement(val)) {
-      let expectedClassNames = (val.props.css.name || '')
-        .split(' ')
-        .map(className => keys.map(key => `${key}-${className}`))
-        .reduce((flat, values) => flat.concat(values), [])
-      if (isShallowEnzymeElement(val, expectedClassNames)) {
-        return printer({
-          ...val,
-          props: filterEmotionProps(
-            {
-              ...val.props,
-              className: [val.props.className]
-                .concat(expectedClassNames)
-                .filter(Boolean)
-                .join(' ')
-            },
-            false
-          ),
-          type: val.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
-        })
-      } else {
-        return val.children.map(printer).join('\n')
-      }
     }
     const nodes = getNodes(val)
     const classNames = getClassNamesFromNodes(nodes)
