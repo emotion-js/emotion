@@ -1,6 +1,6 @@
 // @flow
 
-export function flatMap(arr: any[], iteratee: Function) {
+export function flatMap<T, S>(arr: T[], iteratee: (arg: T) => S[] | S): S[] {
   return [].concat(...arr.map(iteratee))
 }
 
@@ -142,7 +142,7 @@ export function getStylesFromClassNames(
   let keyframes = {}
   let styles = ''
 
-  flatMap(elements, getElementRules).forEach(rule => {
+  flatMap(elements, getElementRules).forEach((rule: string) => {
     if (selectorPattern.test(rule)) {
       styles += rule
     }
