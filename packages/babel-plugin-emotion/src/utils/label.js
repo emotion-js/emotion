@@ -3,7 +3,7 @@ import nodePath from 'path'
 
 type LabelFormatOptions = {
   name: string,
-  filename: string
+  path: string
 }
 
 const invalidClassNameCharacters = /[!"#$%&'()*+,./:;<=>?@[\]^`|}~{]/g
@@ -28,7 +28,7 @@ function getLabel(
   if (typeof labelFormat === 'function') {
     return labelFormat({
       name: sanitizedName,
-      filename
+      path: filename
     })
   }
 

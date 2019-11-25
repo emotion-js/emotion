@@ -81,9 +81,9 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: ({ name, filename }) =>
+          labelFormat: ({ name, path }) =>
             `${name.toUpperCase()}_${last(
-              filename.replace(/\..+$/, '').split('/')
+              path.replace(/\..+$/, '').split('/')
             ).toUpperCase()}`,
           autoLabel: true
         }
