@@ -1,50 +1,88 @@
 import 'test-utils/legacy-env'
 /** @jsx jsx */
+import cases from 'jest-in-case'
 import * as enzyme from 'enzyme'
 import { jsx } from '@emotion/core'
-import { createSerializer as createEnzymeSerializer } from 'enzyme-to-json'
 import { createSerializer } from 'jest-emotion'
 import React from 'react'
 import toJson from 'enzyme-to-json'
 
 expect.addSnapshotSerializer(createSerializer())
-expect.addSnapshotSerializer(createEnzymeSerializer())
 
-const expectToMatchSnapshot = component => {
-  expect(enzyme.mount(component)).toMatchSnapshot('mount')
-  expect(enzyme.shallow(component)).toMatchSnapshot('shallow')
+const testWithMethods = (description, testCase) =>
+  cases(description, testCase, [
+    { name: 'render component with shallow', method: 'shallow' },
+    { name: 'render component with mount', method: 'mount' }
+  ])
+
+const expectToMatchSnapshot = (component, method, mode) => {
+  let wrapper = enzyme[method](component)
+  expect(toJson(wrapper, { mode })).toMatchSnapshot()
 }
 
-test('enzyme test', () => {
+testWithMethods('enzyme test', ({ method }) => {
   const Greeting = ({ children }) => (
     <div css={{ backgroundColor: 'red' }}>{children}</div>
   )
-  expectToMatchSnapshot(<Greeting>hello</Greeting>)
+  expectToMatchSnapshot(<Greeting>hello</Greeting>, method)
 })
 
-test('enzyme test with prop containing css element', () => {
-  const Greeting = ({ children, content }) => (
-    <div>
-      {content} {children}
-    </div>
-  )
+testWithMethods(
+  'enzyme test with prop containing css element',
+  ({ method }) => {
+    const Greeting = ({ children, content }) => (
+      <div>
+        {content} {children}
+      </div>
+    )
 
-  expectToMatchSnapshot(
-    <Greeting content={<p css={{ backgroundColor: 'blue' }}>Hello</p>}>
-      World!
-    </Greeting>
-  )
-})
+    expectToMatchSnapshot(
+      <Greeting content={<p css={{ backgroundColor: 'blue' }}>Hello</p>}>
+        World!
+      </Greeting>,
+      method
+    )
+  }
+)
 
-test('enzyme test with prop containing css element not at the top level', () => {
-  const Greeting = ({ children, content }) => (
-    <div>
-      {content} {children}
-    </div>
-  )
+testWithMethods(
+  'enzyme test with prop containing css element not at the top level',
 
-  expectToMatchSnapshot(
-    <div>
+  ({ method }) => {
+    const Greeting = ({ children, content }) => (
+      <div>
+        {content} {children}
+      </div>
+    )
+
+    expectToMatchSnapshot(
+      <div>
+        <Greeting
+          content={
+            <p id="something" css={{ backgroundColor: 'blue' }}>
+              Hello
+            </p>
+          }
+        >
+          World!
+        </Greeting>
+      </div>,
+      method
+    )
+  }
+)
+
+testWithMethods(
+  'enzyme test with prop containing css element with other props',
+
+  ({ method }) => {
+    const Greeting = ({ children, content }) => (
+      <div>
+        {content} {children}
+      </div>
+    )
+
+    expectToMatchSnapshot(
       <Greeting
         content={
           <p id="something" css={{ backgroundColor: 'blue' }}>
@@ -53,53 +91,38 @@ test('enzyme test with prop containing css element not at the top level', () => 
         }
       >
         World!
-      </Greeting>
-    </div>
-  )
-})
-
-test('enzyme test with prop containing css element with other props', () => {
-  const Greeting = ({ children, content }) => (
-    <div>
-      {content} {children}
-    </div>
-  )
-
-  expectToMatchSnapshot(
-    <Greeting
-      content={
-        <p id="something" css={{ backgroundColor: 'blue' }}>
-          Hello
-        </p>
-      }
-    >
-      World!
-    </Greeting>
-  )
-})
-
-test('enzyme test with prop containing css element with other label', () => {
-  const Thing = ({ content, children }) => {
-    return children
+      </Greeting>,
+      method
+    )
   }
-  const Greeting = ({ children, content }) => (
-    <Thing content={<div css={{ color: 'hotpink' }} />}>
-      {content} {children}
-    </Thing>
-  )
+)
 
-  expectToMatchSnapshot(
-    <Greeting
-      content={
-        <p id="something" css={{ backgroundColor: 'blue' }}>
-          Hello
-        </p>
-      }
-    >
-      World!
-    </Greeting>
-  )
-})
+testWithMethods(
+  'enzyme test with prop containing css element with other label',
+  ({ method }) => {
+    const Thing = ({ content, children }) => {
+      return children
+    }
+    const Greeting = ({ children, content }) => (
+      <Thing content={<div css={{ color: 'hotpink' }} />}>
+        {content} {children}
+      </Thing>
+    )
+
+    expectToMatchSnapshot(
+      <Greeting
+        content={
+          <p id="something" css={{ backgroundColor: 'blue' }}>
+            Hello
+          </p>
+        }
+      >
+        World!
+      </Greeting>,
+      method
+    )
+  }
+)
 
 test('enzyme test with prop containing css element in fragment', () => {
   const FragmentComponent = () => (
@@ -108,16 +131,11 @@ test('enzyme test with prop containing css element in fragment', () => {
     </React.Fragment>
   )
 
-  expect(
-    toJson(
-      enzyme.mount(
-        <div>
-          <FragmentComponent />
-        </div>
-      ),
-      {
-        mode: 'deep'
-      }
-    )
-  ).toMatchSnapshot()
+  expectToMatchSnapshot(
+    <div>
+      <FragmentComponent />
+    </div>,
+    'mount',
+    'deep'
+  )
 })

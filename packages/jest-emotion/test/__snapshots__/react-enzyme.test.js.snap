@@ -1,5 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`enzyme test render component with mount 1`] = `
+.emotion-0 {
+  background-color: red;
+}
+
+.emotion-0 {
+  background-color: red;
+}
+
+<Greeting>
+  <div
+    className="emotion-0"
+  >
+    hello
+  </div>
+</Greeting>
+`;
+
+exports[`enzyme test render component with shallow 1`] = `
+<div
+  className=""
+  css="unknown styles"
+>
+  hello
+</div>
+`;
+
 exports[`enzyme test with prop containing css element in fragment 1`] = `
 .emotion-0 {
   background-color: blue;
@@ -21,7 +48,7 @@ exports[`enzyme test with prop containing css element in fragment 1`] = `
 </div>
 `;
 
-exports[`enzyme test with prop containing css element not at the top level: mount 1`] = `
+exports[`enzyme test with prop containing css element not at the top level render component with mount 1`] = `
 .emotion-0 {
   background-color: blue;
 }
@@ -55,7 +82,7 @@ exports[`enzyme test with prop containing css element not at the top level: moun
 </div>
 `;
 
-exports[`enzyme test with prop containing css element not at the top level: shallow 1`] = `
+exports[`enzyme test with prop containing css element not at the top level render component with shallow 1`] = `
 <div>
   <Greeting
     content={
@@ -72,7 +99,50 @@ exports[`enzyme test with prop containing css element not at the top level: shal
 </div>
 `;
 
-exports[`enzyme test with prop containing css element with other label: mount 1`] = `
+exports[`enzyme test with prop containing css element render component with mount 1`] = `
+.emotion-0 {
+  background-color: blue;
+}
+
+.emotion-0 {
+  background-color: blue;
+}
+
+<Greeting
+  content={
+    <p
+      css="unknown styles"
+    >
+      Hello
+    </p>
+  }
+>
+  <div>
+    <p
+      className="emotion-0"
+    >
+      Hello
+    </p>
+     
+    World!
+  </div>
+</Greeting>
+`;
+
+exports[`enzyme test with prop containing css element render component with shallow 1`] = `
+<div>
+  <p
+    className="emotion-0"
+    css="unknown styles"
+  >
+    Hello
+  </p>
+   
+  World!
+</div>
+`;
+
+exports[`enzyme test with prop containing css element with other label render component with mount 1`] = `
 .emotion-0 {
   background-color: blue;
 }
@@ -110,7 +180,7 @@ exports[`enzyme test with prop containing css element with other label: mount 1`
 </Greeting>
 `;
 
-exports[`enzyme test with prop containing css element with other label: shallow 1`] = `
+exports[`enzyme test with prop containing css element with other label render component with shallow 1`] = `
 <Thing
   content={
     <div
@@ -138,7 +208,7 @@ exports[`enzyme test with prop containing css element with other label: shallow 
 </Thing>
 `;
 
-exports[`enzyme test with prop containing css element with other props: mount 1`] = `
+exports[`enzyme test with prop containing css element with other props render component with mount 1`] = `
 .emotion-0 {
   background-color: blue;
 }
@@ -170,7 +240,7 @@ exports[`enzyme test with prop containing css element with other props: mount 1`
 </Greeting>
 `;
 
-exports[`enzyme test with prop containing css element with other props: shallow 1`] = `
+exports[`enzyme test with prop containing css element with other props render component with shallow 1`] = `
 <div>
   .emotion-0 {
   background-color: blue;
@@ -189,91 +259,5 @@ exports[`enzyme test with prop containing css element with other props: shallow 
   </p>
    
   World!
-</div>
-`;
-
-exports[`enzyme test with prop containing css element: mount 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
-.emotion-0 {
-  background-color: blue;
-}
-
-<Greeting
-  content={
-    <p
-      css="unknown styles"
-    >
-      Hello
-    </p>
-  }
->
-  <div>
-    <p
-      className="emotion-0"
-    >
-      Hello
-    </p>
-     
-    World!
-  </div>
-</Greeting>
-`;
-
-exports[`enzyme test with prop containing css element: shallow 1`] = `
-<div>
-  .emotion-0 {
-  background-color: blue;
-}
-
-.emotion-0 {
-  background-color: blue;
-}
-
-<p
-    className="emotion-0"
-    css="unknown styles"
-  >
-    Hello
-  </p>
-   
-  World!
-</div>
-`;
-
-exports[`enzyme test: mount 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
-.emotion-0 {
-  background-color: red;
-}
-
-<Greeting>
-  <div
-    className="emotion-0"
-  >
-    hello
-  </div>
-</Greeting>
-`;
-
-exports[`enzyme test: shallow 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
-.emotion-0 {
-  background-color: red;
-}
-
-<div
-  className="emotion-0"
-  css="unknown styles"
->
-  hello
 </div>
 `;
