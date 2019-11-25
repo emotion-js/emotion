@@ -66,6 +66,30 @@ _keyframes(process.env.NODE_ENV === \\"production\\" ? {
 });"
 `;
 
+exports[`babel css inline label format function 1`] = `
+"
+    import { css } from 'emotion'
+    let cls = css({color:'hotpink'})
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+import { css } from 'emotion';
+let cls =
+/*#__PURE__*/
+css(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1rm02zb-CLS_CSS-REQUIRES-OPTIONS\\",
+  styles: \\"color:hotpink;;label:CLS_CSS-REQUIRES-OPTIONS;\\"
+} : {
+  name: \\"1rm02zb-CLS_CSS-REQUIRES-OPTIONS\\",
+  styles: \\"color:hotpink;;label:CLS_CSS-REQUIRES-OPTIONS;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnZW1vdGlvbidcbiAgICBsZXQgY2xzID0gY3NzKHtjb2xvcjonaG90cGluayd9KVxuICAgICJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});"
+`;
+
 exports[`babel css inline label format with dirname, filename, and local 1`] = `
 "
     import { css } from 'emotion'
