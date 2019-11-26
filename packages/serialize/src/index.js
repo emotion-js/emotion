@@ -332,7 +332,7 @@ let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
 
 let sourceMapPattern
 if (process.env.NODE_ENV !== 'production') {
-  sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//
+  sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g
 }
 
 // this is the cursor for keyframes
