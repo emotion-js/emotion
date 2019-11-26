@@ -18,7 +18,7 @@
     "@emotion/memoize": "0.7.3",
     "@emotion/unitless": "0.7.4",
     "@emotion/utils": "0.11.2",
-    "csstype": "^2.5.7"
+    "csstype": "^2.6.7"
   },
   "devDependencies": {
     "dtslint": "^0.3.0"
