@@ -1,5 +1,14 @@
 # @emotion/core
 
+## 11.0.0-next.7
+
+### Patch Changes
+
+- [`5c55fd17`](https://github.com/emotion-js/emotion/commit/5c55fd17dcaec84d1f5d5d13ae90dd336d7e4403) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Fix to what location generated source maps are pointing in case of composed styles.
+- Updated dependencies [[`5c55fd17`](https://github.com/emotion-js/emotion/commit/5c55fd17dcaec84d1f5d5d13ae90dd336d7e4403), [`729ef9d8`](https://github.com/emotion-js/emotion/commit/729ef9d8408af82c7a63effc1b8728f79c66bed1)]:
+  - @emotion/serialize@0.11.15-next.2
+  - @emotion/styled@11.0.0-next.7
+
 ## 11.0.0-next.6
 
 ### Major Changes
