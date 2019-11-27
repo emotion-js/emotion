@@ -9,133 +9,157 @@ import toJson from 'enzyme-to-json'
 
 expect.addSnapshotSerializer(createSerializer())
 
-const testWithMethods = (description, testCase) =>
-  cases(description, testCase, [
-    { name: 'render component with shallow', method: 'shallow' },
-    { name: 'render component with mount', method: 'mount' }
-  ])
-
-const expectToMatchSnapshot = (component, method, mode) => {
-  let wrapper = enzyme[method](component)
+const expectToMatchSnapshot = (wrapper, mode) => {
   expect(toJson(wrapper, { mode })).toMatchSnapshot()
 }
 
-testWithMethods('enzyme test', ({ method }) => {
-  const Greeting = ({ children }) => (
-    <div css={{ backgroundColor: 'red' }}>{children}</div>
-  )
-  expectToMatchSnapshot(<Greeting>hello</Greeting>, method)
-})
+const withMethods = (obj, methods) =>
+  methods.map(method => ({
+    ...obj,
+    name: `${obj.name} - ${method}`,
+    method
+  }))
 
-testWithMethods(
-  'enzyme test with prop containing css element',
-  ({ method }) => {
-    const Greeting = ({ children, content }) => (
-      <div>
-        {content} {children}
-      </div>
-    )
+const renderMethods = ['shallow', 'mount']
 
-    expectToMatchSnapshot(
-      <Greeting content={<p css={{ backgroundColor: 'blue' }}>Hello</p>}>
-        World!
-      </Greeting>,
-      method
-    )
-  }
-)
+cases(
+  'react enzyme tests',
+  ({ render, method, mode }) => {
+    const component = render()
+    const wrapper = enzyme[method](component)
+    expectToMatchSnapshot(wrapper, mode)
+  },
+  [
+    ...withMethods(
+      {
+        name: 'basic',
+        render() {
+          const Greeting = ({ children }) => (
+            <div css={{ backgroundColor: 'red' }}>{children}</div>
+          )
+          return <Greeting>hello</Greeting>
+        }
+      },
+      renderMethods
+    ),
+    ...withMethods(
+      {
+        name: 'enzyme test with prop containing css element',
+        render() {
+          const Greeting = ({ children, content }) => (
+            <div>
+              {content} {children}
+            </div>
+          )
+          return (
+            <Greeting content={<p css={{ backgroundColor: 'blue' }}>Hello</p>}>
+              World!
+            </Greeting>
+          )
+        }
+      },
+      renderMethods
+    ),
+    ...withMethods(
+      {
+        name:
+          'enzyme test with prop containing css element not at the top level',
+        render() {
+          const Greeting = ({ children, content }) => (
+            <div>
+              {content} {children}
+            </div>
+          )
 
-testWithMethods(
-  'enzyme test with prop containing css element not at the top level',
+          return (
+            <div>
+              <Greeting
+                content={
+                  <p id="something" css={{ backgroundColor: 'blue' }}>
+                    Hello
+                  </p>
+                }
+              >
+                World!
+              </Greeting>
+            </div>
+          )
+        }
+      },
+      renderMethods
+    ),
+    ...withMethods(
+      {
+        name: 'enzyme test with prop containing css element with other props',
+        render() {
+          const Greeting = ({ children, content }) => (
+            <div>
+              {content} {children}
+            </div>
+          )
 
-  ({ method }) => {
-    const Greeting = ({ children, content }) => (
-      <div>
-        {content} {children}
-      </div>
-    )
-
-    expectToMatchSnapshot(
-      <div>
-        <Greeting
-          content={
-            <p id="something" css={{ backgroundColor: 'blue' }}>
-              Hello
-            </p>
+          return (
+            <Greeting
+              content={
+                <p id="something" css={{ backgroundColor: 'blue' }}>
+                  Hello
+                </p>
+              }
+            >
+              World!
+            </Greeting>
+          )
+        }
+      },
+      renderMethods
+    ),
+    ...withMethods(
+      {
+        name: 'enzyme test with prop containing css element with other label',
+        render() {
+          const Thing = ({ content, children }) => {
+            return children
           }
-        >
-          World!
-        </Greeting>
-      </div>,
-      method
-    )
-  }
-)
+          const Greeting = ({ children, content }) => (
+            <Thing content={<div css={{ color: 'hotpink' }} />}>
+              {content} {children}
+            </Thing>
+          )
 
-testWithMethods(
-  'enzyme test with prop containing css element with other props',
-
-  ({ method }) => {
-    const Greeting = ({ children, content }) => (
-      <div>
-        {content} {children}
-      </div>
-    )
-
-    expectToMatchSnapshot(
-      <Greeting
-        content={
-          <p id="something" css={{ backgroundColor: 'blue' }}>
-            Hello
-          </p>
+          return (
+            <Greeting
+              content={
+                <p id="something" css={{ backgroundColor: 'blue' }}>
+                  Hello
+                </p>
+              }
+            >
+              World!
+            </Greeting>
+          )
         }
-      >
-        World!
-      </Greeting>,
-      method
-    )
-  }
-)
+      },
+      renderMethods
+    ),
+    {
+      name: 'enzyme test with prop containing css element in fragment',
+      method: 'mount',
+      mode: 'deep',
+      render() {
+        const FragmentComponent = () => (
+          <React.Fragment>
+            x<div css={{ backgroundColor: 'blue' }}>y</div>
+          </React.Fragment>
+        )
 
-testWithMethods(
-  'enzyme test with prop containing css element with other label',
-  ({ method }) => {
-    const Thing = ({ content, children }) => {
-      return children
+        return (
+          <div>
+            <FragmentComponent />
+          </div>
+        )
+      }
     }
-    const Greeting = ({ children, content }) => (
-      <Thing content={<div css={{ color: 'hotpink' }} />}>
-        {content} {children}
-      </Thing>
-    )
-
-    expectToMatchSnapshot(
-      <Greeting
-        content={
-          <p id="something" css={{ backgroundColor: 'blue' }}>
-            Hello
-          </p>
-        }
-      >
-        World!
-      </Greeting>,
-      method
-    )
-  }
+  ]
 )
 
-test('enzyme test with prop containing css element in fragment', () => {
-  const FragmentComponent = () => (
-    <React.Fragment>
-      x<div css={{ backgroundColor: 'blue' }}>y</div>
-    </React.Fragment>
-  )
-
-  expectToMatchSnapshot(
-    <div>
-      <FragmentComponent />
-    </div>,
-    'mount',
-    'deep'
-  )
-})
+test('', () => {})

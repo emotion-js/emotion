@@ -70,14 +70,17 @@ function filterEmotionProps(props = {}) {
   return rest
 }
 
+function hasIntersection(left: any[], right: any[]) {
+  return left.some(value => right.includes(value))
+}
+
 function isShallowEnzymeElement(element, classNames) {
-  let renderedClassNames = (element.children || [])
-    .map(({ props = {} }) => props.className)
-    .filter(Boolean)
-    .join(' ')
-  return !classNames.some(className =>
-    new RegExp(className).test(renderedClassNames)
-  )
+  const delimiter = ' '
+  let childClassNames = flatMap(element.children || [], ({ props = {} }) =>
+    (props.className || '').split(delimiter)
+  ).filter(Boolean)
+
+  return !hasIntersection(classNames, childClassNames)
 }
 
 export function createSerializer({
