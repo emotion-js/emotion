@@ -3,13 +3,14 @@ import { getLabelFromPath } from './label'
 import { getTargetClassName } from './get-target-class-name'
 
 export let getStyledOptions = (t: *, path: *, state: *) => {
+  const autoLabel = state.opts.autoLabel || 'auto'
   let properties = [
     t.objectProperty(
       t.identifier('target'),
       t.stringLiteral(getTargetClassName(state, t))
     )
   ]
-  let label = getLabelFromPath(path, state, t)
+  let label = autoLabel !== 'never' ? getLabelFromPath(path, state, t) : null
   if (label) {
     properties.push(
       t.objectProperty(t.identifier('label'), t.stringLiteral(label))

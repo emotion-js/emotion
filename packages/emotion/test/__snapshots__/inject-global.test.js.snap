@@ -30,7 +30,7 @@ exports[`injectGlobal nested interpolated media query 1`] = `
 `;
 
 exports[`injectGlobal random interpolation 1`] = `
-".css-fpv6pr-cls {
+".css-zb2p8c {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

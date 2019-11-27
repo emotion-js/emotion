@@ -14,8 +14,7 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[local]',
-          autoLabel: true
+          labelFormat: 'my-css-[local]'
         }
       ]
     ],
@@ -30,8 +29,7 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[filename]-[local]',
-          autoLabel: true
+          labelFormat: 'my-css-[filename]-[local]'
         }
       ]
     ],
@@ -47,8 +45,7 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[filename]-[local]',
-          autoLabel: true
+          labelFormat: 'my-css-[filename]-[local]'
         }
       ]
     ],
@@ -64,8 +61,7 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[dirname]-[filename]-[local]',
-          autoLabel: true
+          labelFormat: 'my-css-[dirname]-[filename]-[local]'
         }
       ]
     ],
@@ -84,8 +80,7 @@ const cases = {
           labelFormat: ({ name, path }) =>
             `${name.toUpperCase()}_${last(
               path.replace(/\..+$/, '').split('/')
-            ).toUpperCase()}`,
-          autoLabel: true
+            ).toUpperCase()}`
         }
       ]
     ],
@@ -113,7 +108,6 @@ const cases = {
       [
         plugin,
         {
-          autoLabel: true,
           sourceMap: false
         }
       ]
