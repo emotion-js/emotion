@@ -53,7 +53,7 @@ export default class App extends Component<{}> {
           <View>
             <View style={styles.pickers}>
               <View style={styles.pickerContainer}>
-                <Text style={styles.pickerTitle}>Library</Text>
+                <Text style={styles.pickerTitle}>{'Library'}</Text>
                 <Text style={{ fontWeight: 'bold' }}>{currentLibraryName}</Text>
 
                 <Picker
@@ -74,7 +74,7 @@ export default class App extends Component<{}> {
               </View>
               <View style={{ width: 1, backgroundColor: colors.fadedGray }} />
               <View style={styles.pickerContainer}>
-                <Text style={styles.pickerTitle}>Benchmark</Text>
+                <Text style={styles.pickerTitle}>{'Benchmark'}</Text>
                 <Text testID="current-benchmark-name">
                   {currentBenchmarkName}
                 </Text>
@@ -142,7 +142,7 @@ export default class App extends Component<{}> {
 
             <Provider>
               {status === 'running' ? (
-                <React.Fragment>
+                <>
                   <View ref={this._setBenchWrapperRef}>
                     <Benchmark
                       component={Component}
@@ -159,7 +159,7 @@ export default class App extends Component<{}> {
                       type={Component.benchmarkType}
                     />
                   </View>
-                </React.Fragment>
+                </>
               ) : (
                 <Component {...getComponentProps({ cycle: 10 })} />
               )}

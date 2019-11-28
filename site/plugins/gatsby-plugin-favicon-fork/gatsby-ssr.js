@@ -42,55 +42,55 @@ export const onRenderBody = (
           rel="apple-touch-icon"
           sizes="57x57"
           href={`${prefix}/favicons/apple-touch-icon-57x57.png`}
-          key={`apple-touch-icon-57x57`}
+          key="apple-touch-icon-57x57"
         />,
         <link
           rel="apple-touch-icon"
           sizes="60x60"
           href={`${prefix}/favicons/apple-touch-icon-60x60.png`}
-          key={`apple-touch-icon-60x60`}
+          key="apple-touch-icon-60x60"
         />,
         <link
           rel="apple-touch-icon"
           sizes="72x72"
           href={`${prefix}/favicons/apple-touch-icon-72x72.png`}
-          key={`apple-touch-icon-72x72`}
+          key="apple-touch-icon-72x72"
         />,
         <link
           rel="apple-touch-icon"
           sizes="76x76"
           href={`${prefix}/favicons/apple-touch-icon-76x76.png`}
-          key={`apple-touch-icon-76x76`}
+          key="apple-touch-icon-76x76"
         />,
         <link
           rel="apple-touch-icon"
           sizes="114x114"
           href={`${prefix}/favicons/apple-touch-icon-114x114.png`}
-          key={`apple-touch-icon-114x114`}
+          key="apple-touch-icon-114x114"
         />,
         <link
           rel="apple-touch-icon"
           sizes="120x120"
           href={`${prefix}/favicons/apple-touch-icon-120x120.png`}
-          key={`apple-touch-icon-120x120`}
+          key="apple-touch-icon-120x120"
         />,
         <link
           rel="apple-touch-icon"
           sizes="144x144"
           href={`${prefix}/favicons/apple-touch-icon-144x144.png`}
-          key={`apple-touch-icon-144x144`}
+          key="apple-touch-icon-144x144"
         />,
         <link
           rel="apple-touch-icon"
           sizes="152x152"
           href={`${prefix}/favicons/apple-touch-icon-152x152.png`}
-          key={`apple-touch-icon-152x152`}
+          key="apple-touch-icon-152x152"
         />,
         <link
           rel="apple-touch-icon"
           sizes="180x180"
           href={`${prefix}/favicons/apple-touch-icon-180x180.png`}
-          key={`apple-touch-icon-180x180`}
+          key="apple-touch-icon-180x180"
         />
       )
     }
@@ -165,19 +165,19 @@ export const onRenderBody = (
           type="image/png"
           sizes="32x32"
           href={`${prefix}/favicons/favicon-32x32.png`}
-          key={`favicon-32x32`}
+          key="favicon-32x32"
         />,
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
           href={`${prefix}/favicons/favicon-16x16.png`}
-          key={`favicon-16x16`}
+          key="favicon-16x16"
         />,
         <link
           rel="shortcut icon"
           href={`${prefix}/favicons/favicon.ico`}
-          key={`favicon`}
+          key="favicon"
         />
       )
     }

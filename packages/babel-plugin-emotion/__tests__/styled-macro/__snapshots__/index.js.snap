@@ -265,6 +265,7 @@ let Avatar = _styled(\\"img\\", {
 
 exports[`@emotion/styled.macro label 1`] = `
 "/** @jsx jsx */
+/* eslint-disable react/jsx-pascal-case */
 import styled from '@emotion/styled/macro'
 import { jsx } from '@emotion/core'
 
@@ -293,6 +294,8 @@ import _styled from \\"@emotion/styled/base\\";
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
 /** @jsx jsx */
+
+/* eslint-disable react/jsx-pascal-case */
 import { jsx } from '@emotion/core';
 
 class Thing {
@@ -305,7 +308,7 @@ class Thing {
   } : {
     name: \\"1lrxbo5\\",
     styles: \\"color:hotpink;\\",
-    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUttQyIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG4iXX0= */\\",
+    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1tQyIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuLyogZXNsaW50LWRpc2FibGUgcmVhY3QvanN4LXBhc2NhbC1jYXNlICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNsYXNzIFRoaW5nIHtcbiAgc3RhdGljIFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2YFxuICAgIGNvbG9yOiBob3RwaW5rO1xuICBgXG4gIEJhZElkZWFDb21wb25lbnQgPSBzdHlsZWQuZGl2YFxuICAgIGJhY2tncm91bmQ6IGhvdHBpbms7XG4gIGBcbn1cblxue1xuICAvLyBsYWJlbCBzaG91bGQgZ2V0IHNhbml0aXplZFxuICBjb25zdCBNaW5pQ2FsV3JhcCQgPSBzdHlsZWQuZGl2YFxuICAgIGNvbG9yOiByZWQ7XG4gIGBcbiAgY29uc3QgVGVzdCA9ICgpID0+IDxNaW5pQ2FsV3JhcCQgLz5cbn1cbiJdfQ== */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   });
   BadIdeaComponent = _styled(\\"div\\", {
@@ -317,7 +320,7 @@ class Thing {
   } : {
     name: \\"d1m7sn\\",
     styles: \\"background:hotpink;\\",
-    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVErQiIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG4iXX0= */\\",
+    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVMrQiIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuLyogZXNsaW50LWRpc2FibGUgcmVhY3QvanN4LXBhc2NhbC1jYXNlICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNsYXNzIFRoaW5nIHtcbiAgc3RhdGljIFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2YFxuICAgIGNvbG9yOiBob3RwaW5rO1xuICBgXG4gIEJhZElkZWFDb21wb25lbnQgPSBzdHlsZWQuZGl2YFxuICAgIGJhY2tncm91bmQ6IGhvdHBpbms7XG4gIGBcbn1cblxue1xuICAvLyBsYWJlbCBzaG91bGQgZ2V0IHNhbml0aXplZFxuICBjb25zdCBNaW5pQ2FsV3JhcCQgPSBzdHlsZWQuZGl2YFxuICAgIGNvbG9yOiByZWQ7XG4gIGBcbiAgY29uc3QgVGVzdCA9ICgpID0+IDxNaW5pQ2FsV3JhcCQgLz5cbn1cbiJdfQ== */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   });
 }
@@ -333,7 +336,7 @@ class Thing {
   } : {
     name: \\"tokvmb\\",
     styles: \\"color:red;\\",
-    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWVpQyIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG4iXX0= */\\",
+    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWdCaUMiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG4iXX0= */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   });
 

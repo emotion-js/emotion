@@ -184,16 +184,13 @@ test('autoLabel without babel', () => {
 test('autoLabel without babel (sanitized)', () => {
   let SomeComp$ = props => {
     return (
-      <div
-        {...props}
-        css={{
-          color: 'hotpink'
-        }}
-      >
+      <div {...props} css={{ color: 'hotpink' }}>
         something
       </div>
     )
   }
+
+  // eslint-disable-next-line react/jsx-pascal-case
   const tree = renderer.create(<SomeComp$ />)
 
   expect(tree.toJSON().props.className.endsWith('-SomeComp-')).toBe(true)

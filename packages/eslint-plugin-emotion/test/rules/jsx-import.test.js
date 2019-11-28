@@ -2,8 +2,10 @@
  * @jest-environment node
  */
 
-const { RuleTester } = require('eslint')
-const rule = require('eslint-plugin-emotion').rules['jsx-import']
+import { RuleTester } from 'eslint'
+import { rules as emotionRules } from 'eslint-plugin-emotion'
+
+const rule = emotionRules['jsx-import']
 
 RuleTester.setDefaultConfig({
   parserOptions: {

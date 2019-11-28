@@ -26,6 +26,7 @@ const createRenderStylesToString = (
   let globalStyles = ''
 
   for (const id in inserted) {
+    // eslint-disable-next-line no-prototype-builtins
     if (inserted.hasOwnProperty(id)) {
       const style = inserted[id]
       const key = `${cssKey}-${id}`

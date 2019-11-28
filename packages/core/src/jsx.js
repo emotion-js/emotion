@@ -85,7 +85,7 @@ let Emotion = withEmotionCache((props, cache, ref) => {
       next = next.next
     }
     return (
-      <React.Fragment>
+      <>
         <style
           {...{
             [`data-emotion-${cache.key}`]: serializedNames,
@@ -94,7 +94,7 @@ let Emotion = withEmotionCache((props, cache, ref) => {
           }}
         />
         {ele}
-      </React.Fragment>
+      </>
     )
   }
   return ele

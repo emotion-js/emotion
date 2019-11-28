@@ -213,17 +213,15 @@ export default ({
             >
               {children}
             </main>
-            {
-              <ToggleSidebarButton
-                setSidebarOpen={() => setSidebarOpen(!sidebarOpen)}
-              >
-                {sidebarOpen ? (
-                  <CloseIcon color="white" size={32} />
-                ) : (
-                  <MenuIcon color="white" size={32} />
-                )}
-              </ToggleSidebarButton>
-            }
+            <ToggleSidebarButton
+              setSidebarOpen={() => setSidebarOpen(!sidebarOpen)}
+            >
+              {sidebarOpen ? (
+                <CloseIcon color="white" size={32} />
+              ) : (
+                <MenuIcon color="white" size={32} />
+              )}
+            </ToggleSidebarButton>
           </>
         )
       }}

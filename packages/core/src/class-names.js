@@ -118,7 +118,7 @@ export const ClassNames: React.AbstractComponent<
   hasRendered = true
   if (!isBrowser && rules.length !== 0) {
     return (
-      <React.Fragment>
+      <>
         <style
           {...{
             [`data-emotion-${cache.key}`]: serializedHashes.substring(1),
@@ -127,7 +127,7 @@ export const ClassNames: React.AbstractComponent<
           }}
         />
         {ele}
-      </React.Fragment>
+      </>
     )
   }
   return ele
