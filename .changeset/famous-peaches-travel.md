@@ -2,4 +2,4 @@
 'jest-emotion': patch
 ---
 
-Support shallow rendering
+Improve support for Enzyme's shallow rendering.
