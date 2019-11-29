@@ -19,8 +19,6 @@ describe('toHaveStyleRule', () => {
     width: 100%;
   `
 
-  const enzymeMethods = ['mount', 'render']
-
   it('matches styles on the top-most node passed in', () => {
     const tree = renderer
       .create(
@@ -56,21 +54,49 @@ describe('toHaveStyleRule', () => {
     expect(svgNode).toHaveStyleRule('width', expect.stringMatching(/.*%$/))
   })
 
-  it('supports enzyme render methods', () => {
+  it('supports enzyme `mount` method', () => {
     const Component = () => (
       <div css={divStyle}>
         <svg css={svgStyle} />
       </div>
     )
 
-    enzymeMethods.forEach(method => {
-      const wrapper = enzyme[method](<Component />)
-      expect(wrapper).toHaveStyleRule('color', 'red')
-      expect(wrapper).not.toHaveStyleRule('width', '100%')
-      const svgNode = wrapper.find('svg')
-      expect(svgNode).toHaveStyleRule('width', '100%')
-      expect(svgNode).not.toHaveStyleRule('color', 'red')
-    })
+    const wrapper = enzyme.mount(<Component />)
+    expect(wrapper).toHaveStyleRule('color', 'red')
+    expect(wrapper).not.toHaveStyleRule('width', '100%')
+    const svgNode = wrapper.find('svg')
+    expect(svgNode).toHaveStyleRule('width', '100%')
+    expect(svgNode).not.toHaveStyleRule('color', 'red')
+  })
+
+  it('supports enzyme `render` method', () => {
+    const Component = () => (
+      <div css={divStyle}>
+        <svg css={svgStyle} />
+      </div>
+    )
+
+    const wrapper = enzyme.render(<Component />)
+    expect(wrapper).toHaveStyleRule('color', 'red')
+    expect(wrapper).not.toHaveStyleRule('width', '100%')
+    const svgNode = wrapper.find('svg')
+    expect(svgNode).toHaveStyleRule('width', '100%')
+    expect(svgNode).not.toHaveStyleRule('color', 'red')
+  })
+
+  it('supports enzyme `shallow` method', () => {
+    const Component = () => (
+      <div css={divStyle}>
+        <svg css={svgStyle} />
+      </div>
+    )
+
+    const wrapper = enzyme.shallow(<Component />)
+    expect(wrapper).toHaveStyleRule('color', 'red')
+    expect(wrapper).not.toHaveStyleRule('width', '100%')
+    const svgNode = wrapper.childAt(0)
+    expect(svgNode).toHaveStyleRule('width', '100%')
+    expect(svgNode).not.toHaveStyleRule('color', 'red')
   })
 
   // i think this isn't working because of forwardRef
@@ -81,8 +107,7 @@ describe('toHaveStyleRule', () => {
     const Svg = styled('svg')`
       width: 100%;
     `
-
-    enzymeMethods.forEach(method => {
+    ;['mount', 'render', 'shallow'].forEach(method => {
       const wrapper = enzyme[method](
         <Div>
           <Svg />

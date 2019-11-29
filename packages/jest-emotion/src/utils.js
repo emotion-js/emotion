@@ -4,7 +4,7 @@ function last(arr) {
   return arr.length > 0 ? arr[arr.length - 1] : undefined
 }
 
-function flatMap(arr, iteratee) {
+export function flatMap<T, S>(arr: T[], iteratee: (arg: T) => S[] | S): S[] {
   return [].concat(...arr.map(iteratee))
 }
 
@@ -37,14 +37,21 @@ function isTagWithClassName(node) {
   return node.prop('className') && typeof node.type() === 'string'
 }
 
-function getClassNamesFromEnzyme(selectors, node) {
-  // We need to dive if we have selected a styled child from a shallow render
-  const actualComponent = shouldDive(node) ? node.dive() : node
+function findNodeWithClassName(node) {
   // Find the first node with a className prop
-  const components = actualComponent.findWhere(isTagWithClassName)
-  const classes = components.length && components.first().prop('className')
+  const found = node.findWhere(isTagWithClassName)
+  return found.length ? found.first() : null
+}
 
-  return getClassNames(selectors, classes)
+function getClassNameProp(node) {
+  return (node && node.prop('className')) || ''
+}
+
+function getClassNamesFromEnzyme(selectors, node) {
+  // We need to dive in to get the className if we have a styled element from a shallow render
+  let isShallow = shouldDive(node)
+  let nodeWithClassName = findNodeWithClassName(isShallow ? node.dive() : node)
+  return getClassNames(selectors, getClassNameProp(nodeWithClassName))
 }
 
 function getClassNamesFromCheerio(selectors, node) {
@@ -152,7 +159,7 @@ export function getStylesFromClassNames(
   let keyframes = {}
   let styles = ''
 
-  flatMap(elements, getElementRules).forEach(rule => {
+  flatMap(elements, getElementRules).forEach((rule: string) => {
     if (selectorPattern.test(rule)) {
       styles += rule
     }
