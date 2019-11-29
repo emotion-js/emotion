@@ -9,12 +9,20 @@ import {
   isDOMElement,
   getStylesFromClassNames,
   getStyleElements,
-  getKeys
+  getKeys,
+  flatMap
 } from './utils'
 
 export { matchers } from './matchers'
 
 function getNodes(node, nodes = []) {
+  if (Array.isArray(node)) {
+    for (let child of node) {
+      getNodes(child, nodes)
+    }
+    return nodes
+  }
+
   if (node.children) {
     for (let child of node.children) {
       getNodes(child, nodes)
@@ -62,14 +70,50 @@ function filterEmotionProps(props = {}) {
   return rest
 }
 
+function hasIntersection(left: any[], right: any[]) {
+  return left.some(value => right.includes(value))
+}
+
+function isShallowEnzymeElement(element, classNames) {
+  const delimiter = ' '
+  let childClassNames = flatMap(element.children || [], ({ props = {} }) =>
+    (props.className || '').split(delimiter)
+  ).filter(Boolean)
+
+  return !hasIntersection(classNames, childClassNames)
+}
+
 export function createSerializer({
   classNameReplacer,
   DOMElements = true
 }: Options = {}) {
   let cache = new WeakSet()
   function print(val: *, printer: Function) {
+    let elements = getStyleElements()
+    let keys = getKeys(elements)
     if (isEmotionCssPropEnzymeElement(val)) {
-      return val.children.map(printer).join('\n')
+      let cssClassNames = (val.props.css.name || '').split(' ')
+      let expectedClassNames = flatMap(cssClassNames, cssClassName =>
+        keys.map(key => `${key}-${cssClassName}`)
+      )
+      // if this is a shallow element, we need to manufacture the className
+      // since the underlying component is not rendered.
+      if (isShallowEnzymeElement(val, expectedClassNames)) {
+        let className = [val.props.className]
+          .concat(expectedClassNames)
+          .filter(Boolean)
+          .join(' ')
+        return printer({
+          ...val,
+          props: filterEmotionProps({
+            ...val.props,
+            className
+          }),
+          type: val.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+        })
+      } else {
+        return val.children.map(printer).join('\n')
+      }
     }
     if (isEmotionCssPropElementType(val)) {
       return printer({
@@ -80,12 +124,10 @@ export function createSerializer({
     }
     const nodes = getNodes(val)
     const classNames = getClassNamesFromNodes(nodes)
-    let elements = getStyleElements()
     const styles = getPrettyStylesFromClassNames(classNames, elements)
     nodes.forEach(cache.add, cache)
     const printedVal = printer(val)
     nodes.forEach(cache.delete, cache)
-    let keys = getKeys(elements)
     return replaceClassNames(
       classNames,
       styles,

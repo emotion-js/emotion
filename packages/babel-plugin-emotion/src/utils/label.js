@@ -1,27 +1,49 @@
 // @flow
 import nodePath from 'path'
 
+type LabelFormatOptions = {
+  name: string,
+  path: string
+}
+
+const invalidClassNameCharacters = /[!"#$%&'()*+,./:;<=>?@[\]^`|}~{]/g
+
+const sanitizeLabelPart = (labelPart: string) =>
+  labelPart.trim().replace(invalidClassNameCharacters, '-')
+
 function getLabel(
   identifierName?: string,
   autoLabel: boolean,
-  labelFormat?: string,
+  labelFormat?: string | (LabelFormatOptions => string),
   filename: string
 ) {
   if (!identifierName || !autoLabel) return null
-  if (!labelFormat) return identifierName.trim()
+
+  const sanitizedName = sanitizeLabelPart(identifierName)
+
+  if (!labelFormat) {
+    return sanitizedName
+  }
+
+  if (typeof labelFormat === 'function') {
+    return labelFormat({
+      name: sanitizedName,
+      path: filename
+    })
+  }
 
   const parsedPath = nodePath.parse(filename)
   let localDirname = nodePath.basename(parsedPath.dir)
   let localFilename = parsedPath.name
+
   if (localFilename === 'index') {
     localFilename = localDirname
   }
-  localFilename = localFilename.replace('.', '-')
 
   return labelFormat
-    .replace(/\[local\]/gi, identifierName.trim())
-    .replace(/\[filename\]/gi, localFilename)
-    .replace(/\[dirname\]/gi, localDirname)
+    .replace(/\[local\]/gi, sanitizedName)
+    .replace(/\[filename\]/gi, sanitizeLabelPart(localFilename))
+    .replace(/\[dirname\]/gi, sanitizeLabelPart(localDirname))
 }
 
 export function getLabelFromPath(path: *, state: *, t: *) {
@@ -54,7 +76,10 @@ function getDeclaratorName(path, t) {
   // we probably have a css call assigned to a variable
   // so we'll just return the variable name
   if (parent.isVariableDeclarator()) {
-    return parent.node.id.name
+    if (t.isIdentifier(parent.node.id)) {
+      return parent.node.id.name
+    }
+    return ''
   }
 
   // we probably have an inline css prop usage
@@ -67,7 +92,7 @@ function getDeclaratorName(path, t) {
   }
 
   // we could also have an object property
-  if (parent.isObjectProperty()) {
+  if (parent.isObjectProperty() && !parent.node.computed) {
     return parent.node.key.name
   }
 

@@ -5,7 +5,8 @@ import 'test-utils/legacy-env'
 import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import { css, jsx, CacheProvider } from '@emotion/core'
+import createCache from '@emotion/cache'
 import { createSerializer } from 'jest-emotion'
 import { ignoreConsoleErrors } from 'test-utils'
 
@@ -158,4 +159,27 @@ test('throws nice error for invalid css', () => {
       })
     })
   }).toThrowErrorMatchingSnapshot()
+})
+
+test('prints speedy styles', () => {
+  const speedyCache = createCache({
+    speedy: true
+  })
+  const tree = renderer
+    .create(
+      <CacheProvider value={speedyCache}>
+        <div
+          css={css`
+            color: hotpink;
+          `}
+        />
+      </CacheProvider>
+    )
+    .toJSON()
+
+  expect(
+    prettyFormat(tree, {
+      plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
+    })
+  ).toMatchSnapshot()
 })

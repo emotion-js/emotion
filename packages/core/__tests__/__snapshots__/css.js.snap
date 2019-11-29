@@ -1,9 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`applies class when css prop is set to nil on wrapper component 1`] = `
+Array [
+  .emotion-0 {
+  color: hotpink;
+}
+
+<button
+    className="emotion-0"
+  >
+    I'm hotpink!
+  </button>,
+  .emotion-0 {
+  color: hotpink;
+}
+
+<button
+    className="emotion-0"
+  >
+    I'm hotpink too!
+  </button>,
+]
+`;
+
+exports[`array fallback (using camelCased property) 1`] = `
+.emotion-0 {
+  background-color: green;
+  background-color: hotpink;
+}
+
+<div>
+  <div
+    className="emotion-0"
+  >
+    something
+  </div>
+</div>
+`;
+
 exports[`array fallback 1`] = `
 .emotion-0 {
-  display: green;
-  display: hotpink;
+  color: green;
+  color: hotpink;
 }
 
 <div>
@@ -45,6 +83,19 @@ exports[`handles camelCased custom properties in object styles properly 1`] = `
 <div
   className="emotion-0"
 />
+`;
+
+exports[`handles composition of styles without a final semi in a declaration block 1`] = `
+.emotion-0 {
+  color: hotpink;
+  background-color: green;
+}
+
+<div
+  className="emotion-0"
+>
+  I'm hotpink on the green background.
+</div>
 `;
 
 exports[`label in css call 1`] = `
@@ -108,7 +159,7 @@ exports[`overwrite styles from parent 1`] = `
 `;
 
 exports[`string as css prop throws 1`] = `
-"Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/css' like this: css\`
+"Strings are not allowed as css prop values, please wrap it in a css template literal from '@emotion/core' like this: css\`
             color: hotpink;
           \`"
 `;

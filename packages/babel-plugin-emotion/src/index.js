@@ -1,91 +1,87 @@
 // @flow
-import { createEmotionMacro } from './macro'
-import { createStyledMacro } from './styled-macro'
-import cssMacro, { transformCssCallExpression } from './css-macro'
-import { addDefault } from '@babel/helper-module-imports'
-import nodePath from 'path'
-import { getSourceMap, getStyledOptions } from './utils'
+import syntaxJsx from '@babel/plugin-syntax-jsx'
+import {
+  createEmotionMacro,
+  transformers as vanillaTransformers
+} from './emotion-macro'
+import { createStyledMacro, styledTransformer } from './styled-macro'
+import coreMacro, {
+  transformers as coreTransformers,
+  transformInlineCsslessExpression
+} from './core-macro'
+import { getStyledOptions, createTransformerMacro } from './utils'
+
+const getCssExport = (reexported, importSource, mapping) => {
+  const cssExport = Object.keys(mapping).find(localExportName => {
+    const [packageName, exportName] = mapping[localExportName].canonicalImport
+    return packageName === '@emotion/core' && exportName === 'css'
+  })
+
+  if (!cssExport) {
+    throw new Error(
+      `You have specified that '${importSource}' re-exports '${reexported}' from '@emotion/core' but it doesn't also re-export 'css' from '@emotion/core', 'css' is necessary for certain optimisations, please re-export it from '${importSource}'`
+    )
+  }
+
+  return cssExport
+}
 
 let webStyledMacro = createStyledMacro({
-  importPath: '@emotion/styled-base',
-  originalImportPath: '@emotion/styled',
+  importSource: '@emotion/styled/base',
+  originalImportSource: '@emotion/styled',
   isWeb: true
 })
 let nativeStyledMacro = createStyledMacro({
-  importPath: '@emotion/native',
-  originalImportPath: '@emotion/native',
+  importSource: '@emotion/native',
+  originalImportSource: '@emotion/native',
   isWeb: false
 })
 let primitivesStyledMacro = createStyledMacro({
-  importPath: '@emotion/primitives',
-  originalImportPath: '@emotion/primitives',
+  importSource: '@emotion/primitives',
+  originalImportSource: '@emotion/primitives',
   isWeb: false
 })
+let vanillaEmotionMacro = createEmotionMacro('macro')
+
+let transformersSource = {
+  emotion: vanillaTransformers,
+  '@emotion/core': coreTransformers,
+  '@emotion/styled': {
+    default: [
+      styledTransformer,
+      { styledBaseImport: ['@emotion/styled/base', 'default'], isWeb: true }
+    ]
+  },
+  '@emotion/primitives': {
+    default: [styledTransformer, { isWeb: false }]
+  },
+  '@emotion/native': {
+    default: [styledTransformer, { isWeb: false }]
+  }
+}
 
 export const macros = {
-  createEmotionMacro,
-  css: cssMacro,
-  createStyledMacro
+  core: coreMacro,
+  nativeStyled: nativeStyledMacro,
+  primitivesStyled: primitivesStyledMacro,
+  webStyled: webStyledMacro,
+  vanillaEmotion: vanillaEmotionMacro
 }
 
 export type BabelPath = any
 
 export type EmotionBabelPluginPass = any
 
-let emotionCoreMacroThatsNotARealMacro = ({ references, state, babel }) => {
-  Object.keys(references).forEach(refKey => {
-    if (refKey === 'css') {
-      references[refKey].forEach(path => {
-        transformCssCallExpression({ babel, state, path: path.parentPath })
-      })
-    }
-  })
-}
-emotionCoreMacroThatsNotARealMacro.keepImport = true
-
-function getAbsolutePath(instancePath: string, rootPath: string) {
-  if (instancePath.charAt(0) === '.') {
-    let absoluteInstancePath = nodePath.resolve(rootPath, instancePath)
-    return absoluteInstancePath
-  }
-  return false
-}
-
-function getInstancePathToCompare(instancePath: string, rootPath: string) {
-  let absolutePath = getAbsolutePath(instancePath, rootPath)
-  if (absolutePath === false) {
-    return instancePath
-  }
-  return absolutePath
-}
-
 export default function(babel: *) {
   let t = babel.types
   return {
     name: 'emotion',
-    inherits: require('babel-plugin-syntax-jsx'),
+    inherits: syntaxJsx,
     visitor: {
       ImportDeclaration(path: *, state: *) {
-        const hasFilepath =
-          path.hub.file.opts.filename &&
-          path.hub.file.opts.filename !== 'unknown'
-        let dirname = hasFilepath
-          ? nodePath.dirname(path.hub.file.opts.filename)
-          : ''
-
-        if (
-          !state.pluginMacros[path.node.source.value] &&
-          state.emotionInstancePaths.indexOf(
-            getInstancePathToCompare(path.node.source.value, dirname)
-          ) !== -1
-        ) {
-          state.pluginMacros[path.node.source.value] = createEmotionMacro(
-            path.node.source.value
-          )
-        }
-        let pluginMacros = state.pluginMacros
+        const macro = state.pluginMacros[path.node.source.value]
         // most of this is from https://github.com/kentcdodds/babel-plugin-macros/blob/master/src/index.js
-        if (pluginMacros[path.node.source.value] === undefined) {
+        if (macro === undefined) {
           return
         }
         if (t.isImportNamespaceSpecifier(path.node.specifiers[0])) {
@@ -127,40 +123,102 @@ export default function(babel: *) {
           Identifier() {}
         })
 
-        pluginMacros[path.node.source.value]({
+        macro({
+          path,
           references: referencePathsByImportName,
           state,
           babel,
-          isBabelMacrosCall: true,
-          isEmotionCall: true
+          isEmotionCall: true,
+          isBabelMacrosCall: true
         })
-        if (!pluginMacros[path.node.source.value].keepImport) {
-          path.remove()
-        }
       },
       Program(path: *, state: *) {
-        state.emotionInstancePaths = (state.opts.instances || []).map(
-          instancePath => getInstancePathToCompare(instancePath, process.cwd())
-        )
+        let macros = {}
+        let jsxCoreImports: Array<{
+          importSource: string,
+          export: string,
+          cssExport: string
+        }> = [
+          { importSource: '@emotion/core', export: 'jsx', cssExport: 'css' }
+        ]
+        state.jsxCoreImport = jsxCoreImports[0]
+        Object.keys(state.opts.importMap || {}).forEach(importSource => {
+          let value = state.opts.importMap[importSource]
+          let transformers = {}
+          Object.keys(value).forEach(localExportName => {
+            let { canonicalImport, ...options } = value[localExportName]
+            let [packageName, exportName] = canonicalImport
+            if (packageName === '@emotion/core' && exportName === 'jsx') {
+              jsxCoreImports.push({
+                importSource,
+                export: localExportName,
+                cssExport: getCssExport('jsx', importSource, value)
+              })
+              return
+            }
+            let packageTransformers = transformersSource[packageName]
+
+            if (packageTransformers === undefined) {
+              throw new Error(
+                `There is no transformer for the export '${exportName}' in '${packageName}'`
+              )
+            }
+
+            let extraOptions
+
+            if (packageName === '@emotion/core' && exportName === 'Global') {
+              // this option is not supposed to be set in importMap
+              extraOptions = {
+                cssExport: getCssExport('Global', importSource, value)
+              }
+            } else if (
+              packageName === '@emotion/styled' &&
+              exportName === 'default'
+            ) {
+              // this is supposed to override defaultOptions value
+              // and let correct value to be set if coming in options
+              extraOptions = { styledBaseImport: undefined }
+            }
+
+            let [exportTransformer, defaultOptions] =
+              // $FlowFixMe
+              Array.isArray(packageTransformers[exportName])
+                ? packageTransformers[exportName]
+                : [packageTransformers[exportName]]
+
+            transformers[localExportName] = [
+              exportTransformer,
+              { ...defaultOptions, ...extraOptions, ...options }
+            ]
+          })
+          macros[importSource] = createTransformerMacro(transformers, {
+            importSource
+          })
+        })
         state.pluginMacros = {
-          '@emotion/css': cssMacro,
           '@emotion/styled': webStyledMacro,
-          '@emotion/core': emotionCoreMacroThatsNotARealMacro,
+          '@emotion/core': coreMacro,
           '@emotion/primitives': primitivesStyledMacro,
           '@emotion/native': nativeStyledMacro,
-          emotion: createEmotionMacro('emotion')
+          emotion: vanillaEmotionMacro,
+          ...macros
         }
         if (state.opts.cssPropOptimization === undefined) {
           for (const node of path.node.body) {
-            if (
-              t.isImportDeclaration(node) &&
-              node.source.value === '@emotion/core' &&
-              node.specifiers.some(
-                x => t.isImportSpecifier(x) && x.imported.name === 'jsx'
+            if (t.isImportDeclaration(node)) {
+              let jsxCoreImport = jsxCoreImports.find(
+                thing =>
+                  node.source.value === thing.importSource &&
+                  node.specifiers.some(
+                    x =>
+                      t.isImportSpecifier(x) && x.imported.name === thing.export
+                  )
               )
-            ) {
-              state.transformCssProp = true
-              break
+              if (jsxCoreImport) {
+                state.transformCssProp = true
+                state.jsxCoreImport = jsxCoreImport
+                break
+              }
             }
           }
         } else {
@@ -183,37 +241,12 @@ export default function(babel: *) {
           (t.isObjectExpression(path.node.value.expression) ||
             t.isArrayExpression(path.node.value.expression))
         ) {
-          let expressionPath = path.get('value.expression')
-          let sourceMap =
-            state.emotionSourceMap && path.node.loc !== undefined
-              ? getSourceMap(path.node.loc.start, state)
-              : ''
-
-          expressionPath.replaceWith(
-            t.callExpression(
-              // the name of this identifier doesn't really matter at all
-              // it'll never appear in generated code
-              t.identifier('___shouldNeverAppearCSS'),
-              [path.node.value.expression]
-            )
-          )
-
-          transformCssCallExpression({
-            babel,
+          transformInlineCsslessExpression({
             state,
-            path: expressionPath,
-            sourceMap
+            babel,
+            path,
+            cssImport: state.jsxCoreImport
           })
-          if (t.isCallExpression(expressionPath)) {
-            if (!state.cssIdentifier) {
-              state.cssIdentifier = addDefault(path, '@emotion/css', {
-                nameHint: 'css'
-              })
-            }
-            expressionPath
-              .get('callee')
-              .replaceWith(t.cloneDeep(state.cssIdentifier))
-          }
         }
       },
       CallExpression: {

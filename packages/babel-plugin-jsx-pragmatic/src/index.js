@@ -1,9 +1,18 @@
 import syntaxJsx from '@babel/plugin-syntax-jsx'
 
+const findLast = (arr, predicate) => {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (predicate(arr[i])) {
+      return arr[i]
+    }
+  }
+}
+
 export default function jsxPragmatic(babel) {
   const t = babel.types
-  function getPragmaImport(state) {
-    return t.importDeclaration(
+
+  function addPragmaImport(path, state) {
+    const importDeclar = t.importDeclaration(
       [
         t.importSpecifier(
           t.identifier(state.opts.import),
@@ -12,6 +21,15 @@ export default function jsxPragmatic(babel) {
       ],
       t.stringLiteral(state.opts.module)
     )
+
+    const targetPath = findLast(path.get('body'), p => p.isImportDeclaration())
+
+    if (targetPath) {
+      targetPath.insertAfter([importDeclar])
+    } else {
+      // Apparently it's now safe to do this even if Program begins with directives.
+      path.unshiftContainer('body', importDeclar)
+    }
   }
 
   return {
@@ -27,10 +45,7 @@ export default function jsxPragmatic(babel) {
       Program: {
         exit: function(path, state) {
           if (!state.get('jsxDetected')) return
-
-          // Apparently it's now safe to do this even if Program begins with
-          // directives.
-          path.unshiftContainer('body', getPragmaImport(state))
+          addPragmaImport(path, state)
         }
       },
 

@@ -1,18 +1,7 @@
 # @emotion/styled-base
 
-## 10.0.14
+## 11.0.0-next.3
 
-### Patch Changes
+### Major Changes
 
-- [c0eb604d](https://github.com/emotion-js/emotion/commit/c0eb604d) [#1419](https://github.com/emotion-js/emotion/pulls/1419) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Update build tool
-  - [c673e200](https://github.com/emotion-js/emotion/commit/c673e200) [#1405](https://github.com/emotion-js/emotion/pulls/1405) Thanks [@ryanswanson](https://github.com/ryanswanson)! - PropsOf<C> TypeScript utilities - Support defaultProps by delegating to new JSX and React types.
-
-## 10.0.13
-
-- Updated dependencies [52bd655b]:
-  - @emotion/is-prop-valid@0.8.1
-
-## 10.0.12
-
-- Updated dependencies [06426c95]:
-  - @emotion/is-prop-valid@0.8.0
+- [`f9feab1a`](https://github.com/emotion-js/emotion/commit/f9feab1a5d1ca88e53c3f7a063be5d5871cc93e8) [#1575](https://github.com/emotion-js/emotion/pull/1575) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for `@emotion/styled-base` package. It has been moved to `@emotion/styled` and is available as `@emotion/styled/base`. This simplifies how the regular and base versions relate to each other and eliminates problems with stricter package managers when `@emotion/styled-base` was not installed explicitly by a user.

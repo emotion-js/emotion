@@ -3,6 +3,7 @@ import { safeQuerySelector } from 'test-utils'
 import { StyleSheet } from '@emotion/sheet'
 
 const rule = 'html { color: hotpink; }'
+const rule2 = '* { box-sizing: border-box; }'
 
 let defaultOptions = {
   key: '',
@@ -66,7 +67,7 @@ describe('StyleSheet', () => {
     console.warn = jest.fn()
     sheet.insert('.asdfasdf4###112121211{')
     expect(console.warn).toHaveBeenCalledTimes(1)
-    expect(console.warn.mock.calls[0][0]).toBe(
+    expect((console.warn: any).mock.calls[0][0]).toBe(
       'There was a problem inserting the following rule: ".asdfasdf4###112121211{"'
     )
     // $FlowFixMe
@@ -109,5 +110,20 @@ describe('StyleSheet', () => {
     // $FlowFixMe
     expect(sheet.tags[0].sheet.cssRules[0]).toBeInstanceOf(window.CSSImportRule)
     sheet.flush()
+  })
+
+  it('should accept prepend option', () => {
+    const head = safeQuerySelector('head')
+    const otherStyle = document.createElement('style')
+    otherStyle.setAttribute('id', 'other')
+    head.appendChild(otherStyle)
+
+    const sheet = new StyleSheet({ ...defaultOptions, prepend: true })
+    sheet.insert(rule)
+    sheet.insert(rule2)
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
+    head.removeChild(otherStyle)
   })
 })

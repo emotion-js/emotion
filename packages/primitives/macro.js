@@ -1,1 +1,1 @@
-module.exports = require('babel-plugin-emotion').macros.styled
+module.exports = require('babel-plugin-emotion').macros.primitivesStyled

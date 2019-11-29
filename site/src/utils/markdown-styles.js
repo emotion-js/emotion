@@ -1,7 +1,7 @@
 // @flow
-import * as React from 'react'
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
-import css from '@emotion/css'
 import { mq, colors, constants, animatedUnderline } from './style'
 
 const textStyles = mq({
@@ -12,9 +12,9 @@ const textStyles = mq({
   lineHeight: '1.7'
 })
 
-export const p = styled.p(textStyles)
+export const p = styled.p<empty>(textStyles)
 
-export const code = styled.code(
+export const code = styled.code<empty>(
   textStyles,
   mq({
     backgroundColor: 'rgba(117, 63, 131, 0.07)',
@@ -25,13 +25,13 @@ export const code = styled.code(
   })
 )
 
-export const pre = styled.pre({
+export const pre = styled.pre<empty>({
   '& > code': {
     padding: 0
   }
 })
 
-export const ul = styled.ul({
+export const ul = styled.ul<empty>({
   marginTop: 20,
   paddingLeft: 20,
 
@@ -45,7 +45,7 @@ export const ul = styled.ul({
   }
 })
 
-export const li = styled.li(textStyles, {
+export const li = styled.li<empty>(textStyles, {
   marginTop: 10,
   p: { marginTop: 5, marginBottom: 0 },
   '& > ul, & > ol': {
@@ -57,6 +57,7 @@ export const li = styled.li(textStyles, {
   }
 })
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const img = styled.img`
   max-height: 360px;
   margin: 0 auto;
@@ -69,6 +70,7 @@ const baseHeadingStyles = css`
   line-height: 1.2;
 `
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const h1 = styled.h1`
   margin-top: 32px;
   padding-top: 20px;
@@ -76,6 +78,7 @@ export const h1 = styled.h1`
   ${baseHeadingStyles};
 `
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const h2 = styled.h2`
   ${baseHeadingStyles};
   font-size: 24px;
@@ -87,12 +90,14 @@ export const h2 = styled.h2`
   }
 `
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const h3 = styled.h3`
   font-size: 20px;
   padding-top: 20px;
   ${baseHeadingStyles};
 `
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const h4 = styled.h4`
   font-size: 16px;
   margin-top: 22px;
@@ -100,15 +105,17 @@ export const h4 = styled.h4`
   ${baseHeadingStyles};
 `
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const h5 = styled.h5`
   font-size: 14px;
 `
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const h6 = styled.div`
   font-size: 12;
 `
 
-export const a = styled.a(
+export const a = styled.a<empty>(
   {
     display: 'inline-block',
     fontSize: constants.fontSizes[2],
@@ -132,6 +139,7 @@ export const a = styled.a(
   animatedUnderline
 )
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const blockquote = styled.blockquote`
   display: flex;
   align-items: center;
@@ -163,6 +171,7 @@ export const blockquote = styled.blockquote`
   }
 `
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const table = styled.table`
   display: block;
   width: 100%;
@@ -181,17 +190,21 @@ export const table = styled.table`
     font-size: 13px;
   }
 `
+
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const td = styled.td`
   padding: 12px 12px;
   border: 1px solid ${colors.color};
 `
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const th = styled.th`
   padding: ${constants.space[1]}px ${constants.space[2]}px;
   border: 1px solid ${colors.color};
   font-weight: bold;
 `
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const tr = styled.tr`
   background-color: #fff;
   border-top: 1px solid #ccc;

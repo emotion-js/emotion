@@ -24,6 +24,6 @@ assignees: ''
 
 <!--
   If existing documentation is available, but needs to be improved,
-  is wrong, or unclear, please post here the relevant 
+  is wrong, or unclear, please post here the relevant
   https://emotion.sh/docs URLs
 -->

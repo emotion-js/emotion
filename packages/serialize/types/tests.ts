@@ -16,25 +16,21 @@ const testObjectInterpolation1: ObjectInterpolation<undefined> = {
 }
 
 // $ExpectType SerializedStyles
-serializeStyles({}, [])
+serializeStyles([], {})
+// $ExpectType SerializedStyles
+serializeStyles([], {
+  'emotion-cache': 'width: 200px'
+})
+// $ExpectType SerializedStyles
+serializeStyles([], {}, {})
+// $ExpectType SerializedStyles
+serializeStyles(['abc'], {}, {})
+// $ExpectType SerializedStyles
+serializeStyles(['width: 200px;'], {}, {})
+// $ExpectType SerializedStyles
+serializeStyles([() => 'height: 300px;'], {}, {})
 // $ExpectType SerializedStyles
 serializeStyles(
-  {
-    'emotion-cache': 'width: 200px'
-  },
-  []
-)
-// $ExpectType SerializedStyles
-serializeStyles({}, [], {})
-// $ExpectType SerializedStyles
-serializeStyles({}, ['abc'], {})
-// $ExpectType SerializedStyles
-serializeStyles({}, ['width: 200px;'], {})
-// $ExpectType SerializedStyles
-serializeStyles({}, [() => 'height: 300px;'], {})
-// $ExpectType SerializedStyles
-serializeStyles(
-  {},
   [
     'display: block;',
     {
@@ -42,10 +38,11 @@ serializeStyles(
       backgroundColor: 'red'
     }
   ],
+  {},
   {}
 )
 // $ExpectType SerializedStyles
-serializeStyles({}, [testTemplateStringsArray, 5, '4px'], {})
+serializeStyles([testTemplateStringsArray, 5, '4px'], {}, {})
 
 // $ExpectError
 serializeStyles()

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`object className 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className="legacy__class emotion-0"
+/>
+`;
+
+exports[`string className 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className="legacy__class emotion-0"
+/>
+`;

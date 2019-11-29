@@ -1,0 +1,14 @@
+{
+  "packages": [
+    "packages/babel-plugin-emotion",
+    "packages/cache",
+    "packages/core",
+    "packages/create-emotion",
+    "packages/css",
+    "packages/emotion",
+    "packages/emotion-theming",
+    "packages/serialize",
+    "packages/styled"
+  ],
+  "sandboxes": ["pk1qjqpw67"]
+}

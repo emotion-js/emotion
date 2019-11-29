@@ -1,5 +1,7 @@
 // @flow
-import React, { Component } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+import { Component } from 'react'
 import styled from '@emotion/styled'
 import { StaticQuery, graphql } from 'gatsby'
 import Live, { compile, Editor, ErrorBoundary } from './live'
@@ -23,16 +25,12 @@ export const scope = {
         return require('@emotion/core')
       case '@emotion/styled':
         return require('@emotion/styled')
-      case '@emotion/styled-base':
-        return require('@emotion/styled-base')
-      case '@emotion/css':
-        return require('@emotion/css')
+      case '@emotion/styled/base':
+        return require('@emotion/styled/base')
       case '@emotion/is-prop-valid':
         return require('@emotion/is-prop-valid')
       case 'emotion-theming':
         return require('emotion-theming')
-      case 'recompose/withProps':
-        return require('recompose/withProps')
       case 'facepaint':
         return require('facepaint')
       default:
@@ -42,6 +40,7 @@ export const scope = {
   }
 }
 
+// $FlowFixMe(flow@0.100.0): tagged templates don't support generics
 export const Error = styled.pre`
   background-color: ${colors.red[8]};
   overflow: auto;
@@ -110,7 +109,6 @@ export default class Playground extends Component<Props> {
                           height: '100%',
                           borderRadius: 0
                         }}
-                        // $FlowFixMe
                         className={this.props.editorClassName}
                       />
                     </Box>

@@ -2,6 +2,8 @@
   "extends": "dtslint/dtslint.json",
   "rules": {
     "array-type": [true, "generic"],
+    "callable-types": false,
+    "file-name-casing": false,
     "import-spacing": false,
     "semicolon": false,
     "whitespace": [
@@ -17,6 +19,7 @@
       "check-preblock"
     ],
     "no-null-undefined-union": false,
+    "no-object-literal-type-assertion": false,
     "no-unnecessary-generics": false
   }
 }

@@ -1,13 +1,14 @@
 import * as React from 'react'
 import renderer from 'react-test-renderer'
-import { ThemeProvider } from 'emotion-theming'
-
+import { ThemeProvider } from '@emotion/core'
 import styled from '@emotion/native'
 import reactNative from 'react-native'
 
 const StyleSheet = reactNative.StyleSheet
 
 jest.mock('react-native')
+
+console.error = jest.fn()
 
 const theme = { backgroundColor: 'magenta', display: 'flex' }
 
@@ -36,7 +37,7 @@ describe('Emotion native styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should work with emotion-theming', () => {
+  it('should work with theming from @emotion/core', () => {
     const Text = styled.Text`
       color: ${props => props.theme.backgroundColor};
     `
@@ -135,5 +136,18 @@ describe('Emotion native styled', () => {
       .toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('Log error message if units are not specified when using shorthand properties', () => {
+    const Text = styled.Text`
+      margin: 20px;
+      padding: 20;
+    `
+
+    renderer.create(<Text>Hello World</Text>)
+
+    expect(console.error).toBeCalledWith(
+      "'padding' shorthand property requires units for example - padding: 20px or padding: 10px 20px 40px 50px"
+    )
   })
 })

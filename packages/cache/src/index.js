@@ -19,7 +19,8 @@ export type Options = {
   prefix?: PrefixOption,
   key?: string,
   container?: HTMLElement,
-  speedy?: boolean
+  speedy?: boolean,
+  prepend?: boolean
 }
 
 let rootServerStylisCache = {}
@@ -160,7 +161,11 @@ let createCache = (options?: Options): EmotionCache => {
       } else {
         // in compat mode, we put the styles on the inserted cache so
         // that emotion-server can pull out the styles
-        // except when we don't want to cache it(just the Global component right now)
+        // except when we don't want to cache it which was in Global but now
+        // is nowhere but we don't want to do a major right now
+        // and just in case we're going to leave the case here
+        // it's also not affecting client side bundle size
+        // so it's really not a big deal
 
         if (shouldCache) {
           cache.inserted[name] = rules
@@ -207,7 +212,7 @@ let createCache = (options?: Options): EmotionCache => {
             /(:first|:nth|:nth-last)-child/g
           )
 
-          if (unsafePseudoClasses) {
+          if (unsafePseudoClasses && cache.compat !== true) {
             unsafePseudoClasses.forEach(unsafePseudoClass => {
               const ignoreRegExp = new RegExp(
                 `${unsafePseudoClass}.*\\/\\* ${flag} \\*\\/`
@@ -236,7 +241,8 @@ let createCache = (options?: Options): EmotionCache => {
       key,
       container,
       nonce: options.nonce,
-      speedy: options.speedy
+      speedy: options.speedy,
+      prepend: options.prepend
     }),
     nonce: options.nonce,
     inserted,
