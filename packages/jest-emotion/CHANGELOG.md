@@ -1,5 +1,11 @@
 # jest-emotion
 
+## 10.0.25
+
+### Patch Changes
+
+- [`858c6e70`](https://github.com/emotion-js/emotion/commit/858c6e70e2aa83d159dba00af16f1e34a6d93fd0) [#1648](https://github.com/emotion-js/emotion/pull/1648) Thanks [@ajs139](https://github.com/ajs139)! - Improve support for Enzyme's shallow rendering.
+
 ## 10.0.17
 
 ### Patch Changes
