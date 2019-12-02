@@ -1,9 +1,3 @@
-// @flow
-import createEmotionServer from 'create-emotion-server'
-import { cache } from 'emotion'
-
-export const {
-  extractCritical,
-  renderStylesToString,
-  renderStylesToNodeStream
-} = createEmotionServer(cache)
+throw new Error(
+  "The `emotion-server` package has been renamed to `@emotion/server`. Please import it like this `import { extractCritical, renderStylesToString, renderStylesToNodeStream } from '@emotion/server'`."
+)
