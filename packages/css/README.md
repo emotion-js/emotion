@@ -1,6 +1,6 @@
-# emotion
+# @emotion/css
 
-The [emotion](https://www.npmjs.com/package/emotion) package is framework agnostic and the simplest way to use Emotion.
+The [@emotion/css](https://www.npmjs.com/package/@emotion/css) package is framework agnostic and the simplest way to use Emotion.
 
 ## Table of Contents
 
@@ -18,11 +18,11 @@ The [emotion](https://www.npmjs.com/package/emotion) package is framework agnost
 Get up and running with a single import.
 
 ```bash
-npm install --save emotion
+npm install --save @emotion/css
 ```
 
 ```javascript
-import { css } from 'emotion'
+import { css } from '@emotion/css'
 
 const app = document.getElementById('root')
 const myStyle = css`
@@ -41,7 +41,7 @@ The `css` function accepts styles as a template literal, object, or array of obj
 
 ```jsx
 // @live
-import { css } from 'emotion'
+import { css } from '@emotion/css'
 
 const color = 'darkgreen'
 
@@ -63,7 +63,7 @@ render(
 
 ```jsx
 // @live
-import { css } from 'emotion'
+import { css } from '@emotion/css'
 
 const color = 'darkgreen'
 
@@ -85,7 +85,7 @@ render(
 
 ```jsx
 // @live
-import { css } from 'emotion'
+import { css } from '@emotion/css'
 
 const color = 'darkgreen'
 const isDanger = true
@@ -114,7 +114,7 @@ render(
 `injectGlobal` injects styles into the global scope and is useful for applications such as css resets or font faces.
 
 ```jsx
-import { injectGlobal } from 'emotion'
+import { injectGlobal } from '@emotion/css'
 
 injectGlobal`
   * {
@@ -143,7 +143,7 @@ injectGlobal`
 
 ```jsx
 // @live
-import { css, keyframes } from 'emotion'
+import { css, keyframes } from '@emotion/css'
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -181,7 +181,7 @@ render(
 
 ```jsx
 // @live
-import { css, keyframes } from 'emotion'
+import { css, keyframes } from '@emotion/css'
 
 const bounce = keyframes({
   'from, 20%, 53%, 80%, to': {
@@ -219,7 +219,7 @@ render(
 **Combining class names**
 
 ```jsx
-import { cx, css } from 'emotion'
+import { cx, css } from '@emotion/css'
 
 const cls1 = css`
   font-size: 20px;

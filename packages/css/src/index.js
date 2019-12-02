@@ -1,3 +1,15 @@
-throw new Error(
-  "`@emotion/css` package has been replaced with the `css` export from `@emotion/core`. Please import it like this `import { css } from '@emotion/core'`."
-)
+// @flow
+import createEmotion from 'create-emotion'
+
+export const {
+  flush,
+  hydrate,
+  cx,
+  merge,
+  getRegisteredStyles,
+  injectGlobal,
+  keyframes,
+  css,
+  sheet,
+  cache
+} = createEmotion()
