@@ -11,7 +11,8 @@
     "types",
     "macro.js",
     "macro.d.ts",
-    "macro.js.flow"
+    "macro.js.flow",
+    "create-instance"
   ],
   "scripts": {
     "test:typescript": "dtslint types"
@@ -52,6 +53,7 @@
   },
   "umd:main": "dist/css.umd.min.js",
   "preconstruct": {
-    "umdName": "emotion"
+    "umdName": "emotion",
+    "entrypoints": [".","create-instance"]
   }
 }

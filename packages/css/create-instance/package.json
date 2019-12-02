@@ -1,0 +1,9 @@
+{
+  "main": "dist/css.cjs.js",
+  "module": "dist/css.esm.js",
+  "umd:main": "dist/css.umd.min.js",
+  "preconstruct": {
+    "source": "../src/create-instance",
+    "umdName": "createEmotion"
+  }
+}

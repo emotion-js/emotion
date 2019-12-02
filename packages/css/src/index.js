@@ -1,5 +1,5 @@
 // @flow
-import createEmotion from 'create-emotion'
+import createEmotion from './create-instance'
 
 export const {
   flush,

@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`general instance tests throws with invalid key 1`] = `"Emotion key must only contain lower case alphabetical characters and - but \\"css1\\" was passed"`;
