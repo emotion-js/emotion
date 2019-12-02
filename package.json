@@ -58,7 +58,8 @@
     ],
     "plugins": [
       "prettier",
-      "flowtype"
+      "flowtype",
+      "emotion"
     ],
     "parser": "babel-eslint",
     "rules": {
@@ -74,7 +75,8 @@
       "no-template-curly-in-string": 0,
       "camelcase": 0,
       "import/no-duplicates": 0,
-      "flowtype/define-flow-type": 2
+      "flowtype/define-flow-type": 2,
+      "emotion/pkg-renaming": 2
     },
     "env": {
       "browser": true
