@@ -1,18 +1,18 @@
-# @emotion/core
+# @emotion/react
 
 > Simple styling in React.
 
 ## Install
 
 ```bash
-yarn add @emotion/core
+yarn add @emotion/react
 ```
 
 ## Usage
 
 ```jsx
 /** @jsx jsx */
-import { jsx, css, Global, ClassNames } from '@emotion/core'
+import { jsx, css, Global, ClassNames } from '@emotion/react'
 
 render(
   <div css={{ color: 'hotpink' }}>

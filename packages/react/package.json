@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/core",
+  "name": "@emotion/react",
   "version": "11.0.0-next.7",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",

@@ -1,8 +1,3 @@
-// @flow
-export { withEmotionCache, CacheProvider } from './context'
-export { jsx } from './jsx'
-export { Global } from './global'
-export { keyframes } from './keyframes'
-export { ClassNames } from './class-names'
-export { ThemeContext, useTheme, ThemeProvider, withTheme } from './theming'
-export { default as css } from './css'
+throw new Error(
+  "The `@emotion/core` package has been renamed to `@emotion/react`. Please import it like this `import { jsx } from '@emotion/react'`."
+)
