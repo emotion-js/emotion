@@ -4,6 +4,7 @@ let simpleMappings = {
   '@emotion/styled-base': '@emotion/styled/base',
   'jest-emotion': '@emotion/jest',
   'babel-plugin-emotion': '@emotion/babel-plugin',
+  'eslint-plugin-emotion': '@emotion/eslint-plugin',
   'create-emotion-server': '@emotion/server/create-instance',
   'create-emotion': '@emotion/css/create-instance',
   'emotion-server': '@emotion/server'
@@ -22,7 +23,9 @@ export default {
             node: node.source,
             message: `${JSON.stringify(
               node.source.value
-            )} should be imported from ${JSON.stringify(maybeMapping)}`,
+            )} has been renamed to ${JSON.stringify(
+              maybeMapping
+            )}, please import it from ${JSON.stringify(maybeMapping)} instead`,
             fix: fixer => fixer.replaceText(node.source, `'${maybeMapping}'`)
           })
         }

@@ -1,4 +1,4 @@
-# emotion-server
+# @emotion/server
 
 > Extract and inline critical css with emotion.
 

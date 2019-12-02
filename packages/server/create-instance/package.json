@@ -1,7 +1,7 @@
 {
-  "main": "dist/emotion-server.cjs.js",
+  "main": "dist/server.cjs.js",
   "browser": {
-    "./dist/emotion-server.cjs.js": "./dist/emotion-server.browser.cjs.js"
+    "./dist/server.cjs.js": "./dist/server.browser.cjs.js"
   },
   "preconstruct": {
     "source": "../src/create-instance"
