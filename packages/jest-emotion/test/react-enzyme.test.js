@@ -18,18 +18,6 @@ const cases = {
       return <Greeting>hello</Greeting>
     }
   },
-  nested: {
-    render() {
-      const Greeting = ({ children, className }) => (
-        <div className={className}>{children}</div>
-      )
-      return (
-        <div>
-          <Greeting css={{ backgroundColor: 'red' }}>Hello</Greeting>
-        </div>
-      )
-    }
-  },
   'with prop containing css element': {
     render() {
       const Greeting = ({ children, content }) => (

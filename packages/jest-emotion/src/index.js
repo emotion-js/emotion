@@ -103,17 +103,13 @@ export function createSerializer({
           .concat(expectedClassNames)
           .filter(Boolean)
           .join(' ')
-        let emotionType = val.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
-        // emotionType will be a string for DOM elements
-        let type =
-          typeof emotionType === 'string' ? emotionType : emotionType.name
         return printer({
           ...val,
           props: filterEmotionProps({
             ...val.props,
             className
           }),
-          type
+          type: val.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
         })
       } else {
         return val.children.map(printer).join('\n')
