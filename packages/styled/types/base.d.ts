@@ -77,10 +77,18 @@ export interface CreateStyledComponent<
       >
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
+
+  (
+    template: TemplateStringsArray,
+    ...styles: Array<
+      Interpolation<ComponentProps & SpecificComponentProps & StyleProps>
+    >
+  ): StyledComponent<ComponentProps, SpecificComponentProps>
+
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
-  <AdditionalProps extends {} = {}>(
+  <AdditionalProps extends {}>(
     template: TemplateStringsArray,
     ...styles: Array<
       Interpolation<

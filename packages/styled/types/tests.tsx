@@ -86,3 +86,40 @@ const StyledOriginal = styled(Original, {
 
 // No more type conflict error
 ;<StyledOriginal prop1="1" prop2={2} />
+
+const Label = styled.label``
+const Button = styled.button``
+const Input = styled.input`
+  & + ${Label}: {
+    margin-left: 3px;
+  }
+`
+const Input2 = styled.input`
+  & + ${Label}: {
+    margin-left: 3px;
+  }
+  & + ${Button}: {
+    margin-left: 3px;
+  }
+`
+
+const Input3 = styled.input({
+  [`& + ${Label}`]: {
+    marginLeft: '3px'
+  }
+})
+;<Input
+  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+    console.log(evt.target.value)
+  }
+/>
+;<Input2
+  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+    console.log(evt.target.value)
+  }
+/>
+;<Input3
+  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+    console.log(evt.target.value)
+  }
+/>
