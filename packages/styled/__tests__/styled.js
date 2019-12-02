@@ -640,6 +640,56 @@ describe('styled', () => {
     const tree = renderer.create(<OneMoreComponent />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  test('withComponent inherits parent shouldForwardProp', () => {
+    const SomeComponent = styled('input', {
+      shouldForwardProp: prop => prop === 'disabled'
+    })``
+    const AnotherComponent = styled('input')``.withComponent(SomeComponent)
+    const tree = renderer
+      .create(<AnotherComponent disabled readOnly />)
+      .toJSON()
+    expect(tree.props.disabled).toBe(true)
+    expect(tree.props.readOnly).toBeUndefined()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('withComponent composes parent shouldForwardProp', () => {
+    const shouldForwardPropA = jest.fn(() => false)
+    const shouldForwardPropB = jest.fn(prop => ~['disabled'].indexOf(prop))
+    const shouldForwardPropC = jest.fn(
+      prop => ~['disabled', 'readOnly'].indexOf(prop)
+    )
+
+    const SomeComponent = styled('input', {
+      shouldForwardProp: shouldForwardPropA
+    })``
+      // $FlowFixMe
+      .withComponent('input', { shouldForwardProp: shouldForwardPropB })
+      .withComponent('input', { shouldForwardProp: shouldForwardPropC })
+
+    const tree = renderer
+      .create(<SomeComponent disabled readOnly multiple />)
+      .toJSON()
+
+    expect(shouldForwardPropC).toHaveBeenCalledTimes(4)
+    expect(shouldForwardPropC).toHaveBeenNthCalledWith(1, 'as')
+    expect(shouldForwardPropC).toHaveBeenNthCalledWith(2, 'disabled')
+    expect(shouldForwardPropC).toHaveBeenNthCalledWith(3, 'readOnly')
+    expect(shouldForwardPropC).toHaveBeenNthCalledWith(4, 'multiple')
+
+    expect(shouldForwardPropB).toHaveBeenCalledTimes(3)
+    expect(shouldForwardPropB).toHaveBeenNthCalledWith(1, 'as')
+    expect(shouldForwardPropB).toHaveBeenNthCalledWith(2, 'disabled')
+    expect(shouldForwardPropB).toHaveBeenNthCalledWith(3, 'readOnly')
+
+    expect(shouldForwardPropA).toHaveBeenCalledTimes(2)
+    expect(shouldForwardPropA).toHaveBeenNthCalledWith(1, 'as')
+    expect(shouldForwardPropA).toHaveBeenNthCalledWith(2, 'disabled')
+
+    expect(tree).toMatchSnapshot()
+  })
+
   test('theming', () => {
     const Div = styled.div`
       color: ${props => props.theme.primary};

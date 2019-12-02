@@ -196,12 +196,17 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       nextTag: ElementType,
       nextOptions?: StyledOptions
     ) => {
-      return createStyled(
-        nextTag,
-        nextOptions !== undefined
-          ? { ...(options || {}), ...nextOptions }
-          : options
-      )(...styles)
+      return createStyled(nextTag, {
+        ...options,
+        ...nextOptions,
+        shouldForwardProp:
+          nextOptions && typeof nextOptions.shouldForwardProp === 'function'
+            ? propName =>
+                // $FlowFixMe: validated before being closed over
+                nextOptions.shouldForwardProp(propName) &&
+                defaultShouldForwardProp(propName)
+            : defaultShouldForwardProp
+      })(...styles)
     }
 
     return Styled
