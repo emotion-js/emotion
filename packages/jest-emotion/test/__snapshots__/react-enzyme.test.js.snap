@@ -18,6 +18,28 @@ exports[`enzyme mount basic 1`] = `
 </Greeting>
 `;
 
+exports[`enzyme mount nested 1`] = `
+.emotion-0 {
+  background-color: red;
+}
+
+.emotion-0 {
+  background-color: red;
+}
+
+<div>
+  <Greeting
+    className="emotion-0"
+  >
+    <div
+      className="emotion-0"
+    >
+      Hello
+    </div>
+  </Greeting>
+</div>
+`;
+
 exports[`enzyme mount with prop containing css element 1`] = `
 .emotion-0 {
   background-color: blue;
@@ -158,6 +180,29 @@ exports[`enzyme shallow basic 1`] = `
   css="unknown styles"
 >
   hello
+</div>
+`;
+
+exports[`enzyme shallow nested 1`] = `
+<div>
+  <function Greeting(_ref3) {
+        var children = _ref3.children,
+            className = _ref3.className;
+        return (0, _core.jsx)("div", {
+          className: className
+        }, children);
+      }
+    className=""
+    css="unknown styles"
+  >
+    Hello
+  </function Greeting(_ref3) {
+        var children = _ref3.children,
+            className = _ref3.className;
+        return (0, _core.jsx)("div", {
+          className: className
+        }, children);
+      }>
 </div>
 `;
 
