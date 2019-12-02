@@ -2,4 +2,4 @@
 'jest-emotion': patch
 ---
 
-Fix naming of shallow rendered components
+Fix printing names of nested shallow-rendered components.
