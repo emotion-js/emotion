@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`enzyme mount basic 1`] = `
+exports[`enzyme mount test 1`] = `
 .emotion-0 {
   background-color: red;
 }
@@ -18,29 +18,7 @@ exports[`enzyme mount basic 1`] = `
 </Greeting>
 `;
 
-exports[`enzyme mount nested 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
-.emotion-0 {
-  background-color: red;
-}
-
-<div>
-  <Greeting
-    className="emotion-0"
-  >
-    <div
-      className="emotion-0"
-    >
-      Hello
-    </div>
-  </Greeting>
-</div>
-`;
-
-exports[`enzyme mount with prop containing css element 1`] = `
+exports[`enzyme test with prop containing css element 1`] = `
 .emotion-0 {
   background-color: blue;
 }
@@ -70,7 +48,28 @@ exports[`enzyme mount with prop containing css element 1`] = `
 </Greeting>
 `;
 
-exports[`enzyme mount with prop containing css element not at the top level 1`] = `
+exports[`enzyme test with prop containing css element in fragment 1`] = `
+.emotion-0 {
+  background-color: blue;
+}
+
+.emotion-0 {
+  background-color: blue;
+}
+
+<div>
+  Array [
+    "x",
+    <div
+      className="emotion-0"
+    >
+      y
+    </div>,
+  ]
+</div>
+`;
+
+exports[`enzyme test with prop containing css element not at the top level 1`] = `
 .emotion-0 {
   background-color: blue;
 }
@@ -104,7 +103,7 @@ exports[`enzyme mount with prop containing css element not at the top level 1`] 
 </div>
 `;
 
-exports[`enzyme mount with prop containing css element with other label 1`] = `
+exports[`enzyme test with prop containing css element with other label 1`] = `
 .emotion-0 {
   background-color: blue;
 }
@@ -142,7 +141,7 @@ exports[`enzyme mount with prop containing css element with other label 1`] = `
 </Greeting>
 `;
 
-exports[`enzyme mount with prop containing css element with other props 1`] = `
+exports[`enzyme test with prop containing css element with other props 1`] = `
 .emotion-0 {
   background-color: blue;
 }
@@ -172,109 +171,4 @@ exports[`enzyme mount with prop containing css element with other props 1`] = `
     World!
   </div>
 </Greeting>
-`;
-
-exports[`enzyme shallow basic 1`] = `
-<div
-  className=""
-  css="unknown styles"
->
-  hello
-</div>
-`;
-
-exports[`enzyme shallow nested 1`] = `
-<div>
-  <Greeting
-    className=""
-    css="unknown styles"
-  >
-    Hello
-  </Greeting>
-</div>
-`;
-
-exports[`enzyme shallow with prop containing css element 1`] = `
-<div>
-  <p
-    className=""
-    css="unknown styles"
-  >
-    Hello
-  </p>
-   
-  World!
-</div>
-`;
-
-exports[`enzyme shallow with prop containing css element not at the top level 1`] = `
-<div>
-  <Greeting
-    content={
-      <p
-        css="unknown styles"
-        id="something"
-      >
-        Hello
-      </p>
-    }
-  >
-    World!
-  </Greeting>
-</div>
-`;
-
-exports[`enzyme shallow with prop containing css element with other label 1`] = `
-<Thing
-  content={
-    <div
-      css="unknown styles"
-    />
-  }
->
-  <p
-    className=""
-    css="unknown styles"
-    id="something"
-  >
-    Hello
-  </p>
-   
-  World!
-</Thing>
-`;
-
-exports[`enzyme shallow with prop containing css element with other props 1`] = `
-<div>
-  <p
-    className=""
-    css="unknown styles"
-    id="something"
-  >
-    Hello
-  </p>
-   
-  World!
-</div>
-`;
-
-exports[`enzyme with prop containing css element in fragment 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
-.emotion-0 {
-  background-color: blue;
-}
-
-<div>
-  Array [
-    "x",
-    <div
-      className="emotion-0"
-    >
-      y
-    </div>,
-  ]
-</div>
 `;
