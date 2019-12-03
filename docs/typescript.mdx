@@ -247,8 +247,8 @@ const App = () => (
 
 ### Define a Theme
 
-By default, `props.theme` has an `any` type annotation and works without any errors.
-However, you can define a theme type by extending our type declarations via your own declarations file.
+By default, `props.theme` is an empty object because it's the only thing that is type-safe as a default.
+You can define a theme type by extending our type declarations via your own declarations file.
 
 _emotion.d.ts_
 
@@ -283,6 +283,16 @@ const Button = styled('button')`
 `
 
 export default Button
+```
+
+If you were previously relying on `theme` being an `any` type, you have to restore compatibility with:
+
+_emotion.d.ts_
+
+```ts
+declare module '@emotion/core' {
+    export interface Theme extends Record<string, any> {}
+}
 ```
 
 ### TypeScript < 2.9
