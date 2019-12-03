@@ -56,10 +56,6 @@ export function css(
 ): SerializedStyles
 export function css(...args: Array<CSSInterpolation>): SerializedStyles
 
-export type InterpolationWithTheme<Theme> =
-  | Interpolation
-  | ((theme: Theme) => Interpolation)
-
 export interface GlobalProps {
   styles: Interpolation<Theme>
 }
