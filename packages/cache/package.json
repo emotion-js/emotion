@@ -1,6 +1,6 @@
 {
   "name": "@emotion/cache",
-  "version": "11.0.0-next.0",
+  "version": "11.0.0-next.6",
   "description": "emotion's cache",
   "main": "dist/cache.cjs.js",
   "module": "dist/cache.esm.js",
@@ -15,7 +15,7 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/sheet": "0.9.3",
+    "@emotion/sheet": "0.10.0-next.0",
     "@emotion/stylis": "0.8.4",
     "@emotion/utils": "0.11.2",
     "@emotion/weak-memoize": "0.2.4"

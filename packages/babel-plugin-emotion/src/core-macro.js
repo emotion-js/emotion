@@ -10,12 +10,14 @@ export const transformCssCallExpression = ({
   state,
   babel,
   path,
-  sourceMap
+  sourceMap,
+  annotateAsPure = true
 }: {
   state: *,
   babel: *,
   path: *,
-  sourceMap?: string
+  sourceMap?: string,
+  annotateAsPure?: boolean
 }) => {
   let { node, isPure } = transformExpressionWithStyles({
     babel,
@@ -29,12 +31,50 @@ export const transformCssCallExpression = ({
     if (isPure) {
       path.hoist()
     }
-  } else {
+  } else if (annotateAsPure) {
     path.addComment('leading', '#__PURE__')
   }
 }
 
-export const transformInlineCsslessExpression = ({
+export const transformCsslessArrayExpression = ({
+  state,
+  babel,
+  path
+}: {
+  babel: *,
+  state: *,
+  path: *
+}) => {
+  let t = babel.types
+  let expressionPath = path.get('value.expression')
+  let sourceMap =
+    state.emotionSourceMap && path.node.loc !== undefined
+      ? getSourceMap(path.node.loc.start, state)
+      : ''
+
+  expressionPath.replaceWith(
+    t.callExpression(
+      // the name of this identifier doesn't really matter at all
+      // it'll never appear in generated code
+      t.identifier('___shouldNeverAppearCSS'),
+      path.node.value.expression.elements
+    )
+  )
+
+  transformCssCallExpression({
+    babel,
+    state,
+    path: expressionPath,
+    sourceMap,
+    annotateAsPure: false
+  })
+
+  if (t.isCallExpression(expressionPath)) {
+    expressionPath.replaceWith(t.arrayExpression(expressionPath.node.arguments))
+  }
+}
+
+export const transformCsslessObjectExpression = ({
   state,
   babel,
   path,
@@ -119,26 +159,30 @@ let globalTransformer = ({
     return
   }
 
-  if (
-    t.isJSXExpressionContainer(stylesPropPath.node.value) &&
-    (t.isObjectExpression(stylesPropPath.node.value.expression) ||
-      t.isArrayExpression(stylesPropPath.node.value.expression))
-  ) {
-    transformInlineCsslessExpression({
-      state,
-      babel,
-      path: stylesPropPath,
-      cssImport:
-        options.cssExport !== undefined
-          ? {
-              importSource,
-              cssExport: options.cssExport
-            }
-          : {
-              importSource: '@emotion/core',
-              cssExport: 'css'
-            }
-    })
+  if (t.isJSXExpressionContainer(stylesPropPath.node.value)) {
+    if (t.isArrayExpression(stylesPropPath.node.value.expression)) {
+      transformCsslessArrayExpression({
+        state,
+        babel,
+        path: stylesPropPath
+      })
+    } else if (t.isObjectExpression(stylesPropPath.node.value.expression)) {
+      transformCsslessObjectExpression({
+        state,
+        babel,
+        path: stylesPropPath,
+        cssImport:
+          options.cssExport !== undefined
+            ? {
+                importSource,
+                cssExport: options.cssExport
+              }
+            : {
+                importSource: '@emotion/core',
+                cssExport: 'css'
+              }
+      })
+    }
   }
 }
 

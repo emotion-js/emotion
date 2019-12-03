@@ -1,5 +1,12 @@
 # jest-emotion
 
+## 11.0.0-next.7
+
+### Patch Changes
+
+- Updated dependencies [[`5c55fd17`](https://github.com/emotion-js/emotion/commit/5c55fd17dcaec84d1f5d5d13ae90dd336d7e4403)]:
+  - @emotion/core@11.0.0-next.7
+
 ## 11.0.0-next.4
 
 ### Major Changes
@@ -39,6 +46,12 @@
 - Updated dependencies [[`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555)]:
   - @emotion/core@11.0.0-next.0
   - emotion@11.0.0-next.0
+
+## 10.0.25
+
+### Patch Changes
+
+- [`858c6e70`](https://github.com/emotion-js/emotion/commit/858c6e70e2aa83d159dba00af16f1e34a6d93fd0) [#1648](https://github.com/emotion-js/emotion/pull/1648) Thanks [@ajs139](https://github.com/ajs139)! - Improve support for Enzyme's shallow rendering.
 
 ## 10.0.17
 

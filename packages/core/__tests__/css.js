@@ -52,6 +52,16 @@ test('theming with the css prop', () => {
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
+test('theming with the array css prop', () => {
+  const tree = renderer.create(
+    <ThemeProvider theme={{ primary: 'hotpink' }}>
+      <div css={[theme => ({ color: theme.primary }), { display: 'flex' }]} />
+    </ThemeProvider>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
 test('object with false', () => {
   const tree = renderer.create(
     <div>

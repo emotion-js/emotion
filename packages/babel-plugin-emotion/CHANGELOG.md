@@ -1,5 +1,28 @@
 # babel-plugin-emotion
 
+## 11.0.0-next.6
+
+### Major Changes
+
+- [`843bfb11`](https://github.com/emotion-js/emotion/commit/843bfb1153ee0dbe33d005fdd5c5be185daa5c41) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Removed `@emotion/css` - it's main purpose was to allow `css` to be a Babel macro, but since babel-plugin-macros allows us to keep imports nowadays this is no longer needed. `@emotion/core/macro` has been added to account for this use case and appropriate changes has been made to `babel-plugin-emotion` to facilitate those changes.
+
+  If you have used `@emotion/css` directly (it was always reexported from `@emotion/core`) or you have been using its macro then you should update your code like this:
+
+  ```diff
+  -import css from '@emotion/css'
+  +import { css } from '@emotion/core'
+
+  // or
+  -import css from '@emotion/css/macro'
+  +import { css } from '@emotion/core/macro'
+  ```
+
+### Minor Changes
+
+- [`0a4a22ff`](https://github.com/emotion-js/emotion/commit/0a4a22ffcfaa49d09a88856ef2d51e0d53e31b6d) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Allow `labelFormat` option to be a function.
+
+* [`828111cd`](https://github.com/emotion-js/emotion/commit/828111cd32d3fe8c984231201e518d1b6000bffd) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - `Global` gets handled by the Babel plugin now - this gives inline css-less expressions source maps.
+
 ## 11.0.0-next.4
 
 ### Major Changes

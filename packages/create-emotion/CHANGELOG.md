@@ -1,5 +1,13 @@
 # create-emotion
 
+## 11.0.0-next.6
+
+### Patch Changes
+
+- Updated dependencies [[`4a891bf6`](https://github.com/emotion-js/emotion/commit/4a891bf6a30e3bb37f8f32031fa75a571c637d9c)]:
+  - @emotion/cache@11.0.0-next.6
+  - @emotion/sheet@0.10.0-next.0
+
 ## 11.0.0-next.3
 
 ### Patch Changes

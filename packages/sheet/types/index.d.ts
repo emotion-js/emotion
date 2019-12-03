@@ -6,6 +6,7 @@ export interface Options {
   key: string
   container: HTMLElement
   speedy?: boolean
+  prepend?: boolean
 }
 
 export class StyleSheet {

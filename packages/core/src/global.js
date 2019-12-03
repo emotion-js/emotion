@@ -38,11 +38,13 @@ export let Global: React.AbstractComponent<
   }
   let styles = props.styles
 
-  let serialized = serializeStyles([
-    typeof styles === 'function'
-      ? styles(React.useContext(ThemeContext))
-      : styles
-  ])
+  let serialized = serializeStyles(
+    [styles],
+    undefined,
+    typeof styles === 'function' || Array.isArray(styles)
+      ? React.useContext(ThemeContext)
+      : undefined
+  )
 
   if (!isBrowser) {
     let serializedNames = serialized.name

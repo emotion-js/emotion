@@ -7,7 +7,8 @@ import {
 import { createStyledMacro, styledTransformer } from './styled-macro'
 import coreMacro, {
   transformers as coreTransformers,
-  transformInlineCsslessExpression
+  transformCsslessArrayExpression,
+  transformCsslessObjectExpression
 } from './core-macro'
 import { getStyledOptions, createTransformerMacro } from './utils'
 
@@ -236,17 +237,21 @@ export default function(babel: *) {
           return
         }
 
-        if (
-          t.isJSXExpressionContainer(path.node.value) &&
-          (t.isObjectExpression(path.node.value.expression) ||
-            t.isArrayExpression(path.node.value.expression))
-        ) {
-          transformInlineCsslessExpression({
-            state,
-            babel,
-            path,
-            cssImport: state.jsxCoreImport
-          })
+        if (t.isJSXExpressionContainer(path.node.value)) {
+          if (t.isArrayExpression(path.node.value.expression)) {
+            transformCsslessArrayExpression({
+              state,
+              babel,
+              path
+            })
+          } else if (t.isObjectExpression(path.node.value.expression)) {
+            transformCsslessObjectExpression({
+              state,
+              babel,
+              path,
+              cssImport: state.jsxCoreImport
+            })
+          }
         }
       },
       CallExpression: {

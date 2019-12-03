@@ -20,10 +20,6 @@ let hasOwnProperty = Object.prototype.hasOwnProperty
 let Emotion = withEmotionCache((props, cache, ref) => {
   let cssProp = props.css
 
-  if (typeof cssProp === 'function') {
-    cssProp = cssProp(React.useContext(ThemeContext))
-  }
-
   // so that using `css` from `emotion` and passing the result to the css prop works
   // not passing the registered cache to serializeStyles because it would
   // make certain babel optimisations not possible
@@ -45,7 +41,13 @@ let Emotion = withEmotionCache((props, cache, ref) => {
     className = `${props.className} `
   }
 
-  let serialized = serializeStyles(registeredStyles)
+  let serialized = serializeStyles(
+    registeredStyles,
+    undefined,
+    typeof cssProp === 'function' || Array.isArray(cssProp)
+      ? React.useContext(ThemeContext)
+      : undefined
+  )
 
   if (
     process.env.NODE_ENV !== 'production' &&

@@ -29,3 +29,20 @@ test('basic', () => {
   unmountComponentAtNode(document.getElementById('root'))
   expect(document.documentElement).toMatchSnapshot()
 })
+
+test('array', () => {
+  render(
+    <ThemeProvider theme={{ color: 'green', fontSize: 16 }}>
+      <Global
+        styles={[
+          theme => ({ html: { backgroundColor: theme.color } }),
+          theme => ({ html: { fontSize: theme.fontSize } })
+        ]}
+      />
+    </ThemeProvider>, // $FlowFixMe
+    document.getElementById('root')
+  )
+  expect(document.documentElement).toMatchSnapshot()
+  unmountComponentAtNode(document.getElementById('root'))
+  expect(document.documentElement).toMatchSnapshot()
+})
