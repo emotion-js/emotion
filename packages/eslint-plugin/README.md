@@ -1,4 +1,4 @@
-# eslint-plugin-emotion
+# @emotion/eslint-plugin
 
 > ESLint rules for emotion
 
@@ -10,21 +10,21 @@ You'll first need to install [ESLint](http://eslint.org):
 $ npm i eslint --save-dev
 ```
 
-Next, install `eslint-plugin-emotion`:
+Next, install `@emotion/eslint-plugin`:
 
 ```
-$ npm install eslint-plugin-emotion --save-dev
+$ npm install @emotion/eslint-plugin --save-dev
 ```
 
-**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-emotion` globally.
+**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `@emotion/eslint-plugin` globally.
 
 ## Usage
 
-Add `emotion` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `@emotion` to the plugins section of your `.eslintrc` configuration file. You can omit `/eslint-plugin`:
 
 ```json
 {
-  "plugins": ["emotion"]
+  "plugins": ["@emotion"]
 }
 ```
 
@@ -33,7 +33,7 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
   "rules": {
-    "emotion/jsx-import": "error"
+    "@emotion/jsx-import": "error"
   }
 }
 ```
@@ -45,10 +45,10 @@ The Emotion 10 codemods are contained in this package. To use them, enable the r
 ```json
 {
   "rules": {
-    "emotion/jsx-import": "error",
-    "emotion/no-vanilla": "error",
-    "emotion/import-from-emotion": "error",
-    "emotion/styled-import": "error"
+    "@emotion/jsx-import": "error",
+    "@emotion/no-vanilla": "error",
+    "@emotion/import-from-emotion": "error",
+    "@emotion/styled-import": "error"
   }
 }
 ```

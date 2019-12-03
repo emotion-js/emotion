@@ -3,7 +3,7 @@
  */
 
 const { RuleTester } = require('eslint')
-const rule = require('eslint-plugin-emotion').rules['pkg-renaming']
+const rule = require('@emotion/eslint-plugin').rules['pkg-renaming']
 
 RuleTester.setDefaultConfig({
   parserOptions: {

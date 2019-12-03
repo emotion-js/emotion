@@ -3,7 +3,7 @@
  */
 
 const { RuleTester } = require('eslint')
-const rule = require('eslint-plugin-emotion').rules['jsx-import']
+const rule = require('@emotion/eslint-plugin').rules['jsx-import']
 
 RuleTester.setDefaultConfig({
   parserOptions: {
