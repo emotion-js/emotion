@@ -172,12 +172,17 @@ function clean(node: any, classNames: string[]) {
       clean(child, classNames)
     }
   }
-  const hasKnownClass =
-    node.props &&
-    node.props.className &&
-    hasIntersection(node.props.className.split(' '), classNames)
-  if (hasKnownClass) {
-    delete node.props.css
+  if (node.props) {
+    const { className } = node.props
+    if (!className) {
+      // if it's empty, remove it
+      delete node.props.className
+    } else {
+      const hasKnownClass = hasIntersection(className.split(' '), classNames)
+      if (hasKnownClass) {
+        delete node.props.css
+      }
+    }
   }
 }
 

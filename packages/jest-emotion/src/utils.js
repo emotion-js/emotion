@@ -197,7 +197,9 @@ export function getStylesFromClassNames(
 }
 
 export function getStyleElements(): Array<HTMLStyleElement> {
-  let elements = Array.from(document.querySelectorAll('style[data-emotion]'))
+  let elements = global.document
+    ? Array.from(document.querySelectorAll('style[data-emotion]'))
+    : []
   // $FlowFixMe
   return elements
 }

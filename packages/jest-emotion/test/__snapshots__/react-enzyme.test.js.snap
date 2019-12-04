@@ -198,7 +198,6 @@ Array [
 
 exports[`enzyme shallow basic 1`] = `
 <div
-  className=""
   css="unknown styles"
 >
   hello
