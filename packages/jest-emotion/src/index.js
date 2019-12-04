@@ -104,7 +104,7 @@ function filterEmotionProps(props = {}) {
   return rest
 }
 
-function isShallowEnzymeElement(element, classNames) {
+function isShallowEnzymeElement(element: any, classNames: string[]) {
   const delimiter = ' '
   const childClassNames = flatMap(element.children || [], ({ props = {} }) =>
     (props.className || '').split(delimiter)
@@ -113,7 +113,9 @@ function isShallowEnzymeElement(element, classNames) {
   return !hasIntersection(classNames, childClassNames)
 }
 
-const creatConvertEmotionElements = (keys, printer) => node => {
+const creatConvertEmotionElements = (keys: string[], printer: *) => (
+  node: any
+) => {
   if (isPrimitive(node)) {
     return node
   }
