@@ -94,6 +94,7 @@ const Input = styled.input`
     margin-left: 3px;
   }
 `
+
 const Input2 = styled.input`
   & + ${Label}: {
     margin-left: 3px;
@@ -108,6 +109,15 @@ const Input3 = styled.input({
     marginLeft: '3px'
   }
 })
+
+interface AdditionalTest {
+  left: string
+}
+const Input4 = styled.input<AdditionalTest>`
+  & + ${Label}: ${props => ({
+  marginLeft: props.left
+})}
+`
 ;<Input
   onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
     console.log(evt.target.value)
@@ -119,6 +129,12 @@ const Input3 = styled.input({
   }
 />
 ;<Input3
+  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+    console.log(evt.target.value)
+  }
+/>
+;<Input4
+  left="3px"
   onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
     console.log(evt.target.value)
   }
