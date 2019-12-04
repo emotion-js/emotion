@@ -47,6 +47,12 @@
   - @emotion/core@11.0.0-next.0
   - emotion@11.0.0-next.0
 
+## 10.0.26
+
+### Patch Changes
+
+- [`b3c5b8de`](https://github.com/emotion-js/emotion/commit/b3c5b8de66e42dd2e6459862c9603f012ba01d54) [#1667](https://github.com/emotion-js/emotion/pull/1667) Thanks [@Andarist](https://github.com/Andarist)! - Revert improved support for Enzyme's shallow rendering - its release was an unforseen breaking change.
+
 ## 10.0.25
 
 ### Patch Changes
