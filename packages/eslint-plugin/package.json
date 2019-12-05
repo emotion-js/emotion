@@ -12,7 +12,7 @@
     "emotion"
   ],
   "author": "alex-pex <alexandre.paixao@stadline.com>",
-  "main": "dist/eslint-plugin-emotion.cjs.js",
+  "main": "dist/eslint-plugin.cjs.js",
   "engines": {
     "node": ">=6"
   },

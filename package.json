@@ -59,7 +59,7 @@
     "plugins": [
       "prettier",
       "flowtype",
-      "emotion"
+      "@emotion"
     ],
     "parser": "babel-eslint",
     "rules": {
@@ -76,7 +76,7 @@
       "camelcase": 0,
       "import/no-duplicates": 0,
       "flowtype/define-flow-type": 2,
-      "emotion/pkg-renaming": 2
+      "@emotion/pkg-renaming": 2
     },
     "env": {
       "browser": true
@@ -208,7 +208,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "enzyme-to-json": "^3.2.1",
-    "eslint": "^4.5.0",
+    "eslint": "^6.7.2",
     "eslint-config-prettier": "^2.3.0",
     "eslint-config-react": "^1.1.7",
     "eslint-config-standard": "^10.2.1",

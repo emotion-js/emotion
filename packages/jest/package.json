@@ -21,9 +21,9 @@
     "specificity": "^0.4.1"
   },
   "devDependencies": {
+    "@emotion/css": "^11.0.0-next.0",
     "@emotion/react": "^11.0.0-next.7",
     "dtslint": "^0.3.0",
-    "@emotion/css": "^11.0.0-next.0",
     "enzyme-to-json": "^3.2.1",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
@@ -48,6 +48,6 @@
     "url": "https://github.com/emotion-js/emotion/issues"
   },
   "browser": {
-    "./dist/jest-emotion.cjs.js": "./dist/jest-emotion.browser.cjs.js"
+    "./dist/jest.cjs.js": "./dist/jest.browser.cjs.js"
   }
 }

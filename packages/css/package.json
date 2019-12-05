@@ -54,6 +54,9 @@
   "umd:main": "dist/css.umd.min.js",
   "preconstruct": {
     "umdName": "emotion",
-    "entrypoints": [".","create-instance"]
+    "entrypoints": [
+      ".",
+      "create-instance"
+    ]
   }
 }
