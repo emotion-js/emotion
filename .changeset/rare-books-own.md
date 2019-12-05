@@ -1,13 +1,14 @@
 ---
-'babel-plugin-emotion': major
+'@emotion/babel-plugin': major
 '@emotion/cache': major
-'@emotion/core': major
+'@emotion/react': major
 'create-emotion': major
 'create-emotion-server': major
 '@emotion/css': major
 'emotion': major
 'emotion-server': major
 'emotion-theming': major
+'@emotion/jest': major
 'jest-emotion': major
 '@emotion/native': major
 '@emotion/primitives': major
