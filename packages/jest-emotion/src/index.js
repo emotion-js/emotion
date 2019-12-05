@@ -16,8 +16,6 @@ import {
 } from './utils'
 export { matchers } from './matchers'
 
-const TRANSFORMED = Symbol.for('__EMOTION_ENZMYE_TRANSFORMED__')
-
 function getNodes(node, nodes = []) {
   if (Array.isArray(node)) {
     for (let child of node) {
@@ -39,6 +37,12 @@ function getNodes(node, nodes = []) {
   return nodes
 }
 
+function copyProps(src, target) {
+  return Object.defineProperties(src, {
+    ...Object.getOwnPropertyDescriptors(target)
+  })
+}
+
 function deepTransform(node, transform) {
   if (Array.isArray(node)) {
     return node.map(child => deepTransform(child, transform))
@@ -46,24 +50,26 @@ function deepTransform(node, transform) {
 
   const transformed: any = transform(node)
 
-  if (transformed.props) {
-    transformed.props = Object.entries(transformed.props).reduce(
-      (props, [key, value]) =>
-        Object.assign(props, {
-          [key]: deepTransform(value, transform)
-        }),
-      {}
-    )
-  }
-
-  if (transformed.children) {
-    return {
-      ...transformed,
-      // flatMap to allow a child of <A><B /><C /></A> to be transformed to <B /><C />
-      children: flatMap(
-        deepTransform(transformed.children, transform),
-        id => id
-      )
+  if (transformed !== node) {
+    if (transformed.props) {
+      copyProps(transformed, {
+        props: Object.entries(transformed.props).reduce(
+          (props, [key, value]) =>
+            Object.assign(props, {
+              [key]: deepTransform(value, transform)
+            }),
+          {}
+        )
+      })
+    }
+    if (transformed.children) {
+      return copyProps(transformed, {
+        // flatMap to allow a child of <A><B /><C /></A> to be transformed to <B /><C />
+        children: flatMap(
+          (deepTransform(transformed.children, transform): any),
+          id => id
+        )
+      })
     }
   }
 
@@ -113,10 +119,12 @@ function isShallowEnzymeElement(element: any, classNames: string[]) {
   return !hasIntersection(classNames, childClassNames)
 }
 
-const creatConvertEmotionElements = (keys: string[], printer: *) => (
-  node: any
-) => {
-  if (isPrimitive(node)) {
+const creatConvertEmotionElements = (
+  keys: string[],
+  printer: *,
+  isTransformed
+) => (node: any) => {
+  if (isTransformed(node) || isPrimitive(node)) {
     return node
   }
   if (isEmotionCssPropEnzymeElement(node)) {
@@ -141,8 +149,7 @@ const creatConvertEmotionElements = (keys: string[], printer: *) => (
           ...node.props,
           className
         }),
-        type,
-        [TRANSFORMED]: true
+        type
       }
     } else {
       return node.children
@@ -152,19 +159,13 @@ const creatConvertEmotionElements = (keys: string[], printer: *) => (
     return {
       ...node,
       props: filterEmotionProps(node.props),
-      type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__,
-      [TRANSFORMED]: true
+      type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
     }
   }
   if (isReactElement(node) || isDOMElement(node)) {
-    return {
-      ...node,
-      [TRANSFORMED]: true
-    }
+    return copyProps({}, node)
   }
-  return {
-    ...node
-  }
+  return copyProps({}, node)
 }
 
 function clean(node: any, classNames: string[]) {
@@ -198,11 +199,16 @@ export function createSerializer({
   DOMElements = true
 }: Options = {}) {
   const cache = new WeakSet()
+  const isTransformed = (node: any) => cache.has(node)
   function print(val: *, printer: Function) {
-    const seen = cache.has(val)
+    const isNestedPrint = isTransformed(val)
     const elements = getStyleElements()
     const keys = getKeys(elements)
-    const convertEmotionElements = creatConvertEmotionElements(keys, printer)
+    const convertEmotionElements = creatConvertEmotionElements(
+      keys,
+      printer,
+      isTransformed
+    )
     const converted = deepTransform(val, convertEmotionElements)
     const nodes = getNodes(converted)
     nodes.forEach(cache.add, cache)
@@ -211,7 +217,7 @@ export function createSerializer({
     clean(converted, classNames)
     const printedVal = printer(converted)
     nodes.forEach(cache.delete, cache)
-    return seen
+    return isNestedPrint
       ? printedVal
       : replaceClassNames(
           classNames,
@@ -222,14 +228,16 @@ export function createSerializer({
         )
   }
 
-  function test(val: *) {
-    return (
-      val &&
-      (!val[TRANSFORMED] &&
-        (isReactElement(val) || (DOMElements && isDOMElement(val))))
-    )
+  return {
+    test(val: *) {
+      return (
+        val &&
+        (!isTransformed(val) &&
+          (isReactElement(val) || (DOMElements && isDOMElement(val))))
+      )
+    },
+    print
   }
-  return { test, print }
 }
 
 export const { print, test } = createSerializer()
