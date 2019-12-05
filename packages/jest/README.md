@@ -1,11 +1,11 @@
-# jest-emotion
+# @emotion/jest
 
 > Jest testing utilities for emotion
 
 # Installation
 
 ```bash
-npm install --save-dev jest-emotion
+npm install --save-dev @emotion/jest
 ```
 
 # Snapshot Serializer
@@ -17,17 +17,17 @@ The easiest way to test React components with emotion is with the snapshot seria
 module.exports = {
   // ... other config
   snapshotSerializers: [
-    'jest-emotion' /* if needed other snapshotSerializers should go here */
+    '@emotion/jest' /* if needed other snapshotSerializers should go here */
   ]
 }
 ```
 
-Or you can customize the serializer via the `createSerializer` method like so: (the example below is with react-test-renderer but jest-emotion also works with enzyme and react-testing-library)
+Or you can customize the serializer via the `createSerializer` method like so: (the example below is with react-test-renderer but @emotion/jest also works with enzyme and react-testing-library)
 
 ```jsx
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from 'jest-emotion'
+import serializer from '@emotion/jest'
 import styled from '@emotion/styled'
 
 expect.addSnapshotSerializer(serializer)
@@ -49,7 +49,7 @@ Refer to the [testing doc](https://github.com/emotion-js/emotion/blob/master/doc
 
 ### `classNameReplacer`
 
-jest-emotion's snapshot serializer replaces the hashes in class names with an index so that things like whitespace changes won't break snapshots. It optionally accepts a custom class name replacer, it defaults to the below.
+@emotion/jest's snapshot serializer replaces the hashes in class names with an index so that things like whitespace changes won't break snapshots. It optionally accepts a custom class name replacer, it defaults to the below.
 
 ```jsx
 function classNameReplacer(className, index) {
@@ -58,7 +58,7 @@ function classNameReplacer(className, index) {
 ```
 
 ```jsx
-import { createSerializer } from 'jest-emotion'
+import { createSerializer } from '@emotion/jest'
 
 expect.addSnapshotSerializer(
   createSerializer({
@@ -71,12 +71,12 @@ expect.addSnapshotSerializer(
 
 ### `DOMElements`
 
-jest-emotion's snapshot serializer inserts styles and replaces class names in both React and DOM elements. If you would like to disable this behavior for DOM elements, you can do so by passing `{ DOMElements: false }`. For example:
+@emotion/jest's snapshot serializer inserts styles and replaces class names in both React and DOM elements. If you would like to disable this behavior for DOM elements, you can do so by passing `{ DOMElements: false }`. For example:
 
 ```jsx
-import { createSerializer } from 'jest-emotion'
+import { createSerializer } from '@emotion/jest'
 
-// configures jest-emotion to ignore DOM elements
+// configures @emotion/jest to ignore DOM elements
 expect.addSnapshotSerializer(createSerializer({ DOMElements: false }))
 ```
 
@@ -89,10 +89,10 @@ To make more explicit assertions when testing your styled components you can use
 ```jsx
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matchers } from 'jest-emotion'
+import { matchers } from '@emotion/jest'
 import styled from '@emotion/styled'
 
-// Add the custom matchers provided by 'jest-emotion'
+// Add the custom matchers provided by '@emotion/jest'
 expect.extend(matchers)
 
 test('renders with correct styles', () => {
@@ -161,10 +161,10 @@ Use `media` and `target` options to assert on rules within media queries and to 
 ```jsx
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { matchers } from 'jest-emotion'
+import { matchers } from '@emotion/jest'
 import styled from '@emotion/styled'
 
-// Add the custom matchers provided by 'jest-emotion'
+// Add the custom matchers provided by '@emotion/jest'
 expect.extend(matchers)
 
 test('renders with correct link styles', () => {

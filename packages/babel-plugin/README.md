@@ -1,4 +1,4 @@
-# babel-plugin-emotion
+# @emotion/babel-plugin
 
 > Babel plugin for the minification and optimization of emotion styles.
 
