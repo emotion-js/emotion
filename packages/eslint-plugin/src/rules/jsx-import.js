@@ -22,7 +22,8 @@ export default {
         sourceCode.ast.body.forEach(x => {
           if (
             x.type === 'ImportDeclaration' &&
-            x.source.value === '@emotion/core'
+            (x.source.value === '@emotion/react' ||
+              x.source.value === '@emotion/core')
           ) {
             emotionCoreNode = x
 
@@ -59,7 +60,7 @@ export default {
           context.report({
             node,
             message:
-              'The css prop can only be used if jsx from @emotion/core is imported and it is set as the jsx pragma',
+              'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma',
             fix(fixer) {
               if (hasJsxImport) {
                 return fixer.insertTextBefore(
@@ -83,12 +84,12 @@ export default {
 
                 return fixer.insertTextBefore(
                   sourceCode.ast.body[0],
-                  `import { jsx } from '@emotion/core'\n`
+                  `import { jsx } from '@emotion/react'\n`
                 )
               }
               return fixer.insertTextBefore(
                 sourceCode.ast.body[0],
-                `/** @jsx jsx */\nimport { jsx } from '@emotion/core'\n`
+                `/** @jsx jsx */\nimport { jsx } from '@emotion/react'\n`
               )
             }
           })
