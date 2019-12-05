@@ -162,10 +162,10 @@ const creatConvertEmotionElements = (
       type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
     }
   }
-  if (isReactElement(node) || isDOMElement(node)) {
+  if (isReactElement(node)) {
     return copyProps({}, node)
   }
-  return copyProps({}, node)
+  return node
 }
 
 function clean(node: any, classNames: string[]) {
