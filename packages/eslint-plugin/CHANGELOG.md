@@ -1,4 +1,4 @@
-# eslint-plugin-emotion
+# @emotion/eslint-plugin
 
 ## 10.0.14
 
