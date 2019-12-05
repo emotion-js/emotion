@@ -156,9 +156,14 @@ const creatConvertEmotionElements = (keys: string[], printer: *) => (
       [TRANSFORMED]: true
     }
   }
+  if (isReactElement(node) || isDOMElement(node)) {
+    return {
+      ...node,
+      [TRANSFORMED]: true
+    }
+  }
   return {
-    ...node,
-    [TRANSFORMED]: true
+    ...node
   }
 }
 

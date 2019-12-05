@@ -2,7 +2,7 @@ import 'test-utils/legacy-env' // adds serializer
 /** @jsx jsx */
 import jestInCase from 'jest-in-case'
 import * as enzyme from 'enzyme'
-import { jsx } from '@emotion/core'
+import { jsx, ThemeProvider } from '@emotion/core'
 import styled from '@emotion/styled'
 import React from 'react'
 import toJson from 'enzyme-to-json'
@@ -13,6 +13,12 @@ const tickle = (wrapper: *) => {
 }
 
 const cases = {
+  'empty styled': {
+    render() {
+      const Greeting = styled.div``
+      return <Greeting>Hello</Greeting>
+    }
+  },
   basic: {
     render() {
       const Greeting = ({ children }) => (
@@ -126,6 +132,33 @@ const cases = {
         >
           World!
         </Greeting>
+      )
+    }
+  },
+  theming: {
+    render() {
+      const Button = styled.button`
+        color: ${props => props.theme.main};
+        border: 2px solid ${props => props.theme.main};
+      `
+
+      Button.defaultProps = {
+        theme: {
+          main: 'red'
+        }
+      }
+
+      const theme = {
+        main: 'blue'
+      }
+
+      return (
+        <div>
+          <Button>Normal</Button>
+          <ThemeProvider theme={theme}>
+            <Button>Themed</Button>
+          </ThemeProvider>
+        </div>
       )
     }
   }
