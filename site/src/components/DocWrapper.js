@@ -1,8 +1,8 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import * as React from 'react'
-import { keyframes, cx } from 'emotion'
+import { keyframes, cx } from '@emotion/css'
 import { Match } from '@reach/router'
 import { Link } from 'gatsby'
 import MenuIcon from 'react-icons/lib/md/menu'

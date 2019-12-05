@@ -1,7 +1,7 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import { serializeStyles } from '@emotion/serialize'
 import * as renderer from 'react-test-renderer'
 const utils = require('@emotion/utils')

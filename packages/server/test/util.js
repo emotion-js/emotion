@@ -2,7 +2,7 @@
 /* eslint-env jest */
 import * as React from 'react'
 import { parse, stringify } from 'css'
-import type { Emotion } from 'create-emotion'
+import type { Emotion } from '@emotion/css/create-instance'
 // $FlowFixMe
 import { renderToNodeStream } from 'react-dom/server'
 import HTMLSerializer from 'jest-serializer-html'

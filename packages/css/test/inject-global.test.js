@@ -1,6 +1,6 @@
 // @flow
 import 'test-utils/legacy-env'
-import { injectGlobal, sheet, flush, css } from 'emotion'
+import { injectGlobal, sheet, flush, css } from '@emotion/css'
 
 describe('injectGlobal', () => {
   afterEach(() => {

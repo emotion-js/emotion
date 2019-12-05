@@ -1,5 +1,5 @@
-import { css } from '@emotion/core'
-import { extractCritical } from 'emotion-server'
+import { css } from '@emotion/react'
+import { extractCritical } from '@emotion/server'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 

@@ -7,7 +7,7 @@ import {
   type CreateStyled,
   type PrivateStyledComponent
 } from './utils'
-import { withEmotionCache, ThemeContext } from '@emotion/core'
+import { withEmotionCache, ThemeContext } from '@emotion/react'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 

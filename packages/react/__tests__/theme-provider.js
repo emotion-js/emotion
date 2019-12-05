@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import { ignoreConsoleErrors } from 'test-utils'
-import { jsx, ThemeProvider } from '@emotion/core'
+import { jsx, ThemeProvider } from '@emotion/react'
 import renderer from 'react-test-renderer'
 import cases from 'jest-in-case'
 

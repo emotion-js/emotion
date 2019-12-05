@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { interleave } from './utils'
-import { ThemeContext } from '@emotion/core'
+import { ThemeContext } from '@emotion/react'
 import { createCss } from './css'
 
 let testOmitPropsOnComponent = prop => prop !== 'theme'

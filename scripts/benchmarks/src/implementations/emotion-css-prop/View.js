@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/react'
 
 const View = ({ style, ...other }) => {
   return <div {...other} css={css(viewStyle, style)} />

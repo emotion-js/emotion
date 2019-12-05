@@ -3,7 +3,7 @@ import 'test-utils/dev-mode'
 import { throwIfFalsy } from 'test-utils'
 import * as React from 'react'
 import { render } from 'react-dom'
-import { Global } from '@emotion/core'
+import { Global } from '@emotion/react'
 import styled from '@emotion/styled'
 
 test('specificity with globals', () => {

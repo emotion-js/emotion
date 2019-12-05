@@ -2,7 +2,7 @@
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
-import { Global, keyframes, css, CacheProvider } from '@emotion/core'
+import { Global, keyframes, css, CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 
 beforeEach(() => {

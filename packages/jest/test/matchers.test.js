@@ -2,9 +2,9 @@ import 'test-utils/legacy-env'
 import renderer from 'react-test-renderer'
 /** @jsx jsx */
 import * as enzyme from 'enzyme'
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/react'
 import styled from '@emotion/styled'
-import { matchers } from 'jest-emotion'
+import { matchers } from '@emotion/jest'
 
 const { toHaveStyleRule } = matchers
 

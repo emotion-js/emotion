@@ -1,5 +1,5 @@
 // @flow
-import { sheet } from 'emotion'
+import { sheet } from '@emotion/css'
 
 describe('sheet', () => {
   beforeEach(() => {

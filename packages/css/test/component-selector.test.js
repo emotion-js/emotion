@@ -2,7 +2,7 @@ import 'test-utils/legacy-env'
 import React from 'react'
 import styled from '@emotion/styled'
 import renderer from 'react-test-renderer'
-import { css } from 'emotion'
+import { css } from '@emotion/css'
 
 describe('component selector', () => {
   test('should be converted to use the emotion target className', () => {

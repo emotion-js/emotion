@@ -1,6 +1,6 @@
 import 'test-utils/prod-mode'
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/react'
 import renderer from 'react-test-renderer'
 
 test('css works', () => {

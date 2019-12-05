@@ -1,5 +1,5 @@
 import 'test-utils/legacy-env'
-import { css, sheet, flush } from 'emotion'
+import { css, sheet, flush } from '@emotion/css'
 
 global.shouldKeepSourceMaps = true
 

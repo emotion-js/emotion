@@ -2,7 +2,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { keyframes, flush, css } from 'emotion'
+import { keyframes, flush, css } from '@emotion/css'
 
 describe('keyframes', () => {
   afterEach(() => {

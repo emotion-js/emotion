@@ -1,5 +1,5 @@
 /* global Babel */
-import babelPluginEmotion from 'babel-plugin-emotion'
+import babelPluginEmotion from '@emotion/babel-plugin'
 
 Babel.registerPlugin('babel-plugin-emotion', babelPluginEmotion)
 

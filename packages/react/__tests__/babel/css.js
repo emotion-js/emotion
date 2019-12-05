@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import renderer from 'react-test-renderer'
 
 test('tagged template args forwarded', () => {

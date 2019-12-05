@@ -1,6 +1,6 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import { Component } from 'react'
 import styled from '@emotion/styled'
 import { StaticQuery, graphql } from 'gatsby'

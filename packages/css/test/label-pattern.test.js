@@ -2,7 +2,7 @@ import 'test-utils/legacy-env'
 import React from 'react'
 import styled from '@emotion/styled'
 import renderer from 'react-test-renderer'
-import { flush } from 'emotion'
+import { flush } from '@emotion/css'
 
 describe('label pattern', () => {
   afterEach(() => flush())

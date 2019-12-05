@@ -1,5 +1,5 @@
 import babelTester from 'babel-tester'
-import plugin from 'babel-plugin-emotion'
+import plugin from '@emotion/babel-plugin'
 
 babelTester('source maps', __dirname, {
   plugins: [[plugin, { sourceMap: true }]],

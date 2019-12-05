@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import styled from '@emotion/styled/macro'
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 class Thing {
   static SomeComponent = styled.div`

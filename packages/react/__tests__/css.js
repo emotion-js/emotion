@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import * as React from 'react'
-import { jsx, css, CacheProvider, ThemeProvider } from '@emotion/core'
+import { jsx, css, CacheProvider, ThemeProvider } from '@emotion/react'
 import { render } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 import createCache from '@emotion/cache'

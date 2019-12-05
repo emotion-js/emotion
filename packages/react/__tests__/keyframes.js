@@ -1,12 +1,12 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
-import { jsx, css, keyframes } from '@emotion/core'
+import { jsx, css, keyframes } from '@emotion/react'
 import { safeQuerySelector, throwIfFalsy } from 'test-utils'
 import cases from 'jest-in-case'
 import * as renderer from 'react-test-renderer'
 import createCache from '@emotion/cache'
-import { CacheProvider } from '@emotion/core'
+import { CacheProvider } from '@emotion/react'
 
 cases(
   'keyframes',

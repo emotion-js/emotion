@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import * as renderer from 'react-test-renderer'
-import { jsx, useTheme, ThemeProvider } from '@emotion/core'
+import { jsx, useTheme, ThemeProvider } from '@emotion/react'
 
 test('useTheme works', () => {
   function TestComponent(props) {

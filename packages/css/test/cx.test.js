@@ -2,7 +2,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { css, cx } from 'emotion'
+import { css, cx } from '@emotion/css'
 
 describe('cx', () => {
   test('merge 2', () => {

@@ -1,6 +1,6 @@
 import { __makeTemplateObject } from 'tslib'
 
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 
 var templateObject_1
 

@@ -1,7 +1,7 @@
 // @flow
 import 'test-utils/prod-mode'
 import * as React from 'react'
-import { css, Global } from '@emotion/core'
+import { css, Global } from '@emotion/react'
 import styled from '@emotion/styled'
 import { render } from '@testing-library/react'
 import * as cssParser from 'css'

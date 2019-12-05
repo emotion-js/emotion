@@ -2,7 +2,7 @@
 import * as React from 'react'
 import renderer from 'react-test-renderer'
 import reactPrimitives from 'react-primitives'
-import { ThemeProvider } from '@emotion/core'
+import { ThemeProvider } from '@emotion/react'
 import { render, unmountComponentAtNode } from 'react-dom'
 
 import styled from '@emotion/primitives'

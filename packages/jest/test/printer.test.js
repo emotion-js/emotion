@@ -5,9 +5,9 @@ import 'test-utils/legacy-env'
 import renderer from 'react-test-renderer'
 import prettyFormat from 'pretty-format'
 /** @jsx jsx */
-import { css, jsx, CacheProvider } from '@emotion/core'
+import { css, jsx, CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
-import { createSerializer } from 'jest-emotion'
+import { createSerializer } from '@emotion/jest'
 import { ignoreConsoleErrors } from 'test-utils'
 
 let emotionPlugin = createSerializer()

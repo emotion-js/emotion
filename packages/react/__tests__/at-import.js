@@ -2,9 +2,9 @@
 import 'test-utils/prod-mode'
 import * as React from 'react'
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import { render, unmountComponentAtNode } from 'react-dom'
-import { Global, css } from '@emotion/core'
+import { Global, css } from '@emotion/react'
 
 beforeEach(() => {
   // $FlowFixMe

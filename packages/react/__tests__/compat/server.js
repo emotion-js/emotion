@@ -2,10 +2,10 @@
  * @jest-environment node
  * @flow
  */
-import { jsx, Global } from '@emotion/core'
-import createEmotionServer from 'create-emotion-server'
+import { jsx, Global } from '@emotion/react'
+import createEmotionServer from '@emotion/server/create-instance'
 import createCache from '@emotion/cache'
-import { CacheProvider } from '@emotion/core'
+import { CacheProvider } from '@emotion/react'
 import { renderToString } from 'react-dom/server'
 
 test('it works', () => {

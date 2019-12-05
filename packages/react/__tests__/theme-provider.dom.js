@@ -4,7 +4,7 @@ import 'test-utils/next-env'
 import 'test-utils/dev-mode'
 import { throwIfFalsy, safeQuerySelector } from 'test-utils'
 import * as React from 'react'
-import { jsx, ThemeProvider } from '@emotion/core'
+import { jsx, ThemeProvider } from '@emotion/react'
 import { render } from 'react-dom'
 
 test('provider with theme value that changes', () => {

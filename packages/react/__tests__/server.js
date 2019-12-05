@@ -12,12 +12,12 @@ import {
   keyframes,
   CacheProvider,
   ClassNames
-} from '@emotion/core'
+} from '@emotion/react'
 import styled from '@emotion/styled'
 import createCache from '@emotion/cache'
 import { renderToString } from 'react-dom/server'
 import HTMLSerializer from 'jest-serializer-html'
-import createEmotionServer from 'create-emotion-server'
+import createEmotionServer from '@emotion/server/create-instance'
 
 expect.addSnapshotSerializer(HTMLSerializer)
 

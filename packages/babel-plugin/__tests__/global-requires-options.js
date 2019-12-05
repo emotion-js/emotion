@@ -1,6 +1,6 @@
 // @flow
 import babelTester from 'babel-tester'
-import plugin from 'babel-plugin-emotion'
+import plugin from '@emotion/babel-plugin'
 
 const cases = {
   'source maps can be disabled': {

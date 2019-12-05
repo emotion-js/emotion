@@ -2,7 +2,7 @@
 import 'test-utils/dev-mode'
 import * as React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
-import { Global, ThemeProvider } from '@emotion/core'
+import { Global, ThemeProvider } from '@emotion/react'
 
 beforeEach(() => {
   // $FlowFixMe

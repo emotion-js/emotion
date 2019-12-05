@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/next-env'
 import createCache from '@emotion/cache'
-import { jsx, CacheProvider } from '@emotion/core'
+import { jsx, CacheProvider } from '@emotion/react'
 import renderer from 'react-test-renderer'
 
 function render(ele) {

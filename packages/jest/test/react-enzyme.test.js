@@ -2,8 +2,8 @@ import 'test-utils/legacy-env'
 /** @jsx jsx */
 import jestInCase from 'jest-in-case'
 import * as enzyme from 'enzyme'
-import { jsx } from '@emotion/core'
-import { createSerializer } from 'jest-emotion'
+import { jsx } from '@emotion/react'
+import { createSerializer } from '@emotion/jest'
 import React from 'react'
 import toJson from 'enzyme-to-json'
 
