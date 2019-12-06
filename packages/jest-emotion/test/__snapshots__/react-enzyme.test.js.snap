@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`enzyme mount basic 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
 <Greeting>
   <div
-    className="emotion-0"
+    css="unknown styles"
   >
-    hello
+    <div
+      className="css-tjt4gv-Greeting"
+    >
+      hello
+    </div>
   </div>
 </Greeting>
 `;
@@ -17,7 +17,7 @@ exports[`enzyme mount basic 1`] = `
 exports[`enzyme mount empty styled 1`] = `
 <Greeting>
   <div
-    className="emotion-0 emotion-1"
+    className="css-1k6nb1k-Greeting emotion-0"
   >
     Hello
   </div>
@@ -25,30 +25,26 @@ exports[`enzyme mount empty styled 1`] = `
 `;
 
 exports[`enzyme mount nested 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
 <div>
   <Greeting>
     <div
-      className="emotion-0"
+      css="unknown styles"
     >
-      hello
+      <div
+        className="css-tjt4gv-Greeting"
+      >
+        hello
+      </div>
     </div>
   </Greeting>
 </div>
 `;
 
 exports[`enzyme mount nested styled 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
 <div>
   <Greeting>
     <div
-      className="emotion-0 emotion-1"
+      className="css-1udkkc1-Greeting emotion-0"
     >
       Hello
     </div>
@@ -57,13 +53,9 @@ exports[`enzyme mount nested styled 1`] = `
 `;
 
 exports[`enzyme mount styled 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
 <Greeting>
   <div
-    className="emotion-0 emotion-1"
+    className="css-1udkkc1-Greeting emotion-0"
   >
     Hello
   </div>
@@ -115,10 +107,6 @@ exports[`enzyme mount theming 1`] = `
 `;
 
 exports[`enzyme mount with prop containing css element 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
 <Greeting
   content={
     <p
@@ -130,9 +118,13 @@ exports[`enzyme mount with prop containing css element 1`] = `
 >
   <div>
     <p
-      className="emotion-0"
+      css="unknown styles"
     >
-      Hello
+      <p
+        className="css-f9xk9e"
+      >
+        Hello
+      </p>
     </p>
      
     World!
@@ -141,10 +133,6 @@ exports[`enzyme mount with prop containing css element 1`] = `
 `;
 
 exports[`enzyme mount with prop containing css element not at the top level 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
 <div>
   <Greeting
     content={
@@ -158,10 +146,15 @@ exports[`enzyme mount with prop containing css element not at the top level 1`] 
   >
     <div>
       <p
-        className="emotion-0"
+        css="unknown styles"
         id="something"
       >
-        Hello
+        <p
+          className="css-f9xk9e"
+          id="something"
+        >
+          Hello
+        </p>
       </p>
        
       World!
@@ -171,10 +164,6 @@ exports[`enzyme mount with prop containing css element not at the top level 1`] 
 `;
 
 exports[`enzyme mount with prop containing css element with other label 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
 <Greeting
   content={
     <p
@@ -193,10 +182,15 @@ exports[`enzyme mount with prop containing css element with other label 1`] = `
     }
   >
     <p
-      className="emotion-0"
+      css="unknown styles"
       id="something"
     >
-      Hello
+      <p
+        className="css-f9xk9e"
+        id="something"
+      >
+        Hello
+      </p>
     </p>
      
     World!
@@ -205,10 +199,6 @@ exports[`enzyme mount with prop containing css element with other label 1`] = `
 `;
 
 exports[`enzyme mount with prop containing css element with other props 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
 <Greeting
   content={
     <p
@@ -221,10 +211,15 @@ exports[`enzyme mount with prop containing css element with other props 1`] = `
 >
   <div>
     <p
-      className="emotion-0"
+      css="unknown styles"
       id="something"
     >
-      Hello
+      <p
+        className="css-f9xk9e"
+        id="something"
+      >
+        Hello
+      </p>
     </p>
      
     World!
@@ -233,21 +228,19 @@ exports[`enzyme mount with prop containing css element with other props 1`] = `
 `;
 
 exports[`enzyme mount with styles on top level 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
-Array [
+<Greeting
+  css="unknown styles"
+>
   <Greeting
-    className="emotion-0"
+    className="css-f5yfbg"
   >
     <div
-      className="emotion-0"
+      className="css-f5yfbg"
     >
       Hello
     </div>
-  </Greeting>,
-]
+  </Greeting>
+</Greeting>
 `;
 
 exports[`enzyme shallow basic 1`] = `
@@ -328,7 +321,7 @@ exports[`enzyme shallow theming 1`] = `
 exports[`enzyme shallow with prop containing css element 1`] = `
 <div>
   <p
-    className="emotion-0"
+    css="unknown styles"
   >
     Hello
   </p>
@@ -363,7 +356,7 @@ exports[`enzyme shallow with prop containing css element with other label 1`] = 
   }
 >
   <p
-    className="emotion-0"
+    css="unknown styles"
     id="something"
   >
     Hello
@@ -376,7 +369,7 @@ exports[`enzyme shallow with prop containing css element with other label 1`] = 
 exports[`enzyme shallow with prop containing css element with other props 1`] = `
 <div>
   <p
-    className="emotion-0"
+    css="unknown styles"
     id="something"
   >
     Hello
@@ -412,7 +405,7 @@ exports[`enzyme shallow with tickling basic 1`] = `
 
 exports[`enzyme shallow with tickling empty styled 1`] = `
 <div
-  className="emotion-0 emotion-1"
+  className="css-1k6nb1k-Greeting emotion-0"
 >
   Hello
 </div>
@@ -435,12 +428,8 @@ exports[`enzyme shallow with tickling nested styled 1`] = `
 `;
 
 exports[`enzyme shallow with tickling styled 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
 <div
-  className="emotion-0 emotion-1"
+  className="css-1udkkc1-Greeting emotion-0"
 >
   Hello
 </div>
@@ -511,10 +500,6 @@ exports[`enzyme shallow with tickling with prop containing css element not at th
 `;
 
 exports[`enzyme shallow with tickling with prop containing css element with other label 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
 <Thing
   content={
     <div
@@ -523,7 +508,7 @@ exports[`enzyme shallow with tickling with prop containing css element with othe
   }
 >
   <p
-    className="emotion-0"
+    css="unknown styles"
     id="something"
   >
     Hello
@@ -534,13 +519,9 @@ exports[`enzyme shallow with tickling with prop containing css element with othe
 `;
 
 exports[`enzyme shallow with tickling with prop containing css element with other props 1`] = `
-.emotion-0 {
-  background-color: blue;
-}
-
 <div>
   <p
-    className="emotion-0"
+    css="unknown styles"
     id="something"
   >
     Hello
@@ -551,12 +532,8 @@ exports[`enzyme shallow with tickling with prop containing css element with othe
 `;
 
 exports[`enzyme shallow with tickling with styles on top level 1`] = `
-.emotion-0 {
-  background-color: red;
-}
-
 <Greeting
-  className="emotion-0"
+  className="css-f5yfbg"
 >
   Hello
 </Greeting>

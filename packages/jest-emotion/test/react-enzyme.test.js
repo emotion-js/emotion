@@ -7,6 +7,12 @@ import styled from '@emotion/styled'
 import React from 'react'
 import toJson from 'enzyme-to-json'
 
+afterEach(() => {
+  document
+    .querySelectorAll('style[data-emotion]')
+    .forEach(element => element.parentNode.removeChild(element))
+})
+
 const tickle = (wrapper: *) => {
   wrapper.find('EmotionCssPropInternal').forEach(el => el.dive())
   return wrapper
