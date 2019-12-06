@@ -9,13 +9,9 @@ exports[`Styled test 1 1`] = `
 `;
 
 exports[`Styled test 2 1`] = `
-.emotion-0 {
-  color: red;
-}
-
 <Component>
   <div
-    className="emotion-0 emotion-1"
+    className="css-1scxj8d-Component emotion-0"
   />
 </Component>
 `;
@@ -23,7 +19,7 @@ exports[`Styled test 2 1`] = `
 exports[`Styled test 3 1`] = `
 <Component>
   <div
-    className="emotion-0 emotion-1"
+    className="css-1mndwhu-Component emotion-0"
   />
 </Component>
 `;

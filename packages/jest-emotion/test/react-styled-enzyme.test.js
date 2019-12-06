@@ -10,6 +10,10 @@ function toMatchSnapshot(component) {
   expect(toJson(wrapper)).toMatchSnapshot()
 }
 
+beforeEach(() => {
+  document.getElementsByTagName('html')[0].innerHTML = ''
+})
+
 it('Styled test 1', () => {
   const Component = styled.div``
 
