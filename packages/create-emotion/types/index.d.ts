@@ -2,17 +2,17 @@
 // TypeScript Version: 2.8
 
 import { EmotionCache, Options } from '@emotion/cache'
-import { Interpolation } from '@emotion/serialize'
+import { CSSInterpolation } from '@emotion/serialize'
 import { StyleSheet } from '@emotion/sheet'
 
 export {
-  ArrayInterpolation,
+  CSSInterpolation,
+  ArrayCSSInterpolation,
   ComponentSelector,
-  FunctionInterpolation,
-  ObjectInterpolation
+  CSSObject
 } from '@emotion/serialize'
 
-export { EmotionCache, Interpolation, Options, StyleSheet }
+export { EmotionCache, Options, StyleSheet }
 
 export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
 export type ClassNamesArg =
@@ -24,21 +24,21 @@ export type ClassNamesArg =
   | ArrayClassNamesArg
 
 export interface Emotion {
-  css(template: TemplateStringsArray, ...args: Array<Interpolation>): string
-  css(...args: Array<Interpolation>): string
+  css(template: TemplateStringsArray, ...args: Array<CSSInterpolation>): string
+  css(...args: Array<CSSInterpolation>): string
   cx(...classNames: Array<ClassNamesArg>): string
   flush(): void
   hydrate(ids: Array<string>): void
   injectGlobal(
     template: TemplateStringsArray,
-    ...args: Array<Interpolation>
+    ...args: Array<CSSInterpolation>
   ): void
-  injectGlobal(...args: Array<Interpolation>): void
+  injectGlobal(...args: Array<CSSInterpolation>): void
   keyframes(
     template: TemplateStringsArray,
-    ...args: Array<Interpolation>
+    ...args: Array<CSSInterpolation>
   ): string
-  keyframes(...args: Array<Interpolation>): string
+  keyframes(...args: Array<CSSInterpolation>): string
   sheet: StyleSheet
   cache: EmotionCache
   merge(className: string): string

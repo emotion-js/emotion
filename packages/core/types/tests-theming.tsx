@@ -3,7 +3,7 @@
 
 import * as React from 'react'
 import { useTheme, ThemeProvider, withTheme, Theme } from '@emotion/core'
-import { Interpolation, ObjectInterpolation } from '@emotion/styled/base'
+import { Interpolation, CSSObject } from '@emotion/styled/base'
 
 declare const theme: Theme
 
@@ -74,10 +74,8 @@ const ThemedCompWithDefault = withTheme(CompCWithDefault)
   ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
 }
 
-type StyleDefinition = Interpolation
-type ObjectStyleDefinition = ObjectInterpolation<{
-  theme: Theme
-}>
+type StyleDefinition = Interpolation<{ theme: Theme }>
+type ObjectStyleDefinition = CSSObject
 
 const style: StyleDefinition = ({ theme }) => ({
   color: theme.primary

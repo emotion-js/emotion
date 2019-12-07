@@ -13,21 +13,12 @@ export type CSSPropertiesWithMultiValues = {
     | CSSProperties[K]
     | Array<Extract<CSSProperties[K], string>>
 }
-/**
- * @desc Following type exists for autocompletion of key.
- */
-export type CSSPseudos<MP = { theme: Theme }> = {
-  [K in CSS.Pseudos]?: ObjectInterpolation<MP>
-}
-export interface CSSOthersObject<MP = { theme: Theme }> {
-  [propertiesName: string]: Interpolation<MP>
-}
 
-export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject }
+export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
 
 export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
 
-export type CSSInterpolation =
+export type InterpolationPrimitive =
   | null
   | undefined
   | boolean
@@ -37,16 +28,17 @@ export type CSSInterpolation =
   | Keyframes
   | SerializedStyles
   | CSSObject
-  | ArrayCSSInterpolation
 
-export interface CSSOthersObjectForCSSObject {
+export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation
+
+export interface CSSOthersObject {
   [propertiesName: string]: CSSInterpolation
 }
 
 export interface CSSObject
   extends CSSPropertiesWithMultiValues,
-    CSSPseudosForCSSObject,
-    CSSOthersObjectForCSSObject {}
+    CSSPseudos,
+    CSSOthersObject {}
 
 export interface ComponentSelector {
   __emotion_styles: any
@@ -59,32 +51,20 @@ export type Keyframes = {
   toString: () => string
 } & string
 
-export interface ArrayInterpolation<MP = { theme: Theme }>
-  extends Array<Interpolation<MP>> {}
-export interface ObjectInterpolation<MP = { theme: Theme }>
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudos<MP>,
-    CSSOthersObject<MP> {}
+export interface ArrayInterpolation<Props>
+  extends Array<Interpolation<Props>> {}
 
-export interface FunctionInterpolation<MergedProps = { theme: Theme }> {
-  (mergedProps: MergedProps): Interpolation<MergedProps>
+export interface FunctionInterpolation<Props> {
+  (props: Props): Interpolation<Props>
 }
 
-export type Interpolation<MergedProps = { theme: Theme }> =
-  | null
-  | undefined
-  | boolean
-  | number
-  | string
-  | ComponentSelector
-  | Keyframes
-  | SerializedStyles
-  | ArrayInterpolation<MergedProps>
-  | ObjectInterpolation<MergedProps>
-  | FunctionInterpolation<MergedProps>
+export type Interpolation<Props> =
+  | InterpolationPrimitive
+  | ArrayInterpolation<Props>
+  | FunctionInterpolation<Props>
 
-export function serializeStyles<MP = { theme: Theme }>(
-  args: Array<TemplateStringsArray | Interpolation<MP>>,
+export function serializeStyles<Props>(
+  args: Array<TemplateStringsArray | Interpolation<Props>>,
   registered: RegisteredCache,
-  mergedProps?: MP
+  props?: Props
 ): SerializedStyles

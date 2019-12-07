@@ -1,17 +1,12 @@
-import {
-  CSSObject,
-  ObjectInterpolation,
-  Keyframes,
-  serializeStyles
-} from '@emotion/serialize'
+import { CSSObject, Keyframes, serializeStyles } from '@emotion/serialize'
 
 declare const testTemplateStringsArray: TemplateStringsArray
 declare const testKeyframes: Keyframes
 
-const testObjectInterpolation0: ObjectInterpolation = {
+const testCSSObject0: CSSObject = {
   animation: testKeyframes
 }
-const testObjectInterpolation1: ObjectInterpolation = {
+const testCSSObject1: CSSObject = {
   animationName: testKeyframes
 }
 

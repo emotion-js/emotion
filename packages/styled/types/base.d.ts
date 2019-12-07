@@ -19,8 +19,7 @@ import { PropsOf, DistributiveOmit, Theme } from '@emotion/core'
 export {
   ArrayInterpolation,
   CSSObject,
-  FunctionInterpolation,
-  ObjectInterpolation
+  FunctionInterpolation
 } from '@emotion/serialize'
 
 export { ComponentSelector, Interpolation }

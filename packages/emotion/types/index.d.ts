@@ -5,13 +5,12 @@ import { Emotion } from 'create-emotion'
 
 export {
   ArrayClassNamesArg,
-  ArrayInterpolation,
+  ArrayCSSInterpolation,
   ClassNamesArg,
   ComponentSelector,
   EmotionCache,
-  FunctionInterpolation,
-  Interpolation,
-  ObjectInterpolation,
+  CSSInterpolation,
+  CSSObject,
   StyleSheet
 } from 'create-emotion'
 

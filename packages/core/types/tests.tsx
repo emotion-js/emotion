@@ -120,3 +120,8 @@ const anim1 = keyframes`
     )
   }}
 </ClassNames>
+;<div
+  css={theme => css`
+    color: ${theme.secondaryColor};
+  `}
+/>

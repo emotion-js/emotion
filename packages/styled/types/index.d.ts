@@ -10,7 +10,6 @@ export {
   CSSObject,
   FunctionInterpolation,
   Interpolation,
-  ObjectInterpolation,
   StyledComponent,
   StyledOptions,
   CreateStyledComponent

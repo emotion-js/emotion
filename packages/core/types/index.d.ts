@@ -10,7 +10,6 @@ import {
   FunctionInterpolation,
   Interpolation,
   Keyframes,
-  ObjectInterpolation,
   SerializedStyles
 } from '@emotion/serialize'
 import {
@@ -32,7 +31,6 @@ export {
   EmotionCache,
   FunctionInterpolation,
   Interpolation,
-  ObjectInterpolation,
   SerializedStyles
 }
 
@@ -68,9 +66,9 @@ export function Global(props: GlobalProps): ReactElement
 
 export function keyframes(
   template: TemplateStringsArray,
-  ...args: Array<Interpolation>
+  ...args: Array<CSSInterpolation>
 ): Keyframes
-export function keyframes(...args: Array<Interpolation>): Keyframes
+export function keyframes(...args: Array<CSSInterpolation>): Keyframes
 
 export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
 export type ClassNamesArg =
@@ -82,8 +80,8 @@ export type ClassNamesArg =
   | ArrayClassNamesArg
 
 export interface ClassNamesContent {
-  css(template: TemplateStringsArray, ...args: Array<Interpolation>): string
-  css(...args: Array<Interpolation>): string
+  css(template: TemplateStringsArray, ...args: Array<CSSInterpolation>): string
+  css(...args: Array<CSSInterpolation>): string
   cx(...args: Array<ClassNamesArg>): string
   theme: Theme
 }
@@ -98,7 +96,7 @@ export function ClassNames(props: ClassNamesProps): ReactElement
 
 declare module 'react' {
   interface DOMAttributes<T> {
-    css?: Interpolation
+    css?: Interpolation<Theme>
   }
 }
 
@@ -110,7 +108,7 @@ declare global {
      */
 
     interface IntrinsicAttributes {
-      css?: Interpolation
+      css?: Interpolation<Theme>
     }
   }
 }
