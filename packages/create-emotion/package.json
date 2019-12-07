@@ -1,6 +1,6 @@
 {
   "name": "create-emotion",
-  "version": "11.0.0-next.6",
+  "version": "11.0.0-next.8",
   "description": "The Next Generation of CSS-in-JS.",
   "main": "dist/create-emotion.cjs.js",
   "module": "dist/create-emotion.esm.js",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@emotion/cache": "^11.0.0-next.6",
-    "@emotion/serialize": "^0.11.15-next.1",
+    "@emotion/serialize": "^0.12.0-next.3",
     "@emotion/sheet": "0.10.0-next.0",
     "@emotion/utils": "0.11.2"
   },
