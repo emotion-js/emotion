@@ -1,5 +1,27 @@
 # @emotion/styled
 
+## 11.0.0-next.8
+
+### Major Changes
+
+- [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@joltmode](https://github.com/joltmode)! - Reworked TypeScript definitions so it's easier to provide a type for Theme. Instead of creating custom instances (like before) you can augment builtin Theme interface like this:
+
+  ```ts
+  declare module '@emotion/core' {
+    export interface Theme {
+      primaryColor: string
+      secondaryColor: string
+    }
+  }
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b), [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b), [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b), [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b)]:
+  - babel-plugin-emotion@11.0.0-next.8
+  - @emotion/core@11.0.0-next.8
+  - @emotion/serialize@0.12.0-next.3
+
 ## 11.0.0-next.7
 
 ### Patch Changes

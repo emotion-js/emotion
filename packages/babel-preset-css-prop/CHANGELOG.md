@@ -1,5 +1,16 @@
 # @emotion/babel-preset-css-prop
 
+## 11.0.0-next.8
+
+### Minor Changes
+
+- [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@joltmode](https://github.com/joltmode)! - Adjust how arrays passed to css prop are transformed so function elements can be resolved at runtime.
+
+### Patch Changes
+
+- Updated dependencies [[`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b)]:
+  - babel-plugin-emotion@11.0.0-next.8
+
 ## 11.0.0-next.6
 
 ### Minor Changes
