@@ -2,20 +2,25 @@
 import { ComponentClass } from 'react'
 import {
   ClassNames,
-  ClassNamesContent,
   Global,
   css,
   jsx,
   keyframes,
   withEmotionCache
 } from '@emotion/core'
-;<Global styles={[]} />
 
-interface TestTheme0 {
-  resetStyle: any
+declare module '@emotion/core' {
+  // tslint:disable-next-line: strict-export-declare-modifiers
+  export interface Theme {
+    primary: string
+    secondary: string
+    primaryColor: string
+    secondaryColor: string
+  }
 }
 
-;<Global styles={(theme: TestTheme0) => [theme.resetStyle]} />
+;<Global styles={[]} />
+;<Global styles={theme => [theme.primaryColor]} />
 
 declare const getRandomColor: () => string
 
@@ -92,14 +97,8 @@ const anim1 = keyframes`
   }}
   world="of-world"
 />
-
-interface TestTheme1 {
-  primaryColor: string
-  secondaryColor: string
-}
-
 ;<ClassNames>
-  {({ css, cx, theme }: ClassNamesContent<TestTheme1>) => {
+  {({ css, cx, theme }) => {
     return (
       <div>
         <span className={cx('a', undefined, 'b', null, [['abc']])} />
@@ -121,3 +120,8 @@ interface TestTheme1 {
     )
   }}
 </ClassNames>
+;<div
+  css={theme => css`
+    color: ${theme.secondaryColor};
+  `}
+/>

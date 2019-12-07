@@ -1,19 +1,21 @@
 import * as React from 'react'
-import styled, { CreateStyled } from '@emotion/styled'
+import styled from '@emotion/styled'
 
-// $ExpectType CreateStyledComponent<{ theme?: any; }, DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, { theme: any; }>
+// This file uses the same Theme declaration from tests-base.tsx
+
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, {}>
 styled.a
-// $ExpectType CreateStyledComponent<{ theme?: any; }, DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>, { theme: any; }>
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>, {}>
 styled.body
-// $ExpectType CreateStyledComponent<{ theme?: any; }, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, { theme: any; }>
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {}>
 styled.div
-// $ExpectType CreateStyledComponent<{ theme?: any; }, SVGProps<SVGSVGElement>, { theme: any; }>
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, SVGProps<SVGSVGElement>, {}>
 styled.svg
 
 {
   styled.div<{ bar: string }>`
     color: ${props => {
-      // $ExpectType { theme?: any; } & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; } & { theme: any; }
+      // $ExpectType { theme?: Theme | undefined; } & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; } & { theme: Theme; }
       props
 
       return {}
@@ -24,25 +26,17 @@ styled.svg
 const StyledDiv = styled.div({})
 ;<StyledDiv ref={React.createRef()} />
 
-// can specify theme for StyledTags
-const themedStyled = styled as CreateStyled<{ themeProp: string }>
-const StyledDiv3 = themedStyled.div`
-  color: ${props => props.theme.themeProp}
-`
-;<StyledDiv3 />
-const StyledDiv2 = themedStyled.div(props => {
-  // $ExpectType { themeProp: string; }
-  props.theme
-
-  return {}
-})
-;<StyledDiv2 />
-
 // Can override theme optionally on prop
-;<StyledDiv2 theme={{ themeProp: '' }} />
+;<StyledDiv
+  theme={{ primary: '', secondary: '', backColor: '', width: 0, colors: {} }}
+/>
+
+// Cannot override with incomplete theme on prop
+// $ExpectError
+;<StyledDiv theme={{ primary: '' }} />
 
 // $ExpectError
-;<StyledDiv2 theme={{ themeProp: 0 }} />
+;<StyledDiv theme={{ themeProp: 0 }} />
 
 const Container = styled.div((props: { test: number }) => ({
   width: props.test
@@ -60,7 +54,7 @@ const Container3 = styled.div(({ theme }) => ({
 // who's type clashes with an intrinsic prop.
 // It makes use of a custom type guard on shouldForwardProp to exclude color
 
-export const Box = styled('div', {
+const Box = styled('div', {
   shouldForwardProp: (
     propName
   ): propName is Exclude<keyof JSX.IntrinsicElements['div'], 'color'> =>
