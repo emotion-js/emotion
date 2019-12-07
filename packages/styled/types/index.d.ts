@@ -19,8 +19,7 @@ export {
 export type StyledTags = {
   [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
     { theme?: Theme },
-    JSX.IntrinsicElements[Tag],
-    { theme: Theme }
+    JSX.IntrinsicElements[Tag]
   >
 }
 

@@ -3,13 +3,13 @@ import styled from '@emotion/styled'
 
 // This file uses the same Theme declaration from tests-base.tsx
 
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, { theme: Theme; }>
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, {}>
 styled.a
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>, { theme: Theme; }>
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>, {}>
 styled.body
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, { theme: Theme; }>
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {}>
 styled.div
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, SVGProps<SVGSVGElement>, { theme: Theme; }>
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, SVGProps<SVGSVGElement>, {}>
 styled.svg
 
 {
