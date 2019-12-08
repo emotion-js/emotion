@@ -1,5 +1,12 @@
 # @emotion/primitives-core
 
+## 11.0.0-next.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/core@11.0.0-next.9
+
 ## 11.0.0-next.8
 
 ### Patch Changes
