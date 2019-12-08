@@ -177,6 +177,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     Styled.__emotion_real = Styled
     Styled.__emotion_base = baseTag
     Styled.__emotion_styles = styles
+    Styled.__emotion_identifier = identifierName
     Styled.__emotion_forwardProp = shouldForwardProp
 
     Object.defineProperty(Styled, 'toString', {
@@ -196,8 +197,26 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       nextTag: ElementType,
       nextOptions?: StyledOptions
     ) => {
+      const { label, ...prevOptions } = options || {}
+      let nextStyles = styles
+
+      if (nextOptions && nextOptions.label !== undefined) {
+        if (identifierName !== undefined) {
+          nextStyles = styles.slice(1)
+        }
+
+        if (
+          nextTag.__emotion_real === nextTag &&
+          nextTag.__emotion_identifier !== undefined
+        ) {
+          nextTag = { ...nextTag }
+          nextTag.__emotion_real = nextTag
+          nextTag.__emotion_styles = nextTag.__emotion_styles.slice(1)
+        }
+      }
+
       return createStyled(nextTag, {
-        ...options,
+        ...prevOptions,
         ...nextOptions,
         shouldForwardProp:
           nextOptions && typeof nextOptions.shouldForwardProp === 'function'
@@ -206,7 +225,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
                 nextOptions.shouldForwardProp(propName) &&
                 defaultShouldForwardProp(propName)
             : defaultShouldForwardProp
-      })(...styles)
+      })(...nextStyles)
     }
 
     return Styled

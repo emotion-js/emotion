@@ -654,6 +654,28 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('withComponent correctly produces a composed label', () => {
+    const A = styled('span', { label: 'a-cmp' })``
+    const B = styled('a', { label: 'b-cmp' })``
+    const AB = A.withComponent(B)
+
+    const treeAS = renderer.create(<A as={B} />).toJSON()
+    const treeWC = renderer.create(<AB />).toJSON()
+
+    expect(treeAS.props.className).toBe(treeWC.props.className)
+  })
+
+  test('withComponent correctly produces a new label', () => {
+    const A = styled('span', { label: 'a-cmp' })``
+    const B = styled('a', { label: 'b-cmp' })``
+    const AB = A.withComponent(B, { label: 'ab-cmp' })
+
+    const tree = renderer.create(<AB />).toJSON()
+    const [, , ...labelParts] = tree.props.className.split('-')
+
+    expect(labelParts.join('-')).toBe('ab-cmp')
+  })
+
   test('withComponent composes parent shouldForwardProp', () => {
     const shouldForwardPropA = jest.fn(() => false)
     const shouldForwardPropB = jest.fn(prop => ~['disabled'].indexOf(prop))
