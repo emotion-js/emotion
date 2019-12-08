@@ -2,4 +2,4 @@
 '@emotion/styled': patch
 ---
 
-Fixed issue when composing components using interpolations the wrong type would be inferred
+Fixed issue when using "component as selector" in styled interpolations which caused the wrong type to be inferred.
