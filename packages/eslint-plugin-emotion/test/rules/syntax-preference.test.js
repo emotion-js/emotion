@@ -8,12 +8,18 @@
 // Requirements
 // ------------------------------------------------------------------------------
 
-const { RuleTester } = require('eslint')
-const rule = require('eslint-plugin-emotion').rules['syntax-preference']
+import { RuleTester } from 'eslint'
+import { rules as emotionRules } from 'eslint-plugin-emotion'
+
+const rule = emotionRules['syntax-preference']
 
 RuleTester.setDefaultConfig({
   parserOptions: {
-    ecmaVersion: 6
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
   }
 })
 
@@ -37,6 +43,14 @@ ruleTester.run('syntax-preference (string)', rule, {
     {
       code: 'const query = gql` { user(id: 5) { firstName, lastName } }`',
       options: ['string']
+    },
+    {
+      code: `const Foo = () => <div css={css\`color: hotpink;\`} />`,
+      options: ['string']
+    },
+    {
+      code: `const Foo = () => <div css={[styles, otherStyles]} />`,
+      options: ['string']
     }
   ],
 
@@ -58,6 +72,50 @@ ruleTester.run('syntax-preference (string)', rule, {
         {
           message: 'Styles should be written using strings.',
           type: 'CallExpression'
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css={{ color: 'hotpink' }} />`,
+      options: ['string'],
+      errors: [
+        {
+          message: 'Styles should be written using strings.',
+          type: 'ObjectExpression'
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css={'color: hotpink;'} />`,
+      options: ['string'],
+      errors: [
+        {
+          message: 'Prefer wrapping your string styles with `css` call.',
+          type: 'Literal'
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css="'color: hotpink;'" />`,
+      options: ['string'],
+      errors: [
+        {
+          message: 'Prefer wrapping your string styles with `css` call.',
+          type: 'Literal'
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css={['background-color: green;', { color: 'hotpink' }]} />`,
+      options: ['string'],
+      errors: [
+        {
+          message: 'Prefer wrapping your string styles with `css` call.',
+          type: 'Literal'
+        },
+        {
+          message: 'Styles should be written using strings.',
+          type: 'ObjectExpression'
         }
       ]
     }
@@ -78,6 +136,10 @@ ruleTester.run('syntax-preference (object)', rule, {
     {
       code: 'const query = gql` { user(id: 5) { firstName, lastName } }`',
       options: ['object']
+    },
+    {
+      code: `const Foo = () => <div css={{ color: 'hotpink' }} />`,
+      options: ['object']
     }
   ],
 
@@ -96,6 +158,50 @@ ruleTester.run('syntax-preference (object)', rule, {
       code: "const H1 = styled('h1')` color: red; `",
       options: ['object'],
       errors: [
+        {
+          message: 'Styles should be written using objects.',
+          type: 'TaggedTemplateExpression'
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css={css\`color: hotpink;\`} />`,
+      options: ['object'],
+      errors: [
+        {
+          message: 'Styles should be written using objects.',
+          type: 'TaggedTemplateExpression'
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css={'color: hotpink;'} />`,
+      options: ['object'],
+      errors: [
+        {
+          message: 'Styles should be written using objects.',
+          type: 'Literal'
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css="color: hotpink;" />`,
+      options: ['object'],
+      errors: [
+        {
+          message: 'Styles should be written using objects.',
+          type: 'Literal'
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css={['background-color: green;', css\`color: hotpink;\`]} />`,
+      options: ['object'],
+      errors: [
+        {
+          message: 'Styles should be written using objects.',
+          type: 'Literal'
+        },
         {
           message: 'Styles should be written using objects.',
           type: 'TaggedTemplateExpression'

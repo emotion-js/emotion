@@ -16,5 +16,11 @@
   "engines": {
     "node": ">=6"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "peerDependencies": {
+    "eslint": "6"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.1"
+  }
 }
