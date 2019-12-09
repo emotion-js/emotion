@@ -17,6 +17,13 @@ let EmotionCacheContext: React.Context<EmotionCache | null> = React.createContex
 export let ThemeContext = React.createContext<Object>({})
 export let CacheProvider = EmotionCacheContext.Provider
 
+/**
+ * https://reactjs.org/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging 
+ */
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'EmotionCacheRender';
+}
+
 let withEmotionCache = function withEmotionCache<Props>(
   func: (props: Props, cache: EmotionCache, ref: React.Ref<*>) => React.Node
 ): React.StatelessFunctionalComponent<Props> {
@@ -32,6 +39,9 @@ let withEmotionCache = function withEmotionCache<Props>(
       </EmotionCacheContext.Consumer>
     )
   }
+
+  render.displayName = getDisplayName(func)
+
   // $FlowFixMe
   return React.forwardRef(render)
 }

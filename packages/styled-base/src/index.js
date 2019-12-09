@@ -43,6 +43,20 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   const isReal = tag.__emotion_real === tag
   const baseTag = (isReal && tag.__emotion_base) || tag
 
+  const displayName =
+    identifierName !== undefined
+      ? identifierName
+      : `Styled(${
+          typeof baseTag === 'string'
+            ? baseTag
+            : baseTag.displayName || baseTag.name || 'Component'
+        })`
+
+  const injectDisplayName = (Component) => {
+    Component.displayName = Component.displayName || displayName
+    return Component
+  }
+
   if (typeof shouldForwardProp !== 'function' && isReal) {
     shouldForwardProp = tag.__emotion_forwardProp
   }
@@ -78,8 +92,8 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     }
 
     // $FlowFixMe: we need to cast StatelessFunctionalComponent to our PrivateStyledComponent class
-    const Styled: PrivateStyledComponent<P> = withEmotionCache(
-      (props, context, ref) => {
+    const Styled: PrivateStyledComponent<P> = withEmotionCache<P>(
+      injectDisplayName((props, context, ref) => {
         return (
           <ThemeContext.Consumer>
             {theme => {
@@ -176,18 +190,10 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             }}
           </ThemeContext.Consumer>
         )
-      }
+      })
     )
 
-    Styled.displayName =
-      identifierName !== undefined
-        ? identifierName
-        : `Styled(${
-            typeof baseTag === 'string'
-              ? baseTag
-              : baseTag.displayName || baseTag.name || 'Component'
-          })`
-
+    Styled.displayName = displayName
     Styled.defaultProps = tag.defaultProps
     Styled.__emotion_real = Styled
     Styled.__emotion_base = baseTag
