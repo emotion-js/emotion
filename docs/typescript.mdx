@@ -172,6 +172,8 @@ const App = () => (
 )
 ```
 
+**NOTE** Specify your props *after* the styled function call to allow emotion to correctly infer the types for you. ie `styled(Component)<Additional>` not `styled<Additional>(Component)`. v11 of emotion fixed a number of issues with type inference, if you are having trouble upgrading, remove any manually specified types.
+
 ### Forwarding props
 
 Sometimes you want to wrap an existing component and override the type of a prop. Emotion allows you to specify a `shouldForwardProp` hook to filter properties which should be passed to the wrapped component.
@@ -197,6 +199,34 @@ const StyledOriginal = styled(Original, {
 
 // No more type conflict error
 ;<StyledOriginal prop1="1" prop2={2} />
+```
+
+#### Filter props helper
+
+You can use this helper in your project if you want a more concise forward prop syntax
+
+``` ts
+/**
+ * Use `createPropFilter` with shouldForwardProp to filter out props. Will automatically filter out `theme`
+ * since this prop is passed via emotion's context.
+ */
+
+export function createPropFilter<ComponentProps extends {}>() {
+    return function<Omitted extends PropertyKey>(propsToOmit: Omitted[], stripNonHTML?: boolean) {
+        return function(prop: PropertyKey): prop is Exclude<keyof ComponentProps, Omitted> {
+            return stripNonHTML
+                ? isPropValid(prop) && propsToOmit.indexOf(prop as any) === -1
+                : propsToOmit.indexOf(prop as any) === -1
+        }
+    }
+}
+
+```
+
+It's usage is:
+
+``` ts
+createPropFilter<ComponentProps>()('filterThis')
 ```
 
 ### Passing props when styling a React component
@@ -285,7 +315,7 @@ const Button = styled('button')`
 export default Button
 ```
 
-If you were previously relying on `theme` being an `any` type, you have to restore compatibility with:
+If you were previously relying on `theme` being an `any` type (pre v11), you have to restore compatibility with:
 
 _emotion.d.ts_
 
