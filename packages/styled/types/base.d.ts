@@ -19,6 +19,16 @@ export interface FilteringStyledOptions<
   ForwardedProps extends keyof Props = keyof Props
 > {
   label?: string
+  /**
+   * Type guarded version of should forward prop
+   *
+   * See https://emotion.sh/docs/typescript#filter-props-helper for a helper to make these easier to writes
+   *
+   * @param propName The name of the prop
+   * @returns true if the prop should be forwarded to the underlying component
+   * @example (propName): propName is Exclude<keyof ComponentProps, 'color'> => propName !== 'color'
+   * @example (propName: string): propName is Exclude<keyof ComponentProps, 'color' | 'other'> => !['color', 'other'].includes(propName)
+   */
   shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps
   target?: string
 }
@@ -44,6 +54,14 @@ export interface StyledComponent<
     tag: Tag
   ): StyledComponent<ComponentProps, JSX.IntrinsicElements[Tag]>
 }
+
+/**
+ * NOTE The reason AdditionalProps is separated from the below is the outer generics
+ * are inferred by the styled function, AdditionalProps can then be specified
+ * by the user separately.
+ * For now you can't mix specified and inferred generics. There is a proposal exploring this at:
+ * https://github.com/microsoft/TypeScript/issues/26242
+ */
 
 /**
  * @typeparam ComponentProps  Props which will be included when withComponent is called
