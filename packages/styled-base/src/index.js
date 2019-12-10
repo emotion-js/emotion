@@ -52,7 +52,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             : baseTag.displayName || baseTag.name || 'Component'
         })`
 
-  const injectDisplayName = (Component) => {
+  const injectDisplayName = Component => {
     Component.displayName = Component.displayName || displayName
     return Component
   }
