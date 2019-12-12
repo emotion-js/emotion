@@ -18,6 +18,7 @@ const call = (method, ...params) =>
       if (data.error) {
         let error = new Error(data.error.message)
         for (let i in data.error) {
+          // eslint-disable-next-line no-prototype-builtins
           if (data.error.hasOwnProperty(i)) {
             error[i] = data.error[i]
           }

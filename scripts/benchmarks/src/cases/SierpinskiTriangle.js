@@ -63,7 +63,7 @@ class SierpinskiTriangle extends React.Component {
       s /= 2
 
       return (
-        <React.Fragment>
+        <>
           <SierpinskiTriangle
             components={components}
             depth={1}
@@ -88,10 +88,12 @@ class SierpinskiTriangle extends React.Component {
             x={x + s}
             y={y + s / 2}
           />
-        </React.Fragment>
+        </>
       )
     } else {
-      return <span style={{ color: 'white' }}>No implementation available</span>
+      return (
+        <span style={{ color: 'white' }}>{'No implementation available'}</span>
+      )
     }
   }
 }

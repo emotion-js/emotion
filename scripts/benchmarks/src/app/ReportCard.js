@@ -36,14 +36,18 @@ class ReportCard extends React.PureComponent<{||}> {
           {mean ? (
             <View testID="run-result">
               <Text style={[styles.bold, styles.monoFont]}>
-                {fmt(mean)} ±{fmt(stdDev)} ms
+                {fmt(mean)}
+                {' ±'}
+                {fmt(stdDev)} ms
               </Text>
               <Text style={[styles.smallText, styles.monoFont]}>
-                (S/L) {fmt(meanScripting)}/{fmt(meanLayout)} ms
+                (S/L) {fmt(meanScripting)}
+                {'/'}
+                {fmt(meanLayout)} ms
               </Text>
             </View>
           ) : (
-            <Text style={styles.bold}>In progress…</Text>
+            <Text style={styles.bold}>{'In progress…'}</Text>
           )}
         </View>
       </View>

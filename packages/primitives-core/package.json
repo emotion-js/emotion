@@ -1,6 +1,6 @@
 {
   "name": "@emotion/primitives-core",
-  "version": "11.0.0-next.7",
+  "version": "11.0.0-next.9",
   "description": "Shared utilities for emotion primitives and native",
   "main": "dist/primitives-core.cjs.js",
   "module": "dist/primitives-core.esm.js",

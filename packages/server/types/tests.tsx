@@ -2,7 +2,7 @@ import {
   extractCritical,
   renderStylesToNodeStream,
   renderStylesToString
-} from 'emotion-server'
+} from '@emotion/server'
 
 declare const renderedString: string
 declare const renderedNodeStream: NodeJS.ReadableStream

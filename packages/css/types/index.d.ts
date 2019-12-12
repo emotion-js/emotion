@@ -1,19 +1,18 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.8
 
-import { Emotion } from 'create-emotion'
+import { Emotion } from './create-instance'
 
 export {
   ArrayClassNamesArg,
-  ArrayInterpolation,
+  ArrayCSSInterpolation,
   ClassNamesArg,
   ComponentSelector,
   EmotionCache,
-  FunctionInterpolation,
-  Interpolation,
-  ObjectInterpolation,
+  CSSInterpolation,
+  CSSObject,
   StyleSheet
-} from 'create-emotion'
+} from './create-instance'
 
 export const flush: Emotion['flush']
 export const hydrate: Emotion['hydrate']

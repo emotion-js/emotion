@@ -83,6 +83,7 @@ export class StyleSheet {
     this.prepend = options.prepend
     this.before = null
   }
+
   insert(rule: string) {
     // the max length is how many rules we have per style tag, it's 65000 in speedy mode
     // it's 1 in dev because we insert source maps that map a single rule to a location
@@ -137,6 +138,7 @@ export class StyleSheet {
     }
     this.ctr++
   }
+
   flush() {
     // $FlowFixMe
     this.tags.forEach(tag => tag.parentNode.removeChild(tag))

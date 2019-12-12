@@ -14,13 +14,12 @@
 
 import * as React from 'react'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
-import { PropsOf, DistributiveOmit } from '@emotion/core'
+import { PropsOf, DistributiveOmit, Theme } from '@emotion/core'
 
 export {
   ArrayInterpolation,
   CSSObject,
-  FunctionInterpolation,
-  ObjectInterpolation
+  FunctionInterpolation
 } from '@emotion/serialize'
 
 export { ComponentSelector, Interpolation }
@@ -73,18 +72,32 @@ export interface CreateStyledComponent<
   <AdditionalProps extends {} = {}>(
     ...styles: Array<
       Interpolation<
-        ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps
+        ComponentProps &
+          SpecificComponentProps &
+          StyleProps &
+          AdditionalProps & { theme: Theme }
       >
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
+
+  (
+    template: TemplateStringsArray,
+    ...styles: Array<
+      Interpolation<ComponentProps & SpecificComponentProps & StyleProps>
+    >
+  ): StyledComponent<ComponentProps, SpecificComponentProps>
+
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
-  <AdditionalProps extends {} = {}>(
+  <AdditionalProps extends {}>(
     template: TemplateStringsArray,
     ...styles: Array<
       Interpolation<
-        ComponentProps & SpecificComponentProps & AdditionalProps & StyleProps
+        ComponentProps &
+          SpecificComponentProps &
+          StyleProps &
+          AdditionalProps & { theme: Theme }
       >
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
@@ -99,7 +112,7 @@ export interface CreateStyledComponent<
  * @example styled('div')({ width: 100 })
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
-export interface CreateStyled<Theme extends {} = any> {
+export interface CreateStyled {
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<
@@ -108,16 +121,12 @@ export interface CreateStyled<Theme extends {} = any> {
   >(
     component: C,
     options: FilteringStyledOptions<PropsOf<C>, ForwardedProps>
-  ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & { theme?: Theme },
-    {},
-    { theme: Theme }
-  >
+  ): CreateStyledComponent<Pick<PropsOf<C>, ForwardedProps> & { theme?: Theme }>
 
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions<PropsOf<C>>
-  ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }, {}, { theme: Theme }>
+  ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }>
 
   <
     Tag extends keyof JSX.IntrinsicElements,
@@ -127,18 +136,13 @@ export interface CreateStyled<Theme extends {} = any> {
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>
   ): CreateStyledComponent<
     { theme?: Theme },
-    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>,
-    { theme: Theme }
+    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
   >
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions<JSX.IntrinsicElements[Tag]>
-  ): CreateStyledComponent<
-    { theme?: Theme },
-    JSX.IntrinsicElements[Tag],
-    { theme: Theme }
-  >
+  ): CreateStyledComponent<{ theme?: Theme }, JSX.IntrinsicElements[Tag]>
 }
 
 declare const styled: CreateStyled

@@ -10,7 +10,6 @@ import {
   FunctionInterpolation,
   Interpolation,
   Keyframes,
-  ObjectInterpolation,
   SerializedStyles
 } from '@emotion/serialize'
 import {
@@ -32,12 +31,14 @@ export {
   EmotionCache,
   FunctionInterpolation,
   Interpolation,
-  ObjectInterpolation,
   SerializedStyles
 }
 
 export * from './theming'
 export * from './helper'
+
+// tslint:disable-next-line: no-empty-interface
+export interface Theme {}
 
 export const ThemeContext: Context<object>
 export const CacheProvider: Provider<EmotionCache>
@@ -53,26 +54,21 @@ export function css(
 ): SerializedStyles
 export function css(...args: Array<CSSInterpolation>): SerializedStyles
 
-export type InterpolationWithTheme<Theme> =
-  | Interpolation
-  | ((theme: Theme) => Interpolation)
-
-export interface GlobalProps<Theme> {
-  styles: InterpolationWithTheme<Theme>
+export interface GlobalProps {
+  styles: Interpolation<Theme>
 }
+
 /**
  * @desc
  * JSX generic are supported only after TS@2.9
  */
-export function Global<Theme extends {} = any>(
-  props: GlobalProps<Theme>
-): ReactElement
+export function Global(props: GlobalProps): ReactElement
 
 export function keyframes(
   template: TemplateStringsArray,
-  ...args: Array<Interpolation>
+  ...args: Array<CSSInterpolation>
 ): Keyframes
-export function keyframes(...args: Array<Interpolation>): Keyframes
+export function keyframes(...args: Array<CSSInterpolation>): Keyframes
 
 export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
 export type ClassNamesArg =
@@ -83,26 +79,24 @@ export type ClassNamesArg =
   | { [className: string]: boolean | null | undefined }
   | ArrayClassNamesArg
 
-export interface ClassNamesContent<Theme> {
-  css(template: TemplateStringsArray, ...args: Array<Interpolation>): string
-  css(...args: Array<Interpolation>): string
+export interface ClassNamesContent {
+  css(template: TemplateStringsArray, ...args: Array<CSSInterpolation>): string
+  css(...args: Array<CSSInterpolation>): string
   cx(...args: Array<ClassNamesArg>): string
   theme: Theme
 }
-export interface ClassNamesProps<Theme> {
-  children(content: ClassNamesContent<Theme>): ReactNode
+export interface ClassNamesProps {
+  children(content: ClassNamesContent): ReactNode
 }
 /**
  * @desc
  * JSX generic are supported only after TS@2.9
  */
-export function ClassNames<Theme extends {} = any>(
-  props: ClassNamesProps<Theme>
-): ReactElement
+export function ClassNames(props: ClassNamesProps): ReactElement
 
 declare module 'react' {
   interface DOMAttributes<T> {
-    css?: InterpolationWithTheme<any>
+    css?: Interpolation<Theme>
   }
 }
 
@@ -114,7 +108,7 @@ declare global {
      */
 
     interface IntrinsicAttributes {
-      css?: InterpolationWithTheme<any>
+      css?: Interpolation<Theme>
     }
   }
 }

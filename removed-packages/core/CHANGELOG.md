@@ -1,5 +1,39 @@
 # @emotion/core
 
+## 11.0.0-next.9
+
+### Patch Changes
+
+- Updated dependencies [[`8b59959`](https://github.com/emotion-js/emotion/commit/8b59959f0929799f050089b05cafb39ca2c57d2d)]:
+  - @emotion/styled@11.0.0-next.9
+
+## 11.0.0-next.8
+
+### Major Changes
+
+- [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@joltmode](https://github.com/joltmode)! - Reworked TypeScript definitions so it's easier to provide a type for Theme. Instead of creating custom instances (like before) you can augment builtin Theme interface like this:
+
+  ```ts
+  declare module '@emotion/core' {
+    export interface Theme {
+      primaryColor: string
+      secondaryColor: string
+    }
+  }
+  ```
+
+### Minor Changes
+
+- [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@joltmode](https://github.com/joltmode)! - Support functions in arrays passed to css prop and Global's styles prop. This allows for composition of theme-accepting functions.
+
+### Patch Changes
+
+- Updated dependencies [[`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b), [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b)]:
+  - @emotion/styled@11.0.0-next.8
+  - @emotion/serialize@0.12.0-next.3
+  - emotion@11.0.0-next.8
+  - emotion-server@11.0.0-next.8
+
 ## 11.0.0-next.7
 
 ### Patch Changes
