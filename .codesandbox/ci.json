@@ -1,6 +1,6 @@
 {
   "packages": [
-    "packages/babel-plugin-emotion",
+    "packages/babel-plugin",
     "packages/cache",
     "packages/react",
     "packages/css",
