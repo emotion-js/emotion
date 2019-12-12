@@ -2,11 +2,8 @@
   "packages": [
     "packages/babel-plugin-emotion",
     "packages/cache",
-    "packages/core",
-    "packages/create-emotion",
+    "packages/react",
     "packages/css",
-    "packages/emotion",
-    "packages/emotion-theming",
     "packages/serialize",
     "packages/styled"
   ],
