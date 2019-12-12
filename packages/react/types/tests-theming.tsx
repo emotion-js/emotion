@@ -2,7 +2,7 @@
 // TypeScript Version: 3.1
 
 import * as React from 'react'
-import { useTheme, ThemeProvider, withTheme, Theme } from '@emotion/core'
+import { useTheme, ThemeProvider, withTheme, Theme } from '@emotion/react'
 import { Interpolation, CSSObject } from '@emotion/styled/base'
 
 declare const theme: Theme

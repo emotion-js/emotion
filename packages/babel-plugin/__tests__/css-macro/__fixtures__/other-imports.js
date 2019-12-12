@@ -1,3 +1,3 @@
-import { nonExistantImport } from '@emotion/core/macro'
+import { nonExistantImport } from '@emotion/react/macro'
 
 nonExistantImport()

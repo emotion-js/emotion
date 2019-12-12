@@ -1,4 +1,4 @@
-import { css } from '@emotion/core/macro'
+import { css } from '@emotion/react/macro'
 
 let something = () => {
   css`

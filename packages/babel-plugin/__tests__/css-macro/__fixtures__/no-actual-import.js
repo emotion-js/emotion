@@ -1,1 +1,1 @@
-import '@emotion/core/macro'
+import '@emotion/react/macro'

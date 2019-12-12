@@ -2,7 +2,7 @@
 
 exports[`@emotion/core - css macro actual-expected-usage 1`] = `
 "/** @jsx jsx */
-import { jsx, css } from '@emotion/core/macro'
+import { jsx, css } from '@emotion/react/macro'
 
 const SomeComponent = () => (
   <div
@@ -34,7 +34,7 @@ const SomeComponent = () => <div css={_ref} />;"
 `;
 
 exports[`@emotion/core - css macro basic 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 function doThing() {
   return css\`
@@ -65,7 +65,7 @@ function doThing() {
 `;
 
 exports[`@emotion/core - css macro call-expression 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 function doThing() {
   return css({ color: 'hotpink' })
@@ -94,7 +94,7 @@ function doThing() {
 `;
 
 exports[`@emotion/core - css macro call-inside-call 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 const thing = css\`
   display: flex;
@@ -125,7 +125,7 @@ css(\\"display:flex;&:hover{\\", process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`@emotion/core - css macro comment-with-interpolation 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 css\`
   // color: \${'green'};
@@ -174,7 +174,7 @@ process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`@emotion/core - css macro impure 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 function thing() {}
 
@@ -200,7 +200,7 @@ function doThing() {
 `;
 
 exports[`@emotion/core - css macro inside-anonymous-arrow-function 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 export default () => {
   css\`
@@ -231,7 +231,7 @@ export default (() => {
 `;
 
 exports[`@emotion/core - css macro inside-anonymous-function 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 export default () => {
   css\`
@@ -264,7 +264,7 @@ export default (() => {
 exports[`@emotion/core - css macro inside-class 1`] = `
 "/** @jsx jsx */
 import { Component } from 'react'
-import { jsx, css } from '@emotion/core/macro'
+import { jsx, css } from '@emotion/react/macro'
 
 class SomeComponent extends Component {
   render() {
@@ -306,7 +306,7 @@ class SomeComponent extends Component {
 `;
 
 exports[`@emotion/core - css macro inside-non-pascal-case-arrow-function 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 let something = () => {
   css\`
@@ -337,7 +337,7 @@ let something = () => {
 `;
 
 exports[`@emotion/core - css macro label-1 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 const thing = css\`
   color: hotpink;
@@ -361,7 +361,7 @@ const thing = process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`@emotion/core - css macro label-no-final-semi 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 // prettier-ignore
 const thing = css\`
@@ -387,7 +387,7 @@ const thing = process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`@emotion/core - css macro label-object 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 const thing = {
   thisShouldBeTheLabel: css\`
@@ -429,7 +429,7 @@ const thing = {
 `;
 
 exports[`@emotion/core - css macro label-transpiled-by-ts 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 import { __makeTemplateObject } from 'tslib'
 
 var templateObject_1
@@ -454,7 +454,7 @@ css(templateObject_1 || (templateObject_1 = __makeTemplateObject([\\"\\\\n  colo
 `;
 
 exports[`@emotion/core - css macro multiple-calls 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 const thing = css\`
   color: hotpink;
@@ -491,7 +491,7 @@ const otherThing = process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`@emotion/core - css macro no-actual-import 1`] = `
-"import '@emotion/core/macro'
+"import '@emotion/react/macro'
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -500,7 +500,7 @@ import \\"@emotion/core\\";"
 `;
 
 exports[`@emotion/core - css macro object-dynamic-property 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 function doThing() {
   return {
@@ -563,7 +563,7 @@ const {
 `;
 
 exports[`@emotion/core - css macro other-imports 1`] = `
-"import { nonExistantImport } from '@emotion/core/macro'
+"import { nonExistantImport } from '@emotion/react/macro'
 
 nonExistantImport()
 
@@ -575,7 +575,7 @@ nonExistantImport();"
 `;
 
 exports[`@emotion/core - css macro remove-block-comments 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 css\`
   /* color:green;
@@ -602,7 +602,7 @@ process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`@emotion/core - css macro remove-line-comments 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 css\`
   // color: green;
@@ -627,7 +627,7 @@ process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`@emotion/core - css macro tagged-template-args-forwarded 1`] = `
-"import { css } from '@emotion/core/macro'
+"import { css } from '@emotion/react/macro'
 
 function media(...args) {
   return css\`

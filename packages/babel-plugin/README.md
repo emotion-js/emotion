@@ -322,6 +322,6 @@ Instead of using `babel-plugin-emotion`, you can use emotion with [`babel-plugin
 
 ```jsx
 import { css, keyframes, injectGlobal, flush, hydrate } from 'emotion/macro'
-import { jsx, css, Global, keyframes } from '@emotion/core/macro'
+import { jsx, css, Global, keyframes } from '@emotion/react/macro'
 import styled from '@emotion/styled/macro'
 ```

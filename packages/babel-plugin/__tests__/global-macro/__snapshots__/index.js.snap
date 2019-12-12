@@ -2,7 +2,7 @@
 
 exports[`@emotion/core - Global macro basic-array 1`] = `
 "import * as React from 'react'
-import { Global } from '@emotion/core/macro'
+import { Global } from '@emotion/react/macro'
 
 export default () => (
   <Global styles={[{ color: 'hotpink' }, { backgroundColor: '#fff' }]} />
@@ -31,7 +31,7 @@ export default (() => <Global styles={_ref} />);"
 
 exports[`@emotion/core - Global macro basic-obj 1`] = `
 "import * as React from 'react'
-import { Global } from '@emotion/core/macro'
+import { Global } from '@emotion/react/macro'
 
 export default () => <Global styles={{ color: 'hotpink' }} />
 
@@ -58,7 +58,7 @@ export default (() => <Global styles={_ref} />);"
 
 exports[`@emotion/core - Global macro complex-array 1`] = `
 "import * as React from 'react'
-import { Global } from '@emotion/core/macro'
+import { Global } from '@emotion/react/macro'
 
 const getBgColor = () => ({ backgroundColor: '#fff' })
 
@@ -79,7 +79,7 @@ export default (() => <Global styles={[\\"color:hotpink;\\", getBgColor(), proce
 
 exports[`@emotion/core - Global macro complex-obj 1`] = `
 "import * as React from 'react'
-import { Global } from '@emotion/core/macro'
+import { Global } from '@emotion/react/macro'
 
 const getBgColor = () => ({ backgroundColor: '#fff' })
 
@@ -106,7 +106,7 @@ _css({
 
 exports[`@emotion/core - Global macro css-used-as-value 1`] = `
 "import * as React from 'react'
-import { Global, css } from '@emotion/core/macro'
+import { Global, css } from '@emotion/react/macro'
 
 // this gets ignored by Global macro, but it tests that this combination doesn't crash or something
 export default () => <Global styles={css({ color: 'hotpink' })} />
@@ -134,7 +134,7 @@ export default (() => <Global styles={_ref} />);"
 
 exports[`@emotion/core - Global macro no-jsx 1`] = `
 "import * as React from 'react'
-import { Global } from '@emotion/core/macro'
+import { Global } from '@emotion/react/macro'
 
 const foo = Global
 
@@ -148,7 +148,7 @@ const foo = Global;"
 
 exports[`@emotion/core - Global macro no-styles-prop 1`] = `
 "import * as React from 'react'
-import { Global } from '@emotion/core/macro'
+import { Global } from '@emotion/react/macro'
 
 export default () => <Global />
 
@@ -163,7 +163,7 @@ export default (() => <Global />);"
 exports[`@emotion/core - Global macro spread-styles 1`] = `
 "/* eslint-disable */
 import * as React from 'react'
-import { Global } from '@emotion/core/macro'
+import { Global } from '@emotion/react/macro'
 
 export default () => <Global {...styles} />
 
@@ -179,7 +179,7 @@ export default (() => <Global {...styles} />);"
 exports[`@emotion/core - Global macro with-closing-element 1`] = `
 "/* eslint-disable */
 import * as React from 'react'
-import { Global } from '@emotion/core/macro'
+import { Global } from '@emotion/react/macro'
 
 // prettier-ignore
 export default () => <Global styles={{ color: 'hotpink' }}></Global>
