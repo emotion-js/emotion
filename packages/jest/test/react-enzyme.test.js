@@ -1,9 +1,9 @@
 import 'test-utils/legacy-env'
 /** @jsx jsx */
 import * as enzyme from 'enzyme'
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import { createSerializer as createEnzymeSerializer } from 'enzyme-to-json'
-import { createSerializer } from 'jest-emotion'
+import { createSerializer } from '@emotion/jest'
 import { toMatchSnapshot } from 'jest-snapshot'
 import React from 'react'
 

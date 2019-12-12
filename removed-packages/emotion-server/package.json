@@ -19,8 +19,8 @@
     "emotion": "^11.0.0-next.8"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.0.0-next.6",
     "@types/node": "^10.11.4",
-    "@emotion/babel-plugin": "^11.0.0-next.8",
     "dtslint": "^0.3.0",
     "emotion": "^11.0.0-next.8"
   },

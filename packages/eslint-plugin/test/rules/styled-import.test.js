@@ -3,7 +3,7 @@
  */
 
 import { RuleTester } from 'eslint'
-import { rules as emotionRules } from 'eslint-plugin-emotion'
+import { rules as emotionRules } from '@emotion/eslint-plugin'
 
 const rule = emotionRules['styled-import']
 
