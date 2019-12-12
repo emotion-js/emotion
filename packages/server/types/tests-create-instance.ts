@@ -1,4 +1,4 @@
-import createEmotionServer from './create-instance'
+import createEmotionServer from '@emotion/server/create-instance'
 import { EmotionCache } from '@emotion/utils'
 
 declare const cache: EmotionCache
