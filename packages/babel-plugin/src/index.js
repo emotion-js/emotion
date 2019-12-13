@@ -15,12 +15,12 @@ import { getStyledOptions, createTransformerMacro } from './utils'
 const getCssExport = (reexported, importSource, mapping) => {
   const cssExport = Object.keys(mapping).find(localExportName => {
     const [packageName, exportName] = mapping[localExportName].canonicalImport
-    return packageName === '@emotion/core' && exportName === 'css'
+    return packageName === '@emotion/react' && exportName === 'css'
   })
 
   if (!cssExport) {
     throw new Error(
-      `You have specified that '${importSource}' re-exports '${reexported}' from '@emotion/core' but it doesn't also re-export 'css' from '@emotion/core', 'css' is necessary for certain optimisations, please re-export it from '${importSource}'`
+      `You have specified that '${importSource}' re-exports '${reexported}' from '@emotion/react' but it doesn't also re-export 'css' from '@emotion/react', 'css' is necessary for certain optimisations, please re-export it from '${importSource}'`
     )
   }
 
@@ -46,7 +46,7 @@ let vanillaEmotionMacro = createEmotionMacro('macro')
 
 let transformersSource = {
   emotion: vanillaTransformers,
-  '@emotion/core': coreTransformers,
+  '@emotion/react': coreTransformers,
   '@emotion/styled': {
     default: [
       styledTransformer,
@@ -76,7 +76,7 @@ export type EmotionBabelPluginPass = any
 export default function(babel: *) {
   let t = babel.types
   return {
-    name: 'emotion',
+    name: '@emotion',
     inherits: syntaxJsx,
     visitor: {
       ImportDeclaration(path: *, state: *) {
@@ -140,7 +140,7 @@ export default function(babel: *) {
           export: string,
           cssExport: string
         }> = [
-          { importSource: '@emotion/core', export: 'jsx', cssExport: 'css' }
+          { importSource: '@emotion/react', export: 'jsx', cssExport: 'css' }
         ]
         state.jsxCoreImport = jsxCoreImports[0]
         Object.keys(state.opts.importMap || {}).forEach(importSource => {
@@ -149,7 +149,7 @@ export default function(babel: *) {
           Object.keys(value).forEach(localExportName => {
             let { canonicalImport, ...options } = value[localExportName]
             let [packageName, exportName] = canonicalImport
-            if (packageName === '@emotion/core' && exportName === 'jsx') {
+            if (packageName === '@emotion/react' && exportName === 'jsx') {
               jsxCoreImports.push({
                 importSource,
                 export: localExportName,
@@ -167,7 +167,7 @@ export default function(babel: *) {
 
             let extraOptions
 
-            if (packageName === '@emotion/core' && exportName === 'Global') {
+            if (packageName === '@emotion/react' && exportName === 'Global') {
               // this option is not supposed to be set in importMap
               extraOptions = {
                 cssExport: getCssExport('Global', importSource, value)
@@ -198,7 +198,7 @@ export default function(babel: *) {
         })
         state.pluginMacros = {
           '@emotion/styled': webStyledMacro,
-          '@emotion/core': coreMacro,
+          '@emotion/react': coreMacro,
           '@emotion/primitives': primitivesStyledMacro,
           '@emotion/native': nativeStyledMacro,
           emotion: vanillaEmotionMacro,

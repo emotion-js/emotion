@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`vanilla emotion comments 1`] = `
-"import { css } from 'emotion'
+"import { css } from '@emotion/css'
 
 css\`
   // display:flex;
@@ -66,7 +66,7 @@ css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 /*#__PURE__*/
 css(process.env.NODE_ENV === \\"production\\" ? {
@@ -147,7 +147,7 @@ css(process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`vanilla emotion css-basic 1`] = `
-"import { css } from 'emotion'
+"import { css } from '@emotion/css'
 
 css\`
   margin: 12px 48px;
@@ -164,14 +164,14 @@ css\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 /*#__PURE__*/
 css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media (min-width:420px){line-height:40px;}width:\\", window.whatever, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1iYXNpYy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFRyIsImZpbGUiOiJjc3MtYmFzaWMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdlbW90aW9uJ1xuXG5jc3NgXG4gIG1hcmdpbjogMTJweCA0OHB4O1xuICBjb2xvcjogI2ZmZmZmZjtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleDogMSAwIGF1dG87XG4gIGNvbG9yOiBibHVlO1xuICBAbWVkaWEgKG1pbi13aWR0aDogNDIwcHgpIHtcbiAgICBsaW5lLWhlaWdodDogNDBweDtcbiAgfVxuICB3aWR0aDogJHt3aW5kb3cud2hhdGV2ZXJ9O1xuYFxuIl19 */\\"));"
 `;
 
 exports[`vanilla emotion css-object 1`] = `
-"import { css } from 'emotion'
+"import { css } from '@emotion/css'
 
 let someCls = css({
   color: window.whatever
@@ -180,7 +180,7 @@ let someCls = css({
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 let someCls =
 /*#__PURE__*/
 css({
@@ -189,7 +189,7 @@ css({
 `;
 
 exports[`vanilla emotion does-not-minify-inside-content-property 1`] = `
-"import { css } from 'emotion'
+"import { css } from '@emotion/css'
 
 const cls1 = css\`
   content: '  {  }  ';
@@ -204,7 +204,7 @@ const cls2 = css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 const cls1 =
 /*#__PURE__*/
 css(process.env.NODE_ENV === \\"production\\" ? {
@@ -231,7 +231,7 @@ css(process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`vanilla emotion hoisting 1`] = `
-"import { css } from 'emotion'
+"import { css } from '@emotion/css'
 
 function test() {
   const cls1 = css\`
@@ -284,7 +284,7 @@ function test() {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 
 function test() {
   const cls1 =
@@ -344,7 +344,7 @@ function test() {
 `;
 
 exports[`vanilla emotion inject-global-basic 1`] = `
-"import { injectGlobal } from 'emotion'
+"import { injectGlobal } from '@emotion/css'
 
 injectGlobal\`
   body {
@@ -364,7 +364,7 @@ injectGlobal\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { injectGlobal } from 'emotion';
+import { injectGlobal } from '@emotion/css';
 injectGlobal(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1d66lop\\",
   styles: \\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\"
@@ -377,7 +377,7 @@ injectGlobal(process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`vanilla emotion inject-global-change-import 1`] = `
-"import { injectGlobal as inject } from 'emotion'
+"import { injectGlobal as inject } from '@emotion/css'
 
 inject\`
   body {
@@ -412,7 +412,7 @@ injectGlobal\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { injectGlobal as inject } from 'emotion';
+import { injectGlobal as inject } from '@emotion/css';
 inject(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1d66lop\\",
   styles: \\"body{margin:0;padding:0;& > div{display:flex;}}html{background:green;}\\"
@@ -438,7 +438,7 @@ injectGlobal\`
 `;
 
 exports[`vanilla emotion inject-global-with-font-face 1`] = `
-"import { injectGlobal } from 'emotion'
+"import { injectGlobal } from '@emotion/css'
 
 injectGlobal\`
   @font-face {
@@ -458,7 +458,7 @@ injectGlobal\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { injectGlobal } from 'emotion';
+import { injectGlobal } from '@emotion/css';
 injectGlobal(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"lu7y12\\",
   styles: \\"@font-face{font-family:'Patrick Hand SC';font-style:normal;font-weight:400;src:local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');unicode-range:U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;}\\"
@@ -471,7 +471,7 @@ injectGlobal(process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`vanilla emotion inject-global-with-interpolation 1`] = `
-"import { injectGlobal } from 'emotion'
+"import { injectGlobal } from '@emotion/css'
 
 let display = window.whatever
 
@@ -492,13 +492,13 @@ injectGlobal\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { injectGlobal } from 'emotion';
+import { injectGlobal } from '@emotion/css';
 let display = window.whatever;
 injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{display:none;}}html{background:green;}\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluamVjdC1nbG9iYWwtd2l0aC1pbnRlcnBvbGF0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUlZIiwiZmlsZSI6ImluamVjdC1nbG9iYWwtd2l0aC1pbnRlcnBvbGF0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgaW5qZWN0R2xvYmFsIH0gZnJvbSAnZW1vdGlvbidcblxubGV0IGRpc3BsYXkgPSB3aW5kb3cud2hhdGV2ZXJcblxuaW5qZWN0R2xvYmFsYFxuICBib2R5IHtcbiAgICBtYXJnaW46IDA7XG4gICAgcGFkZGluZzogMDtcbiAgICBkaXNwbGF5OiAke2Rpc3BsYXl9O1xuICAgICYgPiBkaXYge1xuICAgICAgZGlzcGxheTogbm9uZTtcbiAgICB9XG4gIH1cbiAgaHRtbCB7XG4gICAgYmFja2dyb3VuZDogZ3JlZW47XG4gIH1cbmBcbiJdfQ== */\\"));"
 `;
 
 exports[`vanilla emotion keyframes-basic 1`] = `
-"import { keyframes } from 'emotion'
+"import { keyframes } from '@emotion/css'
 
 const rotate360 = keyframes\`
   from {
@@ -514,7 +514,7 @@ const rotate360 = keyframes\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { keyframes } from 'emotion';
+import { keyframes } from '@emotion/css';
 const rotate360 =
 /*#__PURE__*/
 keyframes(process.env.NODE_ENV === \\"production\\" ? {
@@ -529,7 +529,7 @@ keyframes(process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`vanilla emotion keyframes-with-interpolation 1`] = `
-"import { keyframes } from 'emotion'
+"import { keyframes } from '@emotion/css'
 
 let endingRotation = window.whatever
 
@@ -545,7 +545,7 @@ const rotate360 = keyframes\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { keyframes } from 'emotion';
+import { keyframes } from '@emotion/css';
 let endingRotation = window.whatever;
 const rotate360 =
 /*#__PURE__*/
@@ -553,7 +553,7 @@ keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotatio
 `;
 
 exports[`vanilla emotion object-label 1`] = `
-"import { css } from 'emotion'
+"import { css } from '@emotion/css'
 
 let obj = {
   someProp: css({ color: 'green' }),
@@ -569,7 +569,7 @@ class Thing {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 let obj = {
   someProp:
   /*#__PURE__*/

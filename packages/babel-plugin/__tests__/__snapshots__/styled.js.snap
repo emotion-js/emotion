@@ -267,7 +267,7 @@ exports[`emotion-babel-plugin styled label 1`] = `
 "/** @jsx jsx */
 /* eslint-disable react/jsx-pascal-case */
 import styled from '@emotion/styled'
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 class Thing {
   static SomeComponent = styled.div\`
@@ -296,7 +296,7 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 /** @jsx jsx */
 
 /* eslint-disable react/jsx-pascal-case */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 class Thing {
   static SomeComponent = _styled(\\"div\\", {

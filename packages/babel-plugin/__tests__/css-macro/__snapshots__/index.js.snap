@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@emotion/core - css macro actual-expected-usage 1`] = `
+exports[`@emotion/react - css macro actual-expected-usage 1`] = `
 "/** @jsx jsx */
 import { jsx, css } from '@emotion/react/macro'
 
@@ -18,7 +18,7 @@ const SomeComponent = () => (
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
 /** @jsx jsx */
-import { jsx, css } from \\"@emotion/core\\";
+import { jsx, css } from \\"@emotion/react\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"zszx19-SomeComponent\\",
@@ -33,7 +33,7 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
 const SomeComponent = () => <div css={_ref} />;"
 `;
 
-exports[`@emotion/core - css macro basic 1`] = `
+exports[`@emotion/react - css macro basic 1`] = `
 "import { css } from '@emotion/react/macro'
 
 function doThing() {
@@ -47,7 +47,7 @@ function doThing() {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"k008qs\\",
@@ -64,7 +64,7 @@ function doThing() {
 }"
 `;
 
-exports[`@emotion/core - css macro call-expression 1`] = `
+exports[`@emotion/react - css macro call-expression 1`] = `
 "import { css } from '@emotion/react/macro'
 
 function doThing() {
@@ -76,7 +76,7 @@ function doThing() {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
@@ -93,7 +93,7 @@ function doThing() {
 }"
 `;
 
-exports[`@emotion/core - css macro call-inside-call 1`] = `
+exports[`@emotion/react - css macro call-inside-call 1`] = `
 "import { css } from '@emotion/react/macro'
 
 const thing = css\`
@@ -110,7 +110,7 @@ const thing = css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 const thing =
 /*#__PURE__*/
 css(\\"display:flex;&:hover{\\", process.env.NODE_ENV === \\"production\\" ? {
@@ -124,7 +124,7 @@ css(\\"display:flex;&:hover{\\", process.env.NODE_ENV === \\"production\\" ? {
 }, \\";};label:thing;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhbGwtaW5zaWRlLWNhbGwuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRWlCIiwiZmlsZSI6ImNhbGwtaW5zaWRlLWNhbGwuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jb25zdCB0aGluZyA9IGNzc2BcbiAgZGlzcGxheTogZmxleDtcbiAgJjpob3ZlciB7XG4gICAgJHtjc3NgXG4gICAgICBjb2xvcjogaG90cGluaztcbiAgICBgfTtcbiAgfVxuYFxuIl19 */\\"));"
 `;
 
-exports[`@emotion/core - css macro comment-with-interpolation 1`] = `
+exports[`@emotion/react - css macro comment-with-interpolation 1`] = `
 "import { css } from '@emotion/react/macro'
 
 css\`
@@ -152,7 +152,7 @@ css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\"
@@ -173,7 +173,7 @@ process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/core - css macro impure 1`] = `
+exports[`@emotion/react - css macro impure 1`] = `
 "import { css } from '@emotion/react/macro'
 
 function thing() {}
@@ -187,7 +187,7 @@ function doThing() {
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 
 function thing() {}
 
@@ -199,7 +199,7 @@ function doThing() {
 }"
 `;
 
-exports[`@emotion/core - css macro inside-anonymous-arrow-function 1`] = `
+exports[`@emotion/react - css macro inside-anonymous-arrow-function 1`] = `
 "import { css } from '@emotion/react/macro'
 
 export default () => {
@@ -213,7 +213,7 @@ export default () => {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
@@ -230,7 +230,7 @@ export default (() => {
 });"
 `;
 
-exports[`@emotion/core - css macro inside-anonymous-function 1`] = `
+exports[`@emotion/react - css macro inside-anonymous-function 1`] = `
 "import { css } from '@emotion/react/macro'
 
 export default () => {
@@ -244,7 +244,7 @@ export default () => {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
@@ -261,7 +261,7 @@ export default (() => {
 });"
 `;
 
-exports[`@emotion/core - css macro inside-class 1`] = `
+exports[`@emotion/react - css macro inside-class 1`] = `
 "/** @jsx jsx */
 import { Component } from 'react'
 import { jsx, css } from '@emotion/react/macro'
@@ -285,7 +285,7 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 
 /** @jsx jsx */
 import { Component } from 'react';
-import { jsx, css } from \\"@emotion/core\\";
+import { jsx, css } from \\"@emotion/react\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"zszx19-SomeComponent\\",
@@ -305,7 +305,7 @@ class SomeComponent extends Component {
 }"
 `;
 
-exports[`@emotion/core - css macro inside-non-pascal-case-arrow-function 1`] = `
+exports[`@emotion/react - css macro inside-non-pascal-case-arrow-function 1`] = `
 "import { css } from '@emotion/react/macro'
 
 let something = () => {
@@ -319,7 +319,7 @@ let something = () => {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
@@ -336,7 +336,7 @@ let something = () => {
 };"
 `;
 
-exports[`@emotion/core - css macro label-1 1`] = `
+exports[`@emotion/react - css macro label-1 1`] = `
 "import { css } from '@emotion/react/macro'
 
 const thing = css\`
@@ -348,7 +348,7 @@ const thing = css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 const thing = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1yq4vdx-thing\\",
   styles: \\"color:hotpink;;label:thing;\\"
@@ -360,7 +360,7 @@ const thing = process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/core - css macro label-no-final-semi 1`] = `
+exports[`@emotion/react - css macro label-no-final-semi 1`] = `
 "import { css } from '@emotion/react/macro'
 
 // prettier-ignore
@@ -373,7 +373,7 @@ const thing = css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\"; // prettier-ignore
+import { css } from \\"@emotion/react\\"; // prettier-ignore
 
 const thing = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1hi0qos-thing\\",
@@ -386,7 +386,7 @@ const thing = process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/core - css macro label-object 1`] = `
+exports[`@emotion/react - css macro label-object 1`] = `
 "import { css } from '@emotion/react/macro'
 
 const thing = {
@@ -404,7 +404,7 @@ const thing = {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 const thing = {
   thisShouldBeTheLabel: process.env.NODE_ENV === \\"production\\" ? {
     name: \\"1lsaf1d-thisShouldBeTheLabel\\",
@@ -428,7 +428,7 @@ const thing = {
 };"
 `;
 
-exports[`@emotion/core - css macro label-transpiled-by-ts 1`] = `
+exports[`@emotion/react - css macro label-transpiled-by-ts 1`] = `
 "import { css } from '@emotion/react/macro'
 import { __makeTemplateObject } from 'tslib'
 
@@ -445,7 +445,7 @@ const someVar = css(
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 import { __makeTemplateObject } from 'tslib';
 var templateObject_1;
 const someVar =
@@ -453,7 +453,7 @@ const someVar =
 css(templateObject_1 || (templateObject_1 = __makeTemplateObject([\\"\\\\n  color: hotpink;\\\\n;label:someVar;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuaW1wb3J0IHsgX19tYWtlVGVtcGxhdGVPYmplY3QgfSBmcm9tICd0c2xpYidcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY29uc3Qgc29tZVZhciA9IGNzcyhcbiAgdGVtcGxhdGVPYmplY3RfMSB8fFxuICAgICh0ZW1wbGF0ZU9iamVjdF8xID0gX19tYWtlVGVtcGxhdGVPYmplY3QoXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ10sXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ11cbiAgICApKVxuKVxuIl19 */\\")], [\\"\\\\n  color: hotpink;\\\\n;label:someVar;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuaW1wb3J0IHsgX19tYWtlVGVtcGxhdGVPYmplY3QgfSBmcm9tICd0c2xpYidcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY29uc3Qgc29tZVZhciA9IGNzcyhcbiAgdGVtcGxhdGVPYmplY3RfMSB8fFxuICAgICh0ZW1wbGF0ZU9iamVjdF8xID0gX19tYWtlVGVtcGxhdGVPYmplY3QoXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ10sXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ11cbiAgICApKVxuKVxuIl19 */\\")])));"
 `;
 
-exports[`@emotion/core - css macro multiple-calls 1`] = `
+exports[`@emotion/react - css macro multiple-calls 1`] = `
 "import { css } from '@emotion/react/macro'
 
 const thing = css\`
@@ -469,7 +469,7 @@ const otherThing = css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 const thing = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1yq4vdx-thing\\",
   styles: \\"color:hotpink;;label:thing;\\"
@@ -490,16 +490,16 @@ const otherThing = process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/core - css macro no-actual-import 1`] = `
+exports[`@emotion/react - css macro no-actual-import 1`] = `
 "import '@emotion/react/macro'
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import \\"@emotion/core\\";"
+import \\"@emotion/react\\";"
 `;
 
-exports[`@emotion/core - css macro object-dynamic-property 1`] = `
+exports[`@emotion/react - css macro object-dynamic-property 1`] = `
 "import { css } from '@emotion/react/macro'
 
 function doThing() {
@@ -513,7 +513,7 @@ function doThing() {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
@@ -532,8 +532,8 @@ function doThing() {
 }"
 `;
 
-exports[`@emotion/core - css macro object-pattern-variable-declarator 1`] = `
-"import { css } from '@emotion/core'
+exports[`@emotion/react - css macro object-pattern-variable-declarator 1`] = `
+"import { css } from '@emotion/react'
 import { extractCritical } from 'emotion-server'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -551,7 +551,7 @@ const { css: styles } = extractCritical(
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { extractCritical } from 'emotion-server';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -562,7 +562,7 @@ const {
       \`} />));"
 `;
 
-exports[`@emotion/core - css macro other-imports 1`] = `
+exports[`@emotion/react - css macro other-imports 1`] = `
 "import { nonExistantImport } from '@emotion/react/macro'
 
 nonExistantImport()
@@ -570,11 +570,11 @@ nonExistantImport()
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { nonExistantImport } from \\"@emotion/core\\";
+import { nonExistantImport } from \\"@emotion/react\\";
 nonExistantImport();"
 `;
 
-exports[`@emotion/core - css macro remove-block-comments 1`] = `
+exports[`@emotion/react - css macro remove-block-comments 1`] = `
 "import { css } from '@emotion/react/macro'
 
 css\`
@@ -589,7 +589,7 @@ ddjfwjkng
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\"
@@ -601,7 +601,7 @@ process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/core - css macro remove-line-comments 1`] = `
+exports[`@emotion/react - css macro remove-line-comments 1`] = `
 "import { css } from '@emotion/react/macro'
 
 css\`
@@ -614,7 +614,7 @@ css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\"
@@ -626,7 +626,7 @@ process.env.NODE_ENV === \\"production\\" ? {
 };"
 `;
 
-exports[`@emotion/core - css macro tagged-template-args-forwarded 1`] = `
+exports[`@emotion/react - css macro tagged-template-args-forwarded 1`] = `
 "import { css } from '@emotion/react/macro'
 
 function media(...args) {
@@ -644,7 +644,7 @@ const test = css\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css } from \\"@emotion/core\\";
+import { css } from \\"@emotion/react\\";
 
 function media(...args) {
   return (

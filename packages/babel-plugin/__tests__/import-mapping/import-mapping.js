@@ -14,19 +14,19 @@ babelTester('import mapping', __dirname, {
           },
           'package-two': {
             someJsx: {
-              canonicalImport: ['@emotion/core', 'jsx']
+              canonicalImport: ['@emotion/react', 'jsx']
             },
             someCssFromCore: {
-              canonicalImport: ['@emotion/core', 'css']
+              canonicalImport: ['@emotion/react', 'css']
             },
             SomeGlobalFromCore: {
-              canonicalImport: ['@emotion/core', 'Global']
+              canonicalImport: ['@emotion/react', 'Global']
             }
           },
 
           'package-three': {
             something: {
-              canonicalImport: ['emotion', 'css']
+              canonicalImport: ['@emotion/css', 'css']
             }
           },
           'package-four': {

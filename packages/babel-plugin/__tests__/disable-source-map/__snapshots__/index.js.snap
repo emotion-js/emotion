@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`disable source map css 1`] = `
-"import { css } from '@emotion/core'
+"import { css } from '@emotion/react'
 
 let style = css({ color: 'hotpink' })
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 let style = {
   name: \\"hpn981-style\\",
   styles: \\"color:hotpink;;label:style;\\"
@@ -35,14 +35,14 @@ let Comp = _styled(\\"div\\", {
 `;
 
 exports[`disable source map vanilla 1`] = `
-"import { css } from 'emotion'
+"import { css } from '@emotion/css'
 
 let cls = css({ color: 'hotpink' })
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 let cls =
 /*#__PURE__*/
 css({

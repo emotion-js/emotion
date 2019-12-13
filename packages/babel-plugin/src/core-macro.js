@@ -178,7 +178,7 @@ let globalTransformer = ({
                 cssExport: options.cssExport
               }
             : {
-                importSource: '@emotion/core',
+                importSource: '@emotion/react',
                 cssExport: 'css'
               }
       })
@@ -196,5 +196,5 @@ export const transformers = {
 }
 
 export default createTransformerMacro(transformers, {
-  importSource: '@emotion/core'
+  importSource: '@emotion/react'
 })

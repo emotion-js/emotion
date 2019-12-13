@@ -7,7 +7,7 @@ const last = arr => arr[arr.length - 1]
 const cases = {
   'label format with only local': {
     code: `
-    import { css } from 'emotion'
+    import { css } from '@emotion/css'
     let cls = css({color:'hotpink'})
     `,
     plugins: [
@@ -23,7 +23,7 @@ const cases = {
   },
   'label format with filename that is index and local': {
     code: `
-    import { css } from 'emotion'
+    import { css } from '@emotion/css'
     let cls = css({color:'hotpink'})
     `,
     plugins: [
@@ -40,7 +40,7 @@ const cases = {
 
   'label format with filename and local': {
     code: `
-    import { css } from 'emotion'
+    import { css } from '@emotion/css'
     let cls = css({color:'hotpink'})
     `,
     plugins: [
@@ -57,7 +57,7 @@ const cases = {
 
   'label format with dirname, filename, and local': {
     code: `
-    import { css } from 'emotion'
+    import { css } from '@emotion/css'
     let cls = css({color:'hotpink'})
     `,
     plugins: [
@@ -74,7 +74,7 @@ const cases = {
 
   'label format function': {
     code: `
-    import { css } from 'emotion'
+    import { css } from '@emotion/css'
     let cls = css({color:'hotpink'})
     `,
     plugins: [
@@ -97,7 +97,7 @@ const cases = {
     code: `
     import { __makeTemplateObject } from 'tslib'
 
-    import { css } from '@emotion/core'
+    import { css } from '@emotion/react'
 
     var templateObject_1
 

@@ -289,7 +289,7 @@ const H1 = /*#__PURE__*/ styled('h1', {
 
 `boolean`, defaults to `true`.
 
-This option assumes that you are using something to make `@emotion/core`'s `jsx` function work for all jsx. If you are not doing so and you do not want such optimizations to occur, disable this option.
+This option assumes that you are using something to make `@emotion/react`'s `jsx` function work for all jsx. If you are not doing so and you do not want such optimizations to occur, disable this option.
 
 ### `importMap`
 
@@ -307,10 +307,10 @@ An example config:
   },
   "some-package": {
     "someExport": {
-      "canonicalImport": ["@emotion/core", "css"]
+      "canonicalImport": ["@emotion/react", "css"]
     },
     "thisIsTheJsxExport": {
-      "canonicalImport": ["@emotion/core", "jsx"]
+      "canonicalImport": ["@emotion/react", "jsx"]
     }
   }
 }
