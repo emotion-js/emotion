@@ -42,7 +42,7 @@ let primitivesStyledMacro = createStyledMacro({
   originalImportSource: '@emotion/primitives',
   isWeb: false
 })
-let vanillaEmotionMacro = createEmotionMacro('@emotion/css/macro')
+let vanillaEmotionMacro = createEmotionMacro('@emotion/css')
 
 let transformersSource = {
   '@emotion/css': vanillaTransformers,

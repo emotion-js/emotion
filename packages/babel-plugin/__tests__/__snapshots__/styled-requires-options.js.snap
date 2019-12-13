@@ -9,7 +9,7 @@ styled.h1\`color:blue;\`
 import _styled from \\"@emotion/styled/base\\";
 
 _styled(\\"h1\\", {
-  target: \\"e1vqloan0\\"
+  target: \\"e17zfxpt0\\"
 })({
   name: \\"14ksm7b\\",
   styles: \\"color:blue;\\"
