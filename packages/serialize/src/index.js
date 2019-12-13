@@ -134,7 +134,7 @@ function handleInterpolation(
       interpolation.toString() === 'NO_COMPONENT_SELECTOR'
     ) {
       throw new Error(
-        'Component selectors can only be used in conjunction with babel-plugin-emotion.'
+        'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
       )
     }
     return interpolation
@@ -281,7 +281,7 @@ function createStringFromObject(
           process.env.NODE_ENV !== 'production'
         ) {
           throw new Error(
-            'Component selectors can only be used in conjunction with babel-plugin-emotion.'
+            'Component selectors can only be used in conjunction with @emotion/babel-plugin.'
           )
         }
         if (
