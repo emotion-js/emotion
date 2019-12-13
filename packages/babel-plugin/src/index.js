@@ -45,7 +45,7 @@ let primitivesStyledMacro = createStyledMacro({
 let vanillaEmotionMacro = createEmotionMacro('macro')
 
 let transformersSource = {
-  emotion: vanillaTransformers,
+  '@emotion/css': vanillaTransformers,
   '@emotion/react': coreTransformers,
   '@emotion/styled': {
     default: [
@@ -201,7 +201,7 @@ export default function(babel: *) {
           '@emotion/react': coreMacro,
           '@emotion/primitives': primitivesStyledMacro,
           '@emotion/native': nativeStyledMacro,
-          emotion: vanillaEmotionMacro,
+          'emotion/css': vanillaEmotionMacro,
           ...macros
         }
         if (state.opts.cssPropOptimization === undefined) {
