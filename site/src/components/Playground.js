@@ -21,8 +21,8 @@ export const scope = {
         return require('@emotion/css')
       case '@emotion/cache':
         return require('@emotion/cache')
-      case '@emotion/core':
-        return require('@emotion/core')
+      case '@emotion/react':
+        return require('@emotion/react')
       case '@emotion/styled':
         return require('@emotion/styled')
       case '@emotion/styled/base':
