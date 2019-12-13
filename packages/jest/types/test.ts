@@ -4,7 +4,7 @@ import serializer, {
   createSerializer,
   print,
   test
-} from 'jest-emotion'
+} from '@emotion/jest'
 
 createSerializer()
 createSerializer({})
