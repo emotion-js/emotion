@@ -23,7 +23,7 @@ ruleTester.run('no-vanilla', rule, {
   valid: [{ code: `import { css } from '@emotion/core'` }],
   invalid: [
     {
-      code: `import { css } from 'emotion'`,
+      code: `import { css } from '@emotion/css'`,
       errors: [
         {
           message: `Vanilla emotion should not be used`
