@@ -1,6 +1,7 @@
 let simpleMappings = {
   '@emotion/core': '@emotion/react',
   emotion: '@emotion/css',
+  'emotion/macro': '@emotion/css/macro',
   '@emotion/styled-base': '@emotion/styled/base',
   'jest-emotion': '@emotion/jest',
   'babel-plugin-emotion': '@emotion/babel-plugin',

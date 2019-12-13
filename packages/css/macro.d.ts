@@ -1,3 +1,1 @@
-declare module 'emotion/macro' {
-  export * from '@emotion/css'
-}
+export * from '@emotion/css'

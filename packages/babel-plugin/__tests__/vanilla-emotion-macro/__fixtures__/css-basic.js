@@ -1,4 +1,4 @@
-import { css } from 'emotion/macro'
+import { css } from '@emotion/css/macro'
 
 css`
   margin: 12px 48px;

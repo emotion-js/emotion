@@ -1,4 +1,4 @@
-import { injectGlobal as inject } from 'emotion/macro'
+import { injectGlobal as inject } from '@emotion/css/macro'
 
 inject`
   body {

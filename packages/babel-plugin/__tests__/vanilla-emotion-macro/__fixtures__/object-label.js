@@ -1,4 +1,4 @@
-import { css } from 'emotion/macro'
+import { css } from '@emotion/css/macro'
 
 let obj = {
   someProp: css({ color: 'green' }),

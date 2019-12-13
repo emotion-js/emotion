@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`vanilla emotion comments 1`] = `
-"import { css } from 'emotion/macro'
+"import { css } from '@emotion/css/macro'
 
 css\`
   // display:flex;
@@ -147,7 +147,7 @@ css(process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`vanilla emotion css-basic 1`] = `
-"import { css } from 'emotion/macro'
+"import { css } from '@emotion/css/macro'
 
 css\`
   margin: 12px 48px;
@@ -171,7 +171,7 @@ css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@med
 `;
 
 exports[`vanilla emotion css-object 1`] = `
-"import { css } from 'emotion/macro'
+"import { css } from '@emotion/css/macro'
 
 let someCls = css({
   color: window.whatever
@@ -189,7 +189,7 @@ css({
 `;
 
 exports[`vanilla emotion does-not-minify-inside-content-property 1`] = `
-"import { css } from 'emotion/macro'
+"import { css } from '@emotion/css/macro'
 
 const cls1 = css\`
   content: '  {  }  ';
@@ -231,7 +231,7 @@ css(process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`vanilla emotion hoisting 1`] = `
-"import { css } from 'emotion/macro'
+"import { css } from '@emotion/css/macro'
 
 function test() {
   const cls1 = css\`
@@ -344,7 +344,7 @@ function test() {
 `;
 
 exports[`vanilla emotion inject-global-basic 1`] = `
-"import { injectGlobal } from 'emotion/macro'
+"import { injectGlobal } from '@emotion/css/macro'
 
 injectGlobal\`
   body {
@@ -377,7 +377,7 @@ injectGlobal(process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`vanilla emotion inject-global-change-import 1`] = `
-"import { injectGlobal as inject } from 'emotion/macro'
+"import { injectGlobal as inject } from '@emotion/css/macro'
 
 inject\`
   body {
@@ -438,7 +438,7 @@ injectGlobal\`
 `;
 
 exports[`vanilla emotion inject-global-with-font-face 1`] = `
-"import { injectGlobal } from 'emotion/macro'
+"import { injectGlobal } from '@emotion/css/macro'
 
 injectGlobal\`
   @font-face {
@@ -471,7 +471,7 @@ injectGlobal(process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`vanilla emotion inject-global-with-interpolation 1`] = `
-"import { injectGlobal } from 'emotion/macro'
+"import { injectGlobal } from '@emotion/css/macro'
 
 let display = window.whatever
 
@@ -498,7 +498,7 @@ injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";& > div{displa
 `;
 
 exports[`vanilla emotion keyframes-basic 1`] = `
-"import { keyframes } from 'emotion/macro'
+"import { keyframes } from '@emotion/css/macro'
 
 const rotate360 = keyframes\`
   from {
@@ -529,7 +529,7 @@ keyframes(process.env.NODE_ENV === \\"production\\" ? {
 `;
 
 exports[`vanilla emotion keyframes-with-interpolation 1`] = `
-"import { keyframes } from 'emotion/macro'
+"import { keyframes } from '@emotion/css/macro'
 
 let endingRotation = window.whatever
 
@@ -553,7 +553,7 @@ keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotatio
 `;
 
 exports[`vanilla emotion object-label 1`] = `
-"import { css } from 'emotion/macro'
+"import { css } from '@emotion/css/macro'
 
 let obj = {
   someProp: css({ color: 'green' }),

@@ -1,4 +1,4 @@
-import { injectGlobal } from 'emotion/macro'
+import { injectGlobal } from '@emotion/css/macro'
 
 let display = window.whatever
 
