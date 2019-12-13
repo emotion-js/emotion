@@ -1,4 +1,4 @@
-import createEmotion from './create-instance'
+import createEmotion from '@emotion/css/create-instance'
 
 // $ExpectType Emotion
 const emotion0 = createEmotion()
