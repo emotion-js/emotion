@@ -9,7 +9,7 @@ import { getComponents, prettyifyCritical, getInjectedRules } from './util'
 import { JSDOM } from 'jsdom'
 import { ignoreConsoleErrors } from 'test-utils'
 
-let emotion = require('emotion')
+let emotion = require('@emotion/css')
 let reactEmotion = require('@emotion/styled')
 let emotionServer = require('emotion-server')
 
@@ -59,7 +59,7 @@ describe('hydration', () => {
     global.window = window
 
     jest.resetModules()
-    emotion = require('emotion')
+    emotion = require('@emotion/css')
     emotionServer = require('emotion-server')
 
     expect(emotion.cache.inserted).toEqual({})

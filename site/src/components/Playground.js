@@ -17,8 +17,8 @@ export const scope = {
   },
   require(moduleName: string) {
     switch (moduleName) {
-      case 'emotion':
-        return require('emotion')
+      case '@emotion/css':
+        return require('@emotion/css')
       case '@emotion/cache':
         return require('@emotion/cache')
       case '@emotion/core':
@@ -29,8 +29,6 @@ export const scope = {
         return require('@emotion/styled/base')
       case '@emotion/is-prop-valid':
         return require('@emotion/is-prop-valid')
-      case 'emotion-theming':
-        return require('emotion-theming')
       case 'facepaint':
         return require('facepaint')
       default:

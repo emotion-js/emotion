@@ -132,7 +132,7 @@ const { html, ids, css } = extractCritical(renderToString(<App />))
 `hydrate` should be called on the client with the `ids` that `extractCritical` returns. If you don't call it then emotion will reinsert all the rules. `hydrate` is **only** required for `extractCritical`, **not** for `renderStylesToString` or `renderStylesToNodeStream`, hydration occurs automatically with `renderStylesToString` and `renderStylesToNodeStream`.
 
 ```jsx
-import { hydrate } from 'emotion'
+import { hydrate } from '@emotion/css'
 
 hydrate(ids)
 ```
@@ -242,7 +242,7 @@ if (root.hasChildNodes()) {
 disable-speedy.js
 
 ```js
-import { sheet } from 'emotion'
+import { sheet } from '@emotion/css'
 
 // Check if the root node has any children to detect if the app has been preprendered
 // speedy is disabled when the app is being prerendered so that styles render into the DOM

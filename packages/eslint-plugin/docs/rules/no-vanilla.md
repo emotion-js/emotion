@@ -7,7 +7,7 @@ This rule reports an error if there is an import from the `emotion` package whic
 Examples of **incorrect** code for this rule.
 
 ```jsx
-import { css } from 'emotion'
+import { css } from '@emotion/css'
 ```
 
 ## When Not To Use It

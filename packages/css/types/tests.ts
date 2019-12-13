@@ -9,7 +9,7 @@ import {
   keyframes,
   sheet,
   cache
-} from 'emotion'
+} from '@emotion/css'
 
 flush()
 
