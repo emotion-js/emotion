@@ -11,7 +11,7 @@ import { ignoreConsoleErrors } from 'test-utils'
 
 let emotion = require('@emotion/css')
 let reactEmotion = require('@emotion/styled')
-let emotionServer = require('emotion-server')
+let emotionServer = require('@emotion/server')
 
 describe('extractCritical', () => {
   test('returns static css', () => {
@@ -60,7 +60,7 @@ describe('hydration', () => {
 
     jest.resetModules()
     emotion = require('@emotion/css')
-    emotionServer = require('emotion-server')
+    emotionServer = require('@emotion/server')
 
     expect(emotion.cache.inserted).toEqual({})
     emotion.hydrate(ids)

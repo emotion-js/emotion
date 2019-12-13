@@ -7,6 +7,7 @@
 '@emotion/css': major
 'emotion': major
 'emotion-server': major
+'@emotion/server': major
 'emotion-theming': major
 '@emotion/jest': major
 'jest-emotion': major

@@ -16,7 +16,7 @@ const resetAllModules = () => {
   React = require('react')
   renderToString = require('react-dom/server').renderToString
   emotion = require('@emotion/css')
-  emotionServer = require('emotion-server')
+  emotionServer = require('@emotion/server')
   reactEmotion = require('@emotion/styled')
   util = require('./util')
 }

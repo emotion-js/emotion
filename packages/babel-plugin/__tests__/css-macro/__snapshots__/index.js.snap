@@ -534,7 +534,7 @@ function doThing() {
 
 exports[`@emotion/react - css macro object-pattern-variable-declarator 1`] = `
 "import { css } from '@emotion/react'
-import { extractCritical } from 'emotion-server'
+import { extractCritical } from '@emotion/server'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 
@@ -552,7 +552,7 @@ const { css: styles } = extractCritical(
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { css } from '@emotion/react';
-import { extractCritical } from 'emotion-server';
+import { extractCritical } from '@emotion/server';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 const {
