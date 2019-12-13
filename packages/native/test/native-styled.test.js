@@ -37,7 +37,7 @@ describe('Emotion native styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should work with theming from @emotion/core', () => {
+  it('should work with theming from @emotion/react', () => {
     const Text = styled.Text`
       color: ${props => props.theme.backgroundColor};
     `

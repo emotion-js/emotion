@@ -33,7 +33,7 @@ Writing a test with `jest-emotion` involves creating a snapshot from the `react-
 import React from 'react'
 import serializer from 'jest-emotion'
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import renderer from 'react-test-renderer'
 
 expect.addSnapshotSerializer(serializer)

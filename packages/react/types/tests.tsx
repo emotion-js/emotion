@@ -7,9 +7,9 @@ import {
   jsx,
   keyframes,
   withEmotionCache
-} from '@emotion/core'
+} from '@emotion/react'
 
-declare module '@emotion/core' {
+declare module '@emotion/react' {
   // tslint:disable-next-line: strict-export-declare-modifiers
   export interface Theme {
     primary: string

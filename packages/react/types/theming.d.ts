@@ -2,7 +2,7 @@
 // TypeScript Version: 3.1
 
 import * as React from 'react'
-import { Theme } from '@emotion/core'
+import { Theme } from '@emotion/react'
 import { DistributiveOmit, PropsOf } from './helper'
 import {
   StyledComponent,

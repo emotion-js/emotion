@@ -26,7 +26,7 @@ This package also depends on `react`, `react-primitives` and `prop-types` so mak
 import React from 'react'
 import styled, { css } from '@emotion/primitives'
 
-import { ThemeProvider } from '@emotion/core'
+import { ThemeProvider } from '@emotion/react'
 
 const theme = {
   color: 'hotpink',

@@ -6,7 +6,7 @@ Server side rendering in Emotion 10 has two approaches, each with their own trad
 
 ## Default Approach
 
-Server side rendering works out of the box in Emotion 10 and above if you're only using `@emotion/core` and `@emotion/styled`. This means you can call React's [`renderToString`](https://reactjs.org/docs/react-dom-server.html#rendertostring) or [`renderToNodeStream`](https://reactjs.org/docs/react-dom-server.html#rendertonodestream) methods directly without any extra configuration.
+Server side rendering works out of the box in Emotion 10 and above if you're only using `@emotion/react` and `@emotion/styled`. This means you can call React's [`renderToString`](https://reactjs.org/docs/react-dom-server.html#rendertostring) or [`renderToNodeStream`](https://reactjs.org/docs/react-dom-server.html#rendertonodestream) methods directly without any extra configuration.
 
 ```jsx
 import { renderToString } from 'react-dom/server'
@@ -36,7 +36,7 @@ You can also use the advanced integration, it requires more work but does not ha
 ### On server
 
 ```jsx
-import { CacheProvider } from '@emotion/core'
+import { CacheProvider } from '@emotion/react'
 import { renderToString } from 'react-dom/server'
 import createEmotionServer from 'create-emotion-server'
 import createCache from '@emotion/cache'
@@ -192,7 +192,7 @@ export const myCache = createMyCache()
 gatsby-ssr.js
 
 ```jsx
-import { CacheProvider } from '@emotion/core'
+import { CacheProvider } from '@emotion/react'
 
 import { createMyCache } from './create-emotion-cache'
 
@@ -204,7 +204,7 @@ export const wrapRootElement = ({ element }) => (
 gatsby-browser.js
 
 ```jsx
-import { CacheProvider } from '@emotion/core'
+import { CacheProvider } from '@emotion/react'
 
 import { myCache } from './create-emotion-cache'
 

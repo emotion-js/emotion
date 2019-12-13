@@ -19,7 +19,7 @@ export default (
         pragmatic,
         {
           export: 'jsx',
-          module: '@emotion/core',
+          module: '@emotion/react',
           import: pragmaName
         }
       ],

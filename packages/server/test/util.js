@@ -19,7 +19,7 @@ export const getComponents = (
   emotion: Emotion,
   { default: styled }: { default: Function }
 ) => {
-  let Provider = require('@emotion/core').CacheProvider
+  let Provider = require('@emotion/react').CacheProvider
   let { injectGlobal, keyframes, css } = emotion
   const color = 'red'
 

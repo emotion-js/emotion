@@ -54,10 +54,10 @@ render(
 ### React
 
 ```bash
-npm i @emotion/core
+npm i @emotion/react
 ```
 
-The ["@emotion/core"](https://www.npmjs.com/package/@emotion/core) package requires React and is recommended for users of that framework if possible.
+The ["@emotion/react"](https://www.npmjs.com/package/@emotion/react) package requires React and is recommended for users of that framework if possible.
 
 - Best when using React with a build environment that can be configured.
 
@@ -76,13 +76,13 @@ The ["@emotion/core"](https://www.npmjs.com/package/@emotion/core) package requi
 
 - ESLint plugins available to ensure proper patterns and configuration are set.
 
-**[`@emotion/core` css prop documentation](/docs/css-prop.md)**
+**[`@emotion/react` css prop documentation](/docs/css-prop.md)**
 
 ```jsx
 // @live
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/react'
 
 const color = 'white'
 
@@ -104,7 +104,7 @@ render(
 ```
 
 ```bash
-npm i @emotion/styled @emotion/core
+npm i @emotion/styled @emotion/react
 ```
 
 The [@emotion/styled](https://www.npmjs.com/package/@emotion/styled) package is for those who prefer to use the `styled.div` style API for creating components.

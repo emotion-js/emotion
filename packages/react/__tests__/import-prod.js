@@ -7,7 +7,7 @@ import { render } from '@testing-library/react'
 import * as cssParser from 'css'
 
 // using styled instead of the css prop because there was a really weird flow error
-// when using `jsx` from @emotion/core and Global
+// when using `jsx` from @emotion/react and Global
 let Comp = styled.div({ color: 'hotpink' })
 
 expect.addSnapshotSerializer({

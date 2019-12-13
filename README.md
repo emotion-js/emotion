@@ -37,12 +37,12 @@ Frequently viewed docs:
 Get up and running with a single import.
 
 ```bash
-npm install --save @emotion/core
+npm install --save @emotion/react
 ```
 
 ```jsx
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 let SomeComponent = props => {
   return (

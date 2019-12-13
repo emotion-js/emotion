@@ -2,16 +2,16 @@
 title: 'Install'
 ---
 
-There are lots of ways to use Emotion, if you're using React, the easiest way to get started is to use the [`@emotion/core` package](/packages/@emotion/core). If you're not using React, you should use [the `emotion` package](#vanilla).
+There are lots of ways to use Emotion, if you're using React, the easiest way to get started is to use the [`@emotion/react` package](/packages/@emotion/react). If you're not using React, you should use [the `emotion` package](#vanilla).
 
 ```bash
-yarn add @emotion/core
+yarn add @emotion/react
 ```
 
 or if you prefer npm
 
 ```bash
-npm install --save @emotion/core
+npm install --save @emotion/react
 ```
 
 To use it, import what you need, for example use [the css prop](/docs/css-prop.md) to create class names with styles.
@@ -20,7 +20,7 @@ To use it, import what you need, for example use [the css prop](/docs/css-prop.m
 // @live
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 
 const style = css`
   color: hotpink;
@@ -52,7 +52,7 @@ render(
 `styled` is a way to create React components that have styles attached to them.
 
 ```bash
-# assuming you already have @emotion/core installed
+# assuming you already have @emotion/react installed
 yarn add @emotion/styled
 ```
 

@@ -73,7 +73,7 @@ This preset enables the `css` prop for an entire project via a single entry to t
 | Before | `<img src="avatar.png" />` | `React.createElement('img', { src: 'avatar.png' })` |
 | After  | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })`                 |
 
-`import { jsx } from '@emotion/core'` is automatically added to the top of files where required.
+`import { jsx } from '@emotion/react'` is automatically added to the top of files where required.
 
 ## Example
 
@@ -96,7 +96,7 @@ const Link = props => (
 **Out**
 
 ```javascript
-import { jsx as ___EmotionJSX } from '@emotion/core'
+import { jsx as ___EmotionJSX } from '@emotion/react'
 
 function _extends() {
   /* babel Object.assign polyfill */

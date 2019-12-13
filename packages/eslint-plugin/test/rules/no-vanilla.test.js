@@ -20,7 +20,7 @@ RuleTester.setDefaultConfig({
 const ruleTester = new RuleTester()
 
 ruleTester.run('no-vanilla', rule, {
-  valid: [{ code: `import { css } from '@emotion/core'` }],
+  valid: [{ code: `import { css } from '@emotion/react'` }],
   invalid: [
     {
       code: `import { css } from '@emotion/css'`,
