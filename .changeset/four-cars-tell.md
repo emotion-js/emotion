@@ -1,0 +1,15 @@
+---
+'@emotion/core': major
+'@emotion/styled': major
+---
+
+Reworked TypeScript definitions so it's easier to provide a type for Theme. Instead of creating custom instances (like before) you can augment builtin Theme interface like this:
+
+```ts
+declare module '@emotion/core' {
+  export interface Theme {
+    primaryColor: string
+    secondaryColor: string
+  }
+}
+```

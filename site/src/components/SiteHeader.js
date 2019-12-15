@@ -113,10 +113,14 @@ export default function SiteHeader() {
             </HeaderLink>
           </li>
           <li>
-            <HeaderLink to="https://emotion-slack.now.sh/">Slack</HeaderLink>
+            <HeaderLink to="https://emotion-slack.now.sh/">
+              {'Slack'}
+            </HeaderLink>
           </li>
           <li>
-            <HeaderLink to="https://spectrum.chat/emotion">Spectrum</HeaderLink>
+            <HeaderLink to="https://spectrum.chat/emotion">
+              {'Spectrum'}
+            </HeaderLink>
           </li>
           <li>
             <HeaderLink to="https://5bb1495273f2cf57a2cf39cc--emotion.netlify.com">

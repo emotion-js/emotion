@@ -6,7 +6,7 @@ import { Global } from '@emotion/core'
 import Home from './Home'
 
 const App = () => (
-  <React.Fragment>
+  <>
     <Global
       styles={{
         body: {
@@ -19,7 +19,7 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={Home} />
     </Switch>
-  </React.Fragment>
+  </>
 )
 
 export default App

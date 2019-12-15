@@ -12,6 +12,7 @@ export interface Options {
   key?: string
   container?: HTMLElement
   speedy?: boolean
+  prepend?: boolean
 }
 
 export default function createCache(options?: Options): EmotionCache

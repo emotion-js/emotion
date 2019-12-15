@@ -1,5 +1,19 @@
 # @emotion/serialize
 
+## 0.12.0-next.3
+
+### Minor Changes
+
+- [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@joltmode](https://github.com/joltmode)! - Reworked Interpolation-related types. Correct types should now be provided to all flavours of emotion.
+
+## 0.11.15-next.2
+
+### Patch Changes
+
+- [`5c55fd17`](https://github.com/emotion-js/emotion/commit/5c55fd17dcaec84d1f5d5d13ae90dd336d7e4403) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Fix to what location generated source maps are pointing in case of composed styles.
+
+* [`729ef9d8`](https://github.com/emotion-js/emotion/commit/729ef9d8408af82c7a63effc1b8728f79c66bed1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Update `csstype` dependency.
+
 ## 0.11.15-next.1
 
 ### Patch Changes

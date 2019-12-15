@@ -1,6 +1,6 @@
 {
   "name": "@emotion/serialize",
-  "version": "0.11.15-next.1",
+  "version": "0.12.0-next.3",
   "description": "serialization utils for emotion",
   "main": "dist/serialize.cjs.js",
   "module": "dist/serialize.esm.js",
@@ -18,7 +18,7 @@
     "@emotion/memoize": "0.7.3",
     "@emotion/unitless": "0.7.4",
     "@emotion/utils": "0.11.2",
-    "csstype": "^2.5.7"
+    "csstype": "^2.6.7"
   },
   "devDependencies": {
     "dtslint": "^0.3.0"

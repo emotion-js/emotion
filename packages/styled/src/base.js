@@ -148,7 +148,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             next = next.next
           }
           return (
-            <React.Fragment>
+            <>
               <style
                 {...{
                   [`data-emotion-${cache.key}`]: serializedNames,
@@ -157,7 +157,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
                 }}
               />
               {ele}
-            </React.Fragment>
+            </>
           )
         }
         return ele

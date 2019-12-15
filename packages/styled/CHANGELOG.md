@@ -1,5 +1,53 @@
 # @emotion/styled
 
+## 11.0.0-next.9
+
+### Patch Changes
+
+- [`8b59959`](https://github.com/emotion-js/emotion/commit/8b59959f0929799f050089b05cafb39ca2c57d2d) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Fixed issue when using "component as selector" in styled interpolations which caused the wrong type to be inferred.
+- Updated dependencies []:
+  - @emotion/core@11.0.0-next.9
+
+## 11.0.0-next.8
+
+### Major Changes
+
+- [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@joltmode](https://github.com/joltmode)! - Reworked TypeScript definitions so it's easier to provide a type for Theme. Instead of creating custom instances (like before) you can augment builtin Theme interface like this:
+
+  ```ts
+  declare module '@emotion/core' {
+    export interface Theme {
+      primaryColor: string
+      secondaryColor: string
+    }
+  }
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b), [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b), [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b), [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b)]:
+  - babel-plugin-emotion@11.0.0-next.8
+  - @emotion/core@11.0.0-next.8
+  - @emotion/serialize@0.12.0-next.3
+
+## 11.0.0-next.7
+
+### Patch Changes
+
+- Updated dependencies [[`5c55fd17`](https://github.com/emotion-js/emotion/commit/5c55fd17dcaec84d1f5d5d13ae90dd336d7e4403), [`729ef9d8`](https://github.com/emotion-js/emotion/commit/729ef9d8408af82c7a63effc1b8728f79c66bed1)]:
+  - @emotion/core@11.0.0-next.7
+  - @emotion/serialize@0.11.15-next.2
+
+## 11.0.0-next.6
+
+### Patch Changes
+
+- [`923ded01`](https://github.com/emotion-js/emotion/commit/923ded01e2399a242206d590f6646f13aba110e4) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@JakeGinnivan](https://github.com/JakeGinnivan)! - Relaxed types for `shouldForwardProp` as it needs to be able to filter props for a generic argument of the resulting function.
+- Updated dependencies [[`923ded01`](https://github.com/emotion-js/emotion/commit/923ded01e2399a242206d590f6646f13aba110e4), [`0a4a22ff`](https://github.com/emotion-js/emotion/commit/0a4a22ffcfaa49d09a88856ef2d51e0d53e31b6d), [`828111cd`](https://github.com/emotion-js/emotion/commit/828111cd32d3fe8c984231201e518d1b6000bffd), [`843bfb11`](https://github.com/emotion-js/emotion/commit/843bfb1153ee0dbe33d005fdd5c5be185daa5c41), [`828111cd`](https://github.com/emotion-js/emotion/commit/828111cd32d3fe8c984231201e518d1b6000bffd), [`cbb8b796`](https://github.com/emotion-js/emotion/commit/cbb8b7965c2923cf1922d724de556374323bff61)]:
+  - @emotion/is-prop-valid@0.9.0-next.1
+  - babel-plugin-emotion@11.0.0-next.6
+  - @emotion/core@11.0.0-next.6
+
 ## 11.0.0-next.5
 
 ### Minor Changes

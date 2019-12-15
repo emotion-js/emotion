@@ -247,35 +247,34 @@ const App = () => (
 
 ### Define a Theme
 
-By default, `props.theme` has an `any` type annotation and works without any errors.
-However, you can define a theme type by creating another `styled` instance.
+By default, `props.theme` is an empty object because it's the only thing that is type-safe as a default.
+You can define a theme type by extending our type declarations via your own declarations file.
 
-_styled.tsx_
+_emotion.d.ts_
 
-```tsx
-import styled, { CreateStyled } from '@emotion/styled'
-import { useTheme, ThemeProvider, EmotionTheming } from '@emotion/core'
-
-type Theme = {
-  color: {
-    primary: string
-    positive: string
-    negative: string
+```typescript
+declare module '@emotion/core' {
+  export interface Theme {
+    color: {
+      primary: string
+      positive: string
+      negative: string
+    }
   }
-  // ...
 }
 
-export default styled as CreateStyled<Theme>
+// You are also able to use a 3rd party theme this way:
+import { MuiTheme } from 'material-ui'
 
-// You can also create themed versions of all the other theme helpers and hooks
-const { ThemeProvider, useTheme } = { ThemeProvider, useTheme } as EmotionTheming<Theme>
-export { ThemeProvider, useTheme }
+declare module '@emotion/core' {
+  export interface Theme extends MuiTheme {}
+}
 ```
 
 _Button.tsx_
 
 ```tsx
-import styled from '../path/to/styled'
+import styled from '@emotion/styled'
 
 const Button = styled('button')`
   padding: 20px;
@@ -284,6 +283,16 @@ const Button = styled('button')`
 `
 
 export default Button
+```
+
+If you were previously relying on `theme` being an `any` type, you have to restore compatibility with:
+
+_emotion.d.ts_
+
+```ts
+declare module '@emotion/core' {
+    export interface Theme extends Record<string, any> {}
+}
 ```
 
 ### TypeScript < 2.9

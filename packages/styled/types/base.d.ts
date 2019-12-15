@@ -1,26 +1,14 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 3.2
 
-/**
- * @desc
- * In following types,
- * `InnerProps` is type parameter that represents props type of
- * internal component (target of styling)
- * `ExtraProps` is type parameter that represents extra props type of
- * styled component.
- * `StyleProps` is type parameter that represents props used in
- * a style of that component.
- */
-
 import * as React from 'react'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
-import { PropsOf, DistributiveOmit } from '@emotion/core'
+import { PropsOf, DistributiveOmit, Theme } from '@emotion/core'
 
 export {
   ArrayInterpolation,
   CSSObject,
-  FunctionInterpolation,
-  ObjectInterpolation
+  FunctionInterpolation
 } from '@emotion/serialize'
 
 export { ComponentSelector, Interpolation }
@@ -60,12 +48,10 @@ export interface StyledComponent<
 /**
  * @typeparam ComponentProps  Props which will be included when withComponent is called
  * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
- * @typeparam StyleProps  Params passed to styles but not exposed as React props. These are normally library provided props
  */
 export interface CreateStyledComponent<
   ComponentProps extends {},
-  SpecificComponentProps extends {} = {},
-  StyleProps extends {} = {}
+  SpecificComponentProps extends {} = {}
 > {
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
@@ -73,18 +59,28 @@ export interface CreateStyledComponent<
   <AdditionalProps extends {} = {}>(
     ...styles: Array<
       Interpolation<
-        ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps
+        ComponentProps &
+          SpecificComponentProps &
+          AdditionalProps & { theme: Theme }
       >
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
+
+  (
+    template: TemplateStringsArray,
+    ...styles: Array<Interpolation<ComponentProps & SpecificComponentProps>>
+  ): StyledComponent<ComponentProps, SpecificComponentProps>
+
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
-  <AdditionalProps extends {} = {}>(
+  <AdditionalProps extends {}>(
     template: TemplateStringsArray,
     ...styles: Array<
       Interpolation<
-        ComponentProps & SpecificComponentProps & AdditionalProps & StyleProps
+        ComponentProps &
+          SpecificComponentProps &
+          AdditionalProps & { theme: Theme }
       >
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
@@ -99,7 +95,7 @@ export interface CreateStyledComponent<
  * @example styled('div')({ width: 100 })
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
-export interface CreateStyled<Theme extends {} = any> {
+export interface CreateStyled {
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<
@@ -108,16 +104,12 @@ export interface CreateStyled<Theme extends {} = any> {
   >(
     component: C,
     options: FilteringStyledOptions<PropsOf<C>, ForwardedProps>
-  ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & { theme?: Theme },
-    {},
-    { theme: Theme }
-  >
+  ): CreateStyledComponent<Pick<PropsOf<C>, ForwardedProps> & { theme?: Theme }>
 
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions<PropsOf<C>>
-  ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }, {}, { theme: Theme }>
+  ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }>
 
   <
     Tag extends keyof JSX.IntrinsicElements,
@@ -127,18 +119,13 @@ export interface CreateStyled<Theme extends {} = any> {
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>
   ): CreateStyledComponent<
     { theme?: Theme },
-    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>,
-    { theme: Theme }
+    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
   >
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions<JSX.IntrinsicElements[Tag]>
-  ): CreateStyledComponent<
-    { theme?: Theme },
-    JSX.IntrinsicElements[Tag],
-    { theme: Theme }
-  >
+  ): CreateStyledComponent<{ theme?: Theme }, JSX.IntrinsicElements[Tag]>
 }
 
 declare const styled: CreateStyled

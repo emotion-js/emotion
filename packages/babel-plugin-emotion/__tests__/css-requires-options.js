@@ -2,6 +2,8 @@
 import babelTester from 'babel-tester'
 import plugin from 'babel-plugin-emotion'
 
+const last = arr => arr[arr.length - 1]
+
 const cases = {
   'label format with only local': {
     code: `
@@ -63,6 +65,26 @@ const cases = {
         plugin,
         {
           labelFormat: 'my-css-[dirname]-[filename]-[local]',
+          autoLabel: true
+        }
+      ]
+    ],
+    babelFileName: __filename
+  },
+
+  'label format function': {
+    code: `
+    import { css } from 'emotion'
+    let cls = css({color:'hotpink'})
+    `,
+    plugins: [
+      [
+        plugin,
+        {
+          labelFormat: ({ name, path }) =>
+            `${name.toUpperCase()}_${last(
+              path.replace(/\..+$/, '').split('/')
+            ).toUpperCase()}`,
           autoLabel: true
         }
       ]

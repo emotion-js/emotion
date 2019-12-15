@@ -43,7 +43,6 @@ function getClassNamesFromEnzyme(selectors, node) {
   // Find the first node with a className prop
   const components = actualComponent.findWhere(isTagWithClassName)
   const classes = components.length && components.first().prop('className')
-
   return getClassNames(selectors, classes)
 }
 
