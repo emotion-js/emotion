@@ -6,6 +6,7 @@ import { Theme } from '@emotion/core'
 import {
   CreateStyled as BaseCreateStyled,
   CreateStyledComponent,
+  CSSInterpolation,
   Interpolation,
   ReactNativeStyle,
   ReactNativeComponentNames,
@@ -15,10 +16,13 @@ import {
 } from './base'
 
 export {
+  ArrayCSSInterpolation,
   ArrayInterpolation,
   CreateStyledComponent,
+  CSSInterpolation,
   FunctionInterpolation,
   Interpolation,
+  InterpolationPrimitive,
   ObjectInterpolation,
   ReactNativeStyle,
   StyledComponent,
@@ -33,7 +37,7 @@ export function css<StyleType extends ReactNativeStyle = ReactNativeStyle>(
   ...args: Array<StyleType>
 ): StyleType
 export function css<StyleType extends ReactNativeStyle = ReactNativeStyle>(
-  ...args: Array<Interpolation>
+  ...args: Array<CSSInterpolation>
 ): StyleType
 
 export type StyledComponents = {

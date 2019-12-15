@@ -123,7 +123,12 @@ function MyComponent(_props: AdditionalProps) {
   return null
 }
 
+function MyOtherComponent(_props: { foo: string }) {
+  return null
+}
+
 styled(MyComponent)({ width: 100 })
+styled(MyComponent)({ width: 100 }).withComponent(MyOtherComponent)
 styled(MyComponent)(({ bar }) => ({ color: bar }))
 styled(View)({ width: 100 })
 styled(View)<ExtraProps>(({ foo, testID }) => ({ color: foo, testID }))

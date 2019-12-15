@@ -67,9 +67,27 @@ export type ReactNativeStyleType<Props> = Props extends {
   ? StyleType extends ReactNativeStyle ? StyleType : ReactNativeStyle
   : ReactNativeStyle
 
+export type InterpolationPrimitive<
+  StyleType extends ReactNativeStyle = ReactNativeStyle
+> =
+  | null
+  | undefined
+  | boolean
+  | number
+  | string
+  | ObjectInterpolation<StyleType>
+
 export type ObjectInterpolation<
   StyleType extends ReactNativeStyle = ReactNativeStyle
 > = StyleType
+
+export interface ArrayCSSInterpolation<
+  StyleType extends ReactNativeStyle = ReactNativeStyle
+> extends Array<CSSInterpolation<StyleType>> {}
+
+export type CSSInterpolation<
+  StyleType extends ReactNativeStyle = ReactNativeStyle
+> = InterpolationPrimitive<StyleType> | ArrayCSSInterpolation<StyleType>
 
 export interface ArrayInterpolation<
   MergedProps,
@@ -87,12 +105,7 @@ export type Interpolation<
   MergedProps = unknown,
   StyleType extends ReactNativeStyle = ReactNativeStyle
 > =
-  | null
-  | undefined
-  | boolean
-  | number
-  | string
-  | ObjectInterpolation<StyleType>
+  | InterpolationPrimitive<StyleType>
   | ArrayInterpolation<MergedProps, StyleType>
   | FunctionInterpolation<MergedProps, StyleType>
 
@@ -108,7 +121,17 @@ export interface StyledOptions<Props> {
   shouldForwardProp?(propName: PropertyKey): boolean
 }
 
-export interface StyledWithComponent<ComponentProps extends {}> {
+/**
+ * @typeparam ComponentProps  Props which will be included when withComponent is called
+ * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
+ */
+export interface StyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {}
+>
+  extends NamedExoticComponent<
+      PropsWithChildren<ComponentProps & SpecificComponentProps>
+    > {
   withComponent<
     Component extends ComponentType<ComponentPropsWithoutRef<Component>>
   >(
@@ -118,18 +141,6 @@ export interface StyledWithComponent<ComponentProps extends {}> {
     component: ReactNativeComponents[ComponentName]
   ): StyledComponent<ComponentProps, ReactNativeComponentProps<ComponentName>>
 }
-
-/**
- * @typeparam ComponentProps  Props which will be included when withComponent is called
- * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
- */
-export type StyledComponent<
-  ComponentProps extends {},
-  SpecificComponentProps extends {} = {}
-> = NamedExoticComponent<
-  PropsWithChildren<ComponentProps & SpecificComponentProps>
-> &
-  StyledWithComponent<ComponentProps>
 
 /**
  * @typeparam ComponentProps  Props which will be included when withComponent is called
