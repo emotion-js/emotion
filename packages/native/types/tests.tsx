@@ -7,7 +7,18 @@ import {
   TextStyle,
   View
 } from 'react-native'
-import styled, { CreateStyled, css, ReactNativeStyle } from '@emotion/native'
+import styled, { css, ReactNativeStyle } from '@emotion/native'
+
+declare module '@emotion/core' {
+  // tslint:disable-next-line: strict-export-declare-modifiers
+  export interface Theme {
+    color: {
+      primary: string
+      positive: string
+      negative: string
+    }
+  }
+}
 
 const cssObject = {
   height: 100,
@@ -40,14 +51,6 @@ interface AdditionalProps {
   bar: string
 }
 
-interface Theme {
-  color: {
-    primary: string
-    positive: string
-    negative: string
-  }
-}
-
 export const ExplicitExtraPropsView = styled.View<ExtraProps>`
   background-color: red; // ${({ foo }) => foo}
 `
@@ -60,7 +63,7 @@ export const InferredExtraPropsView = styled.View<ExtraProps>`
   background-color: blue; // ${({ foo }) => foo}
 `
 
-export const ThemedView = (styled as CreateStyled<Theme>).View<AdditionalProps>`
+export const ThemedView = styled.View<AdditionalProps>`
   background-color: ${({ theme }) => theme.color.positive}; // ${({ bar }) =>
   bar}
 `
@@ -105,7 +108,7 @@ function MyStyledComponent(_props: { style?: StyleProp<ImageStyle> }) {
 
 styled(MyStyledComponent)(stretchImageStyle)
 
-const theme: Theme = {
+const theme = {
   color: {
     primary: 'blue',
     negative: 'red',

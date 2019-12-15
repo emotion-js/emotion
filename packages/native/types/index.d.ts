@@ -1,7 +1,7 @@
 // Definitions by: Pat Sissons <https://github.com/patsissons>
 // TypeScript Version: 3.4
 
-import '@emotion/core'
+import { Theme } from '@emotion/core'
 
 import {
   CreateStyled as BaseCreateStyled,
@@ -36,18 +36,15 @@ export function css<StyleType extends ReactNativeStyle = ReactNativeStyle>(
   ...args: Array<Interpolation>
 ): StyleType
 
-export type StyledComponents<Theme extends {} = any> = {
+export type StyledComponents = {
   [ComponentName in ReactNativeComponentNames]: CreateStyledComponent<
     { theme?: Theme },
     ReactNativeComponentProps<ComponentName>,
-    { theme: Theme },
     ReactNativeStyleType<ReactNativeComponentProps<ComponentName>>
   >
 }
 
-export interface CreateStyled<Theme extends {} = any>
-  extends BaseCreateStyled<Theme>,
-    StyledComponents<Theme> {}
+export interface CreateStyled extends BaseCreateStyled, StyledComponents {}
 
 declare const styled: CreateStyled
 export default styled

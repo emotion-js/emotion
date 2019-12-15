@@ -7,6 +7,7 @@ import {
   NamedExoticComponent,
   PropsWithChildren
 } from 'react'
+import { Theme } from '@emotion/core'
 import * as RN from 'react-native'
 
 type ReactNative = typeof RN
@@ -133,12 +134,10 @@ export type StyledComponent<
 /**
  * @typeparam ComponentProps  Props which will be included when withComponent is called
  * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
- * @typeparam StyleProps  Params passed to styles but not exposed as React props. These are normally library provided props
  */
 export interface CreateStyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {},
-  StyleProps extends {} = {},
   StyleType extends ReactNativeStyle = ReactNativeStyle
 > {
   /**
@@ -146,7 +145,9 @@ export interface CreateStyledComponent<
    */
   <AdditionalProps extends {} = {}>(
     ...styles: ArrayInterpolation<
-      ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps,
+      ComponentProps &
+        SpecificComponentProps &
+        AdditionalProps & { theme: Theme },
       StyleType
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
@@ -156,7 +157,9 @@ export interface CreateStyledComponent<
   <AdditionalProps extends {} = {}>(
     template: TemplateStringsArray,
     ...styles: ArrayInterpolation<
-      ComponentProps & SpecificComponentProps & StyleProps & AdditionalProps,
+      ComponentProps &
+        SpecificComponentProps &
+        AdditionalProps & { theme: Theme },
       StyleType
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
@@ -171,7 +174,7 @@ export interface CreateStyledComponent<
  * @example styled(View)({ width: 100 })
  * @example styled(View)<Props>(props => ({ width: props.width })
  */
-export interface CreateStyled<Theme extends {} = any> {
+export interface CreateStyled {
   <
     Component extends ComponentType<ComponentPropsWithoutRef<Component>>,
     ForwardedProps extends keyof ComponentPropsWithoutRef<
@@ -188,7 +191,6 @@ export interface CreateStyled<Theme extends {} = any> {
       theme?: Theme
     },
     {},
-    { theme: Theme },
     ReactNativeStyleType<ComponentPropsWithoutRef<Component>>
   >
 
@@ -198,7 +200,6 @@ export interface CreateStyled<Theme extends {} = any> {
   ): CreateStyledComponent<
     ComponentPropsWithoutRef<Component> & { theme?: Theme },
     {},
-    { theme: Theme },
     ReactNativeStyleType<ComponentPropsWithoutRef<Component>>
   >
 
@@ -216,7 +217,6 @@ export interface CreateStyled<Theme extends {} = any> {
   ): CreateStyledComponent<
     { theme?: Theme },
     Pick<ReactNativeComponentProps<ComponentName>, ForwardedProps>,
-    { theme: Theme },
     ReactNativeStyleType<ReactNativeComponentProps<ComponentName>>
   >
 
@@ -226,7 +226,6 @@ export interface CreateStyled<Theme extends {} = any> {
   ): CreateStyledComponent<
     { theme?: Theme },
     ReactNativeComponentProps<ComponentName>,
-    { theme: Theme },
     ReactNativeStyleType<ReactNativeComponentProps<ComponentName>>
   >
 }
