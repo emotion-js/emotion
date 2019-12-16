@@ -5,15 +5,18 @@
   "main": "dist/native.cjs.js",
   "module": "dist/native.esm.js",
   "scripts": {
-    "test:typescript": "exit 0"
+    "test:typescript": "dtslint types"
   },
   "files": [
     "src",
     "dist",
     "macro.js"
   ],
+  "types": "types/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@types/react-native": "^0.57.0",
+    "dtslint": "^0.3.0",
     "react": "^16.11.0",
     "react-native": "^0.57.0"
   },
