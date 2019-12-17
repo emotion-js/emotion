@@ -10,19 +10,7 @@
     "types"
   ],
   "scripts": {
-    "test:typescript": "dtslint types"
-  },
-  "dependencies": {
-    "create-emotion-server": "11.0.0-next.0"
-  },
-  "peerDependencies": {
-    "emotion": "^11.0.0-next.8"
-  },
-  "devDependencies": {
-    "@emotion/babel-plugin": "^11.0.0-next.6",
-    "@types/node": "^10.11.4",
-    "dtslint": "^0.3.0",
-    "emotion": "^11.0.0-next.8"
+    "test:typescript": "exit 0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
