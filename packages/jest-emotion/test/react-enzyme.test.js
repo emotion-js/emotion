@@ -1,5 +1,6 @@
-import 'test-utils/legacy-env' // adds serializer
+import 'test-utils/enzyme-env'
 /** @jsx jsx */
+
 import jestInCase from 'jest-in-case'
 import * as enzyme from 'enzyme'
 import { jsx, ThemeProvider } from '@emotion/core'
@@ -7,16 +8,9 @@ import styled from '@emotion/styled'
 import React from 'react'
 import toJson from 'enzyme-to-json'
 
-afterEach(() => {
-  document
-    .querySelectorAll('style[data-emotion]')
-    .forEach(element => element.parentNode.removeChild(element))
-})
+import serializer from '../src/enzyme'
 
-const tickle = (wrapper: *) => {
-  wrapper.find('EmotionCssPropInternal').forEach(el => el.dive())
-  return wrapper
-}
+expect.addSnapshotSerializer(serializer)
 
 const cases = {
   'empty styled': {
@@ -175,16 +169,7 @@ describe('enzyme', () => {
     'shallow',
     ({ render }) => {
       const wrapper = enzyme.shallow(render())
-      expect(toJson(wrapper)).toMatchSnapshot()
-    },
-    cases
-  )
-
-  jestInCase(
-    'shallow with tickling',
-    ({ render }) => {
-      const wrapper = enzyme.shallow(render())
-      expect(toJson(tickle(wrapper))).toMatchSnapshot()
+      expect(wrapper).toMatchSnapshot()
     },
     cases
   )
@@ -193,7 +178,7 @@ describe('enzyme', () => {
     'mount',
     ({ render }) => {
       const wrapper = enzyme.mount(render())
-      expect(toJson(wrapper)).toMatchSnapshot()
+      expect(wrapper).toMatchSnapshot()
     },
     cases
   )
