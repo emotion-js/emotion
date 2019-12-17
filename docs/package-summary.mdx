@@ -1,0 +1,56 @@
+---
+title: "Package Summaries"
+---
+
+Below is a list of most of Emotion's packages and a summary of what it's for and how it relates to other Emotion packages.
+
+## @emotion/react
+
+Contains the react-specific version of Emotion. use this if you’re using React. Has different functionality and APIs from @emotion/css and doesn’t work the same way under the hood.
+Depends on @emotion/cache
+
+## @emotion/styled
+
+Contains the styled API, uses @emotion/react under the hood and wraps it with a different API.
+Depends on @emotion/react
+
+## @emotion/css
+
+Contains a framework agnostic version of Emotion. Has different functionality and APIs from @emotion/react and doesn’t work the same way under the hood.
+Depends on @emotion/cache which which can be customised by creating a custom instance at @emotion/css/create-instance
+
+## @emotion/cache
+
+A cache used by both of the main Emotion APIs. Can be used to provide a custom cache in @emotion/react with its CacheProvider. To customise the equivalent options for @emotion/css, @emotion/css/create-instance can create another instance of @emotion/css and it accepts
+Depended upon by @emotion/react and @emotion/css
+
+## @emotion/babel-plugin
+
+A Babel plugin to optimise for @emotion/css, @emotion/react and @emotion/styled
+
+## @emotion/eslint-plugin
+
+ESLint rules for @emotion/css, @emotion/react and @emotion/styled
+
+## @emotion/server
+
+Contains APIs for server rendering with @emotion/css. Can also work with @emotion/react if emotion’s cache is passed to @emotion/react’s CacheProvider
+Has an optional peer dependency on @emotion/css for when @emotion/server is used directly but it’s an optional so that @emotion/server/create-instance can be used with any cache from @emotion/cache
+
+## @emotion/jest
+
+Contains a Jest snapshot serializer and matchers for use with all Emotion packages
+Depends on the behaviour of @emotion/cache so it therefore works with @emotion/react and @emotion/css
+
+## @emotion/native
+
+Contains the styled API for React Native along with a css function similar to the ones from @emotion/css and @emotion/react except that it returns a React Native style object
+
+## @emotion/primitives
+
+Contains the styled API for React Primitives along with a css function similar to the ones from @emotion/css and @emotion/react except that it returns a React Native style object.
+
+## @emotion/babel-preset-css-prop
+
+A Babel preset to allow usage of the css prop everywhere without importing it
+Uses @emotion/react and @emotion/babel-plugin

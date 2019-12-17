@@ -6,9 +6,9 @@
     - styled
     - composition
     - object-styles
-    - nested
     - media-queries
     - globals
+    - package-summary
 
 - title: Advanced
   items:

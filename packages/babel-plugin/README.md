@@ -2,8 +2,8 @@
 
 > Babel plugin for the minification and optimization of emotion styles.
 
-`babel-plugin-emotion` is highly recommended, but not required in version 8 and
-above of `emotion`.
+`@emotion/babel-plugin` is highly recommended, but not required in version 8 and
+above of Emotion.
 
 ## Features
 
@@ -97,13 +97,13 @@ const myStyles = /* #__PURE__ */ css(
 ## Installation
 
 ```bash
-yarn add --dev babel-plugin-emotion
+yarn add --dev @emotion/babel-plugin
 ```
 
 or if you prefer npm
 
 ```bash
-npm install --save-dev babel-plugin-emotion
+npm install --save-dev @emotion/babel-plugin
 ```
 
 ## Usage
@@ -116,7 +116,7 @@ Without options:
 
 ```json
 {
-  "plugins": ["emotion"]
+  "plugins": ["@emotion"]
 }
 ```
 
@@ -128,7 +128,7 @@ _Defaults Shown_
 {
   "plugins": [
     [
-      "emotion",
+      "@emotion",
       {
         // sourceMap is on by default but source maps are dead code eliminated in production
         "sourceMap": true,
@@ -147,21 +147,21 @@ Recommended Setup
 
 ```json
 {
-  "plugins": ["emotion"]
+  "plugins": ["@emotion"]
 }
 ```
 
 ### Via CLI
 
 ```bash
-babel --plugins babel-plugin-emotion script.js
+babel --plugins @emotion/babel-plugin script.js
 ```
 
 ### Via Node API
 
 ```javascript
 require('@babel/core').transform('code', {
-  plugins: ['babel-plugin-emotion']
+  plugins: ['@emotion/babel-plugin']
 })
 ```
 
@@ -179,7 +179,7 @@ This option enables the following:
 
 > Note:
 >
-> Source maps are on by default in babel-plugin-emotion but they will be removed in production builds
+> Source maps are on by default in @emotion/babel-plugin but they will be removed in production builds
 
 ### `autoLabel`
 
@@ -293,7 +293,7 @@ This option assumes that you are using something to make `@emotion/react`'s `jsx
 
 ### `importMap`
 
-This option allows you to tell babel-plugin-emotion what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
+This option allows you to tell @emotion/babel-plugin what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
 
 An example config:
 
@@ -318,7 +318,7 @@ An example config:
 
 ## Babel Macros
 
-Instead of using `babel-plugin-emotion`, you can use emotion with [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros). Add `babel-plugin-macros` to your babel config (which is included in Create React App 2.0) and use the imports/packages shown below.
+Instead of using `@emotion/babel-plugin`, you can use emotion with [`babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros). Add `babel-plugin-macros` to your babel config (which is included in Create React App 2.0) and use the imports/packages shown below.
 
 ```jsx
 import {

@@ -2,10 +2,15 @@
 
 > A babel preset to automatically enable emotion's css prop
 
-- [Install](#install)
-- [Usage](#usage)
-- [Features](#features)
-- [Options](#options)
+- [@emotion/babel-preset-css-prop](#emotionbabel-preset-css-prop)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [Via CLI](#via-cli)
+    - [Via Node API](#via-node-api)
+  - [Features](#features)
+  - [Example](#example)
+  - [Options](#options)
+    - [Examples](#examples)
 
 ## Install
 
@@ -23,7 +28,7 @@ yarn add @emotion/babel-preset-css-prop
 }
 ```
 
-`@emotion/babel-preset-css-prop` includes the emotion plugin. The `babel-plugin-emotion` entry should be be removed from your config and any options moved to the preset. If you use `@babel/preset-react` or `@babel/preset-typescript` ensure that `@emotion/babel-preset-css-prop` is inserted after them in your babel config.
+`@emotion/babel-preset-css-prop` includes the emotion plugin. The `@emotion/babel-plugin` entry should be be removed from your config and any options moved to the preset. If you use `@babel/preset-react` or `@babel/preset-typescript` ensure that `@emotion/babel-preset-css-prop` is inserted after them in your babel config.
 
 ```diff
 {
@@ -38,7 +43,7 @@ yarn add @emotion/babel-preset-css-prop
 + ],
 - "plugins": [
 -   [
--     "emotion",
+-     "@emotion",
 -     {
 -       "autoLabel": true,
 -       "labelFormat": "[local]"
@@ -127,15 +132,15 @@ const Link = props =>
   )
 ```
 
-_In addition to the custom pragma, this example includes `babel-plugin-emotion` transforms that are enabled by default._
+_In addition to the custom pragma, this example includes `@emotion/babel-plugin` transforms that are enabled by default._
 
 ## Options
 
-Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` are supported and will be forwarded to their respective plugin.
+Options for both `@emotion/babel-plugin` and `@babel/plugin-transform-react-jsx` are supported and will be forwarded to their respective plugin.
 
 > Refer to the plugin's documentation for full option documentation.
 >
-> - [`babel-plugin-emotion`](https://emotion.sh/docs/babel)
+> - [`@emotion/babel-plugin`](https://emotion.sh/docs/babel)
 >
 > - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx)
 

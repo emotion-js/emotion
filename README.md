@@ -60,7 +60,7 @@ let SomeComponent = props => {
 
 The babel plugin is not required, but enables some optimizations and customizations that could be beneficial for your project.
 
-Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)_
+Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin)_
 
 ### Demo Sandbox
 
