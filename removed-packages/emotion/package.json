@@ -13,6 +13,9 @@
     "macro.d.ts",
     "macro.js.flow"
   ],
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
