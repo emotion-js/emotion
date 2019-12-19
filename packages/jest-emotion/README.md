@@ -21,7 +21,7 @@ module.exports = {
 ```
 
 To assist with shallow rendering, there's a custon enzyme snapshot serializer, that includes the `enzyme-to-json`
-serializer, which is available by inporting `jest-emotion/enzyme`:
+serializer, which is available by importing `jest-emotion/enzyme`:
 
 ```js
 // jest.config.js
