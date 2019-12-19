@@ -236,7 +236,7 @@ be prepended automatically.
 ```javascript
 // BrownView.js
 // autoLabel: true
-// labelFormat: [filename]--[local]
+// labelFormat: '[filename]--[local]'
 const brownStyles = css({ color: 'brown' })
 ```
 
