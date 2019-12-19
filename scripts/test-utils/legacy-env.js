@@ -1,4 +1,6 @@
 // @flow
+/* eslint-env jest */
+import 'test-utils/enzyme-env'
+import serializer from 'jest-emotion/enzyme'
 
-import './enzyme-env.js'
-import './next-env'
+expect.addSnapshotSerializer(serializer)
