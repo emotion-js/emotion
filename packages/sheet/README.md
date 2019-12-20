@@ -61,6 +61,10 @@ This method inserts a single rule into the document. It **must** be a single rul
 
 This method will remove all style tags that were inserted into the document.
 
+#### rehydrate
+
+This method moves given style elements into sheet's container and put them into internal tags collection. It's can be used for SSRed styles.
+
 ### Example with all options
 
 ```jsx

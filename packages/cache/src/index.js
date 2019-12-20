@@ -66,6 +66,7 @@ let createCache = (options?: Options): EmotionCache => {
   let inserted = {}
   // $FlowFixMe
   let container: HTMLElement
+  const nodesToRehydrate = []
   if (isBrowser) {
     container = options.container || document.head
 
@@ -78,7 +79,7 @@ let createCache = (options?: Options): EmotionCache => {
         inserted[id] = true
       })
       if (node.parentNode !== container) {
-        container.appendChild(node)
+        nodesToRehydrate.push(node)
       }
     })
   }
@@ -249,6 +250,9 @@ let createCache = (options?: Options): EmotionCache => {
     registered: {},
     insert
   }
+
+  cache.sheet.rehydrate(nodesToRehydrate)
+
   return cache
 }
 

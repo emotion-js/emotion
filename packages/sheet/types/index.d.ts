@@ -21,4 +21,5 @@ export class StyleSheet {
   constructor(options?: Options)
   insert(rule: string): void
   flush(): void
+  rehydrate(nodes: Array<HTMLStyleElement>): void
 }
