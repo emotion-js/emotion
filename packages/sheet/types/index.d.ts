@@ -14,7 +14,6 @@ export class StyleSheet {
   ctr: number
   tags: Array<HTMLStyleElement>
   container: HTMLElement
-  maxLength: number
   key: string
   nonce?: string
   before?: Element | null
