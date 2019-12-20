@@ -1,5 +1,7 @@
 // @flow
 
+const isBrowser = typeof document !== 'undefined'
+
 function last(arr) {
   return arr.length > 0 ? arr[arr.length - 1] : undefined
 }
@@ -49,8 +51,10 @@ function getClassNameProp(node) {
 
 function getClassNamesFromEnzyme(selectors, node) {
   // We need to dive in to get the className if we have a styled element from a shallow render
-  let isShallow = shouldDive(node)
-  let nodeWithClassName = findNodeWithClassName(isShallow ? node.dive() : node)
+  const isShallow = shouldDive(node)
+  const nodeWithClassName = findNodeWithClassName(
+    isShallow ? node.dive() : node
+  )
   return getClassNames(selectors, getClassNameProp(nodeWithClassName))
 }
 
@@ -113,9 +117,9 @@ export function getClassNamesFromNodes(nodes: Array<any>) {
   }, [])
 }
 
-let keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
+const keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
 
-let removeCommentPattern = /\/\*[\s\S]*?\*\//g
+const removeCommentPattern = /\/\*[\s\S]*?\*\//g
 
 const getElementRules = (element: HTMLStyleElement): string[] => {
   const nonSpeedyRule = element.textContent
@@ -136,48 +140,50 @@ export function getStylesFromClassNames(
   if (!classNames.length) {
     return ''
   }
-  let keys = getKeys(elements)
+  const keys = getKeys(elements)
   if (!keys.length) {
     return ''
   }
 
-  let targetClassName = classNames.find(className =>
+  const targetClassName = classNames.find(className =>
     /^e[a-z0-9]+$/.test(className)
   )
-  let keyPattern = `(${keys.join('|')})-`
-  let classNamesRegExp = new RegExp(
+  const keyPattern = `(${keys.join('|')})-`
+  const classNamesRegExp = new RegExp(
     targetClassName ? `^(${keyPattern}|${targetClassName})` : `^${keyPattern}`
   )
-  let filteredClassNames = classNames.filter(className =>
+  const filteredClassNames = classNames.filter(className =>
     classNamesRegExp.test(className)
   )
 
   if (!filteredClassNames.length) {
     return ''
   }
-  let selectorPattern = new RegExp('\\.(' + filteredClassNames.join('|') + ')')
-  let keyframes = {}
+  const selectorPattern = new RegExp(
+    '\\.(' + filteredClassNames.join('|') + ')'
+  )
+  const keyframes = {}
   let styles = ''
 
   flatMap(elements, getElementRules).forEach((rule: string) => {
     if (selectorPattern.test(rule)) {
       styles += rule
     }
-    let match = rule.match(keyframesPattern)
+    const match = rule.match(keyframesPattern)
     if (match !== null) {
-      let name = match[1]
+      const name = match[1]
       if (keyframes[name] === undefined) {
         keyframes[name] = ''
       }
       keyframes[name] += rule
     }
   })
-  let keyframeNameKeys = Object.keys(keyframes)
+  const keyframeNameKeys = Object.keys(keyframes)
   let keyframesStyles = ''
 
   if (keyframeNameKeys.length) {
-    let keyframesNamePattern = new RegExp(keyframeNameKeys.join('|'), 'g')
-    let keyframesNameCache = {}
+    const keyframesNamePattern = new RegExp(keyframeNameKeys.join('|'), 'g')
+    const keyframesNameCache = {}
     let index = 0
 
     styles = styles.replace(keyframesNamePattern, name => {
@@ -197,17 +203,17 @@ export function getStylesFromClassNames(
 }
 
 export function getStyleElements(): Array<HTMLStyleElement> {
-  let elements = global.document
+  const elements = isBrowser
     ? Array.from(document.querySelectorAll('style[data-emotion]'))
     : []
   // $FlowFixMe
   return elements
 }
 
-let unique = arr => Array.from(new Set(arr))
+const unique = arr => Array.from(new Set(arr))
 
 export function getKeys(elements: Array<HTMLStyleElement>) {
-  let keys = unique(
+  const keys = unique(
     elements.map(
       element =>
         // $FlowFixMe we know it exists since we query for elements with this attribute
