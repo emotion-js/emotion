@@ -12,3 +12,23 @@ exports[`it works 1`] = `
   <body />
 </html>
 `;
+
+exports[`rehydrated styles to head can be flushed 1`] = `
+<html>
+  <head>
+    <style
+      data-emotion-emo="1lrxbo5"
+    >
+      .emo-1lrxbo5{color:hotpink;}
+    </style>
+  </head>
+  <body />
+</html>
+`;
+
+exports[`rehydrated styles to head can be flushed 2`] = `
+<html>
+  <head />
+  <body />
+</html>
+`;
