@@ -1,5 +1,16 @@
 # @emotion/serialize
 
+## 0.11.15
+
+### Patch Changes
+
+- [`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968) [#1698](https://github.com/emotion-js/emotion/pull/1698) Thanks [@Andarist](https://github.com/Andarist)! - Add LICENSE file
+- Updated dependencies [[`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968)]:
+  - @emotion/hash@0.7.4
+  - @emotion/memoize@0.7.4
+  - @emotion/unitless@0.7.5
+  - @emotion/utils@0.11.3
+
 ## 0.11.14
 
 ### Patch Changes

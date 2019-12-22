@@ -1,5 +1,17 @@
 # @emotion/cache
 
+## 10.0.27
+
+### Patch Changes
+
+- [`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968) [#1698](https://github.com/emotion-js/emotion/pull/1698) Thanks [@Andarist](https://github.com/Andarist)! - Add LICENSE file
+- Updated dependencies [[`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968)]:
+  - @emotion/hash@0.7.4
+  - @emotion/sheet@0.9.4
+  - @emotion/stylis@0.8.5
+  - @emotion/utils@0.11.3
+  - @emotion/weak-memoize@0.2.5
+
 ## 10.0.19
 
 - Updated dependencies [c81c0033]:

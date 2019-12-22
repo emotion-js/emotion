@@ -1,6 +1,6 @@
 {
   "name": "@emotion/unitless",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "An object of css properties that don't accept values with units",
   "main": "dist/unitless.cjs.js",
   "module": "dist/unitless.esm.js",
