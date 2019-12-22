@@ -78,9 +78,7 @@ let createCache = (options?: Options): EmotionCache => {
       attrib.split(' ').forEach(id => {
         inserted[id] = true
       })
-      if (node.parentNode !== container) {
-        nodesToRehydrate.push(node)
-      }
+      nodesToRehydrate.push(node)
     })
   }
 
