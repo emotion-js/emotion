@@ -83,7 +83,7 @@ export default function(babel: *, options: *) {
     throw new Error(
       `The 'autoLabel' option must be undefined, or one of the following: ${AUTO_LABEL_VALUES.map(
         s => `"${s}"`
-      )}`
+      ).join(', ')}`
     )
   }
 
