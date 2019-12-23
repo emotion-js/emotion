@@ -88,7 +88,7 @@ export let transformExpressionWithStyles = ({
       let cssString = path.node.arguments[0].value.replace(/;$/, '')
       let res = serializeStyles([
         `${cssString}${
-          label && autoLabel === 'always' ? `;label:${label}` : ''
+          label && autoLabel === 'always' ? `;label:${label};` : ''
         }`
       ])
       let prodNode = t.objectExpression([
@@ -114,7 +114,7 @@ export let transformExpressionWithStyles = ({
         }
 
         if (label && autoLabel === 'auto') {
-          res = serializeStyles([`${cssString};label:${label}`])
+          res = serializeStyles([`${cssString};label:${label};`])
         }
 
         let devNode = t.objectExpression([
