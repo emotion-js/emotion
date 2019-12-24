@@ -8,7 +8,7 @@ import styled from '@emotion/styled'
 import React from 'react'
 import toJson from 'enzyme-to-json'
 
-import serializer from '../src/enzyme'
+import serializer from 'jest-emotion/enzyme'
 
 expect.addSnapshotSerializer(serializer)
 
