@@ -1,7 +1,7 @@
 // @flow
 import type { RegisteredCache, EmotionCache, SerializedStyles } from './types'
 
-let isBrowser = typeof document !== 'undefined'
+const isBrowser = typeof document !== 'undefined'
 
 export function getRegisteredStyles(
   registered: RegisteredCache,
