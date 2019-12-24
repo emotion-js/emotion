@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import styled, { css, ReactNativeStyle } from '@emotion/native'
 
-declare module '@emotion/core' {
+declare module '@emotion/react' {
   // tslint:disable-next-line: strict-export-declare-modifiers
   export interface Theme {
     color: {

@@ -14,7 +14,7 @@ The [@emotion/css](https://www.npmjs.com/package/@emotion/css) package is framew
       - [Array of Object Styles](#array-of-object-styles)
     - [Global Styles](#global-styles)
     - [Animation Keyframes](#animation-keyframes)
-  - [cx](#cx)
+    - [cx](#cx)
 
 ## Quick Start
 
@@ -215,7 +215,7 @@ render(
 )
 ```
 
-## cx
+### cx
 
 `cx` is emotion's version of the popular [`classnames` library](https://github.com/JedWatson/classnames). The key advantage of `cx` is that it detects emotion generated class names ensuring styles are overwritten in the correct order. Emotion generated styles are applied from left to right. Subsequent styles overwrite property values of previous styles.
 
