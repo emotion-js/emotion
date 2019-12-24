@@ -28,7 +28,7 @@ test('rehydrated styles to head can be flushed', () => {
 
   // this moves emotion style tags at initialization time
   jest.resetModules()
-  require('@emotion/core')
+  require('@emotion/react')
 
   let cache = createCache({ key: 'emo' })
   expect(document.documentElement).toMatchSnapshot()
