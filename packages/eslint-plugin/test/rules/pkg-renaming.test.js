@@ -46,6 +46,36 @@ ruleTester.run('pkg-renaming', rule, {
         }
       ],
       output: `import { css } from '@emotion/react'`
+    },
+    {
+      code: `import css from '@emotion/css'`,
+      errors: [
+        {
+          message:
+            'The default export of "@emotion/css" in Emotion 10 has been moved to a named export, `css`, from "@emotion/react" in Emotion 11, please import it from "@emotion/react"'
+        }
+      ],
+      output: `import { css } from '@emotion/react'`
+    },
+    {
+      code: `import css from '@emotion/css/macro'`,
+      errors: [
+        {
+          message:
+            'The default export of "@emotion/css/macro" in Emotion 10 has been moved to a named export, `css`, from "@emotion/react/macro" in Emotion 11, please import it from "@emotion/react/macro"'
+        }
+      ],
+      output: `import { css } from '@emotion/react/macro'`
+    },
+    {
+      code: `import {ThemeProvider, withTheme} from 'emotion-theming'`,
+      errors: [
+        {
+          message:
+            '"emotion-theming" has been moved into "@emotion/react", please import its exports from "@emotion/react"'
+        }
+      ],
+      output: `import {ThemeProvider, withTheme} from '@emotion/react'`
     }
   ]
 })
