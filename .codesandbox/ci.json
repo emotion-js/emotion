@@ -1,11 +1,4 @@
 {
-  "packages": [
-    "packages/babel-plugin",
-    "packages/cache",
-    "packages/react",
-    "packages/css",
-    "packages/serialize",
-    "packages/styled"
-  ],
+  "packages": ["packages/*"],
   "sandboxes": ["pk1qjqpw67"]
 }
