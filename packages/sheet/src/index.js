@@ -84,20 +84,27 @@ export class StyleSheet {
     this.before = null
   }
 
+  _insertTag = (tag: HTMLStyleElement) => {
+    let before
+    if (this.tags.length === 0) {
+      before = this.prepend ? this.container.firstChild : this.before
+    } else {
+      before = this.tags[this.tags.length - 1].nextSibling
+    }
+    this.container.insertBefore(tag, before)
+    this.tags.push(tag)
+  }
+
+  rehydrate(nodes: HTMLStyleElement[]) {
+    nodes.forEach(this._insertTag)
+  }
+
   insert(rule: string) {
     // the max length is how many rules we have per style tag, it's 65000 in speedy mode
     // it's 1 in dev because we insert source maps that map a single rule to a location
     // and you can only have one source map per style tag
     if (this.ctr % (this.isSpeedy ? 65000 : 1) === 0) {
-      let tag = createStyleElement(this)
-      let before
-      if (this.tags.length === 0) {
-        before = this.prepend ? this.container.firstChild : this.before
-      } else {
-        before = this.tags[this.tags.length - 1].nextSibling
-      }
-      this.container.insertBefore(tag, before)
-      this.tags.push(tag)
+      this._insertTag(createStyleElement(this))
     }
     const tag = this.tags[this.tags.length - 1]
 
@@ -113,10 +120,7 @@ export class StyleSheet {
         // this is the ultrafast version, works across browsers
         // the big drawback is that the css won't be editable in devtools
         sheet.insertRule(
-          rule,
-          // we need to insert @import rules before anything else
-          // otherwise there will be an error
-          // technically this means that the @import rules will
+          rule, // technically this means that the @import rules will // otherwise there will be an error // we need to insert @import rules before anything else
           // _usually_(not always since there could be multiple style tags)
           // be the first ones in prod and generally later in dev
           // this shouldn't really matter in the real world though

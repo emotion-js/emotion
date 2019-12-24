@@ -126,4 +126,69 @@ describe('StyleSheet', () => {
     sheet.flush()
     head.removeChild(otherStyle)
   })
+
+  it('should be able to rehydrate styles', () => {
+    const fooStyle = document.createElement('style')
+    fooStyle.textContent = '.foo { color: hotpink; }'
+    const barStyle = document.createElement('style')
+    barStyle.textContent = '.bar { background-color: green; }'
+    const body = safeQuerySelector('body')
+    body.appendChild(fooStyle)
+    body.appendChild(barStyle)
+
+    const sheet = new StyleSheet(defaultOptions)
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.rehydrate([fooStyle, barStyle])
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
+  })
+
+  it('should flush rehydrated styles', () => {
+    const fooStyle = document.createElement('style')
+    fooStyle.textContent = '.foo { color: hotpink; }'
+    const barStyle = document.createElement('style')
+    barStyle.textContent = '.bar { background-color: green; }'
+    const body = safeQuerySelector('body')
+    body.appendChild(fooStyle)
+    body.appendChild(barStyle)
+
+    const sheet = new StyleSheet(defaultOptions)
+
+    sheet.rehydrate([fooStyle, barStyle])
+
+    sheet.insert(rule)
+    sheet.insert(rule2)
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
+    expect(document.documentElement).toMatchSnapshot()
+  })
+
+  it('should correctly position rehydrated styles when used with `prepend` option', () => {
+    const head = safeQuerySelector('head')
+    const otherStyle = document.createElement('style')
+    otherStyle.setAttribute('id', 'other')
+    head.appendChild(otherStyle)
+
+    const fooStyle = document.createElement('style')
+    fooStyle.textContent = '.foo { color: hotpink; }'
+    const barStyle = document.createElement('style')
+    barStyle.textContent = '.bar { background-color: green; }'
+    const body = safeQuerySelector('body')
+    body.appendChild(fooStyle)
+    body.appendChild(barStyle)
+
+    const sheet = new StyleSheet({
+      ...defaultOptions,
+      prepend: true
+    })
+
+    sheet.rehydrate([fooStyle, barStyle])
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
+    head.removeChild(otherStyle)
+  })
 })

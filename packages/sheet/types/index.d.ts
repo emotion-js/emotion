@@ -14,11 +14,11 @@ export class StyleSheet {
   ctr: number
   tags: Array<HTMLStyleElement>
   container: HTMLElement
-  maxLength: number
   key: string
   nonce?: string
   before?: Element | null
   constructor(options?: Options)
   insert(rule: string): void
   flush(): void
+  rehydrate(nodes: Array<HTMLStyleElement>): void
 }

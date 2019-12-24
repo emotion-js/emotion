@@ -1,17 +1,6 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 3.2
 
-/**
- * @desc
- * In following types,
- * `InnerProps` is type parameter that represents props type of
- * internal component (target of styling)
- * `ExtraProps` is type parameter that represents extra props type of
- * styled component.
- * `StyleProps` is type parameter that represents props used in
- * a style of that component.
- */
-
 import * as React from 'react'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
 import { PropsOf, DistributiveOmit, Theme } from '@emotion/react'
@@ -59,12 +48,10 @@ export interface StyledComponent<
 /**
  * @typeparam ComponentProps  Props which will be included when withComponent is called
  * @typeparam SpecificComponentProps  Props which will *not* be included when withComponent is called
- * @typeparam StyleProps  Params passed to styles but not exposed as React props. These are normally library provided props
  */
 export interface CreateStyledComponent<
   ComponentProps extends {},
-  SpecificComponentProps extends {} = {},
-  StyleProps extends {} = {}
+  SpecificComponentProps extends {} = {}
 > {
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
@@ -74,7 +61,6 @@ export interface CreateStyledComponent<
       Interpolation<
         ComponentProps &
           SpecificComponentProps &
-          StyleProps &
           AdditionalProps & { theme: Theme }
       >
     >
@@ -82,9 +68,7 @@ export interface CreateStyledComponent<
 
   (
     template: TemplateStringsArray,
-    ...styles: Array<
-      Interpolation<ComponentProps & SpecificComponentProps & StyleProps>
-    >
+    ...styles: Array<Interpolation<ComponentProps & SpecificComponentProps>>
   ): StyledComponent<ComponentProps, SpecificComponentProps>
 
   /**
@@ -96,7 +80,6 @@ export interface CreateStyledComponent<
       Interpolation<
         ComponentProps &
           SpecificComponentProps &
-          StyleProps &
           AdditionalProps & { theme: Theme }
       >
     >
