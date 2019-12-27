@@ -19,7 +19,7 @@
   "files": [
     "src",
     "dist",
-    "types"
+    "types/*.d.ts"
   ],
   "browser": {
     "./dist/weak-memoize.cjs.js": "./dist/weak-memoize.browser.cjs.js",

@@ -40,7 +40,7 @@
     "src",
     "dist",
     "base",
-    "types",
+    "types/*.d.ts",
     "macro.d.ts",
     "macro.js",
     "macro.js.flow"

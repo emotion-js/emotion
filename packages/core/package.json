@@ -11,7 +11,7 @@
   "files": [
     "src",
     "dist",
-    "types",
+    "types/*.d.ts",
     "macro.js",
     "macro.d.ts",
     "macro.js.flow"
