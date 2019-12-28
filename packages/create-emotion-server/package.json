@@ -7,7 +7,7 @@
   "files": [
     "src",
     "dist",
-    "types"
+    "types/*.d.ts"
   ],
   "scripts": {
     "test:typescript": "dtslint types"

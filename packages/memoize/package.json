@@ -19,7 +19,7 @@
   "files": [
     "src",
     "dist",
-    "types"
+    "types/*.d.ts"
   ],
   "browser": {
     "./dist/memoize.cjs.js": "./dist/memoize.browser.cjs.js",
