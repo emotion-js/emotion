@@ -174,3 +174,29 @@ Array [
   />,
 ]
 `;
+
+exports[`shouldForwardProp with no options works 1`] = `
+.emotion-0,
+.emotion-0 * {
+  fill: #0000ff;
+}
+
+<svg
+  className="emotion-0 emotion-1"
+  color="#0000ff"
+  height="100px"
+  width="100px"
+>
+  <rect
+    height="100"
+    style={
+      Object {
+        "stroke": "#ff0000",
+      }
+    }
+    width="100"
+    x="10"
+    y="10"
+  />
+</svg>
+`;

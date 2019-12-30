@@ -270,4 +270,33 @@ describe('Emotion primitives', () => {
       }
     })
   })
+
+  test('shouldForwardProp with no options works', () => {
+    let forwardedProps: any
+    const Title = props => {
+      forwardedProps = props
+      return null
+    }
+    const StyledTitle = styled(Title, {
+      shouldForwardProp: {}
+    })`
+      color: ${props => props.color};
+    `
+
+    renderer.create(
+      // $FlowFixMe
+      <StyledTitle color="hotpink" disabled>
+        {'Emotion'}
+      </StyledTitle>
+    )
+
+    expect(forwardedProps).toEqual({
+      children: 'Emotion',
+      color: 'hotpink',
+      disabled: true,
+      style: {
+        color: 'hotpink'
+      }
+    })
+  })
 })
