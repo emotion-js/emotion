@@ -4,6 +4,7 @@ import type { ElementType } from 'react'
 import {
   getDefaultShouldForwardProp,
   type StyledOptions,
+  type ShouldForwardPropsOptions,
   type CreateStyled,
   type PrivateStyledComponent
 } from './utils'
@@ -32,13 +33,20 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
   if (options !== undefined) {
     identifierName = options.label
     targetClassName = options.target
+
+    const userShouldForwardProp = options.shouldForwardProp
+      ? typeof options.shouldForwardProp === 'function'
+        ? options.shouldForwardProp
+        : createPropFilter(options.shouldForwardProp)
+      : options.shouldForwardProp
+
     shouldForwardProp =
-      tag.__emotion_forwardProp && options.shouldForwardProp
+      tag.__emotion_forwardProp && userShouldForwardProp
         ? propName =>
             tag.__emotion_forwardProp(propName) &&
             // $FlowFixMe
-            options.shouldForwardProp(propName)
-        : options.shouldForwardProp
+            userShouldForwardProp(propName)
+        : userShouldForwardProp
   }
   const isReal = tag.__emotion_real === tag
   const baseTag = (isReal && tag.__emotion_base) || tag
@@ -206,6 +214,20 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
 
     return Styled
   }
+}
+
+const defaultInclude = ['children']
+function createPropFilter({ include, exclude }: ShouldForwardPropsOptions) {
+  if (include) {
+    return (prop: string) =>
+      defaultInclude.indexOf(prop) !== -1 || include.indexOf(prop) !== -1
+  }
+
+  if (exclude) {
+    return (prop: string) => exclude.indexOf(prop) === -1
+  }
+
+  return undefined
 }
 
 export default createStyled

@@ -178,7 +178,33 @@ const App = () => (
 
 Sometimes you want to wrap an existing component and override the type of a prop. Emotion allows you to specify a `shouldForwardProp` hook to filter properties which should be passed to the wrapped component.
 
-If you make should `shouldForwardProp` a [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards) then only the props from the type guard will be exposed.
+NOTE: If possible, Emotion will only expose forwarded props as props on the styled component. If you want specify filtered component props add them as additional styled props.
+
+#### Filter Options
+
+You can pass an options object to shouldForwardProp instructing emotion which props to include and exclude.
+
+``` ts
+// Include specified props
+const StyledOriginal = styled(Original, {
+  shouldForwardProp: { include: ['prop1'] }
+})<StyledOriginalExtraProps>(props => {
+  // props.prop2 will be `number`
+  return {}
+})
+
+// Exclude specified props
+const StyledOriginal = styled(Original, {
+  shouldForwardProp: { exclude: ['prop2'] }
+})<StyledOriginalExtraProps>(props => {
+  // props.prop2 will be `number`
+  return {}
+})
+```
+
+#### Custom filter
+
+If you make should `shouldForwardProp` a [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards) then only the props from the type guard will be exposed. Emotion also supports plain functions, though will provide a bit less type safety for your components.
 
 For example:
 
@@ -201,33 +227,6 @@ const StyledOriginal = styled(Original, {
 ;<StyledOriginal prop1="1" prop2={2} />
 ```
 
-#### Filter props helper
-
-You can use this helper in your project if you want a more concise forward prop syntax
-
-``` ts
-/**
- * Use `createPropFilter` with shouldForwardProp to filter out props. Will automatically filter out `theme`
- * since this prop is passed via emotion's context.
- */
-
-export function createPropFilter<ComponentProps extends {}>() {
-    return function<Omitted extends PropertyKey>(propsToOmit: Omitted[], stripNonHTML?: boolean) {
-        return function(prop: PropertyKey): prop is Exclude<keyof ComponentProps, Omitted> {
-            return stripNonHTML
-                ? isPropValid(prop) && propsToOmit.indexOf(prop as any) === -1
-                : propsToOmit.indexOf(prop as any) === -1
-        }
-    }
-}
-
-```
-
-It's usage is:
-
-``` ts
-createPropFilter<ComponentProps>()('filterThis')
-```
 
 ### Passing props when styling a React component
 

@@ -4,9 +4,15 @@ import isPropValid from '@emotion/is-prop-valid'
 
 export type Interpolations = Array<any>
 
+export type ShouldForwardPropsOptions = {
+  /** If specified, exclude will not be used */
+  include?: Array<string>,
+  exclude?: Array<string>
+}
+
 export type StyledOptions = {
   label?: string,
-  shouldForwardProp?: string => boolean,
+  shouldForwardProp?: ShouldForwardPropsOptions | ((prop: string) => boolean),
   target?: string
 }
 

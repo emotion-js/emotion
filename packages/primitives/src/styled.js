@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { StyleSheet, View, Text, Image } from 'react-primitives'
-import { createStyled } from '@emotion/primitives-core'
+import { createStyled, StyledOptions } from '@emotion/primitives-core'
 import {
   testPickPropsOnPrimitiveComponent,
   testPickPropsOnOtherComponent
@@ -24,7 +24,10 @@ function getShouldForwardProp(component: React.ElementType) {
 
 type CreateStyledComponent = (...styles: any) => React.ElementType
 
-type BaseStyled = (tag: React.ElementType) => CreateStyledComponent
+type BaseStyled = (
+  tag: React.ElementType,
+  options?: StyledOptions
+) => CreateStyledComponent
 
 export type Styled = BaseStyled & {
   View: CreateStyledComponent,

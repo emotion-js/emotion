@@ -104,6 +104,56 @@ exports[`prop filtering on composed styled components that are string tags 1`] =
 </a>
 `;
 
+exports[`shouldForwardProp exclude option works 1`] = `
+.emotion-0,
+.emotion-0 * {
+  fill: #0000ff;
+}
+
+<svg
+  className="emotion-0 emotion-1"
+  height="100px"
+  width="100px"
+>
+  <rect
+    height="100"
+    style={
+      Object {
+        "stroke": "#ff0000",
+      }
+    }
+    width="100"
+    x="10"
+    y="10"
+  />
+</svg>
+`;
+
+exports[`shouldForwardProp include option works 1`] = `
+.emotion-0,
+.emotion-0 * {
+  fill: #0000ff;
+}
+
+<svg
+  className="emotion-0 emotion-1"
+  height="100px"
+  width="100px"
+>
+  <rect
+    height="100"
+    style={
+      Object {
+        "stroke": "#ff0000",
+      }
+    }
+    width="100"
+    x="10"
+    y="10"
+  />
+</svg>
+`;
+
 exports[`shouldForwardProp should get inherited for wrapped styled components 1`] = `
 Array [
   .emotion-0 {

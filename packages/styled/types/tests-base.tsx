@@ -98,6 +98,18 @@ const Canvas0 = styled('canvas', {
 })`
   width: 200px;
 `
+const Canvas2 = styled('canvas', {
+  shouldForwardProp: { include: ['width', 'height'] }
+})`
+  width: 200px;
+`
+
+const Canvas3 = styled('canvas', {
+  shouldForwardProp: { exclude: ['id'] }
+})`
+  width: 200px;
+`
+
 const Canvas1 = styled('canvas', {
   shouldForwardProp(propName) {
     return propName === 'width' || propName === 'height'
@@ -105,10 +117,27 @@ const Canvas1 = styled('canvas', {
 })({
   width: '200px'
 })
-;<Canvas0 />
+;<Canvas0 width="1">
+  <div />
+</Canvas0>
+// While techinically we could expose the component props here to be available to the styles
+// we only expose forwarded props, and expect the user to either forward those component props
+// or add them explicitly as props for the styles.
+// Otherwise the user may pass inbuilt component props and wonder why they are not forwarded
 // $ExpectError
-;<Canvas0 id="id-should-be-filtered" />
-;<Canvas1 />
+;<Canvas0 id="id-should-be-filtered" width="1">
+  <div />
+</Canvas0>
+// $ExpectError
+;<Canvas2 id="id-should-be-filtered" width="1">
+  <div />
+</Canvas2>
+;<Canvas1 width="1" id="canv">
+  <div />
+</Canvas1>
+;<Canvas3 width="1" id="canv">
+  <div />
+</Canvas3>
 
 const styledWithForwardedExtraProp = styled('div', {
   shouldForwardProp: prop => prop !== 'priority' && isPropValid(prop)

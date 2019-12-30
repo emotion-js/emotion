@@ -48,6 +48,63 @@ test('custom shouldForwardProp works', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('shouldForwardProp exclude option works', () => {
+  const Svg = props => (
+    <svg {...props}>
+      <rect
+        x="10"
+        y="10"
+        height="100"
+        width="100"
+        style={{ stroke: '#ff0000' }}
+      />
+    </svg>
+  )
+
+  const StyledSvg = styled(Svg, {
+    shouldForwardProp: { exclude: ['color'] }
+  })`
+    &,
+    & * {
+      fill: ${({ color }) => color};
+    }
+  `
+
+  const tree = renderer
+    .create(<StyledSvg color="#0000ff" width="100px" height="100px" />)
+    .toJSON()
+  // color should not be passed
+  expect(tree).toMatchSnapshot()
+})
+
+test('shouldForwardProp include option works', () => {
+  const Svg = props => (
+    <svg {...props}>
+      <rect
+        x="10"
+        y="10"
+        height="100"
+        width="100"
+        style={{ stroke: '#ff0000' }}
+      />
+    </svg>
+  )
+
+  const StyledSvg = styled(Svg, {
+    shouldForwardProp: { include: ['className', 'width', 'height'] }
+  })`
+    &,
+    & * {
+      fill: ${({ color }) => color};
+    }
+  `
+
+  const tree = renderer
+    .create(<StyledSvg color="#0000ff" width="100px" height="100px" />)
+    .toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('shouldForwardProp should get inherited for wrapped styled components', () => {
   const Div1 = styled('div', {
     shouldForwardProp: prop => prop !== 'color'

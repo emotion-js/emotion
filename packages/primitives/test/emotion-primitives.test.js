@@ -188,18 +188,86 @@ describe('Emotion primitives', () => {
   })
 
   test('custom shouldForwardProp works', () => {
-    const Text = styled.Text``
-    const Title = props => <Text {...props} />
-    // $FlowFixMe
+    let forwardedProps: any
+    const Title = props => {
+      forwardedProps = props
+      return null
+    }
     const StyledTitle = styled(Title, {
       shouldForwardProp: prop => prop !== 'color' && prop !== 'theme'
     })`
       color: ${props => props.color};
     `
 
-    const tree = renderer
-      .create(<StyledTitle color="hotpink">{'Emotion'}</StyledTitle>)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    renderer.create(
+      // $FlowFixMe
+      <StyledTitle color="hotpink" disabled>
+        {'Emotion'}
+      </StyledTitle>
+    )
+
+    expect(forwardedProps).toEqual({
+      children: 'Emotion',
+      disabled: true,
+      style: {
+        color: 'hotpink'
+      }
+    })
+  })
+
+  test('shouldForwardProp exclude option works', () => {
+    let forwardedProps: any
+    const Title = props => {
+      forwardedProps = props
+      return null
+    }
+    const StyledTitle = styled(Title, {
+      shouldForwardProp: { exclude: ['color', 'theme'] }
+    })`
+      color: ${props => props.color};
+    `
+
+    renderer.create(
+      // $FlowFixMe
+      <StyledTitle color="hotpink" disabled>
+        {'Emotion'}
+      </StyledTitle>
+    )
+
+    expect(forwardedProps).toEqual({
+      children: 'Emotion',
+      disabled: true,
+      style: {
+        color: 'hotpink'
+      }
+    })
+  })
+
+  test('shouldForwardProp include option works', () => {
+    let forwardedProps: any
+    const Title = props => {
+      forwardedProps = props
+      return null
+    }
+    const StyledTitle = styled(Title, {
+      shouldForwardProp: { include: ['disabled'] }
+    })`
+      color: ${props => props.color};
+    `
+
+    renderer.create(
+      // $FlowFixMe
+      <StyledTitle color="hotpink" disabled>
+        {'Emotion'}
+      </StyledTitle>
+    )
+
+    expect(forwardedProps).toEqual({
+      children: 'Emotion',
+      disabled: true,
+      style: {
+        color: 'hotpink'
+      }
+    })
   })
 })

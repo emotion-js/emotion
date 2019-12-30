@@ -13,12 +13,19 @@ export {
 
 export { ComponentSelector, Interpolation }
 
+export interface ShouldForwardPropsIncludeOptions<Keys extends PropertyKey> {
+  include: Array<Keys>
+}
+export interface ShouldForwardPropsExcludeOptions<Keys extends PropertyKey> {
+  exclude: Array<Keys>
+}
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<
   Props,
   ForwardedProps extends keyof Props = keyof Props
 > {
   label?: string
+  target?: string
   /**
    * Type guarded version of should forward prop
    *
@@ -29,14 +36,33 @@ export interface FilteringStyledOptions<
    * @example (propName): propName is Exclude<keyof ComponentProps, 'color'> => propName !== 'color'
    * @example (propName: string): propName is Exclude<keyof ComponentProps, 'color' | 'other'> => !['color', 'other'].includes(propName)
    */
-  shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps
+  shouldForwardProp(propName: PropertyKey): propName is ForwardedProps
+}
+export interface StyledOptionsIncludeFilter<
+  Props,
+  IncludeProps extends keyof Props = keyof Props
+> {
+  label?: string
   target?: string
+  shouldForwardProp: ShouldForwardPropsIncludeOptions<IncludeProps>
+}
+
+export interface StyledOptionsExcludeFilter<
+  Props,
+  ExcludeProps extends keyof Props = keyof Props
+> {
+  label?: string
+  target?: string
+  shouldForwardProp: ShouldForwardPropsExcludeOptions<ExcludeProps>
 }
 
 export interface StyledOptions<Props> {
   label?: string
-  shouldForwardProp?(propName: PropertyKey): boolean
   target?: string
+  shouldForwardProp?:
+    | ShouldForwardPropsExcludeOptions<PropertyKey>
+    | ShouldForwardPropsIncludeOptions<PropertyKey>
+    | ((propName: PropertyKey) => boolean)
 }
 
 /**
@@ -82,7 +108,10 @@ export interface CreateStyledComponent<
           AdditionalProps & { theme: Theme }
       >
     >
-  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
+  ): StyledComponent<
+    ComponentProps & AdditionalProps & { theme?: Theme },
+    SpecificComponentProps
+  >
 
   (
     template: TemplateStringsArray,
@@ -101,7 +130,10 @@ export interface CreateStyledComponent<
           AdditionalProps & { theme: Theme }
       >
     >
-  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
+  ): StyledComponent<
+    ComponentProps & AdditionalProps & { theme?: Theme },
+    SpecificComponentProps
+  >
 }
 
 /**
@@ -114,6 +146,29 @@ export interface CreateStyledComponent<
  * @example styled('div')<Props>(props => ({ width: props.width })
  */
 export interface CreateStyled {
+  // Component + shouldForwardProp: { include: [] }
+  <
+    C extends React.ComponentType<React.ComponentProps<C>>,
+    IncludedProps extends keyof React.ComponentProps<
+      C
+    > = keyof React.ComponentProps<C>
+  >(
+    component: C,
+    options: StyledOptionsIncludeFilter<PropsOf<C>, IncludedProps>
+  ): CreateStyledComponent<Pick<PropsOf<C>, IncludedProps>>
+
+  // Component + shouldForwardProp: { exclude: [] }
+  <
+    C extends React.ComponentType<React.ComponentProps<C>>,
+    ExcludedProps extends keyof React.ComponentProps<
+      C
+    > = keyof React.ComponentProps<C>
+  >(
+    component: C,
+    options: StyledOptionsExcludeFilter<PropsOf<C>, ExcludedProps>
+  ): CreateStyledComponent<Exclude<PropsOf<C>, ExcludedProps>>
+
+  // Component + shouldForwardProp: (prop): prop is 'x' => boolean (type guard)
   <
     C extends React.ComponentType<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<
@@ -122,28 +177,55 @@ export interface CreateStyled {
   >(
     component: C,
     options: FilteringStyledOptions<PropsOf<C>, ForwardedProps>
-  ): CreateStyledComponent<Pick<PropsOf<C>, ForwardedProps> & { theme?: Theme }>
+  ): CreateStyledComponent<Pick<PropsOf<C>, ForwardedProps>>
 
+  // Component + no prop forwarding config
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions<PropsOf<C>>
-  ): CreateStyledComponent<PropsOf<C> & { theme?: Theme }>
+  ): CreateStyledComponent<PropsOf<C>>
 
+  // JSX + shouldForwardProp: { include: [] }
+  <
+    Tag extends keyof JSX.IntrinsicElements,
+    IncludedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag]
+  >(
+    tag: Tag,
+    options: StyledOptionsIncludeFilter<
+      JSX.IntrinsicElements[Tag],
+      IncludedProps
+    >
+  ): CreateStyledComponent<{}, Pick<JSX.IntrinsicElements[Tag], IncludedProps>>
+
+  // JSX + shouldForwardProp: { exclude: [] }
+  <
+    Tag extends keyof JSX.IntrinsicElements,
+    ExcludedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag]
+  >(
+    tag: Tag,
+    options: StyledOptionsExcludeFilter<
+      JSX.IntrinsicElements[Tag],
+      ExcludedProps
+    >
+  ): CreateStyledComponent<
+    {},
+    Exclude<JSX.IntrinsicElements[Tag], ExcludedProps>
+  >
+
+  // JSX + shouldForwardProp: (prop): prop is 'x' => boolean (type guard)
   <
     Tag extends keyof JSX.IntrinsicElements,
     ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag]
   >(
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>
-  ): CreateStyledComponent<
-    { theme?: Theme },
-    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
-  >
+  ): CreateStyledComponent<{}, Pick<JSX.IntrinsicElements[Tag], ForwardedProps>>
 
+  // JSX + no prop forwarding config
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions<JSX.IntrinsicElements[Tag]>
-  ): CreateStyledComponent<{ theme?: Theme }, JSX.IntrinsicElements[Tag]>
+  ): CreateStyledComponent<{}, JSX.IntrinsicElements[Tag]>
 }
 
 declare const styled: CreateStyled

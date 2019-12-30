@@ -10,8 +10,27 @@ type CreateStyledOptions = {
   getShouldForwardProp: (cmp: React.ElementType) => (prop: string) => boolean
 }
 
+type ShouldForwardPropsOptions = {
+  /** If specified, exclude will not be used */
+  include?: Array<string>,
+  exclude?: Array<string>
+}
 type StyledOptions = {
-  shouldForwardProp?: (prop: string) => boolean
+  shouldForwardProp?: ShouldForwardPropsOptions | ((prop: string) => boolean)
+}
+
+const defaultInclude = ['children']
+function createPropFilter({ include, exclude }: ShouldForwardPropsOptions) {
+  if (include) {
+    return (prop: string) =>
+      defaultInclude.indexOf(prop) !== -1 || include.indexOf(prop) !== -1
+  }
+
+  if (exclude) {
+    return (prop: string) => exclude.indexOf(prop) === -1
+  }
+
+  return undefined
 }
 
 export function createStyled(
@@ -28,7 +47,10 @@ export function createStyled(
   ) {
     let shouldForwardProp =
       options && options.shouldForwardProp
-        ? options.shouldForwardProp
+        ? typeof options.shouldForwardProp === 'function'
+          ? options.shouldForwardProp
+          : createPropFilter(options.shouldForwardProp) ||
+            getShouldForwardProp(component)
         : getShouldForwardProp(component)
 
     return function createStyledComponent(...rawStyles: *) {
