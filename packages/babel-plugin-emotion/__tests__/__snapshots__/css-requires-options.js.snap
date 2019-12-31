@@ -1,5 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`babel css inline autoLabel set to always - complex expression 1`] = `
+"
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles)
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from 'emotion';
+import fooStyles from './foo';
+let cls =
+/*#__PURE__*/
+css(fooStyles, \\";label:cls\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnZW1vdGlvbidcbiAgICBpbXBvcnQgZm9vU3R5bGVzIGZyb20gJy4vZm9vJ1xuICAgIGxldCBjbHMgPSBjc3MoZm9vU3R5bGVzKVxuICAgICJdfQ== */\\"));"
+`;
+
+exports[`babel css inline autoLabel set to always - complex expression, last arg string 1`] = `
+"
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles, 'color: hotpink;')
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from 'emotion';
+import fooStyles from './foo';
+let cls =
+/*#__PURE__*/
+css(fooStyles, \\"color: hotpink;;label:cls\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnZW1vdGlvbidcbiAgICBpbXBvcnQgZm9vU3R5bGVzIGZyb20gJy4vZm9vJ1xuICAgIGxldCBjbHMgPSBjc3MoZm9vU3R5bGVzLCAnY29sb3I6IGhvdHBpbms7JylcbiAgICAiXX0= */\\"));"
+`;
+
+exports[`babel css inline autoLabel set to always 1`] = `
+"
+    import { css } from 'emotion'
+    let cls = css({color:'hotpink'})
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+import { css } from 'emotion';
+let cls =
+/*#__PURE__*/
+css(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"6kh100-cls\\",
+  styles: \\"color:hotpink;label:cls;\\"
+} : {
+  name: \\"6kh100-cls\\",
+  styles: \\"color:hotpink;label:cls;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnZW1vdGlvbidcbiAgICBsZXQgY2xzID0gY3NzKHtjb2xvcjonaG90cGluayd9KVxuICAgICJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});"
+`;
+
+exports[`babel css inline autoLabel set to never - complex expression 1`] = `
+"
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles)
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from 'emotion';
+import fooStyles from './foo';
+let cls =
+/*#__PURE__*/
+css(fooStyles, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnZW1vdGlvbidcbiAgICBpbXBvcnQgZm9vU3R5bGVzIGZyb20gJy4vZm9vJ1xuICAgIGxldCBjbHMgPSBjc3MoZm9vU3R5bGVzKVxuICAgICJdfQ== */\\");"
+`;
+
+exports[`babel css inline autoLabel set to never 1`] = `
+"
+    import { css } from 'emotion'
+    let cls = css({color:'hotpink'})
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+import { css } from 'emotion';
+let cls =
+/*#__PURE__*/
+css(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnZW1vdGlvbidcbiAgICBsZXQgY2xzID0gY3NzKHtjb2xvcjonaG90cGluayd9KVxuICAgICJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});"
+`;
+
 exports[`babel css inline code already transpiled by emotion plugin (avoid double transpilation) 1`] = `
 "
     import { keyframes as _keyframes } from \\"emotion\\";

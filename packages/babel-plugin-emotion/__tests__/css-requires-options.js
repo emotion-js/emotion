@@ -148,6 +148,49 @@ const cases = {
     `,
     plugins: [plugin],
     babelFileName: __filename
+  },
+  'autoLabel set to always': {
+    code: `
+    import { css } from 'emotion'
+    let cls = css({color:'hotpink'})
+    `,
+    plugins: [[plugin, { autoLabel: 'always' }]],
+    babelFileName: __filename
+  },
+  'autoLabel set to always - complex expression': {
+    code: `
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles)
+    `,
+    plugins: [[plugin, { autoLabel: 'always' }]],
+    babelFileName: __filename
+  },
+  'autoLabel set to always - complex expression, last arg string': {
+    code: `
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles, 'color: hotpink;')
+    `,
+    plugins: [[plugin, { autoLabel: 'always' }]],
+    babelFileName: __filename
+  },
+  'autoLabel set to never': {
+    code: `
+    import { css } from 'emotion'
+    let cls = css({color:'hotpink'})
+    `,
+    plugins: [[plugin, { autoLabel: 'never' }]],
+    babelFileName: __filename
+  },
+  'autoLabel set to never - complex expression': {
+    code: `
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles)
+    `,
+    plugins: [[plugin, { autoLabel: 'never' }]],
+    babelFileName: __filename
   }
 }
 babelTester('babel css inline', cases)
