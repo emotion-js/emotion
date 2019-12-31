@@ -39,7 +39,7 @@ export let transformExpressionWithStyles = ({
   shouldLabel: boolean,
   sourceMap?: string
 }): { node?: *, isPure: boolean } => {
-  const autoLabel = state.opts.autoLabel || 'auto'
+  const autoLabel = state.opts.autoLabel || 'dev-only'
   let t = babel.types
   if (t.isTaggedTemplateExpression(path)) {
     const expressions = getExpressionsFromTemplateLiteral(path.node.quasi, t)
@@ -113,7 +113,7 @@ export let transformExpressionWithStyles = ({
           state.file.path.unshiftContainer('body', [cssObjectToString])
         }
 
-        if (label && autoLabel === 'auto') {
+        if (label && autoLabel === 'dev-only') {
           res = serializeStyles([`${cssString};label:${label};`])
         }
 
@@ -136,7 +136,7 @@ export let transformExpressionWithStyles = ({
       const labelString = `;label:${label}`
 
       switch (autoLabel) {
-        case 'auto': {
+        case 'dev-only': {
           const labelConditional = createNodeEnvConditional(
             t,
             t.stringLiteral(''),

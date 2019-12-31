@@ -3,7 +3,7 @@ import { getLabelFromPath } from './label'
 import { getTargetClassName } from './get-target-class-name'
 
 export let getStyledOptions = (t: *, path: *, state: *) => {
-  const autoLabel = state.opts.autoLabel || 'auto'
+  const autoLabel = state.opts.autoLabel || 'dev-only'
   let properties = [
     t.objectProperty(
       t.identifier('target'),

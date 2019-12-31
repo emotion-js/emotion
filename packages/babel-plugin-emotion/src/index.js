@@ -73,7 +73,7 @@ export type BabelPath = any
 
 export type EmotionBabelPluginPass = any
 
-const AUTO_LABEL_VALUES = ['auto', 'never', 'always']
+const AUTO_LABEL_VALUES = ['dev-only', 'never', 'always']
 
 export default function(babel: *, options: *) {
   if (
