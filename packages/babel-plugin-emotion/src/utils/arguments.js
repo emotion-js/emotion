@@ -1,7 +1,11 @@
 // @flow
 import { isTaggedTemplateExpressionTranspiledByTypeScript } from './checks'
 
-export const appendExpressionToArguments = (t: *, path: *, expression: *) => {
+export const appendStringReturningExpressionToArguments = (
+  t: *,
+  path: *,
+  expression: *
+) => {
   let lastIndex = path.node.arguments.length - 1
   let last = path.node.arguments[lastIndex]
   if (t.isStringLiteral(last)) {

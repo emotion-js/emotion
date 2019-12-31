@@ -5,7 +5,7 @@ import { getExpressionsFromTemplateLiteral } from './minify'
 import { getLabelFromPath } from './label'
 import { getSourceMap } from './source-maps'
 import { simplifyObject } from './object-to-string'
-import { appendExpressionToArguments } from './arguments'
+import { appendStringReturningExpressionToArguments } from './arguments'
 import { appendStringToArguments, joinStringLiterals } from './strings'
 
 const CSS_OBJECT_STRINGIFIED_ERROR =
@@ -142,7 +142,7 @@ export let transformExpressionWithStyles = ({
             t.stringLiteral(''),
             t.stringLiteral(labelString)
           )
-          appendExpressionToArguments(t, path, labelConditional)
+          appendStringReturningExpressionToArguments(t, path, labelConditional)
           break
         }
         case 'always':
@@ -157,7 +157,7 @@ export let transformExpressionWithStyles = ({
         t.stringLiteral(''),
         t.stringLiteral(sourceMap)
       )
-      appendExpressionToArguments(t, path, sourceMapConditional)
+      appendStringReturningExpressionToArguments(t, path, sourceMapConditional)
     }
 
     return { node: undefined, isPure }
