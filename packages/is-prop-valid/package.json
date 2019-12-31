@@ -22,7 +22,7 @@
   "files": [
     "src",
     "dist",
-    "types"
+    "types/*.d.ts"
   ],
   "browser": {
     "./dist/is-prop-valid.cjs.js": "./dist/is-prop-valid.browser.cjs.js",

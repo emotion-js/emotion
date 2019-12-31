@@ -30,6 +30,6 @@
   "files": [
     "src",
     "dist",
-    "types"
+    "types/*.d.ts"
   ]
 }

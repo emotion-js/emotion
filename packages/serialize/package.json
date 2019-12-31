@@ -26,7 +26,7 @@
   "files": [
     "src",
     "dist",
-    "types"
+    "types/*.d.ts"
   ],
   "browser": {
     "./dist/serialize.cjs.js": "./dist/serialize.browser.cjs.js",

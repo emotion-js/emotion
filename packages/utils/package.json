@@ -20,7 +20,7 @@
   "files": [
     "src",
     "dist",
-    "types"
+    "types/*.d.ts"
   ],
   "devDependencies": {
     "dtslint": "^0.3.0"
