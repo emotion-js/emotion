@@ -5,8 +5,10 @@ import { getExpressionsFromTemplateLiteral } from './minify'
 import { getLabelFromPath } from './label'
 import { getSourceMap } from './source-maps'
 import { simplifyObject } from './object-to-string'
-import { appendStringReturningExpressionToArguments } from './arguments'
-import { appendStringToArguments, joinStringLiterals } from './strings'
+import {
+  appendStringReturningExpressionToArguments,
+  joinStringLiterals
+} from './strings'
 
 const CSS_OBJECT_STRINGIFIED_ERROR =
   "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
@@ -146,7 +148,7 @@ export let transformExpressionWithStyles = ({
           break
         }
         case 'always':
-          appendStringToArguments(path, labelString, t)
+          appendStringReturningExpressionToArguments(t, path, labelString)
           break
       }
     }
