@@ -31,7 +31,7 @@ yarn add @emotion/babel-preset-css-prop
 +   [
 +     "@emotion/babel-preset-css-prop",
 +     {
-+       "autoLabel": true,
++       "autoLabel": "dev-only",
 +       "labelFormat": "[local]"
 +     }
 +   ]
@@ -40,7 +40,7 @@ yarn add @emotion/babel-preset-css-prop
 -   [
 -     "emotion",
 -     {
--       "autoLabel": true,
+-       "autoLabel": "dev-only",
 -       "labelFormat": "[local]"
 -     }
 -   ]
@@ -146,7 +146,7 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
   "presets": [
     "@emotion/babel-preset-css-prop",
     {
-      "autoLabel": true,
+      "autoLabel": "dev-only",
       "labelFormat": "[local]",
       "useBuiltIns": false,
       "throwIfNamespace": true
