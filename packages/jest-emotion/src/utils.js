@@ -206,6 +206,11 @@ export function getStyleElements(): Array<HTMLStyleElement> {
   const elements = isBrowser
     ? Array.from(document.querySelectorAll('style[data-emotion]'))
     : []
+  if (!isBrowser) {
+    console.warn(
+      'Getting the style elements requires jsdom. See https://jestjs.io/docs/en/configuration#testenvironment-string for more information.'
+    )
+  }
   // $FlowFixMe
   return elements
 }
