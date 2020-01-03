@@ -10,6 +10,7 @@ The [@emotion/css](https://www.npmjs.com/package/@emotion/css) package is framew
   - [Global Styles — `injectGlobal`](#global-styles)
   - [Animation Keyframes — `keyframes`](#animation-keyframes)
   - [Composing Class Names — `cx`](#cx)
+- [Custom Instances](#custom-instances)
 - [Server Side Rendering](https://emotion.sh/docs/ssr#api)
 - [Babel Plugin](https://emotion.sh/docs/@emotion/babel-plugin)
 
@@ -269,3 +270,76 @@ const cls1 = css`
   className={cx(cls1, 'profile')}
 />
 ```
+
+## Custom Instances
+
+With `@emotion/css/create-instance`, you can provide custom options to Emotion's cache.
+
+The main `@emotion/css` entrypoint can be thought of as a call to `@emotion/css/create-instance` with sensible defaults for most applications.
+
+```javascript
+import createEmotion from '@emotion/css/create-instance'
+
+export const {
+  flush,
+  hydrate,
+  cx,
+  merge,
+  getRegisteredStyles,
+  injectGlobal,
+  keyframes,
+  css,
+  sheet,
+  cache
+} = createEmotion()
+```
+
+### Upside
+
+- Calling it directly will allow for some low level customization.
+
+- Create custom names for emotion APIs to help with migration from other, similar libraries.
+
+- Could set custom `key` to something other than `css`
+
+### Downside
+
+- Introduces some amount of complexity to your application that can vary depending on developer experience.
+
+- Required to keep up with changes in the repo and API at a lower level than if using `emotion` directly
+
+### Primary use cases
+
+- Using emotion in embedded contexts such as an `<iframe/>`
+
+- Setting a [nonce](/packages/cache#nonce-string) on any `<style/>` tag emotion creates for security purposes
+
+- Use emotion with a developer defined `<style/>` tag
+
+- Using emotion with custom stylis plugins
+
+## Multiple instances in a single app example
+
+```jsx
+import createEmotion from '@emotion/css/create-instance'
+
+export const {
+  flush,
+  hydrate,
+  cx,
+  merge,
+  getRegisteredStyles,
+  injectGlobal,
+  keyframes,
+  css,
+  sheet,
+  cache
+} = createEmotion({
+  // The key option is required when there will be multiple instances in a single app
+  key: 'some-key'
+})
+```
+
+## Options
+
+`createEmotion` accepts the same options as [createCache](/packages/cache#options) from `@emotion/cache`.
