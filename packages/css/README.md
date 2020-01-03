@@ -4,17 +4,14 @@ The [@emotion/css](https://www.npmjs.com/package/@emotion/css) package is framew
 
 ## Table of Contents
 
-- [@emotion/css](#emotioncss)
-  - [Table of Contents](#table-of-contents)
-  - [Quick Start](#quick-start)
-  - [API](#api)
-    - [css](#css)
-      - [String Styles](#string-styles)
-      - [Object Styles](#object-styles)
-      - [Array of Object Styles](#array-of-object-styles)
-    - [Global Styles](#global-styles)
-    - [Animation Keyframes](#animation-keyframes)
-    - [cx](#cx)
+- [Quick Start](#quick-start)
+- [API](#api)
+  - [Generate Class Names — `css`](#css)
+  - [Global Styles — `injectGlobal`](#global-styles)
+  - [Animation Keyframes — `keyframes`](#animation-keyframes)
+  - [Composing Class Names — `cx`](#cx)
+- [Server Side Rendering](https://emotion.sh/docs/ssr#api)
+- [Babel Plugin](https://emotion.sh/docs/@emotion/babel-plugin)
 
 ## Quick Start
 
