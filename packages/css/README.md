@@ -306,7 +306,7 @@ export const {
 
 - Introduces some amount of complexity to your application that can vary depending on developer experience.
 
-- Required to keep up with changes in the repo and API at a lower level than if using `emotion` directly
+- Required to keep up with changes in the repo and API at a lower level than if using `@emotion/css` directly
 
 ### Primary use cases
 
@@ -314,7 +314,7 @@ export const {
 
 - Setting a [nonce](/packages/cache#nonce-string) on any `<style/>` tag emotion creates for security purposes
 
-- Use emotion with a developer defined `<style/>` tag
+- Use emotion with a container different than `document.head` for style elements
 
 - Using emotion with custom stylis plugins
 
