@@ -73,7 +73,20 @@ export type BabelPath = any
 
 export type EmotionBabelPluginPass = any
 
-export default function(babel: *) {
+const AUTO_LABEL_VALUES = ['dev-only', 'never', 'always']
+
+export default function(babel: *, options: *) {
+  if (
+    options.autoLabel !== undefined &&
+    !AUTO_LABEL_VALUES.includes(options.autoLabel)
+  ) {
+    throw new Error(
+      `The 'autoLabel' option must be undefined, or one of the following: ${AUTO_LABEL_VALUES.map(
+        s => `"${s}"`
+      ).join(', ')}`
+    )
+  }
+
   let t = babel.types
   return {
     name: 'emotion',

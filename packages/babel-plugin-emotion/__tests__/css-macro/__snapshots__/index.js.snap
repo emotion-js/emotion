@@ -21,11 +21,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 import { jsx, css } from \\"@emotion/core\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"zszx19-SomeComponent\\",
-  styles: \\"color:hotpink;;label:SomeComponent;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"zszx19-SomeComponent\\",
-  styles: \\"color:hotpink;;label:SomeComponent;\\",
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFjdHVhbC1leHBlY3RlZC11c2FnZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLWSIsImZpbGUiOiJhY3R1YWwtZXhwZWN0ZWQtdXNhZ2UuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IGpzeCwgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuY29uc3QgU29tZUNvbXBvbmVudCA9ICgpID0+IChcbiAgPGRpdlxuICAgIGNzcz17Y3NzYFxuICAgICAgY29sb3I6IGhvdHBpbms7XG4gICAgYH1cbiAgLz5cbilcbiJdfQ== */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
@@ -50,11 +50,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 import { css } from \\"@emotion/core\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"k008qs\\",
-  styles: \\"display:flex;\\"
+  name: \\"zjik7\\",
+  styles: \\"display:flex\\"
 } : {
-  name: \\"k008qs\\",
-  styles: \\"display:flex;\\",
+  name: \\"zjik7\\",
+  styles: \\"display:flex\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhc2ljLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdZIiwiZmlsZSI6ImJhc2ljLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuZnVuY3Rpb24gZG9UaGluZygpIHtcbiAgcmV0dXJuIGNzc2BcbiAgICBkaXNwbGF5OiBmbGV4O1xuICBgXG59XG4iXX0= */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
@@ -79,11 +79,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 import { css } from \\"@emotion/core\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\",
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhbGwtZXhwcmVzc2lvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHUyIsImZpbGUiOiJjYWxsLWV4cHJlc3Npb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5mdW5jdGlvbiBkb1RoaW5nKCkge1xuICByZXR1cm4gY3NzKHsgY29sb3I6ICdob3RwaW5rJyB9KVxufVxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
@@ -114,14 +114,14 @@ import { css } from \\"@emotion/core\\";
 const thing =
 /*#__PURE__*/
 css(\\"display:flex;&:hover{\\", process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1yq4vdx-thing\\",
-  styles: \\"color:hotpink;;label:thing;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1yq4vdx-thing\\",
-  styles: \\"color:hotpink;;label:thing;\\",
+  name: \\"1hi0qos-thing\\",
+  styles: \\"color:hotpink;label:thing;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhbGwtaW5zaWRlLWNhbGwuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS1MiLCJmaWxlIjoiY2FsbC1pbnNpZGUtY2FsbC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmNvbnN0IHRoaW5nID0gY3NzYFxuICBkaXNwbGF5OiBmbGV4O1xuICAmOmhvdmVyIHtcbiAgICAke2Nzc2BcbiAgICAgIGNvbG9yOiBob3RwaW5rO1xuICAgIGB9O1xuICB9XG5gXG4iXX0= */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
-}, \\";};label:thing;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhbGwtaW5zaWRlLWNhbGwuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRWlCIiwiZmlsZSI6ImNhbGwtaW5zaWRlLWNhbGwuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jb25zdCB0aGluZyA9IGNzc2BcbiAgZGlzcGxheTogZmxleDtcbiAgJjpob3ZlciB7XG4gICAgJHtjc3NgXG4gICAgICBjb2xvcjogaG90cGluaztcbiAgICBgfTtcbiAgfVxuYFxuIl19 */\\"));"
+}, \\";}\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:thing\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhbGwtaW5zaWRlLWNhbGwuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRWlCIiwiZmlsZSI6ImNhbGwtaW5zaWRlLWNhbGwuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jb25zdCB0aGluZyA9IGNzc2BcbiAgZGlzcGxheTogZmxleDtcbiAgJjpob3ZlciB7XG4gICAgJHtjc3NgXG4gICAgICBjb2xvcjogaG90cGluaztcbiAgICBgfTtcbiAgfVxuYFxuIl19 */\\");"
 `;
 
 exports[`@emotion/core - css macro comment-with-interpolation 1`] = `
@@ -154,20 +154,20 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 
 import { css } from \\"@emotion/core\\";
 process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\",
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbW1lbnQtd2l0aC1pbnRlcnBvbGF0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVHIiwiZmlsZSI6ImNvbW1lbnQtd2l0aC1pbnRlcnBvbGF0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuY3NzYFxuICAvLyBjb2xvcjogJHsnZ3JlZW4nfTtcbiAgLypcblxuICBzb21ldGhpbmc6ICR7J3NvbWV0aGluZyd9O1xuXG4gICovXG4gIGNvbG9yOiBob3RwaW5rO1xuYFxuXG5jc3NgXG4gIC8vIGNvbG9yOiAkeydncmVlbid9O1xuICAvKlxuXG4gIHNvbWV0aGluZzogJHsnc29tZXRoaW5nJ307XG5cbiAgKi9cbiAgY29sb3I6ICR7J2hvdHBpbmsnfTtcbmBcbiJdfQ== */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
 process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\",
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbW1lbnQtd2l0aC1pbnRlcnBvbGF0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVlHIiwiZmlsZSI6ImNvbW1lbnQtd2l0aC1pbnRlcnBvbGF0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuY3NzYFxuICAvLyBjb2xvcjogJHsnZ3JlZW4nfTtcbiAgLypcblxuICBzb21ldGhpbmc6ICR7J3NvbWV0aGluZyd9O1xuXG4gICovXG4gIGNvbG9yOiBob3RwaW5rO1xuYFxuXG5jc3NgXG4gIC8vIGNvbG9yOiAkeydncmVlbid9O1xuICAvKlxuXG4gIHNvbWV0aGluZzogJHsnc29tZXRoaW5nJ307XG5cbiAgKi9cbiAgY29sb3I6ICR7J2hvdHBpbmsnfTtcbmBcbiJdfQ== */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };"
@@ -216,11 +216,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 import { css } from \\"@emotion/core\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\",
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluc2lkZS1hbm9ueW1vdXMtYXJyb3ctZnVuY3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0siLCJmaWxlIjoiaW5zaWRlLWFub255bW91cy1hcnJvdy1mdW5jdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmV4cG9ydCBkZWZhdWx0ICgpID0+IHtcbiAgY3NzYFxuICAgIGNvbG9yOiBob3RwaW5rO1xuICBgXG59XG4iXX0= */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
@@ -247,11 +247,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 import { css } from \\"@emotion/core\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\",
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluc2lkZS1hbm9ueW1vdXMtZnVuY3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0siLCJmaWxlIjoiaW5zaWRlLWFub255bW91cy1mdW5jdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmV4cG9ydCBkZWZhdWx0ICgpID0+IHtcbiAgY3NzYFxuICAgIGNvbG9yOiBob3RwaW5rO1xuICBgXG59XG4iXX0= */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
@@ -288,11 +288,11 @@ import { Component } from 'react';
 import { jsx, css } from \\"@emotion/core\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"zszx19-SomeComponent\\",
-  styles: \\"color:hotpink;;label:SomeComponent;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"zszx19-SomeComponent\\",
-  styles: \\"color:hotpink;;label:SomeComponent;\\",
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluc2lkZS1jbGFzcy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFRZ0IiLCJmaWxlIjoiaW5zaWRlLWNsYXNzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBDb21wb25lbnQgfSBmcm9tICdyZWFjdCdcbmltcG9ydCB7IGpzeCwgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuY2xhc3MgU29tZUNvbXBvbmVudCBleHRlbmRzIENvbXBvbmVudCB7XG4gIHJlbmRlcigpIHtcbiAgICByZXR1cm4gKFxuICAgICAgPGRpdlxuICAgICAgICBjc3M9e2Nzc2BcbiAgICAgICAgICBjb2xvcjogaG90cGluaztcbiAgICAgICAgYH1cbiAgICAgIC8+XG4gICAgKVxuICB9XG59XG4iXX0= */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
@@ -322,11 +322,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 import { css } from \\"@emotion/core\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\",
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluc2lkZS1ub24tcGFzY2FsLWNhc2UtYXJyb3ctZnVuY3Rpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0siLCJmaWxlIjoiaW5zaWRlLW5vbi1wYXNjYWwtY2FzZS1hcnJvdy1mdW5jdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmxldCBzb21ldGhpbmcgPSAoKSA9PiB7XG4gIGNzc2BcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxufVxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
@@ -350,11 +350,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 
 import { css } from \\"@emotion/core\\";
 const thing = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1yq4vdx-thing\\",
-  styles: \\"color:hotpink;;label:thing;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1yq4vdx-thing\\",
-  styles: \\"color:hotpink;;label:thing;\\",
+  name: \\"1hi0qos-thing\\",
+  styles: \\"color:hotpink;label:thing;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLTEuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRWlCIiwiZmlsZSI6ImxhYmVsLTEuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jb25zdCB0aGluZyA9IGNzc2BcbiAgY29sb3I6IGhvdHBpbms7XG5gXG4iXX0= */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };"
@@ -376,8 +376,8 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 import { css } from \\"@emotion/core\\"; // prettier-ignore
 
 const thing = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1hi0qos-thing\\",
-  styles: \\"color:hotpink;label:thing;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
   name: \\"1hi0qos-thing\\",
   styles: \\"color:hotpink;label:thing;\\",
@@ -407,21 +407,21 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 import { css } from \\"@emotion/core\\";
 const thing = {
   thisShouldBeTheLabel: process.env.NODE_ENV === \\"production\\" ? {
-    name: \\"1lsaf1d-thisShouldBeTheLabel\\",
-    styles: \\"color:hotpink;;label:thisShouldBeTheLabel;\\"
+    name: \\"3sn2xs\\",
+    styles: \\"color:hotpink\\"
   } : {
-    name: \\"1lsaf1d-thisShouldBeTheLabel\\",
-    styles: \\"color:hotpink;;label:thisShouldBeTheLabel;\\",
+    name: \\"xjpive-thisShouldBeTheLabel\\",
+    styles: \\"color:hotpink;label:thisShouldBeTheLabel;\\",
     map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLW9iamVjdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHMkIiLCJmaWxlIjoibGFiZWwtb2JqZWN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuY29uc3QgdGhpbmcgPSB7XG4gIHRoaXNTaG91bGRCZVRoZUxhYmVsOiBjc3NgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGAsXG4gIC8vIHByZXR0aWVyLWlnbm9yZVxuICAnc2hvdWxkQmVBbm90aGVyTGFiZWwnOmNzc2BcbiAgICBjb2xvcjpncmVlbjtcbiAgYFxufVxuIl19 */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   },
   // prettier-ignore
   'shouldBeAnotherLabel': process.env.NODE_ENV === \\"production\\" ? {
-    name: \\"7xoeh4-shouldBeAnotherLabel\\",
-    styles: \\"color:green;;label:shouldBeAnotherLabel;\\"
+    name: \\"v98kxt\\",
+    styles: \\"color:green\\"
   } : {
-    name: \\"7xoeh4-shouldBeAnotherLabel\\",
-    styles: \\"color:green;;label:shouldBeAnotherLabel;\\",
+    name: \\"lgalrw-shouldBeAnotherLabel\\",
+    styles: \\"color:green;label:shouldBeAnotherLabel;\\",
     map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLW9iamVjdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFPNEIiLCJmaWxlIjoibGFiZWwtb2JqZWN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuY29uc3QgdGhpbmcgPSB7XG4gIHRoaXNTaG91bGRCZVRoZUxhYmVsOiBjc3NgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGAsXG4gIC8vIHByZXR0aWVyLWlnbm9yZVxuICAnc2hvdWxkQmVBbm90aGVyTGFiZWwnOmNzc2BcbiAgICBjb2xvcjpncmVlbjtcbiAgYFxufVxuIl19 */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   }
@@ -450,7 +450,7 @@ import { __makeTemplateObject } from 'tslib';
 var templateObject_1;
 const someVar =
 /*#__PURE__*/
-css(templateObject_1 || (templateObject_1 = __makeTemplateObject([\\"\\\\n  color: hotpink;\\\\n;label:someVar;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuaW1wb3J0IHsgX19tYWtlVGVtcGxhdGVPYmplY3QgfSBmcm9tICd0c2xpYidcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY29uc3Qgc29tZVZhciA9IGNzcyhcbiAgdGVtcGxhdGVPYmplY3RfMSB8fFxuICAgICh0ZW1wbGF0ZU9iamVjdF8xID0gX19tYWtlVGVtcGxhdGVPYmplY3QoXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ10sXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ11cbiAgICApKVxuKVxuIl19 */\\")], [\\"\\\\n  color: hotpink;\\\\n;label:someVar;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuaW1wb3J0IHsgX19tYWtlVGVtcGxhdGVPYmplY3QgfSBmcm9tICd0c2xpYidcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY29uc3Qgc29tZVZhciA9IGNzcyhcbiAgdGVtcGxhdGVPYmplY3RfMSB8fFxuICAgICh0ZW1wbGF0ZU9iamVjdF8xID0gX19tYWtlVGVtcGxhdGVPYmplY3QoXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ10sXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ11cbiAgICApKVxuKVxuIl19 */\\")])));"
+css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar\\") + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuaW1wb3J0IHsgX19tYWtlVGVtcGxhdGVPYmplY3QgfSBmcm9tICd0c2xpYidcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY29uc3Qgc29tZVZhciA9IGNzcyhcbiAgdGVtcGxhdGVPYmplY3RfMSB8fFxuICAgICh0ZW1wbGF0ZU9iamVjdF8xID0gX19tYWtlVGVtcGxhdGVPYmplY3QoXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ10sXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ11cbiAgICApKVxuKVxuIl19 */\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar\\") + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuaW1wb3J0IHsgX19tYWtlVGVtcGxhdGVPYmplY3QgfSBmcm9tICd0c2xpYidcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY29uc3Qgc29tZVZhciA9IGNzcyhcbiAgdGVtcGxhdGVPYmplY3RfMSB8fFxuICAgICh0ZW1wbGF0ZU9iamVjdF8xID0gX19tYWtlVGVtcGxhdGVPYmplY3QoXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ10sXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ11cbiAgICApKVxuKVxuIl19 */\\")])));"
 `;
 
 exports[`@emotion/core - css macro multiple-calls 1`] = `
@@ -471,20 +471,20 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 
 import { css } from \\"@emotion/core\\";
 const thing = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1yq4vdx-thing\\",
-  styles: \\"color:hotpink;;label:thing;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1yq4vdx-thing\\",
-  styles: \\"color:hotpink;;label:thing;\\",
+  name: \\"1hi0qos-thing\\",
+  styles: \\"color:hotpink;label:thing;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm11bHRpcGxlLWNhbGxzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVpQiIsImZpbGUiOiJtdWx0aXBsZS1jYWxscy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmNvbnN0IHRoaW5nID0gY3NzYFxuICBjb2xvcjogaG90cGluaztcbmBcblxuY29uc3Qgb3RoZXJUaGluZyA9IGNzc2BcbiAgY29sb3I6IGdyZWVuO1xuYFxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
 const otherThing = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"vrj4vp-otherThing\\",
-  styles: \\"color:green;;label:otherThing;\\"
+  name: \\"v98kxt\\",
+  styles: \\"color:green\\"
 } : {
-  name: \\"vrj4vp-otherThing\\",
-  styles: \\"color:green;;label:otherThing;\\",
+  name: \\"onvdw0-otherThing\\",
+  styles: \\"color:green;label:otherThing;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm11bHRpcGxlLWNhbGxzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1zQiIsImZpbGUiOiJtdWx0aXBsZS1jYWxscy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL2NvcmUvbWFjcm8nXG5cbmNvbnN0IHRoaW5nID0gY3NzYFxuICBjb2xvcjogaG90cGluaztcbmBcblxuY29uc3Qgb3RoZXJUaGluZyA9IGNzc2BcbiAgY29sb3I6IGdyZWVuO1xuYFxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };"
@@ -516,11 +516,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 import { css } from \\"@emotion/core\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\",
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9iamVjdC1keW5hbWljLXByb3BlcnR5LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUlLIiwiZmlsZSI6Im9iamVjdC1keW5hbWljLXByb3BlcnR5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuZnVuY3Rpb24gZG9UaGluZygpIHtcbiAgcmV0dXJuIHtcbiAgICBbY3NzKHsgY29sb3I6ICdob3RwaW5rJyB9KV06ICdjb2xkYmx1ZSdcbiAgfVxufVxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
@@ -591,11 +591,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 
 import { css } from \\"@emotion/core\\";
 process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\",
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlbW92ZS1ibG9jay1jb21tZW50cy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFRyIsImZpbGUiOiJyZW1vdmUtYmxvY2stY29tbWVudHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlL21hY3JvJ1xuXG5jc3NgXG4gIC8qIGNvbG9yOmdyZWVuO1xuZGRqZndqa25nXG4gICovXG4gIGNvbG9yOiBob3RwaW5rO1xuYFxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };"
@@ -616,11 +616,11 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 
 import { css } from \\"@emotion/core\\";
 process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\",
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlbW92ZS1saW5lLWNvbW1lbnRzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVHIiwiZmlsZSI6InJlbW92ZS1saW5lLWNvbW1lbnRzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuY3NzYFxuICAvLyBjb2xvcjogZ3JlZW47XG4gIGNvbG9yOiBob3RwaW5rO1xuYFxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };"
@@ -657,5 +657,5 @@ function media(...args) {
 
 const test =
 /*#__PURE__*/
-css(media\`color: red;\`, \\";;label:test;\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFVZ0IiLCJmaWxlIjoidGFnZ2VkLXRlbXBsYXRlLWFyZ3MtZm9yd2FyZGVkLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuZnVuY3Rpb24gbWVkaWEoLi4uYXJncykge1xuICByZXR1cm4gY3NzYFxuICAgIEBtZWRpYSAobWluLXdpZHRoOiAxMDBweCkge1xuICAgICAgJHtjc3MoLi4uYXJncyl9O1xuICAgIH1cbiAgYFxufVxuXG5jb25zdCB0ZXN0ID0gY3NzYFxuICAke21lZGlhYGNvbG9yOiByZWQ7YH07XG5gXG4iXX0= */\\"));"
+css(media\`color: red;\`, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:test\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFVZ0IiLCJmaWxlIjoidGFnZ2VkLXRlbXBsYXRlLWFyZ3MtZm9yd2FyZGVkLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZS9tYWNybydcblxuZnVuY3Rpb24gbWVkaWEoLi4uYXJncykge1xuICByZXR1cm4gY3NzYFxuICAgIEBtZWRpYSAobWluLXdpZHRoOiAxMDBweCkge1xuICAgICAgJHtjc3MoLi4uYXJncyl9O1xuICAgIH1cbiAgYFxufVxuXG5jb25zdCB0ZXN0ID0gY3NzYFxuICAke21lZGlhYGNvbG9yOiByZWQ7YH07XG5gXG4iXX0= */\\");"
 `;

@@ -132,7 +132,7 @@ _Defaults Shown_
       {
         // sourceMap is on by default but source maps are dead code eliminated in production
         "sourceMap": true,
-        "autoLabel": process.env.NODE_ENV !== 'production',
+        "autoLabel": "dev-only",
         "labelFormat": "[local]",
         "cssPropOptimization": true
       }
@@ -183,7 +183,7 @@ This option enables the following:
 
 ### `autoLabel`
 
-`boolean`, defaults to `process.env.NODE_ENV !== 'production'`.
+`'dev-only' | 'always' | 'never'`, , defaults to `dev-only`.
 
 This option enables the following:
 
@@ -193,6 +193,12 @@ This option enables the following:
 - Please note that non word characters in the variable will be removed
   (Eg. `iconStyles$1` will become `iconStyles1`) because `$` is not valid
   [CSS ClassName Selector](https://stackoverflow.com/questions/448981/which-characters-are-valid-in-css-class-names-selectors#449000)
+
+Each possible value for this option produces different output code:
+
+- with `dev-only` we optimize the production code, so there are no labels added there, but at the same time we keep labels for development environments,
+- with `always` we always add labels when possible,
+- with `never` we disable this entirely and no labels are added.
 
 #### css
 
@@ -214,7 +220,7 @@ const brownStyles = /*#__PURE__*/ css({ color: 'brown' }, 'label:brownStyles;')
 
 `string`, defaults to `"[local]"`.
 
-This option only works when `autoLabel` is set to `true`. It allows you to
+This option only works when `autoLabel` is set to `'dev-only'` or `'always'`. It allows you to
 define the format of the resulting `label`. The format is defined via string where
 variable parts are enclosed in square brackets `[]`.
 For example `labelFormat: "my-classname--[local]"`, where `[local]` will be replaced
@@ -235,7 +241,7 @@ be prepended automatically.
 
 ```javascript
 // BrownView.js
-// autoLabel: true
+// autoLabel: 'dev-only'
 // labelFormat: '[filename]--[local]'
 const brownStyles = css({ color: 'brown' })
 ```

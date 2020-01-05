@@ -12,10 +12,10 @@ exports[`does not replace class names that are not from emotion 1`] = `
 
 exports[`jest-emotion with DOM elements disabled does not replace class names or insert styles into DOM element snapshots 1`] = `
 "<div
-  class=\\"css-bcbdq6-divStyle\\"
+  class=\\"css-q1yspt-divStyle\\"
 >
   <svg
-    class=\\"css-1kpuvjo-svgStyle\\"
+    class=\\"css-18ku24t-svgStyle\\"
   />
 </div>"
 `;
