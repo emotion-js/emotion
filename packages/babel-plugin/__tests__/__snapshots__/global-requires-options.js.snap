@@ -13,8 +13,8 @@ export default () => <Global styles={{ color: 'hotpink' }} />
 import * as React from 'react';
 import { Global } from '@emotion/react';
 var _ref = {
-  name: \\"1lrxbo5\\",
-  styles: \\"color:hotpink;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 };
 export default (() => <Global styles={_ref} />);"
 `;

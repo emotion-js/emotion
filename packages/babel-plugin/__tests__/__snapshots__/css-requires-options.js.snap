@@ -1,5 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`babel css inline autoLabel set to always - complex expression 1`] = `
+"
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles)
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from 'emotion';
+import fooStyles from './foo';
+let cls = css(fooStyles);"
+`;
+
+exports[`babel css inline autoLabel set to always - complex expression, last arg string 1`] = `
+"
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles, 'color: hotpink;')
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from 'emotion';
+import fooStyles from './foo';
+let cls = css(fooStyles, 'color: hotpink;');"
+`;
+
+exports[`babel css inline autoLabel set to always 1`] = `
+"
+    import { css } from 'emotion'
+    let cls = css({color:'hotpink'})
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from 'emotion';
+let cls = css({
+  color: 'hotpink'
+});"
+`;
+
+exports[`babel css inline autoLabel set to never - complex expression 1`] = `
+"
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles)
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from 'emotion';
+import fooStyles from './foo';
+let cls = css(fooStyles);"
+`;
+
+exports[`babel css inline autoLabel set to never 1`] = `
+"
+    import { css } from 'emotion'
+    let cls = css({color:'hotpink'})
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css } from 'emotion';
+let cls = css({
+  color: 'hotpink'
+});"
+`;
+
 exports[`babel css inline code already transpiled by emotion plugin (avoid double transpilation) 1`] = `
 "
     import { keyframes as _keyframes } from \\"emotion\\";
@@ -80,11 +150,11 @@ import { css } from '@emotion/css';
 let cls =
 /*#__PURE__*/
 css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1rm02zb-CLS_CSS-REQUIRES-OPTIONS\\",
-  styles: \\"color:hotpink;;label:CLS_CSS-REQUIRES-OPTIONS;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1rm02zb-CLS_CSS-REQUIRES-OPTIONS\\",
-  styles: \\"color:hotpink;;label:CLS_CSS-REQUIRES-OPTIONS;\\",
+  name: \\"wiafqk-CLS_CSS-REQUIRES-OPTIONS\\",
+  styles: \\"color:hotpink;label:CLS_CSS-REQUIRES-OPTIONS;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY3NzJ1xuICAgIGxldCBjbHMgPSBjc3Moe2NvbG9yOidob3RwaW5rJ30pXG4gICAgIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
@@ -104,11 +174,11 @@ import { css } from '@emotion/css';
 let cls =
 /*#__PURE__*/
 css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"mn0r3a-my-css-__tests__-css-requires-options-cls\\",
-  styles: \\"color:hotpink;;label:my-css-__tests__-css-requires-options-cls;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"mn0r3a-my-css-__tests__-css-requires-options-cls\\",
-  styles: \\"color:hotpink;;label:my-css-__tests__-css-requires-options-cls;\\",
+  name: \\"1azqn5t-my-css-__tests__-css-requires-options-cls\\",
+  styles: \\"color:hotpink;label:my-css-__tests__-css-requires-options-cls;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY3NzJ1xuICAgIGxldCBjbHMgPSBjc3Moe2NvbG9yOidob3RwaW5rJ30pXG4gICAgIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
@@ -128,11 +198,11 @@ import { css } from '@emotion/css';
 let cls =
 /*#__PURE__*/
 css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"jnyc7-my-css-css-requires-options-cls\\",
-  styles: \\"color:hotpink;;label:my-css-css-requires-options-cls;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"jnyc7-my-css-css-requires-options-cls\\",
-  styles: \\"color:hotpink;;label:my-css-css-requires-options-cls;\\",
+  name: \\"12j84ju-my-css-css-requires-options-cls\\",
+  styles: \\"color:hotpink;label:my-css-css-requires-options-cls;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY3NzJ1xuICAgIGxldCBjbHMgPSBjc3Moe2NvbG9yOidob3RwaW5rJ30pXG4gICAgIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
@@ -152,11 +222,11 @@ import { css } from '@emotion/css';
 let cls =
 /*#__PURE__*/
 css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"v8qj0c-my-css-some-directory-cls\\",
-  styles: \\"color:hotpink;;label:my-css-some-directory-cls;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"v8qj0c-my-css-some-directory-cls\\",
-  styles: \\"color:hotpink;;label:my-css-some-directory-cls;\\",
+  name: \\"1uf5d32-my-css-some-directory-cls\\",
+  styles: \\"color:hotpink;label:my-css-some-directory-cls;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY3NzJ1xuICAgIGxldCBjbHMgPSBjc3Moe2NvbG9yOidob3RwaW5rJ30pXG4gICAgIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
@@ -176,11 +246,11 @@ import { css } from '@emotion/css';
 let cls =
 /*#__PURE__*/
 css(process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"ryhvpw-my-css-cls\\",
-  styles: \\"color:hotpink;;label:my-css-cls;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"ryhvpw-my-css-cls\\",
-  styles: \\"color:hotpink;;label:my-css-cls;\\",
+  name: \\"1xiywpm-my-css-cls\\",
+  styles: \\"color:hotpink;label:my-css-cls;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVjIiwiZmlsZSI6ImNzcy1yZXF1aXJlcy1vcHRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4gICAgaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY3NzJ1xuICAgIGxldCBjbHMgPSBjc3Moe2NvbG9yOidob3RwaW5rJ30pXG4gICAgIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
@@ -210,5 +280,5 @@ import { css } from '@emotion/react';
 var templateObject_1;
 const someVar =
 /*#__PURE__*/
-css(templateObject_1 || (templateObject_1 = __makeTemplateObject([\\"\\\\n  color: hotpink;\\\\n;label:someVar;\\"], [\\"\\\\n  color: hotpink;\\\\n;label:someVar;\\"])));"
+css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar\\")])));"
 `;

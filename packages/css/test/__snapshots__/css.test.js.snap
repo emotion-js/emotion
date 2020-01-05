@@ -238,7 +238,7 @@ exports[`css flushes correctly 1`] = `
 
 exports[`css flushes correctly 2`] = `
 <div
-  className="css-fnfowi-cls1"
+  className="css-15gpprc-cls1"
 />
 `;
 
@@ -303,7 +303,7 @@ exports[`css manually use label property 1`] = `
 `;
 
 exports[`css manually use label property 2`] = `
-".css-17sz4tf-wow-cls1 {
+".css-3uek40-wow-cls1 {
   color: hotpink;
 }"
 `;

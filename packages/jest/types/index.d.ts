@@ -2,6 +2,12 @@
 // TypeScript Version: 2.9
 
 /// <reference types="jest" />
+
+export interface StyleRuleOptions {
+  target?: string
+  media?: string
+}
+
 export interface EmotionMatchers extends jest.ExpectExtendMap {
   toHaveStyleRule(
     received: any,
@@ -15,10 +21,6 @@ export const matchers: EmotionMatchers
 export interface CreateSerializerOptions {
   classNameReplacer?: (className: string, index: number) => string
   DOMElements?: boolean
-}
-export interface StyleRuleOptions {
-  target?: string
-  media?: string
 }
 export function createSerializer(
   options?: CreateSerializerOptions

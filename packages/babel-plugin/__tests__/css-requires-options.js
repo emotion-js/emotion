@@ -14,8 +14,7 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[local]',
-          autoLabel: true
+          labelFormat: 'my-css-[local]'
         }
       ]
     ],
@@ -30,8 +29,7 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[filename]-[local]',
-          autoLabel: true
+          labelFormat: 'my-css-[filename]-[local]'
         }
       ]
     ],
@@ -47,8 +45,7 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[filename]-[local]',
-          autoLabel: true
+          labelFormat: 'my-css-[filename]-[local]'
         }
       ]
     ],
@@ -64,8 +61,7 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[dirname]-[filename]-[local]',
-          autoLabel: true
+          labelFormat: 'my-css-[dirname]-[filename]-[local]'
         }
       ]
     ],
@@ -84,8 +80,7 @@ const cases = {
           labelFormat: ({ name, path }) =>
             `${name.toUpperCase()}_${last(
               path.replace(/\..+$/, '').split('/')
-            ).toUpperCase()}`,
-          autoLabel: true
+            ).toUpperCase()}`
         }
       ]
     ],
@@ -113,7 +108,6 @@ const cases = {
       [
         plugin,
         {
-          autoLabel: true,
           sourceMap: false
         }
       ]
@@ -153,6 +147,49 @@ const cases = {
     });
     `,
     plugins: [plugin],
+    babelFileName: __filename
+  },
+  'autoLabel set to always': {
+    code: `
+    import { css } from 'emotion'
+    let cls = css({color:'hotpink'})
+    `,
+    plugins: [[plugin, { autoLabel: 'always' }]],
+    babelFileName: __filename
+  },
+  'autoLabel set to always - complex expression': {
+    code: `
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles)
+    `,
+    plugins: [[plugin, { autoLabel: 'always' }]],
+    babelFileName: __filename
+  },
+  'autoLabel set to always - complex expression, last arg string': {
+    code: `
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles, 'color: hotpink;')
+    `,
+    plugins: [[plugin, { autoLabel: 'always' }]],
+    babelFileName: __filename
+  },
+  'autoLabel set to never': {
+    code: `
+    import { css } from 'emotion'
+    let cls = css({color:'hotpink'})
+    `,
+    plugins: [[plugin, { autoLabel: 'never' }]],
+    babelFileName: __filename
+  },
+  'autoLabel set to never - complex expression': {
+    code: `
+    import { css } from 'emotion'
+    import fooStyles from './foo'
+    let cls = css(fooStyles)
+    `,
+    plugins: [[plugin, { autoLabel: 'never' }]],
     babelFileName: __filename
   }
 }

@@ -1,4 +1,4 @@
-# jest-emotion
+# @emotion/jest
 
 ## 11.0.0-next.7
 

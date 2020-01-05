@@ -5,13 +5,15 @@ import { getExpressionsFromTemplateLiteral } from './minify'
 import { getLabelFromPath } from './label'
 import { getSourceMap } from './source-maps'
 import { simplifyObject } from './object-to-string'
-import { appendStringToArguments, joinStringLiterals } from './strings'
-import { isTaggedTemplateExpressionTranspiledByTypeScript } from './checks'
+import {
+  appendStringReturningExpressionToArguments,
+  joinStringLiterals
+} from './strings'
 
 const CSS_OBJECT_STRINGIFIED_ERROR =
   "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
 
-function createSourceMapConditional(t, production, development) {
+function createNodeEnvConditional(t, production, development) {
   return t.conditionalExpression(
     t.binaryExpression(
       '===',
@@ -39,6 +41,7 @@ export let transformExpressionWithStyles = ({
   shouldLabel: boolean,
   sourceMap?: string
 }): { node?: *, isPure: boolean } => {
+  const autoLabel = state.opts.autoLabel || 'dev-only'
   let t = babel.types
   if (t.isTaggedTemplateExpression(path)) {
     const expressions = getExpressionsFromTemplateLiteral(path.node.quasi, t)
@@ -52,13 +55,6 @@ export let transformExpressionWithStyles = ({
     const canAppendStrings = path.node.arguments.every(
       arg => arg.type !== 'SpreadElement'
     )
-
-    if (canAppendStrings && shouldLabel) {
-      const label = getLabelFromPath(path, state, t)
-      if (label) {
-        appendStringToArguments(path, `;label:${label};`, t)
-      }
-    }
 
     let isPure = true
 
@@ -82,12 +78,21 @@ export let transformExpressionWithStyles = ({
       sourceMap = getSourceMap(path.node.loc.start, state)
     }
 
+    const label =
+      shouldLabel && autoLabel !== 'never'
+        ? getLabelFromPath(path, state, t)
+        : null
+
     if (
       path.node.arguments.length === 1 &&
       t.isStringLiteral(path.node.arguments[0])
     ) {
-      let cssString = path.node.arguments[0].value
-      let res = serializeStyles([cssString])
+      let cssString = path.node.arguments[0].value.replace(/;$/, '')
+      let res = serializeStyles([
+        `${cssString}${
+          label && autoLabel === 'always' ? `;label:${label};` : ''
+        }`
+      ])
       let prodNode = t.objectExpression([
         t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
         t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles))
@@ -109,6 +114,11 @@ export let transformExpressionWithStyles = ({
           cssObjectToString._compact = true
           state.file.path.unshiftContainer('body', [cssObjectToString])
         }
+
+        if (label && autoLabel === 'dev-only') {
+          res = serializeStyles([`${cssString};label:${label};`])
+        }
+
         let devNode = t.objectExpression([
           t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
           t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles)),
@@ -118,45 +128,38 @@ export let transformExpressionWithStyles = ({
             t.cloneNode(state.emotionStringifiedCssId)
           )
         ])
-        node = createSourceMapConditional(t, prodNode, devNode)
+        node = createNodeEnvConditional(t, prodNode, devNode)
       }
 
       return { node, isPure: true }
     }
+
+    if (label) {
+      const labelString = `;label:${label}`
+
+      switch (autoLabel) {
+        case 'dev-only': {
+          const labelConditional = createNodeEnvConditional(
+            t,
+            t.stringLiteral(''),
+            t.stringLiteral(labelString)
+          )
+          appendStringReturningExpressionToArguments(t, path, labelConditional)
+          break
+        }
+        case 'always':
+          appendStringReturningExpressionToArguments(t, path, labelString)
+          break
+      }
+    }
+
     if (sourceMap) {
-      let lastIndex = path.node.arguments.length - 1
-      let last = path.node.arguments[lastIndex]
-      let sourceMapConditional = createSourceMapConditional(
+      let sourceMapConditional = createNodeEnvConditional(
         t,
         t.stringLiteral(''),
         t.stringLiteral(sourceMap)
       )
-      if (t.isStringLiteral(last)) {
-        path.node.arguments[lastIndex] = t.binaryExpression(
-          '+',
-          last,
-          sourceMapConditional
-        )
-      } else if (isTaggedTemplateExpressionTranspiledByTypeScript(path)) {
-        const makeTemplateObjectCallPath = path
-          .get('arguments')[0]
-          .get('right')
-          .get('right')
-
-        makeTemplateObjectCallPath.get('arguments').forEach(argPath => {
-          const elements = argPath.get('elements')
-          const lastElement = elements[elements.length - 1]
-          lastElement.replaceWith(
-            t.binaryExpression(
-              '+',
-              lastElement.node,
-              t.cloneNode(sourceMapConditional)
-            )
-          )
-        })
-      } else {
-        path.node.arguments.push(sourceMapConditional)
-      }
+      appendStringReturningExpressionToArguments(t, path, sourceMapConditional)
     }
 
     return { node: undefined, isPure }

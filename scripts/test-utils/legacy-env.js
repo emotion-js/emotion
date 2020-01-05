@@ -1,7 +1,6 @@
 // @flow
 /* eslint-env jest */
-import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-import './next-env'
+import 'test-utils/enzyme-env'
+import serializer from '@emotion/jest/enzyme'
 
-Enzyme.configure({ adapter: new Adapter() })
+expect.addSnapshotSerializer(serializer)

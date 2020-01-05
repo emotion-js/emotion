@@ -1,17 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`styled inline autoLabel set to never 1`] = `
+"
+import styled from '@emotion/styled'
+const Foo = styled.h1\`color:hotpink;\`
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+const Foo = _styled(\\"h1\\", {
+  target: \\"eoxfmb00\\"
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlZC1yZXF1aXJlcy1vcHRpb25zLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVxQiIsImZpbGUiOiJzdHlsZWQtcmVxdWlyZXMtb3B0aW9ucy5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5jb25zdCBGb28gPSBzdHlsZWQuaDFgY29sb3I6aG90cGluaztgXG4gICAgIl19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});"
+`;
+
 exports[`styled inline hash generation no file system 1`] = `
-"import styled from \\"@emotion/styled\\";
+"
+import styled from '@emotion/styled'
 styled.h1\`color:blue;\`
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _styled from \\"@emotion/styled/base\\";
 
 _styled(\\"h1\\", {
-  target: \\"e17zfxpt0\\"
+  target: \\"e8evh370\\"
 })({
-  name: \\"14ksm7b\\",
-  styles: \\"color:blue;\\"
+  name: \\"117wnve\\",
+  styles: \\"color:blue\\"
 });"
 `;
