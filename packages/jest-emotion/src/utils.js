@@ -205,7 +205,7 @@ export function getStylesFromClassNames(
 export function getStyleElements(): Array<HTMLStyleElement> {
   if (!isBrowser) {
     throw new Error(
-      'Using @emotion/jest requires jsdom. See https://jestjs.io/docs/en/configuration#testenvironment-string for more information.'
+      'Using jest-emotion requires jsdom. See https://jestjs.io/docs/en/configuration#testenvironment-string for more information.'
     )
   }
   const elements = Array.from(document.querySelectorAll('style[data-emotion]'))
