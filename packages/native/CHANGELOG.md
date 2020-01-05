@@ -1,5 +1,16 @@
 # @emotion/native
 
+## 11.0.0-next.10
+
+### Minor Changes
+
+- [`456be9a6`](https://github.com/emotion-js/emotion/commit/456be9a602d7d0bac291617f69f59f5ed30d1b84) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@patsissons](https://github.com/patsissons)! - Added TypeScript type definitions.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.10
+
 ## 11.0.0-next.9
 
 ### Patch Changes

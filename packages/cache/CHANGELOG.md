@@ -1,5 +1,13 @@
 # @emotion/cache
 
+## 11.0.0-next.10
+
+### Patch Changes
+
+- [`dfe79aca`](https://github.com/emotion-js/emotion/commit/dfe79aca696fc688f960218b16afee197926fe71) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@Andarist](https://github.com/Andarist)! - Use sheet's `rehydrate` method for SSRed styles which inserts rehydrated styles at correct position when used in combination with `prepend` option.
+- Updated dependencies [[`1e4a741d`](https://github.com/emotion-js/emotion/commit/1e4a741de6424d3d9c1f3ca9695e1953bed3a194), [`dfe79aca`](https://github.com/emotion-js/emotion/commit/dfe79aca696fc688f960218b16afee197926fe71)]:
+  - @emotion/sheet@0.10.0-next.1
+
 ## 11.0.0-next.6
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@emotion/jest",
-  "version": "11.0.0-next.7",
+  "version": "11.0.0-next.10",
   "description": "Jest utilities for emotion",
   "main": "dist/jest.cjs.js",
   "module": "dist/jest.esm.js",
@@ -25,14 +25,14 @@
   "peerDependencies": {
     "enzyme-to-json": "^3.2.1"
   },
-  "peerDependenciesMeta": { 
-    "enzyme-to-json": { 
-      "optional": true 
-    } 
-  }, 
+  "peerDependenciesMeta": {
+    "enzyme-to-json": {
+      "optional": true
+    }
+  },
   "devDependencies": {
-    "@emotion/css": "^11.0.0-next.0",
-    "@emotion/react": "^11.0.0-next.7",
+    "@emotion/css": "^11.0.0-next.10",
+    "@emotion/react": "^11.0.0-next.10",
     "dtslint": "^0.3.0",
     "enzyme-to-json": "^3.2.1",
     "preact": "^8.2.9",

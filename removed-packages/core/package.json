@@ -1,6 +1,6 @@
 {
   "name": "@emotion/core",
-  "version": "11.0.0-next.9",
+  "version": "11.0.0-next.10",
   "main": "dist/core.cjs.js",
   "types": "types/index.d.ts",
   "files": [

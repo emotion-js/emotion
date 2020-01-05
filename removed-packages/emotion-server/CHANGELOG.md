@@ -1,5 +1,11 @@
 # emotion-server
 
+## 11.0.0-next.10
+
+### Major Changes
+
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `emotion-server` to `@emotion/server`. Please change any imports of `emotion-server` to import `@emotion/server` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+
 ## 11.0.0-next.8
 
 ### Patch Changes
