@@ -3,11 +3,13 @@
   "version": "11.0.0-next.7",
   "description": "Jest utilities for emotion",
   "main": "dist/jest-emotion.cjs.js",
+  "module": "dist/jest-emotion.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
     "dist",
     "types/*.d.ts",
+    "enzyme",
     "serializer.js"
   ],
   "scripts": {
@@ -20,6 +22,14 @@
     "css": "^2.2.1",
     "specificity": "^0.4.1"
   },
+  "peerDependencies": {
+    "enzyme-to-json": "^3.2.1"
+  },
+  "peerDependenciesMeta": { 
+    "enzyme-to-json": { 
+      "optional": true 
+    } 
+  }, 
   "devDependencies": {
     "@emotion/core": "^11.0.0-next.7",
     "dtslint": "^0.3.0",
@@ -47,7 +57,10 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "browser": {
-    "./dist/jest-emotion.cjs.js": "./dist/jest-emotion.browser.cjs.js"
+  "preconstruct": {
+    "entrypoints": [
+      ".",
+      "enzyme"
+    ]
   }
 }

@@ -1,10 +1,12 @@
 // @flow
 
+const isBrowser = typeof document !== 'undefined'
+
 function last(arr) {
   return arr.length > 0 ? arr[arr.length - 1] : undefined
 }
 
-function flatMap(arr, iteratee) {
+export function flatMap<T, S>(arr: T[], iteratee: (arg: T) => S[] | S): S[] {
   return [].concat(...arr.map(iteratee))
 }
 
@@ -37,13 +39,23 @@ function isTagWithClassName(node) {
   return node.prop('className') && typeof node.type() === 'string'
 }
 
-function getClassNamesFromEnzyme(selectors, node) {
-  // We need to dive if we have selected a styled child from a shallow render
-  const actualComponent = shouldDive(node) ? node.dive() : node
+function findNodeWithClassName(node) {
   // Find the first node with a className prop
-  const components = actualComponent.findWhere(isTagWithClassName)
-  const classes = components.length && components.first().prop('className')
-  return getClassNames(selectors, classes)
+  const found = node.findWhere(isTagWithClassName)
+  return found.length ? found.first() : null
+}
+
+function getClassNameProp(node) {
+  return (node && node.prop('className')) || ''
+}
+
+function getClassNamesFromEnzyme(selectors, node) {
+  // We need to dive in to get the className if we have a styled element from a shallow render
+  const isShallow = shouldDive(node)
+  const nodeWithClassName = findNodeWithClassName(
+    isShallow ? node.dive() : node
+  )
+  return getClassNames(selectors, getClassNameProp(nodeWithClassName))
 }
 
 function getClassNamesFromCheerio(selectors, node) {
@@ -105,9 +117,9 @@ export function getClassNamesFromNodes(nodes: Array<any>) {
   }, [])
 }
 
-let keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
+const keyframesPattern = /^@keyframes\s+(animation-[^{\s]+)+/
 
-let removeCommentPattern = /\/\*[\s\S]*?\*\//g
+const removeCommentPattern = /\/\*[\s\S]*?\*\//g
 
 const getElementRules = (element: HTMLStyleElement): string[] => {
   const nonSpeedyRule = element.textContent
@@ -128,48 +140,50 @@ export function getStylesFromClassNames(
   if (!classNames.length) {
     return ''
   }
-  let keys = getKeys(elements)
+  const keys = getKeys(elements)
   if (!keys.length) {
     return ''
   }
 
-  let targetClassName = classNames.find(className =>
+  const targetClassName = classNames.find(className =>
     /^e[a-z0-9]+$/.test(className)
   )
-  let keyPattern = `(${keys.join('|')})-`
-  let classNamesRegExp = new RegExp(
+  const keyPattern = `(${keys.join('|')})-`
+  const classNamesRegExp = new RegExp(
     targetClassName ? `^(${keyPattern}|${targetClassName})` : `^${keyPattern}`
   )
-  let filteredClassNames = classNames.filter(className =>
+  const filteredClassNames = classNames.filter(className =>
     classNamesRegExp.test(className)
   )
 
   if (!filteredClassNames.length) {
     return ''
   }
-  let selectorPattern = new RegExp('\\.(' + filteredClassNames.join('|') + ')')
-  let keyframes = {}
+  const selectorPattern = new RegExp(
+    '\\.(' + filteredClassNames.join('|') + ')'
+  )
+  const keyframes = {}
   let styles = ''
 
-  flatMap(elements, getElementRules).forEach(rule => {
+  flatMap(elements, getElementRules).forEach((rule: string) => {
     if (selectorPattern.test(rule)) {
       styles += rule
     }
-    let match = rule.match(keyframesPattern)
+    const match = rule.match(keyframesPattern)
     if (match !== null) {
-      let name = match[1]
+      const name = match[1]
       if (keyframes[name] === undefined) {
         keyframes[name] = ''
       }
       keyframes[name] += rule
     }
   })
-  let keyframeNameKeys = Object.keys(keyframes)
+  const keyframeNameKeys = Object.keys(keyframes)
   let keyframesStyles = ''
 
   if (keyframeNameKeys.length) {
-    let keyframesNamePattern = new RegExp(keyframeNameKeys.join('|'), 'g')
-    let keyframesNameCache = {}
+    const keyframesNamePattern = new RegExp(keyframeNameKeys.join('|'), 'g')
+    const keyframesNameCache = {}
     let index = 0
 
     styles = styles.replace(keyframesNamePattern, name => {
@@ -189,15 +203,20 @@ export function getStylesFromClassNames(
 }
 
 export function getStyleElements(): Array<HTMLStyleElement> {
-  let elements = Array.from(document.querySelectorAll('style[data-emotion]'))
+  if (!isBrowser) {
+    throw new Error(
+      'jest-emotion requires jsdom. See https://jestjs.io/docs/en/configuration#testenvironment-string for more information.'
+    )
+  }
+  const elements = Array.from(document.querySelectorAll('style[data-emotion]'))
   // $FlowFixMe
   return elements
 }
 
-let unique = arr => Array.from(new Set(arr))
+const unique = arr => Array.from(new Set(arr))
 
 export function getKeys(elements: Array<HTMLStyleElement>) {
-  let keys = unique(
+  const keys = unique(
     elements.map(
       element =>
         // $FlowFixMe we know it exists since we query for elements with this attribute
@@ -240,4 +259,12 @@ export function getMediaRules(rules: Array<Object>, media: string): Array<any> {
       return rule.type === RULE_TYPES.media && isMediaMatch
     })
     .reduce((mediaRules, mediaRule) => mediaRules.concat(mediaRule.rules), [])
+}
+
+export function isPrimitive(test: any) {
+  return test !== Object(test)
+}
+
+export function hasIntersection(left: any[], right: any[]) {
+  return left.some(value => right.includes(value))
 }

@@ -16,9 +16,19 @@ The easiest way to test React components with emotion is with the snapshot seria
 // jest.config.js
 module.exports = {
   // ... other config
-  snapshotSerializers: [
-    'jest-emotion' /* if needed other snapshotSerializers should go here */
-  ]
+  snapshotSerializers: ['jest-emotion']
+}
+```
+
+To assist with shallow rendering, there's a custom enzyme snapshot serializer, that includes the `enzyme-to-json`
+serializer, which is available by importing `jest-emotion/enzyme`. If you already have the `enzyme-to-json` serializer
+added to `snapshotSerializers`, it will need to be removed to allow this to work.
+
+```js
+// jest.config.js
+module.exports = {
+  // ... other config
+  snapshotSerializers: ['jest-emotion/enzyme']
 }
 ```
 

@@ -18,11 +18,20 @@ npm install --save-dev jest-emotion
 
 Add the snapshot serializer in your [`setupTestFrameworkScriptFile`](http://facebook.github.io/jest/docs/en/configuration.html#setuptestframeworkscriptfile-string) _or_ at the top of your test file.
 
+When using Enzyme, it's recommended to use the combined enzyme and emotion serializer to support shallow rendering:
+
 ```javascript
-import * as emotion from 'emotion'
+import { createSerializer } from 'jest-emotion/enzyme' // also adds the enzyme-to-json serializer
+
+expect.addSnapshotSerializer(createSerializer())
+```
+
+Otherwise, use standard `createSerializer` method.
+
+```javascript
 import { createSerializer } from 'jest-emotion'
 
-expect.addSnapshotSerializer(createSerializer(emotion))
+expect.addSnapshotSerializer(createSerializer())
 ```
 
 ### Writing a test
