@@ -7,7 +7,7 @@
   "plugins": [
     ["@babel/plugin-proposal-class-properties", { "loose": false }],
     "babel-plugin-react-native-web",
-    "babel-plugin-emotion",
+    "@emotion",
     "transform-inline-environment-variables"
   ]
 }

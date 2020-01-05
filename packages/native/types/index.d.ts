@@ -1,7 +1,7 @@
 // Definitions by: Pat Sissons <https://github.com/patsissons>
 // TypeScript Version: 3.4
 
-import { Theme } from '@emotion/core'
+import { Theme } from '@emotion/react'
 
 import {
   CreateStyled as BaseCreateStyled,

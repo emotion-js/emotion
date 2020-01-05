@@ -4,7 +4,7 @@ importScripts('https://unpkg.com/@babel/standalone@7.7.3/babel.min.js')
 
 const babelPresetEnv = require('@babel/preset-env').default
 const babelPresetReact = require('@babel/preset-react').default
-const babelPluginEmotion = require('babel-plugin-emotion').default
+const babelPluginEmotion = require('@emotion/babel-plugin').default
 
 global.window = global
 

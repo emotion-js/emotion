@@ -58,7 +58,8 @@
     ],
     "plugins": [
       "prettier",
-      "flowtype"
+      "flowtype",
+      "@emotion"
     ],
     "parser": "babel-eslint",
     "rules": {
@@ -78,7 +79,8 @@
       "react/jsx-handler-names": 0,
       "react/no-unused-prop-types": 0,
       "react/prop-types": 0,
-      "standard/computed-property-even-spacing": 0
+      "standard/computed-property-even-spacing": 0,
+      "@emotion/pkg-renaming": 2
     },
     "env": {
       "browser": true
@@ -120,7 +122,8 @@
       "packages/*",
       "site",
       "scripts/*",
-      "playgrounds/*"
+      "playgrounds/*",
+      "removed-packages/*"
     ],
     "nohoist": [
       "**/dtslint"
@@ -128,7 +131,8 @@
   },
   "preconstruct": {
     "packages": [
-      "packages/*"
+      "packages/*",
+      "removed-packages/*"
     ],
     "globals": {
       "react": "React"
@@ -184,13 +188,13 @@
     "@manypkg/cli": "^0.5.2",
     "@mdx-js/mdx": "^1.1.0",
     "@mdx-js/react": "^1.0.27",
-    "@preconstruct/cli": "^1.1.1",
+    "@preconstruct/cli": "^1.1.3",
     "@testing-library/react": "^9.3.2",
     "@types/jest": "^24.0.22",
     "@types/node": "^10.11.4",
     "@types/react": "^16.9.11",
     "babel-check-duplicated-nodes": "^1.0.0",
-    "babel-eslint": "^8.2.3",
+    "babel-eslint": "^10.0.3",
     "babel-flow-types": "^1.2.3",
     "babel-jest": "^24.9.0",
     "babel-plugin-add-basic-constructor-for-react-components": "^0.1.0",
@@ -208,7 +212,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "enzyme-to-json": "^3.2.1",
-    "eslint": "^6.7.1",
+    "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-react": "^1.1.7",
     "eslint-config-standard": "^14.1.0",

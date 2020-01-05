@@ -1,6 +1,6 @@
 import * as React from 'react'
 import renderer from 'react-test-renderer'
-import { ThemeProvider } from '@emotion/core'
+import { ThemeProvider } from '@emotion/react'
 import styled from '@emotion/native'
 import reactNative from 'react-native'
 
@@ -37,7 +37,7 @@ describe('Emotion native styled', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should work with theming from @emotion/core', () => {
+  it('should work with theming from @emotion/react', () => {
     const Text = styled.Text`
       color: ${props => props.theme.backgroundColor};
     `

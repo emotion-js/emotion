@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`source maps css-object 1`] = `
+"import { css } from '@emotion/react'
+
+css({ color: 'hotpink' })
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+import { css } from '@emotion/react';
+process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY3NzKHsgY29sb3I6ICdob3RwaW5rJyB9KVxuIl19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};"
+`;
+
+exports[`source maps css-prop 1`] = `
+"/** @jsx jsx */
+import { jsx } from '@emotion/react'
+
+const SomeComponent = props => <div css={{ color: 'hotpink' }} {...props} />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"1wl9j1m-SomeComponent\\",
+  styles: \\"color:hotpink;label:SomeComponent;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0MiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgU29tZUNvbXBvbmVudCA9IHByb3BzID0+IDxkaXYgY3NzPXt7IGNvbG9yOiAnaG90cGluaycgfX0gey4uLnByb3BzfSAvPlxuIl19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+const SomeComponent = props => <div css={_ref} {...props} />;"
+`;
+
+exports[`source maps css-prop-dynamic 1`] = `
+"/** @jsx jsx */
+import { jsx } from '@emotion/react'
+
+const SomeComponent = props => (
+  <div
+    css={{
+      backgroundColor: window.something
+    }}
+    {...props}
+  />
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { css as _css } from \\"@emotion/react\\";
+
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
+
+const SomeComponent = props => <div css={
+/*#__PURE__*/
+_css({
+  backgroundColor: window.something
+}, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:SomeComponent\\", process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLSSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jb25zdCBTb21lQ29tcG9uZW50ID0gcHJvcHMgPT4gKFxuICA8ZGl2XG4gICAgY3NzPXt7XG4gICAgICBiYWNrZ3JvdW5kQ29sb3I6IHdpbmRvdy5zb21ldGhpbmdcbiAgICB9fVxuICAgIHsuLi5wcm9wc31cbiAgLz5cbilcbiJdfQ== */\\")} {...props} />;"
+`;
+
+exports[`source maps css-string 1`] = `
+"import { css } from '@emotion/react'
+
+css\`
+  color: hotpink;
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+import { css } from '@emotion/react';
+process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFRyIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY3NzYFxuICBjb2xvcjogaG90cGluaztcbmBcbiJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};"
+`;
+
+exports[`source maps css-transpiled-by-ts 1`] = `
+"import { __makeTemplateObject } from 'tslib'
+
+import { css } from '@emotion/react'
+
+var templateObject_1
+
+css(
+  templateObject_1 ||
+    (templateObject_1 = __makeTemplateObject(
+      ['\\\\n  color: hotpink;\\\\n'],
+      ['\\\\n  color: hotpink;\\\\n']
+    ))
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { __makeTemplateObject } from 'tslib';
+import { css } from '@emotion/react';
+var templateObject_1;
+
+/*#__PURE__*/
+css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY3NzKFxuICB0ZW1wbGF0ZU9iamVjdF8xIHx8XG4gICAgKHRlbXBsYXRlT2JqZWN0XzEgPSBfX21ha2VUZW1wbGF0ZU9iamVjdChcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXSxcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXVxuICAgICkpXG4pXG4iXX0= */\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY3NzKFxuICB0ZW1wbGF0ZU9iamVjdF8xIHx8XG4gICAgKHRlbXBsYXRlT2JqZWN0XzEgPSBfX21ha2VUZW1wbGF0ZU9iamVjdChcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXSxcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXVxuICAgICkpXG4pXG4iXX0= */\\")])));"
+`;
+
+exports[`source maps global-styles-prop 1`] = `
+"import * as React from 'react'
+import { Global } from '@emotion/react'
+
+export default () => <Global styles={{ color: 'hotpink' }} />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+import * as React from 'react';
+import { Global } from '@emotion/react';
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHNkIiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgeyBHbG9iYWwgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuZXhwb3J0IGRlZmF1bHQgKCkgPT4gPEdsb2JhbCBzdHlsZXM9e3sgY29sb3I6ICdob3RwaW5rJyB9fSAvPlxuIl19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+export default (() => <Global styles={_ref} />);"
+`;
+
+exports[`source maps styled-object 1`] = `
+"import styled from '@emotion/styled'
+
+const SomeComponent = styled.div({
+  color: 'hotpink'
+})
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+const SomeComponent = _styled(\\"div\\", {
+  target: \\"eb28ebz0\\",
+  label: \\"SomeComponent\\"
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFc0IiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2KHtcbiAgY29sb3I6ICdob3RwaW5rJ1xufSlcbiJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});"
+`;
+
+exports[`source maps styled-string 1`] = `
+"import styled from '@emotion/styled'
+
+const SomeComponent = styled.div\`
+  color: hotpink;
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+const SomeComponent = _styled(\\"div\\", {
+  target: \\"eb28ebz0\\",
+  label: \\"SomeComponent\\"
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFZ0MiLCJmaWxlIjoic291cmNlLW1hcC50ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2YFxuICBjb2xvcjogaG90cGluaztcbmBcbiJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});"
+`;

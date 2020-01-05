@@ -1,6 +1,6 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import { Component } from 'react'
 import styled from '@emotion/styled'
 import { StaticQuery, graphql } from 'gatsby'
@@ -17,20 +17,18 @@ export const scope = {
   },
   require(moduleName: string) {
     switch (moduleName) {
-      case 'emotion':
-        return require('emotion')
+      case '@emotion/css':
+        return require('@emotion/css')
       case '@emotion/cache':
         return require('@emotion/cache')
-      case '@emotion/core':
-        return require('@emotion/core')
+      case '@emotion/react':
+        return require('@emotion/react')
       case '@emotion/styled':
         return require('@emotion/styled')
       case '@emotion/styled/base':
         return require('@emotion/styled/base')
       case '@emotion/is-prop-valid':
         return require('@emotion/is-prop-valid')
-      case 'emotion-theming':
-        return require('emotion-theming')
       case 'facepaint':
         return require('facepaint')
       default:

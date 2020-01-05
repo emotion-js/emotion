@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from '@emotion/styled/base'
 import isPropValid from '@emotion/is-prop-valid'
 
-declare module '@emotion/core' {
+declare module '@emotion/react' {
   // tslint:disable-next-line: strict-export-declare-modifiers
   export interface Theme {
     primary: string

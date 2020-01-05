@@ -2,7 +2,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import styled from '@emotion/styled'
-import { ThemeProvider } from '@emotion/core'
+import { ThemeProvider } from '@emotion/react'
 import { render, cleanup } from '@testing-library/react'
 
 afterEach(cleanup)

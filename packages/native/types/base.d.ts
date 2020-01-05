@@ -7,7 +7,7 @@ import {
   NamedExoticComponent,
   PropsWithChildren
 } from 'react'
-import { Theme } from '@emotion/core'
+import { Theme } from '@emotion/react'
 import * as RN from 'react-native'
 
 type ReactNative = typeof RN

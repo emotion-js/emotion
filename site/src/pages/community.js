@@ -1,6 +1,6 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import { graphql } from 'gatsby'
 import Layout from '../layouts'
 import * as markdownComponents from '../utils/markdown-styles'

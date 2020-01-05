@@ -2,7 +2,7 @@
 import * as React from 'react'
 import Route from 'react-router-dom/Route'
 import Switch from 'react-router-dom/Switch'
-import { Global } from '@emotion/core'
+import { Global } from '@emotion/react'
 import Home from './Home'
 
 const App = () => (

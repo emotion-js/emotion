@@ -1,8 +1,0 @@
-{
-  "main": "dist/jest-emotion.cjs.js",
-  "module": "dist/jest-emotion.esm.js",
-  "types": "../types/enzyme",
-  "preconstruct": {
-    "source": "../src/enzyme"
-  }
-}

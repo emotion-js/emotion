@@ -13,7 +13,7 @@
       "dependencies": ["@emotion/serialize"]
     },
     {
-      "name": "@emotion/core",
+      "name": "@emotion/react",
       "type": "patch",
       "dependencies": [
         "@emotion/css",

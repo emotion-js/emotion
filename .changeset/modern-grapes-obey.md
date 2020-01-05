@@ -1,5 +1,5 @@
 ---
-'babel-plugin-emotion': major
+'@emotion/babel-plugin': major
 ---
 
 Drop Babel 6 support

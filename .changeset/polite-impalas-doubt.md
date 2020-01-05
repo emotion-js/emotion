@@ -1,5 +1,5 @@
 ---
-'babel-plugin-emotion': major
+'@emotion/babel-plugin': major
 '@emotion/babel-preset-css-prop': major
 ---
 

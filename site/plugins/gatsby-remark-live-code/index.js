@@ -4,7 +4,7 @@ const Babel = require('@babel/standalone')
 
 const babelPresetEnv = require('@babel/preset-env').default
 const babelPresetReact = require('@babel/preset-react').default
-const babelPluginEmotion = require('babel-plugin-emotion').default
+const babelPluginEmotion = require('@emotion/babel-plugin').default
 
 let livePattern = /^\s*\/\/ @live/
 
