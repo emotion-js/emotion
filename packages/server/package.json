@@ -1,6 +1,6 @@
 {
   "name": "@emotion/server",
-  "version": "11.0.0-next.0",
+  "version": "11.0.0-next.10",
   "description": "Extract and inline critical css with emotion for server side rendering.",
   "main": "dist/server.cjs.js",
   "types": "types/index.d.ts",
@@ -20,7 +20,7 @@
     "through": "^2.3.8"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.0.0-next.0"
+    "@emotion/css": "^11.0.0-next.10"
   },
   "peerDependenciesMeta": {
     "@emotion/css": {
@@ -28,11 +28,11 @@
     }
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "^11.0.0-next.0",
-    "@emotion/css": "^11.0.0-next.0",
+    "@emotion/babel-plugin": "^11.0.0-next.10",
+    "@emotion/css": "^11.0.0-next.10",
     "@types/node": "^10.11.4",
     "dtslint": "^0.3.0",
-    "emotion": "^11.0.0-next.0"
+    "emotion": "^11.0.0-next.10"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

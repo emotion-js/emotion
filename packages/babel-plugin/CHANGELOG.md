@@ -1,5 +1,19 @@
 # @emotion/babel-plugin
 
+## 11.0.0-next.10
+
+### Major Changes
+
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `babel-plugin-emotion` to `@emotion/babel-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` in your Babel config.
+
+* [`c7850e61`](https://github.com/emotion-js/emotion/commit/c7850e61211d6aa26a3388399889a6072ee2f1fe) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - `autoLabel` option no longer is a simple boolean. Instead we accept now 3 values: `dev-only` (the default), `always` and `never`.
+
+  Each possible value for this option produces different output code:
+
+  - with `dev-only` we optimize the production code, so there are no labels added there, but at the same time we keep labels for development environments,
+  - with `always` we always add labels when possible,
+  - with `never` we disable this entirely and no labels are added.
+
 ## 11.0.0-next.6
 
 ### Major Changes

@@ -1,5 +1,20 @@
 # emotion
 
+## 11.0.0-next.10
+
+### Major Changes
+
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Move create `create-emotion` to `@emotion/css/create-instance`. Please change any imports of `create-emotion` to import `@emotion/css/create-instance` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+
+* [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `emotion` to `@emotion/css`. Please change any imports of `emotion` to import `@emotion/css` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+
+### Patch Changes
+
+- Updated dependencies [[`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1), [`1e4a741d`](https://github.com/emotion-js/emotion/commit/1e4a741de6424d3d9c1f3ca9695e1953bed3a194), [`dfe79aca`](https://github.com/emotion-js/emotion/commit/dfe79aca696fc688f960218b16afee197926fe71), [`c7850e61`](https://github.com/emotion-js/emotion/commit/c7850e61211d6aa26a3388399889a6072ee2f1fe), [`dfe79aca`](https://github.com/emotion-js/emotion/commit/dfe79aca696fc688f960218b16afee197926fe71)]:
+  - @emotion/babel-plugin@11.0.0-next.10
+  - @emotion/sheet@0.10.0-next.1
+  - @emotion/cache@11.0.0-next.10
+
 ## 11.0.0-next.0
 
 ### Major Changes

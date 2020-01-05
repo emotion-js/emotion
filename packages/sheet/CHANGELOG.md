@@ -1,5 +1,15 @@
 # @emotion/sheet
 
+## 0.10.0-next.1
+
+### Minor Changes
+
+- [`dfe79aca`](https://github.com/emotion-js/emotion/commit/dfe79aca696fc688f960218b16afee197926fe71) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@Andarist](https://github.com/Andarist)! - Added `rehydrate` method which can be used for SSRed styles. They become a part of a sheet and can be flushed.
+
+### Patch Changes
+
+- [`1e4a741d`](https://github.com/emotion-js/emotion/commit/1e4a741de6424d3d9c1f3ca9695e1953bed3a194) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@Andarist](https://github.com/Andarist)! - Removed mentions of `maxLength` option in types & docs as it has been removed some time ago.
+
 ## 0.10.0-next.0
 
 ### Minor Changes

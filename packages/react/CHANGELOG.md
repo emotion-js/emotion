@@ -1,5 +1,23 @@
 # @emotion/react
 
+## 11.0.0-next.10
+
+### Major Changes
+
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `@emotion/core` to `@emotion/react`. Please change any imports of `@emotion/core` to import `@emotion/react` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+
+### Patch Changes
+
+- [`affed3dd`](https://github.com/emotion-js/emotion/commit/affed3ddf03671835356632f26a064f59811852f) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Fix issue with published TypeScript test files augmenting Theme interface.
+
+* [`d62d9101`](https://github.com/emotion-js/emotion/commit/d62d9101bc75e6bc9644ae588d2a6e4bf4d69285) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@ajs139](https://github.com/ajs139)! - Warn if @emotion/react is initialized more than once in the same development environment.
+* Updated dependencies [[`1e4a741d`](https://github.com/emotion-js/emotion/commit/1e4a741de6424d3d9c1f3ca9695e1953bed3a194), [`2fa7a213`](https://github.com/emotion-js/emotion/commit/2fa7a213222fc2bb99ca0a01078148f1a1c6458d), [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1), [`dfe79aca`](https://github.com/emotion-js/emotion/commit/dfe79aca696fc688f960218b16afee197926fe71), [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1), [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1), [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1), [`dfe79aca`](https://github.com/emotion-js/emotion/commit/dfe79aca696fc688f960218b16afee197926fe71)]:
+  - @emotion/sheet@0.10.0-next.1
+  - @emotion/styled@11.0.0-next.10
+  - @emotion/css@11.0.0-next.10
+  - @emotion/server@11.0.0-next.10
+  - @emotion/cache@11.0.0-next.10
+
 ## 11.0.0-next.7
 
 ### Patch Changes

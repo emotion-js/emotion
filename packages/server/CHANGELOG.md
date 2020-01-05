@@ -1,5 +1,20 @@
 # @emotion/server
 
+## 11.0.0-next.10
+
+### Major Changes
+
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `emotion-server` to `@emotion/server`. Please change any imports of `emotion-server` to import `@emotion/server` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+
+* [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Move `create-emotion-server` to `@emotion/server/create-instance`. Please change any imports of `create-emotion-server` to import `@emotion/server/create-instance` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+
+### Patch Changes
+
+- Updated dependencies [[`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1), [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1), [`c7850e61`](https://github.com/emotion-js/emotion/commit/c7850e61211d6aa26a3388399889a6072ee2f1fe), [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1)]:
+  - @emotion/babel-plugin@11.0.0-next.10
+  - @emotion/css@11.0.0-next.10
+  - emotion@11.0.0-next.10
+
 ## 11.0.0-next.0
 
 ### Major Changes
