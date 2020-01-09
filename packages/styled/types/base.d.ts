@@ -68,7 +68,9 @@ export interface CreateStyledComponent<
 
   (
     template: TemplateStringsArray,
-    ...styles: Array<Interpolation<ComponentProps & SpecificComponentProps>>
+    ...styles: Array<
+      Interpolation<ComponentProps & SpecificComponentProps & { theme: Theme }>
+    >
   ): StyledComponent<ComponentProps, SpecificComponentProps>
 
   /**

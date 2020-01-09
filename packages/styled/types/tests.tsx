@@ -112,6 +112,9 @@ const Input4 = styled.input<AdditionalTest>`
   marginLeft: props.left
 })}
 `
+const Input5 = styled.input`
+  color: ${props => props.theme.primary};
+`
 ;<Input
   onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
     console.log(evt.target.value)
