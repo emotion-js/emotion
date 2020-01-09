@@ -20,6 +20,14 @@
     "@emotion/utils": "0.11.2",
     "csstype": "^2.6.7"
   },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0-next.10"
+  },
+  "peerDependenciesMeta": {
+    "@emotion/react": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "dtslint": "^0.3.0"
   },
