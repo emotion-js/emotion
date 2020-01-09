@@ -86,7 +86,6 @@ const Button = styled.button``
 const Input = styled.input`
   & + ${Label}: {
     margin-left: 3px;
-    color: ${props => props.theme.primary};
   }
 `
 
@@ -112,6 +111,9 @@ const Input4 = styled.input<AdditionalTest>`
   & + ${Label}: ${props => ({
   marginLeft: props.left
 })}
+`
+const Input5 = styled.input`
+  color: ${props => props.theme.primary};
 `
 ;<Input
   onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
