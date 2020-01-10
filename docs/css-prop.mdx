@@ -31,7 +31,7 @@ Use the [JSX Pragma](#jsx-pragma) method instead.
   "presets": ["@emotion/babel-preset-css-prop"]
 }
 ```
-
+Compatibility Note: If you include the plugin `babel-plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.
 > [Full `@emotion/babel-preset-css-prop` documentation](https://emotion.sh/docs/@emotion/babel-preset-css-prop)
 
 #### JSX Pragma
@@ -244,7 +244,3 @@ The styles are concatenated together and inserted via `insertRule`.
 ```
 
 Relying on the css spec's ["Order of Appearance"](https://www.w3.org/TR/css-cascade-3/#cascade-order) rule, property values defined later (green) override those before it (red).
-
-## Gotchas
-
-- If you include the plugin `babel-plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.
