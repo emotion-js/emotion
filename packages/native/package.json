@@ -10,7 +10,7 @@
   "files": [
     "src",
     "dist",
-    "types",
+    "types/*.d.ts",
     "macro.js"
   ],
   "types": "types/index.d.ts",
