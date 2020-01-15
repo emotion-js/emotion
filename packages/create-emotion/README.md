@@ -39,7 +39,7 @@ export const {
 
 - Using emotion in embedded contexts such as an `<iframe/>`
 
-- Setting a [nonce](/packages/cache#nonce-string) on any `<style/>` tag emotion creates for security purposes
+- Setting a [nonce](/packages/@emotion/cache#nonce) on any `<style/>` tag emotion creates for security purposes
 
 - Use emotion with a developer defined `<style/>` tag
 
