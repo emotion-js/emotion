@@ -1,7 +1,6 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.8
 
-import { Theme } from '@emotion/react'
 import { RegisteredCache, SerializedStyles } from '@emotion/utils'
 import * as CSS from 'csstype'
 
