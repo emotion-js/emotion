@@ -158,7 +158,7 @@ export const jsx: typeof React.createElement = function(
       )
       if (!match) {
         // safari and firefox
-        match = error.stack.match(/^.*\n([A-Z][A-Za-z$]+)@/)
+        match = error.stack.match(/.*\n([A-Z][A-Za-z$]+)@/)
       }
       if (match) {
         newProps[labelPropName] = sanitizeIdentifier(match[1])
