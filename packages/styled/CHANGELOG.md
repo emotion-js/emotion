@@ -1,5 +1,15 @@
 # @emotion/styled
 
+## 11.0.0-next.11
+
+### Patch Changes
+
+- [`b79781f8`](https://github.com/emotion-js/emotion/commit/b79781f81ccf100e83f533e2edb641816f85e5e1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@fabien0102](https://github.com/fabien0102)! - Fix `props.theme` type in styled component interpolation being optional (`Theme | undefined`) for components without `AdditionalProps` being specified.
+- Updated dependencies [[`f08ef5a3`](https://github.com/emotion-js/emotion/commit/f08ef5a316c1d05bff8e7f3690781e1089a263c6)]:
+  - @emotion/serialize@0.11.15-next.4
+  - @emotion/babel-plugin@11.0.0-next.11
+  - @emotion/react@11.0.0-next.11
+
 ## 11.0.0-next.10
 
 ### Patch Changes
