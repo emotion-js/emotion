@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 0.11.15-next.4
+
+### Patch Changes
+
+- [`f08ef5a3`](https://github.com/emotion-js/emotion/commit/f08ef5a316c1d05bff8e7f3690781e1089a263c6) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Removed leftover `@emotion/react` import from type definition file.
+
 ## 0.12.0-next.3
 
 ### Minor Changes

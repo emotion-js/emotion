@@ -1,5 +1,11 @@
 # @emotion/native
 
+## 11.0.0-next.11
+
+### Patch Changes
+
+- [`cb637e65`](https://github.com/emotion-js/emotion/commit/cb637e659964d24c56ba7a93d01f3865f2d94669) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@hammadj](https://github.com/hammadj)! - Add type definitions to published files for NPM
+
 ## 11.0.0-next.10
 
 ### Minor Changes
