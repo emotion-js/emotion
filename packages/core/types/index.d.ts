@@ -26,7 +26,22 @@ export {
 
 export { EmotionCache, Interpolation, SerializedStyles, css }
 
-export const ThemeContext: Context<object>
+/**
+ *
+ * ```
+ * declare module "@emotion/core" {
+ *   export interface ThemeOverride {
+ *     theme(): TTheme; // my custom theme
+ *   }
+ * }
+ * ```
+ */
+export interface ThemeOverride {
+  theme(): any;
+}
+type ThemeObject = ReturnType<ThemeOverride["theme"]>
+
+export const ThemeContext: Context<ThemeObject>
 export const CacheProvider: Provider<EmotionCache>
 export function withEmotionCache<Props, RefType = any>(
   func: (props: Props, context: EmotionCache, ref: Ref<RefType>) => ReactNode
@@ -45,7 +60,7 @@ export interface GlobalProps<Theme> {
  * @desc
  * JSX generic are supported only after TS@2.9
  */
-export function Global<Theme = any>(props: GlobalProps<Theme>): ReactElement
+export function Global<Theme = ThemeObject>(props: GlobalProps<Theme>): ReactElement<any>
 
 export function keyframes(
   template: TemplateStringsArray,
@@ -68,6 +83,7 @@ export interface ClassNamesContent<Theme> {
   cx(...args: Array<ClassNamesArg>): string
   theme: Theme
 }
+
 export interface ClassNamesProps<Theme> {
   children(content: ClassNamesContent<Theme>): ReactNode
 }
@@ -75,13 +91,13 @@ export interface ClassNamesProps<Theme> {
  * @desc
  * JSX generic are supported only after TS@2.9
  */
-export function ClassNames<Theme = any>(
+export function ClassNames<Theme = ThemeObject>(
   props: ClassNamesProps<Theme>
 ): ReactElement
 
 declare module 'react' {
   interface DOMAttributes<T> {
-    css?: InterpolationWithTheme<any>
+    css?: InterpolationWithTheme<ThemeObject>
   }
 }
 
@@ -93,7 +109,7 @@ declare global {
      */
 
     interface IntrinsicAttributes {
-      css?: InterpolationWithTheme<any>
+      css?: InterpolationWithTheme<ThemeObject>
     }
   }
 }
