@@ -2,7 +2,6 @@
 
 exports[`@emotion/babel-plugin-core core-with-component 1`] = `
 "// @flow
-import * as React from 'react'
 import styled from '@emotion/styled'
 
 const MyComponent = styled.div({ color: 'hotpink' })
@@ -16,9 +15,6 @@ import _styled from \\"@emotion/styled-base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-// @flow
-import * as React from 'react';
-
 const MyComponent = _styled(\\"div\\", {
   target: \\"ema3wqd0\\",
   label: \\"MyComponent\\"
@@ -28,7 +24,7 @@ const MyComponent = _styled(\\"div\\", {
 } : {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jb21wb25lbnQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBSW9CIiwiZmlsZSI6ImNvcmUtd2l0aC1jb21wb25lbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBAZmxvd1xuaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCdcblxuY29uc3QgTXlDb21wb25lbnQgPSBzdHlsZWQuZGl2KHsgY29sb3I6ICdob3RwaW5rJyB9KVxuXG5jb25zdCBhbGlhc3NlZCA9IE15Q29tcG9uZW50LndpdGhDb21wb25lbnQoJ3NlY3Rpb24nKVxuIl19 */\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jb21wb25lbnQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR29CIiwiZmlsZSI6ImNvcmUtd2l0aC1jb21wb25lbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBAZmxvd1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IE15Q29tcG9uZW50ID0gc3R5bGVkLmRpdih7IGNvbG9yOiAnaG90cGluaycgfSlcblxuY29uc3QgYWxpYXNzZWQgPSBNeUNvbXBvbmVudC53aXRoQ29tcG9uZW50KCdzZWN0aW9uJylcbiJdfQ== */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
