@@ -3,7 +3,7 @@ import { getLabelFromPath } from './label'
 import { getTargetClassName } from './get-target-class-name'
 
 const isInObject = (path, keyName) =>
-  path && path.properties.find(p => p.key.name === keyName)
+  path && path.properties && path.properties.find(p => p.key.name === keyName)
 
 export let getStyledOptions = (t: *, path: *, state: *) => {
   let args = path.node.arguments
