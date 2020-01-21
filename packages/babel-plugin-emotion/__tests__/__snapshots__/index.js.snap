@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 
 const MyComponent = styled.div({ color: 'hotpink' })
 
-const aliassed = MyComponent.withComponent('section')
+MyComponent.withComponent('section')
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -24,13 +24,13 @@ const MyComponent = _styled(\\"div\\", {
 } : {
   name: \\"1lrxbo5\\",
   styles: \\"color:hotpink;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jb21wb25lbnQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR29CIiwiZmlsZSI6ImNvcmUtd2l0aC1jb21wb25lbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBAZmxvd1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IE15Q29tcG9uZW50ID0gc3R5bGVkLmRpdih7IGNvbG9yOiAnaG90cGluaycgfSlcblxuY29uc3QgYWxpYXNzZWQgPSBNeUNvbXBvbmVudC53aXRoQ29tcG9uZW50KCdzZWN0aW9uJylcbiJdfQ== */\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jb21wb25lbnQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR29CIiwiZmlsZSI6ImNvcmUtd2l0aC1jb21wb25lbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBAZmxvd1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IE15Q29tcG9uZW50ID0gc3R5bGVkLmRpdih7IGNvbG9yOiAnaG90cGluaycgfSlcblxuTXlDb21wb25lbnQud2l0aENvbXBvbmVudCgnc2VjdGlvbicpXG4iXX0= */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
-const aliassed = MyComponent.withComponent('section', {
+MyComponent.withComponent('section', {
   target: \\"ema3wqd1\\",
-  label: \\"aliassed\\"
+  target: \\"ema3wqd0\\"
 });"
 `;
 
