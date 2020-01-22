@@ -85,6 +85,21 @@ exports[`handles camelCased custom properties in object styles properly 1`] = `
 />
 `;
 
+exports[`handles composition of an array css prop containing no final semi with cssprop-generated className (runtime variant of #1730) 1`] = `
+.emotion-0 {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+>
+  I'm hotpink on the green background.
+</div>
+`;
+
 exports[`handles composition of styles without a final semi in a declaration block 1`] = `
 .emotion-0 {
   color: hotpink;

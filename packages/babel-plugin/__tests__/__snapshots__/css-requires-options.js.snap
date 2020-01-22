@@ -306,5 +306,5 @@ import { css } from '@emotion/react';
 var templateObject_1;
 const someVar =
 /*#__PURE__*/
-css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar\\")])));"
+css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar;\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar;\\")])));"
 `;

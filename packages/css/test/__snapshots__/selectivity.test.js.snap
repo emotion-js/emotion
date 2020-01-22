@@ -39,38 +39,38 @@ exports[`css complex nested styles 1`] = `
 `;
 
 exports[`css handles media query merges 1`] = `
-".css-yno01n {
+".css-vs4yix {
   color: darkslateblue;
   color: red;
   color: purple;
 }
 
 @media (min-width:420px) {
-  .css-yno01n {
+  .css-vs4yix {
     color: amethyst;
   }
 }
 
 @media (min-width:640px) {
-  .css-yno01n {
+  .css-vs4yix {
     color: rebeccapurple;
   }
 }
 
 @media (min-width:960px) {
-  .css-yno01n {
+  .css-vs4yix {
     color: burlywood;
   }
 }
 
 @media (min-width:640px) {
-  .css-yno01n {
+  .css-vs4yix {
     color: blue;
   }
 }
 
 @media (min-width:640px) {
-  .css-yno01n {
+  .css-vs4yix {
     color: aquamarine;
   }
 }"

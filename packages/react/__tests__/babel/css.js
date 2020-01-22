@@ -24,3 +24,22 @@ test('tagged template args forwarded', () => {
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
+
+test('composition of dynamic array css prop with cssprop-generated className (#1730)', () => {
+  const Child = ({ bgColor, ...props }) => (
+    <div
+      css={[{ width: 50, height: 50 }, { backgroundColor: bgColor }]}
+      {...props}
+    />
+  )
+  const Parent = ({ children }) => (
+    <Child bgColor="green" css={{ color: 'hotpink' }}>
+      {children}
+    </Child>
+  )
+  const tree = renderer.create(
+    <Parent>{"I'm hotpink on the green background."}</Parent>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})

@@ -12,11 +12,11 @@ exports[`ssr @import 1`] = `
 `;
 
 exports[`ssr ClassNames 1`] = `
-<style data-emotion-css="15qt0xu 1c3m2c3 15gmrnz 1a1f6d6 nug1mu">
-  .css-15qt0xu{color:hotpink;}.css-1c3m2c3{color:green;}.css-15gmrnz{color:yellowgreen;}.css-1a1f6d6{color:green;color:yellowgreen;}.css-nug1mu{color:darkgreen;}
+<style data-emotion-css="15qt0xu 1c3m2c3 15gmrnz 1v94cnd nug1mu">
+  .css-15qt0xu{color:hotpink;}.css-1c3m2c3{color:green;}.css-15gmrnz{color:yellowgreen;}.css-1v94cnd{color:green;color:yellowgreen;}.css-nug1mu{color:darkgreen;}
 </style>
 <div class="css-15qt0xu">
-  <span class="other-class css-1a1f6d6">
+  <span class="other-class css-1v94cnd">
   </span>
   <span class="css-nug1mu other-class">
   </span>
@@ -146,10 +146,10 @@ exports[`ssr with old api ClassNames 1`] = `
   .css-15qt0xu{color:hotpink;}
 </style>
 <div class="css-15qt0xu">
-  <style data-emotion-css="1a1f6d6">
-    .css-1a1f6d6{color:green;color:yellowgreen;}
+  <style data-emotion-css="1v94cnd">
+    .css-1v94cnd{color:green;color:yellowgreen;}
   </style>
-  <span class="other-class css-1a1f6d6">
+  <span class="other-class css-1v94cnd">
   </span>
   <style data-emotion-css="nug1mu">
     .css-nug1mu{color:darkgreen;}

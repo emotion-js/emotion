@@ -264,7 +264,12 @@ function createStringFromObject(
 
   if (Array.isArray(obj)) {
     for (let i = 0; i < obj.length; i++) {
-      string += handleInterpolation(mergedProps, registered, obj[i], false)
+      string += `${handleInterpolation(
+        mergedProps,
+        registered,
+        obj[i],
+        false
+      )};`
     }
   } else {
     for (let key in obj) {
