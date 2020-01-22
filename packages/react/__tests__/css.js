@@ -1,8 +1,9 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
+import { safeQuerySelector } from 'test-utils'
 import * as React from 'react'
-import { jsx, css, CacheProvider, ThemeProvider } from '@emotion/react'
+import { jsx, css, Global, CacheProvider, ThemeProvider } from '@emotion/react'
 import { render } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 import createCache from '@emotion/cache'
@@ -14,6 +15,7 @@ console.warn = jest.fn()
 
 afterEach(() => {
   jest.clearAllMocks()
+  safeQuerySelector('body').innerHTML = ''
 })
 
 const SomeComponent = (props: { lol: true }) => (props.lol ? 'yes' : 'no')
@@ -171,6 +173,19 @@ test('can set speedy via custom cache', () => {
     </CacheProvider>
   )
   expect(cache.sheet.tags).toHaveLength(1)
+})
+
+test('speedy option from a custom cache is inherited for <Global/> styles', () => {
+  let cache = createCache({
+    container: safeQuerySelector('body'),
+    speedy: true
+  })
+  renderer.create(
+    <CacheProvider value={cache}>
+      <Global styles={{ html: { fontSize: 16 } }} />>
+    </CacheProvider>
+  )
+  expect(safeQuerySelector('body style').textContent).toEqual('')
 })
 
 test('autoLabel without babel', () => {

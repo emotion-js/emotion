@@ -92,7 +92,8 @@ export let Global: React.AbstractComponent<
       let sheet = new StyleSheet({
         key: `${cache.key}-global`,
         nonce: cache.sheet.nonce,
-        container: cache.sheet.container
+        container: cache.sheet.container,
+        speedy: cache.sheet.isSpeedy
       })
       // $FlowFixMe
       let node: HTMLStyleElement | null = document.querySelector(
