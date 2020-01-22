@@ -108,8 +108,7 @@ Object {
   width: 50px;
   background-color: red;
 }",
-  "html": 
-<main class="css-14e1j2p-hoverStyles-Something_Main">
+  "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
   <img size="30"
        class="css-1h1w8ez-Image"
   >
@@ -117,8 +116,7 @@ Object {
        class="css-1h1w8ez-Image"
   >
   <img class="css-1h1w8ez-Image">
-</main>
-,
+</main>,
   "ids": Array [
     "1uqawbr",
     "i9f7qw-bounce",
@@ -228,13 +226,11 @@ Object {
   border-color: aqua;
   box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }",
-  "html": 
-<main class="css-14e1j2p-hoverStyles-Something_Main">
+  "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
   <div>
     Hello
   </div>
-</main>
-,
+</main>,
   "ids": Array [
     "1uqawbr",
     "i9f7qw-bounce",
@@ -352,8 +348,7 @@ Object {
   width: 50px;
   background-color: red;
 }",
-  "html": 
-<main class="css-14e1j2p-hoverStyles-Something_Main">
+  "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
   <img size="30"
        class="css-1h1w8ez-Image"
   >
@@ -361,8 +356,7 @@ Object {
        class="css-1h1w8ez-Image"
   >
   <img class="css-1h1w8ez-Image">
-</main>
-,
+</main>,
   "ids": Array [
     "1uqawbr",
     "i9f7qw-bounce",
