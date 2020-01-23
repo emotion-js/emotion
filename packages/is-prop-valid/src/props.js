@@ -184,6 +184,8 @@ const props = {
   autoSave: true,
   // color is for Safari mask-icon link
   color: true,
+  // https://html.spec.whatwg.org/multipage/interaction.html#inert
+  inert: true,
   // itemProp, itemScope, itemType are for
   // Microdata support. See http://schema.org/docs/gs.html
   itemProp: true,
