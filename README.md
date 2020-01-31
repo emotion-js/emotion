@@ -102,6 +102,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [zefenify.com](https://zefenify.com/about.html)
 - [sentry.io](https://sentry.io)
 - [comparett.com](https://comparett.com)
+- [cyberhaven.com](https://cyberhaven.com)
 
 ## Contributors
 
