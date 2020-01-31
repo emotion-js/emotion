@@ -103,6 +103,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [sentry.io](https://sentry.io)
 - [comparett.com](https://comparett.com)
 - [Domain.com.au](https://www.domain.com.au)
+- [cyberhaven.com](https://cyberhaven.com)
 
 ## Contributors
 
