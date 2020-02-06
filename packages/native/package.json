@@ -16,10 +16,10 @@
   "types": "types/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@types/react-native": "^0.57.0",
+    "@types/react-native": "^0.61.10",
     "dtslint": "^0.3.0",
     "react": "^16.11.0",
-    "react-native": "^0.57.0"
+    "react-native": "^0.61.5"
   },
   "dependencies": {
     "@emotion/primitives-core": "11.0.0-next.10"

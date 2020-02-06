@@ -16,7 +16,6 @@ export type ReactNativeStyle = RN.ViewStyle | RN.TextStyle | RN.ImageStyle
 
 export type ReactNativeComponentNames =
   | 'ActivityIndicator'
-  | 'ActivityIndicatorIOS'
   | 'Button'
   | 'DatePickerIOS'
   | 'DrawerLayoutAndroid'
@@ -53,7 +52,6 @@ export type ReactNativeComponentNames =
   | 'TouchableWithoutFeedback'
   | 'View'
   | 'ViewPagerAndroid'
-  | 'WebView'
 
 export type ReactNativeComponents = Pick<ReactNative, ReactNativeComponentNames>
 
