@@ -38,6 +38,28 @@ import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
 const F = () => <></>;"
 `;
 
+exports[`@emotion/babel-plugin-jsx-pragmatic fragment-only-no-import 1`] = `
+"// When using Emotion, React does not need to be in scope except
+// when using fragment shorthand. This plugin should add a react
+// import when using the \`fragment\` option, so we can ignore the
+// linting error here.
+// eslint-disable-next-line react/react-in-jsx-scope
+const F = () => <></>
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+import { default as React } from \\"react\\";
+
+// When using Emotion, React does not need to be in scope except
+// when using fragment shorthand. This plugin should add a react
+// import when using the \`fragment\` option, so we can ignore the
+// linting error here.
+// eslint-disable-next-line react/react-in-jsx-scope
+const F = () => <></>;"
+`;
+
 exports[`@emotion/babel-plugin-jsx-pragmatic minimal 1`] = `
 "import * as React from 'react'
 

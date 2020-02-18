@@ -139,6 +139,8 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
 >
 > - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/next/babel-plugin-transform-react-jsx)
 
+Also supports a `fragment` option (boolean, default `false`). This automatically adds React imports when JSX fragment shorthand is detected via `@emotion/babel-plugin-jsx-pragmatic`. See https://www.npmjs.com/package/@emotion/babel-plugin-jsx-pragmatic.
+
 ### Examples
 
 ```json
@@ -149,7 +151,8 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
       "autoLabel": true,
       "labelFormat": "[local]",
       "useBuiltIns": false,
-      "throwIfNamespace": true
+      "throwIfNamespace": true,
+      "fragment": true
     }
   ]
 }

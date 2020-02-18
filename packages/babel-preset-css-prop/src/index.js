@@ -11,7 +11,15 @@ let pragmaName = '___EmotionJSX'
 
 export default (
   api,
-  { pragma, sourceMap, autoLabel, labelFormat, instances, ...options } = {}
+  {
+    pragma,
+    sourceMap,
+    autoLabel,
+    labelFormat,
+    instances,
+    fragment,
+    ...options
+  } = {}
 ) => {
   return {
     plugins: [
@@ -20,7 +28,8 @@ export default (
         {
           export: 'jsx',
           module: '@emotion/core',
-          import: pragmaName
+          import: pragmaName,
+          fragment: fragment && { module: 'react', import: 'React' }
         }
       ],
       [jsx, { pragma: pragmaName, pragmaFrag: 'React.Fragment', ...options }],

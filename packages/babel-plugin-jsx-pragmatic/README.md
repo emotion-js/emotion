@@ -163,6 +163,24 @@ String. The export that you want to import as `import` from `module`. Default va
 // import {something as x} from "whatever"
 ```
 
+### `fragment`
+
+Object. Disabled by default. Adds a React import when fragment shorthand appears in the source. By default, the shorthand is transpiled to `React.Fragment`, and if this is not enabled, React must be manually imported to use fragment shorthand (otherwise, a runtime error will be thrown).
+
+```js
+{
+  fragment: {
+    module: "react"
+    import: "React",
+  },
+  // other options
+  module: "whatever",
+  import: "x",
+}
+// import {default as x} from "whatever"
+// import {default as React} from "react"
+```
+
 # Known Issues
 
 - Doesn't do anything special in the case that the file being transformed
