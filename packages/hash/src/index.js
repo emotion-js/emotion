@@ -22,10 +22,10 @@ export default function murmur2(str: string) {
   let nBlocks = len >>> 2;
   while (nBlocks--) {
     k =
-      (str.charCodeAt(i) & 0xff) |
-      ((str.charCodeAt(++i) & 0xff) << 8) |
-      ((str.charCodeAt(++i) & 0xff) << 16) |
-      ((str.charCodeAt(++i) & 0xff) << 24);
+      (str.charCodeAt(i++) & 0xff) |
+      ((str.charCodeAt(i++) & 0xff) << 8) |
+      ((str.charCodeAt(i++) & 0xff) << 16) |
+      ((str.charCodeAt(i++) & 0xff) << 24);
 
     k = /* Math.imul(k, m): */ ((k * 0x5bd1) << 16) + k * 0xe995;
     k ^= /* k >>> r: */ k >>> 24;
