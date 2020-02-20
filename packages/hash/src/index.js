@@ -13,19 +13,20 @@ export default function murmur2(str: string) {
   // Initialize the hash to a 'random' value
 
   const len = str.length;
+
   let h = len ^ len;
 
   // Mix 4 bytes at a time into the hash
 
   let k,
+    nBlocks = len >>> 2,
     i = 0;
-  let nBlocks = len >>> 2;
-  while (nBlocks--) {
+  for (; nBlocks--; ++i) {
     k =
-      (str.charCodeAt(i++) & 0xff) |
-      ((str.charCodeAt(i++) & 0xff) << 8) |
-      ((str.charCodeAt(i++) & 0xff) << 16) |
-      ((str.charCodeAt(i++) & 0xff) << 24);
+      (str.charCodeAt(i) & 0xff) |
+      ((str.charCodeAt(++i) & 0xff) << 8) |
+      ((str.charCodeAt(++i) & 0xff) << 16) |
+      ((str.charCodeAt(++i) & 0xff) << 24);
 
     k = /* Math.imul(k, m): */ ((k * 0x5bd1) << 16) + k * 0xe995;
     k ^= /* k >>> r: */ k >>> 24;
