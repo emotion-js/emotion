@@ -12,13 +12,12 @@ export default function murmur2(str: string) {
 
   // Initialize the hash to a 'random' value
 
-  const len = str.length;
-
-  let h = len ^ len;
+  var len = str.length,
+    h = len ^ len;
 
   // Mix 4 bytes at a time into the hash
 
-  let k,
+  var k,
     nBlocks = len >>> 2,
     i = 0;
   for (; nBlocks--; ++i) {
