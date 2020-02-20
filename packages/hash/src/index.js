@@ -17,10 +17,11 @@ export default function murmur2(str: string) {
 
   // Mix 4 bytes at a time into the hash
 
-  let i = 0;
+  let k,
+    i = 0;
   let nBlocks = len >>> 2;
   while (nBlocks--) {
-    let k =
+    k =
       (str.charCodeAt(i) & 0xff) |
       ((str.charCodeAt(++i) & 0xff) << 8) |
       ((str.charCodeAt(++i) & 0xff) << 16) |
