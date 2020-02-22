@@ -18,21 +18,21 @@ export default function murmur2(str: string) {
 
   var k,
     i = 0,
-    len = str.length,
-    nBlocks = len >>> 2;
-  for (; nBlocks--; ++i) {
+    len = str.length;
+  while ((len -= 4) >= 0) {
     k =
       (str.charCodeAt(i) & 0xff) |
       ((str.charCodeAt(++i) & 0xff) << 8) |
       ((str.charCodeAt(++i) & 0xff) << 16) |
       ((str.charCodeAt(++i) & 0xff) << 24);
+    ++i;
 
     k = /* Math.imul(k, m): */ ((k * 0x5bd1) << 16) + k * 0xe995;
     k ^= /* k >>> r: */ k >>> 24;
 
     h =
-      /* Math.imul(h, m): */ (((h * 0x5bd1) << 16) + h * 0xe995) ^
-      /* Math.imul(k, m): */ (((k * 0x5bd1) << 16) + k * 0xe995);
+      /* Math.imul(k, m): */ (((k * 0x5bd1) << 16) + k * 0xe995) ^
+      /* Math.imul(h, m): */ (((h * 0x5bd1) << 16) + h * 0xe995);
   }
 
   // Handle the last few bytes of the input array
