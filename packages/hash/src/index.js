@@ -12,14 +12,14 @@ export default function murmur2(str: string) {
 
   // Initialize the hash to a 'random' value
 
-  var len = str.length,
-    h = len ^ len;
+  var h = 0;
 
   // Mix 4 bytes at a time into the hash
 
   var k,
-    nBlocks = len >>> 2,
-    i = 0;
+    i = 0,
+    len = str.length,
+    nBlocks = len >>> 2;
   for (; nBlocks--; ++i) {
     k =
       (str.charCodeAt(i) & 0xff) |
