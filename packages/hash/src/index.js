@@ -10,7 +10,7 @@ export default function murmur2(str: string) {
   // const m = 0x5bd1e995;
   // const r = 24;
 
-  // Initialize the hash to a 'random' value
+  // Initialize the hash
 
   var h = 0;
 
@@ -19,13 +19,12 @@ export default function murmur2(str: string) {
   var k,
     i = 0,
     len = str.length;
-  while ((len -= 4) >= 0) {
+  for (; len >= 4; ++i, len -= 4) {
     k =
       (str.charCodeAt(i) & 0xff) |
       ((str.charCodeAt(++i) & 0xff) << 8) |
       ((str.charCodeAt(++i) & 0xff) << 16) |
       ((str.charCodeAt(++i) & 0xff) << 24);
-    ++i;
 
     k = /* Math.imul(k, m): */ ((k * 0x5bd1) << 16) + k * 0xe995;
     k ^= /* k >>> r: */ k >>> 24;
@@ -37,7 +36,7 @@ export default function murmur2(str: string) {
 
   // Handle the last few bytes of the input array
 
-  switch (len & 3) {
+  switch (len) {
     case 3:
       h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
     case 2:
