@@ -42,7 +42,7 @@ export let transformExpressionWithStyles = ({
   path: *,
   shouldLabel: boolean,
   sourceMap?: string
-}): { node?: *, isPure: boolean } => {
+}): * => {
   let t = babel.types
   if (t.isTaggedTemplateExpression(path)) {
     const expressions = getExpressionsFromTemplateLiteral(path.node.quasi, t)
@@ -64,12 +64,7 @@ export let transformExpressionWithStyles = ({
       }
     }
 
-    let isPure = true
-
     path.get('arguments').forEach(node => {
-      if (!node.isPure()) {
-        isPure = false
-      }
       if (t.isObjectExpression(node)) {
         node.replaceWith(simplifyObject(node.node, t))
       }
@@ -125,7 +120,7 @@ export let transformExpressionWithStyles = ({
         node = createSourceMapConditional(t, prodNode, devNode)
       }
 
-      return { node, isPure: true }
+      return node
     }
     if (sourceMap) {
       let lastIndex = path.node.arguments.length - 1
@@ -162,8 +157,5 @@ export let transformExpressionWithStyles = ({
         path.node.arguments.push(sourceMapConditional)
       }
     }
-
-    return { node: undefined, isPure }
   }
-  return { node: undefined, isPure: false }
 }
