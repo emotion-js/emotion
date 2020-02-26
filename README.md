@@ -71,7 +71,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [emotion website](site) [[Demo Here](https://emotion.sh)]
 - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
 - [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
-- [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
+- [circuit-ui](https://github.com/sumup-oss/circuit-ui), a react component library built at SumUp [[Storybook](https://circuit.sumup.com/?path=/story/introduction-welcome--page)]
 - **open a PR and add yours!**
 
 ### Ecosystem
@@ -102,6 +102,9 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [zefenify.com](https://zefenify.com/about.html)
 - [sentry.io](https://sentry.io)
 - [comparett.com](https://comparett.com)
+- [Domain.com.au](https://www.domain.com.au)
+- [cyberhaven.com](https://cyberhaven.com)
+- [CommercialRealEstate.com.au](https://www.commercialrealestate.com.au)
 
 ## Contributors
 
