@@ -2,11 +2,11 @@
 import { getLabelFromPath } from './label'
 import { getTargetClassName } from './get-target-class-name'
 
-const getKnownProperties = (t: *, path: *) =>
+const getKnownProperties = (t: *, node: *) =>
   new Set(
-    path.properties
-      .filter(p => t.isObjectProperty(p) && !p.computed)
-      .map(p => (t.isIdentifier(p.key) ? p.key.name : p.key.value))
+    node.properties
+      .filter(n => t.isObjectProperty(n) && !n.computed)
+      .map(n => (t.isIdentifier(n.key) ? n.key.name : n.key.value))
   )
 
 export let getStyledOptions = (t: *, path: *, state: *) => {
@@ -14,9 +14,10 @@ export let getStyledOptions = (t: *, path: *, state: *) => {
   let optionsArgument = args.length >= 2 ? args[1] : null
 
   let properties = []
-  let knownProperties = optionsArgument
-    ? getKnownProperties(t, optionsArgument)
-    : new Set()
+  let knownProperties =
+    optionsArgument && t.isObjectExpression(optionsArgument)
+      ? getKnownProperties(t, optionsArgument)
+      : new Set()
 
   if (!knownProperties.has('target')) {
     properties.push(
