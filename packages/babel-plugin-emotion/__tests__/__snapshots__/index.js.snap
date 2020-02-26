@@ -65,9 +65,7 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
 
-const SomeComponent = props => <div css={
-/*#__PURE__*/
-_ref} {...props} />;"
+const SomeComponent = props => <div css={_ref} {...props} />;"
 `;
 
 exports[`@emotion/babel-plugin-core does-not-change-other-props 1`] = `

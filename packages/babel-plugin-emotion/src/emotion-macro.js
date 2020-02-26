@@ -28,7 +28,7 @@ export let createEmotionMacro = (instancePath: string) =>
             if (isPure) {
               path.addComment('leading', '#__PURE__')
             }
-            let { node } = transformExpressionWithStyles({
+            let node = transformExpressionWithStyles({
               babel,
               state,
               path,
