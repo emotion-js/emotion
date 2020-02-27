@@ -7,7 +7,6 @@ const css = createCss(reactNative.StyleSheet)
 
 const components = [
   'ActivityIndicator',
-  'ActivityIndicatorIOS',
   'Button',
   'DatePickerIOS',
   'DrawerLayoutAndroid',
@@ -43,8 +42,7 @@ const components = [
   'TouchableOpacity',
   'TouchableWithoutFeedback',
   'View',
-  'ViewPagerAndroid',
-  'WebView'
+  'ViewPagerAndroid'
 ]
 
 export { css }
