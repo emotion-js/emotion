@@ -103,7 +103,6 @@ process.env.NODE_ENV === \\"production\\" ? {
 
 exports[`source maps css-transpiled-by-ts 1`] = `
 "import { __makeTemplateObject } from 'tslib'
-
 import { css } from '@emotion/react'
 
 var templateObject_1
@@ -124,7 +123,35 @@ import { css } from '@emotion/react';
 var templateObject_1;
 
 /*#__PURE__*/
-css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY3NzKFxuICB0ZW1wbGF0ZU9iamVjdF8xIHx8XG4gICAgKHRlbXBsYXRlT2JqZWN0XzEgPSBfX21ha2VUZW1wbGF0ZU9iamVjdChcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXSxcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXVxuICAgICkpXG4pXG4iXX0= */\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxudmFyIHRlbXBsYXRlT2JqZWN0XzFcblxuY3NzKFxuICB0ZW1wbGF0ZU9iamVjdF8xIHx8XG4gICAgKHRlbXBsYXRlT2JqZWN0XzEgPSBfX21ha2VUZW1wbGF0ZU9iamVjdChcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXSxcbiAgICAgIFsnXFxuICBjb2xvcjogaG90cGluaztcXG4nXVxuICAgICkpXG4pXG4iXX0= */\\")])));"
+css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbnZhciB0ZW1wbGF0ZU9iamVjdF8xXG5cbmNzcyhcbiAgdGVtcGxhdGVPYmplY3RfMSB8fFxuICAgICh0ZW1wbGF0ZU9iamVjdF8xID0gX19tYWtlVGVtcGxhdGVPYmplY3QoXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ10sXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ11cbiAgICApKVxuKVxuIl19 */\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbnZhciB0ZW1wbGF0ZU9iamVjdF8xXG5cbmNzcyhcbiAgdGVtcGxhdGVPYmplY3RfMSB8fFxuICAgICh0ZW1wbGF0ZU9iamVjdF8xID0gX19tYWtlVGVtcGxhdGVPYmplY3QoXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ10sXG4gICAgICBbJ1xcbiAgY29sb3I6IGhvdHBpbms7XFxuJ11cbiAgICApKVxuKVxuIl19 */\\")])));"
+`;
+
+exports[`source maps css-transpiled-by-ts-with-interpolations 1`] = `
+"import { __makeTemplateObject } from 'tslib'
+import { css } from '@emotion/react'
+import { hoverStyles } from './styles'
+
+var templateObject_1
+
+css(
+  templateObject_1 ||
+    (templateObject_1 = __makeTemplateObject(
+      ['\\\\n  color: hotpink;\\\\n'],
+      ['\\\\n  color: hotpink;\\\\n']
+    )),
+  hoverStyles
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { __makeTemplateObject } from 'tslib';
+import { css } from '@emotion/react';
+import { hoverStyles } from './styles';
+var templateObject_1;
+
+/*#__PURE__*/
+css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5pbXBvcnQgeyBob3ZlclN0eWxlcyB9IGZyb20gJy4vc3R5bGVzJ1xuXG52YXIgdGVtcGxhdGVPYmplY3RfMVxuXG5jc3MoXG4gIHRlbXBsYXRlT2JqZWN0XzEgfHxcbiAgICAodGVtcGxhdGVPYmplY3RfMSA9IF9fbWFrZVRlbXBsYXRlT2JqZWN0KFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddLFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddXG4gICAgKSksXG4gIGhvdmVyU3R5bGVzXG4pXG4iXX0= */\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNQSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5pbXBvcnQgeyBob3ZlclN0eWxlcyB9IGZyb20gJy4vc3R5bGVzJ1xuXG52YXIgdGVtcGxhdGVPYmplY3RfMVxuXG5jc3MoXG4gIHRlbXBsYXRlT2JqZWN0XzEgfHxcbiAgICAodGVtcGxhdGVPYmplY3RfMSA9IF9fbWFrZVRlbXBsYXRlT2JqZWN0KFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddLFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddXG4gICAgKSksXG4gIGhvdmVyU3R5bGVzXG4pXG4iXX0= */\\")])), hoverStyles);"
 `;
 
 exports[`source maps global-styles-prop 1`] = `

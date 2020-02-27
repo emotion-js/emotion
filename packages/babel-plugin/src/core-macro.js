@@ -19,7 +19,7 @@ export const transformCssCallExpression = ({
   sourceMap?: string,
   annotateAsPure?: boolean
 }) => {
-  let { node, isPure } = transformExpressionWithStyles({
+  let node = transformExpressionWithStyles({
     babel,
     state,
     path,
@@ -28,10 +28,8 @@ export const transformCssCallExpression = ({
   })
   if (node) {
     path.replaceWith(node)
-    if (isPure) {
-      path.hoist()
-    }
-  } else if (annotateAsPure) {
+    path.hoist()
+  } else if (annotateAsPure && path.isCallExpression()) {
     path.addComment('leading', '#__PURE__')
   }
 }

@@ -12,6 +12,12 @@
 
 - [`8b59959`](https://github.com/emotion-js/emotion/commit/8b59959f0929799f050089b05cafb39ca2c57d2d) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Respect `syntax-preference` rule when using css prop.
 
+## 10.0.27
+
+### Patch Changes
+
+- [`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968) [#1698](https://github.com/emotion-js/emotion/pull/1698) Thanks [@Andarist](https://github.com/Andarist)! - Add LICENSE file
+
 ## 10.0.14
 
 ### Patch Changes

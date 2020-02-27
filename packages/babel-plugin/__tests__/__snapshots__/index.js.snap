@@ -1,5 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`@emotion/babel-plugin core-with-component 1`] = `
+"// @flow
+import styled from '@emotion/styled'
+
+const MyComponent = styled.div({ color: 'hotpink' })
+
+const OtherComponent = MyComponent.withComponent('section')
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+// @flow
+const MyComponent = _styled(\\"div\\", {
+  target: \\"eck06en0\\",
+  label: \\"MyComponent\\"
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jb21wb25lbnQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR29CIiwiZmlsZSI6ImNvcmUtd2l0aC1jb21wb25lbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBAZmxvd1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnXG5cbmNvbnN0IE15Q29tcG9uZW50ID0gc3R5bGVkLmRpdih7IGNvbG9yOiAnaG90cGluaycgfSlcblxuY29uc3QgT3RoZXJDb21wb25lbnQgPSBNeUNvbXBvbmVudC53aXRoQ29tcG9uZW50KCdzZWN0aW9uJylcbiJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});
+
+const OtherComponent = MyComponent.withComponent('section', {
+  target: \\"eck06en1\\",
+  label: \\"OtherComponent\\"
+});"
+`;
+
 exports[`@emotion/babel-plugin core-with-css-import 1`] = `
 "/** @jsx jsx */
 import { jsx, css } from '@emotion/react'
@@ -55,7 +90,9 @@ import { jsx, css } from '@emotion/react';
 
 const SomeComponent = props => <div css={
 /*#__PURE__*/
-css(\\"color:\\", window, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:SomeComponent\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jc3MtaW1wb3J0LWR5bmFtaWMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS1kiLCJmaWxlIjoiY29yZS13aXRoLWNzcy1pbXBvcnQtZHluYW1pYy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHsganN4LCBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgU29tZUNvbXBvbmVudCA9IHByb3BzID0+IChcbiAgPGRpdlxuICAgIGNzcz17Y3NzYFxuICAgICAgY29sb3I6ICR7d2luZG93fTtcbiAgICBgfVxuICAgIHsuLi5wcm9wc31cbiAgLz5cbilcbiJdfQ== */\\")} {...props} />;"
+
+/*#__PURE__*/
+css(\\"color:\\", window, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:SomeComponent\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvcmUtd2l0aC1jc3MtaW1wb3J0LWR5bmFtaWMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS1kiLCJmaWxlIjoiY29yZS13aXRoLWNzcy1pbXBvcnQtZHluYW1pYy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHsganN4LCBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgU29tZUNvbXBvbmVudCA9IHByb3BzID0+IChcbiAgPGRpdlxuICAgIGNzcz17Y3NzYFxuICAgICAgY29sb3I6ICR7d2luZG93fTtcbiAgICBgfVxuICAgIHsuLi5wcm9wc31cbiAgLz5cbilcbiJdfQ== */\\", process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:SomeComponent\\")} {...props} />;"
 `;
 
 exports[`@emotion/babel-plugin css-prop-complex-array 1`] = `
@@ -84,7 +121,7 @@ const css2 = theme => ({
 });
 
 function SomeComponent(props) {
-  return <div css={[css1, css2, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:SomeComponent\\", process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1wcm9wLWNvbXBsZXgtYXJyYXkuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBT2MiLCJmaWxlIjoiY3NzLXByb3AtY29tcGxleC1hcnJheS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHsganN4LCBHbG9iYWwgfSBmcm9tICdAZW1vdGlvbi9yZWFjdC9tYWNybydcblxuY29uc3QgY3NzMSA9IHRoZW1lID0+ICh7IGJhY2tncm91bmRDb2xvcjogdGhlbWUuYmdDb2xvciB9KVxuY29uc3QgY3NzMiA9IHRoZW1lID0+ICh7IHBhZGRpbmc6IHRoZW1lLnNwYWNpbmcuc21hbGwgfSlcblxuZnVuY3Rpb24gU29tZUNvbXBvbmVudChwcm9wcykge1xuICByZXR1cm4gPGRpdiBjc3M9e1tjc3MxLCBjc3MyXX0+eydFbW90aW9uJ308L2Rpdj5cbn1cbiJdfQ== */\\"]}>{'Emotion'}</div>;
+  return <div css={[css1, css2, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:SomeComponent\\", process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1wcm9wLWNvbXBsZXgtYXJyYXkuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBT2MiLCJmaWxlIjoiY3NzLXByb3AtY29tcGxleC1hcnJheS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHsganN4LCBHbG9iYWwgfSBmcm9tICdAZW1vdGlvbi9yZWFjdC9tYWNybydcblxuY29uc3QgY3NzMSA9IHRoZW1lID0+ICh7IGJhY2tncm91bmRDb2xvcjogdGhlbWUuYmdDb2xvciB9KVxuY29uc3QgY3NzMiA9IHRoZW1lID0+ICh7IHBhZGRpbmc6IHRoZW1lLnNwYWNpbmcuc21hbGwgfSlcblxuZnVuY3Rpb24gU29tZUNvbXBvbmVudChwcm9wcykge1xuICByZXR1cm4gPGRpdiBjc3M9e1tjc3MxLCBjc3MyXX0+eydFbW90aW9uJ308L2Rpdj5cbn1cbiJdfQ== */\\", process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:SomeComponent\\", process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1wcm9wLWNvbXBsZXgtYXJyYXkuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBT2MiLCJmaWxlIjoiY3NzLXByb3AtY29tcGxleC1hcnJheS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHsganN4LCBHbG9iYWwgfSBmcm9tICdAZW1vdGlvbi9yZWFjdC9tYWNybydcblxuY29uc3QgY3NzMSA9IHRoZW1lID0+ICh7IGJhY2tncm91bmRDb2xvcjogdGhlbWUuYmdDb2xvciB9KVxuY29uc3QgY3NzMiA9IHRoZW1lID0+ICh7IHBhZGRpbmc6IHRoZW1lLnNwYWNpbmcuc21hbGwgfSlcblxuZnVuY3Rpb24gU29tZUNvbXBvbmVudChwcm9wcykge1xuICByZXR1cm4gPGRpdiBjc3M9e1tjc3MxLCBjc3MyXX0+eydFbW90aW9uJ308L2Rpdj5cbn1cbiJdfQ== */\\"]}>{'Emotion'}</div>;
 }"
 `;
 

@@ -40,7 +40,7 @@ export let transformExpressionWithStyles = ({
   path: *,
   shouldLabel: boolean,
   sourceMap?: string
-}): { node?: *, isPure: boolean } => {
+}): * => {
   const autoLabel = state.opts.autoLabel || 'dev-only'
   let t = babel.types
   if (t.isTaggedTemplateExpression(path)) {
@@ -56,12 +56,7 @@ export let transformExpressionWithStyles = ({
       arg => arg.type !== 'SpreadElement'
     )
 
-    let isPure = true
-
     path.get('arguments').forEach(node => {
-      if (!node.isPure()) {
-        isPure = false
-      }
       if (t.isObjectExpression(node)) {
         node.replaceWith(simplifyObject(node.node, t))
       }
@@ -131,7 +126,7 @@ export let transformExpressionWithStyles = ({
         node = createNodeEnvConditional(t, prodNode, devNode)
       }
 
-      return { node, isPure: true }
+      return node
     }
 
     if (label) {
@@ -161,8 +156,5 @@ export let transformExpressionWithStyles = ({
       )
       appendStringReturningExpressionToArguments(t, path, sourceMapConditional)
     }
-
-    return { node: undefined, isPure }
   }
-  return { node: undefined, isPure: false }
 }

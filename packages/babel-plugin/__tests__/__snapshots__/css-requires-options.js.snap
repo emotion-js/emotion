@@ -256,10 +256,36 @@ css(process.env.NODE_ENV === \\"production\\" ? {
 });"
 `;
 
+exports[`babel css inline label on code transpiled by TS (with interpolations)  1`] = `
+"
+    import { __makeTemplateObject } from 'tslib'
+    import { css } from '@emotion/react'
+    import { hoverStyles } from './styles'
+
+    var templateObject_1
+
+    const someVar = css(
+      templateObject_1 ||
+        (templateObject_1 = __makeTemplateObject(
+          ['\\\\n  color: hotpink;\\\\n'],
+          ['\\\\n  color: hotpink;\\\\n']
+        )),
+      hoverStyles
+    )
+    
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { __makeTemplateObject } from 'tslib';
+import { css } from '@emotion/react';
+import { hoverStyles } from './styles';
+var templateObject_1;
+const someVar = css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n'], ['\\\\n  color: hotpink;\\\\n'])), hoverStyles);"
+`;
+
 exports[`babel css inline label on code transpiled by TS 1`] = `
 "
     import { __makeTemplateObject } from 'tslib'
-
     import { css } from '@emotion/react'
 
     var templateObject_1

@@ -91,7 +91,6 @@ const cases = {
   'label on code transpiled by TS': {
     code: `
     import { __makeTemplateObject } from 'tslib'
-
     import { css } from '@emotion/react'
 
     var templateObject_1
@@ -113,6 +112,30 @@ const cases = {
       ]
     ],
     babelFileName: __filename
+  },
+
+  'label on code transpiled by TS (with interpolations) ': {
+    code: `
+    import { __makeTemplateObject } from 'tslib'
+    import { css } from '@emotion/react'
+    import { hoverStyles } from './styles'
+
+    var templateObject_1
+
+    const someVar = css(
+      templateObject_1 ||
+        (templateObject_1 = __makeTemplateObject(
+          ['\\n  color: hotpink;\\n'],
+          ['\\n  color: hotpink;\\n']
+        )),
+      hoverStyles
+    )
+    `,
+    opts: {
+      autoLabel: true,
+      sourceMap: false
+    },
+    filename: __filename
   },
 
   'code already transpiled by emotion plugin (avoid double transpilation)': {

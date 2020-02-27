@@ -88,6 +88,24 @@
 
 - [`b0ad4f0c`](https://github.com/emotion-js/emotion/commit/b0ad4f0c628813a42c4637857be9a969429db6f0) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Avoid transpiling vanilla emotion calls in already transpiled code to avoid double labels and such
 
+## 10.0.28
+
+### Patch Changes
+
+- [`4dfe558`](https://github.com/emotion-js/emotion/commit/4dfe55811a25bf66306aee46f7f0d6c909004c42) [#1731](https://github.com/emotion-js/emotion/pull/1731) Thanks [@ndelangen](https://github.com/ndelangen)! - Fixed an issue with adding `label` & `target` options to `styled`-related calls when those properties were already set, causing those properties to be duplicated. This could have happened for example when transpiling already transpiled code or when providing those options manually (latter being less likely).
+
+* [`af07afb`](https://github.com/emotion-js/emotion/commit/af07afbe5a887be82f72a12fd6cd1673a32f5263) [#1761](https://github.com/emotion-js/emotion/pull/1761) Thanks [@mansourkheffache](https://github.com/mansourkheffache)! - Push source maps & labels to cooked/raw arrays in TS-transpiled tagged template expressions containing interpolations. This is a case not covered previously by [#1538](https://github.com/emotion-js/emotion/pull/1538).
+
+## 10.0.27
+
+### Patch Changes
+
+- [`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968) [#1698](https://github.com/emotion-js/emotion/pull/1698) Thanks [@Andarist](https://github.com/Andarist)! - Add LICENSE file
+- Updated dependencies [[`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968)]:
+  - @emotion/hash@0.7.4
+  - @emotion/memoize@0.7.4
+  - @emotion/serialize@0.11.15
+
 ## 10.0.23
 
 ### Patch Changes

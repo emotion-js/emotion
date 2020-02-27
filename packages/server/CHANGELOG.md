@@ -28,6 +28,16 @@
   - create-emotion-server@11.0.0-next.0
   - emotion@11.0.0-next.0
 
+## 10.0.27
+
+### Patch Changes
+
+- [`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968) [#1698](https://github.com/emotion-js/emotion/pull/1698) Thanks [@Andarist](https://github.com/Andarist)! - Add LICENSE file
+- Updated dependencies [[`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968)]:
+  - babel-plugin-emotion@10.0.27
+  - create-emotion-server@10.0.27
+  - emotion@10.0.27
+
 ## 10.0.17
 
 ### Patch Changes
