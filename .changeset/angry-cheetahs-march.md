@@ -2,4 +2,4 @@
 '@emotion/native': patch
 ---
 
-updating @types/react-native and react-native
+Match supported components to what is exported from the latest version of React Native (0.61.5).
