@@ -1,5 +1,5 @@
 // @flow
-import { isTaggedTemplateExpressionTranspiledByTypeScript } from './checks'
+import { getTypeScriptMakeTemplateObjectPath } from './ts-output-utils'
 
 export const appendStringToArguments = (path: *, string: string, t: *) => {
   if (!string) {
@@ -8,19 +8,20 @@ export const appendStringToArguments = (path: *, string: string, t: *) => {
   const args = path.node.arguments
   if (t.isStringLiteral(args[args.length - 1])) {
     args[args.length - 1].value += string
-  } else if (isTaggedTemplateExpressionTranspiledByTypeScript(path)) {
-    const makeTemplateObjectCallPath = path
-      .get('arguments')[0]
-      .get('right')
-      .get('right')
-
-    makeTemplateObjectCallPath.get('arguments').forEach(argPath => {
-      const elements = argPath.get('elements')
-      const lastElement = elements[elements.length - 1]
-      lastElement.replaceWith(t.stringLiteral(lastElement.node.value + string))
-    })
   } else {
-    args.push(t.stringLiteral(string))
+    const makeTemplateObjectCallPath = getTypeScriptMakeTemplateObjectPath(path)
+
+    if (makeTemplateObjectCallPath) {
+      makeTemplateObjectCallPath.get('arguments').forEach(argPath => {
+        const elements = argPath.get('elements')
+        const lastElement = elements[elements.length - 1]
+        lastElement.replaceWith(
+          t.stringLiteral(lastElement.node.value + string)
+        )
+      })
+    } else {
+      args.push(t.stringLiteral(string))
+    }
   }
 }
 

@@ -374,7 +374,7 @@ export const serializeStyles = function(
       args[i],
       styles.charCodeAt(styles.length - 1) === 46
     )
-    if (stringMode && i < strings.length) {
+    if (stringMode) {
       if (process.env.NODE_ENV !== 'production' && strings[i] === undefined) {
         console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
       }
