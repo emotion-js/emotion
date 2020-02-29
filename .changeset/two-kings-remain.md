@@ -2,4 +2,4 @@
 '@emotion/hash': minor
 ---
 
-Optimize hashing for size and performance
+Optimized hashing for performance while also reducing the size of the function.
