@@ -305,6 +305,25 @@ test('handles composition of styles without a final semi in a declaration block'
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
+test('handles composition of an array css prop containing no final semi with cssprop-generated className (runtime variant of #1730)', () => {
+  const Child = ({ bgColor, ...props }) => (
+    <div
+      css={[{ width: 100, height: 100 }, `background-color: ${bgColor}`]}
+      {...props}
+    />
+  )
+  const Parent = ({ children }) => (
+    <Child bgColor="green" css={{ color: 'hotpink' }}>
+      {children}
+    </Child>
+  )
+  const tree = renderer.create(
+    <Parent>{"I'm hotpink on the green background."}</Parent>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
 it("doesn't try to insert invalid rules caused by object style's value being falsy", () => {
   render(
     <CacheProvider value={createCache({ speedy: true })}>
