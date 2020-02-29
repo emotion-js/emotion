@@ -1,5 +1,13 @@
 # babel-plugin-emotion
 
+## 10.0.28
+
+### Patch Changes
+
+- [`4dfe558`](https://github.com/emotion-js/emotion/commit/4dfe55811a25bf66306aee46f7f0d6c909004c42) [#1731](https://github.com/emotion-js/emotion/pull/1731) Thanks [@ndelangen](https://github.com/ndelangen)! - Fixed an issue with adding `label` & `target` options to `styled`-related calls when those properties were already set, causing those properties to be duplicated. This could have happened for example when transpiling already transpiled code or when providing those options manually (latter being less likely).
+
+* [`af07afb`](https://github.com/emotion-js/emotion/commit/af07afbe5a887be82f72a12fd6cd1673a32f5263) [#1761](https://github.com/emotion-js/emotion/pull/1761) Thanks [@mansourkheffache](https://github.com/mansourkheffache)! - Push source maps & labels to cooked/raw arrays in TS-transpiled tagged template expressions containing interpolations. This is a case not covered previously by [#1538](https://github.com/emotion-js/emotion/pull/1538).
+
 ## 10.0.27
 
 ### Patch Changes

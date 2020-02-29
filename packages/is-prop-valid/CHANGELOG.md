@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 0.8.7
+
+### Patch Changes
+
+- [`12141c5`](https://github.com/emotion-js/emotion/commit/12141c54318c0738b60bf755e033cf6e12238a02) [#1736](https://github.com/emotion-js/emotion/pull/1736) Thanks [@bezoerb](https://github.com/bezoerb)! - Adds inert to the list of allowed props
+
 ## 0.8.6
 
 ### Patch Changes

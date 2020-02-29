@@ -54,7 +54,6 @@ const inline = {
   'label on code transpiled by TS': {
     code: `
     import { __makeTemplateObject } from 'tslib'
-
     import css from '@emotion/css'
 
     var templateObject_1
@@ -65,6 +64,30 @@ const inline = {
           ['\\n  color: hotpink;\\n'],
           ['\\n  color: hotpink;\\n']
         ))
+    )
+    `,
+    opts: {
+      autoLabel: true,
+      sourceMap: false
+    },
+    filename: __filename
+  },
+
+  'label on code transpiled by TS (with interpolations) ': {
+    code: `
+    import { __makeTemplateObject } from 'tslib'
+    import css from '@emotion/css'
+    import { hoverStyles } from './styles'
+
+    var templateObject_1
+
+    const someVar = css(
+      templateObject_1 ||
+        (templateObject_1 = __makeTemplateObject(
+          ['\\n  color: hotpink;\\n'],
+          ['\\n  color: hotpink;\\n']
+        )),
+      hoverStyles
     )
     `,
     opts: {
