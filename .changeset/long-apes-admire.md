@@ -1,3 +1,11 @@
+---
+'@emotion/css': major
+'emotion-theming': major
+'@emotion/serialize': major
+'@emotion/styled-base': major
+'@emotion/styled': major
+---
+
 TypeScript types have been restructured. These changes:
 
 - Reduce build times when using emotion
@@ -20,12 +28,12 @@ If you encounter build issues after upgrade, try removing any manually specified
 - `css` function has been restricted to prevent passing of invalid types
 - `CreateStyled` functions no longer take a second `ExtraProps` argument. Instead move it to after the create styled call. For example
 
-  `styled<typeof MyComponent, ExtraProps>(MyComponent)({})`  
-  to  
+  `styled<typeof MyComponent, ExtraProps>(MyComponent)({})`
+  to
   `styled(MyComponent)<ExtraProps>({})`
 
 - `StyledComponent` type no longer supports the third generic `Theme` parameter. Instead add the `theme` prop to the first `Props` argument. For example:
 
-  `StyledComponent<Props, {}, MyTheme>`  
-  to  
+  `StyledComponent<Props, {}, MyTheme>`
+  to
   `StyledComponent<Props & { theme?: MyTheme }>`
