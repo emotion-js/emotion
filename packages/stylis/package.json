@@ -1,6 +1,6 @@
 {
   "name": "@emotion/stylis",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "description": "A custom build of Stylis",
   "main": "dist/stylis.cjs.js",
   "module": "dist/stylis.esm.js",
