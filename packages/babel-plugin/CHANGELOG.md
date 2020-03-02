@@ -85,6 +85,14 @@
 
 - [`b0ad4f0c`](https://github.com/emotion-js/emotion/commit/b0ad4f0c628813a42c4637857be9a969429db6f0) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Avoid transpiling vanilla emotion calls in already transpiled code to avoid double labels and such
 
+## 10.0.29
+
+### Patch Changes
+
+- Updated dependencies [[`446e756`](https://github.com/emotion-js/emotion/commit/446e75661c4aa01e51d1466472a212940c19cd82)]:
+  - @emotion/hash@0.8.0
+  - @emotion/serialize@0.11.16
+
 ## 10.0.28
 
 ### Patch Changes

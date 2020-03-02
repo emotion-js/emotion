@@ -1,6 +1,6 @@
 {
   "name": "@emotion/memoize",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "emotion's memoize utility",
   "main": "dist/memoize.cjs.js",
   "module": "dist/memoize.esm.js",

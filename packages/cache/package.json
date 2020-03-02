@@ -21,7 +21,7 @@
     "@emotion/weak-memoize": "0.2.4"
   },
   "devDependencies": {
-    "@emotion/hash": "0.7.3",
+    "@emotion/hash": "0.8.0",
     "dtslint": "^0.3.0"
   },
   "publishConfig": {
