@@ -1,5 +1,12 @@
 # @emotion/primitives
 
+## 10.0.30
+
+### Patch Changes
+
+- Updated dependencies [[`babbbe3`](https://github.com/emotion-js/emotion/commit/babbbe36844f26f6d7041f1d3aeb47d5dfb08d8a)]:
+  - @emotion/is-prop-valid@0.8.8
+
 ## 10.0.28
 
 ### Patch Changes
