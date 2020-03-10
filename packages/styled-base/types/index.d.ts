@@ -38,8 +38,37 @@ export interface StyledOptions {
   target?: string
 }
 
+type AsProp<T> = {
+  /**
+   * An HTML tag or React Component reference to use as the render element.
+   * @see https://emotion.sh/docs/styled#as-prop
+   * */
+  as?: Extract<T, React.ElementType> | React.ElementType
+}
+
+/**
+ * Returns `as` tag Component/element props shape inferred from the prop value passed.
+ * */
+type GetAsElementProps<T> = T extends string
+  ? React.HTMLProps<T>
+  : T extends React.ElementType ? React.ComponentProps<T> : {}
+
+/**
+ * Returns props shape extended with `as`, and inferred `as` Component/element props.
+ * `InnerProps`, `StyleProps` and `{ theme?: Theme }` take highest priority in intersection.
+ * */
+type PropsWithAs<Props, T = ''> = GetAsElementProps<T> & AsProp<T> & Props
+
+/**
+ * Styled component definition. Includes React Functional Component shape with call signature including `as` prop and, when provided, inferred `as` Component/element props.
+ * */
+type StyledComponentWithAs<Props> = React.FC<PropsWithAs<Props>> &
+  (<T>(
+    props: PropsWithAs<Props, T>
+  ) => ReturnType<React.FC<PropsWithAs<Props, T>>>)
+
 export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
-  extends React.SFC<InnerProps & StyleProps & { theme?: Theme }>,
+  extends StyledComponentWithAs<InnerProps & StyleProps & { theme?: Theme }>,
     ComponentSelector {
   /**
    * @desc this method is type-unsafe
