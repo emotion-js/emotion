@@ -1,5 +1,17 @@
 # @emotion/is-prop-valid
 
+## 0.8.8
+
+### Patch Changes
+
+- [`babbbe3`](https://github.com/emotion-js/emotion/commit/babbbe36844f26f6d7041f1d3aeb47d5dfb08d8a) [#1792](https://github.com/emotion-js/emotion/pull/1792) Thanks [@egdbear](https://github.com/egdbear)! - Adds `disablePictureInPicture` to the list of allowed props.
+
+## 0.8.7
+
+### Patch Changes
+
+- [`12141c5`](https://github.com/emotion-js/emotion/commit/12141c54318c0738b60bf755e033cf6e12238a02) [#1736](https://github.com/emotion-js/emotion/pull/1736) Thanks [@bezoerb](https://github.com/bezoerb)! - Adds inert to the list of allowed props
+
 ## 0.8.6
 
 ### Patch Changes

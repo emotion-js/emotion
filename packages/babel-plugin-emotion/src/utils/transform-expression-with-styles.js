@@ -6,7 +6,7 @@ import { getLabelFromPath } from './label'
 import { getSourceMap } from './source-maps'
 import { simplifyObject } from './object-to-string'
 import { appendStringToArguments, joinStringLiterals } from './strings'
-import { isTaggedTemplateExpressionTranspiledByTypeScript } from './checks'
+import { getTypeScriptMakeTemplateObjectPath } from './ts-output-utils'
 
 const CSS_OBJECT_STRINGIFIED_ERROR =
   "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
@@ -42,7 +42,7 @@ export let transformExpressionWithStyles = ({
   path: *,
   shouldLabel: boolean,
   sourceMap?: string
-}): { node?: *, isPure: boolean } => {
+}): * => {
   let t = babel.types
   if (t.isTaggedTemplateExpression(path)) {
     const expressions = getExpressionsFromTemplateLiteral(path.node.quasi, t)
@@ -64,12 +64,7 @@ export let transformExpressionWithStyles = ({
       }
     }
 
-    let isPure = true
-
     path.get('arguments').forEach(node => {
-      if (!node.isPure()) {
-        isPure = false
-      }
       if (t.isObjectExpression(node)) {
         node.replaceWith(simplifyObject(node.node, t))
       }
@@ -125,7 +120,7 @@ export let transformExpressionWithStyles = ({
         node = createSourceMapConditional(t, prodNode, devNode)
       }
 
-      return { node, isPure: true }
+      return node
     }
     if (sourceMap) {
       let lastIndex = path.node.arguments.length - 1
@@ -141,29 +136,36 @@ export let transformExpressionWithStyles = ({
           last,
           sourceMapConditional
         )
-      } else if (isTaggedTemplateExpressionTranspiledByTypeScript(path)) {
-        const makeTemplateObjectCallPath = path
-          .get('arguments')[0]
-          .get('right')
-          .get('right')
-
-        makeTemplateObjectCallPath.get('arguments').forEach(argPath => {
-          const elements = argPath.get('elements')
-          const lastElement = elements[elements.length - 1]
-          lastElement.replaceWith(
-            t.binaryExpression(
-              '+',
-              lastElement.node,
-              cloneNode(t, sourceMapConditional)
-            )
-          )
-        })
       } else {
-        path.node.arguments.push(sourceMapConditional)
+        const makeTemplateObjectCallPath = getTypeScriptMakeTemplateObjectPath(
+          path
+        )
+
+        if (makeTemplateObjectCallPath) {
+          const sourceMapId = state.file.scope.generateUidIdentifier(
+            'emotionSourceMap'
+          )
+          const sourceMapDeclaration = t.variableDeclaration('var', [
+            t.variableDeclarator(sourceMapId, sourceMapConditional)
+          ])
+          sourceMapDeclaration._compact = true
+          state.file.path.unshiftContainer('body', [sourceMapDeclaration])
+
+          makeTemplateObjectCallPath.get('arguments').forEach(argPath => {
+            const elements = argPath.get('elements')
+            const lastElement = elements[elements.length - 1]
+            lastElement.replaceWith(
+              t.binaryExpression(
+                '+',
+                lastElement.node,
+                cloneNode(t, sourceMapId)
+              )
+            )
+          })
+        } else {
+          path.node.arguments.push(sourceMapConditional)
+        }
       }
     }
-
-    return { node: undefined, isPure }
   }
-  return { node: undefined, isPure: false }
 }
