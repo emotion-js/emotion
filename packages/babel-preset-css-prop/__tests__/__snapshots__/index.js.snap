@@ -25,6 +25,7 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 
 import * as React from 'react';
 import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+import { Fragment as ___Fragment } from \\"react\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1q24rv0-Button\\",
@@ -37,8 +38,32 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
 };
 
 export let Button = props => {
-  return ___EmotionJSX(React.Fragment, null, ___EmotionJSX(\\"button\\", _extends({
+  return ___EmotionJSX(___Fragment, null, ___EmotionJSX(\\"button\\", _extends({
     css: _ref
   }, props)));
+};"
+`;
+
+exports[`@emotion/babel-preset-css-prop index.without.css 1`] = `
+"import * as React from 'react'
+
+export let Button = props => {
+  return (
+    <>
+      <button
+        {...props}
+      />
+    </>
+  )
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import * as React from 'react';
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+import { Fragment as ___Fragment } from \\"react\\";
+export let Button = props => {
+  return ___EmotionJSX(___Fragment, null, ___EmotionJSX(\\"button\\", props));
 };"
 `;
