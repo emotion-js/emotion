@@ -56,6 +56,6 @@
   },
   "umd:main": "dist/react.umd.min.js",
   "preconstruct": {
-    "umdName": "emotionCore"
+    "umdName": "emotionReact"
   }
 }
