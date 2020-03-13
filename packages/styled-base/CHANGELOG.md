@@ -1,5 +1,11 @@
 # @emotion/styled-base
 
+## 10.0.31
+
+### Patch Changes
+
+- [`ef7794f`](https://github.com/emotion-js/emotion/commit/ef7794f50a1ef9790ea6ebe530b6fd8e0b7b0942) [#1788](https://github.com/emotion-js/emotion/pull/1788) Thanks [@aaronjensen](https://github.com/aaronjensen)! - Fixed issue with TypeScript 3.8 where `theme` was inferred to be required for a styled component.
+
 ## 10.0.30
 
 ### Patch Changes
