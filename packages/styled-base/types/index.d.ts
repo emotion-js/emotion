@@ -39,7 +39,7 @@ export interface StyledOptions {
 }
 
 export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
-  extends React.SFC<InnerProps & StyleProps & { theme?: Theme }>,
+  extends React.SFC<InnerProps & Omit<StyleProps, 'theme'> & { theme?: Theme }>,
     ComponentSelector {
   /**
    * @desc this method is type-unsafe
