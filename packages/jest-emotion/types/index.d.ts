@@ -23,7 +23,10 @@ export interface StyleRuleOptions {
 export function createSerializer(
   options?: CreateSerializerOptions
 ): jest.SnapshotSerializerPlugin
-export const print: jest.SnapshotSerializerPlugin['print']
+export const print: Extract<
+  jest.SnapshotSerializerPlugin,
+  { print: any }
+>['print']
 export const test: jest.SnapshotSerializerPlugin['test']
 declare const serializer: jest.SnapshotSerializerPlugin
 export default serializer
