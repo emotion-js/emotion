@@ -4,12 +4,6 @@
 import * as React from 'react'
 import { Theme } from '@emotion/react'
 import { DistributiveOmit, PropsOf } from './helper'
-import {
-  StyledComponent,
-  StyledOptions,
-  CreateStyledComponent,
-  StyledTags
-} from '@emotion/styled'
 
 export interface ThemeProviderProps {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme)
