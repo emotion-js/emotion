@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import 'test-utils/next-env'
-import { ClassNames, ThemeProvider } from '@emotion/react'
+import { ClassNames, ThemeProvider, css as reactCss } from '@emotion/react'
 import renderer from 'react-test-renderer'
 
 test('css', () => {
@@ -37,7 +37,7 @@ it('should get the theme', () => {
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('cx', () => {
+test('cx - correct styles order', () => {
   const tree = renderer.create(
     <ClassNames>
       {({ css, cx }) => {
@@ -58,6 +58,62 @@ test('cx', () => {
           />
         )
       }}
+    </ClassNames>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('cx - single registered class', () => {
+  const tree = renderer.create(
+    <ClassNames>
+      {({ css, cx }) => {
+        return (
+          <div
+            className={cx(
+              css`
+                color: hotpink;
+              `,
+              'some-other-class'
+            )}
+          />
+        )
+      }}
+    </ClassNames>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('cx - compose opaque styles object basic', () => {
+  const fooStyles = reactCss`color: hotpink;`
+
+  const tree = renderer.create(
+    <ClassNames>
+      {({ cx }) => <div className={cx(fooStyles, 'other-class')} />}
+    </ClassNames>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('cx - compose opaque style object with registered class name in correct order ', () => {
+  const fooStyles = reactCss`color: hotpink;`
+
+  const tree = renderer.create(
+    <ClassNames>
+      {({ cx, css }) => (
+        <div
+          className={cx(
+            css`
+              color: red;
+            `,
+            fooStyles
+          )}
+        >
+          Should be hotpink.
+        </div>
+      )}
     </ClassNames>
   )
 

@@ -5,16 +5,22 @@ import { serializeStyles } from '@emotion/serialize'
 import { withEmotionCache } from './context'
 import { ThemeContext } from './theming'
 import { isBrowser } from './utils'
+import type { SerializedStyles } from '@emotion/utils'
 
 type ClassNameArg =
   | string
+  | SerializedStyles
   | boolean
   | { [key: string]: boolean }
   | Array<ClassNameArg>
   | null
   | void
 
-let classnames = (args: Array<ClassNameArg>): string => {
+let classnames = (
+  registered: Object,
+  mergeableStyles: Array<any>,
+  args: Array<ClassNameArg>
+): string => {
   let len = args.length
   let i = 0
   let cls = ''
@@ -28,11 +34,17 @@ let classnames = (args: Array<ClassNameArg>): string => {
         break
       case 'object': {
         if (Array.isArray(arg)) {
-          toAdd = classnames(arg)
+          toAdd = classnames(registered, mergeableStyles, arg)
+        } else if (arg.styles !== undefined) {
+          mergeableStyles.push(arg)
         } else {
           toAdd = ''
-          for (const k in arg) {
+          for (let k in (arg: any)) {
             if (arg[k] && k) {
+              k = getRegisteredStyles(registered, mergeableStyles, k, false)
+              if (!k) {
+                continue
+              }
               toAdd && (toAdd += ' ')
               toAdd += k
             }
@@ -40,6 +52,9 @@ let classnames = (args: Array<ClassNameArg>): string => {
         }
         break
       }
+      case 'string':
+        arg = getRegisteredStyles(registered, mergeableStyles, arg, false)
+      // eslint-disable-next-line no-fallthrough
       default: {
         toAdd = arg
       }
@@ -53,21 +68,26 @@ let classnames = (args: Array<ClassNameArg>): string => {
 }
 function merge(
   registered: Object,
+  mergeableStyles: Array<any>,
   css: (...args: Array<any>) => string,
   className: string
 ) {
-  const registeredStyles = []
-
-  const rawClassName = getRegisteredStyles(
-    registered,
-    registeredStyles,
-    className
-  )
-
-  if (registeredStyles.length < 2) {
-    return className
+  switch (mergeableStyles.length) {
+    case 0:
+      return className
+    case 1:
+      if (typeof mergeableStyles[0] === 'string') {
+        return className + mergeableStyles[0]
+      }
+    // eslint-disable-next-line no-fallthrough
+    default:
+      return (
+        className +
+        css(
+          mergeableStyles.map(s => (typeof s === 'string' ? registered[s] : s))
+        )
+      )
   }
-  return rawClassName + css(registeredStyles)
 }
 
 type Props = {
@@ -107,7 +127,9 @@ export const ClassNames: React.AbstractComponent<
     if (hasRendered && process.env.NODE_ENV !== 'production') {
       throw new Error('cx can only be used during render')
     }
-    return merge(cache.registered, css, classnames(args))
+    const mergeableStyles = []
+    const rawClassName = classnames(cache.registered, mergeableStyles, args)
+    return merge(cache.registered, mergeableStyles, css, rawClassName)
   }
   let content = {
     css,

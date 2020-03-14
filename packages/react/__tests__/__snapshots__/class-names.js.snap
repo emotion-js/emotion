@@ -10,10 +10,43 @@ exports[`css 1`] = `
 />
 `;
 
-exports[`cx 1`] = `
+exports[`cx - compose opaque style object with registered class name in correct order  1`] = `
+.emotion-0 {
+  color: red;
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+>
+  Should be hotpink.
+</div>
+`;
+
+exports[`cx - compose opaque styles object basic 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className="other-class emotion-0"
+/>
+`;
+
+exports[`cx - correct styles order 1`] = `
 .emotion-0 {
   color: hotpink;
   color: green;
+}
+
+<div
+  className="some-other-class emotion-0"
+/>
+`;
+
+exports[`cx - single registered class 1`] = `
+.emotion-0 {
+  color: hotpink;
 }
 
 <div

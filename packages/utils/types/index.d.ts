@@ -37,7 +37,8 @@ export const isBrowser: boolean
 export function getRegisteredStyles(
   registered: RegisteredCache,
   registeredStyles: Array<string>,
-  classNames: string
+  classNames: string,
+  shouldRetrieveStyles: boolean
 ): string
 export function insertStyles(
   cache: EmotionCache,

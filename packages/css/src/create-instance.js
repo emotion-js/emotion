@@ -19,7 +19,8 @@ function merge(registered: Object, css: (*) => string, className: string) {
   const rawClassName = getRegisteredStyles(
     registered,
     registeredStyles,
-    className
+    className,
+    true
   )
 
   if (registeredStyles.length < 2) {

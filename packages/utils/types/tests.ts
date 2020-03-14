@@ -1,8 +1,6 @@
 import {
   EmotionCache,
   RegisteredCache,
-  SerializedStyles,
-  StyleSheet,
   getRegisteredStyles,
   insertStyles,
   isBrowser
@@ -11,10 +9,10 @@ import {
 declare const testCache: EmotionCache
 declare const testRegisteredCache: RegisteredCache
 
-getRegisteredStyles(testRegisteredCache, [], 'abc')
-getRegisteredStyles(testRegisteredCache, [], 'abc def')
-getRegisteredStyles(testRegisteredCache, [], 'dead end')
-getRegisteredStyles(testRegisteredCache, ['color: red;'], 'black parade')
+getRegisteredStyles(testRegisteredCache, [], 'abc', true)
+getRegisteredStyles(testRegisteredCache, [], 'abc def', true)
+getRegisteredStyles(testRegisteredCache, [], 'dead end', true)
+getRegisteredStyles(testRegisteredCache, ['color: red;'], 'black parade', true)
 // $ExpectError
 getRegisteredStyles()
 // $ExpectError

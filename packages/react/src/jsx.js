@@ -35,7 +35,8 @@ let Emotion = withEmotionCache((props, cache, ref) => {
     className = getRegisteredStyles(
       cache.registered,
       registeredStyles,
-      props.className
+      props.className,
+      true
     )
   } else if (props.className != null) {
     className = `${props.className} `

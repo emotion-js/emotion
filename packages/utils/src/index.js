@@ -6,13 +6,16 @@ const isBrowser = typeof document !== 'undefined'
 export function getRegisteredStyles(
   registered: RegisteredCache,
   registeredStyles: string[],
-  classNames: string
+  classNames: string,
+  shouldRetrieveStyles: boolean
 ) {
   let rawClassName = ''
 
   classNames.split(' ').forEach(className => {
     if (registered[className] !== undefined) {
-      registeredStyles.push(`${registered[className]};`)
+      registeredStyles.push(
+        shouldRetrieveStyles ? `${registered[className]};` : className
+      )
     } else {
       rawClassName += `${className} `
     }

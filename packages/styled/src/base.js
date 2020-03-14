@@ -97,7 +97,8 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
           className = getRegisteredStyles(
             cache.registered,
             classInterpolations,
-            props.className
+            props.className,
+            true
           )
         } else if (props.className != null) {
           className = `${props.className} `
