@@ -1,0 +1,471 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css @supports 1`] = `
+@supports (display:grid) {
+  .emotion-0 {
+    display: grid;
+  }
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css array with explicit false 1`] = `
+.emotion-0 {
+  display: flex;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css array with explicit true 1`] = `
+.emotion-0 {
+  display: flex;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css auto px 1`] = `
+.emotion-0 {
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: 10px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css boolean as value 1`] = `
+.emotion-0 {
+  display: flex;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css composition stuff 1`] = `
+.emotion-0 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css composition stuff 2`] = `
+.emotion-0 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css composition with objects 1`] = `
+.emotion-0 {
+  display: flex;
+  width: 30px;
+  height: calc(40vw - 50px);
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.emotion-0:hover {
+  color: blue;
+}
+
+.emotion-0:after {
+  content: " ";
+  color: red;
+}
+
+@media (min-width:420px) {
+  .emotion-0 {
+    color: green;
+  }
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css computed key is only dynamic 1`] = `
+.emotion-0 {
+  font-size: 10px;
+  width: 20px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css css variables 1`] = `
+.emotion-0 {
+  --some-var: 1px;
+  width: var(--some-var);
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css explicit & 1`] = `
+.emotion-0.another-class {
+  display: flex;
+}
+
+<div
+  className="emotion-0 another-class"
+/>
+`;
+
+exports[`css explicit & 2`] = `
+".some-key-gfk73z.another-class {
+  display: flex;
+}"
+`;
+
+exports[`css explicit false 1`] = `
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css falsy property value in object 1`] = `
+.emotion-0 {
+  display: flex;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css falsy value in nested selector on object 1`] = `
+.emotion-0:hover {
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css float property 1`] = `
+.emotion-0 {
+  float: right;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css flushes correctly 1`] = `
+.emotion-0 {
+  display: flex;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css flushes correctly 2`] = `
+<div
+  className="some-key-vyoujf"
+/>
+`;
+
+exports[`css handles array of objects 1`] = `
+.emotion-0 {
+  height: 50px;
+  width: 20px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css handles more than 10 dynamic properties 1`] = `
+.emotion-0 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  border-left: solid blue 54px;
+  background: white;
+  color: black;
+  display: block;
+  border-radius: 3px;
+  padding: 25px;
+  width: 500px;
+  z-index: 100;
+  font-size: 18px;
+  text-align: center;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css handles objects 1`] = `
+.emotion-0 {
+  float: right;
+  display: flex;
+  color: blue;
+  font-size: 20px;
+  height: 50px;
+  width: 20px;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css manually use label property 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css manually use label property 2`] = `
+".some-key-1ytppqs-wow {
+  color: hotpink;
+}"
+`;
+
+exports[`css media query specificity 1`] = `
+".some-key-11dfhpp {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+@media (min-width:420px) {
+  .some-key-11dfhpp {
+    width: 96px;
+    height: 96px;
+  }
+}"
+`;
+
+exports[`css media query specificity 2`] = `
+.emotion-0 {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+@media (min-width:420px) {
+  .emotion-0 {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css nested 1`] = `
+.emotion-0 {
+  color: yellow;
+}
+
+.emotion-0 .some-class {
+  display: flex;
+}
+
+.emotion-0 .some-class .some-other-class {
+  background-color: hotpink;
+}
+
+@media (max-width:600px) {
+  .emotion-0 .some-class {
+    background-color: pink;
+  }
+}
+
+<div
+  className="emotion-0"
+>
+  <div
+    className="some-class"
+  >
+    <div
+      className="some-other-class"
+    />
+  </div>
+</div>
+`;
+
+exports[`css nested array 1`] = `
+.emotion-0 {
+  display: inline;
+  display: inline-block;
+  display: block;
+  display: flex;
+  display: table;
+  color: darkorchid;
+  font-size: 16px;
+}
+
+.emotion-0:after {
+  background-color: aquamarine;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css nested selector without parent declaration 1`] = `
+.emotion-0 {
+  color: blue;
+}
+
+.emotion-1 .emotion-0 {
+  color: red;
+}
+
+<div
+  className="emotion-1"
+>
+  <div
+    className="emotion-0"
+  />
+</div>
+`;
+
+exports[`css null rule 1`] = `
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css null value 1`] = `
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css null value 2`] = `
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css random expression 1`] = `
+.emotion-0 {
+  font-size: 20px;
+  background: green;
+}
+
+@media (min-width:420px) {
+  .emotion-0 {
+    color: blue;
+    width: 96px;
+    height: 96px;
+    line-height: 40px;
+  }
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css random interpolation with undefined values 1`] = `
+.emotion-0 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css registered styles as nested selector value in object 1`] = `
+.emotion-0:hover {
+  display: flex;
+  background-color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css simple composition 1`] = `
+.emotion-0 {
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.emotion-0:hover {
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css weakmap 1`] = `
+.emotion-0 {
+  display: flex;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
+
+exports[`css weakmap 2`] = `
+.emotion-0 {
+  display: flex;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
