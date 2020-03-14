@@ -1,5 +1,11 @@
 # jest-emotion
 
+## 10.0.32
+
+### Patch Changes
+
+- [`5af2755`](https://github.com/emotion-js/emotion/commit/5af27554d3aec20691a4675e57433bb01cd535a4) [#1808](https://github.com/emotion-js/emotion/pull/1808) Thanks [@Andarist](https://github.com/Andarist)! - Fixed compatibility with latest `jest` TS types.
+
 ## 10.0.27
 
 ### Patch Changes
