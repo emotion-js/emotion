@@ -90,7 +90,7 @@ let Emotion = withEmotionCache((props, cache, ref) => {
       <>
         <style
           {...{
-            [`data-emotion-${cache.key}`]: serializedNames,
+            [`data-emotion`]: `${cache.key} ${serializedNames}`,
             dangerouslySetInnerHTML: { __html: rules },
             nonce: cache.sheet.nonce
           }}

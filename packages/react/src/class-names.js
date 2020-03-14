@@ -121,7 +121,7 @@ export const ClassNames: React.AbstractComponent<
       <>
         <style
           {...{
-            [`data-emotion-${cache.key}`]: serializedHashes.substring(1),
+            [`data-emotion`]: `${cache.key} ${serializedHashes.substring(1)}`,
             dangerouslySetInnerHTML: { __html: rules },
             nonce: cache.sheet.nonce
           }}

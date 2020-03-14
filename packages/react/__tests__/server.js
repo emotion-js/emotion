@@ -81,7 +81,7 @@ let cases = {
     }
   },
   'works with nonces': {
-    cache: () => createCache({ nonce: 'some-nonce' }),
+    cache: () => createCache({ key: 'css', nonce: 'some-nonce' }),
     render: () => {
       const SomeComponent = styled.div`
         color: hotpink;
@@ -104,34 +104,46 @@ let cases = {
     }
   },
   'prefix option false': {
-    cache: () => createCache({ prefix: false }),
+    cache: () => createCache({ key: 'css', prefix: false }),
     render: () => {
       return <div css={{ display: 'flex' }} />
     }
   },
   'prefix option false with stylis plugins': {
     cache: () =>
-      createCache({ prefix: false, stylisPlugins: fakeStylisPlugins }),
+      createCache({
+        key: 'css',
+        prefix: false,
+        stylisPlugins: fakeStylisPlugins
+      }),
     render: () => {
       return <div css={{ display: 'flex' }} />
     }
   },
   'prefix option true with stylis plugins': {
     cache: () =>
-      createCache({ prefix: true, stylisPlugins: fakeStylisPlugins }),
+      createCache({
+        key: 'css',
+        prefix: true,
+        stylisPlugins: fakeStylisPlugins
+      }),
     render: () => {
       return <div css={{ display: 'flex' }} />
     }
   },
   'prefix option func false with stylis plugins': {
     cache: () =>
-      createCache({ prefix: () => false, stylisPlugins: fakeStylisPlugins }),
+      createCache({
+        key: 'css',
+        prefix: () => false,
+        stylisPlugins: fakeStylisPlugins
+      }),
     render: () => {
       return <div css={{ display: 'flex' }} />
     }
   },
   'prefix option func false': {
-    cache: () => createCache({ prefix: () => false }),
+    cache: () => createCache({ key: 'css', prefix: () => false }),
     render: () => {
       return <div css={{ display: 'flex' }} />
     }
@@ -252,10 +264,7 @@ testCases(
 testCases(
   'ssr with old api',
   opts => {
-    let cache = createCache()
-    if (opts.cache) {
-      cache = opts.cache()
-    }
+    let cache = opts.cache ? opts.cache() : createCache({ key: 'css' })
     let { renderStylesToString } = createEmotionServer(cache)
     expect(
       renderStylesToString(

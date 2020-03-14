@@ -1,9 +1,10 @@
 import createEmotion from '@emotion/css/create-instance'
 
 // $ExpectType Emotion
-const emotion0 = createEmotion()
+const emotion0 = createEmotion({ key: 'bar' })
 // $ExpectType Emotion
 const emotion1 = createEmotion({
+  key: 'foo',
   container: document.head,
   nonce: 'fasefw'
 })

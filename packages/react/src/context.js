@@ -5,14 +5,16 @@ import { useContext, forwardRef } from 'react'
 import createCache from '@emotion/cache'
 import { isBrowser } from './utils'
 
-let EmotionCacheContext: React.Context<EmotionCache | null> = React.createContext(
+let EmotionCacheContext: React.Context<EmotionCache | null> = /* #__PURE__ */ React.createContext(
   // we're doing this to avoid preconstruct's dead code elimination in this one case
   // because this module is primarily intended for the browser and node
   // but it's also required in react native and similar environments sometimes
   // and we could have a special build just for that
   // but this is much easier and the native packages
   // might use a different theme context in the future anyway
-  typeof HTMLElement !== 'undefined' ? createCache() : null
+  typeof HTMLElement !== 'undefined'
+    ? /* #__PURE__ */ createCache({ key: 'css' })
+    : null
 )
 
 export let CacheProvider = EmotionCacheContext.Provider
@@ -41,7 +43,7 @@ if (!isBrowser) {
         // so there will only every be a single render
         // that could change in the future because of suspense and etc. but for now,
         // this works and i don't want to optimise for a future thing that we aren't sure about
-        cache = createCache()
+        cache = createCache({ key: 'css' })
         return (
           <EmotionCacheContext.Provider value={cache}>
             {func(props, cache)}

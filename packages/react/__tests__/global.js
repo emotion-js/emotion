@@ -14,7 +14,7 @@ beforeEach(() => {
 
 test('basic', () => {
   render(
-    <CacheProvider value={createCache()}>
+    <CacheProvider value={createCache({ key: 'css' })}>
       <Global
         styles={[
           {
@@ -52,7 +52,7 @@ test('basic', () => {
 })
 
 test('updating more than 1 global rule', () => {
-  const cache = createCache()
+  const cache = createCache({ key: 'global-multiple-rules' })
   const renderComponent = ({ background, color }) =>
     render(
       <CacheProvider value={cache}>

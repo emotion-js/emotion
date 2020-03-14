@@ -10,7 +10,7 @@ function render(ele) {
 }
 
 test('with prefix option', () => {
-  let cache = createCache({ prefix: false })
+  let cache = createCache({ key: 'with-prefix', prefix: false })
 
   expect(
     render(

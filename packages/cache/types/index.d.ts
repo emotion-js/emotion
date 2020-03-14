@@ -9,7 +9,7 @@ export interface Options {
   nonce?: string
   stylisPlugins?: StylisPlugin | Array<StylisPlugin>
   prefix?: Prefix
-  key?: string
+  key: string
   container?: HTMLElement
   speedy?: boolean
   prepend?: boolean

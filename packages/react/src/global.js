@@ -72,7 +72,7 @@ export let Global: React.AbstractComponent<
     return (
       <style
         {...{
-          [`data-emotion-${cache.key}`]: serializedNames,
+          [`data-emotion`]: `${cache.key}-global ${serializedNames}`,
           dangerouslySetInnerHTML: { __html: rules },
           nonce: cache.sheet.nonce
         }}
@@ -89,22 +89,24 @@ export let Global: React.AbstractComponent<
 
   React.useLayoutEffect(
     () => {
+      const key = `${cache.key}-global`
+
       let sheet = new StyleSheet({
-        key: `${cache.key}-global`,
+        key,
         nonce: cache.sheet.nonce,
         container: cache.sheet.container,
         speedy: cache.sheet.isSpeedy
       })
       // $FlowFixMe
       let node: HTMLStyleElement | null = document.querySelector(
-        `style[data-emotion-${cache.key}="${serialized.name}"]`
+        `style[data-emotion="${key} ${serialized.name}"]`
       )
 
-      if (node !== null) {
-        sheet.tags.push(node)
-      }
       if (cache.sheet.tags.length) {
         sheet.before = cache.sheet.tags[0]
+      }
+      if (node !== null) {
+        sheet.rehydrate([node])
       }
       sheetRef.current = sheet
       return () => {

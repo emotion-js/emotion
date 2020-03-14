@@ -159,7 +159,7 @@ test('nested at rule', () => {
 })
 
 test('can set speedy via custom cache', () => {
-  let cache = createCache({ speedy: true })
+  let cache = createCache({ key: 'speedy-test', speedy: true })
   renderer.create(
     <CacheProvider value={cache}>
       <div
@@ -177,6 +177,7 @@ test('can set speedy via custom cache', () => {
 
 test('speedy option from a custom cache is inherited for <Global/> styles', () => {
   let cache = createCache({
+    key: 'global-inherit-speedy',
     container: safeQuerySelector('body'),
     speedy: true
   })
@@ -326,7 +327,7 @@ test('handles composition of an array css prop containing no final semi with css
 
 it("doesn't try to insert invalid rules caused by object style's value being falsy", () => {
   render(
-    <CacheProvider value={createCache({ speedy: true })}>
+    <CacheProvider value={createCache({ key: 'invalid-rules', speedy: true })}>
       <h1
         css={css({ color: 'hotpink', '@media (min-width 800px)': undefined })}
       >
