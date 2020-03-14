@@ -6,6 +6,19 @@
 
 - [`f9feab1a`](https://github.com/emotion-js/emotion/commit/f9feab1a5d1ca88e53c3f7a063be5d5871cc93e8) [#1575](https://github.com/emotion-js/emotion/pull/1575) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for `@emotion/styled-base` package. It has been moved to `@emotion/styled` and is available as `@emotion/styled/base`. This simplifies how the regular and base versions relate to each other and eliminates problems with stricter package managers when `@emotion/styled-base` was not installed explicitly by a user.
 
+## 10.0.31
+
+### Patch Changes
+
+- [`ef7794f`](https://github.com/emotion-js/emotion/commit/ef7794f50a1ef9790ea6ebe530b6fd8e0b7b0942) [#1788](https://github.com/emotion-js/emotion/pull/1788) Thanks [@aaronjensen](https://github.com/aaronjensen)! - Fixed issue with TypeScript 3.8 where `theme` was inferred to be required for a styled component.
+
+## 10.0.30
+
+### Patch Changes
+
+- Updated dependencies [[`babbbe3`](https://github.com/emotion-js/emotion/commit/babbbe36844f26f6d7041f1d3aeb47d5dfb08d8a)]:
+  - @emotion/is-prop-valid@0.8.8
+
 ## 10.0.28
 
 ### Patch Changes

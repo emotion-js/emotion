@@ -63,6 +63,7 @@ const props = {
   defer: true,
   dir: true,
   disabled: true,
+  disablePictureInPicture: true,
   download: true,
   draggable: true,
   encType: true,
