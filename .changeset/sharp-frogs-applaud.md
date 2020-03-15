@@ -2,7 +2,7 @@
 '@emotion/css': major
 ---
 
-Removed support for interpolating class names returned from `css`\``, so this will no longer be possible:
+Removed support for interpolating class names returned from `css`, so this will no longer be possible:
 
 ```js
 const cls1 = css`
