@@ -44,8 +44,7 @@ let getServerStylisCache = isBrowser
 
 let movedStyles = false
 
-let createCache = (options?: Options): EmotionCache => {
-  if (options === undefined) options = {}
+let createCache = (options: Options): EmotionCache => {
   let key = options.key
   let stylisOptions
 
