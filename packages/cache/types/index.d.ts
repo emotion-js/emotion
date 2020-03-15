@@ -15,4 +15,4 @@ export interface Options {
   prepend?: boolean
 }
 
-export default function createCache(options?: Options): EmotionCache
+export default function createCache(options: Options): EmotionCache
