@@ -352,24 +352,6 @@ exports[`css nested array 1`] = `
 />
 `;
 
-exports[`css nested selector without parent declaration 1`] = `
-.emotion-0 {
-  color: blue;
-}
-
-.emotion-1 .emotion-0 {
-  color: red;
-}
-
-<div
-  className="emotion-1"
->
-  <div
-    className="emotion-0"
-  />
-</div>
-`;
-
 exports[`css null rule 1`] = `
 <div
   className="emotion-0"
