@@ -1,7 +1,7 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
-import { jsx, css, Global, keyframes } from '@emotion/react'
+import { jsx, css, Global, keyframes, ClassNames } from '@emotion/react'
 import renderer from 'react-test-renderer'
 import { render } from '@testing-library/react'
 
@@ -258,4 +258,31 @@ test('`css` opaque object passed in as `className` prop', () => {
       />
     </div>
   `)
+})
+
+test('`css` opaque object passed to `cx` from <ClassNames/>', () => {
+  render(
+    <ClassNames>
+      {({ cx }) => (
+        <div
+          className={cx(
+            // $FlowFixMe
+            css`
+              color: hotpink;
+            `,
+            'other-cls'
+          )}
+        />
+      )}
+    </ClassNames>
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+Array [
+  Array [
+    "You have passed styles created with \`css\` from \`@emotion/react\` package to the \`cx\`.
+\`cx\` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the \`css\` received from <ClassNames/> component.",
+  ],
+]
+`)
 })
