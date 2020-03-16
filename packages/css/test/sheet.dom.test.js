@@ -31,7 +31,7 @@ describe('sheet', () => {
 
   test('throws', () => {
     sheet.speedy(true)
-    const spy = jest.spyOn(global.console, 'warn')
+    const spy = jest.spyOn(global.console, 'error')
     sheet.insert('.asdfasdf4###112121211{')
     expect(spy).toHaveBeenCalled()
   })

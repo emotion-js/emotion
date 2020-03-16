@@ -62,16 +62,16 @@ describe('StyleSheet', () => {
 
   it('should throw when inserting a bad rule in speedy mode', () => {
     const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
-    const oldConsoleWarn = console.warn
+    const oldConsoleError = console.error
     // $FlowFixMe
-    console.warn = jest.fn()
+    console.error = jest.fn()
     sheet.insert('.asdfasdf4###112121211{')
-    expect(console.warn).toHaveBeenCalledTimes(1)
-    expect((console.warn: any).mock.calls[0][0]).toBe(
+    expect(console.error).toHaveBeenCalledTimes(1)
+    expect((console.error: any).mock.calls[0][0]).toBe(
       'There was a problem inserting the following rule: ".asdfasdf4###112121211{"'
     )
     // $FlowFixMe
-    console.warn = oldConsoleWarn
+    console.error = oldConsoleError
     sheet.flush()
   })
 
