@@ -129,7 +129,7 @@ export let transformExpressionWithStyles = ({
       return node
     }
 
-    if (label) {
+    if (canAppendStrings && label) {
       const labelString = `;label:${label};`
 
       switch (autoLabel) {

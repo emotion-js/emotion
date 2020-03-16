@@ -1,7 +1,7 @@
 import { css } from '@emotion/react/macro'
 
-let something = () => {
-  css`
+const thing = function() {
+  return css`
     color: hotpink;
   `
 }
