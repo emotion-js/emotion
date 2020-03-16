@@ -77,13 +77,13 @@ exports[`basic 4`] = `
 exports[`updating more than 1 global rule 1`] = `
 <head>
   <style
-    data-emotion="css-global"
+    data-emotion="global-multiple-rules-global"
   >
     
     body{background:white;}
   </style>
   <style
-    data-emotion="css-global"
+    data-emotion="global-multiple-rules-global"
   >
     
     div{color:black;}
@@ -94,13 +94,13 @@ exports[`updating more than 1 global rule 1`] = `
 exports[`updating more than 1 global rule 2`] = `
 <head>
   <style
-    data-emotion="css-global"
+    data-emotion="global-multiple-rules-global"
   >
     
     body{background:gray;}
   </style>
   <style
-    data-emotion="css-global"
+    data-emotion="global-multiple-rules-global"
   >
     
     div{color:white;}

@@ -163,6 +163,7 @@ test('throws nice error for invalid css', () => {
 
 test('prints speedy styles', () => {
   const speedyCache = createCache({
+    key: 'speedy-key',
     speedy: true
   })
   const tree = renderer

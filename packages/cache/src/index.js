@@ -17,7 +17,7 @@ export type Options = {
   nonce?: string,
   stylisPlugins?: StylisPlugins,
   prefix?: PrefixOption,
-  key?: string,
+  key: string,
   container?: HTMLElement,
   speedy?: boolean,
   prepend?: boolean
@@ -42,10 +42,29 @@ let getServerStylisCache = isBrowser
       }
     })
 
-let createCache = (options?: Options): EmotionCache => {
-  if (options === undefined) options = {}
-  let key = options.key || 'css'
+let movedStyles = false
+
+let createCache = (options: Options): EmotionCache => {
+  let key = options.key
   let stylisOptions
+
+  if (!key) {
+    throw new Error(
+      "You have to configure `key` for your cache. Please make sure it's unique (and not equal to 'css') as it's used for linking styles to your cache.\n" +
+        `If multiple caches share the same key they might "fight" for each other's style elements.`
+    )
+  }
+
+  if (isBrowser && !movedStyles && key === 'css') {
+    movedStyles = true
+
+    const ssrStyles = document.querySelectorAll(`style[data-emotion]`)
+    // get SSRed styles out of the way of React's hydration
+    // document.head is a safe place to move them to
+    Array.prototype.forEach.call(ssrStyles, (node: HTMLStyleElement) => {
+      ;((document.head: any): HTMLHeadElement).appendChild(node)
+    })
+  }
 
   if (options.prefix !== undefined) {
     stylisOptions = {
@@ -70,16 +89,22 @@ let createCache = (options?: Options): EmotionCache => {
   if (isBrowser) {
     container = options.container || document.head
 
-    const nodes = document.querySelectorAll(`style[data-emotion-${key}]`)
-
-    Array.prototype.forEach.call(nodes, (node: HTMLStyleElement) => {
-      const attrib = node.getAttribute(`data-emotion-${key}`)
-      // $FlowFixMe
-      attrib.split(' ').forEach(id => {
-        inserted[id] = true
-      })
-      nodesToRehydrate.push(node)
-    })
+    Array.prototype.forEach.call(
+      document.querySelectorAll(`style[data-emotion]`),
+      (node: HTMLStyleElement) => {
+        const attrib = ((node.getAttribute(`data-emotion`): any): string).split(
+          ' '
+        )
+        if (attrib[0] !== key) {
+          return
+        }
+        // $FlowFixMe
+        for (let i = 1; i < attrib.length; i++) {
+          inserted[attrib[i]] = true
+        }
+        nodesToRehydrate.push(node)
+      }
+    )
   }
 
   let insert: (

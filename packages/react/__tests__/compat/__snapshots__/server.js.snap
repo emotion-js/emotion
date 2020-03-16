@@ -2,8 +2,8 @@
 
 exports[`Global component extracts the styles rather than inlines it 1`] = `
 Object {
-  "css": ".css-1lrxbo5{color:hotpink;}html{color:green;}",
-  "html": "<div class=\\"css-1lrxbo5\\"></div>",
+  "css": ".ssr-1lrxbo5{color:hotpink;}html{color:green;}",
+  "html": "<div class=\\"ssr-1lrxbo5\\"></div>",
   "ids": Array [
     "1lrxbo5",
     "1vwj31w",
@@ -13,8 +13,8 @@ Object {
 
 exports[`it works 1`] = `
 Object {
-  "css": ".css-1lrxbo5{color:hotpink;}",
-  "html": "<div class=\\"css-1lrxbo5\\"></div>",
+  "css": ".ssr-1lrxbo5{color:hotpink;}",
+  "html": "<div class=\\"ssr-1lrxbo5\\"></div>",
   "ids": Array [
     "1lrxbo5",
   ],

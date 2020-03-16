@@ -9,10 +9,10 @@ export interface Options {
   nonce?: string
   stylisPlugins?: StylisPlugin | Array<StylisPlugin>
   prefix?: Prefix
-  key?: string
+  key: string
   container?: HTMLElement
   speedy?: boolean
   prepend?: boolean
 }
 
-export default function createCache(options?: Options): EmotionCache
+export default function createCache(options: Options): EmotionCache

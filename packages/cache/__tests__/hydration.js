@@ -13,8 +13,8 @@ test('it works', () => {
   let hash = hashString(css)
   safeQuerySelector(
     'body'
-  ).innerHTML = `<style data-emotion-css="${hash}">.css-${hash}{${css}}</style>`
-  let cache = createCache()
+  ).innerHTML = `<style data-emotion="css ${hash}">.css-${hash}{${css}}</style>`
+  let cache = createCache({ key: 'css' })
   expect(cache.inserted).toEqual({ [hash]: true })
   expect(document.documentElement).toMatchSnapshot()
 })
@@ -24,7 +24,7 @@ test('rehydrated styles to head can be flushed', () => {
   let hash = hashString(css)
   safeQuerySelector(
     'head'
-  ).innerHTML = `<style data-emotion-emo="${hash}">.emo-${hash}{${css}}</style>`
+  ).innerHTML = `<style data-emotion="emo ${hash}">.emo-${hash}{${css}}</style>`
 
   // this moves emotion style tags at initialization time
   jest.resetModules()

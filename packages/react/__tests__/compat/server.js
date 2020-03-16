@@ -9,7 +9,7 @@ import { CacheProvider } from '@emotion/react'
 import { renderToString } from 'react-dom/server'
 
 test('it works', () => {
-  let cache = createCache()
+  let cache = createCache({ key: 'ssr' })
   let { extractCritical } = createEmotionServer(cache)
   let ele = (
     <CacheProvider value={cache}>
@@ -20,7 +20,7 @@ test('it works', () => {
 })
 
 test('Global component extracts the styles rather than inlines it', () => {
-  let cache = createCache()
+  let cache = createCache({ key: 'ssr' })
   let { extractCritical } = createEmotionServer(cache)
   let ele = (
     <CacheProvider value={cache}>

@@ -12,7 +12,7 @@ cases(
   'keyframes',
   opts => {
     safeQuerySelector('head').innerHTML = ''
-    let cache = createCache()
+    let cache = createCache({ key: 'css' })
     expect(
       renderer
         .create(<CacheProvider value={cache}>{opts.render()}</CacheProvider>)

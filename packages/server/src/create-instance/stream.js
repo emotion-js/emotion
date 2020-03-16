@@ -42,7 +42,7 @@ const createRenderStylesToNodeStream = (
 
         if (css !== '') {
           this.queue(
-            `<style data-emotion-${cache.key}="${Object.keys(ids).join(
+            `<style data-emotion="${cache.key} ${Object.keys(ids).join(
               ' '
             )}"${nonceString}>${css}</style>`
           )

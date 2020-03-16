@@ -12,4 +12,4 @@ export const {
   css,
   sheet,
   cache
-} = createEmotion()
+} = createEmotion({ key: 'css' })
