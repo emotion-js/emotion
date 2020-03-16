@@ -131,7 +131,7 @@ export class StyleSheet {
         )
       } catch (e) {
         if (process.env.NODE_ENV !== 'production') {
-          console.warn(
+          console.error(
             `There was a problem inserting the following rule: "${rule}"`,
             e
           )
