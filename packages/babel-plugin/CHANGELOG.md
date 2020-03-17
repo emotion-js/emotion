@@ -1,5 +1,18 @@
 # @emotion/babel-plugin
 
+## 11.0.0-next.12
+
+### Minor Changes
+
+- [`5c7ec859`](https://github.com/emotion-js/emotion/commit/5c7ec85904633a11185066fa591dc8969f3f2ff2) [#1805](https://github.com/emotion-js/emotion/pull/1805) Thanks [@Andarist](https://github.com/Andarist)! - Requirements for a label extraction have been relaxed. In certain situations it was previously required for a containing function to have a PascalCased name.
+
+### Patch Changes
+
+- [`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d) [#1732](https://github.com/emotion-js/emotion/pull/1732) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a regression from [a PR which has optimized Babel output](https://github.com/emotion-js/emotion/pull/1656) which has caused inserted label not being extracted correctly and also broke styles composition in certain situations.
+
+- Updated dependencies [[`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d)]:
+  - @emotion/serialize@1.0.0-next.1
+
 ## 11.0.0-next.11
 
 ### Patch Changes

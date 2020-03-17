@@ -1,5 +1,15 @@
 # @emotion/cache
 
+## 11.0.0-next.12
+
+### Major Changes
+
+- [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@Andarist](https://github.com/Andarist)! - From now on `key` option is required. Please make sure it's unique (and not equal to 'css') as it's used for linking styles to your cache. If multiple caches share the same key they might "fight" for each other's style elements.
+
+### Patch Changes
+
+- [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@Andarist](https://github.com/Andarist)! - Fixed issue with SSRed styles causing a React rehydration mismatch between server & client when cache was created in render.
+
 ## 11.0.0-next.10
 
 ### Patch Changes
