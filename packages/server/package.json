@@ -1,6 +1,6 @@
 {
   "name": "@emotion/server",
-  "version": "11.0.0-next.10",
+  "version": "11.0.0-next.12",
   "description": "Extract and inline critical css with emotion for server side rendering.",
   "main": "dist/server.cjs.js",
   "types": "types/index.d.ts",
@@ -20,7 +20,7 @@
     "through": "^2.3.8"
   },
   "peerDependencies": {
-    "@emotion/css": "^11.0.0-next.10"
+    "@emotion/css": "^11.0.0-next.12"
   },
   "peerDependenciesMeta": {
     "@emotion/css": {
@@ -28,8 +28,8 @@
     }
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "11.0.0-next.11",
-    "@emotion/css": "11.0.0-next.11",
+    "@emotion/babel-plugin": "11.0.0-next.12",
+    "@emotion/css": "11.0.0-next.12",
     "@types/node": "^10.11.4",
     "dtslint": "^0.3.0"
   },

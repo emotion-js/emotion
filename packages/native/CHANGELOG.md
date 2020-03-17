@@ -1,5 +1,14 @@
 # @emotion/native
 
+## 11.0.0-next.12
+
+### Patch Changes
+
+- [`11fc27f8`](https://github.com/emotion-js/emotion/commit/11fc27f8fa00661353cc7650111afaa068399aca) [#1750](https://github.com/emotion-js/emotion/pull/1750) Thanks [@Zn4rK](https://github.com/Zn4rK)! - Match supported components to what is exported from the latest version of React Native (0.61.5).
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.12
+
 ## 11.0.0-next.11
 
 ### Patch Changes

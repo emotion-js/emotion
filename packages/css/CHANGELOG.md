@@ -1,5 +1,33 @@
 # emotion
 
+## 11.0.0-next.12
+
+### Major Changes
+
+- [`5bea60b1`](https://github.com/emotion-js/emotion/commit/5bea60b1ffab85fbc965532006c3a94ea139f0bf) [#1807](https://github.com/emotion-js/emotion/pull/1807) Thanks [@Andarist](https://github.com/Andarist)! - Removed support for interpolating class names returned from `css`, so this will no longer be possible:
+
+  ```js
+  const cls1 = css`
+    color: blue;
+  `
+  const cls2 = css`
+    & .${cls1} {
+      color: red;
+    }
+  `
+  ```
+
+  This has already been deprecated for the lifetime of v10.
+
+* [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@Andarist](https://github.com/Andarist)! - From now on `key` option is required when creating a custom instance. Please make sure it's unique (and not equal to 'css') as it's used for linking styles to your cache. If multiple caches share the same key they might "fight" for each other's style elements.
+
+### Patch Changes
+
+- Updated dependencies [[`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d), [`5c7ec859`](https://github.com/emotion-js/emotion/commit/5c7ec85904633a11185066fa591dc8969f3f2ff2), [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d), [`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d), [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d)]:
+  - @emotion/serialize@1.0.0-next.1
+  - @emotion/babel-plugin@11.0.0-next.12
+  - @emotion/cache@11.0.0-next.12
+
 ## 11.0.0-next.11
 
 ### Patch Changes

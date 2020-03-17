@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 1.0.0-next.1
+
+### Patch Changes
+
+- [`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d) [#1732](https://github.com/emotion-js/emotion/pull/1732) Thanks [@Andarist](https://github.com/Andarist)! - An additional semicolon is now inserted after interpolated arrays to cover cases when it doesn't have a trailing semi itself and thus breaking composition with styles coming after it.
+
 ## 0.11.15-next.4
 
 ### Patch Changes

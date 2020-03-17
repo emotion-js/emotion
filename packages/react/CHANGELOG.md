@@ -1,5 +1,26 @@
 # @emotion/react
 
+## 11.0.0-next.12
+
+### Major Changes
+
+- [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@Andarist](https://github.com/Andarist)! - `[data-emotion]` attribute on SSRed styled has changed. You should never rely on it though.
+
+### Patch Changes
+
+- [`7dea6d7a`](https://github.com/emotion-js/emotion/commit/7dea6d7a9a87f00cf9b695b58a2f65b67e17fabd) [#1734](https://github.com/emotion-js/emotion/pull/1734) Thanks [@Andarist](https://github.com/Andarist)! - Fixed styles inserted by `<Global/>` component not inheriting `speedy` option from a cache passed to a wrapping `<CacheProvider/>`.
+
+* [`be2eb614`](https://github.com/emotion-js/emotion/commit/be2eb614d2bc369a382dbc6aa347f66801605f3b) [#1806](https://github.com/emotion-js/emotion/pull/1806) Thanks [@Andarist](https://github.com/Andarist)! - Do not warn about `@emotion/react` being loaded twice in Jest. For some reason Jest sometimes evaluates modules twice when `jest.mock` is being called.
+
+- [`75e2f9e1`](https://github.com/emotion-js/emotion/commit/75e2f9e1848bc0161f8db3c663438ada3042ae66) [#1810](https://github.com/emotion-js/emotion/pull/1810) Thanks [@Andarist](https://github.com/Andarist)! - Add a dev-only warning about styles created with `css` from `@emotion/react` being passed to `cx` from `<ClassNames/>`.
+
+- Updated dependencies [[`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d), [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d), [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d), [`5bea60b1`](https://github.com/emotion-js/emotion/commit/5bea60b1ffab85fbc965532006c3a94ea139f0bf), [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d), [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d)]:
+  - @emotion/serialize@1.0.0-next.1
+  - @emotion/server@11.0.0-next.12
+  - @emotion/styled@11.0.0-next.12
+  - @emotion/cache@11.0.0-next.12
+  - @emotion/css@11.0.0-next.12
+
 ## 11.0.0-next.11
 
 ### Patch Changes
