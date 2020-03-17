@@ -18,7 +18,7 @@
     "@babel/runtime": "^7.7.2",
     "@emotion/hash": "0.8.0",
     "@emotion/memoize": "0.7.4",
-    "@emotion/serialize": "^0.11.15-next.4",
+    "@emotion/serialize": "^1.0.0-next.0",
     "babel-plugin-macros": "^2.6.1",
     "convert-source-map": "^1.5.0",
     "escape-string-regexp": "^1.0.5",

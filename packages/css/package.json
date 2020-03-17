@@ -20,7 +20,7 @@
   "dependencies": {
     "@emotion/babel-plugin": "^11.0.0-next.11",
     "@emotion/cache": "^11.0.0-next.10",
-    "@emotion/serialize": "^0.11.15-next.4",
+    "@emotion/serialize": "^1.0.0-next.0",
     "@emotion/sheet": "0.10.0-next.1",
     "@emotion/utils": "0.11.3"
   },
