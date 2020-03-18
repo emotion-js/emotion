@@ -93,7 +93,7 @@ interface PrimaryProps {
  * it could be more efficient.
  */
 const Button2 = styled<'button', PrimaryProps>('button')`
-  fontsize: ${5}px;
+  font-size: ${5}px;
   color: ${props => props.primary};
 `
 const Button3 = styled<'button', PrimaryProps>('button')(props => ({
@@ -119,10 +119,10 @@ const Button3 = styled<'button', PrimaryProps>('button')(props => ({
 const Button4 = styled<typeof ReactClassComponent0, PrimaryProps>(
   ReactClassComponent0
 )`
-  backgroundColor: ${props => props.theme.backColor}
+  background-color: ${props => props.theme.backColor};
 
-  fontSize: ${5}px;
-  color: ${props => props.primary}
+  font-size: ${5}px;
+  color: ${props => props.primary};
 `
 const Button5 = styled<typeof ReactSFC0, PrimaryProps>(ReactSFC0)(props => ({
   color: props.primary
@@ -146,7 +146,7 @@ const Button5 = styled<typeof ReactSFC0, PrimaryProps>(ReactSFC0)(props => ({
 
 const Container0 = styled(ReactClassComponent0)`
   display: flex;
-  flexdirection: ${props => props.column && 'column'};
+  flex-direction: ${props => props.column && 'column'};
 `
 ;<Container0 column={false} />
 // $ExpectError
