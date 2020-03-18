@@ -59,21 +59,19 @@ interface CreateStyledComponentBaseThemeless<InnerProps, ExtraProps> {
     StyleProps extends Omit<
       Overwrapped<InnerProps, StyleProps>,
       ReactClassPropKeys
-    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>,
-    Theme extends object = object
+    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
   >(
-    ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
-  ): StyledComponent<InnerProps, StyleProps, Theme>
+    ...styles: Array<Interpolation<WithTheme<StyleProps, any>>>
+  ): StyledComponent<InnerProps, StyleProps, any>
   <
     StyleProps extends Omit<
       Overwrapped<InnerProps, StyleProps>,
       ReactClassPropKeys
-    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>,
-    Theme extends object = object
+    > = Omit<InnerProps & ExtraProps, ReactClassPropKeys>
   >(
     template: TemplateStringsArray,
-    ...styles: Array<Interpolation<WithTheme<StyleProps, Theme>>>
-  ): StyledComponent<InnerProps, StyleProps, Theme>
+    ...styles: Array<Interpolation<WithTheme<StyleProps, any>>>
+  ): StyledComponent<InnerProps, StyleProps, any>
 }
 
 interface CreateStyledComponentBaseThemed<
