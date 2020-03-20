@@ -83,5 +83,3 @@ exports[`prints speedy styles 1`] = `
   className=\\"emotion-0\\"
 />"
 `;
-
-exports[`throws nice error for invalid css 1`] = `"There was an error parsing the following css: \\".css-1kkrnw9-tree{jnnjvh@'jevhevhb;label:tree;}\\""`;

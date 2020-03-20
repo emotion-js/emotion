@@ -61,10 +61,10 @@ test('it works', () => {
   ])
 
   expect(elements[0].sheet).toMatchInlineSnapshot(`
-html {
-  background-color: yellow;
-}
-`)
+    html {
+      background-color: yellow;
+    }
+  `)
   expect(elements[1].sheet).toMatchInlineSnapshot(`
 @import url(something.com/file.css);
 
