@@ -42,8 +42,36 @@ function toHaveStyleRule(
   received: *,
   property: *,
   value: *,
-  options?: { target?: string, media?: string } = {}
+  options?: { native?: boolean, target?: string, media?: string } = {}
 ) {
+  if (options.native) {
+    // received component is a React Native component
+    const style = received
+      .dive()
+      .dive()
+      .dive()
+      .prop('style')
+    const styleValue = style[property]
+
+    if (!styleValue) {
+      return {
+        pass: false,
+        message: () => `Property not found: ${property}`
+      }
+    }
+
+    const pass = valueMatches({ value: styleValue }, value)
+
+    return {
+      pass,
+      message: () =>
+        `Expected ${property}${pass ? ' not ' : ' '}to match:\n` +
+        `  ${chalk.green(value)}\n` +
+        'Received:\n' +
+        `  ${chalk.red(styleValue)}`
+    }
+  }
+
   const { target, media } = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
