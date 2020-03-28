@@ -7,11 +7,14 @@ import {
   middleware,
   rulesheet,
   stringify,
-  compat,
   prefixer
 } from '@emotion/stylis'
 import weakMemoize from '@emotion/weak-memoize'
-import { removeLabel, createUnsafeSelectorsAlarm } from './stylis-plugins'
+import {
+  compat,
+  removeLabel,
+  createUnsafeSelectorsAlarm
+} from './stylis-plugins'
 import type { StylisPlugin } from './types'
 
 let isBrowser = typeof document !== 'undefined'

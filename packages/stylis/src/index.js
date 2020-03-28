@@ -58,15 +58,6 @@ function trim(value) {
 /**
  * @param {string} value
  * @param {RegExp} pattern
- * @return {boolean}
- */
-function test(value, pattern) {
-  return pattern.test(value)
-}
-
-/**
- * @param {string} value
- * @param {RegExp} pattern
  * @return {string?}
  */
 function match(value, pattern) {
@@ -1005,49 +996,50 @@ function rulesheet(callback) {
  * @param {function} callback
  */
 function prefixer(element, index, children, callback) {
-  switch (element.type) {
-    case DECLARATION:
-      element.return = prefix(element.value, element.length)
-      break
-    case KEYFRAMES:
-      return serialize(
-        [copy(replace(element.value, '@', '@' + WEBKIT), element, '')],
-        callback
-      )
-    case RULESET:
-      if (element.length)
-        return combine(element.props, function(value) {
-          switch (match(value, /(::place.+|:read-.+)/)) {
-            // :read-(only|write)
-            case ':read-only':
-            case ':read-write':
-              return serialize(
-                [copy(replace(value, /(read.+)/, MOZ + '$1'), element, '')],
-                callback
-              )
-            // :placeholder
-            case '::placeholder':
-              return serialize(
-                [
-                  copy(
-                    replace(value, /(plac.+)/, WEBKIT + 'input-$1'),
-                    element,
-                    ''
-                  ),
-                  copy(replace(value, /(plac.+)/, MOZ + '$1'), element, ''),
-                  copy(
-                    replace(value, /:(plac.+)/, MS + 'input-$1'),
-                    element,
-                    ''
-                  )
-                ],
-                callback
-              )
-          }
+  if (!element.return)
+    switch (element.type) {
+      case DECLARATION:
+        element.return = prefix(element.value, element.length)
+        break
+      case KEYFRAMES:
+        return serialize(
+          [copy(replace(element.value, '@', '@' + WEBKIT), element, '')],
+          callback
+        )
+      case RULESET:
+        if (element.length)
+          return combine(element.props, function(value) {
+            switch (match(value, /(::place.+|:read-.+)/)) {
+              // :read-(only|write)
+              case ':read-only':
+              case ':read-write':
+                return serialize(
+                  [copy(replace(value, /(read.+)/, MOZ + '$1'), element, '')],
+                  callback
+                )
+              // :placeholder
+              case '::placeholder':
+                return serialize(
+                  [
+                    copy(
+                      replace(value, /(plac.+)/, WEBKIT + 'input-$1'),
+                      element,
+                      ''
+                    ),
+                    copy(replace(value, /(plac.+)/, MOZ + '$1'), element, ''),
+                    copy(
+                      replace(value, /:(plac.+)/, MS + 'input-$1'),
+                      element,
+                      ''
+                    )
+                  ],
+                  callback
+                )
+            }
 
-          return ''
-        })
-  }
+            return ''
+          })
+    }
 }
 
 /**
@@ -1097,52 +1089,6 @@ function namespace(element) {
   }
 }
 
-/**
- * @param {string[]} tokens
- * @param {number} current
- */
-function move(tokens, current) {
-  while (++current < tokens.length) {
-    if (charat(tokens[current], 0) === 44) break
-  }
-  return ++current
-}
-
-/**
- * @param {object} element
- */
-function compat(element) {
-  switch (element.type) {
-    case RULESET:
-      var current = 0
-      var next = 0
-      var props = element.props
-      var value = element.value
-      var length = props.length
-      var prop
-
-      if (length === 1 && charat(value, 0) !== 58) {
-        return
-      }
-
-      var tokens = tokenize(value)
-
-      for (var i = 0; i < length; i++) {
-        ;(prop = props[i]), (next = move(tokens, (current = next)))
-
-        if (charat(tokens[current], 0) !== 58) {
-          continue
-        }
-
-        var pattern = ''
-        while (current < next - 1) {
-          pattern += tokens[current++]
-        }
-        props[i] = replace(prop, ' ' + pattern, pattern)
-      }
-  }
-}
-
 export {
   CHARSET,
   COMMENT,
@@ -1174,7 +1120,6 @@ export {
   combine,
   comment,
   commenter,
-  compat,
   compile,
   copy,
   dealloc,
@@ -1206,7 +1151,6 @@ export {
   stringify,
   strlen,
   substr,
-  test,
   token,
   tokenize,
   tokenizer,
