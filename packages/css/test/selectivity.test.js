@@ -4,6 +4,7 @@ import { css, sheet, flush } from '@emotion/css'
 
 describe('css', () => {
   afterEach(() => flush())
+
   test('complex nested styles', () => {
     const mq = [
       '@media(min-width: 420px)',
@@ -114,6 +115,70 @@ describe('css', () => {
         }
       }
     `
+    expect(sheet).toMatchSnapshot()
+  })
+})
+
+describe('orphanated pseudos', () => {
+  afterEach(() => flush())
+
+  test('single', () => {
+    css`
+      :focus {
+        color: hotpink;
+      }
+    `
+
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('multiple in a group', () => {
+    css`
+      :hover div,
+      :focus {
+        color: hotpink;
+      }
+    `
+
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('multiple in a group in multiple in a group', () => {
+    css`
+      .foo,
+      .bar div,
+      .qwe {
+        :first-child,
+        div,
+        span,
+        :last-child {
+          color: hotpink;
+        }
+      }
+    `
+
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('regexp special character', () => {
+    css`
+      :nth-child(3) {
+        color: hotpink;
+      }
+    `
+
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('overlapping', () => {
+    css`
+      & :first-child {
+        :first-child {
+          color: hotpink;
+        }
+      }
+    `
+
     expect(sheet).toMatchSnapshot()
   })
 })

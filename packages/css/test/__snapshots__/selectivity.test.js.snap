@@ -123,3 +123,45 @@ exports[`css media query with nested selector without declarations on root 1`] =
   }
 }"
 `;
+
+exports[`orphanated pseudos multiple in a group 1`] = `
+".css-ynt3gm:hover div,
+.css-ynt3gm:focus {
+  color: hotpink;
+}"
+`;
+
+exports[`orphanated pseudos multiple in a group in multiple in a group 1`] = `
+".css-b4zt77 .foo:first-child,
+.css-b4zt77 .bar div:first-child,
+.css-b4zt77 .qwe:first-child,
+.css-b4zt77 .foo div,
+.css-b4zt77 .bar div div,
+.css-b4zt77 .qwe div,
+.css-b4zt77 .foo span,
+.css-b4zt77 .bar div span,
+.css-b4zt77 .qwe span,
+.css-b4zt77 .foo:last-child,
+.css-b4zt77 .bar div:last-child,
+.css-b4zt77 .qwe:last-child {
+  color: hotpink;
+}"
+`;
+
+exports[`orphanated pseudos overlapping 1`] = `
+".css-1pl3kvr:first-child:first-child {
+  color: hotpink;
+}"
+`;
+
+exports[`orphanated pseudos regexp special character 1`] = `
+".css-1545qp0:nth-child(3) {
+  color: hotpink;
+}"
+`;
+
+exports[`orphanated pseudos single 1`] = `
+".css-17n559g:focus {
+  color: hotpink;
+}"
+`;
