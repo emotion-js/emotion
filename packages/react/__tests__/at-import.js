@@ -19,14 +19,14 @@ test('basic', () => {
       <div css={{ color: 'hotpink' }} />
       <Global
         styles={css`
+          @import url('https://some-url');
+
           h1 {
             color: hotpink;
           }
-          @import url('https://some-url');
         `}
       />
-    </React.Fragment>,
-    // $FlowFixMe
+    </React.Fragment>, // $FlowFixMe
     document.getElementById('root')
   )
   expect(document.head).toMatchSnapshot()
