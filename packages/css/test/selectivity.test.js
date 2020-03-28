@@ -119,7 +119,7 @@ describe('css', () => {
   })
 })
 
-describe('orphanated pseudos', () => {
+describe('orphaned pseudos', () => {
   afterEach(() => flush())
 
   test('single', () => {
