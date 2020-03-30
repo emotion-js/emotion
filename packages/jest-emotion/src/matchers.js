@@ -46,12 +46,40 @@ function toHaveStyleRule(
 ) {
   if (options.native) {
     // received component is a React Native component
-    const style = received
-      .dive()
-      .dive()
-      .dive()
-      .prop('style')
-    const styleValue = style[property]
+    let style
+
+    if (typeof received.props === 'function') {
+      // the received component is rendered by enzyme shallow()
+      style = received
+        .dive()
+        .dive()
+        .dive()
+        .prop('style')
+    } else {
+      // the received component is rendered by native-testing-library
+      style = received.props.style
+    }
+
+    if (!style) {
+      return {
+        pass: false,
+        message: () => 'Received component has no styles.'
+      }
+    }
+
+    let styleValue
+
+    if (style instanceof Array) {
+      // react native style props can be an array
+      const styles = style.reduce((allStyles, styleObj) => ({
+        ...allStyles,
+        ...styleObj
+      }))
+
+      styleValue = styles[property]
+    } else {
+      styleValue = style[property]
+    }
 
     if (!styleValue) {
       return {
