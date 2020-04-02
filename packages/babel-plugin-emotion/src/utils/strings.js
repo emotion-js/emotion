@@ -1,5 +1,8 @@
 // @flow
-import { getTypeScriptMakeTemplateObjectPath } from './ts-output-utils'
+import {
+  getTypeScriptMakeTemplateObjectPath,
+  isTaggedTemplateTranspiledByBabel
+} from './transpiled-output-utils'
 
 export const appendStringToArguments = (path: *, string: string, t: *) => {
   if (!string) {
@@ -19,7 +22,7 @@ export const appendStringToArguments = (path: *, string: string, t: *) => {
           t.stringLiteral(lastElement.node.value + string)
         )
       })
-    } else {
+    } else if (!isTaggedTemplateTranspiledByBabel(path)) {
       args.push(t.stringLiteral(string))
     }
   }

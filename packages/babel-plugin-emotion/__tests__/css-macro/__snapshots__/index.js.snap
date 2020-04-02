@@ -36,6 +36,46 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
 const SomeComponent = () => <div css={_ref} />;"
 `;
 
+exports[`@emotion/css/macro already-transpiled-by-babel 1`] = `
+"/* eslint-disable */
+import css from '@emotion/css/macro'
+import _taggedTemplateLiteralLoose from '@babel/runtime/helpers/esm/taggedTemplateLiteralLoose'
+
+function _templateObject() {
+  var data = _taggedTemplateLiteralLoose(['\\\\n    color: hotpink;\\\\n  '])
+
+  _templateObject = function _templateObject() {
+    return data
+  }
+
+  return data
+}
+
+// no label & source maps should be appended
+const fooStyles = css(_templateObject())
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _css from \\"@emotion/css\\";
+import _taggedTemplateLiteralLoose from '@babel/runtime/helpers/esm/taggedTemplateLiteralLoose';
+
+function _templateObject() {
+  var data = _taggedTemplateLiteralLoose(['\\\\n    color: hotpink;\\\\n  ']);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+} // no label & source maps should be appended
+
+
+const fooStyles =
+/*#__PURE__*/
+_css(_templateObject());"
+`;
+
 exports[`@emotion/css/macro basic 1`] = `
 "import css from '@emotion/css/macro'
 
