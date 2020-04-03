@@ -1,5 +1,11 @@
 # babel-plugin-emotion
 
+## 10.0.33
+
+### Patch Changes
+
+- [`b9f8ae3`](https://github.com/emotion-js/emotion/commit/b9f8ae3f6e18b0569376b9ed62e9d09d141adff8) [#1829](https://github.com/emotion-js/emotion/pull/1829) Thanks [@Andarist](https://github.com/Andarist)! - Skip appending source maps & labels to Babel-transpiled tagged template expressions.
+
 ## 10.0.29
 
 ### Patch Changes
