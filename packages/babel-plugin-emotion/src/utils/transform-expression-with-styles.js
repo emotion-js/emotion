@@ -6,7 +6,10 @@ import { getLabelFromPath } from './label'
 import { getSourceMap } from './source-maps'
 import { simplifyObject } from './object-to-string'
 import { appendStringToArguments, joinStringLiterals } from './strings'
-import { getTypeScriptMakeTemplateObjectPath } from './ts-output-utils'
+import {
+  getTypeScriptMakeTemplateObjectPath,
+  isTaggedTemplateTranspiledByBabel
+} from './transpiled-output-utils'
 
 const CSS_OBJECT_STRINGIFIED_ERROR =
   "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
@@ -162,7 +165,7 @@ export let transformExpressionWithStyles = ({
               )
             )
           })
-        } else {
+        } else if (!isTaggedTemplateTranspiledByBabel(path)) {
           path.node.arguments.push(sourceMapConditional)
         }
       }
