@@ -30,7 +30,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "babel-check-duplicated-nodes": "^1.0.0"
+    "babel-check-duplicated-nodes": "^1.0.0",
+    "jscodeshift": "^0.5.0",
+    "rollup": "^2.3.3"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

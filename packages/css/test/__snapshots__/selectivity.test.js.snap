@@ -2,13 +2,13 @@
 
 exports[`css complex nested media queries 1`] = `
 "@media (max-width:600px) {
-  .css-acogag h1 {
+  .css-1vjvce5 h1 {
     font-size: 1.4rem;
   }
 }
 
 @media (max-width:400px),(max-height:420px) {
-  .css-acogag h1 {
+  .css-1vjvce5 h1 {
     font-size: 1.1rem;
   }
 }"
@@ -77,36 +77,36 @@ exports[`css handles media query merges 1`] = `
 `;
 
 exports[`css media queries with multiple nested selectors 1`] = `
-".css-17riori {
+".css-snkf7h {
   color: blue;
 }
 
 @media (max-width:400px) {
-  .css-17riori {
+  .css-snkf7h {
     color: green;
   }
 
-  .css-17riori h1 {
+  .css-snkf7h h1 {
     color: red;
   }
 
-  .css-17riori span {
+  .css-snkf7h span {
     color: red;
   }
 }"
 `;
 
 exports[`css media query with nested selector with nested selector on root 1`] = `
-".css-1ssiu3j span {
+".css-1hvbare span {
   color: blue;
 }
 
 @media (max-width:400px) {
-  .css-1ssiu3j {
+  .css-1hvbare {
     color: green;
   }
 
-  .css-1ssiu3j span {
+  .css-1hvbare span {
     color: red;
   }
 }"
@@ -114,11 +114,11 @@ exports[`css media query with nested selector with nested selector on root 1`] =
 
 exports[`css media query with nested selector without declarations on root 1`] = `
 "@media (max-width:400px) {
-  .css-18muius {
+  .css-156bult {
     color: green;
   }
 
-  .css-18muius span {
+  .css-156bult span {
     color: red;
   }
 }"

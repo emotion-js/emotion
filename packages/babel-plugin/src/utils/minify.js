@@ -1,10 +1,44 @@
 // @flow
-import { minify } from './minify-utils'
+import compile from '../forked-stylis'
 
-export function getExpressionsFromTemplateLiteral(node: *, t: *): Array<*> {
-  const raw = createRawStringFromTemplateLiteral(node)
-  const minified = minify(raw)
-  return replacePlaceholdersWithExpressions(minified, node.expressions || [], t)
+const serializeChildren = (children, parent) => {
+  return children
+    .map(element => {
+      switch (element.type) {
+        case 'import':
+        case 'decl':
+          return element.value
+        case 'comm':
+          // When we encounter a standard multi-line CSS comment and it contains a '@'
+          // character, we keep the comment. Some Stylis plugins, such as
+          // the stylis-rtl via the cssjanus plugin, use this special comment syntax
+          // to control behavior (such as: /* @noflip */). We can do this
+          // with standard CSS comments because they will work with compression,
+          // as opposed to non-standard single-line comments that will break compressed CSS.
+          return element.props === '/' && element.value.includes('@')
+            ? element.value
+            : ''
+        case 'rule':
+          return `${element.value.replace(/&\f/g, '&')}{${serializeChildren(
+            element.children,
+            element
+          )}}`
+        default: {
+          const originalChildren =
+            parent &&
+            element.children.length === 1 &&
+            element.children[0].type === 'rule' &&
+            element.children[0].value === parent.value
+              ? element.children[0].children
+              : element.children
+          return `${element.value}{${serializeChildren(
+            originalChildren,
+            element
+          )}}`
+        }
+      }
+    })
+    .join('')
 }
 
 const interleave = (strings: Array<*>, interpolations: Array<*>) =>
@@ -14,7 +48,7 @@ const interleave = (strings: Array<*>, interpolations: Array<*>) =>
   )
 
 function getDynamicMatches(str: string) {
-  const re = /xxx(\d+)xxx/gm
+  const re = /xxx(\d+):xxx/gm
   let match
   const matches = []
   while ((match = re.exec(str)) !== null) {
@@ -78,11 +112,23 @@ function createRawStringFromTemplateLiteral(quasi: {
     .reduce((arr, str, i) => {
       arr.push(str)
       if (i !== strs.length - 1) {
-        arr.push(`xxx${i}xxx`)
+        arr.push(`xxx${i}:xxx`)
       }
       return arr
     }, [])
     .join('')
     .trim()
   return src
+}
+
+export default function minify(path: *, t: *): void {
+  const quasi = path.node.quasi
+  const raw = createRawStringFromTemplateLiteral(quasi)
+  const minified = serializeChildren(compile(raw), null)
+  const expressions = replacePlaceholdersWithExpressions(
+    minified,
+    quasi.expressions || [],
+    t
+  )
+  path.replaceWith(t.callExpression(path.node.tag, expressions))
 }
