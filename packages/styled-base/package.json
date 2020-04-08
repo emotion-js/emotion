@@ -30,6 +30,11 @@
     "@emotion/core": "^10.0.28",
     "react": ">=16.3.0"
   },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+  },
   "publishConfig": {
     "access": "public"
   },
