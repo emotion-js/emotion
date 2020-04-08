@@ -33,7 +33,7 @@
   "peerDependenciesMeta": {
     "@types/react": {
       "optional": true
-    },
+    }
   },
   "publishConfig": {
     "access": "public"
