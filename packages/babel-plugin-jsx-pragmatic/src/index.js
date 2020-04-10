@@ -12,15 +12,27 @@ export default function jsxPragmatic(babel) {
   const t = babel.types
 
   function addPragmaImport(path, state) {
-    const importDeclar = t.importDeclaration(
-      [
-        t.importSpecifier(
-          t.identifier(state.opts.import),
-          t.identifier(state.opts.export || 'default')
+    const importDeclar = !state.opts.commonjs
+      ? t.importDeclaration(
+          [
+            t.importSpecifier(
+              t.identifier(state.opts.import),
+              t.identifier(state.opts.export || 'default')
+            )
+          ],
+          t.stringLiteral(state.opts.module)
         )
-      ],
-      t.stringLiteral(state.opts.module)
-    )
+      : t.variableDeclaration('var', [
+          t.variableDeclarator(
+            t.identifier(state.opts.import),
+            t.memberExpression(
+              t.callExpression(t.identifier('require'), [
+                t.stringLiteral(state.opts.module)
+              ]),
+              t.identifier(state.opts.export || 'default')
+            )
+          )
+        ])
 
     const targetPath = findLast(path.get('body'), p => p.isImportDeclaration())
 

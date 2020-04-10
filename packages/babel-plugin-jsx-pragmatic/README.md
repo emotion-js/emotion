@@ -163,6 +163,20 @@ String. The export that you want to import as `import` from `module`. Default va
 // import {something as x} from "whatever"
 ```
 
+### `commonjs`
+
+Boolean. If provided and set to `true`, then CommonJS-style `require` statements will be produced instead of `import` statements. This should not be necessary in the typical case.
+
+```js
+{
+  module: "whatever",
+  import: "x",
+  export: "something",
+  commonjs: true
+}
+// var x = require("whatever").something
+```
+
 # Known Issues
 
 - Doesn't do anything special in the case that the file being transformed

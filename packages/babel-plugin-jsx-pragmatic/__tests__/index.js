@@ -15,6 +15,20 @@ babelTester('@emotion/babel-plugin-jsx-pragmatic', __dirname, {
   ]
 })
 
+babelTester('@emotion/babel-plugin-jsx-pragmatic', __dirname, {
+  plugins: [
+    [
+      jsxPragmatic,
+      {
+        export: 'jsx',
+        module: '@emotion/core',
+        import: '___EmotionJSX',
+        commonjs: true
+      }
+    ]
+  ]
+})
+
 test('babel-plugin-jsx-pragmatic should throw error when invalid options', () => {
   expect(() => {
     transformSync('<></>', {
