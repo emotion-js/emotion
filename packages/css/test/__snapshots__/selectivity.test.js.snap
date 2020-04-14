@@ -160,7 +160,7 @@ exports[`orphaned pseudos multiple in a group in multiple in a group 1`] = `
 `;
 
 exports[`orphaned pseudos overlapping - reversed 1`] = `
-".css-a5yiwa:first-child:first-child {
+".css-a5yiwa:first-child:first-child .css-a5yiwa:first-child {
   color: hotpink;
 }"
 `;

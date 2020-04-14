@@ -1,6 +1,52 @@
-import { compile } from '@emotion/stylis'
+import {
+  compile,
+  alloc,
+  dealloc,
+  next,
+  delimit,
+  token,
+  char,
+  from,
+  identifier,
+  peek,
+  position
+} from '@emotion/stylis'
 
 const last = arr => (arr.length ? arr[arr.length - 1] : null)
+
+const toRules = (parsed, points) => {
+  parsed[0] = peek() === 58 ? '&\f' : ''
+  points[0] = parsed[0].length
+
+  let index = 0
+
+  while (next()) {
+    const character = char()
+    switch (token(character)) {
+      case 0:
+        parsed[index] += identifier(position - 1)
+        break
+      case 2:
+        parsed[index] += delimit(character)
+        break
+      case 4:
+        // comma
+        if (character === 44) {
+          // colon
+          parsed[++index] = peek() === 58 ? '&\f' : ''
+          points[index] = parsed[index].length
+          break
+        }
+      // fallthrough
+      default:
+        parsed[index] += from(character)
+    }
+  }
+
+  return parsed
+}
+
+const getRules = (value, points) => dealloc(toRules(alloc(value), points))
 
 export let compat = element => {
   if (element.type !== 'rule') return
@@ -10,26 +56,30 @@ export let compat = element => {
     return
   }
 
-  var value = element.value
+  const { value } = element
 
   // short-circuit for the simplest case
   if (element.props.length === 1 && value.charCodeAt(0) !== 58 /* colon */) {
     return
   }
 
-  var parent = element
+  let parent = element
 
   do {
     parent = parent.parent
   } while (parent.type !== 'rule')
 
-  var withExplicitLeadingAmpersand = compile(`${value}{}`)[0]
-    .props.map(prop => (prop.charCodeAt(0) === 58 ? `&${prop}` : `${prop}`))
-    .join(',')
+  const points = []
+  const rules = getRules(value, points)
+  const parentRules = parent.props
 
-  element.props = compile(
-    `${parent.props.join(',')}{${withExplicitLeadingAmpersand}{}}`
-  )[1].props
+  for (let i = 0, k = 0; i < rules.length; i++) {
+    for (let j = 0; j < parentRules.length; j++, k++) {
+      if (points[i]) {
+        element.props[k] = rules[i].replace(/&\f/g, parentRules[j])
+      }
+    }
+  }
 }
 
 export let removeLabel = element => {
