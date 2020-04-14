@@ -1,56 +1,35 @@
-import { tokenize } from '@emotion/stylis'
+import { compile } from '@emotion/stylis'
 
 const last = arr => (arr.length ? arr[arr.length - 1] : null)
 
 export let compat = element => {
-  switch (element.type) {
-    case 'rule':
-      var i = 0
-      var props = element.props
-      var value = element.value
-      var propsLength = props.length
+  if (element.type !== 'rule') return
 
-      // short-circuit for the simplest case
-      if (propsLength === 1 && value.charCodeAt(0) !== 58 /* colon */) {
-        return
-      }
-
-      var valueTokens = tokenize(value)
-      // keep delimiting indices between tokens of a particular group
-      // include -1 and the length as well to allow for uniform calculations later
-      var points = [-1]
-
-      for (; i < valueTokens.length; i++) {
-        if (valueTokens[i].charCodeAt(0) === 44 /* , */) {
-          points.push(i)
-        }
-      }
-
-      var groupsCount = points.length
-      points.push(valueTokens.length)
-      // props hold already computed "exploded" combinations
-      // based on their length and groups count it's easy to get back a chunk length
-      // over which we need to iterate through when processing a single group on "the current level"
-      var parentGroupsCount = propsLength / groupsCount
-      var propsCursor = 0
-
-      for (i = 0; i < groupsCount; i++) {
-        if (valueTokens[points[i] + 1].charCodeAt(0) !== 58 /* colon */) {
-          propsCursor += parentGroupsCount
-          continue
-        }
-
-        var groupLength = points[i + 1] - points[i] - 1
-        var cursorTarget = propsCursor + parentGroupsCount
-        for (; propsCursor < cursorTarget; propsCursor++) {
-          var prop = props[propsCursor]
-          var propTokens = tokenize(prop)
-          // adjust preceding token - we know it's a whitespace which we need to remove
-          propTokens[propTokens.length - groupLength - 1] = ''
-          props[propsCursor] = propTokens.join('')
-        }
-      }
+  // .length indicates if this rule contains pseudo or not
+  if (!element.length) {
+    return
   }
+
+  var value = element.value
+
+  // short-circuit for the simplest case
+  if (element.props.length === 1 && value.charCodeAt(0) !== 58 /* colon */) {
+    return
+  }
+
+  var parent = element
+
+  do {
+    parent = parent.parent
+  } while (parent.type !== 'rule')
+
+  var withExplicitLeadingAmpersand = compile(`${value}{}`)[0]
+    .props.map(prop => (prop.charCodeAt(0) === 58 ? `&${prop}` : `${prop}`))
+    .join(',')
+
+  element.props = compile(
+    `${parent.props.join(',')}{${withExplicitLeadingAmpersand}{}}`
+  )[1].props
 }
 
 export let removeLabel = element => {

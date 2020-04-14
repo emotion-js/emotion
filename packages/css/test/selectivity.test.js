@@ -181,4 +181,31 @@ describe('orphaned pseudos', () => {
 
     expect(sheet).toMatchSnapshot()
   })
+
+  test('overlapping - reversed', () => {
+    css`
+      & :first-child {
+        :first-child & {
+          color: hotpink;
+        }
+      }
+    `
+
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('in nested atrules', () => {
+    css`
+      @media (max-width: 400px) {
+        @supports (display: grid) {
+          div,
+          :first-child {
+            color: hotpink;
+          }
+        }
+      }
+    `
+
+    expect(sheet).toMatchSnapshot()
+  })
 })

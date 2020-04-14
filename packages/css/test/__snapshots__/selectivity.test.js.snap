@@ -124,6 +124,17 @@ exports[`css media query with nested selector without declarations on root 1`] =
 }"
 `;
 
+exports[`orphaned pseudos in nested atrules 1`] = `
+"@media (max-width:400px) {
+@supports (display:grid) {
+    .css-kgxstq div,
+    .css-kgxstq:first-child {
+      color: hotpink;
+    }
+}
+}"
+`;
+
 exports[`orphaned pseudos multiple in a group 1`] = `
 ".css-ynt3gm:hover div,
 .css-ynt3gm:focus {
@@ -144,6 +155,12 @@ exports[`orphaned pseudos multiple in a group in multiple in a group 1`] = `
 .css-b4zt77 .foo:last-child,
 .css-b4zt77 .bar div:last-child,
 .css-b4zt77 .qwe:last-child {
+  color: hotpink;
+}"
+`;
+
+exports[`orphaned pseudos overlapping - reversed 1`] = `
+".css-a5yiwa:first-child:first-child {
   color: hotpink;
 }"
 `;

@@ -146,15 +146,17 @@ var characters = ''
 /**
  * @param {string} value
  * @param {object} root
+ * @param {object?} parent
  * @param {string} type
  * @param {string[]} props
  * @param {object[]} children
  * @param {number} length
  */
-function node(value, root, type, props, children, length) {
+function node(value, root, parent, type, props, children, length) {
   return {
     value: value,
     root: root,
+    parent: parent,
     type: type,
     props: props,
     children: children,
@@ -171,7 +173,7 @@ function node(value, root, type, props, children, length) {
  * @param {string} type
  */
 function copy(value, root, type) {
-  return node(value, root.root, type, root.props, root.children, 0)
+  return node(value, root.root, root.parent, type, root.props, root.children, 0)
 }
 
 /**
@@ -392,24 +394,36 @@ function identifier(index) {
  */
 function compile(value) {
   return dealloc(
-    parse('', null, null, [''], (value = alloc(value)), [0], value)
+    parse('', null, null, null, [''], (value = alloc(value)), 0, [0], value)
   )
 }
 
 /**
  * @param {string} value
  * @param {object} root
+ * @param {object?} parent
  * @param {string[]} rule
  * @param {string[]} rules
  * @param {string[]} rulesets
+ * @param {number[]} pseudo
  * @param {number[]} points
  * @param {string[]} declarations
  * @return {object}
  */
-function parse(value, root, rule, rules, rulesets, points, declarations) {
+function parse(
+  value,
+  root,
+  parent,
+  rule,
+  rules,
+  rulesets,
+  pseudo,
+  points,
+  declarations
+) {
   var index = 0
   var offset = 0
-  var length = 0
+  var length = pseudo
   var atrule = 0
   var property = 0
   var previous = 0
@@ -443,7 +457,10 @@ function parse(value, root, rule, rules, rulesets, points, declarations) {
         switch (peek()) {
           case 42:
           case 47:
-            append(comment(commenter(next(), caret()), root), declarations)
+            append(
+              comment(commenter(next(), caret()), root, parent),
+              declarations
+            )
             break
           default:
             characters += '/'
@@ -463,14 +480,15 @@ function parse(value, root, rule, rules, rulesets, points, declarations) {
             scanning = 0
           // ;
           case 59 + offset:
-            if (length > 0)
+            if (property > 0)
               append(
                 property > 32
-                  ? declaration(characters + ';', rule, length)
+                  ? declaration(characters + ';', rule, parent, length - 1)
                   : declaration(
                       replace(characters, ' ', '') + ';',
                       rule,
-                      length - 1
+                      parent,
+                      length - 2
                     ),
                 declarations
               )
@@ -484,6 +502,7 @@ function parse(value, root, rule, rules, rulesets, points, declarations) {
               (reference = ruleset(
                 characters,
                 root,
+                parent,
                 index,
                 offset,
                 rules,
@@ -502,8 +521,10 @@ function parse(value, root, rule, rules, rulesets, points, declarations) {
                   characters,
                   root,
                   reference,
+                  reference,
                   props,
                   rulesets,
+                  length,
                   points,
                   children
                 )
@@ -516,10 +537,12 @@ function parse(value, root, rule, rules, rulesets, points, declarations) {
                     parse(
                       value,
                       reference,
+                      reference,
                       rule &&
                         append(
                           ruleset(
                             value,
+                            reference,
                             reference,
                             0,
                             0,
@@ -527,12 +550,14 @@ function parse(value, root, rule, rules, rulesets, points, declarations) {
                             points,
                             type,
                             rules,
-                            (props = [])
+                            (props = []),
+                            length
                           ),
                           children
                         ),
                       rules,
                       children,
+                      length,
                       points,
                       rule ? props : children
                     )
@@ -542,21 +567,24 @@ function parse(value, root, rule, rules, rulesets, points, declarations) {
                       characters,
                       reference,
                       reference,
+                      reference,
                       [''],
                       children,
+                      length,
                       points,
                       children
                     )
                 }
         }
 
-        ;(index = length = offset = 0),
+        ;(index = offset = property = 0),
           (variable = ampersand = 1),
-          (type = characters = '')
+          (type = characters = ''),
+          (length = pseudo)
         break
       // :
       case 58:
-        ;(length = strlen(characters)), (property = previous)
+        ;(length = 1 + strlen(characters)), (property = previous)
       default:
         switch (((characters += from(character)), character * variable)) {
           // &
@@ -588,6 +616,7 @@ function parse(value, root, rule, rules, rulesets, points, declarations) {
 /**
  * @param {string} value
  * @param {object} root
+ * @param {object?} parent
  * @param {number} index
  * @param {number} offset
  * @param {string[]} rules
@@ -601,6 +630,7 @@ function parse(value, root, rule, rules, rulesets, points, declarations) {
 function ruleset(
   value,
   root,
+  parent,
   index,
   offset,
   rules,
@@ -628,6 +658,7 @@ function ruleset(
   return node(
     value,
     root,
+    parent,
     offset === 0 ? RULESET : type,
     props,
     children,
@@ -637,24 +668,34 @@ function ruleset(
 
 /**
  * @param {number} value
- * @param {string[]} root
- * @param {number} type
+ * @param {object} root
+ * @param {object?} parent
  * @return {object}
  */
-function comment(value, root) {
-  return node(value, root, COMMENT, from(char()), substr(value, 2, -2), 0)
+function comment(value, root, parent) {
+  return node(
+    value,
+    root,
+    parent,
+    COMMENT,
+    from(char()),
+    substr(value, 2, -2),
+    0
+  )
 }
 
 /**
  * @param {string} value
- * @param {string[]} root
+ * @param {object} root
+ * @param {object?} parent
  * @param {number} length
  * @return {object}
  */
-function declaration(value, root, length) {
+function declaration(value, root, parent, length) {
   return node(
     value,
     root,
+    parent,
     DECLARATION,
     substr(value, 0, length),
     substr(value, length + 1, -1),
@@ -1009,12 +1050,18 @@ function prefixer(element, index, children, callback) {
       case RULESET:
         if (element.length)
           return combine(element.props, function(value) {
-            switch (match(value, /(::place.+|:read-.+)/)) {
+            switch (match(value, /(::plac\w+|:read-\w+)/)) {
               // :read-(only|write)
               case ':read-only':
               case ':read-write':
                 return serialize(
-                  [copy(replace(value, /(read.+)/, MOZ + '$1'), element, '')],
+                  [
+                    copy(
+                      replace(value, /:(read-\w+)/, ':' + MOZ + '$1'),
+                      element,
+                      ''
+                    )
+                  ],
                   callback
                 )
               // :placeholder
@@ -1022,13 +1069,17 @@ function prefixer(element, index, children, callback) {
                 return serialize(
                   [
                     copy(
-                      replace(value, /(plac.+)/, WEBKIT + 'input-$1'),
+                      replace(value, /:(plac\w+)/, ':' + WEBKIT + 'input-$1'),
                       element,
                       ''
                     ),
-                    copy(replace(value, /(plac.+)/, MOZ + '$1'), element, ''),
                     copy(
-                      replace(value, /:(plac.+)/, MS + 'input-$1'),
+                      replace(value, /:(plac\w+)/, ':' + MOZ + '$1'),
+                      element,
+                      ''
+                    ),
+                    copy(
+                      replace(value, /:(plac\w+)/, MS + 'input-$1'),
                       element,
                       ''
                     )
@@ -1044,6 +1095,8 @@ function prefixer(element, index, children, callback) {
 
 /**
  * @param {object} element
+ * @param {number} index
+ * @param {object[]} children
  */
 function namespace(element) {
   switch (element.type) {
