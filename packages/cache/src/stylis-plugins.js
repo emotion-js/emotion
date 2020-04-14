@@ -47,10 +47,12 @@ const toRules = (parsed, points) => {
 const getRules = (value, points) => dealloc(toRules(alloc(value), points))
 
 export let compat = element => {
-  if (element.type !== 'rule') return
-
-  // .length indicates if this rule contains pseudo or not
-  if (!element.length) {
+  if (
+    element.type !== 'rule' ||
+    !element.parent ||
+    // .length indicates if this rule contains pseudo or not
+    !element.length
+  ) {
     return
   }
 
