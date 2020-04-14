@@ -15,13 +15,11 @@ import {
 const last = arr => (arr.length ? arr[arr.length - 1] : null)
 
 const toRules = (parsed, points) => {
-  parsed[0] = peek() === 58 ? '&\f' : ''
-  points[0] = parsed[0].length
+  // pretend we've started with a comma
+  let index = -1
+  let character = 44
 
-  let index = 0
-
-  while (next()) {
-    const character = char()
+  do {
     switch (token(character)) {
       case 0:
         parsed[index] += identifier(position - 1)
@@ -41,7 +39,7 @@ const toRules = (parsed, points) => {
       default:
         parsed[index] += from(character)
     }
-  }
+  } while ((character = next()))
 
   return parsed
 }
