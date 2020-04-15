@@ -1,8 +1,41 @@
 // @flow
-import compile from '../forked-stylis'
+import { compile } from '@emotion/stylis'
 
-const serializeChildren = (children, parent) => {
-  return children
+const isAutoInsertedRule = element => {
+  if (element.type !== 'rule' || !element.parent) {
+    return false
+  }
+
+  let parent = element
+  do {
+    parent = parent.parent
+  } while (parent.type !== 'rule')
+
+  return element.value === parent.value
+}
+
+const toInputTree = (elements, tree) => {
+  for (let i = 0; i < elements.length; i++) {
+    const element = elements[i]
+    const { parent, children } = element
+
+    if (!parent) {
+      tree.push(element)
+    } else if (!isAutoInsertedRule(element)) {
+      parent.children.push(element)
+    }
+
+    if (Array.isArray(children)) {
+      element.children = []
+      toInputTree(children, tree)
+    }
+  }
+
+  return tree
+}
+
+var stringifyTree = elements => {
+  return elements
     .map(element => {
       switch (element.type) {
         case 'import':
@@ -19,22 +52,11 @@ const serializeChildren = (children, parent) => {
             ? element.value
             : ''
         case 'rule':
-          return `${element.value.replace(/&\f/g, '&')}{${serializeChildren(
-            element.children,
-            element
+          return `${element.value.replace(/&\f/g, '&')}{${stringifyTree(
+            element.children
           )}}`
         default: {
-          const originalChildren =
-            parent &&
-            element.children.length === 1 &&
-            element.children[0].type === 'rule' &&
-            element.children[0].value === parent.value
-              ? element.children[0].children
-              : element.children
-          return `${element.value}{${serializeChildren(
-            originalChildren,
-            element
-          )}}`
+          return `${element.value}{${stringifyTree(element.children)}}`
         }
       }
     })
@@ -124,7 +146,7 @@ function createRawStringFromTemplateLiteral(quasi: {
 export default function minify(path: *, t: *): void {
   const quasi = path.node.quasi
   const raw = createRawStringFromTemplateLiteral(quasi)
-  const minified = serializeChildren(compile(raw), null)
+  const minified = stringifyTree(toInputTree(compile(raw)))
   const expressions = replacePlaceholdersWithExpressions(
     minified,
     quasi.expressions || [],
