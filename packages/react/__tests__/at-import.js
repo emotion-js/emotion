@@ -19,14 +19,14 @@ test('basic', () => {
       <div css={{ color: 'hotpink' }} />
       <Global
         styles={css`
+          @import url('https://some-url');
+
           h1 {
             color: hotpink;
           }
-          @import url('https://some-url');
         `}
       />
-    </React.Fragment>,
-    // $FlowFixMe
+    </React.Fragment>, // $FlowFixMe
     document.getElementById('root')
   )
   expect(document.head).toMatchSnapshot()
@@ -40,12 +40,12 @@ test('basic', () => {
     }
   }
   expect(rules).toMatchInlineSnapshot(`
-Array [
-  "@import url(https://some-url);",
-  "h1 {color: hotpink;}",
-  ".css-1lrxbo5 {color: hotpink;}",
-]
-`)
+    Array [
+      "@import url(https://some-url);",
+      "h1 {color: hotpink;}",
+      ".css-1lrxbo5 {color: hotpink;}",
+    ]
+  `)
   unmountComponentAtNode(document.getElementById('root'))
   expect(document.head).toMatchSnapshot()
   expect(document.body).toMatchSnapshot()

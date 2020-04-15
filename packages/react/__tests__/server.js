@@ -21,8 +21,6 @@ import createEmotionServer from '@emotion/server/create-instance'
 
 expect.addSnapshotSerializer(HTMLSerializer)
 
-let fakeStylisPlugins = []
-
 let cases = {
   basic: {
     render: () => <div css={{ color: 'hotpink' }}>some hotpink text</div>
@@ -101,51 +99,6 @@ let cases = {
           />
         </React.Fragment>
       )
-    }
-  },
-  'prefix option false': {
-    cache: () => createCache({ key: 'css', prefix: false }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option false with stylis plugins': {
-    cache: () =>
-      createCache({
-        key: 'css',
-        prefix: false,
-        stylisPlugins: fakeStylisPlugins
-      }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option true with stylis plugins': {
-    cache: () =>
-      createCache({
-        key: 'css',
-        prefix: true,
-        stylisPlugins: fakeStylisPlugins
-      }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option func false with stylis plugins': {
-    cache: () =>
-      createCache({
-        key: 'css',
-        prefix: () => false,
-        stylisPlugins: fakeStylisPlugins
-      }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option func false': {
-    cache: () => createCache({ key: 'css', prefix: () => false }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
     }
   },
 

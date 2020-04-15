@@ -172,40 +172,6 @@ test('kebab-case', () => {
           `)
 })
 
-test('unterminated comments', () => {
-  const renderWithStyles = styles => renderer.create(<div css={styles} />)
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green;
-    `)
-  ).not.toThrowError()
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green; /* comment */
-    `)
-  ).not.toThrowError()
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green; /*
-    `)
-  ).toThrowErrorMatchingInlineSnapshot(
-    `"Your styles have an unterminated comment (\\"/*\\" without corresponding \\"*/\\")."`
-  )
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green; /* comment */
-      color: red;
-      opacity: 0.9; /*
-    `)
-  ).toThrowErrorMatchingInlineSnapshot(
-    `"Your styles have an unterminated comment (\\"/*\\" without corresponding \\"*/\\")."`
-  )
-})
-
 test('keyframes interpolated into plain string', () => {
   const animateColor = keyframes({
     'from,to': { color: 'green' },
