@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css @supports 1`] = `
-@supports (display:grid) {
+@supports (display: grid) {
   .emotion-0 {
     display: grid;
   }
@@ -315,7 +315,7 @@ exports[`css media query specificity 1`] = `
   border-radius: 50%;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .css-xlxbv2-cls {
     width: 96px;
     height: 96px;
@@ -330,7 +330,7 @@ exports[`css media query specificity 2`] = `
   border-radius: 50%;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
     width: 96px;
     height: 96px;
@@ -379,7 +379,7 @@ exports[`css nested 1`] = `
   background-color: hotpink;
 }
 
-@media (max-width:600px) {
+@media (max-width: 600px) {
   .emotion-0 .some-class {
     background-color: pink;
   }
@@ -489,7 +489,7 @@ exports[`css random expression 1`] = `
   background: green;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
     color: blue;
     width: 96px;
@@ -531,7 +531,7 @@ exports[`css registered styles as nested selector value in object 1`] = `
 `;
 
 exports[`css rule after media query 1`] = `
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     color: green;
   }

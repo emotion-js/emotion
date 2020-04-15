@@ -9,9 +9,9 @@ const isAutoInsertedRule = element => {
   let parent = element
   do {
     parent = parent.parent
-  } while (parent.type !== 'rule')
+  } while (parent && parent.type !== 'rule')
 
-  return element.value === parent.value
+  return !!parent && element.value === parent.value
 }
 
 const toInputTree = (elements, tree) => {
@@ -146,7 +146,7 @@ function createRawStringFromTemplateLiteral(quasi: {
 export default function minify(path: *, t: *): void {
   const quasi = path.node.quasi
   const raw = createRawStringFromTemplateLiteral(quasi)
-  const minified = stringifyTree(toInputTree(compile(raw)))
+  const minified = stringifyTree(toInputTree(compile(raw), []))
   const expressions = replacePlaceholdersWithExpressions(
     minified,
     quasi.expressions || [],
