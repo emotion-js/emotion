@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css complex nested media queries 1`] = `
-"@media (max-width:600px) {
-  .css-acogag h1 {
+"@media (max-width: 600px) {
+  .css-1vjvce5 h1 {
     font-size: 1.4rem;
   }
 }
 
-@media (max-width:400px),(max-height:420px) {
-  .css-acogag h1 {
+@media (max-width: 400px),(max-height: 420px) {
+  .css-1vjvce5 h1 {
     font-size: 1.1rem;
   }
 }"
@@ -77,58 +77,58 @@ exports[`css handles media query merges 1`] = `
 `;
 
 exports[`css media queries with multiple nested selectors 1`] = `
-".css-17riori {
+".css-snkf7h {
   color: blue;
 }
 
-@media (max-width:400px) {
-  .css-17riori {
+@media (max-width: 400px) {
+  .css-snkf7h {
     color: green;
   }
 
-  .css-17riori h1 {
+  .css-snkf7h h1 {
     color: red;
   }
 
-  .css-17riori span {
+  .css-snkf7h span {
     color: red;
   }
 }"
 `;
 
 exports[`css media query with nested selector with nested selector on root 1`] = `
-".css-1ssiu3j span {
+".css-1hvbare span {
   color: blue;
 }
 
-@media (max-width:400px) {
-  .css-1ssiu3j {
+@media (max-width: 400px) {
+  .css-1hvbare {
     color: green;
   }
 
-  .css-1ssiu3j span {
+  .css-1hvbare span {
     color: red;
   }
 }"
 `;
 
 exports[`css media query with nested selector without declarations on root 1`] = `
-"@media (max-width:400px) {
-  .css-18muius {
+"@media (max-width: 400px) {
+  .css-156bult {
     color: green;
   }
 
-  .css-18muius span {
+  .css-156bult span {
     color: red;
   }
 }"
 `;
 
 exports[`orphaned pseudos in nested atrules 1`] = `
-"@media (max-width:400px) {
-@supports (display:grid) {
-    .css-kgxstq div,
-    .css-kgxstq:first-child {
+"@media (max-width: 400px) {
+@supports (display: grid) {
+    .css-mlu596 div,
+    .css-mlu596:first-child {
       color: hotpink;
     }
 }
@@ -160,13 +160,13 @@ exports[`orphaned pseudos multiple in a group in multiple in a group 1`] = `
 `;
 
 exports[`orphaned pseudos overlapping - reversed 1`] = `
-".css-a5yiwa:first-child:first-child .css-a5yiwa:first-child {
+".css-15m4dbh :first-child:first-child .css-15m4dbh :first-child {
   color: hotpink;
 }"
 `;
 
 exports[`orphaned pseudos overlapping 1`] = `
-".css-1pl3kvr:first-child:first-child {
+".css-dmhqee :first-child:first-child {
   color: hotpink;
 }"
 `;

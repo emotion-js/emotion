@@ -1,5 +1,4 @@
 // @flow
-export { getExpressionsFromTemplateLiteral } from './minify'
 export { getLabelFromPath } from './label'
 export { getSourceMap } from './source-maps'
 export { getTargetClassName } from './get-target-class-name'

@@ -136,3 +136,32 @@ const Input5 = styled.input`
     console.log(evt.target.value)
   }
 />
+
+{
+  const A = styled('h1')()
+  const B = styled(A)()
+  const C = styled(B)()
+  const D = styled(C)()
+  const E = styled(D)()
+  const F = styled(E)()
+  const G = styled(F)()
+  const H = styled(G)()
+  const I = styled(H)()
+  const J = styled(I)()
+  const K = styled(J)()
+  const L = styled(K)()
+  const M = styled(L)()
+  const N = styled(M)()
+  const O = styled(N)()
+  const P = styled(O)()
+  const Q = styled(P)()
+  const R = styled(Q)()
+  const S = styled(R)()
+  const T = styled(S)()
+  const U = styled(T)()
+  const V = styled(U)()
+  const X = styled(V)()
+  const Y = styled(X)()
+  const Z = styled(Y)()
+  ;<Z>No excessive instantiation</Z>
+}

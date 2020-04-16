@@ -1,7 +1,7 @@
 // @flow
 
 import { serializeStyles } from '@emotion/serialize'
-import { getExpressionsFromTemplateLiteral } from './minify'
+import minify from './minify'
 import { getLabelFromPath } from './label'
 import { getSourceMap } from './source-maps'
 import { simplifyObject } from './object-to-string'
@@ -44,11 +44,14 @@ export let transformExpressionWithStyles = ({
   const autoLabel = state.opts.autoLabel || 'dev-only'
   let t = babel.types
   if (t.isTaggedTemplateExpression(path)) {
-    const expressions = getExpressionsFromTemplateLiteral(path.node.quasi, t)
-    if (state.emotionSourceMap && path.node.quasi.loc !== undefined) {
+    if (
+      !sourceMap &&
+      state.emotionSourceMap &&
+      path.node.quasi.loc !== undefined
+    ) {
       sourceMap = getSourceMap(path.node.quasi.loc.start, state)
     }
-    path.replaceWith(t.callExpression(path.node.tag, expressions))
+    minify(path, t)
   }
 
   if (t.isCallExpression(path)) {
@@ -65,9 +68,9 @@ export let transformExpressionWithStyles = ({
     path.node.arguments = joinStringLiterals(path.node.arguments, t)
 
     if (
+      !sourceMap &&
       canAppendStrings &&
       state.emotionSourceMap &&
-      !sourceMap &&
       path.node.loc !== undefined
     ) {
       sourceMap = getSourceMap(path.node.loc.start, state)
