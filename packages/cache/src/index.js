@@ -50,7 +50,7 @@ let getServerStylisCache = isBrowser
       }
     })
 
-const defaultStylisPlugins = [compat, prefixer]
+const defaultStylisPlugins = [prefixer]
 let movedStyles = false
 
 let createCache = (options: Options): EmotionCache => {
@@ -116,25 +116,32 @@ let createCache = (options: Options): EmotionCache => {
     shouldCache: boolean
   ) => string | void
 
+  const omnipresentPlugins = [compat]
+
+  if (process.env.NODE_ENV !== 'production') {
+    omnipresentPlugins.push(
+      createUnsafeSelectorsAlarm({
+        get compat() {
+          return cache.compat
+        }
+      })
+    )
+  }
+
   if (isBrowser) {
     let currentSheet
-    const omnipresentPlugins = [
+
+    const finalizingPlugins = [
       removeLabel,
       stringify,
       rulesheet(rule => {
         currentSheet.insert(rule)
       })
     ]
-    if (process.env.NODE_ENV !== 'production') {
-      omnipresentPlugins.unshift(
-        createUnsafeSelectorsAlarm({
-          get compat() {
-            return cache.compat
-          }
-        })
-      )
-    }
-    const serializer = middleware(stylisPlugins.concat(omnipresentPlugins))
+
+    const serializer = middleware(
+      omnipresentPlugins.concat(stylisPlugins, finalizingPlugins)
+    )
     const stylis = styles => serialize(compile(styles), serializer)
 
     insert = (
@@ -162,17 +169,10 @@ let createCache = (options: Options): EmotionCache => {
       }
     }
   } else {
-    const omnipresentPlugins = [removeLabel, stringify]
-    if (process.env.NODE_ENV !== 'production') {
-      omnipresentPlugins.unshift(
-        createUnsafeSelectorsAlarm({
-          get compat() {
-            return cache.compat
-          }
-        })
-      )
-    }
-    const serializer = middleware(stylisPlugins.concat(omnipresentPlugins))
+    const finalizingPlugins = [removeLabel, stringify]
+    const serializer = middleware(
+      omnipresentPlugins.concat(stylisPlugins, finalizingPlugins)
+    )
     const stylis = styles => serialize(compile(styles), serializer)
 
     // $FlowFixMe

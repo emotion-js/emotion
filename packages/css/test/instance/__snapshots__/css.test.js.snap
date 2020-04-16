@@ -86,7 +86,7 @@ exports[`css composition with objects 1`] = `
   color: hotpink;
 }
 
-.emotion-0 :after {
+.emotion-0:after {
   content: " ";
   color: hotpink;
 }
@@ -157,7 +157,7 @@ exports[`css falsy property value in object 1`] = `
 `;
 
 exports[`css falsy value in nested selector on object 1`] = `
-.emotion-0 :hover {
+.emotion-0:hover {
   color: hotpink;
 }
 
@@ -389,7 +389,7 @@ exports[`css random interpolation with undefined values 1`] = `
 `;
 
 exports[`css registered styles as nested selector value in object 1`] = `
-.emotion-0 :hover {
+.emotion-0:hover {
   display: flex;
   background-color: hotpink;
 }
