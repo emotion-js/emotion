@@ -116,7 +116,7 @@ let createCache = (options: Options): EmotionCache => {
     shouldCache: boolean
   ) => string | void
 
-  const omnipresentPlugins = [compat]
+  const omnipresentPlugins = [compat, removeLabel]
 
   if (process.env.NODE_ENV !== 'production') {
     omnipresentPlugins.push(
@@ -132,7 +132,6 @@ let createCache = (options: Options): EmotionCache => {
     let currentSheet
 
     const finalizingPlugins = [
-      removeLabel,
       stringify,
       rulesheet(rule => {
         currentSheet.insert(rule)
@@ -169,7 +168,7 @@ let createCache = (options: Options): EmotionCache => {
       }
     }
   } else {
-    const finalizingPlugins = [removeLabel, stringify]
+    const finalizingPlugins = [stringify]
     const serializer = middleware(
       omnipresentPlugins.concat(stylisPlugins, finalizingPlugins)
     )
