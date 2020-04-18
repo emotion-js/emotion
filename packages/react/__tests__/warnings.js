@@ -252,3 +252,60 @@ Array [
 ]
 `)
 })
+
+test('@import nested in scoped `css`', () => {
+  renderer.create(
+    <div
+      css={css`
+        @import url('https://some-url');
+
+        h1 {
+          color: hotpink;
+        }
+      `}
+    />
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+Array [
+  Array [
+    "\`@import\` rules can't be nested inside other rules. Please move it to the top and put it before regular rules. Keep in mind that they can only be used within global styles.",
+  ],
+]
+`)
+})
+
+test('@import prepended with other rules', () => {
+  renderer.create(
+    <Global
+      styles={css`
+        h1 {
+          color: hotpink;
+        }
+
+        @import url('https://some-url');
+      `}
+    />
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+Array [
+  Array [
+    "\`@import\` rules can't be preceded by regular rules. Please put it before them.",
+  ],
+]
+`)
+})
+
+test('@import prepended by other @import', () => {
+  renderer.create(
+    <Global
+      styles={css`
+        @import url('https://some-url');
+        @import url('https://some-url2');
+      `}
+    />
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+})

@@ -127,3 +127,31 @@ export let createUnsafeSelectorsAlarm = cache => (element, index, children) => {
     })
   }
 }
+
+let isImportRule = element =>
+  element.type.charCodeAt(1) === 105 && element.type.charCodeAt(0) === 64
+
+const isPrependedWithRegularRules = (index, children) => {
+  for (let i = index - 1; i >= 0; i--) {
+    if (!isImportRule(children[i])) {
+      return true
+    }
+  }
+  return false
+}
+
+export let incorrectImportAlarm = (element, index, children) => {
+  if (!isImportRule(element)) {
+    return
+  }
+
+  if (element.parent) {
+    console.error(
+      "`@import` rules can't be nested inside other rules. Please move it to the top and put it before regular rules. Keep in mind that they can only be used within global styles."
+    )
+  } else if (isPrependedWithRegularRules(index, children)) {
+    console.error(
+      "`@import` rules can't be preceded by regular rules. Please put it before them."
+    )
+  }
+}

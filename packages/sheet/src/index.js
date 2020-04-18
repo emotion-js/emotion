@@ -111,30 +111,22 @@ export class StyleSheet {
     if (this.isSpeedy) {
       const sheet = sheetForTag(tag)
       try {
-        // this is a really hot path
-        // we check the second character first because having "i"
-        // as the second character will happen less often than
-        // having "@" as the first character
-        let isImportRule =
-          rule.charCodeAt(1) === 105 && rule.charCodeAt(0) === 64
         // this is the ultrafast version, works across browsers
         // the big drawback is that the css won't be editable in devtools
-        sheet.insertRule(
-          rule, // technically this means that the @import rules will // otherwise there will be an error // we need to insert @import rules before anything else
-          // _usually_(not always since there could be multiple style tags)
-          // be the first ones in prod and generally later in dev
-          // this shouldn't really matter in the real world though
-          // @import is generally only used for font faces from google fonts and etc.
-          // so while this could be technically correct then it would be slower and larger
-          // for a tiny bit of correctness that won't matter in the real world
-          isImportRule ? 0 : sheet.cssRules.length
-        )
+        sheet.insertRule(rule, sheet.cssRules.length)
       } catch (e) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
             `There was a problem inserting the following rule: "${rule}"`,
             e
           )
+          let isImportRule =
+            rule.charCodeAt(0) === 64 && rule.charCodeAt(1) === 105
+          if (isImportRule) {
+            console.error(
+              '`@import` rules must be inserted before other rules.'
+            )
+          }
         }
       }
     } else {

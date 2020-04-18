@@ -13,7 +13,8 @@ import weakMemoize from '@emotion/weak-memoize'
 import {
   compat,
   removeLabel,
-  createUnsafeSelectorsAlarm
+  createUnsafeSelectorsAlarm,
+  incorrectImportAlarm
 } from './stylis-plugins'
 import type { StylisPlugin } from './types'
 
@@ -124,7 +125,8 @@ let createCache = (options: Options): EmotionCache => {
         get compat() {
           return cache.compat
         }
-      })
+      }),
+      incorrectImportAlarm
     )
   }
 

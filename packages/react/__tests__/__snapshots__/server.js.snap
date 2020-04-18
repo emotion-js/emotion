@@ -1,16 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ssr @import 1`] = `
-<style data-emotion="css 1lrxbo5">
-  .css-1lrxbo5{color:hotpink;}
-</style>
-<div class="css-1lrxbo5">
-</div>
-<style data-emotion="css-global 1sh9nmh">
-  h1{color:hotpink;}@import url('https://some-url');
-</style>
-`;
-
 exports[`ssr ClassNames 1`] = `
 <style data-emotion="css 15qt0xu 1c3m2c3 15gmrnz 1v94cnd nug1mu">
   .css-15qt0xu{color:hotpink;}.css-1c3m2c3{color:green;}.css-15gmrnz{color:yellowgreen;}.css-1v94cnd{color:green;color:yellowgreen;}.css-nug1mu{color:darkgreen;}
@@ -87,17 +76,6 @@ exports[`ssr styled with keyframes 1`] = `
   .css-1y9glrp{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}@-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}@keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
 </style>
 <div class="css-1y9glrp">
-</div>
-`;
-
-exports[`ssr with old api @import 1`] = `
-<style data-emotion="css 1sh9nmh">
-  h1{color:hotpink;}@import url('https://some-url');
-</style>
-<style data-emotion="css 1lrxbo5">
-  .css-1lrxbo5{color:hotpink;}
-</style>
-<div class="css-1lrxbo5">
 </div>
 `;
 
