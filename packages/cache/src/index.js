@@ -37,18 +37,8 @@ export type Options = {
 let getServerStylisCache = isBrowser
   ? undefined
   : weakMemoize(() => {
-      let getCache = weakMemoize(() => ({}))
-      let prefixTrueCache = {}
-      let prefixFalseCache = {}
-      return prefix => {
-        if (prefix === undefined || prefix === true) {
-          return prefixTrueCache
-        }
-        if (prefix === false) {
-          return prefixFalseCache
-        }
-        return getCache(prefix)
-      }
+      let cache = {}
+      return name => cache[name]
     })
 
 const defaultStylisPlugins = [prefixer]
