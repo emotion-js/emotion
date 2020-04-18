@@ -39,6 +39,10 @@ A nonce that will be set on each style tag that emotion inserts for [Content Sec
 
 A Stylis plugins that will be run by Stylis during preprocessing. [Read the Stylis docs to find out more](https://github.com/thysultan/stylis.js#middleware). This can be used for many purposes such as RTL.
 
+> Note:
+>
+> Prefixer is just a plugin which happens to be put in default `stylisPlugins`. If you plan to use custom `stylisPlugins` and you want to have your styles prefixed automatically you must include prefixer in your custom `stylisPlugins`.
+
 ### `key`
 
 `string`,
