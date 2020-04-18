@@ -20,14 +20,9 @@ import type { StylisPlugin } from './types'
 
 let isBrowser = typeof document !== 'undefined'
 
-export type PrefixOption =
-  | boolean
-  | ((key: string, value: string, context: 1 | 2 | 3) => boolean)
-
 export type Options = {
   nonce?: string,
   stylisPlugins?: StylisPlugin[],
-  prefix?: PrefixOption,
   key: string,
   container?: HTMLElement,
   speedy?: boolean,
