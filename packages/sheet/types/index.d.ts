@@ -10,6 +10,7 @@ export interface Options {
 
 export class StyleSheet {
   isSpeedy: boolean
+  speedy(value: boolean): void;
   ctr: number
   tags: Array<HTMLStyleElement>
   container: HTMLElement
