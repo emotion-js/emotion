@@ -196,7 +196,15 @@ export function createSerializer({
 }: Options = {}) {
   const cache = new WeakSet()
   const isTransformed = val => cache.has(val)
-  function print(val: *, printer: Function) {
+
+  function serialize(
+    val: *,
+    config: *,
+    indentation: string,
+    depth: number,
+    refs: *,
+    printer: Function
+  ) {
     const elements = getStyleElements()
     const keys = getKeys(elements)
     const convertEmotionElements = createConvertEmotionElements(keys, printer)
@@ -207,7 +215,7 @@ export function createSerializer({
     clean(converted, classNames)
 
     nodes.forEach(cache.add, cache)
-    const printedVal = printer(converted)
+    const printedVal = printer(converted, config, indentation, depth, refs)
     nodes.forEach(cache.delete, cache)
 
     return replaceClassNames(
@@ -227,7 +235,7 @@ export function createSerializer({
           (isReactElement(val) || (DOMElements && isDOMElement(val))))
       )
     },
-    print
+    serialize
   }
 }
 
