@@ -117,12 +117,10 @@ function isShallowEnzymeElement(element: any, classNames: string[]) {
   return !hasIntersection(classNames, childClassNames)
 }
 
-const createConvertEmotionElements = (
-  keys: string[],
-  printer: *,
-  isTransformed
-) => (node: any) => {
-  if (isTransformed(node) || isPrimitive(node)) {
+const createConvertEmotionElements = (keys: string[], printer: *) => (
+  node: any
+) => {
+  if (isPrimitive(node)) {
     return node
   }
   if (isEmotionCssPropEnzymeElement(node)) {
@@ -197,16 +195,11 @@ export function createSerializer({
   DOMElements = true
 }: Options = {}) {
   const cache = new WeakSet()
-  const isTransformed = (node: any) => cache.has(node)
+  const isTransformed = val => cache.has(val)
   function print(val: *, printer: Function) {
-    const isNestedPrint = isTransformed(val)
     const elements = getStyleElements()
     const keys = getKeys(elements)
-    const convertEmotionElements = createConvertEmotionElements(
-      keys,
-      printer,
-      isTransformed
-    )
+    const convertEmotionElements = createConvertEmotionElements(keys, printer)
     const converted = deepTransform(val, convertEmotionElements)
     const nodes = getNodes(converted)
     nodes.forEach(cache.add, cache)
@@ -215,15 +208,13 @@ export function createSerializer({
     clean(converted, classNames)
     const printedVal = printer(converted)
     nodes.forEach(cache.delete, cache)
-    return isNestedPrint
-      ? printedVal
-      : replaceClassNames(
-          classNames,
-          styles,
-          printedVal,
-          keys,
-          classNameReplacer
-        )
+    return replaceClassNames(
+      classNames,
+      styles,
+      printedVal,
+      keys,
+      classNameReplacer
+    )
   }
 
   return {
