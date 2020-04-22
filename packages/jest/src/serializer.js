@@ -202,12 +202,14 @@ export function createSerializer({
     const convertEmotionElements = createConvertEmotionElements(keys, printer)
     const converted = deepTransform(val, convertEmotionElements)
     const nodes = getNodes(converted)
-    nodes.forEach(cache.add, cache)
     const classNames = getClassNamesFromNodes(nodes)
     const styles = getPrettyStylesFromClassNames(classNames, elements)
     clean(converted, classNames)
+
+    nodes.forEach(cache.add, cache)
     const printedVal = printer(converted)
     nodes.forEach(cache.delete, cache)
+
     return replaceClassNames(
       classNames,
       styles,
