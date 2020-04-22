@@ -38,6 +38,4 @@ export function createSerializer({
   }
 }
 
-export const { print, test } = createSerializer()
-
-export default { print, test }
+export default createSerializer()

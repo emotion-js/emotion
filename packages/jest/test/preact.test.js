@@ -5,7 +5,7 @@ import { h } from 'preact'
 import render from 'preact-render-to-json'
 import prettyFormat from 'pretty-format'
 import * as emotion from '@emotion/css'
-import * as emotionPlugin from '@emotion/jest'
+import emotionPlugin from '@emotion/jest'
 const { ReactElement, ReactTestComponent, DOMElement } = prettyFormat.plugins
 
 describe('jest-emotion with preact', () => {
