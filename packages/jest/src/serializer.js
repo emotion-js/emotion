@@ -231,4 +231,4 @@ export function createSerializer({
   }
 }
 
-export const { print, test } = createSerializer()
+export default createSerializer()
