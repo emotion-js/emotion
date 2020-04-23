@@ -4,7 +4,7 @@ import * as React from 'react'
 import { css, Global } from '@emotion/react'
 import styled from '@emotion/styled'
 import { render } from '@testing-library/react'
-import * as cssParser from 'css'
+import prettify from '@emotion/css-prettifier'
 
 // using styled instead of the css prop because there was a really weird flow error
 // when using `jsx` from @emotion/react and Global
@@ -17,7 +17,7 @@ expect.addSnapshotSerializer({
     for (let rule of cssRules) {
       styles += rule.cssText
     }
-    return cssParser.stringify(cssParser.parse(styles))
+    return prettify(styles)
   }
 })
 

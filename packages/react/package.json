@@ -42,6 +42,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@emotion/css": "11.0.0-next.12",
+    "@emotion/css-prettifier": "1.0.0-next.0",
     "@emotion/server": "11.0.0-next.12",
     "@emotion/styled": "11.0.0-next.12",
     "@types/react": "^16.9.11",

@@ -1,5 +1,5 @@
 // @flow
-import prettify from './prettify'
+import prettify from '@emotion/css-prettifier'
 import { replaceClassNames } from './replace-class-names'
 import {
   getClassNamesFromNodes,
