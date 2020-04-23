@@ -77,9 +77,10 @@ function deepTransform(node, transform) {
 
 function getPrettyStylesFromClassNames(
   classNames: Array<string>,
-  elements: Array<HTMLStyleElement>
+  elements: Array<HTMLStyleElement>,
+  indentation: string
 ) {
-  return prettify(getStylesFromClassNames(classNames, elements))
+  return prettify(getStylesFromClassNames(classNames, elements), indentation)
 }
 
 export type Options = {
@@ -202,7 +203,11 @@ export function createSerializer({
     const converted = deepTransform(val, convertEmotionElements)
     const nodes = getNodes(converted)
     const classNames = getClassNamesFromNodes(nodes)
-    const styles = getPrettyStylesFromClassNames(classNames, elements)
+    const styles = getPrettyStylesFromClassNames(
+      classNames,
+      elements,
+      config.indent
+    )
     clean(converted, classNames)
 
     nodes.forEach(cache.add, cache)
