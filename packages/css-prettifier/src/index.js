@@ -4,6 +4,7 @@ import { compile, serialize, combine, tokenize } from '@emotion/stylis'
 function prettyStringify(element, index, children, callback) {
   switch (element.type) {
     case '@import':
+      return (element.return = element.return || element.value) + '\n\n'
     case 'decl':
       return (
         (element.return =
