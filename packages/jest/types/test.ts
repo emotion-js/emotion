@@ -1,9 +1,7 @@
 import serializer, {
   matchers,
   CreateSerializerOptions,
-  createSerializer,
-  print,
-  test
+  createSerializer
 } from '@emotion/jest'
 
 createSerializer()
