@@ -7,8 +7,21 @@ type StyleSheet = {
 
 export default {
   test: (val: any) => val && val.tags !== undefined && Array.isArray(val.tags),
-  print(val: StyleSheet, printer: Function) {
+  serialize(
+    val: StyleSheet,
+    config: *,
+    indentation: string,
+    depth: number,
+    refs: *,
+    printer: Function
+  ) {
     let styles = val.tags.map(tag => tag.textContent || '').join('')
-    return printer(prettify(styles))
+    return printer(
+      prettify(styles, config.indent),
+      config,
+      indentation,
+      depth,
+      refs
+    )
   }
 }
