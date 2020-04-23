@@ -7,7 +7,7 @@ exports[`css complex nested media queries 1`] = `
   }
 }
 
-@media (max-width: 400px),(max-height: 420px) {
+@media (max-width: 400px), (max-height: 420px) {
   .css-1vjvce5 h1 {
     font-size: 1.1rem;
   }
@@ -126,12 +126,12 @@ exports[`css media query with nested selector without declarations on root 1`] =
 
 exports[`orphaned pseudos in nested atrules 1`] = `
 "@media (max-width: 400px) {
-@supports (display: grid) {
+  @supports (display: grid) {
     .css-mlu596 div,
     .css-mlu596:first-child {
       color: hotpink;
     }
-}
+  }
 }"
 `;
 

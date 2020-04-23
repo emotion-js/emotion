@@ -6,13 +6,8 @@ function prettyStringify(element, index, children, callback) {
     case '@import':
       return (element.return = element.return || element.value) + '\n\n'
     case 'decl':
-      return (
-        (element.return =
-          element.return ||
-          element.value.slice(0, element.length + 1) +
-            ' ' +
-            element.value.slice(element.length + 1)) + '\n'
-      )
+      return (element.return =
+        element.return || `${element.props}: ${element.children};\n`)
     case 'comm':
       return ''
     case '@media':
