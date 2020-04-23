@@ -1,5 +1,5 @@
 // @flow
-import * as css from 'css'
+import prettify from './prettify'
 import { replaceClassNames } from './replace-class-names'
 import {
   getClassNamesFromNodes,
@@ -79,16 +79,7 @@ function getPrettyStylesFromClassNames(
   classNames: Array<string>,
   elements: Array<HTMLStyleElement>
 ) {
-  const styles = getStylesFromClassNames(classNames, elements)
-
-  let prettyStyles
-  try {
-    prettyStyles = css.stringify(css.parse(styles))
-  } catch (e) {
-    console.error(e)
-    throw new Error(`There was an error parsing the following css: "${styles}"`)
-  }
-  return prettyStyles
+  return prettify(getStylesFromClassNames(classNames, elements))
 }
 
 export type Options = {

@@ -133,11 +133,11 @@ exports[`nested at rule 1`] = `
     background-color: blue;
   }
 
-@supports (width: 100vw) {
+  @supports (width: 100vw) {
     .emotion-0 {
       background-color: red;
     }
-}
+  }
 }
 
 <div
