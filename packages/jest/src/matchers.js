@@ -1,6 +1,6 @@
 // @flow
 import chalk from 'chalk'
-import * as css from 'css'
+import * as stylis from '@emotion/stylis'
 import * as specificity from 'specificity'
 import {
   getClassNamesFromNodes,
@@ -30,14 +30,14 @@ function isAsymmetric(obj) {
 
 function valueMatches(declaration, value) {
   if (value instanceof RegExp) {
-    return value.test(declaration.value)
+    return value.test(declaration.children)
   }
 
   if (isAsymmetric(value)) {
-    return value.asymmetricMatch(declaration.value)
+    return value.asymmetricMatch(declaration.children)
   }
 
-  return value === declaration.value
+  return value === declaration.children
 }
 
 function toHaveStyleRule(
@@ -49,28 +49,25 @@ function toHaveStyleRule(
   const { target, media } = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
-  const styles = css.parse(cssString)
-
-  let preparedRules = styles.stylesheet.rules
+  let preparedRules = stylis.compile(cssString)
   if (media) {
     preparedRules = getMediaRules(preparedRules, media)
   }
   const result = preparedRules
     .filter(
       rule =>
-        rule.type === RULE_TYPES.rule &&
-        hasClassNames(classNames, rule.selectors, target)
+        rule.type === 'rule' && hasClassNames(classNames, rule.props, target)
     )
     .reduce((acc, rule) => {
       const lastMatchingDeclaration = findLast(
-        rule.declarations,
-        dec => dec.type === 'declaration' && dec.property === property
+        rule.children,
+        dec => dec.type === 'decl' && dec.props === property
       )
       if (!lastMatchingDeclaration) {
         return acc
       }
       return acc.concat(
-        rule.selectors.map(selector => ({
+        rule.props.map(selector => ({
           selector,
           declaration: lastMatchingDeclaration
         }))
@@ -95,7 +92,7 @@ function toHaveStyleRule(
     `Expected ${property}${pass ? ' not ' : ' '}to match:\n` +
     `  ${chalk.green(value)}\n` +
     'Received:\n' +
-    `  ${chalk.red(declaration.value)}`
+    `  ${chalk.red(declaration.children)}`
 
   return {
     pass,
