@@ -8,8 +8,7 @@ import {
   getStyleElements,
   hasClassNames,
   getMediaRules,
-  findLast,
-  RULE_TYPES
+  findLast
 } from './utils'
 
 /*
