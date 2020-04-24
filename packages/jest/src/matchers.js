@@ -1,6 +1,6 @@
 // @flow
 import chalk from 'chalk'
-import * as stylis from '@emotion/stylis'
+import { compile } from 'stylis'
 import * as specificity from 'specificity'
 import {
   getClassNamesFromNodes,
@@ -48,7 +48,7 @@ function toHaveStyleRule(
   const { target, media } = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
-  let preparedRules = stylis.compile(cssString)
+  let preparedRules = compile(cssString)
   if (media) {
     preparedRules = getMediaRules(preparedRules, media)
   }

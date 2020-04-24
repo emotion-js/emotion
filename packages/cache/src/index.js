@@ -8,7 +8,7 @@ import {
   rulesheet,
   stringify,
   prefixer
-} from '@emotion/stylis'
+} from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
 import {
   compat,

@@ -257,8 +257,6 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.5",
     "react-test-renderer": "16.8.6",
-    "stylis": "3.5.4",
-    "stylis-rule-sheet": "^0.0.10",
     "svg-tag-names": "^1.1.1",
     "through": "^2.3.8",
     "unified": "^6.1.6",
