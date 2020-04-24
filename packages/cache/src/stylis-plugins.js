@@ -10,7 +10,7 @@ import {
   identifier,
   peek,
   position
-} from '@emotion/stylis'
+} from 'stylis'
 
 const last = arr => (arr.length ? arr[arr.length - 1] : null)
 

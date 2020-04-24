@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "@emotion/sheet": "0.10.0-next.1",
-    "@emotion/stylis": "0.8.5",
     "@emotion/utils": "0.11.3",
-    "@emotion/weak-memoize": "0.2.5"
+    "@emotion/weak-memoize": "0.2.5",
+    "stylis": "^4.0.0"
   },
   "devDependencies": {
     "@emotion/hash": "*",

@@ -1,5 +1,5 @@
 // @flow
-import { compile } from '@emotion/stylis'
+import { compile } from 'stylis'
 
 const isAutoInsertedRule = element => {
   if (element.type !== 'rule' || !element.parent) {

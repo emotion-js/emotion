@@ -19,12 +19,12 @@
     "@emotion/hash": "0.8.0",
     "@emotion/memoize": "0.7.4",
     "@emotion/serialize": "^1.0.0-next.1",
-    "@emotion/stylis": "0.8.5",
     "babel-plugin-macros": "^2.6.1",
     "convert-source-map": "^1.5.0",
     "escape-string-regexp": "^1.0.5",
     "find-root": "^1.1.0",
-    "source-map": "^0.5.7"
+    "source-map": "^0.5.7",
+    "stylis": "^4.0.0"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"
