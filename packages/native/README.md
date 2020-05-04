@@ -128,6 +128,10 @@ class App extends React.Component {
 }
 ```
 
+## Gotchas
+
+- Note that the `flex` property works like CSS shorthand, and not the legacy `flex` property in React Native. Setting `flex: 1` sets `flexShrink` to `1` in addition to setting `flexGrow` to `1` and `flexBasis` to `0`.
+
 ## Usage with `react-360`
 
 `@emotion/native` can also be used with `react-360` for styling VR applications. Check out [this](https://facebook.github.io/react-360/docs/setup.html) guide for setting up a `react-360` project.
