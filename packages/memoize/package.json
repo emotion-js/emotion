@@ -1,11 +1,15 @@
 {
-  "type": "module",
   "name": "@emotion/memoize",
   "version": "0.7.4",
   "description": "emotion's memoize utility",
   "main": "dist/memoize.cjs.js",
-  "exports": "./dist/memoize.esm.js",
-  "module": "dist/memoize.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/memoize.esm.mjs",
+      "default": "./dist/memoize.cjs.js"
+    }
+  },
+  "module": "dist/memoize.esm.mjs",
   "types": "types/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
