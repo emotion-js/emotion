@@ -423,3 +423,8 @@ const StyledButton = StyledDiv.withComponent('button')
     e
   }}
 />
+
+const StyledWithAs = styled('div')`
+  display: flex;
+`
+;<StyledWithAs as="section" />
