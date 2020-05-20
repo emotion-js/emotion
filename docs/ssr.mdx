@@ -118,24 +118,14 @@ const stream = renderToNodeStream(<App />).pipe(renderStylesToNodeStream())
 
 ### extractCritical
 
-This returns an object with the properties `html`, `ids` and `css`. It removes unused rules that were created with emotion(it still includes rules that were inserted with `injectGlobal`).
+This returns an object with the properties `html` and `css`. It removes unused rules that were created with emotion(it still includes rules that were inserted with `injectGlobal`).
 
 ```jsx
 import { renderToString } from 'react-dom/server'
 import { extractCritical } from '@emotion/server'
 import App from './App'
 
-const { html, ids, css } = extractCritical(renderToString(<App />))
-```
-
-#### hydrate
-
-`hydrate` should be called on the client with the `ids` that `extractCritical` returns. If you don't call it then emotion will reinsert all the rules. `hydrate` is **only** required for `extractCritical`, **not** for `renderStylesToString` or `renderStylesToNodeStream`, hydration occurs automatically with `renderStylesToString` and `renderStylesToNodeStream`.
-
-```jsx
-import { hydrate } from '@emotion/css'
-
-hydrate(ids)
+const { html, css } = extractCritical(renderToString(<App />))
 ```
 
 ## Next.js

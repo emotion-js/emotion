@@ -106,7 +106,7 @@ export let Global: React.AbstractComponent<
         sheet.before = cache.sheet.tags[0]
       }
       if (node !== null) {
-        sheet.rehydrate([node])
+        sheet.hydrate([node])
       }
       sheetRef.current = sheet
       return () => {

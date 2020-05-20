@@ -6,7 +6,7 @@ const createExtractCritical = (cache: EmotionCache) => (html: string) => {
   // reconstruct css/rules/cache to pass
   let RGX = new RegExp(`${cache.key}-([a-zA-Z0-9-_]+)`, 'gm')
 
-  let o = { html, ids: [], css: '' }
+  let o = { html, css: '' }
   let match
   let ids = {}
   while ((match = RGX.exec(html)) !== null) {
@@ -17,14 +17,13 @@ const createExtractCritical = (cache: EmotionCache) => (html: string) => {
     }
   }
 
-  o.ids = Object.keys(cache.inserted).filter(id => {
+  Object.keys(cache.inserted).forEach(id => {
     if (
       (ids[id] !== undefined ||
         cache.registered[`${cache.key}-${id}`] === undefined) &&
       cache.inserted[id] !== true
     ) {
       o.css += cache.inserted[id]
-      return true
     }
   })
 

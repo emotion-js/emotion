@@ -63,6 +63,7 @@ describe('hydration', () => {
     emotionServer = require('@emotion/server')
 
     expect(emotion.cache.inserted).toEqual({})
+    // TODO: check how this test should be refactored
     emotion.hydrate(ids)
     const { Page1: NewPage1 } = getComponents(emotion, reactEmotion)
     renderToString(<NewPage1 />)

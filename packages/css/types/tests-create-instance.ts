@@ -16,7 +16,6 @@ createEmotion({}, undefined as any)
 
 const {
   flush,
-  hydrate,
   cx,
   merge,
   getRegisteredStyles,
@@ -31,16 +30,6 @@ flush()
 
 // $ExpectError
 flush(undefined as any)
-
-hydrate([])
-hydrate(['123'])
-
-// $ExpectError
-hydrate()
-// $ExpectError
-hydrate([0])
-// $ExpectError
-hydrate([], undefined as any)
 
 cx()
 cx(true)

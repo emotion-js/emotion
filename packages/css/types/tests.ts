@@ -1,6 +1,5 @@
 import {
   flush,
-  hydrate,
   cx,
   merge,
   getRegisteredStyles,
@@ -12,8 +11,6 @@ import {
 } from '@emotion/css'
 
 flush()
-
-hydrate(['css-123', 'css-456'])
 
 const cssObject = {
   height: 100,

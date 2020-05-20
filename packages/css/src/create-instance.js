@@ -54,7 +54,6 @@ export type Emotion = {
   css: CreateStyles<string>,
   cx: (...classNames: Array<ClassNameArg>) => string,
   flush: () => void,
-  hydrate: (ids: Array<string>) => void,
   injectGlobal: CreateStyles<void>,
   keyframes: CreateStyles<string>,
   sheet: StyleSheet,
@@ -104,11 +103,6 @@ let createEmotion = (options: *): Emotion => {
     cx,
     injectGlobal,
     keyframes,
-    hydrate(ids: Array<string>) {
-      ids.forEach(key => {
-        cache.inserted[key] = true
-      })
-    },
     flush() {
       cache.registered = {}
       cache.inserted = {}

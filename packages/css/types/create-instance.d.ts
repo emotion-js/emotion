@@ -28,7 +28,6 @@ export interface Emotion {
   css(...args: Array<CSSInterpolation>): string
   cx(...classNames: Array<ClassNamesArg>): string
   flush(): void
-  hydrate(ids: Array<string>): void
   injectGlobal(
     template: TemplateStringsArray,
     ...args: Array<CSSInterpolation>

@@ -3,7 +3,6 @@ import createEmotion from './create-instance'
 
 export const {
   flush,
-  hydrate,
   cx,
   merge,
   getRegisteredStyles,

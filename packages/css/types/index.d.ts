@@ -15,7 +15,6 @@ export {
 } from './create-instance'
 
 export const flush: Emotion['flush']
-export const hydrate: Emotion['hydrate']
 export const cx: Emotion['cx']
 export const merge: Emotion['merge']
 export const getRegisteredStyles: Emotion['getRegisteredStyles']

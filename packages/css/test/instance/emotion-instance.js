@@ -32,7 +32,6 @@ const emotion = createEmotion({
 
 export const {
   flush,
-  hydrate,
   cx,
   merge,
   getRegisteredStyles,
