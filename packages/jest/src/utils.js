@@ -165,19 +165,21 @@ export function getStylesFromClassNames(
   const keyframes = {}
   let styles = ''
 
-  flatMap(elements, getElementRules).forEach((rule: string) => {
-    if (selectorPattern.test(rule)) {
-      styles += rule
-    }
-    const match = rule.match(keyframesPattern)
-    if (match !== null) {
-      const name = match[1]
-      if (keyframes[name] === undefined) {
-        keyframes[name] = ''
+  flatMap(elements, getElementRules)
+    .sort()
+    .forEach((rule: string) => {
+      if (selectorPattern.test(rule)) {
+        styles += rule
       }
-      keyframes[name] += rule
-    }
-  })
+      const match = rule.match(keyframesPattern)
+      if (match !== null) {
+        const name = match[1]
+        if (keyframes[name] === undefined) {
+          keyframes[name] = ''
+        }
+        keyframes[name] += rule
+      }
+    })
   const keyframeNameKeys = Object.keys(keyframes)
   let keyframesStyles = ''
 
