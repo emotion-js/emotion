@@ -21,12 +21,12 @@ exports[`jest-emotion with DOM elements disabled does not replace class names or
 `;
 
 exports[`jest-emotion with DOM elements disabled replaces class names and inserts styles into React test component snapshots 1`] = `
-".emotion-1 {
-  color: red;
+".emotion-0 {
+  width: 100%;
 }
 
-.emotion-0 {
-  width: 100%;
+.emotion-1 {
+  color: red;
 }
 
 <div
@@ -39,12 +39,12 @@ exports[`jest-emotion with DOM elements disabled replaces class names and insert
 `;
 
 exports[`jest-emotion with dom elements replaces class names and inserts styles into DOM element snapshots 1`] = `
-".emotion-1 {
-  color: red;
+".emotion-0 {
+  width: 100%;
 }
 
-.emotion-0 {
-  width: 100%;
+.emotion-1 {
+  color: red;
 }
 
 <div
@@ -57,12 +57,12 @@ exports[`jest-emotion with dom elements replaces class names and inserts styles 
 `;
 
 exports[`jest-emotion with dom elements replaces class names and inserts styles into React test component snapshots 1`] = `
-".emotion-1 {
-  color: red;
+".emotion-0 {
+  width: 100%;
 }
 
-.emotion-0 {
-  width: 100%;
+.emotion-1 {
+  color: red;
 }
 
 <div

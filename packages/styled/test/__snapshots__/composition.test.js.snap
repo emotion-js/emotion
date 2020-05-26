@@ -52,13 +52,12 @@ exports[`composition 2`] = `
 `;
 
 exports[`composition of nested pseudo selectors 1`] = `
-.emotion-0 {
-  font-size: 2rem;
-  padding: 16px;
+.emotion-0:hover.some-class {
+  color: yellow;
 }
 
-.emotion-0:hover {
-  color: blue;
+.emotion-0:hover:active {
+  color: purple;
 }
 
 .emotion-0:hover:active {
@@ -66,15 +65,16 @@ exports[`composition of nested pseudo selectors 1`] = `
 }
 
 .emotion-0:hover {
+  color: blue;
+}
+
+.emotion-0:hover {
   color: pink;
 }
 
-.emotion-0:hover:active {
-  color: purple;
-}
-
-.emotion-0:hover.some-class {
-  color: yellow;
+.emotion-0 {
+  font-size: 2rem;
+  padding: 16px;
 }
 
 <button
@@ -128,6 +128,12 @@ exports[`glamorous style api & composition 1`] = `
 `;
 
 exports[`object composition 1`] = `
+.emotion-0:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
 .emotion-0 {
   border-radius: 50%;
   -webkit-transition: -webkit-transform 400ms ease-in-out;
@@ -138,12 +144,6 @@ exports[`object composition 1`] = `
   height: 96px;
   color: red;
   color: blue;
-}
-
-.emotion-0:hover {
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
 }
 
 <img

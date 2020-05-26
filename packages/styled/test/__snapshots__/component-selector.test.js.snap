@@ -5,15 +5,15 @@ exports[`component as selector (object syntax) 1`] = `
   font-size: 20px;
 }
 
+.emotion-2 .emotion-1 {
+  color: green;
+}
+
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-}
-
-.emotion-2 .emotion-1 {
-  color: green;
 }
 
 <div
@@ -30,15 +30,15 @@ exports[`component as selector (object syntax) 1`] = `
 `;
 
 exports[`component as selector 1`] = `
+.emotion-2 .emotion-1 {
+  color: green;
+}
+
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-}
-
-.emotion-2 .emotion-1 {
-  color: green;
 }
 
 .emotion-0 {
@@ -63,15 +63,15 @@ exports[`component as selector function interpolation (object syntax) 1`] = `
   font-size: 20px;
 }
 
+.emotion-2 .emotion-1 {
+  color: green;
+}
+
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-}
-
-.emotion-2 .emotion-1 {
-  color: green;
 }
 
 <div
@@ -90,8 +90,8 @@ exports[`component as selector function interpolation (object syntax) 1`] = `
 `;
 
 exports[`component as selector function interpolation 1`] = `
-.emotion-0 {
-  font-size: 20px;
+.emotion-2 .emotion-1 {
+  color: green;
 }
 
 .emotion-2 {
@@ -101,8 +101,8 @@ exports[`component as selector function interpolation 1`] = `
   display: flex;
 }
 
-.emotion-2 .emotion-1 {
-  color: green;
+.emotion-0 {
+  font-size: 20px;
 }
 
 <div

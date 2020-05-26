@@ -107,6 +107,15 @@ exports[`css composition stuff 2`] = `
 `;
 
 exports[`css composition with objects 1`] = `
+.emotion-0:after {
+  content: " ";
+  color: red;
+}
+
+.emotion-0:hover {
+  color: blue;
+}
+
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -118,15 +127,6 @@ exports[`css composition with objects 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-
-.emotion-0:hover {
-  color: blue;
-}
-
-.emotion-0:after {
-  content: " ";
-  color: red;
 }
 
 @media (min-width:420px) {
@@ -364,8 +364,8 @@ exports[`css multiline selector 1`] = `
 `;
 
 exports[`css nested 1`] = `
-.emotion-0 {
-  color: yellow;
+.emotion-0 .some-class .some-other-class {
+  background-color: hotpink;
 }
 
 .emotion-0 .some-class {
@@ -375,8 +375,8 @@ exports[`css nested 1`] = `
   display: flex;
 }
 
-.emotion-0 .some-class .some-other-class {
-  background-color: hotpink;
+.emotion-0 {
+  color: yellow;
 }
 
 @media (max-width:600px) {
@@ -399,6 +399,10 @@ exports[`css nested 1`] = `
 `;
 
 exports[`css nested array 1`] = `
+.emotion-0:after {
+  background-color: aquamarine;
+}
+
 .emotion-0 {
   display: inline;
   display: inline-block;
@@ -410,10 +414,6 @@ exports[`css nested array 1`] = `
   display: table;
   color: darkorchid;
   font-size: 16px;
-}
-
-.emotion-0:after {
-  background-color: aquamarine;
 }
 
 <div
@@ -531,14 +531,14 @@ exports[`css registered styles as nested selector value in object 1`] = `
 `;
 
 exports[`css rule after media query 1`] = `
+.emotion-0:hover {
+  color: hotpink;
+}
+
 @media (min-width:600px) {
   .emotion-0 {
     color: green;
   }
-}
-
-.emotion-0:hover {
-  color: hotpink;
 }
 
 <div
@@ -547,6 +547,10 @@ exports[`css rule after media query 1`] = `
 `;
 
 exports[`css simple composition 1`] = `
+.emotion-0:hover {
+  color: hotpink;
+}
+
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -556,10 +560,6 @@ exports[`css simple composition 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-
-.emotion-0:hover {
-  color: hotpink;
 }
 
 <div
