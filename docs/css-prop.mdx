@@ -245,6 +245,9 @@ The styles are concatenated together and inserted via `insertRule`.
 
 Relying on the css spec's ["Order of Appearance"](https://www.w3.org/TR/css-cascade-3/#cascade-order) rule, property values defined later (green) override those before it (red).
 
+If you find that emotion's default style precedence does not work for your use-case, you can override it with the [Class Names API]/docs/class-names). 
+
+
 ## Gotchas
 
 - If you include the plugin `babel-plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.
