@@ -108,6 +108,27 @@ export class StyleSheet {
     }
     const tag = this.tags[this.tags.length - 1]
 
+    if (process.env.NODE_ENV !== 'production') {
+      const isImportRule =
+        rule.charCodeAt(0) === 64 && rule.charCodeAt(1) === 105
+
+      // $FlowFixMe
+      if (isImportRule && this._alreadyInsertedOrderInsensitiveRule) {
+        // this would only cause problem in speedy mode
+        // but we don't want enabling speedy to affect the observable behavior
+        // so we report this error at all times
+        console.error(
+          `You have attempted inserting such rule:\n` +
+            rule +
+            '\n\n`@import` rules must precede all other types of rules in a stylesheet. Please ensure that you insert them first.'
+        )
+      }
+
+      // $FlowFixMe
+      this._alreadyInsertedOrderInsensitiveRule =
+        this._alreadyInsertedOrderInsensitiveRule || !isImportRule
+    }
+
     if (this.isSpeedy) {
       const sheet = sheetForTag(tag)
       try {
@@ -120,13 +141,6 @@ export class StyleSheet {
             `There was a problem inserting the following rule: "${rule}"`,
             e
           )
-          let isImportRule =
-            rule.charCodeAt(0) === 64 && rule.charCodeAt(1) === 105
-          if (isImportRule) {
-            console.error(
-              '`@import` rules must be inserted before other rules.'
-            )
-          }
         }
       }
     } else {
@@ -140,5 +154,9 @@ export class StyleSheet {
     this.tags.forEach(tag => tag.parentNode.removeChild(tag))
     this.tags = []
     this.ctr = 0
+    if (process.env.NODE_ENV !== 'production') {
+      // $FlowFixMe
+      this._alreadyInsertedOrderInsensitiveRule = false
+    }
   }
 }
