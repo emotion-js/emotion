@@ -127,7 +127,7 @@ describe('StyleSheet', () => {
     head.removeChild(otherStyle)
   })
 
-  it('should be able to rehydrate styles', () => {
+  it('should be able to hydrate styles', () => {
     const fooStyle = document.createElement('style')
     fooStyle.textContent = '.foo { color: hotpink; }'
     const barStyle = document.createElement('style')
@@ -139,13 +139,13 @@ describe('StyleSheet', () => {
     const sheet = new StyleSheet(defaultOptions)
     expect(document.documentElement).toMatchSnapshot()
 
-    sheet.rehydrate([fooStyle, barStyle])
+    sheet.hydrate([fooStyle, barStyle])
     expect(document.documentElement).toMatchSnapshot()
 
     sheet.flush()
   })
 
-  it('should flush rehydrated styles', () => {
+  it('should flush hydrated styles', () => {
     const fooStyle = document.createElement('style')
     fooStyle.textContent = '.foo { color: hotpink; }'
     const barStyle = document.createElement('style')
@@ -156,7 +156,7 @@ describe('StyleSheet', () => {
 
     const sheet = new StyleSheet(defaultOptions)
 
-    sheet.rehydrate([fooStyle, barStyle])
+    sheet.hydrate([fooStyle, barStyle])
 
     sheet.insert(rule)
     sheet.insert(rule2)
@@ -166,7 +166,7 @@ describe('StyleSheet', () => {
     expect(document.documentElement).toMatchSnapshot()
   })
 
-  it('should correctly position rehydrated styles when used with `prepend` option', () => {
+  it('should correctly position hydrated styles when used with `prepend` option', () => {
     const head = safeQuerySelector('head')
     const otherStyle = document.createElement('style')
     otherStyle.setAttribute('id', 'other')
@@ -185,7 +185,7 @@ describe('StyleSheet', () => {
       prepend: true
     })
 
-    sheet.rehydrate([fooStyle, barStyle])
+    sheet.hydrate([fooStyle, barStyle])
     expect(document.documentElement).toMatchSnapshot()
 
     sheet.flush()

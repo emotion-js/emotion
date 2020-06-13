@@ -95,7 +95,7 @@ export class StyleSheet {
     this.tags.push(tag)
   }
 
-  rehydrate(nodes: HTMLStyleElement[]) {
+  hydrate(nodes: HTMLStyleElement[]) {
     nodes.forEach(this._insertTag)
   }
 

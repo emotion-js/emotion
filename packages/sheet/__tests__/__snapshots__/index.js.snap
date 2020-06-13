@@ -23,7 +23,7 @@ exports[`StyleSheet should accept prepend option 1`] = `
 </html>
 `;
 
-exports[`StyleSheet should be able to rehydrate styles 1`] = `
+exports[`StyleSheet should be able to hydrate styles 1`] = `
 <html>
   <head />
   <body>
@@ -37,7 +37,7 @@ exports[`StyleSheet should be able to rehydrate styles 1`] = `
 </html>
 `;
 
-exports[`StyleSheet should be able to rehydrate styles 2`] = `
+exports[`StyleSheet should be able to hydrate styles 2`] = `
 <html>
   <head>
     <style>
@@ -51,7 +51,7 @@ exports[`StyleSheet should be able to rehydrate styles 2`] = `
 </html>
 `;
 
-exports[`StyleSheet should correctly position rehydrated styles when used with \`prepend\` option 1`] = `
+exports[`StyleSheet should correctly position hydrated styles when used with \`prepend\` option 1`] = `
 <html>
   <head>
     <style>
@@ -68,7 +68,7 @@ exports[`StyleSheet should correctly position rehydrated styles when used with \
 </html>
 `;
 
-exports[`StyleSheet should flush rehydrated styles 1`] = `
+exports[`StyleSheet should flush hydrated styles 1`] = `
 <html>
   <head>
     <style>
@@ -94,7 +94,7 @@ exports[`StyleSheet should flush rehydrated styles 1`] = `
 </html>
 `;
 
-exports[`StyleSheet should flush rehydrated styles 2`] = `
+exports[`StyleSheet should flush hydrated styles 2`] = `
 <html>
   <head />
   <body />
