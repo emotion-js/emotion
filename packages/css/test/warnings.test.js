@@ -64,10 +64,10 @@ it('does warn when @import rule is being inserted after order-insensitive rules'
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
     Array [
       Array [
-        "You have attempted inserting such rule:
+        "You're attempting to insert the following rule:
     @import 'custom.css';
 
-    \`@import\` rules must precede all other types of rules in a stylesheet. Please ensure that you insert them first.",
+    \`@import\` rules must be before all other types of rules in a stylesheet but other rules have already been inserted. Please ensure that \`@import\` rules are before all other rules.",
       ],
     ]
   `)

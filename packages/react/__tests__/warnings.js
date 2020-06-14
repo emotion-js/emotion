@@ -269,7 +269,7 @@ test('@import nested in scoped `css`', () => {
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
 Array [
   Array [
-    "\`@import\` rules can't be nested inside other rules. Please move it to the top and put it before regular rules. Keep in mind that they can only be used within global styles.",
+    "\`@import\` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles.",
   ],
 ]
 `)
@@ -291,7 +291,7 @@ test('@import prepended with other rules', () => {
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
 Array [
   Array [
-    "\`@import\` rules can't be preceded by regular rules. Please put it before them.",
+    "\`@import\` rules can't be after other rules. Please put your \`@import\` rules before your other rules.",
   ],
 ]
 `)
