@@ -117,9 +117,9 @@ export class StyleSheet {
         // but we don't want enabling speedy to affect the observable behavior
         // so we report this error at all times
         console.error(
-          `You have attempted inserting such rule:\n` +
+          `You're attempting to insert the following rule:\n` +
             rule +
-            '\n\n`@import` rules must precede all other types of rules in a stylesheet. Please ensure that you insert them first.'
+            '\n\n`@import` rules must be before all other types of rules in a stylesheet but other rules have already been inserted. Please ensure that `@import` rules are before all other rules.'
         )
       }
 
