@@ -112,8 +112,7 @@ export class StyleSheet {
       const isImportRule =
         rule.charCodeAt(0) === 64 && rule.charCodeAt(1) === 105
 
-      // $FlowFixMe
-      if (isImportRule && this._alreadyInsertedOrderInsensitiveRule) {
+      if (isImportRule && (this: any)._alreadyInsertedOrderInsensitiveRule) {
         // this would only cause problem in speedy mode
         // but we don't want enabling speedy to affect the observable behavior
         // so we report this error at all times
@@ -124,9 +123,8 @@ export class StyleSheet {
         )
       }
 
-      // $FlowFixMe
-      this._alreadyInsertedOrderInsensitiveRule =
-        this._alreadyInsertedOrderInsensitiveRule || !isImportRule
+      ;(this: any)._alreadyInsertedOrderInsensitiveRule =
+        (this: any)._alreadyInsertedOrderInsensitiveRule || !isImportRule
     }
 
     if (this.isSpeedy) {
@@ -155,8 +153,7 @@ export class StyleSheet {
     this.tags = []
     this.ctr = 0
     if (process.env.NODE_ENV !== 'production') {
-      // $FlowFixMe
-      this._alreadyInsertedOrderInsensitiveRule = false
+      ;(this: any)._alreadyInsertedOrderInsensitiveRule = false
     }
   }
 }
