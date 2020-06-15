@@ -8,7 +8,7 @@ module.exports = ({ markdownAST }) => {
         .replace(/\.mdx?(#.*)?$/, (match, hash) => {
           return hash || ''
         })
-        .replace(/^\/packages\//, '/docs/')
+        .replace(/^\/packages\//, '/docs/@emotion/')
     }
   })
 }
