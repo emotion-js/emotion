@@ -178,7 +178,9 @@ export default ({
                   'none',
                   `1px solid ${colors.lighten(0.25, colors.border)}`
                 ],
-                filter: 'grayscale(100%)'
+                filter: 'grayscale(100%)',
+                // needed for the filter above, Chrome messed up layers without it
+                zIndex: 1
               })}
             >
               <Search />
