@@ -2,6 +2,7 @@
 '@emotion/cache': major
 '@emotion/css': major
 '@emotion/react': major
+'@emotion/styled': major
 ---
 
 The parser we use ([Stylis](https://github.com/thysultan/stylis.js)) got upgraded. It fixes some long-standing parsing edge cases while being smaller and faster 🚀
