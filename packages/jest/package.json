@@ -17,10 +17,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
-    "@types/jest": "^24.9.0",
+    "@emotion/css-prettifier": "^1.0.0-next.0",
+    "@types/jest": "^25.2.1",
     "chalk": "^2.4.1",
-    "css": "^2.2.1",
-    "specificity": "^0.4.1"
+    "specificity": "^0.4.1",
+    "stylis": "^4.0.0"
   },
   "peerDependencies": {
     "enzyme-to-json": "^3.2.1"

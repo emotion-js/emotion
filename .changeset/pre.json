@@ -42,7 +42,8 @@
     "@emotion/eslint-plugin": "10.0.14",
     "@emotion/jest": "11.0.0-next.7",
     "@emotion/react": "11.0.0-next.7",
-    "@emotion/server": "11.0.0-next.0"
+    "@emotion/server": "11.0.0-next.0",
+    "@emotion/css-prettifier": "1.0.0-next.0"
   },
   "changesets": [
     "angry-cheetahs-march",

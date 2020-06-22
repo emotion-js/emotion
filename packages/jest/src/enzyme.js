@@ -24,20 +24,33 @@ export function createSerializer({
     test(node: *) {
       return enzymeSerializer.test(node) || emotionSerializer.test(node)
     },
-    print(node: *, printer: *) {
-      let result = node
+    serialize(
+      node: *,
+      config: *,
+      indentation: string,
+      depth: number,
+      refs: *,
+      printer: Function
+    ) {
       if (enzymeSerializer.test(node)) {
         const tickled = tickle(node)
-        result = enzymeSerializer.print(tickled, printer)
+        return enzymeSerializer.print(
+          tickled,
+          // https://github.com/facebook/jest/blob/470ef2d29c576d6a10de344ec25d5a855f02d519/packages/pretty-format/src/index.ts#L281
+          valChild => printer(valChild, config, indentation, depth, refs)
+        )
       }
-      if (emotionSerializer.test(node)) {
-        result = emotionSerializer.print(result, printer)
-      }
-      return result
+      // we know here it had to match against emotionSerializer
+      return emotionSerializer.serialize(
+        node,
+        config,
+        indentation,
+        depth,
+        refs,
+        printer
+      )
     }
   }
 }
 
-export const { print, test } = createSerializer()
-
-export default { print, test }
+export default createSerializer()

@@ -1,5 +1,5 @@
 // @flow
-import * as css from 'css'
+import prettify from '@emotion/css-prettifier'
 import { replaceClassNames } from './replace-class-names'
 import {
   getClassNamesFromNodes,
@@ -77,18 +77,10 @@ function deepTransform(node, transform) {
 
 function getPrettyStylesFromClassNames(
   classNames: Array<string>,
-  elements: Array<HTMLStyleElement>
+  elements: Array<HTMLStyleElement>,
+  indentation: string
 ) {
-  const styles = getStylesFromClassNames(classNames, elements)
-
-  let prettyStyles
-  try {
-    prettyStyles = css.stringify(css.parse(styles))
-  } catch (e) {
-    console.error(e)
-    throw new Error(`There was an error parsing the following css: "${styles}"`)
-  }
-  return prettyStyles
+  return prettify(getStylesFromClassNames(classNames, elements), indentation)
 }
 
 export type Options = {
@@ -117,12 +109,10 @@ function isShallowEnzymeElement(element: any, classNames: string[]) {
   return !hasIntersection(classNames, childClassNames)
 }
 
-const createConvertEmotionElements = (
-  keys: string[],
-  printer: *,
-  isTransformed
-) => (node: any) => {
-  if (isTransformed(node) || isPrimitive(node)) {
+const createConvertEmotionElements = (keys: string[], printer: *) => (
+  node: any
+) => {
+  if (isPrimitive(node)) {
     return node
   }
   if (isEmotionCssPropEnzymeElement(node)) {
@@ -197,33 +187,40 @@ export function createSerializer({
   DOMElements = true
 }: Options = {}) {
   const cache = new WeakSet()
-  const isTransformed = (node: any) => cache.has(node)
-  function print(val: *, printer: Function) {
-    const isNestedPrint = isTransformed(val)
+  const isTransformed = val => cache.has(val)
+
+  function serialize(
+    val: *,
+    config: *,
+    indentation: string,
+    depth: number,
+    refs: *,
+    printer: Function
+  ) {
     const elements = getStyleElements()
     const keys = getKeys(elements)
-    const convertEmotionElements = createConvertEmotionElements(
-      keys,
-      printer,
-      isTransformed
-    )
+    const convertEmotionElements = createConvertEmotionElements(keys, printer)
     const converted = deepTransform(val, convertEmotionElements)
     const nodes = getNodes(converted)
-    nodes.forEach(cache.add, cache)
     const classNames = getClassNamesFromNodes(nodes)
-    const styles = getPrettyStylesFromClassNames(classNames, elements)
+    const styles = getPrettyStylesFromClassNames(
+      classNames,
+      elements,
+      config.indent
+    )
     clean(converted, classNames)
-    const printedVal = printer(converted)
+
+    nodes.forEach(cache.add, cache)
+    const printedVal = printer(converted, config, indentation, depth, refs)
     nodes.forEach(cache.delete, cache)
-    return isNestedPrint
-      ? printedVal
-      : replaceClassNames(
-          classNames,
-          styles,
-          printedVal,
-          keys,
-          classNameReplacer
-        )
+
+    return replaceClassNames(
+      classNames,
+      styles,
+      printedVal,
+      keys,
+      classNameReplacer
+    )
   }
 
   return {
@@ -234,8 +231,8 @@ export function createSerializer({
           (isReactElement(val) || (DOMElements && isDOMElement(val))))
       )
     },
-    print
+    serialize
   }
 }
 
-export const { print, test } = createSerializer()
+export default createSerializer()
