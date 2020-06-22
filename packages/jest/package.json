@@ -21,7 +21,7 @@
     "@types/jest": "^25.2.1",
     "chalk": "^2.4.1",
     "specificity": "^0.4.1",
-    "stylis": "^4.0.0"
+    "stylis": "^4.0.1"
   },
   "peerDependencies": {
     "enzyme-to-json": "^3.2.1"
