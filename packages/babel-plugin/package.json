@@ -23,7 +23,8 @@
     "convert-source-map": "^1.5.0",
     "escape-string-regexp": "^1.0.5",
     "find-root": "^1.1.0",
-    "source-map": "^0.5.7"
+    "source-map": "^0.5.7",
+    "stylis": "^4.0.0"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"

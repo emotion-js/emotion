@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css @supports 1`] = `
-@supports (display:grid) {
+@supports (display: grid) {
   .emotion-0 {
     display: grid;
   }
@@ -83,8 +83,8 @@ exports[`css boolean as value 1`] = `
 exports[`css composition stuff 1`] = `
 .emotion-0 {
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -96,8 +96,8 @@ exports[`css composition stuff 1`] = `
 exports[`css composition stuff 2`] = `
 .emotion-0 {
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -115,8 +115,8 @@ exports[`css composition with objects 1`] = `
   width: 30px;
   height: calc(40vw - 50px);
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -129,7 +129,7 @@ exports[`css composition with objects 1`] = `
   color: red;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
     color: green;
   }
@@ -309,14 +309,14 @@ exports[`css manually use label property 2`] = `
 `;
 
 exports[`css media query specificity 1`] = `
-".css-13ug87i-cls {
+".css-xlxbv2-cls {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
 
-@media (min-width:420px) {
-  .css-13ug87i-cls {
+@media (min-width: 420px) {
+  .css-xlxbv2-cls {
     width: 96px;
     height: 96px;
   }
@@ -330,7 +330,7 @@ exports[`css media query specificity 2`] = `
   border-radius: 50%;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
     width: 96px;
     height: 96px;
@@ -345,7 +345,7 @@ exports[`css media query specificity 2`] = `
 exports[`css multiline declaration 1`] = `
 .emotion-0 {
   display: grid;
-  grid: 'AppBar' auto 'Main' 1fr / 1fr;
+  grid: 'AppBar' auto 'Main' 1fr/1fr;
 }
 
 <div
@@ -379,7 +379,7 @@ exports[`css nested 1`] = `
   background-color: hotpink;
 }
 
-@media (max-width:600px) {
+@media (max-width: 600px) {
   .emotion-0 .some-class {
     background-color: pink;
   }
@@ -422,12 +422,12 @@ exports[`css nested array 1`] = `
 `;
 
 exports[`css nested at rule 1`] = `
-@media (min-width:980px) {
+@media (min-width: 980px) {
   .emotion-0 {
     background-color: blue;
   }
 
-@supports (width:100vw) {
+@supports (width: 100vw) {
     .emotion-0 {
       background-color: red;
     }
@@ -489,7 +489,7 @@ exports[`css random expression 1`] = `
   background: green;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
     color: blue;
     width: 96px;
@@ -506,8 +506,8 @@ exports[`css random expression 1`] = `
 exports[`css random interpolation with undefined values 1`] = `
 .emotion-0 {
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -531,7 +531,7 @@ exports[`css registered styles as nested selector value in object 1`] = `
 `;
 
 exports[`css rule after media query 1`] = `
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     color: green;
   }
@@ -553,8 +553,8 @@ exports[`css simple composition 1`] = `
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
