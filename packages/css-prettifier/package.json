@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@emotion/memoize": "0.7.4",
-    "@emotion/stylis": "0.8.5"
+    "stylis": "^4.0.0"
   },
   "devDependencies": {},
   "publishConfig": {

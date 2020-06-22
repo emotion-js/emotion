@@ -1,6 +1,6 @@
 // @flow
 import chalk from 'chalk'
-import * as stylis from '@emotion/stylis'
+import * as stylis from 'stylis'
 import * as specificity from 'specificity'
 import {
   getClassNamesFromNodes,
