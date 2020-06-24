@@ -33,7 +33,7 @@ export function getSourceMap(
   ) {
     generator.addMapping({
       generated: {
-        line: 1,
+        line: 2,
         column: 0
       },
       source: generatorOpts.sourceFileName,
