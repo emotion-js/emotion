@@ -1,6 +1,6 @@
 // @flow
 /* eslint-env jest */
-import serializer from '@emotion/jest'
+import { createSerializer } from '@emotion/jest'
 
 // $FlowFixMe jest flow type definitions don't include new plugin API
-expect.addSnapshotSerializer(serializer)
+expect.addSnapshotSerializer(createSerializer())

@@ -9,8 +9,8 @@
     "src",
     "dist",
     "types/*.d.ts",
-    "enzyme",
-    "serializer.js"
+    "serializer",
+    "enzyme-serializer"
   ],
   "scripts": {
     "test:typescript": "dtslint types"
@@ -61,7 +61,8 @@
   "preconstruct": {
     "entrypoints": [
       ".",
-      "enzyme"
+      "serializer",
+      "enzyme-serializer"
     ]
   }
 }

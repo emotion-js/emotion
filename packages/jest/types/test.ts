@@ -1,8 +1,9 @@
-import serializer, {
+import {
   matchers,
   CreateSerializerOptions,
   createSerializer
 } from '@emotion/jest'
+import * as serializer from '@emotion/jest/serializer'
 
 createSerializer()
 createSerializer({})

@@ -1,9 +1,9 @@
 // @flow
-import type { Options } from './serializer'
-import { createSerializer as createEmotionSerializer } from './serializer'
-import { createSerializer as createEnzymeSerializer } from 'enzyme-to-json'
+import type { Options } from './create-serializer'
+import { createSerializer as createEmotionSerializer } from './create-serializer'
+import { createSerializer as createEnzymeToJsonSerializer } from 'enzyme-to-json'
 
-const enzymeSerializer = createEnzymeSerializer({})
+const enzymeSerializer = createEnzymeToJsonSerializer({})
 
 const tickle = (wrapper: *) => {
   if (typeof wrapper.dive === 'function') {
@@ -12,7 +12,7 @@ const tickle = (wrapper: *) => {
   return wrapper
 }
 
-export function createSerializer({
+export function createEnzymeSerializer({
   classNameReplacer,
   DOMElements = true
 }: Options = {}) {
@@ -52,5 +52,3 @@ export function createSerializer({
     }
   }
 }
-
-export default createSerializer()
