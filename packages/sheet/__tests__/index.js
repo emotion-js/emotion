@@ -10,6 +10,13 @@ let defaultOptions = {
   container: safeQuerySelector('head')
 }
 
+// $FlowFixMe
+console.error = jest.fn()
+
+afterEach(() => {
+  jest.clearAllMocks()
+})
+
 describe('StyleSheet', () => {
   it('should be speedy by default in production', () => {
     process.env.NODE_ENV = 'production'
@@ -62,16 +69,11 @@ describe('StyleSheet', () => {
 
   it('should throw when inserting a bad rule in speedy mode', () => {
     const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
-    const oldConsoleWarn = console.warn
-    // $FlowFixMe
-    console.warn = jest.fn()
     sheet.insert('.asdfasdf4###112121211{')
-    expect(console.warn).toHaveBeenCalledTimes(1)
-    expect((console.warn: any).mock.calls[0][0]).toBe(
+    expect(console.error).toHaveBeenCalledTimes(1)
+    expect((console.error: any).mock.calls[0][0]).toBe(
       'There was a problem inserting the following rule: ".asdfasdf4###112121211{"'
     )
-    // $FlowFixMe
-    console.warn = oldConsoleWarn
     sheet.flush()
   })
 
@@ -100,18 +102,6 @@ describe('StyleSheet', () => {
     document.body.removeChild(container)
   })
 
-  it('should not throw an error when inserting a @import rule in speedy when a rule has already been inserted', () => {
-    const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
-    sheet.insert('h1 {color:hotpink;}')
-    let importRule =
-      "@import url('https://fonts.googleapis.com/css?family=Merriweather');"
-    sheet.insert(importRule)
-    expect(sheet.tags).toHaveLength(1)
-    // $FlowFixMe
-    expect(sheet.tags[0].sheet.cssRules[0]).toBeInstanceOf(window.CSSImportRule)
-    sheet.flush()
-  })
-
   it('should accept prepend option', () => {
     const head = safeQuerySelector('head')
     const otherStyle = document.createElement('style')
@@ -121,6 +111,71 @@ describe('StyleSheet', () => {
     const sheet = new StyleSheet({ ...defaultOptions, prepend: true })
     sheet.insert(rule)
     sheet.insert(rule2)
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
+    head.removeChild(otherStyle)
+  })
+
+  it('should be able to hydrate styles', () => {
+    const fooStyle = document.createElement('style')
+    fooStyle.textContent = '.foo { color: hotpink; }'
+    const barStyle = document.createElement('style')
+    barStyle.textContent = '.bar { background-color: green; }'
+    const body = safeQuerySelector('body')
+    body.appendChild(fooStyle)
+    body.appendChild(barStyle)
+
+    const sheet = new StyleSheet(defaultOptions)
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.hydrate([fooStyle, barStyle])
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
+  })
+
+  it('should flush hydrated styles', () => {
+    const fooStyle = document.createElement('style')
+    fooStyle.textContent = '.foo { color: hotpink; }'
+    const barStyle = document.createElement('style')
+    barStyle.textContent = '.bar { background-color: green; }'
+    const body = safeQuerySelector('body')
+    body.appendChild(fooStyle)
+    body.appendChild(barStyle)
+
+    const sheet = new StyleSheet(defaultOptions)
+
+    sheet.hydrate([fooStyle, barStyle])
+
+    sheet.insert(rule)
+    sheet.insert(rule2)
+    expect(document.documentElement).toMatchSnapshot()
+
+    sheet.flush()
+    expect(document.documentElement).toMatchSnapshot()
+  })
+
+  it('should correctly position hydrated styles when used with `prepend` option', () => {
+    const head = safeQuerySelector('head')
+    const otherStyle = document.createElement('style')
+    otherStyle.setAttribute('id', 'other')
+    head.appendChild(otherStyle)
+
+    const fooStyle = document.createElement('style')
+    fooStyle.textContent = '.foo { color: hotpink; }'
+    const barStyle = document.createElement('style')
+    barStyle.textContent = '.bar { background-color: green; }'
+    const body = safeQuerySelector('body')
+    body.appendChild(fooStyle)
+    body.appendChild(barStyle)
+
+    const sheet = new StyleSheet({
+      ...defaultOptions,
+      prepend: true
+    })
+
+    sheet.hydrate([fooStyle, barStyle])
     expect(document.documentElement).toMatchSnapshot()
 
     sheet.flush()

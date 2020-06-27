@@ -41,7 +41,7 @@ assignees: ''
 
 **Environment information:**
 
-<!-- Provide the `react` and `emotion` or `@emotion/*` packages versions -->
+<!-- Provide the `react` and `@emotion/*` packages versions -->
 
 - `react` version:
-- `emotion` version:
+- `@emotion/react` version:

@@ -4,6 +4,31 @@
 
 ### Patch Changes
 
+- Updated dependencies [[`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf)]:
+  - @emotion/utils@1.0.0-next.0
+
+## 1.0.0-next.1
+
+### Patch Changes
+
+- [`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d) [#1732](https://github.com/emotion-js/emotion/pull/1732) Thanks [@Andarist](https://github.com/Andarist)! - An additional semicolon is now inserted after interpolated arrays to cover cases when it doesn't have a trailing semi itself and thus breaking composition with styles coming after it.
+
+## 0.11.15-next.4
+
+### Patch Changes
+
+- [`f08ef5a3`](https://github.com/emotion-js/emotion/commit/f08ef5a316c1d05bff8e7f3690781e1089a263c6) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Removed leftover `@emotion/react` import from type definition file.
+
+## 0.12.0-next.3
+
+### Minor Changes
+
+- [`c643107`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@joltmode](https://github.com/joltmode)! - Reworked Interpolation-related types. Correct types should now be provided to all flavours of emotion.
+
+## 0.11.15-next.2
+
+### Patch Changes
+
 - [`5c55fd17`](https://github.com/emotion-js/emotion/commit/5c55fd17dcaec84d1f5d5d13ae90dd336d7e4403) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Fix to what location generated source maps are pointing in case of composed styles.
 
 * [`729ef9d8`](https://github.com/emotion-js/emotion/commit/729ef9d8408af82c7a63effc1b8728f79c66bed1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Update `csstype` dependency.
@@ -51,6 +76,24 @@
     `StyledComponent<Props, {}, MyTheme>`
     to
     `StyledComponent<Props & { theme?: MyTheme }>`
+
+## 0.11.16
+
+### Patch Changes
+
+- Updated dependencies [[`446e756`](https://github.com/emotion-js/emotion/commit/446e75661c4aa01e51d1466472a212940c19cd82)]:
+  - @emotion/hash@0.8.0
+
+## 0.11.15
+
+### Patch Changes
+
+- [`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968) [#1698](https://github.com/emotion-js/emotion/pull/1698) Thanks [@Andarist](https://github.com/Andarist)! - Add LICENSE file
+- Updated dependencies [[`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968)]:
+  - @emotion/hash@0.7.4
+  - @emotion/memoize@0.7.4
+  - @emotion/unitless@0.7.5
+  - @emotion/utils@0.11.3
 
 ## 0.11.14
 

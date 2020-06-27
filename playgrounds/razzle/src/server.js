@@ -4,9 +4,9 @@ import * as React from 'react'
 import { StaticRouter } from 'react-router-dom'
 import express from 'express'
 import { renderToString } from 'react-dom/server'
-import { renderStylesToString } from 'emotion-server'
-import { cache } from 'emotion'
-import { CacheProvider } from '@emotion/core'
+import { renderStylesToString } from '@emotion/server'
+import { cache } from '@emotion/css'
+import { CacheProvider } from '@emotion/react'
 
 // $FlowFixMe
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)

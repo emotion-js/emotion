@@ -14,10 +14,10 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/hash": "0.7.3",
-    "@emotion/memoize": "0.7.3",
-    "@emotion/unitless": "0.7.4",
-    "@emotion/utils": "0.11.2",
+    "@emotion/hash": "0.8.0",
+    "@emotion/memoize": "0.7.4",
+    "@emotion/unitless": "0.7.5",
+    "@emotion/utils": "1.0.0-next.0",
     "csstype": "^2.6.7"
   },
   "devDependencies": {
@@ -26,7 +26,7 @@
   "files": [
     "src",
     "dist",
-    "types"
+    "types/*.d.ts"
   ],
   "browser": {
     "./dist/serialize.cjs.js": "./dist/serialize.browser.cjs.js",

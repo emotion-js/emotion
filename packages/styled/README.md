@@ -1,11 +1,11 @@
 # @emotion/styled
 
-> The styled API for @emotion/core
+> The styled API for @emotion/react
 
 ## Install
 
 ```bash
-yarn add @emotion/core @emotion/styled
+yarn add @emotion/react @emotion/styled
 ```
 
 ## Usage

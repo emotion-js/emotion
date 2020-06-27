@@ -1,5 +1,52 @@
 # @emotion/native
 
+## 11.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.13
+
+## 11.0.0-next.12
+
+### Patch Changes
+
+- [`11fc27f8`](https://github.com/emotion-js/emotion/commit/11fc27f8fa00661353cc7650111afaa068399aca) [#1750](https://github.com/emotion-js/emotion/pull/1750) Thanks [@Zn4rK](https://github.com/Zn4rK)! - Match supported components to what is exported from the latest version of React Native (0.61.5).
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.12
+
+## 11.0.0-next.11
+
+### Patch Changes
+
+- [`cb637e65`](https://github.com/emotion-js/emotion/commit/cb637e659964d24c56ba7a93d01f3865f2d94669) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@hammadj](https://github.com/hammadj)! - Add type definitions to published files for NPM
+
+## 11.0.0-next.10
+
+### Minor Changes
+
+- [`456be9a6`](https://github.com/emotion-js/emotion/commit/456be9a602d7d0bac291617f69f59f5ed30d1b84) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@patsissons](https://github.com/patsissons)! - Added TypeScript type definitions.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.10
+
+## 11.0.0-next.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.9
+
+## 11.0.0-next.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.8
+
 ## 11.0.0-next.7
 
 ### Patch Changes
@@ -75,6 +122,15 @@
 - Updated dependencies [[`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555)]:
   - emotion-theming@11.0.0-next.0
   - @emotion/primitives-core@11.0.0-next.0
+
+## 10.0.27
+
+### Patch Changes
+
+- [`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968) [#1698](https://github.com/emotion-js/emotion/pull/1698) Thanks [@Andarist](https://github.com/Andarist)! - Add LICENSE file
+- Updated dependencies [[`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968)]:
+  - emotion-theming@10.0.27
+  - @emotion/primitives-core@10.0.27
 
 ## 10.0.22
 

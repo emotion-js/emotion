@@ -8,7 +8,7 @@ babelTester('@emotion/babel-plugin-jsx-pragmatic', __dirname, {
       jsxPragmatic,
       {
         export: 'jsx',
-        module: '@emotion/core',
+        module: '@emotion/react',
         import: '___EmotionJSX'
       }
     ]
