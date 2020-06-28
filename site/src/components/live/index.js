@@ -27,6 +27,7 @@ export default class Live extends React.Component<Props, State> {
       ...evaluate(this.props.initial, this.props.scope)
     }
   }
+
   static defaultProps = {
     code: '',
     mountStylesheet: true,
@@ -84,6 +85,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
   componentDidCatch(err: Error) {
     this.props.onError(err)
   }
+
   render() {
     return this.props.children
   }

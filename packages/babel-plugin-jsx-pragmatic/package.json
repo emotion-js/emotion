@@ -6,6 +6,9 @@
   "module": "dist/babel-plugin-jsx-pragmatic.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-jsx-pragmatic",
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.2.0"
   },
@@ -20,6 +23,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5"
+    "@babel/core": "^7.7.2"
   }
 }

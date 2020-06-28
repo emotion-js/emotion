@@ -43,7 +43,8 @@ export type Options = {
   nonce?: string,
   key: string,
   container: HTMLElement,
-  speedy?: boolean
+  speedy?: boolean,
+  prepend?: boolean
 }
 
 function createStyleElement(options: {
@@ -66,6 +67,7 @@ export class StyleSheet {
   container: HTMLElement
   key: string
   nonce: string | void
+  prepend: boolean | void
   before: Element | null
   constructor(options: Options) {
     this.isSpeedy =
@@ -78,52 +80,62 @@ export class StyleSheet {
     // key is the value of the data-emotion attribute, it's used to identify different sheets
     this.key = options.key
     this.container = options.container
+    this.prepend = options.prepend
     this.before = null
   }
+
+  _insertTag = (tag: HTMLStyleElement) => {
+    let before
+    if (this.tags.length === 0) {
+      before = this.prepend ? this.container.firstChild : this.before
+    } else {
+      before = this.tags[this.tags.length - 1].nextSibling
+    }
+    this.container.insertBefore(tag, before)
+    this.tags.push(tag)
+  }
+
+  hydrate(nodes: HTMLStyleElement[]) {
+    nodes.forEach(this._insertTag)
+  }
+
   insert(rule: string) {
     // the max length is how many rules we have per style tag, it's 65000 in speedy mode
     // it's 1 in dev because we insert source maps that map a single rule to a location
     // and you can only have one source map per style tag
     if (this.ctr % (this.isSpeedy ? 65000 : 1) === 0) {
-      let tag = createStyleElement(this)
-      let before
-      if (this.tags.length === 0) {
-        before = this.before
-      } else {
-        before = this.tags[this.tags.length - 1].nextSibling
-      }
-      this.container.insertBefore(tag, before)
-      this.tags.push(tag)
+      this._insertTag(createStyleElement(this))
     }
     const tag = this.tags[this.tags.length - 1]
+
+    if (process.env.NODE_ENV !== 'production') {
+      const isImportRule =
+        rule.charCodeAt(0) === 64 && rule.charCodeAt(1) === 105
+
+      if (isImportRule && (this: any)._alreadyInsertedOrderInsensitiveRule) {
+        // this would only cause problem in speedy mode
+        // but we don't want enabling speedy to affect the observable behavior
+        // so we report this error at all times
+        console.error(
+          `You're attempting to insert the following rule:\n` +
+            rule +
+            '\n\n`@import` rules must be before all other types of rules in a stylesheet but other rules have already been inserted. Please ensure that `@import` rules are before all other rules.'
+        )
+      }
+
+      ;(this: any)._alreadyInsertedOrderInsensitiveRule =
+        (this: any)._alreadyInsertedOrderInsensitiveRule || !isImportRule
+    }
 
     if (this.isSpeedy) {
       const sheet = sheetForTag(tag)
       try {
-        // this is a really hot path
-        // we check the second character first because having "i"
-        // as the second character will happen less often than
-        // having "@" as the first character
-        let isImportRule =
-          rule.charCodeAt(1) === 105 && rule.charCodeAt(0) === 64
         // this is the ultrafast version, works across browsers
         // the big drawback is that the css won't be editable in devtools
-        sheet.insertRule(
-          rule,
-          // we need to insert @import rules before anything else
-          // otherwise there will be an error
-          // technically this means that the @import rules will
-          // _usually_(not always since there could be multiple style tags)
-          // be the first ones in prod and generally later in dev
-          // this shouldn't really matter in the real world though
-          // @import is generally only used for font faces from google fonts and etc.
-          // so while this could be technically correct then it would be slower and larger
-          // for a tiny bit of correctness that won't matter in the real world
-          isImportRule ? 0 : sheet.cssRules.length
-        )
+        sheet.insertRule(rule, sheet.cssRules.length)
       } catch (e) {
         if (process.env.NODE_ENV !== 'production') {
-          console.warn(
+          console.error(
             `There was a problem inserting the following rule: "${rule}"`,
             e
           )
@@ -134,10 +146,14 @@ export class StyleSheet {
     }
     this.ctr++
   }
+
   flush() {
     // $FlowFixMe
     this.tags.forEach(tag => tag.parentNode.removeChild(tag))
     this.tags = []
     this.ctr = 0
+    if (process.env.NODE_ENV !== 'production') {
+      ;(this: any)._alreadyInsertedOrderInsensitiveRule = false
+    }
   }
 }

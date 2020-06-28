@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js 10.x
         uses: actions/setup-node@master

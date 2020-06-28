@@ -1,6 +1,6 @@
 process.env.NODE_ENV = 'production'
 let React = require('react')
-let { jsx, css } = require('@emotion/core')
+let { jsx, css } = require('@emotion/react')
 let { renderToString } = require('react-dom/server')
 let { createTriangle } = require('./triangle')
 

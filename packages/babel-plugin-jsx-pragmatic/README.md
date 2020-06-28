@@ -6,7 +6,7 @@ The original README of babel-plugin-jsx-pragmatic with some modifications is sho
 
 ---
 
-[@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/next/babel-plugin-transform-react-jsx.html) has a `pragma` option that's used when transforming JSX to function calls instead of the default function `React.createElement`.
+[@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx.html) has a `pragma` option that's used when transforming JSX to function calls instead of the default function `React.createElement`.
 
 This Babel plugin is a companion to that feature that allows you to dynamically load a module associated with the `pragma` value.
 
@@ -27,10 +27,10 @@ React.createElement(Some, { jsx: 'element' })
 By setting the `pragma` option like this:
 
 ```js
-babel.transform(code, {
+babel.transformSync(code, {
   plugins: [
     [
-      'babel-plugin-transform-react-jsx',
+      '@babel/plugin-transform-react-jsx',
       {
         pragma: 'whatever'
       }
@@ -56,10 +56,10 @@ var whatever = require('whatever')
 This plugin allows you to make that part dynamic as well:
 
 ```js
-babel.transform(code, {
+babel.transformSync(code, {
   plugins: [
     [
-      'babel-plugin-transform-react-jsx',
+      '@babel/plugin-transform-react-jsx',
       {
         pragma: 'whatever'
       }
@@ -96,7 +96,7 @@ String. The identifier that you want to import the `module` with. This should co
 {
   plugins: [
     [
-      'babel-plugin-transform-react-jsx',
+      '@babel/plugin-transform-react-jsx',
       {
         pragma: 'x'
       }
@@ -115,7 +115,7 @@ String. The identifier that you want to import the `module` with. This should co
 {
   plugins: [
     [
-      'babel-plugin-transform-react-jsx',
+      '@babel/plugin-transform-react-jsx',
       {
         pragma: 'x.y'
       }

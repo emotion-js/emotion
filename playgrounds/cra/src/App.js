@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 /** @jsx jsx */
-import { Global, jsx, keyframes } from '@emotion/core'
+import { Global, jsx, keyframes } from '@emotion/react'
 
 let animation = keyframes({
   'from,to': {

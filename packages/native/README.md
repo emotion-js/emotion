@@ -5,13 +5,13 @@
 ## Install
 
 ```
-npm install @emotion/core @emotion/native
+npm install @emotion/react @emotion/native
 ```
 
 or if you use yarn
 
 ```
-yarn add @emotion/core @emotion/native
+yarn add @emotion/react @emotion/native
 ```
 
 This package also depends on `react`, `react-native` and `prop-types` so make sure you've them installed.
@@ -69,13 +69,12 @@ AppRegistry.registerComponent('ExampleApp', () => App)
 
 ## Theming
 
-Use `emotion-theming` for theming support.
+Use `@emotion/react` for theming support.
 
 ```js
 import React from 'react'
 import styled, { css } from '@emotion/native'
-
-import { ThemeProvider } from 'emotion-theming'
+import { ThemeProvider } from '@emotion/react'
 
 const theme = {
   color: 'hotpink',

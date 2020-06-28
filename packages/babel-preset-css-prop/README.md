@@ -2,10 +2,15 @@
 
 > A babel preset to automatically enable emotion's css prop
 
-- [Install](#install)
-- [Usage](#usage)
-- [Features](#features)
-- [Options](#options)
+- [@emotion/babel-preset-css-prop](#emotionbabel-preset-css-prop)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [Via CLI](#via-cli)
+    - [Via Node API](#via-node-api)
+  - [Features](#features)
+  - [Example](#example)
+  - [Options](#options)
+    - [Examples](#examples)
 
 ## Install
 
@@ -23,7 +28,7 @@ yarn add @emotion/babel-preset-css-prop
 }
 ```
 
-`@emotion/babel-preset-css-prop` includes the emotion plugin. The `babel-plugin-emotion` entry should be be removed from your config and any options moved to the preset. If you use `@babel/preset-react` or `@babel/preset-typescript` ensure that `@emotion/babel-preset-css-prop` is inserted after them in your babel config.
+`@emotion/babel-preset-css-prop` includes the emotion plugin. The `@emotion/babel-plugin` entry should be removed from your config and any options moved to the preset. If you use `@babel/preset-react` or `@babel/preset-typescript` ensure that `@emotion/babel-preset-css-prop` is inserted after them in your babel config.
 
 ```diff
 {
@@ -31,16 +36,16 @@ yarn add @emotion/babel-preset-css-prop
 +   [
 +     "@emotion/babel-preset-css-prop",
 +     {
-+       "autoLabel": true,
++       "autoLabel": "dev-only",
 +       "labelFormat": "[local]"
 +     }
 +   ]
 + ],
 - "plugins": [
 -   [
--     "emotion",
+-     "@emotion",
 -     {
--       "autoLabel": true,
+-       "autoLabel": "dev-only",
 -       "labelFormat": "[local]"
 -     }
 -   ]
@@ -73,7 +78,7 @@ This preset enables the `css` prop for an entire project via a single entry to t
 | Before | `<img src="avatar.png" />` | `React.createElement('img', { src: 'avatar.png' })` |
 | After  | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })`                 |
 
-`import { jsx } from '@emotion/core'` is automatically added to the top of files where required.
+`import { jsx } from '@emotion/react'` is automatically added to the top of files where required.
 
 ## Example
 
@@ -96,7 +101,7 @@ const Link = props => (
 **Out**
 
 ```javascript
-import { jsx as ___EmotionJSX } from '@emotion/core'
+import { jsx as ___EmotionJSX } from '@emotion/react'
 
 function _extends() {
   /* babel Object.assign polyfill */
@@ -127,17 +132,17 @@ const Link = props =>
   )
 ```
 
-_In addition to the custom pragma, this example includes `babel-plugin-emotion` transforms that are enabled by default._
+_In addition to the custom pragma, this example includes `@emotion/babel-plugin` transforms that are enabled by default._
 
 ## Options
 
-Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` are supported and will be forwarded to their respective plugin.
+Options for both `@emotion/babel-plugin` and `@babel/plugin-transform-react-jsx` are supported and will be forwarded to their respective plugin.
 
 > Refer to the plugin's documentation for full option documentation.
 >
-> - [`babel-plugin-emotion`](https://emotion.sh/docs/babel)
+> - [`@emotion/babel-plugin`](https://emotion.sh/docs/babel)
 >
-> - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/next/babel-plugin-transform-react-jsx)
+> - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx)
 
 ### Examples
 
@@ -146,7 +151,7 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
   "presets": [
     "@emotion/babel-preset-css-prop",
     {
-      "autoLabel": true,
+      "autoLabel": "dev-only",
       "labelFormat": "[local]",
       "useBuiltIns": false,
       "throwIfNamespace": true

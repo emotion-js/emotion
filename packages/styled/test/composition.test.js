@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import 'test-utils/legacy-env'
 import * as renderer from 'react-test-renderer'
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 import { lighten, hiDPI } from 'polished'
