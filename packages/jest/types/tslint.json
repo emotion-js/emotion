@@ -3,6 +3,7 @@
   "rules": {
     "array-type": [true, "generic"],
     "semicolon": false,
-    "file-name-casing": false
+    "file-name-casing": false,
+    "strict-export-declare-modifiers": false
   }
 }
