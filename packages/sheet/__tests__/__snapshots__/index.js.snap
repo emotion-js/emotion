@@ -1,5 +1,106 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`StyleSheet should accept prepend option 1`] = `
+<html>
+  <head>
+    <style
+      data-emotion=""
+    >
+      
+      html { color: hotpink; }
+    </style>
+    <style
+      data-emotion=""
+    >
+      
+      * { box-sizing: border-box; }
+    </style>
+    <style
+      id="other"
+    />
+  </head>
+  <body />
+</html>
+`;
+
+exports[`StyleSheet should be able to hydrate styles 1`] = `
+<html>
+  <head />
+  <body>
+    <style>
+      .foo { color: hotpink; }
+    </style>
+    <style>
+      .bar { background-color: green; }
+    </style>
+  </body>
+</html>
+`;
+
+exports[`StyleSheet should be able to hydrate styles 2`] = `
+<html>
+  <head>
+    <style>
+      .foo { color: hotpink; }
+    </style>
+    <style>
+      .bar { background-color: green; }
+    </style>
+  </head>
+  <body />
+</html>
+`;
+
+exports[`StyleSheet should correctly position hydrated styles when used with \`prepend\` option 1`] = `
+<html>
+  <head>
+    <style>
+      .foo { color: hotpink; }
+    </style>
+    <style>
+      .bar { background-color: green; }
+    </style>
+    <style
+      id="other"
+    />
+  </head>
+  <body />
+</html>
+`;
+
+exports[`StyleSheet should flush hydrated styles 1`] = `
+<html>
+  <head>
+    <style>
+      .foo { color: hotpink; }
+    </style>
+    <style>
+      .bar { background-color: green; }
+    </style>
+    <style
+      data-emotion=""
+    >
+      
+      html { color: hotpink; }
+    </style>
+    <style
+      data-emotion=""
+    >
+      
+      * { box-sizing: border-box; }
+    </style>
+  </head>
+  <body />
+</html>
+`;
+
+exports[`StyleSheet should flush hydrated styles 2`] = `
+<html>
+  <head />
+  <body />
+</html>
+`;
+
 exports[`StyleSheet should insert a rule into the DOM when not in speedy 1`] = `
 <html>
   <head>

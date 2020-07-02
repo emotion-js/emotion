@@ -2,7 +2,7 @@
 import 'test-utils/legacy-env'
 import React from 'react'
 import * as renderer from 'react-test-renderer'
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 

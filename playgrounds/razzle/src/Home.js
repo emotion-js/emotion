@@ -1,6 +1,6 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import * as React from 'react'
 
 class Home extends React.Component<{}, { isBrowser: boolean }> {
@@ -8,6 +8,7 @@ class Home extends React.Component<{}, { isBrowser: boolean }> {
   componentDidMount() {
     this.setState({ isBrowser: true })
   }
+
   render() {
     return (
       <h1
@@ -19,7 +20,7 @@ class Home extends React.Component<{}, { isBrowser: boolean }> {
         }}
       >
         wow, some hotpink text!!
-        {this.state.isBrowser && <div css={{ color: 'green' }}>wow</div>}
+        {this.state.isBrowser && <div css={{ color: 'green' }}>{'wow'}</div>}
       </h1>
     )
   }

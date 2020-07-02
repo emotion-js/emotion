@@ -3,7 +3,8 @@
   "name": "ssr-benchmarks",
   "version": "0.8.13",
   "scripts": {
-    "start": "NODE_ENV=production node bench.js"
+    "start": "NODE_ENV=production node bench.js",
+    "test:typescript": "exit 0"
   },
   "dependencies": {
     "benchmark": "^2.1.4"
