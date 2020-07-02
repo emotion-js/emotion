@@ -1,35 +1,167 @@
-import styled, { CreateStyled } from '@emotion/styled'
+import * as React from 'react'
+import styled from '@emotion/styled'
 
-// $ExpectType CreateStyledComponentIntrinsic<"a", {}, any>
+// This file uses the same Theme declaration from tests-base.tsx
+
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>>
 styled.a
-// $ExpectType CreateStyledComponentIntrinsic<"body", {}, any>
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>>
 styled.body
-// $ExpectType CreateStyledComponentIntrinsic<"div", {}, any>
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
 styled.div
-// $ExpectType CreateStyledComponentIntrinsic<"svg", {}, any>
+// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, SVGProps<SVGSVGElement>>
 styled.svg
 
 {
-  // $ExpectType CreateStyledComponentIntrinsic<"svg", { bar: string }, { themed: "black" }>
-  styled.div<{ bar: string }, { themed: 'black' }>`
+  styled.div<{ bar: string }>`
     color: ${props => {
-      // $ExpectType { themed: "black" }
-      const { theme } = props
-      return theme.themed
+      // $ExpectType { theme?: Theme | undefined; } & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; } & { theme: Theme; }
+      props
+
+      return {}
     }};
   `
 }
 
-{
-  const myStyled: CreateStyled<{ themed: 'black' }> = styled
-  // $ExpectError - created styled shouldn't allow for parametrizing with Theme type
-  myStyled.div<{ bar: string }, { themed: 'orange' }>``
+const StyledDiv = styled.div({})
+;<StyledDiv ref={React.createRef()} />
 
-  myStyled.div<{ bar: string }>`
-    color: ${props => {
-      // $ExpectType { themed: "black" }
-      const { theme } = props
-      return theme.themed
-    }};
-  `
+// Can override theme optionally on prop
+;<StyledDiv
+  theme={{ primary: '', secondary: '', backColor: '', width: 0, colors: {} }}
+/>
+
+// Cannot override with incomplete theme on prop
+// $ExpectError
+;<StyledDiv theme={{ primary: '' }} />
+
+// $ExpectError
+;<StyledDiv theme={{ themeProp: 0 }} />
+
+const Container = styled.div((props: { test: number }) => ({
+  width: props.test
+}))
+
+const Container2 = styled.div<{ test: number }>(props => ({
+  width: props.test
+}))
+
+const Container3 = styled.div(({ theme }) => ({
+  width: theme.width
+}))
+
+// This example shows using shouldForwardProps to define a prop
+// who's type clashes with an intrinsic prop.
+// It makes use of a custom type guard on shouldForwardProp to exclude color
+
+const Box = styled('div', {
+  shouldForwardProp: (
+    propName
+  ): propName is Exclude<keyof JSX.IntrinsicElements['div'], 'color'> =>
+    propName !== 'color'
+})<{ color: Array<string> }>(props => ({
+  color: props.color[0]
+}))
+;<Box color={['green']} />
+
+const Original: React.FC<{ prop1: string; prop2: string }> = () => null
+
+interface StyledOriginalExtraProps {
+  // This prop would conflict with the `prop2` on Original
+  prop2: number
+}
+const StyledOriginal = styled(Original, {
+  // Filter prop2 by only forwarding prop1
+  shouldForwardProp: (propName): propName is 'prop1' => propName === 'prop1'
+})<StyledOriginalExtraProps>(props => {
+  // props.prop2 will be `number`
+  return {}
+})
+
+// No more type conflict error
+;<StyledOriginal prop1="1" prop2={2} />
+
+const Label = styled.label``
+const Button = styled.button``
+const Input = styled.input`
+  & + ${Label}: {
+    margin-left: 3px;
+  }
+`
+
+const Input2 = styled.input`
+  & + ${Label}: {
+    margin-left: 3px;
+  }
+  & + ${Button}: {
+    margin-left: 3px;
+  }
+`
+
+const Input3 = styled.input({
+  [`& + ${Label}`]: {
+    marginLeft: '3px'
+  }
+})
+
+interface AdditionalTest {
+  left: string
+}
+const Input4 = styled.input<AdditionalTest>`
+  & + ${Label}: ${props => ({
+  marginLeft: props.left
+})}
+`
+const Input5 = styled.input`
+  color: ${props => props.theme.primary};
+`
+;<Input
+  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+    console.log(evt.target.value)
+  }
+/>
+;<Input2
+  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+    console.log(evt.target.value)
+  }
+/>
+;<Input3
+  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+    console.log(evt.target.value)
+  }
+/>
+;<Input4
+  left="3px"
+  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+    console.log(evt.target.value)
+  }
+/>
+
+{
+  const A = styled('h1')()
+  const B = styled(A)()
+  const C = styled(B)()
+  const D = styled(C)()
+  const E = styled(D)()
+  const F = styled(E)()
+  const G = styled(F)()
+  const H = styled(G)()
+  const I = styled(H)()
+  const J = styled(I)()
+  const K = styled(J)()
+  const L = styled(K)()
+  const M = styled(L)()
+  const N = styled(M)()
+  const O = styled(N)()
+  const P = styled(O)()
+  const Q = styled(P)()
+  const R = styled(Q)()
+  const S = styled(R)()
+  const T = styled(S)()
+  const U = styled(T)()
+  const V = styled(U)()
+  const X = styled(V)()
+  const Y = styled(X)()
+  const Z = styled(Y)()
+  ;<Z>No excessive instantiation</Z>
 }

@@ -1,7 +1,7 @@
 // @flow
 import 'test-utils/legacy-env'
 import * as React from 'react'
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { render } from '@testing-library/react'
 

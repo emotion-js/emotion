@@ -9,8 +9,8 @@ exports[`composing components 1`] = `
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -93,7 +93,7 @@ exports[`composition with objects 1`] = `
   font-size: 32px;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (-o-min-device-pixel-ratio:1.5/1), only screen and (min-resolution:144dpi), only screen and (min-resolution:1.5dppx) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),only screen and (min--moz-device-pixel-ratio: 1.5),only screen and (-o-min-device-pixel-ratio: 1.5/1),only screen and (min-resolution: 144dpi),only screen and (min-resolution: 1.5dppx) {
   .emotion-0 {
     font-size: 1.25em;
   }
@@ -131,7 +131,6 @@ exports[`object composition 1`] = `
 .emotion-0 {
   border-radius: 50%;
   -webkit-transition: -webkit-transform 400ms ease-in-out;
-  -webkit-transition: transform 400ms ease-in-out;
   transition: transform 400ms ease-in-out;
   border: 3px solid currentColor;
   width: 96px;
@@ -142,6 +141,7 @@ exports[`object composition 1`] = `
 
 .emotion-0:hover {
   -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
 }

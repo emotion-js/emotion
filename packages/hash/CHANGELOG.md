@@ -1,5 +1,11 @@
 # @emotion/hash
 
+## 0.8.0
+
+### Minor Changes
+
+- [`446e756`](https://github.com/emotion-js/emotion/commit/446e75661c4aa01e51d1466472a212940c19cd82) [#1775](https://github.com/emotion-js/emotion/pull/1775) Thanks [@kripod](https://github.com/kripod)! - Optimized hashing for performance while also reducing the size of the function.
+
 ## 0.7.4
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import { Link } from 'gatsby'
 import { constants } from 'styled-system'
 import { colors } from '../utils/style'
