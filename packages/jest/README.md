@@ -17,18 +17,18 @@ The easiest way to test React components with emotion is with the snapshot seria
 module.exports = {
   // ... other config
   snapshotSerializers: [
-    '@emotion/jest' /* if needed other snapshotSerializers should go here */
+    '@emotion/jest/serializer' /* if needed other snapshotSerializers should go here */
   ]
 }
 ```
 
-To assist with shallow rendering, there's a custom enzyme snapshot serializer, that includes the `enzyme-to-json` serializer, which is available by importing `@emotion/jest/enzyme`. If you already have the `enzyme-to-json` serializer added to `snapshotSerializers`, it will need to be removed to allow this to work.
+To assist with shallow rendering, there's a custom enzyme snapshot serializer, that includes the `enzyme-to-json` serializer, which is available by importing `@emotion/jest/enzyme-serializer`. If you already have the `enzyme-to-json` serializer added to `snapshotSerializers`, it will need to be removed to allow this to work.
 
 ```js
 // jest.config.js
 module.exports = {
   // ... other config
-  snapshotSerializers: ['@emotion/jest/enzyme']
+  snapshotSerializers: ['@emotion/jest/enzyme-serializer']
 }
 ```
 
@@ -37,10 +37,10 @@ Or you can add the serializer via the `expect.addSnapshotSerializer` method like
 ```jsx
 import React from 'react'
 import renderer from 'react-test-renderer'
-import serializer from '@emotion/jest'
+import { createSerializer } from '@emotion/jest'
 import styled from '@emotion/styled'
 
-expect.addSnapshotSerializer(serializer)
+expect.addSnapshotSerializer(createSerializer())
 
 test('renders with correct styles', () => {
   const H1 = styled.h1`
@@ -141,7 +141,7 @@ test('renders with correct styles', () => {
 })
 ```
 
-You can provide additional options for `toHaveStyleRule` matcher.  
+You can provide additional options for `toHaveStyleRule` matcher.
 `target` - helps to specify css selector or other component
 where style rule should be found.
 

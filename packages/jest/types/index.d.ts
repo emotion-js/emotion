@@ -30,8 +30,10 @@ export interface CreateSerializerOptions {
 export function createSerializer(
   options?: CreateSerializerOptions
 ): SnapshotSerializerPlugin
-declare const serializer: SnapshotSerializerPlugin
-export default serializer
+
+export function createEnzymeSerializer(
+  options?: CreateSerializerOptions
+): SnapshotSerializerPlugin
 
 declare global {
   namespace jest {
