@@ -117,6 +117,12 @@
 
 - [`b0ad4f0c`](https://github.com/emotion-js/emotion/commit/b0ad4f0c628813a42c4637857be9a969429db6f0) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Avoid transpiling vanilla emotion calls in already transpiled code to avoid double labels and such
 
+## 10.0.33
+
+### Patch Changes
+
+- [`b9f8ae3`](https://github.com/emotion-js/emotion/commit/b9f8ae3f6e18b0569376b9ed62e9d09d141adff8) [#1829](https://github.com/emotion-js/emotion/pull/1829) Thanks [@Andarist](https://github.com/Andarist)! - Skip appending source maps & labels to Babel-transpiled tagged template expressions.
+
 ## 10.0.29
 
 ### Patch Changes

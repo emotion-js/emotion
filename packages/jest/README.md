@@ -53,7 +53,7 @@ test('renders with correct styles', () => {
 })
 ```
 
-Refer to the [testing doc](https://github.com/emotion-js/emotion/blob/master/docs/testing.md) for more information about snapshot testing with emotion.
+Refer to the [testing doc][emotion-testing] for more information about snapshot testing with emotion.
 
 ## Options
 
@@ -207,3 +207,5 @@ test('renders with correct link styles', () => {
 ## Thanks
 
 Thanks to [Kent C. Dodds](https://twitter.com/kentcdodds) who wrote [jest-glamor-react](https://github.com/kentcdodds/jest-glamor-react) which this library is largely based on. ❤️
+
+[emotion-testing]: https://emotion.sh/docs/testing

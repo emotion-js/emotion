@@ -1,5 +1,8 @@
 // @flow
-import { getTypeScriptMakeTemplateObjectPath } from './ts-output-utils'
+import {
+  getTypeScriptMakeTemplateObjectPath,
+  isTaggedTemplateTranspiledByBabel
+} from './transpiled-output-utils'
 
 export const appendStringReturningExpressionToArguments = (
   t: *,
@@ -31,10 +34,12 @@ export const appendStringReturningExpressionToArguments = (
           )
         }
       })
-    } else if (typeof expression === 'string') {
-      path.node.arguments.push(t.stringLiteral(expression))
-    } else {
-      path.node.arguments.push(expression)
+    } else if (!isTaggedTemplateTranspiledByBabel(path)) {
+      if (typeof expression === 'string') {
+        path.node.arguments.push(t.stringLiteral(expression))
+      } else {
+        path.node.arguments.push(expression)
+      }
     }
   }
 }
