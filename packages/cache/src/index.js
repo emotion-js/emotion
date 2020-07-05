@@ -75,7 +75,7 @@ let createCache = (options: Options): EmotionCache => {
   let container: HTMLElement
   const nodesToHydrate = []
   if (isBrowser) {
-    container = options.container || document.head
+    container = options.container || ((document.head: any): HTMLHeadElement)
 
     Array.prototype.forEach.call(
       document.querySelectorAll(`style[data-emotion]`),
@@ -142,8 +142,8 @@ let createCache = (options: Options): EmotionCache => {
         serialized.map !== undefined
       ) {
         currentSheet = {
-          insert: rule => {
-            sheet.insert(rule + serialized.map)
+          insert: (rule: string) => {
+            sheet.insert(rule + ((serialized.map: any): string))
           }
         }
       }
@@ -218,7 +218,7 @@ let createCache = (options: Options): EmotionCache => {
     key,
     sheet: new StyleSheet({
       key,
-      container,
+      container: ((container: any): HTMLElement),
       nonce: options.nonce,
       speedy: options.speedy,
       prepend: options.prepend

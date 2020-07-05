@@ -33,6 +33,7 @@ function ToggleSidebarButton({
 }) {
   return (
     <button
+      {...rest}
       css={mq({
         display: ['block', 'block', 'none'],
         position: 'fixed',
@@ -53,7 +54,6 @@ function ToggleSidebarButton({
         }
       })}
       onClick={() => setSidebarOpen(true)}
-      {...rest}
     />
   )
 }

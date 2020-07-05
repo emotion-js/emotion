@@ -10,7 +10,7 @@ const Foo = styled.div<Props>({
 
 const valid = <Foo color="red" />
 
-// $FlowExpectError: color must be string
+// $FlowFixMe: expect error - color must be string
 const invalid = <Foo color={2} />
 
 // components defined using the root method should be identical

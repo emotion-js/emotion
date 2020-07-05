@@ -8,12 +8,12 @@ const valid: StyledComponent<empty> = createStyled('div')({
   color: 'red'
 })
 
-// $FlowExpectError: we can't cast a StyledComponent to string
+// $FlowFixMe: expect error - we can't cast a StyledComponent to string
 const invalid: string = createStyled('div')({ color: 'red' })
 
 const styled = createStyled('div')
 
-// $FlowExpectError: we don't expose the private StyledComponent properties
+// $FlowFixMe: expect error - we don't expose the private StyledComponent properties
 const invalidPropAccess = styled().__emotion_base
 
 // We allow styled components not to specify their props types
