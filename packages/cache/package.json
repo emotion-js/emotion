@@ -18,7 +18,7 @@
     "@emotion/sheet": "1.0.0-next.2",
     "@emotion/utils": "1.0.0-next.0",
     "@emotion/weak-memoize": "0.2.5",
-    "stylis": "^4.0.1"
+    "stylis": "^4.0.2"
   },
   "devDependencies": {
     "@emotion/hash": "*",
