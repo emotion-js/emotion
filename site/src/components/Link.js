@@ -20,7 +20,7 @@ const styles = {
 
 export default ({ to, ...props }: Props) =>
   to.match(/^https?:\/\//) ? (
-    <a href={to} css={styles} {...props} />
+    <a {...props} href={to} css={styles} />
   ) : (
-    <Link to={to} css={styles} {...props} />
+    <Link {...props} to={to} css={styles} />
   )

@@ -225,7 +225,7 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "eslint-plugin-standard": "^4.0.1",
-    "flow-bin": "^0.110.0",
+    "flow-bin": "^0.128.0",
     "html-tag-names": "^1.1.2",
     "husky": "^3.0.9",
     "jest": "^25.4.0",

@@ -15,6 +15,7 @@ const evalCode = (code: string, scope: Scope): React.Node => {
   /* eslint-disable no-new-func */
   // $FlowFixMe
   const func = new Function('React', 'render', ...scopeKeys, code)
+  // $FlowFixMe
   func(React, render, ...scopeValues)
   /* eslint-enable no-new-func */
   if (element === undefined) {

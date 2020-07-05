@@ -1,5 +1,5 @@
 [version]
-0.110.0
+0.128.0
 
 [ignore]
 .*/node_modules/config-chain/.*
@@ -20,8 +20,5 @@
 [declarations]
 .*/node_modules/react-native/.*
 
-
 [options]
-suppress_comment=.*\\$FlowFixMe
-suppress_comment=.*\\$FlowExpectError
 sharedmemory.hash_table_pow=21
