@@ -1,0 +1,115 @@
+---
+title: 'Flow'
+---
+
+Emotion is built with Flow, so it exports type definitions for most of its packages,
+including `@emotion/styled`.
+
+## @emotion/styled
+
+The styled package can be used to define styled components in two ways, by calling `styled()`,
+or by using the `styled.*` shortcuts.
+
+Unfortunately, Flow doesn't currently support generic types on tagged templates, this means if
+you'd like to explictly type a styled component props, you will have to use one of the following
+alternatives:
+
+```jsx
+import styled from '@emotion/styled'
+
+// Option A
+const A = styled<Props>('div')`
+  color: red;
+`
+
+// Option B
+const B = styled.div<Props>({
+  color: 'red',
+})
+```
+
+Styled components are annotated the same way normal React components are:
+
+```jsx
+import styled from '@emotion/styled'
+
+type Props = { a: string }
+const Link = styled<Props>('a')`
+  color: red;
+`
+
+const App = () => <Link href="#">Click me</Link>
+```
+
+Just like for normal React components, you don't need to provide type annotations
+for your styled components if you don't plan to export them from your module:
+
+```jsx
+import styled from '@emotion/styled'
+
+const Internal = styled.div`
+  color: red;
+`
+```
+
+Be aware, Flow infers the return type of your components by referencing their return type,
+this means you will need to annotate the properties of the root component in the case below:
+
+```jsx
+
+const Container = styled.div`
+                  ^^^^^^^^^^^ Missing type annotation for P. P is a type parameter declared in function type [1] and was implicitly instantiated at
+encaps tag [2].   
+  color: red;
+`
+
+export const App = () => <Container />
+```
+
+You can use `React$ElementConfig` to obtain the props type of a HTML tag, or of
+any existing React component:
+
+```jsx
+import type { ElementConfig } from 'react'
+
+type Props = ElementConfig<'div'>
+const Container = styled<Props>('div')`
+  color: red;
+`
+
+export const App = () => <Container />
+```
+
+
+```jsx
+import type { ElementConfig } from 'react'
+import styled from '@emotion/styled'
+
+const Container = styled<ElementConfig<'div'>>('div')`
+  background-color: yellow;
+`
+
+const App = () => (
+    <Container>{() => 10}</Container>
+               ^^^^^^^^^^ Cannot create Container element because in property children:
+                          • Either inexact function [1] is incompatible with exact React.Element [2].
+                          • Or function [1] is incompatible with React.Portal [3].
+                          • Or property @@iterator is missing in function [1] but exists in $Iterable [4].
+)
+```
+
+Alternatively, you can define the return type of your component, so that
+Flow doesn't need to infer it reading the props type of the internal component:
+
+```jsx
+import type { Node } from 'react'
+
+const Container = styled.div`
+  color: red;
+`
+
+export const App = (): Node => <Container />
+```
+
+
+

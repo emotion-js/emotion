@@ -1,0 +1,62 @@
+{
+  "name": "@emotion/server",
+  "version": "11.0.0-next.13",
+  "description": "Extract and inline critical css with emotion for server side rendering.",
+  "main": "dist/server.cjs.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "types/*.d.ts",
+    "create-instance"
+  ],
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
+  "dependencies": {
+    "@emotion/utils": "1.0.0-next.0",
+    "html-tokenize": "^2.0.0",
+    "multipipe": "^1.0.2",
+    "through": "^2.3.8"
+  },
+  "peerDependencies": {
+    "@emotion/css": "^11.0.0-next.13"
+  },
+  "peerDependenciesMeta": {
+    "@emotion/css": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@emotion/babel-plugin": "11.0.0-next.13",
+    "@emotion/css": "11.0.0-next.13",
+    "@emotion/css-prettifier": "1.0.0-next.0",
+    "@types/node": "^10.11.4",
+    "dtslint": "^0.3.0"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-server",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js",
+    "ssr",
+    "server-side-rendering"
+  ],
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
+  },
+  "browser": {
+    "./dist/server.cjs.js": "./dist/server.browser.cjs.js"
+  },
+  "preconstruct": {
+    "entrypoints": [
+      ".",
+      "create-instance"
+    ]
+  }
+}

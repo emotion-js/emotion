@@ -6,6 +6,9 @@
   "module": "dist/unitless.esm.js",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/unitless",
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
   "publishConfig": {
     "access": "public"
   },
