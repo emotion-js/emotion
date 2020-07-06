@@ -25,6 +25,9 @@
   "peerDependenciesMeta": {
     "@babel/core": {
       "optional": true
+    },
+    "@types/react": {
+      "optional": true
     }
   },
   "devDependencies": {
@@ -32,11 +35,6 @@
     "@emotion/react": "11.0.0-next.13",
     "dtslint": "^0.3.0",
     "react": "^16.11.0"
-  },
-  "peerDependenciesMeta": {
-    "@types/react": {
-      "optional": true
-    }
   },
   "publishConfig": {
     "access": "public"

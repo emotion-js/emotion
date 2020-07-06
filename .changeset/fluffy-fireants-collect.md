@@ -1,4 +1,5 @@
 ---
+'@emotion/react': patch
 '@emotion/styled': patch
 ---
 
