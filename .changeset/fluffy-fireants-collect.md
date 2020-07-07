@@ -3,4 +3,4 @@
 '@emotion/styled': patch
 ---
 
-Fixes TS compat under PnP environments
+Fixed TS compatibility under [PnP](https://classic.yarnpkg.com/en/docs/pnp/) environments by making `@types/react` an optional peer dependency.
