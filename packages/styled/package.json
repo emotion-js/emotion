@@ -25,6 +25,9 @@
   "peerDependenciesMeta": {
     "@babel/core": {
       "optional": true
+    },
+    "@types/react": {
+      "optional": true
     }
   },
   "devDependencies": {
