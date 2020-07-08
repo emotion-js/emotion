@@ -12,7 +12,7 @@ export {
   CSSObject
 } from '@emotion/serialize'
 
-export { EmotionCache, Options, StyleSheet }
+export { EmotionCache, Options }
 
 export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
 export type ClassNamesArg =
@@ -22,6 +22,10 @@ export type ClassNamesArg =
   | boolean
   | { [className: string]: boolean | null | undefined }
   | ArrayClassNamesArg
+
+export interface CSSStyleSheet extends StyleSheet {
+  speedy(value: boolean): void
+}
 
 export interface Emotion {
   css(template: TemplateStringsArray, ...args: Array<CSSInterpolation>): string
@@ -39,7 +43,7 @@ export interface Emotion {
     ...args: Array<CSSInterpolation>
   ): string
   keyframes(...args: Array<CSSInterpolation>): string
-  sheet: StyleSheet
+  sheet: CSSStyleSheet
   cache: EmotionCache
   merge(className: string): string
   getRegisteredStyles(
