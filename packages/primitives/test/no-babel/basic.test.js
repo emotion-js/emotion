@@ -39,6 +39,7 @@ test('should render the primitive when styles applied using object style notatio
   `
   const tree = renderer
     .create(
+      // $FlowFixMe
       <Text style={{ fontSize: 40 }} back="red">
         Emotion Primitives
       </Text>

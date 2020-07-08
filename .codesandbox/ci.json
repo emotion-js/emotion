@@ -1,0 +1,4 @@
+{
+  "packages": ["packages/*"],
+  "sandboxes": ["pk1qjqpw67"]
+}

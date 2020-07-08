@@ -1,0 +1,9 @@
+{
+  "extends": "dtslint/dtslint.json",
+  "rules": {
+    "array-type": [true, "generic"],
+    "semicolon": false,
+    "file-name-casing": false,
+    "strict-export-declare-modifiers": false
+  }
+}

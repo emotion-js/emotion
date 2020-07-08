@@ -6,6 +6,7 @@ export interface Options {
   key: string
   container: HTMLElement
   speedy?: boolean
+  prepend?: boolean
 }
 
 export class StyleSheet {
@@ -14,11 +15,11 @@ export class StyleSheet {
   ctr: number
   tags: Array<HTMLStyleElement>
   container: HTMLElement
-  maxLength: number
   key: string
   nonce?: string
   before?: Element | null
   constructor(options?: Options)
   insert(rule: string): void
   flush(): void
+  hydrate(nodes: Array<HTMLStyleElement>): void
 }

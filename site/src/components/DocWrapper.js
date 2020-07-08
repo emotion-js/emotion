@@ -1,8 +1,8 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import * as React from 'react'
-import { keyframes, cx } from 'emotion'
+import { keyframes, cx } from '@emotion/css'
 import { Match } from '@reach/router'
 import { Link } from 'gatsby'
 import MenuIcon from 'react-icons/lib/md/menu'
@@ -33,6 +33,7 @@ function ToggleSidebarButton({
 }) {
   return (
     <button
+      {...rest}
       css={mq({
         display: ['block', 'block', 'none'],
         position: 'fixed',
@@ -53,7 +54,6 @@ function ToggleSidebarButton({
         }
       })}
       onClick={() => setSidebarOpen(true)}
-      {...rest}
     />
   )
 }
@@ -177,7 +177,10 @@ export default ({
                   'none',
                   'none',
                   `1px solid ${colors.lighten(0.25, colors.border)}`
-                ]
+                ],
+                filter: 'grayscale(100%)',
+                // needed for the filter above, Chrome messed up layers without it
+                zIndex: 1
               })}
             >
               <Search />
@@ -208,22 +211,21 @@ export default ({
                 ],
                 gridRow: 2,
                 gridColumn: ['1 / span 2', '1 / span 2', '1 / span 1'],
-                paddingRight: [0, 0, 0]
+                paddingRight: [0, 0, 0],
+                filter: 'grayscale(100%)'
               })}
             >
               {children}
             </main>
-            {
-              <ToggleSidebarButton
-                setSidebarOpen={() => setSidebarOpen(!sidebarOpen)}
-              >
-                {sidebarOpen ? (
-                  <CloseIcon color="white" size={32} />
-                ) : (
-                  <MenuIcon color="white" size={32} />
-                )}
-              </ToggleSidebarButton>
-            }
+            <ToggleSidebarButton
+              setSidebarOpen={() => setSidebarOpen(!sidebarOpen)}
+            >
+              {sidebarOpen ? (
+                <CloseIcon color="white" size={32} />
+              ) : (
+                <MenuIcon color="white" size={32} />
+              )}
+            </ToggleSidebarButton>
           </>
         )
       }}

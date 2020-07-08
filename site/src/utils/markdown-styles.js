@@ -1,8 +1,7 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import styled from '@emotion/styled'
-import css from '@emotion/css'
 import { mq, colors, constants, animatedUnderline } from './style'
 
 const textStyles = mq({
@@ -213,7 +212,7 @@ export const tr = styled.tr`
 
 export let hr = (props: {}) => (
   <hr
-    css={{ border: `1px solid ${colors.lighten(0.25, colors.border)}` }}
     {...props}
+    css={{ border: `1px solid ${colors.lighten(0.25, colors.border)}` }}
   />
 )
