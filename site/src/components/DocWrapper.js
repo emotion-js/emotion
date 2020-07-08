@@ -177,10 +177,7 @@ export default ({
                   'none',
                   'none',
                   `1px solid ${colors.lighten(0.25, colors.border)}`
-                ],
-                filter: 'grayscale(100%)',
-                // needed for the filter above, Chrome messed up layers without it
-                zIndex: 1
+                ]
               })}
             >
               <Search />
@@ -211,8 +208,7 @@ export default ({
                 ],
                 gridRow: 2,
                 gridColumn: ['1 / span 2', '1 / span 2', '1 / span 1'],
-                paddingRight: [0, 0, 0],
-                filter: 'grayscale(100%)'
+                paddingRight: [0, 0, 0]
               })}
             >
               {children}
