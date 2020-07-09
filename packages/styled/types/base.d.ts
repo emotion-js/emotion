@@ -109,7 +109,7 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme
-      as?: React.ElementType | keyof JSX.IntrinsicElements
+      as?: React.ElementType
     }
   >
 
@@ -119,7 +119,7 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme
-      as?: React.ElementType | keyof JSX.IntrinsicElements
+      as?: React.ElementType
     }
   >
 
@@ -130,7 +130,7 @@ export interface CreateStyled {
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>
   ): CreateStyledComponent<
-    { theme?: Theme; as?: React.ElementType | keyof JSX.IntrinsicElements },
+    { theme?: Theme; as?: React.ElementType },
     Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
   >
 
@@ -138,7 +138,7 @@ export interface CreateStyled {
     tag: Tag,
     options?: StyledOptions<JSX.IntrinsicElements[Tag]>
   ): CreateStyledComponent<
-    { theme?: Theme; as?: React.ElementType | keyof JSX.IntrinsicElements },
+    { theme?: Theme; as?: React.ElementType },
     JSX.IntrinsicElements[Tag]
   >
 }
