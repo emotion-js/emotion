@@ -58,6 +58,7 @@ function getDeclaratorName(path, t) {
   const parent = path.findParent(
     p =>
       p.isVariableDeclarator() ||
+      p.isAssignmentExpression() ||
       p.isFunctionDeclaration() ||
       p.isFunctionExpression() ||
       p.isArrowFunctionExpression() ||
@@ -72,6 +73,34 @@ function getDeclaratorName(path, t) {
   if (parent.isVariableDeclarator()) {
     if (t.isIdentifier(parent.node.id)) {
       return parent.node.id.name
+    }
+    return ''
+  }
+
+  if (parent.isAssignmentExpression()) {
+    let { left } = parent.node
+    if (t.isIdentifier(left)) {
+      return left.name
+    }
+    if (t.isMemberExpression(left)) {
+      let memberExpression = left
+      let name = ''
+      while (true) {
+        if (!t.isIdentifier(memberExpression.property)) {
+          return ''
+        }
+
+        name = `${memberExpression.property.name}${name ? `-${name}` : ''}`
+
+        if (t.isIdentifier(memberExpression.object)) {
+          return `${memberExpression.object.name}-${name}`
+        }
+
+        if (!t.isMemberExpression(memberExpression.object)) {
+          return ''
+        }
+        memberExpression = memberExpression.object
+      }
     }
     return ''
   }

@@ -41,7 +41,8 @@ import { renderToString } from 'react-dom/server'
 import createEmotionServer from '@emotion/server/create-instance'
 import createCache from '@emotion/cache'
 
-const cache = createCache()
+const key = 'custom'
+const cache = createCache({ key })
 const { extractCritical } = createEmotionServer(cache)
 
 let element = (
@@ -62,7 +63,7 @@ res
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My site</title>
-    <style data-emotion-css="${ids.join(' ')}">${css}</style>
+    <style data-emotion="${key} ${ids.join(' ')}">${css}</style>
 </head>
 <body>
     <div id="root">${html}</div>
@@ -174,16 +175,6 @@ export const createMyCache = () =>
     stylisPlugins: [
       /* your plugins here */
     ],
-    // prefix based on the css property
-    prefix: key => {
-      switch (key) {
-        case 'flex':
-          return false
-        case 'transform':
-        default:
-          return true
-      }
-    }
   })
 
 export const myCache = createMyCache()

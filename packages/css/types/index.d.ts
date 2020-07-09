@@ -11,7 +11,7 @@ export {
   EmotionCache,
   CSSInterpolation,
   CSSObject,
-  StyleSheet
+  CSSStyleSheet
 } from './create-instance'
 
 export const flush: Emotion['flush']

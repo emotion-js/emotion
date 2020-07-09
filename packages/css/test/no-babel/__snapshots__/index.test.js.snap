@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css @supports 1`] = `
-@supports (display:grid) {
+@supports (display: grid) {
   .emotion-0 {
     display: grid;
   }
@@ -23,8 +23,8 @@ exports[`css composition 1`] = `
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -40,8 +40,8 @@ exports[`css composition 1`] = `
 exports[`css composition stuff 1`] = `
 .emotion-0 {
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -53,8 +53,8 @@ exports[`css composition stuff 1`] = `
 exports[`css composition stuff 2`] = `
 .emotion-0 {
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -72,8 +72,8 @@ exports[`css composition with objects 1`] = `
   width: 30px;
   height: calc(40vw - 50px);
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -86,7 +86,7 @@ exports[`css composition with objects 1`] = `
   color: red;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
     color: green;
   }
@@ -206,7 +206,7 @@ exports[`css random expression 1`] = `
   background: green;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
     color: blue;
     width: 96px;

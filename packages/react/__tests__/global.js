@@ -17,6 +17,9 @@ test('basic', () => {
     <CacheProvider value={createCache({ key: 'css' })}>
       <Global
         styles={[
+          css`
+            @import url('something.com/file.css');
+          `,
           {
             html: {
               backgroundColor: 'hotpink'
@@ -34,10 +37,7 @@ test('basic', () => {
             '@font-face': {
               fontFamily: 'some-name'
             }
-          },
-          css`
-            @import url('something.com/file.css');
-          `
+          }
         ]}
       />
     </CacheProvider>,

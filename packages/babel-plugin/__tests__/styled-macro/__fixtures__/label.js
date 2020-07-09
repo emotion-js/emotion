@@ -19,3 +19,14 @@ class Thing {
   `
   const Test = () => <MiniCalWrap$ />
 }
+
+{
+  const Timeline = styled.ul``
+  Timeline.Item = styled.li``
+  Timeline.Item.Anchor = styled.a``
+}
+
+{
+  let Comp
+  Comp = styled.div``
+}

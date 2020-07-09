@@ -95,20 +95,7 @@ export interface ClassNamesProps {
 export function ClassNames(props: ClassNamesProps): ReactElement
 
 declare module 'react' {
-  interface DOMAttributes<T> {
+  interface Attributes {
     css?: Interpolation<Theme>
-  }
-}
-
-declare global {
-  namespace JSX {
-    /**
-     * Do we need to modify `LibraryManagedAttributes` too,
-     * to make `className` props optional when `css` props is specified?
-     */
-
-    interface IntrinsicAttributes {
-      css?: Interpolation<Theme>
-    }
   }
 }

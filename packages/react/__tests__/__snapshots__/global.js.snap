@@ -18,12 +18,6 @@ exports[`basic 1`] = `
     data-emotion="css-global"
   >
     
-    @font-face{font-family:some-name;}
-  </style>
-  <style
-    data-emotion="css-global"
-  >
-    
     @import url('something.com/file.css');
   </style>
   <style
@@ -37,6 +31,12 @@ exports[`basic 1`] = `
   >
     
     h1{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}
+  </style>
+  <style
+    data-emotion="css-global"
+  >
+    
+    @font-face{font-family:some-name;}
   </style>
 </head>
 `;

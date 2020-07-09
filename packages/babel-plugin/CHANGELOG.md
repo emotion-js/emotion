@@ -1,5 +1,24 @@
 # @emotion/babel-plugin
 
+## 11.0.0-next.13
+
+### Minor Changes
+
+- [`5e803106`](https://github.com/emotion-js/emotion/commit/5e803106d391b7c036bdf634318b80337a1d9b70) [#1893](https://github.com/emotion-js/emotion/pull/1893) Thanks [@Andarist](https://github.com/Andarist)! - Added support for converting assignment expressions to labels in cases like this:
+
+  ```js
+  styles = css``
+  Timeline.Item = styled.li``
+  Timeline.Item.Anchor = styled.a``
+  ```
+
+### Patch Changes
+
+- [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf) [#1817](https://github.com/emotion-js/emotion/pull/1817) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue in our tagged template expressions minifier which has caused whitespace before nested orphaned pseudo selectors being incorrectly removed. In a selector like `& :hover` the whitespace before colon has a semantic meaning and needs to be preserved.
+
+- Updated dependencies []:
+  - @emotion/serialize@0.11.15-next.2
+
 ## 11.0.0-next.12
 
 ### Minor Changes
@@ -97,6 +116,12 @@
 ### Patch Changes
 
 - [`b0ad4f0c`](https://github.com/emotion-js/emotion/commit/b0ad4f0c628813a42c4637857be9a969429db6f0) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Avoid transpiling vanilla emotion calls in already transpiled code to avoid double labels and such
+
+## 10.0.33
+
+### Patch Changes
+
+- [`b9f8ae3`](https://github.com/emotion-js/emotion/commit/b9f8ae3f6e18b0569376b9ed62e9d09d141adff8) [#1829](https://github.com/emotion-js/emotion/pull/1829) Thanks [@Andarist](https://github.com/Andarist)! - Skip appending source maps & labels to Babel-transpiled tagged template expressions.
 
 ## 10.0.29
 

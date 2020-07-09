@@ -1,5 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`@emotion/styled.macro already-transpiled-by-babel 1`] = `
+"/* eslint-disable */
+import styled from '@emotion/styled/macro'
+import _taggedTemplateLiteralLoose from '@babel/runtime/helpers/esm/taggedTemplateLiteralLoose'
+
+function _templateObject() {
+  var data = _taggedTemplateLiteralLoose(['\\\\n    color: hotpink;\\\\n  '])
+
+  _templateObject = function _templateObject() {
+    return data
+  }
+
+  return data
+}
+
+// source maps should not be appended
+const SomeComponent = styled('div')(_templateObject())
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+
+/* eslint-disable */
+import _taggedTemplateLiteralLoose from '@babel/runtime/helpers/esm/taggedTemplateLiteralLoose';
+
+function _templateObject() {
+  var data = _taggedTemplateLiteralLoose(['\\\\n    color: hotpink;\\\\n  ']);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+} // source maps should not be appended
+
+
+const SomeComponent =
+/*#__PURE__*/
+_styled('div', {
+  target: \\"ec90nws0\\",
+  label: \\"SomeComponent\\"
+})(_templateObject());"
+`;
+
 exports[`@emotion/styled.macro basic 1`] = `
 "import styled from '@emotion/styled/macro'
 
@@ -286,6 +331,17 @@ class Thing {
   const Test = () => <MiniCalWrap$ />
 }
 
+{
+  const Timeline = styled.ul\`\`
+  Timeline.Item = styled.li\`\`
+  Timeline.Item.Anchor = styled.a\`\`
+}
+
+{
+  let Comp
+  Comp = styled.div\`\`
+}
+
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -300,7 +356,7 @@ import { jsx } from '@emotion/react';
 
 class Thing {
   static SomeComponent = _styled(\\"div\\", {
-    target: \\"e2dh5502\\",
+    target: \\"e2dh5506\\",
     label: \\"SomeComponent\\"
   })(process.env.NODE_ENV === \\"production\\" ? {
     name: \\"3sn2xs\\",
@@ -308,11 +364,11 @@ class Thing {
   } : {
     name: \\"3sn2xs\\",
     styles: \\"color:hotpink\\",
-    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1tQyIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuLyogZXNsaW50LWRpc2FibGUgcmVhY3QvanN4LXBhc2NhbC1jYXNlICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG4iXX0= */\\",
+    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1tQyIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuLyogZXNsaW50LWRpc2FibGUgcmVhY3QvanN4LXBhc2NhbC1jYXNlICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG5cbntcbiAgY29uc3QgVGltZWxpbmUgPSBzdHlsZWQudWxgYFxuICBUaW1lbGluZS5JdGVtID0gc3R5bGVkLmxpYGBcbiAgVGltZWxpbmUuSXRlbS5BbmNob3IgPSBzdHlsZWQuYWBgXG59XG5cbntcbiAgbGV0IENvbXBcbiAgQ29tcCA9IHN0eWxlZC5kaXZgYFxufVxuIl19 */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   });
   BadIdeaComponent = _styled(\\"div\\", {
-    target: \\"e2dh5501\\",
+    target: \\"e2dh5505\\",
     label: \\"BadIdeaComponent\\"
   })(process.env.NODE_ENV === \\"production\\" ? {
     name: \\"1nzpx79\\",
@@ -320,7 +376,7 @@ class Thing {
   } : {
     name: \\"1nzpx79\\",
     styles: \\"background:hotpink\\",
-    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVMrQiIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuLyogZXNsaW50LWRpc2FibGUgcmVhY3QvanN4LXBhc2NhbC1jYXNlICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG4iXX0= */\\",
+    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVMrQiIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuLyogZXNsaW50LWRpc2FibGUgcmVhY3QvanN4LXBhc2NhbC1jYXNlICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG5cbntcbiAgY29uc3QgVGltZWxpbmUgPSBzdHlsZWQudWxgYFxuICBUaW1lbGluZS5JdGVtID0gc3R5bGVkLmxpYGBcbiAgVGltZWxpbmUuSXRlbS5BbmNob3IgPSBzdHlsZWQuYWBgXG59XG5cbntcbiAgbGV0IENvbXBcbiAgQ29tcCA9IHN0eWxlZC5kaXZgYFxufVxuIl19 */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   });
 }
@@ -328,7 +384,7 @@ class Thing {
 {
   // label should get sanitized
   const MiniCalWrap$ = _styled(\\"div\\", {
-    target: \\"e2dh5500\\",
+    target: \\"e2dh5504\\",
     label: \\"MiniCalWrap-\\"
   })(process.env.NODE_ENV === \\"production\\" ? {
     name: \\"hwfcu5\\",
@@ -336,11 +392,33 @@ class Thing {
   } : {
     name: \\"hwfcu5\\",
     styles: \\"color:red\\",
-    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWdCaUMiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuIl19 */\\",
+    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWdCaUMiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   });
 
   const Test = () => <MiniCalWrap$ />;
+}
+{
+  const Timeline = _styled(\\"ul\\", {
+    target: \\"e2dh5503\\",
+    label: \\"Timeline\\"
+  })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXVCNEIiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
+
+  Timeline.Item = _styled(\\"li\\", {
+    target: \\"e2dh5502\\",
+    label: \\"Timeline-Item\\"
+  })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXdCMkIiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
+  Timeline.Item.Anchor = _styled(\\"a\\", {
+    target: \\"e2dh5501\\",
+    label: \\"Timeline-Item-Anchor\\"
+  })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXlCaUMiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
+}
+{
+  let Comp;
+  Comp = _styled(\\"div\\", {
+    target: \\"e2dh5500\\",
+    label: \\"Comp\\"
+  })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQThCbUIiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
 }"
 `;
 

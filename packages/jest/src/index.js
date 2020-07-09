@@ -1,6 +1,4 @@
 // @flow
-import { createSerializer, print, test } from './serializer'
+export { createSerializer } from './create-serializer'
+export { createEnzymeSerializer } from './create-enzyme-serializer'
 export { matchers } from './matchers'
-
-export { createSerializer, print, test }
-export default { print, test }

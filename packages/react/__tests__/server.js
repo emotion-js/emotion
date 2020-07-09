@@ -21,8 +21,6 @@ import createEmotionServer from '@emotion/server/create-instance'
 
 expect.addSnapshotSerializer(HTMLSerializer)
 
-let fakeStylisPlugins = []
-
 let cases = {
   basic: {
     render: () => <div css={{ color: 'hotpink' }}>some hotpink text</div>
@@ -103,51 +101,6 @@ let cases = {
       )
     }
   },
-  'prefix option false': {
-    cache: () => createCache({ key: 'css', prefix: false }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option false with stylis plugins': {
-    cache: () =>
-      createCache({
-        key: 'css',
-        prefix: false,
-        stylisPlugins: fakeStylisPlugins
-      }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option true with stylis plugins': {
-    cache: () =>
-      createCache({
-        key: 'css',
-        prefix: true,
-        stylisPlugins: fakeStylisPlugins
-      }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option func false with stylis plugins': {
-    cache: () =>
-      createCache({
-        key: 'css',
-        prefix: () => false,
-        stylisPlugins: fakeStylisPlugins
-      }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option func false': {
-    cache: () => createCache({ key: 'css', prefix: () => false }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
 
   'global with keyframes': {
     render: () => {
@@ -182,25 +135,6 @@ let cases = {
         })} 1s`
       })
       return <SomeComponent />
-    }
-  },
-  '@import': {
-    render: () => {
-      // while there's nothing too special here
-      // @import has to be the first rule in the style element
-      return (
-        <React.Fragment>
-          <div css={{ color: 'hotpink' }} />
-          <Global
-            styles={css`
-              h1 {
-                color: hotpink;
-              }
-              @import url('https://some-url');
-            `}
-          />
-        </React.Fragment>
-      )
     }
   },
   ClassNames: {
