@@ -62,7 +62,8 @@
     "entrypoints": [
       ".",
       "serializer",
-      "enzyme-serializer"
+      "enzyme-serializer",
+      "native"
     ]
   }
 }

@@ -43,64 +43,8 @@ function toHaveStyleRule(
   received: *,
   property: *,
   value: *,
-  options?: { native?: boolean, target?: string, media?: string } = {}
+  options?: { target?: string, media?: string } = {}
 ) {
-  if (options.native) {
-    // received component is a React Native component
-    let style
-
-    if (typeof received.props === 'function') {
-      // the received component is rendered by enzyme shallow()
-      style = received
-        .dive()
-        .dive()
-        .dive()
-        .prop('style')
-    } else {
-      // the received component is rendered by native-testing-library
-      style = received.props.style
-    }
-
-    if (!style) {
-      return {
-        pass: false,
-        message: () => 'Received component has no styles.'
-      }
-    }
-
-    let styleValue
-
-    if (style instanceof Array) {
-      // react native style props can be an array
-      const styles = style.reduce((allStyles, styleObj) => ({
-        ...allStyles,
-        ...styleObj
-      }))
-
-      styleValue = styles[property]
-    } else {
-      styleValue = style[property]
-    }
-
-    if (!styleValue) {
-      return {
-        pass: false,
-        message: () => `Property not found: ${property}`
-      }
-    }
-
-    const pass = valueMatches({ value: styleValue }, value)
-
-    return {
-      pass,
-      message: () =>
-        `Expected ${property}${pass ? ' not ' : ' '}to match:\n` +
-        `  ${chalk.green(value)}\n` +
-        'Received:\n' +
-        `  ${chalk.red(styleValue)}`
-    }
-  }
-
   const { target, media } = options
   const classNames = getClassNamesFromNodes([received])
   const cssString = getStylesFromClassNames(classNames, getStyleElements())
@@ -156,3 +100,5 @@ function toHaveStyleRule(
 }
 
 export let matchers = { toHaveStyleRule }
+// valueMatches is also used by rn-matchers
+export { valueMatches }
