@@ -15,7 +15,7 @@ exports[`does not warn when valid values are passed for the content property 1`]
   content: 'another thing';
   content: url("http://www.example.com/test.png");
   content: counter(chapter_counter);
-  content: counters(section_counter,".");
+  content: counters(section_counter, ".");
   content: attr(value string);
 }
 

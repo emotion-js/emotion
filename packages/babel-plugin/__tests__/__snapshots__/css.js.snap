@@ -33,6 +33,45 @@ var _ref = process.env.NODE_ENV === \\"production\\" ? {
 const SomeComponent = () => <div css={_ref} />;"
 `;
 
+exports[`emotion-babel-plugin css already-transpiled-by-babel 1`] = `
+"/* eslint-disable */
+import css from '@emotion/css'
+import _taggedTemplateLiteralLoose from '@babel/runtime/helpers/esm/taggedTemplateLiteralLoose'
+
+function _templateObject() {
+  var data = _taggedTemplateLiteralLoose(['\\\\n    color: hotpink;\\\\n  '])
+
+  _templateObject = function _templateObject() {
+    return data
+  }
+
+  return data
+}
+
+// no label & source maps should be appended
+const fooStyles = css(_templateObject())
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+/* eslint-disable */
+import css from '@emotion/css';
+import _taggedTemplateLiteralLoose from '@babel/runtime/helpers/esm/taggedTemplateLiteralLoose';
+
+function _templateObject() {
+  var data = _taggedTemplateLiteralLoose(['\\\\n    color: hotpink;\\\\n  ']);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+} // no label & source maps should be appended
+
+
+const fooStyles = css(_templateObject());"
+`;
+
 exports[`emotion-babel-plugin css basic 1`] = `
 "import { css } from '@emotion/react'
 
@@ -710,7 +749,7 @@ import { css } from '@emotion/react';
 function media(...args) {
   return (
     /*#__PURE__*/
-    css(\\"@media (min-width:100px){\\",
+    css(\\"@media (min-width: 100px){\\",
     /*#__PURE__*/
     css(...args), \\";}\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:media;\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHWSIsImZpbGUiOiJ0YWdnZWQtdGVtcGxhdGUtYXJncy1mb3J3YXJkZWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuZnVuY3Rpb24gbWVkaWEoLi4uYXJncykge1xuICByZXR1cm4gY3NzYFxuICAgIEBtZWRpYSAobWluLXdpZHRoOiAxMDBweCkge1xuICAgICAgJHtjc3MoLi4uYXJncyl9O1xuICAgIH1cbiAgYFxufVxuXG5jb25zdCB0ZXN0ID0gY3NzYFxuICAke21lZGlhYGNvbG9yOiByZWQ7YH07XG5gXG4iXX0= */\\")
   );

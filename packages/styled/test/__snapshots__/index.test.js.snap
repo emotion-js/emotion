@@ -6,7 +6,7 @@ exports[`styled basic render 1`] = `
   font-size: 20px;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
     color: blue;
   }

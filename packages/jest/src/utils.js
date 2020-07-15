@@ -18,11 +18,6 @@ export function findLast<T>(arr: T[], predicate: T => boolean) {
   }
 }
 
-export const RULE_TYPES = {
-  media: 'media',
-  rule: 'rule'
-}
-
 function getClassNames(selectors: any, classes?: string) {
   return classes ? selectors.concat(classes.split(' ')) : selectors
 }
@@ -251,14 +246,15 @@ export function hasClassNames(
 }
 
 export function getMediaRules(rules: Array<Object>, media: string): Array<any> {
-  return rules
-    .filter(rule => {
-      const isMediaMatch = rule.media
-        ? rule.media.replace(/\s/g, '').includes(media.replace(/\s/g, ''))
-        : false
-      return rule.type === RULE_TYPES.media && isMediaMatch
-    })
-    .reduce((mediaRules, mediaRule) => mediaRules.concat(mediaRule.rules), [])
+  return flatMap(
+    rules.filter(rule => {
+      if (rule.type !== '@media') {
+        return false
+      }
+      return rule.value.replace(/\s/g, '').includes(media.replace(/\s/g, ''))
+    }),
+    media => media.children
+  )
 }
 
 export function isPrimitive(test: any) {

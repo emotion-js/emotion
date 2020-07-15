@@ -1,52 +1,46 @@
 // @flow
 import { StyleSheet } from '@emotion/sheet'
 import { type EmotionCache, type SerializedStyles } from '@emotion/utils'
-import Stylis from '@emotion/stylis'
+import {
+  serialize,
+  compile,
+  middleware,
+  rulesheet,
+  stringify,
+  prefixer
+} from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
-import { Sheet, removeLabel, ruleSheet } from './stylis-plugins'
+import {
+  compat,
+  removeLabel,
+  createUnsafeSelectorsAlarm,
+  incorrectImportAlarm
+} from './stylis-plugins'
 import type { StylisPlugin } from './types'
 
 let isBrowser = typeof document !== 'undefined'
 
-export type PrefixOption =
-  | boolean
-  | ((key: string, value: string, context: 1 | 2 | 3) => boolean)
-type StylisPlugins = StylisPlugin[] | StylisPlugin
-
 export type Options = {
   nonce?: string,
-  stylisPlugins?: StylisPlugins,
-  prefix?: PrefixOption,
+  stylisPlugins?: StylisPlugin[],
   key: string,
   container?: HTMLElement,
   speedy?: boolean,
   prepend?: boolean
 }
 
-let rootServerStylisCache = {}
-
 let getServerStylisCache = isBrowser
   ? undefined
   : weakMemoize(() => {
-      let getCache = weakMemoize(() => ({}))
-      let prefixTrueCache = {}
-      let prefixFalseCache = {}
-      return prefix => {
-        if (prefix === undefined || prefix === true) {
-          return prefixTrueCache
-        }
-        if (prefix === false) {
-          return prefixFalseCache
-        }
-        return getCache(prefix)
-      }
+      let cache = {}
+      return name => cache[name]
     })
 
+const defaultStylisPlugins = [prefixer]
 let movedStyles = false
 
 let createCache = (options: Options): EmotionCache => {
   let key = options.key
-  let stylisOptions
 
   if (!key) {
     throw new Error(
@@ -66,13 +60,7 @@ let createCache = (options: Options): EmotionCache => {
     })
   }
 
-  if (options.prefix !== undefined) {
-    stylisOptions = {
-      prefix: options.prefix
-    }
-  }
-
-  let stylis = new Stylis(stylisOptions)
+  const stylisPlugins = options.stylisPlugins || defaultStylisPlugins
 
   if (process.env.NODE_ENV !== 'production') {
     // $FlowFixMe
@@ -87,7 +75,7 @@ let createCache = (options: Options): EmotionCache => {
   let container: HTMLElement
   const nodesToHydrate = []
   if (isBrowser) {
-    container = options.container || document.head
+    container = options.container || ((document.head: any): HTMLHeadElement)
 
     Array.prototype.forEach.call(
       document.querySelectorAll(`style[data-emotion]`),
@@ -114,8 +102,33 @@ let createCache = (options: Options): EmotionCache => {
     shouldCache: boolean
   ) => string | void
 
+  const omnipresentPlugins = [compat, removeLabel]
+
+  if (process.env.NODE_ENV !== 'production') {
+    omnipresentPlugins.push(
+      createUnsafeSelectorsAlarm({
+        get compat() {
+          return cache.compat
+        }
+      }),
+      incorrectImportAlarm
+    )
+  }
+
   if (isBrowser) {
-    stylis.use(options.stylisPlugins)(ruleSheet)
+    let currentSheet
+
+    const finalizingPlugins = [
+      stringify,
+      rulesheet(rule => {
+        currentSheet.insert(rule)
+      })
+    ]
+
+    const serializer = middleware(
+      omnipresentPlugins.concat(stylisPlugins, finalizingPlugins)
+    )
+    const stylis = styles => serialize(compile(styles), serializer)
 
     insert = (
       selector: string,
@@ -123,38 +136,39 @@ let createCache = (options: Options): EmotionCache => {
       sheet: StyleSheet,
       shouldCache: boolean
     ): void => {
-      let name = serialized.name
-      Sheet.current = sheet
+      currentSheet = sheet
       if (
         process.env.NODE_ENV !== 'production' &&
         serialized.map !== undefined
       ) {
-        let map = serialized.map
-        Sheet.current = {
+        currentSheet = {
           insert: (rule: string) => {
-            sheet.insert(rule + map)
+            sheet.insert(rule + ((serialized.map: any): string))
           }
         }
       }
-      stylis(selector, serialized.styles)
+
+      stylis(selector ? `${selector}{${serialized.styles}}` : serialized.styles)
+
       if (shouldCache) {
-        cache.inserted[name] = true
+        cache.inserted[serialized.name] = true
       }
     }
   } else {
-    stylis.use(removeLabel)
-    let serverStylisCache = rootServerStylisCache
-    if (options.stylisPlugins || options.prefix !== undefined) {
-      stylis.use(options.stylisPlugins)
-      // $FlowFixMe
-      serverStylisCache = getServerStylisCache(
-        options.stylisPlugins || rootServerStylisCache
-      )(options.prefix)
-    }
+    const finalizingPlugins = [stringify]
+    const serializer = middleware(
+      omnipresentPlugins.concat(stylisPlugins, finalizingPlugins)
+    )
+    const stylis = styles => serialize(compile(styles), serializer)
+
+    // $FlowFixMe
+    let serverStylisCache = getServerStylisCache(stylisPlugins)
     let getRules = (selector: string, serialized: SerializedStyles): string => {
       let name = serialized.name
       if (serverStylisCache[name] === undefined) {
-        serverStylisCache[name] = stylis(selector, serialized.styles)
+        serverStylisCache[name] = stylis(
+          selector ? `${selector}{${serialized.styles}}` : serialized.styles
+        )
       }
       return serverStylisCache[name]
     }
@@ -200,70 +214,11 @@ let createCache = (options: Options): EmotionCache => {
     }
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    // https://esbench.com/bench/5bf7371a4cd7e6009ef61d0a
-    const commentStart = /\/\*/g
-    const commentEnd = /\*\//g
-
-    stylis.use((context, content) => {
-      switch (context) {
-        case -1: {
-          while (commentStart.test(content)) {
-            commentEnd.lastIndex = commentStart.lastIndex
-
-            if (commentEnd.test(content)) {
-              commentStart.lastIndex = commentEnd.lastIndex
-              continue
-            }
-
-            throw new Error(
-              'Your styles have an unterminated comment ("/*" without corresponding "*/").'
-            )
-          }
-
-          commentStart.lastIndex = 0
-          break
-        }
-      }
-    })
-
-    stylis.use((context, content, selectors) => {
-      switch (context) {
-        case -1: {
-          const flag =
-            'emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason'
-          const unsafePseudoClasses = content.match(
-            /(:first|:nth|:nth-last)-child/g
-          )
-
-          if (unsafePseudoClasses && cache.compat !== true) {
-            unsafePseudoClasses.forEach(unsafePseudoClass => {
-              const ignoreRegExp = new RegExp(
-                `${unsafePseudoClass}.*\\/\\* ${flag} \\*\\/`
-              )
-              const ignore = ignoreRegExp.test(content)
-
-              if (unsafePseudoClass && !ignore) {
-                console.error(
-                  `The pseudo class "${unsafePseudoClass}" is potentially unsafe when doing server-side rendering. Try changing it to "${
-                    unsafePseudoClass.split('-child')[0]
-                  }-of-type".`
-                )
-              }
-            })
-          }
-
-          break
-        }
-      }
-    })
-  }
-
   const cache: EmotionCache = {
     key,
     sheet: new StyleSheet({
       key,
-      container,
+      container: ((container: any): HTMLElement),
       nonce: options.nonce,
       speedy: options.speedy,
       prepend: options.prepend

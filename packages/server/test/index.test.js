@@ -5,7 +5,7 @@
 
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { getComponents, prettyifyCritical, getInjectedRules } from './util'
+import { getComponents, prettifyCritical, getInjectedRules } from './util'
 import { JSDOM } from 'jsdom'
 import { ignoreConsoleErrors } from 'test-utils'
 
@@ -17,14 +17,10 @@ describe('extractCritical', () => {
   test('returns static css', () => {
     const { Page1, Page2 } = getComponents(emotion, reactEmotion)
     expect(
-      prettyifyCritical(
-        emotionServer.extractCritical(renderToString(<Page1 />))
-      )
+      prettifyCritical(emotionServer.extractCritical(renderToString(<Page1 />)))
     ).toMatchSnapshot()
     expect(
-      prettyifyCritical(
-        emotionServer.extractCritical(renderToString(<Page2 />))
-      )
+      prettifyCritical(emotionServer.extractCritical(renderToString(<Page2 />)))
     ).toMatchSnapshot()
   })
 
@@ -53,7 +49,7 @@ describe('hydration', () => {
     const { html, ids, css } = emotionServer.extractCritical(
       renderToString(<Page1 />)
     )
-    expect(prettyifyCritical({ html, css, ids })).toMatchSnapshot()
+    expect(prettifyCritical({ html, css, ids })).toMatchSnapshot()
     const { window } = new JSDOM(html)
     global.document = window.document
     global.window = window

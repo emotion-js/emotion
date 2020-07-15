@@ -183,7 +183,7 @@ test('speedy option from a custom cache is inherited for <Global/> styles', () =
   })
   renderer.create(
     <CacheProvider value={cache}>
-      <Global styles={{ html: { fontSize: 16 } }} />>
+      <Global styles={{ html: { fontSize: 16 } }} />
     </CacheProvider>
   )
   expect(safeQuerySelector('body style').textContent).toEqual('')

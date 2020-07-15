@@ -47,7 +47,7 @@ export const insertStyles = (
     let current = serialized
     do {
       let maybeStyles = cache.insert(
-        `.${className}`,
+        serialized === current ? `.${className}` : '',
         current,
         cache.sheet,
         true
