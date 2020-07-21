@@ -195,7 +195,7 @@
     "benchmark": "^2.1.4",
     "bolt-check": "^0.3.0",
     "bundlesize": "^0.13.2",
-    "codecov": "^2.3.1",
+    "codecov": "^3.7.1",
     "cssjanus": "^1.2.0",
     "dtslint": "^0.3.0",
     "enzyme": "^3.7.0",
