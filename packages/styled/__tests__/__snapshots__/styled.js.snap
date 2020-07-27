@@ -6,7 +6,7 @@ exports[`styled basic render 1`] = `
   font-size: 20px;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
     color: blue;
   }
@@ -74,8 +74,8 @@ exports[`styled composing components 1`] = `
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
 }
 
@@ -445,6 +445,7 @@ exports[`styled object as style 1`] = `
 exports[`styled object composition 1`] = `
 .emotion-0:hover {
   -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
@@ -452,7 +453,6 @@ exports[`styled object composition 1`] = `
 .emotion-0 {
   border-radius: 50%;
   -webkit-transition: -webkit-transform 400ms ease-in-out;
-  -webkit-transition: transform 400ms ease-in-out;
   transition: transform 400ms ease-in-out;
   border: 3px solid currentColor;
   width: 96px;

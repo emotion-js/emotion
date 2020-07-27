@@ -1,5 +1,12 @@
 # @emotion/primitives-core
 
+## 11.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies [[`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf)]:
+  - @emotion/react@11.0.0-next.13
+
 ## 11.0.0-next.12
 
 ### Patch Changes

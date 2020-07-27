@@ -423,3 +423,12 @@ const StyledButton = StyledDiv.withComponent('button')
     e
   }}
 />
+
+const StyledWithAs = styled('div')`
+  display: flex;
+`
+const Section = styled('section')`
+  color: hotpink;
+`
+;<StyledWithAs as="section" />
+;<StyledWithAs as={Section} />

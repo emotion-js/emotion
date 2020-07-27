@@ -17,71 +17,28 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
   font-family: 'Patrick Hand SC';
   font-style: normal;
   font-weight: 400;
-  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;
-}
-
-@-webkit-keyframes animation-i9f7qw-bounce {
-  from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-  }
-
-  40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-30px,0);
-    -ms-transform: translate3d(0,-30px,0);
-    transform: translate3d(0,-30px,0);
-  }
-
-  70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-15px,0);
-    -ms-transform: translate3d(0,-15px,0);
-    transform: translate3d(0,-15px,0);
-  }
-
-  90% {
-    -webkit-transform: translate3d(0,-4px,0);
-    -ms-transform: translate3d(0,-4px,0);
-    transform: translate3d(0,-4px,0);
-  }
+  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
 }
 
 @keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-30px,0);
-    -ms-transform: translate3d(0,-30px,0);
-    transform: translate3d(0,-30px,0);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -30px, 0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-15px,0);
-    -ms-transform: translate3d(0,-15px,0);
-    transform: translate3d(0,-15px,0);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -15px, 0);
   }
 
   90% {
-    -webkit-transform: translate3d(0,-4px,0);
-    -ms-transform: translate3d(0,-4px,0);
-    transform: translate3d(0,-4px,0);
+    transform: translate3d(0, -4px, 0);
   }
 }
 
@@ -90,10 +47,10 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1icu1xs-hoverStyles:hover {
-  color: white;
+  color: hotpink;
   background-color: lightgray;
   border-color: aqua;
-  box-shadow: 15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
+  box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
 .some-key-k26awr {
@@ -102,9 +59,6 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 
 .no-prefix {
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -114,14 +68,13 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-14e1j2p-hoverStyles-Something_Main:hover {
-  color: white;
+  color: hotpink;
   background-color: lightgray;
   border-color: aqua;
-  box-shadow: 15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
+  box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
 .some-key-1h1w8ez-Image {
-  -webkit-animation: animation-i9f7qw-bounce;
   animation: animation-i9f7qw-bounce;
   border-radius: 50%;
   height: 50px;
@@ -135,7 +88,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-127stik {
-  color: #0147ae;
+  color: hotpink;
 }
 
 .some-global-199 {
@@ -144,7 +97,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-9rpmvg {
-  color: #014954;
+  color: hotpink;
 }
 
 .some-global-198 {
@@ -153,7 +106,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1hzr4kc {
-  color: #014afd;
+  color: hotpink;
 }
 
 .some-global-197 {
@@ -162,7 +115,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-ogzoe7 {
-  color: #014cac;
+  color: hotpink;
 }
 
 .some-global-196 {
@@ -171,7 +124,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-6ng8h1 {
-  color: #014e5e;
+  color: hotpink;
 }
 
 .some-global-195 {
@@ -180,7 +133,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-zv4lth {
-  color: #015015;
+  color: hotpink;
 }
 
 .some-global-194 {
@@ -189,7 +142,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ui45lz {
-  color: #0151d0;
+  color: hotpink;
 }
 
 .some-global-193 {
@@ -198,7 +151,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1h86azu {
-  color: #015391;
+  color: hotpink;
 }
 
 .some-global-192 {
@@ -207,7 +160,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1piy66f {
-  color: #015555;
+  color: hotpink;
 }
 
 .some-global-191 {
@@ -216,7 +169,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-a19qo7 {
-  color: #01571f;
+  color: hotpink;
 }
 
 .some-global-190 {
@@ -225,7 +178,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-wj15j7 {
-  color: #0158ed;
+  color: hotpink;
 }
 
 .some-global-189 {
@@ -234,7 +187,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1hrwn8e {
-  color: #015ac0;
+  color: hotpink;
 }
 
 .some-global-188 {
@@ -243,7 +196,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-17myt6d {
-  color: #015c99;
+  color: hotpink;
 }
 
 .some-global-187 {
@@ -252,7 +205,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-2jtlz5 {
-  color: #015e76;
+  color: hotpink;
 }
 
 .some-global-186 {
@@ -261,7 +214,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1xu1wg1 {
-  color: #016058;
+  color: hotpink;
 }
 
 .some-global-185 {
@@ -270,7 +223,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1wmxn4h {
-  color: #016240;
+  color: hotpink;
 }
 
 .some-global-184 {
@@ -279,7 +232,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-lrd20s {
-  color: #01642d;
+  color: hotpink;
 }
 
 .some-global-183 {
@@ -288,7 +241,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-r7njcf {
-  color: #01661f;
+  color: hotpink;
 }
 
 .some-global-182 {
@@ -297,7 +250,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-9lx5bg {
-  color: #016817;
+  color: hotpink;
 }
 
 .some-global-181 {
@@ -306,7 +259,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-16v8jwc {
-  color: #016a14;
+  color: hotpink;
 }
 
 .some-global-180 {
@@ -315,7 +268,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-14fn903 {
-  color: #016c17;
+  color: hotpink;
 }
 
 .some-global-179 {
@@ -324,7 +277,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1h1mfz2 {
-  color: #016e1f;
+  color: hotpink;
 }
 
 .some-global-178 {
@@ -333,7 +286,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-11mzquy {
-  color: #01702e;
+  color: hotpink;
 }
 
 .some-global-177 {
@@ -342,7 +295,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-3930ld {
-  color: #017243;
+  color: hotpink;
 }
 
 .some-global-176 {
@@ -351,7 +304,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1lby04m {
-  color: #01745d;
+  color: hotpink;
 }
 
 .some-global-175 {
@@ -360,7 +313,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-hp7r6o {
-  color: #01767e;
+  color: hotpink;
 }
 
 .some-global-174 {
@@ -369,7 +322,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-98uzk5 {
-  color: #0178a5;
+  color: hotpink;
 }
 
 .some-global-173 {
@@ -378,7 +331,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1krg3ya {
-  color: #017ad2;
+  color: hotpink;
 }
 
 .some-global-172 {
@@ -387,7 +340,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ktw7xe {
-  color: #017d06;
+  color: hotpink;
 }
 
 .some-global-171 {
@@ -396,7 +349,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-ck0owr {
-  color: #017f40;
+  color: hotpink;
 }
 
 .some-global-170 {
@@ -405,7 +358,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1xcxshi {
-  color: #018182;
+  color: hotpink;
 }
 
 .some-global-169 {
@@ -414,7 +367,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ps9cly {
-  color: #0183c9;
+  color: hotpink;
 }
 
 .some-global-168 {
@@ -423,7 +376,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1yvnnz5 {
-  color: #018618;
+  color: hotpink;
 }
 
 .some-global-167 {
@@ -432,7 +385,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1c10kwm {
-  color: #01886e;
+  color: hotpink;
 }
 
 .some-global-166 {
@@ -441,7 +394,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-hkdnb5 {
-  color: #018acc;
+  color: hotpink;
 }
 
 .some-global-165 {
@@ -450,7 +403,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1v2yh0n {
-  color: #018d30;
+  color: hotpink;
 }
 
 .some-global-164 {
@@ -459,7 +412,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1jzftor {
-  color: #018f9c;
+  color: hotpink;
 }
 
 .some-global-163 {
@@ -468,7 +421,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-wr17pn {
-  color: #019210;
+  color: hotpink;
 }
 
 .some-global-162 {
@@ -477,7 +430,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-hf7itv {
-  color: #01948b;
+  color: hotpink;
 }
 
 .some-global-161 {
@@ -486,7 +439,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-6qzhcg {
-  color: #01970e;
+  color: hotpink;
 }
 
 .some-global-160 {
@@ -495,7 +448,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1avzbzg {
-  color: #01999a;
+  color: hotpink;
 }
 
 .some-global-159 {
@@ -504,7 +457,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-o92y19 {
-  color: #019c2d;
+  color: hotpink;
 }
 
 .some-global-158 {
@@ -513,7 +466,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ljsuqn {
-  color: #019ec9;
+  color: hotpink;
 }
 
 .some-global-157 {
@@ -522,7 +475,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-9zagsq {
-  color: #01a16d;
+  color: hotpink;
 }
 
 .some-global-156 {
@@ -531,7 +484,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ypl0i8 {
-  color: #01a41a;
+  color: hotpink;
 }
 
 .some-global-155 {
@@ -540,7 +493,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-rzsrsa {
-  color: #01a6d0;
+  color: hotpink;
 }
 
 .some-global-154 {
@@ -549,7 +502,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-ce7d51 {
-  color: #01a98f;
+  color: hotpink;
 }
 
 .some-global-153 {
@@ -558,7 +511,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-tknw4p {
-  color: #01ac57;
+  color: hotpink;
 }
 
 .some-global-152 {
@@ -567,7 +520,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-zgq7e2 {
-  color: #01af28;
+  color: hotpink;
 }
 
 .some-global-151 {
@@ -576,7 +529,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-16xxcse {
-  color: #01b203;
+  color: hotpink;
 }
 
 .some-global-150 {
@@ -585,7 +538,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-rvw1un {
-  color: #01b4e8;
+  color: hotpink;
 }
 
 .some-global-149 {
@@ -594,7 +547,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-br1uza {
-  color: #01b7d7;
+  color: hotpink;
 }
 
 .some-global-148 {
@@ -603,7 +556,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1o91asl {
-  color: #01bad0;
+  color: hotpink;
 }
 
 .some-global-147 {
@@ -612,7 +565,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1nn9pws {
-  color: #01bdd3;
+  color: hotpink;
 }
 
 .some-global-146 {
@@ -621,7 +574,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-upbaf3 {
-  color: #01c0e0;
+  color: hotpink;
 }
 
 .some-global-145 {
@@ -630,7 +583,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-10168f0 {
-  color: #01c3f9;
+  color: hotpink;
 }
 
 .some-global-144 {
@@ -639,7 +592,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-18beinc {
-  color: #01c71c;
+  color: hotpink;
 }
 
 .some-global-143 {
@@ -648,7 +601,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-11m1dja {
-  color: #01ca4b;
+  color: hotpink;
 }
 
 .some-global-142 {
@@ -657,7 +610,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-h4at5s {
-  color: #01cd85;
+  color: hotpink;
 }
 
 .some-global-141 {
@@ -666,7 +619,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-ejnakw {
-  color: #01d0cb;
+  color: hotpink;
 }
 
 .some-global-140 {
@@ -675,7 +628,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1o2ovve {
-  color: #01d41d;
+  color: hotpink;
 }
 
 .some-global-139 {
@@ -684,7 +637,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-ac9phq {
-  color: #01d77b;
+  color: hotpink;
 }
 
 .some-global-138 {
@@ -693,7 +646,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1phm45w {
-  color: #01dae6;
+  color: hotpink;
 }
 
 .some-global-137 {
@@ -702,7 +655,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-159l0ul {
-  color: #01de5d;
+  color: hotpink;
 }
 
 .some-global-136 {
@@ -711,7 +664,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-ia21oa {
-  color: #01e1e2;
+  color: hotpink;
 }
 
 .some-global-135 {
@@ -720,7 +673,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-tz2duq {
-  color: #01e574;
+  color: hotpink;
 }
 
 .some-global-134 {
@@ -729,7 +682,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-4xg4ag {
-  color: #01e913;
+  color: hotpink;
 }
 
 .some-global-133 {
@@ -738,7 +691,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-pur9fb {
-  color: #01ecc0;
+  color: hotpink;
 }
 
 .some-global-132 {
@@ -747,7 +700,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-6nme6c {
-  color: #01f07c;
+  color: hotpink;
 }
 
 .some-global-131 {
@@ -756,7 +709,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-13nv4rl {
-  color: #01f446;
+  color: hotpink;
 }
 
 .some-global-130 {
@@ -765,7 +718,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-155bmea {
-  color: #01f820;
+  color: hotpink;
 }
 
 .some-global-129 {
@@ -774,7 +727,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-10s2f9x {
-  color: #01fc08;
+  color: hotpink;
 }
 
 .some-global-128 {
@@ -783,7 +736,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-178vhlt {
-  color: #020000;
+  color: hotpink;
 }
 
 .some-global-127 {
@@ -792,7 +745,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1hsnkst {
-  color: #020408;
+  color: hotpink;
 }
 
 .some-global-126 {
@@ -801,7 +754,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-zuvm9o {
-  color: #020821;
+  color: hotpink;
 }
 
 .some-global-125 {
@@ -810,7 +763,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1tl89bm {
-  color: #020c4a;
+  color: hotpink;
 }
 
 .some-global-124 {
@@ -819,7 +772,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-wpx7q8 {
-  color: #021084;
+  color: hotpink;
 }
 
 .some-global-123 {
@@ -828,7 +781,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1tehwar {
-  color: #0214d0;
+  color: hotpink;
 }
 
 .some-global-122 {
@@ -837,7 +790,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-ms9j35 {
-  color: #02192e;
+  color: hotpink;
 }
 
 .some-global-121 {
@@ -846,7 +799,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-m4u91z {
-  color: #021d9f;
+  color: hotpink;
 }
 
 .some-global-120 {
@@ -855,7 +808,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-3ci19s {
-  color: #022222;
+  color: hotpink;
 }
 
 .some-global-119 {
@@ -864,7 +817,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-evutcw {
-  color: #0226b9;
+  color: hotpink;
 }
 
 .some-global-118 {
@@ -873,7 +826,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1g07rpc {
-  color: #022b64;
+  color: hotpink;
 }
 
 .some-global-117 {
@@ -882,7 +835,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-16ejwut {
-  color: #023023;
+  color: hotpink;
 }
 
 .some-global-116 {
@@ -891,7 +844,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-6gxm9 {
-  color: #0234f7;
+  color: hotpink;
 }
 
 .some-global-115 {
@@ -900,7 +853,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1mbin8s {
-  color: #0239e1;
+  color: hotpink;
 }
 
 .some-global-114 {
@@ -909,7 +862,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1cj8bm0 {
-  color: #023ee1;
+  color: hotpink;
 }
 
 .some-global-113 {
@@ -918,7 +871,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-r5e3ls {
-  color: #0243f7;
+  color: hotpink;
 }
 
 .some-global-112 {
@@ -927,7 +880,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-uupi2e {
-  color: #024925;
+  color: hotpink;
 }
 
 .some-global-111 {
@@ -936,7 +889,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-zr22cf {
-  color: #024e6a;
+  color: hotpink;
 }
 
 .some-global-110 {
@@ -945,7 +898,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-13wmhd1 {
-  color: #0253c8;
+  color: hotpink;
 }
 
 .some-global-109 {
@@ -954,7 +907,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-i8sgdi {
-  color: #02593f;
+  color: hotpink;
 }
 
 .some-global-108 {
@@ -963,7 +916,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-k0avx5 {
-  color: #025ed1;
+  color: hotpink;
 }
 
 .some-global-107 {
@@ -972,7 +925,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-6dl9n7 {
-  color: #02647c;
+  color: hotpink;
 }
 
 .some-global-106 {
@@ -981,7 +934,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1fz7vvs {
-  color: #026a44;
+  color: hotpink;
 }
 
 .some-global-105 {
@@ -990,7 +943,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-17n3gda {
-  color: #027027;
+  color: hotpink;
 }
 
 .some-global-104 {
@@ -999,7 +952,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1qfsvxb {
-  color: #027627;
+  color: hotpink;
 }
 
 .some-global-103 {
@@ -1008,7 +961,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-4tl6t0 {
-  color: #027c46;
+  color: hotpink;
 }
 
 .some-global-102 {
@@ -1017,7 +970,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1rryha9 {
-  color: #028283;
+  color: hotpink;
 }
 
 .some-global-101 {
@@ -1026,7 +979,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-ejgs3d {
-  color: #0288df;
+  color: hotpink;
 }
 
 .some-global-100 {
@@ -1035,7 +988,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1h1preu {
-  color: #028f5c;
+  color: hotpink;
 }
 
 .some-global-99 {
@@ -1044,7 +997,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ewulib {
-  color: #0295fb;
+  color: hotpink;
 }
 
 .some-global-98 {
@@ -1053,7 +1006,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1g9aqxv {
-  color: #029cbc;
+  color: hotpink;
 }
 
 .some-global-97 {
@@ -1062,7 +1015,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1lxxdaw {
-  color: #02a3a1;
+  color: hotpink;
 }
 
 .some-global-96 {
@@ -1071,7 +1024,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-x21xi2 {
-  color: #02aaab;
+  color: hotpink;
 }
 
 .some-global-95 {
@@ -1080,7 +1033,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-133obvl {
-  color: #02b1da;
+  color: hotpink;
 }
 
 .some-global-94 {
@@ -1089,7 +1042,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-o9oiih {
-  color: #02b931;
+  color: hotpink;
 }
 
 .some-global-93 {
@@ -1098,7 +1051,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-16h21pl {
-  color: #02c0b0;
+  color: hotpink;
 }
 
 .some-global-92 {
@@ -1107,7 +1060,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-scfkxf {
-  color: #02c859;
+  color: hotpink;
 }
 
 .some-global-91 {
@@ -1116,7 +1069,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1u10ji2 {
-  color: #02d02d;
+  color: hotpink;
 }
 
 .some-global-90 {
@@ -1125,7 +1078,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-i9peew {
-  color: #02d82e;
+  color: hotpink;
 }
 
 .some-global-89 {
@@ -1134,7 +1087,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-13q89pq {
-  color: #02e05c;
+  color: hotpink;
 }
 
 .some-global-88 {
@@ -1143,7 +1096,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-qcun1q {
-  color: #02e8ba;
+  color: hotpink;
 }
 
 .some-global-87 {
@@ -1152,7 +1105,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-eb1awr {
-  color: #02f14a;
+  color: hotpink;
 }
 
 .some-global-86 {
@@ -1161,7 +1114,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1sllz3x {
-  color: #02fa0c;
+  color: hotpink;
 }
 
 .some-global-85 {
@@ -1170,7 +1123,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1oevn2u {
-  color: #030303;
+  color: hotpink;
 }
 
 .some-global-84 {
@@ -1179,7 +1132,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-zjzdc9 {
-  color: #030c31;
+  color: hotpink;
 }
 
 .some-global-83 {
@@ -1188,7 +1141,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-6wqs48 {
-  color: #031597;
+  color: hotpink;
 }
 
 .some-global-82 {
@@ -1197,7 +1150,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1jrdvsc {
-  color: #031f38;
+  color: hotpink;
 }
 
 .some-global-81 {
@@ -1206,7 +1159,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1vea8p9 {
-  color: #032916;
+  color: hotpink;
 }
 
 .some-global-80 {
@@ -1215,7 +1168,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-vekko5 {
-  color: #033333;
+  color: hotpink;
 }
 
 .some-global-79 {
@@ -1224,7 +1177,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ixaqkz {
-  color: #033d92;
+  color: hotpink;
 }
 
 .some-global-78 {
@@ -1233,7 +1186,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1juqtoj {
-  color: #034835;
+  color: hotpink;
 }
 
 .some-global-77 {
@@ -1242,7 +1195,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-cyahzj {
-  color: #03531e;
+  color: hotpink;
 }
 
 .some-global-76 {
@@ -1251,7 +1204,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1559ay6 {
-  color: #035e51;
+  color: hotpink;
 }
 
 .some-global-75 {
@@ -1260,7 +1213,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-kgdim {
-  color: #0369d0;
+  color: hotpink;
 }
 
 .some-global-74 {
@@ -1269,7 +1222,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-18cyyxf {
-  color: #03759f;
+  color: hotpink;
 }
 
 .some-global-73 {
@@ -1278,7 +1231,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-z0i9x2 {
-  color: #0381c1;
+  color: hotpink;
 }
 
 .some-global-72 {
@@ -1287,7 +1240,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-gkpvss {
-  color: #038e39;
+  color: hotpink;
 }
 
 .some-global-71 {
@@ -1296,7 +1249,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-weerr6 {
-  color: #039b0b;
+  color: hotpink;
 }
 
 .some-global-70 {
@@ -1305,7 +1258,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-sw7yje {
-  color: #03a83b;
+  color: hotpink;
 }
 
 .some-global-69 {
@@ -1314,7 +1267,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-12qk6uq {
-  color: #03b5cc;
+  color: hotpink;
 }
 
 .some-global-68 {
@@ -1323,7 +1276,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-8e7cu8 {
-  color: #03c3c4;
+  color: hotpink;
 }
 
 .some-global-67 {
@@ -1332,7 +1285,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-6bla26 {
-  color: #03d226;
+  color: hotpink;
 }
 
 .some-global-66 {
@@ -1341,7 +1294,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-35jwvs {
-  color: #03e0f8;
+  color: hotpink;
 }
 
 .some-global-65 {
@@ -1350,7 +1303,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1nrgdft {
-  color: #03f03f;
+  color: hotpink;
 }
 
 .some-global-64 {
@@ -1359,7 +1312,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1g4joaz {
-  color: #040000;
+  color: hotpink;
 }
 
 .some-global-63 {
@@ -1368,7 +1321,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-3zq00y {
-  color: #041041;
+  color: hotpink;
 }
 
 .some-global-62 {
@@ -1377,7 +1330,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1gk0yhg {
-  color: #042108;
+  color: hotpink;
 }
 
 .some-global-61 {
@@ -1386,7 +1339,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-65xyj4 {
-  color: #04325c;
+  color: hotpink;
 }
 
 .some-global-60 {
@@ -1395,7 +1348,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-17wkfhz {
-  color: #044444;
+  color: hotpink;
 }
 
 .some-global-59 {
@@ -1404,7 +1357,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-w9l44e {
-  color: #0456c8;
+  color: hotpink;
 }
 
 .some-global-58 {
@@ -1413,7 +1366,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-i5ss3y {
-  color: #0469ee;
+  color: hotpink;
 }
 
 .some-global-57 {
@@ -1422,7 +1375,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-qua63f {
-  color: #047dc1;
+  color: hotpink;
 }
 
 .some-global-56 {
@@ -1431,7 +1384,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1sjj1qr {
-  color: #049249;
+  color: hotpink;
 }
 
 .some-global-55 {
@@ -1440,7 +1393,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-90js15 {
-  color: #04a790;
+  color: hotpink;
 }
 
 .some-global-54 {
@@ -1449,7 +1402,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1mzlono {
-  color: #04bda1;
+  color: hotpink;
 }
 
 .some-global-53 {
@@ -1458,7 +1411,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-bjhszk {
-  color: #04d487;
+  color: hotpink;
 }
 
 .some-global-52 {
@@ -1467,7 +1420,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-ja3cay {
-  color: #04ec4f;
+  color: hotpink;
 }
 
 .some-global-51 {
@@ -1476,7 +1429,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-148np4p {
-  color: #050505;
+  color: hotpink;
 }
 
 .some-global-50 {
@@ -1485,7 +1438,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-f4eyff {
-  color: #051eb8;
+  color: hotpink;
 }
 
 .some-global-49 {
@@ -1494,7 +1447,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1rl24dh {
-  color: #053978;
+  color: hotpink;
 }
 
 .some-global-48 {
@@ -1503,7 +1456,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-c5gtq4 {
-  color: #055555;
+  color: hotpink;
 }
 
 .some-global-47 {
@@ -1512,7 +1465,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-zn3vlf {
-  color: #057262;
+  color: hotpink;
 }
 
 .some-global-46 {
@@ -1521,7 +1474,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-10y72es {
-  color: #0590b2;
+  color: hotpink;
 }
 
 .some-global-45 {
@@ -1530,7 +1483,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-bm2jv1 {
-  color: #05b05b;
+  color: hotpink;
 }
 
 .some-global-44 {
@@ -1539,7 +1492,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-11jkxwc {
-  color: #05d174;
+  color: hotpink;
 }
 
 .some-global-43 {
@@ -1548,7 +1501,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-2u5nz5 {
-  color: #05f418;
+  color: hotpink;
 }
 
 .some-global-42 {
@@ -1557,7 +1510,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-a8aq2j {
-  color: #061862;
+  color: hotpink;
 }
 
 .some-global-41 {
@@ -1566,7 +1519,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-z8kcia {
-  color: #063e70;
+  color: hotpink;
 }
 
 .some-global-40 {
@@ -1575,7 +1528,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1df0hco {
-  color: #066666;
+  color: hotpink;
 }
 
 .some-global-39 {
@@ -1584,7 +1537,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-11rstpz {
-  color: #069069;
+  color: hotpink;
 }
 
 .some-global-38 {
@@ -1593,7 +1546,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1w071u6 {
-  color: #06bca2;
+  color: hotpink;
 }
 
 .some-global-37 {
@@ -1602,7 +1555,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1luo8x6 {
-  color: #06eb3e;
+  color: hotpink;
 }
 
 .some-global-36 {
@@ -1611,7 +1564,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ts80l8 {
-  color: #071c72;
+  color: hotpink;
 }
 
 .some-global-35 {
@@ -1620,7 +1573,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-duffth {
-  color: #075075;
+  color: hotpink;
 }
 
 .some-global-34 {
@@ -1629,7 +1582,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-tt1okc {
-  color: #078788;
+  color: hotpink;
 }
 
 .some-global-33 {
@@ -1638,7 +1591,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-tax4hg {
-  color: #07c1f0;
+  color: hotpink;
 }
 
 .some-global-32 {
@@ -1647,7 +1600,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1k8drt4 {
-  color: #080000;
+  color: hotpink;
 }
 
 .some-global-31 {
@@ -1656,7 +1609,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-qfe6wx {
-  color: #084211;
+  color: hotpink;
 }
 
 .some-global-30 {
@@ -1665,7 +1618,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-jhchv1 {
-  color: #088889;
+  color: hotpink;
 }
 
 .some-global-29 {
@@ -1674,7 +1627,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1soonbp {
-  color: #08d3dd;
+  color: hotpink;
 }
 
 .some-global-28 {
@@ -1683,7 +1636,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1vibp0n {
-  color: #092492;
+  color: hotpink;
 }
 
 .some-global-27 {
@@ -1692,7 +1645,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-13a4u4g {
-  color: #097b42;
+  color: hotpink;
 }
 
 .some-global-26 {
@@ -1701,7 +1654,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-99b9o6 {
-  color: #09d89e;
+  color: hotpink;
 }
 
 .some-global-25 {
@@ -1710,7 +1663,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-mccdz6 {
-  color: #0a3d71;
+  color: hotpink;
 }
 
 .some-global-24 {
@@ -1719,7 +1672,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-vh0ult {
-  color: #0aaaab;
+  color: hotpink;
 }
 
 .some-global-23 {
@@ -1728,7 +1681,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1jkc31r {
-  color: #0b2164;
+  color: hotpink;
 }
 
 .some-global-22 {
@@ -1737,7 +1690,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-a00fqn {
-  color: #0ba2e9;
+  color: hotpink;
 }
 
 .some-global-21 {
@@ -1746,7 +1699,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-jkplpw {
-  color: #0c30c3;
+  color: hotpink;
 }
 
 .some-global-20 {
@@ -1755,7 +1708,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-10sw1k2 {
-  color: #0ccccd;
+  color: hotpink;
 }
 
 .some-global-19 {
@@ -1764,7 +1717,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-gs8wd6 {
-  color: #0d7943;
+  color: hotpink;
 }
 
 .some-global-18 {
@@ -1773,7 +1726,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1kgu7pf {
-  color: #0e38e4;
+  color: hotpink;
 }
 
 .some-global-17 {
@@ -1782,7 +1735,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-abzsl4 {
-  color: #0f0f0f;
+  color: hotpink;
 }
 
 .some-global-16 {
@@ -1791,7 +1744,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1k6hdda {
-  color: #100000;
+  color: hotpink;
 }
 
 .some-global-15 {
@@ -1800,7 +1753,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-9gkufl {
-  color: #111111;
+  color: hotpink;
 }
 
 .some-global-14 {
@@ -1809,7 +1762,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ewesh6 {
-  color: #124925;
+  color: hotpink;
 }
 
 .some-global-13 {
@@ -1818,7 +1771,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-9e7j34 {
-  color: #13b13b;
+  color: hotpink;
 }
 
 .some-global-12 {
@@ -1827,7 +1780,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ta3m3l {
-  color: #155555;
+  color: hotpink;
 }
 
 .some-global-11 {
@@ -1836,7 +1789,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-mke1vr {
-  color: #1745d1;
+  color: hotpink;
 }
 
 .some-global-10 {
@@ -1845,7 +1798,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-138g2ic {
-  color: #19999a;
+  color: hotpink;
 }
 
 .some-global-9 {
@@ -1854,7 +1807,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1ambdpy {
-  color: #1c71c7;
+  color: hotpink;
 }
 
 .some-global-8 {
@@ -1863,7 +1816,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-36wzef {
-  color: #200000;
+  color: hotpink;
 }
 
 .some-global-7 {
@@ -1872,7 +1825,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1vluzwd {
-  color: #249249;
+  color: hotpink;
 }
 
 .some-global-6 {
@@ -1881,7 +1834,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1o5nzp5 {
-  color: #2aaaab;
+  color: hotpink;
 }
 
 .some-global-5 {
@@ -1890,7 +1843,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-xnoh5a {
-  color: #333333;
+  color: hotpink;
 }
 
 .some-global-4 {
@@ -1899,7 +1852,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1gl3nb5 {
-  color: #400000;
+  color: hotpink;
 }
 
 .some-global-3 {
@@ -1908,7 +1861,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1etkgh2 {
-  color: #555555;
+  color: hotpink;
 }
 
 .some-global-2 {
@@ -1917,7 +1870,7 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-191jeup {
-  color: #800000;
+  color: hotpink;
 }
 
 .some-global-1 {
@@ -1926,78 +1879,35 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1wes8i6 {
-  color: #1000000;
+  color: hotpink;
 }
 
 @font-face {
   font-family: 'Patrick Hand SC';
   font-style: normal;
   font-weight: 400;
-  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;
-}
-
-@-webkit-keyframes animation-i9f7qw-bounce {
-  from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-  }
-
-  40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-30px,0);
-    -ms-transform: translate3d(0,-30px,0);
-    transform: translate3d(0,-30px,0);
-  }
-
-  70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-15px,0);
-    -ms-transform: translate3d(0,-15px,0);
-    transform: translate3d(0,-15px,0);
-  }
-
-  90% {
-    -webkit-transform: translate3d(0,-4px,0);
-    -ms-transform: translate3d(0,-4px,0);
-    transform: translate3d(0,-4px,0);
-  }
+  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
 }
 
 @keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-30px,0);
-    -ms-transform: translate3d(0,-30px,0);
-    transform: translate3d(0,-30px,0);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -30px, 0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-15px,0);
-    -ms-transform: translate3d(0,-15px,0);
-    transform: translate3d(0,-15px,0);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -15px, 0);
   }
 
   90% {
-    -webkit-transform: translate3d(0,-4px,0);
-    -ms-transform: translate3d(0,-4px,0);
-    transform: translate3d(0,-4px,0);
+    transform: translate3d(0, -4px, 0);
   }
 }
 
@@ -2006,10 +1916,10 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1icu1xs-hoverStyles:hover {
-  color: white;
+  color: hotpink;
   background-color: lightgray;
   border-color: aqua;
-  box-shadow: 15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
+  box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
 .some-key-k26awr {
@@ -2018,9 +1928,6 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 
 .no-prefix {
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -2030,14 +1937,13 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-14e1j2p-hoverStyles-Something_Main:hover {
-  color: white;
+  color: hotpink;
   background-color: lightgray;
   border-color: aqua;
-  box-shadow: 15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
+  box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
 .some-key-1h1w8ez-Image {
-  -webkit-animation: animation-i9f7qw-bounce;
   animation: animation-i9f7qw-bounce;
   border-radius: 50%;
   height: 50px;
@@ -2049,71 +1955,28 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
   font-family: 'Patrick Hand SC';
   font-style: normal;
   font-weight: 400;
-  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'), url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
-  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf, U+2c60-2c7f,U+A720-A7FF;
-}
-
-@-webkit-keyframes animation-i9f7qw-bounce {
-  from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-  }
-
-  40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-30px,0);
-    -ms-transform: translate3d(0,-30px,0);
-    transform: translate3d(0,-30px,0);
-  }
-
-  70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-15px,0);
-    -ms-transform: translate3d(0,-15px,0);
-    transform: translate3d(0,-15px,0);
-  }
-
-  90% {
-    -webkit-transform: translate3d(0,-4px,0);
-    -ms-transform: translate3d(0,-4px,0);
-    transform: translate3d(0,-4px,0);
-  }
+  src: local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');
+  unicode-range: U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;
 }
 
 @keyframes animation-i9f7qw-bounce {
   from, 20%, 53%, 80%, to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
   }
 
   40%, 43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-30px,0);
-    -ms-transform: translate3d(0,-30px,0);
-    transform: translate3d(0,-30px,0);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -30px, 0);
   }
 
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    -webkit-transform: translate3d(0,-15px,0);
-    -ms-transform: translate3d(0,-15px,0);
-    transform: translate3d(0,-15px,0);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -15px, 0);
   }
 
   90% {
-    -webkit-transform: translate3d(0,-4px,0);
-    -ms-transform: translate3d(0,-4px,0);
-    transform: translate3d(0,-4px,0);
+    transform: translate3d(0, -4px, 0);
   }
 }
 
@@ -2122,10 +1985,10 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-1icu1xs-hoverStyles:hover {
-  color: white;
+  color: hotpink;
   background-color: lightgray;
   border-color: aqua;
-  box-shadow: 15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
+  box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
 .some-key-k26awr {
@@ -2134,9 +1997,6 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 
 .no-prefix {
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -2146,14 +2006,13 @@ exports[`hydration only inserts rules that are not in the critical css 2`] = `
 }
 
 .some-key-14e1j2p-hoverStyles-Something_Main:hover {
-  color: white;
+  color: hotpink;
   background-color: lightgray;
   border-color: aqua;
-  box-shadow: 15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
+  box-shadow: -15px -15px 0 0 aqua,-30px -30px 0 0 cornflowerblue;
 }
 
 .some-key-1h1w8ez-Image {
-  -webkit-animation: animation-i9f7qw-bounce;
   animation: animation-i9f7qw-bounce;
   border-radius: 50%;
   height: 50px;

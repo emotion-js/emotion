@@ -1,5 +1,15 @@
 # @emotion/sheet
 
+## 1.0.0-next.2
+
+### Major Changes
+
+- [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf) [#1817](https://github.com/emotion-js/emotion/pull/1817) Thanks [@Andarist](https://github.com/Andarist)! - `@import` rules are no longer special-cased - they no longer are always inserted at the beginning of the stylesheet. The responsibility to put them first has been moved to a consumer of this package.
+
+### Patch Changes
+
+- [`91046a8c`](https://github.com/emotion-js/emotion/commit/91046a8c188327a65daac61583ef3c4458f30afb) [#1900](https://github.com/emotion-js/emotion/pull/1900) Thanks [@Andarist](https://github.com/Andarist)! - Renamed `rehydrate` method to `hydrate` to align naming to what is already used in Emotion and React itself.
+
 ## 0.10.0-next.1
 
 ### Minor Changes

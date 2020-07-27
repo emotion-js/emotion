@@ -19,7 +19,7 @@ describe('Emotion primitives', () => {
   })
 
   test('should throw an error when used invalid primitive', () => {
-    // $FlowExpectError
+    // $FlowFixMe: expect error
     expect(() => styled.TEXT({})).toThrow()
   })
 

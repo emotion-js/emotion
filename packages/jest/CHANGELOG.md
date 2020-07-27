@@ -1,5 +1,25 @@
 # @emotion/jest
 
+## 11.0.0-next.13
+
+### Major Changes
+
+- [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - `test` & `print` are no longer exported as named exports. If you want to access the default serializer just access the default export. This means that `@emotion/jest`(previously `jest-emotion`) can't be used directly in the `snapshotSerializers` option, you should use `@emotion/jest/serializer` instead for this.
+
+* [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - Refactored to use new serializers API which has been introduced in Jest 21.
+
+### Minor Changes
+
+- [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - Improved printing of nested at-rules.
+
+* [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with all styles being recognized as changed in Jest 25 on unrelated changed.
+
+### Patch Changes
+
+- Updated dependencies [[`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf)]:
+  - @emotion/css@11.0.0-next.13
+  - @emotion/react@11.0.0-next.13
+
 ## 11.0.0-next.12
 
 ### Patch Changes

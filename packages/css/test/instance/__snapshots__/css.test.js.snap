@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`css @supports 1`] = `
-@supports (display:grid) {
+@supports (display: grid) {
   .emotion-0 {
     display: grid;
   }
@@ -35,8 +35,6 @@ exports[`css array with explicit true 1`] = `
 exports[`css auto px 1`] = `
 .emotion-0 {
   display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   font-size: 10px;
 }
@@ -58,9 +56,6 @@ exports[`css boolean as value 1`] = `
 
 exports[`css composition stuff 1`] = `
 .emotion-0 {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -71,9 +66,6 @@ exports[`css composition stuff 1`] = `
 
 exports[`css composition stuff 2`] = `
 .emotion-0 {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -85,26 +77,23 @@ exports[`css composition stuff 2`] = `
 exports[`css composition with objects 1`] = `
 .emotion-0:after {
   content: " ";
-  color: red;
+  color: hotpink;
 }
 
 .emotion-0:hover {
-  color: blue;
+  color: hotpink;
 }
 
 .emotion-0 {
   display: flex;
   width: 30px;
   height: calc(40vw - 50px);
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
-    color: green;
+    color: hotpink;
   }
 }
 
@@ -179,7 +168,7 @@ exports[`css falsy value in nested selector on object 1`] = `
 
 exports[`css float property 1`] = `
 .emotion-0 {
-  float: right;
+  float: left;
 }
 
 <div
@@ -216,11 +205,10 @@ exports[`css handles array of objects 1`] = `
 
 exports[`css handles more than 10 dynamic properties 1`] = `
 .emotion-0 {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
-  border-left: solid blue 54px;
+  border-right: solid blue 54px;
   background: white;
-  color: black;
+  color: hotpink;
   display: block;
   border-radius: 3px;
   padding: 25px;
@@ -237,9 +225,9 @@ exports[`css handles more than 10 dynamic properties 1`] = `
 
 exports[`css handles objects 1`] = `
 .emotion-0 {
-  float: right;
+  float: left;
   display: flex;
-  color: blue;
+  color: hotpink;
   font-size: 20px;
   height: 50px;
   width: 20px;
@@ -273,7 +261,7 @@ exports[`css media query specificity 1`] = `
   border-radius: 50%;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .some-key-11dfhpp {
     width: 96px;
     height: 96px;
@@ -288,7 +276,7 @@ exports[`css media query specificity 2`] = `
   border-radius: 50%;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
     width: 96px;
     height: 96px;
@@ -310,10 +298,10 @@ exports[`css nested 1`] = `
 }
 
 .emotion-0 {
-  color: yellow;
+  color: hotpink;
 }
 
-@media (max-width:600px) {
+@media (max-width: 600px) {
   .emotion-0 .some-class {
     background-color: pink;
   }
@@ -343,7 +331,7 @@ exports[`css nested array 1`] = `
   display: block;
   display: flex;
   display: table;
-  color: darkorchid;
+  color: hotpink;
   font-size: 16px;
 }
 
@@ -376,9 +364,9 @@ exports[`css random expression 1`] = `
   background: green;
 }
 
-@media (min-width:420px) {
+@media (min-width: 420px) {
   .emotion-0 {
-    color: blue;
+    color: hotpink;
     width: 96px;
     height: 96px;
     line-height: 40px;
@@ -392,9 +380,6 @@ exports[`css random expression 1`] = `
 
 exports[`css random interpolation with undefined values 1`] = `
 .emotion-0 {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -421,9 +406,6 @@ exports[`css simple composition 1`] = `
 
 .emotion-0 {
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 

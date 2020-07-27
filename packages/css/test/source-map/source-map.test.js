@@ -1,7 +1,12 @@
 import 'test-utils/legacy-env'
 import { css, sheet, flush } from '@emotion/css'
 
-global.shouldKeepSourceMaps = true
+const commentPattern = /\/\*[\s\S]*?\*\//g
+const getStyles = sheet =>
+  sheet.tags
+    .map(tag => tag.textContent || '')
+    .join('')
+    .replace(commentPattern, '\n$&\n')
 
 describe('css', () => {
   afterEach(() => flush())
@@ -27,7 +32,7 @@ describe('css', () => {
         color: 'green'
       }
     })
-    expect(sheet).toMatchSnapshot()
+    expect(getStyles(sheet)).toMatchSnapshot()
   })
 
   test('source-map nested media queries', () => {
@@ -45,13 +50,13 @@ describe('css', () => {
       }
     `
 
-    expect(sheet).toMatchSnapshot()
+    expect(getStyles(sheet)).toMatchSnapshot()
   })
   test('css without newline or semicolon', () => {
     // eslint-disable-next-line
     const cls = css`
       color: hotpink;
     `
-    expect(sheet).toMatchSnapshot()
+    expect(getStyles(sheet)).toMatchSnapshot()
   })
 })

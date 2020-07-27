@@ -1,11 +1,10 @@
 // @flow
 import createEmotion from '@emotion/css/create-instance'
 import createEmotionServer from '@emotion/server/create-instance'
-import { transform } from 'cssjanus'
 
-function stylisPlugin(context, content) {
-  if (context === 2) {
-    return transform(content)
+function stylisPlugin(element) {
+  if (element.type === 'decl' && element.value.startsWith('color:')) {
+    element.value = `color:hotpink;`
   }
 }
 
@@ -18,13 +17,7 @@ if (typeof document !== 'undefined') {
 }
 
 const emotion = createEmotion({
-  stylisPlugins: stylisPlugin,
-  prefix: (key, value) => {
-    if (key === 'display' && value === 'flex') {
-      return false
-    }
-    return true
-  },
+  stylisPlugins: [stylisPlugin],
   nonce: 'some-nonce',
   key: 'some-key',
   container
