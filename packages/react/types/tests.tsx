@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { ComponentClass } from 'react'
+import * as React from 'react'
 import {
   ClassNames,
   Global,
@@ -58,7 +58,10 @@ const ComponentWithCache = withEmotionCache((_props: {}, cache) => {
   `}
 />
 
-declare const MyComponent: ComponentClass<{ className?: string; world: string }>
+declare const MyComponent: React.ComponentClass<{
+  className?: string
+  world: string
+}>
 ;<MyComponent
   css={{
     backgroundColor: 'black'
@@ -127,10 +130,10 @@ const anim1 = keyframes`
 />
 
 {
-  const CompWithClassNameSupport = function CompWithClassNameSupport(_props: {
+  const CompWithClassNameSupport = (_props: {
     prop1: string
     className?: string
-  }) {
+  }) => {
     return null
   }
   ;<CompWithClassNameSupport
@@ -139,17 +142,34 @@ const anim1 = keyframes`
       backgroundColor: 'hotpink'
     }}
   />
+
+  const MemoedCompWithClassNameSupport = React.memo(CompWithClassNameSupport)
+  ;<MemoedCompWithClassNameSupport
+    prop1="test"
+    css={{
+      backgroundColor: 'hotpink'
+    }}
+  />
 }
 
 {
-  const CompWithoutClassNameSupport = function CompWithoutClassNameSupport(_props: {
-    prop1: string
-  }) {
+  const CompWithoutClassNameSupport = (_props: { prop1: string }) => {
     return null
   }
 
   // $ExpectError
   ;<CompWithoutClassNameSupport
+    prop1="test"
+    css={{
+      backgroundColor: 'hotpink'
+    }}
+  />
+
+  const MemoedCompWithoutClassNameSupport = React.memo(
+    CompWithoutClassNameSupport
+  )
+  // $ExpectError
+  ;<MemoedCompWithoutClassNameSupport
     prop1="test"
     css={{
       backgroundColor: 'hotpink'
