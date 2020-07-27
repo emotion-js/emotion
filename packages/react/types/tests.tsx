@@ -125,3 +125,34 @@ const anim1 = keyframes`
     color: ${theme.secondaryColor};
   `}
 />
+
+{
+  const CompWithClassNameSupport = function CompWithClassNameSupport(_props: {
+    prop1: string
+    className?: string
+  }) {
+    return null
+  }
+  ;<CompWithClassNameSupport
+    prop1="test"
+    css={{
+      backgroundColor: 'hotpink'
+    }}
+  />
+}
+
+{
+  const CompWithoutClassNameSupport = function CompWithoutClassNameSupport(_props: {
+    prop1: string
+  }) {
+    return null
+  }
+
+  // $ExpectError
+  ;<CompWithoutClassNameSupport
+    prop1="test"
+    css={{
+      backgroundColor: 'hotpink'
+    }}
+  />
+}
