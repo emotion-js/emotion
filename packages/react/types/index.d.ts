@@ -108,7 +108,7 @@ type ReactJSXIntrinsicElements = JSX.IntrinsicElements
 
 export const jsx: typeof createElement
 export namespace jsx {
-  export namespace JSX {
+  namespace JSX {
     interface Element extends ReactJSXElement {}
     interface ElementClass extends ReactJSXElementClass {}
     interface ElementAttributesProperty
