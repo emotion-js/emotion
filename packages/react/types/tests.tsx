@@ -168,3 +168,11 @@ const anim1 = keyframes`
   // $ExpectError
   ;<MemoedCompWithoutClassNameSupport prop1="test" css={{ backgroundColor: 'hotpink' }} />
 }
+
+{
+  const CompWithoutProps = (_props: {}) => {
+    return null
+  }
+  // $ExpectError
+  ;<CompWithoutProps css={{ backgroundColor: 'hotpink' }} />
+}

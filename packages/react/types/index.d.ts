@@ -92,8 +92,8 @@ export interface ClassNamesProps {
  */
 export function ClassNames(props: ClassNamesProps): ReactElement
 
-type WithConditionalCssProp<P> = P extends { className?: string }
-  ? P & { css?: Interpolation<Theme> }
+type WithConditionalCSSProp<P> = 'className' extends keyof P
+  ? (P extends { className?: string } ? P & { css?: Interpolation<Theme> } : P)
   : P
 
 // unpack all here to avoid infinite self-referencing when defining our own JSX namespace
@@ -117,8 +117,8 @@ export namespace jsx {
       extends ReactJSXElementChildrenAttribute {}
 
     type LibraryManagedAttributes<C, P> = C extends React.ComponentType<infer T>
-      ? WithConditionalCssProp<T>
-      : WithConditionalCssProp<ReactJSXLibraryManagedAttributes<C, P>>
+      ? WithConditionalCSSProp<T>
+      : WithConditionalCSSProp<ReactJSXLibraryManagedAttributes<C, P>>
 
     interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
     interface IntrinsicClassAttributes<T>
