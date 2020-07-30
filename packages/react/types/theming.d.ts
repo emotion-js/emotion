@@ -14,9 +14,7 @@ export interface ThemeProvider {
   (props: ThemeProviderProps): React.ReactElement
 }
 
-export type withTheme = <
-  C extends React.ComponentType<React.ComponentProps<C>>
->(
+export type withTheme = <C extends React.ComponentType<any>>(
   component: C
 ) => React.FC<DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Theme }>
 

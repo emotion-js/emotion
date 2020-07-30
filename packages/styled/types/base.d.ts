@@ -37,7 +37,7 @@ export interface StyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {}
 > extends React.FC<ComponentProps & SpecificComponentProps>, ComponentSelector {
-  withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
+  withComponent<C extends React.ComponentType<any>>(
     component: C
   ): StyledComponent<ComponentProps & PropsOf<C>>
   withComponent<Tag extends keyof JSX.IntrinsicElements>(
@@ -99,13 +99,13 @@ export interface CreateStyledComponent<
  */
 export interface CreateStyled {
   <
-    C extends React.ComponentType<React.ComponentProps<C>>,
+    C extends React.ComponentType<any>,
     ForwardedProps extends keyof React.ComponentProps<
       C
     > = keyof React.ComponentProps<C>
   >(
     component: C,
-    options: FilteringStyledOptions<PropsOf<C>, ForwardedProps>
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme
@@ -113,9 +113,9 @@ export interface CreateStyled {
     }
   >
 
-  <C extends React.ComponentType<React.ComponentProps<C>>>(
+  <C extends React.ComponentType<any>>(
     component: C,
-    options?: StyledOptions<PropsOf<C>>
+    options?: StyledOptions<React.ComponentProps<C>>
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme
