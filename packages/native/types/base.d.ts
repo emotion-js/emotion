@@ -28,6 +28,7 @@ export type ReactNativeComponentNames =
   | 'NavigatorIOS'
   | 'Picker'
   | 'PickerIOS'
+  | 'Pressable'
   | 'ProgressBarAndroid'
   | 'ProgressViewIOS'
   | 'RecyclerViewBackedScrollView'
