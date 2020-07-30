@@ -116,9 +116,8 @@ export namespace jsx {
     interface ElementChildrenAttribute
       extends ReactJSXElementChildrenAttribute {}
 
-    type LibraryManagedAttributes<C, P> = C extends React.ComponentType<infer T>
-      ? WithConditionalCSSProp<T>
-      : WithConditionalCSSProp<ReactJSXLibraryManagedAttributes<C, P>>
+    type LibraryManagedAttributes<C, P> = WithConditionalCSSProp<P> &
+      ReactJSXLibraryManagedAttributes<C, P>
 
     interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
     interface IntrinsicClassAttributes<T>

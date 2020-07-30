@@ -176,3 +176,5 @@ const anim1 = keyframes`
   // $ExpectError
   ;<CompWithoutProps css={{ backgroundColor: 'hotpink' }} />
 }
+
+;<React.Fragment>content</React.Fragment>
