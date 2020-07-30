@@ -177,4 +177,11 @@ const anim1 = keyframes`
   ;<CompWithoutProps css={{ backgroundColor: 'hotpink' }} />
 }
 
-;<React.Fragment>content</React.Fragment>
+{
+  // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/40993
+  // this is really problematic behaviour by @types/react IMO
+  // but it's what @types/react does so let's not break it.
+  const CompWithImplicitChildren: React.FC = () => null;
+  ;<CompWithImplicitChildren>content<div/></CompWithImplicitChildren>
+
+}
