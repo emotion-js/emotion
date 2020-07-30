@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { ComponentClass } from 'react'
+import * as React from 'react'
 import {
   ClassNames,
   Global,
@@ -58,7 +58,10 @@ const ComponentWithCache = withEmotionCache((_props: {}, cache) => {
   `}
 />
 
-declare const MyComponent: ComponentClass<{ className?: string; world: string }>
+declare const MyComponent: React.ComponentClass<{
+  className?: string
+  world: string
+}>
 ;<MyComponent
   css={{
     backgroundColor: 'black'
@@ -125,3 +128,51 @@ const anim1 = keyframes`
     color: ${theme.secondaryColor};
   `}
 />
+
+{
+  const CompWithClassNameSupport = (_props: {
+    prop1: string
+    className?: string
+  }) => {
+    return null
+  }
+  ;<CompWithClassNameSupport
+    prop1="test"
+    css={{
+      backgroundColor: 'hotpink'
+    }}
+  />
+
+  const MemoedCompWithClassNameSupport = React.memo(CompWithClassNameSupport)
+  ;<MemoedCompWithClassNameSupport
+    prop1="test"
+    css={{
+      backgroundColor: 'hotpink'
+    }}
+  />
+}
+
+{
+  const CompWithoutClassNameSupport = (_props: { prop1: string }) => {
+    return null
+  }
+
+  // TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
+  // $ExpectError
+  ;<CompWithoutClassNameSupport prop1="test" css={{ backgroundColor: 'hotpink' }} />
+
+  const MemoedCompWithoutClassNameSupport = React.memo(
+    CompWithoutClassNameSupport
+  )
+  // TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
+  // $ExpectError
+  ;<MemoedCompWithoutClassNameSupport prop1="test" css={{ backgroundColor: 'hotpink' }} />
+}
+
+{
+  const CompWithoutProps = (_props: {}) => {
+    return null
+  }
+  // $ExpectError
+  ;<CompWithoutProps css={{ backgroundColor: 'hotpink' }} />
+}
