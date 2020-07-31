@@ -183,5 +183,4 @@ const anim1 = keyframes`
   // but it's what @types/react does so let's not break it.
   const CompWithImplicitChildren: React.FC = () => null;
   ;<CompWithImplicitChildren>content<div/></CompWithImplicitChildren>
-
 }
