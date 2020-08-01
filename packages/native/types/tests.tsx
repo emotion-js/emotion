@@ -5,7 +5,42 @@ import {
   ScrollView,
   StyleProp,
   TextStyle,
-  View
+  View,
+  ActivityIndicator,
+  Button,
+  DatePickerIOS,
+  DrawerLayoutAndroid,
+  FlatList,
+  Image,
+  ImageBackground,
+  KeyboardAvoidingView,
+  ListView,
+  Modal,
+  NavigatorIOS,
+  Picker,
+  PickerIOS,
+  ProgressBarAndroid,
+  ProgressViewIOS,
+  RecyclerViewBackedScrollView,
+  RefreshControl,
+  SafeAreaView,
+  SectionList,
+  SegmentedControlIOS,
+  Slider,
+  SnapshotViewIOS,
+  StatusBar,
+  SwipeableListView,
+  Switch,
+  SwitchIOS,
+  TabBarIOS,
+  Text,
+  TextInput,
+  ToolbarAndroid,
+  TouchableHighlight,
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  ViewPagerAndroid
 } from 'react-native'
 import styled, { css, ReactNativeStyle } from '@emotion/native'
 
@@ -159,13 +194,11 @@ export const ImageFullWidthContained = styled.Image`
 
 {
   // ref support
-  const Container = styled(View)({ margin: 8 })
+  const Container1 = styled.View()
+  const Container2 = styled(View)()
 
-  const Test: React.FC = () => {
-    const containerRef = React.useRef<View>(null)
-
-    type D = React.ComponentProps<typeof View>['ref']
-
-    return <Container ref={containerRef} />
-  }
+  const containerRef1 = React.useRef<View>(null)
+  const containerRef2 = React.useRef<View>(null)
+  ;<Container1 ref={containerRef1} />
+  ;<Container2 ref={containerRef2} />
 }

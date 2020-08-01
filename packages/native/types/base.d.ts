@@ -119,14 +119,19 @@ export interface StyledOptions<Props> {
  */
 export interface StyledComponent<
   ComponentProps extends {},
-  SpecificComponentProps extends {} = {}
-> extends React.FC<ComponentProps & SpecificComponentProps> {
+  SpecificComponentProps extends {} = {},
+  JSXProps extends {} = {}
+> extends React.FC<ComponentProps & SpecificComponentProps & JSXProps> {
+  withComponent<C extends React.ComponentClass<React.ComponentProps<C>>>(
+    component: C
+  ): StyledComponent<
+    ComponentProps & React.ComponentProps<C>,
+    {},
+    { ref?: React.Ref<InstanceType<C>> }
+  >
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C
   ): StyledComponent<ComponentProps & React.ComponentProps<C>>
-  withComponent<ComponentName extends ReactNativeComponentNames>(
-    component: ReactNativeComponents[ComponentName]
-  ): StyledComponent<ComponentProps, ReactNativeComponentProps<ComponentName>>
 }
 
 /**
@@ -136,6 +141,7 @@ export interface StyledComponent<
 export interface CreateStyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {},
+  JSXProps extends {} = {},
   StyleType extends ReactNativeStyle = ReactNativeStyle
 > {
   /**
@@ -148,7 +154,11 @@ export interface CreateStyledComponent<
         AdditionalProps & { theme: Theme },
       StyleType
     >
-  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
+  ): StyledComponent<
+    ComponentProps & AdditionalProps,
+    SpecificComponentProps,
+    JSXProps
+  >
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
@@ -160,7 +170,11 @@ export interface CreateStyledComponent<
         AdditionalProps & { theme: Theme },
       StyleType
     >
-  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps>
+  ): StyledComponent<
+    ComponentProps & AdditionalProps,
+    SpecificComponentProps,
+    JSXProps
+  >
 }
 
 /**
@@ -174,6 +188,35 @@ export interface CreateStyledComponent<
  */
 export interface CreateStyled {
   <
+    C extends React.ComponentClass<React.ComponentProps<C>>,
+    ForwardedProps extends keyof React.ComponentProps<
+      C
+    > = keyof React.ComponentProps<C>
+  >(
+    component: C,
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
+  ): CreateStyledComponent<
+    Pick<React.ComponentProps<C>, ForwardedProps> & {
+      theme?: Theme
+    },
+    {},
+    { ref?: React.Ref<InstanceType<C>> },
+    ReactNativeStyleType<React.ComponentProps<C>>
+  >
+
+  <C extends React.ComponentClass<React.ComponentProps<C>>>(
+    component: C,
+    options?: StyledOptions<React.ComponentProps<C>>
+  ): CreateStyledComponent<
+    React.ComponentProps<C> & {
+      theme?: Theme
+    },
+    {},
+    { ref?: React.Ref<InstanceType<C>> },
+    ReactNativeStyleType<React.ComponentProps<C>>
+  >
+
+  <
     C extends React.ComponentType<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<
       C
@@ -186,6 +229,7 @@ export interface CreateStyled {
       theme?: Theme
     },
     {},
+    {},
     ReactNativeStyleType<React.ComponentProps<C>>
   >
 
@@ -195,33 +239,8 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     React.ComponentProps<C> & { theme?: Theme },
     {},
+    {},
     ReactNativeStyleType<React.ComponentProps<C>>
-  >
-
-  <
-    ComponentName extends ReactNativeComponentNames,
-    ForwardedProps extends keyof ReactNativeComponentProps<
-      ComponentName
-    > = keyof ReactNativeComponentProps<ComponentName>
-  >(
-    component: ReactNativeComponents[ComponentName],
-    options: FilteringStyledOptions<
-      ReactNativeComponentProps<ComponentName>,
-      ForwardedProps
-    >
-  ): CreateStyledComponent<
-    { theme?: Theme },
-    Pick<ReactNativeComponentProps<ComponentName>, ForwardedProps>,
-    ReactNativeStyleType<ReactNativeComponentProps<ComponentName>>
-  >
-
-  <ComponentName extends ReactNativeComponentNames>(
-    component: ReactNativeComponents[ComponentName],
-    options?: StyledOptions<ReactNativeComponentProps<ComponentName>>
-  ): CreateStyledComponent<
-    { theme?: Theme },
-    ReactNativeComponentProps<ComponentName>,
-    ReactNativeStyleType<ReactNativeComponentProps<ComponentName>>
   >
 }
 
