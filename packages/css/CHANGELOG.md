@@ -1,5 +1,11 @@
 # emotion
 
+## 11.0.0-next.14
+
+### Patch Changes
+
+- [`6d32d82b`](https://github.com/emotion-js/emotion/commit/6d32d82beb45b18e5f18a37932b862ad19b17044) [#1848](https://github.com/emotion-js/emotion/pull/1848) Thanks [@osdiab](https://github.com/osdiab)! - Added `speedy` method to the TS type declaration of the `sheet` object available on Emotion instances. In addition to that - `StyleSheet` type is no longer exported from this package and instead `CSSStyleSheet` is available now. The `StyleSheet` type might still be imported from `@emotion/sheet`, but it has no `speedy` method and thus it's not the same as what is available in this package as `CSSStyleSheet`.
+
 ## 11.0.0-next.13
 
 ### Major Changes
