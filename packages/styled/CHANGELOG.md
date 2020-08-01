@@ -1,5 +1,18 @@
 # @emotion/styled
 
+## 11.0.0-next.14
+
+### Minor Changes
+
+- [`4d3b60d0`](https://github.com/emotion-js/emotion/commit/4d3b60d0d448a61d762ee150e6cb7a2c995ccc2f) [#1874](https://github.com/emotion-js/emotion/pull/1874) Thanks [@connor-baer](https://github.com/connor-baer)! - Added basic TS type support for `as` prop on styled components. It's possible to pass any component to it but it has no effect on other accepted props. This means that it's not 100% type-safe so use it sparingly and with care.
+
+### Patch Changes
+
+- [`58dc08a6`](https://github.com/emotion-js/emotion/commit/58dc08a6a013fb5cfa10bb85e06e53a8ff7eeb51) [#1837](https://github.com/emotion-js/emotion/pull/1837) Thanks [@arcanis](https://github.com/arcanis)! - Fixed TS compatibility under [PnP](https://classic.yarnpkg.com/en/docs/pnp/) environments by making `@types/react` an optional peer dependency.
+
+- Updated dependencies [[`58dc08a6`](https://github.com/emotion-js/emotion/commit/58dc08a6a013fb5cfa10bb85e06e53a8ff7eeb51), [`f57a7229`](https://github.com/emotion-js/emotion/commit/f57a72299cd4025a725bd5bd1b966a8f9df16cd8)]:
+  - @emotion/react@11.0.0-next.14
+
 ## 11.0.0-next.13
 
 ### Major Changes

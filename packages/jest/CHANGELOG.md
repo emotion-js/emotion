@@ -1,5 +1,21 @@
 # @emotion/jest
 
+## 11.0.0-next.14
+
+### Major Changes
+
+- [`cd77efbf`](https://github.com/emotion-js/emotion/commit/cd77efbf263486e2b189221f4076e1098d78c379) [#1920](https://github.com/emotion-js/emotion/pull/1920) Thanks [@Andarist](https://github.com/Andarist)! - The root entry (`@emotion/jest`) no longer has `default` and `serializer` exports. You can still import `createSerializer` from it to create your own serializer if needed.
+
+* [`cd77efbf`](https://github.com/emotion-js/emotion/commit/cd77efbf263486e2b189221f4076e1098d78c379) [#1920](https://github.com/emotion-js/emotion/pull/1920) Thanks [@Andarist](https://github.com/Andarist)! - `@emotion/jest/enzyme` entrypoint has been renamed to `@emotion/jest/enzyme-serializer`. It's main purpose is compatibility with Jest's `snapshotSerializers` option, so it no longer has a default export - it only has `test` & `serialize` exports.. You can import `createEnzymeSerializer` from the root entry (`@emotion/jest`) and create your own serializer if needed.
+
+- [`cd77efbf`](https://github.com/emotion-js/emotion/commit/cd77efbf263486e2b189221f4076e1098d78c379) [#1920](https://github.com/emotion-js/emotion/pull/1920) Thanks [@Andarist](https://github.com/Andarist)! - `@emotion/jest/serializer`'s main purpose is compatibility with Jest's `snapshotSerializers` option, so it no longer has a default export - it only has `test` & `serialize` exports. You can import `createSerializer` from the root entry (`@emotion/jest`) and create your own serializer if needed.
+
+### Patch Changes
+
+- Updated dependencies [[`58dc08a6`](https://github.com/emotion-js/emotion/commit/58dc08a6a013fb5cfa10bb85e06e53a8ff7eeb51), [`f57a7229`](https://github.com/emotion-js/emotion/commit/f57a72299cd4025a725bd5bd1b966a8f9df16cd8), [`6d32d82b`](https://github.com/emotion-js/emotion/commit/6d32d82beb45b18e5f18a37932b862ad19b17044)]:
+  - @emotion/react@11.0.0-next.14
+  - @emotion/css@11.0.0-next.14
+
 ## 11.0.0-next.13
 
 ### Major Changes
