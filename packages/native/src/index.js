@@ -19,6 +19,7 @@ const components = [
   'NavigatorIOS',
   'Picker',
   'PickerIOS',
+  'Pressable',
   'ProgressBarAndroid',
   'ProgressViewIOS',
   'RecyclerViewBackedScrollView',
