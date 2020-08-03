@@ -5,6 +5,7 @@
             true,
             "generic"
         ],
+        "no-null-undefined-union": false,
         "semicolon": false
     }
 }

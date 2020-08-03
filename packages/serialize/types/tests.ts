@@ -16,25 +16,24 @@ const testObjectInterpolation1: ObjectInterpolation<undefined> = {
 }
 
 // $ExpectType SerializedStyles
-serializeStyles({}, [])
+serializeStyles([], {})
 // $ExpectType SerializedStyles
 serializeStyles(
-  {
+  [{
     'emotion-cache': 'width: 200px'
-  },
-  []
+  }],
+  {}
 )
 // $ExpectType SerializedStyles
-serializeStyles({}, [], {})
+serializeStyles([], {}, {})
 // $ExpectType SerializedStyles
-serializeStyles({}, ['abc'], {})
+serializeStyles(['abc'], {}, {})
 // $ExpectType SerializedStyles
-serializeStyles({}, ['width: 200px;'], {})
+serializeStyles(['width: 200px;'], {}, {})
 // $ExpectType SerializedStyles
-serializeStyles({}, [() => 'height: 300px;'], {})
+serializeStyles([() => 'height: 300px;'], {}, {})
 // $ExpectType SerializedStyles
 serializeStyles(
-  {},
   [
     'display: block;',
     {
@@ -42,15 +41,16 @@ serializeStyles(
       backgroundColor: 'red'
     }
   ],
+  {},
   {}
 )
 // $ExpectType SerializedStyles
-serializeStyles({}, [testTemplateStringsArray, 5, '4px'], {})
+serializeStyles([testTemplateStringsArray, 5, '4px'], {}, {})
 
 // $ExpectError
 serializeStyles()
 // $ExpectError
-serializeStyles({})
+serializeStyles([])
 // $ExpectError
 serializeStyles({}, {})
 
