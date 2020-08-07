@@ -130,7 +130,7 @@ exports[`styled inline function return value is a function 1`] = `
 `;
 
 exports[`styled input placeholder 1`] = `
-.emotion-0:-ms-input-placeholder {
+.emotion-0::-webkit-input-placeholder {
   background-color: green;
 }
 
@@ -138,7 +138,7 @@ exports[`styled input placeholder 1`] = `
   background-color: green;
 }
 
-.emotion-0::-webkit-input-placeholder {
+.emotion-0:-ms-input-placeholder {
   background-color: green;
 }
 
@@ -154,7 +154,7 @@ exports[`styled input placeholder 1`] = `
 `;
 
 exports[`styled input placeholder object 1`] = `
-.emotion-0:-ms-input-placeholder {
+.emotion-0::-webkit-input-placeholder {
   background-color: green;
 }
 
@@ -162,7 +162,7 @@ exports[`styled input placeholder object 1`] = `
   background-color: green;
 }
 
-.emotion-0::-webkit-input-placeholder {
+.emotion-0:-ms-input-placeholder {
   background-color: green;
 }
 
@@ -178,31 +178,31 @@ exports[`styled input placeholder object 1`] = `
 `;
 
 exports[`styled nested 1`] = `
-.emotion-2 div span {
-  color: red;
-}
-
-.emotion-2 div {
-  color: green;
-}
-
-.emotion-2 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.emotion-0 {
+.emotion-0 div {
+  color: green;
+}
+
+.emotion-0 div span {
+  color: red;
+}
+
+.emotion-2 {
   font-size: 20px;
 }
 
 <div
-  className="emotion-2 emotion-3"
+  className="emotion-0 emotion-1"
 >
   hello 
   <h1
-    className="emotion-0 emotion-1"
+    className="emotion-2 emotion-3"
   >
     This will be green
   </h1>
@@ -314,15 +314,15 @@ exports[`styled ref 1`] = `
 `;
 
 exports[`styled should forward .defaultProps when reusing __emotion_base 1`] = `
+.emotion-0 {
+  text-align: center;
+  color: red;
+}
+
 .emotion-2 {
   text-align: center;
   color: red;
   font-style: italic;
-}
-
-.emotion-0 {
-  text-align: center;
-  color: red;
 }
 
 <div>

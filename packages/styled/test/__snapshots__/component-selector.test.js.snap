@@ -2,26 +2,26 @@
 
 exports[`component as selector (object syntax) 1`] = `
 .emotion-0 {
-  font-size: 20px;
-}
-
-.emotion-2 .emotion-1 {
-  color: green;
-}
-
-.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
+.emotion-0 .emotion-3 {
+  color: green;
+}
+
+.emotion-2 {
+  font-size: 20px;
+}
+
 <div
-  className="emotion-2 emotion-3"
+  className="emotion-0 emotion-1"
 >
   hello 
   <h1
-    className="emotion-0 emotion-1"
+    className="emotion-2 emotion-3"
   >
     This will be green
   </h1>
@@ -30,27 +30,27 @@ exports[`component as selector (object syntax) 1`] = `
 `;
 
 exports[`component as selector 1`] = `
-.emotion-2 .emotion-1 {
-  color: green;
-}
-
-.emotion-2 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.emotion-0 {
+.emotion-0 .emotion-3 {
+  color: green;
+}
+
+.emotion-2 {
   font-size: 20px;
 }
 
 <div
-  className="emotion-2 emotion-3"
+  className="emotion-0 emotion-1"
 >
   hello 
   <h1
-    className="emotion-0 emotion-1"
+    className="emotion-2 emotion-3"
   >
     This will be green
   </h1>
@@ -60,27 +60,27 @@ exports[`component as selector 1`] = `
 
 exports[`component as selector function interpolation (object syntax) 1`] = `
 .emotion-0 {
-  font-size: 20px;
-}
-
-.emotion-2 .emotion-1 {
-  color: green;
-}
-
-.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
+.emotion-0 .emotion-3 {
+  color: green;
+}
+
+.emotion-2 {
+  font-size: 20px;
+}
+
 <div
-  className="emotion-2 emotion-3"
+  className="emotion-0 emotion-1"
   fontSize={10}
 >
   hello 
   <h1
-    className="emotion-0 emotion-1"
+    className="emotion-2 emotion-3"
     fontSize={20}
   >
     This will be green
@@ -90,28 +90,28 @@ exports[`component as selector function interpolation (object syntax) 1`] = `
 `;
 
 exports[`component as selector function interpolation 1`] = `
-.emotion-2 .emotion-1 {
-  color: green;
-}
-
-.emotion-2 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.emotion-0 {
+.emotion-0 .emotion-3 {
+  color: green;
+}
+
+.emotion-2 {
   font-size: 20px;
 }
 
 <div
-  className="emotion-2 emotion-3"
+  className="emotion-0 emotion-1"
   fontSize={10}
 >
   hello 
   <h1
-    className="emotion-0 emotion-1"
+    className="emotion-2 emotion-3"
     fontSize={20}
   >
     This will be green

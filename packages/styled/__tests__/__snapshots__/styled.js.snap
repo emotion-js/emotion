@@ -45,22 +45,22 @@ exports[`styled call expression 1`] = `
 
 exports[`styled component selectors 1`] = `
 .emotion-0 {
-  color: hotpink;
-}
-
-.emotion-2 .emotion-1 {
-  color: yellow;
-}
-
-.emotion-2 {
   color: green;
 }
 
+.emotion-0 .emotion-2 {
+  color: yellow;
+}
+
+.emotion-1 {
+  color: hotpink;
+}
+
 <div
-  className="emotion-2"
+  className="emotion-0"
 >
   <div
-    className="emotion-0 emotion-1"
+    className="emotion-1 emotion-2"
   />
 </div>
 `;
@@ -141,12 +141,13 @@ exports[`styled composition based on props 2`] = `
 `;
 
 exports[`styled composition of nested pseudo selectors 1`] = `
-.emotion-0:hover.some-class {
-  color: yellow;
+.emotion-0 {
+  font-size: 2rem;
+  padding: 16px;
 }
 
-.emotion-0:hover:active {
-  color: purple;
+.emotion-0:hover {
+  color: blue;
 }
 
 .emotion-0:hover:active {
@@ -154,16 +155,15 @@ exports[`styled composition of nested pseudo selectors 1`] = `
 }
 
 .emotion-0:hover {
-  color: blue;
-}
-
-.emotion-0:hover {
   color: pink;
 }
 
-.emotion-0 {
-  font-size: 2rem;
-  padding: 16px;
+.emotion-0:hover:active {
+  color: purple;
+}
+
+.emotion-0:hover.some-class {
+  color: yellow;
 }
 
 <button
@@ -259,7 +259,7 @@ exports[`styled inline function return value is a function 1`] = `
 `;
 
 exports[`styled input placeholder 1`] = `
-.emotion-0:-ms-input-placeholder {
+.emotion-0::-webkit-input-placeholder {
   background-color: green;
 }
 
@@ -267,7 +267,7 @@ exports[`styled input placeholder 1`] = `
   background-color: green;
 }
 
-.emotion-0::-webkit-input-placeholder {
+.emotion-0:-ms-input-placeholder {
   background-color: green;
 }
 
@@ -283,7 +283,7 @@ exports[`styled input placeholder 1`] = `
 `;
 
 exports[`styled input placeholder object 1`] = `
-.emotion-0:-ms-input-placeholder {
+.emotion-0::-webkit-input-placeholder {
   background-color: green;
 }
 
@@ -291,7 +291,7 @@ exports[`styled input placeholder object 1`] = `
   background-color: green;
 }
 
-.emotion-0::-webkit-input-placeholder {
+.emotion-0:-ms-input-placeholder {
   background-color: green;
 }
 
@@ -328,31 +328,31 @@ exports[`styled keyframes with css call 1`] = `
 `;
 
 exports[`styled nested 1`] = `
-.emotion-1 div span {
-  color: red;
-}
-
-.emotion-1 div {
-  color: green;
-}
-
-.emotion-1 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.emotion-0 {
+.emotion-0 div {
+  color: green;
+}
+
+.emotion-0 div span {
+  color: red;
+}
+
+.emotion-1 {
   font-size: 20px;
 }
 
 <div
-  className="emotion-1"
+  className="emotion-0"
 >
   hello 
   <h1
-    className="emotion-0"
+    className="emotion-1"
   >
     This will be green
   </h1>
@@ -443,13 +443,6 @@ exports[`styled object as style 1`] = `
 `;
 
 exports[`styled object composition 1`] = `
-.emotion-0:hover {
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-}
-
 .emotion-0 {
   border-radius: 50%;
   -webkit-transition: -webkit-transform 400ms ease-in-out;
@@ -459,6 +452,13 @@ exports[`styled object composition 1`] = `
   height: 96px;
   color: red;
   color: blue;
+}
+
+.emotion-0:hover {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 <img

@@ -17,10 +17,6 @@ exports[`css component as selectors (object syntax) 1`] = `"Component selectors 
 exports[`css component selectors without target 1`] = `"Component selectors can only be used in conjunction with @emotion/babel-plugin."`;
 
 exports[`css composition 1`] = `
-.emotion-0:hover {
-  color: hotpink;
-}
-
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -30,6 +26,10 @@ exports[`css composition 1`] = `
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
+}
+
+.emotion-0:hover {
+  color: hotpink;
 }
 
 <div
@@ -64,15 +64,6 @@ exports[`css composition stuff 2`] = `
 `;
 
 exports[`css composition with objects 1`] = `
-.emotion-0:after {
-  content: " ";
-  color: red;
-}
-
-.emotion-0:hover {
-  color: blue;
-}
-
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -84,6 +75,15 @@ exports[`css composition with objects 1`] = `
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
+}
+
+.emotion-0:hover {
+  color: blue;
+}
+
+.emotion-0:after {
+  content: " ";
+  color: red;
 }
 
 @media (min-width: 420px) {

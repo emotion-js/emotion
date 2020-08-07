@@ -75,20 +75,20 @@ exports[`css composition stuff 2`] = `
 `;
 
 exports[`css composition with objects 1`] = `
-.emotion-0:after {
-  content: " ";
-  color: hotpink;
+.emotion-0 {
+  display: flex;
+  width: 30px;
+  height: calc(40vw - 50px);
+  justify-content: center;
 }
 
 .emotion-0:hover {
   color: hotpink;
 }
 
-.emotion-0 {
-  display: flex;
-  width: 30px;
-  height: calc(40vw - 50px);
-  justify-content: center;
+.emotion-0:after {
+  content: " ";
+  color: hotpink;
 }
 
 @media (min-width: 420px) {
@@ -289,16 +289,16 @@ exports[`css media query specificity 2`] = `
 `;
 
 exports[`css nested 1`] = `
-.emotion-0 .some-class .some-other-class {
-  background-color: hotpink;
+.emotion-0 {
+  color: hotpink;
 }
 
 .emotion-0 .some-class {
   display: flex;
 }
 
-.emotion-0 {
-  color: hotpink;
+.emotion-0 .some-class .some-other-class {
+  background-color: hotpink;
 }
 
 @media (max-width: 600px) {
@@ -321,10 +321,6 @@ exports[`css nested 1`] = `
 `;
 
 exports[`css nested array 1`] = `
-.emotion-0:after {
-  background-color: aquamarine;
-}
-
 .emotion-0 {
   display: inline;
   display: inline-block;
@@ -333,6 +329,10 @@ exports[`css nested array 1`] = `
   display: table;
   color: hotpink;
   font-size: 16px;
+}
+
+.emotion-0:after {
+  background-color: aquamarine;
 }
 
 <div
@@ -400,13 +400,13 @@ exports[`css registered styles as nested selector value in object 1`] = `
 `;
 
 exports[`css simple composition 1`] = `
-.emotion-0:hover {
-  color: hotpink;
-}
-
 .emotion-0 {
   display: flex;
   justify-content: center;
+}
+
+.emotion-0:hover {
+  color: hotpink;
 }
 
 <div
