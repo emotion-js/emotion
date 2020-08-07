@@ -3,8 +3,9 @@ import { jsx, Global } from '@emotion/react'
 import { render } from '@testing-library/react'
 
 let getDataAttributes = () =>
-  Array.from(document.querySelectorAll('style[data-emotion]'), x =>
-    x.getAttribute('data-emotion')
+  Array.from(
+    document.querySelectorAll('style[data-emotion]:not([data-eager-key])'),
+    x => x.getAttribute('data-emotion')
   )
 
 test('Global style element insertion after insertion of other styles', () => {
@@ -29,5 +30,5 @@ test('Global style element insertion after insertion of other styles', () => {
   let { rerender } = render(<Comp />)
   expect(getDataAttributes()).toEqual(['css'])
   rerender(<Comp second />)
-  expect(getDataAttributes()).toEqual(['css-global', 'css'])
+  expect(getDataAttributes()).toEqual(['css', 'css-global'])
 })

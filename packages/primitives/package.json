@@ -1,6 +1,6 @@
 {
   "name": "@emotion/primitives",
-  "version": "11.0.0-next.13",
+  "version": "11.0.0-next.14",
   "main": "dist/primitives.cjs.js",
   "module": "dist/primitives.esm.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "dependencies": {
     "@emotion/babel-plugin": "^11.0.0-next.13",
     "@emotion/is-prop-valid": "0.9.0-next.1",
-    "@emotion/primitives-core": "11.0.0-next.13"
+    "@emotion/primitives-core": "11.0.0-next.14"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0",

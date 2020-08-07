@@ -105,7 +105,7 @@ export interface CreateStyled {
     > = keyof React.ComponentProps<C>
   >(
     component: C,
-    options: FilteringStyledOptions<PropsOf<C>, ForwardedProps>
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme
@@ -115,7 +115,7 @@ export interface CreateStyled {
 
   <C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledOptions<PropsOf<C>>
+    options?: StyledOptions<React.ComponentProps<C>>
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme
