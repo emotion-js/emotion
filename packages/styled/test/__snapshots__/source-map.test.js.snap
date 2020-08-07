@@ -4,6 +4,12 @@ exports[`inserts source map 1`] = `
 <html>
   <head>
     <style
+      data-eager-key="true"
+      data-emotion="css"
+    >
+      
+    </style>
+    <style
       data-emotion="css"
     >
       

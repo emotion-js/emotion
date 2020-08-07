@@ -47,6 +47,8 @@ export type Options = {
   prepend?: boolean
 }
 
+let isBrowser = typeof document !== 'undefined'
+
 function createStyleElement(options: {
   key: string,
   nonce: string | void
@@ -82,6 +84,22 @@ export class StyleSheet {
     this.container = options.container
     this.prepend = options.prepend
     this.before = null
+
+    // insert a single empty style eagerly in dev
+    // so @emotion/jest can grab `key` from the (JS)DOM for caches without any rules inserted yet
+    if (process.env.NODE_ENV !== 'production' && isBrowser) {
+      const tag = createStyleElement(this)
+      if (this.isSpeedy) {
+        // avoid extra style tag in speedy mode
+        // it's a harmless hack to make `this.insert` grab this tag created here instead of creating a new one
+        this.ctr++
+      } else {
+        // non-speedy styles won't be reused, add this just for informational purposes and less surprising snapshots
+        tag.setAttribute('data-eager-key', 'true')
+      }
+
+      this._insertTag(tag)
+    }
   }
 
   _insertTag = (tag: HTMLStyleElement) => {
