@@ -1,13 +1,13 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import '../utils/make-prism-manual'
 import globalStyles from '../utils/global'
 import * as React from 'react'
 import Helmet from 'react-helmet'
 import SiteHeader from '../components/SiteHeader'
 import { constants, mq } from '../utils/style'
-import { Global } from '@emotion/core'
+import { Global } from '@emotion/react'
 
 const TemplateWrapper = ({
   children,

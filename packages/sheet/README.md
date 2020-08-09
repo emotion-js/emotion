@@ -27,7 +27,7 @@ type Options = {
   key: string
   container: HTMLElement
   speedy?: boolean
-  maxLength?: number
+  prepend?: boolean
 }
 ```
 
@@ -47,9 +47,9 @@ This will be set as the value of the `data-emotion` attribute on the style tags 
 
 This defines how rules are inserted. If it is true, rules will be inserted with [`insertRule`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/insertRule) which is very fast but doesn't allow rules to be edited in DevTools. If it is false, rules will be inserted by appending text nodes to style elements which is much slower than insertRule but allows rules to be edited in DevTools. By default, speedy is enabled in production and disabled in development.
 
-#### maxLength
+#### prepend
 
-This defines the number of rules that are inserted into each style tag. This generally shouldn't be modified.
+This defines where rules are inserted into the `container`. By default they are appended but this can be changed by using `prepend: true` option.
 
 ### Methods
 
@@ -60,6 +60,10 @@ This method inserts a single rule into the document. It **must** be a single rul
 #### flush
 
 This method will remove all style tags that were inserted into the document.
+
+#### hydrate
+
+This method moves given style elements into sheet's container and put them into internal tags collection. It's can be used for SSRed styles.
 
 ### Example with all options
 
@@ -73,8 +77,7 @@ document.head.appendChild(container)
 const sheet = new StyleSheet({
   nonce: 'some-nonce',
   key: 'some-key',
-  container,
-  maxLength: 20
+  container
 })
 
 sheet.insert('html { color: hotpink; }')

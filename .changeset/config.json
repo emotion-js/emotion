@@ -1,5 +1,5 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@0.2.1/schema.json",
+  "$schema": "https://unpkg.com/@changesets/config@1.3.0/schema.json",
   "changelog": [
     "@changesets/changelog-github",
     { "repo": "emotion-js/emotion" }
@@ -8,6 +8,7 @@
   "linked": [
     [
       "@emotion/core",
+      "@emotion/react",
       "@emotion/styled",
       "@emotion/styled-base",
       "@emotion/cache",
@@ -15,14 +16,18 @@
       "create-emotion",
       "emotion",
       "emotion-server",
+      "@emotion/server",
       "create-emotion-server",
       "babel-plugin-emotion",
+      "@emotion/babel-plugin",
       "@emotion/babel-preset-css-prop",
       "jest-emotion",
+      "@emotion/jest",
       "@emotion/native",
       "@emotion/primitives",
       "@emotion/primitives-core",
       "eslint-plugin-emotion",
+      "@emotion/eslint-plugin",
       "emotion-theming"
     ]
   ],

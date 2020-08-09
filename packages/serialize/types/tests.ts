@@ -1,29 +1,21 @@
-import {
-  CSSObject,
-  ObjectInterpolation,
-  Keyframes,
-  serializeStyles
-} from '@emotion/serialize'
+import { CSSObject, Keyframes, serializeStyles } from '@emotion/serialize'
 
 declare const testTemplateStringsArray: TemplateStringsArray
 declare const testKeyframes: Keyframes
 
-const testObjectInterpolation0: ObjectInterpolation<undefined> = {
+const testCSSObject0: CSSObject = {
   animation: testKeyframes
 }
-const testObjectInterpolation1: ObjectInterpolation<undefined> = {
+const testCSSObject1: CSSObject = {
   animationName: testKeyframes
 }
 
 // $ExpectType SerializedStyles
 serializeStyles([], {})
 // $ExpectType SerializedStyles
-serializeStyles(
-  [{
-    'emotion-cache': 'width: 200px'
-  }],
-  {}
-)
+serializeStyles([], {
+  'emotion-cache': 'width: 200px'
+})
 // $ExpectType SerializedStyles
 serializeStyles([], {}, {})
 // $ExpectType SerializedStyles
@@ -50,7 +42,7 @@ serializeStyles([testTemplateStringsArray, 5, '4px'], {}, {})
 // $ExpectError
 serializeStyles()
 // $ExpectError
-serializeStyles([])
+serializeStyles({})
 // $ExpectError
 serializeStyles({}, {})
 

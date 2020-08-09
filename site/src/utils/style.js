@@ -1,5 +1,5 @@
 // @flow
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import facepaint from 'facepaint'
 import { util, constants } from 'styled-system'
 import darken from 'polished/lib/color/darken'
