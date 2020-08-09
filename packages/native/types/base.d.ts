@@ -8,52 +8,6 @@ type ReactNative = typeof RN
 
 export type ReactNativeStyle = RN.ViewStyle | RN.TextStyle | RN.ImageStyle
 
-export type ReactNativeComponentNames =
-  | 'ActivityIndicator'
-  | 'Button'
-  | 'DatePickerIOS'
-  | 'DrawerLayoutAndroid'
-  | 'FlatList'
-  | 'Image'
-  | 'ImageBackground'
-  | 'KeyboardAvoidingView'
-  | 'ListView'
-  | 'Modal'
-  | 'NavigatorIOS'
-  | 'Picker'
-  | 'PickerIOS'
-  | 'Pressable'
-  | 'ProgressBarAndroid'
-  | 'ProgressViewIOS'
-  | 'RecyclerViewBackedScrollView'
-  | 'RefreshControl'
-  | 'SafeAreaView'
-  | 'ScrollView'
-  | 'SectionList'
-  | 'SegmentedControlIOS'
-  | 'Slider'
-  | 'SnapshotViewIOS'
-  | 'StatusBar'
-  | 'SwipeableListView'
-  | 'Switch'
-  | 'SwitchIOS'
-  | 'TabBarIOS'
-  | 'Text'
-  | 'TextInput'
-  | 'ToolbarAndroid'
-  | 'TouchableHighlight'
-  | 'TouchableNativeFeedback'
-  | 'TouchableOpacity'
-  | 'TouchableWithoutFeedback'
-  | 'View'
-  | 'ViewPagerAndroid'
-
-export type ReactNativeComponents = Pick<ReactNative, ReactNativeComponentNames>
-
-export type ReactNativeComponentProps<
-  ComponentName extends ReactNativeComponentNames
-> = React.ComponentProps<ReactNativeComponents[ComponentName]>
-
 export type ReactNativeStyleType<Props> = Props extends {
   style?: RN.StyleProp<infer StyleType>
 }
