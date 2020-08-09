@@ -1,12 +1,9 @@
 {
-    "extends": "dtslint/dtslint.json",
-    "rules": {
-        "array-type": [
-            true,
-            "generic"
-        ],
-        "semicolon": false,
-        "no-null-undefined-union": false,
-        "callable-types": false
-    }
+  "extends": "dtslint/dtslint.json",
+  "rules": {
+    "array-type": [true, "generic"],
+    "semicolon": false,
+    "no-null-undefined-union": false,
+    "callable-types": false
+  }
 }

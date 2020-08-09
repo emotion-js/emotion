@@ -16,8 +16,7 @@ const Community = (props: *) => {
     <Layout title={title}>
       <div
         css={mq({
-          gridColumn: '1 / span 2',
-          filter: 'grayscale(100%)'
+          gridColumn: '1 / span 2'
         })}
       >
         <div>

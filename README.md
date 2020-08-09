@@ -87,6 +87,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [polished](https://github.com/styled-components/polished) - Lightweight set of Sass/Compass-style mixins/helpers for writing styles in JavaScript.
 - [monad-ui](https://github.com/muhajirdev/monad-ui/) - Utility First CSS-In-JS
 - [css-in-js-media](https://github.com/zx6658/css-in-js-media) - you can deal with responsive design using css-in-js easily with this `css-in-js-media` which is similar with include-media
+- [emotion-native-extended](https://github.com/ItsWendell/emotion-native-extended) - Better styling support for Emotion Native with [React Native Extended Stylesheet](https://github.com/vitalets/react-native-extended-stylesheet)
 
 ### In the Wild
 

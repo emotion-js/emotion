@@ -45,22 +45,22 @@ exports[`styled call expression 1`] = `
 
 exports[`styled component selectors 1`] = `
 .emotion-0 {
-  color: hotpink;
-}
-
-.emotion-2 {
   color: green;
 }
 
-.emotion-2 .emotion-1 {
+.emotion-0 .emotion-2 {
   color: yellow;
 }
 
+.emotion-1 {
+  color: hotpink;
+}
+
 <div
-  className="emotion-2"
+  className="emotion-0"
 >
   <div
-    className="emotion-0 emotion-1"
+    className="emotion-1 emotion-2"
   />
 </div>
 `;
@@ -329,30 +329,30 @@ exports[`styled keyframes with css call 1`] = `
 
 exports[`styled nested 1`] = `
 .emotion-0 {
-  font-size: 20px;
-}
-
-.emotion-1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.emotion-1 div {
+.emotion-0 div {
   color: green;
 }
 
-.emotion-1 div span {
+.emotion-0 div span {
   color: red;
 }
 
+.emotion-1 {
+  font-size: 20px;
+}
+
 <div
-  className="emotion-1"
+  className="emotion-0"
 >
   hello 
   <h1
-    className="emotion-0"
+    className="emotion-1"
   >
     This will be green
   </h1>

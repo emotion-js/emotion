@@ -41,7 +41,7 @@ A Stylis plugins that will be run by Stylis during preprocessing. [Read the Styl
 
 > Note:
 >
-> Prefixer is just a plugin which happens to be put in default `stylisPlugins`. If you plan to use custom `stylisPlugins` and you want to have your styles prefixed automatically you must include prefixer in your custom `stylisPlugins`.
+> Prefixer is just a plugin which happens to be put in default `stylisPlugins`. If you plan to use custom `stylisPlugins` and you want to have your styles prefixed automatically you must include prefixer in your custom `stylisPlugins`. You can import `prefixer` from the `stylis` module to do that (`import { prefixer } from 'stylis'`);
 
 ### `key`
 

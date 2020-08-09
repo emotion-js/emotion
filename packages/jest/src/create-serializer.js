@@ -23,14 +23,14 @@ function getNodes(node, nodes = []) {
     return nodes
   }
 
+  if (typeof node === 'object') {
+    nodes.push(node)
+  }
+
   if (node.children) {
     for (let child of node.children) {
       getNodes(child, nodes)
     }
-  }
-
-  if (typeof node === 'object') {
-    nodes.push(node)
   }
 
   return nodes

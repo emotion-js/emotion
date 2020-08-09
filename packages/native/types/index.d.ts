@@ -42,8 +42,9 @@ export function css<StyleType extends ReactNativeStyle = ReactNativeStyle>(
 
 export type StyledComponents = {
   [ComponentName in ReactNativeComponentNames]: CreateStyledComponent<
-    { theme?: Theme },
-    ReactNativeComponentProps<ComponentName>,
+    ReactNativeComponentProps<ComponentName> & { theme?: Theme },
+    {},
+    { ref?: React.Ref<InstanceType<ReactNativeComponents[ComponentName]>> },
     ReactNativeStyleType<ReactNativeComponentProps<ComponentName>>
   >
 }

@@ -64,8 +64,7 @@ export default function SiteHeader() {
           paddingTop: 24,
           display: 'flex',
           alignItems: 'center',
-          paddingBottom: space[2],
-          filter: 'grayscale(100%)'
+          paddingBottom: space[2]
         }}
       >
         <Link
