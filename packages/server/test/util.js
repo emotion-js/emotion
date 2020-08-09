@@ -1,7 +1,7 @@
 // @flow
 /* eslint-env jest */
 import * as React from 'react'
-import { parse, stringify } from 'css'
+import prettify from '@emotion/css-prettifier'
 import type { Emotion } from '@emotion/css/create-instance'
 // $FlowFixMe
 import { renderToNodeStream } from 'react-dom/server'
@@ -154,7 +154,7 @@ export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
   return BigComponent
 }
 
-export const prettyifyCritical = ({
+export const prettifyCritical = ({
   html,
   css,
   ids
@@ -163,7 +163,7 @@ export const prettyifyCritical = ({
   css: string,
   ids: Array<string>
 }) => {
-  return { css: stringify(parse(css)), ids, html }
+  return { css: prettify(css), ids, html }
 }
 
 const isSSRedStyle = node => {
@@ -182,21 +182,15 @@ export const getCssFromChunks = (emotion: Emotion, document: Document) => {
     document.body.querySelector(`[data-emotion]`)
   ).toBeNull()
   let css = chunks.map(chunk => chunk.textContent || '').join('')
-  try {
-    return stringify(parse(css))
-  } catch (e) {
-    throw new Error(`There was an error parsing the following css: ${css}`)
-  }
+  return prettify(css)
 }
 
 export const getInjectedRules = () =>
-  stringify(
-    parse(
-      Array.from(document.querySelectorAll('[data-emotion]'))
-        .filter(node => !isSSRedStyle(node))
-        .map(x => x.textContent || '')
-        .join('')
-    )
+  prettify(
+    Array.from(document.querySelectorAll('[data-emotion]'))
+      .filter(node => !isSSRedStyle(node))
+      .map(x => x.textContent || '')
+      .join('')
   )
 
 export const setHtml = (html: string, document: Document) => {

@@ -10,6 +10,15 @@ let defaultOptions = {
   container: safeQuerySelector('head')
 }
 
+// $FlowFixMe
+console.error = jest.fn()
+
+afterEach(() => {
+  jest.clearAllMocks()
+  safeQuerySelector('head').innerHTML = ''
+  safeQuerySelector('body').innerHTML = ''
+})
+
 describe('StyleSheet', () => {
   it('should be speedy by default in production', () => {
     process.env.NODE_ENV = 'production'
@@ -62,16 +71,11 @@ describe('StyleSheet', () => {
 
   it('should throw when inserting a bad rule in speedy mode', () => {
     const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
-    const oldConsoleError = console.error
-    // $FlowFixMe
-    console.error = jest.fn()
     sheet.insert('.asdfasdf4###112121211{')
     expect(console.error).toHaveBeenCalledTimes(1)
     expect((console.error: any).mock.calls[0][0]).toBe(
       'There was a problem inserting the following rule: ".asdfasdf4###112121211{"'
     )
-    // $FlowFixMe
-    console.error = oldConsoleError
     sheet.flush()
   })
 
@@ -79,9 +83,12 @@ describe('StyleSheet', () => {
     let nonce = 'some-nonce'
     const sheet = new StyleSheet({ ...defaultOptions, nonce })
     sheet.insert(rule)
-    expect(sheet.tags[0]).toBe(document.querySelector('[data-emotion]'))
-    expect(sheet.tags).toHaveLength(1)
+    expect(sheet.tags[1]).toBe(
+      document.querySelector('[data-emotion]:not([data-eager-key])')
+    )
+    expect(sheet.tags).toHaveLength(2)
     expect(sheet.tags[0].getAttribute('nonce')).toBe(nonce)
+    expect(sheet.tags[1].getAttribute('nonce')).toBe(nonce)
     sheet.flush()
   })
 
@@ -93,23 +100,11 @@ describe('StyleSheet', () => {
     expect(sheet.container).toBe(container)
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
-    expect(sheet.tags).toHaveLength(1)
+    expect(sheet.tags).toHaveLength(2)
     expect(sheet.tags[0].parentNode).toBe(container)
     sheet.flush()
     // $FlowFixMe
     document.body.removeChild(container)
-  })
-
-  it('should not throw an error when inserting a @import rule in speedy when a rule has already been inserted', () => {
-    const sheet = new StyleSheet({ ...defaultOptions, speedy: true })
-    sheet.insert('h1 {color:hotpink;}')
-    let importRule =
-      "@import url('https://fonts.googleapis.com/css?family=Merriweather');"
-    sheet.insert(importRule)
-    expect(sheet.tags).toHaveLength(1)
-    // $FlowFixMe
-    expect(sheet.tags[0].sheet.cssRules[0]).toBeInstanceOf(window.CSSImportRule)
-    sheet.flush()
   })
 
   it('should accept prepend option', () => {

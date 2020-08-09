@@ -1,5 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`@emotion/styled.macro already-transpiled-by-babel 1`] = `
+"/* eslint-disable */
+import styled from '@emotion/styled/macro'
+import _taggedTemplateLiteralLoose from '@babel/runtime/helpers/esm/taggedTemplateLiteralLoose'
+
+function _templateObject() {
+  var data = _taggedTemplateLiteralLoose(['\\\\n    color: hotpink;\\\\n  '])
+
+  _templateObject = function _templateObject() {
+    return data
+  }
+
+  return data
+}
+
+// source maps should not be appended
+const SomeComponent = styled('div')(_templateObject())
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+
+/* eslint-disable */
+import _taggedTemplateLiteralLoose from '@babel/runtime/helpers/esm/taggedTemplateLiteralLoose';
+
+function _templateObject() {
+  var data = _taggedTemplateLiteralLoose(['\\\\n    color: hotpink;\\\\n  ']);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+} // source maps should not be appended
+
+
+const SomeComponent =
+/*#__PURE__*/
+_styled('div', {
+  target: \\"ec90nws0\\",
+  label: \\"SomeComponent\\"
+})(_templateObject());"
+`;
+
 exports[`@emotion/styled.macro basic 1`] = `
 "import styled from '@emotion/styled/macro'
 

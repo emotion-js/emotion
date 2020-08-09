@@ -9,7 +9,7 @@ import React from 'react'
 import toJson from 'enzyme-to-json'
 
 import { matchers } from '@emotion/jest'
-import serializer from '@emotion/jest/enzyme'
+import * as serializer from '@emotion/jest/enzyme-serializer'
 
 expect.extend(matchers)
 expect.addSnapshotSerializer(serializer)

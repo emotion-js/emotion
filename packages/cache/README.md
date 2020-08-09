@@ -35,15 +35,13 @@ A nonce that will be set on each style tag that emotion inserts for [Content Sec
 
 ### `stylisPlugins`
 
-`Function` | `Array<Function>`
+``Array<Function>`
 
-A Stylis plugin or plugins that will be run by Stylis during preprocessing. [Read the Stylis docs to find out more](https://github.com/thysultan/stylis.js#plugins). This can be used for many purposes such as RTL.
+A Stylis plugins that will be run by Stylis during preprocessing. [Read the Stylis docs to find out more](https://github.com/thysultan/stylis.js#middleware). This can be used for many purposes such as RTL.
 
-### `prefix`
-
-`boolean` | `Function`, defaults to `true`
-
-Allows changing Stylis's vendor prefixing settings. It can be a boolean or a function to dynamically set which properties are prefixed. [More information can be found in the Stylis docs](https://github.com/thysultan/stylis.js#vendor-prefixing).
+> Note:
+>
+> Prefixer is just a plugin which happens to be put in default `stylisPlugins`. If you plan to use custom `stylisPlugins` and you want to have your styles prefixed automatically you must include prefixer in your custom `stylisPlugins`. You can import `prefixer` from the `stylis` module to do that (`import { prefixer } from 'stylis'`);
 
 ### `key`
 

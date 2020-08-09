@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 3.1
+// TypeScript Version: 3.2
 
 import { EmotionCache } from '@emotion/cache'
 import {
@@ -45,8 +45,6 @@ export const CacheProvider: Provider<EmotionCache>
 export function withEmotionCache<Props, RefType = any>(
   func: (props: Props, context: EmotionCache, ref: Ref<RefType>) => ReactNode
 ): FC<Props & ClassAttributes<RefType>>
-
-export const jsx: typeof createElement
 
 export function css(
   template: TemplateStringsArray,
@@ -94,21 +92,41 @@ export interface ClassNamesProps {
  */
 export function ClassNames(props: ClassNamesProps): ReactElement
 
-declare module 'react' {
-  interface DOMAttributes<T> {
-    css?: Interpolation<Theme>
-  }
-}
+type WithConditionalCSSProp<P> = 'className' extends keyof P
+  ? (P extends { className?: string } ? P & { css?: Interpolation<Theme> } : P)
+  : P
 
-declare global {
+// unpack all here to avoid infinite self-referencing when defining our own JSX namespace
+type ReactJSXElement = JSX.Element
+type ReactJSXElementClass = JSX.ElementClass
+type ReactJSXElementAttributesProperty = JSX.ElementAttributesProperty
+type ReactJSXElementChildrenAttribute = JSX.ElementChildrenAttribute
+type ReactJSXLibraryManagedAttributes<C, P> = JSX.LibraryManagedAttributes<C, P>
+type ReactJSXIntrinsicAttributes = JSX.IntrinsicAttributes
+type ReactJSXIntrinsicClassAttributes<T> = JSX.IntrinsicClassAttributes<T>
+type ReactJSXIntrinsicElements = JSX.IntrinsicElements
+
+export const jsx: typeof createElement
+export namespace jsx {
   namespace JSX {
-    /**
-     * Do we need to modify `LibraryManagedAttributes` too,
-     * to make `className` props optional when `css` props is specified?
-     */
+    interface Element extends ReactJSXElement {}
+    interface ElementClass extends ReactJSXElementClass {}
+    interface ElementAttributesProperty
+      extends ReactJSXElementAttributesProperty {}
+    interface ElementChildrenAttribute
+      extends ReactJSXElementChildrenAttribute {}
 
-    interface IntrinsicAttributes {
-      css?: Interpolation<Theme>
+    type LibraryManagedAttributes<C, P> = WithConditionalCSSProp<P> &
+      ReactJSXLibraryManagedAttributes<C, P>
+
+    interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
+    interface IntrinsicClassAttributes<T>
+      extends ReactJSXIntrinsicClassAttributes<T> {}
+
+    type IntrinsicElements = {
+      [K in keyof ReactJSXIntrinsicElements]: ReactJSXIntrinsicElements[K] & {
+        css?: Interpolation<Theme>
+      }
     }
   }
 }

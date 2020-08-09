@@ -1,5 +1,50 @@
 # @emotion/react
 
+## 11.0.0-next.14
+
+### Patch Changes
+
+- [`58dc08a6`](https://github.com/emotion-js/emotion/commit/58dc08a6a013fb5cfa10bb85e06e53a8ff7eeb51) [#1837](https://github.com/emotion-js/emotion/pull/1837) Thanks [@arcanis](https://github.com/arcanis)! - Fixed TS compatibility under [PnP](https://classic.yarnpkg.com/en/docs/pnp/) environments by making `@types/react` an optional peer dependency.
+
+* [`f57a7229`](https://github.com/emotion-js/emotion/commit/f57a72299cd4025a725bd5bd1b966a8f9df16cd8) [#1941](https://github.com/emotion-js/emotion/pull/1941) Thanks [@Andarist](https://github.com/Andarist)! - The way in which we provide TypeScript support for `css` prop has changed. Based on usage of our jsx pragma we are able to add support for `css` prop only for components that support `className` prop (as our `jsx` factory function takes provided `css` prop, resolves it and pass the generated `className` to the rendered component). This has been implemented using technique described [here](https://www.typescriptlang.org/docs/handbook/jsx.html#factory-functions). What is important - we no longer extend any global interfaces, so people shouldn't bump anymore into type conflicts for the `css` prop when using different libraries with the `css` prop support, such as `styled-components`.
+
+  However, it's not possible to leverage `css` prop support being added conditionally based on a type of rendered component when one is not using our jsx pragma. For those cases when people use our pragma implicitly (for example when using our `@emotion/babel-preset-css-prop`) we have added special file that can be imported once to add support for the `css` prop globally, for all components. Use it like this:
+
+  ```ts
+  import {} from '@emotion/react/types/css-prop'
+  ```
+
+  In this particular case we are forced to extend the existing `React.Attributes` interface. Previously we've been extending both `React.DOMAttributes<T>` and `JSX.IntrinsicAttributes`. This change is really minor and shouldn't affect any consuming code.
+
+* Updated dependencies [[`4d3b60d0`](https://github.com/emotion-js/emotion/commit/4d3b60d0d448a61d762ee150e6cb7a2c995ccc2f), [`58dc08a6`](https://github.com/emotion-js/emotion/commit/58dc08a6a013fb5cfa10bb85e06e53a8ff7eeb51), [`6d32d82b`](https://github.com/emotion-js/emotion/commit/6d32d82beb45b18e5f18a37932b862ad19b17044)]:
+  - @emotion/styled@11.0.0-next.14
+  - @emotion/css@11.0.0-next.14
+  - @emotion/server@11.0.0-next.14
+
+## 11.0.0-next.13
+
+### Major Changes
+
+- [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf) [#1817](https://github.com/emotion-js/emotion/pull/1817) Thanks [@Andarist](https://github.com/Andarist)! - The parser we use ([Stylis](https://github.com/thysultan/stylis.js)) got upgraded. It fixes some long-standing parsing edge cases while being smaller and faster 🚀
+
+  It has been completely rewritten and comes with some breaking changes. Most notable ones that might affect Emotion users are:
+
+  - plugins written for the former Stylis v3 are not compatible with the new version. To learn more on how to write a plugin for Stylis v4 you can check out its [README](https://github.com/thysultan/stylis.js#middleware) and the source code of core plugins.
+  - vendor-prefixing was previously customizable using `prefix` option. This was always limited to turning off all of some of the prefixes as all available prefixes were on by default. The `prefix` option is gone and to customize which prefixes are applied you need to fork (copy-paste) the prefixer plugin and adjust it to your needs. While this being somewhat more problematic to setup at first we believe that the vast majority of users were not customizing this anyway. By not including the possibility to customize this through an extra option the final solution is more performant because there is no extra overhead of checking if a particular property should be prefixed or not.
+  - Prefixer is now just a plugin which happens to be put in default `stylisPlugins`. If you plan to use custom `stylisPlugins` and you want to have your styles prefixed automatically you must include prefixer in your custom `stylisPlugins`. You can import `prefixer` from the `stylis` module to do that.
+  - `@import` rules are no longer special-cased. The responsibility to put them first has been moved to the author of the styles. They also can't be nested within other rules now. It's only possible to write them at the top level of global styles.
+
+### Patch Changes
+
+- Updated dependencies [[`91046a8c`](https://github.com/emotion-js/emotion/commit/91046a8c188327a65daac61583ef3c4458f30afb), [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf), [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf), [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf)]:
+  - @emotion/sheet@1.0.0-next.2
+  - @emotion/cache@11.0.0-next.13
+  - @emotion/css@11.0.0-next.13
+  - @emotion/styled@11.0.0-next.13
+  - @emotion/utils@1.0.0-next.0
+  - @emotion/server@11.0.0-next.13
+  - @emotion/serialize@0.11.15-next.2
+
 ## 11.0.0-next.12
 
 ### Major Changes

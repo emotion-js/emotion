@@ -21,55 +21,55 @@ exports[`jest-emotion with DOM elements disabled does not replace class names or
 `;
 
 exports[`jest-emotion with DOM elements disabled replaces class names and inserts styles into React test component snapshots 1`] = `
-".emotion-1 {
+".emotion-0 {
   color: red;
 }
 
-.emotion-0 {
+.emotion-1 {
   width: 100%;
 }
 
 <div
-  className=\\"emotion-1\\"
+  className=\\"emotion-0\\"
 >
   <svg
-    className=\\"emotion-0\\"
+    className=\\"emotion-1\\"
   />
 </div>"
 `;
 
 exports[`jest-emotion with dom elements replaces class names and inserts styles into DOM element snapshots 1`] = `
-".emotion-1 {
+".emotion-0 {
   color: red;
 }
 
-.emotion-0 {
+.emotion-1 {
   width: 100%;
 }
 
 <div
-  class=\\"emotion-1\\"
+  class=\\"emotion-0\\"
 >
   <svg
-    class=\\"emotion-0\\"
+    class=\\"emotion-1\\"
   />
 </div>"
 `;
 
 exports[`jest-emotion with dom elements replaces class names and inserts styles into React test component snapshots 1`] = `
-".emotion-1 {
+".emotion-0 {
   color: red;
 }
 
-.emotion-0 {
+.emotion-1 {
   width: 100%;
 }
 
 <div
-  className=\\"emotion-1\\"
+  className=\\"emotion-0\\"
 >
   <svg
-    className=\\"emotion-0\\"
+    className=\\"emotion-1\\"
   />
 </div>"
 `;
@@ -83,5 +83,3 @@ exports[`prints speedy styles 1`] = `
   className=\\"emotion-0\\"
 />"
 `;
-
-exports[`throws nice error for invalid css 1`] = `"There was an error parsing the following css: \\".css-1kkrnw9-tree{jnnjvh@'jevhevhb;label:tree;}\\""`;

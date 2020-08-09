@@ -172,40 +172,6 @@ test('kebab-case', () => {
           `)
 })
 
-test('unterminated comments', () => {
-  const renderWithStyles = styles => renderer.create(<div css={styles} />)
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green;
-    `)
-  ).not.toThrowError()
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green; /* comment */
-    `)
-  ).not.toThrowError()
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green; /*
-    `)
-  ).toThrowErrorMatchingInlineSnapshot(
-    `"Your styles have an unterminated comment (\\"/*\\" without corresponding \\"*/\\")."`
-  )
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green; /* comment */
-      color: red;
-      opacity: 0.9; /*
-    `)
-  ).toThrowErrorMatchingInlineSnapshot(
-    `"Your styles have an unterminated comment (\\"/*\\" without corresponding \\"*/\\")."`
-  )
-})
-
 test('keyframes interpolated into plain string', () => {
   const animateColor = keyframes({
     'from,to': { color: 'green' },
@@ -285,4 +251,61 @@ Array [
   ],
 ]
 `)
+})
+
+test('@import nested in scoped `css`', () => {
+  renderer.create(
+    <div
+      css={css`
+        @import url('https://some-url');
+
+        h1 {
+          color: hotpink;
+        }
+      `}
+    />
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+Array [
+  Array [
+    "\`@import\` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles.",
+  ],
+]
+`)
+})
+
+test('@import prepended with other rules', () => {
+  renderer.create(
+    <Global
+      styles={css`
+        h1 {
+          color: hotpink;
+        }
+
+        @import url('https://some-url');
+      `}
+    />
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+Array [
+  Array [
+    "\`@import\` rules can't be after other rules. Please put your \`@import\` rules before your other rules.",
+  ],
+]
+`)
+})
+
+test('@import prepended by other @import', () => {
+  renderer.create(
+    <Global
+      styles={css`
+        @import url('https://some-url');
+        @import url('https://some-url2');
+      `}
+    />
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
 })

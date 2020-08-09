@@ -20,6 +20,10 @@ yarn add @emotion/babel-preset-css-prop
 
 ## Usage
 
+> Note:
+>
+> This plugin is not compatible with `@babel/plugin-transform-react-inline-elements`. If you use both then your `css` prop styles won't be applied correctly.
+
 **.babelrc**
 
 ```json

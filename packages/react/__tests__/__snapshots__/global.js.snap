@@ -3,6 +3,12 @@
 exports[`basic 1`] = `
 <head>
   <style
+    data-eager-key="true"
+    data-emotion="css"
+  >
+    
+  </style>
+  <style
     data-emotion="css"
   >
     
@@ -13,12 +19,6 @@ exports[`basic 1`] = `
   >
     
     @keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
-  </style>
-  <style
-    data-emotion="css-global"
-  >
-    
-    @font-face{font-family:some-name;}
   </style>
   <style
     data-emotion="css-global"
@@ -38,6 +38,12 @@ exports[`basic 1`] = `
     
     h1{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}
   </style>
+  <style
+    data-emotion="css-global"
+  >
+    
+    @font-face{font-family:some-name;}
+  </style>
 </head>
 `;
 
@@ -51,6 +57,12 @@ exports[`basic 2`] = `
 
 exports[`basic 3`] = `
 <head>
+  <style
+    data-eager-key="true"
+    data-emotion="css"
+  >
+    
+  </style>
   <style
     data-emotion="css"
   >
@@ -77,6 +89,12 @@ exports[`basic 4`] = `
 exports[`updating more than 1 global rule 1`] = `
 <head>
   <style
+    data-eager-key="true"
+    data-emotion="global-multiple-rules"
+  >
+    
+  </style>
+  <style
     data-emotion="global-multiple-rules-global"
   >
     
@@ -93,6 +111,12 @@ exports[`updating more than 1 global rule 1`] = `
 
 exports[`updating more than 1 global rule 2`] = `
 <head>
+  <style
+    data-eager-key="true"
+    data-emotion="global-multiple-rules"
+  >
+    
+  </style>
   <style
     data-emotion="global-multiple-rules-global"
   >

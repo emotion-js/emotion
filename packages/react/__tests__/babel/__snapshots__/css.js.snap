@@ -16,7 +16,7 @@ exports[`composition of dynamic array css prop with cssprop-generated className 
 `;
 
 exports[`tagged template args forwarded 1`] = `
-@media (min-width:100px) {
+@media (min-width: 100px) {
   .emotion-0 {
     color: red;
   }

@@ -1,5 +1,41 @@
 # @emotion/jest
 
+## 11.0.0-next.14
+
+### Major Changes
+
+- [`cd77efbf`](https://github.com/emotion-js/emotion/commit/cd77efbf263486e2b189221f4076e1098d78c379) [#1920](https://github.com/emotion-js/emotion/pull/1920) Thanks [@Andarist](https://github.com/Andarist)! - The root entry (`@emotion/jest`) no longer has `default` and `serializer` exports. You can still import `createSerializer` from it to create your own serializer if needed.
+
+* [`cd77efbf`](https://github.com/emotion-js/emotion/commit/cd77efbf263486e2b189221f4076e1098d78c379) [#1920](https://github.com/emotion-js/emotion/pull/1920) Thanks [@Andarist](https://github.com/Andarist)! - `@emotion/jest/enzyme` entrypoint has been renamed to `@emotion/jest/enzyme-serializer`. It's main purpose is compatibility with Jest's `snapshotSerializers` option, so it no longer has a default export - it only has `test` & `serialize` exports.. You can import `createEnzymeSerializer` from the root entry (`@emotion/jest`) and create your own serializer if needed.
+
+- [`cd77efbf`](https://github.com/emotion-js/emotion/commit/cd77efbf263486e2b189221f4076e1098d78c379) [#1920](https://github.com/emotion-js/emotion/pull/1920) Thanks [@Andarist](https://github.com/Andarist)! - `@emotion/jest/serializer`'s main purpose is compatibility with Jest's `snapshotSerializers` option, so it no longer has a default export - it only has `test` & `serialize` exports. You can import `createSerializer` from the root entry (`@emotion/jest`) and create your own serializer if needed.
+
+### Patch Changes
+
+- Updated dependencies [[`58dc08a6`](https://github.com/emotion-js/emotion/commit/58dc08a6a013fb5cfa10bb85e06e53a8ff7eeb51), [`f57a7229`](https://github.com/emotion-js/emotion/commit/f57a72299cd4025a725bd5bd1b966a8f9df16cd8), [`6d32d82b`](https://github.com/emotion-js/emotion/commit/6d32d82beb45b18e5f18a37932b862ad19b17044)]:
+  - @emotion/react@11.0.0-next.14
+  - @emotion/css@11.0.0-next.14
+
+## 11.0.0-next.13
+
+### Major Changes
+
+- [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - `test` & `print` are no longer exported as named exports. If you want to access the default serializer just access the default export. This means that `@emotion/jest`(previously `jest-emotion`) can't be used directly in the `snapshotSerializers` option, you should use `@emotion/jest/serializer` instead for this.
+
+* [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - Refactored to use new serializers API which has been introduced in Jest 21.
+
+### Minor Changes
+
+- [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - Improved printing of nested at-rules.
+
+* [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with all styles being recognized as changed in Jest 25 on unrelated changed.
+
+### Patch Changes
+
+- Updated dependencies [[`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf)]:
+  - @emotion/css@11.0.0-next.13
+  - @emotion/react@11.0.0-next.13
+
 ## 11.0.0-next.12
 
 ### Patch Changes

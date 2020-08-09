@@ -1,8 +1,0 @@
-{
-  "main": "dist/jest.cjs.js",
-  "module": "dist/jest.esm.js",
-  "types": "../types/enzyme",
-  "preconstruct": {
-    "source": "../src/enzyme"
-  }
-}

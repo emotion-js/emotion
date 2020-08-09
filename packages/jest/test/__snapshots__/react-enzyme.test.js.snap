@@ -264,7 +264,7 @@ exports[`enzyme shallow basic 1`] = `
 
 exports[`enzyme shallow empty styled 1`] = `
 <div
-  className="css-1k6nb1k-Greeting emotion-0"
+  className="emotion-0 emotion-1"
 >
   Hello
 </div>

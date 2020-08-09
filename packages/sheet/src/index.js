@@ -47,6 +47,8 @@ export type Options = {
   prepend?: boolean
 }
 
+let isBrowser = typeof document !== 'undefined'
+
 function createStyleElement(options: {
   key: string,
   nonce: string | void
@@ -82,6 +84,22 @@ export class StyleSheet {
     this.container = options.container
     this.prepend = options.prepend
     this.before = null
+
+    // insert a single empty style eagerly in dev
+    // so @emotion/jest can grab `key` from the (JS)DOM for caches without any rules inserted yet
+    if (process.env.NODE_ENV !== 'production' && isBrowser) {
+      const tag = createStyleElement(this)
+      if (this.isSpeedy) {
+        // avoid extra style tag in speedy mode
+        // it's a harmless hack to make `this.insert` grab this tag created here instead of creating a new one
+        this.ctr++
+      } else {
+        // non-speedy styles won't be reused, add this just for informational purposes and less surprising snapshots
+        tag.setAttribute('data-eager-key', 'true')
+      }
+
+      this._insertTag(tag)
+    }
   }
 
   _insertTag = (tag: HTMLStyleElement) => {
@@ -108,27 +126,31 @@ export class StyleSheet {
     }
     const tag = this.tags[this.tags.length - 1]
 
+    if (process.env.NODE_ENV !== 'production') {
+      const isImportRule =
+        rule.charCodeAt(0) === 64 && rule.charCodeAt(1) === 105
+
+      if (isImportRule && (this: any)._alreadyInsertedOrderInsensitiveRule) {
+        // this would only cause problem in speedy mode
+        // but we don't want enabling speedy to affect the observable behavior
+        // so we report this error at all times
+        console.error(
+          `You're attempting to insert the following rule:\n` +
+            rule +
+            '\n\n`@import` rules must be before all other types of rules in a stylesheet but other rules have already been inserted. Please ensure that `@import` rules are before all other rules.'
+        )
+      }
+
+      ;(this: any)._alreadyInsertedOrderInsensitiveRule =
+        (this: any)._alreadyInsertedOrderInsensitiveRule || !isImportRule
+    }
+
     if (this.isSpeedy) {
       const sheet = sheetForTag(tag)
       try {
-        // this is a really hot path
-        // we check the second character first because having "i"
-        // as the second character will happen less often than
-        // having "@" as the first character
-        let isImportRule =
-          rule.charCodeAt(1) === 105 && rule.charCodeAt(0) === 64
         // this is the ultrafast version, works across browsers
         // the big drawback is that the css won't be editable in devtools
-        sheet.insertRule(
-          rule, // technically this means that the @import rules will // otherwise there will be an error // we need to insert @import rules before anything else
-          // _usually_(not always since there could be multiple style tags)
-          // be the first ones in prod and generally later in dev
-          // this shouldn't really matter in the real world though
-          // @import is generally only used for font faces from google fonts and etc.
-          // so while this could be technically correct then it would be slower and larger
-          // for a tiny bit of correctness that won't matter in the real world
-          isImportRule ? 0 : sheet.cssRules.length
-        )
+        sheet.insertRule(rule, sheet.cssRules.length)
       } catch (e) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
@@ -148,5 +170,8 @@ export class StyleSheet {
     this.tags.forEach(tag => tag.parentNode.removeChild(tag))
     this.tags = []
     this.ctr = 0
+    if (process.env.NODE_ENV !== 'production') {
+      ;(this: any)._alreadyInsertedOrderInsensitiveRule = false
+    }
   }
 }
