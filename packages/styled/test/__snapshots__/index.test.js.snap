@@ -179,30 +179,30 @@ exports[`styled input placeholder object 1`] = `
 
 exports[`styled nested 1`] = `
 .emotion-0 {
-  font-size: 20px;
-}
-
-.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.emotion-2 div {
+.emotion-0 div {
   color: green;
 }
 
-.emotion-2 div span {
+.emotion-0 div span {
   color: red;
 }
 
+.emotion-2 {
+  font-size: 20px;
+}
+
 <div
-  className="emotion-2 emotion-3"
+  className="emotion-0 emotion-1"
 >
   hello 
   <h1
-    className="emotion-0 emotion-1"
+    className="emotion-2 emotion-3"
   >
     This will be green
   </h1>
