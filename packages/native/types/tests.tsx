@@ -156,3 +156,14 @@ export const ImageFullWidthContained = styled.Image`
   ${styles.container} width: 100%;
   resize-mode: contain;
 `
+
+{
+  // ref support
+  const Container1 = styled.View()
+  const Container2 = styled(View)()
+
+  const containerRef1 = React.useRef<View>(null)
+  const containerRef2 = React.useRef<View>(null)
+  ;<Container1 ref={containerRef1} />
+  ;<Container2 ref={containerRef2} />
+}
