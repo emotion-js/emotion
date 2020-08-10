@@ -154,7 +154,7 @@ export const jsx: typeof React.createElement = function(
     if (error.stack) {
       // chrome
       let match = error.stack.match(
-        /at (?:Object\.|)jsx.*\n\s+at ([A-Z][A-Za-z$]+) /
+        /at (?:Object\.|Module\.|)jsx.*\n\s+at ([A-Z][A-Za-z$]+) /
       )
       if (!match) {
         // safari and firefox
