@@ -1,5 +1,11 @@
 # @emotion/core
 
+## 10.0.34
+
+### Patch Changes
+
+- [`4979ebb2`](https://github.com/emotion-js/emotion/commit/4979ebb2f9db94fa291384213e4f37e4a58a294a) [#1966](https://github.com/emotion-js/emotion/pull/1966) Thanks [@chnakamura](https://github.com/chnakamura)! - Fixed label extraction from the stack traces in Chrome in certain scenarios. This has affected only development builds.
+
 ## 10.0.28
 
 ### Patch Changes
