@@ -13,9 +13,13 @@ export default (
   api,
   { pragma, sourceMap, autoLabel, labelFormat, instances, ...options } = {}
 ) => {
+  const isAutomaticRuntime = options.runtime === 'automatic'
+  const jsxOptions = isAutomaticRuntime
+    ? { importSource: '@emotion/core' }
+    : { pragma: pragmaName, pragmaFrag: 'React.Fragment' }
   return {
     plugins: [
-      [
+      !isAutomaticRuntime && [
         pragmatic,
         {
           export: 'jsx',
@@ -23,7 +27,7 @@ export default (
           import: pragmaName
         }
       ],
-      [jsx, { pragma: pragmaName, pragmaFrag: 'React.Fragment', ...options }],
+      [jsx, { ...jsxOptions, ...options }],
       [
         emotion,
         {
@@ -33,7 +37,7 @@ export default (
           instances,
           cssPropOptimization: true
         }
-      ]
+      ].filter(Boolean)
     ]
   }
 }

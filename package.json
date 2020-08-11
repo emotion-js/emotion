@@ -26,8 +26,8 @@
     "release": "yarn build && changeset publish"
   },
   "resolutions": {
-    "**/react": "16.8.1",
-    "**/react-dom": "16.8.1",
+    "**/react": "17.0.0-rc.0",
+    "**/react-dom": "17.0.0-rc.0",
     "**/browserslist": "^3.2.8",
     "**/graphql-type-json": "0.2.4"
   },
@@ -121,7 +121,8 @@
       "packages/*"
     ],
     "globals": {
-      "react": "React"
+      "react": "React",
+      "@emotion/core": "emotionCore"
     }
   },
   "bugs": {

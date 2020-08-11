@@ -1,0 +1,11 @@
+{
+  "main": "dist/jsx-runtime.cjs.js",
+  "module": "dist/jsx-runtime.esm.js",
+  "browser": {
+    "./dist/jsx-runtime.cjs.js": "./dist/jsx-runtime.browser.cjs.js",
+    "./dist/jsx-runtime.esm.js": "./dist/jsx-runtime.browser.esm.js"
+  },
+  "preconstruct": {
+    "source": "../src/jsx-runtime"
+  }
+}

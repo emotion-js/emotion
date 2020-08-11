@@ -19285,15 +19285,14 @@ react-devtools-core@^3.4.2:
     shell-quote "^1.6.1"
     ws "^3.3.1"
 
-react-dom@16.8.1, "react-dom@^15 || ^16", react-dom@^16.5.2:
-  version "16.8.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.1.tgz#ec860f98853d09d39bafd3a6f1e12389d283dbb4"
-  integrity sha512-N74IZUrPt6UiDjXaO7UbDDFXeUXnVhZzeRLy/6iqqN1ipfjrhR60Bp5NuBK+rv3GMdqdIuwIl22u1SYwf330bg==
+react-dom@17.0.0-rc.0, "react-dom@^15 || ^16", react-dom@^16.5.2:
+  version "17.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.0-rc.0.tgz#237b4cca9cf817329373424bde00736f11fd7541"
+  integrity sha512-Ny2SlnMe+SxWRVDX2aLyWsv3ltbJC0gVyWtedfoJnV2265ePcM8BLY9fJjKb4ZXwcQ+pwZFdsURYarJ5qEEMeQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.13.1"
+    scheduler "0.20.0-rc.0"
 
 react-error-overlay@^2.0.0:
   version "2.0.2"
@@ -19597,15 +19596,13 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@16.8.1, "react@^15 || ^16", react@^16.5.2, react@^16.8.4:
-  version "16.8.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.8.1.tgz#ae11831f6cb2a05d58603a976afc8a558e852c4a"
-  integrity sha512-wLw5CFGPdo7p/AgteFz7GblI2JPOos0+biSoxf1FPsGxWQZdN/pj6oToJs1crn61DL3Ln7mN86uZ4j74p31ELQ==
+react@17.0.0-rc.0, "react@^15 || ^16", react@^16.5.2, react@^16.8.4:
+  version "17.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.0-rc.0.tgz#91a4d2085f07b501175a2434bd65b35aa0e95686"
+  integrity sha512-GPOdeCEE5HL9jRh7YIXoqBBxQVTqKtMm7tbH0Q//PJZV9EkFyUSDUglvIO/0i42PuUstEBcmOwlodTV2R9iStg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.13.1"
 
 read-chunk@^1.0.1:
   version "1.0.1"
@@ -20766,10 +20763,26 @@ saxes@^3.1.9:
   dependencies:
     xmlchars "^2.1.1"
 
-scheduler@^0.13.1, scheduler@^0.13.2, scheduler@^0.13.6:
+scheduler@0.20.0-rc.0:
+  version "0.20.0-rc.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.0-rc.0.tgz#9cb397f88f9decea28d159d3aad068b54a6f35e4"
+  integrity sha512-5CZiVhk9xI9VmqaodZH+eO3aKgqYwjZ8uf9lnfRlYEwaB4lbmIq0mzuNY5w52sbPlZP9pifXQaLGudKHMgQZcw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.13.2, scheduler@^0.13.6:
   version "0.13.6"
   resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.13.6.tgz#466a4ec332467b31a91b9bf74e5347072e4cd889"
   integrity sha512-IWnObHt413ucAYKsD9J1QShUKkbKLQQHdxRyw73sw4FN26iWr3DY/H34xGPe4nmL1DwXyWmSWmMrA9TfQbE/XQ==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.19.1:
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
+  integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

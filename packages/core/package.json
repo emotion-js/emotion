@@ -44,8 +44,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "umd:main": "dist/core.umd.min.js",
   "preconstruct": {
-    "umdName": "emotionCore"
+    "source": "src/index.js",
+    "entrypoints": [".", "jsx-runtime"]
   }
 }
