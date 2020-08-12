@@ -114,8 +114,6 @@ const jsx = (type, props, maybeKey) => {
   let args = arguments
 
   if (props == null || !hasOwnProperty.call(props, 'css')) {
-    // TODO: this is the only thing that works after omitting all `css` props
-    // yay! that means the `jsx` passthru works
     return reactJsx(type, props, maybeKey)
   }
 
@@ -168,7 +166,7 @@ const jsx = (type, props, maybeKey) => {
     createElementArgArray[i] = args[i]
   }
   // $FlowFixMe
-  return React.createElement.apply(null, createElementArgArray)
+  return reactJsx.apply(null, createElementArgArray)
 }
 
 const jsxs = jsx

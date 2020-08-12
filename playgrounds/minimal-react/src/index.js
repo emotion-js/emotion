@@ -1,14 +1,10 @@
-// import React from 'react'
-import ReactDOM from 'react-dom'
-import Greeting from './Greeting'
+import { render } from 'react-dom'
+import App from './App'
 
-const App = () => {
-  return (
-    <div>
-      <h1>Minimal React w/o import</h1>
-      <Greeting message="Hello" />
-    </div>
-  )
+let root = document.getElementById('root')
+
+if (!root) {
+  throw new Error('could not find root element')
 }
 
-ReactDOM.render(<App />, document.getElementById('app-root'))
+render(<App />, root)
