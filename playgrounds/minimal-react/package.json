@@ -20,6 +20,11 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
+  "eslintConfig": {
+    "rules": {
+      "react/react-in-jsx-scope": "off"
+    }
+  },
   "babel": {
     "presets": [
       "@babel/preset-env",
