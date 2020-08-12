@@ -10,5 +10,6 @@ package-lock.json
 .cache
 public/
 !playgrounds/cra/public
+!playgrounds/minimal-react/public
 .env
 .vscode
