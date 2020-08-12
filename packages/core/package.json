@@ -27,7 +27,7 @@
     "@emotion/utils": "0.11.3"
   },
   "peerDependencies": {
-    "react": ">=16.3.0"
+    "react": "17.0.0-rc.0"
   },
   "devDependencies": {
     "@emotion/styled": "^10.0.27",
@@ -37,7 +37,7 @@
     "emotion-server": "^10.0.27",
     "emotion-theming": "^10.0.27",
     "html-tag-names": "^1.1.2",
-    "react": "^16.5.2",
+    "react": "17.0.0-rc.0",
     "svg-tag-names": "^1.1.1"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/core",
@@ -46,6 +46,9 @@
   },
   "preconstruct": {
     "source": "src/index.js",
-    "entrypoints": [".", "jsx-runtime"]
+    "entrypoints": [
+      ".",
+      "jsx-runtime"
+    ]
   }
 }

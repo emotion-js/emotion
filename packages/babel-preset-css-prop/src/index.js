@@ -14,6 +14,7 @@ export default (
   { pragma, sourceMap, autoLabel, labelFormat, instances, ...options } = {}
 ) => {
   const isAutomaticRuntime = options.runtime === 'automatic'
+  console.log({ isAutomaticRuntime })
   const jsxOptions = isAutomaticRuntime
     ? { importSource: '@emotion/core' }
     : { pragma: pragmaName, pragmaFrag: 'React.Fragment' }
@@ -37,7 +38,7 @@ export default (
           instances,
           cssPropOptimization: true
         }
-      ].filter(Boolean)
-    ]
+      ]
+    ].filter(Boolean)
   }
 }
