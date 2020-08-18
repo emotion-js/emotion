@@ -1,6 +1,6 @@
 {
   "name": "@emotion/react",
-  "version": "11.0.0-next.14",
+  "version": "11.0.0-next.15",
   "main": "dist/react.cjs.js",
   "module": "dist/react.esm.js",
   "browser": {
@@ -23,9 +23,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
-    "@emotion/cache": "^11.0.0-next.13",
-    "@emotion/serialize": "^0.11.15-next.2",
-    "@emotion/sheet": "1.0.0-next.2",
+    "@emotion/cache": "^11.0.0-next.15",
+    "@emotion/serialize": "^1.0.0-next.3",
+    "@emotion/sheet": "1.0.0-next.3",
     "@emotion/utils": "1.0.0-next.0",
     "@emotion/weak-memoize": "0.2.5",
     "hoist-non-react-statics": "^3.3.1"
@@ -44,10 +44,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@emotion/css": "11.0.0-next.14",
+    "@emotion/css": "11.0.0-next.15",
     "@emotion/css-prettifier": "1.0.0-next.0",
-    "@emotion/server": "11.0.0-next.14",
-    "@emotion/styled": "11.0.0-next.14",
+    "@emotion/server": "11.0.0-next.15",
+    "@emotion/styled": "11.0.0-next.15",
     "@types/react": "^16.9.11",
     "dtslint": "^0.3.0",
     "html-tag-names": "^1.1.2",

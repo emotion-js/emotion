@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 1.0.0-next.3
+
+### Minor Changes
+
+- [`5d692a6a`](https://github.com/emotion-js/emotion/commit/5d692a6a8102b3faabefb773dd0145b123668a07) [#1956](https://github.com/emotion-js/emotion/pull/1956) Thanks [@eps1lon](https://github.com/eps1lon)! - Upgraded [`csstype`](https://www.npmjs.com/package/csstype) dependency to its v3. This is what we use to provide TypeScript typings for object styles. The upgrade should not affect any consuming code but it's worth mentioning if any edge case scenarios arise.
+
 ## 0.11.15-next.2
 
 ### Patch Changes
