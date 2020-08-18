@@ -198,6 +198,18 @@
   - emotion-theming@11.0.0-next.0
   - @emotion/styled@11.0.0-next.0
 
+## 10.0.35
+
+### Patch Changes
+
+- [`2cf3b16b`](https://github.com/emotion-js/emotion/commit/2cf3b16b94eb7bad8d745b135fb2bfa99154980d) [#1973](https://github.com/emotion-js/emotion/pull/1973) Thanks [@santialbo](https://github.com/santialbo)! - Fixed label extraction from the stack traces in node for components wrapped in `React.forwardRef`. This has affected only development builds.
+
+## 10.0.34
+
+### Patch Changes
+
+- [`4979ebb2`](https://github.com/emotion-js/emotion/commit/4979ebb2f9db94fa291384213e4f37e4a58a294a) [#1966](https://github.com/emotion-js/emotion/pull/1966) Thanks [@chnakamura](https://github.com/chnakamura)! - Fixed label extraction from the stack traces in Chrome in certain scenarios. This has affected only development builds.
+
 ## 10.0.28
 
 ### Patch Changes
