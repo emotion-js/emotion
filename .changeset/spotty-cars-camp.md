@@ -1,5 +1,5 @@
 ---
-'@emotion/core': minor
+'@emotion/react': minor
 '@emotion/css': minor
 '@emotion/serialize': minor
 '@emotion/styled': minor
