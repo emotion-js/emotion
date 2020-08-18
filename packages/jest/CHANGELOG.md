@@ -1,5 +1,13 @@
 # @emotion/jest
 
+## 11.0.0-next.15
+
+### Patch Changes
+
+- [`8a88e771`](https://github.com/emotion-js/emotion/commit/8a88e77113aef127b0404f4f0b66fd6ee69391f0) [#1880](https://github.com/emotion-js/emotion/pull/1880) Thanks [@Jimmydalecleveland](https://github.com/Jimmydalecleveland)! - Improved stability of the generated snapshots - styles are extracted now based on the order in which the associated with them class names appear in the serialized elements rather than based on the order of the actual rules in the document.
+
+* [`ae8c1d9d`](https://github.com/emotion-js/emotion/commit/ae8c1d9dfa9ec605c90937f6e77c2a2642c94bd7) [#1902](https://github.com/emotion-js/emotion/pull/1902) Thanks [@Andarist](https://github.com/Andarist)! - Added support for handling regular React **elements** (objects returned from `React.createElement`) in the serializer and `toHaveStyleRule` matcher. It's possible to get those elements when traversing Enzyme's trees.
+
 ## 11.0.0-next.14
 
 ### Major Changes

@@ -1,5 +1,16 @@
 # @emotion/native
 
+## 11.0.0-next.15
+
+### Minor Changes
+
+- [`620f7327`](https://github.com/emotion-js/emotion/commit/620f7327485236a4c57792787484af7d1f9cd799) [#1954](https://github.com/emotion-js/emotion/pull/1954) Thanks [@Andarist](https://github.com/Andarist)! - Reworked TypeScript types around types for React Native's core components. All of them, and all wrapped class components, should now accept `ref` prop properly.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.15
+
 ## 11.0.0-next.14
 
 ### Patch Changes

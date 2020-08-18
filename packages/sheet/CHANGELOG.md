@@ -1,5 +1,23 @@
 # @emotion/sheet
 
+## 1.0.0-next.3
+
+### Patch Changes
+
+- [`dc1a0c5e`](https://github.com/emotion-js/emotion/commit/dc1a0c5ed78b27fb7ce49b6296f2ca8631654cd1) [#1962](https://github.com/emotion-js/emotion/pull/1962) Thanks [@Andarist](https://github.com/Andarist)! - From now on an empty `<style/>` element gets inserted eagerly into the DOM in the constructor in non-production environments. This helps to grab used `key`s from the (JS)DOM even for sheets/caches that have not inserted any actual rules to the document yet. It allows `@emotion/jest` to find those and serialize Emotion classes properly in situations like this:
+
+  ```js
+  import styled from '@emotion/styled/macro'
+  import { render } from '@testing-library/react'
+
+  const Div = styled.div``
+
+  test('foo', () => {
+    const { container } = render(<Div />)
+    expect(container).toMatchSnapshot()
+  })
+  ```
+
 ## 1.0.0-next.2
 
 ### Major Changes

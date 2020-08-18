@@ -1,5 +1,13 @@
 # @emotion/primitives
 
+## 11.0.0-next.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.15
+  - @emotion/babel-plugin@11.0.0-next.15
+
 ## 11.0.0-next.14
 
 ### Patch Changes
