@@ -1,5 +1,11 @@
 # @emotion/core
 
+## 10.0.35
+
+### Patch Changes
+
+- [`2cf3b16b`](https://github.com/emotion-js/emotion/commit/2cf3b16b94eb7bad8d745b135fb2bfa99154980d) [#1973](https://github.com/emotion-js/emotion/pull/1973) Thanks [@santialbo](https://github.com/santialbo)! - Fixed label extraction from the stack traces in node for components wrapped in `React.forwardRef`. This has affected only development builds.
+
 ## 10.0.34
 
 ### Patch Changes
