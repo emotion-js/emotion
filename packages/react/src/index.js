@@ -1,4 +1,5 @@
 // @flow
+import pkg from '../package.json'
 export { withEmotionCache, CacheProvider } from './context'
 export { jsx } from './jsx'
 export { Global } from './global'
@@ -14,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   if (isBrowser && !isJest) {
     const globalContext = isBrowser ? window : global
-    const globalKey = '__EMOTION_REACT__'
+    const globalKey = `__EMOTION_REACT_${pkg.version.split('.')[0]}__`
     if (globalContext[globalKey]) {
       console.warn(
         'You are loading @emotion/react when it is already loaded. Running ' +
