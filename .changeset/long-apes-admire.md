@@ -1,8 +1,5 @@
 ---
-'@emotion/css': major
-'emotion-theming': major
-'@emotion/serialize': major
-'@emotion/styled-base': major
+'@emotion/react': major
 '@emotion/styled': major
 ---
 
