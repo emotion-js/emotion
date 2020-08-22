@@ -7,7 +7,7 @@ import {
   type CreateStyled,
   type PrivateStyledComponent
 } from './utils'
-import { withEmotionCache, ThemeContext } from '@emotion/core'
+import { withEmotionCache, ThemeContext } from '@emotion/react'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
@@ -148,16 +148,16 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
             next = next.next
           }
           return (
-            <React.Fragment>
+            <>
               <style
                 {...{
-                  [`data-emotion-${cache.key}`]: serializedNames,
+                  [`data-emotion`]: `${cache.key} ${serializedNames}`,
                   dangerouslySetInnerHTML: { __html: rules },
                   nonce: cache.sheet.nonce
                 }}
               />
               {ele}
-            </React.Fragment>
+            </>
           )
         }
         return ele

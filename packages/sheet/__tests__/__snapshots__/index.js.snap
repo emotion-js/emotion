@@ -4,6 +4,12 @@ exports[`StyleSheet should accept prepend option 1`] = `
 <html>
   <head>
     <style
+      data-eager-key="true"
+      data-emotion=""
+    >
+      
+    </style>
+    <style
       data-emotion=""
     >
       
@@ -23,9 +29,118 @@ exports[`StyleSheet should accept prepend option 1`] = `
 </html>
 `;
 
+exports[`StyleSheet should be able to hydrate styles 1`] = `
+<html>
+  <head>
+    <style
+      data-eager-key="true"
+      data-emotion=""
+    >
+      
+    </style>
+  </head>
+  <body>
+    <style>
+      .foo { color: hotpink; }
+    </style>
+    <style>
+      .bar { background-color: green; }
+    </style>
+  </body>
+</html>
+`;
+
+exports[`StyleSheet should be able to hydrate styles 2`] = `
+<html>
+  <head>
+    <style
+      data-eager-key="true"
+      data-emotion=""
+    >
+      
+    </style>
+    <style>
+      .foo { color: hotpink; }
+    </style>
+    <style>
+      .bar { background-color: green; }
+    </style>
+  </head>
+  <body />
+</html>
+`;
+
+exports[`StyleSheet should correctly position hydrated styles when used with \`prepend\` option 1`] = `
+<html>
+  <head>
+    <style
+      data-eager-key="true"
+      data-emotion=""
+    >
+      
+    </style>
+    <style>
+      .foo { color: hotpink; }
+    </style>
+    <style>
+      .bar { background-color: green; }
+    </style>
+    <style
+      id="other"
+    />
+  </head>
+  <body />
+</html>
+`;
+
+exports[`StyleSheet should flush hydrated styles 1`] = `
+<html>
+  <head>
+    <style
+      data-eager-key="true"
+      data-emotion=""
+    >
+      
+    </style>
+    <style>
+      .foo { color: hotpink; }
+    </style>
+    <style>
+      .bar { background-color: green; }
+    </style>
+    <style
+      data-emotion=""
+    >
+      
+      html { color: hotpink; }
+    </style>
+    <style
+      data-emotion=""
+    >
+      
+      * { box-sizing: border-box; }
+    </style>
+  </head>
+  <body />
+</html>
+`;
+
+exports[`StyleSheet should flush hydrated styles 2`] = `
+<html>
+  <head />
+  <body />
+</html>
+`;
+
 exports[`StyleSheet should insert a rule into the DOM when not in speedy 1`] = `
 <html>
   <head>
+    <style
+      data-eager-key="true"
+      data-emotion=""
+    >
+      
+    </style>
     <style
       data-emotion=""
     >
@@ -79,6 +194,12 @@ exports[`StyleSheet should remove its style elements from the document when flus
 <html>
   <head>
     <style
+      data-eager-key="true"
+      data-emotion=""
+    >
+      
+    </style>
+    <style
       data-emotion=""
     >
       
@@ -100,6 +221,12 @@ exports[`StyleSheet should set the data-emotion attribute to the key option 1`] 
 <html>
   <head>
     <style
+      data-eager-key="true"
+      data-emotion="some-key"
+    >
+      
+    </style>
+    <style
       data-emotion="some-key"
     >
       
@@ -115,6 +242,12 @@ exports[`StyleSheet should use the container option instead of document.head to 
   <head />
   <body>
     <div>
+      <style
+        data-eager-key="true"
+        data-emotion=""
+      >
+        
+      </style>
       <style
         data-emotion=""
       >

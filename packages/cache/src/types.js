@@ -1,13 +1,26 @@
 // @flow
 
-export type StylisPlugin = (
-  context: -2 | -1 | 0 | 1 | 2 | 3,
-  content: string,
-  selectors: Array<string>,
-  parents: Array<string>,
+export type StylisElement = {
+  type: string,
+  value: string,
+  props: Array<string>,
+  root: StylisElement | null,
+  children: Array<StylisElement>,
   line: number,
   column: number,
   length: number,
-  at: number,
-  depth: number
-) => mixed
+  return: string
+}
+export type StylisPluginCallback = (
+  element: StylisElement,
+  index: number,
+  children: Array<StylisElement>,
+  callback: StylisPluginCallback
+) => string | void
+
+export type StylisPlugin = (
+  element: StylisElement,
+  index: number,
+  children: Array<StylisElement>,
+  callback: StylisPluginCallback
+) => string | void

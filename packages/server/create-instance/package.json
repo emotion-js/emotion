@@ -1,0 +1,10 @@
+{
+  "main": "dist/server.cjs.js",
+  "browser": {
+    "./dist/server.cjs.js": "./dist/server.browser.cjs.js"
+  },
+  "types": "../types/create-instance",
+  "preconstruct": {
+    "source": "../src/create-instance"
+  }
+}

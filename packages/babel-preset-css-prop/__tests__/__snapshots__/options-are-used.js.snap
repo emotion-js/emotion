@@ -11,10 +11,10 @@ const Component = props => <div css={[{ color: 'green' }]} {...props} />
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import * as React from 'react';
-import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+import { jsx as ___EmotionJSX } from \\"@emotion/react\\";
 var _ref = {
-  name: \\"1vf7vy9-__fixtures__--array-css-prop--Component\\",
-  styles: \\"color:green;;label:__fixtures__--array-css-prop--Component;\\"
+  name: \\"v98kxt\\",
+  styles: \\"color:green\\"
 };
 
 const Component = props => ___EmotionJSX(\\"div\\", _extends({
@@ -44,10 +44,10 @@ export let Button = props => {
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import * as React from 'react';
-import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+import { jsx as ___EmotionJSX } from \\"@emotion/react\\";
 var _ref = {
-  name: \\"1a7y9g-__fixtures__--__fixtures__--Button\\",
-  styles: \\"color:hotpink;;label:__fixtures__--__fixtures__--Button;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 };
 export let Button = props => {
   return ___EmotionJSX(React.Fragment, null, ___EmotionJSX(\\"button\\", _extends({

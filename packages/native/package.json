@@ -1,24 +1,28 @@
 {
   "name": "@emotion/native",
-  "version": "11.0.0-next.7",
+  "version": "11.0.0-next.15",
   "description": "Style and render React Native components using emotion",
   "main": "dist/native.cjs.js",
   "module": "dist/native.esm.js",
   "scripts": {
-    "test:typescript": "exit 0"
+    "test:typescript": "dtslint types"
   },
   "files": [
     "src",
     "dist",
+    "types/*.d.ts",
     "macro.js"
   ],
+  "types": "types/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@types/react-native": "^0.63.2",
+    "dtslint": "^0.3.0",
     "react": "^16.11.0",
-    "react-native": "^0.57.0"
+    "react-native": "^0.61.5"
   },
   "dependencies": {
-    "@emotion/primitives-core": "11.0.0-next.7"
+    "@emotion/primitives-core": "11.0.0-next.15"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0",

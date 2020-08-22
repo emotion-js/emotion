@@ -37,12 +37,12 @@ Frequently viewed docs:
 Get up and running with a single import.
 
 ```bash
-npm install --save @emotion/core
+npm install --save @emotion/react
 ```
 
 ```jsx
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 let SomeComponent = props => {
   return (
@@ -60,7 +60,7 @@ let SomeComponent = props => {
 
 The babel plugin is not required, but enables some optimizations and customizations that could be beneficial for your project.
 
-Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)_
+Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin)_
 
 ### Demo Sandbox
 
@@ -71,7 +71,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [emotion website](site) [[Demo Here](https://emotion.sh)]
 - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
 - [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
-- [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
+- [circuit-ui](https://github.com/sumup-oss/circuit-ui), a react component library built at SumUp [[Storybook](https://circuit.sumup.com/?path=/story/introduction-welcome--page)]
 - **open a PR and add yours!**
 
 ### Ecosystem
@@ -87,6 +87,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [polished](https://github.com/styled-components/polished) - Lightweight set of Sass/Compass-style mixins/helpers for writing styles in JavaScript.
 - [monad-ui](https://github.com/muhajirdev/monad-ui/) - Utility First CSS-In-JS
 - [css-in-js-media](https://github.com/zx6658/css-in-js-media) - you can deal with responsive design using css-in-js easily with this `css-in-js-media` which is similar with include-media
+- [emotion-native-extended](https://github.com/ItsWendell/emotion-native-extended) - Better styling support for Emotion Native with [React Native Extended Stylesheet](https://github.com/vitalets/react-native-extended-stylesheet)
 
 ### In the Wild
 
@@ -102,6 +103,9 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [zefenify.com](https://zefenify.com/about.html)
 - [sentry.io](https://sentry.io)
 - [comparett.com](https://comparett.com)
+- [Domain.com.au](https://www.domain.com.au)
+- [cyberhaven.com](https://cyberhaven.com)
+- [CommercialRealEstate.com.au](https://www.commercialrealestate.com.au)
 
 ## Contributors
 
@@ -118,6 +122,7 @@ Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/emotion#sponsor)]
 
+<a href="https://thinkmill.com.au" target="_blank"><img height="64" alt="Thinkmill" src="https://thinkmill.github.io/badge/wide-logo.svg"></a>
 <a href="https://opencollective.com/emotion/sponsor/0/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/emotion/sponsor/1/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/1/avatar.svg"></a>
 <a href="https://opencollective.com/emotion/sponsor/2/website" target="_blank"><img src="https://opencollective.com/emotion/sponsor/2/avatar.svg"></a>

@@ -1,6 +1,6 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import { graphql } from 'gatsby'
 import Layout from '../layouts'
 import * as markdownComponents from '../utils/markdown-styles'
@@ -24,7 +24,7 @@ const Community = (props: *) => {
           <MDXProvider components={markdownComponents}>
             <MDXRenderer>{props.data.mdx.body}</MDXRenderer>
           </MDXProvider>
-          <markdownComponents.h2>Contributing</markdownComponents.h2>
+          <markdownComponents.h2>{'Contributing'}</markdownComponents.h2>
           <markdownComponents.p>
             This list comes from{' '}
             <a href="https://github.com/emotion-js/awesome-emotion">
@@ -32,7 +32,7 @@ const Community = (props: *) => {
             </a>
             . Anything added to that that list will appear here automatically.
           </markdownComponents.p>
-          <markdownComponents.h2>Thanks!</markdownComponents.h2>
+          <markdownComponents.h2>{'Thanks!'}</markdownComponents.h2>
           <markdownComponents.p>
             Thanks to the styled-components team for the idea of embedding an
             awesome list into a website! ❤️

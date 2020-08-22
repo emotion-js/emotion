@@ -1,5 +1,5 @@
 // @flow
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import facepaint from 'facepaint'
 import { util, constants } from 'styled-system'
 import darken from 'polished/lib/color/darken'
@@ -16,7 +16,7 @@ export const colors = {
   darken2: darken(0.15),
   darken3: darken(0.2),
   reallyLightPink: '#f9e9fb',
-  hightlight: '#D36AC2',
+  hightlight: '#C43BAD',
   border: '#C865B9',
   bg: '#FAF9FA',
   color: '#1B1D1D',

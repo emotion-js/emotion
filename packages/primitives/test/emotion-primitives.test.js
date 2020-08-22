@@ -2,7 +2,7 @@
 import * as React from 'react'
 import renderer from 'react-test-renderer'
 import reactPrimitives from 'react-primitives'
-import { ThemeProvider } from '@emotion/core'
+import { ThemeProvider } from '@emotion/react'
 import { render, unmountComponentAtNode } from 'react-dom'
 
 import styled from '@emotion/primitives'
@@ -19,7 +19,7 @@ describe('Emotion primitives', () => {
   })
 
   test('should throw an error when used invalid primitive', () => {
-    // $FlowExpectError
+    // $FlowFixMe: expect error
     expect(() => styled.TEXT({})).toThrow()
   })
 
@@ -40,7 +40,7 @@ describe('Emotion primitives', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should work with theming from @emotion/core', () => {
+  it('should work with theming from @emotion/react', () => {
     const Text = styled.Text`
       color: ${props => props.theme.backgroundColor};
     `

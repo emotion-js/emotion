@@ -1,5 +1,5 @@
 // @flow
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import { colors } from '../utils/style'
 
 const headingBackground = colors.hightlight

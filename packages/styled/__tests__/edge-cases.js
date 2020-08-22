@@ -3,7 +3,7 @@ import 'test-utils/next-env'
 import * as React from 'react'
 import renderer from 'react-test-renderer'
 import styled from '@emotion/styled'
-import { css, keyframes } from '@emotion/core'
+import { css, keyframes } from '@emotion/react'
 
 test('nested function using css', () => {
   let Comp = styled.div`

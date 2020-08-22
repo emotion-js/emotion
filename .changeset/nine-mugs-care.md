@@ -1,5 +1,5 @@
 ---
-'@emotion/core': patch
+'@emotion/react': patch
 '@emotion/is-prop-valid': patch
 '@emotion/serialize': patch
 ---

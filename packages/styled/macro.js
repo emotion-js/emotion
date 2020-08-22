@@ -1,1 +1,1 @@
-module.exports = require('babel-plugin-emotion').macros.webStyled
+module.exports = require('@emotion/babel-plugin').macros.webStyled

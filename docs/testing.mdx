@@ -6,37 +6,59 @@ Adding [snapshot tests with Jest](https://facebook.github.io/jest/docs/en/snapsh
 
 By diffing the serialized value of your React tree Jest can show you what changed in your app and allow you to fix it or update the snapshot.
 
-By default snapshots with emotion show generated class names. Adding [jest-emotion](https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion) allows you to output the actual styles being applied.
+By default snapshots with emotion show generated class names. Adding [@emotion/jest](https://github.com/emotion-js/emotion/tree/master/packages/jest) allows you to output the actual styles being applied.
 
 <img height="360px" src="https://user-images.githubusercontent.com/514026/31314015-02b79ca6-abc3-11e7-8f70-1edb31c7f43b.jpg"/>
 
 ### Installation
 
 ```bash
-npm install --save-dev jest-emotion
+npm install --save-dev @emotion/jest
 ```
 
-Add the snapshot serializer in your [`setupTestFrameworkScriptFile`](http://facebook.github.io/jest/docs/en/configuration.html#setuptestframeworkscriptfile-string) _or_ at the top of your test file.
+Add the `"@emotion/jest/serializer"` to the [`snapshotSerializers`](https://jestjs.io/docs/en/configuration#snapshotserializers-arraystring) option.
+
+```json
+{
+  "snapshotSerializers": ["@emotion/jest/serializer"]
+}
+```
+
+Or use `expect.addSnapshotSerializer` to add it.
 
 ```javascript
-import * as emotion from 'emotion'
-import { createSerializer } from 'jest-emotion'
+import { createSerializer } from '@emotion/jest'
 
-expect.addSnapshotSerializer(createSerializer(emotion))
+expect.addSnapshotSerializer(createSerializer())
+```
+
+When using Enzyme, you can add `"@emotion/jest/enzyme-serializer"` instead.
+
+```json
+{
+  "snapshotSerializers": ["@emotion/jest/enzyme-serializer"]
+}
+```
+
+Or use `expect.addSnapshotSerializer` to add it like this:
+
+
+```javascript
+import { createEnzymeSerializer } from '@emotion/jest/enzyme-serializer' // also adds the enzyme-to-json serializer
+
+expect.addSnapshotSerializer(createEnzymeSerializer())
 ```
 
 ### Writing a test
 
-Writing a test with `jest-emotion` involves creating a snapshot from the `react-test-renderer` or `enzyme-to-json`'s resulting JSON.
+Writing a test with `@emotion/jest` involves creating a snapshot from the `react-test-renderer` or `enzyme-to-json`'s resulting JSON.
 
 ```jsx
 import React from 'react'
-import serializer from 'jest-emotion'
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import renderer from 'react-test-renderer'
 
-expect.addSnapshotSerializer(serializer)
 
 const Button = props => (
   <button
