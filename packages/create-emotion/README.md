@@ -69,4 +69,4 @@ export const {
 
 ## Options
 
-`createEmotion` accepts the same options as [createCache](/packages/cache#options) from `@emotion/cache`.
+`createEmotion` accepts the same options as [createCache](/docs/@emotion/cache#options) from `@emotion/cache`.
