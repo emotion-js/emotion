@@ -3,6 +3,7 @@ import * as React from 'react'
 import type { ElementType } from 'react'
 import {
   getDefaultShouldForwardProp,
+  composeShouldForwardProps,
   type StyledOptions,
   type CreateStyled,
   type PrivateStyledComponent
@@ -26,27 +27,18 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       )
     }
   }
+  const isReal = tag.__emotion_real === tag
+  const baseTag = (isReal && tag.__emotion_base) || tag
+
   let identifierName
-  let shouldForwardProp
   let targetClassName
   if (options !== undefined) {
     identifierName = options.label
     targetClassName = options.target
-    shouldForwardProp =
-      tag.__emotion_forwardProp && options.shouldForwardProp
-        ? propName =>
-            tag.__emotion_forwardProp(propName) &&
-            // $FlowFixMe
-            options.shouldForwardProp(propName)
-        : options.shouldForwardProp
   }
-  const isReal = tag.__emotion_real === tag
-  const baseTag = (isReal && tag.__emotion_base) || tag
 
-  if (typeof shouldForwardProp !== 'function' && isReal) {
-    shouldForwardProp = tag.__emotion_forwardProp
-  }
-  let defaultShouldForwardProp =
+  const shouldForwardProp = composeShouldForwardProps(tag, options, isReal)
+  const defaultShouldForwardProp =
     shouldForwardProp || getDefaultShouldForwardProp(baseTag)
   const shouldUseAs = !defaultShouldForwardProp('as')
 
@@ -197,35 +189,11 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       nextTag: ElementType,
       nextOptions?: StyledOptions
     ) => {
-      const { label, ...prevOptions } = options || {}
-      let nextStyles = styles
-
-      if (nextOptions && nextOptions.label !== undefined) {
-        if (identifierName !== undefined) {
-          nextStyles = styles.slice(1)
-        }
-
-        if (
-          nextTag.__emotion_real === nextTag &&
-          nextTag.__emotion_identifier !== undefined
-        ) {
-          nextTag = { ...nextTag }
-          nextTag.__emotion_real = nextTag
-          nextTag.__emotion_styles = nextTag.__emotion_styles.slice(1)
-        }
-      }
-
       return createStyled(nextTag, {
-        ...prevOptions,
+        ...options,
         ...nextOptions,
-        shouldForwardProp:
-          nextOptions && typeof nextOptions.shouldForwardProp === 'function'
-            ? propName =>
-                // $FlowFixMe: validated before being closed over
-                nextOptions.shouldForwardProp(propName) &&
-                defaultShouldForwardProp(propName)
-            : defaultShouldForwardProp
-      })(...nextStyles)
+        shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
+      })(...styles)
     }
 
     return Styled
