@@ -169,7 +169,6 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     Styled.__emotion_real = Styled
     Styled.__emotion_base = baseTag
     Styled.__emotion_styles = styles
-    Styled.__emotion_identifier = identifierName
     Styled.__emotion_forwardProp = shouldForwardProp
 
     Object.defineProperty(Styled, 'toString', {
@@ -191,6 +190,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     ) => {
       return createStyled(nextTag, {
         ...options,
+        // $FlowFixMe
         ...nextOptions,
         shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
       })(...styles)

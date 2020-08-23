@@ -40,17 +40,18 @@ export const getDefaultShouldForwardProp = (tag: ElementType) =>
 
 export const composeShouldForwardProps = (
   tag: PrivateStyledComponent<any>,
-  options: StyledOptions | undefined,
+  options: StyledOptions | void,
   isReal: boolean
 ) => {
   let shouldForwardProp
   if (options) {
+    const optionsShouldForwardProp = options.shouldForwardProp
     shouldForwardProp =
-      tag.__emotion_forwardProp && options.shouldForwardProp
-        ? propName =>
+      tag.__emotion_forwardProp && optionsShouldForwardProp
+        ? (propName: string) =>
             tag.__emotion_forwardProp(propName) &&
-            options.shouldForwardProp(propName)
-        : options.shouldForwardProp // $FlowFixMe
+            optionsShouldForwardProp(propName)
+        : optionsShouldForwardProp
   }
 
   if (typeof shouldForwardProp !== 'function' && isReal) {
