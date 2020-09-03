@@ -248,3 +248,4 @@ Relying on the css spec's ["Order of Appearance"](https://www.w3.org/TR/css-casc
 ## Gotchas
 
 - If you include the plugin `@babel/plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.
+- When using `React.cloneElement` you can't easily add a css prop if the cloned element doesn't already have it. Otherwise `React.cloneElement` works with `jsx`-created elements.
