@@ -3,20 +3,26 @@ import styled from '@emotion/styled'
 
 // This file uses the same Theme declaration from tests-base.tsx
 
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>>
-styled.a
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>>
-styled.body
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
-styled.div
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, SVGProps<SVGSVGElement>>
-styled.svg
+{
+  const Anchor = styled.a``
+  ;<Anchor href="test" />
+  const Body = styled.body``
+  ;<Body />
+  const Div = styled.div``
+  ;<Div onClick={() => {}} />
+  const Svg = styled.svg``
+  ;<Svg color="hotpink" />
+}
 
 {
   styled.div<{ bar: string }>`
     color: ${props => {
-      // $ExpectType { theme?: Theme | undefined; } & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; } & { theme: Theme; }
-      props
+      // $ExpectType Theme
+      props.theme
+      // $ExpectType string
+      props.bar
+      // $ExpectType string | undefined
+      props.dir
 
       return {}
     }};
