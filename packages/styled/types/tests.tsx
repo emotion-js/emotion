@@ -165,3 +165,14 @@ const Input5 = styled.input`
   const Z = styled(Y)()
   ;<Z>No excessive instantiation</Z>
 }
+
+{
+  const StyledWithAs = styled.div`
+    display: flex;
+  `
+  const Section = styled.section`
+    color: hotpink;
+  `
+  ;<StyledWithAs as="section" />
+  ;<StyledWithAs as={Section} />
+}
