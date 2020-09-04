@@ -3,6 +3,7 @@ import * as React from 'react'
 import type { ElementType } from 'react'
 import {
   getDefaultShouldForwardProp,
+  composeShouldForwardProps,
   type StyledOptions,
   type CreateStyled,
   type PrivateStyledComponent
@@ -26,27 +27,18 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       )
     }
   }
+  const isReal = tag.__emotion_real === tag
+  const baseTag = (isReal && tag.__emotion_base) || tag
+
   let identifierName
-  let shouldForwardProp
   let targetClassName
   if (options !== undefined) {
     identifierName = options.label
     targetClassName = options.target
-    shouldForwardProp =
-      tag.__emotion_forwardProp && options.shouldForwardProp
-        ? propName =>
-            tag.__emotion_forwardProp(propName) &&
-            // $FlowFixMe
-            options.shouldForwardProp(propName)
-        : options.shouldForwardProp
   }
-  const isReal = tag.__emotion_real === tag
-  const baseTag = (isReal && tag.__emotion_base) || tag
 
-  if (typeof shouldForwardProp !== 'function' && isReal) {
-    shouldForwardProp = tag.__emotion_forwardProp
-  }
-  let defaultShouldForwardProp =
+  const shouldForwardProp = composeShouldForwardProps(tag, options, isReal)
+  const defaultShouldForwardProp =
     shouldForwardProp || getDefaultShouldForwardProp(baseTag)
   const shouldUseAs = !defaultShouldForwardProp('as')
 
@@ -196,12 +188,12 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
       nextTag: ElementType,
       nextOptions?: StyledOptions
     ) => {
-      return createStyled(
-        nextTag,
-        nextOptions !== undefined
-          ? { ...(options || {}), ...nextOptions }
-          : options
-      )(...styles)
+      return createStyled(nextTag, {
+        ...options,
+        // $FlowFixMe
+        ...nextOptions,
+        shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
+      })(...styles)
     }
 
     return Styled

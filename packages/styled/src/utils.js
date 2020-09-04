@@ -38,6 +38,29 @@ export const getDefaultShouldForwardProp = (tag: ElementType) =>
     ? testOmitPropsOnStringTag
     : testOmitPropsOnComponent
 
+export const composeShouldForwardProps = (
+  tag: PrivateStyledComponent<any>,
+  options: StyledOptions | void,
+  isReal: boolean
+) => {
+  let shouldForwardProp
+  if (options) {
+    const optionsShouldForwardProp = options.shouldForwardProp
+    shouldForwardProp =
+      tag.__emotion_forwardProp && optionsShouldForwardProp
+        ? (propName: string) =>
+            tag.__emotion_forwardProp(propName) &&
+            optionsShouldForwardProp(propName)
+        : optionsShouldForwardProp
+  }
+
+  if (typeof shouldForwardProp !== 'function' && isReal) {
+    shouldForwardProp = tag.__emotion_forwardProp
+  }
+
+  return shouldForwardProp
+}
+
 export type CreateStyledComponent = <Props>(
   ...args: Interpolations
 ) => StyledComponent<Props>
