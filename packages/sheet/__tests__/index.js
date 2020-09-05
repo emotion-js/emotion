@@ -15,8 +15,6 @@ console.error = jest.fn()
 
 afterEach(() => {
   jest.clearAllMocks()
-  safeQuerySelector('head').innerHTML = ''
-  safeQuerySelector('body').innerHTML = ''
 })
 
 describe('StyleSheet', () => {
@@ -83,12 +81,9 @@ describe('StyleSheet', () => {
     let nonce = 'some-nonce'
     const sheet = new StyleSheet({ ...defaultOptions, nonce })
     sheet.insert(rule)
-    expect(sheet.tags[1]).toBe(
-      document.querySelector('[data-emotion]:not([data-eager-key])')
-    )
-    expect(sheet.tags).toHaveLength(2)
+    expect(sheet.tags[0]).toBe(document.querySelector('[data-emotion]'))
+    expect(sheet.tags).toHaveLength(1)
     expect(sheet.tags[0].getAttribute('nonce')).toBe(nonce)
-    expect(sheet.tags[1].getAttribute('nonce')).toBe(nonce)
     sheet.flush()
   })
 
@@ -100,7 +95,7 @@ describe('StyleSheet', () => {
     expect(sheet.container).toBe(container)
     sheet.insert(rule)
     expect(document.documentElement).toMatchSnapshot()
-    expect(sheet.tags).toHaveLength(2)
+    expect(sheet.tags).toHaveLength(1)
     expect(sheet.tags[0].parentNode).toBe(container)
     sheet.flush()
     // $FlowFixMe

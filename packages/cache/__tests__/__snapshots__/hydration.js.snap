@@ -4,12 +4,6 @@ exports[`it works 1`] = `
 <html>
   <head>
     <style
-      data-eager-key="true"
-      data-emotion="css"
-    >
-      
-    </style>
-    <style
       data-emotion="css 1lrxbo5"
     >
       .css-1lrxbo5{color:hotpink;}
@@ -23,18 +17,6 @@ exports[`rehydrated styles to head can be flushed 1`] = `
 <html>
   <head>
     <style
-      data-eager-key="true"
-      data-emotion="css"
-    >
-      
-    </style>
-    <style
-      data-eager-key="true"
-      data-emotion="emo"
-    >
-      
-    </style>
-    <style
       data-emotion="emo 1lrxbo5"
     >
       .emo-1lrxbo5{color:hotpink;}
@@ -46,14 +28,7 @@ exports[`rehydrated styles to head can be flushed 1`] = `
 
 exports[`rehydrated styles to head can be flushed 2`] = `
 <html>
-  <head>
-    <style
-      data-eager-key="true"
-      data-emotion="css"
-    >
-      
-    </style>
-  </head>
+  <head />
   <body />
 </html>
 `;

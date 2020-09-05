@@ -2,7 +2,7 @@
 
 exports[`composes shouldForwardProp on composed styled components 1`] = `
 <div
-  className="emotion-0 emotion-1"
+  className="css-9xvpe1-StyledDiv-ComposedDiv emotion-0"
   xyz={true}
 />
 `;

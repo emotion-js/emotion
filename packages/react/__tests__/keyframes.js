@@ -19,9 +19,7 @@ cases(
         .toJSON()
     ).toMatchSnapshot()
     expect(
-      throwIfFalsy(cache.sheet.tags)
-        .map(tag => tag.textContent)
-        .filter(Boolean)
+      throwIfFalsy(cache.sheet.tags).map(tag => tag.textContent || '')
     ).toMatchSnapshot()
     cache.sheet.flush()
   },
