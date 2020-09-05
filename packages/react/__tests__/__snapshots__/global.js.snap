@@ -6,6 +6,12 @@ exports[`basic 1`] = `
     data-emotion="css"
   >
     
+    .css-animation-ocj8pk{}
+  </style>
+  <style
+    data-emotion="css"
+  >
+    
     @-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
   </style>
   <style
@@ -51,6 +57,12 @@ exports[`basic 2`] = `
 
 exports[`basic 3`] = `
 <head>
+  <style
+    data-emotion="css"
+  >
+    
+    .css-animation-ocj8pk{}
+  </style>
   <style
     data-emotion="css"
   >
