@@ -11,6 +11,25 @@ Object {
 }
 `;
 
+exports[`extracted rules have correct keys when dealing with multiple caches 1`] = `
+Array [
+  Object {
+    "css": ".ssr-first-key-1j7dx2f{color:rebeccapurple;}",
+    "html": "<div class=\\"ssr-first-key-1j7dx2f\\"></div>",
+    "ids": Array [
+      "1j7dx2f",
+    ],
+  },
+  Object {
+    "css": ".ssr-second-key-1j7dx2f{color:rebeccapurple;}",
+    "html": "<div class=\\"ssr-second-key-1j7dx2f\\"></div>",
+    "ids": Array [
+      "1j7dx2f",
+    ],
+  },
+]
+`;
+
 exports[`it works 1`] = `
 Object {
   "css": ".ssr-1lrxbo5{color:hotpink;}",
