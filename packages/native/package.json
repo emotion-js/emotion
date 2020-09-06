@@ -22,7 +22,8 @@
     "react-native": "^0.61.5"
   },
   "dependencies": {
-    "@emotion/primitives-core": "11.0.0-next.15"
+    "@emotion/primitives-core": "11.0.0-next.15",
+    "@types/react-native": "^0.63.15"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0",

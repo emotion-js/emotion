@@ -5,46 +5,7 @@ import { styled } from './base'
 
 const css = createCss(reactNative.StyleSheet)
 
-const components = [
-  'ActivityIndicator',
-  'Button',
-  'DatePickerIOS',
-  'DrawerLayoutAndroid',
-  'FlatList',
-  'Image',
-  'ImageBackground',
-  'KeyboardAvoidingView',
-  'ListView',
-  'Modal',
-  'NavigatorIOS',
-  'Picker',
-  'PickerIOS',
-  'Pressable',
-  'ProgressBarAndroid',
-  'ProgressViewIOS',
-  'RecyclerViewBackedScrollView',
-  'RefreshControl',
-  'SafeAreaView',
-  'ScrollView',
-  'SectionList',
-  'SegmentedControlIOS',
-  'Slider',
-  'SnapshotViewIOS',
-  'StatusBar',
-  'SwipeableListView',
-  'Switch',
-  'SwitchIOS',
-  'TabBarIOS',
-  'Text',
-  'TextInput',
-  'ToolbarAndroid',
-  'TouchableHighlight',
-  'TouchableNativeFeedback',
-  'TouchableOpacity',
-  'TouchableWithoutFeedback',
-  'View',
-  'ViewPagerAndroid'
-]
+const components = Object.keys(reactNative)
 
 export { css }
 
