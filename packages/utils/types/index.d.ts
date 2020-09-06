@@ -15,7 +15,6 @@ export interface StyleSheet {
 }
 
 export interface EmotionCache {
-  stylis(key: string, value: string): Array<string>
   inserted: {
     [key: string]: string | true
   }
@@ -24,6 +23,12 @@ export interface EmotionCache {
   key: string
   compat?: true
   nonce?: string
+  insert(
+    selector: string,
+    serialized: SerializedStyles,
+    sheet: StyleSheet,
+    shouldCache: boolean
+  ): string | void
 }
 
 export interface SerializedStyles {
