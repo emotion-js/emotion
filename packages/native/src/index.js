@@ -3,9 +3,15 @@ import { createCss } from '@emotion/primitives-core'
 
 import { styled } from './base'
 
+import * as classComponent from './classComponent'
+import * as functionComponent from './functionComponent'
+
 const css = createCss(reactNative.StyleSheet)
 
-const components = Object.keys(reactNative)
+const components = [
+  ...Object.keys(classComponent),
+  ...Object.keys(functionComponent)
+]
 
 export { css }
 
