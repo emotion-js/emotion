@@ -177,8 +177,35 @@ exports[`orphaned pseudos regexp special character 1`] = `
 }"
 `;
 
+exports[`orphaned pseudos selector list with nested atrule 1`] = `
+".css-7vvm69::backdrop,
+.css-7vvm69+.backdrop {
+  background-color: grey;
+}
+
+@media print {
+  .css-7vvm69::backdrop,
+  .css-7vvm69+.backdrop {
+    display: none;
+  }
+}"
+`;
+
 exports[`orphaned pseudos single 1`] = `
 ".css-17n559g:focus {
   color: hotpink;
+}"
+`;
+
+exports[`orphaned pseudos with nested atrule 1`] = `
+".css-1vs75su::before {
+  content: \\"*\\";
+  background: pink;
+}
+
+@media screen and (max-width: 800px) {
+  .css-1vs75su::before {
+    background: cyan;
+  }
 }"
 `;

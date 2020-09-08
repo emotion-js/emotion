@@ -208,4 +208,31 @@ describe('orphaned pseudos', () => {
 
     expect(sheet).toMatchSnapshot()
   })
+
+  test('with nested atrule', () => {
+    css({
+      '::before': {
+        content: '"*"',
+        background: 'pink',
+        '@media screen and (max-width: 800px)': {
+          background: 'cyan'
+        }
+      }
+    })
+
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('selector list with nested atrule', () => {
+    css({
+      '::backdrop, & + .backdrop': {
+        backgroundColor: 'grey',
+        '@media print': {
+          display: 'none'
+        }
+      }
+    })
+
+    expect(sheet).toMatchSnapshot()
+  })
 })
