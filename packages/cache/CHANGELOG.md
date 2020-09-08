@@ -1,5 +1,29 @@
 # @emotion/cache
 
+## 11.0.0-next.16
+
+### Patch Changes
+
+- [`a8eb4e75`](https://github.com/emotion-js/emotion/commit/a8eb4e75eed26763dc4f82ddd9bb49af4552768b) [#1998](https://github.com/emotion-js/emotion/pull/1998) Thanks [@Andarist](https://github.com/Andarist)! - Styles are now correctly extracted from the correct cache (`key`-sensitive) on the server.
+
+* [`dfe98028`](https://github.com/emotion-js/emotion/commit/dfe98028451a27c5190fa1ba138e51ef3d6d9be1) [#2003](https://github.com/emotion-js/emotion/pull/2003) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with orphaned pseudo selectors (e.g. `:hover` - where `&:hover`, `div:hover`, etc are not considered orphaned) having the context selector (the one computed based on all ancestor levels selectors) doubled in a descendant at-rule.
+
+- [`39be057b`](https://github.com/emotion-js/emotion/commit/39be057b1a0c6b76f2cb7a455cb8bc35fe875ba0) [#1997](https://github.com/emotion-js/emotion/pull/1997) Thanks [@Andarist](https://github.com/Andarist)! - From now on an empty rule will get inserted into the DOM in non-production environments if it gets created by the user. This helps to grab used `key`s from the (JS)DOM even for caches that have not inserted any actual rules to the document yet. It allows `@emotion/jest` to find those and serialize Emotion classes properly in situations like this:
+
+  ```js
+  import styled from '@emotion/styled/macro'
+  import { render } from '@testing-library/react'
+  const Div = styled.div``
+  test('foo', () => {
+    const { container } = render(<Div />)
+    expect(container).toMatchSnapshot()
+  })
+  ```
+
+- Updated dependencies [[`debaad9a`](https://github.com/emotion-js/emotion/commit/debaad9ab4bd6c80312092826d9146f3d29c0899), [`39be057b`](https://github.com/emotion-js/emotion/commit/39be057b1a0c6b76f2cb7a455cb8bc35fe875ba0)]:
+  - @emotion/utils@1.0.0-next.1
+  - @emotion/sheet@1.0.0-next.4
+
 ## 11.0.0-next.15
 
 ### Patch Changes

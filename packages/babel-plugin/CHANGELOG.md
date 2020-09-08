@@ -1,5 +1,12 @@
 # @emotion/babel-plugin
 
+## 11.0.0-next.16
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/serialize@0.11.15-next.4
+
 ## 11.0.0-next.15
 
 ### Patch Changes
