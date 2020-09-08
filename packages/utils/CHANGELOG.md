@@ -1,5 +1,11 @@
 # @emotion/utils
 
+## 1.0.0-next.1
+
+### Patch Changes
+
+- [`debaad9a`](https://github.com/emotion-js/emotion/commit/debaad9ab4bd6c80312092826d9146f3d29c0899) [#1999](https://github.com/emotion-js/emotion/pull/1999) Thanks [@RoystonS](https://github.com/RoystonS)! - Fixed TypeScript definition of the `EmotionCache` by replacing the non-existent `stylis` method with `insert` that is available at runtime.
+
 ## 1.0.0-next.0
 
 ### Major Changes

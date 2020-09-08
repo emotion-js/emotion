@@ -1,5 +1,12 @@
 # @emotion/serialize
 
+## 0.11.15-next.4
+
+### Patch Changes
+
+- Updated dependencies [[`debaad9a`](https://github.com/emotion-js/emotion/commit/debaad9ab4bd6c80312092826d9146f3d29c0899)]:
+  - @emotion/utils@1.0.0-next.1
+
 ## 1.0.0-next.3
 
 ### Minor Changes
