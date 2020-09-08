@@ -11,6 +11,7 @@ import {
   COMMENT
 } from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
+import memoize from '@emotion/memoize'
 import {
   compat,
   removeLabel,
@@ -32,10 +33,12 @@ export type Options = {
 
 let getServerStylisCache = isBrowser
   ? undefined
-  : weakMemoize(() => {
-      let cache = {}
-      return name => cache[name]
-    })
+  : weakMemoize(() =>
+      memoize(() => {
+        let cache = {}
+        return name => cache[name]
+      })
+    )
 
 const defaultStylisPlugins = [prefixer]
 let movedStyles = false
@@ -175,7 +178,7 @@ let createCache = (options: Options): EmotionCache => {
     const stylis = styles => serialize(compile(styles), serializer)
 
     // $FlowFixMe
-    let serverStylisCache = getServerStylisCache(stylisPlugins)
+    let serverStylisCache = getServerStylisCache(stylisPlugins)(key)
     let getRules = (selector: string, serialized: SerializedStyles): string => {
       let name = serialized.name
       if (serverStylisCache[name] === undefined) {
