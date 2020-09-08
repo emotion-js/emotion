@@ -244,13 +244,13 @@ test('`css` opaque object passed to `cx` from <ClassNames/>', () => {
   )
 
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "You have passed styles created with \`css\` from \`@emotion/react\` package to the \`cx\`.
-\`cx\` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the \`css\` received from <ClassNames/> component.",
-  ],
-]
-`)
+    Array [
+      Array [
+        "You have passed styles created with \`css\` from \`@emotion/react\` package to the \`cx\`.
+    \`cx\` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the \`css\` received from <ClassNames/> component.",
+      ],
+    ]
+  `)
 })
 
 test('@import nested in scoped `css`', () => {
@@ -267,12 +267,12 @@ test('@import nested in scoped `css`', () => {
   )
 
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "\`@import\` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles.",
-  ],
-]
-`)
+    Array [
+      Array [
+        "\`@import\` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles.",
+      ],
+    ]
+  `)
 })
 
 test('@import prepended with other rules', () => {
@@ -289,12 +289,12 @@ test('@import prepended with other rules', () => {
   )
 
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
-Array [
-  Array [
-    "\`@import\` rules can't be after other rules. Please put your \`@import\` rules before your other rules.",
-  ],
-]
-`)
+    Array [
+      Array [
+        "\`@import\` rules can't be after other rules. Please put your \`@import\` rules before your other rules.",
+      ],
+    ]
+  `)
 })
 
 test('@import prepended by other @import', () => {

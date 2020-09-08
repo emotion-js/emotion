@@ -7,7 +7,8 @@ import {
   middleware,
   rulesheet,
   stringify,
-  prefixer
+  prefixer,
+  COMMENT
 } from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
 import {
@@ -120,9 +121,21 @@ let createCache = (options: Options): EmotionCache => {
 
     const finalizingPlugins = [
       stringify,
-      rulesheet(rule => {
-        currentSheet.insert(rule)
-      })
+      process.env.NODE_ENV !== 'production'
+        ? element => {
+            if (!element.root) {
+              if (element.return) {
+                currentSheet.insert(element.return)
+              } else if (element.value && element.type !== COMMENT) {
+                // insert empty rule in non-production environments
+                // so @emotion/jest can grab `key` from the (JS)DOM for caches without any rules inserted yet
+                currentSheet.insert(`${element.value}{}`)
+              }
+            }
+          }
+        : rulesheet(rule => {
+            currentSheet.insert(rule)
+          })
     ]
 
     const serializer = middleware(

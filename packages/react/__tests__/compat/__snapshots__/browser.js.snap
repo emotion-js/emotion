@@ -4,18 +4,6 @@ exports[`composition works from old emotion css calls 1`] = `
 <html>
   <head>
     <style
-      data-eager-key="true"
-      data-emotion="css"
-    >
-      
-    </style>
-    <style
-      data-eager-key="true"
-      data-emotion="css"
-    >
-      
-    </style>
-    <style
       data-emotion="css"
     >
       

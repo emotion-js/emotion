@@ -3,10 +3,10 @@
 exports[`basic 1`] = `
 <head>
   <style
-    data-eager-key="true"
     data-emotion="css"
   >
     
+    .css-animation-ocj8pk{}
   </style>
   <style
     data-emotion="css"
@@ -58,10 +58,10 @@ exports[`basic 2`] = `
 exports[`basic 3`] = `
 <head>
   <style
-    data-eager-key="true"
     data-emotion="css"
   >
     
+    .css-animation-ocj8pk{}
   </style>
   <style
     data-emotion="css"
@@ -89,12 +89,6 @@ exports[`basic 4`] = `
 exports[`updating more than 1 global rule 1`] = `
 <head>
   <style
-    data-eager-key="true"
-    data-emotion="global-multiple-rules"
-  >
-    
-  </style>
-  <style
     data-emotion="global-multiple-rules-global"
   >
     
@@ -111,12 +105,6 @@ exports[`updating more than 1 global rule 1`] = `
 
 exports[`updating more than 1 global rule 2`] = `
 <head>
-  <style
-    data-eager-key="true"
-    data-emotion="global-multiple-rules"
-  >
-    
-  </style>
   <style
     data-emotion="global-multiple-rules-global"
   >
