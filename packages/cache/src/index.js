@@ -7,9 +7,11 @@ import {
   middleware,
   rulesheet,
   stringify,
-  prefixer
+  prefixer,
+  COMMENT
 } from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
+import memoize from '@emotion/memoize'
 import {
   compat,
   removeLabel,
@@ -31,10 +33,12 @@ export type Options = {
 
 let getServerStylisCache = isBrowser
   ? undefined
-  : weakMemoize(() => {
-      let cache = {}
-      return name => cache[name]
-    })
+  : weakMemoize(() =>
+      memoize(() => {
+        let cache = {}
+        return name => cache[name]
+      })
+    )
 
 const defaultStylisPlugins = [prefixer]
 let movedStyles = false
@@ -120,9 +124,21 @@ let createCache = (options: Options): EmotionCache => {
 
     const finalizingPlugins = [
       stringify,
-      rulesheet(rule => {
-        currentSheet.insert(rule)
-      })
+      process.env.NODE_ENV !== 'production'
+        ? element => {
+            if (!element.root) {
+              if (element.return) {
+                currentSheet.insert(element.return)
+              } else if (element.value && element.type !== COMMENT) {
+                // insert empty rule in non-production environments
+                // so @emotion/jest can grab `key` from the (JS)DOM for caches without any rules inserted yet
+                currentSheet.insert(`${element.value}{}`)
+              }
+            }
+          }
+        : rulesheet(rule => {
+            currentSheet.insert(rule)
+          })
     ]
 
     const serializer = middleware(
@@ -162,7 +178,7 @@ let createCache = (options: Options): EmotionCache => {
     const stylis = styles => serialize(compile(styles), serializer)
 
     // $FlowFixMe
-    let serverStylisCache = getServerStylisCache(stylisPlugins)
+    let serverStylisCache = getServerStylisCache(stylisPlugins)(key)
     let getRules = (selector: string, serialized: SerializedStyles): string => {
       let name = serialized.name
       if (serverStylisCache[name] === undefined) {

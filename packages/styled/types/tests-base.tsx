@@ -261,7 +261,6 @@ const StyledClass0 = styled(ReactClassComponent0)({})
 declare const ref0_0: (element: ReactClassComponent0 | null) => void
 declare const ref0_1: (element: ReactClassComponent1 | null) => void
 declare const ref0_2: (element: HTMLDivElement | null) => void
-// $ExpectError
 ;<StyledClass0 column={true} ref={ref0_0} />
 // $ExpectError
 ;<StyledClass0 column={true} ref={ref0_1} />
@@ -272,7 +271,6 @@ const StyledClass1 = StyledClass0.withComponent(ReactClassComponent1)
 declare const ref1_0: (element: ReactClassComponent1 | null) => void
 declare const ref1_1: (element: ReactClassComponent0 | null) => void
 declare const ref1_2: (element: HTMLDivElement | null) => void
-// $ExpectError
 ;<StyledClass1 column={true} value="" ref={ref1_0} />
 // $ExpectError
 ;<StyledClass1 column={true} value="" ref={ref1_1} />
@@ -441,4 +439,39 @@ const Section = styled('section')`
   ;<StyledMemoedComponent foo="test" />
   // $ExpectError
   ;<StyledMemoedComponent />
+}
+
+{
+  // simple class ref test
+  class FixedSizeList extends React.Component {
+    scrollTo = () => {}
+
+    render() {
+      return null
+    }
+  }
+
+  const StyledList = styled(FixedSizeList)`
+    color: hotpink;
+  `
+  const listRef = React.useRef<FixedSizeList | null>(null)
+  ;<StyledList ref={listRef} />
+}
+
+{
+  // withComponent class ref test
+  class FixedSizeList extends React.Component {
+    scrollTo = () => {}
+
+    render() {
+      return null
+    }
+  }
+
+  const StyledList = styled('li')`
+    color: hotpink;
+  `
+  const StyledFixedStyleList = StyledList.withComponent(FixedSizeList)
+  const listRef = React.useRef<FixedSizeList | null>(null)
+  ;<StyledFixedStyleList ref={listRef} />
 }

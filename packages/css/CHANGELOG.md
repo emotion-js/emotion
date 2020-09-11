@@ -1,5 +1,24 @@
 # emotion
 
+## 11.0.0-next.17
+
+### Patch Changes
+
+- Updated dependencies [[`76e3dc4d`](https://github.com/emotion-js/emotion/commit/76e3dc4dd3e76423aa5d527b3e66fe3be1722e5a)]:
+  - @emotion/serialize@1.0.0-next.5
+  - @emotion/babel-plugin@11.0.0-next.17
+
+## 11.0.0-next.16
+
+### Patch Changes
+
+- Updated dependencies [[`a8eb4e75`](https://github.com/emotion-js/emotion/commit/a8eb4e75eed26763dc4f82ddd9bb49af4552768b), [`dfe98028`](https://github.com/emotion-js/emotion/commit/dfe98028451a27c5190fa1ba138e51ef3d6d9be1), [`debaad9a`](https://github.com/emotion-js/emotion/commit/debaad9ab4bd6c80312092826d9146f3d29c0899), [`39be057b`](https://github.com/emotion-js/emotion/commit/39be057b1a0c6b76f2cb7a455cb8bc35fe875ba0), [`39be057b`](https://github.com/emotion-js/emotion/commit/39be057b1a0c6b76f2cb7a455cb8bc35fe875ba0)]:
+  - @emotion/cache@11.0.0-next.16
+  - @emotion/utils@1.0.0-next.1
+  - @emotion/sheet@1.0.0-next.4
+  - @emotion/serialize@0.11.15-next.4
+  - @emotion/babel-plugin@11.0.0-next.16
+
 ## 11.0.0-next.15
 
 ### Minor Changes

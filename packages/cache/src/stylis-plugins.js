@@ -63,11 +63,19 @@ export let compat = element => {
     return
   }
 
-  let parent = element
+  let { parent } = element
+  let isImplicitRule =
+    element.column === parent.column && element.line === parent.line
 
-  do {
+  // if this is an implicitly inserted rule (the one eagerly inserted at the each new nested level)
+  // then the props has already been manipulated beforehand as they that array is shared between it and its "rule parent"
+  if (isImplicitRule) {
+    return
+  }
+
+  while (parent.type !== 'rule') {
     parent = parent.parent
-  } while (parent.type !== 'rule')
+  }
 
   const points = []
   const rules = getRules(value, points)

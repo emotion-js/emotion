@@ -1,5 +1,18 @@
 # @emotion/serialize
 
+## 1.0.0-next.5
+
+### Patch Changes
+
+- [`76e3dc4d`](https://github.com/emotion-js/emotion/commit/76e3dc4dd3e76423aa5d527b3e66fe3be1722e5a) [#2009](https://github.com/emotion-js/emotion/pull/2009) Thanks [@Andarist](https://github.com/Andarist)! - Re-release latest prerelease version of this package as it has incorrectly been "downgraded" to 0.x version due to a bug in Changesets. This has caused problems because Emotion 10 had a newer 0.x release and thus version targeting Emotion 10 has been fetched on installs as it has been satisfying the specified dependency range.
+
+## 0.11.15-next.4
+
+### Patch Changes
+
+- Updated dependencies [[`debaad9a`](https://github.com/emotion-js/emotion/commit/debaad9ab4bd6c80312092826d9146f3d29c0899)]:
+  - @emotion/utils@1.0.0-next.1
+
 ## 1.0.0-next.3
 
 ### Minor Changes

@@ -1,5 +1,9 @@
 # @emotion/jest
 
+## 11.0.0-next.17
+
+## 11.0.0-next.16
+
 ## 11.0.0-next.15
 
 ### Patch Changes
