@@ -1,7 +1,7 @@
 import * as React from 'react'
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from '@emotion/react'
-import styled from '@emotion/native'
+import styled, { css } from '@emotion/native'
 import reactNative from 'react-native'
 
 const StyleSheet = reactNative.StyleSheet
@@ -149,5 +149,22 @@ describe('Emotion native styled', () => {
     expect(console.error).toBeCalledWith(
       "'padding' shorthand property requires units for example - padding: 20px or padding: 10px 20px 40px 50px"
     )
+  })
+
+  it('should render styles correctly from all nested style factories', () => {
+    const bgColor = color => css`
+      background-color: ${color};
+    `
+
+    const Text = styled.Text`
+      color: hotpink;
+      ${({ backgroundColor }) => bgColor(backgroundColor)};
+    `
+
+    const tree = renderer
+      .create(<Text backgroundColor="blue">Hello World</Text>)
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
   })
 })
