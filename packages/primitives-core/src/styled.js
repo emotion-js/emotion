@@ -52,12 +52,6 @@ export function createStyled(
           mergedProps.theme = React.useContext(ThemeContext)
         }
 
-        let stylesWithStyleProp = styles
-        if (props.style) {
-          stylesWithStyleProp = styles.concat(props.style)
-        }
-        const emotionStyles = css.apply(mergedProps, stylesWithStyleProp)
-
         let newProps = {}
 
         for (let key in props) {
@@ -66,7 +60,7 @@ export function createStyled(
           }
         }
 
-        newProps.style = emotionStyles
+        newProps.style = [css.apply(mergedProps, styles), props.style]
         newProps.ref = ref
 
         // $FlowFixMe

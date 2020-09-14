@@ -18,7 +18,7 @@
     "puppeteer": "^1.6.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-native-web": "0.9.6",
+    "react-native-web": "0.13.12",
     "stats-analysis": "^2.0.0"
   },
   "alias": {
