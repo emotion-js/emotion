@@ -68,6 +68,20 @@ exports[`Emotion native styled should render primitive with style prop 1`] = `
 </Text>
 `;
 
+exports[`Emotion native styled should render styles correctly from all nested style factories 1`] = `
+<Text
+  backgroundColor="blue"
+  style={
+    Object {
+      "backgroundColor": "blue",
+      "color": "hotpink",
+    }
+  }
+>
+  Hello World
+</Text>
+`;
+
 exports[`Emotion native styled should render the primitive on changing the props 1`] = `
 <Text
   decor="hotpink"
