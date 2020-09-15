@@ -235,4 +235,46 @@ describe('orphaned pseudos', () => {
 
     expect(sheet).toMatchSnapshot()
   })
+
+  test('regular rule nested in orphaned pseudo', () => {
+    css({
+      ':hover': {
+        color: 'hotpink',
+        '.foo': {
+          color: 'grey'
+        }
+      }
+    })
+
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('regular rule with nested rule nested in orphaned pseudo', () => {
+    css({
+      ':hover': {
+        color: 'hotpink',
+        '.foo': {
+          color: 'grey',
+          '@media print': {
+            display: 'none'
+          }
+        }
+      }
+    })
+
+    expect(sheet).toMatchSnapshot()
+  })
+
+  test('orphaned pseudo nested in orphaned pseudo', () => {
+    css({
+      ':hover': {
+        color: 'hotpink',
+        ':focus': {
+          outlineColor: 'blue'
+        }
+      }
+    })
+
+    expect(sheet).toMatchSnapshot()
+  })
 })
