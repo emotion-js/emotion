@@ -22,6 +22,14 @@ const toRules = (parsed, points) => {
   do {
     switch (token(character)) {
       case 0:
+        // &\f
+        if (character === 38 && peek() === 12) {
+          // this is not 100% correct, we don't account for literal sequences here - like for example quoted strings
+          // stylis inserts \f after & to know when & where it should replace this sequence with the context selector
+          // and when it should just concatenate the outer and inner selectors
+          // it's very unlikely for this sequence to actually appear in a different context, so we just leverage this fact here
+          points[index] = 1
+        }
         parsed[index] += identifier(position - 1)
         break
       case 2:
@@ -46,6 +54,9 @@ const toRules = (parsed, points) => {
 
 const getRules = (value, points) => dealloc(toRules(alloc(value), points))
 
+// WeakSet would be more appropriate, but only WeakMap is supported in IE11
+const fixedElements = /* #__PURE__ */ new WeakMap()
+
 export let compat = element => {
   if (
     element.type !== 'rule' ||
@@ -56,16 +67,22 @@ export let compat = element => {
     return
   }
 
-  const { value } = element
-
-  // short-circuit for the simplest case
-  if (element.props.length === 1 && value.charCodeAt(0) !== 58 /* colon */) {
-    return
-  }
-
-  let { parent } = element
+  let { value, parent } = element
   let isImplicitRule =
     element.column === parent.column && element.line === parent.line
+
+  while (parent.type !== 'rule') {
+    parent = parent.parent
+  }
+
+  // short-circuit for the simplest case
+  if (
+    element.props.length === 1 &&
+    value.charCodeAt(0) !== 58 /* colon */ &&
+    !fixedElements.get(parent)
+  ) {
+    return
+  }
 
   // if this is an implicitly inserted rule (the one eagerly inserted at the each new nested level)
   // then the props has already been manipulated beforehand as they that array is shared between it and its "rule parent"
@@ -73,9 +90,7 @@ export let compat = element => {
     return
   }
 
-  while (parent.type !== 'rule') {
-    parent = parent.parent
-  }
+  fixedElements.set(element, true)
 
   const points = []
   const rules = getRules(value, points)
@@ -83,9 +98,9 @@ export let compat = element => {
 
   for (let i = 0, k = 0; i < rules.length; i++) {
     for (let j = 0; j < parentRules.length; j++, k++) {
-      if (points[i]) {
-        element.props[k] = rules[i].replace(/&\f/g, parentRules[j])
-      }
+      element.props[k] = points[i]
+        ? rules[i].replace(/&\f/g, parentRules[j])
+        : `${parentRules[j]} ${rules[i]}`
     }
   }
 }

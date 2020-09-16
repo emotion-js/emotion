@@ -159,6 +159,16 @@ exports[`orphaned pseudos multiple in a group in multiple in a group 1`] = `
 }"
 `;
 
+exports[`orphaned pseudos orphaned pseudo nested in orphaned pseudo 1`] = `
+".css-1dmq8mx:hover {
+  color: hotpink;
+}
+
+.css-1dmq8mx:hover:focus {
+  outline-color: blue;
+}"
+`;
+
 exports[`orphaned pseudos overlapping - reversed 1`] = `
 ".css-15m4dbh :first-child:first-child .css-15m4dbh :first-child {
   color: hotpink;
@@ -174,6 +184,32 @@ exports[`orphaned pseudos overlapping 1`] = `
 exports[`orphaned pseudos regexp special character 1`] = `
 ".css-1545qp0:nth-child(3) {
   color: hotpink;
+}"
+`;
+
+exports[`orphaned pseudos regular rule nested in orphaned pseudo 1`] = `
+".css-1u1a2oo:hover {
+  color: hotpink;
+}
+
+.css-1u1a2oo:hover .foo {
+  color: grey;
+}"
+`;
+
+exports[`orphaned pseudos regular rule with nested rule nested in orphaned pseudo 1`] = `
+".css-1tlqvwi:hover {
+  color: hotpink;
+}
+
+.css-1tlqvwi:hover .foo {
+  color: grey;
+}
+
+@media print {
+  .css-1tlqvwi:hover .foo {
+    display: none;
+  }
 }"
 `;
 
