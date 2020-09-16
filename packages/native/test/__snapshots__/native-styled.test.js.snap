@@ -88,10 +88,13 @@ exports[`Emotion native styled should render styles correctly from all nested st
 <Text
   backgroundColor="blue"
   style={
-    Object {
-      "backgroundColor": "blue",
-      "color": "hotpink",
-    }
+    Array [
+      Object {
+        "backgroundColor": "blue",
+        "color": "hotpink",
+      },
+      undefined,
+    ]
   }
 >
   Hello World
