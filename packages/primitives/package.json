@@ -19,7 +19,7 @@
   "peerDependencies": {
     "@babel/core": "^7.0.0",
     "react": ">=16.8.0",
-    "react-primitives": "^0.7.0"
+    "react-primitives": "^0.8.1"
   },
   "peerDependenciesMeta": {
     "@babel/core": {
@@ -31,7 +31,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "react": "^16.11.0",
-    "react-primitives": "^0.7.0"
+    "react-primitives": "^0.8.1"
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",
