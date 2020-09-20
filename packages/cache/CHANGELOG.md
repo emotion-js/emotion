@@ -1,5 +1,11 @@
 # @emotion/cache
 
+## 11.0.0-next.18
+
+### Patch Changes
+
+- [`19df60b8`](https://github.com/emotion-js/emotion/commit/19df60b8382814f241f909e1f4cb98fe19e72a4a) [#2015](https://github.com/emotion-js/emotion/pull/2015) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with rules nested in orphaned pseudo selectors not being adjusted correctly.
+
 ## 11.0.0-next.16
 
 ### Patch Changes
