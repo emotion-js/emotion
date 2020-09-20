@@ -4,9 +4,12 @@ exports[`Emotion native styled primitive should work with \`withComponent\` 1`] 
 <Text
   decor="hotpink"
   style={
-    Object {
-      "color": "hotpink",
-    }
+    Array [
+      Object {
+        "color": "hotpink",
+      },
+      undefined,
+    ]
   }
 >
   Mike
@@ -17,9 +20,12 @@ exports[`Emotion native styled should pass props in withComponent 1`] = `
 <View
   color="green"
   style={
-    Object {
-      "backgroundColor": "green",
-    }
+    Array [
+      Object {
+        "backgroundColor": "green",
+      },
+      undefined,
+    ]
   }
 />
 `;
@@ -28,9 +34,12 @@ exports[`Emotion native styled should pass props in withComponent 2`] = `
 <Text
   color="hotpink"
   style={
-    Object {
-      "backgroundColor": "hotpink",
-    }
+    Array [
+      Object {
+        "backgroundColor": "hotpink",
+      },
+      undefined,
+    ]
   }
 />
 `;
@@ -45,12 +54,15 @@ exports[`Emotion native styled should render <Image /> 1`] = `
     }
   }
   style={
-    Object {
-      "borderBottomLeftRadius": 2,
-      "borderBottomRightRadius": 2,
-      "borderTopLeftRadius": 2,
-      "borderTopRightRadius": 2,
-    }
+    Array [
+      Object {
+        "borderBottomLeftRadius": 2,
+        "borderBottomRightRadius": 2,
+        "borderTopLeftRadius": 2,
+        "borderTopRightRadius": 2,
+      },
+      undefined,
+    ]
   }
 />
 `;
@@ -58,10 +70,14 @@ exports[`Emotion native styled should render <Image /> 1`] = `
 exports[`Emotion native styled should render primitive with style prop 1`] = `
 <Text
   style={
-    Object {
-      "color": "hotpink",
-      "padding": 10,
-    }
+    Array [
+      Object {
+        "color": "hotpink",
+      },
+      Object {
+        "padding": 10,
+      },
+    ]
   }
 >
   Emotion primitives
@@ -72,10 +88,13 @@ exports[`Emotion native styled should render styles correctly from all nested st
 <Text
   backgroundColor="blue"
   style={
-    Object {
-      "backgroundColor": "blue",
-      "color": "hotpink",
-    }
+    Array [
+      Object {
+        "backgroundColor": "blue",
+        "color": "hotpink",
+      },
+      undefined,
+    ]
   }
 >
   Hello World
@@ -86,13 +105,16 @@ exports[`Emotion native styled should render the primitive on changing the props
 <Text
   decor="hotpink"
   style={
-    Object {
-      "color": "hotpink",
-      "paddingBottom": 20,
-      "paddingLeft": 20,
-      "paddingRight": 20,
-      "paddingTop": 20,
-    }
+    Array [
+      Object {
+        "color": "hotpink",
+        "paddingBottom": 20,
+        "paddingLeft": 20,
+        "paddingRight": 20,
+        "paddingTop": 20,
+      },
+      undefined,
+    ]
   }
 >
   Emotion Primitives
@@ -103,11 +125,16 @@ exports[`Emotion native styled should render the primitive when styles applied u
 <Text
   back="red"
   style={
-    Object {
-      "backgroundColor": "red",
-      "color": "red",
-      "fontSize": 40,
-    }
+    Array [
+      Object {
+        "backgroundColor": "red",
+        "color": "red",
+        "fontSize": 20,
+      },
+      Object {
+        "fontSize": 40,
+      },
+    ]
   }
 >
   Emotion Primitives
@@ -117,9 +144,12 @@ exports[`Emotion native styled should render the primitive when styles applied u
 exports[`Emotion native styled should style any other component 1`] = `
 <Text
   style={
-    Object {
-      "color": "hotpink",
-    }
+    Array [
+      Object {
+        "color": "hotpink",
+      },
+      undefined,
+    ]
   }
 >
   Hello World
@@ -129,10 +159,12 @@ exports[`Emotion native styled should style any other component 1`] = `
 exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
 <Text
   style={
-    Object {
-      "color": "red",
-      "fontSize": 10,
-    }
+    Array [
+      Object {
+        "fontSize": 10,
+      },
+      74,
+    ]
   }
 >
   Emotion primitives
@@ -142,9 +174,12 @@ exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
 exports[`Emotion native styled should work with theming from @emotion/react 1`] = `
 <Text
   style={
-    Object {
-      "color": "magenta",
-    }
+    Array [
+      Object {
+        "color": "magenta",
+      },
+      undefined,
+    ]
   }
 >
   Hello World

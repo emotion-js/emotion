@@ -1,15 +1,13 @@
 // @flow
 import * as React from 'react'
 import renderer from 'react-test-renderer'
-import reactPrimitives from 'react-primitives'
+import { Text, StyleSheet } from 'react-primitives'
 import { ThemeProvider } from '@emotion/react'
 import { render, unmountComponentAtNode } from 'react-dom'
 
 import styled from '@emotion/primitives'
 
 jest.mock('react-primitives')
-
-const StyleSheet = reactPrimitives.StyleSheet
 
 const theme = { backgroundColor: 'magenta', display: 'flex' }
 
@@ -58,7 +56,7 @@ describe('Emotion primitives', () => {
   })
 
   it('should unmount with theming', () => {
-    const Text = styled('p')`
+    const StyledText = styled.Text`
       display: ${props => props.theme.display};
     `
 
@@ -67,9 +65,9 @@ describe('Emotion primitives', () => {
     render(
       <ThemeProvider theme={theme}>
         {/* $FlowFixMe */}
-        <Text id="something" style={{ backgroundColor: 'yellow' }}>
+        <StyledText id="something" style={{ backgroundColor: 'yellow' }}>
           Hello World
-        </Text>
+        </StyledText>
       </ThemeProvider>,
       mountNode
     )
@@ -116,11 +114,11 @@ describe('Emotion primitives', () => {
   })
 
   test('primitive should work with `withComponent`', () => {
-    const Text = styled.Text`
+    const StyledText = styled.Text`
       color: ${props => props.decor};
     `
     // $FlowFixMe
-    const Name = Text.withComponent(reactPrimitives.Text)
+    const Name = StyledText.withComponent(Text)
     const tree = renderer.create(<Name decor="hotpink">Mike</Name>).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -141,14 +139,14 @@ describe('Emotion primitives', () => {
   })
 
   it('ref', () => {
-    const Text = styled('p')`
+    const StyledText = styled.Text`
       color: hotpink;
     `
     let ref = React.createRef()
     const rootNode = document.createElement('div')
     // $FlowFixMe
-    render(<Text ref={ref} id="something" />, rootNode)
-    expect(ref.current).toBe(rootNode.querySelector('#something'))
+    render(<StyledText ref={ref} id="something" />, rootNode)
+    expect(ref.current).toBe(rootNode.firstElementChild)
     unmountComponentAtNode(rootNode)
   })
 
@@ -159,7 +157,7 @@ describe('Emotion primitives', () => {
     // $FlowFixMe
     const treeOne = renderer.create(<ViewOne color="green" />)
     // $FlowFixMe
-    const ViewTwo = ViewOne.withComponent(reactPrimitives.Text)
+    const ViewTwo = ViewOne.withComponent(Text)
     const treeTwo = renderer.create(<ViewTwo color="hotpink" />)
 
     expect(treeOne).toMatchSnapshot()
