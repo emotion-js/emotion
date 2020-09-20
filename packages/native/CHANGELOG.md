@@ -1,5 +1,31 @@
 # @emotion/native
 
+## 11.0.0-next.18
+
+### Major Changes
+
+- [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Updated `css-to-react-native` dependency to the 3.x version - it comes with some breaking changes listed [here](https://github.com/styled-components/css-to-react-native/releases/tag/v3.0.0).
+
+* [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Functions are no longer accepted as values for the `style` prop. This unifies the behavior with the web version of Emotion as `style`'s equivalent is `className` prop and functions are not resolved for it.
+
+### Patch Changes
+
+- [`db16ac35`](https://github.com/emotion-js/emotion/commit/db16ac358ded4cc04fbd649700716b7cb3b3e40a) [#2013](https://github.com/emotion-js/emotion/pull/2013) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with styles being lost for nested factory calls like:
+
+  ```js
+  const bgColor = color => css`
+    background-color: ${color};
+  `
+
+  const Text = styled.Text`
+    color: hotpink;
+    ${({ backgroundColor }) => bgColor(backgroundColor)};
+  `
+  ```
+
+- Updated dependencies [[`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9), [`db16ac35`](https://github.com/emotion-js/emotion/commit/db16ac358ded4cc04fbd649700716b7cb3b3e40a), [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9)]:
+  - @emotion/primitives-core@11.0.0-next.18
+
 ## 11.0.0-next.17
 
 ### Patch Changes
