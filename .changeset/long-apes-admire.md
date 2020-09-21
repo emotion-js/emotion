@@ -12,13 +12,12 @@ If you encounter build issues after upgrade, try removing any manually specified
 
 ## Improvements
 
-- useTheme added to EmotionTheming interface and can now create your own closed variation of withTheme. More information in the docs under the theming section.
 - Union types as props are better supported and should be inferred properly
 - Build times should be reduced significantly in larger projects.
 
 ## Breaking changes
 
-- withTheme can now have the Theme type specified when calling it. For example `withTheme<MyTheme>(MyComponent)`
+- `withTheme` can now have the Theme type specified when calling it. For example `withTheme<MyTheme>(MyComponent)`
 
   **Breaking change:** Generic argument changed, if you were specifying the ComponentType you will need to remove the generic parameter. Recommend following example setup in the TypeScript docs under theming section
 
@@ -28,9 +27,3 @@ If you encounter build issues after upgrade, try removing any manually specified
   `styled<typeof MyComponent, ExtraProps>(MyComponent)({})`
   to
   `styled(MyComponent)<ExtraProps>({})`
-
-- `StyledComponent` type no longer supports the third generic `Theme` parameter. Instead add the `theme` prop to the first `Props` argument. For example:
-
-  `StyledComponent<Props, {}, MyTheme>`
-  to
-  `StyledComponent<Props & { theme?: MyTheme }>`
