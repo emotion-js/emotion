@@ -34,10 +34,16 @@ export interface CSSOthersObject {
   [propertiesName: string]: CSSInterpolation
 }
 
-export interface CSSObject
+export interface DefaultCSSObject
   extends CSSPropertiesWithMultiValues,
     CSSPseudos,
     CSSOthersObject {}
+
+export interface CustomCSSObject {}
+
+export type CSSObject = {} extends CustomCSSObject
+  ? DefaultCSSObject
+  : CustomCSSObject
 
 export interface ComponentSelector {
   __emotion_styles: any

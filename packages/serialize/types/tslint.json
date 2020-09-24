@@ -4,6 +4,7 @@
     "array-type": [true, "generic"],
     "semicolon": false,
     "no-null-undefined-union": false,
-    "callable-types": false
+    "callable-types": false,
+    "no-empty-interface": false
   }
 }

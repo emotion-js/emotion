@@ -310,6 +310,28 @@ declare module '@emotion/react' {
 }
 ```
 
+### Define a CSS Interface
+
+By default, the interface of style objects is based on
+[CSSType](https://github.com/frenic/csstype). This library provides type safety where possible without
+restricting valid CSS values.
+
+If you want to constrain which styles are globally allowed in your project, you can provide your own
+`CustomCSSObject` interface:
+
+_emotion.d.ts_
+
+```typescript
+import "@emotion/serialize";
+
+declare module "@emotion/serialize" {
+  export interface CustomCSSObject {
+    color: "red" | "green" | "blue";
+  }
+}
+```
+
+
 ### TypeScript < 2.9
 
 For Typescript <2.9, the generic type version only works with object styles due to https://github.com/Microsoft/TypeScript/issues/11947.
