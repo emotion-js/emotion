@@ -41,7 +41,6 @@ let getServerStylisCache = isBrowser
     )
 
 const defaultStylisPlugins = [prefixer]
-let movedStyles = false
 
 let createCache = (options: Options): EmotionCache => {
   let key = options.key
@@ -53,14 +52,15 @@ let createCache = (options: Options): EmotionCache => {
     )
   }
 
-  if (isBrowser && !movedStyles && key === 'css') {
-    movedStyles = true
-
-    const ssrStyles = document.querySelectorAll(`style[data-emotion]`)
+  if (isBrowser && key === 'css') {
+    const ssrStyles = document.querySelectorAll(
+      `style[data-emotion]:not([data-s])`
+    )
     // get SSRed styles out of the way of React's hydration
     // document.head is a safe place to move them to
     Array.prototype.forEach.call(ssrStyles, (node: HTMLStyleElement) => {
       ;((document.head: any): HTMLHeadElement).appendChild(node)
+      node.setAttribute('data-s', '')
     })
   }
 

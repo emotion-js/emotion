@@ -5,6 +5,7 @@ exports[`it works 1`] = `
   <head>
     <style
       data-emotion="css 1lrxbo5"
+      data-s=""
     >
       .css-1lrxbo5{color:hotpink;}
     </style>
@@ -18,6 +19,7 @@ exports[`rehydrated styles to head can be flushed 1`] = `
   <head>
     <style
       data-emotion="emo 1lrxbo5"
+      data-s=""
     >
       .emo-1lrxbo5{color:hotpink;}
     </style>

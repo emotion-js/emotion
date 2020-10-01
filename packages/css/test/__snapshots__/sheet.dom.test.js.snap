@@ -6,6 +6,7 @@ exports[`sheet tags 1`] = `
 Array [
   <style
     data-emotion="css"
+    data-s=""
   >
     
   </style>,
