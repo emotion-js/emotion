@@ -232,6 +232,20 @@ exports[`enzyme mount with prop containing css element with other props 1`] = `
 </Greeting>
 `;
 
+exports[`enzyme mount with prop containing regular element 1`] = `
+<Test
+  element={
+    <button>
+      Foo
+    </button>
+  }
+>
+  <button>
+    Foo
+  </button>
+</Test>
+`;
+
 exports[`enzyme mount with styles on top level 1`] = `
 .emotion-0 {
   background-color: red;
@@ -400,6 +414,12 @@ exports[`enzyme shallow with prop containing css element with other props 1`] = 
    
   World!
 </div>
+`;
+
+exports[`enzyme shallow with prop containing regular element 1`] = `
+<button>
+  Foo
+</button>
 `;
 
 exports[`enzyme shallow with styles on top level 1`] = `
