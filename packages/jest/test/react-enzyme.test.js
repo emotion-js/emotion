@@ -69,6 +69,12 @@ const cases = {
       )
     }
   },
+  'with prop containing regular element': {
+    render() {
+      const Test = ({ element }) => element
+      return <Test element={<button>Foo</button>} />
+    }
+  },
   'with prop containing css element not at the top level': {
     render() {
       const Greeting = ({ children, content }) => (

@@ -36,10 +36,11 @@ function getNodes(node, nodes = []) {
   return nodes
 }
 
-function copyProps(src, target) {
-  return Object.defineProperties(src, {
-    ...Object.getOwnPropertyDescriptors(target)
-  })
+function copyProps(target, source) {
+  return Object.defineProperties(
+    target,
+    Object.getOwnPropertyDescriptors(source)
+  )
 }
 
 function deepTransform(node, transform) {
@@ -49,27 +50,14 @@ function deepTransform(node, transform) {
 
   const transformed: any = transform(node)
 
-  if (transformed !== node) {
-    if (transformed.props) {
-      copyProps(transformed, {
-        props: Object.entries(transformed.props).reduce(
-          (props, [key, value]) =>
-            Object.assign(props, {
-              [key]: deepTransform(value, transform)
-            }),
-          {}
-        )
-      })
-    }
-    if (transformed.children) {
-      return copyProps(transformed, {
-        // flatMap to allow a child of <A><B /><C /></A> to be transformed to <B /><C />
-        children: flatMap(
-          (deepTransform(transformed.children, transform): any),
-          id => id
-        )
-      })
-    }
+  if (transformed !== node && transformed.children) {
+    return copyProps(transformed, {
+      // flatMap to allow a child of <A><B /><C /></A> to be transformed to <B /><C />
+      children: flatMap(
+        (deepTransform(transformed.children, transform): any),
+        id => id
+      )
+    })
   }
 
   return transformed
