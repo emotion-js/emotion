@@ -43,9 +43,7 @@ let cls = css({ color: 'hotpink' })
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { css } from '@emotion/css';
-let cls =
-/*#__PURE__*/
-css({
+let cls = /*#__PURE__*/css({
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\"
 });"

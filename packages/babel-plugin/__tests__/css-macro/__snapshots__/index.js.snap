@@ -150,9 +150,7 @@ const thing = css\`
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
 import { css } from \\"@emotion/react\\";
-const thing =
-/*#__PURE__*/
-css(\\"display:flex;&:hover{\\", process.env.NODE_ENV === \\"production\\" ? {
+const thing = /*#__PURE__*/css(\\"display:flex;&:hover{\\", process.env.NODE_ENV === \\"production\\" ? {
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\"
 } : {
@@ -231,10 +229,7 @@ import { css } from \\"@emotion/react\\";
 function thing() {}
 
 function doThing() {
-  return (
-    /*#__PURE__*/
-    css(\\"display:\\", thing(), \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:doThing;\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImltcHVyZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLWSIsImZpbGUiOiJpbXB1cmUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdC9tYWNybydcblxuZnVuY3Rpb24gdGhpbmcoKSB7fVxuXG5mdW5jdGlvbiBkb1RoaW5nKCkge1xuICByZXR1cm4gY3NzYFxuICAgIGRpc3BsYXk6ICR7dGhpbmcoKX07XG4gIGBcbn1cbiJdfQ== */\\")
-  );
+  return /*#__PURE__*/css(\\"display:\\", thing(), \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:doThing;\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImltcHVyZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLWSIsImZpbGUiOiJpbXB1cmUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdC9tYWNybydcblxuZnVuY3Rpb24gdGhpbmcoKSB7fVxuXG5mdW5jdGlvbiBkb1RoaW5nKCkge1xuICByZXR1cm4gY3NzYFxuICAgIGRpc3BsYXk6ICR7dGhpbmcoKX07XG4gIGBcbn1cbiJdfQ== */\\");
 }"
 `;
 
@@ -514,9 +509,7 @@ const someVar = css(
 import { __makeTemplateObject } from 'tslib';
 import { css } from \\"@emotion/react\\";
 var templateObject_1;
-const someVar =
-/*#__PURE__*/
-css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar;\\") + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QvbWFjcm8nXG5cbnZhciB0ZW1wbGF0ZU9iamVjdF8xXG5cbmNvbnN0IHNvbWVWYXIgPSBjc3MoXG4gIHRlbXBsYXRlT2JqZWN0XzEgfHxcbiAgICAodGVtcGxhdGVPYmplY3RfMSA9IF9fbWFrZVRlbXBsYXRlT2JqZWN0KFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddLFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddXG4gICAgKSlcbilcbiJdfQ== */\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar;\\") + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QvbWFjcm8nXG5cbnZhciB0ZW1wbGF0ZU9iamVjdF8xXG5cbmNvbnN0IHNvbWVWYXIgPSBjc3MoXG4gIHRlbXBsYXRlT2JqZWN0XzEgfHxcbiAgICAodGVtcGxhdGVPYmplY3RfMSA9IF9fbWFrZVRlbXBsYXRlT2JqZWN0KFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddLFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddXG4gICAgKSlcbilcbiJdfQ== */\\")])));"
+const someVar = /*#__PURE__*/css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar;\\") + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QvbWFjcm8nXG5cbnZhciB0ZW1wbGF0ZU9iamVjdF8xXG5cbmNvbnN0IHNvbWVWYXIgPSBjc3MoXG4gIHRlbXBsYXRlT2JqZWN0XzEgfHxcbiAgICAodGVtcGxhdGVPYmplY3RfMSA9IF9fbWFrZVRlbXBsYXRlT2JqZWN0KFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddLFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddXG4gICAgKSlcbilcbiJdfQ== */\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar;\\") + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBS2dCIiwiZmlsZSI6ImxhYmVsLXRyYW5zcGlsZWQtYnktdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBfX21ha2VUZW1wbGF0ZU9iamVjdCB9IGZyb20gJ3RzbGliJ1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QvbWFjcm8nXG5cbnZhciB0ZW1wbGF0ZU9iamVjdF8xXG5cbmNvbnN0IHNvbWVWYXIgPSBjc3MoXG4gIHRlbXBsYXRlT2JqZWN0XzEgfHxcbiAgICAodGVtcGxhdGVPYmplY3RfMSA9IF9fbWFrZVRlbXBsYXRlT2JqZWN0KFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddLFxuICAgICAgWydcXG4gIGNvbG9yOiBob3RwaW5rO1xcbiddXG4gICAgKSlcbilcbiJdfQ== */\\")])));"
 `;
 
 exports[`@emotion/react - css macro label-transpiled-by-ts-with-interpolations 1`] = `
@@ -739,15 +732,8 @@ const test = css\`
 import { css } from \\"@emotion/react\\";
 
 function media(...args) {
-  return (
-    /*#__PURE__*/
-    css(\\"@media (min-width: 100px){\\",
-    /*#__PURE__*/
-    css(...args), \\";}\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:media;\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHWSIsImZpbGUiOiJ0YWdnZWQtdGVtcGxhdGUtYXJncy1mb3J3YXJkZWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdC9tYWNybydcblxuZnVuY3Rpb24gbWVkaWEoLi4uYXJncykge1xuICByZXR1cm4gY3NzYFxuICAgIEBtZWRpYSAobWluLXdpZHRoOiAxMDBweCkge1xuICAgICAgJHtjc3MoLi4uYXJncyl9O1xuICAgIH1cbiAgYFxufVxuXG5jb25zdCB0ZXN0ID0gY3NzYFxuICAke21lZGlhYGNvbG9yOiByZWQ7YH07XG5gXG4iXX0= */\\")
-  );
+  return /*#__PURE__*/css(\\"@media (min-width: 100px){\\", /*#__PURE__*/css(...args), \\";}\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:media;\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHWSIsImZpbGUiOiJ0YWdnZWQtdGVtcGxhdGUtYXJncy1mb3J3YXJkZWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdC9tYWNybydcblxuZnVuY3Rpb24gbWVkaWEoLi4uYXJncykge1xuICByZXR1cm4gY3NzYFxuICAgIEBtZWRpYSAobWluLXdpZHRoOiAxMDBweCkge1xuICAgICAgJHtjc3MoLi4uYXJncyl9O1xuICAgIH1cbiAgYFxufVxuXG5jb25zdCB0ZXN0ID0gY3NzYFxuICAke21lZGlhYGNvbG9yOiByZWQ7YH07XG5gXG4iXX0= */\\");
 }
 
-const test =
-/*#__PURE__*/
-css(media\`color: red;\`, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:test;\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFVZ0IiLCJmaWxlIjoidGFnZ2VkLXRlbXBsYXRlLWFyZ3MtZm9yd2FyZGVkLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QvbWFjcm8nXG5cbmZ1bmN0aW9uIG1lZGlhKC4uLmFyZ3MpIHtcbiAgcmV0dXJuIGNzc2BcbiAgICBAbWVkaWEgKG1pbi13aWR0aDogMTAwcHgpIHtcbiAgICAgICR7Y3NzKC4uLmFyZ3MpfTtcbiAgICB9XG4gIGBcbn1cblxuY29uc3QgdGVzdCA9IGNzc2BcbiAgJHttZWRpYWBjb2xvcjogcmVkO2B9O1xuYFxuIl19 */\\");"
+const test = /*#__PURE__*/css(media\`color: red;\`, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:test;\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhZ2dlZC10ZW1wbGF0ZS1hcmdzLWZvcndhcmRlZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFVZ0IiLCJmaWxlIjoidGFnZ2VkLXRlbXBsYXRlLWFyZ3MtZm9yd2FyZGVkLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QvbWFjcm8nXG5cbmZ1bmN0aW9uIG1lZGlhKC4uLmFyZ3MpIHtcbiAgcmV0dXJuIGNzc2BcbiAgICBAbWVkaWEgKG1pbi13aWR0aDogMTAwcHgpIHtcbiAgICAgICR7Y3NzKC4uLmFyZ3MpfTtcbiAgICB9XG4gIGBcbn1cblxuY29uc3QgdGVzdCA9IGNzc2BcbiAgJHttZWRpYWBjb2xvcjogcmVkO2B9O1xuYFxuIl19 */\\");"
 `;
