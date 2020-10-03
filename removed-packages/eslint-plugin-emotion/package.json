@@ -16,11 +16,5 @@
   "engines": {
     "node": ">=6"
   },
-  "license": "MIT",
-  "peerDependencies": {
-    "eslint": "6"
-  },
-  "devDependencies": {
-    "eslint": "^6.7.2"
-  }
+  "license": "MIT"
 }

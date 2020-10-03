@@ -18,9 +18,9 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "eslint": "6"
+    "eslint": "6 || 7"
   },
   "devDependencies": {
-    "eslint": "^6.7.2"
+    "eslint": "^7.10.0"
   }
 }
