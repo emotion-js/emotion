@@ -4,11 +4,13 @@ exports[`basic 1`] = `
 <head>
   <style
     data-emotion="css-global"
+    data-s=""
   >
     
   </style>
   <style
     data-emotion="css"
+    data-s=""
   >
     
   </style>
@@ -31,6 +33,7 @@ exports[`basic 4`] = `
 <head>
   <style
     data-emotion="css"
+    data-s=""
   >
     
   </style>

@@ -57,6 +57,7 @@ function createStyleElement(options: {
     tag.setAttribute('nonce', options.nonce)
   }
   tag.appendChild(document.createTextNode(''))
+  tag.setAttribute('data-s', '')
   return tag
 }
 
