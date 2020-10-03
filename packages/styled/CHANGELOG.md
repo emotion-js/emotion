@@ -1,5 +1,12 @@
 # @emotion/styled
 
+## 11.0.0-next.19
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/react@11.0.0-next.19
+
 ## 11.0.0-next.17
 
 ### Patch Changes

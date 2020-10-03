@@ -1,5 +1,14 @@
 # @emotion/cache
 
+## 11.0.0-next.19
+
+### Patch Changes
+
+- [`42df3f3b`](https://github.com/emotion-js/emotion/commit/42df3f3bc01526eed61cedba106d86b9e3807f9d) [#2028](https://github.com/emotion-js/emotion/pull/2028) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with Emotion messing up style elements already processed by previously initialized Emotion copy.
+
+- Updated dependencies [[`42df3f3b`](https://github.com/emotion-js/emotion/commit/42df3f3bc01526eed61cedba106d86b9e3807f9d)]:
+  - @emotion/sheet@1.0.0-next.5
+
 ## 11.0.0-next.18
 
 ### Patch Changes

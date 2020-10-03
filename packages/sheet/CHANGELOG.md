@@ -1,5 +1,11 @@
 # @emotion/sheet
 
+## 1.0.0-next.5
+
+### Patch Changes
+
+- [`42df3f3b`](https://github.com/emotion-js/emotion/commit/42df3f3bc01526eed61cedba106d86b9e3807f9d) [#2028](https://github.com/emotion-js/emotion/pull/2028) Thanks [@Andarist](https://github.com/Andarist)! - Generated style elements got `data-s="1"` attribute so `@emotion/cache` can recognize them as being already owned by another Emotion copy to avoid messing up existing style elements when initializing a new copy.
+
 ## 1.0.0-next.4
 
 ### Patch Changes
