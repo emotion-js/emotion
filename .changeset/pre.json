@@ -1,6 +1,6 @@
 {
   "mode": "pre",
-  "tag": "next",
+  "tag": "rc",
   "initialVersions": {
     "babel-plugin-emotion": "10.0.23",
     "@emotion/babel-plugin-jsx-pragmatic": "0.1.4",
