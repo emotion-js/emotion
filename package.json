@@ -21,7 +21,7 @@
     "flow": "flow",
     "flow:check": "flow check --flowconfig-name=.flowconfig-ci",
     "preinstall": "node ./scripts/ensure-yarn.js",
-    "postinstall": "opencollective postinstall && preconstruct dev && manypkg check",
+    "postinstall": "patch-package && opencollective postinstall && preconstruct dev && manypkg check",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "yarn build && changeset publish"
@@ -241,6 +241,7 @@
     "normalize.css": "^8.0.0",
     "npm-run-all": "^4.0.2",
     "opencollective": "^1.0.3",
+    "patch-package": "^6.2.2",
     "polished": "^1.2.1",
     "prettier": "1.14.3",
     "puppeteer": "^1.6.0",
