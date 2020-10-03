@@ -96,9 +96,7 @@ const getBgColor = () => ({
   backgroundColor: '#fff'
 });
 
-export default (() => <Global styles={
-/*#__PURE__*/
-_css({
+export default (() => <Global styles={/*#__PURE__*/_css({
   color: 'hotpink',
   ...getBgColor()
 }, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBsZXgtb2JqLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUs2QiIsImZpbGUiOiJjb21wbGV4LW9iai5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IHsgR2xvYmFsIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmNvbnN0IGdldEJnQ29sb3IgPSAoKSA9PiAoeyBiYWNrZ3JvdW5kQ29sb3I6ICcjZmZmJyB9KVxuXG5leHBvcnQgZGVmYXVsdCAoKSA9PiA8R2xvYmFsIHN0eWxlcz17eyBjb2xvcjogJ2hvdHBpbmsnLCAuLi5nZXRCZ0NvbG9yKCkgfX0gLz5cbiJdfQ== */\\")} />);"

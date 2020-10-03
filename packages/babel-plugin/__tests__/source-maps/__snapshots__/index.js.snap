@@ -70,9 +70,7 @@ import { css as _css } from \\"@emotion/react\\";
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 
-const SomeComponent = props => <div css={
-/*#__PURE__*/
-_css({
+const SomeComponent = props => <div css={/*#__PURE__*/_css({
   backgroundColor: window.something
 }, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:SomeComponent;\\", process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvdXJjZS1tYXAudGVzdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLSSIsImZpbGUiOiJzb3VyY2UtbWFwLnRlc3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jb25zdCBTb21lQ29tcG9uZW50ID0gcHJvcHMgPT4gKFxuICA8ZGl2XG4gICAgY3NzPXt7XG4gICAgICBiYWNrZ3JvdW5kQ29sb3I6IHdpbmRvdy5zb21ldGhpbmdcbiAgICB9fVxuICAgIHsuLi5wcm9wc31cbiAgLz5cbilcbiJdfQ== */\\")} {...props} />;"
 `;

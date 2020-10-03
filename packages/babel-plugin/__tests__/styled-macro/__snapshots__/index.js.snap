@@ -37,9 +37,7 @@ function _templateObject() {
 } // source maps should not be appended
 
 
-const SomeComponent =
-/*#__PURE__*/
-_styled('div', {
+const SomeComponent = /*#__PURE__*/_styled('div', {
   target: \\"ec90nws0\\",
   label: \\"SomeComponent\\"
 })(_templateObject());"
@@ -87,9 +85,7 @@ import _styled from \\"@emotion/styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-const SomeComponent =
-/*#__PURE__*/
-_styled('div', {
+const SomeComponent = /*#__PURE__*/_styled('div', {
   target: \\"elbjn3a0\\",
   label: \\"SomeComponent\\"
 })(process.env.NODE_ENV === \\"production\\" ? {
@@ -579,9 +575,7 @@ import _styled from \\"@emotion/styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-const SomeComponent =
-/*#__PURE__*/
-_styled('div', {
+const SomeComponent = /*#__PURE__*/_styled('div', {
   target: \\"e1cky9xc0\\",
   label: \\"SomeComponent\\"
 })(process.env.NODE_ENV === \\"production\\" ? {

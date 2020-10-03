@@ -441,12 +441,10 @@ exports[`enzyme with prop containing css element in fragment 1`] = `
 
 <div>
   x
-  Array [
-    <div
-      className="emotion-0"
-    >
-      y
-    </div>,
-  ]
+  <div
+    className="emotion-0"
+  >
+    y
+  </div>
 </div>
 `;

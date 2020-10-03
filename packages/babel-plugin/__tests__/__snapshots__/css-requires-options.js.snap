@@ -111,9 +111,7 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() {
   return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\";
 }
 
-let someCls =
-/*#__PURE__*/
-_css(process.env.NODE_ENV === \\"production\\" ? {
+let someCls = /*#__PURE__*/_css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1jwq1yt-someCls\\",
   styles: \\"color:hotpink;;label:someCls;\\"
 } : {
@@ -123,9 +121,7 @@ _css(process.env.NODE_ENV === \\"production\\" ? {
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
-let rotate360 =
-/*#__PURE__*/
-_keyframes(process.env.NODE_ENV === \\"production\\" ? {
+let rotate360 = /*#__PURE__*/_keyframes(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1k98dea-rotate360\\",
   styles: \\"from{transform:rotate(0deg);}to{transform:rotate(360deg);};label:rotate360;\\"
 } : {
@@ -147,9 +143,7 @@ exports[`babel css inline label format function 1`] = `
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
 import { css } from '@emotion/css';
-let cls =
-/*#__PURE__*/
-css(process.env.NODE_ENV === \\"production\\" ? {
+let cls = /*#__PURE__*/css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\"
 } : {
@@ -171,9 +165,7 @@ exports[`babel css inline label format with dirname, filename, and local 1`] = `
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
 import { css } from '@emotion/css';
-let cls =
-/*#__PURE__*/
-css(process.env.NODE_ENV === \\"production\\" ? {
+let cls = /*#__PURE__*/css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\"
 } : {
@@ -195,9 +187,7 @@ exports[`babel css inline label format with filename and local 1`] = `
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
 import { css } from '@emotion/css';
-let cls =
-/*#__PURE__*/
-css(process.env.NODE_ENV === \\"production\\" ? {
+let cls = /*#__PURE__*/css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\"
 } : {
@@ -219,9 +209,7 @@ exports[`babel css inline label format with filename that is index and local 1`]
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
 import { css } from '@emotion/css';
-let cls =
-/*#__PURE__*/
-css(process.env.NODE_ENV === \\"production\\" ? {
+let cls = /*#__PURE__*/css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\"
 } : {
@@ -243,9 +231,7 @@ exports[`babel css inline label format with only local 1`] = `
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
 import { css } from '@emotion/css';
-let cls =
-/*#__PURE__*/
-css(process.env.NODE_ENV === \\"production\\" ? {
+let cls = /*#__PURE__*/css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\"
 } : {
@@ -304,7 +290,5 @@ exports[`babel css inline label on code transpiled by TS 1`] = `
 import { __makeTemplateObject } from 'tslib';
 import { css } from '@emotion/react';
 var templateObject_1;
-const someVar =
-/*#__PURE__*/
-css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar;\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar;\\")])));"
+const someVar = /*#__PURE__*/css(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar;\\")], ['\\\\n  color: hotpink;\\\\n' + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someVar;\\")])));"
 `;
