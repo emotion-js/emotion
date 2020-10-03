@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 11.0.0-next.19
+
+### Patch Changes
+
+- [`5d094b57`](https://github.com/emotion-js/emotion/commit/5d094b57b78f792b42f72ca84384002bc1c61b95) [#2027](https://github.com/emotion-js/emotion/pull/2027) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with serializing Enzyme's `ReactWrapper` (what is returned from `mount`) with props containing elements without the css prop.
+
 ## 11.0.0-next.17
 
 ## 11.0.0-next.16
