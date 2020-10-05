@@ -44,12 +44,13 @@ export function createStyled(
       // $FlowFixMe
       let Styled = React.forwardRef((props, ref) => {
         let mergedProps = props
+        const theme = React.useContext(ThemeContext)
         if (props.theme == null) {
           mergedProps = {}
           for (let key in props) {
             mergedProps[key] = props[key]
           }
-          mergedProps.theme = React.useContext(ThemeContext)
+          mergedProps.theme = theme
         }
 
         let newProps = {}
