@@ -14,10 +14,10 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/hash": "0.8.0",
-    "@emotion/memoize": "0.7.4",
-    "@emotion/unitless": "0.7.5",
-    "@emotion/utils": "1.0.0-next.1",
+    "@emotion/hash": "^0.8.0",
+    "@emotion/memoize": "^0.7.4",
+    "@emotion/unitless": "^0.7.5",
+    "@emotion/utils": "^1.0.0-next.1",
     "csstype": "^3.0.2"
   },
   "devDependencies": {

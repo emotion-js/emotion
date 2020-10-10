@@ -13,9 +13,9 @@
   "dependencies": {
     "@babel/runtime": "^7.7.2",
     "@emotion/babel-plugin": "^11.0.0-next.17",
-    "@emotion/is-prop-valid": "0.9.0-next.1",
+    "@emotion/is-prop-valid": "^0.9.0-next.1",
     "@emotion/serialize": "^1.0.0-next.5",
-    "@emotion/utils": "1.0.0-next.1"
+    "@emotion/utils": "^1.0.0-next.1"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0",

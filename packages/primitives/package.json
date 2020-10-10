@@ -13,8 +13,8 @@
   ],
   "dependencies": {
     "@emotion/babel-plugin": "^11.0.0-next.17",
-    "@emotion/is-prop-valid": "0.9.0-next.1",
-    "@emotion/primitives-core": "11.0.0-next.19"
+    "@emotion/is-prop-valid": "^0.9.0-next.1",
+    "@emotion/primitives-core": "^11.0.0-next.19"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0",

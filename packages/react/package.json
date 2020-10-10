@@ -25,9 +25,9 @@
     "@babel/runtime": "^7.7.2",
     "@emotion/cache": "^11.0.0-next.19",
     "@emotion/serialize": "^1.0.0-next.5",
-    "@emotion/sheet": "1.0.0-next.5",
-    "@emotion/utils": "1.0.0-next.1",
-    "@emotion/weak-memoize": "0.2.5",
+    "@emotion/sheet": "^1.0.0-next.5",
+    "@emotion/utils": "^1.0.0-next.1",
+    "@emotion/weak-memoize": "^0.2.5",
     "hoist-non-react-statics": "^3.3.1"
   },
   "peerDependencies": {
