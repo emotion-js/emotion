@@ -1,6 +1,6 @@
 {
   "name": "@emotion/styled-base",
-  "version": "11.0.0-next.3",
+  "version": "11.0.0-rc.0",
   "description": "Deprecated package which became `@emotion/styled/base`",
   "main": "dist/styled-base.cjs.js",
   "license": "MIT",

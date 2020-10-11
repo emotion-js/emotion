@@ -1,11 +1,9 @@
 {
   "name": "emotion-theming",
-  "version": "11.0.0-next.6",
+  "version": "11.0.0-rc.0",
   "description": "A CSS-in-JS theming solution, inspired by styled-components",
   "main": "dist/emotion-theming.cjs.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "test:typescript": "exit 0"
   },
