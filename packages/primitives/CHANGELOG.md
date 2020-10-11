@@ -1,5 +1,18 @@
 # @emotion/primitives
 
+## 11.0.0-rc.0
+
+### Major Changes
+
+- [`9c4ebc16`](https://github.com/emotion-js/emotion/commit/9c4ebc160471097c5d04fb92dba3ed0df870bb63) [#2030](https://github.com/emotion-js/emotion/pull/2030) Thanks [@Andarist](https://github.com/Andarist)! - Release candidate version.
+
+### Patch Changes
+
+- Updated dependencies [[`9c4ebc16`](https://github.com/emotion-js/emotion/commit/9c4ebc160471097c5d04fb92dba3ed0df870bb63), [`69446cb5`](https://github.com/emotion-js/emotion/commit/69446cb5bfb644beb877a1edb00ee46c014636d5)]:
+  - @emotion/babel-plugin@11.0.0-rc.0
+  - @emotion/is-prop-valid@1.0.0-rc.0
+  - @emotion/primitives-core@11.0.0-rc.0
+
 ## 11.0.0-next.19
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-emotion",
-  "version": "11.0.0-next.11",
+  "version": "11.0.0-rc.0",
   "description": "A recommended babel preprocessing plugin for emotion, The Next Generation of CSS-in-JS.",
   "main": "dist/babel-plugin-emotion.cjs.js",
   "files": [
