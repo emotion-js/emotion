@@ -27,7 +27,7 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
     )
   }
 
-  let newProps = {}
+  let newProps: any = {}
 
   for (let key in props) {
     if (hasOwnProperty.call(props, key)) {
@@ -135,7 +135,8 @@ let render = (cache, props, theme: null | Object, ref) => {
   return ele
 }
 
-let Emotion = /* #__PURE__ */ withEmotionCache((props, cache, ref) => {
+// eslint-disable-next-line no-undef
+let Emotion = /* #__PURE__ */ withEmotionCache<any>((props, cache, ref) => {
   if (typeof props.css === 'function') {
     return (
       <ThemeContext.Consumer>

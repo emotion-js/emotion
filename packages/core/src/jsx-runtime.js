@@ -1,22 +1,22 @@
 // @flow
-import * as React from 'react'
+import * as ReactJSXRuntime from 'react/jsx-runtime'
 import Emotion, { createEmotionProps } from './emotion-element'
 import { hasOwnProperty } from './utils'
 
-export const Fragment = React.Fragment
+export const Fragment = ReactJSXRuntime.Fragment
 
-export function jsx(type, props, key) {
+export function jsx(type: any, props: any, key: any) {
   if (!hasOwnProperty.call(props, 'css')) {
-    return React.jsx(type, props, key)
+    return ReactJSXRuntime.jsx(type, props, key)
   }
 
-  return React.jsx(Emotion, createEmotionProps(type, props), key)
+  return ReactJSXRuntime.jsx(Emotion, createEmotionProps(type, props), key)
 }
 
-export function jsxs(type, props, key) {
+export function jsxs(type: any, props: any, key: any) {
   if (!hasOwnProperty.call(props, 'css')) {
-    return React.jsxs(type, props, key)
+    return ReactJSXRuntime.jsxs(type, props, key)
   }
 
-  return React.jsxs(Emotion, createEmotionProps(type, props), key)
+  return ReactJSXRuntime.jsxs(Emotion, createEmotionProps(type, props), key)
 }
