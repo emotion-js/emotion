@@ -50,6 +50,7 @@
     "entrypoints": [
       ".",
       "jsx-runtime.js"
-    ]
+    ],
+    "umdName": "emotionCore"
   }
 }

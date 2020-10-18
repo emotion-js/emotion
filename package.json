@@ -121,8 +121,7 @@
       "packages/*"
     ],
     "globals": {
-      "react": "React",
-      "@emotion/core": "emotionCore"
+      "react": "React"
     }
   },
   "bugs": {
@@ -175,6 +174,7 @@
     "@manypkg/cli": "^0.5.2",
     "@mdx-js/mdx": "^1.1.0",
     "@mdx-js/react": "^1.0.27",
+    "@preconstruct/cli": "1.1.29",
     "@testing-library/react": "^8.0.2",
     "@types/jest": "^23.0.2",
     "@types/node": "^10.11.4",
@@ -232,7 +232,6 @@
     "npm-run-all": "^4.0.2",
     "opencollective": "^1.0.3",
     "polished": "^1.2.1",
-    "preconstruct": "^0.0.81",
     "prettier": "1.14.3",
     "puppeteer": "^1.6.0",
     "raf": "^3.4.0",
