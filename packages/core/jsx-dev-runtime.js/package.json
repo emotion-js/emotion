@@ -1,0 +1,11 @@
+{
+  "main": "dist/core.cjs.js",
+  "module": "dist/core.esm.js",
+  "browser": {
+    "./dist/core.cjs.js": "./dist/core.browser.cjs.js",
+    "./dist/core.esm.js": "./dist/core.browser.esm.js"
+  },
+  "preconstruct": {
+    "source": "../src/jsx-dev-runtime"
+  }
+}
