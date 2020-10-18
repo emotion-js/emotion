@@ -5,7 +5,7 @@ import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { isBrowser } from './utils'
 import { serializeStyles } from '@emotion/serialize'
 
-import { jsx as reactJsx, Fragment, createElement } from 'react/jsx-runtime'
+import { jsx as reactJsx, Fragment } from 'react/jsx-runtime'
 
 const sanitizeIdentifier = identifier => identifier.replace(/\$/g, '-')
 
@@ -171,4 +171,4 @@ const jsx = (type, props, maybeKey) => {
 
 const jsxs = jsx
 
-export { jsx, jsxs, Fragment, createElement }
+export { jsx, jsxs, Fragment }
