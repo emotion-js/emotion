@@ -2415,16 +2415,16 @@
     string-width "^2.0.0"
     strip-ansi "^3"
 
-"@preconstruct/cli@^1.1.30":
-  version "1.1.30"
-  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-1.1.30.tgz#b04dbf059704d5bf4148394c092b2b86d009e6b1"
-  integrity sha512-BpMTvKr/QSKao8uU+rei+OYy8u26dXToNxyM/JRtzDBKdk/dxQ/6feupcQTncPb/S24mVzlL/FoxNHqOW2DCZA==
+"@preconstruct/cli@1.1.29":
+  version "1.1.29"
+  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-1.1.29.tgz#28211c5bc0b7a8959456cc96474d88628f10d23d"
+  integrity sha512-otzF5uslBT2lQ2RHvq9QCCjO5RvDF85exgrjAh+6frj5E6YRQ6i9YBjnkROM6vtMisAklm9HGBRjVsTsx2jLrA==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.7"
     "@babel/helper-module-imports" "^7.10.4"
     "@babel/runtime" "^7.7.7"
-    "@preconstruct/hook" "^0.4.0"
+    "@preconstruct/hook" "^0.3.0"
     "@rollup/plugin-alias" "^3.1.1"
     "@rollup/plugin-commonjs" "^15.0.0"
     "@rollup/plugin-json" "^4.1.0"
@@ -2456,10 +2456,10 @@
     v8-compile-cache "^2.1.1"
     xxhash-wasm "^0.4.0"
 
-"@preconstruct/hook@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@preconstruct/hook/-/hook-0.4.0.tgz#c15dfacfc6e60652a6837209c2fd87f0240b099e"
-  integrity sha512-a7mrlPTM3tAFJyz43qb4pPVpUx8j8TzZBFsNFqcKcE/sEakNXRlQAuCT4RGZRf9dQiiUnBahzSIWawU4rENl+Q==
+"@preconstruct/hook@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@preconstruct/hook/-/hook-0.3.0.tgz#d8cee47aa99ab3ec86a452724d3dc0f6a52a4551"
+  integrity sha512-IKgThZklIRdkWmU8DBXAG5n04VqD/m/Xhdr+Pz+eOBCTimjtwQlMDrGPmAjKJIr45eAsJdNakabLdz4o/ZBIpg==
   dependencies:
     "@babel/core" "^7.7.7"
     "@babel/plugin-transform-modules-commonjs" "^7.7.5"
