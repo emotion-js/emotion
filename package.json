@@ -26,8 +26,8 @@
     "release": "yarn build && changeset publish"
   },
   "resolutions": {
-    "**/react": "17.0.0-rc.0",
-    "**/react-dom": "17.0.0-rc.0",
+    "**/react": "16.14.0",
+    "**/react-dom": "16.14.0",
     "**/browserslist": "^3.2.8",
     "**/graphql-type-json": "0.2.4"
   },
@@ -164,7 +164,7 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-syntax-jsx": "^7.2.0",
     "@babel/plugin-transform-flow-strip-types": "^7.4.4",
-    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
@@ -237,9 +237,9 @@
     "puppeteer": "^1.6.0",
     "raf": "^3.4.0",
     "razzle": "^2.4.0",
-    "react": "^16.5.2",
+    "react": "16.14.0",
     "react-art": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react-dom": "16.14.0",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
     "react-live": "1.10.0",
