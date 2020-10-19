@@ -46,6 +46,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "umd:main": "dist/core.umd.min.js",
   "preconstruct": {
     "source": "src/index.js",
     "entrypoints": [

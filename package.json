@@ -122,7 +122,9 @@
       "packages/*"
     ],
     "globals": {
-      "react": "React"
+      "react": "React",
+      "react/jsx-runtime": "ReactJSX",
+      "react/jsx-dev-runtime": "ReactJSXDev"
     }
   },
   "bugs": {
