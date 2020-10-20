@@ -11,8 +11,8 @@
   "files": [
     "src",
     "dist",
-    "jsx-runtime.js",
-    "jsx-dev-runtime.js",
+    "jsx-runtime",
+    "jsx-dev-runtime",
     "types"
   ],
   "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
@@ -51,8 +51,8 @@
     "source": "src/index.js",
     "entrypoints": [
       ".",
-      "jsx-runtime.js",
-      "jsx-dev-runtime.js"
+      "jsx-runtime",
+      "jsx-dev-runtime"
     ],
     "umdName": "emotionCore"
   }

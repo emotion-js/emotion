@@ -13,8 +13,8 @@ exports[`automatic runtime fragment 1`] = `
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsxDEV as _jsxDEV } from \\"@emotion/core/jsx-dev-runtime.js\\";
-import { Fragment as _Fragment } from \\"@emotion/core/jsx-dev-runtime.js\\";
+import { jsxDEV as _jsxDEV } from \\"@emotion/core/jsx-dev-runtime\\";
+import { Fragment as _Fragment } from \\"@emotion/core/jsx-dev-runtime\\";
 var _jsxFileName = \\"/test/path/to/some/file.js\\";
 var _ref = {
   name: \\"1q24rv0-Button\\",
@@ -62,8 +62,8 @@ export let Button = props => {
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsxDEV as _jsxDEV } from \\"@emotion/core/jsx-dev-runtime.js\\";
-import { Fragment as _Fragment } from \\"@emotion/core/jsx-dev-runtime.js\\";
+import { jsxDEV as _jsxDEV } from \\"@emotion/core/jsx-dev-runtime\\";
+import { Fragment as _Fragment } from \\"@emotion/core/jsx-dev-runtime\\";
 var _jsxFileName = \\"/test/path/to/some/file.js\\";
 import * as React from 'react';
 var _ref = {
@@ -107,7 +107,7 @@ exports[`automatic runtime key-after-spread 1`] = `
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { createElement as _createElement } from \\"@emotion/core\\";
-import { jsxDEV as _jsxDEV } from \\"@emotion/core/jsx-dev-runtime.js\\";
+import { jsxDEV as _jsxDEV } from \\"@emotion/core/jsx-dev-runtime\\";
 var _jsxFileName = \\"/test/path/to/some/file.js\\";
 var _ref = {
   name: \\"1f5afni-Buttons\\",
@@ -154,7 +154,7 @@ exports[`automatic runtime no-static-children 1`] = `
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsxDEV as _jsxDEV } from \\"@emotion/core/jsx-dev-runtime.js\\";
+import { jsxDEV as _jsxDEV } from \\"@emotion/core/jsx-dev-runtime\\";
 var _jsxFileName = \\"/test/path/to/some/file.js\\";
 var _ref = {
   name: \\"1q24rv0-Button\\",
@@ -188,7 +188,7 @@ exports[`automatic runtime static-children 1`] = `
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsxDEV as _jsxDEV } from \\"@emotion/core/jsx-dev-runtime.js\\";
+import { jsxDEV as _jsxDEV } from \\"@emotion/core/jsx-dev-runtime\\";
 var _jsxFileName = \\"/test/path/to/some/file.js\\";
 var _ref = {
   name: \\"1q24rv0-Button\\",

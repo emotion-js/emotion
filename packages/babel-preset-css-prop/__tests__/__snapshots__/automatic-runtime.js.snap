@@ -13,9 +13,9 @@ exports[`automatic runtime fragment 1`] = `
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsx as _jsx } from \\"@emotion/core/jsx-runtime.js\\";
-import { jsxs as _jsxs } from \\"@emotion/core/jsx-runtime.js\\";
-import { Fragment as _Fragment } from \\"@emotion/core/jsx-runtime.js\\";
+import { jsx as _jsx } from \\"@emotion/core/jsx-runtime\\";
+import { jsxs as _jsxs } from \\"@emotion/core/jsx-runtime\\";
+import { Fragment as _Fragment } from \\"@emotion/core/jsx-runtime\\";
 var _ref = {
   name: \\"1q24rv0-Button\\",
   styles: \\"color:hotpink;;label:Button;\\"
@@ -54,8 +54,8 @@ export let Button = props => {
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsx as _jsx } from \\"@emotion/core/jsx-runtime.js\\";
-import { Fragment as _Fragment } from \\"@emotion/core/jsx-runtime.js\\";
+import { jsx as _jsx } from \\"@emotion/core/jsx-runtime\\";
+import { Fragment as _Fragment } from \\"@emotion/core/jsx-runtime\\";
 import * as React from 'react';
 var _ref = {
   name: \\"1q24rv0-Button\\",
@@ -94,7 +94,7 @@ exports[`automatic runtime key-after-spread 1`] = `
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import { createElement as _createElement } from \\"@emotion/core\\";
-import { jsx as _jsx } from \\"@emotion/core/jsx-runtime.js\\";
+import { jsx as _jsx } from \\"@emotion/core/jsx-runtime\\";
 var _ref = {
   name: \\"1f5afni-Buttons\\",
   styles: \\"color:hotpink;;label:Buttons;\\"
@@ -130,7 +130,7 @@ exports[`automatic runtime no-static-children 1`] = `
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsx as _jsx } from \\"@emotion/core/jsx-runtime.js\\";
+import { jsx as _jsx } from \\"@emotion/core/jsx-runtime\\";
 var _ref = {
   name: \\"1q24rv0-Button\\",
   styles: \\"color:hotpink;;label:Button;\\"
@@ -159,7 +159,7 @@ exports[`automatic runtime static-children 1`] = `
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { jsx as _jsx } from \\"@emotion/core/jsx-runtime.js\\";
+import { jsx as _jsx } from \\"@emotion/core/jsx-runtime\\";
 var _ref = {
   name: \\"1q24rv0-Button\\",
   styles: \\"color:hotpink;;label:Button;\\"
