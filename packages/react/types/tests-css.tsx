@@ -32,8 +32,8 @@ css`
 // $ExpectError
 css(() => 'height: 300px;')
 
-// $ExpectError
 css`
   position: relative;
-  flexgrow: ${() => 20};
+  flexgrow: ${// $ExpectError
+  () => 20};
 `

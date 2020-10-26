@@ -30,7 +30,7 @@ export type ObjectInterpolation<
 
 export interface ArrayCSSInterpolation<
   StyleType extends ReactNativeStyle = ReactNativeStyle
-> extends Array<CSSInterpolation<StyleType>> {}
+> extends ReadonlyArray<CSSInterpolation<StyleType>> {}
 
 export type CSSInterpolation<
   StyleType extends ReactNativeStyle = ReactNativeStyle
@@ -39,7 +39,7 @@ export type CSSInterpolation<
 export interface ArrayInterpolation<
   MergedProps,
   StyleType extends ReactNativeStyle = ReactNativeStyle
-> extends Array<Interpolation<MergedProps, StyleType>> {}
+> extends ReadonlyArray<Interpolation<MergedProps, StyleType>> {}
 
 export interface FunctionInterpolation<
   MergedProps,
@@ -101,8 +101,12 @@ export interface CreateStyledComponent<
 > {
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
+   * @typeparam InferredAdditionalProps  Should not be explicitly specified
    */
-  <AdditionalProps extends {} = {}>(
+  <
+    AdditionalProps extends {} = {},
+    InferredAdditionalProps extends AdditionalProps = AdditionalProps
+  >(
     ...styles: ArrayInterpolation<
       ComponentProps &
         SpecificComponentProps &
@@ -110,19 +114,23 @@ export interface CreateStyledComponent<
       StyleType
     >
   ): StyledComponent<
-    ComponentProps & AdditionalProps,
+    ComponentProps & InferredAdditionalProps,
     SpecificComponentProps,
     JSXProps
   >
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
+   * @typeparam InferredAdditionalProps  Should not be explicitly specified
    */
-  <AdditionalProps extends {} = {}>(
+  <
+    AdditionalProps extends {} = {},
+    InferredAdditionalProps extends AdditionalProps = AdditionalProps
+  >(
     template: TemplateStringsArray,
     ...styles: ArrayInterpolation<
       ComponentProps &
         SpecificComponentProps &
-        AdditionalProps & { theme: Theme },
+        InferredAdditionalProps & { theme: Theme },
       StyleType
     >
   ): StyledComponent<

@@ -7,9 +7,9 @@ export { EmotionCache }
 export interface StylisElement {
   type: string
   value: string
-  props: Array<string>
+  props: ReadonlyArray<string>
   root: StylisElement | null
-  children: Array<StylisElement>
+  children: ReadonlyArray<StylisElement>
   line: number
   column: number
   length: number
@@ -18,20 +18,20 @@ export interface StylisElement {
 export type StylisPluginCallback = (
   element: StylisElement,
   index: number,
-  children: Array<StylisElement>,
+  children: ReadonlyArray<StylisElement>,
   callback: StylisPluginCallback
 ) => string | undefined
 
 export type StylisPlugin = (
   element: StylisElement,
   index: number,
-  children: Array<StylisElement>,
+  children: ReadonlyArray<StylisElement>,
   callback: StylisPluginCallback
 ) => string | undefined
 
 export interface Options {
   nonce?: string
-  stylisPlugins?: Array<StylisPlugin>
+  stylisPlugins?: ReadonlyArray<StylisPlugin>
   key: string
   container?: HTMLElement
   speedy?: boolean
