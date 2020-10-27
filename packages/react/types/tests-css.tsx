@@ -32,8 +32,11 @@ css`
 // $ExpectError
 css(() => 'height: 300px;')
 
+// prettier-ignore
 css`
   position: relative;
-  flexgrow: ${// $ExpectError
-  () => 20};
+  flexgrow: ${
+    // $ExpectError
+    () => 20
+  };
 `
