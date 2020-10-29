@@ -44,7 +44,7 @@ export function css<StyleType extends ReactNativeStyle = ReactNativeStyle>(
 type HostClassComponent<
   C extends React.ComponentClass<any>
 > = CreateStyledComponent<
-  React.ComponentProps<C> & { theme?: Theme },
+  React.ComponentProps<C> & { theme?: Theme; as?: React.ElementType },
   {},
   { ref?: React.Ref<InstanceType<C>> },
   ReactNativeStyleType<React.ComponentProps<C>>
@@ -52,7 +52,7 @@ type HostClassComponent<
 type HostFunctionComponent<
   C extends React.FunctionComponent<any>
 > = CreateStyledComponent<
-  React.ComponentProps<C> & { theme?: Theme },
+  React.ComponentProps<C> & { theme?: Theme; as?: React.ElementType },
   {},
   {},
   ReactNativeStyleType<React.ComponentProps<C>>

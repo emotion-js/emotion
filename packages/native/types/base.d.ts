@@ -153,6 +153,7 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     Pick<React.ComponentProps<C>, ForwardedProps> & {
       theme?: Theme
+      as?: React.ElementType
     },
     {},
     { ref?: React.Ref<InstanceType<C>> },
@@ -165,6 +166,7 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     React.ComponentProps<C> & {
       theme?: Theme
+      as?: React.ElementType
     },
     {},
     { ref?: React.Ref<InstanceType<C>> },
@@ -182,6 +184,7 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     Pick<React.ComponentProps<C>, ForwardedProps> & {
       theme?: Theme
+      as?: React.ElementType
     },
     {},
     {},
@@ -192,7 +195,7 @@ export interface CreateStyled {
     component: C,
     options?: StyledOptions<React.ComponentProps<C>>
   ): CreateStyledComponent<
-    React.ComponentProps<C> & { theme?: Theme },
+    React.ComponentProps<C> & { theme?: Theme; as?: React.ElementType },
     {},
     {},
     ReactNativeStyleType<React.ComponentProps<C>>

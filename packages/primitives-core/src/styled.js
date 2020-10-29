@@ -29,7 +29,10 @@ export function createStyled(
     let shouldForwardProp =
       options && options.shouldForwardProp
         ? options.shouldForwardProp
-        : getShouldForwardProp(component)
+        : undefined
+    let defaultShouldForwardProp =
+      shouldForwardProp || getShouldForwardProp(component)
+    let shouldUseAs = !defaultShouldForwardProp('as')
 
     return function createStyledComponent(...rawStyles: *) {
       let styles
@@ -43,6 +46,8 @@ export function createStyled(
       // do we really want to use the same infra as the web since it only really uses theming?
       // $FlowFixMe
       let Styled = React.forwardRef((props, ref) => {
+        const finalTag = (shouldUseAs && props.as) || component
+
         let mergedProps = props
         if (props.theme == null) {
           mergedProps = {}
@@ -52,10 +57,17 @@ export function createStyled(
           mergedProps.theme = React.useContext(ThemeContext)
         }
 
+        let finalShouldForwardProp =
+          shouldUseAs && shouldForwardProp === undefined
+            ? getShouldForwardProp(finalTag)
+            : defaultShouldForwardProp
+
         let newProps = {}
 
         for (let key in props) {
-          if (shouldForwardProp(key)) {
+          if (shouldUseAs && key === 'as') continue
+
+          if (finalShouldForwardProp(key)) {
             newProps[key] = props[key]
           }
         }
@@ -64,7 +76,7 @@ export function createStyled(
         newProps.ref = ref
 
         // $FlowFixMe
-        return React.createElement(component, newProps)
+        return React.createElement(finalTag, newProps)
       })
       // $FlowFixMe
       Styled.withComponent = (newComponent: React.ElementType) =>
