@@ -4,7 +4,7 @@ import { interleave } from './utils'
 import { ThemeContext } from '@emotion/react'
 import { createCss } from './css'
 
-let testOmitPropsOnComponent = prop => prop !== 'theme'
+let testOmitPropsOnComponent = prop => prop !== 'theme' && prop !== 'as'
 
 type CreateStyledOptions = {
   getShouldForwardProp: (cmp: React.ElementType) => (prop: string) => boolean
