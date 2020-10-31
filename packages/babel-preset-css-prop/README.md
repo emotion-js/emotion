@@ -139,7 +139,7 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
 >
 > - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/next/babel-plugin-transform-react-jsx)
 
-You can opt into [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) by configuring this preset with `{ runtime: 'automatic' }`. Keep in mind that you have to use compatible React version (`>=16.14.0`) to use this options.
+You can opt into [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) by configuring this preset with `{ runtime: 'automatic' }`. Keep in mind that you have to use compatible React version (`>=16.14.0`) to use this option and a compatible version of `@emotion/core` (`>=10.1.0`).
 
 ### Examples
 
