@@ -66,14 +66,14 @@ require('@babel/core').transform(code, {
 
 ## Features
 
-This preset enables the `css` prop for an entire project via a single entry to the babel configuration. After adding the preset, compiled jsx code will use emotion's `jsx` function instead of `React.createElement`.
+This preset enables the `css` prop for an entire project via a single entry to the babel configuration. After adding the preset, compiled JSX code will use Emotion's JSX factories instead of the ones provided by React.
 
 |        | Input                      | Output                                              |
 | ------ | -------------------------- | --------------------------------------------------- |
 | Before | `<img src="avatar.png" />` | `React.createElement('img', { src: 'avatar.png' })` |
 | After  | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })`                 |
 
-`import { jsx } from '@emotion/core'` is automatically added to the top of files where required.
+Import to `@emotion/core`'s appropriate JSX factory is automatically added to the top of files where required.
 
 ## Example
 
@@ -127,7 +127,7 @@ const Link = props =>
   )
 ```
 
-_In addition to the custom pragma, this example includes `babel-plugin-emotion` transforms that are enabled by default._
+_In addition to the custom JSX factory, this example includes `babel-plugin-emotion` transforms that are enabled by default._
 
 ## Options
 
@@ -138,6 +138,8 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
 > - [`babel-plugin-emotion`](https://emotion.sh/docs/babel)
 >
 > - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/next/babel-plugin-transform-react-jsx)
+
+You can opt into [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) by configuring this preset with `{ runtime: 'automatic' }`. Keep in mind that you have to use compatible React version (`>=16.14.0`) to use this options.
 
 ### Examples
 
