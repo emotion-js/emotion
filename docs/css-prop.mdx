@@ -55,6 +55,8 @@ This option works best for testing out the `css` prop feature or in projects whe
 
 Similar to a comment containing linter configuration, this configures the [jsx babel plugin](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx) to use the `jsx` function instead of `React.createElement`.
 
+If you are using a zero-config tool with automatic detection of which runtime (classic vs. automatic) should be used and you are already using a React version that has [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) (hence `runtime: 'automatic'` being configured automatically for your) such as Create React App 4 then `/** @jsx jsx */` pragma might not work and you should use `/** @jsxImportSource @emotion/core */` instead. Keep in mind that this also requires a compatible version of `@emotion/core` which is `^10.1.0`.
+
 > [JSX Pragma Babel Documentation](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx#pragma)
 
 #### Import the `jsx` function from `@emotion/core`
