@@ -11,6 +11,8 @@
   "files": [
     "src",
     "dist",
+    "jsx-runtime",
+    "jsx-dev-runtime",
     "types"
   ],
   "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
@@ -37,7 +39,7 @@
     "emotion-server": "^10.0.27",
     "emotion-theming": "^10.0.27",
     "html-tag-names": "^1.1.2",
-    "react": "^16.5.2",
+    "react": "16.14.0",
     "svg-tag-names": "^1.1.1"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/core",
@@ -46,6 +48,12 @@
   },
   "umd:main": "dist/core.umd.min.js",
   "preconstruct": {
+    "source": "src/index.js",
+    "entrypoints": [
+      ".",
+      "jsx-runtime",
+      "jsx-dev-runtime"
+    ],
     "umdName": "emotionCore"
   }
 }

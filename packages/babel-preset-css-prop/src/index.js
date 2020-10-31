@@ -1,4 +1,5 @@
 import jsx from '@babel/plugin-transform-react-jsx'
+import jsxDev from '@babel/plugin-transform-react-jsx-development'
 import pragmatic from '@emotion/babel-plugin-jsx-pragmatic'
 import emotion from 'babel-plugin-emotion'
 
@@ -11,19 +12,33 @@ let pragmaName = '___EmotionJSX'
 
 export default (
   api,
-  { pragma, sourceMap, autoLabel, labelFormat, instances, ...options } = {}
+  {
+    pragma,
+    sourceMap,
+    autoLabel,
+    labelFormat,
+    instances,
+    development = false,
+    ...options
+  } = {}
 ) => {
   return {
     plugins: [
-      [
+      options.runtime !== 'automatic' && [
         pragmatic,
+        { export: 'jsx', module: '@emotion/core', import: pragmaName }
+      ],
+      [
+        // this is handled by @babel/preset-react, consider switching to it
+        // right now I'm not sure if its dev plugins are compatible with our pragmatic plugin
+        development ? jsxDev : jsx,
         {
-          export: 'jsx',
-          module: '@emotion/core',
-          import: pragmaName
+          ...(options.runtime === 'automatic'
+            ? { importSource: '@emotion/core' }
+            : { pragma: pragmaName, pragmaFrag: 'React.Fragment' }),
+          ...options
         }
       ],
-      [jsx, { pragma: pragmaName, pragmaFrag: 'React.Fragment', ...options }],
       [
         emotion,
         {
@@ -34,6 +49,6 @@ export default (
           cssPropOptimization: true
         }
       ]
-    ]
+    ].filter(Boolean)
   }
 }

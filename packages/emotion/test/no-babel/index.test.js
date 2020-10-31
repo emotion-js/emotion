@@ -136,7 +136,7 @@ describe('css', () => {
 
       const Thing = styled('div')({
         display: 'flex',
-        [H1]: {
+        [H1.toString()]: {
           color: 'green'
         }
       })

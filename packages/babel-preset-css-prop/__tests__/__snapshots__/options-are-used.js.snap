@@ -1,5 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`options are used fragment 1`] = `
+"export let Button = ({ loading, ...props }) => {
+  return (
+    <>
+      <button css={{ color: 'hotpink' }} {...props} />
+      {loading && <span>{'Loading...'}</span>}
+    </>
+  )
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+var _ref = {
+  name: \\"s1pogm-__fixtures__--fragment--Button\\",
+  styles: \\"color:hotpink;;label:__fixtures__--fragment--Button;\\"
+};
+export let Button = ({
+  loading,
+  ...props
+}) => {
+  return ___EmotionJSX(React.Fragment, null, ___EmotionJSX(\\"button\\", _extends({
+    css: _ref
+  }, props)), loading && ___EmotionJSX(\\"span\\", null, 'Loading...'));
+};"
+`;
+
 exports[`options are used index 1`] = `
 "import * as React from 'react'
 
@@ -31,5 +62,107 @@ export let Button = props => {
   return ___EmotionJSX(React.Fragment, null, ___EmotionJSX(\\"button\\", _extends({
     css: _ref
   }, props)));
+};"
+`;
+
+exports[`options are used key-after-spread 1`] = `
+"export let Buttons = ({ buttons }) => {
+  return (
+    <div>
+      {buttons.map(({ id, label, ...rest }) => (
+        <button
+          {...rest}
+          key={id}
+          css={{
+            color: 'hotpink'
+          }}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+var _ref = {
+  name: \\"1fsxnz6-__fixtures__--key-after-spread--Buttons\\",
+  styles: \\"color:hotpink;;label:__fixtures__--key-after-spread--Buttons;\\"
+};
+export let Buttons = ({
+  buttons
+}) => {
+  return ___EmotionJSX(\\"div\\", null, buttons.map(({
+    id,
+    label,
+    ...rest
+  }) => ___EmotionJSX(\\"button\\", _extends({}, rest, {
+    key: id,
+    css: _ref
+  }), label)));
+};"
+`;
+
+exports[`options are used no-static-children 1`] = `
+"export let Button = props => {
+  return (
+    <button
+      css={{
+        color: 'hotpink'
+      }}
+      {...props}
+    />
+  )
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+var _ref = {
+  name: \\"1zt6yv-__fixtures__--no-static-children--Button\\",
+  styles: \\"color:hotpink;;label:__fixtures__--no-static-children--Button;\\"
+};
+export let Button = props => {
+  return ___EmotionJSX(\\"button\\", _extends({
+    css: _ref
+  }, props));
+};"
+`;
+
+exports[`options are used static-children 1`] = `
+"export let Button = () => {
+  return (
+    <button
+      css={{
+        color: 'hotpink'
+      }}
+    >
+      {'Test'}
+    </button>
+  )
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+var _ref = {
+  name: \\"1adtr1x-__fixtures__--static-children--Button\\",
+  styles: \\"color:hotpink;;label:__fixtures__--static-children--Button;\\"
+};
+export let Button = () => {
+  return ___EmotionJSX(\\"button\\", {
+    css: _ref
+  }, 'Test');
 };"
 `;
