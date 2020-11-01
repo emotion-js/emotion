@@ -1,6 +1,6 @@
 {
   "name": "@emotion/core",
-  "version": "10.0.35",
+  "version": "10.1.0",
   "main": "dist/core.cjs.js",
   "module": "dist/core.esm.js",
   "browser": {

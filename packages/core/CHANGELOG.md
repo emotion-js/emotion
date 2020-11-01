@@ -1,5 +1,13 @@
 # @emotion/core
 
+## 10.1.0
+
+### Minor Changes
+
+- [`71514b06`](https://github.com/emotion-js/emotion/commit/71514b06fe172517168f98321499f05e74388de6) [#1970](https://github.com/emotion-js/emotion/pull/1970) Thanks [@FLGMwt](https://github.com/FLGMwt)! - Support for [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) has been added. They require compatible React versions and shouldn't be manually used.
+
+  To use them you can use the new `@jsxImportSource @emotion/core` pragma instead of the old `@jsx jsx` or you can use `@emotion/babel-preset-css-prop` with `{ runtime: 'automatic' }` option to have it handled automatically for you for the whole project.
+
 ## 10.0.35
 
 ### Patch Changes
