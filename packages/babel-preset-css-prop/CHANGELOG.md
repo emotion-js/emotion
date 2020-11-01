@@ -1,5 +1,11 @@
 # @emotion/babel-preset-css-prop
 
+## 10.1.0
+
+### Minor Changes
+
+- [`71514b06`](https://github.com/emotion-js/emotion/commit/71514b06fe172517168f98321499f05e74388de6) [#1970](https://github.com/emotion-js/emotion/pull/1970) Thanks [@FLGMwt](https://github.com/FLGMwt)! - A new `runtime` option has been added that can be configured to `'automatic'` to opt into [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html). To use this a compatible React version has to be used.
+
 ## 10.0.27
 
 ### Patch Changes
