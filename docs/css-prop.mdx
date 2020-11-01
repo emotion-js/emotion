@@ -13,7 +13,7 @@ There are 2 ways to get started with the `css` prop.
 
 Both methods result in the same compiled code.
 After adding the preset or setting the pragma as a comment, compiled jsx code will use emotion's `jsx` function instead of `React.createElement`.
-  
+
 | | Input | Output |
 | ------ | -------------------------- | --------------------------------------------------- |
 | Before | `<img src="avatar.png" />` | `React.createElement('img', { src: 'avatar.png' })` |
@@ -32,6 +32,16 @@ Use the [JSX Pragma](#jsx-pragma) method instead.
 }
 ```
 
+If you are using the compatible React version (`>=16.14.0`) and a compatible version of `@emotion/core` (`>=10.1.0`) then you can opt into using [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) by using such configuration:
+
+**.babelrc**
+
+```json
+{
+  "presets": [["@emotion/babel-preset-css-prop", { "runtime": "automatic" }]]
+}
+```
+
 > [Full `@emotion/babel-preset-css-prop` documentation](https://emotion.sh/docs/@emotion/babel-preset-css-prop)
 
 #### JSX Pragma
@@ -44,6 +54,8 @@ This option works best for testing out the `css` prop feature or in projects whe
 ```
 
 Similar to a comment containing linter configuration, this configures the [jsx babel plugin](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx) to use the `jsx` function instead of `React.createElement`.
+
+If you are using a zero-config tool with automatic detection of which runtime (classic vs. automatic) should be used and you are already using a React version that has [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) (hence `runtime: 'automatic'` being configured automatically for you) such as Create React App 4 then `/** @jsx jsx */` pragma might not work and you should use `/** @jsxImportSource @emotion/core */` instead. Keep in mind that this also requires a compatible version of `@emotion/core` which is `^10.1.0`.
 
 > [JSX Pragma Babel Documentation](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx#pragma)
 
