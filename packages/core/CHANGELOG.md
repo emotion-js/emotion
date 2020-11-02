@@ -1,5 +1,18 @@
 # @emotion/core
 
+## 10.1.1
+
+### Patch Changes
+
+- [`fe30cbd6`](https://github.com/emotion-js/emotion/commit/fe30cbd60b131bd7017d574cc25215dcd04d1f46) [#2066](https://github.com/emotion-js/emotion/pull/2066) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with React giving warning about static children not having unique keys when using the classic `jsx` factory. This example illustrates the situation in which this has been incorrectly happening:
+
+  ```js
+  <div css={{ color: 'hotpink' }}>
+    <div />
+    <div />
+  </div>
+  ```
+
 ## 10.1.0
 
 ### Minor Changes
