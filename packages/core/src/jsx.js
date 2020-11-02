@@ -15,20 +15,15 @@ export const jsx: typeof React.createElement = function(
     return React.createElement.apply(undefined, args)
   }
 
-  const emotionProps = createEmotionProps(type, props)
+  let argsLength = args.length
+  let createElementArgArray = new Array(argsLength)
+  createElementArgArray[0] = Emotion
+  createElementArgArray[1] = createEmotionProps(type, props)
 
-  // https://github.com/facebook/react/blob/fd61f7ea53989a59bc427603798bb111c852816a/packages/react/src/ReactElement.js#L386-L400
-  const childrenLength = args.length - 2
-  if (childrenLength === 1) {
-    emotionProps.children = args[2]
-  } else if (childrenLength > 1) {
-    const childArray = new Array(childrenLength)
-    for (let i = 0; i < childrenLength; i++) {
-      childArray[i] = args[i + 2]
-    }
-    emotionProps.children = childArray
+  for (let i = 2; i < argsLength; i++) {
+    createElementArgArray[i] = args[i]
   }
 
   // $FlowFixMe
-  return React.createElement(Emotion, emotionProps)
+  return React.createElement.apply(null, createElementArgArray)
 }
