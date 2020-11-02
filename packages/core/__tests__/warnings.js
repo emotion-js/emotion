@@ -261,3 +261,13 @@ test('`css` opaque object passed in as `className` prop', () => {
     </div>
   `)
 })
+
+test('when using `jsx` multiple static children should not result in a key-related warning', () => {
+  renderer.create(
+    <div css={{ color: 'hotpink' }}>
+      <div />
+      <div />
+    </div>
+  )
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+})
