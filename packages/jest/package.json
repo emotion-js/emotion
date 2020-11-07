@@ -18,7 +18,7 @@
   "dependencies": {
     "@babel/runtime": "^7.7.2",
     "@emotion/css-prettifier": "^1.0.0-next.0",
-    "chalk": "^2.4.1",
+    "chalk": "^4.1.0",
     "specificity": "^0.4.1",
     "stylis": "^4.0.3"
   },
