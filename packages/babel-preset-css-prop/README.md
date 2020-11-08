@@ -1,6 +1,6 @@
 # @emotion/babel-preset-css-prop
 
-> A babel preset to automatically enable emotion's css prop
+> A Babel preset to automatically enable Emotion's css prop when using the classic JSX runtime. If you want to use [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) please do not use this preset but rather just include our [`babel-plugin-emotion`](/packages/babel-plugin-emotion) directly and follow instructions for configuring the new JSX runtimes [here](/docs/css-prop.mdx##babel-preset).
 
 - [Install](#install)
 - [Usage](#usage)
@@ -66,14 +66,14 @@ require('@babel/core').transform(code, {
 
 ## Features
 
-This preset enables the `css` prop for an entire project via a single entry to the babel configuration. After adding the preset, compiled JSX code will use Emotion's JSX factories instead of the ones provided by React.
+This preset enables the `css` prop for an entire project via a single entry to the babel configuration. After adding the preset, compiled JSX code will use Emotion's `jsx` function instead of `React.createElement`.
 
 |        | Input                      | Output                                              |
 | ------ | -------------------------- | --------------------------------------------------- |
 | Before | `<img src="avatar.png" />` | `React.createElement('img', { src: 'avatar.png' })` |
 | After  | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })`                 |
 
-Import to `@emotion/core`'s appropriate JSX factory is automatically added to the top of files where required.
+`import { jsx } from '@emotion/core'` is automatically added to the top of files where required.
 
 ## Example
 
@@ -138,8 +138,6 @@ Options for both `babel-plugin-emotion` and `@babel/plugin-transform-react-jsx` 
 > - [`babel-plugin-emotion`](https://emotion.sh/docs/babel)
 >
 > - [`@babel/plugin-transform-react-jsx`](https://babeljs.io/docs/en/next/babel-plugin-transform-react-jsx)
-
-You can opt into [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) by configuring this preset with `{ runtime: 'automatic' }`. Keep in mind that you have to use compatible React version (`>=16.14.0`) to use this option and a compatible version of `@emotion/core` (`>=10.1.0`).
 
 ### Examples
 
