@@ -1,0 +1,13 @@
+{
+  "main": "dist/react.cjs.js",
+  "module": "dist/react.esm.js",
+  "umd:main": "dist/react.umd.min.js",
+  "browser": {
+    "./dist/react.cjs.js": "./dist/react.browser.cjs.js",
+    "./dist/react.esm.js": "./dist/react.browser.esm.js"
+  },
+  "preconstruct": {
+    "source": "../src/jsx-runtime",
+    "umdName": "emotionReactJSXRuntime"
+  }
+}

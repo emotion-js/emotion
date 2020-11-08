@@ -2,6 +2,7 @@
 import pkg from '../package.json'
 export { withEmotionCache, CacheProvider } from './context'
 export { jsx } from './jsx'
+export { jsx as createElement } from './jsx'
 export { Global } from './global'
 export { keyframes } from './keyframes'
 export { ClassNames } from './class-names'

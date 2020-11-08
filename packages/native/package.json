@@ -18,7 +18,7 @@
     "@babel/core": "^7.7.2",
     "@types/react-native": "^0.63.2",
     "dtslint": "^0.3.0",
-    "react": "^16.11.0",
+    "react": "16.14.0",
     "react-native": "^0.63.2"
   },
   "dependencies": {

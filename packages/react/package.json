@@ -11,6 +11,8 @@
   "files": [
     "src",
     "dist",
+    "jsx-runtime",
+    "jsx-dev-runtime",
     "types/*.d.ts",
     "macro.js",
     "macro.d.ts",
@@ -51,7 +53,7 @@
     "@types/react": "^16.9.11",
     "dtslint": "^0.3.0",
     "html-tag-names": "^1.1.2",
-    "react": "^16.11.0",
+    "react": "16.14.0",
     "svg-tag-names": "^1.1.1"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/core",
@@ -60,6 +62,11 @@
   },
   "umd:main": "dist/react.umd.min.js",
   "preconstruct": {
+    "entrypoints": [
+      ".",
+      "jsx-runtime",
+      "jsx-dev-runtime"
+    ],
     "umdName": "emotionReact"
   }
 }

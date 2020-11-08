@@ -34,7 +34,7 @@
     "@babel/core": "^7.7.2",
     "@emotion/react": "11.0.0-rc.0",
     "dtslint": "^0.3.0",
-    "react": "^16.11.0"
+    "react": "16.14.0"
   },
   "publishConfig": {
     "access": "public"

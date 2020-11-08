@@ -309,3 +309,13 @@ test('@import prepended by other @import', () => {
 
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
 })
+
+test('when using `jsx` multiple static children should not result in a key-related warning', () => {
+  renderer.create(
+    <div css={{ color: 'hotpink' }}>
+      <div />
+      <div />
+    </div>
+  )
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+})

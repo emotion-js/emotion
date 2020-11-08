@@ -30,7 +30,7 @@
     "@babel/core": "^7.7.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
-    "react": "^16.11.0",
+    "react": "16.14.0",
     "react-primitives": "^0.8.1"
   },
   "homepage": "https://emotion.sh",

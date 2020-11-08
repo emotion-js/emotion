@@ -72,6 +72,18 @@
 - Updated dependencies [[`b0ad4f0c`](https://github.com/emotion-js/emotion/commit/b0ad4f0c628813a42c4637857be9a969429db6f0), [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555)]:
   - babel-plugin-emotion@11.0.0-next.0
 
+## 10.2.0
+
+### Minor Changes
+
+- [`c55fadb4`](https://github.com/emotion-js/emotion/commit/c55fadb4c90f86e3c7837b4b3a5902f0e90a4f19) [#2074](https://github.com/emotion-js/emotion/pull/2074) Thanks [@Andarist](https://github.com/Andarist)! - `runtime` option has been deprecated. It still works and will continue to work in Emotion 10 but we have found out that including JSX plugin twice in the Babel configuration leads to hard to debug problems and it's not always obvious that some presets include it. If you want to configure `runtime: "automatic"` just replace `@emotion/babel-preset-css-prop` with `@babel/preset-react` and `babel-plugin-emotion`. You can find out how to configure things properly here: https://emotion.sh/docs/css-prop#babel-preset
+
+## 10.1.0
+
+### Minor Changes
+
+- [`71514b06`](https://github.com/emotion-js/emotion/commit/71514b06fe172517168f98321499f05e74388de6) [#1970](https://github.com/emotion-js/emotion/pull/1970) Thanks [@FLGMwt](https://github.com/FLGMwt)! - A new `runtime` option has been added that can be configured to `'automatic'` to opt into [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html). To use this a compatible React version has to be used.
+
 ## 10.0.27
 
 ### Patch Changes

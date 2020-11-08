@@ -22,7 +22,11 @@ function getShouldForwardProp(component: React.ElementType) {
  * a function that returns a styled component which render styles on multiple targets with same code
  */
 
-type CreateStyledComponent = (...styles: any) => React.ElementType
+type CreateStyledComponent = (
+  ...styles: any
+) => React.StatelessFunctionalComponent<any> & {
+  withComponent: (component: any) => React.StatelessFunctionalComponent<any>
+}
 
 type BaseStyled = (tag: React.ElementType) => CreateStyledComponent
 

@@ -1,6 +1,6 @@
 {
   "name": "@emotion/babel-plugin-jsx-pragmatic",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Insert code to load a module corresponding to JSX pragma.",
   "main": "dist/babel-plugin-jsx-pragmatic.cjs.js",
   "module": "dist/babel-plugin-jsx-pragmatic.esm.js",
@@ -10,7 +10,7 @@
     "test:typescript": "exit 0"
   },
   "dependencies": {
-    "@babel/plugin-syntax-jsx": "^7.2.0"
+    "@babel/plugin-syntax-jsx": "^7.12.1"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"

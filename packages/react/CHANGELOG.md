@@ -252,6 +252,27 @@
   - emotion-theming@11.0.0-next.0
   - @emotion/styled@11.0.0-next.0
 
+## 10.1.1
+
+### Patch Changes
+
+- [`fe30cbd6`](https://github.com/emotion-js/emotion/commit/fe30cbd60b131bd7017d574cc25215dcd04d1f46) [#2066](https://github.com/emotion-js/emotion/pull/2066) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with React giving warning about static children not having unique keys when using the classic `jsx` factory. This example illustrates the situation in which this has been incorrectly happening:
+
+  ```js
+  <div css={{ color: 'hotpink' }}>
+    <div />
+    <div />
+  </div>
+  ```
+
+## 10.1.0
+
+### Minor Changes
+
+- [`71514b06`](https://github.com/emotion-js/emotion/commit/71514b06fe172517168f98321499f05e74388de6) [#1970](https://github.com/emotion-js/emotion/pull/1970) Thanks [@FLGMwt](https://github.com/FLGMwt)! - Support for [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) has been added. They require compatible React versions and shouldn't be manually used.
+
+  To use them you can use the new `@jsxImportSource @emotion/core` pragma instead of the old `@jsx jsx` or you can use `@emotion/babel-preset-css-prop` with `{ runtime: 'automatic' }` option to have it handled automatically for you for the whole project.
+
 ## 10.0.35
 
 ### Patch Changes
