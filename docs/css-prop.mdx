@@ -46,7 +46,7 @@ If you are using the compatible React version (`>=16.14.0`) and a compatible ver
       { "runtime": "automatic", "importSource": "@emotion/core" }
     ]
   ],
-  "plugins": ["babel-plugin-emotion"]
+  "plugins": [["babel-plugin-emotion", { "cssPropOptimization": true }]]
 }
 ```
 
@@ -67,7 +67,7 @@ In case you want to use the new JSX runtimes with [Next.js](https://nextjs.org/)
       }
     ]
   ],
-  "plugins": ["babel-plugin-emotion"]
+  "plugins": [["babel-plugin-emotion", { "cssPropOptimization": true }]]
 }
 ```
 

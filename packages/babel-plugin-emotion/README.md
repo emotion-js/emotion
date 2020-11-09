@@ -303,7 +303,7 @@ resolved relative to `process.cwd()`(the current working directory).
 
 ### `cssPropOptimization`
 
-`boolean`, defaults to `true`.
+`boolean`, defaults to `true` if an import from `@emotion/core` is found in a file.
 
 This option assumes that you are using something to make `@emotion/core`'s `jsx` function work for all jsx. If you are not doing so and you do not want such optimizations to occur, disable this option.
 
