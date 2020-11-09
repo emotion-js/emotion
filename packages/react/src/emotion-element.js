@@ -59,7 +59,7 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   return newProps
 }
 
-let Emotion = withEmotionCache((props, cache, ref) => {
+let Emotion = withEmotionCache<any, any>((props, cache, ref) => {
   let cssProp = props.css
 
   // so that using `css` from `emotion` and passing the result to the css prop works
