@@ -31,8 +31,7 @@ module.exports = (api, options = {}) => {
       options.useEmotionPlugin && [
         require.resolve('@emotion/babel-plugin'),
         {
-          ...('sourceMap' in options && { sourceMap: options.sourceMap }),
-          ...(options.runtime === 'automatic' && { cssPropOptimization: true })
+          ...('sourceMap' in options && { sourceMap: options.sourceMap })
         }
       ]
     ].filter(Boolean)
