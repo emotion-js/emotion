@@ -6,6 +6,7 @@
     "./dist/react.cjs.js": "./dist/react.browser.cjs.js",
     "./dist/react.esm.js": "./dist/react.browser.esm.js"
   },
+  "types": "../types/jsx-runtime",
   "preconstruct": {
     "source": "../src/jsx-runtime",
     "umdName": "emotionReactJSXRuntime"
