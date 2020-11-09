@@ -34,7 +34,9 @@ module.exports = api => {
           filename &&
           isTestFile(filename) &&
           filename.includes('automatic-runtime'),
-        presets: [[emotionDevPreset, { runtime: 'automatic' }]]
+        presets: [
+          [emotionDevPreset, { runtime: 'automatic', useEmotionPlugin: true }]
+        ]
       },
       {
         test: filename =>
@@ -42,7 +44,10 @@ module.exports = api => {
           isTestFile(filename) &&
           filename.includes('automatic-dev-runtime'),
         presets: [
-          [emotionDevPreset, { runtime: 'automatic', development: true }]
+          [
+            emotionDevPreset,
+            { runtime: 'automatic', development: true, useEmotionPlugin: true }
+          ]
         ]
       }
     ]

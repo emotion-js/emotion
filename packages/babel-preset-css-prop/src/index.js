@@ -1,5 +1,4 @@
 import jsx from '@babel/plugin-transform-react-jsx'
-import jsxDev from '@babel/plugin-transform-react-jsx-development'
 import pragmatic from '@emotion/babel-plugin-jsx-pragmatic'
 import emotion from '@emotion/babel-plugin'
 
@@ -12,25 +11,17 @@ let pragmaName = '___EmotionJSX'
 
 export default (
   api,
-  {
-    pragma,
-    sourceMap,
-    autoLabel,
-    labelFormat,
-    importMap,
-    development = false,
-    ...options
-  } = {}
+  { pragma, sourceMap, autoLabel, labelFormat, importMap, ...options } = {}
 ) => {
   if (options.runtime) {
-    console.warn(
-      '`runtime` option has been deprecated. It still works and will continue to work in Emotion 10 but we have found out that including JSX plugin twice in the Babel configuration leads to hard to debug problems and it\'s not always obvious that some presets include it. If you want to configure `runtime: "automatic"` just replace `@emotion/babel-preset-css-prop` with `@babel/preset-react` and `@emotion/babel-plugin`. You can find out how to configure things properly here: https://emotion.sh/docs/css-prop#babel-preset'
+    throw new Error(
+      'The `runtime` option has been removed. If you want to configure `runtime: "automatic"`, replace `@emotion/babel-preset-css-prop` with `@babel/preset-react` and `@emotion/babel-plugin`. You can find out how to configure things properly here: https://emotion.sh/docs/css-prop#babel-preset'
     )
   }
 
   return {
     plugins: [
-      options.runtime !== 'automatic' && [
+      [
         pragmatic,
         {
           export: 'jsx',
@@ -39,11 +30,10 @@ export default (
         }
       ],
       [
-        development ? jsxDev : jsx,
+        jsx,
         {
-          ...(options.runtime === 'automatic'
-            ? { importSource: '@emotion/react' }
-            : { pragma: pragmaName, pragmaFrag: 'React.Fragment' }),
+          pragma: pragmaName,
+          pragmaFrag: 'React.Fragment',
           ...options
         }
       ],
@@ -57,6 +47,6 @@ export default (
           importMap
         }
       ]
-    ].filter(Boolean)
+    ]
   }
 }
