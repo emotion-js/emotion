@@ -35,10 +35,16 @@ styled.h1\`color:blue;\`
 
 import _styled from \\"@emotion/styled/base\\";
 
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
 _styled(\\"h1\\", {
   target: \\"e8evh370\\"
-})({
+})(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"117wnve\\",
   styles: \\"color:blue\\"
+} : {
+  name: \\"117wnve\\",
+  styles: \\"color:blue\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
 `;
