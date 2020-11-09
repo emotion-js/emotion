@@ -95,41 +95,41 @@ export let transformExpressionWithStyles = ({
         t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
         t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles))
       ])
-      let node = prodNode
-      if (sourceMap) {
-        if (!state.emotionStringifiedCssId) {
-          const uid = state.file.scope.generateUidIdentifier(
-            '__EMOTION_STRINGIFIED_CSS_ERROR__'
-          )
-          state.emotionStringifiedCssId = uid
-          const cssObjectToString = t.functionDeclaration(
-            uid,
-            [],
-            t.blockStatement([
-              t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR))
-            ])
-          )
-          cssObjectToString._compact = true
-          state.file.path.unshiftContainer('body', [cssObjectToString])
-        }
 
-        if (label && autoLabel === 'dev-only') {
-          res = serializeStyles([`${cssString};label:${label};`])
-        }
+      if (!state.emotionStringifiedCssId) {
+        const uid = state.file.scope.generateUidIdentifier(
+          '__EMOTION_STRINGIFIED_CSS_ERROR__'
+        )
+        state.emotionStringifiedCssId = uid
+        const cssObjectToString = t.functionDeclaration(
+          uid,
+          [],
+          t.blockStatement([
+            t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR))
+          ])
+        )
+        cssObjectToString._compact = true
+        state.file.path.unshiftContainer('body', [cssObjectToString])
+      }
 
-        let devNode = t.objectExpression([
+      if (label && autoLabel === 'dev-only') {
+        res = serializeStyles([`${cssString};label:${label};`])
+      }
+
+      let devNode = t.objectExpression(
+        [
           t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
           t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles)),
-          t.objectProperty(t.identifier('map'), t.stringLiteral(sourceMap)),
+          sourceMap &&
+            t.objectProperty(t.identifier('map'), t.stringLiteral(sourceMap)),
           t.objectProperty(
             t.identifier('toString'),
             t.cloneNode(state.emotionStringifiedCssId)
           )
-        ])
-        node = createNodeEnvConditional(t, prodNode, devNode)
-      }
+        ].filter(Boolean)
+      )
 
-      return node
+      return createNodeEnvConditional(t, prodNode, devNode)
     }
 
     if (canAppendStrings && label) {
