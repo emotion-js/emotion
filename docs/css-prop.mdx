@@ -46,7 +46,7 @@ If you are using the compatible React version (`>=16.14.0`) then you can opt int
       { "runtime": "automatic", "importSource": "@emotion/react" }
     ]
   ],
-  "plugins": ["@emotion/babel-plugin"]
+  "plugins": [["@emotion/babel-plugin", { "cssPropOptimization": true }]]
 }
 ```
 
@@ -58,7 +58,7 @@ In case you want to use the new JSX runtimes with [Next.js](https://nextjs.org/)
 {
   "presets": [
     [
-      "next-babel",
+      "next/babel",
       {
         "preset-react": {
           "runtime": "automatic",
@@ -67,7 +67,7 @@ In case you want to use the new JSX runtimes with [Next.js](https://nextjs.org/)
       }
     ]
   ],
-  "plugins": ["@emotion/babel-plugin"]
+  "plugins": [["@emotion/babel-plugin", { "cssPropOptimization": true }]]
 }
 ```
 
