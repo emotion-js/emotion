@@ -2,8 +2,8 @@
   "name": "@emotion/jest",
   "version": "11.0.0-rc.0",
   "description": "Jest utilities for emotion",
-  "main": "dist/jest.cjs.js",
-  "module": "dist/jest.esm.js",
+  "main": "dist/emotion-jest.cjs.js",
+  "module": "dist/emotion-jest.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -64,9 +64,9 @@
   },
   "preconstruct": {
     "entrypoints": [
-      ".",
-      "serializer",
-      "enzyme-serializer"
+      "./index.js",
+      "./serializer.js",
+      "./enzyme-serializer.js"
     ]
   }
 }

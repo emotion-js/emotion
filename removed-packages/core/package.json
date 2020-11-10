@@ -1,7 +1,7 @@
 {
   "name": "@emotion/core",
   "version": "11.0.0-rc.0",
-  "main": "dist/core.cjs.js",
+  "main": "dist/emotion-core.cjs.js",
   "types": "types/index.d.ts",
   "files": [
     "src",

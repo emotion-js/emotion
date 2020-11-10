@@ -9,8 +9,8 @@
     "emotion"
   ],
   "author": "Mateusz Burzyński <mateuszburzynski@gmail.com> (https://github.com/Andarist)",
-  "main": "dist/css-prettifier.cjs.js",
-  "module": "dist/css-prettifier.esm.js",
+  "main": "dist/emotion-css-prettifier.cjs.js",
+  "module": "dist/emotion-css-prettifier.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "dependencies": {

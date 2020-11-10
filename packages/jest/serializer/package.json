@@ -1,8 +1,5 @@
 {
-  "main": "dist/jest.cjs.js",
-  "module": "dist/jest.esm.js",
-  "types": "../types/serializer",
-  "preconstruct": {
-    "source": "../src/serializer"
-  }
+  "main": "dist/emotion-jest-serializer.cjs.js",
+  "module": "dist/emotion-jest-serializer.esm.js",
+  "types": "../types/serializer"
 }

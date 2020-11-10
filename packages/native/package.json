@@ -2,8 +2,8 @@
   "name": "@emotion/native",
   "version": "11.0.0-rc.0",
   "description": "Style and render React Native components using emotion",
-  "main": "dist/native.cjs.js",
-  "module": "dist/native.esm.js",
+  "main": "dist/emotion-native.cjs.js",
+  "module": "dist/emotion-native.esm.js",
   "scripts": {
     "test:typescript": "dtslint types"
   },
@@ -51,7 +51,7 @@
     "access": "public"
   },
   "browser": {
-    "./dist/native.cjs.js": "./dist/native.browser.cjs.js",
-    "./dist/native.esm.js": "./dist/native.browser.esm.js"
+    "./dist/emotion-native.cjs.js": "./dist/emotion-native.browser.cjs.js",
+    "./dist/emotion-native.esm.js": "./dist/emotion-native.browser.esm.js"
   }
 }

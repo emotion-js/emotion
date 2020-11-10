@@ -1,14 +1,13 @@
 {
-  "main": "dist/react.cjs.js",
-  "module": "dist/react.esm.js",
-  "umd:main": "dist/react.umd.min.js",
+  "main": "dist/emotion-react-jsx-runtime.cjs.js",
+  "module": "dist/emotion-react-jsx-runtime.esm.js",
+  "umd:main": "dist/emotion-react-jsx-runtime.umd.min.js",
   "browser": {
-    "./dist/react.cjs.js": "./dist/react.browser.cjs.js",
-    "./dist/react.esm.js": "./dist/react.browser.esm.js"
+    "./dist/emotion-react-jsx-runtime.cjs.js": "./dist/emotion-react-jsx-runtime.browser.cjs.js",
+    "./dist/emotion-react-jsx-runtime.esm.js": "./dist/emotion-react-jsx-runtime.browser.esm.js"
   },
   "types": "../types/jsx-runtime",
   "preconstruct": {
-    "source": "../src/jsx-runtime",
     "umdName": "emotionReactJSXRuntime"
   }
 }
