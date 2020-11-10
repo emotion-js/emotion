@@ -8,7 +8,6 @@
   },
   "types": "../types/base",
   "preconstruct": {
-    "source": "../src/base",
     "umdName": "emotionStyledBase"
   }
 }

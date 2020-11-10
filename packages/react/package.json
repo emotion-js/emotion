@@ -63,9 +63,9 @@
   "umd:main": "dist/react.umd.min.js",
   "preconstruct": {
     "entrypoints": [
-      ".",
-      "jsx-runtime",
-      "jsx-dev-runtime"
+      "./index.js",
+      "./jsx-runtime.js",
+      "./jsx-dev-runtime.js"
     ],
     "umdName": "emotionReact"
   }

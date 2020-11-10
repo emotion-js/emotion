@@ -8,7 +8,6 @@
   },
   "types": "../types/jsx-dev-runtime",
   "preconstruct": {
-    "source": "../src/jsx-dev-runtime",
     "umdName": "emotionReactJSXDevRuntime"
   }
 }

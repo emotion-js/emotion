@@ -56,8 +56,8 @@
   "preconstruct": {
     "umdName": "emotionStyled",
     "entrypoints": [
-      ".",
-      "base"
+      "./index.js",
+      "./base.js"
     ]
   }
 }

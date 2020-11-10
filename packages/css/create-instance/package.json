@@ -4,7 +4,6 @@
   "umd:main": "dist/css.umd.min.js",
   "types": "../types/create-instance",
   "preconstruct": {
-    "source": "../src/create-instance",
     "umdName": "createEmotion"
   }
 }

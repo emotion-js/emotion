@@ -64,9 +64,9 @@
   },
   "preconstruct": {
     "entrypoints": [
-      ".",
-      "serializer",
-      "enzyme-serializer"
+      "./index.js",
+      "./serializer.js",
+      "./enzyme-serializer.js"
     ]
   }
 }
