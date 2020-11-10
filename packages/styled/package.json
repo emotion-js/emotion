@@ -2,8 +2,8 @@
   "name": "@emotion/styled",
   "version": "11.0.0-rc.0",
   "description": "styled API for emotion",
-  "main": "dist/styled.cjs.js",
-  "module": "dist/styled.esm.js",
+  "main": "dist/emotion-styled.cjs.js",
+  "module": "dist/emotion-styled.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/styled",
@@ -48,10 +48,10 @@
     "macro.js",
     "macro.js.flow"
   ],
-  "umd:main": "dist/styled.umd.min.js",
+  "umd:main": "dist/emotion-styled.umd.min.js",
   "browser": {
-    "./dist/styled.cjs.js": "./dist/styled.browser.cjs.js",
-    "./dist/styled.esm.js": "./dist/styled.browser.esm.js"
+    "./dist/emotion-styled.cjs.js": "./dist/emotion-styled.browser.cjs.js",
+    "./dist/emotion-styled.esm.js": "./dist/emotion-styled.browser.esm.js"
   },
   "preconstruct": {
     "umdName": "emotionStyled",

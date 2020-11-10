@@ -2,8 +2,8 @@
   "name": "@emotion/primitives-core",
   "version": "11.0.0-rc.0",
   "description": "Shared utilities for emotion primitives and native",
-  "main": "dist/primitives-core.cjs.js",
-  "module": "dist/primitives-core.esm.js",
+  "main": "dist/emotion-primitives-core.cjs.js",
+  "module": "dist/emotion-primitives-core.esm.js",
   "scripts": {
     "test:typescript": "exit 0"
   },
@@ -41,7 +41,7 @@
     "access": "public"
   },
   "browser": {
-    "./dist/primitives-core.cjs.js": "./dist/primitives-core.browser.cjs.js",
-    "./dist/primitives-core.esm.js": "./dist/primitives-core.browser.esm.js"
+    "./dist/emotion-primitives-core.cjs.js": "./dist/emotion-primitives-core.browser.cjs.js",
+    "./dist/emotion-primitives-core.esm.js": "./dist/emotion-primitives-core.browser.esm.js"
   }
 }

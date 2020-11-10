@@ -2,8 +2,8 @@
   "name": "@emotion/is-prop-valid",
   "version": "1.0.0-rc.0",
   "description": "A function to check whether a prop is valid for HTML and SVG elements",
-  "main": "dist/is-prop-valid.cjs.js",
-  "module": "dist/is-prop-valid.esm.js",
+  "main": "dist/emotion-is-prop-valid.cjs.js",
+  "module": "dist/emotion-is-prop-valid.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/is-prop-valid",
@@ -25,7 +25,7 @@
     "types/*.d.ts"
   ],
   "browser": {
-    "./dist/is-prop-valid.cjs.js": "./dist/is-prop-valid.browser.cjs.js",
-    "./dist/is-prop-valid.esm.js": "./dist/is-prop-valid.browser.esm.js"
+    "./dist/emotion-is-prop-valid.cjs.js": "./dist/emotion-is-prop-valid.browser.cjs.js",
+    "./dist/emotion-is-prop-valid.esm.js": "./dist/emotion-is-prop-valid.browser.esm.js"
   }
 }

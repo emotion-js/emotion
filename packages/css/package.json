@@ -2,8 +2,8 @@
   "name": "@emotion/css",
   "version": "11.0.0-rc.0",
   "description": "The Next Generation of CSS-in-JS.",
-  "main": "dist/css.cjs.js",
-  "module": "dist/css.esm.js",
+  "main": "dist/emotion-css.cjs.js",
+  "module": "dist/emotion-css.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -50,10 +50,9 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "umd:main": "dist/css.umd.min.js",
+  "umd:main": "dist/emotion-css.umd.min.js",
   "preconstruct": {
     "umdName": "emotion",
-    "distFilenameStrategy": "full",
     "entrypoints": [
       "./index.js",
       "./create-instance.js"

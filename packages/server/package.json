@@ -2,7 +2,7 @@
   "name": "@emotion/server",
   "version": "11.0.0-rc.0",
   "description": "Extract and inline critical css with emotion for server side rendering.",
-  "main": "dist/server.cjs.js",
+  "main": "dist/emotion-server.cjs.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -51,7 +51,7 @@
     "url": "https://github.com/emotion-js/emotion/issues"
   },
   "browser": {
-    "./dist/server.cjs.js": "./dist/server.browser.cjs.js"
+    "./dist/emotion-server.cjs.js": "./dist/emotion-server.browser.cjs.js"
   },
   "preconstruct": {
     "entrypoints": [
