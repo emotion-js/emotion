@@ -72,6 +72,12 @@
 - Updated dependencies [[`b0ad4f0c`](https://github.com/emotion-js/emotion/commit/b0ad4f0c628813a42c4637857be9a969429db6f0), [`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555)]:
   - babel-plugin-emotion@11.0.0-next.0
 
+## 10.2.1
+
+### Patch Changes
+
+- [`32c8528a`](https://github.com/emotion-js/emotion/commit/32c8528a63153acd05f3da1d627d8617758e8033) [#2084](https://github.com/emotion-js/emotion/pull/2084) Thanks [@Andarist](https://github.com/Andarist)! - Only use `'@babel/plugin-transform-react-jsx-development'` based on the `development` option when `runtime` is set to `"automatic"`. The classic runtime is not compatible with this plugin.
+
 ## 10.2.0
 
 ### Minor Changes
