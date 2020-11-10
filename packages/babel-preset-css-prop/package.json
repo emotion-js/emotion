@@ -1,6 +1,6 @@
 {
   "name": "@emotion/babel-preset-css-prop",
-  "version": "10.2.0",
+  "version": "10.2.1",
   "description": "A babel preset to automatically enable emotion's css prop",
   "main": "dist/babel-preset-css-prop.cjs.js",
   "module": "dist/babel-preset-css-prop.esm.js",
