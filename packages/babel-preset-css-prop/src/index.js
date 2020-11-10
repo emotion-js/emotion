@@ -34,15 +34,15 @@ export default (
         pragmatic,
         { export: 'jsx', module: '@emotion/core', import: pragmaName }
       ],
-      [
-        development ? jsxDev : jsx,
-        {
-          ...(options.runtime === 'automatic'
-            ? { importSource: '@emotion/core' }
-            : { pragma: pragmaName, pragmaFrag: 'React.Fragment' }),
-          ...options
-        }
-      ],
+      options.runtime === 'automatic'
+        ? [
+            development ? jsxDev : jsx,
+            { importSource: '@emotion/core', ...options }
+          ]
+        : [
+            jsx,
+            { pragma: pragmaName, pragmaFrag: 'React.Fragment', ...options }
+          ],
       [
         emotion,
         {
