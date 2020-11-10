@@ -105,7 +105,9 @@ export function createCss(StyleSheet: Object) {
 
     const hash = JSON.stringify(styles)
     if (!generated[hash]) {
-      const styleSheet = StyleSheet.create({ generated: styles })
+      const styleSheet = StyleSheet.create({
+        generated: StyleSheet.flatten(styles)
+      })
       generated[hash] = styleSheet.generated
     }
     return generated[hash]
