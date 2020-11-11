@@ -3,27 +3,13 @@
 '@emotion/styled': major
 ---
 
-TypeScript types have been restructured. These changes:
+TypeScript types have been significantly restructured. These changes:
 
-- Reduce build times when using emotion
-- In many cases remove the need for manually specifying generic parameters for your emotion components.
-
-If you encounter build issues after upgrade, try removing any manually specified generic types and let them be inferred. Otherwise refer to the breaking changes list below.
-
-## Improvements
-
-- Union types as props are better supported and should be inferred properly
-- Build times should be reduced significantly in larger projects.
-
-## Breaking changes
-
-- `withTheme` can now have the Theme type specified when calling it. For example `withTheme<MyTheme>(MyComponent)`
-
-  **Breaking change:** Generic argument changed, if you were specifying the ComponentType you will need to remove the generic parameter. Recommend following example setup in the TypeScript docs under theming section
-
+- reduce build times when using Emotion, especially in larger projects
+- in many cases remove the need for manually specifying generic parameters for your Emotion components
+- union types as props are better supported and should be inferred properly
 - `css` function has been restricted to prevent passing of invalid types
-- `CreateStyled` functions no longer take a second `ExtraProps` argument. Instead move it to after the create styled call. For example
+- `styled`'s generic parameter has been changed, if you were specifying the `ComponentType` you will need to remove that generic parameter
+- `styled` no longer takes a second `ExtraProps` parameter - instead of that move it to after the `styled` call. So instead of writing `styled<typeof MyComponent, ExtraProps>(MyComponent)({})` you should now be writing `styled(MyComponent)<ExtraProps>({})`
 
-  `styled<typeof MyComponent, ExtraProps>(MyComponent)({})`
-  to
-  `styled(MyComponent)<ExtraProps>({})`
+If you encounter build issues after upgrade, try removing any manually specified generic types and let them be inferred.
