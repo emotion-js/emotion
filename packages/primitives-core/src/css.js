@@ -7,6 +7,7 @@ import { interleave } from './utils'
 // this is done so we don't create a new
 // handleInterpolation function on every css call
 let styles
+let generated = {}
 let buffer = ''
 let lastType
 
@@ -102,7 +103,14 @@ export function createCss(StyleSheet: Object) {
       buffer = prevBuffer
     }
 
-    return StyleSheet.flatten(styles)
+    const hash = JSON.stringify(styles)
+    if (!generated[hash]) {
+      const styleSheet = StyleSheet.create({
+        generated: StyleSheet.flatten(styles)
+      })
+      generated[hash] = styleSheet.generated
+    }
+    return generated[hash]
   }
 }
 
