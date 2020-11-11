@@ -2,13 +2,11 @@
 
 exports[`should render the primitive when styles applied using object style notation 1`] = `
 <div
-  className="css-text-901oao"
+  className="css-text-901oao r-backgroundColor-1g6456j r-color-howw7u"
   dir="auto"
   onClick={[Function]}
   style={
     Object {
-      "backgroundColor": "rgba(255,0,0,1.00)",
-      "color": "rgba(255,0,0,1.00)",
       "fontSize": "40px",
     }
   }
