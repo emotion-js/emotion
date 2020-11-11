@@ -56,7 +56,7 @@
   "preconstruct": {
     "entrypoints": [
       "./index.js",
-      "./create-instance.js"
+      "./create-instance/index.js"
     ]
   }
 }
