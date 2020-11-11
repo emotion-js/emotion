@@ -12,13 +12,13 @@
 
 ### Minor Changes
 
-- [`923ded01`](https://github.com/emotion-js/emotion/commit/923ded01e2399a242206d590f6646f13aba110e4) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@JakeGinnivan](https://github.com/JakeGinnivan)! - Allow `isPropValid` to take any `PropertyKey` as an argument (instead of just `string`).
+- [`923ded01`](https://github.com/emotion-js/emotion/commit/923ded01e2399a242206d590f6646f13aba110e4) [#1643](https://github.com/emotion-js/emotion/pull/1643) Thanks [@JakeGinnivan](https://github.com/JakeGinnivan)! - Allow `isPropValid` to take any `PropertyKey` as an argument (instead of just `string`).
 
 ## 0.8.6-next.0
 
 ### Patch Changes
 
-- [`a085003d`](https://github.com/emotion-js/emotion/commit/a085003d4c8ca284c116668d7217fb747802ed85) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Add missing `#__PURE__` annotations
+- [`a085003d`](https://github.com/emotion-js/emotion/commit/a085003d4c8ca284c116668d7217fb747802ed85) [#1613](https://github.com/emotion-js/emotion/pull/1613) Thanks [@Andarist](https://github.com/Andarist)! - Add missing `#__PURE__` annotations
 
 ## 0.8.8
 

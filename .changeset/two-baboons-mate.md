@@ -1,6 +1,5 @@
 ---
 '@emotion/react': major
-'emotion-theming': major
 '@emotion/native': major
 '@emotion/primitives-core': major
 '@emotion/primitives': major

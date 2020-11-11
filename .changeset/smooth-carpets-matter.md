@@ -1,5 +1,4 @@
 ---
-'@emotion/babel-plugin': major
 '@emotion/react': major
 '@emotion/css': major
 ---

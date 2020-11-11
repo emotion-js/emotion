@@ -127,9 +127,9 @@
 
 ### Minor Changes
 
-- [`843bfb11`](https://github.com/emotion-js/emotion/commit/843bfb1153ee0dbe33d005fdd5c5be185daa5c41) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - `@emotion/native` & `@emotion/primitives` packages come with macros now. Both can be used as `@emotion/native/macro` & `@emotion/primitives/macro` respectively.
+- [`843bfb11`](https://github.com/emotion-js/emotion/commit/843bfb1153ee0dbe33d005fdd5c5be185daa5c41) [#1630](https://github.com/emotion-js/emotion/pull/1630) Thanks [@Andarist](https://github.com/Andarist)! - `@emotion/native` & `@emotion/primitives` packages come with macros now. Both can be used as `@emotion/native/macro` & `@emotion/primitives/macro` respectively.
 
-* [`f1b7c9d6`](https://github.com/emotion-js/emotion/commit/f1b7c9d6dcdb45a02d7c7dce8c3fff28e14ed3ec) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Added basic support for accepting custom `shouldForwardProp` option.
+* [`f1b7c9d6`](https://github.com/emotion-js/emotion/commit/f1b7c9d6dcdb45a02d7c7dce8c3fff28e14ed3ec) [#1642](https://github.com/emotion-js/emotion/pull/1642) Thanks [@Andarist](https://github.com/Andarist)! - Added basic support for accepting custom `shouldForwardProp` option.
 
 ### Patch Changes
 
