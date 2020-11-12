@@ -4,13 +4,13 @@
 
 ### Major Changes
 
-- [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Updated `css-to-react-native` dependency to the 3.x version - it comes with some breaking changes listed [here](https://github.com/styled-components/css-to-react-native/releases/tag/v3.0.0).
+- [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Functions are no longer accepted as values for the `style` prop. This unifies the behavior with the web version of Emotion as `style`'s equivalent is `className` prop and functions are not resolved for it.
 
-* [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Functions are no longer accepted as values for the `style` prop. This unifies the behavior with the web version of Emotion as `style`'s equivalent is `className` prop and functions are not resolved for it.
+* [`139ea336`](https://github.com/emotion-js/emotion/commit/139ea336c7f49a3246813238e388e164b80de4da) [#2060](https://github.com/emotion-js/emotion/pull/2060) Thanks [@efoken](https://github.com/efoken)! - `StyleSheet.create` is used now under the hood. This means that when used in combination with React Native Web atomic class names are applied on components instead of inline styles.
 
-- [`139ea336`](https://github.com/emotion-js/emotion/commit/139ea336c7f49a3246813238e388e164b80de4da) [#2060](https://github.com/emotion-js/emotion/pull/2060) Thanks [@efoken](https://github.com/efoken)! - `StyleSheet.create` is used now under the hood. This means that when used in combination with React Native Web atomic class names are applied on components instead of inline styles.
+- [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use hooks internally for improved bundle size and a better tree in React DevTools
 
-* [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use hooks internally for improved bundle size and a better tree in React DevTools
+* [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Updated `css-to-react-native` dependency to the 3.x version - it comes with some breaking changes listed [here](https://github.com/styled-components/css-to-react-native/releases/tag/v3.0.0).
 
 ### Minor Changes
 

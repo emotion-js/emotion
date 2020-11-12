@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+- [`9e3671c4`](https://github.com/emotion-js/emotion/commit/9e3671c466975fb31cd45431e25cb60ffb677a70) [#2076](https://github.com/emotion-js/emotion/pull/2076) Thanks [@Andarist](https://github.com/Andarist)! - Removed `runtime` option that was introduced to this preset and deprecated shortly after that. If you want to configure `runtime: "automatic"`, replace `@emotion/babel-preset-css-prop` with `@babel/preset-react` and `@emotion/babel-plugin`. You can find out how to configure things properly here: https://emotion.sh/docs/css-prop#babel-preset
+
 - [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for the `instances` option, any usage of it should be replaced with the `importMap` option
 
 * [`c7850e61`](https://github.com/emotion-js/emotion/commit/c7850e61211d6aa26a3388399889a6072ee2f1fe) [#1656](https://github.com/emotion-js/emotion/pull/1656) Thanks [@Andarist](https://github.com/Andarist)! - `autoLabel` option no longer is a simple boolean. Instead we accept now 3 values: `dev-only` (the default), `always` and `never`.
@@ -14,15 +16,13 @@
   - with `always` we always add labels when possible,
   - with `never` we disable this entirely and no labels are added.
 
-- [`9e3671c4`](https://github.com/emotion-js/emotion/commit/9e3671c466975fb31cd45431e25cb60ffb677a70) [#2076](https://github.com/emotion-js/emotion/pull/2076) Thanks [@Andarist](https://github.com/Andarist)! - Removed `runtime` option that was introduced to this preset and deprecated shortly after that. If you want to configure `runtime: "automatic"`, replace `@emotion/babel-preset-css-prop` with `@babel/preset-react` and `@emotion/babel-plugin`. You can find out how to configure things properly here: https://emotion.sh/docs/css-prop#babel-preset
-
 ### Minor Changes
+
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Added the `importMap` option which allows you to tell `@emotion/babel-plugin` what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
 
 - [`c672175b`](https://github.com/emotion-js/emotion/commit/c672175b52e86de43b3d4092a8fe34b2023ceae8) [#1130](https://github.com/emotion-js/emotion/pull/1130) Thanks [@jtmthf](https://github.com/jtmthf)! - Adjust how arrays passed to css prop are transformed so function elements can be resolved at runtime.
 
 * [`0a4a22ff`](https://github.com/emotion-js/emotion/commit/0a4a22ffcfaa49d09a88856ef2d51e0d53e31b6d) [#1651](https://github.com/emotion-js/emotion/pull/1651) Thanks [@Andarist](https://github.com/Andarist)! - Allow `labelFormat` option to be a function.
-
-- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Added the `importMap` option which allows you to tell `@emotion/babel-plugin` what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
 
 ### Patch Changes
 
