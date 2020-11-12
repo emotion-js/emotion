@@ -11,7 +11,7 @@ For the automatic runtime this has been simply implemented by exporting `JSX` na
 However, if you are stuck with older version of TypeScript or using the classic runtime implicitly by using our `@emotion/babel-preset-css-prop` then it's not possible to leverage leverage `css` prop support being added conditionally based on a type of rendered component. For those cases we have added a special file that can be imported once to add support for the `css` prop globally, for all components. Use it like this:
 
 ```ts
-import {} from '@emotion/react/types/css-prop'
+/// <reference types="@emotion/react/types/css-prop" />
 ```
 
 In this particular case we are forced to extend the existing `React.Attributes` interface. Previously we've been extending both `React.DOMAttributes<T>` and `JSX.IntrinsicAttributes`. This change is really minor and shouldn't affect any consuming code.
