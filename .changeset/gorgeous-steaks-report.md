@@ -3,4 +3,4 @@
 '@emotion/sheet': minor
 ---
 
-Accept new `prepend` option to allow for adding style tags at the beginning of the specified DOM container.
+The new `prepend` option can make Emotion add style tags at the beginning of the specified DOM container instead of the end.
