@@ -1,4 +1,4 @@
-import { css } from 'emotion'
+import { css } from '@emotion/css'
 import React from 'react'
 
 const View = ({ style, ...other }) => {

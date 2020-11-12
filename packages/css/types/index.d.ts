@@ -1,19 +1,26 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
 // TypeScript Version: 2.8
-import { Interpolation, SerializedStyles } from '@emotion/serialize'
+
+import { Emotion } from './create-instance'
 
 export {
-  ArrayInterpolation,
+  ArrayClassNamesArg,
+  ArrayCSSInterpolation,
+  ClassNamesArg,
   ComponentSelector,
+  EmotionCache,
+  CSSInterpolation,
   CSSObject,
-  FunctionInterpolation,
-  ObjectInterpolation
-} from '@emotion/serialize'
+  CSSStyleSheet
+} from './create-instance'
 
-export { Interpolation, SerializedStyles }
-
-export default function css(
-  template: TemplateStringsArray,
-  ...args: Array<Interpolation>
-): SerializedStyles
-export default function css(...args: Array<Interpolation>): SerializedStyles
+export const flush: Emotion['flush']
+export const hydrate: Emotion['hydrate']
+export const cx: Emotion['cx']
+export const merge: Emotion['merge']
+export const getRegisteredStyles: Emotion['getRegisteredStyles']
+export const css: Emotion['css']
+export const injectGlobal: Emotion['injectGlobal']
+export const keyframes: Emotion['keyframes']
+export const sheet: Emotion['sheet']
+export const cache: Emotion['cache']

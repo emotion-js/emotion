@@ -1,0 +1,13 @@
+{
+  "main": "dist/emotion-styled-base.cjs.js",
+  "module": "dist/emotion-styled-base.esm.js",
+  "umd:main": "dist/emotion-styled-base.umd.min.js",
+  "browser": {
+    "./dist/emotion-styled-base.cjs.js": "./dist/emotion-styled-base.browser.cjs.js",
+    "./dist/emotion-styled-base.esm.js": "./dist/emotion-styled-base.browser.esm.js"
+  },
+  "types": "../types/base",
+  "preconstruct": {
+    "umdName": "emotionStyledBase"
+  }
+}

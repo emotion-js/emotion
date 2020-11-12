@@ -1,0 +1,7 @@
+{
+  "main": "dist/emotion-server-create-instance.cjs.js",
+  "browser": {
+    "./dist/emotion-server-create-instance.cjs.js": "./dist/emotion-server-create-instance.browser.cjs.js"
+  },
+  "types": "../types/create-instance"
+}

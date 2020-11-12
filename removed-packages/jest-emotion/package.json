@@ -1,0 +1,31 @@
+{
+  "name": "jest-emotion",
+  "version": "11.0.0",
+  "description": "Jest utilities for emotion",
+  "main": "dist/jest-emotion.cjs.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "serializer.js"
+  ],
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js",
+    "jest",
+    "snapshot"
+  ],
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
+  }
+}

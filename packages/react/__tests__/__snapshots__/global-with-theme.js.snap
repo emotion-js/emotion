@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`array 1`] = `
+<html>
+  <head>
+    <style
+      data-emotion="css-global"
+      data-s=""
+    >
+      
+      html{background-color:green;}
+    </style>
+    <style
+      data-emotion="css-global"
+      data-s=""
+    >
+      
+      html{font-size:16px;}
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+    />
+  </body>
+</html>
+`;
+
+exports[`array 2`] = `
+<html>
+  <head />
+  <body>
+    <div
+      id="root"
+    />
+  </body>
+</html>
+`;
+
+exports[`basic 1`] = `
+<html>
+  <head>
+    <style
+      data-emotion="css-global"
+      data-s=""
+    >
+      
+      html{background-color:green;}
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+    />
+  </body>
+</html>
+`;
+
+exports[`basic 2`] = `
+<html>
+  <head />
+  <body>
+    <div
+      id="root"
+    />
+  </body>
+</html>
+`;

@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic 1`] = `
+<head>
+  <style
+    data-emotion="css"
+    data-s=""
+  >
+    
+    .css-animation-ocj8pk{}
+  </style>
+  <style
+    data-emotion="css"
+    data-s=""
+  >
+    
+    @-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  </style>
+  <style
+    data-emotion="css"
+    data-s=""
+  >
+    
+    @keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  </style>
+  <style
+    data-emotion="css-global"
+    data-s=""
+  >
+    
+    @import url('something.com/file.css');
+  </style>
+  <style
+    data-emotion="css-global"
+    data-s=""
+  >
+    
+    html{background-color:hotpink;}
+  </style>
+  <style
+    data-emotion="css-global"
+    data-s=""
+  >
+    
+    h1{-webkit-animation:animation-ocj8pk 1s;animation:animation-ocj8pk 1s;}
+  </style>
+  <style
+    data-emotion="css-global"
+    data-s=""
+  >
+    
+    @font-face{font-family:some-name;}
+  </style>
+</head>
+`;
+
+exports[`basic 2`] = `
+<body>
+  <div
+    id="root"
+  />
+</body>
+`;
+
+exports[`basic 3`] = `
+<head>
+  <style
+    data-emotion="css"
+    data-s=""
+  >
+    
+    .css-animation-ocj8pk{}
+  </style>
+  <style
+    data-emotion="css"
+    data-s=""
+  >
+    
+    @-webkit-keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  </style>
+  <style
+    data-emotion="css"
+    data-s=""
+  >
+    
+    @keyframes animation-ocj8pk{from,to{color:green;}50%{color:hotpink;}}
+  </style>
+</head>
+`;
+
+exports[`basic 4`] = `
+<body>
+  <div
+    id="root"
+  />
+</body>
+`;
+
+exports[`updating more than 1 global rule 1`] = `
+<head>
+  <style
+    data-emotion="global-multiple-rules-global"
+    data-s=""
+  >
+    
+    body{background:white;}
+  </style>
+  <style
+    data-emotion="global-multiple-rules-global"
+    data-s=""
+  >
+    
+    div{color:black;}
+  </style>
+</head>
+`;
+
+exports[`updating more than 1 global rule 2`] = `
+<head>
+  <style
+    data-emotion="global-multiple-rules-global"
+    data-s=""
+  >
+    
+    body{background:gray;}
+  </style>
+  <style
+    data-emotion="global-multiple-rules-global"
+    data-s=""
+  >
+    
+    div{color:white;}
+  </style>
+</head>
+`;

@@ -1,0 +1,28 @@
+{
+  "name": "babel-plugin-emotion",
+  "version": "11.0.0",
+  "description": "A recommended babel preprocessing plugin for emotion, The Next Generation of CSS-in-JS.",
+  "main": "dist/babel-plugin-emotion.cjs.js",
+  "files": [
+    "src",
+    "lib",
+    "dist"
+  ],
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
+  }
+}

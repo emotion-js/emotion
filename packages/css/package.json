@@ -1,36 +1,61 @@
 {
   "name": "@emotion/css",
-  "version": "10.0.27",
-  "description": "a function to serialize css and object styless",
-  "main": "dist/css.cjs.js",
-  "module": "dist/css.esm.js",
+  "version": "11.0.0",
+  "description": "The Next Generation of CSS-in-JS.",
+  "main": "dist/emotion-css.cjs.js",
+  "module": "dist/emotion-css.esm.js",
   "types": "types/index.d.ts",
-  "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/css",
-  "scripts": {
-    "test:typescript": "dtslint types"
-  },
-  "dependencies": {
-    "@emotion/serialize": "^0.11.15",
-    "@emotion/utils": "0.11.3",
-    "babel-plugin-emotion": "^10.0.27"
-  },
-  "devDependencies": {
-    "dtslint": "^0.3.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
   "files": [
     "src",
     "dist",
     "types",
     "macro.js",
     "macro.d.ts",
-    "macro.js.flow"
+    "macro.js.flow",
+    "create-instance"
   ],
-  "browser": {
-    "./dist/css.cjs.js": "./dist/css.browser.cjs.js",
-    "./dist/css.esm.js": "./dist/css.browser.esm.js"
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
+  "dependencies": {
+    "@emotion/babel-plugin": "^11.0.0",
+    "@emotion/cache": "^11.0.0",
+    "@emotion/serialize": "^1.0.0",
+    "@emotion/sheet": "^1.0.0",
+    "@emotion/utils": "^1.0.0"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "dtslint": "^0.3.0"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js"
+  ],
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
+  },
+  "umd:main": "dist/emotion-css.umd.min.js",
+  "preconstruct": {
+    "umdName": "emotion",
+    "entrypoints": [
+      "./index.js",
+      "./create-instance.js"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import Layout from '../layouts'
 
 const NotFoundPage = () => {
@@ -12,5 +12,4 @@ const NotFoundPage = () => {
     </Layout>
   )
 }
-
 export default NotFoundPage

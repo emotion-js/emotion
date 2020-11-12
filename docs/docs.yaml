@@ -9,6 +9,7 @@
     - nested
     - media-queries
     - globals
+    - package-summary
 
 - title: Advanced
   items:
@@ -19,7 +20,6 @@
     - labels
     - class-names
     - cache-provider
-    - migrating-to-emotion-10
     #- benchmarks
 
 - title: Tooling
@@ -29,21 +29,24 @@
     - source-maps
     - testing
     - typescript
+    - flow
 
 # This loads the READMEs instead of files in docs/
 - title: Packages
   items:
-    - '@emotion/core'
+    - '@emotion/react'
     - '@emotion/styled'
     - '@emotion/cache'
-    - emotion
-    - babel-plugin-emotion
-    - eslint-plugin-emotion
-    - emotion-server
-    - emotion-theming
-    - jest-emotion
+    - '@emotion/css'
+    - '@emotion/babel-plugin'
+    - '@emotion/eslint-plugin'
+    - '@emotion/server'
+    - '@emotion/jest'
     - '@emotion/native'
     - '@emotion/primitives'
-    - create-emotion
-    - create-emotion-server
     - '@emotion/babel-preset-css-prop'
+
+- title: Posts
+  items:
+    - emotion-11
+    - migrating-to-emotion-10

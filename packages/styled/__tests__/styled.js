@@ -4,8 +4,7 @@ import 'test-utils/next-env'
 import renderer from 'react-test-renderer'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import styled from '@emotion/styled'
-import { ThemeProvider } from 'emotion-theming'
-import { jsx, keyframes, css } from '@emotion/core'
+import { jsx, keyframes, css, ThemeProvider } from '@emotion/react'
 
 describe('styled', () => {
   test('no dynamic', () => {
@@ -641,6 +640,7 @@ describe('styled', () => {
     const tree = renderer.create(<OneMoreComponent />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
   test('theming', () => {
     const Div = styled.div`
       color: ${props => props.theme.primary};

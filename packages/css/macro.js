@@ -1,1 +1,1 @@
-module.exports = require('babel-plugin-emotion').macros.css
+module.exports = require('@emotion/babel-plugin').macros.vanillaEmotion

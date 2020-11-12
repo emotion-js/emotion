@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css complex nested media queries 1`] = `
+"@media (max-width: 600px) {
+  .css-1vjvce5 h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 400px), (max-height: 420px) {
+  .css-1vjvce5 h1 {
+    font-size: 1.1rem;
+  }
+}"
+`;
+
+exports[`css complex nested styles 1`] = `
+".css-s7aswl {
+  color: blue;
+}
+
+.css-s7aswl:hover {
+  color: green;
+}
+
+.css-s7aswl:hover .name {
+  color: amethyst;
+}
+
+.css-s7aswl:hover .name:focus {
+  color: burlywood;
+}
+
+@media (min-width: 420px) {
+  .css-s7aswl:hover .name:focus {
+    color: rebeccapurple;
+  }
+}"
+`;
+
+exports[`css handles media query merges 1`] = `
+".css-vs4yix {
+  color: darkslateblue;
+  color: red;
+  color: purple;
+}
+
+@media (min-width: 420px) {
+  .css-vs4yix {
+    color: amethyst;
+  }
+}
+
+@media (min-width: 640px) {
+  .css-vs4yix {
+    color: rebeccapurple;
+  }
+}
+
+@media (min-width: 960px) {
+  .css-vs4yix {
+    color: burlywood;
+  }
+}
+
+@media (min-width: 640px) {
+  .css-vs4yix {
+    color: blue;
+  }
+}
+
+@media (min-width: 640px) {
+  .css-vs4yix {
+    color: aquamarine;
+  }
+}"
+`;
+
+exports[`css media queries with multiple nested selectors 1`] = `
+".css-snkf7h {
+  color: blue;
+}
+
+@media (max-width: 400px) {
+  .css-snkf7h {
+    color: green;
+  }
+
+  .css-snkf7h h1 {
+    color: red;
+  }
+
+  .css-snkf7h span {
+    color: red;
+  }
+}"
+`;
+
+exports[`css media query with nested selector with nested selector on root 1`] = `
+".css-1hvbare span {
+  color: blue;
+}
+
+@media (max-width: 400px) {
+  .css-1hvbare {
+    color: green;
+  }
+
+  .css-1hvbare span {
+    color: red;
+  }
+}"
+`;
+
+exports[`css media query with nested selector without declarations on root 1`] = `
+"@media (max-width: 400px) {
+  .css-156bult {
+    color: green;
+  }
+
+  .css-156bult span {
+    color: red;
+  }
+}"
+`;
+
+exports[`orphaned pseudos in nested atrules 1`] = `
+"@media (max-width: 400px) {
+  @supports (display: grid) {
+    .css-mlu596 div,
+    .css-mlu596:first-child {
+      color: hotpink;
+    }
+  }
+}"
+`;
+
+exports[`orphaned pseudos multiple in a group 1`] = `
+".css-ynt3gm:hover div,
+.css-ynt3gm:focus {
+  color: hotpink;
+}"
+`;
+
+exports[`orphaned pseudos multiple in a group in multiple in a group 1`] = `
+".css-b4zt77 .foo:first-child,
+.css-b4zt77 .bar div:first-child,
+.css-b4zt77 .qwe:first-child,
+.css-b4zt77 .foo div,
+.css-b4zt77 .bar div div,
+.css-b4zt77 .qwe div,
+.css-b4zt77 .foo span,
+.css-b4zt77 .bar div span,
+.css-b4zt77 .qwe span,
+.css-b4zt77 .foo:last-child,
+.css-b4zt77 .bar div:last-child,
+.css-b4zt77 .qwe:last-child {
+  color: hotpink;
+}"
+`;
+
+exports[`orphaned pseudos orphaned pseudo nested in orphaned pseudo 1`] = `
+".css-1dmq8mx:hover {
+  color: hotpink;
+}
+
+.css-1dmq8mx:hover:focus {
+  outline-color: blue;
+}"
+`;
+
+exports[`orphaned pseudos overlapping - reversed 1`] = `
+".css-15m4dbh :first-child:first-child .css-15m4dbh :first-child {
+  color: hotpink;
+}"
+`;
+
+exports[`orphaned pseudos overlapping 1`] = `
+".css-dmhqee :first-child:first-child {
+  color: hotpink;
+}"
+`;
+
+exports[`orphaned pseudos regexp special character 1`] = `
+".css-1545qp0:nth-child(3) {
+  color: hotpink;
+}"
+`;
+
+exports[`orphaned pseudos regular rule nested in orphaned pseudo 1`] = `
+".css-1u1a2oo:hover {
+  color: hotpink;
+}
+
+.css-1u1a2oo:hover .foo {
+  color: grey;
+}"
+`;
+
+exports[`orphaned pseudos regular rule with nested rule nested in orphaned pseudo 1`] = `
+".css-1tlqvwi:hover {
+  color: hotpink;
+}
+
+.css-1tlqvwi:hover .foo {
+  color: grey;
+}
+
+@media print {
+  .css-1tlqvwi:hover .foo {
+    display: none;
+  }
+}"
+`;
+
+exports[`orphaned pseudos selector list with nested atrule 1`] = `
+".css-7vvm69::backdrop,
+.css-7vvm69+.backdrop {
+  background-color: grey;
+}
+
+@media print {
+  .css-7vvm69::backdrop,
+  .css-7vvm69+.backdrop {
+    display: none;
+  }
+}"
+`;
+
+exports[`orphaned pseudos single 1`] = `
+".css-17n559g:focus {
+  color: hotpink;
+}"
+`;
+
+exports[`orphaned pseudos with nested atrule 1`] = `
+".css-1vs75su::before {
+  content: \\"*\\";
+  background: pink;
+}
+
+@media screen and (max-width: 800px) {
+  .css-1vs75su::before {
+    background: cyan;
+  }
+}"
+`;

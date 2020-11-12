@@ -1,0 +1,72 @@
+{
+  "name": "@emotion/react",
+  "version": "11.0.0",
+  "main": "dist/emotion-react.cjs.js",
+  "module": "dist/emotion-react.esm.js",
+  "browser": {
+    "./dist/emotion-react.cjs.js": "./dist/emotion-react.browser.cjs.js",
+    "./dist/emotion-react.esm.js": "./dist/emotion-react.browser.esm.js"
+  },
+  "types": "types/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "jsx-runtime",
+    "jsx-dev-runtime",
+    "types/*.d.ts",
+    "macro.js",
+    "macro.d.ts",
+    "macro.js.flow"
+  ],
+  "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
+  "license": "MIT",
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.7.2",
+    "@emotion/cache": "^11.0.0",
+    "@emotion/serialize": "^1.0.0",
+    "@emotion/sheet": "^1.0.0",
+    "@emotion/utils": "^1.0.0",
+    "@emotion/weak-memoize": "^0.2.5",
+    "hoist-non-react-statics": "^3.3.1"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0",
+    "react": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    },
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@emotion/css": "11.0.0",
+    "@emotion/css-prettifier": "1.0.0",
+    "@emotion/server": "11.0.0",
+    "@emotion/styled": "11.0.0",
+    "@types/react": "^16.9.11",
+    "dtslint": "^0.3.0",
+    "html-tag-names": "^1.1.2",
+    "react": "16.14.0",
+    "svg-tag-names": "^1.1.1"
+  },
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/core",
+  "publishConfig": {
+    "access": "public"
+  },
+  "umd:main": "dist/emotion-react.umd.min.js",
+  "preconstruct": {
+    "entrypoints": [
+      "./index.js",
+      "./jsx-runtime.js",
+      "./jsx-dev-runtime.js"
+    ],
+    "umdName": "emotionReact"
+  }
+}

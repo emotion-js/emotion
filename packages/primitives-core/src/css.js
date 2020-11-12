@@ -7,7 +7,8 @@ import { interleave } from './utils'
 // this is done so we don't create a new
 // handleInterpolation function on every css call
 let styles
-let buffer
+let generated = {}
+let buffer = ''
 let lastType
 
 function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
@@ -80,6 +81,7 @@ function handleInterpolation(interpolation: *, i: number, arr: Array<*>) {
 // This enables us to use the css``/css({}) in any environment (Native | Sketch | Web)
 export function createCss(StyleSheet: Object) {
   return function css(...args: any) {
+    const prevBuffer = buffer
     let vals
 
     // these are declared earlier
@@ -95,9 +97,20 @@ export function createCss(StyleSheet: Object) {
       vals = interleave(args)
     }
 
-    vals.forEach(handleInterpolation, this)
+    try {
+      vals.forEach(handleInterpolation, this)
+    } finally {
+      buffer = prevBuffer
+    }
 
-    return StyleSheet.flatten(styles)
+    const hash = JSON.stringify(styles)
+    if (!generated[hash]) {
+      const styleSheet = StyleSheet.create({
+        generated: StyleSheet.flatten(styles)
+      })
+      generated[hash] = styleSheet.generated
+    }
+    return generated[hash]
   }
 }
 

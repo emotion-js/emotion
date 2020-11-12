@@ -16,6 +16,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/test/testSetup.js'],
   coveragePathIgnorePatterns: [
     '/node_modules/',
-    '<rootDir>/packages/babel-plugin-emotion/test/util.js'
+    '<rootDir>/packages/babel-plugin/test/util.js'
   ]
 }

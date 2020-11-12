@@ -153,6 +153,7 @@ const props = {
   tabIndex: true,
   target: true,
   title: true,
+  translate: true,
   // Setting .type throws on non-<input> tags
   type: true,
   useMap: true,

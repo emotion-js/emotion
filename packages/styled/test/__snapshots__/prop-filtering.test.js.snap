@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`composes shouldForwardProp on composed styled components 1`] = `
+<div
+  className="emotion-0 emotion-1"
+  xyz={true}
+/>
+`;
+
 exports[`custom shouldForwardProp works 1`] = `
 .emotion-0,
 .emotion-0 * {
@@ -123,4 +130,62 @@ Array [
     id="test-2"
   />,
 ]
+`;
+
+exports[`withComponent inherits explicit shouldForwardProp 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<span
+  className="emotion-0 emotion-1"
+  foo={true}
+/>
+`;
+
+exports[`withComponent inherits explicit shouldForwardProp from flattened component 1`] = `
+.emotion-0 {
+  color: hotpink;
+  background-color: blue;
+}
+
+<span
+  className="emotion-0 emotion-1"
+  foo={true}
+/>
+`;
+
+exports[`withComponent should accept shouldForwardProp 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<span
+  className="emotion-0 emotion-1"
+  xyz={true}
+/>
+`;
+
+exports[`withComponent should compose shouldForwardProp 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<span
+  className="emotion-0 emotion-1"
+  qwe={true}
+  xyz={true}
+/>
+`;
+
+exports[`withComponent should compose shouldForwardProp with a flattened component 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<span
+  className="emotion-0 emotion-1"
+  qwe={true}
+  xyz={true}
+/>
 `;

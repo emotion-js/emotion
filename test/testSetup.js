@@ -2,7 +2,7 @@
 /* eslint-env jest */
 import 'raf/polyfill'
 import prettyCSS from './pretty-css'
-// import serializer from '@emotion/snapshot-serializer'
+
 if (typeof Node !== 'undefined') {
   let oldInsertBefore = Node.prototype.insertBefore
   // $FlowFixMe
@@ -16,5 +16,5 @@ if (typeof Node !== 'undefined') {
   }
 }
 
+// $FlowFixMe jest flow type definitions don't include new plugin API
 expect.addSnapshotSerializer(prettyCSS)
-// expect.addSnapshotSerializer(serializer)

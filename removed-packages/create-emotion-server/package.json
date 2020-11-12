@@ -1,0 +1,31 @@
+{
+  "name": "create-emotion-server",
+  "version": "11.0.0",
+  "description": "SSR and style extraction tooling for emotion, The Next Generation of CSS-in-JS.",
+  "main": "dist/create-emotion-server.cjs.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "types/*.d.ts"
+  ],
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/create-emotion-server",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js",
+    "ssr",
+    "server-side-rendering"
+  ],
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
+  }
+}

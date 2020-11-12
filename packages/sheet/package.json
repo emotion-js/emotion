@@ -1,12 +1,12 @@
 {
   "name": "@emotion/sheet",
-  "version": "0.9.4",
+  "version": "1.0.0",
   "description": "emotion's stylesheet",
-  "main": "dist/sheet.cjs.js",
-  "module": "dist/sheet.esm.js",
+  "main": "dist/emotion-sheet.cjs.js",
+  "module": "dist/emotion-sheet.esm.js",
   "browser": {
-    "./dist/sheet.cjs.js": "./dist/sheet.browser.cjs.js",
-    "./dist/sheet.esm.js": "./dist/sheet.browser.esm.js"
+    "./dist/emotion-sheet.cjs.js": "./dist/emotion-sheet.browser.cjs.js",
+    "./dist/emotion-sheet.esm.js": "./dist/emotion-sheet.browser.esm.js"
   },
   "types": "types/index.d.ts",
   "license": "MIT",
@@ -20,7 +20,7 @@
   "files": [
     "src",
     "dist",
-    "types"
+    "types/*.d.ts"
   ],
   "devDependencies": {
     "dtslint": "^0.3.0"

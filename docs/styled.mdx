@@ -87,7 +87,7 @@ render(
 
 ### Targeting another emotion component
 
-Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for emotion components to be targeted like regular CSS selectors when using [babel-plugin-emotion](/packages/babel-plugin-emotion.md).
+Similar to [styled-components](https://www.styled-components.com/docs/faqs#can-i-refer-to-other-components), emotion allows for emotion components to be targeted like regular CSS selectors when using [@emotion/babel-plugin](/packages/babel-plugin).
 
 ```jsx
 // @live
@@ -159,7 +159,7 @@ This API was inspired by [glamorous](https://github.com/paypal/glamorous). â¤ï¸
 
 ### Customizing prop forwarding
 
-By default, Emotion passes all props to custom components and only props that are valid html attributes for string tags. You can customize this by passing a custom `shouldForwardProp` function. You can also use `@emotion/is-prop-valid` (which is used by emotion internally) to filter out props that are not valid as html attributes.
+By default, Emotion passes all props (except for `theme`) to custom components and only props that are valid html attributes for string tags. You can customize this by passing a custom `shouldForwardProp` function. You can also use `@emotion/is-prop-valid` (which is used by emotion internally) to filter out props that are not valid as html attributes.
 
 ```jsx
 // @live
@@ -183,7 +183,7 @@ You can create dynamic styles that are based on props and use them in styles.
 ```jsx
 // @live
 import styled from '@emotion/styled'
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 
 const dynamicStyle = props =>
   css`

@@ -1,42 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@emotion/babel-preset-css-prop fragment 1`] = `
-"export let Button = ({ loading, ...props }) => {
-  return (
-    <>
-      <button css={{ color: 'hotpink' }} {...props} />
-      {loading && <span>{'Loading...'}</span>}
-    </>
-  )
-}
+exports[`@emotion/babel-preset-css-prop array-css-prop 1`] = `
+"import * as React from 'react'
+
+const Component = props => <div css={[{ color: 'green' }]} {...props} />
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
-
-import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
+import * as React from 'react';
+import { jsx as ___EmotionJSX } from \\"@emotion/react\\";
+
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1q24rv0-Button\\",
-  styles: \\"color:hotpink;;label:Button;\\"
+  name: \\"v98kxt\\",
+  styles: \\"color:green\\"
 } : {
-  name: \\"1q24rv0-Button\\",
-  styles: \\"color:hotpink;;label:Button;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZyYWdtZW50LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdjIiwiZmlsZSI6ImZyYWdtZW50LmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGxldCBCdXR0b24gPSAoeyBsb2FkaW5nLCAuLi5wcm9wcyB9KSA9PiB7XG4gIHJldHVybiAoXG4gICAgPD5cbiAgICAgIDxidXR0b24gY3NzPXt7IGNvbG9yOiAnaG90cGluaycgfX0gey4uLnByb3BzfSAvPlxuICAgICAge2xvYWRpbmcgJiYgPHNwYW4+eydMb2FkaW5nLi4uJ308L3NwYW4+fVxuICAgIDwvPlxuICApXG59XG4iXX0= */\\",
+  name: \\"1p2bh5c-Component\\",
+  styles: \\"color:green;label:Component;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFycmF5LWNzcy1wcm9wLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVnQyIsImZpbGUiOiJhcnJheS1jc3MtcHJvcC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIFJlYWN0IGZyb20gJ3JlYWN0J1xuXG5jb25zdCBDb21wb25lbnQgPSBwcm9wcyA9PiA8ZGl2IGNzcz17W3sgY29sb3I6ICdncmVlbicgfV19IHsuLi5wcm9wc30gLz5cbiJdfQ== */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
 
-export let Button = ({
-  loading,
-  ...props
-}) => {
-  return ___EmotionJSX(React.Fragment, null, ___EmotionJSX(\\"button\\", _extends({
-    css: _ref
-  }, props)), loading && ___EmotionJSX(\\"span\\", null, 'Loading...'));
-};"
+const Component = props => ___EmotionJSX(\\"div\\", _extends({
+  css: _ref
+}, props));"
 `;
 
 exports[`@emotion/babel-preset-css-prop index 1`] = `
@@ -63,14 +54,14 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
 import * as React from 'react';
-import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
+import { jsx as ___EmotionJSX } from \\"@emotion/react\\";
 
 var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1q24rv0-Button\\",
-  styles: \\"color:hotpink;;label:Button;\\"
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
 } : {
-  name: \\"1q24rv0-Button\\",
-  styles: \\"color:hotpink;;label:Button;\\",
+  name: \\"1v4u9bq-Button\\",
+  styles: \\"color:hotpink;label:Button;\\",
   map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1RIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgUmVhY3QgZnJvbSAncmVhY3QnXG5cbmV4cG9ydCBsZXQgQnV0dG9uID0gcHJvcHMgPT4ge1xuICByZXR1cm4gKFxuICAgIDw+XG4gICAgICA8YnV0dG9uXG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGNvbG9yOiAnaG90cGluaydcbiAgICAgICAgfX1cbiAgICAgICAgey4uLnByb3BzfVxuICAgICAgLz5cbiAgICA8Lz5cbiAgKVxufVxuIl19 */\\",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
@@ -79,132 +70,5 @@ export let Button = props => {
   return ___EmotionJSX(React.Fragment, null, ___EmotionJSX(\\"button\\", _extends({
     css: _ref
   }, props)));
-};"
-`;
-
-exports[`@emotion/babel-preset-css-prop key-after-spread 1`] = `
-"export let Buttons = ({ buttons }) => {
-  return (
-    <div>
-      {buttons.map(({ id, label, ...rest }) => (
-        <button
-          {...rest}
-          key={id}
-          css={{
-            color: 'hotpink'
-          }}
-        >
-          {label}
-        </button>
-      ))}
-    </div>
-  )
-}
-
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
-
-var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1f5afni-Buttons\\",
-  styles: \\"color:hotpink;;label:Buttons;\\"
-} : {
-  name: \\"1f5afni-Buttons\\",
-  styles: \\"color:hotpink;;label:Buttons;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImtleS1hZnRlci1zcHJlYWQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBT1UiLCJmaWxlIjoia2V5LWFmdGVyLXNwcmVhZC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBsZXQgQnV0dG9ucyA9ICh7IGJ1dHRvbnMgfSkgPT4ge1xuICByZXR1cm4gKFxuICAgIDxkaXY+XG4gICAgICB7YnV0dG9ucy5tYXAoKHsgaWQsIGxhYmVsLCAuLi5yZXN0IH0pID0+IChcbiAgICAgICAgPGJ1dHRvblxuICAgICAgICAgIHsuLi5yZXN0fVxuICAgICAgICAgIGtleT17aWR9XG4gICAgICAgICAgY3NzPXt7XG4gICAgICAgICAgICBjb2xvcjogJ2hvdHBpbmsnXG4gICAgICAgICAgfX1cbiAgICAgICAgPlxuICAgICAgICAgIHtsYWJlbH1cbiAgICAgICAgPC9idXR0b24+XG4gICAgICApKX1cbiAgICA8L2Rpdj5cbiAgKVxufVxuIl19 */\\",
-  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
-};
-
-export let Buttons = ({
-  buttons
-}) => {
-  return ___EmotionJSX(\\"div\\", null, buttons.map(({
-    id,
-    label,
-    ...rest
-  }) => ___EmotionJSX(\\"button\\", _extends({}, rest, {
-    key: id,
-    css: _ref
-  }), label)));
-};"
-`;
-
-exports[`@emotion/babel-preset-css-prop no-static-children 1`] = `
-"export let Button = props => {
-  return (
-    <button
-      css={{
-        color: 'hotpink'
-      }}
-      {...props}
-    />
-  )
-}
-
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
-
-var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1q24rv0-Button\\",
-  styles: \\"color:hotpink;;label:Button;\\"
-} : {
-  name: \\"1q24rv0-Button\\",
-  styles: \\"color:hotpink;;label:Button;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vLXN0YXRpYy1jaGlsZHJlbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHTSIsImZpbGUiOiJuby1zdGF0aWMtY2hpbGRyZW4uanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgbGV0IEJ1dHRvbiA9IHByb3BzID0+IHtcbiAgcmV0dXJuIChcbiAgICA8YnV0dG9uXG4gICAgICBjc3M9e3tcbiAgICAgICAgY29sb3I6ICdob3RwaW5rJ1xuICAgICAgfX1cbiAgICAgIHsuLi5wcm9wc31cbiAgICAvPlxuICApXG59XG4iXX0= */\\",
-  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
-};
-
-export let Button = props => {
-  return ___EmotionJSX(\\"button\\", _extends({
-    css: _ref
-  }, props));
-};"
-`;
-
-exports[`@emotion/babel-preset-css-prop static-children 1`] = `
-"export let Button = () => {
-  return (
-    <button
-      css={{
-        color: 'hotpink'
-      }}
-    >
-      {'Test'}
-    </button>
-  )
-}
-
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import { jsx as ___EmotionJSX } from \\"@emotion/core\\";
-
-function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
-
-var _ref = process.env.NODE_ENV === \\"production\\" ? {
-  name: \\"1q24rv0-Button\\",
-  styles: \\"color:hotpink;;label:Button;\\"
-} : {
-  name: \\"1q24rv0-Button\\",
-  styles: \\"color:hotpink;;label:Button;\\",
-  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0YXRpYy1jaGlsZHJlbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHTSIsImZpbGUiOiJzdGF0aWMtY2hpbGRyZW4uanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgbGV0IEJ1dHRvbiA9ICgpID0+IHtcbiAgcmV0dXJuIChcbiAgICA8YnV0dG9uXG4gICAgICBjc3M9e3tcbiAgICAgICAgY29sb3I6ICdob3RwaW5rJ1xuICAgICAgfX1cbiAgICA+XG4gICAgICB7J1Rlc3QnfVxuICAgIDwvYnV0dG9uPlxuICApXG59XG4iXX0= */\\",
-  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
-};
-
-export let Button = () => {
-  return ___EmotionJSX(\\"button\\", {
-    css: _ref
-  }, 'Test');
 };"
 `;

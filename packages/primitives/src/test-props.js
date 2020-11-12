@@ -60,5 +60,5 @@ export function testPickPropsOnPrimitiveComponent(prop: string) {
 }
 
 export function testPickPropsOnOtherComponent(prop: string) {
-  return prop !== 'theme' && prop !== 'innerRef'
+  return prop !== 'theme'
 }

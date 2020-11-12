@@ -1,15 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render the primitive when styles applied using object style notation 1`] = `
-<Text
+<div
+  className="css-text-901oao r-backgroundColor-1g6456j r-color-howw7u"
+  dir="auto"
+  onClick={[Function]}
   style={
     Object {
-      "backgroundColor": "red",
-      "color": "red",
-      "fontSize": 40,
+      "fontSize": "40px",
     }
   }
 >
   Emotion Primitives
-</Text>
+</div>
 `;

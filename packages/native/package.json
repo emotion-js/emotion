@@ -1,23 +1,37 @@
 {
   "name": "@emotion/native",
-  "version": "10.0.27",
+  "version": "11.0.0",
   "description": "Style and render React Native components using emotion",
-  "main": "dist/native.cjs.js",
-  "module": "dist/native.esm.js",
+  "main": "dist/emotion-native.cjs.js",
+  "module": "dist/emotion-native.esm.js",
+  "scripts": {
+    "test:typescript": "dtslint types"
+  },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "types/*.d.ts",
+    "macro.js"
   ],
+  "types": "types/index.d.ts",
   "devDependencies": {
-    "emotion-theming": "^10.0.27",
+    "@babel/core": "^7.7.2",
+    "@types/react-native": "^0.63.2",
+    "dtslint": "^0.3.0",
     "react": "16.14.0",
-    "react-native": "^0.57.0"
+    "react-native": "^0.63.2"
   },
   "dependencies": {
-    "@emotion/primitives-core": "10.0.27"
+    "@emotion/primitives-core": "^11.0.0"
   },
   "peerDependencies": {
+    "@babel/core": "^7.0.0",
     "react-native": ">=0.14.0 <1"
+  },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    }
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",
@@ -37,7 +51,7 @@
     "access": "public"
   },
   "browser": {
-    "./dist/native.cjs.js": "./dist/native.browser.cjs.js",
-    "./dist/native.esm.js": "./dist/native.browser.esm.js"
+    "./dist/emotion-native.cjs.js": "./dist/emotion-native.browser.cjs.js",
+    "./dist/emotion-native.esm.js": "./dist/emotion-native.browser.esm.js"
   }
 }

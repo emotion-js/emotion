@@ -1,0 +1,23 @@
+{
+  "name": "@emotion/core",
+  "version": "11.0.0",
+  "main": "dist/emotion-core.cjs.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "types",
+    "macro.js",
+    "macro.d.ts",
+    "macro.js.flow"
+  ],
+  "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
+  "license": "MIT",
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
+  "repository": "https://github.com/emotion-js/emotion/tree/master/removed-packages/core",
+  "publishConfig": {
+    "access": "public"
+  }
+}

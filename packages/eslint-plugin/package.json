@@ -1,0 +1,26 @@
+{
+  "name": "@emotion/eslint-plugin",
+  "version": "11.0.0",
+  "description": "ESLint rules for emotion",
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "emotion"
+  ],
+  "author": "alex-pex <alexandre.paixao@stadline.com>",
+  "main": "dist/emotion-eslint-plugin.cjs.js",
+  "engines": {
+    "node": ">=6"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint": "6 || 7"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0"
+  }
+}

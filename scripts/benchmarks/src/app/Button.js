@@ -1,9 +1,4 @@
-import {
-  ColorPropType,
-  StyleSheet,
-  TouchableHighlight,
-  Text
-} from 'react-native'
+import { StyleSheet, TouchableHighlight, Text } from 'react-native'
 import React, { Component } from 'react'
 import { bool, func, string } from 'prop-types'
 
@@ -12,7 +7,7 @@ export default class Button extends Component<*> {
 
   static propTypes = {
     accessibilityLabel: string,
-    color: ColorPropType,
+    color: string,
     disabled: bool,
     onPress: func.isRequired,
     style: TouchableHighlight.propTypes.style,

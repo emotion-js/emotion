@@ -1,145 +1,146 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Emotion primitives custom shouldForwardProp works 1`] = `
+<div
+  className="css-text-901oao r-color-185hjl9"
+  dir="auto"
+  onClick={[Function]}
+>
+  Emotion
+</div>
+`;
+
 exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
-<Text
-  style={
-    Object {
-      "color": "hotpink",
-    }
-  }
+<div
+  className="css-text-901oao r-color-185hjl9"
+  dir="auto"
+  onClick={[Function]}
 >
   Mike
-</Text>
+</div>
 `;
 
 exports[`Emotion primitives should pass props in withComponent 1`] = `
-<View
-  color="green"
-  style={
-    Object {
-      "backgroundColor": "green",
-    }
-  }
+<div
+  className="css-view-1dbjc4n r-backgroundColor-1542mo4"
 />
 `;
 
 exports[`Emotion primitives should pass props in withComponent 2`] = `
-<Text
-  color="hotpink"
-  style={
-    Object {
-      "backgroundColor": "hotpink",
-    }
-  }
+<div
+  className="css-text-901oao r-backgroundColor-173gl9r"
+  dir="auto"
+  onClick={[Function]}
 />
 `;
 
 exports[`Emotion primitives should render <Image /> 1`] = `
-<Image
-  source={
-    Object {
-      "height": 150,
-      "uri": "https://camo.githubusercontent.com/209bdea972b9b6ef90220c59ecbe66d35ffefa8a/68747470733a2f2f63646e2e7261776769742e636f6d2f746b6834342f656d6f74696f6e2f6d61737465722f656d6f74696f6e2e706e67",
-      "width": 150,
-    }
-  }
+<div
+  className="css-view-1dbjc4n r-flexBasis-1mlwlqe r-overflow-1udh08x r-zIndex-417010"
   style={
     Object {
-      "borderColor": "hotpink",
-      "borderStyle": "solid",
-      "borderWidth": 2,
+      "borderBottomColor": "rgba(255,105,180,1.00)",
+      "borderBottomStyle": "solid",
+      "borderBottomWidth": "2px",
+      "borderLeftColor": "rgba(255,105,180,1.00)",
+      "borderLeftStyle": "solid",
+      "borderLeftWidth": "2px",
+      "borderRightColor": "rgba(255,105,180,1.00)",
+      "borderRightStyle": "solid",
+      "borderRightWidth": "2px",
+      "borderTopColor": "rgba(255,105,180,1.00)",
+      "borderTopStyle": "solid",
+      "borderTopWidth": "2px",
     }
   }
-/>
+>
+  <div
+    className="css-view-1dbjc4n r-backgroundColor-1niwhzg r-backgroundPosition-vvn4in r-backgroundRepeat-u6sd8q r-backgroundSize-4gszlv r-bottom-1p0dtai r-height-1pi2tsx r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-width-13qz1uu r-zIndex-1wyyakw"
+  />
+</div>
 `;
 
 exports[`Emotion primitives should render primitive with style prop 1`] = `
-<Text
+<div
+  className="css-text-901oao r-color-185hjl9"
+  dir="auto"
+  onClick={[Function]}
   style={
     Object {
-      "color": "hotpink",
-      "padding": 10,
+      "paddingBottom": "10px",
+      "paddingLeft": "10px",
+      "paddingRight": "10px",
+      "paddingTop": "10px",
     }
   }
 >
   Emotion primitives
-</Text>
+</div>
 `;
 
 exports[`Emotion primitives should render the primitive on changing the props 1`] = `
-<Text
-  style={
-    Object {
-      "color": "hotpink",
-      "paddingBottom": 20,
-      "paddingLeft": 20,
-      "paddingRight": 20,
-      "paddingTop": 20,
-    }
-  }
+<div
+  className="css-text-901oao r-color-185hjl9 r-paddingBottom-k8qxaj r-paddingLeft-b5h31w r-paddingRight-1ah4tor r-paddingTop-1knelpx"
+  dir="auto"
+  onClick={[Function]}
 >
   Emotion Primitives
-</Text>
+</div>
 `;
 
 exports[`Emotion primitives should render the primitive when styles applied using object style notation 1`] = `
-<Text
+<div
+  className="css-text-901oao r-backgroundColor-1g6456j r-color-howw7u"
+  dir="auto"
+  onClick={[Function]}
   style={
     Object {
-      "backgroundColor": "red",
-      "color": "red",
-      "fontSize": 40,
+      "fontSize": "40px",
     }
   }
 >
   Emotion Primitives
-</Text>
+</div>
 `;
 
 exports[`Emotion primitives should style any other component 1`] = `
-<Text
-  style={
-    Object {
-      "color": "hotpink",
-    }
-  }
+<div
+  className="css-text-901oao r-color-185hjl9"
+  dir="auto"
+  onClick={[Function]}
 >
   Hello World
-</Text>
+</div>
 `;
 
-exports[`Emotion primitives should unmount with emotion-theming 1`] = `
+exports[`Emotion primitives should unmount with theming 1`] = `
 <div>
-  <p
-    id="something"
-    style="display: flex; background-color: yellow;"
+  <div
+    class="css-text-901oao r-display-6koalj"
+    dir="auto"
+    style="background-color: rgb(255, 255, 0);"
   >
     Hello World
-  </p>
+  </div>
 </div>
 `;
 
 exports[`Emotion primitives should work with StyleSheet.create API 1`] = `
-<Text
-  style={
-    Object {
-      "color": "red",
-      "fontSize": 10,
-    }
-  }
+<div
+  className="css-text-901oao r-color-howw7u r-fontSize-10x49cs"
+  dir="auto"
+  onClick={[Function]}
 >
   Emotion Primitives
-</Text>
+</div>
 `;
 
-exports[`Emotion primitives should work with emotion-theming 1`] = `
-<Text
-  style={
-    Object {
-      "color": "magenta",
-    }
-  }
+exports[`Emotion primitives should work with theming from @emotion/react 1`] = `
+<div
+  className="css-text-901oao r-color-1hxtt4r"
+  dir="auto"
+  onClick={[Function]}
 >
   Hello World
-</Text>
+</div>
 `;

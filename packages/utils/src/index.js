@@ -1,7 +1,7 @@
 // @flow
 import type { RegisteredCache, EmotionCache, SerializedStyles } from './types'
 
-let isBrowser = typeof document !== 'undefined'
+const isBrowser = typeof document !== 'undefined'
 
 export function getRegisteredStyles(
   registered: RegisteredCache,
@@ -12,7 +12,7 @@ export function getRegisteredStyles(
 
   classNames.split(' ').forEach(className => {
     if (registered[className] !== undefined) {
-      registeredStyles.push(registered[className])
+      registeredStyles.push(`${registered[className]};`)
     } else {
       rawClassName += `${className} `
     }
@@ -47,7 +47,7 @@ export const insertStyles = (
     let current = serialized
     do {
       let maybeStyles = cache.insert(
-        `.${className}`,
+        serialized === current ? `.${className}` : '',
         current,
         cache.sheet,
         true

@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`does not replace class names that are not from emotion 1`] = `
+".emotion-0 {
+  color: darkorchid;
+}
+
+<div
+  className=\\"net-42 net emotion-0\\"
+/>"
+`;
+
+exports[`jest-emotion with DOM elements disabled does not replace class names or insert styles into DOM element snapshots 1`] = `
+"<div
+  class=\\"css-q1yspt-divStyle\\"
+>
+  <svg
+    class=\\"css-18ku24t-svgStyle\\"
+  />
+</div>"
+`;
+
+exports[`jest-emotion with DOM elements disabled replaces class names and inserts styles into React test component snapshots 1`] = `
+".emotion-0 {
+  color: red;
+}
+
+.emotion-1 {
+  width: 100%;
+}
+
+<div
+  className=\\"emotion-0\\"
+>
+  <svg
+    className=\\"emotion-1\\"
+  />
+</div>"
+`;
+
+exports[`jest-emotion with dom elements replaces class names and inserts styles into DOM element snapshots 1`] = `
+".emotion-0 {
+  color: red;
+}
+
+.emotion-1 {
+  width: 100%;
+}
+
+<div
+  class=\\"emotion-0\\"
+>
+  <svg
+    class=\\"emotion-1\\"
+  />
+</div>"
+`;
+
+exports[`jest-emotion with dom elements replaces class names and inserts styles into React test component snapshots 1`] = `
+".emotion-0 {
+  color: red;
+}
+
+.emotion-1 {
+  width: 100%;
+}
+
+<div
+  className=\\"emotion-0\\"
+>
+  <svg
+    className=\\"emotion-1\\"
+  />
+</div>"
+`;
+
+exports[`prints speedy styles 1`] = `
+".emotion-0 {
+  color: hotpink;
+}
+
+<div
+  className=\\"emotion-0\\"
+/>"
+`;

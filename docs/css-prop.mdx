@@ -14,10 +14,10 @@ There are 2 ways to get started with the `css` prop.
 Both methods result in the same compiled code.
 After adding the preset or setting the pragma as a comment, compiled jsx code will use emotion's `jsx` function instead of `React.createElement`.
 
-| | Input | Output |
+|        | Input                      | Output                                              |
 | ------ | -------------------------- | --------------------------------------------------- |
 | Before | `<img src="avatar.png" />` | `React.createElement('img', { src: 'avatar.png' })` |
-| After | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })` |
+| After  | `<img src="avatar.png" />` | `jsx('img', { src: 'avatar.png' })`                 |
 
 #### Babel Preset
 
@@ -34,7 +34,7 @@ Use the [JSX Pragma](#jsx-pragma) method instead.
 
 > [Full `@emotion/babel-preset-css-prop` documentation](https://emotion.sh/docs/@emotion/babel-preset-css-prop)
 
-If you are using the compatible React version (`>=16.14.0`) and a compatible version of `@emotion/core` (`>=10.1.0`) then you can opt into using [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) by using such configuration:
+If you are using the compatible React version (`>=16.14.0`) then you can opt into using [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) by using such configuration:
 
 **.babelrc**
 
@@ -43,10 +43,10 @@ If you are using the compatible React version (`>=16.14.0`) and a compatible ver
   "presets": [
     [
       "@babel/preset-react",
-      { "runtime": "automatic", "importSource": "@emotion/core" }
+      { "runtime": "automatic", "importSource": "@emotion/react" }
     ]
   ],
-  "plugins": [["babel-plugin-emotion", { "cssPropOptimization": true }]]
+  "plugins": ["@emotion/babel-plugin"]
 }
 ```
 
@@ -62,12 +62,12 @@ In case you want to use the new JSX runtimes with [Next.js](https://nextjs.org/)
       {
         "preset-react": {
           "runtime": "automatic",
-          "importSource": "@emotion/core"
+          "importSource": "@emotion/react"
         }
       }
     ]
   ],
-  "plugins": [["babel-plugin-emotion", { "cssPropOptimization": true }]]
+  "plugins": ["@emotion/babel-plugin"]
 }
 ```
 
@@ -82,15 +82,15 @@ This option works best for testing out the `css` prop feature or in projects whe
 
 Similar to a comment containing linter configuration, this configures the [jsx babel plugin](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx) to use the `jsx` function instead of `React.createElement`.
 
-If you are using a zero-config tool with automatic detection of which runtime (classic vs. automatic) should be used and you are already using a React version that has [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) (hence `runtime: 'automatic'` being configured automatically for you) such as Create React App 4 then `/** @jsx jsx */` pragma might not work and you should use `/** @jsxImportSource @emotion/core */` instead. Keep in mind that this also requires a compatible version of `@emotion/core` which is `^10.1.0`.
+If you are using a zero-config tool with automatic detection of which runtime (classic vs. automatic) should be used and you are already using a React version that has [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) (hence `runtime: 'automatic'` being configured automatically for you) such as Create React App 4 then `/** @jsx jsx */` pragma might not work and you should use `/** @jsxImportSource @emotion/react */` instead.
 
 > [JSX Pragma Babel Documentation](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx#pragma)
 
-#### Import the `jsx` function from `@emotion/core`
+#### Import the `jsx` function from `@emotion/react`
 
 ```js
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 ```
 
 Note that excluding this will cause your css to render as `[Object Object]`.
@@ -106,7 +106,7 @@ The `css` prop accepts object styles directly and does not require an additional
 ```jsx
 // @live
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 render(
   <div
@@ -126,13 +126,13 @@ render(
 
 ## String Styles
 
-To pass string styles, you must use `css` which is exported by `@emotion/core`, it can be used as a [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) like below.
+To pass string styles, you must use `css` which is exported by `@emotion/react`, it can be used as a [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) like below.
 
 ```jsx
 // @live
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/react'
 
 const color = 'darkgreen'
 
@@ -152,7 +152,7 @@ render(
 
 > Note:
 >
-> **`css` from `@emotion/core` does not return the computed class name string.** The function returns an object containing the computed name and flattened styles. The returned object is understood by emotion at a low level and can be composed with other emotion based styles inside of the `css` prop, other `css` calls, or the `styled` API.
+> **`css` from `@emotion/react` does not return the computed class name string.** The function returns an object containing the computed name and flattened styles. The returned object is understood by emotion at a low level and can be composed with other emotion based styles inside of the `css` prop, other `css` calls, or the `styled` API.
 
 You can also pass in your css as variables, which allows for composition (read more about this [here](https://emotion.sh/docs/composition)).
 
@@ -167,7 +167,7 @@ The `P` component in this example has its default styles overridden in the `Arti
 
 ```js
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 const P = props => (
   <p
@@ -198,7 +198,7 @@ The `ArticleText` component can be customized and the styles composed with its d
 
 ```js
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 const P = props => (
   <p
@@ -286,4 +286,5 @@ Relying on the css spec's ["Order of Appearance"](https://www.w3.org/TR/css-casc
 
 ## Gotchas
 
-- If you include the plugin `babel-plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.
+- If you include the plugin `@babel/plugin-transform-react-inline-elements` in your `.babelrc` your styles will not be applied. The plugin is not compatible with the `css` prop.
+- When using `React.cloneElement` you can't easily add a css prop if the cloned element doesn't already have it. Otherwise `React.cloneElement` works with `jsx`-created elements.

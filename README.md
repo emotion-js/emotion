@@ -37,12 +37,12 @@ Frequently viewed docs:
 Get up and running with a single import.
 
 ```bash
-npm install --save @emotion/core
+npm install --save @emotion/react
 ```
 
 ```jsx
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 let SomeComponent = props => {
   return (
@@ -60,7 +60,7 @@ let SomeComponent = props => {
 
 The babel plugin is not required, but enables some optimizations and customizations that could be beneficial for your project.
 
-Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion)_
+Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin)_
 
 ### Demo Sandbox
 

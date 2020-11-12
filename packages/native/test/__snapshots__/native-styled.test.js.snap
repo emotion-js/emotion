@@ -4,9 +4,10 @@ exports[`Emotion native styled primitive should work with \`withComponent\` 1`] 
 <Text
   decor="hotpink"
   style={
-    Object {
-      "color": "hotpink",
-    }
+    Array [
+      77,
+      undefined,
+    ]
   }
 >
   Mike
@@ -17,9 +18,10 @@ exports[`Emotion native styled should pass props in withComponent 1`] = `
 <View
   color="green"
   style={
-    Object {
-      "backgroundColor": "green",
-    }
+    Array [
+      81,
+      undefined,
+    ]
   }
 />
 `;
@@ -28,9 +30,10 @@ exports[`Emotion native styled should pass props in withComponent 2`] = `
 <Text
   color="hotpink"
   style={
-    Object {
-      "backgroundColor": "hotpink",
-    }
+    Array [
+      82,
+      undefined,
+    ]
   }
 />
 `;
@@ -45,12 +48,10 @@ exports[`Emotion native styled should render <Image /> 1`] = `
     }
   }
   style={
-    Object {
-      "borderBottomLeftRadius": 2,
-      "borderBottomRightRadius": 2,
-      "borderTopLeftRadius": 2,
-      "borderTopRightRadius": 2,
-    }
+    Array [
+      83,
+      undefined,
+    ]
   }
 />
 `;
@@ -58,13 +59,29 @@ exports[`Emotion native styled should render <Image /> 1`] = `
 exports[`Emotion native styled should render primitive with style prop 1`] = `
 <Text
   style={
-    Object {
-      "color": "hotpink",
-      "padding": 10,
-    }
+    Array [
+      77,
+      Object {
+        "padding": 10,
+      },
+    ]
   }
 >
   Emotion primitives
+</Text>
+`;
+
+exports[`Emotion native styled should render styles correctly from all nested style factories 1`] = `
+<Text
+  backgroundColor="blue"
+  style={
+    Array [
+      86,
+      undefined,
+    ]
+  }
+>
+  Hello World
 </Text>
 `;
 
@@ -72,13 +89,10 @@ exports[`Emotion native styled should render the primitive on changing the props
 <Text
   decor="hotpink"
   style={
-    Object {
-      "color": "hotpink",
-      "paddingBottom": 20,
-      "paddingLeft": 20,
-      "paddingRight": 20,
-      "paddingTop": 20,
-    }
+    Array [
+      76,
+      undefined,
+    ]
   }
 >
   Emotion Primitives
@@ -89,11 +103,12 @@ exports[`Emotion native styled should render the primitive when styles applied u
 <Text
   back="red"
   style={
-    Object {
-      "backgroundColor": "red",
-      "color": "red",
-      "fontSize": 40,
-    }
+    Array [
+      74,
+      Object {
+        "fontSize": 40,
+      },
+    ]
   }
 >
   Emotion Primitives
@@ -103,9 +118,10 @@ exports[`Emotion native styled should render the primitive when styles applied u
 exports[`Emotion native styled should style any other component 1`] = `
 <Text
   style={
-    Object {
-      "color": "hotpink",
-    }
+    Array [
+      77,
+      undefined,
+    ]
   }
 >
   Hello World
@@ -115,22 +131,23 @@ exports[`Emotion native styled should style any other component 1`] = `
 exports[`Emotion native styled should work with StyleSheet.create API 1`] = `
 <Text
   style={
-    Object {
-      "color": "red",
-      "fontSize": 10,
-    }
+    Array [
+      79,
+      78,
+    ]
   }
 >
   Emotion primitives
 </Text>
 `;
 
-exports[`Emotion native styled should work with emotion-theming 1`] = `
+exports[`Emotion native styled should work with theming from @emotion/react 1`] = `
 <Text
   style={
-    Object {
-      "color": "magenta",
-    }
+    Array [
+      75,
+      undefined,
+    ]
   }
 >
   Hello World

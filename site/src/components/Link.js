@@ -1,6 +1,6 @@
 // @flow
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 import { Link } from 'gatsby'
 import { constants } from 'styled-system'
 import { colors } from '../utils/style'
@@ -20,7 +20,7 @@ const styles = {
 
 export default ({ to, ...props }: Props) =>
   to.match(/^https?:\/\//) ? (
-    <a href={to} css={styles} {...props} />
+    <a {...props} href={to} css={styles} />
   ) : (
-    <Link to={to} css={styles} {...props} />
+    <Link {...props} to={to} css={styles} />
   )

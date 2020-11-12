@@ -1,0 +1,34 @@
+{
+  "name": "emotion-server",
+  "version": "11.0.0",
+  "description": "Extract and inline critical css with emotion for server side rendering.",
+  "main": "dist/emotion-server.cjs.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "types/*.d.ts"
+  ],
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
+  "author": "Kye Hohenberger",
+  "homepage": "https://emotion.sh",
+  "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-server",
+  "keywords": [
+    "styles",
+    "emotion",
+    "react",
+    "css",
+    "css-in-js",
+    "ssr",
+    "server-side-rendering"
+  ],
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
+  },
+  "browser": {
+    "./dist/emotion-server.cjs.js": "./dist/emotion-server.browser.cjs.js"
+  }
+}

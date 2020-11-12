@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`composition of dynamic array css prop with cssprop-generated className (#1730) 1`] = `
+.emotion-0 {
+  width: 50px;
+  height: 50px;
+  background-color: green;
+  color: hotpink;
+}
+
+<div
+  className="emotion-0"
+>
+  I'm hotpink on the green background.
+</div>
+`;
+
+exports[`tagged template args forwarded 1`] = `
+@media (min-width: 100px) {
+  .emotion-0 {
+    color: red;
+  }
+}
+
+<h2
+  className="emotion-0"
+>
+  something
+</h2>
+`;

@@ -1,0 +1,17 @@
+{
+  "name": "emotion-theming",
+  "version": "11.0.0",
+  "description": "A CSS-in-JS theming solution, inspired by styled-components",
+  "main": "dist/emotion-theming.cjs.js",
+  "files": ["dist"],
+  "scripts": {
+    "test:typescript": "exit 0"
+  },
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion-theming",
+  "keywords": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emotion-js/emotion/issues"
+  },
+  "homepage": "https://emotion.sh"
+}
