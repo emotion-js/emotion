@@ -123,8 +123,7 @@
       "packages/*",
       "site",
       "scripts/*",
-      "playgrounds/*",
-      "removed-packages/*"
+      "playgrounds/*"
     ],
     "nohoist": [
       "**/dtslint"
@@ -132,8 +131,7 @@
   },
   "preconstruct": {
     "packages": [
-      "packages/*",
-      "removed-packages/*"
+      "packages/*"
     ],
     "globals": {
       "react": "React",
