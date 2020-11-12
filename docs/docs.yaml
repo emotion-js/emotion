@@ -47,5 +47,6 @@
     - '@emotion/babel-preset-css-prop'
 
 - title: Posts
+  items:
     - emotion-11
     - migrating-to-emotion-10
