@@ -1,5 +1,109 @@
 # @emotion/react
 
+## 11.0.0
+
+### Major Changes
+
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `@emotion/core` to `@emotion/react`. Please change any imports of `@emotion/core` to import `@emotion/react` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+
+* [`cbb8b796`](https://github.com/emotion-js/emotion/commit/cbb8b7965c2923cf1922d724de556374323bff61) [#1628](https://github.com/emotion-js/emotion/pull/1628) Thanks [@Andarist](https://github.com/Andarist)! - `emotion-theming` has been removed and all its exports were moved to `@emotion/react` package. Please import them like this `import { useTheme, ThemeProvider, withTheme } from '@emotion/react'` from now on.
+
+- [`a72e6dc`](https://github.com/emotion-js/emotion/commit/a72e6dc0f326b7d3d6067698d433018ee8c4cbf1) [#1501](https://github.com/emotion-js/emotion/pull/1501) Thanks [@JakeGinnivan](https://github.com/JakeGinnivan)! - TypeScript types have been significantly restructured. These changes:
+
+  - reduce build times when using Emotion, especially in larger projects
+  - it's no longer necessary to manually specify generic parameters for your Emotion components in many cases
+  - union types as props are better supported and should be inferred properly
+  - the `css` function has been restricted to prevent passing invalid types
+  - `styled`'s generic parameter has been changed, if you were specifying the `ComponentType` you will need to remove that generic parameter
+  - `styled` no longer takes a second `ExtraProps` parameter - instead of that move it to after the `styled` call. So instead of writing `styled<typeof MyComponent, ExtraProps>(MyComponent)({})` you should now be writing `styled(MyComponent)<ExtraProps>({})`
+
+  If you encounter build issues after upgrade, try removing any manually specified generic types and let them be inferred.
+
+* [`c6431074`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b) [#1609](https://github.com/emotion-js/emotion/pull/1609) Thanks [@tomsseisums](https://github.com/tomsseisums)! - It's now easier to provide a type for `Theme`. Instead of creating custom instances (like before) you can augment the builtin `Theme` interface like this:
+
+  ```ts
+  import '@emotion/react'
+
+  declare module '@emotion/react' {
+    export interface Theme {
+      primaryColor: string
+      secondaryColor: string
+    }
+  }
+  ```
+
+- [`f57a7229`](https://github.com/emotion-js/emotion/commit/f57a72299cd4025a725bd5bd1b966a8f9df16cd8) [#1941](https://github.com/emotion-js/emotion/pull/1941) Thanks [@Andarist](https://github.com/Andarist)! - The way in which we provide TypeScript support for the `css` prop has changed. Based on the usage of our JSX factories, we can add support for `css` prop only for components that support `className` prop (as our JSX factory functions take the provided `css` prop, resolve it and pass the generated `className` to the rendered component).
+
+  For the classic runtime this has been implemented using technique described [here](https://www.typescriptlang.org/docs/handbook/jsx.html#factory-functions). What is important - we no longer extend any global interfaces, so people shouldn't bump anymore into type conflicts for the `css` prop when using different libraries with `css` prop support, such as `styled-components`.
+
+  For the automatic runtime this has been implemented by exporting `JSX` namespace from the appropriate entries but this is only supported in **TypeScript 4.1 or higher**.
+
+  However, if you are stuck with older version of TypeScript or using the classic runtime implicitly by using our `@emotion/babel-preset-css-prop` then it's not possible to leverage leverage `css` prop support being added conditionally based on a type of rendered component. For those cases we have added a special file that can be imported once to add support for the `css` prop globally, for all components. Use it like this:
+
+  ```ts
+  /// <reference types="@emotion/react/types/css-prop" />
+  ```
+
+  In this particular case we are forced to extend the existing `React.Attributes` interface. Previously we've been extending both `React.DOMAttributes<T>` and `JSX.IntrinsicAttributes`. This change is really minor and shouldn't affect any consuming code.
+
+- [`843bfb11`](https://github.com/emotion-js/emotion/commit/843bfb1153ee0dbe33d005fdd5c5be185daa5c41) [#1630](https://github.com/emotion-js/emotion/pull/1630) Thanks [@Andarist](https://github.com/Andarist)! - Removed default export from `@emotion/css` - it's main purpose was to allow `css` to be a Babel macro, but since babel-plugin-macros allows us to keep imports nowadays this is no longer needed. `@emotion/react/macro` has been added to account for this use case and appropriate changes has been made to `@emotion/babel-plugin` to facilitate those changes.
+
+  If you have used `@emotion/css` directly (it was always reexported from `@emotion/react`) or you have been using its macro then you should update your code like this:
+
+  ```diff
+  -import css from '@emotion/css'
+  +import { css } from '@emotion/react'
+
+  // or
+  -import css from '@emotion/css/macro'
+  +import { css } from '@emotion/react/macro'
+  ```
+
+  You can also use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin` to do this for you.
+
+* [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use hooks internally for improved bundle size and a better tree in React DevTools
+
+- [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf) [#1817](https://github.com/emotion-js/emotion/pull/1817) Thanks [@Andarist](https://github.com/Andarist)! - The parser we use ([Stylis](https://github.com/thysultan/stylis.js)) got upgraded. It fixes some long-standing parsing edge cases while being smaller and faster 🚀
+
+  It has been completely rewritten and comes with some breaking changes. The most notable ones that might affect Emotion users are:
+
+  - plugins written for the former Stylis v3 are not compatible with the new version. To learn more on how to write a plugin for Stylis v4 you can check out its [README](https://github.com/thysultan/stylis.js#middleware) and the source code of core plugins.
+  - vendor-prefixing was previously customizable using `prefix` option. This was always limited to turning off all of some of the prefixes as all available prefixes were on by default. The `prefix` option is gone and to customize which prefixes are applied you need to fork (copy-paste) the prefixer plugin and adjust it to your needs. While this being somewhat more problematic to setup at first we believe that the vast majority of users were not customizing this anyway. By not including the possibility to customize this through an extra option the final solution is more performant because there is no extra overhead of checking if a particular property should be prefixed or not.
+  - the prefixer is now just a plugin which happens to be included in the default `stylisPlugins`. If you plan to use custom `stylisPlugins` and you want to have your styles prefixed automatically you must include prefixer in your custom `stylisPlugins`. You can import `prefixer` from the `stylis` module to do that.
+  - `@import` rules are no longer special-cased. The responsibility to put them first has been moved to the author of the styles. They also can't be nested within other rules now. It's only possible to write them at the top level of global styles.
+
+* [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d) [#1572](https://github.com/emotion-js/emotion/pull/1572) Thanks [@Andarist](https://github.com/Andarist)! - `[data-emotion]` attribute on SSRed styled has changed. You should never rely on it though.
+
+* [`cf56694`](https://github.com/emotion-js/emotion/commit/cf56694d54d0b2bd6208f561d8ce829da4918952) [#2088](https://github.com/emotion-js/emotion/pull/2088) Thanks [@Andarist](https://github.com/Andarist)! - UMD filenames have been changed.
+
+### Minor Changes
+
+- [`c672175b`](https://github.com/emotion-js/emotion/commit/c672175b52e86de43b3d4092a8fe34b2023ceae8) [#1130](https://github.com/emotion-js/emotion/pull/1130) Thanks [@jtmthf](https://github.com/jtmthf)! - Support functions in arrays passed to `css` prop and `Global`'s styles prop. This allows for composition of theme-accepting functions.
+
+* [`828111cd`](https://github.com/emotion-js/emotion/commit/828111cd32d3fe8c984231201e518d1b6000bffd) [#1639](https://github.com/emotion-js/emotion/pull/1639) Thanks [@Andarist](https://github.com/Andarist)! - `Global` imported from macro entry (`@emotion/react/macro`) gets source maps generated now when inline css-less expression is used as value of the `styles` prop.
+
+- [`5d692a6a`](https://github.com/emotion-js/emotion/commit/5d692a6a8102b3faabefb773dd0145b123668a07) [#1956](https://github.com/emotion-js/emotion/pull/1956) Thanks [@eps1lon](https://github.com/eps1lon)! - Upgraded [`csstype`](https://www.npmjs.com/package/csstype) dependency to its v3. This is what we use to provide TypeScript typings for object styles. The upgrade should not affect any consuming code but it's worth mentioning if any edge case scenarios arise.
+
+### Patch Changes
+
+- [`7dea6d7a`](https://github.com/emotion-js/emotion/commit/7dea6d7a9a87f00cf9b695b58a2f65b67e17fabd) [#1734](https://github.com/emotion-js/emotion/pull/1734) Thanks [@Andarist](https://github.com/Andarist)! - Fixed styles inserted by `<Global/>` component not inheriting `speedy` option from a cache passed to a wrapping `<CacheProvider/>`.
+
+- [`5c55fd17`](https://github.com/emotion-js/emotion/commit/5c55fd17dcaec84d1f5d5d13ae90dd336d7e4403) [#1653](https://github.com/emotion-js/emotion/pull/1653) Thanks [@Andarist](https://github.com/Andarist)! - Fix to what location generated source maps are pointing in case of composed styles.
+
+* [`75e2f9e1`](https://github.com/emotion-js/emotion/commit/75e2f9e1848bc0161f8db3c663438ada3042ae66) [#1810](https://github.com/emotion-js/emotion/pull/1810) Thanks [@Andarist](https://github.com/Andarist)! - Add a dev-only warning about styles created with `css` from `@emotion/react` being passed to `cx` from `<ClassNames/>`.
+
+- [`d62d9101`](https://github.com/emotion-js/emotion/commit/d62d9101bc75e6bc9644ae588d2a6e4bf4d69285) [#1677](https://github.com/emotion-js/emotion/pull/1677) Thanks [@ajs139](https://github.com/ajs139)! - Warn if `@emotion/react` is initialized more than once in the same development environment.
+
+- [`a085003d`](https://github.com/emotion-js/emotion/commit/a085003d4c8ca284c116668d7217fb747802ed85) [#1613](https://github.com/emotion-js/emotion/pull/1613) Thanks [@Andarist](https://github.com/Andarist)! - Add missing `#__PURE__` annotations
+
+* [`58dc08a6`](https://github.com/emotion-js/emotion/commit/58dc08a6a013fb5cfa10bb85e06e53a8ff7eeb51) [#1837](https://github.com/emotion-js/emotion/pull/1837) Thanks [@arcanis](https://github.com/arcanis)! - Fixed TS compatibility under [PnP](https://classic.yarnpkg.com/en/docs/pnp/) environments by making `@types/react` an optional peer dependency.
+
+- Updated dependencies [[`a8eb4e75`](https://github.com/emotion-js/emotion/commit/a8eb4e75eed26763dc4f82ddd9bb49af4552768b), [`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d), [`8a896a31`](https://github.com/emotion-js/emotion/commit/8a896a31434a1d2f69e1f1467c446c884c929387), [`42df3f3b`](https://github.com/emotion-js/emotion/commit/42df3f3bc01526eed61cedba106d86b9e3807f9d), [`4a891bf6`](https://github.com/emotion-js/emotion/commit/4a891bf6a30e3bb37f8f32031fa75a571c637d9c), [`1e4a741d`](https://github.com/emotion-js/emotion/commit/1e4a741de6424d3d9c1f3ca9695e1953bed3a194), [`debaad9a`](https://github.com/emotion-js/emotion/commit/debaad9ab4bd6c80312092826d9146f3d29c0899), [`5c55fd17`](https://github.com/emotion-js/emotion/commit/5c55fd17dcaec84d1f5d5d13ae90dd336d7e4403), [`a085003d`](https://github.com/emotion-js/emotion/commit/a085003d4c8ca284c116668d7217fb747802ed85), [`dfe79aca`](https://github.com/emotion-js/emotion/commit/dfe79aca696fc688f960218b16afee197926fe71), [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d), [`39be057b`](https://github.com/emotion-js/emotion/commit/39be057b1a0c6b76f2cb7a455cb8bc35fe875ba0), [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d), [`5d692a6a`](https://github.com/emotion-js/emotion/commit/5d692a6a8102b3faabefb773dd0145b123668a07), [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf), [`c6431074`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b), [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf), [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf)]:
+  - @emotion/cache@11.0.0
+  - @emotion/serialize@1.0.0
+  - @emotion/sheet@1.0.0
+  - @emotion/utils@1.0.0
+
 ## 11.0.0-rc.0
 
 ### Major Changes

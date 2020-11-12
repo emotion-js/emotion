@@ -1,6 +1,6 @@
 {
   "name": "@emotion/styled",
-  "version": "11.0.0-rc.0",
+  "version": "11.0.0",
   "description": "styled API for emotion",
   "main": "dist/emotion-styled.cjs.js",
   "module": "dist/emotion-styled.esm.js",
@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
-    "@emotion/babel-plugin": "^11.0.0-rc.0",
-    "@emotion/is-prop-valid": "^1.0.0-rc.0",
-    "@emotion/serialize": "^1.0.0-rc.0",
-    "@emotion/utils": "^1.0.0-rc.0"
+    "@emotion/babel-plugin": "^11.0.0",
+    "@emotion/is-prop-valid": "^1.0.0",
+    "@emotion/serialize": "^1.0.0",
+    "@emotion/utils": "^1.0.0"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@emotion/react": "11.0.0-rc.0",
+    "@emotion/react": "11.0.0",
     "dtslint": "^0.3.0",
     "react": "16.14.0"
   },

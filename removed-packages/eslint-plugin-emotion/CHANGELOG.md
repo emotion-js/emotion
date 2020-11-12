@@ -1,5 +1,11 @@
 # eslint-plugin-emotion
 
+## 11.0.0
+
+### Major Changes
+
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `eslint-plugin-emotion` to `@emotion/eslint-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` and `emotion/` with `@emotion/` in your rules config in your ESLint config.
+
 ## 11.0.0-rc.0
 
 ### Major Changes

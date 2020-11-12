@@ -1,5 +1,36 @@
 # @emotion/primitives-core
 
+## 11.0.0
+
+### Major Changes
+
+- [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Functions are no longer accepted as values for the `style` prop. This unifies the behavior with the web version of Emotion as `style`'s equivalent is `className` prop and functions are not resolved for it.
+
+* [`139ea336`](https://github.com/emotion-js/emotion/commit/139ea336c7f49a3246813238e388e164b80de4da) [#2060](https://github.com/emotion-js/emotion/pull/2060) Thanks [@efoken](https://github.com/efoken)! - `StyleSheet.create` is used now under the hood. This means that when used in combination with React Native Web atomic class names are applied on components instead of inline styles.
+
+- [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use hooks internally for improved bundle size and a better tree in React DevTools
+
+* [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Updated `css-to-react-native` dependency to the 3.x version - it comes with some breaking changes listed [here](https://github.com/styled-components/css-to-react-native/releases/tag/v3.0.0).
+
+### Minor Changes
+
+- [`2d597857`](https://github.com/emotion-js/emotion/commit/2d5978579f758163663c1bfb40e7d76bc24ae26a) [#2058](https://github.com/emotion-js/emotion/pull/2058) Thanks [@efoken](https://github.com/efoken)! - Added support for the `as` prop.
+
+### Patch Changes
+
+- [`db16ac35`](https://github.com/emotion-js/emotion/commit/db16ac358ded4cc04fbd649700716b7cb3b3e40a) [#2013](https://github.com/emotion-js/emotion/pull/2013) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with styles being lost for nested factory calls like:
+
+  ```js
+  const bgColor = color => css`
+    background-color: ${color};
+  `
+
+  const Text = styled.Text`
+    color: hotpink;
+    ${({ backgroundColor }) => bgColor(backgroundColor)};
+  `
+  ```
+
 ## 11.0.0-rc.0
 
 ### Major Changes
