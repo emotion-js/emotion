@@ -1,5 +1,28 @@
 # @emotion/serialize
 
+## 1.0.0
+
+### Major Changes
+
+- [`c6431074`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b) [#1609](https://github.com/emotion-js/emotion/pull/1609) Thanks [@tomsseisums](https://github.com/tomsseisums)! - Reworked `Interpolation`-related types. Correct types should now be provided to all flavours of Emotion.
+
+### Minor Changes
+
+- [`5d692a6a`](https://github.com/emotion-js/emotion/commit/5d692a6a8102b3faabefb773dd0145b123668a07) [#1956](https://github.com/emotion-js/emotion/pull/1956) Thanks [@eps1lon](https://github.com/eps1lon)! - Upgraded [`csstype`](https://www.npmjs.com/package/csstype) dependency to its v3. This is what we use to provide TypeScript typings for object styles. The upgrade should not affect any consuming code but it's worth mentioning if any edge case scenarios arise.
+
+### Patch Changes
+
+- [`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d) [#1732](https://github.com/emotion-js/emotion/pull/1732) Thanks [@Andarist](https://github.com/Andarist)! - An additional semicolon is now inserted after interpolated arrays to cover cases when it doesn't have a trailing semi itself and thus breaking composition with styles coming after it.
+
+* [`8a896a31`](https://github.com/emotion-js/emotion/commit/8a896a31434a1d2f69e1f1467c446c884c929387) [#1611](https://github.com/emotion-js/emotion/pull/1611) Thanks [@Andarist](https://github.com/Andarist)! - Throw error about invalid content property values instead of just logging error to the console.
+
+- [`5c55fd17`](https://github.com/emotion-js/emotion/commit/5c55fd17dcaec84d1f5d5d13ae90dd336d7e4403) [#1653](https://github.com/emotion-js/emotion/pull/1653) Thanks [@Andarist](https://github.com/Andarist)! - Fix to what location generated source maps are pointing in case of composed styles.
+
+* [`a085003d`](https://github.com/emotion-js/emotion/commit/a085003d4c8ca284c116668d7217fb747802ed85) [#1613](https://github.com/emotion-js/emotion/pull/1613) Thanks [@Andarist](https://github.com/Andarist)! - Add missing `#__PURE__` annotations
+
+* Updated dependencies [[`debaad9a`](https://github.com/emotion-js/emotion/commit/debaad9ab4bd6c80312092826d9146f3d29c0899), [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf)]:
+  - @emotion/utils@1.0.0
+
 ## 1.0.0-rc.0
 
 ### Major Changes

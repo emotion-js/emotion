@@ -1,5 +1,54 @@
 # @emotion/babel-plugin
 
+## 11.0.0
+
+### Major Changes
+
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Removed support for the `instances` option, any usage of it should be replaced with the `importMap` option
+
+* [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `babel-plugin-emotion` to `@emotion/babel-plugin`. Please replace `"plugins": ["emotion"]` with `"plugins": ["@emotion"]` in your Babel config.
+
+- [`c65c5d88`](https://github.com/emotion-js/emotion/commit/c65c5d887002d76557eaefcb98091d795b13f9a9) [#1622](https://github.com/emotion-js/emotion/pull/1622) Thanks [@Andarist](https://github.com/Andarist)! - Drop Babel 6 support
+
+* [`c7850e61`](https://github.com/emotion-js/emotion/commit/c7850e61211d6aa26a3388399889a6072ee2f1fe) [#1656](https://github.com/emotion-js/emotion/pull/1656) Thanks [@Andarist](https://github.com/Andarist)! - `autoLabel` option no longer is a simple boolean. Instead we accept now 3 values: `dev-only` (the default), `always` and `never`.
+
+  Each possible value for this option produces different output code:
+
+  - with `dev-only` we optimize the production code, so there are no labels added there, but at the same time we keep labels for development environments,
+  - with `always` we always add labels when possible,
+  - with `never` we disable this entirely and no labels are added.
+
+- [`b7d21373`](https://github.com/emotion-js/emotion/commit/b7d21373d967d0f958dd59aaaa650047e23e8e8b) [#2080](https://github.com/emotion-js/emotion/pull/2080) Thanks [@Andarist](https://github.com/Andarist)! - `cssPropOptimization` defaults now to `true` regardless of the `@emotion/react` import presence.
+
+### Minor Changes
+
+- [`c672175b`](https://github.com/emotion-js/emotion/commit/c672175b52e86de43b3d4092a8fe34b2023ceae8) [#1130](https://github.com/emotion-js/emotion/pull/1130) Thanks [@jtmthf](https://github.com/jtmthf)! - Adjust how arrays passed to css prop are transformed so function elements can be resolved at runtime.
+
+* [`5e803106`](https://github.com/emotion-js/emotion/commit/5e803106d391b7c036bdf634318b80337a1d9b70) [#1893](https://github.com/emotion-js/emotion/pull/1893) Thanks [@Andarist](https://github.com/Andarist)! - Added support for converting assignment expressions to labels in cases like this:
+
+  ```js
+  styles = css``
+  Timeline.Item = styled.li``
+  Timeline.Item.Anchor = styled.a``
+  ```
+
+- [`0a4a22ff`](https://github.com/emotion-js/emotion/commit/0a4a22ffcfaa49d09a88856ef2d51e0d53e31b6d) [#1651](https://github.com/emotion-js/emotion/pull/1651) Thanks [@Andarist](https://github.com/Andarist)! - Allow `labelFormat` option to be a function.
+
+* [`5c7ec859`](https://github.com/emotion-js/emotion/commit/5c7ec85904633a11185066fa591dc8969f3f2ff2) [#1805](https://github.com/emotion-js/emotion/pull/1805) Thanks [@Andarist](https://github.com/Andarist)! - Requirements for a label extraction have been relaxed. In certain situations it was previously required for a containing function to have a PascalCased name.
+
+- [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1) [#1220](https://github.com/emotion-js/emotion/pull/1220) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Added the `importMap` option which allows you to tell `@emotion/babel-plugin` what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
+
+* [`828111cd`](https://github.com/emotion-js/emotion/commit/828111cd32d3fe8c984231201e518d1b6000bffd) [#1639](https://github.com/emotion-js/emotion/pull/1639) Thanks [@Andarist](https://github.com/Andarist)! - `Global` gets handled by the Babel plugin now - this gives inline css-less expressions source maps.
+
+### Patch Changes
+
+- [`b0ad4f0c`](https://github.com/emotion-js/emotion/commit/b0ad4f0c628813a42c4637857be9a969429db6f0) [#1602](https://github.com/emotion-js/emotion/pull/1602) Thanks [@Andarist](https://github.com/Andarist)! - Avoid transpiling vanilla emotion calls in already transpiled code to avoid double labels and such
+
+* [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf) [#1817](https://github.com/emotion-js/emotion/pull/1817) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue in our tagged template expressions minifier which has caused whitespace before nested orphaned pseudo selectors being incorrectly removed. In a selector like `& :hover` the whitespace before colon has a semantic meaning and needs to be preserved.
+
+* Updated dependencies [[`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d), [`8a896a31`](https://github.com/emotion-js/emotion/commit/8a896a31434a1d2f69e1f1467c446c884c929387), [`5c55fd17`](https://github.com/emotion-js/emotion/commit/5c55fd17dcaec84d1f5d5d13ae90dd336d7e4403), [`a085003d`](https://github.com/emotion-js/emotion/commit/a085003d4c8ca284c116668d7217fb747802ed85), [`5d692a6a`](https://github.com/emotion-js/emotion/commit/5d692a6a8102b3faabefb773dd0145b123668a07), [`c6431074`](https://github.com/emotion-js/emotion/commit/c6431074cf52a4bb64587c86ce5d42fe2d49230b)]:
+  - @emotion/serialize@1.0.0
+
 ## 11.0.0-rc.0
 
 ### Major Changes
