@@ -59,90 +59,95 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
   return newProps
 }
 
-let Emotion = withEmotionCache<any, any>((props, cache, ref) => {
-  let cssProp = props.css
+let Emotion = /* #__PURE__ */ withEmotionCache<any, any>(
+  (props, cache, ref) => {
+    let cssProp = props.css
 
-  // so that using `css` from `emotion` and passing the result to the css prop works
-  // not passing the registered cache to serializeStyles because it would
-  // make certain babel optimisations not possible
-  if (typeof cssProp === 'string' && cache.registered[cssProp] !== undefined) {
-    cssProp = cache.registered[cssProp]
-  }
-
-  let type = props[typePropName]
-  let registeredStyles = [cssProp]
-  let className = ''
-
-  if (typeof props.className === 'string') {
-    className = getRegisteredStyles(
-      cache.registered,
-      registeredStyles,
-      props.className
-    )
-  } else if (props.className != null) {
-    className = `${props.className} `
-  }
-
-  let serialized = serializeStyles(
-    registeredStyles,
-    undefined,
-    typeof cssProp === 'function' || Array.isArray(cssProp)
-      ? React.useContext(ThemeContext)
-      : undefined
-  )
-
-  if (
-    process.env.NODE_ENV !== 'production' &&
-    serialized.name.indexOf('-') === -1
-  ) {
-    let labelFromStack = props[labelPropName]
-    if (labelFromStack) {
-      serialized = serializeStyles([
-        serialized,
-        'label:' + labelFromStack + ';'
-      ])
-    }
-  }
-  const rules = insertStyles(cache, serialized, typeof type === 'string')
-  className += `${cache.key}-${serialized.name}`
-
-  const newProps = {}
-  for (let key in props) {
+    // so that using `css` from `emotion` and passing the result to the css prop works
+    // not passing the registered cache to serializeStyles because it would
+    // make certain babel optimisations not possible
     if (
-      hasOwnProperty.call(props, key) &&
-      key !== 'css' &&
-      key !== typePropName &&
-      (process.env.NODE_ENV === 'production' || key !== labelPropName)
+      typeof cssProp === 'string' &&
+      cache.registered[cssProp] !== undefined
     ) {
-      newProps[key] = props[key]
+      cssProp = cache.registered[cssProp]
     }
-  }
-  newProps.ref = ref
-  newProps.className = className
 
-  const ele = React.createElement(type, newProps)
-  if (!isBrowser && rules !== undefined) {
-    let serializedNames = serialized.name
-    let next = serialized.next
-    while (next !== undefined) {
-      serializedNames += ' ' + next.name
-      next = next.next
+    let type = props[typePropName]
+    let registeredStyles = [cssProp]
+    let className = ''
+
+    if (typeof props.className === 'string') {
+      className = getRegisteredStyles(
+        cache.registered,
+        registeredStyles,
+        props.className
+      )
+    } else if (props.className != null) {
+      className = `${props.className} `
     }
-    return (
-      <>
-        <style
-          {...{
-            [`data-emotion`]: `${cache.key} ${serializedNames}`,
-            dangerouslySetInnerHTML: { __html: rules },
-            nonce: cache.sheet.nonce
-          }}
-        />
-        {ele}
-      </>
+
+    let serialized = serializeStyles(
+      registeredStyles,
+      undefined,
+      typeof cssProp === 'function' || Array.isArray(cssProp)
+        ? React.useContext(ThemeContext)
+        : undefined
     )
+
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      serialized.name.indexOf('-') === -1
+    ) {
+      let labelFromStack = props[labelPropName]
+      if (labelFromStack) {
+        serialized = serializeStyles([
+          serialized,
+          'label:' + labelFromStack + ';'
+        ])
+      }
+    }
+    const rules = insertStyles(cache, serialized, typeof type === 'string')
+    className += `${cache.key}-${serialized.name}`
+
+    const newProps = {}
+    for (let key in props) {
+      if (
+        hasOwnProperty.call(props, key) &&
+        key !== 'css' &&
+        key !== typePropName &&
+        (process.env.NODE_ENV === 'production' || key !== labelPropName)
+      ) {
+        newProps[key] = props[key]
+      }
+    }
+    newProps.ref = ref
+    newProps.className = className
+
+    const ele = React.createElement(type, newProps)
+    if (!isBrowser && rules !== undefined) {
+      let serializedNames = serialized.name
+      let next = serialized.next
+      while (next !== undefined) {
+        serializedNames += ' ' + next.name
+        next = next.next
+      }
+      return (
+        <>
+          <style
+            {...{
+              [`data-emotion`]: `${cache.key} ${serializedNames}`,
+              dangerouslySetInnerHTML: { __html: rules },
+              nonce: cache.sheet.nonce
+            }}
+          />
+          {ele}
+        </>
+      )
+    }
+    return ele
   }
-  return ele
-})
+)
 
 if (process.env.NODE_ENV !== 'production') {
   Emotion.displayName = 'EmotionCssPropInternal'
