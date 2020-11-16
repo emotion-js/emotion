@@ -1,18 +1,20 @@
 <p align="center" style="color: #343a40">
-  <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" height="150" width="150">
+  <img src="https://raw.githubusercontent.com/emotion-js/emotion/master/emotion.png" alt="Emotion logo" height="150" width="150">
   <h1 align="center">emotion</h1>
 </p>
 <p align="center" style="font-size: 1.2rem;">The Next Generation of CSS-in-JS</p>
 
-> **Need support upgrading to Emotion 10? [See the migration guide](https://emotion.sh/docs/migrating-to-emotion-10)**
+> **Emotion 11 has been released 🚀 [See the blog post](https://emotion.sh/docs/emotion-11)**
 
 [![Backers on Open Collective](https://opencollective.com/emotion/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/emotion/sponsors/badge.svg)](#sponsors) [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://img.shields.io/circleci/project/github/emotion-js/emotion/master.svg)](https://circleci.com/gh/emotion-js/emotion)
 [![codecov](https://codecov.io/gh/emotion-js/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/emotion-js/emotion)
-![core size](https://img.shields.io/bundlephobia/min/emotion.svg?label=core%20size)
-![core gzip size](https://img.shields.io/bundlephobia/minzip/emotion.svg?label=core%20gzip%20size)
-![react size](https://img.shields.io/bundlephobia/min/@emotion/styled-base.svg?label=react%20size)
-![react gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/styled-base.svg?label=react%20gzip%20size)
+![@emotion/css size](https://img.shields.io/bundlephobia/min/@emotion/css.svg?label=@emotion/css%20size)
+![@emotion/css gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/css.svg?label=@emotion/css%20gzip%20size)
+![@emotion/react size](https://img.shields.io/bundlephobia/min/@emotion/react.svg?label=@emotion/react%20size)
+![@emotion/react gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/react.svg?label=@emotion/react%20gzip%20size)
+![@emotion/styled size](https://img.shields.io/bundlephobia/min/@emotion/styled.svg?label=@emotion/styled%20size)
+![@emotion/styled gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/styled.svg?label=@emotion/styled%20gzip%20size)
 [![slack](https://emotion-slack.now.sh/badge.svg)](https://emotion-slack.now.sh/)
 [![spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/emotion)
 
