@@ -31,10 +31,6 @@ export function createSerializer(
   options?: CreateSerializerOptions
 ): SnapshotSerializerPlugin
 
-export function createEnzymeSerializer(
-  options?: CreateSerializerOptions
-): SnapshotSerializerPlugin
-
 declare global {
   namespace jest {
     interface Matchers<R, T> {
