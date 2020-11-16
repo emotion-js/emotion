@@ -13,11 +13,13 @@
     "dist",
     "jsx-runtime",
     "jsx-dev-runtime",
+    "isolated-hoist-non-react-statics-do-not-use-this-in-your-code",
     "types/*.d.ts",
     "macro.js",
     "macro.d.ts",
     "macro.js.flow"
   ],
+  "sideEffects": false,
   "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
   "license": "MIT",
   "scripts": {
@@ -65,7 +67,8 @@
     "entrypoints": [
       "./index.js",
       "./jsx-runtime.js",
-      "./jsx-dev-runtime.js"
+      "./jsx-dev-runtime.js",
+      "./isolated-hoist-non-react-statics-do-not-use-this-in-your-code.js"
     ],
     "umdName": "emotionReact"
   }
