@@ -1,5 +1,11 @@
 # @emotion/react
 
+## 11.1.0
+
+### Patch Changes
+
+- [`0e465d1c`](https://github.com/emotion-js/emotion/commit/0e465d1c46619409f8f9a5123451243dd3b31e9b) [#2101](https://github.com/emotion-js/emotion/pull/2101) Thanks [@Andarist](https://github.com/Andarist)! - Improved tree-shakeability of the package. The main benefit is that bundlers should be able now to drop [`hoist-non-react-statics`](https://github.com/mridgway/hoist-non-react-statics) if you don't actually use our `withTheme` export.
+
 ## 11.0.0
 
 ### Major Changes
