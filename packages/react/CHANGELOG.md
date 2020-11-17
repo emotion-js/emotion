@@ -1,5 +1,11 @@
 # @emotion/react
 
+## 11.1.1
+
+### Patch Changes
+
+- [`fdd46bdf`](https://github.com/emotion-js/emotion/commit/fdd46bdf71f6a0aa9c8401ca91b38d48849cece5) [#2112](https://github.com/emotion-js/emotion/pull/2112) Thanks [@Andarist](https://github.com/Andarist)! - Fixed the latest tree-shakeability improvements by adding `"sideEffects": false` to all internal `package.json` files as well. This fixes [`hoist-non-react-statics`](https://github.com/mridgway/hoist-non-react-statics) not being dropped correctly despite of the latest improvements.
+
 ## 11.1.0
 
 ### Patch Changes
