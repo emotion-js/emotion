@@ -7,6 +7,7 @@
     "./dist/emotion-react-jsx-dev-runtime.esm.js": "./dist/emotion-react-jsx-dev-runtime.browser.esm.js"
   },
   "types": "../types/jsx-dev-runtime",
+  "sideEffects": false,
   "preconstruct": {
     "umdName": "emotionReactJSXDevRuntime"
   }
