@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 11.1.0
+
+### Minor Changes
+
+- [`c470c855`](https://github.com/emotion-js/emotion/commit/c470c8556a05e3af83b067c51cdd29f8655f7dbf) [#2109](https://github.com/emotion-js/emotion/pull/2109) Thanks [@Andarist](https://github.com/Andarist)! - `createEnzymeSerializer` export has been removed from the root entrypoint and moved to a dedicated `@emotion/jest/enzyme` entrypoint. This is unfortunate because it could be considered a breaking change but it has been decided to treat this as a bug fix. It was never the intention to export this from the root entrypoint - `enzyme-to-json` has been marked as an optional peer dependency of `@emotion/jest` since the release and it was the package structure that did not match this expectation by mistake.
+
 ## 11.0.0
 
 ### Major Changes
