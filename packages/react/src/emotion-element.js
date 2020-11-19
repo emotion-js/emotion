@@ -48,7 +48,7 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
       )
       if (!match) {
         // safari and firefox
-        match = error.stack.match(/.*\n([A-Z][A-Za-z$]+)@/)
+        match = error.stack.match(/.*\n([A-Z][A-Za-z0-9$]+)@/)
       }
       if (match) {
         newProps[labelPropName] = sanitizeIdentifier(match[1])
