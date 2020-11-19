@@ -186,6 +186,8 @@ const props = {
   autoSave: true,
   // color is for Safari mask-icon link
   color: true,
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/search#incremental_This_API_has_not_been_standardized
+  incremental: true,
   // https://html.spec.whatwg.org/multipage/interaction.html#inert
   inert: true,
   // itemProp, itemScope, itemType are for
