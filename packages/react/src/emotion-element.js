@@ -44,7 +44,7 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
     if (error.stack) {
       // chrome
       let match = error.stack.match(
-        /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z$]+) /
+        /at (?:Object\.|Module\.|)(?:jsx|createEmotionProps).*\n\s+at (?:Object\.|)([A-Z][A-Za-z0-9$]+) /
       )
       if (!match) {
         // safari and firefox
