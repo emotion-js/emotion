@@ -59,4 +59,4 @@ A DOM node that emotion will insert all of its style tags into. This is useful f
 
 `boolean`
 
-A string representing whether to prepend rather than append style tags into the specified container DOM node.
+A boolean representing whether to prepend rather than append style tags into the specified container DOM node.
