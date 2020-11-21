@@ -2,4 +2,4 @@
 '@emotion/react': patch
 ---
 
-Fix emotion label not being applied to components with numbers in name
+Improved label extraction from the stack traces. We should be able to extract labels from components with numbers in their names now.
