@@ -142,3 +142,7 @@ export const ClassNames: React.AbstractComponent<
   }
   return ele
 })
+
+if (process.env.NODE_ENV !== 'production') {
+  ClassNames.displayName = 'EmotionClassNames'
+}
