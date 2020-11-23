@@ -23,12 +23,19 @@ let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
   func: (props: Props, cache: EmotionCache, ref: Ref) => React.Node
 ): React.AbstractComponent<Props> {
   // $FlowFixMe
-  return forwardRef((props: Props, ref: Ref) => {
+  const component = forwardRef((props: Props, ref: Ref) => {
     // the cache will never be null in the browser
     let cache = ((useContext(EmotionCacheContext): any): EmotionCache)
 
     return func(props, cache, ref)
   })
+
+  if (process.env.NODE_ENV !== 'production') {
+    const componentName = func.displayName || func.name || 'Anonymous'
+    component.displayName = `WithEmotionCache(${componentName})`
+  }
+
+  return component
 }
 
 if (!isBrowser) {
