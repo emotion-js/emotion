@@ -20,7 +20,11 @@ let EmotionCacheContext: React.Context<EmotionCache | null> = /* #__PURE__ */ Re
 export let CacheProvider = EmotionCacheContext.Provider
 
 let withEmotionCache = function withEmotionCache<Props, Ref: React.Ref<*>>(
-  func: (props: Props, cache: EmotionCache, ref: Ref) => React.Node
+  func: (
+    props: Props,
+    cache: EmotionCache,
+    ref: Ref
+  ) => React.Node & { displayName?: string }
 ): React.AbstractComponent<Props> {
   // $FlowFixMe
   const component = forwardRef((props: Props, ref: Ref) => {
