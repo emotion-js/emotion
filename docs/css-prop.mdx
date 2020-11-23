@@ -57,15 +57,14 @@ In case you want to use the new JSX runtimes with [Next.js](https://nextjs.org/)
 ```json
 {
   "presets": [
+    'next/babel',
     [
-      "next/babel",
+      '@babel/preset-react',
       {
-        "preset-react": {
-          "runtime": "automatic",
-          "importSource": "@emotion/react"
-        }
-      }
-    ]
+        runtime: 'automatic',
+        importSource: '@emotion/react',
+      },
+    ],
   ],
   "plugins": ["@emotion/babel-plugin"]
 }
