@@ -2,8 +2,8 @@ import 'react'
 import { Interpolation } from '@emotion/serialize'
 import { Theme } from './index'
 
-type WithConditionalCSSProp<P> = 'className' extends keyof P
-  ? (P extends { className?: string } ? P & { css?: Interpolation<Theme> } : P)
+declare type WithConditionalCSSProp<P> = { className: string } extends P
+  ? P & { css?: Interpolation<Theme> }
   : P
 
 // unpack all here to avoid infinite self-referencing when defining our own JSX namespace
