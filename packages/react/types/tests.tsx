@@ -8,7 +8,7 @@ import {
   keyframes,
   withEmotionCache
 } from '@emotion/react'
-import { WithConditionalCSSProp } from './jsx-namespace'
+import { JSX as EmotionJSX } from '@emotion/react/jsx-runtime'
 
 declare module '@emotion/react' {
   // tslint:disable-next-line: strict-export-declare-modifiers
@@ -197,22 +197,37 @@ const anim1 = keyframes`
 
 // Tests for WithConditionalCSSProp
 {
-  type _HasCssPropAsIntended3 = WithConditionalCSSProp<{
-    className?: string
-  }>['css']
-  type _HasCssPropAsIntended4 = WithConditionalCSSProp<{
-    className: string
-  }>['css']
-  type _HasCssPropAsIntended5 = WithConditionalCSSProp<{
-    className?: unknown
-  }>['css']
-  type _HasCssPropAsIntended6 = WithConditionalCSSProp<{
-    className?: string | string[]
-  }>['css']
+  type _HasCssPropAsIntended3 = EmotionJSX.LibraryManagedAttributes<
+    {},
+    {
+      className?: string
+    }
+  >['css']
+  type _HasCssPropAsIntended4 = EmotionJSX.LibraryManagedAttributes<
+    {},
+    {
+      className: string
+    }
+  >['css']
+  type _HasCssPropAsIntended5 = EmotionJSX.LibraryManagedAttributes<
+    {},
+    {
+      className?: unknown
+    }
+  >['css']
+  type _HasCssPropAsIntended6 = EmotionJSX.LibraryManagedAttributes<
+    {},
+    {
+      className?: string | string[]
+    }
+  >['css']
 
-  const _noCssPropAsIntended1: 'css' extends keyof WithConditionalCSSProp<{
-    className?: undefined
-  }>
+  const _noCssPropAsIntended1: 'css' extends keyof EmotionJSX.LibraryManagedAttributes<
+    {},
+    {
+      className?: undefined
+    }
+  >
     ? true
     : false = false
 }
