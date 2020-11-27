@@ -8,6 +8,7 @@ import {
   keyframes,
   withEmotionCache
 } from '@emotion/react'
+import { WithConditionalCSSProp } from './jsx-namespace'
 
 declare module '@emotion/react' {
   // tslint:disable-next-line: strict-export-declare-modifiers
@@ -159,14 +160,20 @@ const anim1 = keyframes`
 
   // TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
   // $ExpectError
-  ;<CompWithoutClassNameSupport prop1="test" css={{ backgroundColor: 'hotpink' }} />
+  ;<CompWithoutClassNameSupport
+    prop1="test"
+    css={{ backgroundColor: 'hotpink' }}
+  />
 
   const MemoedCompWithoutClassNameSupport = React.memo(
     CompWithoutClassNameSupport
   )
   // TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
   // $ExpectError
-  ;<MemoedCompWithoutClassNameSupport prop1="test" css={{ backgroundColor: 'hotpink' }} />
+  ;<MemoedCompWithoutClassNameSupport
+    prop1="test"
+    css={{ backgroundColor: 'hotpink' }}
+  />
 }
 
 {
@@ -181,6 +188,31 @@ const anim1 = keyframes`
   // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/40993
   // this is really problematic behaviour by @types/react IMO
   // but it's what @types/react does so let's not break it.
-  const CompWithImplicitChildren: React.FC = () => null;
-  ;<CompWithImplicitChildren>content<div/></CompWithImplicitChildren>
+  const CompWithImplicitChildren: React.FC = () => null
+  ;<CompWithImplicitChildren>
+    content
+    <div />
+  </CompWithImplicitChildren>
+}
+
+// Tests for WithConditionalCSSProp
+{
+  type _HasCssPropAsIntended3 = WithConditionalCSSProp<{
+    className?: string
+  }>['css']
+  type _HasCssPropAsIntended4 = WithConditionalCSSProp<{
+    className: string
+  }>['css']
+  type _HasCssPropAsIntended5 = WithConditionalCSSProp<{
+    className?: unknown
+  }>['css']
+  type _HasCssPropAsIntended6 = WithConditionalCSSProp<{
+    className?: string | string[]
+  }>['css']
+
+  const _noCssPropAsIntended1: 'css' extends keyof WithConditionalCSSProp<{
+    className?: undefined
+  }>
+    ? true
+    : false = false
 }
