@@ -2,7 +2,7 @@ import 'react'
 import { Interpolation } from '@emotion/serialize'
 import { Theme } from './index'
 
-declare type WithConditionalCSSProp<P> = { className: string } extends P
+type WithConditionalCSSProp<P> = { className: string } extends P
   ? P & { css?: Interpolation<Theme> }
   : P
 
