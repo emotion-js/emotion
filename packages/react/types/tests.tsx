@@ -160,20 +160,14 @@ const anim1 = keyframes`
 
   // TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
   // $ExpectError
-  ;<CompWithoutClassNameSupport
-    prop1="test"
-    css={{ backgroundColor: 'hotpink' }}
-  />
+  ;<CompWithoutClassNameSupport prop1="test" css={{ color: 'hotpink' }} />
 
   const MemoedCompWithoutClassNameSupport = React.memo(
     CompWithoutClassNameSupport
   )
   // TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
   // $ExpectError
-  ;<MemoedCompWithoutClassNameSupport
-    prop1="test"
-    css={{ backgroundColor: 'hotpink' }}
-  />
+  ;<MemoedCompWithoutClassNameSupport prop1="test" css={{ color: 'hotpink' }} />
 }
 
 {
