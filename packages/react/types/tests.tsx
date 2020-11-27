@@ -218,7 +218,7 @@ const anim1 = keyframes`
   type _HasCssPropAsIntended6 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
-      className?: string | string[]
+      className?: string | Array<string>
     }
   >['css']
 
