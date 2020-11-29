@@ -191,24 +191,31 @@ const anim1 = keyframes`
 
 // Tests for WithConditionalCSSProp
 {
+  // $ExpectType Interpolation<Theme>
   type _HasCssPropAsIntended3 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
       className?: string
     }
   >['css']
+
+  // $ExpectType Interpolation<Theme>
   type _HasCssPropAsIntended4 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
       className: string
     }
   >['css']
+
+  // $ExpectType Interpolation<Theme>
   type _HasCssPropAsIntended5 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
       className?: unknown
     }
   >['css']
+
+  // $ExpectType Interpolation<Theme>
   type _HasCssPropAsIntended6 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
@@ -216,12 +223,11 @@ const anim1 = keyframes`
     }
   >['css']
 
-  const _noCssPropAsIntended1: 'css' extends keyof EmotionJSX.LibraryManagedAttributes<
+  // $ExpectType false
+  type _NoCssPropAsIntended1 = 'css' extends keyof EmotionJSX.LibraryManagedAttributes<
     {},
-    {
-      className?: undefined
-    }
+    { className?: undefined }
   >
     ? true
-    : false = false
+    : false
 }
