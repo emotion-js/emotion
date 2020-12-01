@@ -119,8 +119,8 @@ function replacePlaceholdersWithExpressions(
   })
 
   return interleave(strings, finalExpressions).filter(
-    (node: { value: string }) => {
-      return node.value !== ''
+    (node?: { value: string }) => {
+      return node && node.value !== ''
     }
   )
 }
