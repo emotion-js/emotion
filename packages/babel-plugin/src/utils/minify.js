@@ -106,10 +106,11 @@ function replacePlaceholdersWithExpressions(
   matches.forEach(({ value, p1, index }, i) => {
     const preMatch = str.substring(cursor, index)
     cursor = cursor + preMatch.length + value.length
-    if (preMatch) {
-      strings.push(t.stringLiteral(preMatch))
-    } else if (i === 0) {
+
+    if (!preMatch && i === 0) {
       strings.push(t.stringLiteral(''))
+    } else {
+      strings.push(t.stringLiteral(preMatch))
     }
 
     finalExpressions.push(expressions[p1])

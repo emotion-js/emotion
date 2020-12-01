@@ -690,6 +690,38 @@ const H1 = _styled(\\"h1\\", {
 }, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNob3J0aGFuZC1wcm9wZXJ0eS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFJVyIsImZpbGUiOiJzaG9ydGhhbmQtcHJvcGVydHkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcblxubGV0IGZvbnRTaXplID0gd2luZG93LndoYXRldmVyXG5cbmNvbnN0IEgxID0gc3R5bGVkLmgxKHsgZm9udFNpemUgfSlcbiJdfQ== */\\");"
 `;
 
+exports[`@emotion/styled.macro two-consecutive-interpolations 1`] = `
+"import styled from '@emotion/styled/macro'
+import { css } from '@emotion/react'
+
+const H1 = styled.h1\`
+  \${props =>
+    css\`
+      color: red;
+    \`}
+  /* dummy comment */
+  \${props =>
+    css\`
+      text-transform: uppercase;
+    \`}
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+import { css } from '@emotion/react';
+
+const H1 = _styled(\\"h1\\", {
+  target: \\"e45grep0\\",
+  label: \\"H1\\"
+})(props => css\`
+      color: red;
+    \`, props => css\`
+      text-transform: uppercase;
+    \`, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInR3by1jb25zZWN1dGl2ZS1pbnRlcnBvbGF0aW9ucy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0IiLCJmaWxlIjoidHdvLWNvbnNlY3V0aXZlLWludGVycG9sYXRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgSDEgPSBzdHlsZWQuaDFgXG4gICR7cHJvcHMgPT5cbiAgICBjc3NgXG4gICAgICBjb2xvcjogcmVkO1xuICAgIGB9XG4gIC8qIGR1bW15IGNvbW1lbnQgKi9cbiAgJHtwcm9wcyA9PlxuICAgIGNzc2BcbiAgICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG4gICAgYH1cbmBcbiJdfQ== */\\"));"
+`;
+
 exports[`@emotion/styled.macro with-spread 1`] = `
 "import styled from '@emotion/styled/macro'
 
