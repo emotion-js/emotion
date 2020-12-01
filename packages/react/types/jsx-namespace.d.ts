@@ -3,7 +3,9 @@ import { Interpolation } from '@emotion/serialize'
 import { Theme } from './index'
 
 type WithConditionalCSSProp<P> = 'className' extends keyof P
-  ? (P extends { className?: string } ? P & { css?: Interpolation<Theme> } : P)
+  ? string extends P['className' & keyof P]
+    ? P & { css?: Interpolation<Theme> }
+    : P
   : P
 
 // unpack all here to avoid infinite self-referencing when defining our own JSX namespace
