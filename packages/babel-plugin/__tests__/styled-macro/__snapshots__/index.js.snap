@@ -304,50 +304,6 @@ let Avatar = _styled(\\"img\\", {
 })(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZ1bmN0aW9uLWludGVycG9sYXRpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRXVCIiwiZmlsZSI6ImZ1bmN0aW9uLWludGVycG9sYXRpb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcblxubGV0IEF2YXRhciA9IHN0eWxlZC5pbWdgXG4gIHdpZHRoOiA5NnB4O1xuICBoZWlnaHQ6IDk2cHg7XG4gIGJvcmRlci1yYWRpdXM6ICR7cHJvcHMgPT4gcHJvcHMudGhlbWUuYm9yZGVyUmFkaXVzfTtcbiAgYm9yZGVyOiAxcHggc29saWQgJHtwcm9wcyA9PiBwcm9wcy50aGVtZS5ib3JkZXJDb2xvcn07XG5gXG4iXX0= */\\"));"
 `;
 
-exports[`@emotion/styled.macro interpolate-end 1`] = `
-"import styled from '@emotion/styled/macro'
-
-// yes, this was actually a bug at one point
-const H1 = styled.h1\`
-  text-decoration: \${'underline'};
-  border-right: solid blue \${54}px;
-  background: \${'white'};
-  color: \${'black'};
-  display: \${'block'};
-  border-radius: \${'3px'};
-  padding: \${'25px'};
-  width: \${'500px'};
-  z-index: \${100};
-  font-size: \${'18px'};
-  text-align: \${'center'};
-
-  \${props =>
-    css\`
-      color: red;
-    \`}
-  /* dummy comment */
-  \${props =>
-    css\`
-      text-transform: uppercase;
-    \`}
-\`
-
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import _styled from \\"@emotion/styled/base\\";
-
-// yes, this was actually a bug at one point
-const H1 = _styled(\\"h1\\", {
-  target: \\"e1wugfgs0\\",
-  label: \\"H1\\"
-})(\\"text-decoration:underline;border-right:solid blue \\", 54, \\"px;background:white;color:black;display:block;border-radius:3px;padding:25px;width:500px;z-index:\\", 100, \\";font-size:18px;text-align:center;\\", props => css\`
-      color: red;
-    \`, \\";\\", props => css\`
-      text-transform: uppercase;
-    \`, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImludGVycG9sYXRlLWVuZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0IiLCJmaWxlIjoiaW50ZXJwb2xhdGUtZW5kLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5cbi8vIHllcywgdGhpcyB3YXMgYWN0dWFsbHkgYSBidWcgYXQgb25lIHBvaW50XG5jb25zdCBIMSA9IHN0eWxlZC5oMWBcbiAgdGV4dC1kZWNvcmF0aW9uOiAkeyd1bmRlcmxpbmUnfTtcbiAgYm9yZGVyLXJpZ2h0OiBzb2xpZCBibHVlICR7NTR9cHg7XG4gIGJhY2tncm91bmQ6ICR7J3doaXRlJ307XG4gIGNvbG9yOiAkeydibGFjayd9O1xuICBkaXNwbGF5OiAkeydibG9jayd9O1xuICBib3JkZXItcmFkaXVzOiAkeyczcHgnfTtcbiAgcGFkZGluZzogJHsnMjVweCd9O1xuICB3aWR0aDogJHsnNTAwcHgnfTtcbiAgei1pbmRleDogJHsxMDB9O1xuICBmb250LXNpemU6ICR7JzE4cHgnfTtcbiAgdGV4dC1hbGlnbjogJHsnY2VudGVyJ307XG5cbiAgJHtwcm9wcyA9PlxuICAgIGNzc2BcbiAgICAgIGNvbG9yOiByZWQ7XG4gICAgYH1cbiAgLyogZHVtbXkgY29tbWVudCAqL1xuICAke3Byb3BzID0+XG4gICAgY3NzYFxuICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgICBgfVxuYFxuIl19 */\\");"
-`;
-
 exports[`@emotion/styled.macro label 1`] = `
 "/** @jsx jsx */
 /* eslint-disable react/jsx-pascal-case */
@@ -732,6 +688,38 @@ const H1 = _styled(\\"h1\\", {
 })({
   fontSize
 }, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNob3J0aGFuZC1wcm9wZXJ0eS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFJVyIsImZpbGUiOiJzaG9ydGhhbmQtcHJvcGVydHkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcblxubGV0IGZvbnRTaXplID0gd2luZG93LndoYXRldmVyXG5cbmNvbnN0IEgxID0gc3R5bGVkLmgxKHsgZm9udFNpemUgfSlcbiJdfQ== */\\");"
+`;
+
+exports[`@emotion/styled.macro two-consecutive-interpolations 1`] = `
+"import styled from '@emotion/styled/macro'
+import { css } from '@emotion/react'
+
+const H1 = styled.h1\`
+  \${props =>
+    css\`
+      color: red;
+    \`}
+  /* dummy comment */
+  \${props =>
+    css\`
+      text-transform: uppercase;
+    \`}
+\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+import { css } from '@emotion/react';
+
+const H1 = _styled(\\"h1\\", {
+  target: \\"e45grep0\\",
+  label: \\"H1\\"
+})(props => css\`
+      color: red;
+    \`, props => css\`
+      text-transform: uppercase;
+    \`, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInR3by1jb25zZWN1dGl2ZS1pbnRlcnBvbGF0aW9ucy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0IiLCJmaWxlIjoidHdvLWNvbnNlY3V0aXZlLWludGVycG9sYXRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgSDEgPSBzdHlsZWQuaDFgXG4gICR7cHJvcHMgPT5cbiAgICBjc3NgXG4gICAgICBjb2xvcjogcmVkO1xuICAgIGB9XG4gIC8qIGR1bW15IGNvbW1lbnQgKi9cbiAgJHtwcm9wcyA9PlxuICAgIGNzc2BcbiAgICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG4gICAgYH1cbmBcbiJdfQ== */\\"));"
 `;
 
 exports[`@emotion/styled.macro with-spread 1`] = `
