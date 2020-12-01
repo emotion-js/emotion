@@ -2,4 +2,4 @@
 '@emotion/react': patch
 ---
 
-Add `css` prop to all types of props with className: string
+Fixed an issue with `css` prop type not being added to all components that accept a string `className` correctly.
