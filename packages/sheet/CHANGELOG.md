@@ -1,5 +1,11 @@
 # @emotion/sheet
 
+## 1.0.1
+
+### Patch Changes
+
+- [`5469d003`](https://github.com/emotion-js/emotion/commit/5469d0034d055a34587e9d05332f6da4d4722b1c) [#2149](https://github.com/emotion-js/emotion/pull/2149) Thanks [@Andarist](https://github.com/Andarist)! - Do not log failed rule insertions in the speedy mode for vendor-prefixed pseudo-elements/classes like `::-moz-placeholder`.
+
 ## 1.0.0
 
 ### Major Changes
