@@ -2,4 +2,4 @@
 '@emotion/react': patch
 ---
 
-Add displayNames to Global, ClassNames and component returned from withEmotionCache to prevent components being labeled as Anonymous.
+`displayName`s have been added to `Global` and `ClassNames` components so React Developer Tools should display those better now.
