@@ -29,6 +29,14 @@ exports[`injectGlobal nested interpolated media query 1`] = `
 }"
 `;
 
+exports[`injectGlobal pseudo in @media 1`] = `
+"@media (min-width: 300px) {
+  .header:after {
+    content: '';
+  }
+}"
+`;
+
 exports[`injectGlobal random interpolation 1`] = `
 ".css-1002tid-cls {
   display: -webkit-box;
