@@ -73,6 +73,7 @@ export let compat = element => {
 
   while (parent.type !== 'rule') {
     parent = parent.parent
+    if (!parent) return
   }
 
   // short-circuit for the simplest case
