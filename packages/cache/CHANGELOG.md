@@ -1,5 +1,11 @@
 # @emotion/cache
 
+## 11.1.3
+
+### Patch Changes
+
+- [`704b0092`](https://github.com/emotion-js/emotion/commit/704b0092ebba648c3937cc281e4d549565968201) [#2180](https://github.com/emotion-js/emotion/pull/2180) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with global styles containing pseudo selectors in at-rules not being able to be inserted.
+
 ## 11.0.0
 
 ### Major Changes
