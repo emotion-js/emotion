@@ -24,8 +24,8 @@
     "stylis": "^4.0.6"
   },
   "peerDependencies": {
-    "@types/jest": "^26.0.14",
-    "enzyme-to-json": "^3.2.1"
+    "@types/jest": "^26.0.19",
+    "enzyme-to-json": "^3.6.1"
   },
   "peerDependenciesMeta": {
     "@types/jest": {
@@ -41,9 +41,9 @@
     "@types/jest": "^26.0.19",
     "dtslint": "^4.0.6",
     "enzyme-to-json": "^3.6.1",
-    "preact": "^8.2.9",
+    "preact": "^10.5.7",
     "preact-render-to-json": "^3.6.6",
-    "pretty-format": "^22.4.3",
+    "pretty-format": "^26.6.2",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },

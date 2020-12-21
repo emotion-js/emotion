@@ -34,7 +34,6 @@
     "@emotion/weak-memoize": "^0.2.5",
     "esbuild": "^0.8.26",
     "hoist-non-react-statics": "^3.3.2",
-    "microbundle": "^0.13.0",
     "typescript": "^4.1.3"
   },
   "peerDependencies": {
