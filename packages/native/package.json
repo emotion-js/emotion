@@ -5,7 +5,8 @@
   "main": "dist/emotion-native.cjs.js",
   "module": "dist/emotion-native.esm.js",
   "scripts": {
-    "test:typescript": "dtslint types"
+    "test:typescript": "dtslint types",
+ "build": "microbundle build"
   },
   "files": [
     "src",

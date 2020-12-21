@@ -12,7 +12,8 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/cache",
   "scripts": {
-    "test:typescript": "dtslint types"
+    "test:typescript": "dtslint types",
+ "build": "microbundle build"
   },
   "dependencies": {
     "@emotion/memoize": "^0.7.5",

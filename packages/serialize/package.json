@@ -11,14 +11,15 @@
     "access": "public"
   },
   "scripts": {
-    "test:typescript": "dtslint types"
+    "test:typescript": "dtslint types",
+ "build": "microbundle build"
   },
   "dependencies": {
     "@emotion/hash": "^0.8.0",
-    "@emotion/memoize": "^0.7.4",
+    "@emotion/memoize": "^0.7.5",
     "@emotion/unitless": "^0.7.5",
     "@emotion/utils": "^1.0.0",
-    "csstype": "^3.0.2"
+    "csstype": "^3.0.5"
   },
   "devDependencies": {
     "dtslint": "^4.0.6"

@@ -3,7 +3,7 @@ import * as React from 'react'
 import type { Compiler, Scope } from './types'
 import { compileAndEvaluate, evaluate } from './compile'
 export { default as compile } from './compiler'
-export { default as Editor } from 'react-live/lib/components/Editor'
+export { default as Editor } from 'react-live'
 
 type Props = {
   code: string,

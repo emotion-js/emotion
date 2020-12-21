@@ -1,55 +1,34 @@
-/* eslint-disable */
-// Inspired by https://github.com/garycourt/murmurhash-js
-// Ported from https://github.com/aappleby/smhasher/blob/61a0530f28277f2e850bfc39600ce61d02b518de/src/MurmurHash2.cpp#L37-L86
-function murmur2(str) {
-  // 'm' and 'r' are mixing constants generated offline.
-  // They're not really 'magic', they just happen to work well.
-  // const m = 0x5bd1e995;
-  // const r = 24;
-  // Initialize the hash
-  var h = 0; // Mix 4 bytes at a time into the hash
-
-  var k,
-      i = 0,
-      len = str.length;
-
-  for (; len >= 4; ++i, len -= 4) {
-    k = str.charCodeAt(i) & 0xff | (str.charCodeAt(++i) & 0xff) << 8 | (str.charCodeAt(++i) & 0xff) << 16 | (str.charCodeAt(++i) & 0xff) << 24;
-    k =
-    /* Math.imul(k, m): */
-    (k & 0xffff) * 0x5bd1e995 + ((k >>> 16) * 0xe995 << 16);
-    k ^=
-    /* k >>> r: */
-    k >>> 24;
-    h =
-    /* Math.imul(k, m): */
-    (k & 0xffff) * 0x5bd1e995 + ((k >>> 16) * 0xe995 << 16) ^
-    /* Math.imul(h, m): */
-    (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
-  } // Handle the last few bytes of the input array
-
-
-  switch (len) {
+function t(t) {
+  for (var e, r = 0, a = 0, c = t.length; c >= 4; ++a, c -= 4)
+    (e =
+      1540483477 *
+        (65535 &
+          (e =
+            (255 & t.charCodeAt(a)) |
+            ((255 & t.charCodeAt(++a)) << 8) |
+            ((255 & t.charCodeAt(++a)) << 16) |
+            ((255 & t.charCodeAt(++a)) << 24))) +
+      ((59797 * (e >>> 16)) << 16)),
+      (r =
+        (1540483477 * (65535 & (e ^= e >>> 24)) +
+          ((59797 * (e >>> 16)) << 16)) ^
+        (1540483477 * (65535 & r) + ((59797 * (r >>> 16)) << 16)))
+  switch (c) {
     case 3:
-      h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
-
+      r ^= (255 & t.charCodeAt(a + 2)) << 16
     case 2:
-      h ^= (str.charCodeAt(i + 1) & 0xff) << 8;
-
+      r ^= (255 & t.charCodeAt(a + 1)) << 8
     case 1:
-      h ^= str.charCodeAt(i) & 0xff;
-      h =
-      /* Math.imul(h, m): */
-      (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
-  } // Do a few final mixes of the hash to ensure the last few
-  // bytes are well-incorporated.
-
-
-  h ^= h >>> 13;
-  h =
-  /* Math.imul(h, m): */
-  (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
-  return ((h ^ h >>> 15) >>> 0).toString(36);
+      r =
+        1540483477 * (65535 & (r ^= 255 & t.charCodeAt(a))) +
+        ((59797 * (r >>> 16)) << 16)
+  }
+  return (
+    ((r =
+      1540483477 * (65535 & (r ^= r >>> 13)) + ((59797 * (r >>> 16)) << 16)) ^
+      (r >>> 15)) >>>
+    0
+  ).toString(36)
 }
-
-export default murmur2;
+export default t
+//# sourceMappingURL=emotion-hash.esm.js.map

@@ -8,7 +8,8 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/memoize",
   "scripts": {
-    "test:typescript": "dtslint types"
+    "test:typescript": "dtslint types",
+ "build": "microbundle build"
   },
   "publishConfig": {
     "access": "public"

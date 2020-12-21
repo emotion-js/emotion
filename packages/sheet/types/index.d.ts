@@ -1,24 +1,22 @@
-// Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.0
-
-export interface Options {
+export type Options = {
   nonce?: string
   key: string
   container: HTMLElement
   speedy?: boolean
   prepend?: boolean
 }
-
 export class StyleSheet {
+  constructor(options: Options)
   isSpeedy: boolean
   ctr: number
-  tags: Array<HTMLStyleElement>
+  tags: HTMLStyleElement[]
   container: HTMLElement
   key: string
-  nonce?: string
-  before?: Element | null
-  constructor(options?: Options)
+  nonce: string | void
+  prepend: boolean | void
+  before: Element | null
+  _insertTag: (tag: HTMLStyleElement) => void
+  hydrate(nodes: HTMLStyleElement[]): void
   insert(rule: string): void
   flush(): void
-  hydrate(nodes: Array<HTMLStyleElement>): void
 }

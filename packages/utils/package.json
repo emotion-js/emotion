@@ -11,7 +11,8 @@
   "types": "types/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "test:typescript": "dtslint types"
+    "test:typescript": "dtslint types",
+ "build": "microbundle build"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/utils",
   "publishConfig": {

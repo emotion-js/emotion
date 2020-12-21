@@ -1,8 +1,9 @@
-// Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.8
-
-import { EmotionServer } from '@emotion/server/create-instance'
-
-export const renderStylesToString: EmotionServer['renderStylesToString']
-export const renderStylesToNodeStream: EmotionServer['renderStylesToNodeStream']
-export const extractCritical: EmotionServer['extractCritical']
+export const extractCritical: (
+  html: string
+) => {
+  html: string
+  ids: any[]
+  css: string
+}
+export const renderStylesToString: (html: string) => string
+export const renderStylesToNodeStream: () => any

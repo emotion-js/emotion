@@ -1,41 +1,11 @@
-// Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 2.2
-import { EmotionCache } from '@emotion/utils'
-
-export { EmotionCache }
-
-export interface StylisElement {
-  type: string
-  value: string
-  props: Array<string>
-  root: StylisElement | null
-  children: Array<StylisElement>
-  line: number
-  column: number
-  length: number
-  return: string
-}
-export type StylisPluginCallback = (
-  element: StylisElement,
-  index: number,
-  children: Array<StylisElement>,
-  callback: StylisPluginCallback
-) => string | undefined
-
-export type StylisPlugin = (
-  element: StylisElement,
-  index: number,
-  children: Array<StylisElement>,
-  callback: StylisPluginCallback
-) => string | undefined
-
-export interface Options {
+export type Options = {
   nonce?: string
-  stylisPlugins?: Array<StylisPlugin>
+  stylisPlugins?: StylisPlugin[]
   key: string
   container?: HTMLElement
   speedy?: boolean
   prepend?: boolean
 }
-
-export default function createCache(options: Options): EmotionCache
+export default createCache
+import { StylisPlugin } from './types'
+declare function createCache(options: Options): any

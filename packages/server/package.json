@@ -11,7 +11,8 @@
     "create-instance"
   ],
   "scripts": {
-    "test:typescript": "dtslint types"
+    "test:typescript": "dtslint types",
+ "build": "microbundle build"
   },
   "dependencies": {
     "@emotion/utils": "^1.0.0",

@@ -1,16 +1,9 @@
-var weakMemoize = function weakMemoize(func) {
-  // $FlowFixMe flow doesn't include all non-primitive types as allowed for weakmaps
-  var cache = new WeakMap();
-  return function (arg) {
-    if (cache.has(arg)) {
-      // $FlowFixMe
-      return cache.get(arg);
-    }
-
-    var ret = func(arg);
-    cache.set(arg, ret);
-    return ret;
-  };
-};
-
-export default weakMemoize;
+export default function (e) {
+  var r = new WeakMap()
+  return function (t) {
+    if (r.has(t)) return r.get(t)
+    var n = e(t)
+    return r.set(t, n), n
+  }
+}
+//# sourceMappingURL=emotion-weak-memoize.esm.js.map

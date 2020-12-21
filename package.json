@@ -3,7 +3,7 @@
   "name": "emotion-monorepo",
   "version": "10.0.0",
   "scripts": {
-    "build": "yarn lerna run all microbundle --parallel",
+    "build": "yarn lerna run build --parallel",
     "test:size": "npm-run-all build size",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "test": "jest",

@@ -16,7 +16,8 @@
     "types/*.d.ts"
   ],
   "scripts": {
-    "test:typescript": "dtslint types"
+    "test:typescript": "dtslint types",
+ "build": "microbundle build"
   },
   "devDependencies": {
     "dtslint": "^4.0.6"

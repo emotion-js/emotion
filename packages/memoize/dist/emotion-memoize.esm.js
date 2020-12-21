@@ -1,9 +1,8 @@
-function memoize(fn) {
-  var cache = Object.create(null);
-  return function (arg) {
-    if (cache[arg] === undefined) cache[arg] = fn(arg);
-    return cache[arg];
-  };
+function t(t) {
+  var e = Object.create(null)
+  return function (n) {
+    return void 0 === e[n] && (e[n] = t(n)), e[n]
+  }
 }
-
-export default memoize;
+export default t
+//# sourceMappingURL=emotion-memoize.esm.js.map

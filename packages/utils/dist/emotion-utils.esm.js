@@ -1,49 +1,29 @@
-var isBrowser = typeof document !== 'undefined';
-function getRegisteredStyles(registered, registeredStyles, classNames) {
-  var rawClassName = '';
-  classNames.split(' ').forEach(function (className) {
-    if (registered[className] !== undefined) {
-      registeredStyles.push(registered[className] + ";");
-    } else {
-      rawClassName += className + " ";
-    }
-  });
-  return rawClassName;
+var e = 'undefined' != typeof document
+function i(e, i, r) {
+  var t = ''
+  return (
+    r.split(' ').forEach(function (r) {
+      void 0 !== e[r] ? i.push(e[r] + ';') : (t += r + ' ')
+    }),
+    t
+  )
 }
-var insertStyles = function insertStyles(cache, serialized, isStringTag) {
-  var className = cache.key + "-" + serialized.name;
-
-  if ( // we only need to add the styles to the registered cache if the
-  // class name could be used further down
-  // the tree but if it's a string tag, we know it won't
-  // so we don't have to add it to registered cache.
-  // this improves memory usage since we can avoid storing the whole style string
-  (isStringTag === false || // we need to always store it if we're in compat mode and
-  // in node since emotion-server relies on whether a style is in
-  // the registered cache to know whether a style is global or not
-  // also, note that this check will be dead code eliminated in the browser
-  isBrowser === false && cache.compat !== undefined) && cache.registered[className] === undefined) {
-    cache.registered[className] = serialized.styles;
-  }
-
-  if (cache.inserted[serialized.name] === undefined) {
-    var stylesForSSR = '';
-    var current = serialized;
-
+var r = function (i, r, t) {
+  var n = i.key + '-' + r.name
+  if (
+    ((!1 === t || (!1 === e && void 0 !== i.compat)) &&
+      void 0 === i.registered[n] &&
+      (i.registered[n] = r.styles),
+    void 0 === i.inserted[r.name])
+  ) {
+    var o = '',
+      d = r
     do {
-      var maybeStyles = cache.insert(serialized === current ? "." + className : '', current, cache.sheet, true);
-
-      if (!isBrowser && maybeStyles !== undefined) {
-        stylesForSSR += maybeStyles;
-      }
-
-      current = current.next;
-    } while (current !== undefined);
-
-    if (!isBrowser && stylesForSSR.length !== 0) {
-      return stylesForSSR;
-    }
+      var v = i.insert(r === d ? '.' + n : '', d, i.sheet, !0)
+      e || void 0 === v || (o += v), (d = d.next)
+    } while (void 0 !== d)
+    if (!e && 0 !== o.length) return o
   }
-};
-
-export { getRegisteredStyles, insertStyles };
+}
+export { i as getRegisteredStyles, r as insertStyles }
+//# sourceMappingURL=emotion-utils.esm.js.map

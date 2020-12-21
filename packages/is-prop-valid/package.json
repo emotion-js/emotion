@@ -8,7 +8,8 @@
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/is-prop-valid",
   "scripts": {
-    "test:typescript": "dtslint types"
+    "test:typescript": "dtslint types",
+ "build": "microbundle build"
   },
   "publishConfig": {
     "access": "public"

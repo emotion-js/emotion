@@ -1,362 +1,267 @@
-import { StyleSheet } from '@emotion/sheet';
-import { dealloc, alloc, next, token, from, peek, delimit, identifier, position, stringify, COMMENT, rulesheet, middleware, prefixer, serialize, compile } from 'stylis';
-import weakMemoize from '@emotion/weak-memoize';
-import memoize from '@emotion/memoize';
+import { StyleSheet as e } from '@emotion/sheet'
+import {
+  dealloc as t,
+  alloc as r,
+  next as n,
+  token as o,
+  from as a,
+  peek as i,
+  delimit as s,
+  identifier as u,
+  position as c,
+  stringify as l,
+  COMMENT as p,
+  rulesheet as f,
+  middleware as d,
+  prefixer as h,
+  serialize as m,
+  compile as v,
+} from 'stylis'
+import y from '@emotion/weak-memoize'
+import g from '@emotion/memoize'
+var E = new WeakMap(),
+  w = function (e) {
+    if ('rule' === e.type && e.parent && e.length) {
+      for (
+        var l = e.value,
+          p = e.parent,
+          f = e.column === p.column && e.line === p.line;
+        'rule' !== p.type;
 
-var last = function last(arr) {
-  return arr.length ? arr[arr.length - 1] : null;
-};
-
-var toRules = function toRules(parsed, points) {
-  // pretend we've started with a comma
-  var index = -1;
-  var character = 44;
-
-  do {
-    switch (token(character)) {
-      case 0:
-        // &\f
-        if (character === 38 && peek() === 12) {
-          // this is not 100% correct, we don't account for literal sequences here - like for example quoted strings
-          // stylis inserts \f after & to know when & where it should replace this sequence with the context selector
-          // and when it should just concatenate the outer and inner selectors
-          // it's very unlikely for this sequence to actually appear in a different context, so we just leverage this fact here
-          points[index] = 1;
-        }
-
-        parsed[index] += identifier(position - 1);
-        break;
-
-      case 2:
-        parsed[index] += delimit(character);
-        break;
-
-      case 4:
-        // comma
-        if (character === 44) {
-          // colon
-          parsed[++index] = peek() === 58 ? '&\f' : '';
-          points[index] = parsed[index].length;
-          break;
-        }
-
-      // fallthrough
-
-      default:
-        parsed[index] += from(character);
-    }
-  } while (character = next());
-
-  return parsed;
-};
-
-var getRules = function getRules(value, points) {
-  return dealloc(toRules(alloc(value), points));
-}; // WeakSet would be more appropriate, but only WeakMap is supported in IE11
-
-
-var fixedElements = /* #__PURE__ */new WeakMap();
-var compat = function compat(element) {
-  if (element.type !== 'rule' || !element.parent || // .length indicates if this rule contains pseudo or not
-  !element.length) {
-    return;
-  }
-
-  var value = element.value,
-      parent = element.parent;
-  var isImplicitRule = element.column === parent.column && element.line === parent.line;
-
-  while (parent.type !== 'rule') {
-    parent = parent.parent;
-    if (!parent) return;
-  } // short-circuit for the simplest case
-
-
-  if (element.props.length === 1 && value.charCodeAt(0) !== 58
-  /* colon */
-  && !fixedElements.get(parent)) {
-    return;
-  } // if this is an implicitly inserted rule (the one eagerly inserted at the each new nested level)
-  // then the props has already been manipulated beforehand as they that array is shared between it and its "rule parent"
-
-
-  if (isImplicitRule) {
-    return;
-  }
-
-  fixedElements.set(element, true);
-  var points = [];
-  var rules = getRules(value, points);
-  var parentRules = parent.props;
-
-  for (var i = 0, k = 0; i < rules.length; i++) {
-    for (var j = 0; j < parentRules.length; j++, k++) {
-      element.props[k] = points[i] ? rules[i].replace(/&\f/g, parentRules[j]) : parentRules[j] + " " + rules[i];
-    }
-  }
-};
-var removeLabel = function removeLabel(element) {
-  if (element.type === 'decl') {
-    var value = element.value;
-
-    if ( // charcode for l
-    value.charCodeAt(0) === 108 && // charcode for b
-    value.charCodeAt(2) === 98) {
-      // this ignores label
-      element["return"] = '';
-      element.value = '';
-    }
-  }
-};
-var ignoreFlag = 'emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason';
-
-var isIgnoringComment = function isIgnoringComment(element) {
-  return !!element && element.type === 'comm' && element.children.indexOf(ignoreFlag) > -1;
-};
-
-var createUnsafeSelectorsAlarm = function createUnsafeSelectorsAlarm(cache) {
-  return function (element, index, children) {
-    if (element.type !== 'rule') return;
-    var unsafePseudoClasses = element.value.match(/(:first|:nth|:nth-last)-child/g);
-
-    if (unsafePseudoClasses && cache.compat !== true) {
-      var prevElement = index > 0 ? children[index - 1] : null;
-
-      if (prevElement && isIgnoringComment(last(prevElement.children))) {
-        return;
+      )
+        if (!(p = p.parent)) return
+      if ((1 !== e.props.length || 58 === l.charCodeAt(0) || E.get(p)) && !f) {
+        E.set(e, !0)
+        for (
+          var d = [],
+            h = (function (e, l) {
+              return t(
+                (function (e, t) {
+                  var r = -1,
+                    l = 44
+                  do {
+                    switch (o(l)) {
+                      case 0:
+                        38 === l && 12 === i() && (t[r] = 1), (e[r] += u(c - 1))
+                        break
+                      case 2:
+                        e[r] += s(l)
+                        break
+                      case 4:
+                        if (44 === l) {
+                          ;(e[++r] = 58 === i() ? '&\f' : ''),
+                            (t[r] = e[r].length)
+                          break
+                        }
+                      default:
+                        e[r] += a(l)
+                    }
+                  } while ((l = n()))
+                  return e
+                })(r(e), l)
+              )
+            })(l, d),
+            m = p.props,
+            v = 0,
+            y = 0;
+          v < h.length;
+          v++
+        )
+          for (var g = 0; g < m.length; g++, y++)
+            e.props[y] = d[v] ? h[v].replace(/&\f/g, m[g]) : m[g] + ' ' + h[v]
       }
-
-      unsafePseudoClasses.forEach(function (unsafePseudoClass) {
-        console.error("The pseudo class \"" + unsafePseudoClass + "\" is potentially unsafe when doing server-side rendering. Try changing it to \"" + unsafePseudoClass.split('-child')[0] + "-of-type\".");
-      });
     }
-  };
-};
-
-var isImportRule = function isImportRule(element) {
-  return element.type.charCodeAt(1) === 105 && element.type.charCodeAt(0) === 64;
-};
-
-var isPrependedWithRegularRules = function isPrependedWithRegularRules(index, children) {
-  for (var i = index - 1; i >= 0; i--) {
-    if (!isImportRule(children[i])) {
-      return true;
+  },
+  b = function (e) {
+    if ('decl' === e.type) {
+      var t = e.value
+      108 === t.charCodeAt(0) &&
+        98 === t.charCodeAt(2) &&
+        ((e.return = ''), (e.value = ''))
     }
-  }
-
-  return false;
-}; // use this to remove incorrect elements from further processing
-// so they don't get handed to the `sheet` (or anything else)
-// as that could potentially lead to additional logs which in turn could be overhelming to the user
-
-
-var nullifyElement = function nullifyElement(element) {
-  element.type = '';
-  element.value = '';
-  element["return"] = '';
-  element.children = '';
-  element.props = '';
-};
-
-var incorrectImportAlarm = function incorrectImportAlarm(element, index, children) {
-  if (!isImportRule(element)) {
-    return;
-  }
-
-  if (element.parent) {
-    console.error("`@import` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles.");
-    nullifyElement(element);
-  } else if (isPrependedWithRegularRules(index, children)) {
-    console.error("`@import` rules can't be after other rules. Please put your `@import` rules before your other rules.");
-    nullifyElement(element);
-  }
-};
-
-var isBrowser = typeof document !== 'undefined';
-var getServerStylisCache = isBrowser ? undefined : weakMemoize(function () {
-  return memoize(function () {
-    var cache = {};
-    return function (name) {
-      return cache[name];
-    };
-  });
-});
-var defaultStylisPlugins = [prefixer];
-
-var createCache = function createCache(options) {
-  var key = options.key;
-
-  if (process.env.NODE_ENV !== 'production' && !key) {
-    throw new Error("You have to configure `key` for your cache. Please make sure it's unique (and not equal to 'css') as it's used for linking styles to your cache.\n" + "If multiple caches share the same key they might \"fight\" for each other's style elements.");
-  }
-
-  if (isBrowser && key === 'css') {
-    var ssrStyles = document.querySelectorAll("style[data-emotion]:not([data-s])"); // get SSRed styles out of the way of React's hydration
-    // document.head is a safe place to move them to
-
-    Array.prototype.forEach.call(ssrStyles, function (node) {
-      document.head.appendChild(node);
-      node.setAttribute('data-s', '');
-    });
-  }
-
-  var stylisPlugins = options.stylisPlugins || defaultStylisPlugins;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // $FlowFixMe
-    if (/[^a-z-]/.test(key)) {
-      throw new Error("Emotion key must only contain lower case alphabetical characters and - but \"" + key + "\" was passed");
-    }
-  }
-
-  var inserted = {}; // $FlowFixMe
-
-  var container;
-  var nodesToHydrate = [];
-
-  if (isBrowser) {
-    container = options.container || document.head;
-    Array.prototype.forEach.call(document.querySelectorAll("style[data-emotion]"), function (node) {
-      var attrib = node.getAttribute("data-emotion").split(' ');
-
-      if (attrib[0] !== key) {
-        return;
-      } // $FlowFixMe
-
-
-      for (var i = 1; i < attrib.length; i++) {
-        inserted[attrib[i]] = true;
-      }
-
-      nodesToHydrate.push(node);
-    });
-  }
-
-  var _insert;
-
-  var omnipresentPlugins = [compat, removeLabel];
-
-  if (process.env.NODE_ENV !== 'production') {
-    omnipresentPlugins.push(createUnsafeSelectorsAlarm({
-      get compat() {
-        return cache.compat;
-      }
-
-    }), incorrectImportAlarm);
-  }
-
-  if (isBrowser) {
-    var currentSheet;
-    var finalizingPlugins = [stringify, process.env.NODE_ENV !== 'production' ? function (element) {
-      if (!element.root) {
-        if (element["return"]) {
-          currentSheet.insert(element["return"]);
-        } else if (element.value && element.type !== COMMENT) {
-          // insert empty rule in non-production environments
-          // so @emotion/jest can grab `key` from the (JS)DOM for caches without any rules inserted yet
-          currentSheet.insert(element.value + "{}");
-        }
-      }
-    } : rulesheet(function (rule) {
-      currentSheet.insert(rule);
-    })];
-    var serializer = middleware(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
-
-    var stylis = function stylis(styles) {
-      return serialize(compile(styles), serializer);
-    };
-
-    _insert = function insert(selector, serialized, sheet, shouldCache) {
-      currentSheet = sheet;
-
-      if (process.env.NODE_ENV !== 'production' && serialized.map !== undefined) {
-        currentSheet = {
-          insert: function insert(rule) {
-            sheet.insert(rule + serialized.map);
+  },
+  k = function (e) {
+    return 105 === e.type.charCodeAt(1) && 64 === e.type.charCodeAt(0)
+  },
+  N = function (e) {
+    ;(e.type = ''),
+      (e.value = ''),
+      (e.return = ''),
+      (e.children = ''),
+      (e.props = '')
+  },
+  A = function (e, t, r) {
+    k(e) &&
+      (e.parent
+        ? (console.error(
+            "`@import` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles."
+          ),
+          N(e))
+        : (function (e, t) {
+            for (var r = e - 1; r >= 0; r--) if (!k(t[r])) return !0
+            return !1
+          })(t, r) &&
+          (console.error(
+            "`@import` rules can't be after other rules. Please put your `@import` rules before your other rules."
+          ),
+          N(e)))
+  },
+  O = 'undefined' != typeof document,
+  C = O
+    ? void 0
+    : y(function () {
+        return g(function () {
+          var e = {}
+          return function (t) {
+            return e[t]
           }
-        };
-      }
-
-      stylis(selector ? selector + "{" + serialized.styles + "}" : serialized.styles);
-
-      if (shouldCache) {
-        cache.inserted[serialized.name] = true;
-      }
-    };
-  } else {
-    var _finalizingPlugins = [stringify];
-
-    var _serializer = middleware(omnipresentPlugins.concat(stylisPlugins, _finalizingPlugins));
-
-    var _stylis = function _stylis(styles) {
-      return serialize(compile(styles), _serializer);
-    }; // $FlowFixMe
-
-
-    var serverStylisCache = getServerStylisCache(stylisPlugins)(key);
-
-    var getRules = function getRules(selector, serialized) {
-      var name = serialized.name;
-
-      if (serverStylisCache[name] === undefined) {
-        serverStylisCache[name] = _stylis(selector ? selector + "{" + serialized.styles + "}" : serialized.styles);
-      }
-
-      return serverStylisCache[name];
-    };
-
-    _insert = function _insert(selector, serialized, sheet, shouldCache) {
-      var name = serialized.name;
-      var rules = getRules(selector, serialized);
-
-      if (cache.compat === undefined) {
-        // in regular mode, we don't set the styles on the inserted cache
-        // since we don't need to and that would be wasting memory
-        // we return them so that they are rendered in a style tag
-        if (shouldCache) {
-          cache.inserted[name] = true;
-        }
-
-        if ( // using === development instead of !== production
-        // because if people do ssr in tests, the source maps showing up would be annoying
-        process.env.NODE_ENV === 'development' && serialized.map !== undefined) {
-          return rules + serialized.map;
-        }
-
-        return rules;
-      } else {
-        // in compat mode, we put the styles on the inserted cache so
-        // that emotion-server can pull out the styles
-        // except when we don't want to cache it which was in Global but now
-        // is nowhere but we don't want to do a major right now
-        // and just in case we're going to leave the case here
-        // it's also not affecting client side bundle size
-        // so it's really not a big deal
-        if (shouldCache) {
-          cache.inserted[name] = rules;
-        } else {
-          return rules;
-        }
-      }
-    };
+        })
+      }),
+  D = [h]
+export default function (t) {
+  var r = t.key
+  if ('production' !== process.env.NODE_ENV && !r)
+    throw new Error(
+      "You have to configure `key` for your cache. Please make sure it's unique (and not equal to 'css') as it's used for linking styles to your cache.\nIf multiple caches share the same key they might \"fight\" for each other's style elements."
+    )
+  if (O && 'css' === r) {
+    var n = document.querySelectorAll('style[data-emotion]:not([data-s])')
+    Array.prototype.forEach.call(n, function (e) {
+      document.head.appendChild(e), e.setAttribute('data-s', '')
+    })
   }
-
-  var cache = {
-    key: key,
-    sheet: new StyleSheet({
-      key: key,
-      container: container,
-      nonce: options.nonce,
-      speedy: options.speedy,
-      prepend: options.prepend
+  var o = t.stylisPlugins || D
+  if ('production' !== process.env.NODE_ENV && /[^a-z-]/.test(r))
+    throw new Error(
+      'Emotion key must only contain lower case alphabetical characters and - but "' +
+        r +
+        '" was passed'
+    )
+  var a,
+    i,
+    s = {},
+    u = []
+  O &&
+    ((a = t.container || document.head),
+    Array.prototype.forEach.call(
+      document.querySelectorAll('style[data-emotion]'),
+      function (e) {
+        var t = e.getAttribute('data-emotion').split(' ')
+        if (t[0] === r) {
+          for (var n = 1; n < t.length; n++) s[t[n]] = !0
+          u.push(e)
+        }
+      }
+    ))
+  var c = [w, b]
+  if (
+    ('production' !== process.env.NODE_ENV &&
+      c.push(
+        (function (e) {
+          return function (t, r, n) {
+            if ('rule' === t.type) {
+              var o,
+                a = t.value.match(/(:first|:nth|:nth-last)-child/g)
+              if (a && !0 !== e.compat) {
+                var i = r > 0 ? n[r - 1] : null
+                if (
+                  i &&
+                  (function (e) {
+                    return (
+                      !!e &&
+                      'comm' === e.type &&
+                      e.children.indexOf(
+                        'emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason'
+                      ) > -1
+                    )
+                  })((o = i.children).length ? o[o.length - 1] : null)
+                )
+                  return
+                a.forEach(function (e) {
+                  console.error(
+                    'The pseudo class "' +
+                      e +
+                      '" is potentially unsafe when doing server-side rendering. Try changing it to "' +
+                      e.split('-child')[0] +
+                      '-of-type".'
+                  )
+                })
+              }
+            }
+          }
+        })({
+          get compat() {
+            return N.compat
+          },
+        }),
+        A
+      ),
+    O)
+  ) {
+    var h,
+      y = [
+        l,
+        'production' !== process.env.NODE_ENV
+          ? function (e) {
+              e.root ||
+                (e.return
+                  ? h.insert(e.return)
+                  : e.value && e.type !== p && h.insert(e.value + '{}'))
+            }
+          : f(function (e) {
+              h.insert(e)
+            }),
+      ],
+      g = d(c.concat(o, y))
+    i = function (e, t, r, n) {
+      ;(h = r),
+        'production' !== process.env.NODE_ENV &&
+          void 0 !== t.map &&
+          (h = {
+            insert: function (e) {
+              r.insert(e + t.map)
+            },
+          }),
+        m(v(e ? e + '{' + t.styles + '}' : t.styles), g),
+        n && (N.inserted[t.name] = !0)
+    }
+  } else {
+    var E = d(c.concat(o, [l])),
+      k = C(o)(r)
+    i = function (e, t, r, n) {
+      var o = t.name,
+        a = (function (e, t) {
+          var r = t.name
+          return (
+            void 0 === k[r] &&
+              (k[r] = m(v(e ? e + '{' + t.styles + '}' : t.styles), E)),
+            k[r]
+          )
+        })(e, t)
+      return void 0 === N.compat
+        ? (n && (N.inserted[o] = !0),
+          'development' === process.env.NODE_ENV && void 0 !== t.map
+            ? a + t.map
+            : a)
+        : n
+        ? void (N.inserted[o] = a)
+        : a
+    }
+  }
+  var N = {
+    key: r,
+    sheet: new e({
+      key: r,
+      container: a,
+      nonce: t.nonce,
+      speedy: t.speedy,
+      prepend: t.prepend,
     }),
-    nonce: options.nonce,
-    inserted: inserted,
+    nonce: t.nonce,
+    inserted: s,
     registered: {},
-    insert: _insert
-  };
-  cache.sheet.hydrate(nodesToHydrate);
-  return cache;
-};
-
-export default createCache;
+    insert: i,
+  }
+  return N.sheet.hydrate(u), N
+}
+//# sourceMappingURL=emotion-cache.esm.js.map

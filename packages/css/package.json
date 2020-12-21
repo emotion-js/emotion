@@ -15,7 +15,8 @@
     "create-instance"
   ],
   "scripts": {
-    "test:typescript": "dtslint types"
+    "test:typescript": "dtslint types",
+ "build": "microbundle build"
   },
   "dependencies": {
     "@emotion/babel-plugin": "^11.1.2",
