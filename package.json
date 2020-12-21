@@ -25,13 +25,6 @@
     "version-packages": "changeset version",
     "release": "yarn build && changeset publish"
   },
-  "resolutions": {
-    "**/react": "17.0.1",
-    "**/react-dom": "17.0.1",
-    "**/browserslist": "^3.2.8",
-    "**/graphql-type-json": "0.2.4"
-  },
-  
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
@@ -255,7 +248,7 @@
     "worker-loader": "3.0.6"
   },
   "devDependencies": {
-    "microbundle": "^0.13.0",
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "microbundle": "^0.13.0"
   }
 }
