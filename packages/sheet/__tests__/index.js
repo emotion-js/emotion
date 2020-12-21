@@ -7,7 +7,7 @@ const rule2 = '* { box-sizing: border-box; }'
 
 let defaultOptions = {
   key: '',
-  container: safeQuerySelector('head')
+  container: safeQuerySelector('head'),
 }
 
 // $FlowFixMe
@@ -172,7 +172,7 @@ describe('StyleSheet', () => {
 
     const sheet = new StyleSheet({
       ...defaultOptions,
-      prepend: true
+      prepend: true,
     })
 
     sheet.hydrate([fooStyle, barStyle])

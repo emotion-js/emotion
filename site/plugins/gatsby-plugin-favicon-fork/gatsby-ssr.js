@@ -13,8 +13,8 @@ export const onRenderBody = (
       firefox = true,
       twitter = true,
       yandex = true,
-      windows = true
-    } = {}
+      windows = true,
+    } = {},
   }
 ) => {
   if (injectHTML) {

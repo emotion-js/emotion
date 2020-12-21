@@ -10,7 +10,7 @@ export function flatMap<T, S>(arr: T[], iteratee: (arg: T) => S[] | S): S[] {
   return [].concat(...arr.map(iteratee))
 }
 
-export function findLast<T>(arr: T[], predicate: T => boolean) {
+export function findLast<T>(arr: T[], predicate: (T) => boolean) {
   for (let i = arr.length - 1; i >= 0; i--) {
     if (predicate(arr[i])) {
       return arr[i]
@@ -21,7 +21,7 @@ export function findLast<T>(arr: T[], predicate: T => boolean) {
 export function findIndexFrom<T>(
   arr: T[],
   fromIndex: number,
-  predicate: T => boolean
+  predicate: (T) => boolean
 ) {
   for (let i = fromIndex; i < arr.length; i++) {
     if (predicate(arr[i])) {
@@ -142,10 +142,10 @@ const getElementRules = (element: HTMLStyleElement): string[] => {
     return []
   }
   // $FlowFixMe - flow doesn't know about `cssRules` property
-  return [].slice.call(element.sheet.cssRules).map(cssRule => cssRule.cssText)
+  return [].slice.call(element.sheet.cssRules).map((cssRule) => cssRule.cssText)
 }
 
-const getKeyframesMap = rules =>
+const getKeyframesMap = (rules) =>
   rules.reduce((keyframes, rule) => {
     const match = rule.match(keyframesPattern)
     if (match !== null) {
@@ -170,14 +170,14 @@ export function getStylesFromClassNames(
     return ''
   }
 
-  const targetClassName = classNames.find(className =>
+  const targetClassName = classNames.find((className) =>
     /^e[a-z0-9]+$/.test(className)
   )
   const keyPattern = `(${keys.join('|')})-`
   const classNamesRegExp = new RegExp(
     targetClassName ? `^(${keyPattern}|${targetClassName})` : `^${keyPattern}`
   )
-  const filteredClassNames = classNames.filter(className =>
+  const filteredClassNames = classNames.filter((className) =>
     classNamesRegExp.test(className)
   )
 
@@ -185,7 +185,7 @@ export function getStylesFromClassNames(
     return ''
   }
   const selectorPattern = new RegExp(
-    '\\.(?:' + filteredClassNames.map(cls => `(${cls})`).join('|') + ')'
+    '\\.(?:' + filteredClassNames.map((cls) => `(${cls})`).join('|') + ')'
   )
 
   const rules = flatMap(elements, getElementRules)
@@ -222,7 +222,7 @@ export function getStylesFromClassNames(
     const keyframesNameCache = {}
     let index = 0
 
-    styles = styles.replace(keyframesNamePattern, name => {
+    styles = styles.replace(keyframesNamePattern, (name) => {
       if (keyframesNameCache[name] === undefined) {
         keyframesNameCache[name] = `animation-${index++}`
         keyframesStyles += keyframesMap[name]
@@ -230,7 +230,7 @@ export function getStylesFromClassNames(
       return keyframesNameCache[name]
     })
 
-    keyframesStyles = keyframesStyles.replace(keyframesNamePattern, value => {
+    keyframesStyles = keyframesStyles.replace(keyframesNamePattern, (value) => {
       return keyframesNameCache[value]
     })
   }
@@ -249,12 +249,12 @@ export function getStyleElements(): Array<HTMLStyleElement> {
   return elements
 }
 
-const unique = arr => Array.from(new Set(arr))
+const unique = (arr) => Array.from(new Set(arr))
 
 export function getKeys(elements: Array<HTMLStyleElement>) {
   const keys = unique(
     elements.map(
-      element =>
+      (element) =>
         // $FlowFixMe we know it exists since we query for elements with this attribute
         (element.getAttribute('data-emotion'): string)
     )
@@ -268,7 +268,7 @@ export function hasClassNames(
   target?: string | RegExp
 ): boolean {
   // selectors is the classNames of specific css rule
-  return selectors.some(selector => {
+  return selectors.some((selector) => {
     // if no target, use className of the specific css rule and try to find it
     // in the list of received node classNames to make sure this css rule
     // applied for root element
@@ -288,13 +288,13 @@ export function hasClassNames(
 
 export function getMediaRules(rules: Array<Object>, media: string): Array<any> {
   return flatMap(
-    rules.filter(rule => {
+    rules.filter((rule) => {
       if (rule.type !== '@media') {
         return false
       }
       return rule.value.replace(/\s/g, '').includes(media.replace(/\s/g, ''))
     }),
-    media => media.children
+    (media) => media.children
   )
 }
 
@@ -303,5 +303,5 @@ export function isPrimitive(test: any) {
 }
 
 export function hasIntersection(left: any[], right: any[]) {
-  return left.some(value => right.includes(value))
+  return left.some((value) => right.includes(value))
 }

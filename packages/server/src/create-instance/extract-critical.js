@@ -17,7 +17,7 @@ const createExtractCritical = (cache: EmotionCache) => (html: string) => {
     }
   }
 
-  o.ids = Object.keys(cache.inserted).filter(id => {
+  o.ids = Object.keys(cache.inserted).filter((id) => {
     if (
       (ids[id] !== undefined ||
         cache.registered[`${cache.key}-${id}`] === undefined) &&

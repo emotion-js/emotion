@@ -3,7 +3,7 @@ import {
   getInjectedRules,
   createBigComponent,
   getCssFromChunks,
-  setHtml
+  setHtml,
 } from '../../../server/test/util'
 import { JSDOM } from 'jsdom'
 

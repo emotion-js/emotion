@@ -15,8 +15,8 @@ test('specificity with globals', () => {
       <Global
         styles={{
           '.some-class': {
-            color: itShouldNotBeThisColor
-          }
+            color: itShouldNotBeThisColor,
+          },
         }}
       />
       {/* this should be hotpink */}

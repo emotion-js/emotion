@@ -25,7 +25,7 @@ describe('Emotion native styled', () => {
     const Text = styled.Text`
       color: red;
       font-size: 20px;
-      background-color: ${props => props.back};
+      background-color: ${(props) => props.back};
     `
     const tree = renderer
       .create(
@@ -39,7 +39,7 @@ describe('Emotion native styled', () => {
 
   it('should work with theming from @emotion/react', () => {
     const Text = styled.Text`
-      color: ${props => props.theme.backgroundColor};
+      color: ${(props) => props.theme.backgroundColor};
     `
 
     const tree = renderer
@@ -54,8 +54,8 @@ describe('Emotion native styled', () => {
   })
 
   test('should render the primitive on changing the props', () => {
-    const Text = styled.Text({ padding: '20px' }, props => ({
-      color: props.decor
+    const Text = styled.Text({ padding: '20px' }, (props) => ({
+      color: props.decor,
     }))
     const tree = renderer
       .create(<Text decor="hotpink">Emotion Primitives</Text>)
@@ -86,7 +86,7 @@ describe('Emotion native styled', () => {
 
   test('primitive should work with `withComponent`', () => {
     const Text = styled.Text`
-      color: ${props => props.decor};
+      color: ${(props) => props.decor};
     `
     const Name = Text.withComponent(reactNative.Text)
     const tree = renderer.create(<Name decor="hotpink">Mike</Name>).toJSON()
@@ -100,7 +100,7 @@ describe('Emotion native styled', () => {
     const Title = () => <Text>Hello World</Text>
     const StyledTitle = styled(Title)`
       font-size: 20px;
-      font-style: ${props => props.sty};
+      font-style: ${(props) => props.sty};
     `
     const tree = renderer.create(<StyledTitle sty="italic" />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -108,7 +108,7 @@ describe('Emotion native styled', () => {
 
   it('should pass props in withComponent', () => {
     const ViewOne = styled.View`
-      background-color: ${props => props.color};
+      background-color: ${(props) => props.color};
     `
     const treeOne = renderer.create(<ViewOne color="green" />)
     const ViewTwo = ViewOne.withComponent(reactNative.Text)
@@ -129,7 +129,7 @@ describe('Emotion native styled', () => {
             uri:
               'https://camo.githubusercontent.com/209bdea972b9b6ef90220c59ecbe66d35ffefa8a/68747470733a2f2f63646e2e7261776769742e636f6d2f746b6834342f656d6f74696f6e2f6d61737465722f656d6f74696f6e2e706e67',
             height: 150,
-            width: 150
+            width: 150,
           }}
         />
       )
@@ -152,7 +152,7 @@ describe('Emotion native styled', () => {
   })
 
   it('should render styles correctly from all nested style factories', () => {
-    const bgColor = color => css`
+    const bgColor = (color) => css`
       background-color: ${color};
     `
 

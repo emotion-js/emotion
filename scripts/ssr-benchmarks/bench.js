@@ -19,12 +19,12 @@ let Triangle = createTriangle(styled.div`
   border-style: solid;
   border-top-width: 0;
   transform: translate(50%, 50%);
-  margin-left: ${props => props.x + 'px'};
-  margin-top: ${props => props.y + 'px'};
-  border-right-width: ${props => props.size / 2 + 'px'};
-  border-bottom-width: ${props => props.size / 2 + 'px'};
-  border-left-width: ${props => props.size / 2 + 'px'};
-  border-bottom-color: ${props => props.color};
+  margin-left: ${(props) => props.x + 'px'};
+  margin-top: ${(props) => props.y + 'px'};
+  border-right-width: ${(props) => props.size / 2 + 'px'};
+  border-bottom-width: ${(props) => props.size / 2 + 'px'};
+  border-left-width: ${(props) => props.size / 2 + 'px'};
+  border-bottom-color: ${(props) => props.color};
 `)
 
 let CssPropTriangle = createTriangle(({ x, y, size, color, ...props }) => {
@@ -45,7 +45,7 @@ let CssPropTriangle = createTriangle(({ x, y, size, color, ...props }) => {
       border-left-width: ${size / 2 + 'px'};
       border-bottom-color: ${color};
     `,
-    ...props
+    ...props,
   })
 })
 
@@ -67,7 +67,7 @@ let CssFuncTriangle = createTriangle(({ x, y, size, color, ...props }) => {
       border-left-width: ${size / 2 + 'px'};
       border-bottom-color: ${color};
     `,
-    ...props
+    ...props,
   })
 })
 // $FlowFixMe
@@ -121,19 +121,19 @@ let ExperimentTriangle = createTriangle(({ x, y, size, color, ...props }) => {
       [`data-emotion-${cache.key}`]: serializedNames,
       dangerouslySetInnerHTML: { __html: rules },
       nonce: cache.sheet.nonce,
-      key: 1
+      key: 1,
     }),
     ele
   )
 })
 
 const suite = new Benchmark.Suite('ssr', {
-  onError: event => {
+  onError: (event) => {
     console.log(event.target.error)
   },
   onStart: () => {
     console.log('\nStarting benchmarks...')
-  }
+  },
 })
 
 suite
@@ -178,7 +178,7 @@ suite
         s: 100,
         x: 0,
         y: 0,
-        random: Math.random()
+        random: Math.random(),
       })
     )
   })
@@ -188,7 +188,7 @@ suite
         s: 100,
         x: 0,
         y: 0,
-        random: Math.random()
+        random: Math.random(),
       })
     )
   })
@@ -203,7 +203,7 @@ suite
             s: 100,
             x: 0,
             y: 0,
-            random: Math.random()
+            random: Math.random(),
           })
         )
       )
@@ -216,7 +216,7 @@ suite
           s: 100,
           x: 0,
           y: 0,
-          random: Math.random()
+          random: Math.random(),
         })
       )
     )
@@ -231,12 +231,12 @@ suite
           s: 100,
           x: 0,
           y: 0,
-          random: Math.random()
+          random: Math.random(),
         })
       )
     )
   })
-  .on('cycle', event => {
+  .on('cycle', (event) => {
     console.log(String(event.target))
   })
   .run()

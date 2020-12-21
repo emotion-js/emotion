@@ -19,7 +19,7 @@ const cases = {
     render() {
       const Greeting = styled.div``
       return <Greeting>Hello</Greeting>
-    }
+    },
   },
   basic: {
     render() {
@@ -27,7 +27,7 @@ const cases = {
         <div css={{ backgroundColor: 'red' }}>{children}</div>
       )
       return <Greeting>hello</Greeting>
-    }
+    },
   },
   styled: {
     render() {
@@ -35,17 +35,17 @@ const cases = {
         background-color: red;
       `
       return <Greeting>Hello</Greeting>
-    }
+    },
   },
   nested: {
     render() {
       return <div>{cases.basic.render()}</div>
-    }
+    },
   },
   'nested styled': {
     render() {
       return <div>{cases.styled.render()}</div>
-    }
+    },
   },
   'with styles on top level': {
     render() {
@@ -53,7 +53,7 @@ const cases = {
         <div className={className}>{children}</div>
       )
       return <Greeting css={{ backgroundColor: 'red' }}>Hello</Greeting>
-    }
+    },
   },
   'with prop containing css element': {
     render() {
@@ -67,13 +67,13 @@ const cases = {
           World!
         </Greeting>
       )
-    }
+    },
   },
   'with prop containing regular element': {
     render() {
       const Test = ({ element }) => element
       return <Test element={<button>Foo</button>} />
-    }
+    },
   },
   'with prop containing css element not at the top level': {
     render() {
@@ -96,7 +96,7 @@ const cases = {
           </Greeting>
         </div>
       )
-    }
+    },
   },
   'with prop containing css element with other props': {
     render() {
@@ -117,7 +117,7 @@ const cases = {
           World!
         </Greeting>
       )
-    }
+    },
   },
   'with prop containing css element with other label': {
     render() {
@@ -141,23 +141,23 @@ const cases = {
           World!
         </Greeting>
       )
-    }
+    },
   },
   theming: {
     render() {
       const Button = styled.button`
-        color: ${props => props.theme.main};
-        border: 2px solid ${props => props.theme.main};
+        color: ${(props) => props.theme.main};
+        border: 2px solid ${(props) => props.theme.main};
       `
 
       Button.defaultProps = {
         theme: {
-          main: 'red'
-        }
+          main: 'red',
+        },
       }
 
       const theme = {
-        main: 'blue'
+        main: 'blue',
       }
 
       return (
@@ -168,8 +168,8 @@ const cases = {
           </ThemeProvider>
         </div>
       )
-    }
-  }
+    },
+  },
 }
 
 describe('enzyme', () => {

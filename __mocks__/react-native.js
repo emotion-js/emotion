@@ -49,7 +49,7 @@ let components = [
   'WebView',
   'FlatList',
   'SectionList',
-  'VirtualizedList'
+  'VirtualizedList',
 ]
 
 module.exports = {
@@ -57,5 +57,5 @@ module.exports = {
   ...components.reduce((obj, key) => {
     obj[key] = key
     return obj
-  }, {})
+  }, {}),
 }

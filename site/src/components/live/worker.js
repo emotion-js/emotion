@@ -12,17 +12,17 @@ addEventListener('message', ({ data }) => {
   let { id, method, params } = data
   Promise.resolve()
     .then(() => ACTIONS[method](...[].concat(params)))
-    .then(result => postMessage({ id, result }))
+    .then((result) => postMessage({ id, result }))
     .catch(({ message, loc }) => postMessage({ id, error: { message, loc } }))
 })
 
 const options = {
   presets: [babelPresetEnv, babelPresetReact],
-  plugins: [[babelPluginEmotion, { sourceMap: false }]]
+  plugins: [[babelPluginEmotion, { sourceMap: false }]],
 }
 
 const ACTIONS = {}
 
-ACTIONS.transform = code => {
+ACTIONS.transform = (code) => {
   return Babel.transform(code, options).code
 }

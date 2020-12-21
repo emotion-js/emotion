@@ -1,55 +1,55 @@
 const path = require('path')
 const emotionDevPreset = require('babel-preset-emotion-dev')
 
-let needsBabelPluginEmotion = filename => /\.test\.js$/.test(filename)
+let needsBabelPluginEmotion = (filename) => /\.test\.js$/.test(filename)
 
-let isTestFile = filename =>
+let isTestFile = (filename) =>
   /\.test\.js$/.test(filename) ||
   filename.includes(`${path.sep}__tests__${path.sep}`)
 
-module.exports = api => {
+module.exports = (api) => {
   api.cache(true)
   return {
     presets: ['babel-preset-emotion-dev'],
     overrides: [
       {
-        test: filename =>
+        test: (filename) =>
           filename &&
           ((!filename.includes('no-babel') &&
             needsBabelPluginEmotion(filename)) ||
             filename.includes(path.join('__tests__', 'babel'))),
-        presets: [[emotionDevPreset, { useEmotionPlugin: true }]]
+        presets: [[emotionDevPreset, { useEmotionPlugin: true }]],
       },
       {
-        test: filename =>
+        test: (filename) =>
           filename &&
           filename.includes('source-map') &&
           needsBabelPluginEmotion(filename),
         presets: [
-          [emotionDevPreset, { useEmotionPlugin: true, sourceMap: true }]
-        ]
+          [emotionDevPreset, { useEmotionPlugin: true, sourceMap: true }],
+        ],
       },
       {
-        test: filename =>
+        test: (filename) =>
           filename &&
           isTestFile(filename) &&
           filename.includes('automatic-runtime'),
         presets: [
-          [emotionDevPreset, { runtime: 'automatic', useEmotionPlugin: true }]
-        ]
+          [emotionDevPreset, { runtime: 'automatic', useEmotionPlugin: true }],
+        ],
       },
       {
-        test: filename =>
+        test: (filename) =>
           filename &&
           isTestFile(filename) &&
           filename.includes('automatic-dev-runtime'),
         presets: [
           [
             emotionDevPreset,
-            { runtime: 'automatic', development: true, useEmotionPlugin: true }
-          ]
-        ]
-      }
-    ]
+            { runtime: 'automatic', development: true, useEmotionPlugin: true },
+          ],
+        ],
+      },
+    ],
   }
 }

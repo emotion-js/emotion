@@ -6,7 +6,7 @@ import {
   fontSize,
   color,
   responsiveStyle,
-  flex
+  flex,
 } from 'styled-system'
 
 export const display = responsiveStyle('display')
@@ -16,7 +16,7 @@ const direction = responsiveStyle('flexDirection', 'direction')
 const align = responsiveStyle('alignItems', 'align')
 const justify = responsiveStyle('justifyContent', 'justify')
 const overflow = responsiveStyle('overflow', 'overflow')
-const column = props => (props.column ? 'flex-direction:column;' : null)
+const column = (props) => (props.column ? 'flex-direction:column;' : null)
 
 /**
  * This is an optimized version of
@@ -45,7 +45,7 @@ type Props = $Shape<{
   display: string,
   fontSize: string | number,
   justify: string,
-  align: string
+  align: string,
 }>
 const Box = styled.div<Props>(
   display,

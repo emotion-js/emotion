@@ -25,8 +25,8 @@ test('nested function using css and keyframes', () => {
       animation: ${keyframes({
         'from,to': { color: 'green' },
         '50%': {
-          color: 'hotpink'
-        }
+          color: 'hotpink',
+        },
       })};
     `};
   `

@@ -7,7 +7,7 @@ const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
 
 export default {
   meta: {
-    fixable: 'code'
+    fixable: 'code',
   },
   create(context) {
     return {
@@ -19,7 +19,7 @@ export default {
         let emotionCoreNode = null
         let local = null
         let sourceCode = context.getSourceCode()
-        sourceCode.ast.body.forEach(x => {
+        sourceCode.ast.body.forEach((x) => {
           if (
             x.type === 'ImportDeclaration' &&
             (x.source.value === '@emotion/react' ||
@@ -35,7 +35,7 @@ export default {
               local = x.specifiers[0].local.name + '.jsx'
             } else {
               let jsxSpecifier = x.specifiers.find(
-                x => x.type === 'ImportSpecifier' && x.imported.name === 'jsx'
+                (x) => x.type === 'ImportSpecifier' && x.imported.name === 'jsx'
               )
               if (jsxSpecifier) {
                 hasJsxImport = true
@@ -50,7 +50,7 @@ export default {
         }
         let pragma = sourceCode
           .getAllComments()
-          .find(node => JSX_ANNOTATION_REGEX.test(node.value))
+          .find((node) => JSX_ANNOTATION_REGEX.test(node.value))
         let match = pragma && pragma.value.match(JSX_ANNOTATION_REGEX)
         if (match && (match[1] === local || (!local && match[1] === 'jsx'))) {
           hasSetPragma = true
@@ -91,7 +91,7 @@ export default {
                 sourceCode.ast.body[0],
                 `/** @jsx jsx */\nimport { jsx } from '@emotion/react'\n`
               )
-            }
+            },
           })
           return
         }
@@ -100,7 +100,7 @@ export default {
           node.value.expression.type === 'TemplateLiteral'
         ) {
           let cssSpecifier = emotionCoreNode.specifiers.find(
-            x => x.imported.name === 'css'
+            (x) => x.imported.name === 'css'
           )
           context.report({
             node,
@@ -118,20 +118,20 @@ export default {
                   emotionCoreNode.specifiers.length - 1
                 ]
 
-              if (context.getScope().variables.some(x => x.name === 'css')) {
+              if (context.getScope().variables.some((x) => x.name === 'css')) {
                 return [
                   fixer.insertTextAfter(lastSpecifier, `, css as _css`),
-                  fixer.insertTextBefore(node.value.expression, '_css')
+                  fixer.insertTextBefore(node.value.expression, '_css'),
                 ]
               }
               return [
                 fixer.insertTextAfter(lastSpecifier, `, css`),
-                fixer.insertTextBefore(node.value.expression, 'css')
+                fixer.insertTextBefore(node.value.expression, 'css'),
               ]
-            }
+            },
           })
         }
-      }
+      },
     }
-  }
+  },
 }

@@ -8,14 +8,14 @@ if (typeof window !== 'undefined') {
   window.searchLoaded = () => {
     available = true
     finished = true
-    callbacks.forEach(callback => {
+    callbacks.forEach((callback) => {
       callback(available)
     })
   }
   window.searchError = () => {
     available = false
     finished = true
-    callbacks.forEach(callback => {
+    callbacks.forEach((callback) => {
       callback(available)
     })
   }
@@ -29,7 +29,7 @@ if (typeof window !== 'undefined') {
   }
 }
 
-export const addCallback = (callback: boolean => mixed) => {
+export const addCallback = (callback: (boolean) => mixed) => {
   if (finished) {
     callback(available)
   } else {

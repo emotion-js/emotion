@@ -12,8 +12,8 @@ const App = () => (
         body: {
           padding: 0,
           margin: 0,
-          fontFamily: 'sans-serif'
-        }
+          fontFamily: 'sans-serif',
+        },
       }}
     />
     <Switch>

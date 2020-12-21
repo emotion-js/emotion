@@ -12,9 +12,9 @@ RuleTester.setDefaultConfig({
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
-    }
-  }
+      jsx: true,
+    },
+  },
 })
 
 const ruleTester = new RuleTester()
@@ -24,8 +24,8 @@ ruleTester.run('emotion styled', rule, {
     {
       code: `
 import styled from '@emotion/styled'
-      `
-    }
+      `,
+    },
   ],
 
   invalid: [
@@ -35,12 +35,12 @@ import styled from 'react-emotion'
       `.trim(),
       errors: [
         {
-          message: `styled should be imported from @emotion/styled`
-        }
+          message: `styled should be imported from @emotion/styled`,
+        },
       ],
       output: `
 import styled from '@emotion/styled'
-      `.trim()
-    }
-  ]
+      `.trim(),
+    },
+  ],
 })

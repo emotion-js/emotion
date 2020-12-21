@@ -26,16 +26,16 @@ export default (
         {
           export: 'jsx',
           module: '@emotion/react',
-          import: pragmaName
-        }
+          import: pragmaName,
+        },
       ],
       [
         jsx,
         {
           pragma: pragmaName,
           pragmaFrag: 'React.Fragment',
-          ...options
-        }
+          ...options,
+        },
       ],
       [
         emotion,
@@ -44,9 +44,9 @@ export default (
           autoLabel,
           labelFormat,
           cssPropOptimization: true,
-          importMap
-        }
-      ]
-    ]
+          importMap,
+        },
+      ],
+    ],
   }
 }

@@ -5,7 +5,7 @@ import createStyled from '../src/base'
 import type { CreateStyledComponent, StyledComponent } from '../src/utils'
 
 const valid: StyledComponent<empty> = createStyled('div')({
-  color: 'red'
+  color: 'red',
 })
 
 // $FlowFixMe: expect error - we can't cast a StyledComponent to string

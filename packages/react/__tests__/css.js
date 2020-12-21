@@ -48,7 +48,7 @@ test('css call composition', () => {
 test('theming with the css prop', () => {
   const tree = renderer.create(
     <ThemeProvider theme={{ primary: 'hotpink' }}>
-      <div css={theme => ({ color: theme.primary })} />
+      <div css={(theme) => ({ color: theme.primary })} />
     </ThemeProvider>
   )
   expect(tree.toJSON()).toMatchSnapshot()
@@ -57,7 +57,7 @@ test('theming with the css prop', () => {
 test('theming with the array css prop', () => {
   const tree = renderer.create(
     <ThemeProvider theme={{ primary: 'hotpink' }}>
-      <div css={[theme => ({ color: theme.primary }), { display: 'flex' }]} />
+      <div css={[(theme) => ({ color: theme.primary }), { display: 'flex' }]} />
     </ThemeProvider>
   )
 
@@ -112,7 +112,7 @@ test('array fallback', () => {
     <div>
       <div
         css={{
-          color: ['green', 'hotpink']
+          color: ['green', 'hotpink'],
         }}
       >
         something
@@ -128,7 +128,7 @@ test('array fallback (using camelCased property)', () => {
     <div>
       <div
         css={{
-          backgroundColor: ['green', 'hotpink']
+          backgroundColor: ['green', 'hotpink'],
         }}
       >
         something
@@ -146,9 +146,9 @@ test('nested at rule', () => {
         '@media (min-width: 980px)': {
           backgroundColor: 'blue',
           '@supports (width: 100vw)': {
-            backgroundColor: 'red'
-          }
-        }
+            backgroundColor: 'red',
+          },
+        },
       }}
     >
       something
@@ -164,7 +164,7 @@ test('can set speedy via custom cache', () => {
     <CacheProvider value={cache}>
       <div
         css={{
-          color: 'hotpink'
+          color: 'hotpink',
         }}
       >
         <span css={{ color: 'yellow' }}>wow</span>
@@ -179,7 +179,7 @@ test('speedy option from a custom cache is inherited for <Global/> styles', () =
   let cache = createCache({
     key: 'global-inherit-speedy',
     container: safeQuerySelector('body'),
-    speedy: true
+    speedy: true,
   })
   renderer.create(
     <CacheProvider value={cache}>
@@ -190,12 +190,12 @@ test('speedy option from a custom cache is inherited for <Global/> styles', () =
 })
 
 test('autoLabel without babel', () => {
-  let SomeComp = props => {
+  let SomeComp = (props) => {
     return (
       <div
         {...props}
         css={{
-          color: 'hotpink'
+          color: 'hotpink',
         }}
       >
         something
@@ -208,7 +208,7 @@ test('autoLabel without babel', () => {
 })
 
 test('autoLabel without babel (sanitized)', () => {
-  let SomeComp$ = props => {
+  let SomeComp$ = (props) => {
     return (
       <div {...props} css={{ color: 'hotpink' }}>
         something
@@ -227,7 +227,7 @@ test('overwrite styles from parent', () => {
     <div
       css={{
         color: 'green',
-        backgroundColor: 'yellow'
+        backgroundColor: 'yellow',
       }}
       {...props}
     />
@@ -235,7 +235,7 @@ test('overwrite styles from parent', () => {
   const tree = renderer.create(
     <SomeComponent
       css={{
-        color: 'hotpink'
+        color: 'hotpink',
       }}
     />
   )
@@ -247,7 +247,7 @@ test('child selector array', () => {
   const tree = renderer.create(
     <div
       css={{
-        ':hover': [{ color: 'green' }, { backgroundColor: 'yellow' }]
+        ':hover': [{ color: 'green' }, { backgroundColor: 'yellow' }],
       }}
     />
   )
@@ -260,7 +260,7 @@ test('handles camelCased custom properties in object styles properly', () => {
     <div
       css={{
         '--textColor': 'green',
-        color: 'var(--textColor)'
+        color: 'var(--textColor)',
       }}
     />
   )
@@ -275,10 +275,10 @@ test('applies class when css prop is set to nil on wrapper component', () => {
 
   const WrappedButton: React.StatelessFunctionalComponent<any> = ({
     children,
-    buttonStyles
+    buttonStyles,
   }: {
     children: React$Node,
-    buttonStyles?: null
+    buttonStyles?: null,
   }) => <Button css={buttonStyles}>{children}</Button>
 
   const tree = renderer.create(
@@ -301,7 +301,7 @@ test('handles composition of styles without a final semi in a declaration block'
         `,
         css`
           background-color: green;
-        `
+        `,
       ]}
     >
       {"I'm hotpink on the green background."}

@@ -8,10 +8,10 @@ module.exports = (api, options = {}) => {
           ? {
               runtime: options.runtime,
               importSource: '@emotion/react',
-              development: options.development
+              development: options.development,
             }
-          : {}
-      ]
+          : {},
+      ],
     ],
     plugins: [
       require.resolve(
@@ -22,18 +22,18 @@ module.exports = (api, options = {}) => {
       require.resolve('babel-plugin-codegen'),
       [
         require.resolve('@babel/plugin-transform-runtime'),
-        { version: require('@babel/runtime/package.json').version }
+        { version: require('@babel/runtime/package.json').version },
       ],
       [
         require.resolve('@babel/plugin-proposal-class-properties'),
-        { loose: true }
+        { loose: true },
       ],
       options.useEmotionPlugin && [
         require.resolve('@emotion/babel-plugin'),
         {
-          ...('sourceMap' in options && { sourceMap: options.sourceMap })
-        }
-      ]
-    ].filter(Boolean)
+          ...('sourceMap' in options && { sourceMap: options.sourceMap }),
+        },
+      ],
+    ].filter(Boolean),
   }
 }

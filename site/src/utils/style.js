@@ -20,7 +20,7 @@ export const colors = {
   border: '#C865B9',
   bg: '#FAF9FA',
   color: '#1B1D1D',
-  parentBg: '#FBF8FD'
+  parentBg: '#FBF8FD',
 }
 
 export const animatedUnderline = css`
@@ -46,7 +46,7 @@ export const p = facepaint([':hover,:focus', ':active', ':visited'])
 
 export const fonts = {
   primary: `-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif`,
-  code: 'source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace'
+  code: 'source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace',
 }
 
 export { default as openColors } from 'open-color'
@@ -79,5 +79,5 @@ export {
   cleanElement,
   removeProps,
   util,
-  constants
+  constants,
 } from 'styled-system'

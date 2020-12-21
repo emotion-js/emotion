@@ -18,30 +18,30 @@ type Props = {
     doc: {
       body: string,
       frontmatter: {
-        title: string
-      }
+        title: string,
+      },
     },
     avatar: {
       childImageSharp: {
         resolutions: {
-          src: string
-        }
-      }
-    }
+          src: string,
+        },
+      },
+    },
   },
   pageContext: {
-    slug: string
-  }
+    slug: string,
+  },
 }
 
 if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     var hash = window.decodeURI(window.location.hash)
     if (hash !== '' && hash !== '#') {
       var element = document.getElementById(`.docSearch-content ${hash} a`)
       if (element) {
         // Wait for the browser to finish rendering before scrolling.
-        setTimeout(function() {
+        setTimeout(function () {
           if (element) {
             element.click()
           }
@@ -55,16 +55,16 @@ const ClassName = (props: any) => {
   return props.children(props.className)
 }
 
-const createLiveCode = memoize(logoUrl => props => (
+const createLiveCode = memoize((logoUrl) => (props) => (
   <ClassName
     css={mq({
       paddingTop: [8, 16],
       paddingRight: [8, 16],
       paddingBottom: [8, 16],
-      paddingLeft: [8, 16]
+      paddingLeft: [8, 16],
     })}
   >
-    {internalCodeStylesClassName => (
+    {(internalCodeStylesClassName) => (
       <Playground
         css={mq({
           marginLeft: [0],
@@ -73,7 +73,7 @@ const createLiveCode = memoize(logoUrl => props => (
           marginBottom: [24, 32],
           borderRadius: [0, 4],
           whiteSpace: 'pre-wrap',
-          wordBreak: 'break-word'
+          wordBreak: 'break-word',
         })}
         editorClassName={internalCodeStylesClassName}
         logoUrl={logoUrl}
@@ -85,12 +85,12 @@ const createLiveCode = memoize(logoUrl => props => (
 ))
 
 type DocRouteState = {
-  sidebarOpen: boolean
+  sidebarOpen: boolean,
 }
 
 export default class DocRoute extends React.Component<Props, DocRouteState> {
   state = {
-    sidebarOpen: false
+    sidebarOpen: false,
   }
 
   setSidebarOpen = (value: boolean) => this.setState({ sidebarOpen: value })
@@ -110,7 +110,7 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
             css={{
               alignItems: 'center',
               gap: 8,
-              borderBottom: `1px solid ${colors.lighten(0.25, colors.border)}`
+              borderBottom: `1px solid ${colors.lighten(0.25, colors.border)}`,
             }}
             className="docSearch-content"
           >
@@ -120,12 +120,8 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
                 css={{ fontSize: 12, marginLeft: 'auto' }}
                 href={
                   doc.frontmatter.title
-                    ? `https://github.com/emotion-js/emotion/edit/master/docs/${
-                        this.props.pageContext.slug
-                      }.mdx`
-                    : `https://github.com/emotion-js/emotion/edit/master/packages/${
-                        this.props.pageContext.slug
-                      }/README.md`
+                    ? `https://github.com/emotion-js/emotion/edit/master/docs/${this.props.pageContext.slug}.mdx`
+                    : `https://github.com/emotion-js/emotion/edit/master/packages/${this.props.pageContext.slug}/README.md`
                 }
               >
                 ✏️ <span css={{ marginLeft: 2 }}>Edit this page</span>
@@ -138,7 +134,7 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
                   'live-code': createLiveCode(
                     avatar.childImageSharp.resolutions.src
                   ),
-                  ...markdownComponents
+                  ...markdownComponents,
                 }}
               >
                 <MDXRenderer children={doc.body} />

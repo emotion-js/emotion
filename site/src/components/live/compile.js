@@ -4,9 +4,9 @@ import type { Scope, Compiler } from './types'
 
 const evalCode = (code: string, scope: Scope): React.Node => {
   const scopeKeys = Object.keys(scope)
-  const scopeValues = scopeKeys.map(key => scope[key])
+  const scopeValues = scopeKeys.map((key) => scope[key])
   let element
-  const render = val => {
+  const render = (val) => {
     if (element !== undefined) {
       throw new SyntaxError('`render` cannot be called twice.')
     }
@@ -41,10 +41,10 @@ export const compileAndEvaluate = (
   scope: Scope
 ): Promise<{ error: Error | null, element: React.Node | null }> => {
   return compiler(code)
-    .then(compiledCode => {
+    .then((compiledCode) => {
       return evaluate(compiledCode, scope)
     })
-    .catch(error => {
+    .catch((error) => {
       return { error, element: null }
     })
 }

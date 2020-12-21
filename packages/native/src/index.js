@@ -43,7 +43,7 @@ const components = [
   'TouchableOpacity',
   'TouchableWithoutFeedback',
   'View',
-  'ViewPagerAndroid'
+  'ViewPagerAndroid',
 ]
 
 export { css }
@@ -55,7 +55,7 @@ export default components.reduce(
       configurable: false,
       get() {
         return styled(reactNative[comp])
-      }
+      },
     }),
   styled
 )

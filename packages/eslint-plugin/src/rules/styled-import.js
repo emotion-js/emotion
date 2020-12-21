@@ -1,6 +1,6 @@
 export default {
   meta: {
-    fixable: 'code'
+    fixable: 'code',
   },
   create(context) {
     return {
@@ -13,13 +13,13 @@ export default {
             fix:
               node.specifiers.length === 1 &&
               node.specifiers[0].type === 'ImportDefaultSpecifier'
-                ? fixer => {
+                ? (fixer) => {
                     return fixer.replaceText(node.source, `'${newImportPath}'`)
                   }
-                : undefined
+                : undefined,
           })
         }
-      }
+      },
     }
-  }
+  },
 }

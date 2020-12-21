@@ -2,7 +2,7 @@
 import babelTester from 'babel-tester'
 import plugin from '@emotion/babel-plugin'
 
-const last = arr => arr[arr.length - 1]
+const last = (arr) => arr[arr.length - 1]
 
 const cases = {
   'label format with only local': {
@@ -14,11 +14,11 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[local]'
-        }
-      ]
+          labelFormat: 'my-css-[local]',
+        },
+      ],
     ],
-    babelFileName: __filename
+    babelFileName: __filename,
   },
   'label format with filename that is index and local': {
     code: `
@@ -29,11 +29,11 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[filename]-[local]'
-        }
-      ]
+          labelFormat: 'my-css-[filename]-[local]',
+        },
+      ],
     ],
-    babelFileName: 'some-directory/index.js'
+    babelFileName: 'some-directory/index.js',
   },
 
   'label format with filename and local': {
@@ -45,11 +45,11 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[filename]-[local]'
-        }
-      ]
+          labelFormat: 'my-css-[filename]-[local]',
+        },
+      ],
     ],
-    babelFileName: __filename
+    babelFileName: __filename,
   },
 
   'label format with dirname, filename, and local': {
@@ -61,11 +61,11 @@ const cases = {
       [
         plugin,
         {
-          labelFormat: 'my-css-[dirname]-[filename]-[local]'
-        }
-      ]
+          labelFormat: 'my-css-[dirname]-[filename]-[local]',
+        },
+      ],
     ],
-    babelFileName: __filename
+    babelFileName: __filename,
   },
 
   'label format function': {
@@ -80,11 +80,11 @@ const cases = {
           labelFormat: ({ name, path }) =>
             `${name.toUpperCase()}_${last(
               path.replace(/\..+$/, '').split('/')
-            ).toUpperCase()}`
-        }
-      ]
+            ).toUpperCase()}`,
+        },
+      ],
     ],
-    babelFileName: __filename
+    babelFileName: __filename,
   },
 
   // this test has better readability for label alone than other ones which include source maps
@@ -107,11 +107,11 @@ const cases = {
       [
         plugin,
         {
-          sourceMap: false
-        }
-      ]
+          sourceMap: false,
+        },
+      ],
     ],
-    babelFileName: __filename
+    babelFileName: __filename,
   },
 
   'label on code transpiled by TS (with interpolations) ': {
@@ -133,9 +133,9 @@ const cases = {
     `,
     opts: {
       autoLabel: true,
-      sourceMap: false
+      sourceMap: false,
     },
-    filename: __filename
+    filename: __filename,
   },
 
   'code already transpiled by emotion plugin (avoid double transpilation)': {
@@ -170,7 +170,7 @@ const cases = {
     });
     `,
     plugins: [plugin],
-    babelFileName: __filename
+    babelFileName: __filename,
   },
   'autoLabel set to always': {
     code: `
@@ -178,7 +178,7 @@ const cases = {
     let cls = css({color:'hotpink'})
     `,
     plugins: [[plugin, { autoLabel: 'always' }]],
-    babelFileName: __filename
+    babelFileName: __filename,
   },
   'autoLabel set to always - complex expression': {
     code: `
@@ -187,7 +187,7 @@ const cases = {
     let cls = css(fooStyles)
     `,
     plugins: [[plugin, { autoLabel: 'always' }]],
-    babelFileName: __filename
+    babelFileName: __filename,
   },
   'autoLabel set to always - complex expression, last arg string': {
     code: `
@@ -196,7 +196,7 @@ const cases = {
     let cls = css(fooStyles, 'color: hotpink;')
     `,
     plugins: [[plugin, { autoLabel: 'always' }]],
-    babelFileName: __filename
+    babelFileName: __filename,
   },
   'autoLabel set to never': {
     code: `
@@ -204,7 +204,7 @@ const cases = {
     let cls = css({color:'hotpink'})
     `,
     plugins: [[plugin, { autoLabel: 'never' }]],
-    babelFileName: __filename
+    babelFileName: __filename,
   },
   'autoLabel set to never - complex expression': {
     code: `
@@ -213,7 +213,7 @@ const cases = {
     let cls = css(fooStyles)
     `,
     plugins: [[plugin, { autoLabel: 'never' }]],
-    babelFileName: __filename
-  }
+    babelFileName: __filename,
+  },
 }
 babelTester('babel css inline', cases)

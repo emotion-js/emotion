@@ -44,12 +44,12 @@ export type Options = {
   key: string,
   container: HTMLElement,
   speedy?: boolean,
-  prepend?: boolean
+  prepend?: boolean,
 }
 
 function createStyleElement(options: {
   key: string,
-  nonce: string | void
+  nonce: string | void,
 }): HTMLStyleElement {
   let tag = document.createElement('style')
   tag.setAttribute('data-emotion', options.key)
@@ -155,7 +155,7 @@ export class StyleSheet {
 
   flush() {
     // $FlowFixMe
-    this.tags.forEach(tag => tag.parentNode.removeChild(tag))
+    this.tags.forEach((tag) => tag.parentNode.removeChild(tag))
     this.tags = []
     this.ctr = 0
     if (process.env.NODE_ENV !== 'production') {

@@ -10,15 +10,15 @@ import { animatedUnderline, colors, constants, mq } from '../utils/style'
 
 const space = constants.space
 
-const HeaderLink = props => (
+const HeaderLink = (props) => (
   <Link
     css={[
       {
         fontSize: constants.fontSizes[2],
         fontWeight: '500',
-        color: colors.color
+        color: colors.color,
       },
-      animatedUnderline
+      animatedUnderline,
     ]}
     {...props}
   />
@@ -28,7 +28,7 @@ export default function SiteHeader() {
   return (
     <header
       css={mq({
-        gridColumn: '1 /span 2'
+        gridColumn: '1 /span 2',
       })}
     >
       <a href="https://support.eji.org/give/153413/#!/donation/checkout">
@@ -41,7 +41,7 @@ export default function SiteHeader() {
             justifyContent: 'center',
             backgroundColor: 'black',
             width: '100vw',
-            zIndex: 100
+            zIndex: 100,
           }}
         >
           <span
@@ -51,7 +51,7 @@ export default function SiteHeader() {
               textDecoration: 'none',
               color: '#fff',
               fontSize: 28,
-              paddingBottom: 4
+              paddingBottom: 4,
             }}
           >
             Black Lives Matter.
@@ -64,7 +64,7 @@ export default function SiteHeader() {
           paddingTop: 24,
           display: 'flex',
           alignItems: 'center',
-          paddingBottom: space[2]
+          paddingBottom: space[2],
         }}
       >
         <Link
@@ -75,7 +75,7 @@ export default function SiteHeader() {
             color: '#D36AC2',
             textDecoration: 'none',
             marginRight: space[2],
-            '&:hover': { color: colors.border }
+            '&:hover': { color: colors.border },
           }}
         >
           <HeaderLogoImage />
@@ -86,7 +86,7 @@ export default function SiteHeader() {
               marginLeft: space[2],
               padding: 0,
               fontSize: constants.fontSizes[4],
-              fontWeight: 'bold'
+              fontWeight: 'bold',
             })}
           >
             Emotion
@@ -96,7 +96,7 @@ export default function SiteHeader() {
           css={{
             marginLeft: 'auto',
             overflowX: 'auto',
-            WebkitOverflowScrolling: 'touch'
+            WebkitOverflowScrolling: 'touch',
           }}
         >
           <ul
@@ -116,8 +116,8 @@ export default function SiteHeader() {
                 display: 'inline-block',
                 paddingTop: space[1],
                 paddingBottom: space[1],
-                whiteSpace: 'nowrap'
-              }
+                whiteSpace: 'nowrap',
+              },
             }}
           >
             <li>

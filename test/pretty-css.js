@@ -2,7 +2,7 @@
 import prettify from '@emotion/css-prettifier'
 
 type StyleSheet = {
-  tags: Array<HTMLStyleElement>
+  tags: Array<HTMLStyleElement>,
 }
 
 export default {
@@ -15,7 +15,7 @@ export default {
     refs: *,
     printer: Function
   ) {
-    let styles = val.tags.map(tag => tag.textContent || '').join('')
+    let styles = val.tags.map((tag) => tag.textContent || '').join('')
     return printer(
       prettify(styles, config.indent),
       config,
@@ -23,5 +23,5 @@ export default {
       depth,
       refs
     )
-  }
+  },
 }

@@ -50,6 +50,6 @@ test('extracted rules have correct keys when dealing with multiple caches', () =
 
   expect([
     extractCritical1(renderToString(ele1)),
-    extractCritical2(renderToString(ele2))
+    extractCritical2(renderToString(ele2)),
   ]).toMatchSnapshot()
 })

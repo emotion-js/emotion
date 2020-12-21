@@ -14,16 +14,16 @@ describe('Emotion native css', () => {
       `)
     ).toEqual({ color: 'hotpink', backgroundColor: 'green' })
     expect(StyleSheet.flatten(css({ color: 'green' }))).toEqual({
-      color: 'green'
+      color: 'green',
     })
     expect(
       StyleSheet.flatten(css([{ color: 'green' }, `background-color:yellow;`]))
     ).toEqual({
       color: 'green',
-      backgroundColor: 'yellow'
+      backgroundColor: 'yellow',
     })
     expect(StyleSheet.flatten(css([{ color: 'green' }]))).toEqual({
-      color: 'green'
+      color: 'green',
     })
   })
 
@@ -45,8 +45,8 @@ describe('Emotion native css', () => {
           css([
             [{ color: 'green' }, `background-color:yellow;`],
             {
-              flex: 2
-            }
+              flex: 2,
+            },
           ])
         )
       )
@@ -60,9 +60,9 @@ describe('Emotion native css', () => {
             [
               `background-color:yellow;`,
               {
-                flex: 2
-              }
-            ]
+                flex: 2,
+              },
+            ],
           ])
         )
       )
@@ -76,8 +76,8 @@ describe('Emotion native css', () => {
             [
               { flex: 8 },
               `background-color:yellow;`,
-              [`flex-grow: 1;`, { flexDirection: 'row' }]
-            ]
+              [`flex-grow: 1;`, { flexDirection: 'row' }],
+            ],
           ])
         )
       )
@@ -87,8 +87,8 @@ describe('Emotion native css', () => {
   it('allows function interpolations when this.mergedProps is defined', () => {
     expect(
       StyleSheet.flatten(
-        css.call({ thing: true }, props => ({
-          color: props.thing && 'hotpink'
+        css.call({ thing: true }, (props) => ({
+          color: props.thing && 'hotpink',
         }))
       )
     ).toEqual({ color: 'hotpink' })
@@ -97,8 +97,8 @@ describe('Emotion native css', () => {
   it('works with nested functions', () => {
     expect(
       StyleSheet.flatten(
-        css.call({ thing: true }, props => () => ({
-          color: props.thing && 'hotpink'
+        css.call({ thing: true }, (props) => () => ({
+          color: props.thing && 'hotpink',
         }))
       )
     ).toEqual({ color: 'hotpink' })
@@ -119,7 +119,7 @@ describe('Emotion native css', () => {
 
   test('last arg falsy and string before that', () => {
     expect(StyleSheet.flatten(css('color:hotpink;', false))).toEqual({
-      color: 'hotpink'
+      color: 'hotpink',
     })
   })
 

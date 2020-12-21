@@ -43,10 +43,10 @@ describe('styled', () => {
 
   test('object as style', () => {
     const H1 = styled.h1(
-      props => ({
-        fontSize: props.fontSize
+      (props) => ({
+        fontSize: props.fontSize,
       }),
-      props => ({ flex: props.flex }),
+      (props) => ({ flex: props.flex }),
       { display: 'flex' }
     )
 
@@ -113,7 +113,7 @@ describe('styled', () => {
 
   test('random expressions undefined return', () => {
     const H1 = styled('h1')`
-      ${props =>
+      ${(props) =>
         props.prop &&
         css`
           font-size: 1rem;
@@ -130,16 +130,16 @@ describe('styled', () => {
 
   test('random object expression', () => {
     const margin = (t, r, b, l) => {
-      return props => ({
+      return (props) => ({
         marginTop: t,
         marginRight: r,
         marginBottom: b,
-        marginLeft: l
+        marginLeft: l,
       })
     }
     const H1 = styled.h1`
       background-color: hotpink;
-      ${props => props.prop && { fontSize: '1rem' }};
+      ${(props) => props.prop && { fontSize: '1rem' }};
       ${margin(0, 'auto', 0, 'auto')};
       color: green;
     `
@@ -169,8 +169,8 @@ describe('styled', () => {
   test('input placeholder object', () => {
     const Input = styled('input')({
       '::placeholder': {
-        backgroundColor: 'green'
-      }
+        backgroundColor: 'green',
+      },
     })
 
     const tree = renderer.create(<Input>hello world</Input>).toJSON()
@@ -191,7 +191,7 @@ describe('styled', () => {
       z-index: ${100};
       font-size: ${'18px'};
       text-align: ${'center'};
-      border-left: ${p => p.theme.blue};
+      border-left: ${(p) => p.theme.blue};
     `
 
     const tree = renderer
@@ -251,7 +251,7 @@ describe('styled', () => {
     `
 
     const H1 = styled('h1')`
-      ${props => (props.a ? cssA : cssB)};
+      ${(props) => (props.a ? cssA : cssB)};
     `
 
     const tree = renderer.create(<H1 a>hello world</H1>).toJSON()
@@ -263,8 +263,8 @@ describe('styled', () => {
   })
 
   test('objects', () => {
-    const H1 = styled('h1')({ padding: 10 }, props => ({
-      display: props.display
+    const H1 = styled('h1')({ padding: 10 }, (props) => ({
+      display: props.display,
     }))
     const tree = renderer.create(<H1 display="flex">hello world</H1>).toJSON()
 
@@ -281,15 +281,15 @@ describe('styled', () => {
 
   test('with higher order component that hoists statics', () => {
     const superImportantValue = 'hotpink'
-    const hoc = BaseComponent => {
-      const NewComponent = props => (
+    const hoc = (BaseComponent) => {
+      const NewComponent = (props) => (
         <BaseComponent someProp={superImportantValue} {...props} />
       )
       return hoistNonReactStatics(NewComponent, BaseComponent)
     }
     const SomeComponent = hoc(styled.div`
       display: flex;
-      color: ${props => props.someProp};
+      color: ${(props) => props.someProp};
     `)
     const FinalComponent = styled(SomeComponent)`
       padding: 8px;
@@ -310,7 +310,7 @@ describe('styled', () => {
 
   test('function that function returns gets called with props', () => {
     const SomeComponent = styled.div`
-      color: ${() => props => props.color};
+      color: ${() => (props) => props.color};
       background-color: yellow;
     `
     const tree = renderer.create(<SomeComponent color="hotpink" />).toJSON()
@@ -332,13 +332,13 @@ describe('styled', () => {
   test('should forward .defaultProps when reusing __emotion_base', () => {
     const Title = styled('h1')`
       text-align: center;
-      ${props => ({
-        color: props.color
+      ${(props) => ({
+        color: props.color,
       })};
     `
 
     Title.defaultProps = {
-      color: 'red'
+      color: 'red',
     }
 
     const Title2 = styled(Title)`
@@ -374,7 +374,7 @@ describe('styled', () => {
   })
   test('withComponent with function interpolation', () => {
     const Title = styled('h1')`
-      color: ${props => props.color || 'green'};
+      color: ${(props) => props.color || 'green'};
     `
     const Subtitle = Title.withComponent('h2')
 

@@ -18,7 +18,7 @@ function render(ele) {
 test('with custom plugins', () => {
   let cache = createCache({
     key: 'custom-plugins',
-    stylisPlugins: [stylisPlugin]
+    stylisPlugins: [stylisPlugin],
   })
 
   expect(

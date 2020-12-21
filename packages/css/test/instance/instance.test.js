@@ -7,7 +7,7 @@ describe('general instance tests', () => {
     css`
       display: flex;
     `
-    sheet.tags.forEach(tag => {
+    sheet.tags.forEach((tag) => {
       expect(tag.getAttribute('data-emotion')).toBe('some-key')
       expect(tag.getAttribute('nonce')).toBe('some-nonce')
       expect(tag.parentNode).toBe(container)

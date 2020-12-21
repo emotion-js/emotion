@@ -18,16 +18,16 @@ test('basic', () => {
     `)
   ).toEqual({ color: 'hotpink', backgroundColor: 'green' })
   expect(StyleSheet.flatten(css({ color: 'green' }))).toEqual({
-    color: 'green'
+    color: 'green',
   })
   expect(
     StyleSheet.flatten(css([{ color: 'green' }, `background-color:yellow;`]))
   ).toEqual({
     color: 'green',
-    backgroundColor: 'yellow'
+    backgroundColor: 'yellow',
   })
   expect(StyleSheet.flatten(css([{ color: 'green' }]))).toEqual({
-    color: 'green'
+    color: 'green',
   })
 })
 
@@ -44,7 +44,7 @@ test('should render the primitive when styles applied using object style notatio
   const Text = styled.Text`
     color: red;
     font-size: 20px;
-    background-color: ${props => props.back};
+    background-color: ${(props) => props.back};
   `
   const tree = renderer
     .create(

@@ -13,7 +13,7 @@ test('ref', () => {
 
   render(
     <H1
-      ref={val => {
+      ref={(val) => {
         node = val
       }}
       id="thing"

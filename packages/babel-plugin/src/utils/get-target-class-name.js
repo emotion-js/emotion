@@ -9,11 +9,11 @@ let hashArray = (arr: Array<string>) => hashString(arr.join(''))
 
 const unsafeRequire = require
 
-const getPackageRootPath = memoize(filename => findRoot(filename))
+const getPackageRootPath = memoize((filename) => findRoot(filename))
 
 const separator = new RegExp(escapeRegexp(nodePath.sep), 'g')
 
-const normalizePath = path => nodePath.normalize(path).replace(separator, '/')
+const normalizePath = (path) => nodePath.normalize(path).replace(separator, '/')
 
 export function getTargetClassName(state: *, t: *) {
   if (state.emotionTargetClassNameCount === undefined) {

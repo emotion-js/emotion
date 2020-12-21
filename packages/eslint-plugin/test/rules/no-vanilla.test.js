@@ -12,9 +12,9 @@ RuleTester.setDefaultConfig({
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
-    }
-  }
+      jsx: true,
+    },
+  },
 })
 
 const ruleTester = new RuleTester()
@@ -26,9 +26,9 @@ ruleTester.run('no-vanilla', rule, {
       code: `import { css } from '@emotion/css'`,
       errors: [
         {
-          message: `Vanilla emotion should not be used`
-        }
-      ]
-    }
-  ]
+          message: `Vanilla emotion should not be used`,
+        },
+      ],
+    },
+  ],
 })

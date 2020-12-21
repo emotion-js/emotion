@@ -1,6 +1,6 @@
 export default {
   meta: {
-    fixable: 'code'
+    fixable: 'code',
   },
   create(context) {
     return {
@@ -8,10 +8,10 @@ export default {
         if (node.source.value === '@emotion/css') {
           context.report({
             node: node.source,
-            message: `Vanilla emotion should not be used`
+            message: `Vanilla emotion should not be used`,
           })
         }
-      }
+      },
     }
-  }
+  },
 }

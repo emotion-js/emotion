@@ -9,7 +9,7 @@ const textStyles = mq({
   marginTop: 20,
   color: colors.color,
   fontWeight: 400,
-  lineHeight: '1.7'
+  lineHeight: '1.7',
 })
 
 export const p = styled.p<empty>(textStyles)
@@ -21,14 +21,14 @@ export const code = styled.code<empty>(
     borderRadius: '0.325rem',
     fontSize: ['80%', '85%'],
     margin: 0,
-    padding: '0.2rem 0.325rem'
+    padding: '0.2rem 0.325rem',
   })
 )
 
 export const pre = styled.pre<empty>({
   '& > code': {
-    padding: 0
-  }
+    padding: 0,
+  },
 })
 
 export const ul = styled.ul<empty>({
@@ -36,13 +36,13 @@ export const ul = styled.ul<empty>({
   paddingLeft: 20,
 
   '& li': {
-    marginTop: 10
+    marginTop: 10,
   },
 
   '& ol, & ul': {
     marginLeft: 20,
-    marginTop: 10
-  }
+    marginTop: 10,
+  },
 })
 
 export const li = styled.li<empty>(textStyles, {
@@ -52,9 +52,9 @@ export const li = styled.li<empty>(textStyles, {
     marginTop: 5,
     marginBottom: 15,
     '& > li': {
-      marginTop: 5
-    }
-  }
+      marginTop: 5,
+    },
+  },
 })
 
 // $FlowFixMe(flow@0.100.0): tagged templates don't support generics
@@ -125,16 +125,16 @@ export const a = styled.a<empty>(
     '&:hover': {
       color: colors.border,
       code: {
-        color: colors.border
-      }
+        color: colors.border,
+      },
     },
     '&.anchor': {
       backgroundColor: 'initial',
-      borderBottom: 'initial'
+      borderBottom: 'initial',
     },
     code: {
-      '&:hover': { color: colors.border }
-    }
+      '&:hover': { color: colors.border },
+    },
   },
   animatedUnderline
 )

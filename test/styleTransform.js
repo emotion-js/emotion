@@ -9,5 +9,5 @@ module.exports = {
       path.basename(filename)
     )}] = ${JSON.stringify(src)}
     `
-  }
+  },
 }

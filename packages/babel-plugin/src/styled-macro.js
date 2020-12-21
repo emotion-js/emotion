@@ -3,14 +3,14 @@ import {
   transformExpressionWithStyles,
   getStyledOptions,
   addImport,
-  createTransformerMacro
+  createTransformerMacro,
 } from './utils'
 
 const getReferencedSpecifier = (path, specifierName) => {
   const specifiers = path.get('specifiers')
   return specifierName === 'default'
-    ? specifiers.find(p => p.isImportDefaultSpecifier())
-    : specifiers.find(p => p.node.local.name === specifierName)
+    ? specifiers.find((p) => p.isImportDefaultSpecifier())
+    : specifiers.find((p) => p.node.local.name === specifierName)
 }
 
 export let styledTransformer = ({
@@ -20,7 +20,7 @@ export let styledTransformer = ({
   importSource,
   reference,
   importSpecifierName,
-  options: { styledBaseImport, isWeb }
+  options: { styledBaseImport, isWeb },
 }: {
   state: Object,
   babel: Object,
@@ -28,7 +28,7 @@ export let styledTransformer = ({
   importSource: string,
   importSpecifierName: string,
   reference: Object,
-  options: { styledBaseImport?: [string, string], isWeb: boolean }
+  options: { styledBaseImport?: [string, string], isWeb: boolean },
 }) => {
   let t = babel.types
 
@@ -40,8 +40,8 @@ export let styledTransformer = ({
     ) {
       return importSpecifierName === 'default'
         ? t.identifier(
-            path.get('specifiers').find(p => p.isImportDefaultSpecifier()).node
-              .local.name
+            path.get('specifiers').find((p) => p.isImportDefaultSpecifier())
+              .node.local.name
           )
         : t.identifier(importSpecifierName)
     }
@@ -79,7 +79,7 @@ export let styledTransformer = ({
     ) {
       reference.parentPath.replaceWith(
         t.callExpression(getStyledIdentifier(), [
-          t.stringLiteral(reference.parent.property.name)
+          t.stringLiteral(reference.parent.property.name),
         ])
       )
     } else {
@@ -101,7 +101,7 @@ export let styledTransformer = ({
       path: styledCallPath,
       state,
       babel,
-      shouldLabel: false
+      shouldLabel: false,
     })
     if (node && isWeb) {
       // we know the argument length will be 1 since that's the only time we will have a node since it will be static
@@ -125,19 +125,19 @@ export let createStyledMacro = ({
   importSource,
   originalImportSource = importSource,
   baseImportName = 'default',
-  isWeb
+  isWeb,
 }: {
   importSource: string,
   originalImportSource?: string,
   baseImportName?: string,
-  isWeb: boolean
+  isWeb: boolean,
 }) =>
   createTransformerMacro(
     {
       default: [
         styledTransformer,
-        { styledBaseImport: [importSource, baseImportName], isWeb }
-      ]
+        { styledBaseImport: [importSource, baseImportName], isWeb },
+      ],
     },
     { importSource: originalImportSource }
   )

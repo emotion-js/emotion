@@ -20,7 +20,7 @@ test('provider with theme value that changes', () => {
             }}
             css={({ color, padding }) => ({
               color,
-              padding
+              padding,
             })}
           />
         </ThemeProvider>

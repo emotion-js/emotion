@@ -9,8 +9,12 @@ import HTMLSerializer from 'jest-serializer-html'
 
 type EmotionServer = {
   renderStylesToNodeStream: () => *,
-  extractCritical: string => { html: string, css: string, ids: Array<string> },
-  renderStylesToString: string => string
+  extractCritical: (string) => {
+    html: string,
+    css: string,
+    ids: Array<string>,
+  },
+  renderStylesToString: (string) => string,
 }
 
 expect.addSnapshotSerializer(HTMLSerializer)
@@ -142,7 +146,7 @@ export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
             '#' +
             Math.round((1 / count) * maxColors)
               .toString(16)
-              .padStart(6, '0')
+              .padStart(6, '0'),
         })}
       >
         woah there
@@ -157,16 +161,16 @@ export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
 export const prettifyCritical = ({
   html,
   css,
-  ids
+  ids,
 }: {
   html: string,
   css: string,
-  ids: Array<string>
+  ids: Array<string>,
 }) => {
   return { css: prettify(css), ids, html }
 }
 
-const isSSRedStyle = node => {
+const isSSRedStyle = (node) => {
   const attrib = ((node.getAttribute(`data-emotion`): any): string).split(' ')
   // SSRed styles have also serialized names set here
   return attrib.length > 1
@@ -181,15 +185,15 @@ export const getCssFromChunks = (emotion: Emotion, document: Document) => {
     // $FlowFixMe
     document.body.querySelector(`[data-emotion]`)
   ).toBeNull()
-  let css = chunks.map(chunk => chunk.textContent || '').join('')
+  let css = chunks.map((chunk) => chunk.textContent || '').join('')
   return prettify(css)
 }
 
 export const getInjectedRules = () =>
   prettify(
     Array.from(document.querySelectorAll('[data-emotion]'))
-      .filter(node => !isSSRedStyle(node))
-      .map(x => x.textContent || '')
+      .filter((node) => !isSSRedStyle(node))
+      .map((x) => x.textContent || '')
       .join('')
   )
 
@@ -208,13 +212,13 @@ export const renderToStringWithStream = (
   new Promise((resolve, reject) => {
     const stream = renderToNodeStream(element).pipe(renderStylesToNodeStream())
     let html = ''
-    stream.on('data', data => {
+    stream.on('data', (data) => {
       html += data.toString()
     })
     stream.on('end', () => {
       resolve(html)
     })
-    stream.on('error', error => {
+    stream.on('error', (error) => {
       reject(error)
     })
   })

@@ -5,7 +5,7 @@ module.exports = ({ markdownNode, markdownAST }) => {
   ) {
     markdownAST.children.shift()
     let index = markdownAST.children.findIndex(
-      item =>
+      (item) =>
         item.type === 'heading' &&
         item.children.length === 1 &&
         item.children[0].type === 'text' &&

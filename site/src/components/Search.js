@@ -8,11 +8,11 @@ import { addCallback } from '../utils/async-load-search'
 import { colors, mq } from '../utils/style'
 
 type Props = {
-  className?: string
+  className?: string,
 }
 
 type State = {
-  enabled: boolean
+  enabled: boolean,
 }
 
 let a
@@ -34,7 +34,7 @@ class Search extends React.Component<Props, State> {
   input: ?HTMLInputElement
   state = { enabled: true }
   componentDidMount() {
-    addCallback(loaded => {
+    addCallback((loaded) => {
       if (loaded) {
         window.docsearch({
           apiKey: 'd160789a17f10ba962c4bce1b298fbbb',
@@ -60,7 +60,7 @@ class Search extends React.Component<Props, State> {
                 element.click()
               }
             }
-          }
+          },
         })
       } else {
         // eslint-disable-next-line no-console
@@ -82,10 +82,10 @@ class Search extends React.Component<Props, State> {
             alignItems: 'center',
             margin: '8px 0 16px 0',
             '& span.algolia-autocomplete': {
-              flex: 1
-            }
+              flex: 1,
+            },
           }),
-          algoliaStyles
+          algoliaStyles,
         ]}
       >
         <input
@@ -108,9 +108,9 @@ class Search extends React.Component<Props, State> {
             margin: 0,
             appearance: 'none',
             transition:
-              'width 200ms ease,padding 200ms ease, background-color 100ms ease'
+              'width 200ms ease,padding 200ms ease, background-color 100ms ease',
           }}
-          ref={ele => {
+          ref={(ele) => {
             this.input = ele
           }}
           id="algolia-doc-search"

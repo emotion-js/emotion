@@ -44,9 +44,7 @@ test('composition with objects', () => {
   const cssA = {
     color: lighten(0.2, '#000'),
     fontSize: '1em',
-    [hiDPI(1.5)
-      .replace('\n', ' ')
-      .trim()]: { fontSize: '1.25em' }
+    [hiDPI(1.5).replace('\n', ' ').trim()]: { fontSize: '1.25em' },
   }
 
   const cssB = css`
@@ -87,10 +85,10 @@ test('object composition', () => {
       borderRadius: '50%',
       transition: 'transform 400ms ease-in-out',
       ':hover': {
-        transform: 'scale(1.2)'
-      }
+        transform: 'scale(1.2)',
+      },
     },
-    { border: '3px solid currentColor' }
+    { border: '3px solid currentColor' },
   ])
 
   const Avatar = styled('img')`
@@ -144,15 +142,15 @@ test('composition of nested pseudo selectors', () => {
     '&:hover': {
       color: 'blue',
       '&:active': {
-        color: 'red'
-      }
-    }
+        color: 'red',
+      },
+    },
   }
 
   const buttonStyles = () => ({
     ...defaultLinkStyles,
     fontSize: '2rem',
-    padding: 16
+    padding: 16,
   })
 
   const Button = styled('button')(buttonStyles)
@@ -164,12 +162,12 @@ test('composition of nested pseudo selectors', () => {
           '&:hover': {
             color: 'pink',
             '&:active': {
-              color: 'purple'
+              color: 'purple',
             },
             '&.some-class': {
-              color: 'yellow'
-            }
-          }
+              color: 'yellow',
+            },
+          },
         })}
       >
         Should be purple
@@ -180,8 +178,8 @@ test('composition of nested pseudo selectors', () => {
 })
 
 test('glamorous style api & composition', () => {
-  const H1 = styled.h1(props => ({ fontSize: props.fontSize }))
-  const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
+  const H1 = styled.h1((props) => ({ fontSize: props.fontSize }))
+  const H2 = styled(H1)((props) => ({ flex: props.flex }), { display: 'flex' })
 
   const tree = renderer
     .create(

@@ -12,11 +12,11 @@ import { Global } from '@emotion/react'
 const TemplateWrapper = ({
   children,
   sidebarOpen,
-  title
+  title,
 }: {
   children: React.Node,
   sidebarOpen?: boolean,
-  title: string
+  title: string,
 }) => {
   let space = constants.space
   return (
@@ -30,7 +30,7 @@ const TemplateWrapper = ({
           gridTemplateColumns: [
             '36px 1fr',
             '36px 1fr',
-            'minmax(400px, 80%) 220px'
+            'minmax(400px, 80%) 220px',
           ],
           gridTemplateRows: ['48px auto', '48px auto'],
           gridColumnGap: [space[2], space[3]],
@@ -41,7 +41,7 @@ const TemplateWrapper = ({
           paddingBottom: [space[2], space[2], space[2]],
           paddingLeft: [space[2], space[2], space[3]],
           paddingRight: [space[2], space[2], space[3]],
-          margin: '0 auto'
+          margin: '0 auto',
         })}
       >
         {!sidebarOpen && <SiteHeader />}

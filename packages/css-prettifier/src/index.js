@@ -3,7 +3,7 @@ import { compile, serialize, combine, tokenize } from 'stylis'
 
 // adjusted https://github.com/thysultan/stylis.js/blob/68b9043427c177b95a0fd6a2a13f5b636bf80236/src/Serializer.js#L26-L34
 const prettyStringify = memoize(
-  indentation => (element, index, children, callback) => {
+  (indentation) => (element, index, children, callback) => {
     switch (element.type) {
       case '@import':
         return (element.return = element.return || element.value) + '\n\n'
@@ -28,8 +28,8 @@ const prettyStringify = memoize(
       case 'rule':
         element.value = element.props.join(
           element.root &&
-          (element.root.type === '@keyframes' ||
-            element.root.type === '@-webkit-keyframes')
+            (element.root.type === '@keyframes' ||
+              element.root.type === '@-webkit-keyframes')
             ? ', '
             : ',\n'
         )
@@ -39,10 +39,7 @@ const prettyStringify = memoize(
       ? (element.return =
           element.value +
           ' {\n' +
-          children
-            .trim()
-            .replace(/^/gm, indentation)
-            .replace(/^\s+$/gm, '') +
+          children.trim().replace(/^/gm, indentation).replace(/^\s+$/gm, '') +
           '\n}\n\n')
       : ''
   }

@@ -6,10 +6,10 @@ import {
   css,
   jsx,
   keyframes,
-  withEmotionCache
+  withEmotionCache,
 } from '@emotion/react'
 ;<Global styles={[]} />
-;<Global styles={theme => [theme.primaryColor]} />
+;<Global styles={(theme) => [theme.primaryColor]} />
 const ComponentWithCache = withEmotionCache((_props, cache) => {
   return (
     <div
@@ -31,8 +31,8 @@ const ComponentWithCache = withEmotionCache((_props, cache) => {
   <Global
     styles={{
       body: {
-        backgroundColor: 'hotpink'
-      }
+        backgroundColor: 'hotpink',
+      },
     }}
   />
 </div>
@@ -45,21 +45,21 @@ const ComponentWithCache = withEmotionCache((_props, cache) => {
 />
 ;<MyComponent
   css={{
-    backgroundColor: 'black'
+    backgroundColor: 'black',
   }}
   world="is-gone"
 />
 const anim0 = keyframes({
   from: {
-    top: 0
+    top: 0,
   },
   to: {
-    top: '20px'
-  }
+    top: '20px',
+  },
 })
 ;<MyComponent
   css={{
-    animationName: anim0
+    animationName: anim0,
   }}
   world="of-world"
 />
@@ -74,7 +74,7 @@ const anim1 = keyframes`
 `
 ;<MyComponent
   css={{
-    animationName: anim1
+    animationName: anim1,
   }}
   world="of-world"
 />
@@ -85,7 +85,7 @@ const anim1 = keyframes`
         <span className={cx('a', undefined, 'b', null, [['abc']])} />
         <span
           className={css({
-            color: theme.primaryColor
+            color: theme.primaryColor,
           })}
         >
           Fst Text
@@ -102,30 +102,30 @@ const anim1 = keyframes`
   }}
 </ClassNames>
 ;<div
-  css={theme => css`
+  css={(theme) => css`
     color: ${theme.secondaryColor};
   `}
 />
 {
-  const CompWithClassNameSupport = _props => {
+  const CompWithClassNameSupport = (_props) => {
     return null
   }
   ;<CompWithClassNameSupport
     prop1="test"
     css={{
-      backgroundColor: 'hotpink'
+      backgroundColor: 'hotpink',
     }}
   />
   const MemoedCompWithClassNameSupport = React.memo(CompWithClassNameSupport)
   ;<MemoedCompWithClassNameSupport
     prop1="test"
     css={{
-      backgroundColor: 'hotpink'
+      backgroundColor: 'hotpink',
     }}
   />
 }
 {
-  const CompWithoutClassNameSupport = _props => {
+  const CompWithoutClassNameSupport = (_props) => {
     return null
   }
   ;<CompWithoutClassNameSupport prop1="test" css={{ color: 'hotpink' }} />
@@ -135,7 +135,7 @@ const anim1 = keyframes`
   ;<MemoedCompWithoutClassNameSupport prop1="test" css={{ color: 'hotpink' }} />
 }
 {
-  const CompWithoutProps = _props => {
+  const CompWithoutProps = (_props) => {
     return null
   }
   ;<CompWithoutProps css={{ backgroundColor: 'hotpink' }} />

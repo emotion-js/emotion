@@ -4,7 +4,7 @@ import createExtractCritical from './extract-critical'
 import createRenderStylesToString from './inline'
 import createRenderStylesToStream from './stream'
 
-export default function(cache: EmotionCache) {
+export default function (cache: EmotionCache) {
   if (cache.compat !== true) {
     // is this good? should we do this automatically?
     // this is only for when using the new apis (not emotion or create-emotion)
@@ -14,6 +14,6 @@ export default function(cache: EmotionCache) {
   return {
     extractCritical: createExtractCritical(cache),
     renderStylesToString: createRenderStylesToString(cache, nonceString),
-    renderStylesToNodeStream: createRenderStylesToStream(cache, nonceString)
+    renderStylesToNodeStream: createRenderStylesToStream(cache, nonceString),
   }
 }

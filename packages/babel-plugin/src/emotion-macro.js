@@ -1,7 +1,7 @@
 // @flow
 import { transformExpressionWithStyles, createTransformerMacro } from './utils'
 
-const isAlreadyTranspiled = path => {
+const isAlreadyTranspiled = (path) => {
   if (!path.isCallExpression()) {
     return false
   }
@@ -23,10 +23,10 @@ const isAlreadyTranspiled = path => {
   }
 
   const properties = new Set(
-    alternatePath.get('properties').map(p => p.node.key.name)
+    alternatePath.get('properties').map((p) => p.node.key.name)
   )
 
-  return ['name', 'styles'].every(p => properties.has(p))
+  return ['name', 'styles'].every((p) => properties.has(p))
 }
 
 let createEmotionTransformer = (isPure: boolean) => ({
@@ -34,7 +34,7 @@ let createEmotionTransformer = (isPure: boolean) => ({
   babel,
   importSource,
   reference,
-  importSpecifierName
+  importSpecifierName,
 }: Object) => {
   const path = reference.parentPath
 
@@ -50,7 +50,7 @@ let createEmotionTransformer = (isPure: boolean) => ({
     babel,
     state,
     path,
-    shouldLabel: true
+    shouldLabel: true,
   })
   if (node) {
     path.node.arguments[0] = node
@@ -60,7 +60,7 @@ let createEmotionTransformer = (isPure: boolean) => ({
 export let transformers = {
   css: createEmotionTransformer(true),
   injectGlobal: createEmotionTransformer(false),
-  keyframes: createEmotionTransformer(true)
+  keyframes: createEmotionTransformer(true),
 }
 
 export let createEmotionMacro = (importSource: string) =>

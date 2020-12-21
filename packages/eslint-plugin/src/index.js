@@ -13,5 +13,5 @@ export let rules = {
   'syntax-preference': syntaxPreference,
   'styled-import': styledImport,
   'jsx-import': jsxImport,
-  'pkg-renaming': pkgRenaming
+  'pkg-renaming': pkgRenaming,
 }

@@ -60,20 +60,20 @@ const MSG_PREFER_WRAPPING_WITH_CSS =
 const checkCssPropExpressionPreferringObject = (context, node) => {
   switch (node.type) {
     case 'ArrayExpression':
-      node.elements.forEach(element =>
+      node.elements.forEach((element) =>
         checkCssPropExpressionPreferringObject(context, element)
       )
       return
     case 'CallExpression':
       context.report({
         node,
-        message: MSG_PREFER_OBJECT_STYLE
+        message: MSG_PREFER_OBJECT_STYLE,
       })
       return
     case 'TaggedTemplateExpression':
       context.report({
         node,
-        message: MSG_PREFER_OBJECT_STYLE
+        message: MSG_PREFER_OBJECT_STYLE,
       })
       return
     case 'Literal':
@@ -83,17 +83,17 @@ const checkCssPropExpressionPreferringObject = (context, node) => {
       }
       context.report({
         node,
-        message: MSG_PREFER_OBJECT_STYLE
+        message: MSG_PREFER_OBJECT_STYLE,
       })
   }
 }
 
-const createPreferredObjectVisitor = context => ({
+const createPreferredObjectVisitor = (context) => ({
   TaggedTemplateExpression(node) {
     if (isStringStyle(node)) {
       context.report({
         node,
-        message: MSG_PREFER_OBJECT_STYLE
+        message: MSG_PREFER_OBJECT_STYLE,
       })
     }
   },
@@ -110,26 +110,26 @@ const createPreferredObjectVisitor = context => ({
         }
         context.report({
           node: node.value,
-          message: MSG_PREFER_OBJECT_STYLE
+          message: MSG_PREFER_OBJECT_STYLE,
         })
         return
       case 'JSXExpressionContainer':
         checkCssPropExpressionPreferringObject(context, node.value.expression)
     }
-  }
+  },
 })
 
 const checkCssPropExpressionPreferringString = (context, node) => {
   switch (node.type) {
     case 'ArrayExpression':
-      node.elements.forEach(element =>
+      node.elements.forEach((element) =>
         checkCssPropExpressionPreferringString(context, element)
       )
       return
     case 'ObjectExpression':
       context.report({
         node,
-        message: MSG_PREFER_STRING_STYLE
+        message: MSG_PREFER_STRING_STYLE,
       })
       return
     case 'Literal':
@@ -139,17 +139,17 @@ const checkCssPropExpressionPreferringString = (context, node) => {
       }
       context.report({
         node,
-        message: MSG_PREFER_WRAPPING_WITH_CSS
+        message: MSG_PREFER_WRAPPING_WITH_CSS,
       })
   }
 }
 
-const createPreferredStringVisitor = context => ({
+const createPreferredStringVisitor = (context) => ({
   CallExpression(node) {
     if (isObjectStyle(node)) {
       context.report({
         node,
-        message: MSG_PREFER_STRING_STYLE
+        message: MSG_PREFER_STRING_STYLE,
       })
     }
   },
@@ -167,13 +167,13 @@ const createPreferredStringVisitor = context => ({
         }
         context.report({
           node: node.value,
-          message: MSG_PREFER_WRAPPING_WITH_CSS
+          message: MSG_PREFER_WRAPPING_WITH_CSS,
         })
         return
       case 'JSXExpressionContainer':
         checkCssPropExpressionPreferringString(context, node.value.expression)
     }
-  }
+  },
 })
 
 export default {
@@ -181,14 +181,14 @@ export default {
     docs: {
       description: 'Choose between string or object styles',
       category: 'Stylistic Issues',
-      recommended: false
+      recommended: false,
     },
     fixable: null, // or "code" or "whitespace"
     schema: [
       {
-        enum: ['string', 'object']
-      }
-    ]
+        enum: ['string', 'object'],
+      },
+    ],
   },
 
   create(context) {
@@ -202,5 +202,5 @@ export default {
       default:
         return {}
     }
-  }
+  },
 }

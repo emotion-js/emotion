@@ -10,16 +10,16 @@ type ComponentsType = {
   Box: React.ElementType,
   Dot: React.ElementType,
   Provider: React.ElementType,
-  View: React.ElementType
+  View: React.ElementType,
 }
 
 type ImplementationType = {
   components: ComponentsType,
-  name: string
+  name: string,
 }
 
 const implementations: Array<ImplementationType> = Object.keys(impls).map(
-  name => {
+  (name) => {
     const components = impls[name]
     return { components, name }
   }

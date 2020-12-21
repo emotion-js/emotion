@@ -6,7 +6,7 @@ const { createServer } = require('http-server')
 
 let libraries = ['emotion-css-func', 'emotion-css-prop']
 let tests = ['Mount deep tree', 'Mount wide tree', 'Update dynamic styles']
-let tracing = process.argv.some(arg => arg.includes('tracing'))
+let tracing = process.argv.some((arg) => arg.includes('tracing'))
 
 if (tracing) {
   console.log(
@@ -17,7 +17,7 @@ if (tracing) {
 ;(async () => {
   let server = createServer({ root: path.join(__dirname, 'dist') })
   await new Promise((resolve, reject) => {
-    server.listen(57322, 'localhost', err => {
+    server.listen(57322, 'localhost', (err) => {
       if (err) {
         reject(err)
       }
@@ -39,7 +39,7 @@ if (tracing) {
   console.log('Done!')
   await browser.close()
   await new Promise((resolve, reject) => {
-    server.close(err => {
+    server.close((err) => {
       if (err) {
         reject(err)
       }
@@ -68,7 +68,7 @@ async function runTest(browser, library, test) {
   }
   const result = await page.$eval(
     `[data-testid="run-result"]`,
-    node => node.innerText
+    (node) => node.innerText
   )
   console.log(`\n---${library} - ${test}---`)
   console.log(result)

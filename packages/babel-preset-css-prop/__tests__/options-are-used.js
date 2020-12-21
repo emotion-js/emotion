@@ -7,8 +7,8 @@ babelTester('options are used', __dirname, {
       preset,
       {
         sourceMap: false,
-        labelFormat: '[dirname]--[filename]--[local]'
-      }
-    ]
-  ]
+        labelFormat: '[dirname]--[filename]--[local]',
+      },
+    ],
+  ],
 })

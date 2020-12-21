@@ -84,64 +84,64 @@ type Props = {
   children: ({
     css: (...args: any) => string,
     cx: (...args: Array<ClassNameArg>) => string,
-    theme: Object
-  }) => React.Node
+    theme: Object,
+  }) => React.Node,
 }
 
-export const ClassNames: React.AbstractComponent<
-  Props
-> = /* #__PURE__ */ withEmotionCache((props, cache) => {
-  let rules = ''
-  let serializedHashes = ''
-  let hasRendered = false
+export const ClassNames: React.AbstractComponent<Props> = /* #__PURE__ */ withEmotionCache(
+  (props, cache) => {
+    let rules = ''
+    let serializedHashes = ''
+    let hasRendered = false
 
-  let css = (...args: Array<any>) => {
-    if (hasRendered && process.env.NODE_ENV !== 'production') {
-      throw new Error('css can only be used during render')
-    }
-    let serialized = serializeStyles(args, cache.registered)
-    if (isBrowser) {
-      insertStyles(cache, serialized, false)
-    } else {
-      let res = insertStyles(cache, serialized, false)
-      if (res !== undefined) {
-        rules += res
+    let css = (...args: Array<any>) => {
+      if (hasRendered && process.env.NODE_ENV !== 'production') {
+        throw new Error('css can only be used during render')
       }
+      let serialized = serializeStyles(args, cache.registered)
+      if (isBrowser) {
+        insertStyles(cache, serialized, false)
+      } else {
+        let res = insertStyles(cache, serialized, false)
+        if (res !== undefined) {
+          rules += res
+        }
+      }
+      if (!isBrowser) {
+        serializedHashes += ` ${serialized.name}`
+      }
+      return `${cache.key}-${serialized.name}`
     }
-    if (!isBrowser) {
-      serializedHashes += ` ${serialized.name}`
+    let cx = (...args: Array<ClassNameArg>) => {
+      if (hasRendered && process.env.NODE_ENV !== 'production') {
+        throw new Error('cx can only be used during render')
+      }
+      return merge(cache.registered, css, classnames(args))
     }
-    return `${cache.key}-${serialized.name}`
-  }
-  let cx = (...args: Array<ClassNameArg>) => {
-    if (hasRendered && process.env.NODE_ENV !== 'production') {
-      throw new Error('cx can only be used during render')
+    let content = {
+      css,
+      cx,
+      theme: React.useContext(ThemeContext),
     }
-    return merge(cache.registered, css, classnames(args))
+    let ele = props.children(content)
+    hasRendered = true
+    if (!isBrowser && rules.length !== 0) {
+      return (
+        <>
+          <style
+            {...{
+              [`data-emotion`]: `${cache.key} ${serializedHashes.substring(1)}`,
+              dangerouslySetInnerHTML: { __html: rules },
+              nonce: cache.sheet.nonce,
+            }}
+          />
+          {ele}
+        </>
+      )
+    }
+    return ele
   }
-  let content = {
-    css,
-    cx,
-    theme: React.useContext(ThemeContext)
-  }
-  let ele = props.children(content)
-  hasRendered = true
-  if (!isBrowser && rules.length !== 0) {
-    return (
-      <>
-        <style
-          {...{
-            [`data-emotion`]: `${cache.key} ${serializedHashes.substring(1)}`,
-            dangerouslySetInnerHTML: { __html: rules },
-            nonce: cache.sheet.nonce
-          }}
-        />
-        {ele}
-      </>
-    )
-  }
-  return ele
-})
+)
 
 if (process.env.NODE_ENV !== 'production') {
   ClassNames.displayName = 'EmotionClassNames'

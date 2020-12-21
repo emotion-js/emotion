@@ -15,11 +15,11 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/memoize": "^0.7.4",
-    "@emotion/sheet": "^1.0.0",
+    "@emotion/memoize": "^0.7.5",
+    "@emotion/sheet": "^1.0.1",
     "@emotion/utils": "^1.0.0",
     "@emotion/weak-memoize": "^0.2.5",
-    "stylis": "^4.0.3"
+    "stylis": "^4.0.6"
   },
   "devDependencies": {
     "@emotion/hash": "*",

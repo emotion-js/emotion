@@ -12,14 +12,14 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
         assert: 'fbjs/lib/emptyFunction',
         'source-map': 'fbjs/lib/emptyFunction',
         'convert-source-map': 'fbjs/lib/emptyFunction',
-        '@babel/types': path.join(__dirname, './src/utils/babel-types')
-      }
+        '@babel/types': path.join(__dirname, './src/utils/babel-types'),
+      },
     },
     node: {
       fs: 'empty',
       buffer: 'empty',
-      assert: 'empty'
-    }
+      assert: 'empty',
+    },
   })
   const config = getConfig()
   actions.replaceWebpackConfig({
@@ -31,24 +31,24 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
       // this is here because it defaults to window and is used for hot reloading and other stuff
       // so if this wasn't here, the web worker would break
       // since it would try to access window
-      globalObject: 'this'
+      globalObject: 'this',
     },
     module: {
       ...config.module,
-      rules: config.module.rules.filter(rule => {
+      rules: config.module.rules.filter((rule) => {
         // eslint is annoying
         return rule.enforce !== 'pre'
-      })
-    }
+      }),
+    },
   })
 
   if (stage === 'build-javascript' && !process.env.NETLIFY) {
     actions.setWebpackConfig({
       plugins: [
         new BundleAnalyzerPlugin({
-          analyzerMode: 'static'
-        })
-      ]
+          analyzerMode: 'static',
+        }),
+      ],
     })
   }
 }
@@ -61,7 +61,7 @@ exports.sourceNodes = async ({ store, cache, actions, createNodeId }) => {
     store,
     cache,
     createNode: actions.createNode,
-    createNodeId
+    createNodeId,
   })
 }
 
@@ -72,26 +72,26 @@ exports.createPages = async ({ graphql, actions }) => {
     fromPath: `/`,
     isPermanent: true,
     redirectInBrowser: true,
-    toPath: `/docs/introduction`
+    toPath: `/docs/introduction`,
   })
 
   createRedirect({
     fromPath: `/docs`,
     isPermanent: true,
     redirectInBrowser: true,
-    toPath: `/docs/introduction`
+    toPath: `/docs/introduction`,
   })
 
   const docs1 = require('./docs-yaml')()
   const docTemplate = require.resolve(`./src/templates/doc.js`)
   docs1.forEach(({ title, items }) => {
-    items.forEach(itemName => {
+    items.forEach((itemName) => {
       createPage({
         path: `docs/${itemName}`,
         component: docTemplate,
         context: {
-          slug: itemName
-        }
+          slug: itemName,
+        },
       })
     })
   })
@@ -110,7 +110,7 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
       value:
         fileNode.name === 'README'
           ? getNameForPackage(fileNode.absolutePath)
-          : fileNode.name
+          : fileNode.name,
     })
   }
 }
@@ -130,10 +130,10 @@ function getNameForPackage(absolutePath) {
 exports.onCreateBabelConfig = ({ actions, stage }) => {
   actions.setBabelPreset({
     name: `babel-preset-emotion-dev`,
-    stage
+    stage,
   })
   actions.setBabelPreset({
     name: require.resolve(`@emotion/babel-preset-css-prop`),
-    stage
+    stage,
   })
 }

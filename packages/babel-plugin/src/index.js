@@ -2,18 +2,18 @@
 import syntaxJsx from '@babel/plugin-syntax-jsx'
 import {
   createEmotionMacro,
-  transformers as vanillaTransformers
+  transformers as vanillaTransformers,
 } from './emotion-macro'
 import { createStyledMacro, styledTransformer } from './styled-macro'
 import coreMacro, {
   transformers as coreTransformers,
   transformCsslessArrayExpression,
-  transformCsslessObjectExpression
+  transformCsslessObjectExpression,
 } from './core-macro'
 import { getStyledOptions, createTransformerMacro } from './utils'
 
 const getCssExport = (reexported, importSource, mapping) => {
-  const cssExport = Object.keys(mapping).find(localExportName => {
+  const cssExport = Object.keys(mapping).find((localExportName) => {
     const [packageName, exportName] = mapping[localExportName].canonicalImport
     return packageName === '@emotion/react' && exportName === 'css'
   })
@@ -30,17 +30,17 @@ const getCssExport = (reexported, importSource, mapping) => {
 let webStyledMacro = createStyledMacro({
   importSource: '@emotion/styled/base',
   originalImportSource: '@emotion/styled',
-  isWeb: true
+  isWeb: true,
 })
 let nativeStyledMacro = createStyledMacro({
   importSource: '@emotion/native',
   originalImportSource: '@emotion/native',
-  isWeb: false
+  isWeb: false,
 })
 let primitivesStyledMacro = createStyledMacro({
   importSource: '@emotion/primitives',
   originalImportSource: '@emotion/primitives',
-  isWeb: false
+  isWeb: false,
 })
 let vanillaEmotionMacro = createEmotionMacro('@emotion/css')
 
@@ -50,15 +50,15 @@ let transformersSource = {
   '@emotion/styled': {
     default: [
       styledTransformer,
-      { styledBaseImport: ['@emotion/styled/base', 'default'], isWeb: true }
-    ]
+      { styledBaseImport: ['@emotion/styled/base', 'default'], isWeb: true },
+    ],
   },
   '@emotion/primitives': {
-    default: [styledTransformer, { isWeb: false }]
+    default: [styledTransformer, { isWeb: false }],
   },
   '@emotion/native': {
-    default: [styledTransformer, { isWeb: false }]
-  }
+    default: [styledTransformer, { isWeb: false }],
+  },
 }
 
 export const macros = {
@@ -66,7 +66,7 @@ export const macros = {
   nativeStyled: nativeStyledMacro,
   primitivesStyled: primitivesStyledMacro,
   webStyled: webStyledMacro,
-  vanillaEmotion: vanillaEmotionMacro
+  vanillaEmotion: vanillaEmotionMacro,
 }
 
 export type BabelPath = any
@@ -75,14 +75,14 @@ export type EmotionBabelPluginPass = any
 
 const AUTO_LABEL_VALUES = ['dev-only', 'never', 'always']
 
-export default function(babel: *, options: *) {
+export default function (babel: *, options: *) {
   if (
     options.autoLabel !== undefined &&
     !AUTO_LABEL_VALUES.includes(options.autoLabel)
   ) {
     throw new Error(
       `The 'autoLabel' option must be undefined, or one of the following: ${AUTO_LABEL_VALUES.map(
-        s => `"${s}"`
+        (s) => `"${s}"`
       ).join(', ')}`
     )
   }
@@ -101,10 +101,10 @@ export default function(babel: *, options: *) {
         if (t.isImportNamespaceSpecifier(path.node.specifiers[0])) {
           return
         }
-        const imports = path.node.specifiers.map(s => ({
+        const imports = path.node.specifiers.map((s) => ({
           localName: s.local.name,
           importedName:
-            s.type === 'ImportDefaultSpecifier' ? 'default' : s.imported.name
+            s.type === 'ImportDefaultSpecifier' ? 'default' : s.imported.name,
         }))
         let shouldExit = false
         let hasReferences = false
@@ -134,7 +134,7 @@ export default function(babel: *, options: *) {
          * See: https://github.com/kentcdodds/import-all.macro/issues/7
          */
         state.file.scope.path.traverse({
-          Identifier() {}
+          Identifier() {},
         })
 
         macro({
@@ -143,7 +143,7 @@ export default function(babel: *, options: *) {
           state,
           babel,
           isEmotionCall: true,
-          isBabelMacrosCall: true
+          isBabelMacrosCall: true,
         })
       },
       Program(path: *, state: *) {
@@ -151,22 +151,22 @@ export default function(babel: *, options: *) {
         let jsxReactImports: Array<{
           importSource: string,
           export: string,
-          cssExport: string
+          cssExport: string,
         }> = [
-          { importSource: '@emotion/react', export: 'jsx', cssExport: 'css' }
+          { importSource: '@emotion/react', export: 'jsx', cssExport: 'css' },
         ]
         state.jsxReactImport = jsxReactImports[0]
-        Object.keys(state.opts.importMap || {}).forEach(importSource => {
+        Object.keys(state.opts.importMap || {}).forEach((importSource) => {
           let value = state.opts.importMap[importSource]
           let transformers = {}
-          Object.keys(value).forEach(localExportName => {
+          Object.keys(value).forEach((localExportName) => {
             let { canonicalImport, ...options } = value[localExportName]
             let [packageName, exportName] = canonicalImport
             if (packageName === '@emotion/react' && exportName === 'jsx') {
               jsxReactImports.push({
                 importSource,
                 export: localExportName,
-                cssExport: getCssExport('jsx', importSource, value)
+                cssExport: getCssExport('jsx', importSource, value),
               })
               return
             }
@@ -183,7 +183,7 @@ export default function(babel: *, options: *) {
             if (packageName === '@emotion/react' && exportName === 'Global') {
               // this option is not supposed to be set in importMap
               extraOptions = {
-                cssExport: getCssExport('Global', importSource, value)
+                cssExport: getCssExport('Global', importSource, value),
               }
             } else if (
               packageName === '@emotion/styled' &&
@@ -192,7 +192,7 @@ export default function(babel: *, options: *) {
               // this is supposed to override defaultOptions value
               // and let correct value to be set if coming in options
               extraOptions = {
-                styledBaseImport: undefined
+                styledBaseImport: undefined,
               }
             }
 
@@ -207,12 +207,12 @@ export default function(babel: *, options: *) {
               {
                 ...defaultOptions,
                 ...extraOptions,
-                ...options
-              }
+                ...options,
+              },
             ]
           })
           macros[importSource] = createTransformerMacro(transformers, {
-            importSource
+            importSource,
           })
         })
         state.pluginMacros = {
@@ -221,16 +221,16 @@ export default function(babel: *, options: *) {
           '@emotion/primitives': primitivesStyledMacro,
           '@emotion/native': nativeStyledMacro,
           '@emotion/css': vanillaEmotionMacro,
-          ...macros
+          ...macros,
         }
 
         for (const node of path.node.body) {
           if (t.isImportDeclaration(node)) {
             let jsxReactImport = jsxReactImports.find(
-              thing =>
+              (thing) =>
                 node.source.value === thing.importSource &&
                 node.specifiers.some(
-                  x =>
+                  (x) =>
                     t.isImportSpecifier(x) && x.imported.name === thing.export
                 )
             )
@@ -263,14 +263,14 @@ export default function(babel: *, options: *) {
             transformCsslessArrayExpression({
               state,
               babel,
-              path
+              path,
             })
           } else if (t.isObjectExpression(path.node.value.expression)) {
             transformCsslessObjectExpression({
               state,
               babel,
               path,
-              cssImport: state.jsxReactImport
+              cssImport: state.jsxReactImport,
             })
           }
         }
@@ -293,8 +293,8 @@ export default function(babel: *, options: *) {
           } catch (e) {
             throw path.buildCodeFrameError(e)
           }
-        }
-      }
-    }
+        },
+      },
+    },
   }
 }

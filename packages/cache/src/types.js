@@ -9,7 +9,7 @@ export type StylisElement = {
   line: number,
   column: number,
   length: number,
-  return: string
+  return: string,
 }
 export type StylisPluginCallback = (
   element: StylisElement,

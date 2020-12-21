@@ -11,7 +11,7 @@ import {
   Global,
   keyframes,
   CacheProvider,
-  ClassNames
+  ClassNames,
 } from '@emotion/react'
 import styled from '@emotion/styled'
 import createCache from '@emotion/cache'
@@ -23,18 +23,18 @@ expect.addSnapshotSerializer(HTMLSerializer)
 
 let cases = {
   basic: {
-    render: () => <div css={{ color: 'hotpink' }}>some hotpink text</div>
+    render: () => <div css={{ color: 'hotpink' }}>some hotpink text</div>,
   },
   global: {
     render: () => (
       <Global
         styles={{
           html: {
-            backgroundColor: 'hotpink'
-          }
+            backgroundColor: 'hotpink',
+          },
         }}
       />
-    )
+    ),
   },
   keyframes: {
     render: () => {
@@ -53,7 +53,7 @@ let cases = {
           <div css={{ animation: `1s ${animation}` }} />
         </React.Fragment>
       )
-    }
+    },
   },
   'only render a style once with the css prop': {
     render: () => {
@@ -63,7 +63,7 @@ let cases = {
           <div css={{ color: 'hotpink' }} />
         </div>
       )
-    }
+    },
   },
   'only render a style once with styled': {
     render: () => {
@@ -76,7 +76,7 @@ let cases = {
           <SomeComponent />
         </div>
       )
-    }
+    },
   },
   'works with nonces': {
     cache: () => createCache({ key: 'css', nonce: 'some-nonce' }),
@@ -93,13 +93,13 @@ let cases = {
               html: {
                 margin: 0,
                 padding: 0,
-                fontFamily: 'sans-serif'
-              }
+                fontFamily: 'sans-serif',
+              },
             }}
           />
         </React.Fragment>
       )
-    }
+    },
   },
 
   'global with keyframes': {
@@ -110,32 +110,32 @@ let cases = {
             h1: {
               animation: `${keyframes({
                 'from,to': {
-                  color: 'green'
+                  color: 'green',
                 },
                 '50%': {
-                  color: 'hotpink'
-                }
-              })} 1s`
-            }
+                  color: 'hotpink',
+                },
+              })} 1s`,
+            },
           }}
         />
       )
-    }
+    },
   },
   'styled with keyframes': {
     render: () => {
       const SomeComponent = styled.div({
         animation: `${keyframes({
           'from,to': {
-            color: 'green'
+            color: 'green',
           },
           '50%': {
-            color: 'hotpink'
-          }
-        })} 1s`
+            color: 'hotpink',
+          },
+        })} 1s`,
       })
       return <SomeComponent />
-    }
+    },
   },
   ClassNames: {
     render: () => {
@@ -155,12 +155,12 @@ let cases = {
                         color: green;
                       `]: true,
                       something: false,
-                      'other-class': true
+                      'other-class': true,
                     },
                     [
                       css`
                         color: yellowgreen;
-                      `
+                      `,
                     ],
                     false && 'some-class',
                     undefined,
@@ -175,13 +175,13 @@ let cases = {
           }}
         </ClassNames>
       )
-    }
-  }
+    },
+  },
 }
 
 testCases(
   'ssr',
-  opts => {
+  (opts) => {
     if (opts.cache) {
       expect(
         renderToString(
@@ -197,7 +197,7 @@ testCases(
 
 testCases(
   'ssr with old api',
-  opts => {
+  (opts) => {
     let cache = opts.cache ? opts.cache() : createCache({ key: 'css' })
     let { renderStylesToString } = createEmotionServer(cache)
     expect(

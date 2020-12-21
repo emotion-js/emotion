@@ -3,7 +3,7 @@ import { jsx, Global } from '@emotion/react'
 import { render } from '@testing-library/react'
 
 let getDataAttributes = () =>
-  Array.from(document.querySelectorAll('style[data-emotion]'), x =>
+  Array.from(document.querySelectorAll('style[data-emotion]'), (x) =>
     x.getAttribute('data-emotion')
   )
 
@@ -12,15 +12,15 @@ test('Global style element insertion after insertion of other styles', () => {
     <div>
       <div
         css={{
-          color: 'green'
+          color: 'green',
         }}
       />
       {second && (
         <Global
           styles={{
             html: {
-              backgroundColor: 'hotpink'
-            }
+              backgroundColor: 'hotpink',
+            },
           }}
         />
       )}

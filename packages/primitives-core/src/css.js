@@ -106,7 +106,7 @@ export function createCss(StyleSheet: Object) {
     const hash = JSON.stringify(styles)
     if (!generated[hash]) {
       const styleSheet = StyleSheet.create({
-        generated: StyleSheet.flatten(styles)
+        generated: StyleSheet.flatten(styles),
       })
       generated[hash] = styleSheet.generated
     }
@@ -151,11 +151,7 @@ function convertStyles(str: string) {
         .trim()
         .split(':')
 
-      const errorMsg = `'${
-        values[0]
-      }' shorthand property requires units for example - ${
-        values[0]
-      }: 20px or ${values[0]}: 10px 20px 40px 50px`
+      const errorMsg = `'${values[0]}' shorthand property requires units for example - ${values[0]}: 20px or ${values[0]}: 10px 20px 40px 50px`
 
       console.error(errorMsg)
     }

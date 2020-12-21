@@ -9,9 +9,9 @@ afterEach(cleanup)
 
 test('change theme', () => {
   const Div = styled.div`
-    color: ${props => props.theme.primary};
+    color: ${(props) => props.theme.primary};
   `
-  const TestComponent = props => (
+  const TestComponent = (props) => (
     <ThemeProvider theme={props.theme}>
       {props.renderChild ? <Div>this will be green then pink</Div> : null}
     </ThemeProvider>

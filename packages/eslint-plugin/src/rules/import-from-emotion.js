@@ -1,13 +1,13 @@
 export default {
   meta: {
-    fixable: 'code'
+    fixable: 'code',
   },
   create(context) {
     return {
       ImportDeclaration(node) {
         if (
           node.source.value === 'react-emotion' &&
-          node.specifiers.some(x => x.type !== 'ImportDefaultSpecifier')
+          node.specifiers.some((x) => x.type !== 'ImportDefaultSpecifier')
         ) {
           context.report({
             node: node.source,
@@ -23,21 +23,20 @@ export default {
                   `import ${
                     node.specifiers[0].local.name
                   } from '@emotion/styled';\nimport { ${node.specifiers
-                    .filter(x => x.type === 'ImportSpecifier')
-                    .map(
-                      x =>
-                        x.local.name === x.imported.name
-                          ? x.local.name
-                          : `${x.imported.name} as ${x.local.name}`
+                    .filter((x) => x.type === 'ImportSpecifier')
+                    .map((x) =>
+                      x.local.name === x.imported.name
+                        ? x.local.name
+                        : `${x.imported.name} as ${x.local.name}`
                     )
                     .join(', ')} } from 'emotion';`
                 )
               }
               return fixer.replaceText(node.source, "'emotion'")
-            }
+            },
           })
         }
-      }
+      },
     }
-  }
+  },
 }

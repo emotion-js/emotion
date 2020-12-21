@@ -10,7 +10,7 @@ export default function HTML(props) {
         <script
           dangerouslySetInnerHTML={{
             __html:
-              'window.searchError = function() {window.searchErrored = true;};window.searchLoaded = function() {};'
+              'window.searchError = function() {window.searchErrored = true;};window.searchLoaded = function() {};',
           }}
         />
         {props.headComponents}
@@ -21,7 +21,7 @@ export default function HTML(props) {
         <div
           dangerouslySetInnerHTML={{
             __html:
-              '<script src="https://unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js" onload="searchLoaded()" async defer onerror="searchError()"></script>'
+              '<script src="https://unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js" onload="searchLoaded()" async defer onerror="searchError()"></script>',
           }}
         />
       </body>

@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom'
 const implementations = impl
 const packageNames = Object.keys(implementations)
 
-const createTestBlock = fn => {
+const createTestBlock = (fn) => {
   return packageNames.reduce((testSetups, packageName) => {
     const { name, components } = implementations[packageName]
     const {
@@ -18,7 +18,7 @@ const createTestBlock = fn => {
       getComponentProps,
       sampleCount,
       Provider,
-      benchmarkType
+      benchmarkType,
     } = fn(components)
 
     testSetups[packageName] = {
@@ -27,14 +27,14 @@ const createTestBlock = fn => {
       sampleCount,
       Provider,
       benchmarkType,
-      name
+      name,
     }
     return testSetups
   }, {})
 }
 
 const tests = {
-  'Mount deep tree': createTestBlock(components => ({
+  'Mount deep tree': createTestBlock((components) => ({
     benchmarkType: 'mount',
     Component: Tree,
     getComponentProps: () => ({
@@ -42,12 +42,12 @@ const tests = {
       components,
       depth: 7,
       id: 0,
-      wrap: 1
+      wrap: 1,
     }),
     Provider: components.Provider,
-    sampleCount: 50
+    sampleCount: 50,
   })),
-  'Mount wide tree': createTestBlock(components => ({
+  'Mount wide tree': createTestBlock((components) => ({
     benchmarkType: 'mount',
     Component: Tree,
     getComponentProps: () => ({
@@ -55,20 +55,20 @@ const tests = {
       components,
       depth: 3,
       id: 0,
-      wrap: 2
+      wrap: 2,
     }),
     Provider: components.Provider,
-    sampleCount: 50
+    sampleCount: 50,
   })),
-  'Update dynamic styles': createTestBlock(components => ({
+  'Update dynamic styles': createTestBlock((components) => ({
     benchmarkType: 'update',
     Component: SierpinskiTriangle,
     getComponentProps: ({ cycle }) => {
       return { components, s: 200, renderCount: cycle, x: 0, y: 0 }
     },
     Provider: components.Provider,
-    sampleCount: 100
-  }))
+    sampleCount: 100,
+  })),
 }
 
 let root = document.querySelector('.root')

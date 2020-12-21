@@ -6,7 +6,7 @@ import { jsx, CacheProvider } from '@emotion/react'
 import { render } from 'react-dom'
 import { css, cache } from '@emotion/css'
 
-test('composition works from old emotion css calls', cb => {
+test('composition works from old emotion css calls', (cb) => {
   const cls = css`
     color: green;
   `

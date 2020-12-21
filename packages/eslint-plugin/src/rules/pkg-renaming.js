@@ -8,12 +8,12 @@ let simpleMappings = {
   'eslint-plugin-emotion': '@emotion/eslint-plugin',
   'create-emotion-server': '@emotion/server/create-instance',
   'create-emotion': '@emotion/css/create-instance',
-  'emotion-server': '@emotion/server'
+  'emotion-server': '@emotion/server',
 }
 
 export default {
   meta: {
-    fixable: 'code'
+    fixable: 'code',
   },
   create(context) {
     return {
@@ -27,7 +27,7 @@ export default {
             )} has been renamed to ${JSON.stringify(
               maybeMapping
             )}, please import it from ${JSON.stringify(maybeMapping)} instead`,
-            fix: fixer => fixer.replaceText(node.source, `'${maybeMapping}'`)
+            fix: (fixer) => fixer.replaceText(node.source, `'${maybeMapping}'`),
           })
         }
         if (
@@ -42,10 +42,8 @@ export default {
               : '@emotion/react/macro'
           context.report({
             node: node.source,
-            message: `The default export of "${
-              node.source.value
-            }" in Emotion 10 has been moved to a named export, \`css\`, from "${replacement}" in Emotion 11, please import it from "${replacement}"`,
-            fix: fixer =>
+            message: `The default export of "${node.source.value}" in Emotion 10 has been moved to a named export, \`css\`, from "${replacement}" in Emotion 11, please import it from "${replacement}"`,
+            fix: (fixer) =>
               fixer.replaceText(
                 node,
                 `import { css${
@@ -53,17 +51,17 @@ export default {
                     ? ''
                     : ` as ${node.specifiers[0].local.name}`
                 } } from '${replacement}'`
-              )
+              ),
           })
         }
         if (node.source.value === 'emotion-theming') {
           context.report({
             node: node.source,
             message: `"emotion-theming" has been moved into "@emotion/react", please import its exports from "@emotion/react"`,
-            fix: fixer => fixer.replaceText(node.source, `'@emotion/react'`)
+            fix: (fixer) => fixer.replaceText(node.source, `'@emotion/react'`),
           })
         }
-      }
+      },
     }
-  }
+  },
 }

@@ -23,7 +23,7 @@ const validValues = [
   'url("http://www.example.com/test.png")',
   'counter(chapter_counter)',
   'counters(section_counter, ".")',
-  'attr(value string)'
+  'attr(value string)',
 ]
 
 afterEach(() => {
@@ -31,7 +31,7 @@ afterEach(() => {
 })
 
 it('does not warn when valid values are passed for the content property', () => {
-  const cls = css(validValues.map(value => ({ content: value })))
+  const cls = css(validValues.map((value) => ({ content: value })))
   expect(console.error).not.toBeCalled()
   expect(renderer.create(<div className={cls} />).toJSON()).toMatchSnapshot()
 })
@@ -39,7 +39,7 @@ it('does not warn when valid values are passed for the content property', () => 
 const invalidValues = ['this is not valid', '']
 
 it('does warn when invalid values are passed for the content property', () => {
-  invalidValues.forEach(value => {
+  invalidValues.forEach((value) => {
     expect(() =>
       renderer.create(<div className={css({ content: value })} />)
     ).toThrowError(

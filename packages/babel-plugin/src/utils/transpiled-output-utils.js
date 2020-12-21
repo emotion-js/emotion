@@ -71,7 +71,7 @@ export function isTaggedTemplateTranspiledByBabel(path: *) {
   if (
     declarationInitArguments.length === 0 ||
     declarationInitArguments.length > 2 ||
-    declarationInitArguments.some(argPath => !argPath.isArrayExpression())
+    declarationInitArguments.some((argPath) => !argPath.isArrayExpression())
   ) {
     return false
   }

@@ -8,7 +8,7 @@ import {
   getStyleElements,
   hasClassNames,
   getMediaRules,
-  findLast
+  findLast,
 } from './utils'
 
 /*
@@ -54,21 +54,21 @@ function toHaveStyleRule(
   }
   const result = preparedRules
     .filter(
-      rule =>
+      (rule) =>
         rule.type === 'rule' && hasClassNames(classNames, rule.props, target)
     )
     .reduce((acc, rule) => {
       const lastMatchingDeclaration = findLast(
         rule.children,
-        dec => dec.type === 'decl' && dec.props === property
+        (dec) => dec.type === 'decl' && dec.props === property
       )
       if (!lastMatchingDeclaration) {
         return acc
       }
       return acc.concat(
-        rule.props.map(selector => ({
+        rule.props.map((selector) => ({
           selector,
-          declaration: lastMatchingDeclaration
+          declaration: lastMatchingDeclaration,
         }))
       )
     }, [])
@@ -80,7 +80,7 @@ function toHaveStyleRule(
   if (!result) {
     return {
       pass: false,
-      message: () => `Property not found: ${property}`
+      message: () => `Property not found: ${property}`,
     }
   }
 
@@ -95,7 +95,7 @@ function toHaveStyleRule(
 
   return {
     pass,
-    message
+    message,
   }
 }
 

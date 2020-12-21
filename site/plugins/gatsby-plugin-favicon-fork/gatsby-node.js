@@ -18,10 +18,10 @@ exports.onCreateWebpackConfig = ({ stage, actions }, { logo, icons }) => {
             twitter: true,
             yandex: true,
             windows: true,
-            ...icons
-          }
-        })
-      ]
+            ...icons,
+          },
+        }),
+      ],
     })
   }
 }

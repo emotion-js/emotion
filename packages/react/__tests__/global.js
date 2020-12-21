@@ -22,22 +22,22 @@ test('basic', () => {
           `,
           {
             html: {
-              backgroundColor: 'hotpink'
+              backgroundColor: 'hotpink',
             },
             h1: {
               animation: `${keyframes({
                 'from,to': {
-                  color: 'green'
+                  color: 'green',
                 },
                 '50%': {
-                  color: 'hotpink'
-                }
-              })} 1s`
+                  color: 'hotpink',
+                },
+              })} 1s`,
             },
             '@font-face': {
-              fontFamily: 'some-name'
-            }
-          }
+              fontFamily: 'some-name',
+            },
+          },
         ]}
       />
     </CacheProvider>,

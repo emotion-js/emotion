@@ -26,7 +26,7 @@ const createRenderStylesToNodeStream = (
             ids[match[1]] = true
           }
         }
-        Object.keys(cache.inserted).forEach(id => {
+        Object.keys(cache.inserted).forEach((id) => {
           if (
             cache.inserted[id] !== true &&
             insed[id] === undefined &&
@@ -55,10 +55,7 @@ const createRenderStylesToNodeStream = (
     }
   )
 
-  return pipe(
-    tokenStream,
-    inlineStream
-  )
+  return pipe(tokenStream, inlineStream)
 }
 
 export default createRenderStylesToNodeStream

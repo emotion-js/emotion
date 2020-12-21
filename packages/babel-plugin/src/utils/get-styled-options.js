@@ -5,8 +5,8 @@ import { getTargetClassName } from './get-target-class-name'
 const getKnownProperties = (t: *, node: *) =>
   new Set(
     node.properties
-      .filter(n => t.isObjectProperty(n) && !n.computed)
-      .map(n => (t.isIdentifier(n.key) ? n.key.name : n.key.value))
+      .filter((n) => t.isObjectProperty(n) && !n.computed)
+      .map((n) => (t.isIdentifier(n.key) ? n.key.name : n.key.value))
   )
 
 export let getStyledOptions = (t: *, path: *, state: *) => {
@@ -43,7 +43,7 @@ export let getStyledOptions = (t: *, path: *, state: *) => {
       return t.callExpression(state.file.addHelper('extends'), [
         t.objectExpression([]),
         t.objectExpression(properties),
-        optionsArgument
+        optionsArgument,
       ])
     }
 

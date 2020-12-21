@@ -29,7 +29,7 @@ function ToggleSidebarButton({
   setSidebarOpen,
   ...rest
 }: {
-  setSidebarOpen: boolean => void
+  setSidebarOpen: (boolean) => void,
 }) {
   return (
     <button
@@ -47,11 +47,11 @@ function ToggleSidebarButton({
         transition: '150ms ease-in-out background-color',
         border: '0',
         '&:hover,&:focus': {
-          backgroundColor: darken(0.15)(colors.hightlight)
+          backgroundColor: darken(0.15)(colors.hightlight),
         },
         '&:active': {
-          backgroundColor: darken(0.25)(colors.hightlight)
-        }
+          backgroundColor: darken(0.25)(colors.hightlight),
+        },
       })}
       onClick={() => setSidebarOpen(true)}
     />
@@ -59,7 +59,7 @@ function ToggleSidebarButton({
 }
 
 const docHeadingMap = docList.reduce((obj, current) => {
-  current.items.forEach(item => {
+  current.items.forEach((item) => {
     obj[item] = current.title
   })
   return obj
@@ -67,9 +67,9 @@ const docHeadingMap = docList.reduce((obj, current) => {
 
 const SidebarGroup = (props: {
   item: { title: string, items: Array<string> },
-  setSidebarOpenState: boolean => void,
+  setSidebarOpenState: (boolean) => void,
   docMap: *,
-  docName?: string
+  docName?: string,
 }) => {
   const { item, docMap, docName } = props
   return (
@@ -80,16 +80,16 @@ const SidebarGroup = (props: {
           fontSize: [
             constants.fontSizes[5],
             constants.fontSizes[5],
-            constants.fontSizes[3]
+            constants.fontSizes[3],
           ],
           color: colors.color,
           marginTop: [constants.space[3], constants.space[3]],
           marginBottom: [constants.space[1], constants.space[1], 0],
-          lineHeight: '32px'
+          lineHeight: '32px',
         })}
         className={cx({
           'docSearch-lvl0':
-            docName !== undefined && docHeadingMap[docName] === item.title
+            docName !== undefined && docHeadingMap[docName] === item.title,
         })}
       >
         {item.title}
@@ -98,10 +98,10 @@ const SidebarGroup = (props: {
         css={{
           listStyle: 'none',
           margin: 0,
-          padding: 0
+          padding: 0,
         }}
       >
-        {item.items.map(slug => (
+        {item.items.map((slug) => (
           <li key={slug}>
             <Link
               css={mq({
@@ -109,7 +109,7 @@ const SidebarGroup = (props: {
                 fontSize: [
                   constants.fontSizes[4],
                   constants.fontSizes[4],
-                  constants.fontSizes[2]
+                  constants.fontSizes[2],
                 ],
                 fontWeight: '300',
                 color: colors.color,
@@ -127,14 +127,12 @@ const SidebarGroup = (props: {
                     content: '""',
                     height: [42, 42, 32],
                     width: [8, 8, 6],
-                    transform: `translate3d(-${constants.space[3]}px, -${
-                      constants.space[1]
-                    }px, 0)`,
+                    transform: `translate3d(-${constants.space[3]}px, -${constants.space[1]}px, 0)`,
                     position: 'absolute',
                     display: 'inline-block',
-                    backgroundColor: colors.lighten(0.25, colors.border)
-                  }
-                }
+                    backgroundColor: colors.lighten(0.25, colors.border),
+                  },
+                },
               })}
               activeClassName={cx('active', 'docSearch-lvl1')}
               to={`/docs/${slug}`}
@@ -151,15 +149,15 @@ const SidebarGroup = (props: {
 export default ({
   children,
   sidebarOpen,
-  setSidebarOpen
+  setSidebarOpen,
 }: {
   children: React.Node,
   sidebarOpen: boolean,
-  setSidebarOpen: boolean => void
+  setSidebarOpen: (boolean) => void,
 }) => {
   return (
     <DocMetadata
-      render={data => {
+      render={(data) => {
         const docMap = getDocMap(data)
         return (
           <>
@@ -168,7 +166,7 @@ export default ({
                 display: [
                   sidebarOpen ? 'block' : 'none',
                   sidebarOpen ? 'block' : 'none',
-                  'block'
+                  'block',
                 ],
                 // gridRow: ['1', '1', '2 / span 2'],
                 gridColumn: ['1 / span 2', '1 / span 2', '2 / span 1'],
@@ -176,12 +174,12 @@ export default ({
                 borderLeft: [
                   'none',
                   'none',
-                  `1px solid ${colors.lighten(0.25, colors.border)}`
-                ]
+                  `1px solid ${colors.lighten(0.25, colors.border)}`,
+                ],
               })}
             >
               <Search />
-              {docList.map(item => {
+              {docList.map((item) => {
                 return (
                   <Match path="/docs/:docName" key={item.title}>
                     {({ match }: { match?: { docName: string } }) => {
@@ -204,11 +202,11 @@ export default ({
                 display: [
                   sidebarOpen ? 'none' : 'block',
                   sidebarOpen ? 'none' : 'block',
-                  'block'
+                  'block',
                 ],
                 gridRow: 2,
                 gridColumn: ['1 / span 2', '1 / span 2', '1 / span 1'],
-                paddingRight: [0, 0, 0]
+                paddingRight: [0, 0, 0],
               })}
             >
               {children}

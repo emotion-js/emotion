@@ -15,8 +15,8 @@ class Home extends React.Component<{}, { isBrowser: boolean }> {
         css={{
           color: 'hotpink',
           ':hover': {
-            color: 'yellow'
-          }
+            color: 'yellow',
+          },
         }}
       >
         wow, some hotpink text!!

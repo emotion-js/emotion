@@ -17,12 +17,14 @@ export default function jsxPragmatic(babel) {
         t.importSpecifier(
           t.identifier(state.opts.import),
           t.identifier(state.opts.export || 'default')
-        )
+        ),
       ],
       t.stringLiteral(state.opts.module)
     )
 
-    const targetPath = findLast(path.get('body'), p => p.isImportDeclaration())
+    const targetPath = findLast(path.get('body'), (p) =>
+      p.isImportDeclaration()
+    )
 
     if (targetPath) {
       targetPath.insertAfter([importDeclar])
@@ -34,7 +36,7 @@ export default function jsxPragmatic(babel) {
 
   return {
     inherits: syntaxJsx,
-    pre: function() {
+    pre: function () {
       if (!(this.opts.module && this.opts.import)) {
         throw new Error(
           '@emotion/babel-plugin-jsx-pragmatic: You must specify `module` and `import`'
@@ -43,18 +45,18 @@ export default function jsxPragmatic(babel) {
     },
     visitor: {
       Program: {
-        exit: function(path, state) {
+        exit: function (path, state) {
           if (!state.get('jsxDetected')) return
           addPragmaImport(path, state)
-        }
+        },
       },
 
-      JSXElement: function(path, state) {
+      JSXElement: function (path, state) {
         state.set('jsxDetected', true)
       },
-      JSXFragment: function(path, state) {
+      JSXFragment: function (path, state) {
         state.set('jsxDetected', true)
-      }
-    }
+      },
+    },
   }
 }

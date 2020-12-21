@@ -4,20 +4,20 @@ import { interleave } from './utils'
 import { ThemeContext } from '@emotion/react'
 import { createCss } from './css'
 
-let testOmitPropsOnComponent = prop => prop !== 'theme' && prop !== 'as'
+let testOmitPropsOnComponent = (prop) => prop !== 'theme' && prop !== 'as'
 
 type CreateStyledOptions = {
-  getShouldForwardProp: (cmp: React.ElementType) => (prop: string) => boolean
+  getShouldForwardProp: (cmp: React.ElementType) => (prop: string) => boolean,
 }
 
 type StyledOptions = {
-  shouldForwardProp?: (prop: string) => boolean
+  shouldForwardProp?: (prop: string) => boolean,
 }
 
 export function createStyled(
   StyleSheet: Object,
   {
-    getShouldForwardProp = () => testOmitPropsOnComponent
+    getShouldForwardProp = () => testOmitPropsOnComponent,
   }: CreateStyledOptions = {}
 ) {
   const css = createCss(StyleSheet)
@@ -89,7 +89,7 @@ export function createStyled(
   }
 }
 
-const getDisplayName = primitive =>
+const getDisplayName = (primitive) =>
   typeof primitive === 'string'
     ? primitive
     : primitive.displayName || primitive.name || 'Styled'

@@ -5,7 +5,7 @@ type Keyframes = {|
   name: string,
   styles: string,
   anim: 1,
-  toString: () => string
+  toString: () => string,
 |} & string
 
 export const keyframes = (...args: *): Keyframes => {
@@ -18,6 +18,6 @@ export const keyframes = (...args: *): Keyframes => {
     anim: 1,
     toString() {
       return `_EMO_${this.name}_${this.styles}_EMO_`
-    }
+    },
   }
 }

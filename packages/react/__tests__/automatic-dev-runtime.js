@@ -27,7 +27,7 @@ test('static children', () => {
 })
 
 test('no static children', () => {
-  const Button = props => {
+  const Button = (props) => {
     return <button css={{ color: 'hotpink' }} {...props} />
   }
   const { container } = render(<Button>Emotion</Button>)
@@ -50,7 +50,7 @@ test('fragment', () => {
           <button
             key={id}
             css={{
-              color: 'hotpink'
+              color: 'hotpink',
             }}
           >
             {label}
@@ -62,7 +62,12 @@ test('fragment', () => {
 
   const { container } = render(
     <div>
-      <Test buttons={[{ id: 1, label: 'Foo' }, { id: 2, label: 'Bar' }]} />
+      <Test
+        buttons={[
+          { id: 1, label: 'Foo' },
+          { id: 2, label: 'Bar' },
+        ]}
+      />
     </div>
   )
 
@@ -93,7 +98,7 @@ test('key after spread', () => {
             {...rest}
             key={id}
             css={{
-              color: 'hotpink'
+              color: 'hotpink',
             }}
           >
             {label}
@@ -107,7 +112,7 @@ test('key after spread', () => {
     <Test
       buttons={[
         { id: 1, label: 'Foo', type: 'button' },
-        { id: 2, label: 'Bar', type: 'button' }
+        { id: 2, label: 'Bar', type: 'button' },
       ]}
     />
   )

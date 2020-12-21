@@ -4,7 +4,7 @@ import React from 'react'
 import {
   interpolatePurples,
   interpolateBuPu,
-  interpolateRdPu
+  interpolateRdPu,
 } from 'd3-scale-chromatic'
 
 const targetSize = 10
@@ -20,12 +20,12 @@ class SierpinskiTriangle extends React.Component {
     renderCount: number,
     s: number,
     x: number,
-    y: number
+    y: number,
   }
 
   static defaultProps = {
     depth: 0,
-    renderCount: 0
+    renderCount: 0,
   }
 
   render() {

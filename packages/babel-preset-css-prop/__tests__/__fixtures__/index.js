@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-export let Button = props => {
+export let Button = (props) => {
   return (
     <>
       <button
         css={{
-          color: 'hotpink'
+          color: 'hotpink',
         }}
         {...props}
       />

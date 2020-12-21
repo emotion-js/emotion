@@ -6,11 +6,11 @@ import styled from '@emotion/styled'
 
 test('composes shouldForwardProp on composed styled components', () => {
   const StyledDiv = styled('div', {
-    shouldForwardProp: prop => prop !== 'foo'
+    shouldForwardProp: (prop) => prop !== 'foo',
   })()
 
   const ComposedDiv = styled(StyledDiv, {
-    shouldForwardProp: prop => prop !== 'bar'
+    shouldForwardProp: (prop) => prop !== 'bar',
   })()
 
   const tree = renderer.create(<ComposedDiv foo bar xyz />).toJSON()
@@ -19,7 +19,7 @@ test('composes shouldForwardProp on composed styled components', () => {
 })
 
 test('custom shouldForwardProp works', () => {
-  const Svg = props => (
+  const Svg = (props) => (
     <svg {...props}>
       <rect
         x="10"
@@ -32,8 +32,8 @@ test('custom shouldForwardProp works', () => {
   )
 
   const StyledSvg = styled(Svg, {
-    shouldForwardProp: prop =>
-      ['className', 'width', 'height'].indexOf(prop) !== -1
+    shouldForwardProp: (prop) =>
+      ['className', 'width', 'height'].indexOf(prop) !== -1,
   })`
     &,
     & * {
@@ -49,7 +49,7 @@ test('custom shouldForwardProp works', () => {
 
 test('shouldForwardProp should get inherited for wrapped styled components', () => {
   const Div1 = styled('div', {
-    shouldForwardProp: prop => prop !== 'color'
+    shouldForwardProp: (prop) => prop !== 'color',
   })`
     background-color: ${({ color }) => color};
   `
@@ -96,7 +96,7 @@ test('prop filtering', () => {
   expect(tree).toMatchSnapshot()
 })
 test('no prop filtering on non string tags', () => {
-  const Link = styled(props => <a {...props} />)`
+  const Link = styled((props) => <a {...props} />)`
     color: green;
   `
 
@@ -412,7 +412,7 @@ test('all SVG attributes survive prop filtering', () => {
     y2: 'abcd',
     yChannelSelector: 'abcd',
     z: 'abcd',
-    zoomAndPan: 'abcd'
+    zoomAndPan: 'abcd',
   }
 
   const RedPath = styled('path')`
@@ -472,7 +472,7 @@ test('prop filtering on composed styled components that are string tags', () => 
 
 test('withComponent inherits explicit shouldForwardProp', () => {
   const SomeComponent = styled('div', {
-    shouldForwardProp: prop => prop === 'foo'
+    shouldForwardProp: (prop) => prop === 'foo',
   })`
     color: hotpink;
   `
@@ -483,7 +483,7 @@ test('withComponent inherits explicit shouldForwardProp', () => {
 
 test('withComponent inherits explicit shouldForwardProp from flattened component', () => {
   const SomeComponent = styled('div', {
-    shouldForwardProp: prop => prop === 'foo'
+    shouldForwardProp: (prop) => prop === 'foo',
   })`
     color: hotpink;
   `
@@ -500,7 +500,7 @@ test('withComponent should accept shouldForwardProp', () => {
     color: hotpink;
   `
   const AnotherComponent = SomeComponent.withComponent('span', {
-    shouldForwardProp: prop => prop === 'xyz'
+    shouldForwardProp: (prop) => prop === 'xyz',
   })
   const tree = renderer.create(<AnotherComponent qwe xyz />).toJSON()
   expect(tree).toMatchSnapshot()
@@ -508,12 +508,12 @@ test('withComponent should accept shouldForwardProp', () => {
 
 test('withComponent should compose shouldForwardProp', () => {
   const SomeComponent = styled('div', {
-    shouldForwardProp: prop => prop !== 'foo'
+    shouldForwardProp: (prop) => prop !== 'foo',
   })`
     color: hotpink;
   `
   const AnotherComponent = SomeComponent.withComponent('span', {
-    shouldForwardProp: prop => prop !== 'bar'
+    shouldForwardProp: (prop) => prop !== 'bar',
   })
   const tree = renderer.create(<AnotherComponent foo bar qwe xyz />).toJSON()
   expect(tree).toMatchSnapshot()
@@ -521,7 +521,7 @@ test('withComponent should compose shouldForwardProp', () => {
 
 test('withComponent should compose shouldForwardProp with a flattened component', () => {
   const SomeComponent = styled('div', {
-    shouldForwardProp: prop => prop !== 'foo'
+    shouldForwardProp: (prop) => prop !== 'foo',
   })`
     color: hotpink;
   `
@@ -529,7 +529,7 @@ test('withComponent should compose shouldForwardProp with a flattened component'
     background-color: blue;
   `
   const YetAnotherComponent = SomeComponent.withComponent('span', {
-    shouldForwardProp: prop => prop !== 'bar'
+    shouldForwardProp: (prop) => prop !== 'bar',
   })
   const tree = renderer.create(<YetAnotherComponent foo bar qwe xyz />).toJSON()
   expect(tree).toMatchSnapshot()

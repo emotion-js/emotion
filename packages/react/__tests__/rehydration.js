@@ -34,7 +34,7 @@ test("cache created in render doesn't cause a hydration mismatch", () => {
     '<div id="root">',
     '<style data-emotion="stl 1pdkrhd">.stl-1pdkrhd-App {color: hotpink;}</style>',
     '<div class="stl-1pdkrhd-App">Hello world!</div>',
-    '</div>'
+    '</div>',
   ].join('')
 
   resetAllModules()
@@ -70,14 +70,14 @@ test('initializing another Emotion instance should not move already moved styles
     '<div id="root">',
     '<style data-emotion="stl 1pdkrhd">.stl-1pdkrhd-App {color: hotpink;}</style>',
     '<div class="stl-1pdkrhd-App">Hello world!</div>',
-    '</div>'
+    '</div>',
   ].join('')
 
   resetAllModules()
 
   const cache = createCache({
     key: 'stl',
-    container: safeQuerySelector('#style-container')
+    container: safeQuerySelector('#style-container'),
   })
 
   function App() {
@@ -129,7 +129,7 @@ test('initializing another Emotion instance should not move already moved styles
 
   const cache = createCache({
     key: 'stl',
-    container: safeQuerySelector('#style-container')
+    container: safeQuerySelector('#style-container'),
   })
 
   function App() {

@@ -12,8 +12,8 @@ test('basic', () => {
       css={{
         color: 'hotpink',
         ':hover': {
-          color: 'green'
-        }
+          color: 'green',
+        },
       }}
     >
       some hotpink text

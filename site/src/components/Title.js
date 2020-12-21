@@ -4,7 +4,7 @@ import { constants, mq, colors } from '../utils/style'
 import * as markdownComponents from '../utils/markdown-styles'
 
 type Props = {
-  children: React$Node
+  children: React$Node,
 }
 export default styled<Props>(markdownComponents.h1)(
   mq({
@@ -12,6 +12,6 @@ export default styled<Props>(markdownComponents.h1)(
     marginTop: 0,
     marginBottom: constants.space[2],
     fontWeight: 700,
-    color: [colors.hightlight, colors.hightlight, colors.color]
+    color: [colors.hightlight, colors.hightlight, colors.color],
   })
 )

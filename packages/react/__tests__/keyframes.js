@@ -10,7 +10,7 @@ import { CacheProvider } from '@emotion/react'
 
 cases(
   'keyframes',
-  opts => {
+  (opts) => {
     safeQuerySelector('head').innerHTML = ''
     let cache = createCache({ key: 'css' })
     expect(
@@ -19,7 +19,7 @@ cases(
         .toJSON()
     ).toMatchSnapshot()
     expect(
-      throwIfFalsy(cache.sheet.tags).map(tag => tag.textContent || '')
+      throwIfFalsy(cache.sheet.tags).map((tag) => tag.textContent || '')
     ).toMatchSnapshot()
     cache.sheet.flush()
   },
@@ -46,7 +46,7 @@ cases(
             {animation.name}
           </div>
         )
-      }
+      },
     },
     'without css call': {
       render: () => {
@@ -67,29 +67,29 @@ cases(
             {animation.name}
           </div>
         )
-      }
+      },
     },
     object: {
       render: () => {
         let animation = keyframes({
           from: {
-            color: 'green'
+            color: 'green',
           },
           to: {
-            color: 'hotpink'
-          }
+            color: 'hotpink',
+          },
         })
 
         return (
           <div
             css={{
-              animation: `${animation} 1s`
+              animation: `${animation} 1s`,
             }}
           >
             {animation.name}
           </div>
         )
-      }
+      },
     },
     'object with string keyframes': {
       render: () => {
@@ -105,13 +105,13 @@ cases(
         return (
           <div
             css={{
-              animation: `${animation} 1s`
+              animation: `${animation} 1s`,
             }}
           >
             {animation.name}
           </div>
         )
-      }
+      },
     },
     'object with animationName and opaque keyframes as value': {
       render: () => {
@@ -128,13 +128,13 @@ cases(
           <div
             css={{
               animationName: animation,
-              animationDuration: '1s'
+              animationDuration: '1s',
             }}
           >
             {animation.name}
           </div>
         )
-      }
+      },
     },
     'object with animationName and string keyframes as value': {
       render: () => {
@@ -151,13 +151,13 @@ cases(
           <div
             css={{
               animationName: `${animation}`,
-              animationDuration: '1s'
+              animationDuration: '1s',
             }}
           >
             {animation.name}
           </div>
         )
-      }
+      },
     },
     'object with animation and opaque keyframes as value': {
       render: () => {
@@ -174,13 +174,13 @@ cases(
           <div
             css={{
               animation,
-              animationDuration: '1s'
+              animationDuration: '1s',
             }}
           >
             {animation.name}
           </div>
         )
-      }
+      },
     },
     'multiple keyframes object': {
       render: () => {
@@ -203,13 +203,13 @@ cases(
         return (
           <div
             css={{
-              animation: `${animation} 1s ${yellowAnimation}`
+              animation: `${animation} 1s ${yellowAnimation}`,
             }}
           >
             {animation.name}
           </div>
         )
-      }
+      },
     },
     'keyframes used in css call': {
       render: () => {
@@ -233,14 +233,14 @@ cases(
           <div
             css={[
               css({
-                animation: `${animation} 1s ${yellowAnimation}`
-              })
+                animation: `${animation} 1s ${yellowAnimation}`,
+              }),
             ]}
           >
             {animation.name}
           </div>
         )
-      }
-    }
+      },
+    },
   }
 )

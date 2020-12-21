@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image } from 'react-primitives'
 import { createStyled } from '@emotion/primitives-core'
 import {
   testPickPropsOnPrimitiveComponent,
-  testPickPropsOnOtherComponent
+  testPickPropsOnOtherComponent,
 } from './test-props'
 
 function getShouldForwardProp(component: React.ElementType) {
@@ -25,7 +25,7 @@ function getShouldForwardProp(component: React.ElementType) {
 type CreateStyledComponent = (
   ...styles: any
 ) => React.StatelessFunctionalComponent<any> & {
-  withComponent: (component: any) => React.StatelessFunctionalComponent<any>
+  withComponent: (component: any) => React.StatelessFunctionalComponent<any>,
 }
 
 type BaseStyled = (tag: React.ElementType) => CreateStyledComponent
@@ -33,7 +33,7 @@ type BaseStyled = (tag: React.ElementType) => CreateStyledComponent
 export type Styled = BaseStyled & {
   View: CreateStyledComponent,
   Text: CreateStyledComponent,
-  Image: CreateStyledComponent
+  Image: CreateStyledComponent,
 }
 
 let styled: Styled = createStyled(StyleSheet, { getShouldForwardProp })

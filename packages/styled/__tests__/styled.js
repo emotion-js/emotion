@@ -43,10 +43,10 @@ describe('styled', () => {
 
   test('object as style', () => {
     const H1 = styled.h1(
-      props => ({
-        fontSize: props.fontSize
+      (props) => ({
+        fontSize: props.fontSize,
       }),
-      props => ({ flex: props.flex }),
+      (props) => ({ flex: props.flex }),
       { display: 'flex' }
     )
 
@@ -71,8 +71,10 @@ describe('styled', () => {
   })
 
   test('glamorous style api & composition', () => {
-    const H1 = styled.h1(props => ({ fontSize: props.fontSize }))
-    const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
+    const H1 = styled.h1((props) => ({ fontSize: props.fontSize }))
+    const H2 = styled(H1)((props) => ({ flex: props.flex }), {
+      display: 'flex',
+    })
 
     const tree = renderer
       .create(
@@ -137,7 +139,7 @@ describe('styled', () => {
 
   test('random expressions undefined return', () => {
     const H1 = styled('h1')`
-      ${props =>
+      ${(props) =>
         props.prop &&
         css`
           font-size: 1rem;
@@ -154,16 +156,16 @@ describe('styled', () => {
 
   test('random object expression', () => {
     const margin = (t, r, b, l) => {
-      return props => ({
+      return (props) => ({
         marginTop: t,
         marginRight: r,
         marginBottom: b,
-        marginLeft: l
+        marginLeft: l,
       })
     }
     const H1 = styled.h1`
       background-color: hotpink;
-      ${props => props.prop && { fontSize: '1rem' }};
+      ${(props) => props.prop && { fontSize: '1rem' }};
       ${margin(0, 'auto', 0, 'auto')};
       color: green;
     `
@@ -209,8 +211,8 @@ describe('styled', () => {
   test('input placeholder object', () => {
     const Input = styled('input')({
       '::placeholder': {
-        backgroundColor: 'green'
-      }
+        backgroundColor: 'green',
+      },
     })
 
     const tree = renderer.create(<Input>hello world</Input>).toJSON()
@@ -232,10 +234,10 @@ describe('styled', () => {
         borderRadius: '50%',
         transition: 'transform 400ms ease-in-out',
         ':hover': {
-          transform: 'scale(1.2)'
-        }
+          transform: 'scale(1.2)',
+        },
       },
-      { border: '3px solid currentColor' }
+      { border: '3px solid currentColor' },
     ])
 
     const Avatar = styled('img')`
@@ -262,7 +264,7 @@ describe('styled', () => {
       z-index: ${100};
       font-size: ${'18px'};
       text-align: ${'center'};
-      border-left: ${p => p.theme.blue};
+      border-left: ${(p) => p.theme.blue};
     `
 
     const tree = renderer
@@ -340,7 +342,7 @@ describe('styled', () => {
       background-color: #7fc8d6;
     `
 
-    const flexColumn = Component => {
+    const flexColumn = (Component) => {
       const NewComponent = styled(Component)`
         ${squirtleBlueBackground};
         background-color: '#343a40';
@@ -367,7 +369,7 @@ describe('styled', () => {
     `
 
     const H1 = styled('h1')`
-      ${props => (props.a ? cssA : cssB)};
+      ${(props) => (props.a ? cssA : cssB)};
     `
 
     const tree = renderer.create(<H1 a>hello world</H1>).toJSON()
@@ -383,15 +385,15 @@ describe('styled', () => {
       '&:hover': {
         color: 'blue',
         '&:active': {
-          color: 'red'
-        }
-      }
+          color: 'red',
+        },
+      },
     }
 
     const buttonStyles = () => ({
       ...defaultLinkStyles,
       fontSize: '2rem',
-      padding: 16
+      padding: 16,
     })
 
     const Button = styled('button')(buttonStyles)
@@ -403,12 +405,12 @@ describe('styled', () => {
             '&:hover': {
               color: 'pink',
               '&:active': {
-                color: 'purple'
+                color: 'purple',
               },
               '&.some-class': {
-                color: 'yellow'
-              }
-            }
+                color: 'yellow',
+              },
+            },
           })}
         >
           Should be purple
@@ -419,8 +421,8 @@ describe('styled', () => {
   })
 
   test('objects', () => {
-    const H1 = styled('h1')({ padding: 10 }, props => ({
-      display: props.display
+    const H1 = styled('h1')({ padding: 10 }, (props) => ({
+      display: props.display,
     }))
     const tree = renderer.create(<H1 display="flex">hello world</H1>).toJSON()
 
@@ -456,15 +458,15 @@ describe('styled', () => {
 
   test('with higher order component that hoists statics', () => {
     const superImportantValue = 'hotpink'
-    const hoc = BaseComponent => {
-      const NewComponent = props => (
+    const hoc = (BaseComponent) => {
+      const NewComponent = (props) => (
         <BaseComponent someProp={superImportantValue} {...props} />
       )
       return hoistNonReactStatics(NewComponent, BaseComponent)
     }
     const SomeComponent = hoc(styled.div`
       display: flex;
-      color: ${props => props.someProp};
+      color: ${(props) => props.someProp};
     `)
     const FinalComponent = styled(SomeComponent)`
       padding: 8px;
@@ -502,7 +504,7 @@ describe('styled', () => {
     expect(tree).toMatchSnapshot()
   })
   test('no prop filtering on non string tags', () => {
-    const Link = styled(props => <a {...props} />)`
+    const Link = styled((props) => <a {...props} />)`
       color: green;
     `
 
@@ -613,7 +615,7 @@ describe('styled', () => {
   })
   test('withComponent with function interpolation', () => {
     const Title = styled('h1')`
-      color: ${props => props.color || 'green'};
+      color: ${(props) => props.color || 'green'};
     `
     const Subtitle = Title.withComponent('h2')
 
@@ -643,7 +645,7 @@ describe('styled', () => {
 
   test('theming', () => {
     const Div = styled.div`
-      color: ${props => props.theme.primary};
+      color: ${(props) => props.theme.primary};
     `
     const tree = renderer
       .create(
@@ -680,7 +682,7 @@ describe('styled', () => {
       // if anyone is looking this
       // please don't do this.
       // use the babel plugin/macro.
-      target: 'e322f2d3tbrgf2e0'
+      target: 'e322f2d3tbrgf2e0',
     })`
       color: hotpink;
     `
@@ -705,7 +707,7 @@ describe('styled', () => {
       css`
         animation: ${keyframes({
           'from,to': { color: 'green' },
-          '50%': { color: 'hotpink' }
+          '50%': { color: 'hotpink' },
         })};
       `
     )

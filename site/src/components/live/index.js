@@ -10,13 +10,13 @@ type Props = {
   compile: Compiler,
   render: (...args: *) => React.Node,
   scope: Scope,
-  initial: string
+  initial: string,
 }
 
 type State = {
   code: string,
   element: React.Node | null,
-  error: Error | null
+  error: Error | null,
 }
 
 export default class Live extends React.Component<Props, State> {
@@ -24,14 +24,14 @@ export default class Live extends React.Component<Props, State> {
     super(...args)
     this.state = {
       code: this.props.code,
-      ...evaluate(this.props.initial, this.props.scope)
+      ...evaluate(this.props.initial, this.props.scope),
     }
   }
 
   static defaultProps = {
     code: '',
     mountStylesheet: true,
-    noInline: false
+    noInline: false,
   }
 
   onChange = (code: string) => {
@@ -43,10 +43,10 @@ export default class Live extends React.Component<Props, State> {
       this.setState({ code })
     }
     compileAndEvaluate(code, compiler, scope)
-      .then(ret => {
+      .then((ret) => {
         this.setState(ret)
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ error: err, element: null })
       })
   }
@@ -71,14 +71,14 @@ export default class Live extends React.Component<Props, State> {
       onChange: this.onChange,
       code: this.state.code,
       error: this.state.error,
-      element: this.state.element
+      element: this.state.element,
     })
   }
 }
 
 type ErrorBoundaryProps = {
   children: React.Node,
-  onError: Error => void
+  onError: (Error) => void,
 }
 
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps> {

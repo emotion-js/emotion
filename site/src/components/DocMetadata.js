@@ -7,14 +7,14 @@ type Props = {
     data: Array<{
       node: {
         frontmatter: {
-          title: string
+          title: string,
         },
         fields: {
-          slug: string
-        }
-      }
+          slug: string,
+        },
+      },
     }>
-  ) => React.Node
+  ) => React.Node,
 }
 
 const DocMetadata = (props: Props) => {
@@ -36,7 +36,7 @@ const DocMetadata = (props: Props) => {
           }
         }
       `}
-      render={data => {
+      render={(data) => {
         return props.render(data.allMdx.edges)
       }}
     />

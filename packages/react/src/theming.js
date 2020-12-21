@@ -7,7 +7,7 @@ export const ThemeContext = /* #__PURE__ */ React.createContext<Object>({})
 
 export const useTheme = () => React.useContext(ThemeContext)
 
-const getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
+const getTheme = (outerTheme: Object, theme: Object | ((Object) => Object)) => {
   if (typeof theme === 'function') {
     const mergedTheme = theme(outerTheme)
     if (
@@ -34,15 +34,15 @@ const getTheme = (outerTheme: Object, theme: Object | (Object => Object)) => {
   return { ...outerTheme, ...theme }
 }
 
-let createCacheWithTheme = /* #__PURE__ */ weakMemoize(outerTheme => {
-  return weakMemoize(theme => {
+let createCacheWithTheme = /* #__PURE__ */ weakMemoize((outerTheme) => {
+  return weakMemoize((theme) => {
     return getTheme(outerTheme, theme)
   })
 })
 
 type ThemeProviderProps = {
-  theme: Object | (Object => Object),
-  children: React.Node
+  theme: Object | ((Object) => Object),
+  children: React.Node,
 }
 
 export const ThemeProvider = (props: ThemeProviderProps) => {

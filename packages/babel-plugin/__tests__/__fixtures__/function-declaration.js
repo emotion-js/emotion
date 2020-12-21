@@ -6,7 +6,7 @@ function Logo(props) {
   return (
     <a
       css={{
-        display: 'block'
+        display: 'block',
       }}
     />
   )

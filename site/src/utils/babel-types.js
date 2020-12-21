@@ -2,14 +2,14 @@ let types
 
 Babel.transform('lol()', {
   plugins: [
-    babel => ({
+    (babel) => ({
       visitor: {
         Program() {
           types = babel.types
-        }
-      }
-    })
-  ]
+        },
+      },
+    }),
+  ],
 })
 
 module.exports = types

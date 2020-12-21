@@ -2,7 +2,7 @@
 import type {
   Interpolation,
   SerializedStyles,
-  RegisteredCache
+  RegisteredCache,
 } from '@emotion/utils'
 import hashString from '@emotion/hash'
 import unitless from '@emotion/unitless'
@@ -20,13 +20,13 @@ let hyphenateRegex = /[A-Z]|^ms/g
 let animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g
 
 const isCustomProperty = (property: string) => property.charCodeAt(1) === 45
-const isProcessableValue = value => value != null && typeof value !== 'boolean'
+const isProcessableValue = (value) =>
+  value != null && typeof value !== 'boolean'
 
-const processStyleName = /* #__PURE__ */ memoize(
-  (styleName: string) =>
-    isCustomProperty(styleName)
-      ? styleName
-      : styleName.replace(hyphenateRegex, '-$&').toLowerCase()
+const processStyleName = /* #__PURE__ */ memoize((styleName: string) =>
+  isCustomProperty(styleName)
+    ? styleName
+    : styleName.replace(hyphenateRegex, '-$&').toLowerCase()
 )
 
 let processStyleValue = (
@@ -41,7 +41,7 @@ let processStyleValue = (
           cursor = {
             name: p1,
             styles: p2,
-            next: cursor
+            next: cursor,
           }
           return p1
         })
@@ -72,7 +72,7 @@ if (process.env.NODE_ENV !== 'production') {
     'no-close-quote',
     'initial',
     'inherit',
-    'unset'
+    'unset',
   ]
 
   let oldProcessStyleValue = processStyleValue
@@ -146,7 +146,7 @@ function handleInterpolation(
         cursor = {
           name: interpolation.name,
           styles: interpolation.styles,
-          next: cursor
+          next: cursor,
         }
 
         return interpolation.name
@@ -160,7 +160,7 @@ function handleInterpolation(
             cursor = {
               name: next.name,
               styles: next.styles,
-              next: cursor
+              next: cursor,
             }
             next = next.next
           }
@@ -316,7 +316,7 @@ if (process.env.NODE_ENV !== 'production') {
 // keyframes are stored on the SerializedStyles object as a linked list
 let cursor
 
-export const serializeStyles = function(
+export const serializeStyles = function (
   args: Array<Interpolation>,
   registered: RegisteredCache | void,
   mergedProps: void | Object
@@ -356,7 +356,7 @@ export const serializeStyles = function(
   let sourceMap
 
   if (process.env.NODE_ENV !== 'production') {
-    styles = styles.replace(sourceMapPattern, match => {
+    styles = styles.replace(sourceMapPattern, (match) => {
       sourceMap = match
       return ''
     })
@@ -386,12 +386,12 @@ export const serializeStyles = function(
       next: cursor,
       toString() {
         return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
-      }
+      },
     }
   }
   return {
     name,
     styles,
-    next: cursor
+    next: cursor,
   }
 }

@@ -6,7 +6,7 @@ import { styled as createStyled } from './styled'
 
 const css = createCss(StyleSheet)
 
-const assignPrimitives = styled => {
+const assignPrimitives = (styled) => {
   createStyled.Text = createStyled(Text)
   createStyled.View = createStyled(View)
   createStyled.Image = createStyled(Image)

@@ -45,7 +45,7 @@ describe('css', () => {
       color: `${'blue'}`,
       fontSize: `${'20px'}`,
       height: 50,
-      width: 20
+      width: 20,
     })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -59,11 +59,11 @@ describe('css', () => {
       '&:hover': { color: 'blue' },
       ':after': {
         content: '" "',
-        color: 'red'
+        color: 'red',
       },
       '@media(min-width: 420px)': {
-        color: 'green'
-      }
+        color: 'green',
+      },
     })
     const cls2 = css`
       ${cls1};
@@ -112,10 +112,10 @@ describe('css', () => {
   })
   test('object as style', () => {
     const H1 = styled('h1')(
-      props => ({
-        fontSize: props.fontSize
+      (props) => ({
+        fontSize: props.fontSize,
       }),
-      props => ({ flex: props.flex }),
+      (props) => ({ flex: props.flex }),
       { display: 'flex' }
     )
 
@@ -136,8 +136,8 @@ describe('css', () => {
       const Thing = styled('div')({
         display: 'flex',
         [String(H1)]: {
-          color: 'green'
-        }
+          color: 'green',
+        },
       })
       renderer.create(
         <Thing>
@@ -160,8 +160,10 @@ describe('css', () => {
     }).toThrowErrorMatchingSnapshot()
   })
   test('glamorous style api & composition', () => {
-    const H1 = styled('h1')(props => ({ fontSize: props.fontSize }))
-    const H2 = styled(H1)(props => ({ flex: props.flex }), { display: 'flex' })
+    const H1 = styled('h1')((props) => ({ fontSize: props.fontSize }))
+    const H2 = styled(H1)((props) => ({ flex: props.flex }), {
+      display: 'flex',
+    })
 
     const tree = renderer
       .create(
@@ -175,7 +177,7 @@ describe('css', () => {
   })
   test('random expressions undefined return', () => {
     const H1 = styled('h1')`
-      ${props =>
+      ${(props) =>
         props.prop &&
         css`
           font-size: 1rem;

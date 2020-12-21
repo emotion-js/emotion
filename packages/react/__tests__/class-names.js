@@ -68,7 +68,7 @@ test('css and cx throws when used after render', () => {
   let cx, css
   renderer.create(
     <ClassNames>
-      {arg => {
+      {(arg) => {
         ;({ cx, css } = arg)
         return null
       }}

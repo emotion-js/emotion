@@ -1,7 +1,7 @@
 // @flow
 import { compile } from 'stylis'
 
-const isAutoInsertedRule = element => {
+const isAutoInsertedRule = (element) => {
   if (element.type !== 'rule' || !element.parent) {
     return false
   }
@@ -34,9 +34,9 @@ const toInputTree = (elements, tree) => {
   return tree
 }
 
-var stringifyTree = elements => {
+var stringifyTree = (elements) => {
   return elements
-    .map(element => {
+    .map((element) => {
       switch (element.type) {
         case 'import':
         case 'decl':
@@ -79,7 +79,7 @@ function getDynamicMatches(str: string) {
       matches.push({
         value: match[0],
         p1: parseInt(match[1], 10),
-        index: match.index
+        index: match.index,
       })
     }
   }
@@ -127,9 +127,9 @@ function replacePlaceholdersWithExpressions(
 }
 
 function createRawStringFromTemplateLiteral(quasi: {
-  quasis: Array<{ value: { cooked: string } }>
+  quasis: Array<{ value: { cooked: string } }>,
 }) {
-  let strs = quasi.quasis.map(x => x.value.cooked)
+  let strs = quasi.quasis.map((x) => x.value.cooked)
 
   const src = strs
     .reduce((arr, str, i) => {

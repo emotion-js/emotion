@@ -11,7 +11,7 @@ export function makeSourceMapGenerator(file: *) {
   const filename = generatorOpts.sourceFileName
   const generator = new SourceMapGenerator({
     file: filename,
-    sourceRoot: generatorOpts.sourceRoot
+    sourceRoot: generatorOpts.sourceRoot,
   })
 
   generator.setSourceContent(filename, file.code)
@@ -21,7 +21,7 @@ export function makeSourceMapGenerator(file: *) {
 export function getSourceMap(
   offset: {
     line: number,
-    column: number
+    column: number,
   },
   state: *
 ): string {
@@ -34,10 +34,10 @@ export function getSourceMap(
     generator.addMapping({
       generated: {
         line: 1,
-        column: 0
+        column: 0,
       },
       source: generatorOpts.sourceFileName,
-      original: offset
+      original: offset,
     })
     return convert.fromObject(generator).toComment({ multiline: true })
   }

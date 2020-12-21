@@ -106,7 +106,7 @@ describe('toHaveStyleRule', () => {
     const Svg = styled('svg')`
       width: 100%;
     `
-    ;['mount', 'render', 'shallow'].forEach(method => {
+    ;['mount', 'render', 'shallow'].forEach((method) => {
       const wrapper = enzyme[method](
         <Div>
           <Svg />
@@ -263,16 +263,16 @@ describe('toHaveStyleRule', () => {
 
     expect(tree).toHaveStyleRule('font-size', '30px')
     expect(tree).toHaveStyleRule('font-size', '50px', {
-      media: '(min-width: 420px)'
+      media: '(min-width: 420px)',
     })
     expect(tree).toHaveStyleRule('font-size', '70px', {
-      media: '(min-width: 920px) and (max-width: 1200px)'
+      media: '(min-width: 920px) and (max-width: 1200px)',
     })
     expect(tree).toHaveStyleRule('font-size', '80px', {
-      media: 'screen and (max-width: 1200px)'
+      media: 'screen and (max-width: 1200px)',
     })
     expect(tree).toHaveStyleRule('font-size', '90px', {
-      media: 'not all and (monochrome)'
+      media: 'not all and (monochrome)',
     })
   })
 
@@ -296,10 +296,10 @@ describe('toHaveStyleRule', () => {
 
     expect(tree).toHaveStyleRule('color', 'yellow', {
       target: ':hover',
-      media: '(min-width: 420px)'
+      media: '(min-width: 420px)',
     })
     expect(tree).toHaveStyleRule('color', 'green', {
-      media: '(min-width: 420px)'
+      media: '(min-width: 420px)',
     })
     expect(tree).toHaveStyleRule('color', 'white')
   })
@@ -315,7 +315,7 @@ describe('toHaveStyleRule', () => {
     const tree = renderer.create(<Div />).toJSON()
 
     const result = toHaveStyleRule(tree, 'font-size', '50px', {
-      media: '(min-width-'
+      media: '(min-width-',
     })
     expect(result.pass).toBe(false)
     expect(result.message()).toBe('Property not found: font-size')

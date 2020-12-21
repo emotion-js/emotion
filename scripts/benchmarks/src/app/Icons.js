@@ -9,27 +9,24 @@ const styles = StyleSheet.create({
     maxWidth: '100%',
     position: 'relative',
     userSelect: 'none',
-    textAlignVertical: 'text-bottom'
-  }
+    textAlignVertical: 'text-bottom',
+  },
 })
 
-const createIcon = children => {
-  const Icon = props =>
+const createIcon = (children) => {
+  const Icon = (props) =>
     createElement(
       'svg',
       {
-        style: StyleSheet.compose(
-          styles.root,
-          props.style
-        ),
+        style: StyleSheet.compose(styles.root, props.style),
         width: 24,
         height: 24,
-        viewBox: '0 0 24 24'
+        viewBox: '0 0 24 24',
       },
       children
     )
   Icon.propTypes = {
-    style: Text.propTypes.style
+    style: Text.propTypes.style,
   }
   return Icon
 }

@@ -3,7 +3,7 @@ import {
   transformExpressionWithStyles,
   createTransformerMacro,
   getSourceMap,
-  addImport
+  addImport,
 } from './utils'
 
 export const transformCssCallExpression = ({
@@ -11,20 +11,20 @@ export const transformCssCallExpression = ({
   babel,
   path,
   sourceMap,
-  annotateAsPure = true
+  annotateAsPure = true,
 }: {
   state: *,
   babel: *,
   path: *,
   sourceMap?: string,
-  annotateAsPure?: boolean
+  annotateAsPure?: boolean,
 }) => {
   let node = transformExpressionWithStyles({
     babel,
     state,
     path,
     shouldLabel: true,
-    sourceMap
+    sourceMap,
   })
   if (node) {
     path.replaceWith(node)
@@ -37,11 +37,11 @@ export const transformCssCallExpression = ({
 export const transformCsslessArrayExpression = ({
   state,
   babel,
-  path
+  path,
 }: {
   babel: *,
   state: *,
-  path: *
+  path: *,
 }) => {
   let t = babel.types
   let expressionPath = path.get('value.expression')
@@ -64,7 +64,7 @@ export const transformCsslessArrayExpression = ({
     state,
     path: expressionPath,
     sourceMap,
-    annotateAsPure: false
+    annotateAsPure: false,
   })
 
   if (t.isCallExpression(expressionPath)) {
@@ -76,12 +76,12 @@ export const transformCsslessObjectExpression = ({
   state,
   babel,
   path,
-  cssImport
+  cssImport,
 }: {
   babel: *,
   state: *,
   path: *,
-  cssImport: { importSource: string, cssExport: string }
+  cssImport: { importSource: string, cssExport: string },
 }) => {
   let t = babel.types
   let expressionPath = path.get('value.expression')
@@ -103,7 +103,7 @@ export const transformCsslessObjectExpression = ({
     babel,
     state,
     path: expressionPath,
-    sourceMap
+    sourceMap,
   })
 
   if (t.isCallExpression(expressionPath)) {
@@ -118,11 +118,11 @@ export const transformCsslessObjectExpression = ({
 let cssTransformer = ({
   state,
   babel,
-  reference
+  reference,
 }: {
   state: any,
   babel: any,
-  reference: any
+  reference: any,
 }) => {
   transformCssCallExpression({ babel, state, path: reference.parentPath })
 }
@@ -132,13 +132,13 @@ let globalTransformer = ({
   babel,
   reference,
   importSource,
-  options
+  options,
 }: {
   state: any,
   babel: any,
   reference: any,
   importSource: string,
-  options: { cssExport?: string }
+  options: { cssExport?: string },
 }) => {
   const t = babel.types
 
@@ -151,7 +151,7 @@ let globalTransformer = ({
 
   const stylesPropPath = reference.parentPath
     .get('attributes')
-    .find(p => t.isJSXAttribute(p.node) && p.node.name.name === 'styles')
+    .find((p) => t.isJSXAttribute(p.node) && p.node.name.name === 'styles')
 
   if (!stylesPropPath) {
     return
@@ -162,7 +162,7 @@ let globalTransformer = ({
       transformCsslessArrayExpression({
         state,
         babel,
-        path: stylesPropPath
+        path: stylesPropPath,
       })
     } else if (t.isObjectExpression(stylesPropPath.node.value.expression)) {
       transformCsslessObjectExpression({
@@ -173,12 +173,12 @@ let globalTransformer = ({
           options.cssExport !== undefined
             ? {
                 importSource,
-                cssExport: options.cssExport
+                cssExport: options.cssExport,
               }
             : {
                 importSource: '@emotion/react',
-                cssExport: 'css'
-              }
+                cssExport: 'css',
+              },
       })
     }
   }
@@ -190,9 +190,9 @@ export const transformers = {
   // instead we use it as a hint to enable css prop optimization
   jsx: () => {},
   css: cssTransformer,
-  Global: globalTransformer
+  Global: globalTransformer,
 }
 
 export default createTransformerMacro(transformers, {
-  importSource: '@emotion/react'
+  importSource: '@emotion/react',
 })

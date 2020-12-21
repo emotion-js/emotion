@@ -12,7 +12,9 @@ export function createTransformerMacro(
       if (!path) {
         path = state.file.scope.path
           .get('body')
-          .find(p => p.isImportDeclaration() && p.node.source.value === source)
+          .find(
+            (p) => p.isImportDeclaration() && p.node.source.value === source
+          )
       }
 
       if (/\/macro$/.test(source)) {
@@ -26,9 +28,9 @@ export function createTransformerMacro(
       if (!isEmotionCall) {
         state.emotionSourceMap = true
       }
-      Object.keys(references).forEach(importSpecifierName => {
+      Object.keys(references).forEach((importSpecifierName) => {
         if (transformers[importSpecifierName]) {
-          references[importSpecifierName].reverse().forEach(reference => {
+          references[importSpecifierName].reverse().forEach((reference) => {
             let options
             let transformer
             if (Array.isArray(transformers[importSpecifierName])) {
@@ -45,7 +47,7 @@ export function createTransformerMacro(
               importSource,
               importSpecifierName,
               options,
-              reference
+              reference,
             })
           })
         }

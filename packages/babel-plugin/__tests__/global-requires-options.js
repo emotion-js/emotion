@@ -10,8 +10,8 @@ import { Global } from '@emotion/react'
 
 export default () => <Global styles={{ color: 'hotpink' }} />
     `,
-    plugins: [[plugin, { sourceMap: false }]]
-  }
+    plugins: [[plugin, { sourceMap: false }]],
+  },
 }
 
 babelTester('Global inline', cases)

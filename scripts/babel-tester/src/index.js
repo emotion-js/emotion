@@ -11,7 +11,7 @@ const readFile = promisify(fs.readFile)
 
 const separator = '\n\n      ↓ ↓ ↓ ↓ ↓ ↓\n\n'
 
-const tester = allOpts => async opts => {
+const tester = (allOpts) => async (opts) => {
   let rawCode = opts.code
   if (!opts.code && opts.filename) {
     rawCode = await readFile(opts.filename, 'utf-8')
@@ -26,13 +26,13 @@ const tester = allOpts => async opts => {
       '@babel/plugin-syntax-class-properties',
       '@babel/plugin-syntax-object-rest-spread',
       ...(allOpts.plugins || []),
-      ...(opts.plugins || [])
+      ...(opts.plugins || []),
     ],
     presets: allOpts.presets,
     babelrc: false,
     configFile: false,
     ast: true,
-    filename: 'babelFileName' in opts ? opts.babelFileName : 'emotion.js'
+    filename: 'babelFileName' in opts ? opts.babelFileName : 'emotion.js',
   })
   expect(() => checkDuplicatedNodes(babel, ast)).not.toThrow()
 
@@ -43,7 +43,7 @@ function doThing(dirname) {
   const fixturesFolder = path.join(dirname, '__fixtures__')
   return fs
     .readdirSync(fixturesFolder)
-    .map(base => path.join(fixturesFolder, base))
+    .map((base) => path.join(fixturesFolder, base))
 }
 
 export default (
@@ -53,15 +53,15 @@ export default (
         [key: string]: {
           code: string,
           plugins?: any[],
-          babelFileName?: string
-        }
+          babelFileName?: string,
+        },
       }
     | string,
   opts?: {
     plugins?: Array<*>,
     presets?: Array<*>,
-    transform?: string => string,
-    filename?: string
+    transform?: (string) => string,
+    filename?: string,
   } = {}
 ) => {
   if (typeof cases === 'string') {
@@ -80,7 +80,7 @@ export default (
         filename,
         babelFileName: opts.filename || filename,
         only,
-        skip
+        skip,
       }
       return accum
     }, {})

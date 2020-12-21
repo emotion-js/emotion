@@ -2,14 +2,14 @@
 
 import { jsx } from '@emotion/react'
 
-const SomeComponent = props => {
+const SomeComponent = (props) => {
   return (
     <div
       css={{
         color: 'green',
         ':hover': {
-          color: 'hotpink'
-        }
+          color: 'hotpink',
+        },
       }}
       {...props}
     />

@@ -15,13 +15,13 @@ import { getMean, getMedian, getStdDev } from './math'
 import type {
   BenchResultsType,
   FullSampleTimingType,
-  SampleTimingType
+  SampleTimingType,
 } from './types'
 
 export const BenchmarkType = {
   MOUNT: 'mount',
   UPDATE: 'update',
-  UNMOUNT: 'unmount'
+  UNMOUNT: 'unmount',
 }
 
 const shouldRender = (
@@ -87,13 +87,13 @@ type BenchmarkPropsType = {
   onComplete: (x: BenchResultsType) => void,
   sampleCount: number,
   timeout: number,
-  type: $Values<typeof BenchmarkType>
+  type: $Values<typeof BenchmarkType>,
 }
 
 type BenchmarkStateType = {
   componentProps: Object,
   cycle: number,
-  running: boolean
+  running: boolean,
 }
 
 /**
@@ -113,7 +113,7 @@ export default class Benchmark extends Component<
   static defaultProps = {
     sampleCount: 50,
     timeout: 10000, // 10 seconds
-    type: BenchmarkType.MOUNT
+    type: BenchmarkType.MOUNT,
   }
 
   static Type = BenchmarkType
@@ -125,7 +125,7 @@ export default class Benchmark extends Component<
     this.state = {
       componentProps,
       cycle,
-      running: false
+      running: false,
     }
     this._startTime = 0
     this._samples = []
@@ -133,8 +133,8 @@ export default class Benchmark extends Component<
 
   componentWillReceiveProps(nextProps: BenchmarkPropsType) {
     if (nextProps) {
-      this.setState(state => ({
-        componentProps: nextProps.getComponentProps(state.cycle)
+      this.setState((state) => ({
+        componentProps: nextProps.getComponentProps(state.cycle),
       }))
     }
   }
@@ -219,7 +219,7 @@ export default class Benchmark extends Component<
     this._raf = window.requestAnimationFrame(() => {
       this.setState((state: BenchmarkStateType) => ({
         cycle: state.cycle + 1,
-        componentProps
+        componentProps,
       }))
     })
   }
@@ -232,7 +232,7 @@ export default class Benchmark extends Component<
           scriptingStart,
           scriptingEnd,
           layoutStart,
-          layoutEnd
+          layoutEnd,
         }: SampleTimingType
       ): Array<FullSampleTimingType> => {
         memo.push({
@@ -241,7 +241,7 @@ export default class Benchmark extends Component<
           scriptingStart,
           scriptingEnd: scriptingEnd || 0,
           layoutStart,
-          layoutEnd
+          layoutEnd,
         })
         return memo
       },
@@ -280,7 +280,7 @@ export default class Benchmark extends Component<
       mean: getMean(sortedElapsedTimes),
       stdDev: getStdDev(sortedElapsedTimes),
       meanLayout: getMean(sortedLayoutElapsedTimes),
-      meanScripting: getMean(sortedScriptingElapsedTimes)
+      meanScripting: getMean(sortedScriptingElapsedTimes),
     })
   }
 }

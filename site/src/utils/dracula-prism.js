@@ -7,16 +7,16 @@ http://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascr
  */
 
 /*
-* Dracula Theme for Prism.JS
-*
-* @author Gustavo Costa
-* e-mail: gusbemacbe@gmail.com
-*
-* @contributor Jon Leopard
-* e-mail: jonlprd@gmail.com
-*
-* @license MIT 2016-2018
-*/
+ * Dracula Theme for Prism.JS
+ *
+ * @author Gustavo Costa
+ * e-mail: gusbemacbe@gmail.com
+ *
+ * @contributor Jon Leopard
+ * e-mail: jonlprd@gmail.com
+ *
+ * @license MIT 2016-2018
+ */
 
 export default `
 pre::-webkit-scrollbar {

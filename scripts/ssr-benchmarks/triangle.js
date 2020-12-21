@@ -2,12 +2,12 @@ let React = require('react')
 let {
   interpolatePurples,
   interpolateBuPu,
-  interpolateRdPu
+  interpolateRdPu,
 } = require('d3-scale-chromatic')
 
 const targetSize = 10
 
-exports.createTriangle = Dot => {
+exports.createTriangle = (Dot) => {
   let SierpinskiTriangle = ({
     components,
     x,
@@ -15,7 +15,7 @@ exports.createTriangle = Dot => {
     depth,
     renderCount,
     random,
-    s
+    s,
   }) => {
     if (s <= targetSize) {
       let fn
@@ -36,7 +36,7 @@ exports.createTriangle = Dot => {
         color,
         size: targetSize,
         x: x - targetSize / 2,
-        y: y - targetSize / 2
+        y: y - targetSize / 2,
       })
     }
 
@@ -51,7 +51,7 @@ exports.createTriangle = Dot => {
         renderCount: renderCount,
         s: s,
         x: x,
-        y: y - s / 2
+        y: y - s / 2,
       }),
       React.createElement(SierpinskiTriangle, {
         components: components,
@@ -59,7 +59,7 @@ exports.createTriangle = Dot => {
         renderCount: renderCount,
         s: s,
         x: x - s,
-        y: y + s / 2
+        y: y + s / 2,
       }),
       React.createElement(SierpinskiTriangle, {
         components: components,
@@ -67,14 +67,14 @@ exports.createTriangle = Dot => {
         renderCount: renderCount,
         s: s,
         x: x + s,
-        y: y + s / 2
+        y: y + s / 2,
       })
     )
   }
   SierpinskiTriangle.defaultProps = {
     depth: 0,
     renderCount: 0,
-    random: 1
+    random: 1,
   }
   return SierpinskiTriangle
 }

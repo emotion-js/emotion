@@ -2,9 +2,9 @@ import 'test-utils/legacy-env'
 import { css, sheet, flush } from '@emotion/css'
 
 const commentPattern = /\/\*[\s\S]*?\*\//g
-const getStyles = sheet =>
+const getStyles = (sheet) =>
   sheet.tags
-    .map(tag => tag.textContent || '')
+    .map((tag) => tag.textContent || '')
     .join('')
     .replace(commentPattern, '\n$&\n')
 
@@ -14,7 +14,7 @@ describe('css', () => {
     const mq = [
       '@media(min-width: 420px)',
       '@media(min-width: 640px)',
-      '@media(min-width: 960px)'
+      '@media(min-width: 960px)',
     ]
 
     css({
@@ -25,12 +25,12 @@ describe('css', () => {
           '&:focus': {
             color: 'burlywood',
             [mq[0]]: {
-              color: 'rebeccapurple'
-            }
-          }
+              color: 'rebeccapurple',
+            },
+          },
         },
-        color: 'green'
-      }
+        color: 'green',
+      },
     })
     expect(getStyles(sheet)).toMatchSnapshot()
   })

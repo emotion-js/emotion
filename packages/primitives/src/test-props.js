@@ -46,7 +46,7 @@ const forwardableProps = {
   source: true,
   suppressHighlighting: true,
   testID: true,
-  textBreakStrategy: true
+  textBreakStrategy: true,
 }
 
 export function testPickPropsOnPrimitiveComponent(prop: string) {

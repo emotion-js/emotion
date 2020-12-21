@@ -42,7 +42,7 @@ describe('css', () => {
     const cls1 = differentCss({
       display: 'flex',
       color: false,
-      backgroundColor: true
+      backgroundColor: true,
     })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -101,7 +101,7 @@ describe('css', () => {
       color: `${'blue'}`,
       fontSize: `${'20px'}`,
       height: 50,
-      width: 20
+      width: 20,
     })
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()
@@ -127,11 +127,11 @@ describe('css', () => {
       '&:hover': { color: 'blue' },
       ':after': {
         content: '" "',
-        color: 'red'
+        color: 'red',
       },
       '@media(min-width: 420px)': {
-        color: 'green'
-      }
+        color: 'green',
+      },
     })
     const cls2 = differentCss`
       ${cls1};
@@ -181,13 +181,13 @@ describe('css', () => {
             { color: 'darkorchid' },
             [
               {
-                fontSize: 16
+                fontSize: 16,
               },
-              [{ '&:after': { backgroundColor: 'aquamarine' } }]
-            ]
-          ]
-        ]
-      ]
+              [{ '&:after': { backgroundColor: 'aquamarine' } }],
+            ],
+          ],
+        ],
+      ],
     ])
     const tree = renderer.create(<div className={cls1} />).toJSON()
     expect(tree).toMatchSnapshot()

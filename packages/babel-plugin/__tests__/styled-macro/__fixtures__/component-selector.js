@@ -17,9 +17,9 @@ let AnotherComponent = styled.div`
 
 let OneLastComponent = styled.div({
   [SomeComponent]: {
-    color: 'green'
+    color: 'green',
   },
   [SomeOtherComponent]: {
-    color: 'green'
-  }
+    color: 'green',
+  },
 })

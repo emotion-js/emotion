@@ -135,5 +135,5 @@ export const tags = [
   'stop',
   'svg',
   'text',
-  'tspan'
+  'tspan',
 ]

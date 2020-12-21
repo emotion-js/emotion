@@ -8,7 +8,7 @@ import {
   rulesheet,
   stringify,
   prefixer,
-  COMMENT
+  COMMENT,
 } from 'stylis'
 import weakMemoize from '@emotion/weak-memoize'
 import memoize from '@emotion/memoize'
@@ -16,7 +16,7 @@ import {
   compat,
   removeLabel,
   createUnsafeSelectorsAlarm,
-  incorrectImportAlarm
+  incorrectImportAlarm,
 } from './stylis-plugins'
 import type { StylisPlugin } from './types'
 
@@ -28,7 +28,7 @@ export type Options = {
   key: string,
   container?: HTMLElement,
   speedy?: boolean,
-  prepend?: boolean
+  prepend?: boolean,
 }
 
 let getServerStylisCache = isBrowser
@@ -36,7 +36,7 @@ let getServerStylisCache = isBrowser
   : weakMemoize(() =>
       memoize(() => {
         let cache = {}
-        return name => cache[name]
+        return (name) => cache[name]
       })
     )
 
@@ -113,7 +113,7 @@ let createCache = (options: Options): EmotionCache => {
       createUnsafeSelectorsAlarm({
         get compat() {
           return cache.compat
-        }
+        },
       }),
       incorrectImportAlarm
     )
@@ -125,7 +125,7 @@ let createCache = (options: Options): EmotionCache => {
     const finalizingPlugins = [
       stringify,
       process.env.NODE_ENV !== 'production'
-        ? element => {
+        ? (element) => {
             if (!element.root) {
               if (element.return) {
                 currentSheet.insert(element.return)
@@ -136,15 +136,15 @@ let createCache = (options: Options): EmotionCache => {
               }
             }
           }
-        : rulesheet(rule => {
+        : rulesheet((rule) => {
             currentSheet.insert(rule)
-          })
+          }),
     ]
 
     const serializer = middleware(
       omnipresentPlugins.concat(stylisPlugins, finalizingPlugins)
     )
-    const stylis = styles => serialize(compile(styles), serializer)
+    const stylis = (styles) => serialize(compile(styles), serializer)
 
     insert = (
       selector: string,
@@ -160,7 +160,7 @@ let createCache = (options: Options): EmotionCache => {
         currentSheet = {
           insert: (rule: string) => {
             sheet.insert(rule + ((serialized.map: any): string))
-          }
+          },
         }
       }
 
@@ -175,7 +175,7 @@ let createCache = (options: Options): EmotionCache => {
     const serializer = middleware(
       omnipresentPlugins.concat(stylisPlugins, finalizingPlugins)
     )
-    const stylis = styles => serialize(compile(styles), serializer)
+    const stylis = (styles) => serialize(compile(styles), serializer)
 
     // $FlowFixMe
     let serverStylisCache = getServerStylisCache(stylisPlugins)(key)
@@ -237,12 +237,12 @@ let createCache = (options: Options): EmotionCache => {
       container: ((container: any): HTMLElement),
       nonce: options.nonce,
       speedy: options.speedy,
-      prepend: options.prepend
+      prepend: options.prepend,
     }),
     nonce: options.nonce,
     inserted,
     registered: {},
-    insert
+    insert,
   }
 
   cache.sheet.hydrate(nodesToHydrate)

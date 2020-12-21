@@ -22,9 +22,9 @@ const getColor = ({ color }) => {
 
 const Box = styled(View)`
   align-self: flex-start;
-  flex-direction: ${props => (props.layout === 'column' ? 'column' : 'row')};
-  padding: ${props => (props.outer ? '4px' : '0')};
-  ${props => props.fixed && 'height:6px;width:6px;'};
+  flex-direction: ${(props) => (props.layout === 'column' ? 'column' : 'row')};
+  padding: ${(props) => (props.outer ? '4px' : '0')};
+  ${(props) => props.fixed && 'height:6px;width:6px;'};
   background-color: ${getColor};
 `
 

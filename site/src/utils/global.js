@@ -58,7 +58,7 @@ const globalStyles = css`
         paddingTop: [8, 16],
         paddingRight: [8, 16],
         paddingBottom: [8, 16],
-        paddingLeft: [8, 16]
+        paddingLeft: [8, 16],
       })};
     }
 

@@ -10,7 +10,7 @@ css('width: 200px;')
 // $ExpectType SerializedStyles
 css('display: block;', {
   flexGrow: 1,
-  backgroundColor: 'red'
+  backgroundColor: 'red',
 })
 // $ExpectType SerializedStyles
 css`

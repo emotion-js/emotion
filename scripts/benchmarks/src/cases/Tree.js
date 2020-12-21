@@ -12,7 +12,7 @@ class Tree extends Component {
     components: object,
     depth: number.isRequired,
     id: number.isRequired,
-    wrap: number.isRequired
+    wrap: number.isRequired,
   }
 
   render() {

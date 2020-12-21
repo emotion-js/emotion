@@ -58,7 +58,7 @@ test('styled string base - string as', () => {
 })
 
 test('composite base - string as', () => {
-  const Title = styled(props => <h1 {...props} />)`
+  const Title = styled((props) => <h1 {...props} />)`
     color: green;
   `
   let h1Title = id()
@@ -80,7 +80,7 @@ test('composite base - string as', () => {
 
 test('forward as - string base', () => {
   const Title = styled('h1', {
-    shouldForwardProp: prop => prop !== 'theme'
+    shouldForwardProp: (prop) => prop !== 'theme',
   })`
     color: green;
   `
@@ -103,8 +103,8 @@ test('forward as - string base', () => {
 })
 
 test('forward as - composite base', () => {
-  const Title = styled(props => <h1 {...props} />, {
-    shouldForwardProp: prop => prop !== 'theme'
+  const Title = styled((props) => <h1 {...props} />, {
+    shouldForwardProp: (prop) => prop !== 'theme',
   })`
     color: green;
   `

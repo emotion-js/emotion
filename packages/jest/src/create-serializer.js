@@ -12,7 +12,7 @@ import {
   getKeys,
   flatMap,
   isPrimitive,
-  hasIntersection
+  hasIntersection,
 } from './utils'
 
 function getNodes(node, nodes = []) {
@@ -45,7 +45,7 @@ function copyProps(target, source) {
 
 function deepTransform(node, transform) {
   if (Array.isArray(node)) {
-    return node.map(child => deepTransform(child, transform))
+    return node.map((child) => deepTransform(child, transform))
   }
 
   const transformed: any = transform(node)
@@ -55,8 +55,8 @@ function deepTransform(node, transform) {
       // flatMap to allow a child of <A><B /><C /></A> to be transformed to <B /><C />
       children: flatMap(
         (deepTransform(transformed.children, transform): any),
-        id => id
-      )
+        (id) => id
+      ),
     })
   }
 
@@ -73,7 +73,7 @@ function getPrettyStylesFromClassNames(
 
 export type Options = {
   classNameReplacer?: (className: string, index: number) => string,
-  DOMElements?: boolean
+  DOMElements?: boolean,
 }
 
 function filterEmotionProps(props = {}) {
@@ -105,8 +105,8 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
   }
   if (isEmotionCssPropEnzymeElement(node)) {
     const cssClassNames = (node.props.css.name || '').split(' ')
-    const expectedClassNames = flatMap(cssClassNames, cssClassName =>
-      keys.map(key => `${key}-${cssClassName}`)
+    const expectedClassNames = flatMap(cssClassNames, (cssClassName) =>
+      keys.map((key) => `${key}-${cssClassName}`)
     )
     // if this is a shallow element, we need to manufacture the className
     // since the underlying component is not rendered.
@@ -123,9 +123,9 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
         ...node,
         props: filterEmotionProps({
           ...node.props,
-          className
+          className,
         }),
-        type
+        type,
       }
     } else {
       return node.children
@@ -135,7 +135,7 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
     return {
       ...node,
       props: filterEmotionProps(node.props),
-      type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+      type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__,
     }
   }
   if (isReactElement(node)) {
@@ -172,10 +172,10 @@ function clean(node: any, classNames: string[]) {
 
 export function createSerializer({
   classNameReplacer,
-  DOMElements = true
+  DOMElements = true,
 }: Options = {}) {
   const cache = new WeakSet()
-  const isTransformed = val => cache.has(val)
+  const isTransformed = (val) => cache.has(val)
 
   function serialize(
     val: *,
@@ -215,10 +215,10 @@ export function createSerializer({
     test(val: *) {
       return (
         val &&
-        (!isTransformed(val) &&
-          (isReactElement(val) || (DOMElements && isDOMElement(val))))
+        !isTransformed(val) &&
+        (isReactElement(val) || (DOMElements && isDOMElement(val)))
       )
     },
-    serialize
+    serialize,
   }
 }

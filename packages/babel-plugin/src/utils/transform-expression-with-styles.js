@@ -7,7 +7,7 @@ import { getSourceMap } from './source-maps'
 import { simplifyObject } from './object-to-string'
 import {
   appendStringReturningExpressionToArguments,
-  joinStringLiterals
+  joinStringLiterals,
 } from './strings'
 
 const CSS_OBJECT_STRINGIFIED_ERROR =
@@ -33,13 +33,13 @@ export let transformExpressionWithStyles = ({
   state,
   path,
   shouldLabel,
-  sourceMap = ''
+  sourceMap = '',
 }: {
   babel: *,
   state: *,
   path: *,
   shouldLabel: boolean,
-  sourceMap?: string
+  sourceMap?: string,
 }): * => {
   const autoLabel = state.opts.autoLabel || 'dev-only'
   let t = babel.types
@@ -56,10 +56,10 @@ export let transformExpressionWithStyles = ({
 
   if (t.isCallExpression(path)) {
     const canAppendStrings = path.node.arguments.every(
-      arg => arg.type !== 'SpreadElement'
+      (arg) => arg.type !== 'SpreadElement'
     )
 
-    path.get('arguments').forEach(node => {
+    path.get('arguments').forEach((node) => {
       if (t.isObjectExpression(node)) {
         node.replaceWith(simplifyObject(node.node, t))
       }
@@ -89,11 +89,11 @@ export let transformExpressionWithStyles = ({
       let res = serializeStyles([
         `${cssString}${
           label && autoLabel === 'always' ? `;label:${label};` : ''
-        }`
+        }`,
       ])
       let prodNode = t.objectExpression([
         t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
-        t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles))
+        t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles)),
       ])
 
       if (!state.emotionStringifiedCssId) {
@@ -105,7 +105,7 @@ export let transformExpressionWithStyles = ({
           uid,
           [],
           t.blockStatement([
-            t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR))
+            t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR)),
           ])
         )
         cssObjectToString._compact = true
@@ -125,7 +125,7 @@ export let transformExpressionWithStyles = ({
           t.objectProperty(
             t.identifier('toString'),
             t.cloneNode(state.emotionStringifiedCssId)
-          )
+          ),
         ].filter(Boolean)
       )
 

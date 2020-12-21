@@ -9,7 +9,7 @@ describe('css', () => {
     const mq = [
       '@media(min-width: 420px)',
       '@media(min-width: 640px)',
-      '@media(min-width: 960px)'
+      '@media(min-width: 960px)',
     ]
 
     css({
@@ -20,12 +20,12 @@ describe('css', () => {
           '&:focus': {
             color: 'burlywood',
             [mq[0]]: {
-              color: 'rebeccapurple'
-            }
-          }
+              color: 'rebeccapurple',
+            },
+          },
         },
-        color: 'green'
-      }
+        color: 'green',
+      },
     })
     expect(sheet).toMatchSnapshot()
   })
@@ -52,26 +52,26 @@ describe('css', () => {
     const mq = [
       '@media(min-width: 420px)',
       '@media(min-width: 640px)',
-      '@media(min-width: 960px)'
+      '@media(min-width: 960px)',
     ]
     const buttonCSS = [
       { color: 'red', [mq[1]]: { color: 'blue' } },
-      { color: 'purple', [mq[1]]: { color: 'aquamarine' } }
+      { color: 'purple', [mq[1]]: { color: 'aquamarine' } },
     ]
     css([
       {
         color: 'darkslateblue',
         [mq[0]]: {
-          color: 'amethyst'
+          color: 'amethyst',
         },
         [mq[1]]: {
-          color: 'rebeccapurple'
+          color: 'rebeccapurple',
         },
         [mq[2]]: {
-          color: 'burlywood'
-        }
+          color: 'burlywood',
+        },
       },
-      buttonCSS
+      buttonCSS,
     ])
     expect(sheet).toMatchSnapshot()
   })
@@ -215,9 +215,9 @@ describe('orphaned pseudos', () => {
         content: '"*"',
         background: 'pink',
         '@media screen and (max-width: 800px)': {
-          background: 'cyan'
-        }
-      }
+          background: 'cyan',
+        },
+      },
     })
 
     expect(sheet).toMatchSnapshot()
@@ -228,9 +228,9 @@ describe('orphaned pseudos', () => {
       '::backdrop, & + .backdrop': {
         backgroundColor: 'grey',
         '@media print': {
-          display: 'none'
-        }
-      }
+          display: 'none',
+        },
+      },
     })
 
     expect(sheet).toMatchSnapshot()
@@ -241,9 +241,9 @@ describe('orphaned pseudos', () => {
       ':hover': {
         color: 'hotpink',
         '.foo': {
-          color: 'grey'
-        }
-      }
+          color: 'grey',
+        },
+      },
     })
 
     expect(sheet).toMatchSnapshot()
@@ -256,10 +256,10 @@ describe('orphaned pseudos', () => {
         '.foo': {
           color: 'grey',
           '@media print': {
-            display: 'none'
-          }
-        }
-      }
+            display: 'none',
+          },
+        },
+      },
     })
 
     expect(sheet).toMatchSnapshot()
@@ -270,9 +270,9 @@ describe('orphaned pseudos', () => {
       ':hover': {
         color: 'hotpink',
         ':focus': {
-          outlineColor: 'blue'
-        }
-      }
+          outlineColor: 'blue',
+        },
+      },
     })
 
     expect(sheet).toMatchSnapshot()

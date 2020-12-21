@@ -74,7 +74,7 @@ describe('cx', () => {
       .create(
         <div
           className={cx({ [cls1]: foo }, 'modal', { [cls2]: bar }, 'profile', [
-            [cls3, [cls4]]
+            [cls3, [cls4]],
           ])}
         />
       )
@@ -107,7 +107,7 @@ describe('cx', () => {
         <div
           className={cx([
             [cls1, false && cls2, 'modal'],
-            [cls3, { [cls4]: true }, 'profile']
+            [cls3, { [cls4]: true }, 'profile'],
           ])}
         />
       )

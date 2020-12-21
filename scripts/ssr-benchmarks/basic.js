@@ -24,7 +24,7 @@ let CssPropTriangle = createTriangle(({ x, y, size, color, ...props }) => {
       border-left-width: ${size / 2 + 'px'};
       border-bottom-color: ${color};
     `,
-    ...props
+    ...props,
   })
 })
 

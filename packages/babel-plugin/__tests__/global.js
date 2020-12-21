@@ -7,6 +7,6 @@ babelTester(
   path.join(__dirname, 'global-macro'),
   {
     plugins: [plugin],
-    transform: src => src.replace(/\/macro/g, '')
+    transform: (src) => src.replace(/\/macro/g, ''),
   }
 )

@@ -7,7 +7,7 @@ import { css, ThemeProvider } from '@emotion/react'
 
 test('theme with react-test-renderer', () => {
   const Div = styled.div`
-    color: ${props => props.theme.primary};
+    color: ${(props) => props.theme.primary};
   `
   const tree = renderer
     .create(
@@ -35,13 +35,13 @@ test('themes', () => {
   `
 
   const Heading = styled('span')`
-    background-color: ${p => p.theme.gold};
+    background-color: ${(p) => p.theme.gold};
   `
 
   const H1 = styled(Heading)`
     ${cssB};
     font-size: ${fontSize};
-    color: ${p => p.theme.purple};
+    color: ${(p) => p.theme.purple};
   `
 
   const H2 = styled(H1)`
@@ -60,7 +60,7 @@ test('themes', () => {
 
 test('theme prop exists without ThemeProvider', () => {
   const SomeComponent = styled.div`
-    color: ${props => props.theme.color || 'green'};
+    color: ${(props) => props.theme.color || 'green'};
     background-color: yellow;
   `
   const tree = renderer.create(<SomeComponent />).toJSON()
@@ -68,7 +68,7 @@ test('theme prop exists without ThemeProvider', () => {
 })
 test('theme prop exists without ThemeProvider with a theme prop on the component', () => {
   const SomeComponent = styled.div`
-    color: ${props => props.theme.color || 'green'};
+    color: ${(props) => props.theme.color || 'green'};
     background-color: yellow;
   `
   const tree = renderer

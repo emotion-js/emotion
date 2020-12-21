@@ -9,10 +9,10 @@ import {
   from,
   identifier,
   peek,
-  position
+  position,
 } from 'stylis'
 
-const last = arr => (arr.length ? arr[arr.length - 1] : null)
+const last = (arr) => (arr.length ? arr[arr.length - 1] : null)
 
 const toRules = (parsed, points) => {
   // pretend we've started with a comma
@@ -57,7 +57,7 @@ const getRules = (value, points) => dealloc(toRules(alloc(value), points))
 // WeakSet would be more appropriate, but only WeakMap is supported in IE11
 const fixedElements = /* #__PURE__ */ new WeakMap()
 
-export let compat = element => {
+export let compat = (element) => {
   if (
     element.type !== 'rule' ||
     !element.parent ||
@@ -106,7 +106,7 @@ export let compat = element => {
   }
 }
 
-export let removeLabel = element => {
+export let removeLabel = (element) => {
   if (element.type === 'decl') {
     var value = element.value
     if (
@@ -125,12 +125,16 @@ export let removeLabel = element => {
 const ignoreFlag =
   'emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason'
 
-const isIgnoringComment = element =>
+const isIgnoringComment = (element) =>
   !!element &&
   element.type === 'comm' &&
   element.children.indexOf(ignoreFlag) > -1
 
-export let createUnsafeSelectorsAlarm = cache => (element, index, children) => {
+export let createUnsafeSelectorsAlarm = (cache) => (
+  element,
+  index,
+  children
+) => {
   if (element.type !== 'rule') return
 
   const unsafePseudoClasses = element.value.match(
@@ -142,7 +146,7 @@ export let createUnsafeSelectorsAlarm = cache => (element, index, children) => {
     if (prevElement && isIgnoringComment(last(prevElement.children))) {
       return
     }
-    unsafePseudoClasses.forEach(unsafePseudoClass => {
+    unsafePseudoClasses.forEach((unsafePseudoClass) => {
       console.error(
         `The pseudo class "${unsafePseudoClass}" is potentially unsafe when doing server-side rendering. Try changing it to "${
           unsafePseudoClass.split('-child')[0]
@@ -152,7 +156,7 @@ export let createUnsafeSelectorsAlarm = cache => (element, index, children) => {
   }
 }
 
-let isImportRule = element =>
+let isImportRule = (element) =>
   element.type.charCodeAt(1) === 105 && element.type.charCodeAt(0) === 64
 
 const isPrependedWithRegularRules = (index, children) => {
@@ -167,7 +171,7 @@ const isPrependedWithRegularRules = (index, children) => {
 // use this to remove incorrect elements from further processing
 // so they don't get handed to the `sheet` (or anything else)
 // as that could potentially lead to additional logs which in turn could be overhelming to the user
-const nullifyElement = element => {
+const nullifyElement = (element) => {
   element.type = ''
   element.value = ''
   element.return = ''

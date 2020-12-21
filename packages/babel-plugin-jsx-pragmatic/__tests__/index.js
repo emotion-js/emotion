@@ -9,17 +9,17 @@ babelTester('@emotion/babel-plugin-jsx-pragmatic', __dirname, {
       {
         export: 'jsx',
         module: '@emotion/react',
-        import: '___EmotionJSX'
-      }
-    ]
-  ]
+        import: '___EmotionJSX',
+      },
+    ],
+  ],
 })
 
 test('babel-plugin-jsx-pragmatic should throw error when invalid options', () => {
   expect(() => {
     transformSync('<></>', {
       filename: __filename,
-      plugins: [[jsxPragmatic, { export: 'jsx' }]]
+      plugins: [[jsxPragmatic, { export: 'jsx' }]],
     })
   }).toThrow(
     '@emotion/babel-plugin-jsx-pragmatic: You must specify `module` and `import`'

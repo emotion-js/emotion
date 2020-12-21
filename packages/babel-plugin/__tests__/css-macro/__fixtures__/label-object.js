@@ -7,5 +7,5 @@ const thing = {
   // prettier-ignore
   'shouldBeAnotherLabel':css`
     color:green;
-  `
+  `,
 }

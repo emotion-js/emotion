@@ -7,18 +7,18 @@ const enzymeSerializer = createEnzymeToJsonSerializer({})
 
 const tickle = (wrapper: *) => {
   if (typeof wrapper.dive === 'function') {
-    wrapper.find('EmotionCssPropInternal').forEach(el => el.dive())
+    wrapper.find('EmotionCssPropInternal').forEach((el) => el.dive())
   }
   return wrapper
 }
 
 export function createEnzymeSerializer({
   classNameReplacer,
-  DOMElements = true
+  DOMElements = true,
 }: Options = {}) {
   const emotionSerializer = createEmotionSerializer({
     classNameReplacer,
-    DOMElements
+    DOMElements,
   })
   return {
     test(node: *) {
@@ -37,7 +37,7 @@ export function createEnzymeSerializer({
         return enzymeSerializer.print(
           tickled,
           // https://github.com/facebook/jest/blob/470ef2d29c576d6a10de344ec25d5a855f02d519/packages/pretty-format/src/index.ts#L281
-          valChild => printer(valChild, config, indentation, depth, refs)
+          (valChild) => printer(valChild, config, indentation, depth, refs)
         )
       }
       // we know here it had to match against emotionSerializer
@@ -49,6 +49,6 @@ export function createEnzymeSerializer({
         refs,
         printer
       )
-    }
+    },
   }
 }

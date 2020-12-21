@@ -9,12 +9,10 @@ const babelPluginEmotion = require('@emotion/babel-plugin').default
 let livePattern = /^\s*\/\/ @live/
 
 module.exports = ({ markdownAST }) => {
-  visit(markdownAST, `code`, node => {
+  visit(markdownAST, `code`, (node) => {
     if (node.lang === 'jsx live') {
       throw new Error(
-        `The following code block has the language jsx live which is no longer allowed:\n${
-          node.value
-        }`
+        `The following code block has the language jsx live which is no longer allowed:\n${node.value}`
       )
     }
     if (
@@ -28,7 +26,7 @@ module.exports = ({ markdownAST }) => {
       node.value = escapeGoat.escapeTag`<live-code code="${cleanValue}" compiled="${
         Babel.transform(cleanValue, {
           presets: [babelPresetEnv, babelPresetReact],
-          plugins: [[babelPluginEmotion, { sourceMap: false }]]
+          plugins: [[babelPluginEmotion, { sourceMap: false }]],
         }).code
       }"></live-code>`
     }

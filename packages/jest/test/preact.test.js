@@ -26,7 +26,7 @@ describe('jest-emotion with preact', () => {
     )
 
     const output = prettyFormat(tree, {
-      plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
+      plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement],
     })
 
     expect(output).toMatchSnapshot()
@@ -36,7 +36,7 @@ describe('jest-emotion with preact', () => {
     const tree = render(<div />)
 
     const output = prettyFormat(tree, {
-      plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement]
+      plugins: [emotionPlugin, ReactElement, ReactTestComponent, DOMElement],
     })
 
     expect(output).toMatchSnapshot()

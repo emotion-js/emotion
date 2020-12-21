@@ -7,7 +7,7 @@ import { colors } from '../utils/style'
 
 type Props = {
   to: string,
-  activeClassName?: string
+  activeClassName?: string,
 }
 
 const styles = {
@@ -15,7 +15,7 @@ const styles = {
   fontWeight: '500',
   color: colors.color,
   textDecoration: 'none',
-  '&:hover': { color: colors.border }
+  '&:hover': { color: colors.border },
 }
 
 export default ({ to, ...props }: Props) =>

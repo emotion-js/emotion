@@ -2,7 +2,7 @@ import { css } from '@emotion/css/macro'
 
 let obj = {
   someProp: css({ color: 'green' }),
-  anotherProp: css({ color: 'hotpink' })
+  anotherProp: css({ color: 'hotpink' }),
 }
 class Thing {
   static Prop = css({ color: 'yellow' })

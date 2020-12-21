@@ -13,5 +13,5 @@ const H1 = styled.h1`
   z-index: ${100};
   font-size: ${'18px'};
   text-align: ${'center'};
-  border-left: ${p => p.theme.blue};
+  border-left: ${(p) => p.theme.blue};
 `

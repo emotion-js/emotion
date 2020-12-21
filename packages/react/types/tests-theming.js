@@ -5,7 +5,7 @@ import { useTheme, ThemeProvider, withTheme } from '@emotion/react'
 const WrappedCompC = withTheme(CompC)
 ;<ThemeProvider theme={theme}>{WrappedCompC}</ThemeProvider>
 ;<ThemeProvider theme={() => theme} />
-;<ThemeProvider theme={outerTheme => ({ ...outerTheme, ...theme })} />
+;<ThemeProvider theme={(outerTheme) => ({ ...outerTheme, ...theme })} />
 const ThemedFC = withTheme(CompFC)
 ;<ThemedFC prop />
 ;<ThemedFC prop theme={theme} />
@@ -30,7 +30,7 @@ const ThemedCompWithDefault = withTheme(CompCWithDefault)
 ;<ThemedCompWithDefault />
 ;<ThemedCompWithDefault theme={theme} />
 {
-  const Readable = props => {
+  const Readable = (props) => {
     if (props.kind === 'magazine') {
       return <div>magazine #{props.issue}</div>
     }
@@ -42,9 +42,9 @@ const ThemedCompWithDefault = withTheme(CompCWithDefault)
   ;<Readable kind="magazine" author="Hejlsberg" /> // $ExpectError
 }
 const style = ({ theme }) => ({
-  color: theme.primary
+  color: theme.primary,
 })
 const style2 = {
-  width: 100
+  width: 100,
 }
 ;<ThemeProvider theme={{ primary: 'val' }} />

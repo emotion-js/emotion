@@ -17,7 +17,7 @@ export function addImport(
         importedSpecifier,
         importSource,
         {
-          nameHint
+          nameHint,
         }
       )
     }
@@ -25,6 +25,6 @@ export function addImport(
   }
   return {
     type: 'Identifier',
-    name: state[cacheKey]
+    name: state[cacheKey],
   }
 }
