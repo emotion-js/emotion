@@ -1,12 +1,12 @@
 // @flow
 import pkg from '../package.json'
-export { withEmotionCache, CacheProvider } from './context'
+export { CacheProvider, withEmotionCache } from './context'
 export { jsx } from './jsx'
 export { jsx as createElement } from './jsx'
 export { Global } from './global'
 export { keyframes } from './keyframes'
 export { ClassNames } from './class-names'
-export { ThemeContext, useTheme, ThemeProvider, withTheme } from './theming'
+export { ThemeContext, ThemeProvider, useTheme, withTheme } from './theming'
 export { default as css } from './css'
 
 if (process.env.NODE_ENV !== 'production') {

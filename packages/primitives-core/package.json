@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@emotion/react": "11.1.3",
-    "react": "16.14.0"
+    "react": "17.0.1"
   },
   "homepage": "https://emotion.sh",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/primitives-core",

@@ -1,31 +1,14 @@
-import '@emotion/cache'
-import '@emotion/serialize'
-import '@emotion/utils'
-import createEmotion from '../create-instance/dist/emotion-css-create-instance.esm.js'
-
-var _createEmotion = createEmotion({
-    key: 'css'
-  }),
-  flush = _createEmotion.flush,
-  hydrate = _createEmotion.hydrate,
-  cx = _createEmotion.cx,
-  merge = _createEmotion.merge,
-  getRegisteredStyles = _createEmotion.getRegisteredStyles,
-  injectGlobal = _createEmotion.injectGlobal,
-  keyframes = _createEmotion.keyframes,
-  css = _createEmotion.css,
-  sheet = _createEmotion.sheet,
-  cache = _createEmotion.cache
-
-export {
-  cache,
-  css,
-  cx,
-  flush,
-  getRegisteredStyles,
-  hydrate,
-  injectGlobal,
-  keyframes,
-  merge,
-  sheet
-}
+// 👋 hey!!
+// you might be reading this and seeing .esm in the filename
+// and being confused why there is commonjs below this filename
+// DON'T WORRY!
+// this is intentional
+// it's only commonjs with `preconstruct dev`
+// when you run `preconstruct build`, it will be ESM
+// why is it commonjs?
+// we need to re-export every export from the source file
+// but we can't do that with ESM without knowing what the exports are (because default exports aren't included in export/import *)
+// and they could change after running `preconstruct dev` so we can't look at the file without forcing people to
+// run preconstruct dev again which wouldn't be ideal
+// this solution could change but for now, it's working
+module.exports = require('../src/index.js')

@@ -1,26 +1,14 @@
-'use strict'
-
-Object.defineProperty(exports, '__esModule', { value: true })
-
-var hoistNonReactStatics$1 = require('hoist-non-react-statics')
-
-function _interopDefault(e) {
-  return e && e.__esModule ? e : { default: e }
-}
-
-var hoistNonReactStatics__default = /*#__PURE__*/ _interopDefault(
-  hoistNonReactStatics$1
-)
-
-// this file isolates this package that is not tree-shakeable
-// and if this module doesn't actually contain any logic of its own
-// then Rollup just use 'hoist-non-react-statics' directly in other chunks
-
-var hoistNonReactStatics = function(targetComponent, sourceComponent) {
-  return hoistNonReactStatics__default['default'](
-    targetComponent,
-    sourceComponent
-  )
-}
-
-exports.default = hoistNonReactStatics
+// 👋 hey!!
+// you might be reading this and seeing .esm in the filename
+// and being confused why there is commonjs below this filename
+// DON'T WORRY!
+// this is intentional
+// it's only commonjs with `preconstruct dev`
+// when you run `preconstruct build`, it will be ESM
+// why is it commonjs?
+// we need to re-export every export from the source file
+// but we can't do that with ESM without knowing what the exports are (because default exports aren't included in export/import *)
+// and they could change after running `preconstruct dev` so we can't look at the file without forcing people to
+// run preconstruct dev again which wouldn't be ideal
+// this solution could change but for now, it's working
+module.exports = require('../../src/isolated-hoist-non-react-statics-do-not-use-this-in-your-code.js')

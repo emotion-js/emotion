@@ -1,35 +1,14 @@
-import 'react'
-import '@emotion/cache'
-import {
-  h as hasOwnProperty,
-  E as Emotion,
-  c as createEmotionProps
-} from '../../dist/emotion-element-a8309070.browser.esm.js'
-import '@babel/runtime/helpers/extends'
-import '@emotion/weak-memoize'
-import 'hoist-non-react-statics'
-import '../../isolated-hoist-non-react-statics-do-not-use-this-in-your-code/dist/emotion-react-isolated-hoist-non-react-statics-do-not-use-this-in-your-code.browser.esm.js'
-import '@emotion/utils'
-import '@emotion/serialize'
-import {
-  Fragment as Fragment$1,
-  jsxDEV as jsxDEV$1
-} from 'react/jsx-dev-runtime'
-
-var Fragment = Fragment$1
-function jsxDEV(type, props, key, isStaticChildren, source, self) {
-  if (!hasOwnProperty.call(props, 'css')) {
-    return jsxDEV$1(type, props, key, isStaticChildren, source, self)
-  }
-
-  return jsxDEV$1(
-    Emotion,
-    createEmotionProps(type, props),
-    key,
-    isStaticChildren,
-    source,
-    self
-  )
-}
-
-export { Fragment, jsxDEV }
+// 👋 hey!!
+// you might be reading this and seeing .esm in the filename
+// and being confused why there is commonjs below this filename
+// DON'T WORRY!
+// this is intentional
+// it's only commonjs with `preconstruct dev`
+// when you run `preconstruct build`, it will be ESM
+// why is it commonjs?
+// we need to re-export every export from the source file
+// but we can't do that with ESM without knowing what the exports are (because default exports aren't included in export/import *)
+// and they could change after running `preconstruct dev` so we can't look at the file without forcing people to
+// run preconstruct dev again which wouldn't be ideal
+// this solution could change but for now, it's working
+module.exports = require('../../src/jsx-dev-runtime.js')

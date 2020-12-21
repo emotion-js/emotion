@@ -1,3 +1,2 @@
 // @flow
 export * from "../../src/base.js";
-export { default } from "../../src/base.js";
