@@ -23,6 +23,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.2"
+    "@babel/core": "^7.12.10"
   }
 }

@@ -15,7 +15,7 @@
   ],
   "types": "types/index.d.ts",
   "devDependencies": {
-    "@babel/core": "^7.7.2",
+    "@babel/core": "^7.12.10",
     "@types/react-native": "^0.63.2",
     "dtslint": "^0.3.0",
     "react": "16.14.0",

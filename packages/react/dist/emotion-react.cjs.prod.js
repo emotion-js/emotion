@@ -46,7 +46,7 @@ var utils = require('@emotion/utils'),
       'test:typescript': 'dtslint types'
     },
     dependencies: {
-      '@babel/runtime': '^7.7.2',
+      '@babel/runtime': '^7.12.5',
       '@emotion/cache': '^11.1.3',
       '@emotion/serialize': '^1.0.0',
       '@emotion/sheet': '^1.0.1',
@@ -67,7 +67,7 @@ var utils = require('@emotion/utils'),
       }
     },
     devDependencies: {
-      '@babel/core': '^7.7.2',
+      '@babel/core': '^7.12.10',
       '@emotion/css': '11.1.3',
       '@emotion/css-prettifier': '1.0.0',
       '@emotion/server': '11.0.0',
