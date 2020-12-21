@@ -4,7 +4,7 @@ import {
   h as hasOwnProperty,
   E as Emotion,
   c as createEmotionProps
-} from '../../dist/emotion-element-4fbd89c5.browser.esm.js'
+} from '../../dist/emotion-element-a8309070.browser.esm.js'
 import '@babel/runtime/helpers/extends'
 import '@emotion/weak-memoize'
 import 'hoist-non-react-statics'

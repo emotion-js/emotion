@@ -4,7 +4,8 @@ Object.defineProperty(exports, '__esModule', {
   value: !0
 })
 
-var _extends = require('@babel/runtime/helpers/extends'),
+var _createForOfIteratorHelperLoose = require('@babel/runtime/helpers/createForOfIteratorHelperLoose'),
+  _extends = require('@babel/runtime/helpers/extends'),
   _objectWithoutPropertiesLoose = require('@babel/runtime/helpers/objectWithoutPropertiesLoose'),
   syntaxJsx = require('@babel/plugin-syntax-jsx'),
   nodePath = require('path'),
@@ -27,7 +28,10 @@ function _interopDefault(e) {
       }
 }
 
-var _extends__default = _interopDefault(_extends),
+var _createForOfIteratorHelperLoose__default = _interopDefault(
+    _createForOfIteratorHelperLoose
+  ),
+  _extends__default = _interopDefault(_extends),
   _objectWithoutPropertiesLoose__default = _interopDefault(
     _objectWithoutPropertiesLoose
   ),
@@ -1197,9 +1201,7 @@ function index(babel, options) {
                   _extends__default.default(
                     {},
                     defaultOptions,
-                    {},
                     extraOptions,
-                    {},
                     options
                   )
                 ]
@@ -1224,39 +1226,32 @@ function index(babel, options) {
             },
             macros
           ))
-        var _loop = function() {
-            if (_isArray) {
-              if (_i >= _iterator.length) return 'break'
-              _ref3 = _iterator[_i++]
-            } else {
-              if ((_i = _iterator.next()).done) return 'break'
-              _ref3 = _i.value
-            }
-            var node = _ref3
-            if (t.isImportDeclaration(node)) {
-              var jsxReactImport = jsxReactImports.find(function(thing) {
-                return (
-                  node.source.value === thing.importSource &&
-                  node.specifiers.some(function(x) {
-                    return (
-                      t.isImportSpecifier(x) && x.imported.name === thing.export
-                    )
-                  })
-                )
-              })
-              if (jsxReactImport)
-                return (state.jsxReactImport = jsxReactImport), 'break'
-            }
-          },
-          _iterator = path.node.body,
-          _isArray = Array.isArray(_iterator),
-          _i = 0
         for (
-          _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();
-          ;
+          var _step,
+            _loop = function() {
+              var node = _step.value
+              if (t.isImportDeclaration(node)) {
+                var jsxReactImport = jsxReactImports.find(function(thing) {
+                  return (
+                    node.source.value === thing.importSource &&
+                    node.specifiers.some(function(x) {
+                      return (
+                        t.isImportSpecifier(x) &&
+                        x.imported.name === thing.export
+                      )
+                    })
+                  )
+                })
+                if (jsxReactImport)
+                  return (state.jsxReactImport = jsxReactImport), 'break'
+              }
+            },
+            _iterator = _createForOfIteratorHelperLoose__default.default(
+              path.node.body
+            );
+          !(_step = _iterator()).done;
 
         ) {
-          var _ref3
           if ('break' === _loop()) break
         }
         !1 === state.opts.cssPropOptimization

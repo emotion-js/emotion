@@ -4,8 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true })
 
 require('@babel/runtime/helpers/extends')
 require('@babel/runtime/helpers/objectWithoutPropertiesLoose')
+require('@babel/runtime/helpers/createForOfIteratorHelperLoose')
 require('@emotion/css-prettifier')
-var createSerializer = require('../../dist/create-serializer-1871c71e.cjs.dev.js')
+var createSerializer = require('../../dist/create-serializer-ecf19941.cjs.dev.js')
 
 var _createSerializer = createSerializer.createSerializer(),
   test = _createSerializer.test,

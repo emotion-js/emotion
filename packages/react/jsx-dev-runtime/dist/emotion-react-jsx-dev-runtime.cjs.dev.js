@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true })
 
 require('react')
 require('@emotion/cache')
-var emotionElement = require('../../dist/emotion-element-cb6e9ca7.cjs.dev.js')
+var emotionElement = require('../../dist/emotion-element-deca0de5.cjs.dev.js')
 require('@babel/runtime/helpers/extends')
 require('@emotion/weak-memoize')
 require('hoist-non-react-statics')

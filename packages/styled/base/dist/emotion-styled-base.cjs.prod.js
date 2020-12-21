@@ -168,7 +168,7 @@ var _extends__default = _interopDefault(_extends),
         (Styled.withComponent = function(nextTag, nextOptions) {
           return createStyled(
             nextTag,
-            _extends__default.default({}, options, {}, nextOptions, {
+            _extends__default.default({}, options, nextOptions, {
               shouldForwardProp: composeShouldForwardProps(
                 Styled,
                 nextOptions,

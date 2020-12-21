@@ -2,6 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true })
 
+var _createForOfIteratorHelperLoose = require('@babel/runtime/helpers/createForOfIteratorHelperLoose')
 var _extends = require('@babel/runtime/helpers/extends')
 var _objectWithoutPropertiesLoose = require('@babel/runtime/helpers/objectWithoutPropertiesLoose')
 var syntaxJsx = require('@babel/plugin-syntax-jsx')
@@ -21,6 +22,9 @@ function _interopDefault(e) {
   return e && e.__esModule ? e : { default: e }
 }
 
+var _createForOfIteratorHelperLoose__default = /*#__PURE__*/ _interopDefault(
+  _createForOfIteratorHelperLoose
+)
 var _extends__default = /*#__PURE__*/ _interopDefault(_extends)
 var _objectWithoutPropertiesLoose__default = /*#__PURE__*/ _interopDefault(
   _objectWithoutPropertiesLoose
@@ -1549,9 +1553,7 @@ function index(babel, options) {
               _extends__default['default'](
                 {},
                 defaultOptions,
-                {},
                 extraOptions,
-                {},
                 options
               )
             ]
@@ -1572,16 +1574,7 @@ function index(babel, options) {
         )
 
         var _loop = function _loop() {
-          if (_isArray) {
-            if (_i >= _iterator.length) return 'break'
-            _ref3 = _iterator[_i++]
-          } else {
-            _i = _iterator.next()
-            if (_i.done) return 'break'
-            _ref3 = _i.value
-          }
-
-          var node = _ref3
+          var node = _step.value
 
           if (t.isImportDeclaration(node)) {
             var jsxReactImport = jsxReactImports.find(function(thing) {
@@ -1604,15 +1597,13 @@ function index(babel, options) {
         }
 
         for (
-          var _iterator = path.node.body,
-            _isArray = Array.isArray(_iterator),
-            _i = 0,
-            _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();
-          ;
+          var _iterator = _createForOfIteratorHelperLoose__default['default'](
+              path.node.body
+            ),
+            _step;
+          !(_step = _iterator()).done;
 
         ) {
-          var _ref3
-
           var _ret = _loop()
 
           if (_ret === 'break') break

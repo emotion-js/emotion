@@ -64,7 +64,7 @@ var ThemeContext = React.createContext({}),
       var mergedTheme = theme(outerTheme)
       return mergedTheme
     }
-    return _extends__default.default({}, outerTheme, {}, theme)
+    return _extends__default.default({}, outerTheme, theme)
   },
   createCacheWithTheme = weakMemoize__default.default(function(outerTheme) {
     return weakMemoize__default.default(function(theme) {

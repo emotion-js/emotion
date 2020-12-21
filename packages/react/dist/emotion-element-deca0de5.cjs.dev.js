@@ -103,7 +103,7 @@ var getTheme = function getTheme(outerTheme, theme) {
     )
   }
 
-  return _extends__default['default']({}, outerTheme, {}, theme)
+  return _extends__default['default']({}, outerTheme, theme)
 }
 
 var createCacheWithTheme = /* #__PURE__ */ weakMemoize__default['default'](

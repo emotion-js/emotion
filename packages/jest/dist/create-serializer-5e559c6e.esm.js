@@ -1,18 +1,7 @@
-'use strict'
-
-var _extends = require('@babel/runtime/helpers/extends')
-var _objectWithoutPropertiesLoose = require('@babel/runtime/helpers/objectWithoutPropertiesLoose')
-var prettify = require('@emotion/css-prettifier')
-
-function _interopDefault(e) {
-  return e && e.__esModule ? e : { default: e }
-}
-
-var _extends__default = /*#__PURE__*/ _interopDefault(_extends)
-var _objectWithoutPropertiesLoose__default = /*#__PURE__*/ _interopDefault(
-  _objectWithoutPropertiesLoose
-)
-var prettify__default = /*#__PURE__*/ _interopDefault(prettify)
+import _extends from '@babel/runtime/helpers/esm/extends'
+import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose'
+import _createForOfIteratorHelperLoose from '@babel/runtime/helpers/esm/createForOfIteratorHelperLoose'
+import prettify from '@emotion/css-prettifier'
 
 function defaultClassNameReplacer(className, index) {
   return 'emotion-' + index
@@ -377,25 +366,11 @@ function getNodes(node, nodes) {
 
   if (Array.isArray(node)) {
     for (
-      var _iterator = node,
-        _isArray = Array.isArray(_iterator),
-        _i = 0,
-        _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();
-      ;
+      var _iterator = _createForOfIteratorHelperLoose(node), _step;
+      !(_step = _iterator()).done;
 
     ) {
-      var _ref
-
-      if (_isArray) {
-        if (_i >= _iterator.length) break
-        _ref = _iterator[_i++]
-      } else {
-        _i = _iterator.next()
-        if (_i.done) break
-        _ref = _i.value
-      }
-
-      var child = _ref
+      var child = _step.value
       getNodes(child, nodes)
     }
 
@@ -408,25 +383,11 @@ function getNodes(node, nodes) {
 
   if (node.children) {
     for (
-      var _iterator2 = node.children,
-        _isArray2 = Array.isArray(_iterator2),
-        _i2 = 0,
-        _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();
-      ;
+      var _iterator2 = _createForOfIteratorHelperLoose(node.children), _step2;
+      !(_step2 = _iterator2()).done;
 
     ) {
-      var _ref2
-
-      if (_isArray2) {
-        if (_i2 >= _iterator2.length) break
-        _ref2 = _iterator2[_i2++]
-      } else {
-        _i2 = _iterator2.next()
-        if (_i2.done) break
-        _ref2 = _i2.value
-      }
-
-      var _child = _ref2
+      var _child = _step2.value
       getNodes(_child, nodes)
     }
   }
@@ -466,10 +427,7 @@ function deepTransform(node, transform) {
 }
 
 function getPrettyStylesFromClassNames(classNames, elements, indentation) {
-  return prettify__default['default'](
-    getStylesFromClassNames(classNames, elements),
-    indentation
-  )
+  return prettify(getStylesFromClassNames(classNames, elements), indentation)
 }
 
 function filterEmotionProps(props) {
@@ -483,7 +441,7 @@ function filterEmotionProps(props) {
       _props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__,
     __EMOTION_LABEL_PLEASE_DO_NOT_USE__ =
       _props.__EMOTION_LABEL_PLEASE_DO_NOT_USE__,
-    rest = _objectWithoutPropertiesLoose__default['default'](_props, [
+    rest = _objectWithoutPropertiesLoose(_props, [
       'css',
       '__EMOTION_TYPE_PLEASE_DO_NOT_USE__',
       '__EMOTION_LABEL_PLEASE_DO_NOT_USE__'
@@ -495,9 +453,9 @@ function filterEmotionProps(props) {
 
 function isShallowEnzymeElement(element, classNames) {
   var delimiter = ' '
-  var childClassNames = flatMap(element.children || [], function(_ref3) {
-    var _ref3$props = _ref3.props,
-      props = _ref3$props === void 0 ? {} : _ref3$props
+  var childClassNames = flatMap(element.children || [], function(_ref) {
+    var _ref$props = _ref.props,
+      props = _ref$props === void 0 ? {} : _ref$props
     return (props.className || '').split(delimiter)
   }).filter(Boolean)
   return !hasIntersection(classNames, childClassNames)
@@ -531,9 +489,9 @@ var createConvertEmotionElements = function createConvertEmotionElements(
 
         var type =
           typeof emotionType === 'string' ? emotionType : emotionType.name
-        return _extends__default['default']({}, node, {
+        return _extends({}, node, {
           props: filterEmotionProps(
-            _extends__default['default']({}, node.props, {
+            _extends({}, node.props, {
               className: _className
             })
           ),
@@ -545,7 +503,7 @@ var createConvertEmotionElements = function createConvertEmotionElements(
     }
 
     if (isEmotionCssPropElementType(node)) {
-      return _extends__default['default']({}, node, {
+      return _extends({}, node, {
         props: filterEmotionProps(node.props),
         type: node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
       })
@@ -562,25 +520,11 @@ var createConvertEmotionElements = function createConvertEmotionElements(
 function clean(node, classNames) {
   if (Array.isArray(node)) {
     for (
-      var _iterator3 = node,
-        _isArray3 = Array.isArray(_iterator3),
-        _i3 = 0,
-        _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();
-      ;
+      var _iterator3 = _createForOfIteratorHelperLoose(node), _step3;
+      !(_step3 = _iterator3()).done;
 
     ) {
-      var _ref4
-
-      if (_isArray3) {
-        if (_i3 >= _iterator3.length) break
-        _ref4 = _iterator3[_i3++]
-      } else {
-        _i3 = _iterator3.next()
-        if (_i3.done) break
-        _ref4 = _i3.value
-      }
-
-      var child = _ref4
+      var child = _step3.value
       clean(child, classNames)
     }
 
@@ -589,25 +533,11 @@ function clean(node, classNames) {
 
   if (node.children) {
     for (
-      var _iterator4 = node.children,
-        _isArray4 = Array.isArray(_iterator4),
-        _i4 = 0,
-        _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();
-      ;
+      var _iterator4 = _createForOfIteratorHelperLoose(node.children), _step4;
+      !(_step4 = _iterator4()).done;
 
     ) {
-      var _ref5
-
-      if (_isArray4) {
-        if (_i4 >= _iterator4.length) break
-        _ref5 = _iterator4[_i4++]
-      } else {
-        _i4 = _iterator4.next()
-        if (_i4.done) break
-        _ref5 = _i4.value
-      }
-
-      var _child2 = _ref5
+      var _child2 = _step4.value
       clean(_child2, classNames)
     }
   }
@@ -629,10 +559,10 @@ function clean(node, classNames) {
 }
 
 function createSerializer(_temp) {
-  var _ref6 = _temp === void 0 ? {} : _temp,
-    classNameReplacer = _ref6.classNameReplacer,
-    _ref6$DOMElements = _ref6.DOMElements,
-    DOMElements = _ref6$DOMElements === void 0 ? true : _ref6$DOMElements
+  var _ref2 = _temp === void 0 ? {} : _temp,
+    classNameReplacer = _ref2.classNameReplacer,
+    _ref2$DOMElements = _ref2.DOMElements,
+    DOMElements = _ref2$DOMElements === void 0 ? true : _ref2$DOMElements
 
   var cache = new WeakSet()
 
@@ -677,10 +607,12 @@ function createSerializer(_temp) {
   }
 }
 
-exports.createSerializer = createSerializer
-exports.findLast = findLast
-exports.getClassNamesFromNodes = getClassNamesFromNodes
-exports.getMediaRules = getMediaRules
-exports.getStyleElements = getStyleElements
-exports.getStylesFromClassNames = getStylesFromClassNames
-exports.hasClassNames = hasClassNames
+export {
+  getStylesFromClassNames as a,
+  getStyleElements as b,
+  createSerializer as c,
+  getMediaRules as d,
+  findLast as f,
+  getClassNamesFromNodes as g,
+  hasClassNames as h
+}

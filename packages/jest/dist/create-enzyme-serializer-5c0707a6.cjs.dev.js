@@ -1,7 +1,9 @@
-import { c as createSerializer$1 } from './create-serializer-31b41345.esm.js'
-import { createSerializer } from 'enzyme-to-json'
+'use strict'
 
-var enzymeSerializer = createSerializer({})
+var createSerializer = require('./create-serializer-ecf19941.cjs.dev.js')
+var enzymeToJson = require('enzyme-to-json')
+
+var enzymeSerializer = enzymeToJson.createSerializer({})
 
 var tickle = function tickle(wrapper) {
   if (typeof wrapper.dive === 'function') {
@@ -19,7 +21,7 @@ function createEnzymeSerializer(_temp) {
     _ref$DOMElements = _ref.DOMElements,
     DOMElements = _ref$DOMElements === void 0 ? true : _ref$DOMElements
 
-  var emotionSerializer = createSerializer$1({
+  var emotionSerializer = createSerializer.createSerializer({
     classNameReplacer: classNameReplacer,
     DOMElements: DOMElements
   })
@@ -57,4 +59,4 @@ function createEnzymeSerializer(_temp) {
   }
 }
 
-export { createEnzymeSerializer as c }
+exports.createEnzymeSerializer = createEnzymeSerializer

@@ -1,15 +1,14 @@
-'use strict'
-
-var createSerializer = require('./create-serializer-1871c71e.cjs.dev.js')
-var chalk = require('chalk')
-var stylis = require('stylis')
-var specificity = require('specificity')
-
-function _interopDefault(e) {
-  return e && e.__esModule ? e : { default: e }
-}
-
-var chalk__default = /*#__PURE__*/ _interopDefault(chalk)
+import {
+  g as getClassNamesFromNodes,
+  a as getStylesFromClassNames,
+  b as getStyleElements,
+  d as getMediaRules,
+  h as hasClassNames,
+  f as findLast
+} from './create-serializer-5e559c6e.esm.js'
+import chalk from 'chalk'
+import { compile } from 'stylis'
+import { compare } from 'specificity'
 
 /*
  * Taken from
@@ -48,31 +47,24 @@ function toHaveStyleRule(received, property, value, options) {
   var _options = options,
     target = _options.target,
     media = _options.media
-  var classNames = createSerializer.getClassNamesFromNodes([received])
-  var cssString = createSerializer.getStylesFromClassNames(
-    classNames,
-    createSerializer.getStyleElements()
-  )
-  var preparedRules = stylis.compile(cssString)
+  var classNames = getClassNamesFromNodes([received])
+  var cssString = getStylesFromClassNames(classNames, getStyleElements())
+  var preparedRules = compile(cssString)
 
   if (media) {
-    preparedRules = createSerializer.getMediaRules(preparedRules, media)
+    preparedRules = getMediaRules(preparedRules, media)
   }
 
   var result = preparedRules
     .filter(function(rule) {
       return (
-        rule.type === 'rule' &&
-        createSerializer.hasClassNames(classNames, rule.props, target)
+        rule.type === 'rule' && hasClassNames(classNames, rule.props, target)
       )
     })
     .reduce(function(acc, rule) {
-      var lastMatchingDeclaration = createSerializer.findLast(
-        rule.children,
-        function(dec) {
-          return dec.type === 'decl' && dec.props === property
-        }
-      )
+      var lastMatchingDeclaration = findLast(rule.children, function(dec) {
+        return dec.type === 'decl' && dec.props === property
+      })
 
       if (!lastMatchingDeclaration) {
         return acc
@@ -90,7 +82,7 @@ function toHaveStyleRule(received, property, value, options) {
     .sort(function(_ref, _ref2) {
       var selectorA = _ref.selector
       var selectorB = _ref2.selector
-      return specificity.compare(selectorA, selectorB)
+      return compare(selectorA, selectorB)
     })
     .pop()
 
@@ -112,9 +104,9 @@ function toHaveStyleRule(received, property, value, options) {
       property +
       (pass ? ' not ' : ' ') +
       'to match:\n' +
-      ('  ' + chalk__default['default'].green(value) + '\n') +
+      ('  ' + chalk.green(value) + '\n') +
       'Received:\n' +
-      ('  ' + chalk__default['default'].red(declaration.children))
+      ('  ' + chalk.red(declaration.children))
     )
   }
 
@@ -128,4 +120,4 @@ var matchers = {
   toHaveStyleRule: toHaveStyleRule
 }
 
-exports.matchers = matchers
+export { matchers as m }

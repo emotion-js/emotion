@@ -1,3 +1,4 @@
+import _createForOfIteratorHelperLoose from '@babel/runtime/helpers/esm/createForOfIteratorHelperLoose'
 import _extends from '@babel/runtime/helpers/esm/extends'
 import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose'
 import syntaxJsx from '@babel/plugin-syntax-jsx'
@@ -1517,7 +1518,7 @@ function index(babel, options) {
 
             transformers[localExportName] = [
               exportTransformer,
-              _extends({}, defaultOptions, {}, extraOptions, {}, options)
+              _extends({}, defaultOptions, extraOptions, options)
             ]
           })
           macros[importSource] = createTransformerMacro(transformers, {
@@ -1536,16 +1537,7 @@ function index(babel, options) {
         )
 
         var _loop = function _loop() {
-          if (_isArray) {
-            if (_i >= _iterator.length) return 'break'
-            _ref3 = _iterator[_i++]
-          } else {
-            _i = _iterator.next()
-            if (_i.done) return 'break'
-            _ref3 = _i.value
-          }
-
-          var node = _ref3
+          var node = _step.value
 
           if (t.isImportDeclaration(node)) {
             var jsxReactImport = jsxReactImports.find(function(thing) {
@@ -1568,15 +1560,11 @@ function index(babel, options) {
         }
 
         for (
-          var _iterator = path.node.body,
-            _isArray = Array.isArray(_iterator),
-            _i = 0,
-            _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();
-          ;
+          var _iterator = _createForOfIteratorHelperLoose(path.node.body),
+            _step;
+          !(_step = _iterator()).done;
 
         ) {
-          var _ref3
-
           var _ret = _loop()
 
           if (_ret === 'break') break

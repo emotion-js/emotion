@@ -1,11 +1,18 @@
-import { createContext, forwardRef, useContext, createElement } from 'react'
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  createElement,
+  Fragment
+} from 'react'
 import createCache from '@emotion/cache'
 import _extends from '@babel/runtime/helpers/esm/extends'
 import weakMemoize from '@emotion/weak-memoize'
-import hoistNonReactStatics from '../isolated-hoist-non-react-statics-do-not-use-this-in-your-code/dist/emotion-react-isolated-hoist-non-react-statics-do-not-use-this-in-your-code.browser.esm.js'
+import hoistNonReactStatics from '../isolated-hoist-non-react-statics-do-not-use-this-in-your-code/dist/emotion-react-isolated-hoist-non-react-statics-do-not-use-this-in-your-code.esm.js'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
 import { serializeStyles } from '@emotion/serialize'
 
+var isBrowser = typeof document !== 'undefined'
 var hasOwnProperty = Object.prototype.hasOwnProperty
 
 var EmotionCacheContext = /* #__PURE__ */ createContext(
@@ -30,6 +37,34 @@ var withEmotionCache = function withEmotionCache(func) {
     var cache = useContext(EmotionCacheContext)
     return func(props, cache, ref)
   })
+}
+
+if (!isBrowser) {
+  withEmotionCache = function withEmotionCache(func) {
+    return function(props) {
+      var cache = useContext(EmotionCacheContext)
+
+      if (cache === null) {
+        // yes, we're potentially creating this on every render
+        // it doesn't actually matter though since it's only on the server
+        // so there will only every be a single render
+        // that could change in the future because of suspense and etc. but for now,
+        // this works and i don't want to optimise for a future thing that we aren't sure about
+        cache = createCache({
+          key: 'css'
+        })
+        return /*#__PURE__*/ createElement(
+          EmotionCacheContext.Provider,
+          {
+            value: cache
+          },
+          func(props, cache)
+        )
+      } else {
+        return func(props, cache)
+      }
+    }
+  }
 }
 
 var ThemeContext = /* #__PURE__ */ createContext({})
@@ -64,7 +99,7 @@ var getTheme = function getTheme(outerTheme, theme) {
     )
   }
 
-  return _extends({}, outerTheme, {}, theme)
+  return _extends({}, outerTheme, theme)
 }
 
 var createCacheWithTheme = /* #__PURE__ */ weakMemoize(function(outerTheme) {
@@ -226,6 +261,34 @@ var Emotion = /* #__PURE__ */ withEmotionCache(function(props, cache, ref) {
   newProps.className = className
   var ele = /*#__PURE__*/ createElement(type, newProps)
 
+  if (!isBrowser && rules !== undefined) {
+    var _ref
+
+    var serializedNames = serialized.name
+    var next = serialized.next
+
+    while (next !== undefined) {
+      serializedNames += ' ' + next.name
+      next = next.next
+    }
+
+    return /*#__PURE__*/ createElement(
+      Fragment,
+      null,
+      /*#__PURE__*/ createElement(
+        'style',
+        ((_ref = {}),
+        (_ref['data-emotion'] = cache.key + ' ' + serializedNames),
+        (_ref.dangerouslySetInnerHTML = {
+          __html: rules
+        }),
+        (_ref.nonce = cache.sheet.nonce),
+        _ref)
+      ),
+      ele
+    )
+  }
+
   return ele
 })
 
@@ -241,6 +304,7 @@ export {
   withTheme as b,
   createEmotionProps as c,
   hasOwnProperty as h,
+  isBrowser as i,
   useTheme as u,
   withEmotionCache as w
 }

@@ -237,7 +237,7 @@ var createStyled = function createStyled(tag, options) {
     Styled.withComponent = function(nextTag, nextOptions) {
       return createStyled(
         nextTag,
-        _extends__default['default']({}, options, {}, nextOptions, {
+        _extends__default['default']({}, options, nextOptions, {
           shouldForwardProp: composeShouldForwardProps(
             Styled,
             nextOptions,

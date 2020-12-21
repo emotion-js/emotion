@@ -1,6 +1,6 @@
 'use strict'
 
-var createSerializer = require('./create-serializer-a9846073.cjs.prod.js'),
+var createSerializer = require('./create-serializer-ccca5855.cjs.prod.js'),
   enzymeToJson = require('enzyme-to-json'),
   enzymeSerializer = enzymeToJson.createSerializer({}),
   tickle = function(wrapper) {

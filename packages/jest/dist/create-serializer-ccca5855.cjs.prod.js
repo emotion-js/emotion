@@ -2,6 +2,7 @@
 
 var _extends = require('@babel/runtime/helpers/extends'),
   _objectWithoutPropertiesLoose = require('@babel/runtime/helpers/objectWithoutPropertiesLoose'),
+  _createForOfIteratorHelperLoose = require('@babel/runtime/helpers/createForOfIteratorHelperLoose'),
   prettify = require('@emotion/css-prettifier')
 
 function _interopDefault(e) {
@@ -15,6 +16,9 @@ function _interopDefault(e) {
 var _extends__default = _interopDefault(_extends),
   _objectWithoutPropertiesLoose__default = _interopDefault(
     _objectWithoutPropertiesLoose
+  ),
+  _createForOfIteratorHelperLoose__default = _interopDefault(
+    _createForOfIteratorHelperLoose
   ),
   prettify__default = _interopDefault(prettify)
 
@@ -314,42 +318,27 @@ function hasIntersection(left, right) {
 
 function getNodes(node, nodes) {
   if ((void 0 === nodes && (nodes = []), Array.isArray(node))) {
-    var _iterator = node,
-      _isArray = Array.isArray(_iterator),
-      _i = 0
-    for (_iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ; ) {
-      var _ref
-      if (_isArray) {
-        if (_i >= _iterator.length) break
-        _ref = _iterator[_i++]
-      } else {
-        if ((_i = _iterator.next()).done) break
-        _ref = _i.value
-      }
-      getNodes(_ref, nodes)
+    for (
+      var _step,
+        _iterator = _createForOfIteratorHelperLoose__default.default(node);
+      !(_step = _iterator()).done;
+
+    ) {
+      getNodes(_step.value, nodes)
     }
     return nodes
   }
-  if (('object' == typeof node && nodes.push(node), node.children)) {
-    var _iterator2 = node.children,
-      _isArray2 = Array.isArray(_iterator2),
-      _i2 = 0
+  if (('object' == typeof node && nodes.push(node), node.children))
     for (
-      _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();
-      ;
+      var _step2,
+        _iterator2 = _createForOfIteratorHelperLoose__default.default(
+          node.children
+        );
+      !(_step2 = _iterator2()).done;
 
     ) {
-      var _ref2
-      if (_isArray2) {
-        if (_i2 >= _iterator2.length) break
-        _ref2 = _iterator2[_i2++]
-      } else {
-        if ((_i2 = _iterator2.next()).done) break
-        _ref2 = _i2.value
-      }
-      getNodes(_ref2, nodes)
+      getNodes(_step2.value, nodes)
     }
-  }
   return nodes
 }
 
@@ -402,11 +391,11 @@ function filterEmotionProps(props) {
 function isShallowEnzymeElement(element, classNames) {
   return !hasIntersection(
     classNames,
-    flatMap(element.children || [], function(_ref3) {
-      var _ref3$props = _ref3.props
-      return (
-        (void 0 === _ref3$props ? {} : _ref3$props).className || ''
-      ).split(' ')
+    flatMap(element.children || [], function(_ref) {
+      var _ref$props = _ref.props
+      return ((void 0 === _ref$props ? {} : _ref$props).className || '').split(
+        ' '
+      )
     }).filter(Boolean)
   )
 }
@@ -453,46 +442,27 @@ var createConvertEmotionElements = function(keys, printer) {
 }
 
 function clean(node, classNames) {
-  if (Array.isArray(node)) {
-    var _iterator3 = node,
-      _isArray3 = Array.isArray(_iterator3),
-      _i3 = 0
+  if (Array.isArray(node))
     for (
-      _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();
-      ;
+      var _step3,
+        _iterator3 = _createForOfIteratorHelperLoose__default.default(node);
+      !(_step3 = _iterator3()).done;
 
     ) {
-      var _ref4
-      if (_isArray3) {
-        if (_i3 >= _iterator3.length) break
-        _ref4 = _iterator3[_i3++]
-      } else {
-        if ((_i3 = _iterator3.next()).done) break
-        _ref4 = _i3.value
-      }
-      clean(_ref4, classNames)
+      clean(_step3.value, classNames)
     }
-  } else {
-    if (node.children) {
-      var _iterator4 = node.children,
-        _isArray4 = Array.isArray(_iterator4),
-        _i4 = 0
+  else {
+    if (node.children)
       for (
-        _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();
-        ;
+        var _step4,
+          _iterator4 = _createForOfIteratorHelperLoose__default.default(
+            node.children
+          );
+        !(_step4 = _iterator4()).done;
 
       ) {
-        var _ref5
-        if (_isArray4) {
-          if (_i4 >= _iterator4.length) break
-          _ref5 = _iterator4[_i4++]
-        } else {
-          if ((_i4 = _iterator4.next()).done) break
-          _ref5 = _i4.value
-        }
-        clean(_ref5, classNames)
+        clean(_step4.value, classNames)
       }
-    }
     if (node.props) {
       var _className2 = node.props.className
       if (_className2)
@@ -504,10 +474,10 @@ function clean(node, classNames) {
 }
 
 function createSerializer(_temp) {
-  var _ref6 = void 0 === _temp ? {} : _temp,
-    classNameReplacer = _ref6.classNameReplacer,
-    _ref6$DOMElements = _ref6.DOMElements,
-    DOMElements = void 0 === _ref6$DOMElements || _ref6$DOMElements,
+  var _ref2 = void 0 === _temp ? {} : _temp,
+    classNameReplacer = _ref2.classNameReplacer,
+    _ref2$DOMElements = _ref2.DOMElements,
+    DOMElements = void 0 === _ref2$DOMElements || _ref2$DOMElements,
     cache = new WeakSet()
   return {
     test: function(val) {
