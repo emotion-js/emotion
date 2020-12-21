@@ -33,7 +33,8 @@
     "@emotion/utils": "^1.0.0",
     "@emotion/weak-memoize": "^0.2.5",
     "esbuild": "^0.8.26",
-    "hoist-non-react-statics": "^3.3.1"
+    "hoist-non-react-statics": "^3.3.1",
+    "typescript": "^4.1.3"
   },
   "peerDependencies": {
     "@babel/core": "^7.12.10",
@@ -55,9 +56,9 @@
     "@emotion/styled": "11.0.0",
     "@types/react": "^17.0.0",
     "dtslint": "^4.0.6",
-    "html-tag-names": "^1.1.2",
+    "html-tag-names": "^1.1.5",
     "react": "17.0.1",
-    "svg-tag-names": "^1.1.1"
+    "svg-tag-names": "^2.0.1"
   },
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/react",
   "publishConfig": {

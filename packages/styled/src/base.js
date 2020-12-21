@@ -6,7 +6,7 @@ import {
   composeShouldForwardProps,
   type StyledOptions,
   type CreateStyled,
-  type PrivateStyledComponent
+  type PrivateStyledComponent,
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/react'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
@@ -42,7 +42,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     shouldForwardProp || getDefaultShouldForwardProp(baseTag)
   const shouldUseAs = !defaultShouldForwardProp('as')
 
-  return function<Props>(): PrivateStyledComponent<Props> {
+  return function <Props>(): PrivateStyledComponent<Props> {
     let args = arguments
     let styles =
       isReal && tag.__emotion_styles !== undefined
@@ -145,7 +145,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
                 {...{
                   [`data-emotion`]: `${cache.key} ${serializedNames}`,
                   dangerouslySetInnerHTML: { __html: rules },
-                  nonce: cache.sheet.nonce
+                  nonce: cache.sheet.nonce,
                 }}
               />
               {ele}
@@ -181,7 +181,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         }
         // $FlowFixMe: coerce undefined to string
         return `.${targetClassName}`
-      }
+      },
     })
 
     Styled.withComponent = (
@@ -192,7 +192,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
         ...options,
         // $FlowFixMe
         ...nextOptions,
-        shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
+        shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true),
       })(...styles)
     }
 

@@ -5,7 +5,7 @@ import {
   insertStyles,
   getRegisteredStyles,
   type EmotionCache,
-  type SerializedStyles
+  type SerializedStyles,
 } from '@emotion/utils'
 
 function insertWithoutScoping(cache, serialized: SerializedStyles) {
@@ -60,14 +60,14 @@ export type Emotion = {
   sheet: StyleSheet,
   cache: EmotionCache,
   merge: *,
-  getRegisteredStyles: *
+  getRegisteredStyles: *,
 }
 
 let createEmotion = (options: *): Emotion => {
   let cache = createCache(options)
 
   // $FlowFixMe
-  cache.sheet.speedy = function(value: boolean) {
+  cache.sheet.speedy = function (value: boolean) {
     if (process.env.NODE_ENV !== 'production' && this.ctr !== 0) {
       throw new Error('speedy must be changed before any rules are inserted')
     }
@@ -86,7 +86,7 @@ let createEmotion = (options: *): Emotion => {
     let animation = `animation-${serialized.name}`
     insertWithoutScoping(cache, {
       name: serialized.name,
-      styles: `@keyframes ${animation}{${serialized.styles}}`
+      styles: `@keyframes ${animation}{${serialized.styles}}`,
     })
 
     return animation
@@ -105,7 +105,7 @@ let createEmotion = (options: *): Emotion => {
     injectGlobal,
     keyframes,
     hydrate(ids: Array<string>) {
-      ids.forEach(key => {
+      ids.forEach((key) => {
         cache.inserted[key] = true
       })
     },
@@ -118,11 +118,11 @@ let createEmotion = (options: *): Emotion => {
     sheet: cache.sheet,
     cache,
     getRegisteredStyles: getRegisteredStyles.bind(null, cache.registered),
-    merge: merge.bind(null, cache.registered, css)
+    merge: merge.bind(null, cache.registered, css),
   }
 }
 
-let classnames = args => {
+let classnames = (args) => {
   let cls = ''
   for (let i = 0; i < args.length; i++) {
     let arg = args[i]
