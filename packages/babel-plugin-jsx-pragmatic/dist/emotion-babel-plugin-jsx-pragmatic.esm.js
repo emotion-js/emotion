@@ -1,14 +1,62 @@
-// 👋 hey!!
-// you might be reading this and seeing .esm in the filename
-// and being confused why there is commonjs below this filename
-// DON'T WORRY!
-// this is intentional
-// it's only commonjs with `preconstruct dev`
-// when you run `preconstruct build`, it will be ESM
-// why is it commonjs?
-// we need to re-export every export from the source file
-// but we can't do that with ESM without knowing what the exports are (because default exports aren't included in export/import *)
-// and they could change after running `preconstruct dev` so we can't look at the file without forcing people to
-// run preconstruct dev again which wouldn't be ideal
-// this solution could change but for now, it's working
-module.exports = require('../src/index.js')
+import syntaxJsx from '@babel/plugin-syntax-jsx'
+
+var findLast = function findLast(arr, predicate) {
+  for (var i = arr.length - 1; i >= 0; i--) {
+    if (predicate(arr[i])) {
+      return arr[i]
+    }
+  }
+}
+
+function jsxPragmatic(babel) {
+  var t = babel.types
+
+  function addPragmaImport(path, state) {
+    var importDeclar = t.importDeclaration(
+      [
+        t.importSpecifier(
+          t.identifier(state.opts['import']),
+          t.identifier(state.opts['export'] || 'default')
+        ),
+      ],
+      t.stringLiteral(state.opts.module)
+    )
+    var targetPath = findLast(path.get('body'), function (p) {
+      return p.isImportDeclaration()
+    })
+
+    if (targetPath) {
+      targetPath.insertAfter([importDeclar])
+    } else {
+      // Apparently it's now safe to do this even if Program begins with directives.
+      path.unshiftContainer('body', importDeclar)
+    }
+  }
+
+  return {
+    inherits: syntaxJsx,
+    pre: function pre() {
+      if (!(this.opts.module && this.opts['import'])) {
+        throw new Error(
+          '@emotion/babel-plugin-jsx-pragmatic: You must specify `module` and `import`'
+        )
+      }
+    },
+    visitor: {
+      Program: {
+        exit: function exit(path, state) {
+          if (!state.get('jsxDetected')) return
+          addPragmaImport(path, state)
+        },
+      },
+      JSXElement: function JSXElement(path, state) {
+        state.set('jsxDetected', true)
+      },
+      JSXFragment: function JSXFragment(path, state) {
+        state.set('jsxDetected', true)
+      },
+    },
+  }
+}
+
+export default jsxPragmatic
