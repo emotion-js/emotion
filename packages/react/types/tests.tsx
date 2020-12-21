@@ -230,4 +230,12 @@ const anim1 = keyframes`
   >
     ? true
     : false
+
+  // generic passed through WithConditionalCSSProp
+  const example = function example<Props>(
+    Component: React.ComponentType<Props>,
+    props: Props
+  ) {
+    return <Component {...props} />
+  }
 }
