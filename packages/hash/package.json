@@ -19,7 +19,7 @@
     "test:typescript": "dtslint types"
   },
   "devDependencies": {
-    "dtslint": "^0.3.0"
+    "dtslint": "^4.0.6"
   },
   "browser": {
     "./dist/emotion-hash.cjs.js": "./dist/emotion-hash.browser.cjs.js",

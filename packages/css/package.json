@@ -18,14 +18,14 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/babel-plugin": "^11.0.0",
+    "@emotion/babel-plugin": "^11.1.2",
     "@emotion/cache": "^11.1.3",
     "@emotion/serialize": "^1.0.0",
-    "@emotion/sheet": "^1.0.0",
+    "@emotion/sheet": "^1.0.1",
     "@emotion/utils": "^1.0.0"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0"
+    "@babel/core": "^7.12.10"
   },
   "peerDependenciesMeta": {
     "@babel/core": {
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "dtslint": "^0.3.0"
+    "dtslint": "^4.0.6"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",

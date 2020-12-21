@@ -54,7 +54,7 @@
     "@emotion/server": "11.0.0",
     "@emotion/styled": "11.0.0",
     "@types/react": "^17.0.0",
-    "dtslint": "^0.3.0",
+    "dtslint": "^4.0.6",
     "html-tag-names": "^1.1.2",
     "react": "17.0.1",
     "svg-tag-names": "^1.1.1"

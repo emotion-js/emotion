@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@emotion/hash": "*",
-    "dtslint": "^0.3.0"
+    "dtslint": "^4.0.6"
   },
   "publishConfig": {
     "access": "public"
