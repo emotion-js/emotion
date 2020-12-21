@@ -23,7 +23,7 @@ module.exports = ({ markdownAST }) => {
     ) {
       let cleanValue = node.value.replace('// @live', '').trim()
       node.type = `html`
-      node.value = escapeGoat.escapeTag`<live-code code="${cleanValue}" compiled="${
+      node.value = escapeGoat.htmlEscape`<live-code code="${cleanValue}" compiled="${
         Babel.transform(cleanValue, {
           presets: [babelPresetEnv, babelPresetReact],
           plugins: [[babelPluginEmotion, { sourceMap: false }]],

@@ -32,6 +32,7 @@
     "graphql-type-json": "^0.3.2",
     "normalize.css": "^8.0.1",
     "open-color": "^1.7.0",
+    "prismjs": "1.22.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-helmet": "^6.1.0",

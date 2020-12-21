@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import { mq, fonts } from './style'
-import prismStyles from 'react-live/lib/constants/css.js'
+import prismStyles from 'react-live/srccd/constants/theme.js'
 import draculaStyles from './dracula-prism'
 
 const globalStyles = css`

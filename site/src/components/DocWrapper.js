@@ -5,8 +5,7 @@ import * as React from 'react'
 import { keyframes, cx } from '@emotion/css'
 import { Match } from '@reach/router'
 import { Link } from 'gatsby'
-import MenuIcon from 'react-icons/lib/md/menu'
-import CloseIcon from 'react-icons/lib/md/close'
+import { CloseIcon, MdClose } from 'react-icons'
 
 import { constants, colors, mq } from '../utils/style'
 import darken from 'polished/lib/color/darken'
@@ -215,9 +214,9 @@ export default ({
               setSidebarOpen={() => setSidebarOpen(!sidebarOpen)}
             >
               {sidebarOpen ? (
-                <CloseIcon color="white" size={32} />
+                <MdClose color="white" size={32} />
               ) : (
-                <MenuIcon color="white" size={32} />
+                <CloseIcon color="white" size={32} />
               )}
             </ToggleSidebarButton>
           </>
