@@ -16,11 +16,11 @@ By default snapshots with emotion show generated class names. Adding [@emotion/j
 npm install --save-dev @emotion/jest
 ```
 
-Add the `"@emotion/jest/serializer"` to the [`snapshotSerializers`](https://jestjs.io/docs/en/configuration#snapshotserializers-arraystring) option.
+Add the `"@zedvision/emotion-jest/serializer"` to the [`snapshotSerializers`](https://jestjs.io/docs/en/configuration#snapshotserializers-arraystring) option.
 
 ```json
 {
-  "snapshotSerializers": ["@emotion/jest/serializer"]
+  "snapshotSerializers": ["@zedvision/emotion-jest/serializer"]
 }
 ```
 
@@ -32,11 +32,11 @@ import { createSerializer } from '@emotion/jest'
 expect.addSnapshotSerializer(createSerializer())
 ```
 
-When using Enzyme, you can add `"@emotion/jest/enzyme-serializer"` instead.
+When using Enzyme, you can add `"@zedvision/emotion-jest/enzyme-serializer"` instead.
 
 ```json
 {
-  "snapshotSerializers": ["@emotion/jest/enzyme-serializer"]
+  "snapshotSerializers": ["@zedvision/emotion-jest/enzyme-serializer"]
 }
 ```
 

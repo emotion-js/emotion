@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/eslint-plugin",
+  "name": "@zedvision/emotion-eslint-plugin",
   "version": "11.0.0",
   "description": "ESLint rules for emotion",
   "scripts": {

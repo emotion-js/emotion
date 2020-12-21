@@ -21,7 +21,7 @@ const SomeComponent = styled('div')(_templateObject())
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 /* eslint-disable */
 import _taggedTemplateLiteralLoose from '@babel/runtime/helpers/esm/taggedTemplateLiteralLoose';
@@ -53,7 +53,7 @@ const SomeComponent = styled.div\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
@@ -81,7 +81,7 @@ const SomeComponent = styled('div')\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
@@ -115,7 +115,7 @@ dfwf */
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
@@ -162,7 +162,7 @@ let OneLastComponent = styled.div({
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
@@ -235,7 +235,7 @@ styled('button', cfg)({})
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -296,7 +296,7 @@ let Avatar = styled.img\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 let Avatar = _styled(\\"img\\", {
   target: \\"e9o8e9e0\\",
@@ -341,7 +341,7 @@ class Thing {
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
@@ -440,7 +440,7 @@ const H1 = styled.h1\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 // yes, this was actually a bug at one point
 const H1 = _styled(\\"h1\\", {
@@ -463,7 +463,7 @@ const SomeOtherComponent = styled.button\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
@@ -549,7 +549,7 @@ const SomeComponent = styled.div({ color: 'hotpink' })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
@@ -575,7 +575,7 @@ const SomeComponent = styled('div')({ color: 'hotpink' })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
@@ -601,7 +601,7 @@ const SomeComponent = styled.div(props => ({ color: props.color }))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 const SomeComponent = _styled(\\"div\\", {
   target: \\"e14okpby0\\",
@@ -693,7 +693,7 @@ const H1 = styled.h1({ fontSize })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 let fontSize = window.whatever;
 
 const H1 = _styled(\\"h1\\", {
@@ -723,7 +723,7 @@ const H1 = styled.h1\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
@@ -763,7 +763,7 @@ const H1 = styled.h1({ ...window.whatever })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 const H1 = _styled(\\"h1\\", {
   target: \\"e49hde00\\",

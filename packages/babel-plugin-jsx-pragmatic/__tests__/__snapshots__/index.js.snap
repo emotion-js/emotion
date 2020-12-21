@@ -20,7 +20,7 @@ import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { jsx as ___EmotionJSX } from \\"@emotion/react\\";
+import { jsx as ___EmotionJSX } from \\"@zedvision/emotion-react\\";
 ReactDOM.render(<App />, document.getElementById('root'));"
 `;
 
@@ -33,7 +33,7 @@ const F = () => <></>
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import * as React from 'react';
-import { jsx as ___EmotionJSX } from \\"@emotion/react\\";
+import { jsx as ___EmotionJSX } from \\"@zedvision/emotion-react\\";
 
 const F = () => <></>;"
 `;
@@ -47,7 +47,7 @@ const P = () => <p />
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import * as React from 'react';
-import { jsx as ___EmotionJSX } from \\"@emotion/react\\";
+import { jsx as ___EmotionJSX } from \\"@zedvision/emotion-react\\";
 
 const P = () => <p />;"
 `;

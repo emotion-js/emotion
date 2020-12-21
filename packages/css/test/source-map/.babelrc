@@ -1,4 +1,4 @@
 {
   "presets": ["babel-preset-emotion-dev"],
-  "plugins": [["@emotion/babel-plugin", { "sourceMap": true }]]
+  "plugins": [["@zedvision/emotion-babel-plugin", { "sourceMap": true }]]
 }

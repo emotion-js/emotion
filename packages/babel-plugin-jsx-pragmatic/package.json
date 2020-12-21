@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/babel-plugin-jsx-pragmatic",
+  "name": "@zedvision/emotion-babel-plugin-jsx-pragmatic",
   "version": "0.1.5",
   "description": "Insert code to load a module corresponding to JSX pragma.",
   "main": "dist/emotion-babel-plugin-jsx-pragmatic.cjs.js",

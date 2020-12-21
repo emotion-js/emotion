@@ -88,7 +88,7 @@ export default () => <Global styles={{ color: 'hotpink', ...getBgColor() }} />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css as _css } from \\"@emotion/react\\";
+import { css as _css } from \\"@zedvision/emotion-react\\";
 import * as React from 'react';
 import { Global } from '@emotion/react';
 

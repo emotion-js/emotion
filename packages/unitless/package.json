@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/unitless",
+  "name": "@zedvision/emotion-unitless",
   "version": "0.7.5",
   "description": "An object of css properties that don't accept values with units",
   "main": "dist/emotion-unitless.cjs.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/utils",
+  "name": "@zedvision/emotion-utils",
   "version": "1.0.0",
   "description": "internal utils for emotion",
   "main": "dist/emotion-utils.cjs.js",

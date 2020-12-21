@@ -161,7 +161,7 @@ babel --plugins @emotion/babel-plugin script.js
 
 ```javascript
 require('@babel/core').transform('code', {
-  plugins: ['@emotion/babel-plugin']
+  plugins: ['@emotion/babel-plugin'],
 })
 ```
 
@@ -268,8 +268,8 @@ const H1 = styled.h1({
   boxSizing: 'border-box',
   display: 'flex',
   ':hover': {
-    transform: 'scale(1.2)'
-  }
+    transform: 'scale(1.2)',
+  },
 })
 ```
 
@@ -277,15 +277,15 @@ const H1 = styled.h1({
 
 ```javascript
 const H1 = /*#__PURE__*/ styled('h1', {
-  label: 'H1'
+  label: 'H1',
 })({
   borderRadius: '50%',
   transition: 'transform 400ms ease-in-out',
   boxSizing: 'border-box',
   display: 'flex',
   ':hover': {
-    transform: 'scale(1.2)'
-  }
+    transform: 'scale(1.2)',
+  },
 })
 ```
 
@@ -307,16 +307,16 @@ An example config:
 {
   "my-package": {
     "anotherExport": {
-      "canonicalImport": ["@emotion/styled", "default"],
+      "canonicalImport": ["@zedvision/emotion-styled", "default"],
       "styledBaseImport": ["my-package/base", "anotherExport"]
     }
   },
   "some-package": {
     "someExport": {
-      "canonicalImport": ["@emotion/react", "css"]
+      "canonicalImport": ["@zedvision/emotion-react", "css"]
     },
     "thisIsTheJsxExport": {
-      "canonicalImport": ["@emotion/react", "jsx"]
+      "canonicalImport": ["@zedvision/emotion-react", "jsx"]
     }
   }
 }
@@ -332,7 +332,7 @@ import {
   keyframes,
   injectGlobal,
   flush,
-  hydrate
+  hydrate,
 } from '@emotion/css/macro'
 import { jsx, css, Global, keyframes } from '@emotion/react/macro'
 import styled from '@emotion/styled/macro'

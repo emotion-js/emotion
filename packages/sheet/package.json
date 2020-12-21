@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/sheet",
+  "name": "@zedvision/emotion-sheet",
   "version": "1.0.1",
   "description": "emotion's stylesheet",
   "main": "dist/emotion-sheet.cjs.js",

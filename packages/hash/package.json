@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/hash",
+  "name": "@zedvision/emotion-hash",
   "version": "0.8.0",
   "description": "A MurmurHash2 implementation",
   "main": "dist/emotion-hash.cjs.js",

@@ -65,7 +65,7 @@ const SomeComponent = props => (
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css as _css } from \\"@emotion/react\\";
+import { css as _css } from \\"@zedvision/emotion-react\\";
 
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
@@ -189,7 +189,7 @@ const SomeComponent = styled.div({
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
@@ -217,7 +217,7 @@ const SomeComponent = styled.div\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _styled from \\"@emotion/styled/base\\";
+import _styled from \\"@zedvision/emotion-styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 

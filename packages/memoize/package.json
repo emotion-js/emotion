@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/memoize",
+  "name": "@zedvision/emotion-memoize",
   "version": "0.7.5",
   "description": "emotion's memoize utility",
   "main": "dist/emotion-memoize.cjs.js",

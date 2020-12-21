@@ -63,7 +63,7 @@ If using the automatic runtime you should just add this to your `tsconfig.json` 
 ```json
 {
   "compilerOptions": {
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@zedvision/emotion-react"
   }
 }
 ```
@@ -71,7 +71,7 @@ If using the automatic runtime you should just add this to your `tsconfig.json` 
 The same `JSX` namespace is resolved if you are still using the classic runtime through the `@jsx` pragma. However, it's not possible to leverage `css` prop support being added conditionally based on a type of rendered component when one is not using our jsx pragma or the automatic runtime. For those cases when people use our pragma implicitly (for example when using our `@emotion/babel-preset-css-prop`) we have a special file that can be imported once to add support for the `css` prop globally, for all components. Use it like this:
 
 ```ts
-/// <reference types="@emotion/react/types/css-prop" />
+/// <reference types="@zedvision/emotion-react/types/css-prop" />
 ```
 
 ## @emotion/styled

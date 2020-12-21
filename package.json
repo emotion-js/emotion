@@ -74,7 +74,7 @@
       "react/prop-types": 0,
       "react/react-in-jsx-scope": 0,
       "standard/computed-property-even-spacing": 0,
-      "@emotion/pkg-renaming": 2
+      "@zedvision/emotion-pkg-renaming": 2
     },
     "env": {
       "browser": true

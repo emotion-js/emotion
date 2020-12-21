@@ -554,7 +554,7 @@ var pkgRenaming = {
           context.report({
             node: node.source,
             message:
-              '"emotion-theming" has been moved into "@emotion/react", please import its exports from "@emotion/react"',
+              '"emotion-theming" has been moved into "@zedvision/emotion-react", please import its exports from "@zedvision/emotion-react"',
             fix: function fix(fixer) {
               return fixer.replaceText(node.source, "'@emotion/react'")
             },

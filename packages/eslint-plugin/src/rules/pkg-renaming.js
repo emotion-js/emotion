@@ -57,7 +57,7 @@ export default {
         if (node.source.value === 'emotion-theming') {
           context.report({
             node: node.source,
-            message: `"emotion-theming" has been moved into "@emotion/react", please import its exports from "@emotion/react"`,
+            message: `"emotion-theming" has been moved into "@zedvision/emotion-react", please import its exports from "@zedvision/emotion-react"`,
             fix: (fixer) => fixer.replaceText(node.source, `'@emotion/react'`),
           })
         }

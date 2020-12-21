@@ -28,7 +28,7 @@ Use the [JSX Pragma](#jsx-pragma) method instead.
 
 ```json
 {
-  "presets": ["@emotion/babel-preset-css-prop"]
+  "presets": ["@zedvision/emotion-babel-preset-css-prop"]
 }
 ```
 
@@ -43,10 +43,10 @@ If you are using the compatible React version (`>=17.0.1`) then you can opt into
   "presets": [
     [
       "@babel/preset-react",
-      { "runtime": "automatic", "importSource": "@emotion/react" }
+      { "runtime": "automatic", "importSource": "@zedvision/emotion-react" }
     ]
   ],
-  "plugins": ["@emotion/babel-plugin"]
+  "plugins": ["@zedvision/emotion-babel-plugin"]
 }
 ```
 
@@ -62,12 +62,12 @@ In case you want to use the new JSX runtimes with [Next.js](https://nextjs.org/)
       {
         "preset-react": {
           "runtime": "automatic",
-          "importSource": "@emotion/react"
+          "importSource": "@zedvision/emotion-react"
         }
       }
     ]
   ],
-  "plugins": ["@emotion/babel-plugin"]
+  "plugins": ["@zedvision/emotion-babel-plugin"]
 }
 ```
 

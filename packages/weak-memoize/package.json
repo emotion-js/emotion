@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/weak-memoize",
+  "name": "@zedvision/emotion-weak-memoize",
   "version": "0.2.5",
   "description": "A memoization function that uses a WeakMap",
   "main": "dist/emotion-weak-memoize.cjs.js",

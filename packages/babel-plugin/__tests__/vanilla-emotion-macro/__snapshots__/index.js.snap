@@ -66,7 +66,7 @@ css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/css\\";
+import { css } from \\"@zedvision/emotion-css\\";
 
 /*#__PURE__*/
 css(process.env.NODE_ENV === \\"production\\" ? {
@@ -164,7 +164,7 @@ css\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css } from \\"@emotion/css\\";
+import { css } from \\"@zedvision/emotion-css\\";
 
 /*#__PURE__*/
 css(\\"margin:12px 48px;color:#ffffff;display:flex;flex:1 0 auto;color:blue;@media (min-width: 420px){line-height:40px;}width:\\", window.whatever, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1iYXNpYy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFRyIsImZpbGUiOiJjc3MtYmFzaWMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jc3MvbWFjcm8nXG5cbmNzc2BcbiAgbWFyZ2luOiAxMnB4IDQ4cHg7XG4gIGNvbG9yOiAjZmZmZmZmO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4OiAxIDAgYXV0bztcbiAgY29sb3I6IGJsdWU7XG4gIEBtZWRpYSAobWluLXdpZHRoOiA0MjBweCkge1xuICAgIGxpbmUtaGVpZ2h0OiA0MHB4O1xuICB9XG4gIHdpZHRoOiAke3dpbmRvdy53aGF0ZXZlcn07XG5gXG4iXX0= */\\"));"
@@ -180,7 +180,7 @@ let someCls = css({
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { css } from \\"@emotion/css\\";
+import { css } from \\"@zedvision/emotion-css\\";
 let someCls = /*#__PURE__*/css({
   color: window.whatever
 }, process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:someCls;\\", process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNzcy1vYmplY3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRWMiLCJmaWxlIjoiY3NzLW9iamVjdC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL2Nzcy9tYWNybydcblxubGV0IHNvbWVDbHMgPSBjc3Moe1xuICBjb2xvcjogd2luZG93LndoYXRldmVyXG59KVxuIl19 */\\");"
@@ -202,7 +202,7 @@ const cls2 = css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/css\\";
+import { css } from \\"@zedvision/emotion-css\\";
 const cls1 = /*#__PURE__*/css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1bpoqk7\\",
   styles: \\"content:'  {  }  '\\"
@@ -278,7 +278,7 @@ function test() {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/css\\";
+import { css } from \\"@zedvision/emotion-css\\";
 
 function test() {
   const cls1 = /*#__PURE__*/css(\\"font-size:20px;@media (min-width: 420px){color:blue;\\", /*#__PURE__*/css(process.env.NODE_ENV === \\"production\\" ? {
@@ -344,7 +344,7 @@ injectGlobal\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { injectGlobal } from \\"@emotion/css\\";
+import { injectGlobal } from \\"@zedvision/emotion-css\\";
 injectGlobal(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"59k0ad\\",
   styles: \\"body{margin:0;padding:0;&>div{display:flex;}}html{background:green;}\\"
@@ -392,7 +392,7 @@ injectGlobal\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { injectGlobal as inject } from \\"@emotion/css\\";
+import { injectGlobal as inject } from \\"@zedvision/emotion-css\\";
 inject(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"59k0ad\\",
   styles: \\"body{margin:0;padding:0;&>div{display:flex;}}html{background:green;}\\"
@@ -438,7 +438,7 @@ injectGlobal\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { injectGlobal } from \\"@emotion/css\\";
+import { injectGlobal } from \\"@zedvision/emotion-css\\";
 injectGlobal(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"lu7y12\\",
   styles: \\"@font-face{font-family:'Patrick Hand SC';font-style:normal;font-weight:400;src:local('Patrick Hand SC'),local('PatrickHandSC-Regular'),url(https://fonts.gstatic.com/s/patrickhandsc/v4/OYFWCgfCR-7uHIovjUZXsZ71Uis0Qeb9Gqo8IZV7ckE.woff2) format('woff2');unicode-range:U+0100-024f,U+1-1eff,U+20a0-20ab,U+20ad-20cf,U+2c60-2c7f,U+A720-A7FF;}\\"
@@ -472,7 +472,7 @@ injectGlobal\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { injectGlobal } from \\"@emotion/css\\";
+import { injectGlobal } from \\"@zedvision/emotion-css\\";
 let display = window.whatever;
 injectGlobal(\\"body{margin:0;padding:0;display:\\", display, \\";&>div{display:none;}}html{background:green;}\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluamVjdC1nbG9iYWwtd2l0aC1pbnRlcnBvbGF0aW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUlZIiwiZmlsZSI6ImluamVjdC1nbG9iYWwtd2l0aC1pbnRlcnBvbGF0aW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgaW5qZWN0R2xvYmFsIH0gZnJvbSAnQGVtb3Rpb24vY3NzL21hY3JvJ1xuXG5sZXQgZGlzcGxheSA9IHdpbmRvdy53aGF0ZXZlclxuXG5pbmplY3RHbG9iYWxgXG4gIGJvZHkge1xuICAgIG1hcmdpbjogMDtcbiAgICBwYWRkaW5nOiAwO1xuICAgIGRpc3BsYXk6ICR7ZGlzcGxheX07XG4gICAgJiA+IGRpdiB7XG4gICAgICBkaXNwbGF5OiBub25lO1xuICAgIH1cbiAgfVxuICBodG1sIHtcbiAgICBiYWNrZ3JvdW5kOiBncmVlbjtcbiAgfVxuYFxuIl19 */\\"));"
 `;
@@ -494,7 +494,7 @@ const rotate360 = keyframes\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { keyframes } from \\"@emotion/css\\";
+import { keyframes } from \\"@zedvision/emotion-css\\";
 const rotate360 = /*#__PURE__*/keyframes(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"1q8eu9e\\",
   styles: \\"from{transform:rotate(0deg);}to{transform:rotate(360deg);}\\"
@@ -523,7 +523,7 @@ const rotate360 = keyframes\`
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { keyframes } from \\"@emotion/css\\";
+import { keyframes } from \\"@zedvision/emotion-css\\";
 let endingRotation = window.whatever;
 const rotate360 = /*#__PURE__*/keyframes(\\"from{transform:rotate(0deg);}to{transform:rotate(\\", endingRotation, \\");}\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\";label:rotate360;\\"), process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImtleWZyYW1lcy13aXRoLWludGVycG9sYXRpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBSTJCIiwiZmlsZSI6ImtleWZyYW1lcy13aXRoLWludGVycG9sYXRpb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBrZXlmcmFtZXMgfSBmcm9tICdAZW1vdGlvbi9jc3MvbWFjcm8nXG5cbmxldCBlbmRpbmdSb3RhdGlvbiA9IHdpbmRvdy53aGF0ZXZlclxuXG5jb25zdCByb3RhdGUzNjAgPSBrZXlmcmFtZXNgXG4gIGZyb20ge1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDBkZWcpO1xuICB9XG4gIHRvIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgke2VuZGluZ1JvdGF0aW9ufSk7XG4gIH1cbmBcbiJdfQ== */\\");"
 `;
@@ -543,7 +543,7 @@ css\`
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/css\\"; // whitespace before pseudo should be preserved
+import { css } from \\"@zedvision/emotion-css\\"; // whitespace before pseudo should be preserved
 
 /*#__PURE__*/
 css(process.env.NODE_ENV === \\"production\\" ? {
@@ -574,7 +574,7 @@ class Thing {
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-import { css } from \\"@emotion/css\\";
+import { css } from \\"@zedvision/emotion-css\\";
 let obj = {
   someProp: /*#__PURE__*/css(process.env.NODE_ENV === \\"production\\" ? {
     name: \\"v98kxt\\",

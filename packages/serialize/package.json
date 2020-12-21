@@ -1,5 +1,5 @@
 {
-  "name": "@emotion/serialize",
+  "name": "@zedvision/emotion-serialize",
   "version": "1.0.0",
   "description": "serialization utils for emotion",
   "main": "dist/emotion-serialize.cjs.js",
@@ -15,10 +15,10 @@
  "build": "microbundle build"
   },
   "dependencies": {
-    "@emotion/hash": "^0.8.0",
-    "@emotion/memoize": "^0.7.5",
-    "@emotion/unitless": "^0.7.5",
-    "@emotion/utils": "^1.0.0",
+    "@zedvision/emotion-hash": "^0.8.0",
+    "@zedvision/emotion-memoize": "^0.7.5",
+    "@zedvision/emotion-unitless": "^0.7.5",
+    "@zedvision/emotion-utils": "^1.0.0",
     "csstype": "^3.0.5"
   },
   "devDependencies": {

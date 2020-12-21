@@ -32,7 +32,7 @@ ruleTester.run('pkg-renaming', rule, {
       errors: [
         {
           message:
-            '"emotion" has been renamed to "@emotion/css", please import it from "@emotion/css" instead',
+            '"emotion" has been renamed to "@zedvision/emotion-css", please import it from "@zedvision/emotion-css" instead',
         },
       ],
       output: `import { css } from '@emotion/css'`,
@@ -42,7 +42,7 @@ ruleTester.run('pkg-renaming', rule, {
       errors: [
         {
           message:
-            '"@emotion/core" has been renamed to "@emotion/react", please import it from "@emotion/react" instead',
+            '"@zedvision/emotion-core" has been renamed to "@zedvision/emotion-react", please import it from "@zedvision/emotion-react" instead',
         },
       ],
       output: `import { css } from '@emotion/react'`,
@@ -52,7 +52,7 @@ ruleTester.run('pkg-renaming', rule, {
       errors: [
         {
           message:
-            'The default export of "@emotion/css" in Emotion 10 has been moved to a named export, `css`, from "@emotion/react" in Emotion 11, please import it from "@emotion/react"',
+            'The default export of "@zedvision/emotion-css" in Emotion 10 has been moved to a named export, `css`, from "@zedvision/emotion-react" in Emotion 11, please import it from "@zedvision/emotion-react"',
         },
       ],
       output: `import { css } from '@emotion/react'`,
@@ -62,7 +62,7 @@ ruleTester.run('pkg-renaming', rule, {
       errors: [
         {
           message:
-            'The default export of "@emotion/css/macro" in Emotion 10 has been moved to a named export, `css`, from "@emotion/react/macro" in Emotion 11, please import it from "@emotion/react/macro"',
+            'The default export of "@zedvision/emotion-css/macro" in Emotion 10 has been moved to a named export, `css`, from "@zedvision/emotion-react/macro" in Emotion 11, please import it from "@zedvision/emotion-react/macro"',
         },
       ],
       output: `import { css } from '@emotion/react/macro'`,
@@ -72,7 +72,7 @@ ruleTester.run('pkg-renaming', rule, {
       errors: [
         {
           message:
-            '"emotion-theming" has been moved into "@emotion/react", please import its exports from "@emotion/react"',
+            '"emotion-theming" has been moved into "@zedvision/emotion-react", please import its exports from "@zedvision/emotion-react"',
         },
       ],
       output: `import {ThemeProvider, withTheme} from '@emotion/react'`,

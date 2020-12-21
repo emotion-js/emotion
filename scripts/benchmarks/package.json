@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
-    "@emotion/babel-plugin": "^11.1.2",
+    "@zedvision/emotion-babel-plugin": "^11.1.2",
     "babel-plugin-react-native-web": "^0.14.10",
     "d3-scale-chromatic": "^2.0.0",
     "http-server": "^0.12.3",

@@ -33,7 +33,7 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
   "rules": {
-    "@emotion/jsx-import": "error"
+    "@zedvision/emotion-jsx-import": "error"
   }
 }
 ```
@@ -45,7 +45,7 @@ The Emotion 11 codemods are contained in this package. To use them, enable the r
 ```json
 {
   "rules": {
-    "@emotion/pkg-renaming": "error"
+    "@zedvision/emotion-pkg-renaming": "error"
   }
 }
 ```
@@ -57,10 +57,10 @@ The Emotion 10 codemods are contained in this package. To use them, enable the r
 ```json
 {
   "rules": {
-    "@emotion/jsx-import": "error",
-    "@emotion/no-vanilla": "error",
-    "@emotion/import-from-emotion": "error",
-    "@emotion/styled-import": "error"
+    "@zedvision/emotion-jsx-import": "error",
+    "@zedvision/emotion-no-vanilla": "error",
+    "@zedvision/emotion-import-from-emotion": "error",
+    "@zedvision/emotion-styled-import": "error"
   }
 }
 ```
