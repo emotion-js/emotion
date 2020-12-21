@@ -3,8 +3,8 @@
   "name": "emotion-monorepo",
   "version": "10.0.0",
   "scripts": {
-    "build:watch": "preconstruct watch",
-    "build": "preconstruct build",
+    "build": "yarn lerna run all microbundle --paralell",
+    "microbundle": "^0.13.0",
     "test:size": "npm-run-all build size",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "test": "jest",
@@ -129,16 +129,6 @@
       "**/dtslint"
     ]
   },
-  "preconstruct": {
-    "packages": [
-      "packages/*"
-    ],
-    "globals": {
-      "react": "React",
-      "react/jsx-runtime": "ReactJSX",
-      "react/jsx-dev-runtime": "ReactJSXDev"
-    }
-  },
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
@@ -189,7 +179,6 @@
     "@manypkg/cli": "^0.17.0",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "@preconstruct/cli": "^2.0.1",
     "@testing-library/react": "^11.2.2",
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.14",
@@ -236,11 +225,11 @@
     "jest-serializer-html": "^7.0.0",
     "jest-watch-typeahead": "^0.6.1",
     "jsdom": "^16.4.0",
-    "lint-staged": "^7.2.0",
-    "module-alias": "^2.0.1",
-    "multipipe": "^1.0.2",
+    "lint-staged": "^10.5.3",
+    "module-alias": "^2.2.2",
+    "multipipe": "^4.0.0",
     "normalize.css": "^8.0.1",
-    "npm-run-all": "^4.0.2",
+    "npm-run-all": "^4.1.5",
     "opencollective": "^1.0.3",
     "polished": "^4.0.5",
     "prettier": "2.2.1",
@@ -264,5 +253,8 @@
     "unist-util-visit": "^2.0.3",
     "webpack-bundle-analyzer": "4.3.0",
     "worker-loader": "3.0.6"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
   }
 }
