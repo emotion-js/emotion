@@ -231,3 +231,19 @@ const anim1 = keyframes`
     ? true
     : false
 }
+
+// RMWC-like component test
+declare const OtherComponent: {
+  <Tag extends React.ElementType<any> = 'input'>(
+    props:
+      | React.AllHTMLAttributes<HTMLInputElement>
+      | React.ComponentPropsWithRef<Tag>,
+    ref: any
+  ): JSX.Element
+  displayName?: string
+}
+;<OtherComponent
+  onChange={ev => {
+    console.log(ev.currentTarget.value)
+  }}
+/>
