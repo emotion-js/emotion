@@ -25,9 +25,9 @@ export namespace EmotionJSX {
     extends ReactJSXElementAttributesProperty {}
   interface ElementChildrenAttribute extends ReactJSXElementChildrenAttribute {}
 
-  type LibraryManagedAttributes<C, P> = WithConditionalCSSProp<
-    ReactJSXLibraryManagedAttributes<C, P>
-  >
+  type LibraryManagedAttributes<C, P> = P extends any
+    ? WithConditionalCSSProp<ReactJSXLibraryManagedAttributes<C, P>>
+    : never
 
   interface IntrinsicAttributes extends ReactJSXIntrinsicAttributes {}
   interface IntrinsicClassAttributes<T>
