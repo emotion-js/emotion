@@ -4,9 +4,9 @@ import { Theme } from './index'
 
 type WithConditionalCSSProp<P> = 'className' extends keyof P
   ? string extends P['className' & keyof P]
-    ? P & { css?: Interpolation<Theme> }
-    : P
-  : P
+    ? { css?: Interpolation<Theme> }
+    : {}
+  : {}
 
 // unpack all here to avoid infinite self-referencing when defining our own JSX namespace
 type ReactJSXElement = JSX.Element
