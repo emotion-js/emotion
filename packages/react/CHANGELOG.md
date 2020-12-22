@@ -1,5 +1,11 @@
 # @emotion/react
 
+## 11.1.4
+
+### Patch Changes
+
+- [`71ca9be3`](https://github.com/emotion-js/emotion/commit/71ca9be3368ddb0a95ef5b2db7a97c67ab440593) [#2181](https://github.com/emotion-js/emotion/pull/2181) Thanks [@101arrowz](https://github.com/101arrowz)! - Fixed some typing issues with React components with custom generic render functions.
+
 ## 11.1.3
 
 ### Patch Changes
