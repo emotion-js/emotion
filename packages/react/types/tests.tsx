@@ -234,7 +234,7 @@ const anim1 = keyframes`
 
 // RMWC-like component test
 declare const OtherComponent: {
-  <Tag extends React.ElementType<any> = 'input'>(
+  <Tag extends React.ElementType>(
     props:
       | React.AllHTMLAttributes<HTMLInputElement>
       | React.ComponentPropsWithRef<Tag>,
