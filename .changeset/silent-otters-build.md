@@ -2,4 +2,4 @@
 '@emotion/react': patch
 ---
 
-Fixes React components with custom/generic render functions
+Fixed some typing issues with React components with custom generic render functions.
