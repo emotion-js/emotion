@@ -6,7 +6,16 @@ Emotion 11 is a slight evolution over the Emotion 10. It focuses mainly on the d
 
 # Package renaming
 
-One of the most significant changes is that most of the user-facing packages have been renamed:
+One of the most significant changes is that most of the user-facing packages have been renamed.
+
+Most of this renaming can be done automatically via a codemod, following these steps:
+
+1. [Install](https://github.com/emotion-js/emotion/tree/master/packages/eslint-plugin#installation) `@emotion/eslint-plugin`
+1. [Add it as a plugin](https://github.com/emotion-js/emotion/tree/master/packages/eslint-plugin#usage) to `.eslintrc`
+1. [Add Emotion 11 codemod rule](https://github.com/emotion-js/emotion/tree/master/packages/eslint-plugin#emotion-11-codemod)
+1. Run `eslint` with the `--fix` flag. For example: `yarn eslint --config .eslintrc --ext .js,.jsx "." --fix`
+
+The full list of renamed packages:
 - `@emotion/core` → `@emotion/react`
 - `emotion` → `@emotion/css`
 - `emotion-theming` → moved into ` @emotion/react`
@@ -16,8 +25,6 @@ One of the most significant changes is that most of the user-facing packages hav
 - `babel-plugin-emotion` → `@emotion/babel-plugin`
 - `eslint-plugin-emotion` → `@emotion/eslint-plugin`
 - `jest-emotion` → `@emotion/jest`
-
-Most of this renaming can be done automatically via a codemod by running the `@emotion/pkg-renaming` rule from `@emotion/eslint-plugin` with `--fix` over your codebase.
 
 # Hooks
 
