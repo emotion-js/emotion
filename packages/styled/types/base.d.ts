@@ -45,7 +45,7 @@ export interface StyledComponent<
   ): StyledComponent<
     ComponentProps & PropsOf<C>,
     {},
-    { ref?: React.Ref<InstanceType<C>> }
+    { ref?: React.Ref<InstanceType<C> | undefined> }
   >
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C
@@ -132,7 +132,7 @@ export interface CreateStyled {
     },
     {},
     {
-      ref?: React.Ref<InstanceType<C>>
+      ref?: React.Ref<InstanceType<C> | undefined>
     }
   >
 
@@ -146,7 +146,7 @@ export interface CreateStyled {
     },
     {},
     {
-      ref?: React.Ref<InstanceType<C>>
+      ref?: React.Ref<InstanceType<C> | undefined>
     }
   >
 

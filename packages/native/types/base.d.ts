@@ -82,7 +82,7 @@ export interface StyledComponent<
   ): StyledComponent<
     ComponentProps & React.ComponentProps<C>,
     {},
-    { ref?: React.Ref<InstanceType<C>> }
+    { ref?: React.Ref<InstanceType<C> | undefined> }
   >
   withComponent<C extends React.ComponentType<React.ComponentProps<C>>>(
     component: C
@@ -156,7 +156,7 @@ export interface CreateStyled {
       as?: React.ElementType
     },
     {},
-    { ref?: React.Ref<InstanceType<C>> },
+    { ref?: React.Ref<InstanceType<C> | undefined> },
     ReactNativeStyleType<React.ComponentProps<C>>
   >
 
@@ -169,7 +169,7 @@ export interface CreateStyled {
       as?: React.ElementType
     },
     {},
-    { ref?: React.Ref<InstanceType<C>> },
+    { ref?: React.Ref<InstanceType<C> | undefined> },
     ReactNativeStyleType<React.ComponentProps<C>>
   >
 
