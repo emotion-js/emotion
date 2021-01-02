@@ -1,11 +1,11 @@
 // @flow
 import * as React from 'react'
-import type { ElementType } from 'react'
 import {
   getDefaultShouldForwardProp,
   type StyledOptions,
   type CreateStyled,
-  type PrivateStyledComponent
+  type PrivateStyledComponent,
+  type StyledElementType
 } from './utils'
 import { withEmotionCache, ThemeContext } from '@emotion/react'
 import { getRegisteredStyles, insertStyles } from '@emotion/utils'
@@ -193,7 +193,7 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
     })
 
     Styled.withComponent = (
-      nextTag: ElementType,
+      nextTag: StyledElementType<Props>,
       nextOptions?: StyledOptions
     ) => {
       return createStyled(

@@ -11,3 +11,15 @@ const validProp = <Div color="red" />
 
 // $FlowExpectError: color property should be a string
 const invalidProp = <Div color={2} />
+
+styled<Props>(props => <div className={props.className}>{props.color}</div>)`
+  color: ${props => props.color};
+`
+
+styled<Props>(props => {
+  const color: string = props.color
+  const className: string = props.className
+  // $FlowExpectError: color should be a string
+  const colorTest: number = props.color
+  return <div className={props.className}>{props.color}</div>
+})``
