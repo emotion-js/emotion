@@ -1,5 +1,5 @@
 ---
-'@emotion/react': minor
+'@emotion/react': patch
 ---
 
-Export `SerializedStyles` from `@emotion/react` flow types
+Added export for `SerializedStyles` Flow type.
