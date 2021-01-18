@@ -286,11 +286,10 @@ declare module '@emotion/react' {
 
 // You are also able to use a 3rd party theme this way:
 import '@emotion/react'
-// Import of the Material-UI theme might change depending on the version you are using 
-import { MuiTheme } from 'material-ui' 
+import { LibTheme } from 'some-lib' 
 
 declare module '@emotion/react' {
-  export interface Theme extends MuiTheme {}
+  export interface Theme extends LibTheme {}
 }
 ```
 
@@ -301,7 +300,7 @@ import styled from '@emotion/styled'
 
 const Button = styled('button')`
   padding: 20px;
-  background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.someLibProperty};
   border-radius: 3px;
 `
 
