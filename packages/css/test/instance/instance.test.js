@@ -55,7 +55,7 @@ describe('multiple instance tests', () => {
       const class1 = emotion1.css(css)
       expect(class1).toBe(ssrClass) // same exact class name
       expect(emotion1.sheet.tags).toEqual([styleEl]) // <style> element picked up from hydration
-      expect(styleEl.sheet.cssRules.map(r => r.cssText)).toEqual([
+      expect((styleEl: any).sheet.cssRules.map(r => r.cssText)).toEqual([
         // no new rule inserted for insertion of same css text
         `.${ssrClass} {${css}}`
       ])
@@ -66,7 +66,7 @@ describe('multiple instance tests', () => {
       const class2 = emotion2.css(css)
       expect(class2).toBe(ssrClass) // same exact class name due to same hashing
       expect(emotion2.sheet.tags[0]).not.toBe(styleEl) // brand new <style> element (not the SSR one)
-      expect(styleEl.sheet.cssRules.map(r => r.cssText)).toEqual([
+      expect((styleEl: any).sheet.cssRules.map(r => r.cssText)).toEqual([
         // new rule inserted - duplicate of the rule in emotion1, see discussion
         // at https://github.com/emotion-js/emotion/pull/2222
         `.${ssrClass} {${css}}`
@@ -81,7 +81,6 @@ describe('multiple instance tests', () => {
       safeQuerySelector(
         'head'
       ).innerHTML = `<style data-emotion="${key} ${hash}">.${ssrClass}{${css}}</style>`
-      const styleEl = safeQuerySelector(`style[data-emotion="${key} ${hash}"]`)
 
       const emotion1 = createEmotion({ key, speedy: true })
       const class1 = emotion1.css(`text-decoration: underline`)
@@ -122,7 +121,7 @@ describe('multiple instance tests', () => {
   function getComputedStyle(className) {
     const divEl = document.createElement('div')
     divEl.className = className
-    document.body.appendChild(divEl)
+    ;(document: any).body.appendChild(divEl)
 
     return window.getComputedStyle(divEl)
   }
