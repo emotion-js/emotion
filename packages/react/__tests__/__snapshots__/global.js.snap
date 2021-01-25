@@ -4,6 +4,7 @@ exports[`basic 1`] = `
 <head>
   <style
     data-emotion="css"
+    data-h=""
     data-s=""
   >
     
@@ -11,6 +12,7 @@ exports[`basic 1`] = `
   </style>
   <style
     data-emotion="css"
+    data-h=""
     data-s=""
   >
     
@@ -18,6 +20,7 @@ exports[`basic 1`] = `
   </style>
   <style
     data-emotion="css"
+    data-h=""
     data-s=""
   >
     
@@ -25,6 +28,7 @@ exports[`basic 1`] = `
   </style>
   <style
     data-emotion="css-global"
+    data-h=""
     data-s=""
   >
     
@@ -32,6 +36,7 @@ exports[`basic 1`] = `
   </style>
   <style
     data-emotion="css-global"
+    data-h=""
     data-s=""
   >
     
@@ -39,6 +44,7 @@ exports[`basic 1`] = `
   </style>
   <style
     data-emotion="css-global"
+    data-h=""
     data-s=""
   >
     
@@ -46,6 +52,7 @@ exports[`basic 1`] = `
   </style>
   <style
     data-emotion="css-global"
+    data-h=""
     data-s=""
   >
     
@@ -66,6 +73,7 @@ exports[`basic 3`] = `
 <head>
   <style
     data-emotion="css"
+    data-h=""
     data-s=""
   >
     
@@ -73,6 +81,7 @@ exports[`basic 3`] = `
   </style>
   <style
     data-emotion="css"
+    data-h=""
     data-s=""
   >
     
@@ -80,6 +89,7 @@ exports[`basic 3`] = `
   </style>
   <style
     data-emotion="css"
+    data-h=""
     data-s=""
   >
     
@@ -100,6 +110,7 @@ exports[`updating more than 1 global rule 1`] = `
 <head>
   <style
     data-emotion="global-multiple-rules-global"
+    data-h=""
     data-s=""
   >
     
@@ -107,6 +118,7 @@ exports[`updating more than 1 global rule 1`] = `
   </style>
   <style
     data-emotion="global-multiple-rules-global"
+    data-h=""
     data-s=""
   >
     
@@ -119,6 +131,7 @@ exports[`updating more than 1 global rule 2`] = `
 <head>
   <style
     data-emotion="global-multiple-rules-global"
+    data-h=""
     data-s=""
   >
     
@@ -126,6 +139,7 @@ exports[`updating more than 1 global rule 2`] = `
   </style>
   <style
     data-emotion="global-multiple-rules-global"
+    data-h=""
     data-s=""
   >
     

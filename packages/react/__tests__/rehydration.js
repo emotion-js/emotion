@@ -105,12 +105,14 @@ test('initializing another Emotion instance should not move already moved styles
       >
         <style
           data-emotion="stl 1pdkrhd"
+          data-h=""
           data-s=""
         >
           .stl-1pdkrhd-App {color: hotpink;}
         </style>
         <style
           data-emotion="stl"
+          data-h=""
           data-s=""
         >
           
@@ -157,6 +159,7 @@ test('initializing another Emotion instance should not move already moved styles
       >
         <style
           data-emotion="stl"
+          data-h=""
           data-s=""
         >
           

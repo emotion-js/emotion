@@ -5,6 +5,7 @@ exports[`array 1`] = `
   <head>
     <style
       data-emotion="css-global"
+      data-h=""
       data-s=""
     >
       
@@ -12,6 +13,7 @@ exports[`array 1`] = `
     </style>
     <style
       data-emotion="css-global"
+      data-h=""
       data-s=""
     >
       
@@ -42,6 +44,7 @@ exports[`basic 1`] = `
   <head>
     <style
       data-emotion="css-global"
+      data-h=""
       data-s=""
     >
       

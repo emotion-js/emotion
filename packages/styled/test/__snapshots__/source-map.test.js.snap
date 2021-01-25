@@ -5,6 +5,7 @@ exports[`inserts source map 1`] = `
   <head>
     <style
       data-emotion="css"
+      data-h=""
       data-s=""
     >
       

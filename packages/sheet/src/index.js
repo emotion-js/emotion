@@ -86,23 +86,20 @@ export class StyleSheet {
   }
 
   _insertTag = (tag: HTMLStyleElement) => {
-    if (!tag.hasAttribute('data-h')) {
-      // tag has not yet been hydrated by another StyleSheet instance, move it
-      // to the right spot
-      let before
-      if (this.tags.length === 0) {
-        before = this.prepend ? this.container.firstChild : this.before
-      } else {
-        before = this.tags[this.tags.length - 1].nextSibling
-      }
-      this.container.insertBefore(tag, before)
-
-      // A flag to mark the <style> tag as hydrated (i.e. has been processed by
-      // a StyleSheet instance). Other StyleSheet instances will not move this
-      // tag in the DOM, which prevents 'speedy' <style> elements from
-      // accidentally be cleared of rules. (fixes https://github.com/emotion-js/emotion/issues/2210)
-      tag.setAttribute('data-h', '')
+    let before
+    if (this.tags.length === 0) {
+      before = this.prepend ? this.container.firstChild : this.before
+    } else {
+      before = this.tags[this.tags.length - 1].nextSibling
     }
+    this.container.insertBefore(tag, before)
+
+    // A flag to mark the <style> tag as hydrated (i.e. has been processed by
+    // a StyleSheet instance). The Cache will not send this tag to other
+    // StyleSheet instances to be hydrated, which fixes the issue of a "speedy"
+    // <style> tag's rules not accidentally being lost by moving the tag in the
+    // DOM. See https://github.com/emotion-js/emotion/issues/2210 for details
+    tag.setAttribute('data-h', '')
 
     this.tags.push(tag)
   }

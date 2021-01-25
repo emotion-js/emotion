@@ -82,7 +82,7 @@ let createCache = (options: Options): EmotionCache => {
     container = options.container || ((document.head: any): HTMLHeadElement)
 
     Array.prototype.forEach.call(
-      document.querySelectorAll(`style[data-emotion]`),
+      document.querySelectorAll(`style[data-emotion]:not([data-h])`), // all <style> tags not already owned by a StyleSheet instance
       (node: HTMLStyleElement) => {
         const attrib = ((node.getAttribute(`data-emotion`): any): string).split(
           ' '
