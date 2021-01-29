@@ -128,7 +128,7 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
         type
       }
     } else {
-      return node.children
+      return node.children[0]
     }
   }
   if (isEmotionCssPropElementType(node)) {
