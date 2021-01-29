@@ -3,7 +3,7 @@ import 'test-utils/enzyme-env'
 
 import jestInCase from 'jest-in-case'
 import * as enzyme from 'enzyme'
-import { jsx, ThemeProvider } from '@emotion/react'
+import { css, jsx, ThemeProvider } from '@emotion/react'
 import styled from '@emotion/styled'
 import React from 'react'
 import toJson from 'enzyme-to-json'
@@ -143,6 +143,19 @@ const cases = {
       )
     }
   },
+  'using the css helper': {
+    render() {
+      const style1 = css`
+        background-color: black;
+      `
+
+      const style2 = css`
+        color: white;
+      `
+
+      return <div css={[style1, style2]}>Test content</div>
+    }
+  },
   theming: {
     render() {
       const Button = styled.button`
@@ -190,6 +203,25 @@ describe('enzyme', () => {
     },
     cases
   )
+
+  test('child containing css array property', () => {
+    const parentStyle = css`
+      background-color: black;
+    `
+
+    const childStyle = css`
+      color: white;
+    `
+
+    const wrapper = enzyme.mount(
+      <div css={parentStyle}>
+        Test content
+        <div css={childStyle} />
+      </div>
+    )
+
+    expect(wrapper).toMatchSnapshot()
+  })
 
   test('with prop containing css element in fragment', () => {
     const FragmentComponent = () => (
