@@ -134,23 +134,7 @@ exports[`enzyme mount theming 1`] = `
 `;
 
 exports[`enzyme mount using the css helper 1`] = `
-.emotion-01rveqsm-Greeting {
-  background-color: red;
-}
-
-.emotion-0x3g6du-Greeting {
-  background-color: red;
-}
-
-.emotion-06ph63u-cases {
-  background-color: red;
-}
-
-.emotion-016k1rg9-cases {
-  background-color: blue;
-}
-
-.emotion-0g67uy0-style1-style2-cases {
+.emotion-0 {
   background-color: black;
   color: white;
 }
@@ -158,11 +142,7 @@ exports[`enzyme mount using the css helper 1`] = `
 <div
   className="emotion-0"
 >
-  <div
-    className="emotion-0g67uy0-style1-style2-cases"
-  >
-    Test content
-  </div>
+  Test content
 </div>
 `;
 

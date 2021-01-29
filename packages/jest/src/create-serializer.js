@@ -89,12 +89,34 @@ function filterEmotionProps(props = {}) {
   return rest
 }
 
-function isShallowEnzymeElement(element: any, classNames: string[]) {
+function getLabelsFromCss(css) {
+  const getLabel = style => {
+    const styleString = style.styles || style
+    const matches = styleString.match(/.*;label:([^;]+);/)
+    return matches && matches[1]
+  }
+  return (Array.isArray(css) ? css.map(getLabel) : [getLabel(css)]).filter(
+    Boolean
+  )
+}
+
+function isShallowEnzymeElement(
+  element: any,
+  keys: string[],
+  labels: string[]
+) {
   const delimiter = ' '
   const childClassNames = flatMap(element.children || [], ({ props = {} }) =>
     (props.className || '').split(delimiter)
   ).filter(Boolean)
-  return !hasIntersection(classNames, childClassNames)
+  return !childClassNames.some(className => {
+    const [childKey, hash, ...childLabels] = className.split('-')
+    return (
+      keys.includes(childKey) &&
+      childLabels.length &&
+      childLabels.every(childLabel => labels.includes(childLabel))
+    )
+  })
 }
 
 const createConvertEmotionElements = (keys: string[], printer: *) => (
@@ -104,13 +126,20 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
     return node
   }
   if (isEmotionCssPropEnzymeElement(node)) {
-    const cssClassNames = (node.props.css.name || '').split(' ')
+    const labels = getLabelsFromCss(node.props.css)
+    const cssName = Array.isArray(node.props.css)
+      ? node.props.css
+          .map(({ name }) => name)
+          .filter(Boolean)
+          .join(' ')
+      : node.props.css.name
+    const cssClassNames = (cssName || '').split(' ')
     const expectedClassNames = flatMap(cssClassNames, cssClassName =>
       keys.map(key => `${key}-${cssClassName}`)
     )
     // if this is a shallow element, we need to manufacture the className
     // since the underlying component is not rendered.
-    if (isShallowEnzymeElement(node, expectedClassNames)) {
+    if (isShallowEnzymeElement(node, keys, labels)) {
       const className = [node.props.className]
         .concat(expectedClassNames)
         .filter(Boolean)
