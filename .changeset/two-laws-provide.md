@@ -1,5 +1,5 @@
 ---
-'@emotion/jest': patch
+'@emotion/jest': minor
 ---
 
-Fix issue creating enzyme snapshots for components using an array as the css prop.
+Fixed an issue with Enzyme snapshots for components using an array as the `css` prop - those should be printed OK now.
