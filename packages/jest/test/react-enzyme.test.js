@@ -143,7 +143,7 @@ const cases = {
       )
     }
   },
-  'using the css helper': {
+  'with array of styles as css prop': {
     render() {
       const style1 = css`
         background-color: black;
@@ -204,7 +204,7 @@ describe('enzyme', () => {
     cases
   )
 
-  test('child containing css array property', () => {
+  test('parent and child using css property', () => {
     const parentStyle = css`
       background-color: black;
     `
