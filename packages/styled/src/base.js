@@ -32,9 +32,11 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
 
   let identifierName
   let targetClassName
+  let shouldTransformProp;
   if (options !== undefined) {
     identifierName = options.label
     targetClassName = options.target
+    shouldTransformProp = options.shouldTransformProp
   }
 
   const shouldForwardProp = composeShouldForwardProps(tag, options, isReal)
@@ -76,23 +78,34 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
 
         let className = ''
         let classInterpolations = []
-        let mergedProps = props
-        if (props.theme == null) {
+        let transformedProps = props
+
+        if (shouldTransformProp) {
+          transformedProps = {}
+          for (let _key in props) {
+            const [_newKey, _newValue] = shouldTransformProp(_key, props[_key])
+
+            transformedProps[_newKey] = _newValue
+          }
+        }
+
+        let mergedProps = transformedProps
+        if (transformedProps.theme == null) {
           mergedProps = {}
-          for (let key in props) {
-            mergedProps[key] = props[key]
+          for (let key in transformedProps) {
+            mergedProps[key] = transformedProps[key]
           }
           mergedProps.theme = React.useContext(ThemeContext)
         }
 
-        if (typeof props.className === 'string') {
+        if (typeof transformedProps.className === 'string') {
           className = getRegisteredStyles(
             cache.registered,
             classInterpolations,
-            props.className
+            transformedProps.className
           )
-        } else if (props.className != null) {
-          className = `${props.className} `
+        } else if (transformedProps.className != null) {
+          className = `${transformedProps.className} `
         }
 
         const serialized = serializeStyles(
@@ -117,14 +130,14 @@ let createStyled: CreateStyled = (tag: any, options?: StyledOptions) => {
 
         let newProps = {}
 
-        for (let key in props) {
+        for (let key in transformedProps) {
           if (shouldUseAs && key === 'as') continue
 
           if (
             // $FlowFixMe
             finalShouldForwardProp(key)
           ) {
-            newProps[key] = props[key]
+            newProps[key] = transformedProps[key]
           }
         }
 
