@@ -184,6 +184,14 @@ const Input5 = styled.input`
   // $ExpectError
   ;<StyledWithAs as="random string" />
 
+  const ComposedWithAs = styled(StyledWithAs)`
+    flex-direction: column;
+  `
+  ;<ComposedWithAs as="section" />
+  ;<ComposedWithAs as={Section} />
+  // $ExpectError
+  ;<ComposedWithAs as="random string" />
+
   const ComponentWithAs: React.FC<{ as: string; className?: string }> = ({
     as,
     className
@@ -196,11 +204,16 @@ const Input5 = styled.input`
   // $ExpectError
   ;<StyledComp as={Section} />
 
-  const ComposedWithAs = styled(StyledWithAs)`
-    flex-direction: column;
+  const ComponentWithoutAs: React.FC<{ className?: string }> = props => (
+    <div {...props} />
+  )
+  const StyledCompWithoutAs = styled(ComponentWithoutAs)`
+    background: hotpink;
   `
-  ;<ComposedWithAs as="section" />
-  ;<ComposedWithAs as={Section} />
   // $ExpectError
-  ;<ComposedWithAs as="random string" />
+  ;<StyledCompWithoutAs as="random string" />
+  // $ExpectError
+  ;<StyledCompWithoutAs as="section" />
+  // $ExpectError
+  ;<StyledCompWithoutAs as={Section} />
 }
