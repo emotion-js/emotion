@@ -128,7 +128,6 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme
-      as?: React.ElementType
     },
     {},
     {
@@ -142,7 +141,6 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme
-      as?: React.ElementType
     },
     {},
     {
@@ -161,7 +159,6 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme
-      as?: React.ElementType
     }
   >
 
@@ -171,7 +168,6 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme
-      as?: React.ElementType
     }
   >
 
