@@ -140,6 +140,10 @@ ruleTester.run('syntax-preference (object)', rule, {
     {
       code: `const Foo = () => <div css={{ color: 'hotpink' }} />`,
       options: ['object']
+    },
+    {
+      code: `const Foo = () => <div css={css({ color: 'hotpink' })} />`,
+      options: ['object']
     }
   ],
 
@@ -196,6 +200,20 @@ ruleTester.run('syntax-preference (object)', rule, {
     },
     {
       code: `const Foo = () => <div css={['background-color: green;', css\`color: hotpink;\`]} />`,
+      options: ['object'],
+      errors: [
+        {
+          message: 'Styles should be written using objects.',
+          type: 'Literal'
+        },
+        {
+          message: 'Styles should be written using objects.',
+          type: 'TaggedTemplateExpression'
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css={css(['background-color: green;', css\`color: hotpink;\`])} />`,
       options: ['object'],
       errors: [
         {

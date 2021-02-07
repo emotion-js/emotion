@@ -65,6 +65,13 @@ const checkCssPropExpressionPreferringObject = (context, node) => {
       )
       return
     case 'CallExpression':
+      // assume the call is to the "css", which might be under a different name
+      if (node.arguments.length === 1) {
+        checkCssPropExpressionPreferringObject(context, node.arguments[0])
+
+        return
+      }
+
       context.report({
         node,
         message: MSG_PREFER_OBJECT_STYLE
