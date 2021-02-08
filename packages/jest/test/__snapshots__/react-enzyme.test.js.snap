@@ -1,24 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`enzyme child containing css array property 1`] = `
-.emotion-0 {
-  background-color: black;
-}
-
-.emotion-1 {
-  color: white;
-}
-
-<div
-  className="emotion-0"
->
-  Test content
-  <div
-    className="emotion-1"
-  />
-</div>
-`;
-
 exports[`enzyme mount basic 1`] = `
 .emotion-0 {
   background-color: red;
@@ -133,7 +114,7 @@ exports[`enzyme mount theming 1`] = `
 </div>
 `;
 
-exports[`enzyme mount using the css helper 1`] = `
+exports[`enzyme mount with array of styles as css prop 1`] = `
 .emotion-0 {
   background-color: black;
   color: white;
@@ -294,6 +275,25 @@ exports[`enzyme mount with styles on top level 1`] = `
 </Greeting>
 `;
 
+exports[`enzyme parent and child using css property 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+.emotion-1 {
+  color: white;
+}
+
+<div
+  className="emotion-0"
+>
+  Test content
+  <div
+    className="emotion-1"
+  />
+</div>
+`;
+
 exports[`enzyme shallow basic 1`] = `
 .emotion-0 {
   background-color: red;
@@ -373,7 +373,7 @@ exports[`enzyme shallow theming 1`] = `
 </div>
 `;
 
-exports[`enzyme shallow using the css helper 1`] = `
+exports[`enzyme shallow with array of styles as css prop 1`] = `
 .emotion-0 {
   background-color: black;
   color: white;
