@@ -146,7 +146,7 @@ export default function SiteHeader() {
               </HeaderLink>
             </li>
             <li>
-              <HeaderLink to="https://join.slack.com/t/emotion-slack/shared_invite/zt-jwd6t4bn-3byTBItoXuwPl5uU~8Qbdg">
+              <HeaderLink to="https://join.slack.com/t/emotion-slack/shared_invite/zt-l7oe5x0x-2jsjNXOs95f5w4AdZWu9LA">
                 Slack
               </HeaderLink>
             </li>

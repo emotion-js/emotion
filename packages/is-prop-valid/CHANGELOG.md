@@ -1,5 +1,11 @@
 # @emotion/is-prop-valid
 
+## 1.1.0
+
+### Minor Changes
+
+- [`f3c2e81d`](https://github.com/emotion-js/emotion/commit/f3c2e81d10b63811ebbc6c5b11fa3553a2605f44) [#2232](https://github.com/emotion-js/emotion/pull/2232) Thanks [@ka2jun8](https://github.com/ka2jun8)! - Added `option` & `fallback` AMP props to the list of valid props.
+
 ## 1.0.0
 
 ### Major Changes

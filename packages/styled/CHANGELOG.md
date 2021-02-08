@@ -1,5 +1,14 @@
 # @emotion/styled
 
+## 11.1.5
+
+### Patch Changes
+
+- [`d0293508`](https://github.com/emotion-js/emotion/commit/d0293508016dc07c5ad502b9eb0bec99ede1d37b) [#2240](https://github.com/emotion-js/emotion/pull/2240) Thanks [@wolszczak96](https://github.com/wolszczak96)! - `as` prop has been removed from TypeScript declarations for composite components. This prop has not actually been handled by default by `styled` for those components - to make `styled` handle it you need to provide a custom `shouldForwardProp` that doesn't forward the `as` prop.
+
+- Updated dependencies [[`f3c2e81d`](https://github.com/emotion-js/emotion/commit/f3c2e81d10b63811ebbc6c5b11fa3553a2605f44)]:
+  - @emotion/is-prop-valid@1.1.0
+
 ## 11.0.0
 
 ### Major Changes
