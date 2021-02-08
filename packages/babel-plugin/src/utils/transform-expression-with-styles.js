@@ -9,24 +9,10 @@ import {
   appendStringReturningExpressionToArguments,
   joinStringLiterals
 } from './strings'
+import createNodeEnvConditional from './create-node-env-conditional'
 
 const CSS_OBJECT_STRINGIFIED_ERROR =
   "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
-
-function createNodeEnvConditional(t, production, development) {
-  return t.conditionalExpression(
-    t.binaryExpression(
-      '===',
-      t.memberExpression(
-        t.memberExpression(t.identifier('process'), t.identifier('env')),
-        t.identifier('NODE_ENV')
-      ),
-      t.stringLiteral('production')
-    ),
-    production,
-    development
-  )
-}
 
 export let transformExpressionWithStyles = ({
   babel,

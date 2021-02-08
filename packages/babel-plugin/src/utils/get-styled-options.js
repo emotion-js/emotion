@@ -1,6 +1,7 @@
 // @flow
 import { getLabelFromPath } from './label'
 import { getTargetClassName } from './get-target-class-name'
+import createNodeEnvConditional from './create-node-env-conditional'
 
 const getKnownProperties = (t: *, node: *) =>
   new Set(
@@ -9,20 +10,24 @@ const getKnownProperties = (t: *, node: *) =>
       .map(n => (t.isIdentifier(n.key) ? n.key.name : n.key.value))
   )
 
+const createObjectSpreadLike = (t, file, ...objs) =>
+  t.callExpression(file.addHelper('extends'), [t.objectExpression([]), ...objs])
+
 export let getStyledOptions = (t: *, path: *, state: *) => {
   const autoLabel = state.opts.autoLabel || 'dev-only'
 
   let args = path.node.arguments
   let optionsArgument = args.length >= 2 ? args[1] : null
 
-  let properties = []
+  let prodProperties = []
+  let devProperties = null
   let knownProperties =
     optionsArgument && t.isObjectExpression(optionsArgument)
       ? getKnownProperties(t, optionsArgument)
       : new Set()
 
   if (!knownProperties.has('target')) {
-    properties.push(
+    prodProperties.push(
       t.objectProperty(
         t.identifier('target'),
         t.stringLiteral(getTargetClassName(state, t))
@@ -30,28 +35,69 @@ export let getStyledOptions = (t: *, path: *, state: *) => {
     )
   }
 
-  let label = autoLabel !== 'never' ? getLabelFromPath(path, state, t) : null
+  let label =
+    autoLabel !== 'never' && !knownProperties.has('label')
+      ? getLabelFromPath(path, state, t)
+      : null
 
-  if (label && !knownProperties.has('label')) {
-    properties.push(
-      t.objectProperty(t.identifier('label'), t.stringLiteral(label))
+  if (label) {
+    const labelNode = t.objectProperty(
+      t.identifier('label'),
+      t.stringLiteral(label)
     )
+    switch (autoLabel) {
+      case 'always':
+        prodProperties.push(labelNode)
+        break
+      case 'dev-only':
+        devProperties = [labelNode]
+        break
+    }
   }
 
   if (optionsArgument) {
+    // for some reason `.withComponent` transformer gets requeued
+    // so check if this has been already transpiled to avoid double wrapping
+    if (
+      t.isConditionalExpression(optionsArgument) &&
+      t.isBinaryExpression(optionsArgument.test) &&
+      t.buildMatchMemberExpression('process.env.NODE_ENV')(
+        optionsArgument.test.left
+      )
+    ) {
+      return optionsArgument
+    }
     if (!t.isObjectExpression(optionsArgument)) {
-      return t.callExpression(state.file.addHelper('extends'), [
-        t.objectExpression([]),
-        t.objectExpression(properties),
+      const prodNode = createObjectSpreadLike(
+        t,
+        state.file,
+        t.objectExpression(prodProperties),
         optionsArgument
-      ])
+      )
+      return devProperties
+        ? createNodeEnvConditional(
+            t,
+            prodNode,
+            t.cloneNode(
+              createObjectSpreadLike(
+                t,
+                state.file,
+                t.objectExpression(prodProperties.concat(devProperties)),
+                optionsArgument
+              )
+            )
+          )
+        : prodNode
     }
 
-    properties.unshift(...optionsArgument.properties)
+    prodProperties.unshift(...optionsArgument.properties)
   }
 
-  return t.objectExpression(
-    // $FlowFixMe
-    properties
-  )
+  return devProperties
+    ? createNodeEnvConditional(
+        t,
+        t.objectExpression(prodProperties),
+        t.cloneNode(t.objectExpression(prodProperties.concat(devProperties)))
+      )
+    : t.objectExpression(prodProperties)
 }
