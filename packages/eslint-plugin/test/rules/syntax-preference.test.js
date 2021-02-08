@@ -51,6 +51,14 @@ ruleTester.run('syntax-preference (string)', rule, {
     {
       code: `const Foo = () => <div css={[styles, otherStyles]} />`,
       options: ['string']
+    },
+    {
+      code: `css\`color: hotpink;\``,
+      options: ['string']
+    },
+    {
+      code: `css(cls, css\`color: hotpink;\`)`,
+      options: ['string']
     }
   ],
 
@@ -61,7 +69,7 @@ ruleTester.run('syntax-preference (string)', rule, {
       errors: [
         {
           message: 'Styles should be written using strings.',
-          type: 'CallExpression'
+          type: 'ObjectExpression'
         }
       ]
     },
@@ -71,7 +79,7 @@ ruleTester.run('syntax-preference (string)', rule, {
       errors: [
         {
           message: 'Styles should be written using strings.',
-          type: 'CallExpression'
+          type: 'ObjectExpression'
         }
       ]
     },
@@ -118,6 +126,16 @@ ruleTester.run('syntax-preference (string)', rule, {
           type: 'ObjectExpression'
         }
       ]
+    },
+    {
+      code: `css(cls, { color: 'hotpink' })`,
+      options: ['string'],
+      errors: [
+        {
+          message: 'Styles should be written using strings.',
+          type: 'ObjectExpression'
+        }
+      ]
     }
   ]
 })
@@ -139,6 +157,10 @@ ruleTester.run('syntax-preference (object)', rule, {
     },
     {
       code: `const Foo = () => <div css={{ color: 'hotpink' }} />`,
+      options: ['object']
+    },
+    {
+      code: `const Foo = () => <div css={css({ color: 'hotpink' })} />`,
       options: ['object']
     }
   ],
@@ -196,6 +218,20 @@ ruleTester.run('syntax-preference (object)', rule, {
     },
     {
       code: `const Foo = () => <div css={['background-color: green;', css\`color: hotpink;\`]} />`,
+      options: ['object'],
+      errors: [
+        {
+          message: 'Styles should be written using objects.',
+          type: 'Literal'
+        },
+        {
+          message: 'Styles should be written using objects.',
+          type: 'TaggedTemplateExpression'
+        }
+      ]
+    },
+    {
+      code: `const Foo = () => <div css={css(['background-color: green;', css\`color: hotpink;\`])} />`,
       options: ['object'],
       errors: [
         {

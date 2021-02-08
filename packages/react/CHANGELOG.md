@@ -1,5 +1,11 @@
 # @emotion/react
 
+## 11.1.5
+
+### Patch Changes
+
+- [`4d2e732e`](https://github.com/emotion-js/emotion/commit/4d2e732e9f0c8385c77c7bc43d4ccea7b30b9d37) [#2206](https://github.com/emotion-js/emotion/pull/2206) Thanks [@jimmydief](https://github.com/jimmydief)! - Added export for `SerializedStyles` Flow type.
+
 ## 11.1.4
 
 ### Patch Changes

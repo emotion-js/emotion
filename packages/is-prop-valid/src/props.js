@@ -186,6 +186,8 @@ const props = {
   autoSave: true,
   // color is for Safari mask-icon link
   color: true,
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/search#incremental_This_API_has_not_been_standardized
+  incremental: true,
   // used in amp html for indicating the fallback behavior
   // https://amp.dev/documentation/guides-and-tutorials/develop/style_and_layout/placeholders/
   fallback: true,

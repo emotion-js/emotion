@@ -37,7 +37,9 @@ function _templateObject() {
 } // source maps should not be appended
 
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
+const SomeComponent = /*#__PURE__*/_styled('div', process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"ec90nws0\\"
+} : {
   target: \\"ec90nws0\\",
   label: \\"SomeComponent\\"
 })(_templateObject());"
@@ -57,7 +59,9 @@ import _styled from \\"@emotion/styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-const SomeComponent = _styled(\\"div\\", {
+const SomeComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"el9tp5g0\\"
+} : {
   target: \\"el9tp5g0\\",
   label: \\"SomeComponent\\"
 })(process.env.NODE_ENV === \\"production\\" ? {
@@ -85,7 +89,9 @@ import _styled from \\"@emotion/styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
+const SomeComponent = /*#__PURE__*/_styled('div', process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"elbjn3a0\\"
+} : {
   target: \\"elbjn3a0\\",
   label: \\"SomeComponent\\"
 })(process.env.NODE_ENV === \\"production\\" ? {
@@ -166,7 +172,9 @@ import _styled from \\"@emotion/styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-const SomeComponent = _styled(\\"div\\", {
+const SomeComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e1i93zq73\\"
+} : {
   target: \\"e1i93zq73\\",
   label: \\"SomeComponent\\"
 })(process.env.NODE_ENV === \\"production\\" ? {
@@ -179,7 +187,9 @@ const SomeComponent = _styled(\\"div\\", {
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
-let SomeOtherComponent = _styled(\\"div\\", {
+let SomeOtherComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e1i93zq72\\"
+} : {
   target: \\"e1i93zq72\\",
   label: \\"SomeOtherComponent\\"
 })(process.env.NODE_ENV === \\"production\\" ? {
@@ -192,12 +202,16 @@ let SomeOtherComponent = _styled(\\"div\\", {
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
-let AnotherComponent = _styled(\\"div\\", {
+let AnotherComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e1i93zq71\\"
+} : {
   target: \\"e1i93zq71\\",
   label: \\"AnotherComponent\\"
 })(SomeComponent, \\"{color:green;}\\", SomeOtherComponent, \\"{color:green;}\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudC1zZWxlY3Rvci5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFRaUMiLCJmaWxlIjoiY29tcG9uZW50LXNlbGVjdG9yLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5cbmNvbnN0IFNvbWVDb21wb25lbnQgPSBzdHlsZWQuZGl2YFxuICBjb2xvcjogaG90cGluaztcbmBcblxubGV0IFNvbWVPdGhlckNvbXBvbmVudCA9IHN0eWxlZC5kaXYoeyBjb2xvcjogJ2hvdHBpbmsnIH0pXG5cbmxldCBBbm90aGVyQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgJHtTb21lQ29tcG9uZW50fSB7XG4gICAgY29sb3I6IGdyZWVuO1xuICB9XG4gICR7U29tZU90aGVyQ29tcG9uZW50fSB7XG4gICAgY29sb3I6IGdyZWVuO1xuICB9XG5gXG5cbmxldCBPbmVMYXN0Q29tcG9uZW50ID0gc3R5bGVkLmRpdih7XG4gIFtTb21lQ29tcG9uZW50XToge1xuICAgIGNvbG9yOiAnZ3JlZW4nXG4gIH0sXG4gIFtTb21lT3RoZXJDb21wb25lbnRdOiB7XG4gICAgY29sb3I6ICdncmVlbidcbiAgfVxufSlcbiJdfQ== */\\"));
 
-let OneLastComponent = _styled(\\"div\\", {
+let OneLastComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e1i93zq70\\"
+} : {
   target: \\"e1i93zq70\\",
   label: \\"OneLastComponent\\"
 })({
@@ -298,7 +312,9 @@ let Avatar = styled.img\`
 
 import _styled from \\"@emotion/styled/base\\";
 
-let Avatar = _styled(\\"img\\", {
+let Avatar = _styled(\\"img\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e9o8e9e0\\"
+} : {
   target: \\"e9o8e9e0\\",
   label: \\"Avatar\\"
 })(\\"width:96px;height:96px;border-radius:\\", props => props.theme.borderRadius, \\";border:1px solid \\", props => props.theme.borderColor, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZ1bmN0aW9uLWludGVycG9sYXRpb24uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRXVCIiwiZmlsZSI6ImZ1bmN0aW9uLWludGVycG9sYXRpb24uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcblxubGV0IEF2YXRhciA9IHN0eWxlZC5pbWdgXG4gIHdpZHRoOiA5NnB4O1xuICBoZWlnaHQ6IDk2cHg7XG4gIGJvcmRlci1yYWRpdXM6ICR7cHJvcHMgPT4gcHJvcHMudGhlbWUuYm9yZGVyUmFkaXVzfTtcbiAgYm9yZGVyOiAxcHggc29saWQgJHtwcm9wcyA9PiBwcm9wcy50aGVtZS5ib3JkZXJDb2xvcn07XG5gXG4iXX0= */\\"));"
@@ -351,7 +367,9 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 import { jsx } from '@emotion/react';
 
 class Thing {
-  static SomeComponent = _styled(\\"div\\", {
+  static SomeComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+    target: \\"e2dh5506\\"
+  } : {
     target: \\"e2dh5506\\",
     label: \\"SomeComponent\\"
   })(process.env.NODE_ENV === \\"production\\" ? {
@@ -363,7 +381,9 @@ class Thing {
     map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1tQyIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuLyogZXNsaW50LWRpc2FibGUgcmVhY3QvanN4LXBhc2NhbC1jYXNlICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG5cbntcbiAgY29uc3QgVGltZWxpbmUgPSBzdHlsZWQudWxgYFxuICBUaW1lbGluZS5JdGVtID0gc3R5bGVkLmxpYGBcbiAgVGltZWxpbmUuSXRlbS5BbmNob3IgPSBzdHlsZWQuYWBgXG59XG5cbntcbiAgbGV0IENvbXBcbiAgQ29tcCA9IHN0eWxlZC5kaXZgYFxufVxuIl19 */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   });
-  BadIdeaComponent = _styled(\\"div\\", {
+  BadIdeaComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+    target: \\"e2dh5505\\"
+  } : {
     target: \\"e2dh5505\\",
     label: \\"BadIdeaComponent\\"
   })(process.env.NODE_ENV === \\"production\\" ? {
@@ -379,7 +399,9 @@ class Thing {
 
 {
   // label should get sanitized
-  const MiniCalWrap$ = _styled(\\"div\\", {
+  const MiniCalWrap$ = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+    target: \\"e2dh5504\\"
+  } : {
     target: \\"e2dh5504\\",
     label: \\"MiniCalWrap-\\"
   })(process.env.NODE_ENV === \\"production\\" ? {
@@ -395,23 +417,31 @@ class Thing {
   const Test = () => <MiniCalWrap$ />;
 }
 {
-  const Timeline = _styled(\\"ul\\", {
+  const Timeline = _styled(\\"ul\\", process.env.NODE_ENV === \\"production\\" ? {
+    target: \\"e2dh5503\\"
+  } : {
     target: \\"e2dh5503\\",
     label: \\"Timeline\\"
   })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXVCNEIiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
 
-  Timeline.Item = _styled(\\"li\\", {
+  Timeline.Item = _styled(\\"li\\", process.env.NODE_ENV === \\"production\\" ? {
+    target: \\"e2dh5502\\"
+  } : {
     target: \\"e2dh5502\\",
     label: \\"Timeline-Item\\"
   })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXdCMkIiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
-  Timeline.Item.Anchor = _styled(\\"a\\", {
+  Timeline.Item.Anchor = _styled(\\"a\\", process.env.NODE_ENV === \\"production\\" ? {
+    target: \\"e2dh5501\\"
+  } : {
     target: \\"e2dh5501\\",
     label: \\"Timeline-Item-Anchor\\"
   })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXlCaUMiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
 }
 {
   let Comp;
-  Comp = _styled(\\"div\\", {
+  Comp = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+    target: \\"e2dh5500\\"
+  } : {
     target: \\"e2dh5500\\",
     label: \\"Comp\\"
   })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQThCbUIiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
@@ -443,7 +473,9 @@ const H1 = styled.h1\`
 import _styled from \\"@emotion/styled/base\\";
 
 // yes, this was actually a bug at one point
-const H1 = _styled(\\"h1\\", {
+const H1 = _styled(\\"h1\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e1nqrpma0\\"
+} : {
   target: \\"e1nqrpma0\\",
   label: \\"H1\\"
 })(\\"text-decoration:underline;border-right:solid blue \\", 54, \\"px;background:white;color:black;display:block;border-radius:3px;padding:25px;width:500px;z-index:\\", 100, \\";font-size:18px;text-align:center;border-left:\\", p => p.theme.blue, \\";\\" + (process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1vcmUtdGhhbi0xMC1pbnRlcnBvbGF0aW9ucy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHb0IiLCJmaWxlIjoibW9yZS10aGFuLTEwLWludGVycG9sYXRpb25zLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5cbi8vIHllcywgdGhpcyB3YXMgYWN0dWFsbHkgYSBidWcgYXQgb25lIHBvaW50XG5jb25zdCBIMSA9IHN0eWxlZC5oMWBcbiAgdGV4dC1kZWNvcmF0aW9uOiAkeyd1bmRlcmxpbmUnfTtcbiAgYm9yZGVyLXJpZ2h0OiBzb2xpZCBibHVlICR7NTR9cHg7XG4gIGJhY2tncm91bmQ6ICR7J3doaXRlJ307XG4gIGNvbG9yOiAkeydibGFjayd9O1xuICBkaXNwbGF5OiAkeydibG9jayd9O1xuICBib3JkZXItcmFkaXVzOiAkeyczcHgnfTtcbiAgcGFkZGluZzogJHsnMjVweCd9O1xuICB3aWR0aDogJHsnNTAwcHgnfTtcbiAgei1pbmRleDogJHsxMDB9O1xuICBmb250LXNpemU6ICR7JzE4cHgnfTtcbiAgdGV4dC1hbGlnbjogJHsnY2VudGVyJ307XG4gIGJvcmRlci1sZWZ0OiAke3AgPT4gcC50aGVtZS5ibHVlfTtcbmBcbiJdfQ== */\\"));"
@@ -467,7 +499,9 @@ import _styled from \\"@emotion/styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-const SomeComponent = _styled(\\"div\\", {
+const SomeComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"eqhyoqt1\\"
+} : {
   target: \\"eqhyoqt1\\",
   label: \\"SomeComponent\\"
 })(process.env.NODE_ENV === \\"production\\" ? {
@@ -480,7 +514,9 @@ const SomeComponent = _styled(\\"div\\", {
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
-const SomeOtherComponent = _styled(\\"button\\", {
+const SomeOtherComponent = _styled(\\"button\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"eqhyoqt0\\"
+} : {
   target: \\"eqhyoqt0\\",
   label: \\"SomeOtherComponent\\"
 })(process.env.NODE_ENV === \\"production\\" ? {
@@ -549,7 +585,9 @@ import _styled from \\"@emotion/styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-const SomeComponent = _styled(\\"div\\", {
+const SomeComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"eyr3fbm0\\"
+} : {
   target: \\"eyr3fbm0\\",
   label: \\"SomeComponent\\"
 })(process.env.NODE_ENV === \\"production\\" ? {
@@ -575,7 +613,9 @@ import _styled from \\"@emotion/styled/base\\";
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
 
-const SomeComponent = /*#__PURE__*/_styled('div', {
+const SomeComponent = /*#__PURE__*/_styled('div', process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e1cky9xc0\\"
+} : {
   target: \\"e1cky9xc0\\",
   label: \\"SomeComponent\\"
 })(process.env.NODE_ENV === \\"production\\" ? {
@@ -599,7 +639,9 @@ const SomeComponent = styled.div(props => ({ color: props.color }))
 
 import _styled from \\"@emotion/styled/base\\";
 
-const SomeComponent = _styled(\\"div\\", {
+const SomeComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e14okpby0\\"
+} : {
   target: \\"e14okpby0\\",
   label: \\"SomeComponent\\"
 })(props => ({
@@ -682,7 +724,9 @@ const H1 = styled.h1({ fontSize })
 import _styled from \\"@emotion/styled/base\\";
 let fontSize = window.whatever;
 
-const H1 = _styled(\\"h1\\", {
+const H1 = _styled(\\"h1\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e4pkhyn0\\"
+} : {
   target: \\"e4pkhyn0\\",
   label: \\"H1\\"
 })({
@@ -712,7 +756,9 @@ const H1 = styled.h1\`
 import _styled from \\"@emotion/styled/base\\";
 import { css } from '@emotion/react';
 
-const H1 = _styled(\\"h1\\", {
+const H1 = _styled(\\"h1\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e45grep0\\"
+} : {
   target: \\"e45grep0\\",
   label: \\"H1\\"
 })(props => css\`
@@ -732,7 +778,9 @@ const H1 = styled.h1({ ...window.whatever })
 
 import _styled from \\"@emotion/styled/base\\";
 
-const H1 = _styled(\\"h1\\", {
+const H1 = _styled(\\"h1\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e49hde00\\"
+} : {
   target: \\"e49hde00\\",
   label: \\"H1\\"
 })({ ...window.whatever
