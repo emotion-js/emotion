@@ -2,4 +2,4 @@
 '@emotion/eslint-plugin': patch
 ---
 
-Adjusts `syntax-preference` eslint rule to support "ignoring" usage of the `css` function when checking the `css` prop for object syntax.
+Improved `syntax-preference` rule to support `css` function and check style types for arguments of `css` & styled calls.
