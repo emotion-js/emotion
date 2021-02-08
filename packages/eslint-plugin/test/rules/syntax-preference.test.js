@@ -51,6 +51,14 @@ ruleTester.run('syntax-preference (string)', rule, {
     {
       code: `const Foo = () => <div css={[styles, otherStyles]} />`,
       options: ['string']
+    },
+    {
+      code: `css\`color: hotpink;\``,
+      options: ['string']
+    },
+    {
+      code: `css(cls, css\`color: hotpink;\`)`,
+      options: ['string']
     }
   ],
 
@@ -61,7 +69,7 @@ ruleTester.run('syntax-preference (string)', rule, {
       errors: [
         {
           message: 'Styles should be written using strings.',
-          type: 'CallExpression'
+          type: 'ObjectExpression'
         }
       ]
     },
@@ -71,7 +79,7 @@ ruleTester.run('syntax-preference (string)', rule, {
       errors: [
         {
           message: 'Styles should be written using strings.',
-          type: 'CallExpression'
+          type: 'ObjectExpression'
         }
       ]
     },
@@ -113,6 +121,16 @@ ruleTester.run('syntax-preference (string)', rule, {
           message: 'Prefer wrapping your string styles with `css` call.',
           type: 'Literal'
         },
+        {
+          message: 'Styles should be written using strings.',
+          type: 'ObjectExpression'
+        }
+      ]
+    },
+    {
+      code: `css(cls, { color: 'hotpink' })`,
+      options: ['string'],
+      errors: [
         {
           message: 'Styles should be written using strings.',
           type: 'ObjectExpression'

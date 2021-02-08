@@ -4,6 +4,9 @@
  */
 
 function isStringStyle(node) {
+  if (node.tag.type === 'Identifier' && node.tag.name === 'css') {
+    return true
+  }
   // shorthand notation
   // eg: styled.h1` color: red; `
   if (
@@ -25,6 +28,10 @@ function isStringStyle(node) {
 }
 
 function isObjectStyle(node) {
+  if (node.callee.type === 'Identifier' && node.callee.name === 'css') {
+    return true
+  }
+
   // shorthand notation
   // eg: styled.h1({ color: 'red' })
   if (
@@ -57,27 +64,14 @@ const MSG_PREFER_OBJECT_STYLE = 'Styles should be written using objects.'
 const MSG_PREFER_WRAPPING_WITH_CSS =
   'Prefer wrapping your string styles with `css` call.'
 
-const checkCssPropExpressionPreferringObject = (context, node) => {
+const checkExpressionPreferringObject = (context, node) => {
   switch (node.type) {
     case 'ArrayExpression':
       node.elements.forEach(element =>
-        checkCssPropExpressionPreferringObject(context, element)
+        checkExpressionPreferringObject(context, element)
       )
       return
-    case 'CallExpression':
-      // assume the call is to the "css", which might be under a different name
-      if (node.arguments.length === 1) {
-        checkCssPropExpressionPreferringObject(context, node.arguments[0])
-
-        return
-      }
-
-      context.report({
-        node,
-        message: MSG_PREFER_OBJECT_STYLE
-      })
-      return
-    case 'TaggedTemplateExpression':
+    case 'TemplateLiteral':
       context.report({
         node,
         message: MSG_PREFER_OBJECT_STYLE
@@ -104,6 +98,13 @@ const createPreferredObjectVisitor = context => ({
       })
     }
   },
+  CallExpression(node) {
+    if (isObjectStyle(node)) {
+      node.arguments.forEach(argument =>
+        checkExpressionPreferringObject(context, argument)
+      )
+    }
+  },
   JSXAttribute(node) {
     if (node.name.name !== 'css') {
       return
@@ -121,16 +122,16 @@ const createPreferredObjectVisitor = context => ({
         })
         return
       case 'JSXExpressionContainer':
-        checkCssPropExpressionPreferringObject(context, node.value.expression)
+        checkExpressionPreferringObject(context, node.value.expression)
     }
   }
 })
 
-const checkCssPropExpressionPreferringString = (context, node) => {
+const checkExpressionPreferringString = (context, node) => {
   switch (node.type) {
     case 'ArrayExpression':
       node.elements.forEach(element =>
-        checkCssPropExpressionPreferringString(context, element)
+        checkExpressionPreferringString(context, element)
       )
       return
     case 'ObjectExpression':
@@ -154,10 +155,9 @@ const checkCssPropExpressionPreferringString = (context, node) => {
 const createPreferredStringVisitor = context => ({
   CallExpression(node) {
     if (isObjectStyle(node)) {
-      context.report({
-        node,
-        message: MSG_PREFER_STRING_STYLE
-      })
+      node.arguments.forEach(argument =>
+        checkExpressionPreferringString(context, argument)
+      )
     }
   },
 
@@ -178,7 +178,7 @@ const createPreferredStringVisitor = context => ({
         })
         return
       case 'JSXExpressionContainer':
-        checkCssPropExpressionPreferringString(context, node.value.expression)
+        checkExpressionPreferringString(context, node.value.expression)
     }
   }
 })
