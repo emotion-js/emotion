@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 11.2.0
+
+### Minor Changes
+
+- [`0c31ed05`](https://github.com/emotion-js/emotion/commit/0c31ed05e564c4e68d11862e23d96003c6b7e4b5) [#2233](https://github.com/emotion-js/emotion/pull/2233) Thanks [@ajs139](https://github.com/ajs139)! - Fixed an issue with Enzyme snapshots for components using an array as the `css` prop - those should be printed OK now.
+
 ## 11.1.0
 
 ### Minor Changes

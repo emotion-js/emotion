@@ -1,5 +1,11 @@
 # @emotion/eslint-plugin
 
+## 11.2.0
+
+### Patch Changes
+
+- [`bfaa1b51`](https://github.com/emotion-js/emotion/commit/bfaa1b51684c6883c311cc20a7bf260f1af183e3) [#2246](https://github.com/emotion-js/emotion/pull/2246) Thanks [@G-Rath](https://github.com/G-Rath)! - Improved `syntax-preference` rule to support `css` function and check style types for arguments of `css` & styled calls.
+
 ## 11.0.0
 
 ### Major Changes
