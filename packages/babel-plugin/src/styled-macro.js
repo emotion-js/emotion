@@ -97,7 +97,7 @@ export let styledTransformer = ({
 
   if (reference.parentPath && reference.parentPath.parentPath) {
     const styledCallPath = reference.parentPath.parentPath
-    let { node } = transformExpressionWithStyles({
+    let node = transformExpressionWithStyles({
       path: styledCallPath,
       state,
       babel,

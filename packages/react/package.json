@@ -1,21 +1,25 @@
 {
   "name": "@emotion/react",
-  "version": "11.0.0-next.11",
-  "main": "dist/react.cjs.js",
-  "module": "dist/react.esm.js",
+  "version": "11.1.5",
+  "main": "dist/emotion-react.cjs.js",
+  "module": "dist/emotion-react.esm.js",
   "browser": {
-    "./dist/react.cjs.js": "./dist/react.browser.cjs.js",
-    "./dist/react.esm.js": "./dist/react.browser.esm.js"
+    "./dist/emotion-react.cjs.js": "./dist/emotion-react.browser.cjs.js",
+    "./dist/emotion-react.esm.js": "./dist/emotion-react.browser.esm.js"
   },
   "types": "types/index.d.ts",
   "files": [
     "src",
     "dist",
+    "jsx-runtime",
+    "jsx-dev-runtime",
+    "isolated-hoist-non-react-statics-do-not-use-this-in-your-code",
     "types/*.d.ts",
     "macro.js",
     "macro.d.ts",
     "macro.js.flow"
   ],
+  "sideEffects": false,
   "author": "mitchellhamilton <mitchell@mitchellhamilton.me>",
   "license": "MIT",
   "scripts": {
@@ -23,11 +27,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
-    "@emotion/cache": "^11.0.0-next.10",
-    "@emotion/serialize": "^0.11.15-next.4",
-    "@emotion/sheet": "0.10.0-next.1",
-    "@emotion/utils": "0.11.2",
-    "@emotion/weak-memoize": "0.2.4",
+    "@emotion/cache": "^11.1.3",
+    "@emotion/serialize": "^1.0.0",
+    "@emotion/sheet": "^1.0.1",
+    "@emotion/utils": "^1.0.0",
+    "@emotion/weak-memoize": "^0.2.5",
     "hoist-non-react-statics": "^3.3.1"
   },
   "peerDependencies": {
@@ -37,25 +41,35 @@
   "peerDependenciesMeta": {
     "@babel/core": {
       "optional": true
+    },
+    "@types/react": {
+      "optional": true
     }
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@emotion/css": "^11.0.0-next.11",
-    "@emotion/server": "^11.0.0-next.10",
-    "@emotion/styled": "^11.0.0-next.11",
+    "@emotion/css": "11.1.3",
+    "@emotion/css-prettifier": "1.0.0",
+    "@emotion/server": "11.0.0",
+    "@emotion/styled": "11.1.5",
     "@types/react": "^16.9.11",
     "dtslint": "^0.3.0",
     "html-tag-names": "^1.1.2",
-    "react": "^16.11.0",
+    "react": "16.14.0",
     "svg-tag-names": "^1.1.1"
   },
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/core",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/react",
   "publishConfig": {
     "access": "public"
   },
-  "umd:main": "dist/react.umd.min.js",
+  "umd:main": "dist/emotion-react.umd.min.js",
   "preconstruct": {
-    "umdName": "emotionCore"
+    "entrypoints": [
+      "./index.js",
+      "./jsx-runtime.js",
+      "./jsx-dev-runtime.js",
+      "./isolated-hoist-non-react-statics-do-not-use-this-in-your-code.js"
+    ],
+    "umdName": "emotionReact"
   }
 }

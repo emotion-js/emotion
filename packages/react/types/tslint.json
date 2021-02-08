@@ -20,6 +20,8 @@
     ],
     "no-null-undefined-union": false,
     "no-object-literal-type-assertion": false,
-    "no-unnecessary-generics": false
+    "no-unnecessary-generics": false,
+    "no-empty-interface": false,
+    "strict-export-declare-modifiers": false
   }
 }

@@ -14,9 +14,12 @@ beforeEach(() => {
 
 test('basic', () => {
   render(
-    <CacheProvider value={createCache()}>
+    <CacheProvider value={createCache({ key: 'css' })}>
       <Global
         styles={[
+          css`
+            @import url('something.com/file.css');
+          `,
           {
             html: {
               backgroundColor: 'hotpink'
@@ -34,10 +37,7 @@ test('basic', () => {
             '@font-face': {
               fontFamily: 'some-name'
             }
-          },
-          css`
-            @import url('something.com/file.css');
-          `
+          }
         ]}
       />
     </CacheProvider>,
@@ -52,7 +52,7 @@ test('basic', () => {
 })
 
 test('updating more than 1 global rule', () => {
-  const cache = createCache()
+  const cache = createCache({ key: 'global-multiple-rules' })
   const renderComponent = ({ background, color }) =>
     render(
       <CacheProvider value={cache}>

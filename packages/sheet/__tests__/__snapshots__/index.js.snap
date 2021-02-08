@@ -5,12 +5,14 @@ exports[`StyleSheet should accept prepend option 1`] = `
   <head>
     <style
       data-emotion=""
+      data-s=""
     >
       
       html { color: hotpink; }
     </style>
     <style
       data-emotion=""
+      data-s=""
     >
       
       * { box-sizing: border-box; }
@@ -23,7 +25,7 @@ exports[`StyleSheet should accept prepend option 1`] = `
 </html>
 `;
 
-exports[`StyleSheet should be able to rehydrate styles 1`] = `
+exports[`StyleSheet should be able to hydrate styles 1`] = `
 <html>
   <head />
   <body>
@@ -37,7 +39,7 @@ exports[`StyleSheet should be able to rehydrate styles 1`] = `
 </html>
 `;
 
-exports[`StyleSheet should be able to rehydrate styles 2`] = `
+exports[`StyleSheet should be able to hydrate styles 2`] = `
 <html>
   <head>
     <style>
@@ -51,7 +53,7 @@ exports[`StyleSheet should be able to rehydrate styles 2`] = `
 </html>
 `;
 
-exports[`StyleSheet should correctly position rehydrated styles when used with \`prepend\` option 1`] = `
+exports[`StyleSheet should correctly position hydrated styles when used with \`prepend\` option 1`] = `
 <html>
   <head>
     <style>
@@ -68,7 +70,7 @@ exports[`StyleSheet should correctly position rehydrated styles when used with \
 </html>
 `;
 
-exports[`StyleSheet should flush rehydrated styles 1`] = `
+exports[`StyleSheet should flush hydrated styles 1`] = `
 <html>
   <head>
     <style>
@@ -79,12 +81,14 @@ exports[`StyleSheet should flush rehydrated styles 1`] = `
     </style>
     <style
       data-emotion=""
+      data-s=""
     >
       
       html { color: hotpink; }
     </style>
     <style
       data-emotion=""
+      data-s=""
     >
       
       * { box-sizing: border-box; }
@@ -94,7 +98,7 @@ exports[`StyleSheet should flush rehydrated styles 1`] = `
 </html>
 `;
 
-exports[`StyleSheet should flush rehydrated styles 2`] = `
+exports[`StyleSheet should flush hydrated styles 2`] = `
 <html>
   <head />
   <body />
@@ -106,6 +110,7 @@ exports[`StyleSheet should insert a rule into the DOM when not in speedy 1`] = `
   <head>
     <style
       data-emotion=""
+      data-s=""
     >
       
       html { color: hotpink; }
@@ -120,6 +125,7 @@ exports[`StyleSheet should insert a rule with insertRule when in speedy 1`] = `
   <head>
     <style
       data-emotion=""
+      data-s=""
     >
       
     </style>
@@ -158,6 +164,7 @@ exports[`StyleSheet should remove its style elements from the document when flus
   <head>
     <style
       data-emotion=""
+      data-s=""
     >
       
       html { color: hotpink; }
@@ -179,6 +186,7 @@ exports[`StyleSheet should set the data-emotion attribute to the key option 1`] 
   <head>
     <style
       data-emotion="some-key"
+      data-s=""
     >
       
       html { color: hotpink; }
@@ -195,6 +203,7 @@ exports[`StyleSheet should use the container option instead of document.head to 
     <div>
       <style
         data-emotion=""
+        data-s=""
       >
         
         html { color: hotpink; }

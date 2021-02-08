@@ -1,5 +1,119 @@
 # @emotion/primitives-core
 
+## 11.0.0
+
+### Major Changes
+
+- [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Functions are no longer accepted as values for the `style` prop. This unifies the behavior with the web version of Emotion as `style`'s equivalent is `className` prop and functions are not resolved for it.
+
+* [`139ea336`](https://github.com/emotion-js/emotion/commit/139ea336c7f49a3246813238e388e164b80de4da) [#2060](https://github.com/emotion-js/emotion/pull/2060) Thanks [@efoken](https://github.com/efoken)! - `StyleSheet.create` is used now under the hood. This means that when used in combination with React Native Web atomic class names are applied on components instead of inline styles.
+
+- [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use hooks internally for improved bundle size and a better tree in React DevTools
+
+* [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Updated `css-to-react-native` dependency to the 3.x version - it comes with some breaking changes listed [here](https://github.com/styled-components/css-to-react-native/releases/tag/v3.0.0).
+
+### Minor Changes
+
+- [`2d597857`](https://github.com/emotion-js/emotion/commit/2d5978579f758163663c1bfb40e7d76bc24ae26a) [#2058](https://github.com/emotion-js/emotion/pull/2058) Thanks [@efoken](https://github.com/efoken)! - Added support for the `as` prop.
+
+### Patch Changes
+
+- [`db16ac35`](https://github.com/emotion-js/emotion/commit/db16ac358ded4cc04fbd649700716b7cb3b3e40a) [#2013](https://github.com/emotion-js/emotion/pull/2013) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with styles being lost for nested factory calls like:
+
+  ```js
+  const bgColor = color => css`
+    background-color: ${color};
+  `
+
+  const Text = styled.Text`
+    color: hotpink;
+    ${({ backgroundColor }) => bgColor(backgroundColor)};
+  `
+  ```
+
+## 11.0.0-rc.0
+
+### Major Changes
+
+- [`9c4ebc16`](https://github.com/emotion-js/emotion/commit/9c4ebc160471097c5d04fb92dba3ed0df870bb63) [#2030](https://github.com/emotion-js/emotion/pull/2030) Thanks [@Andarist](https://github.com/Andarist)! - Release candidate version.
+
+### Patch Changes
+
+- Updated dependencies [[`9c4ebc16`](https://github.com/emotion-js/emotion/commit/9c4ebc160471097c5d04fb92dba3ed0df870bb63)]:
+  - @emotion/react@11.0.0-rc.0
+
+## 11.0.0-next.19
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/react@11.0.0-next.19
+
+## 11.0.0-next.18
+
+### Major Changes
+
+- [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Updated `css-to-react-native` dependency to the 3.x version - it comes with some breaking changes listed [here](https://github.com/styled-components/css-to-react-native/releases/tag/v3.0.0).
+
+* [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Functions are no longer accepted as values for the `style` prop. This unifies the behavior with the web version of Emotion as `style`'s equivalent is `className` prop and functions are not resolved for it.
+
+### Patch Changes
+
+- [`db16ac35`](https://github.com/emotion-js/emotion/commit/db16ac358ded4cc04fbd649700716b7cb3b3e40a) [#2013](https://github.com/emotion-js/emotion/pull/2013) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with styles being lost for nested factory calls like:
+
+  ```js
+  const bgColor = color => css`
+    background-color: ${color};
+  `
+
+  const Text = styled.Text`
+    color: hotpink;
+    ${({ backgroundColor }) => bgColor(backgroundColor)};
+  `
+  ```
+
+## 11.0.0-next.17
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/react@11.0.0-next.17
+
+## 11.0.0-next.16
+
+### Patch Changes
+
+- Updated dependencies [[`58b2bbca`](https://github.com/emotion-js/emotion/commit/58b2bbcad63f8ea22389ccdc2a8f6c5064984e82)]:
+  - @emotion/react@11.0.0-next.16
+
+## 11.0.0-next.15
+
+### Patch Changes
+
+- Updated dependencies [[`5d692a6a`](https://github.com/emotion-js/emotion/commit/5d692a6a8102b3faabefb773dd0145b123668a07)]:
+  - @emotion/react@11.0.0-next.15
+
+## 11.0.0-next.14
+
+### Patch Changes
+
+- Updated dependencies [[`58dc08a6`](https://github.com/emotion-js/emotion/commit/58dc08a6a013fb5cfa10bb85e06e53a8ff7eeb51), [`f57a7229`](https://github.com/emotion-js/emotion/commit/f57a72299cd4025a725bd5bd1b966a8f9df16cd8)]:
+  - @emotion/react@11.0.0-next.14
+
+## 11.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies [[`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf)]:
+  - @emotion/react@11.0.0-next.13
+
+## 11.0.0-next.12
+
+### Patch Changes
+
+- Updated dependencies [[`7dea6d7a`](https://github.com/emotion-js/emotion/commit/7dea6d7a9a87f00cf9b695b58a2f65b67e17fabd), [`105de5c8`](https://github.com/emotion-js/emotion/commit/105de5c8752be0983c000e1e26462dc8fcf0708d), [`be2eb614`](https://github.com/emotion-js/emotion/commit/be2eb614d2bc369a382dbc6aa347f66801605f3b), [`75e2f9e1`](https://github.com/emotion-js/emotion/commit/75e2f9e1848bc0161f8db3c663438ada3042ae66)]:
+  - @emotion/react@11.0.0-next.12
+
 ## 11.0.0-next.10
 
 ### Patch Changes
@@ -84,6 +198,14 @@
 
 - Updated dependencies [[`302bdba1`](https://github.com/emotion-js/emotion/commit/302bdba1a6b793484c09edeb668815c5e31ea555)]:
   - @emotion/core@11.0.0-next.0
+
+## 10.0.27
+
+### Patch Changes
+
+- [`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968) [#1698](https://github.com/emotion-js/emotion/pull/1698) Thanks [@Andarist](https://github.com/Andarist)! - Add LICENSE file
+- Updated dependencies [[`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968)]:
+  - @emotion/core@10.0.27
 
 ## 10.0.22
 

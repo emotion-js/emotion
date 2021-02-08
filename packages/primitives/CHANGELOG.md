@@ -1,5 +1,138 @@
 # @emotion/primitives
 
+## 11.0.0
+
+### Major Changes
+
+- [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Functions are no longer accepted as values for the `style` prop. This unifies the behavior with the web version of Emotion as `style`'s equivalent is `className` prop and functions are not resolved for it.
+
+* [`139ea336`](https://github.com/emotion-js/emotion/commit/139ea336c7f49a3246813238e388e164b80de4da) [#2060](https://github.com/emotion-js/emotion/pull/2060) Thanks [@efoken](https://github.com/efoken)! - `StyleSheet.create` is used now under the hood. This means that when used in combination with React Native Web atomic class names are applied on components instead of inline styles.
+
+- [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967) [#967](https://github.com/emotion-js/emotion/pull/967) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Use hooks internally for improved bundle size and a better tree in React DevTools
+
+* [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Updated `css-to-react-native` dependency to the 3.x version - it comes with some breaking changes listed [here](https://github.com/styled-components/css-to-react-native/releases/tag/v3.0.0).
+
+### Minor Changes
+
+- [`843bfb11`](https://github.com/emotion-js/emotion/commit/843bfb1153ee0dbe33d005fdd5c5be185daa5c41) [#1630](https://github.com/emotion-js/emotion/pull/1630) Thanks [@Andarist](https://github.com/Andarist)! - `@emotion/native` & `@emotion/primitives` packages come with macros now. Both can be used as `@emotion/native/macro` & `@emotion/primitives/macro` respectively.
+
+* [`2d597857`](https://github.com/emotion-js/emotion/commit/2d5978579f758163663c1bfb40e7d76bc24ae26a) [#2058](https://github.com/emotion-js/emotion/pull/2058) Thanks [@efoken](https://github.com/efoken)! - Added support for the `as` prop.
+
+- [`f1b7c9d6`](https://github.com/emotion-js/emotion/commit/f1b7c9d6dcdb45a02d7c7dce8c3fff28e14ed3ec) [#1642](https://github.com/emotion-js/emotion/pull/1642) Thanks [@Andarist](https://github.com/Andarist)! - Added basic support for accepting custom `shouldForwardProp` option.
+
+### Patch Changes
+
+- [`db16ac35`](https://github.com/emotion-js/emotion/commit/db16ac358ded4cc04fbd649700716b7cb3b3e40a) [#2013](https://github.com/emotion-js/emotion/pull/2013) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with styles being lost for nested factory calls like:
+
+  ```js
+  const bgColor = color => css`
+    background-color: ${color};
+  `
+
+  const Text = styled.Text`
+    color: hotpink;
+    ${({ backgroundColor }) => bgColor(backgroundColor)};
+  `
+  ```
+
+- Updated dependencies [[`c672175b`](https://github.com/emotion-js/emotion/commit/c672175b52e86de43b3d4092a8fe34b2023ceae8), [`923ded01`](https://github.com/emotion-js/emotion/commit/923ded01e2399a242206d590f6646f13aba110e4), [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1), [`5e803106`](https://github.com/emotion-js/emotion/commit/5e803106d391b7c036bdf634318b80337a1d9b70), [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9), [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1), [`0a4a22ff`](https://github.com/emotion-js/emotion/commit/0a4a22ffcfaa49d09a88856ef2d51e0d53e31b6d), [`b0ad4f0c`](https://github.com/emotion-js/emotion/commit/b0ad4f0c628813a42c4637857be9a969429db6f0), [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf), [`c65c5d88`](https://github.com/emotion-js/emotion/commit/c65c5d887002d76557eaefcb98091d795b13f9a9), [`5c7ec859`](https://github.com/emotion-js/emotion/commit/5c7ec85904633a11185066fa591dc8969f3f2ff2), [`db16ac35`](https://github.com/emotion-js/emotion/commit/db16ac358ded4cc04fbd649700716b7cb3b3e40a), [`a085003d`](https://github.com/emotion-js/emotion/commit/a085003d4c8ca284c116668d7217fb747802ed85), [`c7850e61`](https://github.com/emotion-js/emotion/commit/c7850e61211d6aa26a3388399889a6072ee2f1fe), [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9), [`b7d21373`](https://github.com/emotion-js/emotion/commit/b7d21373d967d0f958dd59aaaa650047e23e8e8b), [`139ea336`](https://github.com/emotion-js/emotion/commit/139ea336c7f49a3246813238e388e164b80de4da), [`c5b12d90`](https://github.com/emotion-js/emotion/commit/c5b12d90316477e95ce3680a3c745cde328a14c1), [`79036056`](https://github.com/emotion-js/emotion/commit/79036056808eefc81a77225254f7c25c2ff9d967), [`2d597857`](https://github.com/emotion-js/emotion/commit/2d5978579f758163663c1bfb40e7d76bc24ae26a), [`828111cd`](https://github.com/emotion-js/emotion/commit/828111cd32d3fe8c984231201e518d1b6000bffd), [`69446cb5`](https://github.com/emotion-js/emotion/commit/69446cb5bfb644beb877a1edb00ee46c014636d5)]:
+  - @emotion/babel-plugin@11.0.0
+  - @emotion/is-prop-valid@1.0.0
+  - @emotion/primitives-core@11.0.0
+
+## 11.0.0-rc.0
+
+### Major Changes
+
+- [`9c4ebc16`](https://github.com/emotion-js/emotion/commit/9c4ebc160471097c5d04fb92dba3ed0df870bb63) [#2030](https://github.com/emotion-js/emotion/pull/2030) Thanks [@Andarist](https://github.com/Andarist)! - Release candidate version.
+
+### Patch Changes
+
+- Updated dependencies [[`9c4ebc16`](https://github.com/emotion-js/emotion/commit/9c4ebc160471097c5d04fb92dba3ed0df870bb63), [`69446cb5`](https://github.com/emotion-js/emotion/commit/69446cb5bfb644beb877a1edb00ee46c014636d5)]:
+  - @emotion/babel-plugin@11.0.0-rc.0
+  - @emotion/is-prop-valid@1.0.0-rc.0
+  - @emotion/primitives-core@11.0.0-rc.0
+
+## 11.0.0-next.19
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.19
+
+## 11.0.0-next.18
+
+### Major Changes
+
+- [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Updated `css-to-react-native` dependency to the 3.x version - it comes with some breaking changes listed [here](https://github.com/styled-components/css-to-react-native/releases/tag/v3.0.0).
+
+* [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9) [#2014](https://github.com/emotion-js/emotion/pull/2014) Thanks [@Andarist](https://github.com/Andarist)! - Functions are no longer accepted as values for the `style` prop. This unifies the behavior with the web version of Emotion as `style`'s equivalent is `className` prop and functions are not resolved for it.
+
+### Patch Changes
+
+- [`db16ac35`](https://github.com/emotion-js/emotion/commit/db16ac358ded4cc04fbd649700716b7cb3b3e40a) [#2013](https://github.com/emotion-js/emotion/pull/2013) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with styles being lost for nested factory calls like:
+
+  ```js
+  const bgColor = color => css`
+    background-color: ${color};
+  `
+
+  const Text = styled.Text`
+    color: hotpink;
+    ${({ backgroundColor }) => bgColor(backgroundColor)};
+  `
+  ```
+
+- Updated dependencies [[`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9), [`db16ac35`](https://github.com/emotion-js/emotion/commit/db16ac358ded4cc04fbd649700716b7cb3b3e40a), [`95ea2839`](https://github.com/emotion-js/emotion/commit/95ea2839890629748894b3942d26f608f203d3f9)]:
+  - @emotion/primitives-core@11.0.0-next.18
+
+## 11.0.0-next.17
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/babel-plugin@11.0.0-next.17
+  - @emotion/primitives-core@11.0.0-next.17
+
+## 11.0.0-next.16
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.16
+  - @emotion/babel-plugin@11.0.0-next.16
+
+## 11.0.0-next.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.15
+  - @emotion/babel-plugin@11.0.0-next.15
+
+## 11.0.0-next.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @emotion/primitives-core@11.0.0-next.14
+
+## 11.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies [[`5e803106`](https://github.com/emotion-js/emotion/commit/5e803106d391b7c036bdf634318b80337a1d9b70), [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf)]:
+  - @emotion/babel-plugin@11.0.0-next.13
+  - @emotion/primitives-core@11.0.0-next.13
+
+## 11.0.0-next.12
+
+### Patch Changes
+
+- Updated dependencies [[`5c7ec859`](https://github.com/emotion-js/emotion/commit/5c7ec85904633a11185066fa591dc8969f3f2ff2), [`e3d7db87`](https://github.com/emotion-js/emotion/commit/e3d7db87deaac95817404760112417ac1fa1b56d)]:
+  - @emotion/babel-plugin@11.0.0-next.12
+  - @emotion/primitives-core@11.0.0-next.12
+
 ## 11.0.0-next.10
 
 ### Patch Changes
@@ -34,9 +167,9 @@
 
 ### Minor Changes
 
-- [`843bfb11`](https://github.com/emotion-js/emotion/commit/843bfb1153ee0dbe33d005fdd5c5be185daa5c41) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - `@emotion/native` & `@emotion/primitives` packages come with macros now. Both can be used as `@emotion/native/macro` & `@emotion/primitives/macro` respectively.
+- [`843bfb11`](https://github.com/emotion-js/emotion/commit/843bfb1153ee0dbe33d005fdd5c5be185daa5c41) [#1630](https://github.com/emotion-js/emotion/pull/1630) Thanks [@Andarist](https://github.com/Andarist)! - `@emotion/native` & `@emotion/primitives` packages come with macros now. Both can be used as `@emotion/native/macro` & `@emotion/primitives/macro` respectively.
 
-* [`f1b7c9d6`](https://github.com/emotion-js/emotion/commit/f1b7c9d6dcdb45a02d7c7dce8c3fff28e14ed3ec) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@Andarist](https://github.com/Andarist)! - Added basic support for accepting custom `shouldForwardProp` option.
+* [`f1b7c9d6`](https://github.com/emotion-js/emotion/commit/f1b7c9d6dcdb45a02d7c7dce8c3fff28e14ed3ec) [#1642](https://github.com/emotion-js/emotion/pull/1642) Thanks [@Andarist](https://github.com/Andarist)! - Added basic support for accepting custom `shouldForwardProp` option.
 
 ### Patch Changes
 
@@ -105,6 +238,32 @@
   - babel-plugin-emotion@11.0.0-next.0
   - emotion-theming@11.0.0-next.0
   - @emotion/primitives-core@11.0.0-next.0
+
+## 10.0.30
+
+### Patch Changes
+
+- Updated dependencies [[`babbbe3`](https://github.com/emotion-js/emotion/commit/babbbe36844f26f6d7041f1d3aeb47d5dfb08d8a)]:
+  - @emotion/is-prop-valid@0.8.8
+
+## 10.0.28
+
+### Patch Changes
+
+- Updated dependencies [[`4dfe558`](https://github.com/emotion-js/emotion/commit/4dfe55811a25bf66306aee46f7f0d6c909004c42), [`af07afb`](https://github.com/emotion-js/emotion/commit/af07afbe5a887be82f72a12fd6cd1673a32f5263), [`12141c5`](https://github.com/emotion-js/emotion/commit/12141c54318c0738b60bf755e033cf6e12238a02)]:
+  - babel-plugin-emotion@10.0.28
+  - @emotion/is-prop-valid@0.8.7
+
+## 10.0.27
+
+### Patch Changes
+
+- [`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968) [#1698](https://github.com/emotion-js/emotion/pull/1698) Thanks [@Andarist](https://github.com/Andarist)! - Add LICENSE file
+- Updated dependencies [[`4c62ae9`](https://github.com/emotion-js/emotion/commit/4c62ae9447959d438928e1a26f76f1487983c968)]:
+  - babel-plugin-emotion@10.0.27
+  - emotion-theming@10.0.27
+  - @emotion/is-prop-valid@0.8.6
+  - @emotion/primitives-core@10.0.27
 
 ## 10.0.24
 

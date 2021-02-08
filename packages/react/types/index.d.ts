@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 3.1
+// TypeScript Version: 3.4
 
 import { EmotionCache } from '@emotion/cache'
 import {
@@ -14,7 +14,6 @@ import {
 } from '@emotion/serialize'
 import {
   ClassAttributes,
-  ComponentClass,
   Context,
   Provider,
   FC,
@@ -23,6 +22,7 @@ import {
   Ref,
   createElement
 } from 'react'
+import { EmotionJSX } from './jsx-namespace'
 
 export {
   ArrayInterpolation,
@@ -45,8 +45,6 @@ export const CacheProvider: Provider<EmotionCache>
 export function withEmotionCache<Props, RefType = any>(
   func: (props: Props, context: EmotionCache, ref: Ref<RefType>) => ReactNode
 ): FC<Props & ClassAttributes<RefType>>
-
-export const jsx: typeof createElement
 
 export function css(
   template: TemplateStringsArray,
@@ -94,21 +92,22 @@ export interface ClassNamesProps {
  */
 export function ClassNames(props: ClassNamesProps): ReactElement
 
-declare module 'react' {
-  interface DOMAttributes<T> {
-    css?: Interpolation<Theme>
-  }
-}
-
-declare global {
+export const jsx: typeof createElement
+export namespace jsx {
   namespace JSX {
-    /**
-     * Do we need to modify `LibraryManagedAttributes` too,
-     * to make `className` props optional when `css` props is specified?
-     */
-
-    interface IntrinsicAttributes {
-      css?: Interpolation<Theme>
-    }
+    interface Element extends EmotionJSX.Element {}
+    interface ElementClass extends EmotionJSX.ElementClass {}
+    interface ElementAttributesProperty
+      extends EmotionJSX.ElementAttributesProperty {}
+    interface ElementChildrenAttribute
+      extends EmotionJSX.ElementChildrenAttribute {}
+    type LibraryManagedAttributes<C, P> = EmotionJSX.LibraryManagedAttributes<
+      C,
+      P
+    >
+    interface IntrinsicAttributes extends EmotionJSX.IntrinsicAttributes {}
+    interface IntrinsicClassAttributes<T>
+      extends EmotionJSX.IntrinsicClassAttributes<T> {}
+    type IntrinsicElements = EmotionJSX.IntrinsicElements
   }
 }

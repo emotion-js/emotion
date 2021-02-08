@@ -23,6 +23,7 @@ const TemplateWrapper = ({
     <React.Fragment>
       <Global styles={globalStyles} />
       <Helmet title={['Emotion', title].join(' - ')} />
+
       <div
         css={mq({
           display: 'grid',

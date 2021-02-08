@@ -1,6 +1,7 @@
 // @flow
 import 'test-utils/legacy-env'
 import { css } from '@emotion/css'
+import createCss from '@emotion/css/create-instance'
 import * as React from 'react'
 import renderer from 'react-test-renderer'
 
@@ -54,19 +55,20 @@ it('does warn when functions are passed to css calls', () => {
   )
 })
 
-it('warns when class names from css are interpolated', () => {
-  let cls = css`
-    color: green;
-  `
-  css`
-    .${cls} {
-      color: hotpink;
-    }
-  `
-  expect((console.error: any).mock.calls[0]).toMatchInlineSnapshot(`
-Array [
-  "Interpolating a className from css\`\` is not recommended and will cause problems with composition.
-Interpolating a className from css\`\` will be completely unsupported in a future major version of Emotion",
-]
-`)
+it('does warn when @import rule is being inserted after order-insensitive rules', () => {
+  const { injectGlobal } = createCss({ key: 'import-after-regular' })
+
+  injectGlobal`.thing {display:flex;}`
+  injectGlobal`@import 'custom.css';`
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+    Array [
+      Array [
+        "You're attempting to insert the following rule:
+    @import 'custom.css';
+
+    \`@import\` rules must be before all other types of rules in a stylesheet but other rules have already been inserted. Please ensure that \`@import\` rules are before all other rules.",
+      ],
+    ]
+  `)
 })

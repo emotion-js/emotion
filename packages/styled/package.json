@@ -1,9 +1,9 @@
 {
   "name": "@emotion/styled",
-  "version": "11.0.0-next.11",
+  "version": "11.1.5",
   "description": "styled API for emotion",
-  "main": "dist/styled.cjs.js",
-  "module": "dist/styled.esm.js",
+  "main": "dist/emotion-styled.cjs.js",
+  "module": "dist/emotion-styled.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/styled",
@@ -12,26 +12,29 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
-    "@emotion/babel-plugin": "^11.0.0-next.11",
-    "@emotion/is-prop-valid": "0.9.0-next.1",
-    "@emotion/serialize": "^0.11.15-next.4",
-    "@emotion/utils": "0.11.2"
+    "@emotion/babel-plugin": "^11.1.2",
+    "@emotion/is-prop-valid": "^1.1.0",
+    "@emotion/serialize": "^1.0.0",
+    "@emotion/utils": "^1.0.0"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0",
-    "@emotion/react": "^11.0.0-next.11",
+    "@emotion/react": "^11.0.0-rc.0",
     "react": ">=16.8.0"
   },
   "peerDependenciesMeta": {
     "@babel/core": {
       "optional": true
+    },
+    "@types/react": {
+      "optional": true
     }
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@emotion/react": "^11.0.0-next.11",
+    "@emotion/react": "11.1.5",
     "dtslint": "^0.3.0",
-    "react": "^16.11.0"
+    "react": "16.14.0"
   },
   "publishConfig": {
     "access": "public"
@@ -45,16 +48,16 @@
     "macro.js",
     "macro.js.flow"
   ],
-  "umd:main": "dist/styled.umd.min.js",
+  "umd:main": "dist/emotion-styled.umd.min.js",
   "browser": {
-    "./dist/styled.cjs.js": "./dist/styled.browser.cjs.js",
-    "./dist/styled.esm.js": "./dist/styled.browser.esm.js"
+    "./dist/emotion-styled.cjs.js": "./dist/emotion-styled.browser.cjs.js",
+    "./dist/emotion-styled.esm.js": "./dist/emotion-styled.browser.esm.js"
   },
   "preconstruct": {
     "umdName": "emotionStyled",
     "entrypoints": [
-      ".",
-      "base"
+      "./index.js",
+      "./base.js"
     ]
   }
 }

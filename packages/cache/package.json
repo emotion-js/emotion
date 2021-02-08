@@ -1,12 +1,12 @@
 {
   "name": "@emotion/cache",
-  "version": "11.0.0-next.10",
+  "version": "11.1.3",
   "description": "emotion's cache",
-  "main": "dist/cache.cjs.js",
-  "module": "dist/cache.esm.js",
+  "main": "dist/emotion-cache.cjs.js",
+  "module": "dist/emotion-cache.esm.js",
   "browser": {
-    "./dist/cache.cjs.js": "./dist/cache.browser.cjs.js",
-    "./dist/cache.esm.js": "./dist/cache.browser.esm.js"
+    "./dist/emotion-cache.cjs.js": "./dist/emotion-cache.browser.cjs.js",
+    "./dist/emotion-cache.esm.js": "./dist/emotion-cache.browser.esm.js"
   },
   "types": "types/index.d.ts",
   "license": "MIT",
@@ -15,13 +15,14 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/sheet": "0.10.0-next.1",
-    "@emotion/stylis": "0.8.4",
-    "@emotion/utils": "0.11.2",
-    "@emotion/weak-memoize": "0.2.4"
+    "@emotion/memoize": "^0.7.4",
+    "@emotion/sheet": "^1.0.0",
+    "@emotion/utils": "^1.0.0",
+    "@emotion/weak-memoize": "^0.2.5",
+    "stylis": "^4.0.3"
   },
   "devDependencies": {
-    "@emotion/hash": "0.7.3",
+    "@emotion/hash": "*",
     "dtslint": "^0.3.0"
   },
   "publishConfig": {

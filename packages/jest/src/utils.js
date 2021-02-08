@@ -18,9 +18,18 @@ export function findLast<T>(arr: T[], predicate: T => boolean) {
   }
 }
 
-export const RULE_TYPES = {
-  media: 'media',
-  rule: 'rule'
+export function findIndexFrom<T>(
+  arr: T[],
+  fromIndex: number,
+  predicate: T => boolean
+) {
+  for (let i = fromIndex; i < arr.length; i++) {
+    if (predicate(arr[i])) {
+      return i
+    }
+  }
+
+  return -1
 }
 
 function getClassNames(selectors: any, classes?: string) {
@@ -68,7 +77,10 @@ function getClassNamesFromDOMElement(selectors, node: any) {
 }
 
 export function isReactElement(val: any): boolean {
-  return val.$$typeof === Symbol.for('react.test.json')
+  return (
+    val.$$typeof === Symbol.for('react.test.json') ||
+    val.$$typeof === Symbol.for('react.element')
+  )
 }
 
 export function isEmotionCssPropElementType(val: any): boolean {
@@ -106,12 +118,12 @@ function isCheerioElement(val: any): boolean {
 
 export function getClassNamesFromNodes(nodes: Array<any>) {
   return nodes.reduce((selectors, node) => {
-    if (isReactElement(node)) {
-      return getClassNamesFromTestRenderer(selectors, node)
-    } else if (isEnzymeElement(node)) {
+    if (isEnzymeElement(node)) {
       return getClassNamesFromEnzyme(selectors, node)
     } else if (isCheerioElement(node)) {
       return getClassNamesFromCheerio(selectors, node)
+    } else if (isReactElement(node)) {
+      return getClassNamesFromTestRenderer(selectors, node)
     }
     return getClassNamesFromDOMElement(selectors, node)
   }, [])
@@ -132,6 +144,19 @@ const getElementRules = (element: HTMLStyleElement): string[] => {
   // $FlowFixMe - flow doesn't know about `cssRules` property
   return [].slice.call(element.sheet.cssRules).map(cssRule => cssRule.cssText)
 }
+
+const getKeyframesMap = rules =>
+  rules.reduce((keyframes, rule) => {
+    const match = rule.match(keyframesPattern)
+    if (match !== null) {
+      const name = match[1]
+      if (keyframes[name] === undefined) {
+        keyframes[name] = ''
+      }
+      keyframes[name] += rule
+    }
+    return keyframes
+  }, {})
 
 export function getStylesFromClassNames(
   classNames: Array<string>,
@@ -160,25 +185,36 @@ export function getStylesFromClassNames(
     return ''
   }
   const selectorPattern = new RegExp(
-    '\\.(' + filteredClassNames.join('|') + ')'
+    '\\.(?:' + filteredClassNames.map(cls => `(${cls})`).join('|') + ')'
   )
-  const keyframes = {}
-  let styles = ''
 
-  flatMap(elements, getElementRules).forEach((rule: string) => {
-    if (selectorPattern.test(rule)) {
-      styles += rule
-    }
-    const match = rule.match(keyframesPattern)
-    if (match !== null) {
-      const name = match[1]
-      if (keyframes[name] === undefined) {
-        keyframes[name] = ''
+  const rules = flatMap(elements, getElementRules)
+
+  let styles = rules
+    .map((rule: string) => {
+      const match = rule.match(selectorPattern)
+      if (!match) {
+        return null
       }
-      keyframes[name] += rule
-    }
-  })
-  const keyframeNameKeys = Object.keys(keyframes)
+      // `selectorPattern` represents all emotion-generated class names
+      // each possible class name is wrapped in a capturing group
+      // and those groups appear in the same order as they appear in the DOM within class attributes
+      // because we've gathered them from the DOM in such order
+      // given that information we can sort matched rules based on the capturing group that has been matched
+      // to end up with styles in a stable order
+      const matchedCapturingGroupIndex = findIndexFrom(match, 1, Boolean)
+      return [rule, matchedCapturingGroupIndex]
+    })
+    .filter(Boolean)
+    .sort(
+      ([ruleA, classNameIndexA], [ruleB, classNameIndexB]) =>
+        classNameIndexA - classNameIndexB
+    )
+    .map(([rule]) => rule)
+    .join('')
+
+  const keyframesMap = getKeyframesMap(rules)
+  const keyframeNameKeys = Object.keys(keyframesMap)
   let keyframesStyles = ''
 
   if (keyframeNameKeys.length) {
@@ -189,7 +225,7 @@ export function getStylesFromClassNames(
     styles = styles.replace(keyframesNamePattern, name => {
       if (keyframesNameCache[name] === undefined) {
         keyframesNameCache[name] = `animation-${index++}`
-        keyframesStyles += keyframes[name]
+        keyframesStyles += keyframesMap[name]
       }
       return keyframesNameCache[name]
     })
@@ -251,14 +287,15 @@ export function hasClassNames(
 }
 
 export function getMediaRules(rules: Array<Object>, media: string): Array<any> {
-  return rules
-    .filter(rule => {
-      const isMediaMatch = rule.media
-        ? rule.media.replace(/\s/g, '').includes(media.replace(/\s/g, ''))
-        : false
-      return rule.type === RULE_TYPES.media && isMediaMatch
-    })
-    .reduce((mediaRules, mediaRule) => mediaRules.concat(mediaRule.rules), [])
+  return flatMap(
+    rules.filter(rule => {
+      if (rule.type !== '@media') {
+        return false
+      }
+      return rule.value.replace(/\s/g, '').includes(media.replace(/\s/g, ''))
+    }),
+    media => media.children
+  )
 }
 
 export function isPrimitive(test: any) {

@@ -21,8 +21,6 @@ import createEmotionServer from '@emotion/server/create-instance'
 
 expect.addSnapshotSerializer(HTMLSerializer)
 
-let fakeStylisPlugins = []
-
 let cases = {
   basic: {
     render: () => <div css={{ color: 'hotpink' }}>some hotpink text</div>
@@ -81,7 +79,7 @@ let cases = {
     }
   },
   'works with nonces': {
-    cache: () => createCache({ nonce: 'some-nonce' }),
+    cache: () => createCache({ key: 'css', nonce: 'some-nonce' }),
     render: () => {
       const SomeComponent = styled.div`
         color: hotpink;
@@ -101,39 +99,6 @@ let cases = {
           />
         </React.Fragment>
       )
-    }
-  },
-  'prefix option false': {
-    cache: () => createCache({ prefix: false }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option false with stylis plugins': {
-    cache: () =>
-      createCache({ prefix: false, stylisPlugins: fakeStylisPlugins }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option true with stylis plugins': {
-    cache: () =>
-      createCache({ prefix: true, stylisPlugins: fakeStylisPlugins }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option func false with stylis plugins': {
-    cache: () =>
-      createCache({ prefix: () => false, stylisPlugins: fakeStylisPlugins }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
-    }
-  },
-  'prefix option func false': {
-    cache: () => createCache({ prefix: () => false }),
-    render: () => {
-      return <div css={{ display: 'flex' }} />
     }
   },
 
@@ -170,25 +135,6 @@ let cases = {
         })} 1s`
       })
       return <SomeComponent />
-    }
-  },
-  '@import': {
-    render: () => {
-      // while there's nothing too special here
-      // @import has to be the first rule in the style element
-      return (
-        <React.Fragment>
-          <div css={{ color: 'hotpink' }} />
-          <Global
-            styles={css`
-              h1 {
-                color: hotpink;
-              }
-              @import url('https://some-url');
-            `}
-          />
-        </React.Fragment>
-      )
     }
   },
   ClassNames: {
@@ -252,10 +198,7 @@ testCases(
 testCases(
   'ssr with old api',
   opts => {
-    let cache = createCache()
-    if (opts.cache) {
-      cache = opts.cache()
-    }
+    let cache = opts.cache ? opts.cache() : createCache({ key: 'css' })
     let { renderStylesToString } = createEmotionServer(cache)
     expect(
       renderStylesToString(

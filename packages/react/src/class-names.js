@@ -30,6 +30,16 @@ let classnames = (args: Array<ClassNameArg>): string => {
         if (Array.isArray(arg)) {
           toAdd = classnames(arg)
         } else {
+          if (
+            process.env.NODE_ENV !== 'production' &&
+            arg.styles !== undefined &&
+            arg.name !== undefined
+          ) {
+            console.error(
+              'You have passed styles created with `css` from `@emotion/react` package to the `cx`.\n' +
+                '`cx` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the `css` received from <ClassNames/> component.'
+            )
+          }
           toAdd = ''
           for (const k in arg) {
             if (arg[k] && k) {
@@ -121,7 +131,7 @@ export const ClassNames: React.AbstractComponent<
       <>
         <style
           {...{
-            [`data-emotion-${cache.key}`]: serializedHashes.substring(1),
+            [`data-emotion`]: `${cache.key} ${serializedHashes.substring(1)}`,
             dangerouslySetInnerHTML: { __html: rules },
             nonce: cache.sheet.nonce
           }}
@@ -132,3 +142,7 @@ export const ClassNames: React.AbstractComponent<
   }
   return ele
 })
+
+if (process.env.NODE_ENV !== 'production') {
+  ClassNames.displayName = 'EmotionClassNames'
+}

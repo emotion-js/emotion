@@ -1,7 +1,7 @@
 // @flow
 
 import { serializeStyles } from '@emotion/serialize'
-import { getExpressionsFromTemplateLiteral } from './minify'
+import minify from './minify'
 import { getLabelFromPath } from './label'
 import { getSourceMap } from './source-maps'
 import { simplifyObject } from './object-to-string'
@@ -40,15 +40,18 @@ export let transformExpressionWithStyles = ({
   path: *,
   shouldLabel: boolean,
   sourceMap?: string
-}): { node?: *, isPure: boolean } => {
+}): * => {
   const autoLabel = state.opts.autoLabel || 'dev-only'
   let t = babel.types
   if (t.isTaggedTemplateExpression(path)) {
-    const expressions = getExpressionsFromTemplateLiteral(path.node.quasi, t)
-    if (state.emotionSourceMap && path.node.quasi.loc !== undefined) {
+    if (
+      !sourceMap &&
+      state.emotionSourceMap &&
+      path.node.quasi.loc !== undefined
+    ) {
       sourceMap = getSourceMap(path.node.quasi.loc.start, state)
     }
-    path.replaceWith(t.callExpression(path.node.tag, expressions))
+    minify(path, t)
   }
 
   if (t.isCallExpression(path)) {
@@ -56,12 +59,7 @@ export let transformExpressionWithStyles = ({
       arg => arg.type !== 'SpreadElement'
     )
 
-    let isPure = true
-
     path.get('arguments').forEach(node => {
-      if (!node.isPure()) {
-        isPure = false
-      }
       if (t.isObjectExpression(node)) {
         node.replaceWith(simplifyObject(node.node, t))
       }
@@ -70,9 +68,9 @@ export let transformExpressionWithStyles = ({
     path.node.arguments = joinStringLiterals(path.node.arguments, t)
 
     if (
+      !sourceMap &&
       canAppendStrings &&
       state.emotionSourceMap &&
-      !sourceMap &&
       path.node.loc !== undefined
     ) {
       sourceMap = getSourceMap(path.node.loc.start, state)
@@ -97,45 +95,45 @@ export let transformExpressionWithStyles = ({
         t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
         t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles))
       ])
-      let node = prodNode
-      if (sourceMap) {
-        if (!state.emotionStringifiedCssId) {
-          const uid = state.file.scope.generateUidIdentifier(
-            '__EMOTION_STRINGIFIED_CSS_ERROR__'
-          )
-          state.emotionStringifiedCssId = uid
-          const cssObjectToString = t.functionDeclaration(
-            uid,
-            [],
-            t.blockStatement([
-              t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR))
-            ])
-          )
-          cssObjectToString._compact = true
-          state.file.path.unshiftContainer('body', [cssObjectToString])
-        }
 
-        if (label && autoLabel === 'dev-only') {
-          res = serializeStyles([`${cssString};label:${label};`])
-        }
+      if (!state.emotionStringifiedCssId) {
+        const uid = state.file.scope.generateUidIdentifier(
+          '__EMOTION_STRINGIFIED_CSS_ERROR__'
+        )
+        state.emotionStringifiedCssId = uid
+        const cssObjectToString = t.functionDeclaration(
+          uid,
+          [],
+          t.blockStatement([
+            t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR))
+          ])
+        )
+        cssObjectToString._compact = true
+        state.file.path.unshiftContainer('body', [cssObjectToString])
+      }
 
-        let devNode = t.objectExpression([
+      if (label && autoLabel === 'dev-only') {
+        res = serializeStyles([`${cssString};label:${label};`])
+      }
+
+      let devNode = t.objectExpression(
+        [
           t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
           t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles)),
-          t.objectProperty(t.identifier('map'), t.stringLiteral(sourceMap)),
+          sourceMap &&
+            t.objectProperty(t.identifier('map'), t.stringLiteral(sourceMap)),
           t.objectProperty(
             t.identifier('toString'),
             t.cloneNode(state.emotionStringifiedCssId)
           )
-        ])
-        node = createNodeEnvConditional(t, prodNode, devNode)
-      }
+        ].filter(Boolean)
+      )
 
-      return { node, isPure: true }
+      return createNodeEnvConditional(t, prodNode, devNode)
     }
 
-    if (label) {
-      const labelString = `;label:${label}`
+    if (canAppendStrings && label) {
+      const labelString = `;label:${label};`
 
       switch (autoLabel) {
         case 'dev-only': {
@@ -161,8 +159,5 @@ export let transformExpressionWithStyles = ({
       )
       appendStringReturningExpressionToArguments(t, path, sourceMapConditional)
     }
-
-    return { node: undefined, isPure }
   }
-  return { node: undefined, isPure: false }
 }

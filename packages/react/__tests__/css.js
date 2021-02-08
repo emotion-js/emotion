@@ -159,7 +159,7 @@ test('nested at rule', () => {
 })
 
 test('can set speedy via custom cache', () => {
-  let cache = createCache({ speedy: true })
+  let cache = createCache({ key: 'speedy-test', speedy: true })
   renderer.create(
     <CacheProvider value={cache}>
       <div
@@ -177,12 +177,13 @@ test('can set speedy via custom cache', () => {
 
 test('speedy option from a custom cache is inherited for <Global/> styles', () => {
   let cache = createCache({
+    key: 'global-inherit-speedy',
     container: safeQuerySelector('body'),
     speedy: true
   })
   renderer.create(
     <CacheProvider value={cache}>
-      <Global styles={{ html: { fontSize: 16 } }} />>
+      <Global styles={{ html: { fontSize: 16 } }} />
     </CacheProvider>
   )
   expect(safeQuerySelector('body style').textContent).toEqual('')
@@ -268,11 +269,16 @@ test('handles camelCased custom properties in object styles properly', () => {
 })
 
 test('applies class when css prop is set to nil on wrapper component', () => {
-  const Button = props => <button css={{ color: 'hotpink' }} {...props} />
+  const Button = (props: any) => (
+    <button css={{ color: 'hotpink' }} {...props} />
+  )
 
   const WrappedButton: React.StatelessFunctionalComponent<any> = ({
     children,
     buttonStyles
+  }: {
+    children: React$Node,
+    buttonStyles?: null
   }) => <Button css={buttonStyles}>{children}</Button>
 
   const tree = renderer.create(
@@ -305,9 +311,28 @@ test('handles composition of styles without a final semi in a declaration block'
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
+test('handles composition of an array css prop containing no final semi with cssprop-generated className (runtime variant of #1730)', () => {
+  const Child = ({ bgColor, ...props }) => (
+    <div
+      css={[{ width: 100, height: 100 }, `background-color: ${bgColor}`]}
+      {...props}
+    />
+  )
+  const Parent = ({ children }) => (
+    <Child bgColor="green" css={{ color: 'hotpink' }}>
+      {children}
+    </Child>
+  )
+  const tree = renderer.create(
+    <Parent>{"I'm hotpink on the green background."}</Parent>
+  )
+
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
 it("doesn't try to insert invalid rules caused by object style's value being falsy", () => {
   render(
-    <CacheProvider value={createCache({ speedy: true })}>
+    <CacheProvider value={createCache({ key: 'invalid-rules', speedy: true })}>
       <h1
         css={css({ color: 'hotpink', '@media (min-width 800px)': undefined })}
       >

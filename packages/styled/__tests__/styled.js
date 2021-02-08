@@ -640,6 +640,7 @@ describe('styled', () => {
     const tree = renderer.create(<OneMoreComponent />).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
   test('theming', () => {
     const Div = styled.div`
       color: ${props => props.theme.primary};

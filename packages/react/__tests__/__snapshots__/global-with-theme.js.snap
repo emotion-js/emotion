@@ -5,12 +5,14 @@ exports[`array 1`] = `
   <head>
     <style
       data-emotion="css-global"
+      data-s=""
     >
       
       html{background-color:green;}
     </style>
     <style
       data-emotion="css-global"
+      data-s=""
     >
       
       html{font-size:16px;}
@@ -40,6 +42,7 @@ exports[`basic 1`] = `
   <head>
     <style
       data-emotion="css-global"
+      data-s=""
     >
       
       html{background-color:green;}

@@ -1,9 +1,9 @@
 {
   "name": "@emotion/primitives-core",
-  "version": "11.0.0-next.10",
+  "version": "11.0.0",
   "description": "Shared utilities for emotion primitives and native",
-  "main": "dist/primitives-core.cjs.js",
-  "module": "dist/primitives-core.esm.js",
+  "main": "dist/emotion-primitives-core.cjs.js",
+  "module": "dist/emotion-primitives-core.esm.js",
   "scripts": {
     "test:typescript": "exit 0"
   },
@@ -13,15 +13,15 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "css-to-react-native": "^2.2.1"
+    "css-to-react-native": "^3.0.0"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.0.0-next.10",
+    "@emotion/react": "^11.0.0-rc.0",
     "react": ">=16.8.0"
   },
   "devDependencies": {
-    "@emotion/react": "^11.0.0-next.10",
-    "react": "^16.11.0"
+    "@emotion/react": "11.1.5",
+    "react": "16.14.0"
   },
   "homepage": "https://emotion.sh",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/primitives-core",
@@ -41,7 +41,7 @@
     "access": "public"
   },
   "browser": {
-    "./dist/primitives-core.cjs.js": "./dist/primitives-core.browser.cjs.js",
-    "./dist/primitives-core.esm.js": "./dist/primitives-core.browser.esm.js"
+    "./dist/emotion-primitives-core.cjs.js": "./dist/emotion-primitives-core.browser.cjs.js",
+    "./dist/emotion-primitives-core.esm.js": "./dist/emotion-primitives-core.browser.esm.js"
   }
 }

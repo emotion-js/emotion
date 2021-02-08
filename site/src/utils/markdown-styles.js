@@ -212,7 +212,7 @@ export const tr = styled.tr`
 
 export let hr = (props: {}) => (
   <hr
-    css={{ border: `1px solid ${colors.lighten(0.25, colors.border)}` }}
     {...props}
+    css={{ border: `1px solid ${colors.lighten(0.25, colors.border)}` }}
   />
 )

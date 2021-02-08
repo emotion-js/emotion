@@ -1,19 +1,21 @@
 <p align="center" style="color: #343a40">
-  <img src="https://cdn.rawgit.com/tkh44/emotion/master/emotion.png" alt="emotion" height="150" width="150">
+  <img src="https://raw.githubusercontent.com/emotion-js/emotion/master/emotion.png" alt="Emotion logo" height="150" width="150">
   <h1 align="center">emotion</h1>
 </p>
 <p align="center" style="font-size: 1.2rem;">The Next Generation of CSS-in-JS</p>
 
-> **Need support upgrading to Emotion 10? [See the migration guide](https://emotion.sh/docs/migrating-to-emotion-10)**
+> **Emotion 11 has been released 🚀 [See the blog post](https://emotion.sh/docs/emotion-11)**
 
 [![Backers on Open Collective](https://opencollective.com/emotion/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/emotion/sponsors/badge.svg)](#sponsors) [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
 [![Build Status](https://img.shields.io/circleci/project/github/emotion-js/emotion/master.svg)](https://circleci.com/gh/emotion-js/emotion)
 [![codecov](https://codecov.io/gh/emotion-js/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/emotion-js/emotion)
-![core size](https://img.shields.io/bundlephobia/min/emotion.svg?label=core%20size)
-![core gzip size](https://img.shields.io/bundlephobia/minzip/emotion.svg?label=core%20gzip%20size)
-![react size](https://img.shields.io/bundlephobia/min/@emotion/styled-base.svg?label=react%20size)
-![react gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/styled-base.svg?label=react%20gzip%20size)
-[![slack](https://emotion-slack.now.sh/badge.svg)](https://emotion-slack.now.sh/)
+![@emotion/css size](https://img.shields.io/bundlephobia/min/@emotion/css.svg?label=@emotion/css%20size)
+![@emotion/css gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/css.svg?label=@emotion/css%20gzip%20size)
+![@emotion/react size](https://img.shields.io/bundlephobia/min/@emotion/react.svg?label=@emotion/react%20size)
+![@emotion/react gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/react.svg?label=@emotion/react%20gzip%20size)
+![@emotion/styled size](https://img.shields.io/bundlephobia/min/@emotion/styled.svg?label=@emotion/styled%20size)
+![@emotion/styled gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/styled.svg?label=@emotion/styled%20gzip%20size)
+[![slack](https://img.shields.io/badge/join-slack-green)](https://join.slack.com/t/emotion-slack/shared_invite/zt-l7oe5x0x-2jsjNXOs95f5w4AdZWu9LA)
 [![spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/emotion)
 
 Emotion is a performant and flexible CSS-in-JS library. Building on many other CSS-in-JS libraries, it allows you to style apps quickly with string or object styles. It has predictable composition to avoid specificity issues with CSS. With source maps and labels, Emotion has a great developer experience and great performance with heavy caching in production.
@@ -71,7 +73,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [emotion website](site) [[Demo Here](https://emotion.sh)]
 - [next-hnpwa-guide-kit](https://github.com/tkh44/next-hnpwa-guide-kit) [[Demo Here](https://hnpwa.life)]
 - [reactivesearch](https://github.com/appbaseio/reactivesearch), a react UI library for Elasticsearch [[Website](https://opensource.appbase.io/reactivesearch/)]
-- [circuit-ui](https://github.com/sumup/circuit-ui), a react component library built at SumUp [[Storybook](https://sumup.github.io/circuit-ui/)]
+- [circuit-ui](https://github.com/sumup-oss/circuit-ui), a react component library built at SumUp [[Storybook](https://circuit.sumup.com/?path=/story/introduction-welcome--page)]
 - **open a PR and add yours!**
 
 ### Ecosystem
@@ -87,6 +89,7 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [polished](https://github.com/styled-components/polished) - Lightweight set of Sass/Compass-style mixins/helpers for writing styles in JavaScript.
 - [monad-ui](https://github.com/muhajirdev/monad-ui/) - Utility First CSS-In-JS
 - [css-in-js-media](https://github.com/zx6658/css-in-js-media) - you can deal with responsive design using css-in-js easily with this `css-in-js-media` which is similar with include-media
+- [emotion-native-extended](https://github.com/ItsWendell/emotion-native-extended) - Better styling support for Emotion Native with [React Native Extended Stylesheet](https://github.com/vitalets/react-native-extended-stylesheet)
 
 ### In the Wild
 
@@ -102,6 +105,9 @@ Look here 👉 _[emotion babel plugin feature table and documentation](https://g
 - [zefenify.com](https://zefenify.com/about.html)
 - [sentry.io](https://sentry.io)
 - [comparett.com](https://comparett.com)
+- [Domain.com.au](https://www.domain.com.au)
+- [cyberhaven.com](https://cyberhaven.com)
+- [CommercialRealEstate.com.au](https://www.commercialrealestate.com.au)
 
 ## Contributors
 

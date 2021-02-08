@@ -47,12 +47,31 @@ import { jsx } from '@emotion/react'
 As a result you may be not able to use react fragment shorthand syntax - `<></>`, but still you can use `<Fragment></Fragment>`.
 This is a limitation of the TypeScript compiler not being able to independently specify jsx pragma and jsxFrag pragma.
 
-You can still use the css helper and pass the className yourself (ensure you are importing from the `@emotion` package, not `@emotion/react`).
+You can still use the css helper and pass the className yourself (ensure you are importing from the `@emotion/css` package, not `@emotion/react`).
 
 ```tsx
-import { css } from '@emotion'
+import { css } from '@emotion/css'
 
 <div className={css({ background: 'black' })} />
+```
+
+### `css` prop
+
+When using our JSX factories the support for `css` prop is being added only for components that accepts `className` prop as they take provided `css` prop, resolves it and pass the generated `className` to the rendered component.
+
+If using the automatic runtime you should just add this to your `tsconfig.json` to let TypeScript know where it should look for the `JSX` namespace:
+```json
+{
+  "compilerOptions": {
+    "jsxImportSource": "@emotion/react"
+  }
+}
+```
+
+The same `JSX` namespace is resolved if you are still using the classic runtime through the `@jsx` pragma. However, it's not possible to leverage `css` prop support being added conditionally based on a type of rendered component when one is not using our jsx pragma or the automatic runtime. For those cases when people use our pragma implicitly (for example when using our `@emotion/babel-preset-css-prop`) we have a special file that can be imported once to add support for the `css` prop globally, for all components. Use it like this:
+
+```ts
+/// <reference types="@emotion/react/types/css-prop" />
 ```
 
 ## @emotion/styled
@@ -253,6 +272,8 @@ You can define a theme type by extending our type declarations via your own decl
 _emotion.d.ts_
 
 ```typescript
+import '@emotion/react'
+
 declare module '@emotion/react' {
   export interface Theme {
     color: {
@@ -264,10 +285,11 @@ declare module '@emotion/react' {
 }
 
 // You are also able to use a 3rd party theme this way:
-import { MuiTheme } from 'material-ui'
+import '@emotion/react'
+import { LibTheme } from 'some-lib' 
 
 declare module '@emotion/react' {
-  export interface Theme extends MuiTheme {}
+  export interface Theme extends LibTheme {}
 }
 ```
 
@@ -278,7 +300,7 @@ import styled from '@emotion/styled'
 
 const Button = styled('button')`
   padding: 20px;
-  background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.someLibProperty};
   border-radius: 3px;
 `
 
@@ -290,6 +312,8 @@ If you were previously relying on `theme` being an `any` type, you have to resto
 _emotion.d.ts_
 
 ```ts
+import '@emotion/react'
+
 declare module '@emotion/react' {
     export interface Theme extends Record<string, any> {}
 }

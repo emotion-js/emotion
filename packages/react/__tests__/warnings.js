@@ -1,7 +1,7 @@
 // @flow
 /** @jsx jsx */
 import 'test-utils/next-env'
-import { jsx, css, Global, keyframes } from '@emotion/react'
+import { jsx, css, Global, keyframes, ClassNames } from '@emotion/react'
 import renderer from 'react-test-renderer'
 import { render } from '@testing-library/react'
 
@@ -172,40 +172,6 @@ test('kebab-case', () => {
           `)
 })
 
-test('unterminated comments', () => {
-  const renderWithStyles = styles => renderer.create(<div css={styles} />)
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green;
-    `)
-  ).not.toThrowError()
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green; /* comment */
-    `)
-  ).not.toThrowError()
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green; /*
-    `)
-  ).toThrowErrorMatchingInlineSnapshot(
-    `"Your styles have an unterminated comment (\\"/*\\" without corresponding \\"*/\\")."`
-  )
-
-  expect(() =>
-    renderWithStyles(css`
-      background-color: green; /* comment */
-      color: red;
-      opacity: 0.9; /*
-    `)
-  ).toThrowErrorMatchingInlineSnapshot(
-    `"Your styles have an unterminated comment (\\"/*\\" without corresponding \\"*/\\")."`
-  )
-})
-
 test('keyframes interpolated into plain string', () => {
   const animateColor = keyframes({
     'from,to': { color: 'green' },
@@ -258,4 +224,98 @@ test('`css` opaque object passed in as `className` prop', () => {
       />
     </div>
   `)
+})
+
+test('`css` opaque object passed to `cx` from <ClassNames/>', () => {
+  render(
+    <ClassNames>
+      {({ cx }) => (
+        <div
+          className={cx(
+            // $FlowFixMe
+            css`
+              color: hotpink;
+            `,
+            'other-cls'
+          )}
+        />
+      )}
+    </ClassNames>
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+    Array [
+      Array [
+        "You have passed styles created with \`css\` from \`@emotion/react\` package to the \`cx\`.
+    \`cx\` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the \`css\` received from <ClassNames/> component.",
+      ],
+    ]
+  `)
+})
+
+test('@import nested in scoped `css`', () => {
+  renderer.create(
+    <div
+      css={css`
+        @import url('https://some-url');
+
+        h1 {
+          color: hotpink;
+        }
+      `}
+    />
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+    Array [
+      Array [
+        "\`@import\` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles.",
+      ],
+    ]
+  `)
+})
+
+test('@import prepended with other rules', () => {
+  renderer.create(
+    <Global
+      styles={css`
+        h1 {
+          color: hotpink;
+        }
+
+        @import url('https://some-url');
+      `}
+    />
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`
+    Array [
+      Array [
+        "\`@import\` rules can't be after other rules. Please put your \`@import\` rules before your other rules.",
+      ],
+    ]
+  `)
+})
+
+test('@import prepended by other @import', () => {
+  renderer.create(
+    <Global
+      styles={css`
+        @import url('https://some-url');
+        @import url('https://some-url2');
+      `}
+    />
+  )
+
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+})
+
+test('when using `jsx` multiple static children should not result in a key-related warning', () => {
+  renderer.create(
+    <div css={{ color: 'hotpink' }}>
+      <div />
+      <div />
+    </div>
+  )
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
 })

@@ -117,13 +117,10 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-let shouldWarnAboutInterpolatingClassNameFromCss = true
-
 function handleInterpolation(
   mergedProps: void | Object,
   registered: RegisteredCache | void,
-  interpolation: Interpolation,
-  couldBeSelectorInterpolation: boolean
+  interpolation: Interpolation
 ): string | number {
   if (interpolation == null) {
     return ''
@@ -187,12 +184,7 @@ function handleInterpolation(
         let result = interpolation(mergedProps)
         cursor = previousCursor
 
-        return handleInterpolation(
-          mergedProps,
-          registered,
-          result,
-          couldBeSelectorInterpolation
-        )
+        return handleInterpolation(mergedProps, registered, result)
       } else if (process.env.NODE_ENV !== 'production') {
         console.error(
           'Functions that are interpolated in css calls will be stringified.\n' +
@@ -238,21 +230,7 @@ function handleInterpolation(
     return interpolation
   }
   const cached = registered[interpolation]
-  if (
-    process.env.NODE_ENV !== 'production' &&
-    couldBeSelectorInterpolation &&
-    shouldWarnAboutInterpolatingClassNameFromCss &&
-    cached !== undefined
-  ) {
-    console.error(
-      'Interpolating a className from css`` is not recommended and will cause problems with composition.\n' +
-        'Interpolating a className from css`` will be completely unsupported in a future major version of Emotion'
-    )
-    shouldWarnAboutInterpolatingClassNameFromCss = false
-  }
-  return cached !== undefined && !couldBeSelectorInterpolation
-    ? cached
-    : interpolation
+  return cached !== undefined ? cached : interpolation
 }
 
 function createStringFromObject(
@@ -264,7 +242,7 @@ function createStringFromObject(
 
   if (Array.isArray(obj)) {
     for (let i = 0; i < obj.length; i++) {
-      string += handleInterpolation(mergedProps, registered, obj[i], false)
+      string += `${handleInterpolation(mergedProps, registered, obj[i])};`
     }
   } else {
     for (let key in obj) {
@@ -301,8 +279,7 @@ function createStringFromObject(
           const interpolated = handleInterpolation(
             mergedProps,
             registered,
-            value,
-            false
+            value
           )
           switch (key) {
             case 'animation':
@@ -359,7 +336,7 @@ export const serializeStyles = function(
   let strings = args[0]
   if (strings == null || strings.raw === undefined) {
     stringMode = false
-    styles += handleInterpolation(mergedProps, registered, strings, false)
+    styles += handleInterpolation(mergedProps, registered, strings)
   } else {
     if (process.env.NODE_ENV !== 'production' && strings[0] === undefined) {
       console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)
@@ -368,12 +345,7 @@ export const serializeStyles = function(
   }
   // we start at 1 since we've already handled the first arg
   for (let i = 1; i < args.length; i++) {
-    styles += handleInterpolation(
-      mergedProps,
-      registered,
-      args[i],
-      styles.charCodeAt(styles.length - 1) === 46
-    )
+    styles += handleInterpolation(mergedProps, registered, args[i])
     if (stringMode) {
       if (process.env.NODE_ENV !== 'production' && strings[i] === undefined) {
         console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR)

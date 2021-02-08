@@ -63,6 +63,7 @@ const props = {
   defer: true,
   dir: true,
   disabled: true,
+  disablePictureInPicture: true,
   download: true,
   draggable: true,
   encType: true,
@@ -152,6 +153,7 @@ const props = {
   tabIndex: true,
   target: true,
   title: true,
+  translate: true,
   // Setting .type throws on non-<input> tags
   type: true,
   useMap: true,
@@ -184,6 +186,11 @@ const props = {
   autoSave: true,
   // color is for Safari mask-icon link
   color: true,
+  // used in amp html for indicating the fallback behavior
+  // https://amp.dev/documentation/guides-and-tutorials/develop/style_and_layout/placeholders/
+  fallback: true,
+  // https://html.spec.whatwg.org/multipage/interaction.html#inert
+  inert: true,
   // itemProp, itemScope, itemType are for
   // Microdata support. See http://schema.org/docs/gs.html
   itemProp: true,
@@ -195,7 +202,11 @@ const props = {
   itemID: true,
   itemRef: true,
   // used in amp html for eventing purposes
+  // https://amp.dev/documentation/guides-and-tutorials/learn/common_attributes/
   on: true,
+  // used in amp html for indicating that the option is selectable
+  // https://amp.dev/documentation/components/amp-selector/
+  option: true,
   // results show looking glass icon and recent searches on input
   // search fields in WebKit/Blink
   results: true,

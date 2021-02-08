@@ -8,10 +8,16 @@ let style = css({ color: 'hotpink' })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
 import { css } from '@emotion/react';
-let style = {
+let style = process.env.NODE_ENV === \\"production\\" ? {
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\"
+} : {
+  name: \\"1gfxf27-style\\",
+  styles: \\"color:hotpink;label:style;\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };"
 `;
 
@@ -25,12 +31,18 @@ let Comp = styled.div({ color: 'hotpink' })
 
 import _styled from \\"@emotion/styled/base\\";
 
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
 let Comp = _styled(\\"div\\", {
   target: \\"eggnygh0\\",
   label: \\"Comp\\"
-})({
+})(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
 `;
 
@@ -42,11 +54,15 @@ let cls = css({ color: 'hotpink' })
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
 import { css } from '@emotion/css';
-let cls =
-/*#__PURE__*/
-css({
+let cls = /*#__PURE__*/css(process.env.NODE_ENV === \\"production\\" ? {
   name: \\"3sn2xs\\",
   styles: \\"color:hotpink\\"
+} : {
+  name: \\"6kh100-cls\\",
+  styles: \\"color:hotpink;label:cls;\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });"
 `;

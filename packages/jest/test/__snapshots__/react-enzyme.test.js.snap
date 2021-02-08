@@ -232,6 +232,20 @@ exports[`enzyme mount with prop containing css element with other props 1`] = `
 </Greeting>
 `;
 
+exports[`enzyme mount with prop containing regular element 1`] = `
+<Test
+  element={
+    <button>
+      Foo
+    </button>
+  }
+>
+  <button>
+    Foo
+  </button>
+</Test>
+`;
+
 exports[`enzyme mount with styles on top level 1`] = `
 .emotion-0 {
   background-color: red;
@@ -264,7 +278,7 @@ exports[`enzyme shallow basic 1`] = `
 
 exports[`enzyme shallow empty styled 1`] = `
 <div
-  className="css-1k6nb1k-Greeting emotion-0"
+  className="emotion-0 emotion-1"
 >
   Hello
 </div>
@@ -402,6 +416,12 @@ exports[`enzyme shallow with prop containing css element with other props 1`] = 
 </div>
 `;
 
+exports[`enzyme shallow with prop containing regular element 1`] = `
+<button>
+  Foo
+</button>
+`;
+
 exports[`enzyme shallow with styles on top level 1`] = `
 .emotion-0 {
   background-color: red;
@@ -421,12 +441,10 @@ exports[`enzyme with prop containing css element in fragment 1`] = `
 
 <div>
   x
-  Array [
-    <div
-      className="emotion-0"
-    >
-      y
-    </div>,
-  ]
+  <div
+    className="emotion-0"
+  >
+    y
+  </div>
 </div>
 `;

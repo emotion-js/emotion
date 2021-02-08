@@ -53,13 +53,12 @@ export function getLabelFromPath(path: *, state: *, t: *) {
   )
 }
 
-let pascalCaseRegex = /^[A-Z][A-Za-z]+/
-
 function getDeclaratorName(path, t) {
   // $FlowFixMe
   const parent = path.findParent(
     p =>
       p.isVariableDeclarator() ||
+      p.isAssignmentExpression() ||
       p.isFunctionDeclaration() ||
       p.isFunctionExpression() ||
       p.isArrowFunctionExpression() ||
@@ -78,13 +77,37 @@ function getDeclaratorName(path, t) {
     return ''
   }
 
-  // we probably have an inline css prop usage
-  if (parent.isFunctionDeclaration()) {
-    let { name } = parent.node.id
-    if (pascalCaseRegex.test(name)) {
-      return name
+  if (parent.isAssignmentExpression()) {
+    let { left } = parent.node
+    if (t.isIdentifier(left)) {
+      return left.name
+    }
+    if (t.isMemberExpression(left)) {
+      let memberExpression = left
+      let name = ''
+      while (true) {
+        if (!t.isIdentifier(memberExpression.property)) {
+          return ''
+        }
+
+        name = `${memberExpression.property.name}${name ? `-${name}` : ''}`
+
+        if (t.isIdentifier(memberExpression.object)) {
+          return `${memberExpression.object.name}-${name}`
+        }
+
+        if (!t.isMemberExpression(memberExpression.object)) {
+          return ''
+        }
+        memberExpression = memberExpression.object
+      }
     }
     return ''
+  }
+
+  // we probably have an inline css prop usage
+  if (parent.isFunctionDeclaration()) {
+    return parent.node.id.name || ''
   }
 
   // we could also have an object property
@@ -92,15 +115,11 @@ function getDeclaratorName(path, t) {
     return parent.node.key.name
   }
 
-  let variableDeclarator = path.findParent(p => p.isVariableDeclarator())
+  let variableDeclarator = parent.findParent(p => p.isVariableDeclarator())
   if (!variableDeclarator) {
     return ''
   }
-  let { name } = variableDeclarator.node.id
-  if (pascalCaseRegex.test(name)) {
-    return name
-  }
-  return ''
+  return variableDeclarator.node.id.name
 }
 
 function getIdentifierName(path: *, t: *) {

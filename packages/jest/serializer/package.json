@@ -1,0 +1,5 @@
+{
+  "main": "dist/emotion-jest-serializer.cjs.js",
+  "module": "dist/emotion-jest-serializer.esm.js",
+  "types": "../types/serializer"
+}

@@ -8,8 +8,10 @@ import styled from '@emotion/styled'
 import React from 'react'
 import toJson from 'enzyme-to-json'
 
-import serializer from '@emotion/jest/enzyme'
+import { matchers } from '@emotion/jest'
+import * as serializer from '@emotion/jest/enzyme-serializer'
 
+expect.extend(matchers)
 expect.addSnapshotSerializer(serializer)
 
 const cases = {
@@ -65,6 +67,12 @@ const cases = {
           World!
         </Greeting>
       )
+    }
+  },
+  'with prop containing regular element': {
+    render() {
+      const Test = ({ element }) => element
+      return <Test element={<button>Foo</button>} />
     }
   },
   'with prop containing css element not at the top level': {
@@ -197,5 +205,17 @@ describe('enzyme', () => {
     )
 
     expect(toJson(wrapper, { mode: 'deep' })).toMatchSnapshot()
+  })
+
+  test('toHaveStyleRule on react.element', () => {
+    const tree = enzyme.mount(
+      <ul>
+        <li css={{ backgroundColor: 'hotpink' }}>hello</li>
+      </ul>
+    )
+    expect(tree.find('li').get(0)).toHaveStyleRule(
+      'background-color',
+      'hotpink'
+    )
   })
 })

@@ -3,6 +3,11 @@
 
 /// <reference types="jest" />
 
+type SnapshotSerializerPlugin = Extract<
+  jest.SnapshotSerializerPlugin,
+  { serialize: any }
+>
+
 export interface StyleRuleOptions {
   target?: string
   media?: string
@@ -24,11 +29,7 @@ export interface CreateSerializerOptions {
 }
 export function createSerializer(
   options?: CreateSerializerOptions
-): jest.SnapshotSerializerPlugin
-export const print: jest.SnapshotSerializerPlugin['print']
-export const test: jest.SnapshotSerializerPlugin['test']
-declare const serializer: jest.SnapshotSerializerPlugin
-export default serializer
+): SnapshotSerializerPlugin
 
 declare global {
   namespace jest {

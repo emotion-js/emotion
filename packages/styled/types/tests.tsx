@@ -3,20 +3,26 @@ import styled from '@emotion/styled'
 
 // This file uses the same Theme declaration from tests-base.tsx
 
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>>
-styled.a
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>>
-styled.body
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>>
-styled.div
-// $ExpectType CreateStyledComponent<{ theme?: Theme | undefined; }, SVGProps<SVGSVGElement>>
-styled.svg
+{
+  const Anchor = styled.a``
+  ;<Anchor href="test" />
+  const Body = styled.body``
+  ;<Body />
+  const Div = styled.div``
+  ;<Div onClick={() => {}} />
+  const Svg = styled.svg``
+  ;<Svg color="hotpink" />
+}
 
 {
   styled.div<{ bar: string }>`
     color: ${props => {
-      // $ExpectType { theme?: Theme | undefined; } & ClassAttributes<HTMLDivElement> & HTMLAttributes<HTMLDivElement> & { bar: string; } & { theme: Theme; }
-      props
+      // $ExpectType Theme
+      props.theme
+      // $ExpectType string
+      props.bar
+      // $ExpectType string | undefined
+      props.dir
 
       return {}
     }};
@@ -136,3 +142,78 @@ const Input5 = styled.input`
     console.log(evt.target.value)
   }
 />
+
+{
+  const A = styled('h1')()
+  const B = styled(A)()
+  const C = styled(B)()
+  const D = styled(C)()
+  const E = styled(D)()
+  const F = styled(E)()
+  const G = styled(F)()
+  const H = styled(G)()
+  const I = styled(H)()
+  const J = styled(I)()
+  const K = styled(J)()
+  const L = styled(K)()
+  const M = styled(L)()
+  const N = styled(M)()
+  const O = styled(N)()
+  const P = styled(O)()
+  const Q = styled(P)()
+  const R = styled(Q)()
+  const S = styled(R)()
+  const T = styled(S)()
+  const U = styled(T)()
+  const V = styled(U)()
+  const X = styled(V)()
+  const Y = styled(X)()
+  const Z = styled(Y)()
+  ;<Z>No excessive instantiation</Z>
+}
+
+{
+  const StyledWithAs = styled.div`
+    display: flex;
+  `
+  const Section = styled.section`
+    color: hotpink;
+  `
+  ;<StyledWithAs as="section" />
+  ;<StyledWithAs as={Section} />
+  // $ExpectError
+  ;<StyledWithAs as="random string" />
+
+  const ComposedWithAs = styled(StyledWithAs)`
+    flex-direction: column;
+  `
+  ;<ComposedWithAs as="section" />
+  ;<ComposedWithAs as={Section} />
+  // $ExpectError
+  ;<ComposedWithAs as="random string" />
+
+  const ComponentWithAs: React.FC<{ as: string; className?: string }> = ({
+    as,
+    className
+  }) => <div className={className}>{as}</div>
+
+  const StyledComp = styled(ComponentWithAs)`
+    background: orange;
+  `
+  ;<StyledComp as="random string" />
+  // $ExpectError
+  ;<StyledComp as={Section} />
+
+  const ComponentWithoutAs: React.FC<{ className?: string }> = props => (
+    <div {...props} />
+  )
+  const StyledCompWithoutAs = styled(ComponentWithoutAs)`
+    background: hotpink;
+  `
+  // $ExpectError
+  ;<StyledCompWithoutAs as="random string" />
+  // $ExpectError
+  ;<StyledCompWithoutAs as="section" />
+  // $ExpectError
+  ;<StyledCompWithoutAs as={Section} />
+}

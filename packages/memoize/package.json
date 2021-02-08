@@ -1,9 +1,9 @@
 {
   "name": "@emotion/memoize",
-  "version": "0.7.3",
+  "version": "0.7.5",
   "description": "emotion's memoize utility",
-  "main": "dist/memoize.cjs.js",
-  "module": "dist/memoize.esm.js",
+  "main": "dist/emotion-memoize.cjs.js",
+  "module": "dist/emotion-memoize.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "repository": "https://github.com/emotion-js/emotion/tree/master/packages/memoize",
@@ -22,7 +22,7 @@
     "types/*.d.ts"
   ],
   "browser": {
-    "./dist/memoize.cjs.js": "./dist/memoize.browser.cjs.js",
-    "./dist/memoize.esm.js": "./dist/memoize.browser.esm.js"
+    "./dist/emotion-memoize.cjs.js": "./dist/emotion-memoize.browser.cjs.js",
+    "./dist/emotion-memoize.esm.js": "./dist/emotion-memoize.browser.esm.js"
   }
 }

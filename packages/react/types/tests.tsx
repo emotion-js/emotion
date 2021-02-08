@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { ComponentClass } from 'react'
+import * as React from 'react'
 import {
   ClassNames,
   Global,
@@ -8,6 +8,7 @@ import {
   keyframes,
   withEmotionCache
 } from '@emotion/react'
+import { JSX as EmotionJSX } from '@emotion/react/jsx-runtime'
 
 declare module '@emotion/react' {
   // tslint:disable-next-line: strict-export-declare-modifiers
@@ -58,7 +59,10 @@ const ComponentWithCache = withEmotionCache((_props: {}, cache) => {
   `}
 />
 
-declare const MyComponent: ComponentClass<{ className?: string; world: string }>
+declare const MyComponent: React.ComponentClass<{
+  className?: string
+  world: string
+}>
 ;<MyComponent
   css={{
     backgroundColor: 'black'
@@ -124,4 +128,122 @@ const anim1 = keyframes`
   css={theme => css`
     color: ${theme.secondaryColor};
   `}
+/>
+
+{
+  const CompWithClassNameSupport = (_props: {
+    prop1: string
+    className?: string
+  }) => {
+    return null
+  }
+  ;<CompWithClassNameSupport
+    prop1="test"
+    css={{
+      backgroundColor: 'hotpink'
+    }}
+  />
+
+  const MemoedCompWithClassNameSupport = React.memo(CompWithClassNameSupport)
+  ;<MemoedCompWithClassNameSupport
+    prop1="test"
+    css={{
+      backgroundColor: 'hotpink'
+    }}
+  />
+}
+
+{
+  const CompWithoutClassNameSupport = (_props: { prop1: string }) => {
+    return null
+  }
+
+  // TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
+  // $ExpectError
+  ;<CompWithoutClassNameSupport prop1="test" css={{ color: 'hotpink' }} />
+
+  const MemoedCompWithoutClassNameSupport = React.memo(
+    CompWithoutClassNameSupport
+  )
+  // TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
+  // $ExpectError
+  ;<MemoedCompWithoutClassNameSupport prop1="test" css={{ color: 'hotpink' }} />
+}
+
+{
+  const CompWithoutProps = (_props: {}) => {
+    return null
+  }
+  // $ExpectError
+  ;<CompWithoutProps css={{ backgroundColor: 'hotpink' }} />
+}
+
+{
+  // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/40993
+  // this is really problematic behaviour by @types/react IMO
+  // but it's what @types/react does so let's not break it.
+  const CompWithImplicitChildren: React.FC = () => null
+  ;<CompWithImplicitChildren>
+    content
+    <div />
+  </CompWithImplicitChildren>
+}
+
+// Tests for WithConditionalCSSProp
+{
+  // $ExpectType Interpolation<Theme>
+  type _HasCssPropAsIntended3 = EmotionJSX.LibraryManagedAttributes<
+    {},
+    {
+      className?: string
+    }
+  >['css']
+
+  // $ExpectType Interpolation<Theme>
+  type _HasCssPropAsIntended4 = EmotionJSX.LibraryManagedAttributes<
+    {},
+    {
+      className: string
+    }
+  >['css']
+
+  // $ExpectType Interpolation<Theme>
+  type _HasCssPropAsIntended5 = EmotionJSX.LibraryManagedAttributes<
+    {},
+    {
+      className?: unknown
+    }
+  >['css']
+
+  // $ExpectType Interpolation<Theme>
+  type _HasCssPropAsIntended6 = EmotionJSX.LibraryManagedAttributes<
+    {},
+    {
+      className?: string | Array<string>
+    }
+  >['css']
+
+  // $ExpectType false
+  type _NoCssPropAsIntended1 = 'css' extends keyof EmotionJSX.LibraryManagedAttributes<
+    {},
+    { className?: undefined }
+  >
+    ? true
+    : false
+}
+
+// RMWC-like component test
+declare const OtherComponent: {
+  <Tag extends React.ElementType>(
+    props:
+      | React.AllHTMLAttributes<HTMLInputElement>
+      | React.ComponentPropsWithRef<Tag>,
+    ref: any
+  ): JSX.Element
+  displayName?: string
+}
+;<OtherComponent
+  onChange={ev => {
+    console.log(ev.currentTarget.value)
+  }}
 />
