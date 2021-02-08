@@ -1,5 +1,14 @@
 # @emotion/babel-plugin
 
+## 11.1.2
+
+### Patch Changes
+
+- [`de378ab8`](https://github.com/emotion-js/emotion/commit/de378ab8693c74be5714c6c12ccc191ed2d7ac1a) [#2147](https://github.com/emotion-js/emotion/pull/2147) Thanks [@macalinao](https://github.com/macalinao)! - Fixed an issue with template strings minifier crashing on two consecutive interpolations without any meaningful string in between them.
+
+- Updated dependencies [[`ee6a673f`](https://github.com/emotion-js/emotion/commit/ee6a673f74e934bf738d5346ddfc7982caa23827)]:
+  - @emotion/memoize@0.7.5
+
 ## 11.0.0
 
 ### Major Changes

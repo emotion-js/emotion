@@ -136,3 +136,7 @@ export let Global: React.AbstractComponent<
 
   return null
 })
+
+if (process.env.NODE_ENV !== 'production') {
+  Global.displayName = 'EmotionGlobal'
+}

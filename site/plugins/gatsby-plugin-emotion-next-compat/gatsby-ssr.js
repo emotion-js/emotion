@@ -16,7 +16,7 @@ export const replaceRenderer = ({
   setHeadComponents([
     <style
       key="emotion"
-      data-emotion-css={ids.join(' ')}
+      data-emotion={`css ${ids.join(' ')}`}
       dangerouslySetInnerHTML={{
         __html: css
       }}

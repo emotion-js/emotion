@@ -1,5 +1,39 @@
 # @emotion/react
 
+## 11.1.5
+
+### Patch Changes
+
+- [`4d2e732e`](https://github.com/emotion-js/emotion/commit/4d2e732e9f0c8385c77c7bc43d4ccea7b30b9d37) [#2206](https://github.com/emotion-js/emotion/pull/2206) Thanks [@jimmydief](https://github.com/jimmydief)! - Added export for `SerializedStyles` Flow type.
+
+## 11.1.4
+
+### Patch Changes
+
+- [`71ca9be3`](https://github.com/emotion-js/emotion/commit/71ca9be3368ddb0a95ef5b2db7a97c67ab440593) [#2181](https://github.com/emotion-js/emotion/pull/2181) Thanks [@101arrowz](https://github.com/101arrowz)! - Fixed some typing issues with React components with custom generic render functions.
+
+## 11.1.3
+
+### Patch Changes
+
+- [`704b0092`](https://github.com/emotion-js/emotion/commit/704b0092ebba648c3937cc281e4d549565968201) [#2180](https://github.com/emotion-js/emotion/pull/2180) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with global styles containing pseudo selectors in at-rules not being able to be inserted.
+
+- Updated dependencies [[`704b0092`](https://github.com/emotion-js/emotion/commit/704b0092ebba648c3937cc281e4d549565968201)]:
+  - @emotion/cache@11.1.3
+
+## 11.1.2
+
+### Patch Changes
+
+- [`3f8bf70e`](https://github.com/emotion-js/emotion/commit/3f8bf70e995267ace1e04b6a97df35ae23902fed) [#2132](https://github.com/emotion-js/emotion/pull/2132) Thanks [@dcastil](https://github.com/dcastil)! - `displayName`s have been added to `Global` and `ClassNames` components so React Developer Tools should display those better now.
+
+* [`1ee34005`](https://github.com/emotion-js/emotion/commit/1ee34005a5e02c9041b36f73395700f1965388eb) [#2122](https://github.com/emotion-js/emotion/pull/2122) Thanks [@dcastil](https://github.com/dcastil)! - Improved label extraction from the stack traces to handle components with numbers in their names.
+
+- [`e5843530`](https://github.com/emotion-js/emotion/commit/e58435308d880a69c6ccfde15d745e6c95d3c333) [#2140](https://github.com/emotion-js/emotion/pull/2140) Thanks [@hasparus](https://github.com/hasparus)! - Fixed an issue with `css` prop type not being added to all components that accept a string `className` correctly.
+
+- Updated dependencies [[`5469d003`](https://github.com/emotion-js/emotion/commit/5469d0034d055a34587e9d05332f6da4d4722b1c)]:
+  - @emotion/sheet@1.0.1
+
 ## 11.1.1
 
 ### Patch Changes

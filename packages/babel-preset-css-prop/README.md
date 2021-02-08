@@ -153,13 +153,15 @@ Options for both `@emotion/babel-plugin` and `@babel/plugin-transform-react-jsx`
 ```json
 {
   "presets": [
-    "@emotion/babel-preset-css-prop",
-    {
-      "autoLabel": "dev-only",
-      "labelFormat": "[local]",
-      "useBuiltIns": false,
-      "throwIfNamespace": true
-    }
+    [
+      "@emotion/babel-preset-css-prop",
+      {
+        "autoLabel": "dev-only",
+        "labelFormat": "[local]",
+        "useBuiltIns": false,
+        "throwIfNamespace": true
+      }
+    ]
   ]
 }
 ```

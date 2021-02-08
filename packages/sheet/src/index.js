@@ -135,7 +135,12 @@ export class StyleSheet {
         // the big drawback is that the css won't be editable in devtools
         sheet.insertRule(rule, sheet.cssRules.length)
       } catch (e) {
-        if (process.env.NODE_ENV !== 'production') {
+        if (
+          process.env.NODE_ENV !== 'production' &&
+          !/:(-moz-placeholder|-ms-input-placeholder|-moz-read-write|-moz-read-only){/.test(
+            rule
+          )
+        ) {
           console.error(
             `There was a problem inserting the following rule: "${rule}"`,
             e
