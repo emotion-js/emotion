@@ -2,7 +2,7 @@
 import { createEmotionMacro } from './emotion-macro'
 import { createStyledMacro } from './styled-macro'
 import cssMacro, { transformCssCallExpression } from './css-macro'
-import { addDefault } from '@babel/helper-module-imports'
+import { addNamed } from '@babel/helper-module-imports'
 import nodePath from 'path'
 import { getSourceMap, getStyledOptions } from './utils'
 
@@ -206,10 +206,11 @@ export default function(babel: *) {
           })
           if (t.isCallExpression(expressionPath)) {
             if (!state.cssIdentifier) {
-              state.cssIdentifier = addDefault(path, '@emotion/css', {
+              state.cssIdentifier = addNamed(path, 'css', '@emotion/core', {
                 nameHint: 'css'
               })
             }
+
             expressionPath
               .get('callee')
               .replaceWith(t.cloneDeep(state.cssIdentifier))
