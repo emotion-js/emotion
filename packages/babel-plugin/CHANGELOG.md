@@ -1,5 +1,11 @@
 # @emotion/babel-plugin
 
+## 11.2.0
+
+### Patch Changes
+
+- [`c9b57f36`](https://github.com/emotion-js/emotion/commit/c9b57f36e99f8cfe86c971ddb29c7a5d70644bc1) [#2157](https://github.com/emotion-js/emotion/pull/2157) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with `styled` transformer not respecting `autoLabel: 'dev-only'` setting.
+
 ## 11.1.2
 
 ### Patch Changes

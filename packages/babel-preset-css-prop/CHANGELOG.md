@@ -1,5 +1,14 @@
 # @emotion/babel-preset-css-prop
 
+## 11.2.0
+
+### Patch Changes
+
+- [`64bc9037`](https://github.com/emotion-js/emotion/commit/64bc9037b1172d46b3b42c58dce0b2533e488209) [#2245](https://github.com/emotion-js/emotion/pull/2245) Thanks [@0xBono](https://github.com/0xBono)! - Fixed the invalid example in the README.
+
+- Updated dependencies [[`c9b57f36`](https://github.com/emotion-js/emotion/commit/c9b57f36e99f8cfe86c971ddb29c7a5d70644bc1)]:
+  - @emotion/babel-plugin@11.2.0
+
 ## 11.0.0
 
 ### Major Changes
