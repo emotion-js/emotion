@@ -1,5 +1,11 @@
 # babel-plugin-emotion
 
+## 10.2.2
+
+### Patch Changes
+
+- [`ed47786b`](https://github.com/emotion-js/emotion/commit/ed47786b084384ac8fa5f88f0a3b50f4f3026a78) [#2248](https://github.com/emotion-js/emotion/pull/2248) Thanks [@xanido](https://github.com/xanido)! - optimiseCssProp results in `css` being imported from @emotion/core rather than @emotion/css
+
 ## 10.0.33
 
 ### Patch Changes
