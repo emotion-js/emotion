@@ -2,7 +2,7 @@
 import { createEmotionMacro } from './emotion-macro'
 import { createStyledMacro } from './styled-macro'
 import cssMacro, { transformCssCallExpression } from './css-macro'
-import { addDefault, addNamed } from '@babel/helper-module-imports'
+import { addNamed } from '@babel/helper-module-imports'
 import nodePath from 'path'
 import { getSourceMap, getStyledOptions } from './utils'
 
