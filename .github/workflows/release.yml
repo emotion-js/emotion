@@ -3,8 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - master
-      - next
+      - v10
 
 jobs:
   release:
@@ -31,6 +30,7 @@ jobs:
         uses: changesets/action@master
         with:
           publish: yarn release
+          title: Version v10 Packages (if this PR has major changes, do not merge it)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -23,7 +23,7 @@
     "postinstall": "opencollective postinstall && preconstruct dev && manypkg check",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "yarn build && changeset publish"
+    "release": "yarn build && changeset publish --tag ten"
   },
   "resolutions": {
     "**/react": "16.14.0",
