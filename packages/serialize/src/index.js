@@ -61,7 +61,7 @@ let processStyleValue = (
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  let contentValuePattern = /(attr|calc|counters?|url)\(/
+  let contentValuePattern = /(attr|calc|counters?|url|(((repeating-)?(linear|radial))|conic)-gradient)\(/
   let contentValues = [
     'normal',
     'none',

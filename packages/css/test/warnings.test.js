@@ -21,6 +21,11 @@ const validValues = [
   '"some thing"',
   "'another thing'",
   'url("http://www.example.com/test.png")',
+  'linear-gradient(hotpink, #8be9fd)',
+  'radial-gradient(hotpink, #8be9fd)',
+  'repeating-linear-gradient(hotpink, #8be9fd)',
+  'repeating-radial-gradient(hotpink, #8be9fd)',
+  'conic-gradient(hotpink, #8be9fd)',
   'counter(chapter_counter)',
   'counters(section_counter, ".")',
   'attr(value string)'
