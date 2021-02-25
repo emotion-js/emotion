@@ -166,7 +166,11 @@ const cases = {
         color: white;
       `
 
-      return <div css={[style1, false && style2]}>Test content</div>
+      return (
+        <div css={[style1, false && style2, undefined && style2]}>
+          Test content
+        </div>
+      )
     }
   },
   theming: {

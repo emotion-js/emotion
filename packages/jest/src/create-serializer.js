@@ -130,7 +130,7 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
     const labels = getLabelsFromCss(node.props.css)
     const cssName = Array.isArray(node.props.css)
       ? node.props.css
-          .map(({ name }) => name)
+          .map(style => style && style.name)
           .filter(Boolean)
           .join(' ')
       : node.props.css.name
