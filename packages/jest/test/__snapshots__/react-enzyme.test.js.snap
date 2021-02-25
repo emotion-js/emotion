@@ -19,7 +19,24 @@ exports[`enzyme mount conditional styles 1`] = `
   background-color: black;
 }
 
-.emotion-1 {
+.emotion-11rveqsm-Greeting {
+  background-color: red;
+}
+
+.emotion-1x3g6du-Greeting {
+  background-color: red;
+}
+
+.emotion-16ph63u-cases {
+  background-color: red;
+}
+
+.emotion-116k1rg9-cases {
+  background-color: blue;
+}
+
+.emotion-1g67uy0-style1-style2-cases {
+  background-color: black;
   color: white;
 }
 
@@ -29,7 +46,11 @@ exports[`enzyme mount conditional styles 1`] = `
   <span
     className="emotion-1"
   >
-    Test content
+    <span
+      className="emotion-10"
+    >
+      Test content
+    </span>
   </span>
 </div>
 `;
@@ -331,7 +352,24 @@ exports[`enzyme shallow conditional styles 1`] = `
   background-color: black;
 }
 
-.emotion-1 {
+.emotion-11rveqsm-Greeting {
+  background-color: red;
+}
+
+.emotion-1x3g6du-Greeting {
+  background-color: red;
+}
+
+.emotion-16ph63u-cases {
+  background-color: red;
+}
+
+.emotion-116k1rg9-cases {
+  background-color: blue;
+}
+
+.emotion-1g67uy0-style1-style2-cases {
+  background-color: black;
   color: white;
 }
 
