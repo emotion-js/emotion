@@ -91,6 +91,7 @@ function filterEmotionProps(props = {}) {
 
 function getLabelsFromCss(css) {
   const getLabel = style => {
+    if (!style) return
     const styleString = style.styles || style
     const matches = styleString.match(/.*;label:([^;]+);/)
     return matches && matches[1]

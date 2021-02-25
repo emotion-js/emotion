@@ -14,6 +14,18 @@ exports[`enzyme mount basic 1`] = `
 </Greeting>
 `;
 
+exports[`enzyme mount conditional styles 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+<div
+  className="emotion-0"
+>
+  Test content
+</div>
+`;
+
 exports[`enzyme mount empty styled 1`] = `
 <Greeting>
   <div
@@ -303,6 +315,18 @@ exports[`enzyme shallow basic 1`] = `
   className="emotion-0"
 >
   hello
+</div>
+`;
+
+exports[`enzyme shallow conditional styles 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+<div
+  className="emotion-0"
+>
+  Test content
 </div>
 `;
 

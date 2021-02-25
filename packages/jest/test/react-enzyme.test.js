@@ -156,6 +156,19 @@ const cases = {
       return <div css={[style1, style2]}>Test content</div>
     }
   },
+  'conditional styles': {
+    render() {
+      const style1 = css`
+        background-color: black;
+      `
+
+      const style2 = css`
+        color: white;
+      `
+
+      return <div css={[style1, false && style2]}>Test content</div>
+    }
+  },
   theming: {
     render() {
       const Button = styled.button`
