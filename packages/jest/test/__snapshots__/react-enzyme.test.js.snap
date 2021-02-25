@@ -19,10 +19,18 @@ exports[`enzyme mount conditional styles 1`] = `
   background-color: black;
 }
 
+.emotion-1 {
+  color: white;
+}
+
 <div
   className="emotion-0"
 >
-  Test content
+  <span
+    className="emotion-1"
+  >
+    Test content
+  </span>
 </div>
 `;
 
@@ -323,10 +331,18 @@ exports[`enzyme shallow conditional styles 1`] = `
   background-color: black;
 }
 
+.emotion-1 {
+  color: white;
+}
+
 <div
   className="emotion-0"
 >
-  Test content
+  <span
+    className="emotion-1"
+  >
+    Test content
+  </span>
 </div>
 `;
 
