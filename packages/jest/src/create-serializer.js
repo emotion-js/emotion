@@ -89,17 +89,16 @@ function filterEmotionProps(props = {}) {
   return rest
 }
 
-function getStylesFromCss(css) {
-  return (Array.isArray(css) ? css : [css]).filter(Boolean)
-}
-
 function getLabelsFromCss(css) {
   const getLabel = style => {
+    if (!style) return
     const styleString = style.styles || style
     const matches = styleString.match(/.*;label:([^;]+);/)
     return matches && matches[1]
   }
-  return css.map(getLabel).filter(Boolean)
+  return (Array.isArray(css) ? css.map(getLabel) : [getLabel(css)]).filter(
+    Boolean
+  )
 }
 
 function isShallowEnzymeElement(
@@ -128,12 +127,13 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
     return node
   }
   if (isEmotionCssPropEnzymeElement(node)) {
-    const styles = getStylesFromCss(node.props.css)
-    const labels = getLabelsFromCss(styles)
-    const cssName = styles
-      .map(({ name }) => name)
-      .filter(Boolean)
-      .join(' ')
+    const labels = getLabelsFromCss(node.props.css)
+    const cssName = Array.isArray(node.props.css)
+      ? node.props.css
+          .map(({ name }) => name)
+          .filter(Boolean)
+          .join(' ')
+      : node.props.css && node.props.css.name
     const cssClassNames = (cssName || '').split(' ')
     const expectedClassNames = flatMap(cssClassNames, cssClassName =>
       keys.map(key => `${key}-${cssClassName}`)
