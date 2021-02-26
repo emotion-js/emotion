@@ -134,7 +134,7 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
           .filter(Boolean)
           .join(' ')
       : node.props.css && node.props.css.name
-    const cssClassNames = (cssName || '').split(' ')
+    const cssClassNames = (cssName || '').split(' ').filter(Boolean)
     const expectedClassNames = flatMap(cssClassNames, cssClassName =>
       keys.map(key => `${key}-${cssClassName}`)
     )
@@ -143,7 +143,6 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
     if (isShallowEnzymeElement(node, keys, labels)) {
       const className = [node.props.className]
         .concat(expectedClassNames)
-        .filter(Boolean)
         .join(' ')
       const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
       // emotionType will be a string for DOM elements
