@@ -40,7 +40,7 @@ export default function SiteHeader() {
             display: 'flex',
             justifyContent: 'center',
             backgroundColor: 'black',
-            width: '100vw',
+            width: '100%',
             zIndex: 100
           }}
         >
