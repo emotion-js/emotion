@@ -15,12 +15,6 @@ expect.extend(matchers)
 expect.addSnapshotSerializer(serializer)
 
 const cases = {
-  'empty styled': {
-    render() {
-      const Greeting = styled.div``
-      return <Greeting>Hello</Greeting>
-    }
-  },
   basic: {
     render() {
       const Greeting = ({ children }) => (
@@ -45,6 +39,12 @@ const cases = {
   'nested styled': {
     render() {
       return <div>{cases.styled.render()}</div>
+    }
+  },
+  'empty styled': {
+    render() {
+      const Greeting = styled.div``
+      return <Greeting>Hello</Greeting>
     }
   },
   'with styles on top level': {
@@ -154,6 +154,44 @@ const cases = {
       `
 
       return <div css={[style1, style2]}>Test content</div>
+    }
+  },
+  'with array of styles in a composite inner child': {
+    render() {
+      const style1 = css`
+        background-color: black;
+      `
+
+      const style2 = css`
+        color: white;
+      `
+
+      function Inner(props) {
+        return <span {...props} />
+      }
+
+      return (
+        <div>
+          <Inner css={[style1, style2]}>Test content</Inner>
+        </div>
+      )
+    }
+  },
+  'conditional styles': {
+    render() {
+      const style1 = css`
+        background-color: black;
+      `
+
+      const style2 = css`
+        color: white;
+      `
+
+      return (
+        <div css={[style1, false && style2, undefined && style2]}>
+          <span css={null && style2}>Test content</span>
+        </div>
+      )
     }
   },
   theming: {
