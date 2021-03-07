@@ -1,5 +1,13 @@
 # @emotion/jest
 
+## 11.2.1
+
+### Patch Changes
+
+- [`66ccd43e`](https://github.com/emotion-js/emotion/commit/66ccd43e4c1ed44fb11950d663f6cb0be4ab3415) [#2269](https://github.com/emotion-js/emotion/pull/2269) Thanks [@mskelton](https://github.com/mskelton)! - Fixed the Enzyme serializer to work properly with conditional styles passed to the `css` prop.
+
+* [`66ccd43e`](https://github.com/emotion-js/emotion/commit/66ccd43e4c1ed44fb11950d663f6cb0be4ab3415) [#2269](https://github.com/emotion-js/emotion/pull/2269) Thanks [@mskelton](https://github.com/mskelton)! - Fixed the Enzyme serializer to always print composed styles (for example using arrays), which are passed to the `css` prop, correctly.
+
 ## 11.2.0
 
 ### Minor Changes

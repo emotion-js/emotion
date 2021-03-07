@@ -1,5 +1,11 @@
 # @emotion/serialize
 
+## 1.0.1
+
+### Patch Changes
+
+- [`418daad9`](https://github.com/emotion-js/emotion/commit/418daad9f7ac0eac88f206e3c4aee4e7aca7deb4) [#2264](https://github.com/emotion-js/emotion/pull/2264) Thanks [@lucasweng](https://github.com/lucasweng)! - Fix incorrectly throwing error on the gradient content values
+
 ## 1.0.0
 
 ### Major Changes
