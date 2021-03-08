@@ -11,7 +11,6 @@ console.error = jest.fn()
 const validValues = [
   'normal',
   'none',
-  'counter',
   'open-quote',
   'close-quote',
   'no-open-quote',
@@ -28,7 +27,8 @@ const validValues = [
   'conic-gradient(hotpink, #8be9fd)',
   'counter(chapter_counter)',
   'counters(section_counter, ".")',
-  'attr(value string)'
+  'attr(value string)',
+  'open-quote counter(chapter_counter)'
 ]
 
 afterEach(() => {
