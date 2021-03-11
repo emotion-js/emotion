@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should insert opaque style object with trailing css variable 1`] = `
+.emotion-0 {
+  color: hotpink;
+  --some-variable: 16px;
+}
+
+<div
+  className="emotion-0"
+>
+  Text
+</div>
+`;
