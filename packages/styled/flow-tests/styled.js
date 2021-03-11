@@ -19,7 +19,7 @@ styled<Props>(props => <div className={props.className}>{props.color}</div>)`
 styled<Props>(props => {
   const color: string = props.color
   const className: string = props.className
-  // $FlowExpectError: color should be a string
+  // $FlowFixMe: expect error - color should be a string
   const colorTest: number = props.color
   return <div className={props.className}>{props.color}</div>
 })``
