@@ -1,8 +1,16 @@
 // @flow
-import type { ElementType, StatelessFunctionalComponent } from 'react'
+import type {
+  ElementType,
+  StatelessFunctionalComponent,
+  AbstractComponent
+} from 'react'
 import isPropValid from '@emotion/is-prop-valid'
 
 export type Interpolations = Array<any>
+
+export type StyledElementType<Props> =
+  | string
+  | AbstractComponent<{ ...Props, className: string }, mixed>
 
 export type StyledOptions = {
   label?: string,
@@ -14,7 +22,7 @@ export type StyledComponent<Props> = StatelessFunctionalComponent<Props> & {
   defaultProps: any,
   toString: () => string,
   withComponent: (
-    nextTag: ElementType,
+    nextTag: StyledElementType<Props>,
     nextOptions?: StyledOptions
   ) => StyledComponent<Props>
 }
@@ -67,7 +75,7 @@ export type CreateStyledComponent = <Props>(
 
 export type CreateStyled = {
   <Props>(
-    tag: ElementType,
+    tag: StyledElementType<Props>,
     options?: StyledOptions
   ): (...args: Interpolations) => StyledComponent<Props>,
   [key: string]: CreateStyledComponent,
