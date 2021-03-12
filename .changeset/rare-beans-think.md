@@ -1,5 +1,5 @@
 ---
-'@emotion/styled': minor
+'@emotion/styled': patch
 ---
 
-Make styled inline-functions infer prop types
+Improved Flow type inference of props for inline functions passed to the `styled` factory.
