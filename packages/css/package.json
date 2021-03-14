@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@emotion/babel-plugin": "^11.0.0",
     "dtslint": "^0.3.0"
   },
   "author": "Kye Hohenberger",
