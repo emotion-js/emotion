@@ -4,7 +4,6 @@ exports[`does not warn when valid values are passed for the content property 1`]
 .emotion-0 {
   content: normal;
   content: none;
-  content: counter;
   content: open-quote;
   content: close-quote;
   content: no-open-quote;
@@ -22,6 +21,7 @@ exports[`does not warn when valid values are passed for the content property 1`]
   content: counter(chapter_counter);
   content: counters(section_counter, ".");
   content: attr(value string);
+  content: open-quote counter(chapter_counter);
 }
 
 <div
