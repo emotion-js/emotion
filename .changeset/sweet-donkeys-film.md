@@ -2,4 +2,4 @@
 '@emotion/serialize': patch
 ---
 
-Fix incorrectly throwing error on valid content values
+Fixed the issue with incorrectly throwing errors on valid content values containing `open-quote`.
