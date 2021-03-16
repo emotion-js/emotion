@@ -14,7 +14,7 @@ const createObjectSpreadLike = (t, file, ...objs) =>
   t.callExpression(file.addHelper('extends'), [t.objectExpression([]), ...objs])
 
 export let getStyledOptions = (t: *, path: *, state: *) => {
-  const autoLabel = state.opts.autoLabel || 'dev-only'
+  const autoLabel = state.emotionAutoLabel || 'dev-only'
 
   let args = path.node.arguments
   let optionsArgument = args.length >= 2 ? args[1] : null

@@ -48,7 +48,7 @@ function getLabel(
 export function getLabelFromPath(path: *, state: *, t: *) {
   return getLabel(
     getIdentifierName(path, t),
-    state.opts.labelFormat,
+    state.emotionLabelFormat,
     state.file.opts.filename
   )
 }

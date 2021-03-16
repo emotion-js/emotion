@@ -183,7 +183,7 @@
     "@babel/plugin-syntax-jsx": "^7.12.1",
     "@babel/plugin-transform-flow-strip-types": "^7.6.3",
     "@babel/plugin-transform-react-jsx": "^7.12.1",
-    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-env": "^7.13.10",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.12.1",
     "@babel/register": "^7.7.0",

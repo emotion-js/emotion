@@ -12,6 +12,20 @@ import coreMacro, {
 } from './core-macro'
 import { getStyledOptions, createTransformerMacro } from './utils'
 
+const EMOTION_BABEL_PLUGIN_ANNOTATION_REGEX = /\*?\s*@emotion\/babel-plugin\s+(.+$)/
+
+// this is really intended to only be used internally
+const getEmotionBabelPluginPragmaOptions = state => {
+  if (!state.file.ast.comments) {
+    return {}
+  }
+  return state.file.ast.comments
+    .map(comment => comment.value.match(EMOTION_BABEL_PLUGIN_ANNOTATION_REGEX))
+    .filter(Boolean)
+    .map(match => JSON.parse(`{${match[1]}}`))
+    .reduce((a, b) => Object.assign(a, b), {})
+}
+
 const getCssExport = (reexported, importSource, mapping) => {
   const cssExport = Object.keys(mapping).find(localExportName => {
     const [packageName, exportName] = mapping[localExportName].canonicalImport
@@ -75,17 +89,18 @@ export type EmotionBabelPluginPass = any
 
 const AUTO_LABEL_VALUES = ['dev-only', 'never', 'always']
 
-export default function(babel: *, options: *) {
-  if (
-    options.autoLabel !== undefined &&
-    !AUTO_LABEL_VALUES.includes(options.autoLabel)
-  ) {
+const validateAutoLabel = value => {
+  if (value !== undefined && !AUTO_LABEL_VALUES.includes(value)) {
     throw new Error(
       `The 'autoLabel' option must be undefined, or one of the following: ${AUTO_LABEL_VALUES.map(
         s => `"${s}"`
       ).join(', ')}`
     )
   }
+}
+
+export default function(babel: *, options: *) {
+  validateAutoLabel(options.autoLabel)
 
   let t = babel.types
   return {
@@ -147,6 +162,19 @@ export default function(babel: *, options: *) {
         })
       },
       Program(path: *, state: *) {
+        const pragmaOptions = getEmotionBabelPluginPragmaOptions(state)
+
+        state.transformCssProp =
+          (pragmaOptions.cssPropOptimization ??
+            state.opts.cssPropOptimization) !== false
+        state.emotionSourceMap =
+          (pragmaOptions.sourceMap ?? state.opts.sourceMap) !== false
+        state.emotionAutoLabel = pragmaOptions.autoLabel ?? state.opts.autoLabel
+        state.emotionLabelFormat =
+          pragmaOptions.labelFormat ?? state.opts.labelFormat
+
+        validateAutoLabel(state.emotionAutoLabel)
+
         let macros = {}
         let jsxReactImports: Array<{
           importSource: string,
@@ -239,18 +267,6 @@ export default function(babel: *, options: *) {
               break
             }
           }
-        }
-
-        if (state.opts.cssPropOptimization === false) {
-          state.transformCssProp = false
-        } else {
-          state.transformCssProp = true
-        }
-
-        if (state.opts.sourceMap === false) {
-          state.emotionSourceMap = false
-        } else {
-          state.emotionSourceMap = true
         }
       },
       JSXAttribute(path: *, state: *) {

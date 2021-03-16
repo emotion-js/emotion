@@ -164,7 +164,9 @@ let createCache = (options: Options): EmotionCache => {
         }
       }
 
-      stylis(selector ? `${selector}{${serialized.styles}}` : serialized.styles)
+      stylis(
+        selector ? `${selector}{${serialized.styles};}` : serialized.styles
+      )
 
       if (shouldCache) {
         cache.inserted[serialized.name] = true

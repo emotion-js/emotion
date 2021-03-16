@@ -27,7 +27,7 @@ export let transformExpressionWithStyles = ({
   shouldLabel: boolean,
   sourceMap?: string
 }): * => {
-  const autoLabel = state.opts.autoLabel || 'dev-only'
+  const autoLabel = state.emotionAutoLabel || 'dev-only'
   let t = babel.types
   if (t.isTaggedTemplateExpression(path)) {
     if (
