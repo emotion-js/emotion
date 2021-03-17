@@ -11,7 +11,7 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.2",
+    "@babel/runtime": "^7.13.10",
     "@emotion/babel-plugin": "^11.1.2",
     "@emotion/is-prop-valid": "^1.1.0",
     "@emotion/serialize": "^1.0.0",
@@ -31,7 +31,7 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.7.2",
+    "@babel/core": "^7.13.10",
     "@emotion/react": "11.1.5",
     "dtslint": "^0.3.0",
     "react": "16.14.0"

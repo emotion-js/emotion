@@ -7,7 +7,7 @@
     "test:typescript": "exit 0"
   },
   "dependencies": {
-    "@babel/plugin-syntax-class-properties": "^7.2.0",
-    "@babel/plugin-syntax-object-rest-spread": "^7.2.0"
+    "@babel/plugin-syntax-class-properties": "^7.12.13",
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
   }
 }

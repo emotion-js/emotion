@@ -17,7 +17,7 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.2",
+    "@babel/runtime": "^7.13.10",
     "@emotion/css-prettifier": "^1.0.0",
     "chalk": "^4.1.0",
     "specificity": "^0.4.1",
