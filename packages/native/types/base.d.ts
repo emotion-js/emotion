@@ -101,36 +101,22 @@ export interface CreateStyledComponent<
 > {
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
-   * @typeparam InferredAdditionalProps  Should not be explicitly specified
    */
-  <
-    AdditionalProps extends {} = {},
-    InferredAdditionalProps extends AdditionalProps = AdditionalProps
-  >(
+  <AdditionalProps extends {} = {}>(
     ...styles: ArrayInterpolation<
       ComponentProps &
         SpecificComponentProps &
         AdditionalProps & { theme: Theme },
       StyleType
     >
-  ): StyledComponent<
-    ComponentProps & InferredAdditionalProps,
-    SpecificComponentProps,
-    JSXProps
-  >
+  ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
-   * @typeparam InferredAdditionalProps  Should not be explicitly specified
    */
-  <
-    AdditionalProps extends {} = {},
-    InferredAdditionalProps extends AdditionalProps = AdditionalProps
-  >(
+  <AdditionalProps extends {} = {}>(
     template: TemplateStringsArray,
     ...styles: ArrayInterpolation<
-      ComponentProps &
-        SpecificComponentProps &
-        InferredAdditionalProps & { theme: Theme },
+      ComponentProps & SpecificComponentProps & { theme: Theme },
       StyleType
     >
   ): StyledComponent<
