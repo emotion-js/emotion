@@ -46,6 +46,24 @@ export function withEmotionCache<Props, RefType = any>(
   func: (props: Props, context: EmotionCache, ref: Ref<RefType>) => ReactNode
 ): FC<Props & ClassAttributes<RefType>>
 
+type ReactInterpolationPrimitive =
+  | null
+  | undefined
+  | boolean
+  | SerializedStyles
+  | CSSObject
+
+type ReactArrayInterpolation<Props> = Array<ReactInterpolation<Props>>
+
+interface ReactFunctionInterpolation<Props> {
+  (props: Props): ReactInterpolation<Props>
+}
+
+export type ReactInterpolation<Props> =
+  | ReactInterpolationPrimitive
+  | ReactArrayInterpolation<Props>
+  | ReactFunctionInterpolation<Props>
+
 export function css(
   template: TemplateStringsArray,
   ...args: Array<CSSInterpolation>
