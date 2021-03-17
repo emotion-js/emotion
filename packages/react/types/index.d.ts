@@ -68,7 +68,7 @@ export function keyframes(
 ): Keyframes
 export function keyframes(...args: Array<CSSInterpolation>): Keyframes
 
-export interface ArrayClassNamesArg extends Array<ClassNamesArg> {}
+export type ArrayClassNamesArg = Array<ClassNamesArg>
 export type ClassNamesArg =
   | undefined
   | null

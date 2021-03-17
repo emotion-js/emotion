@@ -15,7 +15,7 @@ export type CSSPropertiesWithMultiValues = {
 
 export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
 
-export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
+export type ArrayCSSInterpolation = Array<CSSInterpolation>
 
 export type InterpolationPrimitive =
   | null
@@ -50,8 +50,7 @@ export type Keyframes = {
   toString: () => string
 } & string
 
-export interface ArrayInterpolation<Props>
-  extends Array<Interpolation<Props>> {}
+export type ArrayInterpolation<Props> = Array<Interpolation<Props>>
 
 export interface FunctionInterpolation<Props> {
   (props: Props): Interpolation<Props>

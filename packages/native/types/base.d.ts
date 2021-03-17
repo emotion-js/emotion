@@ -28,18 +28,18 @@ export type ObjectInterpolation<
   StyleType extends ReactNativeStyle = ReactNativeStyle
 > = StyleType
 
-export interface ArrayCSSInterpolation<
+export type ArrayCSSInterpolation<
   StyleType extends ReactNativeStyle = ReactNativeStyle
-> extends Array<CSSInterpolation<StyleType>> {}
+> = Array<CSSInterpolation<StyleType>>
 
 export type CSSInterpolation<
   StyleType extends ReactNativeStyle = ReactNativeStyle
 > = InterpolationPrimitive<StyleType> | ArrayCSSInterpolation<StyleType>
 
-export interface ArrayInterpolation<
+export type ArrayInterpolation<
   MergedProps,
   StyleType extends ReactNativeStyle = ReactNativeStyle
-> extends Array<Interpolation<MergedProps, StyleType>> {}
+> = Array<Interpolation<MergedProps, StyleType>>
 
 export interface FunctionInterpolation<
   MergedProps,
