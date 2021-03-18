@@ -1,5 +1,29 @@
 # @emotion/sheet
 
+## 1.0.1
+
+### Patch Changes
+
+- [`5469d003`](https://github.com/emotion-js/emotion/commit/5469d0034d055a34587e9d05332f6da4d4722b1c) [#2149](https://github.com/emotion-js/emotion/pull/2149) Thanks [@Andarist](https://github.com/Andarist)! - Do not log failed rule insertions in the speedy mode for vendor-prefixed pseudo-elements/classes like `::-moz-placeholder`.
+
+## 1.0.0
+
+### Major Changes
+
+- [`9e998e37`](https://github.com/emotion-js/emotion/commit/9e998e3755c217027ad1be0af4c64644fe14c6bf) [#1817](https://github.com/emotion-js/emotion/pull/1817) Thanks [@Andarist](https://github.com/Andarist)! - `@import` rules are no longer special-cased - they no longer are always inserted at the beginning of the stylesheet. The responsibility to put them first has been moved to a consumer of this package.
+
+### Minor Changes
+
+- [`4a891bf6`](https://github.com/emotion-js/emotion/commit/4a891bf6a30e3bb37f8f32031fa75a571c637d9c) [#1473](https://github.com/emotion-js/emotion/pull/1473) Thanks [@jcharry](https://github.com/jcharry)! - The new `prepend` option can make Emotion add style tags at the beginning of the specified DOM container instead of the end.
+
+* [`dfe79aca`](https://github.com/emotion-js/emotion/commit/dfe79aca696fc688f960218b16afee197926fe71) [#1696](https://github.com/emotion-js/emotion/pull/1696) Thanks [@Andarist](https://github.com/Andarist)! - Added `hydrate` method which can be used for SSRed styles. They become a part of a sheet and can be flushed.
+
+### Patch Changes
+
+- [`42df3f3b`](https://github.com/emotion-js/emotion/commit/42df3f3bc01526eed61cedba106d86b9e3807f9d) [#2028](https://github.com/emotion-js/emotion/pull/2028) Thanks [@Andarist](https://github.com/Andarist)! - Generated style elements got `data-s="1"` attribute so `@emotion/cache` can recognize them as being already owned by another Emotion copy to avoid messing up existing style elements when initializing a new copy.
+
+* [`1e4a741d`](https://github.com/emotion-js/emotion/commit/1e4a741de6424d3d9c1f3ca9695e1953bed3a194) [#1697](https://github.com/emotion-js/emotion/pull/1697) Thanks [@Andarist](https://github.com/Andarist)! - Removed mentions of `maxLength` option in types & docs as it has been removed some time ago.
+
 ## 1.0.0-rc.0
 
 ### Major Changes

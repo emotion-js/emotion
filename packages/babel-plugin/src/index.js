@@ -148,14 +148,14 @@ export default function(babel: *, options: *) {
       },
       Program(path: *, state: *) {
         let macros = {}
-        let jsxCoreImports: Array<{
+        let jsxReactImports: Array<{
           importSource: string,
           export: string,
           cssExport: string
         }> = [
           { importSource: '@emotion/react', export: 'jsx', cssExport: 'css' }
         ]
-        state.jsxCoreImport = jsxCoreImports[0]
+        state.jsxReactImport = jsxReactImports[0]
         Object.keys(state.opts.importMap || {}).forEach(importSource => {
           let value = state.opts.importMap[importSource]
           let transformers = {}
@@ -163,7 +163,7 @@ export default function(babel: *, options: *) {
             let { canonicalImport, ...options } = value[localExportName]
             let [packageName, exportName] = canonicalImport
             if (packageName === '@emotion/react' && exportName === 'jsx') {
-              jsxCoreImports.push({
+              jsxReactImports.push({
                 importSource,
                 export: localExportName,
                 cssExport: getCssExport('jsx', importSource, value)
@@ -191,7 +191,9 @@ export default function(babel: *, options: *) {
             ) {
               // this is supposed to override defaultOptions value
               // and let correct value to be set if coming in options
-              extraOptions = { styledBaseImport: undefined }
+              extraOptions = {
+                styledBaseImport: undefined
+              }
             }
 
             let [exportTransformer, defaultOptions] =
@@ -202,7 +204,11 @@ export default function(babel: *, options: *) {
 
             transformers[localExportName] = [
               exportTransformer,
-              { ...defaultOptions, ...extraOptions, ...options }
+              {
+                ...defaultOptions,
+                ...extraOptions,
+                ...options
+              }
             ]
           })
           macros[importSource] = createTransformerMacro(transformers, {
@@ -217,26 +223,28 @@ export default function(babel: *, options: *) {
           '@emotion/css': vanillaEmotionMacro,
           ...macros
         }
-        if (state.opts.cssPropOptimization === undefined) {
-          for (const node of path.node.body) {
-            if (t.isImportDeclaration(node)) {
-              let jsxCoreImport = jsxCoreImports.find(
-                thing =>
-                  node.source.value === thing.importSource &&
-                  node.specifiers.some(
-                    x =>
-                      t.isImportSpecifier(x) && x.imported.name === thing.export
-                  )
-              )
-              if (jsxCoreImport) {
-                state.transformCssProp = true
-                state.jsxCoreImport = jsxCoreImport
-                break
-              }
+
+        for (const node of path.node.body) {
+          if (t.isImportDeclaration(node)) {
+            let jsxReactImport = jsxReactImports.find(
+              thing =>
+                node.source.value === thing.importSource &&
+                node.specifiers.some(
+                  x =>
+                    t.isImportSpecifier(x) && x.imported.name === thing.export
+                )
+            )
+            if (jsxReactImport) {
+              state.jsxReactImport = jsxReactImport
+              break
             }
           }
+        }
+
+        if (state.opts.cssPropOptimization === false) {
+          state.transformCssProp = false
         } else {
-          state.transformCssProp = state.opts.cssPropOptimization
+          state.transformCssProp = true
         }
 
         if (state.opts.sourceMap === false) {
@@ -262,7 +270,7 @@ export default function(babel: *, options: *) {
               state,
               babel,
               path,
-              cssImport: state.jsxCoreImport
+              cssImport: state.jsxReactImport
             })
           }
         }

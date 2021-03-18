@@ -40,7 +40,7 @@ Then configure the rules you want to use under the rules section.
 
 ## Emotion 11 codemod
 
-The Emotion 10 codemods are contained in this package. To use them, enable the rule shown below.
+The Emotion 11 codemods are contained in this package. To use them, enable the rule shown below.
 
 ```json
 {

@@ -1,5 +1,64 @@
 # @emotion/jest
 
+## 11.2.1
+
+### Patch Changes
+
+- [`66ccd43e`](https://github.com/emotion-js/emotion/commit/66ccd43e4c1ed44fb11950d663f6cb0be4ab3415) [#2269](https://github.com/emotion-js/emotion/pull/2269) Thanks [@mskelton](https://github.com/mskelton)! - Fixed the Enzyme serializer to work properly with conditional styles passed to the `css` prop.
+
+* [`66ccd43e`](https://github.com/emotion-js/emotion/commit/66ccd43e4c1ed44fb11950d663f6cb0be4ab3415) [#2269](https://github.com/emotion-js/emotion/pull/2269) Thanks [@mskelton](https://github.com/mskelton)! - Fixed the Enzyme serializer to always print composed styles (for example using arrays), which are passed to the `css` prop, correctly.
+
+## 11.2.0
+
+### Minor Changes
+
+- [`0c31ed05`](https://github.com/emotion-js/emotion/commit/0c31ed05e564c4e68d11862e23d96003c6b7e4b5) [#2233](https://github.com/emotion-js/emotion/pull/2233) Thanks [@ajs139](https://github.com/ajs139)! - Fixed an issue with Enzyme snapshots for components using an array as the `css` prop - those should be printed OK now.
+
+## 11.1.0
+
+### Minor Changes
+
+- [`c470c855`](https://github.com/emotion-js/emotion/commit/c470c8556a05e3af83b067c51cdd29f8655f7dbf) [#2109](https://github.com/emotion-js/emotion/pull/2109) Thanks [@Andarist](https://github.com/Andarist)! - `createEnzymeSerializer` export has been removed from the root entrypoint and moved to a dedicated `@emotion/jest/enzyme` entrypoint. This is unfortunate because it could be considered a breaking change but it has been decided to treat this as a bug fix. It was never the intention to export this from the root entrypoint - `enzyme-to-json` has been marked as an optional peer dependency of `@emotion/jest` since the release and it was the package structure that did not match this expectation by mistake.
+
+## 11.0.0
+
+### Major Changes
+
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `jest-emotion` to `@emotion/jest`. Please replace `"snapshotSerializers": ["jest-emotion"]` with `"snapshotSerializers": ["@emotion/jest/serializer"]` if you're using the snapshot serializer. Also replace any imports of `jest-emotion` with `@emotion/jest` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+
+* [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - `test` & `print` are no longer exported as named exports. If you want to access the default serializer just access the default export. This means that `@emotion/jest`(previously `jest-emotion`) can't be used directly in the `snapshotSerializers` option, you should use `@emotion/jest/serializer` instead for this.
+
+* [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - Refactored to use new serializers API which has been introduced in Jest 21.
+
+* [`cd77efbf`](https://github.com/emotion-js/emotion/commit/cd77efbf263486e2b189221f4076e1098d78c379) [#1920](https://github.com/emotion-js/emotion/pull/1920) Thanks [@Andarist](https://github.com/Andarist)! - The root entry (`@emotion/jest`) no longer has `default` and `serializer` exports. You can still import `createSerializer` from it to create your own serializer if needed.
+
+- [`cd77efbf`](https://github.com/emotion-js/emotion/commit/cd77efbf263486e2b189221f4076e1098d78c379) [#1920](https://github.com/emotion-js/emotion/pull/1920) Thanks [@Andarist](https://github.com/Andarist)! - `@emotion/jest/serializer`'s main purpose is compatibility with Jest's `snapshotSerializers` option, so it no longer has a default export - it only has `test` & `serialize` exports. You can import `createSerializer` from the root entry (`@emotion/jest`) and create your own serializer if needed.
+
+- [`702f3fd2`](https://github.com/emotion-js/emotion/commit/702f3fd22aab8f3cb09dd547c07b9045ca5c3d9c) [#1620](https://github.com/emotion-js/emotion/pull/1620) Thanks [@spudly](https://github.com/spudly)! - Added the `T` parameter to the `Matchers` interface in the TypeScript definitions to make this module compatible with `@types/jest@^24.0.20`.
+
+### Minor Changes
+
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Improve support for Enzyme's shallow rendering with the addition of the `@emotion/jest/enzyme-serializer` snapshot serializer.
+
+* [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - Improved printing of nested at-rules.
+
+- [`ca599c5f`](https://github.com/emotion-js/emotion/commit/ca599c5f392b5b1f51430dc9d8b263ed54856401) [#1901](https://github.com/emotion-js/emotion/pull/1901) Thanks [@Andarist](https://github.com/Andarist)! - Fixed an issue with all styles being recognized as changed in Jest 25 on unrelated changes.
+
+### Patch Changes
+
+- [`e67a5be9`](https://github.com/emotion-js/emotion/commit/e67a5be9bffaa12f9ae0e366983dced4c3716f84) [#1604](https://github.com/emotion-js/emotion/pull/1604) Thanks [@Andarist](https://github.com/Andarist)! - Take specificity into account when matching styles
+
+* [`8a88e771`](https://github.com/emotion-js/emotion/commit/8a88e77113aef127b0404f4f0b66fd6ee69391f0) [#1880](https://github.com/emotion-js/emotion/pull/1880) Thanks [@Jimmydalecleveland](https://github.com/Jimmydalecleveland)! - Improved stability of the generated snapshots - styles are extracted now based on the order in which the associated with them class names appear in the serialized elements rather than based on the order of the actual rules in the document.
+
+- [`e67a5be9`](https://github.com/emotion-js/emotion/commit/e67a5be9bffaa12f9ae0e366983dced4c3716f84) [#1604](https://github.com/emotion-js/emotion/pull/1604) Thanks [@Andarist](https://github.com/Andarist)! - Match rules in declarations with component used as a selector
+
+* [`ae8c1d9d`](https://github.com/emotion-js/emotion/commit/ae8c1d9dfa9ec605c90937f6e77c2a2642c94bd7) [#1902](https://github.com/emotion-js/emotion/pull/1902) Thanks [@Andarist](https://github.com/Andarist)! - Added support for handling regular React **elements** (objects returned from `React.createElement`) in the serializer and `toHaveStyleRule` matcher. It's possible to get those elements when traversing Enzyme's trees.
+
+* [`3abcf673`](https://github.com/emotion-js/emotion/commit/3abcf673d6d2ea8d802602dde1d5af33af75ac4c) [#2043](https://github.com/emotion-js/emotion/pull/2043) Thanks [@Andarist](https://github.com/Andarist)! - `@types/jest` has been moved from the dependencies to the optional peer dependencies as it should not be installed automatically for users not using TypeScript.
+
+* Updated dependencies []:
+  - @emotion/css-prettifier@1.0.0
+
 ## 11.0.0-rc.0
 
 ### Major Changes
@@ -72,11 +131,11 @@
 
 ### Major Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `jest-emotion` to `@emotion/jest`. Please replace `"snapshotSerializers": ["jest-emotion"]` with `"snapshotSerializers": ["@emotion/jest"]` if you're using the snapshot serializer. Also replace any imports of `jest-emotion` with `@emotion/jest` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Rename `jest-emotion` to `@emotion/jest`. Please replace `"snapshotSerializers": ["jest-emotion"]` with `"snapshotSerializers": ["@emotion/jest"]` if you're using the snapshot serializer. Also replace any imports of `jest-emotion` with `@emotion/jest` or use the `@emotion/pkg-renaming` ESLint rule from `@emotion/eslint-plugin`.
 
 ### Minor Changes
 
-- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1600](https://github.com/emotion-js/emotion/pull/1600) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Improve support for Enzyme's shallow rendering with the addition of the @emotion/jest/enzyme snapshot serializer
+- [`b8476e08`](https://github.com/emotion-js/emotion/commit/b8476e08af4a2e8de94a112cb0daf6e8e4d56fe1) [#1675](https://github.com/emotion-js/emotion/pull/1675) Thanks [@mitchellhamilton](https://github.com/mitchellhamilton)! - Improve support for Enzyme's shallow rendering with the addition of the @emotion/jest/enzyme snapshot serializer
 
 ### Patch Changes
 

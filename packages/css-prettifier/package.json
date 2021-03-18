@@ -1,6 +1,6 @@
 {
   "name": "@emotion/css-prettifier",
-  "version": "1.0.0-next.0",
+  "version": "1.0.0",
   "description": "Simple Stylis-based CSS prettifier",
   "scripts": {
     "test:typescript": "exit 0"
@@ -9,10 +9,11 @@
     "emotion"
   ],
   "author": "Mateusz Burzyński <mateuszburzynski@gmail.com> (https://github.com/Andarist)",
-  "main": "dist/css-prettifier.cjs.js",
-  "module": "dist/css-prettifier.esm.js",
+  "main": "dist/emotion-css-prettifier.cjs.js",
+  "module": "dist/emotion-css-prettifier.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/css-prettifier",
   "dependencies": {
     "@emotion/memoize": "^0.7.4",
     "stylis": "^4.0.3"

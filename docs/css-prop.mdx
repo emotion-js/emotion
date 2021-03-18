@@ -21,7 +21,7 @@ After adding the preset or setting the pragma as a comment, compiled jsx code wi
 
 #### Babel Preset
 
-This method will **not** work with [Create React App](https://github.com/facebook/create-react-app) or other projects that do not allow custom babel configurations.
+This method will **not** work with [Create React App](https://github.com/facebook/create-react-app) or other projects that do not allow custom Babel configurations.
 Use the [JSX Pragma](#jsx-pragma) method instead.
 
 **.babelrc**
@@ -34,6 +34,43 @@ Use the [JSX Pragma](#jsx-pragma) method instead.
 
 > [Full `@emotion/babel-preset-css-prop` documentation](https://emotion.sh/docs/@emotion/babel-preset-css-prop)
 
+If you are using the compatible React version (`>=16.14.0`) then you can opt into using [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) by using such configuration:
+
+**.babelrc**
+
+```json
+{
+  "presets": [
+    [
+      "@babel/preset-react",
+      { "runtime": "automatic", "importSource": "@emotion/react" }
+    ]
+  ],
+  "plugins": ["@emotion/babel-plugin"]
+}
+```
+
+In case you want to use the new JSX runtimes with [Next.js](https://nextjs.org/) and you are using their [`next/babel`](https://nextjs.org/docs/advanced-features/customizing-babel-config) preset then the configuration should look like this:
+
+**.babelrc**
+
+```json
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-react": {
+          "runtime": "automatic",
+          "importSource": "@emotion/react"
+        }
+      }
+    ]
+  ],
+  "plugins": ["@emotion/babel-plugin"]
+}
+```
+
 #### JSX Pragma
 
 Set the jsx pragma at the top of your source file that uses the `css` prop.
@@ -44,6 +81,8 @@ This option works best for testing out the `css` prop feature or in projects whe
 ```
 
 Similar to a comment containing linter configuration, this configures the [jsx babel plugin](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx) to use the `jsx` function instead of `React.createElement`.
+
+If you are using a zero-config tool with automatic detection of which runtime (classic vs. automatic) should be used and you are already using a React version that has [the new JSX runtimes](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) (hence `runtime: 'automatic'` being configured automatically for you) such as Create React App 4 then `/** @jsx jsx */` pragma might not work and you should use `/** @jsxImportSource @emotion/react */` instead.
 
 > [JSX Pragma Babel Documentation](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx#pragma)
 

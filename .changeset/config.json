@@ -7,29 +7,22 @@
   "commit": false,
   "linked": [
     [
-      "@emotion/core",
       "@emotion/react",
       "@emotion/styled",
-      "@emotion/styled-base",
       "@emotion/cache",
       "@emotion/css",
-      "create-emotion",
-      "emotion",
-      "emotion-server",
       "@emotion/server",
-      "create-emotion-server",
-      "babel-plugin-emotion",
       "@emotion/babel-plugin",
       "@emotion/babel-preset-css-prop",
-      "jest-emotion",
       "@emotion/jest",
       "@emotion/native",
       "@emotion/primitives",
       "@emotion/primitives-core",
-      "eslint-plugin-emotion",
-      "@emotion/eslint-plugin",
-      "emotion-theming"
+      "@emotion/eslint-plugin"
     ]
   ],
-  "access": "public"
+  "access": "public",
+  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
+    "onlyUpdatePeerDependentsWhenOutOfRange": true
+  }
 }

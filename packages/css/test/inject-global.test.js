@@ -64,4 +64,15 @@ describe('injectGlobal', () => {
     `
     expect(sheet).toMatchSnapshot()
   })
+  test('pseudo in @media', () => {
+    injectGlobal`
+      @media (min-width: 300px) {
+        .header:after {
+          content: '';
+        }
+      }
+    `
+
+    expect(sheet).toMatchSnapshot()
+  })
 })

@@ -1,24 +1,25 @@
 {
   "name": "@emotion/jest",
-  "version": "11.0.0-rc.0",
+  "version": "11.2.1",
   "description": "Jest utilities for emotion",
-  "main": "dist/jest.cjs.js",
-  "module": "dist/jest.esm.js",
+  "main": "dist/emotion-jest.cjs.js",
+  "module": "dist/emotion-jest.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
     "dist",
     "types/*.d.ts",
     "serializer",
+    "enzyme",
     "enzyme-serializer"
   ],
   "scripts": {
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.2",
-    "@emotion/css-prettifier": "^1.0.0-next.0",
-    "chalk": "^2.4.1",
+    "@babel/runtime": "^7.13.10",
+    "@emotion/css-prettifier": "^1.0.0",
+    "chalk": "^4.1.0",
     "specificity": "^0.4.1",
     "stylis": "^4.0.3"
   },
@@ -35,21 +36,21 @@
     }
   },
   "devDependencies": {
-    "@emotion/css": "11.0.0-rc.0",
-    "@emotion/react": "11.0.0-rc.0",
+    "@emotion/css": "11.1.3",
+    "@emotion/react": "11.1.5",
     "@types/jest": "^26.0.14",
     "dtslint": "^0.3.0",
     "enzyme-to-json": "^3.6.1",
     "preact": "^8.2.9",
     "preact-render-to-json": "^3.6.6",
     "pretty-format": "^22.4.3",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/jest",
   "keywords": [
     "styles",
     "emotion",
@@ -64,9 +65,10 @@
   },
   "preconstruct": {
     "entrypoints": [
-      ".",
-      "serializer",
-      "enzyme-serializer"
+      "./index.js",
+      "./serializer.js",
+      "./enzyme.js",
+      "./enzyme-serializer.js"
     ]
   }
 }

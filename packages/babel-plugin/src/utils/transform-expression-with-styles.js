@@ -9,24 +9,10 @@ import {
   appendStringReturningExpressionToArguments,
   joinStringLiterals
 } from './strings'
+import createNodeEnvConditional from './create-node-env-conditional'
 
 const CSS_OBJECT_STRINGIFIED_ERROR =
   "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."
-
-function createNodeEnvConditional(t, production, development) {
-  return t.conditionalExpression(
-    t.binaryExpression(
-      '===',
-      t.memberExpression(
-        t.memberExpression(t.identifier('process'), t.identifier('env')),
-        t.identifier('NODE_ENV')
-      ),
-      t.stringLiteral('production')
-    ),
-    production,
-    development
-  )
-}
 
 export let transformExpressionWithStyles = ({
   babel,
@@ -95,41 +81,41 @@ export let transformExpressionWithStyles = ({
         t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
         t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles))
       ])
-      let node = prodNode
-      if (sourceMap) {
-        if (!state.emotionStringifiedCssId) {
-          const uid = state.file.scope.generateUidIdentifier(
-            '__EMOTION_STRINGIFIED_CSS_ERROR__'
-          )
-          state.emotionStringifiedCssId = uid
-          const cssObjectToString = t.functionDeclaration(
-            uid,
-            [],
-            t.blockStatement([
-              t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR))
-            ])
-          )
-          cssObjectToString._compact = true
-          state.file.path.unshiftContainer('body', [cssObjectToString])
-        }
 
-        if (label && autoLabel === 'dev-only') {
-          res = serializeStyles([`${cssString};label:${label};`])
-        }
+      if (!state.emotionStringifiedCssId) {
+        const uid = state.file.scope.generateUidIdentifier(
+          '__EMOTION_STRINGIFIED_CSS_ERROR__'
+        )
+        state.emotionStringifiedCssId = uid
+        const cssObjectToString = t.functionDeclaration(
+          uid,
+          [],
+          t.blockStatement([
+            t.returnStatement(t.stringLiteral(CSS_OBJECT_STRINGIFIED_ERROR))
+          ])
+        )
+        cssObjectToString._compact = true
+        state.file.path.unshiftContainer('body', [cssObjectToString])
+      }
 
-        let devNode = t.objectExpression([
+      if (label && autoLabel === 'dev-only') {
+        res = serializeStyles([`${cssString};label:${label};`])
+      }
+
+      let devNode = t.objectExpression(
+        [
           t.objectProperty(t.identifier('name'), t.stringLiteral(res.name)),
           t.objectProperty(t.identifier('styles'), t.stringLiteral(res.styles)),
-          t.objectProperty(t.identifier('map'), t.stringLiteral(sourceMap)),
+          sourceMap &&
+            t.objectProperty(t.identifier('map'), t.stringLiteral(sourceMap)),
           t.objectProperty(
             t.identifier('toString'),
             t.cloneNode(state.emotionStringifiedCssId)
           )
-        ])
-        node = createNodeEnvConditional(t, prodNode, devNode)
-      }
+        ].filter(Boolean)
+      )
 
-      return node
+      return createNodeEnvConditional(t, prodNode, devNode)
     }
 
     if (canAppendStrings && label) {

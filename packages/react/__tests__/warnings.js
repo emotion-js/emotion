@@ -11,7 +11,6 @@ console.error = jest.fn()
 const validValues = [
   'normal',
   'none',
-  'counter',
   'open-quote',
   'close-quote',
   'no-open-quote',
@@ -21,9 +20,15 @@ const validValues = [
   '"some thing"',
   "'another thing'",
   'url("http://www.example.com/test.png")',
+  'linear-gradient(hotpink, #8be9fd)',
+  'radial-gradient(hotpink, #8be9fd)',
+  'repeating-linear-gradient(hotpink, #8be9fd)',
+  'repeating-radial-gradient(hotpink, #8be9fd)',
+  'conic-gradient(hotpink, #8be9fd)',
   'counter(chapter_counter)',
   'counters(section_counter, ".")',
-  'attr(value string)'
+  'attr(value string)',
+  'open-quote counter(chapter_counter)'
 ]
 
 beforeEach(() => {
@@ -307,5 +312,15 @@ test('@import prepended by other @import', () => {
     />
   )
 
+  expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
+})
+
+test('when using `jsx` multiple static children should not result in a key-related warning', () => {
+  renderer.create(
+    <div css={{ color: 'hotpink' }}>
+      <div />
+      <div />
+    </div>
+  )
   expect((console.error: any).mock.calls).toMatchInlineSnapshot(`Array []`)
 })

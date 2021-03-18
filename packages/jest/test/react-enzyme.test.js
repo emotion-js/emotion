@@ -3,7 +3,7 @@ import 'test-utils/enzyme-env'
 
 import jestInCase from 'jest-in-case'
 import * as enzyme from 'enzyme'
-import { jsx, ThemeProvider } from '@emotion/react'
+import { css, jsx, ThemeProvider } from '@emotion/react'
 import styled from '@emotion/styled'
 import React from 'react'
 import toJson from 'enzyme-to-json'
@@ -15,12 +15,6 @@ expect.extend(matchers)
 expect.addSnapshotSerializer(serializer)
 
 const cases = {
-  'empty styled': {
-    render() {
-      const Greeting = styled.div``
-      return <Greeting>Hello</Greeting>
-    }
-  },
   basic: {
     render() {
       const Greeting = ({ children }) => (
@@ -45,6 +39,12 @@ const cases = {
   'nested styled': {
     render() {
       return <div>{cases.styled.render()}</div>
+    }
+  },
+  'empty styled': {
+    render() {
+      const Greeting = styled.div``
+      return <Greeting>Hello</Greeting>
     }
   },
   'with styles on top level': {
@@ -143,6 +143,57 @@ const cases = {
       )
     }
   },
+  'with array of styles as css prop': {
+    render() {
+      const style1 = css`
+        background-color: black;
+      `
+
+      const style2 = css`
+        color: white;
+      `
+
+      return <div css={[style1, style2]}>Test content</div>
+    }
+  },
+  'with array of styles in a composite inner child': {
+    render() {
+      const style1 = css`
+        background-color: black;
+      `
+
+      const style2 = css`
+        color: white;
+      `
+
+      function Inner(props) {
+        return <span {...props} />
+      }
+
+      return (
+        <div>
+          <Inner css={[style1, style2]}>Test content</Inner>
+        </div>
+      )
+    }
+  },
+  'conditional styles': {
+    render() {
+      const style1 = css`
+        background-color: black;
+      `
+
+      const style2 = css`
+        color: white;
+      `
+
+      return (
+        <div css={[style1, false && style2, undefined && style2]}>
+          <span css={null && style2}>Test content</span>
+        </div>
+      )
+    }
+  },
   theming: {
     render() {
       const Button = styled.button`
@@ -190,6 +241,25 @@ describe('enzyme', () => {
     },
     cases
   )
+
+  test('parent and child using css property', () => {
+    const parentStyle = css`
+      background-color: black;
+    `
+
+    const childStyle = css`
+      color: white;
+    `
+
+    const wrapper = enzyme.mount(
+      <div css={parentStyle}>
+        Test content
+        <div css={childStyle} />
+      </div>
+    )
+
+    expect(wrapper).toMatchSnapshot()
+  })
 
   test('with prop containing css element in fragment', () => {
     const FragmentComponent = () => (

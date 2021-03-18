@@ -2,14 +2,9 @@
 
 exports[`Emotion primitives custom shouldForwardProp works 1`] = `
 <div
-  className="css-text-901oao"
+  className="css-text-901oao r-color-185hjl9"
   dir="auto"
   onClick={[Function]}
-  style={
-    Object {
-      "color": "rgba(255,105,180,1.00)",
-    }
-  }
 >
   Emotion
 </div>
@@ -17,14 +12,9 @@ exports[`Emotion primitives custom shouldForwardProp works 1`] = `
 
 exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
 <div
-  className="css-text-901oao"
+  className="css-text-901oao r-color-185hjl9"
   dir="auto"
   onClick={[Function]}
-  style={
-    Object {
-      "color": "rgba(255,105,180,1.00)",
-    }
-  }
 >
   Mike
 </div>
@@ -32,25 +22,15 @@ exports[`Emotion primitives primitive should work with \`withComponent\` 1`] = `
 
 exports[`Emotion primitives should pass props in withComponent 1`] = `
 <div
-  className="css-view-1dbjc4n"
-  style={
-    Object {
-      "backgroundColor": "rgba(0,128,0,1.00)",
-    }
-  }
+  className="css-view-1dbjc4n r-backgroundColor-1542mo4"
 />
 `;
 
 exports[`Emotion primitives should pass props in withComponent 2`] = `
 <div
-  className="css-text-901oao"
+  className="css-text-901oao r-backgroundColor-173gl9r"
   dir="auto"
   onClick={[Function]}
-  style={
-    Object {
-      "backgroundColor": "rgba(255,105,180,1.00)",
-    }
-  }
 />
 `;
 
@@ -82,12 +62,11 @@ exports[`Emotion primitives should render <Image /> 1`] = `
 
 exports[`Emotion primitives should render primitive with style prop 1`] = `
 <div
-  className="css-text-901oao"
+  className="css-text-901oao r-color-185hjl9"
   dir="auto"
   onClick={[Function]}
   style={
     Object {
-      "color": "rgba(255,105,180,1.00)",
       "paddingBottom": "10px",
       "paddingLeft": "10px",
       "paddingRight": "10px",
@@ -101,18 +80,9 @@ exports[`Emotion primitives should render primitive with style prop 1`] = `
 
 exports[`Emotion primitives should render the primitive on changing the props 1`] = `
 <div
-  className="css-text-901oao"
+  className="css-text-901oao r-color-185hjl9 r-paddingBottom-k8qxaj r-paddingLeft-b5h31w r-paddingRight-1ah4tor r-paddingTop-1knelpx"
   dir="auto"
   onClick={[Function]}
-  style={
-    Object {
-      "color": "rgba(255,105,180,1.00)",
-      "paddingBottom": "20px",
-      "paddingLeft": "20px",
-      "paddingRight": "20px",
-      "paddingTop": "20px",
-    }
-  }
 >
   Emotion Primitives
 </div>
@@ -120,13 +90,11 @@ exports[`Emotion primitives should render the primitive on changing the props 1`
 
 exports[`Emotion primitives should render the primitive when styles applied using object style notation 1`] = `
 <div
-  className="css-text-901oao"
+  className="css-text-901oao r-backgroundColor-1g6456j r-color-howw7u"
   dir="auto"
   onClick={[Function]}
   style={
     Object {
-      "backgroundColor": "rgba(255,0,0,1.00)",
-      "color": "rgba(255,0,0,1.00)",
       "fontSize": "40px",
     }
   }
@@ -137,14 +105,9 @@ exports[`Emotion primitives should render the primitive when styles applied usin
 
 exports[`Emotion primitives should style any other component 1`] = `
 <div
-  className="css-text-901oao"
+  className="css-text-901oao r-color-185hjl9"
   dir="auto"
   onClick={[Function]}
-  style={
-    Object {
-      "color": "rgba(255,105,180,1.00)",
-    }
-  }
 >
   Hello World
 </div>
@@ -153,9 +116,9 @@ exports[`Emotion primitives should style any other component 1`] = `
 exports[`Emotion primitives should unmount with theming 1`] = `
 <div>
   <div
-    class="css-text-901oao"
+    class="css-text-901oao r-display-6koalj"
     dir="auto"
-    style="background-color: rgb(255, 255, 0); display: flex;"
+    style="background-color: rgb(255, 255, 0);"
   >
     Hello World
   </div>
@@ -164,14 +127,9 @@ exports[`Emotion primitives should unmount with theming 1`] = `
 
 exports[`Emotion primitives should work with StyleSheet.create API 1`] = `
 <div
-  className="css-text-901oao r-color-howw7u"
+  className="css-text-901oao r-color-howw7u r-fontSize-10x49cs"
   dir="auto"
   onClick={[Function]}
-  style={
-    Object {
-      "fontSize": "10px",
-    }
-  }
 >
   Emotion Primitives
 </div>
@@ -179,14 +137,9 @@ exports[`Emotion primitives should work with StyleSheet.create API 1`] = `
 
 exports[`Emotion primitives should work with theming from @emotion/react 1`] = `
 <div
-  className="css-text-901oao"
+  className="css-text-901oao r-color-1hxtt4r"
   dir="auto"
   onClick={[Function]}
-  style={
-    Object {
-      "color": "rgba(255,0,255,1.00)",
-    }
-  }
 >
   Hello World
 </div>

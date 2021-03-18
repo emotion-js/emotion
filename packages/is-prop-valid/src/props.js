@@ -186,6 +186,11 @@ const props = {
   autoSave: true,
   // color is for Safari mask-icon link
   color: true,
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/search#incremental_This_API_has_not_been_standardized
+  incremental: true,
+  // used in amp html for indicating the fallback behavior
+  // https://amp.dev/documentation/guides-and-tutorials/develop/style_and_layout/placeholders/
+  fallback: true,
   // https://html.spec.whatwg.org/multipage/interaction.html#inert
   inert: true,
   // itemProp, itemScope, itemType are for
@@ -199,7 +204,11 @@ const props = {
   itemID: true,
   itemRef: true,
   // used in amp html for eventing purposes
+  // https://amp.dev/documentation/guides-and-tutorials/learn/common_attributes/
   on: true,
+  // used in amp html for indicating that the option is selectable
+  // https://amp.dev/documentation/components/amp-selector/
+  option: true,
   // results show looking glass icon and recent searches on input
   // search fields in WebKit/Blink
   results: true,

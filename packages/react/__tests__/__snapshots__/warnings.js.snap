@@ -4,7 +4,6 @@ exports[`does not warn when valid values are passed for the content property 1`]
 .emotion-0 {
   content: normal;
   content: none;
-  content: counter;
   content: open-quote;
   content: close-quote;
   content: no-open-quote;
@@ -14,9 +13,15 @@ exports[`does not warn when valid values are passed for the content property 1`]
   content: "some thing";
   content: 'another thing';
   content: url("http://www.example.com/test.png");
+  content: linear-gradient(hotpink, #8be9fd);
+  content: radial-gradient(hotpink, #8be9fd);
+  content: repeating-linear-gradient(hotpink, #8be9fd);
+  content: repeating-radial-gradient(hotpink, #8be9fd);
+  content: conic-gradient(hotpink, #8be9fd);
   content: counter(chapter_counter);
   content: counters(section_counter, ".");
   content: attr(value string);
+  content: open-quote counter(chapter_counter);
 }
 
 <div

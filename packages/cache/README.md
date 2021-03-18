@@ -35,7 +35,7 @@ A nonce that will be set on each style tag that emotion inserts for [Content Sec
 
 ### `stylisPlugins`
 
-``Array<Function>`
+`Array<Function>`
 
 A Stylis plugins that will be run by Stylis during preprocessing. [Read the Stylis docs to find out more](https://github.com/thysultan/stylis.js#middleware). This can be used for many purposes such as RTL.
 
@@ -45,7 +45,7 @@ A Stylis plugins that will be run by Stylis during preprocessing. [Read the Styl
 
 ### `key`
 
-`string`,
+`string`
 
 The prefix before class names. It will also be set as the value of the `data-emotion` attribute on the style tags that emotion inserts and it's used in the attribute name that marks style elements in `renderStylesToString` and `renderStylesToNodeStream`. This is **required if using multiple emotion caches in the same app**.
 
@@ -59,4 +59,4 @@ A DOM node that emotion will insert all of its style tags into. This is useful f
 
 `boolean`
 
-A string representing whether to prepend rather than append style tags into the specified container DOM node.
+A boolean representing whether to prepend rather than append style tags into the specified container DOM node.

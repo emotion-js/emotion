@@ -14,6 +14,22 @@ exports[`enzyme mount basic 1`] = `
 </Greeting>
 `;
 
+exports[`enzyme mount conditional styles 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+<div
+  className="emotion-0"
+>
+  <span
+    className="emotion-1"
+  >
+    Test content
+  </span>
+</div>
+`;
+
 exports[`enzyme mount empty styled 1`] = `
 <Greeting>
   <div
@@ -111,6 +127,38 @@ exports[`enzyme mount theming 1`] = `
       </button>
     </Button>
   </ThemeProvider>
+</div>
+`;
+
+exports[`enzyme mount with array of styles as css prop 1`] = `
+.emotion-0 {
+  background-color: black;
+  color: white;
+}
+
+<div
+  className="emotion-0"
+>
+  Test content
+</div>
+`;
+
+exports[`enzyme mount with array of styles in a composite inner child 1`] = `
+.emotion-0 {
+  background-color: black;
+  color: white;
+}
+
+<div>
+  <Inner
+    className="emotion-0"
+  >
+    <span
+      className="emotion-0"
+    >
+      Test content
+    </span>
+  </Inner>
 </div>
 `;
 
@@ -251,17 +299,34 @@ exports[`enzyme mount with styles on top level 1`] = `
   background-color: red;
 }
 
-Array [
-  <Greeting
+<Greeting
+  className="emotion-0"
+>
+  <div
     className="emotion-0"
   >
-    <div
-      className="emotion-0"
-    >
-      Hello
-    </div>
-  </Greeting>,
-]
+    Hello
+  </div>
+</Greeting>
+`;
+
+exports[`enzyme parent and child using css property 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+.emotion-1 {
+  color: white;
+}
+
+<div
+  className="emotion-0"
+>
+  Test content
+  <div
+    className="emotion-1"
+  />
+</div>
 `;
 
 exports[`enzyme shallow basic 1`] = `
@@ -273,6 +338,22 @@ exports[`enzyme shallow basic 1`] = `
   className="emotion-0"
 >
   hello
+</div>
+`;
+
+exports[`enzyme shallow conditional styles 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+<div
+  className="emotion-0"
+>
+  <span
+    css="unknown styles"
+  >
+    Test content
+  </span>
 </div>
 `;
 
@@ -340,6 +421,34 @@ exports[`enzyme shallow theming 1`] = `
       Themed
     </Button>
   </ThemeProvider>
+</div>
+`;
+
+exports[`enzyme shallow with array of styles as css prop 1`] = `
+.emotion-0 {
+  background-color: black;
+  color: white;
+}
+
+<div
+  className="emotion-0"
+>
+  Test content
+</div>
+`;
+
+exports[`enzyme shallow with array of styles in a composite inner child 1`] = `
+.emotion-0 {
+  background-color: black;
+  color: white;
+}
+
+<div>
+  <Inner
+    className="emotion-0"
+  >
+    Test content
+  </Inner>
 </div>
 `;
 

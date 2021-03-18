@@ -1,16 +1,10 @@
 // @flow
 import type { Options } from './create-serializer'
 import { createSerializer as createEmotionSerializer } from './create-serializer'
+import * as enzymeTickler from './enzyme-tickler'
 import { createSerializer as createEnzymeToJsonSerializer } from 'enzyme-to-json'
 
 const enzymeSerializer = createEnzymeToJsonSerializer({})
-
-const tickle = (wrapper: *) => {
-  if (typeof wrapper.dive === 'function') {
-    wrapper.find('EmotionCssPropInternal').forEach(el => el.dive())
-  }
-  return wrapper
-}
 
 export function createEnzymeSerializer({
   classNameReplacer,
@@ -33,7 +27,7 @@ export function createEnzymeSerializer({
       printer: Function
     ) {
       if (enzymeSerializer.test(node)) {
-        const tickled = tickle(node)
+        const tickled = enzymeTickler.tickle(node)
         return enzymeSerializer.print(
           tickled,
           // https://github.com/facebook/jest/blob/470ef2d29c576d6a10de344ec25d5a855f02d519/packages/pretty-format/src/index.ts#L281

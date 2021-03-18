@@ -40,7 +40,7 @@ export default function SiteHeader() {
             display: 'flex',
             justifyContent: 'center',
             backgroundColor: 'black',
-            width: '100vw',
+            width: '100%',
             zIndex: 100
           }}
         >
@@ -146,7 +146,9 @@ export default function SiteHeader() {
               </HeaderLink>
             </li>
             <li>
-              <HeaderLink to="https://emotion-slack.now.sh/">Slack</HeaderLink>
+              <HeaderLink to="https://join.slack.com/t/emotion-slack/shared_invite/zt-l7oe5x0x-2jsjNXOs95f5w4AdZWu9LA">
+                Slack
+              </HeaderLink>
             </li>
             <li>
               <HeaderLink to="https://spectrum.chat/emotion">
@@ -154,8 +156,8 @@ export default function SiteHeader() {
               </HeaderLink>
             </li>
             <li>
-              <HeaderLink to="https://5bb1495273f2cf57a2cf39cc--emotion.netlify.com">
-                v9 Docs
+              <HeaderLink to="https://5faaafd0bd0f3f0008469537--emotion.netlify.app">
+                v10 Docs
               </HeaderLink>
             </li>
           </ul>

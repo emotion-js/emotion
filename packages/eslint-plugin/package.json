@@ -1,6 +1,6 @@
 {
   "name": "@emotion/eslint-plugin",
-  "version": "11.0.0-rc.0",
+  "version": "11.2.0",
   "description": "ESLint rules for emotion",
   "scripts": {
     "test:typescript": "exit 0"
@@ -12,11 +12,12 @@
     "emotion"
   ],
   "author": "alex-pex <alexandre.paixao@stadline.com>",
-  "main": "dist/eslint-plugin.cjs.js",
+  "main": "dist/emotion-eslint-plugin.cjs.js",
   "engines": {
     "node": ">=6"
   },
   "license": "MIT",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/eslint-plugin",
   "peerDependencies": {
     "eslint": "6 || 7"
   },

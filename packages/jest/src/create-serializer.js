@@ -1,6 +1,7 @@
 // @flow
 import prettify from '@emotion/css-prettifier'
 import { replaceClassNames } from './replace-class-names'
+import * as enzymeTickler from './enzyme-tickler'
 import {
   getClassNamesFromNodes,
   isReactElement,
@@ -89,12 +90,29 @@ function filterEmotionProps(props = {}) {
   return rest
 }
 
-function isShallowEnzymeElement(element: any, classNames: string[]) {
-  const delimiter = ' '
-  const childClassNames = flatMap(element.children || [], ({ props = {} }) =>
-    (props.className || '').split(delimiter)
-  ).filter(Boolean)
-  return !hasIntersection(classNames, childClassNames)
+function getLabelsFromClassName(keys, className) {
+  return flatMap(className.split(' '), cls => {
+    const [key, hash, ...labels] = cls.split('-')
+    if (!keys.includes(key)) {
+      return null
+    }
+    return labels
+  }).filter(Boolean)
+}
+
+function isShallowEnzymeElement(
+  element: any,
+  keys: string[],
+  labels: string[]
+) {
+  const childClassNames = (element.children || [])
+    .map(({ props = {} }) => props.className || '')
+    .filter(Boolean)
+
+  return !childClassNames.some(className => {
+    const childLabels = getLabelsFromClassName(keys, className)
+    return childLabels.every(childLabel => labels.includes(childLabel))
+  })
 }
 
 const createConvertEmotionElements = (keys: string[], printer: *) => (
@@ -104,17 +122,10 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
     return node
   }
   if (isEmotionCssPropEnzymeElement(node)) {
-    const cssClassNames = (node.props.css.name || '').split(' ')
-    const expectedClassNames = flatMap(cssClassNames, cssClassName =>
-      keys.map(key => `${key}-${cssClassName}`)
-    )
-    // if this is a shallow element, we need to manufacture the className
-    // since the underlying component is not rendered.
-    if (isShallowEnzymeElement(node, expectedClassNames)) {
-      const className = [node.props.className]
-        .concat(expectedClassNames)
-        .filter(Boolean)
-        .join(' ')
+    const className = enzymeTickler.getTickledClassName(node.props.css)
+    const labels = getLabelsFromClassName(keys, className || '')
+
+    if (isShallowEnzymeElement(node, keys, labels)) {
       const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
       // emotionType will be a string for DOM elements
       const type =
@@ -128,7 +139,7 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
         type
       }
     } else {
-      return node.children
+      return node.children[0]
     }
   }
   if (isEmotionCssPropElementType(node)) {

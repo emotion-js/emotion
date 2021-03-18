@@ -1,9 +1,9 @@
 {
   "name": "@emotion/css",
-  "version": "11.0.0-rc.0",
+  "version": "11.1.3",
   "description": "The Next Generation of CSS-in-JS.",
-  "main": "dist/css.cjs.js",
-  "module": "dist/css.esm.js",
+  "main": "dist/emotion-css.cjs.js",
+  "module": "dist/emotion-css.esm.js",
   "types": "types/index.d.ts",
   "files": [
     "src",
@@ -18,11 +18,11 @@
     "test:typescript": "dtslint types"
   },
   "dependencies": {
-    "@emotion/babel-plugin": "^11.0.0-rc.0",
-    "@emotion/cache": "^11.0.0-rc.0",
-    "@emotion/serialize": "^1.0.0-rc.0",
-    "@emotion/sheet": "^1.0.0-rc.0",
-    "@emotion/utils": "^1.0.0-rc.0"
+    "@emotion/babel-plugin": "^11.0.0",
+    "@emotion/cache": "^11.1.3",
+    "@emotion/serialize": "^1.0.0",
+    "@emotion/sheet": "^1.0.0",
+    "@emotion/utils": "^1.0.0"
   },
   "peerDependencies": {
     "@babel/core": "^7.0.0"
@@ -33,13 +33,13 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.7.2",
+    "@babel/core": "^7.13.10",
     "dtslint": "^0.3.0"
   },
   "author": "Kye Hohenberger",
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/emotion",
+  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/css",
   "keywords": [
     "styles",
     "emotion",
@@ -50,12 +50,12 @@
   "bugs": {
     "url": "https://github.com/emotion-js/emotion/issues"
   },
-  "umd:main": "dist/css.umd.min.js",
+  "umd:main": "dist/emotion-css.umd.min.js",
   "preconstruct": {
     "umdName": "emotion",
     "entrypoints": [
-      ".",
-      "create-instance"
+      "./index.js",
+      "./create-instance.js"
     ]
   }
 }

@@ -1,8 +1,17 @@
-module.exports = () => {
+module.exports = (api, options = {}) => {
   return {
     presets: [
       [require.resolve('@babel/preset-env'), { loose: true }],
-      require.resolve('@babel/preset-react')
+      [
+        require.resolve('@babel/preset-react'),
+        options.runtime === 'automatic'
+          ? {
+              runtime: options.runtime,
+              importSource: '@emotion/react',
+              development: options.development
+            }
+          : {}
+      ]
     ],
     plugins: [
       require.resolve(
@@ -18,7 +27,13 @@ module.exports = () => {
       [
         require.resolve('@babel/plugin-proposal-class-properties'),
         { loose: true }
+      ],
+      options.useEmotionPlugin && [
+        require.resolve('@emotion/babel-plugin'),
+        {
+          ...('sourceMap' in options && { sourceMap: options.sourceMap })
+        }
       ]
-    ]
+    ].filter(Boolean)
   }
 }

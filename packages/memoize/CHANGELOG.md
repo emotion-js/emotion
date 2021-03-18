@@ -1,5 +1,11 @@
 # @emotion/memoize
 
+## 0.7.5
+
+### Patch Changes
+
+- [`ee6a673f`](https://github.com/emotion-js/emotion/commit/ee6a673f74e934bf738d5346ddfc7982caa23827) [#2141](https://github.com/emotion-js/emotion/pull/2141) Thanks [@ChALkeR](https://github.com/ChALkeR)! - Fixed an issue with prototype properties not being correctly handled.
+
 ## 0.7.4
 
 ### Patch Changes
