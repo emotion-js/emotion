@@ -1,5 +1,5 @@
 // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
-// TypeScript Version: 3.4
+// TypeScript Version: 3.7
 
 import { EmotionCache } from '@emotion/cache'
 import {
