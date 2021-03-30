@@ -22,7 +22,7 @@ const Community = (props: *) => {
         <div>
           <Title>{title}</Title>
           <MDXProvider components={markdownComponents}>
-            <MDXRenderer>{props.data.mdx.body}</MDXRenderer>
+            <MDXRenderer>{props.data.file.childMdx.body}</MDXRenderer>
           </MDXProvider>
           <markdownComponents.h2>{'Contributing'}</markdownComponents.h2>
           <markdownComponents.p>
@@ -46,12 +46,10 @@ const Community = (props: *) => {
 
 export const pageQuery = graphql`
   query Community {
-    mdx(
-      fileAbsolutePath: {
-        glob: "**/.cache/gatsby-source-filesystem/*/README.md"
+    file(name: { eq: "awesome-emotion" }) {
+      childMdx {
+        body
       }
-    ) {
-      body
     }
   }
 `

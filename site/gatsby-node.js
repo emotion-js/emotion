@@ -71,7 +71,8 @@ exports.sourceNodes = async ({ store, cache, actions, createNodeId }) => {
     store,
     cache,
     createNode: actions.createNode,
-    createNodeId
+    createNodeId,
+    name: 'awesome-emotion'
   })
 }
 
