@@ -18,6 +18,7 @@ http://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascr
 * @license MIT 2016-2018
 */
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default `
 pre::-webkit-scrollbar {
   width: 14px;

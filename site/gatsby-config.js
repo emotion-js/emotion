@@ -35,23 +35,12 @@ module.exports = {
         }
       },
       {
-        // todo: contribute to gatsby-plugin-manifest
-        // https://github.com/gatsbyjs/gatsby/issues/5887
-        resolve: `gatsby-plugin-favicon-fork`,
+        resolve: `gatsby-plugin-manifest`,
         options: {
-          logo: `${__dirname}/../emotion.png`,
-          injectHTML: true,
-          icons: {
-            android: false,
-            appleIcon: true,
-            appleStartup: false,
-            coast: false,
-            favicons: true,
-            firefox: false,
-            twitter: false,
-            yandex: false,
-            windows: false
-          }
+          name: `Emotion`,
+          short_name: `Emotion`,
+          start_url: `/`,
+          icon: `src/assets/logo.png`
         }
       },
       'gatsby-plugin-emotion-next-compat',
@@ -87,6 +76,7 @@ module.exports = {
       'gatsby-transformer-sharp',
       'gatsby-plugin-catch-links',
       'gatsby-plugin-sitemap',
-      'gatsby-plugin-netlify'
+      'gatsby-plugin-netlify',
+      'gatsby-plugin-image'
     ])
 }

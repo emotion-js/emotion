@@ -11,15 +11,25 @@ exports.onCreateWebpackConfig = ({ stage, actions, plugins, getConfig }) => {
       alias: {
         assert: 'fbjs/lib/emptyFunction',
         'source-map': 'fbjs/lib/emptyFunction',
+        fs: 'fbjs/lib/emptyFunction',
+        buffer: 'fbjs/lib/emptyFunction',
         'convert-source-map': 'fbjs/lib/emptyFunction',
+        'babel-plugin-macros': 'fbjs/lib/emptyFunction',
         '@babel/types': path.join(__dirname, './src/utils/babel-types')
+      },
+      fallback: {
+        path: require.resolve('path-browserify'),
+        console: false
       }
     },
-    node: {
-      fs: 'empty',
-      buffer: 'empty',
-      assert: 'empty'
+    stats: {
+      children: true
     }
+    // node: {
+    //   fs: 'empty',
+    //   buffer: 'empty',
+    //   assert: 'empty'
+    // }
   })
   const config = getConfig()
   actions.replaceWebpackConfig({
@@ -125,15 +135,4 @@ function getNameForPackage(absolutePath) {
     }
     throw e
   }
-}
-
-exports.onCreateBabelConfig = ({ actions, stage }) => {
-  actions.setBabelPreset({
-    name: `babel-preset-emotion-dev`,
-    stage
-  })
-  actions.setBabelPreset({
-    name: require.resolve(`@emotion/babel-preset-css-prop`),
-    stage
-  })
 }

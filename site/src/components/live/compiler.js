@@ -1,16 +1,12 @@
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import BabelWorker from 'worker-loader!./worker'
+import console from "console";
 
-let worker
+let worker = typeof document === 'undefined'?undefined :new Worker(new URL('./worker', import.meta.url))
 
-if (typeof Worker !== 'undefined') {
-  worker = new BabelWorker()
-}
-
-let count = 0
+let count = 0;
 
 const call = (method, ...params) =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve,reject) => {
+    console.log(params)
     let id = ++count
     let handler = ({ data }) => {
       if (data.id !== id) return
@@ -30,6 +26,7 @@ const call = (method, ...params) =>
     worker.addEventListener('message', handler)
     worker.postMessage({ id, method, params })
   })
+
 
 const compile = code => call('transform', code)
 

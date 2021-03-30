@@ -1,3 +1,5 @@
 import '../components/Playground'
 
-export default () => 'Ignore this.'
+export default function Ignore() {
+  return 'Ignore this.'
+}

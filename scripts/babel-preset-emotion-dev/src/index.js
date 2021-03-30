@@ -1,7 +1,7 @@
 module.exports = (api, options = {}) => {
   return {
     presets: [
-      [require.resolve('@babel/preset-env'), { loose: true }],
+      [require.resolve('@babel/preset-env'), { loose: true, modules: 'auto' }],
       [
         require.resolve('@babel/preset-react'),
         options.runtime === 'automatic'

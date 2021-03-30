@@ -165,7 +165,7 @@ const bounce = keyframes`
 `
 
 render(
-  <img
+  <div
     className={css`
       width: 96px;
       height: 96px;
@@ -173,8 +173,9 @@ render(
       animation: ${bounce} 1s ease infinite;
       transform-origin: center bottom;
     `}
-    src={logoUrl}
-  />
+  >
+    something
+  </div>
 )
 ```
 
@@ -200,8 +201,7 @@ const bounce = keyframes({
 })
 
 render(
-  <img
-    src={logoUrl}
+  <div
     className={css({
       width: 96,
       height: 96,
@@ -209,7 +209,9 @@ render(
       animation: `${bounce} 1s ease infinite`,
       transformOrigin: 'center bottom'
     })}
-  />
+  >
+    something
+  </div>
 )
 ```
 

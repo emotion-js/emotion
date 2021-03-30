@@ -5,7 +5,6 @@ import React from 'react'
 import { mq, colors } from '../utils/style'
 import Playground from '../components/Playground'
 import * as markdownComponents from '../utils/markdown-styles'
-import memoize from '@emotion/memoize'
 import Layout from '../layouts'
 import { graphql } from 'gatsby'
 import DocWrapper from '../components/DocWrapper'
@@ -19,13 +18,6 @@ type Props = {
       body: string,
       frontmatter: {
         title: string
-      }
-    },
-    avatar: {
-      childImageSharp: {
-        resolutions: {
-          src: string
-        }
       }
     }
   },
@@ -55,7 +47,7 @@ const ClassName = (props: any) => {
   return props.children(props.className)
 }
 
-const createLiveCode = memoize(logoUrl => props => (
+const LiveCode = props => (
   <ClassName
     css={mq({
       paddingTop: [8, 16],
@@ -76,13 +68,12 @@ const createLiveCode = memoize(logoUrl => props => (
           wordBreak: 'break-word'
         })}
         editorClassName={internalCodeStylesClassName}
-        logoUrl={logoUrl}
         initialCompiledCode={props.compiled}
         code={props.code}
       />
     )}
   </ClassName>
-))
+)
 
 type DocRouteState = {
   sidebarOpen: boolean
@@ -97,7 +88,7 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
 
   render() {
     const { data } = this.props
-    const { doc, avatar } = data
+    const { doc } = data
     const title = doc.frontmatter.title || this.props.pageContext.slug
 
     return (
@@ -116,6 +107,7 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
           >
             <div css={{ display: 'flex', alignItems: 'center' }}>
               <Title>{title}</Title>
+              {/* eslint-disable-next-line */}
               <markdownComponents.a
                 css={{ fontSize: 12, marginLeft: 'auto' }}
                 href={
@@ -135,9 +127,7 @@ export default class DocRoute extends React.Component<Props, DocRouteState> {
             <div>
               <MDXProvider
                 components={{
-                  'live-code': createLiveCode(
-                    avatar.childImageSharp.resolutions.src
-                  ),
+                  'live-code': LiveCode,
                   ...markdownComponents
                 }}
               >
@@ -157,13 +147,6 @@ export const pageQuery = graphql`
       body
       frontmatter {
         title
-      }
-    }
-    avatar: file(name: { eq: "emotion" }) {
-      childImageSharp {
-        resolutions(width: 96, height: 96) {
-          src
-        }
       }
     }
   }

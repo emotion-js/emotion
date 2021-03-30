@@ -148,7 +148,7 @@ const SidebarGroup = (props: {
   )
 }
 
-export default ({
+export default function DocWrapper({
   children,
   sidebarOpen,
   setSidebarOpen
@@ -156,7 +156,7 @@ export default ({
   children: React.Node,
   sidebarOpen: boolean,
   setSidebarOpen: boolean => void
-}) => {
+}) {
   return (
     <DocMetadata
       render={data => {

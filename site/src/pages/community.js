@@ -33,6 +33,7 @@ const Community = (props: *) => {
             . Anything added to that that list will appear here automatically.
           </markdownComponents.p>
           <markdownComponents.h2>{'Thanks!'}</markdownComponents.h2>
+          {/* eslint-disable-next-line */}
           <markdownComponents.p>
             Thanks to the styled-components team for the idea of embedding an
             awesome list into a website! ❤️
