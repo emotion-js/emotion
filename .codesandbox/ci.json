@@ -1,4 +1,5 @@
 {
   "packages": ["packages/*"],
-  "sandboxes": ["pk1qjqpw67"]
+  "sandboxes": ["pk1qjqpw67"],
+  "node": "12"
 }
