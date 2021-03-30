@@ -191,7 +191,7 @@ const anim1 = keyframes`
 
 // Tests for WithConditionalCSSProp
 {
-  // $ExpectType Interpolation<Theme>
+  // $ExpectType ReactInterpolation<Theme>
   type _HasCssPropAsIntended3 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
@@ -199,7 +199,7 @@ const anim1 = keyframes`
     }
   >['css']
 
-  // $ExpectType Interpolation<Theme>
+  // $ExpectType ReactInterpolation<Theme>
   type _HasCssPropAsIntended4 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
@@ -207,7 +207,7 @@ const anim1 = keyframes`
     }
   >['css']
 
-  // $ExpectType Interpolation<Theme>
+  // $ExpectType ReactInterpolation<Theme>
   type _HasCssPropAsIntended5 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
@@ -215,7 +215,7 @@ const anim1 = keyframes`
     }
   >['css']
 
-  // $ExpectType Interpolation<Theme>
+  // $ExpectType ReactInterpolation<Theme>
   type _HasCssPropAsIntended6 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
