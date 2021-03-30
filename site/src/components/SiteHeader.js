@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import '../utils/make-prism-manual'
@@ -122,7 +121,7 @@ export default function SiteHeader() {
           >
             <li>
               <Match path="/docs/:docName">
-                {({ match }: { match?: { docName: string } }) => {
+                {({ match }) => {
                   return (
                     <HeaderLink
                       className={match ? 'active' : ''}

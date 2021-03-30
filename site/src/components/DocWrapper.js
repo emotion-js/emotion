@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import * as React from 'react'
@@ -25,12 +24,7 @@ const scaleAnimation = keyframes`
   }
 `
 
-function ToggleSidebarButton({
-  setSidebarOpen,
-  ...rest
-}: {
-  setSidebarOpen: boolean => void
-}) {
+function ToggleSidebarButton({ setSidebarOpen, ...rest }) {
   return (
     <button
       {...rest}
@@ -65,12 +59,7 @@ const docHeadingMap = docList.reduce((obj, current) => {
   return obj
 }, {})
 
-const SidebarGroup = (props: {
-  item: { title: string, items: Array<string> },
-  setSidebarOpenState: boolean => void,
-  docMap: *,
-  docName?: string
-}) => {
+const SidebarGroup = props => {
   const { item, docMap, docName } = props
   return (
     <>
@@ -148,15 +137,7 @@ const SidebarGroup = (props: {
   )
 }
 
-export default function DocWrapper({
-  children,
-  sidebarOpen,
-  setSidebarOpen
-}: {
-  children: React.Node,
-  sidebarOpen: boolean,
-  setSidebarOpen: boolean => void
-}) {
+export default function DocWrapper({ children, sidebarOpen, setSidebarOpen }) {
   return (
     <DocMetadata
       render={data => {

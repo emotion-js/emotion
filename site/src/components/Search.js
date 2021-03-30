@@ -1,4 +1,3 @@
-// @flow
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
@@ -6,14 +5,6 @@ import { navigate } from '@reach/router'
 import { algoliaStyles } from '../utils/algolia-styles'
 import { addCallback } from '../utils/async-load-search'
 import { colors, mq } from '../utils/style'
-
-type Props = {
-  className?: string
-}
-
-type State = {
-  enabled: boolean
-}
 
 let a
 
@@ -30,8 +21,7 @@ function getHash(url) {
 const icon =
   'data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNEMzZBQzIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4Ij48L2NpcmNsZT48bGluZSB4MT0iMjEiIHkxPSIyMSIgeDI9IjE2LjY1IiB5Mj0iMTYuNjUiPjwvbGluZT48L3N2Zz4='
 
-class Search extends React.Component<Props, State> {
-  input: ?HTMLInputElement
+class Search extends React.Component {
   state = { enabled: true }
   componentDidMount() {
     addCallback(loaded => {

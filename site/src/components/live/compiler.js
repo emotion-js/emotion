@@ -1,11 +1,17 @@
-import console from "console";
+// prettier fails to parse this because of the import.meta
+// i didn't really want to update prettier at the time of adding the import.meta because that would probably create changes everywhere
+/* eslint-disable prettier/pretier */
+import console from 'console'
 
-let worker = typeof document === 'undefined'?undefined :new Worker(new URL('./worker', import.meta.url))
+let worker =
+  typeof document === 'undefined'
+    ? undefined
+    : new Worker(new URL('./worker', import.meta.url))
 
-let count = 0;
+let count = 0
 
 const call = (method, ...params) =>
-  new Promise((resolve,reject) => {
+  new Promise((resolve, reject) => {
     console.log(params)
     let id = ++count
     let handler = ({ data }) => {
@@ -26,7 +32,6 @@ const call = (method, ...params) =>
     worker.addEventListener('message', handler)
     worker.postMessage({ id, method, params })
   })
-
 
 const compile = code => call('transform', code)
 
