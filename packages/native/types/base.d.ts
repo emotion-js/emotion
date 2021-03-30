@@ -120,7 +120,9 @@ export interface CreateStyledComponent<
   <AdditionalProps extends {} = {}>(
     template: TemplateStringsArray,
     ...styles: ArrayInterpolation<
-      ComponentProps & SpecificComponentProps & { theme: Theme },
+      ComponentProps &
+        SpecificComponentProps &
+        AdditionalProps & { theme: Theme },
       StyleType
     >
   ): StyledComponent<
