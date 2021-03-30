@@ -10,7 +10,6 @@ let count = 0
 
 const call = (method, ...params) =>
   new Promise((resolve, reject) => {
-    console.log(params)
     let id = ++count
     let handler = ({ data }) => {
       if (data.id !== id) return
