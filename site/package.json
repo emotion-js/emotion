@@ -31,6 +31,7 @@
     "graphql-type-json": "^0.3.2",
     "normalize.css": "^8.0.0",
     "open-color": "^1.5.1",
+    "path-browserify": "^1.0.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-helmet": "^5.2.0",
@@ -42,8 +43,7 @@
     "unified": "^6.1.6",
     "unist-util-visit": "^1.2.0",
     "webpack-bundle-analyzer": "3.3.2",
-    "worker-loader": "3.0.8",
-    "path-browserify": "^1.0.1"
+    "worker-loader": "3.0.8"
   },
   "keywords": [
     "gatsby"
