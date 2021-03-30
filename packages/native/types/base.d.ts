@@ -109,7 +109,11 @@ export interface CreateStyledComponent<
         AdditionalProps & { theme: Theme },
       StyleType
     >
-  ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>
+  ): StyledComponent<
+    ComponentProps & AdditionalProps,
+    SpecificComponentProps,
+    JSXProps
+  >
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
