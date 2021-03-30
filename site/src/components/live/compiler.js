@@ -1,8 +1,6 @@
 // prettier fails to parse this because of the import.meta
 // i didn't really want to update prettier at the time of adding the import.meta because that would probably create changes everywhere
 /* eslint-disable prettier/prettier */
-import console from 'console'
-
 let worker =
   typeof document === 'undefined'
     ? undefined
