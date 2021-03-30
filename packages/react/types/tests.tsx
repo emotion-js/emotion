@@ -8,6 +8,7 @@ import {
   keyframes,
   withEmotionCache
 } from '@emotion/react'
+import { css as cssStr } from '@emotion/css'
 import { JSX as EmotionJSX } from '@emotion/react/jsx-runtime'
 
 declare module '@emotion/react' {
@@ -69,6 +70,20 @@ declare const MyComponent: React.ComponentClass<{
   }}
   world="is-gone"
 />
+
+const someBoolean = false
+;<MyComponent
+  css={
+    someBoolean && {
+      backgroundColor: 'black'
+    }
+  }
+  world="is-gone"
+/>
+
+// TS@next reports an error on a different line, so this has to be in a single line so `test:typescript` can validate this on all TS versions correctly
+// $ExpectError
+;<MyComponent css={cssStr({ backgroundColor: 'black' })} world="is-gone" />
 
 const anim0 = keyframes({
   from: {
@@ -191,7 +206,7 @@ const anim1 = keyframes`
 
 // Tests for WithConditionalCSSProp
 {
-  // $ExpectType Interpolation<Theme>
+  // $ExpectType ReactInterpolation<Theme>
   type _HasCssPropAsIntended3 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
@@ -199,7 +214,7 @@ const anim1 = keyframes`
     }
   >['css']
 
-  // $ExpectType Interpolation<Theme>
+  // $ExpectType ReactInterpolation<Theme>
   type _HasCssPropAsIntended4 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
@@ -207,7 +222,7 @@ const anim1 = keyframes`
     }
   >['css']
 
-  // $ExpectType Interpolation<Theme>
+  // $ExpectType ReactInterpolation<Theme>
   type _HasCssPropAsIntended5 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
@@ -215,7 +230,7 @@ const anim1 = keyframes`
     }
   >['css']
 
-  // $ExpectType Interpolation<Theme>
+  // $ExpectType ReactInterpolation<Theme>
   type _HasCssPropAsIntended6 = EmotionJSX.LibraryManagedAttributes<
     {},
     {
