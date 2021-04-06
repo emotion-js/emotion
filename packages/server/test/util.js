@@ -157,13 +157,20 @@ export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
 export const prettifyCritical = ({
   html,
   css,
+  globalCss,
   ids
 }: {
   html: string,
   css: string,
+  globalCss?: Array<string>,
   ids: Array<string>
 }) => {
-  return { css: prettify(css), ids, html }
+  return {
+    css: prettify(css),
+    ids,
+    html,
+    ...(globalCss && { globalCss: globalCss.map(g => prettify(g)) })
+  }
 }
 
 const isSSRedStyle = node => {

@@ -65,3 +65,18 @@ describe('hydration', () => {
     expect(getInjectedRules()).toMatchSnapshot()
   })
 })
+describe('extractCritical2', () => {
+  test('returns static css', () => {
+    const { Page1, Page2 } = getComponents(emotion, reactEmotion)
+    expect(
+      prettifyCritical(
+        emotionServer.extractCritical2(renderToString(<Page1 />))
+      )
+    ).toMatchSnapshot()
+    expect(
+      prettifyCritical(
+        emotionServer.extractCritical2(renderToString(<Page2 />))
+      )
+    ).toMatchSnapshot()
+  })
+})
