@@ -67,7 +67,16 @@ describe('hydration', () => {
 })
 describe('extractCritical2', () => {
   test('returns static css', () => {
+    global.document = undefined
+
+    jest.resetModules()
+    emotion = require('@emotion/css')
+    emotionServer = require('@emotion/server')
+
+    expect(emotion.cache.inserted).toEqual({})
+
     const { Page1, Page2 } = getComponents(emotion, reactEmotion)
+
     expect(
       prettifyCritical(
         emotionServer.extractCritical2(renderToString(<Page1 />))
