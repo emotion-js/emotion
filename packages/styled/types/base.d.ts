@@ -23,7 +23,7 @@ export interface FilteringStyledOptions<
   target?: string
 }
 
-export interface StyledOptions<Props> {
+export interface StyledOptions<Props = Record<PropertyKey, any>> {
   label?: string
   shouldForwardProp?(propName: PropertyKey): boolean
   target?: string
