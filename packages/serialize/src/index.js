@@ -294,7 +294,7 @@ function createStringFromObject(
   return string
 }
 
-let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
+let labelPattern = /label:\s*([^\s;\n{]+)\s*(;|$)/g
 
 let sourceMapPattern
 if (process.env.NODE_ENV !== 'production') {
@@ -357,10 +357,7 @@ export const serializeStyles = function(
 
   let match
   // https://esbench.com/bench/5b809c2cf2949800a0f61fb5
-  // styles.replace(/;$/, '').concat(';') safe add semicolon to fix #2311
-  while (
-    (match = labelPattern.exec(styles.replace(/;$/, '').concat(';'))) !== null
-  ) {
+  while ((match = labelPattern.exec(styles)) !== null) {
     identifierName +=
       '-' +
       // $FlowFixMe we know it's not null
