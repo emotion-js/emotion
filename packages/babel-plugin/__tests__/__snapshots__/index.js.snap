@@ -1,5 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`@emotion/babel-plugin autolabel-and-css-property-label 1`] = `
+"/** @jsx jsx */
+import { jsx, css } from '@emotion/react'
+
+const SomeComponent = () => (
+  <div
+    className={css\`
+      color: pink;
+      label: iChenLei;
+    \`}
+  />
+)
+
+const OtherComponent = () => (
+  <div
+    className={css({
+      color: 'blue',
+      label: 'iChenLei'
+    })}
+  />
+)
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+/** @jsx jsx */
+import { jsx, css } from '@emotion/react';
+
+var _ref2 = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"1fxxsfa-iChenLei\\",
+  styles: \\"color:pink;label:iChenLei\\"
+} : {
+  name: \\"nd3mvs-iChenLei-SomeComponent\\",
+  styles: \\"color:pink;label:iChenLei;label:SomeComponent;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImF1dG9sYWJlbC1hbmQtY3NzLXByb3BlcnR5LWxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUtrQiIsImZpbGUiOiJhdXRvbGFiZWwtYW5kLWNzcy1wcm9wZXJ0eS1sYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHsganN4LCBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgU29tZUNvbXBvbmVudCA9ICgpID0+IChcbiAgPGRpdlxuICAgIGNsYXNzTmFtZT17Y3NzYFxuICAgICAgY29sb3I6IHBpbms7XG4gICAgICBsYWJlbDogaUNoZW5MZWk7XG4gICAgYH1cbiAgLz5cbilcblxuY29uc3QgT3RoZXJDb21wb25lbnQgPSAoKSA9PiAoXG4gIDxkaXZcbiAgICBjbGFzc05hbWU9e2Nzcyh7XG4gICAgICBjb2xvcjogJ2JsdWUnLFxuICAgICAgbGFiZWw6ICdpQ2hlbkxlaSdcbiAgICB9KX1cbiAgLz5cbilcbiJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+const SomeComponent = () => <div className={_ref2} />;
+
+var _ref = process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"lbkv5g-iChenLei\\",
+  styles: \\"color:blue;label:iChenLei\\"
+} : {
+  name: \\"102zoqq-iChenLei-OtherComponent\\",
+  styles: \\"color:blue;label:iChenLei;label:OtherComponent;\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImF1dG9sYWJlbC1hbmQtY3NzLXByb3BlcnR5LWxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWNlIiwiZmlsZSI6ImF1dG9sYWJlbC1hbmQtY3NzLXByb3BlcnR5LWxhYmVsLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBqc3gsIGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jb25zdCBTb21lQ29tcG9uZW50ID0gKCkgPT4gKFxuICA8ZGl2XG4gICAgY2xhc3NOYW1lPXtjc3NgXG4gICAgICBjb2xvcjogcGluaztcbiAgICAgIGxhYmVsOiBpQ2hlbkxlaTtcbiAgICBgfVxuICAvPlxuKVxuXG5jb25zdCBPdGhlckNvbXBvbmVudCA9ICgpID0+IChcbiAgPGRpdlxuICAgIGNsYXNzTmFtZT17Y3NzKHtcbiAgICAgIGNvbG9yOiAnYmx1ZScsXG4gICAgICBsYWJlbDogJ2lDaGVuTGVpJ1xuICAgIH0pfVxuICAvPlxuKVxuIl19 */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+const OtherComponent = () => <div className={_ref} />;"
+`;
+
 exports[`@emotion/babel-plugin core-with-component 1`] = `
 "// @flow
 import styled from '@emotion/styled'
