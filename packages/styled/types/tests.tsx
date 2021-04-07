@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled from '@emotion/styled'
+import styled, { StyledOptions } from '@emotion/styled'
 
 // This file uses the same Theme declaration from tests-base.tsx
 
@@ -216,4 +216,22 @@ const Input5 = styled.input`
   ;<StyledCompWithoutAs as="section" />
   // $ExpectError
   ;<StyledCompWithoutAs as={Section} />
+}
+
+const styledOpts: StyledOptions = {
+  label: 'foo',
+  target: 'bar',
+  shouldForwardProp: p => true
+}
+
+const styledOptsParameterized: StyledOptions<Record<string, any>> = {
+  label: 'foo',
+  target: 'bar',
+  shouldForwardProp: p => true
+}
+
+const styledOptsBroken: StyledOptions = {
+  label: 1, // $ExpectError
+  target: null, // $ExpectError
+  shouldForwardProp: (p1, p2) => true // $ExpectError
 }
