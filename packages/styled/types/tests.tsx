@@ -218,20 +218,27 @@ const Input5 = styled.input`
   ;<StyledCompWithoutAs as={Section} />
 }
 
-const styledOpts: StyledOptions = {
-  label: 'foo',
-  target: 'bar',
-  shouldForwardProp: p => true
-}
+{
+  type StyledOptsParameterized = StyledOptions<{ a: string; b: number }>
 
-const styledOptsParameterized: StyledOptions<Record<string, any>> = {
-  label: 'foo',
-  target: 'bar',
-  shouldForwardProp: p => true
-}
-
-const styledOptsBroken: StyledOptions = {
-  label: 1, // $ExpectError
-  target: null, // $ExpectError
-  shouldForwardProp: (p1, p2) => true // $ExpectError
+  const styledOpts0: StyledOptions = {
+    label: 'foo',
+    target: 'bar',
+    shouldForwardProp: p => true
+  }
+  const styledOpts1: StyledOptsParameterized = {
+    label: 'foo',
+    target: 'bar',
+    shouldForwardProp: (p: 'a' | string) => true
+  }
+  const styledOptsBroken0: StyledOptsParameterized = {
+    label: 'foo',
+    target: 'bar',
+    shouldForwardProp: (p: 'c' | number) => true // $ExpectError
+  }
+  const styledOptsBroken1: StyledOptions = {
+    label: 1, // $ExpectError
+    target: null, // $ExpectError
+    shouldForwardProp: (p1, p2) => true // $ExpectError
+  }
 }

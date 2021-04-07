@@ -168,14 +168,17 @@ export const ImageFullWidthContained = styled.Image`
   ;<Container2 ref={containerRef2} />
 }
 
-const styledOpts: StyledOptions = {
-  shouldForwardProp: p => true
-}
-
-const styledOptsParameterized: StyledOptions<Record<string, any>> = {
-  shouldForwardProp: p => true
-}
-
-const styledOptsBroken: StyledOptions = {
-  shouldForwardProp: (p1, p2) => true // $ExpectError
+{
+  const styledOpts: StyledOptions = {
+    shouldForwardProp: p => true
+  }
+  const styledOptsParameterized: StyledOptions<{ foo: string }> = {
+    shouldForwardProp: (p: 'foo') => true
+  }
+  const styledOptsParameterizedBroken: StyledOptions<{ foo: string }> = {
+    shouldForwardProp: (p: 'bar') => true // $ExpectError
+  }
+  const styledOptsBroken: StyledOptions = {
+    shouldForwardProp: (p1, p2) => true // $ExpectError
+  }
 }

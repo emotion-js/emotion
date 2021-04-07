@@ -64,8 +64,10 @@ export interface FilteringStyledOptions<
   shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps
 }
 
-export interface StyledOptions<Props = Record<PropertyKey, any>> {
-  shouldForwardProp?(propName: PropertyKey): boolean
+export interface StyledOptions<Props = null> {
+  shouldForwardProp?(
+    propName: Props extends null ? PropertyKey : keyof Props
+  ): boolean
 }
 
 /**
