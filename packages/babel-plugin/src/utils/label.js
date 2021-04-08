@@ -62,10 +62,13 @@ const getObjPropertyLikeName = (path, t) => {
   }
   if (t.isIdentifier(path.node.key)) {
     return path.node.key.name
-  } else {
-    // literals
-    return String(path.node.key.value).replace(/\s+/g, '-')
   }
+
+  if (t.isStringLiteral(path.node.key)) {
+    return path.node.key.value.replace(/\s+/g, '-')
+  }
+
+  return null
 }
 
 function getDeclaratorName(path, t) {
