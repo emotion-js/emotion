@@ -53,6 +53,24 @@ export function getLabelFromPath(path: *, state: *, t: *) {
   )
 }
 
+const getObjPropertyLikeName = (path, t) => {
+  if (
+    (!t.isObjectProperty(path) && !t.isObjectMethod(path)) ||
+    path.node.computed
+  ) {
+    return null
+  }
+  if (t.isIdentifier(path.node.key)) {
+    return path.node.key.name
+  }
+
+  if (t.isStringLiteral(path.node.key)) {
+    return path.node.key.value.replace(/\s+/g, '-')
+  }
+
+  return null
+}
+
 function getDeclaratorName(path, t) {
   // $FlowFixMe
   const parent = path.findParent(
@@ -62,7 +80,8 @@ function getDeclaratorName(path, t) {
       p.isFunctionDeclaration() ||
       p.isFunctionExpression() ||
       p.isArrowFunctionExpression() ||
-      p.isObjectProperty()
+      p.isObjectProperty() ||
+      p.isObjectMethod()
   )
   if (!parent) {
     return ''
@@ -111,8 +130,10 @@ function getDeclaratorName(path, t) {
   }
 
   // we could also have an object property
-  if (parent.isObjectProperty() && !parent.node.computed) {
-    return parent.node.key.name
+  const objPropertyLikeName = getObjPropertyLikeName(parent, t)
+
+  if (objPropertyLikeName) {
+    return objPropertyLikeName
   }
 
   let variableDeclarator = parent.findParent(p => p.isVariableDeclarator())
@@ -123,23 +144,17 @@ function getDeclaratorName(path, t) {
 }
 
 function getIdentifierName(path: *, t: *) {
-  let classOrClassPropertyParent
+  let objPropertyLikeName = getObjPropertyLikeName(path.parentPath, t)
 
-  if (
-    t.isObjectProperty(path.parentPath) &&
-    path.parentPath.node.computed === false &&
-    (t.isIdentifier(path.parentPath.node.key) ||
-      t.isStringLiteral(path.parentPath.node.key))
-  ) {
-    return path.parentPath.node.key.name || path.parentPath.node.key.value
+  if (objPropertyLikeName) {
+    return objPropertyLikeName
   }
 
-  if (path) {
-    // $FlowFixMe
-    classOrClassPropertyParent = path.findParent(
-      p => t.isClassProperty(p) || t.isClass(p)
-    )
-  }
+  // $FlowFixMe
+  let classOrClassPropertyParent = path.findParent(
+    p => t.isClassProperty(p) || t.isClass(p)
+  )
+
   if (classOrClassPropertyParent) {
     if (
       t.isClassProperty(classOrClassPropertyParent) &&

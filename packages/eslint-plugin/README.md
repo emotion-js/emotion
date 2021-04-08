@@ -71,8 +71,8 @@ The Emotion 10 codemods are contained in this package. To use them, enable the r
 
 ## Supported Rules
 
-- [jsx-import](https://github.com/emotion-js/emotion/blob/master/packages/eslint-plugin/docs/rules/jsx-import.md)
-- [styled-import](https://github.com/emotion-js/emotion/blob/master/packages/eslint-plugin/docs/rules/styled-import.md)
-- [import-from-emotion](https://github.com/emotion-js/emotion/blob/master/packages/eslint-plugin/docs/rules/import-from-emotion.md)
-- [no-vanilla](https://github.com/emotion-js/emotion/blob/master/packages/eslint-plugin/docs/rules/no-vanilla.md)
-- [syntax-preference](https://github.com/emotion-js/emotion/blob/master/packages/eslint-plugin/docs/rules/syntax-preference.md)
+- [jsx-import](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/jsx-import.md)
+- [styled-import](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/styled-import.md)
+- [import-from-emotion](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/import-from-emotion.md)
+- [no-vanilla](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/no-vanilla.md)
+- [syntax-preference](https://github.com/emotion-js/emotion/blob/main/packages/eslint-plugin/docs/rules/syntax-preference.md)

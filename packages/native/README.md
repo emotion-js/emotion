@@ -38,8 +38,7 @@ const Image = styled.Image`
   padding: 40px;
 `
 
-const emotionLogo =
-  'https://cdn.rawgit.com/emotion-js/emotion/master/emotion.png'
+const emotionLogo = 'https://cdn.rawgit.com/emotion-js/emotion/main/emotion.png'
 
 class App extends React.Component {
   render() {
@@ -98,8 +97,7 @@ const Image = styled.Image`
   padding: 40px;
 `
 
-const emotionLogo =
-  'https://cdn.rawgit.com/emotion-js/emotion/master/emotion.png'
+const emotionLogo = 'https://cdn.rawgit.com/emotion-js/emotion/main/emotion.png'
 
 class App extends React.Component {
   render() {

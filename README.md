@@ -1,5 +1,5 @@
 <p align="center" style="color: #343a40">
-  <img src="https://raw.githubusercontent.com/emotion-js/emotion/master/emotion.png" alt="Emotion logo" height="150" width="150">
+  <img src="https://raw.githubusercontent.com/emotion-js/emotion/main/emotion.png" alt="Emotion logo" height="150" width="150">
   <h1 align="center">emotion</h1>
 </p>
 <p align="center" style="font-size: 1.2rem;">The Next Generation of CSS-in-JS</p>
@@ -7,8 +7,8 @@
 > **Emotion 11 has been released 🚀 [See the blog post](https://emotion.sh/docs/emotion-11)**
 
 [![Backers on Open Collective](https://opencollective.com/emotion/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/emotion/sponsors/badge.svg)](#sponsors) [![npm version](https://badge.fury.io/js/emotion.svg)](https://badge.fury.io/js/emotion)
-[![Build Status](https://img.shields.io/circleci/project/github/emotion-js/emotion/master.svg)](https://circleci.com/gh/emotion-js/emotion)
-[![codecov](https://codecov.io/gh/emotion-js/emotion/branch/master/graph/badge.svg)](https://codecov.io/gh/emotion-js/emotion)
+[![Build Status](https://img.shields.io/circleci/project/github/emotion-js/emotion/main.svg)](https://circleci.com/gh/emotion-js/emotion)
+[![codecov](https://codecov.io/gh/emotion-js/emotion/branch/main/graph/badge.svg)](https://codecov.io/gh/emotion-js/emotion)
 ![@emotion/css size](https://img.shields.io/bundlephobia/min/@emotion/css.svg?label=@emotion/css%20size)
 ![@emotion/css gzip size](https://img.shields.io/bundlephobia/minzip/@emotion/css.svg?label=@emotion/css%20gzip%20size)
 ![@emotion/react size](https://img.shields.io/bundlephobia/min/@emotion/react.svg?label=@emotion/react%20size)
@@ -62,7 +62,7 @@ let SomeComponent = props => {
 
 The babel plugin is not required, but enables some optimizations and customizations that could be beneficial for your project.
 
-Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin)_
+Look here 👉 _[emotion babel plugin feature table and documentation](https://github.com/emotion-js/emotion/tree/main/packages/babel-plugin)_
 
 ### Demo Sandbox
 
