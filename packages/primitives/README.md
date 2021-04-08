@@ -147,4 +147,4 @@ scripts: {
 
 and finally run `yarn render` to render the components to Sketch.
 
-For a complete reference, checkout [this](https://github.com/airbnb/react-sketchapp/blob/main/examples/emotion/src) project setup.
+For a complete reference, checkout [this](https://github.com/airbnb/react-sketchapp/blob/master/examples/emotion/src) project setup.
