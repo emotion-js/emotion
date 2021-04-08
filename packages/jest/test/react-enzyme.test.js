@@ -31,14 +31,54 @@ const cases = {
       return <Greeting>Hello</Greeting>
     }
   },
+  'styled with css prop': {
+    render() {
+      const style1 = css`
+        background-color: black;
+      `
+      const Button = styled.button`
+        color: red;
+      `
+      return <Button css={style1}>iChenLei</Button>
+    }
+  },
   nested: {
     render() {
-      return <div>{cases.basic.render()}</div>
+      const Greeting = ({ children }) => (
+        <div css={{ backgroundColor: 'red' }}>{children}</div>
+      )
+      return (
+        <div>
+          <Greeting>hello</Greeting>
+        </div>
+      )
     }
   },
   'nested styled': {
     render() {
-      return <div>{cases.styled.render()}</div>
+      const Greeting = styled.div`
+        background-color: red;
+      `
+      return (
+        <div>
+          <Greeting>Hello</Greeting>
+        </div>
+      )
+    }
+  },
+  'nested styled with css prop': {
+    render() {
+      const style1 = css`
+        background-color: black;
+      `
+      const Button = styled.button`
+        color: red;
+      `
+      return (
+        <div>
+          <Button css={style1}>iChenLei</Button>
+        </div>
+      )
     }
   },
   'empty styled': {
@@ -217,6 +257,24 @@ const cases = {
           <ThemeProvider theme={theme}>
             <Button>Themed</Button>
           </ThemeProvider>
+        </div>
+      )
+    }
+  },
+  displayName: {
+    render() {
+      const Comp = props => <div {...props}>Hello</div>
+      Comp.displayName = 'CustomDisplayName'
+      return <Comp css={{ color: 'hotpink' }} />
+    }
+  },
+  'nested displayName': {
+    render() {
+      const Comp = props => <div {...props}>Hello</div>
+      Comp.displayName = 'CustomDisplayName'
+      return (
+        <div>
+          <Comp css={{ color: 'hotpink' }} />
         </div>
       )
     }
