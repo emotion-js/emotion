@@ -326,33 +326,7 @@ exports[`@emotion/styled.macro label 1`] = `
 import styled from '@emotion/styled/macro'
 import { jsx } from '@emotion/react'
 
-class Thing {
-  static SomeComponent = styled.div\`
-    color: hotpink;
-  \`
-  BadIdeaComponent = styled.div\`
-    background: hotpink;
-  \`
-}
-
-{
-  // label should get sanitized
-  const MiniCalWrap$ = styled.div\`
-    color: red;
-  \`
-  const Test = () => <MiniCalWrap$ />
-}
-
-{
-  const Timeline = styled.ul\`\`
-  Timeline.Item = styled.li\`\`
-  Timeline.Item.Anchor = styled.a\`\`
-}
-
-{
-  let Comp
-  Comp = styled.div\`\`
-}
+let SomeComp = styled.div({ color: 'hotpink' })
 
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -366,11 +340,75 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to string
 /* eslint-disable react/jsx-pascal-case */
 import { jsx } from '@emotion/react';
 
+let SomeComp = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e2dh5500\\"
+} : {
+  target: \\"e2dh5500\\",
+  label: \\"SomeComp\\"
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\"
+} : {
+  name: \\"3sn2xs\\",
+  styles: \\"color:hotpink\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUtlIiwiZmlsZSI6ImxhYmVsLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG4vKiBlc2xpbnQtZGlzYWJsZSByZWFjdC9qc3gtcGFzY2FsLWNhc2UgKi9cbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkL21hY3JvJ1xuaW1wb3J0IHsganN4IH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnXG5cbmxldCBTb21lQ29tcCA9IHN0eWxlZC5kaXYoeyBjb2xvcjogJ2hvdHBpbmsnIH0pXG4iXX0= */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});"
+`;
+
+exports[`@emotion/styled.macro label-assignment-expression 1`] = `
+"/** @jsx jsx */
+import styled from '@emotion/styled/macro'
+import { jsx } from '@emotion/react'
+
+let Comp
+Comp = styled.div\`\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
+let Comp;
+Comp = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e16lswdj0\\"
+} : {
+  target: \\"e16lswdj0\\",
+  label: \\"Comp\\"
+})(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWFzc2lnbm1lbnQtZXhwcmVzc2lvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLaUIiLCJmaWxlIjoibGFiZWwtYXNzaWdubWVudC1leHByZXNzaW9uLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5sZXQgQ29tcFxuQ29tcCA9IHN0eWxlZC5kaXZgYFxuIl19 */\\");"
+`;
+
+exports[`@emotion/styled.macro label-class-fields 1`] = `
+"/** @jsx jsx */
+import styled from '@emotion/styled/macro'
+import { jsx } from '@emotion/react'
+
+class Thing {
+  static SomeComponent = styled.div\`
+    color: hotpink;
+  \`
+  BadIdeaComponent = styled.div\`
+    background: hotpink;
+  \`
+}
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
+
 class Thing {
   static SomeComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
-    target: \\"e2dh5506\\"
+    target: \\"e1s9kmbj1\\"
   } : {
-    target: \\"e2dh5506\\",
+    target: \\"e1s9kmbj1\\",
     label: \\"SomeComponent\\"
   })(process.env.NODE_ENV === \\"production\\" ? {
     name: \\"3sn2xs\\",
@@ -378,13 +416,13 @@ class Thing {
   } : {
     name: \\"3sn2xs\\",
     styles: \\"color:hotpink\\",
-    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU1tQyIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuLyogZXNsaW50LWRpc2FibGUgcmVhY3QvanN4LXBhc2NhbC1jYXNlICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG5cbntcbiAgY29uc3QgVGltZWxpbmUgPSBzdHlsZWQudWxgYFxuICBUaW1lbGluZS5JdGVtID0gc3R5bGVkLmxpYGBcbiAgVGltZWxpbmUuSXRlbS5BbmNob3IgPSBzdHlsZWQuYWBgXG59XG5cbntcbiAgbGV0IENvbXBcbiAgQ29tcCA9IHN0eWxlZC5kaXZgYFxufVxuIl19 */\\",
+    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWNsYXNzLWZpZWxkcy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLbUMiLCJmaWxlIjoibGFiZWwtY2xhc3MtZmllbGRzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG4iXX0= */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   });
   BadIdeaComponent = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
-    target: \\"e2dh5505\\"
+    target: \\"e1s9kmbj0\\"
   } : {
-    target: \\"e2dh5505\\",
+    target: \\"e1s9kmbj0\\",
     label: \\"BadIdeaComponent\\"
   })(process.env.NODE_ENV === \\"production\\" ? {
     name: \\"1nzpx79\\",
@@ -392,60 +430,89 @@ class Thing {
   } : {
     name: \\"1nzpx79\\",
     styles: \\"background:hotpink\\",
-    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVMrQiIsImZpbGUiOiJsYWJlbC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuLyogZXNsaW50LWRpc2FibGUgcmVhY3QvanN4LXBhc2NhbC1jYXNlICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG5cbntcbiAgLy8gbGFiZWwgc2hvdWxkIGdldCBzYW5pdGl6ZWRcbiAgY29uc3QgTWluaUNhbFdyYXAkID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogcmVkO1xuICBgXG4gIGNvbnN0IFRlc3QgPSAoKSA9PiA8TWluaUNhbFdyYXAkIC8+XG59XG5cbntcbiAgY29uc3QgVGltZWxpbmUgPSBzdHlsZWQudWxgYFxuICBUaW1lbGluZS5JdGVtID0gc3R5bGVkLmxpYGBcbiAgVGltZWxpbmUuSXRlbS5BbmNob3IgPSBzdHlsZWQuYWBgXG59XG5cbntcbiAgbGV0IENvbXBcbiAgQ29tcCA9IHN0eWxlZC5kaXZgYFxufVxuIl19 */\\",
+    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLWNsYXNzLWZpZWxkcy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFRK0IiLCJmaWxlIjoibGFiZWwtY2xhc3MtZmllbGRzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3gganN4ICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jbGFzcyBUaGluZyB7XG4gIHN0YXRpYyBTb21lQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBjb2xvcjogaG90cGluaztcbiAgYFxuICBCYWRJZGVhQ29tcG9uZW50ID0gc3R5bGVkLmRpdmBcbiAgICBiYWNrZ3JvdW5kOiBob3RwaW5rO1xuICBgXG59XG4iXX0= */\\",
     toString: _EMOTION_STRINGIFIED_CSS_ERROR__
   });
-}
-
-{
-  // label should get sanitized
-  const MiniCalWrap$ = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
-    target: \\"e2dh5504\\"
-  } : {
-    target: \\"e2dh5504\\",
-    label: \\"MiniCalWrap-\\"
-  })(process.env.NODE_ENV === \\"production\\" ? {
-    name: \\"hwfcu5\\",
-    styles: \\"color:red\\"
-  } : {
-    name: \\"hwfcu5\\",
-    styles: \\"color:red\\",
-    map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWdCaUMiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\",
-    toString: _EMOTION_STRINGIFIED_CSS_ERROR__
-  });
-
-  const Test = () => <MiniCalWrap$ />;
-}
-{
-  const Timeline = _styled(\\"ul\\", process.env.NODE_ENV === \\"production\\" ? {
-    target: \\"e2dh5503\\"
-  } : {
-    target: \\"e2dh5503\\",
-    label: \\"Timeline\\"
-  })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXVCNEIiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
-
-  Timeline.Item = _styled(\\"li\\", process.env.NODE_ENV === \\"production\\" ? {
-    target: \\"e2dh5502\\"
-  } : {
-    target: \\"e2dh5502\\",
-    label: \\"Timeline-Item\\"
-  })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXdCMkIiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
-  Timeline.Item.Anchor = _styled(\\"a\\", process.env.NODE_ENV === \\"production\\" ? {
-    target: \\"e2dh5501\\"
-  } : {
-    target: \\"e2dh5501\\",
-    label: \\"Timeline-Item-Anchor\\"
-  })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXlCaUMiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
-}
-{
-  let Comp;
-  Comp = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
-    target: \\"e2dh5500\\"
-  } : {
-    target: \\"e2dh5500\\",
-    label: \\"Comp\\"
-  })(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQThCbUIiLCJmaWxlIjoibGFiZWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeCBqc3ggKi9cbi8qIGVzbGludC1kaXNhYmxlIHJlYWN0L2pzeC1wYXNjYWwtY2FzZSAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY2xhc3MgVGhpbmcge1xuICBzdGF0aWMgU29tZUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IGhvdHBpbms7XG4gIGBcbiAgQmFkSWRlYUNvbXBvbmVudCA9IHN0eWxlZC5kaXZgXG4gICAgYmFja2dyb3VuZDogaG90cGluaztcbiAgYFxufVxuXG57XG4gIC8vIGxhYmVsIHNob3VsZCBnZXQgc2FuaXRpemVkXG4gIGNvbnN0IE1pbmlDYWxXcmFwJCA9IHN0eWxlZC5kaXZgXG4gICAgY29sb3I6IHJlZDtcbiAgYFxuICBjb25zdCBUZXN0ID0gKCkgPT4gPE1pbmlDYWxXcmFwJCAvPlxufVxuXG57XG4gIGNvbnN0IFRpbWVsaW5lID0gc3R5bGVkLnVsYGBcbiAgVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG4gIFRpbWVsaW5lLkl0ZW0uQW5jaG9yID0gc3R5bGVkLmFgYFxufVxuXG57XG4gIGxldCBDb21wXG4gIENvbXAgPSBzdHlsZWQuZGl2YGBcbn1cbiJdfQ== */\\");
 }"
+`;
+
+exports[`@emotion/styled.macro label-member-expression 1`] = `
+"/** @jsx jsx */
+import styled from '@emotion/styled/macro'
+import { jsx } from '@emotion/react'
+
+const Timeline = styled.ul\`\`
+Timeline.Item = styled.li\`\`
+Timeline.Item.Anchor = styled.a\`\`
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
+
+const Timeline = _styled(\\"ul\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e1djkynu2\\"
+} : {
+  target: \\"e1djkynu2\\",
+  label: \\"Timeline\\"
+})(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLW1lbWJlci1leHByZXNzaW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUkwQiIsImZpbGUiOiJsYWJlbC1tZW1iZXItZXhwcmVzc2lvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgVGltZWxpbmUgPSBzdHlsZWQudWxgYFxuVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG5UaW1lbGluZS5JdGVtLkFuY2hvciA9IHN0eWxlZC5hYGBcbiJdfQ== */\\");
+
+Timeline.Item = _styled(\\"li\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e1djkynu1\\"
+} : {
+  target: \\"e1djkynu1\\",
+  label: \\"Timeline-Item\\"
+})(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLW1lbWJlci1leHByZXNzaW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUt5QiIsImZpbGUiOiJsYWJlbC1tZW1iZXItZXhwcmVzc2lvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgVGltZWxpbmUgPSBzdHlsZWQudWxgYFxuVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG5UaW1lbGluZS5JdGVtLkFuY2hvciA9IHN0eWxlZC5hYGBcbiJdfQ== */\\");
+Timeline.Item.Anchor = _styled(\\"a\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"e1djkynu0\\"
+} : {
+  target: \\"e1djkynu0\\",
+  label: \\"Timeline-Item-Anchor\\"
+})(process.env.NODE_ENV === \\"production\\" ? \\"\\" : \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLW1lbWJlci1leHByZXNzaW9uLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU0rQiIsImZpbGUiOiJsYWJlbC1tZW1iZXItZXhwcmVzc2lvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQvbWFjcm8nXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9yZWFjdCdcblxuY29uc3QgVGltZWxpbmUgPSBzdHlsZWQudWxgYFxuVGltZWxpbmUuSXRlbSA9IHN0eWxlZC5saWBgXG5UaW1lbGluZS5JdGVtLkFuY2hvciA9IHN0eWxlZC5hYGBcbiJdfQ== */\\");"
+`;
+
+exports[`@emotion/styled.macro label-sanitize 1`] = `
+"/** @jsx jsx */
+/* eslint-disable react/jsx-pascal-case */
+import styled from '@emotion/styled/macro'
+import { jsx } from '@emotion/react'
+
+const MiniCalWrap$ = styled.div\`
+  color: red;
+\`
+const Test = () => <MiniCalWrap$ />
+
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _styled from \\"@emotion/styled/base\\";
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return \\"You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop).\\"; }
+
+/** @jsx jsx */
+
+/* eslint-disable react/jsx-pascal-case */
+import { jsx } from '@emotion/react';
+
+const MiniCalWrap$ = _styled(\\"div\\", process.env.NODE_ENV === \\"production\\" ? {
+  target: \\"elww2rn0\\"
+} : {
+  target: \\"elww2rn0\\",
+  label: \\"MiniCalWrap-\\"
+})(process.env.NODE_ENV === \\"production\\" ? {
+  name: \\"hwfcu5\\",
+  styles: \\"color:red\\"
+} : {
+  name: \\"hwfcu5\\",
+  styles: \\"color:red\\",
+  map: \\"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxhYmVsLXNhbml0aXplLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUsrQiIsImZpbGUiOiJsYWJlbC1zYW5pdGl6ZS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4IGpzeCAqL1xuLyogZXNsaW50LWRpc2FibGUgcmVhY3QvanN4LXBhc2NhbC1jYXNlICovXG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZC9tYWNybydcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL3JlYWN0J1xuXG5jb25zdCBNaW5pQ2FsV3JhcCQgPSBzdHlsZWQuZGl2YFxuICBjb2xvcjogcmVkO1xuYFxuY29uc3QgVGVzdCA9ICgpID0+IDxNaW5pQ2FsV3JhcCQgLz5cbiJdfQ== */\\",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+});
+
+const Test = () => <MiniCalWrap$ />;"
 `;
 
 exports[`@emotion/styled.macro more-than-10-interpolations 1`] = `
