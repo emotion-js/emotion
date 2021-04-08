@@ -8,7 +8,7 @@ function getGeneratorOpts(file) {
 
 export function makeSourceMapGenerator(file: *) {
   const generatorOpts = getGeneratorOpts(file)
-  const filename = generatorOpts.sourceFileName
+  const filename = generatorOpts.sourceFileName.replace(/\\/g, '/')
   const generator = new SourceMapGenerator({
     file: filename,
     sourceRoot: generatorOpts.sourceRoot
@@ -36,7 +36,7 @@ export function getSourceMap(
         line: 1,
         column: 0
       },
-      source: generatorOpts.sourceFileName,
+      source: generatorOpts.sourceFileName.replace(/\\/g, '/'),
       original: offset
     })
     return convert.fromObject(generator).toComment({ multiline: true })
