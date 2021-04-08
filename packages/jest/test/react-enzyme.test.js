@@ -31,6 +31,21 @@ const cases = {
       return <Greeting>Hello</Greeting>
     }
   },
+  'styled with css prop': {
+    render() {
+      const style1 = css`
+        background-color: black;
+      `
+      const Button = styled.button`
+        color: red;
+      `
+      return (
+        <div>
+          <Button css={style1}>iChenLei</Button>
+        </div>
+      )
+    }
+  },
   nested: {
     render() {
       return <div>{cases.basic.render()}</div>

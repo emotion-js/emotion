@@ -86,6 +86,29 @@ exports[`enzyme mount styled 1`] = `
 </Greeting>
 `;
 
+exports[`enzyme mount styled with css prop 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+.emotion-1 {
+  color: red;
+  background-color: black;
+}
+
+<div>
+  <Button
+    className="emotion-0"
+  >
+    <button
+      className="emotion-1 emotion-2"
+    >
+      iChenLei
+    </button>
+  </Button>
+</div>
+`;
+
 exports[`enzyme mount theming 1`] = `
 .emotion-0 {
   color: red;
@@ -390,6 +413,20 @@ exports[`enzyme shallow styled 1`] = `
   className="emotion-0 emotion-1"
 >
   Hello
+</div>
+`;
+
+exports[`enzyme shallow styled with css prop 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+<div>
+  <Button
+    className="emotion-0"
+  >
+    iChenLei
+  </Button>
 </div>
 `;
 

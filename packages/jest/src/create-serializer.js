@@ -129,7 +129,9 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
       const emotionType = node.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
       // emotionType will be a string for DOM elements
       const type =
-        typeof emotionType === 'string' ? emotionType : emotionType.name
+        typeof emotionType === 'string'
+          ? emotionType
+          : emotionType.name || emotionType.displayName
       return {
         ...node,
         props: filterEmotionProps({
