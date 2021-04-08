@@ -2,4 +2,4 @@
 '@emotion/serialize': patch
 ---
 
-fix the labelPattern regex match
+Fixed appending manual labels to Babel-optimized style objects.
