@@ -3,7 +3,7 @@
 
 import * as React from 'react'
 import { ComponentSelector, Interpolation } from '@emotion/serialize'
-import { PropsOf, ReactInterpolation, Theme } from '@emotion/react'
+import { PropsOf, Theme } from '@emotion/react'
 
 export {
   ArrayInterpolation,
@@ -69,7 +69,7 @@ export interface CreateStyledComponent<
    */
   <AdditionalProps extends {} = {}>(
     ...styles: Array<
-      ReactInterpolation<
+      Interpolation<
         ComponentProps &
           SpecificComponentProps &
           AdditionalProps & { theme: Theme }
