@@ -131,7 +131,7 @@ const createConvertEmotionElements = (keys: string[], printer: *) => (
       const type =
         typeof emotionType === 'string'
           ? emotionType
-          : emotionType.name || emotionType.displayName
+          : emotionType.displayName || emotionType.name || 'Component'
       return {
         ...node,
         props: filterEmotionProps({

@@ -2,4 +2,4 @@
 '@emotion/jest': patch
 ---
 
-use emotionType.displayName to support shallowEnzymeElement with react forwardRef
+Use `displayName` when printing shallowly rendered elements with css prop.
