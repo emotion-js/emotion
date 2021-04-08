@@ -50,8 +50,7 @@ const Image = styled.Image`
   padding: 40px;
 `
 
-const emotionLogo =
-  'https://cdn.rawgit.com/emotion-js/emotion/master/emotion.png'
+const emotionLogo = 'https://cdn.rawgit.com/emotion-js/emotion/main/emotion.png'
 
 class App extends React.Component {
   render() {
@@ -148,4 +147,4 @@ scripts: {
 
 and finally run `yarn render` to render the components to Sketch.
 
-For a complete reference, checkout [this](https://github.com/airbnb/react-sketchapp/blob/master/examples/emotion/src) project setup.
+For a complete reference, checkout [this](https://github.com/airbnb/react-sketchapp/blob/main/examples/emotion/src) project setup.

@@ -94,7 +94,7 @@ export default function(babel: *, options: *) {
     visitor: {
       ImportDeclaration(path: *, state: *) {
         const macro = state.pluginMacros[path.node.source.value]
-        // most of this is from https://github.com/kentcdodds/babel-plugin-macros/blob/master/src/index.js
+        // most of this is from https://github.com/kentcdodds/babel-plugin-macros/blob/main/src/index.js
         if (macro === undefined) {
           return
         }
