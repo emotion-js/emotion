@@ -53,16 +53,16 @@ type ReactInterpolationPrimitive =
   | SerializedStyles
   | CSSObject
 
-type ReactArrayInterpolation<Props> = Array<ReactInterpolation<Props>>
+type ReactArrayInterpolation<Theme> = Array<ReactInterpolation<Theme>>
 
-interface ReactFunctionInterpolation<Props> {
-  (props: Props): ReactInterpolation<Props>
+interface ReactFunctionInterpolation<Theme> {
+  (theme: Theme): ReactInterpolation<Theme>
 }
 
-export type ReactInterpolation<Props> =
+export type ReactInterpolation<Theme> =
   | ReactInterpolationPrimitive
-  | ReactArrayInterpolation<Props>
-  | ReactFunctionInterpolation<Props>
+  | ReactArrayInterpolation<Theme>
+  | ReactFunctionInterpolation<Theme>
 
 export function css(
   template: TemplateStringsArray,
