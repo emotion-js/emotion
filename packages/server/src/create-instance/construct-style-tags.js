@@ -1,7 +1,14 @@
 // @flow
+import type { EmotionCache } from '@emotion/utils'
 import { generateStyleTag } from './inline'
 
-const createConstructStyleTags = (cache, nonceString) => criticalData => {
+const createConstructStyleTags = (
+  cache: EmotionCache,
+  nonceString: string
+) => (criticalData: {
+  html: string,
+  styles: Array<{ ids: Array<string>, css: string }>
+}) => {
   let result = ''
 
   // insert global styles first

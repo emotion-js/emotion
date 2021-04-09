@@ -178,10 +178,11 @@ export const prettifyCritical2 = ({
   styles: Array<{ css: string, ids: Array<string> }>
 }) => {
   return {
-    styles: styles.map(item => {
-      console.log(item)
-      return { css: prettify(item.css || ''), ids: item.ids }
-    }),
+    styles: styles.map<{ css: string, ids: Array<string> }>(
+      (item): { css: string, ids: Array<string> } => {
+        return { css: prettify(item.css || ''), ids: item.ids }
+      }
+    ),
     html
   }
 }
