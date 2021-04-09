@@ -2,7 +2,11 @@
 // TypeScript Version: 3.2
 
 import * as React from 'react'
-import { ComponentSelector, Interpolation } from '@emotion/serialize'
+import {
+  ComponentSelector,
+  Interpolation,
+  InterpolationPrimitive
+} from '@emotion/serialize'
 import { PropsOf, DistributiveOmit, Theme } from '@emotion/react'
 
 export {
@@ -71,11 +75,17 @@ export interface CreateStyledComponent<
    */
   <AdditionalProps extends {} = {}>(
     ...styles: Array<
-      Interpolation<
-        ComponentProps &
-          SpecificComponentProps &
-          AdditionalProps & { theme: Theme }
-      >
+      // tslint:disable-next-line no-null-undefined-union
+      | StyledOptions<
+          ComponentProps &
+            SpecificComponentProps &
+            AdditionalProps & { theme: Theme }
+        >
+      | Interpolation<
+          ComponentProps &
+            SpecificComponentProps &
+            AdditionalProps & { theme: Theme }
+        >
     >
   ): StyledComponent<
     ComponentProps & AdditionalProps,

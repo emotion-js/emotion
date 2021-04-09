@@ -241,4 +241,16 @@ const Input5 = styled.input`
     target: null, // $ExpectError
     shouldForwardProp: (p1, p2) => true // $ExpectError
   }
+
+  interface Props {
+    foo: boolean
+  }
+  const options: StyledOptions<JSX.IntrinsicElements['div']> = {
+    label: 'foo',
+    target: 'bar',
+    shouldForwardProp: p => true
+  }
+  const test1 = styled.div({ color: 'red' }, options)
+  const test2 = styled.div<Props>({ color: 'red' }, options)
+  const test3 = styled('div', options)({ color: 'red' })
 }
