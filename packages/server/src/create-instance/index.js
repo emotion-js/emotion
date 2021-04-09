@@ -4,7 +4,7 @@ import createExtractCritical from './extract-critical'
 import createExtractCritical2 from './extract-critical2'
 import createRenderStylesToString from './inline'
 import createRenderStylesToStream from './stream'
-
+import createConstructStyleTags from './construct-style-tags'
 export default function(cache: EmotionCache) {
   if (cache.compat !== true) {
     // is this good? should we do this automatically?
@@ -16,6 +16,7 @@ export default function(cache: EmotionCache) {
     extractCritical: createExtractCritical(cache),
     extractCritical2: createExtractCritical2(cache),
     renderStylesToString: createRenderStylesToString(cache, nonceString),
-    renderStylesToNodeStream: createRenderStylesToStream(cache, nonceString)
+    renderStylesToNodeStream: createRenderStylesToStream(cache, nonceString),
+    constructStyleTags: createConstructStyleTags(cache, nonceString)
   }
 }

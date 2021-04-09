@@ -6,7 +6,7 @@ const createExtractCritical2 = (cache: EmotionCache) => (html: string) => {
   // reconstruct css/rules/cache to pass
   let RGX = new RegExp(`${cache.key}-([a-zA-Z0-9-_]+)`, 'gm')
 
-  let o = { html, ids: [], css: '', globalCss: [] }
+  let o = { html, styles: [] }
   let match
   let ids = {}
   while ((match = RGX.exec(html)) !== null) {
@@ -17,20 +17,29 @@ const createExtractCritical2 = (cache: EmotionCache) => (html: string) => {
     }
   }
 
-  o.ids = Object.keys(cache.inserted).filter(id => {
+  const regularCssIds = []
+  let regularCss = ''
+
+  Object.keys(cache.inserted).forEach(id => {
     if (
       (ids[id] !== undefined ||
         cache.registered[`${cache.key}-${id}`] === undefined) &&
       cache.inserted[id] !== true
     ) {
       if (cache.registered[`${cache.key}-${id}`]) {
-        o.css += cache.inserted[id]
+        // regular styles
+        // regular css can be added in one style tag (by convention the first item in the array)
+        regularCssIds.push(id)
+        regularCss += cache.inserted[id]
       } else {
-        o.globalCss.push(cache.inserted[id])
+        // global styles
+        // each global styles requires new entry so it can be independently flashed
+        o.styles.push({ ids: [id], css: cache.inserted[id] })
       }
-      return true
     }
   })
+
+  o.styles.push({ ids: regularCssIds, css: regularCss })
 
   return o
 }

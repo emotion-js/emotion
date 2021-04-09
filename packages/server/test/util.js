@@ -157,19 +157,32 @@ export const createBigComponent = ({ injectGlobal, css }: Emotion) => {
 export const prettifyCritical = ({
   html,
   css,
-  globalCss,
   ids
 }: {
   html: string,
   css: string,
-  globalCss?: Array<string>,
   ids: Array<string>
 }) => {
   return {
     css: prettify(css),
     ids,
-    html,
-    ...(globalCss && { globalCss: globalCss.map(g => prettify(g)) })
+    html
+  }
+}
+
+export const prettifyCritical2 = ({
+  html,
+  styles
+}: {
+  html: string,
+  styles: Array<{ css: string, ids: Array<string> }>
+}) => {
+  return {
+    styles: styles.map(item => {
+      console.log(item)
+      return { css: prettify(item.css || ''), ids: item.ids }
+    }),
+    html
   }
 }
 

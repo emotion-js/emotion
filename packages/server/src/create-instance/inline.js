@@ -1,7 +1,7 @@
 // @flow
 import type { EmotionCache } from '@emotion/utils'
 
-function generateStyleTag(
+export function generateStyleTag(
   cssKey: string,
   ids: string,
   styles: string,
