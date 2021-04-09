@@ -1,4 +1,5 @@
 // @flow
+import nodePath from 'path'
 import babelTester from 'babel-tester'
 import plugin from '@emotion/babel-plugin'
 
@@ -79,7 +80,7 @@ const cases = {
         {
           labelFormat: ({ name, path }) =>
             `${name.toUpperCase()}_${last(
-              path.replace(/\..+$/, '').split('/')
+              path.replace(/\..+$/, '').split(nodePath.sep)
             ).toUpperCase()}`
         }
       ]
