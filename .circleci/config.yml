@@ -1,4 +1,8 @@
-version: 2
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.2.0
+
 jobs:
   flow:
     docker:
@@ -46,6 +50,23 @@ jobs:
       - store_artifacts:
           path: reports/junit
 
+  test_windows:
+    executor: win/default
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v4-dependencies-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v4-dependencies-
+      - run: yarn install --pure-lockfile
+      - run:
+          name: Jest Tests
+          command: yarn coverage --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
+
   test_dist:
     docker:
       - image: circleci/node:12
@@ -85,5 +106,6 @@ workflows:
     jobs:
       - flow
       - test
+      - test_windows
       - test_dist
       - lint_and_typescript
