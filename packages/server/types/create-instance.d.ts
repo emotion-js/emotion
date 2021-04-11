@@ -19,7 +19,7 @@ export interface EmotionServer {
   extractCritical(html: string): EmotionCritical
   renderStylesToString(html: string): string
   renderStylesToNodeStream(): NodeJS.ReadWriteStream
-  constructStyleTags(htmll: string): EmotionCritical2
+  constructStyleTags(html: string): EmotionCritical2
 }
 
 export default function createEmotionServer(cache: EmotionCache): EmotionServer
