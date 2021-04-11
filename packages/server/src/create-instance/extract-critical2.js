@@ -31,7 +31,7 @@ const createExtractCritical2 = (cache: EmotionCache) => (html: string) => {
         regularCssIds.push(id)
         regularCss += cache.inserted[id].toString()
       } else {
-        // each global styles requires new entry so it can be independently flashed
+        // each global styles require a new entry so it can be independently flushed
         o.styles.push({ ids: [id], css: cache.inserted[id] })
       }
     }
