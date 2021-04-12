@@ -27,8 +27,9 @@ const createExtractCritical2 = (cache: EmotionCache) => (html: string) => {
       cache.inserted[id] !== true
     ) {
       if (cache.registered[`${cache.key}-${id}`]) {
-        // regular css can be added in one style tag (by convention the first item in the array)
+        // regular css can be added in one style tag
         regularCssIds.push(id)
+        // $FlowFixMe
         regularCss += cache.inserted[id].toString()
       } else {
         // each global styles require a new entry so it can be independently flushed

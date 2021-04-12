@@ -1,16 +1,6 @@
 // @flow
 import type { EmotionCache } from '@emotion/utils'
-
-export function generateStyleTag(
-  cssKey: string,
-  ids: string,
-  styles: string,
-  nonceString: string
-) {
-  return `<style data-emotion="${cssKey} ${ids.substring(
-    1
-  )}"${nonceString}>${styles}</style>`
-}
+import { generateStyleTag } from './utils'
 
 const createRenderStylesToString = (
   cache: EmotionCache,
