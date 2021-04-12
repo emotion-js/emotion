@@ -5,6 +5,7 @@
 
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import type { Emotion } from '@emotion/css/create-instance'
 import { prettifyCritical2 } from './util'
 
 let emotion = require('@emotion/css')
