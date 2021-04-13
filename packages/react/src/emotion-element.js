@@ -31,6 +31,17 @@ export const createEmotionProps = (type: React.ElementType, props: Object) => {
 
   let newProps: any = {}
 
+  // handle component defaultProps
+  // it can be override by component props
+  // to support #2316
+  const defaultProps = type?.defaultProps ?? {}
+  for (let key in defaultProps) {
+    if (hasOwnProperty.call(defaultProps, key)) {
+      newProps[key] = defaultProps[key]
+    }
+  }
+
+  // handle component props
   for (let key in props) {
     if (hasOwnProperty.call(props, key)) {
       newProps[key] = props[key]

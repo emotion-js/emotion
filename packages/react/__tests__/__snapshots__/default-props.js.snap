@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transfer Component.defaultProps 1`] = `
+<div>
+  <div
+    class="parent"
+  >
+    i will show in parent component
+  </div>
+</div>
+`;
+
+exports[`Transfer Component.defaultProps and override by Component.Props 1`] = `
+<div>
+  <div
+    class="parent"
+  >
+    orrivide defaultProps value
+  </div>
+</div>
+`;
+
+exports[`Transfer Component.defaultProps to easy make judgement 1`] = `
+<div>
+  <div
+    class="parent"
+  >
+    <div>
+      make some judgments
+    </div>
+  </div>
+</div>
+`;
