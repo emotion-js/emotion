@@ -19,6 +19,7 @@ let css
 let jsx
 let CacheProvider
 let Global
+let createEmotionServer
 
 const resetAllModules = () => {
   jest.resetModules()
@@ -33,6 +34,30 @@ const resetAllModules = () => {
   jsx = emotionReact.jsx
   CacheProvider = emotionReact.CacheProvider
   Global = emotionReact.Global
+  createEmotionServer = require('@emotion/server/create-instance').default
+}
+
+const removeGlobalProp = prop => {
+  let descriptor = Object.getOwnPropertyDescriptor(global, prop)
+  Object.defineProperty(global, prop, {
+    value: undefined,
+    writable: true,
+    configurable: true
+  })
+  return () => Object.defineProperty(global, prop, descriptor)
+}
+
+const disableBrowserEnvTemporarily = fn => {
+  let restoreDocument = removeGlobalProp('document')
+  let restoreWindow = removeGlobalProp('window')
+  let restoreHTMLElement = removeGlobalProp('HTMLElement')
+  try {
+    return fn()
+  } finally {
+    restoreDocument()
+    restoreWindow()
+    restoreHTMLElement()
+  }
 }
 
 test("cache created in render doesn't cause a hydration mismatch", () => {
@@ -174,66 +199,67 @@ test('initializing another Emotion instance should not move already moved styles
 })
 
 test('xxx', () => {
-  resetAllModules()
+  const { app, styles } = disableBrowserEnvTemporarily(() => {
+    resetAllModules()
 
-  let cache = createCache({ key: 'mui' })
+    let cache = createCache({ key: 'mui' })
+    let { extractCritical2, constructStyleTags } = createEmotionServer(cache)
 
-  safeQuerySelector('body').innerHTML = ReactDOMServer.renderToString(
-    <CacheProvider value={cache}>
-      <div id="root">
+    const rendered = ReactDOMServer.renderToString(
+      <CacheProvider value={cache}>
+        <Global styles={{ body: { color: 'white' } }} />
+        <Global styles={{ html: { background: 'red' } }} />
         <main css={{ color: 'green' }}>
           <div css={{ color: 'hotpink' }} />
         </main>
-      </div>
-    </CacheProvider>
-  ).replace(/\s+?data-reactroot=""/g, '')
-  expect(safeQuerySelector('body')).toMatchInlineSnapshot(`
-    <body>
-      <div
-        id="root"
-      >
-        <main
-          class="mui-bjcoli"
-        >
-          <div
-            class="mui-1lrxbo5"
-          />
-        </main>
-      </div>
-    </body>
-  `)
+      </CacheProvider>
+    )
+    const extracted = extractCritical2(rendered)
+    return {
+      app: extracted.html,
+      styles: constructStyleTags(extracted)
+    }
+  })
 
-  safeQuerySelector('head').innerHTML = ReactDOMServer.renderToString(
-    <>
-      <style data-emotion="mui-global l6h">{'body{color:white;}'}</style>
-      <style data-emotion="mui-global 10q49a4">{'html{background:red;}'}</style>
-      <style data-emotion="mui bjcoli 1lrxbo5">
-        {['.mui-bjcoli{color:green;}', '.mui-1lrxbo5{color:hotpink;}'].join('')}
-      </style>
-    </>
-  ).replace(/\s+?data-reactroot=""/g, '')
-  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
-    <head>
-      <style
-        data-emotion="mui-global l6h"
-      >
-        body{color:white;}
-      </style>
-      <style
-        data-emotion="mui-global 10q49a4"
-      >
-        html{background:red;}
-      </style>
-      <style
-        data-emotion="mui bjcoli 1lrxbo5"
-      >
-        .mui-bjcoli{color:green;}.mui-1lrxbo5{color:hotpink;}
-      </style>
-    </head>
+  safeQuerySelector('head').innerHTML = styles
+  safeQuerySelector('body').innerHTML = `<div id="root">${app}</div>`
+  expect(safeQuerySelector('html')).toMatchInlineSnapshot(`
+    <html>
+      <head>
+        <style
+          data-emotion="mui-global l6h"
+        >
+          body{color:white;}
+        </style>
+        <style
+          data-emotion="mui-global 10q49a4"
+        >
+          html{background:red;}
+        </style>
+        <style
+          data-emotion="mui bjcoli 1lrxbo5"
+        >
+          .mui-bjcoli{color:green;}.mui-1lrxbo5{color:hotpink;}
+        </style>
+      </head>
+      <body>
+        <div
+          id="root"
+        >
+          <main
+            class="mui-bjcoli"
+          >
+            <div
+              class="mui-1lrxbo5"
+            />
+          </main>
+        </div>
+      </body>
+    </html>
   `)
 
   resetAllModules()
-  cache = createCache({ key: 'mui' })
+  const cache = createCache({ key: 'mui' })
 
   ReactDOM.render(
     <CacheProvider value={cache}>

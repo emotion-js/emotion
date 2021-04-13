@@ -6,7 +6,5 @@ export function generateStyleTag(
   styles: string,
   nonceString: string
 ) {
-  return `<style data-emotion="${cssKey} ${ids.substring(
-    1
-  )}"${nonceString}>${styles}</style>`
+  return `<style data-emotion="${cssKey} ${ids}"${nonceString}>${styles}</style>`
 }
