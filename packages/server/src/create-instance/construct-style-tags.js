@@ -13,7 +13,7 @@ const createConstructStyleTags = (
 
   criticalData.styles.forEach(item => {
     styleTagsString += generateStyleTag(
-      cache.key,
+      item.key || cache.key,
       item.ids.join(' '),
       item.css,
       nonceString

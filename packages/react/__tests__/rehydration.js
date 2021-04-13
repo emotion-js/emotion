@@ -11,22 +11,28 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
+let React
 let ReactDOM
+let ReactDOMServer
 let createCache
 let css
 let jsx
 let CacheProvider
+let Global
 
 const resetAllModules = () => {
   jest.resetModules()
 
   createCache = require('@emotion/cache').default
+  React = require('react')
   ReactDOM = require('react-dom')
+  ReactDOMServer = require('react-dom/server')
 
   const emotionReact = require('@emotion/react')
   css = emotionReact.css
   jsx = emotionReact.jsx
   CacheProvider = emotionReact.CacheProvider
+  Global = emotionReact.Global
 }
 
 test("cache created in render doesn't cause a hydration mismatch", () => {
@@ -163,6 +169,133 @@ test('initializing another Emotion instance should not move already moved styles
           .stl-1pdkrhd-App{color:hotpink;}
         </style>
       </div>
+    </head>
+  `)
+})
+
+test('xxx', () => {
+  resetAllModules()
+
+  let cache = createCache({ key: 'mui' })
+
+  safeQuerySelector('body').innerHTML = ReactDOMServer.renderToString(
+    <CacheProvider value={cache}>
+      <div id="root">
+        <main css={{ color: 'green' }}>
+          <div css={{ color: 'hotpink' }} />
+        </main>
+      </div>
+    </CacheProvider>
+  ).replace(/\s+?data-reactroot=""/g, '')
+  expect(safeQuerySelector('body')).toMatchInlineSnapshot(`
+    <body>
+      <div
+        id="root"
+      >
+        <main
+          class="mui-bjcoli"
+        >
+          <div
+            class="mui-1lrxbo5"
+          />
+        </main>
+      </div>
+    </body>
+  `)
+
+  safeQuerySelector('head').innerHTML = ReactDOMServer.renderToString(
+    <>
+      <style data-emotion="mui-global l6h">{'body{color:white;}'}</style>
+      <style data-emotion="mui-global 10q49a4">{'html{background:red;}'}</style>
+      <style data-emotion="mui bjcoli 1lrxbo5">
+        {['.mui-bjcoli{color:green;}', '.mui-1lrxbo5{color:hotpink;}'].join('')}
+      </style>
+    </>
+  ).replace(/\s+?data-reactroot=""/g, '')
+  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
+    <head>
+      <style
+        data-emotion="mui-global l6h"
+      >
+        body{color:white;}
+      </style>
+      <style
+        data-emotion="mui-global 10q49a4"
+      >
+        html{background:red;}
+      </style>
+      <style
+        data-emotion="mui bjcoli 1lrxbo5"
+      >
+        .mui-bjcoli{color:green;}.mui-1lrxbo5{color:hotpink;}
+      </style>
+    </head>
+  `)
+
+  resetAllModules()
+  cache = createCache({ key: 'mui' })
+
+  ReactDOM.render(
+    <CacheProvider value={cache}>
+      <Global styles={{ body: { color: 'white' } }} />
+      <Global styles={{ html: { background: 'red' } }} />
+      <main css={{ color: 'green' }}>
+        <div css={{ color: 'hotpink' }} />
+      </main>
+    </CacheProvider>,
+    safeQuerySelector('#root')
+  )
+
+  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
+    <head>
+      <style
+        data-emotion="mui-global"
+        data-s=""
+      >
+        
+        body{color:white;}
+      </style>
+      <style
+        data-emotion="mui-global"
+        data-s=""
+      >
+        
+        html{background:red;}
+      </style>
+      <style
+        data-emotion="mui bjcoli 1lrxbo5"
+        data-s=""
+      >
+        .mui-bjcoli{color:green;}.mui-1lrxbo5{color:hotpink;}
+      </style>
+    </head>
+  `)
+
+  ReactDOM.render(
+    <CacheProvider value={cache}>
+      <Global styles={{ html: { background: 'red' } }} />
+      <main css={{ color: 'green' }}>
+        <div css={{ color: 'hotpink' }} />
+      </main>
+    </CacheProvider>,
+    safeQuerySelector('#root')
+  )
+
+  expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
+    <head>
+      <style
+        data-emotion="mui-global"
+        data-s=""
+      >
+        
+        html{background:red;}
+      </style>
+      <style
+        data-emotion="mui bjcoli 1lrxbo5"
+        data-s=""
+      >
+        .mui-bjcoli{color:green;}.mui-1lrxbo5{color:hotpink;}
+      </style>
     </head>
   `)
 })
