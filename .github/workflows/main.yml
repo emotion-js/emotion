@@ -44,7 +44,7 @@ jobs:
         run: yarn
 
       - name: Run Tests
-        run: yarn cross-env CI=true yarn coverage --color
+        run: yarn coverage --color
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
