@@ -294,7 +294,7 @@ function createStringFromObject(
   return string
 }
 
-let labelPattern = /label:\s*([^\s;\n{]+)\s*;/g
+let labelPattern = /label:\s*([^\s;\n{]+)\s*(;|$)/g
 
 let sourceMapPattern
 if (process.env.NODE_ENV !== 'production') {

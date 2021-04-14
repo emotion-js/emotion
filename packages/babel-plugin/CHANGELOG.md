@@ -1,5 +1,18 @@
 # @emotion/babel-plugin
 
+## 11.3.0
+
+### Minor Changes
+
+- [`36a51c27`](https://github.com/emotion-js/emotion/commit/36a51c273d9dd5ab95367fbcf95cd809bb625f28) [#2340](https://github.com/emotion-js/emotion/pull/2340) Thanks [@Andarist](https://github.com/Andarist)! - Added support for label extraction from object methods.
+
+### Patch Changes
+
+- [`36a51c27`](https://github.com/emotion-js/emotion/commit/36a51c273d9dd5ab95367fbcf95cd809bb625f28) [#2340](https://github.com/emotion-js/emotion/pull/2340) Thanks [@Andarist](https://github.com/Andarist)! - Fixed a crash when extracting labels from object properties with string literal keys in certain situations.
+
+- Updated dependencies [[`662f0e0f`](https://github.com/emotion-js/emotion/commit/662f0e0f888c8e80cf6b2d68b52ff1bb84cbdde5), [`830dd0e6`](https://github.com/emotion-js/emotion/commit/830dd0e6d071c98bc0b4b0ecc99dd21a93f057b9)]:
+  - @emotion/serialize@1.0.2
+
 ## 11.2.0
 
 ### Patch Changes

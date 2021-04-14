@@ -1,5 +1,11 @@
 # @emotion/jest
 
+## 11.3.0
+
+### Patch Changes
+
+- [`4e911edb`](https://github.com/emotion-js/emotion/commit/4e911edba332cfef8147be9e4c7a3309f10a04de) [#2336](https://github.com/emotion-js/emotion/pull/2336) Thanks [@iChenLei](https://github.com/iChenLei)! - Use `displayName` when printing shallowly rendered elements with css prop.
+
 ## 11.2.1
 
 ### Patch Changes

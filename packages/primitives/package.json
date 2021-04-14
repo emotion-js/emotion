@@ -35,7 +35,7 @@
   },
   "homepage": "https://emotion.sh",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/primitives",
+  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/primitives",
   "keywords": [
     "styles",
     "emotion",
