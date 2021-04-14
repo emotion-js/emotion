@@ -4,6 +4,7 @@
     "@changesets/changelog-github",
     { "repo": "emotion-js/emotion" }
   ],
+  "baseBranch": "main",
   "commit": false,
   "linked": [
     [

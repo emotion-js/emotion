@@ -1,20 +1,20 @@
 {
   "name": "@emotion/styled",
-  "version": "11.1.5",
+  "version": "11.3.0",
   "description": "styled API for emotion",
   "main": "dist/emotion-styled.cjs.js",
   "module": "dist/emotion-styled.esm.js",
   "types": "types/index.d.ts",
   "license": "MIT",
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/styled",
+  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/styled",
   "scripts": {
     "test:typescript": "dtslint types"
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
-    "@emotion/babel-plugin": "^11.1.2",
+    "@emotion/babel-plugin": "^11.3.0",
     "@emotion/is-prop-valid": "^1.1.0",
-    "@emotion/serialize": "^1.0.0",
+    "@emotion/serialize": "^1.0.2",
     "@emotion/utils": "^1.0.0"
   },
   "peerDependencies": {

@@ -45,7 +45,7 @@ A Stylis plugins that will be run by Stylis during preprocessing. [Read the Styl
 
 ### `key`
 
-`string`
+`string (Pattern: [^a-z-])`
 
 The prefix before class names. It will also be set as the value of the `data-emotion` attribute on the style tags that emotion inserts and it's used in the attribute name that marks style elements in `renderStylesToString` and `renderStylesToNodeStream`. This is **required if using multiple emotion caches in the same app**.
 

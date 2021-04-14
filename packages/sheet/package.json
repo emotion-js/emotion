@@ -13,7 +13,7 @@
   "scripts": {
     "test:typescript": "dtslint types"
   },
-  "repository": "https://github.com/emotion-js/emotion/tree/master/packages/sheet",
+  "repository": "https://github.com/emotion-js/emotion/tree/main/packages/sheet",
   "publishConfig": {
     "access": "public"
   },

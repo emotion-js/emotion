@@ -30,6 +30,22 @@ exports[`enzyme mount conditional styles 1`] = `
 </div>
 `;
 
+exports[`enzyme mount displayName 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<CustomDisplayName
+  className="emotion-0"
+>
+  <div
+    className="emotion-0"
+  >
+    Hello
+  </div>
+</CustomDisplayName>
+`;
+
 exports[`enzyme mount empty styled 1`] = `
 <Greeting>
   <div
@@ -56,6 +72,24 @@ exports[`enzyme mount nested 1`] = `
 </div>
 `;
 
+exports[`enzyme mount nested displayName 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div>
+  <CustomDisplayName
+    className="emotion-0"
+  >
+    <div
+      className="emotion-0"
+    >
+      Hello
+    </div>
+  </CustomDisplayName>
+</div>
+`;
+
 exports[`enzyme mount nested styled 1`] = `
 .emotion-0 {
   background-color: red;
@@ -72,6 +106,29 @@ exports[`enzyme mount nested styled 1`] = `
 </div>
 `;
 
+exports[`enzyme mount nested styled with css prop 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+.emotion-1 {
+  color: red;
+  background-color: black;
+}
+
+<div>
+  <Button
+    className="emotion-0"
+  >
+    <button
+      className="emotion-1 emotion-2"
+    >
+      iChenLei
+    </button>
+  </Button>
+</div>
+`;
+
 exports[`enzyme mount styled 1`] = `
 .emotion-0 {
   background-color: red;
@@ -84,6 +141,27 @@ exports[`enzyme mount styled 1`] = `
     Hello
   </div>
 </Greeting>
+`;
+
+exports[`enzyme mount styled with css prop 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+.emotion-1 {
+  color: red;
+  background-color: black;
+}
+
+<Button
+  className="emotion-0"
+>
+  <button
+    className="emotion-1 emotion-2"
+  >
+    iChenLei
+  </button>
+</Button>
 `;
 
 exports[`enzyme mount theming 1`] = `
@@ -357,6 +435,16 @@ exports[`enzyme shallow conditional styles 1`] = `
 </div>
 `;
 
+exports[`enzyme shallow displayName 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<CustomDisplayName
+  className="emotion-0"
+/>
+`;
+
 exports[`enzyme shallow empty styled 1`] = `
 <div
   className="emotion-0 emotion-1"
@@ -373,11 +461,37 @@ exports[`enzyme shallow nested 1`] = `
 </div>
 `;
 
+exports[`enzyme shallow nested displayName 1`] = `
+.emotion-0 {
+  color: hotpink;
+}
+
+<div>
+  <CustomDisplayName
+    className="emotion-0"
+  />
+</div>
+`;
+
 exports[`enzyme shallow nested styled 1`] = `
 <div>
   <Greeting>
     Hello
   </Greeting>
+</div>
+`;
+
+exports[`enzyme shallow nested styled with css prop 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+<div>
+  <Button
+    className="emotion-0"
+  >
+    iChenLei
+  </Button>
 </div>
 `;
 
@@ -391,6 +505,18 @@ exports[`enzyme shallow styled 1`] = `
 >
   Hello
 </div>
+`;
+
+exports[`enzyme shallow styled with css prop 1`] = `
+.emotion-0 {
+  background-color: black;
+}
+
+<Button
+  className="emotion-0"
+>
+  iChenLei
+</Button>
 `;
 
 exports[`enzyme shallow theming 1`] = `
