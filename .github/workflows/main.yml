@@ -47,10 +47,9 @@ jobs:
         run: yarn cross-env CI=true yarn coverage --color
 
       - name: Upload coverage to Codecov
-        run: bash <(curl -s https://codecov.io/bash) -C $GITHUB_SHA -B ${GITHUB_REF#refs/heads/} -Z
+        uses: codecov/codecov-action@v1
         if: ${{ matrix.platform == 'ubuntu-latest' && always() }}
-        env:
-          CODECOV_TOKEN: dc4ed93e-11a9-421e-b141-8a2f11913593
+
   flow:
     name: Flow
     runs-on: ubuntu-latest
