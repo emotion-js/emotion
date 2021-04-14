@@ -1,5 +1,13 @@
 # @emotion/serialize
 
+## 1.0.2
+
+### Patch Changes
+
+- [`662f0e0f`](https://github.com/emotion-js/emotion/commit/662f0e0f888c8e80cf6b2d68b52ff1bb84cbdde5) [#2335](https://github.com/emotion-js/emotion/pull/2335) Thanks [@iChenLei](https://github.com/iChenLei)! - Fixed appending manual labels to Babel-optimized style objects.
+
+* [`830dd0e6`](https://github.com/emotion-js/emotion/commit/830dd0e6d071c98bc0b4b0ecc99dd21a93f057b9) [#2279](https://github.com/emotion-js/emotion/pull/2279) Thanks [@lucasweng](https://github.com/lucasweng)! - Fixed the issue with incorrectly throwing errors on valid content values containing `open-quote`.
+
 ## 1.0.1
 
 ### Patch Changes
