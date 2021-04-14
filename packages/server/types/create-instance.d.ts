@@ -12,7 +12,7 @@ export interface EmotionCritical {
 
 export interface EmotionCritical2 {
   html: string
-  styles: Array<{ ids: Array<string>; css: string }>
+  styles: Array<{ key: string; ids: Array<string>; css: string }>
 }
 
 export interface EmotionServer {
