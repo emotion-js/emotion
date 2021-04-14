@@ -127,6 +127,18 @@ let cssTransformer = ({
   transformCssCallExpression({ babel, state, path: reference.parentPath })
 }
 
+let keyframesTransformer = ({
+  state,
+  babel,
+  reference
+}: {
+  state: any,
+  babel: any,
+  reference: any
+}) => {
+  transformCssCallExpression({ babel, state, path: reference.parentPath })
+}
+
 let globalTransformer = ({
   state,
   babel,
@@ -190,6 +202,7 @@ export const transformers = {
   // instead we use it as a hint to enable css prop optimization
   jsx: () => {},
   css: cssTransformer,
+  keyframes: keyframesTransformer,
   Global: globalTransformer
 }
 
