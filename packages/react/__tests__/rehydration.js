@@ -44,6 +44,7 @@ const removeGlobalProp = prop => {
     writable: true,
     configurable: true
   })
+  // $FlowFixMe
   return () => Object.defineProperty(global, prop, descriptor)
 }
 

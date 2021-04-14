@@ -175,13 +175,13 @@ export const prettifyCritical2 = ({
   styles
 }: {
   html: string,
-  styles: Array<{ css: string, ids: Array<string> }>
+  styles: Array<{ key: string, css: string, ids: Array<string> }>
 }) => {
   return {
     // $FlowFixMe
-    styles: styles.map<{ css: string, ids: Array<string> }>(
-      (item): { css: string, ids: Array<string> } => {
-        return { css: prettify(item.css || ''), ids: item.ids }
+    styles: styles.map<{ key: string, css: string, ids: Array<string> }>(
+      (item): { key: string, css: string, ids: Array<string> } => {
+        return { css: prettify(item.css || ''), ids: item.ids, key: item.key }
       }
     ),
     html

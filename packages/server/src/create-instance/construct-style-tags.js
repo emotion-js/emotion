@@ -7,7 +7,7 @@ const createConstructStyleTags = (
   nonceString: string
 ) => (criticalData: {
   html: string,
-  styles: Array<{ ids: Array<string>, css: string }>
+  styles: Array<{ key: string, ids: Array<string>, css: string }>
 }) => {
   let styleTagsString = ''
 
