@@ -11,11 +11,13 @@ export const transformCssCallExpression = ({
   babel,
   path,
   sourceMap,
+  isKeyframes = false,
   annotateAsPure = true
 }: {
   state: *,
   babel: *,
   path: *,
+  isKeyframes?: boolean,
   sourceMap?: string,
   annotateAsPure?: boolean
 }) => {
@@ -23,6 +25,7 @@ export const transformCssCallExpression = ({
     babel,
     state,
     path,
+    isKeyframes,
     shouldLabel: true,
     sourceMap
   })
@@ -136,7 +139,12 @@ let keyframesTransformer = ({
   babel: any,
   reference: any
 }) => {
-  transformCssCallExpression({ babel, state, path: reference.parentPath })
+  transformCssCallExpression({
+    babel,
+    state,
+    path: reference.parentPath,
+    isKeyframes: true
+  })
 }
 
 let globalTransformer = ({

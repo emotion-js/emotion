@@ -22,10 +22,30 @@ const bounce = someKeyframesFromCore`
   }
 `
 
+const gift = someKeyframesFromCore`
+  from {
+    transform: translate3d(0,0,0);
+  }
+
+  to {
+    transform: translate3d(0,-4px,0);
+  }
+`
+
 const Comp = () => (
   <div
     className={someCssFromCore`
       animation: ${bounce} 1s ease infinite;
+    `}
+  >
+    ichenlei with emotion
+  </div>
+)
+
+const Comp2 = () => (
+  <div
+    className={someCssFromCore`
+      animation: ${gift} 1s ease infinite;
     `}
   >
     ichenlei with emotion
