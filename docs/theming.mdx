@@ -192,6 +192,22 @@ render(
 )
 ```
 
+`useTheme` support typescript generic, you can use `useTheme` as follows.
+
+```jsx
+import { useTheme } from '@emotion/react'
+
+interface ITheme {
+  color: string
+}
+
+function SomeText(props) {
+  const theme = useTheme<{ color: string }>();
+  // const theme = useTheme<ITheme>();
+  return <div className={{ color: theme.color }} {...props} />
+}
+```
+
 ## Credits
 
 Thanks goes to the [styled-components team](https://github.com/styled-components/styled-components) and [their contributors](https://github.com/styled-components/styled-components/graphs/contributors) who designed this API.

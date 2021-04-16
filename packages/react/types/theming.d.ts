@@ -20,7 +20,7 @@ export type withTheme = <
   component: C
 ) => React.FC<DistributiveOmit<PropsOf<C>, 'theme'> & { theme?: Theme }>
 
-export function useTheme(): Theme
+export function useTheme<T = Theme>(): T
 
 export const ThemeProvider: ThemeProvider
 
