@@ -30,6 +30,22 @@ ruleTester.run('emotion jsx', rule, {
       `
     },
     {
+      options: ['jsxImportSource'],
+      code: `
+      /** @jsxImportSource @emotion/react */
+
+      let ele = <div css={{}} />
+      `
+    },
+    {
+      options: [{ jsxImportSource: '@emotion/react' }],
+      code: `
+      /** @jsxImportSource @emotion/react */
+
+      let ele = <div css={{}} />
+      `
+    },
+    {
       code: `
 
       let ele = <div notCss={{}} />
@@ -52,6 +68,38 @@ let ele = <div css={{}} />
       output: `
 // @jsx jsx
 import { jsx } from '@emotion/react'
+let ele = <div css={{}} />
+            `.trim()
+    },
+    {
+      options: ['jsxImportSource'],
+      code: `
+let ele = <div css={{}} />
+      `.trim(),
+      errors: [
+        {
+          message:
+            'The css prop can only be used if you set @jsxImportSource pragma'
+        }
+      ],
+      output: `
+/** @jsxImportSource @emotion/react */
+let ele = <div css={{}} />
+            `.trim()
+    },
+    {
+      options: [{ jsxImportSource: '@iChenLei/react' }],
+      code: `
+let ele = <div css={{}} />
+      `.trim(),
+      errors: [
+        {
+          message:
+            'The css prop can only be used if you set @jsxImportSource pragma'
+        }
+      ],
+      output: `
+/** @jsxImportSource @iChenLei/react */
 let ele = <div css={{}} />
             `.trim()
     },

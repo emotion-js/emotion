@@ -1,4 +1,5 @@
 const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
+const JSX_IMPORT_SOURCE_REGEX = /\*?\s*@jsxImportSource\s+([^\s]+)/
 
 // TODO: handling this case
 // <div css={`color:hotpink;`} />
@@ -7,9 +8,65 @@ const JSX_ANNOTATION_REGEX = /\*?\s*@jsx\s+([^\s]+)/
 
 export default {
   meta: {
-    fixable: 'code'
+    fixable: 'code',
+    schema: {
+      type: 'array',
+      items: {
+        oneOf: [
+          {
+            type: 'string'
+          },
+          {
+            type: 'object',
+            properties: {
+              jsxImportSource: { type: 'string' }
+            },
+            required: ['jsxImportSource'],
+            additionalProperties: false
+          }
+        ]
+      },
+      uniqueItems: true,
+      minItems: 0
+    }
   },
   create(context) {
+    const jsxRuntimeMode = context.options.find(
+      option =>
+        option === 'jsxImportSource' || (option && option.jsxImportSource)
+    )
+
+    if (jsxRuntimeMode) {
+      return {
+        JSXAttribute(node) {
+          if (node.name.name !== 'css') {
+            return
+          }
+          let hasJsxImportSource = false
+          let sourceCode = context.getSourceCode()
+          let pragma = sourceCode
+            .getAllComments()
+            .find(node => JSX_IMPORT_SOURCE_REGEX.test(node.value))
+          hasJsxImportSource =
+            pragma && pragma.value.match(JSX_IMPORT_SOURCE_REGEX)
+          if (!hasJsxImportSource) {
+            context.report({
+              node,
+              message:
+                'The css prop can only be used if you set @jsxImportSource pragma',
+              fix(fixer) {
+                return fixer.insertTextBefore(
+                  sourceCode.ast.body[0],
+                  `/** @jsxImportSource ${(jsxRuntimeMode || {})
+                    .jsxImportSource || '@emotion/react'} */\n`
+                )
+              }
+            })
+          }
+        }
+      }
+    }
+
     return {
       JSXAttribute(node) {
         if (node.name.name !== 'css') {
