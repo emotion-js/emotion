@@ -253,4 +253,7 @@ const Input5 = styled.input`
   const test1 = styled.div({ color: 'red' }, options)
   const test2 = styled.div<Props>({ color: 'red' }, options)
   const test3 = styled('div', options)({ color: 'red' })
+  const test4 = styled(() => <div className="foo-bar" />, options)({
+    color: 'red'
+  })
 }
