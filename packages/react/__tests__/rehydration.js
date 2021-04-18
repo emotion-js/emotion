@@ -145,7 +145,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-          
+
           .stl-1pdkrhd-App{color:hotpink;}
         </style>
       </div>
@@ -191,7 +191,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-          
+
           .stl-1pdkrhd-App{color:hotpink;}
         </style>
       </div>
@@ -199,7 +199,7 @@ test('initializing another Emotion instance should not move already moved styles
   `)
 })
 
-test('dynamic global styles in SSR should work as expected', () => {
+test('global styles can be removed individually after rehydrating SSRed HTML', () => {
   const { app, styles } = disableBrowserEnvTemporarily(() => {
     resetAllModules()
 
@@ -279,14 +279,14 @@ test('dynamic global styles in SSR should work as expected', () => {
         data-emotion="mui-global"
         data-s=""
       >
-        
+
         body{color:white;}
       </style>
       <style
         data-emotion="mui-global"
         data-s=""
       >
-        
+
         html{background:red;}
       </style>
       <style
@@ -314,7 +314,7 @@ test('dynamic global styles in SSR should work as expected', () => {
         data-emotion="mui-global"
         data-s=""
       >
-        
+
         html{background:red;}
       </style>
       <style
