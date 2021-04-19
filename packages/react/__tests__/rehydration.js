@@ -199,7 +199,7 @@ test('initializing another Emotion instance should not move already moved styles
   `)
 })
 
-test('xxx', () => {
+test('dynamic global styles in SSR should work as expected', () => {
   const { app, styles } = disableBrowserEnvTemporarily(() => {
     resetAllModules()
 
