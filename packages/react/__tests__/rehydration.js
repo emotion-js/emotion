@@ -145,7 +145,7 @@ test('initializing another Emotion instance should not move already moved styles
           data-emotion="stl"
           data-s=""
         >
-
+          
           .stl-1pdkrhd-App{color:hotpink;}
         </style>
       </div>
