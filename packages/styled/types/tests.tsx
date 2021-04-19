@@ -250,10 +250,11 @@ const Input5 = styled.input`
     target: 'bar',
     shouldForwardProp: p => true
   }
-  const test1 = styled.div({ color: 'red' }, options)
-  const test2 = styled.div<Props>({ color: 'red' }, options)
-  const test3 = styled('div', options)({ color: 'red' })
-  const test4 = styled(() => <div className="foo-bar" />, options)({
+
+  const test1 = styled('div', options)({ color: 'red' })
+  const test2 = styled('div', options)<Props>({ color: 'red' })
+  const test3 = styled(() => <div className="foo" />, options)({ color: 'red' })
+  const test4 = styled(() => <div className="foo" />, options)<Props>({
     color: 'red'
   })
 }

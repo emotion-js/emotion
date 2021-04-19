@@ -75,17 +75,11 @@ export interface CreateStyledComponent<
    */
   <AdditionalProps extends {} = {}>(
     ...styles: Array<
-      // tslint:disable-next-line no-null-undefined-union
-      | StyledOptions<
-          ComponentProps &
-            SpecificComponentProps &
-            AdditionalProps & { theme: Theme }
-        >
-      | Interpolation<
-          ComponentProps &
-            SpecificComponentProps &
-            AdditionalProps & { theme: Theme }
-        >
+      Interpolation<
+        ComponentProps &
+          SpecificComponentProps &
+          AdditionalProps & { theme: Theme }
+      >
     >
   ): StyledComponent<
     ComponentProps & AdditionalProps,
