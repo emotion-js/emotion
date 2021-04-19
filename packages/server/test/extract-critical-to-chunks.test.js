@@ -56,13 +56,13 @@ export const getComponents = (
   return { Page1, Page2 }
 }
 
-describe('extractCritical2', () => {
+describe('extractCriticalToChunks', () => {
   const { Page1, Page2 } = getComponents(emotion, reactEmotion)
 
-  const page1Critical = emotionServer.extractCritical2(
+  const page1Critical = emotionServer.extractCriticalToChunks(
     renderToString(<Page1 />)
   )
-  const page2Critical = emotionServer.extractCritical2(
+  const page2Critical = emotionServer.extractCriticalToChunks(
     renderToString(<Page2 />)
   )
 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`extractCritical2 generates correct style tags using constructStyleTags 1`] = `
+exports[`extractCriticalToChunks generates correct style tags using constructStyleTags 1`] = `
 <style data-emotion="css-global l6h">
   body{color:white;}
 </style>
@@ -12,7 +12,7 @@ exports[`extractCritical2 generates correct style tags using constructStyleTags 
 </style>
 `;
 
-exports[`extractCritical2 generates correct style tags using constructStyleTags 2`] = `
+exports[`extractCriticalToChunks generates correct style tags using constructStyleTags 2`] = `
 <style data-emotion="css-global l6h">
   body{color:white;}
 </style>
@@ -24,7 +24,7 @@ exports[`extractCritical2 generates correct style tags using constructStyleTags 
 </style>
 `;
 
-exports[`extractCritical2 returns static css 1`] = `
+exports[`extractCriticalToChunks returns static css 1`] = `
 Object {
   "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
 </main>,
@@ -71,7 +71,7 @@ Object {
 }
 `;
 
-exports[`extractCritical2 returns static css 2`] = `
+exports[`extractCriticalToChunks returns static css 2`] = `
 Object {
   "html": <main class="css-14e1j2p-hoverStyles-Something_Main">
 </main>,

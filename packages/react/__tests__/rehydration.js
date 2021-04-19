@@ -204,7 +204,9 @@ test('global styles can be removed individually after rehydrating SSRed HTML', (
     resetAllModules()
 
     let cache = createCache({ key: 'mui' })
-    let { extractCritical2, constructStyleTags } = createEmotionServer(cache)
+    let { extractCriticalToChunks, constructStyleTags } = createEmotionServer(
+      cache
+    )
 
     const rendered = ReactDOMServer.renderToString(
       <CacheProvider value={cache}>
@@ -215,7 +217,7 @@ test('global styles can be removed individually after rehydrating SSRed HTML', (
         </main>
       </CacheProvider>
     )
-    const extracted = extractCritical2(rendered)
+    const extracted = extractCriticalToChunks(rendered)
     return {
       app: extracted.html,
       styles: constructStyleTags(extracted)

@@ -43,7 +43,7 @@ import createCache from '@emotion/cache'
 
 const key = 'custom'
 const cache = createCache({ key })
-const { extractCritical2, constructStyleTags } = createEmotionServer(cache)
+const { extractCriticalToChunks, constructStyleTags } = createEmotionServer(cache)
 
 let element = (
   <CacheProvider value={cache}>
@@ -51,7 +51,7 @@ let element = (
   </CacheProvider>
 )
 
-let { html, styles } = extractCritical2(renderToString(element))
+let { html, styles } = extractCriticalToChunks(renderToString(element))
 
 res
   .status(200)

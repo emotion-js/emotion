@@ -10,7 +10,7 @@ export interface EmotionCritical {
   css: string
 }
 
-export interface EmotionCritical2 {
+export interface EmotionCriticalToChunks {
   html: string
   styles: Array<{ key: string; ids: Array<string>; css: string }>
 }
@@ -19,7 +19,7 @@ export interface EmotionServer {
   extractCritical(html: string): EmotionCritical
   renderStylesToString(html: string): string
   renderStylesToNodeStream(): NodeJS.ReadWriteStream
-  constructStyleTags(html: string): EmotionCritical2
+  constructStyleTags(html: string): EmotionCriticalToChunks
 }
 
 export default function createEmotionServer(cache: EmotionCache): EmotionServer

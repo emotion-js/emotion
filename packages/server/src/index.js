@@ -4,7 +4,7 @@ import { cache } from '@emotion/css'
 
 export const {
   extractCritical,
-  extractCritical2,
+  extractCriticalToChunks,
   renderStylesToString,
   renderStylesToNodeStream,
   constructStyleTags

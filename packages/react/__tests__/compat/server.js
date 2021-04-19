@@ -41,7 +41,7 @@ test('extracted rules have correct keys when dealing with multiple caches', () =
   )
 
   let cache2 = createCache({ key: 'ssr-second-key' })
-  let { extractCritical: extractCritical2 } = createEmotionServer(cache2)
+  let { extractCritical: extractCriticalToChunks } = createEmotionServer(cache2)
   let ele2 = (
     <CacheProvider value={cache2}>
       <div css={{ color: 'rebeccapurple' }} />
@@ -50,6 +50,6 @@ test('extracted rules have correct keys when dealing with multiple caches', () =
 
   expect([
     extractCritical1(renderToString(ele1)),
-    extractCritical2(renderToString(ele2))
+    extractCriticalToChunks(renderToString(ele2))
   ]).toMatchSnapshot()
 })

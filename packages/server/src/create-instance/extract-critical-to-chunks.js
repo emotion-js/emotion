@@ -1,7 +1,7 @@
 // @flow
 import type { EmotionCache } from '@emotion/utils'
 
-const createExtractCritical2 = (cache: EmotionCache) => (html: string) => {
+const extractCriticalToChunks = (cache: EmotionCache) => (html: string) => {
   // parse out ids from html
   // reconstruct css/rules/cache to pass
   let RGX = new RegExp(`${cache.key}-([a-zA-Z0-9-_]+)`, 'gm')
@@ -48,4 +48,4 @@ const createExtractCritical2 = (cache: EmotionCache) => (html: string) => {
   return o
 }
 
-export default createExtractCritical2
+export default extractCriticalToChunks
