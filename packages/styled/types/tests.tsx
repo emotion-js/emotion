@@ -229,12 +229,13 @@ const Input5 = styled.input`
   const styledOpts1: StyledOptsParameterized = {
     label: 'foo',
     target: 'bar',
-    shouldForwardProp: (p: 'a' | string) => true
+    shouldForwardProp: (p: 'a' | 'b') => true
   }
+
   const styledOptsBroken0: StyledOptsParameterized = {
     label: 'foo',
     target: 'bar',
-    shouldForwardProp: (p: 'c' | number) => true // $ExpectError
+    shouldForwardProp: (p: 'c') => true // $ExpectError
   }
   const styledOptsBroken1: StyledOptions = {
     label: 1, // $ExpectError
