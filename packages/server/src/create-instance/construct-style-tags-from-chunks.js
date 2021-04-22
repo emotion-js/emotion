@@ -2,7 +2,7 @@
 import type { EmotionCache } from '@emotion/utils'
 import { generateStyleTag } from './utils'
 
-const createConstructStyleTags = (
+const createConstructStyleTagsFromChunks = (
   cache: EmotionCache,
   nonceString: string
 ) => (criticalData: {
@@ -23,4 +23,4 @@ const createConstructStyleTags = (
   return styleTagsString
 }
 
-export default createConstructStyleTags
+export default createConstructStyleTagsFromChunks

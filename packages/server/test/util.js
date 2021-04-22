@@ -170,7 +170,7 @@ export const prettifyCritical = ({
   }
 }
 
-export const prettifyCritical2 = ({
+export const prettifyCriticalChunks = ({
   html,
   styles
 }: {

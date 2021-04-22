@@ -6,7 +6,7 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import type { Emotion } from '@emotion/css/create-instance'
-import { prettifyCritical2 } from './util'
+import { prettifyCriticalChunks } from './util'
 
 let emotion = require('@emotion/css')
 let reactEmotion = require('@emotion/styled')
@@ -67,8 +67,8 @@ describe('extractCriticalToChunks', () => {
   )
 
   test('returns static css', () => {
-    expect(prettifyCritical2(page1Critical)).toMatchSnapshot()
-    expect(prettifyCritical2(page2Critical)).toMatchSnapshot()
+    expect(prettifyCriticalChunks(page1Critical)).toMatchSnapshot()
+    expect(prettifyCriticalChunks(page2Critical)).toMatchSnapshot()
   })
 
   test('generates correct style tags using constructStyleTags', () => {
