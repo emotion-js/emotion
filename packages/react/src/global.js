@@ -80,13 +80,10 @@ export let Global: React.AbstractComponent<
     )
   }
 
-  // yes, i know these hooks are used conditionally
+  // yes, i know this hook is used conditionally
   // but it is based on a constant that will never change at runtime
   // it's effectively like having two implementations and switching them out
   // so it's not actually breaking anything
-
-  let sheetRef = React.useRef()
-
   React.useLayoutEffect(
     () => {
       const key = `${cache.key}-global`
@@ -101,35 +98,22 @@ export let Global: React.AbstractComponent<
       let node: HTMLStyleElement | null = document.querySelector(
         `style[data-emotion="${key} ${serialized.name}"]`
       )
-
       if (cache.sheet.tags.length) {
         sheet.before = cache.sheet.tags[0]
       }
       if (node !== null) {
         sheet.hydrate([node])
+      } else {
+        if (serialized.next !== undefined) {
+          // insert keyframes
+          insertStyles(cache, serialized.next, true)
+        }
+        cache.insert(``, serialized, sheet, false)
       }
-      sheetRef.current = sheet
+
       return () => {
         sheet.flush()
       }
-    },
-    [cache]
-  )
-
-  React.useLayoutEffect(
-    () => {
-      if (serialized.next !== undefined) {
-        // insert keyframes
-        insertStyles(cache, serialized.next, true)
-      }
-      let sheet: StyleSheet = ((sheetRef.current: any): StyleSheet)
-      if (sheet.tags.length) {
-        // if this doesn't exist then it will be null so the style element will be appended
-        let element = sheet.tags[sheet.tags.length - 1].nextElementSibling
-        sheet.before = ((element: any): Element | null)
-        sheet.flush()
-      }
-      cache.insert(``, serialized, sheet, false)
     },
     [cache, serialized.name]
   )

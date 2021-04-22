@@ -278,17 +278,15 @@ test('global styles can be removed individually after rehydrating SSRed HTML', (
   expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
     <head>
       <style
-        data-emotion="mui-global"
+        data-emotion="mui-global l6h"
         data-s=""
       >
-        
         body{color:white;}
       </style>
       <style
-        data-emotion="mui-global"
+        data-emotion="mui-global 10q49a4"
         data-s=""
       >
-        
         html{background:red;}
       </style>
       <style
@@ -302,7 +300,7 @@ test('global styles can be removed individually after rehydrating SSRed HTML', (
 
   ReactDOM.render(
     <CacheProvider value={cache}>
-      <Global styles={{ html: { background: 'red' } }} />
+      <Global styles={{ body: { color: 'white' } }} />
       <main css={{ color: 'green' }}>
         <div css={{ color: 'hotpink' }} />
       </main>
@@ -313,11 +311,10 @@ test('global styles can be removed individually after rehydrating SSRed HTML', (
   expect(safeQuerySelector('head')).toMatchInlineSnapshot(`
     <head>
       <style
-        data-emotion="mui-global"
+        data-emotion="mui-global l6h"
         data-s=""
       >
-        
-        html{background:red;}
+        body{color:white;}
       </style>
       <style
         data-emotion="mui bjcoli 1lrxbo5"
