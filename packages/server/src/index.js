@@ -7,5 +7,5 @@ export const {
   extractCriticalToChunks,
   renderStylesToString,
   renderStylesToNodeStream,
-  constructStyleTags
+  constructStyleTagsFromChunks
 } = createEmotionServer(cache)

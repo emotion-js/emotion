@@ -71,8 +71,12 @@ describe('extractCriticalToChunks', () => {
     expect(prettifyCriticalChunks(page2Critical)).toMatchSnapshot()
   })
 
-  test('generates correct style tags using constructStyleTags', () => {
-    expect(emotionServer.constructStyleTags(page1Critical)).toMatchSnapshot()
-    expect(emotionServer.constructStyleTags(page2Critical)).toMatchSnapshot()
+  test('generates correct style tags using constructStyleTagsFromChunks', () => {
+    expect(
+      emotionServer.constructStyleTagsFromChunks(page1Critical)
+    ).toMatchSnapshot()
+    expect(
+      emotionServer.constructStyleTagsFromChunks(page2Critical)
+    ).toMatchSnapshot()
   })
 })

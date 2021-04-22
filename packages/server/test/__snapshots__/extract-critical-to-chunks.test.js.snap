@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`extractCriticalToChunks generates correct style tags using constructStyleTags 1`] = `
+exports[`extractCriticalToChunks generates correct style tags using constructStyleTagsFromChunks 1`] = `
 <style data-emotion="css-global l6h">
   body{color:white;}
 </style>
@@ -12,7 +12,7 @@ exports[`extractCriticalToChunks generates correct style tags using constructSty
 </style>
 `;
 
-exports[`extractCriticalToChunks generates correct style tags using constructStyleTags 2`] = `
+exports[`extractCriticalToChunks generates correct style tags using constructStyleTagsFromChunks 2`] = `
 <style data-emotion="css-global l6h">
   body{color:white;}
 </style>
