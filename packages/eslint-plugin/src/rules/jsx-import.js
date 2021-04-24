@@ -19,9 +19,10 @@ export default {
           {
             type: 'object',
             properties: {
-              jsxImportSource: { type: 'string' }
+              runtime: { type: 'string' },
+              importSource: { type: 'string' }
             },
-            required: ['jsxImportSource'],
+            required: ['runtime'],
             additionalProperties: false
           }
         ]
@@ -32,8 +33,7 @@ export default {
   },
   create(context) {
     const jsxRuntimeMode = context.options.find(
-      option =>
-        option === 'jsxImportSource' || (option && option.jsxImportSource)
+      option => option && option.runtime === 'automatic'
     )
 
     if (jsxRuntimeMode) {
@@ -57,8 +57,8 @@ export default {
               fix(fixer) {
                 return fixer.insertTextBefore(
                   sourceCode.ast.body[0],
-                  `/** @jsxImportSource ${(jsxRuntimeMode || {})
-                    .jsxImportSource || '@emotion/react'} */\n`
+                  `/** @jsxImportSource ${(jsxRuntimeMode || {}).importSource ||
+                    '@emotion/react'} */\n`
                 )
               }
             })

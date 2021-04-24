@@ -30,7 +30,23 @@ ruleTester.run('emotion jsx', rule, {
       `
     },
     {
-      options: ['jsxImportSource'],
+      options: [{ runtime: 'classic' }],
+      code: `
+      // @jsx jsx
+      import { jsx } from '@emotion/react'
+      let ele = <div css={{}} />
+      `
+    },
+    {
+      options: [{ runtime: 'invalidRuntime' }],
+      code: `
+      // @jsx jsx
+      import { jsx } from '@emotion/react'
+      let ele = <div css={{}} />
+      `
+    },
+    {
+      options: [{ runtime: 'automatic' }],
       code: `
       /** @jsxImportSource @emotion/react */
 
@@ -38,7 +54,7 @@ ruleTester.run('emotion jsx', rule, {
       `
     },
     {
-      options: [{ jsxImportSource: '@emotion/react' }],
+      options: [{ runtime: 'automatic', importSource: '@emotion/react' }],
       code: `
       /** @jsxImportSource @emotion/react */
 
@@ -72,7 +88,7 @@ let ele = <div css={{}} />
             `.trim()
     },
     {
-      options: ['jsxImportSource'],
+      options: [{ runtime: 'automatic' }],
       code: `
 let ele = <div css={{}} />
       `.trim(),
@@ -88,7 +104,7 @@ let ele = <div css={{}} />
             `.trim()
     },
     {
-      options: [{ jsxImportSource: '@iChenLei/react' }],
+      options: [{ runtime: 'automatic', importSource: '@iChenLei/react' }],
       code: `
 let ele = <div css={{}} />
       `.trim(),
@@ -100,6 +116,23 @@ let ele = <div css={{}} />
       ],
       output: `
 /** @jsxImportSource @iChenLei/react */
+let ele = <div css={{}} />
+            `.trim()
+    },
+    {
+      options: [{ runtime: 'classic' }],
+      code: `
+let ele = <div css={{}} />
+      `.trim(),
+      errors: [
+        {
+          message:
+            'The css prop can only be used if jsx from @emotion/react is imported and it is set as the jsx pragma'
+        }
+      ],
+      output: `
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
 let ele = <div css={{}} />
             `.trim()
     },
